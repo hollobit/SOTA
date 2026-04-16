@@ -836,7 +836,10 @@ var App = {
             { name: 'Korea AISI (K-AISI)', url: 'https://www.aisi.re.kr/eng', desc: 'AI Safety Forecast, Korean model assessment' },
             { name: 'International AI Safety Report', url: 'https://internationalaisafetyreport.org/', desc: '2026 joint international AI safety report' },
             { name: 'Future of Life AI Safety Index', url: 'https://futureoflife.org/ai-safety-index-winter-2025/', desc: 'Company-level AI safety scoring' },
-            { name: 'Frontier Model Forum', url: 'https://www.frontiermodelforum.org/technical-reports/', desc: 'Joint industry capability assessments' }
+            { name: 'Frontier Model Forum', url: 'https://www.frontiermodelforum.org/technical-reports/', desc: 'Joint industry capability assessments' },
+            { name: 'China AISI Network', url: 'https://ai-development-and-safety-network.cn/', desc: 'PandaGuard, MultiTrust, Safe RLHF — 49 model jailbreak eval' },
+            { name: 'China AISI Research', url: 'https://ai-development-and-safety-network.cn/research-progress', desc: 'LLM safety research: jailbreak, alignment, misinformation' },
+            { name: 'China AISI Standards', url: 'https://ai-development-and-safety-network.cn/standards-and-norms', desc: 'Multimodal LLM safety specs, security assessment standards' }
         ];
 
         sites.forEach(function(site) {
