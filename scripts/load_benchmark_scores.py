@@ -15,9 +15,17 @@ DB_PATH = "data/benchmark.db"
 
 def main():
     resource_dir = Path("resource")
-    json_files = sorted(resource_dir.glob("benchmark_scores_*.json"))
+    json_files = sorted(resource_dir.glob("*_scores_*.json")) + sorted(resource_dir.glob("*_scores.json"))
+    # Deduplicate
+    seen = set()
+    unique = []
+    for f in json_files:
+        if f.name not in seen:
+            seen.add(f.name)
+            unique.append(f)
+    json_files = unique
     if not json_files:
-        print("No benchmark_scores_*.json files found in resource/")
+        print("No *_scores_*.json files found in resource/")
         return
 
     Path("data").mkdir(exist_ok=True)

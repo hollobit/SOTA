@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-16",
+    "sources": ["https://lmcouncil.ai/benchmarks"]
+  },
+  "models": [
+    {"id": "google/gemini-3-pro-preview", "vendor": "Google", "name": "Gemini 3 Pro Preview", "type": "proprietary"},
+    {"id": "google/gemini-3.1-pro-preview", "vendor": "Google", "name": "Gemini 3.1 Pro Preview", "type": "proprietary"},
+    {"id": "openai/gpt-5.4-pro", "vendor": "OpenAI", "name": "GPT-5.4 Pro", "type": "proprietary"},
+    {"id": "openai/gpt-5.3-codex", "vendor": "OpenAI", "name": "GPT-5.3 Codex", "type": "proprietary"},
+    {"id": "openai/gpt-5-pro", "vendor": "OpenAI", "name": "GPT-5 Pro", "type": "proprietary"},
+    {"id": "openai/o3", "vendor": "OpenAI", "name": "o3", "type": "proprietary"},
+    {"id": "openai/o4-mini", "vendor": "OpenAI", "name": "o4-mini", "type": "proprietary"},
+    {"id": "xai/grok-4", "vendor": "xAI", "name": "Grok 4", "type": "proprietary"}
+  ],
+  "benchmarks": [
+    {"id": "hle", "name": "Humanity's Last Exam", "category": "reasoning"},
+    {"id": "simplebench", "name": "SimpleBench", "category": "reasoning"},
+    {"id": "metr_time_horizons", "name": "METR Time Horizons", "category": "agent"},
+    {"id": "gdpval", "name": "GDPval", "category": "reasoning"},
+    {"id": "gso", "name": "GSO", "category": "coding"},
+    {"id": "fiction_livebench", "name": "Fiction.liveBench", "category": "reasoning"},
+    {"id": "webdev_arena", "name": "WebDev Arena", "category": "coding"},
+    {"id": "balrog", "name": "BALROG", "category": "agent"},
+    {"id": "math_level5", "name": "MATH Level 5", "category": "math"},
+    {"id": "frontiermath", "name": "FrontierMath", "category": "math"},
+    {"id": "weirdml_v2", "name": "WeirdML v2", "category": "coding"},
+    {"id": "terminal_bench_2", "name": "Terminal-Bench 2.0", "category": "agent"},
+    {"id": "vpct", "name": "VPCT", "category": "multimodal"},
+    {"id": "factorio", "name": "Factorio Learning Environment", "category": "agent"},
+    {"id": "geobench", "name": "GeoBench", "category": "reasoning"}
+  ],
+  "scores": [
+    {"model": "google/gemini-3-pro-preview", "benchmark": "hle", "score": 37.52},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "hle", "score": 34.44},
+    {"model": "openai/gpt-5-pro", "benchmark": "hle", "score": 31.64},
+    {"model": "openai/gpt-5.2", "benchmark": "hle", "score": 27.80},
+    {"model": "openai/gpt-5", "benchmark": "hle", "score": 25.32},
+
+    {"model": "google/gemini-3.1-pro-preview", "benchmark": "simplebench", "score": 79.6},
+    {"model": "google/gemini-3-pro-preview", "benchmark": "simplebench", "score": 76.4},
+    {"model": "openai/gpt-5.4-pro", "benchmark": "simplebench", "score": 74.1},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "simplebench", "score": 67.6},
+
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "metr_time_horizons", "score": 288.9, "unit": "min"},
+    {"model": "openai/gpt-5", "benchmark": "metr_time_horizons", "score": 137.3, "unit": "min"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "metr_time_horizons", "score": 113.3, "unit": "min"},
+    {"model": "xai/grok-4", "benchmark": "metr_time_horizons", "score": 110.1, "unit": "min"},
+
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "swe_bench_verified", "score": 78.7},
+    {"model": "openai/gpt-5.4", "benchmark": "swe_bench_verified", "score": 76.9},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "swe_bench_verified", "score": 76.7},
+    {"model": "google/gemini-3.1-pro-preview", "benchmark": "swe_bench_verified", "score": 75.6},
+
+    {"model": "google/gemini-3.1-pro-preview", "benchmark": "gpqa_diamond", "score": 94.1},
+    {"model": "google/gemini-3-pro-preview", "benchmark": "gpqa_diamond", "score": 92.6},
+    {"model": "openai/gpt-5.2", "benchmark": "gpqa_diamond", "score": 91.4},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "gpqa_diamond", "score": 90.5},
+
+    {"model": "openai/gpt-5.4", "benchmark": "gdpval", "score": 83.0},
+    {"model": "openai/gpt-5.3-codex", "benchmark": "gdpval", "score": 70.9},
+    {"model": "openai/gpt-5.2", "benchmark": "gdpval", "score": 70.9},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "gdpval", "score": 59.6},
+
+    {"model": "openai/gpt-5.2", "benchmark": "gso", "score": 27.4},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "gso", "score": 26.5},
+    {"model": "google/gemini-3-pro-preview", "benchmark": "gso", "score": 18.6},
+
+    {"model": "openai/o3", "benchmark": "fiction_livebench", "score": 100.0},
+    {"model": "xai/grok-4", "benchmark": "fiction_livebench", "score": 96.9},
+    {"model": "openai/gpt-5", "benchmark": "fiction_livebench", "score": 96.9},
+
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "webdev_arena", "score": 1512, "unit": "elo"},
+    {"model": "openai/gpt-5.2", "benchmark": "webdev_arena", "score": 1480, "unit": "elo"},
+    {"model": "openai/gpt-5", "benchmark": "webdev_arena", "score": 1477.5, "unit": "elo"},
+
+    {"model": "google/gemini-3-flash", "benchmark": "balrog", "score": 48.1},
+    {"model": "xai/grok-4", "benchmark": "balrog", "score": 43.6},
+
+    {"model": "openai/gpt-5.2", "benchmark": "otis_aime_2025", "score": 96.1},
+    {"model": "google/gemini-3.1-pro-preview", "benchmark": "otis_aime_2025", "score": 95.6},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "otis_aime_2025", "score": 94.4},
+
+    {"model": "openai/gpt-5", "benchmark": "math_level5", "score": 98.1},
+    {"model": "openai/o4-mini", "benchmark": "math_level5", "score": 97.8},
+    {"model": "openai/o3", "benchmark": "math_level5", "score": 97.8},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "math_level5", "score": 97.7},
+
+    {"model": "openai/gpt-5.4-pro", "benchmark": "frontiermath", "score": 50.0},
+    {"model": "openai/gpt-5.4", "benchmark": "frontiermath", "score": 47.6},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "frontiermath", "score": 40.7},
+    {"model": "openai/gpt-5.2", "benchmark": "frontiermath", "score": 40.7},
+
+    {"model": "openai/gpt-5.3-codex", "benchmark": "weirdml_v2", "score": 79.3},
+    {"model": "openai/gpt-5.2", "benchmark": "weirdml_v2", "score": 72.2},
+    {"model": "google/gemini-3.1-pro-preview", "benchmark": "weirdml_v2", "score": 72.1},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "weirdml_v2", "score": 65.9},
+
+    {"model": "google/gemini-3.1-pro-preview", "benchmark": "terminal_bench_2", "score": 78.4},
+    {"model": "openai/gpt-5.3-codex", "benchmark": "terminal_bench_2", "score": 77.3},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "terminal_bench_2", "score": 69.9},
+
+    {"model": "google/gemini-3-pro-preview", "benchmark": "vpct", "score": 91.0},
+    {"model": "openai/gpt-5.2", "benchmark": "vpct", "score": 84.0},
+    {"model": "google/gemini-3-flash", "benchmark": "vpct", "score": 72.6}
+  ]
+}
