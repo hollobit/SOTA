@@ -27,10 +27,24 @@ var Filters = {
             });
         }
 
+        if (opts.benchmark) {
+            filtered = filtered.filter(function(s) {
+                return s.benchmark_id === opts.benchmark;
+            });
+        }
+
         if (opts.search) {
             var q = opts.search.toLowerCase();
+            // Build benchmark name lookup
+            var benchNames = {};
+            (window._benchmarks || []).forEach(function(b) {
+                benchNames[b.id] = b.name.toLowerCase();
+            });
             filtered = filtered.filter(function(s) {
-                return s.model_id.toLowerCase().indexOf(q) !== -1;
+                var matchModel = s.model_id.toLowerCase().indexOf(q) !== -1;
+                var benchName = benchNames[s.benchmark_id] || s.benchmark_id.toLowerCase();
+                var matchBench = benchName.indexOf(q) !== -1 || s.benchmark_id.toLowerCase().indexOf(q) !== -1;
+                return matchModel || matchBench;
             });
         }
 

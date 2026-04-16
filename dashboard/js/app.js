@@ -166,6 +166,18 @@ var App = {
             srcSelect.appendChild(opt);
         });
 
+        // Benchmark filter dropdown for leaderboard
+        var benchFilter = document.getElementById('filter-benchmark');
+        if (benchFilter) {
+            var sortedBench = this.data.benchmarks.slice().sort(function(a, b) { return a.name.localeCompare(b.name); });
+            sortedBench.forEach(function(b) {
+                var opt = document.createElement('option');
+                opt.value = b.id;
+                opt.textContent = b.name;
+                benchFilter.appendChild(opt);
+            });
+        }
+
         var trendBench = document.getElementById('trend-benchmark');
         this.data.benchmarks.forEach(function(b) {
             var opt = document.createElement('option');
@@ -174,7 +186,7 @@ var App = {
             trendBench.appendChild(opt);
         });
 
-        ['filter-category', 'filter-type', 'filter-source', 'filter-search'].forEach(function(id) {
+        ['filter-category', 'filter-type', 'filter-source', 'filter-benchmark', 'filter-search'].forEach(function(id) {
             var el = document.getElementById(id);
             if (el) {
                 el.addEventListener('change', function() { self.renderLeaderboard(); });
@@ -372,10 +384,12 @@ var App = {
     },
 
     renderLeaderboard: function() {
+        var benchFilterEl = document.getElementById('filter-benchmark');
         var filters = {
             category: document.getElementById('filter-category').value,
             modelType: document.getElementById('filter-type').value,
             source: document.getElementById('filter-source').value,
+            benchmark: benchFilterEl ? benchFilterEl.value : '',
             search: document.getElementById('filter-search').value
         };
 
