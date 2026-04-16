@@ -207,17 +207,39 @@
         </section>
 
         <section id="tab-explorer" class="tab-content hidden">
-            <div class="flex gap-4 mb-6">
-                <select id="compare-model-a" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-64">
-                    <option value="">Select Model A</option>
-                </select>
-                <span class="self-center text-gray-500">vs</span>
-                <select id="compare-model-b" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-64">
-                    <option value="">Select Model B</option>
-                </select>
-                <button id="compare-btn" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Compare</button>
+            <h2 class="text-lg font-semibold mb-4">Model Explorer — Compare up to 4 models</h2>
+            <div class="flex gap-3 mb-6 flex-wrap items-end">
+                <div>
+                    <label class="block text-xs text-gray-500 mb-1">Model A</label>
+                    <select id="compare-model-a" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 text-sm">
+                        <option value="">Select Model A</option>
+                    </select>
+                </div>
+                <span class="self-center text-gray-600 text-sm">vs</span>
+                <div>
+                    <label class="block text-xs text-gray-500 mb-1">Model B</label>
+                    <select id="compare-model-b" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 text-sm">
+                        <option value="">Select Model B</option>
+                    </select>
+                </div>
+                <span class="self-center text-gray-600 text-sm">vs</span>
+                <div>
+                    <label class="block text-xs text-gray-500 mb-1">Model C (optional)</label>
+                    <select id="compare-model-c" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 text-sm">
+                        <option value="">— none —</option>
+                    </select>
+                </div>
+                <span class="self-center text-gray-600 text-sm">vs</span>
+                <div>
+                    <label class="block text-xs text-gray-500 mb-1">Model D (optional)</label>
+                    <select id="compare-model-d" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 text-sm">
+                        <option value="">— none —</option>
+                    </select>
+                </div>
+                <button id="compare-btn" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">Compare</button>
             </div>
-            <div id="comparison-result"></div>
+            <div id="explorer-radar" class="h-96 mb-6"></div>
+            <div id="comparison-result" class="overflow-x-auto"></div>
         </section>
 
         <section id="tab-resources" class="tab-content hidden">
@@ -257,7 +279,7 @@
     <script src="js/cyber-coding.js?v=3"></script>
     <script src="js/charts.js?v=3"></script>
     <script src="js/filters.js?v=2"></script>
-    <script src="js/explorer.js?v=2"></script>
+    <script src="js/explorer.js?v=3"></script>
     <script src="js/comparison.js?v=2"></script>
     <script src="js/app.js?v=3"></script>
 </body>
