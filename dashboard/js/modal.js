@@ -61,7 +61,12 @@ var Modal = {
         monorepo_bench: { desc: 'Large codebase navigation and modification tasks in monorepo environments.', year: '2026' },
         cyscenariobench: { desc: 'Multi-step cyber attack scenario challenges requiring strategic planning and execution.', year: '2026' },
         baxbench: { desc: '392 security-critical backend coding tasks across 14 frameworks and 6 languages.', paper: 'https://baxbench.com/paper.pdf', github: 'https://github.com/logic-star-ai/baxbench', year: '2025', items: '392 tasks' },
-        matharena_apex: { desc: 'Most challenging math contest problems — frontier difficulty beyond AIME level.', paper: 'https://matharena.ai', year: '2025' }
+        matharena_apex: { desc: 'Most challenging math contest problems — frontier difficulty beyond AIME level.', paper: 'https://matharena.ai', year: '2025' },
+        tau3_bench: { desc: 'Next-generation agent tool-use benchmark with knowledge retrieval and voice beyond TAU2.', paper: 'https://sierra.ai/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice', year: '2026' },
+        apex_agents: { desc: 'AI Productivity Index — 480 long-horizon cross-application professional tasks from banking, consulting, and law.', paper: 'https://arxiv.org/abs/2601.14242', github: 'https://www.mercor.com/apex/', year: '2026', items: '480 tasks' },
+        frontiermath: { desc: 'Research-level mathematics problems at the frontier of human mathematical knowledge. Problems that took expert mathematicians hours to days.', paper: 'https://arxiv.org/abs/2411.04872', year: '2024' },
+        livecodebench_elo: { desc: 'LiveCodeBench Elo rating from competitive programming (Codeforces/ICPC/IOI style).', paper: 'https://arxiv.org/abs/2403.07974', github: 'https://github.com/LiveCodeBench/LiveCodeBench', year: '2024' },
+        livecodebench_v6: { desc: 'LiveCodeBench version 6 — latest contamination-free competitive coding problems.', paper: 'https://arxiv.org/abs/2403.07974', year: '2025' }
     },
 
     init: function() {

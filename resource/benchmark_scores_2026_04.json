@@ -715,6 +715,24 @@
       "name": "LiveCodeBench Pro (Elo)",
       "category": "coding",
       "description": "Competitive programming Elo rating from Codeforces/ICPC/IOI problems"
+    },
+    {
+      "id": "tau3_bench",
+      "name": "TAU3-Bench",
+      "category": "agent",
+      "description": "Next-gen tool-use benchmark for complex long-horizon agent workflows with knowledge and voice"
+    },
+    {
+      "id": "apex_agents",
+      "name": "APEX-Agents",
+      "category": "agent",
+      "description": "AI Productivity Index — long-horizon cross-application professional tasks (banking, consulting, law)"
+    },
+    {
+      "id": "frontiermath",
+      "name": "FrontierMath",
+      "category": "math",
+      "description": "Research-level mathematics problems at the frontier of human mathematical knowledge"
     }
   ],
   "scores": [
@@ -812,6 +830,12 @@
       "score": 54.7,
       "_source": "resource/Claude Opus 4.7 System Card.pdf",
       "_note": "With tools"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "hle",
+      "score": 46.9,
+      "_note": "No tools, from system card"
     },
     {
       "model": "anthropic/claude-opus-4.7",
@@ -4062,6 +4086,30 @@
       "score": 2.0,
       "_source": "resource/2603.18788v2.pdf",
       "_note": "pass@1, from Mi:dm paper"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "tau3_bench",
+      "score": 70.7,
+      "_source": "https://qwen.ai/blog?id=qwen3.6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "tau3_bench",
+      "score": 70.2,
+      "_source": "https://qwen.ai/blog?id=qwen3.6"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "frontiermath",
+      "score": 50.0,
+      "_note": "GPT-5.4 Pro, from FrontierMath leaderboard"
+    },
+    {
+      "model": "meta/muse-spark",
+      "benchmark": "livecodebench",
+      "score": 80.0,
+      "_note": "Coding index 47.5"
     }
   ]
 }
