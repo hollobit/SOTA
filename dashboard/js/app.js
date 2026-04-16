@@ -33,8 +33,37 @@ var App = {
                     FrontierCompare.render(fcCat.value);
                 });
             }
-            self.renderOverview();
+            // Hash-based routing: #overview, #leaderboard, #trends, etc.
+            self._navigateToHash();
+            window.addEventListener('hashchange', function() { self._navigateToHash(); });
         });
+    },
+
+    _navigateToHash: function() {
+        var hash = (window.location.hash || '').replace('#', '');
+        if (!hash) { this.renderOverview(); return; }
+
+        // Check if it's a benchmark or model deep link: #bench/gpqa_diamond or #model/anthropic/claude-opus-4.7
+        if (hash.indexOf('bench/') === 0) {
+            var benchId = hash.substring(6);
+            this.renderOverview();
+            setTimeout(function() { Modal.showBenchmark(benchId); }, 300);
+            return;
+        }
+        if (hash.indexOf('model/') === 0) {
+            var modelId = hash.substring(6);
+            this.renderOverview();
+            setTimeout(function() { Modal.showModel(modelId); }, 300);
+            return;
+        }
+
+        // Tab navigation
+        var tabBtn = document.querySelector('.tab-btn[data-tab="' + hash + '"]');
+        if (tabBtn) {
+            tabBtn.click();
+        } else {
+            this.renderOverview();
+        }
     },
 
     loadData: function() {
@@ -100,6 +129,8 @@ var App = {
                 btn.classList.add('active');
                 var tab = document.getElementById('tab-' + btn.dataset.tab);
                 if (tab) tab.classList.remove('hidden');
+                // Update URL hash without triggering hashchange re-navigation
+                history.replaceState(null, '', '#' + btn.dataset.tab);
                 if (btn.dataset.tab === 'trends') self.renderTrends();
                 if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
                 if (btn.dataset.tab === 'comparison') Comparison.render();

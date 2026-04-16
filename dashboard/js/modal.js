@@ -88,6 +88,7 @@ var Modal = {
     showBenchmark: function(benchId) {
         var bench = App.data.benchmarks.find(function(b) { return b.id === benchId; });
         if (!bench) return;
+        history.replaceState(null, '', '#bench/' + benchId);
 
         var bmt = (this._bmtData || {})[benchId] || (this._bmtData || {})[benchId.replace(/_/g, '')] || {};
         var builtin = this._builtinMeta[benchId] || {};
@@ -237,6 +238,7 @@ var Modal = {
     showModel: function(modelId) {
         var model = App.data.models.find(function(m) { return m.id === modelId; });
         if (!model) return;
+        history.replaceState(null, '', '#model/' + modelId);
 
         var scores = App.data.scores.filter(function(s) { return s.model_id === modelId; });
 
