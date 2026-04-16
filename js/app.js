@@ -143,6 +143,7 @@ var App = {
                 if (tab) tab.classList.remove('hidden');
                 // Update URL hash without triggering hashchange re-navigation
                 history.replaceState(null, '', '#' + btn.dataset.tab);
+                if (btn.dataset.tab === 'overview') self.renderOverview();
                 if (btn.dataset.tab === 'trends') self.renderTrends();
                 if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
                 if (btn.dataset.tab === 'comparison') Comparison.render();
