@@ -227,10 +227,18 @@ var FrontierCompare = {
             return bid !== 'vending_bench_2' && bid !== 'gdpval_aa' && bid !== 'metr_time_horizons' && bid !== 'livecodebench';
         });
 
+        // Calculate per-axis max dynamically
         var indicators = radarBench.map(function(bid) {
             var name = self._getBenchName(bid);
             name = name.replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ').replace("Humanity's Last Exam", 'HLE');
-            return { name: name, max: 100 };
+            var axisMax = 0;
+            topModels.forEach(function(mid) {
+                var v = (scoreMap[mid + '|' + bid]) || 0;
+                if (v > axisMax) axisMax = v;
+            });
+            if (axisMax <= 100) axisMax = 100;
+            else axisMax = Math.ceil(axisMax / 100) * 100;
+            return { name: name, max: axisMax };
         });
 
         var colors = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
