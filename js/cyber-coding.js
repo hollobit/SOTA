@@ -147,22 +147,30 @@ var CyberCoding = {
 
     // frontier models to highlight
     FRONTIER_MODELS: [
+        'anthropic/claude-opus-4.7',
         'anthropic/claude-mythos-preview',
         'anthropic/claude-opus-4.6',
         'anthropic/claude-opus-4.5',
         'anthropic/claude-sonnet-4.6',
         'google/gemini-3.1-pro',
+        'google/gemini-3-pro',
         'openai/gpt-5.4',
+        'openai/gpt-5.4-thinking',
         'openai/gpt-5.3-codex',
         'openai/gpt-5.2',
         'openai/gpt-5',
         'xai/grok-4-heavy',
         'meta/muse-spark',
+        'zhipu/glm-5',
         'zhipu/glm-5.1',
         'alibaba/qwen3.6-plus',
         'deepseek/deepseek-v3.2',
         'moonshot/kimi-k2.5',
-        'moonshot/kimi-k2-thinking'
+        'moonshot/kimi-k2-thinking',
+        'minimax/m2.7',
+        'baidu/ernie-5.0',
+        'lg/exaone-4.5-33b',
+        'skt/ax-k1'
     ],
 
     _models: [],
