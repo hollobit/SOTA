@@ -67,22 +67,39 @@ def main():
             ))
             total_benchmarks += 1
 
+        # Build source lookup: PDF sources get type "pdf", web sources get "leaderboard"
+        pdf_sources = {s for s in sources if s.startswith("resource/") or s.endswith(".pdf")}
+        default_source_url = sources[0] if sources else "https://llm-stats.com"
+
         # Load scores
-        source_url = sources[0] if sources else "https://llm-stats.com"
         for s in data.get("scores", []):
+            # Determine source per score: use _source if present, else infer from _note
+            note = s.get("_note", "") or s.get("notes", "")
+            score_source = s.get("_source", "")
+
+            if score_source:
+                src_type = "pdf" if score_source.endswith(".pdf") else "leaderboard"
+                src_url = score_source
+            elif any(kw in note.lower() for kw in ["system card", "model card", "from kimi", "from glm", "from opus", "from mythos", "self-reported"]):
+                src_type = "pdf"
+                src_url = "resource/"
+            else:
+                src_type = "leaderboard"
+                src_url = default_source_url
+
             insert_score(conn, Score(
                 model_id=s["model"],
                 benchmark_id=s["benchmark"],
                 value=s["score"],
                 unit=s.get("unit", "%"),
                 source=Source(
-                    type="leaderboard",
-                    url=source_url,
+                    type=src_type,
+                    url=src_url,
                     date=collected_at_str,
                 ),
                 is_sota=False,
                 collected_at=collected_at,
-                notes=s.get("notes", ""),
+                notes=note,
             ))
             total_scores += 1
 

@@ -23,6 +23,15 @@ var App = {
             self.setupFilters();
             self.setupExplorer();
             Comparison.init(self.data.models, self.data.benchmarks, self.data.scores);
+            CyberCoding.init(self.data.models, self.data.benchmarks, self.data.scores);
+            // Frontier Compare category filter
+            var fcCat = document.getElementById('fc-category');
+            var fcBtn = document.getElementById('fc-render');
+            if (fcCat && fcBtn) {
+                fcBtn.addEventListener('click', function() {
+                    FrontierCompare.render(fcCat.value);
+                });
+            }
             self.renderOverview();
         });
     },
@@ -86,6 +95,8 @@ var App = {
                 if (btn.dataset.tab === 'trends') self.renderTrends();
                 if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
                 if (btn.dataset.tab === 'comparison') Comparison.render();
+                if (btn.dataset.tab === 'frontier-compare') FrontierCompare.render(document.getElementById('fc-category').value);
+                if (btn.dataset.tab === 'cyber-coding') CyberCoding.render();
                 if (btn.dataset.tab === 'changelog') self.renderChangelog();
             });
         });

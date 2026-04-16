@@ -46,6 +46,16 @@ _KNOWN_MAPPINGS: Dict[str, List[str]] = {
     "chatbot-arena-elo": ["Chatbot Arena", "LMSYS Chatbot Arena"],
     "webarena": ["WebArena"],
     "gaia": ["GAIA"],
+    "cybench": ["Cybench"],
+    "cvebench": ["CVE-Bench"],
+    "cybergym": ["CyberGym"],
+    "evmbench": ["EVMbench"],
+    "airtbench": ["AIRTBench"],
+    "autopatchbench": ["AutoPatchBench"],
+    "cybersoceval": ["CyberSOCEval"],
+    "zerodaybench": ["ZeroDayBench"],
+    "swe_bench_pro": ["SWE-bench Pro"],
+    "terminal_bench_2": ["Terminal-Bench 2.0"],
 }
 
 

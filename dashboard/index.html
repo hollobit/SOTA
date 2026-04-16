@@ -23,6 +23,8 @@
         <button class="tab-btn" data-tab="leaderboard">Leaderboard</button>
         <button class="tab-btn" data-tab="trends">Trends</button>
         <button class="tab-btn" data-tab="comparison">Comparison</button>
+        <button class="tab-btn" data-tab="frontier-compare">Frontier Compare</button>
+        <button class="tab-btn" data-tab="cyber-coding">Cyber &amp; Coding</button>
         <button class="tab-btn" data-tab="explorer">Explorer</button>
         <button class="tab-btn" data-tab="changelog">Changelog</button>
     </nav>
@@ -103,6 +105,87 @@
             <div id="cmp-radar-chart" class="h-96 mt-6"></div>
         </section>
 
+        <section id="tab-frontier-compare" class="tab-content hidden">
+            <h2 class="text-lg font-semibold mb-2">Frontier Model Comparison — Core Benchmarks from System Cards</h2>
+            <p class="text-gray-400 text-sm mb-4">PDF System Card / Model Card / 논문에서 공통적으로 사용하는 핵심 벤치마크로 최신 frontier 모델 비교</p>
+            <div class="flex gap-4 mb-4 flex-wrap items-end">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Category</label>
+                    <select id="fc-category" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm">
+                        <option value="all">All Categories</option>
+                        <option value="reasoning">Reasoning</option>
+                        <option value="coding">Coding</option>
+                        <option value="math">Math</option>
+                        <option value="agent">Agent</option>
+                        <option value="cybersecurity">Cybersecurity</option>
+                        <option value="multimodal">Multimodal</option>
+                    </select>
+                </div>
+                <button id="fc-render" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">Update</button>
+            </div>
+            <div id="fc-heatmap" class="overflow-x-auto mb-6"></div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <div id="fc-radar" class="h-96"></div>
+                <div id="fc-bar" class="h-96"></div>
+            </div>
+            <div class="bg-gray-900 border border-gray-800 rounded-lg p-4 mt-4">
+                <h3 class="font-semibold text-sm text-gray-300 mb-2">Core Benchmarks 선정 기준</h3>
+                <p class="text-sm text-gray-400">8개 PDF 문서(Claude Opus 4.6 / Mythos System Card, GPT-5.3-Codex System Card, Gemini 3 Pro Model Card, Kimi K2.5 Tech Report / Safety Eval, GLM-5 Paper)에서 <strong>3개 이상의 문서</strong>에 공통으로 사용된 벤치마크를 선정.</p>
+            </div>
+        </section>
+
+        <section id="tab-cyber-coding" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <h2 class="text-lg font-semibold mb-4">Cybersecurity Attack Capabilities</h2>
+                    <p class="text-gray-400 text-sm mb-4">CTF 문제 풀이, 취약점 발견/악용, 자동 해킹 능력 평가</p>
+                    <div id="cyber-chart" class="h-80"></div>
+                    <div id="cyber-table-container" class="mt-4"></div>
+                </div>
+                <div>
+                    <h2 class="text-lg font-semibold mb-4">Coding Capabilities</h2>
+                    <p class="text-gray-400 text-sm mb-4">실제 SW 엔지니어링, 터미널 자동화, 경쟁 코딩 능력 평가</p>
+                    <div id="coding-chart" class="h-80"></div>
+                    <div id="coding-table-container" class="mt-4"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <h2 class="text-lg font-semibold mb-4">Cyber Defense Capabilities</h2>
+                    <p class="text-gray-400 text-sm mb-4">취약점 자동 패치, 맬웨어 분석, 제로데이 방어 능력 평가</p>
+                    <div id="defense-table-container" class="mt-4"></div>
+                </div>
+                <div>
+                    <h2 class="text-lg font-semibold mb-4">Agent Capabilities</h2>
+                    <p class="text-gray-400 text-sm mb-4">자율 에이전트, 컴퓨터 사용, 웹 탐색, 도구 활용 능력 평가</p>
+                    <div id="agent-chart" class="h-80"></div>
+                    <div id="agent-table-container" class="mt-4"></div>
+                </div>
+            </div>
+            <div class="mb-8">
+                <h2 class="text-lg font-semibold mb-4">Comprehensive Radar — Top Frontier Models</h2>
+                <div id="cyber-coding-radar" class="h-96"></div>
+            </div>
+            <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+                <div class="bg-gray-900 border border-gray-800 rounded-lg p-4">
+                    <h3 class="font-semibold text-sm text-gray-300 mb-3">Cybersecurity Attack</h3>
+                    <div id="cyber-bench-descriptions" class="text-sm text-gray-400 space-y-2"></div>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 rounded-lg p-4">
+                    <h3 class="font-semibold text-sm text-gray-300 mb-3">Cyber Defense</h3>
+                    <div id="defense-bench-descriptions" class="text-sm text-gray-400 space-y-2"></div>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 rounded-lg p-4">
+                    <h3 class="font-semibold text-sm text-gray-300 mb-3">Coding</h3>
+                    <div id="coding-bench-descriptions" class="text-sm text-gray-400 space-y-2"></div>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 rounded-lg p-4">
+                    <h3 class="font-semibold text-sm text-gray-300 mb-3">Agent</h3>
+                    <div id="agent-bench-descriptions" class="text-sm text-gray-400 space-y-2"></div>
+                </div>
+            </div>
+        </section>
+
         <section id="tab-explorer" class="tab-content hidden">
             <div class="flex gap-4 mb-6">
                 <select id="compare-model-a" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-64">
@@ -122,10 +205,12 @@
         </section>
     </main>
 
-    <script src="js/charts.js"></script>
-    <script src="js/filters.js"></script>
-    <script src="js/explorer.js"></script>
-    <script src="js/comparison.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/frontier-compare.js?v=2"></script>
+    <script src="js/cyber-coding.js?v=2"></script>
+    <script src="js/charts.js?v=2"></script>
+    <script src="js/filters.js?v=2"></script>
+    <script src="js/explorer.js?v=2"></script>
+    <script src="js/comparison.js?v=2"></script>
+    <script src="js/app.js?v=2"></script>
 </body>
 </html>
