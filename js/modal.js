@@ -5,6 +5,65 @@
 var Modal = {
     _bmtData: null,
 
+    // Built-in benchmark metadata for benchmarks not in BMT
+    _builtinMeta: {
+        gpqa_diamond: { desc: 'Graduate-level science questions designed to be Google-proof. 198 expert-crafted questions across physics, chemistry, and biology.', paper: 'https://arxiv.org/abs/2311.12022', github: 'https://github.com/idavidrein/gpqa', year: '2023', items: '198 questions' },
+        swe_bench_verified: { desc: 'Real GitHub issues resolved by AI agents. 2,294 human-verified tasks from popular Python repositories.', paper: 'https://arxiv.org/abs/2310.06770', github: 'https://github.com/princeton-nlp/SWE-bench', year: '2023', items: '2,294 tasks' },
+        swe_bench_pro: { desc: 'Advanced SWE-bench requiring extended multi-step reasoning. Models scoring 80%+ on Verified reach only 46-58% on Pro.', paper: 'https://arxiv.org/abs/2310.06770', github: 'https://github.com/princeton-nlp/SWE-bench', year: '2024', items: 'Subset of SWE-bench' },
+        swe_bench_multilingual: { desc: 'Cross-language software engineering tasks spanning Python, Java, JavaScript, TypeScript, and more.', paper: 'https://arxiv.org/abs/2310.06770', github: 'https://github.com/princeton-nlp/SWE-bench', year: '2024' },
+        swe_rebench: { desc: 'Stricter re-evaluation of SWE-bench with improved verification to reduce false positives.', paper: 'https://swe-rebench.com', github: 'https://github.com/swe-rebench', year: '2026' },
+        terminal_bench_2: { desc: '89 Docker container tasks across SWE, biology, security, and gaming. Measures autonomous terminal agent capability.', paper: 'https://www.tbench.ai', github: 'https://github.com/laude-institute/terminal-bench', year: '2025', items: '89 tasks' },
+        hle: { desc: "Humanity's Last Exam — 2,500 expert-crafted questions at the frontier of human knowledge across math, science, and humanities.", paper: 'https://arxiv.org/abs/2501.14249', github: 'https://github.com/centerforaisafety/hle', year: '2025', items: '2,500 questions' },
+        arc_agi_2: { desc: 'Visual reasoning puzzles testing fluid intelligence and generalization. Measures abstract pattern recognition beyond training data.', paper: 'https://arcprize.org/arc-agi/2', github: 'https://github.com/fchollet/ARC-AGI', year: '2024' },
+        aime_2025: { desc: 'American Invitational Mathematics Examination 2025. 30 problems testing advanced high school mathematics.', paper: 'https://arxiv.org/abs/2503.04235', github: 'https://matharena.ai', year: '2025', items: '30 problems' },
+        hmmt_2025: { desc: 'Harvard-MIT Mathematics Tournament 2025. Collegiate-level competition math problems.', paper: 'https://matharena.ai', year: '2025' },
+        imo_answerbench: { desc: 'International Mathematical Olympiad answer-format problems for automated evaluation.', paper: 'https://matharena.ai', year: '2025' },
+        cybench: { desc: '40 professional-level CTF challenges from HackTheBox, SekaiCTF, and more. Spans crypto, web, reversing, forensics, exploitation.', paper: 'https://arxiv.org/abs/2408.08926', github: 'https://github.com/stanford-crfm/cybench', year: '2024', items: '40 challenges' },
+        cvebench: { desc: '40 critical-severity CVE-based real-world web application vulnerability exploitation benchmark.', paper: 'https://arxiv.org/abs/2503.17332', github: 'https://github.com/uiuc-kang-lab/cve-bench', year: '2025', items: '40 CVEs' },
+        cybergym: { desc: '1,507 real-world vulnerability instances from 188 open-source projects. Tests exploit PoC generation and zero-day discovery.', paper: 'https://arxiv.org/abs/2506.02548', github: 'https://github.com/sunblaze-ucb/cybergym', year: '2025', items: '1,507 instances' },
+        evmbench_exploit: { desc: 'Smart contract exploit generation — craft transactions that drain funds from vulnerable Ethereum contracts.', paper: 'https://openai.com/index/introducing-evmbench/', github: 'https://github.com/openai/evmbench', year: '2026', items: '120 vulnerabilities' },
+        evmbench_detect: { desc: 'Smart contract security audit — detect high-severity vulnerabilities in Ethereum contract code.', paper: 'https://openai.com/index/introducing-evmbench/', github: 'https://github.com/openai/evmbench', year: '2026', items: '120 vulnerabilities' },
+        evmbench_patch: { desc: 'Smart contract vulnerability patching — fix security flaws while preserving contract functionality.', paper: 'https://openai.com/index/introducing-evmbench/', github: 'https://github.com/openai/evmbench', year: '2026', items: '120 vulnerabilities' },
+        airtbench: { desc: '70 AI/ML CTF challenges testing autonomous red teaming of AI systems. Black-box exploitation tasks.', paper: 'https://arxiv.org/abs/2506.14682', github: 'https://github.com/dreadnode/AIRTBench-Code', year: '2025', items: '70 challenges' },
+        firefox_147: { desc: 'Browser JS shell exploitation from crash inputs. Measures code execution success rate on real Firefox vulnerabilities.', paper: 'https://www.anthropic.com/research', year: '2026' },
+        cyber_range: { desc: '15 network attack scenarios including C2, SSRF, binary exploitation, EDR evasion, and privilege escalation.', paper: 'https://openai.com/index/introducing-gpt-5-4/', year: '2026', items: '15 scenarios' },
+        autopatchbench: { desc: '136 real-world C/C++ vulnerabilities for automated patching. Verified through fuzzing and differential testing.', paper: 'https://ai.meta.com/research/publications/cyberseceval-4/', github: 'https://github.com/facebookresearch/CyberSecEval', year: '2025', items: '136 samples' },
+        cybersoceval: { desc: 'SOC malware analysis and threat intelligence reasoning. Meta + CrowdStrike joint benchmark.', paper: 'https://arxiv.org/abs/2509.20166', github: 'https://github.com/CrowdStrike/CyberSOCEval_data', year: '2025' },
+        zerodaybench: { desc: 'Unseen zero-day vulnerability detection and remediation across multiple information levels.', paper: 'https://arxiv.org/abs/2603.02297', year: '2026' },
+        dfir_metric: { desc: 'Digital forensics and incident response — MCQ knowledge + CTF forensics skills.', paper: 'https://arxiv.org/abs/2501.16466', year: '2025', items: '713 MCQs + 150 CTF challenges' },
+        browsecomp: { desc: '1,266 hard-to-find web information retrieval tasks requiring persistent navigation and synthesis.', paper: 'https://openai.com/index/browsecomp/', github: 'https://github.com/openai/browsecomp', year: '2025', items: '1,266 questions' },
+        osworld_verified: { desc: 'Real computer environment (Ubuntu) open-ended tasks. Tests GUI/CLI operation by multimodal agents.', paper: 'https://arxiv.org/abs/2404.07972', github: 'https://github.com/xlang-ai/OSWorld', year: '2024' },
+        tau_bench: { desc: 'Tool-Agent-User interaction across airline, retail, and telecom domains.', paper: 'https://arxiv.org/abs/2406.12045', github: 'https://github.com/sierra-research/tau-bench', year: '2024' },
+        tau2_bench: { desc: 'Tool-Agent-User interaction v2 with improved evaluation across multiple service domains.', paper: 'https://arxiv.org/abs/2506.07982', github: 'https://github.com/sierra-research/tau2-bench', year: '2025' },
+        mcp_atlas: { desc: '1,000 tasks across 36 real MCP servers and 220 tools for multi-step tool-use competency evaluation.', year: '2026', items: '1,000 tasks' },
+        deepsearchqa: { desc: 'Multi-step web research requiring deep browsing and information synthesis. F1 score metric.', year: '2026' },
+        vending_bench_2: { desc: 'Long-horizon agentic task simulating running a vending machine business over a year. Scored by final bank balance.', year: '2025' },
+        metr_time_horizons: { desc: 'Human task duration at which AI agents reach 50% autonomous success. Doubling every ~4 months.', paper: 'https://metr.org/time-horizons/', year: '2025' },
+        webarena: { desc: 'Web-based task automation across realistic web applications (CMS, ecommerce, forums).', paper: 'https://arxiv.org/abs/2307.13854', github: 'https://github.com/web-arena-x/webarena', year: '2023' },
+        mmmu_pro: { desc: 'Multimodal understanding and reasoning with college-level subject knowledge across 30 subjects.', paper: 'https://arxiv.org/abs/2401.11943', github: 'https://github.com/MMMU-Benchmark', year: '2024' },
+        mathvision: { desc: 'Visual math problem solving requiring both mathematical reasoning and visual understanding.', paper: 'https://arxiv.org/abs/2402.14804', year: '2024' },
+        video_mmmu: { desc: 'Knowledge acquisition from videos — tests understanding of educational and scientific video content.', paper: 'https://arxiv.org/abs/2501.13826', year: '2025' },
+        longvideobench: { desc: 'Long video understanding benchmark testing comprehension over extended video sequences.', paper: 'https://arxiv.org/abs/2407.15754', year: '2024' },
+        screenspot_pro: { desc: 'Screen understanding for GUI agents — identifies UI elements and their functions from screenshots.', year: '2025' },
+        charxiv_reasoning: { desc: 'Information synthesis from complex academic charts and figures. Tests chart reasoning ability.', paper: 'https://arxiv.org/abs/2406.18521', github: 'https://github.com/princeton-nlp/CharXiv', year: '2024' },
+        omnidocbench: { desc: 'OCR and document understanding benchmark. Edit Distance metric (lower is better for original, higher for normalized).', year: '2025' },
+        mmmlu: { desc: 'Multilingual MMLU — massive multitask evaluation across 57 subjects in 14+ languages.', paper: 'https://arxiv.org/abs/2009.03300', year: '2024' },
+        mmlu_pro: { desc: 'MMLU-Pro — harder version of MMLU with 10 answer choices and more reasoning-focused questions.', paper: 'https://arxiv.org/abs/2406.01574', github: 'https://github.com/TIGER-Lab/MMLU-Pro', year: '2024' },
+        global_piqa: { desc: 'Commonsense reasoning across 100 languages and cultures.', year: '2025' },
+        simpleqa_verified: { desc: 'Parametric knowledge verification — tests factual recall accuracy on verifiable questions.', year: '2025' },
+        facts_benchmark: { desc: 'Factual grounding, search, and retrieval benchmark suite.', year: '2025' },
+        longbench_v2: { desc: 'Long-context understanding benchmark testing reasoning over extended text passages.', paper: 'https://arxiv.org/abs/2412.15204', year: '2024' },
+        gdpval_aa: { desc: 'Real-world code generation quality evaluation using ELO-based pairwise comparison.', year: '2025' },
+        livecodebench: { desc: 'Contamination-free coding benchmark with monthly refreshed competitive programming problems.', paper: 'https://arxiv.org/abs/2403.07974', github: 'https://github.com/LiveCodeBench/LiveCodeBench', year: '2024' },
+        scicode: { desc: 'Scientific coding tasks requiring domain knowledge in physics, chemistry, and biology.', paper: 'https://arxiv.org/abs/2407.13168', github: 'https://github.com/scicode-bench/SciCode', year: '2024' },
+        paperbench: { desc: 'Reproduce ML paper results from code — tests ability to implement methodology from academic papers.', year: '2025' },
+        mle_bench: { desc: 'ML Engineering benchmark — solve Kaggle-style ML competitions to bronze medal threshold.', paper: 'https://arxiv.org/abs/2410.07095', github: 'https://github.com/openai/mle-bench', year: '2024' },
+        monorepo_bench: { desc: 'Large codebase navigation and modification tasks in monorepo environments.', year: '2026' },
+        cyscenariobench: { desc: 'Multi-step cyber attack scenario challenges requiring strategic planning and execution.', year: '2026' },
+        baxbench: { desc: '392 security-critical backend coding tasks across 14 frameworks and 6 languages.', paper: 'https://baxbench.com/paper.pdf', github: 'https://github.com/logic-star-ai/baxbench', year: '2025', items: '392 tasks' },
+        matharena_apex: { desc: 'Most challenging math contest problems — frontier difficulty beyond AIME level.', paper: 'https://matharena.ai', year: '2025' }
+    },
+
     init: function() {
         var base = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
         fetch(base + '/bmt_connections.json').then(function(r) {
@@ -31,6 +90,16 @@ var Modal = {
         if (!bench) return;
 
         var bmt = (this._bmtData || {})[benchId] || (this._bmtData || {})[benchId.replace(/_/g, '')] || {};
+        var builtin = this._builtinMeta[benchId] || {};
+
+        // Merge: BMT takes priority, then builtin
+        if (!bmt.paper_link && builtin.paper) bmt.paper_link = builtin.paper;
+        if (!bmt.github_link && builtin.github) bmt.github_link = builtin.github;
+        if (!bmt.description && builtin.desc) bmt.description = builtin.desc;
+        if (!bmt.year && builtin.year) bmt.year = builtin.year;
+        if (!bmt.item_count && builtin.items) bmt.item_count = builtin.items;
+        // Use builtin desc as benchmark description if bench.description is empty
+        if (!bench.description && builtin.desc) bench = { id: bench.id, name: bench.name, category: bench.category, description: builtin.desc };
 
         var scores = App.data.scores.filter(function(s) { return s.benchmark_id === benchId; });
         scores.sort(function(a, b) { return b.value - a.value; });
@@ -58,8 +127,8 @@ var Modal = {
             container.appendChild(desc);
         }
 
-        // BMT metadata
-        if (bmt.bmt_title || bmt.paper_link || bmt.github_link) {
+        // BMT metadata + builtin metadata
+        if (bmt.bmt_title || bmt.paper_link || bmt.github_link || bmt.description || bmt.year) {
             var metaDiv = document.createElement('div');
             metaDiv.className = 'bg-gray-800 rounded-lg p-4 mb-4 space-y-2';
 
