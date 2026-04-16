@@ -282,5 +282,75 @@ def ingest(resource_dir: Optional[str]) -> None:
     console.print(f"[bold green]Ingested {total_scores} scores from {len(records)} file(s).[/bold green]")
 
 
+# ---------------------------------------------------------------------------
+# load-bmt (benchmark library)
+# ---------------------------------------------------------------------------
+@cli.command("load-bmt")
+@click.option("--path", default=None, help="Path to BMT benchmark-library JSON file.")
+@click.option("--export-map", is_flag=True, help="Export connection map to data/bmt_connections.json.")
+def load_bmt(path: Optional[str], export_map: bool) -> None:
+    """Load BMT benchmark dataset library and connect to scoring system."""
+    from cyber.db.connection import get_connection
+    from cyber.db.schema import init_db, insert_benchmark
+    from cyber.scouts.resource.bmt_loader import BMTLoader
+
+    if path is None:
+        # Auto-detect BMT file in BMT/ directory
+        bmt_dir = PROJECT_ROOT / "BMT"
+        candidates = sorted(bmt_dir.glob("benchmark-library*.json"))
+        if not candidates:
+            console.print("[red]No BMT file found. Use --path to specify.[/red]")
+            return
+        path = str(candidates[-1])  # Latest file
+
+    console.print(f"[bold cyan]Loading BMT library from {path}...[/bold cyan]")
+    loader = BMTLoader(path)
+    count = loader.load()
+    console.print(f"  Loaded {count} benchmark dataset entries")
+
+    # Register benchmarks in DB
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    conn = get_connection(DB_PATH)
+    init_db(conn)
+
+    benchmarks = loader.to_benchmarks()
+    for b in benchmarks:
+        insert_benchmark(conn, b)
+    conn.close()
+    console.print(f"  [green]Registered {len(benchmarks)} benchmarks in DB[/green]")
+
+    # Build and show connection map
+    connections = loader.build_connection_map()
+    if connections:
+        table = Table(title="BMT ↔ Score Connections")
+        table.add_column("Score ID", style="cyan")
+        table.add_column("BMT Dataset", style="green")
+        table.add_column("Paper", style="dim")
+        table.add_column("Year")
+        for bench_id, info in sorted(connections.items()):
+            table.add_row(
+                bench_id,
+                info["bmt_title"],
+                info["paper_link"][:50] + "..." if len(info["paper_link"]) > 50 else info["paper_link"],
+                info["year"],
+            )
+        console.print(table)
+        console.print(f"  [green]{len(connections)} benchmark IDs connected to BMT entries[/green]")
+
+    if export_map:
+        import json
+        map_path = DATA_DIR / "bmt_connections.json"
+        map_path.parent.mkdir(parents=True, exist_ok=True)
+        map_path.write_text(json.dumps(connections, ensure_ascii=False, indent=2))
+        console.print(f"  [green]Connection map exported to {map_path}[/green]")
+
+    # Also export full BMT catalog as JSON for dashboard
+    import json
+    catalog_path = DATA_DIR / "bmt_catalog.json"
+    catalog_path.parent.mkdir(parents=True, exist_ok=True)
+    catalog_path.write_text(json.dumps(loader.entries, ensure_ascii=False, indent=2))
+    console.print(f"  [green]Full catalog exported to {catalog_path}[/green]")
+
+
 if __name__ == "__main__":
     cli()
