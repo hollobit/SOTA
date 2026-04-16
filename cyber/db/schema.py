@@ -4,6 +4,9 @@ from __future__ import annotations
 
 import json
 import sqlite3
+from datetime import date
+
+from cyber.models.types import Benchmark, LeaderboardRanking, Model, Score, Source
 
 SCHEMA_SQL = """
 CREATE TABLE IF NOT EXISTS models (
@@ -12,7 +15,7 @@ CREATE TABLE IF NOT EXISTS models (
     name TEXT NOT NULL,
     version TEXT NOT NULL,
     type TEXT NOT NULL,
-    modalities TEXT NOT NULL DEFAULT '["text"]',
+    modalities TEXT NOT NULL DEFAULT '[]',
     parameters TEXT,
     release_date TEXT
 );
@@ -21,7 +24,7 @@ CREATE TABLE IF NOT EXISTS benchmarks (
     id TEXT PRIMARY KEY,
     name TEXT NOT NULL,
     category TEXT NOT NULL,
-    description TEXT NOT NULL DEFAULT '',
+    description TEXT NOT NULL,
     metric TEXT NOT NULL
 );
 
@@ -33,10 +36,10 @@ CREATE TABLE IF NOT EXISTS scores (
     source_type TEXT NOT NULL,
     source_url TEXT NOT NULL,
     source_date TEXT NOT NULL,
-    source_citation TEXT NOT NULL DEFAULT '',
+    source_citation TEXT,
     is_sota INTEGER NOT NULL DEFAULT 0,
     collected_at TEXT NOT NULL,
-    notes TEXT NOT NULL DEFAULT '',
+    notes TEXT DEFAULT '',
     PRIMARY KEY (model_id, benchmark_id),
     FOREIGN KEY (model_id) REFERENCES models(id),
     FOREIGN KEY (benchmark_id) REFERENCES benchmarks(id)
@@ -57,150 +60,101 @@ CREATE TABLE IF NOT EXISTS leaderboard_rankings (
 
 
 def init_db(conn: sqlite3.Connection) -> None:
-    """Initialize the database schema."""
     conn.executescript(SCHEMA_SQL)
+    conn.commit()
 
 
-def insert_model(
-    conn: sqlite3.Connection,
-    *,
-    id: str,
-    vendor: str,
-    name: str,
-    version: str,
-    type: str,
-    modalities: list[str] | None = None,
-    parameters: str | None = None,
-    release_date: str | None = None,
-) -> None:
-    """Insert a model, ignoring duplicates."""
+def insert_model(conn: sqlite3.Connection, model: Model) -> None:
     conn.execute(
-        """INSERT OR IGNORE INTO models (id, vendor, name, version, type, modalities, parameters, release_date)
+        """INSERT OR REPLACE INTO models
+           (id, vendor, name, version, type, modalities, parameters, release_date)
            VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
-        (id, vendor, name, version, type, json.dumps(modalities or ["text"]), parameters, release_date),
+        (model.id, model.vendor, model.name, model.version, model.type,
+         json.dumps(model.modalities), model.parameters, model.release_date),
     )
     conn.commit()
 
 
-def insert_benchmark(
-    conn: sqlite3.Connection,
-    *,
-    id: str,
-    name: str,
-    category: str,
-    description: str,
-    metric: str,
-) -> None:
-    """Insert a benchmark, ignoring duplicates."""
+def insert_benchmark(conn: sqlite3.Connection, benchmark: Benchmark) -> None:
     conn.execute(
-        """INSERT OR IGNORE INTO benchmarks (id, name, category, description, metric)
+        """INSERT OR REPLACE INTO benchmarks (id, name, category, description, metric)
            VALUES (?, ?, ?, ?, ?)""",
-        (id, name, category, description, metric),
+        (benchmark.id, benchmark.name, benchmark.category,
+         benchmark.description, benchmark.metric),
     )
     conn.commit()
 
 
-def insert_score(
-    conn: sqlite3.Connection,
-    *,
-    model_id: str,
-    benchmark_id: str,
-    value: float,
-    unit: str,
-    source_type: str,
-    source_url: str,
-    source_date: str,
-    source_citation: str = "",
-    is_sota: bool = False,
-    collected_at: str,
-    notes: str = "",
-) -> None:
-    """Insert or update (upsert) a score for a model+benchmark pair."""
+def insert_score(conn: sqlite3.Connection, score: Score) -> None:
     conn.execute(
-        """INSERT INTO scores
-           (model_id, benchmark_id, value, unit, source_type, source_url, source_date,
-            source_citation, is_sota, collected_at, notes)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-           ON CONFLICT(model_id, benchmark_id) DO UPDATE SET
-               value = excluded.value,
-               unit = excluded.unit,
-               source_type = excluded.source_type,
-               source_url = excluded.source_url,
-               source_date = excluded.source_date,
-               source_citation = excluded.source_citation,
-               is_sota = excluded.is_sota,
-               collected_at = excluded.collected_at,
-               notes = excluded.notes""",
-        (model_id, benchmark_id, value, unit, source_type, source_url, source_date,
-         source_citation, int(is_sota), collected_at, notes),
+        """INSERT OR REPLACE INTO scores
+           (model_id, benchmark_id, value, unit, source_type, source_url,
+            source_date, source_citation, is_sota, collected_at, notes)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        (score.model_id, score.benchmark_id, score.value, score.unit,
+         score.source.type, score.source.url, score.source.date,
+         score.source.citation, int(score.is_sota),
+         score.collected_at.isoformat(), score.notes),
     )
     conn.commit()
 
 
-def insert_leaderboard_ranking(
-    conn: sqlite3.Connection,
-    *,
-    leaderboard: str,
-    model_id: str,
-    rank: int,
-    score: float,
-    metric: str,
-    snapshot_date: str,
-    source_url: str,
-) -> None:
-    """Insert a leaderboard ranking, ignoring duplicates."""
+def insert_leaderboard_ranking(conn: sqlite3.Connection, lr: LeaderboardRanking) -> None:
     conn.execute(
-        """INSERT OR IGNORE INTO leaderboard_rankings
+        """INSERT OR REPLACE INTO leaderboard_rankings
            (leaderboard, model_id, rank, score, metric, snapshot_date, source_url)
            VALUES (?, ?, ?, ?, ?, ?, ?)""",
-        (leaderboard, model_id, rank, score, metric, snapshot_date, source_url),
+        (lr.leaderboard, lr.model_id, lr.rank, lr.score, lr.metric,
+         lr.snapshot_date.isoformat(), lr.source_url),
     )
     conn.commit()
 
 
-def get_all_models(conn: sqlite3.Connection) -> list[sqlite3.Row]:
-    """Get all models."""
-    return conn.execute("SELECT * FROM models ORDER BY id").fetchall()
+def get_all_models(conn: sqlite3.Connection) -> list[Model]:
+    rows = conn.execute("SELECT * FROM models").fetchall()
+    return [
+        Model(
+            id=r["id"], vendor=r["vendor"], name=r["name"], version=r["version"],
+            type=r["type"], modalities=json.loads(r["modalities"]),
+            parameters=r["parameters"], release_date=r["release_date"],
+        )
+        for r in rows
+    ]
 
 
-def get_all_benchmarks(conn: sqlite3.Connection) -> list[sqlite3.Row]:
-    """Get all benchmarks."""
-    return conn.execute("SELECT * FROM benchmarks ORDER BY id").fetchall()
+def get_all_benchmarks(conn: sqlite3.Connection) -> list[Benchmark]:
+    rows = conn.execute("SELECT * FROM benchmarks").fetchall()
+    return [
+        Benchmark(id=r["id"], name=r["name"], category=r["category"],
+                  description=r["description"], metric=r["metric"])
+        for r in rows
+    ]
 
 
-def get_scores(
-    conn: sqlite3.Connection,
-    *,
-    model_id: str | None = None,
-    benchmark_id: str | None = None,
-) -> list[sqlite3.Row]:
-    """Get scores, optionally filtered by model_id and/or benchmark_id."""
-    query = "SELECT * FROM scores WHERE 1=1"
-    params: list[str] = []
-    if model_id is not None:
-        query += " AND model_id = ?"
-        params.append(model_id)
-    if benchmark_id is not None:
-        query += " AND benchmark_id = ?"
-        params.append(benchmark_id)
-    query += " ORDER BY model_id, benchmark_id"
-    return conn.execute(query, params).fetchall()
+def get_scores(conn: sqlite3.Connection) -> list[Score]:
+    rows = conn.execute("SELECT * FROM scores").fetchall()
+    return [
+        Score(
+            model_id=r["model_id"], benchmark_id=r["benchmark_id"],
+            value=r["value"], unit=r["unit"],
+            source=Source(type=r["source_type"], url=r["source_url"],
+                          date=r["source_date"], citation=r["source_citation"]),
+            is_sota=bool(r["is_sota"]),
+            collected_at=date.fromisoformat(r["collected_at"]),
+            notes=r["notes"],
+        )
+        for r in rows
+    ]
 
 
-def get_leaderboard_rankings(
-    conn: sqlite3.Connection,
-    *,
-    leaderboard: str | None = None,
-    model_id: str | None = None,
-) -> list[sqlite3.Row]:
-    """Get leaderboard rankings, optionally filtered."""
-    query = "SELECT * FROM leaderboard_rankings WHERE 1=1"
-    params: list[str] = []
-    if leaderboard is not None:
-        query += " AND leaderboard = ?"
-        params.append(leaderboard)
-    if model_id is not None:
-        query += " AND model_id = ?"
-        params.append(model_id)
-    query += " ORDER BY leaderboard, rank"
-    return conn.execute(query, params).fetchall()
+def get_leaderboard_rankings(conn: sqlite3.Connection) -> list[LeaderboardRanking]:
+    rows = conn.execute("SELECT * FROM leaderboard_rankings").fetchall()
+    return [
+        LeaderboardRanking(
+            leaderboard=r["leaderboard"], model_id=r["model_id"],
+            rank=r["rank"], score=r["score"], metric=r["metric"],
+            snapshot_date=date.fromisoformat(r["snapshot_date"]),
+            source_url=r["source_url"],
+        )
+        for r in rows
+    ]
