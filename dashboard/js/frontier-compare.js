@@ -52,7 +52,43 @@ var FrontierCompare = {
         var benchIds = this._getBenchmarkIds(category);
         this._renderHeatmap(benchIds);
         this._renderRadar(benchIds, category);
-        this._renderBar(benchIds, category);
+        this._populateBarSelect(benchIds, category);
+        // Render bar with currently selected benchmark
+        var barSel = document.getElementById('fc-bar-benchmark');
+        var selectedBench = barSel ? barSel.value : '';
+        this._renderBar(benchIds, category, selectedBench);
+    },
+
+    _populateBarSelect: function(benchIds, category) {
+        var sel = document.getElementById('fc-bar-benchmark');
+        if (!sel) return;
+        var self = this;
+        var prevVal = sel.value;
+        sel.textContent = '';
+
+        benchIds.forEach(function(bid) {
+            var opt = document.createElement('option');
+            opt.value = bid;
+            opt.textContent = self._getBenchName(bid);
+            sel.appendChild(opt);
+        });
+
+        // Restore previous selection if still valid, otherwise select default
+        if (prevVal && benchIds.indexOf(prevVal) >= 0) {
+            sel.value = prevVal;
+        } else {
+            // Default per category
+            var defaults = { all: 'swe_bench_verified', coding: 'swe_bench_verified', cybersecurity: 'cybench', agent: 'browsecomp', math: 'aime_2025', multimodal: 'mmmu_pro', reasoning: 'gpqa_diamond' };
+            var def = defaults[category] || benchIds[0];
+            if (benchIds.indexOf(def) >= 0) sel.value = def;
+        }
+
+        // Attach change listener (remove old one first)
+        var newSel = sel.cloneNode(true);
+        sel.parentNode.replaceChild(newSel, sel);
+        newSel.addEventListener('change', function() {
+            self._renderBar(benchIds, category, newSel.value);
+        });
     },
 
     _getBenchmarkIds: function(category) {
@@ -278,22 +314,19 @@ var FrontierCompare = {
         window.addEventListener('resize', function() { chart.resize(); });
     },
 
-    _renderBar: function(benchIds, category) {
+    _renderBar: function(benchIds, category, selectedBenchId) {
         var el = document.getElementById('fc-bar');
         if (!el) return;
         var chart = echarts.init(el);
         var self = this;
         var scoreMap = this._getScoreMap();
 
-        // Pick the single most important benchmark for bar comparison
-        var primaryBench = benchIds[0]; // first one by default
-        if (category === 'all') primaryBench = 'swe_bench_verified';
-        if (category === 'cybersecurity') primaryBench = 'cybench';
-        if (category === 'coding') primaryBench = 'swe_bench_verified';
-        if (category === 'agent') primaryBench = 'browsecomp';
-        if (category === 'math') primaryBench = 'aime_2025';
-        if (category === 'multimodal') primaryBench = 'mmmu_pro';
-        if (category === 'reasoning') primaryBench = 'gpqa_diamond';
+        // Use selected benchmark, or default per category
+        var primaryBench = selectedBenchId || benchIds[0];
+        if (!selectedBenchId) {
+            var defaults = { all: 'swe_bench_verified', coding: 'swe_bench_verified', cybersecurity: 'cybench', agent: 'browsecomp', math: 'aime_2025', multimodal: 'mmmu_pro', reasoning: 'gpqa_diamond' };
+            primaryBench = defaults[category] || benchIds[0];
+        }
 
         // Get all models with this benchmark score, sorted desc
         var entries = [];
