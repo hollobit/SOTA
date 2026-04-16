@@ -1,0 +1,36 @@
+scouts:
+  - name: open-llm-scout
+    module: cyber.scouts.open_llm
+    class: OpenLLMScout
+    schedule: "0 */6 * * *"
+    enabled: true
+
+  - name: chatbot-arena-scout
+    module: cyber.scouts.chatbot_arena
+    class: ChatbotArenaScout
+    schedule: "0 */12 * * *"
+    enabled: true
+
+  - name: anthropic-scout
+    module: cyber.scouts.anthropic
+    class: AnthropicScout
+    schedule: "0 8 * * *"
+    enabled: false
+
+  - name: arxiv-scout
+    module: cyber.scouts.arxiv
+    class: ArxivScout
+    schedule: "0 6 * * *"
+    enabled: false
+
+  - name: caisi-scout
+    module: cyber.scouts.caisi
+    class: CAISIScout
+    schedule: "0 0 * * 1"
+    enabled: false
+
+  - name: hf-release-scout
+    module: cyber.scouts.hf_release
+    class: HFReleaseScout
+    schedule: "0 */4 * * *"
+    enabled: false
