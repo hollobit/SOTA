@@ -1,81 +1,254 @@
 /**
- * Model comparison and exploration logic.
- * Uses safe DOM methods to prevent XSS from scraped data.
+ * Model Explorer: compare up to 4 models side-by-side with radar chart.
+ * Uses safe DOM methods (createElement + textContent).
  */
 var Explorer = {
-    compare: function(modelA, modelB, scores) {
-        var scoresA = scores.filter(function(s) { return s.model_id === modelA; });
-        var scoresB = scores.filter(function(s) { return s.model_id === modelB; });
-
+    compare: function(modelIds, scores, benchmarks) {
+        // Collect all benchmarks across selected models
         var benchmarkSet = {};
-        scoresA.forEach(function(s) { benchmarkSet[s.benchmark_id] = true; });
-        scoresB.forEach(function(s) { benchmarkSet[s.benchmark_id] = true; });
-
-        var comparison = [];
-        Object.keys(benchmarkSet).sort().forEach(function(b) {
-            var a = scoresA.find(function(s) { return s.benchmark_id === b; });
-            var bS = scoresB.find(function(s) { return s.benchmark_id === b; });
-            var diff = (a && bS) ? (a.value - bS.value).toFixed(1) : null;
-            var winner = (a && bS) ? (a.value > bS.value ? 'A' : a.value < bS.value ? 'B' : 'tie') : null;
-            comparison.push({
-                benchmark: b,
-                valueA: a ? a.value : null,
-                valueB: bS ? bS.value : null,
-                diff: diff,
-                winner: winner
+        modelIds.forEach(function(mid) {
+            scores.forEach(function(s) {
+                if (s.model_id === mid) benchmarkSet[s.benchmark_id] = true;
             });
         });
 
-        return comparison;
+        var scoreMap = {};
+        scores.forEach(function(s) {
+            scoreMap[s.model_id + '|' + s.benchmark_id] = s;
+        });
+
+        var rows = [];
+        Object.keys(benchmarkSet).sort().forEach(function(bid) {
+            var bench = benchmarks.find(function(b) { return b.id === bid; });
+            var row = { benchmark: bid, benchName: bench ? bench.name : bid, category: bench ? bench.category : 'other', values: [] };
+            var maxVal = -Infinity, maxIdx = -1;
+            modelIds.forEach(function(mid, i) {
+                var s = scoreMap[mid + '|' + bid];
+                var val = s ? s.value : null;
+                row.values.push(val);
+                if (val !== null && val > maxVal) { maxVal = val; maxIdx = i; }
+            });
+            row.winner = maxIdx;
+            rows.push(row);
+        });
+
+        // Sort by category then benchmark name
+        var catOrder = ['reasoning', 'coding', 'math', 'cybersecurity', 'cyber_defense', 'agent', 'multimodal', 'multilingual', 'other'];
+        rows.sort(function(a, b) {
+            var ca = catOrder.indexOf(a.category), cb = catOrder.indexOf(b.category);
+            if (ca === -1) ca = 99; if (cb === -1) cb = 99;
+            if (ca !== cb) return ca - cb;
+            return a.benchName.localeCompare(b.benchName);
+        });
+
+        return rows;
     },
 
-    renderComparison: function(containerId, modelA, modelB, comparison) {
+    renderComparison: function(containerId, modelIds, models, rows) {
         var container = document.getElementById(containerId);
         if (!container) return;
         container.textContent = '';
 
+        var modelNames = modelIds.map(function(mid) {
+            var m = models.find(function(x) { return x.id === mid; });
+            return m ? m.name : mid.split('/').pop();
+        });
+
+        // Summary: wins per model
+        var wins = modelIds.map(function() { return 0; });
+        rows.forEach(function(r) {
+            if (r.winner >= 0 && r.values.filter(function(v) { return v !== null; }).length > 1) {
+                wins[r.winner]++;
+            }
+        });
+
+        var summaryDiv = document.createElement('div');
+        summaryDiv.className = 'flex gap-4 mb-4 flex-wrap';
+        var colors = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'];
+        modelIds.forEach(function(mid, i) {
+            var card = document.createElement('div');
+            card.className = 'bg-gray-900 border border-gray-800 rounded-lg px-4 py-2 text-center';
+            card.style.borderLeftWidth = '3px';
+            card.style.borderLeftColor = colors[i];
+
+            var name = document.createElement('div');
+            name.className = 'text-sm font-semibold text-gray-200';
+            name.textContent = modelNames[i];
+            card.appendChild(name);
+
+            var winCount = document.createElement('div');
+            winCount.className = 'text-2xl font-bold';
+            winCount.style.color = colors[i];
+            winCount.textContent = wins[i];
+            card.appendChild(winCount);
+
+            var label = document.createElement('div');
+            label.className = 'text-xs text-gray-500';
+            label.textContent = 'wins';
+            card.appendChild(label);
+
+            summaryDiv.appendChild(card);
+        });
+        container.appendChild(summaryDiv);
+
+        // Table
         var table = document.createElement('table');
-        table.className = 'sota-table';
+        table.className = 'sota-table text-sm';
 
         var thead = document.createElement('thead');
         var headerRow = document.createElement('tr');
-        ['Benchmark', modelA.split('/').pop(), modelB.split('/').pop(), 'Diff'].forEach(function(text) {
+        var thBench = document.createElement('th');
+        thBench.textContent = 'Benchmark';
+        headerRow.appendChild(thBench);
+        var thCat = document.createElement('th');
+        thCat.textContent = 'Category';
+        thCat.style.fontSize = '11px';
+        headerRow.appendChild(thCat);
+
+        modelNames.forEach(function(name, i) {
             var th = document.createElement('th');
-            th.textContent = text;
+            th.textContent = name;
+            th.style.color = colors[i];
+            th.style.borderBottom = '2px solid ' + colors[i];
             headerRow.appendChild(th);
         });
         thead.appendChild(headerRow);
         table.appendChild(thead);
 
         var tbody = document.createElement('tbody');
-        comparison.forEach(function(row) {
+        var lastCat = '';
+        rows.forEach(function(row) {
             var tr = document.createElement('tr');
 
+            // Benchmark name (clickable)
             var tdBench = document.createElement('td');
-            tdBench.textContent = row.benchmark.toUpperCase();
+            var benchLink = document.createElement('span');
+            benchLink.className = 'cursor-pointer hover:text-blue-400 transition';
+            benchLink.textContent = row.benchName;
+            benchLink.onclick = function() { Modal.showBenchmark(row.benchmark); };
+            tdBench.appendChild(benchLink);
             tr.appendChild(tdBench);
 
-            var tdA = document.createElement('td');
-            tdA.textContent = row.valueA !== null ? row.valueA : '\u2014';
-            tr.appendChild(tdA);
+            // Category
+            var tdCat = document.createElement('td');
+            var badge = document.createElement('span');
+            badge.className = 'text-xs px-1.5 py-0.5 rounded bg-gray-800 text-gray-500';
+            badge.textContent = row.category;
+            tdCat.appendChild(badge);
+            tr.appendChild(tdCat);
 
-            var tdB = document.createElement('td');
-            tdB.textContent = row.valueB !== null ? row.valueB : '\u2014';
-            tr.appendChild(tdB);
-
-            var tdDiff = document.createElement('td');
-            if (row.diff !== null) {
-                tdDiff.textContent = (row.diff > 0 ? '+' : '') + row.diff;
-                tdDiff.className = row.winner === 'A' ? 'text-green-400' :
-                                   row.winner === 'B' ? 'text-red-400' : 'text-gray-400';
-            } else {
-                tdDiff.textContent = '\u2014';
-            }
-            tr.appendChild(tdDiff);
+            // Values
+            row.values.forEach(function(val, i) {
+                var td = document.createElement('td');
+                td.style.textAlign = 'center';
+                if (val !== null) {
+                    td.textContent = val > 500 ? Math.round(val) : val;
+                    if (i === row.winner && row.values.filter(function(v) { return v !== null; }).length > 1) {
+                        td.style.color = colors[i];
+                        td.style.fontWeight = 'bold';
+                    } else {
+                        td.style.color = '#d1d5db';
+                    }
+                } else {
+                    td.textContent = '\u2014';
+                    td.style.color = '#4b5563';
+                }
+                tr.appendChild(td);
+            });
 
             tbody.appendChild(tr);
         });
         table.appendChild(tbody);
         container.appendChild(table);
+    },
+
+    renderRadar: function(containerId, modelIds, models, scores, benchmarks) {
+        var el = document.getElementById(containerId);
+        if (!el) return;
+        var chart = echarts.init(el);
+
+        var modelNames = modelIds.map(function(mid) {
+            var m = models.find(function(x) { return x.id === mid; });
+            return m ? m.name : mid.split('/').pop();
+        });
+
+        var scoreMap = {};
+        scores.forEach(function(s) {
+            scoreMap[s.model_id + '|' + s.benchmark_id] = s.value;
+        });
+
+        // Find benchmarks where at least 2 selected models have scores, max 12
+        var benchCount = {};
+        benchmarks.forEach(function(b) {
+            var cnt = 0;
+            modelIds.forEach(function(mid) {
+                if (scoreMap[mid + '|' + b.id]) cnt++;
+            });
+            if (cnt >= 2) benchCount[b.id] = cnt;
+        });
+
+        var radarBenchIds = Object.keys(benchCount).sort(function(a, b) {
+            return benchCount[b] - benchCount[a];
+        }).filter(function(bid) {
+            // Exclude non-percentage metrics
+            var maxVal = 0;
+            modelIds.forEach(function(mid) {
+                var v = scoreMap[mid + '|' + bid] || 0;
+                if (v > maxVal) maxVal = v;
+            });
+            return maxVal <= 100;
+        }).slice(0, 12);
+
+        if (radarBenchIds.length < 3) return; // Not enough for radar
+
+        // Dynamic axis max
+        var indicators = radarBenchIds.map(function(bid) {
+            var b = benchmarks.find(function(x) { return x.id === bid; });
+            var name = b ? b.name : bid;
+            name = name.replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ').replace("Humanity's Last Exam", 'HLE');
+            if (name.length > 20) name = name.substring(0, 18) + '..';
+            var maxVal = 0;
+            modelIds.forEach(function(mid) {
+                var v = scoreMap[mid + '|' + bid] || 0;
+                if (v > maxVal) maxVal = v;
+            });
+            return { name: name, max: maxVal <= 100 ? 100 : Math.ceil(maxVal / 100) * 100 };
+        });
+
+        var colors = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'];
+
+        var series = [{
+            type: 'radar',
+            data: modelIds.map(function(mid, i) {
+                return {
+                    name: modelNames[i],
+                    value: radarBenchIds.map(function(bid) {
+                        return scoreMap[mid + '|' + bid] || 0;
+                    }),
+                    lineStyle: { color: colors[i], width: 2 },
+                    itemStyle: { color: colors[i] },
+                    areaStyle: { color: colors[i], opacity: 0.08 }
+                };
+            })
+        }];
+
+        chart.setOption({
+            backgroundColor: 'transparent',
+            title: { text: 'Model Comparison Radar', left: 'center', textStyle: { color: '#e5e7eb', fontSize: 13 } },
+            tooltip: {},
+            legend: {
+                data: modelNames,
+                textStyle: { color: '#9ca3af', fontSize: 11 }, bottom: 0
+            },
+            radar: {
+                indicator: indicators, shape: 'polygon', splitNumber: 5,
+                axisName: { color: '#9ca3af', fontSize: 9 },
+                splitLine: { lineStyle: { color: '#1f2937' } },
+                splitArea: { areaStyle: { color: ['transparent'] } },
+                axisLine: { lineStyle: { color: '#374151' } }
+            },
+            series: series
+        }, true);
+        window.addEventListener('resize', function() { chart.resize(); });
     }
 };

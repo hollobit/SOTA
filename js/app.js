@@ -195,29 +195,28 @@ var App = {
 
     setupExplorer: function() {
         var self = this;
-        var selA = document.getElementById('compare-model-a');
-        var selB = document.getElementById('compare-model-b');
-        this.data.models.forEach(function(m) {
-            var optA = document.createElement('option');
-            optA.value = m.id;
-            optA.textContent = m.name + ' (' + m.vendor + ')';
-            selA.appendChild(optA);
+        var selIds = ['compare-model-a', 'compare-model-b', 'compare-model-c', 'compare-model-d'];
+        var selects = selIds.map(function(id) { return document.getElementById(id); });
 
-            var optB = document.createElement('option');
-            optB.value = m.id;
-            optB.textContent = m.name + ' (' + m.vendor + ')';
-            selB.appendChild(optB);
+        selects.forEach(function(sel) {
+            if (!sel) return;
+            self.data.models.forEach(function(m) {
+                var opt = document.createElement('option');
+                opt.value = m.id;
+                opt.textContent = m.name + ' (' + m.vendor + ')';
+                sel.appendChild(opt);
+            });
         });
 
         var btn = document.getElementById('compare-btn');
         if (btn) {
             btn.addEventListener('click', function() {
-                var a = selA.value;
-                var b = selB.value;
-                if (a && b) {
-                    var result = Explorer.compare(a, b, self.data.scores);
-                    Explorer.renderComparison('comparison-result', a, b, result);
-                }
+                var modelIds = selects.map(function(sel) { return sel ? sel.value : ''; }).filter(function(v) { return v; });
+                if (modelIds.length < 2) return;
+
+                var rows = Explorer.compare(modelIds, self.data.scores, self.data.benchmarks);
+                Explorer.renderComparison('comparison-result', modelIds, self.data.models, rows);
+                Explorer.renderRadar('explorer-radar', modelIds, self.data.models, self.data.scores, self.data.benchmarks);
             });
         }
     },
