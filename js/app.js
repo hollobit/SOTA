@@ -63,7 +63,14 @@ var App = {
                 document.getElementById('last-updated').textContent = latest;
             }
 
-            return self._fetch(base + '/reports/changelog.json');
+            // Load history data for SOTA trends
+            return self._fetch(base + '/scores/history/2026-04-16.json').then(function(h1) {
+                if (h1) self.data.history['2026-04-16'] = h1;
+                return self._fetch(base + '/scores/history/2026-04-17.json');
+            }).then(function(h2) {
+                if (h2) self.data.history['2026-04-17'] = h2;
+                return self._fetch(base + '/reports/changelog.json');
+            });
         }).then(function(changelog) {
             self.data.changelog = changelog || [];
 
@@ -455,9 +462,10 @@ var App = {
 
     renderTrends: function() {
         var benchId = document.getElementById('trend-benchmark').value;
-        if (!benchId) return;
+        if (!benchId) { this._renderSOTATrend(null); return; }
 
         var self = this;
+        this._renderSOTATrend(benchId);
         var bench = this.data.benchmarks.find(function(b) { return b.id === benchId; });
         var benchName = bench ? bench.name : benchId;
 
@@ -555,6 +563,122 @@ var App = {
             return b ? b.name : bid;
         });
         Charts.renderHeatmap('heatmap-chart', hmNames, hmBenchNames, hmMatrix);
+    },
+
+    _renderSOTATrend: function(selectedBenchId) {
+        var el = document.getElementById('sota-trend-chart');
+        if (!el) return;
+        var chart = Charts._getOrCreate('sota-trend-chart');
+        if (!chart) return;
+
+        var self = this;
+        var dates = Object.keys(this.data.history).sort();
+        if (dates.length === 0) {
+            el.textContent = 'No history data available yet.';
+            return;
+        }
+
+        // Determine which benchmarks to show
+        var benchIds;
+        if (selectedBenchId) {
+            benchIds = [selectedBenchId];
+        } else {
+            // Show top benchmarks by coverage
+            var benchCount = {};
+            dates.forEach(function(d) {
+                (self.data.history[d] || []).forEach(function(s) {
+                    benchCount[s.benchmark_id] = (benchCount[s.benchmark_id] || 0) + 1;
+                });
+            });
+            benchIds = Object.keys(benchCount).sort(function(a, b) {
+                return benchCount[b] - benchCount[a];
+            }).slice(0, 10);
+        }
+
+        // For each date × benchmark, find SOTA (max score)
+        var series = benchIds.map(function(bid) {
+            var bench = self.data.benchmarks.find(function(b) { return b.id === bid; });
+            var benchName = bench ? bench.name : bid;
+
+            var dataPoints = dates.map(function(date) {
+                var dayScores = (self.data.history[date] || []).filter(function(s) {
+                    return s.benchmark_id === bid;
+                });
+                if (dayScores.length === 0) return null;
+                var maxScore = dayScores.reduce(function(max, s) {
+                    return s.value > max ? s.value : max;
+                }, 0);
+                return maxScore;
+            });
+
+            return {
+                name: benchName,
+                type: 'line',
+                smooth: true,
+                connectNulls: true,
+                symbol: 'circle',
+                symbolSize: 8,
+                data: dataPoints,
+                emphasis: { focus: 'series' }
+            };
+        });
+
+        // Filter out series with all nulls
+        series = series.filter(function(s) {
+            return s.data.some(function(v) { return v !== null; });
+        });
+
+        var title = selectedBenchId
+            ? (self.data.benchmarks.find(function(b) { return b.id === selectedBenchId; }) || {}).name + ' — SOTA Trend'
+            : 'SOTA Score Trends (Top 10 Benchmarks)';
+
+        chart.setOption({
+            title: { text: title, left: 'center', textStyle: { color: '#e5e7eb', fontSize: 13 } },
+            tooltip: {
+                trigger: 'axis',
+                formatter: function(params) {
+                    var lines = [params[0].axisValue];
+                    params.forEach(function(p) {
+                        if (p.value !== null && p.value !== undefined) {
+                            var display = p.value > 500 ? Math.round(p.value) : p.value.toFixed(1);
+                            lines.push(p.marker + ' ' + p.seriesName + ': ' + display);
+                        }
+                    });
+                    return lines.join('<br>');
+                }
+            },
+            legend: {
+                bottom: 0, type: 'scroll',
+                textStyle: { color: '#9ca3af', fontSize: 10 }
+            },
+            grid: { left: 50, right: 20, top: 40, bottom: 50 },
+            xAxis: {
+                type: 'category',
+                data: dates,
+                axisLabel: { color: '#9ca3af' },
+                axisLine: { lineStyle: { color: '#374151' } }
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: { color: '#9ca3af' },
+                splitLine: { lineStyle: { color: '#1f2937' } }
+            },
+            series: series
+        }, true);
+
+        // Add data collection annotation
+        if (!selectedBenchId && dates.length >= 2) {
+            var container = document.getElementById('sota-trend-container');
+            var existing = container.querySelector('.trend-note');
+            if (existing) existing.remove();
+            var note = document.createElement('p');
+            note.className = 'trend-note text-xs text-gray-500 mt-2';
+            note.textContent = 'Data points: ' + dates.join(', ') + ' — '
+                + (self.data.history[dates[0]] || []).length + ' → '
+                + (self.data.history[dates[dates.length-1]] || []).length + ' scores'
+                + ' (growth: ' + Math.round(((self.data.history[dates[dates.length-1]] || []).length / (self.data.history[dates[0]] || []).length - 1) * 100) + '%)';
+            container.appendChild(note);
+        }
     },
 
     renderResources: function() {
