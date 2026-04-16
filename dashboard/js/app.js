@@ -298,17 +298,40 @@ var App = {
             container.appendChild(p);
             return;
         }
-        this.data.changelog.forEach(function(change) {
+        // Show recent non-SOTA events first (max 10)
+        var events = this.data.changelog.filter(function(c) { return c.type !== 'SOTA'; });
+        var sotas = this.data.changelog.filter(function(c) { return c.type === 'SOTA'; }).slice(0, 10);
+
+        events.slice(0, 8).forEach(function(change) {
             var card = document.createElement('div');
             card.className = 'change-card';
-            var text = change.type + ': ' + change.benchmark_id +
-                       ' \u2014 ' + change.new_model + ' (' + change.new_value + ')';
-            if (change.old_value) {
-                text += ' prev: ' + change.old_model + ' (' + change.old_value + ')';
-            }
-            card.textContent = text;
+            var typeBadge = document.createElement('span');
+            typeBadge.className = 'inline-block px-1.5 py-0.5 rounded text-xs mr-2';
+            if (change.type === 'Feature') typeBadge.className += ' bg-blue-900 text-blue-300';
+            else if (change.type === 'Deploy') typeBadge.className += ' bg-green-900 text-green-300';
+            else typeBadge.className += ' bg-purple-900 text-purple-300';
+            typeBadge.textContent = change.type;
+            card.appendChild(typeBadge);
+            card.appendChild(document.createTextNode(change.benchmark_id + ' \u2014 ' + change.new_value));
             container.appendChild(card);
         });
+
+        if (sotas.length > 0) {
+            var h4 = document.createElement('h4');
+            h4.className = 'text-sm font-semibold text-gray-400 mt-4 mb-2';
+            h4.textContent = 'Current SOTA Records';
+            container.appendChild(h4);
+            sotas.forEach(function(change) {
+                var card = document.createElement('div');
+                card.className = 'change-card';
+                var sotaBadge = document.createElement('span');
+                sotaBadge.className = 'inline-block px-1.5 py-0.5 rounded text-xs mr-2 bg-green-900 text-green-300';
+                sotaBadge.textContent = 'SOTA';
+                card.appendChild(sotaBadge);
+                card.appendChild(document.createTextNode(change.benchmark_id + ' \u2014 ' + change.new_model + ' (' + change.new_value + ')'));
+                container.appendChild(card);
+            });
+        }
     },
 
     renderLeaderboard: function() {
@@ -646,20 +669,74 @@ var App = {
             container.appendChild(p);
             return;
         }
-        this.data.changelog.forEach(function(change) {
-            var card = document.createElement('div');
-            card.className = 'change-card';
 
-            var strong = document.createElement('strong');
-            strong.textContent = change.type;
-            card.appendChild(strong);
-            card.appendChild(document.createTextNode(': ' + change.benchmark_id +
-                ' \u2014 ' + change.new_model + ' (' + change.new_value + ')'));
-            if (change.old_value) {
-                card.appendChild(document.createTextNode(
-                    ' prev: ' + change.old_model + ' (' + change.old_value + ')'));
-            }
-            container.appendChild(card);
+        // Group by type
+        var groups = {};
+        this.data.changelog.forEach(function(c) {
+            var type = c.type;
+            if (!groups[type]) groups[type] = [];
+            groups[type].push(c);
+        });
+
+        var typeOrder = ['Deploy', 'Feature', 'PDF Analysis', 'Web Collection', 'Data Collection', 'SOTA'];
+        var typeColors = {
+            'Deploy': 'bg-green-900 text-green-300',
+            'Feature': 'bg-blue-900 text-blue-300',
+            'PDF Analysis': 'bg-purple-900 text-purple-300',
+            'Web Collection': 'bg-yellow-900 text-yellow-300',
+            'Data Collection': 'bg-gray-700 text-gray-300',
+            'SOTA': 'bg-emerald-900 text-emerald-300'
+        };
+
+        typeOrder.forEach(function(type) {
+            var items = groups[type];
+            if (!items || items.length === 0) return;
+
+            var section = document.createElement('div');
+            section.className = 'mb-6';
+
+            var h3 = document.createElement('h3');
+            h3.className = 'text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3';
+            h3.textContent = type + ' (' + items.length + ')';
+            section.appendChild(h3);
+
+            items.forEach(function(change) {
+                var card = document.createElement('div');
+                card.className = 'flex items-start gap-3 py-2 border-t border-gray-800';
+
+                var badge = document.createElement('span');
+                badge.className = 'inline-block px-2 py-0.5 rounded text-xs whitespace-nowrap mt-0.5 ' + (typeColors[type] || 'bg-gray-800 text-gray-400');
+                badge.textContent = change.date || '';
+                card.appendChild(badge);
+
+                var content = document.createElement('div');
+                content.className = 'text-sm';
+
+                var title = document.createElement('span');
+                title.className = 'text-gray-200 font-medium';
+                title.textContent = change.benchmark_id;
+                content.appendChild(title);
+
+                if (change.new_model) {
+                    content.appendChild(document.createTextNode(' \u2014 '));
+                    var model = document.createElement('span');
+                    model.className = 'text-gray-400';
+                    model.textContent = change.new_model;
+                    content.appendChild(model);
+                }
+
+                if (change.new_value) {
+                    var val = document.createElement('span');
+                    val.className = 'ml-2 text-gray-500';
+                    val.textContent = '(' + change.new_value + ')';
+                    content.appendChild(val);
+                }
+
+                card.appendChild(content);
+                section.appendChild(card);
+            });
+
+            container.appendChild(section);
         });
     }
 };
