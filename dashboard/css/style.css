@@ -24,7 +24,14 @@
     font-weight: 600;
     font-size: 0.8rem;
     text-transform: uppercase;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
 }
+.sota-table th.sortable:hover { color: #e5e7eb; }
+.sota-table th .sort-arrow { margin-left: 4px; font-size: 0.65rem; color: #60a5fa; }
+.sota-table th .sort-arrow.desc::after { content: "\25BC"; }
+.sota-table th .sort-arrow.asc::after { content: "\25B2"; }
 .sota-table tr:hover { background: #111827; }
 
 .badge {
@@ -47,6 +54,21 @@
     background: #111827;
     border-radius: 0 0.375rem 0.375rem 0;
 }
+.cmp-table { border-collapse: collapse; min-width: 100%; }
+.cmp-table th, .cmp-table td {
+    padding: 0.4rem 0.7rem;
+    text-align: center;
+    border: 1px solid #1f2937;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+.cmp-table th { background: #111827; color: #9ca3af; font-weight: 600; }
+.cmp-table th.row-header { text-align: left; min-width: 140px; }
+.cmp-table td.best { background: #065f46; color: #6ee7b7; font-weight: 700; }
+.cmp-table td.worst { background: #450a0a; color: #fca5a5; }
+.cmp-table td.na { color: #4b5563; }
+.cmp-table tr:hover { background: #0f172a; }
+
 .leaderboard-card {
     background: #111827;
     border: 1px solid #1f2937;

@@ -13,12 +13,16 @@ var App = {
         history: {}
     },
 
+    // Leaderboard sort state
+    _lbSort: { column: 'value', ascending: false },
+
     init: function() {
         var self = this;
         this.loadData().then(function() {
             self.setupTabs();
             self.setupFilters();
             self.setupExplorer();
+            Comparison.init(self.data.models, self.data.benchmarks, self.data.scores);
             self.renderOverview();
         });
     },
@@ -81,6 +85,7 @@ var App = {
                 if (tab) tab.classList.remove('hidden');
                 if (btn.dataset.tab === 'trends') self.renderTrends();
                 if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
+                if (btn.dataset.tab === 'comparison') Comparison.render();
                 if (btn.dataset.tab === 'changelog') self.renderChangelog();
             });
         });
@@ -286,26 +291,65 @@ var App = {
         };
 
         var filtered = Filters.apply(this.data.scores, this.data.models, filters);
-        var sorted = Filters.sortByValue(filtered);
+
+        // Sort by current column
+        var col = this._lbSort.column;
+        var asc = this._lbSort.ascending;
+        var self = this;
+        filtered.sort(function(a, b) {
+            var va, vb;
+            if (col === 'model') { va = a.model_id.toLowerCase(); vb = b.model_id.toLowerCase(); }
+            else if (col === 'benchmark') { va = a.benchmark_id.toLowerCase(); vb = b.benchmark_id.toLowerCase(); }
+            else if (col === 'value') { va = a.value; vb = b.value; }
+            else if (col === 'source') { va = (a.source && a.source.type) || ''; vb = (b.source && b.source.type) || ''; }
+            else if (col === 'date') { va = a.collected_at || ''; vb = b.collected_at || ''; }
+            else { va = a.value; vb = b.value; }
+            if (va < vb) return asc ? -1 : 1;
+            if (va > vb) return asc ? 1 : -1;
+            return 0;
+        });
+
         var container = document.getElementById('leaderboard-table-container');
         container.textContent = '';
 
         var table = document.createElement('table');
         table.className = 'sota-table';
 
+        // Sortable header
+        var columns = [
+            { key: 'model', label: 'Model' },
+            { key: 'benchmark', label: 'Benchmark' },
+            { key: 'value', label: 'Score' },
+            { key: 'source', label: 'Source' },
+            { key: 'date', label: 'Date' }
+        ];
         var thead = document.createElement('thead');
         var headerRow = document.createElement('tr');
-        ['Model', 'Benchmark', 'Score', 'Source', 'Date'].forEach(function(text) {
+        columns.forEach(function(c) {
             var th = document.createElement('th');
-            th.textContent = text;
+            th.className = 'sortable';
+            th.textContent = c.label;
+            if (self._lbSort.column === c.key) {
+                var arrow = document.createElement('span');
+                arrow.className = 'sort-arrow ' + (self._lbSort.ascending ? 'asc' : 'desc');
+                th.appendChild(arrow);
+            }
+            th.addEventListener('click', function() {
+                if (self._lbSort.column === c.key) {
+                    self._lbSort.ascending = !self._lbSort.ascending;
+                } else {
+                    self._lbSort.column = c.key;
+                    self._lbSort.ascending = c.key === 'value' ? false : true;
+                }
+                self.renderLeaderboard();
+            });
             headerRow.appendChild(th);
         });
         thead.appendChild(headerRow);
         table.appendChild(thead);
 
         var tbody = document.createElement('tbody');
-        var self = this;
-        sorted.slice(0, 200).forEach(function(s) {
+        filtered.slice(0, 200).forEach(function(s) {
             var model = self.data.models.find(function(m) { return m.id === s.model_id; });
             var tr = document.createElement('tr');
 

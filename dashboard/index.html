@@ -22,6 +22,7 @@
         <button class="tab-btn active" data-tab="overview">Overview</button>
         <button class="tab-btn" data-tab="leaderboard">Leaderboard</button>
         <button class="tab-btn" data-tab="trends">Trends</button>
+        <button class="tab-btn" data-tab="comparison">Comparison</button>
         <button class="tab-btn" data-tab="explorer">Explorer</button>
         <button class="tab-btn" data-tab="changelog">Changelog</button>
     </nav>
@@ -83,6 +84,25 @@
             <div id="heatmap-chart" class="h-96 mt-6"></div>
         </section>
 
+        <section id="tab-comparison" class="tab-content hidden">
+            <div class="flex gap-4 mb-4 flex-wrap items-end">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Models (X-axis)</label>
+                    <select id="cmp-models" multiple class="bg-gray-800 border border-gray-700 rounded px-3 py-1 w-72 h-40 text-sm"></select>
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Benchmarks (Y-axis)</label>
+                    <select id="cmp-benchmarks" multiple class="bg-gray-800 border border-gray-700 rounded px-3 py-1 w-56 h-40 text-sm"></select>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <button id="cmp-update" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">Update</button>
+                    <button id="cmp-reset" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-sm">Reset</button>
+                </div>
+            </div>
+            <div id="cmp-matrix-container" class="overflow-x-auto"></div>
+            <div id="cmp-radar-chart" class="h-96 mt-6"></div>
+        </section>
+
         <section id="tab-explorer" class="tab-content hidden">
             <div class="flex gap-4 mb-6">
                 <select id="compare-model-a" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-64">
@@ -105,6 +125,7 @@
     <script src="js/charts.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/explorer.js"></script>
+    <script src="js/comparison.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
