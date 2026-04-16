@@ -8,7 +8,7 @@ var FrontierCompare = {
         reasoning: ['gpqa_diamond', 'hle', 'mmlu_pro', 'mmmlu', 'simpleqa_verified', 'longbench_v2'],
         coding: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'swe_rebench', 'gdpval_aa'],
         math: ['aime_2025', 'hmmt_2025', 'imo_answerbench'],
-        agent: ['browsecomp', 'osworld_verified', 'tau2_bench', 'mcp_atlas', 'webarena', 'deepsearchqa', 'vending_bench_2'],
+        agent: ['browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench', 'mcp_atlas', 'webarena', 'deepsearchqa', 'vending_bench_2'],
         cybersecurity: ['cybench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'cvebench', 'firefox_147', 'cyber_range'],
         multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning']
     },

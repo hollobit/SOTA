@@ -790,7 +790,14 @@ var App = {
             { name: 'BaxBench', url: 'https://baxbench.com', desc: 'Secure backend coding' },
             { name: 'Qwen Blog', url: 'https://qwen.ai/blog', desc: 'Qwen model announcements' },
             { name: 'MiniMax', url: 'https://www.minimax.io/news', desc: 'MiniMax model releases' },
-            { name: 'Gemma Model Card', url: 'https://ai.google.dev/gemma/docs/core/model_card_4', desc: 'Gemma 4 evaluation data' }
+            { name: 'Gemma Model Card', url: 'https://ai.google.dev/gemma/docs/core/model_card_4', desc: 'Gemma 4 evaluation data' },
+            { name: 'Scale Labs Leaderboard', url: 'https://labs.scale.com/leaderboard', desc: 'SWE-bench Pro, HLE, expert-driven benchmarks' },
+            { name: 'BenchLM.ai', url: 'https://benchlm.ai', desc: 'Provisional + verified rankings, 100+ benchmarks' },
+            { name: 'Klu LLM Leaderboard', url: 'https://klu.ai/llm-leaderboard', desc: '30+ frontier models, cost vs speed vs quality' },
+            { name: 'APEX-Agents (Mercor)', url: 'https://www.mercor.com/apex/', desc: 'AI Productivity Index for professional tasks' },
+            { name: 'TAU3-Bench', url: 'https://sierra.ai/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice', desc: 'Next-gen agent tool-use + knowledge + voice' },
+            { name: 'DemandSphere Frontier Tracker', url: 'https://www.demandsphere.com/blog/ai-frontier-model-tracker-launch/', desc: 'Real-time frontier model tracking' },
+            { name: 'Stanford HAI AI Index', url: 'https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance', desc: '2026 AI Index technical performance report' }
         ];
 
         sites.forEach(function(site) {
