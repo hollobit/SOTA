@@ -277,8 +277,7 @@ var CyberCoding = {
             },
             yAxis: {
                 type: 'value',
-                max: 100,
-                axisLabel: { color: '#9ca3af', formatter: '{value}%' },
+                axisLabel: { color: '#9ca3af' },
                 splitLine: { lineStyle: { color: '#1f2937' } }
             },
             series: series
@@ -393,12 +392,19 @@ var CyberCoding = {
             return cnt >= 3;
         }).slice(0, 6);
 
+        // Calculate per-axis max dynamically
         var indicators = allBenchmarks.map(function(bid) {
             var b = self._benchmarks.find(function(x) { return x.id === bid; });
             var name = b ? b.name : bid;
-            // shorten long names
             name = name.replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ');
-            return { name: name, max: 100 };
+            var axisMax = 0;
+            topModels.forEach(function(mid) {
+                var v = (modelScores[mid] && modelScores[mid][bid]) || 0;
+                if (v > axisMax) axisMax = v;
+            });
+            if (axisMax <= 100) axisMax = 100;
+            else axisMax = Math.ceil(axisMax / 100) * 100;
+            return { name: name, max: axisMax };
         });
 
         var colors = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
