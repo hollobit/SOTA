@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import date
-from typing import Any
+from typing import Any, List, Optional
 
 
 @dataclass
@@ -65,3 +65,25 @@ class RawRecord:
     source_url: str
     raw_data: dict[str, Any]
     collected_at: date
+
+
+@dataclass
+class SourceEntry:
+    id: str
+    url: str
+    name: str
+    type: str       # "leaderboard" | "vendor_page" | "paper" | "blog" | "dataset_hub" | "evaluation_report"
+    format: str     # "html_table" | "json_api" | "pdf" | "markdown" | "csv"
+    trust_score: float
+    status: str     # "active" | "candidate" | "dead" | "paused"
+    discovered_by: str  # "seed" | "link_expansion" | "web_search"
+    discovered_at: date
+    last_crawled_at: Optional[date] = None
+    last_changed_at: Optional[date] = None
+    crawl_count: int = 0
+    change_count: int = 0
+    fail_count: int = 0
+    crawl_interval_hours: int = 24
+    benchmarks: List[Any] = field(default_factory=list)
+    models_count: int = 0
+    notes: str = ""
