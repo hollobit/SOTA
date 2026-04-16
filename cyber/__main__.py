@@ -352,5 +352,211 @@ def load_bmt(path: Optional[str], export_map: bool) -> None:
     console.print(f"  [green]Full catalog exported to {catalog_path}[/green]")
 
 
+# ---------------------------------------------------------------------------
+# discover
+# ---------------------------------------------------------------------------
+@cli.command()
+def discover() -> None:
+    """Load seed sources and register new ones in the DB."""
+    from datetime import date as _date
+    from urllib.parse import urlparse
+
+    from cyber.agents.discovery import DiscoveryAgent
+    from cyber.db.connection import get_connection
+    from cyber.db.schema import get_sources, init_db, insert_source
+    from cyber.models.types import SourceEntry
+
+    cfg = _load_yaml("seed_sources.yaml")
+    seeds = cfg.get("sources", [])
+    if not seeds:
+        console.print("[yellow]No seeds found in seed_sources.yaml.[/yellow]")
+        return
+
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    conn = get_connection(DB_PATH)
+    init_db(conn)
+
+    existing_urls = {s.url for s in get_sources(conn)}
+    agent = DiscoveryAgent()
+    added = 0
+
+    for seed in seeds:
+        url = seed["url"]
+        if url in existing_urls:
+            continue
+        entry = agent.create_candidate(url, seed.get("name", url), "seed")
+        entry.type = seed.get("type", entry.type)
+        entry.format = seed.get("format", entry.format)
+        entry.status = "active"
+        insert_source(conn, entry)
+        added += 1
+        console.print(f"  [green]+[/green] {entry.name} ({url})")
+
+    conn.close()
+    console.print(f"[bold green]Registered {added} new seed source(s).[/bold green]")
+
+
+# ---------------------------------------------------------------------------
+# collect
+# ---------------------------------------------------------------------------
+@cli.command()
+@click.option("--all", "collect_all", is_flag=True, default=False, help="Collect from all active sources.")
+@click.option("--source", "source_id", default=None, help="Collect from a single source by ID.")
+def collect(collect_all: bool, source_id: Optional[str]) -> None:
+    """Collect benchmark data from sources."""
+    from datetime import date as _date
+
+    from cyber.agents.collector import CollectorAgent
+    from cyber.agents.scheduler import Scheduler
+    from cyber.db.connection import get_connection
+    from cyber.db.schema import get_sources, get_source_by_id, init_db
+
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    conn = get_connection(DB_PATH)
+    init_db(conn)
+
+    if source_id:
+        src = get_source_by_id(conn, source_id)
+        if src is None:
+            console.print(f"[red]Source '{source_id}' not found.[/red]")
+            conn.close()
+            return
+        targets = [src]
+    elif collect_all:
+        targets = get_sources(conn, status="active")
+    else:
+        scheduler = Scheduler()
+        targets = scheduler.filter_due(get_sources(conn), as_of=_date.today())
+
+    if not targets:
+        console.print("[yellow]No sources to collect from.[/yellow]")
+        conn.close()
+        return
+
+    collector = CollectorAgent()
+    console.print(f"Collecting from {len(targets)} source(s)...")
+    for src in targets:
+        parser = collector.select_parser(src.format)
+        if parser is None:
+            console.print(f"  [yellow]No parser for format '{src.format}' ({src.name})[/yellow]")
+            continue
+        console.print(f"  [cyan]{src.name}[/cyan] ({src.format})")
+
+    conn.close()
+    console.print("[bold green]Collection complete.[/bold green]")
+
+
+# ---------------------------------------------------------------------------
+# librarian
+# ---------------------------------------------------------------------------
+@cli.command()
+@click.option("--health", is_flag=True, default=False, help="Run health checks on all sources.")
+@click.option("--trust", is_flag=True, default=False, help="Recompute trust scores.")
+def librarian(health: bool, trust: bool) -> None:
+    """Run Librarian agent to update source health and trust."""
+    from datetime import date as _date
+
+    from cyber.agents.librarian import LibrarianAgent
+    from cyber.db.connection import get_connection
+    from cyber.db.schema import get_sources, init_db, update_source
+
+    if not health and not trust:
+        console.print("[yellow]Specify --health and/or --trust.[/yellow]")
+        return
+
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    conn = get_connection(DB_PATH)
+    init_db(conn)
+
+    agent = LibrarianAgent()
+    sources = get_sources(conn)
+
+    if not sources:
+        console.print("[yellow]No sources in database.[/yellow]")
+        conn.close()
+        return
+
+    updated = 0
+    for src in sources:
+        changed = False
+        if health:
+            new_status = agent.check_health(src, as_of=_date.today())
+            if new_status != src.status:
+                src.status = new_status
+                changed = True
+        if trust:
+            new_trust = agent.compute_trust(src)
+            if new_trust != src.trust_score:
+                src.trust_score = new_trust
+                changed = True
+            new_interval = agent.compute_interval(src)
+            if agent.is_conference_season(_date.today()):
+                new_interval = agent.apply_boost(new_interval)
+            if new_interval != src.crawl_interval_hours:
+                src.crawl_interval_hours = new_interval
+                changed = True
+        if changed:
+            update_source(conn, src)
+            updated += 1
+
+    conn.close()
+    console.print(f"[bold green]Updated {updated} source(s).[/bold green]")
+
+
+# ---------------------------------------------------------------------------
+# sources
+# ---------------------------------------------------------------------------
+@cli.command()
+@click.option("--status", default=None, help="Filter sources by status.")
+@click.option("--add", "add_url", default=None, help="Add a new source URL.")
+def sources(status: Optional[str], add_url: Optional[str]) -> None:
+    """List or add benchmark sources."""
+    from datetime import date as _date
+    from urllib.parse import urlparse
+
+    from cyber.agents.discovery import DiscoveryAgent
+    from cyber.db.connection import get_connection
+    from cyber.db.schema import get_sources, init_db, insert_source
+
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    conn = get_connection(DB_PATH)
+    init_db(conn)
+
+    if add_url:
+        agent = DiscoveryAgent()
+        entry = agent.create_candidate(add_url, add_url, "seed")
+        insert_source(conn, entry)
+        console.print(f"[green]Added: {add_url}[/green]")
+
+    all_sources = get_sources(conn, status=status)
+    if not all_sources:
+        console.print("[yellow]No sources found.[/yellow]")
+        conn.close()
+        return
+
+    table = Table(title="Benchmark Sources")
+    table.add_column("ID", style="dim", max_width=30)
+    table.add_column("Name", style="cyan")
+    table.add_column("Type")
+    table.add_column("Format")
+    table.add_column("Trust", justify="right")
+    table.add_column("Status", style="bold")
+    table.add_column("Crawls", justify="right")
+
+    for s in all_sources:
+        table.add_row(
+            s.id[:30],
+            s.name,
+            s.type,
+            s.format,
+            f"{s.trust_score:.2f}",
+            s.status,
+            str(s.crawl_count),
+        )
+
+    console.print(table)
+    conn.close()
+
+
 if __name__ == "__main__":
     cli()
