@@ -39,19 +39,30 @@ var App = {
         });
     },
 
+    _activateTab: function(tabName) {
+        document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.add('hidden'); });
+        var btn = document.querySelector('.tab-btn[data-tab="' + tabName + '"]');
+        if (btn) btn.classList.add('active');
+        var tab = document.getElementById('tab-' + tabName);
+        if (tab) tab.classList.remove('hidden');
+    },
+
     _navigateToHash: function() {
         var hash = (window.location.hash || '').replace('#', '');
-        if (!hash) { this.renderOverview(); return; }
+        if (!hash) { this._activateTab('overview'); this.renderOverview(); return; }
 
         // Check if it's a benchmark or model deep link: #bench/gpqa_diamond or #model/anthropic/claude-opus-4.7
         if (hash.indexOf('bench/') === 0) {
             var benchId = hash.substring(6);
+            this._activateTab('overview');
             this.renderOverview();
             setTimeout(function() { Modal.showBenchmark(benchId); }, 300);
             return;
         }
         if (hash.indexOf('model/') === 0) {
             var modelId = hash.substring(6);
+            this._activateTab('overview');
             this.renderOverview();
             setTimeout(function() { Modal.showModel(modelId); }, 300);
             return;
@@ -62,6 +73,7 @@ var App = {
         if (tabBtn) {
             tabBtn.click();
         } else {
+            this._activateTab('overview');
             this.renderOverview();
         }
     },
@@ -496,10 +508,10 @@ var App = {
         table.appendChild(tbody);
         container.appendChild(table);
 
-        if (sorted.length > 200) {
+        if (filtered.length > 200) {
             var note = document.createElement('p');
             note.className = 'text-gray-500 mt-2';
-            note.textContent = 'Showing 200 of ' + sorted.length;
+            note.textContent = 'Showing 200 of ' + filtered.length;
             container.appendChild(note);
         }
     },
