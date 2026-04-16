@@ -6,7 +6,10 @@ import json
 import sqlite3
 from datetime import date
 
-from cyber.models.types import Benchmark, LeaderboardRanking, Model, Score, Source
+from typing import Optional
+
+from cyber.models.types import Benchmark, LeaderboardRanking, Model, Score, SourceEntry
+from cyber.models.types import Source
 
 SCHEMA_SQL = """
 CREATE TABLE IF NOT EXISTS models (
@@ -55,6 +58,27 @@ CREATE TABLE IF NOT EXISTS leaderboard_rankings (
     source_url TEXT NOT NULL,
     PRIMARY KEY (leaderboard, model_id, snapshot_date),
     FOREIGN KEY (model_id) REFERENCES models(id)
+);
+
+CREATE TABLE IF NOT EXISTS sources (
+    id TEXT PRIMARY KEY,
+    url TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    format TEXT NOT NULL,
+    trust_score REAL NOT NULL DEFAULT 0.5,
+    status TEXT NOT NULL DEFAULT 'candidate',
+    discovered_by TEXT NOT NULL,
+    discovered_at TEXT NOT NULL,
+    last_crawled_at TEXT,
+    last_changed_at TEXT,
+    crawl_count INTEGER NOT NULL DEFAULT 0,
+    change_count INTEGER NOT NULL DEFAULT 0,
+    fail_count INTEGER NOT NULL DEFAULT 0,
+    crawl_interval_hours INTEGER NOT NULL DEFAULT 24,
+    benchmarks TEXT NOT NULL DEFAULT '[]',
+    models_count INTEGER NOT NULL DEFAULT 0,
+    notes TEXT NOT NULL DEFAULT ''
 );
 """
 
@@ -158,3 +182,112 @@ def get_leaderboard_rankings(conn: sqlite3.Connection) -> list[LeaderboardRankin
         )
         for r in rows
     ]
+
+
+# ---------------------------------------------------------------------------
+# Source registry CRUD
+# ---------------------------------------------------------------------------
+
+def _row_to_source_entry(r: sqlite3.Row) -> SourceEntry:
+    """Convert a DB row to a SourceEntry dataclass."""
+    return SourceEntry(
+        id=r["id"],
+        url=r["url"],
+        name=r["name"],
+        type=r["type"],
+        format=r["format"],
+        trust_score=r["trust_score"],
+        status=r["status"],
+        discovered_by=r["discovered_by"],
+        discovered_at=date.fromisoformat(r["discovered_at"]),
+        last_crawled_at=date.fromisoformat(r["last_crawled_at"]) if r["last_crawled_at"] else None,
+        last_changed_at=date.fromisoformat(r["last_changed_at"]) if r["last_changed_at"] else None,
+        crawl_count=r["crawl_count"],
+        change_count=r["change_count"],
+        fail_count=r["fail_count"],
+        crawl_interval_hours=r["crawl_interval_hours"],
+        benchmarks=json.loads(r["benchmarks"]),
+        models_count=r["models_count"],
+        notes=r["notes"],
+    )
+
+
+def insert_source(conn: sqlite3.Connection, source: SourceEntry) -> None:
+    """INSERT OR REPLACE a source entry."""
+    conn.execute(
+        """INSERT OR REPLACE INTO sources
+           (id, url, name, type, format, trust_score, status, discovered_by,
+            discovered_at, last_crawled_at, last_changed_at, crawl_count,
+            change_count, fail_count, crawl_interval_hours, benchmarks,
+            models_count, notes)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        (
+            source.id, source.url, source.name, source.type, source.format,
+            source.trust_score, source.status, source.discovered_by,
+            source.discovered_at.isoformat(),
+            source.last_crawled_at.isoformat() if source.last_crawled_at else None,
+            source.last_changed_at.isoformat() if source.last_changed_at else None,
+            source.crawl_count, source.change_count, source.fail_count,
+            source.crawl_interval_hours, json.dumps(source.benchmarks),
+            source.models_count, source.notes,
+        ),
+    )
+    conn.commit()
+
+
+def get_sources(conn: sqlite3.Connection, status: Optional[str] = None) -> list:
+    """Return all sources, optionally filtered by status."""
+    if status is not None:
+        rows = conn.execute(
+            "SELECT * FROM sources WHERE status = ?", (status,)
+        ).fetchall()
+    else:
+        rows = conn.execute("SELECT * FROM sources").fetchall()
+    return [_row_to_source_entry(r) for r in rows]
+
+
+def get_source_by_id(conn: sqlite3.Connection, id: str) -> Optional[SourceEntry]:
+    """Return a single source by id, or None."""
+    row = conn.execute("SELECT * FROM sources WHERE id = ?", (id,)).fetchone()
+    if row is None:
+        return None
+    return _row_to_source_entry(row)
+
+
+def update_source(conn: sqlite3.Connection, source: SourceEntry) -> None:
+    """UPDATE a source entry by id."""
+    conn.execute(
+        """UPDATE sources SET
+            url = ?, name = ?, type = ?, format = ?, trust_score = ?,
+            status = ?, discovered_by = ?, discovered_at = ?,
+            last_crawled_at = ?, last_changed_at = ?,
+            crawl_count = ?, change_count = ?, fail_count = ?,
+            crawl_interval_hours = ?, benchmarks = ?,
+            models_count = ?, notes = ?
+           WHERE id = ?""",
+        (
+            source.url, source.name, source.type, source.format,
+            source.trust_score, source.status, source.discovered_by,
+            source.discovered_at.isoformat(),
+            source.last_crawled_at.isoformat() if source.last_crawled_at else None,
+            source.last_changed_at.isoformat() if source.last_changed_at else None,
+            source.crawl_count, source.change_count, source.fail_count,
+            source.crawl_interval_hours, json.dumps(source.benchmarks),
+            source.models_count, source.notes,
+            source.id,
+        ),
+    )
+    conn.commit()
+
+
+def get_due_sources(conn: sqlite3.Connection, as_of: date) -> list:
+    """Return active sources that are due for crawling, sorted by trust_score DESC."""
+    rows = conn.execute(
+        """SELECT * FROM sources
+           WHERE status = 'active'
+             AND (last_crawled_at IS NULL
+                  OR julianday(?) - julianday(last_crawled_at) >= crawl_interval_hours / 24.0)
+           ORDER BY trust_score DESC""",
+        (as_of.isoformat(),),
+    ).fetchall()
+    return [_row_to_source_entry(r) for r in rows]
