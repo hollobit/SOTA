@@ -143,6 +143,7 @@ var App = {
                 if (tab) tab.classList.remove('hidden');
                 // Update URL hash without triggering hashchange re-navigation
                 history.replaceState(null, '', '#' + btn.dataset.tab);
+                if (btn.dataset.tab === 'overview') self.renderOverview();
                 if (btn.dataset.tab === 'trends') self.renderTrends();
                 if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
                 if (btn.dataset.tab === 'comparison') Comparison.render();
@@ -246,9 +247,10 @@ var App = {
     },
 
     renderOverview: function() {
-        this._renderSOTATable();
-        this._renderLeaderboardCards();
-        this._renderRecentChanges();
+        var self = this;
+        try { self._renderSOTATable(); } catch(e) { console.warn('SOTA table error:', e); }
+        try { self._renderLeaderboardCards(); } catch(e) { console.warn('Leaderboard cards error:', e); }
+        try { self._renderRecentChanges(); } catch(e) { console.warn('Recent changes error:', e); }
     },
 
     _renderSOTATable: function() {
@@ -313,8 +315,10 @@ var App = {
 
     _renderLeaderboardCards: function() {
         var container = document.getElementById('leaderboard-cards');
+        if (!container) return;
         container.textContent = '';
-        var boards = Object.keys(this.data.leaderboards);
+        var self = this;
+        var boards = Object.keys(self.data.leaderboards || {});
         if (boards.length === 0) {
             var p = document.createElement('p');
             p.className = 'text-gray-500';
@@ -323,7 +327,7 @@ var App = {
             return;
         }
         boards.forEach(function(name) {
-            var entries = this.data.leaderboards[name];
+            var entries = self.data.leaderboards[name];
             var card = document.createElement('div');
             card.className = 'leaderboard-card';
 
