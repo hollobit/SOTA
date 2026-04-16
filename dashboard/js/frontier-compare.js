@@ -5,22 +5,24 @@
 var FrontierCompare = {
     // Core benchmarks appearing in 2+ PDF sources, grouped by category
     CORE_BENCHMARKS: {
-        reasoning: ['gpqa_diamond', 'hle', 'mmlu_pro', 'simpleqa_verified', 'longbench_v2'],
-        coding: ['swe_bench_verified', 'swe_bench_pro', 'terminal_bench_2', 'livecodebench', 'swe_rebench', 'gdpval_aa'],
+        reasoning: ['gpqa_diamond', 'hle', 'mmlu_pro', 'mmmlu', 'simpleqa_verified', 'longbench_v2'],
+        coding: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'swe_rebench', 'gdpval_aa'],
         math: ['aime_2025', 'hmmt_2025', 'imo_answerbench'],
-        agent: ['browsecomp', 'osworld_verified', 'tau2_bench', 'mcp_atlas', 'webarena', 'vending_bench_2'],
-        cybersecurity: ['cybench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'cvebench'],
-        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'longvideobench', 'screenspot_pro']
+        agent: ['browsecomp', 'osworld_verified', 'tau2_bench', 'mcp_atlas', 'webarena', 'deepsearchqa', 'vending_bench_2'],
+        cybersecurity: ['cybench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'cvebench', 'firefox_147', 'cyber_range'],
+        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning']
     },
 
     // Top frontier models to compare
     FRONTIER_MODELS: [
+        'anthropic/claude-opus-4.7',
         'anthropic/claude-mythos-preview',
         'anthropic/claude-opus-4.6',
         'anthropic/claude-opus-4.5',
         'google/gemini-3.1-pro',
         'google/gemini-3-pro',
         'openai/gpt-5.4',
+        'openai/gpt-5.4-thinking',
         'openai/gpt-5.3-codex',
         'openai/gpt-5.2',
         'xai/grok-4-heavy',
@@ -30,7 +32,11 @@ var FrontierCompare = {
         'zhipu/glm-5',
         'zhipu/glm-5.1',
         'alibaba/qwen3.6-plus',
-        'minimax/m2.7'
+        'minimax/m2.7',
+        'baidu/ernie-5.0',
+        'lg/exaone-4.5-33b',
+        'skt/ax-k1',
+        'upstage/solar-open-100b'
     ],
 
     _models: [],
@@ -53,11 +59,11 @@ var FrontierCompare = {
         if (category === 'all') {
             // Use the most commonly cited ones across all categories
             return [
-                'gpqa_diamond', 'hle', 'mmlu_pro', 'aime_2025',
+                'gpqa_diamond', 'hle', 'mmlu_pro', 'mmmlu', 'aime_2025',
                 'swe_bench_verified', 'swe_bench_pro', 'terminal_bench_2',
-                'cybench', 'cybergym',
-                'browsecomp', 'osworld_verified', 'tau2_bench',
-                'mmmu_pro', 'livecodebench'
+                'cybench', 'cybergym', 'firefox_147',
+                'browsecomp', 'osworld_verified', 'mcp_atlas',
+                'mmmu_pro', 'livecodebench', 'charxiv_reasoning'
             ];
         }
         return this.CORE_BENCHMARKS[category] || [];
