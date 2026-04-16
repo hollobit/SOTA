@@ -826,7 +826,17 @@ var App = {
             { name: 'APEX-Agents (Mercor)', url: 'https://www.mercor.com/apex/', desc: 'AI Productivity Index for professional tasks' },
             { name: 'TAU3-Bench', url: 'https://sierra.ai/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice', desc: 'Next-gen agent tool-use + knowledge + voice' },
             { name: 'DemandSphere Frontier Tracker', url: 'https://www.demandsphere.com/blog/ai-frontier-model-tracker-launch/', desc: 'Real-time frontier model tracking' },
-            { name: 'Stanford HAI AI Index', url: 'https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance', desc: '2026 AI Index technical performance report' }
+            { name: 'Stanford HAI AI Index', url: 'https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance', desc: '2026 AI Index technical performance report' },
+            { name: 'UK AISI (AI Security Institute)', url: 'https://www.aisi.gov.uk/research', desc: 'Frontier AI Trends Report — cyber, bio, autonomy evaluations' },
+            { name: 'UK AISI Blog', url: 'https://www.aisi.gov.uk/blog', desc: 'Evaluation insights and capability findings' },
+            { name: 'US AISI (NIST)', url: 'https://www.nist.gov/artificial-intelligence/ai-safety-institute', desc: 'NIST AI 800-3, frontier model TEVV' },
+            { name: 'Japan AISI', url: 'https://aisi.go.jp/', desc: 'Red-teaming methodology, safety evaluation guides' },
+            { name: 'Singapore AISI', url: 'https://sgaisi.sg/', desc: 'Project Moonshot LLM eval, Red Teaming Challenge' },
+            { name: 'Singapore IMDA', url: 'https://www.imda.gov.sg/about-imda/emerging-technologies-and-research/artificial-intelligence', desc: 'Agentic AI governance, safety reports' },
+            { name: 'Korea AISI (K-AISI)', url: 'https://www.aisi.re.kr/eng', desc: 'AI Safety Forecast, Korean model assessment' },
+            { name: 'International AI Safety Report', url: 'https://internationalaisafetyreport.org/', desc: '2026 joint international AI safety report' },
+            { name: 'Future of Life AI Safety Index', url: 'https://futureoflife.org/ai-safety-index-winter-2025/', desc: 'Company-level AI safety scoring' },
+            { name: 'Frontier Model Forum', url: 'https://www.frontiermodelforum.org/technical-reports/', desc: 'Joint industry capability assessments' }
         ];
 
         sites.forEach(function(site) {
