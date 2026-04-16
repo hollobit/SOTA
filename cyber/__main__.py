@@ -230,5 +230,57 @@ def run(run_all: bool) -> None:
     console.print("[bold green]Pipeline complete.[/bold green]")
 
 
+# ---------------------------------------------------------------------------
+# ingest (resource folder)
+# ---------------------------------------------------------------------------
+@cli.command()
+@click.option("--dir", "resource_dir", default=None, help="Path to resource directory.")
+def ingest(resource_dir: Optional[str]) -> None:
+    """Ingest benchmark data from files in the resource/ folder (PDF, MD, JSON, CSV, TXT)."""
+    from cyber.db.connection import get_connection
+    from cyber.db.schema import init_db, insert_benchmark, insert_model, insert_score
+    from cyber.models.types import Benchmark, Model
+    from cyber.scouts.resource.scanner import ResourceScout
+
+    if resource_dir is None:
+        resource_dir = str(PROJECT_ROOT / "resource")
+
+    scout = ResourceScout(resource_dir=resource_dir)
+    console.print(f"[bold cyan]Scanning {resource_dir} for benchmark data...[/bold cyan]")
+    records = asyncio.run(scout.discover())
+
+    if not records:
+        console.print("[yellow]No new files found in resource directory.[/yellow]")
+        return
+
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    conn = get_connection(DB_PATH)
+    init_db(conn)
+
+    total_scores = 0
+    for raw in records:
+        scores = scout.parse(raw)
+        for s in scores:
+            # Auto-register model and benchmark if they don't exist yet
+            insert_model(conn, Model(
+                id=s.model_id, vendor=s.model_id.split("/")[0] if "/" in s.model_id else "unknown",
+                name=s.model_id.split("/")[-1], version="",
+                type="open-weight", modalities=["text"],
+            ))
+            insert_benchmark(conn, Benchmark(
+                id=s.benchmark_id, name=s.benchmark_id.upper(),
+                category="unknown", description="Auto-registered from resource",
+                metric="accuracy",
+            ))
+            insert_score(conn, s)
+        total_scores += len(scores)
+        filename = raw.raw_data.get("filename", "")
+        console.print(f"  [green]{filename}[/green]: {len(scores)} scores extracted")
+        scout.mark_processed(filename)
+
+    conn.close()
+    console.print(f"[bold green]Ingested {total_scores} scores from {len(records)} file(s).[/bold green]")
+
+
 if __name__ == "__main__":
     cli()
