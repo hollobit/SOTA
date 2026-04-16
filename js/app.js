@@ -141,6 +141,16 @@ var App = {
                 el.addEventListener('input', function() { self.renderLeaderboard(); });
             }
         });
+
+        // Trends tab filters
+        var trendBenchSel = document.getElementById('trend-benchmark');
+        var trendPeriod = document.getElementById('trend-period');
+        if (trendBenchSel) {
+            trendBenchSel.addEventListener('change', function() { self.renderTrends(); });
+        }
+        if (trendPeriod) {
+            trendPeriod.addEventListener('change', function() { self.renderTrends(); });
+        }
     },
 
     setupExplorer: function() {
@@ -414,26 +424,106 @@ var App = {
 
     renderTrends: function() {
         var benchId = document.getElementById('trend-benchmark').value;
-        if (benchId && Object.keys(this.data.history).length > 0) {
-            Charts.renderTrendLine('trend-chart', benchId, this.data.history);
-        }
+        if (!benchId) return;
 
-        var grouped = Filters.groupByModel(this.data.scores);
-        var modelIds = Object.keys(grouped).slice(0, 20);
-        var benchIds = [];
-        var benchSet = {};
+        var self = this;
+        var bench = this.data.benchmarks.find(function(b) { return b.id === benchId; });
+        var benchName = bench ? bench.name : benchId;
+
+        // Get all scores for this benchmark, sorted descending
+        var entries = [];
         this.data.scores.forEach(function(s) {
-            if (!benchSet[s.benchmark_id]) {
-                benchSet[s.benchmark_id] = true;
-                benchIds.push(s.benchmark_id);
+            if (s.benchmark_id === benchId) {
+                var model = self.data.models.find(function(m) { return m.id === s.model_id; });
+                entries.push({
+                    model_id: s.model_id,
+                    name: model ? model.name : s.model_id.split('/').pop(),
+                    value: s.value,
+                    source: (s.source && s.source.type) || 'unknown'
+                });
             }
         });
-        benchIds = benchIds.slice(0, 15);
-        var matrix = modelIds.map(function(m) {
-            return benchIds.map(function(b) { return grouped[m][b] || null; });
+        entries.sort(function(a, b) { return b.value - a.value; });
+        entries = entries.slice(0, 25);
+
+        // Bar chart: top models for selected benchmark
+        var trendChart = Charts._getOrCreate('trend-chart');
+        if (trendChart) {
+            var colors = entries.map(function(e, i) {
+                if (e.source === 'pdf') return '#8b5cf6';
+                if (i === 0) return '#10b981';
+                if (i === 1) return '#3b82f6';
+                if (i === 2) return '#f59e0b';
+                return '#6b7280';
+            });
+            trendChart.setOption({
+                title: { text: benchName + ' — Model Rankings', left: 'center', textStyle: { color: '#e5e7eb' } },
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                grid: { left: 8, right: 16, bottom: 60, top: 40, containLabel: true },
+                xAxis: {
+                    type: 'category',
+                    data: entries.map(function(e) { return e.name; }),
+                    axisLabel: { color: '#9ca3af', fontSize: 9, rotate: 35 },
+                    axisLine: { lineStyle: { color: '#374151' } }
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: { color: '#9ca3af' },
+                    splitLine: { lineStyle: { color: '#1f2937' } }
+                },
+                series: [{
+                    type: 'bar',
+                    data: entries.map(function(e, i) {
+                        return { value: e.value, itemStyle: { color: colors[i] } };
+                    }),
+                    label: { show: true, position: 'top', color: '#d1d5db', fontSize: 9,
+                        formatter: function(p) { return p.value > 500 ? Math.round(p.value) : p.value.toFixed(1); }
+                    }
+                }]
+            }, true);
+        }
+
+        // Radar chart: compare top 6 models across all benchmarks in same category
+        var category = bench ? bench.category : 'other';
+        var sameCatBenches = this.data.benchmarks.filter(function(b) {
+            return b.category === category;
+        }).slice(0, 8);
+        var sameCatIds = sameCatBenches.map(function(b) { return b.id; });
+
+        // Pick top 6 models from the selected benchmark
+        var topModels = entries.slice(0, 6);
+        var grouped = Filters.groupByModel(this.data.scores);
+
+        var radarData = topModels.map(function(m) {
+            return {
+                name: m.name,
+                scores: {}
+            };
         });
-        var shortNames = modelIds.map(function(m) { return m.split('/').pop(); });
-        Charts.renderHeatmap('heatmap-chart', shortNames, benchIds, matrix);
+        topModels.forEach(function(m, i) {
+            var g = grouped[m.model_id] || {};
+            sameCatIds.forEach(function(bid) {
+                radarData[i].scores[bid] = g[bid] || 0;
+            });
+        });
+
+        Charts.renderRadar('radar-chart', radarData, sameCatIds);
+
+        // Heatmap: all models × benchmarks in this category
+        var hmModelIds = Object.keys(grouped);
+        // Filter to models that have at least one score in this category
+        hmModelIds = hmModelIds.filter(function(mid) {
+            return sameCatIds.some(function(bid) { return grouped[mid] && grouped[mid][bid]; });
+        }).slice(0, 25);
+        var hmMatrix = hmModelIds.map(function(m) {
+            return sameCatIds.map(function(b) { return (grouped[m] && grouped[m][b]) || null; });
+        });
+        var hmNames = hmModelIds.map(function(m) { return m.split('/').pop(); });
+        var hmBenchNames = sameCatIds.map(function(bid) {
+            var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
+            return b ? b.name : bid;
+        });
+        Charts.renderHeatmap('heatmap-chart', hmNames, hmBenchNames, hmMatrix);
     },
 
     renderChangelog: function() {
