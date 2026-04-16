@@ -24,6 +24,7 @@ var App = {
             self.setupExplorer();
             Comparison.init(self.data.models, self.data.benchmarks, self.data.scores);
             CyberCoding.init(self.data.models, self.data.benchmarks, self.data.scores);
+            Modal.init();
             // Frontier Compare category filter
             var fcCat = document.getElementById('fc-category');
             var fcBtn = document.getElementById('fc-render');
@@ -97,6 +98,7 @@ var App = {
                 if (btn.dataset.tab === 'comparison') Comparison.render();
                 if (btn.dataset.tab === 'frontier-compare') FrontierCompare.render(document.getElementById('fc-category').value);
                 if (btn.dataset.tab === 'cyber-coding') CyberCoding.render();
+                if (btn.dataset.tab === 'resources') self.renderResources();
                 if (btn.dataset.tab === 'changelog') self.renderChangelog();
             });
         });
@@ -215,6 +217,8 @@ var App = {
             var tdName = document.createElement('td');
             var strong = document.createElement('strong');
             strong.textContent = bench ? bench.name : benchId;
+            strong.className = 'cursor-pointer hover:text-blue-400 transition';
+            strong.onclick = (function(bid) { return function() { Modal.showBenchmark(bid); }; })(benchId);
             tdName.appendChild(strong);
             tr.appendChild(tdName);
 
@@ -226,7 +230,11 @@ var App = {
             tr.appendChild(tdCat);
 
             var tdModel = document.createElement('td');
-            tdModel.textContent = info.model_id;
+            var modelLink = document.createElement('span');
+            modelLink.textContent = info.model_id.split('/').pop();
+            modelLink.className = 'cursor-pointer hover:text-blue-400 transition';
+            modelLink.onclick = (function(mid) { return function() { Modal.showModel(mid); }; })(info.model_id);
+            tdModel.appendChild(modelLink);
             tr.appendChild(tdModel);
 
             var tdScore = document.createElement('td');
@@ -524,6 +532,108 @@ var App = {
             return b ? b.name : bid;
         });
         Charts.renderHeatmap('heatmap-chart', hmNames, hmBenchNames, hmMatrix);
+    },
+
+    renderResources: function() {
+        var pdfsContainer = document.getElementById('resource-pdfs');
+        var sitesContainer = document.getElementById('resource-sites');
+        if (!pdfsContainer || !sitesContainer) return;
+        pdfsContainer.textContent = '';
+        sitesContainer.textContent = '';
+
+        var pdfDocs = [
+            { name: 'Claude Opus 4.7 System Card', file: 'Claude Opus 4.7 System Card.pdf', vendor: 'Anthropic', date: 'Apr 2026', url: 'https://www.anthropic.com/research' },
+            { name: 'Claude Opus 4.6 System Card', file: 'Claude Opus 4.6 System Card 02-05.pdf', vendor: 'Anthropic', date: 'Feb 2026', url: 'https://www.anthropic.com/research' },
+            { name: 'Claude Mythos Preview System Card', file: 'Claude Mythos Preview System Card.pdf', vendor: 'Anthropic', date: 'Apr 2026', url: 'https://www.anthropic.com/research' },
+            { name: 'GPT-5.4 Thinking System Card', file: 'gpt-5-4-thinking.pdf', vendor: 'OpenAI', date: 'Mar 2026', url: 'https://openai.com/index/introducing-gpt-5-4/' },
+            { name: 'GPT-5.3-Codex System Card', file: 'GPT-5-3-Codex-System-Card-02.pdf', vendor: 'OpenAI', date: 'Feb 2026', url: 'https://openai.com/index/introducing-gpt-5-3-codex/' },
+            { name: 'Gemini 3 Pro Model Card', file: 'Gemini-3-Pro-Model-Card.pdf', vendor: 'Google', date: 'Nov 2025', url: 'https://deepmind.google/models/gemini-3-pro/' },
+            { name: 'Kimi K2.5 Technical Report', file: '2602.02276v1.pdf', vendor: 'Moonshot AI', date: 'Feb 2026', url: 'https://arxiv.org/abs/2602.02276' },
+            { name: 'Kimi K2.5 Safety Evaluation', file: '2604.03121v1.pdf', vendor: 'Constellation', date: 'Apr 2026', url: 'https://arxiv.org/abs/2604.03121' },
+            { name: 'GLM-5: Vibe Coding to Agentic Engineering', file: '2602.15763v2.pdf', vendor: 'Zhipu AI', date: 'Feb 2026', url: 'https://arxiv.org/abs/2602.15763' },
+            { name: 'ERNIE 5.0 Technical Report', file: '2602.04705v1.pdf', vendor: 'Baidu', date: 'Feb 2026', url: 'https://arxiv.org/abs/2602.04705' },
+            { name: 'EXAONE 4.5 Technical Report', file: '2604.08644v1.pdf', vendor: 'LG AI Research', date: 'Apr 2026', url: 'https://arxiv.org/abs/2604.08644' },
+            { name: 'Solar Open Technical Report', file: '2601.07022v1.pdf', vendor: 'Upstage', date: 'Jan 2026', url: 'https://arxiv.org/abs/2601.07022' },
+            { name: 'A.X K1 Technical Report', file: '2601.09200v5.pdf', vendor: 'SK Telecom', date: 'Feb 2026', url: 'https://arxiv.org/abs/2601.09200' },
+            { name: 'Mi:dm K 2.5 Pro', file: '2603.18788v2.pdf', vendor: 'KT', date: 'Mar 2026', url: 'https://arxiv.org/abs/2603.18788' },
+            { name: 'Gemma 4/Phi-4/Qwen3 MoE Comparison', file: '2604.07035v1.pdf', vendor: 'RPI', date: 'Apr 2026', url: 'https://arxiv.org/abs/2604.07035' }
+        ];
+
+        pdfDocs.forEach(function(doc) {
+            var card = document.createElement('div');
+            card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-3 hover:border-gray-600 transition';
+
+            var title = document.createElement('div');
+            title.className = 'font-semibold text-sm text-gray-200 mb-1';
+            title.textContent = doc.name;
+            card.appendChild(title);
+
+            var metaRow = document.createElement('div');
+            metaRow.className = 'flex gap-2 mb-2';
+            var vBadge = document.createElement('span');
+            vBadge.className = 'text-xs px-1.5 py-0.5 bg-gray-800 text-gray-400 rounded';
+            vBadge.textContent = doc.vendor;
+            metaRow.appendChild(vBadge);
+            var dBadge = document.createElement('span');
+            dBadge.className = 'text-xs px-1.5 py-0.5 bg-gray-800 text-gray-500 rounded';
+            dBadge.textContent = doc.date;
+            metaRow.appendChild(dBadge);
+            card.appendChild(metaRow);
+
+            if (doc.url) {
+                var link = document.createElement('a');
+                link.href = doc.url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.className = 'text-xs text-blue-400 hover:text-blue-300 transition';
+                link.textContent = doc.url.length > 50 ? doc.url.substring(0, 50) + '...' : doc.url;
+                card.appendChild(link);
+            }
+            pdfsContainer.appendChild(card);
+        });
+
+        var sites = [
+            { name: 'LLM Stats', url: 'https://llm-stats.com', desc: 'GPQA, SWE-bench, AIME, HLE, ARC-AGI-2, MMLU-Pro' },
+            { name: 'Chatbot Arena (LMSYS)', url: 'https://lmarena.ai', desc: 'Arena Elo rankings' },
+            { name: 'Vellum LLM Leaderboard', url: 'https://www.vellum.ai/llm-leaderboard', desc: 'Multi-benchmark comparison' },
+            { name: 'Artificial Analysis', url: 'https://artificialanalysis.ai/leaderboards/models', desc: 'Intelligence Index, speed, pricing' },
+            { name: 'ARC Prize', url: 'https://arcprize.org/leaderboard', desc: 'ARC-AGI-2 leaderboard' },
+            { name: 'LM Council', url: 'https://lmcouncil.ai/benchmarks', desc: '18 independent benchmarks' },
+            { name: 'Epoch AI Benchmarks', url: 'https://epoch.ai/benchmarks', desc: '40+ benchmark trends' },
+            { name: 'LiveBench', url: 'https://livebench.ai', desc: 'Contamination-free coding' },
+            { name: 'Cybench', url: 'https://cybench.github.io', desc: 'CTF cybersecurity evaluation' },
+            { name: 'CyberGym', url: 'https://www.cybergym.io', desc: 'Real-world vulnerability discovery' },
+            { name: 'Wiz Cyber Model Arena', url: 'https://www.wiz.io/cyber-model-arena', desc: '257 offensive security challenges' },
+            { name: 'EVMbench', url: 'https://github.com/openai/evmbench', desc: 'Smart contract security' },
+            { name: 'CyberSecEval 4', url: 'https://github.com/facebookresearch/CyberSecEval', desc: 'AutoPatchBench, CyberSOCEval' },
+            { name: 'OSWorld', url: 'https://os-world.github.io', desc: 'Computer use agent benchmark' },
+            { name: 'GAIA', url: 'https://huggingface.co/spaces/gaia-benchmark/leaderboard', desc: 'Tool-use agent benchmark' },
+            { name: 'METR Time Horizons', url: 'https://metr.org/time-horizons', desc: 'Autonomous agent capability' },
+            { name: 'BaxBench', url: 'https://baxbench.com', desc: 'Secure backend coding' },
+            { name: 'Qwen Blog', url: 'https://qwen.ai/blog', desc: 'Qwen model announcements' },
+            { name: 'MiniMax', url: 'https://www.minimax.io/news', desc: 'MiniMax model releases' },
+            { name: 'Gemma Model Card', url: 'https://ai.google.dev/gemma/docs/core/model_card_4', desc: 'Gemma 4 evaluation data' }
+        ];
+
+        sites.forEach(function(site) {
+            var card = document.createElement('div');
+            card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-3 hover:border-gray-600 transition';
+
+            var link = document.createElement('a');
+            link.href = site.url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.className = 'font-semibold text-sm text-blue-400 hover:text-blue-300 transition';
+            link.textContent = site.name;
+            card.appendChild(link);
+
+            var desc = document.createElement('div');
+            desc.className = 'text-xs text-gray-500 mt-1';
+            desc.textContent = site.desc;
+            card.appendChild(desc);
+
+            sitesContainer.appendChild(card);
+        });
     },
 
     renderChangelog: function() {

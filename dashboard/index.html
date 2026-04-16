@@ -26,6 +26,7 @@
         <button class="tab-btn" data-tab="frontier-compare">Frontier Compare</button>
         <button class="tab-btn" data-tab="cyber-coding">Cyber &amp; Coding</button>
         <button class="tab-btn" data-tab="explorer">Explorer</button>
+        <button class="tab-btn" data-tab="resources">Resources</button>
         <button class="tab-btn" data-tab="changelog">Changelog</button>
     </nav>
 
@@ -200,11 +201,34 @@
             <div id="comparison-result"></div>
         </section>
 
+        <section id="tab-resources" class="tab-content hidden">
+            <h2 class="text-lg font-semibold mb-4">Data Sources &amp; References</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 mb-3">PDF Documents (System Cards, Model Cards, Papers)</h3>
+                    <div id="resource-pdfs" class="space-y-2"></div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 mb-3">Leaderboard &amp; Benchmark Sites</h3>
+                    <div id="resource-sites" class="space-y-2"></div>
+                </div>
+            </div>
+        </section>
+
         <section id="tab-changelog" class="tab-content hidden">
             <div id="changelog-list"></div>
         </section>
     </main>
 
+    <!-- Modal overlay -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden flex items-center justify-center p-4" onclick="if(event.target===this)this.classList.add('hidden')">
+        <div class="bg-gray-900 border border-gray-700 rounded-xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 relative">
+            <button onclick="document.getElementById('modal-overlay').classList.add('hidden')" class="absolute top-3 right-3 text-gray-400 hover:text-white text-xl">&times;</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script src="js/modal.js?v=3"></script>
     <script src="js/frontier-compare.js?v=3"></script>
     <script src="js/cyber-coding.js?v=3"></script>
     <script src="js/charts.js?v=2"></script>
