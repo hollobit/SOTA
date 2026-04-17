@@ -79,7 +79,11 @@ var Modal = {
         arc_agi_1: { desc: 'ARC-AGI-1 — Original abstract reasoning benchmark testing fluid intelligence and generalization.', paper: 'https://arcprize.org/arc-agi', github: 'https://github.com/fchollet/ARC-AGI', year: '2024' },
         bfcl_v4: { desc: 'Berkeley Function Calling Leaderboard V4 — tool-use accuracy across Python/Java/JS/REST API with agentic web search evaluation.', paper: 'https://arxiv.org/abs/2402.15491', github: 'https://gorilla.cs.berkeley.edu/leaderboard.html', year: '2024' },
         aider_polyglot: { desc: '225 Exercism problems across C++, Go, Java, JS, Python, Rust. Tests coding ability with error correction (2 attempts per problem).', paper: 'https://aider.chat/docs/leaderboards/', year: '2024', items: '225 problems' },
-        webvoyager: { desc: 'Web navigation benchmark for autonomous browsing agents across real websites.', paper: 'https://arxiv.org/abs/2401.13919', year: '2024' }
+        webvoyager: { desc: 'Web navigation benchmark for autonomous browsing agents across real websites.', paper: 'https://arxiv.org/abs/2401.13919', year: '2024' },
+        ifbench: { desc: 'IFBench — 58 verifiable out-of-domain instruction following constraints. Tests generalization of instruction following beyond training.', paper: 'https://arxiv.org/abs/2507.02833', github: 'https://github.com/allenai/IFBench', year: '2025', items: '58 constraints' },
+        arena_hard_v2: { desc: 'Arena Hard v2 — 500 curated prompts from Chatbot Arena and WildChat-1M. Automated LLM benchmark by LMSYS.', paper: 'https://arxiv.org/abs/2406.11939', github: 'https://github.com/lmarena/arena-hard-auto', year: '2024', items: '500 prompts' },
+        hmmt_2026: { desc: 'HMMT February 2026 — latest Harvard-MIT Mathematics Tournament problems.', paper: 'https://matharena.ai', year: '2026' },
+        aime_2026: { desc: 'AIME 2026 — American Invitational Mathematics Examination 2026 problems.', paper: 'https://matharena.ai', year: '2026' }
     },
 
     init: function() {
