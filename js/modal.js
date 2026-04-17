@@ -74,7 +74,12 @@ var Modal = {
         abc_bench: { desc: 'ABC-Bench — 224 agentic backend coding tasks. Requires full dev lifecycle: repo exploration, containerized deployment, API tests.', paper: 'https://arxiv.org/abs/2601.11077', github: 'https://github.com/OpenMOSS/ABC-Bench', year: '2026', items: '224 tasks' },
         mhbench: { desc: 'MHBench — 40 emulated multi-host network environments for autonomous red teaming. Tests multi-stage attacks: reconnaissance, lateral movement, privilege escalation.', paper: 'https://arxiv.org/abs/2501.16466', year: '2025', items: '40 networks' },
         cyberexplorer: { desc: 'CyberExplorer — 40 vulnerable web services in VM. Autonomous exploitation without prior knowledge. Reactive multi-agent framework.', paper: 'https://arxiv.org/abs/2602.08023', year: '2026', items: '40 services' },
-        vibe_coding_safety: { desc: 'Vibe Coding Safety — measures security of AI-generated code in real-world tasks. Only 8.25% of outputs are both functionally correct AND secure.', paper: 'https://arxiv.org/abs/2512.03262', year: '2025' }
+        vibe_coding_safety: { desc: 'Vibe Coding Safety — measures security of AI-generated code in real-world tasks. Only 8.25% of outputs are both functionally correct AND secure.', paper: 'https://arxiv.org/abs/2512.03262', year: '2025' },
+        ailuminate: { desc: 'AILuminate v1.0 — MLCommons industry-standard AI safety benchmark. 12 hazard categories, 24,000+ prompts, 5-point grading scale (Poor to Excellent).', paper: 'https://arxiv.org/abs/2503.05731', github: 'https://ailuminate.mlcommons.org/benchmarks/', year: '2025', items: '24,000+ prompts' },
+        arc_agi_1: { desc: 'ARC-AGI-1 — Original abstract reasoning benchmark testing fluid intelligence and generalization.', paper: 'https://arcprize.org/arc-agi', github: 'https://github.com/fchollet/ARC-AGI', year: '2024' },
+        bfcl_v4: { desc: 'Berkeley Function Calling Leaderboard V4 — tool-use accuracy across Python/Java/JS/REST API with agentic web search evaluation.', paper: 'https://arxiv.org/abs/2402.15491', github: 'https://gorilla.cs.berkeley.edu/leaderboard.html', year: '2024' },
+        aider_polyglot: { desc: '225 Exercism problems across C++, Go, Java, JS, Python, Rust. Tests coding ability with error correction (2 attempts per problem).', paper: 'https://aider.chat/docs/leaderboards/', year: '2024', items: '225 problems' },
+        webvoyager: { desc: 'Web navigation benchmark for autonomous browsing agents across real websites.', paper: 'https://arxiv.org/abs/2401.13919', year: '2024' }
     },
 
     init: function() {
