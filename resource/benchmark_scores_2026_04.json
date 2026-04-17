@@ -36,7 +36,10 @@
       "resource/2602.04705v1.pdf",
       "resource/Claude Opus 4.7 System Card.pdf",
       "https://www.aisi.gov.uk/frontier-ai-trends-report",
-      "https://labs.scale.com/leaderboard/fortress"
+      "https://labs.scale.com/leaderboard/fortress",
+      "https://gorilla.cs.berkeley.edu/leaderboard.html",
+      "https://aider.chat/docs/leaderboards/",
+      "https://awesomeagents.ai/leaderboards/agentic-ai-benchmarks-leaderboard/"
     ]
   },
   "models": [
@@ -783,6 +786,36 @@
       "name": "Vibe Coding Safety",
       "category": "cyber_defense",
       "description": "Measures security of AI-generated code. Only 8.25% of Claude 4 Sonnet outputs are both correct AND secure."
+    },
+    {
+      "id": "bfcl_v4",
+      "name": "BFCL V4 (Function Calling)",
+      "category": "agent",
+      "description": "Berkeley Function Calling Leaderboard V4. Tool-use accuracy across Python, Java, JS, REST API."
+    },
+    {
+      "id": "aider_polyglot",
+      "name": "Aider Polyglot",
+      "category": "coding",
+      "description": "225 Exercism problems across C++, Go, Java, JS, Python, Rust. Tests coding + error correction."
+    },
+    {
+      "id": "webvoyager",
+      "name": "WebVoyager",
+      "category": "agent",
+      "description": "Web navigation benchmark for autonomous browsing agents."
+    },
+    {
+      "id": "ailuminate",
+      "name": "AILuminate v1.0 (Safety)",
+      "category": "cyber_defense",
+      "description": "MLCommons 12-hazard AI safety benchmark. 24,000 prompts. Industry standard grading (Poor-Excellent)."
+    },
+    {
+      "id": "arc_agi_1",
+      "name": "ARC-AGI-1",
+      "category": "reasoning",
+      "description": "Original ARC abstract reasoning benchmark for fluid intelligence evaluation."
     }
   ],
   "scores": [
@@ -4215,6 +4248,70 @@
       "benchmark": "mhbench",
       "score": 90.0,
       "_note": "With Incalmo, 9/10 environments"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "fortress",
+      "score": 18.1,
+      "_note": "ARS 18.06%, thinking mode"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "fortress",
+      "score": 16.0,
+      "_note": "ARS 16.01%"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "fortress",
+      "score": 47.2,
+      "_note": "ARS 47.18%, GPT-4o era"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "fortress",
+      "score": 54.9,
+      "_note": "ARS 54.89%"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "fortress",
+      "score": 74.4,
+      "_note": "ARS 74.39%, DeepSeek R1"
+    },
+    {
+      "model": "zhipu/glm-4.7",
+      "benchmark": "bfcl_v4",
+      "score": 70.9,
+      "_note": "GLM-4.5 FC, #1"
+    },
+    {
+      "model": "anthropic/claude-opus-4.1",
+      "benchmark": "bfcl_v4",
+      "score": 70.4
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "bfcl_v4",
+      "score": 59.2
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "gaia",
+      "score": 74.6,
+      "_note": "HAL Generalist agent"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "arc_agi_1",
+      "score": 92.0,
+      "_source": "resource/Claude Opus 4.7 System Card.pdf"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "arc_agi_1",
+      "score": 94.0,
+      "_source": "resource/Claude Opus 4.6 System Card 02-05.pdf"
     }
   ]
 }

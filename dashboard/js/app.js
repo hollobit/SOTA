@@ -829,7 +829,7 @@ var App = {
             { name: 'Chatbot Arena (LMSYS)', url: 'https://lmarena.ai', desc: 'Arena Elo rankings' },
             { name: 'Vellum LLM Leaderboard', url: 'https://www.vellum.ai/llm-leaderboard', desc: 'Multi-benchmark comparison' },
             { name: 'Artificial Analysis', url: 'https://artificialanalysis.ai/leaderboards/models', desc: 'Intelligence Index, speed, pricing' },
-            { name: 'ARC Prize', url: 'https://arcprize.org/leaderboard', desc: 'ARC-AGI-2 leaderboard' },
+            { name: 'ARC Prize / ARC-AGI', url: 'https://arcprize.org/leaderboard', desc: 'Abstract reasoning for AGI evaluation (ARC-AGI-1/2)' },
             { name: 'LM Council', url: 'https://lmcouncil.ai/benchmarks', desc: '18 independent benchmarks' },
             { name: 'Epoch AI Benchmarks', url: 'https://epoch.ai/benchmarks', desc: '40+ benchmark trends' },
             { name: 'LiveBench', url: 'https://livebench.ai', desc: 'Contamination-free coding' },
@@ -871,9 +871,13 @@ var App = {
             { name: 'MorphLLM Coding Guide', url: 'https://www.morphllm.com/ai-coding-benchmarks-2026', desc: 'Every coding eval explained and ranked' },
             { name: 'Vibe Bench', url: 'https://vibe-bench.com/', desc: 'Tool-level AI coding benchmarks for vibe coding' },
             { name: 'MLCommons AILuminate', url: 'https://mlcommons.org/benchmarks/ailuminate/', desc: 'Jailbreak benchmark, adversarial attack taxonomy' },
+            { name: 'Humanity Last Exam (CAISI)', url: 'https://agi.safe.ai/', desc: 'Expert-level AGI benchmark, published in Nature' },
+            { name: 'Convergence Analysis', url: 'https://www.convergenceanalysis.org/ai-regulatory-landscape', desc: 'AI safety regulatory landscape, CBRN analysis' },
             { name: 'Steel.dev Agent Results', url: 'https://leaderboard.steel.dev/results', desc: '121 results across 16 agent benchmarks' },
             { name: 'SWE-rebench', url: 'https://swe-rebench.com/', desc: 'Stricter SWE-bench re-evaluation' },
-            { name: 'FORTRESS (Scale AI)', url: 'https://labs.scale.com/leaderboard/fortress', desc: 'CBRNE adversarial safety benchmark' }
+            { name: 'FORTRESS (Scale AI)', url: 'https://labs.scale.com/leaderboard/fortress', desc: 'CBRNE adversarial safety benchmark' },
+            { name: 'BFCL V4 (Berkeley)', url: 'https://gorilla.cs.berkeley.edu/leaderboard.html', desc: 'Function calling accuracy, agentic web search eval' },
+            { name: 'Aider LLM Leaderboard', url: 'https://aider.chat/docs/leaderboards/', desc: '225 Exercism problems, 6 languages coding benchmark' }
         ];
 
         sites.forEach(function(site) {
