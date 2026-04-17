@@ -3,18 +3,41 @@
  * Uses safe DOM methods (createElement + textContent).
  */
 var Explorer = {
+    // Merge semantically identical benchmarks for display
+    _MERGE_MAP: {
+        'livecodebench_v6': 'livecodebench',
+        'livecodebench_elo': null,  // exclude Elo (different unit)
+        'tau_bench': 'tau2_bench',
+        'arc_agi_1': 'arc_agi_2'
+    },
+
     compare: function(modelIds, scores, benchmarks) {
-        // Collect all benchmarks across selected models
+        var mergeMap = this._MERGE_MAP;
+
+        // Collect all benchmarks across selected models, merging similar ones
         var benchmarkSet = {};
         modelIds.forEach(function(mid) {
             scores.forEach(function(s) {
-                if (s.model_id === mid) benchmarkSet[s.benchmark_id] = true;
+                if (s.model_id === mid) {
+                    var bid = s.benchmark_id;
+                    // Apply merge: skip excluded, redirect to canonical
+                    if (mergeMap[bid] === null) return;
+                    if (mergeMap[bid]) bid = mergeMap[bid];
+                    benchmarkSet[bid] = true;
+                }
             });
         });
 
         var scoreMap = {};
         scores.forEach(function(s) {
-            scoreMap[s.model_id + '|' + s.benchmark_id] = s;
+            var bid = s.benchmark_id;
+            if (mergeMap[bid] === null) return;
+            if (mergeMap[bid]) bid = mergeMap[bid];
+            var key = s.model_id + '|' + bid;
+            // Keep highest score if merged
+            if (!scoreMap[key] || s.value > scoreMap[key].value) {
+                scoreMap[key] = s;
+            }
         });
 
         var rows = [];
@@ -192,6 +215,7 @@ var Explorer = {
         var el = document.getElementById(containerId);
         if (!el) return;
         var chart = echarts.init(el);
+        var mergeMap = this._MERGE_MAP;
 
         var modelNames = modelIds.map(function(mid) {
             var m = models.find(function(x) { return x.id === mid; });
@@ -200,7 +224,13 @@ var Explorer = {
 
         var scoreMap = {};
         scores.forEach(function(s) {
-            scoreMap[s.model_id + '|' + s.benchmark_id] = s.value;
+            var bid = s.benchmark_id;
+            if (mergeMap[bid] === null) return;
+            if (mergeMap[bid]) bid = mergeMap[bid];
+            var key = s.model_id + '|' + bid;
+            if (!scoreMap[key] || s.value > scoreMap[key]) {
+                scoreMap[key] = s.value;
+            }
         });
 
         // Find benchmarks where at least 1 selected model has a score
