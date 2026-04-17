@@ -39,7 +39,8 @@ var FrontierCompare = {
         'upstage/solar-open-100b',
         'upstage/solar-pro-3',
         'google/gemma-4-31b',
-        'mimo/mimo-v2-pro'
+        'mimo/mimo-v2-pro',
+        'alibaba/qwen3.6-35b-a3b'
     ],
 
     _models: [],
