@@ -62,9 +62,30 @@ var Explorer = {
             }
         });
 
+        // Count benchmark coverage stats
+        var sharedCount = 0, totalCount = rows.length;
+        rows.forEach(function(r) {
+            var filled = r.values.filter(function(v) { return v !== null; }).length;
+            if (filled >= 2) sharedCount++;
+        });
+
         var summaryDiv = document.createElement('div');
         summaryDiv.className = 'flex gap-4 mb-4 flex-wrap';
         var colors = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'];
+
+        // Add coverage stats card
+        var coverageCard = document.createElement('div');
+        coverageCard.className = 'bg-gray-900 border border-gray-800 rounded-lg px-4 py-2 text-center';
+        var coverTitle = document.createElement('div');
+        coverTitle.className = 'text-xs text-gray-500';
+        coverTitle.textContent = 'Benchmarks';
+        coverageCard.appendChild(coverTitle);
+        var coverVal = document.createElement('div');
+        coverVal.className = 'text-lg font-bold text-gray-300';
+        coverVal.textContent = sharedCount + ' shared / ' + totalCount + ' total';
+        coverageCard.appendChild(coverVal);
+        summaryDiv.appendChild(coverageCard);
+
         modelIds.forEach(function(mid, i) {
             var card = document.createElement('div');
             card.className = 'bg-gray-900 border border-gray-800 rounded-lg px-4 py-2 text-center';
@@ -119,6 +140,11 @@ var Explorer = {
         var lastCat = '';
         rows.forEach(function(row) {
             var tr = document.createElement('tr');
+            var filledCount = row.values.filter(function(v) { return v !== null; }).length;
+            // Dim rows where only 1 model has data (unique to that model)
+            if (filledCount === 1) {
+                tr.style.opacity = '0.6';
+            }
 
             // Benchmark name (clickable)
             var tdBench = document.createElement('td');
@@ -177,16 +203,17 @@ var Explorer = {
             scoreMap[s.model_id + '|' + s.benchmark_id] = s.value;
         });
 
-        // Find benchmarks where at least 2 selected models have scores, max 12
+        // Find benchmarks where at least 1 selected model has a score
         var benchCount = {};
         benchmarks.forEach(function(b) {
             var cnt = 0;
             modelIds.forEach(function(mid) {
                 if (scoreMap[mid + '|' + b.id]) cnt++;
             });
-            if (cnt >= 2) benchCount[b.id] = cnt;
+            if (cnt >= 1) benchCount[b.id] = cnt;
         });
 
+        // Sort: shared benchmarks first (by count desc), then by coverage
         var radarBenchIds = Object.keys(benchCount).sort(function(a, b) {
             return benchCount[b] - benchCount[a];
         }).filter(function(bid) {
@@ -197,7 +224,7 @@ var Explorer = {
                 if (v > maxVal) maxVal = v;
             });
             return maxVal <= 100;
-        }).slice(0, 12);
+        }).slice(0, 16);
 
         if (radarBenchIds.length < 3) return; // Not enough for radar
 
