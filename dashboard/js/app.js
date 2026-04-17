@@ -864,7 +864,16 @@ var App = {
             { name: 'Frontier Model Forum', url: 'https://www.frontiermodelforum.org/technical-reports/', desc: 'Joint industry capability assessments' },
             { name: 'China AISI Network', url: 'https://ai-development-and-safety-network.cn/', desc: 'PandaGuard, MultiTrust, Safe RLHF — 49 model jailbreak eval' },
             { name: 'China AISI Research', url: 'https://ai-development-and-safety-network.cn/research-progress', desc: 'LLM safety research: jailbreak, alignment, misinformation' },
-            { name: 'China AISI Standards', url: 'https://ai-development-and-safety-network.cn/standards-and-norms', desc: 'Multimodal LLM safety specs, security assessment standards' }
+            { name: 'China AISI Standards', url: 'https://ai-development-and-safety-network.cn/standards-and-norms', desc: 'Multimodal LLM safety specs, security assessment standards' },
+            { name: 'Hack The Box AI Range', url: 'https://www.hackthebox.com/blog/ai-range-llm-security-benchmark', desc: 'AI vs human cybersecurity benchmark, NeuroGrid CTF' },
+            { name: 'Awesome Agents Agentic', url: 'https://awesomeagents.ai/leaderboards/agentic-ai-benchmarks-leaderboard/', desc: 'GAIA, WebArena, BFCL V4, Tau2-bench rankings' },
+            { name: 'Awesome Agents Computer Use', url: 'https://awesomeagents.ai/leaderboards/computer-use-leaderboard/', desc: 'OSWorld, ScreenSpot desktop agent rankings' },
+            { name: 'MorphLLM Coding Guide', url: 'https://www.morphllm.com/ai-coding-benchmarks-2026', desc: 'Every coding eval explained and ranked' },
+            { name: 'Vibe Bench', url: 'https://vibe-bench.com/', desc: 'Tool-level AI coding benchmarks for vibe coding' },
+            { name: 'MLCommons AILuminate', url: 'https://mlcommons.org/benchmarks/ailuminate/', desc: 'Jailbreak benchmark, adversarial attack taxonomy' },
+            { name: 'Steel.dev Agent Results', url: 'https://leaderboard.steel.dev/results', desc: '121 results across 16 agent benchmarks' },
+            { name: 'SWE-rebench', url: 'https://swe-rebench.com/', desc: 'Stricter SWE-bench re-evaluation' },
+            { name: 'FORTRESS (Scale AI)', url: 'https://labs.scale.com/leaderboard/fortress', desc: 'CBRNE adversarial safety benchmark' }
         ];
 
         sites.forEach(function(site) {

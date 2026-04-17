@@ -34,7 +34,9 @@
       "resource/2603.18788v2.pdf",
       "https://qwen.ai/blog?id=qwen3.6",
       "resource/2602.04705v1.pdf",
-      "resource/Claude Opus 4.7 System Card.pdf"
+      "resource/Claude Opus 4.7 System Card.pdf",
+      "https://www.aisi.gov.uk/frontier-ai-trends-report",
+      "https://labs.scale.com/leaderboard/fortress"
     ]
   },
   "models": [
@@ -733,6 +735,54 @@
       "name": "FrontierMath",
       "category": "math",
       "description": "Research-level mathematics problems at the frontier of human mathematical knowledge"
+    },
+    {
+      "id": "fortress",
+      "name": "FORTRESS",
+      "category": "cybersecurity",
+      "description": "1,010 expert-crafted adversarial prompts for CBRNE, terrorism, criminal eval. Scale AI."
+    },
+    {
+      "id": "replibench",
+      "name": "RepliBench",
+      "category": "agent",
+      "description": "86 tasks measuring autonomous self-replication capabilities. UK AISI. 4 domains: obtain resources, exfiltrate weights, replicate, persist."
+    },
+    {
+      "id": "tlo_cyber_range",
+      "name": "The Last Ones (TLO)",
+      "category": "cybersecurity",
+      "description": "32-step corporate network attack simulation. 20 human-hours estimated. UK AISI."
+    },
+    {
+      "id": "vibe_code_bench",
+      "name": "Vibe Code Bench",
+      "category": "coding",
+      "description": "100 web app specs, 964 browser-based workflows. End-to-end application development eval."
+    },
+    {
+      "id": "abc_bench",
+      "name": "ABC-Bench",
+      "category": "coding",
+      "description": "224 agentic backend coding tasks across 8 languages, 19 frameworks. Full dev lifecycle."
+    },
+    {
+      "id": "mhbench",
+      "name": "MHBench (Multi-Host)",
+      "category": "cybersecurity",
+      "description": "40 emulated multi-host network red team environments. Tests autonomous network penetration."
+    },
+    {
+      "id": "cyberexplorer",
+      "name": "CyberExplorer",
+      "category": "cybersecurity",
+      "description": "40 vulnerable web services in VM. Autonomous recon, target selection, exploitation without prior knowledge."
+    },
+    {
+      "id": "vibe_coding_safety",
+      "name": "Vibe Coding Safety",
+      "category": "cyber_defense",
+      "description": "Measures security of AI-generated code. Only 8.25% of Claude 4 Sonnet outputs are both correct AND secure."
     }
   ],
   "scores": [
@@ -4110,6 +4160,61 @@
       "benchmark": "livecodebench",
       "score": 80.0,
       "_note": "Coding index 47.5"
+    },
+    {
+      "model": "anthropic/claude-opus-4",
+      "benchmark": "fortress",
+      "score": 2.0,
+      "_note": "ARS 2%, best safety score"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "fortress",
+      "score": 28.0,
+      "_note": "ARS 28%"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "tlo_cyber_range",
+      "score": 68.8,
+      "_note": "22/32 steps avg, 3/10 full completions, UK AISI"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "tlo_cyber_range",
+      "score": 50.0,
+      "_note": "16/32 steps avg, UK AISI"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "tlo_cyber_range",
+      "score": 34.4,
+      "_note": "11/32 steps avg at 100M tokens"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "vibe_code_bench",
+      "score": 55.6,
+      "_source": "https://qwen.ai/blog?id=qwen3.6",
+      "_note": "VIBE-Pro"
+    },
+    {
+      "model": "anthropic/claude-3.7-sonnet",
+      "benchmark": "mhbench",
+      "score": 90.0,
+      "_note": "With Incalmo, 9/10 environments succeeded"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "mhbench",
+      "score": 90.0,
+      "_note": "GPT4o with Incalmo, 9/10 environments"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "mhbench",
+      "score": 90.0,
+      "_note": "With Incalmo, 9/10 environments"
     }
   ]
 }
