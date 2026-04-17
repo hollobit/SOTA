@@ -68,6 +68,28 @@ var App = {
             return;
         }
 
+        // Explorer deep link: #explore/model1,model2,model3
+        if (hash.indexOf('explore/') === 0) {
+            var ids = hash.substring(8).split(',').filter(function(v) { return v; });
+            if (ids.length >= 2) {
+                var self = this;
+                this._activateTab('explorer');
+                setTimeout(function() {
+                    // Set select values
+                    var selIds = ['compare-model-a', 'compare-model-b', 'compare-model-c', 'compare-model-d'];
+                    ids.forEach(function(mid, i) {
+                        var sel = document.getElementById(selIds[i]);
+                        if (sel) sel.value = mid;
+                    });
+                    // Trigger comparison
+                    var rows = Explorer.compare(ids, self.data.scores, self.data.benchmarks);
+                    Explorer.renderComparison('comparison-result', ids, self.data.models, rows);
+                    Explorer.renderRadar('explorer-radar', ids, self.data.models, self.data.scores, self.data.benchmarks);
+                }, 300);
+                return;
+            }
+        }
+
         // Tab navigation
         var tabBtn = document.querySelector('.tab-btn[data-tab="' + hash + '"]');
         if (tabBtn) {
@@ -238,6 +260,9 @@ var App = {
             btn.addEventListener('click', function() {
                 var modelIds = selects.map(function(sel) { return sel ? sel.value : ''; }).filter(function(v) { return v; });
                 if (modelIds.length < 2) return;
+
+                // Update URL hash with model IDs for sharing
+                history.replaceState(null, '', '#explore/' + modelIds.join(','));
 
                 var rows = Explorer.compare(modelIds, self.data.scores, self.data.benchmarks);
                 Explorer.renderComparison('comparison-result', modelIds, self.data.models, rows);
