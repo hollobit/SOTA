@@ -877,7 +877,11 @@ var App = {
             { name: 'SWE-rebench', url: 'https://swe-rebench.com/', desc: 'Stricter SWE-bench re-evaluation' },
             { name: 'FORTRESS (Scale AI)', url: 'https://labs.scale.com/leaderboard/fortress', desc: 'CBRNE adversarial safety benchmark' },
             { name: 'BFCL V4 (Berkeley)', url: 'https://gorilla.cs.berkeley.edu/leaderboard.html', desc: 'Function calling accuracy, agentic web search eval' },
-            { name: 'Aider LLM Leaderboard', url: 'https://aider.chat/docs/leaderboards/', desc: '225 Exercism problems, 6 languages coding benchmark' }
+            { name: 'Aider LLM Leaderboard', url: 'https://aider.chat/docs/leaderboards/', desc: '225 Exercism problems, 6 languages coding benchmark' },
+            { name: 'BenchLM Korean LLMs', url: 'https://benchlm.ai/leaderboards/korean-llm', desc: 'Korean model rankings: Solar, EXAONE, Mi:dm' },
+            { name: 'HarmBench', url: 'https://www.harmbench.org/', desc: 'Automated red teaming and robust refusal eval' },
+            { name: 'LM Market Cap', url: 'https://lmmarketcap.com/', desc: 'Model rankings, benchmarks, pricing comparison' },
+            { name: 'AIRank.dev', url: 'https://airank.dev/', desc: 'Benchmark analysis with historical trends' }
         ];
 
         sites.forEach(function(site) {
