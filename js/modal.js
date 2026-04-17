@@ -66,7 +66,15 @@ var Modal = {
         apex_agents: { desc: 'AI Productivity Index — 480 long-horizon cross-application professional tasks from banking, consulting, and law.', paper: 'https://arxiv.org/abs/2601.14242', github: 'https://www.mercor.com/apex/', year: '2026', items: '480 tasks' },
         frontiermath: { desc: 'Research-level mathematics problems at the frontier of human mathematical knowledge. Problems that took expert mathematicians hours to days.', paper: 'https://arxiv.org/abs/2411.04872', year: '2024' },
         livecodebench_elo: { desc: 'LiveCodeBench Elo rating from competitive programming (Codeforces/ICPC/IOI style).', paper: 'https://arxiv.org/abs/2403.07974', github: 'https://github.com/LiveCodeBench/LiveCodeBench', year: '2024' },
-        livecodebench_v6: { desc: 'LiveCodeBench version 6 — latest contamination-free competitive coding problems.', paper: 'https://arxiv.org/abs/2403.07974', year: '2025' }
+        livecodebench_v6: { desc: 'LiveCodeBench version 6 — latest contamination-free competitive coding problems.', paper: 'https://arxiv.org/abs/2403.07974', year: '2025' },
+        fortress: { desc: 'FORTRESS — 1,010 expert-crafted adversarial prompts for CBRNE, terrorism, criminal eval. Attack Success Rate metric (lower=safer). Scale AI.', paper: 'https://arxiv.org/abs/2506.14922', github: 'https://labs.scale.com/leaderboard/fortress', year: '2025', items: '1,010 prompts' },
+        replibench: { desc: 'RepliBench — 86 tasks measuring autonomous self-replication capabilities across 4 domains: obtain resources, exfiltrate weights, replicate, persist. UK AISI.', paper: 'https://arxiv.org/abs/2504.18565', year: '2025', items: '86 tasks' },
+        tlo_cyber_range: { desc: 'The Last Ones (TLO) — 32-step corporate network attack simulation from reconnaissance to full takeover. Estimated 20 human-hours. UK AISI.', paper: 'https://www.aisi.gov.uk/blog/how-do-frontier-ai-agents-perform-in-multi-step-cyber-attack-scenarios', year: '2026', items: '32 steps' },
+        vibe_code_bench: { desc: 'Vibe Code Bench — 100 web application specifications evaluated through 964 browser-based workflows. End-to-end functional app development.', paper: 'https://arxiv.org/abs/2603.04601', year: '2026', items: '100 specs' },
+        abc_bench: { desc: 'ABC-Bench — 224 agentic backend coding tasks. Requires full dev lifecycle: repo exploration, containerized deployment, API tests.', paper: 'https://arxiv.org/abs/2601.11077', github: 'https://github.com/OpenMOSS/ABC-Bench', year: '2026', items: '224 tasks' },
+        mhbench: { desc: 'MHBench — 40 emulated multi-host network environments for autonomous red teaming. Tests multi-stage attacks: reconnaissance, lateral movement, privilege escalation.', paper: 'https://arxiv.org/abs/2501.16466', year: '2025', items: '40 networks' },
+        cyberexplorer: { desc: 'CyberExplorer — 40 vulnerable web services in VM. Autonomous exploitation without prior knowledge. Reactive multi-agent framework.', paper: 'https://arxiv.org/abs/2602.08023', year: '2026', items: '40 services' },
+        vibe_coding_safety: { desc: 'Vibe Coding Safety — measures security of AI-generated code in real-world tasks. Only 8.25% of outputs are both functionally correct AND secure.', paper: 'https://arxiv.org/abs/2512.03262', year: '2025' }
     },
 
     init: function() {
