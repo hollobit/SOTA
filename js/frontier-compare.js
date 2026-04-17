@@ -36,7 +36,10 @@ var FrontierCompare = {
         'baidu/ernie-5.0',
         'lg/exaone-4.5-33b',
         'skt/ax-k1',
-        'upstage/solar-open-100b'
+        'upstage/solar-open-100b',
+        'upstage/solar-pro-3',
+        'google/gemma-4-31b',
+        'mimo/mimo-v2-pro'
     ],
 
     _models: [],
