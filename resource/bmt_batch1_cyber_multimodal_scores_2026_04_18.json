@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-18",
+    "sources": [
+      "https://arxiv.org/abs/2504.21132",
+      "https://arxiv.org/html/2504.21205v2",
+      "https://secrepobench.github.io/",
+      "https://arxiv.org/abs/2406.12450",
+      "https://arxiv.org/abs/2404.12390",
+      "https://zeyofu.github.io/blink/",
+      "https://www.vals.ai/benchmarks/finance_agent",
+      "https://arxiv.org/abs/2508.00828"
+    ],
+    "session": "BMT batch 1 — Priorities 10 + 11. Real scores from SecRepoBench v2 paper and Vals.ai Finance Agent v1.1 leaderboard. MegaVul is a raw dataset (no leaderboard). BLINK has legacy 2024 scores only for non-tracked models."
+  },
+  "models": [],
+  "benchmarks": [
+    { "id": "secrepobench",  "name": "SecRepoBench",            "category": "cyber_defense",  "description": "318 repo-level secure code completion tasks; secure-pass@1 metric.", "metric": "accuracy" },
+    { "id": "megavul",       "name": "MegaVul",                 "category": "cybersecurity",  "description": "17,380 real C/C++ CVE vulnerabilities dataset for vulnerability detection research.", "metric": "accuracy" },
+    { "id": "blink",         "name": "BLINK",                   "category": "multimodal",     "description": "3,807 visual perception tasks across depth estimation, forensics, multi-view. Tests core vision primitives.", "metric": "accuracy" },
+    { "id": "finance_agent", "name": "Finance Agent Benchmark", "category": "agent",          "description": "Vals.ai 537 finance research questions with tool use. Frontier vertical-domain agent eval.", "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "openai/gpt-5",                "benchmark": "secrepobench", "score": 39.3, "unit": "%", "_source": "https://arxiv.org/abs/2504.21132", "_note": "SecRepoBench v2 — highest secure-pass@1 among standalone LLMs" },
+    { "model": "openai/o3",                   "benchmark": "secrepobench", "score": 32.4, "unit": "%", "_source": "https://arxiv.org/abs/2504.21132", "_note": "SecRepoBench v2 secure-pass@1" },
+    { "model": "anthropic/claude-sonnet-4.5", "benchmark": "secrepobench", "score": 31.1, "unit": "%", "_source": "https://arxiv.org/abs/2504.21132", "_note": "SecRepoBench v2 — best Claude series" },
+
+    { "model": "anthropic/claude-opus-4.7",   "benchmark": "finance_agent", "score": 64.37, "unit": "%", "_source": "https://www.vals.ai/benchmarks/finance_agent", "_note": "Vals.ai Finance Agent v1.1 #1 (April 2026)" },
+    { "model": "anthropic/claude-sonnet-4.6", "benchmark": "finance_agent", "score": 63.33, "unit": "%", "_source": "https://www.vals.ai/benchmarks/finance_agent", "_note": "Vals.ai Finance Agent v1.1" },
+    { "model": "anthropic/claude-opus-4.6",   "benchmark": "finance_agent", "score": 60.05, "unit": "%", "_source": "https://www.vals.ai/benchmarks/finance_agent", "_note": "Vals.ai Finance Agent v1.1, Thinking mode" },
+    { "model": "openai/o3",                   "benchmark": "finance_agent", "score": 48.30, "unit": "%", "_source": "https://www.vals.ai/benchmarks/finance_agent-05-30-2025", "_note": "Vals.ai Finance Agent v1.0 (pre-2026 refresh methodology)" }
+  ]
+}

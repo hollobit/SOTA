@@ -90,18 +90,26 @@
 - [x] 시간별 SOTA 변화 추적 — Trends 탭 SOTA Handover Log + 동적 history index.json (commit `43248cd`)
 - [x] 모델 성능/비용 효율성 — `data/export/aa_pricing.json` (20/22 모델 Intelligence Index + USD/1M + tokens/s) + Trends 탭 Intelligence vs Price scatter (log x, linear y, vendor-colored, size=speed)
 
-### cc:TODO — BMT 2,559개에서 추가 수집 후보 (2026-04-18 조사 결과, 상세는 `docs/BMT-candidates-2026-04-18.md`)
-- [ ] 우선순위 1: HealthBench + Arena-Hard-Auto — 모든 frontier launch에서 보고됨, 데이터 즉시 가용
-- [ ] 우선순위 2: HarmBench + StrongREJECT + AIR-Bench — safety canon 3종 완성
-- [ ] 우선순위 3: Multi-SWE-bench + SWE-PolyBench — Python/Java 외 8개 언어로 코딩 확장
-- [ ] 우선순위 4: CTI-Bench + CyberMetric — CTI knowledge 갭 해소 (5,610 + 10,000 문항)
-- [ ] 우선순위 5: Video-MME — frontier VLM release마다 인용되는 비디오 벤치마크
-- [ ] 우선순위 6: HELMET — application-centric long-context (RAG/요약/인용)
-- [ ] 우선순위 7: AudioBench / MMAU — 오디오 카테고리 신규 개설
-- [ ] 우선순위 8: Windows Agent Arena + ScienceAgentBench + MCP-Bench + LiveMCPBench + BrowseComp-Plus — 에이전트 breadth
-- [ ] 우선순위 9: SuperGPQA + ZebraLogic + LiveBench — reasoning breadth
-- [ ] 우선순위 10: SecRepoBench + MegaVul — cyber 코딩 보안 갭
-- [ ] 우선순위 11: BLINK + Finance Agent Benchmark — multimodal 지각 + 금융 vertical
+### Completed — BMT batch-1 priorities 1-11 (2026-04-18)
+26 benchmarks registered, 33 real frontier scores ingested from 9 agent research passes. Metadata-only for benchmarks whose paper cohorts predate 2026 frontier models.
+
+- [x] P1 HealthBench + Arena-Hard-Auto — 20 scores (o3, gpt-5, gpt-5.1, gpt-5.2, gpt-5.4-thinking, claude-3.7-sonnet, gemini-3.1-pro, grok-4.20 across HB/Hard/Consensus); Arena-Hard v1 superseded by v2
+- [x] P2 HarmBench + StrongREJECT + AIR-Bench — metadata only; frontier evals have migrated to Gray Swan Arena / Anthropic Petri / OpenAI Preparedness
+- [x] P3 Multi-SWE-bench + SWE-PolyBench — metadata only; consolidated on SWE-bench Verified/Pro/rebench/Multilingual
+- [x] P4 CTI-Bench + CyberMetric — metadata only; 2024 cohorts
+- [x] P5 Video-MME — 2 provisional Gemini scores (78.2% each)
+- [x] P6 HELMET — metadata only; frontier uses MRCR/RULER/LongBench v2 instead
+- [x] P7 AudioBench + MMAU — metadata only; opens new 'audio' category
+- [x] P8 Windows Agent Arena + ScienceAgentBench + MCP-Bench + LiveMCPBench + BrowseComp-Plus — 5 benchmarks metadata only
+- [x] P9 SuperGPQA + ZebraLogic + LiveBench — 4 scores (LiveBench: gpt-5.4-thinking 80.3 / gemini-3.1-pro 79.9 / claude-opus-4.6 76.3 · SuperGPQA: glm-5 92.0); ZebraLogic deprecated
+- [x] P10 SecRepoBench + MegaVul — 3 scores (gpt-5 39.3 / o3 32.4 / claude-sonnet-4.5 31.1 secure-pass@1)
+- [x] P11 BLINK + Finance Agent — 4 scores (Finance Agent Anthropic sweep: opus-4.7 64.37 / sonnet-4.6 63.33 / opus-4.6 60.05 / o3 48.3)
+
+### cc:TODO — Watch for future publications (external dependency)
+- [ ] MRCR / RULER / LongBench v2 expansion — frontier long-context SOTA (current LongBench v2 tracked)
+- [ ] HarmBench / StrongREJECT / AIR-Bench frontier backfill (watch Stanford HELM Safety, UK AISI inspect_evals, Gray Swan Arena)
+- [ ] Video-MME leaderboard live scrape for Claude/GPT/Gemini-3 family (video-mme.github.io client-side render)
+- [ ] MMAU frontier scores (watch Gemini 3 audio model card, GPT-5 audio, Claude 4.x audio evaluation)
 
 ### Completed (2026-04-18 `/design-review` follow-up — 22 atomic commits)
 - [x] F-005: Overview 탭 IA 재구성 — SOTA Leaderboard를 full-width primary로 승격, Leaderboard Rankings + Recent Changes는 2-column secondary로 강등 (commit `c199996`)

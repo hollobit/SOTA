@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-18",
+    "sources": [
+      "https://arxiv.org/abs/2502.14739",
+      "https://arxiv.org/abs/2502.01100",
+      "https://livebench.ai",
+      "https://failingfast.io/ai-coding-guide/benchmarks/",
+      "https://thezvi.substack.com/p/gemini-31-pro-aces-benchmarks-i-suppose",
+      "https://www.mindstudio.ai/blog/gpt-54-vs-claude-opus-46-vs-gemini-31-pro-benchmarks",
+      "https://benchlm.ai/blog/posts/best-open-source-llm"
+    ],
+    "session": "BMT batch 1 — Priority 9 reasoning breadth. Three benchmarks registered. LiveBench has 3 verified frontier scores from Q1/Q2 2026 secondary sources (livebench.ai renders client-side so direct scrape blocked). SuperGPQA has 1 (GLM-5). ZebraLogic effectively deprecated for 2026 frontier — top leaderboard slots are 2024-2025 models."
+  },
+  "models": [],
+  "benchmarks": [
+    { "id": "supergpqa",  "name": "SuperGPQA",  "category": "reasoning", "description": "26,529 graduate-level questions across 285 disciplines (wider coverage than GPQA Diamond).", "metric": "accuracy" },
+    { "id": "zebralogic", "name": "ZebraLogic", "category": "reasoning", "description": "1,000 controllable logic-grid puzzles. Used by Allen AI in the ZeroEval suite.", "metric": "accuracy" },
+    { "id": "livebench",  "name": "LiveBench",  "category": "reasoning", "description": "Contamination-free monthly-refreshed benchmark across math/reasoning/coding/IF/data.", "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "openai/gpt-5.4-thinking",   "benchmark": "livebench", "score": 80.3, "unit": "%", "_source": "https://failingfast.io/ai-coding-guide/benchmarks/", "_note": "LiveBench Global Average (Jan 2026)" },
+    { "model": "google/gemini-3.1-pro",     "benchmark": "livebench", "score": 79.9, "unit": "%", "_source": "https://thezvi.substack.com/p/gemini-31-pro-aces-benchmarks-i-suppose", "_note": "LiveBench Global Average (Feb 2026); reported 79.93" },
+    { "model": "anthropic/claude-opus-4.6", "benchmark": "livebench", "score": 76.3, "unit": "%", "_source": "https://www.mindstudio.ai/blog/gpt-54-vs-claude-opus-46-vs-gemini-31-pro-benchmarks", "_note": "Claude Opus 4.6 Thinking, LiveBench Global Average (Jan 2026)" },
+
+    { "model": "zhipu/glm-5", "benchmark": "supergpqa", "score": 92.0, "unit": "%", "_source": "https://benchlm.ai/blog/posts/best-open-source-llm", "_note": "GLM-5 Reasoning mode (April 2026 secondary source)" }
+  ]
+}

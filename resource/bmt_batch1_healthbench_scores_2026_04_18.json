@@ -1,0 +1,49 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-18",
+    "sources": [
+      "https://arxiv.org/abs/2505.08775",
+      "https://cdn.openai.com/gpt-5-system-card.pdf",
+      "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf",
+      "https://deploymentsafety.openai.com/gpt-5-4-thinking",
+      "https://lushbinary.com/blog/meta-muse-spark-vs-gpt-5-4-claude-opus-gemini-comparison/"
+    ],
+    "session": "BMT batch 1 — Priority 1 HealthBench. Authoritative scores from OpenAI system cards (GPT-5 / GPT-5.2 / GPT-5.4 Thinking), HealthBench paper (arxiv 2505.08775), and April 2026 third-party comparison. Three benchmark variants: overall, Hard (1,000 difficult examples), Consensus (34 physician-consensus criteria). Arena-Hard v1 empty — superseded by arena_hard_v2 which is already tracked."
+  },
+  "models": [],
+  "benchmarks": [
+    { "id": "healthbench",            "name": "HealthBench",           "category": "reasoning", "description": "OpenAI's 5,000 multi-turn medical dialogues with physician-created rubrics; graded on accuracy, safety, and presentation.", "metric": "accuracy" },
+    { "id": "healthbench_hard",       "name": "HealthBench Hard",      "category": "reasoning", "description": "1,000 difficult HealthBench examples selected via low average scores across frontier models (o3, Grok 3, Gemini 2.5 Pro, Claude 3.7, Llama 4 Maverick).", "metric": "accuracy" },
+    { "id": "healthbench_consensus",  "name": "HealthBench Consensus", "category": "reasoning", "description": "34 physician-consensus criteria on 3,671 HealthBench examples measuring critical behaviors (e.g., emergency referral).", "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "openai/o3", "benchmark": "healthbench",           "score": 59.8, "unit": "%", "_source": "https://cdn.openai.com/gpt-5-system-card.pdf", "_note": "GPT-5 System Card Fig 6 (Aug 2025)" },
+    { "model": "openai/o3", "benchmark": "healthbench_hard",      "score": 31.6, "unit": "%", "_source": "https://cdn.openai.com/gpt-5-system-card.pdf", "_note": "GPT-5 System Card Fig 6" },
+    { "model": "openai/o3", "benchmark": "healthbench_consensus", "score": 92.8, "unit": "%", "_source": "https://cdn.openai.com/gpt-5-system-card.pdf", "_note": "GPT-5 System Card Fig 6" },
+
+    { "model": "openai/gpt-5", "benchmark": "healthbench",           "score": 67.2, "unit": "%", "_source": "https://cdn.openai.com/gpt-5-system-card.pdf", "_note": "gpt-5-thinking headline score (Fig 6)" },
+    { "model": "openai/gpt-5", "benchmark": "healthbench_hard",      "score": 46.2, "unit": "%", "_source": "https://cdn.openai.com/gpt-5-system-card.pdf", "_note": "gpt-5-thinking (Fig 6)" },
+    { "model": "openai/gpt-5", "benchmark": "healthbench_consensus", "score": 95.7, "unit": "%", "_source": "https://cdn.openai.com/gpt-5-system-card.pdf", "_note": "gpt-5-thinking (Fig 6)" },
+
+    { "model": "openai/gpt-5.1", "benchmark": "healthbench",           "score": 63.99, "unit": "%", "_source": "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf", "_note": "GPT-5.2 system card Table 5, gpt-5.1-thinking row" },
+    { "model": "openai/gpt-5.1", "benchmark": "healthbench_hard",      "score": 40.49, "unit": "%", "_source": "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf", "_note": "gpt-5.1-thinking" },
+    { "model": "openai/gpt-5.1", "benchmark": "healthbench_consensus", "score": 95.97, "unit": "%", "_source": "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf", "_note": "gpt-5.1-thinking" },
+
+    { "model": "openai/gpt-5.2", "benchmark": "healthbench",           "score": 63.34, "unit": "%", "_source": "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf", "_note": "gpt-5.2-thinking (Table 5)" },
+    { "model": "openai/gpt-5.2", "benchmark": "healthbench_hard",      "score": 42.04, "unit": "%", "_source": "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf", "_note": "gpt-5.2-thinking" },
+    { "model": "openai/gpt-5.2", "benchmark": "healthbench_consensus", "score": 94.50, "unit": "%", "_source": "https://cdn.openai.com/pdf/3a4153c8-c748-4b71-8e31-aecbde944f8d/oai_5_2_system-card.pdf", "_note": "gpt-5.2-thinking" },
+
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "healthbench",           "score": 62.6, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-4-thinking", "_note": "GPT-5.4 Thinking system card Table 6" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "healthbench_hard",      "score": 40.1, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-4-thinking", "_note": "GPT-5.4 Thinking system card" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "healthbench_consensus", "score": 96.6, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-4-thinking", "_note": "GPT-5.4 Thinking system card" },
+
+    { "model": "openai/gpt-5.4", "benchmark": "healthbench_hard", "score": 40.1, "unit": "%", "_source": "https://lushbinary.com/blog/meta-muse-spark-vs-gpt-5-4-claude-opus-gemini-comparison/", "_note": "April 2026 comparison table matches OpenAI's GPT-5.4 Thinking number" },
+
+    { "model": "anthropic/claude-3.7-sonnet", "benchmark": "healthbench",      "score": 35.0, "unit": "%", "_source": "https://arxiv.org/abs/2505.08775", "_note": "HealthBench paper Claude 3.7 Sonnet with extended thinking" },
+    { "model": "anthropic/claude-3.7-sonnet", "benchmark": "healthbench_hard", "score": 2.0,  "unit": "%", "_source": "https://arxiv.org/abs/2505.08775", "_note": "HealthBench paper, extended thinking" },
+
+    { "model": "google/gemini-3.1-pro", "benchmark": "healthbench_hard", "score": 20.6, "unit": "%", "_source": "https://lushbinary.com/blog/meta-muse-spark-vs-gpt-5-4-claude-opus-gemini-comparison/", "_note": "April 2026 third-party comparison; not confirmed in Google model card" },
+
+    { "model": "xai/grok-4.20", "benchmark": "healthbench_hard", "score": 20.3, "unit": "%", "_source": "https://lushbinary.com/blog/meta-muse-spark-vs-gpt-5-4-claude-opus-gemini-comparison/", "_note": "April 2026 third-party table (Grok 4.2); moderate confidence — not confirmed by xAI primary source" }
+  ]
+}

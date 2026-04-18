@@ -1,0 +1,21 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-18",
+    "sources": [
+      "https://arxiv.org/abs/2402.04249",
+      "https://arxiv.org/abs/2402.10260",
+      "https://arxiv.org/html/2407.17436v2",
+      "https://github.com/centerforaisafety/HarmBench",
+      "https://github.com/alexandrasouly/strongreject",
+      "https://huggingface.co/spaces/AIR-Bench/leaderboard"
+    ],
+    "session": "BMT batch 1 — Priority 2 safety canon. Benchmarks registered for future ingestion; no frontier-2026 scores currently published across HarmBench / StrongREJECT / AIR-Bench. Sources to monitor: Gray Swan Arena, Stanford HELM Safety, UK AISI inspect_evals, AI Safety China Frontier Risk Monitoring."
+  },
+  "models": [],
+  "benchmarks": [
+    { "id": "harmbench",    "name": "HarmBench",     "category": "cyber_defense", "description": "CAIS standardized red-teaming evaluation with 510 harmful behaviors across 7 categories. ASR against automated red-team methods (GCG, PAIR, TAP). Lower is safer.", "metric": "asr_lower_better" },
+    { "id": "strongreject", "name": "StrongREJECT", "category": "cyber_defense", "description": "313 forbidden prompts with rubric-based auto-grader distinguishing genuine refusals from capability-limited refusals. Fraction of prompts where model produces actionable harmful response under jailbreak. Lower is safer.", "metric": "goodness_at_0_lower_better" },
+    { "id": "airbench",     "name": "AIR-Bench 2024", "category": "cyber_defense", "description": "Stanford CRFM/Tsinghua 5,694 prompts spanning 314 fine-grained risk categories from 8 government regulations + 16 corporate AI-use policies. Average safe-refusal rate. Higher is safer.", "metric": "refusal_rate_higher_better" }
+  ],
+  "scores": []
+}
