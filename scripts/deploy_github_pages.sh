@@ -17,10 +17,16 @@ echo "=== GitHub Pages Deploy ==="
 echo "Project: $PROJECT_ROOT"
 echo "Deploy temp: $DEPLOY_DIR"
 
-# 1. Ensure data is exported
-echo "[1/5] Exporting latest data..."
+# 1. Ensure data is exported and Tailwind CSS is built
+echo "[1/5] Exporting latest data + building CSS..."
 cd "$PROJECT_ROOT"
 python -m cyber export 2>/dev/null || echo "  (export skipped — run manually if needed)"
+if [ -f package.json ]; then
+    if [ ! -d node_modules ]; then
+        npm install --no-audit --no-fund --silent
+    fi
+    npm run build:css
+fi
 
 # 2. Clone or init gh-pages branch
 echo "[2/5] Preparing gh-pages branch..."
