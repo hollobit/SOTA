@@ -67,10 +67,10 @@
 
 ## Next Steps (향후 작업)
 
-### cc:TODO — 데이터 수집 자동화
-- [ ] `cyber scouts discover` 명령으로 새 벤치마크/모델 자동 감지
-- [ ] `cyber scouts collect` 명령으로 정기 데이터 수집
-- [ ] GitHub Actions 주간 자동 수집 파이프라인 활성화
+### Completed — 데이터 수집 자동화
+- [x] `python -m cyber discover` 명령 — 새 벤치마크/모델 자동 감지 (이미 구현, seed_sources.yaml에서 68개 신규 등록 확인)
+- [x] `python -m cyber collect` 명령 — 정기 데이터 수집 (이미 구현, scheduler 기반 due sources 필터)
+- [x] GitHub Actions 파이프라인 — `discovery.yml` 주 2회 (수/토) discover+collect, `benchmark-update.yml` 일간 scout→analyze→export→build→deploy, `librarian-weekly.yml` 주간 trust/health 업데이트
 
 ### cc:TODO — 대시보드 개선
 - [ ] Cyber & Coding 탭에 방어 벤치마크 바 차트 추가
