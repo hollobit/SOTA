@@ -36,6 +36,7 @@
             <div class="mb-10">
                 <h2 class="text-section mb-1">SOTA Leaderboard</h2>
                 <p class="text-sm text-gray-400 mb-4">Current state-of-the-art holders across every tracked benchmark.</p>
+                <div id="sota-category-filter" class="flex flex-wrap gap-2 mb-3" role="group" aria-label="Filter by category"></div>
                 <div id="sota-table-container"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -129,6 +130,16 @@
                 <div id="heatmap-chart" class="h-96"></div>
                 <p id="heatmap-chart-empty" class="text-sm text-gray-500 mt-2">Choose a benchmark above to build a cross-benchmark model × score matrix.</p>
             </div>
+            <div class="mt-8">
+                <h3 class="text-widget text-gray-300 mb-1">SOTA Handover Log</h3>
+                <p class="text-xs text-gray-500 mb-3">Who was SOTA yesterday vs today — collected from daily snapshots.</p>
+                <div id="sota-changelog" class="text-sm"></div>
+            </div>
+            <div class="mt-8">
+                <h3 class="text-widget text-gray-300 mb-1">Cross-Benchmark Correlation</h3>
+                <p class="text-xs text-gray-500 mb-3">Pearson correlation between the 15 most-covered benchmarks. Higher = models that do well on one do well on the other. Computed over shared models only (N ≥ 5).</p>
+                <div id="correlation-chart" class="h-96"></div>
+            </div>
         </section>
 
         <section id="tab-comparison" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-comparison">
@@ -206,6 +217,7 @@
                 <div>
                     <h2 class="text-section mb-4">Cyber Defense Capabilities</h2>
                     <p class="text-gray-400 text-sm mb-4">취약점 자동 패치, 맬웨어 분석, 제로데이 방어 능력 평가</p>
+                    <div id="defense-chart" class="h-80"></div>
                     <div id="defense-table-container" class="mt-4"></div>
                 </div>
                 <div>

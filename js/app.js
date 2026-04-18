@@ -126,12 +126,15 @@ var App = {
                 document.getElementById('last-updated').textContent = latest;
             }
 
-            // Load history data for SOTA trends
-            return self._fetch(base + '/scores/history/2026-04-16.json').then(function(h1) {
-                if (h1) self.data.history['2026-04-16'] = h1;
-                return self._fetch(base + '/scores/history/2026-04-17.json');
-            }).then(function(h2) {
-                if (h2) self.data.history['2026-04-17'] = h2;
+            // Load every historical snapshot listed in the index.
+            return self._fetch(base + '/scores/history/index.json').then(function(idx) {
+                var dates = (idx && idx.dates) || [];
+                return Promise.all(dates.map(function(d) {
+                    return self._fetch(base + '/scores/history/' + d + '.json').then(function(snap) {
+                        if (snap) self.data.history[d] = snap;
+                    });
+                }));
+            }).then(function() {
                 return self._fetch(base + '/reports/changelog.json');
             });
         }).then(function(changelog) {
@@ -300,9 +303,47 @@ var App = {
         try { self._renderRecentChanges(); } catch(e) { console.warn('Recent changes error:', e); }
     },
 
+    _sotaCategoryFilter: null,
+
+    _renderSOTACategoryFilter: function() {
+        var self = this;
+        var filterEl = document.getElementById('sota-category-filter');
+        if (!filterEl) return;
+        filterEl.textContent = '';
+
+        var cats = {};
+        Object.keys(this.data.sota).forEach(function(bid) {
+            var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
+            var cat = b ? b.category : 'other';
+            cats[cat] = (cats[cat] || 0) + 1;
+        });
+        var catNames = Object.keys(cats).sort(function(a, b) { return cats[b] - cats[a]; });
+
+        function mkPill(label, key, count) {
+            var btn = document.createElement('button');
+            var isActive = (self._sotaCategoryFilter === key) || (key === null && self._sotaCategoryFilter === null);
+            btn.className = 'text-xs px-2.5 py-1 rounded-full border transition ' +
+                (isActive
+                    ? 'bg-blue-500 border-blue-500 text-white'
+                    : 'bg-gray-800 border-gray-700 text-gray-300 hover:border-gray-500');
+            btn.textContent = label + (count !== undefined ? ' · ' + count : '');
+            btn.onclick = function() {
+                self._sotaCategoryFilter = key;
+                self._renderSOTACategoryFilter();
+                self._renderSOTATable();
+            };
+            return btn;
+        }
+
+        var total = Object.keys(this.data.sota).length;
+        filterEl.appendChild(mkPill('All', null, total));
+        catNames.forEach(function(cat) { filterEl.appendChild(mkPill(cat, cat, cats[cat])); });
+    },
+
     _renderSOTATable: function() {
         var container = document.getElementById('sota-table-container');
         container.textContent = '';
+        this._renderSOTACategoryFilter();
         var table = document.createElement('table');
         table.className = 'sota-table';
 
@@ -318,7 +359,12 @@ var App = {
 
         var tbody = document.createElement('tbody');
         var self = this;
-        var entries = Object.keys(this.data.sota).sort();
+        var filter = this._sotaCategoryFilter;
+        var entries = Object.keys(this.data.sota).sort().filter(function(benchId) {
+            if (filter === null) return true;
+            var b = self.data.benchmarks.find(function(x) { return x.id === benchId; });
+            return (b ? b.category : 'other') === filter;
+        });
         entries.forEach(function(benchId) {
             var info = self.data.sota[benchId];
             var bench = self.data.benchmarks.find(function(b) { return b.id === benchId; });
@@ -579,6 +625,8 @@ var App = {
     },
 
     renderTrends: function() {
+        this._renderSOTAChangeLog();
+        this._renderCorrelationChart();
         var benchId = document.getElementById('trend-benchmark').value;
         if (!benchId) { this._renderSOTATrend(null); return; }
 
@@ -678,6 +726,250 @@ var App = {
             return b ? b.name : bid;
         });
         Charts.renderHeatmap('heatmap-chart', hmNames, hmBenchNames, hmMatrix);
+    },
+
+    _renderSOTAChangeLog: function() {
+        var self = this;
+        var container = document.getElementById('sota-changelog');
+        if (!container) return;
+        container.textContent = '';
+
+        var dates = Object.keys(this.data.history || {}).sort();
+        if (dates.length < 2) {
+            var p = document.createElement('p');
+            p.className = 'text-gray-500 text-sm';
+            p.textContent = 'Need at least two historical snapshots to compute a handover log. Come back tomorrow.';
+            container.appendChild(p);
+            return;
+        }
+
+        function sotasAt(scoreArr) {
+            var best = {};
+            (scoreArr || []).forEach(function(s) {
+                if (!best[s.benchmark_id] || s.value > best[s.benchmark_id].value) {
+                    best[s.benchmark_id] = { model_id: s.model_id, value: s.value, unit: s.unit || '%' };
+                }
+            });
+            return best;
+        }
+
+        var changes = [];
+        for (var i = 1; i < dates.length; i++) {
+            var prev = sotasAt(this.data.history[dates[i - 1]]);
+            var curr = sotasAt(this.data.history[dates[i]]);
+            Object.keys(curr).forEach(function(bid) {
+                if (prev[bid] && prev[bid].model_id !== curr[bid].model_id) {
+                    changes.push({
+                        date: dates[i],
+                        benchmark_id: bid,
+                        from_model: prev[bid].model_id,
+                        from_value: prev[bid].value,
+                        to_model: curr[bid].model_id,
+                        to_value: curr[bid].value,
+                        unit: curr[bid].unit
+                    });
+                } else if (!prev[bid]) {
+                    changes.push({
+                        date: dates[i],
+                        benchmark_id: bid,
+                        from_model: null,
+                        from_value: null,
+                        to_model: curr[bid].model_id,
+                        to_value: curr[bid].value,
+                        unit: curr[bid].unit,
+                        isNew: true
+                    });
+                }
+            });
+        }
+
+        // Order: handovers first (model changes), then new benchmarks, newest date first
+        changes.sort(function(a, b) {
+            if (a.date !== b.date) return a.date < b.date ? 1 : -1;
+            if (!!a.isNew !== !!b.isNew) return a.isNew ? 1 : -1;
+            return 0;
+        });
+
+        if (changes.length === 0) {
+            var none = document.createElement('p');
+            none.className = 'text-gray-500 text-sm';
+            none.textContent = 'No SOTA changes across tracked dates.';
+            container.appendChild(none);
+            return;
+        }
+
+        var handovers = changes.filter(function(c) { return !c.isNew; });
+        var newAdds = changes.filter(function(c) { return c.isNew; });
+
+        function benchName(bid) {
+            var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
+            return b ? b.name : bid;
+        }
+        function modelName(mid) {
+            var m = self.data.models.find(function(x) { return x.id === mid; });
+            return m ? m.name : mid.split('/').pop();
+        }
+
+        if (handovers.length) {
+            var h = document.createElement('h4');
+            h.className = 'text-xs uppercase tracking-wider text-gray-500 mb-2';
+            h.textContent = 'Handovers (' + handovers.length + ')';
+            container.appendChild(h);
+
+            handovers.forEach(function(c) {
+                var row = document.createElement('div');
+                row.className = 'py-1.5 border-b border-gray-800 last:border-b-0 flex items-baseline gap-3 flex-wrap';
+
+                var bench = document.createElement('span');
+                bench.className = 'text-gray-200 font-medium cursor-pointer hover:text-blue-400';
+                bench.textContent = benchName(c.benchmark_id);
+                bench.onclick = function() { Modal.showBenchmark(c.benchmark_id); };
+                row.appendChild(bench);
+
+                var flow = document.createElement('span');
+                flow.className = 'text-gray-500 text-xs';
+                flow.textContent = modelName(c.from_model) + ' (' + c.from_value + ') → ' + modelName(c.to_model) + ' (' + c.to_value + ')';
+                row.appendChild(flow);
+
+                var when = document.createElement('span');
+                when.className = 'text-xs text-gray-600 ml-auto';
+                when.textContent = c.date;
+                row.appendChild(when);
+
+                container.appendChild(row);
+            });
+        }
+
+        if (newAdds.length) {
+            var h2 = document.createElement('h4');
+            h2.className = 'text-xs uppercase tracking-wider text-gray-500 mt-6 mb-2';
+            h2.textContent = 'New benchmarks tracked (' + newAdds.length + ')';
+            container.appendChild(h2);
+
+            var summary = document.createElement('p');
+            summary.className = 'text-gray-500 text-sm';
+            summary.textContent = newAdds.slice(0, 8).map(function(c) { return benchName(c.benchmark_id); }).join(', ') +
+                (newAdds.length > 8 ? ', … +' + (newAdds.length - 8) + ' more' : '');
+            container.appendChild(summary);
+        }
+    },
+
+    _renderCorrelationChart: function() {
+        var self = this;
+        var el = document.getElementById('correlation-chart');
+        if (!el) return;
+
+        // Build model→{benchId: value} table
+        var modelScores = {};
+        this.data.scores.forEach(function(s) {
+            if (typeof s.value !== 'number') return;
+            if (!modelScores[s.model_id]) modelScores[s.model_id] = {};
+            // Prefer higher score if duplicates exist
+            var prev = modelScores[s.model_id][s.benchmark_id];
+            if (prev === undefined || s.value > prev) modelScores[s.model_id][s.benchmark_id] = s.value;
+        });
+
+        // Count coverage per benchmark, pick top 15 where the value range looks
+        // like a percentage (so correlation is meaningful).
+        var benchCount = {};
+        var benchMax = {};
+        Object.values(modelScores).forEach(function(bm) {
+            Object.keys(bm).forEach(function(bid) {
+                benchCount[bid] = (benchCount[bid] || 0) + 1;
+                benchMax[bid] = Math.max(benchMax[bid] || 0, bm[bid]);
+            });
+        });
+
+        var candidateIds = Object.keys(benchCount).filter(function(bid) {
+            return benchCount[bid] >= 10 && benchMax[bid] <= 100;
+        });
+        candidateIds.sort(function(a, b) { return benchCount[b] - benchCount[a]; });
+        var topIds = candidateIds.slice(0, 15);
+
+        if (topIds.length < 3) {
+            el.textContent = '';
+            var p = document.createElement('p');
+            p.className = 'text-gray-500 text-sm';
+            p.textContent = 'Not enough benchmarks meet the coverage threshold (N ≥ 10 models).';
+            el.appendChild(p);
+            return;
+        }
+
+        function pearson(a, b) {
+            var n = a.length;
+            if (n < 5) return null;
+            var sumA = 0, sumB = 0;
+            for (var i = 0; i < n; i++) { sumA += a[i]; sumB += b[i]; }
+            var meanA = sumA / n, meanB = sumB / n;
+            var num = 0, denA = 0, denB = 0;
+            for (var j = 0; j < n; j++) {
+                var dA = a[j] - meanA, dB = b[j] - meanB;
+                num += dA * dB; denA += dA * dA; denB += dB * dB;
+            }
+            var denom = Math.sqrt(denA * denB);
+            return denom > 0 ? num / denom : null;
+        }
+
+        var data = [];
+        for (var i = 0; i < topIds.length; i++) {
+            for (var j = 0; j < topIds.length; j++) {
+                var bidA = topIds[i], bidB = topIds[j];
+                var va = [], vb = [];
+                Object.values(modelScores).forEach(function(bm) {
+                    if (bm[bidA] !== undefined && bm[bidB] !== undefined) {
+                        va.push(bm[bidA]); vb.push(bm[bidB]);
+                    }
+                });
+                var r = (i === j) ? 1 : pearson(va, vb);
+                data.push([j, i, r === null ? null : +r.toFixed(2), va.length]);
+            }
+        }
+
+        var labels = topIds.map(function(bid) {
+            var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
+            var name = b ? b.name : bid;
+            return name.replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ').replace("Humanity's Last Exam", 'HLE');
+        });
+
+        var chart = Charts._getOrCreate('correlation-chart');
+        if (!chart) return;
+        chart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+                formatter: function(p) {
+                    var r = p.value[2];
+                    var n = p.value[3];
+                    if (r === null) return labels[p.value[1]] + ' ↔ ' + labels[p.value[0]] + '<br/>(N = ' + n + ': too few shared models)';
+                    return labels[p.value[1]] + ' ↔ ' + labels[p.value[0]] + '<br/>r = ' + r.toFixed(2) + ' (N = ' + n + ')';
+                }
+            },
+            grid: { left: 140, right: 30, top: 20, bottom: 110 },
+            xAxis: {
+                type: 'category', data: labels,
+                axisLabel: { rotate: 45, fontSize: 10, color: Theme.textMuted },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
+            },
+            yAxis: {
+                type: 'category', data: labels,
+                axisLabel: { fontSize: 10, color: Theme.textMuted },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
+            },
+            visualMap: {
+                min: -1, max: 1, calculable: true, orient: 'horizontal',
+                left: 'center', bottom: 30,
+                inRange: { color: ['#ef4444', '#1f2937', '#10b981'] },
+                textStyle: { color: Theme.textMuted },
+                text: ['r = +1', 'r = -1']
+            },
+            series: [{
+                type: 'heatmap',
+                data: data.map(function(d) { return [d[0], d[1], d[2]]; }),
+                label: {
+                    show: true, fontSize: 9, color: Theme.textPrimary,
+                    formatter: function(p) { return p.value[2] === null ? '—' : p.value[2].toFixed(2); }
+                }
+            }]
+        }, true);
     },
 
     _renderSOTATrend: function(selectedBenchId) {

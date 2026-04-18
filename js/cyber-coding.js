@@ -191,10 +191,11 @@ var CyberCoding = {
 
         this._renderBarChart('cyber-chart', this.CYBER_BENCHMARKS, 'Cybersecurity');
         this._renderBarChart('coding-chart', this.CODING_BENCHMARKS, 'Coding');
+        this._renderBarChart('defense-chart', this.DEFENSE_BENCHMARKS, 'Cyber Defense');
+        this._renderBarChart('agent-chart', this.AGENT_BENCHMARKS, 'Agent');
         this._renderTable('cyber-table-container', this.CYBER_BENCHMARKS);
         this._renderTable('coding-table-container', this.CODING_BENCHMARKS);
         this._renderTable('defense-table-container', this.DEFENSE_BENCHMARKS);
-        this._renderBarChart('agent-chart', this.AGENT_BENCHMARKS, 'Agent');
         this._renderTable('agent-table-container', this.AGENT_BENCHMARKS);
         this._renderRadar();
         this._renderDescriptions();

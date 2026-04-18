@@ -233,7 +233,7 @@ var Explorer = {
             }
         });
 
-        // Find benchmarks where at least 1 selected model has a score
+        // Count how many selected models have each benchmark
         var benchCount = {};
         benchmarks.forEach(function(b) {
             var cnt = 0;
@@ -243,22 +243,32 @@ var Explorer = {
             if (cnt >= 1) benchCount[b.id] = cnt;
         });
 
-        // Sort: shared benchmarks first (by count desc), then by coverage
-        var radarBenchIds = Object.keys(benchCount).sort(function(a, b) {
-            return benchCount[b] - benchCount[a];
-        }).filter(function(bid) {
-            // Exclude non-percentage metrics
+        // Prefer benchmarks all selected models share; tiebreak on larger spread
+        // so axes are informative. Drop non-percentage metrics.
+        var radarBenchIds = Object.keys(benchCount).filter(function(bid) {
             var maxVal = 0;
             modelIds.forEach(function(mid) {
                 var v = scoreMap[mid + '|' + bid] || 0;
                 if (v > maxVal) maxVal = v;
             });
             return maxVal <= 100;
+        }).sort(function(a, b) {
+            // 1. more coverage first
+            if (benchCount[b] !== benchCount[a]) return benchCount[b] - benchCount[a];
+            // 2. bigger spread (max - min among scored models) first
+            function spread(bid) {
+                var vs = modelIds.map(function(m) { return scoreMap[m + '|' + bid]; }).filter(Boolean);
+                if (vs.length < 2) return 0;
+                return Math.max.apply(null, vs) - Math.min.apply(null, vs);
+            }
+            return spread(b) - spread(a);
         }).slice(0, 16);
 
-        if (radarBenchIds.length < 3) return; // Not enough for radar
+        if (radarBenchIds.length < 3) return;
 
-        // Dynamic axis max
+        // How many of the chosen axes are truly shared across ALL selected models?
+        var fullyShared = radarBenchIds.filter(function(bid) { return benchCount[bid] === modelIds.length; }).length;
+
         var indicators = radarBenchIds.map(function(bid) {
             var b = benchmarks.find(function(x) { return x.id === bid; });
             var name = b ? b.name : bid;
@@ -284,6 +294,8 @@ var Explorer = {
                     }),
                     lineStyle: { color: radarColors[i], width: 2 },
                     itemStyle: { color: radarColors[i] },
+                    symbol: 'circle',
+                    symbolSize: 5,
                     areaStyle: { color: radarColors[i], opacity: 0.08 }
                 };
             })
@@ -291,8 +303,29 @@ var Explorer = {
 
         chart.setOption({
             backgroundColor: 'transparent',
-            title: { text: 'Model Comparison Radar', left: 'center', textStyle: { color: Theme.textPrimary, fontSize: 13 } },
-            tooltip: {},
+            title: {
+                text: 'Model Comparison Radar',
+                subtext: radarBenchIds.length + ' axes · ' + fullyShared + ' shared by all ' + modelIds.length + ' models',
+                left: 'center',
+                textStyle: { color: Theme.textPrimary, fontSize: 13 },
+                subtextStyle: { color: Theme.textMuted, fontSize: 10 }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    var lines = ['<strong>' + params.name + '</strong>'];
+                    (params.value || []).forEach(function(v, i) {
+                        if (v && v > 0) {
+                            var ind = indicators[i];
+                            var pct = ind.max === 100 ? v.toFixed(1) + '%' : v.toFixed(1);
+                            lines.push(ind.name + ': ' + pct);
+                        } else {
+                            lines.push('<span style="color:' + Theme.textDisabled + '">' + indicators[i].name + ': —</span>');
+                        }
+                    });
+                    return lines.join('<br>');
+                }
+            },
             legend: {
                 data: modelNames,
                 textStyle: { color: Theme.textMuted, fontSize: 11 }, bottom: 0
