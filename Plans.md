@@ -87,7 +87,20 @@
 ### Completed — 분석 기능 (2026-04-18)
 - [x] 벤치마크 간 상관관계 분석 — Trends 탭 Cross-Benchmark Correlation heatmap (Top-15 benchmarks, Pearson r, red-neutral-green scale, commit `0f0f754`)
 - [x] 시간별 SOTA 변화 추적 — Trends 탭 SOTA Handover Log + 동적 history index.json (commit `43248cd`)
-- [ ] 모델 성능/비용 효율성 — Artificial Analysis pricing/intelligence ingest 작업 중
+- [x] 모델 성능/비용 효율성 — `data/export/aa_pricing.json` (20/22 모델 Intelligence Index + USD/1M + tokens/s) + Trends 탭 Intelligence vs Price scatter (log x, linear y, vendor-colored, size=speed)
+
+### cc:TODO — BMT 2,559개에서 추가 수집 후보 (2026-04-18 조사 결과, 상세는 `docs/BMT-candidates-2026-04-18.md`)
+- [ ] 우선순위 1: HealthBench + Arena-Hard-Auto — 모든 frontier launch에서 보고됨, 데이터 즉시 가용
+- [ ] 우선순위 2: HarmBench + StrongREJECT + AIR-Bench — safety canon 3종 완성
+- [ ] 우선순위 3: Multi-SWE-bench + SWE-PolyBench — Python/Java 외 8개 언어로 코딩 확장
+- [ ] 우선순위 4: CTI-Bench + CyberMetric — CTI knowledge 갭 해소 (5,610 + 10,000 문항)
+- [ ] 우선순위 5: Video-MME — frontier VLM release마다 인용되는 비디오 벤치마크
+- [ ] 우선순위 6: HELMET — application-centric long-context (RAG/요약/인용)
+- [ ] 우선순위 7: AudioBench / MMAU — 오디오 카테고리 신규 개설
+- [ ] 우선순위 8: Windows Agent Arena + ScienceAgentBench + MCP-Bench + LiveMCPBench + BrowseComp-Plus — 에이전트 breadth
+- [ ] 우선순위 9: SuperGPQA + ZebraLogic + LiveBench — reasoning breadth
+- [ ] 우선순위 10: SecRepoBench + MegaVul — cyber 코딩 보안 갭
+- [ ] 우선순위 11: BLINK + Finance Agent Benchmark — multimodal 지각 + 금융 vertical
 
 ### Completed (2026-04-18 `/design-review` follow-up — 22 atomic commits)
 - [x] F-005: Overview 탭 IA 재구성 — SOTA Leaderboard를 full-width primary로 승격, Leaderboard Rankings + Recent Changes는 2-column secondary로 강등 (commit `c199996`)
