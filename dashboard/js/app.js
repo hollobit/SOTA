@@ -822,36 +822,24 @@ var App = {
         ];
 
         pdfDocs.forEach(function(doc) {
-            var card = document.createElement('div');
-            card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-3 hover:border-gray-600 transition';
+            var row = document.createElement('div');
+            row.className = 'py-2.5 border-b border-gray-800 last:border-b-0';
 
-            var title = document.createElement('div');
-            title.className = 'font-semibold text-sm text-gray-200 mb-1';
-            title.textContent = doc.name;
-            card.appendChild(title);
+            var top = document.createElement('div');
+            top.className = 'flex items-baseline justify-between gap-3';
 
-            var metaRow = document.createElement('div');
-            metaRow.className = 'flex gap-2 mb-2';
-            var vBadge = document.createElement('span');
-            vBadge.className = 'text-xs px-1.5 py-0.5 bg-gray-800 text-gray-400 rounded';
-            vBadge.textContent = doc.vendor;
-            metaRow.appendChild(vBadge);
-            var dBadge = document.createElement('span');
-            dBadge.className = 'text-xs px-1.5 py-0.5 bg-gray-800 text-gray-500 rounded';
-            dBadge.textContent = doc.date;
-            metaRow.appendChild(dBadge);
-            card.appendChild(metaRow);
+            var titleEl = doc.url
+                ? (function() { var a = document.createElement('a'); a.href = doc.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.className = 'font-semibold text-sm text-gray-200 hover:text-blue-400 transition'; a.textContent = doc.name; return a; })()
+                : (function() { var s = document.createElement('span'); s.className = 'font-semibold text-sm text-gray-200'; s.textContent = doc.name; return s; })();
+            top.appendChild(titleEl);
 
-            if (doc.url) {
-                var link = document.createElement('a');
-                link.href = doc.url;
-                link.target = '_blank';
-                link.rel = 'noopener noreferrer';
-                link.className = 'text-xs text-blue-400 hover:text-blue-300 transition';
-                link.textContent = doc.url.length > 50 ? doc.url.substring(0, 50) + '...' : doc.url;
-                card.appendChild(link);
-            }
-            pdfsContainer.appendChild(card);
+            var meta = document.createElement('span');
+            meta.className = 'text-xs text-gray-500 whitespace-nowrap';
+            meta.textContent = doc.vendor + ' · ' + doc.date;
+            top.appendChild(meta);
+            row.appendChild(top);
+
+            pdfsContainer.appendChild(row);
         });
 
         var sites = [
@@ -915,8 +903,8 @@ var App = {
         ];
 
         sites.forEach(function(site) {
-            var card = document.createElement('div');
-            card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-3 hover:border-gray-600 transition';
+            var row = document.createElement('div');
+            row.className = 'py-2 border-b border-gray-800 last:border-b-0';
 
             var link = document.createElement('a');
             link.href = site.url;
@@ -924,14 +912,14 @@ var App = {
             link.rel = 'noopener noreferrer';
             link.className = 'font-semibold text-sm text-blue-400 hover:text-blue-300 transition';
             link.textContent = site.name;
-            card.appendChild(link);
+            row.appendChild(link);
 
-            var desc = document.createElement('div');
-            desc.className = 'text-xs text-gray-500 mt-1';
-            desc.textContent = site.desc;
-            card.appendChild(desc);
+            var desc = document.createElement('span');
+            desc.className = 'text-xs text-gray-500 ml-2';
+            desc.textContent = '— ' + site.desc;
+            row.appendChild(desc);
 
-            sitesContainer.appendChild(card);
+            sitesContainer.appendChild(row);
         });
     },
 
