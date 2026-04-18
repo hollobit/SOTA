@@ -166,7 +166,7 @@ var FrontierCompare = {
         thCorner.style.position = 'sticky';
         thCorner.style.left = '0';
         thCorner.style.zIndex = '10';
-        thCorner.style.background = '#111827';
+        thCorner.style.background = Theme.bgSurface;
         hr.appendChild(thCorner);
 
         benchIds.forEach(function(bid) {
@@ -194,7 +194,7 @@ var FrontierCompare = {
             tdName.style.fontWeight = '500';
             tdName.style.position = 'sticky';
             tdName.style.left = '0';
-            tdName.style.background = '#111827';
+            tdName.style.background = Theme.bgSurface;
             tdName.style.zIndex = '5';
             tr.appendChild(tdName);
 
@@ -215,27 +215,27 @@ var FrontierCompare = {
                         else if (bid === 'gdpval_aa' || bid === 'livecodebench') displayVal = Math.round(v);
                         else displayVal = v.toFixed(1);
                         td.textContent = displayVal;
-                        td.style.color = '#d1d5db';
+                        td.style.color = Theme.textSecondary;
                     } else {
                         td.textContent = v.toFixed(1);
                         var ratio = maxes[bid] > 0 ? v / maxes[bid] : 0;
                         if (ratio >= 0.98) {
                             td.style.background = 'rgba(16, 185, 129, 0.35)';
-                            td.style.color = '#34d399';
+                            td.style.color = Theme.accentEmerald;
                             td.style.fontWeight = 'bold';
                         } else if (ratio >= 0.90) {
                             td.style.background = 'rgba(59, 130, 246, 0.2)';
-                            td.style.color = '#93c5fd';
+                            td.style.color = Theme.accentBlue;
                         } else if (ratio >= 0.75) {
                             td.style.background = 'rgba(245, 158, 11, 0.15)';
-                            td.style.color = '#fbbf24';
+                            td.style.color = Theme.accentAmber;
                         } else {
-                            td.style.color = '#9ca3af';
+                            td.style.color = Theme.textMuted;
                         }
                     }
                 } else {
                     td.textContent = '\u2014';
-                    td.style.color = '#374151';
+                    td.style.color = Theme.borderStrong;
                 }
                 tr.appendChild(td);
             });
@@ -283,37 +283,36 @@ var FrontierCompare = {
             return { name: name, max: axisMax };
         });
 
-        var colors = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
-
         var series = [{
             type: 'radar',
             data: topModels.map(function(mid, i) {
+                var color = Theme.rankColor(i);
                 return {
                     name: self._getModelName(mid),
                     value: radarBench.map(function(bid) {
                         return scoreMap[mid + '|' + bid] || 0;
                     }),
-                    lineStyle: { color: colors[i], width: 2 },
-                    itemStyle: { color: colors[i] },
-                    areaStyle: { color: colors[i], opacity: 0.06 }
+                    lineStyle: { color: color, width: 2 },
+                    itemStyle: { color: color },
+                    areaStyle: { color: color, opacity: 0.06 }
                 };
             })
         }];
 
         chart.setOption({
             backgroundColor: 'transparent',
-            title: { text: 'Radar — ' + (category === 'all' ? 'Core' : category.charAt(0).toUpperCase() + category.slice(1)), left: 'center', textStyle: { color: '#e5e7eb', fontSize: 13 } },
+            title: { text: 'Radar — ' + (category === 'all' ? 'Core' : category.charAt(0).toUpperCase() + category.slice(1)), left: 'center', textStyle: { color: Theme.textPrimary, fontSize: 13 } },
             tooltip: {},
             legend: {
                 data: topModels.map(function(mid) { return self._getModelName(mid); }),
-                textStyle: { color: '#9ca3af', fontSize: 10 }, bottom: 0
+                textStyle: { color: Theme.textMuted, fontSize: 10 }, bottom: 0
             },
             radar: {
                 indicator: indicators, shape: 'polygon', splitNumber: 5,
-                axisName: { color: '#9ca3af', fontSize: 9 },
-                splitLine: { lineStyle: { color: '#1f2937' } },
+                axisName: { color: Theme.textMuted, fontSize: 9 },
+                splitLine: { lineStyle: { color: Theme.border } },
                 splitArea: { areaStyle: { color: ['transparent'] } },
-                axisLine: { lineStyle: { color: '#374151' } }
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
             },
             series: series
         });
@@ -343,34 +342,31 @@ var FrontierCompare = {
         entries.sort(function(a, b) { return b.val - a.val; });
 
         var colors = entries.map(function(e, i) {
-            if (i === 0) return '#10b981';
-            if (i === 1) return '#3b82f6';
-            if (i === 2) return '#f59e0b';
-            return '#6b7280';
+            return i < 3 ? Theme.series[i] : Theme.textDim;
         });
 
         chart.setOption({
             backgroundColor: 'transparent',
-            title: { text: self._getBenchName(primaryBench) + ' — Ranking', left: 'center', textStyle: { color: '#e5e7eb', fontSize: 13 } },
+            title: { text: self._getBenchName(primaryBench) + ' — Ranking', left: 'center', textStyle: { color: Theme.textPrimary, fontSize: 13 } },
             tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
             grid: { left: 8, right: 16, bottom: 40, top: 40, containLabel: true },
             xAxis: {
                 type: 'category',
                 data: entries.map(function(e) { return self._getModelName(e.mid); }),
-                axisLabel: { color: '#9ca3af', fontSize: 9, rotate: 35 },
-                axisLine: { lineStyle: { color: '#374151' } }
+                axisLabel: { color: Theme.textMuted, fontSize: 9, rotate: 35 },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
             },
             yAxis: {
                 type: 'value',
-                axisLabel: { color: '#9ca3af' },
-                splitLine: { lineStyle: { color: '#1f2937' } }
+                axisLabel: { color: Theme.textMuted },
+                splitLine: { lineStyle: { color: Theme.border } }
             },
             series: [{
                 type: 'bar',
                 data: entries.map(function(e, i) {
                     return { value: e.val, itemStyle: { color: colors[i] } };
                 }),
-                label: { show: true, position: 'top', color: '#d1d5db', fontSize: 10, formatter: function(p) { return p.value.toFixed(1); } }
+                label: { show: true, position: 'top', color: Theme.textSecondary, fontSize: 10, formatter: function(p) { return p.value.toFixed(1); } }
             }]
         });
         window.addEventListener('resize', function() { chart.resize(); });

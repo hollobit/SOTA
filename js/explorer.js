@@ -94,7 +94,7 @@ var Explorer = {
 
         var summaryDiv = document.createElement('div');
         summaryDiv.className = 'flex gap-4 mb-4 flex-wrap';
-        var colors = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'];
+        var colors = Theme.series.slice(0, 4);
 
         // Add coverage stats card
         var coverageCard = document.createElement('div');
@@ -196,11 +196,11 @@ var Explorer = {
                         td.style.color = colors[i];
                         td.style.fontWeight = 'bold';
                     } else {
-                        td.style.color = '#d1d5db';
+                        td.style.color = Theme.textSecondary;
                     }
                 } else {
                     td.textContent = '\u2014';
-                    td.style.color = '#4b5563';
+                    td.style.color = Theme.textDisabled;
                 }
                 tr.appendChild(td);
             });
@@ -272,7 +272,7 @@ var Explorer = {
             return { name: name, max: maxVal <= 100 ? 100 : Math.ceil(maxVal / 100) * 100 };
         });
 
-        var colors = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'];
+        var radarColors = Theme.series.slice(0, 4);
 
         var series = [{
             type: 'radar',
@@ -282,27 +282,27 @@ var Explorer = {
                     value: radarBenchIds.map(function(bid) {
                         return scoreMap[mid + '|' + bid] || 0;
                     }),
-                    lineStyle: { color: colors[i], width: 2 },
-                    itemStyle: { color: colors[i] },
-                    areaStyle: { color: colors[i], opacity: 0.08 }
+                    lineStyle: { color: radarColors[i], width: 2 },
+                    itemStyle: { color: radarColors[i] },
+                    areaStyle: { color: radarColors[i], opacity: 0.08 }
                 };
             })
         }];
 
         chart.setOption({
             backgroundColor: 'transparent',
-            title: { text: 'Model Comparison Radar', left: 'center', textStyle: { color: '#e5e7eb', fontSize: 13 } },
+            title: { text: 'Model Comparison Radar', left: 'center', textStyle: { color: Theme.textPrimary, fontSize: 13 } },
             tooltip: {},
             legend: {
                 data: modelNames,
-                textStyle: { color: '#9ca3af', fontSize: 11 }, bottom: 0
+                textStyle: { color: Theme.textMuted, fontSize: 11 }, bottom: 0
             },
             radar: {
                 indicator: indicators, shape: 'polygon', splitNumber: 5,
-                axisName: { color: '#9ca3af', fontSize: 9 },
-                splitLine: { lineStyle: { color: '#1f2937' } },
+                axisName: { color: Theme.textMuted, fontSize: 9 },
+                splitLine: { lineStyle: { color: Theme.border } },
                 splitArea: { areaStyle: { color: ['transparent'] } },
-                axisLine: { lineStyle: { color: '#374151' } }
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
             },
             series: series
         }, true);

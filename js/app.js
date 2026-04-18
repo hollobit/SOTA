@@ -137,7 +137,7 @@ var App = {
         }).then(function(changelog) {
             self.data.changelog = changelog || [];
 
-            var boardNames = ['chatbot-arena', 'open-llm', 'seal'];
+            var boardNames = ['chatbot-arena'];
             var base2 = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
             return Promise.all(boardNames.map(function(name) {
                 return self._fetch(base2 + '/leaderboards/' + name + '.json').then(function(data) {
@@ -156,23 +156,45 @@ var App = {
 
     setupTabs: function() {
         var self = this;
-        document.querySelectorAll('.tab-btn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-                document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.add('hidden'); });
-                btn.classList.add('active');
-                var tab = document.getElementById('tab-' + btn.dataset.tab);
-                if (tab) tab.classList.remove('hidden');
-                // Update URL hash without triggering hashchange re-navigation
-                history.replaceState(null, '', '#' + btn.dataset.tab);
-                if (btn.dataset.tab === 'overview') self.renderOverview();
-                if (btn.dataset.tab === 'trends') self.renderTrends();
-                if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
-                if (btn.dataset.tab === 'comparison') Comparison.render();
-                if (btn.dataset.tab === 'frontier-compare') FrontierCompare.render(document.getElementById('fc-category').value);
-                if (btn.dataset.tab === 'cyber-coding') CyberCoding.render();
-                if (btn.dataset.tab === 'resources') self.renderResources();
-                if (btn.dataset.tab === 'changelog') self.renderChangelog();
+        var tabBtns = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
+
+        function activate(btn, focusBtn) {
+            tabBtns.forEach(function(b) {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+                b.setAttribute('tabindex', '-1');
+            });
+            document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.add('hidden'); });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+            btn.setAttribute('tabindex', '0');
+            var tab = document.getElementById('tab-' + btn.dataset.tab);
+            if (tab) tab.classList.remove('hidden');
+            history.replaceState(null, '', '#' + btn.dataset.tab);
+            if (focusBtn) btn.focus();
+
+            if (btn.dataset.tab === 'overview') self.renderOverview();
+            if (btn.dataset.tab === 'trends') self.renderTrends();
+            if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
+            if (btn.dataset.tab === 'comparison') Comparison.render();
+            if (btn.dataset.tab === 'frontier-compare') FrontierCompare.render(document.getElementById('fc-category').value);
+            if (btn.dataset.tab === 'cyber-coding') CyberCoding.render();
+            if (btn.dataset.tab === 'resources') self.renderResources();
+            if (btn.dataset.tab === 'changelog') self.renderChangelog();
+        }
+
+        tabBtns.forEach(function(btn, i) {
+            btn.addEventListener('click', function() { activate(btn, false); });
+            btn.addEventListener('keydown', function(e) {
+                var next = null;
+                if (e.key === 'ArrowRight')     next = tabBtns[(i + 1) % tabBtns.length];
+                else if (e.key === 'ArrowLeft') next = tabBtns[(i - 1 + tabBtns.length) % tabBtns.length];
+                else if (e.key === 'Home')      next = tabBtns[0];
+                else if (e.key === 'End')       next = tabBtns[tabBtns.length - 1];
+                if (next) {
+                    e.preventDefault();
+                    activate(next, true);
+                }
             });
         });
     },
@@ -351,15 +373,26 @@ var App = {
             container.appendChild(p);
             return;
         }
+        var boardMeta = {
+            'chatbot-arena': { title: 'Chatbot Arena Elo', snapshot: 'snapshot from early 2025 — for reference only' }
+        };
         boards.forEach(function(name) {
             var entries = self.data.leaderboards[name];
+            var meta = boardMeta[name] || { title: name, snapshot: '' };
             var card = document.createElement('div');
             card.className = 'leaderboard-card';
 
             var h3 = document.createElement('h3');
-            h3.className = 'font-semibold text-sm text-gray-300 mb-2';
-            h3.textContent = name;
+            h3.className = 'text-widget text-gray-300 mb-1';
+            h3.textContent = meta.title;
             card.appendChild(h3);
+
+            if (meta.snapshot) {
+                var snap = document.createElement('p');
+                snap.className = 'text-xs text-gray-500 mb-2';
+                snap.textContent = meta.snapshot;
+                card.appendChild(snap);
+            }
 
             entries.slice(0, 5).forEach(function(e) {
                 var row = document.createElement('div');
@@ -574,33 +607,30 @@ var App = {
         var trendChart = Charts._getOrCreate('trend-chart');
         if (trendChart) {
             var colors = entries.map(function(e, i) {
-                if (e.source === 'pdf') return '#8b5cf6';
-                if (i === 0) return '#10b981';
-                if (i === 1) return '#3b82f6';
-                if (i === 2) return '#f59e0b';
-                return '#6b7280';
+                if (e.source === 'pdf') return Theme.sourcePdf;
+                return Theme.rankColor(i);
             });
             trendChart.setOption({
-                title: { text: benchName + ' — Model Rankings', left: 'center', textStyle: { color: '#e5e7eb' } },
+                title: { text: benchName + ' — Model Rankings', left: 'center', textStyle: { color: Theme.textPrimary } },
                 tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
                 grid: { left: 8, right: 16, bottom: 60, top: 40, containLabel: true },
                 xAxis: {
                     type: 'category',
                     data: entries.map(function(e) { return e.name; }),
-                    axisLabel: { color: '#9ca3af', fontSize: 9, rotate: 35 },
-                    axisLine: { lineStyle: { color: '#374151' } }
+                    axisLabel: { color: Theme.textMuted, fontSize: 9, rotate: 35 },
+                    axisLine: { lineStyle: { color: Theme.borderStrong } }
                 },
                 yAxis: {
                     type: 'value',
-                    axisLabel: { color: '#9ca3af' },
-                    splitLine: { lineStyle: { color: '#1f2937' } }
+                    axisLabel: { color: Theme.textMuted },
+                    splitLine: { lineStyle: { color: Theme.border } }
                 },
                 series: [{
                     type: 'bar',
                     data: entries.map(function(e, i) {
                         return { value: e.value, itemStyle: { color: colors[i] } };
                     }),
-                    label: { show: true, position: 'top', color: '#d1d5db', fontSize: 9,
+                    label: { show: true, position: 'top', color: Theme.textSecondary, fontSize: 9,
                         formatter: function(p) { return p.value > 500 ? Math.round(p.value) : p.value.toFixed(1); }
                     }
                 }]
@@ -718,7 +748,7 @@ var App = {
             : 'SOTA Score Trends (Top 10 Benchmarks)';
 
         chart.setOption({
-            title: { text: title, left: 'center', textStyle: { color: '#e5e7eb', fontSize: 13 } },
+            title: { text: title, left: 'center', textStyle: { color: Theme.textPrimary, fontSize: 13 } },
             tooltip: {
                 trigger: 'axis',
                 formatter: function(params) {
@@ -734,19 +764,19 @@ var App = {
             },
             legend: {
                 bottom: 0, type: 'scroll',
-                textStyle: { color: '#9ca3af', fontSize: 10 }
+                textStyle: { color: Theme.textMuted, fontSize: 10 }
             },
             grid: { left: 50, right: 20, top: 40, bottom: 50 },
             xAxis: {
                 type: 'category',
                 data: dates,
-                axisLabel: { color: '#9ca3af' },
-                axisLine: { lineStyle: { color: '#374151' } }
+                axisLabel: { color: Theme.textMuted },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
             },
             yAxis: {
                 type: 'value',
-                axisLabel: { color: '#9ca3af' },
-                splitLine: { lineStyle: { color: '#1f2937' } }
+                axisLabel: { color: Theme.textMuted },
+                splitLine: { lineStyle: { color: Theme.border } }
             },
             series: series
         }, true);
@@ -792,36 +822,24 @@ var App = {
         ];
 
         pdfDocs.forEach(function(doc) {
-            var card = document.createElement('div');
-            card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-3 hover:border-gray-600 transition';
+            var row = document.createElement('div');
+            row.className = 'py-2.5 border-b border-gray-800 last:border-b-0';
 
-            var title = document.createElement('div');
-            title.className = 'font-semibold text-sm text-gray-200 mb-1';
-            title.textContent = doc.name;
-            card.appendChild(title);
+            var top = document.createElement('div');
+            top.className = 'flex items-baseline justify-between gap-3';
 
-            var metaRow = document.createElement('div');
-            metaRow.className = 'flex gap-2 mb-2';
-            var vBadge = document.createElement('span');
-            vBadge.className = 'text-xs px-1.5 py-0.5 bg-gray-800 text-gray-400 rounded';
-            vBadge.textContent = doc.vendor;
-            metaRow.appendChild(vBadge);
-            var dBadge = document.createElement('span');
-            dBadge.className = 'text-xs px-1.5 py-0.5 bg-gray-800 text-gray-500 rounded';
-            dBadge.textContent = doc.date;
-            metaRow.appendChild(dBadge);
-            card.appendChild(metaRow);
+            var titleEl = doc.url
+                ? (function() { var a = document.createElement('a'); a.href = doc.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.className = 'font-semibold text-sm text-gray-200 hover:text-blue-400 transition'; a.textContent = doc.name; return a; })()
+                : (function() { var s = document.createElement('span'); s.className = 'font-semibold text-sm text-gray-200'; s.textContent = doc.name; return s; })();
+            top.appendChild(titleEl);
 
-            if (doc.url) {
-                var link = document.createElement('a');
-                link.href = doc.url;
-                link.target = '_blank';
-                link.rel = 'noopener noreferrer';
-                link.className = 'text-xs text-blue-400 hover:text-blue-300 transition';
-                link.textContent = doc.url.length > 50 ? doc.url.substring(0, 50) + '...' : doc.url;
-                card.appendChild(link);
-            }
-            pdfsContainer.appendChild(card);
+            var meta = document.createElement('span');
+            meta.className = 'text-xs text-gray-500 whitespace-nowrap';
+            meta.textContent = doc.vendor + ' · ' + doc.date;
+            top.appendChild(meta);
+            row.appendChild(top);
+
+            pdfsContainer.appendChild(row);
         });
 
         var sites = [
@@ -885,8 +903,8 @@ var App = {
         ];
 
         sites.forEach(function(site) {
-            var card = document.createElement('div');
-            card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-3 hover:border-gray-600 transition';
+            var row = document.createElement('div');
+            row.className = 'py-2 border-b border-gray-800 last:border-b-0';
 
             var link = document.createElement('a');
             link.href = site.url;
@@ -894,14 +912,14 @@ var App = {
             link.rel = 'noopener noreferrer';
             link.className = 'font-semibold text-sm text-blue-400 hover:text-blue-300 transition';
             link.textContent = site.name;
-            card.appendChild(link);
+            row.appendChild(link);
 
-            var desc = document.createElement('div');
-            desc.className = 'text-xs text-gray-500 mt-1';
-            desc.textContent = site.desc;
-            card.appendChild(desc);
+            var desc = document.createElement('span');
+            desc.className = 'text-xs text-gray-500 ml-2';
+            desc.textContent = '— ' + site.desc;
+            row.appendChild(desc);
 
-            sitesContainer.appendChild(card);
+            sitesContainer.appendChild(row);
         });
     },
 
