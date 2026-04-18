@@ -84,6 +84,13 @@ class Exporter:
         scores = get_scores(self._conn)
         data = [self._score_to_dict(s) for s in scores]
         today = date.today().isoformat()
-        self._write_json(
-            self._output_dir / "scores" / "history" / f"{today}.json", data
+        history_dir = self._output_dir / "scores" / "history"
+        self._write_json(history_dir / f"{today}.json", data)
+
+        # Also write an index.json listing every historical snapshot so the
+        # dashboard can iterate without having to hardcode dates.
+        snapshots = sorted(
+            p.stem for p in history_dir.glob("*.json")
+            if p.stem != "index" and len(p.stem) == 10
         )
+        self._write_json(history_dir / "index.json", {"dates": snapshots})

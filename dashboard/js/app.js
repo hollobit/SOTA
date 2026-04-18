@@ -126,12 +126,15 @@ var App = {
                 document.getElementById('last-updated').textContent = latest;
             }
 
-            // Load history data for SOTA trends
-            return self._fetch(base + '/scores/history/2026-04-16.json').then(function(h1) {
-                if (h1) self.data.history['2026-04-16'] = h1;
-                return self._fetch(base + '/scores/history/2026-04-17.json');
-            }).then(function(h2) {
-                if (h2) self.data.history['2026-04-17'] = h2;
+            // Load every historical snapshot listed in the index.
+            return self._fetch(base + '/scores/history/index.json').then(function(idx) {
+                var dates = (idx && idx.dates) || [];
+                return Promise.all(dates.map(function(d) {
+                    return self._fetch(base + '/scores/history/' + d + '.json').then(function(snap) {
+                        if (snap) self.data.history[d] = snap;
+                    });
+                }));
+            }).then(function() {
                 return self._fetch(base + '/reports/changelog.json');
             });
         }).then(function(changelog) {
@@ -622,6 +625,7 @@ var App = {
     },
 
     renderTrends: function() {
+        this._renderSOTAChangeLog();
         var benchId = document.getElementById('trend-benchmark').value;
         if (!benchId) { this._renderSOTATrend(null); return; }
 
@@ -721,6 +725,132 @@ var App = {
             return b ? b.name : bid;
         });
         Charts.renderHeatmap('heatmap-chart', hmNames, hmBenchNames, hmMatrix);
+    },
+
+    _renderSOTAChangeLog: function() {
+        var self = this;
+        var container = document.getElementById('sota-changelog');
+        if (!container) return;
+        container.textContent = '';
+
+        var dates = Object.keys(this.data.history || {}).sort();
+        if (dates.length < 2) {
+            var p = document.createElement('p');
+            p.className = 'text-gray-500 text-sm';
+            p.textContent = 'Need at least two historical snapshots to compute a handover log. Come back tomorrow.';
+            container.appendChild(p);
+            return;
+        }
+
+        function sotasAt(scoreArr) {
+            var best = {};
+            (scoreArr || []).forEach(function(s) {
+                if (!best[s.benchmark_id] || s.value > best[s.benchmark_id].value) {
+                    best[s.benchmark_id] = { model_id: s.model_id, value: s.value, unit: s.unit || '%' };
+                }
+            });
+            return best;
+        }
+
+        var changes = [];
+        for (var i = 1; i < dates.length; i++) {
+            var prev = sotasAt(this.data.history[dates[i - 1]]);
+            var curr = sotasAt(this.data.history[dates[i]]);
+            Object.keys(curr).forEach(function(bid) {
+                if (prev[bid] && prev[bid].model_id !== curr[bid].model_id) {
+                    changes.push({
+                        date: dates[i],
+                        benchmark_id: bid,
+                        from_model: prev[bid].model_id,
+                        from_value: prev[bid].value,
+                        to_model: curr[bid].model_id,
+                        to_value: curr[bid].value,
+                        unit: curr[bid].unit
+                    });
+                } else if (!prev[bid]) {
+                    changes.push({
+                        date: dates[i],
+                        benchmark_id: bid,
+                        from_model: null,
+                        from_value: null,
+                        to_model: curr[bid].model_id,
+                        to_value: curr[bid].value,
+                        unit: curr[bid].unit,
+                        isNew: true
+                    });
+                }
+            });
+        }
+
+        // Order: handovers first (model changes), then new benchmarks, newest date first
+        changes.sort(function(a, b) {
+            if (a.date !== b.date) return a.date < b.date ? 1 : -1;
+            if (!!a.isNew !== !!b.isNew) return a.isNew ? 1 : -1;
+            return 0;
+        });
+
+        if (changes.length === 0) {
+            var none = document.createElement('p');
+            none.className = 'text-gray-500 text-sm';
+            none.textContent = 'No SOTA changes across tracked dates.';
+            container.appendChild(none);
+            return;
+        }
+
+        var handovers = changes.filter(function(c) { return !c.isNew; });
+        var newAdds = changes.filter(function(c) { return c.isNew; });
+
+        function benchName(bid) {
+            var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
+            return b ? b.name : bid;
+        }
+        function modelName(mid) {
+            var m = self.data.models.find(function(x) { return x.id === mid; });
+            return m ? m.name : mid.split('/').pop();
+        }
+
+        if (handovers.length) {
+            var h = document.createElement('h4');
+            h.className = 'text-xs uppercase tracking-wider text-gray-500 mb-2';
+            h.textContent = 'Handovers (' + handovers.length + ')';
+            container.appendChild(h);
+
+            handovers.forEach(function(c) {
+                var row = document.createElement('div');
+                row.className = 'py-1.5 border-b border-gray-800 last:border-b-0 flex items-baseline gap-3 flex-wrap';
+
+                var bench = document.createElement('span');
+                bench.className = 'text-gray-200 font-medium cursor-pointer hover:text-blue-400';
+                bench.textContent = benchName(c.benchmark_id);
+                bench.onclick = function() { Modal.showBenchmark(c.benchmark_id); };
+                row.appendChild(bench);
+
+                var flow = document.createElement('span');
+                flow.className = 'text-gray-500 text-xs';
+                flow.textContent = modelName(c.from_model) + ' (' + c.from_value + ') → ' + modelName(c.to_model) + ' (' + c.to_value + ')';
+                row.appendChild(flow);
+
+                var when = document.createElement('span');
+                when.className = 'text-xs text-gray-600 ml-auto';
+                when.textContent = c.date;
+                row.appendChild(when);
+
+                container.appendChild(row);
+            });
+        }
+
+        if (newAdds.length) {
+            var h2 = document.createElement('h4');
+            h2.className = 'text-xs uppercase tracking-wider text-gray-500 mt-6 mb-2';
+            h2.textContent = 'New benchmarks tracked (' + newAdds.length + ')';
+            container.appendChild(h2);
+
+            var summary = document.createElement('p');
+            summary.className = 'text-gray-500 text-sm';
+            summary.textContent = newAdds.slice(0, 8).map(function(c) { return benchName(c.benchmark_id); }).join(', ') +
+                (newAdds.length > 8 ? ', … +' + (newAdds.length - 8) + ' more' : '');
+            container.appendChild(summary);
+        }
     },
 
     _renderSOTATrend: function(selectedBenchId) {
