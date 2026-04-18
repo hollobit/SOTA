@@ -19,20 +19,20 @@
         </p>
     </header>
 
-    <nav class="flex border-b border-gray-800 px-6 overflow-x-auto flex-nowrap" id="tabs" aria-label="Dashboard sections">
-        <button class="tab-btn active" data-tab="overview">Overview</button>
-        <button class="tab-btn" data-tab="leaderboard">Leaderboard</button>
-        <button class="tab-btn" data-tab="trends">Trends</button>
-        <button class="tab-btn" data-tab="comparison">Comparison</button>
-        <button class="tab-btn" data-tab="frontier-compare">Frontier Compare</button>
-        <button class="tab-btn" data-tab="cyber-coding">Cyber &amp; Coding</button>
-        <button class="tab-btn" data-tab="explorer">Explorer</button>
-        <button class="tab-btn" data-tab="resources">Resources</button>
-        <button class="tab-btn" data-tab="changelog">Changelog</button>
+    <nav class="flex border-b border-gray-800 px-6 overflow-x-auto flex-nowrap" id="tabs" role="tablist" aria-label="Dashboard sections">
+        <button class="tab-btn active" data-tab="overview" role="tab" aria-selected="true" aria-controls="tab-overview" id="tabbtn-overview">Overview</button>
+        <button class="tab-btn" data-tab="leaderboard" role="tab" aria-selected="false" aria-controls="tab-leaderboard" id="tabbtn-leaderboard" tabindex="-1">Leaderboard</button>
+        <button class="tab-btn" data-tab="trends" role="tab" aria-selected="false" aria-controls="tab-trends" id="tabbtn-trends" tabindex="-1">Trends</button>
+        <button class="tab-btn" data-tab="comparison" role="tab" aria-selected="false" aria-controls="tab-comparison" id="tabbtn-comparison" tabindex="-1">Comparison</button>
+        <button class="tab-btn" data-tab="frontier-compare" role="tab" aria-selected="false" aria-controls="tab-frontier-compare" id="tabbtn-frontier-compare" tabindex="-1">Frontier Compare</button>
+        <button class="tab-btn" data-tab="cyber-coding" role="tab" aria-selected="false" aria-controls="tab-cyber-coding" id="tabbtn-cyber-coding" tabindex="-1">Cyber &amp; Coding</button>
+        <button class="tab-btn" data-tab="explorer" role="tab" aria-selected="false" aria-controls="tab-explorer" id="tabbtn-explorer" tabindex="-1">Explorer</button>
+        <button class="tab-btn" data-tab="resources" role="tab" aria-selected="false" aria-controls="tab-resources" id="tabbtn-resources" tabindex="-1">Resources</button>
+        <button class="tab-btn" data-tab="changelog" role="tab" aria-selected="false" aria-controls="tab-changelog" id="tabbtn-changelog" tabindex="-1">Changelog</button>
     </nav>
 
     <main class="px-6 py-6">
-        <section id="tab-overview" class="tab-content">
+        <section id="tab-overview" class="tab-content" role="tabpanel" aria-labelledby="tabbtn-overview">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 <div class="col-span-2">
                     <h2 class="text-lg font-semibold mb-4">SOTA Leaderboard</h2>
@@ -49,7 +49,7 @@
             </div>
         </section>
 
-        <section id="tab-leaderboard" class="tab-content hidden">
+        <section id="tab-leaderboard" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-leaderboard">
             <div class="flex gap-4 mb-6 flex-wrap items-end">
                 <div>
                     <label for="filter-category" class="block text-xs text-gray-400 mb-1">Category</label>
@@ -87,7 +87,7 @@
             <div id="leaderboard-table-container"></div>
         </section>
 
-        <section id="tab-trends" class="tab-content hidden">
+        <section id="tab-trends" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-trends">
             <div class="flex gap-4 mb-6 flex-wrap items-end">
                 <div>
                     <label class="block text-xs text-gray-400 mb-1">Benchmark</label>
@@ -125,7 +125,7 @@
             </div>
         </section>
 
-        <section id="tab-comparison" class="tab-content hidden">
+        <section id="tab-comparison" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-comparison">
             <div class="flex gap-4 mb-4 flex-wrap items-end">
                 <div>
                     <label class="block text-xs text-gray-400 mb-1">Models (X-axis)</label>
@@ -144,7 +144,7 @@
             <div id="cmp-radar-chart" class="h-96 mt-6"></div>
         </section>
 
-        <section id="tab-frontier-compare" class="tab-content hidden">
+        <section id="tab-frontier-compare" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-frontier-compare">
             <h2 class="text-lg font-semibold mb-2">Frontier Model Comparison — Core Benchmarks from System Cards</h2>
             <p class="text-gray-400 text-sm mb-4">PDF System Card / Model Card / 논문에서 공통적으로 사용하는 핵심 벤치마크로 최신 frontier 모델 비교</p>
             <div class="flex gap-4 mb-4 flex-wrap items-end">
@@ -181,7 +181,7 @@
             </div>
         </section>
 
-        <section id="tab-cyber-coding" class="tab-content hidden">
+        <section id="tab-cyber-coding" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-cyber-coding">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div>
                     <h2 class="text-lg font-semibold mb-4">Cybersecurity Attack Capabilities</h2>
@@ -233,7 +233,7 @@
             </div>
         </section>
 
-        <section id="tab-explorer" class="tab-content hidden">
+        <section id="tab-explorer" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-explorer">
             <h2 class="text-lg font-semibold mb-4">Model Explorer — Compare up to 4 models</h2>
             <div class="flex gap-3 mb-6 flex-wrap items-end">
                 <div>
@@ -269,7 +269,7 @@
             <div id="comparison-result" class="overflow-x-auto"></div>
         </section>
 
-        <section id="tab-resources" class="tab-content hidden">
+        <section id="tab-resources" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-resources">
             <h2 class="text-lg font-semibold mb-4">Data Sources &amp; References</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -283,7 +283,7 @@
             </div>
         </section>
 
-        <section id="tab-changelog" class="tab-content hidden">
+        <section id="tab-changelog" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-changelog">
             <div id="changelog-list"></div>
         </section>
     </main>

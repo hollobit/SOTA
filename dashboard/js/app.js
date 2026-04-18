@@ -156,23 +156,45 @@ var App = {
 
     setupTabs: function() {
         var self = this;
-        document.querySelectorAll('.tab-btn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-                document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.add('hidden'); });
-                btn.classList.add('active');
-                var tab = document.getElementById('tab-' + btn.dataset.tab);
-                if (tab) tab.classList.remove('hidden');
-                // Update URL hash without triggering hashchange re-navigation
-                history.replaceState(null, '', '#' + btn.dataset.tab);
-                if (btn.dataset.tab === 'overview') self.renderOverview();
-                if (btn.dataset.tab === 'trends') self.renderTrends();
-                if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
-                if (btn.dataset.tab === 'comparison') Comparison.render();
-                if (btn.dataset.tab === 'frontier-compare') FrontierCompare.render(document.getElementById('fc-category').value);
-                if (btn.dataset.tab === 'cyber-coding') CyberCoding.render();
-                if (btn.dataset.tab === 'resources') self.renderResources();
-                if (btn.dataset.tab === 'changelog') self.renderChangelog();
+        var tabBtns = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
+
+        function activate(btn, focusBtn) {
+            tabBtns.forEach(function(b) {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+                b.setAttribute('tabindex', '-1');
+            });
+            document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.add('hidden'); });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+            btn.setAttribute('tabindex', '0');
+            var tab = document.getElementById('tab-' + btn.dataset.tab);
+            if (tab) tab.classList.remove('hidden');
+            history.replaceState(null, '', '#' + btn.dataset.tab);
+            if (focusBtn) btn.focus();
+
+            if (btn.dataset.tab === 'overview') self.renderOverview();
+            if (btn.dataset.tab === 'trends') self.renderTrends();
+            if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
+            if (btn.dataset.tab === 'comparison') Comparison.render();
+            if (btn.dataset.tab === 'frontier-compare') FrontierCompare.render(document.getElementById('fc-category').value);
+            if (btn.dataset.tab === 'cyber-coding') CyberCoding.render();
+            if (btn.dataset.tab === 'resources') self.renderResources();
+            if (btn.dataset.tab === 'changelog') self.renderChangelog();
+        }
+
+        tabBtns.forEach(function(btn, i) {
+            btn.addEventListener('click', function() { activate(btn, false); });
+            btn.addEventListener('keydown', function(e) {
+                var next = null;
+                if (e.key === 'ArrowRight')     next = tabBtns[(i + 1) % tabBtns.length];
+                else if (e.key === 'ArrowLeft') next = tabBtns[(i - 1 + tabBtns.length) % tabBtns.length];
+                else if (e.key === 'Home')      next = tabBtns[0];
+                else if (e.key === 'End')       next = tabBtns[tabBtns.length - 1];
+                if (next) {
+                    e.preventDefault();
+                    activate(next, true);
+                }
             });
         });
     },
