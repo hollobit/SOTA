@@ -1,8 +1,9 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Phase 9 완료 — `/design-review` 16 atomic fixes (2026-04-18)
-63 models · 91 benchmarks · 707 scores · 78 SOTA records · 15 PDF sources · 26 web sources
+## Current Status: PR #1 생성, main 머지 대기 (2026-04-18)
+67 models · 95 benchmarks · 721 scores · 78 SOTA records · 15 PDF sources · 26 web sources
 **Live Site**: https://hollobit.github.io/SOTA/
+**PR**: https://github.com/hollobit/SOTA/pull/1 (`feat/llm-benchmark-dashboard` → `main`, 105 commits)
 **Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-** (see `.gstack/design-reports/final-report-2026-04-18.md`)
 
 ---
