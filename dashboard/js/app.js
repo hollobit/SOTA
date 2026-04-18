@@ -137,7 +137,7 @@ var App = {
         }).then(function(changelog) {
             self.data.changelog = changelog || [];
 
-            var boardNames = ['chatbot-arena', 'open-llm', 'seal'];
+            var boardNames = ['chatbot-arena'];
             var base2 = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
             return Promise.all(boardNames.map(function(name) {
                 return self._fetch(base2 + '/leaderboards/' + name + '.json').then(function(data) {
