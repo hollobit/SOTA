@@ -246,8 +246,6 @@ var CyberCoding = {
             return b ? b.name : bid;
         });
 
-        var colors = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
-
         var series = benchmarkIds.map(function(bid, i) {
             return {
                 name: benchNames[i],
@@ -255,7 +253,7 @@ var CyberCoding = {
                 data: modelIds.map(function(mid) {
                     return (modelScores[mid] && modelScores[mid][bid]) || 0;
                 }),
-                itemStyle: { color: colors[i % colors.length] },
+                itemStyle: { color: Theme.series[i % Theme.series.length] },
                 barGap: '10%'
             };
         });
@@ -265,20 +263,20 @@ var CyberCoding = {
             tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
             legend: {
                 data: benchNames,
-                textStyle: { color: '#9ca3af', fontSize: 10 },
+                textStyle: { color: Theme.textMuted, fontSize: 10 },
                 top: 0
             },
             grid: { left: 8, right: 16, bottom: 40, top: 40, containLabel: true },
             xAxis: {
                 type: 'category',
                 data: modelIds.map(function(mid) { return self._getModelName(mid); }),
-                axisLabel: { color: '#9ca3af', fontSize: 9, rotate: 30 },
-                axisLine: { lineStyle: { color: '#374151' } }
+                axisLabel: { color: Theme.textMuted, fontSize: 9, rotate: 30 },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
             },
             yAxis: {
                 type: 'value',
-                axisLabel: { color: '#9ca3af' },
-                splitLine: { lineStyle: { color: '#1f2937' } }
+                axisLabel: { color: Theme.textMuted },
+                splitLine: { lineStyle: { color: Theme.border } }
             },
             series: series
         };
@@ -352,18 +350,18 @@ var CyberCoding = {
                     // color based on relative position
                     var ratio = maxes[bid] > 0 ? val / maxes[bid] : 0;
                     if (ratio >= 0.95) {
-                        td.style.color = '#10b981';
+                        td.style.color = Theme.series[0];
                         td.style.fontWeight = 'bold';
                     } else if (ratio >= 0.8) {
-                        td.style.color = '#3b82f6';
+                        td.style.color = Theme.series[1];
                     } else if (ratio >= 0.6) {
-                        td.style.color = '#f59e0b';
+                        td.style.color = Theme.series[2];
                     } else {
-                        td.style.color = '#ef4444';
+                        td.style.color = Theme.series[3];
                     }
                 } else {
                     td.textContent = '\u2014';
-                    td.style.color = '#4b5563';
+                    td.style.color = Theme.textDisabled;
                 }
                 tr.appendChild(td);
             });
@@ -407,19 +405,18 @@ var CyberCoding = {
             return { name: name, max: axisMax };
         });
 
-        var colors = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
-
         var series = [{
             type: 'radar',
             data: topModels.map(function(mid, i) {
+                var color = Theme.rankColor(i);
                 return {
                     name: self._getModelName(mid),
                     value: allBenchmarks.map(function(bid) {
                         return (modelScores[mid] && modelScores[mid][bid]) || 0;
                     }),
-                    lineStyle: { color: colors[i], width: 2 },
-                    itemStyle: { color: colors[i] },
-                    areaStyle: { color: colors[i], opacity: 0.08 }
+                    lineStyle: { color: color, width: 2 },
+                    itemStyle: { color: color },
+                    areaStyle: { color: color, opacity: 0.08 }
                 };
             })
         }];
@@ -429,17 +426,17 @@ var CyberCoding = {
             tooltip: {},
             legend: {
                 data: topModels.map(function(mid) { return self._getModelName(mid); }),
-                textStyle: { color: '#9ca3af', fontSize: 11 },
+                textStyle: { color: Theme.textMuted, fontSize: 11 },
                 top: 0
             },
             radar: {
                 indicator: indicators,
                 shape: 'polygon',
                 splitNumber: 5,
-                axisName: { color: '#9ca3af', fontSize: 10 },
-                splitLine: { lineStyle: { color: '#1f2937' } },
+                axisName: { color: Theme.textMuted, fontSize: 10 },
+                splitLine: { lineStyle: { color: Theme.border } },
                 splitArea: { areaStyle: { color: ['transparent'] } },
-                axisLine: { lineStyle: { color: '#374151' } }
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
             },
             series: series
         };

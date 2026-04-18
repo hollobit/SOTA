@@ -574,33 +574,30 @@ var App = {
         var trendChart = Charts._getOrCreate('trend-chart');
         if (trendChart) {
             var colors = entries.map(function(e, i) {
-                if (e.source === 'pdf') return '#8b5cf6';
-                if (i === 0) return '#10b981';
-                if (i === 1) return '#3b82f6';
-                if (i === 2) return '#f59e0b';
-                return '#6b7280';
+                if (e.source === 'pdf') return Theme.sourcePdf;
+                return Theme.rankColor(i);
             });
             trendChart.setOption({
-                title: { text: benchName + ' — Model Rankings', left: 'center', textStyle: { color: '#e5e7eb' } },
+                title: { text: benchName + ' — Model Rankings', left: 'center', textStyle: { color: Theme.textPrimary } },
                 tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
                 grid: { left: 8, right: 16, bottom: 60, top: 40, containLabel: true },
                 xAxis: {
                     type: 'category',
                     data: entries.map(function(e) { return e.name; }),
-                    axisLabel: { color: '#9ca3af', fontSize: 9, rotate: 35 },
-                    axisLine: { lineStyle: { color: '#374151' } }
+                    axisLabel: { color: Theme.textMuted, fontSize: 9, rotate: 35 },
+                    axisLine: { lineStyle: { color: Theme.borderStrong } }
                 },
                 yAxis: {
                     type: 'value',
-                    axisLabel: { color: '#9ca3af' },
-                    splitLine: { lineStyle: { color: '#1f2937' } }
+                    axisLabel: { color: Theme.textMuted },
+                    splitLine: { lineStyle: { color: Theme.border } }
                 },
                 series: [{
                     type: 'bar',
                     data: entries.map(function(e, i) {
                         return { value: e.value, itemStyle: { color: colors[i] } };
                     }),
-                    label: { show: true, position: 'top', color: '#d1d5db', fontSize: 9,
+                    label: { show: true, position: 'top', color: Theme.textSecondary, fontSize: 9,
                         formatter: function(p) { return p.value > 500 ? Math.round(p.value) : p.value.toFixed(1); }
                     }
                 }]
@@ -718,7 +715,7 @@ var App = {
             : 'SOTA Score Trends (Top 10 Benchmarks)';
 
         chart.setOption({
-            title: { text: title, left: 'center', textStyle: { color: '#e5e7eb', fontSize: 13 } },
+            title: { text: title, left: 'center', textStyle: { color: Theme.textPrimary, fontSize: 13 } },
             tooltip: {
                 trigger: 'axis',
                 formatter: function(params) {
@@ -734,19 +731,19 @@ var App = {
             },
             legend: {
                 bottom: 0, type: 'scroll',
-                textStyle: { color: '#9ca3af', fontSize: 10 }
+                textStyle: { color: Theme.textMuted, fontSize: 10 }
             },
             grid: { left: 50, right: 20, top: 40, bottom: 50 },
             xAxis: {
                 type: 'category',
                 data: dates,
-                axisLabel: { color: '#9ca3af' },
-                axisLine: { lineStyle: { color: '#374151' } }
+                axisLabel: { color: Theme.textMuted },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
             },
             yAxis: {
                 type: 'value',
-                axisLabel: { color: '#9ca3af' },
-                splitLine: { lineStyle: { color: '#1f2937' } }
+                axisLabel: { color: Theme.textMuted },
+                splitLine: { lineStyle: { color: Theme.border } }
             },
             series: series
         }, true);

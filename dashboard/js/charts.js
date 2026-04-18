@@ -158,27 +158,25 @@ var Charts = {
             xAxis: {
                 type: 'category', data: benchmarks,
                 axisLabel: { rotate: 45, fontSize: 10 },
-                axisLine: { lineStyle: { color: '#374151' } }
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
             },
             yAxis: {
                 type: 'category', data: models,
                 axisLabel: { fontSize: 10 },
-                axisLine: { lineStyle: { color: '#374151' } }
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
             },
             visualMap: {
                 min: 0, max: 100, calculable: true,
                 orient: 'horizontal', left: 'center', bottom: 0,
-                inRange: {
-                    color: ['#1e1b4b', '#312e81', '#4338ca', '#6366f1', '#818cf8', '#22c55e', '#4ade80']
-                },
-                textStyle: { color: '#9ca3af' },
+                inRange: { color: Theme.heatmap },
+                textStyle: { color: Theme.textMuted },
                 text: ['Best', 'Worst']
             },
             series: [{
                 type: 'heatmap',
                 data: data.map(function(d) { return [d[0], d[1], d[3]]; }),
                 label: {
-                    show: true, fontSize: 9, color: '#e5e7eb',
+                    show: true, fontSize: 9, color: Theme.textPrimary,
                     formatter: function(p) {
                         // Show raw value, not normalized
                         var raw = data.find(function(d) { return d[0] === p.value[0] && d[1] === p.value[1]; });
@@ -189,7 +187,7 @@ var Charts = {
                         return '';
                     }
                 },
-                emphasis: { itemStyle: { borderColor: '#fff', borderWidth: 1 } }
+                emphasis: { itemStyle: { borderColor: Theme.textWhite, borderWidth: 1 } }
             }]
         }, true);
     }
