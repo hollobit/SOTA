@@ -94,3 +94,39 @@
     padding: var(--space-4);
     margin-bottom: var(--space-3);
 }
+
+/* ===== Motion ==========================================================
+   Three intentional motions only:
+   1. Tab activation — already handled by .tab-btn transition (color only).
+   2. Modal enter/exit — fade + light scale, 160ms.
+   3. Tabpanel enter — 120ms fade so tab-switch isn't a jarring swap.
+   All motion scoped to specific properties; `prefers-reduced-motion: reduce`
+   collapses every duration to 1ms so users who opt out get instant state
+   changes. */
+#modal-overlay {
+    opacity: 0;
+    transition: opacity 160ms ease-out;
+}
+#modal-overlay:not(.hidden) { opacity: 1; }
+#modal-overlay > [role="dialog"] {
+    transform: scale(0.98);
+    transition: transform 160ms ease-out;
+}
+#modal-overlay:not(.hidden) > [role="dialog"] { transform: scale(1); }
+
+.tab-content {
+    animation: tabpanel-enter 120ms ease-out;
+}
+@keyframes tabpanel-enter {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+        scroll-behavior: auto !important;
+    }
+}
