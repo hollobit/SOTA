@@ -6,11 +6,16 @@ on:
     - cron: "0 3 * * 3,6"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   discover:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ops
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -32,4 +37,4 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --quiet || git commit -m "chore: auto-discovery update"
-          git push
+          git push origin HEAD:ops
