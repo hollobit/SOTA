@@ -300,9 +300,47 @@ var App = {
         try { self._renderRecentChanges(); } catch(e) { console.warn('Recent changes error:', e); }
     },
 
+    _sotaCategoryFilter: null,
+
+    _renderSOTACategoryFilter: function() {
+        var self = this;
+        var filterEl = document.getElementById('sota-category-filter');
+        if (!filterEl) return;
+        filterEl.textContent = '';
+
+        var cats = {};
+        Object.keys(this.data.sota).forEach(function(bid) {
+            var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
+            var cat = b ? b.category : 'other';
+            cats[cat] = (cats[cat] || 0) + 1;
+        });
+        var catNames = Object.keys(cats).sort(function(a, b) { return cats[b] - cats[a]; });
+
+        function mkPill(label, key, count) {
+            var btn = document.createElement('button');
+            var isActive = (self._sotaCategoryFilter === key) || (key === null && self._sotaCategoryFilter === null);
+            btn.className = 'text-xs px-2.5 py-1 rounded-full border transition ' +
+                (isActive
+                    ? 'bg-blue-500 border-blue-500 text-white'
+                    : 'bg-gray-800 border-gray-700 text-gray-300 hover:border-gray-500');
+            btn.textContent = label + (count !== undefined ? ' · ' + count : '');
+            btn.onclick = function() {
+                self._sotaCategoryFilter = key;
+                self._renderSOTACategoryFilter();
+                self._renderSOTATable();
+            };
+            return btn;
+        }
+
+        var total = Object.keys(this.data.sota).length;
+        filterEl.appendChild(mkPill('All', null, total));
+        catNames.forEach(function(cat) { filterEl.appendChild(mkPill(cat, cat, cats[cat])); });
+    },
+
     _renderSOTATable: function() {
         var container = document.getElementById('sota-table-container');
         container.textContent = '';
+        this._renderSOTACategoryFilter();
         var table = document.createElement('table');
         table.className = 'sota-table';
 
@@ -318,7 +356,12 @@ var App = {
 
         var tbody = document.createElement('tbody');
         var self = this;
-        var entries = Object.keys(this.data.sota).sort();
+        var filter = this._sotaCategoryFilter;
+        var entries = Object.keys(this.data.sota).sort().filter(function(benchId) {
+            if (filter === null) return true;
+            var b = self.data.benchmarks.find(function(x) { return x.id === benchId; });
+            return (b ? b.category : 'other') === filter;
+        });
         entries.forEach(function(benchId) {
             var info = self.data.sota[benchId];
             var bench = self.data.benchmarks.find(function(b) { return b.id === benchId; });
