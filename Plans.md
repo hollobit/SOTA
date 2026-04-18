@@ -89,12 +89,12 @@
 - [ ] 시간별 SOTA 변화 추적 (트렌드 차트 데이터)
 - [ ] 모델 성능/비용 효율성 분석 (Artificial Analysis 데이터 연동)
 
-### cc:TODO — 디자인 후속 (2026-04-18 `/design-review` 미처리)
-- [ ] F-005: Overview 탭 IA 재구성 — SOTA Leaderboard를 full-width primary로 승격, Leaderboard Rankings는 사이드바로 강등, Recent Changes는 fold 아래로 이동 (상품 의사결정 필요)
-- [ ] F-006: 카드 → 레이아웃 전환 — Resources / Benchmark descriptions / Explorer stats의 decorative 카드를 테이블/인라인 리스트/분할 판넬로 재구성 (제품 결정 필요, 복수 파일 대규모 리팩터)
-- [ ] F-016: Tailwind Play CDN → 빌드 파이프라인 — `cdn.tailwindcss.com` production 경고 제거. `package.json` + Tailwind CLI + `scripts/deploy_github_pages.sh` 수정 필요
-- [ ] Typography ramp 확장 — 현재 24/18/14 3단계 + label text-xs. 데이터 dashboard용 5단계 (display/section/widget/body/caption) 램프 정의 (F-010 follow-up)
-- [ ] Motion 언어 정의 — 2-3개의 의도적 모션 (tab activation, modal enter/exit, chart reveal). `prefers-reduced-motion` 미디어 쿼리 추가 (F-017 follow-up)
+### Completed (2026-04-18 `/design-review` follow-up — 22 atomic commits)
+- [x] F-005: Overview 탭 IA 재구성 — SOTA Leaderboard를 full-width primary로 승격, Leaderboard Rankings + Recent Changes는 2-column secondary로 강등 (commit `c199996`)
+- [x] F-006: 카드 → 레이아웃 전환 — Resources PDF/Sites를 bordered-row 리스트로, Cyber & Coding benchmark descriptions를 uppercase-tracked 4-column glossary로 재구성 (commit `ad8cda7`)
+- [x] F-016: Tailwind Play CDN → 빌드 파이프라인 — `package.json` + `tailwind.config.js` + `dashboard/src/tailwind.css` + `npm run build:css` → 13.7KB 번들 (commit `59f8ca9`)
+- [x] Typography ramp — `text-display / text-section / text-widget / text-meta` 시맨틱 스케일을 Tailwind theme에 등록. H3가 더 이상 본문보다 작지 않음 (commit `b7acce2`)
+- [x] Motion 언어 — modal fade+scale (160ms), tab-panel enter (120ms), `@media (prefers-reduced-motion: reduce)` 전면 적용 (commit `dbe7462`)
 
 ---
 
