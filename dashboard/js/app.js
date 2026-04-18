@@ -626,6 +626,7 @@ var App = {
 
     renderTrends: function() {
         this._renderSOTAChangeLog();
+        this._renderCorrelationChart();
         var benchId = document.getElementById('trend-benchmark').value;
         if (!benchId) { this._renderSOTATrend(null); return; }
 
@@ -851,6 +852,124 @@ var App = {
                 (newAdds.length > 8 ? ', … +' + (newAdds.length - 8) + ' more' : '');
             container.appendChild(summary);
         }
+    },
+
+    _renderCorrelationChart: function() {
+        var self = this;
+        var el = document.getElementById('correlation-chart');
+        if (!el) return;
+
+        // Build model→{benchId: value} table
+        var modelScores = {};
+        this.data.scores.forEach(function(s) {
+            if (typeof s.value !== 'number') return;
+            if (!modelScores[s.model_id]) modelScores[s.model_id] = {};
+            // Prefer higher score if duplicates exist
+            var prev = modelScores[s.model_id][s.benchmark_id];
+            if (prev === undefined || s.value > prev) modelScores[s.model_id][s.benchmark_id] = s.value;
+        });
+
+        // Count coverage per benchmark, pick top 15 where the value range looks
+        // like a percentage (so correlation is meaningful).
+        var benchCount = {};
+        var benchMax = {};
+        Object.values(modelScores).forEach(function(bm) {
+            Object.keys(bm).forEach(function(bid) {
+                benchCount[bid] = (benchCount[bid] || 0) + 1;
+                benchMax[bid] = Math.max(benchMax[bid] || 0, bm[bid]);
+            });
+        });
+
+        var candidateIds = Object.keys(benchCount).filter(function(bid) {
+            return benchCount[bid] >= 10 && benchMax[bid] <= 100;
+        });
+        candidateIds.sort(function(a, b) { return benchCount[b] - benchCount[a]; });
+        var topIds = candidateIds.slice(0, 15);
+
+        if (topIds.length < 3) {
+            el.textContent = '';
+            var p = document.createElement('p');
+            p.className = 'text-gray-500 text-sm';
+            p.textContent = 'Not enough benchmarks meet the coverage threshold (N ≥ 10 models).';
+            el.appendChild(p);
+            return;
+        }
+
+        function pearson(a, b) {
+            var n = a.length;
+            if (n < 5) return null;
+            var sumA = 0, sumB = 0;
+            for (var i = 0; i < n; i++) { sumA += a[i]; sumB += b[i]; }
+            var meanA = sumA / n, meanB = sumB / n;
+            var num = 0, denA = 0, denB = 0;
+            for (var j = 0; j < n; j++) {
+                var dA = a[j] - meanA, dB = b[j] - meanB;
+                num += dA * dB; denA += dA * dA; denB += dB * dB;
+            }
+            var denom = Math.sqrt(denA * denB);
+            return denom > 0 ? num / denom : null;
+        }
+
+        var data = [];
+        for (var i = 0; i < topIds.length; i++) {
+            for (var j = 0; j < topIds.length; j++) {
+                var bidA = topIds[i], bidB = topIds[j];
+                var va = [], vb = [];
+                Object.values(modelScores).forEach(function(bm) {
+                    if (bm[bidA] !== undefined && bm[bidB] !== undefined) {
+                        va.push(bm[bidA]); vb.push(bm[bidB]);
+                    }
+                });
+                var r = (i === j) ? 1 : pearson(va, vb);
+                data.push([j, i, r === null ? null : +r.toFixed(2), va.length]);
+            }
+        }
+
+        var labels = topIds.map(function(bid) {
+            var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
+            var name = b ? b.name : bid;
+            return name.replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ').replace("Humanity's Last Exam", 'HLE');
+        });
+
+        var chart = Charts._getOrCreate('correlation-chart');
+        if (!chart) return;
+        chart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+                formatter: function(p) {
+                    var r = p.value[2];
+                    var n = p.value[3];
+                    if (r === null) return labels[p.value[1]] + ' ↔ ' + labels[p.value[0]] + '<br/>(N = ' + n + ': too few shared models)';
+                    return labels[p.value[1]] + ' ↔ ' + labels[p.value[0]] + '<br/>r = ' + r.toFixed(2) + ' (N = ' + n + ')';
+                }
+            },
+            grid: { left: 140, right: 30, top: 20, bottom: 110 },
+            xAxis: {
+                type: 'category', data: labels,
+                axisLabel: { rotate: 45, fontSize: 10, color: Theme.textMuted },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
+            },
+            yAxis: {
+                type: 'category', data: labels,
+                axisLabel: { fontSize: 10, color: Theme.textMuted },
+                axisLine: { lineStyle: { color: Theme.borderStrong } }
+            },
+            visualMap: {
+                min: -1, max: 1, calculable: true, orient: 'horizontal',
+                left: 'center', bottom: 30,
+                inRange: { color: ['#ef4444', '#1f2937', '#10b981'] },
+                textStyle: { color: Theme.textMuted },
+                text: ['r = +1', 'r = -1']
+            },
+            series: [{
+                type: 'heatmap',
+                data: data.map(function(d) { return [d[0], d[1], d[2]]; }),
+                label: {
+                    show: true, fontSize: 9, color: Theme.textPrimary,
+                    formatter: function(p) { return p.value[2] === null ? '—' : p.value[2].toFixed(2); }
+                }
+            }]
+        }, true);
     },
 
     _renderSOTATrend: function(selectedBenchId) {
