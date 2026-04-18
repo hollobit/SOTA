@@ -50,24 +50,39 @@
         </section>
 
         <section id="tab-leaderboard" class="tab-content hidden">
-            <div class="flex gap-4 mb-6 flex-wrap">
-                <select id="filter-category" class="bg-gray-800 border border-gray-700 rounded px-3 py-2">
-                    <option value="">All Categories</option>
-                </select>
-                <select id="filter-type" class="bg-gray-800 border border-gray-700 rounded px-3 py-2">
-                    <option value="">All Types</option>
-                    <option value="proprietary">Proprietary</option>
-                    <option value="open-weight">Open Weight</option>
-                    <option value="open-source">Open Source</option>
-                </select>
-                <select id="filter-source" class="bg-gray-800 border border-gray-700 rounded px-3 py-2">
-                    <option value="">All Sources</option>
-                </select>
-                <select id="filter-benchmark" class="bg-gray-800 border border-gray-700 rounded px-3 py-2">
-                    <option value="">All Benchmarks</option>
-                </select>
-                <input type="text" id="filter-search" placeholder="Search models or benchmarks..."
-                       class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-64">
+            <div class="flex gap-4 mb-6 flex-wrap items-end">
+                <div>
+                    <label for="filter-category" class="block text-xs text-gray-400 mb-1">Category</label>
+                    <select id="filter-category" class="bg-gray-800 border border-gray-700 rounded px-3 py-2">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filter-type" class="block text-xs text-gray-400 mb-1">Model Type</label>
+                    <select id="filter-type" class="bg-gray-800 border border-gray-700 rounded px-3 py-2">
+                        <option value="">All Types</option>
+                        <option value="proprietary">Proprietary</option>
+                        <option value="open-weight">Open Weight</option>
+                        <option value="open-source">Open Source</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filter-source" class="block text-xs text-gray-400 mb-1">Source</label>
+                    <select id="filter-source" class="bg-gray-800 border border-gray-700 rounded px-3 py-2">
+                        <option value="">All Sources</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filter-benchmark" class="block text-xs text-gray-400 mb-1">Benchmark</label>
+                    <select id="filter-benchmark" class="bg-gray-800 border border-gray-700 rounded px-3 py-2">
+                        <option value="">All Benchmarks</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filter-search" class="block text-xs text-gray-400 mb-1">Search</label>
+                    <input type="text" id="filter-search" placeholder="Model or benchmark name..."
+                           class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-64">
+                </div>
             </div>
             <div id="leaderboard-table-container"></div>
         </section>
