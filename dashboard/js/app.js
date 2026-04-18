@@ -135,7 +135,10 @@ var App = {
                     });
                 }));
             }).then(function() {
-                return self._fetch(base + '/reports/changelog.json');
+                return self._fetch(base + '/aa_pricing.json').then(function(pricing) {
+                    if (pricing && pricing.models) self.data.pricing = pricing.models;
+                    return self._fetch(base + '/reports/changelog.json');
+                });
             });
         }).then(function(changelog) {
             self.data.changelog = changelog || [];
@@ -627,6 +630,7 @@ var App = {
     renderTrends: function() {
         this._renderSOTAChangeLog();
         this._renderCorrelationChart();
+        this._renderPricingChart();
         var benchId = document.getElementById('trend-benchmark').value;
         if (!benchId) { this._renderSOTATrend(null); return; }
 
@@ -969,6 +973,115 @@ var App = {
                     formatter: function(p) { return p.value[2] === null ? '—' : p.value[2].toFixed(2); }
                 }
             }]
+        }, true);
+    },
+
+    _renderPricingChart: function() {
+        var self = this;
+        var el = document.getElementById('pricing-chart');
+        if (!el) return;
+
+        var pricing = this.data.pricing || [];
+        var points = pricing
+            .filter(function(p) {
+                return typeof p.intelligence_index === 'number' && typeof p.price_per_1m_output === 'number';
+            })
+            .map(function(p) {
+                var model = self.data.models.find(function(m) { return m.id === p.model_id; });
+                return {
+                    name: model ? model.name : p.model_id.split('/').pop(),
+                    value: [p.price_per_1m_output, p.intelligence_index, p.tokens_per_second || 0],
+                    vendor: model ? model.vendor : p.model_id.split('/')[0],
+                    model_id: p.model_id
+                };
+            });
+
+        if (points.length === 0) {
+            el.textContent = '';
+            var msg = document.createElement('p');
+            msg.className = 'text-gray-500 text-sm';
+            msg.textContent = 'No pricing data available.';
+            el.appendChild(msg);
+            return;
+        }
+
+        var vendorColors = {
+            'Anthropic': Theme.series[0],
+            'OpenAI': Theme.series[1],
+            'Google': Theme.series[2],
+            'Moonshot AI': Theme.series[3],
+            'DeepSeek': Theme.series[4],
+            'Zhipu AI': Theme.series[5],
+            'xAI': '#ec4899',
+            'Meta': '#60a5fa'
+        };
+
+        // Group by vendor for colored legend
+        var vendorGroups = {};
+        points.forEach(function(p) {
+            var v = p.vendor || 'Other';
+            if (!vendorGroups[v]) vendorGroups[v] = [];
+            vendorGroups[v].push(p);
+        });
+
+        var series = Object.keys(vendorGroups).map(function(vendor) {
+            return {
+                name: vendor,
+                type: 'scatter',
+                data: vendorGroups[vendor],
+                symbolSize: function(val) {
+                    var tps = val[2];
+                    if (!tps) return 16;
+                    return 10 + Math.min(18, tps / 10);
+                },
+                itemStyle: { color: vendorColors[vendor] || Theme.textMuted, opacity: 0.85 },
+                label: {
+                    show: true, position: 'right', fontSize: 9, color: Theme.textMuted,
+                    formatter: function(p) { return p.data.name; }
+                },
+                emphasis: {
+                    focus: 'series',
+                    label: { fontSize: 11, color: Theme.textPrimary }
+                }
+            };
+        });
+
+        var chart = Charts._getOrCreate('pricing-chart');
+        if (!chart) return;
+        chart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+                trigger: 'item',
+                formatter: function(p) {
+                    var d = p.data;
+                    return '<strong>' + d.name + '</strong><br/>' +
+                        'Intelligence: ' + d.value[1] + '<br/>' +
+                        'Output price: $' + d.value[0].toFixed(2) + ' / 1M<br/>' +
+                        (d.value[2] ? 'Speed: ' + d.value[2].toFixed(1) + ' tok/s<br/>' : '') +
+                        '<span style="color:' + Theme.textDim + ';font-size:10px">' + d.model_id + '</span>';
+                }
+            },
+            legend: {
+                data: Object.keys(vendorGroups),
+                textStyle: { color: Theme.textMuted },
+                bottom: 0
+            },
+            grid: { left: 60, right: 100, top: 20, bottom: 60 },
+            xAxis: {
+                type: 'log', name: 'Output price ($/1M tokens, log)', nameLocation: 'middle', nameGap: 30,
+                nameTextStyle: { color: Theme.textMuted, fontSize: 11 },
+                axisLabel: { color: Theme.textMuted, formatter: function(v) { return '$' + v; } },
+                axisLine: { lineStyle: { color: Theme.borderStrong } },
+                splitLine: { lineStyle: { color: Theme.border } }
+            },
+            yAxis: {
+                type: 'value', name: 'Intelligence Index', nameLocation: 'middle', nameGap: 40,
+                nameTextStyle: { color: Theme.textMuted, fontSize: 11 },
+                axisLabel: { color: Theme.textMuted },
+                axisLine: { lineStyle: { color: Theme.borderStrong } },
+                splitLine: { lineStyle: { color: Theme.border } }
+            },
+            series: series
         }, true);
     },
 
