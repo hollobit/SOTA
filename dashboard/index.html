@@ -289,9 +289,9 @@
     </main>
 
     <!-- Modal overlay -->
-    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden flex items-center justify-center p-4" onclick="if(event.target===this){this.classList.add('hidden');var a=document.querySelector('.tab-btn.active');if(a)history.replaceState(null,'','#'+a.dataset.tab)}">
-        <div class="bg-gray-900 border border-gray-700 rounded-xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 relative">
-            <button onclick="document.getElementById('modal-overlay').classList.add('hidden');var a=document.querySelector('.tab-btn.active');if(a)history.replaceState(null,'','#'+a.dataset.tab)" class="absolute top-3 right-3 text-gray-400 hover:text-white text-xl">&times;</button>
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden flex items-center justify-center p-4" role="presentation">
+        <div class="bg-gray-900 border border-gray-700 rounded-xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 relative" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button id="modal-close" class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center text-gray-400 hover:text-white text-xl rounded focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-400" aria-label="Close dialog">&times;</button>
             <div id="modal-content"></div>
         </div>
     </div>

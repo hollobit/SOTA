@@ -86,11 +86,47 @@ var Modal = {
         aime_2026: { desc: 'AIME 2026 — American Invitational Mathematics Examination 2026 problems.', paper: 'https://matharena.ai', year: '2026' }
     },
 
+    _lastTrigger: null,
+
     init: function() {
         var base = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
         fetch(base + '/bmt_connections.json').then(function(r) {
             return r.ok ? r.json() : {};
         }).then(function(d) { Modal._bmtData = d; }).catch(function() { Modal._bmtData = {}; });
+
+        var overlay = document.getElementById('modal-overlay');
+        var close = document.getElementById('modal-close');
+        if (overlay) {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) Modal.close();
+            });
+        }
+        if (close) {
+            close.addEventListener('click', function() { Modal.close(); });
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key !== 'Escape') return;
+            if (overlay && !overlay.classList.contains('hidden')) Modal.close();
+        });
+    },
+
+    _open: function(trigger) {
+        Modal._lastTrigger = trigger || document.activeElement;
+        var overlay = document.getElementById('modal-overlay');
+        overlay.classList.remove('hidden');
+        var closeBtn = document.getElementById('modal-close');
+        if (closeBtn) closeBtn.focus();
+    },
+
+    close: function() {
+        var overlay = document.getElementById('modal-overlay');
+        if (overlay) overlay.classList.add('hidden');
+        var a = document.querySelector('.tab-btn.active');
+        if (a) history.replaceState(null, '', '#' + a.dataset.tab);
+        if (Modal._lastTrigger && typeof Modal._lastTrigger.focus === 'function') {
+            try { Modal._lastTrigger.focus(); } catch (e) { /* detached node */ }
+        }
+        Modal._lastTrigger = null;
     },
 
     _makeLabel: function(labelText, valueText) {
@@ -132,6 +168,7 @@ var Modal = {
 
         // Title
         var h2 = document.createElement('h2');
+        h2.id = 'modal-title';
         h2.className = 'text-xl font-bold text-white mb-1';
         h2.textContent = bench.name;
         container.appendChild(h2);
@@ -254,7 +291,7 @@ var Modal = {
         table.appendChild(tbody);
         container.appendChild(table);
 
-        document.getElementById('modal-overlay').classList.remove('hidden');
+        Modal._open();
     },
 
     showModel: function(modelId) {
@@ -276,6 +313,7 @@ var Modal = {
         container.textContent = '';
 
         var h2 = document.createElement('h2');
+        h2.id = 'modal-title';
         h2.className = 'text-xl font-bold text-white mb-1';
         h2.textContent = model.name;
         container.appendChild(h2);
@@ -362,6 +400,6 @@ var Modal = {
             container.appendChild(section);
         });
 
-        document.getElementById('modal-overlay').classList.remove('hidden');
+        Modal._open();
     }
 };
