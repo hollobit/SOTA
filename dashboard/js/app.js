@@ -383,7 +383,7 @@ var App = {
             card.className = 'leaderboard-card';
 
             var h3 = document.createElement('h3');
-            h3.className = 'font-semibold text-sm text-gray-300 mb-1';
+            h3.className = 'text-widget text-gray-300 mb-1';
             h3.textContent = meta.title;
             card.appendChild(h3);
 
