@@ -88,6 +88,36 @@ var Modal = {
 
     _lastTrigger: null,
 
+    // Filename (as stored in score.source.url) → public canonical URL.
+    // When a score's source is a local PDF, we can't link to the PDF on
+    // GitHub Pages (they are not deployed), but we can point users at the
+    // vendor's canonical page for the same document.
+    _pdfPublicUrl: {
+        'Claude Opus 4.7 System Card.pdf': 'https://www.anthropic.com/research',
+        'Claude Opus 4.6 System Card 02-05.pdf': 'https://www.anthropic.com/research',
+        'Claude Mythos Preview System Card.pdf': 'https://www.anthropic.com/research',
+        'gpt-5-4-thinking.pdf': 'https://openai.com/index/introducing-gpt-5-4/',
+        'GPT-5-3-Codex-System-Card-02.pdf': 'https://openai.com/index/introducing-gpt-5-3-codex/',
+        'Gemini-3-Pro-Model-Card.pdf': 'https://deepmind.google/models/gemini-3-pro/',
+        '2602.02276v1.pdf': 'https://arxiv.org/abs/2602.02276',
+        '2604.03121v1.pdf': 'https://arxiv.org/abs/2604.03121',
+        '2602.15763v2.pdf': 'https://arxiv.org/abs/2602.15763',
+        '2602.04705v1.pdf': 'https://arxiv.org/abs/2602.04705',
+        '2604.08644v1.pdf': 'https://arxiv.org/abs/2604.08644',
+        '2601.07022v1.pdf': 'https://arxiv.org/abs/2601.07022',
+        '2601.09200v5.pdf': 'https://arxiv.org/abs/2601.09200',
+        '2603.18788v2.pdf': 'https://arxiv.org/abs/2603.18788',
+        '2604.07035v1.pdf': 'https://arxiv.org/abs/2604.07035'
+    },
+    _sourceLink: function(source) {
+        if (!source) return null;
+        var url = source.url || '';
+        if (/^https?:\/\//.test(url)) return url;
+        // Local PDF path — strip 'resource/' prefix and look up public URL
+        var basename = url.split('/').pop();
+        return Modal._pdfPublicUrl[basename] || null;
+    },
+
     init: function() {
         var base = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
         fetch(base + '/bmt_connections.json').then(function(r) {
@@ -281,9 +311,21 @@ var Modal = {
 
             var tdSrc = document.createElement('td');
             tdSrc.className = 'py-1.5 text-xs';
-            var srcType = (s.source && s.source.type) || '';
-            tdSrc.className += srcType === 'pdf' ? ' text-purple-400' : ' text-gray-500';
-            tdSrc.textContent = srcType || 'web';
+            var srcType = (s.source && s.source.type) || 'web';
+            var publicUrl = Modal._sourceLink(s.source);
+            if (publicUrl) {
+                var a = document.createElement('a');
+                a.href = publicUrl;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.className = (srcType === 'pdf' ? 'text-purple-400' : 'text-blue-400') + ' hover:underline';
+                a.textContent = srcType + ' \u2197';
+                a.title = publicUrl;
+                tdSrc.appendChild(a);
+            } else {
+                tdSrc.className += srcType === 'pdf' ? ' text-purple-400' : ' text-gray-500';
+                tdSrc.textContent = srcType;
+            }
             tr.appendChild(tdSrc);
 
             tbody.appendChild(tr);
@@ -386,12 +428,23 @@ var Modal = {
                     right.appendChild(sotaBadge);
                 }
 
-                var srcBadge = document.createElement('span');
-                srcBadge.className = 'text-xs';
-                var st = (item.score.source && item.score.source.type) || '';
-                srcBadge.className += st === 'pdf' ? ' text-purple-400' : ' text-gray-600';
-                srcBadge.textContent = st || 'web';
-                right.appendChild(srcBadge);
+                var st = (item.score.source && item.score.source.type) || 'web';
+                var publicUrl = Modal._sourceLink(item.score.source);
+                var srcNode;
+                if (publicUrl) {
+                    srcNode = document.createElement('a');
+                    srcNode.href = publicUrl;
+                    srcNode.target = '_blank';
+                    srcNode.rel = 'noopener noreferrer';
+                    srcNode.className = 'text-xs ' + (st === 'pdf' ? 'text-purple-400' : 'text-blue-400') + ' hover:underline';
+                    srcNode.textContent = st + ' \u2197';
+                    srcNode.title = publicUrl;
+                } else {
+                    srcNode = document.createElement('span');
+                    srcNode.className = 'text-xs ' + (st === 'pdf' ? 'text-purple-400' : 'text-gray-600');
+                    srcNode.textContent = st;
+                }
+                right.appendChild(srcNode);
 
                 row.appendChild(right);
                 section.appendChild(row);
