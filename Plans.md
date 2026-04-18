@@ -1,8 +1,9 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Phase 8 완료 (2026-04-17)
-64 models · 74 benchmarks · 625 scores · 15 PDF sources · 26 web sources
+## Current Status: Phase 9 완료 — `/design-review` 16 atomic fixes (2026-04-18)
+63 models · 91 benchmarks · 707 scores · 78 SOTA records · 15 PDF sources · 26 web sources
 **Live Site**: https://hollobit.github.io/SOTA/
+**Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-** (see `.gstack/design-reports/final-report-2026-04-18.md`)
 
 ---
 
@@ -17,6 +18,7 @@
 - [x] Phase 6: GPT-5.4 Thinking, EXAONE 4.5, Solar Open, A.X K1, Mi:dm K 2.5 Pro, ERNIE 5.0, Qwen 3.6-Plus 분석
 - [x] Phase 7: Claude Opus 4.7 System Card 완전 분석 (40+ 벤치마크)
 - [x] Phase 8: 전체 PDF 커버리지 리뷰 및 누락 보충
+- [x] Phase 9 (2026-04-18): `/design-review` — 18 findings → 16 atomic 수정 커밋 (Design Score C- → B-)
 - [x] GitHub Pages 배포: https://hollobit.github.io/SOTA/
 
 ---
@@ -87,6 +89,13 @@
 - [ ] 시간별 SOTA 변화 추적 (트렌드 차트 데이터)
 - [ ] 모델 성능/비용 효율성 분석 (Artificial Analysis 데이터 연동)
 
+### cc:TODO — 디자인 후속 (2026-04-18 `/design-review` 미처리)
+- [ ] F-005: Overview 탭 IA 재구성 — SOTA Leaderboard를 full-width primary로 승격, Leaderboard Rankings는 사이드바로 강등, Recent Changes는 fold 아래로 이동 (상품 의사결정 필요)
+- [ ] F-006: 카드 → 레이아웃 전환 — Resources / Benchmark descriptions / Explorer stats의 decorative 카드를 테이블/인라인 리스트/분할 판넬로 재구성 (제품 결정 필요, 복수 파일 대규모 리팩터)
+- [ ] F-016: Tailwind Play CDN → 빌드 파이프라인 — `cdn.tailwindcss.com` production 경고 제거. `package.json` + Tailwind CLI + `scripts/deploy_github_pages.sh` 수정 필요
+- [ ] Typography ramp 확장 — 현재 24/18/14 3단계 + label text-xs. 데이터 dashboard용 5단계 (display/section/widget/body/caption) 램프 정의 (F-010 follow-up)
+- [ ] Motion 언어 정의 — 2-3개의 의도적 모션 (tab activation, modal enter/exit, chart reveal). `prefers-reduced-motion` 미디어 쿼리 추가 (F-017 follow-up)
+
 ---
 
 ## Architecture
@@ -111,7 +120,12 @@ BMT/                         → Benchmark Library 카탈로그 (2,559 엔트리
 
 | 파일 | 내용 |
 |-----|-----|
-| `resource/benchmark_scores_2026_04.json` | 주 데이터: 54모델 × 68벤치마크 × 470점수 |
+| `resource/benchmark_scores_2026_04.json` | 원천 시드 점수 데이터 (PDF + 웹 수집) |
 | `resource/lmcouncil_scores_2026_04.json` | LM Council 18개 독립 벤치마크 |
+| `data/export/models.json` | 빌드된 모델 63개 |
+| `data/export/benchmarks.json` | 빌드된 벤치마크 91개 |
+| `data/export/scores/current.json` | 현재 점수 707개 |
+| `data/export/sota.json` | SOTA 레코드 78개 |
+| `data/export/scores/history/YYYY-MM-DD.json` | 일별 스냅샷 (2026-04-16 ~ 04-18) |
 | `data/bmt_connections.json` | BMT ↔ 점수 ID 매핑 |
 | `data/bmt_catalog.json` | BMT 전체 카탈로그 (2,559개) |
