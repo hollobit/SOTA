@@ -1,0 +1,130 @@
+name: Daily Benchmark Update
+
+# Runs on the `main` default branch (required for schedule triggers) but every
+# step checks out the `ops` branch, where the actual codebase lives per the
+# docs-only-main policy. See memory: feedback_main_branch_sync.md.
+
+on:
+  schedule:
+    - cron: "0 6 * * *"          # every day at 06:00 UTC
+  workflow_dispatch:
+  repository_dispatch:
+    types: [new-model-detected]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  scout:
+    name: Scout — collect benchmark data
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ops
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -e '.[dev]'
+
+      - name: Run scouts
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python -m cyber scout
+
+      - name: Upload database artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-db
+          path: data/benchmark.db
+          retention-days: 7
+
+  analyst:
+    name: Analyst — validate & mark SOTA
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: scout
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ops
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -e '.[dev]'
+
+      - name: Download database artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: benchmark-db
+          path: data/
+
+      - name: Run analysis
+        run: python -m cyber analyze
+
+      - name: Upload analyzed database
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-db-analyzed
+          path: data/benchmark.db
+          retention-days: 7
+
+  publish:
+    name: Publish — build CSS, export JSON, deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: analyst
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ops
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install Python deps
+        run: pip install -e '.[dev]'
+
+      - name: Install Node deps
+        run: npm install --no-audit --no-fund --silent
+
+      - name: Build Tailwind CSS
+        run: npm run build:css
+
+      - name: Download analyzed database
+        uses: actions/download-artifact@v4
+        with:
+          name: benchmark-db-analyzed
+          path: data/
+
+      - name: Export JSON
+        run: python -m cyber export
+
+      - name: Stage dashboard + data for gh-pages
+        run: |
+          mkdir -p public
+          cp -r dashboard/* public/
+          mkdir -p public/data
+          cp -r data/export/* public/data/
+          touch public/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
