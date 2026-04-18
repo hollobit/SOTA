@@ -72,22 +72,22 @@
 - [x] `python -m cyber collect` 명령 — 정기 데이터 수집 (이미 구현, scheduler 기반 due sources 필터)
 - [x] GitHub Actions 파이프라인 — `discovery.yml` 주 2회 (수/토) discover+collect, `benchmark-update.yml` 일간 scout→analyze→export→build→deploy, `librarian-weekly.yml` 주간 trust/health 업데이트
 
-### cc:TODO — 대시보드 개선
-- [ ] Cyber & Coding 탭에 방어 벤치마크 바 차트 추가
-- [ ] 벤치마크 카테고리 필터 (multimodal, math, long-context 등) 추가
-- [ ] 모델 간 head-to-head 비교 레이더 차트 개선
-- [ ] PDF 소스 출처 표시 기능 (System Card 링크)
+### Completed — 대시보드 개선 (2026-04-18)
+- [x] Cyber & Coding 탭에 방어 벤치마크 바 차트 추가 (commit `1657b90`)
+- [x] 벤치마크 카테고리 필터 (Overview SOTA Leaderboard pill-filter, commit `3ec4a0f`)
+- [x] 모델 간 head-to-head 비교 레이더 차트 개선 — shared-axis 우선 정렬, spread tiebreak, 풍부한 tooltip (commit `a268c3a`)
+- [x] PDF 소스 출처 표시 — modal score row마다 vendor canonical URL로 링크 (commit `01dfd74`)
 
-### cc:TODO — 추가 데이터 소스
-- [ ] Grok-4.20 벤치마크 점수 수집 (xAI system card 발표 대기)
-- [ ] GPT-5.4 전체 System Card 분석 (발표 대기)
-- [ ] Gemini 3.1 Pro 전체 평가 데이터 수집
-- [ ] 방어 벤치마크 점수 보충 (AutoPatchBench, CyberSOCEval 구체적 모델별 점수)
+### Completed — 추가 데이터 소스 (2026-04-18)
+- [x] Grok-4.20 벤치마크 점수 수집 — BenchLM + Arena에서 11 scores ingest (commit `f8b37f4`)
+- [x] GPT-5.4 System Card — 이미 33 scores (gpt-5.4: 17, -thinking: 6, -mini: 8, -pro: 2) — resource/gpt-5-4-thinking.pdf 기반 완전 분석됨
+- [x] Gemini 3.1 Pro — 이미 15 scores 수집됨
+- [ ] **BLOCKED (외부 데이터 부재)**: AutoPatchBench / CyberSOCEval — 2026-04-18 재조사 결과, 해당 논문들은 pre-frontier 모델(Gemini 1.5 Pro, Llama 4 Maverick, o3, GPT-4o)만 테스트했고 값이 PNG 그림에만 있음. OCR 또는 후속 논문 발표 대기. ZeroDayBench는 3 frontier scores (Claude Sonnet 4.5, GPT-5, Grok 4) ingest 완료.
 
-### cc:TODO — 분석 기능
-- [ ] 벤치마크 간 상관관계 분석 (공격 능력 ↔ 방어 능력 ↔ 코딩 능력)
-- [ ] 시간별 SOTA 변화 추적 (트렌드 차트 데이터)
-- [ ] 모델 성능/비용 효율성 분석 (Artificial Analysis 데이터 연동)
+### Completed — 분석 기능 (2026-04-18)
+- [x] 벤치마크 간 상관관계 분석 — Trends 탭 Cross-Benchmark Correlation heatmap (Top-15 benchmarks, Pearson r, red-neutral-green scale, commit `0f0f754`)
+- [x] 시간별 SOTA 변화 추적 — Trends 탭 SOTA Handover Log + 동적 history index.json (commit `43248cd`)
+- [ ] 모델 성능/비용 효율성 — Artificial Analysis pricing/intelligence ingest 작업 중
 
 ### Completed (2026-04-18 `/design-review` follow-up — 22 atomic commits)
 - [x] F-005: Overview 탭 IA 재구성 — SOTA Leaderboard를 full-width primary로 승격, Leaderboard Rankings + Recent Changes는 2-column secondary로 강등 (commit `c199996`)
