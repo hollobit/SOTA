@@ -351,15 +351,26 @@ var App = {
             container.appendChild(p);
             return;
         }
+        var boardMeta = {
+            'chatbot-arena': { title: 'Chatbot Arena Elo', snapshot: 'snapshot from early 2025 — for reference only' }
+        };
         boards.forEach(function(name) {
             var entries = self.data.leaderboards[name];
+            var meta = boardMeta[name] || { title: name, snapshot: '' };
             var card = document.createElement('div');
             card.className = 'leaderboard-card';
 
             var h3 = document.createElement('h3');
-            h3.className = 'font-semibold text-sm text-gray-300 mb-2';
-            h3.textContent = name;
+            h3.className = 'font-semibold text-sm text-gray-300 mb-1';
+            h3.textContent = meta.title;
             card.appendChild(h3);
+
+            if (meta.snapshot) {
+                var snap = document.createElement('p');
+                snap.className = 'text-xs text-gray-500 mb-2';
+                snap.textContent = meta.snapshot;
+                card.appendChild(snap);
+            }
 
             entries.slice(0, 5).forEach(function(e) {
                 var row = document.createElement('div');
