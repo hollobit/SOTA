@@ -8185,7 +8185,7 @@
       "date": "2026-04-17",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-17",
     "notes": "With Incalmo, 9/10 environments succeeded"
   },
@@ -11160,21 +11160,6 @@
     "notes": "UK AISI 32-step corporate network attack — 1/10 attempts solved (pass@10)"
   },
   {
-    "model_id": "openai/gpt-5.5",
-    "benchmark_id": "mhbench",
-    "value": 98.0,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://deploymentsafety.openai.com/gpt-5-5/introduction",
-      "date": "2026-04-24",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-24",
-    "notes": "Irregular external eval — network attacks success rate"
-  },
-  {
     "model_id": "openai/gpt-5.5-pro",
     "benchmark_id": "healthbench",
     "value": 56.5,
@@ -11188,21 +11173,6 @@
     "is_sota": false,
     "collected_at": "2026-04-24",
     "notes": "GPT-5.5 Pro — parallel test-time compute variant (scores reported jointly with GPT-5.5)"
-  },
-  {
-    "model_id": "openai/gpt-5.5-pro",
-    "benchmark_id": "cybench",
-    "value": 85.0,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://deploymentsafety.openai.com/gpt-5-5/introduction",
-      "date": "2026-04-24",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-04-24",
-    "notes": "GPT-5.5 Pro CTF Professional"
   },
   {
     "model_id": "moonshot/kimi-k2.6",
@@ -11761,6 +11731,171 @@
   },
   {
     "model_id": "openai/gpt-5.5",
+    "benchmark_id": "openai_ctf_professional",
+    "value": 88.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://deploymentsafety.openai.com/gpt-5-5/capture-the-flag-ctf-challenges",
+      "date": "2026-04-24",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-24",
+    "notes": "System Card Figure 16 pass@12 over 16 rollouts; OpenAI said GPT-5.5 'saturated this evaluation'"
+  },
+  {
+    "model_id": "openai/gpt-5.5-pro",
+    "benchmark_id": "openai_ctf_professional",
+    "value": 88.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://deploymentsafety.openai.com/gpt-5-5/capture-the-flag-ctf-challenges",
+      "date": "2026-04-24",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-04-24",
+    "notes": "Not separately evaluated — OpenAI skipped Pro run because GPT-5.5 saturated; listed here for completeness"
+  },
+  {
+    "model_id": "openai/gpt-5.4-thinking",
+    "benchmark_id": "openai_ctf_professional",
+    "value": 82.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://deploymentsafety.openai.com/gpt-5-5/capture-the-flag-ctf-challenges",
+      "date": "2026-04-24",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-04-24",
+    "notes": "System Card Figure 16 pass@12 — prior-generation baseline"
+  },
+  {
+    "model_id": "openai/gpt-5.3-codex",
+    "benchmark_id": "openai_ctf_professional",
+    "value": 75.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://deploymentsafety.openai.com/gpt-5-5/capture-the-flag-ctf-challenges",
+      "date": "2026-04-24",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-04-24",
+    "notes": "System Card Figure 16 pass@12"
+  },
+  {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "irregular_atomic_network",
+    "value": 98.0,
+    "unit": "%",
+    "source": {
+      "type": "pdf",
+      "url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+      "date": "2026-04-24",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-24",
+    "notes": "System Card §9.1.2.5 — Irregular external eval avg success rate; also solved 3 challenges GPT-5.4 missed"
+  },
+  {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "irregular_atomic_vuln_research",
+    "value": 92.0,
+    "unit": "%",
+    "source": {
+      "type": "pdf",
+      "url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+      "date": "2026-04-24",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-24",
+    "notes": "System Card §9.1.2.5 — Irregular; 'provides significant uplift to novice/moderately-skilled operators'"
+  },
+  {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "irregular_atomic_evasion",
+    "value": 54.0,
+    "unit": "%",
+    "source": {
+      "type": "pdf",
+      "url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+      "date": "2026-04-24",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-24",
+    "notes": "System Card §9.1.2.5 — Irregular; relative weak point in atomic suite"
+  },
+  {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "uk_aisi_narrow_cyber",
+    "value": 90.5,
+    "unit": "%",
+    "source": {
+      "type": "pdf",
+      "url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+      "date": "2026-04-24",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-24",
+    "notes": "System Card §9.1.2.7 — UK AISI expert-level pass@5 (±12.9); 'highest-performing model UK AISI has tested'"
+  },
+  {
+    "model_id": "openai/gpt-5.4",
+    "benchmark_id": "uk_aisi_narrow_cyber",
+    "value": 71.4,
+    "unit": "%",
+    "source": {
+      "type": "pdf",
+      "url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+      "date": "2026-04-24",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-04-24",
+    "notes": "System Card §9.1.2.7 — UK AISI expert-level pass@5 (±19.8) baseline"
+  },
+  {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "cybergym",
+    "value": 81.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://the-decoder.com/openai-unveils-gpt-5-5-claims-a-new-class-of-intelligence-at-double-the-api-price/",
+      "date": "2026-04-24",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-04-24",
+    "notes": "CyberGym (Berkeley RDI public benchmark, 1,507 OSS vulns). Launch blog coverage; system card PDF does not include this number explicitly."
+  },
+  {
+    "model_id": "openai/gpt-5.4",
+    "benchmark_id": "cybergym",
+    "value": 79.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://the-decoder.com/openai-unveils-gpt-5-5-claims-a-new-class-of-intelligence-at-double-the-api-price/",
+      "date": "2026-04-24",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-04-24",
+    "notes": "CyberGym GPT-5.4 baseline per launch blog coverage"
+  },
+  {
+    "model_id": "openai/gpt-5.5",
     "benchmark_id": "swe_bench_verified",
     "value": 88.7,
     "unit": "%",
@@ -12032,7 +12167,7 @@
   {
     "model_id": "openai/gpt-5.5",
     "benchmark_id": "cybench",
-    "value": 92.0,
+    "value": 88.0,
     "unit": "%",
     "source": {
       "type": "pdf",
@@ -12042,7 +12177,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-04-24",
-    "notes": "System Card Figure 16 pass@12 professional CTF (OpenAI said GPT-5.5 'saturated' this eval). GPT-5.4-Thinking ≈ 82%"
+    "notes": "DEPRECATED — duplicated in gpt55_cyber_deep_dive batch under openai_ctf_professional (correct benchmark). Retained here as Cybench-compatible value (88%, not 92%) for backwards compat with existing Cybench-keyed dashboards."
   },
   {
     "model_id": "openai/gpt-5.5-pro",
@@ -12327,7 +12462,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-04-24",
-    "notes": "System Card Figure 16 pass@12 CTF Professional (interpolated)"
+    "notes": "DEPRECATED — see openai_ctf_professional. Cybench-keyed baseline retained for backwards compat."
   },
   {
     "model_id": "openai/gpt-5.4-thinking",

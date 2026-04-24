@@ -2,7 +2,7 @@
  * Cyber & Coding tab: renders cybersecurity attack and coding capability views.
  */
 var CyberCoding = {
-    CYBER_BENCHMARKS: ['cybench', 'cvebench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'airtbench', 'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range'],
+    CYBER_BENCHMARKS: ['cybench', 'cvebench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'airtbench', 'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range', 'openai_ctf_professional', 'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion', 'uk_aisi_narrow_cyber'],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric'],
     AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'browsecomp', 'tau_bench', 'tau2_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'nl2repo'],
@@ -192,6 +192,31 @@ var CyberCoding = {
             name: 'Expert-SWE',
             desc: 'OpenAI 내부 expert-level 소프트웨어 엔지니어링 벤치마크. SWE-bench 대비 더 어려운 실제 시니어 엔지니어 시나리오.',
             source: 'GPT-5.5 launch'
+        },
+        openai_ctf_professional: {
+            name: 'OpenAI CTF (Professional)',
+            desc: 'OpenAI가 직접 큐레이션한 professional-level CTF (web/rev/pwn/crypto/misc). pass@12 over 16 rollouts. Stanford Cybench와 별개의 벤치마크.',
+            source: 'System Card Figure 16'
+        },
+        irregular_atomic_network: {
+            name: 'Irregular Atomic — Network Attack',
+            desc: 'Irregular(ex-Pattern Labs)의 atomic challenge suite 중 Network Attack Simulation 카테고리. 개별 네트워크 공격 skill을 격리 평가.',
+            source: 'Irregular publications'
+        },
+        irregular_atomic_vuln_research: {
+            name: 'Irregular Atomic — Vuln Research',
+            desc: 'Irregular atomic challenge의 Vulnerability Research & Exploitation 카테고리. 취약점 발견/익스플로잇 primitive 능력 측정.',
+            source: 'Irregular publications'
+        },
+        irregular_atomic_evasion: {
+            name: 'Irregular Atomic — Evasion',
+            desc: 'Irregular atomic challenge의 Evasion 카테고리. 탐지 우회 및 방어 도구 회피 skill을 격리 평가.',
+            source: 'Irregular publications'
+        },
+        uk_aisi_narrow_cyber: {
+            name: 'UK AISI Narrow Cyber (pass@5)',
+            desc: 'UK AI Security Institute의 expert-level narrow cyber 태스크. pass@5 with 50M-token budget per attempt. TLO 32-step range와 별개의 평가.',
+            source: 'UK AISI research'
         }
     },
 

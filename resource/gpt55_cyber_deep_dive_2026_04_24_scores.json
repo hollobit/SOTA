@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-24",
+    "session": "GPT-5.5 cyber deep-dive — separates OpenAI internal CTF from Stanford Cybench (previously conflated), registers Irregular's 3 atomic challenge sub-benchmarks, adds UK AISI narrow expert cyber, and captures CyberGym scores surfaced through OpenAI's launch blog (but NOT the system card PDF). Also corrects earlier mhbench=98 mismapping (that score was Irregular's atomic network-attack result, not Multi-Host Benchmark).",
+    "sources": [
+      "https://deploymentsafety.openai.com/gpt-5-5/capture-the-flag-ctf-challenges",
+      "https://deploymentsafety.openai.com/gpt-5-5/cve-bench",
+      "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+      "https://www.irregular.com/publications/assessing-gpt-5.5-against-offensive-security-benchmarks",
+      "https://the-decoder.com/openai-unveils-gpt-5-5-claims-a-new-class-of-intelligence-at-double-the-api-price/",
+      "https://openai.com/index/introducing-gpt-5-5/"
+    ]
+  },
+  "models": [],
+  "benchmarks": [
+    { "id": "openai_ctf_professional",          "name": "OpenAI CTF (Professional)",         "category": "cybersecurity", "description": "OpenAI-curated professional-level CTF tasks (web, rev, pwn, crypto, misc); 16 rollouts recorded at pass@12. Distinct from Stanford CRFM's public Cybench. System Card Figure 16.",                                 "metric": "accuracy" },
+    { "id": "irregular_atomic_network",         "name": "Irregular Atomic — Network Attack", "category": "cybersecurity", "description": "Irregular's atomic-challenge suite, Network Attack Simulation category. Average success rate across isolated single-skill offensive tasks.",                                                                     "metric": "accuracy" },
+    { "id": "irregular_atomic_vuln_research",   "name": "Irregular Atomic — Vuln Research",  "category": "cybersecurity", "description": "Irregular atomic-challenge Vulnerability Research & Exploitation category — individual primitives of bug discovery and exploit crafting.",                                                                       "metric": "accuracy" },
+    { "id": "irregular_atomic_evasion",         "name": "Irregular Atomic — Evasion",        "category": "cybersecurity", "description": "Irregular atomic-challenge Evasion category — bypassing detection and defensive tooling in isolated sub-tasks.",                                                                                                "metric": "accuracy" },
+    { "id": "uk_aisi_narrow_cyber",             "name": "UK AISI Narrow Cyber (pass@5)",      "category": "cybersecurity", "description": "UK AI Security Institute expert-level narrow cyber tasks measured at pass@5 with 50M-token per-attempt limit. Separate from UK AISI's 32-step TLO cyber range.",                                                 "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "openai/gpt-5.5",          "benchmark": "openai_ctf_professional",    "score": 88.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/capture-the-flag-ctf-challenges", "_note": "System Card Figure 16 pass@12 over 16 rollouts; OpenAI said GPT-5.5 'saturated this evaluation'" },
+    { "model": "openai/gpt-5.5-pro",      "benchmark": "openai_ctf_professional",    "score": 88.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/capture-the-flag-ctf-challenges", "_note": "Not separately evaluated — OpenAI skipped Pro run because GPT-5.5 saturated; listed here for completeness" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "openai_ctf_professional",    "score": 82.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/capture-the-flag-ctf-challenges", "_note": "System Card Figure 16 pass@12 — prior-generation baseline" },
+    { "model": "openai/gpt-5.3-codex",    "benchmark": "openai_ctf_professional",    "score": 75.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/capture-the-flag-ctf-challenges", "_note": "System Card Figure 16 pass@12" },
+
+    { "model": "openai/gpt-5.5",          "benchmark": "irregular_atomic_network",   "score": 98.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.2.5 — Irregular external eval avg success rate; also solved 3 challenges GPT-5.4 missed" },
+    { "model": "openai/gpt-5.5",          "benchmark": "irregular_atomic_vuln_research", "score": 92.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.2.5 — Irregular; 'provides significant uplift to novice/moderately-skilled operators'" },
+    { "model": "openai/gpt-5.5",          "benchmark": "irregular_atomic_evasion",   "score": 54.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.2.5 — Irregular; relative weak point in atomic suite" },
+
+    { "model": "openai/gpt-5.5",          "benchmark": "uk_aisi_narrow_cyber",       "score": 90.5, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.2.7 — UK AISI expert-level pass@5 (±12.9); 'highest-performing model UK AISI has tested'" },
+    { "model": "openai/gpt-5.4",          "benchmark": "uk_aisi_narrow_cyber",       "score": 71.4, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.2.7 — UK AISI expert-level pass@5 (±19.8) baseline" },
+
+    { "model": "openai/gpt-5.5",          "benchmark": "cybergym",                   "score": 81.8, "unit": "%", "_source": "https://the-decoder.com/openai-unveils-gpt-5-5-claims-a-new-class-of-intelligence-at-double-the-api-price/", "_note": "CyberGym (Berkeley RDI public benchmark, 1,507 OSS vulns). Launch blog coverage; system card PDF does not include this number explicitly." },
+    { "model": "openai/gpt-5.4",          "benchmark": "cybergym",                   "score": 79.0, "unit": "%", "_source": "https://the-decoder.com/openai-unveils-gpt-5-5-claims-a-new-class-of-intelligence-at-double-the-api-price/", "_note": "CyberGym GPT-5.4 baseline per launch blog coverage" }
+  ]
+}
