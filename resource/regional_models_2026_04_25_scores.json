@@ -1,0 +1,61 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-25",
+    "session": "Regional / domain-specialized model coverage expansion. Registers Mistral (France), MedGemma (Google medical), Falcon-H1 Arabic (UAE), Sakana Namazu (Japan), Apertus-SEA-LION (Singapore/Switzerland) — non-frontier-tier models that the dashboard had been ignoring. Adds 6 medical-specialized benchmarks and verified scores from official model cards.",
+    "sources": [
+      "https://mistral.ai/news/mistral-small-4",
+      "https://huggingface.co/google/medgemma-27b-it",
+      "https://research.google/blog/medgemma-our-most-capable-open-models-for-health-ai-development/",
+      "https://developers.google.com/health-ai-developer-foundations/medgemma/model-card",
+      "https://www.tii.ae/news/abu-dhabis-tii-launches-falcon-h1-arabic-establishing-worlds-leading-arabic-ai-model",
+      "https://huggingface.co/aisingapore/Apertus-SEA-LION-v4-8B-IT",
+      "https://sakana.ai/",
+      "https://www.japanesefromjapan.com/news/2026-03-24-namazu-ai-japan-sakana-chat",
+      "https://arxiv.org/abs/2507.05201"
+    ]
+  },
+  "models": [
+    { "id": "mistral/mistral-small-4",            "vendor": "Mistral AI",       "name": "Mistral Small 4",          "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "mistral/mistral-large-3",            "vendor": "Mistral AI",       "name": "Mistral Large 3",          "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/voxtral-tts",                "vendor": "Mistral AI",       "name": "Voxtral TTS",              "type": "open-weight", "modalities": ["audio"] },
+    { "id": "google/medgemma-27b",                "vendor": "Google",           "name": "MedGemma 27B",             "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "google/medgemma-1.5-4b",             "vendor": "Google",           "name": "MedGemma 1.5 4B",          "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "tii/falcon-h1-arabic-34b",           "vendor": "TII (UAE)",        "name": "Falcon-H1 Arabic 34B",     "type": "open-weight", "modalities": ["text"] },
+    { "id": "tii/falcon-perception",              "vendor": "TII (UAE)",        "name": "Falcon Perception 600M",   "type": "open-weight", "modalities": ["image"] },
+    { "id": "sakana/namazu",                      "vendor": "Sakana AI",        "name": "Sakana Namazu (alpha)",    "type": "open-weight", "modalities": ["text"] },
+    { "id": "ai-singapore/apertus-sea-lion-v4-8b","vendor": "AI Singapore",     "name": "Apertus-SEA-LION v4 8B",   "type": "open-weight", "modalities": ["text"] },
+    { "id": "ai-singapore/gemma-sea-lion-v4-4b-vl","vendor": "AI Singapore",    "name": "Gemma-SEA-LION v4 4B VL",  "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "google/gemma-3-27b",                 "vendor": "Google",           "name": "Gemma 3 27B",              "type": "open-source", "modalities": ["text"] }
+  ],
+  "benchmarks": [
+    { "id": "medqa",          "name": "MedQA (4-op USMLE)",     "category": "reasoning", "description": "USMLE-style 4-option multiple choice medical knowledge benchmark. 1,273 questions from US Medical Licensing Examination. Standard medical AI evaluation.",                                              "metric": "accuracy" },
+    { "id": "medmcqa",        "name": "MedMCQA",                "category": "reasoning", "description": "194,000 medical multiple choice questions across 21 specialties from Indian medical entrance exams (AIIMS, NEET).",                                                                                "metric": "accuracy" },
+    { "id": "pubmedqa",       "name": "PubMedQA",               "category": "reasoning", "description": "1,000 expert-labeled QA examples sourced from PubMed abstracts. Yes/No/Maybe answer classification on biomedical research questions.",                                                              "metric": "accuracy" },
+    { "id": "mmlu_med",       "name": "MMLU (Medical subjects)","category": "reasoning", "description": "MMLU restricted to 9 medical-related subjects: anatomy, clinical knowledge, college medicine, medical genetics, professional medicine, virology, etc.",                                              "metric": "accuracy" },
+    { "id": "medxpertqa",     "name": "MedXpertQA",             "category": "reasoning", "description": "Expert-grade medical reasoning benchmark with very long-tail domain knowledge questions. Significantly harder than MedQA — frontier-grade medical eval.",                                            "metric": "accuracy" },
+    { "id": "afrimed_qa",     "name": "AfriMed-QA",             "category": "reasoning", "description": "African medical QA benchmark. Covers diseases, treatments, and conditions specific to African medical contexts.",                                                                                  "metric": "accuracy" },
+    { "id": "ehrqa",          "name": "EHRQA",                  "category": "reasoning", "description": "Electronic Health Record question answering — multi-turn QA over real (de-identified) patient records. Tests retrieval and clinical synthesis.",                                                   "metric": "accuracy" },
+    { "id": "math_500",       "name": "MATH-500",               "category": "math",      "description": "500-problem subset of the MATH benchmark used in OpenAI's PRM800K paper. Standard reference for competition-level mathematics evaluation.",                                                          "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "google/medgemma-27b",   "benchmark": "medqa",       "score": 87.7, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "MedGemma 27B Text-Only 0-shot; best-of-5: 89.8" },
+    { "model": "google/medgemma-27b",   "benchmark": "medmcqa",     "score": 74.2, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Text-Only" },
+    { "model": "google/medgemma-27b",   "benchmark": "pubmedqa",    "score": 76.8, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Text-Only" },
+    { "model": "google/medgemma-27b",   "benchmark": "mmlu_med",    "score": 87.0, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Text-Only — 4pt above Gemma 3 27B base 83.3" },
+    { "model": "google/medgemma-27b",   "benchmark": "medxpertqa",  "score": 25.7, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Text-Only — frontier-grade hard eval" },
+    { "model": "google/medgemma-27b",   "benchmark": "afrimed_qa",  "score": 84.0, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Text-Only — leading on African medical contexts" },
+    { "model": "google/medgemma-27b",   "benchmark": "ehrqa",       "score": 86.3, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Text-Only" },
+
+    { "model": "google/gemma-3-27b",    "benchmark": "medqa",       "score": 74.9, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Gemma 3 27B baseline (non-medical fine-tune)" },
+    { "model": "google/gemma-3-27b",    "benchmark": "medmcqa",     "score": 62.6, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Gemma 3 27B baseline" },
+    { "model": "google/gemma-3-27b",    "benchmark": "pubmedqa",    "score": 73.4, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Gemma 3 27B baseline" },
+    { "model": "google/gemma-3-27b",    "benchmark": "mmlu_med",    "score": 83.3, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Gemma 3 27B baseline" },
+    { "model": "google/gemma-3-27b",    "benchmark": "medxpertqa",  "score": 15.7, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Gemma 3 27B baseline" },
+    { "model": "google/gemma-3-27b",    "benchmark": "ehrqa",       "score": 84.2, "unit": "%", "_source": "https://huggingface.co/google/medgemma-27b-it", "_note": "Gemma 3 27B baseline" },
+
+    { "model": "mistral/mistral-small-4", "benchmark": "aime_2025", "score": 72.0, "unit": "%", "_source": "https://mistral.ai/news/mistral-small-4", "_note": "Mistral Small 4 with reasoning, 1.6K char output" },
+
+    { "model": "mistral/mistral-large-3", "benchmark": "mmlu_pro",  "score": 73.11, "unit": "%", "_source": "https://serenitiesai.com/articles/mistral-ai-models-2026-complete-guide", "_note": "Mistral Large 3 (2025-12-02) per independent eval" },
+    { "model": "mistral/mistral-large-3", "benchmark": "math_500",  "score": 93.60, "unit": "%", "_source": "https://serenitiesai.com/articles/mistral-ai-models-2026-complete-guide", "_note": "Mistral Large 3 per independent eval" }
+  ]
+}
