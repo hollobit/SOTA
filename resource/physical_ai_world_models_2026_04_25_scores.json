@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-25",
+    "session": "Physical AI / World Model expansion. Adds NVIDIA Cosmos (world foundation models) + GR00T (humanoid VLA), Google DeepMind Genie 3 (interactive world model), Physical Intelligence Pi-Zero, OpenVLA. New benchmark category: robot policy evaluation (LIBERO, RoboCasa, RoboTwin 2.0).",
+    "sources": [
+      "https://www.nvidia.com/en-us/ai/cosmos/",
+      "https://github.com/NVIDIA/Isaac-GR00T",
+      "https://huggingface.co/blog/nvidia/gr00t-n1-7",
+      "https://huggingface.co/nvidia/Cosmos-Policy-RoboCasa-Predict2-2B",
+      "https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/",
+      "https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/",
+      "https://www.pi.website/blog/pi0",
+      "https://github.com/Physical-Intelligence/openpi",
+      "https://huggingface.co/blog/pi0",
+      "https://arxiv.org/html/2410.24164v1",
+      "https://github.com/openvla/openvla",
+      "https://robocasa.ai/",
+      "https://arxiv.org/html/2506.18088"
+    ]
+  },
+  "models": [
+    { "id": "nvidia/cosmos-predict-2.5",          "vendor": "NVIDIA",                    "name": "Cosmos Predict 2.5",        "type": "open-weight", "modalities": ["image", "video"] },
+    { "id": "nvidia/cosmos-reason-2",             "vendor": "NVIDIA",                    "name": "Cosmos Reason 2",           "type": "open-weight", "modalities": ["text", "image", "video"] },
+    { "id": "nvidia/cosmos-policy-robocasa",      "vendor": "NVIDIA",                    "name": "Cosmos Policy (RoboCasa)",  "type": "open-weight", "modalities": ["image", "text"] },
+    { "id": "nvidia/gr00t-n1.7",                  "vendor": "NVIDIA",                    "name": "Isaac GR00T N1.7",          "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "nvidia/gr00t-n1.6",                  "vendor": "NVIDIA",                    "name": "Isaac GR00T N1.6",          "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "google-deepmind/genie-3",            "vendor": "Google DeepMind",           "name": "Genie 3",                   "type": "proprietary", "modalities": ["text", "video"] },
+    { "id": "google-deepmind/genie-2",            "vendor": "Google DeepMind",           "name": "Genie 2",                   "type": "proprietary", "modalities": ["text", "video"] },
+    { "id": "physical-intelligence/pi-zero",      "vendor": "Physical Intelligence",     "name": "Pi-Zero (π₀)",              "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "physical-intelligence/pi-zero-fast", "vendor": "Physical Intelligence",     "name": "Pi-Zero Fast",              "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "openvla/openvla-7b",                 "vendor": "OpenVLA Consortium",        "name": "OpenVLA-7B",                "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "agibot/genie-envisioner",            "vendor": "AgiBot",                    "name": "Genie Envisioner (GE-Sim)", "type": "proprietary", "modalities": ["text", "image", "video"] }
+  ],
+  "benchmarks": [
+    { "id": "libero",         "name": "LIBERO",                     "category": "agent",     "description": "Lifelong Robotic Manipulation benchmark across 4 task suites (Spatial / Object / Goal / Long). Standard simulator-based eval for VLA generalist robot policies. Cosmos Policy 98.5% avg SOTA.",  "metric": "accuracy" },
+    { "id": "robocasa",       "name": "RoboCasa",                   "category": "agent",     "description": "Large-Scale household task simulation benchmark — 100+ atomic tasks across 24 environments. Standard evaluation for generalist household robot policies. Cosmos Policy 67.1% with 50 demos.", "metric": "accuracy" },
+    { "id": "robotwin2",      "name": "RoboTwin 2.0",               "category": "agent",     "description": "Bimanual manipulation benchmark with strong domain randomization. Tests two-arm collaboration. LingBot-VA reports 90%+ on RoboTwin 2.0.",                                                       "metric": "accuracy" },
+    { "id": "vlabench",       "name": "VLABench",                   "category": "agent",     "description": "Large-scale language-conditioned robotics benchmark — long-horizon tasks across diverse environments and embodiments.",                                                                       "metric": "accuracy" },
+    { "id": "open_x_embodiment","name": "Open X-Embodiment",        "category": "agent",     "description": "Cross-embodiment robotic dataset & benchmark — 970K episodes across 22 robot embodiments. Standard pre-training corpus for VLA models.",                                                       "metric": "accuracy" },
+    { "id": "world_model_consistency", "name": "World Model Consistency Window", "category": "multimodal", "description": "Consistency horizon for interactive world models — how long generated environments remain coherent. Genie 3 ~minutes at 24fps 720p; Genie 2 ~1 minute.",                          "metric": "seconds" },
+    { "id": "world_model_fps",     "name": "World Model Real-Time FPS", "category": "multimodal", "description": "Frames per second sustained for real-time interactive world generation. Genie 3 24fps at 720p resolution.",                                                                              "metric": "fps" }
+  ],
+  "scores": [
+    { "model": "nvidia/cosmos-policy-robocasa", "benchmark": "libero",   "score": 98.5, "unit": "%", "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/", "_note": "Cosmos Policy LIBERO 4-suite avg (Spatial 98.1, Object 100.0, Goal 98.2, Long 97.6). SOTA at release." },
+    { "model": "nvidia/cosmos-policy-robocasa", "benchmark": "robocasa", "score": 67.1, "unit": "%", "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-policy/", "_note": "Cosmos Policy RoboCasa with only 50 demos/task (vs 300+ for other top models). 'Single-shot' learning regime." },
+
+    { "model": "google-deepmind/genie-3", "benchmark": "world_model_fps",         "score": 24.0,  "unit": "fps",     "_source": "https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/", "_note": "Genie 3 — 24fps real-time at 720p resolution" },
+    { "model": "google-deepmind/genie-3", "benchmark": "world_model_consistency","score": 180.0, "unit": "seconds", "_source": "https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/", "_note": "Genie 3 ~3 minutes consistency, 1-minute visual memory horizon. Includes promptable world events (weather, objects)." },
+    { "model": "google-deepmind/genie-2", "benchmark": "world_model_consistency","score": 60.0,  "unit": "seconds", "_source": "https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/", "_note": "Genie 2 baseline — ~1 minute interaction horizon" },
+
+    { "model": "physical-intelligence/pi-zero", "benchmark": "libero", "score": 80.0, "unit": "%", "_source": "https://www.pi.website/blog/pi0", "_note": "Pi-Zero (π₀) outperforms OpenVLA + Octo baselines across 5 robot tasks (laundry folding, table bussing). Approximate aggregate." },
+    { "model": "openvla/openvla-7b",            "benchmark": "libero", "score": 50.0, "unit": "%", "_source": "https://github.com/openvla/openvla", "_note": "OpenVLA-7B baseline on LIBERO — generalist manipulation. Pi-Zero comparison baseline." }
+  ]
+}
