@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-24",
+    "session": "GPT-5.5 launch deep-dive (re-extraction). Pulls from both the OpenAI System Card PDF (pdftotext) and the introducing-gpt-5-5 announcement coverage (MarkTechPost, VentureBeat, kingy.ai). Adds 8 new benchmarks (GDPval, OfficeQA Pro, MRCR, First-Person Fairness, Prompt Injection, Virology-MCQ, Biochem Reward@4, Expert-SWE) and 40+ scores covering GPT-5.5, GPT-5.5 Pro, plus comparison data for Claude Opus 4.7 / Gemini 3.1 Pro / GPT-5.4 / GPT-5.4 Thinking. Also corrects GPT-5.5 Cybench from 85 → 92 (text says 'GPT-5.5 saturated this evaluation').",
+    "sources": [
+      "https://openai.com/index/introducing-gpt-5-5/",
+      "https://deploymentsafety.openai.com/gpt-5-5/introduction",
+      "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+      "https://www.marktechpost.com/2026/04/23/openai-releases-gpt-5-5-a-fully-retrained-agentic-model-that-scores-82-7-on-terminal-bench-2-0-and-84-9-on-gdpval/",
+      "https://venturebeat.com/ai/openais-gpt-5-5-is-here-and-its-no-potato-narrowly-beats-anthropics-claude-mythos-preview-on-terminal-bench-2-0",
+      "https://kingy.ai/ai/gpt-5-5-benchmarks-revealed-the-9-numbers-that-prove-chatgpt-5-5-just-changed-the-ai-race/"
+    ]
+  },
+  "models": [],
+  "benchmarks": [
+    { "id": "gdpval",                  "name": "GDPval (expert win-rate)", "category": "reasoning",     "description": "OpenAI's 44-occupation knowledge-work eval graded by human experts vs human baselines. Distinct from gdpval_aa (the Arena/ELO variant). Launch SOTA metric in GPT-5.5.",    "metric": "accuracy" },
+    { "id": "officeqa_pro",            "name": "OfficeQA Pro",             "category": "reasoning",     "description": "Professional office-work QA (Word, Excel, PowerPoint formula/slide tasks). GPT-5.5 launch benchmark.",                                                                          "metric": "accuracy" },
+    { "id": "mrcr",                    "name": "MRCR (Long Context)",      "category": "reasoning",     "description": "Multi-Round Co-reference Resolution — 512K–1M token long-context retrieval. OpenAI-run eval.",                                                                                   "metric": "accuracy" },
+    { "id": "first_person_fairness",   "name": "First-Person Fairness",    "category": "cyber_defense", "description": "OpenAI bias metric measuring harmful response delta between male/female-associated names across 600+ prompts. Reported as harm_overall (lower is better).",                         "metric": "harm_overall_lower_better" },
+    { "id": "prompt_injection",        "name": "Prompt Injection Defense", "category": "cyber_defense", "description": "Robustness against known prompt-injection attacks on connectors. Higher = more robust.",                                                                                          "metric": "accuracy" },
+    { "id": "virology_mcq",            "name": "Multimodal Troubleshooting Virology", "category": "reasoning", "description": "SecureBio's 350 held-out virology troubleshooting MCQs. Median expert baseline 22.1%.",                                                                                "metric": "accuracy" },
+    { "id": "biochem_reward4",         "name": "Biochemistry Reward@4",    "category": "reasoning",     "description": "OpenAI's biochemistry knowledge aggregate (structure prediction, thermodynamics, reactions, phylogeny). reward@4 metric. Tracks incremental biorisk uplift vs prior model.",    "metric": "accuracy" },
+    { "id": "expert_swe",              "name": "Expert-SWE (OpenAI Internal)", "category": "coding",    "description": "OpenAI's internal expert-level SWE benchmark; distinct from public SWE-bench. Introduced in GPT-5.5 launch comparison.",                                                     "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "openai/gpt-5.5", "benchmark": "swe_bench_verified",    "score": 88.7, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "GPT-5.5 launch benchmark headline" },
+    { "model": "openai/gpt-5.5", "benchmark": "terminal_bench_2",      "score": 82.7, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "Launch SOTA; GPT-5.4 75.1%, Claude Opus 4.7 69.4%, Gemini 3.1 Pro 68.5%" },
+    { "model": "openai/gpt-5.5", "benchmark": "gdpval",                "score": 84.9, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "Expert win-rate across 44 occupations; Gemini 3.1 Pro 67.3%" },
+    { "model": "openai/gpt-5.5", "benchmark": "osworld_verified",      "score": 78.7, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "Launch; Claude Opus 4.7 78.0%" },
+    { "model": "openai/gpt-5.5", "benchmark": "hle",                   "score": 41.4, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "Humanity's Last Exam WITHOUT tools; Claude Opus 4.7 46.9% wins here" },
+    { "model": "openai/gpt-5.5", "benchmark": "gpqa_diamond",          "score": 93.6, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "GPT-5.5 launch; Gemini 3.1 Pro 94.3%" },
+    { "model": "openai/gpt-5.5", "benchmark": "arc_agi_2",             "score": 85.0, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "ARC-AGI-2 Verified; Claude 75.8%, Gemini 77.1%" },
+    { "model": "openai/gpt-5.5", "benchmark": "mmmu_pro",              "score": 83.2, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "MMMU Pro with tools; GPT-5.4 82.1%" },
+    { "model": "openai/gpt-5.5", "benchmark": "frontiermath",          "score": 51.7, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "FrontierMath Tiers 1-3; Claude Opus 4.7 43.8%" },
+    { "model": "openai/gpt-5.5", "benchmark": "officeqa_pro",          "score": 54.1, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "Launch; Gemini 3.1 Pro 18.1%" },
+    { "model": "openai/gpt-5.5", "benchmark": "tau2_bench",            "score": 98.0, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "tau2-bench Telecom domain without prompt tuning" },
+    { "model": "openai/gpt-5.5", "benchmark": "finance_agent",         "score": 60.0, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "FinanceAgent Vals.ai launch" },
+    { "model": "openai/gpt-5.5", "benchmark": "mrcr",                  "score": 74.0, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "Long-context 512K–1M range; GPT-5.4 36.6%" },
+    { "model": "openai/gpt-5.5", "benchmark": "expert_swe",            "score": 73.1, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "OpenAI internal Expert-SWE; GPT-5.4 68.5%" },
+    { "model": "openai/gpt-5.5", "benchmark": "virology_mcq",          "score": 80.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Figure 12; exceeds 22.1% median expert baseline" },
+    { "model": "openai/gpt-5.5", "benchmark": "biochem_reward4",       "score": 32.32, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Table 11; +1.35pt vs GPT-5.4 Thinking 30.97%" },
+    { "model": "openai/gpt-5.5", "benchmark": "first_person_fairness", "score": 0.0112, "unit": "ratio", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Table 9 harm_overall (lower is better)" },
+    { "model": "openai/gpt-5.5", "benchmark": "prompt_injection",      "score": 0.963, "unit": "ratio", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Table 6 prompt-injection robustness" },
+    { "model": "openai/gpt-5.5", "benchmark": "cybench",               "score": 92.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Figure 16 pass@12 professional CTF (OpenAI said GPT-5.5 'saturated' this eval). GPT-5.4-Thinking ≈ 82%" },
+
+    { "model": "openai/gpt-5.5-pro", "benchmark": "frontiermath",       "score": 39.6, "unit": "%", "_source": "https://kingy.ai/ai/gpt-5-5-benchmarks-revealed-the-9-numbers-that-prove-chatgpt-5-5-just-changed-the-ai-race/", "_note": "FrontierMath Tier 4; Claude Opus 4.7 22.9%, Gemini 3.1 Pro 16.7%" },
+    { "model": "openai/gpt-5.5-pro", "benchmark": "biochem_reward4",    "score": 39.26, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Table 11; +8.29pt vs GPT-5.4 Thinking" },
+    { "model": "openai/gpt-5.5-pro", "benchmark": "browsecomp",         "score": 90.1, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "Launch SOTA; Gemini 3.1 Pro 85.9%" },
+    { "model": "openai/gpt-5.5-pro", "benchmark": "virology_mcq",       "score": 81.67, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.1.3 Tacit Knowledge; exceeded 80% expert baseline (only Pro variant crossed it)" },
+
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "terminal_bench_2", "score": 69.4, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "GPT-5.5 launch comparison" },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "hle",             "score": 46.9, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "HLE no tools; wins over GPT-5.5 41.4%" },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "arc_agi_2",       "score": 75.8, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "ARC-AGI-2 Verified per GPT-5.5 launch page" },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "frontiermath",    "score": 43.8, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "FrontierMath Tiers 1-3 per GPT-5.5 launch" },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "osworld_verified","score": 78.0, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "OSWorld-Verified per GPT-5.5 launch comparison" },
+
+    { "model": "google/gemini-3.1-pro", "benchmark": "terminal_bench_2",    "score": 68.5, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "Terminal-Bench 2.0 per GPT-5.5 launch" },
+    { "model": "google/gemini-3.1-pro", "benchmark": "gpqa_diamond",        "score": 94.3, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "GPQA Diamond; narrowly beats GPT-5.5 93.6" },
+    { "model": "google/gemini-3.1-pro", "benchmark": "arc_agi_2",           "score": 77.1, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "ARC-AGI-2 Verified per GPT-5.5 launch" },
+    { "model": "google/gemini-3.1-pro", "benchmark": "gdpval",              "score": 67.3, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "GDPval comparison per GPT-5.5 launch" },
+    { "model": "google/gemini-3.1-pro", "benchmark": "officeqa_pro",        "score": 18.1, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "OfficeQA Pro per GPT-5.5 launch" },
+
+    { "model": "openai/gpt-5.4", "benchmark": "terminal_bench_2",           "score": 75.1, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "GPT-5.4 standard variant per GPT-5.5 launch comparison" },
+    { "model": "openai/gpt-5.4", "benchmark": "expert_swe",                 "score": 68.5, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "Expert-SWE per GPT-5.5 launch" },
+    { "model": "openai/gpt-5.4", "benchmark": "mmmu_pro",                   "score": 82.1, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "MMMU Pro with tools per GPT-5.5 launch" },
+    { "model": "openai/gpt-5.4", "benchmark": "mrcr",                       "score": 36.6, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "MRCR long-context per GPT-5.5 launch" },
+
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "cybench",           "score": 82.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Figure 16 pass@12 CTF Professional (interpolated)" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "cyber_range",       "score": 73.33, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 15: 11/15 scenarios passed" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "cyscenariobench",   "score": 9.0,  "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Irregular external eval avg success rate (5/11 scenarios)" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "tlo_cyber_range",   "score": 0.0,  "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "UK AISI 32-step corporate attack — 0/10 attempts" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "first_person_fairness", "score": 0.0088, "unit": "ratio", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Table 9 harm_overall" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "prompt_injection",  "score": 0.998, "unit": "ratio", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Table 6" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "biochem_reward4",   "score": 30.97, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Table 11 baseline" },
+
+    { "model": "openai/gpt-5.4", "benchmark": "healthbench",                "score": 54.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Table 7 length-adjusted HealthBench" },
+    { "model": "openai/gpt-5.4", "benchmark": "healthbench_hard",           "score": 29.1, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Table 7" },
+    { "model": "openai/gpt-5.4", "benchmark": "healthbench_consensus",      "score": 96.3, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Table 7" },
+    { "model": "openai/gpt-5.4", "benchmark": "healthbench_professional",   "score": 48.1, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card Table 7" }
+  ]
+}
