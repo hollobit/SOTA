@@ -136,6 +136,55 @@ var FrontierCompare = {
         return b ? b.name : benchId;
     },
 
+    // Sort state for the heatmap table. key: 'model' | benchmarkId. dir: 'asc' | 'desc' | null.
+    _sortState: { key: null, dir: null },
+
+    _sortModels: function(modelIds, scoreMap) {
+        var s = this._sortState;
+        if (!s.key || !s.dir) return modelIds.slice();  // original order
+        var self = this;
+        var sorted = modelIds.slice();
+        sorted.sort(function(a, b) {
+            var va, vb;
+            if (s.key === 'model') {
+                va = self._getModelName(a).toLowerCase();
+                vb = self._getModelName(b).toLowerCase();
+                if (va < vb) return s.dir === 'asc' ? -1 : 1;
+                if (va > vb) return s.dir === 'asc' ? 1 : -1;
+                return 0;
+            }
+            // benchmark column: undefined sinks to bottom regardless of direction
+            va = scoreMap[a + '|' + s.key];
+            vb = scoreMap[b + '|' + s.key];
+            var aNull = va === undefined, bNull = vb === undefined;
+            if (aNull && bNull) return 0;
+            if (aNull) return 1;
+            if (bNull) return -1;
+            return s.dir === 'asc' ? va - vb : vb - va;
+        });
+        return sorted;
+    },
+
+    _cycleSort: function(key) {
+        var s = this._sortState;
+        if (s.key !== key) {
+            // New column: benchmarks start desc (highest first), model starts asc
+            this._sortState = { key: key, dir: key === 'model' ? 'asc' : 'desc' };
+        } else if (s.dir === 'desc') {
+            this._sortState = { key: key, dir: 'asc' };
+        } else if (s.dir === 'asc') {
+            this._sortState = { key: null, dir: null };  // clear
+        } else {
+            this._sortState = { key: key, dir: key === 'model' ? 'asc' : 'desc' };
+        }
+    },
+
+    _sortIndicator: function(key) {
+        var s = this._sortState;
+        if (s.key !== key) return '';
+        return s.dir === 'asc' ? ' ▲' : s.dir === 'desc' ? ' ▼' : '';
+    },
+
     _renderHeatmap: function(benchIds) {
         var container = document.getElementById('fc-heatmap');
         if (!container) return;
@@ -148,6 +197,9 @@ var FrontierCompare = {
         var modelIds = this.FRONTIER_MODELS.filter(function(mid) {
             return benchIds.some(function(bid) { return scoreMap[mid + '|' + bid] !== undefined; });
         });
+
+        // Apply current sort
+        modelIds = this._sortModels(modelIds, scoreMap);
 
         // Find max per benchmark for color scaling
         var maxes = {};
@@ -168,11 +220,24 @@ var FrontierCompare = {
         var thead = document.createElement('thead');
         var hr = document.createElement('tr');
         var thCorner = document.createElement('th');
-        thCorner.textContent = 'Model';
+        thCorner.textContent = 'Model' + self._sortIndicator('model');
         thCorner.style.position = 'sticky';
         thCorner.style.left = '0';
         thCorner.style.zIndex = '10';
-        thCorner.style.background = Theme.bgSurface;
+        thCorner.style.cursor = 'pointer';
+        thCorner.setAttribute('role', 'button');
+        thCorner.setAttribute('title', 'Click to sort by model name (asc → desc → off)');
+        if (self._sortState.key === 'model') {
+            thCorner.style.background = Theme.bgRaised;
+            thCorner.style.color = Theme.accentBlue;
+            thCorner.style.fontWeight = 'bold';
+        } else {
+            thCorner.style.background = Theme.bgSurface;
+        }
+        thCorner.addEventListener('click', function() {
+            self._cycleSort('model');
+            self._renderHeatmap(benchIds);
+        });
         hr.appendChild(thCorner);
 
         benchIds.forEach(function(bid) {
@@ -184,7 +249,20 @@ var FrontierCompare = {
             th.style.height = '120px';
             th.style.verticalAlign = 'bottom';
             th.style.padding = '4px 2px';
-            th.textContent = self._getBenchName(bid);
+            th.style.cursor = 'pointer';
+            th.setAttribute('role', 'button');
+            th.setAttribute('title', 'Click to sort by ' + self._getBenchName(bid) + ' (desc → asc → off)');
+            // Emphasize the currently-sorted column
+            if (self._sortState.key === bid) {
+                th.style.background = Theme.bgRaised;
+                th.style.color = Theme.accentBlue;
+                th.style.fontWeight = 'bold';
+            }
+            th.textContent = self._getBenchName(bid) + self._sortIndicator(bid);
+            th.addEventListener('click', function() {
+                self._cycleSort(bid);
+                self._renderHeatmap(benchIds);
+            });
             hr.appendChild(th);
         });
         thead.appendChild(hr);
