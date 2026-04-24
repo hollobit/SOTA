@@ -3,27 +3,63 @@
  * comparing latest frontier models on core benchmarks from PDF System Cards.
  */
 var FrontierCompare = {
-    // Core benchmarks appearing in 2+ PDF sources, grouped by category
+    // Core benchmarks appearing in 2+ system cards or frontier launch comparisons,
+    // grouped by category. Ordered roughly by frequency of cross-vendor citation
+    // so the leftmost columns in the heatmap are the most-compared benchmarks.
     CORE_BENCHMARKS: {
-        reasoning: ['gpqa_diamond', 'hle', 'mmlu_pro', 'mmmlu', 'simpleqa_verified', 'longbench_v2', 'mrcr', 'healthbench', 'healthbench_hard', 'healthbench_consensus', 'healthbench_professional', 'gdpval', 'officeqa_pro', 'virology_mcq', 'biochem_reward4', 'arc_agi_2', 'frontiermath'],
-        coding: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'swe_rebench', 'gdpval_aa', 'nl2repo', 'expert_swe'],
+        reasoning: [
+            'gpqa_diamond', 'hle', 'mmlu_pro', 'mmlu', 'mmlu_redux', 'mmmlu',
+            'arc_agi_2', 'frontiermath', 'gdpval', 'officeqa_pro',
+            'simpleqa_verified', 'chinese_simpleqa', 'facts_parametric', 'triviaqa',
+            'longbench_v2', 'mrcr', 'corpusqa_1m',
+            'healthbench', 'healthbench_hard', 'healthbench_consensus', 'healthbench_professional',
+            'virology_mcq', 'biochem_reward4', 'c_eval', 'cmmlu', 'agieval'
+        ],
+        coding: [
+            'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
+            'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'swe_rebench',
+            'gdpval_aa', 'nl2repo', 'expert_swe',
+            'codeforces_rating', 'humaneval', 'bigcodebench'
+        ],
         math: ['aime_2025', 'aime_2026', 'hmmt_2025', 'hmmt_2026', 'imo_answerbench'],
-        agent: ['browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench', 'mcp_atlas', 'webarena', 'deepsearchqa', 'vending_bench_2', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'skills_bench', 'finance_agent'],
-        cybersecurity: ['cybench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'cvebench', 'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range', 'openai_ctf_professional', 'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion', 'uk_aisi_narrow_cyber'],
+        agent: [
+            'browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench',
+            'mcp_atlas', 'mcpatlas_public', 'mcpmark', 'webarena',
+            'deepsearchqa', 'vending_bench_2', 'toolathlon',
+            'android_world', 'qwen_web_bench', 'skills_bench', 'finance_agent',
+            'apex_agents_hard', 'apex_shortlist'
+        ],
+        cybersecurity: [
+            'cybench', 'openai_ctf_professional', 'cybergym',
+            'evmbench_exploit', 'evmbench_detect', 'cvebench',
+            'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range',
+            'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion',
+            'uk_aisi_narrow_cyber'
+        ],
         cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench'],
         multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind']
     },
 
-    // Top frontier models to compare
+    // Top frontier models to compare. Ordered by frontier tier and recency —
+    // the most recently-announced, most-tracked models appear first so they
+    // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-04 frontier launches (50+ scores each)
+        'openai/gpt-5.5',
+        'openai/gpt-5.5-pro',
+        'moonshot/kimi-k2.6',
+        'alibaba/qwen3.6-27b',
+        'deepseek/deepseek-v4-pro-max',
+        'deepseek/deepseek-v4-pro',
+        'deepseek/deepseek-v4-flash',
+
+        // Existing frontier leaders
         'anthropic/claude-opus-4.7',
         'anthropic/claude-mythos-preview',
         'anthropic/claude-opus-4.6',
         'anthropic/claude-opus-4.5',
         'google/gemini-3.1-pro',
         'google/gemini-3-pro',
-        'openai/gpt-5.5',
-        'openai/gpt-5.5-pro',
         'openai/gpt-5.4',
         'openai/gpt-5.4-thinking',
         'openai/gpt-5.3-codex',
@@ -31,16 +67,18 @@ var FrontierCompare = {
         'xai/grok-4-heavy',
         'xai/grok-4.20',
         'meta/muse-spark',
+
+        // Open-weight frontier
         'deepseek/deepseek-v3.2',
-        'moonshot/kimi-k2.6',
         'moonshot/kimi-k2.5',
         'zhipu/glm-5',
         'zhipu/glm-5.1',
         'alibaba/qwen3.6-plus',
-        'alibaba/qwen3.6-27b',
         'alibaba/qwen3.6-35b-a3b',
         'minimax/m2.7',
         'baidu/ernie-5.0',
+
+        // Regional / secondary
         'lg/exaone-4.5-33b',
         'skt/ax-k1',
         'upstage/solar-open-100b',
