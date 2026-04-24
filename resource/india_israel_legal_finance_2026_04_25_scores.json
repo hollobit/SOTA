@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-25",
+    "session": "Sovereign + domain expansion: India (Sarvam, BharatGen, Krutrim, BharatGPT) + Israel (AI21 Jamba) + legal AI (Harvey, CoCounsel, Vincent, Oliver via VLAIR) + finance (BloombergGPT) + DARPA AIxCC cyber. Adds 11 models, 8 specialized benchmarks, and Vals AI VLAIR scores.",
+    "sources": [
+      "https://www.vals.ai/vlair",
+      "https://www.sarvam.ai/blogs/sarvam-1",
+      "https://www.sarvam.ai/blogs/sarvam-m",
+      "https://bharatgpt.ai/",
+      "https://www.business-standard.com/technology/tech-news/bharatgen-to-launch-17b-parameter-multilingual-ai-model-at-ai-impact-summit-126021200887_1.html",
+      "https://www.ai21.com/blog/announcing-jamba-model-family/",
+      "https://designforonline.com/ai-models/ai21-jamba-large-1-7/",
+      "https://www.bloomberg.com/company/press/bloomberggpt-50-billion-parameter-llm-tuned-finance/",
+      "https://arxiv.org/abs/2303.17564",
+      "https://www.darpa.mil/news/2025/aixcc-results",
+      "https://github.com/NVIDIA/garak"
+    ]
+  },
+  "models": [
+    { "id": "sarvam/sarvam-1",                "vendor": "Sarvam AI",         "name": "Sarvam-1",              "type": "open-weight", "modalities": ["text"] },
+    { "id": "sarvam/sarvam-m",                "vendor": "Sarvam AI",         "name": "Sarvam-M",              "type": "proprietary", "modalities": ["text", "audio"] },
+    { "id": "bharatgen/param2-17b",           "vendor": "BharatGen",         "name": "Param2 17B",            "type": "open-weight", "modalities": ["text"] },
+    { "id": "ola/krutrim",                    "vendor": "Ola/ANI Tech",      "name": "Krutrim",               "type": "proprietary", "modalities": ["text"] },
+    { "id": "corover/bharatgpt",              "vendor": "CoRover.ai",        "name": "BharatGPT",             "type": "proprietary", "modalities": ["text"] },
+
+    { "id": "ai21/jamba-large-1.5",           "vendor": "AI21 Labs (Israel)","name": "Jamba Large 1.5",       "type": "open-weight", "modalities": ["text"] },
+    { "id": "ai21/jamba-large-1.7",           "vendor": "AI21 Labs (Israel)","name": "Jamba Large 1.7",       "type": "open-weight", "modalities": ["text"] },
+
+    { "id": "harvey/harvey-assistant",        "vendor": "Harvey AI",         "name": "Harvey Assistant",      "type": "proprietary", "modalities": ["text"] },
+    { "id": "thomson-reuters/cocounsel-2",    "vendor": "Thomson Reuters",   "name": "CoCounsel 2.0",         "type": "proprietary", "modalities": ["text"] },
+    { "id": "vlex/vincent-ai",                "vendor": "vLex",              "name": "Vincent AI",            "type": "proprietary", "modalities": ["text"] },
+    { "id": "vecflow/oliver",                 "vendor": "Vecflow",           "name": "Oliver",                "type": "proprietary", "modalities": ["text"] },
+
+    { "id": "bloomberg/bloomberg-gpt",        "vendor": "Bloomberg",         "name": "BloombergGPT 50B",      "type": "proprietary", "modalities": ["text"] },
+
+    { "id": "darpa/aixcc-team-atlanta",       "vendor": "Team Atlanta (DARPA AIxCC)", "name": "Team Atlanta CRS", "type": "open-weight", "modalities": ["text"] }
+  ],
+  "benchmarks": [
+    { "id": "vlair_doc_qa",        "name": "VLAIR Document Q&A",         "category": "reasoning", "description": "Vals AI Legal Report — Document Q&A accuracy. Lawyer baseline 70.1%. Harvey leads at 94.8% (Feb 2026 first-of-kind benchmark).",                                                            "metric": "accuracy" },
+    { "id": "vlair_summarization", "name": "VLAIR Summarization",        "category": "reasoning", "description": "Vals AI Legal Report — Document summarization accuracy. CoCounsel leads at 77.2%, lawyer baseline 50.3%.",                                                                                  "metric": "accuracy" },
+    { "id": "vlair_chronology",    "name": "VLAIR Chronology Generation","category": "reasoning", "description": "Vals AI Legal Report — extracting case chronology from documents. Harvey 80.2% matches lawyer baseline.",                                                                                   "metric": "accuracy" },
+    { "id": "vlair_redlining",     "name": "VLAIR Redlining",            "category": "reasoning", "description": "Contract redlining task. Lawyer baseline 79.7% beats all AI tools (Harvey 65.0%, Vincent 53.6%).",                                                                                          "metric": "accuracy" },
+    { "id": "vlair_data_extract",  "name": "VLAIR Data Extraction",      "category": "reasoning", "description": "Vals AI Legal Report — structured data extraction from legal docs. Harvey 75.1%, lawyer baseline 71.1%.",                                                                                   "metric": "accuracy" },
+    { "id": "vlair_transcript",    "name": "VLAIR Transcript Analysis",  "category": "reasoning", "description": "Court transcript analysis. Harvey 77.8% beats lawyer 53.7%.",                                                                                                                                "metric": "accuracy" },
+    { "id": "fpb",                 "name": "Financial PhraseBank (FPB)", "category": "reasoning", "description": "Financial sentiment analysis benchmark. BloombergGPT SOTA <50B.",                                                                                                                            "metric": "accuracy" },
+    { "id": "convfinqa",           "name": "ConvFinQA",                  "category": "reasoning", "description": "Conversational financial QA over numerical reasoning. BloombergGPT best of <50B models.",                                                                                                  "metric": "accuracy" },
+    { "id": "finqa",               "name": "FinQA",                      "category": "reasoning", "description": "Financial QA requiring numerical reasoning over financial reports.",                                                                                                                       "metric": "accuracy" },
+    { "id": "aixcc_synth_vuln",    "name": "AIxCC Synthetic Vulnerability Detection", "category": "cybersecurity", "description": "DARPA AIxCC final round — synthetic vulnerability detection rate across 54M lines of code. Final teams hit 86% (vs 37% at semifinals); 68% patched.",                  "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "harvey/harvey-assistant",     "benchmark": "vlair_doc_qa",        "score": 94.8, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Feb 2026 — Harvey SOTA on document Q&A" },
+    { "model": "harvey/harvey-assistant",     "benchmark": "vlair_data_extract",  "score": 75.1, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Harvey leads (lawyer baseline 71.1)" },
+    { "model": "harvey/harvey-assistant",     "benchmark": "vlair_summarization", "score": 72.1, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Harvey #2 behind CoCounsel 77.2" },
+    { "model": "harvey/harvey-assistant",     "benchmark": "vlair_redlining",     "score": 65.0, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR — lawyer 79.7 beats all AI" },
+    { "model": "harvey/harvey-assistant",     "benchmark": "vlair_transcript",    "score": 77.8, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Harvey SOTA on transcript analysis" },
+    { "model": "harvey/harvey-assistant",     "benchmark": "vlair_chronology",    "score": 80.2, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Harvey ties lawyer 80.2" },
+
+    { "model": "thomson-reuters/cocounsel-2", "benchmark": "vlair_doc_qa",        "score": 89.6, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR CoCounsel 2.0" },
+    { "model": "thomson-reuters/cocounsel-2", "benchmark": "vlair_data_extract",  "score": 73.2, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR CoCounsel" },
+    { "model": "thomson-reuters/cocounsel-2", "benchmark": "vlair_summarization", "score": 77.2, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR CoCounsel SOTA on summarization" },
+    { "model": "thomson-reuters/cocounsel-2", "benchmark": "vlair_chronology",    "score": 78.0, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR CoCounsel" },
+
+    { "model": "vlex/vincent-ai",             "benchmark": "vlair_doc_qa",        "score": 72.7, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Vincent AI (vLex)" },
+    { "model": "vlex/vincent-ai",             "benchmark": "vlair_data_extract",  "score": 69.2, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Vincent" },
+    { "model": "vlex/vincent-ai",             "benchmark": "vlair_summarization", "score": 58.9, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Vincent" },
+    { "model": "vlex/vincent-ai",             "benchmark": "vlair_redlining",     "score": 53.6, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Vincent" },
+    { "model": "vlex/vincent-ai",             "benchmark": "vlair_transcript",    "score": 64.8, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Vincent" },
+
+    { "model": "vecflow/oliver",              "benchmark": "vlair_doc_qa",        "score": 74.0, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Oliver" },
+    { "model": "vecflow/oliver",              "benchmark": "vlair_data_extract",  "score": 64.0, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Oliver" },
+    { "model": "vecflow/oliver",              "benchmark": "vlair_summarization", "score": 62.4, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Oliver" },
+    { "model": "vecflow/oliver",              "benchmark": "vlair_chronology",    "score": 66.9, "unit": "%", "_source": "https://www.vals.ai/vlair", "_note": "VLAIR Oliver" },
+
+    { "model": "ai21/jamba-large-1.5",  "benchmark": "mmlu",          "score": 81.2, "unit": "%", "_source": "https://www.ai21.com/blog/announcing-jamba-model-family/", "_note": "Jamba Large 1.5 MMLU (CoT) — Israeli SSM-Transformer hybrid" },
+    { "model": "ai21/jamba-large-1.5",  "benchmark": "arc_challenge", "score": 93.0, "unit": "%", "_source": "https://www.ai21.com/blog/announcing-jamba-model-family/", "_note": "Jamba Large 1.5 ARC-Challenge" },
+
+    { "model": "darpa/aixcc-team-atlanta", "benchmark": "aixcc_synth_vuln", "score": 86.0, "unit": "%", "_source": "https://www.darpa.mil/news/2025/aixcc-results", "_note": "DARPA AIxCC 2025 final round — Team Atlanta winner; 86% synthetic vuln detection (37% at semifinals), 68% patched" }
+  ]
+}
