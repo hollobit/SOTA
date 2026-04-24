@@ -1,0 +1,93 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-24",
+    "session": "2026-04-24 frontier update — 4 new models (GPT-5.5, GPT-5.5 Pro, Kimi K2.6, Qwen3.6-27B), + Qwen3.6-35B-A3B scores (previously metadata only), + 9 new benchmarks (HealthBench Professional, Toolathlon, MCPMark, QwenWebBench, NL2Repo, AndroidWorld, VLMs-Are-Blind, RealWorldQA, SkillsBench). Primary sources: OpenAI deploymentsafety.openai.com/gpt-5-5, kimi.com/blog/kimi-k2-6, Qwen team releases.",
+    "sources": [
+      "https://deploymentsafety.openai.com/gpt-5-5/introduction",
+      "https://www.kimi.com/blog/kimi-k2-6",
+      "https://platform.kimi.ai/docs/guide/kimi-k2-6-quickstart",
+      "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/",
+      "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026",
+      "https://www.buildfastwithai.com/blogs/qwen3-6-35b-a3b-review",
+      "https://www.labellerr.com/blog/qwen3-6-35b-a3b-open-source-ai-model/",
+      "https://llm-stats.com/llm-updates",
+      "https://llm-stats.com/models/gpt-5.5",
+      "https://llm-stats.com/models/gpt-5.5-pro",
+      "https://llm-stats.com/models/kimi-k2.6",
+      "https://llm-stats.com/models/qwen3.6-27b",
+      "https://llm-stats.com/models/qwen3.6-35b-a3b"
+    ]
+  },
+  "models": [
+    { "id": "openai/gpt-5.5",       "vendor": "OpenAI",      "name": "GPT-5.5",          "type": "proprietary", "modalities": ["text", "image"] },
+    { "id": "openai/gpt-5.5-pro",   "vendor": "OpenAI",      "name": "GPT-5.5 Pro",      "type": "proprietary", "modalities": ["text", "image"] },
+    { "id": "moonshot/kimi-k2.6",   "vendor": "Moonshot AI", "name": "Kimi K2.6",        "type": "open-weight", "modalities": ["text", "image", "video"] },
+    { "id": "alibaba/qwen3.6-27b",  "vendor": "Alibaba",     "name": "Qwen3.6 27B",      "type": "open-weight", "modalities": ["text", "image", "video"] }
+  ],
+  "benchmarks": [
+    { "id": "healthbench_professional", "name": "HealthBench Professional", "category": "reasoning",     "description": "HealthBench variant graded on professional/clinician-level rubrics; introduced in GPT-5.5 System Card (Apr 2026).", "metric": "accuracy" },
+    { "id": "toolathlon",                "name": "Toolathlon",               "category": "agent",         "description": "Multi-domain tool-use agent benchmark; agentic long-horizon workflow grading. Surfaced in Kimi K2.6 release (Apr 2026).",       "metric": "accuracy" },
+    { "id": "mcpmark",                   "name": "MCPMark",                  "category": "agent",         "description": "Agentic MCP tool-use benchmark; measures correct multi-step MCP server invocation accuracy. Surfaced in Qwen3.6-35B-A3B release.",  "metric": "accuracy" },
+    { "id": "qwen_web_bench",            "name": "QwenWebBench",             "category": "agent",         "description": "Alibaba Qwen team's web browsing agent benchmark; ELO rating across multi-turn web navigation tasks.",                            "metric": "elo" },
+    { "id": "nl2repo",                   "name": "NL2Repo",                  "category": "coding",        "description": "Natural-language-to-repository synthesis benchmark; measures whole-repo code generation quality.",                                  "metric": "accuracy" },
+    { "id": "android_world",             "name": "AndroidWorld",             "category": "agent",         "description": "Android mobile OS agent benchmark; 116 tasks across 20 real Android apps. Google Research.",                                       "metric": "accuracy" },
+    { "id": "vlms_are_blind",            "name": "VLMs-Are-Blind",           "category": "multimodal",    "description": "Low-level visual perception stress test; exposes VLM blind spots on tasks humans solve trivially.",                               "metric": "accuracy" },
+    { "id": "realworldqa",               "name": "RealWorldQA",              "category": "multimodal",    "description": "xAI real-world spatial understanding benchmark; 700+ images × 1,000+ QA pairs from driving dashcam footage.",                       "metric": "accuracy" },
+    { "id": "skills_bench",              "name": "SkillsBench (Avg5)",       "category": "agent",         "description": "Qwen team agentic skills benchmark aggregate across 5 core skill domains.",                                                       "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "openai/gpt-5.5", "benchmark": "healthbench",              "score": 56.5, "unit": "%",   "_source": "https://deploymentsafety.openai.com/gpt-5-5/introduction", "_note": "GPT-5.5 System Card — length-adjusted score" },
+    { "model": "openai/gpt-5.5", "benchmark": "healthbench_hard",         "score": 31.5, "unit": "%",   "_source": "https://deploymentsafety.openai.com/gpt-5-5/introduction", "_note": "GPT-5.5 System Card" },
+    { "model": "openai/gpt-5.5", "benchmark": "healthbench_consensus",    "score": 95.6, "unit": "%",   "_source": "https://deploymentsafety.openai.com/gpt-5-5/introduction", "_note": "GPT-5.5 System Card" },
+    { "model": "openai/gpt-5.5", "benchmark": "healthbench_professional", "score": 51.8, "unit": "%",   "_source": "https://deploymentsafety.openai.com/gpt-5-5/introduction", "_note": "GPT-5.5 System Card — +3.7pt vs GPT-5.4 Thinking" },
+    { "model": "openai/gpt-5.5", "benchmark": "cybench",                  "score": 85.0, "unit": "%",   "_source": "https://deploymentsafety.openai.com/gpt-5-5/introduction", "_note": "OpenAI Professional CTF pass@12 (16 rollouts). Mapped to Cybench; distinct instance set." },
+    { "model": "openai/gpt-5.5", "benchmark": "cyber_range",              "score": 93.33, "unit": "%",  "_source": "https://deploymentsafety.openai.com/gpt-5-5/introduction", "_note": "GPT-5.5 System Card — 14/15 scenarios passed" },
+    { "model": "openai/gpt-5.5", "benchmark": "cyscenariobench",          "score": 26.0, "unit": "%",   "_source": "https://deploymentsafety.openai.com/gpt-5-5/introduction", "_note": "Irregular external eval — avg; GPT-5.4 was 9%" },
+    { "model": "openai/gpt-5.5", "benchmark": "tlo_cyber_range",          "score": 10.0, "unit": "%",   "_source": "https://deploymentsafety.openai.com/gpt-5-5/introduction", "_note": "UK AISI 32-step corporate network attack — 1/10 attempts solved (pass@10)" },
+    { "model": "openai/gpt-5.5", "benchmark": "mhbench",                  "score": 98.0, "unit": "%",   "_source": "https://deploymentsafety.openai.com/gpt-5-5/introduction", "_note": "Irregular external eval — network attacks success rate" },
+
+    { "model": "openai/gpt-5.5-pro", "benchmark": "healthbench",           "score": 56.5, "unit": "%",  "_source": "https://deploymentsafety.openai.com/gpt-5-5/introduction", "_note": "GPT-5.5 Pro — parallel test-time compute variant (scores reported jointly with GPT-5.5)" },
+    { "model": "openai/gpt-5.5-pro", "benchmark": "cybench",               "score": 85.0, "unit": "%",  "_source": "https://deploymentsafety.openai.com/gpt-5-5/introduction", "_note": "GPT-5.5 Pro CTF Professional" },
+
+    { "model": "moonshot/kimi-k2.6", "benchmark": "hle",                   "score": 54.0, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog — HLE-Full with tools" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "browsecomp",            "score": 83.2, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog — single agent; 86.3 with agent swarm" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "deepsearchqa",          "score": 92.5, "unit": "f1", "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog — f1 score" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "toolathlon",            "score": 50.0, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "osworld_verified",     "score": 73.1, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "terminal_bench_2",      "score": 66.7, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog — Terminus-2 scaffold" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "swe_bench_pro",         "score": 58.6, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "swe_bench_multilingual","score": 76.7, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "swe_bench_verified",    "score": 80.2, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "livecodebench_v6",      "score": 89.6, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog — LiveCodeBench v6" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "aime_2026",             "score": 96.4, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "hmmt_2026",             "score": 92.7, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog — HMMT Feb 2026" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "gpqa_diamond",          "score": 90.5, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "imo_answerbench",       "score": 86.0, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "mmmu_pro",              "score": 79.4, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog — 80.1% w/ python" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "mathvision",            "score": 87.4, "unit": "%",  "_source": "https://www.kimi.com/blog/kimi-k2-6", "_note": "Kimi K2.6 blog — 93.2% w/ python" },
+
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "gpqa_diamond",         "score": 87.8, "unit": "%",  "_source": "https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/", "_note": "Qwen3.6-27B launch coverage" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "aime_2026",            "score": 94.1, "unit": "%",  "_source": "https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/", "_note": "Qwen3.6-27B — full AIME 2026 I+II" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "livecodebench_v6",     "score": 83.9, "unit": "%",  "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026", "_note": "Qwen3.6-27B launch review" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "swe_bench_verified",   "score": 77.2, "unit": "%",  "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026", "_note": "Qwen3.6-27B" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "swe_bench_pro",        "score": 53.5, "unit": "%",  "_source": "https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/", "_note": "Qwen3.6-27B — dense 27B outperforms 397B MoE on SWE-Pro" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "swe_bench_multilingual","score": 71.3, "unit": "%", "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026", "_note": "Qwen3.6-27B" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "terminal_bench_2",     "score": 59.3, "unit": "%",  "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026", "_note": "Qwen3.6-27B" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "qwen_web_bench",       "score": 1487, "unit": "elo","_source": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026", "_note": "Qwen3.6-27B — ELO rating" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "nl2repo",              "score": 36.2, "unit": "%",  "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026", "_note": "Qwen3.6-27B" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "skills_bench",         "score": 48.2, "unit": "%",  "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026", "_note": "Qwen3.6-27B — Avg of 5 skill domains" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "android_world",        "score": 70.3, "unit": "%",  "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026", "_note": "Qwen3.6-27B — native multimodal agent" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "vlms_are_blind",       "score": 97.0, "unit": "%",  "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026", "_note": "Qwen3.6-27B" },
+    { "model": "alibaba/qwen3.6-27b", "benchmark": "video_mme",            "score": 87.7, "unit": "%",  "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-27b-review-2026", "_note": "Qwen3.6-27B — Video-MME with subtitles" },
+
+    { "model": "alibaba/qwen3.6-35b-a3b", "benchmark": "swe_bench_verified", "score": 73.4, "unit": "%", "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-35b-a3b-review", "_note": "Qwen3.6-35B-A3B — Alibaba internal agent scaffold (self-reported)" },
+    { "model": "alibaba/qwen3.6-35b-a3b", "benchmark": "terminal_bench_2",   "score": 51.5, "unit": "%", "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-35b-a3b-review", "_note": "Qwen3.6-35B-A3B" },
+    { "model": "alibaba/qwen3.6-35b-a3b", "benchmark": "mcpmark",            "score": 37.0, "unit": "%", "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-35b-a3b-review", "_note": "Qwen3.6-35B-A3B — MCP tool use" },
+    { "model": "alibaba/qwen3.6-35b-a3b", "benchmark": "qwen_web_bench",     "score": 1397, "unit": "elo","_source": "https://www.buildfastwithai.com/blogs/qwen3-6-35b-a3b-review", "_note": "Qwen3.6-35B-A3B — ELO rating" },
+    { "model": "alibaba/qwen3.6-35b-a3b", "benchmark": "realworldqa",        "score": 85.3, "unit": "%", "_source": "https://www.buildfastwithai.com/blogs/qwen3-6-35b-a3b-review", "_note": "Qwen3.6-35B-A3B — self-reported" },
+    { "model": "alibaba/qwen3.6-35b-a3b", "benchmark": "gpqa_diamond",       "score": 86.0, "unit": "%", "_source": "https://www.labellerr.com/blog/qwen3-6-35b-a3b-open-source-ai-model/", "_note": "Qwen3.6-35B-A3B — Labellerr review" },
+    { "model": "alibaba/qwen3.6-35b-a3b", "benchmark": "mmlu_pro",           "score": 85.2, "unit": "%", "_source": "https://www.labellerr.com/blog/qwen3-6-35b-a3b-open-source-ai-model/", "_note": "Qwen3.6-35B-A3B" },
+    { "model": "alibaba/qwen3.6-35b-a3b", "benchmark": "aime_2026",          "score": 92.7, "unit": "%", "_source": "https://www.labellerr.com/blog/qwen3-6-35b-a3b-open-source-ai-model/", "_note": "Qwen3.6-35B-A3B" }
+  ]
+}

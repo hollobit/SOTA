@@ -2,10 +2,10 @@
  * Cyber & Coding tab: renders cybersecurity attack and coding capability views.
  */
 var CyberCoding = {
-    CYBER_BENCHMARKS: ['cybench', 'cvebench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'airtbench', 'firefox_147', 'cyber_range'],
+    CYBER_BENCHMARKS: ['cybench', 'cvebench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'airtbench', 'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range'],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric'],
-    AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'browsecomp', 'tau_bench', 'tau2_bench', 'webarena', 'deepsearchqa', 'mcp_atlas'],
-    CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'terminal_bench_2', 'livecodebench'],
+    AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'browsecomp', 'tau_bench', 'tau2_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench'],
+    CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'nl2repo'],
 
     BENCH_DESCRIPTIONS: {
         cybench: {
@@ -142,6 +142,51 @@ var CyberCoding = {
             name: 'LiveCodeBench',
             desc: '매월 갱신되는 contamination-free 코딩 벤치마크. 경쟁 프로그래밍 문제 기반 pass@1 정확도 측정.',
             source: 'livecodebench.github.io'
+        },
+        livecodebench_v6: {
+            name: 'LiveCodeBench v6',
+            desc: 'LiveCodeBench 6차 갱신본. 2026 경쟁 프로그래밍 문제 포함. Frontier 모델들이 80% 이상 넘어서면서 난이도 상향 필요성 대두.',
+            source: 'livecodebench.github.io'
+        },
+        swe_bench_multilingual: {
+            name: 'SWE-bench Multilingual',
+            desc: 'SWE-bench 다국어 확장판. Python 외 Java/Go/TS/JS/C++/Rust/C 언어 리포지토리의 실제 GitHub 이슈 해결 능력 측정.',
+            source: 'swebench.com'
+        },
+        cyscenariobench: {
+            name: 'CyScenarioBench',
+            desc: 'Irregular 팀 개발 멀티 스텝 사이버 공격 시나리오 평균 성공률. GPT-5.5에서 26% (GPT-5.4 9% 대비 +17pt).',
+            source: 'Irregular external eval'
+        },
+        tlo_cyber_range: {
+            name: 'The Last Ones (TLO)',
+            desc: 'UK AISI 32단계 기업 네트워크 공격 시뮬레이션. 20 human-hour 난이도. GPT-5.5가 pass@10에서 1회 해결.',
+            source: 'UK AISI research'
+        },
+        toolathlon: {
+            name: 'Toolathlon',
+            desc: '다영역 도구 활용 에이전트 벤치마크. 장기(long-horizon) 워크플로우에서의 도구 선택·연속 호출 정확도 측정. Kimi K2.6 릴리스에서 주요 지표.',
+            source: 'Kimi K2.6 release'
+        },
+        mcpmark: {
+            name: 'MCPMark',
+            desc: 'Model Context Protocol 기반 에이전트 도구 사용 벤치마크. 다단계 MCP 서버 호출 정확도. Qwen3.6-35B-A3B 릴리스에서 도입.',
+            source: 'Qwen3.6 release'
+        },
+        android_world: {
+            name: 'AndroidWorld',
+            desc: 'Android 모바일 OS 에이전트 벤치마크. 20개 실제 Android 앱에서 116개 과제 수행. Google Research.',
+            source: 'arxiv.org/abs/2405.14573'
+        },
+        qwen_web_bench: {
+            name: 'QwenWebBench',
+            desc: 'Alibaba Qwen 팀의 웹 브라우징 에이전트 ELO 평가. 멀티턴 웹 네비게이션 태스크에서의 상대 순위.',
+            source: 'Qwen3.6 release'
+        },
+        nl2repo: {
+            name: 'NL2Repo',
+            desc: '자연어 → 리포지토리 합성 벤치마크. 단일 함수가 아닌 전체 리포 구조를 NL 명세만으로 생성하는 정확도 측정.',
+            source: 'Qwen3.6 release'
         }
     },
 
@@ -154,17 +199,23 @@ var CyberCoding = {
         'anthropic/claude-sonnet-4.6',
         'google/gemini-3.1-pro',
         'google/gemini-3-pro',
+        'openai/gpt-5.5',
+        'openai/gpt-5.5-pro',
         'openai/gpt-5.4',
         'openai/gpt-5.4-thinking',
         'openai/gpt-5.3-codex',
         'openai/gpt-5.2',
         'openai/gpt-5',
         'xai/grok-4-heavy',
+        'xai/grok-4.20',
         'meta/muse-spark',
         'zhipu/glm-5',
         'zhipu/glm-5.1',
         'alibaba/qwen3.6-plus',
+        'alibaba/qwen3.6-27b',
+        'alibaba/qwen3.6-35b-a3b',
         'deepseek/deepseek-v3.2',
+        'moonshot/kimi-k2.6',
         'moonshot/kimi-k2.5',
         'moonshot/kimi-k2-thinking',
         'minimax/m2.7',
