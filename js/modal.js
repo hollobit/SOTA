@@ -336,6 +336,136 @@ var Modal = {
         Modal._open();
     },
 
+    /**
+     * Show a focused detail modal for a single (model, benchmark) score cell.
+     * Displays source URL (public-canonical where possible), collection date,
+     * notes, and cross-links to the full benchmark / model views.
+     */
+    showScoreSource: function(modelId, benchmarkId) {
+        var score = App.data.scores.find(function(s) {
+            return s.model_id === modelId && s.benchmark_id === benchmarkId;
+        });
+        if (!score) return;
+        var model = App.data.models.find(function(m) { return m.id === modelId; });
+        var bench = App.data.benchmarks.find(function(b) { return b.id === benchmarkId; });
+        if (!bench) return;
+
+        history.replaceState(null, '', '#score/' + modelId + '/' + benchmarkId);
+
+        var container = document.getElementById('modal-content');
+        container.textContent = '';
+
+        // Title: "Kimi K2.6 — SWE-bench Verified"
+        var h2 = document.createElement('h2');
+        h2.id = 'modal-title';
+        h2.className = 'text-xl font-bold text-white mb-1';
+        h2.textContent = (model ? model.name : modelId.split('/').pop()) + ' — ' + bench.name;
+        container.appendChild(h2);
+
+        // Category + SOTA badges
+        var badges = document.createElement('div');
+        badges.className = 'flex gap-2 mb-4';
+        var catBadge = document.createElement('span');
+        catBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-blue-900 text-blue-300';
+        catBadge.textContent = bench.category;
+        badges.appendChild(catBadge);
+        if (score.is_sota) {
+            var sotaBadge = document.createElement('span');
+            sotaBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-green-900 text-green-300 font-semibold';
+            sotaBadge.textContent = 'SOTA';
+            badges.appendChild(sotaBadge);
+        }
+        container.appendChild(badges);
+
+        // Big score display
+        var scoreBlock = document.createElement('div');
+        scoreBlock.className = 'bg-gray-800 rounded-lg p-5 mb-4 flex items-baseline gap-3';
+        var valueSpan = document.createElement('span');
+        valueSpan.className = 'text-4xl font-bold ' + (score.is_sota ? 'text-green-400' : 'text-blue-300');
+        valueSpan.textContent = score.value > 500 ? Math.round(score.value) : score.value;
+        scoreBlock.appendChild(valueSpan);
+        var unitSpan = document.createElement('span');
+        unitSpan.className = 'text-gray-400 text-lg';
+        unitSpan.textContent = score.unit || '';
+        scoreBlock.appendChild(unitSpan);
+        container.appendChild(scoreBlock);
+
+        // Provenance block: source URL, type, dates, notes
+        var meta = document.createElement('div');
+        meta.className = 'bg-gray-800 rounded-lg p-4 mb-4 space-y-2';
+        var metaHeader = document.createElement('h3');
+        metaHeader.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2';
+        metaHeader.textContent = '검증 소스';
+        meta.appendChild(metaHeader);
+
+        var srcType = (score.source && score.source.type) || 'web';
+        meta.appendChild(this._makeLabel('Source type', srcType));
+
+        var publicUrl = Modal._sourceLink(score.source);
+        var rawUrl = (score.source && score.source.url) || '';
+        if (publicUrl) {
+            var linkRow = document.createElement('div');
+            linkRow.className = 'text-sm';
+            var lbl = document.createElement('span');
+            lbl.className = 'text-gray-500';
+            lbl.textContent = 'Source URL: ';
+            linkRow.appendChild(lbl);
+            var a = document.createElement('a');
+            a.href = publicUrl;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = (srcType === 'pdf' ? 'text-purple-400' : 'text-blue-400') + ' hover:underline break-all';
+            a.textContent = publicUrl;
+            linkRow.appendChild(a);
+            meta.appendChild(linkRow);
+        } else if (rawUrl) {
+            meta.appendChild(this._makeLabel('Source path', rawUrl));
+        }
+
+        if (score.source && score.source.date) {
+            meta.appendChild(this._makeLabel('Source date', score.source.date));
+        }
+        if (score.collected_at && score.collected_at !== (score.source && score.source.date)) {
+            meta.appendChild(this._makeLabel('수집일 (collected_at)', score.collected_at));
+        } else if (score.collected_at) {
+            meta.appendChild(this._makeLabel('수집일', score.collected_at));
+        }
+        if (score.source && score.source.citation) {
+            meta.appendChild(this._makeLabel('Citation', score.source.citation));
+        }
+        if (score.notes) {
+            var noteBox = document.createElement('div');
+            noteBox.className = 'text-sm mt-3 pt-3 border-t border-gray-700';
+            var noteLbl = document.createElement('div');
+            noteLbl.className = 'text-gray-500 mb-1';
+            noteLbl.textContent = 'Notes';
+            noteBox.appendChild(noteLbl);
+            var noteTxt = document.createElement('div');
+            noteTxt.className = 'text-gray-200';
+            noteTxt.textContent = score.notes;
+            noteBox.appendChild(noteTxt);
+            meta.appendChild(noteBox);
+        }
+        container.appendChild(meta);
+
+        // Cross-links
+        var linksDiv = document.createElement('div');
+        linksDiv.className = 'flex gap-2 mb-2';
+        var benchLink = document.createElement('button');
+        benchLink.className = 'px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-blue-200 text-xs rounded transition';
+        benchLink.textContent = '벤치마크 전체 랭킹 →';
+        benchLink.onclick = function() { Modal.showBenchmark(benchmarkId); };
+        linksDiv.appendChild(benchLink);
+        var modelLink = document.createElement('button');
+        modelLink.className = 'px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded transition';
+        modelLink.textContent = '모델 전체 점수 →';
+        modelLink.onclick = function() { Modal.showModel(modelId); };
+        linksDiv.appendChild(modelLink);
+        container.appendChild(linksDiv);
+
+        Modal._open();
+    },
+
     showModel: function(modelId) {
         var model = App.data.models.find(function(m) { return m.id === modelId; });
         if (!model) return;

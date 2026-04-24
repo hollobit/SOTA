@@ -290,6 +290,17 @@ var FrontierCompare = {
 
                 var v = scoreMap[mid + '|' + bid];
                 if (v !== undefined) {
+                    // Clickable → opens Modal.showScoreSource for this (model, benchmark) pair
+                    td.style.cursor = 'pointer';
+                    td.setAttribute('role', 'button');
+                    td.setAttribute('title', '클릭하면 검증 소스와 수집일 표시');
+                    td.addEventListener('click', (function(modelId, benchId) {
+                        return function() {
+                            if (typeof Modal !== 'undefined' && Modal.showScoreSource) {
+                                Modal.showScoreSource(modelId, benchId);
+                            }
+                        };
+                    })(mid, bid));
                     // Skip color-coding for non-percentage metrics
                     var isSpecial = (bid === 'vending_bench_2' || bid === 'gdpval_aa' || bid === 'metr_time_horizons' || bid === 'livecodebench');
                     var displayVal = v;
