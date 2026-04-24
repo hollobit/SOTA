@@ -67,6 +67,12 @@ jobs:
           name: benchmark-db
           path: data/
 
+      - name: Load curated seed scores
+        # Merges all resource/*_scores_*.json into the DB so that manually
+        # curated System-Card / PDF / blog-sourced scores land in the live
+        # dashboard alongside scraped web data.
+        run: python scripts/load_benchmark_scores.py
+
       - name: Run analysis
         run: python -m cyber analyze
 
