@@ -398,8 +398,18 @@ var App = {
 
             var tdScore = document.createElement('td');
             var sotaBadge = document.createElement('span');
-            sotaBadge.className = 'badge badge-sota';
+            sotaBadge.className = 'badge badge-sota cursor-pointer hover:brightness-110 transition';
             sotaBadge.textContent = info.value + (info.unit || '');
+            sotaBadge.setAttribute('role', 'button');
+            sotaBadge.setAttribute('title', '클릭하면 검증 소스와 수집일·변경 이력 표시');
+            sotaBadge.onclick = (function(mid, bid) {
+                return function(e) {
+                    e.stopPropagation();
+                    if (typeof Modal !== 'undefined' && Modal.showScoreSource) {
+                        Modal.showScoreSource(mid, bid);
+                    }
+                };
+            })(info.model_id, benchId);
             tdScore.appendChild(sotaBadge);
             tr.appendChild(tdScore);
 

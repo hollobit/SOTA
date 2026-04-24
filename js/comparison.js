@@ -211,6 +211,17 @@ var Comparison = {
                     td.textContent = val.toFixed(1);
                     if (val === bestPerBench[bId] && models.length > 1) td.className = 'best';
                     else if (val === worstPerBench[bId] && models.length > 1 && bestPerBench[bId] !== worstPerBench[bId]) td.className = 'worst';
+                    // Clickable \u2192 opens Modal.showScoreSource for this (model, benchmark)
+                    td.style.cursor = 'pointer';
+                    td.setAttribute('role', 'button');
+                    td.setAttribute('title', '\ud074\ub9ad\ud558\uba74 \uac80\uc99d \uc18c\uc2a4\uc640 \uc218\uc9d1\uc77c\u00b7\ubcc0\uacbd \uc774\ub825 \ud45c\uc2dc');
+                    td.addEventListener('click', (function(mid, bid) {
+                        return function() {
+                            if (typeof Modal !== 'undefined' && Modal.showScoreSource) {
+                                Modal.showScoreSource(mid, bid);
+                            }
+                        };
+                    })(mId, bId));
                 } else {
                     td.textContent = '\u2014';
                     td.className = 'na';
