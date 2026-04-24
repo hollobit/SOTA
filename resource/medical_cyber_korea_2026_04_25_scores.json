@@ -1,0 +1,47 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-25",
+    "session": "Three-axis expansion: medical sovereign LLMs (Korea, EPFL, MBZUAI, FreedomIntelligence), new cyber evaluator benchmarks (NYU CTF, HTB AI Range), and historical baselines (Med-PaLM 2). Korean SNUH+Naver KMed.ai is the major addition — first sovereign Korean medical LLM, 96.4 KMLE.",
+    "sources": [
+      "https://www.mobihealthnews.com/news/asia/snuh-naver-launch-korean-style-medical-llm-kmedai",
+      "http://www.snuh.org/global/en/about/newsView.do?bbs_no=7384",
+      "https://huggingface.co/epfl-llm/meditron-70b",
+      "https://arxiv.org/abs/2311.16079",
+      "https://github.com/FreedomIntelligence/HuatuoGPT-II",
+      "https://github.com/mbzuai-oryx/BiMediX",
+      "https://arxiv.org/abs/2402.13253",
+      "https://nyu-llm-ctf.github.io/",
+      "https://arxiv.org/abs/2502.10931",
+      "https://www.hackthebox.com/blog/htb-ai-range-launch"
+    ]
+  },
+  "models": [
+    { "id": "snuh-naver/kmed-ai",                 "vendor": "SNUH + Naver",        "name": "KMed.ai (Korean Medical LLM)", "type": "proprietary", "modalities": ["text"] },
+    { "id": "epfl/meditron-70b",                  "vendor": "EPFL + Yale + ICRC",  "name": "Meditron-70B",                 "type": "open-weight", "modalities": ["text"] },
+    { "id": "epfl/meditron-7b",                   "vendor": "EPFL + Yale + ICRC",  "name": "Meditron-7B",                  "type": "open-weight", "modalities": ["text"] },
+    { "id": "epfl/llama-3-meditron-70b",          "vendor": "EPFL + Yale",         "name": "Llama-3-Meditron 70B",         "type": "open-weight", "modalities": ["text"] },
+    { "id": "freedomintelligence/huatuogpt-ii",   "vendor": "FreedomIntelligence", "name": "HuatuoGPT-II",                 "type": "open-weight", "modalities": ["text"] },
+    { "id": "mbzuai/bimedix",                     "vendor": "MBZUAI",              "name": "BiMediX (Bilingual EN/AR)",    "type": "open-weight", "modalities": ["text"] },
+    { "id": "google/med-palm-2",                  "vendor": "Google",              "name": "Med-PaLM 2",                   "type": "proprietary", "modalities": ["text"] }
+  ],
+  "benchmarks": [
+    { "id": "kmle",          "name": "KMLE (Korean Medical Licensing Exam)", "category": "reasoning", "description": "Korean Medical Licensing Examination — 3-year average score. Sovereign Korean medical AI evaluation. First model to score in 90s: KMed.ai 96.4.",                                              "metric": "accuracy" },
+    { "id": "medqa_5op",     "name": "MedQA (5-option variant)",             "category": "reasoning", "description": "MedQA 5-answer-option variant (harder than 4-op). Used in original Meditron-70B paper. Lower scores on this variant reflect tighter answer distribution.",                                       "metric": "accuracy" },
+    { "id": "nyu_ctf",       "name": "NYU CTF Bench",                        "category": "cybersecurity", "description": "NYU Tandon LLM CTF benchmark — 200+ Capture-The-Flag challenges across multiple difficulty tiers. D-CIPHER multi-agent framework holds 22.0% SOTA.",                                          "metric": "accuracy" },
+    { "id": "med_avg",       "name": "Medical Average (BiMediX)",            "category": "reasoning", "description": "Average accuracy across MedQA + MedMCQA + PubMedQA + MMLU clinical/anatomy/college medicine subsets. Composite metric used in BiMediX evaluation.",                                            "metric": "accuracy" },
+    { "id": "medqa",         "name": "MedQA (4-op USMLE)",                   "category": "reasoning", "description": "Co-declared for FK-order safety (medical_cyber_korea loads before regional batches alphabetically).",                                                                                       "metric": "accuracy" },
+    { "id": "pubmedqa",      "name": "PubMedQA",                             "category": "reasoning", "description": "Co-declared for FK-order safety.",                                                                                                                                                              "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "snuh-naver/kmed-ai", "benchmark": "kmle",     "score": 96.4, "unit": "%", "_source": "https://en.sedaily.com/technology/2025/11/28/964-points-in-medical-examination-world-class-medical-ai", "_note": "KMed.ai 2025 KMLE 3-year average — sovereign Korean medical AI first to break 90s threshold" },
+    { "model": "snuh-naver/kmed-ai", "benchmark": "kmle",     "score": 86.2, "unit": "%", "_source": "https://www.mobihealthnews.com/news/asia/snuh-naver-launch-korean-style-medical-llm-kmedai", "_note": "Earlier SNUH-only version pre-Naver collaboration; replaced by 96.4 in DB but documented for trajectory" },
+
+    { "model": "epfl/meditron-70b",  "benchmark": "medqa",    "score": 70.2, "unit": "%", "_source": "https://arxiv.org/abs/2311.16079", "_note": "Meditron-70B paper Section 5 — MedQA 4-option" },
+    { "model": "epfl/meditron-70b",  "benchmark": "medqa_5op","score": 47.9, "unit": "%", "_source": "https://arxiv.org/abs/2311.16079", "_note": "Meditron-70B 5-option MedQA — harder variant" },
+    { "model": "epfl/meditron-70b",  "benchmark": "pubmedqa", "score": 74.4, "unit": "%", "_source": "https://arxiv.org/abs/2311.16079", "_note": "Meditron-70B SOTA at release for open medical LLM" },
+
+    { "model": "google/med-palm-2",  "benchmark": "medqa",    "score": 86.5, "unit": "%", "_source": "https://research.google/blog/medgemma-our-most-capable-open-models-for-health-ai-development/", "_note": "Med-PaLM 2 baseline cited in MedGemma paper — superseded by MedGemma 27B 87.7" },
+
+    { "model": "mbzuai/bimedix",     "benchmark": "med_avg",  "score": 65.4, "unit": "%", "_source": "https://arxiv.org/abs/2402.13253", "_note": "BiMediX bilingual avg across medical benchmarks (vs Mixtral-8x7B 55.0, Jais-30B 50.6, +2.5pt over Med42, +4.1pt over Meditron)" }
+  ]
+}

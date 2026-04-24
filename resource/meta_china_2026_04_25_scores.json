@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-25",
+    "session": "Meta + China deep-dive triggered by user query. Adds Tencent Hunyuan-T1 (Mamba-Transformer hybrid, March 2025 — older but cited as #2 on multiple benchmarks). Backfills scores for existing Meta Muse Spark (AA Intelligence Index 52, HLE 39.9, MMMU-Pro 80.5) and ByteDance Seed 2.0 Pro (AIME25 98.3, GPQA Diamond 88.9, MMLU 86). No new frontier launches from Meta beyond Muse Spark; no new China launches beyond what's already tracked (DeepSeek V4, Qwen3.6, GLM-5.1, Kimi K2.6, Doubao 2.0).",
+    "sources": [
+      "https://ai.meta.com/blog/introducing-muse-spark-msl/",
+      "https://artificialanalysis.ai/models/muse-spark",
+      "https://x.com/ArtificialAnlys/status/2041913043379220801",
+      "https://github.com/Tencent/llm.hunyuan.T1",
+      "https://www.aibase.com/news/16561",
+      "https://www.digitalapplied.com/blog/bytedance-seed-2-doubao-ai-model-benchmarks-guide",
+      "https://technode.com/2026/02/14/bytedance-releases-doubao-seed-2-0-positions-pro-model-against-gpt-5-2-and-gemini-3-pro/"
+    ]
+  },
+  "models": [
+    { "id": "tencent/hunyuan-t1",         "vendor": "Tencent",   "name": "Hunyuan-T1",          "type": "open-weight", "modalities": ["text"] }
+  ],
+  "benchmarks": [],
+  "scores": [
+    { "model": "meta/muse-spark",         "benchmark": "hle",            "score": 39.9, "unit": "%", "_source": "https://artificialanalysis.ai/models/muse-spark", "_note": "Muse Spark HLE — 4th place overall behind Gemini 3.1 Pro 44.7, GPT-5.4 xhigh 41.6" },
+    { "model": "meta/muse-spark",         "benchmark": "mmmu_pro",       "score": 80.5, "unit": "%", "_source": "https://artificialanalysis.ai/models/muse-spark", "_note": "Muse Spark — 2nd-highest vision score among frontier models" },
+
+    { "model": "tencent/hunyuan-t1",      "benchmark": "mmlu_pro",       "score": 87.2, "unit": "%", "_source": "https://github.com/Tencent/llm.hunyuan.T1", "_note": "Hunyuan-T1 — #2 on MMLU-Pro behind only OpenAI o1 at release (Mar 2025)" },
+    { "model": "tencent/hunyuan-t1",      "benchmark": "gpqa_diamond",   "score": 69.3, "unit": "%", "_source": "https://github.com/Tencent/llm.hunyuan.T1", "_note": "Hunyuan-T1 GPQA Diamond" },
+    { "model": "tencent/hunyuan-t1",      "benchmark": "math_500",       "score": 96.2, "unit": "%", "_source": "https://github.com/Tencent/llm.hunyuan.T1", "_note": "Hunyuan-T1 MATH-500 — #2 behind DeepSeek-R1" },
+    { "model": "tencent/hunyuan-t1",      "benchmark": "livecodebench",  "score": 64.9, "unit": "%", "_source": "https://github.com/Tencent/llm.hunyuan.T1", "_note": "Hunyuan-T1 code generation" },
+    { "model": "tencent/hunyuan-t1",      "benchmark": "arena_hard_v2",  "score": 91.9, "unit": "%", "_source": "https://github.com/Tencent/llm.hunyuan.T1", "_note": "Hunyuan-T1 Arena Hard — high-difficulty reasoning" },
+
+    { "model": "bytedance/seed-2.0-pro",  "benchmark": "aime_2025",      "score": 98.3, "unit": "%", "_source": "https://www.digitalapplied.com/blog/bytedance-seed-2-doubao-ai-model-benchmarks-guide", "_note": "Doubao Seed 2.0 Pro AIME 2025 — Feb 14, 2026 launch, positions vs GPT-5.2/Gemini 3 Pro" },
+    { "model": "bytedance/seed-2.0-pro",  "benchmark": "gpqa_diamond",   "score": 88.9, "unit": "%", "_source": "https://www.digitalapplied.com/blog/bytedance-seed-2-doubao-ai-model-benchmarks-guide", "_note": "Doubao Seed 2.0 Pro" },
+    { "model": "bytedance/seed-2.0-pro",  "benchmark": "mmlu",           "score": 86.0, "unit": "%", "_source": "https://www.digitalapplied.com/blog/bytedance-seed-2-doubao-ai-model-benchmarks-guide", "_note": "Doubao Pro (vs GPT-5.4 Mini 84%)" }
+  ]
+}
