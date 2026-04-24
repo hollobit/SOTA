@@ -1221,6 +1221,8 @@ var App = {
         var pdfDocs = [
             { name: 'GPT-5.5 System Card', file: 'GPT-5-5-System-Card.pdf', vendor: 'OpenAI', date: 'Apr 2026', url: 'https://deploymentsafety.openai.com/gpt-5-5/introduction' },
             { name: 'DeepSeek V4-Pro Technical Report', file: 'DeepSeek-V4-Pro-Technical-Report.pdf', vendor: 'DeepSeek', date: 'Apr 2026', url: 'https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro' },
+            { name: 'MedGemma Technical Report', file: 'MedGemma-Technical-Report-2507.05201.pdf', vendor: 'Google', date: 'Jul 2025', url: 'https://arxiv.org/abs/2507.05201' },
+            { name: 'MedGemma 1.5 Technical Report', file: 'MedGemma-1.5-Technical-Report-2604.05081.pdf', vendor: 'Google', date: 'Jan 2026', url: 'https://arxiv.org/abs/2604.05081' },
             { name: 'Claude Opus 4.7 System Card', file: 'Claude Opus 4.7 System Card.pdf', vendor: 'Anthropic', date: 'Apr 2026', url: 'https://www.anthropic.com/research' },
             { name: 'Claude Opus 4.6 System Card', file: 'Claude Opus 4.6 System Card 02-05.pdf', vendor: 'Anthropic', date: 'Feb 2026', url: 'https://www.anthropic.com/research' },
             { name: 'Claude Mythos Preview System Card', file: 'Claude Mythos Preview System Card.pdf', vendor: 'Anthropic', date: 'Apr 2026', url: 'https://www.anthropic.com/research' },
