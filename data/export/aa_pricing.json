@@ -1,11 +1,13 @@
 {
   "_meta": {
     "source": "https://artificialanalysis.ai/leaderboards/models",
-    "collected_at": "2026-04-24",
-    "notes": "Intelligence Index + USD per 1M tokens (input/output) + output tokens/sec. Standard / high-reasoning variants where multiple tiers exist. 2026-04-24 update: added GPT-5.5 family, Kimi K2.6, Qwen3.6-27B — pricing provisional (flagged with _provisional: true) pending AA confirmation."
+    "collected_at": "2026-04-25",
+    "notes": "Intelligence Index + USD per 1M tokens (input/output) + output tokens/sec. Standard / high-reasoning variants where multiple tiers exist. 2026-04-25 update: confirmed DeepSeek V4 pricing from techcrunch.com + api-docs.deepseek.com. GPT-5.5 / Kimi K2.6 / Qwen3.6-27B remain provisional pending AA confirmation."
   },
   "models": [
     { "model_id": "anthropic/claude-opus-4.7",   "intelligence_index": 57, "price_per_1m_input": 5.00,  "price_per_1m_output": 25.00,  "tokens_per_second": 49.7 },
+    { "model_id": "deepseek/deepseek-v4-pro",    "price_per_1m_input": 0.145, "price_per_1m_output": 3.48, "_note": "Confirmed via api-docs.deepseek.com/updates 2026-04-24 + TechCrunch coverage; deepseek-v4-pro endpoint" },
+    { "model_id": "deepseek/deepseek-v4-flash",  "price_per_1m_input": 0.14,  "price_per_1m_output": 0.28, "_note": "Confirmed; deepseek-v4-flash endpoint. Lowest-cost frontier tier; legacy deepseek-chat/-reasoner deprecated 2026-07-24" },
     { "model_id": "openai/gpt-5.5",              "price_per_1m_input": 2.50,  "price_per_1m_output": 15.00, "_provisional": true, "_note": "Pricing matches GPT-5.4 tier — awaiting AA confirmation" },
     { "model_id": "openai/gpt-5.5-pro",          "price_per_1m_input": 30.00, "price_per_1m_output": 180.00, "_provisional": true, "_note": "Matches GPT-5.4 Pro tier (parallel test-time compute variant)" },
     { "model_id": "moonshot/kimi-k2.6",          "price_per_1m_input": 0.60,  "price_per_1m_output": 3.00,  "_provisional": true, "_note": "Same tier as Kimi K2.5 per platform.kimi.ai/pricing/chat-k26" },
