@@ -116,10 +116,15 @@ jobs:
 
       - name: Stage dashboard + data for gh-pages
         run: |
+          # dashboard/data is a local dev symlink -> ../data/export.
+          # Exclude it during copy; we rebuild public/data/ from the freshly
+          # exported data/export/ directly below. Using rsync avoids the
+          # "same file" failure cp hit when the symlink was copied verbatim.
+          rm -rf public
           mkdir -p public
-          cp -r dashboard/* public/
+          rsync -a --exclude='/data' dashboard/ public/
           mkdir -p public/data
-          cp -r data/export/* public/data/
+          rsync -a data/export/ public/data/
           touch public/.nojekyll
 
       - name: Deploy to GitHub Pages
