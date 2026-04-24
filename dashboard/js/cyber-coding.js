@@ -441,6 +441,17 @@ var CyberCoding = {
                     } else {
                         td.style.color = Theme.series[3];
                     }
+                    // Clickable \u2192 opens score source detail modal
+                    td.style.cursor = 'pointer';
+                    td.setAttribute('role', 'button');
+                    td.setAttribute('title', '\ud074\ub9ad\ud558\uba74 \uac80\uc99d \uc18c\uc2a4\uc640 \uc218\uc9d1\uc77c \ud45c\uc2dc');
+                    td.addEventListener('click', (function(modelId, benchId) {
+                        return function() {
+                            if (typeof Modal !== 'undefined' && Modal.showScoreSource) {
+                                Modal.showScoreSource(modelId, benchId);
+                            }
+                        };
+                    })(mid, bid));
                 } else {
                     td.textContent = '\u2014';
                     td.style.color = Theme.textDisabled;
