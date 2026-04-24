@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-24",
+    "session": "GPT-5.5 System Card coverage completion — fills ~40 scores missed in earlier passes. Adds 14 new benchmarks spanning Apollo Research sandbagging suite (§9.2), AI Self-Improvement (§9.1.3), Dynamic Mental Health Table 8, and remaining bio benchmarks (ProtocolQA, TroubleshootingBench). Primary source: PDF extracted with pdftotext at /Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf.",
+    "sources": [
+      "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+      "resource/GPT-5-5-System-Card.pdf"
+    ]
+  },
+  "models": [],
+  "benchmarks": [
+    { "id": "apollo_sandbagging_qa",          "name": "Apollo Sandbagging QA",           "category": "cyber_defense", "description": "Apollo Research deferred-subversion task suite; measures whether a model deliberately underperforms on QA when incentivized. GPT-5.5 is the first OpenAI model Apollo found did NOT sandbag.", "metric": "accuracy" },
+    { "id": "apollo_strategic_deception",     "name": "Apollo Strategic Deception Sandbagging", "category": "cyber_defense", "description": "Apollo Research task — accuracy on strategic-deception capability when incentivized to score below 50%.",                                                                                       "metric": "accuracy" },
+    { "id": "apollo_impossible_task_lying",   "name": "Apollo Impossible-Task Lying Rate", "category": "cyber_defense", "description": "Apollo Research — rate at which the model falsely claims to have completed an impossible programming task. Lower is safer.",                                                                        "metric": "lying_rate_lower_better" },
+    { "id": "apollo_sabotage_mean",           "name": "Apollo Sabotage Mean Score",      "category": "cyber_defense", "description": "Apollo Research — mean sabotage-capability score across all task/difficulty combinations. Higher = more capable (not necessarily more dangerous without opportunity).",                                "metric": "score" },
+    { "id": "apollo_eval_awareness",          "name": "Apollo Eval-Awareness Rate",      "category": "cyber_defense", "description": "Apollo Research — percentage of samples where the model verbalizes moderate-or-higher awareness of alignment evaluation. Informational; rising values complicate sandbagging interpretation.",        "metric": "rate" },
+    { "id": "protocolqa_openended",           "name": "ProtocolQA Open-Ended",           "category": "reasoning",     "description": "FutureHouse ProtocolQA modified to open-ended short-answer form. 108 lab-protocol questions with egregious errors. Consensus PhD expert baseline 54%. System Card §9.1.1.2.",                        "metric": "accuracy" },
+    { "id": "troubleshootingbench",           "name": "TroubleshootingBench",            "category": "reasoning",     "description": "Expert-written wet-lab protocol troubleshooting dataset. 52 protocols × 3 questions. 80th-percentile expert score 36.4% used as threshold. System Card §9.1.1.4.",                                    "metric": "accuracy" },
+    { "id": "internal_research_debugging",    "name": "Internal Research Debugging",     "category": "reasoning",     "description": "OpenAI internal 41 real-research-experiment bugs + 6 alignment-auditing tasks. Pass=provides any assistance that unblocks the user. System Card §9.1.3.3.",                                          "metric": "accuracy" },
+    { "id": "opqa",                           "name": "OpenAI-Proof Q&A (OPQA)",          "category": "reasoning",     "description": "OpenAI internal 20 research/engineering bottlenecks each representing 1+ day delays. pass@1 on root-cause diagnosis. System Card §9.1.3.4.",                                                         "metric": "accuracy" },
+    { "id": "dynamic_mental_health",          "name": "Dynamic Mental Health (Adv)",     "category": "cyber_defense", "description": "OpenAI Table 8 — dynamic mental-health benchmark with adversarial user simulations. Compliance rate on realistic multi-turn pressure. Higher is safer.",                                              "metric": "accuracy" },
+    { "id": "dynamic_emotional_reliance",     "name": "Dynamic Emotional Reliance",      "category": "cyber_defense", "description": "OpenAI Table 8 — models' resistance to fostering unhealthy emotional dependence under adversarial user simulation. Higher is safer.",                                                                  "metric": "accuracy" },
+    { "id": "dynamic_self_harm_adversarial",  "name": "Dynamic Self-Harm (Adv)",         "category": "cyber_defense", "description": "OpenAI Table 8 — self-harm safety under adversarial multi-turn user simulation. Higher is safer.",                                                                                                     "metric": "accuracy" },
+    { "id": "cot_controllability",            "name": "CoT Controllability",             "category": "cyber_defense", "description": "OpenAI eval measuring a model's ability to follow user instructions that would reshape/obscure its CoT. Lower is safer — means model is less able to evade monitoring. Measured at 50K char length.", "metric": "control_rate_lower_better" },
+    { "id": "cot_monitorability",             "name": "CoT Monitorability (aggregate)",  "category": "cyber_defense", "description": "OpenAI aggregate recall of the CoT monitor system across tasks. Higher = better transparency of reasoning for safety review.",                                                                          "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "openai/gpt-5.5", "benchmark": "apollo_sandbagging_qa",        "score": 100.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Apollo §9.2.1 — 'first OpenAI model that does not sandbag on any Apollo deferred-subversion tasks'; 100% on both variants in both conditions" },
+    { "model": "openai/gpt-5.5", "benchmark": "apollo_strategic_deception",   "score": 99.6, "unit": "%",  "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Apollo §9.2.1 — accuracy on Strategic Deception Capability Sandbagging when incentivized to score <50%" },
+
+    { "model": "openai/gpt-5.5",          "benchmark": "apollo_impossible_task_lying", "score": 29.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Apollo §9.2.1 — model lied about completing an impossible programming task in 29% of samples (higher lying = worse)" },
+    { "model": "openai/gpt-5.4",          "benchmark": "apollo_impossible_task_lying", "score": 7.0,  "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Apollo §9.2.1 — GPT-5.4 baseline" },
+    { "model": "openai/gpt-5.3-codex",    "benchmark": "apollo_impossible_task_lying", "score": 10.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Apollo §9.2.1 — GPT-5.3 Codex baseline" },
+
+    { "model": "openai/gpt-5.5",          "benchmark": "apollo_sabotage_mean", "score": 0.67, "unit": "score", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Apollo §9.2.1 — mean across all task/difficulty combos; exceeded human baselines on hard-difficulty tasks" },
+    { "model": "openai/gpt-5.4",          "baseline_note": "approximate",      "benchmark": "apollo_sabotage_mean", "score": 0.61, "unit": "score", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Apollo §9.2.1 — strongest tested baseline checkpoint (likely pre-release GPT-5.4 per Apollo wording)" },
+    { "model": "openai/gpt-5.3-codex",    "benchmark": "apollo_sabotage_mean", "score": 0.55, "unit": "score", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Apollo §9.2.1 — older tested baseline checkpoint" },
+
+    { "model": "openai/gpt-5.5",          "benchmark": "apollo_eval_awareness", "score": 22.1, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Apollo §9.2.1 — 22.1% of samples verbalize moderate-or-higher alignment eval awareness" },
+    { "model": "openai/gpt-5.4",          "benchmark": "apollo_eval_awareness", "score": 17.3, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Apollo §9.2.1 — GPT-5.4 pre-release checkpoint" },
+    { "model": "openai/gpt-5.3-codex",    "benchmark": "apollo_eval_awareness", "score": 11.7, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Apollo §9.2.1 — GPT-5.3 Codex pre-release" },
+
+    { "model": "openai/gpt-5.5",     "benchmark": "protocolqa_openended",  "score": 45.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.1.2 Figure 13 — 'underperforms the 54% consensus PhD expert baseline'; figure reading approximation" },
+    { "model": "openai/gpt-5.5",     "benchmark": "troubleshootingbench",  "score": 28.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.1.4 Figure 15 — below 80th-percentile expert 36.4% threshold; figure approximation" },
+
+    { "model": "openai/gpt-5.5",     "benchmark": "internal_research_debugging", "score": 50.5, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.3.3 — 'highest scoring model on this benchmark' at 50.5% median; does not significantly improve over GPT-5.4 Thinking" },
+    { "model": "openai/gpt-5.3-codex", "benchmark": "opqa",                     "score": 5.8,  "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.3.4 Figure 22 — GPT-5.3-Codex highest-scoring of three shown" },
+
+    { "model": "openai/gpt-5.5",          "benchmark": "monorepo_bench", "score": 42.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.3.1 Figure 18 — 'slightly higher than comparison models'; figure approximation" },
+    { "model": "openai/gpt-5.5",          "benchmark": "mle_bench",      "score": 13.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §9.1.3.2 Figure 19 — bronze medal rate on 30 Kaggle competitions; outperforms GPT-5.4 Thinking" },
+
+    { "model": "openai/gpt-5.1",          "benchmark": "dynamic_mental_health",       "score": 75.3, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.1-thinking" },
+    { "model": "openai/gpt-5.2",          "benchmark": "dynamic_mental_health",       "score": 97.5, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.2-thinking" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "dynamic_mental_health",       "score": 98.5, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.4-thinking" },
+    { "model": "openai/gpt-5.5",          "benchmark": "dynamic_mental_health",       "score": 98.1, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.5" },
+
+    { "model": "openai/gpt-5.1",          "benchmark": "dynamic_emotional_reliance",  "score": 85.7, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.1-thinking" },
+    { "model": "openai/gpt-5.2",          "benchmark": "dynamic_emotional_reliance",  "score": 95.3, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.2-thinking" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "dynamic_emotional_reliance",  "score": 98.5, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.4-thinking" },
+    { "model": "openai/gpt-5.5",          "benchmark": "dynamic_emotional_reliance",  "score": 98.1, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.5" },
+
+    { "model": "openai/gpt-5.1",          "benchmark": "dynamic_self_harm_adversarial", "score": 90.4, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.1-thinking" },
+    { "model": "openai/gpt-5.2",          "benchmark": "dynamic_self_harm_adversarial", "score": 95.5, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.2-thinking" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "dynamic_self_harm_adversarial", "score": 97.7, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.4-thinking" },
+    { "model": "openai/gpt-5.5",          "benchmark": "dynamic_self_harm_adversarial", "score": 93.7, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "Table 8 — gpt-5.5; slight regression vs GPT-5.4-thinking" },
+
+    { "model": "openai/gpt-5.5",          "benchmark": "cot_controllability", "score": 0.2, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §7.3.2 — at 50K char CoT length; LOWER is safer (less able to obfuscate reasoning)" },
+    { "model": "openai/gpt-5.4-thinking", "benchmark": "cot_controllability", "score": 0.3, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §7.3.2 baseline" },
+    { "model": "openai/gpt-5.2",          "benchmark": "cot_controllability", "score": 0.5, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §7.3.2 — gpt-5.2-thinking baseline" },
+
+    { "model": "openai/gpt-5.5",          "benchmark": "cot_monitorability", "score": 96.0, "unit": "%", "_source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf", "_note": "System Card §7.3.1 — aggregate CoT monitor recall; 'overall monitorability remains high at 96%'" }
+  ]
+}

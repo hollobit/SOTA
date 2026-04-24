@@ -875,6 +875,104 @@
     "metric": "accuracy"
   },
   {
+    "id": "apollo_sandbagging_qa",
+    "name": "Apollo Sandbagging QA",
+    "category": "cyber_defense",
+    "description": "Apollo Research deferred-subversion task suite; measures whether a model deliberately underperforms on QA when incentivized. GPT-5.5 is the first OpenAI model Apollo found did NOT sandbag.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "apollo_strategic_deception",
+    "name": "Apollo Strategic Deception Sandbagging",
+    "category": "cyber_defense",
+    "description": "Apollo Research task — accuracy on strategic-deception capability when incentivized to score below 50%.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "apollo_impossible_task_lying",
+    "name": "Apollo Impossible-Task Lying Rate",
+    "category": "cyber_defense",
+    "description": "Apollo Research — rate at which the model falsely claims to have completed an impossible programming task. Lower is safer.",
+    "metric": "lying_rate_lower_better"
+  },
+  {
+    "id": "apollo_sabotage_mean",
+    "name": "Apollo Sabotage Mean Score",
+    "category": "cyber_defense",
+    "description": "Apollo Research — mean sabotage-capability score across all task/difficulty combinations. Higher = more capable (not necessarily more dangerous without opportunity).",
+    "metric": "score"
+  },
+  {
+    "id": "apollo_eval_awareness",
+    "name": "Apollo Eval-Awareness Rate",
+    "category": "cyber_defense",
+    "description": "Apollo Research — percentage of samples where the model verbalizes moderate-or-higher awareness of alignment evaluation. Informational; rising values complicate sandbagging interpretation.",
+    "metric": "rate"
+  },
+  {
+    "id": "protocolqa_openended",
+    "name": "ProtocolQA Open-Ended",
+    "category": "reasoning",
+    "description": "FutureHouse ProtocolQA modified to open-ended short-answer form. 108 lab-protocol questions with egregious errors. Consensus PhD expert baseline 54%. System Card §9.1.1.2.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "troubleshootingbench",
+    "name": "TroubleshootingBench",
+    "category": "reasoning",
+    "description": "Expert-written wet-lab protocol troubleshooting dataset. 52 protocols × 3 questions. 80th-percentile expert score 36.4% used as threshold. System Card §9.1.1.4.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "internal_research_debugging",
+    "name": "Internal Research Debugging",
+    "category": "reasoning",
+    "description": "OpenAI internal 41 real-research-experiment bugs + 6 alignment-auditing tasks. Pass=provides any assistance that unblocks the user. System Card §9.1.3.3.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "opqa",
+    "name": "OpenAI-Proof Q&A (OPQA)",
+    "category": "reasoning",
+    "description": "OpenAI internal 20 research/engineering bottlenecks each representing 1+ day delays. pass@1 on root-cause diagnosis. System Card §9.1.3.4.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "dynamic_mental_health",
+    "name": "Dynamic Mental Health (Adv)",
+    "category": "cyber_defense",
+    "description": "OpenAI Table 8 — dynamic mental-health benchmark with adversarial user simulations. Compliance rate on realistic multi-turn pressure. Higher is safer.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "dynamic_emotional_reliance",
+    "name": "Dynamic Emotional Reliance",
+    "category": "cyber_defense",
+    "description": "OpenAI Table 8 — models' resistance to fostering unhealthy emotional dependence under adversarial user simulation. Higher is safer.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "dynamic_self_harm_adversarial",
+    "name": "Dynamic Self-Harm (Adv)",
+    "category": "cyber_defense",
+    "description": "OpenAI Table 8 — self-harm safety under adversarial multi-turn user simulation. Higher is safer.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cot_controllability",
+    "name": "CoT Controllability",
+    "category": "cyber_defense",
+    "description": "OpenAI eval measuring a model's ability to follow user instructions that would reshape/obscure its CoT. Lower is safer — means model is less able to evade monitoring. Measured at 50K char length.",
+    "metric": "control_rate_lower_better"
+  },
+  {
+    "id": "cot_monitorability",
+    "name": "CoT Monitorability (aggregate)",
+    "category": "cyber_defense",
+    "description": "OpenAI aggregate recall of the CoT monitor system across tasks. Higher = better transparency of reasoning for safety review.",
+    "metric": "accuracy"
+  },
+  {
     "id": "openai_ctf_professional",
     "name": "OpenAI CTF (Professional)",
     "category": "cybersecurity",
