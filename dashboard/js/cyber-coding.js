@@ -306,33 +306,50 @@ var CyberCoding = {
         var modelScores = this._getScoresForBenchmarks(benchmarkIds);
         var self = this;
 
-        // filter to frontier models that have at least one score
+        // Benchmark-centric grouping: x-axis = benchmarks, series = top models.
+        // Filter benchmarks that have at least one score, ordered by coverage
+        // (most-evaluated first) so the densest columns sit on the left.
+        var benchWithCoverage = benchmarkIds.map(function(bid) {
+            var count = 0;
+            Object.keys(modelScores).forEach(function(mid) {
+                if (modelScores[mid] && modelScores[mid][bid]) count++;
+            });
+            return { bid: bid, count: count };
+        }).filter(function(x) { return x.count > 0; });
+        benchWithCoverage.sort(function(a, b) { return b.count - a.count; });
+        var activeBids = benchWithCoverage.map(function(x) { return x.bid; });
+
+        // Filter to frontier models with ≥1 score across this benchmark set.
         var modelIds = this.FRONTIER_MODELS.filter(function(mid) {
-            return modelScores[mid] && Object.keys(modelScores[mid]).length > 0;
+            return modelScores[mid] && activeBids.some(function(bid) { return modelScores[mid][bid]; });
         });
 
-        // sort by average score descending
+        // Sort models by average score across the benchmark set, keep top-8
+        // so the grouped-bar legend stays legible (7±2 rule).
         modelIds.sort(function(a, b) {
             var avgA = 0, cntA = 0, avgB = 0, cntB = 0;
-            benchmarkIds.forEach(function(bid) {
+            activeBids.forEach(function(bid) {
                 if (modelScores[a] && modelScores[a][bid]) { avgA += modelScores[a][bid]; cntA++; }
                 if (modelScores[b] && modelScores[b][bid]) { avgB += modelScores[b][bid]; cntB++; }
             });
             return (cntB ? avgB / cntB : 0) - (cntA ? avgA / cntA : 0);
         });
+        modelIds = modelIds.slice(0, 8);
 
-        modelIds = modelIds.slice(0, 12);
-
-        var benchNames = benchmarkIds.map(function(bid) {
+        var benchNames = activeBids.map(function(bid) {
             var b = self._benchmarks.find(function(x) { return x.id === bid; });
             return b ? b.name : bid;
         });
 
-        var series = benchmarkIds.map(function(bid, i) {
+        // One series per MODEL. Each series has a value for each benchmark on
+        // the x-axis. ECharts renders clustered bars grouped by x-category,
+        // so every benchmark column shows top-N models side-by-side.
+        var modelNames = modelIds.map(function(mid) { return self._getModelName(mid); });
+        var series = modelIds.map(function(mid, i) {
             return {
-                name: benchNames[i],
+                name: modelNames[i],
                 type: 'bar',
-                data: modelIds.map(function(mid) {
+                data: activeBids.map(function(bid) {
                     return (modelScores[mid] && modelScores[mid][bid]) || 0;
                 }),
                 itemStyle: { color: Theme.series[i % Theme.series.length] },
@@ -344,15 +361,22 @@ var CyberCoding = {
             backgroundColor: 'transparent',
             tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
             legend: {
-                data: benchNames,
+                data: modelNames,
                 textStyle: { color: Theme.textMuted, fontSize: 10 },
-                top: 0
+                top: 0,
+                type: 'scroll'
             },
-            grid: { left: 8, right: 16, bottom: 40, top: 40, containLabel: true },
+            grid: { left: 8, right: 16, bottom: 60, top: 40, containLabel: true },
             xAxis: {
                 type: 'category',
-                data: modelIds.map(function(mid) { return self._getModelName(mid); }),
-                axisLabel: { color: Theme.textMuted, fontSize: 9, rotate: 30 },
+                data: benchNames,
+                axisLabel: {
+                    color: Theme.textMuted,
+                    fontSize: 9,
+                    rotate: 35,
+                    interval: 0,
+                    formatter: function(val) { return val.length > 22 ? val.slice(0, 20) + '…' : val; }
+                },
                 axisLine: { lineStyle: { color: Theme.borderStrong } }
             },
             yAxis: {
