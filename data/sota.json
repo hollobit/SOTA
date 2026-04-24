@@ -90,19 +90,19 @@
     "notes": ""
   },
   "hle": {
-    "model_id": "meta/muse-spark",
+    "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "hle",
-    "value": 58.4,
+    "value": 56.8,
     "unit": "%",
     "source": {
-      "type": "leaderboard",
-      "url": "https://llm-stats.com/benchmarks/gpqa",
+      "type": "pdf",
+      "url": "resource/Claude Opus 4.7 System Card.pdf",
       "date": "2026-04-17",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-04-17",
-    "notes": ""
+    "notes": "No tools, from Opus 4.7 card"
   },
   "screenspot_pro": {
     "model_id": "anthropic/claude-mythos-preview",
@@ -2099,6 +2099,96 @@
     "collected_at": "2026-04-24",
     "notes": "System Card §9.1.1.3 — Pro cleared the 80% expert consensus baseline (not pictured in figure)"
   },
+  "kmle": {
+    "model_id": "snuh-naver/kmed-ai",
+    "benchmark_id": "kmle",
+    "value": 86.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.mobihealthnews.com/news/asia/snuh-naver-launch-korean-style-medical-llm-kmedai",
+      "date": "2026-04-25",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-25",
+    "notes": "Earlier SNUH-only version pre-Naver collaboration; replaced by 96.4 in DB but documented for trajectory"
+  },
+  "medqa": {
+    "model_id": "google/medgemma-27b",
+    "benchmark_id": "medqa",
+    "value": 87.7,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/google/medgemma-27b-it",
+      "date": "2026-04-25",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-25",
+    "notes": "MedGemma 27B Text-Only 0-shot; best-of-5: 89.8"
+  },
+  "medqa_5op": {
+    "model_id": "epfl/meditron-70b",
+    "benchmark_id": "medqa_5op",
+    "value": 47.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2311.16079",
+      "date": "2026-04-25",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-25",
+    "notes": "Meditron-70B 5-option MedQA — harder variant"
+  },
+  "pubmedqa": {
+    "model_id": "google/medgemma-27b",
+    "benchmark_id": "pubmedqa",
+    "value": 76.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/google/medgemma-27b-it",
+      "date": "2026-04-25",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-25",
+    "notes": "Text-Only"
+  },
+  "med_avg": {
+    "model_id": "mbzuai/bimedix",
+    "benchmark_id": "med_avg",
+    "value": 65.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2402.13253",
+      "date": "2026-04-25",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-25",
+    "notes": "BiMediX bilingual avg across medical benchmarks (vs Mixtral-8x7B 55.0, Jais-30B 50.6, +2.5pt over Med42, +4.1pt over Meditron)"
+  },
+  "math_500": {
+    "model_id": "tencent/hunyuan-t1",
+    "benchmark_id": "math_500",
+    "value": 96.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://github.com/Tencent/llm.hunyuan.T1",
+      "date": "2026-04-25",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-25",
+    "notes": "Hunyuan-T1 MATH-500 — #2 behind DeepSeek-R1"
+  },
   "aime_24": {
     "model_id": "mistral/magistral-small-1.2",
     "benchmark_id": "aime_24",
@@ -2204,40 +2294,10 @@
     "collected_at": "2026-04-25",
     "notes": "Pixtral Large BBox"
   },
-  "medqa": {
-    "model_id": "google/medgemma-27b",
-    "benchmark_id": "medqa",
-    "value": 87.7,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/google/medgemma-27b-it",
-      "date": "2026-04-25",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "MedGemma 27B Text-Only 0-shot; best-of-5: 89.8"
-  },
   "medmcqa": {
     "model_id": "google/medgemma-27b",
     "benchmark_id": "medmcqa",
     "value": 74.2,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/google/medgemma-27b-it",
-      "date": "2026-04-25",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "Text-Only"
-  },
-  "pubmedqa": {
-    "model_id": "google/medgemma-27b",
-    "benchmark_id": "pubmedqa",
-    "value": 76.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -2308,21 +2368,6 @@
     "is_sota": true,
     "collected_at": "2026-04-25",
     "notes": "Text-Only"
-  },
-  "math_500": {
-    "model_id": "mistral/mistral-large-3",
-    "benchmark_id": "math_500",
-    "value": 93.6,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://serenitiesai.com/articles/mistral-ai-models-2026-complete-guide",
-      "date": "2026-04-25",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "Mistral Large 3 per independent eval"
   },
   "mmbench_en": {
     "model_id": "alibaba/qwen3.6-35b-a3b",
