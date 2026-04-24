@@ -19,9 +19,10 @@ var FrontierCompare = {
             'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
             'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'swe_rebench',
             'gdpval_aa', 'nl2repo', 'expert_swe',
-            'codeforces_rating', 'humaneval', 'bigcodebench'
+            'codeforces_rating', 'humaneval', 'humaneval_plus', 'bigcodebench',
+            'mbpp', 'mbpp_plus', 'cruxeval', 'repobench'
         ],
-        math: ['aime_2025', 'aime_2026', 'hmmt_2025', 'hmmt_2026', 'imo_answerbench'],
+        math: ['aime_2025', 'aime_2026', 'aime_24', 'hmmt_2025', 'hmmt_2026', 'imo_answerbench', 'amc_23', 'gsm8k', 'math_500'],
         agent: [
             'browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench',
             'mcp_atlas', 'mcpatlas_public', 'mcpmark', 'webarena',
@@ -37,7 +38,7 @@ var FrontierCompare = {
             'uk_aisi_narrow_cyber'
         ],
         cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench'],
-        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind']
+        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en']
     },
 
     // Top frontier models to compare. Ordered by frontier tier and recency —
@@ -77,6 +78,13 @@ var FrontierCompare = {
         'alibaba/qwen3.6-35b-a3b',
         'minimax/m2.7',
         'baidu/ernie-5.0',
+        // Mistral specialist line (2025-09 to 2025-12 open-weight)
+        'mistral/mistral-large-3',
+        'mistral/devstral-2',
+        'mistral/devstral-small-2',
+        'mistral/magistral-small-1.2',
+        'mistral/mistral-small-4',
+        'mistral/pixtral-large',
 
         // Regional / secondary
         'lg/exaone-4.5-33b',
