@@ -7,17 +7,17 @@ var Comparison = {
 
     // Default top models and benchmarks (pre-selected on first load)
     DEFAULT_MODELS: [
-        'anthropic/claude-opus-4.6',
-        'openai/gpt-5.2',
+        'anthropic/claude-opus-4.7',
+        'openai/gpt-5.5',
         'google/gemini-3.1-pro',
-        'deepseek/deepseek-v3.2',
-        'moonshot/kimi-k2.5'
+        'moonshot/kimi-k2.6',
+        'alibaba/qwen3.6-27b'
     ],
     DEFAULT_BENCHMARKS: [
         'gpqa_diamond',
         'swe_bench_verified',
-        'mmlu_pro',
-        'aime_2025',
+        'swe_bench_pro',
+        'aime_2026',
         'cybench'
     ],
 
