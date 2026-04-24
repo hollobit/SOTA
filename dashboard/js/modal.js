@@ -118,11 +118,25 @@ var Modal = {
         return Modal._pdfPublicUrl[basename] || null;
     },
 
+    // Cache for per-date history snapshots. Key: 'YYYY-MM-DD' → array of scores.
+    _historySnapshots: {},
+    _historyIndex: null,
+    _historyDataBase: null,
+
     init: function() {
         var base = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
+        Modal._historyDataBase = base;
         fetch(base + '/bmt_connections.json').then(function(r) {
             return r.ok ? r.json() : {};
         }).then(function(d) { Modal._bmtData = d; }).catch(function() { Modal._bmtData = {}; });
+
+        // Preload the history index (list of snapshot dates). Each date's
+        // full snapshot is lazy-loaded on demand inside showScoreSource.
+        fetch(base + '/scores/history/index.json').then(function(r) {
+            return r.ok ? r.json() : { dates: [] };
+        }).then(function(d) {
+            Modal._historyIndex = (d && d.dates) || [];
+        }).catch(function() { Modal._historyIndex = []; });
 
         var overlay = document.getElementById('modal-overlay');
         var close = document.getElementById('modal-close');
@@ -137,6 +151,36 @@ var Modal = {
         document.addEventListener('keydown', function(e) {
             if (e.key !== 'Escape') return;
             if (overlay && !overlay.classList.contains('hidden')) Modal.close();
+        });
+    },
+
+    /**
+     * Load all history snapshots and return their (date, scoreRow) pairs
+     * for the given (modelId, benchmarkId). Cached across calls.
+     * Returns a Promise resolving to [{date, score}, ...] in date order.
+     */
+    _loadScoreHistory: function(modelId, benchmarkId) {
+        var dates = Modal._historyIndex || [];
+        if (!dates.length) return Promise.resolve([]);
+        var base = Modal._historyDataBase;
+        var fetches = dates.map(function(d) {
+            if (Modal._historySnapshots[d]) return Promise.resolve(Modal._historySnapshots[d]);
+            return fetch(base + '/scores/history/' + d + '.json').then(function(r) {
+                return r.ok ? r.json() : [];
+            }).then(function(arr) {
+                Modal._historySnapshots[d] = arr;
+                return arr;
+            }).catch(function() { return []; });
+        });
+        return Promise.all(fetches).then(function(snapshots) {
+            var rows = [];
+            snapshots.forEach(function(snap, i) {
+                var hit = snap.find(function(s) {
+                    return s.model_id === modelId && s.benchmark_id === benchmarkId;
+                });
+                if (hit) rows.push({ date: dates[i], score: hit });
+            });
+            return rows;
         });
     },
 
@@ -447,6 +491,133 @@ var Modal = {
             meta.appendChild(noteBox);
         }
         container.appendChild(meta);
+
+        // Change-history section (async loaded from daily snapshots in
+        // data/export/scores/history/YYYY-MM-DD.json). Skeleton appears
+        // immediately; rows fill in once snapshots resolve. Dedupes runs
+        // of consecutive identical values so only real changes show.
+        var historyBlock = document.createElement('div');
+        historyBlock.className = 'bg-gray-800 rounded-lg p-4 mb-4';
+        var historyHeader = document.createElement('h3');
+        historyHeader.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3';
+        historyHeader.textContent = '변경 이력 (Collection / Verification History)';
+        historyBlock.appendChild(historyHeader);
+        var historyBody = document.createElement('div');
+        historyBody.className = 'text-sm space-y-2';
+        historyBody.textContent = 'Loading history…';
+        historyBlock.appendChild(historyBody);
+        container.appendChild(historyBlock);
+
+        Modal._loadScoreHistory(modelId, benchmarkId).then(function(rows) {
+            historyBody.textContent = '';
+            if (!rows.length) {
+                var none = document.createElement('div');
+                none.className = 'text-gray-500';
+                none.textContent = 'No daily snapshots contain this score.';
+                historyBody.appendChild(none);
+                return;
+            }
+            // Collapse consecutive identical runs: show (first-date, last-date, value, source, notes)
+            // A row is "identical" when value + source.url + notes all match the previous row.
+            var runs = [];
+            rows.forEach(function(r) {
+                var sig = r.score.value + '|' + ((r.score.source && r.score.source.url) || '') + '|' + (r.score.notes || '');
+                var last = runs[runs.length - 1];
+                if (last && last.sig === sig) {
+                    last.lastDate = r.date;
+                } else {
+                    runs.push({ firstDate: r.date, lastDate: r.date, sig: sig, score: r.score });
+                }
+            });
+
+            var summary = document.createElement('div');
+            summary.className = 'text-xs text-gray-500 mb-2';
+            summary.textContent = rows.length + ' snapshots across ' +
+                rows[0].date + ' → ' + rows[rows.length - 1].date + '. ' +
+                (runs.length === 1 ? 'Value unchanged across all snapshots.'
+                                   : runs.length + ' distinct value/source states recorded.');
+            historyBody.appendChild(summary);
+
+            runs.forEach(function(run, idx) {
+                var row = document.createElement('div');
+                row.className = 'border-l-2 border-gray-700 pl-3 py-1';
+
+                // Highlight the most recent run with an accent border
+                if (idx === runs.length - 1) {
+                    row.style.borderLeftColor = '#3b82f6'; // Theme.accentStrong
+                }
+
+                // Date range + value
+                var head = document.createElement('div');
+                head.className = 'flex items-baseline gap-2';
+                var dateSpan = document.createElement('span');
+                dateSpan.className = 'text-gray-400 text-xs font-mono';
+                dateSpan.textContent = run.firstDate === run.lastDate
+                    ? run.firstDate
+                    : run.firstDate + ' → ' + run.lastDate;
+                head.appendChild(dateSpan);
+
+                var arrow = document.createElement('span');
+                arrow.className = 'text-gray-600 text-xs';
+                arrow.textContent = '·';
+                head.appendChild(arrow);
+
+                var valSpan = document.createElement('span');
+                valSpan.className = (idx === runs.length - 1 ? 'text-blue-300' : 'text-gray-300') + ' font-mono font-semibold';
+                valSpan.textContent = (run.score.value > 500 ? Math.round(run.score.value) : run.score.value) + (run.score.unit ? ' ' + run.score.unit : '');
+                head.appendChild(valSpan);
+
+                if (run.score.is_sota) {
+                    var sotaTag = document.createElement('span');
+                    sotaTag.className = 'px-1.5 py-0.5 bg-green-900 text-green-300 text-xs rounded';
+                    sotaTag.textContent = 'SOTA';
+                    head.appendChild(sotaTag);
+                }
+
+                // Show delta vs previous run
+                if (idx > 0) {
+                    var prevVal = runs[idx - 1].score.value;
+                    var delta = run.score.value - prevVal;
+                    if (Math.abs(delta) > 0.001) {
+                        var deltaSpan = document.createElement('span');
+                        deltaSpan.className = 'text-xs ' + (delta > 0 ? 'text-green-400' : 'text-red-400');
+                        deltaSpan.textContent = (delta > 0 ? '+' : '') + delta.toFixed(Math.abs(delta) < 10 ? 2 : 1);
+                        head.appendChild(deltaSpan);
+                    }
+                }
+                row.appendChild(head);
+
+                // Source + notes
+                var srcLine = document.createElement('div');
+                srcLine.className = 'text-xs text-gray-500 mt-0.5';
+                var srcType = (run.score.source && run.score.source.type) || 'web';
+                var srcUrl = Modal._sourceLink(run.score.source);
+                srcLine.appendChild(document.createTextNode(srcType + ' · '));
+                if (srcUrl) {
+                    var a = document.createElement('a');
+                    a.href = srcUrl;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.className = 'text-blue-400 hover:underline break-all';
+                    a.textContent = srcUrl.length > 80 ? srcUrl.slice(0, 77) + '…' : srcUrl;
+                    srcLine.appendChild(a);
+                } else if (run.score.source && run.score.source.url) {
+                    srcLine.appendChild(document.createTextNode(run.score.source.url));
+                }
+                row.appendChild(srcLine);
+
+                if (run.score.notes) {
+                    var noteLine = document.createElement('div');
+                    noteLine.className = 'text-xs text-gray-400 mt-0.5 italic';
+                    noteLine.textContent = run.score.notes;
+                    row.appendChild(noteLine);
+                }
+
+                historyBody.appendChild(row);
+            });
+        }).catch(function() {
+            historyBody.textContent = 'Failed to load history.';
+        });
 
         // Cross-links
         var linksDiv = document.createElement('div');
