@@ -1262,7 +1262,8 @@ var App = {
         });
 
         var sites = [
-            { name: 'Mistral AI News', url: 'https://mistral.ai/news', desc: 'Mistral Small 4 (Mar 2026), Large 3 (Dec 2025), Voxtral TTS — French frontier open-weight series' },
+            { name: 'Mistral AI News', url: 'https://mistral.ai/news', desc: 'Full Mistral lineup: Large 3, Small 4, Magistral 1.2 (reasoning), Devstral 2 (code agents, SWE-Verified 72.2%), Codestral 25.08, Pixtral Large, Voxtral TTS, Ministral 3 family' },
+            { name: 'Mistral docs', url: 'https://docs.mistral.ai/models/overview', desc: 'Authoritative Mistral model registry — all current models with version codes (v25.06/25.08/25.09/25.12/26.03)' },
             { name: 'MedGemma — Health AI Foundations', url: 'https://developers.google.com/health-ai-developer-foundations/medgemma', desc: 'Google open medical LLM family. 27B text/multimodal + 4B 1.5. MedQA, MedMCQA, EHRQA leadership.' },
             { name: 'TII Falcon LLM', url: 'https://falconllm.tii.ae/', desc: 'UAE TII frontier models. Falcon-H1 Arabic 34B (Jan 2026, Mamba-Transformer), Falcon Perception 600M (Mar 2026 multimodal)' },
             { name: 'Sakana AI', url: 'https://sakana.ai/', desc: 'Japan-focused frontier models. Namazu series (Mar 2026 alpha), evolutionary model merge research' },
