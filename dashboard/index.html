@@ -26,6 +26,7 @@
         <button class="tab-btn" data-tab="comparison" role="tab" aria-selected="false" aria-controls="tab-comparison" id="tabbtn-comparison" tabindex="-1">Comparison</button>
         <button class="tab-btn" data-tab="frontier-compare" role="tab" aria-selected="false" aria-controls="tab-frontier-compare" id="tabbtn-frontier-compare" tabindex="-1">Frontier Compare</button>
         <button class="tab-btn" data-tab="cyber-coding" role="tab" aria-selected="false" aria-controls="tab-cyber-coding" id="tabbtn-cyber-coding" tabindex="-1">Cyber &amp; Coding</button>
+        <button class="tab-btn" data-tab="sovereign" role="tab" aria-selected="false" aria-controls="tab-sovereign" id="tabbtn-sovereign" tabindex="-1">Sovereign AI</button>
         <button class="tab-btn" data-tab="explorer" role="tab" aria-selected="false" aria-controls="tab-explorer" id="tabbtn-explorer" tabindex="-1">Explorer</button>
         <button class="tab-btn" data-tab="resources" role="tab" aria-selected="false" aria-controls="tab-resources" id="tabbtn-resources" tabindex="-1">Resources</button>
         <button class="tab-btn" data-tab="changelog" role="tab" aria-selected="false" aria-controls="tab-changelog" id="tabbtn-changelog" tabindex="-1">Changelog</button>
@@ -259,6 +260,49 @@
             </div>
         </section>
 
+        <section id="tab-sovereign" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-sovereign">
+            <h2 class="text-section mb-2">Sovereign AI — 새 frontier 경쟁의 axis</h2>
+            <p class="text-gray-400 text-sm mb-4">2026년의 주요 AI 경쟁축은 더 이상 frontier 점수만이 아닙니다. <strong class="text-gray-200">언어 적응 · 의료 시스템 통합 · 정부 정책 정합</strong>은 frontier-only metric으로 측정되지 않는 sovereign value입니다. 본 메뉴는 국가별 sovereign AI ecosystem을 frontier 모델과 함께 비교합니다.</p>
+
+            <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-3">Sovereign AI Map — 국가별 ecosystem</h3>
+                <div id="sov-region-map" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-1">🌐 Language Adaptation</h3>
+                <p class="text-xs text-gray-500 mb-3">지역 언어·문화 적응 능력 — 다국어 MMLU, 중국어 C-Eval/CMMLU, 다국어 코딩 등.</p>
+                <div id="sov-language-chart" class="h-80 mb-3"></div>
+                <div id="sov-language-table" class="overflow-x-auto"></div>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-1">🏥 Medical System Integration</h3>
+                <p class="text-xs text-gray-500 mb-3">지역 의료 시스템·면허 정합 — KMLE(한국)·USMLE/MedQA·BiMediX(아랍)·HealthBench·AfriMed-QA 등.</p>
+                <div id="sov-medical-chart" class="h-80 mb-3"></div>
+                <div id="sov-medical-table" class="overflow-x-auto"></div>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-1">🏛️ Government / Regulated Domain</h3>
+                <p class="text-xs text-gray-500 mb-3">법률·금융·사이버 방어 등 sovereign 도메인 — VLAIR 변호사 평가·DARPA AIxCC·Bloomberg finance.</p>
+                <div id="sov-domain-chart" class="h-80 mb-3"></div>
+                <div id="sov-domain-table" class="overflow-x-auto"></div>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-1">Cross-Region Heatmap</h3>
+                <p class="text-xs text-gray-500 mb-3">각 region 대표 모델 × sovereign 벤치마크 — 셀 클릭 시 검증 소스/이력 모달.</p>
+                <div id="sov-heatmap" class="h-96"></div>
+            </div>
+
+            <div class="bg-gray-900 border border-gray-800 rounded-lg p-4 mt-6">
+                <h3 class="text-widget text-gray-300 mb-2">왜 Sovereign AI인가</h3>
+                <p class="text-sm text-gray-400 mb-2">한국(EXAONE·Solar·A.X·Mi:dm·KMed.ai), 중국(DeepSeek·Qwen·Kimi·GLM·ERNIE·Hunyuan·Doubao Seed), 인도(Sarvam·BharatGen·Krutrim·BharatGPT), UAE(Falcon-H1·BiMediX), 이스라엘(AI21 Jamba), 싱가포르(SEA-LION), 스위스(Meditron·Apertus) 등 각국이 자국어·의료시스템·규제도메인 정합을 위한 sovereign LLM에 투자 중입니다. </p>
+                <p class="text-xs text-gray-500">단일 frontier 점수가 아니라 <strong class="text-gray-300">언어/의료/공공 정합</strong>의 3축에서 비교해 보면, 글로벌 frontier 모델이 reach하지 못하는 sovereign value가 보입니다. (셀 클릭 → 검증 소스/이력, 모델명 클릭 → 상세 정보 모달)</p>
+            </div>
+        </section>
+
         <section id="tab-explorer" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-explorer">
             <h2 class="text-section mb-4">Model Explorer — Compare up to 4 models</h2>
             <p class="text-sm text-gray-400 mb-4">Pick two to four models below, then click <strong class="text-gray-300">Compare</strong>. You will get a radar chart on shared benchmarks and a side-by-side matrix covering every benchmark any selected model has been scored on.</p>
@@ -332,6 +376,7 @@
     <script src="js/modal.js?v=20260424"></script>
     <script src="js/frontier-compare.js?v=20260424"></script>
     <script src="js/cyber-coding.js?v=20260424b"></script>
+    <script src="js/sovereign.js?v=20260425"></script>
     <script src="js/charts.js?v=20260424"></script>
     <script src="js/filters.js?v=20260424"></script>
     <script src="js/explorer.js?v=20260424b"></script>

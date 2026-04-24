@@ -1,5 +1,39 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-04-25: Sovereign AI menu + Physical AI / World Models (7 batches)
+
+### Sovereign AI dashboard menu (NEW)
+2026년 frontier 경쟁의 새 axis — **언어 적응 · 의료 시스템 통합 · 정부 정책 정합** — 을 frontier-only metric과 구분하여 비교하는 신규 메뉴 추가.
+
+- **위치**: `dashboard/index.html` 신규 섹션 `tab-sovereign` + `dashboard/js/sovereign.js`
+- **구조**:
+  - **Region Map (11 cards)**: Korea / China / Japan / India / Israel / UAE / Singapore / Switzerland / US-Legal / US-Finance / DARPA AIxCC — 각 카드에 vendor·model name·type badge·sovereign 메타데이터.
+  - **Dimension panels (3)**: Language Adaptation · Medical System Integration · Government / Regulated Domain — 각 차원 별로 sovereign 모델 top-6 vs frontier baseline (Claude/GPT-5.5/Gemini/Muse Spark) top-3 비교 막대 차트 + 표.
+  - **Cross-region heatmap**: 각 region 대표 모델 × 전체 sovereign 벤치마크 union — 셀 클릭 시 검증 소스/이력 모달.
+- **시각 설계**: sovereign 모델은 채도 높은 `Theme.series`, frontier reference는 `Theme.textMuted` + 0.55 opacity + border 처리하여 sovereign value gap을 시각적으로 표시.
+- **Click handlers**: 모든 점수 셀 → `Modal.showScoreSource(modelId, benchId)`, 모델명 → `Modal.showModel(modelId)`. Heatmap은 ECharts `chart.on('click')`로 동일 모달 라우팅.
+
+### Physical AI / World Models batch
+NVIDIA Cosmos World Foundation Models, GR00T 휴머노이드 VLA, DeepMind Genie 3, Physical Intelligence Pi-Zero, OpenVLA-7B, AgiBot Genie Envisioner — 11개 모델, 7개 벤치마크.
+
+| Benchmark | SOTA | Score |
+|-----------|------|-------|
+| LIBERO (4-suite avg) | NVIDIA Cosmos Policy | 98.5% |
+| RoboCasa (50 demos) | NVIDIA Cosmos Policy | 67.1% |
+| World Model FPS | DeepMind Genie 3 | 24fps @ 720p |
+| World Model Consistency | DeepMind Genie 3 | ~180s (3x Genie 2) |
+
+### 데이터 규모 증분
+| 항목 | 2026-04-25 (이전) | 2026-04-25 (현재) | 증가 |
+|-----|-------------|-------------|----|
+| 모델 | 96 | **128** | +32 |
+| 벤치마크 | 203 | **224** | +21 |
+| 점수 | 1,045 | **1,087** | +42 |
+| SOTA | 172 | **186** | +14 |
+| 모니터링 소스 | 75+ | **84+** | +9 |
+
+---
+
 ## 2026-04-25: Regional + Mistral lineup expansion (4 batches)
 
 ### Session Overview

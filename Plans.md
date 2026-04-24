@@ -1,12 +1,24 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Regional + Mistral expansion 2026-04-25
-**96 models · 203 benchmarks · 1,045 scores · 172 SOTA records · 19 PDF sources · 75+ web sources**
+## Current Status: Sovereign AI menu + Physical AI 2026-04-25
+**128 models · 224 benchmarks · 1,087 scores · 186 SOTA records · 19 PDF sources · 84+ web sources**
 **Live Site**: https://hollobit.github.io/SOTA/
 **Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-**
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy (no more manual bumps).
 
-## 2026-04-25 Sessions (4 batches)
+## 2026-04-25 Sessions (7 batches)
+
+### Sovereign AI menu (NEW)
+- New dashboard tab `Sovereign AI` (`dashboard/js/sovereign.js` + index markup) — 11 region cards × 3 dimension panels (Language Adaptation · Medical System Integration · Government/Regulated Domain) + cross-region heatmap. Each panel compares top sovereign models against frontier baselines (GPT-5.5/Claude/Gemini/Muse Spark) with desaturated frontier bars to make sovereign value gap visible. Score cells + heatmap clickable → Modal.showScoreSource.
+- Frame: 한국(EXAONE/Solar/A.X/Mi:dm/KMed.ai) · 중국(DeepSeek/Qwen/Kimi/GLM/ERNIE/Hunyuan/Doubao) · 인도(Sarvam/BharatGen/Krutrim/BharatGPT) · UAE(Falcon-H1/BiMediX) · 이스라엘(AI21 Jamba) · 싱가포르(SEA-LION) · 스위스(Meditron/Apertus) · US Legal(Harvey/CoCounsel/Vincent/Oliver) · US Finance(BloombergGPT) · DARPA AIxCC.
+
+### Physical AI / World Models (+11 models, +7 benchmarks)
+- NVIDIA Cosmos suite (Predict 2.5, Reason 2, Policy-RoboCasa) + GR00T N1.6/N1.7 humanoid VLA
+- DeepMind Genie 3 (24fps@720p, 3min consistency) + Genie 2
+- Physical Intelligence Pi-Zero / Pi-Zero Fast, OpenVLA-7B, AgiBot Genie Envisioner
+- Benchmarks: LIBERO (Cosmos Policy 98.5% SOTA), RoboCasa (67.1% / 50 demos), RoboTwin 2.0, VLABench, Open X-Embodiment, World Model Consistency, World Model FPS
+
+
 
 ### Daily monitoring sweep (no new frontier launches)
 Confirmed via OpenAI Deployment Safety Hub, Anthropic Research, HF Qwen + DeepSeek orgs, Irregular publications, llm-stats updates. Only material change: DeepSeek V4 official API launch (`api-docs.deepseek.com/updates`, 2026-04-24) with confirmed pricing — V4-Pro $0.145 / $3.48, V4-Flash $0.14 / $0.28 per 1M tokens.

@@ -24,6 +24,9 @@ var App = {
             self.setupExplorer();
             Comparison.init(self.data.models, self.data.benchmarks, self.data.scores);
             CyberCoding.init(self.data.models, self.data.benchmarks, self.data.scores);
+            if (typeof Sovereign !== 'undefined') {
+                Sovereign.init(self.data.models, self.data.benchmarks, self.data.scores);
+            }
             Modal.init();
             // Frontier Compare category filter
             var fcCat = document.getElementById('fc-category');
@@ -185,6 +188,7 @@ var App = {
             if (btn.dataset.tab === 'comparison') Comparison.render();
             if (btn.dataset.tab === 'frontier-compare') FrontierCompare.render(document.getElementById('fc-category').value);
             if (btn.dataset.tab === 'cyber-coding') CyberCoding.render();
+            if (btn.dataset.tab === 'sovereign' && typeof Sovereign !== 'undefined') Sovereign.render();
             if (btn.dataset.tab === 'resources') self.renderResources();
             if (btn.dataset.tab === 'changelog') self.renderChangelog();
         }
