@@ -1260,6 +1260,11 @@ var App = {
         });
 
         var sites = [
+            { name: 'Mistral AI News', url: 'https://mistral.ai/news', desc: 'Mistral Small 4 (Mar 2026), Large 3 (Dec 2025), Voxtral TTS — French frontier open-weight series' },
+            { name: 'MedGemma — Health AI Foundations', url: 'https://developers.google.com/health-ai-developer-foundations/medgemma', desc: 'Google open medical LLM family. 27B text/multimodal + 4B 1.5. MedQA, MedMCQA, EHRQA leadership.' },
+            { name: 'TII Falcon LLM', url: 'https://falconllm.tii.ae/', desc: 'UAE TII frontier models. Falcon-H1 Arabic 34B (Jan 2026, Mamba-Transformer), Falcon Perception 600M (Mar 2026 multimodal)' },
+            { name: 'Sakana AI', url: 'https://sakana.ai/', desc: 'Japan-focused frontier models. Namazu series (Mar 2026 alpha), evolutionary model merge research' },
+            { name: 'SEA-LION (AI Singapore)', url: 'https://sea-lion.ai/', desc: 'Southeast Asian multilingual models. v4 family (Mar 2026): Apertus-SEA-LION 8B, Gemma-SEA-LION 4B-VL, SEA-Guard safety' },
             { name: 'OpenAI Deployment Safety Hub', url: 'https://deploymentsafety.openai.com', desc: 'Canonical OpenAI system cards — GPT-5.5, GPT-5.4 Thinking, safety + cyber + bio evals' },
             { name: 'HuggingFace — DeepSeek V4', url: 'https://huggingface.co/collections/deepseek-ai/deepseek-v4', desc: 'DeepSeek V4 Pro / Flash preview models, 1T/49B MoE, 1M context, MIT license' },
             { name: 'Irregular Publications', url: 'https://www.irregular.com/publications', desc: 'External cyber security evals for frontier models (GPT-5.5, GPT-5.4-Thinking, Claude Sonnet 4.5 etc)' },
