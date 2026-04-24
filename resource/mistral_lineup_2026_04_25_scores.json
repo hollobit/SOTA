@@ -1,0 +1,68 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-25",
+    "session": "Mistral AI full lineup expansion. Adds the specialist line (Devstral 2/Small 2 coding agents, Magistral 1.2 reasoning, Codestral 25.08 completion, Pixtral Large vision) plus Mistral Medium 3.1 and Small 3.2. Sources: official Mistral news pages, HuggingFace model cards (Magistral Small 2509, Pixtral Large 2411), VentureBeat/AIBase coverage of Devstral 2 launch. Adds 4 new benchmarks (DocVQA, ChartQA, VQAv2, RepoBench).",
+    "sources": [
+      "https://docs.mistral.ai/models/overview",
+      "https://mistral.ai/news/devstral-2-vibe-cli",
+      "https://mistral.ai/news/magistral",
+      "https://mistral.ai/news/pixtral-12b",
+      "https://mistral.ai/news/codestral-25-08",
+      "https://mistral.ai/news/mistral-medium-3",
+      "https://huggingface.co/mistralai/Magistral-Small-2509",
+      "https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411",
+      "https://venturebeat.com/ai/mistral-launches-powerful-devstral-2-coding-model-including-open-source",
+      "https://intuitionlabs.ai/articles/mistral-large-3-moe-llm-explained"
+    ]
+  },
+  "models": [
+    { "id": "mistral/devstral-2",            "vendor": "Mistral AI", "name": "Devstral 2",            "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/devstral-small-2",      "vendor": "Mistral AI", "name": "Devstral Small 2",      "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/devstral-medium",       "vendor": "Mistral AI", "name": "Devstral Medium",       "type": "proprietary", "modalities": ["text"] },
+    { "id": "mistral/devstral-small-1.1",    "vendor": "Mistral AI", "name": "Devstral Small 1.1",    "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/magistral-small-1.2",   "vendor": "Mistral AI", "name": "Magistral Small 1.2",   "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/magistral-medium-1.2",  "vendor": "Mistral AI", "name": "Magistral Medium 1.2",  "type": "proprietary", "modalities": ["text"] },
+    { "id": "mistral/codestral-25.08",       "vendor": "Mistral AI", "name": "Codestral 25.08",       "type": "proprietary", "modalities": ["text"] },
+    { "id": "mistral/pixtral-large",         "vendor": "Mistral AI", "name": "Pixtral Large",         "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "mistral/mistral-medium-3.1",    "vendor": "Mistral AI", "name": "Mistral Medium 3.1",    "type": "proprietary", "modalities": ["text", "image"] },
+    { "id": "mistral/mistral-small-3.2",     "vendor": "Mistral AI", "name": "Mistral Small 3.2",     "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "mistral/ministral-3-14b",       "vendor": "Mistral AI", "name": "Ministral 3 14B",       "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "mistral/ministral-3-8b",        "vendor": "Mistral AI", "name": "Ministral 3 8B",        "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "mistral/ministral-3-3b",        "vendor": "Mistral AI", "name": "Ministral 3 3B",        "type": "open-weight", "modalities": ["text"] }
+  ],
+  "benchmarks": [
+    { "id": "docvqa",      "name": "DocVQA",     "category": "multimodal", "description": "Document Visual Question Answering — 50K questions on 12K documents. ANLS metric.",                                       "metric": "anls" },
+    { "id": "chartqa",     "name": "ChartQA",    "category": "multimodal", "description": "Question answering over charts and plots. Tests visual + numerical reasoning. CoT prompting.",                            "metric": "accuracy" },
+    { "id": "vqav2",       "name": "VQAv2",      "category": "multimodal", "description": "Visual QA v2 — 1.1M open-ended questions on COCO images. VQA Match metric.",                                                "metric": "accuracy" },
+    { "id": "repobench",   "name": "RepoBench",  "category": "coding",     "description": "Repository-level code completion benchmark. Tests retrieval + completion across multi-file Python/Java codebases.",      "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "mistral/devstral-2",        "benchmark": "swe_bench_verified", "score": 72.2, "unit": "%", "_source": "https://mistral.ai/news/devstral-2-vibe-cli", "_note": "Devstral 2 (123B, Dec 9 2025) — surpasses DeepSeek V3.2 63.8, approaches Claude Sonnet 4.5 77.2" },
+    { "model": "mistral/devstral-small-2",  "benchmark": "swe_bench_verified", "score": 68.0, "unit": "%", "_source": "https://mistral.ai/news/devstral-2-vibe-cli", "_note": "Devstral Small 2 (24B, Dec 9 2025) — laptop-friendly open-weight" },
+    { "model": "mistral/devstral-medium",   "benchmark": "swe_bench_verified", "score": 61.6, "unit": "%", "_source": "https://mistral.ai/news/codestral-25-08", "_note": "Devstral Medium baseline (referenced in Codestral 25.08 announcement)" },
+    { "model": "mistral/devstral-small-1.1","benchmark": "swe_bench_verified", "score": 53.6, "unit": "%", "_source": "https://mistral.ai/news/codestral-25-08", "_note": "Devstral Small 1.1 baseline" },
+
+    { "model": "mistral/magistral-small-1.2", "benchmark": "aime_24",         "score": 86.14, "unit": "%", "_source": "https://huggingface.co/mistralai/Magistral-Small-2509", "_note": "Magistral Small 1.2 (24B, Sep 12 2025) AIME 2024 pass@1" },
+    { "model": "mistral/magistral-small-1.2", "benchmark": "aime_2025",       "score": 77.34, "unit": "%", "_source": "https://huggingface.co/mistralai/Magistral-Small-2509", "_note": "AIME 2025 pass@1" },
+    { "model": "mistral/magistral-small-1.2", "benchmark": "gpqa_diamond",    "score": 70.07, "unit": "%", "_source": "https://huggingface.co/mistralai/Magistral-Small-2509", "_note": "GPQA Diamond" },
+    { "model": "mistral/magistral-small-1.2", "benchmark": "livecodebench",   "score": 70.88, "unit": "%", "_source": "https://huggingface.co/mistralai/Magistral-Small-2509", "_note": "LiveCodeBench v5" },
+
+    { "model": "mistral/magistral-medium-1.2", "benchmark": "aime_24",        "score": 73.6, "unit": "%", "_source": "https://mistral.ai/news/magistral", "_note": "Magistral Medium 2506 baseline AIME 2024 pass@1; 90% with majority-vote @64" },
+
+    { "model": "mistral/codestral-25.08",  "benchmark": "humaneval",          "score": 86.6, "unit": "%", "_source": "https://www.index.dev/blog/mistral-ai-coding-challenges-tests", "_note": "Codestral 25.01 baseline; 25.08 is +5pt improvement" },
+    { "model": "mistral/codestral-25.08",  "benchmark": "mbpp",               "score": 80.2, "unit": "%", "_source": "https://www.index.dev/blog/mistral-ai-coding-challenges-tests", "_note": "Codestral 25.01 baseline" },
+    { "model": "mistral/codestral-25.08",  "benchmark": "livecodebench",      "score": 37.9, "unit": "%", "_source": "https://www.index.dev/blog/mistral-ai-coding-challenges-tests", "_note": "Codestral 25.01 baseline" },
+    { "model": "mistral/codestral-25.08",  "benchmark": "repobench",          "score": 38.0, "unit": "%", "_source": "https://www.index.dev/blog/mistral-ai-coding-challenges-tests", "_note": "Codestral 25.01 baseline" },
+
+    { "model": "mistral/pixtral-large",    "benchmark": "mmmu_pro",           "score": 64.0, "unit": "%", "_source": "https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411", "_note": "Pixtral Large 124B (Nov 2024) MMMU CoT — outperforms Gemini-1.5 Pro" },
+    { "model": "mistral/pixtral-large",    "benchmark": "mathvision",         "score": 69.4, "unit": "%", "_source": "https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411", "_note": "MathVista CoT — SOTA at release" },
+    { "model": "mistral/pixtral-large",    "benchmark": "chartqa",            "score": 88.1, "unit": "%", "_source": "https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411", "_note": "Pixtral Large CoT" },
+    { "model": "mistral/pixtral-large",    "benchmark": "docvqa",             "score": 93.3, "unit": "anls", "_source": "https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411", "_note": "Pixtral Large ANLS — SOTA at release" },
+    { "model": "mistral/pixtral-large",    "benchmark": "vqav2",              "score": 80.9, "unit": "%", "_source": "https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411", "_note": "Pixtral Large VQA Match" },
+    { "model": "mistral/pixtral-large",    "benchmark": "ai2d",               "score": 93.8, "unit": "%", "_source": "https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411", "_note": "Pixtral Large BBox" },
+
+    { "model": "mistral/mistral-large-3",  "benchmark": "gpqa_diamond",       "score": 43.9, "unit": "%", "_source": "https://intuitionlabs.ai/articles/mistral-large-3-moe-llm-explained", "_note": "Mistral Large 3 (lower than reasoning-specialized models like DeepSeek V3.2 70-85)" },
+    { "model": "mistral/mistral-large-3",  "benchmark": "simpleqa_verified",  "score": 23.8, "unit": "%", "_source": "https://intuitionlabs.ai/articles/mistral-large-3-moe-llm-explained", "_note": "Mistral Large 3 SimpleQA" },
+    { "model": "mistral/mistral-large-3",  "benchmark": "webdev_arena",       "score": 1487, "unit": "elo", "_source": "https://intuitionlabs.ai/articles/mistral-large-3-moe-llm-explained", "_note": "Mistral Large 3 WebDev Elo" }
+  ]
+}
