@@ -198,6 +198,18 @@ var Explorer = {
                     } else {
                         td.style.color = Theme.textSecondary;
                     }
+                    // Clickable \u2192 opens Modal.showScoreSource for this (model, benchmark)
+                    // The i-th column in the row corresponds to modelIds[i]
+                    td.style.cursor = 'pointer';
+                    td.setAttribute('role', 'button');
+                    td.setAttribute('title', '\ud074\ub9ad\ud558\uba74 \uac80\uc99d \uc18c\uc2a4\uc640 \uc218\uc9d1\uc77c\u00b7\ubcc0\uacbd \uc774\ub825 \ud45c\uc2dc');
+                    td.addEventListener('click', (function(mid, bid) {
+                        return function() {
+                            if (typeof Modal !== 'undefined' && Modal.showScoreSource) {
+                                Modal.showScoreSource(mid, bid);
+                            }
+                        };
+                    })(modelIds[i], row.benchmark));
                 } else {
                     td.textContent = '\u2014';
                     td.style.color = Theme.textDisabled;
