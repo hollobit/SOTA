@@ -1209,6 +1209,8 @@ var App = {
         sitesContainer.textContent = '';
 
         var pdfDocs = [
+            { name: 'GPT-5.5 System Card', file: 'GPT-5-5-System-Card.pdf', vendor: 'OpenAI', date: 'Apr 2026', url: 'https://deploymentsafety.openai.com/gpt-5-5/introduction' },
+            { name: 'DeepSeek V4-Pro Technical Report', file: 'DeepSeek-V4-Pro-Technical-Report.pdf', vendor: 'DeepSeek', date: 'Apr 2026', url: 'https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro' },
             { name: 'Claude Opus 4.7 System Card', file: 'Claude Opus 4.7 System Card.pdf', vendor: 'Anthropic', date: 'Apr 2026', url: 'https://www.anthropic.com/research' },
             { name: 'Claude Opus 4.6 System Card', file: 'Claude Opus 4.6 System Card 02-05.pdf', vendor: 'Anthropic', date: 'Feb 2026', url: 'https://www.anthropic.com/research' },
             { name: 'Claude Mythos Preview System Card', file: 'Claude Mythos Preview System Card.pdf', vendor: 'Anthropic', date: 'Apr 2026', url: 'https://www.anthropic.com/research' },
@@ -1248,6 +1250,13 @@ var App = {
         });
 
         var sites = [
+            { name: 'OpenAI Deployment Safety Hub', url: 'https://deploymentsafety.openai.com', desc: 'Canonical OpenAI system cards — GPT-5.5, GPT-5.4 Thinking, safety + cyber + bio evals' },
+            { name: 'HuggingFace — DeepSeek V4', url: 'https://huggingface.co/collections/deepseek-ai/deepseek-v4', desc: 'DeepSeek V4 Pro / Flash preview models, 1T/49B MoE, 1M context, MIT license' },
+            { name: 'Irregular Publications', url: 'https://www.irregular.com/publications', desc: 'External cyber security evals for frontier models (GPT-5.5, GPT-5.4-Thinking, Claude Sonnet 4.5 etc)' },
+            { name: 'Kimi K2.6 Blog', url: 'https://www.kimi.com/blog/kimi-k2-6', desc: 'Moonshot AI Kimi K2.6 native multimodal launch coverage' },
+            { name: 'Kimi Platform (API docs)', url: 'https://platform.kimi.ai/docs/guide/kimi-k2-6-quickstart', desc: 'Kimi K2.6 API — 256K context, OpenAI-compatible' },
+            { name: 'Qwen3.6 — HuggingFace', url: 'https://huggingface.co/Qwen/Qwen3.6-27B', desc: 'Qwen3.6-27B dense + Qwen3.6-35B-A3B MoE model cards' },
+            { name: 'LLM Stats — Model Updates', url: 'https://llm-stats.com/llm-updates', desc: 'Daily frontier model release feed (newest first)' },
             { name: 'LLM Stats', url: 'https://llm-stats.com', desc: 'GPQA, SWE-bench, AIME, HLE, ARC-AGI-2, MMLU-Pro' },
             { name: 'Chatbot Arena (LMSYS)', url: 'https://lmarena.ai', desc: 'Arena Elo rankings' },
             { name: 'Vellum LLM Leaderboard', url: 'https://www.vellum.ai/llm-leaderboard', desc: 'Multi-benchmark comparison' },
