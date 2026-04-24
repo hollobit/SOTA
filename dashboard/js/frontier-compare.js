@@ -5,12 +5,12 @@
 var FrontierCompare = {
     // Core benchmarks appearing in 2+ PDF sources, grouped by category
     CORE_BENCHMARKS: {
-        reasoning: ['gpqa_diamond', 'hle', 'mmlu_pro', 'mmmlu', 'simpleqa_verified', 'longbench_v2'],
-        coding: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'swe_rebench', 'gdpval_aa'],
-        math: ['aime_2025', 'hmmt_2025', 'imo_answerbench'],
-        agent: ['browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench', 'mcp_atlas', 'webarena', 'deepsearchqa', 'vending_bench_2'],
-        cybersecurity: ['cybench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'cvebench', 'firefox_147', 'cyber_range'],
-        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning']
+        reasoning: ['gpqa_diamond', 'hle', 'mmlu_pro', 'mmmlu', 'simpleqa_verified', 'longbench_v2', 'healthbench', 'healthbench_hard', 'healthbench_consensus', 'healthbench_professional'],
+        coding: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'swe_rebench', 'gdpval_aa', 'nl2repo'],
+        math: ['aime_2025', 'aime_2026', 'hmmt_2025', 'hmmt_2026', 'imo_answerbench'],
+        agent: ['browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench', 'mcp_atlas', 'webarena', 'deepsearchqa', 'vending_bench_2', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'skills_bench'],
+        cybersecurity: ['cybench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'cvebench', 'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range'],
+        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind']
     },
 
     // Top frontier models to compare
@@ -21,17 +21,23 @@ var FrontierCompare = {
         'anthropic/claude-opus-4.5',
         'google/gemini-3.1-pro',
         'google/gemini-3-pro',
+        'openai/gpt-5.5',
+        'openai/gpt-5.5-pro',
         'openai/gpt-5.4',
         'openai/gpt-5.4-thinking',
         'openai/gpt-5.3-codex',
         'openai/gpt-5.2',
         'xai/grok-4-heavy',
+        'xai/grok-4.20',
         'meta/muse-spark',
         'deepseek/deepseek-v3.2',
+        'moonshot/kimi-k2.6',
         'moonshot/kimi-k2.5',
         'zhipu/glm-5',
         'zhipu/glm-5.1',
         'alibaba/qwen3.6-plus',
+        'alibaba/qwen3.6-27b',
+        'alibaba/qwen3.6-35b-a3b',
         'minimax/m2.7',
         'baidu/ernie-5.0',
         'lg/exaone-4.5-33b',
@@ -40,7 +46,6 @@ var FrontierCompare = {
         'upstage/solar-pro-3',
         'google/gemma-4-31b',
         'mimo/mimo-v2-pro',
-        'alibaba/qwen3.6-35b-a3b',
         'lg/k-exaone-236b',
         'kt/midm-k2.5-pro'
     ],

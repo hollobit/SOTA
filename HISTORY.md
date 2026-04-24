@@ -1,5 +1,44 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-04-24: Frontier Model Refresh (GPT-5.5, Kimi K2.6, Qwen3.6-27B/35B-A3B)
+
+### Session Overview
+4개 신규 URL 소스를 기반으로 frontier 모델 4개 · 벤치마크 9개 · 점수 48개를 추가 ingest.
+Primary sources: `deploymentsafety.openai.com/gpt-5-5/introduction`, `qwen.ai/blog?id=qwen3.6-35b-a3b`, `llm-stats.com/llm-updates`, `platform.kimi.ai/docs/guide/kimi-k2-6-quickstart`.
+
+### 추가된 모델
+| 모델 | 벤더 | 릴리스 | 타입 | 점수 수 |
+|-----|-----|-------|-----|------|
+| GPT-5.5 | OpenAI | 2026-04-23 | proprietary | 9 |
+| GPT-5.5 Pro | OpenAI | 2026-04-23 | proprietary | 2 |
+| Kimi K2.6 | Moonshot AI | 2026-04-20 | open-weight (multimodal) | 16 |
+| Qwen3.6-27B | Alibaba | 2026-04-22 | open-weight (dense, multimodal) | 13 |
+| Qwen3.6-35B-A3B | Alibaba | 2026-04-16 | open-weight (MoE) | +8 (backfill) |
+
+### 추가된 벤치마크 (9개)
+`healthbench_professional` (reasoning) · `toolathlon` (agent) · `mcpmark` (agent) · `qwen_web_bench` (agent, ELO) · `nl2repo` (coding) · `android_world` (agent) · `vlms_are_blind` (multimodal) · `realworldqa` (multimodal) · `skills_bench` (agent)
+
+### 주요 Frontier 비교 하이라이트
+- **Kimi K2.6 vs GPT-5.4 xhigh vs Claude Opus 4.6 max vs Gemini 3.1 Pro thinking high**: AIME 2026 96.4, SWE-Verified 80.2, BrowseComp 83.2 (swarm 86.3)
+- **GPT-5.5 cyber**: CTF 85% pass@12 · Cyber Range 93.33% (14/15) · CyScenarioBench 26% (+17pt vs GPT-5.4) · UK AISI 32-step corporate attack 1/10 solved
+- **Qwen3.6-27B dense breakout**: SWE-Pro 53.5 > Qwen3.5-397B-A17B's 50.9 (dense 27B outperforms 397B MoE)
+
+### 데이터 규모 증분
+| 항목 | 2026-04-18 | 2026-04-24 | 증가 |
+|-----|----------|----------|----|
+| 모델 | 63 | 67 | +4 |
+| 벤치마크 | 95 | 126 | +9 (+22 pre-existing reload) |
+| 점수 | 721 | 797 | +76 |
+| SOTA | 78 | 96 | +18 |
+| 웹 소스 | 26 | 34 | +8 |
+
+### 파일 변경 내역
+- `resource/frontier_2026_04_24_scores.json` — 신규 배치 파일 (4 모델 + 9 벤치마크 + 48 점수)
+- `config/seed_sources.yaml` — 8 신규 모니터링 소스 등록
+- `Plans.md`, `HISTORY.md` — 세션 기록
+
+---
+
 ## 2026-04-17: Cybersecurity/Coding/Agent Benchmark Expansion
 
 ### Session Overview

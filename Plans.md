@@ -1,10 +1,45 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: PR #1 생성, main 머지 대기 (2026-04-18)
-67 models · 95 benchmarks · 721 scores · 78 SOTA records · 15 PDF sources · 26 web sources
+## Current Status: Frontier refresh 2026-04-24
+67 models · 126 benchmarks · 797 scores · 96 SOTA records · 15 PDF sources · 34 web sources
 **Live Site**: https://hollobit.github.io/SOTA/
 **PR**: https://github.com/hollobit/SOTA/pull/1 (`feat/llm-benchmark-dashboard` → `main`, 105 commits)
 **Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-** (see `.gstack/design-reports/final-report-2026-04-18.md`)
+
+---
+
+## 2026-04-24 Frontier Update — 4 new models, 9 new benchmarks
+
+### New Models (4)
+- **GPT-5.5** (`openai/gpt-5.5`) + **GPT-5.5 Pro** (`openai/gpt-5.5-pro`) — 2026-04-23. Source: deploymentsafety.openai.com/gpt-5-5. HealthBench 56.5 / Hard 31.5 / Consensus 95.6 / Professional 51.8; CTF 85%, Cyber Range 93.33%, CyScenarioBench 26% (vs 9% for GPT-5.4), UK AISI TLO 10% pass@10.
+- **Kimi K2.6** (`moonshot/kimi-k2.6`) — 2026-04-20. Native multimodal (text+image+video), 256K context. 16 scores: SWE-Verified 80.2, SWE-Pro 58.6, AIME 2026 96.4, GPQA Diamond 90.5, Terminal-Bench 2.0 66.7.
+- **Qwen3.6-27B** (`alibaba/qwen3.6-27b`) — 2026-04-22. Dense 27B (not MoE), 262K ctx (1M YaRN), Apache 2.0. 13 scores: GPQA 87.8, AIME 2026 94.1, SWE-Pro 53.5 (beats Qwen3.5-397B-A17B).
+
+### New Benchmarks (9)
+- `healthbench_professional` — HealthBench clinician-rubric variant (GPT-5.5 System Card)
+- `toolathlon` — multi-domain tool-use (Kimi K2.6)
+- `mcpmark` — MCP tool-use benchmark (Qwen3.6-35B-A3B)
+- `qwen_web_bench` — Alibaba web browsing agent ELO
+- `nl2repo` — natural-language-to-repository synthesis
+- `android_world` — Android mobile OS agent (Google Research)
+- `vlms_are_blind` — VLM low-level perception stress test
+- `realworldqa` — xAI real-world spatial QA
+- `skills_bench` — Qwen agentic skills aggregate
+
+### Qwen3.6-35B-A3B score backfill (was metadata only)
+SWE-Verified 73.4 · Terminal-Bench 2.0 51.5 · MCPMark 37.0 · QwenWebBench 1397 · RealWorldQA 85.3 · GPQA 86.0 · MMLU-Pro 85.2 · AIME 2026 92.7
+
+### New Monitoring Sources (8)
+- deploymentsafety.openai.com (OpenAI system card hub)
+- deploymentsafety.openai.com/gpt-5-5 (GPT-5.5 direct)
+- www.kimi.com/blog/kimi-k2-6
+- platform.kimi.ai/docs/guide/kimi-k2-6-quickstart
+- qwen.ai/blog?id=qwen3.6-35b-a3b
+- llm-stats.com/llm-updates (daily new-model feed)
+- huggingface.co/Qwen/Qwen3.6-27B
+
+### Batch file
+- `resource/frontier_2026_04_24_scores.json` — 4 models + 9 benchmarks + 48 scores
 
 ---
 
