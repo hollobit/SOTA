@@ -1,61 +1,50 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Frontier refresh 2026-04-24
-67 models · 126 benchmarks · 797 scores · 96 SOTA records · 15 PDF sources · 34 web sources
+## Current Status: Regional + Mistral expansion 2026-04-25
+**96 models · 203 benchmarks · 1,045 scores · 172 SOTA records · 19 PDF sources · 75+ web sources**
 **Live Site**: https://hollobit.github.io/SOTA/
-**PR**: https://github.com/hollobit/SOTA/pull/1 (`feat/llm-benchmark-dashboard` → `main`, 105 commits)
-**Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-** (see `.gstack/design-reports/final-report-2026-04-18.md`)
+**Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-**
+**CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy (no more manual bumps).
+
+## 2026-04-25 Sessions (4 batches)
+
+### Daily monitoring sweep (no new frontier launches)
+Confirmed via OpenAI Deployment Safety Hub, Anthropic Research, HF Qwen + DeepSeek orgs, Irregular publications, llm-stats updates. Only material change: DeepSeek V4 official API launch (`api-docs.deepseek.com/updates`, 2026-04-24) with confirmed pricing — V4-Pro $0.145 / $3.48, V4-Flash $0.14 / $0.28 per 1M tokens.
+
+### Regional / domain-specialized models batch v1 (+11 models, +8 benchmarks)
+- **France**: Mistral Small 4, Large 3, Voxtral TTS
+- **Google medical**: MedGemma 27B, MedGemma 1.5 4B
+- **UAE**: Falcon-H1 Arabic 34B, Falcon Perception 600M
+- **Japan**: Sakana Namazu (alpha)
+- **Singapore**: Apertus-SEA-LION v4 8B, Gemma-SEA-LION v4 4B-VL
+- New medical benchmarks: medqa, medmcqa, pubmedqa, mmlu_med, medxpertqa, afrimed_qa, ehrqa + math_500
+
+### Regional v2 deep-dive (+2 models, +21 benchmarks, +51 scores)
+- HuggingFace model card pulls: Qwen3.6-35B-A3B (21→30 scores), Falcon-H1 34B (0→22), MedGemma 27B (+4 imaging), MedGemma 4B PT (10), Gemma 3 4B baseline
+- 2 PDFs: `MedGemma-Technical-Report-2507.05201.pdf`, `MedGemma-1.5-Technical-Report-2604.05081.pdf`
+- 21 new benchmarks across 5 categories
+
+### Mistral lineup expansion (+13 models, +4 benchmarks)
+- Devstral 2 (123B, SWE-Verified 72.2 SOTA among open) + Devstral Small 2 (24B, 68.0)
+- Magistral Small 1.2 (24B reasoning: AIME24 86.14, GPQA 70.07)
+- Codestral 25.08, Pixtral Large (124B vision SOTA: DocVQA 93.3, AI2D 93.8, ChartQA 88.1)
+- Stubs: Mistral Medium 3.1, Small 3.2, Ministral 3 14B/8B/3B
+
+## CI / Infrastructure improvements (2026-04-24/25)
+
+- **Fixed gh-pages deploy**: cp-vs-symlink failure on `dashboard/data` resolved with rsync `--exclude='/data'`
+- **Seed score load step** added to analyst job — curated PDF/blog scores ingest into CI DB
+- **Auto cache-bust** (`?v=$BUILD_SHA[:8]`) eliminates manual JS version bumps
+- **Score click-modal across 5 tables**: Frontier Compare heatmap, Cyber & Coding 4 tables, Explorer comparison, Comparison matrix, Overview SOTA Leaderboard
+- **Sortable column headers** on Frontier Compare table
 
 ---
 
-## 2026-04-24 Frontier Update — 4 new models, 9 new benchmarks
+## 2026-04-24 Frontier Update (compressed — see HISTORY.md for detail)
++4 models (GPT-5.5 + Pro · Kimi K2.6 · Qwen3.6-27B), +9 benchmarks (HealthBench Pro, Toolathlon, MCPMark, QwenWebBench, NL2Repo, AndroidWorld, VLMs-Are-Blind, RealWorldQA, SkillsBench), +8 monitoring sources. Batch: `resource/frontier_2026_04_24_scores.json`.
 
-### New Models (4)
-- **GPT-5.5** (`openai/gpt-5.5`) + **GPT-5.5 Pro** (`openai/gpt-5.5-pro`) — 2026-04-23. Source: deploymentsafety.openai.com/gpt-5-5. HealthBench 56.5 / Hard 31.5 / Consensus 95.6 / Professional 51.8; CTF 85%, Cyber Range 93.33%, CyScenarioBench 26% (vs 9% for GPT-5.4), UK AISI TLO 10% pass@10.
-- **Kimi K2.6** (`moonshot/kimi-k2.6`) — 2026-04-20. Native multimodal (text+image+video), 256K context. 16 scores: SWE-Verified 80.2, SWE-Pro 58.6, AIME 2026 96.4, GPQA Diamond 90.5, Terminal-Bench 2.0 66.7.
-- **Qwen3.6-27B** (`alibaba/qwen3.6-27b`) — 2026-04-22. Dense 27B (not MoE), 262K ctx (1M YaRN), Apache 2.0. 13 scores: GPQA 87.8, AIME 2026 94.1, SWE-Pro 53.5 (beats Qwen3.5-397B-A17B).
-
-### New Benchmarks (9)
-- `healthbench_professional` — HealthBench clinician-rubric variant (GPT-5.5 System Card)
-- `toolathlon` — multi-domain tool-use (Kimi K2.6)
-- `mcpmark` — MCP tool-use benchmark (Qwen3.6-35B-A3B)
-- `qwen_web_bench` — Alibaba web browsing agent ELO
-- `nl2repo` — natural-language-to-repository synthesis
-- `android_world` — Android mobile OS agent (Google Research)
-- `vlms_are_blind` — VLM low-level perception stress test
-- `realworldqa` — xAI real-world spatial QA
-- `skills_bench` — Qwen agentic skills aggregate
-
-### Qwen3.6-35B-A3B score backfill (was metadata only)
-SWE-Verified 73.4 · Terminal-Bench 2.0 51.5 · MCPMark 37.0 · QwenWebBench 1397 · RealWorldQA 85.3 · GPQA 86.0 · MMLU-Pro 85.2 · AIME 2026 92.7
-
-### New Monitoring Sources (8)
-- deploymentsafety.openai.com (OpenAI system card hub)
-- deploymentsafety.openai.com/gpt-5-5 (GPT-5.5 direct)
-- www.kimi.com/blog/kimi-k2-6
-- platform.kimi.ai/docs/guide/kimi-k2-6-quickstart
-- qwen.ai/blog?id=qwen3.6-35b-a3b
-- llm-stats.com/llm-updates (daily new-model feed)
-- huggingface.co/Qwen/Qwen3.6-27B
-
-### Batch file
-- `resource/frontier_2026_04_24_scores.json` — 4 models + 9 benchmarks + 48 scores
-
----
-
-## Completed Tasks
-
-- [x] Phase 1: 최신 벤치마크 데이터 수집 (웹 리더보드 6개 소스)
-- [x] Phase 2: Cyber & Coding 전용 탭 구현 (4축: Attack/Defense/Coding/Agent)
-- [x] Phase 3: BMT 카탈로그 연결 + 시드 소스 확장 (13개 추가)
-- [x] Phase 4: PDF System Card/논문 8개 완전 분석 및 데이터 추출
-- [x] Phase 5: MiniMax M2.7 + Gemma 4 Model Card 웹 소스 통합
-- [x] Phase 5b: Gemini 3 Pro 전체 테이블, Kimi K2.5 Table 4, GLM-5 Table 7 완전 추출
-- [x] Phase 6: GPT-5.4 Thinking, EXAONE 4.5, Solar Open, A.X K1, Mi:dm K 2.5 Pro, ERNIE 5.0, Qwen 3.6-Plus 분석
-- [x] Phase 7: Claude Opus 4.7 System Card 완전 분석 (40+ 벤치마크)
-- [x] Phase 8: 전체 PDF 커버리지 리뷰 및 누락 보충
-- [x] Phase 9 (2026-04-18): `/design-review` — 18 findings → 16 atomic 수정 커밋 (Design Score C- → B-)
-- [x] GitHub Pages 배포: https://hollobit.github.io/SOTA/
+## Completed Phases (compressed)
+Phase 1-9 (2026-04-16/17/18) executed sequentially, ending in 67 models · 95 benchmarks · 721 scores · 78 SOTA on 2026-04-18 deploy. Full per-phase details in HISTORY.md.
 
 ---
 

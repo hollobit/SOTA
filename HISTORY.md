@@ -1,5 +1,60 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-04-25: Regional + Mistral lineup expansion (4 batches)
+
+### Session Overview
+After daily monitoring sweep confirmed no new frontier launches between Apr 23 → Apr 25, four sequential batches added regional and domain-specialized models that the dashboard had been ignoring.
+
+### Batch summary
+| 배치 | 신규 모델 | 신규 벤치마크 | 신규 점수 | PDFs |
+|-----|--------|-----------|---------|-----|
+| Daily sweep | 0 | 0 | 0 | — |
+| Regional v1 | 11 | 8 | 16 | 0 |
+| Regional v2 | 2 | 21 | 51 | 2 (MedGemma TR + 1.5 TR) |
+| Mistral lineup | 13 | 4 | 22 | 0 |
+| **합계 (4/24 → 4/25)** | **+26** | **+33** | **+89** | **+2 PDF** |
+
+### 신규 모델 (지역/도메인별, 26개)
+- **France (Mistral, 16개)**: Large 3, Small 4, Magistral Small/Medium 1.2, Devstral 2, Devstral Small 2/Medium/Small 1.1, Codestral 25.08, Pixtral Large, Voxtral TTS, Mistral Medium 3.1, Small 3.2, Ministral 3 14B/8B/3B
+- **Google Medical (3개)**: MedGemma 27B, MedGemma 4B-PT, MedGemma 1.5 4B + Gemma 3 27B/4B baselines
+- **UAE TII (2개)**: Falcon-H1 Arabic 34B (hybrid Mamba-Transformer), Falcon Perception 600M
+- **Japan Sakana (1개)**: Namazu (alpha)
+- **Singapore AI Singapore (2개)**: Apertus-SEA-LION v4 8B-IT, Gemma-SEA-LION v4 4B-VL
+
+### 신규 벤치마크 33개 (5 카테고리)
+- **의료**: medqa, medmcqa, pubmedqa, mmlu_med, medxpertqa, afrimed_qa, ehrqa, mimic_cxr_f1, chexpert_f1, dermmcqa, vqa_rad
+- **수학**: math_500, amc_23, aime_24, gsm8k
+- **추론**: arc_challenge, truthfulqa, hellaswag, ifeval, bbh, mtbench, alpaca_eval_v2
+- **코딩**: mbpp, mbpp_plus, humaneval_plus, cruxeval, repobench
+- **멀티모달**: mathvista_mini, mmbench_en, ai2d, docvqa, chartqa, vqav2
+
+### 새 SOTA Highlights
+- **MedQA**: MedGemma 27B 87.7% (Gemma 3 27B 74.9% baseline)
+- **MIMIC-CXR**: MedGemma 27B Multimodal 90.0 F1
+- **DocVQA**: Pixtral Large 93.3 ANLS
+- **AI2D (BBox)**: Pixtral Large 93.8%
+- **HellaSwag**: Falcon-H1 34B 81.94% (size class SOTA)
+- **MATH-500**: Mistral Large 3 93.60%
+- **MedXpertQA**: MedGemma 27B 25.7%
+- **SWE-Verified (open-weight)**: Devstral 2 72.2%
+
+### CI / Infrastructure
+- **Auto cache-bust**: `?v=$BUILD_SHA[:8]` rewriting in publish step — no more manual JS version bumps after every JS change
+- **2 PDFs saved**: MedGemma TR (2.7 MB) + 1.5 TR (3.7 MB)
+- **5 deploy fixes during session**: 2 FK violations resolved with self-contained batch declarations; CDN cache TTL accommodated via cache-bust query strings
+- **3 Resources/Changelog menu syncs** (per memory rule)
+
+### 데이터 규모 증분
+| 항목 | 2026-04-24 종료 | 2026-04-25 종료 | 증가 |
+|-----|-------------|-------------|----|
+| 모델 | 70 | **96** | +26 |
+| 벤치마크 | 170 | **203** | +33 |
+| 점수 | 956 | **1,045** | +89 |
+| SOTA | 140 | **172** | +32 |
+| 모니터링 소스 | 67 | **75+** | +8 |
+
+---
+
 ## 2026-04-24: Frontier Model Refresh (GPT-5.5, Kimi K2.6, Qwen3.6-27B/35B-A3B)
 
 ### Session Overview
