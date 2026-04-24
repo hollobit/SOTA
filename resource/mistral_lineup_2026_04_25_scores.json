@@ -28,13 +28,17 @@
     { "id": "mistral/mistral-small-3.2",     "vendor": "Mistral AI", "name": "Mistral Small 3.2",     "type": "open-weight", "modalities": ["text", "image"] },
     { "id": "mistral/ministral-3-14b",       "vendor": "Mistral AI", "name": "Ministral 3 14B",       "type": "open-weight", "modalities": ["text", "image"] },
     { "id": "mistral/ministral-3-8b",        "vendor": "Mistral AI", "name": "Ministral 3 8B",        "type": "open-weight", "modalities": ["text", "image"] },
-    { "id": "mistral/ministral-3-3b",        "vendor": "Mistral AI", "name": "Ministral 3 3B",        "type": "open-weight", "modalities": ["text"] }
+    { "id": "mistral/ministral-3-3b",        "vendor": "Mistral AI", "name": "Ministral 3 3B",        "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/mistral-large-3",       "vendor": "Mistral AI", "name": "Mistral Large 3",       "type": "open-weight", "modalities": ["text"] }
   ],
   "benchmarks": [
     { "id": "docvqa",      "name": "DocVQA",     "category": "multimodal", "description": "Document Visual Question Answering — 50K questions on 12K documents. ANLS metric.",                                       "metric": "anls" },
     { "id": "chartqa",     "name": "ChartQA",    "category": "multimodal", "description": "Question answering over charts and plots. Tests visual + numerical reasoning. CoT prompting.",                            "metric": "accuracy" },
     { "id": "vqav2",       "name": "VQAv2",      "category": "multimodal", "description": "Visual QA v2 — 1.1M open-ended questions on COCO images. VQA Match metric.",                                                "metric": "accuracy" },
-    { "id": "repobench",   "name": "RepoBench",  "category": "coding",     "description": "Repository-level code completion benchmark. Tests retrieval + completion across multi-file Python/Java codebases.",      "metric": "accuracy" }
+    { "id": "repobench",   "name": "RepoBench",  "category": "coding",     "description": "Repository-level code completion benchmark. Tests retrieval + completion across multi-file Python/Java codebases.",      "metric": "accuracy" },
+    { "id": "ai2d",        "name": "AI2D",       "category": "multimodal", "description": "AI2 Diagram understanding — 4,564 grade-school science diagrams + multiple-choice QA. Co-declared for FK-order safety.", "metric": "accuracy" },
+    { "id": "aime_24",     "name": "AIME 2024",  "category": "math",       "description": "American Invitational Mathematics Examination 2024. Co-declared for FK-order safety.",                                    "metric": "accuracy" },
+    { "id": "mbpp",        "name": "MBPP",       "category": "coding",     "description": "Mostly Basic Python Programs — 974 entry-level programming problems. pass@1. Co-declared for FK-order safety.",          "metric": "accuracy" }
   ],
   "scores": [
     { "model": "mistral/devstral-2",        "benchmark": "swe_bench_verified", "score": 72.2, "unit": "%", "_source": "https://mistral.ai/news/devstral-2-vibe-cli", "_note": "Devstral 2 (123B, Dec 9 2025) — surpasses DeepSeek V3.2 63.8, approaches Claude Sonnet 4.5 77.2" },
