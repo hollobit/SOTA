@@ -187,6 +187,11 @@ var CyberCoding = {
             name: 'NL2Repo',
             desc: '자연어 → 리포지토리 합성 벤치마크. 단일 함수가 아닌 전체 리포 구조를 NL 명세만으로 생성하는 정확도 측정.',
             source: 'Qwen3.6 release'
+        },
+        expert_swe: {
+            name: 'Expert-SWE',
+            desc: 'OpenAI 내부 expert-level 소프트웨어 엔지니어링 벤치마크. SWE-bench 대비 더 어려운 실제 시니어 엔지니어 시나리오.',
+            source: 'GPT-5.5 launch'
         }
     },
 

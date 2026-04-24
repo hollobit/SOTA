@@ -735,13 +735,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "gdpval",
-    "name": "GDPval",
-    "category": "reasoning",
-    "description": "",
-    "metric": "accuracy"
-  },
-  {
     "id": "gso",
     "name": "GSO",
     "category": "coding",
@@ -879,6 +872,62 @@
     "name": "SkillsBench (Avg5)",
     "category": "agent",
     "description": "Qwen team agentic skills benchmark aggregate across 5 core skill domains.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "gdpval",
+    "name": "GDPval (expert win-rate)",
+    "category": "reasoning",
+    "description": "OpenAI's 44-occupation knowledge-work eval graded by human experts vs human baselines. Distinct from gdpval_aa (the Arena/ELO variant). Launch SOTA metric in GPT-5.5.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "officeqa_pro",
+    "name": "OfficeQA Pro",
+    "category": "reasoning",
+    "description": "Professional office-work QA (Word, Excel, PowerPoint formula/slide tasks). GPT-5.5 launch benchmark.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mrcr",
+    "name": "MRCR (Long Context)",
+    "category": "reasoning",
+    "description": "Multi-Round Co-reference Resolution — 512K–1M token long-context retrieval. OpenAI-run eval.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "first_person_fairness",
+    "name": "First-Person Fairness",
+    "category": "cyber_defense",
+    "description": "OpenAI bias metric measuring harmful response delta between male/female-associated names across 600+ prompts. Reported as harm_overall (lower is better).",
+    "metric": "harm_overall_lower_better"
+  },
+  {
+    "id": "prompt_injection",
+    "name": "Prompt Injection Defense",
+    "category": "cyber_defense",
+    "description": "Robustness against known prompt-injection attacks on connectors. Higher = more robust.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "virology_mcq",
+    "name": "Multimodal Troubleshooting Virology",
+    "category": "reasoning",
+    "description": "SecureBio's 350 held-out virology troubleshooting MCQs. Median expert baseline 22.1%.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "biochem_reward4",
+    "name": "Biochemistry Reward@4",
+    "category": "reasoning",
+    "description": "OpenAI's biochemistry knowledge aggregate (structure prediction, thermodynamics, reactions, phylogeny). reward@4 metric. Tracks incremental biorisk uplift vs prior model.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "expert_swe",
+    "name": "Expert-SWE (OpenAI Internal)",
+    "category": "coding",
+    "description": "OpenAI's internal expert-level SWE benchmark; distinct from public SWE-bench. Introduced in GPT-5.5 launch comparison.",
     "metric": "accuracy"
   }
 ]

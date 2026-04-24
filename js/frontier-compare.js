@@ -5,11 +5,12 @@
 var FrontierCompare = {
     // Core benchmarks appearing in 2+ PDF sources, grouped by category
     CORE_BENCHMARKS: {
-        reasoning: ['gpqa_diamond', 'hle', 'mmlu_pro', 'mmmlu', 'simpleqa_verified', 'longbench_v2', 'healthbench', 'healthbench_hard', 'healthbench_consensus', 'healthbench_professional'],
-        coding: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'swe_rebench', 'gdpval_aa', 'nl2repo'],
+        reasoning: ['gpqa_diamond', 'hle', 'mmlu_pro', 'mmmlu', 'simpleqa_verified', 'longbench_v2', 'mrcr', 'healthbench', 'healthbench_hard', 'healthbench_consensus', 'healthbench_professional', 'gdpval', 'officeqa_pro', 'virology_mcq', 'biochem_reward4', 'arc_agi_2', 'frontiermath'],
+        coding: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'swe_rebench', 'gdpval_aa', 'nl2repo', 'expert_swe'],
         math: ['aime_2025', 'aime_2026', 'hmmt_2025', 'hmmt_2026', 'imo_answerbench'],
-        agent: ['browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench', 'mcp_atlas', 'webarena', 'deepsearchqa', 'vending_bench_2', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'skills_bench'],
+        agent: ['browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench', 'mcp_atlas', 'webarena', 'deepsearchqa', 'vending_bench_2', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'skills_bench', 'finance_agent'],
         cybersecurity: ['cybench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'cvebench', 'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range'],
+        cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench'],
         multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind']
     },
 
