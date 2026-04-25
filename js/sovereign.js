@@ -800,6 +800,11 @@ var Sovereign = {
     _renderTimeline: function() {
         var el = document.getElementById('sov-timeline');
         if (!el) return;
+        // Dispose any previous ECharts instance bound to this element so a
+        // re-render under new filters fully replaces the chart instead of
+        // returning the cached instance with stale options.
+        var prev = echarts.getInstanceByDom(el);
+        if (prev) prev.dispose();
         el.textContent = '';
         var self = this;
 
@@ -995,6 +1000,8 @@ var Sovereign = {
     _renderCumulative: function() {
         var el = document.getElementById('sov-cumulative');
         if (!el) return;
+        var prev = echarts.getInstanceByDom(el);
+        if (prev) prev.dispose();
         el.textContent = '';
         var self = this;
 
