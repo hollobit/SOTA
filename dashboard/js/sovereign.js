@@ -603,7 +603,47 @@ var Sovereign = {
         'google-deepmind/gemini-robotics-er-1.6': '2026-04', 'google-deepmind/gemini-robotics-er-1.5': '2025-09',
         'landing-ai/visionagent': '2024-09',
         'nvidia/omniverse-mega': '2025-01',
-        'autodesk/bernini': '2024-04', 'ptc/creo-copilot': '2024-06', 'dassault/3dx-aura': '2024-05'
+        'autodesk/bernini': '2024-04', 'ptc/creo-copilot': '2024-06', 'dassault/3dx-aura': '2024-05',
+
+        // US Frontier (proprietary) — vendor-fallback group on the timeline
+        'openai/gpt-5.5': '2026-04', 'openai/gpt-5.5-pro': '2026-04',
+        'openai/gpt-5.4': '2026-02', 'openai/gpt-5.4-thinking': '2026-02',
+        'openai/gpt-5.4-pro': '2026-02', 'openai/gpt-5.4-mini': '2026-02',
+        'openai/gpt-5.3-codex': '2026-01',
+        'openai/gpt-5.2': '2025-12', 'openai/gpt-5.2-pro': '2025-12',
+        'openai/gpt-5.1': '2025-10',
+        'openai/gpt-5': '2025-08', 'openai/gpt-5-pro': '2025-08',
+        'openai/o3': '2025-01', 'openai/o4-mini': '2025-04',
+        'anthropic/claude-mythos-preview': '2026-03',
+        'anthropic/claude-opus-4.7': '2026-04', 'anthropic/claude-opus-4.6': '2026-02',
+        'anthropic/claude-opus-4.5': '2025-12', 'anthropic/claude-opus-4.1': '2025-08',
+        'anthropic/claude-opus-4': '2025-05',
+        'anthropic/claude-sonnet-4.6': '2025-12', 'anthropic/claude-sonnet-4.5': '2025-09',
+        'anthropic/claude-haiku-4.5': '2025-10',
+        'anthropic/claude-3.7-sonnet': '2025-02',
+        'google/gemini-3.1-pro': '2026-03', 'google/gemini-3.1-pro-preview': '2026-02',
+        'google/gemini-3.1-flash-lite': '2026-03',
+        'google/gemini-3-pro': '2025-11', 'google/gemini-3-pro-preview': '2025-10',
+        'google/gemini-3-flash': '2025-11',
+        'google/gemini-2.5-pro': '2025-05',
+        'google/gemma-4-31b': '2026-03', 'google/gemma-4-26b-a4b': '2026-03',
+        'google/medgemma-27b': '2025-07', 'google/medgemma-4b-pt': '2025-07', 'google/medgemma-1.5-4b': '2026-04',
+        'google/med-palm-2': '2023-05',
+        'meta/muse-spark': '2026-04',
+        'nvidia/nemotron-3-super': '2025-09',
+
+        // Physical AI — vendor-fallback group
+        'nvidia/cosmos-predict-2.5': '2025-09', 'nvidia/cosmos-reason-2': '2025-09', 'nvidia/cosmos-policy-robocasa': '2025-10',
+        'nvidia/gr00t-n1.7': '2025-11', 'nvidia/gr00t-n1.6': '2025-08',
+        'google-deepmind/genie-3': '2025-08', 'google-deepmind/genie-2': '2024-12',
+        'google-deepmind/gemini-robotics-er-1.6': '2026-04', 'google-deepmind/gemini-robotics-er-1.5': '2025-09',
+        'physical-intelligence/pi-zero': '2024-11', 'physical-intelligence/pi-zero-fast': '2025-04',
+        'openvla/openvla-7b': '2024-06',
+        'agibot/genie-envisioner': '2025-06',
+
+        // xAI Grok
+        'xai/grok-3': '2025-02', 'xai/grok-4': '2025-07',
+        'xai/grok-4-heavy': '2025-07', 'xai/grok-4.20': '2025-12'
     },
 
     FRONTIER_REFERENCE: [
@@ -650,6 +690,139 @@ var Sovereign = {
 
     // Cumulative chart state
     _cumViewMode: 'region',  // 'region' | 'vendor'
+
+    // Known parameter sizes (in B) for models whose name doesn't expose "XB".
+    // Used by the timeline to plot models that would otherwise be dropped.
+    // Total params for MoE (followed by active in parens), single number for dense.
+    KNOWN_PARAMS: {
+        // AI21 Jamba family — names don't carry the size suffix
+        'ai21/jamba-large-1.5': 398, 'ai21/jamba-large-1.7': 398,
+        'ai21/jamba-1.6-large': 398, 'ai21/jamba-1.6-mini': 52,
+        'ai21/jamba-1.5-mini': 52, 'ai21/jamba-1.0': 52,
+        'ai21/jamba2-mini': 52,
+        // Alibaba Qwen ambiguous names
+        'alibaba/qwen3-next': 80, 'alibaba/qwen3.6-plus': 235,
+        // Baichuan
+        'baichuan/baichuan-3': 175, 'baichuan/baichuan-4': 1000,
+        'baichuan/baichuan-omni-1.5': 7,
+        // Baidu ERNIE — proprietary, approx
+        'baidu/ernie-5.0': 600, 'baidu/ernie-4.5-turbo': 300,
+        'baidu/ernie-speed': 8, 'baidu/ernie-lite': 3,
+        // ByteDance Doubao Seed — proprietary
+        'bytedance/seed-2.0-pro': 800, 'bytedance/seed-1.6': 600,
+        'bytedance/seed-1.5-pro': 200, 'bytedance/seed-1.5-lite': 12,
+        // Korean — variants without B in name
+        'kakao/kanana-flag-32.5b': 32.5,
+        'kt/midm-k2.5-pro': 50, 'kt/midm-1.0': 11,
+        'naver/hyperclova-x': 100, 'naver/hyperclova-x-hcx-003': 80,
+        'naver/hyperclova-x-dash': 8,
+        'skt/ax-k1': 50,
+        'snuh-naver/kmed-ai': 7,
+        'samsung/gauss-2-supreme': 200, 'samsung/gauss-2-balanced': 30,
+        'samsung/gauss-2-compact': 7,
+        'lg/exaone-atelier': 5, 'lg/k-exaone-236b': 236,
+        'kakao/kogpt-6b': 6,
+        // China — additional
+        'iflytek/spark-x1': 70, 'iflytek/spark-4-ultra': 200,
+        'iflytek/spark-4': 80, 'iflytek/antelope-3.0': 50,
+        '01-ai/yi-large': 100, '01-ai/yi-lightning': 100,
+        'sensetime/sensenova-v6': 100, 'sensetime/sensechat-5': 100, 'sensetime/sensenova': 100,
+        'huawei/pangu-ultra-moe': 718, 'huawei/pangu-5': 200, 'huawei/pangu-embedding': 7,
+        'fnlp/moss-2': 16,
+        'minimax/m2.7': 600, 'minimax/m2.5': 600,
+        'mimo/mimo-v2-pro': 200, 'mimo/mimo-v2-flash': 50,
+        'stepfun/step-3.5-flash': 50, 'stepfun/step-2-pro': 1000, 'stepfun/step-2-mini': 16,
+        'tencent/hunyuan-turbo': 389,
+        'zhipu/glm-5.1': 700, 'zhipu/glm-5': 744, 'zhipu/glm-4.7': 355,
+        'moonshot/kimi-k1.5': 1000, 'moonshot/kimi-k2.5': 1000, 'moonshot/kimi-k2.6': 1000,
+        'moonshot/kimi-k2-thinking': 1000,
+        'deepseek/deepseek-v3.2': 685, 'deepseek/deepseek-v3.2-speciale': 685,
+        'deepseek/deepseek-v3.1-terminus': 685,
+        'deepseek/deepseek-v4-pro-max': 685, 'deepseek/deepseek-v4-pro': 685, 'deepseek/deepseek-v4-flash': 30,
+        'freedomintelligence/huatuogpt-ii': 13,
+        // India
+        'sarvam/sarvam-m': 24,
+        'bharatgen/param-1-2.9b': 2.9,
+        'bharatgen/param2-sutra': 17, 'bharatgen/param-1t-roadmap': 1000,
+        'ola/krutrim-spectre': 12, 'ola/krutrim': 7,
+        'soketai/sutra-pro': 50, 'soketai/sutra-light': 12, 'soketai/eka-roadmap': 100,
+        'ai4bharat/indicllm': 7, 'ai4bharat/indicbert-v2': 0.3, 'ai4bharat/indictrans2': 1.1,
+        'reliance/jiobrain': 100, 'tata/maitri': 100, 'lt-vyoma/sovereign-ai': 100,
+        'corover/bharatgpt': 7,
+        // Israel — Dicta
+        'ai21/jamba-reasoning': 398, 'ai21/maestro': 100,
+        // Russia
+        'yandex/yandexgpt-5-pro': 70, 'yandex/yandexgpt-4-pro': 30,
+        'sber/gigachat-3-ultra': 702, 'sber/gigachat-3-lightning': 30,
+        'sber/gigachat-2-max': 50, 'sber/gigachat-2-pro': 13, 'sber/gigachat-2-lite': 7,
+        'sber/gigachat-1.5': 30,
+        'tbank/t-pro-1': 30, 'tbank/t-lite-1': 8,
+        // Germany
+        'aleph-alpha/luminous': 70, 'aleph-alpha/pharia-2-tfree': 70,
+        'black-forest-labs/flux.1-pro': 12, 'black-forest-labs/flux.1-dev': 12,
+        'black-forest-labs/flux.1-schnell': 12,
+        'black-forest-labs/flux.1-kontext-pro': 12, 'black-forest-labs/flux.1-kontext-dev': 12,
+        'tngtech/r1t-chimera': 671, 'tngtech/r1t2-chimera': 671,
+        // UK
+        'stabilityai/sd-3.5-large': 8.1,
+        'stabilityai/stable-code-3b': 3,
+        'stabilityai/stable-lm-zephyr-3b': 3,
+        'synthesia/synthesia-vlm': 100,
+        'wayve/lingo-2': 100,
+        // Manufacturing
+        'siemens/sifm': 70, 'hitachi/hal': 70, 'ge-vernova/predix-ai': 70,
+        'bosch/industrial-genai': 70, 'aveva/industrial-ai-assistant': 70,
+        'skild/skild-brain': 100, 'covariant/rfm-1': 8,
+        'figure-ai/helix': 7, '1x/world-model': 7,
+        'apptronik/apollo-gemini': 7, 'agility/digit-arc': 7,
+        'sanctuary/carbon': 7, 'tesla/optimus-vlm': 7,
+        'autodesk/bernini': 5, 'landing-ai/visionagent': 7,
+        'ptc/creo-copilot': 70, 'dassault/3dx-aura': 70,
+        // Frontier (US) — global frontier vendors not in any sovereign region
+        'openai/gpt-5.5': 1500, 'openai/gpt-5.5-pro': 1500,
+        'openai/gpt-5.4': 1500, 'openai/gpt-5.4-thinking': 1500, 'openai/gpt-5.4-pro': 1500,
+        'openai/gpt-5.4-mini': 8, 'openai/gpt-5.3-codex': 1500, 'openai/gpt-5.2': 1500,
+        'openai/gpt-5.2-pro': 1500, 'openai/gpt-5.1': 1500, 'openai/gpt-5': 1500,
+        'openai/gpt-5-pro': 1500, 'openai/o3': 200, 'openai/o4-mini': 8,
+        'anthropic/claude-opus-4.7': 500, 'anthropic/claude-opus-4.6': 500,
+        'anthropic/claude-opus-4.5': 500, 'anthropic/claude-opus-4.1': 500,
+        'anthropic/claude-opus-4': 500, 'anthropic/claude-sonnet-4.6': 200,
+        'anthropic/claude-sonnet-4.5': 200, 'anthropic/claude-haiku-4.5': 8,
+        'anthropic/claude-mythos-preview': 500, 'anthropic/claude-3.7-sonnet': 200,
+        'google/gemini-3.1-pro': 1500, 'google/gemini-3.1-pro-preview': 1500,
+        'google/gemini-3.1-flash-lite': 8, 'google/gemini-3-pro': 1500,
+        'google/gemini-3-pro-preview': 1500, 'google/gemini-3-flash': 30,
+        'google/gemini-2.5-pro': 1000, 'google/gemma-4-31b': 31, 'google/gemma-4-26b-a4b': 26,
+        'google/medgemma-27b': 27, 'google/medgemma-4b-pt': 4, 'google/medgemma-1.5-4b': 4,
+        'google/med-palm-2': 340,
+        'meta/muse-spark': 1500,
+        'nvidia/nemotron-3-super': 70, 'nvidia/cosmos-policy-robocasa': 2,
+        'nvidia/cosmos-predict-2.5': 14, 'nvidia/cosmos-reason-2': 7,
+        'nvidia/gr00t-n1.6': 7, 'nvidia/gr00t-n1.7': 7,
+        'agibot/genie-envisioner': 8,
+        'google-deepmind/genie-3': 100, 'google-deepmind/genie-2': 50,
+        'google-deepmind/gemini-robotics-er-1.6': 100, 'google-deepmind/gemini-robotics-er-1.5': 100,
+        'physical-intelligence/pi-zero': 3.3, 'physical-intelligence/pi-zero-fast': 3.3,
+        'openvla/openvla-7b': 7,
+        'nvidia/omniverse-mega': 30,
+        // xAI Grok (proprietary, approx total params)
+        'xai/grok-3': 1500, 'xai/grok-4': 1500, 'xai/grok-4-heavy': 1500, 'xai/grok-4.20': 1500
+    },
+
+    // Vendor-prefix → fallback group for models that aren't in any
+    // sovereign region but should still appear on the timeline.
+    FRONTIER_VENDOR_REGION: {
+        'openai/':              { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'anthropic/':           { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'google/':              { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'google-deepmind/':     { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'meta/':                { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'nvidia/':              { code: 'physical-ai',      label: 'Physical AI',                flag: '🦾' },
+        'agibot/':              { code: 'physical-ai',      label: 'Physical AI',                flag: '🦾' },
+        'openvla/':             { code: 'physical-ai',      label: 'Physical AI',                flag: '🦾' },
+        'physical-intelligence/':{ code: 'physical-ai',     label: 'Physical AI',                flag: '🦾' },
+        'xai/':                 { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' }
+    },
 
     _cycleSort: function(tableId, key, defaultDir) {
         var s = this._sortStates[tableId] || { key: null, dir: null };
@@ -769,12 +942,15 @@ var Sovereign = {
         return ts >= cutoff;
     },
 
-    // Extract approximate parameter count (in billions) from a model name.
-    // Heuristic: look for patterns like "70B", "1.5B", "405B", "236B-A21B" (use total).
-    // Returns null if no number found.
-    _extractParamsB: function(modelName) {
+    // Extract approximate parameter count (in billions). Tries:
+    //   1. KNOWN_PARAMS lookup by model_id (curated, authoritative when present)
+    //   2. Pattern match on model name ("70B", "236B-A21B" → take largest)
+    // Returns null if neither source has data.
+    _extractParamsB: function(modelName, modelId) {
+        if (modelId && this.KNOWN_PARAMS && this.KNOWN_PARAMS[modelId] != null) {
+            return this.KNOWN_PARAMS[modelId];
+        }
         if (!modelName) return null;
-        // Match the LARGEST number followed by B (case-insensitive)
         var matches = modelName.match(/(\d+(?:\.\d+)?)\s*B\b/gi);
         if (!matches || matches.length === 0) return null;
         var nums = matches.map(function(s) {
@@ -782,7 +958,6 @@ var Sovereign = {
             return isNaN(n) ? null : n;
         }).filter(function(n) { return n != null; });
         if (nums.length === 0) return null;
-        // Return the largest (often "total" for MoE before "active")
         return Math.max.apply(null, nums);
     },
 
@@ -800,11 +975,15 @@ var Sovereign = {
     _renderTimeline: function() {
         var el = document.getElementById('sov-timeline');
         if (!el) return;
-        // Dispose any previous ECharts instance bound to this element so a
-        // re-render under new filters fully replaces the chart instead of
-        // returning the cached instance with stale options.
+        // Dispose any previous ECharts instance bound to this element OR any
+        // child host div so a re-render fully replaces the chart instead of
+        // merging into a cached instance with stale options.
         var prev = echarts.getInstanceByDom(el);
         if (prev) prev.dispose();
+        Array.prototype.slice.call(el.children).forEach(function(child) {
+            var ci = echarts.getInstanceByDom(child);
+            if (ci) ci.dispose();
+        });
         el.textContent = '';
         var self = this;
 
@@ -816,71 +995,138 @@ var Sovereign = {
         var modelById = {};
         this._models.forEach(function(m) { modelById[m.id] = m; });
 
+        // Build a model_id → region lookup so we can group models by their
+        // sovereign region. Models not in any region fall back to a vendor-
+        // based group (e.g., openai/* → 'US Frontier (proprietary)').
+        var regionByModel = {};
+        this.REGIONS.forEach(function(region) {
+            region.models.forEach(function(mid) { regionByModel[mid] = region; });
+        });
+        function vendorFallbackRegion(mid) {
+            var keys = Object.keys(self.FRONTIER_VENDOR_REGION);
+            for (var i = 0; i < keys.length; i++) {
+                if (mid.indexOf(keys[i]) === 0) return self.FRONTIER_VENDOR_REGION[keys[i]];
+            }
+            // Last resort: stub region from the model's vendor metadata
+            var m = modelById[mid];
+            return m ? { code: 'other', label: m.vendor || 'Other', flag: '·' } : null;
+        }
+
         // Region color palette — distinct color per region beyond the 6 Theme.series.
-        // Falls back to Theme.series for indices >= 6.
         var regionPalette = [
             '#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899',
             '#14b8a6', '#f97316', '#06b6d4', '#a855f7', '#84cc16', '#eab308',
             '#22c55e', '#0ea5e9', '#d946ef', '#f43f5e', '#fbbf24', '#6366f1',
-            '#7c3aed'
+            '#7c3aed', '#e11d48', '#0284c7', '#ca8a04', '#be185d', '#16a34a'
         ];
+        // Color allocator: ordered by REGIONS list, then alphabetic for fallback.
+        var regionColorByLabel = {};
+        this.REGIONS.forEach(function(r, idx) {
+            regionColorByLabel[r.flag + ' ' + r.label] = regionPalette[idx % regionPalette.length];
+        });
+        // Reserve fallback colors
+        regionColorByLabel['🌐 US Frontier (proprietary)'] = '#94a3b8';
+        regionColorByLabel['🦾 Physical AI'] = '#a855f7';
 
-        // Build per-region series: each region is a scatter series so the
-        // legend doubles as a per-country toggle.
+        // Sentinel y-value used to plot models without param data so the user
+        // can still see them. ECharts log axis can't render 0, so we use a
+        // small number (0.05B = 50M) and label this row clearly.
+        var UNKNOWN_PARAMS_Y = 0.05;
+
+        // Iterate ALL models in the registry, not just sovereign region members.
+        // Each model is assigned to a sovereign region if present, else a
+        // vendor-fallback group ("US Frontier", "Physical AI", or vendor name).
+        var pointsByLabel = {};   // legend label → array of points
+        var processedIds = {};    // dedupe in case a model appears in 2 regions
+        var totalProcessed = 0, totalKept = 0, totalUnknownParams = 0;
+
+        this._models.forEach(function(model) {
+            var mid = model.id;
+            if (processedIds[mid]) return;
+            processedIds[mid] = true;
+            totalProcessed++;
+
+            var date = self.RELEASE_DATES[mid] || (self._localReleaseDates && self._localReleaseDates[mid]);
+            if (!date) return;
+
+            // Period filter
+            var year = date.slice(0, 4);
+            if (period !== 'all') {
+                if (period === '2023') {
+                    if (parseInt(year, 10) > 2023) return;
+                } else if (year !== period) {
+                    return;
+                }
+            }
+
+            var region = regionByModel[mid] || vendorFallbackRegion(mid);
+            if (!region) return;
+            var label = region.flag + ' ' + region.label;
+
+            var paramsB = self._extractParamsB(model.name, mid);
+            var bestScore = self._bestScoreFor(mid);
+            var ts = self._dateToTs(date);
+
+            // Y value depends on mode
+            var yVal = null, isUnknownPlaceholder = false;
+            if (yMode === 'params-log' || yMode === 'params-linear') {
+                if (paramsB == null) {
+                    // Plot at sentinel position so the user sees these
+                    // models exist. Marker is desaturated (lower opacity).
+                    yVal = UNKNOWN_PARAMS_Y;
+                    isUnknownPlaceholder = true;
+                    totalUnknownParams++;
+                } else {
+                    yVal = paramsB;
+                }
+            } else if (yMode === 'best-score') {
+                if (bestScore == null) return;
+                yVal = bestScore;
+            }
+
+            var symbolSize = paramsB ? Math.max(8, Math.min(28, Math.sqrt(paramsB) * 2.4)) : 8;
+
+            if (!pointsByLabel[label]) pointsByLabel[label] = [];
+            pointsByLabel[label].push({
+                value: [ts, yVal, mid, model.name, date, paramsB, bestScore, label],
+                symbolSize: symbolSize,
+                itemStyle: isUnknownPlaceholder ? { opacity: 0.4, borderColor: '#0b0f17', borderWidth: 1 } : null
+            });
+            totalKept++;
+        });
+
+        // Build series in REGIONS order, then fallback groups
         var seriesData = [];
         var legendNames = [];
-        this.REGIONS.forEach(function(region, regionIdx) {
-            var color = regionPalette[regionIdx % regionPalette.length];
-            var pts = [];
-            region.models.forEach(function(mid) {
-                var date = self.RELEASE_DATES[mid];
-                var model = modelById[mid];
-                if (!date || !model) return;
-
-                // Period filter
-                var year = date.slice(0, 4);
-                if (period !== 'all') {
-                    if (period === '2023') {
-                        if (parseInt(year, 10) > 2023) return;
-                    } else if (year !== period) {
-                        return;
-                    }
+        function pushSeries(label) {
+            var pts = pointsByLabel[label];
+            if (!pts || pts.length === 0) return;
+            var color = regionColorByLabel[label] || '#94a3b8';
+            // Apply default color to points that don't already have an item style
+            pts.forEach(function(p) {
+                if (!p.itemStyle) {
+                    p.itemStyle = { color: color, opacity: 0.78, borderColor: '#0b0f17', borderWidth: 1 };
+                } else if (!p.itemStyle.color) {
+                    p.itemStyle.color = color;
                 }
-
-                var paramsB = self._extractParamsB(model.name);
-                var bestScore = self._bestScoreFor(mid);
-                var ts = self._dateToTs(date);
-
-                // Y value depends on mode. Skip points missing the metric.
-                var yVal = null;
-                if (yMode === 'params-log' || yMode === 'params-linear') {
-                    if (paramsB == null) return;
-                    yVal = paramsB;
-                } else if (yMode === 'best-score') {
-                    if (bestScore == null) return;
-                    yVal = bestScore;
-                }
-
-                // Symbol size: small constant, slight bonus for big models so
-                // outliers stand out without cluttering small-model regions.
-                var symbolSize = paramsB ? Math.max(8, Math.min(28, Math.sqrt(paramsB) * 2.4)) : 10;
-
-                pts.push({
-                    value: [ts, yVal, mid, model.name, date, paramsB, bestScore, region.flag + ' ' + region.label],
-                    symbolSize: symbolSize
-                });
             });
-            if (pts.length === 0) return;
-            var name = region.flag + ' ' + region.label;
-            legendNames.push(name);
+            legendNames.push(label);
             seriesData.push({
-                name: name,
+                name: label,
                 type: 'scatter',
                 data: pts,
                 itemStyle: { color: color, opacity: 0.78, borderColor: '#0b0f17', borderWidth: 1 },
                 emphasis: { focus: 'series', itemStyle: { borderColor: '#fff', borderWidth: 2, opacity: 1 } }
             });
-        });
+        }
+        // Sovereign regions first (in declared order)
+        this.REGIONS.forEach(function(r) { pushSeries(r.flag + ' ' + r.label); });
+        // Then fallback groups
+        ['🌐 US Frontier (proprietary)', '🦾 Physical AI'].forEach(pushSeries);
+        // Then any remaining vendor-stub labels (alphabetical)
+        Object.keys(pointsByLabel).filter(function(l) {
+            return !legendNames.includes(l);
+        }).sort().forEach(pushSeries);
 
         if (seriesData.length === 0) {
             var empty = document.createElement('p');
@@ -892,11 +1138,14 @@ var Sovereign = {
 
         var yAxisName, yAxisType, yAxisLabel;
         if (yMode === 'params-log') {
-            yAxisName = '파라미터 (B)';
+            yAxisName = '파라미터 (B) — log scale, 미공개=하단';
             yAxisType = 'log';
-            yAxisLabel = function(v) { return v + 'B'; };
+            yAxisLabel = function(v) {
+                if (v <= UNKNOWN_PARAMS_Y * 1.5) return '?';
+                return v + 'B';
+            };
         } else if (yMode === 'params-linear') {
-            yAxisName = '파라미터 (B)';
+            yAxisName = '파라미터 (B) — linear';
             yAxisType = 'value';
             yAxisLabel = function(v) { return v + 'B'; };
         } else {
@@ -904,8 +1153,19 @@ var Sovereign = {
             yAxisType = 'value';
             yAxisLabel = function(v) { return v.toFixed(0); };
         }
+        // Coverage badge for the empty p element area — surface counts so user
+        // sees how many points are placeholder vs real
+        var coverageBadge = document.createElement('p');
+        coverageBadge.className = 'text-xs text-gray-500 mb-2';
+        coverageBadge.textContent = '표시 중: ' + totalKept + ' / ' + totalProcessed
+            + ' models' + (totalUnknownParams > 0 && (yMode.indexOf('params') === 0)
+                ? ' · 그 중 ' + totalUnknownParams + '개는 파라미터 미공개 (y=하단 마커)' : '');
+        el.appendChild(coverageBadge);
+        var chartHost = document.createElement('div');
+        chartHost.style.height = 'calc(100% - 24px)';
+        el.appendChild(chartHost);
 
-        var chart = echarts.init(el);
+        var chart = echarts.init(chartHost);
         chart.setOption({
             backgroundColor: 'transparent',
             tooltip: {
@@ -917,7 +1177,11 @@ var Sovereign = {
                         '국가: ' + v[7],
                         '출시: ' + v[4]
                     ];
-                    if (v[5] != null) lines.push('파라미터: ~' + v[5] + 'B');
+                    if (v[5] != null) {
+                        lines.push('파라미터: ~' + v[5] + 'B');
+                    } else if (yMode.indexOf('params') === 0) {
+                        lines.push('파라미터: <em>미공개</em>');
+                    }
                     if (v[6] != null) lines.push('Best 벤치마크: ' + v[6].toFixed(1));
                     return lines.join('<br/>');
                 }

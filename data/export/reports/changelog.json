@@ -1,5 +1,14 @@
 [
   {
+    "type": "Bugfix",
+    "date": "2026-04-25",
+    "benchmark_id": "Sovereign Timeline 100% coverage — 234 → 461 models",
+    "new_model": "Timeline now shows every model in the registry (461/461)",
+    "new_value": "Audit found 234/461 visible (51% coverage) — 54 frontier vendors (Anthropic/OpenAI/Google/Meta/NVIDIA/xAI/Physical Intelligence/OpenVLA) had no Sovereign region membership, and 173 models had unparseable params from name. Three fixes: (1) KNOWN_PARAMS curated map (~140 entries) for models whose names don't carry 'XB' suffix (Jamba family, Yi-Large, GigaChat, ERNIE, Doubao, Hunyuan, Pharia, FLUX, Stable Code/SD, manufacturing FMs, Anthropic Claude, OpenAI GPT, Google Gemini, xAI Grok, etc.). (2) FRONTIER_VENDOR_REGION fallback — vendor-prefix matches map non-sovereign models to '🌐 US Frontier (proprietary)' (Anthropic/OpenAI/Google/Meta/xAI) or '🦾 Physical AI' (NVIDIA/OpenVLA/Pi/AgiBot/DeepMind robotics). (3) Models with truly unknown params plotted at sentinel y=0.05B with 0.4 opacity + '?' axis label so user sees they exist. Coverage badge added: '표시 중: 461 / 461 models · 그 중 56개는 파라미터 미공개'.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
     "type": "Web Collection",
     "date": "2026-04-25",
     "benchmark_id": "Score backfill — +181 verified scores across 44 newly-added models",
