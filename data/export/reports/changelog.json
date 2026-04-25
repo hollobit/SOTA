@@ -2,6 +2,24 @@
   {
     "type": "Feature",
     "date": "2026-04-26",
+    "benchmark_id": "개발사별 보기 — 접기/펼치기 토글",
+    "new_model": "Vendor sub-headers clickable + 전체 접기 / 전체 펼치기 controls",
+    "new_value": "User-requested: '개발사별 보기 메뉴에서 \"접기\" 및 \"펼치기\" 버튼을 두어 제조사별 세부 내용을 펼쳐보거나 접어 볼 수 있도록 해주세요'. Sub-header에 ▼/▶ caret 추가, 클릭 시 해당 vendor 모델 리스트 toggle. '전체 접기'/'전체 펼치기' 버튼은 vendor 뷰에서만 노출 (다른 뷰에서는 자동 숨김). Per-region+vendor 단위로 collapse 상태 유지 (re-render 시 보존). Verified: Korea 72 rows → '전체 접기' 0 rows → click 첫 vendor 8 rows → '전체 펼치기' 72 rows.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Bugfix",
+    "date": "2026-04-26",
+    "benchmark_id": "Vendor alias normalization in 개발사별 보기",
+    "new_model": "VENDOR_ALIASES map merges parent-company duplicates",
+    "new_value": "User-reported: 'KT'와 'KT (K-intelligence)'는 같은 개발사, 'LG AI'와 'LG AI Research'도 같은 개발사, 'NCSoft (NC AI)'와 'NCSoft'도 같은 회사. 7개 alias 추가: KT (K-intelligence)→KT, LG AI→LG AI Research, NCSoft (NC AI)→NCSoft, Kakao Brain→Kakao, Naver→Naver Cloud, BharatGen (IIT Bombay TIH)→BharatGen, MBZUAI (UAE)→MBZUAI. Sovereign 메뉴 '개발사별 보기'에서 정확한 회사별 카운트 반영. Korea: 24→19 vendors (LG 13 합산, KT 4 합산, NCSoft 4 합산, Kakao 5 합산, Naver Cloud 10 합산). India: 11→10. UAE: 3→2. 별도 컨소시엄 (GoTo + AI Singapore, EPFL + Yale + ICRC, SNUH + Naver)는 의도적으로 분리 유지.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Feature",
+    "date": "2026-04-26",
     "benchmark_id": "Sovereign Map — 개발사별 보기 view",
     "new_model": "3-mode toggle: 전체 보기 / 최신 active / 개발사별 보기",
     "new_value": "Sovereign AI Map 카드 헤더에 신규 토글 '개발사별 보기' 추가. 선택 시 각 region 카드 내부에서 vendor 별로 sub-header (vendor name + count) + 들여쓰기 된 모델 리스트로 표시. Vendor 그룹은 가장 최신 발표 모델 날짜 desc로 정렬, 동일 날짜는 알파벳순. Region header count도 'X vendors · Y models' 형태로 변경. 결과 (전체 region): Korea 24 vendors · 72 models, China 22 vendors · 121 models, France 5 vendors · 48 models, US-Open 10 vendors · 39 models, US Frontier (proprietary 외부 frontier 메뉴) 등.",
