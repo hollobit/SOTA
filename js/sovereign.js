@@ -194,6 +194,69 @@ var Sovereign = {
             models: ['bloomberg/bloomberg-gpt']
         },
         {
+            code: 'ru', label: 'Russia', flag: '🇷🇺',
+            note: 'Yandex YandexGPT 5 + Sber GigaChat 1/2/3 (incl. 3 Ultra Preview 702B-A36B MoE) + Vikhr opensource + T-Bank',
+            models: [
+                'yandex/yandexgpt-5-pro', 'yandex/yandexgpt-5-lite-8b', 'yandex/yandexgpt-4-pro', 'yandex/yalm-100b',
+                'sber/gigachat-3-ultra', 'sber/gigachat-3-lightning',
+                'sber/gigachat-2-max', 'sber/gigachat-2-pro', 'sber/gigachat-2-lite', 'sber/gigachat-1.5',
+                'sber/rugpt-3.5-13b',
+                'vikhrmodels/vikhr-nemo-12b', 'vikhrmodels/vikhr-yandexgpt-5-lite-8b',
+                'tbank/t-pro-1', 'tbank/t-lite-1'
+            ]
+        },
+        {
+            code: 'de', label: 'Germany', flag: '🇩🇪',
+            note: 'Aleph Alpha Pharia (sovereign EU AI Act compliant) + Black Forest Labs FLUX (image gen) + TNG DeepSeek Chimera',
+            models: [
+                'aleph-alpha/pharia-1-7b-control', 'aleph-alpha/pharia-1-7b-control-aligned',
+                'aleph-alpha/pharia-2-tfree', 'aleph-alpha/luminous',
+                'black-forest-labs/flux.1-pro', 'black-forest-labs/flux.1-dev', 'black-forest-labs/flux.1-schnell',
+                'black-forest-labs/flux.1-kontext-pro', 'black-forest-labs/flux.1-kontext-dev',
+                'tngtech/r1t-chimera', 'tngtech/r1t2-chimera'
+            ]
+        },
+        {
+            code: 'uk', label: 'United Kingdom', flag: '🇬🇧',
+            note: 'Stability AI (StableLM/Stable Diffusion) + Synthesia + Wayve · UK Sovereign AI Fund £500M (2025)',
+            models: [
+                'stabilityai/stablelm-2-12b', 'stabilityai/stablelm-2-1.6b',
+                'stabilityai/stable-code-3b', 'stabilityai/stable-lm-zephyr-3b',
+                'stabilityai/sd-3.5-large',
+                'synthesia/synthesia-vlm', 'wayve/lingo-2'
+            ]
+        },
+        {
+            code: 'us-open', label: 'US (Open-source / Open-weight)', flag: '🇺🇸',
+            note: 'Meta Llama 4 (Behemoth/Maverick/Scout) + Llama 3.1-3.3 · Microsoft Phi-4 family · Google Gemma 3 · IBM Granite 3 · Allen AI OLMo 2 · Databricks DBRX · Snowflake Arctic · Cohere Command · xAI Grok-1 · StarCoder 2',
+            models: [
+                // Meta Llama 4 + 3.x
+                'meta/llama-4-behemoth', 'meta/llama-4-maverick', 'meta/llama-4-scout',
+                'meta/llama-3.3-70b',
+                'meta/llama-3.2-90b-vision', 'meta/llama-3.2-11b-vision', 'meta/llama-3.2-3b', 'meta/llama-3.2-1b',
+                'meta/llama-3.1-405b', 'meta/llama-3.1-70b', 'meta/llama-3.1-8b',
+                // Microsoft Phi-4
+                'microsoft/phi-4', 'microsoft/phi-4-mini', 'microsoft/phi-4-multimodal', 'microsoft/phi-4-reasoning',
+                'microsoft/phi-3.5-mini',
+                // Google Gemma
+                'google/gemma-3-27b', 'google/gemma-3-12b', 'google/gemma-3-4b', 'google/gemma-3-1b',
+                'google/gemma-2-27b', 'google/gemma-2-9b',
+                // IBM Granite
+                'ibm/granite-3.3-8b', 'ibm/granite-3.3-2b', 'ibm/granite-3.2-vision', 'ibm/granite-3.1-8b',
+                // Allen AI
+                'allenai/olmo-2-13b', 'allenai/olmo-2-7b', 'allenai/tulu-3-70b', 'allenai/molmo-72b',
+                // Databricks / Snowflake
+                'databricks/dbrx-instruct',
+                'snowflake/arctic-instruct',
+                // Cohere
+                'cohere/command-a', 'cohere/command-r-plus', 'cohere/command-r', 'cohere/aya-expanse-32b',
+                // xAI
+                'xai/grok-1',
+                // StarCoder
+                'bigcode/starcoder2-15b', 'bigcode/starcoder2-7b'
+            ]
+        },
+        {
             code: 'darpa', label: 'DARPA AIxCC', flag: '🛡️',
             note: 'DARPA 국방·도메인 Cyber Reasoning System',
             models: ['darpa/aixcc-team-atlanta']
@@ -377,6 +440,57 @@ var Sovereign = {
         'harvey/harvey-assistant': '2025-09', 'thomson-reuters/cocounsel-2': '2025-04', 'vlex/vincent-ai': '2024-06', 'vecflow/oliver': '2025-02',
         'bloomberg/bloomberg-gpt': '2023-03',
         'darpa/aixcc-team-atlanta': '2025-08',
+
+        // Russia
+        'yandex/yandexgpt-5-pro': '2025-02', 'yandex/yandexgpt-5-lite-8b': '2025-02',
+        'yandex/yandexgpt-4-pro': '2024-04', 'yandex/yalm-100b': '2022-06',
+        'sber/gigachat-3-ultra': '2025-11', 'sber/gigachat-3-lightning': '2025-11',
+        'sber/gigachat-2-max': '2025-04', 'sber/gigachat-2-pro': '2025-04', 'sber/gigachat-2-lite': '2025-04',
+        'sber/gigachat-1.5': '2024-09', 'sber/rugpt-3.5-13b': '2023-09',
+        'vikhrmodels/vikhr-nemo-12b': '2024-09', 'vikhrmodels/vikhr-yandexgpt-5-lite-8b': '2025-03',
+        'tbank/t-pro-1': '2024-12', 'tbank/t-lite-1': '2024-12',
+
+        // Germany
+        'aleph-alpha/pharia-1-7b-control': '2024-08', 'aleph-alpha/pharia-1-7b-control-aligned': '2024-08',
+        'aleph-alpha/pharia-2-tfree': '2025-09', 'aleph-alpha/luminous': '2022-04',
+        'black-forest-labs/flux.1-pro': '2024-08', 'black-forest-labs/flux.1-dev': '2024-08', 'black-forest-labs/flux.1-schnell': '2024-08',
+        'black-forest-labs/flux.1-kontext-pro': '2025-05', 'black-forest-labs/flux.1-kontext-dev': '2025-06',
+        'tngtech/r1t-chimera': '2025-04', 'tngtech/r1t2-chimera': '2025-08',
+
+        // UK
+        'stabilityai/stablelm-2-12b': '2024-04', 'stabilityai/stablelm-2-1.6b': '2024-01',
+        'stabilityai/stable-code-3b': '2024-03', 'stabilityai/stable-lm-zephyr-3b': '2023-12',
+        'stabilityai/sd-3.5-large': '2024-10',
+        'synthesia/synthesia-vlm': '2024-08', 'wayve/lingo-2': '2024-04',
+
+        // US Open — Meta Llama
+        'meta/llama-4-behemoth': '2025-04', 'meta/llama-4-maverick': '2025-04', 'meta/llama-4-scout': '2025-04',
+        'meta/llama-3.3-70b': '2024-12',
+        'meta/llama-3.2-90b-vision': '2024-09', 'meta/llama-3.2-11b-vision': '2024-09',
+        'meta/llama-3.2-3b': '2024-09', 'meta/llama-3.2-1b': '2024-09',
+        'meta/llama-3.1-405b': '2024-07', 'meta/llama-3.1-70b': '2024-07', 'meta/llama-3.1-8b': '2024-07',
+        // US Open — Microsoft Phi
+        'microsoft/phi-4': '2024-12', 'microsoft/phi-4-mini': '2025-02',
+        'microsoft/phi-4-multimodal': '2025-02', 'microsoft/phi-4-reasoning': '2025-04',
+        'microsoft/phi-3.5-mini': '2024-08',
+        // US Open — Google Gemma
+        'google/gemma-3-27b': '2025-03', 'google/gemma-3-12b': '2025-03', 'google/gemma-3-4b': '2025-03', 'google/gemma-3-1b': '2025-03',
+        'google/gemma-2-27b': '2024-06', 'google/gemma-2-9b': '2024-06',
+        // US Open — IBM Granite
+        'ibm/granite-3.3-8b': '2025-04', 'ibm/granite-3.3-2b': '2025-04',
+        'ibm/granite-3.2-vision': '2025-02', 'ibm/granite-3.1-8b': '2024-12',
+        // US Open — Allen AI
+        'allenai/olmo-2-13b': '2024-11', 'allenai/olmo-2-7b': '2024-11',
+        'allenai/tulu-3-70b': '2024-11', 'allenai/molmo-72b': '2024-09',
+        // US Open — Databricks / Snowflake
+        'databricks/dbrx-instruct': '2024-03',
+        'snowflake/arctic-instruct': '2024-04',
+        // US Open — Cohere
+        'cohere/command-a': '2025-03', 'cohere/command-r-plus': '2024-04', 'cohere/command-r': '2024-04', 'cohere/aya-expanse-32b': '2024-10',
+        // US Open — xAI
+        'xai/grok-1': '2024-03',
+        // US Open — StarCoder
+        'bigcode/starcoder2-15b': '2024-02', 'bigcode/starcoder2-7b': '2024-02',
 
         // Manufacturing
         'foxconn/foxbrain-70b': '2025-03',
