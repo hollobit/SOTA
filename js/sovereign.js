@@ -112,18 +112,41 @@ var Sovereign = {
         },
         {
             code: 'in', label: 'India', flag: '🇮🇳',
-            note: 'Sarvam · BharatGen · Krutrim · BharatGPT (정부 AI Mission)',
+            note: '독자 sovereign AI Mission — Sarvam · BharatGen · Krutrim · Soket AI · AI4Bharat · BharatGPT + Tata MAITRI · Reliance JioBrain · L&T-Vyoma',
             models: [
-                'sarvam/sarvam-1', 'sarvam/sarvam-m',
-                'bharatgen/param2-17b',
-                'ola/krutrim',
-                'corover/bharatgpt'
+                // Sarvam — full lineup (incl. MoE 30B/105B)
+                'sarvam/sarvam-105b', 'sarvam/sarvam-30b',
+                'sarvam/sarvam-m', 'sarvam/sarvam-1',
+                // BharatGen (govt-funded IIT Bombay TIH)
+                'bharatgen/param2-17b', 'bharatgen/param-1-2.9b',
+                'bharatgen/param2-sutra', 'bharatgen/param-1t-roadmap',
+                // Krutrim (Ola)
+                'ola/krutrim-2-12b', 'ola/krutrim-spectre', 'ola/krutrim',
+                // Soket AI (Project EKA)
+                'soketai/sutra-pro', 'soketai/sutra-light',
+                'soketai/pragna-1b', 'soketai/eka-roadmap',
+                // AI4Bharat (IIT Madras govt-backed)
+                'ai4bharat/indicllm', 'ai4bharat/indicbert-v2', 'ai4bharat/indictrans2',
+                // CoRover
+                'corover/bharatgpt',
+                // Conglomerate / industry-led (announced)
+                'reliance/jiobrain', 'tata/maitri', 'lt-vyoma/sovereign-ai'
             ]
         },
         {
             code: 'il', label: 'Israel', flag: '🇮🇱',
-            note: 'AI21 Jamba SSM-Transformer hybrid',
-            models: ['ai21/jamba-large-1.5', 'ai21/jamba-large-1.7']
+            note: 'AI21 Jamba 풀라인업 (1.0/1.5/1.6/1.7/Jamba2 + Reasoning + Maestro) + DICTA Hebrew sovereign LLM',
+            models: [
+                // AI21 Jamba — flagships (latest first)
+                'ai21/jamba2-mini', 'ai21/jamba2-3b', 'ai21/jamba-reasoning', 'ai21/maestro',
+                'ai21/jamba-large-1.7', 'ai21/jamba-1.7-mini',
+                'ai21/jamba-1.6-large', 'ai21/jamba-1.6-mini',
+                'ai21/jamba-large-1.5', 'ai21/jamba-1.5-mini',
+                'ai21/jamba-1.0',
+                // DICTA — Hebrew sovereign LLM
+                'dicta/dictalm-3.0-24b',
+                'dicta/dictalm-2.0-instruct', 'dicta/dictalm-2.0'
+            ]
         },
         {
             code: 'ae', label: 'UAE', flag: '🇦🇪',
@@ -316,9 +339,30 @@ var Sovereign = {
         'ai-singapore/llama-sea-lion-v3.5-70b': '2025-03', 'ai-singapore/llama-sea-lion-v3.5-8b': '2025-03',
         'ai-singapore/gemma2-sea-lion-v3-9b': '2024-10', 'ai-singapore/sea-lion-v2.1-7b': '2024-04',
         'gotoai/sahabat-ai-v1-70b': '2024-12', 'gotoai/sahabat-ai-v1-8b': '2024-12',
-        'sarvam/sarvam-1': '2024-10', 'sarvam/sarvam-m': '2025-04',
-        'bharatgen/param2-17b': '2025-02', 'ola/krutrim': '2024-12', 'corover/bharatgpt': '2024-01',
-        'ai21/jamba-large-1.7': '2025-08', 'ai21/jamba-large-1.5': '2024-08',
+        // India — Sarvam
+        'sarvam/sarvam-1': '2024-10', 'sarvam/sarvam-m': '2025-05',
+        'sarvam/sarvam-30b': '2025-09', 'sarvam/sarvam-105b': '2025-09',
+        // India — BharatGen
+        'bharatgen/param2-17b': '2025-07', 'bharatgen/param-1-2.9b': '2025-02',
+        'bharatgen/param2-sutra': '2026-02', 'bharatgen/param-1t-roadmap': '2026-01',
+        // India — Krutrim
+        'ola/krutrim-2-12b': '2025-01', 'ola/krutrim-spectre': '2025-06', 'ola/krutrim': '2024-12',
+        // India — Soket AI
+        'soketai/pragna-1b': '2024-04', 'soketai/sutra-pro': '2024-11', 'soketai/sutra-light': '2024-11', 'soketai/eka-roadmap': '2025-09',
+        // India — AI4Bharat
+        'ai4bharat/indicllm': '2024-12', 'ai4bharat/indicbert-v2': '2024-08', 'ai4bharat/indictrans2': '2024-04',
+        // India — CoRover / industry
+        'corover/bharatgpt': '2024-01',
+        'reliance/jiobrain': '2024-11', 'tata/maitri': '2024-10', 'lt-vyoma/sovereign-ai': '2026-01',
+        // Israel — AI21 Jamba
+        'ai21/jamba-large-1.7': '2025-08', 'ai21/jamba-1.7-mini': '2025-07',
+        'ai21/jamba-1.6-large': '2025-03', 'ai21/jamba-1.6-mini': '2025-03',
+        'ai21/jamba-large-1.5': '2024-08', 'ai21/jamba-1.5-mini': '2024-08',
+        'ai21/jamba-1.0': '2024-03',
+        'ai21/jamba2-mini': '2026-02', 'ai21/jamba2-3b': '2026-02',
+        'ai21/jamba-reasoning': '2025-09', 'ai21/maestro': '2025-04',
+        // Israel — Dicta
+        'dicta/dictalm-3.0-24b': '2025-09', 'dicta/dictalm-2.0-instruct': '2024-07', 'dicta/dictalm-2.0': '2024-04',
         // UAE — TII Falcon-H1 (May 2025)
         'tii/falcon-h1-34b': '2025-05', 'tii/falcon-h1-arabic-34b': '2025-08', 'tii/falcon-h1r-7b': '2025-11',
         'tii/falcon-h1-7b': '2025-05', 'tii/falcon-h1-3b': '2025-05',
