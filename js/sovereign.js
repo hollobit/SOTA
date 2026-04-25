@@ -710,9 +710,9 @@ var Sovereign = {
         // Wire timeline filter + map view toggle controls (only on first render)
         if (!this._initialized) {
             var periodSel = document.getElementById('sov-timeline-period');
-            var sizeSel = document.getElementById('sov-timeline-size-mode');
+            var yModeSel = document.getElementById('sov-timeline-y-mode');
             if (periodSel) periodSel.addEventListener('change', function() { self._renderTimeline(); });
-            if (sizeSel) sizeSel.addEventListener('change', function() { self._renderTimeline(); });
+            if (yModeSel) yModeSel.addEventListener('change', function() { self._renderTimeline(); });
 
             var btnAll = document.getElementById('sov-map-view-all');
             var btnActive = document.getElementById('sov-map-view-active');
@@ -796,7 +796,7 @@ var Sovereign = {
         return best > 0 ? best : null;
     },
 
-    // ─────────────── Release timeline (country × date × params) ───────────────
+    // ─────────────── Release timeline (date × params, color by region) ───────────────
     _renderTimeline: function() {
         var el = document.getElementById('sov-timeline');
         if (!el) return;
@@ -809,77 +809,80 @@ var Sovereign = {
         var self = this;
 
         var periodSel = document.getElementById('sov-timeline-period');
-        var sizeSel = document.getElementById('sov-timeline-size-mode');
-        var period = periodSel ? periodSel.value : '2025';
-        var sizeMode = sizeSel ? sizeSel.value : 'params';
+        var yModeSel = document.getElementById('sov-timeline-y-mode');
+        var period = periodSel ? periodSel.value : 'all';
+        var yMode = yModeSel ? yModeSel.value : 'params-log';
 
-        // Build data points: { region, date, modelId, params, bestScore, modality }
         var modelById = {};
         this._models.forEach(function(m) { modelById[m.id] = m; });
 
-        // Categorize by primary modality cluster for color coding
-        function categoryOf(model) {
-            var mods = model.modalities || [];
-            if (mods.indexOf('video') !== -1) return 'video/world';
-            if (mods.indexOf('image') !== -1 && mods.indexOf('audio') !== -1) return 'omni';
-            if (mods.indexOf('image') !== -1) return 'multimodal';
-            if (mods.indexOf('audio') !== -1) return 'audio';
-            return 'text';
-        }
-        var categoryColors = {
-            'text': Theme.series[1],          // blue
-            'multimodal': Theme.series[0],     // green
-            'omni': Theme.series[4],           // purple
-            'video/world': Theme.series[5],    // pink
-            'audio': Theme.series[2]           // amber
-        };
+        // Region color palette — distinct color per region beyond the 6 Theme.series.
+        // Falls back to Theme.series for indices >= 6.
+        var regionPalette = [
+            '#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899',
+            '#14b8a6', '#f97316', '#06b6d4', '#a855f7', '#84cc16', '#eab308',
+            '#22c55e', '#0ea5e9', '#d946ef', '#f43f5e', '#fbbf24', '#6366f1',
+            '#7c3aed'
+        ];
 
-        // Iterate REGIONS to attach country labels
-        var points = [];
-        var regionLabels = [];
-        this.REGIONS.forEach(function(region) {
-            var hasAny = false;
+        // Build per-region series: each region is a scatter series so the
+        // legend doubles as a per-country toggle.
+        var seriesData = [];
+        var legendNames = [];
+        this.REGIONS.forEach(function(region, regionIdx) {
+            var color = regionPalette[regionIdx % regionPalette.length];
+            var pts = [];
             region.models.forEach(function(mid) {
                 var date = self.RELEASE_DATES[mid];
                 var model = modelById[mid];
                 if (!date || !model) return;
+
                 // Period filter
                 var year = date.slice(0, 4);
                 if (period !== 'all') {
                     if (period === '2023') {
                         if (parseInt(year, 10) > 2023) return;
-                    } else {
-                        if (year !== period) return;
+                    } else if (year !== period) {
+                        return;
                     }
                 }
-                hasAny = true;
-                var ts = self._dateToTs(date);
+
                 var paramsB = self._extractParamsB(model.name);
                 var bestScore = self._bestScoreFor(mid);
-                var symbolSize;
-                if (sizeMode === 'params') {
-                    symbolSize = paramsB ? Math.max(8, Math.min(50, Math.sqrt(paramsB) * 3.5)) : 8;
-                } else if (sizeMode === 'best-score') {
-                    symbolSize = bestScore ? Math.max(8, bestScore * 0.6) : 8;
-                } else {
-                    symbolSize = 14;
+                var ts = self._dateToTs(date);
+
+                // Y value depends on mode. Skip points missing the metric.
+                var yVal = null;
+                if (yMode === 'params-log' || yMode === 'params-linear') {
+                    if (paramsB == null) return;
+                    yVal = paramsB;
+                } else if (yMode === 'best-score') {
+                    if (bestScore == null) return;
+                    yVal = bestScore;
                 }
-                var cat = categoryOf(model);
-                points.push({
-                    value: [ts, region.label, symbolSize, paramsB, bestScore, mid, model.name, date, cat],
-                    itemStyle: {
-                        color: categoryColors[cat] || Theme.series[1],
-                        opacity: 0.85,
-                        borderColor: '#0b0f17',
-                        borderWidth: 1
-                    },
+
+                // Symbol size: small constant, slight bonus for big models so
+                // outliers stand out without cluttering small-model regions.
+                var symbolSize = paramsB ? Math.max(8, Math.min(28, Math.sqrt(paramsB) * 2.4)) : 10;
+
+                pts.push({
+                    value: [ts, yVal, mid, model.name, date, paramsB, bestScore, region.flag + ' ' + region.label],
                     symbolSize: symbolSize
                 });
             });
-            if (hasAny) regionLabels.push(region.flag + ' ' + region.label);
+            if (pts.length === 0) return;
+            var name = region.flag + ' ' + region.label;
+            legendNames.push(name);
+            seriesData.push({
+                name: name,
+                type: 'scatter',
+                data: pts,
+                itemStyle: { color: color, opacity: 0.78, borderColor: '#0b0f17', borderWidth: 1 },
+                emphasis: { focus: 'series', itemStyle: { borderColor: '#fff', borderWidth: 2, opacity: 1 } }
+            });
         });
 
-        if (points.length === 0) {
+        if (seriesData.length === 0) {
             var empty = document.createElement('p');
             empty.className = 'text-sm text-gray-500 italic';
             empty.textContent = '— 선택한 기간에 표시할 모델이 없습니다';
@@ -887,18 +890,20 @@ var Sovereign = {
             return;
         }
 
-        // Re-map y-axis values to "flag + label" so axis displays prettier names
-        var labelByPlain = {};
-        this.REGIONS.forEach(function(r) { labelByPlain[r.label] = r.flag + ' ' + r.label; });
-        points.forEach(function(p) { p.value[1] = labelByPlain[p.value[1]] || p.value[1]; });
-
-        // Sort regionLabels by latest model date desc (most active region on top)
-        var regionLatest = {};
-        points.forEach(function(p) {
-            var label = p.value[1];
-            if (!regionLatest[label] || p.value[0] > regionLatest[label]) regionLatest[label] = p.value[0];
-        });
-        regionLabels.sort(function(a, b) { return regionLatest[b] - regionLatest[a]; });
+        var yAxisName, yAxisType, yAxisLabel;
+        if (yMode === 'params-log') {
+            yAxisName = '파라미터 (B)';
+            yAxisType = 'log';
+            yAxisLabel = function(v) { return v + 'B'; };
+        } else if (yMode === 'params-linear') {
+            yAxisName = '파라미터 (B)';
+            yAxisType = 'value';
+            yAxisLabel = function(v) { return v + 'B'; };
+        } else {
+            yAxisName = 'Best benchmark score';
+            yAxisType = 'value';
+            yAxisLabel = function(v) { return v.toFixed(0); };
+        }
 
         var chart = echarts.init(el);
         chart.setOption({
@@ -908,52 +913,51 @@ var Sovereign = {
                 formatter: function(p) {
                     var v = p.value;
                     var lines = [
-                        '<strong>' + v[6] + '</strong>',
-                        '국가: ' + v[1],
-                        '출시: ' + v[7],
-                        v[3] != null ? '파라미터: ~' + v[3] + 'B' : '',
-                        v[4] != null ? 'Best 벤치마크: ' + v[4].toFixed(1) : '',
-                        '카테고리: ' + v[8]
-                    ].filter(Boolean);
+                        '<strong>' + v[3] + '</strong>',
+                        '국가: ' + v[7],
+                        '출시: ' + v[4]
+                    ];
+                    if (v[5] != null) lines.push('파라미터: ~' + v[5] + 'B');
+                    if (v[6] != null) lines.push('Best 벤치마크: ' + v[6].toFixed(1));
                     return lines.join('<br/>');
                 }
             },
             legend: {
-                data: Object.keys(categoryColors),
+                data: legendNames,
                 textStyle: { color: Theme.textMuted, fontSize: 10 },
                 top: 0,
-                selectedMode: 'multiple'
+                type: 'scroll',
+                pageTextStyle: { color: Theme.textMuted, fontSize: 10 }
             },
-            grid: { left: 8, right: 32, bottom: 50, top: 36, containLabel: true },
+            grid: { left: 8, right: 32, bottom: 50, top: 50, containLabel: true },
             xAxis: {
                 type: 'time',
+                name: '출시일',
+                nameTextStyle: { color: Theme.textMuted, fontSize: 10 },
                 axisLabel: { color: Theme.textMuted, fontSize: 10 },
                 axisLine: { lineStyle: { color: Theme.borderStrong } },
                 splitLine: { lineStyle: { color: Theme.border, opacity: 0.3 } }
             },
             yAxis: {
-                type: 'category',
-                data: regionLabels,
-                axisLabel: { color: Theme.textMuted, fontSize: 11 },
+                type: yAxisType,
+                name: yAxisName,
+                nameTextStyle: { color: Theme.textMuted, fontSize: 10 },
+                axisLabel: {
+                    color: Theme.textMuted, fontSize: 10,
+                    formatter: yAxisLabel
+                },
                 axisLine: { lineStyle: { color: Theme.borderStrong } },
-                splitLine: { show: true, lineStyle: { color: Theme.border, opacity: 0.2 } }
+                splitLine: { lineStyle: { color: Theme.border, opacity: 0.3 } }
             },
             dataZoom: [
-                { type: 'inside', xAxisIndex: 0 },
-                { type: 'slider', xAxisIndex: 0, height: 16, bottom: 8, textStyle: { color: Theme.textMuted, fontSize: 9 } }
+                { type: 'inside', xAxisIndex: 0, yAxisIndex: 0 },
+                { type: 'slider', xAxisIndex: 0, height: 14, bottom: 8, textStyle: { color: Theme.textMuted, fontSize: 9 } }
             ],
-            series: Object.keys(categoryColors).map(function(cat) {
-                return {
-                    name: cat,
-                    type: 'scatter',
-                    data: points.filter(function(p) { return p.value[8] === cat; }),
-                    emphasis: { focus: 'series', itemStyle: { borderColor: '#fff', borderWidth: 2 } }
-                };
-            })
+            series: seriesData
         });
         chart.on('click', function(p) {
-            if (p && p.value && p.value[5]) {
-                if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(p.value[5]);
+            if (p && p.value && p.value[2]) {
+                if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(p.value[2]);
             }
         });
         window.addEventListener('resize', function() { chart.resize(); });
