@@ -1,12 +1,19 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Sovereign country comparison + Manufacturing FMs 2026-04-25
-**149 models · 228 benchmarks · 1,091 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources**
+## Current Status: Korean sovereign deep-dive + release-date metadata 2026-04-25
+**189 models · 241 benchmarks · 1,130 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources**
 **Live Site**: https://hollobit.github.io/SOTA/
 **Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-**
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy (no more manual bumps).
 
 ## 2026-04-25 Sessions (7 batches)
+
+### Korean sovereign deep-dive (40 new models, 13 benchmarks, 39 scores)
+- **Param-scale variants registered**: LG EXAONE 4.0 32B/1.2B + 4.0.1 32B + Deep 32B/7.8B/2.4B + 3.5 32B/7.8B/2.4B; SKT A.X 4.0 (72B) + Light (7B) + VL-Light; KT Mi:dm 2.0 Base (11.5B) + Mini (2.3B); Upstage Solar Pro 2 (31B) + Pro 2 Preview + Pro + Mini + DocVision
+- **New Korean foundation models**: Naver HyperCLOVA X SEED Think 14B/32B + SEED Omni 8B + SEED Vision 3B + HCX-005; Kakao Kanana 2 30B-A3B Thinking + Kanana 1.5 8B/15.7B-A3B + Flag 32.5B; NCSoft VARCO-Vision 2.0 14B + Llama-VARCO 8B; Trillion Tri-21B/7B; Motif-2 12.7B Reasoning/Instruct; Konan OND 4B + ENT-11; Saltlux Luxia 21.4B; Samsung Gauss 2 Supreme/Balanced/Compact
+- **Korean benchmarks**: KMMLU, HAE-RAE, KoMT-Bench, K-MMBench, LogicKor, KoBALT-700, Ko-IFEval, HRM8K, OCRBench, MathVista (full), MT-Bench, WinoGrande, KOBEST
+- **Sovereign menu UX**: 모델별 출시년도 `(YYYY-MM)` 표시 + 가장 최신 발표 모델순 정렬. RELEASE_DATES 맵 ~140 entries.
+- **Frontier Compare**: 10개 한국 sovereign 모델 추가 (HyperCLOVA X Think 32B/14B, Kanana 2 + 1.5 8B, VARCO-Vision 2.0, Tri-21B, Motif-2, EXAONE 4.0 32B, A.X 4.0, Solar Pro 2)
 
 ### Sovereign AI menu — country comparison + Manufacturing
 - 추가 region 4개: France(Mistral) · Manufacturing & Industrial · Industrial Robotics · Industrial CAD/Vision/Twin
@@ -27,25 +34,11 @@
 
 
 
-### Daily monitoring sweep (no new frontier launches)
-Confirmed via OpenAI Deployment Safety Hub, Anthropic Research, HF Qwen + DeepSeek orgs, Irregular publications, llm-stats updates. Only material change: DeepSeek V4 official API launch (`api-docs.deepseek.com/updates`, 2026-04-24) with confirmed pricing — V4-Pro $0.145 / $3.48, V4-Flash $0.14 / $0.28 per 1M tokens.
-
-### Regional / domain-specialized models batch v1 (+11 models, +8 benchmarks)
-- **France**: Mistral Small 4, Large 3, Voxtral TTS
-- **Google medical**: MedGemma 27B, MedGemma 1.5 4B
-- **UAE**: Falcon-H1 Arabic 34B, Falcon Perception 600M
-- **Japan**: Sakana Namazu (alpha)
-- **Singapore**: Apertus-SEA-LION v4 8B, Gemma-SEA-LION v4 4B-VL
-- New medical benchmarks: medqa, medmcqa, pubmedqa, mmlu_med, medxpertqa, afrimed_qa, ehrqa + math_500
-
-### Regional v2 deep-dive (+2 models, +21 benchmarks, +51 scores)
-- HuggingFace model card pulls: Qwen3.6-35B-A3B (21→30 scores), Falcon-H1 34B (0→22), MedGemma 27B (+4 imaging), MedGemma 4B PT (10), Gemma 3 4B baseline
-- 2 PDFs: `MedGemma-Technical-Report-2507.05201.pdf`, `MedGemma-1.5-Technical-Report-2604.05081.pdf`
-- 21 new benchmarks across 5 categories
-
-### Mistral lineup expansion (+13 models, +4 benchmarks)
-- Devstral 2 (123B, SWE-Verified 72.2 SOTA among open) + Devstral Small 2 (24B, 68.0)
-- Magistral Small 1.2 (24B reasoning: AIME24 86.14, GPQA 70.07)
+### 2026-04-25 earlier batches (compressed — see HISTORY.md for detail)
+- Daily sweep: DeepSeek V4 official API + pricing confirmed
+- Regional v1 (+11): Mistral · MedGemma · Falcon-H1 · Sakana Namazu · SEA-LION + 8 medical benchmarks
+- Regional v2 (+2 models, +21 benchmarks, +51 scores): HF model card pulls; 2 MedGemma PDFs
+- Mistral lineup (+13): Devstral 2 (SWE-V 72.2), Magistral Small 1.2 (AIME24 86.14)
 - Codestral 25.08, Pixtral Large (124B vision SOTA: DocVQA 93.3, AI2D 93.8, ChartQA 88.1)
 - Stubs: Mistral Medium 3.1, Small 3.2, Ministral 3 14B/8B/3B
 

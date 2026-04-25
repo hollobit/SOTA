@@ -94,7 +94,19 @@ var FrontierCompare = {
         'google/gemma-4-31b',
         'mimo/mimo-v2-pro',
         'lg/k-exaone-236b',
-        'kt/midm-k2.5-pro'
+        'kt/midm-k2.5-pro',
+
+        // Korean sovereign foundation models — 독자 AI 파운데이션 모델 경쟁 (2024-2026)
+        'naver/hyperclova-x-think-32b',
+        'naver/hyperclova-x-think-14b',
+        'kakao/kanana-2-30b-a3b-thinking',
+        'kakao/kanana-1.5-8b',
+        'ncsoft/varco-vision-2.0-14b',
+        'trillionlabs/tri-21b',
+        'motif/motif-2-12.7b-reasoning',
+        'lg/exaone-4.0-32b',
+        'skt/ax-4.0',
+        'upstage/solar-pro-2'
     ],
 
     _models: [],
