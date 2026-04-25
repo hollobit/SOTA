@@ -694,6 +694,35 @@ var Sovereign = {
     // Cumulative chart state
     _cumViewMode: 'region',  // 'region' | 'vendor'
 
+    // Vendor alias canonicalization. Multiple vendor strings get rolled up to
+    // a single canonical name in 개발사별 보기 view. Preserves the underlying
+    // data; only affects vendor-grouped rendering. Keep aliases conservative:
+    // only merge when the same parent organization is responsible for the
+    // models (different sub-divisions like NC AI / NCSoft, IIT Bombay TIH /
+    // BharatGen). Genuinely distinct consortia (GoTo + AISG vs AISG, EPFL +
+    // Yale + ICRC vs EPFL + Yale, SNUH + Naver vs Naver Cloud) stay separate.
+    VENDOR_ALIASES: {
+        // Korea
+        'KT (K-intelligence)':                'KT',
+        'LG AI':                              'LG AI Research',
+        'Kakao Brain':                        'Kakao',
+        'NCSoft (NC AI)':                     'NCSoft',
+        'Naver':                              'Naver Cloud',
+        // India
+        'BharatGen (IIT Bombay TIH)':         'BharatGen',
+        // UAE
+        'MBZUAI (UAE)':                       'MBZUAI'
+    },
+
+    _canonicalVendor: function(vendor) {
+        if (!vendor) return 'Other';
+        return this.VENDOR_ALIASES[vendor] || vendor;
+    },
+
+    // Vendor-mode collapse state. Key: regionCode + '||' + canonical vendor.
+    // Default: undefined → expanded. Stored Boolean → true means collapsed.
+    _vendorCollapsed: {},
+
     // Known parameter sizes (in B) for models whose name doesn't expose "XB".
     // Used by the timeline to plot models that would otherwise be dropped.
     // Total params for MoE (followed by active in parens), single number for dense.
@@ -913,6 +942,22 @@ var Sovereign = {
                 }
             }
 
+            // Vendor collapse/expand all buttons
+            var btnCollapseAll = document.getElementById('sov-map-collapse-all');
+            var btnExpandAll = document.getElementById('sov-map-expand-all');
+            if (btnCollapseAll) {
+                btnCollapseAll.addEventListener('click', function() {
+                    self._setAllVendorsCollapsed(true);
+                    self._renderRegionMap();
+                });
+            }
+            if (btnExpandAll) {
+                btnExpandAll.addEventListener('click', function() {
+                    self._setAllVendorsCollapsed(false);
+                    self._renderRegionMap();
+                });
+            }
+
             // Cumulative chart controls
             var cumRegionBtn = document.getElementById('sov-cum-view-region');
             var cumVendorBtn = document.getElementById('sov-cum-view-vendor');
@@ -944,6 +989,30 @@ var Sovereign = {
         btnAll.className = this._mapViewMode === 'all' ? activeCls : inactiveCls;
         btnActive.className = this._mapViewMode === 'active' ? activeCls : inactiveCls;
         if (btnVendor) btnVendor.className = this._mapViewMode === 'vendor' ? activeCls : inactiveCls;
+        // Show vendor collapse/expand controls only in vendor mode
+        var controls = document.getElementById('sov-map-vendor-controls');
+        if (controls) {
+            if (this._mapViewMode === 'vendor') controls.classList.remove('hidden');
+            else controls.classList.add('hidden');
+        }
+    },
+
+    _setAllVendorsCollapsed: function(collapsed) {
+        var self = this;
+        // Walk every region's models, collect canonical vendor labels per region,
+        // and set collapsed state. We do this lazily during render too, but
+        // doing it here ensures the next render reflects intent for every group.
+        this.REGIONS.forEach(function(region) {
+            var seenVendors = {};
+            region.models.forEach(function(mid) {
+                var m = self._models.find(function(x) { return x.id === mid; });
+                if (!m) return;
+                var v = self._canonicalVendor(m.vendor);
+                if (seenVendors[v]) return;
+                seenVendors[v] = true;
+                self._vendorCollapsed[region.code + '||' + v] = collapsed;
+            });
+        });
     },
 
     // Returns true if a release date is within the active window (last N months from today).
@@ -1830,14 +1899,16 @@ var Sovereign = {
             label.textContent = region.label;
             head.appendChild(label);
 
-            // Compute vendor count for vendor-mode header
+            // Compute vendor count for vendor-mode header.
+            // Vendor names normalized via VENDOR_ALIASES so e.g.
+            // 'KT' + 'KT (K-intelligence)' merge into a single 'KT' bucket.
             var vendorGroups = null;
             if (vendorMode) {
                 vendorGroups = {};
                 visibleModels.forEach(function(mid) {
                     var m = self._models.find(function(x) { return x.id === mid; });
                     if (!m) return;
-                    var v = m.vendor || 'Other';
+                    var v = self._canonicalVendor(m.vendor);
                     if (!vendorGroups[v]) vendorGroups[v] = [];
                     vendorGroups[v].push(mid);
                 });
@@ -1883,27 +1954,52 @@ var Sovereign = {
 
                 sortedVendors.forEach(function(vendor) {
                     var ids = sortByDateDesc(vendorGroups[vendor]);
+                    var collapseKey = region.code + '||' + vendor;
+                    var isCollapsed = self._vendorCollapsed[collapseKey] === true;
 
-                    // Vendor sub-header
+                    // Vendor sub-header (clickable to toggle)
                     var vendorHead = document.createElement('div');
-                    vendorHead.className = 'flex items-center justify-between gap-2 mt-2 mb-1 pb-1 border-b border-gray-800';
+                    vendorHead.className = 'flex items-center justify-between gap-2 mt-2 mb-1 pb-1 border-b border-gray-800 cursor-pointer hover:bg-gray-800';
+                    vendorHead.setAttribute('role', 'button');
+                    vendorHead.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+                    vendorHead.title = isCollapsed ? '클릭하면 펼치기' : '클릭하면 접기';
+
+                    var vNameWrap = document.createElement('span');
+                    vNameWrap.className = 'flex items-center gap-1';
+                    var caret = document.createElement('span');
+                    caret.className = 'text-xs text-gray-500';
+                    caret.textContent = isCollapsed ? '▶' : '▼';
+                    caret.style.width = '10px';
+                    vNameWrap.appendChild(caret);
                     var vName = document.createElement('span');
                     vName.className = 'text-xs font-semibold text-gray-300';
                     vName.textContent = vendor;
-                    vendorHead.appendChild(vName);
+                    vNameWrap.appendChild(vName);
+                    vendorHead.appendChild(vNameWrap);
+
                     var vCount = document.createElement('span');
                     vCount.className = 'text-xs text-gray-500';
                     vCount.textContent = ids.length + ' models';
                     vendorHead.appendChild(vCount);
+
+                    vendorHead.addEventListener('click', (function(key) {
+                        return function() {
+                            self._vendorCollapsed[key] = !self._vendorCollapsed[key];
+                            self._renderRegionMap();
+                        };
+                    })(collapseKey));
+
                     body.appendChild(vendorHead);
 
-                    // Vendor's models (indented)
-                    ids.forEach(function(mid) {
-                        var row = buildModelRow(mid);
-                        if (!row) return;
-                        row.style.paddingLeft = '8px';
-                        body.appendChild(row);
-                    });
+                    // Vendor's models (indented) — render only if not collapsed
+                    if (!isCollapsed) {
+                        ids.forEach(function(mid) {
+                            var row = buildModelRow(mid);
+                            if (!row) return;
+                            row.style.paddingLeft = '18px';
+                            body.appendChild(row);
+                        });
+                    }
                 });
             } else {
                 // Flat list (all / active modes)
