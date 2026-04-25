@@ -1,12 +1,18 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: IN/IL/FR/SG/UAE/CN param-scale + Korean 2026-04-25
-**309 models · 241 benchmarks · 1,130 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources**
+## Current Status: 19 sovereign regions, 378 models 2026-04-25
+**378 models · 241 benchmarks · 1,130 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources · 19 sovereign regions**
 **Live Site**: https://hollobit.github.io/SOTA/
 **Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-**
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy (no more manual bumps).
 
 ## 2026-04-25 Sessions (7 batches)
+
+### RU/DE/UK + US-Open lineup (+72 models, 4 new regions)
+- **Russia (15)**: Yandex 5 Pro/Lite 8B + YaLM 100B legacy; Sber GigaChat 3 Ultra Preview 702B-A36B MoE + Lightning + 2 MAX/Pro/Lite; Vikhr opensource; T-Bank
+- **Germany (11)**: Aleph Alpha Pharia-1 7B + Pharia 2 T-Free + Luminous; Black Forest Labs FLUX.1 [pro/dev/schnell/Kontext]; TNG DeepSeek R1T/R1T2 Chimera
+- **UK (7)**: Stability AI StableLM 2 12B/1.6B + Stable Code 3B + Zephyr + SD 3.5 Large; Synthesia VLM; Wayve Lingo-2
+- **US-Open (39, NEW region)**: Meta Llama 4 Behemoth/Maverick/Scout + Llama 3.1-3.3; Phi-4 family; Gemma 3+2; IBM Granite 3.3/3.2/3.1; Allen AI OLMo 2 + Tülu 3 + Molmo; DBRX; Snowflake Arctic; Cohere Command A/R+/R + Aya; xAI Grok-1 (314B); StarCoder 2
 
 ### India + Israel param-scale lineup (+29 models)
 - **India (17)**: Sarvam-30B/105B MoE (2.4B/10.3B active), BharatGen Param-1 2.9B + Sutra + 1T roadmap, Krutrim-2 12B + Spectre, Soket AI Pragna 1B + SUTRA + Project EKA, AI4Bharat IndicLLM/IndicBERT/IndicTrans2, JioBrain · Tata MAITRI · L&T-Vyoma Sovereign AI Compute (announced)
@@ -50,21 +56,14 @@ NVIDIA Cosmos + GR00T N1.6/1.7, DeepMind Genie 3 (24fps@720p / 3min) + Genie 2, 
 ### 2026-04-25 earlier batches (compressed — see HISTORY.md)
 Daily sweep + Regional v1 (+11) + Regional v2 (+2 models, +21 benches, +51 scores) + Mistral lineup (+13: Devstral 2 SWE-V 72.2, Pixtral Large DocVQA 93.3 SOTA)
 
-## CI / Infrastructure improvements (2026-04-24/25)
-
-- **Fixed gh-pages deploy**: cp-vs-symlink failure on `dashboard/data` resolved with rsync `--exclude='/data'`
-- **Seed score load step** added to analyst job — curated PDF/blog scores ingest into CI DB
-- **Auto cache-bust** (`?v=$BUILD_SHA[:8]`) eliminates manual JS version bumps
-- **Score click-modal across 5 tables**: Frontier Compare heatmap, Cyber & Coding 4 tables, Explorer comparison, Comparison matrix, Overview SOTA Leaderboard
-- **Sortable column headers** on Frontier Compare table
+## CI / Infrastructure (2026-04-24/25)
+gh-pages rsync `--exclude='/data'` fix · curated seed score load step · auto cache-bust `?v=$BUILD_SHA[:8]` · score click-modal across 5 tables · sortable Frontier Compare columns
 
 ---
 
-## 2026-04-24 Frontier Update (compressed — see HISTORY.md for detail)
-+4 models (GPT-5.5 + Pro · Kimi K2.6 · Qwen3.6-27B), +9 benchmarks (HealthBench Pro, Toolathlon, MCPMark, QwenWebBench, NL2Repo, AndroidWorld, VLMs-Are-Blind, RealWorldQA, SkillsBench), +8 monitoring sources. Batch: `resource/frontier_2026_04_24_scores.json`.
-
-## Completed Phases (compressed)
-Phase 1-9 (2026-04-16/17/18) executed sequentially, ending in 67 models · 95 benchmarks · 721 scores · 78 SOTA on 2026-04-18 deploy. Full per-phase details in HISTORY.md.
+## Earlier sessions (compressed — see HISTORY.md)
+- **2026-04-24**: GPT-5.5 + Pro, Kimi K2.6, Qwen3.6-27B (+9 benchmarks)
+- **Phase 1-9 (2026-04-16/17/18)**: 67 models · 95 benchmarks · 721 scores · 78 SOTA
 
 ---
 
