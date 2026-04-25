@@ -39,16 +39,35 @@ var Sovereign = {
             ]
         },
         {
-            code: 'fr', label: 'France (Mistral)', flag: '🇫🇷',
-            note: '프랑스 sovereign frontier — Mistral AI 풀라인업 (Pixtral·Mistral·Magistral·Devstral·Codestral·Ministral·Voxtral)',
+            code: 'fr', label: 'France', flag: '🇫🇷',
+            note: '프랑스 sovereign frontier — Mistral 풀라인업 (Mistral 7B·Mixtral·Nemo·Saba·Codestral·Mathstral·Pixtral·Magistral·Devstral·Ministral·Voxtral) + PleIAs · Lucie · CroissantLLM · HuggingFace SmolLM',
             models: [
-                'mistral/mistral-large-3', 'mistral/mistral-medium-3.1', 'mistral/mistral-small-4', 'mistral/mistral-small-3.2',
-                'mistral/magistral-medium-1.2', 'mistral/magistral-small-1.2',
-                'mistral/devstral-2', 'mistral/devstral-medium', 'mistral/devstral-small-2', 'mistral/devstral-small-1.1',
-                'mistral/codestral-25.08',
-                'mistral/pixtral-large',
+                // Mistral — flagship & frontier
+                'mistral/mistral-large-3', 'mistral/mistral-medium-3.1', 'mistral/mistral-medium-3',
+                'mistral/mistral-large-2', 'mistral/mistral-large-1',
+                'mistral/mistral-small-4', 'mistral/mistral-small-3.2', 'mistral/mistral-small-3.1', 'mistral/mistral-small-3', 'mistral/mistral-small-2', 'mistral/mistral-small-1',
+                // Mistral — reasoning
+                'mistral/magistral-medium-1.2', 'mistral/magistral-small-1.2', 'mistral/magistral-medium-1', 'mistral/magistral-small-1',
+                // Mistral — code
+                'mistral/devstral-2', 'mistral/devstral-medium', 'mistral/devstral-small-2', 'mistral/devstral-small-1.1', 'mistral/devstral-small-1',
+                'mistral/codestral-25.08', 'mistral/codestral-22b', 'mistral/codestral-mamba-7b',
+                // Mistral — math
+                'mistral/mathstral-7b',
+                // Mistral — vision / multimodal / audio
+                'mistral/pixtral-large', 'mistral/pixtral-12b', 'mistral/voxtral-tts',
+                // Mistral — Ministraux (edge)
                 'mistral/ministral-3-14b', 'mistral/ministral-3-8b', 'mistral/ministral-3-3b',
-                'mistral/voxtral-tts'
+                'mistral/ministral-8b-v1', 'mistral/ministral-3b-v1',
+                // Mistral — original / regional
+                'mistral/mistral-7b', 'mistral/mixtral-8x7b', 'mistral/mixtral-8x22b',
+                'mistral/mistral-nemo-12b', 'mistral/mistral-saba-24b',
+                // PleIAs (Common Corpus)
+                'pleias/pleias-1.0-pico-3.5b', 'pleias/pleias-1.0-olmo-1b',
+                'pleias/pleias-rag-1b', 'pleias/pleias-rag-350m',
+                // CNRS / academic
+                'openllm-france/lucie-7b', 'croissantllm/croissant-1.3b',
+                // Hugging Face SmolLM family
+                'huggingface/smollm3-3b', 'huggingface/smollm2-1.7b', 'huggingface/smollm2-360m', 'huggingface/smollm2-135m', 'huggingface/smollm-1.7b'
             ]
         },
         {
@@ -263,14 +282,32 @@ var Sovereign = {
         // China — medical
         'freedomintelligence/huatuogpt-ii': '2024-05',
 
-        // France (Mistral)
-        'mistral/mistral-large-3': '2025-12', 'mistral/mistral-medium-3.1': '2025-09', 'mistral/mistral-small-4': '2026-02', 'mistral/mistral-small-3.2': '2025-07',
+        // France — Mistral flagship + reasoning
+        'mistral/mistral-large-3': '2025-12', 'mistral/mistral-large-2': '2024-07', 'mistral/mistral-large-1': '2024-02',
+        'mistral/mistral-medium-3.1': '2025-09', 'mistral/mistral-medium-3': '2025-05',
+        'mistral/mistral-small-4': '2026-02', 'mistral/mistral-small-3.2': '2025-07', 'mistral/mistral-small-3.1': '2025-03', 'mistral/mistral-small-3': '2025-01', 'mistral/mistral-small-2': '2024-09', 'mistral/mistral-small-1': '2023-09',
         'mistral/magistral-medium-1.2': '2025-09', 'mistral/magistral-small-1.2': '2025-09',
-        'mistral/devstral-2': '2025-12', 'mistral/devstral-medium': '2025-09', 'mistral/devstral-small-2': '2025-12', 'mistral/devstral-small-1.1': '2025-07',
-        'mistral/codestral-25.08': '2025-08',
-        'mistral/pixtral-large': '2024-11',
-        'mistral/ministral-3-14b': '2025-10', 'mistral/ministral-3-8b': '2025-10', 'mistral/ministral-3-3b': '2025-10',
+        'mistral/magistral-medium-1': '2025-06', 'mistral/magistral-small-1': '2025-06',
+        // France — Mistral code
+        'mistral/devstral-2': '2025-12', 'mistral/devstral-medium': '2025-09', 'mistral/devstral-small-2': '2025-12', 'mistral/devstral-small-1.1': '2025-07', 'mistral/devstral-small-1': '2025-05',
+        'mistral/codestral-25.08': '2025-08', 'mistral/codestral-22b': '2024-05', 'mistral/codestral-mamba-7b': '2024-07',
+        // France — Mistral math/vision/audio
+        'mistral/mathstral-7b': '2024-07',
+        'mistral/pixtral-large': '2024-11', 'mistral/pixtral-12b': '2024-09',
         'mistral/voxtral-tts': '2025-04',
+        // France — Ministraux
+        'mistral/ministral-3-14b': '2025-10', 'mistral/ministral-3-8b': '2025-10', 'mistral/ministral-3-3b': '2025-10',
+        'mistral/ministral-8b-v1': '2024-10', 'mistral/ministral-3b-v1': '2024-10',
+        // France — Mistral original / regional
+        'mistral/mistral-7b': '2023-09', 'mistral/mixtral-8x7b': '2023-12', 'mistral/mixtral-8x22b': '2024-04',
+        'mistral/mistral-nemo-12b': '2024-07', 'mistral/mistral-saba-24b': '2025-02',
+        // France — PleIAs
+        'pleias/pleias-1.0-pico-3.5b': '2024-11', 'pleias/pleias-1.0-olmo-1b': '2024-11',
+        'pleias/pleias-rag-1b': '2025-03', 'pleias/pleias-rag-350m': '2025-03',
+        // France — CNRS / academic
+        'openllm-france/lucie-7b': '2025-01', 'croissantllm/croissant-1.3b': '2024-02',
+        // France — HuggingFace SmolLM
+        'huggingface/smollm3-3b': '2025-07', 'huggingface/smollm2-1.7b': '2024-11', 'huggingface/smollm2-360m': '2024-11', 'huggingface/smollm2-135m': '2024-11', 'huggingface/smollm-1.7b': '2024-07',
 
         // Japan / India / Israel / UAE / SG / CH / US
         'sakana/namazu': '2024-03',
