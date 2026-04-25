@@ -13,12 +13,28 @@ var Sovereign = {
     REGIONS: [
         {
             code: 'kr', label: 'Korea', flag: '🇰🇷',
-            note: '한국어 의료 시스템 / 정부·대기업 sovereign LLM',
+            note: '독자 AI 파운데이션 모델 5팀 (LG · KT · SKT · Upstage · Naver) + Kakao · NCSoft · Trillion · Motif · Konan · Saltlux · Samsung Gauss',
             models: [
                 'lg/exaone-4.5-33b', 'lg/k-exaone-236b',
+                'lg/exaone-4.0-32b', 'lg/exaone-4.0.1-32b', 'lg/exaone-4.0-1.2b',
+                'lg/exaone-deep-32b', 'lg/exaone-deep-7.8b', 'lg/exaone-deep-2.4b',
+                'lg/exaone-3.5-32b', 'lg/exaone-3.5-7.8b', 'lg/exaone-3.5-2.4b',
                 'upstage/solar-pro-3', 'upstage/solar-open-100b',
-                'skt/ax-k1',
-                'kt/midm-k2.5-pro',
+                'upstage/solar-pro-2', 'upstage/solar-pro-2-preview',
+                'upstage/solar-pro', 'upstage/solar-mini', 'upstage/solar-docvision',
+                'skt/ax-k1', 'skt/ax-4.0', 'skt/ax-4.0-light', 'skt/ax-4.0-vl-light',
+                'kt/midm-k2.5-pro', 'kt/midm-2.0-base', 'kt/midm-2.0-mini',
+                'naver/hyperclova-x-think-32b', 'naver/hyperclova-x-think-14b',
+                'naver/hyperclova-x-seed-omni-8b', 'naver/hyperclova-x-seed-vision-3b',
+                'naver/hyperclova-x',
+                'kakao/kanana-2-30b-a3b-thinking', 'kakao/kanana-1.5-8b',
+                'kakao/kanana-1.5-15.7b-a3b', 'kakao/kanana-flag-32.5b',
+                'ncsoft/varco-vision-2.0-14b', 'ncsoft/llama-varco-8b',
+                'trillionlabs/tri-21b', 'trillionlabs/tri-7b',
+                'motif/motif-2-12.7b-reasoning', 'motif/motif-2-12.7b-instruct',
+                'konan/konan-llm-ond-4b', 'konan/konan-llm-ent-11',
+                'saltlux/luxia-21.4b',
+                'samsung/gauss-2-supreme', 'samsung/gauss-2-balanced', 'samsung/gauss-2-compact',
                 'snuh-naver/kmed-ai'
             ]
         },
@@ -55,7 +71,7 @@ var Sovereign = {
         {
             code: 'jp', label: 'Japan', flag: '🇯🇵',
             note: 'Sakana AI evolutionary models',
-            models: ['sakana/japanese-evo-llm']
+            models: ['sakana/namazu']
         },
         {
             code: 'in', label: 'India', flag: '🇮🇳',
@@ -80,7 +96,7 @@ var Sovereign = {
         {
             code: 'sg', label: 'Singapore', flag: '🇸🇬',
             note: 'AI Singapore SEA-LION (동남아 언어)',
-            models: ['aisingapore/sea-lion-v3-70b', 'aisingapore/sea-lion-v3-8b']
+            models: ['ai-singapore/apertus-sea-lion-v4-8b', 'ai-singapore/gemma-sea-lion-v4-4b-vl']
         },
         {
             code: 'ch', label: 'Switzerland', flag: '🇨🇭',
@@ -147,6 +163,84 @@ var Sovereign = {
             ]
         }
     ],
+
+    // Release / announcement dates (YYYY-MM, or YYYY when month is unknown).
+    // Used for sorting newest-first and surfacing the year next to model names.
+    RELEASE_DATES: {
+        // Korea — LG
+        'lg/exaone-4.5-33b': '2025-11', 'lg/k-exaone-236b': '2025-08',
+        'lg/exaone-4.0.1-32b': '2025-09', 'lg/exaone-4.0-32b': '2025-07', 'lg/exaone-4.0-1.2b': '2025-07',
+        'lg/exaone-deep-32b': '2025-03', 'lg/exaone-deep-7.8b': '2025-03', 'lg/exaone-deep-2.4b': '2025-03',
+        'lg/exaone-3.5-32b': '2024-12', 'lg/exaone-3.5-7.8b': '2024-12', 'lg/exaone-3.5-2.4b': '2024-12',
+        // Korea — Upstage
+        'upstage/solar-pro-3': '2026-03', 'upstage/solar-open-100b': '2025-10',
+        'upstage/solar-pro-2': '2025-08', 'upstage/solar-pro-2-preview': '2025-06',
+        'upstage/solar-pro': '2024-09', 'upstage/solar-mini': '2024-04', 'upstage/solar-docvision': '2025',
+        // Korea — SKT
+        'skt/ax-k1': '2025-09', 'skt/ax-4.0': '2025-07', 'skt/ax-4.0-light': '2025-07', 'skt/ax-4.0-vl-light': '2025-09',
+        // Korea — KT
+        'kt/midm-k2.5-pro': '2025-10', 'kt/midm-2.0-base': '2025-07', 'kt/midm-2.0-mini': '2025-07',
+        // Korea — Naver
+        'naver/hyperclova-x-think-32b': '2025-12', 'naver/hyperclova-x-think-14b': '2025-06',
+        'naver/hyperclova-x-seed-omni-8b': '2025-07', 'naver/hyperclova-x-seed-vision-3b': '2025-04',
+        'naver/hyperclova-x': '2024-08',
+        // Korea — Kakao
+        'kakao/kanana-2-30b-a3b-thinking': '2025-12', 'kakao/kanana-1.5-15.7b-a3b': '2025-09',
+        'kakao/kanana-1.5-8b': '2025-05', 'kakao/kanana-flag-32.5b': '2024-11',
+        // Korea — others
+        'ncsoft/varco-vision-2.0-14b': '2025-07', 'ncsoft/llama-varco-8b': '2024-09',
+        'trillionlabs/tri-21b': '2025-02', 'trillionlabs/tri-7b': '2025-04',
+        'motif/motif-2-12.7b-reasoning': '2025-11', 'motif/motif-2-12.7b-instruct': '2025-11',
+        'konan/konan-llm-ond-4b': '2025-09', 'konan/konan-llm-ent-11': '2025-06',
+        'saltlux/luxia-21.4b': '2024-03',
+        'samsung/gauss-2-supreme': '2024-11', 'samsung/gauss-2-balanced': '2024-11', 'samsung/gauss-2-compact': '2024-11',
+        'snuh-naver/kmed-ai': '2025',
+
+        // China
+        'deepseek/deepseek-v4-pro-max': '2026-04', 'deepseek/deepseek-v4-pro': '2026-04', 'deepseek/deepseek-v4-flash': '2026-04',
+        'deepseek/deepseek-v3.2': '2025-09',
+        'alibaba/qwen3.6-plus': '2026-04', 'alibaba/qwen3.6-27b': '2026-04', 'alibaba/qwen3.6-35b-a3b': '2026-04',
+        'zhipu/glm-5.1': '2026-03', 'zhipu/glm-5': '2025-10',
+        'moonshot/kimi-k2.6': '2026-04', 'moonshot/kimi-k2.5': '2026-01', 'moonshot/kimi-k2-thinking': '2025-09',
+        'minimax/m2.7': '2026-03', 'minimax/m2': '2025-10',
+        'mimo/mimo-pro': '2025-12',
+        'baidu/ernie-5.0': '2025-11',
+        'tencent/hunyuan-t1': '2025-03',
+        'bytedance/seed-2.0-pro': '2026-02',
+        'stepfun/step-r1': '2025-07',
+        'freedomintelligence/huatuogpt-ii': '2024-05',
+
+        // France (Mistral)
+        'mistral/mistral-large-3': '2025-12', 'mistral/mistral-medium-3.1': '2025-09', 'mistral/mistral-small-4': '2026-02', 'mistral/mistral-small-3.2': '2025-07',
+        'mistral/magistral-medium-1.2': '2025-09', 'mistral/magistral-small-1.2': '2025-09',
+        'mistral/devstral-2': '2025-12', 'mistral/devstral-medium': '2025-09', 'mistral/devstral-small-2': '2025-12', 'mistral/devstral-small-1.1': '2025-07',
+        'mistral/codestral-25.08': '2025-08',
+        'mistral/pixtral-large': '2024-11',
+        'mistral/ministral-3-14b': '2025-10', 'mistral/ministral-3-8b': '2025-10', 'mistral/ministral-3-3b': '2025-10',
+        'mistral/voxtral-tts': '2025-04',
+
+        // Japan / India / Israel / UAE / SG / CH / US
+        'sakana/namazu': '2024-03',
+        'ai-singapore/apertus-sea-lion-v4-8b': '2025-04', 'ai-singapore/gemma-sea-lion-v4-4b-vl': '2025-04',
+        'sarvam/sarvam-1': '2024-10', 'sarvam/sarvam-m': '2025-04',
+        'bharatgen/param2-17b': '2025-02', 'ola/krutrim': '2024-12', 'corover/bharatgpt': '2024-01',
+        'ai21/jamba-large-1.7': '2025-08', 'ai21/jamba-large-1.5': '2024-08',
+        'tii/falcon-h1-34b': '2025-05', 'tii/falcon-h1-7b': '2025-05', 'mbzuai/bimedix': '2024-02',
+        'epfl/meditron-70b': '2023-11', 'epfl/meditron-7b': '2023-11', 'epfl/llama-3-meditron-70b': '2024-09',
+        'harvey/harvey-assistant': '2025-09', 'thomson-reuters/cocounsel-2': '2025-04', 'vlex/vincent-ai': '2024-06', 'vecflow/oliver': '2025-02',
+        'bloomberg/bloomberg-gpt': '2023-03',
+        'darpa/aixcc-team-atlanta': '2025-08',
+
+        // Manufacturing
+        'foxconn/foxbrain-70b': '2025-03',
+        'siemens/sifm': '2024-04', 'hitachi/hal': '2024-03', 'ge-vernova/predix-ai': '2024-09', 'bosch/industrial-genai': '2024-09', 'aveva/industrial-ai-assistant': '2024-09',
+        'skild/skild-brain': '2025-07', 'covariant/rfm-1': '2024-03', 'figure-ai/helix': '2025-02', '1x/world-model': '2024-12',
+        'apptronik/apollo-gemini': '2025-03', 'agility/digit-arc': '2024-10', 'sanctuary/carbon': '2024-04', 'tesla/optimus-vlm': '2024-10',
+        'google-deepmind/gemini-robotics-er-1.6': '2026-04', 'google-deepmind/gemini-robotics-er-1.5': '2025-09',
+        'landing-ai/visionagent': '2024-09',
+        'nvidia/omniverse-mega': '2025-01',
+        'autodesk/bernini': '2024-04', 'ptc/creo-copilot': '2024-06', 'dassault/3dx-aura': '2024-05'
+    },
 
     FRONTIER_REFERENCE: [
         'anthropic/claude-opus-4.7',
@@ -477,14 +571,26 @@ var Sovereign = {
 
             var list = document.createElement('div');
             list.className = 'flex flex-col gap-1';
-            region.models.forEach(function(mid) {
+
+            // Sort models within region by release date desc (unknown dates last).
+            var sortedModels = region.models.slice().sort(function(a, b) {
+                var da = self.RELEASE_DATES[a] || '';
+                var db = self.RELEASE_DATES[b] || '';
+                if (!da && !db) return 0;
+                if (!da) return 1;
+                if (!db) return -1;
+                return db.localeCompare(da);
+            });
+
+            sortedModels.forEach(function(mid) {
                 var m = self._models.find(function(x) { return x.id === mid; });
                 if (!m) return;
+                var releaseDate = self.RELEASE_DATES[mid];
                 var row = document.createElement('div');
                 row.className = 'flex items-center justify-between gap-2 text-xs';
                 var name = document.createElement('span');
                 name.className = 'text-gray-300 truncate cursor-pointer';
-                name.textContent = m.name;
+                name.textContent = m.name + (releaseDate ? '  (' + releaseDate + ')' : '');
                 name.title = mid + ' — 클릭하면 모델 상세';
                 name.addEventListener('click', (function(modelId) {
                     return function() {
