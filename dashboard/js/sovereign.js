@@ -53,18 +53,36 @@ var Sovereign = {
         },
         {
             code: 'cn', label: 'China', flag: '🇨🇳',
-            note: '중국 frontier — DeepSeek·Qwen·Kimi·GLM·ERNIE·Hunyuan·Doubao Seed',
+            note: '중국 frontier 풀라인업 — Qwen3/3.5/3.6 + DeepSeek V3-V4·R1 + Kimi K1.5-K2.6 + GLM 4.5-5.1 + Hunyuan + ERNIE 4.5-5.0 + Doubao Seed 1.5-2.0',
             models: [
+                // Alibaba Qwen — full param lineup
                 'alibaba/qwen3.6-plus', 'alibaba/qwen3.6-27b', 'alibaba/qwen3.6-35b-a3b',
-                'deepseek/deepseek-v4-pro-max', 'deepseek/deepseek-v4-pro', 'deepseek/deepseek-v4-flash', 'deepseek/deepseek-v3.2',
-                'zhipu/glm-5', 'zhipu/glm-5.1',
+                'alibaba/qwen3.5-397b', 'alibaba/qwen3.5-122b', 'alibaba/qwen3.5-27b',
+                'alibaba/qwen3-235b-a22b-thinking-2507', 'alibaba/qwen3-235b-a22b-instruct-2507', 'alibaba/qwen3-235b-a22b',
+                'alibaba/qwen3-30b-a3b', 'alibaba/qwen3-32b', 'alibaba/qwen3-14b', 'alibaba/qwen3-8b', 'alibaba/qwen3-4b', 'alibaba/qwen3-1.7b', 'alibaba/qwen3-0.6b',
+                'alibaba/qwen3-next',
+                'alibaba/qwen2.5-72b', 'alibaba/qwen2.5-32b', 'alibaba/qwen2.5-14b', 'alibaba/qwen2.5-7b',
+                // DeepSeek
+                'deepseek/deepseek-v4-pro-max', 'deepseek/deepseek-v4-pro', 'deepseek/deepseek-v4-flash',
+                'deepseek/deepseek-v3.2', 'deepseek/deepseek-v3.2-speciale',
+                'deepseek/deepseek-v3.1-terminus', 'deepseek/deepseek-v3',
+                'deepseek/deepseek-r1-0528', 'deepseek/deepseek-r1',
+                // Zhipu GLM
+                'zhipu/glm-5.1', 'zhipu/glm-5', 'zhipu/glm-4.7', 'zhipu/glm-4.6', 'zhipu/glm-4.5', 'zhipu/glm-4.5-air',
+                // Moonshot Kimi
                 'moonshot/kimi-k2.6', 'moonshot/kimi-k2.5', 'moonshot/kimi-k2-thinking',
-                'minimax/m2.7', 'minimax/m2',
-                'mimo/mimo-pro',
-                'baidu/ernie-5.0',
-                'tencent/hunyuan-t1',
-                'bytedance/seed-2.0-pro',
-                'stepfun/step-r1',
+                'moonshot/kimi-k2-instruct', 'moonshot/kimi-k2-base', 'moonshot/kimi-k1.5',
+                // MiniMax / MiMo / StepFun
+                'minimax/m2.7', 'minimax/m2.5',
+                'mimo/mimo-v2-pro', 'mimo/mimo-v2-flash',
+                'stepfun/step-3.5-flash', 'stepfun/step-2-pro', 'stepfun/step-2-mini',
+                // Baidu ERNIE
+                'baidu/ernie-5.0', 'baidu/ernie-4.5-300b-a47b', 'baidu/ernie-4.5-turbo', 'baidu/ernie-speed', 'baidu/ernie-lite',
+                // Tencent Hunyuan
+                'tencent/hunyuan-t1', 'tencent/hunyuan-large', 'tencent/hunyuan-turbo', 'tencent/hunyuan-7b',
+                // ByteDance Doubao Seed
+                'bytedance/seed-2.0-pro', 'bytedance/seed-1.6', 'bytedance/seed-1.5-pro', 'bytedance/seed-1.5-lite',
+                // Medical specialist
                 'freedomintelligence/huatuogpt-ii'
             ]
         },
@@ -90,13 +108,28 @@ var Sovereign = {
         },
         {
             code: 'ae', label: 'UAE', flag: '🇦🇪',
-            note: 'TII Falcon-H1 · MBZUAI BiMediX (Arabic)',
-            models: ['tii/falcon-h1-34b', 'tii/falcon-h1-7b', 'mbzuai/bimedix']
+            note: 'TII Falcon-H1/H1R/Falcon3/Mamba/Falcon2/180B + MBZUAI K2/Atlas-Chat/BiMediX (Arabic)',
+            models: [
+                // TII Falcon-H1 family (May 2025)
+                'tii/falcon-h1-34b', 'tii/falcon-h1-arabic-34b', 'tii/falcon-h1r-7b', 'tii/falcon-h1-7b',
+                'tii/falcon-h1-3b', 'tii/falcon-h1-1.5b-deep', 'tii/falcon-h1-1.5b', 'tii/falcon-h1-0.5b',
+                // TII Falcon3 family (Dec 2024)
+                'tii/falcon3-10b', 'tii/falcon3-7b', 'tii/falcon3-3b', 'tii/falcon3-1b',
+                // TII older
+                'tii/falcon-mamba-7b', 'tii/falcon2-11b', 'tii/falcon-180b', 'tii/falcon-perception',
+                // MBZUAI
+                'mbzuai/llm360-k2-65b', 'mbzuai/atlas-chat-9b', 'mbzuai/bimedix'
+            ]
         },
         {
             code: 'sg', label: 'Singapore', flag: '🇸🇬',
-            note: 'AI Singapore SEA-LION (동남아 언어)',
-            models: ['ai-singapore/apertus-sea-lion-v4-8b', 'ai-singapore/gemma-sea-lion-v4-4b-vl']
+            note: 'AI Singapore SEA-LION 풀라인업 (Llama/Gemma2/Apertus 기반) + GoTo Sahabat-AI (인도네시아어)',
+            models: [
+                'ai-singapore/apertus-sea-lion-v4-8b', 'ai-singapore/gemma-sea-lion-v4-4b-vl',
+                'ai-singapore/llama-sea-lion-v3.5-70b', 'ai-singapore/llama-sea-lion-v3.5-8b',
+                'ai-singapore/gemma2-sea-lion-v3-9b', 'ai-singapore/sea-lion-v2.1-7b',
+                'gotoai/sahabat-ai-v1-70b', 'gotoai/sahabat-ai-v1-8b'
+            ]
         },
         {
             code: 'ch', label: 'Switzerland', flag: '🇨🇭',
@@ -196,18 +229,38 @@ var Sovereign = {
         'samsung/gauss-2-supreme': '2024-11', 'samsung/gauss-2-balanced': '2024-11', 'samsung/gauss-2-compact': '2024-11',
         'snuh-naver/kmed-ai': '2025',
 
-        // China
+        // China — DeepSeek
         'deepseek/deepseek-v4-pro-max': '2026-04', 'deepseek/deepseek-v4-pro': '2026-04', 'deepseek/deepseek-v4-flash': '2026-04',
-        'deepseek/deepseek-v3.2': '2025-09',
+        'deepseek/deepseek-v3.2': '2025-09', 'deepseek/deepseek-v3.2-speciale': '2025-10',
+        'deepseek/deepseek-v3.1-terminus': '2025-09', 'deepseek/deepseek-v3': '2024-12',
+        'deepseek/deepseek-r1-0528': '2025-05', 'deepseek/deepseek-r1': '2025-01',
+        // China — Alibaba Qwen
         'alibaba/qwen3.6-plus': '2026-04', 'alibaba/qwen3.6-27b': '2026-04', 'alibaba/qwen3.6-35b-a3b': '2026-04',
-        'zhipu/glm-5.1': '2026-03', 'zhipu/glm-5': '2025-10',
+        'alibaba/qwen3.5-397b': '2025-12', 'alibaba/qwen3.5-122b': '2025-12', 'alibaba/qwen3.5-27b': '2025-12',
+        'alibaba/qwen3-235b-a22b-thinking-2507': '2025-07', 'alibaba/qwen3-235b-a22b-instruct-2507': '2025-07', 'alibaba/qwen3-235b-a22b': '2025-04',
+        'alibaba/qwen3-30b-a3b': '2025-04',
+        'alibaba/qwen3-32b': '2025-04', 'alibaba/qwen3-14b': '2025-04', 'alibaba/qwen3-8b': '2025-04',
+        'alibaba/qwen3-4b': '2025-04', 'alibaba/qwen3-1.7b': '2025-04', 'alibaba/qwen3-0.6b': '2025-04',
+        'alibaba/qwen3-next': '2025-09',
+        'alibaba/qwen2.5-72b': '2024-09', 'alibaba/qwen2.5-32b': '2024-09', 'alibaba/qwen2.5-14b': '2024-09', 'alibaba/qwen2.5-7b': '2024-09',
+        // China — Zhipu GLM
+        'zhipu/glm-5.1': '2026-03', 'zhipu/glm-5': '2025-10', 'zhipu/glm-4.7': '2025-09',
+        'zhipu/glm-4.6': '2025-09', 'zhipu/glm-4.5': '2025-07', 'zhipu/glm-4.5-air': '2025-07',
+        // China — Moonshot Kimi
         'moonshot/kimi-k2.6': '2026-04', 'moonshot/kimi-k2.5': '2026-01', 'moonshot/kimi-k2-thinking': '2025-09',
-        'minimax/m2.7': '2026-03', 'minimax/m2': '2025-10',
-        'mimo/mimo-pro': '2025-12',
-        'baidu/ernie-5.0': '2025-11',
-        'tencent/hunyuan-t1': '2025-03',
-        'bytedance/seed-2.0-pro': '2026-02',
-        'stepfun/step-r1': '2025-07',
+        'moonshot/kimi-k2-instruct': '2025-07', 'moonshot/kimi-k2-base': '2025-07', 'moonshot/kimi-k1.5': '2025-01',
+        // China — MiniMax / MiMo / StepFun
+        'minimax/m2.7': '2026-03', 'minimax/m2.5': '2025-09',
+        'mimo/mimo-v2-pro': '2025-12', 'mimo/mimo-v2-flash': '2025-12',
+        'stepfun/step-3.5-flash': '2025-12', 'stepfun/step-2-pro': '2024-12', 'stepfun/step-2-mini': '2024-08',
+        // China — Baidu ERNIE
+        'baidu/ernie-5.0': '2025-11', 'baidu/ernie-4.5-300b-a47b': '2025-06', 'baidu/ernie-4.5-turbo': '2025-04',
+        'baidu/ernie-speed': '2024-03', 'baidu/ernie-lite': '2024-03',
+        // China — Tencent Hunyuan
+        'tencent/hunyuan-t1': '2025-03', 'tencent/hunyuan-large': '2024-11', 'tencent/hunyuan-turbo': '2024-11', 'tencent/hunyuan-7b': '2024-11',
+        // China — ByteDance Doubao Seed
+        'bytedance/seed-2.0-pro': '2026-02', 'bytedance/seed-1.6': '2025-09', 'bytedance/seed-1.5-pro': '2025-04', 'bytedance/seed-1.5-lite': '2025-04',
+        // China — medical
         'freedomintelligence/huatuogpt-ii': '2024-05',
 
         // France (Mistral)
@@ -221,11 +274,24 @@ var Sovereign = {
 
         // Japan / India / Israel / UAE / SG / CH / US
         'sakana/namazu': '2024-03',
+        // Singapore — SEA-LION lineup
         'ai-singapore/apertus-sea-lion-v4-8b': '2025-04', 'ai-singapore/gemma-sea-lion-v4-4b-vl': '2025-04',
+        'ai-singapore/llama-sea-lion-v3.5-70b': '2025-03', 'ai-singapore/llama-sea-lion-v3.5-8b': '2025-03',
+        'ai-singapore/gemma2-sea-lion-v3-9b': '2024-10', 'ai-singapore/sea-lion-v2.1-7b': '2024-04',
+        'gotoai/sahabat-ai-v1-70b': '2024-12', 'gotoai/sahabat-ai-v1-8b': '2024-12',
         'sarvam/sarvam-1': '2024-10', 'sarvam/sarvam-m': '2025-04',
         'bharatgen/param2-17b': '2025-02', 'ola/krutrim': '2024-12', 'corover/bharatgpt': '2024-01',
         'ai21/jamba-large-1.7': '2025-08', 'ai21/jamba-large-1.5': '2024-08',
-        'tii/falcon-h1-34b': '2025-05', 'tii/falcon-h1-7b': '2025-05', 'mbzuai/bimedix': '2024-02',
+        // UAE — TII Falcon-H1 (May 2025)
+        'tii/falcon-h1-34b': '2025-05', 'tii/falcon-h1-arabic-34b': '2025-08', 'tii/falcon-h1r-7b': '2025-11',
+        'tii/falcon-h1-7b': '2025-05', 'tii/falcon-h1-3b': '2025-05',
+        'tii/falcon-h1-1.5b-deep': '2025-05', 'tii/falcon-h1-1.5b': '2025-05', 'tii/falcon-h1-0.5b': '2025-05',
+        // UAE — Falcon3 (Dec 2024)
+        'tii/falcon3-10b': '2024-12', 'tii/falcon3-7b': '2024-12', 'tii/falcon3-3b': '2024-12', 'tii/falcon3-1b': '2024-12',
+        // UAE — older Falcon
+        'tii/falcon-mamba-7b': '2024-08', 'tii/falcon2-11b': '2024-05', 'tii/falcon-180b': '2023-09', 'tii/falcon-perception': '2025-03',
+        // UAE — MBZUAI
+        'mbzuai/llm360-k2-65b': '2024-08', 'mbzuai/atlas-chat-9b': '2024-09', 'mbzuai/bimedix': '2024-02',
         'epfl/meditron-70b': '2023-11', 'epfl/meditron-7b': '2023-11', 'epfl/llama-3-meditron-70b': '2024-09',
         'harvey/harvey-assistant': '2025-09', 'thomson-reuters/cocounsel-2': '2025-04', 'vlex/vincent-ai': '2024-06', 'vecflow/oliver': '2025-02',
         'bloomberg/bloomberg-gpt': '2023-03',

@@ -1,12 +1,26 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Korean sovereign deep-dive + release-date metadata 2026-04-25
-**189 models · 241 benchmarks · 1,130 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources**
+## Current Status: SG/UAE/China param-scale + Korean deep-dive 2026-04-25
+**248 models · 241 benchmarks · 1,130 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources**
 **Live Site**: https://hollobit.github.io/SOTA/
 **Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-**
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy (no more manual bumps).
 
 ## 2026-04-25 Sessions (7 batches)
+
+### SG / UAE / China param-scale lineup deep-dive (+59 models)
+- **UAE TII Falcon (16)**: Falcon-H1 0.5B/1.5B/1.5B-Deep/3B/7B/34B + H1R 7B + H1 Arabic 34B; Falcon3 1B/3B/7B/10B; Falcon Mamba 7B; Falcon 180B; Falcon2 11B; Falcon Perception
+- **UAE MBZUAI (3)**: LLM360 K2 65B (open-source), Atlas-Chat 9B (Moroccan Arabic), BiMediX
+- **Singapore SEA-LION (6 + 2)**: Llama-SEA-LION v3.5 70B/8B-R, Gemma2-SEA-LION v3 9B-IT, SEA-LION v2.1 7B + Sahabat-AI v1 70B/8B (GoTo+AISG Indonesian)
+- **China Qwen full lineup (16)**: Qwen3 dense 0.6B/1.7B/4B/8B/14B/32B, Qwen3 MoE 30B-A3B/235B-A22B (+Thinking +Instruct 2507), Qwen3-Next, Qwen2.5 7B/14B/32B/72B
+- **China DeepSeek (4)**: V3.1-Terminus, V3, R1, R1-0528
+- **China GLM (3)**: GLM-4.5, GLM-4.5-Air, GLM-4.6
+- **China Kimi (3)**: K2-Base, K2-Instruct, K1.5
+- **China Hunyuan (3)**: Hunyuan-Large 389B-A52B, Hunyuan-Turbo, Hunyuan-7B
+- **China ERNIE (4)**: ERNIE 4.5 300B-A47B (open), Turbo, Speed, Lite
+- **China Doubao Seed (3)**: 1.5 Pro/Lite, 1.6
+- **China StepFun (2)**: Step-2 Pro, Step-2 Mini
+- Sovereign 메뉴 region 카운트: SG 2→8 · UAE 3→19 · China 17→63
 
 ### Korean sovereign deep-dive (40 new models, 13 benchmarks, 39 scores)
 - **Param-scale variants registered**: LG EXAONE 4.0 32B/1.2B + 4.0.1 32B + Deep 32B/7.8B/2.4B + 3.5 32B/7.8B/2.4B; SKT A.X 4.0 (72B) + Light (7B) + VL-Light; KT Mi:dm 2.0 Base (11.5B) + Mini (2.3B); Upstage Solar Pro 2 (31B) + Pro 2 Preview + Pro + Mini + DocVision
@@ -27,20 +41,10 @@
 - Frame: 한국(EXAONE/Solar/A.X/Mi:dm/KMed.ai) · 중국(DeepSeek/Qwen/Kimi/GLM/ERNIE/Hunyuan/Doubao) · 인도(Sarvam/BharatGen/Krutrim/BharatGPT) · UAE(Falcon-H1/BiMediX) · 이스라엘(AI21 Jamba) · 싱가포르(SEA-LION) · 스위스(Meditron/Apertus) · US Legal(Harvey/CoCounsel/Vincent/Oliver) · US Finance(BloombergGPT) · DARPA AIxCC.
 
 ### Physical AI / World Models (+11 models, +7 benchmarks)
-- NVIDIA Cosmos suite (Predict 2.5, Reason 2, Policy-RoboCasa) + GR00T N1.6/N1.7 humanoid VLA
-- DeepMind Genie 3 (24fps@720p, 3min consistency) + Genie 2
-- Physical Intelligence Pi-Zero / Pi-Zero Fast, OpenVLA-7B, AgiBot Genie Envisioner
-- Benchmarks: LIBERO (Cosmos Policy 98.5% SOTA), RoboCasa (67.1% / 50 demos), RoboTwin 2.0, VLABench, Open X-Embodiment, World Model Consistency, World Model FPS
+NVIDIA Cosmos + GR00T N1.6/1.7, DeepMind Genie 3 (24fps@720p / 3min) + Genie 2, Pi-Zero, OpenVLA, AgiBot. LIBERO (Cosmos 98.5% SOTA), RoboCasa, RoboTwin 2.0, VLABench, Open X-Embodiment, World Model Consistency/FPS.
 
-
-
-### 2026-04-25 earlier batches (compressed — see HISTORY.md for detail)
-- Daily sweep: DeepSeek V4 official API + pricing confirmed
-- Regional v1 (+11): Mistral · MedGemma · Falcon-H1 · Sakana Namazu · SEA-LION + 8 medical benchmarks
-- Regional v2 (+2 models, +21 benchmarks, +51 scores): HF model card pulls; 2 MedGemma PDFs
-- Mistral lineup (+13): Devstral 2 (SWE-V 72.2), Magistral Small 1.2 (AIME24 86.14)
-- Codestral 25.08, Pixtral Large (124B vision SOTA: DocVQA 93.3, AI2D 93.8, ChartQA 88.1)
-- Stubs: Mistral Medium 3.1, Small 3.2, Ministral 3 14B/8B/3B
+### 2026-04-25 earlier batches (compressed — see HISTORY.md)
+Daily sweep + Regional v1 (+11) + Regional v2 (+2 models, +21 benches, +51 scores) + Mistral lineup (+13: Devstral 2 SWE-V 72.2, Pixtral Large DocVQA 93.3 SOTA)
 
 ## CI / Infrastructure improvements (2026-04-24/25)
 
