@@ -1,12 +1,17 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: France param-scale + SG/UAE/China + Korean 2026-04-25
-**280 models · 241 benchmarks · 1,130 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources**
+## Current Status: IN/IL/FR/SG/UAE/CN param-scale + Korean 2026-04-25
+**309 models · 241 benchmarks · 1,130 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources**
 **Live Site**: https://hollobit.github.io/SOTA/
 **Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-**
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy (no more manual bumps).
 
 ## 2026-04-25 Sessions (7 batches)
+
+### India + Israel param-scale lineup (+29 models)
+- **India (17)**: Sarvam-30B/105B MoE (2.4B/10.3B active), BharatGen Param-1 2.9B + Sutra + 1T roadmap, Krutrim-2 12B + Spectre, Soket AI Pragna 1B + SUTRA + Project EKA, AI4Bharat IndicLLM/IndicBERT/IndicTrans2, JioBrain · Tata MAITRI · L&T-Vyoma Sovereign AI Compute (announced)
+- **Israel (12)**: AI21 Jamba 1.0 (원조 SSM-Tx), Jamba 1.5/1.6/1.7 Mini, Jamba2 Mini + Jamba2 3B (2026), Jamba Reasoning + Maestro; DICTA DictaLM 2.0 + 3.0 24B (Hebrew sovereign)
+- 카운트: 인도 5→22 · 이스라엘 2→14
 
 ### France param-scale lineup deep-dive (+32 models)
 - **Mistral 풀 히스토리**: Mistral 7B 원조(2023-09), Mixtral 8x7B/8x22B MoE, Nemo 12B(NVIDIA), Saba 24B(Arabic), Codestral 22B + Codestral Mamba 7B, Mathstral 7B, Pixtral 12B 원조, Magistral/Devstral 1.0, Ministral 8B/3B v1, Small 1-3.1, Large 1-2, Medium 3
@@ -36,16 +41,8 @@
 - **Sovereign menu UX**: 모델별 출시년도 `(YYYY-MM)` 표시 + 가장 최신 발표 모델순 정렬. RELEASE_DATES 맵 ~140 entries.
 - **Frontier Compare**: 10개 한국 sovereign 모델 추가 (HyperCLOVA X Think 32B/14B, Kanana 2 + 1.5 8B, VARCO-Vision 2.0, Tri-21B, Motif-2, EXAONE 4.0 32B, A.X 4.0, Solar Pro 2)
 
-### Sovereign AI menu — country comparison + Manufacturing
-- 추가 region 4개: France(Mistral) · Manufacturing & Industrial · Industrial Robotics · Industrial CAD/Vision/Twin
-- Korea region 모델 IDs 수정: `upstage/solar-pro-3`, `upstage/solar-open-100b`, `kt/midm-k2.5-pro`, `lg/k-exaone-236b` 추가
-- 신규 컴포넌트: 국가별 3-axis radar (best-of-fleet 평균) + Best-of-Fleet 리더보드 (9개 대표 벤치마크 × 13 region, 셀 클릭 → Modal.showScoreSource)
-- Manufacturing batch: 21 모델 / 4 벤치마크 / 4 검증 점수 (`resource/manufacturing_foundation_2026_04_25_scores.json`)
-  - Verified scores: Gemini Robotics-ER 1.6 instrument reading 86%, Skild Brain failure recovery 85%, Foxconn FoxBrain news rewriting 68.50
-
-### Sovereign AI menu (initial)
-- New dashboard tab `Sovereign AI` (`dashboard/js/sovereign.js` + index markup) — 11 region cards × 3 dimension panels (Language Adaptation · Medical System Integration · Government/Regulated Domain) + cross-region heatmap. Each panel compares top sovereign models against frontier baselines (GPT-5.5/Claude/Gemini/Muse Spark) with desaturated frontier bars to make sovereign value gap visible. Score cells + heatmap clickable → Modal.showScoreSource.
-- Frame: 한국(EXAONE/Solar/A.X/Mi:dm/KMed.ai) · 중국(DeepSeek/Qwen/Kimi/GLM/ERNIE/Hunyuan/Doubao) · 인도(Sarvam/BharatGen/Krutrim/BharatGPT) · UAE(Falcon-H1/BiMediX) · 이스라엘(AI21 Jamba) · 싱가포르(SEA-LION) · 스위스(Meditron/Apertus) · US Legal(Harvey/CoCounsel/Vincent/Oliver) · US Finance(BloombergGPT) · DARPA AIxCC.
+### Sovereign AI menu (initial → country comparison → Manufacturing)
+신규 탭 `tab-sovereign` (`dashboard/js/sovereign.js`) — 15 region cards × 3 dimension panels (Language/Medical/Government) + 국가별 3-axis radar + Best-of-Fleet 리더보드 + cross-region heatmap. 모든 score 셀 클릭 → Modal.showScoreSource. Manufacturing/Robotics/CAD region 추가 (Foxconn FoxBrain · Skild Brain · Gemini Robotics-ER 1.6 등 21개 모델, 4 verified scores).
 
 ### Physical AI / World Models (+11 models, +7 benchmarks)
 NVIDIA Cosmos + GR00T N1.6/1.7, DeepMind Genie 3 (24fps@720p / 3min) + Genie 2, Pi-Zero, OpenVLA, AgiBot. LIBERO (Cosmos 98.5% SOTA), RoboCasa, RoboTwin 2.0, VLABench, Open X-Embodiment, World Model Consistency/FPS.
