@@ -1,0 +1,70 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-25",
+    "session": "France param-scale lineup deep-dive. Adds full Mistral historical lineup (Mistral 7B original, Mixtral 8x7B/8x22B MoE, Nemo 12B, Saba 24B Arabic, full Small 1-3.1, Large 1-2, Medium 3, Codestral 22B + Codestral Mamba 7B, Mathstral 7B, Pixtral 12B original, older Magistral 1.0, Devstral Small 1, Ministral 8B/3B v1) + French/EU sovereign ecosystem (PleIAs 1.0 pico/Olmo/RAG, CNRS Lucie 7B, CroissantLLM 1.3B, HuggingFace SmolLM/SmolLM2/SmolLM3 family).",
+    "sources": [
+      "https://huggingface.co/mistralai",
+      "https://mistral.ai/news",
+      "https://mistral.ai/news/announcing-mistral-7b/",
+      "https://mistral.ai/news/mixtral-of-experts/",
+      "https://mistral.ai/news/mixtral-8x22b/",
+      "https://mistral.ai/news/mistral-nemo/",
+      "https://mistral.ai/news/codestral/",
+      "https://mistral.ai/news/codestral-mamba/",
+      "https://mistral.ai/news/mathstral/",
+      "https://mistral.ai/news/pixtral-12b/",
+      "https://mistral.ai/news/mistral-saba/",
+      "https://mistral.ai/news/ministraux/",
+      "https://huggingface.co/PleIAs",
+      "https://huggingface.co/OpenLLM-France/Lucie-7B-Instruct",
+      "https://huggingface.co/croissantllm/CroissantLLMBase",
+      "https://huggingface.co/HuggingFaceTB",
+      "https://huggingface.co/HuggingFaceTB/SmolLM3-3B"
+    ]
+  },
+  "models": [
+    { "id": "mistral/mistral-7b",            "vendor": "Mistral AI",   "name": "Mistral 7B (Sept 2023 — original)",   "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/mixtral-8x7b",          "vendor": "Mistral AI",   "name": "Mixtral 8x7B (MoE, Dec 2023)",         "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/mixtral-8x22b",         "vendor": "Mistral AI",   "name": "Mixtral 8x22B (MoE)",                  "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/mistral-nemo-12b",      "vendor": "Mistral AI",   "name": "Mistral Nemo 12B (with NVIDIA)",       "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/mistral-saba-24b",      "vendor": "Mistral AI",   "name": "Mistral Saba 24B (Arabic)",            "type": "proprietary", "modalities": ["text"] },
+
+    { "id": "mistral/codestral-22b",         "vendor": "Mistral AI",   "name": "Codestral 22B (original, May 2024)",   "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/codestral-mamba-7b",    "vendor": "Mistral AI",   "name": "Codestral Mamba 7B (mamba-arch)",      "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/mathstral-7b",          "vendor": "Mistral AI",   "name": "Mathstral 7B (math specialist)",       "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/pixtral-12b",           "vendor": "Mistral AI",   "name": "Pixtral 12B (original VLM)",           "type": "open-weight", "modalities": ["text", "image"] },
+
+    { "id": "mistral/mistral-large-2",       "vendor": "Mistral AI",   "name": "Mistral Large 2 (123B)",               "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/mistral-large-1",       "vendor": "Mistral AI",   "name": "Mistral Large 1",                       "type": "proprietary", "modalities": ["text"] },
+    { "id": "mistral/mistral-medium-3",      "vendor": "Mistral AI",   "name": "Mistral Medium 3",                      "type": "proprietary", "modalities": ["text"] },
+
+    { "id": "mistral/mistral-small-3.1",     "vendor": "Mistral AI",   "name": "Mistral Small 3.1 (24B + vision)",     "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "mistral/mistral-small-3",       "vendor": "Mistral AI",   "name": "Mistral Small 3 (24B)",                "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/mistral-small-2",       "vendor": "Mistral AI",   "name": "Mistral Small 2 (22B)",                "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/mistral-small-1",       "vendor": "Mistral AI",   "name": "Mistral Small 1 (older)",              "type": "proprietary", "modalities": ["text"] },
+
+    { "id": "mistral/magistral-small-1",     "vendor": "Mistral AI",   "name": "Magistral Small 1 (24B reasoning)",    "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/magistral-medium-1",    "vendor": "Mistral AI",   "name": "Magistral Medium 1",                    "type": "proprietary", "modalities": ["text"] },
+
+    { "id": "mistral/devstral-small-1",      "vendor": "Mistral AI",   "name": "Devstral Small 1 (24B)",               "type": "open-weight", "modalities": ["text"] },
+
+    { "id": "mistral/ministral-8b-v1",       "vendor": "Mistral AI",   "name": "Ministral 8B v1 (Oct 2024)",           "type": "open-weight", "modalities": ["text"] },
+    { "id": "mistral/ministral-3b-v1",       "vendor": "Mistral AI",   "name": "Ministral 3B v1 (Oct 2024)",           "type": "proprietary", "modalities": ["text"] },
+
+    { "id": "pleias/pleias-1.0-pico-3.5b",   "vendor": "PleIAs (FR)",  "name": "Pleias 1.0 Pico 3.5B (Common Corpus)", "type": "open-source", "modalities": ["text"] },
+    { "id": "pleias/pleias-1.0-olmo-1b",     "vendor": "PleIAs (FR)",  "name": "Pleias 1.0 OLMo 1B",                   "type": "open-source", "modalities": ["text"] },
+    { "id": "pleias/pleias-rag-1b",          "vendor": "PleIAs (FR)",  "name": "Pleias RAG 1B",                        "type": "open-source", "modalities": ["text"] },
+    { "id": "pleias/pleias-rag-350m",        "vendor": "PleIAs (FR)",  "name": "Pleias RAG 350M",                      "type": "open-source", "modalities": ["text"] },
+
+    { "id": "openllm-france/lucie-7b",       "vendor": "OpenLLM-France (CNRS)", "name": "Lucie 7B Instruct (CNRS)",     "type": "open-weight", "modalities": ["text"] },
+    { "id": "croissantllm/croissant-1.3b",   "vendor": "CroissantLLM (CNRS+Illuin)", "name": "CroissantLLM 1.3B (FR-EN)", "type": "open-source", "modalities": ["text"] },
+
+    { "id": "huggingface/smollm3-3b",        "vendor": "Hugging Face (FR/US)", "name": "SmolLM3 3B",                    "type": "open-source", "modalities": ["text"] },
+    { "id": "huggingface/smollm2-1.7b",      "vendor": "Hugging Face (FR/US)", "name": "SmolLM2 1.7B",                  "type": "open-source", "modalities": ["text"] },
+    { "id": "huggingface/smollm2-360m",      "vendor": "Hugging Face (FR/US)", "name": "SmolLM2 360M",                  "type": "open-source", "modalities": ["text"] },
+    { "id": "huggingface/smollm2-135m",      "vendor": "Hugging Face (FR/US)", "name": "SmolLM2 135M",                  "type": "open-source", "modalities": ["text"] },
+    { "id": "huggingface/smollm-1.7b",       "vendor": "Hugging Face (FR/US)", "name": "SmolLM 1.7B (v1)",              "type": "open-source", "modalities": ["text"] }
+  ],
+  "benchmarks": [],
+  "scores": []
+}

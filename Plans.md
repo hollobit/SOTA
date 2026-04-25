@@ -1,12 +1,19 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: SG/UAE/China param-scale + Korean deep-dive 2026-04-25
-**248 models · 241 benchmarks · 1,130 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources**
+## Current Status: France param-scale + SG/UAE/China + Korean 2026-04-25
+**280 models · 241 benchmarks · 1,130 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources**
 **Live Site**: https://hollobit.github.io/SOTA/
 **Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-**
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy (no more manual bumps).
 
 ## 2026-04-25 Sessions (7 batches)
+
+### France param-scale lineup deep-dive (+32 models)
+- **Mistral 풀 히스토리**: Mistral 7B 원조(2023-09), Mixtral 8x7B/8x22B MoE, Nemo 12B(NVIDIA), Saba 24B(Arabic), Codestral 22B + Codestral Mamba 7B, Mathstral 7B, Pixtral 12B 원조, Magistral/Devstral 1.0, Ministral 8B/3B v1, Small 1-3.1, Large 1-2, Medium 3
+- **PleIAs (Common Corpus)**: 1.0 Pico 3.5B, OLMo 1B, RAG 1B/350M
+- **CNRS / academic**: Lucie 7B (OpenLLM-France), CroissantLLM 1.3B (FR-EN)
+- **HuggingFace SmolLM**: SmolLM3 3B, SmolLM2 1.7B/360M/135M, SmolLM v1 1.7B
+- France region 카운트: 16 → 48
 
 ### SG / UAE / China param-scale lineup deep-dive (+59 models)
 - **UAE TII Falcon (16)**: Falcon-H1 0.5B/1.5B/1.5B-Deep/3B/7B/34B + H1R 7B + H1 Arabic 34B; Falcon3 1B/3B/7B/10B; Falcon Mamba 7B; Falcon 180B; Falcon2 11B; Falcon Perception
