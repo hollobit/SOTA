@@ -1,14 +1,21 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Sovereign AI menu + Physical AI 2026-04-25
-**128 models · 224 benchmarks · 1,087 scores · 186 SOTA records · 19 PDF sources · 84+ web sources**
+## Current Status: Sovereign country comparison + Manufacturing FMs 2026-04-25
+**149 models · 228 benchmarks · 1,091 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources**
 **Live Site**: https://hollobit.github.io/SOTA/
 **Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-**
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy (no more manual bumps).
 
 ## 2026-04-25 Sessions (7 batches)
 
-### Sovereign AI menu (NEW)
+### Sovereign AI menu — country comparison + Manufacturing
+- 추가 region 4개: France(Mistral) · Manufacturing & Industrial · Industrial Robotics · Industrial CAD/Vision/Twin
+- Korea region 모델 IDs 수정: `upstage/solar-pro-3`, `upstage/solar-open-100b`, `kt/midm-k2.5-pro`, `lg/k-exaone-236b` 추가
+- 신규 컴포넌트: 국가별 3-axis radar (best-of-fleet 평균) + Best-of-Fleet 리더보드 (9개 대표 벤치마크 × 13 region, 셀 클릭 → Modal.showScoreSource)
+- Manufacturing batch: 21 모델 / 4 벤치마크 / 4 검증 점수 (`resource/manufacturing_foundation_2026_04_25_scores.json`)
+  - Verified scores: Gemini Robotics-ER 1.6 instrument reading 86%, Skild Brain failure recovery 85%, Foxconn FoxBrain news rewriting 68.50
+
+### Sovereign AI menu (initial)
 - New dashboard tab `Sovereign AI` (`dashboard/js/sovereign.js` + index markup) — 11 region cards × 3 dimension panels (Language Adaptation · Medical System Integration · Government/Regulated Domain) + cross-region heatmap. Each panel compares top sovereign models against frontier baselines (GPT-5.5/Claude/Gemini/Muse Spark) with desaturated frontier bars to make sovereign value gap visible. Score cells + heatmap clickable → Modal.showScoreSource.
 - Frame: 한국(EXAONE/Solar/A.X/Mi:dm/KMed.ai) · 중국(DeepSeek/Qwen/Kimi/GLM/ERNIE/Hunyuan/Doubao) · 인도(Sarvam/BharatGen/Krutrim/BharatGPT) · UAE(Falcon-H1/BiMediX) · 이스라엘(AI21 Jamba) · 싱가포르(SEA-LION) · 스위스(Meditron/Apertus) · US Legal(Harvey/CoCounsel/Vincent/Oliver) · US Finance(BloombergGPT) · DARPA AIxCC.
 

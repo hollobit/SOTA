@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-25",
+    "session": "Manufacturing-specialized foundation models. Adds 18 industrial AI / robotics manipulation / industrial vision / digital twin / CAD models. Most have no public benchmark scores; only verified third-party numbers added (Foxconn FoxBrain news rewriting, Gemini Robotics-ER 1.6 instrument reading, Skild Brain failure recovery vs RT-2/PaLM-E baselines).",
+    "sources": [
+      "https://www.foxconn.com/en-us/press-center/press-releases/latest-news/1549",
+      "https://huggingface.co/FoxconnAI/Llama_3.1-FoxBrain-70B",
+      "https://deepmind.google/blog/gemini-robotics-er-1-6/",
+      "https://deepmind.google/models/gemini-robotics/gemini-robotics-er/",
+      "https://www.siemens.com/global/en/company/stories/research-technologies/artificial-intelligence/industrial-foundation-model.html",
+      "https://www.skild.ai/blogs/building-the-general-purpose-robotic-brain",
+      "https://www.businesswire.com/news/home/20250729431330/en/Skild-AI-Provides-First-Look-at-Its-General-Purpose-Robotic-Brain",
+      "https://covariant.ai/insights/introducing-rfm-1-giving-robots-human-like-reasoning-capabilities/",
+      "https://www.figure.ai/news/helix",
+      "https://www.1x.tech/discover/1x-world-model",
+      "https://apptronik.com/news-collection/apptronik-and-google-deepmind",
+      "https://agilityrobotics.com/news/2024/agility-arc",
+      "https://www.sanctuary.ai/blog",
+      "https://landing.ai/agentic-ai/",
+      "https://research.autodesk.com/publications/bernini-generative-3d-models/",
+      "https://blogs.nvidia.com/blog/omniverse-mega-blueprint-industrial-ai/",
+      "https://www.gevernova.com/news/press-releases",
+      "https://www.hitachi.com/rd/news/2024/0327.html",
+      "https://www.aveva.com/en/about/news/press-releases/2024/aveva-launches-industrial-ai-assistant/",
+      "https://www.bosch.com/stories/generative-ai-in-manufacturing/",
+      "https://www.ptc.com/en/blogs/corporate/generative-ai-creo",
+      "https://www.3ds.com/newsroom/press-releases/dassault-systemes-launches-generative-experience"
+    ]
+  },
+  "models": [
+    { "id": "foxconn/foxbrain-70b",          "vendor": "Foxconn (Hon Hai Research)", "name": "FoxBrain 70B",                "type": "open-weight", "modalities": ["text"] },
+    { "id": "siemens/sifm",                  "vendor": "Siemens",                    "name": "Siemens Industrial FM (SIFM)", "type": "proprietary", "modalities": ["text", "image"] },
+    { "id": "hitachi/hal",                   "vendor": "Hitachi",                    "name": "Hitachi Industrial AI (HAL)",  "type": "proprietary", "modalities": ["text"] },
+    { "id": "ge-vernova/predix-ai",          "vendor": "GE Vernova",                 "name": "Predix Industrial AI Copilot", "type": "proprietary", "modalities": ["text"] },
+    { "id": "bosch/industrial-genai",        "vendor": "Bosch",                      "name": "Bosch Industrial GenAI",       "type": "proprietary", "modalities": ["text"] },
+    { "id": "aveva/industrial-ai-assistant", "vendor": "AVEVA (Schneider Electric)", "name": "AVEVA Industrial AI Assistant","type": "proprietary", "modalities": ["text"] },
+
+    { "id": "skild/skild-brain",             "vendor": "Skild AI",                   "name": "Skild Brain",                  "type": "proprietary", "modalities": ["image", "text"] },
+    { "id": "covariant/rfm-1",               "vendor": "Covariant",                  "name": "RFM-1 (Robotic Foundation Model)", "type": "proprietary", "modalities": ["image", "video", "text"] },
+    { "id": "figure-ai/helix",               "vendor": "Figure AI",                  "name": "Helix (System-1/System-2 VLA)","type": "proprietary", "modalities": ["image", "text"] },
+    { "id": "1x/world-model",                "vendor": "1X Technologies",            "name": "1X World Model + Redwood",     "type": "proprietary", "modalities": ["video", "text"] },
+    { "id": "apptronik/apollo-gemini",       "vendor": "Apptronik + DeepMind",       "name": "Apollo (Gemini Robotics)",     "type": "proprietary", "modalities": ["image", "text"] },
+    { "id": "agility/digit-arc",             "vendor": "Agility Robotics",           "name": "Digit + ARC AI Manager",       "type": "proprietary", "modalities": ["image", "text"] },
+    { "id": "sanctuary/carbon",              "vendor": "Sanctuary AI",               "name": "Carbon (Phoenix control)",     "type": "proprietary", "modalities": ["image", "text"] },
+    { "id": "tesla/optimus-vlm",             "vendor": "Tesla",                      "name": "Optimus VLM (FSD-shared)",     "type": "proprietary", "modalities": ["image", "text"] },
+
+    { "id": "google-deepmind/gemini-robotics-er-1.6", "vendor": "Google DeepMind",   "name": "Gemini Robotics-ER 1.6",        "type": "proprietary", "modalities": ["image", "video", "text"] },
+    { "id": "google-deepmind/gemini-robotics-er-1.5", "vendor": "Google DeepMind",   "name": "Gemini Robotics-ER 1.5",        "type": "proprietary", "modalities": ["image", "text"] },
+
+    { "id": "landing-ai/visionagent",        "vendor": "Landing AI",                 "name": "LandingLens VisionAgent",      "type": "proprietary", "modalities": ["image", "text"] },
+
+    { "id": "nvidia/omniverse-mega",         "vendor": "NVIDIA",                     "name": "Omniverse Mega Blueprint",     "type": "proprietary", "modalities": ["text", "video"] },
+
+    { "id": "autodesk/bernini",              "vendor": "Autodesk",                   "name": "Bernini (3D generative)",      "type": "proprietary", "modalities": ["text", "image"] },
+    { "id": "ptc/creo-copilot",              "vendor": "PTC",                        "name": "Creo + GenAI Copilot",         "type": "proprietary", "modalities": ["text"] },
+    { "id": "dassault/3dx-aura",             "vendor": "Dassault Systèmes",          "name": "3DEXPERIENCE Aura",            "type": "proprietary", "modalities": ["text", "image"] }
+  ],
+  "benchmarks": [
+    {
+      "id": "gemini_instrument_reading",
+      "name": "Gemini Instrument Reading",
+      "category": "multimodal",
+      "description": "DeepMind eval — reading values from physical instruments (gauges, dials, displays) for embodied reasoning. Gemini Robotics-ER 1.6 86% (93% with agentic vision) vs ER 1.5 23%, Gemini 3.0 Flash 67%.",
+      "metric": "accuracy"
+    },
+    {
+      "id": "skild_failure_recovery",
+      "name": "Skild Failure Recovery (sim)",
+      "category": "agent",
+      "description": "Skild AI internal eval — failure recovery (e.g. limb damage adaptation) success rate in simulation. Skild Brain 85% vs RT-2/PaLM-E baselines ~60%.",
+      "metric": "accuracy"
+    },
+    {
+      "id": "tmmlu_plus",
+      "name": "TMMLU+ (Taiwan MMLU+)",
+      "category": "multilingual",
+      "description": "Domain-adjusted Traditional Chinese MMLU. Used by Foxconn FoxBrain 70B vs Llama-3-Taiwan-70B baseline. Image-only score chart on HF model card.",
+      "metric": "accuracy"
+    },
+    {
+      "id": "mfg_news_rewrite",
+      "name": "Traditional Chinese News Rewriting (100 samples)",
+      "category": "reasoning",
+      "description": "Foxconn FoxBrain industrial-Chinese rewriting eval. FoxBrain 68.50 (semantic sim 0.9568, BLEU 0.3641) vs Claude 62.26, ChatGPT 61.19.",
+      "metric": "score"
+    }
+  ],
+  "scores": [
+    { "model": "google-deepmind/gemini-robotics-er-1.6", "benchmark": "gemini_instrument_reading", "score": 86.0, "unit": "%", "_source": "https://deepmind.google/models/gemini-robotics/gemini-robotics-er/", "_note": "Gemini Robotics-ER 1.6 — agentic vision disabled (apples-to-apples vs ER 1.5)" },
+    { "model": "google-deepmind/gemini-robotics-er-1.5", "benchmark": "gemini_instrument_reading", "score": 23.0, "unit": "%", "_source": "https://deepmind.google/models/gemini-robotics/gemini-robotics-er/", "_note": "Gemini Robotics-ER 1.5 baseline (no agentic vision support)" },
+
+    { "model": "skild/skild-brain", "benchmark": "skild_failure_recovery", "score": 85.0, "unit": "%", "_source": "https://www.businesswire.com/news/home/20250729431330/en/Skild-AI-Provides-First-Look-at-Its-General-Purpose-Robotic-Brain", "_note": "Skild Brain — sim failure recovery (limb damage adaptation)" },
+
+    { "model": "foxconn/foxbrain-70b", "benchmark": "mfg_news_rewrite", "score": 68.5, "unit": "score", "_source": "https://huggingface.co/FoxconnAI/Llama_3.1-FoxBrain-70B", "_note": "FoxBrain 70B Traditional Chinese news rewriting — beats Claude (62.26) and ChatGPT (61.19) on Foxconn industrial eval" }
+  ]
+}

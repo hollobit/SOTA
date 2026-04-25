@@ -15,11 +15,24 @@ var Sovereign = {
             code: 'kr', label: 'Korea', flag: '🇰🇷',
             note: '한국어 의료 시스템 / 정부·대기업 sovereign LLM',
             models: [
-                'lg/exaone-4.5-33b', 'lg/exaone-4.5',
-                'upstage/solar-pro-2', 'upstage/solar-pro-2-think',
+                'lg/exaone-4.5-33b', 'lg/k-exaone-236b',
+                'upstage/solar-pro-3', 'upstage/solar-open-100b',
                 'skt/ax-k1',
-                'kt/midm-k',
+                'kt/midm-k2.5-pro',
                 'snuh-naver/kmed-ai'
+            ]
+        },
+        {
+            code: 'fr', label: 'France (Mistral)', flag: '🇫🇷',
+            note: '프랑스 sovereign frontier — Mistral AI 풀라인업 (Pixtral·Mistral·Magistral·Devstral·Codestral·Ministral·Voxtral)',
+            models: [
+                'mistral/mistral-large-3', 'mistral/mistral-medium-3.1', 'mistral/mistral-small-4', 'mistral/mistral-small-3.2',
+                'mistral/magistral-medium-1.2', 'mistral/magistral-small-1.2',
+                'mistral/devstral-2', 'mistral/devstral-medium', 'mistral/devstral-small-2', 'mistral/devstral-small-1.1',
+                'mistral/codestral-25.08',
+                'mistral/pixtral-large',
+                'mistral/ministral-3-14b', 'mistral/ministral-3-8b', 'mistral/ministral-3-3b',
+                'mistral/voxtral-tts'
             ]
         },
         {
@@ -93,6 +106,45 @@ var Sovereign = {
             code: 'darpa', label: 'DARPA AIxCC', flag: '🛡️',
             note: 'DARPA 국방·도메인 Cyber Reasoning System',
             models: ['darpa/aixcc-team-atlanta']
+        },
+        {
+            code: 'mfg-industrial', label: 'Manufacturing & Industrial', flag: '🏭',
+            note: 'Foxconn FoxBrain · Siemens SIFM · Hitachi HAL · GE Vernova · Bosch · AVEVA',
+            models: [
+                'foxconn/foxbrain-70b',
+                'siemens/sifm',
+                'hitachi/hal',
+                'ge-vernova/predix-ai',
+                'bosch/industrial-genai',
+                'aveva/industrial-ai-assistant'
+            ]
+        },
+        {
+            code: 'mfg-robots', label: 'Industrial Robotics', flag: '🤖',
+            note: 'Skild · Covariant · Figure · 1X · Apptronik · Agility · Sanctuary · Tesla · Gemini Robotics-ER',
+            models: [
+                'skild/skild-brain',
+                'covariant/rfm-1',
+                'figure-ai/helix',
+                '1x/world-model',
+                'apptronik/apollo-gemini',
+                'agility/digit-arc',
+                'sanctuary/carbon',
+                'tesla/optimus-vlm',
+                'google-deepmind/gemini-robotics-er-1.6',
+                'google-deepmind/gemini-robotics-er-1.5'
+            ]
+        },
+        {
+            code: 'mfg-cad-vision', label: 'Industrial CAD / Vision / Twin', flag: '⚙️',
+            note: 'Autodesk Bernini · NVIDIA Omniverse Mega · Landing AI · PTC · Dassault',
+            models: [
+                'autodesk/bernini',
+                'nvidia/omniverse-mega',
+                'landing-ai/visionagent',
+                'ptc/creo-copilot',
+                'dassault/3dx-aura'
+            ]
         }
     ],
 
@@ -142,6 +194,8 @@ var Sovereign = {
         this._scores = App.data.scores;
 
         this._renderRegionMap();
+        this._renderCountryRadar();
+        this._renderCountryLeaderboard();
         var self = this;
         this.DIMENSIONS.forEach(function(dim) {
             self._renderDimension(dim);
@@ -183,6 +237,208 @@ var Sovereign = {
             if (this.REGIONS[i].models.indexOf(modelId) !== -1) return this.REGIONS[i];
         }
         return null;
+    },
+
+    // ─────────────── Country aggregate radar (3-axis per country) ───────────────
+    _renderCountryRadar: function() {
+        var el = document.getElementById('sov-country-radar');
+        if (!el) return;
+        el.textContent = '';
+        var self = this;
+
+        // For each region, compute mean best-score across each dimension's benchmarks
+        var radarData = [];
+        this.REGIONS.forEach(function(region) {
+            var presentModels = region.models.filter(function(mid) {
+                return self._models.some(function(m) { return m.id === mid; });
+            });
+            if (presentModels.length === 0) return;
+            var dimMeans = self.DIMENSIONS.map(function(dim) {
+                // For each benchmark in this dimension, take best score across the country's models;
+                // average those bests over benchmarks that have at least one score.
+                var benchBests = dim.benchmarks.map(function(bid) {
+                    var best = null;
+                    presentModels.forEach(function(mid) {
+                        var v = self._getScore(mid, bid);
+                        if (v != null && (best == null || v > best)) best = v;
+                    });
+                    return best;
+                }).filter(function(v) { return v != null; });
+                if (benchBests.length === 0) return 0;
+                return benchBests.reduce(function(a, b) { return a + b; }, 0) / benchBests.length;
+            });
+            // Skip countries with no scores in any dimension
+            if (dimMeans.every(function(v) { return v === 0; })) return;
+            radarData.push({
+                value: dimMeans,
+                name: region.flag + ' ' + region.label,
+                regionCode: region.code
+            });
+        });
+
+        if (radarData.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-sm text-gray-500 italic';
+            empty.textContent = '— 국가별 비교 데이터가 부족합니다';
+            el.appendChild(empty);
+            return;
+        }
+
+        var indicators = this.DIMENSIONS.map(function(d) { return { name: d.label, max: 100 }; });
+        var chart = echarts.init(el);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+                trigger: 'item',
+                formatter: function(p) {
+                    var lines = [p.name];
+                    p.value.forEach(function(v, i) {
+                        lines.push(indicators[i].name + ': ' + v.toFixed(1));
+                    });
+                    return lines.join('<br/>');
+                }
+            },
+            legend: {
+                data: radarData.map(function(d) { return d.name; }),
+                textStyle: { color: Theme.textMuted, fontSize: 10 },
+                top: 0, type: 'scroll'
+            },
+            radar: {
+                indicator: indicators,
+                shape: 'polygon',
+                axisName: { color: Theme.textMuted, fontSize: 11 },
+                splitLine: { lineStyle: { color: Theme.border } },
+                splitArea: { areaStyle: { color: ['transparent'] } },
+                axisLine: { lineStyle: { color: Theme.border } }
+            },
+            series: [{
+                type: 'radar',
+                data: radarData.map(function(d, i) {
+                    return {
+                        value: d.value,
+                        name: d.name,
+                        itemStyle: { color: Theme.series[i % Theme.series.length] },
+                        lineStyle: { color: Theme.series[i % Theme.series.length], width: 2 },
+                        areaStyle: { opacity: 0.08 }
+                    };
+                })
+            }]
+        });
+        window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    // ─────────────── Country leaderboard (full models × benchmarks per country) ───────────────
+    _renderCountryLeaderboard: function() {
+        var el = document.getElementById('sov-country-leaderboard');
+        if (!el) return;
+        el.textContent = '';
+        var self = this;
+
+        // Pick representative benchmarks: top-3 per dimension by score coverage
+        var unionBids = [];
+        this.DIMENSIONS.forEach(function(dim) {
+            var picked = dim.benchmarks.map(function(bid) {
+                var cnt = 0;
+                self._scores.forEach(function(s) { if (s.benchmark_id === bid) cnt++; });
+                return { bid: bid, cnt: cnt };
+            }).filter(function(x) { return x.cnt > 0; })
+              .sort(function(a, b) { return b.cnt - a.cnt; })
+              .slice(0, 3)
+              .map(function(x) { return x.bid; });
+            unionBids = unionBids.concat(picked);
+        });
+
+        var table = document.createElement('table');
+        table.className = 'sota-table text-sm';
+
+        var thead = document.createElement('thead');
+        var hr = document.createElement('tr');
+        var thR = document.createElement('th'); thR.textContent = 'Region'; hr.appendChild(thR);
+        var thC = document.createElement('th'); thC.textContent = 'Models'; thC.style.fontSize = '11px'; hr.appendChild(thC);
+        unionBids.forEach(function(bid) {
+            var th = document.createElement('th');
+            var b = self._getBenchmark(bid);
+            th.textContent = b ? b.name : bid;
+            th.style.fontSize = '11px';
+            hr.appendChild(th);
+        });
+        thead.appendChild(hr);
+        table.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+
+        // For color coding: per-benchmark global best across all regions in the leaderboard
+        var globalMaxes = {};
+        unionBids.forEach(function(bid) {
+            var max = 0;
+            self.REGIONS.forEach(function(region) {
+                region.models.forEach(function(mid) {
+                    var v = self._getScore(mid, bid);
+                    if (v != null && v > max) max = v;
+                });
+            });
+            globalMaxes[bid] = max;
+        });
+
+        this.REGIONS.forEach(function(region) {
+            var presentModels = region.models.filter(function(mid) {
+                return self._models.some(function(m) { return m.id === mid; });
+            });
+            if (presentModels.length === 0) return;
+
+            var tr = document.createElement('tr');
+
+            var tdR = document.createElement('td');
+            tdR.textContent = region.flag + ' ' + region.label;
+            tdR.style.whiteSpace = 'nowrap';
+            tdR.style.fontWeight = '600';
+            tr.appendChild(tdR);
+
+            var tdC = document.createElement('td');
+            tdC.textContent = presentModels.length;
+            tdC.style.textAlign = 'center';
+            tdC.style.color = Theme.textMuted;
+            tr.appendChild(tdC);
+
+            unionBids.forEach(function(bid) {
+                var td = document.createElement('td');
+                td.style.textAlign = 'center';
+                // Find best model for this benchmark within the country
+                var bestVal = null;
+                var bestModel = null;
+                presentModels.forEach(function(mid) {
+                    var v = self._getScore(mid, bid);
+                    if (v != null && (bestVal == null || v > bestVal)) {
+                        bestVal = v;
+                        bestModel = mid;
+                    }
+                });
+                if (bestVal != null) {
+                    td.textContent = bestVal.toFixed(1);
+                    var ratio = globalMaxes[bid] > 0 ? bestVal / globalMaxes[bid] : 0;
+                    if (ratio >= 0.99) { td.style.color = Theme.series[0]; td.style.fontWeight = 'bold'; }
+                    else if (ratio >= 0.9) td.style.color = Theme.series[1];
+                    else if (ratio >= 0.75) td.style.color = Theme.series[2];
+                    else td.style.color = Theme.series[3];
+                    td.style.cursor = 'pointer';
+                    td.setAttribute('role', 'button');
+                    td.title = (self._getModelName(bestModel) || bestModel) + ' · 클릭 시 검증 소스';
+                    td.addEventListener('click', (function(m, b) {
+                        return function() {
+                            if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(m, b);
+                        };
+                    })(bestModel, bid));
+                } else {
+                    td.textContent = '—';
+                    td.style.color = Theme.textDisabled;
+                }
+                tr.appendChild(td);
+            });
+
+            tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        el.appendChild(table);
     },
 
     _renderRegionMap: function() {
