@@ -644,6 +644,10 @@ var Sovereign = {
     // dir: 'asc' | 'desc' | null (cleared)
     _sortStates: {},
 
+    // Map view mode: 'all' (every registered model) or 'active' (released within last 12 months).
+    _mapViewMode: 'all',
+    _ACTIVE_WINDOW_MONTHS: 12,
+
     _cycleSort: function(tableId, key, defaultDir) {
         var s = this._sortStates[tableId] || { key: null, dir: null };
         if (s.key !== key) {
@@ -690,6 +694,7 @@ var Sovereign = {
         this._scores = App.data.scores;
 
         this._renderRegionMap();
+        this._renderTimeline();
         this._renderCountryRadar();
         this._renderCountryLeaderboard();
         var self = this;
@@ -697,7 +702,242 @@ var Sovereign = {
             self._renderDimension(dim);
         });
         this._renderHeatmap();
+
+        // Wire timeline filter + map view toggle controls (only on first render)
+        if (!this._initialized) {
+            var periodSel = document.getElementById('sov-timeline-period');
+            var sizeSel = document.getElementById('sov-timeline-size-mode');
+            if (periodSel) periodSel.addEventListener('change', function() { self._renderTimeline(); });
+            if (sizeSel) sizeSel.addEventListener('change', function() { self._renderTimeline(); });
+
+            var btnAll = document.getElementById('sov-map-view-all');
+            var btnActive = document.getElementById('sov-map-view-active');
+            if (btnAll && btnActive) {
+                btnAll.addEventListener('click', function() {
+                    self._mapViewMode = 'all';
+                    self._updateMapToggleStyles();
+                    self._renderRegionMap();
+                });
+                btnActive.addEventListener('click', function() {
+                    self._mapViewMode = 'active';
+                    self._updateMapToggleStyles();
+                    self._renderRegionMap();
+                });
+            }
+        }
         this._initialized = true;
+    },
+
+    _updateMapToggleStyles: function() {
+        var btnAll = document.getElementById('sov-map-view-all');
+        var btnActive = document.getElementById('sov-map-view-active');
+        if (!btnAll || !btnActive) return;
+        var activeCls = 'px-3 py-1 bg-blue-600 text-white';
+        var inactiveCls = 'px-3 py-1 bg-gray-800 text-gray-300';
+        btnAll.className = this._mapViewMode === 'all' ? activeCls : inactiveCls;
+        btnActive.className = this._mapViewMode === 'active' ? activeCls : inactiveCls;
+    },
+
+    // Returns true if a release date is within the active window (last N months from today).
+    _isActive: function(yyyyMm) {
+        if (!yyyyMm) return false;
+        var ts = this._dateToTs(yyyyMm);
+        var now = Date.now();
+        var cutoff = now - this._ACTIVE_WINDOW_MONTHS * 30 * 24 * 3600 * 1000;
+        return ts >= cutoff;
+    },
+
+    // Extract approximate parameter count (in billions) from a model name.
+    // Heuristic: look for patterns like "70B", "1.5B", "405B", "236B-A21B" (use total).
+    // Returns null if no number found.
+    _extractParamsB: function(modelName) {
+        if (!modelName) return null;
+        // Match the LARGEST number followed by B (case-insensitive)
+        var matches = modelName.match(/(\d+(?:\.\d+)?)\s*B\b/gi);
+        if (!matches || matches.length === 0) return null;
+        var nums = matches.map(function(s) {
+            var n = parseFloat(s.replace(/[Bb]/, '').trim());
+            return isNaN(n) ? null : n;
+        }).filter(function(n) { return n != null; });
+        if (nums.length === 0) return null;
+        // Return the largest (often "total" for MoE before "active")
+        return Math.max.apply(null, nums);
+    },
+
+    _bestScoreFor: function(modelId) {
+        var best = 0;
+        this._scores.forEach(function(s) {
+            if (s.model_id === modelId && typeof s.value === 'number' && s.value > best) {
+                best = s.value;
+            }
+        });
+        return best > 0 ? best : null;
+    },
+
+    // ─────────────── Release timeline (country × date × params) ───────────────
+    _renderTimeline: function() {
+        var el = document.getElementById('sov-timeline');
+        if (!el) return;
+        el.textContent = '';
+        var self = this;
+
+        var periodSel = document.getElementById('sov-timeline-period');
+        var sizeSel = document.getElementById('sov-timeline-size-mode');
+        var period = periodSel ? periodSel.value : '2025';
+        var sizeMode = sizeSel ? sizeSel.value : 'params';
+
+        // Build data points: { region, date, modelId, params, bestScore, modality }
+        var modelById = {};
+        this._models.forEach(function(m) { modelById[m.id] = m; });
+
+        // Categorize by primary modality cluster for color coding
+        function categoryOf(model) {
+            var mods = model.modalities || [];
+            if (mods.indexOf('video') !== -1) return 'video/world';
+            if (mods.indexOf('image') !== -1 && mods.indexOf('audio') !== -1) return 'omni';
+            if (mods.indexOf('image') !== -1) return 'multimodal';
+            if (mods.indexOf('audio') !== -1) return 'audio';
+            return 'text';
+        }
+        var categoryColors = {
+            'text': Theme.series[1],          // blue
+            'multimodal': Theme.series[0],     // green
+            'omni': Theme.series[4],           // purple
+            'video/world': Theme.series[5],    // pink
+            'audio': Theme.series[2]           // amber
+        };
+
+        // Iterate REGIONS to attach country labels
+        var points = [];
+        var regionLabels = [];
+        this.REGIONS.forEach(function(region) {
+            var hasAny = false;
+            region.models.forEach(function(mid) {
+                var date = self.RELEASE_DATES[mid];
+                var model = modelById[mid];
+                if (!date || !model) return;
+                // Period filter
+                var year = date.slice(0, 4);
+                if (period !== 'all') {
+                    if (period === '2023') {
+                        if (parseInt(year, 10) > 2023) return;
+                    } else {
+                        if (year !== period) return;
+                    }
+                }
+                hasAny = true;
+                var ts = self._dateToTs(date);
+                var paramsB = self._extractParamsB(model.name);
+                var bestScore = self._bestScoreFor(mid);
+                var symbolSize;
+                if (sizeMode === 'params') {
+                    symbolSize = paramsB ? Math.max(8, Math.min(50, Math.sqrt(paramsB) * 3.5)) : 8;
+                } else if (sizeMode === 'best-score') {
+                    symbolSize = bestScore ? Math.max(8, bestScore * 0.6) : 8;
+                } else {
+                    symbolSize = 14;
+                }
+                var cat = categoryOf(model);
+                points.push({
+                    value: [ts, region.label, symbolSize, paramsB, bestScore, mid, model.name, date, cat],
+                    itemStyle: {
+                        color: categoryColors[cat] || Theme.series[1],
+                        opacity: 0.85,
+                        borderColor: '#0b0f17',
+                        borderWidth: 1
+                    },
+                    symbolSize: symbolSize
+                });
+            });
+            if (hasAny) regionLabels.push(region.flag + ' ' + region.label);
+        });
+
+        if (points.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-sm text-gray-500 italic';
+            empty.textContent = '— 선택한 기간에 표시할 모델이 없습니다';
+            el.appendChild(empty);
+            return;
+        }
+
+        // Re-map y-axis values to "flag + label" so axis displays prettier names
+        var labelByPlain = {};
+        this.REGIONS.forEach(function(r) { labelByPlain[r.label] = r.flag + ' ' + r.label; });
+        points.forEach(function(p) { p.value[1] = labelByPlain[p.value[1]] || p.value[1]; });
+
+        // Sort regionLabels by latest model date desc (most active region on top)
+        var regionLatest = {};
+        points.forEach(function(p) {
+            var label = p.value[1];
+            if (!regionLatest[label] || p.value[0] > regionLatest[label]) regionLatest[label] = p.value[0];
+        });
+        regionLabels.sort(function(a, b) { return regionLatest[b] - regionLatest[a]; });
+
+        var chart = echarts.init(el);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+                trigger: 'item',
+                formatter: function(p) {
+                    var v = p.value;
+                    var lines = [
+                        '<strong>' + v[6] + '</strong>',
+                        '국가: ' + v[1],
+                        '출시: ' + v[7],
+                        v[3] != null ? '파라미터: ~' + v[3] + 'B' : '',
+                        v[4] != null ? 'Best 벤치마크: ' + v[4].toFixed(1) : '',
+                        '카테고리: ' + v[8]
+                    ].filter(Boolean);
+                    return lines.join('<br/>');
+                }
+            },
+            legend: {
+                data: Object.keys(categoryColors),
+                textStyle: { color: Theme.textMuted, fontSize: 10 },
+                top: 0,
+                selectedMode: 'multiple'
+            },
+            grid: { left: 8, right: 32, bottom: 50, top: 36, containLabel: true },
+            xAxis: {
+                type: 'time',
+                axisLabel: { color: Theme.textMuted, fontSize: 10 },
+                axisLine: { lineStyle: { color: Theme.borderStrong } },
+                splitLine: { lineStyle: { color: Theme.border, opacity: 0.3 } }
+            },
+            yAxis: {
+                type: 'category',
+                data: regionLabels,
+                axisLabel: { color: Theme.textMuted, fontSize: 11 },
+                axisLine: { lineStyle: { color: Theme.borderStrong } },
+                splitLine: { show: true, lineStyle: { color: Theme.border, opacity: 0.2 } }
+            },
+            dataZoom: [
+                { type: 'inside', xAxisIndex: 0 },
+                { type: 'slider', xAxisIndex: 0, height: 16, bottom: 8, textStyle: { color: Theme.textMuted, fontSize: 9 } }
+            ],
+            series: Object.keys(categoryColors).map(function(cat) {
+                return {
+                    name: cat,
+                    type: 'scatter',
+                    data: points.filter(function(p) { return p.value[8] === cat; }),
+                    emphasis: { focus: 'series', itemStyle: { borderColor: '#fff', borderWidth: 2 } }
+                };
+            })
+        });
+        chart.on('click', function(p) {
+            if (p && p.value && p.value[5]) {
+                if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(p.value[5]);
+            }
+        });
+        window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    _dateToTs: function(yyyyMm) {
+        // Convert "YYYY-MM" or "YYYY" to unix-ms timestamp (mid-month for sorting clarity)
+        var parts = yyyyMm.split('-');
+        var y = parseInt(parts[0], 10);
+        var m = parts.length > 1 ? parseInt(parts[1], 10) : 6;  // mid-year if month unknown
+        return new Date(Date.UTC(y, m - 1, 15)).getTime();
     },
 
     _getModelName: function(mid) {
@@ -983,10 +1223,21 @@ var Sovereign = {
         if (!container) return;
         container.textContent = '';
         var self = this;
+        this._updateMapToggleStyles();
+
+        var activeMode = this._mapViewMode === 'active';
 
         this.REGIONS.forEach(function(region) {
             var card = document.createElement('div');
             card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-4 flex flex-col';
+
+            // Determine which models pass current view filter.
+            var presentModels = region.models.filter(function(mid) {
+                return self._models.some(function(m) { return m.id === mid; });
+            });
+            var visibleModels = activeMode
+                ? presentModels.filter(function(mid) { return self._isActive(self.RELEASE_DATES[mid]); })
+                : presentModels;
 
             var head = document.createElement('div');
             head.className = 'flex items-center gap-2 mb-2';
@@ -998,12 +1249,11 @@ var Sovereign = {
             label.className = 'text-widget text-gray-200 font-semibold';
             label.textContent = region.label;
             head.appendChild(label);
-            var presentCnt = region.models.filter(function(mid) {
-                return self._models.some(function(m) { return m.id === mid; });
-            }).length;
             var count = document.createElement('span');
             count.className = 'ml-auto text-xs text-gray-500';
-            count.textContent = presentCnt + ' models';
+            count.textContent = activeMode
+                ? visibleModels.length + ' / ' + presentModels.length + ' active'
+                : presentModels.length + ' models';
             head.appendChild(count);
             card.appendChild(head);
 
@@ -1015,8 +1265,8 @@ var Sovereign = {
             var list = document.createElement('div');
             list.className = 'flex flex-col gap-1';
 
-            // Sort models within region by release date desc (unknown dates last).
-            var sortedModels = region.models.slice().sort(function(a, b) {
+            // Sort visible models by release date desc (unknown dates last).
+            var sortedModels = visibleModels.slice().sort(function(a, b) {
                 var da = self.RELEASE_DATES[a] || '';
                 var db = self.RELEASE_DATES[b] || '';
                 if (!da && !db) return 0;
@@ -1047,10 +1297,13 @@ var Sovereign = {
                 row.appendChild(badge);
                 list.appendChild(row);
             });
-            if (presentCnt === 0) {
+
+            if (visibleModels.length === 0) {
                 var empty = document.createElement('div');
                 empty.className = 'text-xs text-gray-600 italic';
-                empty.textContent = '— no models tracked yet';
+                empty.textContent = activeMode && presentModels.length > 0
+                    ? '— 최근 ' + self._ACTIVE_WINDOW_MONTHS + '개월 내 출시 모델 없음'
+                    : '— no models tracked yet';
                 list.appendChild(empty);
             }
             card.appendChild(list);

@@ -265,8 +265,39 @@
             <p class="text-gray-400 text-sm mb-4">2026년의 주요 AI 경쟁축은 더 이상 frontier 점수만이 아닙니다. <strong class="text-gray-200">언어 적응 · 의료 시스템 통합 · 정부 정책 정합</strong>은 frontier-only metric으로 측정되지 않는 sovereign value입니다. 본 메뉴는 국가별 sovereign AI ecosystem을 frontier 모델과 함께 비교합니다.</p>
 
             <div class="mb-10">
-                <h3 class="text-widget text-gray-300 mb-3">Sovereign AI Map — 국가별 ecosystem</h3>
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+                    <h3 class="text-widget text-gray-300">Sovereign AI Map — 국가별 ecosystem</h3>
+                    <div class="flex items-center gap-2">
+                        <label class="text-xs text-gray-400">뷰:</label>
+                        <div role="group" class="inline-flex rounded overflow-hidden border border-gray-700 text-xs">
+                            <button id="sov-map-view-all" class="px-3 py-1 bg-blue-600 text-white" title="모든 등록 모델 표시">전체 보기</button>
+                            <button id="sov-map-view-active" class="px-3 py-1 bg-gray-800 text-gray-300" title="region별 최근 12개월 이내 출시 모델만">최신 active</button>
+                        </div>
+                    </div>
+                </div>
                 <div id="sov-region-map" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-1">출시 타임라인 — 국가별 × 파라미터 크기</h3>
+                <p class="text-xs text-gray-500 mb-3">x축 = 출시일, y축 = 국가, 버블 크기 = 파라미터(B), 색상 = 카테고리. 버블 클릭 → 모델 상세 모달. 필터: <strong class="text-gray-300">전체 / 2024 / 2025 / 2026</strong>.</p>
+                <div class="flex gap-2 mb-2 flex-wrap items-center">
+                    <label class="text-xs text-gray-400">기간:</label>
+                    <select id="sov-timeline-period" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-xs">
+                        <option value="all">전체 (2021–현재)</option>
+                        <option value="2026">2026</option>
+                        <option value="2025" selected>2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023 이전</option>
+                    </select>
+                    <label class="text-xs text-gray-400 ml-2">크기 모드:</label>
+                    <select id="sov-timeline-size-mode" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-xs">
+                        <option value="params">파라미터(B)</option>
+                        <option value="best-score">Best benchmark score</option>
+                        <option value="uniform">균일</option>
+                    </select>
+                </div>
+                <div id="sov-timeline" class="h-96"></div>
             </div>
 
             <div class="mb-10">
@@ -388,7 +419,7 @@
     <script src="js/modal.js?v=20260424"></script>
     <script src="js/frontier-compare.js?v=20260425"></script>
     <script src="js/cyber-coding.js?v=20260424b"></script>
-    <script src="js/sovereign.js?v=20260425k"></script>
+    <script src="js/sovereign.js?v=20260425m"></script>
     <script src="js/charts.js?v=20260424"></script>
     <script src="js/filters.js?v=20260424"></script>
     <script src="js/explorer.js?v=20260424b"></script>
