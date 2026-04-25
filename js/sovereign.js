@@ -684,7 +684,10 @@ var Sovereign = {
     // dir: 'asc' | 'desc' | null (cleared)
     _sortStates: {},
 
-    // Map view mode: 'all' (every registered model) or 'active' (released within last 12 months).
+    // Map view mode:
+    //   'all'    — every registered model in flat list per region (date-sorted)
+    //   'active' — only models released within last 12 months
+    //   'vendor' — group models by vendor inside each region card
     _mapViewMode: 'all',
     _ACTIVE_WINDOW_MONTHS: 12,
 
@@ -889,6 +892,7 @@ var Sovereign = {
 
             var btnAll = document.getElementById('sov-map-view-all');
             var btnActive = document.getElementById('sov-map-view-active');
+            var btnVendor = document.getElementById('sov-map-view-vendor');
             if (btnAll && btnActive) {
                 btnAll.addEventListener('click', function() {
                     self._mapViewMode = 'all';
@@ -900,6 +904,13 @@ var Sovereign = {
                     self._updateMapToggleStyles();
                     self._renderRegionMap();
                 });
+                if (btnVendor) {
+                    btnVendor.addEventListener('click', function() {
+                        self._mapViewMode = 'vendor';
+                        self._updateMapToggleStyles();
+                        self._renderRegionMap();
+                    });
+                }
             }
 
             // Cumulative chart controls
@@ -926,11 +937,13 @@ var Sovereign = {
     _updateMapToggleStyles: function() {
         var btnAll = document.getElementById('sov-map-view-all');
         var btnActive = document.getElementById('sov-map-view-active');
+        var btnVendor = document.getElementById('sov-map-view-vendor');
         if (!btnAll || !btnActive) return;
         var activeCls = 'px-3 py-1 bg-blue-600 text-white';
         var inactiveCls = 'px-3 py-1 bg-gray-800 text-gray-300';
         btnAll.className = this._mapViewMode === 'all' ? activeCls : inactiveCls;
         btnActive.className = this._mapViewMode === 'active' ? activeCls : inactiveCls;
+        if (btnVendor) btnVendor.className = this._mapViewMode === 'vendor' ? activeCls : inactiveCls;
     },
 
     // Returns true if a release date is within the active window (last N months from today).
@@ -1755,7 +1768,43 @@ var Sovereign = {
         var self = this;
         this._updateMapToggleStyles();
 
-        var activeMode = this._mapViewMode === 'active';
+        var mode = this._mapViewMode;
+        var activeMode = mode === 'active';
+        var vendorMode = mode === 'vendor';
+
+        function buildModelRow(mid) {
+            var m = self._models.find(function(x) { return x.id === mid; });
+            if (!m) return null;
+            var releaseDate = self.RELEASE_DATES[mid];
+            var row = document.createElement('div');
+            row.className = 'flex items-center justify-between gap-2 text-xs';
+            var name = document.createElement('span');
+            name.className = 'text-gray-300 truncate cursor-pointer';
+            name.textContent = m.name + (releaseDate ? '  (' + releaseDate + ')' : '');
+            name.title = mid + ' — 클릭하면 모델 상세';
+            name.addEventListener('click', (function(modelId) {
+                return function() {
+                    if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
+                };
+            })(mid));
+            row.appendChild(name);
+            var badge = document.createElement('span');
+            badge.className = 'badge badge-' + (m.type || 'open-weight');
+            badge.textContent = (m.type || 'open-weight').replace('-', ' ');
+            row.appendChild(badge);
+            return row;
+        }
+
+        function sortByDateDesc(ids) {
+            return ids.slice().sort(function(a, b) {
+                var da = self.RELEASE_DATES[a] || '';
+                var db = self.RELEASE_DATES[b] || '';
+                if (!da && !db) return 0;
+                if (!da) return 1;
+                if (!db) return -1;
+                return db.localeCompare(da);
+            });
+        }
 
         this.REGIONS.forEach(function(region) {
             var card = document.createElement('div');
@@ -1769,6 +1818,7 @@ var Sovereign = {
                 ? presentModels.filter(function(mid) { return self._isActive(self.RELEASE_DATES[mid]); })
                 : presentModels;
 
+            // ── Card header ──
             var head = document.createElement('div');
             head.className = 'flex items-center gap-2 mb-2';
             var flag = document.createElement('span');
@@ -1779,11 +1829,30 @@ var Sovereign = {
             label.className = 'text-widget text-gray-200 font-semibold';
             label.textContent = region.label;
             head.appendChild(label);
+
+            // Compute vendor count for vendor-mode header
+            var vendorGroups = null;
+            if (vendorMode) {
+                vendorGroups = {};
+                visibleModels.forEach(function(mid) {
+                    var m = self._models.find(function(x) { return x.id === mid; });
+                    if (!m) return;
+                    var v = m.vendor || 'Other';
+                    if (!vendorGroups[v]) vendorGroups[v] = [];
+                    vendorGroups[v].push(mid);
+                });
+            }
+
             var count = document.createElement('span');
             count.className = 'ml-auto text-xs text-gray-500';
-            count.textContent = activeMode
-                ? visibleModels.length + ' / ' + presentModels.length + ' active'
-                : presentModels.length + ' models';
+            if (activeMode) {
+                count.textContent = visibleModels.length + ' / ' + presentModels.length + ' active';
+            } else if (vendorMode) {
+                var vendorCount = vendorGroups ? Object.keys(vendorGroups).length : 0;
+                count.textContent = vendorCount + ' vendors · ' + presentModels.length + ' models';
+            } else {
+                count.textContent = presentModels.length + ' models';
+            }
             head.appendChild(count);
             card.appendChild(head);
 
@@ -1792,41 +1861,58 @@ var Sovereign = {
             note.textContent = region.note;
             card.appendChild(note);
 
-            var list = document.createElement('div');
-            list.className = 'flex flex-col gap-1';
+            // ── Body ──
+            var body = document.createElement('div');
+            body.className = 'flex flex-col gap-1';
 
-            // Sort visible models by release date desc (unknown dates last).
-            var sortedModels = visibleModels.slice().sort(function(a, b) {
-                var da = self.RELEASE_DATES[a] || '';
-                var db = self.RELEASE_DATES[b] || '';
-                if (!da && !db) return 0;
-                if (!da) return 1;
-                if (!db) return -1;
-                return db.localeCompare(da);
-            });
+            if (vendorMode && vendorGroups) {
+                // Sort vendors by latest model date desc, then alphabetically
+                var vendorLatest = {};
+                Object.keys(vendorGroups).forEach(function(v) {
+                    var mostRecent = vendorGroups[v].reduce(function(acc, mid) {
+                        var d = self.RELEASE_DATES[mid] || '';
+                        return d > acc ? d : acc;
+                    }, '');
+                    vendorLatest[v] = mostRecent;
+                });
+                var sortedVendors = Object.keys(vendorGroups).sort(function(a, b) {
+                    var da = vendorLatest[a] || '', db = vendorLatest[b] || '';
+                    if (da !== db) return db.localeCompare(da);
+                    return a.localeCompare(b);
+                });
 
-            sortedModels.forEach(function(mid) {
-                var m = self._models.find(function(x) { return x.id === mid; });
-                if (!m) return;
-                var releaseDate = self.RELEASE_DATES[mid];
-                var row = document.createElement('div');
-                row.className = 'flex items-center justify-between gap-2 text-xs';
-                var name = document.createElement('span');
-                name.className = 'text-gray-300 truncate cursor-pointer';
-                name.textContent = m.name + (releaseDate ? '  (' + releaseDate + ')' : '');
-                name.title = mid + ' — 클릭하면 모델 상세';
-                name.addEventListener('click', (function(modelId) {
-                    return function() {
-                        if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
-                    };
-                })(mid));
-                row.appendChild(name);
-                var badge = document.createElement('span');
-                badge.className = 'badge badge-' + (m.type || 'open-weight');
-                badge.textContent = (m.type || 'open-weight').replace('-', ' ');
-                row.appendChild(badge);
-                list.appendChild(row);
-            });
+                sortedVendors.forEach(function(vendor) {
+                    var ids = sortByDateDesc(vendorGroups[vendor]);
+
+                    // Vendor sub-header
+                    var vendorHead = document.createElement('div');
+                    vendorHead.className = 'flex items-center justify-between gap-2 mt-2 mb-1 pb-1 border-b border-gray-800';
+                    var vName = document.createElement('span');
+                    vName.className = 'text-xs font-semibold text-gray-300';
+                    vName.textContent = vendor;
+                    vendorHead.appendChild(vName);
+                    var vCount = document.createElement('span');
+                    vCount.className = 'text-xs text-gray-500';
+                    vCount.textContent = ids.length + ' models';
+                    vendorHead.appendChild(vCount);
+                    body.appendChild(vendorHead);
+
+                    // Vendor's models (indented)
+                    ids.forEach(function(mid) {
+                        var row = buildModelRow(mid);
+                        if (!row) return;
+                        row.style.paddingLeft = '8px';
+                        body.appendChild(row);
+                    });
+                });
+            } else {
+                // Flat list (all / active modes)
+                var sortedModels = sortByDateDesc(visibleModels);
+                sortedModels.forEach(function(mid) {
+                    var row = buildModelRow(mid);
+                    if (row) body.appendChild(row);
+                });
+            }
 
             if (visibleModels.length === 0) {
                 var empty = document.createElement('div');
@@ -1834,9 +1920,9 @@ var Sovereign = {
                 empty.textContent = activeMode && presentModels.length > 0
                     ? '— 최근 ' + self._ACTIVE_WINDOW_MONTHS + '개월 내 출시 모델 없음'
                     : '— no models tracked yet';
-                list.appendChild(empty);
+                body.appendChild(empty);
             }
-            card.appendChild(list);
+            card.appendChild(body);
             container.appendChild(card);
         });
     },
