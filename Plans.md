@@ -1,7 +1,7 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: 19 sovereign regions, 378 models 2026-04-25
-**378 models · 241 benchmarks · 1,130 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources · 19 sovereign regions**
+## Current Status: 19 regions, 436 models (China gap-fill) 2026-04-25
+**436 models · 241 benchmarks · 1,130 scores · 186+ SOTA records · 19 PDF sources · 84+ web sources · 19 sovereign regions**
 **Live Site**: https://hollobit.github.io/SOTA/
 **Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-**
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy (no more manual bumps).

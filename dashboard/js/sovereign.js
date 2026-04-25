@@ -72,7 +72,7 @@ var Sovereign = {
         },
         {
             code: 'cn', label: 'China', flag: '🇨🇳',
-            note: '중국 frontier 풀라인업 — Qwen3/3.5/3.6 + DeepSeek V3-V4·R1 + Kimi K1.5-K2.6 + GLM 4.5-5.1 + Hunyuan + ERNIE 4.5-5.0 + Doubao Seed 1.5-2.0',
+            note: '중국 frontier 전체 — Qwen 풀+specialists · DeepSeek (V3-V4/R1/Coder/Math/VL) · Kimi · GLM · Hunyuan · ERNIE · Doubao · iFlytek Spark · Yi · Baichuan · InternLM · SenseNova · Skywork · MiniCPM · PanGu · Aquila · MOSS · Yuan',
             models: [
                 // Alibaba Qwen — full param lineup
                 'alibaba/qwen3.6-plus', 'alibaba/qwen3.6-27b', 'alibaba/qwen3.6-35b-a3b',
@@ -101,6 +101,39 @@ var Sovereign = {
                 'tencent/hunyuan-t1', 'tencent/hunyuan-large', 'tencent/hunyuan-turbo', 'tencent/hunyuan-7b',
                 // ByteDance Doubao Seed
                 'bytedance/seed-2.0-pro', 'bytedance/seed-1.6', 'bytedance/seed-1.5-pro', 'bytedance/seed-1.5-lite',
+                // iFlytek Spark (state-backed)
+                'iflytek/spark-x1', 'iflytek/spark-4-ultra', 'iflytek/spark-4', 'iflytek/antelope-3.0',
+                // 01.AI (Lee Kai-Fu)
+                '01-ai/yi-lightning', '01-ai/yi-large', '01-ai/yi-1.5-34b', '01-ai/yi-1.5-9b', '01-ai/yi-1.5-6b',
+                '01-ai/yi-coder-9b', '01-ai/yi-vl-34b',
+                // Baichuan
+                'baichuan/baichuan-4', 'baichuan/baichuan-3', 'baichuan/baichuan-2-13b', 'baichuan/baichuan-2-7b',
+                'baichuan/baichuan-m1-14b', 'baichuan/baichuan-omni-1.5',
+                // Shanghai AI Lab — InternLM/InternVL
+                'shanghai-ai-lab/internlm-3-8b', 'shanghai-ai-lab/internlm-2.5-20b',
+                'shanghai-ai-lab/internlm-2.5-7b', 'shanghai-ai-lab/internlm-2.5-1.8b',
+                'shanghai-ai-lab/internvl-3', 'shanghai-ai-lab/internvl-2.5',
+                // SenseTime
+                'sensetime/sensenova-v6', 'sensetime/sensechat-5', 'sensetime/sensenova',
+                // Skywork (Kunlun)
+                'skywork/skywork-moe', 'skywork/skywork-13b', 'skywork/skywork-r1v-3', 'skywork/skywork-o1',
+                // OpenBMB MiniCPM (Tsinghua)
+                'openbmb/minicpm-4.1-8b', 'openbmb/minicpm-4-8b', 'openbmb/minicpm-3-4b',
+                'openbmb/minicpm-v-2.6', 'openbmb/minicpm-o-2.6',
+                // Huawei PanGu
+                'huawei/pangu-ultra-moe', 'huawei/pangu-5', 'huawei/pangu-embedding',
+                // BAAI Aquila / Wudao
+                'baai/aquila2-34b', 'baai/aquila2-7b', 'baai/wudao-2',
+                // Fudan / Inspur
+                'fnlp/moss-2', 'ieit/yuan-2.0',
+                // Qwen specialists (reasoning, vision, code, math, audio)
+                'alibaba/qwq-32b', 'alibaba/qvq-72b-preview',
+                'alibaba/qwen2.5-coder-32b', 'alibaba/qwen2.5-coder-14b', 'alibaba/qwen2.5-coder-7b',
+                'alibaba/qwen2.5-math-72b', 'alibaba/qwen2.5-math-7b',
+                'alibaba/qwen2-vl-72b', 'alibaba/qwen3-vl-235b', 'alibaba/qwen2-audio',
+                // DeepSeek specialists
+                'deepseek/deepseek-coder-v2', 'deepseek/deepseek-coder-v2-lite',
+                'deepseek/deepseek-math-7b', 'deepseek/deepseek-vl2', 'deepseek/janus-pro-7b',
                 // Medical specialist
                 'freedomintelligence/huatuogpt-ii'
             ]
@@ -365,6 +398,42 @@ var Sovereign = {
         'tencent/hunyuan-t1': '2025-03', 'tencent/hunyuan-large': '2024-11', 'tencent/hunyuan-turbo': '2024-11', 'tencent/hunyuan-7b': '2024-11',
         // China — ByteDance Doubao Seed
         'bytedance/seed-2.0-pro': '2026-02', 'bytedance/seed-1.6': '2025-09', 'bytedance/seed-1.5-pro': '2025-04', 'bytedance/seed-1.5-lite': '2025-04',
+        // China — iFlytek Spark
+        'iflytek/spark-x1': '2025-04', 'iflytek/spark-4-ultra': '2024-10', 'iflytek/spark-4': '2024-06', 'iflytek/antelope-3.0': '2025-09',
+        // China — 01.AI
+        '01-ai/yi-lightning': '2024-11', '01-ai/yi-large': '2024-05',
+        '01-ai/yi-1.5-34b': '2024-05', '01-ai/yi-1.5-9b': '2024-05', '01-ai/yi-1.5-6b': '2024-05',
+        '01-ai/yi-coder-9b': '2024-09', '01-ai/yi-vl-34b': '2024-01',
+        // China — Baichuan
+        'baichuan/baichuan-4': '2024-05', 'baichuan/baichuan-3': '2024-01',
+        'baichuan/baichuan-2-13b': '2023-09', 'baichuan/baichuan-2-7b': '2023-09',
+        'baichuan/baichuan-m1-14b': '2025-01', 'baichuan/baichuan-omni-1.5': '2025-01',
+        // China — Shanghai AI Lab InternLM
+        'shanghai-ai-lab/internlm-3-8b': '2025-01', 'shanghai-ai-lab/internlm-2.5-20b': '2024-08',
+        'shanghai-ai-lab/internlm-2.5-7b': '2024-07', 'shanghai-ai-lab/internlm-2.5-1.8b': '2024-08',
+        'shanghai-ai-lab/internvl-3': '2025-04', 'shanghai-ai-lab/internvl-2.5': '2024-12',
+        // China — SenseTime
+        'sensetime/sensenova-v6': '2025-04', 'sensetime/sensechat-5': '2024-04', 'sensetime/sensenova': '2023-04',
+        // China — Skywork
+        'skywork/skywork-moe': '2024-06', 'skywork/skywork-13b': '2023-10',
+        'skywork/skywork-r1v-3': '2025-04', 'skywork/skywork-o1': '2024-11',
+        // China — OpenBMB MiniCPM
+        'openbmb/minicpm-4.1-8b': '2025-09', 'openbmb/minicpm-4-8b': '2025-06', 'openbmb/minicpm-3-4b': '2024-09',
+        'openbmb/minicpm-v-2.6': '2024-08', 'openbmb/minicpm-o-2.6': '2025-01',
+        // China — Huawei PanGu
+        'huawei/pangu-ultra-moe': '2025-05', 'huawei/pangu-5': '2025-04', 'huawei/pangu-embedding': '2025-06',
+        // China — BAAI Aquila
+        'baai/aquila2-34b': '2024-04', 'baai/aquila2-7b': '2023-10', 'baai/wudao-2': '2021-06',
+        // China — Fudan / Inspur
+        'fnlp/moss-2': '2024-08', 'ieit/yuan-2.0': '2023-12',
+        // China — Qwen specialists
+        'alibaba/qwq-32b': '2025-03', 'alibaba/qvq-72b-preview': '2024-12',
+        'alibaba/qwen2.5-coder-32b': '2024-11', 'alibaba/qwen2.5-coder-14b': '2024-11', 'alibaba/qwen2.5-coder-7b': '2024-09',
+        'alibaba/qwen2.5-math-72b': '2024-09', 'alibaba/qwen2.5-math-7b': '2024-09',
+        'alibaba/qwen2-vl-72b': '2024-08', 'alibaba/qwen3-vl-235b': '2025-09', 'alibaba/qwen2-audio': '2024-08',
+        // China — DeepSeek specialists
+        'deepseek/deepseek-coder-v2': '2024-06', 'deepseek/deepseek-coder-v2-lite': '2024-06',
+        'deepseek/deepseek-math-7b': '2024-02', 'deepseek/deepseek-vl2': '2024-12', 'deepseek/janus-pro-7b': '2025-01',
         // China — medical
         'freedomintelligence/huatuogpt-ii': '2024-05',
 
