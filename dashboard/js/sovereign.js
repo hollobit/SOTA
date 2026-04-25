@@ -1033,17 +1033,27 @@ var Sovereign = {
         // small number (0.05B = 50M) and label this row clearly.
         var UNKNOWN_PARAMS_Y = 0.05;
 
-        // Iterate ALL models in the registry, not just sovereign region members.
-        // Each model is assigned to a sovereign region if present, else a
-        // vendor-fallback group ("US Frontier", "Physical AI", or vendor name).
+        // Iterate ONLY models that belong to a sovereign region. Frontier
+        // vendors (Anthropic/OpenAI/Google/Meta/NVIDIA/xAI/Physical Intelligence)
+        // are intentionally excluded so the timeline focuses on sovereign AI
+        // categories only — the user's requirement.
         var pointsByLabel = {};   // legend label → array of points
         var processedIds = {};    // dedupe in case a model appears in 2 regions
         var totalProcessed = 0, totalKept = 0, totalUnknownParams = 0;
+        // Total population for the coverage badge: sovereign-region members only.
+        var sovereignPopulation = 0;
+        Object.keys(regionByModel).forEach(function(mid) {
+            if (modelById[mid]) sovereignPopulation++;
+        });
 
         this._models.forEach(function(model) {
             var mid = model.id;
             if (processedIds[mid]) return;
             processedIds[mid] = true;
+
+            // Sovereign-only filter: skip models not in any sovereign region.
+            var region = regionByModel[mid];
+            if (!region) return;
             totalProcessed++;
 
             var date = self.RELEASE_DATES[mid] || (self._localReleaseDates && self._localReleaseDates[mid]);
@@ -1059,8 +1069,6 @@ var Sovereign = {
                 }
             }
 
-            var region = regionByModel[mid] || vendorFallbackRegion(mid);
-            if (!region) return;
             var label = region.flag + ' ' + region.label;
 
             var paramsB = self._extractParamsB(model.name, mid);
@@ -1119,14 +1127,10 @@ var Sovereign = {
                 emphasis: { focus: 'series', itemStyle: { borderColor: '#fff', borderWidth: 2, opacity: 1 } }
             });
         }
-        // Sovereign regions first (in declared order)
+        // Sovereign regions only (in declared order). Vendor fallback labels
+        // are deliberately excluded — frontier models live in the Frontier
+        // Compare tab and Physical AI tab, not in the Sovereign timeline.
         this.REGIONS.forEach(function(r) { pushSeries(r.flag + ' ' + r.label); });
-        // Then fallback groups
-        ['🌐 US Frontier (proprietary)', '🦾 Physical AI'].forEach(pushSeries);
-        // Then any remaining vendor-stub labels (alphabetical)
-        Object.keys(pointsByLabel).filter(function(l) {
-            return !legendNames.includes(l);
-        }).sort().forEach(pushSeries);
 
         if (seriesData.length === 0) {
             var empty = document.createElement('p');
@@ -1157,8 +1161,8 @@ var Sovereign = {
         // sees how many points are placeholder vs real
         var coverageBadge = document.createElement('p');
         coverageBadge.className = 'text-xs text-gray-500 mb-2';
-        coverageBadge.textContent = '표시 중: ' + totalKept + ' / ' + totalProcessed
-            + ' models' + (totalUnknownParams > 0 && (yMode.indexOf('params') === 0)
+        coverageBadge.textContent = '표시 중: ' + totalKept + ' / ' + sovereignPopulation
+            + ' sovereign models' + (totalUnknownParams > 0 && (yMode.indexOf('params') === 0)
                 ? ' · 그 중 ' + totalUnknownParams + '개는 파라미터 미공개 (y=하단 마커)' : '');
         el.appendChild(coverageBadge);
         var chartHost = document.createElement('div');
