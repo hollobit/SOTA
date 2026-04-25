@@ -2,6 +2,24 @@
   {
     "type": "Feature",
     "date": "2026-04-25",
+    "benchmark_id": "출시 타임라인 axes 재구성 — x=출시일, y=파라미터, color=region",
+    "new_model": "Timeline scatter axes reoriented per user request",
+    "new_value": "기존 (x=date, y=country)에서 (x=출시일, y=파라미터 B)로 변경. y축은 log/linear/best-score 3-mode 토글 (default log scale). 각 region을 독립 series로 분리해 19색 distinct 팔레트 (Korea 녹색, France 파랑, China 황색, India 보라, Israel 핑크, UAE 청록, Singapore 주황, Switzerland 시안, US Legal/Finance 밝은 보라/장미, Russia 황록, Germany 노랑, UK 녹색, US-Open 하늘, Manufacturing/Robotics/CAD 자홍/장미/금/인디고). Legend 클릭으로 region 토글 가능. Bubble 크기는 sqrt(params)*2.4 클램핑 [8,28]px. 파라미터 정보가 없는 모델은 자동 제외 (params-log/linear 모드).",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Bugfix",
+    "date": "2026-04-25",
+    "benchmark_id": "Timeline + cumulative — dispose ECharts before re-render",
+    "new_model": "echarts.getInstanceByDom().dispose() before re-init",
+    "new_value": "Filter changes (period / size mode / y-mode / view mode / granularity) now properly redraw the chart. Previously echarts.init returned cached instance bound to same DOM node, so setOption merged into stale state and visual didn't update.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Feature",
+    "date": "2026-04-25",
     "benchmark_id": "Sovereign AI 누적 출시 추이 차트",
     "new_model": "국가별 / 국가-개발사별 cumulative release count over time",
     "new_value": "Sovereign AI 탭에 누적 출시 추이 그래프 추가. 두 가지 뷰: (1) 국가별 — 19개 region 전체의 cumulative release count가 시간 축에 step-line으로 누적, (2) 국가-개발사별 — vendor 단위로 분해, region 필터 + Top-18 by total count. 단위(granularity) 토글: 월/분기/연도. ECharts step:'end' line + dataZoom + cross-pointer tooltip with sorted descending series ranking. Region 모드에서 Korea 72 / France 48 / China 121 / India 22 / Japan 1 등 누적 카운트 표시. Vendor 모드에서 Mistral AI 37 / Alibaba 31 / TII 16 / DeepSeek 14 / LG 11 등.",
