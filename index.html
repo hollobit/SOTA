@@ -301,6 +301,29 @@
             </div>
 
             <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-1">누적 출시 추이 — 국가별 / 국가-개발사별</h3>
+                <p class="text-xs text-gray-500 mb-3">각 국가/region 또는 region+vendor의 sovereign 모델 누적 발표 갯수. 그래프 라인 hover 시 시점별 cumulative count 표시. 범례 클릭으로 시리즈 표시/숨김.</p>
+                <div class="flex gap-2 mb-2 flex-wrap items-center">
+                    <label class="text-xs text-gray-400">뷰:</label>
+                    <div role="group" class="inline-flex rounded overflow-hidden border border-gray-700 text-xs">
+                        <button id="sov-cum-view-region" class="px-3 py-1 bg-blue-600 text-white" title="국가별 누적 추이">국가별</button>
+                        <button id="sov-cum-view-vendor" class="px-3 py-1 bg-gray-800 text-gray-300" title="국가별 주요 개발사별 누적 추이">국가-개발사별</button>
+                    </div>
+                    <label class="text-xs text-gray-400 ml-2">단위:</label>
+                    <select id="sov-cum-granularity" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-xs">
+                        <option value="month">월(month)</option>
+                        <option value="quarter" selected>분기(quarter)</option>
+                        <option value="year">연도(year)</option>
+                    </select>
+                    <span id="sov-cum-region-filter" class="hidden ml-2 text-xs text-gray-400">
+                        Region:
+                        <select id="sov-cum-region-select" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 ml-1"></select>
+                    </span>
+                </div>
+                <div id="sov-cumulative" class="h-96"></div>
+            </div>
+
+            <div class="mb-10">
                 <h3 class="text-widget text-gray-300 mb-1">국가별 전체 비교 — 3-axis radar</h3>
                 <p class="text-xs text-gray-500 mb-3">각 국가/region을 3 sovereign axis(언어/의료/공공)로 평균 best-of-fleet 비교 — 한 국가 내 여러 모델의 best-per-benchmark 값을 차원별로 평균.</p>
                 <div id="sov-country-radar" class="h-96"></div>

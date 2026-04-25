@@ -648,6 +648,9 @@ var Sovereign = {
     _mapViewMode: 'all',
     _ACTIVE_WINDOW_MONTHS: 12,
 
+    // Cumulative chart state
+    _cumViewMode: 'region',  // 'region' | 'vendor'
+
     _cycleSort: function(tableId, key, defaultDir) {
         var s = this._sortStates[tableId] || { key: null, dir: null };
         if (s.key !== key) {
@@ -695,6 +698,7 @@ var Sovereign = {
 
         this._renderRegionMap();
         this._renderTimeline();
+        this._renderCumulative();
         this._renderCountryRadar();
         this._renderCountryLeaderboard();
         var self = this;
@@ -724,6 +728,24 @@ var Sovereign = {
                     self._renderRegionMap();
                 });
             }
+
+            // Cumulative chart controls
+            var cumRegionBtn = document.getElementById('sov-cum-view-region');
+            var cumVendorBtn = document.getElementById('sov-cum-view-vendor');
+            var cumGranSel = document.getElementById('sov-cum-granularity');
+            var cumRegionSel = document.getElementById('sov-cum-region-select');
+            if (cumRegionBtn && cumVendorBtn) {
+                cumRegionBtn.addEventListener('click', function() {
+                    self._cumViewMode = 'region';
+                    self._renderCumulative();
+                });
+                cumVendorBtn.addEventListener('click', function() {
+                    self._cumViewMode = 'vendor';
+                    self._renderCumulative();
+                });
+            }
+            if (cumGranSel) cumGranSel.addEventListener('change', function() { self._renderCumulative(); });
+            if (cumRegionSel) cumRegionSel.addEventListener('change', function() { self._renderCumulative(); });
         }
         this._initialized = true;
     },
@@ -938,6 +960,235 @@ var Sovereign = {
         var y = parseInt(parts[0], 10);
         var m = parts.length > 1 ? parseInt(parts[1], 10) : 6;  // mid-year if month unknown
         return new Date(Date.UTC(y, m - 1, 15)).getTime();
+    },
+
+    // Bucket a YYYY-MM date string into a time bucket key for cumulative aggregation.
+    // Returns end-of-period timestamp so cumulative steps land at period boundaries.
+    _bucketKey: function(yyyyMm, granularity) {
+        var parts = yyyyMm.split('-');
+        var y = parseInt(parts[0], 10);
+        var m = parts.length > 1 ? parseInt(parts[1], 10) : 6;
+        if (granularity === 'year') {
+            return new Date(Date.UTC(y, 11, 31)).getTime();
+        } else if (granularity === 'quarter') {
+            var qEnd = (Math.floor((m - 1) / 3) + 1) * 3;  // 3, 6, 9, 12
+            return new Date(Date.UTC(y, qEnd - 1, 28)).getTime();  // safe last day
+        } else {
+            // month: end of given month (28 is safe for any month)
+            return new Date(Date.UTC(y, m - 1, 28)).getTime();
+        }
+    },
+
+    _formatBucketLabel: function(ts, granularity) {
+        var d = new Date(ts);
+        var y = d.getUTCFullYear();
+        var m = d.getUTCMonth() + 1;
+        if (granularity === 'year') return String(y);
+        if (granularity === 'quarter') {
+            var q = Math.floor((m - 1) / 3) + 1;
+            return y + ' Q' + q;
+        }
+        return y + '-' + (m < 10 ? '0' + m : m);
+    },
+
+    // ─────────────── Cumulative release count by region or region+vendor ───────────────
+    _renderCumulative: function() {
+        var el = document.getElementById('sov-cumulative');
+        if (!el) return;
+        el.textContent = '';
+        var self = this;
+
+        var granSel = document.getElementById('sov-cum-granularity');
+        var granularity = granSel ? granSel.value : 'quarter';
+        var regionFilterWrap = document.getElementById('sov-cum-region-filter');
+        var regionSel = document.getElementById('sov-cum-region-select');
+
+        // Highlight active toggle button
+        var btnRegion = document.getElementById('sov-cum-view-region');
+        var btnVendor = document.getElementById('sov-cum-view-vendor');
+        var activeCls = 'px-3 py-1 bg-blue-600 text-white';
+        var inactiveCls = 'px-3 py-1 bg-gray-800 text-gray-300';
+        if (btnRegion && btnVendor) {
+            btnRegion.className = this._cumViewMode === 'region' ? activeCls : inactiveCls;
+            btnVendor.className = this._cumViewMode === 'vendor' ? activeCls : inactiveCls;
+        }
+
+        // Show region selector only in vendor mode
+        if (regionFilterWrap) {
+            if (this._cumViewMode === 'vendor') {
+                regionFilterWrap.classList.remove('hidden');
+                // Populate region select if empty
+                if (regionSel && regionSel.options.length === 0) {
+                    var opt = document.createElement('option');
+                    opt.value = '__all__';
+                    opt.textContent = '전체 region';
+                    regionSel.appendChild(opt);
+                    this.REGIONS.forEach(function(r) {
+                        var o = document.createElement('option');
+                        o.value = r.code;
+                        o.textContent = r.flag + ' ' + r.label;
+                        regionSel.appendChild(o);
+                    });
+                    regionSel.value = '__all__';
+                }
+            } else {
+                regionFilterWrap.classList.add('hidden');
+            }
+        }
+
+        // Collect (date, seriesKey) tuples
+        var modelById = {};
+        this._models.forEach(function(m) { modelById[m.id] = m; });
+
+        var seriesEvents = {};  // seriesKey → array of bucketTs
+        var seriesMeta = {};    // seriesKey → { label, region, vendor }
+
+        function addEvent(seriesKey, label, region, vendor, bucketTs) {
+            if (!seriesEvents[seriesKey]) {
+                seriesEvents[seriesKey] = [];
+                seriesMeta[seriesKey] = { label: label, region: region, vendor: vendor };
+            }
+            seriesEvents[seriesKey].push(bucketTs);
+        }
+
+        var regionFilter = regionSel ? regionSel.value : '__all__';
+
+        this.REGIONS.forEach(function(region) {
+            if (self._cumViewMode === 'vendor' && regionFilter !== '__all__' && region.code !== regionFilter) {
+                return;
+            }
+            region.models.forEach(function(mid) {
+                var m = modelById[mid];
+                var date = self.RELEASE_DATES[mid];
+                if (!m || !date) return;
+                var bucketTs = self._bucketKey(date, granularity);
+                if (self._cumViewMode === 'region') {
+                    var key = region.code;
+                    addEvent(key, region.flag + ' ' + region.label, region, null, bucketTs);
+                } else {
+                    var vendor = m.vendor || 'unknown';
+                    var key = region.code + '||' + vendor;
+                    var label = (regionFilter === '__all__' ? region.flag + ' ' : '') + vendor;
+                    addEvent(key, label, region, vendor, bucketTs);
+                }
+            });
+        });
+
+        var seriesKeys = Object.keys(seriesEvents);
+        if (seriesKeys.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-sm text-gray-500 italic';
+            empty.textContent = '— 데이터가 없습니다';
+            el.appendChild(empty);
+            return;
+        }
+
+        // Build the union of all bucket timestamps for x-axis
+        var allBuckets = {};
+        seriesKeys.forEach(function(k) {
+            seriesEvents[k].forEach(function(ts) { allBuckets[ts] = true; });
+        });
+        var bucketList = Object.keys(allBuckets).map(Number).sort(function(a, b) { return a - b; });
+
+        // For each series, build cumulative count over bucketList
+        // Vendor view can be huge — cap to top-N by total count to stay legible
+        var TOP_N_VENDORS = 18;
+        var seriesTotals = seriesKeys.map(function(k) {
+            return { key: k, total: seriesEvents[k].length };
+        }).sort(function(a, b) { return b.total - a.total; });
+        var keepKeys = (self._cumViewMode === 'vendor')
+            ? seriesTotals.slice(0, TOP_N_VENDORS).map(function(x) { return x.key; })
+            : seriesKeys;
+
+        var seriesData = keepKeys.map(function(k) {
+            // Count events per bucket
+            var perBucket = {};
+            seriesEvents[k].forEach(function(ts) { perBucket[ts] = (perBucket[ts] || 0) + 1; });
+            var cumulative = 0;
+            var data = bucketList.map(function(ts) {
+                cumulative += (perBucket[ts] || 0);
+                return [ts, cumulative];
+            });
+            // Trim leading zeros so each series starts when its first model ships
+            var firstNonZero = data.findIndex(function(d) { return d[1] > 0; });
+            if (firstNonZero > 0) data = data.slice(firstNonZero);
+            return {
+                name: seriesMeta[k].label,
+                type: 'line',
+                step: 'end',
+                showSymbol: false,
+                smooth: false,
+                data: data,
+                emphasis: { focus: 'series' },
+                lineStyle: { width: 2 }
+            };
+        });
+
+        // Color via Theme.series cycling
+        seriesData.forEach(function(s, i) {
+            var color = Theme.series[i % Theme.series.length];
+            s.itemStyle = { color: color };
+            s.lineStyle.color = color;
+        });
+
+        var legendData = seriesData.map(function(s) { return s.name; });
+        var subtitle = self._cumViewMode === 'region'
+            ? '전체 ' + seriesData.length + '개 region'
+            : 'Top-' + Math.min(TOP_N_VENDORS, seriesKeys.length) + ' vendors'
+              + (regionFilter !== '__all__' ? ' (filter: ' + regionFilter + ')' : '');
+
+        var chart = echarts.init(el);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            title: {
+                text: self._cumViewMode === 'region' ? '국가별 누적 출시' : '국가-개발사별 누적 출시',
+                subtext: subtitle,
+                textStyle: { color: Theme.textPrimary, fontSize: 13 },
+                subtextStyle: { color: Theme.textMuted, fontSize: 10 },
+                left: 'left', top: 0
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { type: 'cross', label: { backgroundColor: '#0b0f17' } },
+                formatter: function(arr) {
+                    if (!arr || arr.length === 0) return '';
+                    var label = self._formatBucketLabel(arr[0].value[0], granularity);
+                    var sorted = arr.slice().sort(function(a, b) { return b.value[1] - a.value[1]; });
+                    var lines = ['<strong>' + label + '</strong>'];
+                    sorted.slice(0, 12).forEach(function(p) {
+                        lines.push(p.marker + ' ' + p.seriesName + ': <strong>' + p.value[1] + '</strong>');
+                    });
+                    if (sorted.length > 12) lines.push('… +' + (sorted.length - 12) + ' more');
+                    return lines.join('<br/>');
+                }
+            },
+            legend: {
+                data: legendData,
+                textStyle: { color: Theme.textMuted, fontSize: 10 },
+                top: 36,
+                type: 'scroll'
+            },
+            grid: { left: 8, right: 32, bottom: 50, top: 80, containLabel: true },
+            xAxis: {
+                type: 'time',
+                axisLabel: { color: Theme.textMuted, fontSize: 10 },
+                axisLine: { lineStyle: { color: Theme.borderStrong } },
+                splitLine: { lineStyle: { color: Theme.border, opacity: 0.3 } }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Cumulative releases',
+                nameTextStyle: { color: Theme.textMuted, fontSize: 10 },
+                axisLabel: { color: Theme.textMuted, fontSize: 10 },
+                splitLine: { lineStyle: { color: Theme.border, opacity: 0.3 } }
+            },
+            dataZoom: [
+                { type: 'inside', xAxisIndex: 0 },
+                { type: 'slider', xAxisIndex: 0, height: 14, bottom: 8, textStyle: { color: Theme.textMuted, fontSize: 9 } }
+            ],
+            series: seriesData
+        });
+        window.addEventListener('resize', function() { chart.resize(); });
     },
 
     _getModelName: function(mid) {
