@@ -1,0 +1,62 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-25",
+    "session": "Korea lineup gap-fill. Adds historical lineage + missing param variants: Polyglot-Ko (EleutherAI Korea + KOAT/NIA legacy), 42dot LLM (Hyundai-Kia), LG EXAONE 3.0 (first open release Aug 2024), Upstage SOLAR-10.7B original Dec 2023, Kakao KoGPT 6B (2021), HyperCLOVA X HCX-003/DASH legacy, KT Mi:dm 1.0, NCSoft VARCO LLM 1.0/13B legacy, Trillion 7B Preview, EXAONE Atelier (image gen), and Korean vertical AI (Lunit medical, VUNO medical, LBOX legal, Riiid educational).",
+    "sources": [
+      "https://huggingface.co/EleutherAI/polyglot-ko-12.8b",
+      "https://huggingface.co/EleutherAI/polyglot-ko-5.8b",
+      "https://huggingface.co/42dot/42dot_LLM-SFT-1.3B",
+      "https://huggingface.co/LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct",
+      "https://huggingface.co/upstage/SOLAR-10.7B-Instruct-v1.0",
+      "https://huggingface.co/kakaobrain/kogpt",
+      "https://clova.ai/hyperclova",
+      "https://huggingface.co/NCSOFT",
+      "https://huggingface.co/trillionlabs/Trillion-7B-preview",
+      "https://www.lginnotek.com/exaone",
+      "https://www.naver.com/clova-x",
+      "https://www.lunit.io",
+      "https://www.vuno.co",
+      "https://lbox.kr",
+      "https://riiid.com"
+    ]
+  },
+  "models": [
+    { "id": "eleutherai/polyglot-ko-12.8b", "vendor": "EleutherAI Korea + KOAT", "name": "Polyglot-Ko 12.8B (legacy 2023)",       "type": "open-source", "modalities": ["text"] },
+    { "id": "eleutherai/polyglot-ko-5.8b",  "vendor": "EleutherAI Korea + KOAT", "name": "Polyglot-Ko 5.8B",                       "type": "open-source", "modalities": ["text"] },
+    { "id": "eleutherai/polyglot-ko-3.8b",  "vendor": "EleutherAI Korea + KOAT", "name": "Polyglot-Ko 3.8B",                       "type": "open-source", "modalities": ["text"] },
+    { "id": "eleutherai/polyglot-ko-1.3b",  "vendor": "EleutherAI Korea + KOAT", "name": "Polyglot-Ko 1.3B",                       "type": "open-source", "modalities": ["text"] },
+
+    { "id": "42dot/42dot-llm-sft-1.3b",    "vendor": "42dot (Hyundai-Kia)",     "name": "42dot LLM SFT 1.3B (automotive)",         "type": "open-weight", "modalities": ["text"] },
+    { "id": "42dot/42dot-llm-plm-1.3b",    "vendor": "42dot (Hyundai-Kia)",     "name": "42dot LLM PLM 1.3B (pretrained)",         "type": "open-weight", "modalities": ["text"] },
+
+    { "id": "lg/exaone-3.0-7.8b",          "vendor": "LG AI Research",          "name": "EXAONE 3.0 7.8B Instruct (first open)",   "type": "open-weight", "modalities": ["text"] },
+    { "id": "lg/exaone-atelier",           "vendor": "LG AI Research",          "name": "EXAONE Atelier (image gen)",              "type": "proprietary", "modalities": ["text", "image"] },
+
+    { "id": "upstage/solar-10.7b",         "vendor": "Upstage",                 "name": "SOLAR-10.7B Instruct v1.0 (Dec 2023 original)", "type": "open-weight", "modalities": ["text"] },
+
+    { "id": "kakao/kogpt-6b",              "vendor": "Kakao Brain",             "name": "KoGPT 6B (Nov 2021 legacy)",              "type": "open-weight", "modalities": ["text"] },
+
+    { "id": "naver/hyperclova-x-hcx-003",  "vendor": "Naver Cloud",             "name": "HyperCLOVA X HCX-003 (legacy)",           "type": "proprietary", "modalities": ["text"] },
+    { "id": "naver/hyperclova-x-dash",     "vendor": "Naver Cloud",             "name": "HyperCLOVA X DASH (mobile/edge)",         "type": "proprietary", "modalities": ["text"] },
+    { "id": "naver/hyperclova-seed-coder-8b","vendor": "Naver Cloud",           "name": "HyperCLOVA SEED Coder 8B",                "type": "open-weight", "modalities": ["text"] },
+    { "id": "naver/clova-x",               "vendor": "Naver",                   "name": "CLOVA X (consumer chat 2023)",            "type": "proprietary", "modalities": ["text"] },
+    { "id": "naver/cue",                   "vendor": "Naver",                   "name": "Cue: (search-augmented)",                  "type": "proprietary", "modalities": ["text"] },
+
+    { "id": "kt/midm-1.0",                 "vendor": "KT",                      "name": "Mi:dm 1.0 (legacy)",                       "type": "proprietary", "modalities": ["text"] },
+
+    { "id": "ncsoft/varco-llm-1.0-52b",    "vendor": "NCSoft",                  "name": "VARCO LLM 1.0 52B (legacy)",              "type": "proprietary", "modalities": ["text"] },
+    { "id": "ncsoft/varco-llm-13b",        "vendor": "NCSoft",                  "name": "VARCO LLM 13B (older)",                    "type": "open-weight", "modalities": ["text"] },
+
+    { "id": "trillionlabs/trillion-7b-preview", "vendor": "Trillion Labs",      "name": "Trillion 7B Preview (Sep 2024)",          "type": "open-weight", "modalities": ["text"] },
+
+    { "id": "lunit/lunit-insight-mmg",     "vendor": "Lunit",                   "name": "Lunit INSIGHT MMG (mammography)",          "type": "proprietary", "modalities": ["image"] },
+    { "id": "lunit/lunit-scope-pdl1",      "vendor": "Lunit",                   "name": "Lunit SCOPE PD-L1 (oncology)",             "type": "proprietary", "modalities": ["image"] },
+    { "id": "vuno/vuno-med-chest-xray",    "vendor": "VUNO",                    "name": "VUNO Med-Chest X-ray AI",                  "type": "proprietary", "modalities": ["image"] },
+    { "id": "vuno/vuno-med-deepbrain",     "vendor": "VUNO",                    "name": "VUNO Med-DeepBrain (neuro MRI)",           "type": "proprietary", "modalities": ["image"] },
+
+    { "id": "lbox/lbox-caselaw",           "vendor": "LBOX",                    "name": "LBOX Caselaw AI (Korean legal)",           "type": "proprietary", "modalities": ["text"] },
+    { "id": "riiid/riiid-tutor",           "vendor": "Riiid",                   "name": "Riiid TutorAI (educational)",              "type": "proprietary", "modalities": ["text"] }
+  ],
+  "benchmarks": [],
+  "scores": []
+}

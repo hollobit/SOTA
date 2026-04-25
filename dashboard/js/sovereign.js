@@ -35,7 +35,24 @@ var Sovereign = {
                 'konan/konan-llm-ond-4b', 'konan/konan-llm-ent-11',
                 'saltlux/luxia-21.4b',
                 'samsung/gauss-2-supreme', 'samsung/gauss-2-balanced', 'samsung/gauss-2-compact',
-                'snuh-naver/kmed-ai'
+                'snuh-naver/kmed-ai',
+                // Historical lineage
+                'lg/exaone-3.0-7.8b', 'lg/exaone-atelier',
+                'upstage/solar-10.7b',
+                'kakao/kogpt-6b',
+                'naver/hyperclova-x-hcx-003', 'naver/hyperclova-x-dash',
+                'naver/hyperclova-seed-coder-8b', 'naver/clova-x', 'naver/cue',
+                'kt/midm-1.0',
+                'ncsoft/varco-llm-1.0-52b', 'ncsoft/varco-llm-13b',
+                'trillionlabs/trillion-7b-preview',
+                '42dot/42dot-llm-sft-1.3b', '42dot/42dot-llm-plm-1.3b',
+                'eleutherai/polyglot-ko-12.8b', 'eleutherai/polyglot-ko-5.8b',
+                'eleutherai/polyglot-ko-3.8b', 'eleutherai/polyglot-ko-1.3b',
+                // Korean vertical AI
+                'lunit/lunit-insight-mmg', 'lunit/lunit-scope-pdl1',
+                'vuno/vuno-med-chest-xray', 'vuno/vuno-med-deepbrain',
+                'lbox/lbox-caselaw',
+                'riiid/riiid-tutor'
             ]
         },
         {
@@ -366,6 +383,23 @@ var Sovereign = {
         'saltlux/luxia-21.4b': '2024-03',
         'samsung/gauss-2-supreme': '2024-11', 'samsung/gauss-2-balanced': '2024-11', 'samsung/gauss-2-compact': '2024-11',
         'snuh-naver/kmed-ai': '2025',
+        // Korea — historical lineage
+        'lg/exaone-3.0-7.8b': '2024-08', 'lg/exaone-atelier': '2024-04',
+        'upstage/solar-10.7b': '2023-12',
+        'kakao/kogpt-6b': '2021-11',
+        'naver/hyperclova-x-hcx-003': '2024-04', 'naver/hyperclova-x-dash': '2024-08',
+        'naver/hyperclova-seed-coder-8b': '2025-04', 'naver/clova-x': '2023-08', 'naver/cue': '2023-09',
+        'kt/midm-1.0': '2023-10',
+        'ncsoft/varco-llm-1.0-52b': '2023-08', 'ncsoft/varco-llm-13b': '2023-09',
+        'trillionlabs/trillion-7b-preview': '2024-09',
+        '42dot/42dot-llm-sft-1.3b': '2023-09', '42dot/42dot-llm-plm-1.3b': '2023-09',
+        'eleutherai/polyglot-ko-12.8b': '2023-04', 'eleutherai/polyglot-ko-5.8b': '2023-04',
+        'eleutherai/polyglot-ko-3.8b': '2023-04', 'eleutherai/polyglot-ko-1.3b': '2023-04',
+        // Korean vertical AI
+        'lunit/lunit-insight-mmg': '2024-03', 'lunit/lunit-scope-pdl1': '2024-09',
+        'vuno/vuno-med-chest-xray': '2024-01', 'vuno/vuno-med-deepbrain': '2024-06',
+        'lbox/lbox-caselaw': '2024-05',
+        'riiid/riiid-tutor': '2024-03',
 
         // China — DeepSeek
         'deepseek/deepseek-v4-pro-max': '2026-04', 'deepseek/deepseek-v4-pro': '2026-04', 'deepseek/deepseek-v4-flash': '2026-04',
@@ -606,6 +640,44 @@ var Sovereign = {
     _scores: [],
     _initialized: false,
 
+    // Sort state per table — table id → { key, dir }.
+    // dir: 'asc' | 'desc' | null (cleared)
+    _sortStates: {},
+
+    _cycleSort: function(tableId, key, defaultDir) {
+        var s = this._sortStates[tableId] || { key: null, dir: null };
+        if (s.key !== key) {
+            this._sortStates[tableId] = { key: key, dir: defaultDir || 'desc' };
+        } else if (s.dir === 'desc') {
+            this._sortStates[tableId] = { key: key, dir: 'asc' };
+        } else if (s.dir === 'asc') {
+            this._sortStates[tableId] = { key: null, dir: null };
+        } else {
+            this._sortStates[tableId] = { key: key, dir: defaultDir || 'desc' };
+        }
+    },
+
+    _sortIndicator: function(tableId, key) {
+        var s = this._sortStates[tableId];
+        if (!s || s.key !== key) return '';
+        return s.dir === 'asc' ? ' ▲' : s.dir === 'desc' ? ' ▼' : '';
+    },
+
+    _makeSortableTh: function(tableId, key, label, defaultDir, onClick) {
+        var th = document.createElement('th');
+        th.textContent = label + this._sortIndicator(tableId, key);
+        th.style.cursor = 'pointer';
+        th.setAttribute('role', 'button');
+        th.setAttribute('title', '클릭하여 정렬 (' + (defaultDir === 'asc' ? 'asc → desc → off' : 'desc → asc → off') + ')');
+        var s = this._sortStates[tableId];
+        if (s && s.key === key) {
+            th.style.color = '#3b82f6';
+            th.style.fontWeight = 'bold';
+        }
+        th.addEventListener('click', onClick);
+        return th;
+    },
+
     init: function(models, benchmarks, scores) {
         this._models = models || [];
         this._benchmarks = benchmarks || [];
@@ -757,6 +829,7 @@ var Sovereign = {
         if (!el) return;
         el.textContent = '';
         var self = this;
+        var TABLE_ID = 'country-leaderboard';
 
         // Pick representative benchmarks: top-3 per dimension by score coverage
         var unionBids = [];
@@ -772,17 +845,70 @@ var Sovereign = {
             unionBids = unionBids.concat(picked);
         });
 
+        // Build row data first so we can sort
+        var rowData = this.REGIONS.map(function(region) {
+            var presentModels = region.models.filter(function(mid) {
+                return self._models.some(function(m) { return m.id === mid; });
+            });
+            if (presentModels.length === 0) return null;
+            var benchBests = {};
+            unionBids.forEach(function(bid) {
+                var bestVal = null, bestModel = null;
+                presentModels.forEach(function(mid) {
+                    var v = self._getScore(mid, bid);
+                    if (v != null && (bestVal == null || v > bestVal)) {
+                        bestVal = v;
+                        bestModel = mid;
+                    }
+                });
+                benchBests[bid] = { val: bestVal, model: bestModel };
+            });
+            return { region: region, count: presentModels.length, bests: benchBests };
+        }).filter(function(r) { return r != null; });
+
+        // Apply current sort
+        var s = this._sortStates[TABLE_ID];
+        if (s && s.key && s.dir) {
+            rowData.sort(function(a, b) {
+                var va, vb;
+                if (s.key === 'region') { va = a.region.label; vb = b.region.label; }
+                else if (s.key === 'count') { va = a.count; vb = b.count; }
+                else { va = a.bests[s.key] ? a.bests[s.key].val : null; vb = b.bests[s.key] ? b.bests[s.key].val : null; }
+                var aNull = va == null, bNull = vb == null;
+                if (aNull && bNull) return 0;
+                if (aNull) return 1;
+                if (bNull) return -1;
+                if (typeof va === 'string') {
+                    return s.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                }
+                return s.dir === 'asc' ? va - vb : vb - va;
+            });
+        }
+
         var table = document.createElement('table');
         table.className = 'sota-table text-sm';
 
         var thead = document.createElement('thead');
         var hr = document.createElement('tr');
-        var thR = document.createElement('th'); thR.textContent = 'Region'; hr.appendChild(thR);
-        var thC = document.createElement('th'); thC.textContent = 'Models'; thC.style.fontSize = '11px'; hr.appendChild(thC);
+        hr.appendChild(self._makeSortableTh(TABLE_ID, 'region', 'Region', 'asc', function() {
+            self._cycleSort(TABLE_ID, 'region', 'asc');
+            self._renderCountryLeaderboard();
+        }));
+        var thC = self._makeSortableTh(TABLE_ID, 'count', 'Models', 'desc', function() {
+            self._cycleSort(TABLE_ID, 'count', 'desc');
+            self._renderCountryLeaderboard();
+        });
+        thC.style.fontSize = '11px';
+        hr.appendChild(thC);
         unionBids.forEach(function(bid) {
-            var th = document.createElement('th');
             var b = self._getBenchmark(bid);
-            th.textContent = b ? b.name : bid;
+            var label = b ? b.name : bid;
+            var th = self._makeSortableTh(TABLE_ID, bid, label, 'desc', (function(localBid) {
+                return function() {
+                    self._cycleSort(TABLE_ID, localBid, 'desc');
+                    self._renderCountryLeaderboard();
+                };
+            })(bid));
             th.style.fontSize = '11px';
             hr.appendChild(th);
         });
@@ -804,12 +930,8 @@ var Sovereign = {
             globalMaxes[bid] = max;
         });
 
-        this.REGIONS.forEach(function(region) {
-            var presentModels = region.models.filter(function(mid) {
-                return self._models.some(function(m) { return m.id === mid; });
-            });
-            if (presentModels.length === 0) return;
-
+        rowData.forEach(function(row) {
+            var region = row.region;
             var tr = document.createElement('tr');
 
             var tdR = document.createElement('td');
@@ -819,7 +941,7 @@ var Sovereign = {
             tr.appendChild(tdR);
 
             var tdC = document.createElement('td');
-            tdC.textContent = presentModels.length;
+            tdC.textContent = row.count;
             tdC.style.textAlign = 'center';
             tdC.style.color = Theme.textMuted;
             tr.appendChild(tdC);
@@ -827,31 +949,22 @@ var Sovereign = {
             unionBids.forEach(function(bid) {
                 var td = document.createElement('td');
                 td.style.textAlign = 'center';
-                // Find best model for this benchmark within the country
-                var bestVal = null;
-                var bestModel = null;
-                presentModels.forEach(function(mid) {
-                    var v = self._getScore(mid, bid);
-                    if (v != null && (bestVal == null || v > bestVal)) {
-                        bestVal = v;
-                        bestModel = mid;
-                    }
-                });
-                if (bestVal != null) {
-                    td.textContent = bestVal.toFixed(1);
-                    var ratio = globalMaxes[bid] > 0 ? bestVal / globalMaxes[bid] : 0;
+                var best = row.bests[bid];
+                if (best && best.val != null) {
+                    td.textContent = best.val.toFixed(1);
+                    var ratio = globalMaxes[bid] > 0 ? best.val / globalMaxes[bid] : 0;
                     if (ratio >= 0.99) { td.style.color = Theme.series[0]; td.style.fontWeight = 'bold'; }
                     else if (ratio >= 0.9) td.style.color = Theme.series[1];
                     else if (ratio >= 0.75) td.style.color = Theme.series[2];
                     else td.style.color = Theme.series[3];
                     td.style.cursor = 'pointer';
                     td.setAttribute('role', 'button');
-                    td.title = (self._getModelName(bestModel) || bestModel) + ' · 클릭 시 검증 소스';
+                    td.title = (self._getModelName(best.model) || best.model) + ' · 클릭 시 검증 소스';
                     td.addEventListener('click', (function(m, b) {
                         return function() {
                             if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(m, b);
                         };
-                    })(bestModel, bid));
+                    })(best.model, bid));
                 } else {
                     td.textContent = '—';
                     td.style.color = Theme.textDisabled;
@@ -1049,6 +1162,7 @@ var Sovereign = {
 
     _renderDimTable: function(el, dim, activeBids, sovIds, frIds) {
         var self = this;
+        var TABLE_ID = 'dim-' + dim.id;
         var rows = sovIds.concat(frIds);
         var rowKind = {};
         sovIds.forEach(function(m) { rowKind[m] = 'sovereign'; });
@@ -1064,17 +1178,51 @@ var Sovereign = {
             maxes[bid] = max;
         });
 
+        // Apply sort
+        var s = this._sortStates[TABLE_ID];
+        if (s && s.key && s.dir) {
+            rows.sort(function(a, b) {
+                var va, vb;
+                if (s.key === 'model') { va = self._getModelName(a); vb = self._getModelName(b); }
+                else if (s.key === 'region') {
+                    var ra = self._regionFor(a), rb = self._regionFor(b);
+                    va = ra ? ra.label : (rowKind[a] === 'frontier' ? 'frontier' : '—');
+                    vb = rb ? rb.label : (rowKind[b] === 'frontier' ? 'frontier' : '—');
+                }
+                else { va = self._getScore(a, s.key); vb = self._getScore(b, s.key); }
+                var aNull = va == null, bNull = vb == null;
+                if (aNull && bNull) return 0;
+                if (aNull) return 1;
+                if (bNull) return -1;
+                if (typeof va === 'string') {
+                    return s.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                }
+                return s.dir === 'asc' ? va - vb : vb - va;
+            });
+        }
+
         var table = document.createElement('table');
         table.className = 'sota-table text-sm';
 
         var thead = document.createElement('thead');
         var hr = document.createElement('tr');
-        var thM = document.createElement('th'); thM.textContent = 'Model'; hr.appendChild(thM);
-        var thR = document.createElement('th'); thR.textContent = 'Region'; hr.appendChild(thR);
+        hr.appendChild(self._makeSortableTh(TABLE_ID, 'model', 'Model', 'asc', function() {
+            self._cycleSort(TABLE_ID, 'model', 'asc');
+            self._renderDimension(dim);
+        }));
+        hr.appendChild(self._makeSortableTh(TABLE_ID, 'region', 'Region', 'asc', function() {
+            self._cycleSort(TABLE_ID, 'region', 'asc');
+            self._renderDimension(dim);
+        }));
         activeBids.forEach(function(bid) {
-            var th = document.createElement('th');
             var b = self._getBenchmark(bid);
-            th.textContent = b ? b.name : bid;
+            var label = b ? b.name : bid;
+            var th = self._makeSortableTh(TABLE_ID, bid, label, 'desc', (function(localBid) {
+                return function() {
+                    self._cycleSort(TABLE_ID, localBid, 'desc');
+                    self._renderDimension(dim);
+                };
+            })(bid));
             th.style.fontSize = '11px';
             hr.appendChild(th);
         });
