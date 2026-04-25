@@ -1,0 +1,84 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-26",
+    "session": "April 2026 monitoring sweep — adds new flagship releases and benchmark backfills discovered via llm-stats, AA, vendor blogs, arxiv. New models: Tencent Hy3-preview (295B-A21B MoE flagship Apr 23), Tencent HY-World-2.0 (3D world FM Apr 15), Xiaomi MiMo V2.5 Pro (1T MoE τ³-Bench leader Apr 22), InclusionAI/Ant Group Ling-2.6-1T + flash (Apr 23 trillion non-reasoning open), LLaDA2.0-Uni (16B unified diffusion any-to-any Apr 21). New benchmarks: ARC-AGI-3, GAIA-2, FrontierScience, KMMMU, SuperGPQA, Codeforces ELO. Score backfills for GPT-5.5/Pro Terminal-Bench 2.0 + FrontierMath, Claude Mythos SWE-Verified 93.9 SOTA + USAMO, Opus 4.7 SWE-Verified, Gemma 4 31B AIME 2026 + LiveCodeBench, Muse Spark HealthBench Hard SOTA + HLE.",
+    "sources": [
+      "https://huggingface.co/tencent/Hy3-preview",
+      "https://hy3ai.com/",
+      "https://3d-models.hunyuan.tencent.com/world/world2_0/HY_World_2_0.pdf",
+      "https://huggingface.co/tencent/HY-World-2.0",
+      "https://mimo.xiaomi.com/mimo-v2-5-pro",
+      "https://huggingface.co/inclusionAI/Ling-2.6-1T",
+      "https://huggingface.co/inclusionAI/Ling-2.6-flash",
+      "https://huggingface.co/inclusionAI/LLaDA2.0-Uni",
+      "https://red.anthropic.com/2026/mythos-preview/",
+      "https://ai.meta.com/blog/introducing-muse-spark-msl/",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/",
+      "https://openai.com/index/introducing-gpt-5-5/",
+      "https://arcprize.org/blog/arc-agi-3-launch",
+      "https://sierra.ai/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice",
+      "https://openai.com/index/frontierscience/",
+      "https://arxiv.org/abs/2604.13058",
+      "https://huggingface.co/blog/tiiuae/qimma-arabic-leaderboard"
+    ]
+  },
+  "models": [
+    { "id": "tencent/hy3-preview",          "vendor": "Tencent",                "name": "Hunyuan 3 Preview (Hy3, 295B-A21B MoE)", "type": "open-weight", "modalities": ["text"] },
+    { "id": "tencent/hy-world-2.0",         "vendor": "Tencent",                "name": "HY-World 2.0 (3D world FM)",             "type": "open-weight", "modalities": ["text", "image", "video"] },
+    { "id": "xiaomi/mimo-v2.5-pro",         "vendor": "Xiaomi (MiMo)",          "name": "MiMo V2.5 Pro (1T-A42B MoE)",            "type": "proprietary", "modalities": ["text", "image", "audio", "video"] },
+    { "id": "xiaomi/mimo-v2.5",             "vendor": "Xiaomi (MiMo)",          "name": "MiMo V2.5",                              "type": "proprietary", "modalities": ["text"] },
+    { "id": "inclusionai/ling-2.6-1t",      "vendor": "InclusionAI (Ant Group)","name": "Ling 2.6 1T (MoE non-reasoning)",        "type": "open-weight", "modalities": ["text"] },
+    { "id": "inclusionai/ling-2.6-flash",   "vendor": "InclusionAI (Ant Group)","name": "Ling 2.6 Flash (104B / 7.4B-A)",          "type": "open-weight", "modalities": ["text"] },
+    { "id": "inclusionai/llada2-uni",       "vendor": "InclusionAI (Ant Group)","name": "LLaDA 2.0 Uni (16B diffusion any-to-any)","type": "open-weight", "modalities": ["text", "image"] }
+  ],
+  "benchmarks": [
+    { "id": "arc_agi_3",      "name": "ARC-AGI-3",       "category": "agent",     "description": "Interactive agentic reasoning benchmark — 1000+ levels / 150+ environments. Launched Mar 25 2026. $2M prize. Best frontier (Gemini 3.1 Pro Preview) 0.37%, humans 100%.", "metric": "accuracy" },
+    { "id": "gaia2",          "name": "GAIA-2",           "category": "agent",     "description": "Dynamic / async agent environments benchmark. Launched 2026 (ICLR/OpenReview). GPT-5 high 42% pass@1, Kimi K2 21% (open SOTA).",                                "metric": "accuracy" },
+    { "id": "frontier_science","name": "FrontierScience",  "category": "reasoning", "description": "OpenAI FrontierScience — 700 expert-level science (phys/chem/bio) Q (160 gold). Sub-tracks: Olympiad + Research. GPT-5.2 leads (Olymp 77 / Res 25).",         "metric": "accuracy" },
+    { "id": "kmmmu",          "name": "KMMMU",            "category": "multimodal","description": "Korean MMMU — 3,466 Q + 300 culture-specific + 627 hard subset across 9 disciplines × 9 visual types. Open-source 42.05% / proprietary 52.42% on hard subset (arxiv 2604.13058).", "metric": "accuracy" },
+    { "id": "qimma",          "name": "QIMMA (قِمّة)",     "category": "multilingual","description": "Arabic LLM quality-first leaderboard by TII — 52K samples / 109 subsets / 14 source benchmarks / 7 domains, 6 prompt templates. Jais-2-70B-Chat tops ArabicMMLU.", "metric": "score" },
+    { "id": "superqpga",      "name": "SuperGPQA",        "category": "reasoning", "description": "Extended GPQA-style expert science questions, harder set. Hy3-preview 51.6.",                                                                                  "metric": "accuracy" },
+    { "id": "codeforces_elo", "name": "Codeforces ELO",   "category": "coding",    "description": "Estimated Codeforces competitive-programming ELO rating from agent runs on real contests. Gemma 4 31B 2150.",                                                  "metric": "elo" },
+    { "id": "claw_eval",      "name": "Claw-Eval",        "category": "agent",     "description": "Xiaomi MiMo internal multi-tool agent eval — measures tool-call sequencing accuracy. MiMo V2.5 Pro 63.8.",                                                     "metric": "accuracy" },
+    { "id": "usamo",          "name": "USAMO",            "category": "math",      "description": "USA Mathematical Olympiad — high-school-level rigorous proof problems. Claude Mythos Preview 97.6.",                                                          "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "tencent/hy3-preview", "benchmark": "swe_bench_verified", "score": 74.4,  "unit": "%", "_source": "https://huggingface.co/tencent/Hy3-preview", "_note": "Hy3-preview SWE-Verified" },
+    { "model": "tencent/hy3-preview", "benchmark": "terminal_bench_2",   "score": 54.4,  "unit": "%", "_source": "https://huggingface.co/tencent/Hy3-preview", "_note": "Hy3-preview Terminal-Bench 2.0" },
+    { "model": "tencent/hy3-preview", "benchmark": "mmlu_pro",           "score": 65.76, "unit": "%", "_source": "https://huggingface.co/tencent/Hy3-preview", "_note": "Hy3-preview MMLU-Pro" },
+    { "model": "tencent/hy3-preview", "benchmark": "gsm8k",              "score": 95.37, "unit": "%", "_source": "https://huggingface.co/tencent/Hy3-preview", "_note": "Hy3-preview GSM8K" },
+    { "model": "tencent/hy3-preview", "benchmark": "math",               "score": 76.28, "unit": "%", "_source": "https://huggingface.co/tencent/Hy3-preview", "_note": "Hy3-preview MATH" },
+    { "model": "tencent/hy3-preview", "benchmark": "superqpga",          "score": 51.6,  "unit": "%", "_source": "https://huggingface.co/tencent/Hy3-preview", "_note": "Hy3-preview SuperGPQA" },
+
+    { "model": "xiaomi/mimo-v2.5-pro", "benchmark": "swe_bench_pro", "score": 57.2, "unit": "%", "_source": "https://mimo.xiaomi.com/mimo-v2-5-pro", "_note": "MiMo V2.5 Pro SWE-bench Pro" },
+    { "model": "xiaomi/mimo-v2.5-pro", "benchmark": "tau3_bench",   "score": 72.9, "unit": "%", "_source": "https://sierra.ai/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice", "_note": "MiMo V2.5 Pro τ³-Bench leader" },
+    { "model": "xiaomi/mimo-v2.5-pro", "benchmark": "claw_eval",    "score": 63.8, "unit": "%", "_source": "https://mimo.xiaomi.com/mimo-v2-5-pro", "_note": "MiMo V2.5 Pro Claw-Eval" },
+
+    { "model": "google/gemma-4-31b", "benchmark": "mmlu_pro",       "score": 85.2, "unit": "%", "_source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/", "_note": "Gemma 4 31B Dense" },
+    { "model": "google/gemma-4-31b", "benchmark": "aime_2026",      "score": 89.2, "unit": "%", "_source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/", "_note": "Gemma 4 31B AIME 2026" },
+    { "model": "google/gemma-4-31b", "benchmark": "gpqa_diamond",   "score": 84.3, "unit": "%", "_source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/", "_note": "Gemma 4 31B GPQA Diamond" },
+    { "model": "google/gemma-4-31b", "benchmark": "livecodebench_v6","score": 80.0,"unit": "%", "_source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/", "_note": "Gemma 4 31B LiveCodeBench v6" },
+    { "model": "google/gemma-4-31b", "benchmark": "tau2_bench",     "score": 86.4, "unit": "%", "_source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/", "_note": "Gemma 4 31B τ2-bench" },
+    { "model": "google/gemma-4-31b", "benchmark": "codeforces_elo", "score": 2150, "unit": "elo","_source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/", "_note": "Gemma 4 31B Codeforces ELO" },
+
+    { "model": "anthropic/claude-mythos-preview", "benchmark": "swe_bench_verified", "score": 93.9, "unit": "%", "_source": "https://red.anthropic.com/2026/mythos-preview/", "_note": "Claude Mythos Preview — SWE-Verified SOTA" },
+    { "model": "anthropic/claude-mythos-preview", "benchmark": "usamo",              "score": 97.6, "unit": "%", "_source": "https://red.anthropic.com/2026/mythos-preview/", "_note": "Claude Mythos USAMO" },
+
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "swe_bench_verified", "score": 87.6, "unit": "%", "_source": "https://red.anthropic.com/2026/mythos-preview/", "_note": "Opus 4.7 SWE-Verified (Mythos comparison baseline)" },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "terminal_bench_2",   "score": 69.4, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "Opus 4.7 Terminal-Bench 2.0 (GPT-5.5 comparison baseline)" },
+
+    { "model": "openai/gpt-5.5",     "benchmark": "terminal_bench_2", "score": 82.7, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "GPT-5.5 Terminal-Bench 2.0 SOTA" },
+    { "model": "openai/gpt-5.5",     "benchmark": "frontiermath",     "score": 51.7, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "GPT-5.5 FrontierMath" },
+    { "model": "openai/gpt-5.5",     "benchmark": "gdpval_aa",        "score": 84.9, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "GPT-5.5 GDPval (AA index)" },
+
+    { "model": "openai/gpt-5.5-pro", "benchmark": "frontiermath",     "score": 52.4, "unit": "%", "_source": "https://openai.com/index/introducing-gpt-5-5/", "_note": "GPT-5.5 Pro FrontierMath leader" },
+
+    { "model": "meta/muse-spark", "benchmark": "healthbench_hard", "score": 42.8, "unit": "%", "_source": "https://ai.meta.com/blog/introducing-muse-spark-msl/", "_note": "Muse Spark HealthBench Hard SOTA" },
+    { "model": "meta/muse-spark", "benchmark": "frontier_science", "score": 38.0, "unit": "%", "_source": "https://ai.meta.com/blog/introducing-muse-spark-msl/", "_note": "Muse Spark FrontierScience" },
+
+    { "model": "google/gemini-3.1-pro", "benchmark": "arc_agi_3", "score": 0.37, "unit": "%", "_source": "https://arcprize.org/blog/arc-agi-3-launch", "_note": "Gemini 3.1 Pro Preview — best frontier on ARC-AGI-3 (humans 100%)" },
+
+    { "model": "openai/gpt-5", "benchmark": "gaia2", "score": 42, "unit": "%", "_source": "https://openreview.net/forum?id=9gw03JpKK4", "_note": "GPT-5 high — GAIA-2 pass@1" },
+    { "model": "moonshot/kimi-k2-instruct", "benchmark": "gaia2", "score": 21, "unit": "%", "_source": "https://openreview.net/forum?id=9gw03JpKK4", "_note": "Kimi K2 — GAIA-2 open SOTA" }
+  ]
+}
