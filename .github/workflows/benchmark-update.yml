@@ -121,8 +121,6 @@ jobs:
         run: python -m cyber export
 
       - name: Stage dashboard + data for gh-pages
-        env:
-          BUILD_SHA: ${{ github.sha }}
         run: |
           # dashboard/data is a local dev symlink -> ../data/export.
           # Exclude it during copy; we rebuild public/data/ from the freshly
@@ -134,11 +132,13 @@ jobs:
           mkdir -p public/data
           rsync -a data/export/ public/data/
           touch public/.nojekyll
-          # Auto-rewrite ?v=YYYYMMDD[a-z]? cache busters to use the build
-          # commit SHA so every deploy invalidates the browser cache cleanly,
-          # eliminating the manual "?v=20260424" bump-on-each-PR pattern.
+          # Cache-bust uses HEAD of the checked-out tree (ref: ops), not
+          # github.sha which is the workflow trigger ref (main). Without
+          # this, ops content changes never invalidate the browser cache
+          # because main's SHA is static.
+          BUILD_SHA="$(git rev-parse HEAD)"
           BUILD_TAG="${BUILD_SHA:0:8}"
-          echo "Cache-busting JS asset versions to ?v=${BUILD_TAG}"
+          echo "Cache-busting JS asset versions to ?v=${BUILD_TAG} (ops HEAD)"
           sed -i "s|?v=2026[0-9a-z]\\+|?v=${BUILD_TAG}|g" public/index.html
           grep -E '\\.js\\?v=' public/index.html | head -10
 
