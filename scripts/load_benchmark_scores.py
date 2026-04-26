@@ -53,6 +53,7 @@ def main():
                 version="",
                 type=m.get("type", "proprietary"),
                 modalities=m.get("modalities", ["text"]),
+                release_date=m.get("released_at") or m.get("release_date"),
             ))
             total_models += 1
 

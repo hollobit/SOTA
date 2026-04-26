@@ -287,3 +287,143 @@ benchmarks:
     description: "MICCAI Brain Tumor Segmentation Challenge — multi-institutional MRI scans (FLAIR/T1/T1CE/T2). Whole tumor / tumor core / enhancing tumor Dice. Annual challenge since 2012."
     paper: "https://www.med.upenn.edu/cbica/brats2024/"
 
+
+  # ─────────────── Bio dual-use & safety ───────────────
+  - id: wmdp_bio
+    name: WMDP-Bio (Hazardous Bio Knowledge)
+    category: bio-safety
+    metric: accuracy
+    unit: "%"
+    expected_range: [30, 95]
+    description: "Center for AI Safety WMDP biology subset — 1,520 MCQs on hazardous bio knowledge (bioweapon proxy). Used to measure dual-use risk and unlearning effectiveness via RMU."
+    paper: "https://arxiv.org/abs/2403.03218"
+
+  - id: wmdp_chem
+    name: WMDP-Chem (Hazardous Chem Knowledge)
+    category: bio-safety
+    metric: accuracy
+    unit: "%"
+    expected_range: [30, 90]
+    description: "WMDP chemistry subset — 408 MCQs on hazardous chemical knowledge. Frontier dual-use proxy."
+    paper: "https://arxiv.org/abs/2403.03218"
+
+  - id: vct_virology
+    name: VCT (Virology Capabilities Test)
+    category: bio-safety
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 95]
+    description: "Practical virology troubleshooting benchmark — frontier reasoning models reportedly outperform 94% of expert virologists. SecureBio + UK AISI eval."
+    paper: "https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons"
+
+  - id: biolp_bench
+    name: BioLP-bench (Lab Protocol Errors)
+    category: bio-safety
+    metric: accuracy
+    unit: "%"
+    expected_range: [30, 85]
+    description: "Biological lab protocol benchmark — find/correct mistakes in real laboratory protocols. Tests procedural understanding."
+    paper: "https://www.biorxiv.org/content/10.1101/2024.08.21.608694v3.full"
+
+  # ─────────────── Protein structure & design ───────────────
+  - id: casp16_gdt
+    name: CASP16 GDT-TS (Protein Structure)
+    category: protein
+    metric: gdt_ts
+    unit: "%"
+    expected_range: [50, 99]
+    description: "CASP (Critical Assessment of Structure Prediction) round 16 GDT-TS on hard targets — biennial blind protein structure competition. AlphaFold 3 89.4, RoseTTAFold 3 86.0, OpenFold 3 87.8."
+    paper: "https://predictioncenter.org/casp16/"
+
+  - id: alphafold3_pae
+    name: AlphaFold3 Confident Predictions
+    category: protein
+    metric: accuracy
+    unit: "%"
+    expected_range: [50, 95]
+    description: "% of predicted residues with high pLDDT confidence (>70). Standard structure prediction quality metric. AlphaFold 3 84.7, ESM3 78.5, ESMFold 71.3."
+    paper: "https://www.nature.com/articles/s41586-024-07487-w"
+
+  - id: pdbbind_rmsd
+    name: PDBBind Pocket-Guided RMSD
+    category: protein
+    metric: rmsd
+    unit: "Å"
+    expected_range: [1.0, 4.0]
+    description: "Protein-ligand pose RMSD (lower=better) on PDBBind v2020 holdout — Boltz/Chai/AF3 docking benchmark. AF3 1.65, Chai-1 1.71, Boltz-2 1.78."
+    paper: "https://www.nature.com/articles/s41586-024-07487-w"
+
+  - id: absci_yield
+    name: Absci de novo Antibody Yield
+    category: protein
+    metric: binding_rate
+    unit: "%"
+    expected_range: [10, 90]
+    description: "% of de novo designed antibody candidates with experimentally validated binding (Absci wet-lab). Frontier de novo antibody design metric."
+    paper: "https://www.absci.com/"
+
+  # ─────────────── Drug discovery & chemistry ───────────────
+  - id: moleculenet_avg
+    name: MoleculeNet Average
+    category: chemistry
+    metric: auc_or_mae
+    unit: "%"
+    expected_range: [60, 92]
+    description: "MoleculeNet 17-task average AUC/MAE — standard chemistry benchmark (BBBP, ClinTox, HIV, MUV, BACE, ESOL, FreeSolv, Lipo, QM9, etc.). ChemFM 81.5, MoLFormer 76.2."
+    paper: "https://moleculenet.org/"
+
+  - id: tdc_admet
+    name: TDC ADMET Group
+    category: chemistry
+    metric: auc_or_mae
+    unit: "%"
+    expected_range: [60, 88]
+    description: "Therapeutics Data Commons ADMET property prediction — 22-task average. ChemFM 79.0, TamGen 73.5, MoLFormer 72.3."
+    paper: "https://tdcommons.ai/benchmark/admet_group/overview/"
+
+  # ─────────────── Korean medical sovereign ───────────────
+  - id: kmle_2025
+    name: KMLE 2025 (Korean Medical Licensing)
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 99]
+    description: "2025 Korean Medical Licensing Examination — 320 questions × 4 sections. SNUH KMed.ai 96.4 (3-yr avg, world-class claim), SNU-Med v1 86.2, Kakao Healthcare 78.5."
+    paper: "https://aclanthology.org/2024.bionlp-1.21/"
+
+  - id: kormedlawqa
+    name: KorMedLawQA
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [50, 95]
+    description: "SNUH-released Korean medical law QA benchmark on HuggingFace (snuh/KorMedLawQA). Tests Korean medical-legal reasoning."
+    paper: "https://huggingface.co/datasets/snuh/KorMedLawQA"
+
+  - id: lunit_dx_auc
+    name: Lunit Dx AUROC (CXR/MMG)
+    category: medical-imaging
+    metric: auroc
+    unit: "%"
+    expected_range: [85, 99]
+    description: "Lunit INSIGHT internal/external CXR + MMG validation AUROC on TB/lung-cancer/breast-cancer. CXR v4 96.8, MMG v3 94.1."
+    paper: "https://www.lunit.io/"
+
+  # ─────────────── Medical VLM ───────────────
+  - id: vqamed_2024
+    name: VQA-Med 2024
+    category: medical-imaging
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 90]
+    description: "ImageCLEF VQA-Med 2024 — radiology image VQA. Med-Flamingo, MedDr, BiomedGPT eval. MedDr 71.4, HuatuoGPT-Vision-7B 61.8, BiomedGPT-L 64.2."
+    paper: "https://www.imageclef.org/2024/medical/vqa"
+
+  - id: med_internvl_avg
+    name: Med-InternVL Avg
+    category: medical-imaging
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 90]
+    description: "Medical VLM average across 14 imaging tasks — derm/endo/path/radiology MCQ + VQA. MedDr eval set. MedDr 78.3, Intern-Medical-25B 75.6, HuatuoGPT-Vision-34B 72.1, BiomedGPT-XL 68.4."
+    paper: "https://arxiv.org/html/2404.15127v1/"
