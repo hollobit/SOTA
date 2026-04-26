@@ -11,7 +11,7 @@ var MedicalAI = {
             code: 'clinical-llm',
             label: 'Clinical LLMs',
             icon: '🩺',
-            note: 'ChatGPT for Clinicians · Med-Gemini · Med-PaLM · MedGemma — 임상의 워크플로(노트·리퍼럴·prior auth) 전용',
+            note: 'ChatGPT for Clinicians · Med-Gemini · Med-PaLM · MedGemma · Polaris · Almanac — 임상의 워크플로 전용',
             models: [
                 'openai/chatgpt-clinicians-gpt55',
                 'openai/chatgpt-clinicians-gpt54',
@@ -21,30 +21,150 @@ var MedicalAI = {
                 'google/med-palm-2',
                 'google/med-palm-1',
                 'google/medgemma-27b',
-                'google/medgemma-9b'
+                'google/medgemma-9b',
+                'google/medgemma-1.5-4b',
+                'hippocratic-ai/polaris-3',
+                'hippocratic-ai/polaris-2',
+                'hippocratic-ai/polaris-1',
+                'stanford/almanac-rag'
             ]
         },
         {
             code: 'biomedical-llm',
             label: 'Biomedical LLMs',
             icon: '🧬',
-            note: 'PubMed·Clinical guideline 사전학습 — OpenBioLLM · BioMistral · Meditron · BioGPT · Clinical Camel · MedAlpaca',
+            note: 'PubMed·Clinical guideline 사전학습 — OpenBioLLM · BioMistral · Meditron · BioGPT · Med42 · Aloe · BioMedLM · PMC-LLaMA · Me-LLaMA',
             models: [
                 'saama/openbiollm-llama3-70b',
                 'saama/openbiollm-llama3-8b',
                 'biomistral/biomistral-7b',
                 'epfl/meditron-70b',
                 'epfl/meditron-7b',
+                'openmeditron/meditron3-70b',
+                'openmeditron/meditron3-8b',
                 'microsoft/biogpt-large',
                 'stanford/clinical-camel',
-                'ucl/medalpaca-13b'
+                'ucl/medalpaca-13b',
+                'm42-health/med42-v2-70b',
+                'm42-health/med42-v2-8b',
+                'hpai-bsc/aloe-beta-70b',
+                'hpai-bsc/aloe-beta-8b',
+                'stanford/biomedlm-2.7b',
+                'chaoyi-wu/pmc-llama-13b',
+                'yale/me-llama-13b',
+                'tencent/medchat-llm-13b',
+                'ziya/asclepius-llama2-13b'
+            ]
+        },
+        {
+            code: 'multilingual-medical',
+            label: 'Multilingual & Regional Medical LLMs',
+            icon: '🌏',
+            note: 'MMedLM (6-lang) · Apollo · HuatuoGPT(중국) · Zhongjing · BianQue · DoctorGLM · BianCang(TCM) · AI-MedLex(SG)',
+            models: [
+                'magic-ai4med/mmedlm-2-70b',
+                'magic-ai4med/mmedlm-2-7b',
+                'magic-ai4med/mmedlm-2-1.8b',
+                'freedomintelligence/apollo-medlm-7b',
+                'freedomintelligence/huatuogpt-ii-7b',
+                'freedomintelligence/huatuogpt-o1-72b',
+                'thu-coai/zhongjing-13b',
+                'scutcyr/bianque-2',
+                'thudm/doctorglm-6b',
+                'openi-cn/biancang-7b',
+                'ai-singapore-mlb/aimedlex'
+            ]
+        },
+        {
+            code: 'biomedical-encoder',
+            label: 'Biomedical Encoder Models (BERT-class)',
+            icon: '📚',
+            note: 'GatorTron · ClinicalBERT · BlueBERT · BioBERT · PubMedBERT · Clinical ModernBERT — biomedical NER/relation/embeddings',
+            models: [
+                'ufl-nvidia/gatortron-large',
+                'stanford-emily/clinicalbert',
+                'ncbi-nlm/bluebert-large',
+                'ncbi-nlm/biobert-large',
+                'microsoft/pubmedbert',
+                'stanford/clinical-modernbert'
+            ]
+        },
+        {
+            code: 'korean-medical',
+            label: 'Korean Medical AI (Sovereign)',
+            icon: '🇰🇷',
+            note: 'SNUH KMed.ai (KMLE 96.4 SOTA) · SNU-Med v1 · Lunit MedScale 32B (정부 consortium) · Lunit INSIGHT · VUNO Med-DeepCARS/Chest · Kakao Healthcare Foundation · MedKAIST',
+            models: [
+                'snuh-naver/kmed-ai',
+                'snuh/snu-med-llm-v1',
+                'lunit/medscale-foundation-32b',
+                'lunit/insight-cxr-v4',
+                'lunit/insight-mmg-v3',
+                'vuno/med-deepcars',
+                'vuno/med-chest-x-detect',
+                'kakao-healthcare/kakaohealth-foundation-7b',
+                'kaist/medkaist-llm-13b'
+            ]
+        },
+        {
+            code: 'medical-vlm',
+            label: 'Medical Vision-Language Models',
+            icon: '👁️',
+            note: 'Med-Flamingo (Stanford 9B few-shot) · MedDr (InternVL 40B, derm/endo SOTA) · HuatuoGPT-Vision 7B/34B · BiomedGPT Large/XL · Intern-Medical 25B · Uni-Med · MedImageInsight · HealthGPT',
+            models: [
+                'stanford/med-flamingo-9b',
+                'smartlab/meddr-internvl-40b',
+                'freedomintelligence/huatuogpt-vision-7b',
+                'freedomintelligence/huatuogpt-vision-34b',
+                'taokz/biomedgpt-large',
+                'taokz/biomedgpt-xlarge',
+                'shanghai-ai-lab/intern-medical-25b',
+                'openbmb/uni-med-vlm-8b',
+                'microsoft/medimageinsight',
+                'microsoft/healthgpt'
+            ]
+        },
+        {
+            code: 'protein-fm',
+            label: 'Protein Structure & Design FMs',
+            icon: '🧪',
+            note: 'AlphaFold 2/3 + Server · ESMFold/ESM3 · RoseTTAFold 3 · Boltz-1/2 · Chai-1 · OpenFold 3 · Absci de novo antibody · Isomorphic Iso-RX',
+            models: [
+                'google-deepmind/alphafold-3',
+                'google-deepmind/alphafold-2',
+                'deepmind/alphafold-server',
+                'meta/esmfold-3b',
+                'meta/esm3-98b',
+                'ipd/rosettafold-3',
+                'boltz-ai/boltz-2',
+                'boltz-ai/boltz-1',
+                'chai-discovery/chai-1',
+                'openfold/openfold-3',
+                'absci/absci-design-fm',
+                'isomorphic/iso-rx-v1'
+            ]
+        },
+        {
+            code: 'drug-discovery',
+            label: 'Drug Discovery & Chemistry FMs',
+            icon: '💊',
+            note: 'MoLFormer / GP-MoLFormer (IBM) · ChemFM 3B (UCSD) · TamGen (target-aware) · Tx-LLM (Google) · BioNeMo 2 (NVIDIA) · LaMGen 3D · Recursion PhenomML',
+            models: [
+                'ibm/molformer-1.1b',
+                'ibm/gp-molformer-1.1b',
+                'ucsd/chemfm-3b',
+                'msr-asia/tamgen-3b',
+                'google/tx-llm',
+                'nvidia/bionemo-2',
+                'lamgen/lamgen-3d',
+                'valence-labs/recursion-phenomml'
             ]
         },
         {
             code: 'medical-imaging',
             label: 'Medical Imaging FMs (Universal/Radiology/CXR)',
             icon: '🖼️',
-            note: 'Universal segmentation — SAM 2 · MedSAM · SAM-Med2D/3D · BiomedCLIP · LLaVA-Med · RadFM · CheXzero · CXR Foundation · Rad-DINO',
+            note: 'Universal segmentation — SAM 2 · MedSAM · SAM-Med2D/3D · BiomedCLIP · LLaVA-Med · Dragonfly-Med · RadFM · CheXzero · CXR Foundation · Rad-DINO',
             models: [
                 'meta/sam-2.1-large',
                 'meta/sam-1-vit-h',
@@ -57,14 +177,15 @@ var MedicalAI = {
                 'microsoft/rad-dino',
                 'microsoft/cxr-foundation',
                 'shanghai-ai-lab/radfm',
-                'stanford/chexzero'
+                'stanford/chexzero',
+                'together-ai/dragonfly-med-8b'
             ]
         },
         {
             code: 'specialty-fm',
-            label: 'Specialty FMs (Pathology · Ophthalmology)',
+            label: 'Specialty FMs (Pathology · Ophthalmology · Cardiology · Dermatology)',
             icon: '🔬',
-            note: 'Pathology WSI — Virchow2/2G · UNI2 · CONCH · TITAN · Prov-GigaPath. Ophthalmology — RETFound · VisionFM',
+            note: 'Pathology — Virchow2/2G · UNI2 · CONCH · TITAN · Prov-GigaPath · PathChat. Ophthalmology — RETFound · VisionFM. Cardiology — EchoCLIP/EchoFM/Echo-Vision-FM. Dermatology — PanDerm · Derm Foundation',
             models: [
                 'paige-ai/virchow2',
                 'paige-ai/virchow2g',
@@ -72,8 +193,14 @@ var MedicalAI = {
                 'mahmoodlab/conch',
                 'mahmoodlab/titan',
                 'microsoft/prov-gigapath',
+                'mahmoodlab/pathchat',
                 'moorfields/retfound',
-                'shanghai-ai-lab/visionfm'
+                'shanghai-ai-lab/visionfm',
+                'echonet/echoclip',
+                'echonet/echofm',
+                'echonet/echo-vision-fm',
+                'monash/panderm',
+                'google/derm-foundation'
             ]
         },
         {
@@ -90,29 +217,64 @@ var MedicalAI = {
 
     BENCHMARK_SUITES: [
         {
-            label: '🩺 Clinical Workflow Chat',
-            note: 'OpenAI HealthBench Professional (525-task clinician chat) + base HealthBench — care consult / docs / research',
-            benchmarks: ['healthbench_professional', 'healthbench']
+            label: '🩺 Clinical Workflow Chat & Safety',
+            note: 'OpenAI HealthBench Professional/Base · Polaris clinical safety · CARE-QA · Almanac RAG factuality',
+            benchmarks: ['healthbench_professional', 'healthbench', 'polaris_safety', 'care_qa']
         },
         {
             label: '🎓 Medical Licensing & QA',
-            note: 'USMLE / MedQA / MedMCQA / PubMedQA / MMLU clinical / MedXpertQA / MedBullets',
-            benchmarks: ['medqa_usmle', 'medmcqa', 'pubmedqa', 'mmlu_clinical', 'medxpertqa', 'medbullets']
+            note: 'USMLE / MedQA / MedMCQA / PubMedQA / MMLU clinical / MedXpertQA / MedBullets / EHRQA',
+            benchmarks: ['medqa_usmle', 'medmcqa', 'pubmedqa', 'mmlu_clinical', 'medxpertqa', 'medbullets', 'ehrqa']
+        },
+        {
+            label: '🌏 Multilingual / Regional Medical QA',
+            note: 'MMedBench (6-lang rationale) · MedBench Chinese · KMLE Korean · MedAgentBench · Open Medical-LLM Leaderboard average',
+            benchmarks: ['mmedbench', 'medbench_cn', 'kmle', 'medagentbench', 'open_medical_llm_avg']
         },
         {
             label: '🏥 Clinical Case Reasoning',
-            note: 'NEJM Image Challenge · JAMA Clinical Challenge — case-based diagnostic reasoning',
-            benchmarks: ['nejm_image', 'jama_clin_chal']
+            note: 'NEJM Image Challenge · JAMA Clinical Challenge — case-based diagnostic reasoning · MedXpertQA Multimodal',
+            benchmarks: ['nejm_image', 'jama_clin_chal', 'medxpertqa_mm']
         },
         {
             label: '🧊 Medical Imaging Segmentation',
-            note: 'Universal Med-Seg Dice (CT/MRI/X-ray/endoscopy/ultrasound) — 11+ modality median Dice',
-            benchmarks: ['medseg_dice']
+            note: 'Universal Med-Seg Dice (CT/MRI/X-ray/endoscopy/ultrasound) · BraTS Brain · OmniMedVQA · RAD-ChestCT',
+            benchmarks: ['medseg_dice', 'brats', 'omnimedvqa', 'rad_chestct']
         },
         {
             label: '🔬 Specialty Imaging FMs',
-            note: 'RetBench (ophthalmology AUC) · RadBench (radiology) · Pathology External AUROC',
-            benchmarks: ['retbench_auc', 'radbench', 'path_bench']
+            note: 'RetBench (ophthalmology AUC) · RadBench (radiology) · Pathology External AUROC · EchoNet LVEF (cardiology) · PanDerm (dermatology)',
+            benchmarks: ['retbench_auc', 'radbench', 'path_bench', 'echonet_lvef_auc50', 'echonet_lvef_mae', 'panderm_skin']
+        },
+        {
+            label: '📚 Biomedical NLP (Encoder Models)',
+            note: 'BLUE benchmark · MedS-Bench 11-task · AMEGA on-device — BERT-class biomedical encoder evaluation',
+            benchmarks: ['blue_benchmark', 'meds_bench', 'amega']
+        },
+        {
+            label: '🇰🇷 Korean Medical Sovereign',
+            note: 'KMLE 2025 (320Q × 4 sections, SNUH 96.4) · KorMedLawQA · Lunit Dx AUROC (CXR/MMG external)',
+            benchmarks: ['kmle_2025', 'kormedlawqa', 'lunit_dx_auc']
+        },
+        {
+            label: '👁️ Medical VLM Evaluation',
+            note: 'Med-InternVL Avg (14 imaging tasks) · VQA-Med 2024 · MedXpertQA Multimodal · NEJM Image — vision-language medical eval',
+            benchmarks: ['med_internvl_avg', 'vqamed_2024']
+        },
+        {
+            label: '⚠️ Bio Dual-Use & Safety',
+            note: 'WMDP-Bio/Chem (CAIS hazardous knowledge proxy) · VCT (Virology Capabilities Test, beats 94% expert virologists) · BioLP-bench (lab protocol error correction)',
+            benchmarks: ['wmdp_bio', 'wmdp_chem', 'vct_virology', 'biolp_bench']
+        },
+        {
+            label: '🧪 Protein Structure & Design',
+            note: 'CASP16 GDT-TS · AlphaFold3 confident pLDDT · PDBBind RMSD (docking) · Absci de novo antibody binding yield',
+            benchmarks: ['casp16_gdt', 'alphafold3_pae', 'pdbbind_rmsd', 'absci_yield']
+        },
+        {
+            label: '💊 Drug Discovery & Chemistry FMs',
+            note: 'MoleculeNet 17-task avg · TDC ADMET 22-task — chemistry FM property prediction (MoLFormer / ChemFM / TamGen)',
+            benchmarks: ['moleculenet_avg', 'tdc_admet']
         }
     ],
 
@@ -136,7 +298,62 @@ var MedicalAI = {
         'Shanghai AI Lab':                   '#ef4444',
         'Moorfields + UCL':                  '#84cc16',
         'Paige AI + MSK':                    '#ec4899',
-        'Mahmood Lab (Harvard)':             '#a855f7'
+        'Mahmood Lab (Harvard)':             '#a855f7',
+        'Hippocratic AI':                    '#22d3ee',
+        'OpenMeditron (EPFL+Yale)':          '#f59e0b',
+        'MAGIC-AI4Med (Shanghai Jiao Tong)': '#ef4444',
+        'M42 Health (UAE)':                  '#10b981',
+        'HPAI BSC (Barcelona)':              '#fb923c',
+        'FreedomIntelligence (CUHK)':        '#dc2626',
+        'Stanford CRFM':                     '#dc2626',
+        'Yale + UPenn':                      '#84cc16',
+        'Cedars-Sinai (echonet)':            '#ec4899',
+        'Cedars-Sinai':                      '#ec4899',
+        'Google Health':                     '#4285f4',
+        'Monash University':                 '#fb923c',
+        'Univ Florida + NVIDIA':             '#76b900',
+        'Microsoft Research':                '#3b82f6',
+        'Together AI':                       '#a855f7',
+        'AI Singapore':                      '#0ea5e9',
+        'Tsinghua / SJTU':                   '#ef4444',
+        'Zhengzhou University':              '#ef4444',
+        'OpenI / Shandong Univ':             '#ef4444',
+        'SCUTCyR (S. China Univ. of Tech.)': '#ef4444',
+        'NCBI / NIH':                        '#3b82f6',
+        'Korea Univ + NCBI':                 '#84cc16',
+        'Stanford AIMI':                     '#dc2626',
+        'Emily Alsentzer (MIT/Harvard)':     '#a855f7',
+        'Stanford (Hiesinger Lab)':          '#dc2626',
+        'UT Southwestern':                   '#dc2626',
+        'Shanghai Jiao Tong (Wu et al)':     '#ef4444',
+        'Stanford / Daejin Univ':            '#dc2626',
+        'SNUH + Naver Cloud':                '#03c75a',
+        'Seoul National University Hospital':'#03c75a',
+        'Lunit + KAIST + SNU + Kakao Healthcare': '#0090d4',
+        'Lunit':                             '#0090d4',
+        'VUNO':                              '#22c55e',
+        'Kakao Healthcare':                  '#fee500',
+        'KAIST':                             '#004080',
+        'Stanford + Hospital Italiano':      '#dc2626',
+        'SmartLab HKUST + InternVL Team':    '#ef4444',
+        'Lehigh + IBM':                      '#3b82f6',
+        'OpenBMB':                           '#a855f7',
+        'Google DeepMind + Isomorphic Labs': '#4285f4',
+        'Meta FAIR':                         '#1877f2',
+        'EvolutionaryScale (ex-Meta)':       '#0866ff',
+        'IPD UW (Baker Lab)':                '#7c3aed',
+        'Boltz-AI (MIT)':                    '#a855f7',
+        'Chai Discovery':                    '#10b981',
+        'OpenFold Consortium':               '#06b6d4',
+        'IBM Research':                      '#054ada',
+        'UC San Diego (Wang Lab)':           '#dc2626',
+        'Microsoft Research Asia':           '#3b82f6',
+        'Google Research':                   '#4285f4',
+        'NVIDIA':                            '#76b900',
+        'Isomorphic Labs':                   '#7c3aed',
+        'Tencent AI Lab':                    '#0ea5e9',
+        'Recursion + Valence Labs':          '#f97316',
+        'Absci':                             '#dc2626'
     },
 
     _models: [],
@@ -244,7 +461,9 @@ var MedicalAI = {
                 var row = document.createElement('div');
                 row.className = 'flex justify-between text-xs';
                 var nm = document.createElement('span');
-                nm.textContent = m.name + (m.released_at ? ' (' + m.released_at + ')' : '');
+                var rd = m.release_date || m.released_at;
+                if (rd && rd.length >= 7) rd = rd.slice(0, 7);
+                nm.textContent = m.name + (rd ? ' (' + rd + ')' : '');
                 nm.style.cursor = 'pointer';
                 nm.title = mid + ' — 클릭하면 모델 상세';
                 nm.addEventListener('click', (function(modelId) {

@@ -2203,5 +2203,201 @@
     "category": "medical-imaging",
     "description": "Pathology FM external benchmarking — 9-task average AUROC",
     "metric": "auroc"
+  },
+  {
+    "id": "meds_bench",
+    "name": "MedS-Bench (11-task clinical)",
+    "category": "medical",
+    "description": "Comprehensive 11 high-level clinical task benchmark from npj Digital Medicine 2024 — evaluates Meditron, Mistral, InternLM2, Llama 3, Qwen 2, Baichuan 2, Med42-v2, GPT-4, Claude 3.5",
+    "metric": "score"
+  },
+  {
+    "id": "mmedbench",
+    "name": "MMedBench (Multilingual)",
+    "category": "medical",
+    "description": "Multilingual medical multi-choice QA with rationale — 6 languages (English/Chinese/Japanese/French/Russian/Spanish). MMedLM eval",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medbench_cn",
+    "name": "MedBench (Chinese)",
+    "category": "medical",
+    "description": "Large-scale Chinese medical benchmark (arXiv:2312.12806) — clinical diagnosis, prevention, BianQue/Sunsimiao/DoctorGLM eval",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medagentbench",
+    "name": "MedAgentBench",
+    "category": "medical",
+    "description": "Virtual EHR environment to benchmark medical LLM agents (NEJM AI 2025). Realistic patient case workflows",
+    "metric": "accuracy"
+  },
+  {
+    "id": "amega",
+    "name": "AMEGA Dataset",
+    "category": "medical",
+    "description": "On-device medical LLM benchmark — clinical reasoning across multiple specialties. Med42 + Aloe lead on-device",
+    "metric": "accuracy"
+  },
+  {
+    "id": "blue_benchmark",
+    "name": "BLUE (Biomedical Lang. Understanding)",
+    "category": "medical",
+    "description": "5-task / 10-dataset benchmark — sentence similarity, NER, relation extraction, document classification, NLI for biomedical/clinical text. BlueBERT reference",
+    "metric": "f1"
+  },
+  {
+    "id": "echonet_lvef_mae",
+    "name": "EchoNet-Dynamic LVEF MAE",
+    "category": "medical-imaging",
+    "description": "Left ventricular ejection fraction prediction MAE on EchoNet-Dynamic dataset — Stanford cardiac ultrasound external test set",
+    "metric": "mae"
+  },
+  {
+    "id": "echonet_lvef_auc50",
+    "name": "EchoNet LVEF AUC@50%",
+    "category": "medical-imaging",
+    "description": "AUC at clinical LVEF threshold of 50% (heart failure indicator) on EchoNet-Dynamic",
+    "metric": "auc"
+  },
+  {
+    "id": "panderm_skin",
+    "name": "PanDerm (Skin Disease)",
+    "category": "medical-imaging",
+    "description": "Dermatology FM benchmark across 11 institutions, 4 imaging modalities, 2M+ skin disease images",
+    "metric": "accuracy"
+  },
+  {
+    "id": "polaris_safety",
+    "name": "Polaris Clinical Safety",
+    "category": "medical",
+    "description": "Hippocratic AI safety-focused healthcare clinical accuracy benchmark — patient-facing dialogue safety eval",
+    "metric": "accuracy"
+  },
+  {
+    "id": "open_medical_llm_avg",
+    "name": "Open Medical-LLM Leaderboard (avg)",
+    "category": "medical",
+    "description": "HuggingFace Open Medical-LLM Leaderboard average — MedQA / MedMCQA / PubMedQA / MMLU Medical (anatomy, college medicine, clinical knowledge, medical genetics, professional medicine, virology)",
+    "metric": "accuracy"
+  },
+  {
+    "id": "care_qa",
+    "name": "CARE-QA",
+    "category": "medical",
+    "description": "Clinical Assistance Reasoning & Evaluation QA — patient-physician dialogue tasks. Used in HealthBench-adjacent evaluations (Almanac RAG eval target)",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medxpertqa_mm",
+    "name": "MedXpertQA Multimodal",
+    "category": "medical-imaging",
+    "description": "Multimodal subset of MedXpertQA — 2,000 image+text expert reasoning questions across radiology, pathology, dermatology, ophthalmology, ECG",
+    "metric": "accuracy"
+  },
+  {
+    "id": "wmdp_bio",
+    "name": "WMDP-Bio (Hazardous Bio Knowledge)",
+    "category": "bio-safety",
+    "description": "WMDP biology subset — 1,520 multiple-choice questions on hazardous biological knowledge (proxy for bioweapon uplift). Used for unlearning evaluation. Center for AI Safety",
+    "metric": "accuracy"
+  },
+  {
+    "id": "wmdp_chem",
+    "name": "WMDP-Chem (Hazardous Chem Knowledge)",
+    "category": "bio-safety",
+    "description": "WMDP chemistry subset — 408 questions on hazardous chemical knowledge. Frontier model dual-use proxy",
+    "metric": "accuracy"
+  },
+  {
+    "id": "vct_virology",
+    "name": "VCT (Virology Capabilities Test)",
+    "category": "bio-safety",
+    "description": "Practical virology troubleshooting — frontier reasoning models reportedly outperform 94% of expert virologists. SecureBio + UK AISI",
+    "metric": "accuracy"
+  },
+  {
+    "id": "biolp_bench",
+    "name": "BioLP-bench (Lab Protocol Errors)",
+    "category": "bio-safety",
+    "description": "Biological lab protocol benchmark — find/correct mistakes in real laboratory protocols. bioRxiv 2024.08.21",
+    "metric": "accuracy"
+  },
+  {
+    "id": "casp16_gdt",
+    "name": "CASP16 GDT-TS (Protein Structure)",
+    "category": "protein",
+    "description": "CASP (Critical Assessment of Structure Prediction) round 16 GDT-TS score on hard targets — biennial blind protein structure competition",
+    "metric": "gdt_ts"
+  },
+  {
+    "id": "alphafold3_pae",
+    "name": "AlphaFold3 Confident Predictions",
+    "category": "protein",
+    "description": "% of predicted residues with high pLDDT confidence (>70). Standard structure prediction quality metric",
+    "metric": "accuracy"
+  },
+  {
+    "id": "pdbbind_rmsd",
+    "name": "PDBBind Pocket-Guided RMSD",
+    "category": "protein",
+    "description": "Protein-ligand pose RMSD on PDBBind v2020 holdout — Boltz/Chai/AF3 docking benchmark (Å, lower=better)",
+    "metric": "rmsd"
+  },
+  {
+    "id": "moleculenet_avg",
+    "name": "MoleculeNet Average",
+    "category": "chemistry",
+    "description": "MoleculeNet 17-task average AUC/MAE — standard chemistry benchmark (BBBP, ClinTox, HIV, MUV, BACE, ESOL, FreeSolv, Lipo, QM9, etc.)",
+    "metric": "auc_or_mae"
+  },
+  {
+    "id": "tdc_admet",
+    "name": "TDC ADMET Group",
+    "category": "chemistry",
+    "description": "Therapeutics Data Commons ADMET property prediction — 22 task average. ChemFM, MoLFormer eval",
+    "metric": "auc_or_mae"
+  },
+  {
+    "id": "kmle_2025",
+    "name": "KMLE 2025 (Korean Medical Licensing)",
+    "category": "medical",
+    "description": "2025 Korean Medical Licensing Examination — 320 questions × 4 sections. SNUH KMed.ai 96.4 (3-yr avg), 2025 Q1 92.8",
+    "metric": "accuracy"
+  },
+  {
+    "id": "kormedlawqa",
+    "name": "KorMedLawQA",
+    "category": "medical",
+    "description": "SNUH-released Korean medical law QA benchmark on HuggingFace (snuh/KorMedLawQA)",
+    "metric": "accuracy"
+  },
+  {
+    "id": "lunit_dx_auc",
+    "name": "Lunit Dx AUROC (CXR/MMG)",
+    "category": "medical-imaging",
+    "description": "Lunit INSIGHT internal/external CXR + MMG validation AUROC on TB/lung-cancer/breast-cancer",
+    "metric": "auroc"
+  },
+  {
+    "id": "vqamed_2024",
+    "name": "VQA-Med 2024",
+    "category": "medical-imaging",
+    "description": "ImageCLEF VQA-Med 2024 — radiology image VQA. Med-Flamingo, MedDr, BiomedGPT eval",
+    "metric": "accuracy"
+  },
+  {
+    "id": "med_internvl_avg",
+    "name": "Med-InternVL Avg",
+    "category": "medical-imaging",
+    "description": "Medical VLM average across 14 imaging tasks — derm/endo/path/radiology MCQ + VQA. MedDr eval set",
+    "metric": "accuracy"
+  },
+  {
+    "id": "absci_yield",
+    "name": "Absci de novo Antibody Yield",
+    "category": "protein",
+    "description": "% de novo designed antibody candidates with experimentally validated binding (Absci wet-lab)",
+    "metric": "binding_rate"
   }
 ]
