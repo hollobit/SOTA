@@ -10,12 +10,14 @@ var PhysicalAI = {
             code: 'world-models',
             label: 'World Foundation Models',
             icon: '🌐',
-            note: '시뮬레이션·예측·환경 생성 — NVIDIA Cosmos · DeepMind Genie · Tencent HY-World · AgiBot · Omniverse Mega',
+            note: 'Cosmos Predict / Reason · DeepMind Genie · Tencent HY-World · WonderWorld · CogVideoX-I2V · Runway Gen-3 · AgiBot · Omniverse Mega',
             models: [
-                'nvidia/cosmos-predict-2.5', 'nvidia/cosmos-reason-2', 'nvidia/cosmos-policy-robocasa',
-                'nvidia/cosmos-reason-1',
+                'nvidia/cosmos-predict-2.5', 'nvidia/cosmos-predict-2.5-2b', 'nvidia/cosmos-predict-2.5-14b', 'nvidia/cosmos-predict-1-7b',
+                'nvidia/cosmos-reason-2', 'nvidia/cosmos-reason-1', 'nvidia/cosmos-reason-1-56b', 'nvidia/cosmos-reason-1-8b',
+                'nvidia/cosmos-policy-robocasa',
                 'google-deepmind/genie-3', 'google-deepmind/genie-2',
                 'tencent/hy-world-2.0',
+                'wonderworld/wonderworld', 'zhipu/cogvideox-i2v', 'runway/gen-3',
                 'agibot/genie-envisioner',
                 'nvidia/omniverse-mega'
             ]
@@ -24,11 +26,12 @@ var PhysicalAI = {
             code: 'vla-policies',
             label: 'VLA Policies (generalist robots)',
             icon: '🦾',
-            note: 'Vision-Language-Action 일반 로봇 정책 — GR00T · Pi-Zero · OpenVLA · Gemini Robotics-ER',
+            note: 'Vision-Language-Action 일반 로봇 정책 — GR00T N1/N1.5/N1.6/N1.7 · Pi-Zero/Pi-0.5 · OpenVLA + OFT · Octo-Base · Gemini Robotics-ER',
             models: [
                 'nvidia/gr00t-n1.7', 'nvidia/gr00t-n1.6', 'nvidia/gr00t-n1.5', 'nvidia/gr00t-n1',
-                'physical-intelligence/pi-zero', 'physical-intelligence/pi-zero-fast',
-                'openvla/openvla-7b',
+                'physical-intelligence/pi-zero', 'physical-intelligence/pi-zero-fast', 'physical-intelligence/pi-0.5', 'physical-intelligence/rdt-1b',
+                'openvla/openvla-7b', 'openvla/openvla-oft',
+                'octo/octo-base',
                 'google-deepmind/gemini-robotics-er-1.6', 'google-deepmind/gemini-robotics-er-1.5'
             ]
         },
@@ -95,27 +98,90 @@ var PhysicalAI = {
         'Dassault Systèmes':               '#9333ea'
     },
 
-    // Benchmarks to surface in the cross-category leaderboard. Mix of robot
-    // policy benches, world-model metrics, embodied reasoning, and industrial.
-    BENCHMARKS: [
-        'libero', 'robocasa', 'robotwin2', 'vlabench', 'open_x_embodiment',
-        'world_model_consistency', 'world_model_fps',
-        'gemini_instrument_reading', 'skild_failure_recovery',
-        'mfg_news_rewrite', 'tmmlu_plus'
+    // Benchmarks grouped into thematic sub-suites so the leaderboard renders
+    // as multi-section tables (instead of one wide column-stuffed table).
+    // Each suite gets its own table with its own model rows.
+    BENCHMARK_SUITES: [
+        {
+            id: 'vla-manipulation',
+            label: '🦾 VLA Manipulation Suites',
+            note: 'LIBERO 4-suite + RoboCasa + RoboTwin + VLABench + ALOHA + Bridge V2 + Open X-Embodiment + DexMimicGen',
+            benchmarks: [
+                'libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long',
+                'robocasa', 'robocasa365', 'robotwin2', 'vlabench', 'vlabench_track1_primitive',
+                'bridge_v2', 'aloha_4task_avg',
+                'open_x_embodiment', 'dexmimicgen', 'gr1_tabletop',
+                'simpler_env_avg', 'roboarena_elo',
+                'gr1_real_lang_following', 'unitree_g1_1k_demos', 'realworld_language_following'
+            ]
+        },
+        {
+            id: 'world-model',
+            label: '🌐 World Model Quality',
+            note: 'PAI-Bench · WorldScore (Stanford) · WorldModelBench (NeurIPS 2025) · EWMBench (AgiBot) · 1X World Model Challenge · AV/Robot FVD-FID-PSNR · World-model real-time FPS / consistency horizon',
+            benchmarks: [
+                'pai_bench_text2world', 'pai_bench_image2world',
+                'worldscore_static', 'worldscore_dynamic', 'worldscore_3d_consistency',
+                'ewmbench', 'worldmodelbench_avg',
+                'humanoid_sampling_psnr', 'humanoid_compression_top500_ce',
+                'world_model_fps', 'world_model_consistency', 'world_model_visual_memory',
+                'av_fvd', 'av_fid', 'robot_manip_psnr', 'robot_manip_fvd'
+            ]
+        },
+        {
+            id: 'embodied-reasoning',
+            label: '🧠 Embodied Reasoning',
+            note: 'Cosmos Reason 1 (PCS · Embodied · Intuitive Physics) · Gemini Robotics-ER · ERQA · Pixmo-Point · LingoQA · RoboVQA',
+            benchmarks: [
+                'cosmos_physical_common_sense', 'cosmos_embodied_reasoning', 'cosmos_intuitive_physics',
+                'intuitive_physics_spatial_puzzle', 'intuitive_physics_arrow_of_time', 'intuitive_physics_object_permanence',
+                'gemini_instrument_reading', 'instrument_reading_agentic_vision',
+                'erqa', 'pixmo_point', 'physical_ai_bench', 'physical_reasoning_leaderboard',
+                'robovqa', 'lingoqa'
+            ]
+        },
+        {
+            id: 'industrial-deployment',
+            label: '🏭 Industrial Deployment Metrics',
+            note: 'Real-world deployment KPIs — Skild failure recovery · Covariant pick retry · Figure Helix throughput / barcode / T_eff / BMW uptime · OpenVLA LoRA efficiency · FoxBrain news rewrite / TMMLU+',
+            benchmarks: [
+                'skild_failure_recovery', 'humanoid_failure_recovery_time',
+                'pick_retry_reduction',
+                'helix_logistics_throughput', 'helix_barcode_accuracy', 'helix_effective_throughput', 'bmw_deployment_uptime',
+                'openvla_lora_efficiency',
+                'mfg_news_rewrite', 'tmmlu_plus'
+            ]
+        }
     ],
+
+    // Backwards-compat flat list (kept for any external callers)
+    get BENCHMARKS() {
+        var all = [];
+        this.BENCHMARK_SUITES.forEach(function(s) {
+            s.benchmarks.forEach(function(b) { if (all.indexOf(b) === -1) all.push(b); });
+        });
+        return all;
+    },
 
     // Model release dates (month precision). Re-uses Sovereign's RELEASE_DATES
     // map at runtime when available, with locally-required entries as fallback.
     _localReleaseDates: {
         'nvidia/cosmos-predict-2.5': '2025-09', 'nvidia/cosmos-reason-2': '2025-09', 'nvidia/cosmos-policy-robocasa': '2025-10',
         'nvidia/cosmos-reason-1': '2025-03',
+        'nvidia/cosmos-predict-2.5-2b': '2025-09', 'nvidia/cosmos-predict-2.5-14b': '2025-09', 'nvidia/cosmos-predict-1-7b': '2024-12',
+        'nvidia/cosmos-reason-1-56b': '2025-03', 'nvidia/cosmos-reason-1-8b': '2025-03',
         'nvidia/gr00t-n1.7': '2025-11', 'nvidia/gr00t-n1.6': '2025-08',
         'nvidia/gr00t-n1.5': '2025-06', 'nvidia/gr00t-n1': '2025-03',
         'google-deepmind/genie-3': '2025-08', 'google-deepmind/genie-2': '2024-12',
         'physical-intelligence/pi-zero': '2024-11', 'physical-intelligence/pi-zero-fast': '2025-04',
-        'openvla/openvla-7b': '2024-06',
+        'physical-intelligence/pi-0.5': '2025-04', 'physical-intelligence/rdt-1b': '2024-10',
+        'openvla/openvla-7b': '2024-06', 'openvla/openvla-oft': '2025-02',
+        'octo/octo-base': '2024-05',
         'agibot/genie-envisioner': '2025-06',
-        'tencent/hy-world-2.0': '2026-04'
+        'tencent/hy-world-2.0': '2026-04',
+        'wonderworld/wonderworld': '2024-08',
+        'zhipu/cogvideox-i2v': '2024-09',
+        'runway/gen-3': '2024-06'
     },
 
     _models: [],
@@ -275,134 +341,179 @@ var PhysicalAI = {
         el.textContent = '';
         var self = this;
 
-        // Build rows: every model that has at least one Physical AI benchmark score.
+        // Build the master model list: every model that appears in any category.
         var allModelIds = [];
         this.CATEGORIES.forEach(function(cat) {
             cat.models.forEach(function(mid) {
                 if (allModelIds.indexOf(mid) === -1 && self._getModel(mid)) allModelIds.push(mid);
             });
         });
-
-        // Filter to active benchmarks (has ≥1 score among our model set)
-        var activeBids = this.BENCHMARKS.filter(function(bid) {
-            return allModelIds.some(function(mid) { return self._getScore(mid, bid) != null; });
+        // Also include any DB model with a score on a Physical-AI benchmark
+        // but not in our category lists (e.g. baselines: gpt-4o, o1).
+        var allBenchIds = this.BENCHMARK_SUITES.reduce(function(acc, s) {
+            return acc.concat(s.benchmarks);
+        }, []);
+        this._scores.forEach(function(s) {
+            if (allBenchIds.indexOf(s.benchmark_id) !== -1 && allModelIds.indexOf(s.model_id) === -1) {
+                if (self._getModel(s.model_id)) allModelIds.push(s.model_id);
+            }
         });
 
-        // Filter rows to models with ≥1 score on active benches
-        var rowIds = allModelIds.filter(function(mid) {
-            return activeBids.some(function(bid) { return self._getScore(mid, bid) != null; });
+        // Summary banner
+        var totalScores = 0;
+        var benchHits = {};
+        this._scores.forEach(function(s) {
+            if (allBenchIds.indexOf(s.benchmark_id) !== -1) {
+                totalScores++;
+                benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
+            }
         });
+        var activeBenchCount = Object.keys(benchHits).length;
+        var summary = document.createElement('p');
+        summary.className = 'text-xs text-gray-500 mb-3';
+        var sb = document.createElement('strong');
+        sb.className = 'text-gray-300';
+        sb.textContent = totalScores + ' verified Physical AI scores';
+        summary.appendChild(sb);
+        summary.appendChild(document.createTextNode(' across '));
+        var sc = document.createElement('strong');
+        sc.className = 'text-gray-300';
+        sc.textContent = String(activeBenchCount);
+        summary.appendChild(sc);
+        summary.appendChild(document.createTextNode(' active benchmarks · click any score cell for source/history modal · click model name for details'));
+        el.appendChild(summary);
 
-        // Sort rows by category (preserves CATEGORIES order), then by best avg
-        rowIds.sort(function(a, b) {
-            var ca = self._categoryOf(a), cb = self._categoryOf(b);
-            var ia = self.CATEGORIES.indexOf(ca), ib = self.CATEGORIES.indexOf(cb);
-            if (ia !== ib) return ia - ib;
-            // within category: by sum of scores desc (richer models first)
-            var sa = activeBids.reduce(function(s, bid) { var v = self._getScore(a, bid); return s + (v != null ? v : 0); }, 0);
-            var sb = activeBids.reduce(function(s, bid) { var v = self._getScore(b, bid); return s + (v != null ? v : 0); }, 0);
-            return sb - sa;
-        });
-
-        if (rowIds.length === 0 || activeBids.length === 0) {
-            var empty = document.createElement('p');
-            empty.className = 'text-sm text-gray-500 italic';
-            empty.textContent = '— Physical AI 벤치마크 데이터가 부족합니다';
-            el.appendChild(empty);
-            return;
-        }
-
-        // Per-benchmark max for color coding
-        var maxes = {};
-        activeBids.forEach(function(bid) {
-            var max = 0;
-            rowIds.forEach(function(mid) {
-                var v = self._getScore(mid, bid);
-                if (v != null && v > max) max = v;
+        // One table per BENCHMARK_SUITE
+        this.BENCHMARK_SUITES.forEach(function(suite) {
+            var activeBids = suite.benchmarks.filter(function(bid) {
+                return allModelIds.some(function(mid) { return self._getScore(mid, bid) != null; });
             });
-            maxes[bid] = max;
-        });
+            if (activeBids.length === 0) return;
 
-        var table = document.createElement('table');
-        table.className = 'sota-table text-sm';
+            var rowIds = allModelIds.filter(function(mid) {
+                return activeBids.some(function(bid) { return self._getScore(mid, bid) != null; });
+            });
+            if (rowIds.length === 0) return;
 
-        var thead = document.createElement('thead');
-        var hr = document.createElement('tr');
-        var thM = document.createElement('th'); thM.textContent = 'Model'; hr.appendChild(thM);
-        var thC = document.createElement('th'); thC.textContent = 'Category'; thC.style.fontSize = '11px'; hr.appendChild(thC);
-        var thV = document.createElement('th'); thV.textContent = 'Vendor'; thV.style.fontSize = '11px'; hr.appendChild(thV);
-        activeBids.forEach(function(bid) {
-            var th = document.createElement('th');
-            var b = self._getBenchmark(bid);
-            th.textContent = b ? b.name : bid;
-            th.style.fontSize = '11px';
-            hr.appendChild(th);
-        });
-        thead.appendChild(hr);
-        table.appendChild(thead);
+            rowIds.sort(function(a, b) {
+                var ca = self._categoryOf(a), cb = self._categoryOf(b);
+                var ia = ca ? self.CATEGORIES.indexOf(ca) : 99;
+                var ib = cb ? self.CATEGORIES.indexOf(cb) : 99;
+                if (ia !== ib) return ia - ib;
+                var sa = activeBids.reduce(function(acc, bid) { var v = self._getScore(a, bid); return acc + (v != null ? v : 0); }, 0);
+                var sb2 = activeBids.reduce(function(acc, bid) { var v = self._getScore(b, bid); return acc + (v != null ? v : 0); }, 0);
+                return sb2 - sa;
+            });
 
-        var tbody = document.createElement('tbody');
-        rowIds.forEach(function(mid) {
-            var m = self._getModel(mid);
-            var cat = self._categoryOf(mid);
-            var tr = document.createElement('tr');
-
-            var tdName = document.createElement('td');
-            tdName.textContent = m ? m.name : mid;
-            tdName.style.whiteSpace = 'nowrap';
-            tdName.style.cursor = 'pointer';
-            tdName.title = mid;
-            tdName.addEventListener('click', (function(modelId) {
-                return function() {
-                    if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
-                };
-            })(mid));
-            tr.appendChild(tdName);
-
-            var tdCat = document.createElement('td');
-            tdCat.textContent = cat ? (cat.icon + ' ' + cat.label.split(' ')[0]) : '—';
-            tdCat.style.fontSize = '11px';
-            tdCat.style.color = Theme.textMuted;
-            tr.appendChild(tdCat);
-
-            var tdV = document.createElement('td');
-            tdV.textContent = m ? (m.vendor || '—') : '—';
-            tdV.style.fontSize = '11px';
-            tdV.style.color = Theme.textMuted;
-            tr.appendChild(tdV);
-
+            var maxes = {};
             activeBids.forEach(function(bid) {
-                var td = document.createElement('td');
-                td.style.textAlign = 'center';
-                var v = self._getScore(mid, bid);
-                if (v != null) {
-                    // Some benchmarks have non-percent units (fps, seconds, score). Render numerically.
-                    var bench = self._getBenchmark(bid);
-                    var unit = bench && bench.metric ? bench.metric : '';
-                    td.textContent = v.toFixed(unit === 'fps' || unit === 'seconds' ? 0 : 1);
-                    var ratio = maxes[bid] > 0 ? v / maxes[bid] : 0;
-                    if (ratio >= 0.99) { td.style.color = Theme.series[0]; td.style.fontWeight = 'bold'; }
-                    else if (ratio >= 0.85) td.style.color = Theme.series[1];
-                    else if (ratio >= 0.7) td.style.color = Theme.series[2];
-                    else td.style.color = Theme.series[3];
-                    td.style.cursor = 'pointer';
-                    td.setAttribute('role', 'button');
-                    td.title = '클릭하면 검증 소스';
-                    td.addEventListener('click', (function(m, b) {
-                        return function() {
-                            if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(m, b);
-                        };
-                    })(mid, bid));
-                } else {
-                    td.textContent = '—';
-                    td.style.color = Theme.textDisabled;
-                }
-                tr.appendChild(td);
+                var max = 0;
+                rowIds.forEach(function(mid) {
+                    var v = self._getScore(mid, bid);
+                    if (v != null && v > max) max = v;
+                });
+                maxes[bid] = max;
             });
-            tbody.appendChild(tr);
+
+            // Suite section header
+            var suiteHead = document.createElement('div');
+            suiteHead.className = 'mt-6 mb-2';
+            var suiteTitle = document.createElement('h4');
+            suiteTitle.className = 'text-sm font-semibold text-gray-200';
+            suiteTitle.textContent = suite.label + '  (' + activeBids.length + ' benchmarks · ' + rowIds.length + ' models)';
+            suiteHead.appendChild(suiteTitle);
+            var suiteNote = document.createElement('p');
+            suiteNote.className = 'text-xs text-gray-500';
+            suiteNote.textContent = suite.note;
+            suiteHead.appendChild(suiteNote);
+            el.appendChild(suiteHead);
+
+            var wrap = document.createElement('div');
+            wrap.className = 'overflow-x-auto';
+            var table = document.createElement('table');
+            table.className = 'sota-table text-sm';
+
+            var thead = document.createElement('thead');
+            var hr = document.createElement('tr');
+            var thM = document.createElement('th'); thM.textContent = 'Model'; hr.appendChild(thM);
+            var thC = document.createElement('th'); thC.textContent = 'Category'; thC.style.fontSize = '11px'; hr.appendChild(thC);
+            var thV = document.createElement('th'); thV.textContent = 'Vendor'; thV.style.fontSize = '11px'; hr.appendChild(thV);
+            activeBids.forEach(function(bid) {
+                var th = document.createElement('th');
+                var b = self._getBenchmark(bid);
+                th.textContent = b ? b.name : bid;
+                th.style.fontSize = '10px';
+                th.style.whiteSpace = 'nowrap';
+                hr.appendChild(th);
+            });
+            thead.appendChild(hr);
+            table.appendChild(thead);
+
+            var tbody = document.createElement('tbody');
+            rowIds.forEach(function(mid) {
+                var m = self._getModel(mid);
+                var cat = self._categoryOf(mid);
+                var tr = document.createElement('tr');
+
+                var tdName = document.createElement('td');
+                tdName.textContent = m ? m.name : mid;
+                tdName.style.whiteSpace = 'nowrap';
+                tdName.style.cursor = 'pointer';
+                tdName.title = mid + ' — 클릭하면 모델 상세';
+                tdName.addEventListener('click', (function(modelId) {
+                    return function() {
+                        if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
+                    };
+                })(mid));
+                tr.appendChild(tdName);
+
+                var tdCat = document.createElement('td');
+                tdCat.textContent = cat ? (cat.icon + ' ' + cat.label.split(' ')[0]) : '—';
+                tdCat.style.fontSize = '11px';
+                tdCat.style.color = Theme.textMuted;
+                tdCat.style.whiteSpace = 'nowrap';
+                tr.appendChild(tdCat);
+
+                var tdV = document.createElement('td');
+                tdV.textContent = m ? (m.vendor || '—') : '—';
+                tdV.style.fontSize = '11px';
+                tdV.style.color = Theme.textMuted;
+                tdV.style.whiteSpace = 'nowrap';
+                tr.appendChild(tdV);
+
+                activeBids.forEach(function(bid) {
+                    var td = document.createElement('td');
+                    td.style.textAlign = 'center';
+                    var v = self._getScore(mid, bid);
+                    if (v != null) {
+                        var bench = self._getBenchmark(bid);
+                        var unit = bench && bench.metric ? bench.metric : '';
+                        td.textContent = v.toFixed(unit === 'fps' || unit === 'seconds' || unit === 'hours' || unit === 'elo' ? 0 : 1);
+                        var ratio = maxes[bid] > 0 ? v / maxes[bid] : 0;
+                        if (ratio >= 0.99) { td.style.color = Theme.series[0]; td.style.fontWeight = 'bold'; }
+                        else if (ratio >= 0.85) td.style.color = Theme.series[1];
+                        else if (ratio >= 0.7) td.style.color = Theme.series[2];
+                        else td.style.color = Theme.series[3];
+                        td.style.cursor = 'pointer';
+                        td.setAttribute('role', 'button');
+                        td.title = '클릭하면 검증 소스';
+                        td.addEventListener('click', (function(m, b) {
+                            return function() {
+                                if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(m, b);
+                            };
+                        })(mid, bid));
+                    } else {
+                        td.textContent = '—';
+                        td.style.color = Theme.textDisabled;
+                    }
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            wrap.appendChild(table);
+            el.appendChild(wrap);
         });
-        table.appendChild(tbody);
-        el.appendChild(table);
     },
 
     // ─────────────── Timeline scatter (x = date, y = category) ───────────────
@@ -511,12 +622,33 @@ var PhysicalAI = {
         el.textContent = '';
         var self = this;
 
-        // 4-axis definition. Each axis aggregates a benchmark group.
+        // 4-axis definition. Each axis aggregates a benchmark group. Expanded
+        // to include the new benchmarks discovered in the Apr 2026 sweep.
         var AXES = [
-            { name: 'VLA Policy',           benches: ['libero', 'robocasa', 'robotwin2', 'vlabench'] },
-            { name: 'World Model Coherence',benches: ['world_model_consistency', 'world_model_fps'] },
-            { name: 'Embodied Reasoning',   benches: ['gemini_instrument_reading', 'skild_failure_recovery'] },
-            { name: 'Industrial Integration',benches: ['mfg_news_rewrite', 'tmmlu_plus'] }
+            { name: 'VLA Policy', benches: [
+                'libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long',
+                'robocasa', 'robocasa365', 'robotwin2', 'vlabench', 'vlabench_track1_primitive',
+                'bridge_v2', 'aloha_4task_avg', 'open_x_embodiment', 'simpler_env_avg',
+                'gr1_real_lang_following', 'unitree_g1_1k_demos', 'realworld_language_following'
+            ] },
+            { name: 'World Model Coherence', benches: [
+                'world_model_consistency', 'world_model_fps', 'world_model_visual_memory',
+                'pai_bench_text2world', 'pai_bench_image2world',
+                'worldscore_static', 'worldscore_dynamic', 'worldscore_3d_consistency',
+                'ewmbench', 'worldmodelbench_avg',
+                'humanoid_sampling_psnr', 'robot_manip_psnr'
+            ] },
+            { name: 'Embodied Reasoning', benches: [
+                'gemini_instrument_reading', 'skild_failure_recovery',
+                'cosmos_physical_common_sense', 'cosmos_embodied_reasoning', 'cosmos_intuitive_physics',
+                'intuitive_physics_spatial_puzzle', 'intuitive_physics_arrow_of_time', 'intuitive_physics_object_permanence',
+                'erqa', 'pixmo_point', 'physical_ai_bench', 'robovqa', 'lingoqa'
+            ] },
+            { name: 'Industrial Integration', benches: [
+                'mfg_news_rewrite', 'tmmlu_plus',
+                'helix_logistics_throughput', 'helix_barcode_accuracy', 'helix_effective_throughput',
+                'pick_retry_reduction', 'humanoid_failure_recovery_time', 'bmw_deployment_uptime'
+            ] }
         ];
 
         // For each category, compute axis score = mean of best-of-fleet across the axis benches.
