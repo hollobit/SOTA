@@ -1368,3 +1368,440 @@ benchmarks:
   bmt:
     bmt_id: saved-1769608044991-gbtoa
     bmt_title: HealthBench
+- id: medhelm
+  name: MedHELM (Stanford)
+  category: medical
+  metric: score
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Stanford CRFM holistic medical LLM eval — 5 categories, 22 subcategories,
+    121 clinician-developed tasks, 35 benchmarks. Claude Opus 4.6 81.5, GPT-5.5 78.4,
+    Med-Gemini 76.2. DeepSeek R1 66% win-rate.
+  paper: https://arxiv.org/abs/2505.23802
+  leaderboard: https://crfm.stanford.edu/helm/medhelm/latest/
+  github: https://github.com/stanford-crfm/helm
+  year: '2025'
+  item_count: 35 benchmarks, 121 clinical tasks
+  bmt:
+    bmt_id: saved-1769608044991-c8546
+    bmt_title: MedHELM
+- id: medhelm_clin_dec
+  name: MedHELM Clinical Decision Support
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 80
+  description: MedHELM Clinical Decision Support category — diagnostic + treatment
+    reasoning. Models 0.56-0.72 normalized accuracy.
+  paper: https://arxiv.org/abs/2505.23802
+  github: https://github.com/stanford-crfm/helm
+  year: '2025'
+  item_count: 35 benchmarks, 121 clinical tasks
+  bmt:
+    bmt_id: saved-1769608044991-c8546
+    bmt_title: MedHELM
+- id: medhelm_admin
+  name: MedHELM Administration & Workflow
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 75
+  description: MedHELM admin + workflow — billing, scheduling, documentation. Models
+    0.53-0.63.
+  paper: https://arxiv.org/abs/2505.23802
+  github: https://github.com/stanford-crfm/helm
+  year: '2025'
+  item_count: 35 benchmarks, 121 clinical tasks
+  bmt:
+    bmt_id: saved-1769608044991-c8546
+    bmt_title: MedHELM
+- id: medhelm_note_gen
+  name: MedHELM Clinical Note Generation
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: 'MedHELM clinical note generation — discharge summaries, progress notes.
+    Strong: 0.73-0.85.'
+  paper: https://arxiv.org/abs/2505.23802
+  github: https://github.com/stanford-crfm/helm
+  year: '2025'
+  item_count: 35 benchmarks, 121 clinical tasks
+  bmt:
+    bmt_id: saved-1769608044991-c8546
+    bmt_title: MedHELM
+- id: medhelm_patient_comm
+  name: MedHELM Patient Communication
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: MedHELM patient communication & education. Models 0.78-0.83.
+  paper: https://arxiv.org/abs/2505.23802
+  github: https://github.com/stanford-crfm/helm
+  year: '2025'
+  item_count: 35 benchmarks, 121 clinical tasks
+  bmt:
+    bmt_id: saved-1769608044991-c8546
+    bmt_title: MedHELM
+- id: medhelm_research
+  name: MedHELM Medical Research Assistance
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 85
+  description: MedHELM research assistance — literature review, hypothesis generation.
+    Models 0.65-0.75.
+  paper: https://arxiv.org/abs/2505.23802
+  github: https://github.com/stanford-crfm/helm
+  year: '2025'
+  item_count: 35 benchmarks, 121 clinical tasks
+  bmt:
+    bmt_id: saved-1769608044991-c8546
+    bmt_title: MedHELM
+- id: agentclinic_medqa
+  name: AgentClinic-MedQA
+  category: medical-safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 10
+  - 80
+  description: Sequential decision-making clinical agent — USMLE-grounded patient
+    interactions. Claude-3.5 leads. GPT-4 52%, GPT-3.5 38%. Drops to <10% of original
+    MedQA accuracy.
+  paper: https://arxiv.org/abs/2405.07960
+  leaderboard: https://agentclinic.github.io/
+- id: agentclinic_nejm
+  name: AgentClinic-NEJM
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 15
+  - 60
+  description: Multimodal clinical agent — NEJM image-centric diagnostic cases. Multimodal
+    accuracy ~29.2% baseline.
+  paper: https://arxiv.org/abs/2405.07960
+- id: medagentbench
+  name: MedAgentBench (NEJM AI 2025)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Virtual EHR agent benchmark — 300 patient-specific clinically-derived
+    tasks, 100 patient profiles, 700K data elements, FHIR-compliant interactive environment.
+  paper: https://ai.nejm.org/doi/full/10.1056/AIdbp2500144
+  github: https://github.com/stanfordmlgroup/MedAgentBench
+  year: '2025'
+  item_count: 100 tasks, 100 patient profiles (700,000+ data elements)
+  bmt:
+    bmt_id: saved-1769660386135-xvorh
+    bmt_title: MedAgentBench
+- id: medagentsbench
+  name: MedAgentsBench (Complex Reasoning)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 85
+  description: Thinking models + agent frameworks for complex medical reasoning.
+  paper: https://arxiv.org/html/2503.07459v1
+- id: multimedqa
+  name: MultiMedQA Suite
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: Aggregated medical QA suite — MedQA + MedMCQA + PubMedQA + MMLU clinical
+    + LiveQA + MedicationQA + HealthSearchQA. Med-PaLM original benchmark.
+  paper: https://arxiv.org/abs/2305.09617
+  github: https://github.com/google-research/google-research/tree/master/medpalm
+  year: '2022'
+  item_count: 7 datasets total (includes MedQA, MedMCQA, PubMedQA, LiveQA, MedicationQA,
+    MMLU-Clinical, HealthSearchQA)
+  bmt:
+    bmt_id: saved-1769608044996-8vs7i
+    bmt_title: MultiMedQA
+- id: medqa_vals_ai
+  name: MedQA Vals AI Leaderboard
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 99
+  description: 'Vals AI MedQA leaderboard — Apr 2026: o4-mini-high 95.2, Gemini 2.5
+    Pro 94.6, Claude 3.7 Sonnet 92.3.'
+  leaderboard: https://www.vals.ai/benchmarks/medqa
+  paper: https://arxiv.org/abs/2009.13081
+  github: https://github.com/jind11/MedQA
+  year: '2020'
+  item_count: 12,723 questions (USMLE subset)
+  bmt:
+    bmt_id: csv-2-1769500744825
+    bmt_title: MedQA (USMLE)
+- id: medarena_pref
+  name: MedArena (Stanford HAI Elo)
+  category: medical
+  metric: elo
+  expected_range:
+  - 1000
+  - 1800
+  description: Stanford HAI MedArena — head-to-head LLM comparison for medicine in
+    the wild. Clinician vote-based pairwise preference.
+  paper: https://hai.stanford.edu/news/medarena-comparing-llms-for-medicine-in-the-wild
+- id: medmnist_v2
+  name: MedMNIST v2 (Biomedical Image Classification)
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: Large-scale MNIST-like biomedical image collection — 708,069 2D + 10,214
+    3D images across 18 datasets. CT/MRI/X-ray/OCT/Ultrasound/EM modalities.
+  paper: https://arxiv.org/abs/2110.14795
+  github: https://github.com/MedMNIST/MedMNIST
+  year: '2021'
+  item_count: 708,069 2D images, 10,214 3D images (18 datasets total)
+  bmt:
+    bmt_id: csv-1-1769500744825
+    bmt_title: MedMNIST v2
+- id: ehrnoteqa
+  name: EHRNoteQA
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: MIMIC-IV EHR-grounded clinical QA — questions over discharge summaries
+    / progress notes / radiology reports.
+  paper: https://arxiv.org/abs/2402.16040
+  github: https://github.com/ji-youn-kim/EHRNoteQA
+  year: '2024'
+  item_count: 962 QA pairs
+  bmt:
+    bmt_id: saved-1769608044993-f3pub
+    bmt_title: EHRNoteQA
+- id: echobench_med
+  name: EchoBench (LVLM Sycophancy)
+  category: medical-safety
+  metric: score
+  unit: '%'
+  expected_range:
+  - 40
+  - 85
+  description: Medical LVLM sycophancy benchmark — measures how models capitulate
+    to incorrect physician suggestions. Lower=more sycophantic.
+  paper: https://arxiv.org/abs/2509.20146
+  github: https://github.com/EchoBench/EchoBench
+  year: '2025'
+  item_count: 2,122 medical images, 90 prompts
+  bmt:
+    bmt_id: saved-1769608044991-ofml4
+    bmt_title: EchoBench
+- id: dermabench
+  name: DermaBench (Dermatology VQA)
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Clinician-annotated dermatology VQA on Diverse Dermatology Images (DDI).
+    Skin tone fairness eval.
+  paper: https://arxiv.org/abs/2601.14084
+  github: https://github.com/DermaVLM
+  year: '2026'
+  item_count: 656 images, ~14,474 annotations
+  bmt:
+    bmt_id: saved-1769608044991-soneg
+    bmt_title: DermaBench
+- id: dermavqa_das
+  name: DermaVQA-DAS
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: DermaVQA extension — closed-ended QA + dermatological lesion segmentation.
+  paper: https://arxiv.org/abs/2512.24340
+  github: https://github.com/velvinnn/DermaVQA
+  year: '2025'
+  item_count: Extends DermaVQA
+  bmt:
+    bmt_id: saved-1769608044991-9vuo5
+    bmt_title: DermaVQA-DAS
+- id: medrepbench
+  name: MedRepBench (Medical Report VLM)
+  category: medical-imaging
+  metric: score
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: VLM/LLM evaluation on structured medical report understanding — reports
+    across modalities.
+  paper: https://arxiv.org/abs/2508.16674
+  github: https://github.com/MedRepBench/MedRepBench
+  year: '2025'
+  item_count: 1,900 reports
+  bmt:
+    bmt_id: saved-1769608044991-awz6j
+    bmt_title: MedRepBench
+- id: pathmcqa
+  name: PathMCQA (Pathology MCQ)
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: Multiple-choice pathology QA — questions on histopathology images derived
+    from multiple sources.
+  paper: https://arxiv.org/abs/2507.XXXXX
+  github: https://huggingface.co/datasets
+  year: '2025'
+  item_count: 450 patches (354 WSIs)
+  bmt:
+    bmt_id: saved-1769608044991-w3opt
+    bmt_title: PathMCQA
+- id: ukbob
+  name: UKBOB (UK Biobank Organs)
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 70
+  - 98
+  description: Largest labeled body-organ MRI dataset from UK Biobank — automated
+    labeling + manual validation.
+  paper: https://arxiv.org/abs/2504.06908
+  github: https://emmanuelleb985.github.io/ukbob
+  year: '2025'
+  item_count: 51,761 3D samples (>1.37 billion 2D masks)
+  bmt:
+    bmt_id: saved-1769608044991-x4w9b
+    bmt_title: UKBOB
+- id: histai_wsi
+  name: HISTAI WSI Dataset
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 65
+  - 95
+  description: Open large-scale whole slide image dataset for pathology — addresses
+    scale + diversity gap.
+  paper: https://arxiv.org/abs/2505.12120
+  github: https://github.com/HistAI/HISTAI
+  year: '2025'
+  item_count: 60,000+ WSIs (Metadata indicates >100,000 total slides)
+  bmt:
+    bmt_id: saved-1769608044991-erbam
+    bmt_title: HISTAI
+- id: beetle_seg
+  name: BEETLE (Breast Cancer H&E Seg)
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 70
+  - 95
+  description: Multicentric H&E breast cancer semantic segmentation. Biopsy + surgical
+    resection slides.
+  paper: https://arxiv.org/abs/2510.02037
+  github: https://github.com/DIAGNijmegen/beetle
+  year: '2025'
+  item_count: 641 WSIs (587 Development, 54 Evaluation)
+  bmt:
+    bmt_id: saved-1769608044991-0qpqv
+    bmt_title: BEETLE
+- id: spider_path
+  name: SPIDER (Multi-organ Pathology)
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 65
+  - 95
+  description: Multi-organ supervised pathology dataset — expert annotations + strong
+    baselines.
+  paper: https://arxiv.org/abs/2503.02876
+  github: https://github.com/HistAI/SPIDER
+  year: '2025'
+  item_count: Large-scale patch collection (exact count varies by subset)
+  bmt:
+    bmt_id: saved-1769608044991-pg7kt
+    bmt_title: SPIDER
+- id: clinicalbench
+  name: ClinicalBench (LLM vs ML)
+  category: clinical-prediction
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: Compares LLMs against traditional ML on clinical outcome prediction
+    (mortality / readmission / length-of-stay). XGBoost still leads tabular EHR tasks.
+  paper: https://arxiv.org/abs/2411.06469
+  github: https://github.com/canyuchen/ClinicalBench
+  year: '2024'
+  item_count: 3 tasks, 2 databases (MIMIC-III, MIMIC-IV)
+  bmt:
+    bmt_id: saved-1770073027758-cfzcm
+    bmt_title: ClinicalBench
+- id: bioprobench
+  name: BioProBench (Biological Protocols)
+  category: bio-safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 85
+  description: Biological protocol understanding + reasoning — large corpus of human-written
+    protocols.
+  paper: https://arxiv.org/abs/2601.05000
+  github: https://github.com/YuyangSunshine/bioprotocolbench
+  year: '2026'
+  item_count: 550,000 task instances
+  bmt:
+    bmt_id: saved-1769608044991-j2dbm
+    bmt_title: BioProBench
+- id: long_form_virology
+  name: Long-form Virology Tasks
+  category: bio-safety
+  metric: score
+  unit: '%'
+  expected_range:
+  - 30
+  - 80
+  description: Agentic eval for end-to-end pathogen acquisition processes — biorisk
+    uplift measurement.
+  paper: https://assets.anthropic.com/m/61e7d27f81849746/original/Claude-3-Opus-System-Card.pdf
+  github: Not publicly available (Private/Internal)
+  year: '2024'
+  item_count: 13 subtasks
+  bmt:
+    bmt_id: saved-1769608044992-47r1d
+    bmt_title: Long-form Virology Tasks
