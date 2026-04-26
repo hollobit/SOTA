@@ -2,6 +2,15 @@
   {
     "type": "Feature",
     "date": "2026-04-26",
+    "benchmark_id": "Medical AI 메뉴 신설 — Clinical · Biomedical · Imaging Foundation Models",
+    "new_model": "ChatGPT for Clinicians, Med-Gemini, Med-PaLM, MedGemma, OpenBioLLM, BioMistral, Meditron, BioGPT, MedSAM/SAM-Med2D/3D, BiomedCLIP, LLaVA-Med, RadFM, CheXzero, RETFound, VisionFM, Virchow2/2G, UNI2, CONCH, TITAN, Prov-GigaPath, SAM 1/2 — 37 medical 모델",
+    "new_value": "User-requested: 'Medical 특화 모델들을 중심으로 비교할 수 있도록 Medical AI 메뉴를 만들어주세요. ChatGPT for Clinicians와 SAM(Segment Anything) 같은 관련 특화 foundation model들도 포함되도록' → tab-medical-ai 신설 (Sovereign·Physical AI 패턴 미러). 5 카테고리: 🩺 Clinical LLMs (ChatGPT for Clinicians GPT-5.4/5.5 · Med-Gemini 1/2/3 Pro · Med-PaLM 1/2 · MedGemma 9B/27B), 🧬 Biomedical LLMs (OpenBioLLM-Llama3 8B/70B · BioMistral · Meditron 7B/70B · BioGPT · Clinical Camel · MedAlpaca), 🖼️ Medical Imaging FMs (SAM 1/2 · MedSAM 1/2 · SAM-Med2D/3D · BiomedCLIP · LLaVA-Med · Rad-DINO · CXR Foundation · RadFM · CheXzero), 🔬 Specialty FMs (Virchow2/2G · UNI2 · CONCH · TITAN · Prov-GigaPath · RETFound · VisionFM), 🌐 Frontier Baselines (GPT-5.5 · Claude Opus 4.6). 14개 의료 벤치마크 신규: HealthBench Professional/HealthBench, MedQA(USMLE), MedMCQA, PubMedQA, MMLU Clinical, MedXpertQA, MedBullets, NEJM Image Challenge, JAMA Clinical Challenge, Universal Med-Seg Dice, RetBench AUC, RadBench, Pathology External AUROC. 59 verified scores. 5 sub-suite leaderboard (Clinical Workflow Chat / Medical Licensing & QA / Clinical Case Reasoning / Medical Imaging Segmentation / Specialty Imaging FMs) — 모든 컬럼 정렬 가능. ecosystem map (5 카테고리 카드) + 7-axis Capability Radar (top-6 average). Resources 탭 propagation: PDF 8건 + 사이트 14건 추가 (OpenAI ChatGPT for Clinicians/HealthBench Pro 페이지, Med-Gemini/Med-PaLM/MedSAM/Mahmood Lab 등). 참고: https://openai.com/index/making-chatgpt-better-for-clinicians/ — GPT-5.4 HealthBench Pro 59.0 vs human physicians 43.7. Cache: medical-ai.js?v=20260426a, app.js?v=20260426d.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Feature",
+    "date": "2026-04-26",
     "benchmark_id": "Explorer 메뉴 — 2~10개 동적 모델 비교 selector",
     "new_model": "고정된 A/B/C/D 4개 selector → 2개로 시작·+ 버튼으로 최대 10개까지 추가",
     "new_value": "User-requested: 'explorer에서 모델 비교는 처음에 2개로 시작하지만 + 메뉴를 통해 최대 10개까지 모델을 추가 선택해 비교할 수 있는 형태로 변경해주세요.' Explorer 탭의 fixed Model A/B/C/D selector를 동적 list로 교체. 초기 2개 selector + '+ 모델 추가' 버튼으로 최대 10개까지 확장 가능하며, 각 행에 × 버튼으로 제거 가능 (최소 2개 유지). compare-model-list 컨테이너가 _renderCompareSelectors()로 재빌드되며 이전 값을 보존. URL deep-link (#explore/m1,m2,...,mN)도 최대 10개 모델 지원, 호출 시 selector 개수가 자동 매칭. _PALETTE 10색 (green/blue/amber/red/purple/pink/teal/orange/lime/cyan)으로 6색 Theme.series 한계 극복, 비교 카드 색상 + radar series 색상 모두 동적 반영. Cache: explorer.js?v=20260426c, app.js?v=20260426c.",
