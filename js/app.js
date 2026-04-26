@@ -74,20 +74,20 @@ var App = {
             return;
         }
 
-        // Explorer deep link: #explore/model1,model2,model3
+        // Explorer deep link: #explore/model1,model2,...,modelN  (up to 10)
         if (hash.indexOf('explore/') === 0) {
-            var ids = hash.substring(8).split(',').filter(function(v) { return v; });
+            var ids = hash.substring(8).split(',').filter(function(v) { return v; }).slice(0, 10);
             if (ids.length >= 2) {
                 var self = this;
                 this._activateTab('explorer');
                 setTimeout(function() {
-                    // Set select values
-                    var selIds = ['compare-model-a', 'compare-model-b', 'compare-model-c', 'compare-model-d'];
+                    // Rebuild selectors to match the deep-linked model count.
+                    self._compareCount = ids.length;
+                    self._renderCompareSelectors();
                     ids.forEach(function(mid, i) {
-                        var sel = document.getElementById(selIds[i]);
+                        var sel = document.getElementById('compare-model-' + i);
                         if (sel) sel.value = mid;
                     });
-                    // Trigger comparison
                     var rows = Explorer.compare(ids, self.data.scores, self.data.benchmarks);
                     Explorer.renderComparison('comparison-result', ids, self.data.models, rows);
                     Explorer.renderRadar('explorer-radar', ids, self.data.models, self.data.scores, self.data.benchmarks);
@@ -276,28 +276,110 @@ var App = {
         }
     },
 
+    _compareCount: 2,
+    _COMPARE_MIN: 2,
+    _COMPARE_MAX: 10,
+
+    _renderCompareSelectors: function() {
+        var self = this;
+        var list = document.getElementById('compare-model-list');
+        if (!list) return;
+        // Capture current values to preserve them across re-render
+        var existing = {};
+        list.querySelectorAll('select').forEach(function(s) {
+            existing[s.id] = s.value;
+        });
+        list.textContent = '';
+
+        for (var i = 0; i < self._compareCount; i++) {
+            (function(idx) {
+                var wrap = document.createElement('div');
+                wrap.className = 'flex flex-col';
+
+                var labelRow = document.createElement('div');
+                labelRow.className = 'flex items-center gap-1 mb-1';
+                var label = document.createElement('label');
+                label.className = 'block text-xs text-gray-400';
+                label.textContent = 'Model ' + (idx + 1);
+                labelRow.appendChild(label);
+                if (self._compareCount > self._COMPARE_MIN) {
+                    var rm = document.createElement('button');
+                    rm.type = 'button';
+                    rm.textContent = '×';
+                    rm.title = '이 모델 제거';
+                    rm.className = 'text-gray-500 hover:text-red-400 text-xs leading-none px-1';
+                    rm.addEventListener('click', function() {
+                        // Collect remaining values, then drop this slot.
+                        var values = [];
+                        for (var j = 0; j < self._compareCount; j++) {
+                            if (j === idx) continue;
+                            var s = document.getElementById('compare-model-' + j);
+                            values.push(s ? s.value : '');
+                        }
+                        self._compareCount--;
+                        self._renderCompareSelectors();
+                        values.forEach(function(v, k) {
+                            var s = document.getElementById('compare-model-' + k);
+                            if (s) s.value = v;
+                        });
+                    });
+                    labelRow.appendChild(rm);
+                }
+                wrap.appendChild(labelRow);
+
+                var sel = document.createElement('select');
+                sel.id = 'compare-model-' + idx;
+                sel.className = 'bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 text-sm';
+                var blank = document.createElement('option');
+                blank.value = '';
+                blank.textContent = idx < 2 ? 'Select Model ' + (idx + 1) : '— none —';
+                sel.appendChild(blank);
+                self.data.models.forEach(function(m) {
+                    var opt = document.createElement('option');
+                    opt.value = m.id;
+                    opt.textContent = m.name + ' (' + m.vendor + ')';
+                    sel.appendChild(opt);
+                });
+                if (existing['compare-model-' + idx]) sel.value = existing['compare-model-' + idx];
+                wrap.appendChild(sel);
+
+                list.appendChild(wrap);
+            })(i);
+        }
+
+        var addBtn = document.getElementById('compare-add-btn');
+        if (addBtn) {
+            addBtn.disabled = self._compareCount >= self._COMPARE_MAX;
+            addBtn.classList.toggle('opacity-50', addBtn.disabled);
+            addBtn.classList.toggle('cursor-not-allowed', addBtn.disabled);
+        }
+        var hint = document.getElementById('compare-count-hint');
+        if (hint) hint.textContent = self._compareCount + ' / ' + self._COMPARE_MAX + ' 모델';
+    },
+
     setupExplorer: function() {
         var self = this;
-        var selIds = ['compare-model-a', 'compare-model-b', 'compare-model-c', 'compare-model-d'];
-        var selects = selIds.map(function(id) { return document.getElementById(id); });
+        self._renderCompareSelectors();
 
-        selects.forEach(function(sel) {
-            if (!sel) return;
-            self.data.models.forEach(function(m) {
-                var opt = document.createElement('option');
-                opt.value = m.id;
-                opt.textContent = m.name + ' (' + m.vendor + ')';
-                sel.appendChild(opt);
+        var addBtn = document.getElementById('compare-add-btn');
+        if (addBtn) {
+            addBtn.addEventListener('click', function() {
+                if (self._compareCount >= self._COMPARE_MAX) return;
+                self._compareCount++;
+                self._renderCompareSelectors();
             });
-        });
+        }
 
         var btn = document.getElementById('compare-btn');
         if (btn) {
             btn.addEventListener('click', function() {
-                var modelIds = selects.map(function(sel) { return sel ? sel.value : ''; }).filter(function(v) { return v; });
+                var modelIds = [];
+                for (var i = 0; i < self._compareCount; i++) {
+                    var sel = document.getElementById('compare-model-' + i);
+                    if (sel && sel.value) modelIds.push(sel.value);
+                }
                 if (modelIds.length < 2) return;
 
-                // Update URL hash with model IDs for sharing
                 history.replaceState(null, '', '#explore/' + modelIds.join(','));
 
                 var rows = Explorer.compare(modelIds, self.data.scores, self.data.benchmarks);

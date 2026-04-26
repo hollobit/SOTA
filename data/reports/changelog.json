@@ -2,6 +2,15 @@
   {
     "type": "Feature",
     "date": "2026-04-26",
+    "benchmark_id": "Explorer 메뉴 — 2~10개 동적 모델 비교 selector",
+    "new_model": "고정된 A/B/C/D 4개 selector → 2개로 시작·+ 버튼으로 최대 10개까지 추가",
+    "new_value": "User-requested: 'explorer에서 모델 비교는 처음에 2개로 시작하지만 + 메뉴를 통해 최대 10개까지 모델을 추가 선택해 비교할 수 있는 형태로 변경해주세요.' Explorer 탭의 fixed Model A/B/C/D selector를 동적 list로 교체. 초기 2개 selector + '+ 모델 추가' 버튼으로 최대 10개까지 확장 가능하며, 각 행에 × 버튼으로 제거 가능 (최소 2개 유지). compare-model-list 컨테이너가 _renderCompareSelectors()로 재빌드되며 이전 값을 보존. URL deep-link (#explore/m1,m2,...,mN)도 최대 10개 모델 지원, 호출 시 selector 개수가 자동 매칭. _PALETTE 10색 (green/blue/amber/red/purple/pink/teal/orange/lime/cyan)으로 6색 Theme.series 한계 극복, 비교 카드 색상 + radar series 색상 모두 동적 반영. Cache: explorer.js?v=20260426c, app.js?v=20260426c.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Feature",
+    "date": "2026-04-26",
     "benchmark_id": "Cyber & Coding · Physical AI 표 — 컬럼별 정렬 지원",
     "new_model": "Sovereign AI에 적용된 _cycleSort 패턴을 Cyber & Coding·Physical AI 모든 표로 확장",
     "new_value": "User-requested: 'cyber & coding 화면과 physical AI 화면 내의 표에서 모든 컬럼을 기준으로 정렬 가능하도록 해주세요.' Cyber & Coding 탭의 4개 dimension 표(Cybersecurity·Coding·Cyber Defense·Agent) 및 7개 Performance Suites 표, Physical AI 탭의 4개 BENCHMARK_SUITES 표 (VLA Manipulation·World Model Quality·Embodied Reasoning·Industrial Deployment) 모든 컬럼 헤더가 클릭 가능. Sort 동작: off → desc → asc → off (3-state cycle), 활성 컬럼은 ▼/▲ indicator + 파란색 굵은 글자, NULL 값은 방향 무관 항상 마지막에 정렬. 각 테이블별로 _sortStates 키 분리 (cyber-table-container/coding-table-container/defense-table-container/agent-table-container/cyber-suite-N/phys-suite-N). 기본 정렬은 dimension 표는 평균-점수 desc, suite 표는 sum-of-scores desc, Physical AI는 카테고리→sum desc — explicit sort 해제 시 자동 복귀. Cache: cyber-coding.js?v=20260426c, physical-ai.js?v=20260426c.",

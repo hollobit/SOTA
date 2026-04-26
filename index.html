@@ -434,37 +434,13 @@
         </section>
 
         <section id="tab-explorer" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-explorer">
-            <h2 class="text-section mb-4">Model Explorer — Compare up to 4 models</h2>
-            <p class="text-sm text-gray-400 mb-4">Pick two to four models below, then click <strong class="text-gray-300">Compare</strong>. You will get a radar chart on shared benchmarks and a side-by-side matrix covering every benchmark any selected model has been scored on.</p>
-            <div class="flex gap-3 mb-6 flex-wrap items-end">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Model A</label>
-                    <select id="compare-model-a" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 text-sm">
-                        <option value="">Select Model A</option>
-                    </select>
-                </div>
-                <span class="self-center text-gray-600 text-sm">vs</span>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Model B</label>
-                    <select id="compare-model-b" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 text-sm">
-                        <option value="">Select Model B</option>
-                    </select>
-                </div>
-                <span class="self-center text-gray-600 text-sm">vs</span>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Model C (optional)</label>
-                    <select id="compare-model-c" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 text-sm">
-                        <option value="">— none —</option>
-                    </select>
-                </div>
-                <span class="self-center text-gray-600 text-sm">vs</span>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Model D (optional)</label>
-                    <select id="compare-model-d" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 text-sm">
-                        <option value="">— none —</option>
-                    </select>
-                </div>
-                <button id="compare-btn" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">Compare</button>
+            <h2 class="text-section mb-4">Model Explorer — Compare 2 to 10 models</h2>
+            <p class="text-sm text-gray-400 mb-4">2개 모델로 시작합니다. <strong class="text-gray-300">+ 모델 추가</strong> 버튼으로 최대 10개까지 모델을 더할 수 있고, 각 행의 × 버튼으로 제거할 수 있습니다 (최소 2개 유지). <strong class="text-gray-300">Compare</strong>를 누르면 공유 벤치마크 기준 radar chart와 모든 선택 모델이 채점된 벤치마크의 side-by-side matrix가 표시됩니다.</p>
+            <div id="compare-model-list" class="flex gap-3 mb-3 flex-wrap items-end"></div>
+            <div class="flex gap-3 mb-6 items-center">
+                <button id="compare-add-btn" class="bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded text-sm" type="button">+ 모델 추가</button>
+                <button id="compare-btn" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm" type="button">Compare</button>
+                <span id="compare-count-hint" class="text-xs text-gray-500"></span>
             </div>
             <div id="explorer-radar" class="h-96 mb-6"></div>
             <div id="comparison-result" class="overflow-x-auto"></div>
@@ -502,16 +478,16 @@
         <p class="text-gray-500 text-sm">Collected by hollobit@etri.re.kr</p>
     </footer>
 
-    <script src="js/theme.js?v=f6be6d6d"></script>
-    <script src="js/modal.js?v=f6be6d6d"></script>
-    <script src="js/frontier-compare.js?v=f6be6d6d"></script>
-    <script src="js/cyber-coding.js?v=f6be6d6d"></script>
-    <script src="js/sovereign.js?v=f6be6d6d"></script>
-    <script src="js/physical-ai.js?v=f6be6d6d"></script>
-    <script src="js/charts.js?v=f6be6d6d"></script>
-    <script src="js/filters.js?v=f6be6d6d"></script>
-    <script src="js/explorer.js?v=f6be6d6d"></script>
-    <script src="js/comparison.js?v=f6be6d6d"></script>
-    <script src="js/app.js?v=f6be6d6d"></script>
+    <script src="js/theme.js?v=adab4e80"></script>
+    <script src="js/modal.js?v=adab4e80"></script>
+    <script src="js/frontier-compare.js?v=adab4e80"></script>
+    <script src="js/cyber-coding.js?v=adab4e80"></script>
+    <script src="js/sovereign.js?v=adab4e80"></script>
+    <script src="js/physical-ai.js?v=adab4e80"></script>
+    <script src="js/charts.js?v=adab4e80"></script>
+    <script src="js/filters.js?v=adab4e80"></script>
+    <script src="js/explorer.js?v=adab4e80"></script>
+    <script src="js/comparison.js?v=adab4e80"></script>
+    <script src="js/app.js?v=adab4e80"></script>
 </body>
 </html>

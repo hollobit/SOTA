@@ -1,8 +1,13 @@
 /**
- * Model Explorer: compare up to 4 models side-by-side with radar chart.
+ * Model Explorer: compare 2 to 10 models side-by-side with radar chart.
  * Uses safe DOM methods (createElement + textContent).
  */
 var Explorer = {
+    _PALETTE: [
+        '#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6',
+        '#ec4899', '#14b8a6', '#f97316', '#a3e635', '#06b6d4'
+    ],
+
     // Merge semantically identical benchmarks for display
     _MERGE_MAP: {
         'livecodebench_v6': 'livecodebench',
@@ -94,7 +99,7 @@ var Explorer = {
 
         var summaryDiv = document.createElement('div');
         summaryDiv.className = 'flex gap-4 mb-4 flex-wrap';
-        var colors = Theme.series.slice(0, 4);
+        var colors = this._PALETTE.slice(0, modelIds.length);
 
         // Add coverage stats card
         var coverageCard = document.createElement('div');
@@ -294,7 +299,7 @@ var Explorer = {
             return { name: name, max: maxVal <= 100 ? 100 : Math.ceil(maxVal / 100) * 100 };
         });
 
-        var radarColors = Theme.series.slice(0, 4);
+        var radarColors = this._PALETTE.slice(0, modelIds.length);
 
         var series = [{
             type: 'radar',
