@@ -352,6 +352,41 @@ var CyberCoding = {
     _models: [],
     _benchmarks: [],
     _scores: [],
+    _sortStates: {},
+
+    _cycleSort: function(tableId, key, defaultDir) {
+        var s = this._sortStates[tableId] || { key: null, dir: null };
+        if (s.key !== key) {
+            this._sortStates[tableId] = { key: key, dir: defaultDir || 'desc' };
+        } else if (s.dir === 'desc') {
+            this._sortStates[tableId] = { key: key, dir: 'asc' };
+        } else if (s.dir === 'asc') {
+            this._sortStates[tableId] = { key: null, dir: null };
+        } else {
+            this._sortStates[tableId] = { key: key, dir: defaultDir || 'desc' };
+        }
+    },
+
+    _sortIndicator: function(tableId, key) {
+        var s = this._sortStates[tableId];
+        if (!s || s.key !== key) return '';
+        return s.dir === 'asc' ? ' ▲' : s.dir === 'desc' ? ' ▼' : '';
+    },
+
+    _makeSortableTh: function(tableId, key, label, defaultDir, onClick) {
+        var th = document.createElement('th');
+        th.textContent = label + this._sortIndicator(tableId, key);
+        th.style.cursor = 'pointer';
+        th.setAttribute('role', 'button');
+        th.setAttribute('title', '클릭하여 정렬 (' + (defaultDir === 'asc' ? 'asc → desc → off' : 'desc → asc → off') + ')');
+        var s = this._sortStates[tableId];
+        if (s && s.key === key) {
+            th.style.color = '#3b82f6';
+            th.style.fontWeight = 'bold';
+        }
+        th.addEventListener('click', onClick);
+        return th;
+    },
 
     init: function(models, benchmarks, scores) {
         this._models = models;
@@ -494,30 +529,56 @@ var CyberCoding = {
 
         var modelScores = this._getScoresForBenchmarks(benchmarkIds);
         var self = this;
+        var TABLE_ID = containerId;
 
-        // get all models with scores, sorted by first benchmark score
+        // get all models with scores
         var modelIds = Object.keys(modelScores);
-        modelIds.sort(function(a, b) {
-            var avgA = 0, cntA = 0, avgB = 0, cntB = 0;
-            benchmarkIds.forEach(function(bid) {
-                if (modelScores[a][bid]) { avgA += modelScores[a][bid]; cntA++; }
-                if (modelScores[b][bid]) { avgB += modelScores[b][bid]; cntB++; }
+
+        // Apply current sort, or default to descending average across the suite
+        var s = this._sortStates[TABLE_ID];
+        if (s && s.key && s.dir) {
+            modelIds.sort(function(a, b) {
+                var va, vb;
+                if (s.key === 'model') { va = self._getModelName(a); vb = self._getModelName(b); }
+                else { va = modelScores[a][s.key]; vb = modelScores[b][s.key]; }
+                var aNull = va == null, bNull = vb == null;
+                if (aNull && bNull) return 0;
+                if (aNull) return 1;
+                if (bNull) return -1;
+                if (typeof va === 'string') {
+                    return s.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                }
+                return s.dir === 'asc' ? va - vb : vb - va;
             });
-            return (cntB ? avgB / cntB : 0) - (cntA ? avgA / cntA : 0);
-        });
+        } else {
+            modelIds.sort(function(a, b) {
+                var avgA = 0, cntA = 0, avgB = 0, cntB = 0;
+                benchmarkIds.forEach(function(bid) {
+                    if (modelScores[a][bid]) { avgA += modelScores[a][bid]; cntA++; }
+                    if (modelScores[b][bid]) { avgB += modelScores[b][bid]; cntB++; }
+                });
+                return (cntB ? avgB / cntB : 0) - (cntA ? avgA / cntA : 0);
+            });
+        }
 
         var table = document.createElement('table');
         table.className = 'sota-table text-sm';
 
         var thead = document.createElement('thead');
         var hr = document.createElement('tr');
-        var thModel = document.createElement('th');
-        thModel.textContent = 'Model';
-        hr.appendChild(thModel);
+        hr.appendChild(self._makeSortableTh(TABLE_ID, 'model', 'Model', 'asc', function() {
+            self._cycleSort(TABLE_ID, 'model', 'asc');
+            self._renderTable(containerId, benchmarkIds);
+        }));
         benchmarkIds.forEach(function(bid) {
-            var th = document.createElement('th');
             var b = self._benchmarks.find(function(x) { return x.id === bid; });
-            th.textContent = b ? b.name : bid;
+            var label = b ? b.name : bid;
+            var th = self._makeSortableTh(TABLE_ID, bid, label, 'desc', (function(localBid) {
+                return function() {
+                    self._cycleSort(TABLE_ID, localBid, 'desc');
+                    self._renderTable(containerId, benchmarkIds);
+                };
+            })(bid));
             th.style.fontSize = '11px';
             hr.appendChild(th);
         });
@@ -705,7 +766,7 @@ var CyberCoding = {
         el.appendChild(summary);
 
         // One table per suite
-        this.PERF_SUITES.forEach(function(suite) {
+        this.PERF_SUITES.forEach(function(suite, suiteIdx) {
             var activeBids = suite.benchmarks.filter(function(bid) {
                 return rowIds.some(function(mid) {
                     return self._scores.some(function(s) { return s.model_id === mid && s.benchmark_id === bid; });
@@ -720,19 +781,53 @@ var CyberCoding = {
             });
             if (suiteRowIds.length === 0) return;
 
-            // Sort by sum-of-scores desc, then by model name
-            suiteRowIds.sort(function(a, b) {
-                var sa = activeBids.reduce(function(acc, bid) {
-                    var sc = self._scores.find(function(x) { return x.model_id === a && x.benchmark_id === bid; });
-                    return acc + (sc ? sc.value : 0);
-                }, 0);
-                var sb2 = activeBids.reduce(function(acc, bid) {
-                    var sc = self._scores.find(function(x) { return x.model_id === b && x.benchmark_id === bid; });
-                    return acc + (sc ? sc.value : 0);
-                }, 0);
-                if (sb2 !== sa) return sb2 - sa;
-                return self._getModelName(a).localeCompare(self._getModelName(b));
+            var TABLE_ID = 'cyber-suite-' + suiteIdx;
+
+            // Pre-build score lookup for this suite
+            var scoreLookup = {};
+            self._scores.forEach(function(x) {
+                if (activeBids.indexOf(x.benchmark_id) !== -1 && suiteRowIds.indexOf(x.model_id) !== -1) {
+                    if (!scoreLookup[x.model_id]) scoreLookup[x.model_id] = {};
+                    scoreLookup[x.model_id][x.benchmark_id] = x.value;
+                }
             });
+
+            // Apply sort: explicit per-column when set, else default sum-of-scores desc
+            var sortS = self._sortStates[TABLE_ID];
+            if (sortS && sortS.key && sortS.dir) {
+                suiteRowIds.sort(function(a, b) {
+                    var va, vb;
+                    if (sortS.key === 'model') { va = self._getModelName(a); vb = self._getModelName(b); }
+                    else if (sortS.key === 'vendor') {
+                        var ma = self._models.find(function(m) { return m.id === a; });
+                        var mb = self._models.find(function(m) { return m.id === b; });
+                        va = ma && ma.vendor ? ma.vendor : '';
+                        vb = mb && mb.vendor ? mb.vendor : '';
+                    } else {
+                        va = scoreLookup[a] ? scoreLookup[a][sortS.key] : null;
+                        vb = scoreLookup[b] ? scoreLookup[b][sortS.key] : null;
+                    }
+                    var aNull = va == null || va === '', bNull = vb == null || vb === '';
+                    if (aNull && bNull) return 0;
+                    if (aNull) return 1;
+                    if (bNull) return -1;
+                    if (typeof va === 'string') {
+                        return sortS.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                    }
+                    return sortS.dir === 'asc' ? va - vb : vb - va;
+                });
+            } else {
+                suiteRowIds.sort(function(a, b) {
+                    var sa = activeBids.reduce(function(acc, bid) {
+                        return acc + (scoreLookup[a] && scoreLookup[a][bid] ? scoreLookup[a][bid] : 0);
+                    }, 0);
+                    var sb2 = activeBids.reduce(function(acc, bid) {
+                        return acc + (scoreLookup[b] && scoreLookup[b][bid] ? scoreLookup[b][bid] : 0);
+                    }, 0);
+                    if (sb2 !== sa) return sb2 - sa;
+                    return self._getModelName(a).localeCompare(self._getModelName(b));
+                });
+            }
 
             // Cap to top-25 per suite
             var TOP_N = 25;
@@ -771,12 +866,25 @@ var CyberCoding = {
 
             var thead = document.createElement('thead');
             var hr = document.createElement('tr');
-            var thM = document.createElement('th'); thM.textContent = 'Model'; hr.appendChild(thM);
-            var thV = document.createElement('th'); thV.textContent = 'Vendor'; thV.style.fontSize = '11px'; hr.appendChild(thV);
+            hr.appendChild(self._makeSortableTh(TABLE_ID, 'model', 'Model', 'asc', function() {
+                self._cycleSort(TABLE_ID, 'model', 'asc');
+                self._renderPerfSuites();
+            }));
+            var thV = self._makeSortableTh(TABLE_ID, 'vendor', 'Vendor', 'asc', function() {
+                self._cycleSort(TABLE_ID, 'vendor', 'asc');
+                self._renderPerfSuites();
+            });
+            thV.style.fontSize = '11px';
+            hr.appendChild(thV);
             activeBids.forEach(function(bid) {
-                var th = document.createElement('th');
                 var b = self._benchmarks.find(function(x) { return x.id === bid; });
-                th.textContent = b ? b.name : bid;
+                var label = b ? b.name : bid;
+                var th = self._makeSortableTh(TABLE_ID, bid, label, 'desc', (function(localBid) {
+                    return function() {
+                        self._cycleSort(TABLE_ID, localBid, 'desc');
+                        self._renderPerfSuites();
+                    };
+                })(bid));
                 th.style.fontSize = '10px';
                 th.style.whiteSpace = 'nowrap';
                 hr.appendChild(th);
