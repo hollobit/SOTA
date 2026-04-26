@@ -118,6 +118,10 @@ var Sovereign = {
                 'tencent/hunyuan-t1', 'tencent/hunyuan-large', 'tencent/hunyuan-turbo', 'tencent/hunyuan-7b',
                 // ByteDance Doubao Seed
                 'bytedance/seed-2.0-pro', 'bytedance/seed-1.6', 'bytedance/seed-1.5-pro', 'bytedance/seed-1.5-lite',
+                // Apr 2026 sweep — new Chinese flagships
+                'tencent/hy3-preview', 'tencent/hy-world-2.0',
+                'xiaomi/mimo-v2.5-pro', 'xiaomi/mimo-v2.5',
+                'inclusionai/ling-2.6-1t', 'inclusionai/ling-2.6-flash', 'inclusionai/llada2-uni',
                 // iFlytek Spark (state-backed)
                 'iflytek/spark-x1', 'iflytek/spark-4-ultra', 'iflytek/spark-4', 'iflytek/antelope-3.0',
                 // 01.AI (Lee Kai-Fu)
@@ -468,6 +472,11 @@ var Sovereign = {
         // China — DeepSeek specialists
         'deepseek/deepseek-coder-v2': '2024-06', 'deepseek/deepseek-coder-v2-lite': '2024-06',
         'deepseek/deepseek-math-7b': '2024-02', 'deepseek/deepseek-vl2': '2024-12', 'deepseek/janus-pro-7b': '2025-01',
+        // China — Apr 2026 sweep
+        'tencent/hy3-preview': '2026-04', 'tencent/hy-world-2.0': '2026-04',
+        'xiaomi/mimo-v2.5-pro': '2026-04', 'xiaomi/mimo-v2.5': '2026-04',
+        'inclusionai/ling-2.6-1t': '2026-04', 'inclusionai/ling-2.6-flash': '2026-04',
+        'inclusionai/llada2-uni': '2026-04',
         // China — medical
         'freedomintelligence/huatuogpt-ii': '2024-05',
 
@@ -838,7 +847,12 @@ var Sovereign = {
         'openvla/openvla-7b': 7,
         'nvidia/omniverse-mega': 30,
         // xAI Grok (proprietary, approx total params)
-        'xai/grok-3': 1500, 'xai/grok-4': 1500, 'xai/grok-4-heavy': 1500, 'xai/grok-4.20': 1500
+        'xai/grok-3': 1500, 'xai/grok-4': 1500, 'xai/grok-4-heavy': 1500, 'xai/grok-4.20': 1500,
+        // Apr 2026 sweep
+        'tencent/hy3-preview': 295, 'tencent/hy-world-2.0': 1.2,
+        'xiaomi/mimo-v2.5-pro': 1000, 'xiaomi/mimo-v2.5': 100,
+        'inclusionai/ling-2.6-1t': 1000, 'inclusionai/ling-2.6-flash': 104,
+        'inclusionai/llada2-uni': 16
     },
 
     // Vendor-prefix → fallback group for models that aren't in any

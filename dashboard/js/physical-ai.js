@@ -10,10 +10,12 @@ var PhysicalAI = {
             code: 'world-models',
             label: 'World Foundation Models',
             icon: '🌐',
-            note: '시뮬레이션·예측·환경 생성 — NVIDIA Cosmos · DeepMind Genie · AgiBot · Omniverse Mega',
+            note: '시뮬레이션·예측·환경 생성 — NVIDIA Cosmos · DeepMind Genie · Tencent HY-World · AgiBot · Omniverse Mega',
             models: [
                 'nvidia/cosmos-predict-2.5', 'nvidia/cosmos-reason-2', 'nvidia/cosmos-policy-robocasa',
+                'nvidia/cosmos-reason-1',
                 'google-deepmind/genie-3', 'google-deepmind/genie-2',
+                'tencent/hy-world-2.0',
                 'agibot/genie-envisioner',
                 'nvidia/omniverse-mega'
             ]
@@ -24,7 +26,7 @@ var PhysicalAI = {
             icon: '🦾',
             note: 'Vision-Language-Action 일반 로봇 정책 — GR00T · Pi-Zero · OpenVLA · Gemini Robotics-ER',
             models: [
-                'nvidia/gr00t-n1.7', 'nvidia/gr00t-n1.6',
+                'nvidia/gr00t-n1.7', 'nvidia/gr00t-n1.6', 'nvidia/gr00t-n1.5', 'nvidia/gr00t-n1',
                 'physical-intelligence/pi-zero', 'physical-intelligence/pi-zero-fast',
                 'openvla/openvla-7b',
                 'google-deepmind/gemini-robotics-er-1.6', 'google-deepmind/gemini-robotics-er-1.5'
@@ -106,11 +108,14 @@ var PhysicalAI = {
     // map at runtime when available, with locally-required entries as fallback.
     _localReleaseDates: {
         'nvidia/cosmos-predict-2.5': '2025-09', 'nvidia/cosmos-reason-2': '2025-09', 'nvidia/cosmos-policy-robocasa': '2025-10',
+        'nvidia/cosmos-reason-1': '2025-03',
         'nvidia/gr00t-n1.7': '2025-11', 'nvidia/gr00t-n1.6': '2025-08',
+        'nvidia/gr00t-n1.5': '2025-06', 'nvidia/gr00t-n1': '2025-03',
         'google-deepmind/genie-3': '2025-08', 'google-deepmind/genie-2': '2024-12',
         'physical-intelligence/pi-zero': '2024-11', 'physical-intelligence/pi-zero-fast': '2025-04',
         'openvla/openvla-7b': '2024-06',
-        'agibot/genie-envisioner': '2025-06'
+        'agibot/genie-envisioner': '2025-06',
+        'tencent/hy-world-2.0': '2026-04'
     },
 
     _models: [],

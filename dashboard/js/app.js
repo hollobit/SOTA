@@ -1339,7 +1339,21 @@ var App = {
             { name: 'BenchLM Korean LLMs', url: 'https://benchlm.ai/leaderboards/korean-llm', desc: 'Korean model rankings: Solar, EXAONE, Mi:dm' },
             { name: 'HarmBench', url: 'https://www.harmbench.org/', desc: 'Automated red teaming and robust refusal eval' },
             { name: 'LM Market Cap', url: 'https://lmmarketcap.com/', desc: 'Model rankings, benchmarks, pricing comparison' },
-            { name: 'AIRank.dev', url: 'https://airank.dev/', desc: 'Benchmark analysis with historical trends' }
+            { name: 'AIRank.dev', url: 'https://airank.dev/', desc: 'Benchmark analysis with historical trends' },
+
+            // ── Apr 2026 monitoring sweep — new sources ──
+            { name: 'Tencent Hy3 (Hunyuan 3)', url: 'https://hy3ai.com/', desc: 'Tencent Hunyuan 3 (Hy3-preview, Apr 23 2026) — 295B-A21B MoE, 256K ctx. SWE-Verified 74.4 / Terminal-Bench 2.0 54.4 / MMLU-Pro 65.76' },
+            { name: 'Tencent HY-World 2.0', url: 'https://3d-models.hunyuan.tencent.com/world/world2_0/', desc: '3D world foundation model (Apr 15 2026). WorldMirror 2.0 ~1.2B open-weight. Image/text/video → mesh/3DGS/point clouds' },
+            { name: 'Xiaomi MiMo', url: 'https://mimo.xiaomi.com/', desc: 'Xiaomi MiMo V2.5 Pro (Apr 22 2026 beta) — 1T-A42B MoE, 1M ctx, 1000+ tool calls. τ³-Bench 72.9 LEADER, SWE-Pro 57.2' },
+            { name: 'InclusionAI (Ant Group)', url: 'https://huggingface.co/inclusionAI', desc: 'Ant Group open-source AI org. Ling 2.6 1T (Apr 23 2026 trillion-param non-reasoning), Ling 2.6 Flash 104B-A7.4B, LLaDA 2.0 Uni 16B unified diffusion' },
+            { name: 'Anthropic Mythos Preview (gated)', url: 'https://red.anthropic.com/2026/mythos-preview/', desc: 'Claude Mythos Preview (Apr 8 2026 cyber-restricted). SWE-Verified 93.9 SOTA / USAMO 97.6' },
+            { name: 'Meta Muse Spark (Superintelligence Labs)', url: 'https://ai.meta.com/blog/introducing-muse-spark-msl/', desc: 'Meta first MSL flagship (Apr 8 2026). HealthBench Hard 42.8 SOTA / FrontierScience 38' },
+            { name: 'ARC-AGI-3', url: 'https://arcprize.org/blog/arc-agi-3-launch', desc: 'Interactive agentic reasoning benchmark (Mar 25 2026). 1000+ levels / 150+ envs. $2M prize. Gemini 3.1 Pro 0.37%, humans 100%' },
+            { name: 'OpenAI FrontierScience', url: 'https://openai.com/index/frontierscience/', desc: '700 expert-science Q (160 gold). Olympiad + Research splits. GPT-5.2 leads (Olymp 77 / Res 25)' },
+            { name: 'KMMMU (Korean MMMU)', url: 'https://arxiv.org/abs/2604.13058', desc: 'Korean Multimodal MMMU — 3,466 Q + 300 culture-specific + 627 hard. 9 disciplines × 9 visual types. Open 42.05% / proprietary 52.42% on hard' },
+            { name: 'TII QIMMA Arabic Leaderboard', url: 'https://huggingface.co/blog/tiiuae/qimma-arabic-leaderboard', desc: 'QIMMA (قِمّة) Arabic LLM quality-first — 52K samples / 109 subsets / 14 source benchmarks / 7 domains' },
+            { name: 'GAIA-2', url: 'https://openreview.net/forum?id=9gw03JpKK4', desc: 'Dynamic/async agent environments benchmark. GPT-5 high 42% pass@1, Kimi K2 21% open SOTA' },
+            { name: 'Google Gemma 4', url: 'https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/', desc: 'Gemma 4 family (Apr 2 2026, Apache 2.0): E2B/E4B/26B-A4B/31B-Dense. AIME-2026 89.2 / MMLU-Pro 85.2 / Codeforces 2150' }
         ];
 
         sites.forEach(function(site) {
