@@ -1979,5 +1979,166 @@
     "category": "math",
     "description": "USA Mathematical Olympiad — high-school-level rigorous proof problems. Claude Mythos Preview 97.6.",
     "metric": "accuracy"
+  },
+  {
+    "id": "pai_bench_text2world",
+    "name": "PAI-Bench Text2World",
+    "category": "multimodal",
+    "description": "NVIDIA Physical AI Bench — text-to-world video generation eval. VQA-based domain score across 7 physical-AI domains + 8 video-quality metrics. 0-1 scale. Cosmos Predict 2.5 2B/14B 0.768.",
+    "metric": "score"
+  },
+  {
+    "id": "pai_bench_image2world",
+    "name": "PAI-Bench Image2World",
+    "category": "multimodal",
+    "description": "Image-conditioned variant of PAI-Bench. Cosmos Predict 2.5 2B 0.810 (beats Wan2.2-27B-A14B 0.806).",
+    "metric": "score"
+  },
+  {
+    "id": "worldscore_static",
+    "name": "WorldScore Static",
+    "category": "multimodal",
+    "description": "Stanford SVL unified eval for 3D/4D/video world models, static scenes. 19+ models evaluated. HunyuanWorld-Voyager 77.62 #1.",
+    "metric": "score"
+  },
+  {
+    "id": "worldscore_dynamic",
+    "name": "WorldScore Dynamic",
+    "category": "multimodal",
+    "description": "WorldScore dynamic-scene variant evaluating temporal coherence. HunyuanWorld-Voyager 54.53.",
+    "metric": "score"
+  },
+  {
+    "id": "worldscore_3d_consistency",
+    "name": "WorldScore 3D Consistency",
+    "category": "multimodal",
+    "description": "Cross-view 3D consistency sub-metric. WonderWorld 86.87.",
+    "metric": "score"
+  },
+  {
+    "id": "ewmbench",
+    "name": "EWMBench",
+    "category": "multimodal",
+    "description": "Embodied World Model Benchmark — visual fidelity + physical consistency + instruction-action alignment for robotic world simulators. AgiBot Genie Envisioner GE-Base baseline (LTX 0.94 spatial, 0.98 temporal).",
+    "metric": "score"
+  },
+  {
+    "id": "av_fvd",
+    "name": "AV FVD (StyleGAN)",
+    "category": "multimodal",
+    "description": "Frechet Video Distance — autonomous-driving sim quality. LOWER is better. Cosmos Predict 2.5 2B 23.06 (2.3× over Predict1).",
+    "metric": "fvd"
+  },
+  {
+    "id": "av_fid",
+    "name": "AV FID",
+    "category": "multimodal",
+    "description": "Frechet Inception Distance for AV-domain video frames. LOWER is better.",
+    "metric": "fid"
+  },
+  {
+    "id": "robot_manip_psnr",
+    "name": "Robot Manipulation PSNR",
+    "category": "multimodal",
+    "description": "Cosmos PAI-Bench robot-manipulation video reconstruction PSNR. Cosmos Predict 2.5 2B 24.95 dB.",
+    "metric": "score"
+  },
+  {
+    "id": "robot_manip_fvd",
+    "name": "Robot Manipulation FVD",
+    "category": "multimodal",
+    "description": "Cosmos PAI-Bench robot-manip FVD. LOWER is better.",
+    "metric": "fvd"
+  },
+  {
+    "id": "vlabench_track1_primitive",
+    "name": "VLABench Track 1 — Primitive",
+    "category": "agent",
+    "description": "ICCV 2025 benchmark — 100 categories, 2000+ objects, long-horizon language-conditioned VLA. Pi-0.5 47% on primitive track.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "roboarena_elo",
+    "name": "RoboArena ELO",
+    "category": "agent",
+    "description": "Distributed real-world double-blind pairwise eval (4284+ episodes). Standardized cross-policy real-robot benchmark.",
+    "metric": "elo"
+  },
+  {
+    "id": "worldmodelbench_avg",
+    "name": "WorldModelBench Average",
+    "category": "multimodal",
+    "description": "NeurIPS 2025 — 7 domains × 56 sub-tasks, 350 prompts. Instruction Following / Common Sense / Physical Adherence (67K human labels).",
+    "metric": "score"
+  },
+  {
+    "id": "humanoid_sampling_psnr",
+    "name": "1X World Model Sampling (PSNR)",
+    "category": "multimodal",
+    "description": "1X World Model Challenge — image-frame forecasting on humanoid data. 1X World Model 23.0 dB (1st place).",
+    "metric": "score"
+  },
+  {
+    "id": "humanoid_compression_top500_ce",
+    "name": "1X World Model Compression (CE)",
+    "category": "multimodal",
+    "description": "1X World Model Challenge — top-500 cross-entropy on discrete latent prediction. 1X 6.6386 (1st place). LOWER is better.",
+    "metric": "score"
+  },
+  {
+    "id": "helix_effective_throughput",
+    "name": "Helix T_eff",
+    "category": "agent",
+    "description": "Figure AI normalized package throughput vs human demonstrator. Helix S1 1.1.",
+    "metric": "score"
+  },
+  {
+    "id": "intuitive_physics_spatial_puzzle",
+    "name": "Intuitive Physics Spatial Puzzle",
+    "category": "multimodal",
+    "description": "Cosmos Reason1 sub-bench — physical scene spatial reasoning puzzles. Cosmos Reason 1 56B 85.2 post-RL.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "intuitive_physics_arrow_of_time",
+    "name": "Intuitive Physics Arrow of Time",
+    "category": "multimodal",
+    "description": "Cosmos Reason1 sub-bench — temporal causality / arrow-of-time. 57.0 post-RL.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "intuitive_physics_object_permanence",
+    "name": "Intuitive Physics Object Permanence",
+    "category": "multimodal",
+    "description": "Cosmos Reason1 sub-bench — object permanence reasoning. 54.8 post-RL.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "aloha_4task_avg",
+    "name": "ALOHA 4-Task Average",
+    "category": "agent",
+    "description": "Bimanual ALOHA tasks (fold shorts/shirt, scoop/put X into bowl/pot). OpenVLA-OFT 87.8% leader.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "simpler_env_avg",
+    "name": "SimplerEnv Average",
+    "category": "agent",
+    "description": "Open-source robot simulator leaderboard. Octo-Base 62% baseline (50-75% range).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "gr1_real_lang_following",
+    "name": "GR-1 Real Language Following",
+    "category": "agent",
+    "description": "Fruit-placement language-conditioning task on Fourier GR-1 humanoid (NVIDIA GEAR).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "unitree_g1_1k_demos",
+    "name": "Unitree G1 Post-train (1K demos)",
+    "category": "agent",
+    "description": "Post-training success rate on Unitree G1 humanoid. GR00T N1.5 98.8% leader.",
+    "metric": "accuracy"
   }
 ]
