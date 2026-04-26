@@ -161,6 +161,59 @@ var MedicalAI = {
             ]
         },
         {
+            code: 'radiology-reporting',
+            label: 'Radiology Report Generation',
+            icon: '📝',
+            note: 'MedVersa (Harvard) · MAIRA-1/2 (Microsoft) · CheXagent · CXR-PRO · LLM-CXR · RGRG — chest X-ray + multi-modality report generation, ReXrank leaderboard',
+            models: [
+                'harvard/medversa-8b',
+                'rad-onc/maira-2',
+                'rad-onc/maira-1',
+                'rad-onc/cheXagent-8b',
+                'rad-onc/cxr-pro',
+                'rad-onc/llm-cxr',
+                'rad-onc/rgrg',
+                'mit/mimic-cxr-baseline',
+                'stanford/chexpert-baseline'
+            ]
+        },
+        {
+            code: 'multilingual-medical-vlm',
+            label: 'Multilingual Medical (Arabic · African · Chinese)',
+            icon: '🌍',
+            note: 'BiMediX 1/2 (Arabic-English MoE, MBZUAI) · MedAraBench · AfriMed-QA baseline · 추가 medical 지역화 모델',
+            models: [
+                'mbzuai-oryx/bimedix-2',
+                'mbzuai-oryx/bimedix',
+                'mbzuai/medarabench-baseline',
+                'google/afrimed-qa-baseline'
+            ]
+        },
+        {
+            code: 'safety-evaluator',
+            label: 'Medical Safety / Hallucination Evaluators',
+            icon: '🛡️',
+            note: 'Med-HALT · MedHallu Detector · MedHallBench Judge · MEDIC Indicator Baseline — hallucination + clinical safety eval models',
+            models: [
+                'mit-mediallab/medhallu-detector',
+                'ucsd/medhallbench-judge',
+                'stanford/medhalt-eval',
+                'yale/medic-eval-baseline'
+            ]
+        },
+        {
+            code: 'clinical-prediction',
+            label: 'Clinical Outcome Prediction (MIMIC/eICU)',
+            icon: '📈',
+            note: 'ClinicalPredBERT · MIMIC-IV Sepsis Bench · MIMIC-IV AKI XGBoost · Clinical Mortality LLM (24h pred) — ICU mortality / sepsis / readmission AUROC',
+            models: [
+                'stanford/clinical-pred-bert',
+                'mit-mimic/mimic-iv-bench',
+                'phys-intelligence/medic-aki-xgb',
+                'duke/clin-mortality-llm'
+            ]
+        },
+        {
             code: 'medical-imaging',
             label: 'Medical Imaging FMs (Universal/Radiology/CXR)',
             icon: '🖼️',
@@ -275,6 +328,31 @@ var MedicalAI = {
             label: '💊 Drug Discovery & Chemistry FMs',
             note: 'MoleculeNet 17-task avg · TDC ADMET 22-task — chemistry FM property prediction (MoLFormer / ChemFM / TamGen)',
             benchmarks: ['moleculenet_avg', 'tdc_admet']
+        },
+        {
+            label: '🛡️ Medical Safety / Hallucination',
+            note: 'Med-HALT · MedHallu · MedHallBench · MedSafetyBench (AMA principles, lower=safer) · PatientSafeBench · CSEDB Safety/Effectiveness · CRAFT-MD · MEDIC',
+            benchmarks: ['med_halt', 'medhallu', 'medhallbench', 'medsafetybench', 'patientsafebench', 'csedb_safety', 'csedb_effectiveness', 'craft_md', 'medic_eval']
+        },
+        {
+            label: '📝 Radiology Report Generation (ReXrank)',
+            note: 'ReXrank 8-metric eval — RadGraph-F1 · BERTScore · RadCliQ (lower=better) · GREEN · FineRadScore · ReXGradient holdout · CheXpert F1 (14 finding)',
+            benchmarks: ['rexrank_radgraph_f1', 'rexrank_bertscore', 'rexrank_radcliq', 'rexrank_green', 'rexrank_finerad', 'rexgrad_acc', 'chexpert_f1']
+        },
+        {
+            label: '🖼️ Medical VQA (radiology · pathology)',
+            note: 'VQA-RAD · SLAKE-VQA (EN+CN) · Path-VQA · PMC-VQA — image-grounded medical question answering',
+            benchmarks: ['vqa_rad', 'slake_vqa', 'path_vqa', 'pmc_vqa']
+        },
+        {
+            label: '🌍 Regional Medical (Arabic · African)',
+            note: 'AfriMed-QA MCQ/SAQ · BiMediX bilingual eval · MedAraBench (24,883 Arabic MCQs)',
+            benchmarks: ['afrimed_qa_mcq', 'afrimed_qa_saq', 'bimedix_eval', 'medarabench']
+        },
+        {
+            label: '📈 Clinical Outcome Prediction (ICU)',
+            note: 'MIMIC-IV Sepsis 24h-mortality AUROC · MIMIC-AKI XGBoost · eICU cross-generalization · MIMIC-IV 30-day Readmission',
+            benchmarks: ['mimic_iv_sepsis_auc', 'mimic_aki_mortality', 'eicu_xgen_auc', 'mimic_iv_readmit']
         }
     ],
 
@@ -353,7 +431,19 @@ var MedicalAI = {
         'Isomorphic Labs':                   '#7c3aed',
         'Tencent AI Lab':                    '#0ea5e9',
         'Recursion + Valence Labs':          '#f97316',
-        'Absci':                             '#dc2626'
+        'Absci':                             '#dc2626',
+        'Harvard MGB':                       '#a855f7',
+        'MBZUAI Oryx':                       '#10b981',
+        'MBZUAI':                            '#10b981',
+        'Google Research + UCT':             '#fbbf24',
+        'Yale + Google':                     '#84cc16',
+        'MIT Media Lab':                     '#ec4899',
+        'UCSD':                              '#dc2626',
+        'MedHalt Consortium':                '#a855f7',
+        'MIT LCP':                           '#3b82f6',
+        'MIT LCP + BIDMC':                   '#3b82f6',
+        'PUMC + Beihang':                    '#ef4444',
+        'Duke + UCB':                        '#0ea5e9'
     },
 
     _models: [],

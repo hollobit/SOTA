@@ -29,6 +29,36 @@
     "collected_at": "2026-04-26",
     "notes": ""
   },
+  "chexpert_f1": {
+    "model_id": "harvard/medversa-8b",
+    "benchmark_id": "chexpert_f1",
+    "value": 81.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://rexrank.ai/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "vqa_rad": {
+    "model_id": "smartlab/meddr-internvl-40b",
+    "benchmark_id": "vqa_rad",
+    "value": 87.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2404.15127v1/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
   "math": {
     "model_id": "google/gemma-3-27b",
     "benchmark_id": "math",
@@ -2849,41 +2879,11 @@
     "collected_at": "2026-04-25",
     "notes": "MedGemma 27B Multimodal — top-5 conditions"
   },
-  "chexpert_f1": {
-    "model_id": "google/medgemma-27b",
-    "benchmark_id": "chexpert_f1",
-    "value": 49.9,
-    "unit": "f1",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/google/medgemma-27b-it",
-      "date": "2026-04-25",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "MedGemma 27B Multimodal"
-  },
   "dermmcqa": {
     "model_id": "google/medgemma-4b-pt",
     "benchmark_id": "dermmcqa",
     "value": 71.8,
     "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/google/medgemma-4b-pt",
-      "date": "2026-04-25",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "MedGemma 4B"
-  },
-  "vqa_rad": {
-    "model_id": "google/medgemma-4b-pt",
-    "benchmark_id": "vqa_rad",
-    "value": 49.9,
-    "unit": "f1",
     "source": {
       "type": "leaderboard",
       "url": "https://huggingface.co/google/medgemma-4b-pt",
@@ -4438,5 +4438,380 @@
     "is_sota": true,
     "collected_at": "2026-04-26",
     "notes": "% de novo antibodies with validated binding"
+  },
+  "med_halt": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "med_halt",
+    "value": 81.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://medhalt.github.io/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Frontier baseline reasoning + memory"
+  },
+  "medhallu": {
+    "model_id": "mit-mediallab/medhallu-detector",
+    "benchmark_id": "medhallu",
+    "value": 84.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2502.14302v1",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Trained detector reference"
+  },
+  "medhallbench": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "medhallbench",
+    "value": 78.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2412.18947",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "medsafetybench": {
+    "model_id": "epfl/meditron-70b",
+    "benchmark_id": "medsafetybench",
+    "value": 18.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2403.03744",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "patientsafebench": {
+    "model_id": "hippocratic-ai/polaris-3",
+    "benchmark_id": "patientsafebench",
+    "value": 92.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://hippocraticai.com/polaris-3/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "csedb_safety": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "csedb_safety",
+    "value": 71.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41746-025-02277-8",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "csedb_effectiveness": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "csedb_effectiveness",
+    "value": 78.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41746-025-02277-8",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "craft_md": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "craft_md",
+    "value": 81.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41746-025-02277-8",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "medic_eval": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "medic_eval",
+    "value": 82.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/pdf/2409.07314",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "rexrank_radgraph_f1": {
+    "model_id": "harvard/medversa-8b",
+    "benchmark_id": "rexrank_radgraph_f1",
+    "value": 32.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://rexrank.ai/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "ReXrank top performer 2025"
+  },
+  "rexrank_bertscore": {
+    "model_id": "harvard/medversa-8b",
+    "benchmark_id": "rexrank_bertscore",
+    "value": 47.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://rexrank.ai/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "rexrank_radcliq": {
+    "model_id": "harvard/medversa-8b",
+    "benchmark_id": "rexrank_radcliq",
+    "value": 1.74,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://rexrank.ai/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Lower=better"
+  },
+  "rexrank_green": {
+    "model_id": "harvard/medversa-8b",
+    "benchmark_id": "rexrank_green",
+    "value": 0.42,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://rexrank.ai/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "rexgrad_acc": {
+    "model_id": "harvard/medversa-8b",
+    "benchmark_id": "rexgrad_acc",
+    "value": 71.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://rexrank.ai/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "slake_vqa": {
+    "model_id": "smartlab/meddr-internvl-40b",
+    "benchmark_id": "slake_vqa",
+    "value": 89.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2404.15127v1/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "path_vqa": {
+    "model_id": "smartlab/meddr-internvl-40b",
+    "benchmark_id": "path_vqa",
+    "value": 87.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2404.15127v1/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "pmc_vqa": {
+    "model_id": "smartlab/meddr-internvl-40b",
+    "benchmark_id": "pmc_vqa",
+    "value": 75.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2305.10415v6",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "afrimed_qa_mcq": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "afrimed_qa_mcq",
+    "value": 86.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/gpt-5",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "afrimed_qa_saq": {
+    "model_id": "google/afrimed-qa-baseline",
+    "benchmark_id": "afrimed_qa_saq",
+    "value": 67.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2411.15640",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "bimedix_eval": {
+    "model_id": "mbzuai-oryx/bimedix-2",
+    "benchmark_id": "bimedix_eval",
+    "value": 67.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://github.com/mbzuai-oryx/BiMediX",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "medarabench": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "medarabench",
+    "value": 88.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/gpt-5",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "mimic_iv_sepsis_auc": {
+    "model_id": "duke/clin-mortality-llm",
+    "benchmark_id": "mimic_iv_sepsis_auc",
+    "value": 90.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2604.20924",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "LLM-guided temporal sim 0.903 at 4hr pre-onset"
+  },
+  "mimic_aki_mortality": {
+    "model_id": "phys-intelligence/medic-aki-xgb",
+    "benchmark_id": "mimic_aki_mortality",
+    "value": 87.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2502.17978",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "XGBoost on sepsis-associated AKI"
+  },
+  "eicu_xgen_auc": {
+    "model_id": "phys-intelligence/medic-aki-xgb",
+    "benchmark_id": "eicu_xgen_auc",
+    "value": 84.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2502.17978",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "MIMIC-IV→eICU transfer"
+  },
+  "mimic_iv_readmit": {
+    "model_id": "stanford/clinical-pred-bert",
+    "benchmark_id": "mimic_iv_readmit",
+    "value": 78.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://stanfordmlgroup.github.io/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "30-day readmission AUROC"
   }
 }

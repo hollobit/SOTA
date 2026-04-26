@@ -1617,25 +1617,11 @@
     "metric": "f1"
   },
   {
-    "id": "chexpert_f1",
-    "name": "CheXpert (Top-5 F1)",
-    "category": "multimodal",
-    "description": "Chest X-ray classification on CheXpert dataset top-5 conditions.",
-    "metric": "f1"
-  },
-  {
     "id": "dermmcqa",
     "name": "DermMCQA",
     "category": "multimodal",
     "description": "Dermatology multiple choice QA on skin condition images.",
     "metric": "accuracy"
-  },
-  {
-    "id": "vqa_rad",
-    "name": "VQA-RAD",
-    "category": "multimodal",
-    "description": "Radiology visual question answering benchmark. Tokenized F1.",
-    "metric": "f1"
   },
   {
     "id": "ifeval",
@@ -2399,5 +2385,208 @@
     "category": "protein",
     "description": "% de novo designed antibody candidates with experimentally validated binding (Absci wet-lab)",
     "metric": "binding_rate"
+  },
+  {
+    "id": "med_halt",
+    "name": "Med-HALT (Hallucination Test)",
+    "category": "medical-safety",
+    "description": "Multinational medical exam-derived hallucination benchmark — reasoning + memory hallucination tests for medical LLMs. Med-HALT consortium (paper 2023.07).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medhallu",
+    "name": "MedHallu (Hallucination Detection)",
+    "category": "medical-safety",
+    "description": "First benchmark for medical hallucination detection — 10K QA pairs from PubMedQA with systematically generated hallucinated answers (MIT Media Lab 2025)",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medhallbench",
+    "name": "MedHallBench",
+    "category": "medical-safety",
+    "description": "Comprehensive medical hallucination evaluation — expert-validated case scenarios + medical databases. UCSD 2024-12",
+    "metric": "score"
+  },
+  {
+    "id": "medsafetybench",
+    "name": "MedSafetyBench (AMA principles)",
+    "category": "medical-safety",
+    "description": "Medical safety benchmark built on 9 AMA medical-doctor ethics principles. 450 verified synthetic prompts (ill-intentioned clinician), measures harmful compliance rate (lower=safer). NeurIPS 2024",
+    "metric": "harmful_compliance"
+  },
+  {
+    "id": "medriskeval",
+    "name": "MedRiskEval",
+    "category": "medical-safety",
+    "description": "Medical risk evaluation benchmark — user-perspective patient safety in healthcare LLM use",
+    "metric": "score"
+  },
+  {
+    "id": "csedb_safety",
+    "name": "CSEDB Safety",
+    "category": "medical-safety",
+    "description": "Clinical Safety-Effectiveness Dual-Track Benchmark — 30 metrics: critical illness recognition, guideline adherence, medication safety. Average safety 54.7%, drops 13.3% in high-risk scenarios. Nature npj Digital Medicine 2025",
+    "metric": "score"
+  },
+  {
+    "id": "csedb_effectiveness",
+    "name": "CSEDB Effectiveness",
+    "category": "medical",
+    "description": "CSEDB effectiveness track. Average effectiveness 62.3%",
+    "metric": "score"
+  },
+  {
+    "id": "patientsafebench",
+    "name": "PatientSafeBench",
+    "category": "medical-safety",
+    "description": "Patient-use safety benchmark — measures LLM safety when used directly by patients (vs clinicians). OpenReview 2025",
+    "metric": "safety"
+  },
+  {
+    "id": "craft_md",
+    "name": "CRAFT-MD (Conversational Reasoning)",
+    "category": "medical-safety",
+    "description": "Conversational reasoning eval — simulates AI-agent patient interactions, measures factual accuracy in patient-LLM conversations",
+    "metric": "factual_accuracy"
+  },
+  {
+    "id": "medic_eval",
+    "name": "MEDIC (Clinical LLM Indicators)",
+    "category": "medical",
+    "description": "Comprehensive evaluation of Leading Indicators for Clinical LLMs — multidimensional 5 evaluation axes. Yale + Google 2024-09",
+    "metric": "score"
+  },
+  {
+    "id": "rexrank_radgraph_f1",
+    "name": "ReXrank RadGraph-F1",
+    "category": "medical-imaging",
+    "description": "Radiology report generation entity+relation F1 from RadGraph schema. Standard ReXrank metric — captures clinical entities and their relationships",
+    "metric": "f1"
+  },
+  {
+    "id": "rexrank_bertscore",
+    "name": "ReXrank BERTScore",
+    "category": "medical-imaging",
+    "description": "Radiology report generation semantic similarity (BERTScore) on MIMIC-CXR + ReXGradient + IU-Xray + CheXpert Plus",
+    "metric": "bertscore"
+  },
+  {
+    "id": "rexrank_radcliq",
+    "name": "ReXrank RadCliQ",
+    "category": "medical-imaging",
+    "description": "RadCliQ composite radiology-report quality score combining BLEU + BERTScore + RadGraph-F1",
+    "metric": "radcliq"
+  },
+  {
+    "id": "rexrank_green",
+    "name": "ReXrank GREEN",
+    "category": "medical-imaging",
+    "description": "GREEN metric — clinical relevance + factuality combined for chest X-ray report generation",
+    "metric": "green"
+  },
+  {
+    "id": "rexrank_finerad",
+    "name": "ReXrank FineRadScore",
+    "category": "medical-imaging",
+    "description": "Fine-grained radiology report score — finding-level error detection",
+    "metric": "score"
+  },
+  {
+    "id": "chexpert_f1",
+    "name": "CheXpert F1 (14-finding)",
+    "category": "medical-imaging",
+    "description": "CheXpert label F1 across 14 chest X-ray findings — standard radiology auto-eval metric. Stanford AIMI",
+    "metric": "f1"
+  },
+  {
+    "id": "rexgrad_acc",
+    "name": "ReXGradient Test Accuracy",
+    "category": "medical-imaging",
+    "description": "Largest test dataset (10,000 studies) for radiology report generation eval. ReXrank's primary holdout",
+    "metric": "accuracy"
+  },
+  {
+    "id": "vqa_rad",
+    "name": "VQA-RAD",
+    "category": "medical-imaging",
+    "description": "Radiology VQA — 315 images, 3,515 questions, 517 possible answers. Standard medical VQA benchmark since 2018",
+    "metric": "accuracy"
+  },
+  {
+    "id": "slake_vqa",
+    "name": "SLAKE-VQA (Bilingual)",
+    "category": "medical-imaging",
+    "description": "Bilingual EN-CN medical VQA — 642 images + 14K questions across radiology/CT/MRI",
+    "metric": "accuracy"
+  },
+  {
+    "id": "path_vqa",
+    "name": "Path-VQA",
+    "category": "medical-imaging",
+    "description": "Pathology VQA — 32K Q-A pairs from pathology textbook images. Closed + open question splits",
+    "metric": "accuracy"
+  },
+  {
+    "id": "pmc_vqa",
+    "name": "PMC-VQA",
+    "category": "medical-imaging",
+    "description": "Large-scale medical VQA from PubMed Central figures + captions. PMC-VQA-Test 2,096 image-Q pairs",
+    "metric": "accuracy"
+  },
+  {
+    "id": "afrimed_qa_mcq",
+    "name": "AfriMed-QA MCQ",
+    "category": "medical",
+    "description": "Pan-African multi-specialty MCQ — 4,000+ expert-curated questions. Google Research + UCT 2024-11",
+    "metric": "accuracy"
+  },
+  {
+    "id": "afrimed_qa_saq",
+    "name": "AfriMed-QA SAQ",
+    "category": "medical",
+    "description": "AfriMed-QA short answer questions — 1,200+ long-form clinical answers",
+    "metric": "score"
+  },
+  {
+    "id": "medarabench",
+    "name": "MedAraBench (Arabic)",
+    "category": "medical",
+    "description": "Large-scale Arabic medical benchmark — 24,883 MCQs across 19 specialties × 5 difficulty levels. MBZUAI 2026-02",
+    "metric": "accuracy"
+  },
+  {
+    "id": "bimedix_eval",
+    "name": "BiMediX Bilingual Eval (AR+EN)",
+    "category": "medical",
+    "description": "BiMediX bilingual Arabic-English medical eval — ClinicalKnowledge, MedicalGenetics, Anatomy, Professional Medicine. BiMediX 65.4 avg vs Mixtral 55.0, Jais-30B 50.6",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mimic_iv_sepsis_auc",
+    "name": "MIMIC-IV Sepsis Mortality AUC",
+    "category": "clinical-prediction",
+    "description": "MIMIC-IV sepsis cohort 24h-pre-onset mortality prediction AUC. 35,239 ICU patients. LLM-guided temporal sim 0.861-0.903",
+    "metric": "auroc"
+  },
+  {
+    "id": "mimic_aki_mortality",
+    "name": "MIMIC-IV AKI Mortality (XGBoost)",
+    "category": "clinical-prediction",
+    "description": "Sepsis-associated AKI ICU mortality prediction on MIMIC-IV with eICU external validation. XGBoost AUROC 0.878",
+    "metric": "auroc"
+  },
+  {
+    "id": "eicu_xgen_auc",
+    "name": "eICU Cross-Generalization AUC",
+    "category": "clinical-prediction",
+    "description": "Cross-dataset generalization — train MIMIC-IV → test eICU mortality. Demonstrates LLM/ML transferability",
+    "metric": "auroc"
+  },
+  {
+    "id": "mimic_iv_readmit",
+    "name": "MIMIC-IV 30-day Readmission",
+    "category": "clinical-prediction",
+    "description": "Hospital 30-day readmission prediction on MIMIC-IV. Standard outcome prediction benchmark",
+    "metric": "auroc"
   }
 ]
