@@ -9,9 +9,9 @@ var FrontierCompare = {
     CORE_BENCHMARKS: {
         reasoning: [
             'gpqa_diamond', 'hle', 'mmlu_pro', 'mmlu', 'mmlu_redux', 'mmmlu',
-            'arc_agi_2', 'frontiermath', 'gdpval', 'officeqa_pro',
+            'arc_agi_2', 'arc_agi_3', 'frontiermath', 'frontier_science', 'gdpval', 'officeqa_pro',
             'simpleqa_verified', 'chinese_simpleqa', 'facts_parametric', 'triviaqa',
-            'longbench_v2', 'mrcr', 'corpusqa_1m',
+            'longbench_v2', 'mrcr', 'corpusqa_1m', 'superqpga',
             'healthbench', 'healthbench_hard', 'healthbench_consensus', 'healthbench_professional',
             'virology_mcq', 'biochem_reward4', 'c_eval', 'cmmlu', 'agieval'
         ],
@@ -19,16 +19,17 @@ var FrontierCompare = {
             'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
             'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'swe_rebench',
             'gdpval_aa', 'nl2repo', 'expert_swe',
-            'codeforces_rating', 'humaneval', 'humaneval_plus', 'bigcodebench',
+            'codeforces_rating', 'codeforces_elo', 'humaneval', 'humaneval_plus', 'bigcodebench',
             'mbpp', 'mbpp_plus', 'cruxeval', 'repobench'
         ],
-        math: ['aime_2025', 'aime_2026', 'aime_24', 'hmmt_2025', 'hmmt_2026', 'imo_answerbench', 'amc_23', 'gsm8k', 'math_500'],
+        math: ['aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026', 'imo_answerbench', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500'],
         agent: [
             'browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench',
             'mcp_atlas', 'mcpatlas_public', 'mcpmark', 'webarena',
             'deepsearchqa', 'vending_bench_2', 'toolathlon',
             'android_world', 'qwen_web_bench', 'skills_bench', 'finance_agent',
-            'apex_agents_hard', 'apex_shortlist'
+            'apex_agents_hard', 'apex_shortlist',
+            'gaia2', 'claw_eval'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
@@ -106,7 +107,13 @@ var FrontierCompare = {
         'motif/motif-2-12.7b-reasoning',
         'lg/exaone-4.0-32b',
         'skt/ax-4.0',
-        'upstage/solar-pro-2'
+        'upstage/solar-pro-2',
+
+        // Apr 2026 frontier sweep — new flagships discovered this week
+        'tencent/hy3-preview',
+        'xiaomi/mimo-v2.5-pro',
+        'inclusionai/ling-2.6-1t',
+        'inclusionai/ling-2.6-flash'
     ],
 
     _models: [],

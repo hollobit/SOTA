@@ -4,8 +4,8 @@
 var CyberCoding = {
     CYBER_BENCHMARKS: ['cybench', 'cvebench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'airtbench', 'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range', 'openai_ctf_professional', 'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion', 'uk_aisi_narrow_cyber'],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric'],
-    AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'browsecomp', 'tau_bench', 'tau2_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench'],
-    CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'nl2repo'],
+    AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'gaia2', 'browsecomp', 'tau_bench', 'tau2_bench', 'tau3_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'arc_agi_3', 'claw_eval'],
+    CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'nl2repo', 'codeforces_elo'],
 
     BENCH_DESCRIPTIONS: {
         cybench: {
@@ -251,7 +251,12 @@ var CyberCoding = {
         'minimax/m2.7',
         'baidu/ernie-5.0',
         'lg/exaone-4.5-33b',
-        'skt/ax-k1'
+        'skt/ax-k1',
+        // Apr 2026 frontier sweep — coding/agent leaders
+        'tencent/hy3-preview',
+        'xiaomi/mimo-v2.5-pro',
+        'inclusionai/ling-2.6-1t',
+        'anthropic/claude-mythos-preview'
     ],
 
     _models: [],
