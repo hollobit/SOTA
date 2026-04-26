@@ -11,7 +11,7 @@ var MedicalAI = {
             code: 'clinical-llm',
             label: 'Clinical LLMs',
             icon: '🩺',
-            note: 'ChatGPT for Clinicians · Med-Gemini · Med-PaLM · MedGemma — 임상의 워크플로(노트·리퍼럴·prior auth) 전용',
+            note: 'ChatGPT for Clinicians · Med-Gemini · Med-PaLM · MedGemma · Polaris · Almanac — 임상의 워크플로 전용',
             models: [
                 'openai/chatgpt-clinicians-gpt55',
                 'openai/chatgpt-clinicians-gpt54',
@@ -21,30 +21,79 @@ var MedicalAI = {
                 'google/med-palm-2',
                 'google/med-palm-1',
                 'google/medgemma-27b',
-                'google/medgemma-9b'
+                'google/medgemma-9b',
+                'google/medgemma-1.5-4b',
+                'hippocratic-ai/polaris-3',
+                'hippocratic-ai/polaris-2',
+                'hippocratic-ai/polaris-1',
+                'stanford/almanac-rag'
             ]
         },
         {
             code: 'biomedical-llm',
             label: 'Biomedical LLMs',
             icon: '🧬',
-            note: 'PubMed·Clinical guideline 사전학습 — OpenBioLLM · BioMistral · Meditron · BioGPT · Clinical Camel · MedAlpaca',
+            note: 'PubMed·Clinical guideline 사전학습 — OpenBioLLM · BioMistral · Meditron · BioGPT · Med42 · Aloe · BioMedLM · PMC-LLaMA · Me-LLaMA',
             models: [
                 'saama/openbiollm-llama3-70b',
                 'saama/openbiollm-llama3-8b',
                 'biomistral/biomistral-7b',
                 'epfl/meditron-70b',
                 'epfl/meditron-7b',
+                'openmeditron/meditron3-70b',
+                'openmeditron/meditron3-8b',
                 'microsoft/biogpt-large',
                 'stanford/clinical-camel',
-                'ucl/medalpaca-13b'
+                'ucl/medalpaca-13b',
+                'm42-health/med42-v2-70b',
+                'm42-health/med42-v2-8b',
+                'hpai-bsc/aloe-beta-70b',
+                'hpai-bsc/aloe-beta-8b',
+                'stanford/biomedlm-2.7b',
+                'chaoyi-wu/pmc-llama-13b',
+                'yale/me-llama-13b',
+                'tencent/medchat-llm-13b',
+                'ziya/asclepius-llama2-13b'
+            ]
+        },
+        {
+            code: 'multilingual-medical',
+            label: 'Multilingual & Regional Medical LLMs',
+            icon: '🌏',
+            note: 'MMedLM (6-lang) · Apollo · HuatuoGPT(중국) · Zhongjing · BianQue · DoctorGLM · BianCang(TCM) · AI-MedLex(SG)',
+            models: [
+                'magic-ai4med/mmedlm-2-70b',
+                'magic-ai4med/mmedlm-2-7b',
+                'magic-ai4med/mmedlm-2-1.8b',
+                'freedomintelligence/apollo-medlm-7b',
+                'freedomintelligence/huatuogpt-ii-7b',
+                'freedomintelligence/huatuogpt-o1-72b',
+                'thu-coai/zhongjing-13b',
+                'scutcyr/bianque-2',
+                'thudm/doctorglm-6b',
+                'openi-cn/biancang-7b',
+                'ai-singapore-mlb/aimedlex'
+            ]
+        },
+        {
+            code: 'biomedical-encoder',
+            label: 'Biomedical Encoder Models (BERT-class)',
+            icon: '📚',
+            note: 'GatorTron · ClinicalBERT · BlueBERT · BioBERT · PubMedBERT · Clinical ModernBERT — biomedical NER/relation/embeddings',
+            models: [
+                'ufl-nvidia/gatortron-large',
+                'stanford-emily/clinicalbert',
+                'ncbi-nlm/bluebert-large',
+                'ncbi-nlm/biobert-large',
+                'microsoft/pubmedbert',
+                'stanford/clinical-modernbert'
             ]
         },
         {
             code: 'medical-imaging',
             label: 'Medical Imaging FMs (Universal/Radiology/CXR)',
             icon: '🖼️',
-            note: 'Universal segmentation — SAM 2 · MedSAM · SAM-Med2D/3D · BiomedCLIP · LLaVA-Med · RadFM · CheXzero · CXR Foundation · Rad-DINO',
+            note: 'Universal segmentation — SAM 2 · MedSAM · SAM-Med2D/3D · BiomedCLIP · LLaVA-Med · Dragonfly-Med · RadFM · CheXzero · CXR Foundation · Rad-DINO',
             models: [
                 'meta/sam-2.1-large',
                 'meta/sam-1-vit-h',
@@ -57,14 +106,15 @@ var MedicalAI = {
                 'microsoft/rad-dino',
                 'microsoft/cxr-foundation',
                 'shanghai-ai-lab/radfm',
-                'stanford/chexzero'
+                'stanford/chexzero',
+                'together-ai/dragonfly-med-8b'
             ]
         },
         {
             code: 'specialty-fm',
-            label: 'Specialty FMs (Pathology · Ophthalmology)',
+            label: 'Specialty FMs (Pathology · Ophthalmology · Cardiology · Dermatology)',
             icon: '🔬',
-            note: 'Pathology WSI — Virchow2/2G · UNI2 · CONCH · TITAN · Prov-GigaPath. Ophthalmology — RETFound · VisionFM',
+            note: 'Pathology — Virchow2/2G · UNI2 · CONCH · TITAN · Prov-GigaPath · PathChat. Ophthalmology — RETFound · VisionFM. Cardiology — EchoCLIP/EchoFM/Echo-Vision-FM. Dermatology — PanDerm · Derm Foundation',
             models: [
                 'paige-ai/virchow2',
                 'paige-ai/virchow2g',
@@ -72,8 +122,14 @@ var MedicalAI = {
                 'mahmoodlab/conch',
                 'mahmoodlab/titan',
                 'microsoft/prov-gigapath',
+                'mahmoodlab/pathchat',
                 'moorfields/retfound',
-                'shanghai-ai-lab/visionfm'
+                'shanghai-ai-lab/visionfm',
+                'echonet/echoclip',
+                'echonet/echofm',
+                'echonet/echo-vision-fm',
+                'monash/panderm',
+                'google/derm-foundation'
             ]
         },
         {
@@ -90,29 +146,39 @@ var MedicalAI = {
 
     BENCHMARK_SUITES: [
         {
-            label: '🩺 Clinical Workflow Chat',
-            note: 'OpenAI HealthBench Professional (525-task clinician chat) + base HealthBench — care consult / docs / research',
-            benchmarks: ['healthbench_professional', 'healthbench']
+            label: '🩺 Clinical Workflow Chat & Safety',
+            note: 'OpenAI HealthBench Professional/Base · Polaris clinical safety · CARE-QA · Almanac RAG factuality',
+            benchmarks: ['healthbench_professional', 'healthbench', 'polaris_safety', 'care_qa']
         },
         {
             label: '🎓 Medical Licensing & QA',
-            note: 'USMLE / MedQA / MedMCQA / PubMedQA / MMLU clinical / MedXpertQA / MedBullets',
-            benchmarks: ['medqa_usmle', 'medmcqa', 'pubmedqa', 'mmlu_clinical', 'medxpertqa', 'medbullets']
+            note: 'USMLE / MedQA / MedMCQA / PubMedQA / MMLU clinical / MedXpertQA / MedBullets / EHRQA',
+            benchmarks: ['medqa_usmle', 'medmcqa', 'pubmedqa', 'mmlu_clinical', 'medxpertqa', 'medbullets', 'ehrqa']
+        },
+        {
+            label: '🌏 Multilingual / Regional Medical QA',
+            note: 'MMedBench (6-lang rationale) · MedBench Chinese · KMLE Korean · MedAgentBench · Open Medical-LLM Leaderboard average',
+            benchmarks: ['mmedbench', 'medbench_cn', 'kmle', 'medagentbench', 'open_medical_llm_avg']
         },
         {
             label: '🏥 Clinical Case Reasoning',
-            note: 'NEJM Image Challenge · JAMA Clinical Challenge — case-based diagnostic reasoning',
-            benchmarks: ['nejm_image', 'jama_clin_chal']
+            note: 'NEJM Image Challenge · JAMA Clinical Challenge — case-based diagnostic reasoning · MedXpertQA Multimodal',
+            benchmarks: ['nejm_image', 'jama_clin_chal', 'medxpertqa_mm']
         },
         {
             label: '🧊 Medical Imaging Segmentation',
-            note: 'Universal Med-Seg Dice (CT/MRI/X-ray/endoscopy/ultrasound) — 11+ modality median Dice',
-            benchmarks: ['medseg_dice']
+            note: 'Universal Med-Seg Dice (CT/MRI/X-ray/endoscopy/ultrasound) · BraTS Brain · OmniMedVQA · RAD-ChestCT',
+            benchmarks: ['medseg_dice', 'brats', 'omnimedvqa', 'rad_chestct']
         },
         {
             label: '🔬 Specialty Imaging FMs',
-            note: 'RetBench (ophthalmology AUC) · RadBench (radiology) · Pathology External AUROC',
-            benchmarks: ['retbench_auc', 'radbench', 'path_bench']
+            note: 'RetBench (ophthalmology AUC) · RadBench (radiology) · Pathology External AUROC · EchoNet LVEF (cardiology) · PanDerm (dermatology)',
+            benchmarks: ['retbench_auc', 'radbench', 'path_bench', 'echonet_lvef_auc50', 'echonet_lvef_mae', 'panderm_skin']
+        },
+        {
+            label: '📚 Biomedical NLP (Encoder Models)',
+            note: 'BLUE benchmark · MedS-Bench 11-task · AMEGA on-device — BERT-class biomedical encoder evaluation',
+            benchmarks: ['blue_benchmark', 'meds_bench', 'amega']
         }
     ],
 
@@ -136,7 +202,35 @@ var MedicalAI = {
         'Shanghai AI Lab':                   '#ef4444',
         'Moorfields + UCL':                  '#84cc16',
         'Paige AI + MSK':                    '#ec4899',
-        'Mahmood Lab (Harvard)':             '#a855f7'
+        'Mahmood Lab (Harvard)':             '#a855f7',
+        'Hippocratic AI':                    '#22d3ee',
+        'OpenMeditron (EPFL+Yale)':          '#f59e0b',
+        'MAGIC-AI4Med (Shanghai Jiao Tong)': '#ef4444',
+        'M42 Health (UAE)':                  '#10b981',
+        'HPAI BSC (Barcelona)':              '#fb923c',
+        'FreedomIntelligence (CUHK)':        '#dc2626',
+        'Stanford CRFM':                     '#dc2626',
+        'Yale + UPenn':                      '#84cc16',
+        'Cedars-Sinai (echonet)':            '#ec4899',
+        'Cedars-Sinai':                      '#ec4899',
+        'Google Health':                     '#4285f4',
+        'Monash University':                 '#fb923c',
+        'Univ Florida + NVIDIA':             '#76b900',
+        'Microsoft Research':                '#3b82f6',
+        'Together AI':                       '#a855f7',
+        'AI Singapore':                      '#0ea5e9',
+        'Tsinghua / SJTU':                   '#ef4444',
+        'Zhengzhou University':              '#ef4444',
+        'OpenI / Shandong Univ':             '#ef4444',
+        'SCUTCyR (S. China Univ. of Tech.)': '#ef4444',
+        'NCBI / NIH':                        '#3b82f6',
+        'Korea Univ + NCBI':                 '#84cc16',
+        'Stanford AIMI':                     '#dc2626',
+        'Emily Alsentzer (MIT/Harvard)':     '#a855f7',
+        'Stanford (Hiesinger Lab)':          '#dc2626',
+        'UT Southwestern':                   '#dc2626',
+        'Shanghai Jiao Tong (Wu et al)':     '#ef4444',
+        'Stanford / Daejin Univ':            '#dc2626'
     },
 
     _models: [],
