@@ -501,3 +501,120 @@ sources:
     type: benchmark_page
     format: html_table
     notes: "GAIA-2 dynamic/async agent benchmark. GPT-5 high 42% pass@1, Kimi K2 21% open SOTA."
+
+  # ── Physical AI / World Model / VLA / Robotics leaderboards ──
+  - url: "https://research.nvidia.com/labs/cosmos-lab/"
+    name: "NVIDIA Cosmos Lab"
+    type: vendor_page
+    format: html_table
+    notes: "Cosmos World Foundation Models hub — Predict 2.5 (PAI-Bench T2W 0.768/I2W 0.810 SOTA, 2.3x FVD over Predict1), Reason 1+2 (Physical AI Bench #1 open), Policy (LIBERO 98.5 SOTA, RoboCasa 67.1 with 50 demos)."
+  - url: "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/"
+    name: "NVIDIA Cosmos Predict 2.5"
+    type: research_page
+    format: html_table
+    notes: "Cosmos Predict 2.5 2B/14B world models. PAI-Bench T2W 0.768 / I2W 0.810 SOTA. AV-FVD 23.06, robot-manip PSNR 24.95dB."
+  - url: "https://research.nvidia.com/labs/gear/"
+    name: "NVIDIA GEAR Lab (GR00T)"
+    type: vendor_page
+    format: html_table
+    notes: "GR00T humanoid VLA series (N1/N1.5/N1.6/N1.7). N1.5 GR-1 lang-following 93.3% (2x N1) / Unitree G1 1k-demos 98.8% / RoboCasa365 unseen-composite 20.0% SOTA."
+  - url: "https://haoyi-duan.github.io/WorldScore/"
+    name: "Stanford WorldScore"
+    type: leaderboard
+    format: html_table
+    notes: "Unified eval for 3D/4D/video world models. 19+ models. Sub-metrics: Static / Dynamic / 3D-Consistency / Camera Control. Tencent HunyuanWorld-Voyager 77.62 #1 static, WonderWorld 86.87 3D-consistency leader, CogVideoX-I2V 86.21."
+  - url: "https://arxiv.org/abs/2503.15558"
+    name: "Cosmos-Reason1 Tech Report (arXiv 2503.15558)"
+    type: paper
+    format: pdf
+    notes: "NVIDIA Cosmos Reason 1 56B/8B — physical common sense (60.2 SOTA, beats o1 59.9) + embodied reasoning (63.7) + intuitive physics post-RL (68.7). RoboVQA 80.0/84.5, BridgeData V2 65.0."
+  - url: "https://openvla.github.io"
+    name: "OpenVLA / OpenVLA-OFT"
+    type: vendor_page
+    format: html_table
+    notes: "OpenVLA-7B Bridge V2 73.5% (16.5pp over RT-2-X 55B) + LoRA 1.4% match full FT. OpenVLA-OFT LIBERO 97.1% avg full-split SOTA, ALOHA 4-task 87.8% leader, 26x inference speedup."
+  - url: "https://www.pi.website/research"
+    name: "Pi (Physical Intelligence)"
+    type: vendor_page
+    format: html_table
+    notes: "Pi-Zero (LIBERO 94.2 avg) + Pi-Zero Fast (5x training speedup, 10x action-token compression) + Pi-0.5 (94% out-of-distribution new homes follow & success)."
+  - url: "https://arxiv.org/abs/2508.05635"
+    name: "AgiBot Genie Envisioner (arXiv 2508.05635)"
+    type: paper
+    format: pdf
+    notes: "GE-Base + GE-Act + GE-Sim + EWMBench. EWMBench: spatial 0.94 / temporal 0.98 / dynamic 0.85 / scene 0.91. GE-Act beats Pi-0 / GO-1 on 3 of 4 RoboTwin tasks."
+  - url: "https://www.figure.ai/news/scaling-helix-logistics"
+    name: "Figure Helix Logistics"
+    type: vendor_page
+    format: html_table
+    notes: "Figure 02 + Helix S1 logistics deployment — 4.31 sec/pkg (60h training) vs 6.84 sec/pkg (10h), 94.4% / 88.2% barcode read accuracy, T_eff 1.1 vs human demonstrator, 60% throughput increase with stereo vision."
+  - url: "https://arxiv.org/abs/2510.07092"
+    name: "1X World Model Challenge"
+    type: paper
+    format: pdf
+    notes: "1X World Model Challenge — humanoid world model 1st place sampling track (PSNR 23.0 dB) + 1st place compression track (top-500 CE 6.6386)."
+  - url: "https://arxiv.org/abs/2412.18194"
+    name: "VLABench"
+    type: benchmark_page
+    format: pdf
+    notes: "ICCV 2025 large-scale language-conditioned VLA benchmark. 100 categories, 2000+ objects, long-horizon. Pi-0.5 47% on Track 1 primitive."
+  - url: "https://simpler-env.github.io"
+    name: "SimplerEnv"
+    type: leaderboard
+    format: html_table
+    notes: "Open-source robot simulator + policy leaderboard. Octo-Base 62% baseline (50-75% range). Used by GR00T, Pi-Zero, OpenVLA evaluations."
+  - url: "https://robo-arena.github.io"
+    name: "RoboArena"
+    type: leaderboard
+    format: html_table
+    notes: "Distributed real-world double-blind pairwise robot policy evaluation. ELO ranking from 4284+ episodes. Standardized cross-policy real-robot benchmark."
+  - url: "https://world-model-bench.github.io"
+    name: "WorldModelBench"
+    type: leaderboard
+    format: html_table
+    notes: "NeurIPS 2025 — 7 domains × 56 sub-tasks, 350 prompts. Instruction Following / Common Sense / Physical Adherence (67K human labels)."
+  - url: "https://libero-project.github.io"
+    name: "LIBERO Benchmark"
+    type: benchmark_page
+    format: html_table
+    notes: "Lifelong Robotic Manipulation 4-suite (Spatial / Object / Goal / Long). VLA generalist standard. Cosmos Policy 98.5 / OpenVLA-OFT 97.1 / Pi-Zero 94.2 avg / GR00T N1.6 finetuned spatial 97.65."
+  - url: "https://robocasa.ai"
+    name: "RoboCasa"
+    type: benchmark_page
+    format: html_table
+    notes: "Large-Scale household task simulation. 100+ atomic tasks × 24 environments. Cosmos Policy 67.1 with 50 demos vs GR00T N1 17.4 / N1.5 47.5 / N1.5 100-demo 64.1."
+  - url: "https://www.skild.ai/blogs/building-the-general-purpose-robotic-brain"
+    name: "Skild AI Brain"
+    type: vendor_page
+    format: html_table
+    notes: "Omni-bodied robot brain. Sim failure recovery 85% (vs RT-2/PaLM-E ~60%). Limb-loss adaptation 7.5s. 100k simulated training embodiments."
+  - url: "https://covariant.ai/insights/rfm-1-update-higher-quality-grasp-accuracy/"
+    name: "Covariant RFM-1"
+    type: vendor_page
+    format: html_table
+    notes: "8B robot foundation model. -43% pick retry rate, 99% real-world precision, 1000 cycles/hour."
+  - url: "https://apptronik.com/apollo"
+    name: "Apptronik Apollo"
+    type: vendor_page
+    format: html_table
+    notes: "Humanoid (DeepMind Gemini Robotics partnership): 25 kg payload, 4 hr battery, 71 DOF, 5 min battery swap. Mercedes-Benz factory pilot."
+  - url: "https://landing.ai/blog/what-is-agentic-object-detection"
+    name: "Landing AI VisionAgent"
+    type: vendor_page
+    format: html_table
+    notes: "Agentic object detection — internal F1 79.7% (beats GPT-4o, Qwen2.5-VL, Florence-2, OWLv2)."
+  - url: "https://github.com/openvla/openvla"
+    name: "OpenVLA GitHub"
+    type: vendor_page
+    format: html_table
+    notes: "OpenVLA + OpenVLA-OFT code, model weights, training scripts. LIBERO/Bridge V2/ALOHA evaluations."
+  - url: "https://github.com/NVIDIA/Isaac-GR00T"
+    name: "NVIDIA Isaac GR00T GitHub"
+    type: vendor_page
+    format: html_table
+    notes: "GR00T model code, fine-tuning examples, LIBERO + RoboCasa + GR-1 + Unitree G1 evaluation scripts."
+  - url: "https://github.com/google-deepmind/robotics_research_eval"
+    name: "DeepMind Robotics Eval"
+    type: vendor_page
+    format: html_table
+    notes: "Gemini Robotics-ER 1.5/1.6 evaluation framework — Point-Bench / RefSpatial / RoboSpatial / ERQA / OpenEQA / VSI-Bench aggregate."

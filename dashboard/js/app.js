@@ -1353,7 +1353,30 @@ var App = {
             { name: 'KMMMU (Korean MMMU)', url: 'https://arxiv.org/abs/2604.13058', desc: 'Korean Multimodal MMMU — 3,466 Q + 300 culture-specific + 627 hard. 9 disciplines × 9 visual types. Open 42.05% / proprietary 52.42% on hard' },
             { name: 'TII QIMMA Arabic Leaderboard', url: 'https://huggingface.co/blog/tiiuae/qimma-arabic-leaderboard', desc: 'QIMMA (قِمّة) Arabic LLM quality-first — 52K samples / 109 subsets / 14 source benchmarks / 7 domains' },
             { name: 'GAIA-2', url: 'https://openreview.net/forum?id=9gw03JpKK4', desc: 'Dynamic/async agent environments benchmark. GPT-5 high 42% pass@1, Kimi K2 21% open SOTA' },
-            { name: 'Google Gemma 4', url: 'https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/', desc: 'Gemma 4 family (Apr 2 2026, Apache 2.0): E2B/E4B/26B-A4B/31B-Dense. AIME-2026 89.2 / MMLU-Pro 85.2 / Codeforces 2150' }
+            { name: 'Google Gemma 4', url: 'https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/', desc: 'Gemma 4 family (Apr 2 2026, Apache 2.0): E2B/E4B/26B-A4B/31B-Dense. AIME-2026 89.2 / MMLU-Pro 85.2 / Codeforces 2150' },
+
+            // ── Physical AI / World Model leaderboards & datasets ──
+            { name: 'NVIDIA Cosmos Lab', url: 'https://research.nvidia.com/labs/cosmos-lab/', desc: 'Cosmos suite — Predict 2.5 (PAI-Bench T2W 0.768/I2W 0.810 SOTA), Reason 1+2 (Physical AI Bench #1 open), Policy (LIBERO 98.5 SOTA, RoboCasa 67.1 with 50 demos)' },
+            { name: 'NVIDIA GEAR Lab (GR00T)', url: 'https://research.nvidia.com/labs/gear/', desc: 'GR00T N1/N1.5/N1.6/N1.7 humanoid VLA. N1.5 GR-1 lang-following 93.3% / Unitree G1 98.8% / RoboCasa365 unseen 20.0% SOTA' },
+            { name: 'Stanford WorldScore', url: 'https://haoyi-duan.github.io/WorldScore/', desc: 'Unified eval for 3D/4D/video world models. 19+ models. Tencent HunyuanWorld-Voyager 77.62 #1 static, WonderWorld 86.87 3D-consistency leader' },
+            { name: 'Cosmos-Reason1 Tech Report', url: 'https://arxiv.org/abs/2503.15558', desc: 'Cosmos Reason 1 56B/8B physical common sense + embodied reasoning + intuitive physics post-RL. Beats o1 (60.2 vs 59.9 PCS avg)' },
+            { name: 'OpenVLA / OpenVLA-OFT', url: 'https://openvla.github.io', desc: 'OpenVLA-7B (Bridge V2 73.5%) and OpenVLA-OFT (LIBERO 97.1% avg full-split SOTA, 26× inference speedup, ALOHA 4-task 87.8% leader)' },
+            { name: 'Pi (Physical Intelligence)', url: 'https://www.pi.website/research', desc: 'Pi-Zero (LIBERO 94.2 avg) + Pi-Zero Fast (5× training speedup) + Pi-0.5 (94% out-of-distribution new homes)' },
+            { name: 'AgiBot Genie Envisioner', url: 'https://arxiv.org/abs/2508.05635', desc: 'GE-Base + GE-Act + GE-Sim + EWMBench. Spatial 0.94 / Temporal 0.98 / Dynamic 0.85 / Scene 0.91. Beats Pi-0/GO-1 on 3 of 4 RoboTwin tasks' },
+            { name: 'Figure Helix Logistics', url: 'https://www.figure.ai/news/scaling-helix-logistics', desc: 'Figure 02 + Helix S1 — 4.31 sec/pkg, 94.4% barcode read, T_eff 1.1 vs human demonstrator' },
+            { name: '1X World Model Challenge', url: 'https://arxiv.org/abs/2510.07092', desc: '1X humanoid world model — 23.0 PSNR sampling + 6.6386 CE compression (1st place both tracks)' },
+            { name: 'VLABench', url: 'https://arxiv.org/abs/2412.18194', desc: 'ICCV 2025 large-scale language-conditioned VLA benchmark. 100 categories, 2000+ objects, long-horizon. Pi-0.5 47% Track 1 primitive' },
+            { name: 'SimplerEnv', url: 'https://simpler-env.github.io', desc: 'Open-source robot simulator + policy leaderboard. Octo-Base ~62% baseline. Used by GR00T, Pi-Zero, OpenVLA' },
+            { name: 'RoboArena', url: 'https://robo-arena.github.io', desc: 'Distributed real-world double-blind pairwise robot policy evaluation. ELO ranking from 4284+ episodes' },
+            { name: 'WorldModelBench', url: 'https://world-model-bench.github.io', desc: 'NeurIPS 2025 — 7 domains × 56 sub-tasks, 350 prompts. Instruction Following / Common Sense / Physical Adherence (67K human labels)' },
+            { name: 'Sierra τ³-Bench (Tau3)', url: 'https://sierra.ai/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice', desc: 'Tool-agent + voice + knowledge retrieval benchmark. ~700 policy docs. MiMo V2.5 Pro 72.9 leader' },
+            { name: 'LIBERO Benchmark', url: 'https://libero-project.github.io', desc: 'Lifelong Robotic Manipulation (Spatial / Object / Goal / Long suites). VLA generalist standard. Cosmos Policy 98.5 / OpenVLA-OFT 97.1 / Pi-Zero 94.2 avg' },
+            { name: 'RoboCasa', url: 'https://robocasa.ai', desc: 'Large-Scale household task simulation. 100+ atomic tasks × 24 environments. Cosmos Policy 67.1 with 50 demos vs GR00T N1 17.4 / N1.5 47.5' },
+            { name: 'Skild AI Brain', url: 'https://www.skild.ai/blogs/building-the-general-purpose-robotic-brain', desc: 'Omni-bodied robot brain. Sim failure recovery 85% (vs RT-2/PaLM-E ~60%). Limb-loss adaptation 7.5s' },
+            { name: 'Covariant RFM-1', url: 'https://covariant.ai/insights/rfm-1-update-higher-quality-grasp-accuracy/', desc: '8B robot foundation model. -43% pick retry rate, 99% real-world precision, 1000 cycles/hour' },
+            { name: 'Apptronik Apollo', url: 'https://apptronik.com/apollo', desc: 'Humanoid (DeepMind Gemini Robotics partnership): 25 kg payload, 4 hr battery, 71 DOF, 5 min battery swap' },
+            { name: 'Sanctuary AI Carbon (Phoenix)', url: 'https://www.sanctuary.ai/blog', desc: 'Gen 8 Phoenix — task automation in 24 hours (down from weeks)' },
+            { name: 'Landing AI VisionAgent', url: 'https://landing.ai/blog/what-is-agentic-object-detection', desc: 'Agentic object detection — internal F1 79.7% (beats GPT-4o, Qwen2.5-VL, Florence-2, OWLv2)' }
         ];
 
         sites.forEach(function(site) {

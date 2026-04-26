@@ -1,0 +1,145 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-26",
+    "session": "Physical AI leaderboard backfill — 12 new physical-AI sub-models (Cosmos Predict 2.5 2B/14B, Predict 1 7B, Cosmos Reason 1 56B/8B variants, OpenVLA-OFT, Pi-0.5, RDT-1B, WonderWorld, CogVideoX-I2V, Runway Gen-3, Octo-Base), 23 new benchmarks (PAI-Bench T2W/I2W, WorldScore Static/Dynamic/3D-Consistency, EWMBench, AV FVD/FID, robot-manip PSNR/FVD, GR-1 real lang following, Unitree G1 1K-demos post-train, VLABench Track 1, RoboArena ELO, WorldModelBench, 1X World Model Sampling/Compression, Helix T_eff, intuitive physics 3 sub-tasks, ALOHA 4-task avg, SimplerEnv avg), and 50+ verified scores including LIBERO 4-suite for Pi-Zero/OpenVLA-OFT, RoboCasa365 unseen-composite, WorldScore leaderboard for HunyuanWorld-Voyager.",
+    "sources": [
+      "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/",
+      "https://arxiv.org/abs/2503.15558",
+      "https://arxiv.org/html/2502.19645",
+      "https://www.pi.website/blog/pi05",
+      "https://research.nvidia.com/labs/gear/gr00t-n1_5/",
+      "https://arxiv.org/html/2603.04356v1",
+      "https://arxiv.org/abs/2508.05635",
+      "https://haoyi-duan.github.io/WorldScore/",
+      "https://3d-models.hunyuan.tencent.com/world/worldMirror1_0/HYWorld_Mirror_Tech_Report.pdf",
+      "https://arxiv.org/abs/2510.07092",
+      "https://www.figure.ai/news/scaling-helix-logistics",
+      "https://covariant.ai/insights/rfm-1-update-higher-quality-grasp-accuracy/",
+      "https://landing.ai/blog/what-is-agentic-object-detection",
+      "https://www.therobotreport.com/sanctuary-ai-latest-phoenix-humanoid-can-learn-tasks-in-24-hours/",
+      "https://apptronik.com/apollo",
+      "https://octo-models.github.io/",
+      "https://arxiv.org/abs/2412.18194",
+      "https://arxiv.org/html/2505.12705",
+      "https://deepmind.google/models/gemini-robotics/gemini-robotics-er/"
+    ]
+  },
+  "models": [
+    { "id": "nvidia/cosmos-predict-2.5-2b",  "vendor": "NVIDIA",                      "name": "Cosmos Predict 2.5 2B",                      "type": "open-weight", "modalities": ["video", "image"] },
+    { "id": "nvidia/cosmos-predict-2.5-14b", "vendor": "NVIDIA",                      "name": "Cosmos Predict 2.5 14B",                     "type": "open-weight", "modalities": ["video", "image"] },
+    { "id": "nvidia/cosmos-predict-1-7b",    "vendor": "NVIDIA",                      "name": "Cosmos Predict 1 7B (legacy baseline)",      "type": "open-weight", "modalities": ["video", "image"] },
+    { "id": "nvidia/cosmos-reason-1-56b",    "vendor": "NVIDIA",                      "name": "Cosmos Reason 1 56B",                        "type": "open-weight", "modalities": ["text", "image", "video"] },
+    { "id": "nvidia/cosmos-reason-1-8b",     "vendor": "NVIDIA",                      "name": "Cosmos Reason 1 8B",                         "type": "open-weight", "modalities": ["text", "image", "video"] },
+    { "id": "openvla/openvla-oft",           "vendor": "OpenVLA Consortium",          "name": "OpenVLA-OFT (Optimized Fine-Tuning)",        "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "physical-intelligence/pi-0.5",  "vendor": "Physical Intelligence",       "name": "Pi-0.5 (π₀.₅)",                              "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "physical-intelligence/rdt-1b",  "vendor": "Physical Intelligence",       "name": "RDT-1B (diffusion baseline)",                "type": "open-weight", "modalities": ["text", "image"] },
+    { "id": "wonderworld/wonderworld",       "vendor": "Stanford SVL",                "name": "WonderWorld",                                "type": "open-weight", "modalities": ["text", "video"] },
+    { "id": "zhipu/cogvideox-i2v",           "vendor": "Zhipu AI",                    "name": "CogVideoX-I2V",                              "type": "open-weight", "modalities": ["text", "image", "video"] },
+    { "id": "runway/gen-3",                  "vendor": "Runway",                      "name": "Gen-3 (video gen)",                          "type": "proprietary", "modalities": ["text", "image", "video"] },
+    { "id": "octo/octo-base",                "vendor": "Octo Consortium",             "name": "Octo-Base (cross-embodiment policy)",        "type": "open-weight", "modalities": ["text", "image"] }
+  ],
+  "benchmarks": [
+    { "id": "pai_bench_text2world",         "name": "PAI-Bench Text2World",          "category": "multimodal", "description": "NVIDIA Physical AI Bench — text-to-world video generation eval. VQA-based domain score across 7 physical-AI domains + 8 video-quality metrics. 0-1 scale. Cosmos Predict 2.5 2B/14B 0.768.",                "metric": "score" },
+    { "id": "pai_bench_image2world",        "name": "PAI-Bench Image2World",         "category": "multimodal", "description": "Image-conditioned variant of PAI-Bench. Cosmos Predict 2.5 2B 0.810 (beats Wan2.2-27B-A14B 0.806).",                                                                                                              "metric": "score" },
+    { "id": "worldscore_static",            "name": "WorldScore Static",             "category": "multimodal", "description": "Stanford SVL unified eval for 3D/4D/video world models, static scenes. 19+ models evaluated. HunyuanWorld-Voyager 77.62 #1.",                                                                                "metric": "score" },
+    { "id": "worldscore_dynamic",           "name": "WorldScore Dynamic",            "category": "multimodal", "description": "WorldScore dynamic-scene variant evaluating temporal coherence. HunyuanWorld-Voyager 54.53.",                                                                                                                  "metric": "score" },
+    { "id": "worldscore_3d_consistency",    "name": "WorldScore 3D Consistency",     "category": "multimodal", "description": "Cross-view 3D consistency sub-metric. WonderWorld 86.87.",                                                                                                                                                       "metric": "score" },
+    { "id": "ewmbench",                     "name": "EWMBench",                       "category": "multimodal", "description": "Embodied World Model Benchmark — visual fidelity + physical consistency + instruction-action alignment for robotic world simulators. AgiBot Genie Envisioner GE-Base baseline (LTX 0.94 spatial, 0.98 temporal).", "metric": "score" },
+    { "id": "av_fvd",                       "name": "AV FVD (StyleGAN)",             "category": "multimodal", "description": "Frechet Video Distance — autonomous-driving sim quality. LOWER is better. Cosmos Predict 2.5 2B 23.06 (2.3× over Predict1).",                                                                                "metric": "fvd" },
+    { "id": "av_fid",                       "name": "AV FID",                         "category": "multimodal", "description": "Frechet Inception Distance for AV-domain video frames. LOWER is better.",                                                                                                                                     "metric": "fid" },
+    { "id": "robot_manip_psnr",             "name": "Robot Manipulation PSNR",       "category": "multimodal", "description": "Cosmos PAI-Bench robot-manipulation video reconstruction PSNR. Cosmos Predict 2.5 2B 24.95 dB.",                                                                                                                "metric": "score" },
+    { "id": "robot_manip_fvd",              "name": "Robot Manipulation FVD",        "category": "multimodal", "description": "Cosmos PAI-Bench robot-manip FVD. LOWER is better.",                                                                                                                                                            "metric": "fvd" },
+    { "id": "vlabench_track1_primitive",    "name": "VLABench Track 1 — Primitive",  "category": "agent",      "description": "ICCV 2025 benchmark — 100 categories, 2000+ objects, long-horizon language-conditioned VLA. Pi-0.5 47% on primitive track.",                                                                                  "metric": "accuracy" },
+    { "id": "roboarena_elo",                "name": "RoboArena ELO",                 "category": "agent",      "description": "Distributed real-world double-blind pairwise eval (4284+ episodes). Standardized cross-policy real-robot benchmark.",                                                                                          "metric": "elo" },
+    { "id": "worldmodelbench_avg",          "name": "WorldModelBench Average",       "category": "multimodal", "description": "NeurIPS 2025 — 7 domains × 56 sub-tasks, 350 prompts. Instruction Following / Common Sense / Physical Adherence (67K human labels).",                                                                            "metric": "score" },
+    { "id": "humanoid_sampling_psnr",       "name": "1X World Model Sampling (PSNR)","category": "multimodal", "description": "1X World Model Challenge — image-frame forecasting on humanoid data. 1X World Model 23.0 dB (1st place).",                                                                                                       "metric": "score" },
+    { "id": "humanoid_compression_top500_ce","name": "1X World Model Compression (CE)","category": "multimodal","description": "1X World Model Challenge — top-500 cross-entropy on discrete latent prediction. 1X 6.6386 (1st place). LOWER is better.",                                                                                       "metric": "score" },
+    { "id": "helix_effective_throughput",   "name": "Helix T_eff",                   "category": "agent",      "description": "Figure AI normalized package throughput vs human demonstrator. Helix S1 1.1.",                                                                                                                                  "metric": "score" },
+    { "id": "intuitive_physics_spatial_puzzle","name": "Intuitive Physics Spatial Puzzle","category": "multimodal","description": "Cosmos Reason1 sub-bench — physical scene spatial reasoning puzzles. Cosmos Reason 1 56B 85.2 post-RL.",                                                                                                "metric": "accuracy" },
+    { "id": "intuitive_physics_arrow_of_time","name": "Intuitive Physics Arrow of Time","category": "multimodal","description": "Cosmos Reason1 sub-bench — temporal causality / arrow-of-time. 57.0 post-RL.",                                                                                                                                "metric": "accuracy" },
+    { "id": "intuitive_physics_object_permanence","name": "Intuitive Physics Object Permanence","category": "multimodal","description": "Cosmos Reason1 sub-bench — object permanence reasoning. 54.8 post-RL.",                                                                                                                              "metric": "accuracy" },
+    { "id": "aloha_4task_avg",              "name": "ALOHA 4-Task Average",          "category": "agent",      "description": "Bimanual ALOHA tasks (fold shorts/shirt, scoop/put X into bowl/pot). OpenVLA-OFT 87.8% leader.",                                                                                                                "metric": "accuracy" },
+    { "id": "simpler_env_avg",              "name": "SimplerEnv Average",            "category": "agent",      "description": "Open-source robot simulator leaderboard. Octo-Base 62% baseline (50-75% range).",                                                                                                                              "metric": "accuracy" },
+    { "id": "gr1_real_lang_following",      "name": "GR-1 Real Language Following",  "category": "agent",      "description": "Fruit-placement language-conditioning task on Fourier GR-1 humanoid (NVIDIA GEAR).",                                                                                                                            "metric": "accuracy" },
+    { "id": "unitree_g1_1k_demos",          "name": "Unitree G1 Post-train (1K demos)","category": "agent",    "description": "Post-training success rate on Unitree G1 humanoid. GR00T N1.5 98.8% leader.",                                                                                                                                  "metric": "accuracy" }
+  ],
+  "scores": [
+    { "model": "nvidia/cosmos-predict-2.5-2b",  "benchmark": "pai_bench_text2world",  "score": 0.768, "unit": "score", "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 2.5 2B PAI-Bench Text2World" },
+    { "model": "nvidia/cosmos-predict-2.5-2b",  "benchmark": "pai_bench_image2world", "score": 0.810, "unit": "score", "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 2.5 2B Image2World — beats Wan2.2-27B" },
+    { "model": "nvidia/cosmos-predict-2.5-2b",  "benchmark": "av_fvd",                "score": 23.06, "unit": "fvd",   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 2.5 2B AV-FVD StyleGAN — 2.3x over Predict1" },
+    { "model": "nvidia/cosmos-predict-2.5-2b",  "benchmark": "av_fid",                "score": 12.10, "unit": "fid",   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 2.5 2B AV-FID" },
+    { "model": "nvidia/cosmos-predict-2.5-2b",  "benchmark": "robot_manip_psnr",      "score": 24.95, "unit": "score", "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 2.5 2B robot manipulation PSNR (dB)" },
+    { "model": "nvidia/cosmos-predict-2.5-2b",  "benchmark": "robot_manip_fvd",       "score": 146,   "unit": "fvd",   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 2.5 2B robot manipulation FVD" },
+
+    { "model": "nvidia/cosmos-predict-2.5-14b", "benchmark": "pai_bench_text2world",  "score": 0.768, "unit": "score", "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 2.5 14B" },
+    { "model": "nvidia/cosmos-predict-2.5-14b", "benchmark": "pai_bench_image2world", "score": 0.810, "unit": "score", "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 2.5 14B" },
+
+    { "model": "nvidia/cosmos-predict-1-7b",    "benchmark": "av_fvd",                "score": 63.69, "unit": "fvd",   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 1 7B AV-FVD baseline (Cosmos 2.5 2B 2.3x improvement)" },
+    { "model": "nvidia/cosmos-predict-1-7b",    "benchmark": "av_fid",                "score": 25.34, "unit": "fid",   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 1 7B AV-FID baseline" },
+    { "model": "nvidia/cosmos-predict-1-7b",    "benchmark": "robot_manip_psnr",      "score": 21.14, "unit": "score", "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 1 7B robot manip PSNR" },
+    { "model": "nvidia/cosmos-predict-1-7b",    "benchmark": "robot_manip_fvd",       "score": 190,   "unit": "fvd",   "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/", "_note": "Cosmos Predict 1 7B robot manip FVD" },
+
+    { "model": "nvidia/cosmos-reason-1-56b",    "benchmark": "intuitive_physics_spatial_puzzle",  "score": 85.2, "unit": "%", "_source": "https://arxiv.org/abs/2503.15558", "_note": "Cosmos Reason 1 56B post-RL spatial puzzle" },
+    { "model": "nvidia/cosmos-reason-1-56b",    "benchmark": "intuitive_physics_arrow_of_time",   "score": 57.0, "unit": "%", "_source": "https://arxiv.org/abs/2503.15558", "_note": "Cosmos Reason 1 56B post-RL arrow-of-time" },
+    { "model": "nvidia/cosmos-reason-1-56b",    "benchmark": "intuitive_physics_object_permanence","score": 54.8, "unit": "%", "_source": "https://arxiv.org/abs/2503.15558", "_note": "Cosmos Reason 1 56B post-RL object permanence" },
+
+    { "model": "nvidia/cosmos-reason-1-8b",     "benchmark": "robovqa",               "score": 84.5, "unit": "%", "_source": "https://arxiv.org/abs/2503.15558", "_note": "Cosmos Reason 1 8B RoboVQA" },
+    { "model": "nvidia/cosmos-reason-1-8b",     "benchmark": "intuitive_physics_spatial_puzzle",  "score": 87.0, "unit": "%", "_source": "https://arxiv.org/abs/2503.15558", "_note": "Cosmos Reason 1 8B post-RL spatial puzzle" },
+    { "model": "nvidia/cosmos-reason-1-8b",     "benchmark": "intuitive_physics_object_permanence","score": 62.0, "unit": "%", "_source": "https://arxiv.org/abs/2503.15558", "_note": "Cosmos Reason 1 8B post-RL object permanence" },
+
+    { "model": "openvla/openvla-7b",            "benchmark": "libero_spatial",        "score": 84.7, "unit": "%", "_source": "https://arxiv.org/html/2502.19645", "_note": "OpenVLA-7B baseline (before OFT)" },
+    { "model": "openvla/openvla-7b",            "benchmark": "libero_object",         "score": 88.4, "unit": "%", "_source": "https://arxiv.org/html/2502.19645", "_note": "OpenVLA-7B baseline" },
+    { "model": "openvla/openvla-7b",            "benchmark": "libero_goal",           "score": 79.2, "unit": "%", "_source": "https://arxiv.org/html/2502.19645", "_note": "OpenVLA-7B baseline" },
+    { "model": "openvla/openvla-7b",            "benchmark": "libero_long",           "score": 53.7, "unit": "%", "_source": "https://arxiv.org/html/2502.19645", "_note": "OpenVLA-7B baseline" },
+
+    { "model": "openvla/openvla-oft",           "benchmark": "libero_spatial",        "score": 96.2, "unit": "%", "_source": "https://arxiv.org/abs/2502.19645", "_note": "OpenVLA-OFT" },
+    { "model": "openvla/openvla-oft",           "benchmark": "libero_object",         "score": 98.3, "unit": "%", "_source": "https://arxiv.org/abs/2502.19645", "_note": "OpenVLA-OFT" },
+    { "model": "openvla/openvla-oft",           "benchmark": "libero_goal",           "score": 96.2, "unit": "%", "_source": "https://arxiv.org/abs/2502.19645", "_note": "OpenVLA-OFT" },
+    { "model": "openvla/openvla-oft",           "benchmark": "libero_long",           "score": 90.7, "unit": "%", "_source": "https://arxiv.org/abs/2502.19645", "_note": "OpenVLA-OFT" },
+    { "model": "openvla/openvla-oft",           "benchmark": "libero",                "score": 97.1, "unit": "%", "_source": "https://arxiv.org/abs/2502.19645", "_note": "OpenVLA-OFT LIBERO 4-suite avg full-split SOTA" },
+    { "model": "openvla/openvla-oft",           "benchmark": "aloha_4task_avg",       "score": 87.8, "unit": "%", "_source": "https://arxiv.org/abs/2502.19645", "_note": "OpenVLA-OFT ALOHA 4-task avg SOTA" },
+
+    { "model": "physical-intelligence/pi-zero", "benchmark": "libero_spatial",        "score": 96.8, "unit": "%", "_source": "https://arxiv.org/html/2502.19645", "_note": "Pi-Zero LIBERO-Spatial" },
+    { "model": "physical-intelligence/pi-zero", "benchmark": "libero_object",         "score": 98.8, "unit": "%", "_source": "https://arxiv.org/html/2502.19645", "_note": "Pi-Zero LIBERO-Object" },
+    { "model": "physical-intelligence/pi-zero", "benchmark": "libero_goal",           "score": 95.8, "unit": "%", "_source": "https://arxiv.org/html/2502.19645", "_note": "Pi-Zero LIBERO-Goal" },
+    { "model": "physical-intelligence/pi-zero", "benchmark": "libero_long",           "score": 85.2, "unit": "%", "_source": "https://arxiv.org/html/2502.19645", "_note": "Pi-Zero LIBERO-Long" },
+    { "model": "physical-intelligence/pi-zero", "benchmark": "aloha_4task_avg",       "score": 77.1, "unit": "%", "_source": "https://arxiv.org/html/2502.19645", "_note": "Pi-Zero ALOHA 4-task" },
+
+    { "model": "physical-intelligence/pi-0.5",  "benchmark": "vlabench_track1_primitive", "score": 47.0, "unit": "%", "_source": "https://arxiv.org/abs/2412.18194", "_note": "Pi-0.5 VLABench Track 1 primitive" },
+
+    { "model": "physical-intelligence/rdt-1b",  "benchmark": "aloha_4task_avg",       "score": 78.4, "unit": "%", "_source": "https://arxiv.org/html/2502.19645", "_note": "RDT-1B ALOHA 4-task baseline" },
+
+    { "model": "nvidia/gr00t-n1.5",             "benchmark": "gr1_real_lang_following","score": 93.3, "unit": "%", "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/", "_note": "GR00T N1.5 GR-1 real-world lang following 2× N1 baseline" },
+    { "model": "nvidia/gr00t-n1.5",             "benchmark": "unitree_g1_1k_demos",   "score": 98.8, "unit": "%", "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/", "_note": "GR00T N1.5 Unitree G1 post-training 1K demos SOTA" },
+
+    { "model": "nvidia/gr00t-n1",               "benchmark": "gr1_real_lang_following","score": 46.6, "unit": "%", "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/", "_note": "GR00T N1 baseline GR-1 real-world" },
+    { "model": "nvidia/gr00t-n1",               "benchmark": "unitree_g1_1k_demos",   "score": 44.0, "unit": "%", "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/", "_note": "GR00T N1 baseline Unitree G1 1K demos" },
+
+    { "model": "agibot/genie-envisioner",       "benchmark": "ewmbench",              "score": 0.92, "unit": "score", "_source": "https://arxiv.org/abs/2508.05635", "_note": "AgiBot GE-Base EWMBench composite (avg of 0.94/0.98/0.85/0.91 sub-scores)" },
+
+    { "model": "tencent/hy-world-2.0",          "benchmark": "worldscore_static",     "score": 77.62, "unit": "score", "_source": "https://haoyi-duan.github.io/WorldScore/", "_note": "HunyuanWorld-Voyager 2.0 #1 on Stanford WorldScore static" },
+    { "model": "tencent/hy-world-2.0",          "benchmark": "worldscore_dynamic",    "score": 54.53, "unit": "score", "_source": "https://haoyi-duan.github.io/WorldScore/", "_note": "HY-World 2.0 dynamic" },
+    { "model": "tencent/hy-world-2.0",          "benchmark": "worldscore_3d_consistency","score": 81.56,"unit": "score", "_source": "https://haoyi-duan.github.io/WorldScore/", "_note": "HY-World 2.0 3D consistency" },
+
+    { "model": "wonderworld/wonderworld",       "benchmark": "worldscore_static",     "score": 72.69, "unit": "score", "_source": "https://haoyi-duan.github.io/WorldScore/", "_note": "WonderWorld Stanford SVL" },
+    { "model": "wonderworld/wonderworld",       "benchmark": "worldscore_3d_consistency","score": 86.87,"unit": "score","_source": "https://haoyi-duan.github.io/WorldScore/", "_note": "WonderWorld 3D consistency leader" },
+
+    { "model": "zhipu/cogvideox-i2v",           "benchmark": "worldscore_static",     "score": 62.15, "unit": "score", "_source": "https://haoyi-duan.github.io/WorldScore/", "_note": "Zhipu CogVideoX-I2V" },
+    { "model": "zhipu/cogvideox-i2v",           "benchmark": "worldscore_dynamic",    "score": 59.12, "unit": "score", "_source": "https://haoyi-duan.github.io/WorldScore/", "_note": "Zhipu CogVideoX-I2V" },
+    { "model": "zhipu/cogvideox-i2v",           "benchmark": "worldscore_3d_consistency","score": 86.21,"unit": "score","_source": "https://haoyi-duan.github.io/WorldScore/", "_note": "Zhipu CogVideoX-I2V" },
+
+    { "model": "runway/gen-3",                  "benchmark": "worldscore_static",     "score": 60.71, "unit": "score", "_source": "https://haoyi-duan.github.io/WorldScore/", "_note": "Runway Gen-3" },
+    { "model": "runway/gen-3",                  "benchmark": "worldscore_dynamic",    "score": 57.58, "unit": "score", "_source": "https://haoyi-duan.github.io/WorldScore/", "_note": "Runway Gen-3" },
+
+    { "model": "1x/world-model",                "benchmark": "humanoid_sampling_psnr","score": 23.0,  "unit": "score", "_source": "https://arxiv.org/abs/2510.07092", "_note": "1X World Model Challenge — 1st place sampling track (PSNR dB)" },
+    { "model": "1x/world-model",                "benchmark": "humanoid_compression_top500_ce","score": 6.6386,"unit": "score","_source": "https://arxiv.org/abs/2510.07092", "_note": "1X World Model Challenge — 1st place compression track (CE, lower=better)" },
+
+    { "model": "figure-ai/helix",               "benchmark": "helix_effective_throughput","score": 1.1, "unit": "score", "_source": "https://www.figure.ai/news/scaling-helix-logistics", "_note": "Figure 02 + Helix S1 T_eff vs human demonstrator" },
+
+    { "model": "covariant/rfm-1",               "benchmark": "pick_retry_reduction",  "score": 99.0, "unit": "%", "_source": "https://covariant.ai/insights/rfm-1-update-higher-quality-grasp-accuracy/", "_note": "RFM-1 real-world precision (with scaling)" },
+
+    { "model": "octo/octo-base",                "benchmark": "simpler_env_avg",       "score": 62.0, "unit": "%", "_source": "https://octo-models.github.io/", "_note": "Octo-Base SimplerEnv aggregate baseline" },
+
+    { "model": "google-deepmind/gemini-robotics-er-1.6", "benchmark": "gemini_instrument_reading", "score": 93.0, "unit": "%", "_source": "https://deepmind.google/models/gemini-robotics/gemini-robotics-er/", "_note": "Gemini Robotics-ER 1.6 — agentic-vision instrument reading SOTA" }
+  ]
+}

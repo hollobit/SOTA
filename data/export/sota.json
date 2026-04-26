@@ -2447,17 +2447,17 @@
   "gemini_instrument_reading": {
     "model_id": "google-deepmind/gemini-robotics-er-1.6",
     "benchmark_id": "gemini_instrument_reading",
-    "value": 86.0,
+    "value": 93.0,
     "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "https://deepmind.google/models/gemini-robotics/gemini-robotics-er/",
-      "date": "2026-04-25",
+      "date": "2026-04-26",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "Gemini Robotics-ER 1.6 — agentic vision disabled (apples-to-apples vs ER 1.5)"
+    "collected_at": "2026-04-26",
+    "notes": "Gemini Robotics-ER 1.6 — agentic-vision instrument reading SOTA"
   },
   "skild_failure_recovery": {
     "model_id": "skild/skild-brain",
@@ -3120,19 +3120,19 @@
     "notes": "Cosmos Reason 1 post-RL avg (Arrow-of-Time/Spatial Puzzle/Object Permanence)"
   },
   "robovqa": {
-    "model_id": "nvidia/cosmos-reason-1",
+    "model_id": "nvidia/cosmos-reason-1-8b",
     "benchmark_id": "robovqa",
-    "value": 80.0,
+    "value": 84.5,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/html/2503.15558v1",
-      "date": "2026-04-25",
+      "url": "https://arxiv.org/abs/2503.15558",
+      "date": "2026-04-26",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "Cosmos Reason 1 RoboVQA"
+    "collected_at": "2026-04-26",
+    "notes": "Cosmos Reason 1 8B RoboVQA"
   },
   "bridge_v2": {
     "model_id": "openvla/openvla-7b",
@@ -3313,21 +3313,6 @@
     "is_sota": true,
     "collected_at": "2026-04-25",
     "notes": "Skild Brain limb-loss/calf adaptation time"
-  },
-  "pick_retry_reduction": {
-    "model_id": "covariant/rfm-1",
-    "benchmark_id": "pick_retry_reduction",
-    "value": 43.0,
-    "unit": "percent",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://covariant.ai/insights/rfm-1-update-higher-quality-grasp-accuracy/",
-      "date": "2026-04-25",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "Covariant RFM-1 — 43% reduction in pick retries vs prior baseline"
   },
   "bmw_deployment_uptime": {
     "model_id": "figure-ai/helix",
@@ -3613,5 +3598,335 @@
     "is_sota": true,
     "collected_at": "2026-04-26",
     "notes": "GPT-5 high — GAIA-2 pass@1"
+  },
+  "pai_bench_text2world": {
+    "model_id": "nvidia/cosmos-predict-2.5-2b",
+    "benchmark_id": "pai_bench_text2world",
+    "value": 0.768,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Cosmos Predict 2.5 2B PAI-Bench Text2World"
+  },
+  "pai_bench_image2world": {
+    "model_id": "nvidia/cosmos-predict-2.5-2b",
+    "benchmark_id": "pai_bench_image2world",
+    "value": 0.81,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Cosmos Predict 2.5 2B Image2World — beats Wan2.2-27B"
+  },
+  "av_fvd": {
+    "model_id": "nvidia/cosmos-predict-1-7b",
+    "benchmark_id": "av_fvd",
+    "value": 63.69,
+    "unit": "fvd",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Cosmos Predict 1 7B AV-FVD baseline (Cosmos 2.5 2B 2.3x improvement)"
+  },
+  "av_fid": {
+    "model_id": "nvidia/cosmos-predict-1-7b",
+    "benchmark_id": "av_fid",
+    "value": 25.34,
+    "unit": "fid",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Cosmos Predict 1 7B AV-FID baseline"
+  },
+  "robot_manip_psnr": {
+    "model_id": "nvidia/cosmos-predict-2.5-2b",
+    "benchmark_id": "robot_manip_psnr",
+    "value": 24.95,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Cosmos Predict 2.5 2B robot manipulation PSNR (dB)"
+  },
+  "robot_manip_fvd": {
+    "model_id": "nvidia/cosmos-predict-1-7b",
+    "benchmark_id": "robot_manip_fvd",
+    "value": 190.0,
+    "unit": "fvd",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict2.5/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Cosmos Predict 1 7B robot manip FVD"
+  },
+  "intuitive_physics_spatial_puzzle": {
+    "model_id": "nvidia/cosmos-reason-1-8b",
+    "benchmark_id": "intuitive_physics_spatial_puzzle",
+    "value": 87.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2503.15558",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Cosmos Reason 1 8B post-RL spatial puzzle"
+  },
+  "intuitive_physics_arrow_of_time": {
+    "model_id": "nvidia/cosmos-reason-1-56b",
+    "benchmark_id": "intuitive_physics_arrow_of_time",
+    "value": 57.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2503.15558",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Cosmos Reason 1 56B post-RL arrow-of-time"
+  },
+  "intuitive_physics_object_permanence": {
+    "model_id": "nvidia/cosmos-reason-1-8b",
+    "benchmark_id": "intuitive_physics_object_permanence",
+    "value": 62.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2503.15558",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Cosmos Reason 1 8B post-RL object permanence"
+  },
+  "aloha_4task_avg": {
+    "model_id": "openvla/openvla-oft",
+    "benchmark_id": "aloha_4task_avg",
+    "value": 87.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2502.19645",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "OpenVLA-OFT ALOHA 4-task avg SOTA"
+  },
+  "vlabench_track1_primitive": {
+    "model_id": "physical-intelligence/pi-0.5",
+    "benchmark_id": "vlabench_track1_primitive",
+    "value": 47.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2412.18194",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Pi-0.5 VLABench Track 1 primitive"
+  },
+  "gr1_real_lang_following": {
+    "model_id": "nvidia/gr00t-n1.5",
+    "benchmark_id": "gr1_real_lang_following",
+    "value": 93.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://research.nvidia.com/labs/gear/gr00t-n1_5/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "GR00T N1.5 GR-1 real-world lang following 2× N1 baseline"
+  },
+  "unitree_g1_1k_demos": {
+    "model_id": "nvidia/gr00t-n1.5",
+    "benchmark_id": "unitree_g1_1k_demos",
+    "value": 98.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://research.nvidia.com/labs/gear/gr00t-n1_5/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "GR00T N1.5 Unitree G1 post-training 1K demos SOTA"
+  },
+  "ewmbench": {
+    "model_id": "agibot/genie-envisioner",
+    "benchmark_id": "ewmbench",
+    "value": 0.92,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2508.05635",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "AgiBot GE-Base EWMBench composite (avg of 0.94/0.98/0.85/0.91 sub-scores)"
+  },
+  "worldscore_static": {
+    "model_id": "tencent/hy-world-2.0",
+    "benchmark_id": "worldscore_static",
+    "value": 77.62,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://haoyi-duan.github.io/WorldScore/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "HunyuanWorld-Voyager 2.0 #1 on Stanford WorldScore static"
+  },
+  "worldscore_dynamic": {
+    "model_id": "zhipu/cogvideox-i2v",
+    "benchmark_id": "worldscore_dynamic",
+    "value": 59.12,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://haoyi-duan.github.io/WorldScore/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Zhipu CogVideoX-I2V"
+  },
+  "worldscore_3d_consistency": {
+    "model_id": "wonderworld/wonderworld",
+    "benchmark_id": "worldscore_3d_consistency",
+    "value": 86.87,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://haoyi-duan.github.io/WorldScore/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "WonderWorld 3D consistency leader"
+  },
+  "humanoid_sampling_psnr": {
+    "model_id": "1x/world-model",
+    "benchmark_id": "humanoid_sampling_psnr",
+    "value": 23.0,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2510.07092",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "1X World Model Challenge — 1st place sampling track (PSNR dB)"
+  },
+  "humanoid_compression_top500_ce": {
+    "model_id": "1x/world-model",
+    "benchmark_id": "humanoid_compression_top500_ce",
+    "value": 6.6386,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2510.07092",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "1X World Model Challenge — 1st place compression track (CE, lower=better)"
+  },
+  "helix_effective_throughput": {
+    "model_id": "figure-ai/helix",
+    "benchmark_id": "helix_effective_throughput",
+    "value": 1.1,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.figure.ai/news/scaling-helix-logistics",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Figure 02 + Helix S1 T_eff vs human demonstrator"
+  },
+  "pick_retry_reduction": {
+    "model_id": "covariant/rfm-1",
+    "benchmark_id": "pick_retry_reduction",
+    "value": 99.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://covariant.ai/insights/rfm-1-update-higher-quality-grasp-accuracy/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "RFM-1 real-world precision (with scaling)"
+  },
+  "simpler_env_avg": {
+    "model_id": "octo/octo-base",
+    "benchmark_id": "simpler_env_avg",
+    "value": 62.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://octo-models.github.io/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Octo-Base SimplerEnv aggregate baseline"
   }
 }
