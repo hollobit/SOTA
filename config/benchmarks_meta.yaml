@@ -693,3 +693,139 @@ benchmarks:
     expected_range: [40, 90]
     description: "Medical risk evaluation — user-perspective patient safety in healthcare LLM use."
     paper: "https://arxiv.org/html/2507.07248"
+
+  # ─────────────── National medical licensing & sovereign eval ───────────────
+  - id: igakuqa
+    name: IgakuQA (Japan Medical Licensing)
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 95]
+    description: "Japan medical licensing exam (国家試験) benchmark — 6-year compilation. ELYZA-LLM-Med 70B 87.5 SOTA (national 1위), bilingual eval supported."
+    paper: "https://arxiv.org/html/2310.10083"
+
+  - id: jmedbench
+    name: JMedBench (Japanese Medical)
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 95]
+    description: "Bilingual JP-EN Japanese medical evaluation — radiology, exam, clinical record. Univ Tokyo + ELYZA. PFN BioMedic 75.8."
+    paper: "https://arxiv.org/html/2409.11783v1"
+
+  - id: jmed_lora_eval
+    name: JMedLoRA Evaluation Suite
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 90]
+    description: "Japanese medical instruction-tuning evaluation — domain adaptation benchmark for Japanese LLMs. Univ Tokyo Hospital."
+    paper: "https://arxiv.org/html/2310.10083"
+
+  - id: neet_pg
+    name: NEET-PG (India PG Medical)
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 95]
+    description: "India Post-Graduate NEET medical entrance exam — 20+ year corpus. National-level eligibility test for top Indian medical PG programs. Vaidya 2.0 89.4 SOTA."
+    paper: "https://analyticsindiamag.com/ai-news-updates/fractals-vaidya-ai-outperforms-gpt-4-achieves-83-in-pg-neet/"
+
+  - id: indic_med_bench
+    name: Indic Medical Benchmark
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 90]
+    description: "AI4Bharat multilingual Indian-language medical evaluation — Hindi, Tamil, Telugu, Bengali medical QA. Airavata Medical 71.4 SOTA."
+    paper: "https://ai4bharat.iitm.ac.in/"
+
+  - id: cmexam_cn
+    name: CMExam (China Medical Licensing)
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 95]
+    description: "China Medical Licensing Examination corpus — 60K+ MCQs. Standard Chinese medical LLM benchmark. SumiHealth 82.4 SOTA."
+    paper: "https://arxiv.org/abs/2306.03030"
+
+  - id: promedqa_cn
+    name: PromedQA (Chinese ProMed)
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 95]
+    description: "Chinese professional medicine QA — Tsinghua THUDM benchmark. GLM-Medical 81.7 SOTA."
+    paper: "https://github.com/THUDM/"
+
+  - id: m42_clinical_avg
+    name: M42 Clinical Avg (UAE)
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [50, 90]
+    description: "Med42 internal clinical evaluation — comprehensive medical task suite (Cerebras-trained). M42 v2 70B 76.5."
+    paper: "https://m42.ae/media-resources/news/m42-announces-new-clinical-llm-to-transform-the-future-of-ai-in-healthcare/"
+
+  - id: synapxe_sg_eval
+    name: Synapxe Singapore Clinical
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [50, 95]
+    description: "Synapxe (Singapore MOH) clinical safety + accuracy eval — public hospital deployment validation. Synapxe Clinical-CLM 81.4."
+    paper: "https://www.synapxe.sg/"
+
+  - id: nhs_aide_eval
+    name: NHS AIDE Clinical Eval
+    category: medical-safety
+    metric: score
+    unit: "%"
+    expected_range: [50, 95]
+    description: "NHS England AIDE clinical-deployment safety + effectiveness eval — primary care decision support. 84.7."
+    paper: "https://transform.england.nhs.uk/"
+
+  - id: uhn_clin_bench
+    name: UHN Clinical Benchmark
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [50, 95]
+    description: "UHN AI Hub clinical evaluation — Toronto multi-hospital dataset. Vector Institute Clairvoyance 80.3."
+    paper: "https://uhnhub.ai/"
+
+  - id: delphi_disease_risk
+    name: Delphi 1000-Disease Risk (DKFZ+EMBL)
+    category: clinical-prediction
+    metric: auroc
+    unit: "%"
+    expected_range: [60, 95]
+    description: "DKFZ+EMBL Delphi model — long-term risk for 1,000+ diseases. Trained 400K UK Biobank, validated on 1.9M Danish National Patient Registry. Nature 2025."
+    paper: "https://www.dkfz.de/en/news/press-releases/detail/ai-model-predicts-disease-risks-decades-in-advance"
+
+  - id: biomistral_multilingual
+    name: BioMistral Multilingual (7-lang)
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 85]
+    description: "BioMistral first large-scale multilingual medical LLM eval — 7 translated languages. CNRS Jean Zay HPC."
+    paper: "https://arxiv.org/abs/2402.10373"
+
+  - id: owkin_path_avg
+    name: Owkin Pathology External Avg
+    category: medical-imaging
+    metric: auroc
+    unit: "%"
+    expected_range: [60, 92]
+    description: "Owkin H-Optimus / DRAGON pathology external evaluation — multi-task cancer subtyping/biomarker. DRAGON 2 84.6, H-Optimus 81.2."
+    paper: "https://www.owkin.com/"
+
+  - id: openai_healthbench_hard
+    name: HealthBench (Hard subset)
+    category: medical-safety
+    metric: score
+    unit: "%"
+    expected_range: [10, 70]
+    description: "OpenAI HealthBench Hard subset — high-difficulty conversations. Vaidya 2.0 50.1 (world 1st 50+, beat GPT-5/Gemini Pro 3 at India AI Impact Summit 2026)."
+    paper: "https://openai.com/index/healthbench/"
