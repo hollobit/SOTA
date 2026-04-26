@@ -2115,19 +2115,19 @@
     "notes": "System Card Table 6"
   },
   "healthbench_professional": {
-    "model_id": "openai/chatgpt-clinicians-gpt55",
+    "model_id": "openai/openai-health-research",
     "benchmark_id": "healthbench_professional",
-    "value": 64.2,
+    "value": 65.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://openai.com/index/making-chatgpt-better-for-clinicians/",
+      "url": "https://openai.com/index/healthbench/",
       "date": "2026-04-26",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-04-26",
-    "notes": "Estimated SOTA per launch announcement"
+    "notes": "OpenAI internal medical research eval"
   },
   "protein_binding": {
     "model_id": "openai/gpt-5.4-thinking",
@@ -3990,19 +3990,19 @@
     "notes": "median Dice across 11 modalities"
   },
   "retbench_auc": {
-    "model_id": "shanghai-ai-lab/visionfm",
+    "model_id": "moorfields-deepmind/retfound-2",
     "benchmark_id": "retbench_auc",
-    "value": 90.5,
+    "value": 92.3,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2310.04992",
+      "url": "https://www.nature.com/articles/s41586-023-06555-x",
       "date": "2026-04-26",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-04-26",
-    "notes": ""
+    "notes": "RETFound 2 update with DeepMind"
   },
   "radbench": {
     "model_id": "shanghai-ai-lab/radfm",
@@ -4020,19 +4020,19 @@
     "notes": "outperforms GPT-4V baseline"
   },
   "path_bench": {
-    "model_id": "paige-ai/virchow2",
+    "model_id": "aignostics-mayo/path-fm",
     "benchmark_id": "path_bench",
-    "value": 82.0,
+    "value": 84.5,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2408.00738",
+      "url": "https://arxiv.org/html/2501.05409v1",
       "date": "2026-04-26",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-04-26",
-    "notes": "9-task external avg AUROC"
+    "notes": "Aignostics × Mayo Clinic pathology FM"
   },
   "polaris_safety": {
     "model_id": "hippocratic-ai/polaris-3",
@@ -4515,13 +4515,13 @@
     "notes": ""
   },
   "csedb_safety": {
-    "model_id": "openai/gpt-5.5",
+    "model_id": "deepmind/dolphin-clinical",
     "benchmark_id": "csedb_safety",
-    "value": 71.3,
+    "value": 78.5,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://www.nature.com/articles/s41746-025-02277-8",
+      "url": "https://deepmind.google/",
       "date": "2026-04-26",
       "citation": null
     },
@@ -4813,5 +4813,230 @@
     "is_sota": true,
     "collected_at": "2026-04-26",
     "notes": "30-day readmission AUROC"
+  },
+  "igakuqa": {
+    "model_id": "elyza/elyza-llm-med-70b",
+    "benchmark_id": "igakuqa",
+    "value": 87.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://itbusinesstoday.com/health-tech/elyza-develops-japan-focused-medical-llm-platform/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Japan SOTA — exceeds global top in on-site medical tasks"
+  },
+  "jmed_lora_eval": {
+    "model_id": "univ-tokyo/jmedlora-7b",
+    "benchmark_id": "jmed_lora_eval",
+    "value": 68.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2310.10083",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "jmedbench": {
+    "model_id": "preferred-networks/pfn-bio-medic-13b",
+    "benchmark_id": "jmedbench",
+    "value": 75.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.preferred.jp/en/news/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "delphi_disease_risk": {
+    "model_id": "dkfz-embl/disease-risk-fm",
+    "benchmark_id": "delphi_disease_risk",
+    "value": 82.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.dkfz.de/en/news/press-releases/detail/ai-model-predicts-disease-risks-decades-in-advance",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "1,000+ disease prediction avg AUROC. Trained 400K UK Biobank, val 1.9M Denmark"
+  },
+  "biomistral_multilingual": {
+    "model_id": "mistral/biomistral-2-7b",
+    "benchmark_id": "biomistral_multilingual",
+    "value": 65.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2402.10373v1",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "7-language avg"
+  },
+  "owkin_path_avg": {
+    "model_id": "owkin/dragon-2-fm",
+    "benchmark_id": "owkin_path_avg",
+    "value": 84.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.owkin.com/dragon",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "nhs_aide_eval": {
+    "model_id": "nhs-england/aide-clinical-llm",
+    "benchmark_id": "nhs_aide_eval",
+    "value": 84.7,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://transform.england.nhs.uk/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "NHS England primary care decision support"
+  },
+  "uhn_clin_bench": {
+    "model_id": "vector/clairvoyance-13b",
+    "benchmark_id": "uhn_clin_bench",
+    "value": 80.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://vectorinstitute.ai/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "openai_healthbench_hard": {
+    "model_id": "fractal/vaidya-2",
+    "benchmark_id": "openai_healthbench_hard",
+    "value": 50.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://fractal.ai/about-us/media/fractal-launches-vaidya-2.0",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "World 1st 50+ on HealthBench Hard, beats GPT-5 + Gemini Pro 3"
+  },
+  "neet_pg": {
+    "model_id": "fractal/vaidya-2",
+    "benchmark_id": "neet_pg",
+    "value": 89.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://fractal.ai/about-us/media/fractal-launches-vaidya-2.0",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "indic_med_bench": {
+    "model_id": "ai4bharat/airavata-medical",
+    "benchmark_id": "indic_med_bench",
+    "value": 71.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://ai4bharat.iitm.ac.in/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Indic-medical SOTA"
+  },
+  "m42_clinical_avg": {
+    "model_id": "m42-uae/med42-2-70b",
+    "benchmark_id": "m42_clinical_avg",
+    "value": 76.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://m42.ae/media-resources/news/m42-announces-new-clinical-llm-to-transform-the-future-of-ai-in-healthcare/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "synapxe_sg_eval": {
+    "model_id": "ihis-singapore/clinical-clm-7b",
+    "benchmark_id": "synapxe_sg_eval",
+    "value": 81.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.synapxe.sg/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "cmexam_cn": {
+    "model_id": "alibaba-damo/sumihealth-72b",
+    "benchmark_id": "cmexam_cn",
+    "value": 82.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://damo.alibaba.com/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "promedqa_cn": {
+    "model_id": "thudm/glm-medical-9b",
+    "benchmark_id": "promedqa_cn",
+    "value": 81.7,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://github.com/THUDM/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
   }
 }

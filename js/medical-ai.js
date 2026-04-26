@@ -214,6 +214,175 @@ var MedicalAI = {
             ]
         },
         {
+            code: 'global-japan',
+            label: '🇯🇵 Japan Medical AI',
+            icon: '🇯🇵',
+            note: 'ELYZA-LLM-Med (IgakuQA SOTA) · CyberAgent MedCALM · JMedLoRA · Stockmark Medical · PFN BioMedic · Rikkyo JMedLLM',
+            models: [
+                'elyza/elyza-llm-med-70b',
+                'elyza/elyza-llm-med-7b',
+                'cyberagent/medcalm-7b',
+                'univ-tokyo/jmedlora-7b',
+                'stockmark/stockmark-medical-13b',
+                'preferred-networks/pfn-bio-medic-13b',
+                'rikkyo/jmedllm-bilingual-13b'
+            ]
+        },
+        {
+            code: 'global-germany',
+            label: '🇩🇪 Germany Medical AI',
+            icon: '🇩🇪',
+            note: 'DKFZ+EMBL Delphi (1,000-disease risk, Nature 2025) · Aignostics×Mayo + Charité Rudolf (pathology FM) · TUM MedBERT.DE · Siemens Healthineers AI FM',
+            models: [
+                'dkfz-embl/disease-risk-fm',
+                'aignostics-mayo/path-fm',
+                'charite/aignostics-rudolf',
+                'tum/medbert-de-large',
+                'siemens-healthineers/aifm'
+            ]
+        },
+        {
+            code: 'global-france',
+            label: '🇫🇷 France Medical AI',
+            icon: '🇫🇷',
+            note: 'BioMistral 1/2 (Avignon+CNRS Jean Zay HPC) · Owkin H-Optimus + DRAGON 2 (pathology+omics) · Raidium MedFound 3 (radiology)',
+            models: [
+                'mistral/biomistral-2-7b',
+                'biomistral/biomistral-7b',
+                'owkin/h-optimus-1',
+                'owkin/dragon-2-fm',
+                'raidium/medfound-3'
+            ]
+        },
+        {
+            code: 'global-uk',
+            label: '🇬🇧 UK Medical AI',
+            icon: '🇬🇧',
+            note: 'NHS England AIDE Clinical · Moorfields+UCL+DeepMind RETFound 2 · UCL AISL · DeepMind Dolphin Clinical · Imperial Medical LLM',
+            models: [
+                'nhs-england/aide-clinical-llm',
+                'moorfields-deepmind/retfound-2',
+                'moorfields/retfound',
+                'ucl-aisl/aisl-clinical-13b',
+                'deepmind/dolphin-clinical',
+                'imperial/imperial-medical-llm',
+                'ucl/medalpaca-13b'
+            ]
+        },
+        {
+            code: 'global-canada',
+            label: '🇨🇦 Canada Medical AI',
+            icon: '🇨🇦',
+            note: 'Vector Institute Clairvoyance · UHN Foundation (Toronto) · McGill+Mila CliniCLM · T-CAIREM HealthBench',
+            models: [
+                'vector/clairvoyance-13b',
+                'vector/uhn-foundation-7b',
+                'mcgill-mila/cliniclm-7b',
+                'tcairem/healthbench-7b'
+            ]
+        },
+        {
+            code: 'global-india',
+            label: '🇮🇳 India Medical AI',
+            icon: '🇮🇳',
+            note: 'Fractal Vaidya 1/2 (HealthBench Hard 50.1 SOTA) · FreedomIntelligence Apollo 2B/6B/7B (multilingual) · AI4Bharat Airavata Medical · AZmed Eve radiology',
+            models: [
+                'fractal/vaidya-2',
+                'fractal/vaidya-1',
+                'freedomintelligence/apollo-7b',
+                'freedomintelligence/apollo-6b',
+                'freedomintelligence/apollo-2b',
+                'ai4bharat/airavata-medical',
+                'azmed/eve-radiology'
+            ]
+        },
+        {
+            code: 'global-uae',
+            label: '🇦🇪 UAE Medical AI',
+            icon: '🇦🇪',
+            note: 'Med42 v1/v2 (M42+Cerebras+Core42) · TII Falcon Bio-Medical · BiMediX 1/2 (MBZUAI Arabic-English MoE) · MedAraBench',
+            models: [
+                'm42-uae/med42-2-70b',
+                'm42-uae/med42-1-70b',
+                'm42-health/med42-v2-70b',
+                'm42-health/med42-v2-8b',
+                'tii-uae/falcon-bio-medical',
+                'mbzuai-oryx/bimedix-2',
+                'mbzuai-oryx/bimedix',
+                'mbzuai/medarabench-baseline'
+            ]
+        },
+        {
+            code: 'global-singapore',
+            label: '🇸🇬 Singapore Medical AI',
+            icon: '🇸🇬',
+            note: 'Synapxe Clinical-CLM (MOH Singapore) · AI Singapore SEA-MedLex',
+            models: [
+                'ihis-singapore/clinical-clm-7b',
+                'ai-singapore/sea-medlex-13b',
+                'ai-singapore-mlb/aimedlex'
+            ]
+        },
+        {
+            code: 'global-china',
+            label: '🇨🇳 China Medical AI',
+            icon: '🇨🇳',
+            note: 'Alibaba SumiHealth · Tencent MedLLM-2 (Yuanbao) · Baidu Wenxin Yiyi · Shanghai AI Lab Puyu Medical · Tsinghua GLM-Medical · iFLYTEK Spark Medical · MMedLM 2 · HuatuoGPT 시리즈',
+            models: [
+                'alibaba-damo/sumihealth-72b',
+                'tencent/medllm-2',
+                'baidu/wenxin-yiyi-medical',
+                'shanghai-ai-lab/puyu-medical-7b',
+                'thudm/glm-medical-9b',
+                'iflytek/spark-medical-3',
+                'magic-ai4med/mmedlm-2-70b',
+                'magic-ai4med/mmedlm-2-7b',
+                'magic-ai4med/mmedlm-2-1.8b',
+                'freedomintelligence/huatuogpt-ii-7b',
+                'freedomintelligence/huatuogpt-o1-72b',
+                'freedomintelligence/huatuogpt-vision-7b',
+                'freedomintelligence/huatuogpt-vision-34b',
+                'thu-coai/zhongjing-13b',
+                'scutcyr/bianque-2',
+                'thudm/doctorglm-6b',
+                'openi-cn/biancang-7b',
+                'shanghai-ai-lab/intern-medical-25b',
+                'shanghai-ai-lab/radfm',
+                'shanghai-ai-lab/visionfm',
+                'openmedlab/sam-med2d',
+                'openmedlab/sam-med3d'
+            ]
+        },
+        {
+            code: 'global-us',
+            label: '🇺🇸 US Medical AI',
+            icon: '🇺🇸',
+            note: 'OpenAI/Anthropic/Google clinical · MIT CLIPath 3 · NIH C-MedBERT 2 · Stanford ClinicalFormer 3 · Mahmood Lab pathology · Stanford radiology · Cedars-Sinai cardiology · Yale + Penn',
+            models: [
+                'openai/chatgpt-clinicians-gpt55',
+                'openai/chatgpt-clinicians-gpt54',
+                'openai/openai-health-research',
+                'anthropic/claude-medical-eval',
+                'google/med-gemini-3-pro',
+                'google/med-palm-2',
+                'google/medgemma-27b',
+                'mit/clipath-3',
+                'nih/c-medbert-2',
+                'stanford/clinicalformer-3',
+                'stanford/clinical-pred-bert',
+                'mahmoodlab/uni2',
+                'mahmoodlab/conch',
+                'mahmoodlab/titan',
+                'paige-ai/virchow2',
+                'echonet/echoclip',
+                'echonet/echofm',
+                'harvard/medversa-8b',
+                'rad-onc/cheXagent-8b',
+                'hippocratic-ai/polaris-3',
+                'stanford/almanac-rag'
+            ]
+        },
+        {
             code: 'medical-imaging',
             label: 'Medical Imaging FMs (Universal/Radiology/CXR)',
             icon: '🖼️',
@@ -353,6 +522,11 @@ var MedicalAI = {
             label: '📈 Clinical Outcome Prediction (ICU)',
             note: 'MIMIC-IV Sepsis 24h-mortality AUROC · MIMIC-AKI XGBoost · eICU cross-generalization · MIMIC-IV 30-day Readmission',
             benchmarks: ['mimic_iv_sepsis_auc', 'mimic_aki_mortality', 'eicu_xgen_auc', 'mimic_iv_readmit']
+        },
+        {
+            label: '🌏 National Medical Licensing & Sovereign Eval',
+            note: 'IgakuQA (Japan SOTA) · NEET-PG (India) · CMExam (China) · PromedQA (Chinese Tsinghua) · M42 Clinical · Synapxe SG · NHS AIDE · UHN Clin · Delphi 1,000-Disease (DKFZ+EMBL Nature 2025) · BioMistral Multilingual',
+            benchmarks: ['igakuqa', 'jmedbench', 'jmed_lora_eval', 'neet_pg', 'indic_med_bench', 'cmexam_cn', 'promedqa_cn', 'm42_clinical_avg', 'synapxe_sg_eval', 'nhs_aide_eval', 'uhn_clin_bench', 'delphi_disease_risk', 'biomistral_multilingual', 'owkin_path_avg', 'openai_healthbench_hard']
         }
     ],
 
@@ -443,7 +617,47 @@ var MedicalAI = {
         'MIT LCP':                           '#3b82f6',
         'MIT LCP + BIDMC':                   '#3b82f6',
         'PUMC + Beihang':                    '#ef4444',
-        'Duke + UCB':                        '#0ea5e9'
+        'Duke + UCB':                        '#0ea5e9',
+        'ELYZA (Japan)':                     '#bc002d',
+        'CyberAgent + Univ Tokyo':           '#ff6b00',
+        'Univ Tokyo Hospital':               '#bc002d',
+        'Stockmark (Japan)':                 '#0070bb',
+        'Preferred Networks (Japan)':        '#1d3557',
+        'Rikkyo Univ':                       '#5e2750',
+        'DKFZ + EMBL':                       '#000000',
+        'Aignostics + Mayo Clinic':          '#0033a0',
+        'Aignostics + Charité Berlin':       '#dc143c',
+        'TUM München (Germany)':             '#0033a0',
+        'Siemens Healthineers':              '#009999',
+        'Avignon Univ + Nantes Univ + CNRS': '#002654',
+        'Owkin (France)':                    '#7c3aed',
+        'Raidium (France)':                  '#ed2939',
+        'NHS England + Aide':                '#005eb8',
+        'Moorfields + UCL + DeepMind':       '#005eb8',
+        'UCL AI Centre':                     '#500778',
+        'Google DeepMind UK':                '#4285f4',
+        'Imperial College London':           '#003e74',
+        'UHN AI Hub + Vector Institute':     '#ff0000',
+        'Vector Institute (Canada)':         '#ff0000',
+        'McGill + Mila (Canada)':            '#ed1b24',
+        'T-CAIREM Univ Toronto':             '#002a5c',
+        'Fractal Analytics (India)':         '#ff9933',
+        'FreedomIntelligence (CUHK + India consortium)': '#ff9933',
+        'AI4Bharat (IIT Madras)':            '#ff9933',
+        'AZmed (India + France)':            '#ff9933',
+        'M42 + Cerebras + Core42 (UAE)':     '#00732f',
+        'M42 + Cerebras (UAE)':              '#00732f',
+        'TII UAE':                           '#00732f',
+        'Synapxe (Singapore MOH)':           '#ed2939',
+        'Alibaba DAMO Academy':              '#ff6a00',
+        'Tencent AI Lab (Yuanbao)':          '#0ea5e9',
+        'Baidu Research':                    '#2932e1',
+        'Tsinghua THUDM':                    '#660874',
+        'iFLYTEK':                           '#005baa',
+        'MIT CSAIL':                         '#a31f34',
+        'OpenAI Research':                   '#10b981',
+        'Anthropic Health Research':         '#d97706',
+        'NIH NCBI':                          '#3b82f6'
     },
 
     _models: [],
