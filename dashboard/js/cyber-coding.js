@@ -7,6 +7,96 @@ var CyberCoding = {
     AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'gaia2', 'browsecomp', 'tau_bench', 'tau2_bench', 'tau3_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'arc_agi_3', 'claw_eval'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'nl2repo', 'codeforces_elo'],
 
+    // ─── Performance Suites — multi-table leaderboard ───
+    // 7 thematic groupings, each with its own table. Mirrors the
+    // Physical AI / Sovereign AI 6-suite pattern but tuned for
+    // cyber-attack / cyber-defense / coding / agent scope.
+    PERF_SUITES: [
+        {
+            id: 'coding-se',
+            label: '💻 Coding & Software Engineering',
+            note: 'SWE-Verified · SWE-Pro · SWE-Multilingual · SWE-rebench · LiveCodeBench (+ v6) · HumanEval+ · MBPP+ · Aider Polyglot · Codeforces · GDPval-AA · SciCode · WebDev Arena · Monorepo-Bench · Expert-SWE · GSO · MLE-Bench · WeirdML v2 · PaperBench · Terminal-Bench 2 · NL2Repo · RepoBench · Vibe Code Bench',
+            benchmarks: [
+                'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'swe_rebench',
+                'livecodebench', 'livecodebench_v6', 'livecodebench_elo',
+                'humaneval', 'humaneval_plus', 'mbpp', 'mbpp_plus',
+                'aider_polyglot', 'codeforces_rating', 'codeforces_elo',
+                'gdpval_aa', 'scicode', 'webdev_arena', 'monorepo_bench',
+                'expert_swe', 'gso', 'mle_bench', 'weirdml_v2', 'paperbench',
+                'terminal_bench_2', 'nl2repo', 'repobench', 'vibe_code_bench'
+            ]
+        },
+        {
+            id: 'cyber-attack',
+            label: '🛡️ Cyber Attack / CTF',
+            note: 'Cybench · CyberGym · CVE-Bench · EVMbench Detect/Exploit · The Last Ones (TLO) · OpenAI CTF Professional · Firefox 147 · Cyber Range · MHBench (Multi-Host) · AIRTBench · UK AISI Narrow Cyber · CyScenarioBench · Irregular Atomic 3-suite (Network/Vuln-Research/Evasion) · AIxCC · FORTRESS',
+            benchmarks: [
+                'cybench', 'cybergym', 'cvebench',
+                'evmbench_detect', 'evmbench_exploit',
+                'tlo_cyber_range', 'openai_ctf_professional', 'firefox_147', 'cyber_range',
+                'mhbench', 'airtbench', 'uk_aisi_narrow_cyber', 'cyscenariobench',
+                'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion',
+                'aixcc_synth_vuln', 'fortress'
+            ]
+        },
+        {
+            id: 'cyber-defense',
+            label: '🔒 Cyber Defense / Safety',
+            note: 'ZeroDayBench · SecRepoBench · EVMbench Patch · DFIR-Metric · Apollo Sabotage / Impossible-Task Lying / Eval-Awareness / Strategic Deception / Sandbagging · Dynamic Self-Harm / Mental Health / Emotional Reliance · CoT Controllability / Monitorability · Prompt Injection · First-Person Fairness · CyberSocEval · AutoPatchBench',
+            benchmarks: [
+                'zerodaybench', 'secrepobench', 'evmbench_patch', 'dfir_metric',
+                'apollo_sabotage_mean', 'apollo_impossible_task_lying', 'apollo_eval_awareness',
+                'apollo_strategic_deception', 'apollo_sandbagging_qa',
+                'dynamic_self_harm_adversarial', 'dynamic_mental_health', 'dynamic_emotional_reliance',
+                'cot_controllability', 'cot_monitorability',
+                'prompt_injection', 'first_person_fairness',
+                'cybersoceval', 'autopatchbench', 'baxbench'
+            ]
+        },
+        {
+            id: 'tool-agent',
+            label: '🤖 Tool-use Agent',
+            note: 'τ-bench · τ²-bench · τ³-bench (Sierra) · MCP-Atlas · MCPMark · BFCL V4 · Toolathlon · Finance-Agent · Vending-Bench 2',
+            benchmarks: [
+                'tau_bench', 'tau2_bench', 'tau3_bench',
+                'mcp_atlas', 'mcpatlas_public', 'mcpmark',
+                'bfcl', 'bfcl_v3', 'bfcl_v4',
+                'toolathlon', 'finance_agent', 'vending_bench_2',
+                'apex_agents_hard', 'apex_shortlist', 'skills_bench'
+            ]
+        },
+        {
+            id: 'webcomputer-agent',
+            label: '🌐 Web / Computer-use Agent',
+            note: 'BrowseComp · OSWorld-Verified · WebArena · DeepSearchQA · METR Time Horizons · QwenWebBench · AndroidWorld · GAIA · GAIA-2',
+            benchmarks: [
+                'browsecomp', 'osworld_verified', 'webarena', 'deepsearchqa',
+                'metr_time_horizons', 'qwen_web_bench', 'android_world',
+                'gaia', 'gaia2'
+            ]
+        },
+        {
+            id: 'robotics-agent',
+            label: '🦾 Robotics Agent (overlap with Physical AI)',
+            note: 'LIBERO 4-suite · ALOHA 4-task · RoboCasa · Unitree G1 1K demos · GR-1 real lang following · OpenX Embodiment · DexMimicGen',
+            benchmarks: [
+                'libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long',
+                'aloha_4task_avg', 'robocasa', 'robocasa365',
+                'unitree_g1_1k_demos', 'gr1_real_lang_following', 'realworld_language_following',
+                'open_x_embodiment', 'dexmimicgen', 'gr1_tabletop',
+                'simpler_env_avg', 'roboarena_elo'
+            ]
+        },
+        {
+            id: 'reasoning-agent',
+            label: '⚡ Reasoning Agent',
+            note: 'ARC-AGI-2 · ARC-AGI-3 · Claw-Eval (Xiaomi MiMo) · Skills-Bench',
+            benchmarks: [
+                'arc_agi_1', 'arc_agi_2', 'arc_agi_3', 'claw_eval'
+            ]
+        }
+    ],
+
     BENCH_DESCRIPTIONS: {
         cybench: {
             name: 'Cybench (CTF)',
@@ -284,6 +374,7 @@ var CyberCoding = {
         this._renderTable('defense-table-container', this.DEFENSE_BENCHMARKS);
         this._renderTable('agent-table-container', this.AGENT_BENCHMARKS);
         this._renderRadar();
+        this._renderPerfSuites();
         this._renderDescriptions();
     },
 
@@ -565,6 +656,192 @@ var CyberCoding = {
 
         chart.setOption(option);
         window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    // ─────────────── Performance Suites multi-table leaderboard ───────────────
+    _renderPerfSuites: function() {
+        var el = document.getElementById('cyber-coding-perf-suites');
+        if (!el) return;
+        el.textContent = '';
+        var self = this;
+
+        // Aggregate all unique benchmark IDs across the suites
+        var allBenchIds = this.PERF_SUITES.reduce(function(acc, s) { return acc.concat(s.benchmarks); }, []);
+        var allBenchSet = {};
+        allBenchIds.forEach(function(b) { allBenchSet[b] = true; });
+
+        // Find every model in DB that has at least one score on a Cyber/Coding/Agent
+        // benchmark — covers FRONTIER_MODELS plus any model that scored on these benches.
+        var modelsWithScores = {};
+        this._scores.forEach(function(s) {
+            if (allBenchSet[s.benchmark_id]) modelsWithScores[s.model_id] = true;
+        });
+        var rowIds = Object.keys(modelsWithScores).filter(function(mid) {
+            return self._models.some(function(m) { return m.id === mid; });
+        });
+
+        // Summary banner
+        var totalScores = 0;
+        var benchHits = {};
+        this._scores.forEach(function(s) {
+            if (allBenchSet[s.benchmark_id] && modelsWithScores[s.model_id]) {
+                totalScores++;
+                benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
+            }
+        });
+        var activeBenchCount = Object.keys(benchHits).length;
+        var summary = document.createElement('p');
+        summary.className = 'text-xs text-gray-500 mb-3';
+        var sb = document.createElement('strong');
+        sb.className = 'text-gray-300';
+        sb.textContent = totalScores + ' verified scores';
+        summary.appendChild(sb);
+        summary.appendChild(document.createTextNode(' across '));
+        var sc = document.createElement('strong');
+        sc.className = 'text-gray-300';
+        sc.textContent = String(activeBenchCount);
+        summary.appendChild(sc);
+        summary.appendChild(document.createTextNode(' active benchmarks · ' + rowIds.length + ' models · click any score cell for source/history modal · click model name for details'));
+        el.appendChild(summary);
+
+        // One table per suite
+        this.PERF_SUITES.forEach(function(suite) {
+            var activeBids = suite.benchmarks.filter(function(bid) {
+                return rowIds.some(function(mid) {
+                    return self._scores.some(function(s) { return s.model_id === mid && s.benchmark_id === bid; });
+                });
+            });
+            if (activeBids.length === 0) return;
+
+            var suiteRowIds = rowIds.filter(function(mid) {
+                return activeBids.some(function(bid) {
+                    return self._scores.some(function(s) { return s.model_id === mid && s.benchmark_id === bid; });
+                });
+            });
+            if (suiteRowIds.length === 0) return;
+
+            // Sort by sum-of-scores desc, then by model name
+            suiteRowIds.sort(function(a, b) {
+                var sa = activeBids.reduce(function(acc, bid) {
+                    var sc = self._scores.find(function(x) { return x.model_id === a && x.benchmark_id === bid; });
+                    return acc + (sc ? sc.value : 0);
+                }, 0);
+                var sb2 = activeBids.reduce(function(acc, bid) {
+                    var sc = self._scores.find(function(x) { return x.model_id === b && x.benchmark_id === bid; });
+                    return acc + (sc ? sc.value : 0);
+                }, 0);
+                if (sb2 !== sa) return sb2 - sa;
+                return self._getModelName(a).localeCompare(self._getModelName(b));
+            });
+
+            // Cap to top-25 per suite
+            var TOP_N = 25;
+            var trimmed = suiteRowIds.length > TOP_N;
+            if (trimmed) suiteRowIds = suiteRowIds.slice(0, TOP_N);
+
+            // Per-benchmark max for color coding
+            var maxes = {};
+            activeBids.forEach(function(bid) {
+                var max = 0;
+                rowIds.forEach(function(mid) {
+                    var sc = self._scores.find(function(x) { return x.model_id === mid && x.benchmark_id === bid; });
+                    if (sc && sc.value > max) max = sc.value;
+                });
+                maxes[bid] = max;
+            });
+
+            // Suite header
+            var head = document.createElement('div');
+            head.className = 'mt-6 mb-2';
+            var title = document.createElement('h4');
+            title.className = 'text-sm font-semibold text-gray-200';
+            title.textContent = suite.label + '  (' + activeBids.length + ' benchmarks · ' + (trimmed ? 'top ' + TOP_N + ' / ' : '') + suiteRowIds.length + ' models)';
+            head.appendChild(title);
+            var note = document.createElement('p');
+            note.className = 'text-xs text-gray-500';
+            note.textContent = suite.note;
+            head.appendChild(note);
+            el.appendChild(head);
+
+            // Table wrapped for horizontal scroll
+            var wrap = document.createElement('div');
+            wrap.className = 'overflow-x-auto';
+            var table = document.createElement('table');
+            table.className = 'sota-table text-sm';
+
+            var thead = document.createElement('thead');
+            var hr = document.createElement('tr');
+            var thM = document.createElement('th'); thM.textContent = 'Model'; hr.appendChild(thM);
+            var thV = document.createElement('th'); thV.textContent = 'Vendor'; thV.style.fontSize = '11px'; hr.appendChild(thV);
+            activeBids.forEach(function(bid) {
+                var th = document.createElement('th');
+                var b = self._benchmarks.find(function(x) { return x.id === bid; });
+                th.textContent = b ? b.name : bid;
+                th.style.fontSize = '10px';
+                th.style.whiteSpace = 'nowrap';
+                hr.appendChild(th);
+            });
+            thead.appendChild(hr);
+            table.appendChild(thead);
+
+            var tbody = document.createElement('tbody');
+            suiteRowIds.forEach(function(mid) {
+                var m = self._models.find(function(x) { return x.id === mid; });
+                var tr = document.createElement('tr');
+
+                var tdName = document.createElement('td');
+                tdName.textContent = m ? m.name : mid;
+                tdName.style.whiteSpace = 'nowrap';
+                tdName.style.cursor = 'pointer';
+                tdName.title = mid + ' — 클릭하면 모델 상세';
+                tdName.addEventListener('click', (function(modelId) {
+                    return function() {
+                        if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
+                    };
+                })(mid));
+                tr.appendChild(tdName);
+
+                var tdV = document.createElement('td');
+                tdV.textContent = m ? (m.vendor || '—') : '—';
+                tdV.style.fontSize = '11px';
+                tdV.style.color = Theme.textMuted;
+                tdV.style.whiteSpace = 'nowrap';
+                tr.appendChild(tdV);
+
+                activeBids.forEach(function(bid) {
+                    var td = document.createElement('td');
+                    td.style.textAlign = 'center';
+                    var scoreEntry = self._scores.find(function(x) { return x.model_id === mid && x.benchmark_id === bid; });
+                    if (scoreEntry) {
+                        var v = scoreEntry.value;
+                        var bench = self._benchmarks.find(function(x) { return x.id === bid; });
+                        var unit = bench && bench.metric ? bench.metric : '';
+                        td.textContent = v.toFixed(unit === 'fps' || unit === 'seconds' || unit === 'hours' || unit === 'elo' ? 0 : 1);
+                        var ratio = maxes[bid] > 0 ? v / maxes[bid] : 0;
+                        if (ratio >= 0.99) { td.style.color = Theme.series[0]; td.style.fontWeight = 'bold'; }
+                        else if (ratio >= 0.85) td.style.color = Theme.series[1];
+                        else if (ratio >= 0.7) td.style.color = Theme.series[2];
+                        else td.style.color = Theme.series[3];
+                        td.style.cursor = 'pointer';
+                        td.setAttribute('role', 'button');
+                        td.title = '클릭하면 검증 소스';
+                        td.addEventListener('click', (function(m, b) {
+                            return function() {
+                                if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(m, b);
+                            };
+                        })(mid, bid));
+                    } else {
+                        td.textContent = '—';
+                        td.style.color = Theme.textDisabled;
+                    }
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            wrap.appendChild(table);
+            el.appendChild(wrap);
+        });
     },
 
     _renderDescriptions: function() {
