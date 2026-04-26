@@ -663,6 +663,84 @@ var Sovereign = {
         'meta/muse-spark'
     ],
 
+    // Performance benchmark suites — broader than the 3 dimension panels.
+    // Each suite renders as its own table inside #sov-perf-suites with its
+    // own model rows. Sovereign-only (excludes frontier US vendors).
+    PERF_SUITES: [
+        {
+            id: 'reasoning',
+            label: '🧠 General Reasoning',
+            note: 'MMLU · MMLU-Pro · GPQA Diamond · HLE · IFBench · IFEval · SimpleQA Verified · ARC-Challenge · HellaSwag · TruthfulQA · WinoGrande · LongBench v2 · Arena Hard v2 · SuperGPQA',
+            benchmarks: [
+                'mmlu', 'mmlu_pro', 'gpqa_diamond', 'hle',
+                'ifbench', 'ifeval', 'simpleqa_verified',
+                'arc_challenge', 'hellaswag', 'truthfulqa', 'winogrande',
+                'longbench_v2', 'arena_hard_v2', 'supergpqa', 'superqpga'
+            ]
+        },
+        {
+            id: 'math',
+            label: '🧮 Math & Reasoning',
+            note: 'GSM8K · MATH · MATH-500 · AIME 2024 · AIME 2025 · AIME 2026 · HMMT 2025/26 · IMO-AnswerBench · HRM8K · USAMO',
+            benchmarks: [
+                'gsm8k', 'math', 'math_500',
+                'aime_2024', 'aime_2025', 'aime_2026',
+                'hmmt_2025', 'hmmt_2026', 'imo_answerbench',
+                'hrm8k', 'usamo', 'amc_23', 'matharena_apex'
+            ]
+        },
+        {
+            id: 'coding',
+            label: '💻 Coding & Software Engineering',
+            note: 'HumanEval · HumanEval+ · MBPP · MBPP+ · LiveCodeBench · LiveCodeBench v6 · SWE-bench Verified · SWE-bench Pro · SWE-bench Multilingual · Terminal-Bench 2 · GDPval-AA · SciCode · Codeforces ELO',
+            benchmarks: [
+                'humaneval', 'humaneval_plus',
+                'mbpp', 'mbpp_plus',
+                'livecodebench', 'livecodebench_v6',
+                'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
+                'terminal_bench_2', 'gdpval_aa', 'scicode', 'swe_rebench',
+                'codeforces_elo', 'repobench'
+            ]
+        },
+        {
+            id: 'korean',
+            label: '🇰🇷 Korean Benchmarks',
+            note: 'KMMLU · HAE-RAE · KoMT-Bench · LogicKor · KoBALT-700 · Ko-IFEval · KOBEST · K-MMBench · HRM8K · KMLE · KMMMU',
+            benchmarks: [
+                'kmmlu', 'haerae', 'komt_bench', 'logickor',
+                'kobalt_700', 'ko_ifeval', 'kobest', 'k_mmbench',
+                'hrm8k', 'kmle', 'kmmmu'
+            ]
+        },
+        {
+            id: 'multilingual',
+            label: '🌐 Multilingual & Multimodal',
+            note: 'MMMLU · C-Eval · CMMLU · Chinese-SimpleQA · KMMMU · TMMLU+ · Global PIQA · Indo-MMLU · QIMMA · MMMU · MMMU-Pro · MathVision · MathVista · CharXiv · OCRBench · Video-MMMU',
+            benchmarks: [
+                'mmmlu', 'c_eval', 'cmmlu', 'chinese_simpleqa', 'kmmmu',
+                'tmmlu_plus', 'global_piqa', 'indo_mmlu', 'qimma', 'sea_helm',
+                'mmmu', 'mmmu_pro', 'mathvision', 'mathvista', 'mathvista_mini',
+                'charxiv_reasoning', 'ocrbench', 'video_mmmu', 'docvqa', 'chartqa', 'ai2d'
+            ]
+        },
+        {
+            id: 'domain',
+            label: '🏛️ Domain (Legal · Cyber · Agent · Medical)',
+            note: 'VLAIR (Document Q&A · Summarization · Chronology · Redlining · Data Extract · Transcript) · AIxCC · Cybench · CyberGym · BrowseComp · τ²-bench · τ³-bench · OSWorld · MCP-Atlas · GAIA-2 · MedQA · PubMedQA · MedXpertQA · HealthBench · BFCL',
+            benchmarks: [
+                'vlair_doc_qa', 'vlair_summarization', 'vlair_chronology',
+                'vlair_redlining', 'vlair_data_extract', 'vlair_transcript',
+                'aixcc_synth_vuln', 'cybench', 'cybergym',
+                'browsecomp', 'tau2_bench', 'tau3_bench', 'osworld_verified',
+                'mcp_atlas', 'gaia2', 'mfg_news_rewrite',
+                'medqa', 'medqa_5op', 'pubmedqa', 'medxpertqa', 'medmcqa',
+                'healthbench', 'healthbench_hard', 'healthbench_professional', 'mmlu_med',
+                'fpb', 'convfinqa', 'finqa',
+                'bfcl', 'bfcl_v3'
+            ]
+        }
+    ],
+
     DIMENSIONS: [
         {
             id: 'language',
@@ -924,6 +1002,7 @@ var Sovereign = {
         this.DIMENSIONS.forEach(function(dim) {
             self._renderDimension(dim);
         });
+        this._renderPerfSuites();
         this._renderHeatmap();
 
         // Wire timeline filter + map view toggle controls (only on first render)
@@ -2263,6 +2342,183 @@ var Sovereign = {
         });
         table.appendChild(tbody);
         el.appendChild(table);
+    },
+
+    // ─────────────── Sovereign Performance Suites (multi-table leaderboard) ───────────────
+    _renderPerfSuites: function() {
+        var el = document.getElementById('sov-perf-suites');
+        if (!el) return;
+        el.textContent = '';
+        var self = this;
+
+        // Build sovereign model set: union of all REGIONS.models that exist in DB.
+        // This excludes frontier US-Frontier vendors (Anthropic/OpenAI/Google/Meta/xAI) and Physical AI vendors.
+        var sovIds = [];
+        var seenSov = {};
+        this.REGIONS.forEach(function(r) {
+            r.models.forEach(function(mid) {
+                if (seenSov[mid]) return;
+                if (!self._models.some(function(m) { return m.id === mid; })) return;
+                seenSov[mid] = true;
+                sovIds.push(mid);
+            });
+        });
+
+        // Summary banner
+        var totalScores = 0;
+        var benchHits = {};
+        var allBenchIds = this.PERF_SUITES.reduce(function(acc, s) { return acc.concat(s.benchmarks); }, []);
+        var allBenchSet = {};
+        allBenchIds.forEach(function(b) { allBenchSet[b] = true; });
+        this._scores.forEach(function(s) {
+            if (allBenchSet[s.benchmark_id] && seenSov[s.model_id]) {
+                totalScores++;
+                benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
+            }
+        });
+        var activeBenchCount = Object.keys(benchHits).length;
+        var summary = document.createElement('p');
+        summary.className = 'text-xs text-gray-500 mb-3';
+        var sb = document.createElement('strong');
+        sb.className = 'text-gray-300';
+        sb.textContent = totalScores + ' verified sovereign scores';
+        summary.appendChild(sb);
+        summary.appendChild(document.createTextNode(' across '));
+        var sc = document.createElement('strong');
+        sc.className = 'text-gray-300';
+        sc.textContent = String(activeBenchCount);
+        summary.appendChild(sc);
+        summary.appendChild(document.createTextNode(' active benchmarks · 19 sovereign regions · click any score cell for source/history modal · click model name for details'));
+        el.appendChild(summary);
+
+        // Render one table per suite
+        this.PERF_SUITES.forEach(function(suite) {
+            var activeBids = suite.benchmarks.filter(function(bid) {
+                return sovIds.some(function(mid) { return self._getScore(mid, bid) != null; });
+            });
+            if (activeBids.length === 0) return;
+
+            // Filter sovereign models to those with ≥1 score on this suite's active benches.
+            // Sort by best avg across the suite so highest scorers float to the top.
+            var rowIds = sovIds.filter(function(mid) {
+                return activeBids.some(function(bid) { return self._getScore(mid, bid) != null; });
+            });
+            if (rowIds.length === 0) return;
+            rowIds.sort(function(a, b) {
+                var sa = activeBids.reduce(function(acc, bid) { var v = self._getScore(a, bid); return acc + (v != null ? v : 0); }, 0);
+                var sb2 = activeBids.reduce(function(acc, bid) { var v = self._getScore(b, bid); return acc + (v != null ? v : 0); }, 0);
+                if (sb2 !== sa) return sb2 - sa;
+                return self._getModelName(a).localeCompare(self._getModelName(b));
+            });
+
+            // Cap display to top 25 models per suite to keep tables readable.
+            var TOP_N = 25;
+            var trimmed = rowIds.length > TOP_N;
+            if (trimmed) rowIds = rowIds.slice(0, TOP_N);
+
+            // Per-benchmark max for color coding (across all sov models, not trimmed list)
+            var maxes = {};
+            activeBids.forEach(function(bid) {
+                var max = 0;
+                sovIds.forEach(function(mid) {
+                    var v = self._getScore(mid, bid);
+                    if (v != null && v > max) max = v;
+                });
+                maxes[bid] = max;
+            });
+
+            // Suite header
+            var head = document.createElement('div');
+            head.className = 'mt-6 mb-2';
+            var title = document.createElement('h4');
+            title.className = 'text-sm font-semibold text-gray-200';
+            title.textContent = suite.label + '  (' + activeBids.length + ' benchmarks · ' + (trimmed ? 'top ' + TOP_N + ' / ' : '') + rowIds.length + ' models)';
+            head.appendChild(title);
+            var note = document.createElement('p');
+            note.className = 'text-xs text-gray-500';
+            note.textContent = suite.note;
+            head.appendChild(note);
+            el.appendChild(head);
+
+            // Table wrapped for horizontal scroll
+            var wrap = document.createElement('div');
+            wrap.className = 'overflow-x-auto';
+            var table = document.createElement('table');
+            table.className = 'sota-table text-sm';
+
+            var thead = document.createElement('thead');
+            var hr = document.createElement('tr');
+            var thM = document.createElement('th'); thM.textContent = 'Model'; hr.appendChild(thM);
+            var thR = document.createElement('th'); thR.textContent = 'Region'; thR.style.fontSize = '11px'; hr.appendChild(thR);
+            activeBids.forEach(function(bid) {
+                var th = document.createElement('th');
+                var b = self._getBenchmark(bid);
+                th.textContent = b ? b.name : bid;
+                th.style.fontSize = '10px';
+                th.style.whiteSpace = 'nowrap';
+                hr.appendChild(th);
+            });
+            thead.appendChild(hr);
+            table.appendChild(thead);
+
+            var tbody = document.createElement('tbody');
+            rowIds.forEach(function(mid) {
+                var m = self._models.find(function(x) { return x.id === mid; });
+                var region = self._regionFor(mid);
+                var tr = document.createElement('tr');
+
+                var tdName = document.createElement('td');
+                tdName.textContent = m ? m.name : mid;
+                tdName.style.whiteSpace = 'nowrap';
+                tdName.style.cursor = 'pointer';
+                tdName.title = mid + ' — 클릭하면 모델 상세';
+                tdName.addEventListener('click', (function(modelId) {
+                    return function() {
+                        if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
+                    };
+                })(mid));
+                tr.appendChild(tdName);
+
+                var tdR = document.createElement('td');
+                tdR.textContent = region ? (region.flag + ' ' + region.label) : '—';
+                tdR.style.fontSize = '11px';
+                tdR.style.color = Theme.textMuted;
+                tdR.style.whiteSpace = 'nowrap';
+                tr.appendChild(tdR);
+
+                activeBids.forEach(function(bid) {
+                    var td = document.createElement('td');
+                    td.style.textAlign = 'center';
+                    var v = self._getScore(mid, bid);
+                    if (v != null) {
+                        var bench = self._getBenchmark(bid);
+                        var unit = bench && bench.metric ? bench.metric : '';
+                        td.textContent = v.toFixed(unit === 'fps' || unit === 'seconds' || unit === 'hours' || unit === 'elo' ? 0 : 1);
+                        var ratio = maxes[bid] > 0 ? v / maxes[bid] : 0;
+                        if (ratio >= 0.99) { td.style.color = Theme.series[0]; td.style.fontWeight = 'bold'; }
+                        else if (ratio >= 0.85) td.style.color = Theme.series[1];
+                        else if (ratio >= 0.7) td.style.color = Theme.series[2];
+                        else td.style.color = Theme.series[3];
+                        td.style.cursor = 'pointer';
+                        td.setAttribute('role', 'button');
+                        td.title = '클릭하면 검증 소스';
+                        td.addEventListener('click', (function(m, b) {
+                            return function() {
+                                if (typeof Modal !== 'undefined' && Modal.showScoreSource) Modal.showScoreSource(m, b);
+                            };
+                        })(mid, bid));
+                    } else {
+                        td.textContent = '—';
+                        td.style.color = Theme.textDisabled;
+                    }
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            wrap.appendChild(table);
+            el.appendChild(wrap);
+        });
     },
 
     _renderHeatmap: function() {
