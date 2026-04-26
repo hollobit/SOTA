@@ -450,6 +450,32 @@
             </div>
 
             <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-1">출시 타임라인 — 국가별 × 출시일 × 파라미터</h3>
+                <p class="text-xs text-gray-500 mb-3">x축 = 출시일, y축 = 파라미터 크기(B, log scale 기본), 색상 = 국가. 버블 크기 = √파라미터. 버블 클릭 → 모델 상세 모달. 파라미터 미공개 모델은 하단 '?' 트랙에 회색 마커.</p>
+                <div class="flex gap-3 mb-3 items-end flex-wrap">
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">기간</label>
+                        <select id="med-timeline-period" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm">
+                            <option value="all">전체</option>
+                            <option value="2026">2026</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="pre-2024">2023 이전</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">y축</label>
+                        <select id="med-timeline-y-mode" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm">
+                            <option value="params-log">파라미터 (B) log scale</option>
+                            <option value="params-linear">파라미터 (B) linear</option>
+                            <option value="best-score">Best 벤치마크 점수</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="med-timeline" class="h-[28rem]"></div>
+            </div>
+
+            <div class="mb-10">
                 <h3 class="text-widget text-gray-300 mb-1">Capability Radar — top medical players × 7 axes</h3>
                 <p class="text-xs text-gray-500 mb-3">HealthBench Pro · HealthBench · MedQA · MedMCQA · PubMedQA · MMLU-Med · MedXpertQA 7개 축에서 평균 점수 상위 6개 모델 비교.</p>
                 <div id="med-radar" class="h-96"></div>
@@ -532,7 +558,7 @@
     <script src="js/cyber-coding.js?v=20260426c"></script>
     <script src="js/sovereign.js?v=20260426e"></script>
     <script src="js/physical-ai.js?v=20260426c"></script>
-    <script src="js/medical-ai.js?v=20260426e"></script>
+    <script src="js/medical-ai.js?v=20260426f"></script>
     <script src="js/charts.js?v=20260424"></script>
     <script src="js/filters.js?v=20260424"></script>
     <script src="js/explorer.js?v=20260426c"></script>

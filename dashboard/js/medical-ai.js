@@ -709,7 +709,19 @@ var MedicalAI = {
         this._scores = App.data.scores;
         this._renderCategoryMap();
         this._renderBenchmarkTable();
+        this._renderTimeline();
         this._renderRadar();
+        var self = this;
+        var periodSel = document.getElementById('med-timeline-period');
+        var yModeSel = document.getElementById('med-timeline-y-mode');
+        if (periodSel && !periodSel._wired) {
+            periodSel._wired = true;
+            periodSel.addEventListener('change', function() { self._renderTimeline(); });
+        }
+        if (yModeSel && !yModeSel._wired) {
+            yModeSel._wired = true;
+            yModeSel.addEventListener('change', function() { self._renderTimeline(); });
+        }
     },
 
     _getModel: function(mid) {
@@ -1008,6 +1020,483 @@ var MedicalAI = {
             wrap.appendChild(table);
             el.appendChild(wrap);
         });
+    },
+
+    // Curated parameter sizes (B) for medical models — used when name doesn't carry "NB" suffix.
+    KNOWN_PARAMS_MED: {
+        'openai/chatgpt-clinicians-gpt55': null,
+        'openai/chatgpt-clinicians-gpt54': null,
+        'google/med-gemini-3-pro': null,
+        'google/med-gemini-l-2': null,
+        'google/med-gemini-l-1': null,
+        'google/med-palm-2': 340,
+        'google/med-palm-1': 540,
+        'google/medgemma-27b': 27,
+        'google/medgemma-9b': 9,
+        'google/medgemma-1.5-4b': 4,
+        'saama/openbiollm-llama3-70b': 70,
+        'saama/openbiollm-llama3-8b': 8,
+        'biomistral/biomistral-7b': 7,
+        'mistral/biomistral-2-7b': 7,
+        'epfl/meditron-70b': 70, 'epfl/meditron-7b': 7,
+        'openmeditron/meditron3-70b': 70, 'openmeditron/meditron3-8b': 8,
+        'microsoft/biogpt-large': 1.5,
+        'stanford/clinical-camel': 70,
+        'ucl/medalpaca-13b': 13,
+        'magic-ai4med/mmedlm-2-70b': 70, 'magic-ai4med/mmedlm-2-7b': 7, 'magic-ai4med/mmedlm-2-1.8b': 1.8,
+        'm42-health/med42-v2-70b': 70, 'm42-health/med42-v2-8b': 8,
+        'm42-uae/med42-2-70b': 70, 'm42-uae/med42-1-70b': 70,
+        'tii-uae/falcon-bio-medical': 40,
+        'hpai-bsc/aloe-beta-70b': 70, 'hpai-bsc/aloe-beta-8b': 8,
+        'freedomintelligence/apollo-medlm-7b': 7,
+        'freedomintelligence/apollo-7b': 7, 'freedomintelligence/apollo-6b': 6, 'freedomintelligence/apollo-2b': 2,
+        'freedomintelligence/huatuogpt-ii-7b': 7, 'freedomintelligence/huatuogpt-o1-72b': 72,
+        'freedomintelligence/huatuogpt-vision-7b': 7, 'freedomintelligence/huatuogpt-vision-34b': 34,
+        'stanford/biomedlm-2.7b': 2.7,
+        'chaoyi-wu/pmc-llama-13b': 13,
+        'yale/me-llama-13b': 13,
+        'tencent/medchat-llm-13b': 13,
+        'scutcyr/bianque-2': 6,
+        'thu-coai/zhongjing-13b': 13,
+        'thudm/doctorglm-6b': 6, 'thudm/glm-medical-9b': 9,
+        'openi-cn/biancang-7b': 7,
+        'ziya/asclepius-llama2-13b': 13,
+        'stanford/almanac-rag': null,
+        'together-ai/dragonfly-med-8b': 8,
+        'shanghai-ai-lab/intern-medical-25b': 25,
+        'shanghai-ai-lab/puyu-medical-7b': 7,
+        'shanghai-ai-lab/radfm': 14,
+        'openbmb/uni-med-vlm-8b': 8,
+        'microsoft/biomedclip': 0.4, 'microsoft/llava-med': 7,
+        'microsoft/rad-dino': 0.3, 'microsoft/cxr-foundation': 0.3,
+        'microsoft/medimageinsight': null, 'microsoft/healthgpt': null,
+        'microsoft/pubmedbert': 0.11, 'microsoft/prov-gigapath': 1.1,
+        'meta/sam-2.1-large': 0.22, 'meta/sam-1-vit-h': 0.64,
+        'bowang-lab/medsam-2': 0.4, 'bowang-lab/medsam': 0.09,
+        'openmedlab/sam-med2d': 0.27, 'openmedlab/sam-med3d': 0.4,
+        'shanghai-ai-lab/visionfm': 1.0,
+        'stanford/chexzero': 0.15, 'moorfields/retfound': 0.3,
+        'paige-ai/virchow2': 0.6, 'paige-ai/virchow2g': 1.85,
+        'mahmoodlab/uni2': 0.6, 'mahmoodlab/conch': 0.4, 'mahmoodlab/titan': 1.0, 'mahmoodlab/pathchat': null,
+        'ufl-nvidia/gatortron-large': 8.9,
+        'stanford-emily/clinicalbert': 0.11, 'ncbi-nlm/bluebert-large': 0.34,
+        'ncbi-nlm/biobert-large': 0.34, 'stanford/clinical-modernbert': 0.4,
+        'google-deepmind/alphafold-3': null, 'google-deepmind/alphafold-2': null,
+        'meta/esmfold-3b': 3, 'meta/esm3-98b': 98,
+        'ipd/rosettafold-3': null,
+        'boltz-ai/boltz-2': null, 'boltz-ai/boltz-1': null,
+        'chai-discovery/chai-1': null, 'deepmind/alphafold-server': null,
+        'openfold/openfold-3': null,
+        'absci/absci-design-fm': null, 'isomorphic/iso-rx-v1': null,
+        'ibm/molformer-1.1b': 1.1, 'ibm/gp-molformer-1.1b': 1.1,
+        'ucsd/chemfm-3b': 3,
+        'msr-asia/tamgen-3b': 3, 'google/tx-llm': null, 'nvidia/bionemo-2': null,
+        'lamgen/lamgen-3d': null, 'valence-labs/recursion-phenomml': null,
+        'snuh-naver/kmed-ai': null, 'snuh/snu-med-llm-v1': null,
+        'lunit/medscale-foundation-32b': 32,
+        'lunit/insight-cxr-v4': null, 'lunit/insight-mmg-v3': null,
+        'vuno/med-deepcars': null, 'vuno/med-chest-x-detect': null,
+        'kakao-healthcare/kakaohealth-foundation-7b': 7,
+        'kaist/medkaist-llm-13b': 13,
+        'stanford/med-flamingo-9b': 9,
+        'smartlab/meddr-internvl-40b': 40,
+        'taokz/biomedgpt-large': 0.182, 'taokz/biomedgpt-xlarge': 0.472,
+        'echonet/echoclip': 0.4, 'echonet/echofm': null, 'echonet/echo-vision-fm': null,
+        'google/derm-foundation': 0.4, 'monash/panderm': 0.6,
+        'harvard/medversa-8b': 8,
+        'rad-onc/maira-2': 7, 'rad-onc/maira-1': 7,
+        'rad-onc/cheXagent-8b': 8, 'rad-onc/cxr-pro': 0.3,
+        'rad-onc/llm-cxr': 7, 'rad-onc/rgrg': 0.2,
+        'mit/mimic-cxr-baseline': 0.05, 'stanford/chexpert-baseline': 0.05,
+        'phys-intelligence/medic-aki-xgb': 0.001, 'duke/clin-mortality-llm': 7,
+        'mbzuai-oryx/bimedix-2': 56, 'mbzuai-oryx/bimedix': 56,
+        'mbzuai/medarabench-baseline': 7,
+        'google/afrimed-qa-baseline': null,
+        'yale/medic-eval-baseline': 7,
+        'mit-mediallab/medhallu-detector': 7, 'ucsd/medhallbench-judge': 7,
+        'stanford/medhalt-eval': null, 'stanford/clinical-pred-bert': 0.11,
+        'mit-mimic/mimic-iv-bench': null,
+        'hippocratic-ai/polaris-3': 4200, 'hippocratic-ai/polaris-2': null, 'hippocratic-ai/polaris-1': 1000,
+        'elyza/elyza-llm-med-7b': 7, 'elyza/elyza-llm-med-70b': 70,
+        'cyberagent/medcalm-7b': 7, 'univ-tokyo/jmedlora-7b': 7,
+        'stockmark/stockmark-medical-13b': 13,
+        'preferred-networks/pfn-bio-medic-13b': 13,
+        'rikkyo/jmedllm-bilingual-13b': 13,
+        'dkfz-embl/disease-risk-fm': null,
+        'aignostics-mayo/path-fm': null, 'charite/aignostics-rudolf': null,
+        'tum/medbert-de-large': 0.34, 'siemens-healthineers/aifm': null,
+        'owkin/h-optimus-1': 1.1, 'owkin/dragon-2-fm': null,
+        'raidium/medfound-3': null,
+        'nhs-england/aide-clinical-llm': null,
+        'moorfields-deepmind/retfound-2': 0.3,
+        'ucl-aisl/aisl-clinical-13b': 13,
+        'deepmind/dolphin-clinical': null, 'imperial/imperial-medical-llm': 13,
+        'vector/uhn-foundation-7b': 7, 'vector/clairvoyance-13b': 13,
+        'mcgill-mila/cliniclm-7b': 7, 'tcairem/healthbench-7b': 7,
+        'fractal/vaidya-2': 30, 'fractal/vaidya-1': null,
+        'ai4bharat/airavata-medical': 7, 'azmed/eve-radiology': null,
+        'ihis-singapore/clinical-clm-7b': 7, 'ai-singapore/sea-medlex-13b': 13,
+        'ai-singapore-mlb/aimedlex': null,
+        'alibaba-damo/sumihealth-72b': 72,
+        'tencent/medllm-2': null, 'baidu/wenxin-yiyi-medical': null,
+        'iflytek/spark-medical-3': null,
+        'mit/clipath-3': 0.6, 'openai/openai-health-research': null,
+        'anthropic/claude-medical-eval': null, 'nih/c-medbert-2': 0.34,
+        'stanford/clinicalformer-3': 0.4
+    },
+
+    // Map model_id → country/region label for the timeline grouping.
+    // Matches the country categories defined in CATEGORIES (global-japan, etc).
+    _COUNTRY_BY_CATEGORY_CODE: {
+        'korean-medical': { code: 'kr', label: 'Korea', flag: '🇰🇷' },
+        'global-japan':    { code: 'jp', label: 'Japan', flag: '🇯🇵' },
+        'global-germany':  { code: 'de', label: 'Germany', flag: '🇩🇪' },
+        'global-france':   { code: 'fr', label: 'France', flag: '🇫🇷' },
+        'global-uk':       { code: 'uk', label: 'UK', flag: '🇬🇧' },
+        'global-canada':   { code: 'ca', label: 'Canada', flag: '🇨🇦' },
+        'global-india':    { code: 'in', label: 'India', flag: '🇮🇳' },
+        'global-uae':      { code: 'ae', label: 'UAE', flag: '🇦🇪' },
+        'global-singapore':{ code: 'sg', label: 'Singapore', flag: '🇸🇬' },
+        'global-china':    { code: 'cn', label: 'China', flag: '🇨🇳' },
+        'global-us':       { code: 'us', label: 'US', flag: '🇺🇸' }
+    },
+
+    // Vendor-prefix fallback for models not in any country category
+    _VENDOR_COUNTRY_FALLBACK: [
+        ['openai/', 'us', 'US', '🇺🇸'],
+        ['anthropic/', 'us', 'US', '🇺🇸'],
+        ['google/', 'us', 'US', '🇺🇸'],
+        ['google-deepmind/', 'us', 'US', '🇺🇸'],
+        ['deepmind/', 'uk', 'UK', '🇬🇧'],
+        ['meta/', 'us', 'US', '🇺🇸'],
+        ['microsoft/', 'us', 'US', '🇺🇸'],
+        ['nvidia/', 'us', 'US', '🇺🇸'],
+        ['ibm/', 'us', 'US', '🇺🇸'],
+        ['stanford/', 'us', 'US', '🇺🇸'],
+        ['stanford-emily/', 'us', 'US', '🇺🇸'],
+        ['mit/', 'us', 'US', '🇺🇸'],
+        ['mit-mimic/', 'us', 'US', '🇺🇸'],
+        ['mit-mediallab/', 'us', 'US', '🇺🇸'],
+        ['nih/', 'us', 'US', '🇺🇸'],
+        ['ncbi-nlm/', 'us', 'US', '🇺🇸'],
+        ['ucsd/', 'us', 'US', '🇺🇸'],
+        ['ucl/', 'uk', 'UK', '🇬🇧'],
+        ['imperial/', 'uk', 'UK', '🇬🇧'],
+        ['moorfields/', 'uk', 'UK', '🇬🇧'],
+        ['nhs-england/', 'uk', 'UK', '🇬🇧'],
+        ['epfl/', 'eu-other', 'EU (other)', '🇪🇺'],
+        ['biomistral/', 'fr', 'France', '🇫🇷'],
+        ['mistral/', 'fr', 'France', '🇫🇷'],
+        ['owkin/', 'fr', 'France', '🇫🇷'],
+        ['raidium/', 'fr', 'France', '🇫🇷'],
+        ['dkfz-embl/', 'de', 'Germany', '🇩🇪'],
+        ['aignostics-mayo/', 'de', 'Germany', '🇩🇪'],
+        ['charite/', 'de', 'Germany', '🇩🇪'],
+        ['tum/', 'de', 'Germany', '🇩🇪'],
+        ['siemens-healthineers/', 'de', 'Germany', '🇩🇪'],
+        ['hpai-bsc/', 'eu-other', 'EU (other)', '🇪🇺'],
+        ['m42-uae/', 'ae', 'UAE', '🇦🇪'],
+        ['m42-health/', 'ae', 'UAE', '🇦🇪'],
+        ['tii-uae/', 'ae', 'UAE', '🇦🇪'],
+        ['mbzuai-oryx/', 'ae', 'UAE', '🇦🇪'],
+        ['mbzuai/', 'ae', 'UAE', '🇦🇪'],
+        ['ihis-singapore/', 'sg', 'Singapore', '🇸🇬'],
+        ['ai-singapore/', 'sg', 'Singapore', '🇸🇬'],
+        ['ai-singapore-mlb/', 'sg', 'Singapore', '🇸🇬'],
+        ['fractal/', 'in', 'India', '🇮🇳'],
+        ['ai4bharat/', 'in', 'India', '🇮🇳'],
+        ['azmed/', 'in', 'India', '🇮🇳'],
+        ['freedomintelligence/', 'cn', 'China', '🇨🇳'],
+        ['shanghai-ai-lab/', 'cn', 'China', '🇨🇳'],
+        ['openmedlab/', 'cn', 'China', '🇨🇳'],
+        ['magic-ai4med/', 'cn', 'China', '🇨🇳'],
+        ['alibaba-damo/', 'cn', 'China', '🇨🇳'],
+        ['tencent/', 'cn', 'China', '🇨🇳'],
+        ['baidu/', 'cn', 'China', '🇨🇳'],
+        ['thudm/', 'cn', 'China', '🇨🇳'],
+        ['thu-coai/', 'cn', 'China', '🇨🇳'],
+        ['scutcyr/', 'cn', 'China', '🇨🇳'],
+        ['openi-cn/', 'cn', 'China', '🇨🇳'],
+        ['iflytek/', 'cn', 'China', '🇨🇳'],
+        ['chaoyi-wu/', 'cn', 'China', '🇨🇳'],
+        ['openbmb/', 'cn', 'China', '🇨🇳'],
+        ['smartlab/', 'cn', 'China', '🇨🇳'],
+        ['elyza/', 'jp', 'Japan', '🇯🇵'],
+        ['cyberagent/', 'jp', 'Japan', '🇯🇵'],
+        ['univ-tokyo/', 'jp', 'Japan', '🇯🇵'],
+        ['stockmark/', 'jp', 'Japan', '🇯🇵'],
+        ['preferred-networks/', 'jp', 'Japan', '🇯🇵'],
+        ['rikkyo/', 'jp', 'Japan', '🇯🇵'],
+        ['snuh-naver/', 'kr', 'Korea', '🇰🇷'],
+        ['snuh/', 'kr', 'Korea', '🇰🇷'],
+        ['lunit/', 'kr', 'Korea', '🇰🇷'],
+        ['vuno/', 'kr', 'Korea', '🇰🇷'],
+        ['kakao-healthcare/', 'kr', 'Korea', '🇰🇷'],
+        ['kaist/', 'kr', 'Korea', '🇰🇷'],
+        ['vector/', 'ca', 'Canada', '🇨🇦'],
+        ['mcgill-mila/', 'ca', 'Canada', '🇨🇦'],
+        ['tcairem/', 'ca', 'Canada', '🇨🇦'],
+        ['monash/', 'au', 'Australia', '🇦🇺'],
+        ['bowang-lab/', 'ca', 'Canada', '🇨🇦'],
+        ['hippocratic-ai/', 'us', 'US', '🇺🇸'],
+        ['mahmoodlab/', 'us', 'US', '🇺🇸'],
+        ['paige-ai/', 'us', 'US', '🇺🇸'],
+        ['echonet/', 'us', 'US', '🇺🇸'],
+        ['saama/', 'us', 'US', '🇺🇸'],
+        ['phys-intelligence/', 'us', 'US', '🇺🇸'],
+        ['duke/', 'us', 'US', '🇺🇸'],
+        ['ufl-nvidia/', 'us', 'US', '🇺🇸'],
+        ['yale/', 'us', 'US', '🇺🇸'],
+        ['harvard/', 'us', 'US', '🇺🇸'],
+        ['rad-onc/', 'us', 'US', '🇺🇸'],
+        ['ziya/', 'us', 'US', '🇺🇸'],
+        ['together-ai/', 'us', 'US', '🇺🇸'],
+        ['boltz-ai/', 'us', 'US', '🇺🇸'],
+        ['chai-discovery/', 'us', 'US', '🇺🇸'],
+        ['ipd/', 'us', 'US', '🇺🇸'],
+        ['openfold/', 'us', 'US', '🇺🇸'],
+        ['msr-asia/', 'cn', 'China', '🇨🇳'],
+        ['absci/', 'us', 'US', '🇺🇸'],
+        ['isomorphic/', 'uk', 'UK', '🇬🇧'],
+        ['valence-labs/', 'ca', 'Canada', '🇨🇦'],
+        ['lamgen/', 'cn', 'China', '🇨🇳']
+    ],
+
+    _extractParamsB: function(modelName, modelId) {
+        if (modelId && this.KNOWN_PARAMS_MED && this.KNOWN_PARAMS_MED[modelId] != null) {
+            return this.KNOWN_PARAMS_MED[modelId];
+        }
+        if (modelId && this.KNOWN_PARAMS_MED && Object.prototype.hasOwnProperty.call(this.KNOWN_PARAMS_MED, modelId)) {
+            return null;  // explicitly unknown
+        }
+        if (!modelName) return null;
+        var m = modelName.match(/(\d+(?:\.\d+)?)\s*B\b/gi);
+        if (!m) return null;
+        var nums = m.map(function(s) { var n = parseFloat(s); return isNaN(n) ? null : n; }).filter(function(n) { return n != null; });
+        return nums.length ? Math.max.apply(null, nums) : null;
+    },
+
+    _bestScoreFor: function(mid) {
+        var best = 0;
+        this._scores.forEach(function(s) {
+            if (s.model_id === mid && typeof s.value === 'number' && s.value > best) best = s.value;
+        });
+        return best > 0 ? best : null;
+    },
+
+    _dateToTs: function(yyyyMm) {
+        if (!yyyyMm) return null;
+        var parts = String(yyyyMm).split('-');
+        var y = parseInt(parts[0], 10);
+        if (isNaN(y)) return null;
+        var mo = parts.length > 1 ? parseInt(parts[1], 10) : 6;
+        if (isNaN(mo)) mo = 6;
+        return new Date(Date.UTC(y, mo - 1, 15)).getTime();
+    },
+
+    _countryOf: function(mid) {
+        // Country is decided first by category membership, then vendor-prefix.
+        var cat = this._categoryOf(mid);
+        if (cat && this._COUNTRY_BY_CATEGORY_CODE[cat.code]) return this._COUNTRY_BY_CATEGORY_CODE[cat.code];
+        var fb = this._VENDOR_COUNTRY_FALLBACK;
+        for (var i = 0; i < fb.length; i++) {
+            if (mid.indexOf(fb[i][0]) === 0) return { code: fb[i][1], label: fb[i][2], flag: fb[i][3] };
+        }
+        return { code: 'other', label: 'Other', flag: '·' };
+    },
+
+    _renderTimeline: function() {
+        var el = document.getElementById('med-timeline');
+        if (!el || typeof echarts === 'undefined') return;
+        var prev = echarts.getInstanceByDom(el);
+        if (prev) prev.dispose();
+        Array.prototype.slice.call(el.children).forEach(function(child) {
+            var ci = echarts.getInstanceByDom(child);
+            if (ci) ci.dispose();
+        });
+        el.textContent = '';
+        var self = this;
+
+        var period = (document.getElementById('med-timeline-period') || {}).value || 'all';
+        var yMode = (document.getElementById('med-timeline-y-mode') || {}).value || 'params-log';
+
+        // Country palette — distinct colors per nation
+        var countryColors = {
+            'kr': '#03c75a', 'jp': '#bc002d', 'de': '#000000', 'fr': '#0055a4',
+            'uk': '#012169', 'ca': '#ff0000', 'in': '#ff9933', 'ae': '#00732f',
+            'sg': '#ed2939', 'cn': '#de2910', 'us': '#3c3b6e', 'eu-other': '#003399',
+            'au': '#012169', 'other': '#94a3b8'
+        };
+        // Country display order — matches user's prompt sequence
+        var countryOrder = ['cn','jp','fr','ae','sg','us','de','uk','ca','in','kr','eu-other','au','other'];
+
+        // Build only models that belong to a medical category (exclude pure
+        // frontier baselines unless they're in 'global-us')
+        var allMedicalIds = {};
+        this.CATEGORIES.forEach(function(cat) {
+            cat.models.forEach(function(mid) { allMedicalIds[mid] = true; });
+        });
+
+        var UNKNOWN_PARAMS_Y = 0.05;
+        var pointsByCountry = {};
+        var countryLabel = {};
+        var totalKept = 0, totalUnknownParams = 0;
+        var totalAvailable = 0;
+
+        this._models.forEach(function(model) {
+            var mid = model.id;
+            if (!allMedicalIds[mid]) return;
+            totalAvailable++;
+            var date = model.release_date || model.released_at;
+            if (!date) return;
+
+            var year = String(date).slice(0, 4);
+            if (period !== 'all') {
+                if (period === 'pre-2024') {
+                    if (parseInt(year, 10) >= 2024) return;
+                } else if (year !== period) return;
+            }
+
+            var country = self._countryOf(mid);
+            var paramsB = self._extractParamsB(model.name, mid);
+            var bestScore = self._bestScoreFor(mid);
+            var ts = self._dateToTs(date);
+            if (ts == null) return;
+
+            var yVal = null, isUnknownPlaceholder = false;
+            if (yMode === 'params-log' || yMode === 'params-linear') {
+                if (paramsB == null) {
+                    yVal = UNKNOWN_PARAMS_Y;
+                    isUnknownPlaceholder = true;
+                    totalUnknownParams++;
+                } else {
+                    yVal = paramsB;
+                }
+            } else if (yMode === 'best-score') {
+                if (bestScore == null) return;
+                yVal = bestScore;
+            }
+
+            var symbolSize = paramsB ? Math.max(8, Math.min(32, Math.sqrt(paramsB) * 2.4)) : 8;
+
+            if (!pointsByCountry[country.code]) pointsByCountry[country.code] = [];
+            countryLabel[country.code] = country.flag + ' ' + country.label;
+            pointsByCountry[country.code].push({
+                value: [ts, yVal, mid, model.name, date, paramsB, bestScore, country.flag + ' ' + country.label],
+                symbolSize: symbolSize,
+                itemStyle: isUnknownPlaceholder ? { opacity: 0.4, borderColor: '#0b0f17', borderWidth: 1 } : null
+            });
+            totalKept++;
+        });
+
+        var seriesData = [];
+        var legendNames = [];
+        countryOrder.forEach(function(code) {
+            var pts = pointsByCountry[code];
+            if (!pts || pts.length === 0) return;
+            var color = countryColors[code] || '#94a3b8';
+            pts.forEach(function(p) {
+                if (!p.itemStyle) {
+                    p.itemStyle = { color: color, opacity: 0.82, borderColor: '#0b0f17', borderWidth: 1 };
+                } else if (!p.itemStyle.color) {
+                    p.itemStyle.color = color;
+                }
+            });
+            legendNames.push(countryLabel[code]);
+            seriesData.push({
+                name: countryLabel[code],
+                type: 'scatter',
+                data: pts,
+                itemStyle: { color: color, opacity: 0.82, borderColor: '#0b0f17', borderWidth: 1 },
+                emphasis: { focus: 'series', itemStyle: { borderColor: '#fff', borderWidth: 2, opacity: 1 } }
+            });
+        });
+
+        if (seriesData.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-sm text-gray-500 italic';
+            empty.textContent = '— 선택한 기간에 표시할 medical 모델이 없습니다';
+            el.appendChild(empty);
+            return;
+        }
+
+        var yAxisName, yAxisType, yAxisLabel;
+        if (yMode === 'params-log') {
+            yAxisName = '파라미터 (B) — log scale, 미공개=하단';
+            yAxisType = 'log';
+            yAxisLabel = function(v) { if (v <= UNKNOWN_PARAMS_Y * 1.5) return '?'; return v + 'B'; };
+        } else if (yMode === 'params-linear') {
+            yAxisName = '파라미터 (B) — linear';
+            yAxisType = 'value';
+            yAxisLabel = function(v) { return v + 'B'; };
+        } else {
+            yAxisName = 'Best benchmark score';
+            yAxisType = 'value';
+            yAxisLabel = function(v) { return v.toFixed(0); };
+        }
+
+        var coverage = document.createElement('p');
+        coverage.className = 'text-xs text-gray-500 mb-2';
+        coverage.textContent = '표시 중: ' + totalKept + ' / ' + totalAvailable + ' medical 모델'
+            + (totalUnknownParams > 0 && yMode.indexOf('params') === 0
+                ? ' · 그 중 ' + totalUnknownParams + '개는 파라미터 미공개 (y=하단 마커)' : '');
+        el.appendChild(coverage);
+
+        var host = document.createElement('div');
+        host.style.height = 'calc(100% - 24px)';
+        el.appendChild(host);
+
+        var chart = echarts.init(host);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+                trigger: 'item',
+                formatter: function(p) {
+                    var v = p.value;
+                    var lines = [
+                        '<strong>' + v[3] + '</strong>',
+                        '국가: ' + v[7],
+                        '출시: ' + v[4]
+                    ];
+                    if (v[5] != null) lines.push('파라미터: ~' + v[5] + 'B');
+                    else if (yMode.indexOf('params') === 0) lines.push('파라미터: <em>미공개</em>');
+                    if (v[6] != null) lines.push('Best 벤치마크: ' + v[6].toFixed(1));
+                    return lines.join('<br/>');
+                }
+            },
+            legend: {
+                data: legendNames,
+                textStyle: { color: Theme.textMuted, fontSize: 10 },
+                top: 0, type: 'scroll',
+                pageTextStyle: { color: Theme.textMuted, fontSize: 10 }
+            },
+            grid: { left: 8, right: 32, bottom: 50, top: 50, containLabel: true },
+            xAxis: {
+                type: 'time', name: '출시일',
+                nameTextStyle: { color: Theme.textMuted, fontSize: 10 },
+                axisLabel: { color: Theme.textMuted, fontSize: 10 },
+                axisLine: { lineStyle: { color: Theme.borderStrong } },
+                splitLine: { lineStyle: { color: Theme.border, opacity: 0.3 } }
+            },
+            yAxis: {
+                type: yAxisType, name: yAxisName,
+                nameTextStyle: { color: Theme.textMuted, fontSize: 10 },
+                axisLabel: { color: Theme.textMuted, fontSize: 10, formatter: yAxisLabel },
+                axisLine: { lineStyle: { color: Theme.borderStrong } },
+                splitLine: { lineStyle: { color: Theme.border, opacity: 0.3 } }
+            },
+            dataZoom: [
+                { type: 'inside', xAxisIndex: 0, yAxisIndex: 0 },
+                { type: 'slider', xAxisIndex: 0, height: 14, bottom: 8, textStyle: { color: Theme.textMuted, fontSize: 9 } }
+            ],
+            series: seriesData
+        });
+        chart.on('click', function(p) {
+            if (p && p.value && p.value[2] && typeof Modal !== 'undefined' && Modal.showModel) {
+                Modal.showModel(p.value[2]);
+            }
+        });
+        window.addEventListener('resize', function() { chart.resize(); });
     },
 
     _renderRadar: function() {
