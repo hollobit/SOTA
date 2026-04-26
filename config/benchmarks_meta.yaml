@@ -1,831 +1,1370 @@
 benchmarks:
-  - id: mmlu
-    name: MMLU
-    category: knowledge
-    metric: accuracy
-    unit: "%"
-    expected_range: [60, 95]
-    description: "Massive Multitask Language Understanding - 57 subjects from STEM to humanities"
-
-  - id: gpqa
-    name: GPQA
-    category: reasoning
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 75]
-    description: "Graduate-level Google-Proof Q&A - expert-level science questions"
-
-  - id: humaneval
-    name: HumanEval
-    category: coding
-    metric: pass@1
-    unit: "%"
-    expected_range: [40, 98]
-    description: "Code generation benchmark - 164 Python programming problems"
-
-  - id: math
-    name: MATH
-    category: math
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 95]
-    description: "Competition mathematics - 12,500 problems from AMC, AIME, and Olympiads"
-
-  - id: gsm8k
-    name: GSM8K
-    category: math
-    metric: accuracy
-    unit: "%"
-    expected_range: [60, 99]
-    description: "Grade school math - 8,500 linguistically diverse grade school problems"
-
-  - id: mmmu
-    name: MMMU
-    category: multimodal
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 75]
-    description: "Massive Multi-discipline Multimodal Understanding - college-level multimodal questions"
-
-  - id: swe_bench
-    name: SWE-bench
-    category: coding
-    metric: resolve_rate
-    unit: "%"
-    expected_range: [5, 60]
-    description: "Software engineering benchmark - real GitHub issues from popular Python repos"
-
-  - id: truthfulqa
-    name: TruthfulQA
-    category: safety
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 85]
-    description: "Truthfulness benchmark - 817 questions spanning health, law, finance, and politics"
-
-  - id: ifeval
-    name: IFEval
-    category: instruction_following
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 95]
-    description: "Instruction following evaluation - verifiable instruction-following tasks"
-
-  - id: aime
-    name: AIME
-    category: math
-    metric: accuracy
-    unit: "%"
-    expected_range: [5, 90]
-    description: "American Invitational Mathematics Examination - competition math problems"
-
-  # ─────────────────────── Medical AI ───────────────────────
-  - id: healthbench_professional
-    name: HealthBench Professional
-    category: medical
-    metric: score
-    unit: "%"
-    expected_range: [20, 80]
-    description: "OpenAI 525-task clinician chat benchmark — 3 use cases (care consult / writing & docs / medical research). Physician-authored conversations + multi-stage physician adjudication rubrics. GPT-5.4 ChatGPT for Clinicians 59.0 vs human physicians 43.7."
-    paper: "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
-
-  - id: healthbench
-    name: HealthBench
-    category: medical
-    metric: score
-    unit: "%"
-    expected_range: [20, 90]
-    description: "OpenAI 5,000-conversation health rubric benchmark. Realistic patient + clinician scenarios graded by 262 physician-authored rubrics across 7 themes (emergency referrals, global health, etc.)."
-    paper: "https://openai.com/index/healthbench/"
-
-  - id: medqa_usmle
-    name: MedQA (USMLE)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 96]
-    description: "USMLE-style 4-option multiple-choice question answering. 12,723 questions (US/Mainland China/Taiwan). Med-Gemini 91.1, Med-PaLM 2 86.5, GPT-5.5 95.4."
-    paper: "https://arxiv.org/abs/2009.13081"
-
-  - id: medmcqa
-    name: MedMCQA
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 90]
-    description: "Indian medical entrance exam (AIIMS/NEET PG) multi-choice — 194K questions across 21 medical subjects. Used as standard licensing comparison alongside USMLE."
-    paper: "https://arxiv.org/abs/2203.14371"
-
-  - id: pubmedqa
-    name: PubMedQA
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 90]
-    description: "Biomedical research literature QA — 1k expert + 61.2k labeled + 211.3k unlabeled questions from PubMed abstracts. Yes/No/Maybe answer over abstract context."
-    paper: "https://arxiv.org/abs/1909.06146"
-
-  - id: mmlu_clinical
-    name: MMLU Clinical Knowledge
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 99]
-    description: "MMLU 6-subject medical bundle — anatomy, college medicine, clinical knowledge, medical genetics, professional medicine, virology. Standard for biomedical-LLM ranking (OpenBioLLM 92.9)."
-    paper: "https://arxiv.org/abs/2009.03300"
-
-  - id: medxpertqa
-    name: MedXpertQA
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [20, 75]
-    description: "Expert-level medical reasoning benchmark — 4,460 questions from medical specialty exams covering 17 specialties + 11 body systems. Reasoning, knowledge, calculation subsets. GPT-5.5 68.3, Med-Gemini 3 Pro 64.2."
-    paper: "https://arxiv.org/abs/2501.18362"
-
-  - id: medbullets
-    name: MedBullets-5op
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 90]
-    description: "Clinical case multi-choice — USMLE Step 2/3-style questions from MedBullets. 5-option format, harder than 4-option MedQA. ~308 questions per split."
-    paper: "https://arxiv.org/abs/2402.18060"
-
-  - id: nejm_image
-    name: NEJM Image Challenge
-    category: medical-imaging
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 85]
-    description: "New England Journal of Medicine weekly image-based diagnostic challenge — 935+ image-clinical-vignette MCQs across all medical specialties. Vision-language reasoning gold standard. GPT-5.5 73.4, Med-Gemini-L 65.0."
-    paper: "https://arxiv.org/abs/2404.18416"
-
-  - id: jama_clin_chal
-    name: JAMA Clinical Challenge
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 90]
-    description: "JAMA Network clinical case quiz — diagnostic reasoning on real patient vignettes. 1,524 cases across primary care, internal medicine, emergency."
-    paper: "https://jamanetwork.com/collections/44038/clinical-challenge"
-
-  - id: medseg_dice
-    name: Universal Med-Seg Dice
-    category: medical-imaging
-    metric: dice
-    unit: "%"
-    expected_range: [50, 99]
-    description: "Universal medical-segmentation benchmark — Dice Similarity Coefficient across 11+ modalities (CT/MRI/X-ray/endoscopy/ultrasound/dermoscopy/fundus). MedSAM 92.0 median, MedSAM2 89.2, SAM-Med2D 88.3, vanilla SAM 58.7."
-    paper: "https://www.nature.com/articles/s41467-024-44824-z"
-
-  - id: retbench_auc
-    name: RetBench (External AUC)
-    category: medical-imaging
-    metric: auc
-    unit: "%"
-    expected_range: [60, 96]
-    description: "Ophthalmic foundation-model evaluation suite — external validation AUC on glaucoma, DR (diabetic retinopathy), AMD (age-related macular degeneration), diabetes, hypertension prediction from retinal images. RETFound 89.0, VisionFM 90.5."
-    paper: "https://link.springer.com/chapter/10.1007/978-3-032-10351-2_8"
-
-  - id: radbench
-    name: RadBench (RadFM)
-    category: medical-imaging
-    metric: score
-    unit: "%"
-    expected_range: [50, 85]
-    description: "Multi-modal radiology benchmark — 2D + 3D scans, diagnosis + report-generation tasks. RadFM 71.3, LLaVA-Med 64.8, CheXzero 60.5 (beats GPT-4V baseline)."
-    paper: "https://www.nature.com/articles/s41467-025-62385-7"
-
-  - id: path_bench
-    name: Pathology External Benchmark
-    category: medical-imaging
-    metric: auroc
-    unit: "%"
-    expected_range: [60, 90]
-    description: "Pathology FM external evaluation — 9-task average AUROC across cancer subtyping + biomarker prediction (BRCA, RCC, NSCLC, MSI-CRC, etc.). Virchow2 0.82, UNI2 0.79, Prov-GigaPath 0.787, CONCH 0.764."
-    paper: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/"
-
-  - id: kmle
-    name: KMLE (Korean Medical Licensing Exam)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 99]
-    description: "Korean Medical Licensing Examination — 320 questions/year × 4 sections. Sovereign Korean medical LLM benchmark. SNUH KMed.ai 96.4 (3-year average)."
-    paper: "https://aclanthology.org/2024.bionlp-1.21/"
-
-  - id: medxpertqa_text
-    name: MedXpertQA Text
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [20, 75]
-    description: "Text-only subset of MedXpertQA — pure reasoning without image input. Used as base separator from MedXpertQA-MM (multimodal). 2,460 questions."
-    paper: "https://arxiv.org/abs/2501.18362"
-
-  - id: medxpertqa_mm
-    name: MedXpertQA Multimodal
-    category: medical-imaging
-    metric: accuracy
-    unit: "%"
-    expected_range: [15, 65]
-    description: "Multimodal subset of MedXpertQA — 2,000 image+text expert reasoning questions. Image types: radiology, pathology, dermatology, ophthalmology, ECG."
-    paper: "https://arxiv.org/abs/2501.18362"
-
-  - id: ehrqa
-    name: EHRQA
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 85]
-    description: "Electronic Health Record question answering — clinical information retrieval over EHR notes. MedGemma evaluation reference."
-    paper: "https://arxiv.org/abs/2206.06636"
-
-  - id: medqa_4opt
-    name: MedQA-4opt
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 96]
-    description: "Standard 4-option subset of MedQA-USMLE. Most cited medical-LLM benchmark. Distinct from MedQA-5opt extension used in some papers."
-    paper: "https://arxiv.org/abs/2009.13081"
-
-  - id: care_qa
-    name: CARE-QA
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 85]
-    description: "Clinical Assistance Reasoning & Evaluation QA — 1,287 patient-physician dialogue tasks. Used in HealthBench-adjacent evaluations."
-    paper: "https://arxiv.org/abs/2406.06474"
-
-  - id: omnimedvqa
-    name: OmniMedVQA
-    category: medical-imaging
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 90]
-    description: "Comprehensive medical VQA benchmark — 118K questions from 73 medical imaging datasets across 12 modalities + 20 anatomical areas. LVLM medical capability evaluation."
-    paper: "https://arxiv.org/abs/2402.09181"
-
-  - id: rad_chestct
-    name: RAD-ChestCT
-    category: medical-imaging
-    metric: auroc
-    unit: "%"
-    expected_range: [60, 90]
-    description: "Chest CT 3D classification — 35,747 volumes labeled for 84 abnormality categories. RadFM evaluation."
-    paper: "https://arxiv.org/abs/2002.06045"
-
-  - id: brats
-    name: BraTS (Brain Tumor Segmentation)
-    category: medical-imaging
-    metric: dice
-    unit: "%"
-    expected_range: [70, 95]
-    description: "MICCAI Brain Tumor Segmentation Challenge — multi-institutional MRI scans (FLAIR/T1/T1CE/T2). Whole tumor / tumor core / enhancing tumor Dice. Annual challenge since 2012."
-    paper: "https://www.med.upenn.edu/cbica/brats2024/"
-
-
-  # ─────────────── Bio dual-use & safety ───────────────
-  - id: wmdp_bio
-    name: WMDP-Bio (Hazardous Bio Knowledge)
-    category: bio-safety
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 95]
-    description: "Center for AI Safety WMDP biology subset — 1,520 MCQs on hazardous bio knowledge (bioweapon proxy). Used to measure dual-use risk and unlearning effectiveness via RMU."
-    paper: "https://arxiv.org/abs/2403.03218"
-
-  - id: wmdp_chem
-    name: WMDP-Chem (Hazardous Chem Knowledge)
-    category: bio-safety
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 90]
-    description: "WMDP chemistry subset — 408 MCQs on hazardous chemical knowledge. Frontier dual-use proxy."
-    paper: "https://arxiv.org/abs/2403.03218"
-
-  - id: vct_virology
-    name: VCT (Virology Capabilities Test)
-    category: bio-safety
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 95]
-    description: "Practical virology troubleshooting benchmark — frontier reasoning models reportedly outperform 94% of expert virologists. SecureBio + UK AISI eval."
-    paper: "https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons"
-
-  - id: biolp_bench
-    name: BioLP-bench (Lab Protocol Errors)
-    category: bio-safety
-    metric: accuracy
-    unit: "%"
-    expected_range: [30, 85]
-    description: "Biological lab protocol benchmark — find/correct mistakes in real laboratory protocols. Tests procedural understanding."
-    paper: "https://www.biorxiv.org/content/10.1101/2024.08.21.608694v3.full"
-
-  # ─────────────── Protein structure & design ───────────────
-  - id: casp16_gdt
-    name: CASP16 GDT-TS (Protein Structure)
-    category: protein
-    metric: gdt_ts
-    unit: "%"
-    expected_range: [50, 99]
-    description: "CASP (Critical Assessment of Structure Prediction) round 16 GDT-TS on hard targets — biennial blind protein structure competition. AlphaFold 3 89.4, RoseTTAFold 3 86.0, OpenFold 3 87.8."
-    paper: "https://predictioncenter.org/casp16/"
-
-  - id: alphafold3_pae
-    name: AlphaFold3 Confident Predictions
-    category: protein
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 95]
-    description: "% of predicted residues with high pLDDT confidence (>70). Standard structure prediction quality metric. AlphaFold 3 84.7, ESM3 78.5, ESMFold 71.3."
-    paper: "https://www.nature.com/articles/s41586-024-07487-w"
-
-  - id: pdbbind_rmsd
-    name: PDBBind Pocket-Guided RMSD
-    category: protein
-    metric: rmsd
-    unit: "Å"
-    expected_range: [1.0, 4.0]
-    description: "Protein-ligand pose RMSD (lower=better) on PDBBind v2020 holdout — Boltz/Chai/AF3 docking benchmark. AF3 1.65, Chai-1 1.71, Boltz-2 1.78."
-    paper: "https://www.nature.com/articles/s41586-024-07487-w"
-
-  - id: absci_yield
-    name: Absci de novo Antibody Yield
-    category: protein
-    metric: binding_rate
-    unit: "%"
-    expected_range: [10, 90]
-    description: "% of de novo designed antibody candidates with experimentally validated binding (Absci wet-lab). Frontier de novo antibody design metric."
-    paper: "https://www.absci.com/"
-
-  # ─────────────── Drug discovery & chemistry ───────────────
-  - id: moleculenet_avg
-    name: MoleculeNet Average
-    category: chemistry
-    metric: auc_or_mae
-    unit: "%"
-    expected_range: [60, 92]
-    description: "MoleculeNet 17-task average AUC/MAE — standard chemistry benchmark (BBBP, ClinTox, HIV, MUV, BACE, ESOL, FreeSolv, Lipo, QM9, etc.). ChemFM 81.5, MoLFormer 76.2."
-    paper: "https://moleculenet.org/"
-
-  - id: tdc_admet
-    name: TDC ADMET Group
-    category: chemistry
-    metric: auc_or_mae
-    unit: "%"
-    expected_range: [60, 88]
-    description: "Therapeutics Data Commons ADMET property prediction — 22-task average. ChemFM 79.0, TamGen 73.5, MoLFormer 72.3."
-    paper: "https://tdcommons.ai/benchmark/admet_group/overview/"
-
-  # ─────────────── Korean medical sovereign ───────────────
-  - id: kmle_2025
-    name: KMLE 2025 (Korean Medical Licensing)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 99]
-    description: "2025 Korean Medical Licensing Examination — 320 questions × 4 sections. SNUH KMed.ai 96.4 (3-yr avg, world-class claim), SNU-Med v1 86.2, Kakao Healthcare 78.5."
-    paper: "https://aclanthology.org/2024.bionlp-1.21/"
-
-  - id: kormedlawqa
-    name: KorMedLawQA
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 95]
-    description: "SNUH-released Korean medical law QA benchmark on HuggingFace (snuh/KorMedLawQA). Tests Korean medical-legal reasoning."
-    paper: "https://huggingface.co/datasets/snuh/KorMedLawQA"
-
-  - id: lunit_dx_auc
-    name: Lunit Dx AUROC (CXR/MMG)
-    category: medical-imaging
-    metric: auroc
-    unit: "%"
-    expected_range: [85, 99]
-    description: "Lunit INSIGHT internal/external CXR + MMG validation AUROC on TB/lung-cancer/breast-cancer. CXR v4 96.8, MMG v3 94.1."
-    paper: "https://www.lunit.io/"
-
-  # ─────────────── Medical VLM ───────────────
-  - id: vqamed_2024
-    name: VQA-Med 2024
-    category: medical-imaging
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 90]
-    description: "ImageCLEF VQA-Med 2024 — radiology image VQA. Med-Flamingo, MedDr, BiomedGPT eval. MedDr 71.4, HuatuoGPT-Vision-7B 61.8, BiomedGPT-L 64.2."
-    paper: "https://www.imageclef.org/2024/medical/vqa"
-
-  - id: med_internvl_avg
-    name: Med-InternVL Avg
-    category: medical-imaging
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 90]
-    description: "Medical VLM average across 14 imaging tasks — derm/endo/path/radiology MCQ + VQA. MedDr eval set. MedDr 78.3, Intern-Medical-25B 75.6, HuatuoGPT-Vision-34B 72.1, BiomedGPT-XL 68.4."
-    paper: "https://arxiv.org/html/2404.15127v1/"
-
-  # ─────────────── Medical safety & hallucination ───────────────
-  - id: med_halt
-    name: Med-HALT (Hallucination Test)
-    category: medical-safety
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 90]
-    description: "Multinational medical exam-derived hallucination benchmark — reasoning + memory hallucination tests. Med-HALT consortium 2023.07."
-    paper: "https://medhalt.github.io/"
-
-  - id: medhallu
-    name: MedHallu (Hallucination Detection)
-    category: medical-safety
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 90]
-    description: "First medical hallucination detection benchmark — 10K QA pairs from PubMedQA with systematically generated hallucinations. MIT Media Lab 2025."
-    paper: "https://arxiv.org/html/2502.14302v1"
-
-  - id: medhallbench
-    name: MedHallBench
-    category: medical-safety
-    metric: score
-    unit: "%"
-    expected_range: [40, 90]
-    description: "Comprehensive medical hallucination evaluation — expert-validated case scenarios + medical databases. UCSD 2024-12."
-    paper: "https://arxiv.org/abs/2412.18947"
-
-  - id: medsafetybench
-    name: MedSafetyBench (AMA principles)
-    category: medical-safety
-    metric: harmful_compliance
-    unit: "%"
-    expected_range: [3, 30]
-    description: "Medical safety benchmark on 9 AMA medical-doctor ethics principles. 450 verified synthetic prompts, ill-intentioned clinician. Lower=safer (harmful compliance %). NeurIPS 2024."
-    paper: "https://arxiv.org/abs/2403.03744"
-
-  - id: patientsafebench
-    name: PatientSafeBench
-    category: medical-safety
-    metric: safety
-    unit: "%"
-    expected_range: [50, 99]
-    description: "Patient-use safety benchmark — measures LLM safety when used directly by patients (vs clinicians). OpenReview 2025."
-    paper: "https://openreview.net/pdf/12a1638233ed711151b702a35d81c3a4572fb475.pdf"
-
-  - id: csedb_safety
-    name: CSEDB Safety Track
-    category: medical-safety
-    metric: score
-    unit: "%"
-    expected_range: [40, 90]
-    description: "Clinical Safety-Effectiveness Dual-Track Benchmark safety axis — 30 metrics: critical illness recognition, guideline adherence, medication safety. Nature npj Digital Medicine 2025."
-    paper: "https://www.nature.com/articles/s41746-025-02277-8"
-
-  - id: csedb_effectiveness
-    name: CSEDB Effectiveness Track
-    category: medical
-    metric: score
-    unit: "%"
-    expected_range: [40, 90]
-    description: "CSEDB effectiveness axis — clinical task completion."
-    paper: "https://www.nature.com/articles/s41746-025-02277-8"
-
-  - id: craft_md
-    name: CRAFT-MD (Conversational Reasoning)
-    category: medical-safety
-    metric: factual_accuracy
-    unit: "%"
-    expected_range: [50, 95]
-    description: "Conversational reasoning eval — simulates AI-agent patient interactions, measures factual accuracy."
-    paper: "https://www.nature.com/articles/s41746-025-02277-8"
-
-  - id: medic_eval
-    name: MEDIC (Clinical LLM Indicators)
-    category: medical
-    metric: score
-    unit: "%"
-    expected_range: [50, 95]
-    description: "Comprehensive evaluation of Leading Indicators for Clinical LLMs — 5 multidimensional axes. Yale + Google 2024-09."
-    paper: "https://arxiv.org/pdf/2409.07314"
-
-  # ─────────────── Radiology report generation (ReXrank) ───────────────
-  - id: rexrank_radgraph_f1
-    name: ReXrank RadGraph-F1
-    category: medical-imaging
-    metric: f1
-    unit: "%"
-    expected_range: [10, 50]
-    description: "Radiology report generation entity+relation F1 from RadGraph schema. ReXrank standard metric. MedVersa 32.1 (2025 SOTA)."
-    paper: "https://rexrank.ai/"
-
-  - id: rexrank_bertscore
-    name: ReXrank BERTScore
-    category: medical-imaging
-    metric: bertscore
-    unit: "%"
-    expected_range: [30, 60]
-    description: "Radiology report semantic similarity (BERTScore) on MIMIC-CXR + ReXGradient + IU-Xray + CheXpert Plus."
-    paper: "https://rexrank.ai/"
-
-  - id: rexrank_radcliq
-    name: ReXrank RadCliQ
-    category: medical-imaging
-    metric: radcliq
-    unit: ""
-    expected_range: [1.0, 3.5]
-    description: "RadCliQ composite radiology quality score (lower=better). Combines BLEU + BERTScore + RadGraph-F1."
-    paper: "https://rexrank.ai/"
-
-  - id: rexrank_green
-    name: ReXrank GREEN
-    category: medical-imaging
-    metric: green
-    unit: ""
-    expected_range: [0.2, 0.8]
-    description: "GREEN — clinical relevance + factuality combined for chest X-ray report generation."
-    paper: "https://rexrank.ai/"
-
-  - id: rexrank_finerad
-    name: ReXrank FineRadScore
-    category: medical-imaging
-    metric: score
-    unit: "%"
-    expected_range: [40, 90]
-    description: "Fine-grained radiology report score — finding-level error detection."
-    paper: "https://rexrank.ai/"
-
-  - id: chexpert_f1
-    name: CheXpert F1 (14-finding)
-    category: medical-imaging
-    metric: f1
-    unit: "%"
-    expected_range: [50, 92]
-    description: "CheXpert label F1 across 14 chest X-ray findings — Stanford AIMI standard radiology auto-eval metric."
-    paper: "https://stanfordmlgroup.github.io/competitions/chexpert/"
-
-  - id: rexgrad_acc
-    name: ReXGradient Test Accuracy
-    category: medical-imaging
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 90]
-    description: "Largest test dataset (10,000 studies) for radiology report generation. ReXrank's primary holdout."
-    paper: "https://rexrank.ai/"
-
-  # ─────────────── Medical VQA ───────────────
-  - id: vqa_rad
-    name: VQA-RAD
-    category: medical-imaging
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 95]
-    description: "Radiology VQA — 315 images, 3,515 questions, 517 possible answers. Standard medical VQA since 2018."
-    paper: "https://www.nature.com/articles/sdata2018251"
-
-  - id: slake_vqa
-    name: SLAKE-VQA (Bilingual)
-    category: medical-imaging
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 95]
-    description: "Bilingual EN-CN medical VQA — 642 images + 14K questions across radiology/CT/MRI."
-    paper: "https://arxiv.org/abs/2102.09542"
-
-  - id: path_vqa
-    name: Path-VQA
-    category: medical-imaging
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 92]
-    description: "Pathology VQA — 32K Q-A pairs from pathology textbook images. Closed + open splits."
-    paper: "https://arxiv.org/abs/2003.10286"
-
-  - id: pmc_vqa
-    name: PMC-VQA
-    category: medical-imaging
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 90]
-    description: "Large-scale medical VQA from PubMed Central figures + captions. PMC-VQA-Test 2,096 image-Q pairs."
-    paper: "https://arxiv.org/abs/2305.10415"
-
-  # ─────────────── Multilingual regional medical ───────────────
-  - id: afrimed_qa_mcq
-    name: AfriMed-QA MCQ
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 95]
-    description: "Pan-African multi-specialty MCQ — 4,000+ expert-curated questions. Google Research + UCT 2024-11."
-    paper: "https://arxiv.org/abs/2411.15640"
-
-  - id: afrimed_qa_saq
-    name: AfriMed-QA SAQ
-    category: medical
-    metric: score
-    unit: "%"
-    expected_range: [40, 90]
-    description: "AfriMed-QA short answer questions — 1,200+ long-form clinical answers."
-    paper: "https://arxiv.org/abs/2411.15640"
-
-  - id: medarabench
-    name: MedAraBench (Arabic)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 95]
-    description: "Large-scale Arabic medical benchmark — 24,883 MCQs across 19 specialties × 5 difficulty levels. MBZUAI 2026-02."
-    paper: "https://arxiv.org/html/2602.01714v1"
-
-  - id: bimedix_eval
-    name: BiMediX Bilingual Eval (AR+EN)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 90]
-    description: "BiMediX bilingual Arabic-English medical eval. BiMediX 65.4 avg vs Mixtral 55.0, Jais-30B 50.6."
-    paper: "https://arxiv.org/html/2402.13253v1"
-
-  # ─────────────── Clinical outcome prediction (MIMIC/eICU) ───────────────
-  - id: mimic_iv_sepsis_auc
-    name: MIMIC-IV Sepsis 24h Mortality AUC
-    category: clinical-prediction
-    metric: auroc
-    unit: "%"
-    expected_range: [70, 95]
-    description: "MIMIC-IV sepsis cohort 24h-pre-onset mortality prediction AUC. 35,239 ICU patients. LLM-guided temporal sim 0.861-0.903."
-    paper: "https://arxiv.org/html/2510.24500v1"
-
-  - id: mimic_aki_mortality
-    name: MIMIC-IV AKI Mortality (XGBoost)
-    category: clinical-prediction
-    metric: auroc
-    unit: "%"
-    expected_range: [70, 92]
-    description: "Sepsis-associated AKI ICU mortality prediction on MIMIC-IV with eICU external validation. XGBoost AUROC 0.878."
-    paper: "https://arxiv.org/abs/2502.17978"
-
-  - id: eicu_xgen_auc
-    name: eICU Cross-Generalization AUC
-    category: clinical-prediction
-    metric: auroc
-    unit: "%"
-    expected_range: [65, 90]
-    description: "Cross-dataset generalization — train MIMIC-IV → test eICU mortality. Demonstrates LLM/ML transferability."
-    paper: "https://arxiv.org/abs/2502.17978"
-
-  - id: mimic_iv_readmit
-    name: MIMIC-IV 30-day Readmission
-    category: clinical-prediction
-    metric: auroc
-    unit: "%"
-    expected_range: [65, 88]
-    description: "Hospital 30-day readmission prediction on MIMIC-IV. Standard outcome prediction benchmark."
-    paper: "https://stanfordmlgroup.github.io/"
-
-  - id: medriskeval
-    name: MedRiskEval
-    category: medical-safety
-    metric: score
-    unit: "%"
-    expected_range: [40, 90]
-    description: "Medical risk evaluation — user-perspective patient safety in healthcare LLM use."
-    paper: "https://arxiv.org/html/2507.07248"
-
-  # ─────────────── National medical licensing & sovereign eval ───────────────
-  - id: igakuqa
-    name: IgakuQA (Japan Medical Licensing)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 95]
-    description: "Japan medical licensing exam (国家試験) benchmark — 6-year compilation. ELYZA-LLM-Med 70B 87.5 SOTA (national 1위), bilingual eval supported."
-    paper: "https://arxiv.org/html/2310.10083"
-
-  - id: jmedbench
-    name: JMedBench (Japanese Medical)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 95]
-    description: "Bilingual JP-EN Japanese medical evaluation — radiology, exam, clinical record. Univ Tokyo + ELYZA. PFN BioMedic 75.8."
-    paper: "https://arxiv.org/html/2409.11783v1"
-
-  - id: jmed_lora_eval
-    name: JMedLoRA Evaluation Suite
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 90]
-    description: "Japanese medical instruction-tuning evaluation — domain adaptation benchmark for Japanese LLMs. Univ Tokyo Hospital."
-    paper: "https://arxiv.org/html/2310.10083"
-
-  - id: neet_pg
-    name: NEET-PG (India PG Medical)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 95]
-    description: "India Post-Graduate NEET medical entrance exam — 20+ year corpus. National-level eligibility test for top Indian medical PG programs. Vaidya 2.0 89.4 SOTA."
-    paper: "https://analyticsindiamag.com/ai-news-updates/fractals-vaidya-ai-outperforms-gpt-4-achieves-83-in-pg-neet/"
-
-  - id: indic_med_bench
-    name: Indic Medical Benchmark
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 90]
-    description: "AI4Bharat multilingual Indian-language medical evaluation — Hindi, Tamil, Telugu, Bengali medical QA. Airavata Medical 71.4 SOTA."
-    paper: "https://ai4bharat.iitm.ac.in/"
-
-  - id: cmexam_cn
-    name: CMExam (China Medical Licensing)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 95]
-    description: "China Medical Licensing Examination corpus — 60K+ MCQs. Standard Chinese medical LLM benchmark. SumiHealth 82.4 SOTA."
-    paper: "https://arxiv.org/abs/2306.03030"
-
-  - id: promedqa_cn
-    name: PromedQA (Chinese ProMed)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 95]
-    description: "Chinese professional medicine QA — Tsinghua THUDM benchmark. GLM-Medical 81.7 SOTA."
-    paper: "https://github.com/THUDM/"
-
-  - id: m42_clinical_avg
-    name: M42 Clinical Avg (UAE)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 90]
-    description: "Med42 internal clinical evaluation — comprehensive medical task suite (Cerebras-trained). M42 v2 70B 76.5."
-    paper: "https://m42.ae/media-resources/news/m42-announces-new-clinical-llm-to-transform-the-future-of-ai-in-healthcare/"
-
-  - id: synapxe_sg_eval
-    name: Synapxe Singapore Clinical
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 95]
-    description: "Synapxe (Singapore MOH) clinical safety + accuracy eval — public hospital deployment validation. Synapxe Clinical-CLM 81.4."
-    paper: "https://www.synapxe.sg/"
-
-  - id: nhs_aide_eval
-    name: NHS AIDE Clinical Eval
-    category: medical-safety
-    metric: score
-    unit: "%"
-    expected_range: [50, 95]
-    description: "NHS England AIDE clinical-deployment safety + effectiveness eval — primary care decision support. 84.7."
-    paper: "https://transform.england.nhs.uk/"
-
-  - id: uhn_clin_bench
-    name: UHN Clinical Benchmark
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [50, 95]
-    description: "UHN AI Hub clinical evaluation — Toronto multi-hospital dataset. Vector Institute Clairvoyance 80.3."
-    paper: "https://uhnhub.ai/"
-
-  - id: delphi_disease_risk
-    name: Delphi 1000-Disease Risk (DKFZ+EMBL)
-    category: clinical-prediction
-    metric: auroc
-    unit: "%"
-    expected_range: [60, 95]
-    description: "DKFZ+EMBL Delphi model — long-term risk for 1,000+ diseases. Trained 400K UK Biobank, validated on 1.9M Danish National Patient Registry. Nature 2025."
-    paper: "https://www.dkfz.de/en/news/press-releases/detail/ai-model-predicts-disease-risks-decades-in-advance"
-
-  - id: biomistral_multilingual
-    name: BioMistral Multilingual (7-lang)
-    category: medical
-    metric: accuracy
-    unit: "%"
-    expected_range: [40, 85]
-    description: "BioMistral first large-scale multilingual medical LLM eval — 7 translated languages. CNRS Jean Zay HPC."
-    paper: "https://arxiv.org/abs/2402.10373"
-
-  - id: owkin_path_avg
-    name: Owkin Pathology External Avg
-    category: medical-imaging
-    metric: auroc
-    unit: "%"
-    expected_range: [60, 92]
-    description: "Owkin H-Optimus / DRAGON pathology external evaluation — multi-task cancer subtyping/biomarker. DRAGON 2 84.6, H-Optimus 81.2."
-    paper: "https://www.owkin.com/"
-
-  - id: openai_healthbench_hard
-    name: HealthBench (Hard subset)
-    category: medical-safety
-    metric: score
-    unit: "%"
-    expected_range: [10, 70]
-    description: "OpenAI HealthBench Hard subset — high-difficulty conversations. Vaidya 2.0 50.1 (world 1st 50+, beat GPT-5/Gemini Pro 3 at India AI Impact Summit 2026)."
-    paper: "https://openai.com/index/healthbench/"
+- id: mmlu
+  name: MMLU
+  category: knowledge
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: Massive Multitask Language Understanding - 57 subjects from STEM to
+    humanities
+  paper: https://arxiv.org/abs/2009.03300
+  github: https://github.com/hendrycks/test
+  year: '2020'
+  item_count: 15,908 questions
+  bmt:
+    bmt_id: saved-1769608044998-3evdz
+    bmt_title: MMLU (Massive Multitask Language Understanding)
+- id: gpqa
+  name: GPQA
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 75
+  description: Graduate-level Google-Proof Q&A - expert-level science questions
+  paper: https://arxiv.org/abs/2311.12022
+  github: https://github.com/idavidrein/gpqa
+  year: '2023'
+  item_count: 448 questions (main set)
+  bmt:
+    bmt_id: saved-1769608044995-yosl5
+    bmt_title: 'GPQA: A Graduate-Level Google-Proof Q&A Benchmark'
+- id: humaneval
+  name: HumanEval
+  category: coding
+  metric: pass@1
+  unit: '%'
+  expected_range:
+  - 40
+  - 98
+  description: Code generation benchmark - 164 Python programming problems
+  paper: https://arxiv.org/abs/2107.03374
+  github: https://github.com/openai/human-eval
+  year: '2021'
+  item_count: 164 problems
+  bmt:
+    bmt_id: saved-1769608044998-38qeu
+    bmt_title: HumanEval
+- id: math
+  name: MATH
+  category: math
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 95
+  description: Competition mathematics - 12,500 problems from AMC, AIME, and Olympiads
+  paper: https://arxiv.org/abs/2103.03874
+  github: https://github.com/hendrycks/math
+  year: '2021'
+  item_count: 12,500 problems
+  bmt:
+    bmt_id: saved-1770073027762-d19mf
+    bmt_title: MATH
+- id: gsm8k
+  name: GSM8K
+  category: math
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 99
+  description: Grade school math - 8,500 linguistically diverse grade school problems
+  paper: https://arxiv.org/abs/2110.14168
+  github: https://github.com/openai/grade-school-math
+  year: '2021'
+  item_count: ~8.5k problems
+  bmt:
+    bmt_id: saved-1769608044998-02wv1
+    bmt_title: GSM8K (Grade School Math 8K)
+- id: mmmu
+  name: MMMU
+  category: multimodal
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 75
+  description: Massive Multi-discipline Multimodal Understanding - college-level multimodal
+    questions
+  paper: https://arxiv.org/abs/2311.16502
+  github: https://github.com/MMMU-Benchmark/MMMU
+  year: '2023'
+  item_count: 11,500 questions
+  bmt:
+    bmt_id: saved-1769608044995-ql0iq
+    bmt_title: MMMU (Massive Multi-discipline Multimodal Understanding)
+- id: swe_bench
+  name: SWE-bench
+  category: coding
+  metric: resolve_rate
+  unit: '%'
+  expected_range:
+  - 5
+  - 60
+  description: Software engineering benchmark - real GitHub issues from popular Python
+    repos
+  paper: https://arxiv.org/abs/2310.06770
+  github: https://github.com/swe-bench/swe-bench
+  year: '2023'
+  item_count: 2,294 task instances
+  bmt:
+    bmt_id: saved-1769608044994-upwrp
+    bmt_title: SWE-bench
+- id: truthfulqa
+  name: TruthfulQA
+  category: safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 85
+  description: Truthfulness benchmark - 817 questions spanning health, law, finance,
+    and politics
+  paper: https://arxiv.org/abs/2109.07958
+  github: https://github.com/sylinrl/TruthfulQA
+  year: '2021'
+  item_count: 817 questions
+  bmt:
+    bmt_id: saved-1769608044997-dtesz
+    bmt_title: TruthfulQA
+- id: ifeval
+  name: IFEval
+  category: instruction_following
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 95
+  description: Instruction following evaluation - verifiable instruction-following
+    tasks
+  paper: https://arxiv.org/abs/2311.07911
+  github: https://github.com/google-research/google-research/tree/master/instruction_following_eval
+  year: '2023'
+  item_count: approx. 500 prompts
+  bmt:
+    bmt_id: imported-json-1771222123771-2225-2zvmn
+    bmt_title: IFEval (Instruction-Following Evaluation)
+- id: aime
+  name: AIME
+  category: math
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 5
+  - 90
+  description: American Invitational Mathematics Examination - competition math problems
+  paper: https://huggingface.co/datasets/HuggingFaceH4/aime_2024
+  github: https://huggingface.co/datasets/HuggingFaceH4/aime_2024
+  year: '2024'
+  item_count: 30 problems
+  bmt:
+    bmt_id: saved-1769608044992-asnlh
+    bmt_title: AIME 2024 (HuggingFaceH4)
+- id: healthbench_professional
+  name: HealthBench Professional
+  category: medical
+  metric: score
+  unit: '%'
+  expected_range:
+  - 20
+  - 80
+  description: OpenAI 525-task clinician chat benchmark — 3 use cases (care consult
+    / writing & docs / medical research). Physician-authored conversations + multi-stage
+    physician adjudication rubrics. GPT-5.4 ChatGPT for Clinicians 59.0 vs human physicians
+    43.7.
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+  github: https://github.com/openai/simple-evals
+  year: '2025'
+  item_count: 5,000 conversations
+  bmt:
+    bmt_id: saved-1769608044991-gbtoa
+    bmt_title: HealthBench
+- id: healthbench
+  name: HealthBench
+  category: medical
+  metric: score
+  unit: '%'
+  expected_range:
+  - 20
+  - 90
+  description: OpenAI 5,000-conversation health rubric benchmark. Realistic patient
+    + clinician scenarios graded by 262 physician-authored rubrics across 7 themes
+    (emergency referrals, global health, etc.).
+  paper: https://openai.com/index/healthbench/
+  github: https://github.com/openai/simple-evals
+  year: '2025'
+  item_count: 5,000 conversations
+  bmt:
+    bmt_id: saved-1769608044991-gbtoa
+    bmt_title: HealthBench
+- id: medqa_usmle
+  name: MedQA (USMLE)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 96
+  description: USMLE-style 4-option multiple-choice question answering. 12,723 questions
+    (US/Mainland China/Taiwan). Med-Gemini 91.1, Med-PaLM 2 86.5, GPT-5.5 95.4.
+  paper: https://arxiv.org/abs/2009.13081
+  github: https://github.com/jind11/MedQA
+  year: '2020'
+  item_count: 12,723 questions (USMLE subset)
+  bmt:
+    bmt_id: csv-2-1769500744825
+    bmt_title: MedQA (USMLE)
+- id: medmcqa
+  name: MedMCQA
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Indian medical entrance exam (AIIMS/NEET PG) multi-choice — 194K questions
+    across 21 medical subjects. Used as standard licensing comparison alongside USMLE.
+  paper: https://arxiv.org/abs/2203.14371
+  github: https://github.com/medmcqa/medmcqa
+  year: '2022'
+  item_count: ~194,000 MCQs
+  bmt:
+    bmt_id: csv-4-1769500744825
+    bmt_title: MedMCQA
+- id: pubmedqa
+  name: PubMedQA
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Biomedical research literature QA — 1k expert + 61.2k labeled + 211.3k
+    unlabeled questions from PubMed abstracts. Yes/No/Maybe answer over abstract context.
+  paper: https://arxiv.org/abs/1909.06146
+  github: https://github.com/pubmedqa/pubmedqa
+  year: '2019'
+  item_count: 1k expert-labeled, 61.2k unlabeled, 211.3k artificially generated
+  bmt:
+    bmt_id: csv-3-1769500744825
+    bmt_title: PubMedQA
+- id: mmlu_clinical
+  name: MMLU Clinical Knowledge
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 99
+  description: MMLU 6-subject medical bundle — anatomy, college medicine, clinical
+    knowledge, medical genetics, professional medicine, virology. Standard for biomedical-LLM
+    ranking (OpenBioLLM 92.9).
+  paper: https://arxiv.org/abs/2009.03300
+  github: https://github.com/hendrycks/test
+  year: '2020'
+  item_count: 15,908 questions
+  bmt:
+    bmt_id: saved-1769608044998-3evdz
+    bmt_title: MMLU (Massive Multitask Language Understanding)
+- id: medxpertqa
+  name: MedXpertQA
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 20
+  - 75
+  description: Expert-level medical reasoning benchmark — 4,460 questions from medical
+    specialty exams covering 17 specialties + 11 body systems. Reasoning, knowledge,
+    calculation subsets. GPT-5.5 68.3, Med-Gemini 3 Pro 64.2.
+  paper: https://arxiv.org/abs/2501.18362
+  github: https://github.com/TsinghuaC3I/MedXpertQA
+  year: '2025'
+  item_count: '4,460 questions (Text subset: 2,455; Multimodal subset: 2,005 questions
+    with 2,839 images)'
+  bmt:
+    bmt_id: saved-1769608044991-n5q5r
+    bmt_title: MedXpertQA
+- id: medbullets
+  name: MedBullets-5op
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Clinical case multi-choice — USMLE Step 2/3-style questions from MedBullets.
+    5-option format, harder than 4-option MedQA. ~308 questions per split.
+  paper: https://arxiv.org/abs/2402.18060
+- id: nejm_image
+  name: NEJM Image Challenge
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 85
+  description: New England Journal of Medicine weekly image-based diagnostic challenge
+    — 935+ image-clinical-vignette MCQs across all medical specialties. Vision-language
+    reasoning gold standard. GPT-5.5 73.4, Med-Gemini-L 65.0.
+  paper: https://arxiv.org/abs/2404.18416
+- id: jama_clin_chal
+  name: JAMA Clinical Challenge
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 90
+  description: JAMA Network clinical case quiz — diagnostic reasoning on real patient
+    vignettes. 1,524 cases across primary care, internal medicine, emergency.
+  paper: https://jamanetwork.com/collections/44038/clinical-challenge
+- id: medseg_dice
+  name: Universal Med-Seg Dice
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 50
+  - 99
+  description: Universal medical-segmentation benchmark — Dice Similarity Coefficient
+    across 11+ modalities (CT/MRI/X-ray/endoscopy/ultrasound/dermoscopy/fundus). MedSAM
+    92.0 median, MedSAM2 89.2, SAM-Med2D 88.3, vanilla SAM 58.7.
+  paper: https://www.nature.com/articles/s41467-024-44824-z
+- id: retbench_auc
+  name: RetBench (External AUC)
+  category: medical-imaging
+  metric: auc
+  unit: '%'
+  expected_range:
+  - 60
+  - 96
+  description: Ophthalmic foundation-model evaluation suite — external validation
+    AUC on glaucoma, DR (diabetic retinopathy), AMD (age-related macular degeneration),
+    diabetes, hypertension prediction from retinal images. RETFound 89.0, VisionFM
+    90.5.
+  paper: https://link.springer.com/chapter/10.1007/978-3-032-10351-2_8
+- id: radbench
+  name: RadBench (RadFM)
+  category: medical-imaging
+  metric: score
+  unit: '%'
+  expected_range:
+  - 50
+  - 85
+  description: Multi-modal radiology benchmark — 2D + 3D scans, diagnosis + report-generation
+    tasks. RadFM 71.3, LLaVA-Med 64.8, CheXzero 60.5 (beats GPT-4V baseline).
+  paper: https://www.nature.com/articles/s41467-025-62385-7
+  github: https://github.com/ChaoyiWu/RadFM
+  year: '2023'
+  item_count: Includes 5 downstream tasks (Modality Recognition, Disease Diagnosis,
+    VQA, Report Generation, Rationale Diagnosis)
+  bmt:
+    bmt_id: saved-1770074292000-j9l0e
+    bmt_title: RadFM Benchmark (RadBench)
+- id: path_bench
+  name: Pathology External Benchmark
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 60
+  - 90
+  description: Pathology FM external evaluation — 9-task average AUROC across cancer
+    subtyping + biomarker prediction (BRCA, RCC, NSCLC, MSI-CRC, etc.). Virchow2 0.82,
+    UNI2 0.79, Prov-GigaPath 0.787, CONCH 0.764.
+  paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/
+- id: kmle
+  name: KMLE (Korean Medical Licensing Exam)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 99
+  description: Korean Medical Licensing Examination — 320 questions/year × 4 sections.
+    Sovereign Korean medical LLM benchmark. SNUH KMed.ai 96.4 (3-year average).
+  paper: https://aclanthology.org/2024.bionlp-1.21/
+- id: medxpertqa_text
+  name: MedXpertQA Text
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 20
+  - 75
+  description: Text-only subset of MedXpertQA — pure reasoning without image input.
+    Used as base separator from MedXpertQA-MM (multimodal). 2,460 questions.
+  paper: https://arxiv.org/abs/2501.18362
+  github: https://github.com/TsinghuaC3I/MedXpertQA
+  year: '2025'
+  item_count: '4,460 questions (Text subset: 2,455; Multimodal subset: 2,005 questions
+    with 2,839 images)'
+  bmt:
+    bmt_id: saved-1769608044991-n5q5r
+    bmt_title: MedXpertQA
+- id: medxpertqa_mm
+  name: MedXpertQA Multimodal
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 15
+  - 65
+  description: 'Multimodal subset of MedXpertQA — 2,000 image+text expert reasoning
+    questions. Image types: radiology, pathology, dermatology, ophthalmology, ECG.'
+  paper: https://arxiv.org/abs/2501.18362
+  github: https://github.com/TsinghuaC3I/MedXpertQA
+  year: '2025'
+  item_count: '4,460 questions (Text subset: 2,455; Multimodal subset: 2,005 questions
+    with 2,839 images)'
+  bmt:
+    bmt_id: saved-1769608044991-n5q5r
+    bmt_title: MedXpertQA
+- id: ehrqa
+  name: EHRQA
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 85
+  description: Electronic Health Record question answering — clinical information
+    retrieval over EHR notes. MedGemma evaluation reference.
+  paper: https://arxiv.org/abs/2206.06636
+- id: medqa_4opt
+  name: MedQA-4opt
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 96
+  description: Standard 4-option subset of MedQA-USMLE. Most cited medical-LLM benchmark.
+    Distinct from MedQA-5opt extension used in some papers.
+  paper: https://arxiv.org/abs/2009.13081
+  github: https://github.com/jind11/MedQA
+  year: '2020'
+  item_count: 12,723 questions (USMLE subset)
+  bmt:
+    bmt_id: csv-2-1769500744825
+    bmt_title: MedQA (USMLE)
+- id: care_qa
+  name: CARE-QA
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 85
+  description: Clinical Assistance Reasoning & Evaluation QA — 1,287 patient-physician
+    dialogue tasks. Used in HealthBench-adjacent evaluations.
+  paper: https://arxiv.org/abs/2406.06474
+  github: https://huggingface.co/datasets/HPAI-BSC/CareQA
+  year: '2024'
+  item_count: ~5,621 QA pairs
+  bmt:
+    bmt_id: saved-1770073027755-llk37
+    bmt_title: CareQA
+- id: omnimedvqa
+  name: OmniMedVQA
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 90
+  description: Comprehensive medical VQA benchmark — 118K questions from 73 medical
+    imaging datasets across 12 modalities + 20 anatomical areas. LVLM medical capability
+    evaluation.
+  paper: https://arxiv.org/abs/2402.09181
+  github: https://github.com/OpenGVLab/Multi-Modality-Arena
+  year: '2024'
+  item_count: 118,010 images, 127,995 QA pairs
+  bmt:
+    bmt_id: saved-1769658218238-83f7d
+    bmt_title: OmniMedVQA
+- id: rad_chestct
+  name: RAD-ChestCT
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 60
+  - 90
+  description: Chest CT 3D classification — 35,747 volumes labeled for 84 abnormality
+    categories. RadFM evaluation.
+  paper: https://arxiv.org/abs/2002.06045
+- id: brats
+  name: BraTS (Brain Tumor Segmentation)
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 70
+  - 95
+  description: MICCAI Brain Tumor Segmentation Challenge — multi-institutional MRI
+    scans (FLAIR/T1/T1CE/T2). Whole tumor / tumor core / enhancing tumor Dice. Annual
+    challenge since 2012.
+  paper: https://www.med.upenn.edu/cbica/brats2024/
+  github: https://github.com/RAVIRAJAG/BraTS-2023-Challenge
+  year: '2015'
+  item_count: Varies (e.g., ~2000 patients in 2021)
+  bmt:
+    bmt_id: saved-1769608045000-yona1
+    bmt_title: BraTS (Multimodal Brain Tumor Image Segmentation Benchmark)
+- id: wmdp_bio
+  name: WMDP-Bio (Hazardous Bio Knowledge)
+  category: bio-safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 95
+  description: Center for AI Safety WMDP biology subset — 1,520 MCQs on hazardous
+    bio knowledge (bioweapon proxy). Used to measure dual-use risk and unlearning
+    effectiveness via RMU.
+  paper: https://arxiv.org/abs/2403.03218
+  github: https://wmdp.ai
+  year: '2024'
+  item_count: 3,668 questions
+  bmt:
+    bmt_id: saved-1769608044992-fb3cw
+    bmt_title: WMDP (Weapons of Mass Destruction Proxy) Benchmark
+- id: wmdp_chem
+  name: WMDP-Chem (Hazardous Chem Knowledge)
+  category: bio-safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 90
+  description: WMDP chemistry subset — 408 MCQs on hazardous chemical knowledge. Frontier
+    dual-use proxy.
+  paper: https://arxiv.org/abs/2403.03218
+  github: https://wmdp.ai
+  year: '2024'
+  item_count: 3,668 questions
+  bmt:
+    bmt_id: saved-1769608044992-fb3cw
+    bmt_title: WMDP (Weapons of Mass Destruction Proxy) Benchmark
+- id: vct_virology
+  name: VCT (Virology Capabilities Test)
+  category: bio-safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 95
+  description: Practical virology troubleshooting benchmark — frontier reasoning models
+    reportedly outperform 94% of expert virologists. SecureBio + UK AISI eval.
+  paper: https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons
+  github: Not publicly available (Controlled Access)
+  year: '2025'
+  item_count: 322 questions
+  bmt:
+    bmt_id: saved-1769608044991-3rfb8
+    bmt_title: Virology Capabilities Test (VCT)
+- id: biolp_bench
+  name: BioLP-bench (Lab Protocol Errors)
+  category: bio-safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 85
+  description: Biological lab protocol benchmark — find/correct mistakes in real laboratory
+    protocols. Tests procedural understanding.
+  paper: https://www.biorxiv.org/content/10.1101/2024.08.21.608694v3.full
+  github: https://github.com/baceolus/BioLP-bench
+  year: '2024'
+  item_count: 800 test cases
+  bmt:
+    bmt_id: saved-1769608044993-utxdz
+    bmt_title: BioLP-bench
+- id: casp16_gdt
+  name: CASP16 GDT-TS (Protein Structure)
+  category: protein
+  metric: gdt_ts
+  unit: '%'
+  expected_range:
+  - 50
+  - 99
+  description: CASP (Critical Assessment of Structure Prediction) round 16 GDT-TS
+    on hard targets — biennial blind protein structure competition. AlphaFold 3 89.4,
+    RoseTTAFold 3 86.0, OpenFold 3 87.8.
+  paper: https://predictioncenter.org/casp16/
+  github: https://predictioncenter.org/download_area/
+  year: '2023'
+  item_count: ~100 targets per competition; Full download area ~18GB
+  bmt:
+    bmt_id: saved-1769657076297-739qy
+    bmt_title: CASP15 Datasets (and previous editions)
+- id: alphafold3_pae
+  name: AlphaFold3 Confident Predictions
+  category: protein
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: '% of predicted residues with high pLDDT confidence (>70). Standard
+    structure prediction quality metric. AlphaFold 3 84.7, ESM3 78.5, ESMFold 71.3.'
+  paper: https://www.nature.com/articles/s41586-024-07487-w
+- id: pdbbind_rmsd
+  name: PDBBind Pocket-Guided RMSD
+  category: protein
+  metric: rmsd
+  unit: Å
+  expected_range:
+  - 1.0
+  - 4.0
+  description: Protein-ligand pose RMSD (lower=better) on PDBBind v2020 holdout —
+    Boltz/Chai/AF3 docking benchmark. AF3 1.65, Chai-1 1.71, Boltz-2 1.78.
+  paper: https://www.nature.com/articles/s41586-024-07487-w
+- id: absci_yield
+  name: Absci de novo Antibody Yield
+  category: protein
+  metric: binding_rate
+  unit: '%'
+  expected_range:
+  - 10
+  - 90
+  description: '% of de novo designed antibody candidates with experimentally validated
+    binding (Absci wet-lab). Frontier de novo antibody design metric.'
+  paper: https://www.absci.com/
+- id: moleculenet_avg
+  name: MoleculeNet Average
+  category: chemistry
+  metric: auc_or_mae
+  unit: '%'
+  expected_range:
+  - 60
+  - 92
+  description: MoleculeNet 17-task average AUC/MAE — standard chemistry benchmark
+    (BBBP, ClinTox, HIV, MUV, BACE, ESOL, FreeSolv, Lipo, QM9, etc.). ChemFM 81.5,
+    MoLFormer 76.2.
+  paper: https://moleculenet.org/
+  github: https://github.com/deepchem/deepchem
+  year: '2017'
+  item_count: Over 700,000 compounds
+  bmt:
+    bmt_id: saved-1769608045000-63k0n
+    bmt_title: MoleculeNet
+- id: tdc_admet
+  name: TDC ADMET Group
+  category: chemistry
+  metric: auc_or_mae
+  unit: '%'
+  expected_range:
+  - 60
+  - 88
+  description: Therapeutics Data Commons ADMET property prediction — 22-task average.
+    ChemFM 79.0, TamGen 73.5, MoLFormer 72.3.
+  paper: https://tdcommons.ai/benchmark/admet_group/overview/
+  github: https://github.com/mims-harvard/TDC
+  year: '2021'
+  item_count: 66+ datasets
+  bmt:
+    bmt_id: saved-1769638817151-b1e61
+    bmt_title: Therapeutics Data Commons (TDC)
+- id: kmle_2025
+  name: KMLE 2025 (Korean Medical Licensing)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 99
+  description: 2025 Korean Medical Licensing Examination — 320 questions × 4 sections.
+    SNUH KMed.ai 96.4 (3-yr avg, world-class claim), SNU-Med v1 86.2, Kakao Healthcare
+    78.5.
+  paper: https://aclanthology.org/2024.bionlp-1.21/
+- id: kormedlawqa
+  name: KorMedLawQA
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: SNUH-released Korean medical law QA benchmark on HuggingFace (snuh/KorMedLawQA).
+    Tests Korean medical-legal reasoning.
+  paper: https://huggingface.co/datasets/snuh/KorMedLawQA
+- id: lunit_dx_auc
+  name: Lunit Dx AUROC (CXR/MMG)
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 85
+  - 99
+  description: Lunit INSIGHT internal/external CXR + MMG validation AUROC on TB/lung-cancer/breast-cancer.
+    CXR v4 96.8, MMG v3 94.1.
+  paper: https://www.lunit.io/
+  github: https://github.com/stanfordmlgroup/chexpert
+  year: '2019'
+  item_count: 224,316 images
+  bmt:
+    bmt_id: saved-1769608044999-z2i1j
+    bmt_title: CheXpert
+- id: vqamed_2024
+  name: VQA-Med 2024
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: ImageCLEF VQA-Med 2024 — radiology image VQA. Med-Flamingo, MedDr,
+    BiomedGPT eval. MedDr 71.4, HuatuoGPT-Vision-7B 61.8, BiomedGPT-L 64.2.
+  paper: https://www.imageclef.org/2024/medical/vqa
+  github: https://github.com/abachaa/VQA-Med-2019
+  year: '2019'
+  item_count: 4,200 images, 15,292 QA pairs
+  bmt:
+    bmt_id: saved-1769608044999-0fotx
+    bmt_title: VQA-Med 2019
+- id: med_internvl_avg
+  name: Med-InternVL Avg
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Medical VLM average across 14 imaging tasks — derm/endo/path/radiology
+    MCQ + VQA. MedDr eval set. MedDr 78.3, Intern-Medical-25B 75.6, HuatuoGPT-Vision-34B
+    72.1, BiomedGPT-XL 68.4.
+  paper: https://arxiv.org/html/2404.15127v1/
+- id: med_halt
+  name: Med-HALT (Hallucination Test)
+  category: medical-safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Multinational medical exam-derived hallucination benchmark — reasoning
+    + memory hallucination tests. Med-HALT consortium 2023.07.
+  paper: https://medhalt.github.io/
+  github: https://github.com/medhalt/medhalt
+  year: '2023'
+  item_count: 900 curated questions, 7,000+ generated answers
+  bmt:
+    bmt_id: saved-1770073027760-1yp2m
+    bmt_title: Med-HALT (Medical Domain Hallucination Test)
+- id: medhallu
+  name: MedHallu (Hallucination Detection)
+  category: medical-safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: First medical hallucination detection benchmark — 10K QA pairs from
+    PubMedQA with systematically generated hallucinations. MIT Media Lab 2025.
+  paper: https://arxiv.org/html/2502.14302v1
+  github: https://github.com/medhallu/medhallu
+  year: '2025'
+  item_count: 10,000 QA pairs
+  bmt:
+    bmt_id: imported-json-1771222123771-2213-wiklz
+    bmt_title: MedHallu
+- id: medhallbench
+  name: MedHallBench
+  category: medical-safety
+  metric: score
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Comprehensive medical hallucination evaluation — expert-validated case
+    scenarios + medical databases. UCSD 2024-12.
+  paper: https://arxiv.org/abs/2412.18947
+- id: medsafetybench
+  name: MedSafetyBench (AMA principles)
+  category: medical-safety
+  metric: harmful_compliance
+  unit: '%'
+  expected_range:
+  - 3
+  - 30
+  description: Medical safety benchmark on 9 AMA medical-doctor ethics principles.
+    450 verified synthetic prompts, ill-intentioned clinician. Lower=safer (harmful
+    compliance %). NeurIPS 2024.
+  paper: https://arxiv.org/abs/2403.03744
+  github: https://github.com/AI4LIFE-GROUP/med-safety-bench
+  year: '2024'
+  item_count: 1,800 harmful medical requests
+  bmt:
+    bmt_id: saved-1769608044994-44dit
+    bmt_title: MedSafetyBench
+- id: patientsafebench
+  name: PatientSafeBench
+  category: medical-safety
+  metric: safety
+  unit: '%'
+  expected_range:
+  - 50
+  - 99
+  description: Patient-use safety benchmark — measures LLM safety when used directly
+    by patients (vs clinicians). OpenReview 2025.
+  paper: https://openreview.net/pdf/12a1638233ed711151b702a35d81c3a4572fb475.pdf
+  github: https://huggingface.co/datasets/microsoft/PatientSafetyBench
+  year: '2025'
+  item_count: 466 samples
+  bmt:
+    bmt_id: saved-1769608044992-d7f7s
+    bmt_title: PatientSafetyBench
+- id: csedb_safety
+  name: CSEDB Safety Track
+  category: medical-safety
+  metric: score
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: 'Clinical Safety-Effectiveness Dual-Track Benchmark safety axis — 30
+    metrics: critical illness recognition, guideline adherence, medication safety.
+    Nature npj Digital Medicine 2025.'
+  paper: https://www.nature.com/articles/s41746-025-02277-8
+  github: N/A
+  year: '2025'
+  item_count: 2,069 open-ended Q&A items
+  bmt:
+    bmt_id: saved-1770073027724-yemvd
+    bmt_title: CSEDB (Clinical Safety-Effectiveness Dual-Track Benchmark)
+- id: csedb_effectiveness
+  name: CSEDB Effectiveness Track
+  category: medical
+  metric: score
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: CSEDB effectiveness axis — clinical task completion.
+  paper: https://www.nature.com/articles/s41746-025-02277-8
+  github: N/A
+  year: '2025'
+  item_count: 2,069 open-ended Q&A items
+  bmt:
+    bmt_id: saved-1770073027724-yemvd
+    bmt_title: CSEDB (Clinical Safety-Effectiveness Dual-Track Benchmark)
+- id: craft_md
+  name: CRAFT-MD (Conversational Reasoning)
+  category: medical-safety
+  metric: factual_accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Conversational reasoning eval — simulates AI-agent patient interactions,
+    measures factual accuracy.
+  paper: https://www.nature.com/articles/s41746-025-02277-8
+- id: medic_eval
+  name: MEDIC (Clinical LLM Indicators)
+  category: medical
+  metric: score
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Comprehensive evaluation of Leading Indicators for Clinical LLMs —
+    5 multidimensional axes. Yale + Google 2024-09.
+  paper: https://arxiv.org/pdf/2409.07314
+  github: https://github.com/Zhu-Zhouan/MEDIC
+  year: '2023'
+  item_count: 771 video clips
+  bmt:
+    bmt_id: saved-1770073027761-yz6rj
+    bmt_title: MEDIC
+- id: rexrank_radgraph_f1
+  name: ReXrank RadGraph-F1
+  category: medical-imaging
+  metric: f1
+  unit: '%'
+  expected_range:
+  - 10
+  - 50
+  description: Radiology report generation entity+relation F1 from RadGraph schema.
+    ReXrank standard metric. MedVersa 32.1 (2025 SOTA).
+  paper: https://rexrank.ai/
+  github: https://github.com/MIT-LCP/mimic-code
+  year: '2019'
+  item_count: 377,110 images; 227,827 reports
+  bmt:
+    bmt_id: saved-1769608044999-u1kx6
+    bmt_title: MIMIC-CXR
+- id: rexrank_bertscore
+  name: ReXrank BERTScore
+  category: medical-imaging
+  metric: bertscore
+  unit: '%'
+  expected_range:
+  - 30
+  - 60
+  description: Radiology report semantic similarity (BERTScore) on MIMIC-CXR + ReXGradient
+    + IU-Xray + CheXpert Plus.
+  paper: https://rexrank.ai/
+  github: https://github.com/MIT-LCP/mimic-code
+  year: '2019'
+  item_count: 377,110 images; 227,827 reports
+  bmt:
+    bmt_id: saved-1769608044999-u1kx6
+    bmt_title: MIMIC-CXR
+- id: rexrank_radcliq
+  name: ReXrank RadCliQ
+  category: medical-imaging
+  metric: radcliq
+  unit: ''
+  expected_range:
+  - 1.0
+  - 3.5
+  description: RadCliQ composite radiology quality score (lower=better). Combines
+    BLEU + BERTScore + RadGraph-F1.
+  paper: https://rexrank.ai/
+  github: https://github.com/MIT-LCP/mimic-code
+  year: '2019'
+  item_count: 377,110 images; 227,827 reports
+  bmt:
+    bmt_id: saved-1769608044999-u1kx6
+    bmt_title: MIMIC-CXR
+- id: rexrank_green
+  name: ReXrank GREEN
+  category: medical-imaging
+  metric: green
+  unit: ''
+  expected_range:
+  - 0.2
+  - 0.8
+  description: GREEN — clinical relevance + factuality combined for chest X-ray report
+    generation.
+  paper: https://rexrank.ai/
+  github: https://github.com/MIT-LCP/mimic-code
+  year: '2019'
+  item_count: 377,110 images; 227,827 reports
+  bmt:
+    bmt_id: saved-1769608044999-u1kx6
+    bmt_title: MIMIC-CXR
+- id: rexrank_finerad
+  name: ReXrank FineRadScore
+  category: medical-imaging
+  metric: score
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Fine-grained radiology report score — finding-level error detection.
+  paper: https://rexrank.ai/
+  github: https://github.com/MIT-LCP/mimic-code
+  year: '2019'
+  item_count: 377,110 images; 227,827 reports
+  bmt:
+    bmt_id: saved-1769608044999-u1kx6
+    bmt_title: MIMIC-CXR
+- id: chexpert_f1
+  name: CheXpert F1 (14-finding)
+  category: medical-imaging
+  metric: f1
+  unit: '%'
+  expected_range:
+  - 50
+  - 92
+  description: CheXpert label F1 across 14 chest X-ray findings — Stanford AIMI standard
+    radiology auto-eval metric.
+  paper: https://stanfordmlgroup.github.io/competitions/chexpert/
+  github: https://github.com/stanfordmlgroup/chexpert
+  year: '2019'
+  item_count: 224,316 images
+  bmt:
+    bmt_id: saved-1769608044999-z2i1j
+    bmt_title: CheXpert
+- id: rexgrad_acc
+  name: ReXGradient Test Accuracy
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Largest test dataset (10,000 studies) for radiology report generation.
+    ReXrank's primary holdout.
+  paper: https://rexrank.ai/
+  github: https://github.com/MIT-LCP/mimic-code
+  year: '2019'
+  item_count: 377,110 images; 227,827 reports
+  bmt:
+    bmt_id: saved-1769608044999-u1kx6
+    bmt_title: MIMIC-CXR
+- id: vqa_rad
+  name: VQA-RAD
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Radiology VQA — 315 images, 3,515 questions, 517 possible answers.
+    Standard medical VQA since 2018.
+  paper: https://www.nature.com/articles/sdata2018251
+  github: https://github.com/openmedlab/Awesome-Medical-Dataset
+  year: '2018'
+  item_count: 315 images, 3,515 QA pairs
+  bmt:
+    bmt_id: saved-1769608045000-tnh4c
+    bmt_title: VQA-RAD
+- id: slake_vqa
+  name: SLAKE-VQA (Bilingual)
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Bilingual EN-CN medical VQA — 642 images + 14K questions across radiology/CT/MRI.
+  paper: https://arxiv.org/abs/2102.09542
+  github: https://github.com/BoKelvin/SLAKE
+  year: '2021'
+  item_count: 642 images, 14,028 QA pairs
+  bmt:
+    bmt_id: saved-1769608044998-q92pc
+    bmt_title: 'SLAKE: A Semantically-Labeled Knowledge-Enhanced Dataset for Medical
+      Visual Question Answering'
+- id: path_vqa
+  name: Path-VQA
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 92
+  description: Pathology VQA — 32K Q-A pairs from pathology textbook images. Closed
+    + open splits.
+  paper: https://arxiv.org/abs/2003.10286
+  github: https://github.com/flaviagiammarino/path-vqa
+  year: '2020'
+  item_count: 32,799 QA pairs; 4,998 images
+  bmt:
+    bmt_id: saved-1769608044998-3yduk
+    bmt_title: PathVQA
+- id: pmc_vqa
+  name: PMC-VQA
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Large-scale medical VQA from PubMed Central figures + captions. PMC-VQA-Test
+    2,096 image-Q pairs.
+  paper: https://arxiv.org/abs/2305.10415
+- id: afrimed_qa_mcq
+  name: AfriMed-QA MCQ
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Pan-African multi-specialty MCQ — 4,000+ expert-curated questions.
+    Google Research + UCT 2024-11.
+  paper: https://arxiv.org/abs/2411.15640
+  github: https://github.com/intron-innovation/AfriMed-QA
+  year: '2024'
+  item_count: 15,000+ questions
+  bmt:
+    bmt_id: saved-1769608044993-lvj68
+    bmt_title: AfriMed-QA
+- id: afrimed_qa_saq
+  name: AfriMed-QA SAQ
+  category: medical
+  metric: score
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: AfriMed-QA short answer questions — 1,200+ long-form clinical answers.
+  paper: https://arxiv.org/abs/2411.15640
+  github: https://github.com/intron-innovation/AfriMed-QA
+  year: '2024'
+  item_count: 15,000+ questions
+  bmt:
+    bmt_id: saved-1769608044993-lvj68
+    bmt_title: AfriMed-QA
+- id: medarabench
+  name: MedAraBench (Arabic)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 95
+  description: Large-scale Arabic medical benchmark — 24,883 MCQs across 19 specialties
+    × 5 difficulty levels. MBZUAI 2026-02.
+  paper: https://arxiv.org/html/2602.01714v1
+- id: bimedix_eval
+  name: BiMediX Bilingual Eval (AR+EN)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: BiMediX bilingual Arabic-English medical eval. BiMediX 65.4 avg vs
+    Mixtral 55.0, Jais-30B 50.6.
+  paper: https://arxiv.org/html/2402.13253v1
+- id: mimic_iv_sepsis_auc
+  name: MIMIC-IV Sepsis 24h Mortality AUC
+  category: clinical-prediction
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 70
+  - 95
+  description: MIMIC-IV sepsis cohort 24h-pre-onset mortality prediction AUC. 35,239
+    ICU patients. LLM-guided temporal sim 0.861-0.903.
+  paper: https://arxiv.org/html/2510.24500v1
+  github: https://github.com/MIT-LCP/mimic-code
+  year: '2023'
+  item_count: '>65,000 ICU patients, >200,000 ED patients'
+  bmt:
+    bmt_id: csv-5-1769500744825
+    bmt_title: MIMIC-IV
+- id: mimic_aki_mortality
+  name: MIMIC-IV AKI Mortality (XGBoost)
+  category: clinical-prediction
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 70
+  - 92
+  description: Sepsis-associated AKI ICU mortality prediction on MIMIC-IV with eICU
+    external validation. XGBoost AUROC 0.878.
+  paper: https://arxiv.org/abs/2502.17978
+  github: https://github.com/MIT-LCP/mimic-code
+  year: '2023'
+  item_count: '>65,000 ICU patients, >200,000 ED patients'
+  bmt:
+    bmt_id: csv-5-1769500744825
+    bmt_title: MIMIC-IV
+- id: eicu_xgen_auc
+  name: eICU Cross-Generalization AUC
+  category: clinical-prediction
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 65
+  - 90
+  description: Cross-dataset generalization — train MIMIC-IV → test eICU mortality.
+    Demonstrates LLM/ML transferability.
+  paper: https://arxiv.org/abs/2502.17978
+  github: https://github.com/MIT-LCP/mimic-code
+  year: '2023'
+  item_count: '>65,000 ICU patients, >200,000 ED patients'
+  bmt:
+    bmt_id: csv-5-1769500744825
+    bmt_title: MIMIC-IV
+- id: mimic_iv_readmit
+  name: MIMIC-IV 30-day Readmission
+  category: clinical-prediction
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 65
+  - 88
+  description: Hospital 30-day readmission prediction on MIMIC-IV. Standard outcome
+    prediction benchmark.
+  paper: https://stanfordmlgroup.github.io/
+  github: https://github.com/MIT-LCP/mimic-code
+  year: '2023'
+  item_count: '>65,000 ICU patients, >200,000 ED patients'
+  bmt:
+    bmt_id: csv-5-1769500744825
+    bmt_title: MIMIC-IV
+- id: medriskeval
+  name: MedRiskEval
+  category: medical-safety
+  metric: score
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Medical risk evaluation — user-perspective patient safety in healthcare
+    LLM use.
+  paper: https://arxiv.org/html/2507.07248
+- id: igakuqa
+  name: IgakuQA (Japan Medical Licensing)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 95
+  description: Japan medical licensing exam (国家試験) benchmark — 6-year compilation.
+    ELYZA-LLM-Med 70B 87.5 SOTA (national 1위), bilingual eval supported.
+  paper: https://arxiv.org/html/2310.10083
+- id: jmedbench
+  name: JMedBench (Japanese Medical)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 95
+  description: Bilingual JP-EN Japanese medical evaluation — radiology, exam, clinical
+    record. Univ Tokyo + ELYZA. PFN BioMedic 75.8.
+  paper: https://arxiv.org/html/2409.11783v1
+- id: jmed_lora_eval
+  name: JMedLoRA Evaluation Suite
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Japanese medical instruction-tuning evaluation — domain adaptation
+    benchmark for Japanese LLMs. Univ Tokyo Hospital.
+  paper: https://arxiv.org/html/2310.10083
+- id: neet_pg
+  name: NEET-PG (India PG Medical)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 95
+  description: India Post-Graduate NEET medical entrance exam — 20+ year corpus. National-level
+    eligibility test for top Indian medical PG programs. Vaidya 2.0 89.4 SOTA.
+  paper: https://analyticsindiamag.com/ai-news-updates/fractals-vaidya-ai-outperforms-gpt-4-achieves-83-in-pg-neet/
+- id: indic_med_bench
+  name: Indic Medical Benchmark
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: AI4Bharat multilingual Indian-language medical evaluation — Hindi,
+    Tamil, Telugu, Bengali medical QA. Airavata Medical 71.4 SOTA.
+  paper: https://ai4bharat.iitm.ac.in/
+- id: cmexam_cn
+  name: CMExam (China Medical Licensing)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 95
+  description: China Medical Licensing Examination corpus — 60K+ MCQs. Standard Chinese
+    medical LLM benchmark. SumiHealth 82.4 SOTA.
+  paper: https://arxiv.org/abs/2306.03030
+- id: promedqa_cn
+  name: PromedQA (Chinese ProMed)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 95
+  description: Chinese professional medicine QA — Tsinghua THUDM benchmark. GLM-Medical
+    81.7 SOTA.
+  paper: https://github.com/THUDM/
+- id: m42_clinical_avg
+  name: M42 Clinical Avg (UAE)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Med42 internal clinical evaluation — comprehensive medical task suite
+    (Cerebras-trained). M42 v2 70B 76.5.
+  paper: https://m42.ae/media-resources/news/m42-announces-new-clinical-llm-to-transform-the-future-of-ai-in-healthcare/
+- id: synapxe_sg_eval
+  name: Synapxe Singapore Clinical
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Synapxe (Singapore MOH) clinical safety + accuracy eval — public hospital
+    deployment validation. Synapxe Clinical-CLM 81.4.
+  paper: https://www.synapxe.sg/
+- id: nhs_aide_eval
+  name: NHS AIDE Clinical Eval
+  category: medical-safety
+  metric: score
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: NHS England AIDE clinical-deployment safety + effectiveness eval —
+    primary care decision support. 84.7.
+  paper: https://transform.england.nhs.uk/
+- id: uhn_clin_bench
+  name: UHN Clinical Benchmark
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: UHN AI Hub clinical evaluation — Toronto multi-hospital dataset. Vector
+    Institute Clairvoyance 80.3.
+  paper: https://uhnhub.ai/
+- id: delphi_disease_risk
+  name: Delphi 1000-Disease Risk (DKFZ+EMBL)
+  category: clinical-prediction
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: DKFZ+EMBL Delphi model — long-term risk for 1,000+ diseases. Trained
+    400K UK Biobank, validated on 1.9M Danish National Patient Registry. Nature 2025.
+  paper: https://www.dkfz.de/en/news/press-releases/detail/ai-model-predicts-disease-risks-decades-in-advance
+- id: biomistral_multilingual
+  name: BioMistral Multilingual (7-lang)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 85
+  description: BioMistral first large-scale multilingual medical LLM eval — 7 translated
+    languages. CNRS Jean Zay HPC.
+  paper: https://arxiv.org/abs/2402.10373
+- id: owkin_path_avg
+  name: Owkin Pathology External Avg
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 60
+  - 92
+  description: Owkin H-Optimus / DRAGON pathology external evaluation — multi-task
+    cancer subtyping/biomarker. DRAGON 2 84.6, H-Optimus 81.2.
+  paper: https://www.owkin.com/
+- id: openai_healthbench_hard
+  name: HealthBench (Hard subset)
+  category: medical-safety
+  metric: score
+  unit: '%'
+  expected_range:
+  - 10
+  - 70
+  description: OpenAI HealthBench Hard subset — high-difficulty conversations. Vaidya
+    2.0 50.1 (world 1st 50+, beat GPT-5/Gemini Pro 3 at India AI Impact Summit 2026).
+  paper: https://openai.com/index/healthbench/
+  github: https://github.com/openai/simple-evals
+  year: '2025'
+  item_count: 5,000 conversations
+  bmt:
+    bmt_id: saved-1769608044991-gbtoa
+    bmt_title: HealthBench

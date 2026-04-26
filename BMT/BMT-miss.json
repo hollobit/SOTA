@@ -1,0 +1,457 @@
+[
+  {
+    "id": "medbullets",
+    "name": "MedBullets-5op",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "Clinical case multi-choice — USMLE Step 2/3-style questions from MedBullets. 5-option format, harder than 4-option MedQA. ~308 questions per split.",
+    "paper": "https://arxiv.org/abs/2402.18060",
+    "expected_range": [
+      40,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "nejm_image",
+    "name": "NEJM Image Challenge",
+    "metric": "accuracy",
+    "category": "medical-imaging",
+    "description": "New England Journal of Medicine weekly image-based diagnostic challenge — 935+ image-clinical-vignette MCQs across all medical specialties. Vision-language reasoning gold standard. GPT-5.5 73.4, Med-Gemini-L 65.0.",
+    "paper": "https://arxiv.org/abs/2404.18416",
+    "expected_range": [
+      30,
+      85
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "jama_clin_chal",
+    "name": "JAMA Clinical Challenge",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "JAMA Network clinical case quiz — diagnostic reasoning on real patient vignettes. 1,524 cases across primary care, internal medicine, emergency.",
+    "paper": "https://jamanetwork.com/collections/44038/clinical-challenge",
+    "expected_range": [
+      30,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "medseg_dice",
+    "name": "Universal Med-Seg Dice",
+    "metric": "dice",
+    "category": "medical-imaging",
+    "description": "Universal medical-segmentation benchmark — Dice Similarity Coefficient across 11+ modalities (CT/MRI/X-ray/endoscopy/ultrasound/dermoscopy/fundus). MedSAM 92.0 median, MedSAM2 89.2, SAM-Med2D 88.3, vanilla SAM 58.7.",
+    "paper": "https://www.nature.com/articles/s41467-024-44824-z",
+    "expected_range": [
+      50,
+      99
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "retbench_auc",
+    "name": "RetBench (External AUC)",
+    "metric": "auc",
+    "category": "medical-imaging",
+    "description": "Ophthalmic foundation-model evaluation suite — external validation AUC on glaucoma, DR (diabetic retinopathy), AMD (age-related macular degeneration), diabetes, hypertension prediction from retinal images. RETFound 89.0, VisionFM 90.5.",
+    "paper": "https://link.springer.com/chapter/10.1007/978-3-032-10351-2_8",
+    "expected_range": [
+      60,
+      96
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "path_bench",
+    "name": "Pathology External Benchmark",
+    "metric": "auroc",
+    "category": "medical-imaging",
+    "description": "Pathology FM external evaluation — 9-task average AUROC across cancer subtyping + biomarker prediction (BRCA, RCC, NSCLC, MSI-CRC, etc.). Virchow2 0.82, UNI2 0.79, Prov-GigaPath 0.787, CONCH 0.764.",
+    "paper": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/",
+    "expected_range": [
+      60,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "kmle",
+    "name": "KMLE (Korean Medical Licensing Exam)",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "Korean Medical Licensing Examination — 320 questions/year × 4 sections. Sovereign Korean medical LLM benchmark. SNUH KMed.ai 96.4 (3-year average).",
+    "paper": "https://aclanthology.org/2024.bionlp-1.21/",
+    "expected_range": [
+      40,
+      99
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "ehrqa",
+    "name": "EHRQA",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "Electronic Health Record question answering — clinical information retrieval over EHR notes. MedGemma evaluation reference.",
+    "paper": "https://arxiv.org/abs/2206.06636",
+    "expected_range": [
+      30,
+      85
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "rad_chestct",
+    "name": "RAD-ChestCT",
+    "metric": "auroc",
+    "category": "medical-imaging",
+    "description": "Chest CT 3D classification — 35,747 volumes labeled for 84 abnormality categories. RadFM evaluation.",
+    "paper": "https://arxiv.org/abs/2002.06045",
+    "expected_range": [
+      60,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "alphafold3_pae",
+    "name": "AlphaFold3 Confident Predictions",
+    "metric": "accuracy",
+    "category": "protein",
+    "description": "% of predicted residues with high pLDDT confidence (>70). Standard structure prediction quality metric. AlphaFold 3 84.7, ESM3 78.5, ESMFold 71.3.",
+    "paper": "https://www.nature.com/articles/s41586-024-07487-w",
+    "expected_range": [
+      50,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "pdbbind_rmsd",
+    "name": "PDBBind Pocket-Guided RMSD",
+    "metric": "rmsd",
+    "category": "protein",
+    "description": "Protein-ligand pose RMSD (lower=better) on PDBBind v2020 holdout — Boltz/Chai/AF3 docking benchmark. AF3 1.65, Chai-1 1.71, Boltz-2 1.78.",
+    "paper": "https://www.nature.com/articles/s41586-024-07487-w",
+    "expected_range": [
+      1.0,
+      4.0
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "absci_yield",
+    "name": "Absci de novo Antibody Yield",
+    "metric": "binding_rate",
+    "category": "protein",
+    "description": "% of de novo designed antibody candidates with experimentally validated binding (Absci wet-lab). Frontier de novo antibody design metric.",
+    "paper": "https://www.absci.com/",
+    "expected_range": [
+      10,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "kmle_2025",
+    "name": "KMLE 2025 (Korean Medical Licensing)",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "2025 Korean Medical Licensing Examination — 320 questions × 4 sections. SNUH KMed.ai 96.4 (3-yr avg, world-class claim), SNU-Med v1 86.2, Kakao Healthcare 78.5.",
+    "paper": "https://aclanthology.org/2024.bionlp-1.21/",
+    "expected_range": [
+      40,
+      99
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "kormedlawqa",
+    "name": "KorMedLawQA",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "SNUH-released Korean medical law QA benchmark on HuggingFace (snuh/KorMedLawQA). Tests Korean medical-legal reasoning.",
+    "paper": "https://huggingface.co/datasets/snuh/KorMedLawQA",
+    "expected_range": [
+      50,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "med_internvl_avg",
+    "name": "Med-InternVL Avg",
+    "metric": "accuracy",
+    "category": "medical-imaging",
+    "description": "Medical VLM average across 14 imaging tasks — derm/endo/path/radiology MCQ + VQA. MedDr eval set. MedDr 78.3, Intern-Medical-25B 75.6, HuatuoGPT-Vision-34B 72.1, BiomedGPT-XL 68.4.",
+    "paper": "https://arxiv.org/html/2404.15127v1/",
+    "expected_range": [
+      40,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "medhallbench",
+    "name": "MedHallBench",
+    "metric": "score",
+    "category": "medical-safety",
+    "description": "Comprehensive medical hallucination evaluation — expert-validated case scenarios + medical databases. UCSD 2024-12.",
+    "paper": "https://arxiv.org/abs/2412.18947",
+    "expected_range": [
+      40,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "craft_md",
+    "name": "CRAFT-MD (Conversational Reasoning)",
+    "metric": "factual_accuracy",
+    "category": "medical-safety",
+    "description": "Conversational reasoning eval — simulates AI-agent patient interactions, measures factual accuracy.",
+    "paper": "https://www.nature.com/articles/s41746-025-02277-8",
+    "expected_range": [
+      50,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "pmc_vqa",
+    "name": "PMC-VQA",
+    "metric": "accuracy",
+    "category": "medical-imaging",
+    "description": "Large-scale medical VQA from PubMed Central figures + captions. PMC-VQA-Test 2,096 image-Q pairs.",
+    "paper": "https://arxiv.org/abs/2305.10415",
+    "expected_range": [
+      40,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "medarabench",
+    "name": "MedAraBench (Arabic)",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "Large-scale Arabic medical benchmark — 24,883 MCQs across 19 specialties × 5 difficulty levels. MBZUAI 2026-02.",
+    "paper": "https://arxiv.org/html/2602.01714v1",
+    "expected_range": [
+      40,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "bimedix_eval",
+    "name": "BiMediX Bilingual Eval (AR+EN)",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "BiMediX bilingual Arabic-English medical eval. BiMediX 65.4 avg vs Mixtral 55.0, Jais-30B 50.6.",
+    "paper": "https://arxiv.org/html/2402.13253v1",
+    "expected_range": [
+      40,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "medriskeval",
+    "name": "MedRiskEval",
+    "metric": "score",
+    "category": "medical-safety",
+    "description": "Medical risk evaluation — user-perspective patient safety in healthcare LLM use.",
+    "paper": "https://arxiv.org/html/2507.07248",
+    "expected_range": [
+      40,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "igakuqa",
+    "name": "IgakuQA (Japan Medical Licensing)",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "Japan medical licensing exam (国家試験) benchmark — 6-year compilation. ELYZA-LLM-Med 70B 87.5 SOTA (national 1위), bilingual eval supported.",
+    "paper": "https://arxiv.org/html/2310.10083",
+    "expected_range": [
+      40,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "jmedbench",
+    "name": "JMedBench (Japanese Medical)",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "Bilingual JP-EN Japanese medical evaluation — radiology, exam, clinical record. Univ Tokyo + ELYZA. PFN BioMedic 75.8.",
+    "paper": "https://arxiv.org/html/2409.11783v1",
+    "expected_range": [
+      40,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "jmed_lora_eval",
+    "name": "JMedLoRA Evaluation Suite",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "Japanese medical instruction-tuning evaluation — domain adaptation benchmark for Japanese LLMs. Univ Tokyo Hospital.",
+    "paper": "https://arxiv.org/html/2310.10083",
+    "expected_range": [
+      40,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "neet_pg",
+    "name": "NEET-PG (India PG Medical)",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "India Post-Graduate NEET medical entrance exam — 20+ year corpus. National-level eligibility test for top Indian medical PG programs. Vaidya 2.0 89.4 SOTA.",
+    "paper": "https://analyticsindiamag.com/ai-news-updates/fractals-vaidya-ai-outperforms-gpt-4-achieves-83-in-pg-neet/",
+    "expected_range": [
+      40,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "indic_med_bench",
+    "name": "Indic Medical Benchmark",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "AI4Bharat multilingual Indian-language medical evaluation — Hindi, Tamil, Telugu, Bengali medical QA. Airavata Medical 71.4 SOTA.",
+    "paper": "https://ai4bharat.iitm.ac.in/",
+    "expected_range": [
+      40,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "cmexam_cn",
+    "name": "CMExam (China Medical Licensing)",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "China Medical Licensing Examination corpus — 60K+ MCQs. Standard Chinese medical LLM benchmark. SumiHealth 82.4 SOTA.",
+    "paper": "https://arxiv.org/abs/2306.03030",
+    "expected_range": [
+      40,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "promedqa_cn",
+    "name": "PromedQA (Chinese ProMed)",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "Chinese professional medicine QA — Tsinghua THUDM benchmark. GLM-Medical 81.7 SOTA.",
+    "paper": "https://github.com/THUDM/",
+    "expected_range": [
+      40,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "m42_clinical_avg",
+    "name": "M42 Clinical Avg (UAE)",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "Med42 internal clinical evaluation — comprehensive medical task suite (Cerebras-trained). M42 v2 70B 76.5.",
+    "paper": "https://m42.ae/media-resources/news/m42-announces-new-clinical-llm-to-transform-the-future-of-ai-in-healthcare/",
+    "expected_range": [
+      50,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "synapxe_sg_eval",
+    "name": "Synapxe Singapore Clinical",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "Synapxe (Singapore MOH) clinical safety + accuracy eval — public hospital deployment validation. Synapxe Clinical-CLM 81.4.",
+    "paper": "https://www.synapxe.sg/",
+    "expected_range": [
+      50,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "nhs_aide_eval",
+    "name": "NHS AIDE Clinical Eval",
+    "metric": "score",
+    "category": "medical-safety",
+    "description": "NHS England AIDE clinical-deployment safety + effectiveness eval — primary care decision support. 84.7.",
+    "paper": "https://transform.england.nhs.uk/",
+    "expected_range": [
+      50,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "uhn_clin_bench",
+    "name": "UHN Clinical Benchmark",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "UHN AI Hub clinical evaluation — Toronto multi-hospital dataset. Vector Institute Clairvoyance 80.3.",
+    "paper": "https://uhnhub.ai/",
+    "expected_range": [
+      50,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "delphi_disease_risk",
+    "name": "Delphi 1000-Disease Risk (DKFZ+EMBL)",
+    "metric": "auroc",
+    "category": "clinical-prediction",
+    "description": "DKFZ+EMBL Delphi model — long-term risk for 1,000+ diseases. Trained 400K UK Biobank, validated on 1.9M Danish National Patient Registry. Nature 2025.",
+    "paper": "https://www.dkfz.de/en/news/press-releases/detail/ai-model-predicts-disease-risks-decades-in-advance",
+    "expected_range": [
+      60,
+      95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "biomistral_multilingual",
+    "name": "BioMistral Multilingual (7-lang)",
+    "metric": "accuracy",
+    "category": "medical",
+    "description": "BioMistral first large-scale multilingual medical LLM eval — 7 translated languages. CNRS Jean Zay HPC.",
+    "paper": "https://arxiv.org/abs/2402.10373",
+    "expected_range": [
+      40,
+      85
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "owkin_path_avg",
+    "name": "Owkin Pathology External Avg",
+    "metric": "auroc",
+    "category": "medical-imaging",
+    "description": "Owkin H-Optimus / DRAGON pathology external evaluation — multi-task cancer subtyping/biomarker. DRAGON 2 84.6, H-Optimus 81.2.",
+    "paper": "https://www.owkin.com/",
+    "expected_range": [
+      60,
+      92
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  }
+]
