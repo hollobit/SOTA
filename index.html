@@ -28,6 +28,7 @@
         <button class="tab-btn" data-tab="cyber-coding" role="tab" aria-selected="false" aria-controls="tab-cyber-coding" id="tabbtn-cyber-coding" tabindex="-1">Cyber &amp; Coding</button>
         <button class="tab-btn" data-tab="sovereign" role="tab" aria-selected="false" aria-controls="tab-sovereign" id="tabbtn-sovereign" tabindex="-1">Sovereign AI</button>
         <button class="tab-btn" data-tab="physical-ai" role="tab" aria-selected="false" aria-controls="tab-physical-ai" id="tabbtn-physical-ai" tabindex="-1">Physical AI</button>
+        <button class="tab-btn" data-tab="medical-ai" role="tab" aria-selected="false" aria-controls="tab-medical-ai" id="tabbtn-medical-ai" tabindex="-1">Medical AI</button>
         <button class="tab-btn" data-tab="explorer" role="tab" aria-selected="false" aria-controls="tab-explorer" id="tabbtn-explorer" tabindex="-1">Explorer</button>
         <button class="tab-btn" data-tab="resources" role="tab" aria-selected="false" aria-controls="tab-resources" id="tabbtn-resources" tabindex="-1">Resources</button>
         <button class="tab-btn" data-tab="changelog" role="tab" aria-selected="false" aria-controls="tab-changelog" id="tabbtn-changelog" tabindex="-1">Changelog</button>
@@ -433,6 +434,41 @@
             </div>
         </section>
 
+        <section id="tab-medical-ai" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-medical-ai">
+            <h2 class="text-section mb-2">Medical AI — Clinical · Biomedical · Imaging FMs</h2>
+            <p class="text-gray-400 text-sm mb-4">의료 특화 모델을 비교하는 전용 화면입니다. <strong class="text-gray-200">ChatGPT for Clinicians</strong> (OpenAI 2026-04-23) 같은 임상 워크플로 LLM부터 <strong class="text-gray-200">SAM(Segment Anything)</strong> · MedSAM · SAM-Med2D/3D 같은 universal segmentation FM, 그리고 pathology(Virchow · CONCH · UNI · Prov-GigaPath) · radiology(RadFM · CheXzero) · ophthalmology(RETFound · VisionFM) 전용 foundation 모델까지 5 카테고리로 묶어 보여줍니다.</p>
+
+            <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-3">카테고리별 ecosystem map</h3>
+                <div id="med-category-map"></div>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-1">Medical AI Benchmarks — performance leaderboards</h3>
+                <p class="text-xs text-gray-500 mb-3">5 sub-suite 종합 leaderboard: <strong class="text-gray-300">🩺 Clinical Workflow Chat</strong> (HealthBench Professional · HealthBench) / <strong class="text-gray-300">🎓 Medical Licensing & QA</strong> (MedQA USMLE · MedMCQA · PubMedQA · MMLU Clinical · MedXpertQA · MedBullets) / <strong class="text-gray-300">🏥 Clinical Case Reasoning</strong> (NEJM Image Challenge · JAMA Clinical Challenge) / <strong class="text-gray-300">🧊 Medical Imaging Segmentation</strong> (Universal Med-Seg Dice — CT/MRI/X-ray/endoscopy/ultrasound 11+ modality) / <strong class="text-gray-300">🔬 Specialty Imaging FMs</strong> (RetBench AUC · RadBench · Pathology External AUROC). 모든 컬럼 클릭 정렬 가능, 셀 클릭 → 검증 소스/이력 모달.</p>
+                <div id="med-benchmark-table"></div>
+            </div>
+
+            <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-1">Capability Radar — top medical players × 7 axes</h3>
+                <p class="text-xs text-gray-500 mb-3">HealthBench Pro · HealthBench · MedQA · MedMCQA · PubMedQA · MMLU-Med · MedXpertQA 7개 축에서 평균 점수 상위 6개 모델 비교.</p>
+                <div id="med-radar" class="h-96"></div>
+            </div>
+
+            <div class="bg-gray-900 border border-gray-800 rounded-lg p-4 mt-4">
+                <h3 class="text-widget text-gray-300 mb-2">Medical AI 메뉴 정의</h3>
+                <p class="text-sm text-gray-400 mb-2">의료·임상 워크플로에 특화되거나 의료 영상 segmentation/diagnosis용으로 학습/파인튜닝된 foundation 모델을 별도 추적. 5 카테고리:</p>
+                <ul class="text-xs text-gray-400 space-y-1 list-disc pl-5">
+                    <li><strong class="text-gray-200">Clinical LLMs</strong>: 임상의 대화·문서·prior auth 워크플로 LLM. OpenAI ChatGPT for Clinicians (GPT-5.4/5.5) · Med-Gemini 1/2/3 Pro · Med-PaLM 1/2 · MedGemma 9B/27B.</li>
+                    <li><strong class="text-gray-200">Biomedical LLMs</strong>: PubMed·Clinical guideline 사전학습. OpenBioLLM-Llama3 8B/70B · BioMistral 7B · Meditron 7B/70B · BioGPT-Large · Clinical Camel · MedAlpaca.</li>
+                    <li><strong class="text-gray-200">Medical Imaging FMs</strong>: Universal segmentation/diagnosis. Meta SAM 1/2 · MedSAM 1/2 · SAM-Med2D/3D · BiomedCLIP · LLaVA-Med · Rad-DINO · CXR Foundation · RadFM · CheXzero.</li>
+                    <li><strong class="text-gray-200">Specialty FMs</strong>: Pathology — Virchow2/2G · UNI2 · CONCH · TITAN · Prov-GigaPath. Ophthalmology — RETFound · VisionFM.</li>
+                    <li><strong class="text-gray-200">Frontier Baselines</strong>: GPT-5.5 · Claude Opus 4.6 — 범용 frontier 모델의 의료 벤치마크 baseline 비교용.</li>
+                </ul>
+                <p class="text-xs text-gray-500 mt-2">참고: <a href="https://openai.com/index/making-chatgpt-better-for-clinicians/" class="text-blue-400 hover:underline" target="_blank">OpenAI — Making ChatGPT better for clinicians</a> · <a href="https://openai.com/index/healthbench/" class="text-blue-400 hover:underline" target="_blank">HealthBench Professional</a></p>
+            </div>
+        </section>
+
         <section id="tab-explorer" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-explorer">
             <h2 class="text-section mb-4">Model Explorer — Compare 2 to 10 models</h2>
             <p class="text-sm text-gray-400 mb-4">2개 모델로 시작합니다. <strong class="text-gray-300">+ 모델 추가</strong> 버튼으로 최대 10개까지 모델을 더할 수 있고, 각 행의 × 버튼으로 제거할 수 있습니다 (최소 2개 유지). <strong class="text-gray-300">Compare</strong>를 누르면 공유 벤치마크 기준 radar chart와 모든 선택 모델이 채점된 벤치마크의 side-by-side matrix가 표시됩니다.</p>
@@ -478,16 +514,17 @@
         <p class="text-gray-500 text-sm">Collected by hollobit@etri.re.kr</p>
     </footer>
 
-    <script src="js/theme.js?v=adab4e80"></script>
-    <script src="js/modal.js?v=adab4e80"></script>
-    <script src="js/frontier-compare.js?v=adab4e80"></script>
-    <script src="js/cyber-coding.js?v=adab4e80"></script>
-    <script src="js/sovereign.js?v=adab4e80"></script>
-    <script src="js/physical-ai.js?v=adab4e80"></script>
-    <script src="js/charts.js?v=adab4e80"></script>
-    <script src="js/filters.js?v=adab4e80"></script>
-    <script src="js/explorer.js?v=adab4e80"></script>
-    <script src="js/comparison.js?v=adab4e80"></script>
-    <script src="js/app.js?v=adab4e80"></script>
+    <script src="js/theme.js?v=99d36b2d"></script>
+    <script src="js/modal.js?v=99d36b2d"></script>
+    <script src="js/frontier-compare.js?v=99d36b2d"></script>
+    <script src="js/cyber-coding.js?v=99d36b2d"></script>
+    <script src="js/sovereign.js?v=99d36b2d"></script>
+    <script src="js/physical-ai.js?v=99d36b2d"></script>
+    <script src="js/medical-ai.js?v=99d36b2d"></script>
+    <script src="js/charts.js?v=99d36b2d"></script>
+    <script src="js/filters.js?v=99d36b2d"></script>
+    <script src="js/explorer.js?v=99d36b2d"></script>
+    <script src="js/comparison.js?v=99d36b2d"></script>
+    <script src="js/app.js?v=99d36b2d"></script>
 </body>
 </html>

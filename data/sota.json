@@ -1050,19 +1050,19 @@
     "notes": "Vals.ai Finance Agent v1.1 #1 (April 2026)"
   },
   "healthbench": {
-    "model_id": "openai/gpt-5",
+    "model_id": "openai/gpt-5.5",
     "benchmark_id": "healthbench",
-    "value": 67.2,
+    "value": 72.8,
     "unit": "%",
     "source": {
-      "type": "pdf",
-      "url": "https://cdn.openai.com/gpt-5-system-card.pdf",
-      "date": "2026-04-18",
+      "type": "leaderboard",
+      "url": "https://openai.com/index/healthbench/",
+      "date": "2026-04-26",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-04-18",
-    "notes": "gpt-5-thinking headline score (Fig 6)"
+    "collected_at": "2026-04-26",
+    "notes": ""
   },
   "healthbench_hard": {
     "model_id": "openai/gpt-5",
@@ -1559,21 +1559,6 @@
     "collected_at": "2026-04-24",
     "notes": "V4-Pro-Base 3-shot pass@1"
   },
-  "healthbench_professional": {
-    "model_id": "openai/gpt-5.5",
-    "benchmark_id": "healthbench_professional",
-    "value": 51.8,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://deploymentsafety.openai.com/gpt-5-5/introduction",
-      "date": "2026-04-24",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-24",
-    "notes": "GPT-5.5 System Card — +3.7pt vs GPT-5.4 Thinking"
-  },
   "cyscenariobench": {
     "model_id": "openai/gpt-5.5",
     "benchmark_id": "cyscenariobench",
@@ -2069,6 +2054,21 @@
     "collected_at": "2026-04-24",
     "notes": "System Card Table 6"
   },
+  "healthbench_professional": {
+    "model_id": "openai/chatgpt-clinicians-gpt55",
+    "benchmark_id": "healthbench_professional",
+    "value": 64.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/index/making-chatgpt-better-for-clinicians/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "Estimated SOTA per launch announcement"
+  },
   "protein_binding": {
     "model_id": "openai/gpt-5.4-thinking",
     "benchmark_id": "protein_binding",
@@ -2549,21 +2549,6 @@
     "collected_at": "2026-04-25",
     "notes": "Meditron-70B 5-option MedQA — harder variant"
   },
-  "pubmedqa": {
-    "model_id": "google/medgemma-27b",
-    "benchmark_id": "pubmedqa",
-    "value": 76.8,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/google/medgemma-27b-it",
-      "date": "2026-04-25",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "Text-Only"
-  },
   "med_avg": {
     "model_id": "mbzuai/bimedix",
     "benchmark_id": "med_avg",
@@ -2759,20 +2744,20 @@
     "collected_at": "2026-04-25",
     "notes": "Genie 3 ~3 minutes consistency, 1-minute visual memory horizon. Includes promptable world events (weather, objects)."
   },
-  "medmcqa": {
-    "model_id": "google/medgemma-27b",
-    "benchmark_id": "medmcqa",
-    "value": 74.2,
+  "pubmedqa": {
+    "model_id": "google/med-palm-2",
+    "benchmark_id": "pubmedqa",
+    "value": 81.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://huggingface.co/google/medgemma-27b-it",
-      "date": "2026-04-25",
+      "url": "https://arxiv.org/abs/2305.09617",
+      "date": "2026-04-26",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "Text-Only"
+    "collected_at": "2026-04-26",
+    "notes": ""
   },
   "mmlu_med": {
     "model_id": "google/medgemma-27b",
@@ -2788,21 +2773,6 @@
     "is_sota": true,
     "collected_at": "2026-04-25",
     "notes": "Text-Only — 4pt above Gemma 3 27B base 83.3"
-  },
-  "medxpertqa": {
-    "model_id": "google/medgemma-27b",
-    "benchmark_id": "medxpertqa",
-    "value": 25.7,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/google/medgemma-27b-it",
-      "date": "2026-04-25",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "Text-Only — frontier-grade hard eval"
   },
   "afrimed_qa": {
     "model_id": "google/medgemma-27b",
@@ -2833,6 +2803,36 @@
     "is_sota": true,
     "collected_at": "2026-04-25",
     "notes": "Text-Only"
+  },
+  "medmcqa": {
+    "model_id": "saama/openbiollm-llama3-70b",
+    "benchmark_id": "medmcqa",
+    "value": 74.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/blog/aaditya/openbiollm",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "medxpertqa": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "medxpertqa",
+    "value": 68.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/gpt-5",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
   },
   "mmbench_en": {
     "model_id": "alibaba/qwen3.6-35b-a3b",
@@ -3928,5 +3928,125 @@
     "is_sota": true,
     "collected_at": "2026-04-26",
     "notes": "Octo-Base SimplerEnv aggregate baseline"
+  },
+  "medqa_usmle": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "medqa_usmle",
+    "value": 95.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/gpt-5",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "mmlu_clinical": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "mmlu_clinical",
+    "value": 95.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/gpt-5",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "nejm_image": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "nejm_image",
+    "value": 73.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/gpt-5",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "jama_clin_chal": {
+    "model_id": "openai/chatgpt-clinicians-gpt54",
+    "benchmark_id": "jama_clin_chal",
+    "value": 76.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/index/making-chatgpt-better-for-clinicians/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "medseg_dice": {
+    "model_id": "bowang-lab/medsam",
+    "benchmark_id": "medseg_dice",
+    "value": 92.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://github.com/bowang-lab/MedSAM",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "median Dice across 11 modalities"
+  },
+  "retbench_auc": {
+    "model_id": "shanghai-ai-lab/visionfm",
+    "benchmark_id": "retbench_auc",
+    "value": 90.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2310.04992",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": ""
+  },
+  "radbench": {
+    "model_id": "shanghai-ai-lab/radfm",
+    "benchmark_id": "radbench",
+    "value": 71.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41467-025-62385-7",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "outperforms GPT-4V baseline"
+  },
+  "path_bench": {
+    "model_id": "paige-ai/virchow2",
+    "benchmark_id": "path_bench",
+    "value": 82.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2408.00738",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "9-task external avg AUROC"
   }
 }

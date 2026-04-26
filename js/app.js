@@ -193,6 +193,7 @@ var App = {
             if (btn.dataset.tab === 'cyber-coding') CyberCoding.render();
             if (btn.dataset.tab === 'sovereign' && typeof Sovereign !== 'undefined') Sovereign.render();
             if (btn.dataset.tab === 'physical-ai' && typeof PhysicalAI !== 'undefined') PhysicalAI.render();
+            if (btn.dataset.tab === 'medical-ai' && typeof MedicalAI !== 'undefined') MedicalAI.render();
             if (btn.dataset.tab === 'resources') self.renderResources();
             if (btn.dataset.tab === 'changelog') self.renderChangelog();
         }
@@ -1327,7 +1328,15 @@ var App = {
             { name: 'Solar Open Technical Report', file: '2601.07022v1.pdf', vendor: 'Upstage', date: 'Jan 2026', url: 'https://arxiv.org/abs/2601.07022' },
             { name: 'A.X K1 Technical Report', file: '2601.09200v5.pdf', vendor: 'SK Telecom', date: 'Feb 2026', url: 'https://arxiv.org/abs/2601.09200' },
             { name: 'Mi:dm K 2.5 Pro', file: '2603.18788v2.pdf', vendor: 'KT', date: 'Mar 2026', url: 'https://arxiv.org/abs/2603.18788' },
-            { name: 'Gemma 4/Phi-4/Qwen3 MoE Comparison', file: '2604.07035v1.pdf', vendor: 'RPI', date: 'Apr 2026', url: 'https://arxiv.org/abs/2604.07035' }
+            { name: 'Gemma 4/Phi-4/Qwen3 MoE Comparison', file: '2604.07035v1.pdf', vendor: 'RPI', date: 'Apr 2026', url: 'https://arxiv.org/abs/2604.07035' },
+            { name: 'Med-Gemini — Capabilities of Gemini Models in Medicine', file: 'med-gemini-2404.18416.pdf', vendor: 'Google DeepMind', date: 'Apr 2024', url: 'https://arxiv.org/abs/2404.18416' },
+            { name: 'Med-PaLM 2 — Towards Expert-Level Medical QA', file: 'med-palm-2-2305.09617.pdf', vendor: 'Google', date: 'May 2023', url: 'https://arxiv.org/abs/2305.09617' },
+            { name: 'BioMistral — Open-Source Biomedical LLMs', file: 'biomistral-2402.10373.pdf', vendor: 'Avignon Univ', date: 'Feb 2024', url: 'https://arxiv.org/abs/2402.10373' },
+            { name: 'MedSAM — Segment Anything in Medical Images', file: 'medsam-paper.pdf', vendor: 'Bowang Lab (UoT)', date: 'Jan 2024', url: 'https://github.com/bowang-lab/MedSAM' },
+            { name: 'Virchow2 — Pathology Foundation Model', file: 'virchow2-2408.00738.pdf', vendor: 'Paige AI + MSK', date: 'Aug 2024', url: 'https://arxiv.org/abs/2408.00738' },
+            { name: 'Prov-GigaPath — Whole-Slide Pathology FM (Nature)', file: 'prov-gigapath-nature.pdf', vendor: 'Microsoft + Providence', date: 'May 2024', url: 'https://www.nature.com/articles/s41586-024-07441-w' },
+            { name: 'RETFound — Retinal Foundation Model (Nature)', file: 'retfound-nature.pdf', vendor: 'Moorfields + UCL', date: 'Sep 2023', url: 'https://www.nature.com/articles/s41586-023-06555-x' },
+            { name: 'RadFM — Radiology Foundation Model (Nat. Comm.)', file: 'radfm-2025.pdf', vendor: 'Shanghai AI Lab', date: 'Aug 2025', url: 'https://www.nature.com/articles/s41467-025-62385-7' }
         ];
 
         pdfDocs.forEach(function(doc) {
@@ -1458,7 +1467,20 @@ var App = {
             { name: 'Covariant RFM-1', url: 'https://covariant.ai/insights/rfm-1-update-higher-quality-grasp-accuracy/', desc: '8B robot foundation model. -43% pick retry rate, 99% real-world precision, 1000 cycles/hour' },
             { name: 'Apptronik Apollo', url: 'https://apptronik.com/apollo', desc: 'Humanoid (DeepMind Gemini Robotics partnership): 25 kg payload, 4 hr battery, 71 DOF, 5 min battery swap' },
             { name: 'Sanctuary AI Carbon (Phoenix)', url: 'https://www.sanctuary.ai/blog', desc: 'Gen 8 Phoenix — task automation in 24 hours (down from weeks)' },
-            { name: 'Landing AI VisionAgent', url: 'https://landing.ai/blog/what-is-agentic-object-detection', desc: 'Agentic object detection — internal F1 79.7% (beats GPT-4o, Qwen2.5-VL, Florence-2, OWLv2)' }
+            { name: 'Landing AI VisionAgent', url: 'https://landing.ai/blog/what-is-agentic-object-detection', desc: 'Agentic object detection — internal F1 79.7% (beats GPT-4o, Qwen2.5-VL, Florence-2, OWLv2)' },
+            { name: 'OpenAI ChatGPT for Clinicians', url: 'https://openai.com/index/making-chatgpt-better-for-clinicians/', desc: 'Free clinician-tier ChatGPT (Apr 2026) — GPT-5.4 scores 59.0 on HealthBench Professional vs 43.7 human physicians' },
+            { name: 'OpenAI HealthBench Professional', url: 'https://openai.com/index/healthbench/', desc: 'Open clinician chat benchmark — 525 tasks, 3 use cases (care consult / writing / research), physician rubrics' },
+            { name: 'Med-Gemini (Google Research)', url: 'https://research.google/blog/advancing-medical-ai-with-med-gemini/', desc: 'Med-Gemini family — MedQA 91.1% via uncertainty-guided search. NEJM Image, JAMA, MIMIC-IV evals' },
+            { name: 'Med-PaLM (Google)', url: 'https://sites.research.google/med-palm/', desc: 'Med-PaLM 2 — first to reach human-expert MedQA 86.5%. Med-PaLM M multimodal fork (DeID radiology)' },
+            { name: 'MedSAM (Bowang Lab)', url: 'https://github.com/bowang-lab/MedSAM', desc: 'Universal med-image segmentation — 11 modalities, 1M image-mask pairs. Median Dice 92% (CT ICH 94, glioma MR 94.4)' },
+            { name: 'SAM-Med2D / SAM-Med3D', url: 'https://github.com/OpenGVLab/SAM-Med2D', desc: 'Shanghai AI Lab universal med-seg — 4.6M images / 19.7M masks. 2D + 3D variants' },
+            { name: 'OpenBioLLM (Saama)', url: 'https://huggingface.co/blog/aaditya/openbiollm', desc: 'OpenBioLLM-70B (Llama 3) — outperforms GPT-4/Med-PaLM-2/Meditron on 9 biomedical datasets, avg 86.06%' },
+            { name: 'Meditron (EPFL/Yale)', url: 'https://huggingface.co/epfl-llm/meditron-70b', desc: 'Meditron 7B/70B — Llama-2 medical fine-tune on PubMed + clinical guidelines' },
+            { name: 'Mahmood Lab Pathology FMs', url: 'https://github.com/mahmoodlab', desc: 'UNI / UNI2 / CONCH / TITAN — Harvard pathology FMs, no TCGA contamination, public benchmark-ready' },
+            { name: 'Paige AI Virchow', url: 'https://arxiv.org/abs/2408.00738', desc: 'Virchow2 (ViT-H) and Virchow2G (ViT-G) — 1.7B-1.9B-tile pathology DINOv2 FMs, external avg AUROC 0.82' },
+            { name: 'Microsoft Prov-GigaPath', url: 'https://www.nature.com/articles/s41586-024-07441-w', desc: 'Whole-slide pathology FM — 1.3B tiles / 171K WSIs from Providence. 17 genomic + 9 cancer subtyping evals' },
+            { name: 'RETFound (Moorfields/UCL)', url: 'https://www.nature.com/articles/s41586-023-06555-x', desc: 'Retinal FM — 1.6M unlabeled retinal images, sight-threatening + systemic disease prediction' },
+            { name: 'RadFM (Shanghai AI Lab)', url: 'https://www.nature.com/articles/s41467-025-62385-7', desc: 'Generalist radiology FM — 13M 2D + 615K 3D scans, RadBench, beats GPT-4V' }
         ];
 
         sites.forEach(function(site) {

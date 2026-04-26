@@ -623,13 +623,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "healthbench",
-    "name": "HealthBench",
-    "category": "reasoning",
-    "description": "OpenAI's 5,000 multi-turn medical dialogues with physician-created rubrics; graded on accuracy, safety, and presentation.",
-    "metric": "accuracy"
-  },
-  {
     "id": "healthbench_hard",
     "name": "HealthBench Hard",
     "category": "reasoning",
@@ -914,13 +907,6 @@
     "name": "Apex Shortlist",
     "category": "agent",
     "description": "APEX agents shortlist subset — broader pass@1 distribution than hard tier.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "healthbench_professional",
-    "name": "HealthBench Professional",
-    "category": "reasoning",
-    "description": "HealthBench variant graded on professional/clinician-level rubrics; introduced in GPT-5.5 System Card (Apr 2026).",
     "metric": "accuracy"
   },
   {
@@ -1491,31 +1477,10 @@
     "metric": "accuracy"
   },
   {
-    "id": "medmcqa",
-    "name": "MedMCQA",
-    "category": "reasoning",
-    "description": "194,000 medical multiple choice questions across 21 specialties from Indian medical entrance exams (AIIMS, NEET).",
-    "metric": "accuracy"
-  },
-  {
-    "id": "pubmedqa",
-    "name": "PubMedQA",
-    "category": "reasoning",
-    "description": "1,000 expert-labeled QA examples sourced from PubMed abstracts. Yes/No/Maybe answer classification on biomedical research questions.",
-    "metric": "accuracy"
-  },
-  {
     "id": "mmlu_med",
     "name": "MMLU (Medical subjects)",
     "category": "reasoning",
     "description": "MMLU restricted to 9 medical-related subjects: anatomy, clinical knowledge, college medicine, medical genetics, professional medicine, virology, etc.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "medxpertqa",
-    "name": "MedXpertQA",
-    "category": "reasoning",
-    "description": "Expert-grade medical reasoning benchmark with very long-tail domain knowledge questions. Significantly harder than MedQA — frontier-grade medical eval.",
     "metric": "accuracy"
   },
   {
@@ -2140,5 +2105,103 @@
     "category": "agent",
     "description": "Post-training success rate on Unitree G1 humanoid. GR00T N1.5 98.8% leader.",
     "metric": "accuracy"
+  },
+  {
+    "id": "healthbench_professional",
+    "name": "HealthBench Professional",
+    "category": "medical",
+    "description": "OpenAI 525-task clinician chat benchmark (care consult / writing & docs / medical research) — physician-authored rubrics",
+    "metric": "score"
+  },
+  {
+    "id": "healthbench",
+    "name": "HealthBench",
+    "category": "medical",
+    "description": "OpenAI 5,000-conversation health rubric benchmark",
+    "metric": "score"
+  },
+  {
+    "id": "medqa_usmle",
+    "name": "MedQA (USMLE)",
+    "category": "medical",
+    "description": "USMLE-style multiple-choice question answering",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medmcqa",
+    "name": "MedMCQA",
+    "category": "medical",
+    "description": "Indian medical entrance exam multi-choice",
+    "metric": "accuracy"
+  },
+  {
+    "id": "pubmedqa",
+    "name": "PubMedQA",
+    "category": "medical",
+    "description": "Yes/no/maybe biomedical research QA",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mmlu_clinical",
+    "name": "MMLU Clinical Knowledge",
+    "category": "medical",
+    "description": "MMLU 6-subject medical bundle (anatomy, college medicine, clinical knowledge, medical genetics, professional medicine, virology)",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medxpertqa",
+    "name": "MedXpertQA",
+    "category": "medical",
+    "description": "Expert-level medical reasoning benchmark",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medbullets",
+    "name": "MedBullets-5op",
+    "category": "medical",
+    "description": "Clinical case multi-choice",
+    "metric": "accuracy"
+  },
+  {
+    "id": "nejm_image",
+    "name": "NEJM Image Challenge",
+    "category": "medical-imaging",
+    "description": "New England Journal of Medicine image-based diagnostic challenge",
+    "metric": "accuracy"
+  },
+  {
+    "id": "jama_clin_chal",
+    "name": "JAMA Clinical Challenge",
+    "category": "medical",
+    "description": "JAMA Network clinical case quiz",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medseg_dice",
+    "name": "Universal Med-Seg Dice",
+    "category": "medical-imaging",
+    "description": "Universal medical-segmentation Dice score across 11+ modalities (CT/MRI/X-ray/endoscopy/ultrasound)",
+    "metric": "dice"
+  },
+  {
+    "id": "retbench_auc",
+    "name": "RetBench (External AUC)",
+    "category": "medical-imaging",
+    "description": "Ophthalmic foundation-model benchmark — external validation AUC",
+    "metric": "auc"
+  },
+  {
+    "id": "radbench",
+    "name": "RadBench (RadFM)",
+    "category": "medical-imaging",
+    "description": "Multi-modal radiology benchmark (2D + 3D, diagnosis + report generation)",
+    "metric": "score"
+  },
+  {
+    "id": "path_bench",
+    "name": "Pathology External Benchmark",
+    "category": "medical-imaging",
+    "description": "Pathology FM external benchmarking — 9-task average AUROC",
+    "metric": "auroc"
   }
 ]
