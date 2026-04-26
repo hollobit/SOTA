@@ -1,5 +1,14 @@
 [
   {
+    "type": "Fix",
+    "date": "2026-04-26",
+    "benchmark_id": "Medical AI 메뉴 — 한국 카테고리에서 비-LLM/FM 모델 제거",
+    "new_model": "Korean Medical AI 카테고리 LLM/FM only로 정정",
+    "new_value": "User-flagged: '한국 모델 중에는 LLM 기반이 아닌 것도 있다'. 한국 sovereign 의료 AI 카테고리에서 task-specific CV/tabular 모델 4개 제거: Lunit INSIGHT CXR v4 (흉부 X-ray classifier), Lunit INSIGHT MMG v3 (mammography detection), VUNO Med-DeepCARS (vital sign 시계열 mortality 예측 tabular ML), VUNO Med-Chest X-Detect (chest X-ray detection CV). 카테고리 라벨도 'Korean Medical AI (Sovereign)' → 'Korean Medical AI (LLM/FM)'로 명확화. 남은 5개는 모두 LLM/FM: SNUH KMed.ai (Naver, KMLE 96.4 SOTA), SNU-Med v1, Lunit MedScale Foundation 32B (정부 AI 전략 consortium), Kakao Healthcare Foundation 7B, MedKAIST 13B. 제거된 모델은 DB에 그대로 남겨 출시 타임라인/historical reference용으로 유지. Cache: medical-ai.js?v=20260426g.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
     "type": "Feature",
     "date": "2026-04-26",
     "benchmark_id": "Medical AI 메뉴 — 국가별 출시 타임라인 그래프 추가",
