@@ -91,17 +91,13 @@ var MedicalAI = {
         },
         {
             code: 'korean-medical',
-            label: 'Korean Medical AI (Sovereign)',
+            label: 'Korean Medical AI (LLM/FM)',
             icon: '🇰🇷',
-            note: 'SNUH KMed.ai (KMLE 96.4 SOTA) · SNU-Med v1 · Lunit MedScale 32B (정부 consortium) · Lunit INSIGHT · VUNO Med-DeepCARS/Chest · Kakao Healthcare Foundation · MedKAIST',
+            note: 'LLM/FM only — SNUH KMed.ai (Naver, KMLE 96.4 SOTA) · SNU-Med v1 · Lunit MedScale Foundation 32B (정부 AI 전략 consortium) · Kakao Healthcare Foundation 7B · MedKAIST. Lunit INSIGHT CXR/MMG·VUNO Med-DeepCARS/Chest는 task-specific CV/tabular 모델로 LLM/FM 카테고리에서 제외',
             models: [
                 'snuh-naver/kmed-ai',
                 'snuh/snu-med-llm-v1',
                 'lunit/medscale-foundation-32b',
-                'lunit/insight-cxr-v4',
-                'lunit/insight-mmg-v3',
-                'vuno/med-deepcars',
-                'vuno/med-chest-x-detect',
                 'kakao-healthcare/kakaohealth-foundation-7b',
                 'kaist/medkaist-llm-13b'
             ]
