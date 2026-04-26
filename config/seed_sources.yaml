@@ -618,3 +618,105 @@ sources:
     type: vendor_page
     format: html_table
     notes: "Gemini Robotics-ER 1.5/1.6 evaluation framework — Point-Bench / RefSpatial / RoboSpatial / ERQA / OpenEQA / VSI-Bench aggregate."
+
+  # ─────────────── Medical AI benchmark datasets ───────────────
+  - url: "https://openai.com/index/healthbench/"
+    name: "HealthBench (OpenAI)"
+    type: benchmark_page
+    format: html_table
+    notes: "OpenAI HealthBench main page — 5,000 conversation rubric benchmark. GPT-5.5 72.8, Med-Gemini 3 Pro 66.7, Claude Opus 4.6 65.1. Realistic patient-clinician dialogues, 262 physician rubrics across 7 themes."
+  - url: "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
+    name: "HealthBench Professional Paper (PDF)"
+    type: benchmark_paper
+    format: pdf
+    notes: "OpenAI HealthBench Professional whitepaper — 525 tasks, 3 use cases (care consult / writing / research). GPT-5.4 ChatGPT for Clinicians 59.0 vs human physicians 43.7."
+  - url: "https://github.com/jind11/MedQA"
+    name: "MedQA (USMLE) Dataset"
+    type: benchmark_dataset
+    format: github
+    notes: "MedQA-USMLE source repo — 12,723 4-option MCQs (US/Mainland China/Taiwan). Standard medical-LLM benchmark since 2020. Med-Gemini 91.1, Med-PaLM 2 86.5, GPT-5.5 95.4."
+  - url: "https://medmcqa.github.io"
+    name: "MedMCQA Dataset"
+    type: benchmark_page
+    format: html_table
+    notes: "194K Indian medical entrance (AIIMS/NEET PG) questions across 21 subjects. MedMCQA leaderboard. OpenBioLLM-70B 74.3, MedGemma 27B 71.5, Med-PaLM 2 72.3."
+  - url: "https://pubmedqa.github.io"
+    name: "PubMedQA Dataset"
+    type: benchmark_page
+    format: html_table
+    notes: "1k expert-labeled + 61.2k labeled + 211.3k unlabeled PubMed-abstract QA. Yes/No/Maybe over abstract context. BioGPT-Large 81.0, OpenBioLLM 79.0, BioMistral 77.5."
+  - url: "https://arxiv.org/abs/2501.18362"
+    name: "MedXpertQA Paper"
+    type: benchmark_paper
+    format: pdf
+    notes: "Expert-level medical reasoning — 4,460 questions across 17 specialties + 11 body systems. Text + Multimodal subsets. GPT-5.5 68.3, Med-Gemini 3 Pro 64.2."
+  - url: "https://arxiv.org/abs/2402.18060"
+    name: "MedBullets Paper"
+    type: benchmark_paper
+    format: pdf
+    notes: "USMLE Step 2/3-style 5-option questions from MedBullets. Harder than 4-option MedQA. ~308 per split."
+  - url: "https://www.nejm.org/image-challenge"
+    name: "NEJM Image Challenge"
+    type: benchmark_page
+    format: html_table
+    notes: "Weekly image-based diagnostic challenge — 935+ image-vignette MCQs. Vision-language reasoning gold standard. GPT-5.5 73.4, Med-Gemini 65.0."
+  - url: "https://jamanetwork.com/collections/44038/clinical-challenge"
+    name: "JAMA Clinical Challenge"
+    type: benchmark_page
+    format: html_table
+    notes: "JAMA Network case-quiz collection — 1,524 real patient vignettes. Diagnostic reasoning eval. ChatGPT for Clinicians 76.2."
+  - url: "https://www.nature.com/articles/s41467-024-44824-z"
+    name: "MedSAM Paper (Nature Communications)"
+    type: benchmark_paper
+    format: pdf
+    notes: "MedSAM Universal Med-Seg benchmark — 11 modalities, 1M image-mask pairs. Median Dice 92.0% (CT ICH 94, glioma MR 94.4, pneumothorax XR 81.5, polyp endoscopy 98.4)."
+  - url: "https://arxiv.org/abs/2402.09181"
+    name: "OmniMedVQA Paper"
+    type: benchmark_paper
+    format: pdf
+    notes: "118K medical VQA questions from 73 datasets × 12 modalities × 20 anatomical areas. LVLM medical evaluation."
+  - url: "https://www.med.upenn.edu/cbica/brats2024/"
+    name: "BraTS Challenge (UPenn CBICA)"
+    type: benchmark_page
+    format: html_table
+    notes: "Annual MICCAI Brain Tumor Segmentation Challenge — multi-institutional MRI (FLAIR/T1/T1CE/T2). Whole tumor / core / enhancing Dice. Reference med-seg challenge since 2012."
+  - url: "https://link.springer.com/chapter/10.1007/978-3-032-10351-2_8"
+    name: "RetBench Paper"
+    type: benchmark_paper
+    format: pdf
+    notes: "Ophthalmic foundation-model evaluation — disease detection (glaucoma/DR/AMD) + systemic prediction (diabetes/hypertension). Benchmarks RETFound (89.0) / VisionFM (90.5) / RetiZero / DINORET."
+  - url: "https://www.nature.com/articles/s41467-025-62385-7"
+    name: "RadFM / RadBench Paper (Nature Comm.)"
+    type: benchmark_paper
+    format: pdf
+    notes: "RadFM generalist radiology FM + RadBench — 13M 2D + 615K 3D scans, diagnosis + report-generation. RadFM 71.3, LLaVA-Med 64.8, CheXzero 60.5, beats GPT-4V."
+  - url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/"
+    name: "Pathology FM External Benchmark Paper"
+    type: benchmark_paper
+    format: pdf
+    notes: "9-task external avg AUROC across cancer subtyping + biomarker prediction. Virchow2 0.82, UNI2 0.79, Prov-GigaPath 0.787, CONCH 0.764, Virchow2G 0.805, TITAN 0.78."
+  - url: "https://aclanthology.org/2024.bionlp-1.21/"
+    name: "KMLE (Korean Medical Licensing Exam) Dataset"
+    type: benchmark_paper
+    format: pdf
+    notes: "Korean Medical Licensing Examination — 320 Q/year × 4 sections. SNUH KMed.ai 96.4 (3-year avg). Sovereign Korean medical benchmark."
+  - url: "https://arxiv.org/abs/2206.06636"
+    name: "EHRQA Paper"
+    type: benchmark_paper
+    format: pdf
+    notes: "Electronic Health Record QA — clinical info retrieval over EHR notes. MedGemma evaluation reference."
+  - url: "https://arxiv.org/abs/2002.06045"
+    name: "RAD-ChestCT Paper"
+    type: benchmark_paper
+    format: pdf
+    notes: "Chest CT 3D classification — 35,747 volumes × 84 abnormalities. RadFM evaluation dataset."
+  - url: "https://huggingface.co/datasets/openlifescienceai/medqa"
+    name: "MedQA on HuggingFace"
+    type: benchmark_dataset
+    format: huggingface
+    notes: "MedQA-USMLE accessible HF dataset — train/dev/test splits. Used by Meditron, BioMistral, OpenBioLLM."
+  - url: "https://huggingface.co/datasets/qiaojin/PubMedQA"
+    name: "PubMedQA on HuggingFace"
+    type: benchmark_dataset
+    format: huggingface
+    notes: "PubMedQA labeled + unlabeled splits. Standard biomedical QA dataset."

@@ -78,3 +78,212 @@ benchmarks:
     unit: "%"
     expected_range: [5, 90]
     description: "American Invitational Mathematics Examination - competition math problems"
+
+  # ─────────────────────── Medical AI ───────────────────────
+  - id: healthbench_professional
+    name: HealthBench Professional
+    category: medical
+    metric: score
+    unit: "%"
+    expected_range: [20, 80]
+    description: "OpenAI 525-task clinician chat benchmark — 3 use cases (care consult / writing & docs / medical research). Physician-authored conversations + multi-stage physician adjudication rubrics. GPT-5.4 ChatGPT for Clinicians 59.0 vs human physicians 43.7."
+    paper: "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
+
+  - id: healthbench
+    name: HealthBench
+    category: medical
+    metric: score
+    unit: "%"
+    expected_range: [20, 90]
+    description: "OpenAI 5,000-conversation health rubric benchmark. Realistic patient + clinician scenarios graded by 262 physician-authored rubrics across 7 themes (emergency referrals, global health, etc.)."
+    paper: "https://openai.com/index/healthbench/"
+
+  - id: medqa_usmle
+    name: MedQA (USMLE)
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 96]
+    description: "USMLE-style 4-option multiple-choice question answering. 12,723 questions (US/Mainland China/Taiwan). Med-Gemini 91.1, Med-PaLM 2 86.5, GPT-5.5 95.4."
+    paper: "https://arxiv.org/abs/2009.13081"
+
+  - id: medmcqa
+    name: MedMCQA
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 90]
+    description: "Indian medical entrance exam (AIIMS/NEET PG) multi-choice — 194K questions across 21 medical subjects. Used as standard licensing comparison alongside USMLE."
+    paper: "https://arxiv.org/abs/2203.14371"
+
+  - id: pubmedqa
+    name: PubMedQA
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [50, 90]
+    description: "Biomedical research literature QA — 1k expert + 61.2k labeled + 211.3k unlabeled questions from PubMed abstracts. Yes/No/Maybe answer over abstract context."
+    paper: "https://arxiv.org/abs/1909.06146"
+
+  - id: mmlu_clinical
+    name: MMLU Clinical Knowledge
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [50, 99]
+    description: "MMLU 6-subject medical bundle — anatomy, college medicine, clinical knowledge, medical genetics, professional medicine, virology. Standard for biomedical-LLM ranking (OpenBioLLM 92.9)."
+    paper: "https://arxiv.org/abs/2009.03300"
+
+  - id: medxpertqa
+    name: MedXpertQA
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [20, 75]
+    description: "Expert-level medical reasoning benchmark — 4,460 questions from medical specialty exams covering 17 specialties + 11 body systems. Reasoning, knowledge, calculation subsets. GPT-5.5 68.3, Med-Gemini 3 Pro 64.2."
+    paper: "https://arxiv.org/abs/2501.18362"
+
+  - id: medbullets
+    name: MedBullets-5op
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 90]
+    description: "Clinical case multi-choice — USMLE Step 2/3-style questions from MedBullets. 5-option format, harder than 4-option MedQA. ~308 questions per split."
+    paper: "https://arxiv.org/abs/2402.18060"
+
+  - id: nejm_image
+    name: NEJM Image Challenge
+    category: medical-imaging
+    metric: accuracy
+    unit: "%"
+    expected_range: [30, 85]
+    description: "New England Journal of Medicine weekly image-based diagnostic challenge — 935+ image-clinical-vignette MCQs across all medical specialties. Vision-language reasoning gold standard. GPT-5.5 73.4, Med-Gemini-L 65.0."
+    paper: "https://arxiv.org/abs/2404.18416"
+
+  - id: jama_clin_chal
+    name: JAMA Clinical Challenge
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [30, 90]
+    description: "JAMA Network clinical case quiz — diagnostic reasoning on real patient vignettes. 1,524 cases across primary care, internal medicine, emergency."
+    paper: "https://jamanetwork.com/collections/44038/clinical-challenge"
+
+  - id: medseg_dice
+    name: Universal Med-Seg Dice
+    category: medical-imaging
+    metric: dice
+    unit: "%"
+    expected_range: [50, 99]
+    description: "Universal medical-segmentation benchmark — Dice Similarity Coefficient across 11+ modalities (CT/MRI/X-ray/endoscopy/ultrasound/dermoscopy/fundus). MedSAM 92.0 median, MedSAM2 89.2, SAM-Med2D 88.3, vanilla SAM 58.7."
+    paper: "https://www.nature.com/articles/s41467-024-44824-z"
+
+  - id: retbench_auc
+    name: RetBench (External AUC)
+    category: medical-imaging
+    metric: auc
+    unit: "%"
+    expected_range: [60, 96]
+    description: "Ophthalmic foundation-model evaluation suite — external validation AUC on glaucoma, DR (diabetic retinopathy), AMD (age-related macular degeneration), diabetes, hypertension prediction from retinal images. RETFound 89.0, VisionFM 90.5."
+    paper: "https://link.springer.com/chapter/10.1007/978-3-032-10351-2_8"
+
+  - id: radbench
+    name: RadBench (RadFM)
+    category: medical-imaging
+    metric: score
+    unit: "%"
+    expected_range: [50, 85]
+    description: "Multi-modal radiology benchmark — 2D + 3D scans, diagnosis + report-generation tasks. RadFM 71.3, LLaVA-Med 64.8, CheXzero 60.5 (beats GPT-4V baseline)."
+    paper: "https://www.nature.com/articles/s41467-025-62385-7"
+
+  - id: path_bench
+    name: Pathology External Benchmark
+    category: medical-imaging
+    metric: auroc
+    unit: "%"
+    expected_range: [60, 90]
+    description: "Pathology FM external evaluation — 9-task average AUROC across cancer subtyping + biomarker prediction (BRCA, RCC, NSCLC, MSI-CRC, etc.). Virchow2 0.82, UNI2 0.79, Prov-GigaPath 0.787, CONCH 0.764."
+    paper: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/"
+
+  - id: kmle
+    name: KMLE (Korean Medical Licensing Exam)
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 99]
+    description: "Korean Medical Licensing Examination — 320 questions/year × 4 sections. Sovereign Korean medical LLM benchmark. SNUH KMed.ai 96.4 (3-year average)."
+    paper: "https://aclanthology.org/2024.bionlp-1.21/"
+
+  - id: medxpertqa_text
+    name: MedXpertQA Text
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [20, 75]
+    description: "Text-only subset of MedXpertQA — pure reasoning without image input. Used as base separator from MedXpertQA-MM (multimodal). 2,460 questions."
+    paper: "https://arxiv.org/abs/2501.18362"
+
+  - id: medxpertqa_mm
+    name: MedXpertQA Multimodal
+    category: medical-imaging
+    metric: accuracy
+    unit: "%"
+    expected_range: [15, 65]
+    description: "Multimodal subset of MedXpertQA — 2,000 image+text expert reasoning questions. Image types: radiology, pathology, dermatology, ophthalmology, ECG."
+    paper: "https://arxiv.org/abs/2501.18362"
+
+  - id: ehrqa
+    name: EHRQA
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [30, 85]
+    description: "Electronic Health Record question answering — clinical information retrieval over EHR notes. MedGemma evaluation reference."
+    paper: "https://arxiv.org/abs/2206.06636"
+
+  - id: medqa_4opt
+    name: MedQA-4opt
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [40, 96]
+    description: "Standard 4-option subset of MedQA-USMLE. Most cited medical-LLM benchmark. Distinct from MedQA-5opt extension used in some papers."
+    paper: "https://arxiv.org/abs/2009.13081"
+
+  - id: care_qa
+    name: CARE-QA
+    category: medical
+    metric: accuracy
+    unit: "%"
+    expected_range: [30, 85]
+    description: "Clinical Assistance Reasoning & Evaluation QA — 1,287 patient-physician dialogue tasks. Used in HealthBench-adjacent evaluations."
+    paper: "https://arxiv.org/abs/2406.06474"
+
+  - id: omnimedvqa
+    name: OmniMedVQA
+    category: medical-imaging
+    metric: accuracy
+    unit: "%"
+    expected_range: [30, 90]
+    description: "Comprehensive medical VQA benchmark — 118K questions from 73 medical imaging datasets across 12 modalities + 20 anatomical areas. LVLM medical capability evaluation."
+    paper: "https://arxiv.org/abs/2402.09181"
+
+  - id: rad_chestct
+    name: RAD-ChestCT
+    category: medical-imaging
+    metric: auroc
+    unit: "%"
+    expected_range: [60, 90]
+    description: "Chest CT 3D classification — 35,747 volumes labeled for 84 abnormality categories. RadFM evaluation."
+    paper: "https://arxiv.org/abs/2002.06045"
+
+  - id: brats
+    name: BraTS (Brain Tumor Segmentation)
+    category: medical-imaging
+    metric: dice
+    unit: "%"
+    expected_range: [70, 95]
+    description: "MICCAI Brain Tumor Segmentation Challenge — multi-institutional MRI scans (FLAIR/T1/T1CE/T2). Whole tumor / tumor core / enhancing tumor Dice. Annual challenge since 2012."
+    paper: "https://www.med.upenn.edu/cbica/brats2024/"
+
