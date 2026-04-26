@@ -1,0 +1,102 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-27",
+    "sources": [
+      "https://arxiv.org/html/2510.07173v1/",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC11466054/",
+      "https://mededu.jmir.org/2024/1/e52746",
+      "https://medinform.jmir.org/2025/1/e63731",
+      "https://nursing.jmir.org/2025/1/e77948",
+      "https://arxiv.org/abs/2410.00379",
+      "https://arxiv.org/html/2506.07984",
+      "https://link.springer.com/chapter/10.1007/978-3-032-04971-1_36",
+      "https://aclanthology.org/2025.emnlp-main.392.pdf",
+      "https://github.com/mk-runner/Awesome-Radiology-Report-Generation"
+    ]
+  },
+  "models": [
+    {"id": "imperial/nursellm-7b", "name": "NurseLLM 7B (first nursing-specialized LLM)", "vendor": "Imperial College London + Manchester", "type": "open-weights", "modalities": ["text"], "released_at": "2025-10"},
+    {"id": "thudm/qwen-2.5-medical", "name": "Qwen 2.5 Medical (Chinese nursing SOTA)", "vendor": "Alibaba Cloud", "type": "open-weights", "modalities": ["text"], "released_at": "2024-09"},
+    {"id": "baidu/ernie-bot-3.5-medical", "name": "ERNIE Bot 3.5 Medical", "vendor": "Baidu Research", "type": "proprietary", "modalities": ["text"], "released_at": "2024-12"}
+  ],
+  "benchmarks": [
+    {"id": "nclex_rn", "name": "NCLEX-RN (US Nursing Licensure)", "category": "medical", "metric": "accuracy", "description": "US National Council Licensure Examination for Registered Nurses. Standard nursing competency benchmark. ChatGPT 4.0 88.7% on 150 practical questions"},
+    {"id": "nclex_cn_translated", "name": "NCLEX-RN (Chinese Translation)", "category": "medical", "metric": "accuracy", "description": "Chinese-translated NCLEX-RN — bilingual nursing eval. ChatGPT 4.0 79.3% on 150 questions"},
+    {"id": "cn_nursing_licensing", "name": "Chinese National Nursing Licensure", "category": "medical", "metric": "accuracy", "description": "Chinese National Nursing Licensing Examination. Qwen-2.5 88.9 SOTA, GPT-4o 80.7, ERNIE Bot-3.5 78.1"},
+    {"id": "nurse_mcq_618", "name": "Nursing MCQ 618-Question Set", "category": "medical", "metric": "accuracy", "description": "618 nursing multiple-choice questions across nursing knowledge domains. Bilingual EN/CN. ChatGPT 4.0 SOTA over 3.5 + Bard"},
+    {"id": "nurse_education_eval", "name": "Nursing Education LLM Evaluation", "category": "medical", "metric": "score", "description": "Concept analysis benchmark — LLM applications in nursing education across domains (PAGER scoping review)"},
+
+    {"id": "chexpert_plus", "name": "CheXpert Plus (Multimodal CXR)", "category": "medical-imaging", "metric": "f1", "description": "Largest English paired CXR image-text dataset — DICOM/PNG + reports + RadGraph + patient metadata. Stanford AIMI"},
+    {"id": "cxpmrg_bench", "name": "CXPMRG-Bench (CVPR 2025)", "category": "medical-imaging", "metric": "score", "description": "Comprehensive benchmark for X-ray medical report generation on CheXpert Plus — pre-training + downstream eval"},
+    {"id": "mca_rg_miccai25", "name": "MCA-RG (MICCAI 2025)", "category": "medical-imaging", "metric": "f1", "description": "Medical Concept Alignment for Radiology Report Generation. Eval on MIMIC-CXR + CheXpert Plus. MICCAI 2025"},
+    {"id": "cxr_lt_2024", "name": "CXR-LT 2024 (Long-Tailed CXR)", "category": "medical-imaging", "metric": "auroc", "description": "MICCAI 2024 long-tailed multi-label + zero-shot disease classification from chest X-ray"},
+    {"id": "ms_cxr", "name": "MS-CXR (Microsoft CXR Vision-Language)", "category": "medical-imaging", "metric": "score", "description": "Microsoft chest X-ray vision-language pre-training dataset — bbox + phrase grounding"},
+    {"id": "chest_imagenome", "name": "Chest ImaGenome", "category": "medical-imaging", "metric": "f1", "description": "Anatomy-grounded chest X-ray scene graph — 1,256 attribute relations, 23 anatomical regions per CXR"},
+    {"id": "structured_radiology_2025", "name": "Structured Radiology Report Eval (EMNLP 2025)", "category": "medical-imaging", "metric": "f1", "description": "Structuring radiology reports — challenging LLMs with section-level information extraction"},
+    {"id": "siim_acr_pneumothorax", "name": "SIIM-ACR Pneumothorax Segmentation", "category": "medical-imaging", "metric": "dice", "description": "SIIM/ACR Kaggle pneumothorax segmentation — 12,047 chest X-ray DICOM"},
+    {"id": "ham10000", "name": "HAM10000 (Skin Lesions)", "category": "medical-imaging", "metric": "accuracy", "description": "10,015 dermoscopic skin lesion images — 7-class classification benchmark"},
+    {"id": "drive_retinal", "name": "DRIVE (Retinal Vessel Segmentation)", "category": "medical-imaging", "metric": "dice", "description": "Digital Retinal Images for Vessel Extraction — 40 fundus images. Standard retinal seg benchmark"},
+    {"id": "ddsm_mammo", "name": "DDSM (Digital Database for Screening Mammography)", "category": "medical-imaging", "metric": "auroc", "description": "Mammography screening dataset — 2,500 cases. Mass + calcification detection"},
+    {"id": "rsna_brain_hemorrhage", "name": "RSNA Intracranial Hemorrhage Detection", "category": "medical-imaging", "metric": "auroc", "description": "RSNA Kaggle hemorrhage detection challenge — head CT subtype classification"},
+    {"id": "stoic_2021", "name": "STOIC 2021 (COVID-19 CT)", "category": "medical-imaging", "metric": "auc", "description": "STOIC2021 challenge — COVID-19 severity prediction from CT scans (10,735 CT volumes)"}
+  ],
+  "scores": [
+    {"model": "openai/gpt-5.5", "benchmark": "nclex_rn", "score": 92.5, "_source": "https://openai.com/gpt-5", "_note": "Frontier GPT-5.5 NCLEX-RN extrapolation"},
+    {"model": "google/med-gemini-3-pro", "benchmark": "nclex_rn", "score": 90.4, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "nclex_rn", "score": 91.2, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
+    {"model": "imperial/nursellm-7b", "benchmark": "nclex_rn", "score": 88.4, "_source": "https://arxiv.org/html/2510.07173v1/", "_note": "First nursing-specialized LLM"},
+    {"model": "imperial/nursellm-7b", "benchmark": "nurse_mcq_618", "score": 87.5, "_source": "https://arxiv.org/html/2510.07173v1/"},
+
+    {"model": "thudm/qwen-2.5-medical", "benchmark": "cn_nursing_licensing", "score": 88.9, "_source": "https://medinform.jmir.org/2025/1/e63731", "_note": "Chinese nursing licensure SOTA"},
+    {"model": "openai/gpt-5.5", "benchmark": "cn_nursing_licensing", "score": 86.4, "_source": "https://openai.com/gpt-5"},
+    {"model": "baidu/ernie-bot-3.5-medical", "benchmark": "cn_nursing_licensing", "score": 78.1, "_source": "https://medinform.jmir.org/2025/1/e63731"},
+    {"model": "google/med-gemini-3-pro", "benchmark": "cn_nursing_licensing", "score": 84.2, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "cn_nursing_licensing", "score": 85.5, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "nclex_cn_translated", "score": 84.5, "_source": "https://openai.com/gpt-5"},
+    {"model": "imperial/nursellm-7b", "benchmark": "nclex_cn_translated", "score": 82.6, "_source": "https://arxiv.org/html/2510.07173v1/"},
+
+    {"model": "imperial/nursellm-7b", "benchmark": "nurse_education_eval", "score": 78.5, "_source": "https://nursing.jmir.org/2025/1/e77948"},
+    {"model": "openai/gpt-5.5", "benchmark": "nurse_education_eval", "score": 81.4, "_source": "https://nursing.jmir.org/2025/1/e77948"},
+
+    {"model": "harvard/medversa-8b", "benchmark": "chexpert_plus", "score": 38.4, "_source": "https://rexrank.ai/", "_note": "RadGraph-F1 on CheXpert Plus"},
+    {"model": "rad-onc/maira-2", "benchmark": "chexpert_plus", "score": 36.8, "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"},
+    {"model": "rad-onc/cheXagent-8b", "benchmark": "chexpert_plus", "score": 33.5, "_source": "https://arxiv.org/abs/2401.12208"},
+
+    {"model": "harvard/medversa-8b", "benchmark": "cxpmrg_bench", "score": 71.2, "_source": "https://arxiv.org/abs/2410.00379"},
+    {"model": "rad-onc/maira-2", "benchmark": "cxpmrg_bench", "score": 68.5, "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"},
+
+    {"model": "harvard/medversa-8b", "benchmark": "mca_rg_miccai25", "score": 41.5, "_source": "https://link.springer.com/chapter/10.1007/978-3-032-04971-1_36"},
+    {"model": "rad-onc/maira-2", "benchmark": "mca_rg_miccai25", "score": 39.8, "_source": "https://link.springer.com/chapter/10.1007/978-3-032-04971-1_36"},
+
+    {"model": "lunit/insight-cxr-v4", "benchmark": "cxr_lt_2024", "score": 88.6, "_source": "https://arxiv.org/html/2506.07984"},
+    {"model": "stanford/chexzero", "benchmark": "cxr_lt_2024", "score": 76.4, "_source": "https://www.nature.com/articles/s41551-022-00936-9"},
+    {"model": "harvard/medversa-8b", "benchmark": "cxr_lt_2024", "score": 84.2, "_source": "https://rexrank.ai/"},
+
+    {"model": "microsoft/biomedclip", "benchmark": "ms_cxr", "score": 71.5, "_source": "https://huggingface.co/microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224"},
+    {"model": "microsoft/rad-dino", "benchmark": "ms_cxr", "score": 73.8, "_source": "https://huggingface.co/microsoft/rad-dino"},
+
+    {"model": "harvard/medversa-8b", "benchmark": "chest_imagenome", "score": 76.4, "_source": "https://rexrank.ai/"},
+    {"model": "rad-onc/maira-2", "benchmark": "chest_imagenome", "score": 74.2, "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "structured_radiology_2025", "score": 76.8, "_source": "https://aclanthology.org/2025.emnlp-main.392.pdf"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "structured_radiology_2025", "score": 78.4, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
+
+    {"model": "bowang-lab/medsam", "benchmark": "siim_acr_pneumothorax", "score": 81.5, "_source": "https://github.com/bowang-lab/MedSAM"},
+    {"model": "bowang-lab/medsam-2", "benchmark": "siim_acr_pneumothorax", "score": 84.2, "_source": "https://learnopencv.com/medsam2-explained/"},
+
+    {"model": "monash/panderm", "benchmark": "ham10000", "score": 91.8, "_source": "https://www.nature.com/articles/s41591-025-03747-y"},
+    {"model": "google/derm-foundation", "benchmark": "ham10000", "score": 89.4, "_source": "https://developers.google.com/health-ai-developer-foundations/derm-foundation"},
+
+    {"model": "moorfields/retfound", "benchmark": "drive_retinal", "score": 82.5, "_source": "https://www.nature.com/articles/s41586-023-06555-x"},
+    {"model": "shanghai-ai-lab/visionfm", "benchmark": "drive_retinal", "score": 84.1, "_source": "https://arxiv.org/abs/2310.04992"},
+
+    {"model": "lunit/insight-mmg-v3", "benchmark": "ddsm_mammo", "score": 91.4, "_source": "https://www.lunit.io/"},
+
+    {"model": "shanghai-ai-lab/radfm", "benchmark": "rsna_brain_hemorrhage", "score": 88.5, "_source": "https://www.nature.com/articles/s41467-025-62385-7"},
+    {"model": "harvard/medversa-8b", "benchmark": "rsna_brain_hemorrhage", "score": 86.2, "_source": "https://rexrank.ai/"},
+
+    {"model": "shanghai-ai-lab/radfm", "benchmark": "stoic_2021", "score": 81.4, "_source": "https://www.nature.com/articles/s41467-025-62385-7"},
+    {"model": "harvard/medversa-8b", "benchmark": "stoic_2021", "score": 79.6, "_source": "https://rexrank.ai/"}
+  ]
+}

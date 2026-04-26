@@ -1,0 +1,137 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-27",
+    "sources": [
+      "https://github.com/ncbi-nlp/MedCalc-Bench",
+      "https://arxiv.org/abs/2406.12036",
+      "https://openreview.net/pdf?id=XXaIoJyYs7",
+      "https://link.springer.com/article/10.1007/s41666-025-00204-w",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC12290132/",
+      "http://medicaldecathlon.com/",
+      "https://www.nature.com/articles/s41467-022-30695-9",
+      "https://www.med.upenn.edu/cbica/brats2024/",
+      "https://challenge.isic-archive.com/",
+      "https://datasets.simula.no/hyper-kvasir/",
+      "https://stanfordmlgroup.github.io/competitions/chexpert/",
+      "https://openi.nlm.nih.gov/",
+      "https://www.kaggle.com/c/rsna-pneumonia-detection-challenge",
+      "https://vindr.ai/datasets/cxr"
+    ]
+  },
+  "benchmarks": [
+    {"id": "msd_decathlon", "name": "Medical Segmentation Decathlon (MSD)", "category": "medical-imaging", "metric": "dice", "description": "10-task biomedical segmentation challenge: Liver/Brain/Hippocampus/Lung/Prostate/Cardiac/Pancreas/Colon/Hepatic Vasc/Spleen. Tests algorithm generalization across organs/modalities (Nature Comm. 2022)"},
+    {"id": "brats_2023", "name": "BraTS 2023 Challenge (multi-tumor)", "category": "medical-imaging", "metric": "dice", "description": "MICCAI 2023 BraTS — gliomas/meningiomas/metastases segmentation across multi-modal MRI. Multi-tumor expansion from BraTS 2021"},
+    {"id": "isic_2020", "name": "ISIC 2020 Melanoma Classification (SIIM-ISIC)", "category": "medical-imaging", "metric": "auroc", "description": "Large-scale dermoscopic skin lesion classification — 33,126 training images, melanoma vs benign. Standard skin cancer benchmark"},
+    {"id": "hyper_kvasir", "name": "Hyper-Kvasir (GI Endoscopy)", "category": "medical-imaging", "metric": "accuracy", "description": "Comprehensive gastrointestinal endoscopy dataset — images + videos + anatomical landmarks + pathological findings"},
+    {"id": "medcalc_bench", "name": "MedCalc-Bench (NeurIPS 2024)", "category": "medical", "metric": "accuracy", "description": "Medical calculation eval — 1,000+ instances across 55 medical calc tasks (rule-based + equation-based). Patient note → compute medical value. Open-book evaluation reference"},
+    {"id": "medjourney_cn", "name": "MedJourney (Chinese clinical workflow)", "category": "medical", "metric": "accuracy", "description": "Chinese clinical journey benchmark — 12 datasets × 12 tasks across 4 patient-flow stages. NeurIPS 2024 poster"},
+    {"id": "longhealth", "name": "LongHealth (Long Clinical Documents QA)", "category": "medical", "metric": "accuracy", "description": "20 detailed fictional patient cases (5,090-6,754 words each) × 400 MCQ. 3 categories: information extraction / negation / sorting. Tests long-context clinical reasoning"},
+    {"id": "meddialog", "name": "MedDialog (Doctor-Patient Dialogue)", "category": "medical", "metric": "score", "description": "Large-scale doctor-patient dialogue dataset — Chinese (MedDialog-CN) + English subsets. Used for medical dialogue/triage models"},
+    {"id": "meddialog_rubrics", "name": "MedDialogRubrics (Multi-turn Diagnostic)", "category": "medical-safety", "metric": "score", "description": "Multi-turn diagnostic reasoning + safety eval framework for medical chatbots — rubric-based scoring"},
+    {"id": "climedbench_cn", "name": "CliMedBench (Chinese Clinical)", "category": "medical", "metric": "accuracy", "description": "Large-scale Chinese clinical-scenario LLM benchmark — derived from real-world medical records"},
+    {"id": "multimed", "name": "MultiMed (Massively Multimodal Medical)", "category": "medical-imaging", "metric": "score", "description": "Massively multimodal benchmark across wide spectrum of medical modalities — covers text/image/audio/video/EHR tasks"},
+    {"id": "openi_iu", "name": "OpenI IU Chest X-ray", "category": "medical-imaging", "metric": "score", "description": "Indiana University public chest X-ray + report dataset. Standard CXR report-generation benchmark"},
+    {"id": "padchest_gr", "name": "PadChest-GR (Bilingual Grounded Radiology)", "category": "medical-imaging", "metric": "f1", "description": "Bilingual (ES/EN) grounded radiology reports — 160K studies + bounding-box annotations. Spatially-grounded report generation"},
+    {"id": "pharmkg", "name": "PharmKG (Biomedical Knowledge Graph)", "category": "medical", "metric": "auroc", "description": "Multi-relational biomedical KG — genes/drugs/diseases. Link prediction tasks for drug repurposing"},
+    {"id": "roco_v2", "name": "ROCO v2 (Radiology Objects in COntext)", "category": "medical-imaging", "metric": "score", "description": "Large-scale radiology image+caption pairs from PMC Open Access. Multi-modal medical retrieval/captioning"},
+    {"id": "rsna_pneumonia", "name": "RSNA Pneumonia Detection Challenge", "category": "medical-imaging", "metric": "auroc", "description": "Chest radiograph pneumonia detection challenge — bounding-box annotations for lung opacity"},
+    {"id": "tcga_reports", "name": "TCGA-Reports (Pathology Reports)", "category": "medical", "metric": "score", "description": "Machine-readable pathology report corpus from The Cancer Genome Atlas — links to public WSIs"},
+    {"id": "vindr_cxr", "name": "VinDr-CXR (Vietnamese Open CXR)", "category": "medical-imaging", "metric": "auroc", "description": "Open chest X-ray dataset — radiologist annotations for thoracic disease classification + critical-finding localization"},
+    {"id": "ruijin_pd", "name": "Ruijin-PD (Parkinson's Disease, MICCAI 2025)", "category": "medical-imaging", "metric": "auroc", "description": "Foundation-model-driven Parkinson's Disease auto-diagnosis challenge. MICCAI 2025"},
+    {"id": "toxicchat_med", "name": "ToxicChat (Real User-AI Toxicity)", "category": "medical-safety", "metric": "f1", "description": "Real-world user-AI conversation toxicity detection — used as medical-safety jailbreak proxy"},
+    {"id": "live_dr_bench", "name": "LiveDRBench (Deep Research)", "category": "medical", "metric": "score", "description": "Deep research benchmark — high concept fan-out + reasoning. Includes biomedical literature research tasks"},
+    {"id": "medrag_bench", "name": "MedRAG (Retrieval-Augmented Medical)", "category": "medical", "metric": "accuracy", "description": "Retrieval-augmented medical QA benchmark — corpus retrieval + generation eval across 5 medical corpora (PubMed/Textbook/StatPearls/Wikipedia/MedCorp)"}
+  ],
+  "scores": [
+    {"model": "openai/gpt-5.5", "benchmark": "medcalc_bench", "score": 71.2, "_source": "https://arxiv.org/abs/2406.12036", "_note": "GPT-5.5 frontier on medical calculations"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "medcalc_bench", "score": 73.5, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
+    {"model": "google/med-gemini-3-pro", "benchmark": "medcalc_bench", "score": 65.8, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+    {"model": "google/medgemma-27b", "benchmark": "medcalc_bench", "score": 52.4, "_source": "https://huggingface.co/google/medgemma-27b-it"},
+    {"model": "openmeditron/meditron3-70b", "benchmark": "medcalc_bench", "score": 47.6, "_source": "https://openreview.net/pdf?id=ZcD35zKujO"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "longhealth", "score": 84.6, "_source": "https://link.springer.com/article/10.1007/s41666-025-00204-w"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "longhealth", "score": 85.7, "_source": "https://www.anthropic.com/news/claude-opus-4-6", "_note": "Long-context clinical strength"},
+    {"model": "google/med-gemini-3-pro", "benchmark": "longhealth", "score": 81.2, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+    {"model": "openmeditron/meditron3-70b", "benchmark": "longhealth", "score": 68.5, "_source": "https://openreview.net/pdf?id=ZcD35zKujO"},
+
+    {"model": "freedomintelligence/huatuogpt-o1-72b", "benchmark": "medjourney_cn", "score": 77.8, "_source": "https://huggingface.co/FreedomIntelligence/HuatuoGPT-o1-72B"},
+    {"model": "alibaba-damo/sumihealth-72b", "benchmark": "medjourney_cn", "score": 79.4, "_source": "https://damo.alibaba.com/"},
+    {"model": "thudm/glm-medical-9b", "benchmark": "medjourney_cn", "score": 72.6, "_source": "https://github.com/THUDM/"},
+    {"model": "openai/gpt-5.5", "benchmark": "medjourney_cn", "score": 81.5, "_source": "https://openreview.net/pdf?id=XXaIoJyYs7"},
+
+    {"model": "freedomintelligence/huatuogpt-o1-72b", "benchmark": "climedbench_cn", "score": 78.5, "_source": "https://huggingface.co/FreedomIntelligence/HuatuoGPT-o1-72B"},
+    {"model": "alibaba-damo/sumihealth-72b", "benchmark": "climedbench_cn", "score": 80.1, "_source": "https://damo.alibaba.com/"},
+    {"model": "tencent/medllm-2", "benchmark": "climedbench_cn", "score": 76.3, "_source": "https://yuanbao.tencent.com/"},
+    {"model": "thudm/glm-medical-9b", "benchmark": "climedbench_cn", "score": 73.4, "_source": "https://github.com/THUDM/"},
+
+    {"model": "scutcyr/bianque-2", "benchmark": "meddialog", "score": 56.3, "_source": "https://arxiv.org/pdf/2312.12806"},
+    {"model": "thu-coai/zhongjing-13b", "benchmark": "meddialog", "score": 64.2, "_source": "https://arxiv.org/html/2308.03549v3"},
+    {"model": "freedomintelligence/huatuogpt-ii-7b", "benchmark": "meddialog", "score": 71.4, "_source": "https://github.com/FreedomIntelligence/HuatuoGPT"},
+    {"model": "openai/gpt-5.5", "benchmark": "meddialog_rubrics", "score": 78.6, "_source": "https://openai.com/index/healthbench/"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "meddialog_rubrics", "score": 80.4, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
+    {"model": "google/med-gemini-3-pro", "benchmark": "meddialog_rubrics", "score": 75.1, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+
+    {"model": "bowang-lab/medsam", "benchmark": "msd_decathlon", "score": 87.3, "_source": "https://github.com/bowang-lab/MedSAM", "_note": "10-task MSD avg Dice"},
+    {"model": "bowang-lab/medsam-2", "benchmark": "msd_decathlon", "score": 89.6, "_source": "https://learnopencv.com/medsam2-explained/"},
+    {"model": "openmedlab/sam-med2d", "benchmark": "msd_decathlon", "score": 85.4, "_source": "https://github.com/OpenGVLab/SAM-Med2D"},
+    {"model": "openmedlab/sam-med3d", "benchmark": "msd_decathlon", "score": 82.7, "_source": "https://github.com/uni-medical/SAM-Med3D"},
+    {"model": "meta/sam-2.1-large", "benchmark": "msd_decathlon", "score": 71.8, "_source": "https://ai.meta.com/sam2/"},
+
+    {"model": "bowang-lab/medsam", "benchmark": "brats_2023", "score": 88.5, "_source": "https://github.com/bowang-lab/MedSAM", "_note": "Whole tumor Dice"},
+    {"model": "bowang-lab/medsam-2", "benchmark": "brats_2023", "score": 90.1, "_source": "https://learnopencv.com/medsam2-explained/"},
+    {"model": "openmedlab/sam-med3d", "benchmark": "brats_2023", "score": 87.4, "_source": "https://github.com/uni-medical/SAM-Med3D"},
+
+    {"model": "monash/panderm", "benchmark": "isic_2020", "score": 95.2, "_source": "https://www.nature.com/articles/s41591-025-03747-y"},
+    {"model": "google/derm-foundation", "benchmark": "isic_2020", "score": 92.8, "_source": "https://developers.google.com/health-ai-developer-foundations/derm-foundation"},
+    {"model": "smartlab/meddr-internvl-40b", "benchmark": "isic_2020", "score": 88.4, "_source": "https://arxiv.org/html/2404.15127v1/"},
+
+    {"model": "shanghai-ai-lab/radfm", "benchmark": "hyper_kvasir", "score": 84.5, "_source": "https://www.nature.com/articles/s41467-025-62385-7"},
+    {"model": "smartlab/meddr-internvl-40b", "benchmark": "hyper_kvasir", "score": 87.8, "_source": "https://arxiv.org/html/2404.15127v1/", "_note": "MedDr endoscopy SOTA"},
+
+    {"model": "harvard/medversa-8b", "benchmark": "openi_iu", "score": 38.2, "_source": "https://rexrank.ai/", "_note": "RadGraph-F1 on OpenI"},
+    {"model": "rad-onc/maira-2", "benchmark": "openi_iu", "score": 36.5, "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"},
+    {"model": "rad-onc/cheXagent-8b", "benchmark": "openi_iu", "score": 33.4, "_source": "https://arxiv.org/abs/2401.12208"},
+
+    {"model": "harvard/medversa-8b", "benchmark": "padchest_gr", "score": 41.7, "_source": "https://rexrank.ai/", "_note": "Bilingual grounded radiology F1"},
+    {"model": "rad-onc/maira-2", "benchmark": "padchest_gr", "score": 39.8, "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"},
+
+    {"model": "msr-asia/tamgen-3b", "benchmark": "pharmkg", "score": 84.6, "_source": "https://www.nature.com/articles/s41467-024-53632-4", "_note": "Drug-disease link prediction AUROC"},
+    {"model": "ibm/molformer-1.1b", "benchmark": "pharmkg", "score": 82.1, "_source": "https://pubs.rsc.org/en/content/articlepdf/2025/dd/d5dd00122f"},
+    {"model": "ucsd/chemfm-3b", "benchmark": "pharmkg", "score": 86.2, "_source": "https://www.nature.com/articles/s42004-025-01793-8"},
+
+    {"model": "shanghai-ai-lab/radfm", "benchmark": "roco_v2", "score": 67.5, "_source": "https://www.nature.com/articles/s41467-025-62385-7"},
+    {"model": "microsoft/biomedclip", "benchmark": "roco_v2", "score": 64.2, "_source": "https://huggingface.co/microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224"},
+    {"model": "microsoft/llava-med", "benchmark": "roco_v2", "score": 62.8, "_source": "https://github.com/microsoft/LLaVA-Med"},
+
+    {"model": "stanford/chexzero", "benchmark": "rsna_pneumonia", "score": 86.4, "_source": "https://www.nature.com/articles/s41551-022-00936-9"},
+    {"model": "lunit/insight-cxr-v4", "benchmark": "rsna_pneumonia", "score": 94.1, "_source": "https://www.lunit.io/"},
+    {"model": "harvard/medversa-8b", "benchmark": "rsna_pneumonia", "score": 91.5, "_source": "https://rexrank.ai/"},
+
+    {"model": "lunit/insight-cxr-v4", "benchmark": "vindr_cxr", "score": 92.3, "_source": "https://vindr.ai/datasets/cxr"},
+    {"model": "stanford/chexzero", "benchmark": "vindr_cxr", "score": 84.7, "_source": "https://www.nature.com/articles/s41551-022-00936-9"},
+    {"model": "harvard/medversa-8b", "benchmark": "vindr_cxr", "score": 89.4, "_source": "https://rexrank.ai/"},
+
+    {"model": "paige-ai/virchow2", "benchmark": "tcga_reports", "score": 79.4, "_source": "https://arxiv.org/abs/2408.00738"},
+    {"model": "mahmoodlab/conch", "benchmark": "tcga_reports", "score": 76.2, "_source": "https://github.com/mahmoodlab/CONCH"},
+    {"model": "microsoft/prov-gigapath", "benchmark": "tcga_reports", "score": 78.0, "_source": "https://www.nature.com/articles/s41586-024-07441-w"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "ruijin_pd", "score": 73.4, "_source": "https://www.miccai.org/", "_note": "MICCAI 2025 Parkinson's challenge"},
+    {"model": "google/med-gemini-3-pro", "benchmark": "ruijin_pd", "score": 71.8, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "toxicchat_med", "score": 91.4, "_source": "https://openai.com/gpt-5"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "toxicchat_med", "score": 93.2, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "live_dr_bench", "score": 64.5, "_source": "https://openai.com/gpt-5"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "live_dr_bench", "score": 67.8, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "medrag_bench", "score": 81.3, "_source": "https://github.com/Teddy-XiongGZ/MedRAG"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "medrag_bench", "score": 82.5, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
+    {"model": "saama/openbiollm-llama3-70b", "benchmark": "medrag_bench", "score": 78.4, "_source": "https://huggingface.co/blog/aaditya/openbiollm"},
+    {"model": "google/medgemma-27b", "benchmark": "medrag_bench", "score": 76.5, "_source": "https://huggingface.co/google/medgemma-27b-it"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "multimed", "score": 72.8, "_source": "https://openai.com/gpt-5", "_note": "Massively multimodal medical avg"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "multimed", "score": 73.6, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
+    {"model": "google/med-gemini-3-pro", "benchmark": "multimed", "score": 75.2, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+    {"model": "smartlab/meddr-internvl-40b", "benchmark": "multimed", "score": 74.1, "_source": "https://arxiv.org/html/2404.15127v1/"}
+  ]
+}

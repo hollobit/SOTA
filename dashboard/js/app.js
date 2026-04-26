@@ -1620,7 +1620,39 @@ var App = {
             { name: 'MedMNIST (GitHub)', url: 'https://github.com/MedMNIST/MedMNIST', desc: 'MedMNIST v2 — 708,069 2D + 10,214 3D biomedical images across 18 datasets. CT/MRI/X-ray/OCT/Ultrasound/EM' },
             { name: 'MedMNIST Paper (arXiv)', url: 'https://arxiv.org/abs/2110.14795', desc: 'MedMNIST v2 — large-scale standardized biomedical image classification benchmark' },
             { name: 'EHRNoteQA (arXiv 2402)', url: 'https://arxiv.org/abs/2402.16040', desc: 'MIMIC-IV EHR-grounded clinical QA — discharge summaries / progress notes / radiology reports' },
-            { name: 'Stanford Healthcare AI Benchmarks (HAI)', url: 'https://hai.stanford.edu/news/stanford-develops-real-world-benchmarks-for-healthcare-ai-agents', desc: 'Stanford HAI real-world healthcare AI benchmark development. HealthAdminBench, MedInsightBench' }
+            { name: 'Stanford Healthcare AI Benchmarks (HAI)', url: 'https://hai.stanford.edu/news/stanford-develops-real-world-benchmarks-for-healthcare-ai-agents', desc: 'Stanford HAI real-world healthcare AI benchmark development. HealthAdminBench, MedInsightBench' },
+
+            // ─── BMT round 2 (2026-04-27) — MSD/BraTS/ISIC/MedCalc/LongHealth/Chinese ───
+            { name: 'Medical Segmentation Decathlon', url: 'http://medicaldecathlon.com/', desc: '10-task biomedical segmentation challenge (Liver/Brain/Hippocampus/Lung/Prostate/Cardiac/Pancreas/Colon/Hepatic Vasc/Spleen)' },
+            { name: 'MSD Paper (Nature Comm. 2022)', url: 'https://www.nature.com/articles/s41467-022-30695-9', desc: 'Medical Segmentation Decathlon — algorithm generalization across organs/modalities' },
+            { name: 'BraTS 2024 (UPenn CBICA)', url: 'https://www.med.upenn.edu/cbica/brats2024/', desc: 'MICCAI Brain Tumor Segmentation — gliomas/meningiomas/metastases multi-modal MRI' },
+            { name: 'ISIC Challenge (Skin Cancer)', url: 'https://challenge.isic-archive.com/', desc: 'ISIC 2020 melanoma classification — 33,126 dermoscopic images' },
+            { name: 'Hyper-Kvasir Dataset', url: 'https://datasets.simula.no/hyper-kvasir/', desc: 'GI endoscopy comprehensive dataset — images + videos + landmarks + pathology' },
+            { name: 'MedCalc-Bench (NeurIPS 2024)', url: 'https://arxiv.org/abs/2406.12036', desc: 'Medical calculation eval — 1,000+ instances × 55 calc tasks. Patient note → compute medical value' },
+            { name: 'MedCalc-Bench GitHub', url: 'https://github.com/ncbi-nlp/MedCalc-Bench', desc: 'NCBI NLM MedCalc-Bench code + dataset' },
+            { name: 'MedJourney (NeurIPS 2024)', url: 'https://openreview.net/pdf?id=XXaIoJyYs7', desc: 'Chinese clinical-journey benchmark — 12 datasets × 12 tasks across 4 patient-flow stages' },
+            { name: 'LongHealth Paper (Springer)', url: 'https://link.springer.com/article/10.1007/s41666-025-00204-w', desc: 'Long-context clinical QA — 20 patient cases × 400 MCQ across extraction/negation/sorting' },
+            { name: 'Awesome Radiology Report Generation', url: 'https://github.com/mk-runner/Awesome-Radiology-Report-Generation', desc: 'Curated paper list, datasets, and tools for radiology report generation' },
+            { name: 'OpenI Indiana Univ. Chest X-ray', url: 'https://openi.nlm.nih.gov/', desc: 'Indiana Univ. CXR + report dataset for report generation benchmarking' },
+            { name: 'VinDr-CXR (Vietnamese Open CXR)', url: 'https://vindr.ai/datasets/cxr', desc: 'Open CXR with radiologist annotations — thoracic disease classification + bbox' },
+            { name: 'RSNA Pneumonia Detection', url: 'https://www.kaggle.com/c/rsna-pneumonia-detection-challenge', desc: 'Kaggle pneumonia detection — bbox annotations on chest radiographs' },
+            { name: 'MedRAG GitHub', url: 'https://github.com/Teddy-XiongGZ/MedRAG', desc: 'Retrieval-augmented medical QA across PubMed/Textbook/StatPearls/Wikipedia/MedCorp' },
+
+            // ─── Nursing AI (NCLEX) ───
+            { name: 'NurseLLM Paper (arXiv 2510)', url: 'https://arxiv.org/html/2510.07173v1/', desc: 'First nursing-specialized LLM. Imperial College London + Manchester. NCLEX-RN 88.4' },
+            { name: 'ChatGPT NCLEX Performance (PMC)', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11466054/', desc: 'ChatGPT 4.0 88.7% on NCLEX-RN, 79.3% on Chinese-translated. 150 practical questions' },
+            { name: 'JMIR Medical Education NCLEX', url: 'https://mededu.jmir.org/2024/1/e52746', desc: 'Cross-sectional study — ChatGPT on US + China nursing licensure' },
+            { name: 'Chinese Nursing Licensure Comparison', url: 'https://medinform.jmir.org/2025/1/e63731', desc: 'JMIR Medical Informatics — Qwen-2.5 88.9 SOTA, GPT-4o 80.7, ERNIE Bot-3.5 78.1, GPT-4.0 70.3' },
+            { name: 'JMIR Nursing Concept Analysis', url: 'https://nursing.jmir.org/2025/1/e77948', desc: 'Concept analysis of LLMs in nursing education across domains' },
+            { name: 'Nursing Education PAGER Review', url: 'https://www.sciencedirect.com/science/article/pii/S0260691725002588', desc: 'PAGER scoping review — patterns, advances, gaps in ChatGPT for nursing education' },
+
+            // ─── Advanced medical imaging benchmarks ───
+            { name: 'CheXpert Plus Dataset', url: 'https://stanfordmlgroup.github.io/competitions/chexpert/', desc: 'Largest English paired CXR image-text dataset — DICOM/PNG + reports + RadGraph + metadata. Stanford AIMI' },
+            { name: 'CheXpert Plus Paper (CVPR 2025)', url: 'https://arxiv.org/abs/2410.00379', desc: 'CXPMRG-Bench — pre-training and benchmarking for X-ray report generation on CheXpert Plus' },
+            { name: 'CXR-LT 2024 Paper', url: 'https://arxiv.org/html/2506.07984', desc: 'MICCAI 2024 long-tailed multi-label zero-shot disease classification from chest X-ray' },
+            { name: 'MCA-RG (MICCAI 2025)', url: 'https://link.springer.com/chapter/10.1007/978-3-032-04971-1_36', desc: 'Medical Concept Alignment for Radiology Report Generation. MIMIC-CXR + CheXpert Plus eval' },
+            { name: 'Structured Radiology (EMNLP 2025)', url: 'https://aclanthology.org/2025.emnlp-main.392.pdf', desc: 'Structuring radiology reports — challenging LLMs with section-level extraction' },
+            { name: 'Awesome Multimodal Medical Imaging', url: 'https://github.com/richard-peng-xia/awesome-multimodal-in-medical-imaging', desc: 'Curated multimodal medical imaging paper repository' }
         ];
 
         sites.forEach(function(site) {

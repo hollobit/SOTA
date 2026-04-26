@@ -320,6 +320,17 @@ var MedicalAI = {
             ]
         },
         {
+            code: 'nursing-specialty',
+            label: '👩‍⚕️ Nursing AI Models',
+            icon: '👩‍⚕️',
+            note: 'NurseLLM 7B (first nursing-specialized LLM, Imperial+Manchester) · Qwen 2.5 Medical (Chinese nursing SOTA 88.9) · ERNIE Bot 3.5 Medical',
+            models: [
+                'imperial/nursellm-7b',
+                'thudm/qwen-2.5-medical',
+                'baidu/ernie-bot-3.5-medical'
+            ]
+        },
+        {
             code: 'global-china',
             label: '🇨🇳 China Medical AI',
             icon: '🇨🇳',
@@ -536,8 +547,28 @@ var MedicalAI = {
         },
         {
             label: '🔬 BMT Pathology / Imaging Benchmarks',
-            note: 'PathMCQA · UKBOB (UK Biobank organ MRI) · HISTAI (대규모 WSI) · BEETLE (유방암 H&E seg) · SPIDER (multi-organ pathology) · MedMNIST v2 · DermaBench / DermaVQA-DAS · EchoBench (LVLM sycophancy)',
-            benchmarks: ['pathmcqa', 'ukbob', 'histai_wsi', 'beetle_seg', 'spider_path', 'medmnist_v2', 'dermabench', 'dermavqa_das', 'echobench_med']
+            note: 'PathMCQA · UKBOB · HISTAI · BEETLE · SPIDER · MedMNIST v2 · DermaBench / DermaVQA-DAS · EchoBench · MSD Decathlon · BraTS 2023 · ISIC 2020 · Hyper-Kvasir · OpenI · PadChest-GR · ROCO v2 · RSNA Pneumonia · VinDr-CXR · Ruijin-PD · TCGA-Reports',
+            benchmarks: ['pathmcqa', 'ukbob', 'histai_wsi', 'beetle_seg', 'spider_path', 'medmnist_v2', 'dermabench', 'dermavqa_das', 'echobench_med', 'msd_decathlon', 'brats_2023', 'isic_2020', 'hyper_kvasir', 'openi_iu', 'padchest_gr', 'roco_v2', 'rsna_pneumonia', 'vindr_cxr', 'ruijin_pd', 'tcga_reports', 'multimed']
+        },
+        {
+            label: '🧮 Medical Calculation & Long-Context Clinical',
+            note: 'MedCalc-Bench (NeurIPS 2024 — 55 medical calc tasks) · LongHealth (long clinical docs QA) · MedRAG (retrieval-augmented medical) · LiveDRBench (deep research)',
+            benchmarks: ['medcalc_bench', 'longhealth', 'medrag_bench', 'live_dr_bench']
+        },
+        {
+            label: '🌐 Chinese Medical Benchmarks (BMT)',
+            note: 'MedJourney (Chinese clinical workflow 12-task) · CliMedBench (real-world records) · MedDialog (doctor-patient) · MedDialogRubrics (multi-turn diag) · PharmKG (drug-disease KG)',
+            benchmarks: ['medjourney_cn', 'climedbench_cn', 'meddialog', 'meddialog_rubrics', 'pharmkg', 'toxicchat_med']
+        },
+        {
+            label: '👩‍⚕️ Nursing AI (NCLEX + 간호학)',
+            note: 'NurseLLM 7B (first nursing-specialized LLM, Imperial+Manchester 2025) · NCLEX-RN (US 간호사 면허) + Chinese-translated · Chinese National Nursing Licensure (Qwen-2.5 88.9 SOTA) · Nursing MCQ 618 · Nursing Education LLM Eval',
+            benchmarks: ['nclex_rn', 'nclex_cn_translated', 'cn_nursing_licensing', 'nurse_mcq_618', 'nurse_education_eval']
+        },
+        {
+            label: '🩻 Advanced Medical Imaging (CXR/Path/Derm/Retina)',
+            note: 'CheXpert Plus (largest paired CXR-text) · CXPMRG-Bench (CVPR 2025) · MCA-RG (MICCAI 2025) · CXR-LT 2024 (long-tailed) · MS-CXR · Chest ImaGenome · Structured Radiology Report Eval (EMNLP 2025) · SIIM-ACR Pneumothorax · HAM10000 · DRIVE retinal · DDSM mammography · RSNA Brain Hemorrhage · STOIC COVID CT',
+            benchmarks: ['chexpert_plus', 'cxpmrg_bench', 'mca_rg_miccai25', 'cxr_lt_2024', 'ms_cxr', 'chest_imagenome', 'structured_radiology_2025', 'siim_acr_pneumothorax', 'ham10000', 'drive_retinal', 'ddsm_mammo', 'rsna_brain_hemorrhage', 'stoic_2021']
         },
         {
             label: '🧪 BMT Bio Protocols & Long-form Bio Tasks',

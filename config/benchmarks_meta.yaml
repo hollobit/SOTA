@@ -1805,3 +1805,548 @@ benchmarks:
   bmt:
     bmt_id: saved-1769608044992-47r1d
     bmt_title: Long-form Virology Tasks
+- id: msd_decathlon
+  name: Medical Segmentation Decathlon (MSD)
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: 10-task biomedical segmentation challenge (Liver/Brain/Hippocampus/Lung/Prostate/Cardiac/Pancreas/Colon/Hepatic
+    Vasc/Spleen). Tests algorithm generalization. Nature Comm. 2022
+  paper: https://www.nature.com/articles/s41467-022-30695-9
+  leaderboard: http://medicaldecathlon.com/
+  github: https://github.com/neheller/kits19
+  year: '2019'
+  item_count: 2,633 3D volumes (Total across 10 tasks)
+  bmt:
+    bmt_id: saved-1769658361021-m28e1
+    bmt_title: Medical Segmentation Decathlon (MSD)
+- id: brats_2023
+  name: BraTS 2023 Challenge
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 70
+  - 95
+  description: MICCAI 2023 BraTS — gliomas/meningiomas/metastases segmentation across
+    multi-modal MRI
+  paper: https://www.med.upenn.edu/cbica/brats2024/
+  github: https://github.com/RAVIRAJAG/BraTS-2023-Challenge
+  year: '2015'
+  item_count: Varies (e.g., ~2000 patients in 2021)
+  bmt:
+    bmt_id: saved-1769608045000-yona1
+    bmt_title: BraTS (Multimodal Brain Tumor Image Segmentation Benchmark)
+- id: isic_2020
+  name: ISIC 2020 Melanoma Classification (SIIM-ISIC)
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 80
+  - 98
+  description: 33,126 dermoscopic images. Standard skin cancer benchmark
+  leaderboard: https://challenge.isic-archive.com/
+- id: hyper_kvasir
+  name: Hyper-Kvasir (GI Endoscopy)
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 70
+  - 95
+  description: GI endoscopy — images + videos + landmarks + pathological findings
+  paper: https://datasets.simula.no/hyper-kvasir/
+  github: https://github.com/simula/hyper-kvasir
+  year: '2020'
+  item_count: 110,079 images, 373 videos
+  bmt:
+    bmt_id: saved-1769660714904-s0ni1
+    bmt_title: Hyper-Kvasir
+- id: medcalc_bench
+  name: MedCalc-Bench (NeurIPS 2024)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 85
+  description: 1,000+ instances across 55 medical calc tasks. Patient note → compute
+    medical value
+  paper: https://arxiv.org/abs/2406.12036
+  github: https://github.com/ncbi-nlp/MedCalc-Bench
+  year: '2024'
+  item_count: 1,047 instances (55 calculation tasks)
+  bmt:
+    bmt_id: saved-1769660386135-e1aav
+    bmt_title: MedCalc-Bench
+- id: medjourney_cn
+  name: MedJourney (Chinese clinical workflow)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: 12 datasets × 12 tasks across 4 patient-flow stages. NeurIPS 2024
+  paper: https://openreview.net/pdf?id=XXaIoJyYs7
+- id: longhealth
+  name: LongHealth (Long Clinical Documents QA)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 95
+  description: '20 patient cases (5K-7K words each) × 400 MCQ. 3 categories: extraction/negation/sorting'
+  paper: https://link.springer.com/article/10.1007/s41666-025-00204-w
+- id: meddialog
+  name: MedDialog (Doctor-Patient Dialogue)
+  category: medical
+  metric: score
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Large-scale doctor-patient dialogue — Chinese + English subsets
+  paper: https://aclanthology.org/2020.emnlp-main.743/
+  github: https://github.com/UCSD-AI4H/Medical-Dialogue-System
+  year: '2020'
+  item_count: 3.4M Chinese dialogues; 0.26M English dialogues
+  bmt:
+    bmt_id: saved-1770073027765-1oeou
+    bmt_title: MedDialog
+- id: meddialog_rubrics
+  name: MedDialogRubrics (Multi-turn Diagnostic)
+  category: medical-safety
+  metric: score
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Multi-turn diagnostic reasoning + safety rubric eval for medical chatbots
+  paper: https://www.researchgate.net/publication/387864239_MedDialogRubrics_A_Comprehensive_Benchmark_and_Evaluation_Framework_for_Multi-turn_Medical_Consultations_in_Large_Language_Models
+  github: Not Available
+  year: '2026'
+  item_count: 5,200 synthetic patient cases; 60,000+ rubrics
+  bmt:
+    bmt_id: saved-1770073027719-au0gp
+    bmt_title: MedDialogRubrics
+- id: climedbench_cn
+  name: CliMedBench (Chinese Clinical)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Large-scale Chinese clinical-scenario LLM benchmark from real medical
+    records
+  paper: https://aclanthology.org/2024.emnlp-main.551/
+  github: https://github.com/Optifine-TAT/CliMedBench
+  year: '2024'
+  item_count: 33,735 questions
+  bmt:
+    bmt_id: saved-1770073027758-x4aur
+    bmt_title: CliMedBench
+- id: multimed
+  name: MultiMed (Massively Multimodal Medical)
+  category: medical-imaging
+  metric: score
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Massively multimodal benchmark — text/image/audio/video/EHR
+  paper: https://arxiv.org/abs/2408.12682
+  github: https://github.com/MultiMed-Bench/MultiMed
+  year: '2024'
+  item_count: 2.56 million samples
+  bmt:
+    bmt_id: saved-1769660633013-j6pg6
+    bmt_title: MultiMed
+- id: openi_iu
+  name: OpenI IU Chest X-ray
+  category: medical-imaging
+  metric: score
+  unit: '%'
+  expected_range:
+  - 20
+  - 60
+  description: Indiana University CXR + report dataset. RadGraph-F1 reference
+  leaderboard: https://openi.nlm.nih.gov/
+  paper: https://lhncbc.nlm.nih.gov/system/files/pub2012019.pdf
+  github: https://huggingface.co/datasets/fuyu-8b/open-i
+  year: '2016'
+  item_count: 7,470 images; 3,955 reports
+  bmt:
+    bmt_id: saved-1769608045000-zhxh3
+    bmt_title: OpenI (Indiana University Chest X-ray)
+- id: padchest_gr
+  name: PadChest-GR (Bilingual Grounded Radiology)
+  category: medical-imaging
+  metric: f1
+  unit: '%'
+  expected_range:
+  - 25
+  - 65
+  description: Bilingual ES/EN grounded radiology — 160K studies + bbox annotations
+  paper: https://arxiv.org/abs/2411.05085
+  github: https://github.com/microsoft/PadChest-GR
+  year: '2024'
+  item_count: Unknown subset of PadChest (original 160k images)
+  bmt:
+    bmt_id: saved-1769608044994-b37w8
+    bmt_title: PadChest-GR
+- id: pharmkg
+  name: PharmKG (Biomedical Knowledge Graph)
+  category: medical
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: Multi-relational biomedical KG — gene/drug/disease link prediction
+  paper: https://academic.oup.com/bib/article/22/4/bbaa344/6042240
+  github: https://github.com/MindRank-Biotech/PharmKG
+  year: '2020'
+  item_count: 500,000+ interconnections, ~8,000 entities
+  bmt:
+    bmt_id: saved-1769657008018-0qxec
+    bmt_title: PharmKG
+- id: roco_v2
+  name: ROCO v2 (Radiology Objects in COntext)
+  category: medical-imaging
+  metric: score
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Radiology image+caption pairs from PMC Open Access
+  paper: https://arxiv.org/abs/2405.10004
+  github: https://github.com/eltorio/ROCOv2-radiology
+  year: '2024'
+  item_count: 79,789 images
+  bmt:
+    bmt_id: saved-1769658218238-qn4py
+    bmt_title: ROCO (Radiology Objects in COntext) v2
+- id: rsna_pneumonia
+  name: RSNA Pneumonia Detection Challenge
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 70
+  - 96
+  description: Chest radiograph pneumonia detection — bbox annotations
+  leaderboard: https://www.kaggle.com/c/rsna-pneumonia-detection-challenge
+  paper: https://doi.org/10.1148/ryai.2019180041
+  github: https://github.com/filipradenovic/cnnimageretrieval-pytorch
+  year: '2019'
+  item_count: 26,684 chest radiographs
+  bmt:
+    bmt_id: saved-1769658145559-aj1ts
+    bmt_title: RSNA Pneumonia Detection Challenge
+- id: tcga_reports
+  name: TCGA-Reports (Pathology Reports)
+  category: medical
+  metric: score
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Machine-readable pathology reports from TCGA — links to public WSIs
+  paper: https://doi.org/10.1016/j.patter.2023.100913
+  github: https://github.com/tatonetti-lab/tcga-path-reports
+  year: '2024'
+  item_count: 9,523 reports
+  bmt:
+    bmt_id: saved-1769659920406-za1qa
+    bmt_title: TCGA-Reports
+- id: vindr_cxr
+  name: VinDr-CXR (Vietnamese Open CXR)
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 70
+  - 96
+  description: Open CXR — radiologist annotations for thoracic disease + critical-finding
+    localization
+  leaderboard: https://vindr.ai/datasets/cxr
+  paper: https://physionet.org/content/vindr-cxr/1.0.0/
+  github: https://github.com/vinbigdata-medical/vindr-cxr
+  year: '2020'
+  item_count: 18,000 images
+  bmt:
+    bmt_id: saved-1769608044998-vjpfy
+    bmt_title: VinDr-CXR
+- id: ruijin_pd
+  name: Ruijin-PD (Parkinson's Disease MICCAI 2025)
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 55
+  - 90
+  description: Foundation-model-driven Parkinson's auto-diagnosis. MICCAI 2025
+  paper: https://doi.org/10.5281/zenodo.15094606
+  github: https://ruijin-pd.github.io/
+  year: '2025'
+  item_count: 500 subjects (105,000+ images)
+  bmt:
+    bmt_id: saved-1769659962837-j21lx
+    bmt_title: Foundation-Model-Driven Parkinson's Disease Auto Diagnosis Challenge
+      (Ruijin-PD)
+- id: toxicchat_med
+  name: ToxicChat (Toxicity Detection)
+  category: medical-safety
+  metric: f1
+  unit: '%'
+  expected_range:
+  - 70
+  - 96
+  description: Real user-AI conversation toxicity. Medical-safety jailbreak proxy
+  paper: https://arxiv.org/abs/2310.17389
+  github: https://github.com/lmsys/toxic-chat
+  year: '2023'
+  item_count: 10,166 conversation pairs
+  bmt:
+    bmt_id: saved-1769608044995-szgqe
+    bmt_title: ToxicChat
+- id: live_dr_bench
+  name: LiveDRBench (Deep Research)
+  category: medical
+  metric: score
+  unit: '%'
+  expected_range:
+  - 40
+  - 80
+  description: Deep research benchmark — high concept fan-out + reasoning. Includes
+    biomedical literature tasks
+  paper: https://arxiv.org/abs/2508.04183
+  github: https://github.com/microsoft/LiveDRBench
+  year: '2025'
+  item_count: 100 tasks
+  bmt:
+    bmt_id: saved-1769608044991-7sirn
+    bmt_title: LiveDRBench
+- id: medrag_bench
+  name: MedRAG (Retrieval-Augmented Medical)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Retrieval-augmented medical QA across 5 corpora (PubMed/Textbook/StatPearls/Wikipedia/MedCorp)
+  github: https://github.com/Teddy-XiongGZ/MedRAG
+- id: nclex_rn
+  name: NCLEX-RN (US Nursing Licensure)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 99
+  description: US National Council Licensure Examination for Registered Nurses. Standard
+    nursing competency benchmark. ChatGPT 4.0 88.7%
+  paper: https://mededu.jmir.org/2024/1/e52746
+- id: nclex_cn_translated
+  name: NCLEX-RN (Chinese Translation)
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Chinese-translated NCLEX-RN bilingual nursing eval
+- id: cn_nursing_licensing
+  name: Chinese National Nursing Licensure
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Chinese National Nursing Licensing Exam. Qwen-2.5 88.9 SOTA, GPT-4o
+    80.7
+  paper: https://medinform.jmir.org/2025/1/e63731
+- id: nurse_mcq_618
+  name: Nursing MCQ 618-Question Set
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: 618 nursing MCQs across nursing knowledge domains. Bilingual EN/CN
+- id: nurse_education_eval
+  name: Nursing Education LLM Evaluation
+  category: medical
+  metric: score
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Concept analysis benchmark — LLM applications in nursing education
+    (PAGER scoping review)
+  paper: https://nursing.jmir.org/2025/1/e77948
+- id: chexpert_plus
+  name: CheXpert Plus (Multimodal CXR)
+  category: medical-imaging
+  metric: f1
+  unit: '%'
+  expected_range:
+  - 25
+  - 60
+  description: Largest English paired CXR image-text dataset — DICOM/PNG + reports
+    + RadGraph + metadata. Stanford AIMI
+  paper: https://arxiv.org/abs/2410.00379
+  github: https://github.com/Stanford-AIMI/CheXpert-Plus
+  year: '2024'
+  item_count: 223,462 image-report pairs
+  bmt:
+    bmt_id: saved-1769657927344-66yir
+    bmt_title: CheXpert Plus
+- id: cxpmrg_bench
+  name: CXPMRG-Bench (CVPR 2025)
+  category: medical-imaging
+  metric: score
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Comprehensive X-ray report generation benchmark on CheXpert Plus
+  paper: https://arxiv.org/abs/2410.00379
+- id: mca_rg_miccai25
+  name: MCA-RG (MICCAI 2025)
+  category: medical-imaging
+  metric: f1
+  unit: '%'
+  expected_range:
+  - 25
+  - 65
+  description: Medical Concept Alignment for Radiology Report Generation. MIMIC-CXR
+    + CheXpert Plus eval
+  paper: https://link.springer.com/chapter/10.1007/978-3-032-04971-1_36
+- id: cxr_lt_2024
+  name: CXR-LT 2024 (Long-Tailed CXR)
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 70
+  - 95
+  description: MICCAI 2024 long-tailed multi-label + zero-shot disease classification
+  paper: https://arxiv.org/html/2506.07984
+- id: ms_cxr
+  name: MS-CXR (Microsoft CXR Vision-Language)
+  category: medical-imaging
+  metric: score
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Microsoft chest X-ray vision-language pre-training — bbox + phrase
+    grounding
+- id: chest_imagenome
+  name: Chest ImaGenome
+  category: medical-imaging
+  metric: f1
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Anatomy-grounded chest X-ray scene graph — 1,256 attribute relations,
+    23 anatomical regions
+  paper: https://arxiv.org/abs/2108.00383
+  github: https://github.com/PLAN-Lab/ChestImaGenomeChangeDetection
+  year: '2021'
+  item_count: 242,072 images; 1,256 combinations of relation attributes
+  bmt:
+    bmt_id: saved-1770073532779-cclg8
+    bmt_title: Chest ImaGenome
+- id: structured_radiology_2025
+  name: Structured Radiology Report Eval (EMNLP 2025)
+  category: medical-imaging
+  metric: f1
+  unit: '%'
+  expected_range:
+  - 50
+  - 90
+  description: Structuring radiology reports — section-level information extraction
+    LLM challenge
+  paper: https://aclanthology.org/2025.emnlp-main.392.pdf
+- id: siim_acr_pneumothorax
+  name: SIIM-ACR Pneumothorax Segmentation
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 60
+  - 92
+  description: SIIM/ACR pneumothorax segmentation challenge — 12,047 chest X-ray DICOM
+- id: ham10000
+  name: HAM10000 (Skin Lesions)
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 70
+  - 96
+  description: 10,015 dermoscopic skin lesion images — 7-class classification
+- id: drive_retinal
+  name: DRIVE (Retinal Vessel Segmentation)
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 60
+  - 92
+  description: Digital Retinal Images for Vessel Extraction — 40 fundus images
+  paper: https://pubmed.ncbi.nlm.nih.gov/15539105/
+  github: https://github.com/topics/drive-dataset
+  year: '2004'
+  item_count: 40 images (20 training, 20 testing)
+  bmt:
+    bmt_id: saved-1769660786775-3y3vz
+    bmt_title: DRIVE (Digital Retinal Images for Vessel Extraction)
+- id: ddsm_mammo
+  name: DDSM Mammography
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 70
+  - 96
+  description: Digital Database for Screening Mammography — mass + calcification detection
+- id: rsna_brain_hemorrhage
+  name: RSNA Intracranial Hemorrhage Detection
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 70
+  - 95
+  description: RSNA Kaggle hemorrhage detection — head CT subtype classification
+  paper: https://pubs.rsna.org/doi/10.1148/ryai.2020190211
+  github: https://github.com/RSNA/AI-Challenge-Data
+  year: '2020'
+  item_count: 25,000+ exams (874,035 images)
+  bmt:
+    bmt_id: saved-1769660574247-yuiqz
+    bmt_title: RSNA Intracranial Hemorrhage Detection
+- id: stoic_2021
+  name: STOIC 2021 (COVID-19 CT)
+  category: medical-imaging
+  metric: auc
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: STOIC2021 challenge — COVID-19 severity prediction from CT scans (10,735
+    volumes)
