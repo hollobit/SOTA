@@ -1603,7 +1603,24 @@ var App = {
             // ─── Open Medical-LLM Leaderboard ───
             { name: 'HuggingFace Open Medical-LLM Leaderboard', url: 'https://huggingface.co/blog/leaderboard-medicalllm', desc: 'Open leaderboard — MedQA + MedMCQA + PubMedQA + MMLU Medical (6-subject) avg' },
             { name: 'Open Medical-LLM Leaderboard Space', url: 'https://huggingface.co/spaces/openlifescienceai/open_medical_llm_leaderboard', desc: 'HF Space — model rankings on standard medical QA suite' },
-            { name: 'NEJM AI Journal', url: 'https://ai.nejm.org/', desc: 'New England Journal of Medicine AI — peer-reviewed medical AI research (MedAgentBench, Almanac)' }
+            { name: 'NEJM AI Journal', url: 'https://ai.nejm.org/', desc: 'New England Journal of Medicine AI — peer-reviewed medical AI research (MedAgentBench, Almanac)' },
+
+            // ─── BMT-sourced medical leaderboards (2026 update) ───
+            { name: 'MedHELM Leaderboard (Stanford CRFM)', url: 'https://crfm.stanford.edu/helm/medhelm/latest/', desc: 'Stanford holistic medical LLM eval — 5 categories × 22 subcategories × 121 tasks × 35 benchmarks. Claude Opus 4.6 81.5, GPT-5.5 78.4, Med-Gemini 76.2' },
+            { name: 'MedHELM Paper (arXiv)', url: 'https://arxiv.org/abs/2505.23802', desc: 'MedHELM technical paper — 29-clinician taxonomy, LLM-jury method ICC=0.47 vs clinician-clinician 0.43' },
+            { name: 'MedHELM Docs (CRFM HELM)', url: 'https://crfm-helm.readthedocs.io/en/latest/medhelm/', desc: 'MedHELM framework documentation — extensible HELM medical evaluation' },
+            { name: 'AgentClinic Project', url: 'https://agentclinic.github.io/', desc: 'Multimodal clinical agent benchmark — AgentClinic-MedQA + AgentClinic-NEJM. Claude-3.5 leads. GPT-4 52% MedQA, drops <10% of original' },
+            { name: 'AgentClinic GitHub', url: 'https://github.com/SamuelSchmidgall/AgentClinic', desc: 'AgentClinic eval code — sequential decision-making clinical interactions' },
+            { name: 'AgentClinic Paper (arXiv)', url: 'https://arxiv.org/abs/2405.07960', desc: 'AgentClinic technical paper — multimodal agent benchmark for simulated clinical environments' },
+            { name: 'MedAgentBench (NEJM AI 2025)', url: 'https://ai.nejm.org/doi/full/10.1056/AIdbp2500144', desc: 'Virtual EHR agent benchmark — 300 patient tasks, 100 patient profiles, 700K data elements, FHIR-compliant. Stanford' },
+            { name: 'MedAgentBench arXiv', url: 'https://arxiv.org/abs/2501.14654', desc: 'Realistic Virtual EHR Environment to Benchmark Medical LLM Agents' },
+            { name: 'MedAgentsBench (Complex Reasoning)', url: 'https://arxiv.org/html/2503.07459v1', desc: 'Benchmarking thinking models + agent frameworks for complex medical reasoning' },
+            { name: 'Vals AI MedQA Leaderboard', url: 'https://www.vals.ai/benchmarks/medqa', desc: 'Live MedQA leaderboard. Apr 2026: o4-mini-high 95.2, Gemini 2.5 Pro 94.6, Claude 3.7 Sonnet 92.3' },
+            { name: 'Stanford HAI MedArena', url: 'https://hai.stanford.edu/news/medarena-comparing-llms-for-medicine-in-the-wild', desc: 'Head-to-head LLM comparison for medicine in the wild — clinician vote-based pairwise preference Elo' },
+            { name: 'MedMNIST (GitHub)', url: 'https://github.com/MedMNIST/MedMNIST', desc: 'MedMNIST v2 — 708,069 2D + 10,214 3D biomedical images across 18 datasets. CT/MRI/X-ray/OCT/Ultrasound/EM' },
+            { name: 'MedMNIST Paper (arXiv)', url: 'https://arxiv.org/abs/2110.14795', desc: 'MedMNIST v2 — large-scale standardized biomedical image classification benchmark' },
+            { name: 'EHRNoteQA (arXiv 2402)', url: 'https://arxiv.org/abs/2402.16040', desc: 'MIMIC-IV EHR-grounded clinical QA — discharge summaries / progress notes / radiology reports' },
+            { name: 'Stanford Healthcare AI Benchmarks (HAI)', url: 'https://hai.stanford.edu/news/stanford-develops-real-world-benchmarks-for-healthcare-ai-agents', desc: 'Stanford HAI real-world healthcare AI benchmark development. HealthAdminBench, MedInsightBench' }
         ];
 
         sites.forEach(function(site) {

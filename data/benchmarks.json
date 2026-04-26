@@ -2212,13 +2212,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "medagentbench",
-    "name": "MedAgentBench",
-    "category": "medical",
-    "description": "Virtual EHR environment to benchmark medical LLM agents (NEJM AI 2025). Realistic patient case workflows",
-    "metric": "accuracy"
-  },
-  {
     "id": "amega",
     "name": "AMEGA Dataset",
     "category": "medical",
@@ -2693,5 +2686,194 @@
     "category": "medical",
     "description": "Chinese professional medicine QA — Tsinghua THUDM benchmark for GLM-Medical evaluation",
     "metric": "accuracy"
+  },
+  {
+    "id": "medhelm",
+    "name": "MedHELM (Stanford)",
+    "category": "medical",
+    "description": "Stanford CRFM holistic medical eval — 5 categories, 22 subcategories, 121 tasks (29 clinicians), 35 benchmarks. DeepSeek R1 66% win-rate, o3-mini 64%, Claude 3.5 Sonnet at 40% lower cost",
+    "metric": "score"
+  },
+  {
+    "id": "medhelm_clin_dec",
+    "name": "MedHELM Clinical Decision Support",
+    "category": "medical",
+    "description": "MedHELM Clinical Decision Support category — diagnostic + treatment reasoning. Models perform 0.56-0.72 on normalized accuracy",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medhelm_admin",
+    "name": "MedHELM Administration & Workflow",
+    "category": "medical",
+    "description": "MedHELM administrative + workflow tasks — billing, scheduling, documentation. Models 0.53-0.63",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medhelm_note_gen",
+    "name": "MedHELM Clinical Note Generation",
+    "category": "medical",
+    "description": "MedHELM clinical note generation — discharge summaries, progress notes. Models perform strongly (0.73-0.85)",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medhelm_patient_comm",
+    "name": "MedHELM Patient Communication",
+    "category": "medical",
+    "description": "MedHELM patient communication & education — explanation, empathy. Models 0.78-0.83",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medhelm_research",
+    "name": "MedHELM Medical Research Assistance",
+    "category": "medical",
+    "description": "MedHELM medical research assistance — literature review, hypothesis generation. Models 0.65-0.75",
+    "metric": "accuracy"
+  },
+  {
+    "id": "agentclinic_medqa",
+    "name": "AgentClinic-MedQA",
+    "category": "medical-safety",
+    "description": "Sequential decision-making clinical agent — USMLE-grounded patient interactions. Claude-3.5 leads. GPT-4 52%, GPT-3.5 38%. Drops to <10% of original MedQA accuracy",
+    "metric": "accuracy"
+  },
+  {
+    "id": "agentclinic_nejm",
+    "name": "AgentClinic-NEJM",
+    "category": "medical-imaging",
+    "description": "Multimodal clinical agent — NEJM image-centric diagnostic cases. Multimodal accuracy ~29.2% baseline (low difficulty signal)",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medagentbench",
+    "name": "MedAgentBench (NEJM AI 2025)",
+    "category": "medical",
+    "description": "Virtual EHR agent benchmark — 300 patient-specific clinically-derived tasks, 100 patient profiles, 700K data elements, FHIR-compliant interactive environment",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medagentsbench",
+    "name": "MedAgentsBench (Complex Reasoning)",
+    "category": "medical",
+    "description": "MedAgentsBench — thinking models + agent frameworks for complex medical reasoning. arXiv 2503.07459",
+    "metric": "accuracy"
+  },
+  {
+    "id": "multimedqa",
+    "name": "MultiMedQA Suite",
+    "category": "medical",
+    "description": "Aggregated suite — MedQA + MedMCQA + PubMedQA + MMLU clinical + LiveQA + MedicationQA + HealthSearchQA. Med-PaLM original benchmark",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medmnist_v2",
+    "name": "MedMNIST v2 (Biomedical Image Classification)",
+    "category": "medical-imaging",
+    "description": "Large-scale MNIST-like biomedical image collection — 708,069 2D + 10,214 3D images across 18 datasets. CT/MRI/X-ray/OCT/Ultrasound/EM modalities",
+    "metric": "accuracy"
+  },
+  {
+    "id": "ehrnoteqa",
+    "name": "EHRNoteQA",
+    "category": "medical",
+    "description": "MIMIC-IV EHR-grounded clinical QA — questions over discharge summaries / progress notes / radiology reports",
+    "metric": "accuracy"
+  },
+  {
+    "id": "echobench_med",
+    "name": "EchoBench (LVLM Sycophancy)",
+    "category": "medical-safety",
+    "description": "Medical LVLM sycophancy benchmark — measures how models capitulate to incorrect physician suggestions",
+    "metric": "score"
+  },
+  {
+    "id": "dermabench",
+    "name": "DermaBench (Dermatology VQA)",
+    "category": "medical-imaging",
+    "description": "Clinician-annotated dermatology VQA on Diverse Dermatology Images (DDI). Skin tone fairness eval",
+    "metric": "accuracy"
+  },
+  {
+    "id": "dermavqa_das",
+    "name": "DermaVQA-DAS",
+    "category": "medical-imaging",
+    "description": "DermaVQA extension — closed-ended QA + dermatological lesion segmentation",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medrepbench",
+    "name": "MedRepBench (Medical Report VLM)",
+    "category": "medical-imaging",
+    "description": "VLM/LLM evaluation on structured medical report understanding — reports across modalities",
+    "metric": "score"
+  },
+  {
+    "id": "pathmcqa",
+    "name": "PathMCQA (Pathology MCQ)",
+    "category": "medical-imaging",
+    "description": "Multiple-choice pathology QA — questions on histopathology images derived from multiple pathology sources",
+    "metric": "accuracy"
+  },
+  {
+    "id": "ukbob",
+    "name": "UKBOB (UK Biobank Organs)",
+    "category": "medical-imaging",
+    "description": "Largest labeled body-organ MRI dataset from UK Biobank — automated labeling + manual validation",
+    "metric": "dice"
+  },
+  {
+    "id": "histai_wsi",
+    "name": "HISTAI WSI Dataset",
+    "category": "medical-imaging",
+    "description": "Open large-scale whole slide image dataset for pathology — addresses scale + diversity gap in public pathology data",
+    "metric": "auroc"
+  },
+  {
+    "id": "beetle_seg",
+    "name": "BEETLE (Breast Cancer Seg)",
+    "category": "medical-imaging",
+    "description": "Multicentric H&E breast cancer semantic segmentation. Biopsy + surgical resection slides",
+    "metric": "dice"
+  },
+  {
+    "id": "spider_path",
+    "name": "SPIDER (Multi-organ Pathology)",
+    "category": "medical-imaging",
+    "description": "Multi-organ supervised pathology dataset — expert annotations + strong baselines",
+    "metric": "auroc"
+  },
+  {
+    "id": "clinicalbench",
+    "name": "ClinicalBench (LLM vs ML for Prediction)",
+    "category": "clinical-prediction",
+    "description": "Compares LLMs against traditional ML models on clinical outcome prediction tasks (mortality / readmission / length-of-stay)",
+    "metric": "auroc"
+  },
+  {
+    "id": "bioprobench",
+    "name": "BioProBench (Biological Protocols)",
+    "category": "bio-safety",
+    "description": "Biological protocol understanding + reasoning — large corpus of human-written protocols",
+    "metric": "accuracy"
+  },
+  {
+    "id": "long_form_virology",
+    "name": "Long-form Virology Tasks",
+    "category": "bio-safety",
+    "description": "Agentic eval for end-to-end pathogen acquisition processes — biorisk uplift measurement",
+    "metric": "score"
+  },
+  {
+    "id": "medqa_vals_ai",
+    "name": "MedQA Vals AI Leaderboard",
+    "category": "medical",
+    "description": "Vals AI MedQA leaderboard — Apr 2026: o4-mini-high 95.2, Gemini 2.5 Pro 94.6, Claude 3.7 Sonnet 92.3",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medarena_pref",
+    "name": "MedArena (Stanford HAI)",
+    "category": "medical",
+    "description": "Stanford HAI MedArena — head-to-head LLM comparison for medicine in the wild. Clinician vote-based pairwise preference",
+    "metric": "elo"
   }
 ]

@@ -520,6 +520,31 @@ var MedicalAI = {
             benchmarks: ['mimic_iv_sepsis_auc', 'mimic_aki_mortality', 'eicu_xgen_auc', 'mimic_iv_readmit']
         },
         {
+            label: '🏥 MedHELM Holistic Medical Eval (Stanford)',
+            note: 'Stanford CRFM holistic eval — 5 categories × 22 subcategories × 121 tasks (29 clinicians) × 35 benchmarks. Top scores: Claude Opus 4.6 81.5, GPT-5.5 78.4, Med-Gemini 3 Pro 76.2',
+            benchmarks: ['medhelm', 'medhelm_clin_dec', 'medhelm_admin', 'medhelm_note_gen', 'medhelm_patient_comm', 'medhelm_research']
+        },
+        {
+            label: '🤖 Medical Agent Benchmarks',
+            note: 'AgentClinic (USMLE/NEJM 시뮬레이션) · MedAgentBench (NEJM AI 2025 EHR 환경) · MedAgentsBench (복잡 reasoning) · MultiMedQA · MedArena (Stanford HAI 클리니션 vote)',
+            benchmarks: ['agentclinic_medqa', 'agentclinic_nejm', 'medagentbench', 'medagentsbench', 'multimedqa', 'medarena_pref', 'medqa_vals_ai']
+        },
+        {
+            label: '📋 EHR-grounded & Clinical Notes',
+            note: 'EHRNoteQA (MIMIC-IV) · MedRepBench (구조화된 medical 리포트 VLM eval) · ClinicalBench (LLM vs traditional ML on tabular)',
+            benchmarks: ['ehrnoteqa', 'medrepbench', 'clinicalbench']
+        },
+        {
+            label: '🔬 BMT Pathology / Imaging Benchmarks',
+            note: 'PathMCQA · UKBOB (UK Biobank organ MRI) · HISTAI (대규모 WSI) · BEETLE (유방암 H&E seg) · SPIDER (multi-organ pathology) · MedMNIST v2 · DermaBench / DermaVQA-DAS · EchoBench (LVLM sycophancy)',
+            benchmarks: ['pathmcqa', 'ukbob', 'histai_wsi', 'beetle_seg', 'spider_path', 'medmnist_v2', 'dermabench', 'dermavqa_das', 'echobench_med']
+        },
+        {
+            label: '🧪 BMT Bio Protocols & Long-form Bio Tasks',
+            note: 'BioProBench (생물학 프로토콜 reasoning) · Long-form Virology Tasks (agentic biorisk uplift)',
+            benchmarks: ['bioprobench', 'long_form_virology']
+        },
+        {
             label: '🌏 National Medical Licensing & Sovereign Eval',
             note: 'IgakuQA (Japan SOTA) · NEET-PG (India) · CMExam (China) · PromedQA (Chinese Tsinghua) · M42 Clinical · Synapxe SG · NHS AIDE · UHN Clin · Delphi 1,000-Disease (DKFZ+EMBL Nature 2025) · BioMistral Multilingual',
             benchmarks: ['igakuqa', 'jmedbench', 'jmed_lora_eval', 'neet_pg', 'indic_med_bench', 'cmexam_cn', 'promedqa_cn', 'm42_clinical_avg', 'synapxe_sg_eval', 'nhs_aide_eval', 'uhn_clin_bench', 'delphi_disease_risk', 'biomistral_multilingual', 'owkin_path_avg', 'openai_healthbench_hard']
