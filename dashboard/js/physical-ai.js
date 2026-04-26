@@ -188,6 +188,41 @@ var PhysicalAI = {
     _benchmarks: [],
     _scores: [],
     _initialized: false,
+    _sortStates: {},
+
+    _cycleSort: function(tableId, key, defaultDir) {
+        var s = this._sortStates[tableId] || { key: null, dir: null };
+        if (s.key !== key) {
+            this._sortStates[tableId] = { key: key, dir: defaultDir || 'desc' };
+        } else if (s.dir === 'desc') {
+            this._sortStates[tableId] = { key: key, dir: 'asc' };
+        } else if (s.dir === 'asc') {
+            this._sortStates[tableId] = { key: null, dir: null };
+        } else {
+            this._sortStates[tableId] = { key: key, dir: defaultDir || 'desc' };
+        }
+    },
+
+    _sortIndicator: function(tableId, key) {
+        var s = this._sortStates[tableId];
+        if (!s || s.key !== key) return '';
+        return s.dir === 'asc' ? ' ▲' : s.dir === 'desc' ? ' ▼' : '';
+    },
+
+    _makeSortableTh: function(tableId, key, label, defaultDir, onClick) {
+        var th = document.createElement('th');
+        th.textContent = label + this._sortIndicator(tableId, key);
+        th.style.cursor = 'pointer';
+        th.setAttribute('role', 'button');
+        th.setAttribute('title', '클릭하여 정렬 (' + (defaultDir === 'asc' ? 'asc → desc → off' : 'desc → asc → off') + ')');
+        var s = this._sortStates[tableId];
+        if (s && s.key === key) {
+            th.style.color = '#3b82f6';
+            th.style.fontWeight = 'bold';
+        }
+        th.addEventListener('click', onClick);
+        return th;
+    },
 
     init: function(models, benchmarks, scores) {
         this._models = models || [];
@@ -384,7 +419,7 @@ var PhysicalAI = {
         el.appendChild(summary);
 
         // One table per BENCHMARK_SUITE
-        this.BENCHMARK_SUITES.forEach(function(suite) {
+        this.BENCHMARK_SUITES.forEach(function(suite, suiteIdx) {
             var activeBids = suite.benchmarks.filter(function(bid) {
                 return allModelIds.some(function(mid) { return self._getScore(mid, bid) != null; });
             });
@@ -395,15 +430,49 @@ var PhysicalAI = {
             });
             if (rowIds.length === 0) return;
 
-            rowIds.sort(function(a, b) {
-                var ca = self._categoryOf(a), cb = self._categoryOf(b);
-                var ia = ca ? self.CATEGORIES.indexOf(ca) : 99;
-                var ib = cb ? self.CATEGORIES.indexOf(cb) : 99;
-                if (ia !== ib) return ia - ib;
-                var sa = activeBids.reduce(function(acc, bid) { var v = self._getScore(a, bid); return acc + (v != null ? v : 0); }, 0);
-                var sb2 = activeBids.reduce(function(acc, bid) { var v = self._getScore(b, bid); return acc + (v != null ? v : 0); }, 0);
-                return sb2 - sa;
-            });
+            var TABLE_ID = 'phys-suite-' + suiteIdx;
+
+            // Apply sort: explicit per-column when set, else default category-then-sum
+            var sortS = self._sortStates[TABLE_ID];
+            if (sortS && sortS.key && sortS.dir) {
+                rowIds.sort(function(a, b) {
+                    var va, vb;
+                    if (sortS.key === 'model') {
+                        var ma = self._getModel(a), mb = self._getModel(b);
+                        va = ma ? ma.name : a;
+                        vb = mb ? mb.name : b;
+                    } else if (sortS.key === 'category') {
+                        var ca = self._categoryOf(a), cb = self._categoryOf(b);
+                        va = ca ? ca.label : '';
+                        vb = cb ? cb.label : '';
+                    } else if (sortS.key === 'vendor') {
+                        var ma2 = self._getModel(a), mb2 = self._getModel(b);
+                        va = ma2 && ma2.vendor ? ma2.vendor : '';
+                        vb = mb2 && mb2.vendor ? mb2.vendor : '';
+                    } else {
+                        va = self._getScore(a, sortS.key);
+                        vb = self._getScore(b, sortS.key);
+                    }
+                    var aNull = va == null || va === '', bNull = vb == null || vb === '';
+                    if (aNull && bNull) return 0;
+                    if (aNull) return 1;
+                    if (bNull) return -1;
+                    if (typeof va === 'string') {
+                        return sortS.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+                    }
+                    return sortS.dir === 'asc' ? va - vb : vb - va;
+                });
+            } else {
+                rowIds.sort(function(a, b) {
+                    var ca = self._categoryOf(a), cb = self._categoryOf(b);
+                    var ia = ca ? self.CATEGORIES.indexOf(ca) : 99;
+                    var ib = cb ? self.CATEGORIES.indexOf(cb) : 99;
+                    if (ia !== ib) return ia - ib;
+                    var sa = activeBids.reduce(function(acc, bid) { var v = self._getScore(a, bid); return acc + (v != null ? v : 0); }, 0);
+                    var sb2 = activeBids.reduce(function(acc, bid) { var v = self._getScore(b, bid); return acc + (v != null ? v : 0); }, 0);
+                    return sb2 - sa;
+                });
+            }
 
             var maxes = {};
             activeBids.forEach(function(bid) {
@@ -435,13 +504,31 @@ var PhysicalAI = {
 
             var thead = document.createElement('thead');
             var hr = document.createElement('tr');
-            var thM = document.createElement('th'); thM.textContent = 'Model'; hr.appendChild(thM);
-            var thC = document.createElement('th'); thC.textContent = 'Category'; thC.style.fontSize = '11px'; hr.appendChild(thC);
-            var thV = document.createElement('th'); thV.textContent = 'Vendor'; thV.style.fontSize = '11px'; hr.appendChild(thV);
+            hr.appendChild(self._makeSortableTh(TABLE_ID, 'model', 'Model', 'asc', function() {
+                self._cycleSort(TABLE_ID, 'model', 'asc');
+                self._renderBenchmarkTable();
+            }));
+            var thC = self._makeSortableTh(TABLE_ID, 'category', 'Category', 'asc', function() {
+                self._cycleSort(TABLE_ID, 'category', 'asc');
+                self._renderBenchmarkTable();
+            });
+            thC.style.fontSize = '11px';
+            hr.appendChild(thC);
+            var thV = self._makeSortableTh(TABLE_ID, 'vendor', 'Vendor', 'asc', function() {
+                self._cycleSort(TABLE_ID, 'vendor', 'asc');
+                self._renderBenchmarkTable();
+            });
+            thV.style.fontSize = '11px';
+            hr.appendChild(thV);
             activeBids.forEach(function(bid) {
-                var th = document.createElement('th');
                 var b = self._getBenchmark(bid);
-                th.textContent = b ? b.name : bid;
+                var label = b ? b.name : bid;
+                var th = self._makeSortableTh(TABLE_ID, bid, label, 'desc', (function(localBid) {
+                    return function() {
+                        self._cycleSort(TABLE_ID, localBid, 'desc');
+                        self._renderBenchmarkTable();
+                    };
+                })(bid));
                 th.style.fontSize = '10px';
                 th.style.whiteSpace = 'nowrap';
                 hr.appendChild(th);
