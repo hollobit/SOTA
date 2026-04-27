@@ -320,6 +320,36 @@ var MedicalAI = {
             ]
         },
         {
+            code: 'time-series-wearable',
+            label: '⌚ Time-Series & Wearable Health FMs',
+            icon: '⌚',
+            note: 'Google TimesFM 1/2.5 (decoder-only TS forecasting) · PH-LLM 1/2 (Personal Health LLM Gemini, Nature Med 2025) · LSM-1/2 (Large Sensor Model 40M hrs Fitbit) · Wearable LLM Agent · Apple Wearable FM (2.5B hrs / 162K subjects) · Empirical Health JEPA · Stanford Cardio Wearable · Harvard Movement FM',
+            models: [
+                'google/timesfm-2.5-200m',
+                'google/timesfm-1-200m',
+                'google/ph-llm-2',
+                'google/ph-llm',
+                'google/lsm-2',
+                'google/lsm-1',
+                'google/wearable-llm-agent',
+                'apple/wearable-fm-behavioral',
+                'empirical-health/wearable-jepa',
+                'stanford/cardio-wearable-fm',
+                'harvard/movement-fm-mental'
+            ]
+        },
+        {
+            code: 'mlcommons-medperf',
+            label: '🏛️ MLCommons MedPerf (Federated Eval)',
+            icon: '🏛️',
+            note: 'MLCommons open benchmarking platform — federated eval, models 데이터 제공자 측에 deploy. FeTS 2.0 nnUNet consensus (32 sites × 6 continents × 41 모델), GaNDLF FDA-aligned workflow',
+            models: [
+                'mlcommons/nnunet-fets-consensus',
+                'mlcommons/medperf-fets-baseline',
+                'mlcommons/gandlf-workflow'
+            ]
+        },
+        {
             code: 'nursing-specialty',
             label: '👩‍⚕️ Nursing AI Models',
             icon: '👩‍⚕️',
@@ -393,14 +423,25 @@ var MedicalAI = {
             code: 'medical-imaging',
             label: 'Medical Imaging FMs (Universal/Radiology/CXR)',
             icon: '🖼️',
-            note: 'Universal segmentation — SAM 2 · MedSAM · SAM-Med2D/3D · BiomedCLIP · LLaVA-Med · Dragonfly-Med · RadFM · CheXzero · CXR Foundation · Rad-DINO',
+            note: 'Universal segmentation — SAM 1/2/3 · SAM 3D · MedSAM 1/2/3 · MedSAM 3 Agent · SAM-Med2D/3D + Turbo · VISTA3D · SegVol · SAT-Pro · nnInteractive · MCP-MedSAM · BiomedCLIP · LLaVA-Med · Dragonfly-Med · RadFM · CheXzero',
             models: [
+                'meta/sam-3',
+                'meta/sam-3.1',
+                'meta/sam-3d',
                 'meta/sam-2.1-large',
                 'meta/sam-1-vit-h',
+                'joey-liu/medsam-3',
+                'joey-liu/medsam-3-agent',
                 'bowang-lab/medsam-2',
                 'bowang-lab/medsam',
                 'openmedlab/sam-med2d',
                 'openmedlab/sam-med3d',
+                'openmedlab/sam-med3d-turbo',
+                'monai/vista3d',
+                'biomed-ai/segvol',
+                'biomed-ai/sat-pro',
+                'z-imaging/nninteractive',
+                'melba/mcp-medsam',
                 'microsoft/biomedclip',
                 'microsoft/llava-med',
                 'microsoft/rad-dino',
@@ -564,6 +605,21 @@ var MedicalAI = {
             label: '👩‍⚕️ Nursing AI (NCLEX + 간호학)',
             note: 'NurseLLM 7B (first nursing-specialized LLM, Imperial+Manchester 2025) · NCLEX-RN (US 간호사 면허) + Chinese-translated · Chinese National Nursing Licensure (Qwen-2.5 88.9 SOTA) · Nursing MCQ 618 · Nursing Education LLM Eval',
             benchmarks: ['nclex_rn', 'nclex_cn_translated', 'cn_nursing_licensing', 'nurse_mcq_618', 'nurse_education_eval']
+        },
+        {
+            label: '⌚ Time-Series & Wearable Health',
+            note: 'TimesFM 1/2.5 zero-shot forecasting · GIFT-Eval · PH-LLM Sleep/Fitness MCQ (PH-LLM beats human experts: sleep 79 vs 76, fitness 88 vs 71) · LSM-2 health classify/BMI/imputation · Apple 57-task · Wearable CVD/BP/Mental',
+            benchmarks: ['timesfm_eval', 'gift_eval_ts', 'ph_llm_sleep', 'ph_llm_fitness', 'lsm2_health_classify', 'lsm2_bmi_regression', 'lsm2_imputation', 'apple_wearable_57', 'wearable_cvd_hiv', 'wearable_jepa_bp', 'wearable_movement_mental']
+        },
+        {
+            label: '🏛️ MLCommons MedPerf (Federated)',
+            note: 'MedPerf federated 의료 AI 평가 플랫폼 · FeTS 2.0 BraTS (post-op GBM Dice 0.95) · FeTS 2024 aggregation · MLPerf Inference 3D U-Net (KiTS19) · AILuminate medical safety · GaNDLF FDA-aligned',
+            benchmarks: ['mlcommons_medperf', 'fets_2_brats', 'fets_2024_aggregation', 'ailuminate_med', 'mlperf_inference_med', 'medperf_pancreas', 'medperf_cloud_mask', 'medperf_surgical']
+        },
+        {
+            label: '🧊 3D Medical Segmentation (SAM 3 / VISTA3D / MedSAM 3)',
+            note: 'SAM 3 (Meta Nov 2025) PCS · MedSAM 3 (text-promptable medical) · VISTA3D (NVIDIA MONAI 127-organ) · SAM-Med3D Turbo · SegVol · SAT-Pro · nnInteractive · LiTS · PROMISE12 · ISLES 2024 · Med80 cross-dataset',
+            benchmarks: ['sa_co', 'sam3_pcs_image', 'sam3_pcs_video', 'medsam3_2d_avg', 'lits_3d', 'promise12', 'isles_2024', 'med80_avg', 'vista3d_organs', 'ct_3d_seg_avg']
         },
         {
             label: '🩻 Advanced Medical Imaging (CXR/Path/Derm/Retina)',
