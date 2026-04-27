@@ -1652,7 +1652,40 @@ var App = {
             { name: 'CXR-LT 2024 Paper', url: 'https://arxiv.org/html/2506.07984', desc: 'MICCAI 2024 long-tailed multi-label zero-shot disease classification from chest X-ray' },
             { name: 'MCA-RG (MICCAI 2025)', url: 'https://link.springer.com/chapter/10.1007/978-3-032-04971-1_36', desc: 'Medical Concept Alignment for Radiology Report Generation. MIMIC-CXR + CheXpert Plus eval' },
             { name: 'Structured Radiology (EMNLP 2025)', url: 'https://aclanthology.org/2025.emnlp-main.392.pdf', desc: 'Structuring radiology reports — challenging LLMs with section-level extraction' },
-            { name: 'Awesome Multimodal Medical Imaging', url: 'https://github.com/richard-peng-xia/awesome-multimodal-in-medical-imaging', desc: 'Curated multimodal medical imaging paper repository' }
+            { name: 'Awesome Multimodal Medical Imaging', url: 'https://github.com/richard-peng-xia/awesome-multimodal-in-medical-imaging', desc: 'Curated multimodal medical imaging paper repository' },
+
+            // ─── SAM 3 / 3D medical segmentation (2025-11) ───
+            { name: 'SAM 3 Paper (arXiv 2511.16719)', url: 'https://arxiv.org/abs/2511.16719', desc: 'Meta SAM 3 — Promptable Concept Segmentation. Doubles SAM 2 on PCS. SA-Co 214K phrases × 126K media' },
+            { name: 'SAM 3 GitHub (Meta)', url: 'https://github.com/facebookresearch/sam3', desc: 'SAM 3 + SAM 3D inference + finetuning code, checkpoints, notebooks' },
+            { name: 'SAM 3.1 Real-time Video', url: 'https://ai.meta.com/blog/segment-anything-model-3/', desc: 'SAM 3.1 Object Multiplex (Mar 2026) — real-time video detection + tracking with multiplexing + global reasoning' },
+            { name: 'MedSAM 3 Paper (arXiv 2511.19046)', url: 'https://arxiv.org/abs/2511.19046', desc: 'MedSAM 3 — text-promptable medical segmentation. SAM 3 + medical concepts. 14 modalities SOTA. Nov 2025' },
+            { name: 'MedSAM 3 GitHub', url: 'https://github.com/Joey-S-Liu/MedSAM3', desc: 'MedSAM 3 code — pure text-guided medical segmentation + MedSAM 3 Agent (MLLM iterative refinement)' },
+            { name: 'VISTA3D (NVIDIA MONAI)', url: 'https://arxiv.org/html/2406.05285v3', desc: 'Unified 3D medical imaging FM — 127-class organ + lesion CT segmentation. NVIDIA MONAI' },
+            { name: 'SAM-Med3D GitHub', url: 'https://github.com/uni-medical/SAM-Med3D', desc: 'OpenMEDLab SAM-Med3D + Turbo — efficient promptable volumetric medical seg' },
+            { name: 'MCP-MedSAM (MELBA)', url: 'https://www.melba-journal.org/papers/2025:008.html', desc: 'Lightweight MedSAM trained on single GPU in 1 day. Match competitor performance' },
+            { name: 'SAM Medical Comparative (Wiley 2025)', url: 'https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470', desc: 'Specialization necessity for medical foundation segmentation. SAM2.1/SAM3/MedSAM2/SAM-Med2D/3D/nnInteractive/VISTA3D' },
+
+            // ─── Google Time-series & Wearable FM ───
+            { name: 'TimesFM GitHub (Google)', url: 'https://github.com/google-research/timesfm', desc: 'Google decoder-only time-series foundation model — 200M params. Zero-shot forecasting across retail/finance/healthcare' },
+            { name: 'TimesFM 2.5 (HuggingFace)', url: 'https://huggingface.co/google/timesfm-2.5-200m-pytorch', desc: 'TimesFM 2.5 200M PyTorch — Sept 2025 release, Flax version for faster inference' },
+            { name: 'TimesFM Blog (Google Research)', url: 'https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/', desc: 'TimesFM design + zero-shot forecasting motivation' },
+            { name: 'PH-LLM Paper (Nature Medicine 2025)', url: 'https://www.nature.com/articles/s41591-025-03888-0', desc: 'Personal Health LLM — Gemini-based for sleep + fitness coaching. PH-LLM beats human experts: sleep 79% vs 76%, fitness 88% vs 71%' },
+            { name: 'Wearable Health LLM Agent (Nat. Comm. 2025)', url: 'https://www.nature.com/articles/s41467-025-67922-y', desc: 'Transforming wearable data into personal health insights using LLM agents' },
+            { name: 'LSM-2 Paper (arXiv)', url: 'https://arxiv.org/abs/2506.05321', desc: 'Large Sensor Model 2 with Adaptive+Inherited Masking — 40M hours Fitbit + Pixel Watch. Handles incomplete sensor data' },
+            { name: 'LSM-2 Google Blog', url: 'https://research.google/blog/lsm-2-learning-from-incomplete-wearable-sensor-data/', desc: 'LSM-2 — robust wearable FM. 165K participants, hypertension/anxiety/BMI prediction' },
+            { name: 'Apple Wearable FM (ICML 2025)', url: 'https://machinelearning.apple.com/research/beyond-sensor', desc: 'Apple wearable FM — 2.5B hours, 162K subjects, 57 health-related tasks. Beyond Sensor Data paper' },
+            { name: 'Empirical Health JEPA Wearable', url: 'https://www.empirical.health/blog/wearable-foundation-model-jets/', desc: 'JEPA-based wearable FM — 87% high blood pressure detection accuracy' },
+            { name: 'Cardio Wearable HIV (Comm Med 2025)', url: 'https://www.nature.com/articles/s43856-025-01331-6', desc: 'Wearable signal CVD screening for HIV+ population. Stanford' },
+
+            // ─── MLCommons MedPerf ───
+            { name: 'MLCommons Medical AI Working Group', url: 'https://mlcommons.org/working-groups/data/medical/', desc: 'MLCommons medical AI evaluation initiative — federated benchmarks, datasets, FDA engagement' },
+            { name: 'MedPerf GitHub', url: 'https://github.com/mlcommons/medperf', desc: 'Open benchmarking platform for medical AI using federated evaluation. Data never leaves provider premises' },
+            { name: 'MedPerf Paper (Nature MI 2023)', url: 'https://www.nature.com/articles/s42256-023-00652-2', desc: 'Federated benchmarking of medical AI with MedPerf — 32 sites, OpenFL framework, nnUNet' },
+            { name: 'FeTS 2.0 Paper (Nature Comm. 2025)', url: 'https://www.nature.com/articles/s41467-025-60466-1', desc: 'Federated Tumor Segmentation FeTS 2.0 — post-op GBM Dice 0.95/0.94/0.89/0.77 (TIE/ET/RC/NE) record' },
+            { name: 'FeTS Challenge (UPenn CBICA)', url: 'https://www.med.upenn.edu/cbica/fets/', desc: 'Federated Tumor Segmentation initiative — MICCAI challenge with MedPerf orchestrator' },
+            { name: 'FeTS 2024 Aggregation Methods', url: 'https://arxiv.org/html/2512.06206', desc: 'MICCAI FeTS Challenge 2024 — efficient + robust federated aggregation' },
+            { name: 'AILuminate v1.1', url: 'https://mlcommons.org/benchmarks/ailuminate/', desc: 'MLCommons chatbot safety benchmark — medical advice + harmful misinformation subset' },
+            { name: 'MLPerf Inference v5.1 Medical', url: 'https://mlcommons.org/2025/09/mlperf-inference-v5-1-results/', desc: '3D U-Net medical imaging benchmark — KiTS19 kidney tumor seg throughput' }
         ];
 
         sites.forEach(function(site) {

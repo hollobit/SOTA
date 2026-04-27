@@ -2350,3 +2350,323 @@ benchmarks:
   - 95
   description: STOIC2021 challenge — COVID-19 severity prediction from CT scans (10,735
     volumes)
+- id: sa_co
+  name: SA-Co (Segment Anything with Concepts)
+  category: medical-imaging
+  metric: ap
+  unit: '%'
+  expected_range:
+  - 10
+  - 70
+  description: Meta's SAM 3 evaluation benchmark — 214K unique phrases × 126K images+videos.
+    50× more concepts than prior segmentation benchmarks
+  paper: https://arxiv.org/abs/2511.16719
+- id: sam3_pcs_image
+  name: SAM 3 PCS (Image)
+  category: medical-imaging
+  metric: ap
+  unit: '%'
+  expected_range:
+  - 20
+  - 70
+  description: Promptable Concept Segmentation on images — text/exemplar prompts.
+    SAM 3 doubles SAM 2
+  paper: https://arxiv.org/abs/2511.16719
+- id: sam3_pcs_video
+  name: SAM 3 PCS (Video)
+  category: medical-imaging
+  metric: ap
+  unit: '%'
+  expected_range:
+  - 15
+  - 65
+  description: Promptable Concept Segmentation on video — multi-object tracking. SAM
+    3.1 multiplexing faster
+- id: medsam3_2d_avg
+  name: MedSAM-3 2D Avg (14 modalities)
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 70
+  - 99
+  description: MedSAM-3 average Dice across 14 medical imaging modalities. Text-promptable
+    concept guidance
+  paper: https://arxiv.org/abs/2511.19046
+- id: lits_3d
+  name: LiTS (Liver Tumor Segmentation)
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 50
+  - 92
+  description: MICCAI 2017 Liver Tumor Segmentation Challenge — 3D CT volume liver+tumor
+- id: promise12
+  name: PROMISE12 (Prostate MRI)
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 55
+  - 95
+  description: MICCAI PROMISE12 — prostate MR segmentation. 50 train + 30 test
+- id: isles_2024
+  name: ISLES 2024 (Ischemic Stroke Lesion)
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Ischemic Stroke Lesion Segmentation 2024 — multi-modal MRI. MICCAI
+    2024
+  paper: https://www.nature.com/articles/s41597-022-01875-5
+  github: https://github.com/ezequieldlrosa/isles22
+  year: '2022'
+  item_count: 400 cases (250 training, 150 test)
+  bmt:
+    bmt_id: saved-1769660574246-74taf
+    bmt_title: ISLES 2022 (Ischemic Stroke Lesion Segmentation)
+- id: med80_avg
+  name: Med80 Comprehensive Eval
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: 80+ medical datasets comparative eval — SAM2.1, SAM3, MedSAM2, SAM-Med2D/3D,
+    nnInteractive, VISTA3D
+  paper: https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470
+- id: vista3d_organs
+  name: VISTA3D 127-organ Segmentation
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: VISTA3D unified 127-class organ + lesion 3D CT segmentation
+  paper: https://arxiv.org/html/2406.05285v3
+- id: ct_3d_seg_avg
+  name: 3D CT Segmentation Avg
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 55
+  - 95
+  description: 3D CT segmentation comparative avg — SAM-Med3D + VISTA3D + nnInteractive
+    + SegVol
+- id: timesfm_eval
+  name: TimesFM Zero-shot Forecasting
+  category: time-series
+  metric: mape
+  unit: '%'
+  expected_range:
+  - 5
+  - 30
+  description: TimesFM zero-shot forecasting eval on Monash/Darts/ETT/GIFT-Eval —
+    multi-domain (retail/finance/healthcare/IoT). 200M decoder-only. Lower=better
+  paper: https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/
+  github: https://github.com/google-research/timesfm
+- id: gift_eval_ts
+  name: GIFT-Eval (Generalizable TS Forecasting)
+  category: time-series
+  metric: mase
+  expected_range:
+  - 0.5
+  - 1.5
+  description: Generalizable Inference for Forecasting Time-series — TimesFM 2.5 SOTA
+    on zero-shot. Lower=better
+  paper: https://arxiv.org/abs/2410.10393
+  github: https://github.com/SalesforceAIResearch/gift-eval
+  year: '2024'
+  item_count: 28 datasets, 144,000 series
+  bmt:
+    bmt_id: saved-1769640230836-92dnz
+    bmt_title: GIFT-Eval
+- id: ph_llm_sleep
+  name: PH-LLM Sleep Medicine MCQ
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Personal Health LLM sleep medicine MCQ. PH-LLM 79% beats human experts
+    (76%). Nature Medicine 2025
+  paper: https://www.nature.com/articles/s41591-025-03888-0
+- id: ph_llm_fitness
+  name: PH-LLM Fitness MCQ
+  category: medical
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Personal Health LLM fitness MCQ. PH-LLM 88% beats human experts (71%)
+- id: lsm2_health_classify
+  name: LSM-2 Health Classification
+  category: clinical-prediction
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 60
+  - 92
+  description: LSM-2 health condition classification — hypertension, anxiety + 20-class
+    activity recognition. Fitbit 40M hrs
+  paper: https://arxiv.org/abs/2506.05321
+- id: lsm2_bmi_regression
+  name: LSM-2 BMI Regression
+  category: clinical-prediction
+  metric: mae
+  expected_range:
+  - 1.5
+  - 5.0
+  description: LSM-2 BMI continuous prediction. Lower=better
+- id: lsm2_imputation
+  name: LSM-2 Sensor Imputation
+  category: clinical-prediction
+  metric: rmse
+  expected_range:
+  - 0.2
+  - 1.0
+  description: LSM-2 reconstructing missing sensor data — handles incomplete wearable
+    signals. Lower=better
+- id: apple_wearable_57
+  name: Apple Wearable 57-Task
+  category: clinical-prediction
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 60
+  - 92
+  description: Apple Wearable FM — 57 health-related tasks. 2.5B hrs / 162K subjects.
+    ICML 2025
+  paper: https://arxiv.org/abs/2507.00191
+- id: wearable_cvd_hiv
+  name: Wearable CVD Screening (HIV)
+  category: clinical-prediction
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 70
+  - 92
+  description: Wearable signal screening for cardiovascular disease in HIV+ population.
+    Comm Med 2025
+  paper: https://www.nature.com/articles/s43856-025-01331-6
+- id: wearable_jepa_bp
+  name: Empirical Health BP Detection
+  category: clinical-prediction
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 70
+  - 95
+  description: Empirical Health JEPA wearable FM — high blood pressure detection 87%
+    accuracy
+  paper: https://www.empirical.health/blog/wearable-foundation-model-jets/
+- id: wearable_movement_mental
+  name: Wearable Movement Mental Health
+  category: clinical-prediction
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 60
+  - 90
+  description: Wearable movement data for depression/anxiety detection. PMC 2024
+- id: mlcommons_medperf
+  name: MLCommons MedPerf (Federated Eval)
+  category: medical-imaging
+  metric: score
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: MLCommons open benchmarking platform — federated evaluation. Models
+    deploy at data providers; data never leaves. Nature MI 2023
+  paper: https://www.nature.com/articles/s42256-023-00652-2
+  github: https://github.com/mlcommons/medperf
+- id: fets_2_brats
+  name: FeTS 2.0 BraTS Federated
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 70
+  - 96
+  description: Federated Tumor Segmentation 2.0 — post-op GBM. 32 sites × 6 continents
+    × 41 models via MedPerf orchestrator. Best consensus 0.95/0.94/0.89/0.77
+  paper: https://www.nature.com/articles/s41467-025-60466-1
+  github: https://www.synapse.org/#!Synapse:syn28546456
+  year: '2021'
+  item_count: ~2,000+ cases (aggregated)
+  bmt:
+    bmt_id: saved-1769661105943-4k74o
+    bmt_title: FeTS (Federated Tumor Segmentation) Challenge Dataset
+- id: fets_2024_aggregation
+  name: FeTS 2024 Aggregation Methods
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 70
+  - 95
+  description: MICCAI FeTS Challenge 2024 — robust federated aggregation methods
+  paper: https://arxiv.org/html/2512.06206
+  github: https://www.synapse.org/#!Synapse:syn28546456
+  year: '2021'
+  item_count: ~2,000+ cases (aggregated)
+  bmt:
+    bmt_id: saved-1769661105943-4k74o
+    bmt_title: FeTS (Federated Tumor Segmentation) Challenge Dataset
+- id: ailuminate_med
+  name: AILuminate v1.1 Medical Risk
+  category: medical-safety
+  metric: score
+  unit: '%'
+  expected_range:
+  - 70
+  - 96
+  description: MLCommons AILuminate v1.1 — chatbot safety. Medical advice + harmful
+    misinformation subset
+  leaderboard: https://mlcommons.org/benchmarks/ailuminate/
+- id: mlperf_inference_med
+  name: MLPerf Inference v5.1 Medical (3D U-Net KiTS19)
+  category: medical-imaging
+  metric: samples_sec
+  expected_range:
+  - 10
+  - 1000
+  description: MLPerf Inference 3D U-Net medical imaging — KiTS19 kidney tumor segmentation
+    throughput. v5.1 Sep 2025
+  leaderboard: https://mlcommons.org/2025/09/mlperf-inference-v5-1-results/
+- id: medperf_pancreas
+  name: MedPerf Pancreas Pathology
+  category: medical-imaging
+  metric: auroc
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: MedPerf federated pancreatic pathology — multi-institutional histopathology
+- id: medperf_cloud_mask
+  name: MedPerf Cloud Mask Generation
+  category: medical-imaging
+  metric: dice
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: MedPerf federated cloud mask generation
+- id: medperf_surgical
+  name: MedPerf Surgical Workflow
+  category: medical-imaging
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 92
+  description: MedPerf surgical workflow recognition — federated across hospital sites

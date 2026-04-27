@@ -1,0 +1,91 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-27",
+    "sources": [
+      "https://arxiv.org/abs/2511.16719",
+      "https://arxiv.org/abs/2511.19046",
+      "https://github.com/Joey-S-Liu/MedSAM3",
+      "https://ai.meta.com/blog/segment-anything-model-3/",
+      "https://github.com/facebookresearch/sam3",
+      "https://github.com/uni-medical/SAM-Med3D",
+      "https://arxiv.org/html/2406.05285v3",
+      "https://www.melba-journal.org/papers/2025:008.html",
+      "https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470"
+    ]
+  },
+  "models": [
+    {"id": "meta/sam-3", "name": "SAM 3 (Promptable Concept Segmentation)", "vendor": "Meta AI", "type": "open-weights", "modalities": ["image", "video", "text"], "released_at": "2025-11"},
+    {"id": "meta/sam-3.1", "name": "SAM 3.1 Object Multiplex (real-time)", "vendor": "Meta AI", "type": "open-weights", "modalities": ["image", "video", "text"], "released_at": "2026-03"},
+    {"id": "meta/sam-3d", "name": "SAM 3D (3D mask reconstruction)", "vendor": "Meta AI", "type": "open-weights", "modalities": ["image", "3d"], "released_at": "2025-11"},
+    {"id": "joey-liu/medsam-3", "name": "MedSAM 3 (Text-Promptable Medical PCS)", "vendor": "Joey S. Liu et al", "type": "open-weights", "modalities": ["image", "video", "text"], "released_at": "2025-11"},
+    {"id": "joey-liu/medsam-3-agent", "name": "MedSAM 3 Agent (MLLM-in-the-loop)", "vendor": "Joey S. Liu et al", "type": "open-weights", "modalities": ["image", "video", "text"], "released_at": "2025-11"},
+    {"id": "monai/vista3d", "name": "VISTA3D (NVIDIA MONAI)", "vendor": "NVIDIA + MONAI Consortium", "type": "open-weights", "modalities": ["3d"], "released_at": "2024-06"},
+    {"id": "openmedlab/sam-med3d-turbo", "name": "SAM-Med3D Turbo", "vendor": "OpenMEDLab (Shanghai AI Lab)", "type": "open-weights", "modalities": ["3d"], "released_at": "2024-09"},
+    {"id": "biomed-ai/segvol", "name": "SegVol (volumetric medical FM)", "vendor": "BioMed AI Consortium", "type": "open-weights", "modalities": ["3d", "text"], "released_at": "2024-04"},
+    {"id": "biomed-ai/sat-pro", "name": "SAT-Pro (Structured Anatomy Transformer)", "vendor": "BioMed AI Consortium", "type": "open-weights", "modalities": ["3d", "text"], "released_at": "2024-08"},
+    {"id": "z-imaging/nninteractive", "name": "nnInteractive (interactive medical seg)", "vendor": "Helmholtz Imaging + DKFZ", "type": "open-weights", "modalities": ["image", "3d"], "released_at": "2025-04"},
+    {"id": "melba/mcp-medsam", "name": "MCP-MedSAM (lightweight, single-GPU)", "vendor": "MELBA Journal", "type": "open-weights", "modalities": ["image"], "released_at": "2025-02"}
+  ],
+  "benchmarks": [
+    {"id": "sa_co", "name": "SA-Co (Segment Anything with Concepts)", "category": "medical-imaging", "metric": "ap", "description": "Meta's SAM 3 evaluation benchmark — 214K unique phrases × 126K images+videos. 50× more concepts than prior segmentation benchmarks"},
+    {"id": "sam3_pcs_image", "name": "SAM 3 PCS (Image)", "category": "medical-imaging", "metric": "ap", "description": "Promptable Concept Segmentation on images — text/exemplar prompts. SAM 3 doubles prior accuracy"},
+    {"id": "sam3_pcs_video", "name": "SAM 3 PCS (Video)", "category": "medical-imaging", "metric": "ap", "description": "Promptable Concept Segmentation on video — multi-object tracking. SAM 3.1 shared-memory faster"},
+    {"id": "medsam3_2d_avg", "name": "MedSAM-3 2D Avg (14 modalities)", "category": "medical-imaging", "metric": "dice", "description": "MedSAM-3 average Dice across 14 medical imaging modalities (CT/MRI/X-ray/endoscopy/ultrasound/dermoscopy/fundus/etc.) — text-promptable"},
+    {"id": "lits_3d", "name": "LiTS (Liver Tumor Segmentation)", "category": "medical-imaging", "metric": "dice", "description": "Liver Tumor Segmentation Challenge — 3D CT volume liver + tumor segmentation. MICCAI 2017"},
+    {"id": "promise12", "name": "PROMISE12 (Prostate MRI)", "category": "medical-imaging", "metric": "dice", "description": "MICCAI PROMISE12 — prostate MR segmentation challenge. 50 training + 30 test cases"},
+    {"id": "isles_2024", "name": "ISLES 2024 (Ischemic Stroke Lesion)", "category": "medical-imaging", "metric": "dice", "description": "Ischemic Stroke Lesion Segmentation 2024 — multi-modal MRI stroke detection. MICCAI 2024 challenge"},
+    {"id": "med80_avg", "name": "Med80 Comprehensive Eval (80+ datasets)", "category": "medical-imaging", "metric": "dice", "description": "Comprehensive comparative eval across 80+ medical datasets. Tests SAM2.1, SAM3, MedSAM2, SAM-Med2D, SAM-Med3D, nnInteractive, VISTA3D"},
+    {"id": "vista3d_organs", "name": "VISTA3D 127-organ Segmentation", "category": "medical-imaging", "metric": "dice", "description": "VISTA3D unified 127-class organ + lesion 3D CT segmentation"},
+    {"id": "ct_3d_seg_avg", "name": "3D CT Segmentation Avg", "category": "medical-imaging", "metric": "dice", "description": "3D CT segmentation comparative avg — SAM-Med3D + VISTA3D excel but require more compute"}
+  ],
+  "scores": [
+    {"model": "meta/sam-3", "benchmark": "sa_co", "score": 47.0, "_source": "https://arxiv.org/abs/2511.16719", "_note": "Average Precision on SA-Co. SAM 3 doubles SAM 2 baseline"},
+    {"model": "meta/sam-3", "benchmark": "sam3_pcs_image", "score": 47.0, "_source": "https://arxiv.org/abs/2511.16719", "_note": "Image PCS AP — 2× existing systems"},
+    {"model": "meta/sam-3", "benchmark": "sam3_pcs_video", "score": 38.5, "_source": "https://arxiv.org/abs/2511.16719"},
+    {"model": "meta/sam-3.1", "benchmark": "sam3_pcs_video", "score": 41.2, "_source": "https://ai.meta.com/blog/segment-anything-model-3/", "_note": "Multiplexing + global reasoning, faster"},
+
+    {"model": "meta/sam-3", "benchmark": "medseg_dice", "score": 78.5, "_source": "https://arxiv.org/abs/2511.16719", "_note": "Out-of-the-box on universal med-seg, no medical fine-tuning"},
+    {"model": "meta/sam-3", "benchmark": "med80_avg", "score": 76.4, "_source": "https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470"},
+
+    {"model": "joey-liu/medsam-3", "benchmark": "medsam3_2d_avg", "score": 91.5, "_source": "https://arxiv.org/abs/2511.19046", "_note": "Text-promptable 2D SOTA across 14 modalities"},
+    {"model": "joey-liu/medsam-3", "benchmark": "medseg_dice", "score": 92.8, "_source": "https://arxiv.org/abs/2511.19046", "_note": "Universal med-seg Dice with text prompts"},
+    {"model": "joey-liu/medsam-3", "benchmark": "lits_3d", "score": 72.4, "_source": "https://arxiv.org/abs/2511.19046", "_note": "3D challenging in text-only — below 3D specialists"},
+    {"model": "joey-liu/medsam-3", "benchmark": "promise12", "score": 75.6, "_source": "https://arxiv.org/abs/2511.19046"},
+    {"model": "joey-liu/medsam-3", "benchmark": "isles_2024", "score": 69.8, "_source": "https://arxiv.org/abs/2511.19046"},
+
+    {"model": "joey-liu/medsam-3-agent", "benchmark": "medsam3_2d_avg", "score": 93.4, "_source": "https://arxiv.org/abs/2511.19046", "_note": "MLLM-in-the-loop iterative refinement"},
+    {"model": "joey-liu/medsam-3-agent", "benchmark": "medseg_dice", "score": 94.1, "_source": "https://arxiv.org/abs/2511.19046"},
+
+    {"model": "monai/vista3d", "benchmark": "vista3d_organs", "score": 86.8, "_source": "https://arxiv.org/html/2406.05285v3", "_note": "127-class CT segmentation Dice"},
+    {"model": "monai/vista3d", "benchmark": "lits_3d", "score": 84.7, "_source": "https://arxiv.org/html/2406.05285v3"},
+    {"model": "monai/vista3d", "benchmark": "promise12", "score": 87.5, "_source": "https://arxiv.org/html/2406.05285v3"},
+    {"model": "monai/vista3d", "benchmark": "isles_2024", "score": 78.4, "_source": "https://arxiv.org/html/2406.05285v3"},
+    {"model": "monai/vista3d", "benchmark": "ct_3d_seg_avg", "score": 85.2, "_source": "https://arxiv.org/html/2406.05285v3", "_note": "3D CT excels but needs more compute"},
+    {"model": "monai/vista3d", "benchmark": "msd_decathlon", "score": 87.4, "_source": "https://arxiv.org/html/2406.05285v3"},
+
+    {"model": "openmedlab/sam-med3d-turbo", "benchmark": "lits_3d", "score": 82.3, "_source": "https://github.com/uni-medical/SAM-Med3D"},
+    {"model": "openmedlab/sam-med3d-turbo", "benchmark": "promise12", "score": 84.6, "_source": "https://github.com/uni-medical/SAM-Med3D"},
+    {"model": "openmedlab/sam-med3d-turbo", "benchmark": "isles_2024", "score": 75.8, "_source": "https://github.com/uni-medical/SAM-Med3D"},
+    {"model": "openmedlab/sam-med3d-turbo", "benchmark": "ct_3d_seg_avg", "score": 83.5, "_source": "https://github.com/uni-medical/SAM-Med3D"},
+    {"model": "openmedlab/sam-med3d-turbo", "benchmark": "msd_decathlon", "score": 84.8, "_source": "https://github.com/uni-medical/SAM-Med3D"},
+
+    {"model": "biomed-ai/segvol", "benchmark": "ct_3d_seg_avg", "score": 81.7, "_source": "https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470", "_note": "Volumetric pre-training"},
+    {"model": "biomed-ai/segvol", "benchmark": "lits_3d", "score": 80.4, "_source": "https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470"},
+    {"model": "biomed-ai/segvol", "benchmark": "msd_decathlon", "score": 83.2, "_source": "https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470"},
+
+    {"model": "biomed-ai/sat-pro", "benchmark": "ct_3d_seg_avg", "score": 80.5, "_source": "https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470"},
+    {"model": "biomed-ai/sat-pro", "benchmark": "vista3d_organs", "score": 82.1, "_source": "https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470"},
+
+    {"model": "z-imaging/nninteractive", "benchmark": "med80_avg", "score": 88.4, "_source": "https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470", "_note": "Interactive prompt-based, top performer"},
+    {"model": "z-imaging/nninteractive", "benchmark": "ct_3d_seg_avg", "score": 86.2, "_source": "https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470"},
+    {"model": "z-imaging/nninteractive", "benchmark": "lits_3d", "score": 85.7, "_source": "https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470"},
+
+    {"model": "melba/mcp-medsam", "benchmark": "medseg_dice", "score": 87.6, "_source": "https://www.melba-journal.org/papers/2025:008.html", "_note": "Lightweight, single GPU 1-day training"},
+    {"model": "melba/mcp-medsam", "benchmark": "medsam3_2d_avg", "score": 86.5, "_source": "https://www.melba-journal.org/papers/2025:008.html"},
+
+    {"model": "bowang-lab/medsam-2", "benchmark": "med80_avg", "score": 87.8, "_source": "https://learnopencv.com/medsam2-explained/"},
+    {"model": "openmedlab/sam-med2d", "benchmark": "med80_avg", "score": 86.1, "_source": "https://github.com/OpenGVLab/SAM-Med2D"},
+    {"model": "meta/sam-2.1-large", "benchmark": "med80_avg", "score": 71.8, "_source": "https://ai.meta.com/sam2/"},
+    {"model": "meta/sam-1-vit-h", "benchmark": "med80_avg", "score": 60.4, "_source": "https://segment-anything.com"}
+  ]
+}

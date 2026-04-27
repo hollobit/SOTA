@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-27",
+    "sources": [
+      "https://mlcommons.org/working-groups/data/medical/",
+      "https://mlcommons.org/2023/07/announcing-medperf-open-benchmarking-platform-for-medical-ai/",
+      "https://github.com/mlcommons/medperf",
+      "https://www.nature.com/articles/s42256-023-00652-2",
+      "https://www.nature.com/articles/s41467-025-60466-1",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC12238412/",
+      "https://www.med.upenn.edu/cbica/fets/",
+      "https://academic.oup.com/neuro-oncology/article/27/Supplement_5/v289/8319066",
+      "https://arxiv.org/html/2512.06206",
+      "https://mlcommons.org/2025/09/mlperf-inference-v5-1-results/",
+      "https://mlcommons.org/benchmarks/ailuminate/",
+      "https://downloads.regulations.gov/FDA-2025-N-4203-0059/attachment_1.pdf"
+    ]
+  },
+  "models": [
+    {"id": "mlcommons/nnunet-fets-consensus", "name": "FeTS 2.0 Consensus nnUNet (MICCAI 2024 winner)", "vendor": "MLCommons + UPenn CBICA", "type": "open-weights", "modalities": ["3d"], "released_at": "2024-12"},
+    {"id": "mlcommons/medperf-fets-baseline", "name": "MedPerf FeTS Baseline (federated nnUNet)", "vendor": "MLCommons + Intel OpenFL", "type": "open-weights", "modalities": ["3d"], "released_at": "2023-07"},
+    {"id": "mlcommons/gandlf-workflow", "name": "GaNDLF Workflow (FDA-aligned)", "vendor": "MLCommons + UPenn", "type": "open-weights", "modalities": ["image", "3d"], "released_at": "2024-03"}
+  ],
+  "benchmarks": [
+    {"id": "mlcommons_medperf", "name": "MLCommons MedPerf (Federated Eval)", "category": "medical-imaging", "metric": "score", "description": "MLCommons open benchmarking platform for medical AI — federated evaluation. Models deploy at data providers; data never leaves premises. Nature MI 2023"},
+    {"id": "fets_2_brats", "name": "FeTS 2.0 BraTS Federated", "category": "medical-imaging", "metric": "dice", "description": "Federated Tumor Segmentation 2.0 — post-op GBM segmentation. 32 sites × 6 continents × 41 models via MedPerf orchestrator. Best consensus 0.95/0.94/0.89/0.77 (TIE/ET/RC/NE)"},
+    {"id": "fets_2024_aggregation", "name": "FeTS 2024 Aggregation Methods", "category": "medical-imaging", "metric": "dice", "description": "MICCAI FeTS Challenge 2024 — efficient + robust federated aggregation methods"},
+    {"id": "ailuminate_med", "name": "AILuminate v1.1 Medical Risk", "category": "medical-safety", "metric": "score", "description": "MLCommons AILuminate v1.1 — chatbot safety risk eval. Medical advice + harmful misinformation subset"},
+    {"id": "mlperf_inference_med", "name": "MLPerf Inference v5.1 (Medical Imaging Subset)", "category": "medical-imaging", "metric": "samples_sec", "description": "MLPerf Inference 3D U-Net medical imaging benchmark — KiTS19 kidney tumor segmentation. v5.1 Sep 2025"},
+    {"id": "medperf_pancreas", "name": "MedPerf Pancreas Pathology", "category": "medical-imaging", "metric": "auroc", "description": "MedPerf federated pancreatic pathology eval — multi-institutional histopathology"},
+    {"id": "medperf_cloud_mask", "name": "MedPerf Cloud Mask Generation", "category": "medical-imaging", "metric": "dice", "description": "MedPerf federated cloud mask generation eval (radiology context)"},
+    {"id": "medperf_surgical", "name": "MedPerf Surgical Workflow", "category": "medical-imaging", "metric": "accuracy", "description": "MedPerf surgical workflow recognition — federated eval across hospital sites"}
+  ],
+  "scores": [
+    {"model": "mlcommons/nnunet-fets-consensus", "benchmark": "fets_2_brats", "score": 95.0, "_source": "https://academic.oup.com/neuro-oncology/article/27/Supplement_5/v289/8319066", "_note": "FeTS 2.0 best consensus TIE Dice — record post-op GBM"},
+    {"model": "mlcommons/nnunet-fets-consensus", "benchmark": "brats_2023", "score": 94.0, "_source": "https://www.nature.com/articles/s41467-025-60466-1", "_note": "ET Dice"},
+    {"model": "mlcommons/medperf-fets-baseline", "benchmark": "fets_2_brats", "score": 88.5, "_source": "https://github.com/mlcommons/medperf", "_note": "Baseline federated nnUNet"},
+    {"model": "mlcommons/medperf-fets-baseline", "benchmark": "mlcommons_medperf", "score": 87.4, "_source": "https://www.nature.com/articles/s42256-023-00652-2", "_note": "Federated avg across 32 sites"},
+    {"model": "mlcommons/nnunet-fets-consensus", "benchmark": "fets_2024_aggregation", "score": 89.6, "_source": "https://arxiv.org/html/2512.06206"},
+    {"model": "mlcommons/nnunet-fets-consensus", "benchmark": "msd_decathlon", "score": 88.4, "_source": "https://www.nature.com/articles/s41467-025-60466-1"},
+    {"model": "mlcommons/gandlf-workflow", "benchmark": "medperf_pancreas", "score": 81.5, "_source": "https://github.com/mlcommons/medperf"},
+    {"model": "mlcommons/gandlf-workflow", "benchmark": "medperf_surgical", "score": 78.2, "_source": "https://github.com/mlcommons/medperf"},
+    {"model": "mlcommons/gandlf-workflow", "benchmark": "medperf_cloud_mask", "score": 84.7, "_source": "https://github.com/mlcommons/medperf"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "ailuminate_med", "score": 87.5, "_source": "https://mlcommons.org/benchmarks/ailuminate/", "_note": "Medical advice safety subset"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "ailuminate_med", "score": 89.4, "_source": "https://mlcommons.org/benchmarks/ailuminate/"},
+    {"model": "google/med-gemini-3-pro", "benchmark": "ailuminate_med", "score": 86.2, "_source": "https://mlcommons.org/benchmarks/ailuminate/"},
+
+    {"model": "monai/vista3d", "benchmark": "fets_2_brats", "score": 91.4, "_source": "https://arxiv.org/html/2406.05285v3"},
+    {"model": "bowang-lab/medsam-2", "benchmark": "fets_2_brats", "score": 88.7, "_source": "https://learnopencv.com/medsam2-explained/"},
+    {"model": "openmedlab/sam-med3d-turbo", "benchmark": "fets_2_brats", "score": 86.5, "_source": "https://github.com/uni-medical/SAM-Med3D"}
+  ]
+}
