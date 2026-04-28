@@ -4963,5 +4963,546 @@
     "category": "safety",
     "description": "Detects sandbagging via formal/casual question variant consistency on WMDP-style questions",
     "metric": "consistency"
+  },
+  {
+    "id": "ct_rate",
+    "name": "CT-RATE (3D Chest CT + Report)",
+    "category": "medical-imaging",
+    "description": "Large-scale 3D medical imaging — non-contrast chest CT volumes paired with radiology text reports. Multi-modal CT-report pretraining",
+    "metric": "auroc",
+    "paper": "https://arxiv.org/abs/2403.17834",
+    "github": "https://github.com/ibrahimethemhamamci/CT-CLIP",
+    "year": "2024",
+    "item_count": "50,188 3D CT volumes (25,692 unique scans)",
+    "bmt": {
+      "bmt_id": "saved-1769608044993-a1ue9",
+      "bmt_title": "CT-RATE"
+    }
+  },
+  {
+    "id": "ct_rate_jp",
+    "name": "Japanese CT Report Dataset",
+    "category": "medical-imaging",
+    "description": "Multilingual adaptation of CT-RATE — Japanese radiology reports",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2412.15907",
+    "github": "https://github.com/ibrahimethemhamamci/CT-CLIP",
+    "year": "2024",
+    "item_count": "22,778 Translated Reports",
+    "bmt": {
+      "bmt_id": "saved-1769608044993-m2zk9",
+      "bmt_title": "Japanese CT Report Dataset"
+    }
+  },
+  {
+    "id": "generatect_dataset",
+    "name": "GenerateCT Dataset",
+    "category": "medical-imaging",
+    "description": "Synthetic chest CT volumes + text prompts via GenerateCT framework",
+    "metric": "fid",
+    "paper": "https://arxiv.org/abs/2405.15343",
+    "github": "https://github.com/ibrahimethemhamamci/GenerateCT",
+    "year": "2024",
+    "item_count": "2,286 Synthetic CT volumes",
+    "bmt": {
+      "bmt_id": "saved-1769608044993-ph5a3",
+      "bmt_title": "GenerateCT Dataset"
+    }
+  },
+  {
+    "id": "pathmmu",
+    "name": "PathMMU (Massive Multimodal Pathology)",
+    "category": "medical-imaging",
+    "description": "Massive multimodal expert-level pathology benchmark — comprehensive understanding + reasoning eval",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2401.16355",
+    "github": "https://github.com/PathMMU-Benchmark/PathMMU",
+    "year": "2024",
+    "item_count": "33,428 QA pairs; 24,067 images",
+    "leaderboard": "https://pathmmu-benchmark.github.io/",
+    "bmt": {
+      "bmt_id": "saved-1769608044993-orqz0",
+      "bmt_title": "PathMMU"
+    }
+  },
+  {
+    "id": "medexqa",
+    "name": "MedExQA (Multi-Explanation Medical QA)",
+    "category": "medical",
+    "description": "Medical QA with multiple explanations per answer to evaluate LLM understanding",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2405.10688",
+    "github": "https://github.com/UCL-Health-Informatics/MedExQA",
+    "year": "2024",
+    "item_count": "Not specified in snippet",
+    "bmt": {
+      "bmt_id": "saved-1769608044993-j5fxb",
+      "bmt_title": "MedExQA"
+    }
+  },
+  {
+    "id": "wsi_path_align",
+    "name": "WSI-Path / PathAlign",
+    "category": "medical-imaging",
+    "description": "De-identified H&E whole slide images paired with final diagnosis text from pathology reports. MedGemma reference",
+    "metric": "auroc",
+    "paper": "https://huggingface.co/google/medgemma-1.5-4b-it",
+    "github": "https://huggingface.co/google",
+    "year": "2024",
+    "item_count": "Single WSI examples (count unspecified in snippet)",
+    "bmt": {
+      "bmt_id": "saved-1769608044993-az2a8",
+      "bmt_title": "WSI-Path"
+    }
+  },
+  {
+    "id": "ucf_multiorgan_path",
+    "name": "UCF-MultiOrgan-Path",
+    "category": "medical-imaging",
+    "description": "Multi-organ histopathologic image classification — collected from cadavers over a decade",
+    "metric": "accuracy",
+    "paper": "https://www.medrxiv.org/content/10.1101/2024.11.05.24316736v1",
+    "github": "https://github.com/Md-Sanzid-Bin-Hossain/UCF-WSI-Dataset",
+    "year": "2024",
+    "item_count": "977 WSIs, ~2.38 million patches",
+    "bmt": {
+      "bmt_id": "saved-1769608044993-t7wc2",
+      "bmt_title": "UCF-MultiOrgan-Path"
+    }
+  },
+  {
+    "id": "dermavqa",
+    "name": "DermaVQA (Multilingual Dermatology VQA)",
+    "category": "medical-imaging",
+    "description": "Multilingual VQA for dermatology — clinical queries + images from 2 subsets",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2512.24340",
+    "github": "https://github.com/velvinnn/DermaVQA",
+    "year": "2025",
+    "item_count": "Extends DermaVQA",
+    "bmt": {
+      "bmt_id": "saved-1769608044991-9vuo5",
+      "bmt_title": "DermaVQA-DAS"
+    }
+  },
+  {
+    "id": "medec",
+    "name": "MEDEC (Medical Error Detection + Correction)",
+    "category": "medical-safety",
+    "description": "Medical error detection + correction in clinical notes — 5 error types (Diagnosis, Management, Treatment, Pharmacotherapy, Causal)",
+    "metric": "f1",
+    "paper": "https://arxiv.org/abs/2412.18567",
+    "github": "https://github.com/abachaa/MEDEC",
+    "year": "2024",
+    "item_count": "3,848 clinical texts",
+    "bmt": {
+      "bmt_id": "saved-1769608044994-bpww2",
+      "bmt_title": "MEDEC"
+    }
+  },
+  {
+    "id": "ehrxqa",
+    "name": "EHRXQA (Multimodal EHR + CXR QA)",
+    "category": "medical-imaging",
+    "description": "Multi-modal QA combining structured EHR (MIMIC-IV) + chest X-ray images (MIMIC-CXR)",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2310.18652",
+    "github": "https://github.com/baeseongsu/ehrxqa",
+    "year": "2023",
+    "item_count": "46,152 samples",
+    "bmt": {
+      "bmt_id": "saved-1769608044995-v6geb",
+      "bmt_title": "EHRXQA"
+    }
+  },
+  {
+    "id": "ehrsql",
+    "name": "EHRSQL (EHR Text-to-SQL)",
+    "category": "medical",
+    "description": "Large-scale text-to-SQL for EHRs — structured QA testing",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2301.07695",
+    "github": "https://github.com/glee4810/EHRSQL",
+    "year": "2022",
+    "item_count": "~24,000 samples",
+    "bmt": {
+      "bmt_id": "saved-1769608044997-1uxmp",
+      "bmt_title": "EHRSQL"
+    }
+  },
+  {
+    "id": "radimagenet_vqa",
+    "name": "RadImageNet-VQA",
+    "category": "medical-imaging",
+    "description": "Large-scale synthetic radiologic VQA — CT and MRI exams. Built from RadImageNet",
+    "metric": "accuracy",
+    "paper": "https://huggingface.co/datasets/raidium/RadImageNet-VQA",
+    "github": "https://huggingface.co/datasets/raidium/RadImageNet-VQA",
+    "year": "2023",
+    "item_count": "750,000 images, 6.75M QA pairs",
+    "bmt": {
+      "bmt_id": "saved-1769608044995-lv3ip",
+      "bmt_title": "RadImageNet-VQA"
+    }
+  },
+  {
+    "id": "radgraph2",
+    "name": "RadGraph2 (Disease Progression)",
+    "category": "medical-imaging",
+    "description": "RadGraph extension — models disease progression in radiology reports. Hierarchical schema",
+    "metric": "f1",
+    "paper": "https://arxiv.org/abs/2308.05046",
+    "github": "https://physionet.org/content/radgraph2",
+    "year": "2023",
+    "item_count": "800 annotated reports",
+    "bmt": {
+      "bmt_id": "saved-1769608044996-ohuhx",
+      "bmt_title": "RadGraph2"
+    }
+  },
+  {
+    "id": "mimic_sql",
+    "name": "MIMIC-SQL (Text-to-SQL on EMR)",
+    "category": "medical",
+    "description": "Text-to-SQL generation on Electronic Medical Records — machine-generated + human-paraphrased subsets",
+    "metric": "accuracy",
+    "paper": "https://aclanthology.org/2020.acl-main.123/",
+    "github": "https://github.com/wangpinggl/TREQS",
+    "year": "2020",
+    "item_count": "10,000 questions",
+    "bmt": {
+      "bmt_id": "saved-1769608044998-qmkt5",
+      "bmt_title": "MIMIC-SQL"
+    }
+  },
+  {
+    "id": "mimic_sparql",
+    "name": "MIMIC-SPARQL (KG QA)",
+    "category": "medical",
+    "description": "Knowledge graph-based QA for EHRs — counterpart to MIMIC-SQL converted to RDF",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2107.13904",
+    "github": "https://github.com/junwoopark92/mimic-sparql",
+    "year": "2021",
+    "item_count": "10,000 questions (derived from MIMIC-SQL)",
+    "bmt": {
+      "bmt_id": "saved-1769608044998-od86l",
+      "bmt_title": "MIMIC-SPARQL"
+    }
+  },
+  {
+    "id": "mimic_iv_labevents",
+    "name": "MIMIC-IV Lab Events",
+    "category": "clinical-prediction",
+    "description": "MIMIC-IV labevents table — laboratory measurements for ICU patients",
+    "metric": "auroc",
+    "paper": "https://doi.org/10.1038/s41597-022-01899-x",
+    "github": "https://github.com/MIT-LCP/mimic-code",
+    "year": "2023",
+    "item_count": ">65,000 ICU patients, >200,000 ED patients",
+    "bmt": {
+      "bmt_id": "csv-5-1769500744825",
+      "bmt_title": "MIMIC-IV"
+    }
+  },
+  {
+    "id": "fastmri",
+    "name": "fastMRI (k-space + DICOM)",
+    "category": "medical-imaging",
+    "description": "fastMRI — raw MRI measurements (k-space) + clinical DICOM. AI-based MRI reconstruction",
+    "metric": "ssim",
+    "paper": "https://arxiv.org/abs/2109.03612",
+    "github": "https://github.com/microsoft/fastmri-plus",
+    "year": "2021",
+    "item_count": "23,724 bounding box annotations",
+    "bmt": {
+      "bmt_id": "saved-1769608044998-eubat",
+      "bmt_title": "fastMRI+"
+    }
+  },
+  {
+    "id": "fastmri_plus",
+    "name": "fastMRI+ (Pathology Annotations)",
+    "category": "medical-imaging",
+    "description": "fastMRI extension — clinical pathology annotations (bbox + labels) for knee + brain",
+    "metric": "f1",
+    "paper": "https://arxiv.org/abs/2109.03612",
+    "github": "https://github.com/microsoft/fastmri-plus",
+    "year": "2021",
+    "item_count": "23,724 bounding box annotations",
+    "bmt": {
+      "bmt_id": "saved-1769608044998-eubat",
+      "bmt_title": "fastMRI+"
+    }
+  },
+  {
+    "id": "object_cxr",
+    "name": "Object-CXR (Foreign Object Detection)",
+    "category": "medical-imaging",
+    "description": "Automatic foreign-object detection in chest X-rays",
+    "metric": "auroc",
+    "paper": "https://arxiv.org/abs/2003.11597",
+    "github": "https://github.com/hlk-1135/object-CXR",
+    "year": "2020",
+    "item_count": "10,000 images",
+    "bmt": {
+      "bmt_id": "saved-1769608044998-rwg4u",
+      "bmt_title": "Object-CXR"
+    }
+  },
+  {
+    "id": "us_derm_mcqa",
+    "name": "US-DermMCQA (Liu 2020)",
+    "category": "medical-imaging",
+    "description": "Dermatology MCQ assessment — Google/DeepMind MedGemma internal eval reference",
+    "metric": "accuracy",
+    "paper": "https://www.nature.com/articles/s41591-020-0842-3",
+    "github": "https://github.com/google-health/dermatology-research",
+    "year": "2020",
+    "item_count": "1,996 cases (derived)",
+    "bmt": {
+      "bmt_id": "saved-1769608044998-ta4qv",
+      "bmt_title": "US-DermMCQA (Internal / Liu et al. 2020)"
+    }
+  },
+  {
+    "id": "pharmaconer",
+    "name": "PharmaCoNER (Spanish Pharma NER)",
+    "category": "medical",
+    "description": "Pharmacological substances NER in Spanish clinical cases",
+    "metric": "f1",
+    "paper": "https://aclanthology.org/D19-5701/",
+    "github": "https://github.com/PlanTL-SANIDAD/SPACCC",
+    "year": "2019",
+    "item_count": "1,000 clinical cases (396,988 words)",
+    "bmt": {
+      "bmt_id": "saved-1769608045000-qenha",
+      "bmt_title": "PharmaCoNER"
+    }
+  },
+  {
+    "id": "chestxray14",
+    "name": "ChestX-ray14 (NIH)",
+    "category": "medical-imaging",
+    "description": "Hospital-scale CXR DB — weakly-supervised classification + localization for 14 thorax diseases",
+    "metric": "auroc",
+    "paper": "https://arxiv.org/abs/1705.02315",
+    "github": "https://github.com/zoogzog/chexnet",
+    "year": "2017",
+    "item_count": "112,120 images",
+    "bmt": {
+      "bmt_id": "saved-1769608045000-g01mc",
+      "bmt_title": "ChestX-ray14 (NIH Chest X-ray)"
+    }
+  },
+  {
+    "id": "breakhis",
+    "name": "BreaKHis (Breast Cancer Histopathology)",
+    "category": "medical-imaging",
+    "description": "Breast cancer histopathological image classification — microscopic tumor tissue",
+    "metric": "accuracy",
+    "paper": "http://web.inf.ufpr.br/vri/breast-cancer-database",
+    "github": "https://github.com/mrdvince/breast_cancer_detection",
+    "year": "2016",
+    "item_count": "7,909 images",
+    "bmt": {
+      "bmt_id": "saved-1769608045000-2pgsv",
+      "bmt_title": "BreaKHis (Breast Cancer Histopathological Image Classification)"
+    }
+  },
+  {
+    "id": "eyepacs_dr",
+    "name": "EyePACS Diabetic Retinopathy (Kaggle)",
+    "category": "medical-imaging",
+    "description": "Large-scale retinal fundus images — automated diabetic retinopathy detection (Kaggle)",
+    "metric": "kappa",
+    "paper": "https://www.kaggle.com/c/diabetic-retinopathy-detection",
+    "github": "https://github.com/bumbledeep/eyepacs",
+    "year": "2015",
+    "item_count": "88,702 images (35,126 train, 53,576 test)",
+    "bmt": {
+      "bmt_id": "saved-1769608045000-l4ra6",
+      "bmt_title": "EyePACS (Kaggle Diabetic Retinopathy Detection)"
+    }
+  },
+  {
+    "id": "iu_xray",
+    "name": "IU X-Ray (OpenI)",
+    "category": "medical-imaging",
+    "description": "Indiana University CXR + reports — small-scale standard report-gen benchmark",
+    "metric": "rouge",
+    "paper": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4849245/",
+    "github": "https://openi.nlm.nih.gov/",
+    "year": "2015",
+    "item_count": "7,470 images, 3,955 reports",
+    "bmt": {
+      "bmt_id": "saved-1769608045000-mnfhn",
+      "bmt_title": "IU X-Ray (OpenI)"
+    }
+  },
+  {
+    "id": "pubhealth",
+    "name": "PubHealth (Public Health Fact-Checking)",
+    "category": "medical-safety",
+    "description": "Explainable automated fact-checking of public health claims with veracity labels + journalist explanation",
+    "metric": "f1",
+    "paper": "https://arxiv.org/abs/2010.09926",
+    "github": "https://github.com/ImperialCollegeLondon/health_fact",
+    "year": "2020",
+    "item_count": "11,832 claims",
+    "bmt": {
+      "bmt_id": "imported-json-1769638825347-648-5wy7d",
+      "bmt_title": "PubHealth"
+    }
+  },
+  {
+    "id": "healthslm_bench",
+    "name": "HealthSLM-Bench (Mobile/Wearable SLMs)",
+    "category": "clinical-prediction",
+    "description": "Small Language Models on mobile/wearable healthcare — zero-shot/few-shot/finetuned",
+    "metric": "auroc",
+    "paper": "https://arxiv.org/abs/2509.07260",
+    "github": "https://github.com/paperscope/AIConf",
+    "year": "2025",
+    "item_count": "Aggregates 4 public wearable datasets",
+    "bmt": {
+      "bmt_id": "saved-1769639903521-sf5og",
+      "bmt_title": "HealthSLM-Bench"
+    }
+  },
+  {
+    "id": "imed_361m",
+    "name": "IMed-361M (Interactive Med Seg)",
+    "category": "medical-imaging",
+    "description": "Large-scale interactive medical image segmentation — diverse modalities + dense interactive annotations",
+    "metric": "dice",
+    "paper": "https://arxiv.org/abs/2411.07885",
+    "github": "https://github.com/uni-medical/IMIS-Bench",
+    "year": "2024",
+    "item_count": "6.4 million images, 361 million masks",
+    "bmt": {
+      "bmt_id": "saved-1769640302487-8tjmd",
+      "bmt_title": "IMed-361M"
+    }
+  },
+  {
+    "id": "medsegbench",
+    "name": "MedSegBench",
+    "category": "medical-imaging",
+    "description": "Comprehensive medical image segmentation benchmark — aggregates diverse datasets",
+    "metric": "dice",
+    "paper": "https://doi.org/10.1038/s41597-024-04159-2",
+    "github": "https://github.com/zekikus/MedSegBench",
+    "year": "2024",
+    "item_count": "35 datasets, 60,000+ images",
+    "bmt": {
+      "bmt_id": "saved-1769657228617-vy122",
+      "bmt_title": "MedSegBench"
+    }
+  },
+  {
+    "id": "sa_med2d_20m",
+    "name": "SA-Med2D-20M",
+    "category": "medical-imaging",
+    "description": "Large-scale 2D medical image segmentation — 20M images for SAM medical adaptation",
+    "metric": "dice",
+    "paper": "https://arxiv.org/abs/2311.11969",
+    "github": "https://github.com/OpenGVLab/SAM-Med2D",
+    "year": "2023",
+    "item_count": "4.6 million images, 19.7 million masks",
+    "bmt": {
+      "bmt_id": "saved-1769657311609-aeh44",
+      "bmt_title": "SA-Med2D-20M"
+    }
+  },
+  {
+    "id": "atom3d_psr",
+    "name": "ATOM3D Protein Structure Ranking (PSR)",
+    "category": "protein",
+    "description": "ATOM3D PSR — predicting quality (GDT_TS) of protein structure models",
+    "metric": "gdt_ts",
+    "paper": "https://arxiv.org/abs/2012.04035",
+    "github": "https://github.com/drorlab/atom3d",
+    "year": "2020",
+    "item_count": "~5.3 TB (total ATOM3D volume), PSR specific: ~8 GB (raw), ~2 GB (split)",
+    "bmt": {
+      "bmt_id": "saved-1769657076297-nrpws",
+      "bmt_title": "ATOM3D: Protein Structure Ranking (PSR)"
+    }
+  },
+  {
+    "id": "sair_ic50",
+    "name": "SAIR (IC50 Co-folded Structures)",
+    "category": "protein",
+    "description": "Structurally Augmented IC50 Repository — 3D protein-ligand structures + measured IC50",
+    "metric": "rmse",
+    "paper": "https://huggingface.co/datasets/SandboxAQ/SAIR",
+    "github": "https://huggingface.co/datasets/SandboxAQ/SAIR",
+    "year": "2025",
+    "item_count": "5 million AI-generated 3D structures with potency labels",
+    "bmt": {
+      "bmt_id": "saved-1769657008018-mjt5j",
+      "bmt_title": "SAIR (Structurally Augmented IC50 Repository)"
+    }
+  },
+  {
+    "id": "bipia",
+    "name": "BIPIA (Indirect PI Attacks)",
+    "category": "safety",
+    "description": "First benchmark for indirect prompt injection attacks on LLMs",
+    "metric": "asr",
+    "paper": "https://arxiv.org/abs/2312.14197",
+    "github": "https://github.com/microsoft/BIPIA",
+    "year": "2023",
+    "item_count": "35,000+ malicious instances (expandable)",
+    "bmt": {
+      "bmt_id": "saved-1769608044995-7uaw6",
+      "bmt_title": "BIPIA (Benchmark for Indirect Prompt Injection Attacks)"
+    }
+  },
+  {
+    "id": "mol_instructions",
+    "name": "Mol-Instructions",
+    "category": "chemistry",
+    "description": "Biomolecular instruction tuning dataset — molecule-text + text-text + bio-text",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2306.08018",
+    "github": "https://github.com/zjunlp/Mol-Instructions",
+    "year": "2023",
+    "item_count": "~148.4K molecule instructions, ~505K protein instructions",
+    "bmt": {
+      "bmt_id": "saved-1769608044996-u3phk",
+      "bmt_title": "Mol-Instructions"
+    }
+  },
+  {
+    "id": "eisost",
+    "name": "EISOST (Endoscopic Sim2Real Seg)",
+    "category": "medical-imaging",
+    "description": "Endoscopic Sim-to-Real domain adaptation — oropharyngeal organ segmentation",
+    "metric": "dice",
+    "paper": "https://github.com/gkw0010/EISOST-Sim2Real-Dataset-Release",
+    "github": "https://github.com/gkw0010/EISOST-Sim2Real-Dataset-Release",
+    "year": "2023",
+    "item_count": "1,397 images (1,194 sim, 203 real)",
+    "bmt": {
+      "bmt_id": "saved-1769608044996-opksz",
+      "bmt_title": "EISOST (Endoscopic Images Sim-to-Real Oropharyngeal Segmentation)"
+    }
+  },
+  {
+    "id": "nyu_breast_path_ner",
+    "name": "NYU Breast Pathology Reports (NER)",
+    "category": "medical",
+    "description": "Breast pathology reports — NER for diagnostic elements",
+    "metric": "f1",
+    "paper": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10319853/",
+    "github": "https://github.com/nyukat/pathology_extraction",
+    "year": "2023",
+    "item_count": "1,438 reports",
+    "bmt": {
+      "bmt_id": "saved-1769608044995-s57vs",
+      "bmt_title": "NYU Breast Pathology Reports Dataset"
+    }
   }
 ]
