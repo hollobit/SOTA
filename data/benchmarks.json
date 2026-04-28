@@ -231,13 +231,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "swe_bench_multilingual",
-    "name": "SWE-bench Multilingual",
-    "category": "coding",
-    "description": "Multilingual software engineering tasks across multiple programming languages",
-    "metric": "accuracy"
-  },
-  {
     "id": "matharena_apex",
     "name": "MathArena Apex",
     "category": "math",
@@ -5504,5 +5497,137 @@
       "bmt_id": "saved-1769608044995-s57vs",
       "bmt_title": "NYU Breast Pathology Reports Dataset"
     }
+  },
+  {
+    "id": "swe_bench_multilingual",
+    "name": "SWE-bench Multilingual",
+    "category": "coding",
+    "description": "Multilingual variant of SWE-bench across multiple programming languages. Mythos 87.3 SOTA, Opus 4.6 77.8",
+    "metric": "resolve_rate",
+    "paper": "https://arxiv.org/abs/2504.21798",
+    "github": "https://github.com/princeton-nlp/SWE-bench",
+    "year": "2025",
+    "item_count": "300 instances",
+    "bmt": {
+      "bmt_id": "saved-1769608044991-it673",
+      "bmt_title": "SWE-bench Multilingual"
+    }
+  },
+  {
+    "id": "swe_bench_multimodal",
+    "name": "SWE-bench Multimodal",
+    "category": "coding",
+    "description": "Multimodal variant of SWE-bench (issues with screenshots/diagrams). Mythos 59.0 SOTA, Opus 4.6 27.1",
+    "metric": "resolve_rate",
+    "paper": "https://arxiv.org/abs/2410.03859",
+    "github": "https://github.com/princeton-nlp/SWE-bench",
+    "year": "2024",
+    "item_count": "617 instances",
+    "bmt": {
+      "bmt_id": "saved-1769608044992-q27mn",
+      "bmt_title": "SWE-bench Multimodal"
+    }
+  },
+  {
+    "id": "graphwalks_bfs",
+    "name": "GraphWalks BFS (256K-1M Long Context)",
+    "category": "reasoning",
+    "description": "Long-context graph BFS reasoning at 256K-1M tokens. Mythos 80.0 SOTA, Opus 4.6 38.7, GPT-5.4 21.4",
+    "metric": "accuracy"
+  },
+  {
+    "id": "charxiv_reasoning_no_tools",
+    "name": "CharXiv Reasoning (no tools)",
+    "category": "reasoning",
+    "description": "CharXiv Reasoning sans tool use. Mythos 86.1 SOTA, Opus 4.6 61.5",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2406.18521",
+    "github": "https://github.com/princeton-nlp/CharXiv",
+    "year": "2024",
+    "item_count": "2,323 charts",
+    "bmt": {
+      "bmt_id": "saved-1769608044992-k9sdp",
+      "bmt_title": "CharXiv"
+    }
+  },
+  {
+    "id": "charxiv_reasoning_tools",
+    "name": "CharXiv Reasoning (with tools)",
+    "category": "reasoning",
+    "description": "CharXiv Reasoning with tool augmentation. Mythos 93.2 SOTA, Opus 4.6 78.9",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2406.18521",
+    "github": "https://github.com/princeton-nlp/CharXiv",
+    "year": "2024",
+    "item_count": "2,323 charts",
+    "bmt": {
+      "bmt_id": "saved-1769608044992-k9sdp",
+      "bmt_title": "CharXiv"
+    }
+  },
+  {
+    "id": "hle_no_tools",
+    "name": "HLE (no tools)",
+    "category": "reasoning",
+    "description": "Humanity's Last Exam without tool use. Mythos 56.8, Gemini 3.1 Pro 44.4, Opus 4.6 40.0, GPT-5.4 39.8",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2501.14249",
+    "github": "https://github.com/centerforaisafety/hle",
+    "year": "2025",
+    "item_count": "3,000 questions (2,500 public)",
+    "bmt": {
+      "bmt_id": "saved-1769608044991-o98nv",
+      "bmt_title": "Humanity's Last Exam (HLE)"
+    }
+  },
+  {
+    "id": "hle_tools",
+    "name": "HLE (with tools)",
+    "category": "reasoning",
+    "description": "Humanity's Last Exam with tools. Mythos 64.7 SOTA, Opus 4.6 53.1, GPT-5.4 52.1, Gemini 3.1 51.4",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2501.14249",
+    "github": "https://github.com/centerforaisafety/hle",
+    "year": "2025",
+    "item_count": "3,000 questions (2,500 public)",
+    "bmt": {
+      "bmt_id": "saved-1769608044991-o98nv",
+      "bmt_title": "Humanity's Last Exam (HLE)"
+    }
+  },
+  {
+    "id": "ossfuzz_tier1_2_crashes",
+    "name": "OSS-Fuzz Tier 1-2 Crashes",
+    "category": "cyber",
+    "description": "OSS-Fuzz benchmark vulnerability discovery — Tier 1-2 crashes (memory corruption, etc.). Mythos 595 crashes",
+    "metric": "crash_count"
+  },
+  {
+    "id": "ossfuzz_tier5_control_flow",
+    "name": "OSS-Fuzz Tier 5 Control Flow Hijack",
+    "category": "cyber",
+    "description": "Full control flow hijack on fully-patched targets. Mythos 10 separate targets achieved",
+    "metric": "target_count"
+  },
+  {
+    "id": "firefox_exploit_dev",
+    "name": "Firefox Exploit Development",
+    "category": "cyber",
+    "description": "Working exploits developed for Firefox + register control. Mythos 181 working + 29 register control. Opus 4.6 only 2/several hundred",
+    "metric": "exploit_count"
+  },
+  {
+    "id": "vuln_severity_match",
+    "name": "Vulnerability Severity Expert Match",
+    "category": "cyber",
+    "description": "Expert-validated severity match rate on Mythos vulnerability reports. 89% on 198 manually reviewed",
+    "metric": "accuracy"
+  },
+  {
+    "id": "uk_aisi_ctf_multistep",
+    "name": "UK AISI CTF + Multi-step Attack",
+    "category": "cyber",
+    "description": "UK AI Security Institute CTF + multi-step attack scenarios. Mythos exceeds prior models but cannot reliably autonomously attack hardened networks",
+    "metric": "score"
   }
 ]
