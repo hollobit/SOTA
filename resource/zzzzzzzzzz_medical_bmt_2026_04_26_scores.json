@@ -17,113 +17,521 @@
     ]
   },
   "benchmarks": [
-    {"id": "medhelm", "name": "MedHELM (Stanford)", "category": "medical", "metric": "score", "description": "Stanford CRFM holistic medical eval — 5 categories, 22 subcategories, 121 tasks (29 clinicians), 35 benchmarks. DeepSeek R1 66% win-rate, o3-mini 64%, Claude 3.5 Sonnet at 40% lower cost"},
-    {"id": "medhelm_clin_dec", "name": "MedHELM Clinical Decision Support", "category": "medical", "metric": "accuracy", "description": "MedHELM Clinical Decision Support category — diagnostic + treatment reasoning. Models perform 0.56-0.72 on normalized accuracy"},
-    {"id": "medhelm_admin", "name": "MedHELM Administration & Workflow", "category": "medical", "metric": "accuracy", "description": "MedHELM administrative + workflow tasks — billing, scheduling, documentation. Models 0.53-0.63"},
-    {"id": "medhelm_note_gen", "name": "MedHELM Clinical Note Generation", "category": "medical", "metric": "accuracy", "description": "MedHELM clinical note generation — discharge summaries, progress notes. Models perform strongly (0.73-0.85)"},
-    {"id": "medhelm_patient_comm", "name": "MedHELM Patient Communication", "category": "medical", "metric": "accuracy", "description": "MedHELM patient communication & education — explanation, empathy. Models 0.78-0.83"},
-    {"id": "medhelm_research", "name": "MedHELM Medical Research Assistance", "category": "medical", "metric": "accuracy", "description": "MedHELM medical research assistance — literature review, hypothesis generation. Models 0.65-0.75"},
-    {"id": "agentclinic_medqa", "name": "AgentClinic-MedQA", "category": "medical-safety", "metric": "accuracy", "description": "Sequential decision-making clinical agent — USMLE-grounded patient interactions. Claude-3.5 leads. GPT-4 52%, GPT-3.5 38%. Drops to <10% of original MedQA accuracy"},
-    {"id": "agentclinic_nejm", "name": "AgentClinic-NEJM", "category": "medical-imaging", "metric": "accuracy", "description": "Multimodal clinical agent — NEJM image-centric diagnostic cases. Multimodal accuracy ~29.2% baseline (low difficulty signal)"},
-    {"id": "medagentbench", "name": "MedAgentBench (NEJM AI 2025)", "category": "medical", "metric": "accuracy", "description": "Virtual EHR agent benchmark — 300 patient-specific clinically-derived tasks, 100 patient profiles, 700K data elements, FHIR-compliant interactive environment"},
-    {"id": "medagentsbench", "name": "MedAgentsBench (Complex Reasoning)", "category": "medical", "metric": "accuracy", "description": "MedAgentsBench — thinking models + agent frameworks for complex medical reasoning. arXiv 2503.07459"},
-    {"id": "multimedqa", "name": "MultiMedQA Suite", "category": "medical", "metric": "accuracy", "description": "Aggregated suite — MedQA + MedMCQA + PubMedQA + MMLU clinical + LiveQA + MedicationQA + HealthSearchQA. Med-PaLM original benchmark"},
-    {"id": "medmnist_v2", "name": "MedMNIST v2 (Biomedical Image Classification)", "category": "medical-imaging", "metric": "accuracy", "description": "Large-scale MNIST-like biomedical image collection — 708,069 2D + 10,214 3D images across 18 datasets. CT/MRI/X-ray/OCT/Ultrasound/EM modalities"},
-    {"id": "ehrnoteqa", "name": "EHRNoteQA", "category": "medical", "metric": "accuracy", "description": "MIMIC-IV EHR-grounded clinical QA — questions over discharge summaries / progress notes / radiology reports"},
-    {"id": "echobench_med", "name": "EchoBench (LVLM Sycophancy)", "category": "medical-safety", "metric": "score", "description": "Medical LVLM sycophancy benchmark — measures how models capitulate to incorrect physician suggestions"},
-    {"id": "dermabench", "name": "DermaBench (Dermatology VQA)", "category": "medical-imaging", "metric": "accuracy", "description": "Clinician-annotated dermatology VQA on Diverse Dermatology Images (DDI). Skin tone fairness eval"},
-    {"id": "dermavqa_das", "name": "DermaVQA-DAS", "category": "medical-imaging", "metric": "accuracy", "description": "DermaVQA extension — closed-ended QA + dermatological lesion segmentation"},
-    {"id": "medrepbench", "name": "MedRepBench (Medical Report VLM)", "category": "medical-imaging", "metric": "score", "description": "VLM/LLM evaluation on structured medical report understanding — reports across modalities"},
-    {"id": "pathmcqa", "name": "PathMCQA (Pathology MCQ)", "category": "medical-imaging", "metric": "accuracy", "description": "Multiple-choice pathology QA — questions on histopathology images derived from multiple pathology sources"},
-    {"id": "ukbob", "name": "UKBOB (UK Biobank Organs)", "category": "medical-imaging", "metric": "dice", "description": "Largest labeled body-organ MRI dataset from UK Biobank — automated labeling + manual validation"},
-    {"id": "histai_wsi", "name": "HISTAI WSI Dataset", "category": "medical-imaging", "metric": "auroc", "description": "Open large-scale whole slide image dataset for pathology — addresses scale + diversity gap in public pathology data"},
-    {"id": "beetle_seg", "name": "BEETLE (Breast Cancer Seg)", "category": "medical-imaging", "metric": "dice", "description": "Multicentric H&E breast cancer semantic segmentation. Biopsy + surgical resection slides"},
-    {"id": "spider_path", "name": "SPIDER (Multi-organ Pathology)", "category": "medical-imaging", "metric": "auroc", "description": "Multi-organ supervised pathology dataset — expert annotations + strong baselines"},
-    {"id": "clinicalbench", "name": "ClinicalBench (LLM vs ML for Prediction)", "category": "clinical-prediction", "metric": "auroc", "description": "Compares LLMs against traditional ML models on clinical outcome prediction tasks (mortality / readmission / length-of-stay)"},
-    {"id": "bioprobench", "name": "BioProBench (Biological Protocols)", "category": "bio-safety", "metric": "accuracy", "description": "Biological protocol understanding + reasoning — large corpus of human-written protocols"},
-    {"id": "long_form_virology", "name": "Long-form Virology Tasks", "category": "bio-safety", "metric": "score", "description": "Agentic eval for end-to-end pathogen acquisition processes — biorisk uplift measurement"},
-    {"id": "medqa_vals_ai", "name": "MedQA Vals AI Leaderboard", "category": "medical", "metric": "accuracy", "description": "Vals AI MedQA leaderboard — Apr 2026: o4-mini-high 95.2, Gemini 2.5 Pro 94.6, Claude 3.7 Sonnet 92.3"},
-    {"id": "medarena_pref", "name": "MedArena (Stanford HAI)", "category": "medical", "metric": "elo", "description": "Stanford HAI MedArena — head-to-head LLM comparison for medicine in the wild. Clinician vote-based pairwise preference"}
+    {
+      "id": "medhelm",
+      "name": "MedHELM (Stanford)",
+      "category": "medical",
+      "metric": "score",
+      "description": "Stanford CRFM holistic medical eval — 5 categories, 22 subcategories, 121 tasks (29 clinicians), 35 benchmarks. DeepSeek R1 66% win-rate, o3-mini 64%, Claude 3.5 Sonnet at 40% lower cost"
+    },
+    {
+      "id": "medhelm_clin_dec",
+      "name": "MedHELM Clinical Decision Support",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "MedHELM Clinical Decision Support category — diagnostic + treatment reasoning. Models perform 0.56-0.72 on normalized accuracy"
+    },
+    {
+      "id": "medhelm_admin",
+      "name": "MedHELM Administration & Workflow",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "MedHELM administrative + workflow tasks — billing, scheduling, documentation. Models 0.53-0.63"
+    },
+    {
+      "id": "medhelm_note_gen",
+      "name": "MedHELM Clinical Note Generation",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "MedHELM clinical note generation — discharge summaries, progress notes. Models perform strongly (0.73-0.85)"
+    },
+    {
+      "id": "medhelm_patient_comm",
+      "name": "MedHELM Patient Communication",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "MedHELM patient communication & education — explanation, empathy. Models 0.78-0.83"
+    },
+    {
+      "id": "medhelm_research",
+      "name": "MedHELM Medical Research Assistance",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "MedHELM medical research assistance — literature review, hypothesis generation. Models 0.65-0.75"
+    },
+    {
+      "id": "agentclinic_medqa",
+      "name": "AgentClinic-MedQA",
+      "category": "medical-safety",
+      "metric": "accuracy",
+      "description": "Sequential decision-making clinical agent — USMLE-grounded patient interactions. Claude-3.5 leads. GPT-4 52%, GPT-3.5 38%. Drops to <10% of original MedQA accuracy"
+    },
+    {
+      "id": "agentclinic_nejm",
+      "name": "AgentClinic-NEJM",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "Multimodal clinical agent — NEJM image-centric diagnostic cases. Multimodal accuracy ~29.2% baseline (low difficulty signal)"
+    },
+    {
+      "id": "medagentbench",
+      "name": "MedAgentBench (NEJM AI 2025)",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "Virtual EHR agent benchmark — 300 patient-specific clinically-derived tasks, 100 patient profiles, 700K data elements, FHIR-compliant interactive environment"
+    },
+    {
+      "id": "medagentsbench",
+      "name": "MedAgentsBench (Complex Reasoning)",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "MedAgentsBench — thinking models + agent frameworks for complex medical reasoning. arXiv 2503.07459"
+    },
+    {
+      "id": "multimedqa",
+      "name": "MultiMedQA Suite",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "Aggregated suite — MedQA + MedMCQA + PubMedQA + MMLU clinical + LiveQA + MedicationQA + HealthSearchQA. Med-PaLM original benchmark"
+    },
+    {
+      "id": "medmnist_v2",
+      "name": "MedMNIST v2 (Biomedical Image Classification)",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "Large-scale MNIST-like biomedical image collection — 708,069 2D + 10,214 3D images across 18 datasets. CT/MRI/X-ray/OCT/Ultrasound/EM modalities"
+    },
+    {
+      "id": "ehrnoteqa",
+      "name": "EHRNoteQA",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "MIMIC-IV EHR-grounded clinical QA — questions over discharge summaries / progress notes / radiology reports"
+    },
+    {
+      "id": "echobench_med",
+      "name": "EchoBench (LVLM Sycophancy)",
+      "category": "medical-safety",
+      "metric": "score",
+      "description": "Medical LVLM sycophancy benchmark — measures how models capitulate to incorrect physician suggestions"
+    },
+    {
+      "id": "dermabench",
+      "name": "DermaBench (Dermatology VQA)",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "Clinician-annotated dermatology VQA on Diverse Dermatology Images (DDI). Skin tone fairness eval"
+    },
+    {
+      "id": "dermavqa_das",
+      "name": "DermaVQA-DAS",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "DermaVQA extension — closed-ended QA + dermatological lesion segmentation"
+    },
+    {
+      "id": "medrepbench",
+      "name": "MedRepBench (Medical Report VLM)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "VLM/LLM evaluation on structured medical report understanding — reports across modalities"
+    },
+    {
+      "id": "pathmcqa",
+      "name": "PathMCQA (Pathology MCQ)",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "Multiple-choice pathology QA — questions on histopathology images derived from multiple pathology sources"
+    },
+    {
+      "id": "ukbob",
+      "name": "UKBOB (UK Biobank Organs)",
+      "category": "medical-imaging",
+      "metric": "dice",
+      "description": "Largest labeled body-organ MRI dataset from UK Biobank — automated labeling + manual validation"
+    },
+    {
+      "id": "histai_wsi",
+      "name": "HISTAI WSI Dataset",
+      "category": "medical-imaging",
+      "metric": "auroc",
+      "description": "Open large-scale whole slide image dataset for pathology — addresses scale + diversity gap in public pathology data"
+    },
+    {
+      "id": "beetle_seg",
+      "name": "BEETLE (Breast Cancer Seg)",
+      "category": "medical-imaging",
+      "metric": "dice",
+      "description": "Multicentric H&E breast cancer semantic segmentation. Biopsy + surgical resection slides"
+    },
+    {
+      "id": "spider_path",
+      "name": "SPIDER (Multi-organ Pathology)",
+      "category": "medical-imaging",
+      "metric": "auroc",
+      "description": "Multi-organ supervised pathology dataset — expert annotations + strong baselines"
+    },
+    {
+      "id": "clinicalbench",
+      "name": "ClinicalBench (LLM vs ML for Prediction)",
+      "category": "clinical-prediction",
+      "metric": "auroc",
+      "description": "Compares LLMs against traditional ML models on clinical outcome prediction tasks (mortality / readmission / length-of-stay)"
+    },
+    {
+      "id": "bioprobench",
+      "name": "BioProBench (Biological Protocols)",
+      "category": "bio-safety",
+      "metric": "accuracy",
+      "description": "Biological protocol understanding + reasoning — large corpus of human-written protocols"
+    },
+    {
+      "id": "long_form_virology",
+      "name": "Long-form Virology Tasks",
+      "category": "bio-safety",
+      "metric": "score",
+      "description": "Agentic eval for end-to-end pathogen acquisition processes — biorisk uplift measurement"
+    },
+    {
+      "id": "medqa_vals_ai",
+      "name": "MedQA Vals AI Leaderboard",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "Vals AI MedQA leaderboard — Apr 2026: o4-mini-high 95.2, Gemini 2.5 Pro 94.6, Claude 3.7 Sonnet 92.3"
+    },
+    {
+      "id": "medarena_pref",
+      "name": "MedArena (Stanford HAI)",
+      "category": "medical",
+      "metric": "elo",
+      "description": "Stanford HAI MedArena — head-to-head LLM comparison for medicine in the wild. Clinician vote-based pairwise preference"
+    }
   ],
   "scores": [
-    {"model": "openai/gpt-5.5", "benchmark": "medhelm", "score": 78.4, "_source": "https://crfm.stanford.edu/helm/medhelm/latest/", "_note": "Frontier GPT-5.5 leaderboard score"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "medhelm", "score": 81.5, "_source": "https://crfm.stanford.edu/helm/medhelm/latest/", "_note": "Strong reasoning + 40% cheaper baseline"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "medhelm", "score": 76.2, "_source": "https://crfm.stanford.edu/helm/medhelm/latest/"},
-    {"model": "openai/gpt-5.5", "benchmark": "medhelm_clin_dec", "score": 72.0, "_source": "https://arxiv.org/abs/2505.23802"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "medhelm_clin_dec", "score": 70.5, "_source": "https://arxiv.org/abs/2505.23802"},
-    {"model": "openai/gpt-5.5", "benchmark": "medhelm_note_gen", "score": 85.0, "_source": "https://arxiv.org/abs/2505.23802"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "medhelm_note_gen", "score": 84.5, "_source": "https://arxiv.org/abs/2505.23802"},
-    {"model": "openai/gpt-5.5", "benchmark": "medhelm_patient_comm", "score": 83.0, "_source": "https://arxiv.org/abs/2505.23802"},
-    {"model": "openai/gpt-5.5", "benchmark": "medhelm_research", "score": 75.0, "_source": "https://arxiv.org/abs/2505.23802"},
-    {"model": "openai/gpt-5.5", "benchmark": "medhelm_admin", "score": 63.0, "_source": "https://arxiv.org/abs/2505.23802"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "agentclinic_medqa", "score": 67.5, "_source": "https://agentclinic.github.io/", "_note": "Frontier model, sequential decision-making"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "agentclinic_medqa", "score": 70.2, "_source": "https://agentclinic.github.io/", "_note": "Claude leads agent settings"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "agentclinic_medqa", "score": 64.5, "_source": "https://agentclinic.github.io/"},
-    {"model": "openai/gpt-5.5", "benchmark": "agentclinic_nejm", "score": 38.4, "_source": "https://agentclinic.github.io/", "_note": "Multimodal NEJM image diagnostic challenges"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "agentclinic_nejm", "score": 41.8, "_source": "https://agentclinic.github.io/"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "medagentbench", "score": 72.4, "_source": "https://ai.nejm.org/doi/full/10.1056/AIdbp2500144", "_note": "EHR-grounded agent tasks"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "medagentbench", "score": 74.1, "_source": "https://ai.nejm.org/doi/full/10.1056/AIdbp2500144"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "medagentbench", "score": 69.2, "_source": "https://ai.nejm.org/doi/full/10.1056/AIdbp2500144"},
-    {"model": "openai/gpt-5.5", "benchmark": "medagentsbench", "score": 65.8, "_source": "https://arxiv.org/html/2503.07459v1"},
-
-    {"model": "google/med-palm-2", "benchmark": "multimedqa", "score": 80.5, "_source": "https://arxiv.org/abs/2305.09617"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "multimedqa", "score": 88.4, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
-    {"model": "openai/gpt-5.5", "benchmark": "multimedqa", "score": 91.2, "_source": "https://openai.com/gpt-5"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "medqa_vals_ai", "score": 95.2, "_source": "https://www.vals.ai/benchmarks/medqa", "_note": "Apr 2026 Vals AI rank: o4-mini-high"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "medqa_vals_ai", "score": 92.3, "_source": "https://www.vals.ai/benchmarks/medqa"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "medqa_vals_ai", "score": 94.6, "_source": "https://www.vals.ai/benchmarks/medqa"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "ehrnoteqa", "score": 81.5, "_source": "https://arxiv.org/abs/2402.16040"},
-    {"model": "google/medgemma-27b", "benchmark": "ehrnoteqa", "score": 76.4, "_source": "https://huggingface.co/google/medgemma-27b-it"},
-    {"model": "openmeditron/meditron3-70b", "benchmark": "ehrnoteqa", "score": 71.2, "_source": "https://openreview.net/pdf?id=ZcD35zKujO"},
-
-    {"model": "smartlab/meddr-internvl-40b", "benchmark": "echobench_med", "score": 72.5, "_source": "https://arxiv.org/html/2404.15127v1/", "_note": "Sycophancy resistance"},
-    {"model": "freedomintelligence/huatuogpt-vision-34b", "benchmark": "echobench_med", "score": 68.4, "_source": "https://github.com/FreedomIntelligence/HuatuoGPT-Vision"},
-
-    {"model": "smartlab/meddr-internvl-40b", "benchmark": "dermabench", "score": 84.6, "_source": "https://arxiv.org/html/2404.15127v1/", "_note": "MedDr SOTA on dermatology"},
-    {"model": "monash/panderm", "benchmark": "dermabench", "score": 89.2, "_source": "https://www.nature.com/articles/s41591-025-03747-y"},
-    {"model": "google/derm-foundation", "benchmark": "dermabench", "score": 83.5, "_source": "https://developers.google.com/health-ai-developer-foundations/derm-foundation"},
-
-    {"model": "monash/panderm", "benchmark": "dermavqa_das", "score": 81.4, "_source": "https://www.nature.com/articles/s41591-025-03747-y"},
-    {"model": "smartlab/meddr-internvl-40b", "benchmark": "dermavqa_das", "score": 75.3, "_source": "https://arxiv.org/html/2404.15127v1/"},
-
-    {"model": "smartlab/meddr-internvl-40b", "benchmark": "medrepbench", "score": 76.8, "_source": "https://arxiv.org/html/2404.15127v1/"},
-    {"model": "openai/gpt-5.5", "benchmark": "medrepbench", "score": 82.3, "_source": "https://openai.com/gpt-5"},
-
-    {"model": "mahmoodlab/uni2", "benchmark": "pathmcqa", "score": 84.5, "_source": "https://github.com/mahmoodlab/UNI"},
-    {"model": "paige-ai/virchow2", "benchmark": "pathmcqa", "score": 85.7, "_source": "https://arxiv.org/abs/2408.00738"},
-    {"model": "mahmoodlab/conch", "benchmark": "pathmcqa", "score": 80.2, "_source": "https://github.com/mahmoodlab/CONCH"},
-    {"model": "microsoft/prov-gigapath", "benchmark": "pathmcqa", "score": 82.1, "_source": "https://www.nature.com/articles/s41586-024-07441-w"},
-
-    {"model": "moorfields/retfound", "benchmark": "ukbob", "score": 91.2, "_source": "https://www.nature.com/articles/s41586-023-06555-x", "_note": "UK Biobank organ segmentation Dice"},
-
-    {"model": "paige-ai/virchow2g", "benchmark": "histai_wsi", "score": 86.4, "_source": "https://arxiv.org/abs/2408.00738"},
-    {"model": "mahmoodlab/uni2", "benchmark": "histai_wsi", "score": 85.0, "_source": "https://github.com/mahmoodlab/UNI"},
-
-    {"model": "paige-ai/virchow2", "benchmark": "beetle_seg", "score": 88.5, "_source": "https://arxiv.org/abs/2408.00738", "_note": "Breast cancer H&E seg Dice"},
-
-    {"model": "paige-ai/virchow2", "benchmark": "spider_path", "score": 84.3, "_source": "https://arxiv.org/abs/2408.00738"},
-    {"model": "mahmoodlab/titan", "benchmark": "spider_path", "score": 82.7, "_source": "https://github.com/mahmoodlab/TITAN"},
-
-    {"model": "stanford/clinical-pred-bert", "benchmark": "clinicalbench", "score": 72.4, "_source": "https://stanfordmlgroup.github.io/", "_note": "LLM vs traditional ML — mixed results"},
-    {"model": "openai/gpt-5.5", "benchmark": "clinicalbench", "score": 76.5, "_source": "https://openai.com/gpt-5"},
-    {"model": "phys-intelligence/medic-aki-xgb", "benchmark": "clinicalbench", "score": 84.3, "_source": "https://arxiv.org/abs/2502.17978", "_note": "XGBoost still beats LLMs on tabular EHR prediction"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "bioprobench", "score": 71.5, "_source": "https://openai.com/gpt-5"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "bioprobench", "score": 73.2, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "long_form_virology", "score": 68.4, "_source": "https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons", "_note": "Biorisk uplift — agentic"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "long_form_virology", "score": 65.7, "_source": "https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons"},
-
-    {"model": "google/medgemma-27b", "benchmark": "medmnist_v2", "score": 87.4, "_source": "https://github.com/MedMNIST/MedMNIST"},
-    {"model": "microsoft/biomedclip", "benchmark": "medmnist_v2", "score": 84.2, "_source": "https://huggingface.co/microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224"},
-    {"model": "shanghai-ai-lab/radfm", "benchmark": "medmnist_v2", "score": 79.6, "_source": "https://www.nature.com/articles/s41467-025-62385-7"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "medarena_pref", "score": 1612, "unit": "elo", "_source": "https://medarena.ai/leaderboard", "_note": "Stanford HAI MedArena Elo (estimate). Unit is Bradley-Terry Elo, NOT a percentage"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "medarena_pref", "score": 1648, "unit": "elo", "_source": "https://medarena.ai/leaderboard"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "medarena_pref", "score": 1592, "unit": "elo", "_source": "https://medarena.ai/leaderboard"}
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "medhelm",
+      "score": 81.5,
+      "_source": "https://crfm.stanford.edu/helm/medhelm/latest/",
+      "_note": "Strong reasoning + 40% cheaper baseline"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "medhelm",
+      "score": 76.2,
+      "_source": "https://crfm.stanford.edu/helm/medhelm/latest/"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medhelm_clin_dec",
+      "score": 72.0,
+      "_source": "https://arxiv.org/abs/2505.23802"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "medhelm_clin_dec",
+      "score": 70.5,
+      "_source": "https://arxiv.org/abs/2505.23802"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medhelm_note_gen",
+      "score": 85.0,
+      "_source": "https://arxiv.org/abs/2505.23802"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "medhelm_note_gen",
+      "score": 84.5,
+      "_source": "https://arxiv.org/abs/2505.23802"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medhelm_patient_comm",
+      "score": 83.0,
+      "_source": "https://arxiv.org/abs/2505.23802"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medhelm_research",
+      "score": 75.0,
+      "_source": "https://arxiv.org/abs/2505.23802"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medhelm_admin",
+      "score": 63.0,
+      "_source": "https://arxiv.org/abs/2505.23802"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "agentclinic_medqa",
+      "score": 70.2,
+      "_source": "https://agentclinic.github.io/",
+      "_note": "Claude leads agent settings"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "agentclinic_medqa",
+      "score": 64.5,
+      "_source": "https://agentclinic.github.io/"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "agentclinic_nejm",
+      "score": 41.8,
+      "_source": "https://agentclinic.github.io/"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medagentbench",
+      "score": 72.4,
+      "_source": "https://ai.nejm.org/doi/full/10.1056/AIdbp2500144",
+      "_note": "EHR-grounded agent tasks"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "medagentbench",
+      "score": 74.1,
+      "_source": "https://ai.nejm.org/doi/full/10.1056/AIdbp2500144"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "medagentbench",
+      "score": 69.2,
+      "_source": "https://ai.nejm.org/doi/full/10.1056/AIdbp2500144"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medagentsbench",
+      "score": 65.8,
+      "_source": "https://arxiv.org/html/2503.07459v1"
+    },
+    {
+      "model": "google/med-palm-2",
+      "benchmark": "multimedqa",
+      "score": 80.5,
+      "_source": "https://arxiv.org/abs/2305.09617"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "multimedqa",
+      "score": 88.4,
+      "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medqa_vals_ai",
+      "score": 95.2,
+      "_source": "https://www.vals.ai/benchmarks/medqa",
+      "_note": "Apr 2026 Vals AI rank: o4-mini-high"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "medqa_vals_ai",
+      "score": 92.3,
+      "_source": "https://www.vals.ai/benchmarks/medqa"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "medqa_vals_ai",
+      "score": 94.6,
+      "_source": "https://www.vals.ai/benchmarks/medqa"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "ehrnoteqa",
+      "score": 81.5,
+      "_source": "https://arxiv.org/abs/2402.16040"
+    },
+    {
+      "model": "google/medgemma-27b",
+      "benchmark": "ehrnoteqa",
+      "score": 76.4,
+      "_source": "https://huggingface.co/google/medgemma-27b-it"
+    },
+    {
+      "model": "openmeditron/meditron3-70b",
+      "benchmark": "ehrnoteqa",
+      "score": 71.2,
+      "_source": "https://openreview.net/pdf?id=ZcD35zKujO"
+    },
+    {
+      "model": "smartlab/meddr-internvl-40b",
+      "benchmark": "echobench_med",
+      "score": 72.5,
+      "_source": "https://arxiv.org/html/2404.15127v1/",
+      "_note": "Sycophancy resistance"
+    },
+    {
+      "model": "freedomintelligence/huatuogpt-vision-34b",
+      "benchmark": "echobench_med",
+      "score": 68.4,
+      "_source": "https://github.com/FreedomIntelligence/HuatuoGPT-Vision"
+    },
+    {
+      "model": "smartlab/meddr-internvl-40b",
+      "benchmark": "dermabench",
+      "score": 84.6,
+      "_source": "https://arxiv.org/html/2404.15127v1/",
+      "_note": "MedDr SOTA on dermatology"
+    },
+    {
+      "model": "monash/panderm",
+      "benchmark": "dermabench",
+      "score": 89.2,
+      "_source": "https://www.nature.com/articles/s41591-025-03747-y"
+    },
+    {
+      "model": "google/derm-foundation",
+      "benchmark": "dermabench",
+      "score": 83.5,
+      "_source": "https://developers.google.com/health-ai-developer-foundations/derm-foundation"
+    },
+    {
+      "model": "monash/panderm",
+      "benchmark": "dermavqa_das",
+      "score": 81.4,
+      "_source": "https://www.nature.com/articles/s41591-025-03747-y"
+    },
+    {
+      "model": "smartlab/meddr-internvl-40b",
+      "benchmark": "dermavqa_das",
+      "score": 75.3,
+      "_source": "https://arxiv.org/html/2404.15127v1/"
+    },
+    {
+      "model": "smartlab/meddr-internvl-40b",
+      "benchmark": "medrepbench",
+      "score": 76.8,
+      "_source": "https://arxiv.org/html/2404.15127v1/"
+    },
+    {
+      "model": "mahmoodlab/uni2",
+      "benchmark": "pathmcqa",
+      "score": 84.5,
+      "_source": "https://github.com/mahmoodlab/UNI"
+    },
+    {
+      "model": "paige-ai/virchow2",
+      "benchmark": "pathmcqa",
+      "score": 85.7,
+      "_source": "https://arxiv.org/abs/2408.00738"
+    },
+    {
+      "model": "mahmoodlab/conch",
+      "benchmark": "pathmcqa",
+      "score": 80.2,
+      "_source": "https://github.com/mahmoodlab/CONCH"
+    },
+    {
+      "model": "microsoft/prov-gigapath",
+      "benchmark": "pathmcqa",
+      "score": 82.1,
+      "_source": "https://www.nature.com/articles/s41586-024-07441-w"
+    },
+    {
+      "model": "moorfields/retfound",
+      "benchmark": "ukbob",
+      "score": 91.2,
+      "_source": "https://www.nature.com/articles/s41586-023-06555-x",
+      "_note": "UK Biobank organ segmentation Dice"
+    },
+    {
+      "model": "paige-ai/virchow2g",
+      "benchmark": "histai_wsi",
+      "score": 86.4,
+      "_source": "https://arxiv.org/abs/2408.00738"
+    },
+    {
+      "model": "mahmoodlab/uni2",
+      "benchmark": "histai_wsi",
+      "score": 85.0,
+      "_source": "https://github.com/mahmoodlab/UNI"
+    },
+    {
+      "model": "paige-ai/virchow2",
+      "benchmark": "beetle_seg",
+      "score": 88.5,
+      "_source": "https://arxiv.org/abs/2408.00738",
+      "_note": "Breast cancer H&E seg Dice"
+    },
+    {
+      "model": "paige-ai/virchow2",
+      "benchmark": "spider_path",
+      "score": 84.3,
+      "_source": "https://arxiv.org/abs/2408.00738"
+    },
+    {
+      "model": "mahmoodlab/titan",
+      "benchmark": "spider_path",
+      "score": 82.7,
+      "_source": "https://github.com/mahmoodlab/TITAN"
+    },
+    {
+      "model": "stanford/clinical-pred-bert",
+      "benchmark": "clinicalbench",
+      "score": 72.4,
+      "_source": "https://stanfordmlgroup.github.io/",
+      "_note": "LLM vs traditional ML — mixed results"
+    },
+    {
+      "model": "phys-intelligence/medic-aki-xgb",
+      "benchmark": "clinicalbench",
+      "score": 84.3,
+      "_source": "https://arxiv.org/abs/2502.17978",
+      "_note": "XGBoost still beats LLMs on tabular EHR prediction"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "bioprobench",
+      "score": 73.2,
+      "_source": "https://www.anthropic.com/news/claude-opus-4-6"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "long_form_virology",
+      "score": 68.4,
+      "_source": "https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons",
+      "_note": "Biorisk uplift — agentic"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "long_form_virology",
+      "score": 65.7,
+      "_source": "https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons"
+    },
+    {
+      "model": "google/medgemma-27b",
+      "benchmark": "medmnist_v2",
+      "score": 87.4,
+      "_source": "https://github.com/MedMNIST/MedMNIST"
+    },
+    {
+      "model": "microsoft/biomedclip",
+      "benchmark": "medmnist_v2",
+      "score": 84.2,
+      "_source": "https://huggingface.co/microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224"
+    },
+    {
+      "model": "shanghai-ai-lab/radfm",
+      "benchmark": "medmnist_v2",
+      "score": 79.6,
+      "_source": "https://www.nature.com/articles/s41467-025-62385-7"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "medarena_pref",
+      "score": 1648,
+      "unit": "elo",
+      "_source": "https://medarena.ai/leaderboard"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "medarena_pref",
+      "score": 1592,
+      "unit": "elo",
+      "_source": "https://medarena.ai/leaderboard"
+    }
   ]
 }

@@ -20,148 +20,854 @@
     ]
   },
   "models": [
-    {"id": "harvard/medversa-8b", "name": "MedVersa 8B (Harvard radiology gen)", "vendor": "Harvard MGB", "type": "open-weights", "modalities": ["text", "image"], "released_at": "2024-08"},
-    {"id": "rad-onc/rgrg", "name": "RGRG (Region-Guided Report Gen)", "vendor": "Stanford AIMI", "type": "open-weights", "modalities": ["text", "image"], "released_at": "2023-11"},
-    {"id": "rad-onc/maira-2", "name": "MAIRA-2 (Microsoft radiology)", "vendor": "Microsoft Research", "type": "open-weights", "modalities": ["text", "image"], "released_at": "2024-08"},
-    {"id": "rad-onc/maira-1", "name": "MAIRA-1", "vendor": "Microsoft Research", "type": "open-weights", "modalities": ["text", "image"], "released_at": "2023-11"},
-    {"id": "rad-onc/llm-cxr", "name": "LLM-CXR", "vendor": "Stanford CRFM", "type": "open-weights", "modalities": ["text", "image"], "released_at": "2024-03"},
-    {"id": "rad-onc/cxr-pro", "name": "CXR-PRO", "vendor": "Stanford AIMI", "type": "open-weights", "modalities": ["text", "image"], "released_at": "2023-09"},
-    {"id": "rad-onc/cheXagent-8b", "name": "CheXagent 8B", "vendor": "Stanford AIMI", "type": "open-weights", "modalities": ["text", "image"], "released_at": "2024-01"},
-    {"id": "mbzuai-oryx/bimedix-2", "name": "BiMediX 2 (Arabic-English MoE)", "vendor": "MBZUAI Oryx", "type": "open-weights", "modalities": ["text"], "released_at": "2024-12"},
-    {"id": "mbzuai-oryx/bimedix", "name": "BiMediX 1 (Arabic-English MoE)", "vendor": "MBZUAI Oryx", "type": "open-weights", "modalities": ["text"], "released_at": "2024-02"},
-    {"id": "mbzuai/medarabench-baseline", "name": "MedAraBench Reference", "vendor": "MBZUAI", "type": "open-weights", "modalities": ["text"], "released_at": "2026-02"},
-    {"id": "google/afrimed-qa-baseline", "name": "AfriMed-QA Baseline", "vendor": "Google Research + UCT", "type": "proprietary", "modalities": ["text"], "released_at": "2024-11"},
-    {"id": "yale/medic-eval-baseline", "name": "MEDIC Indicator Baseline", "vendor": "Yale + Google", "type": "open-weights", "modalities": ["text"], "released_at": "2024-09"},
-    {"id": "mit-mediallab/medhallu-detector", "name": "MedHallu Detector", "vendor": "MIT Media Lab", "type": "open-weights", "modalities": ["text"], "released_at": "2025-02"},
-    {"id": "ucsd/medhallbench-judge", "name": "MedHallBench Judge", "vendor": "UCSD", "type": "open-weights", "modalities": ["text"], "released_at": "2024-12"},
-    {"id": "stanford/medhalt-eval", "name": "Med-HALT Reference Eval", "vendor": "MedHalt Consortium", "type": "open-weights", "modalities": ["text"], "released_at": "2023-07"},
-    {"id": "stanford/clinical-pred-bert", "name": "ClinicalPredBERT (MIMIC-IV)", "vendor": "Stanford AIMI", "type": "open-weights", "modalities": ["text"], "released_at": "2024-04"},
-    {"id": "mit-mimic/mimic-iv-bench", "name": "MIMIC-IV Sepsis Benchmark Model", "vendor": "MIT LCP", "type": "open-weights", "modalities": ["text", "tabular"], "released_at": "2025-10"},
-    {"id": "mit/mimic-cxr-baseline", "name": "MIMIC-CXR Reference Baseline", "vendor": "MIT LCP + BIDMC", "type": "open-weights", "modalities": ["image"], "released_at": "2019-09"},
-    {"id": "stanford/chexpert-baseline", "name": "CheXpert Reference Baseline", "vendor": "Stanford AIMI", "type": "open-weights", "modalities": ["image"], "released_at": "2019-01"},
-    {"id": "phys-intelligence/medic-aki-xgb", "name": "MIMIC-IV AKI XGBoost (mortality)", "vendor": "PUMC + Beihang", "type": "open-weights", "modalities": ["tabular"], "released_at": "2025-02"},
-    {"id": "duke/clin-mortality-llm", "name": "Clinical Mortality LLM (24h pred)", "vendor": "Duke + UCB", "type": "open-weights", "modalities": ["text", "tabular"], "released_at": "2026-04"}
+    {
+      "id": "harvard/medversa-8b",
+      "name": "MedVersa 8B (Harvard radiology gen)",
+      "vendor": "Harvard MGB",
+      "type": "open-weights",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "released_at": "2024-08"
+    },
+    {
+      "id": "rad-onc/rgrg",
+      "name": "RGRG (Region-Guided Report Gen)",
+      "vendor": "Stanford AIMI",
+      "type": "open-weights",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "released_at": "2023-11"
+    },
+    {
+      "id": "rad-onc/maira-2",
+      "name": "MAIRA-2 (Microsoft radiology)",
+      "vendor": "Microsoft Research",
+      "type": "open-weights",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "released_at": "2024-08"
+    },
+    {
+      "id": "rad-onc/maira-1",
+      "name": "MAIRA-1",
+      "vendor": "Microsoft Research",
+      "type": "open-weights",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "released_at": "2023-11"
+    },
+    {
+      "id": "rad-onc/llm-cxr",
+      "name": "LLM-CXR",
+      "vendor": "Stanford CRFM",
+      "type": "open-weights",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "released_at": "2024-03"
+    },
+    {
+      "id": "rad-onc/cxr-pro",
+      "name": "CXR-PRO",
+      "vendor": "Stanford AIMI",
+      "type": "open-weights",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "released_at": "2023-09"
+    },
+    {
+      "id": "rad-onc/cheXagent-8b",
+      "name": "CheXagent 8B",
+      "vendor": "Stanford AIMI",
+      "type": "open-weights",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "released_at": "2024-01"
+    },
+    {
+      "id": "mbzuai-oryx/bimedix-2",
+      "name": "BiMediX 2 (Arabic-English MoE)",
+      "vendor": "MBZUAI Oryx",
+      "type": "open-weights",
+      "modalities": [
+        "text"
+      ],
+      "released_at": "2024-12"
+    },
+    {
+      "id": "mbzuai-oryx/bimedix",
+      "name": "BiMediX 1 (Arabic-English MoE)",
+      "vendor": "MBZUAI Oryx",
+      "type": "open-weights",
+      "modalities": [
+        "text"
+      ],
+      "released_at": "2024-02"
+    },
+    {
+      "id": "mbzuai/medarabench-baseline",
+      "name": "MedAraBench Reference",
+      "vendor": "MBZUAI",
+      "type": "open-weights",
+      "modalities": [
+        "text"
+      ],
+      "released_at": "2026-02"
+    },
+    {
+      "id": "google/afrimed-qa-baseline",
+      "name": "AfriMed-QA Baseline",
+      "vendor": "Google Research + UCT",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "released_at": "2024-11"
+    },
+    {
+      "id": "yale/medic-eval-baseline",
+      "name": "MEDIC Indicator Baseline",
+      "vendor": "Yale + Google",
+      "type": "open-weights",
+      "modalities": [
+        "text"
+      ],
+      "released_at": "2024-09"
+    },
+    {
+      "id": "mit-mediallab/medhallu-detector",
+      "name": "MedHallu Detector",
+      "vendor": "MIT Media Lab",
+      "type": "open-weights",
+      "modalities": [
+        "text"
+      ],
+      "released_at": "2025-02"
+    },
+    {
+      "id": "ucsd/medhallbench-judge",
+      "name": "MedHallBench Judge",
+      "vendor": "UCSD",
+      "type": "open-weights",
+      "modalities": [
+        "text"
+      ],
+      "released_at": "2024-12"
+    },
+    {
+      "id": "stanford/medhalt-eval",
+      "name": "Med-HALT Reference Eval",
+      "vendor": "MedHalt Consortium",
+      "type": "open-weights",
+      "modalities": [
+        "text"
+      ],
+      "released_at": "2023-07"
+    },
+    {
+      "id": "stanford/clinical-pred-bert",
+      "name": "ClinicalPredBERT (MIMIC-IV)",
+      "vendor": "Stanford AIMI",
+      "type": "open-weights",
+      "modalities": [
+        "text"
+      ],
+      "released_at": "2024-04"
+    },
+    {
+      "id": "mit-mimic/mimic-iv-bench",
+      "name": "MIMIC-IV Sepsis Benchmark Model",
+      "vendor": "MIT LCP",
+      "type": "open-weights",
+      "modalities": [
+        "text",
+        "tabular"
+      ],
+      "released_at": "2025-10"
+    },
+    {
+      "id": "mit/mimic-cxr-baseline",
+      "name": "MIMIC-CXR Reference Baseline",
+      "vendor": "MIT LCP + BIDMC",
+      "type": "open-weights",
+      "modalities": [
+        "image"
+      ],
+      "released_at": "2019-09"
+    },
+    {
+      "id": "stanford/chexpert-baseline",
+      "name": "CheXpert Reference Baseline",
+      "vendor": "Stanford AIMI",
+      "type": "open-weights",
+      "modalities": [
+        "image"
+      ],
+      "released_at": "2019-01"
+    },
+    {
+      "id": "phys-intelligence/medic-aki-xgb",
+      "name": "MIMIC-IV AKI XGBoost (mortality)",
+      "vendor": "PUMC + Beihang",
+      "type": "open-weights",
+      "modalities": [
+        "tabular"
+      ],
+      "released_at": "2025-02"
+    },
+    {
+      "id": "duke/clin-mortality-llm",
+      "name": "Clinical Mortality LLM (24h pred)",
+      "vendor": "Duke + UCB",
+      "type": "open-weights",
+      "modalities": [
+        "text",
+        "tabular"
+      ],
+      "released_at": "2026-04"
+    }
   ],
   "benchmarks": [
-    {"id": "med_halt", "name": "Med-HALT (Hallucination Test)", "category": "medical-safety", "metric": "accuracy", "description": "Multinational medical exam-derived hallucination benchmark — reasoning + memory hallucination tests for medical LLMs. Med-HALT consortium (paper 2023.07)."},
-    {"id": "medhallu", "name": "MedHallu (Hallucination Detection)", "category": "medical-safety", "metric": "accuracy", "description": "First benchmark for medical hallucination detection — 10K QA pairs from PubMedQA with systematically generated hallucinated answers (MIT Media Lab 2025)"},
-    {"id": "medhallbench", "name": "MedHallBench", "category": "medical-safety", "metric": "score", "description": "Comprehensive medical hallucination evaluation — expert-validated case scenarios + medical databases. UCSD 2024-12"},
-    {"id": "medsafetybench", "name": "MedSafetyBench (AMA principles)", "category": "medical-safety", "metric": "harmful_compliance", "description": "Medical safety benchmark built on 9 AMA medical-doctor ethics principles. 450 verified synthetic prompts (ill-intentioned clinician), measures harmful compliance rate (lower=safer). NeurIPS 2024"},
-    {"id": "medriskeval", "name": "MedRiskEval", "category": "medical-safety", "metric": "score", "description": "Medical risk evaluation benchmark — user-perspective patient safety in healthcare LLM use"},
-    {"id": "csedb_safety", "name": "CSEDB Safety", "category": "medical-safety", "metric": "score", "description": "Clinical Safety-Effectiveness Dual-Track Benchmark — 30 metrics: critical illness recognition, guideline adherence, medication safety. Average safety 54.7%, drops 13.3% in high-risk scenarios. Nature npj Digital Medicine 2025"},
-    {"id": "csedb_effectiveness", "name": "CSEDB Effectiveness", "category": "medical", "metric": "score", "description": "CSEDB effectiveness track. Average effectiveness 62.3%"},
-    {"id": "patientsafebench", "name": "PatientSafeBench", "category": "medical-safety", "metric": "safety", "description": "Patient-use safety benchmark — measures LLM safety when used directly by patients (vs clinicians). OpenReview 2025"},
-    {"id": "craft_md", "name": "CRAFT-MD (Conversational Reasoning)", "category": "medical-safety", "metric": "factual_accuracy", "description": "Conversational reasoning eval — simulates AI-agent patient interactions, measures factual accuracy in patient-LLM conversations"},
-    {"id": "medic_eval", "name": "MEDIC (Clinical LLM Indicators)", "category": "medical", "metric": "score", "description": "Comprehensive evaluation of Leading Indicators for Clinical LLMs — multidimensional 5 evaluation axes. Yale + Google 2024-09"},
-
-    {"id": "rexrank_radgraph_f1", "name": "ReXrank RadGraph-F1", "category": "medical-imaging", "metric": "f1", "description": "Radiology report generation entity+relation F1 from RadGraph schema. Standard ReXrank metric — captures clinical entities and their relationships"},
-    {"id": "rexrank_bertscore", "name": "ReXrank BERTScore", "category": "medical-imaging", "metric": "bertscore", "description": "Radiology report generation semantic similarity (BERTScore) on MIMIC-CXR + ReXGradient + IU-Xray + CheXpert Plus"},
-    {"id": "rexrank_radcliq", "name": "ReXrank RadCliQ", "category": "medical-imaging", "metric": "radcliq", "description": "RadCliQ composite radiology-report quality score combining BLEU + BERTScore + RadGraph-F1"},
-    {"id": "rexrank_green", "name": "ReXrank GREEN", "category": "medical-imaging", "metric": "green", "description": "GREEN metric — clinical relevance + factuality combined for chest X-ray report generation"},
-    {"id": "rexrank_finerad", "name": "ReXrank FineRadScore", "category": "medical-imaging", "metric": "score", "description": "Fine-grained radiology report score — finding-level error detection"},
-    {"id": "chexpert_f1", "name": "CheXpert F1 (14-finding)", "category": "medical-imaging", "metric": "f1", "description": "CheXpert label F1 across 14 chest X-ray findings — standard radiology auto-eval metric. Stanford AIMI"},
-    {"id": "rexgrad_acc", "name": "ReXGradient Test Accuracy", "category": "medical-imaging", "metric": "accuracy", "description": "Largest test dataset (10,000 studies) for radiology report generation eval. ReXrank's primary holdout"},
-
-    {"id": "vqa_rad", "name": "VQA-RAD", "category": "medical-imaging", "metric": "accuracy", "description": "Radiology VQA — 315 images, 3,515 questions, 517 possible answers. Standard medical VQA benchmark since 2018"},
-    {"id": "slake_vqa", "name": "SLAKE-VQA (Bilingual)", "category": "medical-imaging", "metric": "accuracy", "description": "Bilingual EN-CN medical VQA — 642 images + 14K questions across radiology/CT/MRI"},
-    {"id": "path_vqa", "name": "Path-VQA", "category": "medical-imaging", "metric": "accuracy", "description": "Pathology VQA — 32K Q-A pairs from pathology textbook images. Closed + open question splits"},
-    {"id": "pmc_vqa", "name": "PMC-VQA", "category": "medical-imaging", "metric": "accuracy", "description": "Large-scale medical VQA from PubMed Central figures + captions. PMC-VQA-Test 2,096 image-Q pairs"},
-
-    {"id": "afrimed_qa_mcq", "name": "AfriMed-QA MCQ", "category": "medical", "metric": "accuracy", "description": "Pan-African multi-specialty MCQ — 4,000+ expert-curated questions. Google Research + UCT 2024-11"},
-    {"id": "afrimed_qa_saq", "name": "AfriMed-QA SAQ", "category": "medical", "metric": "score", "description": "AfriMed-QA short answer questions — 1,200+ long-form clinical answers"},
-    {"id": "medarabench", "name": "MedAraBench (Arabic)", "category": "medical", "metric": "accuracy", "description": "Large-scale Arabic medical benchmark — 24,883 MCQs across 19 specialties × 5 difficulty levels. MBZUAI 2026-02"},
-    {"id": "bimedix_eval", "name": "BiMediX Bilingual Eval (AR+EN)", "category": "medical", "metric": "accuracy", "description": "BiMediX bilingual Arabic-English medical eval — ClinicalKnowledge, MedicalGenetics, Anatomy, Professional Medicine. BiMediX 65.4 avg vs Mixtral 55.0, Jais-30B 50.6"},
-
-    {"id": "mimic_iv_sepsis_auc", "name": "MIMIC-IV Sepsis Mortality AUC", "category": "clinical-prediction", "metric": "auroc", "description": "MIMIC-IV sepsis cohort 24h-pre-onset mortality prediction AUC. 35,239 ICU patients. LLM-guided temporal sim 0.861-0.903"},
-    {"id": "mimic_aki_mortality", "name": "MIMIC-IV AKI Mortality (XGBoost)", "category": "clinical-prediction", "metric": "auroc", "description": "Sepsis-associated AKI ICU mortality prediction on MIMIC-IV with eICU external validation. XGBoost AUROC 0.878"},
-    {"id": "eicu_xgen_auc", "name": "eICU Cross-Generalization AUC", "category": "clinical-prediction", "metric": "auroc", "description": "Cross-dataset generalization — train MIMIC-IV → test eICU mortality. Demonstrates LLM/ML transferability"},
-    {"id": "mimic_iv_readmit", "name": "MIMIC-IV 30-day Readmission", "category": "clinical-prediction", "metric": "auroc", "description": "Hospital 30-day readmission prediction on MIMIC-IV. Standard outcome prediction benchmark"}
+    {
+      "id": "med_halt",
+      "name": "Med-HALT (Hallucination Test)",
+      "category": "medical-safety",
+      "metric": "accuracy",
+      "description": "Multinational medical exam-derived hallucination benchmark — reasoning + memory hallucination tests for medical LLMs. Med-HALT consortium (paper 2023.07)."
+    },
+    {
+      "id": "medhallu",
+      "name": "MedHallu (Hallucination Detection)",
+      "category": "medical-safety",
+      "metric": "accuracy",
+      "description": "First benchmark for medical hallucination detection — 10K QA pairs from PubMedQA with systematically generated hallucinated answers (MIT Media Lab 2025)"
+    },
+    {
+      "id": "medhallbench",
+      "name": "MedHallBench",
+      "category": "medical-safety",
+      "metric": "score",
+      "description": "Comprehensive medical hallucination evaluation — expert-validated case scenarios + medical databases. UCSD 2024-12"
+    },
+    {
+      "id": "medsafetybench",
+      "name": "MedSafetyBench (AMA principles)",
+      "category": "medical-safety",
+      "metric": "harmful_compliance",
+      "description": "Medical safety benchmark built on 9 AMA medical-doctor ethics principles. 450 verified synthetic prompts (ill-intentioned clinician), measures harmful compliance rate (lower=safer). NeurIPS 2024"
+    },
+    {
+      "id": "medriskeval",
+      "name": "MedRiskEval",
+      "category": "medical-safety",
+      "metric": "score",
+      "description": "Medical risk evaluation benchmark — user-perspective patient safety in healthcare LLM use"
+    },
+    {
+      "id": "csedb_safety",
+      "name": "CSEDB Safety",
+      "category": "medical-safety",
+      "metric": "score",
+      "description": "Clinical Safety-Effectiveness Dual-Track Benchmark — 30 metrics: critical illness recognition, guideline adherence, medication safety. Average safety 54.7%, drops 13.3% in high-risk scenarios. Nature npj Digital Medicine 2025"
+    },
+    {
+      "id": "csedb_effectiveness",
+      "name": "CSEDB Effectiveness",
+      "category": "medical",
+      "metric": "score",
+      "description": "CSEDB effectiveness track. Average effectiveness 62.3%"
+    },
+    {
+      "id": "patientsafebench",
+      "name": "PatientSafeBench",
+      "category": "medical-safety",
+      "metric": "safety",
+      "description": "Patient-use safety benchmark — measures LLM safety when used directly by patients (vs clinicians). OpenReview 2025"
+    },
+    {
+      "id": "craft_md",
+      "name": "CRAFT-MD (Conversational Reasoning)",
+      "category": "medical-safety",
+      "metric": "factual_accuracy",
+      "description": "Conversational reasoning eval — simulates AI-agent patient interactions, measures factual accuracy in patient-LLM conversations"
+    },
+    {
+      "id": "medic_eval",
+      "name": "MEDIC (Clinical LLM Indicators)",
+      "category": "medical",
+      "metric": "score",
+      "description": "Comprehensive evaluation of Leading Indicators for Clinical LLMs — multidimensional 5 evaluation axes. Yale + Google 2024-09"
+    },
+    {
+      "id": "rexrank_radgraph_f1",
+      "name": "ReXrank RadGraph-F1",
+      "category": "medical-imaging",
+      "metric": "f1",
+      "description": "Radiology report generation entity+relation F1 from RadGraph schema. Standard ReXrank metric — captures clinical entities and their relationships"
+    },
+    {
+      "id": "rexrank_bertscore",
+      "name": "ReXrank BERTScore",
+      "category": "medical-imaging",
+      "metric": "bertscore",
+      "description": "Radiology report generation semantic similarity (BERTScore) on MIMIC-CXR + ReXGradient + IU-Xray + CheXpert Plus"
+    },
+    {
+      "id": "rexrank_radcliq",
+      "name": "ReXrank RadCliQ",
+      "category": "medical-imaging",
+      "metric": "radcliq",
+      "description": "RadCliQ composite radiology-report quality score combining BLEU + BERTScore + RadGraph-F1"
+    },
+    {
+      "id": "rexrank_green",
+      "name": "ReXrank GREEN",
+      "category": "medical-imaging",
+      "metric": "green",
+      "description": "GREEN metric — clinical relevance + factuality combined for chest X-ray report generation"
+    },
+    {
+      "id": "rexrank_finerad",
+      "name": "ReXrank FineRadScore",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "Fine-grained radiology report score — finding-level error detection"
+    },
+    {
+      "id": "chexpert_f1",
+      "name": "CheXpert F1 (14-finding)",
+      "category": "medical-imaging",
+      "metric": "f1",
+      "description": "CheXpert label F1 across 14 chest X-ray findings — standard radiology auto-eval metric. Stanford AIMI"
+    },
+    {
+      "id": "rexgrad_acc",
+      "name": "ReXGradient Test Accuracy",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "Largest test dataset (10,000 studies) for radiology report generation eval. ReXrank's primary holdout"
+    },
+    {
+      "id": "vqa_rad",
+      "name": "VQA-RAD",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "Radiology VQA — 315 images, 3,515 questions, 517 possible answers. Standard medical VQA benchmark since 2018"
+    },
+    {
+      "id": "slake_vqa",
+      "name": "SLAKE-VQA (Bilingual)",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "Bilingual EN-CN medical VQA — 642 images + 14K questions across radiology/CT/MRI"
+    },
+    {
+      "id": "path_vqa",
+      "name": "Path-VQA",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "Pathology VQA — 32K Q-A pairs from pathology textbook images. Closed + open question splits"
+    },
+    {
+      "id": "pmc_vqa",
+      "name": "PMC-VQA",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "Large-scale medical VQA from PubMed Central figures + captions. PMC-VQA-Test 2,096 image-Q pairs"
+    },
+    {
+      "id": "afrimed_qa_mcq",
+      "name": "AfriMed-QA MCQ",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "Pan-African multi-specialty MCQ — 4,000+ expert-curated questions. Google Research + UCT 2024-11"
+    },
+    {
+      "id": "afrimed_qa_saq",
+      "name": "AfriMed-QA SAQ",
+      "category": "medical",
+      "metric": "score",
+      "description": "AfriMed-QA short answer questions — 1,200+ long-form clinical answers"
+    },
+    {
+      "id": "medarabench",
+      "name": "MedAraBench (Arabic)",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "Large-scale Arabic medical benchmark — 24,883 MCQs across 19 specialties × 5 difficulty levels. MBZUAI 2026-02"
+    },
+    {
+      "id": "bimedix_eval",
+      "name": "BiMediX Bilingual Eval (AR+EN)",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "BiMediX bilingual Arabic-English medical eval — ClinicalKnowledge, MedicalGenetics, Anatomy, Professional Medicine. BiMediX 65.4 avg vs Mixtral 55.0, Jais-30B 50.6"
+    },
+    {
+      "id": "mimic_iv_sepsis_auc",
+      "name": "MIMIC-IV Sepsis Mortality AUC",
+      "category": "clinical-prediction",
+      "metric": "auroc",
+      "description": "MIMIC-IV sepsis cohort 24h-pre-onset mortality prediction AUC. 35,239 ICU patients. LLM-guided temporal sim 0.861-0.903"
+    },
+    {
+      "id": "mimic_aki_mortality",
+      "name": "MIMIC-IV AKI Mortality (XGBoost)",
+      "category": "clinical-prediction",
+      "metric": "auroc",
+      "description": "Sepsis-associated AKI ICU mortality prediction on MIMIC-IV with eICU external validation. XGBoost AUROC 0.878"
+    },
+    {
+      "id": "eicu_xgen_auc",
+      "name": "eICU Cross-Generalization AUC",
+      "category": "clinical-prediction",
+      "metric": "auroc",
+      "description": "Cross-dataset generalization — train MIMIC-IV → test eICU mortality. Demonstrates LLM/ML transferability"
+    },
+    {
+      "id": "mimic_iv_readmit",
+      "name": "MIMIC-IV 30-day Readmission",
+      "category": "clinical-prediction",
+      "metric": "auroc",
+      "description": "Hospital 30-day readmission prediction on MIMIC-IV. Standard outcome prediction benchmark"
+    }
   ],
   "scores": [
-    {"model": "openai/gpt-5.5", "benchmark": "med_halt", "score": 81.3, "_source": "https://medhalt.github.io/", "_note": "Frontier baseline reasoning + memory"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "med_halt", "score": 79.5, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "med_halt", "score": 76.4, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
-    {"model": "saama/openbiollm-llama3-70b", "benchmark": "med_halt", "score": 71.2, "_source": "https://huggingface.co/blog/aaditya/openbiollm"},
-    {"model": "epfl/meditron-70b", "benchmark": "med_halt", "score": 65.4, "_source": "https://medhalt.github.io/"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "medhallu", "score": 76.8, "_source": "https://arxiv.org/html/2502.14302v1"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "medhallu", "score": 71.5, "_source": "https://arxiv.org/html/2502.14302v1"},
-    {"model": "google/medgemma-27b", "benchmark": "medhallu", "score": 64.2, "_source": "https://arxiv.org/html/2502.14302v1"},
-    {"model": "openmeditron/meditron3-70b", "benchmark": "medhallu", "score": 60.8, "_source": "https://arxiv.org/html/2502.14302v1"},
-    {"model": "mit-mediallab/medhallu-detector", "benchmark": "medhallu", "score": 84.1, "_source": "https://arxiv.org/html/2502.14302v1", "_note": "Trained detector reference"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "medhallbench", "score": 78.4, "_source": "https://arxiv.org/abs/2412.18947"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "medhallbench", "score": 73.6, "_source": "https://arxiv.org/abs/2412.18947"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "medhallbench", "score": 76.2, "_source": "https://arxiv.org/abs/2412.18947"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "medsafetybench", "score": 8.5, "_source": "https://arxiv.org/abs/2403.03744", "_note": "Lower=safer. Harmful compliance %"},
-    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "medsafetybench", "score": 5.2, "_source": "https://openai.com/index/making-chatgpt-better-for-clinicians/", "_note": "Safer due to clinician-tuning"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "medsafetybench", "score": 6.8, "_source": "https://arxiv.org/abs/2403.03744"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "medsafetybench", "score": 7.4, "_source": "https://arxiv.org/abs/2403.03744"},
-    {"model": "epfl/meditron-70b", "benchmark": "medsafetybench", "score": 18.6, "_source": "https://arxiv.org/abs/2403.03744"},
-    {"model": "saama/openbiollm-llama3-70b", "benchmark": "medsafetybench", "score": 14.2, "_source": "https://arxiv.org/abs/2403.03744"},
-
-    {"model": "hippocratic-ai/polaris-3", "benchmark": "patientsafebench", "score": 92.4, "_source": "https://hippocraticai.com/polaris-3/"},
-    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "patientsafebench", "score": 88.5, "_source": "https://openai.com/index/making-chatgpt-better-for-clinicians/"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "patientsafebench", "score": 85.2, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "csedb_safety", "score": 71.3, "_source": "https://www.nature.com/articles/s41746-025-02277-8"},
-    {"model": "openai/gpt-5.5", "benchmark": "csedb_effectiveness", "score": 78.4, "_source": "https://www.nature.com/articles/s41746-025-02277-8"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "csedb_safety", "score": 68.5, "_source": "https://www.nature.com/articles/s41746-025-02277-8"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "csedb_effectiveness", "score": 73.2, "_source": "https://www.nature.com/articles/s41746-025-02277-8"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "craft_md", "score": 81.5, "_source": "https://www.nature.com/articles/s41746-025-02277-8"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "craft_md", "score": 76.4, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "medic_eval", "score": 82.4, "_source": "https://arxiv.org/pdf/2409.07314"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "medic_eval", "score": 78.1, "_source": "https://arxiv.org/pdf/2409.07314"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "medic_eval", "score": 80.5, "_source": "https://arxiv.org/pdf/2409.07314"},
-
-    {"model": "harvard/medversa-8b", "benchmark": "rexrank_radgraph_f1", "score": 32.1, "_source": "https://rexrank.ai/", "_note": "ReXrank top performer 2025"},
-    {"model": "harvard/medversa-8b", "benchmark": "rexrank_bertscore", "score": 47.3, "_source": "https://rexrank.ai/"},
-    {"model": "harvard/medversa-8b", "benchmark": "rexrank_radcliq", "score": 1.74, "_source": "https://rexrank.ai/", "_note": "Lower=better"},
-    {"model": "harvard/medversa-8b", "benchmark": "rexrank_green", "score": 0.42, "_source": "https://rexrank.ai/"},
-    {"model": "harvard/medversa-8b", "benchmark": "rexgrad_acc", "score": 71.2, "_source": "https://rexrank.ai/"},
-    {"model": "rad-onc/maira-2", "benchmark": "rexrank_radgraph_f1", "score": 30.4, "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"},
-    {"model": "rad-onc/maira-2", "benchmark": "rexrank_bertscore", "score": 45.7, "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"},
-    {"model": "rad-onc/maira-1", "benchmark": "rexrank_radgraph_f1", "score": 27.8, "_source": "https://arxiv.org/abs/2311.13668"},
-    {"model": "rad-onc/cheXagent-8b", "benchmark": "rexrank_radgraph_f1", "score": 28.5, "_source": "https://arxiv.org/abs/2401.12208"},
-    {"model": "rad-onc/cxr-pro", "benchmark": "rexrank_radgraph_f1", "score": 25.6, "_source": "https://stanfordaimi.azurewebsites.net/"},
-    {"model": "rad-onc/llm-cxr", "benchmark": "rexrank_radgraph_f1", "score": 24.2, "_source": "https://stanfordaimi.azurewebsites.net/"},
-    {"model": "rad-onc/rgrg", "benchmark": "rexrank_radgraph_f1", "score": 22.7, "_source": "https://www.cell.com/patterns/pdf/S2666-3899(23)00157-5.pdf"},
-    {"model": "stanford/chexpert-baseline", "benchmark": "chexpert_f1", "score": 78.4, "_source": "https://stanfordmlgroup.github.io/competitions/chexpert/"},
-    {"model": "harvard/medversa-8b", "benchmark": "chexpert_f1", "score": 81.2, "_source": "https://rexrank.ai/"},
-    {"model": "rad-onc/maira-2", "benchmark": "chexpert_f1", "score": 80.4, "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"},
-
-    {"model": "smartlab/meddr-internvl-40b", "benchmark": "vqa_rad", "score": 87.2, "_source": "https://arxiv.org/html/2404.15127v1/"},
-    {"model": "freedomintelligence/huatuogpt-vision-34b", "benchmark": "vqa_rad", "score": 81.4, "_source": "https://github.com/FreedomIntelligence/HuatuoGPT-Vision"},
-    {"model": "stanford/med-flamingo-9b", "benchmark": "vqa_rad", "score": 73.5, "_source": "https://arxiv.org/abs/2307.15189"},
-    {"model": "taokz/biomedgpt-xlarge", "benchmark": "vqa_rad", "score": 79.6, "_source": "https://github.com/taokz/BiomedGPT"},
-    {"model": "smartlab/meddr-internvl-40b", "benchmark": "slake_vqa", "score": 89.2, "_source": "https://arxiv.org/html/2404.15127v1/"},
-    {"model": "freedomintelligence/huatuogpt-vision-34b", "benchmark": "slake_vqa", "score": 86.7, "_source": "https://github.com/FreedomIntelligence/HuatuoGPT-Vision"},
-    {"model": "taokz/biomedgpt-xlarge", "benchmark": "slake_vqa", "score": 84.3, "_source": "https://github.com/taokz/BiomedGPT"},
-    {"model": "smartlab/meddr-internvl-40b", "benchmark": "path_vqa", "score": 87.2, "_source": "https://arxiv.org/html/2404.15127v1/"},
-    {"model": "freedomintelligence/huatuogpt-vision-34b", "benchmark": "path_vqa", "score": 81.6, "_source": "https://github.com/FreedomIntelligence/HuatuoGPT-Vision"},
-    {"model": "taokz/biomedgpt-xlarge", "benchmark": "path_vqa", "score": 78.5, "_source": "https://github.com/taokz/BiomedGPT"},
-    {"model": "smartlab/meddr-internvl-40b", "benchmark": "pmc_vqa", "score": 75.8, "_source": "https://arxiv.org/html/2305.10415v6"},
-    {"model": "openai/gpt-5.5", "benchmark": "vqa_rad", "score": 84.7, "_source": "https://openai.com/gpt-5"},
-    {"model": "openai/gpt-5.5", "benchmark": "slake_vqa", "score": 85.1, "_source": "https://openai.com/gpt-5"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "path_vqa", "score": 82.4, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
-
-    {"model": "google/afrimed-qa-baseline", "benchmark": "afrimed_qa_mcq", "score": 73.5, "_source": "https://arxiv.org/abs/2411.15640"},
-    {"model": "openai/gpt-5.5", "benchmark": "afrimed_qa_mcq", "score": 86.2, "_source": "https://openai.com/gpt-5"},
-    {"model": "google/med-gemini-3-pro", "benchmark": "afrimed_qa_mcq", "score": 82.7, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
-    {"model": "google/afrimed-qa-baseline", "benchmark": "afrimed_qa_saq", "score": 67.4, "_source": "https://arxiv.org/abs/2411.15640"},
-    {"model": "mbzuai-oryx/bimedix-2", "benchmark": "bimedix_eval", "score": 67.8, "_source": "https://github.com/mbzuai-oryx/BiMediX"},
-    {"model": "mbzuai-oryx/bimedix", "benchmark": "bimedix_eval", "score": 65.4, "_source": "https://arxiv.org/html/2402.13253v1"},
-    {"model": "mbzuai/medarabench-baseline", "benchmark": "medarabench", "score": 62.3, "_source": "https://arxiv.org/html/2602.01714v1"},
-    {"model": "openai/gpt-5.5", "benchmark": "medarabench", "score": 88.5, "_source": "https://openai.com/gpt-5"},
-    {"model": "mbzuai-oryx/bimedix-2", "benchmark": "medarabench", "score": 71.4, "_source": "https://github.com/mbzuai-oryx/BiMediX"},
-
-    {"model": "duke/clin-mortality-llm", "benchmark": "mimic_iv_sepsis_auc", "score": 90.3, "_source": "https://arxiv.org/html/2604.20924", "_note": "LLM-guided temporal sim 0.903 at 4hr pre-onset"},
-    {"model": "phys-intelligence/medic-aki-xgb", "benchmark": "mimic_aki_mortality", "score": 87.8, "_source": "https://arxiv.org/abs/2502.17978", "_note": "XGBoost on sepsis-associated AKI"},
-    {"model": "phys-intelligence/medic-aki-xgb", "benchmark": "eicu_xgen_auc", "score": 84.5, "_source": "https://arxiv.org/abs/2502.17978", "_note": "MIMIC-IV→eICU transfer"},
-    {"model": "mit-mimic/mimic-iv-bench", "benchmark": "mimic_iv_sepsis_auc", "score": 86.1, "_source": "https://arxiv.org/html/2510.24500v1"},
-    {"model": "stanford/clinical-pred-bert", "benchmark": "mimic_iv_readmit", "score": 78.5, "_source": "https://stanfordmlgroup.github.io/", "_note": "30-day readmission AUROC"}
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "med_halt",
+      "score": 79.5,
+      "_source": "https://www.anthropic.com/news/claude-opus-4-6"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "med_halt",
+      "score": 76.4,
+      "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"
+    },
+    {
+      "model": "saama/openbiollm-llama3-70b",
+      "benchmark": "med_halt",
+      "score": 71.2,
+      "_source": "https://huggingface.co/blog/aaditya/openbiollm"
+    },
+    {
+      "model": "epfl/meditron-70b",
+      "benchmark": "med_halt",
+      "score": 65.4,
+      "_source": "https://medhalt.github.io/"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medhallu",
+      "score": 76.8,
+      "_source": "https://arxiv.org/html/2502.14302v1"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "medhallu",
+      "score": 71.5,
+      "_source": "https://arxiv.org/html/2502.14302v1"
+    },
+    {
+      "model": "google/medgemma-27b",
+      "benchmark": "medhallu",
+      "score": 64.2,
+      "_source": "https://arxiv.org/html/2502.14302v1"
+    },
+    {
+      "model": "openmeditron/meditron3-70b",
+      "benchmark": "medhallu",
+      "score": 60.8,
+      "_source": "https://arxiv.org/html/2502.14302v1"
+    },
+    {
+      "model": "mit-mediallab/medhallu-detector",
+      "benchmark": "medhallu",
+      "score": 84.1,
+      "_source": "https://arxiv.org/html/2502.14302v1",
+      "_note": "Trained detector reference"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medhallbench",
+      "score": 78.4,
+      "_source": "https://arxiv.org/abs/2412.18947"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "medhallbench",
+      "score": 73.6,
+      "_source": "https://arxiv.org/abs/2412.18947"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "medhallbench",
+      "score": 76.2,
+      "_source": "https://arxiv.org/abs/2412.18947"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medsafetybench",
+      "score": 8.5,
+      "_source": "https://arxiv.org/abs/2403.03744",
+      "_note": "Lower=safer. Harmful compliance %"
+    },
+    {
+      "model": "openai/chatgpt-clinicians-gpt54",
+      "benchmark": "medsafetybench",
+      "score": 5.2,
+      "_source": "https://openai.com/index/making-chatgpt-better-for-clinicians/",
+      "_note": "Safer due to clinician-tuning"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "medsafetybench",
+      "score": 6.8,
+      "_source": "https://arxiv.org/abs/2403.03744"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "medsafetybench",
+      "score": 7.4,
+      "_source": "https://arxiv.org/abs/2403.03744"
+    },
+    {
+      "model": "epfl/meditron-70b",
+      "benchmark": "medsafetybench",
+      "score": 18.6,
+      "_source": "https://arxiv.org/abs/2403.03744"
+    },
+    {
+      "model": "saama/openbiollm-llama3-70b",
+      "benchmark": "medsafetybench",
+      "score": 14.2,
+      "_source": "https://arxiv.org/abs/2403.03744"
+    },
+    {
+      "model": "hippocratic-ai/polaris-3",
+      "benchmark": "patientsafebench",
+      "score": 92.4,
+      "_source": "https://hippocraticai.com/polaris-3/"
+    },
+    {
+      "model": "openai/chatgpt-clinicians-gpt54",
+      "benchmark": "patientsafebench",
+      "score": 88.5,
+      "_source": "https://openai.com/index/making-chatgpt-better-for-clinicians/"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "patientsafebench",
+      "score": 85.2,
+      "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "csedb_safety",
+      "score": 71.3,
+      "_source": "https://www.nature.com/articles/s41746-025-02277-8"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "csedb_effectiveness",
+      "score": 78.4,
+      "_source": "https://www.nature.com/articles/s41746-025-02277-8"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "csedb_safety",
+      "score": 68.5,
+      "_source": "https://www.nature.com/articles/s41746-025-02277-8"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "csedb_effectiveness",
+      "score": 73.2,
+      "_source": "https://www.nature.com/articles/s41746-025-02277-8"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "craft_md",
+      "score": 81.5,
+      "_source": "https://www.nature.com/articles/s41746-025-02277-8"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "craft_md",
+      "score": 76.4,
+      "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medic_eval",
+      "score": 82.4,
+      "_source": "https://arxiv.org/pdf/2409.07314"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "medic_eval",
+      "score": 78.1,
+      "_source": "https://arxiv.org/pdf/2409.07314"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "medic_eval",
+      "score": 80.5,
+      "_source": "https://arxiv.org/pdf/2409.07314"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "rexrank_radgraph_f1",
+      "score": 32.1,
+      "_source": "https://rexrank.ai/",
+      "_note": "ReXrank top performer 2025"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "rexrank_bertscore",
+      "score": 47.3,
+      "_source": "https://rexrank.ai/"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "rexrank_radcliq",
+      "score": 1.74,
+      "_source": "https://rexrank.ai/",
+      "_note": "Lower=better"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "rexrank_green",
+      "score": 0.42,
+      "_source": "https://rexrank.ai/"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "rexgrad_acc",
+      "score": 71.2,
+      "_source": "https://rexrank.ai/"
+    },
+    {
+      "model": "rad-onc/maira-2",
+      "benchmark": "rexrank_radgraph_f1",
+      "score": 30.4,
+      "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"
+    },
+    {
+      "model": "rad-onc/maira-2",
+      "benchmark": "rexrank_bertscore",
+      "score": 45.7,
+      "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"
+    },
+    {
+      "model": "rad-onc/maira-1",
+      "benchmark": "rexrank_radgraph_f1",
+      "score": 27.8,
+      "_source": "https://arxiv.org/abs/2311.13668"
+    },
+    {
+      "model": "rad-onc/cheXagent-8b",
+      "benchmark": "rexrank_radgraph_f1",
+      "score": 28.5,
+      "_source": "https://arxiv.org/abs/2401.12208"
+    },
+    {
+      "model": "rad-onc/cxr-pro",
+      "benchmark": "rexrank_radgraph_f1",
+      "score": 25.6,
+      "_source": "https://stanfordaimi.azurewebsites.net/"
+    },
+    {
+      "model": "rad-onc/llm-cxr",
+      "benchmark": "rexrank_radgraph_f1",
+      "score": 24.2,
+      "_source": "https://stanfordaimi.azurewebsites.net/"
+    },
+    {
+      "model": "rad-onc/rgrg",
+      "benchmark": "rexrank_radgraph_f1",
+      "score": 22.7,
+      "_source": "https://www.cell.com/patterns/pdf/S2666-3899(23)00157-5.pdf"
+    },
+    {
+      "model": "stanford/chexpert-baseline",
+      "benchmark": "chexpert_f1",
+      "score": 78.4,
+      "_source": "https://stanfordmlgroup.github.io/competitions/chexpert/"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "chexpert_f1",
+      "score": 81.2,
+      "_source": "https://rexrank.ai/"
+    },
+    {
+      "model": "rad-onc/maira-2",
+      "benchmark": "chexpert_f1",
+      "score": 80.4,
+      "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"
+    },
+    {
+      "model": "smartlab/meddr-internvl-40b",
+      "benchmark": "vqa_rad",
+      "score": 87.2,
+      "_source": "https://arxiv.org/html/2404.15127v1/"
+    },
+    {
+      "model": "freedomintelligence/huatuogpt-vision-34b",
+      "benchmark": "vqa_rad",
+      "score": 81.4,
+      "_source": "https://github.com/FreedomIntelligence/HuatuoGPT-Vision"
+    },
+    {
+      "model": "stanford/med-flamingo-9b",
+      "benchmark": "vqa_rad",
+      "score": 73.5,
+      "_source": "https://arxiv.org/abs/2307.15189"
+    },
+    {
+      "model": "taokz/biomedgpt-xlarge",
+      "benchmark": "vqa_rad",
+      "score": 79.6,
+      "_source": "https://github.com/taokz/BiomedGPT"
+    },
+    {
+      "model": "smartlab/meddr-internvl-40b",
+      "benchmark": "slake_vqa",
+      "score": 89.2,
+      "_source": "https://arxiv.org/html/2404.15127v1/"
+    },
+    {
+      "model": "freedomintelligence/huatuogpt-vision-34b",
+      "benchmark": "slake_vqa",
+      "score": 86.7,
+      "_source": "https://github.com/FreedomIntelligence/HuatuoGPT-Vision"
+    },
+    {
+      "model": "taokz/biomedgpt-xlarge",
+      "benchmark": "slake_vqa",
+      "score": 84.3,
+      "_source": "https://github.com/taokz/BiomedGPT"
+    },
+    {
+      "model": "smartlab/meddr-internvl-40b",
+      "benchmark": "path_vqa",
+      "score": 87.2,
+      "_source": "https://arxiv.org/html/2404.15127v1/"
+    },
+    {
+      "model": "freedomintelligence/huatuogpt-vision-34b",
+      "benchmark": "path_vqa",
+      "score": 81.6,
+      "_source": "https://github.com/FreedomIntelligence/HuatuoGPT-Vision"
+    },
+    {
+      "model": "taokz/biomedgpt-xlarge",
+      "benchmark": "path_vqa",
+      "score": 78.5,
+      "_source": "https://github.com/taokz/BiomedGPT"
+    },
+    {
+      "model": "smartlab/meddr-internvl-40b",
+      "benchmark": "pmc_vqa",
+      "score": 75.8,
+      "_source": "https://arxiv.org/html/2305.10415v6"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "path_vqa",
+      "score": 82.4,
+      "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"
+    },
+    {
+      "model": "google/afrimed-qa-baseline",
+      "benchmark": "afrimed_qa_mcq",
+      "score": 73.5,
+      "_source": "https://arxiv.org/abs/2411.15640"
+    },
+    {
+      "model": "google/med-gemini-3-pro",
+      "benchmark": "afrimed_qa_mcq",
+      "score": 82.7,
+      "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"
+    },
+    {
+      "model": "google/afrimed-qa-baseline",
+      "benchmark": "afrimed_qa_saq",
+      "score": 67.4,
+      "_source": "https://arxiv.org/abs/2411.15640"
+    },
+    {
+      "model": "mbzuai-oryx/bimedix-2",
+      "benchmark": "bimedix_eval",
+      "score": 67.8,
+      "_source": "https://github.com/mbzuai-oryx/BiMediX"
+    },
+    {
+      "model": "mbzuai-oryx/bimedix",
+      "benchmark": "bimedix_eval",
+      "score": 65.4,
+      "_source": "https://arxiv.org/html/2402.13253v1"
+    },
+    {
+      "model": "mbzuai/medarabench-baseline",
+      "benchmark": "medarabench",
+      "score": 62.3,
+      "_source": "https://arxiv.org/html/2602.01714v1"
+    },
+    {
+      "model": "mbzuai-oryx/bimedix-2",
+      "benchmark": "medarabench",
+      "score": 71.4,
+      "_source": "https://github.com/mbzuai-oryx/BiMediX"
+    },
+    {
+      "model": "duke/clin-mortality-llm",
+      "benchmark": "mimic_iv_sepsis_auc",
+      "score": 90.3,
+      "_source": "https://arxiv.org/html/2604.20924",
+      "_note": "LLM-guided temporal sim 0.903 at 4hr pre-onset"
+    },
+    {
+      "model": "phys-intelligence/medic-aki-xgb",
+      "benchmark": "mimic_aki_mortality",
+      "score": 87.8,
+      "_source": "https://arxiv.org/abs/2502.17978",
+      "_note": "XGBoost on sepsis-associated AKI"
+    },
+    {
+      "model": "phys-intelligence/medic-aki-xgb",
+      "benchmark": "eicu_xgen_auc",
+      "score": 84.5,
+      "_source": "https://arxiv.org/abs/2502.17978",
+      "_note": "MIMIC-IV→eICU transfer"
+    },
+    {
+      "model": "mit-mimic/mimic-iv-bench",
+      "benchmark": "mimic_iv_sepsis_auc",
+      "score": 86.1,
+      "_source": "https://arxiv.org/html/2510.24500v1"
+    },
+    {
+      "model": "stanford/clinical-pred-bert",
+      "benchmark": "mimic_iv_readmit",
+      "score": 78.5,
+      "_source": "https://stanfordmlgroup.github.io/",
+      "_note": "30-day readmission AUROC"
+    }
   ]
 }

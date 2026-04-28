@@ -19,59 +19,336 @@
     ]
   },
   "models": [
-    {"id": "google/timesfm-2.5-200m", "name": "TimesFM 2.5 200M (Time-Series FM)", "vendor": "Google Research", "type": "open-weights", "modalities": ["time-series"], "released_at": "2025-09"},
-    {"id": "google/timesfm-1-200m", "name": "TimesFM 1.0 200M", "vendor": "Google Research", "type": "open-weights", "modalities": ["time-series"], "released_at": "2024-05"},
-    {"id": "google/ph-llm", "name": "PH-LLM (Personal Health LLM, Gemini)", "vendor": "Google Research", "type": "proprietary", "modalities": ["text", "time-series"], "released_at": "2024-06"},
-    {"id": "google/ph-llm-2", "name": "PH-LLM 2 (Sleep+Fitness, Nature Med 2025)", "vendor": "Google Research", "type": "proprietary", "modalities": ["text", "time-series"], "released_at": "2025-09"},
-    {"id": "google/lsm-1", "name": "LSM-1 (Large Sensor Model 1)", "vendor": "Google Research", "type": "proprietary", "modalities": ["time-series", "wearable"], "released_at": "2024-10"},
-    {"id": "google/lsm-2", "name": "LSM-2 with AIM (40M hrs Fitbit)", "vendor": "Google Research", "type": "proprietary", "modalities": ["time-series", "wearable"], "released_at": "2025-06"},
-    {"id": "google/wearable-llm-agent", "name": "Wearable Health LLM Agent (Nat. Comm. 2025)", "vendor": "Google Research", "type": "proprietary", "modalities": ["text", "time-series"], "released_at": "2025-08"},
-    {"id": "apple/wearable-fm-behavioral", "name": "Apple Wearable FM (Behavioral Signals)", "vendor": "Apple Machine Learning Research", "type": "proprietary", "modalities": ["time-series", "wearable"], "released_at": "2025-07"},
-    {"id": "empirical-health/wearable-jepa", "name": "Empirical Health JEPA Wearable FM", "vendor": "Empirical Health", "type": "proprietary", "modalities": ["time-series", "wearable"], "released_at": "2025-09"},
-    {"id": "stanford/cardio-wearable-fm", "name": "Cardio Wearable FM (HIV CVD screening)", "vendor": "Stanford + Comm Med 2025", "type": "open-weights", "modalities": ["time-series", "wearable"], "released_at": "2025-07"},
-    {"id": "harvard/movement-fm-mental", "name": "Wearable Movement FM (Mental Health)", "vendor": "Harvard + PMC", "type": "open-weights", "modalities": ["time-series", "wearable"], "released_at": "2024-11"}
+    {
+      "id": "google/timesfm-2.5-200m",
+      "name": "TimesFM 2.5 200M (Time-Series FM)",
+      "vendor": "Google Research",
+      "type": "open-weights",
+      "modalities": [
+        "time-series"
+      ],
+      "released_at": "2025-09"
+    },
+    {
+      "id": "google/timesfm-1-200m",
+      "name": "TimesFM 1.0 200M",
+      "vendor": "Google Research",
+      "type": "open-weights",
+      "modalities": [
+        "time-series"
+      ],
+      "released_at": "2024-05"
+    },
+    {
+      "id": "google/ph-llm",
+      "name": "PH-LLM (Personal Health LLM, Gemini)",
+      "vendor": "Google Research",
+      "type": "proprietary",
+      "modalities": [
+        "text",
+        "time-series"
+      ],
+      "released_at": "2024-06"
+    },
+    {
+      "id": "google/ph-llm-2",
+      "name": "PH-LLM 2 (Sleep+Fitness, Nature Med 2025)",
+      "vendor": "Google Research",
+      "type": "proprietary",
+      "modalities": [
+        "text",
+        "time-series"
+      ],
+      "released_at": "2025-09"
+    },
+    {
+      "id": "google/lsm-1",
+      "name": "LSM-1 (Large Sensor Model 1)",
+      "vendor": "Google Research",
+      "type": "proprietary",
+      "modalities": [
+        "time-series",
+        "wearable"
+      ],
+      "released_at": "2024-10"
+    },
+    {
+      "id": "google/lsm-2",
+      "name": "LSM-2 with AIM (40M hrs Fitbit)",
+      "vendor": "Google Research",
+      "type": "proprietary",
+      "modalities": [
+        "time-series",
+        "wearable"
+      ],
+      "released_at": "2025-06"
+    },
+    {
+      "id": "google/wearable-llm-agent",
+      "name": "Wearable Health LLM Agent (Nat. Comm. 2025)",
+      "vendor": "Google Research",
+      "type": "proprietary",
+      "modalities": [
+        "text",
+        "time-series"
+      ],
+      "released_at": "2025-08"
+    },
+    {
+      "id": "apple/wearable-fm-behavioral",
+      "name": "Apple Wearable FM (Behavioral Signals)",
+      "vendor": "Apple Machine Learning Research",
+      "type": "proprietary",
+      "modalities": [
+        "time-series",
+        "wearable"
+      ],
+      "released_at": "2025-07"
+    },
+    {
+      "id": "empirical-health/wearable-jepa",
+      "name": "Empirical Health JEPA Wearable FM",
+      "vendor": "Empirical Health",
+      "type": "proprietary",
+      "modalities": [
+        "time-series",
+        "wearable"
+      ],
+      "released_at": "2025-09"
+    },
+    {
+      "id": "stanford/cardio-wearable-fm",
+      "name": "Cardio Wearable FM (HIV CVD screening)",
+      "vendor": "Stanford + Comm Med 2025",
+      "type": "open-weights",
+      "modalities": [
+        "time-series",
+        "wearable"
+      ],
+      "released_at": "2025-07"
+    },
+    {
+      "id": "harvard/movement-fm-mental",
+      "name": "Wearable Movement FM (Mental Health)",
+      "vendor": "Harvard + PMC",
+      "type": "open-weights",
+      "modalities": [
+        "time-series",
+        "wearable"
+      ],
+      "released_at": "2024-11"
+    }
   ],
   "benchmarks": [
-    {"id": "timesfm_eval", "name": "TimesFM Zero-shot Forecasting Eval", "category": "time-series", "metric": "mape", "description": "TimesFM zero-shot forecasting eval on Monash + Darts + ETT + GIFT-Eval — covers retail/finance/healthcare/IoT. 200M-param decoder-only"},
-    {"id": "gift_eval_ts", "name": "GIFT-Eval (Generalizable TS Forecasting)", "category": "time-series", "metric": "mase", "description": "Generalizable Inference for Forecasting Time-series — multi-domain TS eval. TimesFM 2.5 SOTA on zero-shot"},
-    {"id": "ph_llm_sleep", "name": "PH-LLM Sleep Medicine MCQ", "category": "medical", "metric": "accuracy", "description": "Personal Health LLM sleep medicine MCQ eval. PH-LLM 79% (vs human experts 76%). Nature Medicine 2025"},
-    {"id": "ph_llm_fitness", "name": "PH-LLM Fitness MCQ", "category": "medical", "metric": "accuracy", "description": "Personal Health LLM fitness MCQ eval. PH-LLM 88% (vs human experts 71%)"},
-    {"id": "lsm2_health_classify", "name": "LSM-2 Health Classification (hypertension/anxiety)", "category": "clinical-prediction", "metric": "auroc", "description": "LSM-2 health condition classification — hypertension, anxiety + 20-class activity recognition"},
-    {"id": "lsm2_bmi_regression", "name": "LSM-2 BMI Regression", "category": "clinical-prediction", "metric": "mae", "description": "LSM-2 continuous health metric prediction — BMI regression. Lower=better"},
-    {"id": "lsm2_imputation", "name": "LSM-2 Sensor Imputation", "category": "clinical-prediction", "metric": "rmse", "description": "LSM-2 reconstructing missing sensor data — handles incomplete wearable signals"},
-    {"id": "apple_wearable_57", "name": "Apple Wearable 57-Health-Task", "category": "clinical-prediction", "metric": "auroc", "description": "Apple Wearable FM 57 health-related tasks — diverse real-world applications. 2.5B hrs / 162K subjects"},
-    {"id": "wearable_cvd_hiv", "name": "Wearable CVD Screening (HIV)", "category": "clinical-prediction", "metric": "auroc", "description": "Wearable signal screening for cardiovascular disease in people living with HIV. Comm Med 2025"},
-    {"id": "wearable_jepa_bp", "name": "Empirical Health BP Detection", "category": "clinical-prediction", "metric": "accuracy", "description": "Empirical Health JEPA wearable FM — high blood pressure detection 87% accuracy"},
-    {"id": "wearable_movement_mental", "name": "Wearable Movement Mental Health", "category": "clinical-prediction", "metric": "auroc", "description": "Wearable movement data for mental health — depression/anxiety detection. PMC 2024"}
+    {
+      "id": "timesfm_eval",
+      "name": "TimesFM Zero-shot Forecasting Eval",
+      "category": "time-series",
+      "metric": "mape",
+      "description": "TimesFM zero-shot forecasting eval on Monash + Darts + ETT + GIFT-Eval — covers retail/finance/healthcare/IoT. 200M-param decoder-only"
+    },
+    {
+      "id": "gift_eval_ts",
+      "name": "GIFT-Eval (Generalizable TS Forecasting)",
+      "category": "time-series",
+      "metric": "mase",
+      "description": "Generalizable Inference for Forecasting Time-series — multi-domain TS eval. TimesFM 2.5 SOTA on zero-shot"
+    },
+    {
+      "id": "ph_llm_sleep",
+      "name": "PH-LLM Sleep Medicine MCQ",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "Personal Health LLM sleep medicine MCQ eval. PH-LLM 79% (vs human experts 76%). Nature Medicine 2025"
+    },
+    {
+      "id": "ph_llm_fitness",
+      "name": "PH-LLM Fitness MCQ",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "Personal Health LLM fitness MCQ eval. PH-LLM 88% (vs human experts 71%)"
+    },
+    {
+      "id": "lsm2_health_classify",
+      "name": "LSM-2 Health Classification (hypertension/anxiety)",
+      "category": "clinical-prediction",
+      "metric": "auroc",
+      "description": "LSM-2 health condition classification — hypertension, anxiety + 20-class activity recognition"
+    },
+    {
+      "id": "lsm2_bmi_regression",
+      "name": "LSM-2 BMI Regression",
+      "category": "clinical-prediction",
+      "metric": "mae",
+      "description": "LSM-2 continuous health metric prediction — BMI regression. Lower=better"
+    },
+    {
+      "id": "lsm2_imputation",
+      "name": "LSM-2 Sensor Imputation",
+      "category": "clinical-prediction",
+      "metric": "rmse",
+      "description": "LSM-2 reconstructing missing sensor data — handles incomplete wearable signals"
+    },
+    {
+      "id": "apple_wearable_57",
+      "name": "Apple Wearable 57-Health-Task",
+      "category": "clinical-prediction",
+      "metric": "auroc",
+      "description": "Apple Wearable FM 57 health-related tasks — diverse real-world applications. 2.5B hrs / 162K subjects"
+    },
+    {
+      "id": "wearable_cvd_hiv",
+      "name": "Wearable CVD Screening (HIV)",
+      "category": "clinical-prediction",
+      "metric": "auroc",
+      "description": "Wearable signal screening for cardiovascular disease in people living with HIV. Comm Med 2025"
+    },
+    {
+      "id": "wearable_jepa_bp",
+      "name": "Empirical Health BP Detection",
+      "category": "clinical-prediction",
+      "metric": "accuracy",
+      "description": "Empirical Health JEPA wearable FM — high blood pressure detection 87% accuracy"
+    },
+    {
+      "id": "wearable_movement_mental",
+      "name": "Wearable Movement Mental Health",
+      "category": "clinical-prediction",
+      "metric": "auroc",
+      "description": "Wearable movement data for mental health — depression/anxiety detection. PMC 2024"
+    }
   ],
   "scores": [
-    {"model": "google/timesfm-2.5-200m", "benchmark": "timesfm_eval", "score": 12.3, "_source": "https://huggingface.co/google/timesfm-2.5-200m-pytorch", "_note": "MAPE — lower better. Zero-shot SOTA"},
-    {"model": "google/timesfm-1-200m", "benchmark": "timesfm_eval", "score": 14.8, "_source": "https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/"},
-    {"model": "google/timesfm-2.5-200m", "benchmark": "gift_eval_ts", "score": 0.74, "_source": "https://huggingface.co/google/timesfm-2.5-200m-pytorch", "_note": "MASE — lower better. Generalizable TS forecasting"},
-    {"model": "google/timesfm-1-200m", "benchmark": "gift_eval_ts", "score": 0.82, "_source": "https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/"},
-
-    {"model": "google/ph-llm-2", "benchmark": "ph_llm_sleep", "score": 79.0, "_source": "https://www.nature.com/articles/s41591-025-03888-0", "_note": "Beats human experts (76%)"},
-    {"model": "google/ph-llm-2", "benchmark": "ph_llm_fitness", "score": 88.0, "_source": "https://www.nature.com/articles/s41591-025-03888-0", "_note": "Beats human experts (71%)"},
-    {"model": "google/ph-llm", "benchmark": "ph_llm_sleep", "score": 75.4, "_source": "https://www.nature.com/articles/s41591-025-03888-0"},
-    {"model": "google/ph-llm", "benchmark": "ph_llm_fitness", "score": 84.2, "_source": "https://www.nature.com/articles/s41591-025-03888-0"},
-    {"model": "openai/gpt-5.5", "benchmark": "ph_llm_sleep", "score": 73.5, "_source": "https://openai.com/gpt-5", "_note": "Frontier baseline (no health fine-tune)"},
-    {"model": "anthropic/claude-opus-4.6", "benchmark": "ph_llm_sleep", "score": 74.8, "_source": "https://www.anthropic.com/news/claude-opus-4-6"},
-
-    {"model": "google/lsm-2", "benchmark": "lsm2_health_classify", "score": 84.5, "_source": "https://research.google/blog/lsm-2-learning-from-incomplete-wearable-sensor-data/", "_note": "Hypertension+anxiety+20-class activity"},
-    {"model": "google/lsm-1", "benchmark": "lsm2_health_classify", "score": 78.3, "_source": "https://research.google/blog/scaling-wearable-foundation-models/"},
-    {"model": "google/lsm-2", "benchmark": "lsm2_bmi_regression", "score": 2.4, "_source": "https://arxiv.org/abs/2506.05321", "_note": "BMI MAE — lower better"},
-    {"model": "google/lsm-1", "benchmark": "lsm2_bmi_regression", "score": 3.1, "_source": "https://research.google/blog/scaling-wearable-foundation-models/"},
-    {"model": "google/lsm-2", "benchmark": "lsm2_imputation", "score": 0.42, "_source": "https://arxiv.org/abs/2506.05321", "_note": "Sensor reconstruction RMSE — lower better"},
-
-    {"model": "apple/wearable-fm-behavioral", "benchmark": "apple_wearable_57", "score": 78.6, "_source": "https://machinelearning.apple.com/research/beyond-sensor", "_note": "57-task avg AUROC. ICML 2025"},
-
-    {"model": "stanford/cardio-wearable-fm", "benchmark": "wearable_cvd_hiv", "score": 84.3, "_source": "https://www.nature.com/articles/s43856-025-01331-6", "_note": "CVD screening AUROC for HIV+ population"},
-
-    {"model": "empirical-health/wearable-jepa", "benchmark": "wearable_jepa_bp", "score": 87.0, "_source": "https://www.empirical.health/blog/wearable-foundation-model-jets/", "_note": "JEPA-based BP detection accuracy"},
-
-    {"model": "harvard/movement-fm-mental", "benchmark": "wearable_movement_mental", "score": 76.5, "_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11623705/"},
-
-    {"model": "google/wearable-llm-agent", "benchmark": "ph_llm_sleep", "score": 81.4, "_source": "https://www.nature.com/articles/s41467-025-67922-y", "_note": "LLM agent over wearable data"},
-    {"model": "google/wearable-llm-agent", "benchmark": "lsm2_health_classify", "score": 80.6, "_source": "https://www.nature.com/articles/s41467-025-67922-y"}
+    {
+      "model": "google/timesfm-2.5-200m",
+      "benchmark": "timesfm_eval",
+      "score": 12.3,
+      "_source": "https://huggingface.co/google/timesfm-2.5-200m-pytorch",
+      "_note": "MAPE — lower better. Zero-shot SOTA"
+    },
+    {
+      "model": "google/timesfm-1-200m",
+      "benchmark": "timesfm_eval",
+      "score": 14.8,
+      "_source": "https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/"
+    },
+    {
+      "model": "google/timesfm-2.5-200m",
+      "benchmark": "gift_eval_ts",
+      "score": 0.74,
+      "_source": "https://huggingface.co/google/timesfm-2.5-200m-pytorch",
+      "_note": "MASE — lower better. Generalizable TS forecasting"
+    },
+    {
+      "model": "google/timesfm-1-200m",
+      "benchmark": "gift_eval_ts",
+      "score": 0.82,
+      "_source": "https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/"
+    },
+    {
+      "model": "google/ph-llm-2",
+      "benchmark": "ph_llm_sleep",
+      "score": 79.0,
+      "_source": "https://www.nature.com/articles/s41591-025-03888-0",
+      "_note": "Beats human experts (76%)"
+    },
+    {
+      "model": "google/ph-llm-2",
+      "benchmark": "ph_llm_fitness",
+      "score": 88.0,
+      "_source": "https://www.nature.com/articles/s41591-025-03888-0",
+      "_note": "Beats human experts (71%)"
+    },
+    {
+      "model": "google/ph-llm",
+      "benchmark": "ph_llm_sleep",
+      "score": 75.4,
+      "_source": "https://www.nature.com/articles/s41591-025-03888-0"
+    },
+    {
+      "model": "google/ph-llm",
+      "benchmark": "ph_llm_fitness",
+      "score": 84.2,
+      "_source": "https://www.nature.com/articles/s41591-025-03888-0"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "ph_llm_sleep",
+      "score": 74.8,
+      "_source": "https://www.anthropic.com/news/claude-opus-4-6"
+    },
+    {
+      "model": "google/lsm-2",
+      "benchmark": "lsm2_health_classify",
+      "score": 84.5,
+      "_source": "https://research.google/blog/lsm-2-learning-from-incomplete-wearable-sensor-data/",
+      "_note": "Hypertension+anxiety+20-class activity"
+    },
+    {
+      "model": "google/lsm-1",
+      "benchmark": "lsm2_health_classify",
+      "score": 78.3,
+      "_source": "https://research.google/blog/scaling-wearable-foundation-models/"
+    },
+    {
+      "model": "google/lsm-2",
+      "benchmark": "lsm2_bmi_regression",
+      "score": 2.4,
+      "_source": "https://arxiv.org/abs/2506.05321",
+      "_note": "BMI MAE — lower better"
+    },
+    {
+      "model": "google/lsm-1",
+      "benchmark": "lsm2_bmi_regression",
+      "score": 3.1,
+      "_source": "https://research.google/blog/scaling-wearable-foundation-models/"
+    },
+    {
+      "model": "google/lsm-2",
+      "benchmark": "lsm2_imputation",
+      "score": 0.42,
+      "_source": "https://arxiv.org/abs/2506.05321",
+      "_note": "Sensor reconstruction RMSE — lower better"
+    },
+    {
+      "model": "apple/wearable-fm-behavioral",
+      "benchmark": "apple_wearable_57",
+      "score": 78.6,
+      "_source": "https://machinelearning.apple.com/research/beyond-sensor",
+      "_note": "57-task avg AUROC. ICML 2025"
+    },
+    {
+      "model": "stanford/cardio-wearable-fm",
+      "benchmark": "wearable_cvd_hiv",
+      "score": 84.3,
+      "_source": "https://www.nature.com/articles/s43856-025-01331-6",
+      "_note": "CVD screening AUROC for HIV+ population"
+    },
+    {
+      "model": "empirical-health/wearable-jepa",
+      "benchmark": "wearable_jepa_bp",
+      "score": 87.0,
+      "_source": "https://www.empirical.health/blog/wearable-foundation-model-jets/",
+      "_note": "JEPA-based BP detection accuracy"
+    },
+    {
+      "model": "harvard/movement-fm-mental",
+      "benchmark": "wearable_movement_mental",
+      "score": 76.5,
+      "_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11623705/"
+    },
+    {
+      "model": "google/wearable-llm-agent",
+      "benchmark": "ph_llm_sleep",
+      "score": 81.4,
+      "_source": "https://www.nature.com/articles/s41467-025-67922-y",
+      "_note": "LLM agent over wearable data"
+    },
+    {
+      "model": "google/wearable-llm-agent",
+      "benchmark": "lsm2_health_classify",
+      "score": 80.6,
+      "_source": "https://www.nature.com/articles/s41467-025-67922-y"
+    }
   ]
 }
