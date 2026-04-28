@@ -1685,7 +1685,17 @@ var App = {
             { name: 'FeTS Challenge (UPenn CBICA)', url: 'https://www.med.upenn.edu/cbica/fets/', desc: 'Federated Tumor Segmentation initiative — MICCAI challenge with MedPerf orchestrator' },
             { name: 'FeTS 2024 Aggregation Methods', url: 'https://arxiv.org/html/2512.06206', desc: 'MICCAI FeTS Challenge 2024 — efficient + robust federated aggregation' },
             { name: 'AILuminate v1.1', url: 'https://mlcommons.org/benchmarks/ailuminate/', desc: 'MLCommons chatbot safety benchmark — medical advice + harmful misinformation subset' },
-            { name: 'MLPerf Inference v5.1 Medical', url: 'https://mlcommons.org/2025/09/mlperf-inference-v5-1-results/', desc: '3D U-Net medical imaging benchmark — KiTS19 kidney tumor seg throughput' }
+            { name: 'MLPerf Inference v5.1 Medical', url: 'https://mlcommons.org/2025/09/mlperf-inference-v5-1-results/', desc: '3D U-Net medical imaging benchmark — KiTS19 kidney tumor seg throughput' },
+
+            // ─── MathArena.ai (Apr 2026) ───
+            { name: 'MathArena.ai', url: 'https://matharena.ai/', desc: '독립 수학 경시대회 LLM 평가. 모델당 4번 평가 후 평균 보고. ArXivLean/BrokenArxiv/ArXivMath/Visual Math/Final-Answer/Apex/AIME/HMMT/USAMO/IMO/Putnam/BRUMO/SMT/Project Euler/Miklós Schweitzer 추적' },
+            { name: 'MathArena Competitions Page', url: 'https://matharena.ai/competitions', desc: 'MathArena 추적 경시대회 목록 — ArXiv-based + Visual Math + Olympiad/Tournament + Specialized' },
+            { name: 'MathArena GPT-5.5 (xhigh)', url: 'https://matharena.ai/models/openai_gpt_55', desc: 'GPT-5.5 xhigh: Apex 80.21 SOTA, USAMO 2026 98.21, HMMT Feb 2026 97.73, AIME 2026 97.50, Visual Math 94.93. Final-Answer Comps 92.30 rank 1/23' },
+            { name: 'MathArena Gemini 3.1 Pro', url: 'https://matharena.ai/models/gemini_gemini_31_pro', desc: 'Gemini 3.1 Pro: AIME 2026 98.33 rank 2/25, Apex 60.94 rank 3/41, Apex Shortlist 89.06 rank 2/32, USAMO 74.40' },
+            { name: 'MathArena DeepSeek V4-Pro', url: 'https://matharena.ai/models/deepseek_deepseek_v4_pro', desc: 'DeepSeek V4-Pro: AIME 2026 95.83, HMMT 93.94, Apex 28.12, Apex Shortlist 86.46, USAMO 60.71' },
+            { name: 'MathArena Claude Opus 4.7', url: 'https://matharena.ai/models/anthropic_opus_47', desc: 'Claude Opus 4.7: AIME 2026 95.83, HMMT 93.94, Apex 40.62, Apex Shortlist 63.02. Struggles with broken arxiv (4.92)' },
+            { name: 'MathArena Kimi K2.6', url: 'https://matharena.ai/models/moonshot_k26', desc: 'Kimi K2.6: AIME 2026 95.83, HMMT 94.70, Apex 23.96, USAMO 51.19' },
+            { name: 'MathArena Apex (LLM Stats)', url: 'https://llm-stats.com/benchmarks/matharena-apex', desc: 'MathArena Apex aggregator — DeepSeek V4-Pro-Max 0.902 (self-reported), V4-Flash-Max 0.857, Gemini 3 Pro 0.234' }
         ];
 
         sites.forEach(function(site) {
