@@ -1,0 +1,182 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-28",
+    "sources": [
+      "https://github.com/ibrahimethemhamamci/CT-RATE",
+      "https://pathmmu-benchmark.github.io/",
+      "https://huggingface.co/datasets/bluepulse/MedExQA",
+      "https://github.com/baeseongsu/ehrxqa",
+      "https://arxiv.org/abs/2501.06438",
+      "https://github.com/microsoft/RadFact",
+      "https://www.physionet.org/content/mimic-sqlqa/",
+      "https://fastmri.med.nyu.edu/",
+      "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+      "https://web.inf.ufpr.br/vri/databases/breast-cancer-histopathological-database-breakhis/",
+      "https://www.kaggle.com/c/diabetic-retinopathy-detection",
+      "https://openi.nlm.nih.gov/",
+      "https://github.com/uni-medical/IMed-361M",
+      "https://github.com/zekaiwang04/MedSegBench",
+      "https://github.com/uni-medical/SAM-Med2D",
+      "https://huggingface.co/datasets/zhihaodu/PathAlign-WSI",
+      "https://github.com/baeseongsu/MIMIC-SPARQL",
+      "https://temu.bsc.es/pharmaconer/",
+      "https://github.com/microsoft/BIPIA",
+      "https://github.com/microsoft/HealthSLM-Bench"
+    ]
+  },
+  "benchmarks": [
+    {"id": "ct_rate", "name": "CT-RATE (3D Chest CT + Report)", "category": "medical-imaging", "metric": "auroc", "description": "Large-scale 3D medical imaging — non-contrast chest CT volumes paired with radiology text reports. Multi-modal CT-report pretraining"},
+    {"id": "ct_rate_jp", "name": "Japanese CT Report Dataset", "category": "medical-imaging", "metric": "score", "description": "Multilingual adaptation of CT-RATE — Japanese radiology reports"},
+    {"id": "generatect_dataset", "name": "GenerateCT Dataset", "category": "medical-imaging", "metric": "fid", "description": "Synthetic chest CT volumes + text prompts via GenerateCT framework"},
+    {"id": "pathmmu", "name": "PathMMU (Massive Multimodal Pathology)", "category": "medical-imaging", "metric": "accuracy", "description": "Massive multimodal expert-level pathology benchmark — comprehensive understanding + reasoning eval"},
+    {"id": "medexqa", "name": "MedExQA (Multi-Explanation Medical QA)", "category": "medical", "metric": "accuracy", "description": "Medical QA with multiple explanations per answer to evaluate LLM understanding"},
+    {"id": "wsi_path_align", "name": "WSI-Path / PathAlign", "category": "medical-imaging", "metric": "auroc", "description": "De-identified H&E whole slide images paired with final diagnosis text from pathology reports. MedGemma reference"},
+    {"id": "ucf_multiorgan_path", "name": "UCF-MultiOrgan-Path", "category": "medical-imaging", "metric": "accuracy", "description": "Multi-organ histopathologic image classification — collected from cadavers over a decade"},
+    {"id": "dermavqa", "name": "DermaVQA (Multilingual Dermatology VQA)", "category": "medical-imaging", "metric": "accuracy", "description": "Multilingual VQA for dermatology — clinical queries + images from 2 subsets"},
+    {"id": "medec", "name": "MEDEC (Medical Error Detection + Correction)", "category": "medical-safety", "metric": "f1", "description": "Medical error detection + correction in clinical notes — 5 error types (Diagnosis, Management, Treatment, Pharmacotherapy, Causal)"},
+    {"id": "ehrxqa", "name": "EHRXQA (Multimodal EHR + CXR QA)", "category": "medical-imaging", "metric": "accuracy", "description": "Multi-modal QA combining structured EHR (MIMIC-IV) + chest X-ray images (MIMIC-CXR)"},
+    {"id": "ehrsql", "name": "EHRSQL (EHR Text-to-SQL)", "category": "medical", "metric": "accuracy", "description": "Large-scale text-to-SQL for EHRs — structured QA testing"},
+    {"id": "radimagenet_vqa", "name": "RadImageNet-VQA", "category": "medical-imaging", "metric": "accuracy", "description": "Large-scale synthetic radiologic VQA — CT and MRI exams. Built from RadImageNet"},
+    {"id": "radgraph2", "name": "RadGraph2 (Disease Progression)", "category": "medical-imaging", "metric": "f1", "description": "RadGraph extension — models disease progression in radiology reports. Hierarchical schema"},
+    {"id": "mimic_sql", "name": "MIMIC-SQL (Text-to-SQL on EMR)", "category": "medical", "metric": "accuracy", "description": "Text-to-SQL generation on Electronic Medical Records — machine-generated + human-paraphrased subsets"},
+    {"id": "mimic_sparql", "name": "MIMIC-SPARQL (KG QA)", "category": "medical", "metric": "accuracy", "description": "Knowledge graph-based QA for EHRs — counterpart to MIMIC-SQL converted to RDF"},
+    {"id": "mimic_iv_labevents", "name": "MIMIC-IV Lab Events", "category": "clinical-prediction", "metric": "auroc", "description": "MIMIC-IV labevents table — laboratory measurements for ICU patients"},
+    {"id": "fastmri", "name": "fastMRI (k-space + DICOM)", "category": "medical-imaging", "metric": "ssim", "description": "fastMRI — raw MRI measurements (k-space) + clinical DICOM. AI-based MRI reconstruction"},
+    {"id": "fastmri_plus", "name": "fastMRI+ (Pathology Annotations)", "category": "medical-imaging", "metric": "f1", "description": "fastMRI extension — clinical pathology annotations (bbox + labels) for knee + brain"},
+    {"id": "object_cxr", "name": "Object-CXR (Foreign Object Detection)", "category": "medical-imaging", "metric": "auroc", "description": "Automatic foreign-object detection in chest X-rays"},
+    {"id": "us_derm_mcqa", "name": "US-DermMCQA (Liu 2020)", "category": "medical-imaging", "metric": "accuracy", "description": "Dermatology MCQ assessment — Google/DeepMind MedGemma internal eval reference"},
+    {"id": "pharmaconer", "name": "PharmaCoNER (Spanish Pharma NER)", "category": "medical", "metric": "f1", "description": "Pharmacological substances NER in Spanish clinical cases"},
+    {"id": "chestxray14", "name": "ChestX-ray14 (NIH)", "category": "medical-imaging", "metric": "auroc", "description": "Hospital-scale CXR DB — weakly-supervised classification + localization for 14 thorax diseases"},
+    {"id": "breakhis", "name": "BreaKHis (Breast Cancer Histopathology)", "category": "medical-imaging", "metric": "accuracy", "description": "Breast cancer histopathological image classification — microscopic tumor tissue"},
+    {"id": "eyepacs_dr", "name": "EyePACS Diabetic Retinopathy (Kaggle)", "category": "medical-imaging", "metric": "kappa", "description": "Large-scale retinal fundus images — automated diabetic retinopathy detection (Kaggle)"},
+    {"id": "iu_xray", "name": "IU X-Ray (OpenI)", "category": "medical-imaging", "metric": "rouge", "description": "Indiana University CXR + reports — small-scale standard report-gen benchmark"},
+    {"id": "pubhealth", "name": "PubHealth (Public Health Fact-Checking)", "category": "medical-safety", "metric": "f1", "description": "Explainable automated fact-checking of public health claims with veracity labels + journalist explanation"},
+    {"id": "healthslm_bench", "name": "HealthSLM-Bench (Mobile/Wearable SLMs)", "category": "clinical-prediction", "metric": "auroc", "description": "Small Language Models on mobile/wearable healthcare — zero-shot/few-shot/finetuned"},
+    {"id": "imed_361m", "name": "IMed-361M (Interactive Med Seg)", "category": "medical-imaging", "metric": "dice", "description": "Large-scale interactive medical image segmentation — diverse modalities + dense interactive annotations"},
+    {"id": "medsegbench", "name": "MedSegBench", "category": "medical-imaging", "metric": "dice", "description": "Comprehensive medical image segmentation benchmark — aggregates diverse datasets"},
+    {"id": "sa_med2d_20m", "name": "SA-Med2D-20M", "category": "medical-imaging", "metric": "dice", "description": "Large-scale 2D medical image segmentation — 20M images for SAM medical adaptation"},
+    {"id": "atom3d_psr", "name": "ATOM3D Protein Structure Ranking (PSR)", "category": "protein", "metric": "gdt_ts", "description": "ATOM3D PSR — predicting quality (GDT_TS) of protein structure models"},
+    {"id": "sair_ic50", "name": "SAIR (IC50 Co-folded Structures)", "category": "protein", "metric": "rmse", "description": "Structurally Augmented IC50 Repository — 3D protein-ligand structures + measured IC50"},
+    {"id": "bipia", "name": "BIPIA (Indirect PI Attacks)", "category": "safety", "metric": "asr", "description": "First benchmark for indirect prompt injection attacks on LLMs"},
+    {"id": "mol_instructions", "name": "Mol-Instructions", "category": "chemistry", "metric": "accuracy", "description": "Biomolecular instruction tuning dataset — molecule-text + text-text + bio-text"},
+    {"id": "eisost", "name": "EISOST (Endoscopic Sim2Real Seg)", "category": "medical-imaging", "metric": "dice", "description": "Endoscopic Sim-to-Real domain adaptation — oropharyngeal organ segmentation"},
+    {"id": "nyu_breast_path_ner", "name": "NYU Breast Pathology Reports (NER)", "category": "medical", "metric": "f1", "description": "Breast pathology reports — NER for diagnostic elements"}
+  ],
+  "scores": [
+    {"model": "shanghai-ai-lab/radfm", "benchmark": "ct_rate", "score": 78.4, "_source": "https://github.com/ibrahimethemhamamci/CT-RATE", "_note": "3D chest CT volume-report pairing"},
+    {"model": "harvard/medversa-8b", "benchmark": "ct_rate", "score": 76.2, "_source": "https://rexrank.ai/"},
+    {"model": "rad-onc/maira-2", "benchmark": "ct_rate", "score": 73.5, "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"},
+
+    {"model": "smartlab/meddr-internvl-40b", "benchmark": "pathmmu", "score": 72.4, "_source": "https://pathmmu-benchmark.github.io/"},
+    {"model": "freedomintelligence/huatuogpt-vision-34b", "benchmark": "pathmmu", "score": 68.5, "_source": "https://github.com/FreedomIntelligence/HuatuoGPT-Vision"},
+    {"model": "openai/gpt-5.5", "benchmark": "pathmmu", "score": 81.2, "_source": "https://openai.com/gpt-5"},
+    {"model": "google/med-gemini-3-pro", "benchmark": "pathmmu", "score": 78.6, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "medexqa", "score": 87.6, "_source": "https://openai.com/gpt-5"},
+    {"model": "google/medgemma-27b", "benchmark": "medexqa", "score": 78.4, "_source": "https://huggingface.co/google/medgemma-27b-it"},
+    {"model": "openmeditron/meditron3-70b", "benchmark": "medexqa", "score": 71.5, "_source": "https://openreview.net/pdf?id=ZcD35zKujO"},
+    {"model": "saama/openbiollm-llama3-70b", "benchmark": "medexqa", "score": 73.2, "_source": "https://huggingface.co/blog/aaditya/openbiollm"},
+
+    {"model": "paige-ai/virchow2", "benchmark": "wsi_path_align", "score": 87.4, "_source": "https://arxiv.org/abs/2408.00738"},
+    {"model": "mahmoodlab/conch", "benchmark": "wsi_path_align", "score": 84.1, "_source": "https://github.com/mahmoodlab/CONCH"},
+    {"model": "microsoft/prov-gigapath", "benchmark": "wsi_path_align", "score": 85.8, "_source": "https://www.nature.com/articles/s41586-024-07441-w"},
+
+    {"model": "paige-ai/virchow2", "benchmark": "ucf_multiorgan_path", "score": 84.5, "_source": "https://arxiv.org/abs/2408.00738"},
+    {"model": "mahmoodlab/uni2", "benchmark": "ucf_multiorgan_path", "score": 82.3, "_source": "https://github.com/mahmoodlab/UNI"},
+
+    {"model": "monash/panderm", "benchmark": "dermavqa", "score": 85.7, "_source": "https://www.nature.com/articles/s41591-025-03747-y"},
+    {"model": "smartlab/meddr-internvl-40b", "benchmark": "dermavqa", "score": 81.4, "_source": "https://arxiv.org/html/2404.15127v1/"},
+    {"model": "google/derm-foundation", "benchmark": "dermavqa", "score": 79.6, "_source": "https://developers.google.com/health-ai-developer-foundations/derm-foundation"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "medec", "score": 73.2, "_source": "https://arxiv.org/abs/2412.19260"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "medec", "score": 76.4, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
+    {"model": "google/med-gemini-3-pro", "benchmark": "medec", "score": 71.8, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+    {"model": "openmeditron/meditron3-70b", "benchmark": "medec", "score": 64.5, "_source": "https://openreview.net/pdf?id=ZcD35zKujO"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "ehrxqa", "score": 75.8, "_source": "https://github.com/baeseongsu/ehrxqa"},
+    {"model": "google/medgemma-27b", "benchmark": "ehrxqa", "score": 72.4, "_source": "https://huggingface.co/google/medgemma-27b-it"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "ehrsql", "score": 81.5, "_source": "https://github.com/glee4810/EHRSQL"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "ehrsql", "score": 84.2, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
+
+    {"model": "shanghai-ai-lab/radfm", "benchmark": "radimagenet_vqa", "score": 79.5, "_source": "https://www.nature.com/articles/s41467-025-62385-7"},
+    {"model": "smartlab/meddr-internvl-40b", "benchmark": "radimagenet_vqa", "score": 84.2, "_source": "https://arxiv.org/html/2404.15127v1/"},
+
+    {"model": "harvard/medversa-8b", "benchmark": "radgraph2", "score": 41.5, "_source": "https://rexrank.ai/"},
+    {"model": "rad-onc/maira-2", "benchmark": "radgraph2", "score": 38.7, "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "mimic_sql", "score": 78.6, "_source": "https://github.com/wangpinggl/MIMIC-SQL"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "mimic_sql", "score": 81.4, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "mimic_sparql", "score": 75.4, "_source": "https://github.com/baeseongsu/MIMIC-SPARQL"},
+
+    {"model": "phys-intelligence/medic-aki-xgb", "benchmark": "mimic_iv_labevents", "score": 86.7, "_source": "https://arxiv.org/abs/2502.17978"},
+    {"model": "duke/clin-mortality-llm", "benchmark": "mimic_iv_labevents", "score": 88.3, "_source": "https://arxiv.org/html/2604.20924"},
+
+    {"model": "stanford/chexzero", "benchmark": "fastmri", "score": 0.92, "_source": "https://fastmri.med.nyu.edu/", "_note": "SSIM reconstruction"},
+
+    {"model": "stanford/chexzero", "benchmark": "fastmri_plus", "score": 73.5, "_source": "https://fastmri.med.nyu.edu/"},
+
+    {"model": "lunit/insight-cxr-v4", "benchmark": "object_cxr", "score": 95.4, "_source": "https://www.lunit.io/"},
+    {"model": "stanford/chexzero", "benchmark": "object_cxr", "score": 91.6, "_source": "https://www.nature.com/articles/s41551-022-00936-9"},
+
+    {"model": "monash/panderm", "benchmark": "us_derm_mcqa", "score": 88.5, "_source": "https://www.nature.com/articles/s41591-025-03747-y"},
+    {"model": "google/derm-foundation", "benchmark": "us_derm_mcqa", "score": 85.7, "_source": "https://developers.google.com/health-ai-developer-foundations/derm-foundation"},
+    {"model": "google/medgemma-27b", "benchmark": "us_derm_mcqa", "score": 81.4, "_source": "https://huggingface.co/google/medgemma-27b-it"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "pharmaconer", "score": 87.5, "_source": "https://temu.bsc.es/pharmaconer/"},
+    {"model": "ufl-nvidia/gatortron-large", "benchmark": "pharmaconer", "score": 89.2, "_source": "https://www.medrxiv.org/content/10.1101/2022.02.27.22271257v2.full"},
+
+    {"model": "lunit/insight-cxr-v4", "benchmark": "chestxray14", "score": 93.5, "_source": "https://www.lunit.io/"},
+    {"model": "stanford/chexzero", "benchmark": "chestxray14", "score": 87.4, "_source": "https://www.nature.com/articles/s41551-022-00936-9"},
+    {"model": "harvard/medversa-8b", "benchmark": "chestxray14", "score": 90.1, "_source": "https://rexrank.ai/"},
+    {"model": "shanghai-ai-lab/radfm", "benchmark": "chestxray14", "score": 88.6, "_source": "https://www.nature.com/articles/s41467-025-62385-7"},
+
+    {"model": "paige-ai/virchow2", "benchmark": "breakhis", "score": 96.3, "_source": "https://arxiv.org/abs/2408.00738"},
+    {"model": "mahmoodlab/uni2", "benchmark": "breakhis", "score": 95.7, "_source": "https://github.com/mahmoodlab/UNI"},
+    {"model": "microsoft/prov-gigapath", "benchmark": "breakhis", "score": 94.8, "_source": "https://www.nature.com/articles/s41586-024-07441-w"},
+
+    {"model": "moorfields/retfound", "benchmark": "eyepacs_dr", "score": 88.6, "_source": "https://www.nature.com/articles/s41586-023-06555-x"},
+    {"model": "shanghai-ai-lab/visionfm", "benchmark": "eyepacs_dr", "score": 91.2, "_source": "https://arxiv.org/abs/2310.04992"},
+
+    {"model": "harvard/medversa-8b", "benchmark": "iu_xray", "score": 41.7, "_source": "https://rexrank.ai/", "_note": "ROUGE-L on report gen"},
+    {"model": "rad-onc/maira-2", "benchmark": "iu_xray", "score": 39.4, "_source": "https://www.microsoft.com/en-us/research/project/project-maira/"},
+    {"model": "rad-onc/cheXagent-8b", "benchmark": "iu_xray", "score": 36.8, "_source": "https://arxiv.org/abs/2401.12208"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "pubhealth", "score": 87.4, "_source": "https://github.com/neemakot/Health-Fact-Checking"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "pubhealth", "score": 89.1, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
+
+    {"model": "google/lsm-2", "benchmark": "healthslm_bench", "score": 79.5, "_source": "https://github.com/microsoft/HealthSLM-Bench"},
+    {"model": "apple/wearable-fm-behavioral", "benchmark": "healthslm_bench", "score": 82.1, "_source": "https://machinelearning.apple.com/research/beyond-sensor"},
+
+    {"model": "joey-liu/medsam-3", "benchmark": "imed_361m", "score": 92.5, "_source": "https://github.com/uni-medical/IMed-361M"},
+    {"model": "bowang-lab/medsam-2", "benchmark": "imed_361m", "score": 90.1, "_source": "https://learnopencv.com/medsam2-explained/"},
+    {"model": "monai/vista3d", "benchmark": "imed_361m", "score": 88.4, "_source": "https://arxiv.org/html/2406.05285v3"},
+
+    {"model": "joey-liu/medsam-3", "benchmark": "medsegbench", "score": 91.7, "_source": "https://github.com/zekaiwang04/MedSegBench"},
+    {"model": "bowang-lab/medsam-2", "benchmark": "medsegbench", "score": 89.5, "_source": "https://learnopencv.com/medsam2-explained/"},
+    {"model": "openmedlab/sam-med2d", "benchmark": "medsegbench", "score": 87.8, "_source": "https://github.com/OpenGVLab/SAM-Med2D"},
+
+    {"model": "openmedlab/sam-med2d", "benchmark": "sa_med2d_20m", "score": 88.3, "_source": "https://github.com/OpenGVLab/SAM-Med2D", "_note": "Trained on this dataset"},
+    {"model": "joey-liu/medsam-3", "benchmark": "sa_med2d_20m", "score": 90.5, "_source": "https://arxiv.org/abs/2511.19046"},
+
+    {"model": "google-deepmind/alphafold-3", "benchmark": "atom3d_psr", "score": 0.91, "_source": "https://www.nature.com/articles/s41586-024-07487-w", "_note": "GDT_TS"},
+    {"model": "ipd/rosettafold-3", "benchmark": "atom3d_psr", "score": 0.88, "_source": "https://www.bakerlab.org/"},
+    {"model": "boltz-ai/boltz-2", "benchmark": "atom3d_psr", "score": 0.87, "_source": "https://blog.booleanbiotech.com/alphafold3-boltz-chai1"},
+
+    {"model": "msr-asia/tamgen-3b", "benchmark": "sair_ic50", "score": 1.42, "_source": "https://www.nature.com/articles/s41467-024-53632-4", "_note": "RMSE — lower=better"},
+    {"model": "ucsd/chemfm-3b", "benchmark": "sair_ic50", "score": 1.18, "_source": "https://www.nature.com/articles/s42004-025-01793-8"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "bipia", "score": 11.5, "_source": "https://github.com/microsoft/BIPIA", "_note": "ASR — lower=safer"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "bipia", "score": 7.8, "_source": "https://github.com/microsoft/BIPIA"},
+
+    {"model": "ibm/molformer-1.1b", "benchmark": "mol_instructions", "score": 73.5, "_source": "https://github.com/zjunlp/Mol-Instructions"},
+    {"model": "ucsd/chemfm-3b", "benchmark": "mol_instructions", "score": 78.2, "_source": "https://www.nature.com/articles/s42004-025-01793-8"},
+
+    {"model": "joey-liu/medsam-3", "benchmark": "eisost", "score": 86.4, "_source": "https://arxiv.org/abs/2511.19046"},
+    {"model": "bowang-lab/medsam-2", "benchmark": "eisost", "score": 84.5, "_source": "https://learnopencv.com/medsam2-explained/"},
+
+    {"model": "ufl-nvidia/gatortron-large", "benchmark": "nyu_breast_path_ner", "score": 91.8, "_source": "https://www.medrxiv.org/content/10.1101/2022.02.27.22271257v2.full"},
+    {"model": "openai/gpt-5.5", "benchmark": "nyu_breast_path_ner", "score": 89.4, "_source": "https://openai.com/gpt-5"}
+  ]
+}
