@@ -1695,7 +1695,19 @@ var App = {
             { name: 'MathArena DeepSeek V4-Pro', url: 'https://matharena.ai/models/deepseek_deepseek_v4_pro', desc: 'DeepSeek V4-Pro: AIME 2026 95.83, HMMT 93.94, Apex 28.12, Apex Shortlist 86.46, USAMO 60.71' },
             { name: 'MathArena Claude Opus 4.7', url: 'https://matharena.ai/models/anthropic_opus_47', desc: 'Claude Opus 4.7: AIME 2026 95.83, HMMT 93.94, Apex 40.62, Apex Shortlist 63.02. Struggles with broken arxiv (4.92)' },
             { name: 'MathArena Kimi K2.6', url: 'https://matharena.ai/models/moonshot_k26', desc: 'Kimi K2.6: AIME 2026 95.83, HMMT 94.70, Apex 23.96, USAMO 51.19' },
-            { name: 'MathArena Apex (LLM Stats)', url: 'https://llm-stats.com/benchmarks/matharena-apex', desc: 'MathArena Apex aggregator — DeepSeek V4-Pro-Max 0.902 (self-reported), V4-Flash-Max 0.857, Gemini 3 Pro 0.234' }
+            { name: 'MathArena Apex (LLM Stats)', url: 'https://llm-stats.com/benchmarks/matharena-apex', desc: 'MathArena Apex aggregator — DeepSeek V4-Pro-Max 0.902 (self-reported), V4-Flash-Max 0.857, Gemini 3 Pro 0.234' },
+
+            // ─── April 2026 frontier refresh ───
+            { name: 'SWE-bench Pro Public Leaderboard', url: 'https://labs.scale.com/leaderboard/swe_bench_pro_public', desc: 'Scale Labs SWE-bench Pro — harder real-world coding. Apr 2026: Claude Mythos 77.8 SOTA, Opus 4.7 64.3, GPT-5.5 58.6' },
+            { name: 'BenchLM SWE-bench Pro', url: 'https://benchlm.ai/benchmarks/swePro', desc: 'BenchLM SWE-bench Pro aggregator — 28 LLMs evaluated' },
+            { name: 'Claude Mythos Benchmarks (NxCode)', url: 'https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026', desc: 'Claude Mythos Preview Apr 7 2026 — SWE-Verified 93.9, GPQA Diamond 94.6. Project Glasswing 50-org restricted access' },
+            { name: 'DeepSeek V4-Pro VentureBeat', url: 'https://venturebeat.com/technology/deepseek-v4-arrives-with-near-state-of-the-art-intelligence-at-1-6th-the-cost-of-opus-4-7-gpt-5-5', desc: 'DeepSeek V4-Pro 1.6T MoE Apr 24 2026 — MMLU-Pro 87.5, LiveCodeBench 93.5 SOTA, SWE-Verified 80.6, $1.74/1M tokens (1/6 cost of Opus 4.7)' },
+            { name: 'DeepSeek V4-Pro HuggingFace', url: 'https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro', desc: 'DeepSeek V4-Pro/V4-Flash — 1.6T-A49B / 284B-A13B MoE, 1M context (Engram conditional memory), MIT license' },
+            { name: 'Vellum Claude Opus 4.7 Benchmarks', url: 'https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained', desc: 'Claude Opus 4.7 Apr 16 2026 — SWE-Verified 87.6, SWE-Pro 64.3 (Adaptive scaffolding)' },
+            { name: 'Office Chai DeepSeek V4 Pricing', url: 'https://officechai.com/ai/deepseek-v4-pro-deepseek-v4-flash-benchmarks-pricing/', desc: 'DeepSeek V4 Pro+Flash benchmarks + pricing breakdown' },
+            { name: 'Office Chai Claude Mythos', url: 'https://officechai.com/ai/claude-mythos-preview-benchmarks-swe-bench-pro/', desc: 'Anthropic Claude Mythos Preview SWE-Pro 77.8 SOTA breakdown' },
+            { name: 'AI Models April 2026 (RenovateQR)', url: 'https://renovateqr.com/blog/ai-models-april-2026', desc: 'April 2026 release calendar — Gemma 4 (Apr 2), Llama 4 Scout/Maverick (Apr 5), Claude Mythos (Apr 7), Muse Spark (Apr 8), Opus 4.7 (Apr 16), Gemini 3.1 Ultra (Apr 12), Grok 4.3 (Apr 22), DeepSeek V4 + GPT-5.5 (Apr 24)' },
+            { name: 'AI Releases April 2026 (Searchcans)', url: 'https://www.searchcans.com/blog/ai-model-releases-april-2026/', desc: 'AA Intelligence Index Apr 2026 — Gemini 3.1 Ultra & GPT-5.4 Pro tied 57' }
         ];
 
         sites.forEach(function(site) {
