@@ -2,6 +2,15 @@
   {
     "type": "Feature",
     "date": "2026-04-28",
+    "benchmark_id": "MathArena.ai 통합 — 11 신규 수학 벤치마크 + 6 frontier 모델 점수 backfill",
+    "new_model": "MathArena.ai 평가 결과 반영 (GPT-5.5, GPT-5.4, Gemini 3.1 Pro, Claude Opus 4.7, DeepSeek V4-Pro, Kimi K2.6)",
+    "new_value": "User-requested 두 단계: 'matharena.ai/models/openai_gpt_55 반영' + 'matharena.ai 모델별 벤치마크 + 참조 사이트 추가'. (1) +11 신규 수학 벤치마크 (config/benchmarks_meta.yaml): matharena_arxivlean (Lean theorem proving), matharena_brokenarxiv (find errors), matharena_arxivmath, matharena_visualmath, matharena_kangaroo_2025 (6-grade), matharena_final_answer, matharena_project_euler, matharena_putnam_2025, matharena_imo_2025, matharena_brumo_2025, matharena_smt_2025. (2) +50 검증 점수 — Headlines: GPT-5.5 (xhigh) Apex 80.21 / USAMO 2026 98.21 / HMMT Feb 2026 97.73 / AIME 2026 97.50 / Visual Math 94.93 / Final-Answer 92.30 (rank 1/23) / ArXivMath 74.12 / BrokenArxiv 71.71 (모두 SOTA), Kangaroo 2025 9-10학년 100% 만점. GPT-5.4 AIME 2026 99.17 SOTA, Project Euler 89.0 SOTA. Gemini 3.1 Pro AIME 2026 98.33, Apex 60.94, Apex Shortlist 89.06. Claude Opus 4.7 AIME 95.83 / HMMT 93.94 (broken arxiv 4.92로 약함). DeepSeek V4-Pro Apex Shortlist 86.46. Kimi K2.6 HMMT 94.70. (3) Resources 탭 +8 신규 사이트: MathArena.ai (메인), Competitions Page, GPT-5.5/Gemini 3.1 Pro/DeepSeek V4-Pro/Claude Opus 4.7/Kimi K2.6 모델별 페이지, MathArena Apex (LLM Stats aggregator). (4) MathArena 평가 방법론: 모델당 4번 평가 후 평균 보고 (다른 평가자 1-3pt 변동). Cache: app.js?v=20260428b.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Feature",
+    "date": "2026-04-28",
     "benchmark_id": "BMT mapping recovery + Modal BMT links + Cyber/Physical backfill + Plans.md 정리",
     "new_model": "Claude Opus 4.7, NVIDIA GR00T N1.7",
     "new_value": "User-requested 4 follow-up tasks 모두 완료. (1) BMT mapping recovery: scripts/map_bmt_benchmarks.py에 alpha-only norm + substring fallback + 100+ aliases 확장 → 102→119 matched (out of 188 total registry, 63%). 69 misses는 sovereign country evals + sub-metrics (rexrank 7-metric, MedHELM 5 sub-cat 등) BMT registry 미수록. (2) Modal BMT registry block: cyber/publisher/exporter.py가 config/benchmarks_meta.yaml 자동 머지 → data/export/benchmarks.json에 paper/github/year/item_count/leaderboard/bmt 필드 추가. dashboard/js/modal.js Modal.showScoreSource에 'Paper / GitHub / Leaderboard / BMT Registry' 4-link block + year + item_count 렌더링. 셀 클릭 → 검증 소스 + 레지스트리 deeplink 모달. (3) Cyber & Coding backfill: Claude Opus 4.7 (Apr 16, 2026) 추가 — SWE-bench Verified 87.6 SOTA, Cybench 86.4, FORTRESS 92.7, OpenAI CTF Pro 87.0, HumanEval 96.5, LiveCodeBench 92.1, Aider Polyglot 81.3. GPT-5.5 86.2, GPT-5.3-Codex 85.0. (4) Physical AI backfill: NVIDIA GR00T N1.7 (Cosmos-Reason2-2B/Qwen3-VL backbone, EgoScale 20K hrs human video pretraining) — LIBERO 98.7, RoboCasa 71.4, SimplerEnv 88.5. (5) Plans.md 정리: 04-25 7-batch 상세 → compressed 1-line summary로 archive (237→185 lines, under 200 limit). Cache: modal.js?v=20260428a.",
