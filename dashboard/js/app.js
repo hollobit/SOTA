@@ -96,6 +96,21 @@ var App = {
             }
         }
 
+        // Leaderboard with query: #leaderboard?cat=...&q=...
+        if (hash.indexOf('leaderboard?') === 0 || hash === 'leaderboard') {
+            var self = this;
+            var leaderboardBtn = document.querySelector('.tab-btn[data-tab="leaderboard"]');
+            if (leaderboardBtn) leaderboardBtn.click();
+            var qIdx = hash.indexOf('?');
+            if (qIdx > -1) {
+                var query = hash.substring(qIdx + 1);
+                setTimeout(function() {
+                    if (self._applyLeaderboardHash(query)) self.renderLeaderboard();
+                }, 50);
+            }
+            return;
+        }
+
         // Tab navigation
         var tabBtn = document.querySelector('.tab-btn[data-tab="' + hash + '"]');
         if (tabBtn) {
@@ -214,6 +229,53 @@ var App = {
         });
     },
 
+    _LEADERBOARD_FILTER_IDS: ['filter-category', 'filter-type', 'filter-source', 'filter-benchmark', 'filter-search'],
+    _LEADERBOARD_HASH_KEYS: { 'filter-category': 'cat', 'filter-type': 'type', 'filter-source': 'src', 'filter-benchmark': 'bench', 'filter-search': 'q' },
+
+    // Build "#leaderboard?cat=...&q=..." from current filter state. Empty fields
+    // are dropped so default state is just "#leaderboard". The bare tab still
+    // works (existing tab-click handler keeps using location.hash directly).
+    _syncLeaderboardHash: function() {
+        var self = this;
+        var params = [];
+        self._LEADERBOARD_FILTER_IDS.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (!el || !el.value) return;
+            params.push(self._LEADERBOARD_HASH_KEYS[id] + '=' + encodeURIComponent(el.value));
+        });
+        var hash = '#leaderboard' + (params.length ? '?' + params.join('&') : '');
+        if (window.location.hash !== hash) {
+            history.replaceState(null, '', hash);
+        }
+    },
+
+    // Reverse mapping: read query params from hash and push values into the
+    // 5 filter inputs without firing input/change handlers (we'll re-render
+    // once at the end). Returns true if any value was applied.
+    _applyLeaderboardHash: function(query) {
+        if (!query) return false;
+        var keyToId = {};
+        Object.keys(this._LEADERBOARD_HASH_KEYS).forEach(function(id) {
+            keyToId[App._LEADERBOARD_HASH_KEYS[id]] = id;
+        });
+        var pairs = query.split('&');
+        var applied = false;
+        pairs.forEach(function(p) {
+            var idx = p.indexOf('=');
+            if (idx < 0) return;
+            var key = p.substring(0, idx);
+            var val = decodeURIComponent(p.substring(idx + 1));
+            var id = keyToId[key];
+            if (!id) return;
+            var el = document.getElementById(id);
+            if (el) {
+                el.value = val;
+                applied = true;
+            }
+        });
+        return applied;
+    },
+
     setupFilters: function() {
         var self = this;
         var categories = {};
@@ -261,8 +323,14 @@ var App = {
         ['filter-category', 'filter-type', 'filter-source', 'filter-benchmark', 'filter-search'].forEach(function(id) {
             var el = document.getElementById(id);
             if (el) {
-                el.addEventListener('change', function() { self.renderLeaderboard(); });
-                el.addEventListener('input', function() { self.renderLeaderboard(); });
+                el.addEventListener('change', function() {
+                    self._syncLeaderboardHash();
+                    self.renderLeaderboard();
+                });
+                el.addEventListener('input', function() {
+                    self._syncLeaderboardHash();
+                    self.renderLeaderboard();
+                });
             }
         });
 
@@ -328,6 +396,14 @@ var App = {
                 }
                 wrap.appendChild(labelRow);
 
+                var search = document.createElement('input');
+                search.type = 'search';
+                search.id = 'compare-search-' + idx;
+                search.placeholder = '검색 (모델/벤더)';
+                search.autocomplete = 'off';
+                search.className = 'bg-gray-800 border border-gray-700 rounded px-2 py-1 w-56 text-xs mb-1';
+                wrap.appendChild(search);
+
                 var sel = document.createElement('select');
                 sel.id = 'compare-model-' + idx;
                 sel.className = 'bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 text-sm';
@@ -343,6 +419,32 @@ var App = {
                 });
                 if (existing['compare-model-' + idx]) sel.value = existing['compare-model-' + idx];
                 wrap.appendChild(sel);
+
+                // Filter <option>s as the user types. Matches model name, vendor, id.
+                // Hides via display:none + disabled (so keyboard nav skips them).
+                // If the current value is filtered out, blank the select.
+                search.addEventListener('input', function() {
+                    var q = (search.value || '').trim().toLowerCase();
+                    var visibleCount = 0;
+                    var currentValid = false;
+                    sel.querySelectorAll('option').forEach(function(opt) {
+                        if (!opt.value) {
+                            opt.hidden = false;
+                            opt.disabled = false;
+                            return;
+                        }
+                        var text = (opt.textContent + ' ' + opt.value).toLowerCase();
+                        var hit = !q || text.indexOf(q) >= 0;
+                        opt.hidden = !hit;
+                        opt.disabled = !hit;
+                        if (hit) {
+                            visibleCount++;
+                            if (opt.value === sel.value) currentValid = true;
+                        }
+                    });
+                    if (sel.value && !currentValid) sel.value = '';
+                    sel.title = visibleCount + ' match';
+                });
 
                 list.appendChild(wrap);
             })(i);

@@ -2,6 +2,15 @@
   {
     "type": "Feature",
     "date": "2026-04-28",
+    "benchmark_id": "Leaderboard URL 검색 + Explorer 모델 키워드 검색 UX 개선",
+    "new_model": "URL hash deep-link로 leaderboard 필터 상태 공유 + 461개 모델 풀에서 키워드 검색",
+    "new_value": "User-requested 2단: '(1) leaderboard 검색 키워드도 URL로 표현 (2) Model explorer 키워드로 검색해서 선택'. (1) Leaderboard 필터 deep-link — URL hash가 #leaderboard?cat=cybersecurity&type=open&src=anthropic&bench=swe_bench_verified&q=mythos 5필드 모두 인코딩. App._syncLeaderboardHash() 필터 input/change 발생 시 history.replaceState로 URL 갱신, App._applyLeaderboardHash(query) 새 탭 진입 시 URL→필터 input 역방향 적용. _navigateToHash 핸들러에 'leaderboard?...' 패턴 추가 (50ms setTimeout으로 탭 active 후 적용). (2) Explorer 모델 검색 — 각 compare-model-N slot 위에 type='search' input 추가, 입력 시 select <option>들을 model name + vendor + id 매칭으로 hidden+disabled 처리, 현재 선택값이 필터 결과에 없으면 자동 blank, sel.title에 'N match' 표시. 461개 모델 풀에서도 'mythos', 'gpt-5', 'qwen' 등 키워드로 즉시 좁히기 가능. Cache: app.js?v=20260428f.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Feature",
+    "date": "2026-04-28",
     "benchmark_id": "Claude Mythos Preview 종합 벤치마크 backfill (+12 벤치마크, +35 점수)",
     "new_model": "Claude Mythos Preview 모든 공개 벤치마크 결과 반영",
     "new_value": "User-requested: 'Claude Mythos Preview 새롭게 공개된 benchmark 평가 결과 조사·업데이트'. (1) +12 신규 벤치마크: SWE-bench Multilingual (Mythos 87.3 SOTA), SWE-bench Multimodal (59.0), GraphWalks BFS 256K-1M long context (80.0 vs Opus 38.7 / GPT-5.4 21.4), CharXiv Reasoning 무도구 (86.1) / 도구 사용 (93.2), HLE 무도구 (56.8 vs Opus 40.0) / 도구 사용 (64.7 vs Opus 53.1), OSS-Fuzz Tier 1-2 Crashes (595), OSS-Fuzz Tier 5 Control Flow (10 fully-patched targets), Firefox Exploit Development (181 working + 29 register control vs Opus 4.6 only 2/many attempts), Vulnerability Severity Expert Match (89% on 198 manually reviewed), UK AISI CTF + Multi-step Attack. (2) +35 검증 점수 — Mythos Preview SOTA Headlines: SWE-Verified 93.9 (+13.1 over Opus 4.6), SWE-Pro 77.8 (+24.4), USAMO 2026 97.6 (+55.3 dramatic), GPQA Diamond 94.5, MMLU 92.7, HLE w/ tools 64.7, OSWorld 79.6, BrowseComp 86.9, Terminal-Bench 2.0 82.0, CyberGym 83.1 (highest record), CharXiv 93.2. Cybersecurity report: 595 Tier 1-2 OSS-Fuzz crashes, 10 Tier 5 control-flow hijacks on fully-patched targets, 181 Firefox exploits (vs Opus 4.6's 2), 89% expert severity match. Project Glasswing partners: AWS, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorgan, Linux Foundation, Microsoft, NVIDIA, Palo Alto. UK AISI: exceeds prior models but cannot reliably autonomously attack hardened networks. (3) Comparison baselines updated: Opus 4.6 GraphWalks 38.7, USAMO 42.3 (Mythos +55.3pt margin), HLE w/ tools 53.1; GPT-5.4 GraphWalks 21.4, Terminal 75.1; Gemini 3.1 HLE no-tools 44.4 (highest), SWE-Pro 54.2. (4) Resources +11 신규 사이트: Anthropic Red Mythos Preview report, Project Glasswing, NxCode comprehensive benchmark, BenchLM provisional, Schneier blog, Foreign Policy, Help Net Security, Zvi Substack, Fortune, CETaS Turing, LLM Stats. (5) BMT mapping: 187 → 197 matched (283 total, 70%). Cache: app.js?v=20260428e.",
