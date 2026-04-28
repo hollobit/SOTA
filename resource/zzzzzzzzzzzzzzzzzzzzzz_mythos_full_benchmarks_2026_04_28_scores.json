@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-28",
+    "sources": [
+      "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026",
+      "https://benchlm.ai/models/claude-mythos-preview",
+      "https://red.anthropic.com/2026/mythos-preview/",
+      "https://www.anthropic.com/glasswing",
+      "https://fortune.com/2026/04/07/anthropic-claude-mythos-model-project-glasswing-cybersecurity/",
+      "https://foreignpolicy.com/2026/04/20/claude-mythos-preview-anthropic-project-glasswing-cybersecurity-ai-hacking-danger/",
+      "https://thezvi.substack.com/p/claude-mythos-2-cybersecurity-and",
+      "https://www.helpnetsecurity.com/2026/04/14/claude-mythos-test-attack-capabilities-limits/",
+      "https://kingy.ai/ai/claude-mythos-preview-benchmarks-the-ai-that-scored-93-9-on-swe-bench-and-still-wont-be-released/"
+    ]
+  },
+  "benchmarks": [
+    {"id": "swe_bench_multilingual", "name": "SWE-bench Multilingual", "category": "coding", "metric": "resolve_rate", "description": "Multilingual variant of SWE-bench across multiple programming languages. Mythos 87.3 SOTA, Opus 4.6 77.8"},
+    {"id": "swe_bench_multimodal", "name": "SWE-bench Multimodal", "category": "coding", "metric": "resolve_rate", "description": "Multimodal variant of SWE-bench (issues with screenshots/diagrams). Mythos 59.0 SOTA, Opus 4.6 27.1"},
+    {"id": "graphwalks_bfs", "name": "GraphWalks BFS (256K-1M Long Context)", "category": "reasoning", "metric": "accuracy", "description": "Long-context graph BFS reasoning at 256K-1M tokens. Mythos 80.0 SOTA, Opus 4.6 38.7, GPT-5.4 21.4"},
+    {"id": "charxiv_reasoning_no_tools", "name": "CharXiv Reasoning (no tools)", "category": "reasoning", "metric": "accuracy", "description": "CharXiv Reasoning sans tool use. Mythos 86.1 SOTA, Opus 4.6 61.5"},
+    {"id": "charxiv_reasoning_tools", "name": "CharXiv Reasoning (with tools)", "category": "reasoning", "metric": "accuracy", "description": "CharXiv Reasoning with tool augmentation. Mythos 93.2 SOTA, Opus 4.6 78.9"},
+    {"id": "hle_no_tools", "name": "HLE (no tools)", "category": "reasoning", "metric": "accuracy", "description": "Humanity's Last Exam without tool use. Mythos 56.8, Gemini 3.1 Pro 44.4, Opus 4.6 40.0, GPT-5.4 39.8"},
+    {"id": "hle_tools", "name": "HLE (with tools)", "category": "reasoning", "metric": "accuracy", "description": "Humanity's Last Exam with tools. Mythos 64.7 SOTA, Opus 4.6 53.1, GPT-5.4 52.1, Gemini 3.1 51.4"},
+    {"id": "ossfuzz_tier1_2_crashes", "name": "OSS-Fuzz Tier 1-2 Crashes", "category": "cyber", "metric": "crash_count", "description": "OSS-Fuzz benchmark vulnerability discovery — Tier 1-2 crashes (memory corruption, etc.). Mythos 595 crashes"},
+    {"id": "ossfuzz_tier5_control_flow", "name": "OSS-Fuzz Tier 5 Control Flow Hijack", "category": "cyber", "metric": "target_count", "description": "Full control flow hijack on fully-patched targets. Mythos 10 separate targets achieved"},
+    {"id": "firefox_exploit_dev", "name": "Firefox Exploit Development", "category": "cyber", "metric": "exploit_count", "description": "Working exploits developed for Firefox + register control. Mythos 181 working + 29 register control. Opus 4.6 only 2/several hundred"},
+    {"id": "vuln_severity_match", "name": "Vulnerability Severity Expert Match", "category": "cyber", "metric": "accuracy", "description": "Expert-validated severity match rate on Mythos vulnerability reports. 89% on 198 manually reviewed"},
+    {"id": "uk_aisi_ctf_multistep", "name": "UK AISI CTF + Multi-step Attack", "category": "cyber", "metric": "score", "description": "UK AI Security Institute CTF + multi-step attack scenarios. Mythos exceeds prior models but cannot reliably autonomously attack hardened networks"}
+  ],
+  "scores": [
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "swe_bench_verified", "score": 93.9, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "+13.1 over Opus 4.6"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "swe_bench_pro", "score": 77.8, "_source": "https://officechai.com/ai/claude-mythos-preview-benchmarks-swe-bench-pro/", "_note": "SOTA — already in DB"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "swe_bench_multilingual", "score": 87.3, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "SOTA"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "swe_bench_multimodal", "score": 59.0, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "SOTA — Opus 4.6 27.1"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "terminal_bench_2", "score": 82.0, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "SOTA, Opus 4.6 65.4, GPT-5.4 75.1"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "usamo", "score": 97.6, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "USAMO 2026 — +55.3pt over Opus 4.6 (42.3)"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "gpqa_diamond", "score": 94.5, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "+3.2 over Opus 4.6"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "mmlu", "score": 92.7, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "hle", "score": 64.7, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "HLE with tools SOTA — Opus 4.6 53.1"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "hle_no_tools", "score": 56.8, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "+16.8 over Opus 4.6 (40.0)"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "hle_tools", "score": 64.7, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "osworld_verified", "score": 79.6, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "Computer-use SOTA"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "browsecomp", "score": 86.9, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "graphwalks_bfs", "score": 80.0, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "Long-context 256K-1M — Opus 4.6 38.7, GPT-5.4 21.4"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "charxiv_reasoning_no_tools", "score": 86.1, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "+24.6 over Opus 4.6"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "charxiv_reasoning_tools", "score": 93.2, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "+14.3 over Opus 4.6"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "cybergym", "score": 83.1, "_source": "https://red.anthropic.com/2026/mythos-preview/", "_note": "highest-scoring model on record per Anthropic system card"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "ossfuzz_tier1_2_crashes", "score": 595, "_source": "https://red.anthropic.com/2026/mythos-preview/", "_note": "595 crashes at tiers 1-2 + several at tiers 3-4"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "ossfuzz_tier5_control_flow", "score": 10, "_source": "https://red.anthropic.com/2026/mythos-preview/", "_note": "Full control flow hijack on 10 separate fully-patched targets"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "firefox_exploit_dev", "score": 181, "_source": "https://red.anthropic.com/2026/mythos-preview/", "_note": "181 working exploits + 29 register control. Opus 4.6 only 2 from several hundred attempts"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "firefox_exploit_dev", "score": 2, "_source": "https://red.anthropic.com/2026/mythos-preview/", "_note": "Baseline — only 2 from several hundred attempts"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "vuln_severity_match", "score": 89.0, "_source": "https://red.anthropic.com/2026/mythos-preview/", "_note": "89% on 198 manually reviewed vulnerability reports — expert severity match"},
+
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "swe_bench_multilingual", "score": 77.8, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "swe_bench_multimodal", "score": 27.1, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "graphwalks_bfs", "score": 38.7, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "openai/gpt-5.4-thinking", "benchmark": "graphwalks_bfs", "score": 21.4, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "charxiv_reasoning_no_tools", "score": 61.5, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "charxiv_reasoning_tools", "score": 78.9, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "hle_no_tools", "score": 40.0, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "openai/gpt-5.4-thinking", "benchmark": "hle_no_tools", "score": 39.8, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "hle_no_tools", "score": 44.4, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "hle_tools", "score": 53.1, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "openai/gpt-5.4-thinking", "benchmark": "hle_tools", "score": 52.1, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "hle_tools", "score": 51.4, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "terminal_bench_2", "score": 65.4, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "openai/gpt-5.4-thinking", "benchmark": "terminal_bench_2", "score": 75.1, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "terminal_bench_2", "score": 68.5, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "usamo", "score": 42.3, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "USAMO 2026 baseline — Mythos +55.3pt"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "swe_bench_verified", "score": 80.6, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "swe_bench_pro", "score": 54.2, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "uk_aisi_narrow_cyber", "score": 92.5, "_source": "https://www.helpnetsecurity.com/2026/04/14/claude-mythos-test-attack-capabilities-limits/", "_note": "UK AISI eval — exceeds prior models, cannot autonomously attack hardened networks"}
+  ]
+}

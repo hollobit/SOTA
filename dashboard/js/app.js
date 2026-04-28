@@ -1723,7 +1723,20 @@ var App = {
             { name: 'General Analysis AI Security', url: 'https://www.generalanalysis.com/benchmarks', desc: 'AI Security benchmarks aggregator — LLM Adversarial Robustness Leaderboard. ASR across HarmBench + StrongREJECT + MultiTurn' },
             { name: 'Epoch AI Biorisk Evals', url: 'https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons', desc: 'Critical analysis of biorisk evaluations — VCT vs WMDP vs LAB-Bench coverage gaps' },
             { name: 'WMDP Benchmark (CAIS)', url: 'https://safe.ai/blog/wmdp-benchmark', desc: 'Center for AI Safety WMDP — 1,273 bio + 408 chem hazardous knowledge MCQs. Apr 2026: Mythos 86.5 bio / 81.4 chem, GPT-5.5 84.2/79.5' },
-            { name: 'LAB-Bench (FutureHouse)', url: 'https://www.futurehouse.org/research-announcements/lab-bench', desc: 'Lab-Bench biology task benchmark — protocol design, mol cloning, virology. Complement to WMDP/VCT' }
+            { name: 'LAB-Bench (FutureHouse)', url: 'https://www.futurehouse.org/research-announcements/lab-bench', desc: 'Lab-Bench biology task benchmark — protocol design, mol cloning, virology. Complement to WMDP/VCT' },
+
+            // ─── Claude Mythos Preview comprehensive (2026-04-28) ───
+            { name: 'Anthropic Red — Mythos Preview', url: 'https://red.anthropic.com/2026/mythos-preview/', desc: 'Mythos cybersecurity capability report — OSS-Fuzz 595 tier-1/2 crashes + 10 tier-5 control-flow hijacks, Firefox 181 exploits + 29 register control, 89% severity match on 198 vuln reports' },
+            { name: 'Anthropic Project Glasswing', url: 'https://www.anthropic.com/glasswing', desc: 'Project Glasswing — Mythos restricted access for cybersecurity defense (AWS, Apple, Cisco, CrowdStrike, Google, JPMorgan, Linux Foundation, Microsoft, NVIDIA, Palo Alto)' },
+            { name: 'Mythos NxCode Full Benchmarks', url: 'https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026', desc: 'Mythos comprehensive benchmark report — SWE-Verified 93.9, USAMO 2026 97.6 (+55.3 over Opus 4.6), GPQA 94.5, HLE w/ tools 64.7, GraphWalks BFS 80, CharXiv w/ tools 93.2, OSWorld 79.6, BrowseComp 86.9' },
+            { name: 'BenchLM Mythos Profile', url: 'https://benchlm.ai/models/claude-mythos-preview', desc: 'BenchLM provisional rank #1/115 overall 99/100 — Agentic 100, Coding 100, Multilingual 100, Knowledge 99.2' },
+            { name: 'Mythos Schneier on Security', url: 'https://www.schneier.com/blog/archives/2026/04/on-anthropics-mythos-preview-and-project-glasswing.html', desc: "Schneier's analysis of Mythos Preview cybersecurity implications" },
+            { name: 'Mythos Foreign Policy', url: 'https://foreignpolicy.com/2026/04/20/claude-mythos-preview-anthropic-project-glasswing-cybersecurity-ai-hacking-danger/', desc: 'Foreign Policy — Mythos changes cyber calculus, autonomous zero-day discovery in every major OS+browser' },
+            { name: 'Mythos Help Net Security', url: 'https://www.helpnetsecurity.com/2026/04/14/claude-mythos-test-attack-capabilities-limits/', desc: 'UK AISI testing — Mythos exceeds prior models on CTF + multi-step attacks but cannot reliably autonomously attack hardened networks' },
+            { name: 'Mythos Cybersecurity (Zvi)', url: 'https://thezvi.substack.com/p/claude-mythos-2-cybersecurity-and', desc: "Zvi's deep-dive — Mythos cybersecurity capabilities + Project Glasswing analysis" },
+            { name: 'Mythos Fortune', url: 'https://fortune.com/2026/04/07/anthropic-claude-mythos-model-project-glasswing-cybersecurity/', desc: 'Fortune launch coverage — early access to firms for cybersecurity defense bolstering' },
+            { name: 'Mythos CETaS Turing', url: 'https://cetas.turing.ac.uk/publications/claude-mythos-future-cybersecurity', desc: 'Centre for Emerging Technology and Security analysis of Mythos cybersecurity future' },
+            { name: 'Mythos LLM Stats', url: 'https://llm-stats.com/models/claude-mythos-preview', desc: 'LLM Stats Mythos profile + benchmark aggregator' }
         ];
 
         sites.forEach(function(site) {
