@@ -1707,7 +1707,23 @@ var App = {
             { name: 'Office Chai DeepSeek V4 Pricing', url: 'https://officechai.com/ai/deepseek-v4-pro-deepseek-v4-flash-benchmarks-pricing/', desc: 'DeepSeek V4 Pro+Flash benchmarks + pricing breakdown' },
             { name: 'Office Chai Claude Mythos', url: 'https://officechai.com/ai/claude-mythos-preview-benchmarks-swe-bench-pro/', desc: 'Anthropic Claude Mythos Preview SWE-Pro 77.8 SOTA breakdown' },
             { name: 'AI Models April 2026 (RenovateQR)', url: 'https://renovateqr.com/blog/ai-models-april-2026', desc: 'April 2026 release calendar — Gemma 4 (Apr 2), Llama 4 Scout/Maverick (Apr 5), Claude Mythos (Apr 7), Muse Spark (Apr 8), Opus 4.7 (Apr 16), Gemini 3.1 Ultra (Apr 12), Grok 4.3 (Apr 22), DeepSeek V4 + GPT-5.5 (Apr 24)' },
-            { name: 'AI Releases April 2026 (Searchcans)', url: 'https://www.searchcans.com/blog/ai-model-releases-april-2026/', desc: 'AA Intelligence Index Apr 2026 — Gemini 3.1 Ultra & GPT-5.4 Pro tied 57' }
+            { name: 'AI Releases April 2026 (Searchcans)', url: 'https://www.searchcans.com/blog/ai-model-releases-april-2026/', desc: 'AA Intelligence Index Apr 2026 — Gemini 3.1 Ultra & GPT-5.4 Pro tied 57' },
+
+            // ─── Cyber attack / CBRN / Jailbreak audit fills (2026-04-28) ───
+            { name: 'NYU CTF Bench', url: 'https://nyu-llm-ctf.github.io/', desc: '200 CTF challenges — Claude Opus 4.7 59% solve, Gemini 3.1 Pro 52%, Opus 4.6 56%' },
+            { name: 'NYU CTF Paper (NeurIPS 2024)', url: 'https://arxiv.org/abs/2406.05590', desc: 'NYU CTF Bench — scalable open-source benchmark for LLMs in offensive security' },
+            { name: 'CAIBench Paper (arXiv 2510)', url: 'https://arxiv.org/html/2510.24317v1', desc: 'Cybersecurity AI Meta-Benchmark — aggregates NYU CTF, AIRTBench, Cybench, CTI-Bench, AIxCC' },
+            { name: 'AIRTBench Code (Dreadnode)', url: 'https://github.com/dreadnode/AIRTBench-Code', desc: 'AI red-team CTF benchmark — adversarial prompt + cybersecurity exploitation' },
+            { name: 'CTI-Bench (xashru)', url: 'https://github.com/xashru/cti-bench', desc: 'Cyber Threat Intelligence comprehension + threat analysis benchmark' },
+            { name: 'AI Cyber Challenge (DARPA AIxCC)', url: 'https://aicyberchallenge.com/', desc: 'DARPA AI Cyber Challenge — synthetic vulnerability detection + patching' },
+            { name: 'MegaVul GitHub', url: 'https://github.com/Icyrockton/MegaVul', desc: 'Large-scale software vulnerability dataset for LLM security evaluation' },
+            { name: 'HarmBench (Emergent Mind)', url: 'https://www.emergentmind.com/topics/harmbench-framework', desc: 'Standardized LLM red teaming framework — multi-attack jailbreak benchmark' },
+            { name: 'StrongREJECT Paper (arXiv)', url: 'https://arxiv.org/pdf/2402.10260', desc: 'StrongREJECT — automated jailbreak evaluator. Berkeley AI Research. Apr 2026: Opus 4.6 4.39 ASR (lowest), Gemini 2.5 Pro 16.08' },
+            { name: 'JailbreakBench', url: 'https://jailbreakbench.github.io/', desc: 'Open robustness benchmark for jailbreaking LLMs. Apr 2026: Opus 4.7 4.1 ASR, GPT-5.5 6.4, Gemini 3.1 14.2' },
+            { name: 'General Analysis AI Security', url: 'https://www.generalanalysis.com/benchmarks', desc: 'AI Security benchmarks aggregator — LLM Adversarial Robustness Leaderboard. ASR across HarmBench + StrongREJECT + MultiTurn' },
+            { name: 'Epoch AI Biorisk Evals', url: 'https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons', desc: 'Critical analysis of biorisk evaluations — VCT vs WMDP vs LAB-Bench coverage gaps' },
+            { name: 'WMDP Benchmark (CAIS)', url: 'https://safe.ai/blog/wmdp-benchmark', desc: 'Center for AI Safety WMDP — 1,273 bio + 408 chem hazardous knowledge MCQs. Apr 2026: Mythos 86.5 bio / 81.4 chem, GPT-5.5 84.2/79.5' },
+            { name: 'LAB-Bench (FutureHouse)', url: 'https://www.futurehouse.org/research-announcements/lab-bench', desc: 'Lab-Bench biology task benchmark — protocol design, mol cloning, virology. Complement to WMDP/VCT' }
         ];
 
         sites.forEach(function(site) {

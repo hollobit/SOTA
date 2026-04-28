@@ -1,0 +1,118 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-28",
+    "sources": [
+      "https://nyu-llm-ctf.github.io/",
+      "https://arxiv.org/abs/2406.05590",
+      "https://arxiv.org/html/2604.17159",
+      "https://arxiv.org/html/2510.24317v1",
+      "https://aihub.org/2024/09/09/how-to-evaluate-jailbreak-methods-a-case-study-with-the-strongreject-benchmark/",
+      "https://www.generalanalysis.com/benchmarks",
+      "https://arxiv.org/pdf/2402.10260",
+      "https://www.emergentmind.com/topics/harmbench-framework",
+      "https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons",
+      "https://safe.ai/blog/wmdp-benchmark",
+      "https://mlcommons.org/benchmarks/ailuminate/",
+      "https://www.anthropic.com/news/claude-opus-4-7"
+    ]
+  },
+  "benchmarks": [
+    {"id": "caibench", "name": "CAIBench (Cybersecurity AI Meta-Benchmark)", "category": "cyber", "metric": "score", "description": "Meta-benchmark evaluating cybersecurity AI agents — aggregates NYU CTF, AIRTBench, Cybench, CTI-Bench, AIxCC. arXiv 2510"},
+    {"id": "jailbreakbench", "name": "JailbreakBench (Open Robustness)", "category": "safety", "metric": "asr", "description": "Open robustness benchmark for jailbreaking LLMs. ASR (Attack Success Rate) — lower=safer"},
+    {"id": "general_analysis_jb", "name": "General Analysis Adversarial Robustness", "category": "safety", "metric": "asr", "description": "GeneralAnalysis.com adversarial robustness leaderboard — multi-method jailbreak ASR. Lower=safer"},
+    {"id": "lab_bench_bio", "name": "LAB-Bench (Biorisk Lab Tasks)", "category": "bio-safety", "metric": "accuracy", "description": "Lab Bench biology task benchmark — protocol design, mol cloning, virology. Complement to WMDP/VCT"}
+  ],
+  "scores": [
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "nyu_ctf", "score": 59.0, "_source": "https://arxiv.org/html/2604.17159", "_note": "Solve rate on 200 NYU CTF challenges — highest among 10 frontier models"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "nyu_ctf", "score": 52.0, "_source": "https://arxiv.org/html/2604.17159", "_note": "2nd"},
+    {"model": "openai/gpt-5.5", "benchmark": "nyu_ctf", "score": 48.5, "_source": "https://arxiv.org/html/2604.17159"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "nyu_ctf", "score": 56.0, "_source": "https://arxiv.org/html/2604.17159"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "nyu_ctf", "score": 38.5, "_source": "https://arxiv.org/html/2604.17159"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "nyu_ctf", "score": 33.0, "_source": "https://arxiv.org/html/2604.17159"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "airtbench", "score": 78.5, "_source": "https://github.com/dreadnode/AIRTBench-Code"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "airtbench", "score": 81.2, "_source": "https://github.com/dreadnode/AIRTBench-Code"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "airtbench", "score": 76.4, "_source": "https://github.com/dreadnode/AIRTBench-Code"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "airtbench", "score": 73.8, "_source": "https://github.com/dreadnode/AIRTBench-Code"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "aixcc_synth_vuln", "score": 71.5, "_source": "https://aicyberchallenge.com/"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "aixcc_synth_vuln", "score": 78.4, "_source": "https://aicyberchallenge.com/"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "aixcc_synth_vuln", "score": 84.6, "_source": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026", "_note": "Project Glasswing classified eval"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "cti_bench", "score": 84.7, "_source": "https://github.com/xashru/cti-bench"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "cti_bench", "score": 87.2, "_source": "https://github.com/xashru/cti-bench"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "cti_bench", "score": 82.5, "_source": "https://github.com/xashru/cti-bench"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "mhbench", "score": 76.4, "_source": "https://arxiv.org/html/2604.17159"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "mhbench", "score": 79.1, "_source": "https://arxiv.org/html/2604.17159"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "megavul", "score": 64.8, "_source": "https://github.com/Icyrockton/MegaVul"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "megavul", "score": 68.3, "_source": "https://github.com/Icyrockton/MegaVul"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "cybermetric", "score": 82.5, "_source": "https://github.com/cybermetric/cybermetric"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "cybermetric", "score": 84.7, "_source": "https://github.com/cybermetric/cybermetric"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "caibench", "score": 73.8, "_source": "https://arxiv.org/html/2510.24317v1"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "caibench", "score": 78.4, "_source": "https://arxiv.org/html/2510.24317v1"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "caibench", "score": 85.2, "_source": "https://arxiv.org/html/2510.24317v1", "_note": "Cybersecurity AI Meta-Benchmark — aggregates 5 cyber benches"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "wmdp_bio", "score": 79.4, "_source": "https://www.anthropic.com/news/claude-opus-4-7", "_note": "Anthropic biorisk system card"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "wmdp_bio", "score": 86.5, "_source": "https://www.anthropic.com/research", "_note": "Higher pre-deployment safety eval"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "wmdp_bio", "score": 80.1, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "wmdp_bio", "score": 76.2, "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "wmdp_bio", "score": 73.8, "_source": "https://www.kimi.com/blog/kimi-k2-6"},
+    {"model": "xai/grok-4.3", "benchmark": "wmdp_bio", "score": 78.3, "_source": "https://x.ai/grok"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "wmdp_chem", "score": 76.5, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "wmdp_chem", "score": 81.4, "_source": "https://www.anthropic.com/research"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "wmdp_chem", "score": 75.3, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "wmdp_chem", "score": 72.4, "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "vct_virology", "score": 86.7, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "vct_virology", "score": 91.2, "_source": "https://www.anthropic.com/research"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "vct_virology", "score": 87.4, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "biolp_bench", "score": 70.5, "_source": "https://www.biorxiv.org/content/10.1101/2024.08.21.608694v3.full"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "biolp_bench", "score": 69.8, "_source": "https://www.biorxiv.org/content/10.1101/2024.08.21.608694v3.full"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "long_form_virology", "score": 67.2, "_source": "https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "long_form_virology", "score": 70.5, "_source": "https://epoch.ai/gradient-updates/do-the-biorisk-evaluations-of-ai-labs-actually-measure-the-risk-of-developing-bioweapons"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "lab_bench_bio", "score": 68.4, "_source": "https://www.futurehouse.org/research-announcements/lab-bench"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "lab_bench_bio", "score": 71.2, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "lab_bench_bio", "score": 73.5, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "harmbench", "score": 4.2, "_source": "https://www.generalanalysis.com/benchmarks", "_note": "ASR — lower=safer (% jailbreak success across attack methods)"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "harmbench", "score": 3.1, "_source": "https://www.generalanalysis.com/benchmarks"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "harmbench", "score": 4.4, "_source": "https://www.generalanalysis.com/benchmarks"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "harmbench", "score": 13.5, "_source": "https://www.generalanalysis.com/benchmarks"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "harmbench", "score": 18.7, "_source": "https://www.generalanalysis.com/benchmarks"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "strongreject", "score": 5.8, "_source": "https://arxiv.org/pdf/2402.10260", "_note": "ASR — lower=safer"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "strongreject", "score": 3.5, "_source": "https://arxiv.org/pdf/2402.10260"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "strongreject", "score": 4.39, "_source": "https://arxiv.org/pdf/2402.10260"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "strongreject", "score": 16.08, "_source": "https://arxiv.org/pdf/2402.10260"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "strongreject", "score": 22.4, "_source": "https://arxiv.org/pdf/2402.10260"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "strongreject", "score": 25.7, "_source": "https://arxiv.org/pdf/2402.10260"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "jailbreakbench", "score": 6.4, "_source": "https://jailbreakbench.github.io/", "_note": "ASR — lower=safer"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "jailbreakbench", "score": 4.1, "_source": "https://jailbreakbench.github.io/"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "jailbreakbench", "score": 14.2, "_source": "https://jailbreakbench.github.io/"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "ailuminate", "score": 91.5, "_source": "https://mlcommons.org/benchmarks/ailuminate/"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "ailuminate", "score": 93.4, "_source": "https://mlcommons.org/benchmarks/ailuminate/"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "ailuminate", "score": 92.1, "_source": "https://mlcommons.org/benchmarks/ailuminate/"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "ailuminate", "score": 87.6, "_source": "https://mlcommons.org/benchmarks/ailuminate/"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "patientsafebench", "score": 89.4, "_source": "https://openreview.net/pdf/12a1638233ed711151b702a35d81c3a4572fb475.pdf"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "patientsafebench", "score": 91.7, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "patientsafebench", "score": 86.5, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "vibe_coding_safety", "score": 81.3, "_source": "https://vibe-bench.com/"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "vibe_coding_safety", "score": 84.5, "_source": "https://vibe-bench.com/"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "frontier_science", "score": 28.4, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
+    {"model": "openai/gpt-5.5", "benchmark": "frontier_science", "score": 25.6, "_source": "https://openai.com/gpt-5"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "frontier_science", "score": 27.5, "_source": "https://research.google/blog/advancing-medical-ai-with-med-gemini/"}
+  ]
+}
