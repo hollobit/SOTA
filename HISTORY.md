@@ -1,5 +1,59 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-04-26 ~ 04-28: Medical AI 메뉴 신설 + 종합 expansion (10+ batches)
+
+### Medical AI 신규 탭 (Sovereign/Physical AI 패턴 미러)
+**위치**: `dashboard/index.html` 신규 `tab-medical-ai` + `dashboard/js/medical-ai.js`. 총 30 카테고리 + 32 sub-suite leaderboard + ~750 models / 188 benchmarks / ~1,500 scores.
+
+### 카테고리 구조 (30개)
+- **Functional**: Clinical LLMs · Biomedical LLMs · Multilingual & Regional · Biomedical Encoder Models · Medical Imaging FMs (SAM 1/2/3 + MedSAM 1/2/3) · Specialty FMs (Pathology/Ophthalmology/Cardiology/Dermatology) · Frontier Baselines · Nursing AI · Medical VLMs · Protein Structure & Design · Drug Discovery · Radiology Reporting · Multilingual Regional · Safety Evaluators · Clinical Outcome Prediction · ⌚ Time-Series & Wearable Health FMs · 🏛️ MLCommons MedPerf
+- **Sovereign 11개국**: 🇰🇷 Korea (LLM/FM only — SNUH KMed.ai, Lunit MedScale 32B, Kakao Healthcare, MedKAIST) · 🇯🇵 Japan (ELYZA-LLM-Med, MedCALM, JMedLoRA) · 🇩🇪 Germany (DKFZ+EMBL Delphi Nature 2025, Aignostics×Mayo, TUM MedBERT.DE) · 🇫🇷 France (BioMistral CNRS, Owkin H-Optimus/DRAGON, Raidium) · 🇬🇧 UK (NHS AIDE, RETFound 2 DeepMind+UCL, Imperial Medical) · 🇨🇦 Canada (Vector Clairvoyance, UHN AI Hub, Mila CliniCLM, T-CAIREM) · 🇮🇳 India (Fractal Vaidya 2.0 — HealthBench Hard 50.1 world 1st 50+, Apollo, AI4Bharat Airavata) · 🇦🇪 UAE (Med42 Cerebras, TII Falcon Bio) · 🇸🇬 Singapore (Synapxe MOH, AI Singapore SEA-MedLex) · 🇨🇳 China (Alibaba SumiHealth, Tencent MedLLM-2, Baidu Wenxin Yiyi, MMedLM, HuatuoGPT) · 🇺🇸 US (Polaris, Almanac, MIT CLIPath, NIH C-MedBERT)
+
+### BENCHMARK_SUITES (32개)
+🩺 Clinical Workflow Chat & Safety (HealthBench Pro/Base, Polaris, CARE-QA) / 🎓 Medical Licensing & QA (MedQA, MedMCQA, PubMedQA, MMLU Clinical, MedXpertQA, MedBullets, EHRQA) / 🌏 Multilingual / Regional (MMedBench, MedBench Chinese, KMLE, MedAgentBench, Open Medical-LLM avg) / 🏥 Clinical Case Reasoning (NEJM, JAMA) / 🧊 Medical Imaging Segmentation (Universal Med-Seg, BraTS, OmniMedVQA, RAD-ChestCT) / 🔬 Specialty Imaging (RetBench, RadBench, Path AUROC, EchoNet, PanDerm) / 📚 Biomedical NLP / 🛡️ Medical Safety & Hallucination (Med-HALT, MedHallu, MedHallBench, MedSafetyBench AMA, PatientSafeBench, CSEDB Nature npj 2025, CRAFT-MD, MEDIC) / 📝 Radiology Report Gen ReXrank 8-metric (MedVersa SOTA RadGraph-F1 32.1) / 🖼️ Medical VQA (VQA-RAD, SLAKE, Path-VQA, PMC-VQA) / 📈 Clinical Outcome Prediction (MIMIC-IV Sepsis, AKI, eICU cross-gen) / 🇰🇷 Korean Sovereign / 👁️ Medical VLM / ⚠️ Bio Dual-Use & Safety (WMDP-Bio/Chem, VCT, BioLP-bench) / 🧪 Protein (CASP16 GDT, AlphaFold3 pLDDT, PDBBind RMSD, Absci yield) / 💊 Drug Discovery (MoleculeNet, TDC ADMET) / 🧮 Medical Calculation & Long-Context (MedCalc-Bench NeurIPS 2024, LongHealth, MedRAG, LiveDRBench) / 🌐 Chinese Medical (MedJourney, CliMedBench, MedDialog, PharmKG) / 👩‍⚕️ Nursing AI (NCLEX-RN, Chinese Nursing Licensure, NurseLLM 7B) / 🩻 Advanced Medical Imaging (CheXpert Plus, CXR-LT 2024, Chest ImaGenome, HAM10000, DRIVE retinal, DDSM mammography, RSNA Brain Hemorrhage, STOIC COVID CT, MCA-RG MICCAI 2025) / 🏥 MedHELM Holistic Medical Eval (Stanford CRFM 5-cat × 22-subcat × 121-task, Claude Opus 4.6 81.5 SOTA) / 🤖 Medical Agent (AgentClinic-MedQA/NEJM, MedAgentBench NEJM AI 2025, MedQA Vals AI, MedArena Stanford HAI Elo) / 📋 EHR-grounded & Clinical Notes (EHRNoteQA, MedRepBench, ClinicalBench) / 🔬 BMT Pathology / 🧪 BMT Bio Protocols / 🌏 National Medical Licensing & Sovereign / 🧊 3D Medical Segmentation (SAM 3, MedSAM 3, VISTA3D, SAM-Med3D, SegVol, SAT-Pro, nnInteractive) / ⌚ Time-Series & Wearable Health (TimesFM zero-shot, PH-LLM Sleep/Fitness beats human experts, LSM-2 40M hrs Fitbit, Apple 57-task, JEPA BP, CVD-HIV) / 🏛️ MLCommons MedPerf Federated (FeTS 2.0 nnUNet 32 sites × 6 continents × 41 models, Dice 0.95 record Nature Comm. 2025; AILuminate v1.1; MLPerf Inference v5.1)
+
+### 핵심 SOTA 결과 (2026-04-28 기준)
+- ChatGPT for Clinicians (GPT-5.4) HealthBench Professional **59.0** vs human physicians 43.7
+- Vaidya 2.0 HealthBench Hard **50.1** (world 1st 50+, beats GPT-5+Gemini Pro 3 at India AI Impact Summit 2026)
+- Med-Gemini-L MedQA **91.1** / GPT-5.5 95.4 / o4-mini-high 95.2 (Vals AI Apr 2026 SOTA)
+- Polaris 3.0 4.2T constellation **99.38%** clinical safety
+- MedSAM-3 14-modality avg Dice **91.5** SOTA (text-promptable medical seg)
+- MedSAM-3 Agent (MLLM-in-loop) **93.4**
+- MedSAM Universal Med-Seg Dice **92.0** median
+- VISTA3D 127-organ Dice **86.8**
+- Virchow2 PathMCQA **85.7** / BEETLE 88.5 / SPIDER 84.3
+- AlphaFold 3 PDBBench RMSD **1.65Å** (beats specialized docking)
+- Claude Opus 4.6 MedHELM **81.5** SOTA
+- ChemFM 3B MoleculeNet 81.5 (+67.48% gains)
+- PH-LLM 2 Sleep **79%** / Fitness **88%** (beats human experts 76/71)
+- LSM-2 40M-hr Fitbit health classification AUROC **84.5**
+- FeTS 2.0 nnUNet post-op GBM Dice **0.95** record (Nature Comm. 2025)
+- ELYZA-LLM-Med 70B IgakuQA **87.5** (Japan SOTA)
+- Qwen-2.5 Medical Chinese Nursing **88.9** SOTA
+- NurseLLM NCLEX-RN **88.4** (first nursing-specialized LLM)
+- SNUH KMed.ai KMLE **96.4** (3-yr avg, world-class claim)
+
+### BMT Registry 통합
+- `scripts/map_bmt_benchmarks.py`: idempotent — strict + loose + alpha-only + substring fallback. 100+ ALIASES
+- BMT/BMT.json (2,559 entries 외부) → BMT-mapping.json (**119 matched** = 63%) + BMT-miss.json (69 misses, sovereign/sub-metric variants)
+- `cyber/publisher/exporter.py`가 `config/benchmarks_meta.yaml` 메타데이터 자동 머지 → `data/export/benchmarks.json`에 paper/github/year/item_count/leaderboard/bmt 필드 노출
+- `dashboard/js/modal.js Modal.showScoreSource`: 'BMT / Paper / GitHub' 4-link block + year + item_count 렌더링
+
+### Resources 탭 + Changelog propagation
+의료 AI 누적 자료 일괄 등록 — PDF 30+ 신규, 사이트 100+ 신규 (Stanford MedHELM, AgentClinic, MedAgentBench, ReXrank, MedSAM 3 paper+GitHub, AlphaFold 3 Nature, TimesFM Google Research, PH-LLM Nature Med, LSM-2, Apple Wearable, MLCommons MedPerf+FeTS, AILuminate, NurseLLM, NCLEX studies, Chinese Nursing Licensure JMIR, CheXpert Plus, MIMIC-IV/eICU PhysioNet, BMT Registry GitHub permalinks 등).
+
+### 출시 타임라인 그래프 (Medical AI 탭, 2026-04-26)
+국가별 색상 scatter (14개국 팔레트), x = 출시일, y = 파라미터 (B, log scale 기본 + linear/best-score 토글). 기간 필터 (전체/2026/2025/2024/2023이전). 버블 크기 √파라미터, 클릭 → 모델 상세 modal. KNOWN_PARAMS_MED 140+ entries, _VENDOR_COUNTRY_FALLBACK 90+ vendor prefix → country mapping.
+
+### 2026-04-28 finalization
+- BMT mapping recovery: 102 → 119 matched (script extended)
+- Modal BMT links + exporter YAML merge
+- Cyber & Coding backfill: Claude Opus 4.7 SWE-bench Verified **87.6 SOTA**, Cybench 86.4, FORTRESS 92.7
+- Physical AI backfill: NVIDIA GR00T N1.7 LIBERO 98.7
+- Plans.md 정리 (237 → 185 lines under 200-line limit)
+
+---
+
 ## 2026-04-17: Cybersecurity/Coding/Agent Benchmark Expansion
 
 ### Session Overview
