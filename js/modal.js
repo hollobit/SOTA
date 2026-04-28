@@ -492,6 +492,57 @@ var Modal = {
         }
         container.appendChild(meta);
 
+        // Benchmark registry links — surfaces paper/github/leaderboard/BMT
+        // registry deep-links pulled from config/benchmarks_meta.yaml at
+        // export time. Only render when at least one link exists.
+        var registryLinks = [];
+        if (bench.paper) registryLinks.push({ label: 'Paper', url: bench.paper, color: 'text-purple-400' });
+        if (bench.github) registryLinks.push({ label: 'GitHub', url: bench.github, color: 'text-emerald-400' });
+        if (bench.leaderboard) registryLinks.push({ label: 'Leaderboard', url: bench.leaderboard, color: 'text-blue-400' });
+        if (bench.bmt && bench.bmt.bmt_id) {
+            registryLinks.push({
+                label: 'BMT Registry',
+                url: 'https://github.com/hollobit/SOTA/blob/ops/BMT/BMT.json',
+                color: 'text-amber-400',
+                aux: '#' + bench.bmt.bmt_id + (bench.bmt.bmt_title ? ' — ' + bench.bmt.bmt_title : '')
+            });
+        }
+        if (registryLinks.length || bench.year || bench.item_count) {
+            var regBlock = document.createElement('div');
+            regBlock.className = 'bg-gray-800 rounded-lg p-4 mb-4 space-y-2';
+            var regHeader = document.createElement('h3');
+            regHeader.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2';
+            regHeader.textContent = '벤치마크 레지스트리 (BMT / Paper / GitHub)';
+            regBlock.appendChild(regHeader);
+
+            if (bench.year) regBlock.appendChild(this._makeLabel('Year', bench.year));
+            if (bench.item_count) regBlock.appendChild(this._makeLabel('Item count', bench.item_count));
+
+            registryLinks.forEach(function(rl) {
+                var row = document.createElement('div');
+                row.className = 'text-sm';
+                var lbl = document.createElement('span');
+                lbl.className = 'text-gray-500';
+                lbl.textContent = rl.label + ': ';
+                row.appendChild(lbl);
+                var a = document.createElement('a');
+                a.href = rl.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.className = rl.color + ' hover:underline break-all';
+                a.textContent = rl.url;
+                row.appendChild(a);
+                if (rl.aux) {
+                    var aux = document.createElement('div');
+                    aux.className = 'text-xs text-gray-500 mt-0.5';
+                    aux.textContent = rl.aux;
+                    row.appendChild(aux);
+                }
+                regBlock.appendChild(row);
+            });
+            container.appendChild(regBlock);
+        }
+
         // Change-history section (async loaded from daily snapshots in
         // data/export/scores/history/YYYY-MM-DD.json). Skeleton appears
         // immediately; rows fill in once snapshots resolve. Dedupes runs
