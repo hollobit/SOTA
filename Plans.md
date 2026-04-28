@@ -1,69 +1,58 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Sovereign timeline + map view toggle 2026-04-25
-**461 models · 241 benchmarks · 1,130 scores · 19 sovereign regions · timeline + active-only view**
+## Current Status: Medical AI 메뉴 신설 + 종합 expansion (2026-04-26 ~ 04-28)
+**~750 models · 188 benchmarks · ~1,500 scores · 30 Medical AI categories · 32 sub-suite leaderboards · BMT registry mapping (119/188 = 63%)**
 **Live Site**: https://hollobit.github.io/SOTA/
-**Design Score**: C- → **B-** (GPA 1.73 → 2.73) · **AI Slop Score: B- → A-**
-**CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy (no more manual bumps).
+**CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
 
-## 2026-04-25 Sessions (7 batches)
+## 2026-04-26 ~ 04-28 Medical AI Sessions (10+ batches)
 
-### RU/DE/UK + US-Open lineup (+72 models, 4 new regions)
-- **Russia (15)**: Yandex 5 Pro/Lite 8B + YaLM 100B legacy; Sber GigaChat 3 Ultra Preview 702B-A36B MoE + Lightning + 2 MAX/Pro/Lite; Vikhr opensource; T-Bank
-- **Germany (11)**: Aleph Alpha Pharia-1 7B + Pharia 2 T-Free + Luminous; Black Forest Labs FLUX.1 [pro/dev/schnell/Kontext]; TNG DeepSeek R1T/R1T2 Chimera
-- **UK (7)**: Stability AI StableLM 2 12B/1.6B + Stable Code 3B + Zephyr + SD 3.5 Large; Synthesia VLM; Wayve Lingo-2
-- **US-Open (39, NEW region)**: Meta Llama 4 Behemoth/Maverick/Scout + Llama 3.1-3.3; Phi-4 family; Gemma 3+2; IBM Granite 3.3/3.2/3.1; Allen AI OLMo 2 + Tülu 3 + Molmo; DBRX; Snowflake Arctic; Cohere Command A/R+/R + Aya; xAI Grok-1 (314B); StarCoder 2
+### Medical AI 메뉴 초기 (2026-04-26)
+- 신규 `tab-medical-ai` + `dashboard/js/medical-ai.js`
+- 5 카테고리: Clinical LLMs · Biomedical LLMs · Medical Imaging FMs · Specialty FMs · Frontier Baselines
+- 14 의료 벤치마크: HealthBench Pro, MedQA, MedMCQA, PubMedQA, MedXpertQA, NEJM Image, JAMA Clinical, Universal Med-Seg Dice, RetBench, RadBench, Path AUROC
 
-### India + Israel param-scale lineup (+29 models)
-- **India (17)**: Sarvam-30B/105B MoE (2.4B/10.3B active), BharatGen Param-1 2.9B + Sutra + 1T roadmap, Krutrim-2 12B + Spectre, Soket AI Pragna 1B + SUTRA + Project EKA, AI4Bharat IndicLLM/IndicBERT/IndicTrans2, JioBrain · Tata MAITRI · L&T-Vyoma Sovereign AI Compute (announced)
-- **Israel (12)**: AI21 Jamba 1.0 (원조 SSM-Tx), Jamba 1.5/1.6/1.7 Mini, Jamba2 Mini + Jamba2 3B (2026), Jamba Reasoning + Maestro; DICTA DictaLM 2.0 + 3.0 24B (Hebrew sovereign)
-- 카운트: 인도 5→22 · 이스라엘 2→14
+### 메뉴 확장 — 7→12 카테고리: Multilingual + Encoder + Korean + VLM + Bio dual-use + Protein + Drug
+- 🇰🇷 Korean Medical AI (SNUH KMed.ai KMLE 96.4 SOTA, Lunit MedScale 32B, Kakao Healthcare, MedKAIST)
+- Medical VLMs: Med-Flamingo, MedDr 40B, HuatuoGPT-Vision 7B/34B, BiomedGPT
+- Protein FMs: AlphaFold 2/3, ESM3 98B, RoseTTAFold 3, Boltz-1/2, Chai-1
+- Drug Discovery: IBM MoLFormer, ChemFM 3B, TamGen, BioNeMo 2
 
-### France param-scale lineup deep-dive (+32 models)
-- **Mistral 풀 히스토리**: Mistral 7B 원조(2023-09), Mixtral 8x7B/8x22B MoE, Nemo 12B(NVIDIA), Saba 24B(Arabic), Codestral 22B + Codestral Mamba 7B, Mathstral 7B, Pixtral 12B 원조, Magistral/Devstral 1.0, Ministral 8B/3B v1, Small 1-3.1, Large 1-2, Medium 3
-- **PleIAs (Common Corpus)**: 1.0 Pico 3.5B, OLMo 1B, RAG 1B/350M
-- **CNRS / academic**: Lucie 7B (OpenLLM-France), CroissantLLM 1.3B (FR-EN)
-- **HuggingFace SmolLM**: SmolLM3 3B, SmolLM2 1.7B/360M/135M, SmolLM v1 1.7B
-- France region 카운트: 16 → 48
+### 12→27 카테고리: 10-country sovereign + safety/hallucination + radiology + clinical pred
+- 10개국 sovereign: 🇯🇵 ELYZA-LLM-Med · 🇩🇪 DKFZ Delphi · 🇫🇷 BioMistral CNRS+Owkin · 🇬🇧 NHS AIDE · 🇨🇦 Vector · 🇮🇳 Vaidya 2.0 (HealthBench Hard 50.1 1위) · 🇦🇪 M42 Med42 · 🇸🇬 Synapxe · 🇨🇳 Alibaba SumiHealth · 🇺🇸 Stanford Almanac
+- Safety: Med-HALT · MedHallu · MedSafetyBench · CSEDB · CRAFT-MD · MEDIC
+- Radiology: MedVersa (ReXrank 1위) · MAIRA-2 · CheXagent · ReXrank 8-metric
+- Clinical Outcome: MIMIC-IV Sepsis Bench · MIMIC-AKI XGBoost (AUROC 0.878)
 
-### SG / UAE / China param-scale lineup deep-dive (+59 models)
-- **UAE TII Falcon (16)**: Falcon-H1 0.5B/1.5B/1.5B-Deep/3B/7B/34B + H1R 7B + H1 Arabic 34B; Falcon3 1B/3B/7B/10B; Falcon Mamba 7B; Falcon 180B; Falcon2 11B; Falcon Perception
-- **UAE MBZUAI (3)**: LLM360 K2 65B (open-source), Atlas-Chat 9B (Moroccan Arabic), BiMediX
-- **Singapore SEA-LION (6 + 2)**: Llama-SEA-LION v3.5 70B/8B-R, Gemma2-SEA-LION v3 9B-IT, SEA-LION v2.1 7B + Sahabat-AI v1 70B/8B (GoTo+AISG Indonesian)
-- **China Qwen full lineup (16)**: Qwen3 dense 0.6B/1.7B/4B/8B/14B/32B, Qwen3 MoE 30B-A3B/235B-A22B (+Thinking +Instruct 2507), Qwen3-Next, Qwen2.5 7B/14B/32B/72B
-- **China DeepSeek (4)**: V3.1-Terminus, V3, R1, R1-0528
-- **China GLM (3)**: GLM-4.5, GLM-4.5-Air, GLM-4.6
-- **China Kimi (3)**: K2-Base, K2-Instruct, K1.5
-- **China Hunyuan (3)**: Hunyuan-Large 389B-A52B, Hunyuan-Turbo, Hunyuan-7B
-- **China ERNIE (4)**: ERNIE 4.5 300B-A47B (open), Turbo, Speed, Lite
-- **China Doubao Seed (3)**: 1.5 Pro/Lite, 1.6
-- **China StepFun (2)**: Step-2 Pro, Step-2 Mini
-- Sovereign 메뉴 region 카운트: SG 2→8 · UAE 3→19 · China 17→63
+### BMT registry 통합 (2026-04-26)
+- `scripts/map_bmt_benchmarks.py`: idempotent — strict + loose + alpha-only + substring fallback. 100+ ALIASES
+- BMT/BMT.json (2,559 entries 외부) → BMT-mapping.json (119 matched) + BMT-miss.json (69 misses)
 
-### Korean sovereign deep-dive (40 new models, 13 benchmarks, 39 scores)
-- **Param-scale variants registered**: LG EXAONE 4.0 32B/1.2B + 4.0.1 32B + Deep 32B/7.8B/2.4B + 3.5 32B/7.8B/2.4B; SKT A.X 4.0 (72B) + Light (7B) + VL-Light; KT Mi:dm 2.0 Base (11.5B) + Mini (2.3B); Upstage Solar Pro 2 (31B) + Pro 2 Preview + Pro + Mini + DocVision
-- **New Korean foundation models**: Naver HyperCLOVA X SEED Think 14B/32B + SEED Omni 8B + SEED Vision 3B + HCX-005; Kakao Kanana 2 30B-A3B Thinking + Kanana 1.5 8B/15.7B-A3B + Flag 32.5B; NCSoft VARCO-Vision 2.0 14B + Llama-VARCO 8B; Trillion Tri-21B/7B; Motif-2 12.7B Reasoning/Instruct; Konan OND 4B + ENT-11; Saltlux Luxia 21.4B; Samsung Gauss 2 Supreme/Balanced/Compact
-- **Korean benchmarks**: KMMLU, HAE-RAE, KoMT-Bench, K-MMBench, LogicKor, KoBALT-700, Ko-IFEval, HRM8K, OCRBench, MathVista (full), MT-Bench, WinoGrande, KOBEST
-- **Sovereign menu UX**: 모델별 출시년도 `(YYYY-MM)` 표시 + 가장 최신 발표 모델순 정렬. RELEASE_DATES 맵 ~140 entries.
-- **Frontier Compare**: 10개 한국 sovereign 모델 추가 (HyperCLOVA X Think 32B/14B, Kanana 2 + 1.5 8B, VARCO-Vision 2.0, Tri-21B, Motif-2, EXAONE 4.0 32B, A.X 4.0, Solar Pro 2)
+### 27→30 카테고리: BMT round 2 + nursing + SAM 3 + TS/wearable + MLCommons
+- **BMT round 2 (04-27)**: MSD Decathlon, BraTS 2023, ISIC, MedCalc-Bench, LongHealth, MedJourney, MedDialog, MedRAG, PharmKG, OpenI, PadChest-GR, ROCO v2, RSNA Pneumonia, VinDr-CXR, Ruijin-PD MICCAI 2025 (+22)
+- **간호학 + advanced imaging**: NurseLLM 7B (Imperial+Manchester), NCLEX-RN, Chinese Nursing (Qwen-2.5 88.9 SOTA), CheXpert Plus, CXR-LT, Chest ImaGenome, HAM10000, DRIVE, DDSM (+18)
+- **SAM 3 family (04-27)**: SAM 3 (Meta Nov 2025 PCS), SAM 3.1, SAM 3D, MedSAM 3 (Dice 91.5 SOTA), VISTA3D NVIDIA MONAI, SegVol, SAT-Pro, nnInteractive, MCP-MedSAM
+- **Google TS+Wearable**: TimesFM 1/2.5, PH-LLM 1/2 (sleep 79 / fitness 88 beats human 76/71), LSM-1/2 (40M hrs Fitbit), Apple Wearable FM (2.5B hrs / 57-task)
+- **MLCommons MedPerf**: FeTS 2.0 nnUNet 32 sites × 6 continents × 41 models, post-op GBM Dice 0.95 record (Nature Comm. 2025), GaNDLF, AILuminate v1.1, MLPerf v5.1
 
-### Sovereign AI menu (initial → country comparison → Manufacturing)
-신규 탭 `tab-sovereign` (`dashboard/js/sovereign.js`) — 15 region cards × 3 dimension panels (Language/Medical/Government) + 국가별 3-axis radar + Best-of-Fleet 리더보드 + cross-region heatmap. 모든 score 셀 클릭 → Modal.showScoreSource. Manufacturing/Robotics/CAD region 추가 (Foxconn FoxBrain · Skild Brain · Gemini Robotics-ER 1.6 등 21개 모델, 4 verified scores).
+### 출시 타임라인 그래프 (Medical AI tab, 2026-04-26)
+- x = 출시일, y = 파라미터 log scale, 색상 = 14개국. 기간 필터 + y축 모드 토글. 버블 클릭 → 모델 상세
 
-### Physical AI / World Models (+11 models, +7 benchmarks)
-NVIDIA Cosmos + GR00T N1.6/1.7, DeepMind Genie 3 (24fps@720p / 3min) + Genie 2, Pi-Zero, OpenVLA, AgiBot. LIBERO (Cosmos 98.5% SOTA), RoboCasa, RoboTwin 2.0, VLABench, Open X-Embodiment, World Model Consistency/FPS.
-
-### 2026-04-25 earlier batches (compressed — see HISTORY.md)
-Daily sweep + Regional v1 (+11) + Regional v2 (+2 models, +21 benches, +51 scores) + Mistral lineup (+13: Devstral 2 SWE-V 72.2, Pixtral Large DocVQA 93.3 SOTA)
-
-## CI / Infrastructure (2026-04-24/25)
-gh-pages rsync `--exclude='/data'` fix · curated seed score load step · auto cache-bust `?v=$BUILD_SHA[:8]` · score click-modal across 5 tables · sortable Frontier Compare columns
+### 2026-04-28 finalization
+- BMT mapping 102 → **119** matched (script: alpha-only + substring fallback + 100+ aliases)
+- Modal BMT registry block: `Modal.showScoreSource`에 Paper/GitHub/Leaderboard/BMT Registry 딥링크 + year + item_count 렌더링
+- Exporter: YAML 메타데이터 → `data/export/benchmarks.json`로 자동 머지
+- Cyber & Coding backfill: Claude Opus 4.7 SWE-bench Verified **87.6 SOTA**, Cybench 86.4, FORTRESS 92.7, HumanEval 96.5
+- Physical AI backfill: NVIDIA GR00T N1.7 (Cosmos-Reason2-2B backbone) — LIBERO **98.7**, RoboCasa 71.4
 
 ---
 
 ## Earlier sessions (compressed — see HISTORY.md)
+- **2026-04-25 (7 batches)**: RU/DE/UK +US-Open lineup (+72 models, 4 new regions) · India+Israel param-scale (+29) · France Mistral/PleIAs/CNRS (+32) · SG/UAE/China param-scale (+59) · Korean sovereign deep-dive (+40 models / 13 benches) · Sovereign AI menu (15 region cards) · Physical AI / World Models (+11 models / +7 benchmarks)
 - **2026-04-24**: GPT-5.5 + Pro, Kimi K2.6, Qwen3.6-27B (+9 benchmarks)
+- **2026-04-23**: Sovereign timeline + map view toggle (461 models · 241 benchmarks · 1,130 scores)
 - **Phase 1-9 (2026-04-16/17/18)**: 67 models · 95 benchmarks · 721 scores · 78 SOTA
+- **CI / Infrastructure (2026-04-24/25)**: gh-pages rsync `--exclude='/data'` fix · curated seed score load step · auto cache-bust `?v=$BUILD_SHA[:8]` · score click-modal across 5 tables · sortable Frontier Compare columns
 
 ---
 

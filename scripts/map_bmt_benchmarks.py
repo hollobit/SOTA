@@ -31,10 +31,16 @@ def norm(s: str) -> str:
     return s
 
 
+def alpha_only(s: str) -> str:
+    """Strip everything except letters — strongest fuzzy key."""
+    if not s: return ""
+    return re.sub(r"[^a-z]+", "", s.lower())
+
+
 def loose_norm(s: str) -> str:
     """Looser key — keeps the meaningful root, removes common suffixes."""
     s = norm(s)
-    for suffix in ("benchmark", "bench", "eval", "evaluation", "dataset", "test", "challenge", "score"):
+    for suffix in ("benchmark", "bench", "eval", "evaluation", "dataset", "test", "challenge", "score", "questions", "qa"):
         if s.endswith(suffix):
             s = s[: -len(suffix)]
             break
@@ -85,6 +91,161 @@ ALIASES = {
     "medhallu": ["MedHallu"],
     "medhallbench": ["MedHallBench"],
     "medsafetybench": ["MedSafetyBench"],
+    "medhallbench": ["MedHallBench", "MedHallBench v2"],
+    "craft_md": ["CRAFT-MD", "Tau-break (part of CRAFT)"],
+    "pmc_vqa": ["PMC-VQA", "PMC VQA"],
+    "medarabench": ["MedAraBench", "Medical Arabic"],
+    "bimedix_eval": ["BiMediX", "BiMediX-bench", "BiMediX Eval"],
+    "medriskeval": ["MedRiskEval", "Medical Risk Eval"],
+    "igakuqa": ["IgakuQA", "Japanese Medical Licensing"],
+    "jmedbench": ["JMedBench", "Japanese Medical"],
+    "jmed_lora_eval": ["JMedLoRA"],
+    "neet_pg": ["NEET-PG", "NEET PG", "Indian Medical PG"],
+    "indic_med_bench": ["Indic Medical", "AI4Bharat", "Indic Bench"],
+    "cmexam_cn": ["CMExam", "Chinese Medical Licensing"],
+    "promedqa_cn": ["PromedQA", "Chinese Professional Medicine"],
+    "delphi_disease_risk": ["UK Biobank", "Delphi", "1000 disease risk"],
+    "biomistral_multilingual": ["BioMistral"],
+    "owkin_path_avg": ["TCGA", "Owkin", "TCGA-LGG Radiogenomics"],
+    "openai_healthbench_hard": ["HealthBench", "HealthBench Hard"],
+    "medbullets": ["MedBullets-5op", "MedBullets"],
+    "nejm_image": ["NEJM Image Challenge", "NEJM"],
+    "jama_clin_chal": ["JAMA Clinical Challenge", "JAMA"],
+    "rexrank_radgraph_f1": ["RadGraph", "RadGraph2", "ReXrank"],
+    "rexrank_bertscore": ["ReXrank", "MIMIC-CXR"],
+    "rexrank_radcliq": ["ReXrank"],
+    "rexrank_green": ["ReXrank"],
+    "rexrank_finerad": ["ReXrank"],
+    "rexgrad_acc": ["ReXrank", "ReXGradient"],
+    "chexpert_f1": ["CheXpert", "CheXpert Plus"],
+    "chexpert_plus": ["CheXpert Plus", "CheXpert"],
+    "retbench_auc": ["RetBench"],
+    "path_bench": ["TCGA", "TCGA-Reports"],
+    "kmle": ["KMLE", "Korean Medical Licensing"],
+    "kmle_2025": ["KMLE", "Korean Medical Licensing"],
+    "kormedlawqa": ["KorMedLawQA", "Korean Medical Law"],
+    "ehrqa": ["EHRQA", "DrugEHRQA"],
+    "rad_chestct": ["RAD-ChestCT", "Chest CT"],
+    "alphafold3_pae": ["AlphaFold", "AlphaFold3"],
+    "pdbbind_rmsd": ["PDBBind", "Boltz", "Chai-1"],
+    "absci_yield": ["Absci", "de novo Antibody"],
+    "med_internvl_avg": ["MedDr", "InternVL"],
+    "patientsafebench": ["PatientSafetyBench", "PatientSafeBench"],
+    "lits_3d": ["LiTS", "Liver Tumor Segmentation"],
+    "promise12": ["PROMISE12", "Prostate MRI"],
+    "isles_2024": ["ISLES 2022", "ISLES"],
+    "msd_decathlon": ["Medical Segmentation Decathlon", "MSD"],
+    "brats_2023": ["BraTS 2023", "BraTS"],
+    "isic_2020": ["ISIC 2020", "SIIM-ISIC"],
+    "siim_acr_pneumothorax": ["SIIM", "SIIM-ISIC", "ISIC 2020"],
+    "hyper_kvasir": ["Hyper-Kvasir"],
+    "padchest_gr": ["PadChest-GR", "PadChest"],
+    "pharmkg": ["PharmKG"],
+    "roco_v2": ["ROCO v2", "ROCO"],
+    "rsna_pneumonia": ["RSNA Pneumonia"],
+    "rsna_brain_hemorrhage": ["RSNA Intracranial", "RSNA Hemorrhage"],
+    "tcga_reports": ["TCGA-Reports", "TCGA"],
+    "vindr_cxr": ["VinDr-CXR", "VinDr"],
+    "ruijin_pd": ["Ruijin", "Parkinson"],
+    "vqamed_2024": ["VQA-Med", "VQAMed"],
+    "panderm_skin": ["PanDerm"],
+    "echonet_lvef_mae": ["EchoNet"],
+    "echonet_lvef_auc50": ["EchoNet"],
+    "echobench_med": ["EchoBench"],
+    "dermabench": ["DermaBench"],
+    "dermavqa_das": ["DermaVQA-DAS", "DermaVQA"],
+    "histai_wsi": ["HISTAI"],
+    "beetle_seg": ["BEETLE"],
+    "spider_path": ["SPIDER"],
+    "medmnist_v2": ["MedMNIST v2", "MedMNIST"],
+    "ehrnoteqa": ["EHRNoteQA"],
+    "ham10000": ["HAM10000"],
+    "drive_retinal": ["DRIVE", "Retinal Vessel"],
+    "ddsm_mammo": ["DDSM", "Mammography"],
+    "stoic_2021": ["STOIC", "COVID-19 CT"],
+    "fets_2_brats": ["FeTS", "Federated Tumor Segmentation"],
+    "fets_2024_aggregation": ["FeTS"],
+    "ailuminate_med": ["AILuminate"],
+    "vista3d_organs": ["VISTA3D", "VISTA-3D"],
+    "ct_3d_seg_avg": ["3D CT", "Volumetric"],
+    "sam3_pcs_image": ["SAM 3", "SAM3"],
+    "sam3_pcs_video": ["SAM 3", "SAM3"],
+    "medsam3_2d_avg": ["MedSAM 3", "MedSAM3"],
+    "sa_co": ["SA-Co", "Segment Anything Concepts"],
+    "ph_llm_sleep": ["PH-LLM", "Personal Health"],
+    "ph_llm_fitness": ["PH-LLM", "Personal Health"],
+    "timesfm_eval": ["TimesFM"],
+    "gift_eval_ts": ["GIFT-Eval", "GIFT Eval"],
+    "lsm2_health_classify": ["LSM-2", "LSM2"],
+    "lsm2_bmi_regression": ["LSM-2"],
+    "lsm2_imputation": ["LSM-2"],
+    "apple_wearable_57": ["Apple Wearable", "Beyond Sensor"],
+    "wearable_cvd_hiv": ["Wearable", "CVD"],
+    "wearable_jepa_bp": ["JEPA", "Wearable"],
+    "wearable_movement_mental": ["Wearable Movement"],
+    "mlcommons_medperf": ["MedPerf", "MLCommons"],
+    "mlperf_inference_med": ["MLPerf"],
+    "agentclinic_medqa": ["AgentClinic", "AgentClinic-MedQA"],
+    "agentclinic_nejm": ["AgentClinic", "AgentClinic-NEJM"],
+    "medjourney_cn": ["MedJourney"],
+    "longhealth": ["LongHealth"],
+    "medcalc_bench": ["MedCalc-Bench", "MedCalc"],
+    "medrag_bench": ["MedRAG"],
+    "live_dr_bench": ["LiveDRBench"],
+    "toxicchat_med": ["ToxicChat"],
+    "climedbench_cn": ["CliMedBench"],
+    "multimed": ["MultiMed", "MultiMedBench"],
+    "openi_iu": ["OpenI", "Indiana"],
+    "meddialog": ["MedDialog"],
+    "meddialog_rubrics": ["MedDialogRubrics"],
+    "medrepbench": ["MedRepBench"],
+    "pathmcqa": ["PathMCQA"],
+    "ukbob": ["UKBOB", "UK Biobank Body Organs"],
+    "open_medical_llm_avg": ["Open Medical-LLM Leaderboard", "Open Medical-LLM", "Open Medical LLM"],
+    "polaris_safety": ["Polaris", "Hippocratic"],
+    "csedb_safety": ["CSEDB"],
+    "csedb_effectiveness": ["CSEDB"],
+    "medic_eval": ["MEDIC", "Medical Segmentation Decathlon"],
+    "meds_bench": ["MedS-Bench"],
+    "mmedbench": ["MMedBench"],
+    "medbench_cn": ["MedBench v4", "CliMedBench", "MMedBench"],
+    "amega": ["AMEGA"],
+    "blue_benchmark": ["BLUE"],
+    "med_halt": ["Med-HALT", "MedHalt"],
+    "medhallu": ["MedHallu"],
+    "medhelm": ["MedHELM"],
+    "medxpertqa": ["MedXpertQA"],
+    "medxpertqa_text": ["MedXpertQA"],
+    "medxpertqa_mm": ["MedXpertQA"],
+    "vct_virology": ["Virology Capabilities Test", "VCT", "Long-form Virology"],
+    "wmdp_bio": ["WMDP", "WMDP-Bio"],
+    "wmdp_chem": ["WMDP", "WMDP-Chem"],
+    "biolp_bench": ["BioLP-bench", "BioLP"],
+    "casp16_gdt": ["CASP", "CASP15"],
+    "moleculenet_avg": ["MoleculeNet"],
+    "tdc_admet": ["TDC", "Therapeutics Data Commons", "ADMET"],
+    "vqa_rad": ["VQA-RAD"],
+    "slake_vqa": ["SLAKE"],
+    "path_vqa": ["PathVQA", "Path-VQA"],
+    "medqa_usmle": ["MedQA"],
+    "medqa_4opt": ["MedQA"],
+    "afrimed_qa_mcq": ["AfriMed-QA"],
+    "afrimed_qa_saq": ["AfriMed-QA"],
+    "medqa_vals_ai": ["MedQA"],
+    "med80_avg": ["Medical Segmentation"],
+    "medbench": ["MedBench v4", "MedBench"],
+    "med_seg": ["Medical Segmentation"],
+    "structured_radiology_2025": ["Structured Radiology", "Radiology Report"],
+    "cxr_lt_2024": ["CXR-LT", "CXR Long-Tailed"],
+    "ms_cxr": ["MS-CXR"],
+    "chest_imagenome": ["Chest ImaGenome"],
+    "mca_rg_miccai25": ["MCA-RG", "Medical Concept Alignment"],
+    "cxpmrg_bench": ["CXPMRG", "CheXpert Plus"],
+    "nclex_rn": ["NCLEX", "Nursing Licensure"],
+    "nclex_cn_translated": ["NCLEX"],
+    "cn_nursing_licensing": ["Chinese Nursing", "Nursing Licensure"],
+    "nurse_mcq_618": ["Nursing", "NCLEX"],
+    "nurse_education_eval": ["Nursing Education", "Nursing"],
     "patientsafebench": ["PatientSafeBench", "PatientSafetyBench"],
     "csedb_safety": ["CSEDB"],
     "csedb_effectiveness": ["CSEDB"],
@@ -149,12 +310,16 @@ def main() -> None:
     # Build BMT lookup: normalized title → entry. Keep all variants.
     bmt_index: dict[str, list[dict]] = {}
     bmt_loose: dict[str, list[dict]] = {}
+    bmt_alpha: dict[str, list[dict]] = {}
     for e in bmt:
         key = norm(e.get("title", ""))
         bmt_index.setdefault(key, []).append(e)
         lk = loose_norm(e.get("title", ""))
         if lk:
             bmt_loose.setdefault(lk, []).append(e)
+        ak = alpha_only(e.get("title", ""))
+        if ak:
+            bmt_alpha.setdefault(ak, []).append(e)
         # Also index aliases inside title parens like "MMLU (Massive Multitask...)"
         m = re.match(r"^([^(]+)\s*\(([^)]+)\)", e.get("title", ""))
         if m:
@@ -165,6 +330,16 @@ def main() -> None:
                 lk2 = loose_norm(part)
                 if lk2:
                     bmt_loose.setdefault(lk2, []).append(e)
+                ak2 = alpha_only(part)
+                if ak2:
+                    bmt_alpha.setdefault(ak2, []).append(e)
+        # Index split title at colons / dashes (e.g., "FeTS: Federated Tumor Segmentation")
+        first_word = re.split(r"[:\-]", e.get("title", ""), maxsplit=1)[0].strip()
+        if first_word and first_word != e.get("title"):
+            for keyfn, idx in ((norm, bmt_index), (loose_norm, bmt_loose), (alpha_only, bmt_alpha)):
+                k3 = keyfn(first_word)
+                if k3:
+                    idx.setdefault(k3, []).append(e)
 
     matched: list[dict] = []
     missed: list[dict] = []
@@ -195,6 +370,31 @@ def main() -> None:
             for k in loose_cands:
                 if k in bmt_loose:
                     hit = bmt_loose[k][0]
+                    break
+        # Alpha-only fallback (strongest fuzzy match)
+        if not hit:
+            alpha_cands = [alpha_only(bname), alpha_only(re.sub(r"\([^)]*\)", "", bname))]
+            for alias in ALIASES.get(bid, []):
+                alpha_cands.append(alpha_only(alias))
+            alpha_cands = [c for c in alpha_cands if c and len(c) >= 4]
+            for k in alpha_cands:
+                if k in bmt_alpha:
+                    hit = bmt_alpha[k][0]
+                    break
+        # Substring fallback — keyword-in-title match for short distinctive aliases
+        if not hit:
+            sub_cands = []
+            for alias in ALIASES.get(bid, []):
+                a = alpha_only(alias)
+                if a and len(a) >= 5:
+                    sub_cands.append(a)
+            for sub in sub_cands:
+                # Find any BMT title whose alpha-form CONTAINS this token
+                for k, entries in bmt_alpha.items():
+                    if sub in k:
+                        hit = entries[0]
+                        break
+                if hit:
                     break
         if hit:
             matched.append({

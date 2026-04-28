@@ -1,0 +1,45 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-28",
+    "sources": [
+      "https://www.swebench.com/",
+      "https://www.marc0.dev/en/leaderboard",
+      "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "https://swe-rebench.com/",
+      "https://github.com/NVIDIA/Isaac-GR00T",
+      "https://huggingface.co/blog/nvidia/gr00t-n1-7",
+      "https://huggingface.co/blog/nvidia/cosmos-policy-for-robot-control",
+      "https://www.therobotreport.com/nvidia-adds-cosmos-policy-world-foundation-models/",
+      "https://arxiv.org/html/2503.14734v2"
+    ]
+  },
+  "models": [
+    {"id": "anthropic/claude-opus-4.7", "name": "Claude Opus 4.7 (1M context)", "vendor": "Anthropic", "type": "proprietary", "modalities": ["text", "image"], "released_at": "2026-04-16"},
+    {"id": "nvidia/gr00t-n1.7", "name": "Isaac GR00T N1.7 (Cosmos-Reason2 backbone)", "vendor": "NVIDIA", "type": "open-weights", "modalities": ["image", "text"], "released_at": "2026-03"}
+  ],
+  "benchmarks": [
+    {"id": "swe_bench_verified_mini", "name": "SWE-bench Verified (mini-swe-agent)", "category": "coding", "metric": "resolve_rate", "description": "SEAL mini-swe-agent harness — standardized scaffolding for SWE-bench Verified evaluation"},
+    {"id": "openai_ctf_pro", "name": "OpenAI CTF Pro", "category": "cyber", "metric": "accuracy", "description": "OpenAI internal Capture-the-Flag professional cybersecurity challenge"},
+    {"id": "simplerenv", "name": "SimplerEnv (Robotic Manipulation)", "category": "robotics", "metric": "success_rate", "description": "Simulation environment for robot manipulation policy evaluation"}
+  ],
+  "scores": [
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "swe_bench_verified", "score": 87.6, "_source": "https://www.marc0.dev/en/leaderboard", "_note": "Claude Opus 4.7 — top of SWE-bench Verified Apr 2026"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "swe_bench_verified", "score": 80.8, "_source": "https://www.marc0.dev/en/leaderboard"},
+    {"model": "openai/gpt-5.5", "benchmark": "swe_bench_verified", "score": 86.2, "_source": "https://help.apiyi.com/en/gpt-5-5-vs-claude-opus-4-7-coding-comparison-en.html"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "swe_bench_verified_mini", "score": 51.9, "_source": "https://www.anthropic.com/news/claude-opus-4-6", "_note": "SEAL mini-swe-agent harness"},
+    {"model": "openai/gpt-5.3-codex", "benchmark": "swe_bench_verified", "score": 85.0, "_source": "https://www.marc0.dev/en/leaderboard"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "cybench", "score": 86.4, "_source": "https://cybench.github.io"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "cybergym", "score": 24.5, "_source": "https://www.cybergym.io"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "fortress", "score": 92.7, "_source": "https://www.anthropic.com/research"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "openai_ctf_pro", "score": 87.0, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "humaneval", "score": 96.5, "_source": "https://www.marc0.dev/en/leaderboard"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "livecodebench", "score": 92.1, "_source": "https://livecodebench.github.io/"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "aider_polyglot", "score": 81.3, "_source": "https://aider.chat/docs/leaderboards/"},
+
+    {"model": "nvidia/gr00t-n1.7", "benchmark": "libero", "score": 98.7, "_source": "https://huggingface.co/blog/nvidia/gr00t-n1-7", "_note": "LIBERO 4-suite avg with Cosmos-Reason2-2B backbone"},
+    {"model": "nvidia/gr00t-n1.7", "benchmark": "robocasa", "score": 71.4, "_source": "https://huggingface.co/blog/nvidia/gr00t-n1-7"},
+    {"model": "nvidia/gr00t-n1.7", "benchmark": "simplerenv", "score": 88.5, "_source": "https://github.com/NVIDIA/Isaac-GR00T"}
+  ]
+}

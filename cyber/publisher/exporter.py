@@ -53,7 +53,30 @@ class Exporter:
 
     def _export_benchmarks(self) -> None:
         benchmarks = get_all_benchmarks(self._conn)
-        data = [asdict(b) for b in benchmarks]
+        # Merge BMT/registry metadata (paper/github/year/item_count/bmt_id)
+        # from config/benchmarks_meta.yaml so the dashboard can deep-link
+        # benchmark detail to upstream BMT registry without duplicating data.
+        meta_by_id: Dict[str, Dict[str, Any]] = {}
+        try:
+            import yaml  # type: ignore
+            yaml_path = Path("config") / "benchmarks_meta.yaml"
+            if yaml_path.exists():
+                meta_doc = yaml.safe_load(yaml_path.read_text()) or {}
+                for entry in meta_doc.get("benchmarks", []):
+                    bid = entry.get("id")
+                    if bid:
+                        meta_by_id[bid] = entry
+        except Exception:
+            meta_by_id = {}
+
+        data = []
+        for b in benchmarks:
+            d = asdict(b)
+            extra = meta_by_id.get(b.id, {})
+            for key in ("paper", "github", "year", "item_count", "leaderboard", "bmt"):
+                if key in extra and extra[key] is not None:
+                    d[key] = extra[key]
+            data.append(d)
         self._write_json(self._output_dir / "benchmarks.json", data)
 
     def _export_scores(self) -> None:

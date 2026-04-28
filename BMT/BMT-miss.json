@@ -39,19 +39,6 @@
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
   {
-    "id": "medseg_dice",
-    "name": "Universal Med-Seg Dice",
-    "metric": "dice",
-    "category": "medical-imaging",
-    "description": "Universal medical-segmentation benchmark — Dice Similarity Coefficient across 11+ modalities (CT/MRI/X-ray/endoscopy/ultrasound/dermoscopy/fundus). MedSAM 92.0 median, MedSAM2 89.2, SAM-Med2D 88.3, vanilla SAM 58.7.",
-    "paper": "https://www.nature.com/articles/s41467-024-44824-z",
-    "expected_range": [
-      50,
-      99
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
     "id": "retbench_auc",
     "name": "RetBench (External AUC)",
     "metric": "auc",
@@ -61,19 +48,6 @@
     "expected_range": [
       60,
       96
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "path_bench",
-    "name": "Pathology External Benchmark",
-    "metric": "auroc",
-    "category": "medical-imaging",
-    "description": "Pathology FM external evaluation — 9-task average AUROC across cancer subtyping + biomarker prediction (BRCA, RCC, NSCLC, MSI-CRC, etc.). Virchow2 0.82, UNI2 0.79, Prov-GigaPath 0.787, CONCH 0.764.",
-    "paper": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/",
-    "expected_range": [
-      60,
-      90
     ],
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
@@ -91,19 +65,6 @@
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
   {
-    "id": "ehrqa",
-    "name": "EHRQA",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Electronic Health Record question answering — clinical information retrieval over EHR notes. MedGemma evaluation reference.",
-    "paper": "https://arxiv.org/abs/2206.06636",
-    "expected_range": [
-      30,
-      85
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
     "id": "rad_chestct",
     "name": "RAD-ChestCT",
     "metric": "auroc",
@@ -113,6 +74,19 @@
     "expected_range": [
       60,
       90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "casp16_gdt",
+    "name": "CASP16 GDT-TS (Protein Structure)",
+    "metric": "gdt_ts",
+    "category": "protein",
+    "description": "CASP (Critical Assessment of Structure Prediction) round 16 GDT-TS on hard targets — biennial blind protein structure competition. AlphaFold 3 89.4, RoseTTAFold 3 86.0, OpenFold 3 87.8.",
+    "paper": "https://predictioncenter.org/casp16/",
+    "expected_range": [
+      50,
+      99
     ],
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
@@ -217,6 +191,58 @@
     "expected_range": [
       50,
       95
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "rexrank_radcliq",
+    "name": "ReXrank RadCliQ",
+    "metric": "radcliq",
+    "category": "medical-imaging",
+    "description": "RadCliQ composite radiology quality score (lower=better). Combines BLEU + BERTScore + RadGraph-F1.",
+    "paper": "https://rexrank.ai/",
+    "expected_range": [
+      1.0,
+      3.5
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "rexrank_green",
+    "name": "ReXrank GREEN",
+    "metric": "green",
+    "category": "medical-imaging",
+    "description": "GREEN — clinical relevance + factuality combined for chest X-ray report generation.",
+    "paper": "https://rexrank.ai/",
+    "expected_range": [
+      0.2,
+      0.8
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "rexrank_finerad",
+    "name": "ReXrank FineRadScore",
+    "metric": "score",
+    "category": "medical-imaging",
+    "description": "Fine-grained radiology report score — finding-level error detection.",
+    "paper": "https://rexrank.ai/",
+    "expected_range": [
+      40,
+      90
+    ],
+    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
+  },
+  {
+    "id": "rexgrad_acc",
+    "name": "ReXGradient Test Accuracy",
+    "metric": "accuracy",
+    "category": "medical-imaging",
+    "description": "Largest test dataset (10,000 studies) for radiology report generation. ReXrank's primary holdout.",
+    "paper": "https://rexrank.ai/",
+    "expected_range": [
+      50,
+      90
     ],
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
@@ -416,19 +442,6 @@
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
   {
-    "id": "delphi_disease_risk",
-    "name": "Delphi 1000-Disease Risk (DKFZ+EMBL)",
-    "metric": "auroc",
-    "category": "clinical-prediction",
-    "description": "DKFZ+EMBL Delphi model — long-term risk for 1,000+ diseases. Trained 400K UK Biobank, validated on 1.9M Danish National Patient Registry. Nature 2025.",
-    "paper": "https://www.dkfz.de/en/news/press-releases/detail/ai-model-predicts-disease-risks-decades-in-advance",
-    "expected_range": [
-      60,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
     "id": "biomistral_multilingual",
     "name": "BioMistral Multilingual (7-lang)",
     "metric": "accuracy",
@@ -438,45 +451,6 @@
     "expected_range": [
       40,
       85
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "owkin_path_avg",
-    "name": "Owkin Pathology External Avg",
-    "metric": "auroc",
-    "category": "medical-imaging",
-    "description": "Owkin H-Optimus / DRAGON pathology external evaluation — multi-task cancer subtyping/biomarker. DRAGON 2 84.6, H-Optimus 81.2.",
-    "paper": "https://www.owkin.com/",
-    "expected_range": [
-      60,
-      92
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "agentclinic_medqa",
-    "name": "AgentClinic-MedQA",
-    "metric": "accuracy",
-    "category": "medical-safety",
-    "description": "Sequential decision-making clinical agent — USMLE-grounded patient interactions. Claude-3.5 leads. GPT-4 52%, GPT-3.5 38%. Drops to <10% of original MedQA accuracy.",
-    "paper": "https://arxiv.org/abs/2405.07960",
-    "expected_range": [
-      10,
-      80
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "agentclinic_nejm",
-    "name": "AgentClinic-NEJM",
-    "metric": "accuracy",
-    "category": "medical-imaging",
-    "description": "Multimodal clinical agent — NEJM image-centric diagnostic cases. Multimodal accuracy ~29.2% baseline.",
-    "paper": "https://arxiv.org/abs/2405.07960",
-    "expected_range": [
-      15,
-      60
     ],
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
@@ -503,19 +477,6 @@
     "expected_range": [
       1000,
       1800
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "isic_2020",
-    "name": "ISIC 2020 Melanoma Classification (SIIM-ISIC)",
-    "metric": "auroc",
-    "category": "medical-imaging",
-    "description": "33,126 dermoscopic images. Standard skin cancer benchmark",
-    "paper": null,
-    "expected_range": [
-      80,
-      98
     ],
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
@@ -624,19 +585,6 @@
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
   {
-    "id": "cxpmrg_bench",
-    "name": "CXPMRG-Bench (CVPR 2025)",
-    "metric": "score",
-    "category": "medical-imaging",
-    "description": "Comprehensive X-ray report generation benchmark on CheXpert Plus",
-    "paper": "https://arxiv.org/abs/2410.00379",
-    "expected_range": [
-      50,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
     "id": "mca_rg_miccai25",
     "name": "MCA-RG (MICCAI 2025)",
     "metric": "f1",
@@ -663,19 +611,6 @@
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
   {
-    "id": "ms_cxr",
-    "name": "MS-CXR (Microsoft CXR Vision-Language)",
-    "metric": "score",
-    "category": "medical-imaging",
-    "description": "Microsoft chest X-ray vision-language pre-training — bbox + phrase grounding",
-    "paper": null,
-    "expected_range": [
-      50,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
     "id": "structured_radiology_2025",
     "name": "Structured Radiology Report Eval (EMNLP 2025)",
     "metric": "f1",
@@ -685,19 +620,6 @@
     "expected_range": [
       50,
       90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "siim_acr_pneumothorax",
-    "name": "SIIM-ACR Pneumothorax Segmentation",
-    "metric": "dice",
-    "category": "medical-imaging",
-    "description": "SIIM/ACR pneumothorax segmentation challenge — 12,047 chest X-ray DICOM",
-    "paper": null,
-    "expected_range": [
-      60,
-      92
     ],
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
@@ -754,84 +676,6 @@
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
   },
   {
-    "id": "sam3_pcs_image",
-    "name": "SAM 3 PCS (Image)",
-    "metric": "ap",
-    "category": "medical-imaging",
-    "description": "Promptable Concept Segmentation on images — text/exemplar prompts. SAM 3 doubles SAM 2",
-    "paper": "https://arxiv.org/abs/2511.16719",
-    "expected_range": [
-      20,
-      70
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "sam3_pcs_video",
-    "name": "SAM 3 PCS (Video)",
-    "metric": "ap",
-    "category": "medical-imaging",
-    "description": "Promptable Concept Segmentation on video — multi-object tracking. SAM 3.1 multiplexing faster",
-    "paper": null,
-    "expected_range": [
-      15,
-      65
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "medsam3_2d_avg",
-    "name": "MedSAM-3 2D Avg (14 modalities)",
-    "metric": "dice",
-    "category": "medical-imaging",
-    "description": "MedSAM-3 average Dice across 14 medical imaging modalities. Text-promptable concept guidance",
-    "paper": "https://arxiv.org/abs/2511.19046",
-    "expected_range": [
-      70,
-      99
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "lits_3d",
-    "name": "LiTS (Liver Tumor Segmentation)",
-    "metric": "dice",
-    "category": "medical-imaging",
-    "description": "MICCAI 2017 Liver Tumor Segmentation Challenge — 3D CT volume liver+tumor",
-    "paper": null,
-    "expected_range": [
-      50,
-      92
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "promise12",
-    "name": "PROMISE12 (Prostate MRI)",
-    "metric": "dice",
-    "category": "medical-imaging",
-    "description": "MICCAI PROMISE12 — prostate MR segmentation. 50 train + 30 test",
-    "paper": null,
-    "expected_range": [
-      55,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "med80_avg",
-    "name": "Med80 Comprehensive Eval",
-    "metric": "dice",
-    "category": "medical-imaging",
-    "description": "80+ medical datasets comparative eval — SAM2.1, SAM3, MedSAM2, SAM-Med2D/3D, nnInteractive, VISTA3D",
-    "paper": "https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470",
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
     "id": "vista3d_organs",
     "name": "VISTA3D 127-organ Segmentation",
     "metric": "dice",
@@ -840,19 +684,6 @@
     "paper": "https://arxiv.org/html/2406.05285v3",
     "expected_range": [
       60,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "ct_3d_seg_avg",
-    "name": "3D CT Segmentation Avg",
-    "metric": "dice",
-    "category": "medical-imaging",
-    "description": "3D CT segmentation comparative avg — SAM-Med3D + VISTA3D + nnInteractive + SegVol",
-    "paper": null,
-    "expected_range": [
-      55,
       95
     ],
     "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."

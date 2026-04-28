@@ -10,12 +10,12 @@ benchmarks:
   description: Massive Multitask Language Understanding - 57 subjects from STEM to
     humanities
   paper: https://arxiv.org/abs/2009.03300
-  github: https://github.com/hendrycks/test
-  year: '2020'
-  item_count: 15,908 questions
+  github: https://github.com/MMLU-Reason/MMLU-Reason
+  year: '2025'
+  item_count: 1,083 questions
   bmt:
-    bmt_id: saved-1769608044998-3evdz
-    bmt_title: MMLU (Massive Multitask Language Understanding)
+    bmt_id: saved-1769608044991-8duyr
+    bmt_title: MMLU-Reason
 - id: gpqa
   name: GPQA
   category: reasoning
@@ -58,12 +58,12 @@ benchmarks:
   - 95
   description: Competition mathematics - 12,500 problems from AMC, AIME, and Olympiads
   paper: https://arxiv.org/abs/2103.03874
-  github: https://github.com/hendrycks/math
-  year: '2021'
-  item_count: 12,500 problems
+  github: https://github.com/CoinCheung/Math-Shepherd
+  year: '2023'
+  item_count: Derived from GSM8K and MATH training sets
   bmt:
-    bmt_id: saved-1770073027762-d19mf
-    bmt_title: MATH
+    bmt_id: saved-1769669555277-9poyg
+    bmt_title: Math-Shepherd
 - id: gsm8k
   name: GSM8K
   category: math
@@ -92,11 +92,11 @@ benchmarks:
     questions
   paper: https://arxiv.org/abs/2311.16502
   github: https://github.com/MMMU-Benchmark/MMMU
-  year: '2023'
-  item_count: 11,500 questions
+  year: '2024'
+  item_count: 3,460 questions (1,730 standard + 1,730 vision-only)
   bmt:
-    bmt_id: saved-1769608044995-ql0iq
-    bmt_title: MMMU (Massive Multi-discipline Multimodal Understanding)
+    bmt_id: saved-1769608044992-gfavi
+    bmt_title: MMMU-Pro
 - id: swe_bench
   name: SWE-bench
   category: coding
@@ -264,12 +264,12 @@ benchmarks:
     knowledge, medical genetics, professional medicine, virology. Standard for biomedical-LLM
     ranking (OpenBioLLM 92.9).
   paper: https://arxiv.org/abs/2009.03300
-  github: https://github.com/hendrycks/test
-  year: '2020'
-  item_count: 15,908 questions
+  github: https://github.com/MMLU-Reason/MMLU-Reason
+  year: '2025'
+  item_count: 1,083 questions
   bmt:
-    bmt_id: saved-1769608044998-3evdz
-    bmt_title: MMLU (Massive Multitask Language Understanding)
+    bmt_id: saved-1769608044991-8duyr
+    bmt_title: MMLU-Reason
 - id: medxpertqa
   name: MedXpertQA
   category: medical
@@ -335,6 +335,12 @@ benchmarks:
     across 11+ modalities (CT/MRI/X-ray/endoscopy/ultrasound/dermoscopy/fundus). MedSAM
     92.0 median, MedSAM2 89.2, SAM-Med2D 88.3, vanilla SAM 58.7.
   paper: https://www.nature.com/articles/s41467-024-44824-z
+  github: https://github.com/bowang-lab/MedSAM
+  year: '2023'
+  item_count: 1.5 million+ masks from 1 million+ images (30+ datasets)
+  bmt:
+    bmt_id: saved-1770073027760-npzaw
+    bmt_title: 'MedSAM: Segment Anything in Medical Images'
 - id: retbench_auc
   name: RetBench (External AUC)
   category: medical-imaging
@@ -378,6 +384,12 @@ benchmarks:
     subtyping + biomarker prediction (BRCA, RCC, NSCLC, MSI-CRC, etc.). Virchow2 0.82,
     UNI2 0.79, Prov-GigaPath 0.787, CONCH 0.764.
   paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/
+  github: https://github.com/tatonetti-lab/tcga-path-reports
+  year: '2024'
+  item_count: 9,523 reports
+  bmt:
+    bmt_id: saved-1769659920406-za1qa
+    bmt_title: TCGA-Reports
 - id: kmle
   name: KMLE (Korean Medical Licensing Exam)
   category: medical
@@ -436,6 +448,12 @@ benchmarks:
   description: Electronic Health Record question answering — clinical information
     retrieval over EHR notes. MedGemma evaluation reference.
   paper: https://arxiv.org/abs/2206.06636
+  github: https://github.com/jayetri/DrugEHRQA
+  year: '2022'
+  item_count: 70,000+ QA pairs
+  bmt:
+    bmt_id: saved-1769608044997-fr9dl
+    bmt_title: DrugEHRQA
 - id: medqa_4opt
   name: MedQA-4opt
   category: medical
@@ -894,12 +912,12 @@ benchmarks:
   description: Radiology report generation entity+relation F1 from RadGraph schema.
     ReXrank standard metric. MedVersa 32.1 (2025 SOTA).
   paper: https://rexrank.ai/
-  github: https://github.com/MIT-LCP/mimic-code
-  year: '2019'
-  item_count: 377,110 images; 227,827 reports
+  github: https://github.com/Stanford-AIMI/radgraph
+  year: '2021'
+  item_count: 600 annotated reports (dev/test), 220k inference
   bmt:
-    bmt_id: saved-1769608044999-u1kx6
-    bmt_title: MIMIC-CXR
+    bmt_id: saved-1769657927344-9z5dq
+    bmt_title: RadGraph
 - id: rexrank_bertscore
   name: ReXrank BERTScore
   category: medical-imaging
@@ -1329,6 +1347,12 @@ benchmarks:
   description: DKFZ+EMBL Delphi model — long-term risk for 1,000+ diseases. Trained
     400K UK Biobank, validated on 1.9M Danish National Patient Registry. Nature 2025.
   paper: https://www.dkfz.de/en/news/press-releases/detail/ai-model-predicts-disease-risks-decades-in-advance
+  github: https://github.com/ukbiobank
+  year: '2006'
+  item_count: ~500,000 participants (~40,000 with imaging)
+  bmt:
+    bmt_id: saved-1772169338268-96td9
+    bmt_title: UK Biobank Cognitive Reserve Cohort
 - id: biomistral_multilingual
   name: BioMistral Multilingual (7-lang)
   category: medical
@@ -1351,6 +1375,12 @@ benchmarks:
   description: Owkin H-Optimus / DRAGON pathology external evaluation — multi-task
     cancer subtyping/biomarker. DRAGON 2 84.6, H-Optimus 81.2.
   paper: https://www.owkin.com/
+  github: https://github.com/tatonetti-lab/tcga-path-reports
+  year: '2024'
+  item_count: 9,523 reports
+  bmt:
+    bmt_id: saved-1769659920406-za1qa
+    bmt_title: TCGA-Reports
 - id: openai_healthbench_hard
   name: HealthBench (Hard subset)
   category: medical-safety
@@ -1484,6 +1514,12 @@ benchmarks:
     MedQA accuracy.
   paper: https://arxiv.org/abs/2405.07960
   leaderboard: https://agentclinic.github.io/
+  github: https://github.com/SamuelSchmidgall/AgentClinic
+  year: '2024'
+  item_count: Varies by sub-benchmark (MedQA/NEJM cases)
+  bmt:
+    bmt_id: saved-1770073027758-jkeuh
+    bmt_title: AgentClinic
 - id: agentclinic_nejm
   name: AgentClinic-NEJM
   category: medical-imaging
@@ -1495,6 +1531,12 @@ benchmarks:
   description: Multimodal clinical agent — NEJM image-centric diagnostic cases. Multimodal
     accuracy ~29.2% baseline.
   paper: https://arxiv.org/abs/2405.07960
+  github: https://github.com/SamuelSchmidgall/AgentClinic
+  year: '2024'
+  item_count: Varies by sub-benchmark (MedQA/NEJM cases)
+  bmt:
+    bmt_id: saved-1770073027758-jkeuh
+    bmt_title: AgentClinic
 - id: medagentbench
   name: MedAgentBench (NEJM AI 2025)
   category: medical
@@ -1850,6 +1892,13 @@ benchmarks:
   - 98
   description: 33,126 dermoscopic images. Standard skin cancer benchmark
   leaderboard: https://challenge.isic-archive.com/
+  paper: https://arxiv.org/abs/1902.03368
+  github: https://github.com/ISIC-Archive/ISIC-Challenge-2018
+  year: '2018'
+  item_count: 10,015 dermoscopic images
+  bmt:
+    bmt_id: saved-1769658008405-2qs4w
+    bmt_title: 'ISIC 2018: Skin Lesion Analysis Towards Melanoma Detection'
 - id: hyper_kvasir
   name: Hyper-Kvasir (GI Endoscopy)
   category: medical-imaging
@@ -2222,6 +2271,12 @@ benchmarks:
   - 90
   description: Comprehensive X-ray report generation benchmark on CheXpert Plus
   paper: https://arxiv.org/abs/2410.00379
+  github: https://github.com/Stanford-AIMI/CheXpert-Plus
+  year: '2024'
+  item_count: 223,462 image-report pairs
+  bmt:
+    bmt_id: saved-1769657927344-66yir
+    bmt_title: CheXpert Plus
 - id: mca_rg_miccai25
   name: MCA-RG (MICCAI 2025)
   category: medical-imaging
@@ -2253,6 +2308,13 @@ benchmarks:
   - 90
   description: Microsoft chest X-ray vision-language pre-training — bbox + phrase
     grounding
+  paper: https://physionet.org/content/ms-cxr-t/1.0.0/
+  github: https://github.com/microsoft/ms-cxr
+  year: '2023'
+  item_count: 1,326 image pairs, 361 sentence pairs
+  bmt:
+    bmt_id: saved-1769657927344-ov4yw
+    bmt_title: MS-CXR-T
 - id: chest_imagenome
   name: Chest ImaGenome
   category: medical-imaging
@@ -2290,6 +2352,13 @@ benchmarks:
   - 60
   - 92
   description: SIIM/ACR pneumothorax segmentation challenge — 12,047 chest X-ray DICOM
+  paper: https://arxiv.org/abs/1902.03368
+  github: https://github.com/ISIC-Archive/ISIC-Challenge-2018
+  year: '2018'
+  item_count: 10,015 dermoscopic images
+  bmt:
+    bmt_id: saved-1769658008405-2qs4w
+    bmt_title: 'ISIC 2018: Skin Lesion Analysis Towards Melanoma Detection'
 - id: ham10000
   name: HAM10000 (Skin Lesions)
   category: medical-imaging
@@ -2372,6 +2441,12 @@ benchmarks:
   description: Promptable Concept Segmentation on images — text/exemplar prompts.
     SAM 3 doubles SAM 2
   paper: https://arxiv.org/abs/2511.16719
+  github: https://github.com/uni-medical/SAM-Med3D
+  year: '2023'
+  item_count: 'SA-Med3D-140K dataset: 140,000+ masks from 22,000+ volumes'
+  bmt:
+    bmt_id: saved-1770073027760-rbsdj
+    bmt_title: SAM-Med3D
 - id: sam3_pcs_video
   name: SAM 3 PCS (Video)
   category: medical-imaging
@@ -2382,6 +2457,13 @@ benchmarks:
   - 65
   description: Promptable Concept Segmentation on video — multi-object tracking. SAM
     3.1 multiplexing faster
+  paper: https://arxiv.org/abs/2310.15161
+  github: https://github.com/uni-medical/SAM-Med3D
+  year: '2023'
+  item_count: 'SA-Med3D-140K dataset: 140,000+ masks from 22,000+ volumes'
+  bmt:
+    bmt_id: saved-1770073027760-rbsdj
+    bmt_title: SAM-Med3D
 - id: medsam3_2d_avg
   name: MedSAM-3 2D Avg (14 modalities)
   category: medical-imaging
@@ -2393,6 +2475,12 @@ benchmarks:
   description: MedSAM-3 average Dice across 14 medical imaging modalities. Text-promptable
     concept guidance
   paper: https://arxiv.org/abs/2511.19046
+  github: https://github.com/bowang-lab/MedSAM
+  year: '2023'
+  item_count: 1.5 million+ masks from 1 million+ images (30+ datasets)
+  bmt:
+    bmt_id: saved-1770073027760-npzaw
+    bmt_title: 'MedSAM: Segment Anything in Medical Images'
 - id: lits_3d
   name: LiTS (Liver Tumor Segmentation)
   category: medical-imaging
@@ -2402,6 +2490,13 @@ benchmarks:
   - 50
   - 92
   description: MICCAI 2017 Liver Tumor Segmentation Challenge — 3D CT volume liver+tumor
+  paper: https://arxiv.org/abs/1901.04056
+  github: https://github.com/junqiangchen/LiTS---Liver-Tumor-Segmentation-Challenge
+  year: '2019'
+  item_count: 201 CT scans (131 training, 70 testing)
+  bmt:
+    bmt_id: saved-1769658008405-ntmmi
+    bmt_title: 'LiTS: Liver Tumor Segmentation Benchmark'
 - id: promise12
   name: PROMISE12 (Prostate MRI)
   category: medical-imaging
@@ -2411,6 +2506,13 @@ benchmarks:
   - 55
   - 95
   description: MICCAI PROMISE12 — prostate MR segmentation. 50 train + 30 test
+  paper: https://zenodo.org/communities/seacraft
+  github: https://github.com/seacraft/seacraft
+  year: '2005'
+  item_count: Hundreds of datasets
+  bmt:
+    bmt_id: imported-json-1770366778538-2174-0cr0a
+    bmt_title: SEACRAFT (formerly PROMISE Repository)
 - id: isles_2024
   name: ISLES 2024 (Ischemic Stroke Lesion)
   category: medical-imaging
@@ -2424,10 +2526,10 @@ benchmarks:
   paper: https://www.nature.com/articles/s41597-022-01875-5
   github: https://github.com/ezequieldlrosa/isles22
   year: '2022'
-  item_count: 400 cases (250 training, 150 test)
+  item_count: 400 MRI cases (250 Training, 150 Testing)
   bmt:
-    bmt_id: saved-1769660574246-74taf
-    bmt_title: ISLES 2022 (Ischemic Stroke Lesion Segmentation)
+    bmt_id: saved-1769658008405-0eb10
+    bmt_title: 'ISLES 2022: Ischemic Stroke Lesion Segmentation'
 - id: med80_avg
   name: Med80 Comprehensive Eval
   category: medical-imaging
@@ -2439,6 +2541,12 @@ benchmarks:
   description: 80+ medical datasets comparative eval — SAM2.1, SAM3, MedSAM2, SAM-Med2D/3D,
     nnInteractive, VISTA3D
   paper: https://aapm.onlinelibrary.wiley.com/doi/full/10.1002/mp.17470
+  github: https://github.com/neheller/kits19
+  year: '2019'
+  item_count: 2,633 3D volumes (Total across 10 tasks)
+  bmt:
+    bmt_id: saved-1769658361021-m28e1
+    bmt_title: Medical Segmentation Decathlon (MSD)
 - id: vista3d_organs
   name: VISTA3D 127-organ Segmentation
   category: medical-imaging
@@ -2459,6 +2567,13 @@ benchmarks:
   - 95
   description: 3D CT segmentation comparative avg — SAM-Med3D + VISTA3D + nnInteractive
     + SegVol
+  paper: https://arxiv.org/abs/2009.09633
+  github: https://github.com/3D-FRONT-FUTURE/3D-FUTURE-ToolBox
+  year: '2021'
+  item_count: 9,992 3D models
+  bmt:
+    bmt_id: saved-1769657738161-hh0mt
+    bmt_title: 3D-FUTURE
 - id: timesfm_eval
   name: TimesFM Zero-shot Forecasting
   category: time-series
