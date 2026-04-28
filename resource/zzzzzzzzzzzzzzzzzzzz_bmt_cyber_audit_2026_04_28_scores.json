@@ -14,104 +14,510 @@
     ]
   },
   "benchmarks": [
-    {"id": "redbench", "name": "RedBench (Universal Red Teaming)", "category": "safety", "metric": "asr", "description": "Universal red-teaming dataset aggregating 37 benchmarks. 22 risk categories standardized taxonomy. Lower=safer"},
-    {"id": "automonitor_bench", "name": "AutoMonitor-Bench", "category": "safety", "metric": "f1", "description": "Reliability of LLM-based misbehavior monitors — Specification Gaming + reward hacking detection"},
-    {"id": "enkrypt_cbrn", "name": "Enkrypt AI CBRN Risk Dataset", "category": "bio-safety", "metric": "asr", "description": "CBRN safety vulnerability eval for frontier LLMs — novel prompts + FORTRESS subset. Lower=safer"},
-    {"id": "impossiblebench", "name": "ImpossibleBench (Reward Hacking)", "category": "safety", "metric": "exploit_rate", "description": "Systematically measures LLM agent propensity to exploit test cases (reward hacking)"},
-    {"id": "cuaharm", "name": "CUAHarm (Computer-Using Agent)", "category": "safety", "metric": "asr", "description": "Misuse risk for Computer-Using Agents (CUAs) — malicious task success rate. Lower=safer"},
-    {"id": "excytin_bench", "name": "ExCyTIn-Bench (Cyber Threat Investigation)", "category": "cyber", "metric": "accuracy", "description": "First LLM agent benchmark for Cyber Threat Investigation — 57 log tables × 8 multi-stage attack scenarios"},
-    {"id": "pandabench", "name": "PandaBench (Jailbreak Eval)", "category": "safety", "metric": "asr", "description": "Comprehensive LLM safety against jailbreaking attacks — built on PandaGuard framework. Lower=safer"},
-    {"id": "ajailbench", "name": "Audio Jailbreak (AJailBench)", "category": "safety", "metric": "asr", "description": "Audio-Language Model jailbreak vulnerability benchmark. Lower=safer"},
-    {"id": "jalmbench", "name": "JALMBench (Audio LM Safety)", "category": "safety", "metric": "asr", "description": "Audio Language Model jailbreak safety — 12 mainstream Audio LMs, standardized eval. Lower=safer"},
-    {"id": "multi_audiojail", "name": "Multi-AudioJail (Multilingual)", "category": "safety", "metric": "asr", "description": "Multilingual + multi-accent vulnerabilities in Audio LLMs"},
-    {"id": "safepath", "name": "SAFEPATH Safety Trigger Set", "category": "safety", "metric": "compliance", "description": "Prevents harmful reasoning in Large Reasoning Models (DeepSeek-R1 etc)"},
-    {"id": "omnisafebench_mm", "name": "OmniSafeBench-MM (Multimodal)", "category": "safety", "metric": "asr", "description": "Unified multimodal jailbreak attack-defense — 9 risk domains × 50 fine-grained categories"},
-    {"id": "cyberteam_blue", "name": "CyberTeam (Blue Team Threat Hunt)", "category": "cyber", "metric": "accuracy", "description": "LLM-Assisted Blue Teaming via Standardized Threat Hunting workflows"},
-    {"id": "purple_team_cyber", "name": "Purple Team Cybersecurity Dataset", "category": "cyber", "metric": "score", "description": "Synthetic Red+Blue collaborative cybersecurity exercises"},
-    {"id": "alert_safety", "name": "ALERT (Red Teaming Risk Taxonomy)", "category": "safety", "metric": "asr", "description": "Comprehensive LLM safety red-teaming benchmark — fine-grained risk taxonomy"},
-    {"id": "primevul", "name": "PrimeVul (Vulnerability Detection)", "category": "cyber", "metric": "f1", "description": "Vulnerability detection dataset — accurate labels + chronological splits, minimal contamination"},
-    {"id": "injecagent", "name": "InjecAgent (Indirect Prompt Injection)", "category": "safety", "metric": "asr", "description": "Indirect prompt injection in tool-integrated LLM agents — diverse tools + domains. Lower=safer"},
-    {"id": "pint_benchmark", "name": "PINT (Prompt Injection Test)", "category": "safety", "metric": "f1", "description": "Lakera PINT — neutral benchmark for prompt injection detection systems"},
-    {"id": "agentsmith_inf", "name": "Agent Smith (Infectious Jailbreak)", "category": "safety", "metric": "infection_rate", "description": "Infectious jailbreak in multi-agent systems — single adversarial image propagation"},
-    {"id": "jailbreakv_28k", "name": "JailBreakV-28K (MLLM transfer)", "category": "safety", "metric": "asr", "description": "Jailbreak attack transferability LLM → MLLM — 28K test cases"},
-    {"id": "browserart", "name": "BrowserART (Browser Agent Red-team)", "category": "safety", "metric": "asr", "description": "Browser agent red-teaming — harmful behaviors on synthetic + real websites"},
-    {"id": "cybersec_eval3", "name": "CyberSecEval 3", "category": "cyber", "metric": "score", "description": "Meta CyberSecEval 3 — prompt injection + code interpreter abuse + offensive cybersecurity capabilities"},
-    {"id": "secure_code_v2", "name": "SecureCode v2.0", "category": "cyber", "metric": "f1", "description": "Validated security-focused coding examples — train security-aware AI code generation"},
-    {"id": "owasp_vuln_dataset", "name": "OWASP Top 10 Vulnerability Dataset", "category": "cyber", "metric": "f1", "description": "Software vulnerability detection + classification across OWASP Top 10"},
-    {"id": "llmail_inject", "name": "LLMail-Inject (Adaptive Email)", "category": "safety", "metric": "asr", "description": "Adaptive prompt injection challenge — LLM-based email assistant attacks"},
-    {"id": "ricota_kr_redteam", "name": "RICoTA (Korean Red-team Conversations)", "category": "safety", "metric": "asr", "description": "Korean red-teaming dataset — in-the-wild conversation test attempts. Social chatbot safety"},
-    {"id": "safe_child_llm", "name": "Safe-Child-LLM", "category": "safety", "metric": "score", "description": "LLM safety for children (7-12) + adolescents (13-17) developmental stages"},
-    {"id": "agent_red_teaming", "name": "Agent Red Teaming (ART)", "category": "safety", "metric": "asr", "description": "Curated benchmark from large-scale public red-teaming competition — security robustness of LLM-powered agents"},
-    {"id": "consistency_sandbagging", "name": "Consistency Sandbagging Eval", "category": "safety", "metric": "consistency", "description": "Detects sandbagging via formal/casual question variant consistency on WMDP-style questions"}
+    {
+      "id": "redbench",
+      "name": "RedBench (Universal Red Teaming)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Universal red-teaming dataset aggregating 37 benchmarks. 22 risk categories standardized taxonomy. Lower=safer"
+    },
+    {
+      "id": "automonitor_bench",
+      "name": "AutoMonitor-Bench",
+      "category": "safety",
+      "metric": "f1",
+      "description": "Reliability of LLM-based misbehavior monitors — Specification Gaming + reward hacking detection"
+    },
+    {
+      "id": "enkrypt_cbrn",
+      "name": "Enkrypt AI CBRN Risk Dataset",
+      "category": "bio-safety",
+      "metric": "asr",
+      "description": "CBRN safety vulnerability eval for frontier LLMs — novel prompts + FORTRESS subset. Lower=safer"
+    },
+    {
+      "id": "impossiblebench",
+      "name": "ImpossibleBench (Reward Hacking)",
+      "category": "safety",
+      "metric": "exploit_rate",
+      "description": "Systematically measures LLM agent propensity to exploit test cases (reward hacking)"
+    },
+    {
+      "id": "cuaharm",
+      "name": "CUAHarm (Computer-Using Agent)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Misuse risk for Computer-Using Agents (CUAs) — malicious task success rate. Lower=safer"
+    },
+    {
+      "id": "excytin_bench",
+      "name": "ExCyTIn-Bench (Cyber Threat Investigation)",
+      "category": "cyber",
+      "metric": "accuracy",
+      "description": "First LLM agent benchmark for Cyber Threat Investigation — 57 log tables × 8 multi-stage attack scenarios"
+    },
+    {
+      "id": "pandabench",
+      "name": "PandaBench (Jailbreak Eval)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Comprehensive LLM safety against jailbreaking attacks — built on PandaGuard framework. Lower=safer"
+    },
+    {
+      "id": "ajailbench",
+      "name": "Audio Jailbreak (AJailBench)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Audio-Language Model jailbreak vulnerability benchmark. Lower=safer"
+    },
+    {
+      "id": "jalmbench",
+      "name": "JALMBench (Audio LM Safety)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Audio Language Model jailbreak safety — 12 mainstream Audio LMs, standardized eval. Lower=safer"
+    },
+    {
+      "id": "multi_audiojail",
+      "name": "Multi-AudioJail (Multilingual)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Multilingual + multi-accent vulnerabilities in Audio LLMs"
+    },
+    {
+      "id": "safepath",
+      "name": "SAFEPATH Safety Trigger Set",
+      "category": "safety",
+      "metric": "compliance",
+      "description": "Prevents harmful reasoning in Large Reasoning Models (DeepSeek-R1 etc)"
+    },
+    {
+      "id": "omnisafebench_mm",
+      "name": "OmniSafeBench-MM (Multimodal)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Unified multimodal jailbreak attack-defense — 9 risk domains × 50 fine-grained categories"
+    },
+    {
+      "id": "cyberteam_blue",
+      "name": "CyberTeam (Blue Team Threat Hunt)",
+      "category": "cyber",
+      "metric": "accuracy",
+      "description": "LLM-Assisted Blue Teaming via Standardized Threat Hunting workflows"
+    },
+    {
+      "id": "purple_team_cyber",
+      "name": "Purple Team Cybersecurity Dataset",
+      "category": "cyber",
+      "metric": "score",
+      "description": "Synthetic Red+Blue collaborative cybersecurity exercises"
+    },
+    {
+      "id": "alert_safety",
+      "name": "ALERT (Red Teaming Risk Taxonomy)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Comprehensive LLM safety red-teaming benchmark — fine-grained risk taxonomy"
+    },
+    {
+      "id": "primevul",
+      "name": "PrimeVul (Vulnerability Detection)",
+      "category": "cyber",
+      "metric": "f1",
+      "description": "Vulnerability detection dataset — accurate labels + chronological splits, minimal contamination"
+    },
+    {
+      "id": "injecagent",
+      "name": "InjecAgent (Indirect Prompt Injection)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Indirect prompt injection in tool-integrated LLM agents — diverse tools + domains. Lower=safer"
+    },
+    {
+      "id": "pint_benchmark",
+      "name": "PINT (Prompt Injection Test)",
+      "category": "safety",
+      "metric": "f1",
+      "description": "Lakera PINT — neutral benchmark for prompt injection detection systems"
+    },
+    {
+      "id": "agentsmith_inf",
+      "name": "Agent Smith (Infectious Jailbreak)",
+      "category": "safety",
+      "metric": "infection_rate",
+      "description": "Infectious jailbreak in multi-agent systems — single adversarial image propagation"
+    },
+    {
+      "id": "jailbreakv_28k",
+      "name": "JailBreakV-28K (MLLM transfer)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Jailbreak attack transferability LLM → MLLM — 28K test cases"
+    },
+    {
+      "id": "browserart",
+      "name": "BrowserART (Browser Agent Red-team)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Browser agent red-teaming — harmful behaviors on synthetic + real websites"
+    },
+    {
+      "id": "cybersec_eval3",
+      "name": "CyberSecEval 3",
+      "category": "cyber",
+      "metric": "score",
+      "description": "Meta CyberSecEval 3 — prompt injection + code interpreter abuse + offensive cybersecurity capabilities"
+    },
+    {
+      "id": "secure_code_v2",
+      "name": "SecureCode v2.0",
+      "category": "cyber",
+      "metric": "f1",
+      "description": "Validated security-focused coding examples — train security-aware AI code generation"
+    },
+    {
+      "id": "owasp_vuln_dataset",
+      "name": "OWASP Top 10 Vulnerability Dataset",
+      "category": "cyber",
+      "metric": "f1",
+      "description": "Software vulnerability detection + classification across OWASP Top 10"
+    },
+    {
+      "id": "llmail_inject",
+      "name": "LLMail-Inject (Adaptive Email)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Adaptive prompt injection challenge — LLM-based email assistant attacks"
+    },
+    {
+      "id": "ricota_kr_redteam",
+      "name": "RICoTA (Korean Red-team Conversations)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Korean red-teaming dataset — in-the-wild conversation test attempts. Social chatbot safety"
+    },
+    {
+      "id": "safe_child_llm",
+      "name": "Safe-Child-LLM",
+      "category": "safety",
+      "metric": "score",
+      "description": "LLM safety for children (7-12) + adolescents (13-17) developmental stages"
+    },
+    {
+      "id": "agent_red_teaming",
+      "name": "Agent Red Teaming (ART)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Curated benchmark from large-scale public red-teaming competition — security robustness of LLM-powered agents"
+    },
+    {
+      "id": "consistency_sandbagging",
+      "name": "Consistency Sandbagging Eval",
+      "category": "safety",
+      "metric": "consistency",
+      "description": "Detects sandbagging via formal/casual question variant consistency on WMDP-style questions"
+    }
   ],
   "scores": [
-    {"model": "openai/gpt-5.5", "benchmark": "redbench", "score": 5.4, "_source": "https://www.openai.com/research/redbench-eval", "_note": "ASR aggregator across 22 risk categories"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "redbench", "score": 3.8, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
-    {"model": "google/gemini-3.1-pro", "benchmark": "redbench", "score": 14.6, "_source": "https://research.google/safety"},
-    {"model": "deepseek/deepseek-v4-pro", "benchmark": "redbench", "score": 21.5, "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "automonitor_bench", "score": 78.4, "_source": "https://arxiv.org/abs/2510.24317"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "automonitor_bench", "score": 82.1, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
-
-    {"model": "anthropic/claude-mythos-preview", "benchmark": "enkrypt_cbrn", "score": 8.3, "_source": "https://www.enkryptai.com/research", "_note": "Lower=safer. Project Glasswing safer"},
-    {"model": "openai/gpt-5.5", "benchmark": "enkrypt_cbrn", "score": 12.4, "_source": "https://www.enkryptai.com/research"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "enkrypt_cbrn", "score": 9.1, "_source": "https://www.enkryptai.com/research"},
-    {"model": "google/gemini-3.1-pro", "benchmark": "enkrypt_cbrn", "score": 17.8, "_source": "https://www.enkryptai.com/research"},
-    {"model": "deepseek/deepseek-v4-pro", "benchmark": "enkrypt_cbrn", "score": 23.6, "_source": "https://www.enkryptai.com/research"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "impossiblebench", "score": 32.4, "_source": "https://arxiv.org/abs/2501.04931", "_note": "Lower=better (less reward hacking)"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "impossiblebench", "score": 24.1, "_source": "https://www.anthropic.com/news/claude-opus-4-7"},
-    {"model": "google/gemini-3.1-pro", "benchmark": "impossiblebench", "score": 41.5, "_source": "https://research.google/safety"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "cuaharm", "score": 14.5, "_source": "https://openai.com/research/cua", "_note": "Lower=safer. Computer-Using Agent misuse"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "cuaharm", "score": 11.2, "_source": "https://www.anthropic.com/computer-use"},
-    {"model": "google/gemini-3.1-pro", "benchmark": "cuaharm", "score": 18.7, "_source": "https://research.google/computer-use"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "excytin_bench", "score": 67.5, "_source": "https://github.com/microsoft/ExCyTIn-Bench"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "excytin_bench", "score": 71.4, "_source": "https://github.com/microsoft/ExCyTIn-Bench"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "pandabench", "score": 8.7, "_source": "https://ai-development-and-safety-network.cn/", "_note": "ASR. China AISI"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "pandabench", "score": 5.8, "_source": "https://ai-development-and-safety-network.cn/"},
-    {"model": "deepseek/deepseek-v4-pro", "benchmark": "pandabench", "score": 17.4, "_source": "https://ai-development-and-safety-network.cn/"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "alert_safety", "score": 7.1, "_source": "https://github.com/Babelscape/ALERT", "_note": "ASR — lower=safer"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "alert_safety", "score": 5.2, "_source": "https://github.com/Babelscape/ALERT"},
-    {"model": "google/gemini-3.1-pro", "benchmark": "alert_safety", "score": 13.8, "_source": "https://github.com/Babelscape/ALERT"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "primevul", "score": 73.5, "_source": "https://github.com/DLVulDet/PrimeVul"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "primevul", "score": 76.2, "_source": "https://github.com/DLVulDet/PrimeVul"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "injecagent", "score": 12.4, "_source": "https://github.com/AI-secure/InjecAgent", "_note": "ASR — indirect prompt injection. Lower=safer"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "injecagent", "score": 8.5, "_source": "https://github.com/AI-secure/InjecAgent"},
-    {"model": "google/gemini-3.1-pro", "benchmark": "injecagent", "score": 19.1, "_source": "https://github.com/AI-secure/InjecAgent"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "pint_benchmark", "score": 91.7, "_source": "https://www.lakera.ai/pint", "_note": "F1 detection accuracy — higher=better"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "pint_benchmark", "score": 93.4, "_source": "https://www.lakera.ai/pint"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "agentsmith_inf", "score": 28.5, "_source": "https://arxiv.org/abs/2402.08567", "_note": "Infection rate — lower=safer"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "agentsmith_inf", "score": 18.4, "_source": "https://arxiv.org/abs/2402.08567"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "jailbreakv_28k", "score": 7.2, "_source": "https://github.com/EddyLuo1232/JailBreakV_28K", "_note": "ASR transfer to MLLMs"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "jailbreakv_28k", "score": 4.8, "_source": "https://github.com/EddyLuo1232/JailBreakV_28K"},
-    {"model": "google/gemini-3.1-pro", "benchmark": "jailbreakv_28k", "score": 16.5, "_source": "https://github.com/EddyLuo1232/JailBreakV_28K"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "browserart", "score": 11.4, "_source": "https://github.com/walledai/walledeval", "_note": "Browser agent red-team ASR"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "browserart", "score": 7.8, "_source": "https://github.com/walledai/walledeval"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "cybersec_eval3", "score": 78.5, "_source": "https://github.com/facebookresearch/CyberSecEval"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "cybersec_eval3", "score": 82.1, "_source": "https://github.com/facebookresearch/CyberSecEval"},
-    {"model": "google/gemini-3.1-pro", "benchmark": "cybersec_eval3", "score": 75.4, "_source": "https://github.com/facebookresearch/CyberSecEval"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "secure_code_v2", "score": 82.4, "_source": "https://github.com/Microsoft/SecureCode"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "secure_code_v2", "score": 85.7, "_source": "https://github.com/Microsoft/SecureCode"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "owasp_vuln_dataset", "score": 79.6, "_source": "https://github.com/OWASP/llm-security-benchmark"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "owasp_vuln_dataset", "score": 83.2, "_source": "https://github.com/OWASP/llm-security-benchmark"},
-
-    {"model": "openai/gpt-5.5", "benchmark": "llmail_inject", "score": 9.8, "_source": "https://github.com/microsoft/llmail-inject", "_note": "ASR adaptive prompt injection. Lower=safer"},
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "llmail_inject", "score": 6.4, "_source": "https://github.com/microsoft/llmail-inject"},
-
-    {"model": "anthropic/claude-opus-4.7", "benchmark": "consistency_sandbagging", "score": 91.5, "_source": "https://www.anthropic.com/news/claude-opus-4-7", "_note": "Higher=more consistent (less sandbagging)"},
-    {"model": "openai/gpt-5.5", "benchmark": "consistency_sandbagging", "score": 88.4, "_source": "https://openai.com/safety"}
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "redbench",
+      "score": 5.4,
+      "_source": "https://www.openai.com/research/redbench-eval",
+      "_note": "ASR aggregator across 22 risk categories"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "redbench",
+      "score": 3.8,
+      "_source": "https://www.anthropic.com/news/claude-opus-4-7"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "redbench",
+      "score": 14.6,
+      "_source": "https://research.google/safety"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "redbench",
+      "score": 21.5,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "automonitor_bench",
+      "score": 82.1,
+      "_source": "https://www.anthropic.com/news/claude-opus-4-7"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "enkrypt_cbrn",
+      "score": 8.3,
+      "_source": "https://www.enkryptai.com/research",
+      "_note": "Lower=safer. Project Glasswing safer"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "enkrypt_cbrn",
+      "score": 12.4,
+      "_source": "https://www.enkryptai.com/research"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "enkrypt_cbrn",
+      "score": 9.1,
+      "_source": "https://www.enkryptai.com/research"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "enkrypt_cbrn",
+      "score": 17.8,
+      "_source": "https://www.enkryptai.com/research"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "enkrypt_cbrn",
+      "score": 23.6,
+      "_source": "https://www.enkryptai.com/research"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "impossiblebench",
+      "score": 24.1,
+      "_source": "https://www.anthropic.com/news/claude-opus-4-7"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "impossiblebench",
+      "score": 41.5,
+      "_source": "https://research.google/safety"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "cuaharm",
+      "score": 14.5,
+      "_source": "https://openai.com/research/cua",
+      "_note": "Lower=safer. Computer-Using Agent misuse"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cuaharm",
+      "score": 11.2,
+      "_source": "https://www.anthropic.com/computer-use"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cuaharm",
+      "score": 18.7,
+      "_source": "https://research.google/computer-use"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "excytin_bench",
+      "score": 67.5,
+      "_source": "https://github.com/microsoft/ExCyTIn-Bench"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "excytin_bench",
+      "score": 71.4,
+      "_source": "https://github.com/microsoft/ExCyTIn-Bench"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "pandabench",
+      "score": 8.7,
+      "_source": "https://ai-development-and-safety-network.cn/",
+      "_note": "ASR. China AISI"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "pandabench",
+      "score": 5.8,
+      "_source": "https://ai-development-and-safety-network.cn/"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "pandabench",
+      "score": 17.4,
+      "_source": "https://ai-development-and-safety-network.cn/"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "alert_safety",
+      "score": 7.1,
+      "_source": "https://github.com/Babelscape/ALERT",
+      "_note": "ASR — lower=safer"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "alert_safety",
+      "score": 5.2,
+      "_source": "https://github.com/Babelscape/ALERT"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "alert_safety",
+      "score": 13.8,
+      "_source": "https://github.com/Babelscape/ALERT"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "primevul",
+      "score": 73.5,
+      "_source": "https://github.com/DLVulDet/PrimeVul"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "primevul",
+      "score": 76.2,
+      "_source": "https://github.com/DLVulDet/PrimeVul"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "injecagent",
+      "score": 12.4,
+      "_source": "https://github.com/AI-secure/InjecAgent",
+      "_note": "ASR — indirect prompt injection. Lower=safer"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "injecagent",
+      "score": 8.5,
+      "_source": "https://github.com/AI-secure/InjecAgent"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "injecagent",
+      "score": 19.1,
+      "_source": "https://github.com/AI-secure/InjecAgent"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "pint_benchmark",
+      "score": 91.7,
+      "_source": "https://www.lakera.ai/pint",
+      "_note": "F1 detection accuracy — higher=better"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "pint_benchmark",
+      "score": 93.4,
+      "_source": "https://www.lakera.ai/pint"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "agentsmith_inf",
+      "score": 28.5,
+      "_source": "https://arxiv.org/abs/2402.08567",
+      "_note": "Infection rate — lower=safer"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "agentsmith_inf",
+      "score": 18.4,
+      "_source": "https://arxiv.org/abs/2402.08567"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "jailbreakv_28k",
+      "score": 7.2,
+      "_source": "https://github.com/EddyLuo1232/JailBreakV_28K",
+      "_note": "ASR transfer to MLLMs"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "jailbreakv_28k",
+      "score": 4.8,
+      "_source": "https://github.com/EddyLuo1232/JailBreakV_28K"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "jailbreakv_28k",
+      "score": 16.5,
+      "_source": "https://github.com/EddyLuo1232/JailBreakV_28K"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "browserart",
+      "score": 11.4,
+      "_source": "https://github.com/walledai/walledeval",
+      "_note": "Browser agent red-team ASR"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "browserart",
+      "score": 7.8,
+      "_source": "https://github.com/walledai/walledeval"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "cybersec_eval3",
+      "score": 78.5,
+      "_source": "https://github.com/facebookresearch/CyberSecEval"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cybersec_eval3",
+      "score": 82.1,
+      "_source": "https://github.com/facebookresearch/CyberSecEval"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cybersec_eval3",
+      "score": 75.4,
+      "_source": "https://github.com/facebookresearch/CyberSecEval"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "secure_code_v2",
+      "score": 82.4,
+      "_source": "https://github.com/Microsoft/SecureCode"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "secure_code_v2",
+      "score": 85.7,
+      "_source": "https://github.com/Microsoft/SecureCode"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "owasp_vuln_dataset",
+      "score": 79.6,
+      "_source": "https://github.com/OWASP/llm-security-benchmark"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "owasp_vuln_dataset",
+      "score": 83.2,
+      "_source": "https://github.com/OWASP/llm-security-benchmark"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "llmail_inject",
+      "score": 9.8,
+      "_source": "https://github.com/microsoft/llmail-inject",
+      "_note": "ASR adaptive prompt injection. Lower=safer"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "llmail_inject",
+      "score": 6.4,
+      "_source": "https://github.com/microsoft/llmail-inject"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "consistency_sandbagging",
+      "score": 91.5,
+      "_source": "https://www.anthropic.com/news/claude-opus-4-7",
+      "_note": "Higher=more consistent (less sandbagging)"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "consistency_sandbagging",
+      "score": 88.4,
+      "_source": "https://openai.com/safety"
+    }
   ]
 }

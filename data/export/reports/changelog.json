@@ -2,6 +2,15 @@
   {
     "type": "Fix",
     "date": "2026-04-28",
+    "benchmark_id": "Date-paradox 감사 — 23 stale-citation entries 제거 (GPT-5.5/Opus4.7/Mythos)",
+    "new_model": "2026 출시 모델인데 2024-2025 논문이 출처인 행들 일괄 제거",
+    "new_value": "User-flagged: 'GPT-5.5에 LongHealth나 MedAgentBench 결과가 나오는게 정확한건가요? GPT-5.5는 최근 출시되었고 벤치마크 결과들은 2025년 결과들인데...' Agent verification: LongHealth (Springer 2025-06, only GPT-3.5 Turbo tested), MedAgentBench (NEJM AI/arxiv 2501.14654 Jan 2025, only o3-mini), MedAgentsBench (arxiv 2503.07459 Mar 2025, only o3-mini) — none of three papers ever evaluated GPT-5.5. (1) GPT-5.5 REMOVED 20: longhealth, medagentbench, medagentsbench, medec, medhallbench, medhallu, medhelm_admin/clin_dec/note_gen/patient_comm/research, medic_eval, craft_md, csedb_effectiveness/safety, impossiblebench, automonitor_bench, caibench, mhbench, structured_radiology_2025. (2) Opus 4.7 REMOVED 2: mhbench (arxiv 2501.16466 Incalmo, predates Opus 4.7), caibench (arxiv 2510.24317 Oct 2025, predates Opus 4.7). (3) Mythos REMOVED 1: caibench. (4) 메모리 규칙 강화 — feedback_score_attribution_strict.md에 'Date-paradox citations' 패턴 추가: 2026 출시 모델은 launch 이전 published 논문 출처 사용 금지 (Opus 4.7 Mar 2026, Mythos Apr 2026, GPT-5.5 Apr 2026). Cache: app.js?v=20260428f.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Fix",
+    "date": "2026-04-28",
     "benchmark_id": "GPT-5.5 strict-attribution 감사 — 32 unverified entries 제거",
     "new_model": "GPT-5.5 점수 중 1차 출처가 모델·벤치마크·값을 명시하지 않은 항목 일괄 제거",
     "new_value": "User-requested: '벤치마크 평가 결과가 정확하게 GPT-5.5 모델과 매칭되어 확인된 결과가 아닌 것들은 재검증해서 제외해달라'. (1) 32 GPT-5.5 medical/bio rows REMOVED — source URL이 generic openai.com/gpt-5 (GPT-5.5 page 아님) 이거나 note가 'Frontier baseline', 'extrapolation', 'estimate'인 추정치/필러: afrimed_qa_mcq, agentclinic_medqa, agentclinic_nejm, bioprobench, clinicalbench, cn_nursing_licensing, frontier_science, live_dr_bench, med_halt, medarabench, medarena_pref, medcalc_bench, medexqa, medhelm, medqa_usmle, medrepbench, medxpertqa, mmlu_clinical, multimed, multimedqa, nclex_cn_translated, nclex_rn (extrapolation), nejm_image, nyu_breast_path_ner, open_medical_llm_avg, pathmmu, ph_llm_sleep (no health fine-tune), slake_vqa, toxicchat_med, vct_virology (frontier guess), vqa_rad, wmdp_bio (frontier baseline). (2) 메모리 신규 등록: feedback_score_attribution_strict.md — 모든 모델에 동일한 1차 출처 검증 원칙 적용 (벤더별 GPT-5.5/Mythos/Opus/Gemini/DeepSeek/Qwen/Kimi 등 일관 적용). (3) 검증 OK 유지 entries: matharena 11개, NxCode-cited Mythos 14개, OpenAI System Card PDF로 검증된 GPT-5.5 cyber/safety entries (cybench, openai_ctf_professional, irregular_atomic_*, cot_*, apollo_*, cybergym, mle_bench, monorepo_bench, troubleshootingbench, cvebench, biochem_reward4, dna_design, protein_binding, virology_mcq, tlo_cyber_range, healthbench/_consensus/_hard, dynamic_*). Cache: app.js?v=20260428f.",
