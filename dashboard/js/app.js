@@ -572,6 +572,16 @@ var App = {
             strong.className = 'cursor-pointer hover:text-blue-400 transition';
             strong.onclick = (function(bid) { return function() { Modal.showBenchmark(bid); }; })(benchId);
             tdName.appendChild(strong);
+            // BMT badge — shown if benchmark is mapped to BMT registry
+            if (typeof Modal !== 'undefined' && Modal._bmtData && Modal._bmtData[benchId]) {
+                var bmtB = document.createElement('span');
+                bmtB.className = 'inline-block ml-1 px-1.5 rounded align-middle';
+                bmtB.style.cssText = 'font-size:10px;font-weight:700;background:#064e3b;color:#6ee7b7;border:1px solid #047857;letter-spacing:0.5px;cursor:help';
+                bmtB.title = 'BMT registry: ' + (Modal._bmtData[benchId].bmt_title || '');
+                bmtB.textContent = 'BMT';
+                tdName.appendChild(document.createTextNode(' '));
+                tdName.appendChild(bmtB);
+            }
             tr.appendChild(tdName);
 
             var tdCat = document.createElement('td');

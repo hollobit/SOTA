@@ -128,7 +128,17 @@ var Modal = {
         Modal._historyDataBase = base;
         fetch(base + '/bmt_connections.json').then(function(r) {
             return r.ok ? r.json() : {};
-        }).then(function(d) { Modal._bmtData = d; }).catch(function() { Modal._bmtData = {}; });
+        }).then(function(d) {
+            Modal._bmtData = d;
+            // Re-render visible tables that surface BMT badges, since the
+            // initial render likely happened before this fetch resolved.
+            try {
+                if (typeof App !== 'undefined') {
+                    if (App.renderLeaderboard) App.renderLeaderboard();
+                    if (App._renderSOTATable) App._renderSOTATable();
+                }
+            } catch (e) { /* non-fatal */ }
+        }).catch(function() { Modal._bmtData = {}; });
 
         // Preload the history index (list of snapshot dates). Each date's
         // full snapshot is lazy-loaded on demand inside showScoreSource.
