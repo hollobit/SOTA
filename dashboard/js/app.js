@@ -794,7 +794,25 @@ var App = {
             tr.appendChild(tdModel);
 
             var tdBench = document.createElement('td');
-            tdBench.textContent = s.benchmark_id.toUpperCase();
+            var benchObj = self.data.benchmarks.find(function(b) { return b.id === s.benchmark_id; });
+            var benchSpan = document.createElement('span');
+            benchSpan.className = 'cursor-pointer hover:text-blue-400 transition';
+            benchSpan.textContent = benchObj ? benchObj.name : s.benchmark_id.toUpperCase();
+            benchSpan.onclick = (function(bid) { return function() {
+                if (typeof Modal !== 'undefined' && Modal.showBenchmark) Modal.showBenchmark(bid);
+            }; })(s.benchmark_id);
+            tdBench.appendChild(benchSpan);
+
+            // BMT badge — shown if benchmark is mapped to a BMT registry entry
+            if (typeof Modal !== 'undefined' && Modal._bmtData && Modal._bmtData[s.benchmark_id]) {
+                var bmtBadge = document.createElement('span');
+                bmtBadge.className = 'inline-block ml-1 px-1.5 rounded align-middle';
+                bmtBadge.style.cssText = 'font-size:10px;font-weight:700;background:#064e3b;color:#6ee7b7;border:1px solid #047857;letter-spacing:0.5px;cursor:help';
+                bmtBadge.title = 'BMT registry: ' + (Modal._bmtData[s.benchmark_id].bmt_title || '');
+                bmtBadge.textContent = 'BMT';
+                tdBench.appendChild(document.createTextNode(' '));
+                tdBench.appendChild(bmtBadge);
+            }
             tr.appendChild(tdBench);
 
             var tdScore = document.createElement('td');
