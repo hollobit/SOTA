@@ -1,0 +1,105 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-29",
+    "sources": [
+      "https://blogs.nvidia.com/blog/nemotron-3-nano-omni-multimodal-ai-agents/",
+      "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16",
+      "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-FP8",
+      "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-NVFP4",
+      "https://build.nvidia.com/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
+    ]
+  },
+  "models": [
+    {
+      "id": "nvidia/nemotron-3-nano-omni",
+      "vendor": "NVIDIA",
+      "name": "Nemotron 3 Nano Omni 30B-A3B",
+      "type": "open-weight",
+      "released_at": "2026-04-28",
+      "params_b": 31,
+      "active_params_b": 3,
+      "context_window": 262144,
+      "modalities": ["text", "image", "audio", "video"],
+      "license": "NVIDIA Open Model Agreement",
+      "_note": "Mamba2-Transformer hybrid MoE; CRADIO v4-H vision encoder + Parakeet speech encoder. 256K context. Open weights, datasets, training techniques. Distilled from Qwen3-VL-30B-A3B-Instruct, Qwen3.5-122B-A10B, Qwen3.5-397B-A17B, Qwen2.5-VL-72B, gpt-oss-120b"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "cvbench2d",
+      "name": "CV-Bench 2D",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "description": "2D visual grounding benchmark — object localization, spatial reasoning"
+    },
+    {
+      "id": "ocrbench_v2",
+      "name": "OCRBench v2 (English)",
+      "category": "multimodal",
+      "metric": "score",
+      "description": "Document OCR + reasoning benchmark v2 (English subset)"
+    },
+    {
+      "id": "osworld",
+      "name": "OSWorld",
+      "category": "agent",
+      "metric": "success_rate",
+      "description": "Real computer-use agent benchmark across OS apps. 369 tasks across Ubuntu/macOS/Windows. Different from OSWorld-Verified which is a curated subset"
+    },
+    {
+      "id": "mmlongbench_doc",
+      "name": "MMLongBench-Doc",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "description": "Long multi-image document understanding — multi-page PDFs, charts, tables"
+    },
+    {
+      "id": "ocr_reasoning",
+      "name": "OCR Reasoning",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "description": "OCR + reasoning composite — extract text from images then reason over it"
+    },
+    {
+      "id": "video_mme",
+      "name": "Video-MME",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "description": "Comprehensive video understanding benchmark — 900 videos, 2700 QA pairs across 6 domains, short/medium/long video"
+    },
+    {
+      "id": "world_sense",
+      "name": "WorldSense",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "description": "Joint video+audio reasoning benchmark — physical-world common sense across modalities"
+    },
+    {
+      "id": "daily_omni",
+      "name": "Daily Omni",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "description": "Everyday multimodal reasoning — synchronized audio+video understanding"
+    },
+    {
+      "id": "voice_interaction",
+      "name": "Voice Interaction (speech instruction following)",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "description": "Speech instruction following evaluation — model executes task given spoken instructions"
+    }
+  ],
+  "scores": [
+    {"model": "nvidia/nemotron-3-nano-omni", "benchmark": "cvbench2d", "score": 83.95, "_source": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16", "_note": "Reasoning-mode BF16. +6.73% vs Nemotron Nano VL V2 (78.3)"},
+    {"model": "nvidia/nemotron-3-nano-omni", "benchmark": "ocrbench_v2", "score": 67.04, "_source": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16", "_note": "Reasoning-mode BF16. +18.26% vs Nano VL V2 (54.8)"},
+    {"model": "nvidia/nemotron-3-nano-omni", "benchmark": "osworld", "score": 47.4, "_source": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16", "_note": "Reasoning-mode BF16. Computer-use agent. +76.58% vs Nano VL V2 (11.1)"},
+    {"model": "nvidia/nemotron-3-nano-omni", "benchmark": "charxiv_reasoning", "score": 63.6, "_source": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16", "_note": "Reasoning-mode BF16. +35.06% vs Nano VL V2 (41.3)"},
+    {"model": "nvidia/nemotron-3-nano-omni", "benchmark": "mmlongbench_doc", "score": 57.5, "_source": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16", "_note": "Reasoning-mode BF16. +33.91% vs Nano VL V2 (38.0)"},
+    {"model": "nvidia/nemotron-3-nano-omni", "benchmark": "mathvista_mini", "score": 82.8, "_source": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16", "_note": "Reasoning-mode BF16. +8.82% vs Nano VL V2 (75.5)"},
+    {"model": "nvidia/nemotron-3-nano-omni", "benchmark": "ocr_reasoning", "score": 54.14, "_source": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16", "_note": "Reasoning-mode BF16. +33.87% vs Nano VL V2 (33.9)"},
+    {"model": "nvidia/nemotron-3-nano-omni", "benchmark": "video_mme", "score": 72.2, "_source": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16", "_note": "Reasoning-mode BF16. Video Q/A — Video MME"},
+    {"model": "nvidia/nemotron-3-nano-omni", "benchmark": "world_sense", "score": 55.4, "_source": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16", "_note": "Reasoning-mode BF16. Joint video+audio Q/A"},
+    {"model": "nvidia/nemotron-3-nano-omni", "benchmark": "daily_omni", "score": 74.52, "_source": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16", "_note": "Reasoning-mode BF16. Daily multimodal video+audio reasoning"},
+    {"model": "nvidia/nemotron-3-nano-omni", "benchmark": "voice_interaction", "score": 89.39, "_source": "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16", "_note": "Reasoning-mode BF16. Speech instruction following"}
+  ]
+}
