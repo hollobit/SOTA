@@ -9,6 +9,20 @@
     ],
     "_note": "Backfill batch — all rows have primary-source URL where model+benchmark+value all appear together. Strict-attribution rule applied. Does NOT include Mistral Large 3 individual scores (JS-rendered), Grok 4.3 (phantom), Gemini 3.1 Ultra (phantom)."
   },
+  "benchmarks": [
+    {"id": "super_gpqa", "name": "SuperGPQA", "category": "reasoning", "metric": "accuracy", "description": "Extended GPQA — harder graduate-level science questions"},
+    {"id": "drop", "name": "DROP (Discrete Reasoning Over Paragraphs)", "category": "reasoning", "metric": "f1", "description": "Reading comprehension requiring discrete reasoning over paragraph text"},
+    {"id": "big_code_bench", "name": "BigCodeBench", "category": "coding", "metric": "pass1", "description": "Comprehensive code generation benchmark across 1,140 tasks"},
+    {"id": "imoanswerbench", "name": "IMOAnswerBench", "category": "math", "metric": "pass1", "description": "International Math Olympiad answer-level benchmark"},
+    {"id": "codeforces", "name": "Codeforces (rating)", "category": "coding", "metric": "rating", "description": "Competitive programming rating on Codeforces"},
+    {"id": "livecodebench_pro", "name": "LiveCodeBench Pro (Elo)", "category": "coding", "metric": "elo", "description": "Pro tier of LiveCodeBench with Elo-based rating"},
+    {"id": "mrcr_v2_128k", "name": "MRCR v2 128k", "category": "reasoning", "metric": "accuracy", "description": "Multi-round co-reference resolution at 128k context window"},
+    {"id": "mrcr_v2_1m", "name": "MRCR v2 1M", "category": "reasoning", "metric": "accuracy", "description": "Multi-round co-reference resolution at 1M context window"},
+    {"id": "math_vision", "name": "MATH-Vision", "category": "multimodal", "metric": "accuracy", "description": "Math problems with visual diagrams and figures"},
+    {"id": "bigbench_extra_hard", "name": "BIG-Bench Extra Hard", "category": "reasoning", "metric": "accuracy", "description": "Hardest subset of BIG-Bench tasks"},
+    {"id": "lmarena", "name": "LMArena (text)", "category": "reasoning", "metric": "elo", "description": "LMArena text-only Bradley-Terry/Elo rating"},
+    {"id": "aa_intelligence_index", "name": "Artificial Analysis Intelligence Index", "category": "reasoning", "metric": "composite", "description": "Artificial Analysis composite intelligence index across multiple benchmarks"}
+  ],
   "scores": [
     {"model": "deepseek/deepseek-v4-flash", "benchmark": "agieval", "score": 82.6, "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash"},
     {"model": "deepseek/deepseek-v4-flash", "benchmark": "mmlu", "score": 88.7, "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash"},
