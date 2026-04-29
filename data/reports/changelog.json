@@ -1,5 +1,14 @@
 [
   {
+    "type": "Feature",
+    "date": "2026-04-29",
+    "benchmark_id": "JAMA Network Open + HealthBench Pro 종합 모델 비교 (+5 모델, +6 benchmarks, +65 점수)",
+    "new_model": "Rao et al JAMA 2847679 + OpenAI HealthBench Pro PDF — 8 시스템 multi-slice 비교",
+    "new_value": "User-requested 2-paper extraction with strict-attribution (1차 출처: JAMA fullarticle/2847679 + HealthBench Pro PDF). (1) JAMA Network Open 'LLM Performance and Clinical Reasoning Tasks' (Rao et al Apr 13 2026, 21 LLMs × 29 MSD vignettes × 3 reps = 16,254 응답): Grok 4 PrIME-LLM 0.78 (top), Gemini 1.5 Flash 0.64 (bottom), GPT-4.5 multimodal_delta +0.10, Gemini 3 Pro +0.09, Grok 4 +0.07, GPT-4o final-vs-diff-dx gap 0.12, Claude 3.5 Haiku 0.16. eTable 2 reCAPTCHA-gated → 19개 모델 per-model PrIME 미수집 (NEEDS_NUMERIC). (2) HealthBench Pro PDF (Hicks et al Apr 22 2026): 8 systems × Overall + 3 use-cases + 3 slices = 56 cells from Figure 4/5/7 chart labels + Section 5 prose. Top results — base GPT-5.4 48.1 / GPT-5.2 45.9 / GPT-5 46.2 / Claude Opus 4.7 47.0 / Gemini 3.1 Pro 43.8 / Grok 4.20 34.1 / Physician baseline 43.7. Care Consult: Physician 42.7. Writing & Doc: Physician 32.1, Grok 4.20 only 7.7. Medical Research: Physician 56.3 (text-attributed 58.1 GPT-5.4). RT-difficult: Grok 4.20 = 0.0, Physician 30.0 lowest after Grok. (3) Specialty extras — Physician baselines for nephrology 43.6, cardiology 30.7, neurology 55.0, orthopedics 27.6; GPT-5.4 base for orthopedics 29.9 + psychiatry 40.7. (4) New models: gemini-1.5-flash, gpt-4.5, gpt-4o, claude-3.5-haiku, baseline/physician (human baseline). +6 new benchmarks: prime_llm_score, multimodal_text_image_delta, final_vs_diff_dx_gap, healthbench_pro_gf_difficult, healthbench_pro_neurology, healthbench_pro_orthopedics. NOT_ADDED — Fig.6 specialty grid for 8 systems × 5 specialties (no numeric labels printed; only bar heights), Fig.8/9 verbosity sweeps (no per-cell labels).",
+    "old_model": null,
+    "old_value": null
+  },
+  {
     "type": "Fix",
     "date": "2026-04-29",
     "benchmark_id": "Phantom-model cleanup + DeepSeek V4 / Gemma 4 / Gemini 3.1 Pro 대규모 backfill (+84 verified)",

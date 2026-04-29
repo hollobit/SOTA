@@ -89,6 +89,36 @@
     "collected_at": "2026-04-28",
     "notes": "Rank 1/10. 02/2026 sub: 69.76, 03/2026 sub: 73.66"
   },
+  "healthbench_pro_writing": {
+    "model_id": "openai/chatgpt-clinicians-gpt54",
+    "benchmark_id": "healthbench_pro_writing",
+    "value": 64.1,
+    "unit": "%",
+    "source": {
+      "type": "pdf",
+      "url": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "date": "2026-04-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-29",
+    "notes": "Hicks et al. §5.1 — 'writing and documentation (64.1 vs 32.1, p = 1.2e-8)'"
+  },
+  "healthbench_pro_redteam": {
+    "model_id": "openai/chatgpt-clinicians-gpt54",
+    "benchmark_id": "healthbench_pro_redteam",
+    "value": 55.8,
+    "unit": "%",
+    "source": {
+      "type": "pdf",
+      "url": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "date": "2026-04-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-29",
+    "notes": "Hicks et al. §5.1 — 'On the RT 1-2 slice, it scored 55.8 versus 30.0 for physicians'"
+  },
   "deepsearchqa": {
     "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "deepsearchqa",
@@ -2039,21 +2069,6 @@
     "collected_at": "2026-04-24",
     "notes": "System Card Table 6"
   },
-  "healthbench_professional": {
-    "model_id": "openai/openai-health-research",
-    "benchmark_id": "healthbench_professional",
-    "value": 65.8,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://openai.com/index/healthbench/",
-      "date": "2026-04-26",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-26",
-    "notes": "OpenAI internal medical research eval"
-  },
   "protein_binding": {
     "model_id": "openai/gpt-5.4-thinking",
     "benchmark_id": "protein_binding",
@@ -3883,6 +3898,21 @@
     "is_sota": true,
     "collected_at": "2026-04-26",
     "notes": "Octo-Base SimplerEnv aggregate baseline"
+  },
+  "healthbench_professional": {
+    "model_id": "openai/openai-health-research",
+    "benchmark_id": "healthbench_professional",
+    "value": 65.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/index/healthbench/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "OpenAI internal medical research eval"
   },
   "medqa_usmle": {
     "model_id": "anthropic/claude-opus-4.6",
@@ -7754,21 +7784,6 @@
     "collected_at": "2026-04-29",
     "notes": "Hicks et al. §5.1 — 'significantly better in care consult (51.0 vs 42.7, p = 2.5e-2)'"
   },
-  "healthbench_pro_writing": {
-    "model_id": "openai/chatgpt-clinicians-gpt54",
-    "benchmark_id": "healthbench_pro_writing",
-    "value": 64.1,
-    "unit": "%",
-    "source": {
-      "type": "pdf",
-      "url": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
-      "date": "2026-04-29",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-29",
-    "notes": "Hicks et al. §5.1 — 'writing and documentation (64.1 vs 32.1, p = 1.2e-8)'"
-  },
   "healthbench_pro_research": {
     "model_id": "openai/chatgpt-clinicians-gpt54",
     "benchmark_id": "healthbench_pro_research",
@@ -7783,21 +7798,6 @@
     "is_sota": true,
     "collected_at": "2026-04-29",
     "notes": "Hicks et al. §5.1 — 'medical research (67.0 vs 56.3, p = 1.5e-3)'"
-  },
-  "healthbench_pro_redteam": {
-    "model_id": "openai/chatgpt-clinicians-gpt54",
-    "benchmark_id": "healthbench_pro_redteam",
-    "value": 55.8,
-    "unit": "%",
-    "source": {
-      "type": "pdf",
-      "url": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
-      "date": "2026-04-29",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-29",
-    "notes": "Hicks et al. §5.1 — 'On the RT 1-2 slice, it scored 55.8 versus 30.0 for physicians'"
   },
   "healthbench_pro_goodfaith": {
     "model_id": "openai/chatgpt-clinicians-gpt54",
@@ -8203,5 +8203,95 @@
     "is_sota": true,
     "collected_at": "2026-04-29",
     "notes": "AA composite, ranked #17/37"
+  },
+  "prime_llm_score": {
+    "model_id": "xai/grok-4",
+    "benchmark_id": "prime_llm_score",
+    "value": 0.78,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679",
+      "date": "2026-04-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-29",
+    "notes": "Highest among 21 LLMs evaluated. Range 0.77-0.79. JAMA Rao et al 2026-04-13 §Results"
+  },
+  "multimodal_text_image_delta": {
+    "model_id": "openai/gpt-4.5",
+    "benchmark_id": "multimodal_text_image_delta",
+    "value": 0.1,
+    "unit": "delta",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679",
+      "date": "2026-04-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-29",
+    "notes": "Multimodal vs text-only gain on image vignettes, p<.001"
+  },
+  "final_vs_diff_dx_gap": {
+    "model_id": "anthropic/claude-3.5-haiku",
+    "benchmark_id": "final_vs_diff_dx_gap",
+    "value": 0.16,
+    "unit": "delta",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679",
+      "date": "2026-04-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-29",
+    "notes": "Mean difference final-dx - differential-dx accuracy"
+  },
+  "healthbench_pro_gf_difficult": {
+    "model_id": "google/gemini-3.1-pro",
+    "benchmark_id": "healthbench_pro_gf_difficult",
+    "value": 39.4,
+    "unit": "%",
+    "source": {
+      "type": "pdf",
+      "url": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "date": "2026-04-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-29",
+    "notes": ""
+  },
+  "healthbench_pro_neurology": {
+    "model_id": "openai/chatgpt-clinicians-gpt54",
+    "benchmark_id": "healthbench_pro_neurology",
+    "value": 65.6,
+    "unit": "%",
+    "source": {
+      "type": "pdf",
+      "url": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "date": "2026-04-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-29",
+    "notes": "p.11 §5.2 'neurology (65.6 vs 55.0, p = 0.065)'"
+  },
+  "healthbench_pro_orthopedics": {
+    "model_id": "openai/chatgpt-clinicians-gpt54",
+    "benchmark_id": "healthbench_pro_orthopedics",
+    "value": 49.4,
+    "unit": "%",
+    "source": {
+      "type": "pdf",
+      "url": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "date": "2026-04-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-29",
+    "notes": "p.11 §5.2 'orthopedics (49.4 vs 27.6, p = 0.067)' / 'vs GPT-5.4 29.9'"
   }
 }
