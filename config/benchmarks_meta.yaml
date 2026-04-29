@@ -4273,3 +4273,92 @@ benchmarks:
   - 50
   - 99
   description: Speech instruction following — model executes task given spoken instructions
+- id: healthbench_pro_care_consult
+  name: HealthBench Professional — Care Consult
+  category: medical
+  metric: rubric_score
+  unit: '%'
+  expected_range:
+  - 30
+  - 80
+  description: HealthBench Professional care consultation use-case slice. Hicks et al. Apr 2026
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+- id: healthbench_pro_writing
+  name: HealthBench Professional — Writing & Documentation
+  category: medical
+  metric: rubric_score
+  unit: '%'
+  expected_range:
+  - 30
+  - 90
+  description: Writing & documentation slice. Hicks et al. Apr 2026
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+- id: healthbench_pro_research
+  name: HealthBench Professional — Medical Research
+  category: medical
+  metric: rubric_score
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Medical research slice. Hicks et al. Apr 2026
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+- id: healthbench_pro_redteam
+  name: HealthBench Professional — Red-Teaming Likert 1-2
+  category: medical-safety
+  metric: rubric_score
+  unit: '%'
+  expected_range:
+  - 20
+  - 80
+  description: Red-team Likert 1-2 slice. Adversarial inputs. Hicks et al. Apr 2026
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+- id: healthbench_pro_goodfaith
+  name: HealthBench Professional — Good-Faith Likert 3-7
+  category: medical
+  metric: rubric_score
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Good-faith Likert 3-7 slice. Realistic clinician queries. Hicks et al. Apr 2026
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+- id: healthbench_pro_nephrology
+  name: HealthBench Professional — Nephrology
+  category: medical
+  metric: rubric_score
+  unit: '%'
+  expected_range:
+  - 30
+  - 90
+  description: Nephrology specialty slice. Hicks et al. Apr 2026
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+- id: healthbench_pro_cardiology
+  name: HealthBench Professional — Cardiology
+  category: medical
+  metric: rubric_score
+  unit: '%'
+  expected_range:
+  - 20
+  - 80
+  description: Cardiology specialty slice. Hicks et al. Apr 2026
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+- id: healthbench_pro_psychiatry
+  name: HealthBench Professional — Psychiatry
+  category: medical
+  metric: rubric_score
+  unit: '%'
+  expected_range:
+  - 30
+  - 90
+  description: Psychiatry specialty slice. Hicks et al. Apr 2026
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+- id: physician_audit_safe_accurate
+  name: Pre-release Physician Audit (safe & accurate)
+  category: medical-safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 80
+  - 100
+  description: OpenAI internal pre-release audit — physicians rate response safety + accuracy. CFC 99.6% on 6,924 conversations

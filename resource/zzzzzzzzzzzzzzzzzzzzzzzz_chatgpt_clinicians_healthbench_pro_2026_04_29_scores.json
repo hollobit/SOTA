@@ -1,0 +1,86 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-29",
+    "sources": [
+      "https://openai.com/index/making-chatgpt-better-for-clinicians/",
+      "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
+    ],
+    "_note": "All scores from Hicks et al. HealthBench Professional technical report (Apr 22 2026). Underlying model = GPT-5.4 (NOT GPT-5.5; the Apr 22 PDF §3 explicitly names 'GPT-5.4 and GPT-5.2 Instant' as the models used in CFC). Strict-attribution rule applied: every score below has a quoted excerpt confirming model+benchmark+value."
+  },
+  "benchmarks": [
+    {
+      "id": "healthbench_pro_care_consult",
+      "name": "HealthBench Professional — Care Consult",
+      "category": "medical",
+      "metric": "rubric_score",
+      "description": "Care consultation use-case slice of HealthBench Professional. ChatGPT for Clinicians 51.0 vs physicians 42.7 (p=2.5e-2)"
+    },
+    {
+      "id": "healthbench_pro_writing",
+      "name": "HealthBench Professional — Writing & Documentation",
+      "category": "medical",
+      "metric": "rubric_score",
+      "description": "Writing & documentation slice of HealthBench Professional. ChatGPT for Clinicians 64.1 vs physicians 32.1 (p=1.2e-8)"
+    },
+    {
+      "id": "healthbench_pro_research",
+      "name": "HealthBench Professional — Medical Research",
+      "category": "medical",
+      "metric": "rubric_score",
+      "description": "Medical research slice of HealthBench Professional. ChatGPT for Clinicians 67.0 vs physicians 56.3 (p=1.5e-3)"
+    },
+    {
+      "id": "healthbench_pro_redteam",
+      "name": "HealthBench Professional — Red-Teaming Likert 1-2",
+      "category": "medical-safety",
+      "metric": "rubric_score",
+      "description": "Red-teaming Likert 1-2 slice. Adversarial / unsafe inputs. ChatGPT for Clinicians 55.8 vs physicians 30.0"
+    },
+    {
+      "id": "healthbench_pro_goodfaith",
+      "name": "HealthBench Professional — Good-Faith Likert 3-7",
+      "category": "medical",
+      "metric": "rubric_score",
+      "description": "Good-faith Likert 3-7 slice. Realistic clinician queries. ChatGPT for Clinicians 69.0 vs physicians 55.7 (p=1.0e-7)"
+    },
+    {
+      "id": "healthbench_pro_nephrology",
+      "name": "HealthBench Professional — Nephrology",
+      "category": "medical",
+      "metric": "rubric_score",
+      "description": "Nephrology specialty. ChatGPT for Clinicians 72.1 vs physicians 43.6 (p=1.2e-3)"
+    },
+    {
+      "id": "healthbench_pro_cardiology",
+      "name": "HealthBench Professional — Cardiology",
+      "category": "medical",
+      "metric": "rubric_score",
+      "description": "Cardiology specialty. ChatGPT for Clinicians 53.9 vs physicians 30.7 (p=1.3e-3)"
+    },
+    {
+      "id": "healthbench_pro_psychiatry",
+      "name": "HealthBench Professional — Psychiatry",
+      "category": "medical",
+      "metric": "rubric_score",
+      "description": "Psychiatry specialty. ChatGPT for Clinicians 69.6 vs base GPT-5.4 40.7 (p=1.3e-3)"
+    },
+    {
+      "id": "physician_audit_safe_accurate",
+      "name": "Pre-release Physician Audit (safe & accurate)",
+      "category": "medical-safety",
+      "metric": "accuracy",
+      "description": "OpenAI internal pre-release audit — physicians rated 6,924 conversations as safe and accurate. CFC = 99.6%"
+    }
+  ],
+  "scores": [
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "healthbench_pro_care_consult", "score": 51.0, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Hicks et al. §5.1 — 'significantly better in care consult (51.0 vs 42.7, p = 2.5e-2)'"},
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "healthbench_pro_writing", "score": 64.1, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Hicks et al. §5.1 — 'writing and documentation (64.1 vs 32.1, p = 1.2e-8)'"},
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "healthbench_pro_research", "score": 67.0, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Hicks et al. §5.1 — 'medical research (67.0 vs 56.3, p = 1.5e-3)'"},
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "healthbench_pro_redteam", "score": 55.8, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Hicks et al. §5.1 — 'On the RT 1-2 slice, it scored 55.8 versus 30.0 for physicians'"},
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "healthbench_pro_goodfaith", "score": 69.0, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Hicks et al. §5.1 — 'On the larger Good-faith 3-7 slice, it remained far ahead of physicians (69.0 vs 55.7, p = 1.0e-7)'"},
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "healthbench_pro_nephrology", "score": 72.1, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Hicks et al. §5.2 — 'significantly higher in nephrology (72.1 vs 43.6, p = 1.2e-3)'"},
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "healthbench_pro_cardiology", "score": 53.9, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Hicks et al. §5.2 — 'cardiology (53.9 vs 30.7, p = 1.3e-3)'"},
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "healthbench_pro_psychiatry", "score": 69.6, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Hicks et al. §5.2 — 'psychiatry over GPT-5.4 (69.6 vs 40.7, p = 1.3e-3)'"},
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "physician_audit_safe_accurate", "score": 99.6, "_source": "https://openai.com/index/making-chatgpt-better-for-clinicians/", "_note": "Pre-release audit — physicians rated 99.6% of responses as safe and accurate, based on 6,924 conversations"}
+  ]
+}
