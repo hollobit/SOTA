@@ -1,5 +1,14 @@
 [
   {
+    "type": "Fix",
+    "date": "2026-04-29",
+    "benchmark_id": "Phantom-model cleanup + DeepSeek V4 / Gemma 4 / Gemini 3.1 Pro 대규모 backfill (+84 verified)",
+    "new_model": "Grok 4.3 + Gemini 3.1 Ultra 제거 (둘 다 phantom) + 4 frontier 모델 score backfill",
+    "new_value": "User-requested 'continue' — thin-coverage 2026 모델 backfill. (1) PHANTOM REMOVED: xai/grok-4.3 (xAI 최신은 Grok 4.20, x.ai/news/grok-4-3 404, data.x.ai에 PDF 없음, ArtificialAnalysis에도 페이지 없음 — 제3자 SEO에서만 존재) + google/gemini-3.1-ultra (Google 3.1 family는 Pro+Flash-Lite only, 'Ultra' tier 없음 — DeepMind 1차 docs 확인). 메모리 규칙 강화: feedback_score_attribution_strict.md에 'Phantom models' 패턴 추가. (2) DeepSeek V4-Flash +22 verified scores (HF model card 1차 출처): AGIEval 82.6, MMLU 88.7, MMLU-Redux 89.4, MMLU-Pro 86.2 Max, MMMLU 88.8, C-Eval 92.1, CMMLU 90.4, SuperGPQA 46.5, DROP 88.6, BigCodeBench 56.8, HumanEval 69.5, GSM8K 90.8, MATH 57.4, LongBench-V2 44.7, GPQA Diamond 88.1, HLE 34.8, LiveCodeBench 91.6, IMO Answer 88.4, Terminal-Bench 2.0 56.9, SWE-Pro 52.6, BrowseComp 73.2, MCP Atlas 69.0. (3) DeepSeek V4-Pro +25 verified scores: 동일 카테고리 + Codeforces 3206 elo, HMMT 2026 95.2, GDPval-AA 1554 elo, Toolathlon 51.8. (4) Gemma 4 31B IT +14 verified scores (HF blog/gemma4): MMLU-Pro 85.2, AIME 2026 89.2, GPQA 84.3, τ²-bench 76.9, BBEH 74.4, MMMLU 88.4, LiveCodeBench v6 80.0, Codeforces 2150, HLE no-tools 19.5, MMMU-Pro 76.9, MATH-Vision 85.6, MedXPertQA-MM 61.3, MRCR 128k 66.4, LMArena 1452. (5) Gemma 4 26B-A4B +4 scores. (6) Gemini 3.1 Pro +17 verified scores (DeepMind model card): HLE 44.4, ARC-AGI-2 77.1, GPQA 94.3, Terminal-Bench 2.0 68.5, SWE-Verified 80.6, SWE-Pro 54.2, LiveCodeBench Pro 2887 elo, SciCode 59, APEX-Agents 33.5, GDPval-AA 1317 elo, τ²-Retail 90.8, MCP Atlas 69.2, BrowseComp 85.9, MMMU-Pro 80.5, MMMLU 92.6, MRCR 128k 84.9, MRCR 1M 26.3. (7) Mistral Large 3 +1 score (AA composite Index 23). +12 new benchmark defs registered (SuperGPQA, DROP, BigCodeBench, IMOAnswerBench, Codeforces, LiveCodeBench Pro, MRCR v2 128k/1M, MATH-Vision, BBEH, LMArena, AA Intelligence Index). NOT_ADDED — Mistral Large 3 individual scores (mistral.ai docs / vals.ai / llm-stats 모두 JS-rendered 또는 0% placeholder).",
+    "old_model": null,
+    "old_value": null
+  },
+  {
     "type": "Feature",
     "date": "2026-04-29",
     "benchmark_id": "참조 사이트 분석 — Reka Edge + FrontierMath Tier 4 추가 (+1 모델, +8 benchmarks, +10 점수)",
