@@ -13,7 +13,6 @@ var MedicalAI = {
             icon: '🩺',
             note: 'ChatGPT for Clinicians · Med-Gemini · Med-PaLM · MedGemma · Polaris · Almanac — 임상의 워크플로 전용',
             models: [
-                'openai/chatgpt-clinicians-gpt55',
                 'openai/chatgpt-clinicians-gpt54',
                 'google/med-gemini-3-pro',
                 'google/med-gemini-l-2',
@@ -396,7 +395,6 @@ var MedicalAI = {
             icon: '🇺🇸',
             note: 'OpenAI/Anthropic/Google clinical · MIT CLIPath 3 · NIH C-MedBERT 2 · Stanford ClinicalFormer 3 · Mahmood Lab pathology · Stanford radiology · Cedars-Sinai cardiology · Yale + Penn',
             models: [
-                'openai/chatgpt-clinicians-gpt55',
                 'openai/chatgpt-clinicians-gpt54',
                 'openai/openai-health-research',
                 'anthropic/claude-medical-eval',
@@ -1132,7 +1130,6 @@ var MedicalAI = {
 
     // Curated parameter sizes (B) for medical models — used when name doesn't carry "NB" suffix.
     KNOWN_PARAMS_MED: {
-        'openai/chatgpt-clinicians-gpt55': null,
         'openai/chatgpt-clinicians-gpt54': null,
         'google/med-gemini-3-pro': null,
         'google/med-gemini-l-2': null,
