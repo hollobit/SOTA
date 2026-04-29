@@ -1,5 +1,14 @@
 [
   {
+    "type": "Fix",
+    "date": "2026-04-30",
+    "benchmark_id": "BMT 매핑 갭 분석 + 126→136 자동 매핑 추가, 10 false-positive 제거 (BMT 커버리지 35% → 57%)",
+    "new_model": "AIRTBench/CyBench/CyberGym/GAIA/MCP-Atlas/WebArena/CharXiv/MathArena 등 126개 추가 매핑",
+    "new_value": "User-flagged: 'AIRTBench, AILuminate v1.0, Aider Polyglot 등에 BMT badge 미표시 원인 파악'. 3가지 다른 원인이 있었음: (A) AIRTBench — BMT.json 등록 OK이지만 BMT-mapping.json에 매핑 없음 (해결 가능). 추가 126개도 같은 원인. (B) AILuminate v1.0 / Aider Polyglot — BMT.json 자체에 미등록 (registry gap). 추가 252개도 같은 그룹. 매핑 불가능. 해결: (1) 자동 매핑 — 575 benchmark × 2,559 BMT.json 항목 strict+loose substring 매치 → 126 신규 매핑 추가. AIRTBench, CyBench, CyberGym, GAIA, Tau-bench, MCP-Atlas, WebArena, AutoPatchBench, BaxBench, Vending-Bench, ScreenSpot-Pro, CharXiv, OmniDocBench, FACTS Benchmark, Video-MMMU, GDPval-AA, MathArena Apex 등. (2) False-positive 정리 — loose 매치로 잘못 연결된 10개 제거: medseg_dice (MedSAM은 모델), path_bench (TCGA-Reports와 무관), cvebench (VE-Bench와 다름), lunit_dx_auc (CheXpert와 다름), rexrank_bertscore, eicu_xgen_auc, delphi_disease_risk, owkin_path_avg, siim_acr_pneumothorax (ISIC 2018은 melanoma), promise12 (SEACRAFT와 다름), cxpmrg_bench. (3) BMT-miss.json 업데이트 — 254 benchmarks (registry 미등록) 트래킹. (4) 결과: bmt_connections.json 215 → 331 entries, BMT 커버리지 35% → 57%. 매핑 불가능한 254개 (AILuminate, Aider Polyglot, wmdp_bio/chem, harmbench, strongreject, medqa_usmle, pubmedqa 등)는 BMT-miss.json에 기록. 추후 BMT registry 측에서 등록되면 자동으로 매핑 가능.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
     "type": "Feature",
     "date": "2026-04-29",
     "benchmark_id": "SOTA Leaderboard에 BMT 매핑 뱃지 표시 + 벤치마크 cell clickable",
