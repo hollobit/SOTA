@@ -1,1172 +1,1279 @@
-[
-  {
-    "id": "medbullets",
-    "name": "MedBullets-5op",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Clinical case multi-choice — USMLE Step 2/3-style questions from MedBullets. 5-option format, harder than 4-option MedQA. ~308 questions per split.",
-    "paper": "https://arxiv.org/abs/2402.18060",
-    "expected_range": [
-      40,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "nejm_image",
-    "name": "NEJM Image Challenge",
-    "metric": "accuracy",
-    "category": "medical-imaging",
-    "description": "New England Journal of Medicine weekly image-based diagnostic challenge — 935+ image-clinical-vignette MCQs across all medical specialties. Vision-language reasoning gold standard. GPT-5.5 73.4, Med-Gemini-L 65.0.",
-    "paper": "https://arxiv.org/abs/2404.18416",
-    "expected_range": [
-      30,
-      85
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "jama_clin_chal",
-    "name": "JAMA Clinical Challenge",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "JAMA Network clinical case quiz — diagnostic reasoning on real patient vignettes. 1,524 cases across primary care, internal medicine, emergency.",
-    "paper": "https://jamanetwork.com/collections/44038/clinical-challenge",
-    "expected_range": [
-      30,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "retbench_auc",
-    "name": "RetBench (External AUC)",
-    "metric": "auc",
-    "category": "medical-imaging",
-    "description": "Ophthalmic foundation-model evaluation suite — external validation AUC on glaucoma, DR (diabetic retinopathy), AMD (age-related macular degeneration), diabetes, hypertension prediction from retinal images. RETFound 89.0, VisionFM 90.5.",
-    "paper": "https://link.springer.com/chapter/10.1007/978-3-032-10351-2_8",
-    "expected_range": [
-      60,
-      96
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "kmle",
-    "name": "KMLE (Korean Medical Licensing Exam)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Korean Medical Licensing Examination — 320 questions/year × 4 sections. Sovereign Korean medical LLM benchmark. SNUH KMed.ai 96.4 (3-year average).",
-    "paper": "https://aclanthology.org/2024.bionlp-1.21/",
-    "expected_range": [
-      40,
-      99
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "rad_chestct",
-    "name": "RAD-ChestCT",
-    "metric": "auroc",
-    "category": "medical-imaging",
-    "description": "Chest CT 3D classification — 35,747 volumes labeled for 84 abnormality categories. RadFM evaluation.",
-    "paper": "https://arxiv.org/abs/2002.06045",
-    "expected_range": [
-      60,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "casp16_gdt",
-    "name": "CASP16 GDT-TS (Protein Structure)",
-    "metric": "gdt_ts",
-    "category": "protein",
-    "description": "CASP (Critical Assessment of Structure Prediction) round 16 GDT-TS on hard targets — biennial blind protein structure competition. AlphaFold 3 89.4, RoseTTAFold 3 86.0, OpenFold 3 87.8.",
-    "paper": "https://predictioncenter.org/casp16/",
-    "expected_range": [
-      50,
-      99
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "alphafold3_pae",
-    "name": "AlphaFold3 Confident Predictions",
-    "metric": "accuracy",
-    "category": "protein",
-    "description": "% of predicted residues with high pLDDT confidence (>70). Standard structure prediction quality metric. AlphaFold 3 84.7, ESM3 78.5, ESMFold 71.3.",
-    "paper": "https://www.nature.com/articles/s41586-024-07487-w",
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "pdbbind_rmsd",
-    "name": "PDBBind Pocket-Guided RMSD",
-    "metric": "rmsd",
-    "category": "protein",
-    "description": "Protein-ligand pose RMSD (lower=better) on PDBBind v2020 holdout — Boltz/Chai/AF3 docking benchmark. AF3 1.65, Chai-1 1.71, Boltz-2 1.78.",
-    "paper": "https://www.nature.com/articles/s41586-024-07487-w",
-    "expected_range": [
-      1.0,
-      4.0
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "absci_yield",
-    "name": "Absci de novo Antibody Yield",
-    "metric": "binding_rate",
-    "category": "protein",
-    "description": "% of de novo designed antibody candidates with experimentally validated binding (Absci wet-lab). Frontier de novo antibody design metric.",
-    "paper": "https://www.absci.com/",
-    "expected_range": [
-      10,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "kmle_2025",
-    "name": "KMLE 2025 (Korean Medical Licensing)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "2025 Korean Medical Licensing Examination — 320 questions × 4 sections. SNUH KMed.ai 96.4 (3-yr avg, world-class claim), SNU-Med v1 86.2, Kakao Healthcare 78.5.",
-    "paper": "https://aclanthology.org/2024.bionlp-1.21/",
-    "expected_range": [
-      40,
-      99
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "kormedlawqa",
-    "name": "KorMedLawQA",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "SNUH-released Korean medical law QA benchmark on HuggingFace (snuh/KorMedLawQA). Tests Korean medical-legal reasoning.",
-    "paper": "https://huggingface.co/datasets/snuh/KorMedLawQA",
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "med_internvl_avg",
-    "name": "Med-InternVL Avg",
-    "metric": "accuracy",
-    "category": "medical-imaging",
-    "description": "Medical VLM average across 14 imaging tasks — derm/endo/path/radiology MCQ + VQA. MedDr eval set. MedDr 78.3, Intern-Medical-25B 75.6, HuatuoGPT-Vision-34B 72.1, BiomedGPT-XL 68.4.",
-    "paper": "https://arxiv.org/html/2404.15127v1/",
-    "expected_range": [
-      40,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "medhallbench",
-    "name": "MedHallBench",
-    "metric": "score",
-    "category": "medical-safety",
-    "description": "Comprehensive medical hallucination evaluation — expert-validated case scenarios + medical databases. UCSD 2024-12.",
-    "paper": "https://arxiv.org/abs/2412.18947",
-    "expected_range": [
-      40,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "craft_md",
-    "name": "CRAFT-MD (Conversational Reasoning)",
-    "metric": "factual_accuracy",
-    "category": "medical-safety",
-    "description": "Conversational reasoning eval — simulates AI-agent patient interactions, measures factual accuracy.",
-    "paper": "https://www.nature.com/articles/s41746-025-02277-8",
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "rexrank_radcliq",
-    "name": "ReXrank RadCliQ",
-    "metric": "radcliq",
-    "category": "medical-imaging",
-    "description": "RadCliQ composite radiology quality score (lower=better). Combines BLEU + BERTScore + RadGraph-F1.",
-    "paper": "https://rexrank.ai/",
-    "expected_range": [
-      1.0,
-      3.5
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "rexrank_green",
-    "name": "ReXrank GREEN",
-    "metric": "green",
-    "category": "medical-imaging",
-    "description": "GREEN — clinical relevance + factuality combined for chest X-ray report generation.",
-    "paper": "https://rexrank.ai/",
-    "expected_range": [
-      0.2,
-      0.8
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "rexrank_finerad",
-    "name": "ReXrank FineRadScore",
-    "metric": "score",
-    "category": "medical-imaging",
-    "description": "Fine-grained radiology report score — finding-level error detection.",
-    "paper": "https://rexrank.ai/",
-    "expected_range": [
-      40,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "rexgrad_acc",
-    "name": "ReXGradient Test Accuracy",
-    "metric": "accuracy",
-    "category": "medical-imaging",
-    "description": "Largest test dataset (10,000 studies) for radiology report generation. ReXrank's primary holdout.",
-    "paper": "https://rexrank.ai/",
-    "expected_range": [
-      50,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "pmc_vqa",
-    "name": "PMC-VQA",
-    "metric": "accuracy",
-    "category": "medical-imaging",
-    "description": "Large-scale medical VQA from PubMed Central figures + captions. PMC-VQA-Test 2,096 image-Q pairs.",
-    "paper": "https://arxiv.org/abs/2305.10415",
-    "expected_range": [
-      40,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "medarabench",
-    "name": "MedAraBench (Arabic)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Large-scale Arabic medical benchmark — 24,883 MCQs across 19 specialties × 5 difficulty levels. MBZUAI 2026-02.",
-    "paper": "https://arxiv.org/html/2602.01714v1",
-    "expected_range": [
-      40,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "bimedix_eval",
-    "name": "BiMediX Bilingual Eval (AR+EN)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "BiMediX bilingual Arabic-English medical eval. BiMediX 65.4 avg vs Mixtral 55.0, Jais-30B 50.6.",
-    "paper": "https://arxiv.org/html/2402.13253v1",
-    "expected_range": [
-      40,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "medriskeval",
-    "name": "MedRiskEval",
-    "metric": "score",
-    "category": "medical-safety",
-    "description": "Medical risk evaluation — user-perspective patient safety in healthcare LLM use.",
-    "paper": "https://arxiv.org/html/2507.07248",
-    "expected_range": [
-      40,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "igakuqa",
-    "name": "IgakuQA (Japan Medical Licensing)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Japan medical licensing exam (国家試験) benchmark — 6-year compilation. ELYZA-LLM-Med 70B 87.5 SOTA (national 1위), bilingual eval supported.",
-    "paper": "https://arxiv.org/html/2310.10083",
-    "expected_range": [
-      40,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "jmedbench",
-    "name": "JMedBench (Japanese Medical)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Bilingual JP-EN Japanese medical evaluation — radiology, exam, clinical record. Univ Tokyo + ELYZA. PFN BioMedic 75.8.",
-    "paper": "https://arxiv.org/html/2409.11783v1",
-    "expected_range": [
-      40,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "jmed_lora_eval",
-    "name": "JMedLoRA Evaluation Suite",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Japanese medical instruction-tuning evaluation — domain adaptation benchmark for Japanese LLMs. Univ Tokyo Hospital.",
-    "paper": "https://arxiv.org/html/2310.10083",
-    "expected_range": [
-      40,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "neet_pg",
-    "name": "NEET-PG (India PG Medical)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "India Post-Graduate NEET medical entrance exam — 20+ year corpus. National-level eligibility test for top Indian medical PG programs. Vaidya 2.0 89.4 SOTA.",
-    "paper": "https://analyticsindiamag.com/ai-news-updates/fractals-vaidya-ai-outperforms-gpt-4-achieves-83-in-pg-neet/",
-    "expected_range": [
-      40,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "indic_med_bench",
-    "name": "Indic Medical Benchmark",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "AI4Bharat multilingual Indian-language medical evaluation — Hindi, Tamil, Telugu, Bengali medical QA. Airavata Medical 71.4 SOTA.",
-    "paper": "https://ai4bharat.iitm.ac.in/",
-    "expected_range": [
-      40,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "cmexam_cn",
-    "name": "CMExam (China Medical Licensing)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "China Medical Licensing Examination corpus — 60K+ MCQs. Standard Chinese medical LLM benchmark. SumiHealth 82.4 SOTA.",
-    "paper": "https://arxiv.org/abs/2306.03030",
-    "expected_range": [
-      40,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "promedqa_cn",
-    "name": "PromedQA (Chinese ProMed)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Chinese professional medicine QA — Tsinghua THUDM benchmark. GLM-Medical 81.7 SOTA.",
-    "paper": "https://github.com/THUDM/",
-    "expected_range": [
-      40,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "m42_clinical_avg",
-    "name": "M42 Clinical Avg (UAE)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Med42 internal clinical evaluation — comprehensive medical task suite (Cerebras-trained). M42 v2 70B 76.5.",
-    "paper": "https://m42.ae/media-resources/news/m42-announces-new-clinical-llm-to-transform-the-future-of-ai-in-healthcare/",
-    "expected_range": [
-      50,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "synapxe_sg_eval",
-    "name": "Synapxe Singapore Clinical",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Synapxe (Singapore MOH) clinical safety + accuracy eval — public hospital deployment validation. Synapxe Clinical-CLM 81.4.",
-    "paper": "https://www.synapxe.sg/",
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "nhs_aide_eval",
-    "name": "NHS AIDE Clinical Eval",
-    "metric": "score",
-    "category": "medical-safety",
-    "description": "NHS England AIDE clinical-deployment safety + effectiveness eval — primary care decision support. 84.7.",
-    "paper": "https://transform.england.nhs.uk/",
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "uhn_clin_bench",
-    "name": "UHN Clinical Benchmark",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "UHN AI Hub clinical evaluation — Toronto multi-hospital dataset. Vector Institute Clairvoyance 80.3.",
-    "paper": "https://uhnhub.ai/",
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "biomistral_multilingual",
-    "name": "BioMistral Multilingual (7-lang)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "BioMistral first large-scale multilingual medical LLM eval — 7 translated languages. CNRS Jean Zay HPC.",
-    "paper": "https://arxiv.org/abs/2402.10373",
-    "expected_range": [
-      40,
-      85
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "medagentsbench",
-    "name": "MedAgentsBench (Complex Reasoning)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Thinking models + agent frameworks for complex medical reasoning.",
-    "paper": "https://arxiv.org/html/2503.07459v1",
-    "expected_range": [
-      40,
-      85
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "medarena_pref",
-    "name": "MedArena (Stanford HAI Elo)",
-    "metric": "elo",
-    "category": "medical",
-    "description": "Stanford HAI MedArena — head-to-head LLM comparison for medicine in the wild. Clinician vote-based pairwise preference.",
-    "paper": "https://hai.stanford.edu/news/medarena-comparing-llms-for-medicine-in-the-wild",
-    "expected_range": [
-      1000,
-      1800
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "medjourney_cn",
-    "name": "MedJourney (Chinese clinical workflow)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "12 datasets × 12 tasks across 4 patient-flow stages. NeurIPS 2024",
-    "paper": "https://openreview.net/pdf?id=XXaIoJyYs7",
-    "expected_range": [
-      50,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "longhealth",
-    "name": "LongHealth (Long Clinical Documents QA)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "20 patient cases (5K-7K words each) × 400 MCQ. 3 categories: extraction/negation/sorting",
-    "paper": "https://link.springer.com/article/10.1007/s41666-025-00204-w",
-    "expected_range": [
-      40,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "medrag_bench",
-    "name": "MedRAG (Retrieval-Augmented Medical)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Retrieval-augmented medical QA across 5 corpora (PubMed/Textbook/StatPearls/Wikipedia/MedCorp)",
-    "paper": null,
-    "expected_range": [
-      50,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "nclex_rn",
-    "name": "NCLEX-RN (US Nursing Licensure)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "US National Council Licensure Examination for Registered Nurses. Standard nursing competency benchmark. ChatGPT 4.0 88.7%",
-    "paper": "https://mededu.jmir.org/2024/1/e52746",
-    "expected_range": [
-      50,
-      99
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "nclex_cn_translated",
-    "name": "NCLEX-RN (Chinese Translation)",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Chinese-translated NCLEX-RN bilingual nursing eval",
-    "paper": null,
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "cn_nursing_licensing",
-    "name": "Chinese National Nursing Licensure",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Chinese National Nursing Licensing Exam. Qwen-2.5 88.9 SOTA, GPT-4o 80.7",
-    "paper": "https://medinform.jmir.org/2025/1/e63731",
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "nurse_mcq_618",
-    "name": "Nursing MCQ 618-Question Set",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "618 nursing MCQs across nursing knowledge domains. Bilingual EN/CN",
-    "paper": null,
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "nurse_education_eval",
-    "name": "Nursing Education LLM Evaluation",
-    "metric": "score",
-    "category": "medical",
-    "description": "Concept analysis benchmark — LLM applications in nursing education (PAGER scoping review)",
-    "paper": "https://nursing.jmir.org/2025/1/e77948",
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "mca_rg_miccai25",
-    "name": "MCA-RG (MICCAI 2025)",
-    "metric": "f1",
-    "category": "medical-imaging",
-    "description": "Medical Concept Alignment for Radiology Report Generation. MIMIC-CXR + CheXpert Plus eval",
-    "paper": "https://link.springer.com/chapter/10.1007/978-3-032-04971-1_36",
-    "expected_range": [
-      25,
-      65
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "cxr_lt_2024",
-    "name": "CXR-LT 2024 (Long-Tailed CXR)",
-    "metric": "auroc",
-    "category": "medical-imaging",
-    "description": "MICCAI 2024 long-tailed multi-label + zero-shot disease classification",
-    "paper": "https://arxiv.org/html/2506.07984",
-    "expected_range": [
-      70,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "structured_radiology_2025",
-    "name": "Structured Radiology Report Eval (EMNLP 2025)",
-    "metric": "f1",
-    "category": "medical-imaging",
-    "description": "Structuring radiology reports — section-level information extraction LLM challenge",
-    "paper": "https://aclanthology.org/2025.emnlp-main.392.pdf",
-    "expected_range": [
-      50,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "ham10000",
-    "name": "HAM10000 (Skin Lesions)",
-    "metric": "accuracy",
-    "category": "medical-imaging",
-    "description": "10,015 dermoscopic skin lesion images — 7-class classification",
-    "paper": null,
-    "expected_range": [
-      70,
-      96
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "ddsm_mammo",
-    "name": "DDSM Mammography",
-    "metric": "auroc",
-    "category": "medical-imaging",
-    "description": "Digital Database for Screening Mammography — mass + calcification detection",
-    "paper": null,
-    "expected_range": [
-      70,
-      96
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "stoic_2021",
-    "name": "STOIC 2021 (COVID-19 CT)",
-    "metric": "auc",
-    "category": "medical-imaging",
-    "description": "STOIC2021 challenge — COVID-19 severity prediction from CT scans (10,735 volumes)",
-    "paper": null,
-    "expected_range": [
-      60,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "sa_co",
-    "name": "SA-Co (Segment Anything with Concepts)",
-    "metric": "ap",
-    "category": "medical-imaging",
-    "description": "Meta's SAM 3 evaluation benchmark — 214K unique phrases × 126K images+videos. 50× more concepts than prior segmentation benchmarks",
-    "paper": "https://arxiv.org/abs/2511.16719",
-    "expected_range": [
-      10,
-      70
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "vista3d_organs",
-    "name": "VISTA3D 127-organ Segmentation",
-    "metric": "dice",
-    "category": "medical-imaging",
-    "description": "VISTA3D unified 127-class organ + lesion 3D CT segmentation",
-    "paper": "https://arxiv.org/html/2406.05285v3",
-    "expected_range": [
-      60,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "timesfm_eval",
-    "name": "TimesFM Zero-shot Forecasting",
-    "metric": "mape",
-    "category": "time-series",
-    "description": "TimesFM zero-shot forecasting eval on Monash/Darts/ETT/GIFT-Eval — multi-domain (retail/finance/healthcare/IoT). 200M decoder-only. Lower=better",
-    "paper": "https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/",
-    "expected_range": [
-      5,
-      30
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "ph_llm_sleep",
-    "name": "PH-LLM Sleep Medicine MCQ",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Personal Health LLM sleep medicine MCQ. PH-LLM 79% beats human experts (76%). Nature Medicine 2025",
-    "paper": "https://www.nature.com/articles/s41591-025-03888-0",
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "ph_llm_fitness",
-    "name": "PH-LLM Fitness MCQ",
-    "metric": "accuracy",
-    "category": "medical",
-    "description": "Personal Health LLM fitness MCQ. PH-LLM 88% beats human experts (71%)",
-    "paper": null,
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "lsm2_health_classify",
-    "name": "LSM-2 Health Classification",
-    "metric": "auroc",
-    "category": "clinical-prediction",
-    "description": "LSM-2 health condition classification — hypertension, anxiety + 20-class activity recognition. Fitbit 40M hrs",
-    "paper": "https://arxiv.org/abs/2506.05321",
-    "expected_range": [
-      60,
-      92
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "lsm2_bmi_regression",
-    "name": "LSM-2 BMI Regression",
-    "metric": "mae",
-    "category": "clinical-prediction",
-    "description": "LSM-2 BMI continuous prediction. Lower=better",
-    "paper": null,
-    "expected_range": [
-      1.5,
-      5.0
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "lsm2_imputation",
-    "name": "LSM-2 Sensor Imputation",
-    "metric": "rmse",
-    "category": "clinical-prediction",
-    "description": "LSM-2 reconstructing missing sensor data — handles incomplete wearable signals. Lower=better",
-    "paper": null,
-    "expected_range": [
-      0.2,
-      1.0
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "apple_wearable_57",
-    "name": "Apple Wearable 57-Task",
-    "metric": "auroc",
-    "category": "clinical-prediction",
-    "description": "Apple Wearable FM — 57 health-related tasks. 2.5B hrs / 162K subjects. ICML 2025",
-    "paper": "https://arxiv.org/abs/2507.00191",
-    "expected_range": [
-      60,
-      92
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "wearable_cvd_hiv",
-    "name": "Wearable CVD Screening (HIV)",
-    "metric": "auroc",
-    "category": "clinical-prediction",
-    "description": "Wearable signal screening for cardiovascular disease in HIV+ population. Comm Med 2025",
-    "paper": "https://www.nature.com/articles/s43856-025-01331-6",
-    "expected_range": [
-      70,
-      92
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "wearable_jepa_bp",
-    "name": "Empirical Health BP Detection",
-    "metric": "accuracy",
-    "category": "clinical-prediction",
-    "description": "Empirical Health JEPA wearable FM — high blood pressure detection 87% accuracy",
-    "paper": "https://www.empirical.health/blog/wearable-foundation-model-jets/",
-    "expected_range": [
-      70,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "wearable_movement_mental",
-    "name": "Wearable Movement Mental Health",
-    "metric": "auroc",
-    "category": "clinical-prediction",
-    "description": "Wearable movement data for depression/anxiety detection. PMC 2024",
-    "paper": null,
-    "expected_range": [
-      60,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "mlcommons_medperf",
-    "name": "MLCommons MedPerf (Federated Eval)",
-    "metric": "score",
-    "category": "medical-imaging",
-    "description": "MLCommons open benchmarking platform — federated evaluation. Models deploy at data providers; data never leaves. Nature MI 2023",
-    "paper": "https://www.nature.com/articles/s42256-023-00652-2",
-    "expected_range": [
-      60,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "ailuminate_med",
-    "name": "AILuminate v1.1 Medical Risk",
-    "metric": "score",
-    "category": "medical-safety",
-    "description": "MLCommons AILuminate v1.1 — chatbot safety. Medical advice + harmful misinformation subset",
-    "paper": null,
-    "expected_range": [
-      70,
-      96
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "mlperf_inference_med",
-    "name": "MLPerf Inference v5.1 Medical (3D U-Net KiTS19)",
-    "metric": "samples_sec",
-    "category": "medical-imaging",
-    "description": "MLPerf Inference 3D U-Net medical imaging — KiTS19 kidney tumor segmentation throughput. v5.1 Sep 2025",
-    "paper": null,
-    "expected_range": [
-      10,
-      1000
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "medperf_pancreas",
-    "name": "MedPerf Pancreas Pathology",
-    "metric": "auroc",
-    "category": "medical-imaging",
-    "description": "MedPerf federated pancreatic pathology — multi-institutional histopathology",
-    "paper": null,
-    "expected_range": [
-      60,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "medperf_cloud_mask",
-    "name": "MedPerf Cloud Mask Generation",
-    "metric": "dice",
-    "category": "medical-imaging",
-    "description": "MedPerf federated cloud mask generation",
-    "paper": null,
-    "expected_range": [
-      60,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "medperf_surgical",
-    "name": "MedPerf Surgical Workflow",
-    "metric": "accuracy",
-    "category": "medical-imaging",
-    "description": "MedPerf surgical workflow recognition — federated across hospital sites",
-    "paper": null,
-    "expected_range": [
-      60,
-      92
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "matharena_arxivlean",
-    "name": "ArXivLean (MathArena)",
-    "metric": "accuracy",
-    "category": "math",
-    "description": "MathArena ArXivLean — Lean theorem proving from arXiv math papers. 41 problems, 7 models. GPT-5.5 17.07% rank 1/7",
-    "paper": null,
-    "expected_range": [
-      5,
-      30
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "matharena_brokenarxiv",
-    "name": "BrokenArxiv (MathArena Overall)",
-    "metric": "accuracy",
-    "category": "math",
-    "description": "MathArena BrokenArxiv — find errors in arXiv math papers. 31-56 problems × 10-12 models. GPT-5.5 71.71% rank 1/10",
-    "paper": null,
-    "expected_range": [
-      5,
-      80
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "matharena_arxivmath",
-    "name": "ArXivMath (MathArena Overall)",
-    "metric": "accuracy",
-    "category": "math",
-    "description": "MathArena ArXivMath — math reasoning on arXiv content. 17-32 problems/month. GPT-5.5 74.12% rank 1/10",
-    "paper": null,
-    "expected_range": [
-      40,
-      85
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "matharena_visualmath",
-    "name": "Visual Math (MathArena Overall)",
-    "metric": "accuracy",
-    "category": "math",
-    "description": "MathArena Visual Math — visual mathematics including Kangaroo 2025. GPT-5.5 94.93% rank 1/18",
-    "paper": null,
-    "expected_range": [
-      40,
-      99
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "matharena_kangaroo_2025",
-    "name": "Kangaroo 2025 (Visual Math, MathArena)",
-    "metric": "accuracy",
-    "category": "math",
-    "description": "Math Kangaroo 2025 — 6 grade brackets (1-2, 3-4, 5-6, 7-8, 9-10, 11-12). 24-30 problems/grade × 18-19 models",
-    "paper": null,
-    "expected_range": [
-      40,
-      100
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "matharena_final_answer",
-    "name": "Final-Answer Comps (MathArena Overall)",
-    "metric": "accuracy",
-    "category": "math",
-    "description": "MathArena Final-Answer Competitions — AIME, HMMT, Apex, USAMO 등 합산. GPT-5.5 92.30% rank 1/23",
-    "paper": null,
-    "expected_range": [
-      40,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "matharena_putnam_2025",
-    "name": "Putnam 2025 (MathArena)",
-    "metric": "accuracy",
-    "category": "math",
-    "description": "Putnam 2025 — William Lowell Putnam Mathematical Competition, 12 problems × 6 models",
-    "paper": null,
-    "expected_range": [
-      10,
-      90
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "matharena_imo_2025",
-    "name": "IMO 2025 (MathArena)",
-    "metric": "accuracy",
-    "category": "math",
-    "description": "International Mathematical Olympiad 2025 — 6 problems × 7 models",
-    "paper": null,
-    "expected_range": [
-      10,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "matharena_brumo_2025",
-    "name": "BRUMO 2025 (MathArena)",
-    "metric": "accuracy",
-    "category": "math",
-    "description": "Brown Univ Math Olympiad 2025 — 30 problems × 45 models",
-    "paper": null,
-    "expected_range": [
-      30,
-      100
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "matharena_smt_2025",
-    "name": "SMT 2025 (MathArena)",
-    "metric": "accuracy",
-    "category": "math",
-    "description": "Stanford Math Tournament 2025 — 53 problems × 44 models",
-    "paper": null,
-    "expected_range": [
-      30,
-      100
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "engram_memory_1m",
-    "name": "Engram 1M-token Long Context",
-    "metric": "accuracy",
-    "category": "reasoning",
-    "description": "DeepSeek V4 novel Engram conditional memory architecture — 1M-token context evaluation",
-    "paper": null,
-    "expected_range": [
-      30,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "artificial_analysis_intelligence",
-    "name": "Artificial Analysis Intelligence Index",
-    "metric": "score",
-    "category": "reasoning",
-    "description": "Artificial Analysis aggregate intelligence index. Apr 2026: Gemini 3.1 Ultra & GPT-5.4 Pro tied 57 at top",
-    "paper": null,
-    "expected_range": [
-      30,
-      70
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "general_analysis_jb",
-    "name": "General Analysis Adversarial Robustness",
-    "metric": "asr",
-    "category": "safety",
-    "description": "Multi-method jailbreak ASR aggregator across HarmBench/StrongREJECT/MultiTurn/etc. Lower=safer",
-    "paper": null,
-    "expected_range": [
-      1,
-      50
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "owasp_vuln_dataset",
-    "name": "OWASP Top 10 Vulnerability Dataset",
-    "metric": "f1",
-    "category": "cyber",
-    "description": "Software vulnerability detection across OWASP Top 10",
-    "paper": null,
-    "expected_range": [
-      50,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "consistency_sandbagging",
-    "name": "Consistency Sandbagging Eval",
-    "metric": "consistency",
-    "category": "safety",
-    "description": "Detects sandbagging via formal/casual question variant consistency on WMDP",
-    "paper": null,
-    "expected_range": [
-      60,
-      99
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "graphwalks_bfs",
-    "name": "GraphWalks BFS (Long Context 256K-1M)",
-    "metric": "accuracy",
-    "category": "reasoning",
-    "description": "Long-context graph BFS at 256K-1M tokens. Mythos 80.0, Opus 4.6 38.7, GPT-5.4 21.4",
-    "paper": null,
-    "expected_range": [
-      10,
-      95
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "ossfuzz_tier1_2_crashes",
-    "name": "OSS-Fuzz Tier 1-2 Crashes",
-    "metric": "crash_count",
-    "category": "cyber",
-    "description": "OSS-Fuzz vulnerability discovery — Tier 1-2 crashes. Mythos 595",
-    "paper": null,
-    "expected_range": [
-      10,
-      1000
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "ossfuzz_tier5_control_flow",
-    "name": "OSS-Fuzz Tier 5 Control Flow Hijack",
-    "metric": "target_count",
-    "category": "cyber",
-    "description": "Full control flow hijack on fully-patched targets. Mythos 10",
-    "paper": null,
-    "expected_range": [
-      0,
-      30
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "firefox_exploit_dev",
-    "name": "Firefox Exploit Development",
-    "metric": "exploit_count",
-    "category": "cyber",
-    "description": "Working Firefox exploits + register control. Mythos 181 working + 29 register, Opus 4.6 only 2",
-    "paper": null,
-    "expected_range": [
-      0,
-      300
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "vuln_severity_match",
-    "name": "Vulnerability Severity Expert Match",
-    "metric": "accuracy",
-    "category": "cyber",
-    "description": "Expert-validated severity match on Mythos vuln reports. 89% on 198 manual reviewed",
-    "paper": null,
-    "expected_range": [
-      60,
-      99
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  },
-  {
-    "id": "uk_aisi_ctf_multistep",
-    "name": "UK AISI CTF + Multi-step Attack",
-    "metric": "score",
-    "category": "cyber",
-    "description": "UK AI Security Institute CTF + multi-step attack scenarios",
-    "paper": null,
-    "expected_range": [
-      40,
-      99
-    ],
-    "note": "Not found in BMT/BMT.json — consider submitting this benchmark to BMT registry."
-  }
-]
+{
+  "_meta": {
+    "description": "Benchmarks evaluated by SOTA dashboard that have no entry in BMT/BMT.json registry. These cannot show a BMT badge until added to the registry. Examples: AILuminate v1.0, Aider Polyglot.",
+    "updated": "2026-04-30",
+    "count": 254
+  },
+  "benchmarks": [
+    {
+      "id": "absci_yield",
+      "name": "Absci de novo Antibody Yield",
+      "category": "protein"
+    },
+    {
+      "id": "ai2d",
+      "name": "AI2D",
+      "category": "multimodal"
+    },
+    {
+      "id": "aider_polyglot",
+      "name": "Aider Polyglot",
+      "category": "coding"
+    },
+    {
+      "id": "ailuminate",
+      "name": "AILuminate v1.0 (Safety)",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "ailuminate_med",
+      "name": "AILuminate v1.1 Medical Risk",
+      "category": "medical-safety"
+    },
+    {
+      "id": "aixcc_synth_vuln",
+      "name": "AIxCC Synthetic Vulnerability Detection",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "aloha_4task_avg",
+      "name": "ALOHA 4-Task Average",
+      "category": "agent"
+    },
+    {
+      "id": "alpaca_eval_v2",
+      "name": "Alpaca-Eval (v2)",
+      "category": "reasoning"
+    },
+    {
+      "id": "alphafold3_pae",
+      "name": "AlphaFold3 Confident Predictions",
+      "category": "protein"
+    },
+    {
+      "id": "amc_23",
+      "name": "AMC 2023",
+      "category": "math"
+    },
+    {
+      "id": "amega",
+      "name": "AMEGA Dataset",
+      "category": "medical"
+    },
+    {
+      "id": "apex_agents_hard",
+      "name": "Apex (Hard Tier)",
+      "category": "agent"
+    },
+    {
+      "id": "apex_shortlist",
+      "name": "Apex Shortlist",
+      "category": "agent"
+    },
+    {
+      "id": "apollo_eval_awareness",
+      "name": "Apollo Eval-Awareness Rate",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "apollo_impossible_task_lying",
+      "name": "Apollo Impossible-Task Lying Rate",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "apollo_sabotage_mean",
+      "name": "Apollo Sabotage Mean Score",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "apollo_sandbagging_qa",
+      "name": "Apollo Sandbagging QA",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "apollo_strategic_deception",
+      "name": "Apollo Strategic Deception Sandbagging",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "apple_wearable_57",
+      "name": "Apple Wearable 57-Health-Task",
+      "category": "clinical-prediction"
+    },
+    {
+      "id": "arc_agi_1",
+      "name": "ARC-AGI-1",
+      "category": "reasoning"
+    },
+    {
+      "id": "arc_agi_3",
+      "name": "ARC-AGI-3",
+      "category": "agent"
+    },
+    {
+      "id": "arc_challenge",
+      "name": "ARC-Challenge",
+      "category": "reasoning"
+    },
+    {
+      "id": "arena_hard",
+      "name": "Arena Hard",
+      "category": "reasoning"
+    },
+    {
+      "id": "arena_hard_v2",
+      "name": "Arena Hard v2",
+      "category": "reasoning"
+    },
+    {
+      "id": "artificial_analysis_intelligence",
+      "name": "Artificial Analysis Intelligence Index",
+      "category": "reasoning"
+    },
+    {
+      "id": "av_fid",
+      "name": "AV FID",
+      "category": "multimodal"
+    },
+    {
+      "id": "av_fvd",
+      "name": "AV FVD (StyleGAN)",
+      "category": "multimodal"
+    },
+    {
+      "id": "balrog",
+      "name": "BALROG",
+      "category": "agent"
+    },
+    {
+      "id": "bfcl",
+      "name": "BFCL",
+      "category": "agent"
+    },
+    {
+      "id": "bfcl_v3",
+      "name": "BFCL v3",
+      "category": "agent"
+    },
+    {
+      "id": "bfcl_v4",
+      "name": "BFCL V4 (Function Calling)",
+      "category": "agent"
+    },
+    {
+      "id": "bimedix_eval",
+      "name": "BiMediX Bilingual Eval (AR+EN)",
+      "category": "medical"
+    },
+    {
+      "id": "biochem_reward4",
+      "name": "Biochemistry Reward@4",
+      "category": "reasoning"
+    },
+    {
+      "id": "biomistral_multilingual",
+      "name": "BioMistral Multilingual (7-lang)",
+      "category": "medical"
+    },
+    {
+      "id": "blue_benchmark",
+      "name": "BLUE (Biomedical Lang. Understanding)",
+      "category": "medical"
+    },
+    {
+      "id": "bmw_deployment_uptime",
+      "name": "BMW Spartanburg Runtime",
+      "category": "agent"
+    },
+    {
+      "id": "bridge_v2",
+      "name": "Bridge V2",
+      "category": "agent"
+    },
+    {
+      "id": "c_eval",
+      "name": "C-Eval",
+      "category": "multilingual"
+    },
+    {
+      "id": "casp16_gdt",
+      "name": "CASP16 GDT-TS (Protein Structure)",
+      "category": "protein"
+    },
+    {
+      "id": "claw_eval",
+      "name": "Claw-Eval",
+      "category": "agent"
+    },
+    {
+      "id": "cmexam_cn",
+      "name": "CMExam (China Medical Licensing)",
+      "category": "medical"
+    },
+    {
+      "id": "cn_nursing_licensing",
+      "name": "Chinese National Nursing Licensure",
+      "category": "medical"
+    },
+    {
+      "id": "codeforces_elo",
+      "name": "Codeforces ELO",
+      "category": "coding"
+    },
+    {
+      "id": "codeforces_rating",
+      "name": "Codeforces Rating",
+      "category": "coding"
+    },
+    {
+      "id": "convfinqa",
+      "name": "ConvFinQA",
+      "category": "reasoning"
+    },
+    {
+      "id": "corpusqa_1m",
+      "name": "CorpusQA 1M",
+      "category": "reasoning"
+    },
+    {
+      "id": "cosmos_embodied_reasoning",
+      "name": "Cosmos Embodied Reasoning",
+      "category": "multimodal"
+    },
+    {
+      "id": "cosmos_intuitive_physics",
+      "name": "Cosmos Intuitive Physics",
+      "category": "multimodal"
+    },
+    {
+      "id": "cosmos_physical_common_sense",
+      "name": "Cosmos Physical Common Sense",
+      "category": "multimodal"
+    },
+    {
+      "id": "cot_controllability",
+      "name": "CoT Controllability",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "cot_monitorability",
+      "name": "CoT Monitorability (aggregate)",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "craft_md",
+      "name": "CRAFT-MD (Conversational Reasoning)",
+      "category": "medical-safety"
+    },
+    {
+      "id": "cxpmrg_bench",
+      "name": "CXPMRG-Bench (CVPR 2025)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "cxr_lt_2024",
+      "name": "CXR-LT 2024 (Long-Tailed CXR)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "cyber_range",
+      "name": "Cyber Range",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "cyberexplorer",
+      "name": "CyberExplorer",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "cybersoceval",
+      "name": "CyberSOCEval",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "ddsm_mammo",
+      "name": "DDSM (Digital Database for Screening Mammography)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "delphi_disease_risk",
+      "name": "Delphi 1000-Disease Risk",
+      "category": "clinical-prediction"
+    },
+    {
+      "id": "dexmimicgen",
+      "name": "DexMimicGen",
+      "category": "agent"
+    },
+    {
+      "id": "dna_design",
+      "name": "DNA Sequence Design (TF Binding)",
+      "category": "reasoning"
+    },
+    {
+      "id": "dynamic_emotional_reliance",
+      "name": "Dynamic Emotional Reliance",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "dynamic_mental_health",
+      "name": "Dynamic Mental Health (Adv)",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "dynamic_self_harm_adversarial",
+      "name": "Dynamic Self-Harm (Adv)",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "echonet_lvef_auc50",
+      "name": "EchoNet LVEF AUC@50%",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "eicu_xgen_auc",
+      "name": "eICU Cross-Generalization AUC",
+      "category": "clinical-prediction"
+    },
+    {
+      "id": "engram_memory_1m",
+      "name": "Engram 1M-token Long Context",
+      "category": "reasoning"
+    },
+    {
+      "id": "erqa",
+      "name": "ERQA (Embodied Reasoning QA)",
+      "category": "multimodal"
+    },
+    {
+      "id": "evmbench_detect",
+      "name": "EVMbench (Detect)",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "evmbench_exploit",
+      "name": "EVMbench (Exploit)",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "evmbench_patch",
+      "name": "EVMbench (Patch)",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "ewmbench",
+      "name": "EWMBench",
+      "category": "multimodal"
+    },
+    {
+      "id": "expert_swe",
+      "name": "Expert-SWE (OpenAI Internal)",
+      "category": "coding"
+    },
+    {
+      "id": "factorio",
+      "name": "Factorio Learning Environment",
+      "category": "agent"
+    },
+    {
+      "id": "facts_parametric",
+      "name": "FACTS Parametric",
+      "category": "reasoning"
+    },
+    {
+      "id": "finqa",
+      "name": "FinQA",
+      "category": "reasoning"
+    },
+    {
+      "id": "firefox_147",
+      "name": "Firefox 147 Exploitation",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "firefox_exploit_dev",
+      "name": "Firefox Exploit Development",
+      "category": "cyber"
+    },
+    {
+      "id": "first_person_fairness",
+      "name": "First-Person Fairness",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "fpb",
+      "name": "Financial PhraseBank (FPB)",
+      "category": "reasoning"
+    },
+    {
+      "id": "frontier_science",
+      "name": "FrontierScience",
+      "category": "reasoning"
+    },
+    {
+      "id": "gaia2",
+      "name": "GAIA-2",
+      "category": "agent"
+    },
+    {
+      "id": "gdpval",
+      "name": "GDPval (expert win-rate)",
+      "category": "reasoning"
+    },
+    {
+      "id": "gemini_instrument_reading",
+      "name": "Gemini Instrument Reading",
+      "category": "multimodal"
+    },
+    {
+      "id": "general_analysis_jb",
+      "name": "General Analysis Adversarial Robustness",
+      "category": "safety"
+    },
+    {
+      "id": "geobench",
+      "name": "GeoBench",
+      "category": "reasoning"
+    },
+    {
+      "id": "gr1_real_lang_following",
+      "name": "GR-1 Real Language Following",
+      "category": "agent"
+    },
+    {
+      "id": "gr1_tabletop",
+      "name": "GR-1 Tabletop Tasks",
+      "category": "agent"
+    },
+    {
+      "id": "graphwalks_bfs",
+      "name": "GraphWalks BFS (256K-1M Long Context)",
+      "category": "reasoning"
+    },
+    {
+      "id": "gso",
+      "name": "GSO",
+      "category": "coding"
+    },
+    {
+      "id": "ham10000",
+      "name": "HAM10000 (Skin Lesions)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "helix_barcode_accuracy",
+      "name": "Helix Barcode Read Accuracy",
+      "category": "agent"
+    },
+    {
+      "id": "helix_effective_throughput",
+      "name": "Helix T_eff",
+      "category": "agent"
+    },
+    {
+      "id": "helix_logistics_throughput",
+      "name": "Helix Logistics Sec/Package",
+      "category": "agent"
+    },
+    {
+      "id": "helmet",
+      "name": "HELMET",
+      "category": "reasoning"
+    },
+    {
+      "id": "hmmt_2025",
+      "name": "HMMT 2025 (Feb)",
+      "category": "math"
+    },
+    {
+      "id": "hmmt_2026",
+      "name": "HMMT 2026 (Feb)",
+      "category": "math"
+    },
+    {
+      "id": "hrm8k",
+      "name": "HRM8K",
+      "category": "math"
+    },
+    {
+      "id": "humanoid_compression_top500_ce",
+      "name": "1X World Model Compression (CE)",
+      "category": "multimodal"
+    },
+    {
+      "id": "humanoid_sampling_psnr",
+      "name": "1X World Model Sampling (PSNR)",
+      "category": "multimodal"
+    },
+    {
+      "id": "ifbench",
+      "name": "IFBench",
+      "category": "reasoning"
+    },
+    {
+      "id": "igakuqa",
+      "name": "IgakuQA (Japan Medical Licensing)",
+      "category": "medical"
+    },
+    {
+      "id": "imo_answerbench",
+      "name": "IMO-AnswerBench",
+      "category": "math"
+    },
+    {
+      "id": "indic_med_bench",
+      "name": "Indic Medical Benchmark",
+      "category": "medical"
+    },
+    {
+      "id": "indo_mmlu",
+      "name": "IndoMMLU",
+      "category": "multilingual"
+    },
+    {
+      "id": "internal_research_debugging",
+      "name": "Internal Research Debugging",
+      "category": "reasoning"
+    },
+    {
+      "id": "intuitive_physics_arrow_of_time",
+      "name": "Intuitive Physics Arrow of Time",
+      "category": "multimodal"
+    },
+    {
+      "id": "intuitive_physics_object_permanence",
+      "name": "Intuitive Physics Object Permanence",
+      "category": "multimodal"
+    },
+    {
+      "id": "intuitive_physics_spatial_puzzle",
+      "name": "Intuitive Physics Spatial Puzzle",
+      "category": "multimodal"
+    },
+    {
+      "id": "irregular_atomic_evasion",
+      "name": "Irregular Atomic — Evasion",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "irregular_atomic_network",
+      "name": "Irregular Atomic — Network Attack",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "irregular_atomic_vuln_research",
+      "name": "Irregular Atomic — Vuln Research",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "jama_clin_chal",
+      "name": "JAMA Clinical Challenge",
+      "category": "medical"
+    },
+    {
+      "id": "jmed_lora_eval",
+      "name": "JMedLoRA Evaluation Suite",
+      "category": "medical"
+    },
+    {
+      "id": "kmle",
+      "name": "KMLE (Korean Medical Licensing Exam)",
+      "category": "reasoning"
+    },
+    {
+      "id": "kmle_2025",
+      "name": "KMLE 2025 (Korean Medical Licensing)",
+      "category": "medical"
+    },
+    {
+      "id": "kmmlu",
+      "name": "KMMLU",
+      "category": "multilingual"
+    },
+    {
+      "id": "kmmmu",
+      "name": "KMMMU",
+      "category": "multimodal"
+    },
+    {
+      "id": "ko_ifeval",
+      "name": "Ko-IFEval",
+      "category": "reasoning"
+    },
+    {
+      "id": "kobalt_700",
+      "name": "KoBALT-700",
+      "category": "reasoning"
+    },
+    {
+      "id": "kobest",
+      "name": "KOBEST",
+      "category": "multilingual"
+    },
+    {
+      "id": "kormedlawqa",
+      "name": "KorMedLawQA",
+      "category": "medical"
+    },
+    {
+      "id": "libero_goal",
+      "name": "LIBERO-Goal",
+      "category": "agent"
+    },
+    {
+      "id": "libero_long",
+      "name": "LIBERO-Long",
+      "category": "agent"
+    },
+    {
+      "id": "libero_object",
+      "name": "LIBERO-Object",
+      "category": "agent"
+    },
+    {
+      "id": "libero_spatial",
+      "name": "LIBERO-Spatial",
+      "category": "agent"
+    },
+    {
+      "id": "lingoqa",
+      "name": "LingoQA",
+      "category": "multimodal"
+    },
+    {
+      "id": "logickor",
+      "name": "LogicKor",
+      "category": "reasoning"
+    },
+    {
+      "id": "longhealth",
+      "name": "LongHealth (Long Clinical Documents QA)",
+      "category": "medical"
+    },
+    {
+      "id": "lsm2_bmi_regression",
+      "name": "LSM-2 BMI Regression",
+      "category": "clinical-prediction"
+    },
+    {
+      "id": "lsm2_health_classify",
+      "name": "LSM-2 Health Classification (hypertension/anxiety)",
+      "category": "clinical-prediction"
+    },
+    {
+      "id": "lsm2_imputation",
+      "name": "LSM-2 Sensor Imputation",
+      "category": "clinical-prediction"
+    },
+    {
+      "id": "lunit_dx_auc",
+      "name": "Lunit Dx AUROC (CXR/MMG)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "m42_clinical_avg",
+      "name": "M42 Clinical Avg (UAE)",
+      "category": "medical"
+    },
+    {
+      "id": "math_500",
+      "name": "MATH-500",
+      "category": "math"
+    },
+    {
+      "id": "math_level5",
+      "name": "MATH Level 5",
+      "category": "math"
+    },
+    {
+      "id": "mathvision",
+      "name": "MathVision",
+      "category": "multimodal"
+    },
+    {
+      "id": "mbpp",
+      "name": "MBPP",
+      "category": "coding"
+    },
+    {
+      "id": "mbpp_plus",
+      "name": "MBPP+",
+      "category": "coding"
+    },
+    {
+      "id": "mca_rg_miccai25",
+      "name": "MCA-RG (MICCAI 2025)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "med_avg",
+      "name": "Medical Average (BiMediX)",
+      "category": "reasoning"
+    },
+    {
+      "id": "med_internvl_avg",
+      "name": "Med-InternVL Avg",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "medagentsbench",
+      "name": "MedAgentsBench (Complex Reasoning)",
+      "category": "medical"
+    },
+    {
+      "id": "medarabench",
+      "name": "MedAraBench (Arabic)",
+      "category": "medical"
+    },
+    {
+      "id": "medarena_pref",
+      "name": "MedArena (Stanford HAI)",
+      "category": "medical"
+    },
+    {
+      "id": "medbullets",
+      "name": "MedBullets-5op",
+      "category": "medical"
+    },
+    {
+      "id": "medhallbench",
+      "name": "MedHallBench",
+      "category": "medical-safety"
+    },
+    {
+      "id": "medjourney_cn",
+      "name": "MedJourney (Chinese clinical workflow)",
+      "category": "medical"
+    },
+    {
+      "id": "medperf_cloud_mask",
+      "name": "MedPerf Cloud Mask Generation",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "medperf_pancreas",
+      "name": "MedPerf Pancreas Pathology",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "medperf_surgical",
+      "name": "MedPerf Surgical Workflow",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "medqa",
+      "name": "MedQA (4-op USMLE)",
+      "category": "reasoning"
+    },
+    {
+      "id": "medqa_5op",
+      "name": "MedQA (5-option variant)",
+      "category": "reasoning"
+    },
+    {
+      "id": "medrag_bench",
+      "name": "MedRAG (Retrieval-Augmented Medical)",
+      "category": "medical"
+    },
+    {
+      "id": "medriskeval",
+      "name": "MedRiskEval",
+      "category": "medical-safety"
+    },
+    {
+      "id": "medseg_dice",
+      "name": "Universal Med-Seg Dice",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "metr_time_horizons",
+      "name": "METR Time Horizons",
+      "category": "agent"
+    },
+    {
+      "id": "mfg_news_rewrite",
+      "name": "Traditional Chinese News Rewriting (100 samples)",
+      "category": "reasoning"
+    },
+    {
+      "id": "mhbench",
+      "name": "MHBench (Multi-Host)",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "mlcommons_medperf",
+      "name": "MLCommons MedPerf (Federated Eval)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "mlperf_inference_med",
+      "name": "MLPerf Inference v5.1 (Medical Imaging Subset)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "mmau",
+      "name": "MMAU",
+      "category": "audio"
+    },
+    {
+      "id": "mmlu_med",
+      "name": "MMLU (Medical subjects)",
+      "category": "reasoning"
+    },
+    {
+      "id": "monorepo_bench",
+      "name": "Monorepo-Bench",
+      "category": "coding"
+    },
+    {
+      "id": "mrcr",
+      "name": "MRCR (Long Context)",
+      "category": "reasoning"
+    },
+    {
+      "id": "nclex_cn_translated",
+      "name": "NCLEX-RN (Chinese Translation)",
+      "category": "medical"
+    },
+    {
+      "id": "nclex_rn",
+      "name": "NCLEX-RN (US Nursing Licensure)",
+      "category": "medical"
+    },
+    {
+      "id": "neet_pg",
+      "name": "NEET-PG (India PG Med)",
+      "category": "medical"
+    },
+    {
+      "id": "nejm_image",
+      "name": "NEJM Image Challenge",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "nhs_aide_eval",
+      "name": "NHS AIDE Clinical Eval",
+      "category": "medical-safety"
+    },
+    {
+      "id": "nurse_education_eval",
+      "name": "Nursing Education LLM Evaluation",
+      "category": "medical"
+    },
+    {
+      "id": "nurse_mcq_618",
+      "name": "Nursing MCQ 618-Question Set",
+      "category": "medical"
+    },
+    {
+      "id": "ocrbench",
+      "name": "OCRBench",
+      "category": "multimodal"
+    },
+    {
+      "id": "officeqa_pro",
+      "name": "OfficeQA Pro",
+      "category": "reasoning"
+    },
+    {
+      "id": "openai_ctf_pro",
+      "name": "OpenAI CTF Pro",
+      "category": "cyber"
+    },
+    {
+      "id": "openai_ctf_professional",
+      "name": "OpenAI CTF (Professional)",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "openvla_lora_efficiency",
+      "name": "OpenVLA LoRA Param Efficiency",
+      "category": "agent"
+    },
+    {
+      "id": "opqa",
+      "name": "OpenAI-Proof Q&A (OPQA)",
+      "category": "reasoning"
+    },
+    {
+      "id": "ossfuzz_tier1_2_crashes",
+      "name": "OSS-Fuzz Tier 1-2 Crashes",
+      "category": "cyber"
+    },
+    {
+      "id": "ossfuzz_tier5_control_flow",
+      "name": "OSS-Fuzz Tier 5 Control Flow Hijack",
+      "category": "cyber"
+    },
+    {
+      "id": "otis_aime_2025",
+      "name": "OTIS-AIME 2025",
+      "category": "math"
+    },
+    {
+      "id": "owasp_vuln_dataset",
+      "name": "OWASP Top 10 Vulnerability Dataset",
+      "category": "cyber"
+    },
+    {
+      "id": "owkin_path_avg",
+      "name": "Owkin Pathology External Avg",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "pai_bench_image2world",
+      "name": "PAI-Bench Image2World",
+      "category": "multimodal"
+    },
+    {
+      "id": "pai_bench_text2world",
+      "name": "PAI-Bench Text2World",
+      "category": "multimodal"
+    },
+    {
+      "id": "panderm_skin",
+      "name": "PanDerm (Skin Disease)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "path_bench",
+      "name": "Pathology External Benchmark",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "pdbbind_rmsd",
+      "name": "PDBBind Pocket-Guided RMSD",
+      "category": "protein"
+    },
+    {
+      "id": "ph_llm_fitness",
+      "name": "PH-LLM Fitness MCQ",
+      "category": "medical"
+    },
+    {
+      "id": "ph_llm_sleep",
+      "name": "PH-LLM Sleep Medicine MCQ",
+      "category": "medical"
+    },
+    {
+      "id": "physical_reasoning_leaderboard",
+      "name": "Physical Reasoning Leaderboard",
+      "category": "multimodal"
+    },
+    {
+      "id": "pick_retry_reduction",
+      "name": "Pick-Retry Reduction",
+      "category": "agent"
+    },
+    {
+      "id": "pixmo_point",
+      "name": "Pixmo-Point",
+      "category": "multimodal"
+    },
+    {
+      "id": "pmc_vqa",
+      "name": "PMC-VQA",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "polaris_safety",
+      "name": "Polaris Clinical Safety",
+      "category": "medical"
+    },
+    {
+      "id": "promedqa_cn",
+      "name": "PromedQA (Chinese ProMed)",
+      "category": "medical"
+    },
+    {
+      "id": "promise12",
+      "name": "PROMISE12 (Prostate MRI)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "prompt_injection",
+      "name": "Prompt Injection Defense",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "protein_binding",
+      "name": "Hard-Negative Protein Binding",
+      "category": "reasoning"
+    },
+    {
+      "id": "qimma",
+      "name": "QIMMA (قِمّة)",
+      "category": "multilingual"
+    },
+    {
+      "id": "realworld_language_following",
+      "name": "Real-World Language Following",
+      "category": "agent"
+    },
+    {
+      "id": "replibench",
+      "name": "RepliBench",
+      "category": "agent"
+    },
+    {
+      "id": "retbench_auc",
+      "name": "RetBench (External AUC)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "rexgrad_acc",
+      "name": "ReXGradient Test Accuracy",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "rexrank_finerad",
+      "name": "ReXrank FineRadScore",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "rexrank_green",
+      "name": "ReXrank GREEN",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "rexrank_radcliq",
+      "name": "ReXrank RadCliQ",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "roboarena_elo",
+      "name": "RoboArena ELO",
+      "category": "agent"
+    },
+    {
+      "id": "robot_manip_fvd",
+      "name": "Robot Manipulation FVD",
+      "category": "multimodal"
+    },
+    {
+      "id": "robot_manip_psnr",
+      "name": "Robot Manipulation PSNR",
+      "category": "multimodal"
+    },
+    {
+      "id": "sa_co",
+      "name": "SA-Co (Segment Anything with Concepts)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "siim_acr_pneumothorax",
+      "name": "SIIM-ACR Pneumothorax Segmentation",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "skills_bench",
+      "name": "SkillsBench (Avg5)",
+      "category": "agent"
+    },
+    {
+      "id": "smt_2025",
+      "name": "SMT 2025",
+      "category": "math"
+    },
+    {
+      "id": "stoic_2021",
+      "name": "STOIC 2021 (COVID-19 CT)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "structured_radiology_2025",
+      "name": "Structured Radiology Report Eval (EMNLP 2025)",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "swe_rebench",
+      "name": "SWE-rebench",
+      "category": "coding"
+    },
+    {
+      "id": "synapxe_sg_eval",
+      "name": "Synapxe Singapore Clinical",
+      "category": "medical"
+    },
+    {
+      "id": "tacit_knowledge_bio",
+      "name": "Bio Tacit Knowledge (MCQ)",
+      "category": "reasoning"
+    },
+    {
+      "id": "tau3_bench",
+      "name": "TAU3-Bench",
+      "category": "agent"
+    },
+    {
+      "id": "timesfm_eval",
+      "name": "TimesFM Zero-shot Forecasting Eval",
+      "category": "time-series"
+    },
+    {
+      "id": "tlo_cyber_range",
+      "name": "The Last Ones (TLO)",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "tmmlu_plus",
+      "name": "TMMLU+ (Taiwan MMLU+)",
+      "category": "multilingual"
+    },
+    {
+      "id": "toolathlon",
+      "name": "Toolathlon",
+      "category": "agent"
+    },
+    {
+      "id": "triviaqa",
+      "name": "TriviaQA",
+      "category": "reasoning"
+    },
+    {
+      "id": "uhn_clin_bench",
+      "name": "UHN Clinical Benchmark",
+      "category": "medical"
+    },
+    {
+      "id": "uk_aisi_ctf_multistep",
+      "name": "UK AISI CTF + Multi-step Attack",
+      "category": "cyber"
+    },
+    {
+      "id": "uk_aisi_narrow_cyber",
+      "name": "UK AISI Narrow Cyber (pass@5)",
+      "category": "cybersecurity"
+    },
+    {
+      "id": "unitree_g1_1k_demos",
+      "name": "Unitree G1 Post-train (1K demos)",
+      "category": "agent"
+    },
+    {
+      "id": "usamo",
+      "name": "USAMO",
+      "category": "math"
+    },
+    {
+      "id": "vibe_code_bench",
+      "name": "Vibe Code Bench",
+      "category": "coding"
+    },
+    {
+      "id": "vibe_coding_safety",
+      "name": "Vibe Coding Safety",
+      "category": "cyber_defense"
+    },
+    {
+      "id": "virology_mcq",
+      "name": "Multimodal Troubleshooting Virology",
+      "category": "reasoning"
+    },
+    {
+      "id": "vista3d_organs",
+      "name": "VISTA3D 127-organ Segmentation",
+      "category": "medical-imaging"
+    },
+    {
+      "id": "vlair_chronology",
+      "name": "VLAIR Chronology Generation",
+      "category": "reasoning"
+    },
+    {
+      "id": "vlair_data_extract",
+      "name": "VLAIR Data Extraction",
+      "category": "reasoning"
+    },
+    {
+      "id": "vlair_doc_qa",
+      "name": "VLAIR Document Q&A",
+      "category": "reasoning"
+    },
+    {
+      "id": "vlair_redlining",
+      "name": "VLAIR Redlining",
+      "category": "reasoning"
+    },
+    {
+      "id": "vlair_summarization",
+      "name": "VLAIR Summarization",
+      "category": "reasoning"
+    },
+    {
+      "id": "vlair_transcript",
+      "name": "VLAIR Transcript Analysis",
+      "category": "reasoning"
+    },
+    {
+      "id": "vlms_are_blind",
+      "name": "VLMs-Are-Blind",
+      "category": "multimodal"
+    },
+    {
+      "id": "vpct",
+      "name": "VPCT",
+      "category": "multimodal"
+    },
+    {
+      "id": "vqav2",
+      "name": "VQAv2",
+      "category": "multimodal"
+    },
+    {
+      "id": "vuln_severity_match",
+      "name": "Vulnerability Severity Expert Match",
+      "category": "cyber"
+    },
+    {
+      "id": "wearable_cvd_hiv",
+      "name": "Wearable CVD Screening (HIV)",
+      "category": "clinical-prediction"
+    },
+    {
+      "id": "wearable_jepa_bp",
+      "name": "Empirical Health BP Detection",
+      "category": "clinical-prediction"
+    },
+    {
+      "id": "wearable_movement_mental",
+      "name": "Wearable Movement Mental Health",
+      "category": "clinical-prediction"
+    },
+    {
+      "id": "webdev_arena",
+      "name": "WebDev Arena",
+      "category": "coding"
+    },
+    {
+      "id": "weirdml_v2",
+      "name": "WeirdML v2",
+      "category": "coding"
+    },
+    {
+      "id": "winogrande",
+      "name": "WinoGrande",
+      "category": "reasoning"
+    },
+    {
+      "id": "world_model_consistency",
+      "name": "World Model Consistency Window",
+      "category": "multimodal"
+    },
+    {
+      "id": "world_model_fps",
+      "name": "World Model Real-Time FPS",
+      "category": "multimodal"
+    },
+    {
+      "id": "world_model_visual_memory",
+      "name": "World Model Visual Memory Horizon",
+      "category": "multimodal"
+    },
+    {
+      "id": "zerodaybench",
+      "name": "ZeroDayBench",
+      "category": "cyber_defense"
+    }
+  ]
+}
