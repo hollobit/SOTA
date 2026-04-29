@@ -2,6 +2,15 @@
   {
     "type": "Feature",
     "date": "2026-04-29",
+    "benchmark_id": "참조 사이트 분석 — Reka Edge + FrontierMath Tier 4 추가 (+1 모델, +8 benchmarks, +10 점수)",
+    "new_model": "Reka Edge 2603 (physical AI edge) + FrontierMath Tier 4 leaderboard (Epoch AI)",
+    "new_value": "User-requested: '참조 사이트와 링크들 분석해 새 모델/벤치마크/점수 추가'. Strict-attribution rule 준수, date-paradox 회피. (1) New model: reka/reka-edge-2603 (Reka, 2026-03, 7B vision-language, physical AI/edge focus) — HF model card RekaAI/reka-edge-2603 1차 출처에서 7개 verified score 추출: VQA-V2 88.4, MLVU 74.3, MMVU 71.68, RefCOCO-A 93.13, RefCOCO-B 86.7, VideoHallucer 59.57, Mobile Actions 88.4. (2) +8 new benchmarks 등록: VQA-V2, MLVU, MMVU, RefCOCO-A, RefCOCO-B, VideoHallucer, Mobile Actions, FrontierMath Tier 4. (3) FrontierMath Tier 4 (Epoch AI 48-problem private set, research-level math) — 3 verified scores from Epoch AI primary URL: Gemini 3 Pro 19% (±6), GPT-5 Pro 13% (6/46), Grok 4 2% (±2). (4) NOT_ADDED — strict rule violations: Qwen3.6-Max-Preview (Alibaba blog JS-rendered, HF card 401, only deltas published — NO_VERIFIABLE_NUMBERS), Mistral Large 3 (이미 DB에 존재, 추가 score 검증 필요), Apollo evals on Mythos (already present). (5) Considered & skipped: Granite-4.0-3B-Vision (sub-frontier), AI21 Jamba Reasoning 3B (sub-frontier, 1차 score 미확인), Cohere/Yi/Snowflake/Databricks/Microsoft (no 2026 frontier launch surfaced). seed_sources.yaml +4 entries.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Feature",
+    "date": "2026-04-29",
     "benchmark_id": "ChatGPT for Clinicians HealthBench Pro 8 sub-slice + 1 audit (+9 verified) / -6 fabricated 제거",
     "new_model": "ChatGPT for Clinicians (GPT-5.4) — HealthBench Professional 세부 분석 + 사전 audit",
     "new_value": "User-requested: 'ChatGPT for Clinicians 관련 벤치마크 결과 조사·추가'. 1차 출처 검증으로 fabricated 6 entries 제거 + verified 9 entries 추가. (1) REMOVED 6 (strict-attribution rule violation) — chatgpt-clinicians-gpt55 healthbench_professional=64.2 (self-tagged 'Estimated SOTA', NO GPT-5.5 CFC 변형 존재 — Hicks et al PDF §3 명시 'GPT-5.4 and GPT-5.2 Instant'); chatgpt-clinicians-gpt54 healthbench=71.4 (HealthBench launch page는 CFC 언급 없음, 2025-05 paper에 CFC 컬럼 없음); jama_clin_chal=76.2 (announcement에 없음); chatgpt-clinicians-gpt55 open_medical_llm_avg=89.5 (no source); medsafetybench=5.2 + patientsafebench=88.5 (모두 announcement에 없음). (2) GPT-5.5 CFC 모델 자체 제거 — primary 출처에 존재하지 않음. (3) ADDED 9 verified scores (모두 https://cdn.openai.com/.../HealthBench-Professional.pdf Hicks et al Apr 2026 PDF에서 인용문 확보): Care Consult 51.0 (vs physicians 42.7), Writing & Documentation 64.1 (vs 32.1), Medical Research 67.0 (vs 56.3), Red-Team L1-2 55.8 (vs 30.0), Good-Faith L3-7 69.0 (vs 55.7), Nephrology 72.1, Cardiology 53.9, Psychiatry 69.6 (vs base GPT-5.4 40.7), Pre-release Physician Audit 99.6% safe-and-accurate (6,924 conversations from making-chatgpt-better-for-clinicians/ announcement). (4) Medical AI 메뉴 hardcoded list, Resources 탭 GPT-5.5 CFC 참조 제거 (medical-ai.js?v=20260429a). seed_sources.yaml에 HealthBench Professional PDF + CFC announcement 등록.",
