@@ -1,0 +1,101 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-29",
+    "sources": [
+      "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC13077515/",
+      "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"
+    ],
+    "_note": "Strict-attribution batch combining (1) JAMA Network Open 2026-04-13 'LLM Performance and Clinical Reasoning Tasks' (Rao et al; 21 LLMs × 29 vignettes; PrIME-LLM metric) — only numerically attributed values from the published article body, NOT eTable 2 (reCAPTCHA-gated). (2) OpenAI HealthBench Professional PDF — Figure 4/5/7 chart labels + Section 5 prose attributions for 8 systems including human physician baseline."
+  },
+  "models": [
+    {"id": "google/gemini-1.5-flash", "vendor": "Google", "name": "Gemini 1.5 Flash", "type": "proprietary", "modalities": ["text", "image"]},
+    {"id": "openai/gpt-4.5", "vendor": "OpenAI", "name": "GPT-4.5", "type": "proprietary", "modalities": ["text"]},
+    {"id": "openai/gpt-4o", "vendor": "OpenAI", "name": "GPT-4o", "type": "proprietary", "modalities": ["text", "image"]},
+    {"id": "anthropic/claude-3.5-haiku", "vendor": "Anthropic", "name": "Claude 3.5 Haiku", "type": "proprietary", "modalities": ["text"]},
+    {"id": "baseline/physician", "vendor": "Human", "name": "Physician (human baseline)", "type": "baseline", "modalities": ["text"], "_note": "Aggregated physician-written responses used as human baseline in HealthBench Professional"}
+  ],
+  "benchmarks": [
+    {"id": "prime_llm_score", "name": "PrIME-LLM (Proportional Index of Medical Evaluation for LLMs)", "category": "medical", "metric": "polygon_area", "description": "JAMA Network Open 2847679 — normalized polygonal area on 5-domain radar (differential dx, dx testing, final dx, management, miscellaneous). Range 0-1, equal-weighted. 29 vignettes × 21 LLMs × 3 reps"},
+    {"id": "multimodal_text_image_delta", "name": "Multimodal vs Text-only Accuracy Gain", "category": "multimodal", "metric": "delta", "description": "JAMA paired contrast: image-included accuracy - text-only accuracy on identical clinical vignettes"},
+    {"id": "final_vs_diff_dx_gap", "name": "Final-Dx vs Differential-Dx Accuracy Gap", "category": "medical", "metric": "delta", "description": "JAMA per-model paired contrast: final diagnosis accuracy - differential diagnosis accuracy"},
+    {"id": "healthbench_pro_gf_difficult", "name": "HealthBench Professional — Good-Faith Likert 1-2 (difficult)", "category": "medical", "metric": "rubric_score", "description": "Good-faith difficult slice (Likert 1-2). Hardest realistic clinician queries. n=78. Hicks et al Apr 2026"},
+    {"id": "healthbench_pro_neurology", "name": "HealthBench Professional — Neurology", "category": "medical", "metric": "rubric_score", "description": "Neurology specialty slice. Hicks et al Apr 2026"},
+    {"id": "healthbench_pro_orthopedics", "name": "HealthBench Professional — Orthopedics", "category": "medical", "metric": "rubric_score", "description": "Orthopedics specialty slice. Hicks et al Apr 2026"}
+  ],
+  "scores": [
+    {"model": "xai/grok-4", "benchmark": "prime_llm_score", "score": 0.78, "unit": "score", "_source": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679", "_note": "Highest among 21 LLMs evaluated. Range 0.77-0.79. JAMA Rao et al 2026-04-13 §Results"},
+    {"model": "google/gemini-1.5-flash", "benchmark": "prime_llm_score", "score": 0.64, "unit": "score", "_source": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679", "_note": "Lowest among 21 LLMs. Range 0.63-0.65"},
+    {"model": "openai/gpt-4.5", "benchmark": "multimodal_text_image_delta", "score": 0.10, "unit": "delta", "_source": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679", "_note": "Multimodal vs text-only gain on image vignettes, p<.001"},
+    {"model": "google/gemini-3-pro", "benchmark": "multimodal_text_image_delta", "score": 0.09, "unit": "delta", "_source": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679", "_note": "Multimodal gain p<.001. Note: paper says 'Gemini 3.0 Pro' — same product as gemini-3-pro"},
+    {"model": "xai/grok-4", "benchmark": "multimodal_text_image_delta", "score": 0.07, "unit": "delta", "_source": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679", "_note": "Multimodal gain p=.002"},
+    {"model": "openai/gpt-4o", "benchmark": "final_vs_diff_dx_gap", "score": 0.12, "unit": "delta", "_source": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679", "_note": "Mean difference final-dx - differential-dx accuracy"},
+    {"model": "anthropic/claude-3.5-haiku", "benchmark": "final_vs_diff_dx_gap", "score": 0.16, "unit": "delta", "_source": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679", "_note": "Mean difference final-dx - differential-dx accuracy"},
+
+    {"model": "openai/gpt-5.4", "benchmark": "healthbench_professional", "score": 48.1, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "HBP overall, base GPT-5.4. Fig.4 + p.10 §5.1 'GPT-5.4 at 48.1'"},
+    {"model": "openai/gpt-5.2", "benchmark": "healthbench_professional", "score": 45.9, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Fig.4 chart label, p.10"},
+    {"model": "openai/gpt-5", "benchmark": "healthbench_professional", "score": 46.2, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Fig.4 chart label, p.10"},
+    {"model": "baseline/physician", "benchmark": "healthbench_professional", "score": 43.7, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Physician-written responses, p.10 §5.1 '43.7'"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "healthbench_professional", "score": 47.0, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Fig.4 chart label, p.10"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "healthbench_professional", "score": 43.8, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Fig.4 chart label, p.10"},
+    {"model": "xai/grok-4.20", "benchmark": "healthbench_professional", "score": 34.1, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Fig.4 chart label, p.10"},
+
+    {"model": "openai/gpt-5.4", "benchmark": "healthbench_pro_care_consult", "score": 49.9, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Fig.4 by-use-case label"},
+    {"model": "openai/gpt-5.2", "benchmark": "healthbench_pro_care_consult", "score": 48.5, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "openai/gpt-5", "benchmark": "healthbench_pro_care_consult", "score": 47.6, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "baseline/physician", "benchmark": "healthbench_pro_care_consult", "score": 42.7, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.10 §5.1 '51.0 vs 42.7'"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "healthbench_pro_care_consult", "score": 47.6, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "healthbench_pro_care_consult", "score": 40.6, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "xai/grok-4.20", "benchmark": "healthbench_pro_care_consult", "score": 38.1, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+
+    {"model": "openai/gpt-5.4", "benchmark": "healthbench_pro_writing", "score": 34.6, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.10 §5.1 'next-best model, GPT-5.4, at 34.6'"},
+    {"model": "openai/gpt-5.2", "benchmark": "healthbench_pro_writing", "score": 27.4, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "openai/gpt-5", "benchmark": "healthbench_pro_writing", "score": 26.6, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "baseline/physician", "benchmark": "healthbench_pro_writing", "score": 32.1, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.10 §5.1 '64.1 vs 32.1'"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "healthbench_pro_writing", "score": 35.3, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "healthbench_pro_writing", "score": 30.4, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "xai/grok-4.20", "benchmark": "healthbench_pro_writing", "score": 7.7, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+
+    {"model": "openai/gpt-5.4", "benchmark": "healthbench_pro_research", "score": 58.1, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.10 §5.1 '67.0 vs 58.1, p = 3.0e-3' (text-attributed; preferred over chart label 56.4)"},
+    {"model": "openai/gpt-5.2", "benchmark": "healthbench_pro_research", "score": 59.0, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "openai/gpt-5", "benchmark": "healthbench_pro_research", "score": 60.5, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "baseline/physician", "benchmark": "healthbench_pro_research", "score": 56.3, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.10 §5.1 '67.0 vs 56.3'"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "healthbench_pro_research", "score": 59.7, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "healthbench_pro_research", "score": 50.7, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "xai/grok-4.20", "benchmark": "healthbench_pro_research", "score": 56.7, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "healthbench_pro_gf_difficult", "score": 34.1, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Fig.5 GF-difficult L1-2 slice"},
+    {"model": "openai/gpt-5.4", "benchmark": "healthbench_pro_gf_difficult", "score": 37.0, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "openai/gpt-5.2", "benchmark": "healthbench_pro_gf_difficult", "score": 33.1, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "openai/gpt-5", "benchmark": "healthbench_pro_gf_difficult", "score": 37.0, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "baseline/physician", "benchmark": "healthbench_pro_gf_difficult", "score": 37.6, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "healthbench_pro_gf_difficult", "score": 36.9, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "healthbench_pro_gf_difficult", "score": 39.4, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "xai/grok-4.20", "benchmark": "healthbench_pro_gf_difficult", "score": 32.9, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+
+    {"model": "openai/gpt-5.4", "benchmark": "healthbench_pro_goodfaith", "score": 67.8, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "openai/gpt-5.2", "benchmark": "healthbench_pro_goodfaith", "score": 67.2, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "openai/gpt-5", "benchmark": "healthbench_pro_goodfaith", "score": 68.3, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "baseline/physician", "benchmark": "healthbench_pro_goodfaith", "score": 55.7, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.11 §5.1 'vs 55.7'"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "healthbench_pro_goodfaith", "score": 68.1, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "healthbench_pro_goodfaith", "score": 61.4, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.11 §5.1 'Gemini 3.1 Pro (61.4, p = 9.2e-5)'"},
+    {"model": "xai/grok-4.20", "benchmark": "healthbench_pro_goodfaith", "score": 65.0, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+
+    {"model": "openai/gpt-5.4", "benchmark": "healthbench_pro_redteam", "score": 26.2, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.11 §5.1 'GPT-5.4 (26.2, p = 2.2e-12)'"},
+    {"model": "openai/gpt-5.2", "benchmark": "healthbench_pro_redteam", "score": 22.6, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "openai/gpt-5", "benchmark": "healthbench_pro_redteam", "score": 20.4, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "baseline/physician", "benchmark": "healthbench_pro_redteam", "score": 30.0, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.11 §5.1 'vs 30.0 for physicians'"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "healthbench_pro_redteam", "score": 22.9, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "healthbench_pro_redteam", "score": 21.9, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "xai/grok-4.20", "benchmark": "healthbench_pro_redteam", "score": 0.0, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "Grok 4.20 RT-difficult bar at 0.0"},
+
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "healthbench_pro_neurology", "score": 65.6, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.11 §5.2 'neurology (65.6 vs 55.0, p = 0.065)'"},
+    {"model": "baseline/physician", "benchmark": "healthbench_pro_neurology", "score": 55.0, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "openai/chatgpt-clinicians-gpt54", "benchmark": "healthbench_pro_orthopedics", "score": 49.4, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.11 §5.2 'orthopedics (49.4 vs 27.6, p = 0.067)' / 'vs GPT-5.4 29.9'"},
+    {"model": "baseline/physician", "benchmark": "healthbench_pro_orthopedics", "score": 27.6, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "openai/gpt-5.4", "benchmark": "healthbench_pro_orthopedics", "score": 29.9, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "openai/gpt-5.4", "benchmark": "healthbench_pro_psychiatry", "score": 40.7, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf", "_note": "p.11 §5.2 'psychiatry over GPT-5.4 (69.6 vs 40.7, p = 1.3e-3)'"},
+    {"model": "baseline/physician", "benchmark": "healthbench_pro_nephrology", "score": 43.6, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"},
+    {"model": "baseline/physician", "benchmark": "healthbench_pro_cardiology", "score": 30.7, "_source": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf"}
+  ]
+}

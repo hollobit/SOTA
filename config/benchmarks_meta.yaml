@@ -4553,3 +4553,63 @@ benchmarks:
   - 80
   description: Artificial Analysis composite intelligence index across multiple benchmarks
   leaderboard: https://artificialanalysis.ai/
+- id: prime_llm_score
+  name: PrIME-LLM (Proportional Index of Medical Evaluation for LLMs)
+  category: medical
+  metric: polygon_area
+  unit: 'score'
+  expected_range:
+  - 0.5
+  - 0.85
+  description: JAMA Network Open 2847679 — normalized polygonal area on 5-domain radar (differential dx, dx testing, final dx, management, miscellaneous). 29 vignettes × 21 LLMs. Range 0-1
+  paper: https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679
+- id: multimodal_text_image_delta
+  name: Multimodal vs Text-only Accuracy Gain (JAMA)
+  category: multimodal
+  metric: delta
+  unit: 'delta'
+  expected_range:
+  - 0
+  - 0.2
+  description: JAMA paired contrast — image-included accuracy minus text-only accuracy on identical clinical vignettes
+  paper: https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679
+- id: final_vs_diff_dx_gap
+  name: Final-Dx vs Differential-Dx Accuracy Gap (JAMA)
+  category: medical
+  metric: delta
+  unit: 'delta'
+  expected_range:
+  - 0
+  - 0.3
+  description: JAMA per-model paired contrast — final-dx accuracy minus differential-dx accuracy
+  paper: https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2847679
+- id: healthbench_pro_gf_difficult
+  name: HealthBench Professional — Good-Faith Likert 1-2 (difficult)
+  category: medical
+  metric: rubric_score
+  unit: '%'
+  expected_range:
+  - 30
+  - 60
+  description: Good-faith difficult slice (Likert 1-2). Hardest realistic clinician queries. n=78
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+- id: healthbench_pro_neurology
+  name: HealthBench Professional — Neurology
+  category: medical
+  metric: rubric_score
+  unit: '%'
+  expected_range:
+  - 30
+  - 80
+  description: Neurology specialty slice
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+- id: healthbench_pro_orthopedics
+  name: HealthBench Professional — Orthopedics
+  category: medical
+  metric: rubric_score
+  unit: '%'
+  expected_range:
+  - 20
+  - 70
+  description: Orthopedics specialty slice
+  paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
