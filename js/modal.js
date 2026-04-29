@@ -262,29 +262,64 @@ var Modal = {
         }
 
         // BMT metadata + builtin metadata
-        if (bmt.bmt_title || bmt.paper_link || bmt.github_link || bmt.description || bmt.year) {
+        if (bmt.bmt_title || bmt.paper_link || bmt.github_link || bmt.description || bmt.year || (bmt.authors && bmt.authors.length) || bmt.specs || bmt.source) {
             var metaDiv = document.createElement('div');
             metaDiv.className = 'bg-gray-800 rounded-lg p-4 mb-4 space-y-2';
 
-            if (bmt.bmt_title) metaDiv.appendChild(this._makeLabel('Dataset', bmt.bmt_title));
+            // Header row: BMT title + (publisher source) badge
+            if (bmt.bmt_title || bmt.source) {
+                var headerRow = document.createElement('div');
+                headerRow.className = 'flex items-baseline gap-2 flex-wrap';
+                if (bmt.bmt_title) {
+                    var titleLabel = document.createElement('span');
+                    titleLabel.className = 'text-xs text-gray-500';
+                    titleLabel.textContent = 'BMT Dataset';
+                    headerRow.appendChild(titleLabel);
+                    var titleVal = document.createElement('span');
+                    titleVal.className = 'text-sm font-semibold text-gray-200';
+                    titleVal.textContent = bmt.bmt_title;
+                    headerRow.appendChild(titleVal);
+                }
+                if (bmt.source) {
+                    var srcBadge = document.createElement('span');
+                    srcBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300';
+                    srcBadge.textContent = bmt.source;
+                    headerRow.appendChild(srcBadge);
+                }
+                metaDiv.appendChild(headerRow);
+            }
+
             if (bmt.year) metaDiv.appendChild(this._makeLabel('Year', bmt.year));
             if (bmt.item_count) metaDiv.appendChild(this._makeLabel('Items', bmt.item_count));
+            if (bmt.specs) metaDiv.appendChild(this._makeLabel('Specs', bmt.specs));
+
+            // Authors (truncate to first 3 + "et al.")
+            if (bmt.authors && bmt.authors.length) {
+                var authStr;
+                if (bmt.authors.length > 4) {
+                    authStr = bmt.authors.slice(0, 3).join(', ') + ', et al. (' + bmt.authors.length + ' authors)';
+                } else {
+                    authStr = bmt.authors.join(', ');
+                }
+                metaDiv.appendChild(this._makeLabel('Authors', authStr));
+            }
+
             if (bmt.description) {
                 var bmtDesc = document.createElement('div');
-                bmtDesc.className = 'text-sm text-gray-400 mt-2';
+                bmtDesc.className = 'text-sm text-gray-400 mt-2 leading-relaxed';
                 bmtDesc.textContent = bmt.description;
                 metaDiv.appendChild(bmtDesc);
             }
 
             var linksDiv = document.createElement('div');
-            linksDiv.className = 'flex gap-3 mt-3';
+            linksDiv.className = 'flex gap-3 mt-3 flex-wrap';
             if (bmt.paper_link) {
                 var paperLink = document.createElement('a');
                 paperLink.href = bmt.paper_link;
                 paperLink.target = '_blank';
                 paperLink.rel = 'noopener noreferrer';
                 paperLink.className = 'inline-flex items-center gap-1 px-3 py-1.5 bg-purple-900 hover:bg-purple-800 text-purple-200 text-xs rounded transition';
-                paperLink.textContent = 'Paper';
+                paperLink.textContent = '📄 Paper';
                 linksDiv.appendChild(paperLink);
             }
             if (bmt.github_link) {
@@ -293,10 +328,20 @@ var Modal = {
                 ghLink.target = '_blank';
                 ghLink.rel = 'noopener noreferrer';
                 ghLink.className = 'inline-flex items-center gap-1 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-200 text-xs rounded transition';
-                ghLink.textContent = 'GitHub';
+                ghLink.textContent = '⚙ GitHub';
                 linksDiv.appendChild(ghLink);
             }
-            metaDiv.appendChild(linksDiv);
+            // BMT registry deep-link if we have a bmt_id
+            if (bmt.bmt_id) {
+                var bmtLink = document.createElement('a');
+                bmtLink.href = 'https://benchmark-mt.com/dataset/' + encodeURIComponent(bmt.bmt_id);
+                bmtLink.target = '_blank';
+                bmtLink.rel = 'noopener noreferrer';
+                bmtLink.className = 'inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-900 hover:bg-emerald-800 text-emerald-200 text-xs rounded transition';
+                bmtLink.textContent = '🗂 BMT Registry';
+                linksDiv.appendChild(bmtLink);
+            }
+            if (linksDiv.children.length) metaDiv.appendChild(linksDiv);
             container.appendChild(metaDiv);
         }
 
