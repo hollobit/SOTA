@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-30",
+    "sources": [
+      "https://agentdojo.spylab.ai/results/",
+      "https://arxiv.org/html/2406.13352v3",
+      "https://arxiv.org/html/2410.02644v2",
+      "https://arxiv.org/abs/2410.02644"
+    ],
+    "_note": "Poisoning-related benchmarks batch. Two primary sources with verifiable per-frontier-model rows. (1) AgentDojo (Debenedetti et al ETHZ, ICML 2024 → spylab.ai/results live leaderboard) — prompt-injection benchmark for agentic tool use, 13 model rows with Utility+TargetedASR. (2) Agent Security Bench (ASB) arxiv 2410.02644v2 — Direct/Indirect prompt injection + Memory Poisoning + Plan-of-Thought Backdoor across 4 models × 4 attack vectors. Skipped BackdoorLLM, PoisonBench (both open-weight base only, no frontier coverage), GCG/AdvBench (post-patched, stale)."
+  },
+  "models": [
+    {"id": "openai/gpt-4o-mini", "vendor": "OpenAI", "name": "GPT-4o mini", "type": "proprietary", "modalities": ["text", "image"], "released_at": "2024-07"}
+  ],
+  "benchmarks": [
+    {"id": "agentdojo_utility", "name": "AgentDojo Benign Utility", "category": "agent", "metric": "utility_pct", "description": "AgentDojo benign-task completion utility under no attack. Higher=better. spylab.ai/results live leaderboard"},
+    {"id": "agentdojo_targeted_asr", "name": "AgentDojo Targeted Attack Success Rate", "category": "safety", "metric": "asr", "description": "AgentDojo targeted attack success rate under important_instructions injection. Lower=safer. spylab.ai/results"},
+    {"id": "asb_direct_prompt_injection", "name": "ASB Direct Prompt Injection ASR", "category": "safety", "metric": "asr", "description": "Agent Security Bench arxiv 2410.02644v2 — direct prompt injection attack success rate. Lower=safer"},
+    {"id": "asb_indirect_prompt_injection", "name": "ASB Indirect Prompt Injection ASR", "category": "safety", "metric": "asr", "description": "Agent Security Bench — indirect prompt injection ASR. Lower=safer"},
+    {"id": "asb_memory_poisoning", "name": "ASB Memory Poisoning ASR", "category": "safety", "metric": "asr", "description": "Agent Security Bench — memory poisoning attack on agent's persistent state. Lower=safer"},
+    {"id": "asb_pot_backdoor", "name": "ASB Plan-of-Thought Backdoor ASR", "category": "safety", "metric": "asr", "description": "Agent Security Bench — Plan-of-Thought reasoning backdoor attack. Lower=safer"}
+  ],
+  "scores": [
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "agentdojo_utility", "score": 77.27, "_source": "https://agentdojo.spylab.ai/results/", "_note": "claude-3-7-sonnet-20250219 row"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "agentdojo_targeted_asr", "score": 7.31, "_source": "https://agentdojo.spylab.ai/results/", "_note": "Lowest frontier ASR — most resistant"},
+
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "agentdojo_utility", "score": 72.50, "_source": "https://agentdojo.spylab.ai/results/", "_note": "claude-3-5-sonnet-20241022 row"},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "agentdojo_targeted_asr", "score": 1.11, "_source": "https://agentdojo.spylab.ai/results/", "_note": "Lowest ASR among frontier — most resistant to prompt injection"},
+
+    {"model": "anthropic/claude-3-opus", "benchmark": "agentdojo_utility", "score": 66.61, "_source": "https://arxiv.org/html/2406.13352v3", "_note": "Paper Table — ±3.69"},
+    {"model": "anthropic/claude-3-opus", "benchmark": "agentdojo_targeted_asr", "score": 11.29, "_source": "https://arxiv.org/html/2406.13352v3"},
+
+    {"model": "openai/gpt-4o", "benchmark": "agentdojo_utility", "score": 69.00, "_source": "https://arxiv.org/html/2406.13352v3", "_note": "Paper Table — ±3.61"},
+    {"model": "openai/gpt-4o", "benchmark": "agentdojo_targeted_asr", "score": 47.69, "_source": "https://arxiv.org/html/2406.13352v3", "_note": "High ASR — vulnerable to prompt injection"},
+
+    {"model": "openai/gpt-4o-mini", "benchmark": "agentdojo_utility", "score": 49.92, "_source": "https://agentdojo.spylab.ai/results/", "_note": "gpt-4o-mini-2024-07-18 row"},
+    {"model": "openai/gpt-4o-mini", "benchmark": "agentdojo_targeted_asr", "score": 27.19, "_source": "https://agentdojo.spylab.ai/results/"},
+
+    {"model": "google/gemini-1.5-pro", "benchmark": "agentdojo_utility", "score": 45.63, "_source": "https://arxiv.org/html/2406.13352v3", "_note": "Paper Table — ±3.89"},
+    {"model": "google/gemini-1.5-pro", "benchmark": "agentdojo_targeted_asr", "score": 25.60, "_source": "https://arxiv.org/html/2406.13352v3"},
+
+    {"model": "google/gemini-1.5-flash", "benchmark": "agentdojo_targeted_asr", "score": 3.50, "_source": "https://agentdojo.spylab.ai/results/", "_note": "gemini-1.5-flash-002 row — surprisingly resistant"},
+
+    {"model": "meta/llama-3-70b", "benchmark": "agentdojo_utility", "score": 34.50, "_source": "https://arxiv.org/html/2406.13352v3", "_note": "Paper Table — ±3.71"},
+    {"model": "meta/llama-3-70b", "benchmark": "agentdojo_targeted_asr", "score": 20.03, "_source": "https://arxiv.org/html/2406.13352v3"},
+
+    {"model": "openai/gpt-4o", "benchmark": "asb_direct_prompt_injection", "score": 60.35, "_source": "https://arxiv.org/html/2410.02644v2", "_note": "ASB Table 5 — most resistant frontier on direct PI"},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "asb_direct_prompt_injection", "score": 90.75, "_source": "https://arxiv.org/html/2410.02644v2"},
+    {"model": "meta/llama-3-70b", "benchmark": "asb_direct_prompt_injection", "score": 86.15, "_source": "https://arxiv.org/html/2410.02644v2"},
+    {"model": "google/gemma-2-27b", "benchmark": "asb_direct_prompt_injection", "score": 96.75, "_source": "https://arxiv.org/html/2410.02644v2", "_note": "Worst — almost all DPI succeed"},
+
+    {"model": "openai/gpt-4o", "benchmark": "asb_indirect_prompt_injection", "score": 59.60, "_source": "https://arxiv.org/html/2410.02644v2"},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "asb_indirect_prompt_injection", "score": 59.70, "_source": "https://arxiv.org/html/2410.02644v2"},
+    {"model": "meta/llama-3-70b", "benchmark": "asb_indirect_prompt_injection", "score": 43.70, "_source": "https://arxiv.org/html/2410.02644v2"},
+    {"model": "google/gemma-2-27b", "benchmark": "asb_indirect_prompt_injection", "score": 14.20, "_source": "https://arxiv.org/html/2410.02644v2", "_note": "Best — most resistant to indirect PI"},
+
+    {"model": "openai/gpt-4o", "benchmark": "asb_memory_poisoning", "score": 12.15, "_source": "https://arxiv.org/html/2410.02644v2", "_note": "Memory poisoning attack — corrupts agent's persistent context"},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "asb_memory_poisoning", "score": 19.75, "_source": "https://arxiv.org/html/2410.02644v2"},
+    {"model": "meta/llama-3-70b", "benchmark": "asb_memory_poisoning", "score": 1.85, "_source": "https://arxiv.org/html/2410.02644v2", "_note": "Most resistant"},
+    {"model": "google/gemma-2-27b", "benchmark": "asb_memory_poisoning", "score": 6.25, "_source": "https://arxiv.org/html/2410.02644v2"},
+
+    {"model": "openai/gpt-4o", "benchmark": "asb_pot_backdoor", "score": 14.50, "_source": "https://arxiv.org/html/2410.02644v2", "_note": "Plan-of-Thought reasoning backdoor"},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "asb_pot_backdoor", "score": 17.50, "_source": "https://arxiv.org/html/2410.02644v2"},
+    {"model": "meta/llama-3-70b", "benchmark": "asb_pot_backdoor", "score": 57.00, "_source": "https://arxiv.org/html/2410.02644v2"},
+    {"model": "google/gemma-2-27b", "benchmark": "asb_pot_backdoor", "score": 54.50, "_source": "https://arxiv.org/html/2410.02644v2"}
+  ]
+}

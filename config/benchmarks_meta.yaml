@@ -4889,3 +4889,65 @@ benchmarks:
   - 100
   description: OR-Bench HF leaderboard overall refusal rate %. Lower=better helpfulness on benign queries
   leaderboard: https://huggingface.co/spaces/bench-llms/or-bench-leaderboard
+- id: agentdojo_utility
+  name: AgentDojo Benign Utility
+  category: agent
+  metric: utility_pct
+  unit: '%'
+  expected_range:
+  - 30
+  - 90
+  description: AgentDojo benign-task utility under no attack. Higher=better
+  paper: https://arxiv.org/abs/2406.13352
+  leaderboard: https://agentdojo.spylab.ai/results/
+- id: agentdojo_targeted_asr
+  name: AgentDojo Targeted ASR
+  category: safety
+  metric: asr
+  unit: '%'
+  expected_range:
+  - 0
+  - 60
+  description: AgentDojo targeted attack success rate under important_instructions injection. Lower=safer
+  paper: https://arxiv.org/abs/2406.13352
+  leaderboard: https://agentdojo.spylab.ai/results/
+- id: asb_direct_prompt_injection
+  name: ASB Direct Prompt Injection ASR
+  category: safety
+  metric: asr
+  unit: '%'
+  expected_range:
+  - 50
+  - 99
+  description: Agent Security Bench — direct prompt injection. Lower=safer
+  paper: https://arxiv.org/abs/2410.02644
+- id: asb_indirect_prompt_injection
+  name: ASB Indirect Prompt Injection ASR
+  category: safety
+  metric: asr
+  unit: '%'
+  expected_range:
+  - 10
+  - 80
+  description: Agent Security Bench — indirect prompt injection. Lower=safer
+  paper: https://arxiv.org/abs/2410.02644
+- id: asb_memory_poisoning
+  name: ASB Memory Poisoning ASR
+  category: safety
+  metric: asr
+  unit: '%'
+  expected_range:
+  - 0
+  - 30
+  description: Agent Security Bench — memory poisoning attack. Lower=safer
+  paper: https://arxiv.org/abs/2410.02644
+- id: asb_pot_backdoor
+  name: ASB Plan-of-Thought Backdoor ASR
+  category: safety
+  metric: asr
+  unit: '%'
+  expected_range:
+  - 0
+  - 80
+  description: Agent Security Bench — Plan-of-Thought reasoning backdoor. Lower=safer
+  paper: https://arxiv.org/abs/2410.02644
