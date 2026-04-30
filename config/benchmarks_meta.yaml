@@ -4869,3 +4869,23 @@ benchmarks:
   - 0
   - 15
   description: Anthropic system-card hard benign-request over-refusal rate. More discriminative axis. Lower=better
+- id: or_bench_avg
+  name: OR-Bench Average (refusal + toxic)
+  category: safety
+  metric: composite
+  unit: '%'
+  expected_range:
+  - 0
+  - 60
+  description: OR-Bench HF leaderboard composite of overall over-refusal and toxic-acceptance. Lower=better balance
+  leaderboard: https://huggingface.co/spaces/bench-llms/or-bench-leaderboard
+- id: or_bench_overall_refusal
+  name: OR-Bench Overall Refusal Rate
+  category: safety
+  metric: rejection_pct
+  unit: '%'
+  expected_range:
+  - 0
+  - 100
+  description: OR-Bench HF leaderboard overall refusal rate %. Lower=better helpfulness on benign queries
+  leaderboard: https://huggingface.co/spaces/bench-llms/or-bench-leaderboard
