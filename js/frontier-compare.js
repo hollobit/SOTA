@@ -113,7 +113,12 @@ var FrontierCompare = {
         'tencent/hy3-preview',
         'xiaomi/mimo-v2.5-pro',
         'inclusionai/ling-2.6-1t',
-        'inclusionai/ling-2.6-flash'
+        'inclusionai/ling-2.6-flash',
+
+        // Apr 28-30 2026 additions
+        'nvidia/nemotron-3-nano-omni',
+        'reka/reka-edge-2603',
+        'google/gemma-4-26b-a4b'
     ],
 
     _models: [],

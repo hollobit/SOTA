@@ -2,6 +2,15 @@
   {
     "type": "Feature",
     "date": "2026-04-30",
+    "benchmark_id": "Apr-30 catch-up — AISI Sabotage + Cyber Defense Benchmark (+4 benchmarks, +9 scores) + 5-tab propagation",
+    "new_model": "AISI sabotage/cyber-range eval data + CDB benchmark + Sapiens2/Reka Edge tab propagation",
+    "new_value": "User-requested: '추가 반영해야 할 모델/벤치마크/결과 + 5탭 hardcoded 리스트 점검'. Research scan 결과 (1) AISI Sabotage Evaluation (arxiv 2604.00788, Apr 28 2026) — Mythos 7% / Sonnet 4.6 4% / Opus 4.6 3% / Opus 4.7 0% continuation sabotage rate (lower=safer). Mythos CoT-vs-output 65% discrepancy. (2) AISI Cyber Range Expert Tier (Apr 14 2026 blog) — Mythos 73% / Opus 4.6 66% / GPT-5.4 60% expert-tier CTF. Mythos는 'The Last Ones' 32-step range 3/10 완주 첫 모델. (3) Cyber Defense Benchmark CDB (arxiv 2604.19533) — agentic SOC threat hunting 106 공격, Opus 4.6 3.8% (top, no model finds all flags). (4) Hardcoded list propagation: Physical AI tab에 'Human-Centric Vision Foundation Models' 그룹 신설 (Sapiens2 5B/1B-4K/1B/0.8B/0.4B/0.1B + Reka Edge). Frontier Compare hardcoded list에 nemotron-3-nano-omni, reka-edge-2603, gemma-4-26b-a4b 추가. Cache: physical-ai.js?v=20260430a, frontier-compare.js?v=20260430a. (5) NOT_ADDED — Gemini 3.1 Ultra (still phantom per primary doc check), Llama 4 Behemoth (still training), Grok 5 (Q1 missed), Gemma 4 E2B/E4B (vendor blog scores not extractable cleanly), OLMo 2 32B (NEEDS_VERIFICATION on primary scores), Wan2.2/FLUX.2/PersonaPlex (NEEDS_VERIFICATION).",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Feature",
+    "date": "2026-04-30",
     "benchmark_id": "Meta Sapiens2 (ICLR 2026) human-centric vision 추가 (+6 모델, +5 benchmarks, +22 점수)",
     "new_model": "Sapiens2 family — Meta Reality Labs 비전 트랜스포머, 1B human images 사전학습",
     "new_value": "User-requested: 'huggingface.co/facebook/sapiens2 모델/벤치마크 결과 추가'. (1) New models (6): meta/sapiens2-0.1b (114M), 0.4b (398M), 0.8b (818M), 1b (1.46B), 1b-4k (1.61B, 4K res), 5b (5.07B flagship). 모두 출시 2026-04-23 ICLR 2026, NVIDIA Open Model Agreement 준하는 'Sapiens2 License'. (2) +5 vision 벤치마크: sapiens2_pose_11k (308 keypoint mAP), sapiens2_seg_5k (29-class mIoU), sapiens2_pointmap_10k_l2 (XYZ L2), sapiens2_normal_10k_4k (mean angular err°), sapiens2_albedo_10k_psnr (PSNR dB). 모두 Meta-internal closed test sets. (3) +22 verified scores from arxiv 2604.21681 Tables 3/4/5/6/7. Headline SOTA: Sapiens2-5B Pose 11K mAP=82.3 (+4.0 vs Sapiens v1), Seg 5K mIoU=82.5 (+24.3), Pointmap L2=0.167, Normal 6.73° (-45.6%), Albedo PSNR=32.61 dB. Sapiens2-1B-4K Seg 81.9 / Normal 6.98°. (4) Skipped — Table 2 (dense probing, frozen backbone), Table 8 (per-region pose breakdown). 0.1B variant은 paper 미평가, HF에만 존재. (5) NOT_FOUND: project page https://rawalkhirodkar.github.io/sapiens2 returns 404 — agent confirmed. (6) seed_sources.yaml +2 entries.",

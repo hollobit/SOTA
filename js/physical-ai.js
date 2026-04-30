@@ -68,6 +68,16 @@ var PhysicalAI = {
                 'ptc/creo-copilot',
                 'dassault/3dx-aura'
             ]
+        },
+        {
+            code: 'human-centric-vision',
+            label: 'Human-Centric Vision Foundation Models',
+            icon: '🧍',
+            note: '인간 중심 비전 트랜스포머 — pose/segmentation/normals/pointmap/albedo. Meta Sapiens2 family (1B human images 사전학습) · Reka Edge (physical AI edge VLM)',
+            models: [
+                'meta/sapiens2-5b', 'meta/sapiens2-1b-4k', 'meta/sapiens2-1b', 'meta/sapiens2-0.8b', 'meta/sapiens2-0.4b', 'meta/sapiens2-0.1b',
+                'reka/reka-edge-2603'
+            ]
         }
     ],
 
