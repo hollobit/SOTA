@@ -6359,5 +6359,26 @@
     "description": "PrivacyBench indirect probe baseline LR. Lower=safer",
     "metric": "leakage_pct",
     "paper": "https://arxiv.org/abs/2512.24848"
+  },
+  {
+    "id": "anthropic_shade_browser_asr_scenarios",
+    "name": "Anthropic Shade Browser ASR (% Scenarios, w/o safeguards)",
+    "category": "safety",
+    "description": "Anthropic Best-of-N browser prompt-injection benchmark (Opus 4.6 SC §5.2.2.3 Table 5.2.2.3.A). 10 attack strings × 389 scenarios. Per-environment ASR — at least one attempt succeeded. Includes confidentiality breach as 1 of 4 ART attack categories. Lower=safer. Without safeguards",
+    "metric": "asr"
+  },
+  {
+    "id": "anthropic_shade_browser_asr_attempts",
+    "name": "Anthropic Shade Browser ASR (% Attempts, w/o safeguards)",
+    "category": "safety",
+    "description": "Same Anthropic browser benchmark, per-attempt aggregated ASR across all environments. Lower=safer",
+    "metric": "asr"
+  },
+  {
+    "id": "anthropic_shade_browser_asr_with_safeguards",
+    "name": "Anthropic Shade Browser ASR (% Scenarios, with updated safeguards)",
+    "category": "safety",
+    "description": "Anthropic browser ASR % scenarios after applying updated safeguards (classifier + alert pattern). Lower=safer",
+    "metric": "asr"
   }
 ]
