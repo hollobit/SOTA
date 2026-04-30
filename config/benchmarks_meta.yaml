@@ -5024,3 +5024,93 @@ benchmarks:
   - 100
   description: Stanford Cybench live CSV — 35-40 CTF tasks unguided solved
   leaderboard: https://cybench.github.io/
+- id: privacylens_probing
+  name: PrivacyLens Probing Accuracy (Basic)
+  category: safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 99.9
+  description: PrivacyLens NeurIPS 2024 — model's ability to identify privacy-sensitive context
+  paper: https://arxiv.org/abs/2409.00138
+- id: privacylens_action_lr
+  name: PrivacyLens Action Leakage Rate (Basic)
+  category: safety
+  metric: leakage_pct
+  unit: '%'
+  expected_range:
+  - 10
+  - 50
+  description: PrivacyLens action-level leakage % under basic prompt. Lower=safer
+  paper: https://arxiv.org/abs/2409.00138
+- id: privacylens_action_lr_pep
+  name: PrivacyLens Action LR (Privacy-Enhancing Prompt)
+  category: safety
+  metric: leakage_pct
+  unit: '%'
+  expected_range:
+  - 10
+  - 50
+  description: PrivacyLens action-level leakage % even with privacy-enhancing instructions
+  paper: https://arxiv.org/abs/2409.00138
+- id: iapp_cipp_us
+  name: IAPP CIPP/US Privacy Law Exam
+  category: safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 99
+  description: Certified Information Privacy Professional / US — US privacy law knowledge
+  paper: https://arxiv.org/abs/2508.09036
+- id: iapp_cipt
+  name: IAPP CIPT Privacy Tech Exam
+  category: safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 99
+  description: Certified Information Privacy Technologist exam knowledge
+  paper: https://arxiv.org/abs/2508.09036
+- id: iapp_aigp
+  name: IAPP AIGP AI Governance Exam
+  category: safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 99
+  description: AI Governance Professional certification knowledge
+  paper: https://arxiv.org/abs/2508.09036
+- id: iapp_aggregate
+  name: IAPP Privacy Exam Aggregate
+  category: safety
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 99
+  description: Aggregate privacy & governance exam (CIPM+CIPT+CIPP/US+AIGP)
+  paper: https://arxiv.org/abs/2508.09036
+- id: privacybench_direct_lr
+  name: PrivacyBench Direct Leakage Rate
+  category: safety
+  metric: leakage_pct
+  unit: '%'
+  expected_range:
+  - 0
+  - 50
+  description: PrivacyBench multi-turn RAG direct probe baseline LR
+  paper: https://arxiv.org/abs/2512.24848
+- id: privacybench_indirect_lr
+  name: PrivacyBench Indirect Leakage Rate
+  category: safety
+  metric: leakage_pct
+  unit: '%'
+  expected_range:
+  - 0
+  - 30
+  description: PrivacyBench indirect probe baseline LR
+  paper: https://arxiv.org/abs/2512.24848

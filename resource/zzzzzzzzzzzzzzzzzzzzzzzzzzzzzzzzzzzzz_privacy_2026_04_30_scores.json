@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-30",
+    "sources": [
+      "https://arxiv.org/abs/2409.00138",
+      "https://arxiv.org/pdf/2409.00138",
+      "https://arxiv.org/abs/2508.09036",
+      "https://arxiv.org/pdf/2508.09036",
+      "https://arxiv.org/abs/2512.24848",
+      "https://arxiv.org/pdf/2512.24848"
+    ],
+    "_note": "Privacy benchmarks batch — 3 primary sources with verifiable per-frontier-model rows. Skipped older sources (ConfAIde, DecodingTrust, TrustLLM) under latest-models-focus rule — those cover only 2023-vintage models. (1) PrivacyLens NeurIPS 2024 D&B — agentic privacy leakage. (2) IAPP/Governance Exam arxiv 2508.09036 — CIPP/US, CIPT, AIGP knowledge tests on 10 frontier models. (3) PrivacyBench arxiv 2512.24848 — multi-turn RAG privacy."
+  },
+  "models": [
+    {"id": "openai/gpt-4", "vendor": "OpenAI", "name": "GPT-4", "type": "proprietary", "modalities": ["text"], "released_at": "2023-03"},
+    {"id": "openai/gpt-5-mini", "vendor": "OpenAI", "name": "GPT-5 Mini", "type": "proprietary", "modalities": ["text"], "released_at": "2025-08"},
+    {"id": "openai/gpt-5-nano", "vendor": "OpenAI", "name": "GPT-5 Nano", "type": "proprietary", "modalities": ["text"], "released_at": "2025-08"},
+    {"id": "alibaba/qwen3-30b", "vendor": "Alibaba", "name": "Qwen 3 30B", "type": "open-weight", "modalities": ["text"], "released_at": "2025-04"},
+    {"id": "moonshot/kimi-k2", "vendor": "Moonshot AI", "name": "Kimi K2", "type": "open-weight", "modalities": ["text"], "released_at": "2025-07"}
+  ],
+  "benchmarks": [
+    {"id": "privacylens_probing", "name": "PrivacyLens Probing Accuracy (Basic)", "category": "safety", "metric": "accuracy", "description": "PrivacyLens NeurIPS 2024 D&B — model's ability to identify privacy-sensitive context. Higher=better. arxiv 2409.00138"},
+    {"id": "privacylens_action_lr", "name": "PrivacyLens Action Leakage Rate (Basic)", "category": "safety", "metric": "leakage_pct", "description": "PrivacyLens action leakage % under basic prompt. Lower=safer (less PII leaked through agent actions)"},
+    {"id": "privacylens_action_lr_pep", "name": "PrivacyLens Action LR (Privacy-Enhancing Prompt)", "category": "safety", "metric": "leakage_pct", "description": "PrivacyLens action leakage % even when prompted with explicit privacy instructions. Lower=safer"},
+    {"id": "iapp_cipp_us", "name": "IAPP CIPP/US Privacy Law Exam", "category": "safety", "metric": "accuracy", "description": "Certified Information Privacy Professional / US — US privacy law knowledge. arxiv 2508.09036"},
+    {"id": "iapp_cipt", "name": "IAPP CIPT Privacy Tech Exam", "category": "safety", "metric": "accuracy", "description": "Certified Information Privacy Technologist exam knowledge"},
+    {"id": "iapp_aigp", "name": "IAPP AIGP AI Governance Exam", "category": "safety", "metric": "accuracy", "description": "AI Governance Professional certification knowledge"},
+    {"id": "iapp_aggregate", "name": "IAPP Privacy Exam Aggregate (CIPM+CIPT+CIPP+AIGP)", "category": "safety", "metric": "accuracy", "description": "Aggregate privacy & governance exam score. arxiv 2508.09036"},
+    {"id": "privacybench_direct_lr", "name": "PrivacyBench Direct Leakage Rate (baseline)", "category": "safety", "metric": "leakage_pct", "description": "PrivacyBench multi-turn RAG direct probe baseline LR. Lower=safer. arxiv 2512.24848"},
+    {"id": "privacybench_indirect_lr", "name": "PrivacyBench Indirect Leakage Rate (baseline)", "category": "safety", "metric": "leakage_pct", "description": "PrivacyBench indirect probe baseline LR. Lower=safer"}
+  ],
+  "scores": [
+    {"model": "openai/gpt-4", "benchmark": "privacylens_probing", "score": 97.57, "_source": "https://arxiv.org/pdf/2409.00138", "_note": "Table 2 Basic Prompt"},
+    {"model": "anthropic/claude-3-haiku", "benchmark": "privacylens_probing", "score": 98.99, "_source": "https://arxiv.org/pdf/2409.00138"},
+    {"model": "anthropic/claude-3-sonnet", "benchmark": "privacylens_probing", "score": 99.80, "_source": "https://arxiv.org/pdf/2409.00138", "_note": "Highest probing accuracy"},
+    {"model": "meta/llama-3-70b", "benchmark": "privacylens_probing", "score": 94.32, "_source": "https://arxiv.org/pdf/2409.00138"},
+    {"model": "meta/llama-3-8b", "benchmark": "privacylens_probing", "score": 31.44, "_source": "https://arxiv.org/pdf/2409.00138"},
+
+    {"model": "openai/gpt-4", "benchmark": "privacylens_action_lr", "score": 26.37, "_source": "https://arxiv.org/pdf/2409.00138", "_note": "Action leakage % — lower=safer"},
+    {"model": "anthropic/claude-3-haiku", "benchmark": "privacylens_action_lr", "score": 38.95, "_source": "https://arxiv.org/pdf/2409.00138"},
+    {"model": "anthropic/claude-3-sonnet", "benchmark": "privacylens_action_lr", "score": 38.34, "_source": "https://arxiv.org/pdf/2409.00138"},
+    {"model": "meta/llama-3-70b", "benchmark": "privacylens_action_lr", "score": 36.51, "_source": "https://arxiv.org/pdf/2409.00138"},
+    {"model": "meta/llama-3-8b", "benchmark": "privacylens_action_lr", "score": 21.30, "_source": "https://arxiv.org/pdf/2409.00138"},
+
+    {"model": "openai/gpt-4", "benchmark": "privacylens_action_lr_pep", "score": 24.54, "_source": "https://arxiv.org/pdf/2409.00138", "_note": "Privacy-Enhancing Prompt still leaks 24.54%"},
+    {"model": "anthropic/claude-3-haiku", "benchmark": "privacylens_action_lr_pep", "score": 38.95, "_source": "https://arxiv.org/pdf/2409.00138"},
+    {"model": "anthropic/claude-3-sonnet", "benchmark": "privacylens_action_lr_pep", "score": 37.32, "_source": "https://arxiv.org/pdf/2409.00138"},
+    {"model": "meta/llama-3-70b", "benchmark": "privacylens_action_lr_pep", "score": 39.15, "_source": "https://arxiv.org/pdf/2409.00138", "_note": "Highest leakage even with PEP"},
+
+    {"model": "openai/gpt-5", "benchmark": "iapp_cipp_us", "score": 93.4, "_source": "https://arxiv.org/pdf/2508.09036", "_note": "§4 narrative — best on CIPP/US"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "iapp_cipp_us", "score": 91.1, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "iapp_cipp_us", "score": 90.0, "_source": "https://arxiv.org/pdf/2508.09036", "_note": "Paper labels 'Gemini 2.5'"},
+    {"model": "meta/llama-3-70b", "benchmark": "iapp_cipp_us", "score": 81.1, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "meta/llama-3-8b", "benchmark": "iapp_cipp_us", "score": 63.3, "_source": "https://arxiv.org/pdf/2508.09036"},
+
+    {"model": "deepseek/deepseek-r1", "benchmark": "iapp_cipt", "score": 92.2, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "iapp_cipt", "score": 92.2, "_source": "https://arxiv.org/pdf/2508.09036", "_note": "Tied for top"},
+    {"model": "meta/llama-3-8b", "benchmark": "iapp_cipt", "score": 66.7, "_source": "https://arxiv.org/pdf/2508.09036"},
+
+    {"model": "google/gemini-2.5-pro", "benchmark": "iapp_aigp", "score": 93.9, "_source": "https://arxiv.org/pdf/2508.09036", "_note": "Best on AI Governance Professional"},
+    {"model": "openai/gpt-5-mini", "benchmark": "iapp_aigp", "score": 92.9, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "openai/gpt-5", "benchmark": "iapp_aigp", "score": 91.9, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "iapp_aigp", "score": 91.9, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "meta/llama-3-8b", "benchmark": "iapp_aigp", "score": 72.7, "_source": "https://arxiv.org/pdf/2508.09036"},
+
+    {"model": "google/gemini-2.5-pro", "benchmark": "iapp_aggregate", "score": 92.1, "_source": "https://arxiv.org/pdf/2508.09036", "_note": "Aggregate top — most comprehensive privacy/governance knowledge"},
+    {"model": "openai/gpt-5", "benchmark": "iapp_aggregate", "score": 91.3, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "iapp_aggregate", "score": 90.2, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "google/gemini-1.5-pro", "benchmark": "iapp_aggregate", "score": 88.9, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "openai/gpt-5-mini", "benchmark": "iapp_aggregate", "score": 88.9, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "google/gemma-3-27b", "benchmark": "iapp_aggregate", "score": 87.5, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "meta/llama-3-70b", "benchmark": "iapp_aggregate", "score": 84.3, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "anthropic/claude-3.5-haiku", "benchmark": "iapp_aggregate", "score": 82.7, "_source": "https://arxiv.org/pdf/2508.09036"},
+    {"model": "meta/llama-3-8b", "benchmark": "iapp_aggregate", "score": 65.3, "_source": "https://arxiv.org/pdf/2508.09036"},
+
+    {"model": "openai/gpt-5-nano", "benchmark": "privacybench_direct_lr", "score": 6.13, "_source": "https://arxiv.org/pdf/2512.24848", "_note": "Lowest direct leakage rate"},
+    {"model": "moonshot/kimi-k2", "benchmark": "privacybench_direct_lr", "score": 14.58, "_source": "https://arxiv.org/pdf/2512.24848"},
+    {"model": "meta/llama-4-maverick", "benchmark": "privacybench_direct_lr", "score": 18.72, "_source": "https://arxiv.org/pdf/2512.24848"},
+    {"model": "alibaba/qwen3-30b", "benchmark": "privacybench_direct_lr", "score": 19.33, "_source": "https://arxiv.org/pdf/2512.24848"},
+    {"model": "google/gemini-2.5-flash", "benchmark": "privacybench_direct_lr", "score": 26.56, "_source": "https://arxiv.org/pdf/2512.24848", "_note": "Highest direct leakage among 5 evaluated"},
+
+    {"model": "openai/gpt-5-nano", "benchmark": "privacybench_indirect_lr", "score": 6.52, "_source": "https://arxiv.org/pdf/2512.24848"},
+    {"model": "meta/llama-4-maverick", "benchmark": "privacybench_indirect_lr", "score": 13.93, "_source": "https://arxiv.org/pdf/2512.24848"},
+    {"model": "moonshot/kimi-k2", "benchmark": "privacybench_indirect_lr", "score": 14.19, "_source": "https://arxiv.org/pdf/2512.24848"},
+    {"model": "alibaba/qwen3-30b", "benchmark": "privacybench_indirect_lr", "score": 17.79, "_source": "https://arxiv.org/pdf/2512.24848"},
+    {"model": "google/gemini-2.5-flash", "benchmark": "privacybench_indirect_lr", "score": 23.98, "_source": "https://arxiv.org/pdf/2512.24848"}
+  ]
+}
