@@ -6162,5 +6162,21 @@
     "category": "safety",
     "description": "Anthropic system-card higher-difficulty benign-request over-refusal rate, English. Section 3.1.3.2.A in Opus 4.6 card. More discriminative than basic benign axis. Lower=better",
     "metric": "refusal_pct"
+  },
+  {
+    "id": "or_bench_avg",
+    "name": "OR-Bench Average (refusal + toxic)",
+    "category": "safety",
+    "description": "OR-Bench HF leaderboard composite of overall over-refusal and toxic-acceptance. Lower=better balance",
+    "metric": "composite",
+    "leaderboard": "https://huggingface.co/spaces/bench-llms/or-bench-leaderboard"
+  },
+  {
+    "id": "or_bench_overall_refusal",
+    "name": "OR-Bench Overall Refusal Rate",
+    "category": "safety",
+    "description": "OR-Bench HF leaderboard overall refusal rate %. Lower=better helpfulness on benign queries",
+    "metric": "rejection_pct",
+    "leaderboard": "https://huggingface.co/spaces/bench-llms/or-bench-leaderboard"
   }
 ]

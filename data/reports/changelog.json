@@ -2,6 +2,15 @@
   {
     "type": "Feature",
     "date": "2026-04-30",
+    "benchmark_id": "OR-Bench HuggingFace Leaderboard 전체 흡수 (+24 모델, +2 benchmarks, +84 scores)",
+    "new_model": "OR-Bench HF Space — 28 model 전체 over-refusal 비교",
+    "new_value": "User-requested: 'huggingface.co/spaces/bench-llms/or-bench-leaderboard 결과 반영'. HF Space는 React 렌더링이지만 raw/main/data/or-bench.html에 정적 HTML 테이블 존재 (last commit 2024-07-04). 28 model × 3 columns 추출. (1) New models 24 — anthropic/claude-2.1, claude-3-haiku, claude-3-sonnet, claude-3-opus, claude-3.5-sonnet; google/gemma-7b, gemini-1.0-pro, gemini-1.5-pro; openai/gpt-3.5-turbo-0301/0613/0125, gpt-4-0125-preview, gpt-4-turbo-2024-04-09; meta/llama-2-7b/13b/70b, llama-3-8b/70b; mistral/mistral-small-latest, medium-latest, large-latest; alibaba/qwen-1.5-7b/32b/72b. (2) +2 benchmarks: or_bench_avg (composite), or_bench_overall_refusal. (3) +84 scores (28 × 3) — Headline highlights (over-refusal lower=better helpful, toxic acceptance lower=safer): GPT-4o 6.8/15.1, Mistral-large-latest 9.8/27.2 (helpful but unsafe), Gemini-1.0-pro 9.7/21.3, GPT-4-turbo 12.8/3.5 (best balance), Claude-2.1 99.8/0.0 (over-refuses everything), Llama-3-70b 37.7/21.3, Claude-3.5-sonnet 43.8/3.4. (4) 기존 benchmark or_bench_toxic_acceptance와 함께 사용 — over-refusal 축에 OR-Bench HF 28 model + 이전 OR-Bench paper 5 frontier model = 33 model 비교 가능. (5) latest-models-focus 룰 예외 적용 — leaderboard 전체 흡수가 사용자 명시 요구사항이므로 2-3년 된 reference 모델도 포함.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Feature",
+    "date": "2026-04-30",
     "benchmark_id": "Benign red-team / over-refusal 벤치마크 추가 (+5 benchmarks, +21 scores)",
     "new_model": "OR-Bench (ICML 2025) + Anthropic system card benign refusal axis",
     "new_value": "User-requested 'benign red team testing' 데이터 흡수 — 모델이 안전한 prompt를 잘못 거부하는 over-refusal 측정. (1) OR-Bench Hard-1K: GPT-4o 6.7% (낮을수록 helpful), Llama 3.1 70B 3.0% (best open-weight), Llama 3.1 405B 6.0%, Mistral Large 2 9.7%. (2) OR-Bench 80K (전체 80,000 prompts): Llama 3.1 70B 2.2%, Mistral Large 2 1.4%. (3) OR-Bench Toxic (acceptance rate, 낮을수록 safer): GPT-4o 15.1%, Llama 3.1 70B 30.0% (highest acceptance), Llama 3.1 405B 21.0%, Mistral Large 2 27.2%. (4) Anthropic system card multilingual benign refusal: Sonnet 4.5 0.05%, Opus 4 0.05%, Sonnet 4 0.15%, Haiku 4.5 0.10%, Opus 4.1 0.13%, Opus 4.5 0.23%, Opus 4.6 0.68% (확대된 sensitive 카테고리 영향). (5) Anthropic higher-difficulty benign (more discriminative axis): Opus 4.6 0.04% (best), Opus 4.5 0.83%, Sonnet 4.5 8.50% (worst — over-refuses on hard benign), Haiku 4.5 6.01%. NOT_ADDED — XSTest 2025/2026 frontier (NEEDS_VERIFICATION, paper 2023), PHTest (Claude 3 only — predates frontier), OK-Test/FalseRefusal/WildGuardMix benign (NEEDS_VERIFICATION, no public per-frontier-model leaderboards), Opus 4.7 numbers from Zvi blog (NEEDS_VERIFICATION, secondary source). 5 신규 benchmarks: or_bench_hard_1k, or_bench_80k, or_bench_toxic_acceptance, anthropic_benign_refusal_multilingual, anthropic_benign_refusal_higher_difficulty.",

@@ -8655,19 +8655,19 @@
     "notes": "Appendix Table 7 — Llama 3-70b 80K rejection"
   },
   "or_bench_toxic_acceptance": {
-    "model_id": "meta/llama-3.1-70b",
+    "model_id": "openai/gpt-3.5-turbo-0125",
     "benchmark_id": "or_bench_toxic_acceptance",
-    "value": 30.0,
+    "value": 37.9,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/pdf/2405.20947",
+      "url": "https://huggingface.co/spaces/bench-llms/or-bench-leaderboard",
       "date": "2026-04-30",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": "Highest toxic acceptance — least safe among open-weight"
+    "notes": "Toxic acceptance % (lower=safer). GPT-3.5-turbo-0125"
   },
   "anthropic_benign_refusal_higher_difficulty": {
     "model_id": "anthropic/claude-sonnet-4.5",
@@ -8683,5 +8683,35 @@
     "is_sota": true,
     "collected_at": "2026-04-30",
     "notes": "Worst — over-refuses on hard benign queries"
+  },
+  "or_bench_avg": {
+    "model_id": "anthropic/claude-2.1",
+    "benchmark_id": "or_bench_avg",
+    "value": 49.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/spaces/bench-llms/or-bench-leaderboard",
+      "date": "2026-04-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-30",
+    "notes": "OR-Bench HF leaderboard avg of refusal+toxic. Claude-2.1"
+  },
+  "or_bench_overall_refusal": {
+    "model_id": "anthropic/claude-2.1",
+    "benchmark_id": "or_bench_overall_refusal",
+    "value": 99.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/spaces/bench-llms/or-bench-leaderboard",
+      "date": "2026-04-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-30",
+    "notes": "Over-refusal % (lower=better). Claude-2.1"
   }
 }
