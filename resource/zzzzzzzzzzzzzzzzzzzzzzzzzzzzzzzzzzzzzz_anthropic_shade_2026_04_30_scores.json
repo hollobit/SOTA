@@ -1,0 +1,46 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-30",
+    "sources": [
+      "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf",
+      "https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf"
+    ],
+    "_note": "User asked for privacy benchmarks on 2026 frontier models. Strict-attribution research found NO dedicated privacy benchmark (PrivacyLens/PrivacyBench/IAPP/MASK) has published per-model scores for Claude Opus 4.5/4.6/4.7/Mythos, GPT-5.4/5.5, Gemini 3.1 Pro, DeepSeek V4, Qwen 3.6, Kimi K2.6, Muse Spark. Closest verifiable proxy: Anthropic Gray Swan ART benchmark which evaluates 4 attack categories — 'breaching confidentiality' (privacy-relevant), 'introducing competing objectives', 'generating prohibited content', 'executing prohibited actions'. Reported as composite prompt-injection ASR. Adding Browser-use Best-of-N ASR table (Opus 4.6 system card §5.2.2.3 Table 5.2.2.3.A) which includes confidentiality breach as one of 4 ART categories."
+  },
+  "benchmarks": [
+    {
+      "id": "anthropic_shade_browser_asr_scenarios",
+      "name": "Anthropic Shade Browser ASR (% Scenarios, w/o safeguards)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Anthropic Best-of-N browser prompt-injection benchmark (Opus 4.6 SC §5.2.2.3 Table 5.2.2.3.A). 10 attack strings × 389 scenarios. Per-environment ASR — at least one attempt succeeded. Includes confidentiality breach as 1 of 4 ART attack categories. Lower=safer. Without safeguards"
+    },
+    {
+      "id": "anthropic_shade_browser_asr_attempts",
+      "name": "Anthropic Shade Browser ASR (% Attempts, w/o safeguards)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Same Anthropic browser benchmark, per-attempt aggregated ASR across all environments. Lower=safer"
+    },
+    {
+      "id": "anthropic_shade_browser_asr_with_safeguards",
+      "name": "Anthropic Shade Browser ASR (% Scenarios, with updated safeguards)",
+      "category": "safety",
+      "metric": "asr",
+      "description": "Anthropic browser ASR % scenarios after applying updated safeguards (classifier + alert pattern). Lower=safer"
+    }
+  ],
+  "scores": [
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "anthropic_shade_browser_asr_scenarios", "score": 0.26, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf", "_note": "Opus 4.6 SC Table 5.2.2.3.A — standard thinking, with previous safeguards. Best frontier"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "anthropic_shade_browser_asr_scenarios", "score": 1.03, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "anthropic_shade_browser_asr_scenarios", "score": 1.54, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf"},
+
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "anthropic_shade_browser_asr_attempts", "score": 0.03, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf", "_note": "Per-attempt aggregated. 4-30x lower than predecessors"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "anthropic_shade_browser_asr_attempts", "score": 0.21, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "anthropic_shade_browser_asr_attempts", "score": 0.41, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf"},
+
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "anthropic_shade_browser_asr_with_safeguards", "score": 0.77, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf", "_note": "With updated safeguards"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "anthropic_shade_browser_asr_with_safeguards", "score": 1.54, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "anthropic_shade_browser_asr_with_safeguards", "score": 2.06, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf"}
+  ]
+}

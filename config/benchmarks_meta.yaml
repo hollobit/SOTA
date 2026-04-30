@@ -5114,3 +5114,30 @@ benchmarks:
   - 30
   description: PrivacyBench indirect probe baseline LR
   paper: https://arxiv.org/abs/2512.24848
+- id: anthropic_shade_browser_asr_scenarios
+  name: Anthropic Shade Browser ASR (% Scenarios)
+  category: safety
+  metric: asr
+  unit: '%'
+  expected_range:
+  - 0
+  - 5
+  description: Anthropic browser prompt-injection benchmark — incl confidentiality breach as 1 of 4 ART categories. Lower=safer
+- id: anthropic_shade_browser_asr_attempts
+  name: Anthropic Shade Browser ASR (% Attempts)
+  category: safety
+  metric: asr
+  unit: '%'
+  expected_range:
+  - 0
+  - 1
+  description: Anthropic browser per-attempt aggregated ASR. Lower=safer
+- id: anthropic_shade_browser_asr_with_safeguards
+  name: Anthropic Shade Browser ASR (with updated safeguards)
+  category: safety
+  metric: asr
+  unit: '%'
+  expected_range:
+  - 0
+  - 5
+  description: Anthropic browser ASR after updated safeguards. Lower=safer
