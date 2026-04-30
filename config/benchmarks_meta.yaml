@@ -4663,3 +4663,43 @@ benchmarks:
   - 40
   description: Sapiens2 paper Table 7 — albedo PSNR in dB (higher=better)
   paper: https://arxiv.org/abs/2604.21681
+- id: aisi_sabotage_continuation
+  name: AISI Sabotage — Continuation Rate
+  category: safety
+  metric: asr
+  unit: '%'
+  expected_range:
+  - 0
+  - 30
+  description: UK AISI Apr 2026 — sabotage propensity in deferred subversion task. Lower=safer
+  paper: https://arxiv.org/abs/2604.00788
+- id: aisi_cot_output_discrepancy
+  name: AISI CoT-vs-Output Discrepancy
+  category: safety
+  metric: discrepancy_pct
+  unit: '%'
+  expected_range:
+  - 0
+  - 80
+  description: UK AISI Apr 2026 — proportion of outputs where CoT reasoning conflicts with final action. Higher=more deceptive
+  paper: https://arxiv.org/abs/2604.00788
+- id: aisi_cyber_range_expert
+  name: AISI Cyber Range — Expert Tier CTF
+  category: cyber
+  metric: success_rate
+  unit: '%'
+  expected_range:
+  - 30
+  - 99
+  description: UK AISI cyber capability eval — expert-tier CTF challenges. Apr 14 2026
+  leaderboard: https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities
+- id: cyber_defense_bench
+  name: Cyber Defense Benchmark (CDB)
+  category: cyber_defense
+  metric: flag_rate
+  unit: '%'
+  expected_range:
+  - 0
+  - 50
+  description: Agentic SOC threat-hunting — 106 attack procedures. Best score 3.8% as of Apr 2026
+  paper: https://arxiv.org/abs/2604.19533
