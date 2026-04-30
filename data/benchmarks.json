@@ -6028,5 +6028,101 @@
     "description": "Agentic SOC threat-hunting benchmark — 106 attack procedures, models must triage logs and surface correct flags. arxiv 2604.19533. Best score 3.8% as of Apr 2026",
     "metric": "flag_rate",
     "paper": "https://arxiv.org/abs/2604.19533"
+  },
+  {
+    "id": "sonar_humaneval_java",
+    "name": "Sonar HumanEval Java (158 tasks)",
+    "category": "coding",
+    "description": "MultiPL-E HumanEval-Java functional pass rate. SonarSource Coding Personalities study",
+    "metric": "pass1",
+    "paper": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"
+  },
+  {
+    "id": "sonar_mbpp_java",
+    "name": "Sonar MBPP Java (385 tasks)",
+    "category": "coding",
+    "description": "MultiPL-E MBPP-Java functional pass rate. SonarSource Coding Personalities study",
+    "metric": "pass1",
+    "paper": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"
+  },
+  {
+    "id": "sonar_weighted_pass1_java",
+    "name": "Sonar Weighted Java Pass@1 (avg)",
+    "category": "coding",
+    "description": "Weighted average of HumanEval-Java + MBPP-Java + ComplexCodeEval Pass@1. 4,442 Java tasks total. SonarSource Coding Personalities study",
+    "metric": "pass1",
+    "paper": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"
+  },
+  {
+    "id": "sonar_blocker_vuln_pct",
+    "name": "Sonar BLOCKER Vulnerability Share",
+    "category": "cybersecurity",
+    "description": "Percent of vulnerabilities classified BLOCKER severity (highest). SonarSource Coding Personalities. Lower=less critical-severity output",
+    "metric": "severity_pct",
+    "paper": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"
+  },
+  {
+    "id": "sonar_issue_density_kloc",
+    "name": "Sonar Issue Density (issues/KLOC)",
+    "category": "coding",
+    "description": "Total Sonar issues per 1,000 LOC. Lower=better quality output",
+    "metric": "issue_density",
+    "paper": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"
+  },
+  {
+    "id": "sonar_comment_density",
+    "name": "Sonar Comment Density",
+    "category": "coding",
+    "description": "Comment-to-LOC density (%). SonarSource Coding Personalities",
+    "metric": "comment_pct",
+    "paper": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"
+  },
+  {
+    "id": "sonar_cognitive_complexity_total",
+    "name": "Sonar Cognitive Complexity (total)",
+    "category": "coding",
+    "description": "Total cognitive complexity across 4,442 Java solutions. Lower=easier to maintain",
+    "metric": "complexity",
+    "paper": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"
+  },
+  {
+    "id": "sonar_vuln_pct_total_issues",
+    "name": "Sonar Vulnerabilities (% of total issues)",
+    "category": "cybersecurity",
+    "description": "Percent of total Sonar issues classified as security vulnerabilities. Lower=safer",
+    "metric": "issue_share_pct",
+    "paper": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"
+  },
+  {
+    "id": "sonar_bug_pct_total_issues",
+    "name": "Sonar Bugs (% of total issues)",
+    "category": "coding",
+    "description": "Percent of total Sonar issues classified as runtime bugs",
+    "metric": "issue_share_pct",
+    "paper": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"
+  },
+  {
+    "id": "cisco_combined_safety",
+    "name": "Cisco AI Defense — Combined Safety Score",
+    "category": "safety",
+    "description": "Cisco AI Defense Rankings — average of single-turn validation pass rate (2,006 prompts) and multi-turn red-team resistance (~470 attacks/100 conversations). Higher=safer",
+    "metric": "composite_pct",
+    "leaderboard": "https://leaderboard.aidefense.cisco.com/rankings"
+  },
+  {
+    "id": "cisco_validation_score",
+    "name": "Cisco AI Defense — Single-Turn Validation",
+    "category": "safety",
+    "description": "Cisco AI Defense single-turn validation pass rate. 2,006 prompts spanning 41,302 taxonomy entries. Higher=safer",
+    "metric": "pass_rate_pct",
+    "leaderboard": "https://leaderboard.aidefense.cisco.com/rankings"
+  },
+  {
+    "id": "cisco_multi_turn_resistance",
+    "name": "Cisco AI Defense — Multi-Turn Red-Team Resistance",
+    "category": "safety",
+    "description": "Cisco AI Defense multi-turn red-team resistance. ~470 attack strategies × 100 conversations. Strategies: Crescendo escalation, Information Decomposition & Reassembly, etc. Higher=safer",
+    "metric": "resistance_pct",
+    "leaderboard": "https://leaderboard.aidefense.cisco.com/rankings"
   }
 ]
