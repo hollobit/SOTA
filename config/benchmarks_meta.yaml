@@ -4613,3 +4613,53 @@ benchmarks:
   - 70
   description: Orthopedics specialty slice
   paper: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+- id: sapiens2_pose_11k
+  name: Sapiens2 Pose Estimation — 11K test (308 keypoints)
+  category: vision
+  metric: mAP
+  unit: '%'
+  expected_range:
+  - 60
+  - 95
+  description: Sapiens2 paper Table 3 — in-the-wild whole-body pose, 308 keypoints, 1024×768, flip test. Closed Meta-internal test
+  paper: https://arxiv.org/abs/2604.21681
+- id: sapiens2_seg_5k
+  name: Sapiens2 Body-Part Segmentation — 5K test (29 classes)
+  category: vision
+  metric: mIoU
+  unit: '%'
+  expected_range:
+  - 50
+  - 95
+  description: Sapiens2 paper Table 4 — body-part segmentation across 29 classes
+  paper: https://arxiv.org/abs/2604.21681
+- id: sapiens2_pointmap_10k_l2
+  name: Sapiens2 Pointmap — 10K test (XYZ L2)
+  category: vision
+  metric: l2_distance
+  unit: 'l2'
+  expected_range:
+  - 0.0
+  - 1.0
+  description: Sapiens2 paper Table 5 — pointmap XYZ L2 abs err (×10⁻¹), lower=better
+  paper: https://arxiv.org/abs/2604.21681
+- id: sapiens2_normal_10k_4k
+  name: Sapiens2 Surface Normal — 10K whole-body 4K (mean angular error)
+  category: vision
+  metric: mean_angular_error_deg
+  unit: 'deg'
+  expected_range:
+  - 0.0
+  - 25.0
+  description: Sapiens2 paper Table 6 — surface normal at 4K GT, mean angular error in degrees (lower=better)
+  paper: https://arxiv.org/abs/2604.21681
+- id: sapiens2_albedo_10k_psnr
+  name: Sapiens2 Albedo — 10K test (PSNR)
+  category: vision
+  metric: psnr
+  unit: 'db'
+  expected_range:
+  - 25
+  - 40
+  description: Sapiens2 paper Table 7 — albedo PSNR in dB (higher=better)
+  paper: https://arxiv.org/abs/2604.21681

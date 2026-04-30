@@ -1,0 +1,84 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-30",
+    "sources": [
+      "https://huggingface.co/facebook/sapiens2",
+      "https://arxiv.org/abs/2604.21681",
+      "https://arxiv.org/html/2604.21681"
+    ],
+    "_note": "Sapiens2 — Meta Reality Labs vision transformer family pretrained on 1B human images. Khirodkar et al ICLR 2026. Paper benchmarks use Meta-internal closed test sets (11K test, 10K test K=308, 5K test, 10K whole-body 4K GT). All scores below cite Tables 3/4/5/6/7 of arxiv 2604.21681. Sapiens2-0.1B is released on HF but has no paper-reported scores."
+  },
+  "models": [
+    {"id": "meta/sapiens2-0.1b", "vendor": "Meta", "name": "Sapiens2 0.1B", "type": "open-weight", "released_at": "2026-04-23", "params_b": 0.114, "modalities": ["image"], "license": "Sapiens2 License", "_note": "Smallest Sapiens2 backbone — pretrained on 1B human images. Released on HF but no paper-reported benchmark scores"},
+    {"id": "meta/sapiens2-0.4b", "vendor": "Meta", "name": "Sapiens2 0.4B", "type": "open-weight", "released_at": "2026-04-23", "params_b": 0.398, "modalities": ["image"], "license": "Sapiens2 License"},
+    {"id": "meta/sapiens2-0.8b", "vendor": "Meta", "name": "Sapiens2 0.8B", "type": "open-weight", "released_at": "2026-04-23", "params_b": 0.818, "modalities": ["image"], "license": "Sapiens2 License"},
+    {"id": "meta/sapiens2-1b", "vendor": "Meta", "name": "Sapiens2 1B", "type": "open-weight", "released_at": "2026-04-23", "params_b": 1.462, "modalities": ["image"], "license": "Sapiens2 License"},
+    {"id": "meta/sapiens2-1b-4k", "vendor": "Meta", "name": "Sapiens2 1B (4K)", "type": "open-weight", "released_at": "2026-04-23", "params_b": 1.607, "modalities": ["image"], "license": "Sapiens2 License", "_note": "4K resolution variant"},
+    {"id": "meta/sapiens2-5b", "vendor": "Meta", "name": "Sapiens2 5B", "type": "open-weight", "released_at": "2026-04-23", "params_b": 5.071, "modalities": ["image"], "license": "Sapiens2 License", "_note": "Largest Sapiens2 backbone — flagship"}
+  ],
+  "benchmarks": [
+    {
+      "id": "sapiens2_pose_11k",
+      "name": "Pose Estimation — 11K test (308 keypoints)",
+      "category": "vision",
+      "metric": "mAP",
+      "description": "Sapiens2 paper Table 3 — in-the-wild whole-body pose with 308 keypoints, 1024×768 with flip test. Closed Meta-internal test set"
+    },
+    {
+      "id": "sapiens2_seg_5k",
+      "name": "Body-Part Segmentation — 5K test (29 classes)",
+      "category": "vision",
+      "metric": "mIoU",
+      "description": "Sapiens2 paper Table 4 — body-part segmentation across 29 classes. Closed Meta-internal test set"
+    },
+    {
+      "id": "sapiens2_pointmap_10k_l2",
+      "name": "Pointmap Estimation — 10K test (XYZ L2)",
+      "category": "vision",
+      "metric": "l2_distance",
+      "description": "Sapiens2 paper Table 5 — pointmap (XYZ canonical coords), focal-normalized. L2 distance abs error (lower=better, ×10⁻¹). Closed Meta-internal test set"
+    },
+    {
+      "id": "sapiens2_normal_10k_4k",
+      "name": "Surface Normal — 10K whole-body 4K GT (mean angular error)",
+      "category": "vision",
+      "metric": "mean_angular_error_deg",
+      "description": "Sapiens2 paper Table 6 — surface normal estimation, 4K ground truth, 10K whole-body test. Mean angular error in degrees (lower=better)"
+    },
+    {
+      "id": "sapiens2_albedo_10k_psnr",
+      "name": "Albedo Estimation — 10K test (PSNR)",
+      "category": "vision",
+      "metric": "psnr",
+      "description": "Sapiens2 paper Table 7 — albedo estimation on synthetic GT. PSNR in dB (higher=better). Closed Meta-internal test set"
+    }
+  ],
+  "scores": [
+    {"model": "meta/sapiens2-0.4b", "benchmark": "sapiens2_pose_11k", "score": 76.9, "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 3 mAP — Sapiens2-0.4B 11K whole-body 308kp"},
+    {"model": "meta/sapiens2-0.8b", "benchmark": "sapiens2_pose_11k", "score": 79.4, "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 3 mAP — +1.1 over Sapiens-2B v1"},
+    {"model": "meta/sapiens2-1b", "benchmark": "sapiens2_pose_11k", "score": 80.4, "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 3 mAP — +2.1"},
+    {"model": "meta/sapiens2-5b", "benchmark": "sapiens2_pose_11k", "score": 82.3, "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 3 mAP SOTA — +4.0 over Sapiens-2B"},
+
+    {"model": "meta/sapiens2-0.4b", "benchmark": "sapiens2_seg_5k", "score": 79.5, "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 4 mIoU — +21.3 over Sapiens v1"},
+    {"model": "meta/sapiens2-0.8b", "benchmark": "sapiens2_seg_5k", "score": 80.6, "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 4 mIoU — +22.4"},
+    {"model": "meta/sapiens2-1b", "benchmark": "sapiens2_seg_5k", "score": 81.7, "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 4 mIoU — +23.5"},
+    {"model": "meta/sapiens2-1b-4k", "benchmark": "sapiens2_seg_5k", "score": 81.9, "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 4 mIoU — +23.7 (4K res)"},
+    {"model": "meta/sapiens2-5b", "benchmark": "sapiens2_seg_5k", "score": 82.5, "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 4 mIoU SOTA — +24.3"},
+
+    {"model": "meta/sapiens2-0.4b", "benchmark": "sapiens2_pointmap_10k_l2", "score": 0.190, "unit": "l2", "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 5 L2 abs err (×10⁻¹), lower=better"},
+    {"model": "meta/sapiens2-0.8b", "benchmark": "sapiens2_pointmap_10k_l2", "score": 0.186, "unit": "l2", "_source": "https://arxiv.org/html/2604.21681"},
+    {"model": "meta/sapiens2-1b", "benchmark": "sapiens2_pointmap_10k_l2", "score": 0.178, "unit": "l2", "_source": "https://arxiv.org/html/2604.21681"},
+    {"model": "meta/sapiens2-5b", "benchmark": "sapiens2_pointmap_10k_l2", "score": 0.167, "unit": "l2", "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 5 SOTA — best XYZ pointmap"},
+
+    {"model": "meta/sapiens2-0.4b", "benchmark": "sapiens2_normal_10k_4k", "score": 8.63, "unit": "deg", "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 6 mean angular error °, lower=better"},
+    {"model": "meta/sapiens2-0.8b", "benchmark": "sapiens2_normal_10k_4k", "score": 8.49, "unit": "deg", "_source": "https://arxiv.org/html/2604.21681"},
+    {"model": "meta/sapiens2-1b", "benchmark": "sapiens2_normal_10k_4k", "score": 7.12, "unit": "deg", "_source": "https://arxiv.org/html/2604.21681"},
+    {"model": "meta/sapiens2-1b-4k", "benchmark": "sapiens2_normal_10k_4k", "score": 6.98, "unit": "deg", "_source": "https://arxiv.org/html/2604.21681"},
+    {"model": "meta/sapiens2-5b", "benchmark": "sapiens2_normal_10k_4k", "score": 6.73, "unit": "deg", "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 6 SOTA — 45.6% lower angular error vs Sapiens v1"},
+
+    {"model": "meta/sapiens2-0.4b", "benchmark": "sapiens2_albedo_10k_psnr", "score": 29.74, "unit": "db", "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 7 PSNR dB"},
+    {"model": "meta/sapiens2-0.8b", "benchmark": "sapiens2_albedo_10k_psnr", "score": 30.83, "unit": "db", "_source": "https://arxiv.org/html/2604.21681"},
+    {"model": "meta/sapiens2-1b", "benchmark": "sapiens2_albedo_10k_psnr", "score": 32.43, "unit": "db", "_source": "https://arxiv.org/html/2604.21681"},
+    {"model": "meta/sapiens2-5b", "benchmark": "sapiens2_albedo_10k_psnr", "score": 32.61, "unit": "db", "_source": "https://arxiv.org/html/2604.21681", "_note": "Table 7 SOTA — best albedo"}
+  ]
+}
