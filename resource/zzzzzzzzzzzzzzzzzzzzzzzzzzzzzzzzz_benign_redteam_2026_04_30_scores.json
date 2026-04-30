@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-30",
+    "sources": [
+      "https://arxiv.org/pdf/2405.20947",
+      "https://arxiv.org/abs/2405.20947",
+      "https://www-cdn.anthropic.com/963373e433e489a87a10c823c52a0a013e9172dd.pdf",
+      "https://assets.anthropic.com/m/99128ddd009bdcb/Claude-Haiku-4-5-System-Card.pdf",
+      "https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf",
+      "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf"
+    ],
+    "_note": "Benign red-team / over-refusal benchmark batch. Two source families: (1) OR-Bench (ICML 2025 arxiv 2405.20947) — 80K prompts × 10 sensitive categories. Tables 2/6/7. (2) Anthropic system cards 2025-2026 — single-turn benign request over-refusal rates from each model card PDF. Lower=better helpfulness on benign queries."
+  },
+  "benchmarks": [
+    {
+      "id": "or_bench_hard_1k",
+      "name": "OR-Bench Hard-1K (over-refusal rejection rate)",
+      "category": "safety",
+      "metric": "rejection_pct",
+      "description": "ICML 2025 OR-Bench Hard-1K — 1,000 hand-curated benign prompts that look unsafe. Rejection rate %. Lower=better helpfulness on benign queries"
+    },
+    {
+      "id": "or_bench_80k",
+      "name": "OR-Bench 80K (over-refusal rejection rate)",
+      "category": "safety",
+      "metric": "rejection_pct",
+      "description": "ICML 2025 OR-Bench full 80,000-prompt over-refusal eval across 10 sensitive categories. Lower=better"
+    },
+    {
+      "id": "or_bench_toxic_acceptance",
+      "name": "OR-Bench Toxic (acceptance rate)",
+      "category": "safety",
+      "metric": "acceptance_pct",
+      "description": "ICML 2025 OR-Bench Toxic subset — 600 truly harmful prompts. Acceptance rate %. Lower=safer"
+    },
+    {
+      "id": "anthropic_benign_refusal_multilingual",
+      "name": "Anthropic Single-Turn Benign Refusal (multilingual)",
+      "category": "safety",
+      "metric": "refusal_pct",
+      "description": "Anthropic system-card single-turn benign-request over-refusal rate, multilingual. Section 3.1.2.A in Opus 4.5/4.6 cards. Lower=better helpfulness"
+    },
+    {
+      "id": "anthropic_benign_refusal_higher_difficulty",
+      "name": "Anthropic Higher-Difficulty Benign Refusal (English)",
+      "category": "safety",
+      "metric": "refusal_pct",
+      "description": "Anthropic system-card higher-difficulty benign-request over-refusal rate, English. Section 3.1.3.2.A in Opus 4.6 card. More discriminative than basic benign axis. Lower=better"
+    }
+  ],
+  "scores": [
+    {"model": "openai/gpt-4o", "benchmark": "or_bench_hard_1k", "score": 6.7, "_source": "https://arxiv.org/pdf/2405.20947", "_note": "Table 2 — lowest GPT-4-family rejection (most helpful)"},
+    {"model": "anthropic/claude-opus-4.1", "benchmark": "anthropic_benign_refusal_multilingual", "score": 0.13, "_source": "https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf", "_note": "Opus 4.5 card Table 3.1.2.A multilingual"},
+    {"model": "meta/llama-3.1-70b", "benchmark": "or_bench_hard_1k", "score": 3.0, "_source": "https://arxiv.org/pdf/2405.20947", "_note": "Table 2 — lowest open-weight rejection"},
+    {"model": "meta/llama-3.1-405b", "benchmark": "or_bench_hard_1k", "score": 6.0, "_source": "https://arxiv.org/pdf/2405.20947"},
+    {"model": "mistral/mistral-large-2", "benchmark": "or_bench_hard_1k", "score": 9.7, "_source": "https://arxiv.org/pdf/2405.20947", "_note": "Table 2 — 'mistral-large-latest' as of paper submission"},
+
+    {"model": "meta/llama-3.1-70b", "benchmark": "or_bench_80k", "score": 2.2, "_source": "https://arxiv.org/pdf/2405.20947", "_note": "Appendix Table 7 — Llama 3-70b 80K rejection"},
+    {"model": "mistral/mistral-large-2", "benchmark": "or_bench_80k", "score": 1.4, "_source": "https://arxiv.org/pdf/2405.20947", "_note": "Appendix Table 7 — mistral-large-latest"},
+
+    {"model": "openai/gpt-4o", "benchmark": "or_bench_toxic_acceptance", "score": 15.1, "_source": "https://arxiv.org/pdf/2405.20947", "_note": "Table 6 — higher than ideal (less safe)"},
+    {"model": "meta/llama-3.1-70b", "benchmark": "or_bench_toxic_acceptance", "score": 30.0, "_source": "https://arxiv.org/pdf/2405.20947", "_note": "Highest toxic acceptance — least safe among open-weight"},
+    {"model": "meta/llama-3.1-405b", "benchmark": "or_bench_toxic_acceptance", "score": 21.0, "_source": "https://arxiv.org/pdf/2405.20947"},
+    {"model": "mistral/mistral-large-2", "benchmark": "or_bench_toxic_acceptance", "score": 27.2, "_source": "https://arxiv.org/pdf/2405.20947"},
+
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "anthropic_benign_refusal_multilingual", "score": 0.05, "_source": "https://www-cdn.anthropic.com/963373e433e489a87a10c823c52a0a013e9172dd.pdf", "_note": "Sonnet 4.5 card Table 2.1.2.A — overall ±0.04, default 0.05% / extended 0.00%"},
+    {"model": "anthropic/claude-opus-4", "benchmark": "anthropic_benign_refusal_multilingual", "score": 0.05, "_source": "https://www-cdn.anthropic.com/963373e433e489a87a10c823c52a0a013e9172dd.pdf", "_note": "Sonnet 4.5 card Table 2.1.2.A as comparison baseline"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "anthropic_benign_refusal_multilingual", "score": 0.15, "_source": "https://www-cdn.anthropic.com/963373e433e489a87a10c823c52a0a013e9172dd.pdf"},
+    {"model": "anthropic/claude-haiku-4.5", "benchmark": "anthropic_benign_refusal_multilingual", "score": 0.10, "_source": "https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf", "_note": "Opus 4.5 card Table 3.1.2.A multilingual"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "anthropic_benign_refusal_multilingual", "score": 0.23, "_source": "https://assets.anthropic.com/m/64823ba7485345a7/Claude-Opus-4-5-System-Card.pdf"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "anthropic_benign_refusal_multilingual", "score": 0.68, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf", "_note": "Opus 4.6 card Table 3.1.2.A — higher than 4.5 due to expanded sensitive categories"},
+
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "anthropic_benign_refusal_higher_difficulty", "score": 0.04, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf", "_note": "Best — major improvement on hard-difficulty benign axis"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "anthropic_benign_refusal_higher_difficulty", "score": 0.83, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "anthropic_benign_refusal_higher_difficulty", "score": 8.50, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf", "_note": "Worst — over-refuses on hard benign queries"},
+    {"model": "anthropic/claude-haiku-4.5", "benchmark": "anthropic_benign_refusal_higher_difficulty", "score": 6.01, "_source": "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf"}
+  ]
+}

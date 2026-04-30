@@ -4821,3 +4821,51 @@ benchmarks:
   - 95
   description: Cisco AI Defense multi-turn red-team resistance (~470 strategies × 100 conversations)
   leaderboard: https://leaderboard.aidefense.cisco.com/rankings
+- id: or_bench_hard_1k
+  name: OR-Bench Hard-1K (over-refusal rejection rate)
+  category: safety
+  metric: rejection_pct
+  unit: '%'
+  expected_range:
+  - 0
+  - 100
+  description: ICML 2025 OR-Bench Hard-1K — 1,000 hand-curated benign prompts. Lower=better
+  paper: https://arxiv.org/abs/2405.20947
+- id: or_bench_80k
+  name: OR-Bench 80K (over-refusal rejection rate)
+  category: safety
+  metric: rejection_pct
+  unit: '%'
+  expected_range:
+  - 0
+  - 70
+  description: ICML 2025 OR-Bench full 80,000-prompt over-refusal eval. Lower=better
+  paper: https://arxiv.org/abs/2405.20947
+- id: or_bench_toxic_acceptance
+  name: OR-Bench Toxic (acceptance rate)
+  category: safety
+  metric: acceptance_pct
+  unit: '%'
+  expected_range:
+  - 0
+  - 50
+  description: ICML 2025 OR-Bench Toxic subset. Lower=safer (fewer harmful responses accepted)
+  paper: https://arxiv.org/abs/2405.20947
+- id: anthropic_benign_refusal_multilingual
+  name: Anthropic Benign Refusal — Single-Turn Multilingual
+  category: safety
+  metric: refusal_pct
+  unit: '%'
+  expected_range:
+  - 0
+  - 5
+  description: Anthropic system-card single-turn benign-request over-refusal rate. Lower=better helpfulness
+- id: anthropic_benign_refusal_higher_difficulty
+  name: Anthropic Benign Refusal — Higher-Difficulty English
+  category: safety
+  metric: refusal_pct
+  unit: '%'
+  expected_range:
+  - 0
+  - 15
+  description: Anthropic system-card hard benign-request over-refusal rate. More discriminative axis. Lower=better
