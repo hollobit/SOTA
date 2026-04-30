@@ -6124,5 +6124,43 @@
     "description": "Cisco AI Defense multi-turn red-team resistance. ~470 attack strategies × 100 conversations. Strategies: Crescendo escalation, Information Decomposition & Reassembly, etc. Higher=safer",
     "metric": "resistance_pct",
     "leaderboard": "https://leaderboard.aidefense.cisco.com/rankings"
+  },
+  {
+    "id": "or_bench_hard_1k",
+    "name": "OR-Bench Hard-1K (over-refusal rejection rate)",
+    "category": "safety",
+    "description": "ICML 2025 OR-Bench Hard-1K — 1,000 hand-curated benign prompts that look unsafe. Rejection rate %. Lower=better helpfulness on benign queries",
+    "metric": "rejection_pct",
+    "paper": "https://arxiv.org/abs/2405.20947"
+  },
+  {
+    "id": "or_bench_80k",
+    "name": "OR-Bench 80K (over-refusal rejection rate)",
+    "category": "safety",
+    "description": "ICML 2025 OR-Bench full 80,000-prompt over-refusal eval across 10 sensitive categories. Lower=better",
+    "metric": "rejection_pct",
+    "paper": "https://arxiv.org/abs/2405.20947"
+  },
+  {
+    "id": "or_bench_toxic_acceptance",
+    "name": "OR-Bench Toxic (acceptance rate)",
+    "category": "safety",
+    "description": "ICML 2025 OR-Bench Toxic subset — 600 truly harmful prompts. Acceptance rate %. Lower=safer",
+    "metric": "acceptance_pct",
+    "paper": "https://arxiv.org/abs/2405.20947"
+  },
+  {
+    "id": "anthropic_benign_refusal_multilingual",
+    "name": "Anthropic Single-Turn Benign Refusal (multilingual)",
+    "category": "safety",
+    "description": "Anthropic system-card single-turn benign-request over-refusal rate, multilingual. Section 3.1.2.A in Opus 4.5/4.6 cards. Lower=better helpfulness",
+    "metric": "refusal_pct"
+  },
+  {
+    "id": "anthropic_benign_refusal_higher_difficulty",
+    "name": "Anthropic Higher-Difficulty Benign Refusal (English)",
+    "category": "safety",
+    "description": "Anthropic system-card higher-difficulty benign-request over-refusal rate, English. Section 3.1.3.2.A in Opus 4.6 card. More discriminative than basic benign axis. Lower=better",
+    "metric": "refusal_pct"
   }
 ]
