@@ -1,0 +1,86 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-30",
+    "sources": [
+      "https://gorilla.cs.berkeley.edu/leaderboard.html",
+      "https://github.com/HuanzhiMao/BFCL-Result",
+      "https://the-agent-company.com/",
+      "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard",
+      "https://jykoh.com/vwa",
+      "https://embodiedbench.github.io/",
+      "https://cybench.github.io/data/leaderboard.csv",
+      "https://assistantbench.github.io/"
+    ],
+    "_note": "Agent benchmark batch — 6 primary sources with verifiable per-frontier-model rows. (1) BFCL v4 (Berkeley Function Calling Leaderboard 2025-12-16). (2) TheAgentCompany (CMU live leaderboard, JS bundle main.6a1ea1e4). (3) Online-Mind2Web (OSU NLP HF Space CSVs). (4) VisualWebArena (jykoh.com/vwa). (5) EmbodiedBench EB-AlfWorld JSON. (6) Cybench live CSV. Skipped under strict-rule: AgentHarm/Magentic-One/AgentBench/AgentBoard/MobileAgent (NEEDS_VERIFICATION — no extractable per-frontier-model leaderboards)."
+  },
+  "models": [
+    {"id": "google/gemini-2.0-flash", "vendor": "Google", "name": "Gemini 2.0 Flash", "type": "proprietary", "modalities": ["text","image"], "released_at": "2024-12"},
+    {"id": "google/gemini-2.5-flash", "vendor": "Google", "name": "Gemini 2.5 Flash", "type": "proprietary", "modalities": ["text","image"], "released_at": "2025-04"},
+    {"id": "alibaba/qwen-2.5-72b", "vendor": "Alibaba", "name": "Qwen 2.5 72B Instruct", "type": "open-weight", "modalities": ["text"], "released_at": "2024-09"}
+  ],
+  "benchmarks": [
+    {"id": "bfcl_v4_web_search", "name": "BFCL v4 Web Search Base (agentic)", "category": "agent", "metric": "accuracy", "description": "Berkeley Function Calling Leaderboard v4 — agentic web_search_base subset. 100-task accuracy. 2025-12-16 snapshot"},
+    {"id": "the_agent_company", "name": "TheAgentCompany (completion score)", "category": "agent", "metric": "completion_pct", "description": "CMU TheAgentCompany — agentic enterprise tasks across browser, terminal, workplace tools. % completion score (partial credit). arxiv 2412.14161"},
+    {"id": "online_mind2web_human", "name": "Online-Mind2Web (human-eval avg SR)", "category": "agent", "metric": "success_rate", "description": "OSU NLP Online-Mind2Web human evaluation — 300 real-website tasks averaged across Easy/Medium/Hard. Human-judge SR %. arxiv 2504.01382"},
+    {"id": "online_mind2web_auto", "name": "Online-Mind2Web (WebJudge auto-eval avg SR)", "category": "agent", "metric": "success_rate", "description": "OSU NLP Online-Mind2Web auto-eval via WebJudge (o4-mini). Avg SR %. Less verified than human-eval"},
+    {"id": "vwa_multimodal_som", "name": "VisualWebArena Multimodal Set-of-Marks SR", "category": "agent", "metric": "success_rate", "description": "VisualWebArena multimodal Set-of-Marks variant. 910 web tasks across image-rich domains. arxiv 2401.13649"},
+    {"id": "embodiedbench_alfworld", "name": "EmbodiedBench EB-AlfWorld (avg SR)", "category": "agent", "metric": "success_rate", "description": "EmbodiedBench EB-AlfWorld split — household task agent. Avg success rate %"},
+    {"id": "cybench_live", "name": "Cybench Live Leaderboard (% solved unguided)", "category": "cybersecurity", "metric": "success_rate", "description": "Stanford Cybench live leaderboard (cybench.github.io/data/leaderboard.csv) — 35-40 CTF tasks unguided solved %"}
+  ],
+  "scores": [
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "bfcl_v4_web_search", "score": 84.0, "_source": "https://gorilla.cs.berkeley.edu/leaderboard.html", "_note": "BFCL v4 web_search_base 84/100. claude-opus-4-5-20251101-FC"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "bfcl_v4_web_search", "score": 82.0, "_source": "https://gorilla.cs.berkeley.edu/leaderboard.html", "_note": "82/100. claude-sonnet-4-5-20250929-FC"},
+    {"model": "deepseek/deepseek-v3.2", "benchmark": "bfcl_v4_web_search", "score": 80.0, "_source": "https://gorilla.cs.berkeley.edu/leaderboard.html", "_note": "DeepSeek-V3.2-Exp-FC 80/100"},
+    {"model": "openai/gpt-5.2", "benchmark": "bfcl_v4_web_search", "score": 78.0, "_source": "https://gorilla.cs.berkeley.edu/leaderboard.html", "_note": "gpt-5.2-2025-12-11-FC 78/100"},
+    {"model": "google/gemini-3-pro", "benchmark": "bfcl_v4_web_search", "score": 63.0, "_source": "https://gorilla.cs.berkeley.edu/leaderboard.html", "_note": "gemini-3-pro-preview-FC 63/100"},
+
+    {"model": "deepseek/deepseek-v3.2", "benchmark": "the_agent_company", "score": 52.4, "_source": "https://the-agent-company.com/", "_note": "TTE-MatrixAgent + DeepSeek-V3.2 — top of leaderboard, 42.86% resolved"},
+    {"model": "google/gemini-2.5-flash", "benchmark": "the_agent_company", "score": 51.78, "_source": "https://the-agent-company.com/", "_note": "MUSE + Gemini 2.5 Flash"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "the_agent_company", "score": 43.19, "_source": "https://the-agent-company.com/", "_note": "OpenHands-Versa + Claude Sonnet 4"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "the_agent_company", "score": 40.18, "_source": "https://the-agent-company.com/", "_note": "OpenHands-Versa + Claude 3.7 Sonnet"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "the_agent_company", "score": 39.28, "_source": "https://the-agent-company.com/", "_note": "OpenHands + Gemini 2.5 Pro"},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "the_agent_company", "score": 34.4, "_source": "https://the-agent-company.com/", "_note": "OpenHands + Claude 3.5 Sonnet"},
+    {"model": "google/gemini-2.0-flash", "benchmark": "the_agent_company", "score": 19.0, "_source": "https://the-agent-company.com/"},
+    {"model": "openai/gpt-4o", "benchmark": "the_agent_company", "score": 16.7, "_source": "https://the-agent-company.com/"},
+    {"model": "meta/llama-3.1-405b", "benchmark": "the_agent_company", "score": 14.1, "_source": "https://the-agent-company.com/"},
+    {"model": "meta/llama-3.3-70b", "benchmark": "the_agent_company", "score": 12.8, "_source": "https://the-agent-company.com/"},
+    {"model": "alibaba/qwen-2.5-72b", "benchmark": "the_agent_company", "score": 11.8, "_source": "https://the-agent-company.com/"},
+    {"model": "google/gemini-1.5-pro", "benchmark": "the_agent_company", "score": 8.0, "_source": "https://the-agent-company.com/"},
+
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "online_mind2web_human", "score": 56.3, "_source": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard", "_note": "Claude Computer Use 3.7 (no thinking). Human-eval avg SR"},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "online_mind2web_human", "score": 29.0, "_source": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard", "_note": "Claude Computer Use 3.5"},
+    {"model": "openai/gpt-4o", "benchmark": "online_mind2web_human", "score": 30.7, "_source": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard", "_note": "SeeAct framework + gpt-4o-2024-08-06"},
+
+    {"model": "openai/gpt-5.4", "benchmark": "online_mind2web_auto", "score": 92.8, "_source": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard", "_note": "WebJudge auto-eval — top score (auto-eval less verified than human)"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "online_mind2web_auto", "score": 47.3, "_source": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard", "_note": "Claude Computer Use 3.7 (verified, auto-eval)"},
+
+    {"model": "openai/gpt-4o", "benchmark": "vwa_multimodal_som", "score": 19.78, "_source": "https://jykoh.com/vwa", "_note": "GPT-4o + Set-of-Marks. Top frontier on VWA"},
+    {"model": "google/gemini-1.5-pro", "benchmark": "vwa_multimodal_som", "score": 11.98, "_source": "https://jykoh.com/vwa", "_note": "Gemini-Pro-1.5 + SoM"},
+    {"model": "google/gemini-1.5-flash", "benchmark": "vwa_multimodal_som", "score": 6.59, "_source": "https://jykoh.com/vwa"},
+
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "embodiedbench_alfworld", "score": 67.7, "_source": "https://embodiedbench.github.io/website/data/eb_alfred_total_benchmark.json", "_note": "Top frontier on EB-AlfWorld avg"},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "embodiedbench_alfworld", "score": 64.0, "_source": "https://embodiedbench.github.io/website/data/eb_alfred_total_benchmark.json"},
+    {"model": "google/gemini-1.5-pro", "benchmark": "embodiedbench_alfworld", "score": 62.3, "_source": "https://embodiedbench.github.io/website/data/eb_alfred_total_benchmark.json"},
+    {"model": "openai/gpt-4o", "benchmark": "embodiedbench_alfworld", "score": 56.3, "_source": "https://embodiedbench.github.io/website/data/eb_alfred_total_benchmark.json"},
+    {"model": "google/gemini-2.0-flash", "benchmark": "embodiedbench_alfworld", "score": 52.3, "_source": "https://embodiedbench.github.io/website/data/eb_alfred_total_benchmark.json"},
+    {"model": "google/gemini-1.5-flash", "benchmark": "embodiedbench_alfworld", "score": 39.3, "_source": "https://embodiedbench.github.io/website/data/eb_alfred_total_benchmark.json"},
+    {"model": "openai/gpt-4o-mini", "benchmark": "embodiedbench_alfworld", "score": 24.0, "_source": "https://embodiedbench.github.io/website/data/eb_alfred_total_benchmark.json"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "cybench_live", "score": 100.0, "_source": "https://cybench.github.io/data/leaderboard.csv", "_note": "Cybench live — 100% on 35-task subset (unguided)"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "cybench_live", "score": 96.0, "_source": "https://cybench.github.io/data/leaderboard.csv", "_note": "35-task subset"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "cybench_live", "score": 93.0, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "cybench_live", "score": 82.0, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "meta/muse-spark", "benchmark": "cybench_live", "score": 65.4, "_source": "https://cybench.github.io/data/leaderboard.csv", "_note": "40-task full"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "cybench_live", "score": 60.0, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "xai/grok-4", "benchmark": "cybench_live", "score": 43.0, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "anthropic/claude-opus-4.1", "benchmark": "cybench_live", "score": 42.0, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "anthropic/claude-opus-4", "benchmark": "cybench_live", "score": 38.0, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "cybench_live", "score": 35.0, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "cybench_live", "score": 20.0, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "cybench_live", "score": 17.5, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "openai/gpt-4o", "benchmark": "cybench_live", "score": 12.5, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "anthropic/claude-3-opus", "benchmark": "cybench_live", "score": 10.0, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "google/gemini-1.5-pro", "benchmark": "cybench_live", "score": 7.5, "_source": "https://cybench.github.io/data/leaderboard.csv"},
+    {"model": "meta/llama-3.1-405b", "benchmark": "cybench_live", "score": 7.5, "_source": "https://cybench.github.io/data/leaderboard.csv"}
+  ]
+}

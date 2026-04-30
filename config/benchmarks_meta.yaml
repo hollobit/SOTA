@@ -4951,3 +4951,76 @@ benchmarks:
   - 80
   description: Agent Security Bench — Plan-of-Thought reasoning backdoor. Lower=safer
   paper: https://arxiv.org/abs/2410.02644
+- id: bfcl_v4_web_search
+  name: BFCL v4 Web Search Base (agentic)
+  category: agent
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 99
+  description: Berkeley Function Calling Leaderboard v4 — agentic web_search_base subset, 100 tasks
+  leaderboard: https://gorilla.cs.berkeley.edu/leaderboard.html
+- id: the_agent_company
+  name: TheAgentCompany (completion %)
+  category: agent
+  metric: completion_pct
+  unit: '%'
+  expected_range:
+  - 0
+  - 80
+  description: CMU TheAgentCompany — agentic enterprise tasks across browser/terminal/workplace tools
+  paper: https://arxiv.org/abs/2412.14161
+  leaderboard: https://the-agent-company.com/
+- id: online_mind2web_human
+  name: Online-Mind2Web (human-eval avg SR)
+  category: agent
+  metric: success_rate
+  unit: '%'
+  expected_range:
+  - 10
+  - 90
+  description: OSU NLP Online-Mind2Web human evaluation — 300 real-website tasks
+  paper: https://arxiv.org/abs/2504.01382
+  leaderboard: https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard
+- id: online_mind2web_auto
+  name: Online-Mind2Web (WebJudge auto-eval avg SR)
+  category: agent
+  metric: success_rate
+  unit: '%'
+  expected_range:
+  - 10
+  - 99
+  description: Online-Mind2Web auto-eval via WebJudge (o4-mini). Less verified than human-eval
+  leaderboard: https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard
+- id: vwa_multimodal_som
+  name: VisualWebArena Multimodal Set-of-Marks SR
+  category: agent
+  metric: success_rate
+  unit: '%'
+  expected_range:
+  - 0
+  - 50
+  description: VisualWebArena multimodal Set-of-Marks variant. 910 web tasks
+  paper: https://arxiv.org/abs/2401.13649
+  leaderboard: https://jykoh.com/vwa
+- id: embodiedbench_alfworld
+  name: EmbodiedBench EB-AlfWorld (avg SR)
+  category: agent
+  metric: success_rate
+  unit: '%'
+  expected_range:
+  - 10
+  - 90
+  description: EmbodiedBench EB-AlfWorld split — household task agent
+  leaderboard: https://embodiedbench.github.io/
+- id: cybench_live
+  name: Cybench Live Leaderboard (% solved unguided)
+  category: cybersecurity
+  metric: success_rate
+  unit: '%'
+  expected_range:
+  - 5
+  - 100
+  description: Stanford Cybench live CSV — 35-40 CTF tasks unguided solved
+  leaderboard: https://cybench.github.io/
