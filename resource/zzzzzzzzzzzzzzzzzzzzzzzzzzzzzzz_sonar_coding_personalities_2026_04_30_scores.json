@@ -1,0 +1,145 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-30",
+    "sources": [
+      "https://www.sonarsource.com/the-coding-personalities-of-leading-llms/leaderboard/",
+      "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf",
+      "https://www.sonarsource.com/the-coding-personalities-of-leading-llms-executive-summary.pdf"
+    ],
+    "_note": "SonarSource 'Coding Personalities of Leading LLMs' — Aug 2025 study, Oct 2025 PDF. 6 models × 4,442 Java assignments via SonarQube Enterprise static analysis. Sources: MultiPL-E-mbpp-java + MultiPL-E-humaneval-java + ComplexCodeEval. /leaderboard/ page is JS-rendered (NEEDS_BROWSER); same numerics confirmed in published PDF."
+  },
+  "models": [
+    {"id": "anthropic/claude-sonnet-4", "vendor": "Anthropic", "name": "Claude Sonnet 4", "type": "proprietary", "modalities": ["text"], "_note": "Anthropic Claude Sonnet 4 (2025)"},
+    {"id": "meta/llama-3.2-90b", "vendor": "Meta", "name": "Llama 3.2 90B", "type": "open-weight", "modalities": ["text"]},
+    {"id": "opencoder/opencoder-8b", "vendor": "OpenCoder", "name": "OpenCoder 8B", "type": "open-weight", "modalities": ["text"]}
+  ],
+  "benchmarks": [
+    {
+      "id": "sonar_humaneval_java",
+      "name": "Sonar HumanEval Java (158 tasks)",
+      "category": "coding",
+      "metric": "pass1",
+      "description": "MultiPL-E HumanEval-Java functional pass rate. SonarSource Coding Personalities study"
+    },
+    {
+      "id": "sonar_mbpp_java",
+      "name": "Sonar MBPP Java (385 tasks)",
+      "category": "coding",
+      "metric": "pass1",
+      "description": "MultiPL-E MBPP-Java functional pass rate. SonarSource Coding Personalities study"
+    },
+    {
+      "id": "sonar_weighted_pass1_java",
+      "name": "Sonar Weighted Java Pass@1 (avg)",
+      "category": "coding",
+      "metric": "pass1",
+      "description": "Weighted average of HumanEval-Java + MBPP-Java + ComplexCodeEval Pass@1. 4,442 Java tasks total. SonarSource Coding Personalities study"
+    },
+    {
+      "id": "sonar_blocker_vuln_pct",
+      "name": "Sonar BLOCKER Vulnerability Share",
+      "category": "cybersecurity",
+      "metric": "severity_pct",
+      "description": "Percent of vulnerabilities classified BLOCKER severity (highest). SonarSource Coding Personalities. Lower=less critical-severity output"
+    },
+    {
+      "id": "sonar_issue_density_kloc",
+      "name": "Sonar Issue Density (issues/KLOC)",
+      "category": "coding",
+      "metric": "issue_density",
+      "description": "Total Sonar issues per 1,000 LOC. Lower=better quality output"
+    },
+    {
+      "id": "sonar_comment_density",
+      "name": "Sonar Comment Density",
+      "category": "coding",
+      "metric": "comment_pct",
+      "description": "Comment-to-LOC density (%). SonarSource Coding Personalities"
+    },
+    {
+      "id": "sonar_cognitive_complexity_total",
+      "name": "Sonar Cognitive Complexity (total)",
+      "category": "coding",
+      "metric": "complexity",
+      "description": "Total cognitive complexity across 4,442 Java solutions. Lower=easier to maintain"
+    },
+    {
+      "id": "sonar_vuln_pct_total_issues",
+      "name": "Sonar Vulnerabilities (% of total issues)",
+      "category": "cybersecurity",
+      "metric": "issue_share_pct",
+      "description": "Percent of total Sonar issues classified as security vulnerabilities. Lower=safer"
+    },
+    {
+      "id": "sonar_bug_pct_total_issues",
+      "name": "Sonar Bugs (% of total issues)",
+      "category": "coding",
+      "metric": "issue_share_pct",
+      "description": "Percent of total Sonar issues classified as runtime bugs"
+    }
+  ],
+  "scores": [
+    {"model": "openai/gpt-5", "benchmark": "sonar_humaneval_java", "score": 91.77, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "GPT-5-minimal mode. p.5 Table 1"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "sonar_humaneval_java", "score": 95.57, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Top score. p.5 Table 1"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "sonar_humaneval_java", "score": 84.28, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "openai/gpt-4o", "benchmark": "sonar_humaneval_java", "score": 73.42, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "meta/llama-3.2-90b", "benchmark": "sonar_humaneval_java", "score": 61.64, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "opencoder/opencoder-8b", "benchmark": "sonar_humaneval_java", "score": 64.36, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+
+    {"model": "openai/gpt-5", "benchmark": "sonar_mbpp_java", "score": 68.13, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "sonar_mbpp_java", "score": 69.43, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "sonar_mbpp_java", "score": 67.62, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "openai/gpt-4o", "benchmark": "sonar_mbpp_java", "score": 68.13, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "meta/llama-3.2-90b", "benchmark": "sonar_mbpp_java", "score": 61.40, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "opencoder/opencoder-8b", "benchmark": "sonar_mbpp_java", "score": 58.81, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+
+    {"model": "openai/gpt-5", "benchmark": "sonar_weighted_pass1_java", "score": 75.37, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Archetype: 'baseline performer'"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "sonar_weighted_pass1_java", "score": 77.04, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Top score. Archetype: 'senior architect'"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "sonar_weighted_pass1_java", "score": 72.46, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Archetype: 'balanced predecessor'"},
+    {"model": "openai/gpt-4o", "benchmark": "sonar_weighted_pass1_java", "score": 69.67, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Archetype: 'efficient generalist'"},
+    {"model": "meta/llama-3.2-90b", "benchmark": "sonar_weighted_pass1_java", "score": 61.47, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Archetype: 'unfulfilled promise'"},
+    {"model": "opencoder/opencoder-8b", "benchmark": "sonar_weighted_pass1_java", "score": 60.43, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Archetype: 'rapid prototyper'"},
+
+    {"model": "openai/gpt-5", "benchmark": "sonar_blocker_vuln_pct", "score": 35.00, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "% BLOCKER severity. p.8 Table 3 — significant improvement over predecessors"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "sonar_blocker_vuln_pct", "score": 59.57, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "sonar_blocker_vuln_pct", "score": 56.03, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "openai/gpt-4o", "benchmark": "sonar_blocker_vuln_pct", "score": 62.50, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "meta/llama-3.2-90b", "benchmark": "sonar_blocker_vuln_pct", "score": 70.73, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Highest BLOCKER share — most security-critical output"},
+    {"model": "opencoder/opencoder-8b", "benchmark": "sonar_blocker_vuln_pct", "score": 64.18, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+
+    {"model": "openai/gpt-5", "benchmark": "sonar_issue_density_kloc", "score": 26.65, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "sonar_issue_density_kloc", "score": 19.48, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Lowest issue density"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "sonar_issue_density_kloc", "score": 22.82, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "openai/gpt-4o", "benchmark": "sonar_issue_density_kloc", "score": 26.08, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "meta/llama-3.2-90b", "benchmark": "sonar_issue_density_kloc", "score": 26.20, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "opencoder/opencoder-8b", "benchmark": "sonar_issue_density_kloc", "score": 32.45, "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Highest issue density"},
+
+    {"model": "openai/gpt-5", "benchmark": "sonar_comment_density", "score": 2.10, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "p.14: 'poor documentarian'"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "sonar_comment_density", "score": 5.10, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "sonar_comment_density", "score": 16.40, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Top documentation density — 'nearly 3x its successor'"},
+    {"model": "openai/gpt-4o", "benchmark": "sonar_comment_density", "score": 4.40, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "meta/llama-3.2-90b", "benchmark": "sonar_comment_density", "score": 7.30, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "opencoder/opencoder-8b", "benchmark": "sonar_comment_density", "score": 9.90, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+
+    {"model": "openai/gpt-5", "benchmark": "sonar_cognitive_complexity_total", "score": 111133, "unit": "complexity", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Highest cognitive complexity — most verbose"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "sonar_cognitive_complexity_total", "score": 47649, "unit": "complexity", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "sonar_cognitive_complexity_total", "score": 42220, "unit": "complexity", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "openai/gpt-4o", "benchmark": "sonar_cognitive_complexity_total", "score": 26450, "unit": "complexity", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "meta/llama-3.2-90b", "benchmark": "sonar_cognitive_complexity_total", "score": 20811, "unit": "complexity", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "opencoder/opencoder-8b", "benchmark": "sonar_cognitive_complexity_total", "score": 13965, "unit": "complexity", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Lowest cognitive complexity — most concise"},
+
+    {"model": "openai/gpt-5", "benchmark": "sonar_vuln_pct_total_issues", "score": 0.46, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Lowest vuln share — safest"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "sonar_vuln_pct_total_issues", "score": 1.95, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "sonar_vuln_pct_total_issues", "score": 1.76, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "openai/gpt-4o", "benchmark": "sonar_vuln_pct_total_issues", "score": 2.05, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "meta/llama-3.2-90b", "benchmark": "sonar_vuln_pct_total_issues", "score": 2.38, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf", "_note": "Highest vuln share"},
+    {"model": "opencoder/opencoder-8b", "benchmark": "sonar_vuln_pct_total_issues", "score": 1.72, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+
+    {"model": "openai/gpt-5", "benchmark": "sonar_bug_pct_total_issues", "score": 4.67, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "sonar_bug_pct_total_issues", "score": 5.85, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "sonar_bug_pct_total_issues", "score": 5.35, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "openai/gpt-4o", "benchmark": "sonar_bug_pct_total_issues", "score": 7.41, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "meta/llama-3.2-90b", "benchmark": "sonar_bug_pct_total_issues", "score": 7.71, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"},
+    {"model": "opencoder/opencoder-8b", "benchmark": "sonar_bug_pct_total_issues", "score": 6.33, "unit": "%", "_source": "https://www.sonarsource.com/the-coding-personalities-of-leading-llms.pdf"}
+  ]
+}

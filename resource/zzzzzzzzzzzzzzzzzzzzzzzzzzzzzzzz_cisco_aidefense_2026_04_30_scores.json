@@ -1,0 +1,581 @@
+{
+  "_meta": {
+    "collected_at": "2026-04-30",
+    "sources": [
+      "https://leaderboard.aidefense.cisco.com/rankings",
+      "https://leaderboard.aidefense.cisco.com/api/rankings?limit=200"
+    ],
+    "_note": "Cisco AI Defense Rankings (last update 2026-04-28). 99 models × 4 score dimensions. Methodology: 2,006 single-turn validation prompts + ~470 multi-turn red-team attacks across 100 conversations per model. Combined score = (validation + multi_turn_resistance) / 2. Higher=safer."
+  },
+  "benchmarks": [
+    {
+      "id": "cisco_combined_safety",
+      "name": "Cisco AI Defense — Combined Safety Score",
+      "category": "safety",
+      "metric": "composite_pct",
+      "description": "Cisco AI Defense Rankings — average of single-turn validation pass rate (2,006 prompts) and multi-turn red-team resistance (~470 attacks/100 conversations). Higher=safer"
+    },
+    {
+      "id": "cisco_validation_score",
+      "name": "Cisco AI Defense — Single-Turn Validation",
+      "category": "safety",
+      "metric": "pass_rate_pct",
+      "description": "Cisco AI Defense single-turn validation pass rate. 2,006 prompts spanning 41,302 taxonomy entries. Higher=safer"
+    },
+    {
+      "id": "cisco_multi_turn_resistance",
+      "name": "Cisco AI Defense — Multi-Turn Red-Team Resistance",
+      "category": "safety",
+      "metric": "resistance_pct",
+      "description": "Cisco AI Defense multi-turn red-team resistance. ~470 attack strategies × 100 conversations. Strategies: Crescendo escalation, Information Decomposition & Reassembly, etc. Higher=safer"
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "cisco_combined_safety",
+      "score": 93.32,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 466 attacks across 100 conversations"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "cisco_validation_score",
+      "score": 97.81,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 88.84,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 466 attacks"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "cisco_combined_safety",
+      "score": 92.22,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 478 attacks across 100 conversations"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "cisco_validation_score",
+      "score": 97.41,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 87.03,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 478 attacks"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cisco_combined_safety",
+      "score": 91.8,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 464 attacks across 100 conversations"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cisco_validation_score",
+      "score": 96.96,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 86.64,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 464 attacks"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "cisco_combined_safety",
+      "score": 91.46,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 473 attacks across 100 conversations"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "cisco_validation_score",
+      "score": 96.46,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 86.47,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 473 attacks"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cisco_combined_safety",
+      "score": 90.08,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 469 attacks across 100 conversations"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cisco_validation_score",
+      "score": 96.36,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 83.8,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 469 attacks"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cisco_combined_safety",
+      "score": 89.17,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 473 attacks across 100 conversations"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cisco_validation_score",
+      "score": 97.36,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 80.97,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 473 attacks"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "cisco_combined_safety",
+      "score": 89.12,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 468 attacks across 100 conversations"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "cisco_validation_score",
+      "score": 90.43,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 87.82,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 468 attacks"
+    },
+    {
+      "model": "minimax/m2.5",
+      "benchmark": "cisco_combined_safety",
+      "score": 87.62,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 466 attacks across 100 conversations"
+    },
+    {
+      "model": "minimax/m2.5",
+      "benchmark": "cisco_validation_score",
+      "score": 90.48,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "minimax/m2.5",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 84.76,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 466 attacks"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "cisco_combined_safety",
+      "score": 86.29,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 466 attacks across 100 conversations"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "cisco_validation_score",
+      "score": 97.26,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 75.32,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 466 attacks"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "cisco_combined_safety",
+      "score": 85.88,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 468 attacks across 100 conversations"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "cisco_validation_score",
+      "score": 95.26,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 76.5,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 468 attacks"
+    },
+    {
+      "model": "anthropic/claude-opus-4.1",
+      "benchmark": "cisco_combined_safety",
+      "score": 85.82,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 471 attacks across 100 conversations"
+    },
+    {
+      "model": "anthropic/claude-opus-4.1",
+      "benchmark": "cisco_validation_score",
+      "score": 97.76,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "anthropic/claude-opus-4.1",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 73.89,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 471 attacks"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "cisco_combined_safety",
+      "score": 83.57,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 470 attacks across 100 conversations"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "cisco_validation_score",
+      "score": 79.26,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 87.87,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 470 attacks"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cisco_combined_safety",
+      "score": 75.34,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 468 attacks across 100 conversations"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cisco_validation_score",
+      "score": 91.92,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 58.76,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 468 attacks"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "cisco_combined_safety",
+      "score": 67.83,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 467 attacks across 100 conversations"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "cisco_validation_score",
+      "score": 87.69,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 47.97,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 467 attacks"
+    },
+    {
+      "model": "anthropic/claude-opus-4",
+      "benchmark": "cisco_combined_safety",
+      "score": 63.7,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 470 attacks across 100 conversations"
+    },
+    {
+      "model": "anthropic/claude-opus-4",
+      "benchmark": "cisco_validation_score",
+      "score": 95.26,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "anthropic/claude-opus-4",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 32.13,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 470 attacks"
+    },
+    {
+      "model": "moonshot/kimi-k2-thinking",
+      "benchmark": "cisco_combined_safety",
+      "score": 62.94,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 467 attacks across 100 conversations"
+    },
+    {
+      "model": "moonshot/kimi-k2-thinking",
+      "benchmark": "cisco_validation_score",
+      "score": 79.41,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "moonshot/kimi-k2-thinking",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 46.47,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 467 attacks"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cisco_combined_safety",
+      "score": 61.54,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 466 attacks across 100 conversations"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cisco_validation_score",
+      "score": 75.87,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 47.21,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 466 attacks"
+    },
+    {
+      "model": "xai/grok-4",
+      "benchmark": "cisco_combined_safety",
+      "score": 56.45,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 421 attacks across 100 conversations"
+    },
+    {
+      "model": "xai/grok-4",
+      "benchmark": "cisco_validation_score",
+      "score": 78.22,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "xai/grok-4",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 34.68,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 421 attacks"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "cisco_combined_safety",
+      "score": 54.28,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 469 attacks across 100 conversations"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "cisco_validation_score",
+      "score": 81.9,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 26.65,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 469 attacks"
+    },
+    {
+      "model": "anthropic/claude-3.7-sonnet",
+      "benchmark": "cisco_combined_safety",
+      "score": 53.18,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 471 attacks across 100 conversations"
+    },
+    {
+      "model": "anthropic/claude-3.7-sonnet",
+      "benchmark": "cisco_validation_score",
+      "score": 88.73,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "anthropic/claude-3.7-sonnet",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 17.62,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 471 attacks"
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "cisco_combined_safety",
+      "score": 44.85,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 462 attacks across 100 conversations"
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "cisco_validation_score",
+      "score": 62.21,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 27.49,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 462 attacks"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "cisco_combined_safety",
+      "score": 33.66,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 471 attacks across 100 conversations"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "cisco_validation_score",
+      "score": 57.98,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 9.34,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 471 attacks"
+    },
+    {
+      "model": "mistral/mistral-large-3",
+      "benchmark": "cisco_combined_safety",
+      "score": 20.83,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 472 attacks across 100 conversations"
+    },
+    {
+      "model": "mistral/mistral-large-3",
+      "benchmark": "cisco_validation_score",
+      "score": 19.84,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "mistral/mistral-large-3",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 21.82,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 472 attacks"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cisco_combined_safety",
+      "score": 16.89,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 467 attacks across 100 conversations"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cisco_validation_score",
+      "score": 23.28,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 10.49,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 467 attacks"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "cisco_combined_safety",
+      "score": 16.53,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 474 attacks across 100 conversations"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "cisco_validation_score",
+      "score": 22.08,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 10.97,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 474 attacks"
+    },
+    {
+      "model": "xai/grok-3",
+      "benchmark": "cisco_combined_safety",
+      "score": 12.29,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Validation+multi-turn avg. 470 attacks across 100 conversations"
+    },
+    {
+      "model": "xai/grok-3",
+      "benchmark": "cisco_validation_score",
+      "score": 15.85,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Single-turn validation pass rate, 2,006 prompts"
+    },
+    {
+      "model": "xai/grok-3",
+      "benchmark": "cisco_multi_turn_resistance",
+      "score": 8.72,
+      "_source": "https://leaderboard.aidefense.cisco.com/rankings",
+      "_note": "Multi-turn red-team resistance % across 470 attacks"
+    }
+  ]
+}
