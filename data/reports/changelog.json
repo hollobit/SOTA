@@ -2,6 +2,15 @@
   {
     "type": "Feature",
     "date": "2026-04-30",
+    "benchmark_id": "Agent benchmarks 대규모 흡수 — BFCL v4 + TheAgentCompany + Mind2Web + VWA + EmbodiedBench + Cybench (+7 benchmarks, +48 scores)",
+    "new_model": "+3 신규 모델 + 6 primary leaderboard 통합",
+    "new_value": "User-requested agent 벤치마크 데이터 흡수. 6 primary 출처. (1) BFCL v4 (Berkeley Function Calling Leaderboard 2025-12-16) — Claude Opus 4.5 84/100, Sonnet 4.5 82, DeepSeek V3.2 80, GPT-5.2 78, Gemini 3 Pro 63. (2) TheAgentCompany (CMU live) — TTE-MatrixAgent + DeepSeek V3.2 52.4%, MUSE + Gemini 2.5 Flash 51.78%, OpenHands-Versa + Sonnet 4 43.19%. 11 model rows. (3) Online-Mind2Web (OSU NLP) — Claude CU 3.7 56.3% human-eval, GPT-5.4 92.8% auto-eval (less verified). (4) VisualWebArena — GPT-4o 19.78% multimodal SoM, Gemini 1.5 Pro 11.98%. (5) EmbodiedBench EB-AlfWorld — Claude 3.7 67.7% (top), Claude 3.5 64.0%, Gemini 1.5 Pro 62.3%, GPT-4o 56.3%. (6) Cybench live CSV — Mythos 100%, Opus 4.7 96%, Opus 4.6 93%, Opus 4.5 82%, Muse Spark 65.4%, Sonnet 4.5 60%, Grok 4 43% (16 rows total). 신규 7 benchmarks: bfcl_v4_web_search, the_agent_company, online_mind2web_human, online_mind2web_auto, vwa_multimodal_som, embodiedbench_alfworld, cybench_live. 신규 3 모델: gemini-2.0-flash, gemini-2.5-flash, qwen-2.5-72b. NOT_ADDED: AgentHarm/Magentic-One/AgentBench/AgentBoard/MobileAgent (NEEDS_VERIFICATION — no extractable per-frontier-model leaderboards), AssistantBench (paper-only 25.2%, single value), WebVoyager (single 59.1% value).",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Feature",
+    "date": "2026-04-30",
     "benchmark_id": "Poisoning 벤치마크 — AgentDojo + ASB (+6 benchmarks, +31 scores)",
     "new_model": "Memory Poisoning + Plan-of-Thought Backdoor + Prompt Injection 전 축",
     "new_value": "User-requested poisoning 카테고리 데이터. 2개 1차 출처. (1) AgentDojo (ETHZ ICML 2024 → spylab.ai/results live leaderboard) — agentic 도구 사용 prompt-injection 벤치마크. 7 frontier model × 2 metrics: Utility (낮을수록 도구 사용 실패) + Targeted ASR (낮을수록 안전). Headlines: Claude 3.5 Sonnet ASR 1.11% (best resistance), Gemini 1.5 Flash 3.50%, Claude 3.7 Sonnet 7.31%, Claude 3 Opus 11.29%, Llama 3 70B 20.03%, Gemini 1.5 Pro 25.60%, GPT-4o-mini 27.19%, GPT-4o 47.69% (worst). (2) Agent Security Bench (ASB) arxiv 2410.02644v2 — 4 models × 4 attack vectors. New benchmarks 4: asb_direct_prompt_injection, asb_indirect_prompt_injection, asb_memory_poisoning, asb_pot_backdoor. Headlines: Memory Poisoning ASR — Llama 3 70B 1.85% (best), GPT-4o 12.15%, Claude 3.5 Sonnet 19.75%, Gemma 2 27B 6.25%. PoT Backdoor ASR — GPT-4o 14.50% (best), Claude 3.5 Sonnet 17.50%, Gemma 2 27B 54.50%, Llama 3 70B 57.00% (worst). Direct PI — GPT-4o 60.35% (best), Gemma 2 27B 96.75% (worst). Indirect PI — Gemma 2 27B 14.20% (best). NOT_ADDED: BackdoorLLM/PoisonBench (open-weight base only — no frontier coverage), Sleeper Agents 2401.05566 (Claude internal naming, not public), GCG/AdvBench (post-patched stale), TensorTrust/WASP/AgentHarm/JailbreakBench live (NEEDS_VERIFICATION — PDF tables not text-extractable). Total poisoning-axis 모델 비교: 7 + 4 = unique 8 frontier models.",
