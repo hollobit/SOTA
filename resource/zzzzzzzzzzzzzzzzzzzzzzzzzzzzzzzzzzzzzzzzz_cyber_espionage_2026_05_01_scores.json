@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-01",
+    "sources": [
+      "https://www.anthropic.com/news/disrupting-AI-espionage",
+      "https://arxiv.org/abs/2511.01144",
+      "https://arxiv.org/html/2511.01144v1",
+      "https://arxiv.org/abs/2603.13517",
+      "https://arxiv.org/html/2603.13517",
+      "https://arxiv.org/abs/2502.02342",
+      "https://arxiv.org/html/2502.02342v1"
+    ],
+    "_note": "Cyber espionage / APT detection benchmarks. (1) AthenaBench (arxiv 2511.01144) — 6 subtasks for cyber threat intelligence including ATT&CK Technique Extraction. Claude not evaluated. (2) CTI-REALM-50 (arxiv 2603.13517) — Microsoft cyber threat intel benchmark, 16 frontier configs incl Claude Opus 4.5/4.6, Sonnet 4.5, GPT-5 family. (3) SHIELD (arxiv 2502.02342) — APT provenance detection on CADETS/THEIA. Anthropic Nov 13 2025 espionage incident report (disrupting-AI-espionage) provides campaign-level metrics but no per-model benchmark scores."
+  },
+  "models": [
+    {"id": "openai/gpt-4.1", "vendor": "OpenAI", "name": "GPT-4.1", "type": "proprietary", "modalities": ["text"], "released_at": "2025-04"},
+    {"id": "alibaba/qwen-2.5-32b", "vendor": "Alibaba", "name": "Qwen 2.5 32B", "type": "open-weight", "modalities": ["text"], "released_at": "2024-09"}
+  ],
+  "benchmarks": [
+    {"id": "athenabench_ckt", "name": "AthenaBench Cyber Knowledge Test (CKT)", "category": "cyber", "metric": "accuracy", "description": "AthenaBench cyber threat intelligence — Cyber Knowledge Test subtask. Higher=better. arxiv 2511.01144"},
+    {"id": "athenabench_ate", "name": "AthenaBench ATT&CK Technique Extraction (ATE)", "category": "cyber", "metric": "accuracy", "description": "AthenaBench ATT&CK technique extraction subtask — extracting MITRE ATT&CK techniques from CTI text"},
+    {"id": "athenabench_rcm", "name": "AthenaBench Risk Categorization (RCM)", "category": "cyber", "metric": "accuracy", "description": "AthenaBench risk categorization & mapping subtask"},
+    {"id": "athenabench_taa", "name": "AthenaBench Threat Actor Attribution (TAA)", "category": "cyber", "metric": "accuracy", "description": "AthenaBench threat actor attribution subtask — hardest CTI task"},
+    {"id": "athenabench_combined", "name": "AthenaBench Combined", "category": "cyber", "metric": "accuracy", "description": "AthenaBench combined score across 6 subtasks"},
+    {"id": "cti_realm_50", "name": "CTI-REALM-50 (Cyber Threat Intel Reasoning)", "category": "cyber", "metric": "normalized_reward", "description": "Microsoft CTI-REALM-50 — agentic cyber threat investigation across 50 scenarios. Normalized reward (0-1). Higher=better. arxiv 2603.13517"},
+    {"id": "shield_cadets_apt_f1", "name": "SHIELD APT Detection — CADETS F1", "category": "cyber", "metric": "f1", "description": "SHIELD provenance-based APT detection on CADETS dataset. F1 score. arxiv 2502.02342"},
+    {"id": "shield_theia_apt_f1", "name": "SHIELD APT Detection — THEIA F1", "category": "cyber", "metric": "f1", "description": "SHIELD provenance-based APT detection on THEIA dataset. F1 score"}
+  ],
+  "scores": [
+    {"model": "openai/gpt-5", "benchmark": "athenabench_ckt", "score": 92.0, "_source": "https://arxiv.org/html/2511.01144v1", "_note": "Top score on Cyber Knowledge Test"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "athenabench_ckt", "score": 89.1, "_source": "https://arxiv.org/html/2511.01144v1"},
+    {"model": "openai/gpt-4o", "benchmark": "athenabench_ckt", "score": 85.2, "_source": "https://arxiv.org/html/2511.01144v1"},
+    {"model": "google/gemini-2.5-flash", "benchmark": "athenabench_ckt", "score": 85.1, "_source": "https://arxiv.org/html/2511.01144v1"},
+    {"model": "openai/gpt-4", "benchmark": "athenabench_ckt", "score": 78.7, "_source": "https://arxiv.org/html/2511.01144v1"},
+
+    {"model": "google/gemini-2.5-pro", "benchmark": "athenabench_ate", "score": 76.2, "_source": "https://arxiv.org/html/2511.01144v1", "_note": "Top score on MITRE ATT&CK technique extraction"},
+    {"model": "openai/gpt-5", "benchmark": "athenabench_ate", "score": 76.0, "_source": "https://arxiv.org/html/2511.01144v1"},
+    {"model": "openai/gpt-4o", "benchmark": "athenabench_ate", "score": 51.6, "_source": "https://arxiv.org/html/2511.01144v1"},
+    {"model": "google/gemini-2.5-flash", "benchmark": "athenabench_ate", "score": 51.6, "_source": "https://arxiv.org/html/2511.01144v1"},
+    {"model": "openai/gpt-4", "benchmark": "athenabench_ate", "score": 35.8, "_source": "https://arxiv.org/html/2511.01144v1"},
+
+    {"model": "openai/gpt-5", "benchmark": "athenabench_rcm", "score": 71.6, "_source": "https://arxiv.org/html/2511.01144v1"},
+    {"model": "openai/gpt-4o", "benchmark": "athenabench_rcm", "score": 71.3, "_source": "https://arxiv.org/html/2511.01144v1"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "athenabench_rcm", "score": 71.2, "_source": "https://arxiv.org/html/2511.01144v1"},
+
+    {"model": "openai/gpt-5", "benchmark": "athenabench_taa", "score": 39.0, "_source": "https://arxiv.org/html/2511.01144v1", "_note": "Hardest task — threat actor attribution"},
+    {"model": "openai/gpt-4o", "benchmark": "athenabench_taa", "score": 35.0, "_source": "https://arxiv.org/html/2511.01144v1"},
+
+    {"model": "openai/gpt-5", "benchmark": "athenabench_combined", "score": 66.1, "_source": "https://arxiv.org/html/2511.01144v1", "_note": "Combined across 6 subtasks. Top frontier"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "athenabench_combined", "score": 63.6, "_source": "https://arxiv.org/html/2511.01144v1"},
+    {"model": "openai/gpt-4o", "benchmark": "athenabench_combined", "score": 58.0, "_source": "https://arxiv.org/html/2511.01144v1"},
+    {"model": "google/gemini-2.5-flash", "benchmark": "athenabench_combined", "score": 54.0, "_source": "https://arxiv.org/html/2511.01144v1"},
+    {"model": "openai/gpt-4", "benchmark": "athenabench_combined", "score": 51.4, "_source": "https://arxiv.org/html/2511.01144v1"},
+
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "cti_realm_50", "score": 0.6373, "_source": "https://arxiv.org/html/2603.13517", "_note": "High effort — top among 16 configs evaluated"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "cti_realm_50", "score": 0.6244, "_source": "https://arxiv.org/html/2603.13517"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "cti_realm_50", "score": 0.5872, "_source": "https://arxiv.org/html/2603.13517"},
+    {"model": "openai/gpt-5", "benchmark": "cti_realm_50", "score": 0.5720, "_source": "https://arxiv.org/html/2603.13517", "_note": "Med effort"},
+    {"model": "openai/gpt-5.2", "benchmark": "cti_realm_50", "score": 0.5716, "_source": "https://arxiv.org/html/2603.13517", "_note": "Med effort"},
+    {"model": "openai/gpt-5.1", "benchmark": "cti_realm_50", "score": 0.5133, "_source": "https://arxiv.org/html/2603.13517", "_note": "Med effort"},
+    {"model": "openai/o3", "benchmark": "cti_realm_50", "score": 0.4707, "_source": "https://arxiv.org/html/2603.13517"},
+    {"model": "openai/gpt-5-mini", "benchmark": "cti_realm_50", "score": 0.4506, "_source": "https://arxiv.org/html/2603.13517"},
+    {"model": "openai/gpt-4.1", "benchmark": "cti_realm_50", "score": 0.4186, "_source": "https://arxiv.org/html/2603.13517"},
+    {"model": "openai/o4-mini", "benchmark": "cti_realm_50", "score": 0.3602, "_source": "https://arxiv.org/html/2603.13517"},
+
+    {"model": "alibaba/qwen-2.5-32b", "benchmark": "shield_cadets_apt_f1", "score": 0.389, "_source": "https://arxiv.org/html/2502.02342v1", "_note": "F1 0.389 (precision 0.292, recall 0.583). CADETS APT dataset"},
+    {"model": "openai/gpt-4o", "benchmark": "shield_cadets_apt_f1", "score": 0.350, "_source": "https://arxiv.org/html/2502.02342v1", "_note": "F1 0.350 (precision 0.250, recall 0.583)"},
+
+    {"model": "alibaba/qwen-2.5-32b", "benchmark": "shield_theia_apt_f1", "score": 0.632, "_source": "https://arxiv.org/html/2502.02342v1", "_note": "F1 0.632 (precision 0.600, recall 0.667). THEIA APT dataset"},
+    {"model": "openai/gpt-4o", "benchmark": "shield_theia_apt_f1", "score": 0.800, "_source": "https://arxiv.org/html/2502.02342v1", "_note": "F1 0.800 (precision 1.000, recall 0.667)"}
+  ]
+}

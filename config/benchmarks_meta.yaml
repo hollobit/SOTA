@@ -5304,3 +5304,80 @@ benchmarks:
   - 1
   - 100
   description: Hours of expert red-teaming to develop universal jailbreak. Lower=less robust
+- id: athenabench_ckt
+  name: AthenaBench Cyber Knowledge Test (CKT)
+  category: cyber
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 60
+  - 99
+  description: AthenaBench cyber threat intelligence knowledge test. arxiv 2511.01144
+  paper: https://arxiv.org/abs/2511.01144
+- id: athenabench_ate
+  name: AthenaBench ATT&CK Technique Extraction
+  category: cyber
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 90
+  description: MITRE ATT&CK technique extraction from CTI text. arxiv 2511.01144
+  paper: https://arxiv.org/abs/2511.01144
+- id: athenabench_rcm
+  name: AthenaBench Risk Categorization (RCM)
+  category: cyber
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 50
+  - 85
+  description: AthenaBench risk categorization & mapping
+  paper: https://arxiv.org/abs/2511.01144
+- id: athenabench_taa
+  name: AthenaBench Threat Actor Attribution (TAA)
+  category: cyber
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 20
+  - 60
+  description: AthenaBench threat actor attribution — hardest CTI task
+  paper: https://arxiv.org/abs/2511.01144
+- id: athenabench_combined
+  name: AthenaBench Combined
+  category: cyber
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 80
+  description: AthenaBench combined score across 6 subtasks
+  paper: https://arxiv.org/abs/2511.01144
+- id: cti_realm_50
+  name: CTI-REALM-50 (Cyber Threat Intel Reasoning, Microsoft)
+  category: cyber
+  metric: normalized_reward
+  expected_range:
+  - 0.0
+  - 0.8
+  description: Microsoft agentic cyber threat investigation across 50 scenarios. Normalized reward (0-1)
+  paper: https://arxiv.org/abs/2603.13517
+- id: shield_cadets_apt_f1
+  name: SHIELD APT Detection — CADETS F1
+  category: cyber
+  metric: f1
+  expected_range:
+  - 0.2
+  - 1.0
+  description: SHIELD provenance-based APT detection on CADETS dataset
+  paper: https://arxiv.org/abs/2502.02342
+- id: shield_theia_apt_f1
+  name: SHIELD APT Detection — THEIA F1
+  category: cyber
+  metric: f1
+  expected_range:
+  - 0.4
+  - 1.0
+  description: SHIELD provenance-based APT detection on THEIA dataset
+  paper: https://arxiv.org/abs/2502.02342
