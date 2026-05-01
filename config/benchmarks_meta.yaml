@@ -5267,3 +5267,40 @@ benchmarks:
   - 20
   - 80
   description: Phylogenetics benchmark
+- id: aisi_advanced_expert_avg
+  name: AISI Advanced Expert Cyber Tasks (avg pass rate)
+  category: cyber
+  metric: pass_rate
+  unit: '%'
+  expected_range:
+  - 0
+  - 99
+  description: UK AISI advanced suite Expert-level cyber tasks — 21 tasks, vulnerability research / exploit dev / reverse engineering. Avg pass rate at 50M token budget
+  leaderboard: https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities
+- id: aisi_tlo_completion
+  name: AISI 'The Last Ones' (TLO) — End-to-End Completion
+  category: cyber
+  metric: completions_out_of_10
+  unit: 'count'
+  expected_range:
+  - 0
+  - 10
+  description: UK AISI 32-step corporate network attack simulation (SpecterOps). Successful end-to-end completions out of 10 attempts at 100M token budget
+- id: aisi_cooling_tower_completion
+  name: AISI 'Cooling Tower' — 7-step ICS Attack End-to-End
+  category: cyber
+  metric: completions_out_of_10
+  unit: 'count'
+  expected_range:
+  - 0
+  - 10
+  description: UK AISI 7-step ICS attack simulation (Hack The Box). Power plant compromise. As of Apr 30 2026 no model has solved end-to-end
+- id: aisi_universal_jailbreak_dev_hours
+  name: AISI Universal Jailbreak Expert Red-Team Time
+  category: safety
+  metric: hours_to_jailbreak
+  unit: 'hours'
+  expected_range:
+  - 1
+  - 100
+  description: Hours of expert red-teaming to develop universal jailbreak. Lower=less robust

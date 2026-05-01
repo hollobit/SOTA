@@ -1,0 +1,29 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-01",
+    "sources": [
+      "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities"
+    ],
+    "_note": "AISI evaluation of GPT-5.5 cyber capabilities (Apr 30, 2026). UK AISI 95 narrow cyber tasks (Basic + Practitioner + Expert tiers, built with Crystal Peak Security and Irregular) + 2 cyber ranges (TLO 32-step corporate network attack with SpecterOps, Cooling Tower 7-step ICS with Hack The Box). GPT-5.5 is second model to complete TLO end-to-end after Mythos Preview."
+  },
+  "benchmarks": [
+    {"id": "aisi_advanced_expert_avg", "name": "AISI Advanced Expert Cyber Tasks (avg pass rate, 50M tokens)", "category": "cyber", "metric": "pass_rate", "description": "UK AISI advanced suite Expert-level cyber tasks — 21 tasks built with Crystal Peak Security and Irregular. Vulnerability research, exploit dev (stack/heap overflows, UAF, type confusion), padding-oracle attacks, custom-VM reverse engineering. Avg pass rate at 50M token budget. Higher=more cyber-capable"},
+    {"id": "aisi_tlo_completion", "name": "AISI 'The Last Ones' (TLO) — 32-step Corporate Network Attack End-to-End Completion", "category": "cyber", "metric": "completions_out_of_10", "description": "UK AISI 32-step enterprise intrusion simulation built with SpecterOps. 4 subnets, ~20 hosts, multi-AD forest, CI/CD supply-chain pivot, internal DB exfiltration. Human expert ~20 hours. Successful end-to-end completions out of 10 attempts at 100M-token budget. Higher=more autonomous-cyber-capable"},
+    {"id": "aisi_cooling_tower_completion", "name": "AISI 'Cooling Tower' — 7-step ICS Attack End-to-End", "category": "cyber", "metric": "completions_out_of_10", "description": "UK AISI ICS attack simulation built with Hack The Box. 7-step compromise of simulated power plant — web HMI access, custom control protocol reversal, PLC manipulation. Human expert ~15 hours. No model has yet solved end-to-end (as of Apr 30 2026)"},
+    {"id": "aisi_universal_jailbreak_dev_hours", "name": "AISI Universal Jailbreak Expert Red-Team Time", "category": "safety", "metric": "hours_to_jailbreak", "description": "Hours of expert red-teaming to develop universal jailbreak that elicited violative content across all malicious cyber queries. Lower=less robust safeguards"}
+  ],
+  "scores": [
+    {"model": "openai/gpt-5.5", "benchmark": "aisi_advanced_expert_avg", "score": 71.4, "_source": "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities", "_note": "AISI Apr 30 2026 — top score among 4 evaluated. ±8.0% (1 SE). 21 Expert tasks, 50M token budget. May be strongest model AISI has tested"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "aisi_advanced_expert_avg", "score": 68.6, "_source": "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities", "_note": "±8.7% (1 SE)"},
+    {"model": "openai/gpt-5.4", "benchmark": "aisi_advanced_expert_avg", "score": 52.4, "_source": "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities", "_note": "±9.8% (1 SE)"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "aisi_advanced_expert_avg", "score": 48.6, "_source": "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities", "_note": "±10.0% (1 SE)"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "aisi_tlo_completion", "score": 2, "unit": "count", "_source": "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities", "_note": "2/10 end-to-end TLO completions at 100M token budget. Updated from system card 1/10 after grading correction. Second model to complete TLO end-to-end"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "aisi_tlo_completion", "score": 3, "unit": "count", "_source": "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities", "_note": "3/10 — first model to solve TLO end-to-end"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "aisi_cooling_tower_completion", "score": 0, "unit": "count", "_source": "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities", "_note": "0/10. GPT-5.5 stuck on IT sections (not OT-specific). No model has yet solved Cooling Tower end-to-end"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "aisi_cooling_tower_completion", "score": 0, "unit": "count", "_source": "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities", "_note": "Implicit — 'no model has yet done so'"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "aisi_universal_jailbreak_dev_hours", "score": 6, "unit": "hours", "_source": "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities", "_note": "Universal jailbreak across all malicious cyber queries took 6 hours of expert red-teaming. OpenAI subsequently updated safeguards but final config could not be verified"}
+  ]
+}
