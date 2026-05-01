@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-01",
+    "sources": [
+      "https://sakana.ai/fugu-beta/",
+      "https://arxiv.org/abs/2512.04695",
+      "https://arxiv.org/abs/2512.04388"
+    ],
+    "_note": "Sakana Fugu beta announcement Apr 24 2026. Multi-agent orchestration system that dynamically coordinates a pool of frontier LLMs (Gemini, GPT, Claude). Sakana Fugu itself is a small model that learns to call other LLMs and can recursively call itself for test-time scaling. 2 variants: Fugu Mini (latency-optimized) + Fugu Ultra (full orchestration, performance-optimized). Based on ICLR 2026 papers TRINITY + Conductor. Beta only — API access via OpenAI-format endpoints."
+  },
+  "models": [
+    {"id": "sakana/fugu-mini", "vendor": "Sakana AI", "name": "Sakana Fugu Mini 🐟", "type": "proprietary", "modalities": ["text"], "released_at": "2026-04-24", "_note": "Latency-optimized variant of Sakana Fugu multi-agent orchestration system. Dispatches subtasks across pool of frontier LLMs (GPT/Gemini/Claude). API-only beta"},
+    {"id": "sakana/fugu-ultra", "vendor": "Sakana AI", "name": "Sakana Fugu Ultra 🐡", "type": "proprietary", "modalities": ["text"], "released_at": "2026-04-24", "_note": "Full orchestration variant — uses entire model pool for demanding reasoning tasks. SOTA on GPQAD/LCBv6/SWEPro per blog table"}
+  ],
+  "scores": [
+    {"model": "sakana/fugu-ultra", "benchmark": "gpqa_diamond", "score": 95.1, "_source": "https://sakana.ai/fugu-beta/", "_note": "Top in blog comparison table — beats Gemini 3.1 (high) 94.4, Opus 4.6 (max) 92.7, GPT-5.4 (high) 90.9, Fugu Mini 92.4"},
+    {"model": "sakana/fugu-mini", "benchmark": "gpqa_diamond", "score": 92.4, "_source": "https://sakana.ai/fugu-beta/"},
+
+    {"model": "sakana/fugu-ultra", "benchmark": "livecodebench_v6", "score": 93.2, "_source": "https://sakana.ai/fugu-beta/", "_note": "LCBv6 — top in blog table"},
+    {"model": "sakana/fugu-mini", "benchmark": "livecodebench_v6", "score": 90.4, "_source": "https://sakana.ai/fugu-beta/"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "livecodebench_v6", "score": 90.3, "_source": "https://sakana.ai/fugu-beta/", "_note": "Gemini 3.1 high mode per Sakana blog comparison"},
+    {"model": "openai/gpt-5.4", "benchmark": "livecodebench_v6", "score": 92.1, "_source": "https://sakana.ai/fugu-beta/", "_note": "GPT-5.4 high mode per Sakana blog"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "livecodebench_v6", "score": 92.4, "_source": "https://sakana.ai/fugu-beta/", "_note": "Opus 4.6 max mode per Sakana blog"},
+
+    {"model": "sakana/fugu-ultra", "benchmark": "swe_bench_pro", "score": 54.2, "_source": "https://sakana.ai/fugu-beta/", "_note": "Top in blog table. Uses mini-swe-agent scaffold"},
+    {"model": "sakana/fugu-mini", "benchmark": "swe_bench_pro", "score": 51.3, "_source": "https://sakana.ai/fugu-beta/"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "swe_bench_pro", "score": 48.4, "_source": "https://sakana.ai/fugu-beta/", "_note": "Gemini 3.1 high (mini-swe-agent scaffold)"},
+    {"model": "openai/gpt-5.4", "benchmark": "swe_bench_pro", "score": 51.2, "_source": "https://sakana.ai/fugu-beta/", "_note": "GPT-5.4 high (mini-swe-agent scaffold)"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "swe_bench_pro", "score": 53.4, "_source": "https://sakana.ai/fugu-beta/", "_note": "Anthropic-self-reported using their own verification framework (Sakana evaluation timed out on max-thinking mode)"}
+  ]
+}
