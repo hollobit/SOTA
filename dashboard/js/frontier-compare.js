@@ -66,6 +66,7 @@ var FrontierCompare = {
         'openai/gpt-5.4-thinking',
         'openai/gpt-5.3-codex',
         'openai/gpt-5.2',
+        'xai/grok-4.3',
         'xai/grok-4-heavy',
         'xai/grok-4.20',
         'meta/muse-spark',
