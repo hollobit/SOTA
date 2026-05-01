@@ -6478,5 +6478,34 @@
     "category": "medical",
     "description": "Phylogenetics benchmark. Anthropic Sonnet 4.6 SC §2.20",
     "metric": "accuracy"
+  },
+  {
+    "id": "aisi_advanced_expert_avg",
+    "name": "AISI Advanced Expert Cyber Tasks (avg pass rate, 50M tokens)",
+    "category": "cyber",
+    "description": "UK AISI advanced suite Expert-level cyber tasks — 21 tasks built with Crystal Peak Security and Irregular. Vulnerability research, exploit dev (stack/heap overflows, UAF, type confusion), padding-oracle attacks, custom-VM reverse engineering. Avg pass rate at 50M token budget. Higher=more cyber-capable",
+    "metric": "pass_rate",
+    "leaderboard": "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities"
+  },
+  {
+    "id": "aisi_tlo_completion",
+    "name": "AISI 'The Last Ones' (TLO) — 32-step Corporate Network Attack End-to-End Completion",
+    "category": "cyber",
+    "description": "UK AISI 32-step enterprise intrusion simulation built with SpecterOps. 4 subnets, ~20 hosts, multi-AD forest, CI/CD supply-chain pivot, internal DB exfiltration. Human expert ~20 hours. Successful end-to-end completions out of 10 attempts at 100M-token budget. Higher=more autonomous-cyber-capable",
+    "metric": "completions_out_of_10"
+  },
+  {
+    "id": "aisi_cooling_tower_completion",
+    "name": "AISI 'Cooling Tower' — 7-step ICS Attack End-to-End",
+    "category": "cyber",
+    "description": "UK AISI ICS attack simulation built with Hack The Box. 7-step compromise of simulated power plant — web HMI access, custom control protocol reversal, PLC manipulation. Human expert ~15 hours. No model has yet solved end-to-end (as of Apr 30 2026)",
+    "metric": "completions_out_of_10"
+  },
+  {
+    "id": "aisi_universal_jailbreak_dev_hours",
+    "name": "AISI Universal Jailbreak Expert Red-Team Time",
+    "category": "safety",
+    "description": "Hours of expert red-teaming to develop universal jailbreak that elicited violative content across all malicious cyber queries. Lower=less robust safeguards",
+    "metric": "hours_to_jailbreak"
   }
 ]
