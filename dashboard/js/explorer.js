@@ -156,7 +156,13 @@ var Explorer = {
 
         modelNames.forEach(function(name, i) {
             var th = document.createElement('th');
-            th.textContent = name;
+            var span = document.createElement('span');
+            span.className = 'cursor-pointer hover:underline transition';
+            span.textContent = name;
+            span.onclick = (function(mid) { return function() {
+                if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid);
+            }; })(modelIds[i]);
+            th.appendChild(span);
             th.style.color = colors[i];
             th.style.borderBottom = '2px solid ' + colors[i];
             headerRow.appendChild(th);

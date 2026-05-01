@@ -188,7 +188,13 @@ var Comparison = {
         models.forEach(function(mId) {
             var th = document.createElement('th');
             var model = self._allModels.find(function(m) { return m.id === mId; });
-            th.textContent = model ? model.name : mId.split('/').pop();
+            var span = document.createElement('span');
+            span.className = 'cursor-pointer hover:text-blue-400 transition';
+            span.textContent = model ? model.name : mId.split('/').pop();
+            span.onclick = (function(id) { return function() {
+                if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(id);
+            }; })(mId);
+            th.appendChild(span);
             headerRow.appendChild(th);
         });
         thead.appendChild(headerRow);

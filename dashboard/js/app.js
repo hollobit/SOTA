@@ -660,7 +660,11 @@ var App = {
                 var row = document.createElement('div');
                 row.className = 'flex justify-between text-sm py-1';
                 var left = document.createElement('span');
+                left.className = 'cursor-pointer hover:text-blue-400 transition';
                 left.textContent = '#' + e.rank + ' ' + e.model_id.split('/').pop();
+                left.onclick = (function(mid) { return function() {
+                    if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid);
+                }; })(e.model_id);
                 var right = document.createElement('span');
                 right.className = 'text-gray-400';
                 right.textContent = e.score + ' ' + e.metric;
@@ -793,7 +797,13 @@ var App = {
             var tr = document.createElement('tr');
 
             var tdModel = document.createElement('td');
-            tdModel.textContent = s.model_id.split('/').pop();
+            var modelSpan = document.createElement('span');
+            modelSpan.className = 'cursor-pointer hover:text-blue-400 transition';
+            modelSpan.textContent = model ? model.name : s.model_id.split('/').pop();
+            modelSpan.onclick = (function(mid) { return function() {
+                if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid);
+            }; })(s.model_id);
+            tdModel.appendChild(modelSpan);
             if (model) {
                 var badge = document.createElement('span');
                 badge.className = 'badge badge-' + model.type;
