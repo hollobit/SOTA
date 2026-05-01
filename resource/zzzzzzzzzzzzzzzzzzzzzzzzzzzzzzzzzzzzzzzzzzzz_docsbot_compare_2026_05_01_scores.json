@@ -1,0 +1,45 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-01",
+    "sources": [
+      "https://docsbot.ai/models/compare/grok-4-3/gpt-5-5",
+      "https://docsbot.ai/models/compare/amazon-nova-micro/gpt-5-5",
+      "https://docsbot.ai/models/compare/command-a/gpt-5-5"
+    ],
+    "_note": "DocsBot.ai comparison pages. (1) Grok 4.3 page: every benchmark 'Not available' — only 2M context window spec verifiable; vendor benchmarks not yet published per docsbot. (2) Amazon Nova Micro publishes 9 classic-eval benchmarks. (3) Cohere Command A publishes 10 benchmarks (Bird-SQL, GPQA Main, IFEval, MATH, MMLU, MBPP+, NTREX, RepoQA, Taubench, BFCL). GPT-5.5 covers 37 benchmarks across all 3 pages (already in DB from primary sources)."
+  },
+  "models": [
+    {"id": "amazon/nova-micro", "vendor": "Amazon", "name": "Amazon Nova Micro", "type": "proprietary", "modalities": ["text"], "released_at": "2024-12", "_note": "Amazon's smallest text-only frontier model. 128K context, $0.04 input / $0.14 output per 1M tokens"}
+  ],
+  "benchmarks": [
+    {"id": "gpqa_main", "name": "GPQA Main (Diamond Science)", "category": "knowledge", "metric": "accuracy", "description": "GPQA Main subset — graduate-level science Q&A"},
+    {"id": "translation_en_to_14_flores", "name": "Translation EN→14 (Flores200)", "category": "multilingual", "metric": "accuracy", "description": "Flores200 translation from English to 14 target languages"},
+    {"id": "translation_14_to_en_flores", "name": "Translation 14→EN (Flores200)", "category": "multilingual", "metric": "accuracy", "description": "Flores200 translation from 14 source languages to English"},
+    {"id": "bird_sql", "name": "Bird-SQL", "category": "coding", "metric": "accuracy", "description": "Bird-SQL — text-to-SQL benchmark on real-world databases"},
+    {"id": "ntrex", "name": "NTREX (Multilingual)", "category": "multilingual", "metric": "accuracy", "description": "NTREX multilingual translation benchmark"},
+    {"id": "repoqa", "name": "RepoQA", "category": "coding", "metric": "accuracy", "description": "RepoQA — repository-level code understanding"}
+  ],
+  "scores": [
+    {"model": "amazon/nova-micro", "benchmark": "drop", "score": 79.3, "_source": "https://docsbot.ai/models/compare/amazon-nova-micro/gpt-5-5", "_note": "DROP CoT"},
+    {"model": "amazon/nova-micro", "benchmark": "arc_challenge", "score": 90.2, "_source": "https://docsbot.ai/models/compare/amazon-nova-micro/gpt-5-5", "_note": "AI2 Reasoning Challenge"},
+    {"model": "amazon/nova-micro", "benchmark": "gpqa_main", "score": 40.0, "_source": "https://docsbot.ai/models/compare/amazon-nova-micro/gpt-5-5"},
+    {"model": "amazon/nova-micro", "benchmark": "gsm8k", "score": 92.3, "_source": "https://docsbot.ai/models/compare/amazon-nova-micro/gpt-5-5"},
+    {"model": "amazon/nova-micro", "benchmark": "humaneval", "score": 81.1, "_source": "https://docsbot.ai/models/compare/amazon-nova-micro/gpt-5-5", "_note": "pass@1"},
+    {"model": "amazon/nova-micro", "benchmark": "ifeval", "score": 87.2, "_source": "https://docsbot.ai/models/compare/amazon-nova-micro/gpt-5-5"},
+    {"model": "amazon/nova-micro", "benchmark": "math", "score": 69.3, "_source": "https://docsbot.ai/models/compare/amazon-nova-micro/gpt-5-5", "_note": "MATH CoT"},
+    {"model": "amazon/nova-micro", "benchmark": "mmlu", "score": 77.6, "_source": "https://docsbot.ai/models/compare/amazon-nova-micro/gpt-5-5", "_note": "MMLU CoT"},
+    {"model": "amazon/nova-micro", "benchmark": "translation_en_to_14_flores", "score": 40.2, "_source": "https://docsbot.ai/models/compare/amazon-nova-micro/gpt-5-5"},
+    {"model": "amazon/nova-micro", "benchmark": "translation_14_to_en_flores", "score": 42.6, "_source": "https://docsbot.ai/models/compare/amazon-nova-micro/gpt-5-5"},
+
+    {"model": "cohere/command-a", "benchmark": "bird_sql", "score": 59.5, "_source": "https://docsbot.ai/models/compare/command-a/gpt-5-5"},
+    {"model": "cohere/command-a", "benchmark": "gpqa_main", "score": 50.8, "_source": "https://docsbot.ai/models/compare/command-a/gpt-5-5"},
+    {"model": "cohere/command-a", "benchmark": "ifeval", "score": 90.9, "_source": "https://docsbot.ai/models/compare/command-a/gpt-5-5"},
+    {"model": "cohere/command-a", "benchmark": "math", "score": 80.0, "_source": "https://docsbot.ai/models/compare/command-a/gpt-5-5"},
+    {"model": "cohere/command-a", "benchmark": "mmlu", "score": 85.5, "_source": "https://docsbot.ai/models/compare/command-a/gpt-5-5"},
+    {"model": "cohere/command-a", "benchmark": "mbpp_plus", "score": 86.2, "_source": "https://docsbot.ai/models/compare/command-a/gpt-5-5"},
+    {"model": "cohere/command-a", "benchmark": "ntrex", "score": 68.8, "_source": "https://docsbot.ai/models/compare/command-a/gpt-5-5", "_note": "Multilingual"},
+    {"model": "cohere/command-a", "benchmark": "repoqa", "score": 92.6, "_source": "https://docsbot.ai/models/compare/command-a/gpt-5-5"},
+    {"model": "cohere/command-a", "benchmark": "tau2_bench", "score": 51.7, "_source": "https://docsbot.ai/models/compare/command-a/gpt-5-5", "_note": "Taubench Agents"},
+    {"model": "cohere/command-a", "benchmark": "bfcl", "score": 63.8, "_source": "https://docsbot.ai/models/compare/command-a/gpt-5-5"}
+  ]
+}
