@@ -789,6 +789,178 @@ var Modal = {
         meta.appendChild(countBadge);
         container.appendChild(meta);
 
+        // ---- Detailed model info card ----
+        var detail = document.createElement('div');
+        detail.className = 'bg-gray-800 rounded-lg p-4 mb-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm';
+        function addField(label, value, opts) {
+            if (value === undefined || value === null || value === '') return;
+            var wrap = document.createElement('div');
+            if (opts && opts.full) wrap.className = 'col-span-2';
+            var lbl = document.createElement('div');
+            lbl.className = 'text-xs text-gray-500';
+            lbl.textContent = label;
+            wrap.appendChild(lbl);
+            var val = document.createElement('div');
+            val.className = 'text-sm text-gray-200';
+            val.textContent = value;
+            wrap.appendChild(val);
+            detail.appendChild(wrap);
+        }
+        addField('Vendor', model.vendor);
+        addField('Released', model.release_date || model.released_at);
+        addField('Type', model.type);
+        addField('Version', model.version);
+        if (Array.isArray(model.modalities) && model.modalities.length) {
+            addField('Modalities', model.modalities.join(', '));
+        }
+        if (model.parameters) addField('Parameters', model.parameters);
+        if (model.params_b) addField('Parameters (B)', model.params_b + (model.active_params_b ? ' total / ' + model.active_params_b + ' active' : ''));
+        if (model.context_window) addField('Context Window', Number(model.context_window).toLocaleString() + ' tokens');
+        if (model.license) addField('License', model.license);
+        // Pricing — prefer model.pricing.input/output if present, else fall back to App.data.pricing[modelId]
+        var pricing = model.pricing || (App.data.pricing && App.data.pricing[modelId]);
+        if (pricing && (pricing.input !== undefined || pricing.output !== undefined)) {
+            if (pricing.input !== undefined && pricing.input !== null) {
+                addField('Input price (per 1M tokens)', '$' + pricing.input);
+            }
+            if (pricing.output !== undefined && pricing.output !== null) {
+                addField('Output price (per 1M tokens)', '$' + pricing.output);
+            }
+            if (pricing.cached_input !== undefined && pricing.cached_input !== null) {
+                addField('Cached input', '$' + pricing.cached_input);
+            }
+        }
+        if (model._note || model.notes || model.description) {
+            addField('Description', model._note || model.notes || model.description, {full: true});
+        }
+        if (detail.children.length) container.appendChild(detail);
+
+        // ---- Reference links — system card / model card / homepage / HF / paper ----
+        // Aggregate from any plausible field name on the model object.
+        function pickLinks(m) {
+            var links = [];
+            function push(label, url, color) {
+                if (!url || typeof url !== 'string') return;
+                if (links.some(function(l) { return l.url === url; })) return;
+                links.push({label: label, url: url, color: color});
+            }
+            // System card
+            push('📋 System Card', m.system_card || m.system_card_url, 'purple');
+            // Model card
+            push('🪪 Model Card', m.model_card || m.model_card_url, 'cyan');
+            // Hugging Face
+            push('🤗 HuggingFace', m.huggingface || m.hf_url || m.hf, 'yellow');
+            // Homepage / vendor
+            push('🌐 Homepage', m.homepage || m.url || m.vendor_url || m.website, 'blue');
+            // Paper / arxiv
+            push('📄 Paper', m.paper || m.paper_url || m.arxiv || m.arxiv_url, 'pink');
+            // GitHub / repo
+            push('⚙ GitHub', m.github || m.github_url || m.repo, 'gray');
+            // Blog announcement
+            push('📰 Blog', m.blog || m.announcement || m.launch_blog, 'green');
+            // Generic 'links' array (each entry {label, url})
+            if (Array.isArray(m.links)) m.links.forEach(function(l) { push(l.label || 'Link', l.url, 'blue'); });
+            return links;
+        }
+        var refLinks = pickLinks(model);
+        if (refLinks.length) {
+            var linksDiv = document.createElement('div');
+            linksDiv.className = 'flex flex-wrap gap-2 mb-4';
+            refLinks.forEach(function(l) {
+                var a = document.createElement('a');
+                a.href = l.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.className = 'inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition';
+                var bg = {
+                    purple: 'bg-purple-900 hover:bg-purple-800 text-purple-200',
+                    cyan: 'bg-cyan-900 hover:bg-cyan-800 text-cyan-200',
+                    yellow: 'bg-yellow-900 hover:bg-yellow-800 text-yellow-200',
+                    blue: 'bg-blue-900 hover:bg-blue-800 text-blue-200',
+                    pink: 'bg-pink-900 hover:bg-pink-800 text-pink-200',
+                    gray: 'bg-gray-700 hover:bg-gray-600 text-gray-200',
+                    green: 'bg-green-900 hover:bg-green-800 text-green-200'
+                }[l.color] || 'bg-gray-700 hover:bg-gray-600 text-gray-200';
+                a.className += ' ' + bg;
+                a.textContent = l.label;
+                a.title = l.url;
+                linksDiv.appendChild(a);
+            });
+            container.appendChild(linksDiv);
+        }
+
+        // ---- Source URLs from this model's score rows (deduplicated) ----
+        var srcUrls = {};
+        scores.forEach(function(s) {
+            var src = s.source && s.source.url;
+            if (src && src.startsWith('http')) srcUrls[src] = (srcUrls[src] || 0) + 1;
+        });
+        var topSrcs = Object.keys(srcUrls).sort(function(a, b) { return srcUrls[b] - srcUrls[a]; }).slice(0, 5);
+        if (topSrcs.length && refLinks.length === 0) {
+            // Only show if no curated links already provided — avoid duplication
+            var srcDiv = document.createElement('div');
+            srcDiv.className = 'mb-4';
+            var stitle = document.createElement('h3');
+            stitle.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2';
+            stitle.textContent = 'Score Sources';
+            srcDiv.appendChild(stitle);
+            var slist = document.createElement('div');
+            slist.className = 'flex flex-wrap gap-1.5';
+            topSrcs.forEach(function(u) {
+                var a = document.createElement('a');
+                a.href = u;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.className = 'inline-block px-2 py-1 rounded text-xs bg-gray-800 hover:bg-gray-700 text-blue-400 hover:underline';
+                try {
+                    var host = new URL(u).hostname.replace(/^www\./, '');
+                    a.textContent = host + ' (' + srcUrls[u] + ')';
+                } catch (e) { a.textContent = u.slice(0, 50); }
+                a.title = u;
+                slist.appendChild(a);
+            });
+            srcDiv.appendChild(slist);
+            container.appendChild(srcDiv);
+        }
+
+        // ---- Version history (sibling models from same vendor with similar id stem) ----
+        try {
+            var stem = modelId.split('/').pop().replace(/[\d._-]+$/, '').replace(/-(pro|max|mini|flash|nano|ultra|small|medium|large|haiku|sonnet|opus|preview|beta|thinking|fast|reasoning|chat)$/i, '');
+            if (stem.length >= 3) {
+                var siblings = App.data.models.filter(function(m) {
+                    if (m.id === modelId) return false;
+                    if (m.vendor !== model.vendor) return false;
+                    var sname = m.id.split('/').pop();
+                    return sname.toLowerCase().indexOf(stem.toLowerCase()) >= 0;
+                });
+                if (siblings.length) {
+                    siblings.sort(function(a, b) {
+                        var ad = a.release_date || ''; var bd = b.release_date || '';
+                        return bd.localeCompare(ad);
+                    });
+                    var hist = document.createElement('div');
+                    hist.className = 'mb-4';
+                    var ht = document.createElement('h3');
+                    ht.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2';
+                    ht.textContent = 'Version History (' + model.vendor + ')';
+                    hist.appendChild(ht);
+                    var list = document.createElement('div');
+                    list.className = 'flex flex-wrap gap-1.5';
+                    siblings.slice(0, 30).forEach(function(sib) {
+                        var pill = document.createElement('span');
+                        pill.className = 'inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 cursor-pointer transition';
+                        pill.title = sib.id;
+                        var rd = sib.release_date ? ' · ' + sib.release_date.slice(0, 7) : '';
+                        pill.textContent = sib.name + rd;
+                        pill.onclick = (function(mid) { return function() { Modal.showModel(mid); }; })(sib.id);
+                        list.appendChild(pill);
+                    });
+                    hist.appendChild(list);
+                    container.appendChild(hist);
+                }
+            }
+        } catch (e) { /* version history is non-fatal */ }
+
         var catOrder = ['reasoning', 'coding', 'math', 'cybersecurity', 'cyber_defense', 'agent', 'multimodal', 'multilingual', 'other'];
         var catNames = {
             reasoning: 'Reasoning', coding: 'Coding', math: 'Math',
