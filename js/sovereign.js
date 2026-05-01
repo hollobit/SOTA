@@ -161,8 +161,8 @@ var Sovereign = {
         },
         {
             code: 'jp', label: 'Japan', flag: '🇯🇵',
-            note: 'Sakana AI evolutionary models',
-            models: ['sakana/namazu']
+            note: 'Sakana AI multi-agent orchestration + evolutionary models',
+            models: ['sakana/fugu-ultra', 'sakana/fugu-mini', 'sakana/namazu']
         },
         {
             code: 'in', label: 'India', flag: '🇮🇳',
