@@ -5483,3 +5483,50 @@ benchmarks:
   - 50
   - 99
   description: RepoQA repository-level code understanding
+- id: bixbench
+  name: BixBench (Bioinformatics)
+  category: medical
+  metric: pass1
+  unit: '%'
+  expected_range:
+  - 30
+  - 90
+  description: BixBench bioinformatics task benchmark
+- id: dyno_rna_pred
+  name: Dyno RNA Prediction (percentile)
+  category: medical
+  metric: percentile
+  unit: 'percentile'
+  expected_range:
+  - 0
+  - 100
+  description: Dyno RNA structure prediction percentile
+- id: dyno_rna_gen
+  name: Dyno RNA Generation (percentile)
+  category: medical
+  metric: percentile
+  unit: 'percentile'
+  expected_range:
+  - 0
+  - 100
+  description: Dyno RNA generation percentile
+- id: ahb_original_asr
+  name: Adversarial Humanities Benchmark — Original ASR
+  category: safety
+  metric: asr
+  unit: '%'
+  expected_range:
+  - 0
+  - 80
+  description: AHB original-attacks ASR. Lower=safer
+  paper: https://arxiv.org/abs/2604.18487
+- id: nyu_ctf_d_cipher
+  name: NYU CTF (D-CIPHER systematic, Kali)
+  category: cyber
+  metric: solve_rate
+  unit: '%'
+  expected_range:
+  - 10
+  - 80
+  description: NYU CTF Bench v3 systematic eval via D-CIPHER multi-agent + Kali env
+  paper: https://arxiv.org/abs/2604.17159

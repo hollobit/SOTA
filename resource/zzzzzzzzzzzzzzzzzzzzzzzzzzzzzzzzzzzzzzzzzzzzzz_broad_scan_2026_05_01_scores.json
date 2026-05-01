@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-01",
+    "sources": [
+      "https://artificialanalysis.ai/articles/kimi-k2-6-the-new-leading-open-weights-model",
+      "https://artificialanalysis.ai/models/step-3-5-flash",
+      "https://huggingface.co/zai-org/GLM-5.1",
+      "https://www.marktechpost.com/2026/04/08/z-ai-introduces-glm-5-1-an-open-weight-754b-agentic-model-that-achieves-sota-on-swe-bench-pro-and-sustains-8-hour-autonomous-execution/",
+      "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "https://huggingface.co/datasets/MathArena/aime_2026",
+      "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+      "https://arxiv.org/abs/2604.17159",
+      "https://arxiv.org/abs/2604.18487",
+      "https://artificialanalysis.ai/articles/xai-launches-grok-4-3-with-improved-agentic-performance-and-lower-pricing"
+    ],
+    "_note": "Broad May 2026 research scan. Skipped GPT-Rosalind/Llama 5 (only secondary aggregator sources, NEEDS_VERIFICATION). Skipped Sonnet 4.7/Opus 4.8 (rumors only)."
+  },
+  "models": [
+    {"id": "alibaba/qwen3.5-397b-a17b", "vendor": "Alibaba", "name": "Qwen 3.5 397B-A17B", "type": "open-weight", "modalities": ["text"], "released_at": "2025-11", "_note": "Qwen 3.5 flagship MoE — referenced as MathArena HMMT Feb 2026 leader"}
+  ],
+  "benchmarks": [
+    {"id": "bixbench", "name": "BixBench (Bioinformatics)", "category": "medical", "metric": "pass1", "description": "BixBench bioinformatics task benchmark — biology/chemistry agents"},
+    {"id": "dyno_rna_pred", "name": "Dyno RNA Prediction (percentile)", "category": "medical", "metric": "percentile", "description": "Dyno RNA structure prediction task percentile"},
+    {"id": "dyno_rna_gen", "name": "Dyno RNA Generation (percentile)", "category": "medical", "metric": "percentile", "description": "Dyno RNA generation task percentile"},
+    {"id": "ahb_original_asr", "name": "Adversarial Humanities Benchmark — Original ASR", "category": "safety", "metric": "asr", "description": "AHB original-attacks ASR. arxiv 2604.18487. Lower=safer"},
+    {"id": "nyu_ctf_d_cipher", "name": "NYU CTF (D-CIPHER systematic, Kali)", "category": "cyber", "metric": "solve_rate", "description": "NYU CTF Bench v3 systematic eval via D-CIPHER multi-agent + Kali env. arxiv 2604.17159"}
+  ],
+  "scores": [
+    {"model": "moonshot/kimi-k2.6", "benchmark": "aa_intelligence_index", "score": 54, "_source": "https://artificialanalysis.ai/articles/kimi-k2-6-the-new-leading-open-weights-model", "_note": "AA Intelligence Index #4 — new #1 open-weight"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "gdpval_aa", "score": 1520, "unit": "elo", "_source": "https://artificialanalysis.ai/articles/kimi-k2-6-the-new-leading-open-weights-model"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "tau2_bench", "score": 96.0, "_source": "https://artificialanalysis.ai/articles/kimi-k2-6-the-new-leading-open-weights-model", "_note": "Telecom variant"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "aa_omniscience_acc", "score": 6, "_source": "https://artificialanalysis.ai/articles/kimi-k2-6-the-new-leading-open-weights-model", "_note": "Low; hallucination 39%"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "hle_tools", "score": 54.0, "_source": "https://artificialanalysis.ai/articles/kimi-k2-6-the-new-leading-open-weights-model", "_note": "HLE-Full w/ tools"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "aime_2026", "score": 96.4, "_source": "https://artificialanalysis.ai/articles/kimi-k2-6-the-new-leading-open-weights-model"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "gpqa_diamond", "score": 90.5, "_source": "https://artificialanalysis.ai/articles/kimi-k2-6-the-new-leading-open-weights-model"},
+
+    {"model": "stepfun/step-3.5-flash", "benchmark": "aa_intelligence_index", "score": 38, "_source": "https://artificialanalysis.ai/models/step-3-5-flash"},
+    {"model": "stepfun/step-3.5-flash", "benchmark": "aime_2025", "score": 97.3, "_source": "https://artificialanalysis.ai/models/step-3-5-flash"},
+    {"model": "stepfun/step-3.5-flash", "benchmark": "aime_2026", "score": 96.67, "_source": "https://huggingface.co/datasets/MathArena/aime_2026", "_note": "MathArena AIME 2026 30-Q drop. Top score"},
+    {"model": "stepfun/step-3.5-flash", "benchmark": "livecodebench_v6", "score": 86.4, "_source": "https://artificialanalysis.ai/models/step-3-5-flash"},
+    {"model": "stepfun/step-3.5-flash", "benchmark": "swe_bench_verified", "score": 74.4, "_source": "https://artificialanalysis.ai/models/step-3-5-flash"},
+    {"model": "stepfun/step-3.5-flash", "benchmark": "tau2_bench", "score": 88.2, "_source": "https://artificialanalysis.ai/models/step-3-5-flash"},
+    {"model": "stepfun/step-3.5-flash", "benchmark": "gpqa_diamond", "score": 82.6, "_source": "https://artificialanalysis.ai/models/step-3-5-flash"},
+    {"model": "stepfun/step-3.5-flash", "benchmark": "scicode", "score": 38.5, "_source": "https://artificialanalysis.ai/models/step-3-5-flash"},
+    {"model": "stepfun/step-3.5-flash", "benchmark": "aa_lcr", "score": 54.3, "_source": "https://artificialanalysis.ai/models/step-3-5-flash"},
+    {"model": "stepfun/step-3.5-flash", "benchmark": "ifbench", "score": 66.5, "_source": "https://artificialanalysis.ai/models/step-3-5-flash"},
+    {"model": "stepfun/step-3.5-flash", "benchmark": "terminal_bench_hard", "score": 32.6, "_source": "https://artificialanalysis.ai/models/step-3-5-flash"},
+
+    {"model": "alibaba/qwen3.5-397b-a17b", "benchmark": "hmmt_2026", "score": 87.88, "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026", "_note": "MathArena HMMT Feb 2026 33-Q drop. Top score"},
+    {"model": "moonshot/kimi-k2.5", "benchmark": "hmmt_2026", "score": 87.12, "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026"},
+    {"model": "stepfun/step-3.5-flash", "benchmark": "hmmt_2026", "score": 86.36, "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026"},
+
+    {"model": "zhipu/glm-5.1", "benchmark": "swe_bench_pro", "score": 58.4, "_source": "https://www.marktechpost.com/2026/04/08/z-ai-introduces-glm-5-1-an-open-weight-754b-agentic-model-that-achieves-sota-on-swe-bench-pro-and-sustains-8-hour-autonomous-execution/", "_note": "GLM-5.1 #1 OSS on SWE-Pro (>GPT-5.4 57.7, Opus 4.6 54.2)"},
+    {"model": "zhipu/glm-5.1", "benchmark": "cybergym", "score": 68.7, "_source": "https://huggingface.co/zai-org/GLM-5.1"},
+    {"model": "zhipu/glm-5.1", "benchmark": "terminal_bench_2", "score": 63.5, "_source": "https://huggingface.co/zai-org/GLM-5.1", "_note": "Terminus-2"},
+    {"model": "zhipu/glm-5.1", "benchmark": "browsecomp", "score": 68.0, "_source": "https://huggingface.co/zai-org/GLM-5.1"},
+    {"model": "zhipu/glm-5.1", "benchmark": "hle", "score": 31.0, "_source": "https://huggingface.co/zai-org/GLM-5.1", "_note": "no-tools"},
+    {"model": "zhipu/glm-5.1", "benchmark": "hle_tools", "score": 52.3, "_source": "https://huggingface.co/zai-org/GLM-5.1"},
+    {"model": "zhipu/glm-5.1", "benchmark": "aime_2026", "score": 95.3, "_source": "https://huggingface.co/zai-org/GLM-5.1"},
+    {"model": "zhipu/glm-5.1", "benchmark": "imo_answerbench", "score": 83.8, "_source": "https://huggingface.co/zai-org/GLM-5.1"},
+    {"model": "zhipu/glm-5.1", "benchmark": "gpqa_diamond", "score": 86.2, "_source": "https://huggingface.co/zai-org/GLM-5.1"},
+    {"model": "zhipu/glm-5.1", "benchmark": "tau3_bench", "score": 70.6, "_source": "https://huggingface.co/zai-org/GLM-5.1"},
+    {"model": "zhipu/glm-5.1", "benchmark": "mcp_atlas", "score": 71.8, "_source": "https://huggingface.co/zai-org/GLM-5.1"},
+
+    {"model": "alibaba/qwen3.6-27b", "benchmark": "swe_bench_verified", "score": 77.2, "_source": "https://huggingface.co/Qwen/Qwen3.6-27B", "_note": "Within 3.7 of Opus 4.6"},
+    {"model": "alibaba/qwen3.6-27b", "benchmark": "swe_bench_pro", "score": 53.5, "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"},
+    {"model": "alibaba/qwen3.6-27b", "benchmark": "terminal_bench_2", "score": 59.3, "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"},
+    {"model": "alibaba/qwen3.6-27b", "benchmark": "gpqa_diamond", "score": 87.8, "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"},
+
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "nyu_ctf_d_cipher", "score": 59.0, "_source": "https://arxiv.org/abs/2604.17159", "_note": "Solved 200 NYU CTF challenges via D-CIPHER + Kali env"},
+    {"model": "google/gemini-3-pro", "benchmark": "nyu_ctf_d_cipher", "score": 52.0, "_source": "https://arxiv.org/abs/2604.17159"}
+  ]
+}
