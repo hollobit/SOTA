@@ -360,7 +360,7 @@ var Sovereign = {
     // Used for sorting newest-first and surfacing the year next to model names.
     RELEASE_DATES: {
         // Korea — LG
-        'lg/exaone-4.5-33b': '2025-11', 'lg/k-exaone-236b': '2025-08',
+        'lg/exaone-4.5-33b': '2026-04', 'lg/k-exaone-236b': '2026-01',
         'lg/exaone-4.0.1-32b': '2025-09', 'lg/exaone-4.0-32b': '2025-07', 'lg/exaone-4.0-1.2b': '2025-07',
         'lg/exaone-deep-32b': '2025-03', 'lg/exaone-deep-7.8b': '2025-03', 'lg/exaone-deep-2.4b': '2025-03',
         'lg/exaone-3.5-32b': '2024-12', 'lg/exaone-3.5-7.8b': '2024-12', 'lg/exaone-3.5-2.4b': '2024-12',
