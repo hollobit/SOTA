@@ -27,7 +27,7 @@ var Sovereign = {
                 'naver/hyperclova-x-think-32b', 'naver/hyperclova-x-think-14b',
                 'naver/hyperclova-x-seed-omni-8b', 'naver/hyperclova-x-seed-vision-3b',
                 'naver/hyperclova-x',
-                'kakao/kanana-2-30b-a3b-thinking', 'kakao/kanana-1.5-8b',
+                'kakao/kanana-2-30b-a3b-thinking', 'kakao/kanana-1.5-o-9.8b', 'kakao/kanana-1.5-8b',
                 'kakao/kanana-1.5-15.7b-a3b', 'kakao/kanana-flag-32.5b',
                 'ncsoft/varco-vision-2.0-14b', 'ncsoft/llama-varco-8b',
                 'trillionlabs/tri-21b', 'trillionlabs/tri-7b',
@@ -369,7 +369,7 @@ var Sovereign = {
         'upstage/solar-pro-2': '2025-08', 'upstage/solar-pro-2-preview': '2025-06',
         'upstage/solar-pro': '2024-09', 'upstage/solar-mini': '2024-04', 'upstage/solar-docvision': '2025',
         // Korea — SKT
-        'skt/ax-k1': '2025-09', 'skt/ax-4.0': '2025-07', 'skt/ax-4.0-light': '2025-07', 'skt/ax-4.0-vl-light': '2025-09',
+        'skt/ax-k1': '2026-01', 'skt/ax-4.0': '2025-07', 'skt/ax-4.0-light': '2025-07', 'skt/ax-4.0-vl-light': '2025-09',
         // Korea — KT
         'kt/midm-k2.5-pro': '2025-10', 'kt/midm-2.0-base': '2025-07', 'kt/midm-2.0-mini': '2025-07',
         // Korea — Naver
@@ -377,7 +377,8 @@ var Sovereign = {
         'naver/hyperclova-x-seed-omni-8b': '2025-07', 'naver/hyperclova-x-seed-vision-3b': '2025-04',
         'naver/hyperclova-x': '2024-08',
         // Korea — Kakao
-        'kakao/kanana-2-30b-a3b-thinking': '2025-12', 'kakao/kanana-1.5-15.7b-a3b': '2025-09',
+        'kakao/kanana-2-30b-a3b-thinking': '2026-01', 'kakao/kanana-1.5-o-9.8b': '2026-02',
+        'kakao/kanana-1.5-15.7b-a3b': '2025-09',
         'kakao/kanana-1.5-8b': '2025-05', 'kakao/kanana-flag-32.5b': '2024-11',
         // Korea — others
         'ncsoft/varco-vision-2.0-14b': '2025-07', 'ncsoft/llama-varco-8b': '2024-09',
@@ -835,7 +836,8 @@ var Sovereign = {
         'kt/midm-k2.5-pro': 50, 'kt/midm-1.0': 11,
         'naver/hyperclova-x': 100, 'naver/hyperclova-x-hcx-003': 80,
         'naver/hyperclova-x-dash': 8,
-        'skt/ax-k1': 50,
+        'skt/ax-k1': 519,
+        'kakao/kanana-1.5-o-9.8b': 11.6,
         'snuh-naver/kmed-ai': 7,
         'samsung/gauss-2-supreme': 200, 'samsung/gauss-2-balanced': 30,
         'samsung/gauss-2-compact': 7,
