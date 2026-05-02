@@ -1,6 +1,15 @@
 [
   {
     "type": "Feature",
+    "date": "2026-05-03",
+    "benchmark_id": "LG EXAONE 4.5 33B + K-EXAONE 236B-A23B 종합 흡수 (+19 benchmarks, +51 scores)",
+    "new_model": "EXAONE 4.5 33B (LG AI 첫 open-weight VLM, arxiv 2604.08644) + K-EXAONE 236B-A23B (MoE 236B/23B 활성, arxiv 2601.01739) — HF collection EXAONE-4.5 (base/FP8/AWQ/GGUF) + K-EXAONE (236B-A23B base/FP8/GGUF)",
+    "new_value": "User-requested LG EXAONE 모델군 추가. (1) EXAONE 4.5 33B (출시 2026-04-23, 31.7B LM + 1.29B vision encoder, dense, 262K context, hybrid attention 16×(3SWA+1Global), 6 langs en/ko/es/de/ja/vi) +37 scores: Vision (MMMU 78.7, MMMU-Pro 68.6, MathVista mini 85.0, MATH-Vision 75.2, WeMath 79.1 [GPT-5 mini 70.3 능가], LogicVista 73.8, BabyVision 18.8, MedXpertQA-MM 42.1), Document (AI2D 89.0, ChartQAPro 62.2, CharXiv RQ 71.7, OCRBench v2 63.2, OmniDocBench v1.5 81.2), General (MMStar 74.9, BLINK 68.8, HallusionBench 63.7), Korean (KMMMU 42.7, K-Viscuit 80.1, KRETA 91.9), Reasoning (AIME 2025 92.9, AIME 2026 92.6, GPQA-Diamond 80.5, LiveCodeBench v6 81.4, MMLU-Pro 83.3), Agent (τ²-retail 77.9, τ²-airline 56.5, τ²-telecom 73.0), Instruction (IFBench 62.6, IFEval 89.6), Long Context (AA-LCR 50.6), Korean Lang (KMMLU-Pro 67.6, KoBALT 52.1), Multilingual (MMMLU 85.4, WMT24++ 91.5). (2) K-EXAONE 236B-A23B (MoE 236B/23B 활성, 256K context, 출시 2026-01-09) +14 reasoning-mode scores from EXAONE 4.5 paper Table 3 비교 컬럼: AIME 2026 92.2, GPQA-Diamond 79.1, LiveCodeBench v6 80.7, MMLU-Pro 83.8, τ²-retail 78.6 / airline 60.4 / telecom 73.5, IFBench 67.3, IFEval 89.7, AA-LCR 53.5, KMMLU-Pro 67.3, KoBALT 61.8, MMMLU 85.7, WMT24++ 90.5. (3) 신규 19 benchmarks 선언: wemath, logicvista, babyvision, chartqapro, omnidocbench_v15, mmstar, hallusionbench, k_viscuit, kreta, kmmlu_pro, kobalt, tau2_retail, tau2_airline, tau2_telecom, wmt24pp, aa_lcr, ocrbench_v2, medxpertqa_mm, math_vision. (4) sovereign.js RELEASE_DATES 갱신 (lg/exaone-4.5-33b 2026-04, lg/k-exaone-236b 2026-01). (5) 핵심 발견: 33B EXAONE 4.5는 Qwen3-VL-235B를 일부 벤치마크에서 능가 (MathVision 75.2 vs 74.6, WeMath 79.1 vs 74.8). K-EXAONE 236B는 KoBALT 61.8로 한국어 추론 강점.",
+    "old_model": null,
+    "old_value": null
+  },
+  {
+    "type": "Feature",
     "date": "2026-05-02",
     "benchmark_id": "전체 메뉴 모델명 클릭 모달 표준화 + 모델 상세 정보 대폭 확장",
     "new_model": "Modal.showModel — 출시일/벤더/타입/버전/모달리티/파라미터/컨텍스트/라이선스/가격/version history + 6 link types (system card, model card, HF, homepage, paper, GitHub, blog) + score sources",
