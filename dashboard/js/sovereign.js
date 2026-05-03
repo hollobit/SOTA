@@ -60,7 +60,7 @@ var Sovereign = {
             note: '프랑스 sovereign frontier — Mistral 풀라인업 (Mistral 7B·Mixtral·Nemo·Saba·Codestral·Mathstral·Pixtral·Magistral·Devstral·Ministral·Voxtral) + PleIAs · Lucie · CroissantLLM · HuggingFace SmolLM',
             models: [
                 // Mistral — flagship & frontier
-                'mistral/mistral-large-3', 'mistral/mistral-medium-3.1', 'mistral/mistral-medium-3',
+                'mistral/mistral-large-3', 'mistral/mistral-medium-3.5', 'mistral/mistral-medium-3.1', 'mistral/mistral-medium-3',
                 'mistral/mistral-large-2', 'mistral/mistral-large-1',
                 'mistral/mistral-small-4', 'mistral/mistral-small-3.2', 'mistral/mistral-small-3.1', 'mistral/mistral-small-3', 'mistral/mistral-small-2', 'mistral/mistral-small-1',
                 // Mistral — reasoning
@@ -252,6 +252,7 @@ var Sovereign = {
             note: 'Yandex YandexGPT 5 + Sber GigaChat 1/2/3 (incl. 3 Ultra Preview 702B-A36B MoE) + Vikhr opensource + T-Bank',
             models: [
                 'yandex/yandexgpt-5-pro', 'yandex/yandexgpt-5-lite-8b', 'yandex/yandexgpt-4-pro', 'yandex/yalm-100b',
+                'sber/gigachat-3.1-ultra', 'sber/gigachat-3.1-lightning',
                 'sber/gigachat-3-ultra', 'sber/gigachat-3-lightning',
                 'sber/gigachat-2-max', 'sber/gigachat-2-pro', 'sber/gigachat-2-lite', 'sber/gigachat-1.5',
                 'sber/rugpt-3.5-13b',
@@ -483,7 +484,7 @@ var Sovereign = {
 
         // France — Mistral flagship + reasoning
         'mistral/mistral-large-3': '2025-12', 'mistral/mistral-large-2': '2024-07', 'mistral/mistral-large-1': '2024-02',
-        'mistral/mistral-medium-3.1': '2025-09', 'mistral/mistral-medium-3': '2025-05',
+        'mistral/mistral-medium-3.5': '2026-05', 'mistral/mistral-medium-3.1': '2025-09', 'mistral/mistral-medium-3': '2025-05',
         'mistral/mistral-small-4': '2026-02', 'mistral/mistral-small-3.2': '2025-07', 'mistral/mistral-small-3.1': '2025-03', 'mistral/mistral-small-3': '2025-01', 'mistral/mistral-small-2': '2024-09', 'mistral/mistral-small-1': '2023-09',
         'mistral/magistral-medium-1.2': '2025-09', 'mistral/magistral-small-1.2': '2025-09',
         'mistral/magistral-medium-1': '2025-06', 'mistral/magistral-small-1': '2025-06',
@@ -511,7 +512,7 @@ var Sovereign = {
         // Japan / India / Israel / UAE / SG / CH / US
         'sakana/namazu': '2024-03',
         // Singapore — SEA-LION lineup
-        'ai-singapore/apertus-sea-lion-v4-8b': '2025-04', 'ai-singapore/gemma-sea-lion-v4-4b-vl': '2025-04',
+        'ai-singapore/apertus-sea-lion-v4-8b': '2025-04', 'ai-singapore/gemma-sea-lion-v4-4b-vl': '2026-02',
         'ai-singapore/llama-sea-lion-v3.5-70b': '2025-03', 'ai-singapore/llama-sea-lion-v3.5-8b': '2025-03',
         'ai-singapore/gemma2-sea-lion-v3-9b': '2024-10', 'ai-singapore/sea-lion-v2.1-7b': '2024-04',
         'gotoai/sahabat-ai-v1-70b': '2024-12', 'gotoai/sahabat-ai-v1-8b': '2024-12',
@@ -557,6 +558,7 @@ var Sovereign = {
         // Russia
         'yandex/yandexgpt-5-pro': '2025-02', 'yandex/yandexgpt-5-lite-8b': '2025-02',
         'yandex/yandexgpt-4-pro': '2024-04', 'yandex/yalm-100b': '2022-06',
+        'sber/gigachat-3.1-ultra': '2026-04', 'sber/gigachat-3.1-lightning': '2026-03',
         'sber/gigachat-3-ultra': '2025-11', 'sber/gigachat-3-lightning': '2025-11',
         'sber/gigachat-2-max': '2025-04', 'sber/gigachat-2-pro': '2025-04', 'sber/gigachat-2-lite': '2025-04',
         'sber/gigachat-1.5': '2024-09', 'sber/rugpt-3.5-13b': '2023-09',
@@ -874,6 +876,7 @@ var Sovereign = {
         'ai21/jamba-reasoning': 398, 'ai21/maestro': 100,
         // Russia
         'yandex/yandexgpt-5-pro': 70, 'yandex/yandexgpt-4-pro': 30,
+        'sber/gigachat-3.1-ultra': 702, 'sber/gigachat-3.1-lightning': 10,
         'sber/gigachat-3-ultra': 702, 'sber/gigachat-3-lightning': 30,
         'sber/gigachat-2-max': 50, 'sber/gigachat-2-pro': 13, 'sber/gigachat-2-lite': 7,
         'sber/gigachat-1.5': 30,
