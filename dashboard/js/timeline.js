@@ -194,9 +194,17 @@ var Timeline = {
 
     _getReleaseDate: function(model) {
         if (!model) return null;
+        // Use ONLY canonical release_date / released_at — not system registration date
         if (model.release_date) return model.release_date;
         if (model.released_at) return model.released_at;
+        return null;
+    },
+
+    _getSystemRegisteredDate: function(model) {
+        if (!model) return null;
         var ent = this._enrichment[model.id];
+        if (ent && ent.system_registered_date) return ent.system_registered_date;
+        // backwards compat — old name
         if (ent && ent.release_date_inferred) return ent.release_date_inferred;
         return null;
     },
@@ -252,6 +260,7 @@ var Timeline = {
             .map(function(m) {
                 var date = self._getReleaseDate(m);
                 if (!date) return null;
+                var sysDate = self._getSystemRegisteredDate(m);
                 var country = self._getCountry(m.id, m);
                 return {
                     id: m.id,
@@ -260,12 +269,20 @@ var Timeline = {
                     type: m.type || '',
                     modalities: m.modalities || [],
                     date: date,
+                    sysDate: sysDate,
                     country: country,
-                    isInferred: !m.release_date && !m.released_at,
                     scoreCount: self._scores.filter(function(s) { return s.model_id === m.id; }).length,
                 };
             })
             .filter(function(e) { return e !== null; });
+
+        // Show exclusion count for models without a canonical release_date
+        var totalModels = this._models.length;
+        var excludedCount = totalModels - entries.length;
+        var note = document.getElementById('timeline-exclusion-note');
+        if (note) note.textContent = excludedCount > 0
+            ? excludedCount + ' models excluded (no release date)'
+            : '';
 
         // Apply filters
         if (vendorFilter) entries = entries.filter(function(e) { return e.vendor === vendorFilter; });
@@ -350,15 +367,23 @@ var Timeline = {
                 };
             })(e.id));
 
-            // Date column
+            // Release date (canonical — vendor announcement)
             var dateCol = document.createElement('div');
-            dateCol.className = 'text-xs text-gray-400 font-mono w-24 flex-shrink-0';
+            dateCol.className = 'text-xs text-gray-300 font-mono w-24 flex-shrink-0';
             dateCol.textContent = e.date.slice(0, 10);
-            if (e.isInferred) {
-                dateCol.className += ' italic';
-                dateCol.title = 'Inferred from seed file (no explicit release_date)';
-            }
+            dateCol.title = 'Release date (vendor announcement)';
             row.appendChild(dateCol);
+
+            // System registration date (smaller, gray — when WE first ingested this model)
+            var sysCol = document.createElement('div');
+            sysCol.className = 'text-xs text-gray-600 font-mono w-24 flex-shrink-0 italic';
+            if (e.sysDate) {
+                sysCol.textContent = '+' + e.sysDate.slice(0, 10);
+                sysCol.title = '시스템 등록일 (when we first ingested data for this model)';
+            } else {
+                sysCol.textContent = '';
+            }
+            row.appendChild(sysCol);
 
             // Country column
             var countryCol = document.createElement('div');

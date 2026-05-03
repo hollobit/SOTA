@@ -14,7 +14,7 @@ Also reads structured model fields:
   - knowledge_cutoff (str)
 
 Wave 2 enhancements (v2.0):
-  - Release date inference from seed filename (YYYY_MM_DD_scores.json)
+  - System registration date from seed filename (YYYY_MM_DD_scores.json) → system_registered_date
   - Modalities inference from name/notes (vision, audio, video, ocr, omni)
   - Vendor inference from model_id prefix (50+ vendor map)
   - Improved param regex: catches "33B-A3B", "519B / 33B active", etc.
@@ -42,7 +42,8 @@ SEED_DATE_PATTERN = re.compile(r"(\d{4})_(\d{2})_(\d{2})_scores\.json$")
 
 
 def extract_release_date_from_filename(filename: str) -> str | None:
-    """If a model first appears in a dated seed file, return YYYY-MM-DD."""
+    """Return YYYY-MM-DD from a dated seed filename — this is the system registration date,
+    i.e. when we first ingested data for this model. NOT the model's public release date."""
     m = SEED_DATE_PATTERN.search(filename)
     if not m:
         return None
@@ -497,7 +498,7 @@ def main() -> int:
 
     auto_models: dict = {}
     skipped_count = 0
-    # Layer 1: track first-seen filename per model (for release_date inference)
+    # Layer 1: track first-seen filename per model (for system_registered_date)
     first_seen_filename: dict[str, str] = {}
     # Track display names per model (for modality inference)
     model_display_names: dict[str, str] = {}
@@ -632,16 +633,17 @@ def main() -> int:
                         existing[k].setdefault(sk, sv)
             auto_models[mid] = existing
 
-    # Layer 1: apply release_date_inferred from first-seen seed filename
+    # Layer 1: apply system_registered_date from first-seen seed filename
+    # Note: this is the date WE first ingested data for the model, NOT the model's public release date.
     rd_count = 0
     for mid, entry in auto_models.items():
-        if "release_date_inferred" not in entry and mid in first_seen_filename:
+        if "system_registered_date" not in entry and mid in first_seen_filename:
             rd = extract_release_date_from_filename(first_seen_filename[mid])
             if rd:
-                entry["release_date_inferred"] = rd
+                entry["system_registered_date"] = rd
                 rd_count += 1
     if rd_count:
-        print(f"[auto-enrich] release_date_inferred: {rd_count} models", file=sys.stderr)
+        print(f"[auto-enrich] system_registered_date: {rd_count} models", file=sys.stderr)
 
     # Write the auto YAML
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
