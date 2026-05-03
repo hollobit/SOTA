@@ -213,6 +213,10 @@ var App = {
 
             document.getElementById('model-count').textContent = self.data.models.length;
             document.getElementById('benchmark-count').textContent = self.data.benchmarks.length;
+            var footerModelCount = document.getElementById('footer-model-count');
+            var footerBenchCount = document.getElementById('footer-bench-count');
+            if (footerModelCount) footerModelCount.textContent = self.data.models.length;
+            if (footerBenchCount) footerBenchCount.textContent = self.data.benchmarks.length;
 
             if (self.data.scores.length > 0) {
                 var latest = self.data.scores.reduce(function(max, s) {
