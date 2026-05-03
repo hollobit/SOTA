@@ -29,6 +29,7 @@ class Exporter:
     def export_all(self) -> None:
         """Run all individual exports."""
         self._export_models()
+        self._export_enrichment()
         self._export_benchmarks()
         self._export_scores()
         self._export_sota()
@@ -50,6 +51,74 @@ class Exporter:
         models = get_all_models(self._conn)
         data = [asdict(m) for m in models]
         self._write_json(self._output_dir / "models.json", data)
+
+    def _export_enrichment(self) -> None:
+        """Compile config/model_enrichment.yaml to data/export/model_enrichment.json.
+
+        Missing top-level keys are filled with null/empty defaults so the
+        modal can render rows uniformly without per-key existence checks.
+        """
+        from datetime import date as _date
+
+        try:
+            import yaml  # type: ignore
+        except ImportError:
+            yaml = None
+
+        yaml_path = Path("config") / "model_enrichment.yaml"
+        models_in: Dict[str, Dict[str, Any]] = {}
+        schema_version = "1.0"
+
+        if yaml is not None and yaml_path.exists():
+            doc = yaml.safe_load(yaml_path.read_text()) or {}
+            schema_version = doc.get("schema_version", "1.0")
+            models_in = doc.get("models", {}) or {}
+
+        def norm(entry: Dict[str, Any]) -> Dict[str, Any]:
+            arch = entry.get("architecture") or {}
+            train = entry.get("training") or {}
+            safety = entry.get("safety") or {}
+            tput = entry.get("throughput") or {}
+            return {
+                "architecture": {
+                    "type": arch.get("type"),
+                    "total_params_b": arch.get("total_params_b"),
+                    "active_params_b": arch.get("active_params_b"),
+                    "layers": arch.get("layers"),
+                    "attention": arch.get("attention"),
+                    "attention_pattern": arch.get("attention_pattern"),
+                    "experts_total": arch.get("experts_total"),
+                    "experts_active": arch.get("experts_active"),
+                    "vision_encoder_b": arch.get("vision_encoder_b"),
+                },
+                "training": {
+                    "pretrain_tokens": train.get("pretrain_tokens"),
+                    "compute_flops": train.get("compute_flops"),
+                    "phases": train.get("phases", []) or [],
+                },
+                "safety": {
+                    "aisi_cyber_tier": safety.get("aisi_cyber_tier"),
+                    "cbrn_risk": safety.get("cbrn_risk"),
+                    "self_reported_safety_card": safety.get("self_reported_safety_card"),
+                },
+                "throughput": {
+                    "tokens_per_second": tput.get("tokens_per_second"),
+                    "latency_p50_ms": tput.get("latency_p50_ms"),
+                },
+                "quantizations": entry.get("quantizations", []) or [],
+                "api_providers": entry.get("api_providers", []) or [],
+                "_sources": entry.get("_sources", []) or [],
+            }
+
+        out = {
+            "_meta": {
+                "generated_at": _date.today().isoformat(),
+                "covered_models": len(models_in),
+                "schema_version": schema_version,
+            },
+            "models": {mid: norm(entry) for mid, entry in models_in.items()},
+        }
+        self._write_json(self._output_dir / "model_enrichment.json", out)
 
     def _export_benchmarks(self) -> None:
         benchmarks = get_all_benchmarks(self._conn)
@@ -117,3 +186,7 @@ class Exporter:
             if p.stem != "index" and len(p.stem) == 10
         )
         self._write_json(history_dir / "index.json", {"dates": snapshots})
+
+
+# Alias so both names resolve to the same class
+JSONExporter = Exporter
