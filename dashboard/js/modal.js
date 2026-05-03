@@ -816,19 +816,22 @@ var Modal = {
         if (model.parameters) addField('Parameters', model.parameters);
         if (model.params_b) addField('Parameters (B)', model.params_b + (model.active_params_b ? ' total / ' + model.active_params_b + ' active' : ''));
         if (model.context_window) addField('Context Window', Number(model.context_window).toLocaleString() + ' tokens');
+        if (model.knowledge_cutoff) addField('Knowledge Cutoff', model.knowledge_cutoff);
+        if (Array.isArray(model.languages) && model.languages.length) {
+            var langs = model.languages;
+            var langText = langs.length <= 6 ? langs.join(', ') : (langs.slice(0, 6).join(', ') + ' (+' + (langs.length - 6) + ')');
+            addField('Languages', langText);
+        }
         if (model.license) addField('License', model.license);
-        // Pricing — prefer model.pricing.input/output if present, else fall back to App.data.pricing[modelId]
+
         var pricing = model.pricing || (App.data.pricing && App.data.pricing[modelId]);
-        if (pricing && (pricing.input !== undefined || pricing.output !== undefined)) {
-            if (pricing.input !== undefined && pricing.input !== null) {
-                addField('Input price (per 1M tokens)', '$' + pricing.input);
+        if (pricing) {
+            if (pricing.tokens_per_second != null) {
+                addField('Throughput', pricing.tokens_per_second + ' tokens/sec');
             }
-            if (pricing.output !== undefined && pricing.output !== null) {
-                addField('Output price (per 1M tokens)', '$' + pricing.output);
-            }
-            if (pricing.cached_input !== undefined && pricing.cached_input !== null) {
-                addField('Cached input', '$' + pricing.cached_input);
-            }
+            if (pricing.input != null) addField('Input price (per 1M tokens)', '$' + pricing.input);
+            if (pricing.output != null) addField('Output price (per 1M tokens)', '$' + pricing.output);
+            if (pricing.cached_input != null) addField('Cached input', '$' + pricing.cached_input);
         }
         if (model._note || model.notes || model.description) {
             addField('Description', model._note || model.notes || model.description, {full: true});
