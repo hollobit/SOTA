@@ -10,7 +10,8 @@ var App = {
         sota: {},
         leaderboards: {},
         changelog: [],
-        history: {}
+        history: {},
+        enrichment: null
     },
 
     // Leaderboard sort state
@@ -1980,6 +1981,23 @@ var App = {
             container.appendChild(section);
         });
     }
+};
+
+App.loadEnrichment = function () {
+    if (App.data.enrichment !== null) return Promise.resolve(App.data.enrichment);
+    if (App._enrichmentPromise) return App._enrichmentPromise;
+    App._enrichmentPromise = fetch('data/model_enrichment.json')
+        .then(function (r) { return r.ok ? r.json() : { models: {} }; })
+        .then(function (d) {
+            App.data.enrichment = d.models || {};
+            return App.data.enrichment;
+        })
+        .catch(function () {
+            console.warn('[modal] model_enrichment.json not loadable; architecture sections hidden');
+            App.data.enrichment = {};
+            return App.data.enrichment;
+        });
+    return App._enrichmentPromise;
 };
 
 document.addEventListener('DOMContentLoaded', function() { App.init(); });
