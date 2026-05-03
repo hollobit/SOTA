@@ -1,0 +1,254 @@
+schema_version: "1.0"
+models:
+  openai/gpt-5.5:
+    architecture:
+      type: dense
+    api_providers: [openai_api, openrouter]
+    _sources: ["https://platform.openai.com/docs/models/gpt-5.5"]
+
+  openai/gpt-5.5-pro:
+    architecture:
+      type: dense
+    api_providers: [openai_api]
+    _sources: ["https://platform.openai.com/docs/models/gpt-5.5-pro"]
+
+  openai/gpt-5.4:
+    architecture:
+      type: dense
+    api_providers: [openai_api, openrouter]
+    _sources: ["https://platform.openai.com/docs/models/gpt-5.4"]
+
+  openai/gpt-5.4-thinking:
+    architecture:
+      type: dense
+    api_providers: [openai_api]
+    _sources: ["https://platform.openai.com/docs/models/gpt-5.4-thinking"]
+
+  openai/gpt-5.3-codex:
+    architecture:
+      type: dense
+    api_providers: [openai_api]
+    _sources: ["https://platform.openai.com/docs/models/gpt-5.3-codex"]
+
+  anthropic/claude-opus-4.7:
+    architecture:
+      type: dense
+    api_providers: [anthropic_api, aws_bedrock, gcp_vertex]
+    _sources: ["https://www.anthropic.com/news/claude-opus-4-7"]
+
+  anthropic/claude-mythos-preview:
+    architecture:
+      type: dense
+    api_providers: [anthropic_api]
+    _sources: ["https://www.anthropic.com/research/claude-mythos"]
+
+  anthropic/claude-opus-4.6:
+    architecture:
+      type: dense
+    api_providers: [anthropic_api, aws_bedrock]
+    _sources: ["https://www.anthropic.com/claude/opus"]
+
+  google/gemini-3.1-pro:
+    architecture:
+      type: dense
+    api_providers: [google_ai_studio, gcp_vertex]
+    _sources: ["https://ai.google.dev/gemini-api/docs/models#gemini-3-1-pro"]
+
+  google/gemini-3-pro:
+    architecture:
+      type: dense
+    api_providers: [google_ai_studio, gcp_vertex, openrouter]
+    _sources: ["https://ai.google.dev/gemini-api/docs/models#gemini-3-pro"]
+
+  xai/grok-4.3:
+    architecture:
+      type: dense
+    api_providers: [xai_api, openrouter]
+    _sources: ["https://docs.x.ai/developers/models/grok-4.3"]
+
+  xai/grok-4-heavy:
+    architecture:
+      type: dense
+    api_providers: [xai_api]
+    _sources: ["https://docs.x.ai/developers/models/grok-4-heavy"]
+
+  meta/muse-spark:
+    architecture:
+      type: dense
+    api_providers: [openrouter, huggingface_inference]
+    _sources: ["https://ai.meta.com/research/publications/muse-spark"]
+
+  deepseek/deepseek-v4-pro:
+    architecture:
+      type: moe
+    api_providers: [deepseek_api, openrouter, huggingface_inference]
+    _sources: ["https://api-docs.deepseek.com/updates"]
+
+  deepseek/deepseek-v4-flash:
+    architecture:
+      type: moe
+    api_providers: [deepseek_api, openrouter]
+    _sources: ["https://api-docs.deepseek.com/updates"]
+
+  moonshot/kimi-k2.6:
+    architecture:
+      type: moe
+    quantizations: [fp8]
+    api_providers: [moonshot_api, openrouter, huggingface_inference]
+    _sources: ["https://platform.moonshot.cn/docs"]
+
+  zhipu/glm-5.1:
+    architecture:
+      type: moe
+      total_params_b: 754
+      active_params_b: 40
+    quantizations: [fp8, gguf]
+    api_providers: [zhipu_api, openrouter, huggingface_inference]
+    _sources: ["https://huggingface.co/zai-org/GLM-5.1"]
+
+  zhipu/glm-5:
+    architecture:
+      type: moe
+      total_params_b: 754
+    quantizations: [fp8, gguf]
+    api_providers: [zhipu_api, openrouter, huggingface_inference]
+    _sources: ["https://huggingface.co/zai-org/GLM-5"]
+
+  alibaba/qwen3.6-27b:
+    architecture:
+      type: dense
+      total_params_b: 27
+    quantizations: [awq, gguf]
+    api_providers: [alibaba_dashscope, openrouter, huggingface_inference]
+    _sources: ["https://huggingface.co/Qwen/Qwen3.6-27B"]
+
+  alibaba/qwen3.6-35b-a3b:
+    architecture:
+      type: moe
+      total_params_b: 35
+      active_params_b: 3
+    quantizations: [awq, gguf]
+    api_providers: [alibaba_dashscope, huggingface_inference]
+    _sources: ["https://huggingface.co/Qwen/Qwen3.6-35B-A3B"]
+
+  tencent/hy3-preview:
+    architecture:
+      type: moe
+      total_params_b: 295
+      active_params_b: 21
+      layers: 80
+      attention: mla
+      experts_total: 192
+      experts_active: 8
+    training:
+      phases: [pretrain, mtp_layer, sft, rlhf]
+    quantizations: [bf16]
+    api_providers: [tencent_api, huggingface_inference]
+    _sources:
+      - "https://huggingface.co/tencent/Hy3-preview"
+      - "https://github.com/Tencent-Hunyuan/Hy3-preview"
+
+  baidu/ernie-5.0:
+    architecture:
+      type: moe
+    api_providers: [baidu_qianfan, openrouter]
+    _sources: ["https://yiyan.baidu.com/welcome"]
+
+  lg/exaone-4.5-33b:
+    architecture:
+      type: dense
+      total_params_b: 33
+      attention: hybrid_swa_global
+      attention_pattern: "16 x (3 SWA + 1 Global)"
+      vision_encoder_b: 1.29
+    training:
+      phases: [base_pretrain, vision_adapter, sft, dpo]
+    quantizations: [fp8, awq, gguf]
+    api_providers: [huggingface_inference, vllm, ollama]
+    _sources:
+      - "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+      - "http://arxiv.org/abs/2604.08644"
+
+  lg/k-exaone-236b:
+    architecture:
+      type: moe
+      total_params_b: 236
+      active_params_b: 23
+      attention: mla
+    quantizations: [fp8, gguf]
+    api_providers: [huggingface_inference, vllm]
+    _sources:
+      - "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B"
+      - "http://arxiv.org/abs/2601.01739"
+
+  skt/ax-k1:
+    architecture:
+      type: moe
+      total_params_b: 519
+      active_params_b: 33
+      layers: 61
+      attention: mla
+      experts_total: 192
+      experts_active: 8
+    training:
+      phases: [pretrain, mtp, sft, dpo]
+    quantizations: [bf16, fp8]
+    api_providers: [huggingface_inference, vllm]
+    _sources:
+      - "https://huggingface.co/skt/A.X-K1"
+      - "http://arxiv.org/abs/2601.09200"
+
+  mistral/mistral-medium-3.5:
+    architecture:
+      type: dense
+      total_params_b: 128
+    api_providers: [mistral_api, openrouter, huggingface_inference]
+    _sources:
+      - "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B"
+      - "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5"
+
+  mistral/mistral-small-4:
+    architecture:
+      type: moe
+      total_params_b: 119
+      active_params_b: 6.5
+      experts_total: 128
+      experts_active: 4
+    api_providers: [mistral_api, openrouter, huggingface_inference, vllm]
+    _sources: ["https://huggingface.co/mistralai/Mistral-Small-4-119B-2603"]
+
+  sber/gigachat-3.1-ultra:
+    architecture:
+      type: moe
+      total_params_b: 702
+      active_params_b: 36
+      attention: mla
+    training:
+      phases: [pretrain, mtp, sft, dpo]
+    quantizations: [bf16, fp8, gguf]
+    api_providers: [sber_giga, huggingface_inference]
+    _sources:
+      - "https://huggingface.co/ai-sage/GigaChat3.1-702B-A36B"
+      - "https://habr.com/en/companies/sberbank/articles/1014146/"
+
+  dicta/dictalm-3.0-24b-thinking:
+    architecture:
+      type: dense
+      total_params_b: 24
+    training:
+      phases: [continuous_pretrain, sft, dpo, grpo]
+    quantizations: [bf16]
+    api_providers: [huggingface_inference, vllm]
+    _sources:
+      - "https://huggingface.co/dicta-il/DictaLM-3.0-24B-Thinking"
+      - "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf"
+
+  cohere/tiny-aya-3b:
+    architecture:
+      type: dense
+      total_params_b: 3.35
+      attention: hybrid_swa_global
+    api_providers: [huggingface_inference]
+    _sources:
+      - "https://huggingface.co/CohereLabs/tiny-aya-base"
+      - "http://arxiv.org/abs/2603.11510"
