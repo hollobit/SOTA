@@ -158,7 +158,26 @@ var App = {
                 }));
             }).then(function() {
                 return self._fetch(base + '/aa_pricing.json').then(function(pricing) {
-                    if (pricing && pricing.models) self.data.pricing = pricing.models;
+                    if (pricing && pricing.models) {
+                        // Convert array → map keyed by model_id for O(1) lookup
+                        var pmap = {};
+                        if (Array.isArray(pricing.models)) {
+                            pricing.models.forEach(function (m) {
+                                if (m && m.model_id) {
+                                    pmap[m.model_id] = {
+                                        input: m.price_per_1m_input,
+                                        output: m.price_per_1m_output,
+                                        cached_input: m.price_per_1m_cached_input,
+                                        tokens_per_second: m.tokens_per_second,
+                                        intelligence_index: m.intelligence_index
+                                    };
+                                }
+                            });
+                        } else {
+                            pmap = pricing.models;
+                        }
+                        self.data.pricing = pmap;
+                    }
                     return self._fetch(base + '/reports/changelog.json');
                 });
             });

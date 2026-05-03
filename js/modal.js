@@ -1237,6 +1237,137 @@ var Modal = {
                 console.warn('[modal] enrichment links/pricing patch error', e);
             }
 
+            // ---- Performance & Cost (NEW: 4-priority additions) ----
+            try {
+                var bm = entry.benchmarks_meta || {};
+                var pricingFromEnrich = entry.pricing || {};
+                var aaPricing = (App.data.pricing && App.data.pricing[modelId]) || {};
+
+                // Merge: enrichment pricing takes precedence, else AA pricing
+                var inputPrice = pricingFromEnrich.input != null ? pricingFromEnrich.input : aaPricing.input;
+                var outputPrice = pricingFromEnrich.output != null ? pricingFromEnrich.output : aaPricing.output;
+                var intelligenceIdx = bm.intelligence_index_override != null ? bm.intelligence_index_override : aaPricing.intelligence_index;
+                var arenaElo = bm.arena_elo;
+                var throughput = aaPricing.tokens_per_second;
+
+                // Compute model age + cadence
+                var ageDays = null, ageStr = null;
+                if (model.release_date || model.released_at) {
+                    var releaseStr = model.release_date || model.released_at;
+                    var rd = new Date(releaseStr);
+                    if (!isNaN(rd.getTime())) {
+                        ageDays = Math.floor((Date.now() - rd.getTime()) / 86400000);
+                        if (ageDays < 30) ageStr = ageDays + ' days ago';
+                        else if (ageDays < 365) ageStr = Math.floor(ageDays / 30) + ' months ago';
+                        else ageStr = (ageDays / 365).toFixed(1) + ' years ago';
+                    }
+                }
+
+                // Vendor release cadence: avg gap between releases by same vendor
+                var cadenceStr = null;
+                try {
+                    var sameVendor = (App.data.models || []).filter(function (mm) {
+                        return mm.vendor === model.vendor && (mm.release_date || mm.released_at);
+                    }).map(function (mm) { return new Date(mm.release_date || mm.released_at); })
+                      .filter(function (d) { return !isNaN(d.getTime()); })
+                      .sort(function (a, b) { return a - b; });
+                    if (sameVendor.length >= 3) {
+                        var gaps = [];
+                        for (var gi = 1; gi < sameVendor.length; gi++) {
+                            gaps.push((sameVendor[gi] - sameVendor[gi-1]) / 86400000);
+                        }
+                        var avgGap = gaps.reduce(function (a, b) { return a + b; }, 0) / gaps.length;
+                        if (avgGap > 0) cadenceStr = 'Avg ' + Math.round(avgGap) + ' days between vendor releases';
+                    }
+                } catch (e) { /* cadence non-fatal */ }
+
+                // Cost per IQ point (Cost-per-Intelligence)
+                var costPerIQ = null;
+                if (intelligenceIdx && intelligenceIdx > 0 && (inputPrice != null)) {
+                    // Use blended cost: avg of input + 5×output (typical chat ratio 1:5)
+                    var blendedCost = inputPrice + (outputPrice != null ? outputPrice * 5 : 0);
+                    costPerIQ = (blendedCost / intelligenceIdx).toFixed(3);
+                }
+
+                // Peer pricing comparison: median input price among recent (≤365d) models with pricing
+                var peerInputMedian = null, peerOutputMedian = null, pricePosition = null;
+                try {
+                    var pmap = App.data.pricing || {};
+                    var peerInputs = [], peerOutputs = [];
+                    Object.keys(pmap).forEach(function (mid) {
+                        if (mid === modelId) return;
+                        var p = pmap[mid];
+                        if (p && typeof p.input === 'number') peerInputs.push(p.input);
+                        if (p && typeof p.output === 'number') peerOutputs.push(p.output);
+                    });
+                    function median(arr) {
+                        if (!arr.length) return null;
+                        var s = arr.slice().sort(function (a, b) { return a - b; });
+                        var mid = Math.floor(s.length / 2);
+                        return s.length % 2 ? s[mid] : (s[mid-1] + s[mid]) / 2;
+                    }
+                    peerInputMedian = median(peerInputs);
+                    peerOutputMedian = median(peerOutputs);
+                    if (inputPrice != null && peerInputMedian != null) {
+                        var ratio = inputPrice / peerInputMedian;
+                        if (ratio < 0.5) pricePosition = 'Significantly cheaper';
+                        else if (ratio < 0.85) pricePosition = 'Below peer median';
+                        else if (ratio < 1.15) pricePosition = 'Near peer median';
+                        else if (ratio < 2.0) pricePosition = 'Above peer median';
+                        else pricePosition = 'Significantly pricier';
+                    }
+                } catch (e) { /* peer comp non-fatal */ }
+
+                // Only render if we have at least one piece of new data
+                if (intelligenceIdx != null || arenaElo != null || ageStr || costPerIQ != null || cadenceStr || pricePosition) {
+                    var perfCard = document.createElement('div');
+                    perfCard.className = 'mb-4 bg-gray-800 rounded-lg p-4';
+                    var perfTitle = document.createElement('h3');
+                    perfTitle.className = 'text-sm font-semibold text-gray-300 mb-2';
+                    perfTitle.textContent = 'Performance & Cost';
+                    perfCard.appendChild(perfTitle);
+
+                    function perfRow(label, value, hint) {
+                        if (value == null || value === '') return;
+                        var r = document.createElement('div');
+                        r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                        var l = document.createElement('div');
+                        l.className = 'text-gray-500 col-span-1';
+                        l.textContent = label;
+                        r.appendChild(l);
+                        var v = document.createElement('div');
+                        v.className = 'text-gray-200 col-span-2';
+                        v.textContent = String(value);
+                        if (hint) {
+                            var hintSpan = document.createElement('span');
+                            hintSpan.className = 'ml-2 text-gray-500';
+                            hintSpan.textContent = '(' + hint + ')';
+                            v.appendChild(hintSpan);
+                        }
+                        r.appendChild(v);
+                        perfCard.appendChild(r);
+                    }
+
+                    if (intelligenceIdx != null) perfRow('Intelligence Index', intelligenceIdx, 'Artificial Analysis');
+                    if (arenaElo != null) {
+                        var eloLabel = arenaElo;
+                        if (bm.arena_elo_source) eloLabel = arenaElo + '';
+                        perfRow('LMSys Arena Elo', eloLabel, 'lmarena.ai');
+                    }
+                    if (throughput != null) perfRow('Throughput', throughput + ' tokens/sec');
+                    if (ageStr) perfRow('Released', ageStr, model.release_date);
+                    if (cadenceStr) perfRow('Vendor cadence', cadenceStr);
+                    if (costPerIQ != null) perfRow('Cost / IQ point', '$' + costPerIQ, 'blended input+5×output / Intelligence Index');
+                    if (pricePosition && peerInputMedian != null) {
+                        perfRow('Price position', pricePosition, 'peer median input $' + peerInputMedian.toFixed(2) + '/M');
+                    }
+
+                    enrichSlot.appendChild(perfCard);
+                }
+            } catch (e) {
+                console.warn('[modal] performance & cost section error', e);
+            }
+
             var arch = entry.architecture || {};
             var train = entry.training || {};
             var safety = entry.safety || {};
