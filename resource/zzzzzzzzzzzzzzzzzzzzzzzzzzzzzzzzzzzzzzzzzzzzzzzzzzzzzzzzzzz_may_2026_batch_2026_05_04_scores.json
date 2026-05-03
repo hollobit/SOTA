@@ -1,0 +1,415 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-04",
+    "sources": [
+      "https://arena.ai/blog/leaderboard-changelog/",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+      "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained",
+      "https://www.vellum.ai/llm-leaderboard",
+      "https://artificialanalysis.ai/models/kimi-k2-6",
+      "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "https://arxiv.org/html/2604.27319",
+      "https://www.pharmiweb.com/press-release/2026-05-01/diagens-launches-doctorbench-setting-a-new-global-benchmark-for-real-world-clinical-performance-in-medical-foundation-models"
+    ],
+    "_note": "May 2026 weekly batch: 7 new models, 3 new benchmarks, 38 new score triples. Strict primary-source attribution."
+  },
+  "models": [
+    {
+      "id": "alibaba/qwen3.6-max-preview",
+      "vendor": "Alibaba",
+      "family": "Qwen",
+      "country": "China",
+      "release_date": "2026-04-30",
+      "modalities": [
+        "text"
+      ],
+      "context_window": 1000000,
+      "model_card_url": "https://qwen.ai/blog?id=qwen3.6",
+      "notes": "Qwen3.6 Max preview, MoE flagship, 1M context"
+    },
+    {
+      "id": "tencent/hunyuan-hy3-preview",
+      "vendor": "Tencent",
+      "family": "Hunyuan",
+      "country": "China",
+      "release_date": "2026-04-30",
+      "modalities": [
+        "text"
+      ],
+      "model_card_url": "https://arena.ai/blog/leaderboard-changelog/",
+      "notes": "Hunyuan HY3 preview, frontier-tier from Tencent"
+    },
+    {
+      "id": "zhipu/glm-5v-turbo",
+      "vendor": "Zhipu AI",
+      "family": "GLM",
+      "country": "China",
+      "release_date": "2026-04-30",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "model_card_url": "https://arena.ai/blog/leaderboard-changelog/",
+      "notes": "GLM-5 Vision Turbo, multimodal variant of GLM-5.1"
+    },
+    {
+      "id": "baidu/ernie-5.1-preview",
+      "vendor": "Baidu",
+      "family": "ERNIE",
+      "country": "China",
+      "release_date": "2026-04-29",
+      "modalities": [
+        "text"
+      ],
+      "model_card_url": "https://arena.ai/blog/leaderboard-changelog/",
+      "notes": "ERNIE 5.1 preview"
+    },
+    {
+      "id": "xiaomi/mimo-v2-omni",
+      "vendor": "Xiaomi",
+      "family": "MiMo",
+      "country": "China",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ],
+      "model_card_url": "https://arena.ai/blog/leaderboard-changelog/",
+      "notes": "MiMo-v2 Omni, omni-modal model"
+    },
+    {
+      "id": "xai/grok-4.3",
+      "vendor": "xAI",
+      "family": "Grok",
+      "country": "USA",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "model_card_url": "https://arena.ai/blog/leaderboard-changelog/",
+      "notes": "Grok 4.3, multimodal frontier model"
+    },
+    {
+      "id": "arcee/trinity-large-thinking",
+      "vendor": "Arcee AI",
+      "family": "Trinity",
+      "country": "USA",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text"
+      ],
+      "params_b": 400,
+      "model_card_url": "https://arena.ai/blog/leaderboard-changelog/",
+      "notes": "Trinity Large Thinking, ~400B reasoning open-weight model"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "healthbench_professional",
+      "name": "HealthBench Professional",
+      "publisher": "OpenAI",
+      "launch_date": "2026-04-15",
+      "category": "medical",
+      "description": "525 clinician-relevant professional medical tasks, rubric-graded. Complement to original HealthBench.",
+      "paper_url": "https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf",
+      "scale": "rubric percentage"
+    },
+    {
+      "id": "doctorbench_llm",
+      "name": "DoctorBench LLM Track",
+      "publisher": "Hangzhou Diagens Biotechnology",
+      "launch_date": "2026-04-30",
+      "category": "medical",
+      "description": "Real-world clinical performance: safety, accuracy, interaction quality, information prioritization, proactive inquiry. 3 tracks (LLM/VLM/Agent).",
+      "paper_url": "https://www.pharmiweb.com/press-release/2026-05-01/diagens-launches-doctorbench-setting-a-new-global-benchmark-for-real-world-clinical-performance-in-medical-foundation-models",
+      "scale": "0-100 composite"
+    },
+    {
+      "id": "rebench",
+      "name": "REBench",
+      "publisher": "academic",
+      "launch_date": "2026-04-15",
+      "category": "cyber",
+      "description": "Reverse engineering benchmark: stripped-binary types/names recovery; 29.94M lines decompiled x64 code.",
+      "paper_url": "https://arxiv.org/html/2604.27319",
+      "scale": "exact-match accuracy"
+    }
+  ],
+  "scores": [
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mmlu_pro",
+      "score": 87.5,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "gpqa_diamond",
+      "score": 90.1,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "hle",
+      "score": 37.7,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "livecodebench",
+      "score": 93.5,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "Elo",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "codeforces",
+      "score": 3206,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "hmmt_2026",
+      "score": 95.2,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "swe_bench_verified",
+      "score": 80.6,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "swe_bench_pro",
+      "score": 55.4,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "swe_bench_multilingual",
+      "score": 76.2,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "terminal_bench_2",
+      "score": 67.9,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "browsecomp",
+      "score": 83.4,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mrcr_v2_1m",
+      "score": 83.5,
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "swe_bench_verified",
+      "score": 77.2,
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "swe_bench_pro",
+      "score": 53.5,
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "terminal_bench_2",
+      "score": 59.3,
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "gpqa_diamond",
+      "score": 87.8,
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "aime_2026",
+      "score": 94.1,
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "livecodebench_v6",
+      "score": 83.9,
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmlu_pro",
+      "score": 86.2,
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmmu",
+      "score": 82.9,
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "hle",
+      "score": 24.0,
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "swe_bench_verified",
+      "score": 87.6,
+      "_source": "https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "swe_bench_pro",
+      "score": 64.3,
+      "_source": "https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "terminal_bench_2",
+      "score": 69.4,
+      "_source": "https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gpqa_diamond",
+      "score": 94.2,
+      "_source": "https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "hle",
+      "score": 46.9,
+      "_source": "https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "osworld_verified",
+      "score": 78.0,
+      "_source": "https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "browsecomp",
+      "score": 79.3,
+      "_source": "https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "finance_agent",
+      "score": 64.4,
+      "_source": "https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "mmmlu",
+      "score": 91.5,
+      "_source": "https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "openai/gpt-5.5",
+      "benchmark": "gpqa_diamond",
+      "score": 93.6,
+      "_source": "https://www.vellum.ai/llm-leaderboard"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "openai/gpt-5.5",
+      "benchmark": "arc_agi_2",
+      "score": 85.0,
+      "_source": "https://www.vellum.ai/llm-leaderboard"
+    },
+    {
+      "unit": "%",
+      "collected_at": "2026-05-04",
+      "model": "openai/gpt-5.5-pro",
+      "benchmark": "hle",
+      "score": 43.1,
+      "_source": "https://www.vellum.ai/llm-leaderboard"
+    },
+    {
+      "unit": "index",
+      "collected_at": "2026-05-04",
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "aa_intelligence_index",
+      "score": 54,
+      "_source": "https://artificialanalysis.ai/models/kimi-k2-6"
+    }
+  ]
+}
