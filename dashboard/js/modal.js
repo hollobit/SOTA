@@ -748,6 +748,11 @@ var Modal = {
         if (!model) return;
         history.replaceState(null, '', '#model/' + modelId);
 
+        // Lazy load enrichment; render synchronously with what we have, then patch
+        var _enrichmentPromise = (typeof App !== 'undefined' && App.loadEnrichment)
+            ? App.loadEnrichment()
+            : Promise.resolve({});
+
         var scores = App.data.scores.filter(function(s) { return s.model_id === modelId; });
 
         var byCategory = {};
@@ -1144,6 +1149,103 @@ var Modal = {
                 }
             }
         } catch (e) { /* version history is non-fatal */ }
+
+        // ---- Architecture / Training / Safety (NEW, deferred) ----
+        var enrichSlot = document.createElement('div');
+        enrichSlot.id = 'modal-enrichment-slot';
+        container.appendChild(enrichSlot);
+        _enrichmentPromise.then(function (enrichmentMap) {
+            var entry = enrichmentMap && enrichmentMap[modelId];
+            if (!entry) return;
+
+            var arch = entry.architecture || {};
+            var train = entry.training || {};
+            var safety = entry.safety || {};
+            var quants = entry.quantizations || [];
+            var providers = entry.api_providers || [];
+
+            var anyArch = arch.type || arch.total_params_b || arch.attention || arch.attention_pattern || arch.experts_total;
+            var anyTrain = train.pretrain_tokens || train.compute_flops || (train.phases && train.phases.length);
+            var anySafety = safety.aisi_cyber_tier || safety.cbrn_risk || safety.self_reported_safety_card;
+            var anyQuant = quants.length > 0;
+            var anyProv = providers.length > 0;
+            if (!(anyArch || anyTrain || anySafety || anyQuant || anyProv)) return;
+
+            var card = document.createElement('div');
+            card.className = 'mb-4 bg-gray-800 rounded-lg p-4';
+            var hd = document.createElement('h3');
+            hd.className = 'text-sm font-semibold text-gray-300 mb-3';
+            hd.textContent = 'Architecture / Training / Safety';
+            card.appendChild(hd);
+
+            function row(label, value) {
+                if (value == null || value === '' || (Array.isArray(value) && value.length === 0)) return;
+                var r = document.createElement('div');
+                r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                var l = document.createElement('div');
+                l.className = 'text-gray-500 col-span-1';
+                l.textContent = label;
+                r.appendChild(l);
+                var v = document.createElement('div');
+                v.className = 'text-gray-200 col-span-2';
+                v.textContent = Array.isArray(value) ? value.join(', ') : String(value);
+                r.appendChild(v);
+                card.appendChild(r);
+            }
+
+            if (anyArch) {
+                row('Architecture', arch.type ? arch.type.toUpperCase() : null);
+                if (arch.total_params_b != null) {
+                    var paramsLabel = arch.total_params_b + 'B';
+                    if (arch.active_params_b != null) paramsLabel += ' total / ' + arch.active_params_b + 'B active';
+                    if (arch.vision_encoder_b != null) paramsLabel += ' (+' + arch.vision_encoder_b + 'B vision)';
+                    row('Parameters', paramsLabel);
+                }
+                if (arch.layers != null) row('Layers', arch.layers);
+                if (arch.attention != null) row('Attention', arch.attention.toUpperCase().replace(/_/g, ' '));
+                if (arch.attention_pattern != null) row('Pattern', arch.attention_pattern);
+                if (arch.experts_total != null) {
+                    var expLabel = arch.experts_total + ' experts';
+                    if (arch.experts_active != null) expLabel += ', ' + arch.experts_active + ' active';
+                    row('Experts', expLabel);
+                }
+            }
+
+            if (anyTrain) {
+                row('Pretrain tokens', train.pretrain_tokens);
+                row('Compute (FLOPs)', train.compute_flops);
+                if (train.phases && train.phases.length) row('Phases', train.phases);
+            }
+
+            if (anySafety) {
+                row('AISI cyber tier', safety.aisi_cyber_tier);
+                row('CBRN risk', safety.cbrn_risk);
+                if (safety.self_reported_safety_card) {
+                    var sr = document.createElement('div');
+                    sr.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                    var sl = document.createElement('div');
+                    sl.className = 'text-gray-500 col-span-1';
+                    sl.textContent = 'Safety card';
+                    sr.appendChild(sl);
+                    var sv = document.createElement('div');
+                    sv.className = 'col-span-2';
+                    var sa = document.createElement('a');
+                    sa.href = safety.self_reported_safety_card;
+                    sa.target = '_blank';
+                    sa.rel = 'noopener';
+                    sa.className = 'text-blue-400 hover:underline';
+                    sa.textContent = safety.self_reported_safety_card.replace(/^https?:\/\//, '').slice(0, 60);
+                    sv.appendChild(sa);
+                    sr.appendChild(sv);
+                    card.appendChild(sr);
+                }
+            }
+
+            if (anyQuant) row('Quantizations', quants.map(function (q) { return q.toUpperCase(); }));
+            if (anyProv) row('API providers', providers);
+
+            enrichSlot.appendChild(card);
+        });
 
         var catOrder = ['reasoning', 'coding', 'math', 'cybersecurity', 'cyber_defense', 'agent', 'multimodal', 'multilingual', 'other'];
         var catNames = {
