@@ -1210,6 +1210,9 @@ var App = {
         this._renderSOTAChangeLog();
         this._renderCorrelationChart();
         this._renderPricingChart();
+        // SOTA highlights + trend overview always render (don't depend on benchmark selection)
+        App._renderSotaHighlights();
+        App._renderTrendOverview();
         var benchId = document.getElementById('trend-benchmark').value;
         if (!benchId) { this._renderSOTATrend(null); return; }
 
@@ -1309,8 +1312,6 @@ var App = {
             return b ? b.name : bid;
         });
         Charts.renderHeatmap('heatmap-chart', hmNames, hmBenchNames, hmMatrix);
-        App._renderSotaHighlights();
-        App._renderTrendOverview();
     },
 
     _renderSotaHighlights: function() {
