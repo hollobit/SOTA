@@ -53,7 +53,11 @@ def main():
                 version="",
                 type=m.get("type", "proprietary"),
                 modalities=m.get("modalities", ["text"]),
+                parameters=m.get("parameters"),
                 release_date=m.get("released_at") or m.get("release_date"),
+                context_window=m.get("context_window"),
+                knowledge_cutoff=m.get("knowledge_cutoff"),
+                languages=m.get("languages"),
             ))
             total_models += 1
 
