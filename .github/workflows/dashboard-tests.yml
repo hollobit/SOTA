@@ -5,11 +5,17 @@ on:
     paths:
       - 'dashboard/js/**'
       - 'dashboard/tests/**'
+      - 'dashboard/**'
+      - 'scripts/**'
+      - 'config/**'
       - '.github/workflows/dashboard-tests.yml'
   pull_request:
     paths:
       - 'dashboard/js/**'
       - 'dashboard/tests/**'
+      - 'dashboard/**'
+      - 'scripts/**'
+      - 'config/**'
   workflow_dispatch:
   schedule:
     - cron: "0 5 * * 1"   # every Monday 05:00 UTC
@@ -81,4 +87,48 @@ jobs:
             git push origin ops
           else
             echo 'No changes to commit'
+          fi
+
+  schema-validate:
+    name: Validate enrichment schema
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install jsonschema pyyaml
+      - name: Validate
+        run: python3 scripts/validate_enrichment.py
+
+  badge-refresh:
+    name: Refresh README badge
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ops
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install pyyaml
+      - name: Update badge
+        run: python3 scripts/update_coverage_badge.py
+      - name: Commit if changed
+        run: |
+          if [[ -n "$(git status --porcelain README.md)" ]]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add README.md
+            git commit -m 'docs(readme): refresh enrichment coverage badge'
+            git push origin ops
+          else
+            echo 'No README changes'
           fi

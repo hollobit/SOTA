@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Model Enrichment Schema",
+  "type": "object",
+  "required": ["schema_version", "models"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "_meta": { "type": "object" },
+    "models": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "architecture": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["dense", "moe", "mixture-of-experts", null] },
+              "total_params_b": { "type": ["number", "null"] },
+              "active_params_b": { "type": ["number", "null"] },
+              "layers": { "type": ["integer", "null"] },
+              "attention": { "type": ["string", "null"] },
+              "attention_pattern": { "type": ["string", "null"] },
+              "experts_total": { "type": ["integer", "null"] },
+              "experts_active": { "type": ["integer", "null"] },
+              "vision_encoder_b": { "type": ["number", "null"] }
+            }
+          },
+          "training": {
+            "type": "object",
+            "properties": {
+              "pretrain_tokens": { "type": ["string", "null"] },
+              "compute_flops": { "type": ["string", "null"] },
+              "phases": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "safety": {
+            "type": "object",
+            "properties": {
+              "aisi_cyber_tier": { "type": ["string", "null"], "enum": ["moderate", "elevated", "concerning", null] },
+              "cbrn_risk": { "type": ["string", "null"] },
+              "self_reported_safety_card": { "type": ["string", "null"], "format": "uri" },
+              "metr_autonomy_50pct": { "type": ["string", "null"] },
+              "apollo_schemer_score": { "type": ["number", "null"], "minimum": 0, "maximum": 1 }
+            }
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "homepage": { "type": ["string", "null"], "format": "uri" },
+              "system_card": { "type": ["string", "null"], "format": "uri" },
+              "model_card": { "type": ["string", "null"], "format": "uri" },
+              "huggingface": { "type": ["string", "null"], "format": "uri" },
+              "paper": { "type": ["string", "null"] },
+              "github": { "type": ["string", "null"], "format": "uri" },
+              "blog": { "type": ["string", "null"], "format": "uri" },
+              "logo": { "type": ["string", "null"], "format": "uri" }
+            }
+          },
+          "pricing": {
+            "type": "object",
+            "properties": {
+              "input": { "type": ["number", "null"], "minimum": 0 },
+              "output": { "type": ["number", "null"], "minimum": 0 },
+              "cached_input": { "type": ["number", "null"] },
+              "currency": { "type": "string", "default": "USD" }
+            }
+          },
+          "benchmarks_meta": {
+            "type": "object",
+            "properties": {
+              "arena_elo": { "type": ["number", "null"] },
+              "arena_elo_source": { "type": ["string", "null"], "format": "uri" },
+              "intelligence_index_override": { "type": ["number", "null"] }
+            }
+          },
+          "quantizations": { "type": "array", "items": { "type": "string" } },
+          "api_providers": { "type": "array", "items": { "type": "string" } },
+          "_sources": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}
