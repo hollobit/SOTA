@@ -425,17 +425,23 @@ var App = {
             history.replaceState(null, '', '#' + btn.dataset.tab);
             if (focusBtn) btn.focus();
 
-            if (btn.dataset.tab === 'overview') self.renderOverview();
-            if (btn.dataset.tab === 'trends') self.renderTrends();
-            if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
-            if (btn.dataset.tab === 'comparison') Comparison.render();
-            if (btn.dataset.tab === 'frontier-compare') FrontierCompare.render(document.getElementById('fc-category').value);
-            if (btn.dataset.tab === 'cyber-coding') CyberCoding.render();
-            if (btn.dataset.tab === 'sovereign' && typeof Sovereign !== 'undefined') Sovereign.render();
-            if (btn.dataset.tab === 'physical-ai' && typeof PhysicalAI !== 'undefined') PhysicalAI.render();
-            if (btn.dataset.tab === 'medical-ai' && typeof MedicalAI !== 'undefined') MedicalAI.render();
-            if (btn.dataset.tab === 'resources') self.renderResources();
-            if (btn.dataset.tab === 'changelog') self.renderChangelog();
+            // Defer renders to next animation frame so the tab's display:block
+            // is reflected in the layout before ECharts measures dimensions.
+            // Without this, charts in newly-shown tabs init with 0x0 size.
+            requestAnimationFrame(function() {
+                if (btn.dataset.tab === 'overview') self.renderOverview();
+                if (btn.dataset.tab === 'trends') self.renderTrends();
+                if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
+                if (btn.dataset.tab === 'comparison') Comparison.render();
+                if (btn.dataset.tab === 'frontier-compare') FrontierCompare.render(document.getElementById('fc-category').value);
+                if (btn.dataset.tab === 'cyber-coding') CyberCoding.render();
+                if (btn.dataset.tab === 'sovereign' && typeof Sovereign !== 'undefined') Sovereign.render();
+                if (btn.dataset.tab === 'physical-ai' && typeof PhysicalAI !== 'undefined') PhysicalAI.render();
+                if (btn.dataset.tab === 'medical-ai' && typeof MedicalAI !== 'undefined') MedicalAI.render();
+                if (btn.dataset.tab === 'resources') self.renderResources();
+                if (btn.dataset.tab === 'changelog') self.renderChangelog();
+                if (typeof Charts !== 'undefined' && Charts.resizeAll) Charts.resizeAll();
+            });
         }
 
         tabBtns.forEach(function(btn, i) {
