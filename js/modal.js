@@ -809,24 +809,43 @@ var Modal = {
         if (!model) return;
         history.replaceState(null, '', '#model/' + modelId);
 
-        // Lazy load enrichment; render synchronously with what we have, then patch
         var _enrichmentPromise = (typeof App !== 'undefined' && App.loadEnrichment)
             ? App.loadEnrichment()
+            : Promise.resolve({});
+        var _hfPromise = (typeof App !== 'undefined' && App.loadHFMetadata)
+            ? App.loadHFMetadata()
             : Promise.resolve({});
 
         var scores = App.data.scores.filter(function(s) { return s.model_id === modelId; });
 
-        var byCategory = {};
-        scores.forEach(function(s) {
-            var bench = App.data.benchmarks.find(function(b) { return b.id === s.benchmark_id; });
-            var cat = bench ? bench.category : 'other';
-            if (!byCategory[cat]) byCategory[cat] = [];
-            byCategory[cat].push({ bench: bench, score: s });
-        });
-
         var container = document.getElementById('modal-content');
         container.textContent = '';
 
+        Modal._renderHeader(container, model, scores);
+        Modal._renderVendorBadge(container, model);
+        var detail = Modal._renderDetailCard(container, model, modelId);
+        Modal._renderRefLinks(container, model);
+        Modal._renderPeerComparison(container, model, modelId);
+        Modal._renderStrengthsWeaknesses(container, modelId);
+        Modal._renderScoreSources(container, scores);
+        Modal._renderVersionHistory(container, model, modelId);
+
+        var enrichSlot = document.createElement('div');
+        enrichSlot.id = 'modal-enrichment-slot';
+        container.appendChild(enrichSlot);
+        Promise.all([_enrichmentPromise, _hfPromise]).then(function(results) {
+            Modal._renderEnrichmentSections(enrichSlot, model, modelId, results[0], results[1] || {}, detail);
+        });
+
+        Modal._renderStrengthsRadar(container, model, modelId);
+        Modal._renderScoreHistory(container, model, modelId);
+        Modal._renderScoreBreakdown(container, modelId, scores);
+
+        Modal._open();
+    },
+
+    // ---- Helper: render h2 title + vendor/type/count badges ----
+    _renderHeader: function(container, model, scores) {
         var h2 = document.createElement('h2');
         h2.id = 'modal-title';
         h2.className = 'text-xl font-bold text-white mb-1';
@@ -854,10 +873,12 @@ var Modal = {
         countBadge.textContent = scores.length + ' benchmarks';
         meta.appendChild(countBadge);
         container.appendChild(meta);
+    },
 
-        // Vendor model count badge (clickable to filter leaderboard by vendor)
+    // ---- Helper: vendor "X tracked models" bar ----
+    _renderVendorBadge: function(container, model) {
         try {
-            var vendorCount = (App.data.models || []).filter(function (mm) {
+            var vendorCount = (App.data.models || []).filter(function(mm) {
                 return mm.vendor === model.vendor;
             }).length;
             if (vendorCount > 1) {
@@ -872,8 +893,10 @@ var Modal = {
                 container.appendChild(vBar);
             }
         } catch (e) { /* non-fatal */ }
+    },
 
-        // ---- Detailed model info card ----
+    // ---- Helper: 2-column detail info card. Returns the detail element. ----
+    _renderDetailCard: function(container, model, modelId) {
         var detail = document.createElement('div');
         detail.className = 'bg-gray-800 rounded-lg p-4 mb-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm';
         function addField(label, value, opts) {
@@ -907,12 +930,9 @@ var Modal = {
             addField('Languages', langText);
         }
         if (model.license) addField('License', model.license);
-
         var pricing = model.pricing || (App.data.pricing && App.data.pricing[modelId]);
         if (pricing) {
-            if (pricing.tokens_per_second != null) {
-                addField('Throughput', pricing.tokens_per_second + ' tokens/sec');
-            }
+            if (pricing.tokens_per_second != null) addField('Throughput', pricing.tokens_per_second + ' tokens/sec');
             if (pricing.input != null) addField('Input price (per 1M tokens)', '$' + pricing.input);
             if (pricing.output != null) addField('Output price (per 1M tokens)', '$' + pricing.output);
             if (pricing.cached_input != null) addField('Cached input', '$' + pricing.cached_input);
@@ -921,9 +941,11 @@ var Modal = {
             addField('Description', model._note || model.notes || model.description, {full: true});
         }
         if (detail.children.length) container.appendChild(detail);
+        return detail;
+    },
 
-        // ---- Reference links — system card / model card / homepage / HF / paper ----
-        // Aggregate from any plausible field name on the model object.
+    // ---- Helper: reference link pills (system card / model card / homepage / HF / paper) ----
+    _renderRefLinks: function(container, model) {
         function pickLinks(m) {
             var links = [];
             function push(label, url, color) {
@@ -931,36 +953,317 @@ var Modal = {
                 if (links.some(function(l) { return l.url === url; })) return;
                 links.push({label: label, url: url, color: color});
             }
-            // System card
             push('📋 System Card', m.system_card || m.system_card_url, 'purple');
-            // Model card
             push('🪪 Model Card', m.model_card || m.model_card_url, 'cyan');
-            // Hugging Face
             push('🤗 HuggingFace', m.huggingface || m.hf_url || m.hf, 'yellow');
-            // Homepage / vendor
             push('🌐 Homepage', m.homepage || m.url || m.vendor_url || m.website, 'blue');
-            // Paper / arxiv
             push('📄 Paper', m.paper || m.paper_url || m.arxiv || m.arxiv_url, 'pink');
-            // GitHub / repo
             push('⚙ GitHub', m.github || m.github_url || m.repo, 'gray');
-            // Blog announcement
             push('📰 Blog', m.blog || m.announcement || m.launch_blog, 'green');
-            // Generic 'links' array (each entry {label, url})
             if (Array.isArray(m.links)) m.links.forEach(function(l) { push(l.label || 'Link', l.url, 'blue'); });
             return links;
         }
         var refLinks = pickLinks(model);
-        if (refLinks.length) {
-            var linksBody = Modal._collapsibleSection(container, 'Reference Links', 'links', true);
-            var linksDiv = document.createElement('div');
-            linksDiv.className = 'flex flex-wrap gap-2';
-            refLinks.forEach(function(l) {
-                var a = document.createElement('a');
-                a.href = l.url;
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-                a.className = 'inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition';
-                var bg = {
+        if (!refLinks.length) return;
+        var linksBody = Modal._collapsibleSection(container, 'Reference Links', 'links', true);
+        var linksDiv = document.createElement('div');
+        linksDiv.className = 'flex flex-wrap gap-2';
+        var bgMap = {
+            purple: 'bg-purple-900 hover:bg-purple-800 text-purple-200',
+            cyan: 'bg-cyan-900 hover:bg-cyan-800 text-cyan-200',
+            yellow: 'bg-yellow-900 hover:bg-yellow-800 text-yellow-200',
+            blue: 'bg-blue-900 hover:bg-blue-800 text-blue-200',
+            pink: 'bg-pink-900 hover:bg-pink-800 text-pink-200',
+            gray: 'bg-gray-700 hover:bg-gray-600 text-gray-200',
+            green: 'bg-green-900 hover:bg-green-800 text-green-200'
+        };
+        refLinks.forEach(function(l) {
+            var a = document.createElement('a');
+            a.href = l.url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = 'inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition ' + (bgMap[l.color] || bgMap.gray);
+            a.textContent = l.label;
+            a.title = l.url;
+            linksDiv.appendChild(a);
+        });
+        linksBody.appendChild(linksDiv);
+    },
+
+    // ---- Helper: Peer Comparison section ----
+    _renderPeerComparison: function(container, model, modelId) {
+        try {
+            var peerCandidates = (window.PeerMatcher && PeerMatcher.findPeers)
+                ? PeerMatcher.findPeers(modelId, App.data.models, App.data.scores, 5)
+                : [];
+            if (peerCandidates.length === 0) return;
+
+            var peerDiv = Modal._collapsibleSection(container, 'Peer Comparison', 'peer', true);
+
+            var picker = document.createElement('div');
+            picker.className = 'flex items-center gap-2 mb-2 text-xs text-gray-400';
+            var pickerLabel = document.createElement('span');
+            pickerLabel.textContent = 'Most similar:';
+            picker.appendChild(pickerLabel);
+            var sel = document.createElement('select');
+            sel.className = 'bg-gray-800 text-gray-200 rounded px-2 py-1 text-xs';
+            peerCandidates.forEach(function(p) {
+                var pm = App.data.models.find(function(m) { return m.id === p.modelId; });
+                var label = (pm ? pm.name : p.modelId) + '  (overlap ' + p.overlap + ', avg d ' + p.avgDelta.toFixed(1) + ')';
+                var opt = document.createElement('option');
+                opt.value = p.modelId;
+                opt.textContent = label;
+                sel.appendChild(opt);
+            });
+            picker.appendChild(sel);
+            var cmpBtn = document.createElement('button');
+            cmpBtn.className = 'ml-2 bg-blue-700 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs';
+            cmpBtn.textContent = 'Compare with peers ↗';
+            cmpBtn.title = 'Open Comparison tab with this model + top 3 peers selected';
+            cmpBtn.onclick = (function(peers, targetId) {
+                return function() {
+                    var ids = [targetId].concat(peers.slice(0, 3).map(function(p) { return p.modelId; }));
+                    var btn = document.getElementById('tabbtn-comparison');
+                    if (btn) btn.click();
+                    setTimeout(function() {
+                        var msel = document.getElementById('cmp-models');
+                        if (!msel) return;
+                        Array.prototype.forEach.call(msel.options, function(o) { o.selected = false; });
+                        ids.forEach(function(id) {
+                            var found = Array.prototype.find.call(msel.options, function(o) { return o.value === id; });
+                            if (found) found.selected = true;
+                        });
+                        if (typeof Comparison !== 'undefined' && Comparison.render) {
+                            if (Comparison._updateCounters) Comparison._updateCounters();
+                            Comparison.render();
+                        }
+                        var modalRoot = document.getElementById('modal');
+                        if (modalRoot) modalRoot.classList.add('hidden');
+                    }, 150);
+                };
+            })(peerCandidates, modelId);
+            picker.appendChild(cmpBtn);
+            peerDiv.appendChild(picker);
+
+            var tableWrap = document.createElement('div');
+            tableWrap.className = 'overflow-x-auto';
+            peerDiv.appendChild(tableWrap);
+
+            var renderPeerTable = function(peerId) {
+                tableWrap.textContent = '';
+                var picked = peerCandidates.find(function(p) { return p.modelId === peerId; });
+                if (!picked) return;
+                var peerScores = {};
+                App.data.scores.forEach(function(s) { if (s.model_id === peerId) peerScores[s.benchmark_id] = s.value; });
+                var targetScores = {};
+                App.data.scores.forEach(function(s) { if (s.model_id === modelId) targetScores[s.benchmark_id] = s.value; });
+
+                var tbl = document.createElement('table');
+                tbl.className = 'w-full text-xs text-gray-200';
+                var thead = document.createElement('thead');
+                var theadRow = document.createElement('tr');
+                theadRow.className = 'text-gray-500 border-b border-gray-700';
+                ['Benchmark', model.name, 'Peer', 'd'].forEach(function(label, idx) {
+                    var th = document.createElement('th');
+                    th.className = idx === 0 ? 'text-left py-1' : 'text-right py-1';
+                    th.textContent = label;
+                    theadRow.appendChild(th);
+                });
+                thead.appendChild(theadRow);
+                tbl.appendChild(thead);
+
+                var tb = document.createElement('tbody');
+                picked.sharedBenches.forEach(function(b) {
+                    var bench = App.data.benchmarks.find(function(x) { return x.id === b; });
+                    var name = bench ? bench.name : b;
+                    var t = targetScores[b];
+                    var p = peerScores[b];
+                    var delta = t - p;
+                    var deltaClass = delta > 0 ? 'text-green-400' : (delta < 0 ? 'text-red-400' : 'text-gray-400');
+                    var sign = delta > 0 ? '+' : '';
+                    var tier = window.PeerMatcher ? PeerMatcher.sotaTier(t, modelId, b, App.data.models, App.data.scores) : null;
+                    var badgeText = tier ? ' ' + (tier.tier === 'sota' ? '*' : (tier.tier === 'top3' ? '+' : '~')) : '';
+                    var tr = document.createElement('tr');
+                    tr.className = 'border-b border-gray-800';
+                    var cName = document.createElement('td'); cName.className = 'py-1'; cName.textContent = name;
+                    var cTarget = document.createElement('td'); cTarget.className = 'text-right py-1'; cTarget.textContent = t.toFixed(1) + badgeText;
+                    var cPeer = document.createElement('td'); cPeer.className = 'text-right py-1 text-gray-400'; cPeer.textContent = p.toFixed(1);
+                    var cDelta = document.createElement('td'); cDelta.className = 'text-right py-1 ' + deltaClass; cDelta.textContent = sign + delta.toFixed(1);
+                    tr.appendChild(cName); tr.appendChild(cTarget); tr.appendChild(cPeer); tr.appendChild(cDelta);
+                    tb.appendChild(tr);
+                });
+                tbl.appendChild(tb);
+                tableWrap.appendChild(tbl);
+
+                var foot = document.createElement('div');
+                foot.className = 'text-xs text-gray-500 mt-1';
+                var avgSign = picked.avgDelta >= 0 ? '+' : '';
+                foot.textContent = 'Avg d ' + avgSign + picked.avgDelta.toFixed(1) + 'pt across ' + picked.overlap + ' shared benchmarks';
+                peerDiv.appendChild(foot);
+            };
+
+            sel.onchange = function() { renderPeerTable(sel.value); };
+            renderPeerTable(peerCandidates[0].modelId);
+        } catch (e) {
+            console.warn('[modal] peer comparison error', e);
+        }
+    },
+
+    // ---- Helper: Strengths & Weaknesses lists ----
+    _renderStrengthsWeaknesses: function(container, modelId) {
+        try {
+            if (!window.PeerMatcher || !PeerMatcher.extractStrengthsWeaknesses) return;
+            var sw = PeerMatcher.extractStrengthsWeaknesses(modelId, App.data.models, App.data.scores);
+
+            if (sw.strengths.length > 0) {
+                var strDiv = Modal._collapsibleSection(container, 'Strengths (12-month SOTA tier)', 'strengths', true);
+                var ul = document.createElement('ul');
+                ul.className = 'text-xs text-gray-200 space-y-1';
+                sw.strengths.forEach(function(r) {
+                    var bench = App.data.benchmarks.find(function(b) { return b.id === r.benchmark_id; });
+                    var name = bench ? bench.name : r.benchmark_id;
+                    var li = document.createElement('li');
+                    li.className = 'flex justify-between border-b border-gray-800 py-1';
+                    var nameSpan = document.createElement('span');
+                    nameSpan.textContent = name;
+                    var valSpan = document.createElement('span');
+                    var bold = document.createElement('strong');
+                    bold.textContent = r.value.toFixed(1);
+                    valSpan.appendChild(bold);
+                    valSpan.appendChild(document.createTextNode(' ' + r.tier.label + ' '));
+                    var rankSpan = document.createElement('span');
+                    rankSpan.className = 'text-gray-500';
+                    rankSpan.textContent = '(' + r.tier.rank + '/' + r.tier.total + ')';
+                    valSpan.appendChild(rankSpan);
+                    li.appendChild(nameSpan);
+                    li.appendChild(valSpan);
+                    ul.appendChild(li);
+                });
+                strDiv.appendChild(ul);
+            }
+
+            if (sw.weaknesses.length > 0) {
+                var weakDiv = Modal._collapsibleSection(container, 'Weaknesses (vs peer avg)', 'weaknesses', true);
+                var wul = document.createElement('ul');
+                wul.className = 'text-xs text-gray-200 space-y-1';
+                sw.weaknesses.forEach(function(r) {
+                    var bench = App.data.benchmarks.find(function(b) { return b.id === r.benchmark_id; });
+                    var name = bench ? bench.name : r.benchmark_id;
+                    var li = document.createElement('li');
+                    li.className = 'flex justify-between border-b border-gray-800 py-1';
+                    var n = document.createElement('span');
+                    n.textContent = name;
+                    var v = document.createElement('span');
+                    v.appendChild(document.createTextNode(r.value.toFixed(1) + '  '));
+                    var avg = document.createElement('span');
+                    avg.className = 'text-gray-500';
+                    avg.textContent = 'peer avg ' + r.peerAvg.toFixed(1) + '  ';
+                    v.appendChild(avg);
+                    var d = document.createElement('span');
+                    d.className = 'text-red-400';
+                    d.textContent = 'd ' + r.delta.toFixed(1);
+                    v.appendChild(d);
+                    li.appendChild(n);
+                    li.appendChild(v);
+                    wul.appendChild(li);
+                });
+                weakDiv.appendChild(wul);
+            }
+        } catch (e) {
+            console.warn('[modal] strengths/weaknesses error', e);
+        }
+    },
+
+    // ---- Helper: Score Sources (deduplicated HTTP source URLs) ----
+    _renderScoreSources: function(container, scores) {
+        var srcUrls = {};
+        scores.forEach(function(s) {
+            var src = s.source && s.source.url;
+            if (src && src.startsWith('http')) srcUrls[src] = (srcUrls[src] || 0) + 1;
+        });
+        var topSrcs = Object.keys(srcUrls).sort(function(a, b) { return srcUrls[b] - srcUrls[a]; }).slice(0, 5);
+        if (!topSrcs.length) return;
+        var srcDiv = Modal._collapsibleSection(container, 'Score Sources (' + topSrcs.length + ' unique)', 'sources', false);
+        var slist = document.createElement('div');
+        slist.className = 'flex flex-wrap gap-1.5';
+        topSrcs.forEach(function(u) {
+            var a = document.createElement('a');
+            a.href = u;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = 'inline-block px-2 py-1 rounded text-xs bg-gray-800 hover:bg-gray-700 text-blue-400 hover:underline';
+            try {
+                var host = new URL(u).hostname.replace(/^www\./, '');
+                a.textContent = host + ' (' + srcUrls[u] + ')';
+            } catch (e) { a.textContent = u.slice(0, 50); }
+            a.title = u;
+            slist.appendChild(a);
+        });
+        srcDiv.appendChild(slist);
+    },
+
+    // ---- Helper: Version History (sibling models) ----
+    _renderVersionHistory: function(container, model, modelId) {
+        try {
+            var stem = modelId.split('/').pop()
+                .replace(/[\d._-]+$/, '')
+                .replace(/-(pro|max|mini|flash|nano|ultra|small|medium|large|haiku|sonnet|opus|preview|beta|thinking|fast|reasoning|chat)$/i, '');
+            if (stem.length < 3) return;
+            var siblings = App.data.models.filter(function(m) {
+                if (m.id === modelId) return false;
+                if (m.vendor !== model.vendor) return false;
+                var sname = m.id.split('/').pop();
+                return sname.toLowerCase().indexOf(stem.toLowerCase()) >= 0;
+            });
+            if (!siblings.length) return;
+            siblings.sort(function(a, b) {
+                var ad = a.release_date || ''; var bd = b.release_date || '';
+                return bd.localeCompare(ad);
+            });
+            var hist = Modal._collapsibleSection(container, 'Version History (' + model.vendor + ')', 'version', false);
+            var list = document.createElement('div');
+            list.className = 'flex flex-wrap gap-1.5';
+            siblings.slice(0, 30).forEach(function(sib) {
+                var pill = document.createElement('span');
+                pill.className = 'inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 cursor-pointer transition';
+                pill.title = sib.id;
+                var rd = sib.release_date ? ' · ' + sib.release_date.slice(0, 7) : '';
+                pill.textContent = sib.name + rd;
+                pill.onclick = (function(mid) { return function() { Modal.showModel(mid); }; })(sib.id);
+                list.appendChild(pill);
+            });
+            hist.appendChild(list);
+        } catch (e) { /* version history is non-fatal */ }
+    },
+
+    // ---- Helper: Enrichment sections (deferred Promise callback content) ----
+    // Called after Promise.all([_enrichmentPromise, _hfPromise]) resolves.
+    _renderEnrichmentSections: function(enrichSlot, model, modelId, enrichmentMap, hfMap, detail) {
+        var entry = enrichmentMap && enrichmentMap[modelId];
+        if (!entry) return;
+
+        // Patch Reference Links + Pricing from enrichment
+        try {
+            var entryLinks = entry.links || {};
+            var entryPricing = entry.pricing || {};
+            var enrichedLinks = [];
+            function pushE(label, url, color) {
+                if (!url || typeof url !== 'string') return;
+                enrichedLinks.push({ label: label, url: url, color: color });
+            }
+            pushE('📋 System Card', entryLinks.system_card, 'purple');
+            pushE('🪪 Model Card', entryLinks.model_card, 'cyan');
+            pushE('🤗 HuggingFace', entryLinks.huggingface, 'yellow');
+            pushE('🌐 Homepage', entryLinks.homepage, 'blue');
+            pushE('📄 Paper', entryLinks.paper, 'pink');
+            pushE('⚙ GitHub', entryLinks.github, 'gray');
+            pushE('📰 Blog', entryLinks.blog, 'green');
+
+            if (enrichedLinks.length) {
+                var linksBody2 = Modal._collapsibleSection(enrichSlot, 'Reference Links', 'links2', true);
+                var linksDiv2 = document.createElement('div');
+                linksDiv2.className = 'flex flex-wrap gap-2';
+                var bgMap = {
                     purple: 'bg-purple-900 hover:bg-purple-800 text-purple-200',
                     cyan: 'bg-cyan-900 hover:bg-cyan-800 text-cyan-200',
                     yellow: 'bg-yellow-900 hover:bg-yellow-800 text-yellow-200',
@@ -968,721 +1271,332 @@ var Modal = {
                     pink: 'bg-pink-900 hover:bg-pink-800 text-pink-200',
                     gray: 'bg-gray-700 hover:bg-gray-600 text-gray-200',
                     green: 'bg-green-900 hover:bg-green-800 text-green-200'
-                }[l.color] || 'bg-gray-700 hover:bg-gray-600 text-gray-200';
-                a.className += ' ' + bg;
-                a.textContent = l.label;
-                a.title = l.url;
-                linksDiv.appendChild(a);
-            });
-            linksBody.appendChild(linksDiv);
-        }
-
-        // ---- Peer Comparison (NEW) ----
-        try {
-            var peerCandidates = (window.PeerMatcher && PeerMatcher.findPeers)
-                ? PeerMatcher.findPeers(modelId, App.data.models, App.data.scores, 5)
-                : [];
-            if (peerCandidates.length > 0) {
-                var peerDiv = Modal._collapsibleSection(container, 'Peer Comparison', 'peer', true);
-
-                var picker = document.createElement('div');
-                picker.className = 'flex items-center gap-2 mb-2 text-xs text-gray-400';
-                var pickerLabel = document.createElement('span');
-                pickerLabel.textContent = 'Most similar:';
-                picker.appendChild(pickerLabel);
-                var sel = document.createElement('select');
-                sel.className = 'bg-gray-800 text-gray-200 rounded px-2 py-1 text-xs';
-                peerCandidates.forEach(function (p) {
-                    var pm = App.data.models.find(function (m) { return m.id === p.modelId; });
-                    var label = (pm ? pm.name : p.modelId) + '  (overlap ' + p.overlap + ', avg d ' + p.avgDelta.toFixed(1) + ')';
-                    var opt = document.createElement('option');
-                    opt.value = p.modelId;
-                    opt.textContent = label;
-                    sel.appendChild(opt);
-                });
-                picker.appendChild(sel);
-                // NEW: Quick "Compare with peers" button — jumps to Comparison tab pre-selected
-                var cmpBtn = document.createElement('button');
-                cmpBtn.className = 'ml-2 bg-blue-700 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs';
-                cmpBtn.textContent = 'Compare with peers ↗';
-                cmpBtn.title = 'Open Comparison tab with this model + top 3 peers selected';
-                cmpBtn.onclick = (function (peers, targetId) {
-                    return function () {
-                        var ids = [targetId].concat(peers.slice(0, 3).map(function (p) { return p.modelId; }));
-                        // Switch to comparison tab
-                        var btn = document.getElementById('tabbtn-comparison');
-                        if (btn) btn.click();
-                        // Pre-select these models
-                        setTimeout(function () {
-                            var msel = document.getElementById('cmp-models');
-                            if (!msel) return;
-                            Array.prototype.forEach.call(msel.options, function (o) { o.selected = false; });
-                            ids.forEach(function (id) {
-                                var found = Array.prototype.find.call(msel.options, function (o) { return o.value === id; });
-                                if (found) found.selected = true;
-                            });
-                            // Trigger comparison render
-                            if (typeof Comparison !== 'undefined' && Comparison.render) {
-                                if (Comparison._updateCounters) Comparison._updateCounters();
-                                Comparison.render();
-                            }
-                            // Close modal
-                            var modalRoot = document.getElementById('modal');
-                            if (modalRoot) modalRoot.classList.add('hidden');
-                        }, 150);
-                    };
-                })(peerCandidates, modelId);
-                picker.appendChild(cmpBtn);
-                peerDiv.appendChild(picker);
-
-                var tableWrap = document.createElement('div');
-                tableWrap.className = 'overflow-x-auto';
-                peerDiv.appendChild(tableWrap);
-
-                var renderPeerTable = function (peerId) {
-                    tableWrap.textContent = '';
-                    var picked = peerCandidates.find(function (p) { return p.modelId === peerId; });
-                    if (!picked) return;
-                    var peerScores = {};
-                    App.data.scores.forEach(function (s) {
-                        if (s.model_id === peerId) peerScores[s.benchmark_id] = s.value;
-                    });
-                    var targetScores = {};
-                    App.data.scores.forEach(function (s) {
-                        if (s.model_id === modelId) targetScores[s.benchmark_id] = s.value;
-                    });
-
-                    var tbl = document.createElement('table');
-                    tbl.className = 'w-full text-xs text-gray-200';
-                    var thead = document.createElement('thead');
-                    var theadRow = document.createElement('tr');
-                    theadRow.className = 'text-gray-500 border-b border-gray-700';
-                    ['Benchmark', model.name, 'Peer', 'd'].forEach(function (label, idx) {
-                        var th = document.createElement('th');
-                        th.className = idx === 0 ? 'text-left py-1' : 'text-right py-1';
-                        th.textContent = label;
-                        theadRow.appendChild(th);
-                    });
-                    thead.appendChild(theadRow);
-                    tbl.appendChild(thead);
-
-                    var tb = document.createElement('tbody');
-                    picked.sharedBenches.forEach(function (b) {
-                        var bench = App.data.benchmarks.find(function (x) { return x.id === b; });
-                        var name = bench ? bench.name : b;
-                        var t = targetScores[b];
-                        var p = peerScores[b];
-                        var delta = t - p;
-                        var deltaClass = delta > 0 ? 'text-green-400' : (delta < 0 ? 'text-red-400' : 'text-gray-400');
-                        var sign = delta > 0 ? '+' : '';
-                        var tier = window.PeerMatcher
-                            ? PeerMatcher.sotaTier(t, modelId, b, App.data.models, App.data.scores)
-                            : null;
-                        var badgeText = tier ? ' ' + (tier.tier === 'sota' ? '*' : (tier.tier === 'top3' ? '+' : '~')) : '';
-                        var tr = document.createElement('tr');
-                        tr.className = 'border-b border-gray-800';
-
-                        var cName = document.createElement('td'); cName.className = 'py-1'; cName.textContent = name;
-                        var cTarget = document.createElement('td'); cTarget.className = 'text-right py-1'; cTarget.textContent = t.toFixed(1) + badgeText;
-                        var cPeer = document.createElement('td'); cPeer.className = 'text-right py-1 text-gray-400'; cPeer.textContent = p.toFixed(1);
-                        var cDelta = document.createElement('td'); cDelta.className = 'text-right py-1 ' + deltaClass; cDelta.textContent = sign + delta.toFixed(1);
-
-                        tr.appendChild(cName); tr.appendChild(cTarget); tr.appendChild(cPeer); tr.appendChild(cDelta);
-                        tb.appendChild(tr);
-                    });
-                    tbl.appendChild(tb);
-                    tableWrap.appendChild(tbl);
-
-                    var foot = document.createElement('div');
-                    foot.className = 'text-xs text-gray-500 mt-1';
-                    var avgSign = picked.avgDelta >= 0 ? '+' : '';
-                    foot.textContent = 'Avg d ' + avgSign + picked.avgDelta.toFixed(1) + 'pt across ' + picked.overlap + ' shared benchmarks';
-                    peerDiv.appendChild(foot);
                 };
+                enrichedLinks.forEach(function(l) {
+                    var a = document.createElement('a');
+                    a.href = l.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+                    a.className = 'inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition ' + (bgMap[l.color] || bgMap.gray);
+                    a.textContent = l.label; a.title = l.url;
+                    linksDiv2.appendChild(a);
+                });
+                linksBody2.appendChild(linksDiv2);
+            }
 
-                sel.onchange = function () { renderPeerTable(sel.value); };
-                renderPeerTable(peerCandidates[0].modelId);
+            if ((entryPricing.input != null || entryPricing.output != null || entryPricing.cached_input != null) && detail) {
+                var priceBody = Modal._collapsibleSection(enrichSlot, 'Pricing (per 1M tokens, ' + (entryPricing.currency || 'USD') + ')', 'pricing', false);
+                var priceCard = document.createElement('div');
+                priceCard.className = 'bg-gray-800 rounded-lg p-4';
+                function priceRow(label, value) {
+                    if (value == null) return;
+                    var r = document.createElement('div');
+                    r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                    var l = document.createElement('div'); l.className = 'text-gray-500 col-span-1'; l.textContent = label; r.appendChild(l);
+                    var v = document.createElement('div'); v.className = 'text-gray-200 col-span-2'; v.textContent = '$' + value; r.appendChild(v);
+                    priceCard.appendChild(r);
+                }
+                priceRow('Input', entryPricing.input);
+                priceRow('Output', entryPricing.output);
+                priceRow('Cached input', entryPricing.cached_input);
+                priceBody.appendChild(priceCard);
             }
         } catch (e) {
-            console.warn('[modal] peer comparison error', e);
+            console.warn('[modal] enrichment links/pricing patch error', e);
         }
 
-        // ---- Strengths & Weaknesses (NEW) ----
+        // Performance & Cost
         try {
-            if (window.PeerMatcher && PeerMatcher.extractStrengthsWeaknesses) {
-                var sw = PeerMatcher.extractStrengthsWeaknesses(modelId, App.data.models, App.data.scores);
+            var bm = entry.benchmarks_meta || {};
+            var pricingFromEnrich = entry.pricing || {};
+            var aaPricing = (App.data.pricing && App.data.pricing[modelId]) || {};
+            var inputPrice = pricingFromEnrich.input != null ? pricingFromEnrich.input : aaPricing.input;
+            var outputPrice = pricingFromEnrich.output != null ? pricingFromEnrich.output : aaPricing.output;
+            var intelligenceIdx = bm.intelligence_index_override != null ? bm.intelligence_index_override : aaPricing.intelligence_index;
+            var arenaElo = bm.arena_elo;
+            var throughput = aaPricing.tokens_per_second;
 
-                if (sw.strengths.length > 0) {
-                    var strDiv = Modal._collapsibleSection(container, 'Strengths (12-month SOTA tier)', 'strengths', true);
-                    var ul = document.createElement('ul');
-                    ul.className = 'text-xs text-gray-200 space-y-1';
-                    sw.strengths.forEach(function (r) {
-                        var bench = App.data.benchmarks.find(function (b) { return b.id === r.benchmark_id; });
-                        var name = bench ? bench.name : r.benchmark_id;
-                        var li = document.createElement('li');
-                        li.className = 'flex justify-between border-b border-gray-800 py-1';
-                        var nameSpan = document.createElement('span');
-                        nameSpan.textContent = name;
-                        var valSpan = document.createElement('span');
-                        var bold = document.createElement('strong');
-                        bold.textContent = r.value.toFixed(1);
-                        valSpan.appendChild(bold);
-                        valSpan.appendChild(document.createTextNode(' ' + r.tier.label + ' '));
-                        var rankSpan = document.createElement('span');
-                        rankSpan.className = 'text-gray-500';
-                        rankSpan.textContent = '(' + r.tier.rank + '/' + r.tier.total + ')';
-                        valSpan.appendChild(rankSpan);
-                        li.appendChild(nameSpan);
-                        li.appendChild(valSpan);
-                        ul.appendChild(li);
-                    });
-                    strDiv.appendChild(ul);
-                }
-
-                if (sw.weaknesses.length > 0) {
-                    var weakDiv = Modal._collapsibleSection(container, 'Weaknesses (vs peer avg)', 'weaknesses', true);
-                    var wul = document.createElement('ul');
-                    wul.className = 'text-xs text-gray-200 space-y-1';
-                    sw.weaknesses.forEach(function (r) {
-                        var bench = App.data.benchmarks.find(function (b) { return b.id === r.benchmark_id; });
-                        var name = bench ? bench.name : r.benchmark_id;
-                        var li = document.createElement('li');
-                        li.className = 'flex justify-between border-b border-gray-800 py-1';
-                        var n = document.createElement('span');
-                        n.textContent = name;
-                        var v = document.createElement('span');
-                        v.appendChild(document.createTextNode(r.value.toFixed(1) + '  '));
-                        var avg = document.createElement('span');
-                        avg.className = 'text-gray-500';
-                        avg.textContent = 'peer avg ' + r.peerAvg.toFixed(1) + '  ';
-                        v.appendChild(avg);
-                        var d = document.createElement('span');
-                        d.className = 'text-red-400';
-                        d.textContent = 'd ' + r.delta.toFixed(1);
-                        v.appendChild(d);
-                        li.appendChild(n);
-                        li.appendChild(v);
-                        wul.appendChild(li);
-                    });
-                    weakDiv.appendChild(wul);
+            var ageDays = null, ageStr = null;
+            if (model.release_date || model.released_at) {
+                var releaseStr = model.release_date || model.released_at;
+                var rd = new Date(releaseStr);
+                if (!isNaN(rd.getTime())) {
+                    ageDays = Math.floor((Date.now() - rd.getTime()) / 86400000);
+                    if (ageDays < 30) ageStr = ageDays + ' days ago';
+                    else if (ageDays < 365) ageStr = Math.floor(ageDays / 30) + ' months ago';
+                    else ageStr = (ageDays / 365).toFixed(1) + ' years ago';
                 }
             }
+
+            var cadenceStr = null;
+            try {
+                var sameVendor = (App.data.models || []).filter(function(mm) {
+                    return mm.vendor === model.vendor && (mm.release_date || mm.released_at);
+                }).map(function(mm) { return new Date(mm.release_date || mm.released_at); })
+                  .filter(function(d) { return !isNaN(d.getTime()); })
+                  .sort(function(a, b) { return a - b; });
+                if (sameVendor.length >= 3) {
+                    var gaps = [];
+                    for (var gi = 1; gi < sameVendor.length; gi++) gaps.push((sameVendor[gi] - sameVendor[gi-1]) / 86400000);
+                    var avgGap = gaps.reduce(function(a, b) { return a + b; }, 0) / gaps.length;
+                    if (avgGap > 0) cadenceStr = 'Avg ' + Math.round(avgGap) + ' days between vendor releases';
+                }
+            } catch (e) { /* cadence non-fatal */ }
+
+            var costPerIQ = null;
+            if (intelligenceIdx && intelligenceIdx > 0 && inputPrice != null) {
+                var blendedCost = inputPrice + (outputPrice != null ? outputPrice * 5 : 0);
+                costPerIQ = (blendedCost / intelligenceIdx).toFixed(3);
+            }
+
+            var peerInputMedian = null, peerOutputMedian = null, pricePosition = null;
+            try {
+                var pmap = App.data.pricing || {};
+                var peerInputs = [], peerOutputs = [];
+                Object.keys(pmap).forEach(function(mid) {
+                    if (mid === modelId) return;
+                    var p = pmap[mid];
+                    if (p && typeof p.input === 'number') peerInputs.push(p.input);
+                    if (p && typeof p.output === 'number') peerOutputs.push(p.output);
+                });
+                function median(arr) {
+                    if (!arr.length) return null;
+                    var s = arr.slice().sort(function(a, b) { return a - b; });
+                    var mid = Math.floor(s.length / 2);
+                    return s.length % 2 ? s[mid] : (s[mid-1] + s[mid]) / 2;
+                }
+                peerInputMedian = median(peerInputs);
+                peerOutputMedian = median(peerOutputs);
+                if (inputPrice != null && peerInputMedian != null) {
+                    var ratio = inputPrice / peerInputMedian;
+                    if (ratio < 0.5) pricePosition = 'Significantly cheaper';
+                    else if (ratio < 0.85) pricePosition = 'Below peer median';
+                    else if (ratio < 1.15) pricePosition = 'Near peer median';
+                    else if (ratio < 2.0) pricePosition = 'Above peer median';
+                    else pricePosition = 'Significantly pricier';
+                }
+            } catch (e) { /* peer comp non-fatal */ }
+
+            if (intelligenceIdx != null || arenaElo != null || ageStr || costPerIQ != null || cadenceStr || pricePosition) {
+                var perfBody = Modal._collapsibleSection(enrichSlot, 'Performance & Cost', 'perfcost', false);
+                var perfCard = document.createElement('div');
+                perfCard.className = 'bg-gray-800 rounded-lg p-4';
+
+                function perfRow(label, value, hint) {
+                    if (value == null || value === '') return;
+                    var r = document.createElement('div');
+                    r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                    var l = document.createElement('div'); l.className = 'text-gray-500 col-span-1'; l.textContent = label; r.appendChild(l);
+                    var v = document.createElement('div'); v.className = 'text-gray-200 col-span-2'; v.textContent = String(value);
+                    if (hint) { var hintSpan = document.createElement('span'); hintSpan.className = 'ml-2 text-gray-500'; hintSpan.textContent = '(' + hint + ')'; v.appendChild(hintSpan); }
+                    r.appendChild(v);
+                    perfCard.appendChild(r);
+                }
+
+                if (intelligenceIdx != null) perfRow('Intelligence Index', intelligenceIdx, 'Artificial Analysis');
+                if (arenaElo != null) {
+                    var eloLabel = arenaElo;
+                    if (bm.arena_elo_source) eloLabel = arenaElo + '';
+                    perfRow('LMSys Arena Elo', eloLabel, 'lmarena.ai');
+                }
+                if (throughput != null) perfRow('Throughput', throughput + ' tokens/sec');
+                if (ageStr) perfRow('Released', ageStr, model.release_date);
+                if (cadenceStr) perfRow('Vendor cadence', cadenceStr);
+                if (costPerIQ != null) {
+                    perfRow('Cost / IQ point', '$' + costPerIQ, 'blended input+5×output / Intelligence Index');
+                    try {
+                        var pmap2 = App.data.pricing || {};
+                        var peerCosts = [];
+                        Object.keys(pmap2).forEach(function(mid) {
+                            var p = pmap2[mid];
+                            if (!p || !p.intelligence_index || !p.input) return;
+                            var peerBlended = p.input + (p.output != null ? p.output * 5 : 0);
+                            peerCosts.push(peerBlended / p.intelligence_index);
+                        });
+                        if (peerCosts.length >= 5) {
+                            peerCosts.sort(function(a, b) { return a - b; });
+                            var pmin = peerCosts[0];
+                            var pmax = peerCosts[peerCosts.length - 1];
+                            var thisCost = parseFloat(costPerIQ);
+                            var pos = Math.max(0, Math.min(1, (thisCost - pmin) / (pmax - pmin)));
+                            var barWrap = document.createElement('div');
+                            barWrap.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                            var lblBar = document.createElement('div'); lblBar.className = 'text-gray-500 col-span-1'; lblBar.textContent = 'Cost position'; barWrap.appendChild(lblBar);
+                            var barCell = document.createElement('div'); barCell.className = 'col-span-2';
+                            var barTrack = document.createElement('div');
+                            barTrack.style.cssText = 'position:relative;background:#1f2937;height:8px;border-radius:4px;overflow:hidden';
+                            var barFill = document.createElement('div');
+                            barFill.style.cssText = 'position:absolute;top:0;left:0;height:100%;width:' + (pos * 100).toFixed(1) + '%;background:' + (pos < 0.33 ? '#10b981' : (pos < 0.66 ? '#f59e0b' : '#ef4444'));
+                            barTrack.appendChild(barFill); barCell.appendChild(barTrack);
+                            var captionBar = document.createElement('div');
+                            captionBar.className = 'text-xs text-gray-500 mt-0.5';
+                            captionBar.textContent = 'Cheaper $' + pmin.toFixed(2) + ' ← peer range → $' + pmax.toFixed(2) + ' Pricier';
+                            barCell.appendChild(captionBar); barWrap.appendChild(barCell);
+                            perfCard.appendChild(barWrap);
+                        }
+                    } catch (e) { /* mini bar non-fatal */ }
+                }
+                if (pricePosition && peerInputMedian != null) {
+                    perfRow('Price position', pricePosition, 'peer median input $' + peerInputMedian.toFixed(2) + '/M');
+                }
+
+                try {
+                    var latest = null;
+                    for (var sfi = 0; sfi < App.data.scores.length; sfi++) {
+                        var sf = App.data.scores[sfi];
+                        if (sf.model_id !== modelId) continue;
+                        var d = sf.source && sf.source.date;
+                        if (d && (!latest || d > latest)) latest = d;
+                    }
+                    if (latest) {
+                        var now = new Date();
+                        var dl = new Date(latest);
+                        if (!isNaN(dl.getTime())) {
+                            var dayDiff = Math.floor((now - dl) / 86400000);
+                            var freshLabel;
+                            if (dayDiff < 1) freshLabel = 'today';
+                            else if (dayDiff < 7) freshLabel = dayDiff + ' days ago';
+                            else if (dayDiff < 60) freshLabel = Math.floor(dayDiff / 7) + ' weeks ago';
+                            else freshLabel = Math.floor(dayDiff / 30) + ' months ago';
+                            perfRow('Data freshness', freshLabel, 'most recent score: ' + latest);
+                        }
+                    }
+                } catch (e) { /* freshness non-fatal */ }
+
+                try {
+                    var entryArchForClass = entry.architecture || {};
+                    var pb = entryArchForClass.total_params_b;
+                    if (!pb && model.parameters) {
+                        var pmatch = String(model.parameters).match(/(\d+(?:\.\d+)?)\s*B/i);
+                        if (pmatch) pb = parseFloat(pmatch[1]);
+                    }
+                    if (pb) {
+                        var classMin, classMax, classLabel;
+                        if (pb < 10) { classMin = 0; classMax = 10; classLabel = '<10B'; }
+                        else if (pb < 50) { classMin = 10; classMax = 50; classLabel = '10-50B'; }
+                        else if (pb < 200) { classMin = 50; classMax = 200; classLabel = '50-200B'; }
+                        else if (pb < 700) { classMin = 200; classMax = 700; classLabel = '200-700B'; }
+                        else { classMin = 700; classMax = Infinity; classLabel = '700B+'; }
+                        var classCount = 0;
+                        Object.keys(enrichmentMap).forEach(function(mid) {
+                            var ma = (enrichmentMap[mid].architecture || {}).total_params_b;
+                            if (typeof ma === 'number' && ma >= classMin && ma < classMax) classCount++;
+                        });
+                        if (classCount >= 2) perfRow('Same-class peers', classCount + ' models', classLabel + ' parameter range');
+                    }
+                } catch (e) { /* class peer non-fatal */ }
+
+                try {
+                    var totalBench = (App.data.benchmarks || []).length;
+                    var modelBenchSet = {};
+                    for (var bsi = 0; bsi < App.data.scores.length; bsi++) {
+                        if (App.data.scores[bsi].model_id === modelId) modelBenchSet[App.data.scores[bsi].benchmark_id] = true;
+                    }
+                    var modelBenchCount = Object.keys(modelBenchSet).length;
+                    if (totalBench > 0 && modelBenchCount > 0) {
+                        var pctCov = (modelBenchCount / totalBench * 100).toFixed(1);
+                        perfRow('Benchmark coverage', modelBenchCount + ' / ' + totalBench + ' benchmarks (' + pctCov + '%)');
+                    }
+                } catch (e) { /* coverage non-fatal */ }
+
+                try {
+                    var hf = hfMap[modelId];
+                    if (hf) {
+                        if (hf.downloads_30d != null) perfRow('HF downloads (30d)', hf.downloads_30d.toLocaleString(), 'huggingface.co');
+                        if (hf.likes != null) perfRow('HF likes', hf.likes.toLocaleString());
+                        if (hf.total_size_bytes != null) {
+                            var gb = (hf.total_size_bytes / 1e9).toFixed(1);
+                            perfRow('HF repo size', gb + ' GB', (hf.file_count || '?') + ' files');
+                        }
+                        if (hf.last_modified) perfRow('HF last update', String(hf.last_modified).slice(0, 10));
+                    }
+                } catch (e) { /* hf metadata non-fatal */ }
+
+                perfBody.appendChild(perfCard);
+            }
         } catch (e) {
-            console.warn('[modal] strengths/weaknesses error', e);
+            console.warn('[modal] performance & cost section error', e);
         }
 
-        // ---- Source URLs from this model's score rows (deduplicated) ----
-        var srcUrls = {};
-        scores.forEach(function(s) {
-            var src = s.source && s.source.url;
-            if (src && src.startsWith('http')) srcUrls[src] = (srcUrls[src] || 0) + 1;
-        });
-        var topSrcs = Object.keys(srcUrls).sort(function(a, b) { return srcUrls[b] - srcUrls[a]; }).slice(0, 5);
-        if (topSrcs.length) {
-            var srcDiv = Modal._collapsibleSection(container, 'Score Sources (' + topSrcs.length + ' unique)', 'sources', false);
-            var slist = document.createElement('div');
-            slist.className = 'flex flex-wrap gap-1.5';
-            topSrcs.forEach(function(u) {
-                var a = document.createElement('a');
-                a.href = u;
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-                a.className = 'inline-block px-2 py-1 rounded text-xs bg-gray-800 hover:bg-gray-700 text-blue-400 hover:underline';
-                try {
-                    var host = new URL(u).hostname.replace(/^www\./, '');
-                    a.textContent = host + ' (' + srcUrls[u] + ')';
-                } catch (e) { a.textContent = u.slice(0, 50); }
-                a.title = u;
-                slist.appendChild(a);
+        // Architecture / Training / Safety
+        var arch = entry.architecture || {};
+        var train = entry.training || {};
+        var safety = entry.safety || {};
+        var quants = entry.quantizations || [];
+        var providers = entry.api_providers || [];
+        var anyArch = arch.type || arch.total_params_b || arch.attention || arch.attention_pattern || arch.experts_total;
+        var anyTrain = train.pretrain_tokens || train.compute_flops || (train.phases && train.phases.length);
+        var anySafety = safety.aisi_cyber_tier || safety.cbrn_risk || safety.self_reported_safety_card;
+        var anyQuant = quants.length > 0;
+        var anyProv = providers.length > 0;
+        if (!(anyArch || anyTrain || anySafety || anyQuant || anyProv)) return;
+
+        var archBody = Modal._collapsibleSection(enrichSlot, 'Architecture / Training / Safety', 'architecture', false);
+        var card = document.createElement('div');
+        card.className = 'bg-gray-800 rounded-lg p-4';
+
+        function row(label, value) {
+            if (value == null || value === '' || (Array.isArray(value) && value.length === 0)) return;
+            var r = document.createElement('div');
+            r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+            var l = document.createElement('div'); l.className = 'text-gray-500 col-span-1'; l.textContent = label; r.appendChild(l);
+            var v = document.createElement('div'); v.className = 'text-gray-200 col-span-2';
+            v.textContent = Array.isArray(value) ? value.join(', ') : String(value);
+            r.appendChild(v);
+            card.appendChild(r);
+        }
+
+        if (anyArch) {
+            row('Architecture', arch.type ? arch.type.toUpperCase() : null);
+            if (arch.total_params_b != null) {
+                var paramsLabel = arch.total_params_b + 'B';
+                if (arch.active_params_b != null) paramsLabel += ' total / ' + arch.active_params_b + 'B active';
+                if (arch.vision_encoder_b != null) paramsLabel += ' (+' + arch.vision_encoder_b + 'B vision)';
+                row('Parameters', paramsLabel);
+            }
+            if (arch.layers != null) row('Layers', arch.layers);
+            if (arch.attention != null) row('Attention', arch.attention.toUpperCase().replace(/_/g, ' '));
+            if (arch.attention_pattern != null) row('Pattern', arch.attention_pattern);
+            if (arch.experts_total != null) {
+                var expLabel = arch.experts_total + ' experts';
+                if (arch.experts_active != null) expLabel += ', ' + arch.experts_active + ' active';
+                row('Experts', expLabel);
+            }
+        }
+        if (anyTrain) {
+            row('Pretrain tokens', train.pretrain_tokens);
+            row('Compute (FLOPs)', train.compute_flops);
+            if (train.phases && train.phases.length) row('Phases', train.phases);
+        }
+        if (anySafety) {
+            row('AISI cyber tier', safety.aisi_cyber_tier);
+            row('CBRN risk', safety.cbrn_risk);
+            if (safety.self_reported_safety_card) {
+                var sr = document.createElement('div'); sr.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                var sl = document.createElement('div'); sl.className = 'text-gray-500 col-span-1'; sl.textContent = 'Safety card'; sr.appendChild(sl);
+                var sv = document.createElement('div'); sv.className = 'col-span-2';
+                var sa = document.createElement('a'); sa.href = safety.self_reported_safety_card; sa.target = '_blank'; sa.rel = 'noopener';
+                sa.className = 'text-blue-400 hover:underline';
+                sa.textContent = safety.self_reported_safety_card.replace(/^https?:\/\//, '').slice(0, 60);
+                sv.appendChild(sa); sr.appendChild(sv); card.appendChild(sr);
+            }
+        }
+        if (anyQuant) {
+            var paramsBNum = arch.total_params_b || arch.active_params_b;
+            var quantStrs = quants.map(function(q) {
+                var qup = q.toUpperCase();
+                if (!paramsBNum) return qup;
+                var bytesPerParam = { fp16: 2, bf16: 2, fp8: 1, awq: 0.5, gguf: 0.6, int8: 1, int4: 0.5 }[q.toLowerCase()];
+                if (bytesPerParam) return qup + ' (~' + (paramsBNum * bytesPerParam).toFixed(1) + 'GB)';
+                return qup;
             });
-            srcDiv.appendChild(slist);
+            row('Quantizations', quantStrs);
         }
+        if (anyProv) row('API providers', providers);
+        archBody.appendChild(card);
+    },
 
-        // ---- Version history (sibling models from same vendor with similar id stem) ----
+    // ---- Helper: Strengths Radar ECharts ----
+    _renderStrengthsRadar: function(container, model, modelId) {
         try {
-            var stem = modelId.split('/').pop().replace(/[\d._-]+$/, '').replace(/-(pro|max|mini|flash|nano|ultra|small|medium|large|haiku|sonnet|opus|preview|beta|thinking|fast|reasoning|chat)$/i, '');
-            if (stem.length >= 3) {
-                var siblings = App.data.models.filter(function(m) {
-                    if (m.id === modelId) return false;
-                    if (m.vendor !== model.vendor) return false;
-                    var sname = m.id.split('/').pop();
-                    return sname.toLowerCase().indexOf(stem.toLowerCase()) >= 0;
-                });
-                if (siblings.length) {
-                    siblings.sort(function(a, b) {
-                        var ad = a.release_date || ''; var bd = b.release_date || '';
-                        return bd.localeCompare(ad);
-                    });
-                    var hist = Modal._collapsibleSection(container, 'Version History (' + model.vendor + ')', 'version', false);
-                    var list = document.createElement('div');
-                    list.className = 'flex flex-wrap gap-1.5';
-                    siblings.slice(0, 30).forEach(function(sib) {
-                        var pill = document.createElement('span');
-                        pill.className = 'inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 cursor-pointer transition';
-                        pill.title = sib.id;
-                        var rd = sib.release_date ? ' · ' + sib.release_date.slice(0, 7) : '';
-                        pill.textContent = sib.name + rd;
-                        pill.onclick = (function(mid) { return function() { Modal.showModel(mid); }; })(sib.id);
-                        list.appendChild(pill);
-                    });
-                    hist.appendChild(list);
-                }
-            }
-        } catch (e) { /* version history is non-fatal */ }
-
-        // ---- Architecture / Training / Safety (NEW, deferred) ----
-        var enrichSlot = document.createElement('div');
-        enrichSlot.id = 'modal-enrichment-slot';
-        container.appendChild(enrichSlot);
-        Promise.all([
-            _enrichmentPromise,
-            (typeof App !== 'undefined' && App.loadHFMetadata) ? App.loadHFMetadata() : Promise.resolve({})
-        ]).then(function (results) {
-            var enrichmentMap = results[0];
-            var hfMap = results[1] || {};
-            var entry = enrichmentMap && enrichmentMap[modelId];
-            if (!entry) return;
-
-            // ---- Patch Reference Links + Pricing from enrichment ----
-            try {
-                var entryLinks = entry.links || {};
-                var entryPricing = entry.pricing || {};
-
-                // Augment Reference Links if any enrichment URLs present
-                var enrichedLinks = [];
-                function pushE(label, url, color) {
-                    if (!url || typeof url !== 'string') return;
-                    enrichedLinks.push({ label: label, url: url, color: color });
-                }
-                pushE('📋 System Card', entryLinks.system_card, 'purple');
-                pushE('🪪 Model Card', entryLinks.model_card, 'cyan');
-                pushE('🤗 HuggingFace', entryLinks.huggingface, 'yellow');
-                pushE('🌐 Homepage', entryLinks.homepage, 'blue');
-                pushE('📄 Paper', entryLinks.paper, 'pink');
-                pushE('⚙ GitHub', entryLinks.github, 'gray');
-                pushE('📰 Blog', entryLinks.blog, 'green');
-
-                if (enrichedLinks.length) {
-                    var linksBody2 = Modal._collapsibleSection(enrichSlot, 'Reference Links', 'links2', true);
-                    var linksDiv2 = document.createElement('div');
-                    linksDiv2.className = 'flex flex-wrap gap-2';
-                    var bgMap = {
-                        purple: 'bg-purple-900 hover:bg-purple-800 text-purple-200',
-                        cyan: 'bg-cyan-900 hover:bg-cyan-800 text-cyan-200',
-                        yellow: 'bg-yellow-900 hover:bg-yellow-800 text-yellow-200',
-                        blue: 'bg-blue-900 hover:bg-blue-800 text-blue-200',
-                        pink: 'bg-pink-900 hover:bg-pink-800 text-pink-200',
-                        gray: 'bg-gray-700 hover:bg-gray-600 text-gray-200',
-                        green: 'bg-green-900 hover:bg-green-800 text-green-200'
-                    };
-                    enrichedLinks.forEach(function (l) {
-                        var a = document.createElement('a');
-                        a.href = l.url;
-                        a.target = '_blank';
-                        a.rel = 'noopener noreferrer';
-                        a.className = 'inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition ' + (bgMap[l.color] || bgMap.gray);
-                        a.textContent = l.label;
-                        a.title = l.url;
-                        linksDiv2.appendChild(a);
-                    });
-                    linksBody2.appendChild(linksDiv2);
-                }
-
-                // Augment Pricing rows in the existing detail card if enrichment has prices
-                if ((entryPricing.input != null || entryPricing.output != null || entryPricing.cached_input != null) && detail) {
-                    var priceBody = Modal._collapsibleSection(enrichSlot, 'Pricing (per 1M tokens, ' + (entryPricing.currency || 'USD') + ')', 'pricing', false);
-                    var priceCard = document.createElement('div');
-                    priceCard.className = 'bg-gray-800 rounded-lg p-4';
-                    function priceRow(label, value) {
-                        if (value == null) return;
-                        var r = document.createElement('div');
-                        r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
-                        var l = document.createElement('div');
-                        l.className = 'text-gray-500 col-span-1';
-                        l.textContent = label;
-                        r.appendChild(l);
-                        var v = document.createElement('div');
-                        v.className = 'text-gray-200 col-span-2';
-                        v.textContent = '$' + value;
-                        r.appendChild(v);
-                        priceCard.appendChild(r);
-                    }
-                    priceRow('Input', entryPricing.input);
-                    priceRow('Output', entryPricing.output);
-                    priceRow('Cached input', entryPricing.cached_input);
-                    priceBody.appendChild(priceCard);
-                }
-            } catch (e) {
-                console.warn('[modal] enrichment links/pricing patch error', e);
-            }
-
-            // ---- Performance & Cost (NEW: 4-priority additions) ----
-            try {
-                var bm = entry.benchmarks_meta || {};
-                var pricingFromEnrich = entry.pricing || {};
-                var aaPricing = (App.data.pricing && App.data.pricing[modelId]) || {};
-
-                // Merge: enrichment pricing takes precedence, else AA pricing
-                var inputPrice = pricingFromEnrich.input != null ? pricingFromEnrich.input : aaPricing.input;
-                var outputPrice = pricingFromEnrich.output != null ? pricingFromEnrich.output : aaPricing.output;
-                var intelligenceIdx = bm.intelligence_index_override != null ? bm.intelligence_index_override : aaPricing.intelligence_index;
-                var arenaElo = bm.arena_elo;
-                var throughput = aaPricing.tokens_per_second;
-
-                // Compute model age + cadence
-                var ageDays = null, ageStr = null;
-                if (model.release_date || model.released_at) {
-                    var releaseStr = model.release_date || model.released_at;
-                    var rd = new Date(releaseStr);
-                    if (!isNaN(rd.getTime())) {
-                        ageDays = Math.floor((Date.now() - rd.getTime()) / 86400000);
-                        if (ageDays < 30) ageStr = ageDays + ' days ago';
-                        else if (ageDays < 365) ageStr = Math.floor(ageDays / 30) + ' months ago';
-                        else ageStr = (ageDays / 365).toFixed(1) + ' years ago';
-                    }
-                }
-
-                // Vendor release cadence: avg gap between releases by same vendor
-                var cadenceStr = null;
-                try {
-                    var sameVendor = (App.data.models || []).filter(function (mm) {
-                        return mm.vendor === model.vendor && (mm.release_date || mm.released_at);
-                    }).map(function (mm) { return new Date(mm.release_date || mm.released_at); })
-                      .filter(function (d) { return !isNaN(d.getTime()); })
-                      .sort(function (a, b) { return a - b; });
-                    if (sameVendor.length >= 3) {
-                        var gaps = [];
-                        for (var gi = 1; gi < sameVendor.length; gi++) {
-                            gaps.push((sameVendor[gi] - sameVendor[gi-1]) / 86400000);
-                        }
-                        var avgGap = gaps.reduce(function (a, b) { return a + b; }, 0) / gaps.length;
-                        if (avgGap > 0) cadenceStr = 'Avg ' + Math.round(avgGap) + ' days between vendor releases';
-                    }
-                } catch (e) { /* cadence non-fatal */ }
-
-                // Cost per IQ point (Cost-per-Intelligence)
-                var costPerIQ = null;
-                if (intelligenceIdx && intelligenceIdx > 0 && (inputPrice != null)) {
-                    // Use blended cost: avg of input + 5×output (typical chat ratio 1:5)
-                    var blendedCost = inputPrice + (outputPrice != null ? outputPrice * 5 : 0);
-                    costPerIQ = (blendedCost / intelligenceIdx).toFixed(3);
-                }
-
-                // Peer pricing comparison: median input price among recent (≤365d) models with pricing
-                var peerInputMedian = null, peerOutputMedian = null, pricePosition = null;
-                try {
-                    var pmap = App.data.pricing || {};
-                    var peerInputs = [], peerOutputs = [];
-                    Object.keys(pmap).forEach(function (mid) {
-                        if (mid === modelId) return;
-                        var p = pmap[mid];
-                        if (p && typeof p.input === 'number') peerInputs.push(p.input);
-                        if (p && typeof p.output === 'number') peerOutputs.push(p.output);
-                    });
-                    function median(arr) {
-                        if (!arr.length) return null;
-                        var s = arr.slice().sort(function (a, b) { return a - b; });
-                        var mid = Math.floor(s.length / 2);
-                        return s.length % 2 ? s[mid] : (s[mid-1] + s[mid]) / 2;
-                    }
-                    peerInputMedian = median(peerInputs);
-                    peerOutputMedian = median(peerOutputs);
-                    if (inputPrice != null && peerInputMedian != null) {
-                        var ratio = inputPrice / peerInputMedian;
-                        if (ratio < 0.5) pricePosition = 'Significantly cheaper';
-                        else if (ratio < 0.85) pricePosition = 'Below peer median';
-                        else if (ratio < 1.15) pricePosition = 'Near peer median';
-                        else if (ratio < 2.0) pricePosition = 'Above peer median';
-                        else pricePosition = 'Significantly pricier';
-                    }
-                } catch (e) { /* peer comp non-fatal */ }
-
-                // Only render if we have at least one piece of new data
-                if (intelligenceIdx != null || arenaElo != null || ageStr || costPerIQ != null || cadenceStr || pricePosition) {
-                    var perfBody = Modal._collapsibleSection(enrichSlot, 'Performance & Cost', 'perfcost', false);
-                    var perfCard = document.createElement('div');
-                    perfCard.className = 'bg-gray-800 rounded-lg p-4';
-
-                    function perfRow(label, value, hint) {
-                        if (value == null || value === '') return;
-                        var r = document.createElement('div');
-                        r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
-                        var l = document.createElement('div');
-                        l.className = 'text-gray-500 col-span-1';
-                        l.textContent = label;
-                        r.appendChild(l);
-                        var v = document.createElement('div');
-                        v.className = 'text-gray-200 col-span-2';
-                        v.textContent = String(value);
-                        if (hint) {
-                            var hintSpan = document.createElement('span');
-                            hintSpan.className = 'ml-2 text-gray-500';
-                            hintSpan.textContent = '(' + hint + ')';
-                            v.appendChild(hintSpan);
-                        }
-                        r.appendChild(v);
-                        perfCard.appendChild(r);
-                    }
-
-                    if (intelligenceIdx != null) perfRow('Intelligence Index', intelligenceIdx, 'Artificial Analysis');
-                    if (arenaElo != null) {
-                        var eloLabel = arenaElo;
-                        if (bm.arena_elo_source) eloLabel = arenaElo + '';
-                        perfRow('LMSys Arena Elo', eloLabel, 'lmarena.ai');
-                    }
-                    if (throughput != null) perfRow('Throughput', throughput + ' tokens/sec');
-                    if (ageStr) perfRow('Released', ageStr, model.release_date);
-                    if (cadenceStr) perfRow('Vendor cadence', cadenceStr);
-                    if (costPerIQ != null) {
-                        perfRow('Cost / IQ point', '$' + costPerIQ, 'blended input+5×output / Intelligence Index');
-                        // Build distribution from peer pricing
-                        try {
-                            var pmap2 = App.data.pricing || {};
-                            var peerCosts = [];
-                            Object.keys(pmap2).forEach(function (mid) {
-                                var p = pmap2[mid];
-                                if (!p || !p.intelligence_index || !p.input) return;
-                                var peerBlended = p.input + (p.output != null ? p.output * 5 : 0);
-                                peerCosts.push(peerBlended / p.intelligence_index);
-                            });
-                            if (peerCosts.length >= 5) {
-                                peerCosts.sort(function (a, b) { return a - b; });
-                                var pmin = peerCosts[0];
-                                var pmax = peerCosts[peerCosts.length - 1];
-                                var thisCost = parseFloat(costPerIQ);
-                                var pos = (thisCost - pmin) / (pmax - pmin);
-                                pos = Math.max(0, Math.min(1, pos));
-                                // Inline progress bar — lower is better, so flip color scale
-                                var barWrap = document.createElement('div');
-                                barWrap.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
-                                var lblBar = document.createElement('div');
-                                lblBar.className = 'text-gray-500 col-span-1';
-                                lblBar.textContent = 'Cost position';
-                                barWrap.appendChild(lblBar);
-                                var barCell = document.createElement('div');
-                                barCell.className = 'col-span-2';
-                                var barTrack = document.createElement('div');
-                                barTrack.style.position = 'relative';
-                                barTrack.style.background = '#1f2937';
-                                barTrack.style.height = '8px';
-                                barTrack.style.borderRadius = '4px';
-                                barTrack.style.overflow = 'hidden';
-                                var barFill = document.createElement('div');
-                                barFill.style.position = 'absolute';
-                                barFill.style.top = '0';
-                                barFill.style.left = '0';
-                                barFill.style.height = '100%';
-                                barFill.style.width = (pos * 100).toFixed(1) + '%';
-                                barFill.style.background = pos < 0.33 ? '#10b981' : (pos < 0.66 ? '#f59e0b' : '#ef4444');
-                                barTrack.appendChild(barFill);
-                                barCell.appendChild(barTrack);
-                                var captionBar = document.createElement('div');
-                                captionBar.className = 'text-xs text-gray-500 mt-0.5';
-                                captionBar.textContent = 'Cheaper $' + pmin.toFixed(2) + ' ← peer range → $' + pmax.toFixed(2) + ' Pricier';
-                                barCell.appendChild(captionBar);
-                                barWrap.appendChild(barCell);
-                                perfCard.appendChild(barWrap);
-                            }
-                        } catch (e) { /* mini bar non-fatal */ }
-                    }
-                    if (pricePosition && peerInputMedian != null) {
-                        perfRow('Price position', pricePosition, 'peer median input $' + peerInputMedian.toFixed(2) + '/M');
-                    }
-
-                    // Data freshness — most recent score collected_at for this model
-                    try {
-                        var latest = null;
-                        for (var sfi = 0; sfi < App.data.scores.length; sfi++) {
-                            var sf = App.data.scores[sfi];
-                            if (sf.model_id !== modelId) continue;
-                            var d = sf.source && sf.source.date;
-                            if (d && (!latest || d > latest)) latest = d;
-                        }
-                        if (latest) {
-                            var now = new Date();
-                            var dl = new Date(latest);
-                            if (!isNaN(dl.getTime())) {
-                                var dayDiff = Math.floor((now - dl) / 86400000);
-                                var freshLabel;
-                                if (dayDiff < 1) freshLabel = 'today';
-                                else if (dayDiff < 7) freshLabel = dayDiff + ' days ago';
-                                else if (dayDiff < 60) freshLabel = Math.floor(dayDiff / 7) + ' weeks ago';
-                                else freshLabel = Math.floor(dayDiff / 30) + ' months ago';
-                                perfRow('Data freshness', freshLabel, 'most recent score: ' + latest);
-                            }
-                        }
-                    } catch (e) { /* freshness non-fatal */ }
-
-                    // Same-class peer count (size bracket)
-                    try {
-                        var entryArchForClass = entry.architecture || {};
-                        var pb = entryArchForClass.total_params_b;
-                        if (!pb && model.parameters) {
-                            var pmatch = String(model.parameters).match(/(\d+(?:\.\d+)?)\s*B/i);
-                            if (pmatch) pb = parseFloat(pmatch[1]);
-                        }
-                        if (pb) {
-                            var classMin, classMax, classLabel;
-                            if (pb < 10) { classMin = 0; classMax = 10; classLabel = '<10B'; }
-                            else if (pb < 50) { classMin = 10; classMax = 50; classLabel = '10-50B'; }
-                            else if (pb < 200) { classMin = 50; classMax = 200; classLabel = '50-200B'; }
-                            else if (pb < 700) { classMin = 200; classMax = 700; classLabel = '200-700B'; }
-                            else { classMin = 700; classMax = Infinity; classLabel = '700B+'; }
-                            // Count peers in same class — using enrichment.architecture.total_params_b across all enriched models
-                            var classCount = 0;
-                            Object.keys(enrichmentMap).forEach(function (mid) {
-                                var ma = (enrichmentMap[mid].architecture || {}).total_params_b;
-                                if (typeof ma === 'number' && ma >= classMin && ma < classMax) classCount++;
-                            });
-                            if (classCount >= 2) {
-                                perfRow('Same-class peers', classCount + ' models', classLabel + ' parameter range');
-                            }
-                        }
-                    } catch (e) { /* class peer non-fatal */ }
-
-                    // Benchmark coverage
-                    try {
-                        var totalBench = (App.data.benchmarks || []).length;
-                        var modelBenchSet = {};
-                        for (var bsi = 0; bsi < App.data.scores.length; bsi++) {
-                            if (App.data.scores[bsi].model_id === modelId) modelBenchSet[App.data.scores[bsi].benchmark_id] = true;
-                        }
-                        var modelBenchCount = Object.keys(modelBenchSet).length;
-                        if (totalBench > 0 && modelBenchCount > 0) {
-                            var pctCov = (modelBenchCount / totalBench * 100).toFixed(1);
-                            perfRow('Benchmark coverage', modelBenchCount + ' / ' + totalBench + ' benchmarks (' + pctCov + '%)');
-                        }
-                    } catch (e) { /* coverage non-fatal */ }
-
-                    // HuggingFace metadata
-                    try {
-                        var hf = hfMap[modelId];
-                        if (hf) {
-                            if (hf.downloads_30d != null) {
-                                perfRow('HF downloads (30d)', hf.downloads_30d.toLocaleString(), 'huggingface.co');
-                            }
-                            if (hf.likes != null) {
-                                perfRow('HF likes', hf.likes.toLocaleString());
-                            }
-                            if (hf.total_size_bytes != null) {
-                                var gb = (hf.total_size_bytes / 1e9).toFixed(1);
-                                perfRow('HF repo size', gb + ' GB', (hf.file_count || '?') + ' files');
-                            }
-                            if (hf.last_modified) {
-                                var hfDate = String(hf.last_modified).slice(0, 10);
-                                perfRow('HF last update', hfDate);
-                            }
-                        }
-                    } catch (e) { /* hf metadata non-fatal */ }
-
-                    perfBody.appendChild(perfCard);
-                }
-            } catch (e) {
-                console.warn('[modal] performance & cost section error', e);
-            }
-
-            var arch = entry.architecture || {};
-            var train = entry.training || {};
-            var safety = entry.safety || {};
-            var quants = entry.quantizations || [];
-            var providers = entry.api_providers || [];
-
-            var anyArch = arch.type || arch.total_params_b || arch.attention || arch.attention_pattern || arch.experts_total;
-            var anyTrain = train.pretrain_tokens || train.compute_flops || (train.phases && train.phases.length);
-            var anySafety = safety.aisi_cyber_tier || safety.cbrn_risk || safety.self_reported_safety_card;
-            var anyQuant = quants.length > 0;
-            var anyProv = providers.length > 0;
-            if (!(anyArch || anyTrain || anySafety || anyQuant || anyProv)) return;
-
-            var archBody = Modal._collapsibleSection(enrichSlot, 'Architecture / Training / Safety', 'architecture', false);
-            var card = document.createElement('div');
-            card.className = 'bg-gray-800 rounded-lg p-4';
-
-            function row(label, value) {
-                if (value == null || value === '' || (Array.isArray(value) && value.length === 0)) return;
-                var r = document.createElement('div');
-                r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
-                var l = document.createElement('div');
-                l.className = 'text-gray-500 col-span-1';
-                l.textContent = label;
-                r.appendChild(l);
-                var v = document.createElement('div');
-                v.className = 'text-gray-200 col-span-2';
-                v.textContent = Array.isArray(value) ? value.join(', ') : String(value);
-                r.appendChild(v);
-                card.appendChild(r);
-            }
-
-            if (anyArch) {
-                row('Architecture', arch.type ? arch.type.toUpperCase() : null);
-                if (arch.total_params_b != null) {
-                    var paramsLabel = arch.total_params_b + 'B';
-                    if (arch.active_params_b != null) paramsLabel += ' total / ' + arch.active_params_b + 'B active';
-                    if (arch.vision_encoder_b != null) paramsLabel += ' (+' + arch.vision_encoder_b + 'B vision)';
-                    row('Parameters', paramsLabel);
-                }
-                if (arch.layers != null) row('Layers', arch.layers);
-                if (arch.attention != null) row('Attention', arch.attention.toUpperCase().replace(/_/g, ' '));
-                if (arch.attention_pattern != null) row('Pattern', arch.attention_pattern);
-                if (arch.experts_total != null) {
-                    var expLabel = arch.experts_total + ' experts';
-                    if (arch.experts_active != null) expLabel += ', ' + arch.experts_active + ' active';
-                    row('Experts', expLabel);
-                }
-            }
-
-            if (anyTrain) {
-                row('Pretrain tokens', train.pretrain_tokens);
-                row('Compute (FLOPs)', train.compute_flops);
-                if (train.phases && train.phases.length) row('Phases', train.phases);
-            }
-
-            if (anySafety) {
-                row('AISI cyber tier', safety.aisi_cyber_tier);
-                row('CBRN risk', safety.cbrn_risk);
-                if (safety.self_reported_safety_card) {
-                    var sr = document.createElement('div');
-                    sr.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
-                    var sl = document.createElement('div');
-                    sl.className = 'text-gray-500 col-span-1';
-                    sl.textContent = 'Safety card';
-                    sr.appendChild(sl);
-                    var sv = document.createElement('div');
-                    sv.className = 'col-span-2';
-                    var sa = document.createElement('a');
-                    sa.href = safety.self_reported_safety_card;
-                    sa.target = '_blank';
-                    sa.rel = 'noopener';
-                    sa.className = 'text-blue-400 hover:underline';
-                    sa.textContent = safety.self_reported_safety_card.replace(/^https?:\/\//, '').slice(0, 60);
-                    sv.appendChild(sa);
-                    sr.appendChild(sv);
-                    card.appendChild(sr);
-                }
-            }
-
-            if (anyQuant) {
-                var paramsBNum = arch.total_params_b || arch.active_params_b;
-                var quantStrs = quants.map(function (q) {
-                    var qup = q.toUpperCase();
-                    if (!paramsBNum) return qup;
-                    var bytesPerParam = { fp16: 2, bf16: 2, fp8: 1, awq: 0.5, gguf: 0.6, int8: 1, int4: 0.5 }[q.toLowerCase()];
-                    if (bytesPerParam) {
-                        var sizeGB = (paramsBNum * bytesPerParam).toFixed(1);
-                        return qup + ' (~' + sizeGB + 'GB)';
-                    }
-                    return qup;
-                });
-                row('Quantizations', quantStrs);
-            }
-            if (anyProv) row('API providers', providers);
-
-            archBody.appendChild(card);
-        });
-
-        // ---- Strengths Radar Chart (NEW) ----
-        try {
-            // Categories to plot. Must match benchmark.category strings.
             var radarCats = [
                 { key: 'reasoning', label: 'Reasoning' },
                 { key: 'coding', label: 'Coding' },
@@ -1690,12 +1604,10 @@ var Modal = {
                 { key: 'agent', label: 'Agent' },
                 { key: 'multimodal', label: 'Multimodal' }
             ];
-
-            // Group all scores by (model_id, category) → list of values
             var catScoresByModel = {};
             for (var si = 0; si < App.data.scores.length; si++) {
                 var sc = App.data.scores[si];
-                var bench = App.data.benchmarks.find(function (b) { return b.id === sc.benchmark_id; });
+                var bench = App.data.benchmarks.find(function(b) { return b.id === sc.benchmark_id; });
                 if (!bench) continue;
                 var cat = bench.category;
                 if (!catScoresByModel[sc.model_id]) catScoresByModel[sc.model_id] = {};
@@ -1704,156 +1616,122 @@ var Modal = {
             }
             function avg(arr) {
                 if (!arr || !arr.length) return null;
-                var s = 0;
-                for (var i = 0; i < arr.length; i++) s += arr[i];
-                return s / arr.length;
+                var s = 0; for (var i = 0; i < arr.length; i++) s += arr[i]; return s / arr.length;
             }
-
-            // For each category, compute target avg + sorted distribution of all models' avgs
             var distByCat = {};
-            radarCats.forEach(function (rc) {
+            radarCats.forEach(function(rc) {
                 var values = [];
-                Object.keys(catScoresByModel).forEach(function (mid) {
+                Object.keys(catScoresByModel).forEach(function(mid) {
                     var a = avg(catScoresByModel[mid][rc.key]);
                     if (a != null) values.push(a);
                 });
-                values.sort(function (a, b) { return a - b; });
+                values.sort(function(a, b) { return a - b; });
                 distByCat[rc.key] = values;
             });
-
-            // Compute target's percentile per category
-            var radarData = [];
-            var radarIndicators = [];
-            radarCats.forEach(function (rc) {
+            var radarData = [], radarIndicators = [];
+            radarCats.forEach(function(rc) {
                 var targetAvg = avg((catScoresByModel[modelId] || {})[rc.key]);
-                if (targetAvg == null) return; // skip — no data for this category
+                if (targetAvg == null) return;
                 var dist = distByCat[rc.key];
-                if (dist.length < 3) return; // skip — too few peers
-                // Percentile = fraction of peers strictly less than target
+                if (dist.length < 3) return;
                 var below = 0;
-                for (var di = 0; di < dist.length; di++) {
-                    if (dist[di] < targetAvg) below++;
-                }
-                var pct = (below / dist.length) * 100;
+                for (var di = 0; di < dist.length; di++) { if (dist[di] < targetAvg) below++; }
                 radarIndicators.push({ name: rc.label + ' (' + targetAvg.toFixed(0) + ')', max: 100 });
-                radarData.push(pct);
+                radarData.push((below / dist.length) * 100);
             });
+            if (radarIndicators.length < 3) return;
 
-            if (radarIndicators.length >= 3) {
-                var radarBody = Modal._collapsibleSection(container, 'Strengths Radar (percentile vs all models)', 'radar', false);
-                var radarCard = document.createElement('div');
-                radarCard.className = 'bg-gray-800 rounded-lg p-4';
-
-                var radarHost = document.createElement('div');
-                radarHost.style.height = '280px';
-                radarHost.style.width = '100%';
-                radarCard.appendChild(radarHost);
-                radarBody.appendChild(radarCard);
-
-                // Defer init until host is in DOM
-                setTimeout(function () {
-                    if (typeof echarts === 'undefined') return;
-                    var chart = echarts.init(radarHost, 'dark');
-                    chart.setOption({
-                        backgroundColor: 'transparent',
-                        tooltip: { trigger: 'item' },
-                        radar: {
-                            indicator: radarIndicators,
-                            shape: 'polygon',
-                            splitNumber: 4,
-                            axisName: { color: '#d1d5db', fontSize: 11 },
-                            splitLine: { lineStyle: { color: 'rgba(160,160,160,0.25)' } },
-                            splitArea: { show: false },
-                            axisLine: { lineStyle: { color: 'rgba(160,160,160,0.4)' } }
-                        },
-                        series: [{
-                            type: 'radar',
-                            data: [{
-                                value: radarData,
-                                name: model.name,
-                                lineStyle: { width: 2 },
-                                areaStyle: { opacity: 0.25 },
-                                itemStyle: { color: '#60a5fa' }
-                            }]
-                        }]
-                    });
-                    // Resize handler
-                    window.addEventListener('resize', function () { chart.resize(); });
-                }, 0);
-            }
+            var radarBody = Modal._collapsibleSection(container, 'Strengths Radar (percentile vs all models)', 'radar', false);
+            var radarCard = document.createElement('div');
+            radarCard.className = 'bg-gray-800 rounded-lg p-4';
+            var radarHost = document.createElement('div');
+            radarHost.style.height = '280px'; radarHost.style.width = '100%';
+            radarCard.appendChild(radarHost);
+            radarBody.appendChild(radarCard);
+            setTimeout(function() {
+                if (typeof echarts === 'undefined') return;
+                var chart = echarts.init(radarHost, 'dark');
+                chart.setOption({
+                    backgroundColor: 'transparent',
+                    tooltip: { trigger: 'item' },
+                    radar: {
+                        indicator: radarIndicators, shape: 'polygon', splitNumber: 4,
+                        axisName: { color: '#d1d5db', fontSize: 11 },
+                        splitLine: { lineStyle: { color: 'rgba(160,160,160,0.25)' } },
+                        splitArea: { show: false },
+                        axisLine: { lineStyle: { color: 'rgba(160,160,160,0.4)' } }
+                    },
+                    series: [{ type: 'radar', data: [{ value: radarData, name: model.name, lineStyle: { width: 2 }, areaStyle: { opacity: 0.25 }, itemStyle: { color: '#60a5fa' } }] }]
+                });
+                window.addEventListener('resize', function() { chart.resize(); });
+            }, 0);
         } catch (e) {
             console.warn('[modal] strengths radar error', e);
         }
+    },
 
-        // ---- Score History Trend (Time-series, NEW) ----
+    // ---- Helper: Score History line chart ----
+    _renderScoreHistory: function(container, model, modelId) {
         try {
             var historyDates = Object.keys(App.data.history || {}).sort();
-            if (historyDates.length >= 2) {
-                // Pick top 4 benchmarks (by descending value) for this model
-                var modelScoresMap = {};
-                for (var hsi = 0; hsi < App.data.scores.length; hsi++) {
-                    var hs = App.data.scores[hsi];
-                    if (hs.model_id === modelId) modelScoresMap[hs.benchmark_id] = hs.value;
-                }
-                var topBenches = Object.keys(modelScoresMap)
-                    .sort(function (a, b) { return modelScoresMap[b] - modelScoresMap[a]; })
-                    .slice(0, 4);
-
-                if (topBenches.length >= 1) {
-                    // Build series — for each top benchmark, value over time
-                    var seriesData = topBenches.map(function (bid) {
-                        var bench = App.data.benchmarks.find(function (b) { return b.id === bid; });
-                        var name = bench ? bench.name : bid;
-                        var pts = historyDates.map(function (dt) {
-                            var snap = App.data.history[dt] || [];
-                            var found = snap.find(function (x) { return x.model_id === modelId && x.benchmark_id === bid; });
-                            return found ? found.value : null;
-                        });
-                        return { name: name, type: 'line', data: pts, connectNulls: true, smooth: true };
-                    });
-
-                    // Only render if at least one series has 2+ data points
-                    var hasData = seriesData.some(function (s) {
-                        return s.data.filter(function (v) { return v != null; }).length >= 2;
-                    });
-                    if (hasData) {
-                        var historyBody = Modal._collapsibleSection(container, 'Score History (top ' + topBenches.length + ' benchmarks)', 'history', false);
-                        var historyCard = document.createElement('div');
-                        historyCard.className = 'bg-gray-800 rounded-lg p-4';
-                        var historyHost = document.createElement('div');
-                        historyHost.style.height = '240px';
-                        historyHost.style.width = '100%';
-                        historyCard.appendChild(historyHost);
-                        historyBody.appendChild(historyCard);
-
-                        setTimeout(function () {
-                            if (typeof echarts === 'undefined') return;
-                            var chart = echarts.init(historyHost, 'dark');
-                            chart.setOption({
-                                backgroundColor: 'transparent',
-                                tooltip: { trigger: 'axis' },
-                                legend: { textStyle: { color: '#d1d5db', fontSize: 10 }, top: 0 },
-                                grid: { left: 40, right: 20, top: 30, bottom: 30 },
-                                xAxis: {
-                                    type: 'category',
-                                    data: historyDates,
-                                    axisLabel: { color: '#9ca3af', fontSize: 10 }
-                                },
-                                yAxis: {
-                                    type: 'value',
-                                    axisLabel: { color: '#9ca3af', fontSize: 10 },
-                                    splitLine: { lineStyle: { color: 'rgba(160,160,160,0.15)' } }
-                                },
-                                series: seriesData
-                            });
-                            window.addEventListener('resize', function () { chart.resize(); });
-                        }, 0);
-                    }
-                }
+            if (historyDates.length < 2) return;
+            var modelScoresMap = {};
+            for (var hsi = 0; hsi < App.data.scores.length; hsi++) {
+                var hs = App.data.scores[hsi];
+                if (hs.model_id === modelId) modelScoresMap[hs.benchmark_id] = hs.value;
             }
+            var topBenches = Object.keys(modelScoresMap)
+                .sort(function(a, b) { return modelScoresMap[b] - modelScoresMap[a]; })
+                .slice(0, 4);
+            if (topBenches.length < 1) return;
+            var seriesData = topBenches.map(function(bid) {
+                var bench = App.data.benchmarks.find(function(b) { return b.id === bid; });
+                var name = bench ? bench.name : bid;
+                var pts = historyDates.map(function(dt) {
+                    var snap = App.data.history[dt] || [];
+                    var found = snap.find(function(x) { return x.model_id === modelId && x.benchmark_id === bid; });
+                    return found ? found.value : null;
+                });
+                return { name: name, type: 'line', data: pts, connectNulls: true, smooth: true };
+            });
+            var hasData = seriesData.some(function(s) { return s.data.filter(function(v) { return v != null; }).length >= 2; });
+            if (!hasData) return;
+
+            var historyBody = Modal._collapsibleSection(container, 'Score History (top ' + topBenches.length + ' benchmarks)', 'history', false);
+            var historyCard = document.createElement('div');
+            historyCard.className = 'bg-gray-800 rounded-lg p-4';
+            var historyHost = document.createElement('div');
+            historyHost.style.height = '240px'; historyHost.style.width = '100%';
+            historyCard.appendChild(historyHost);
+            historyBody.appendChild(historyCard);
+            setTimeout(function() {
+                if (typeof echarts === 'undefined') return;
+                var chart = echarts.init(historyHost, 'dark');
+                chart.setOption({
+                    backgroundColor: 'transparent',
+                    tooltip: { trigger: 'axis' },
+                    legend: { textStyle: { color: '#d1d5db', fontSize: 10 }, top: 0 },
+                    grid: { left: 40, right: 20, top: 30, bottom: 30 },
+                    xAxis: { type: 'category', data: historyDates, axisLabel: { color: '#9ca3af', fontSize: 10 } },
+                    yAxis: { type: 'value', axisLabel: { color: '#9ca3af', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(160,160,160,0.15)' } } },
+                    series: seriesData
+                });
+                window.addEventListener('resize', function() { chart.resize(); });
+            }, 0);
         } catch (e) {
             console.warn('[modal] score history error', e);
         }
+    },
+
+    // ---- Helper: Score Breakdown by category ----
+    _renderScoreBreakdown: function(container, modelId, scores) {
+        var byCategory = {};
+        scores.forEach(function(s) {
+            var bench = App.data.benchmarks.find(function(b) { return b.id === s.benchmark_id; });
+            var cat = bench ? bench.category : 'other';
+            if (!byCategory[cat]) byCategory[cat] = [];
+            byCategory[cat].push({ bench: bench, score: s });
+        });
 
         var catOrder = ['reasoning', 'coding', 'math', 'cybersecurity', 'cyber_defense', 'agent', 'multimodal', 'multilingual', 'other'];
         var catNames = {
@@ -1861,9 +1739,7 @@ var Modal = {
             cybersecurity: 'Cybersecurity (Attack)', cyber_defense: 'Cyber Defense',
             agent: 'Agent', multimodal: 'Multimodal', multilingual: 'Multilingual', other: 'Other'
         };
-
-        var totalScores = scores.length;
-        var scoresBody = Modal._collapsibleSection(container, 'Score Breakdown (' + totalScores + ' benchmarks)', 'scores', false);
+        var scoresBody = Modal._collapsibleSection(container, 'Score Breakdown (' + scores.length + ' benchmarks)', 'scores', false);
 
         catOrder.forEach(function(cat) {
             var items = byCategory[cat];
@@ -1872,7 +1748,6 @@ var Modal = {
 
             var section = document.createElement('div');
             section.className = 'mb-4';
-
             var h3 = document.createElement('h3');
             h3.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2';
             h3.textContent = catNames[cat] || cat;
@@ -1892,12 +1767,10 @@ var Modal = {
                 right.className = 'flex items-center gap-2';
 
                 var val = document.createElement('span');
-                val.className = 'text-sm font-mono';
-                val.className += item.score.is_sota ? ' text-green-400 font-bold' : ' text-gray-200';
+                val.className = 'text-sm font-mono' + (item.score.is_sota ? ' text-green-400 font-bold' : ' text-gray-200');
                 val.textContent = item.score.value > 500 ? Math.round(item.score.value) : item.score.value;
                 right.appendChild(val);
 
-                // NEW: 12-month rolling SOTA tier badge from peer-matcher
                 var tier = (window.PeerMatcher && PeerMatcher.sotaTier)
                     ? PeerMatcher.sotaTier(item.score.value, modelId, item.score.benchmark_id, App.data.models, App.data.scores)
                     : null;
@@ -1912,7 +1785,6 @@ var Modal = {
                     tierBadge.title = tier.label + ' (' + tier.rank + '/' + tier.total + ')';
                     right.appendChild(tierBadge);
                 }
-
                 if (item.score.is_sota) {
                     var sotaBadge = document.createElement('span');
                     sotaBadge.className = 'px-1.5 py-0.5 bg-green-900 text-green-300 text-xs rounded';
@@ -1925,11 +1797,9 @@ var Modal = {
                 var srcNode;
                 if (publicUrl) {
                     srcNode = document.createElement('a');
-                    srcNode.href = publicUrl;
-                    srcNode.target = '_blank';
-                    srcNode.rel = 'noopener noreferrer';
+                    srcNode.href = publicUrl; srcNode.target = '_blank'; srcNode.rel = 'noopener noreferrer';
                     srcNode.className = 'text-xs ' + (st === 'pdf' ? 'text-purple-400' : 'text-blue-400') + ' hover:underline';
-                    srcNode.textContent = st + ' \u2197';
+                    srcNode.textContent = st + ' ↗';
                     srcNode.title = publicUrl;
                 } else {
                     srcNode = document.createElement('span');
@@ -1937,14 +1807,10 @@ var Modal = {
                     srcNode.textContent = st;
                 }
                 right.appendChild(srcNode);
-
                 row.appendChild(right);
                 section.appendChild(row);
             });
-
             scoresBody.appendChild(section);
         });
-
-        Modal._open();
     }
 };
