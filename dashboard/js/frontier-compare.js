@@ -265,6 +265,7 @@ var FrontierCompare = {
         category = category || 'all';
         var benchIds = this._getBenchmarkIds(category);
         this._renderHeatmap(benchIds);
+        this._renderParetoChart();
         this._renderRadar(benchIds, category);
         this._populateBarSelect(benchIds, category);
         // Render bar with currently selected benchmark
@@ -272,6 +273,146 @@ var FrontierCompare = {
         var selectedBench = barSel ? barSel.value : '';
         this._renderBar(benchIds, category, selectedBench);
         this._renderPerfSuites();
+    },
+
+    _renderParetoChart: function() {
+        var hostId = 'fc-pareto-chart';
+        var el = document.getElementById(hostId);
+        if (!el || typeof echarts === 'undefined') return;
+
+        // Build (cost, quality) points for FRONTIER_MODELS that have data
+        var pricing = (typeof App !== 'undefined' && App.data && App.data.pricing) || {};
+        var enrichment = (typeof App !== 'undefined' && App.data && App.data.enrichment) || {};
+        var models = (typeof App !== 'undefined' && App.data && App.data.models) || this._models || [];
+
+        var points = [];
+        var ids = (this.FRONTIER_MODELS || []).slice();
+        ids.forEach(function(mid) {
+            var p = pricing[mid] || {};
+            var ent = enrichment[mid] || {};
+            var input = p.input != null ? p.input : (ent.pricing && ent.pricing.input);
+            var output = p.output != null ? p.output : (ent.pricing && ent.pricing.output);
+            if (input == null || output == null) return;
+            var cost = input + 5 * output;
+            var quality = p.intelligence_index;
+            if (quality == null && ent.benchmarks_meta && ent.benchmarks_meta.arena_elo) {
+                // Convert Elo (1100-1450 typical) to a 0-100 scale roughly comparable
+                quality = (ent.benchmarks_meta.arena_elo - 1100) / 4;
+            }
+            if (quality == null) return;
+            var m = models.find(function(x) { return x.id === mid; });
+            points.push({
+                modelId: mid,
+                name: m ? m.name : mid,
+                vendor: m ? m.vendor : '?',
+                cost: cost,
+                quality: quality,
+                input: input,
+                output: output,
+            });
+        });
+
+        if (points.length < 3) {
+            var msg = document.createElement('p');
+            msg.className = 'text-gray-500 text-xs';
+            msg.textContent = 'Insufficient pricing+quality data — need 3+ models.';
+            el.textContent = '';
+            el.appendChild(msg);
+            return;
+        }
+
+        // Compute Pareto frontier (low cost + high quality)
+        // A point is Pareto-optimal if no other point has both lower cost AND higher quality
+        var pareto = [];
+        points.forEach(function(p) {
+            var dominated = points.some(function(other) {
+                if (other === p) return false;
+                return other.cost <= p.cost && other.quality >= p.quality
+                    && (other.cost < p.cost || other.quality > p.quality);
+            });
+            if (!dominated) pareto.push(p);
+        });
+        // Sort frontier by cost ascending for the line
+        pareto.sort(function(a, b) { return a.cost - b.cost; });
+
+        // Build series data arrays
+        var allSeries = points.map(function(p) {
+            return [p.cost, p.quality, p.name, p.modelId, p.vendor];
+        });
+        var paretoSeries = pareto.map(function(p) {
+            return [p.cost, p.quality, p.name, p.modelId];
+        });
+
+        var chart = echarts.init(el, 'dark');
+        chart.setOption({
+            backgroundColor: 'transparent',
+            grid: { left: 60, right: 30, top: 30, bottom: 60 },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    var d = params.data;
+                    return '<b>' + (d[2] || '?') + '</b><br/>' +
+                        'Cost: $' + d[0].toFixed(2) + '/1M (blended)<br/>' +
+                        'Quality: ' + d[1].toFixed(1);
+                }
+            },
+            xAxis: {
+                type: 'log',
+                logBase: 10,
+                name: 'Blended cost ($/1M, log scale)',
+                nameLocation: 'middle',
+                nameGap: 30,
+                nameTextStyle: { color: '#9ca3af' },
+                axisLabel: { color: '#9ca3af' },
+                splitLine: { lineStyle: { color: 'rgba(160,160,160,0.15)' } },
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Quality (Intelligence Index / Arena Elo×0.25)',
+                nameLocation: 'middle',
+                nameGap: 45,
+                nameTextStyle: { color: '#9ca3af' },
+                axisLabel: { color: '#9ca3af' },
+                splitLine: { lineStyle: { color: 'rgba(160,160,160,0.15)' } },
+            },
+            series: [
+                {
+                    type: 'scatter',
+                    name: 'All models',
+                    data: allSeries,
+                    symbolSize: 14,
+                    itemStyle: { color: '#6b7280', opacity: 0.7 },
+                    label: {
+                        show: true,
+                        position: 'right',
+                        formatter: function(p) { return p.data[2]; },
+                        color: '#d1d5db',
+                        fontSize: 9,
+                    }
+                },
+                {
+                    type: 'line',
+                    name: 'Pareto frontier',
+                    data: paretoSeries,
+                    showSymbol: true,
+                    symbolSize: 18,
+                    lineStyle: { color: '#10b981', width: 2 },
+                    itemStyle: { color: '#10b981' },
+                    label: { show: false },
+                    z: 5,
+                }
+            ]
+        });
+
+        // Click handler: open model modal
+        chart.on('click', function(params) {
+            var mid = params.data && params.data[3];
+            if (mid && typeof Modal !== 'undefined' && Modal.showModel) {
+                Modal.showModel(mid);
+            }
+        });
+
+        window.addEventListener('resize', function() { chart.resize(); });
     },
 
     _renderPerfSuites: function() {
