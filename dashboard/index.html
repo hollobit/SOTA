@@ -151,20 +151,35 @@
         </section>
 
         <section id="tab-comparison" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-comparison">
-            <div class="flex gap-4 mb-4 flex-wrap items-end">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Models (X-axis)</label>
-                    <select id="cmp-models" multiple class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-72 h-40 text-sm"></select>
+            <div class="mb-4">
+                <div class="flex gap-2 mb-3 flex-wrap text-xs">
+                    <span class="text-gray-500 mr-1">Quick presets:</span>
+                    <button class="cmp-preset bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded" data-preset="frontier-top5">🔥 Top 5 frontier</button>
+                    <button class="cmp-preset bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded" data-preset="frontier-30">📊 Frontier 30</button>
+                    <button class="cmp-preset bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded" data-preset="korean-sovereign">🇰🇷 Korean sovereign</button>
+                    <button class="cmp-preset bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded" data-preset="open-weight">🔓 Open-weight</button>
+                    <button class="cmp-preset bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded" data-preset="proprietary">🔒 Proprietary</button>
                 </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Benchmarks (Y-axis)</label>
-                    <select id="cmp-benchmarks" multiple class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 h-40 text-sm"></select>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <button id="cmp-update" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">Update</button>
-                    <button id="cmp-reset" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-sm">Reset</button>
+                <div class="flex gap-4 flex-wrap items-end">
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Models (X-axis)</label>
+                        <input type="text" id="cmp-models-search" placeholder="Filter models..." class="bg-gray-800 border border-gray-700 rounded px-2 py-1 w-72 mb-1 text-xs">
+                        <select id="cmp-models" multiple class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-72 h-40 text-sm"></select>
+                        <div class="text-xs text-gray-500 mt-1"><span id="cmp-models-count">0</span> selected</div>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Benchmarks (Y-axis)</label>
+                        <input type="text" id="cmp-benchmarks-search" placeholder="Filter benchmarks..." class="bg-gray-800 border border-gray-700 rounded px-2 py-1 w-56 mb-1 text-xs">
+                        <select id="cmp-benchmarks" multiple class="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-56 h-40 text-sm"></select>
+                        <div class="text-xs text-gray-500 mt-1"><span id="cmp-benchmarks-count">0</span> selected</div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <button id="cmp-update" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">Update</button>
+                        <button id="cmp-reset" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-sm">Reset</button>
+                    </div>
                 </div>
             </div>
+            <div id="cmp-meta-table" class="mb-4"></div>
             <div id="cmp-matrix-container" class="overflow-x-auto"></div>
             <div id="cmp-radar-chart" class="h-96 mt-6"></div>
         </section>
@@ -554,7 +569,7 @@
 
     <script src="js/theme.js?v=20260424"></script>
     <script src="js/peer-matcher.js?v=20260503a"></script>
-    <script src="js/modal.js?v=20260503l"></script>
+    <script src="js/modal.js?v=20260503m"></script>
     <script src="js/frontier-compare.js?v=20260503c"></script>
     <script src="js/cyber-coding.js?v=20260503c"></script>
     <script src="js/sovereign.js?v=20260503a"></script>
@@ -563,7 +578,7 @@
     <script src="js/charts.js?v=20260424"></script>
     <script src="js/filters.js?v=20260424"></script>
     <script src="js/explorer.js?v=20260502a"></script>
-    <script src="js/comparison.js?v=20260502a"></script>
+    <script src="js/comparison.js?v=20260503b"></script>
     <script src="js/app.js?v=20260502a"></script>
 </body>
 </html>

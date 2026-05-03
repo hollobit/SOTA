@@ -944,6 +944,38 @@ var Modal = {
                     sel.appendChild(opt);
                 });
                 picker.appendChild(sel);
+                // NEW: Quick "Compare with peers" button — jumps to Comparison tab pre-selected
+                var cmpBtn = document.createElement('button');
+                cmpBtn.className = 'ml-2 bg-blue-700 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs';
+                cmpBtn.textContent = 'Compare with peers ↗';
+                cmpBtn.title = 'Open Comparison tab with this model + top 3 peers selected';
+                cmpBtn.onclick = (function (peers, targetId) {
+                    return function () {
+                        var ids = [targetId].concat(peers.slice(0, 3).map(function (p) { return p.modelId; }));
+                        // Switch to comparison tab
+                        var btn = document.getElementById('tabbtn-comparison');
+                        if (btn) btn.click();
+                        // Pre-select these models
+                        setTimeout(function () {
+                            var msel = document.getElementById('cmp-models');
+                            if (!msel) return;
+                            Array.prototype.forEach.call(msel.options, function (o) { o.selected = false; });
+                            ids.forEach(function (id) {
+                                var found = Array.prototype.find.call(msel.options, function (o) { return o.value === id; });
+                                if (found) found.selected = true;
+                            });
+                            // Trigger comparison render
+                            if (typeof Comparison !== 'undefined' && Comparison.render) {
+                                if (Comparison._updateCounters) Comparison._updateCounters();
+                                Comparison.render();
+                            }
+                            // Close modal
+                            var modalRoot = document.getElementById('modal');
+                            if (modalRoot) modalRoot.classList.add('hidden');
+                        }, 150);
+                    };
+                })(peerCandidates, modelId);
+                picker.appendChild(cmpBtn);
                 peerDiv.appendChild(picker);
 
                 var tableWrap = document.createElement('div');
