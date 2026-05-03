@@ -617,6 +617,30 @@ var Modal = {
         table.appendChild(tbody);
         container.appendChild(table);
 
+        // Reference links (paper / github / leaderboard) from builtin meta
+        try {
+            var refs = [];
+            if (bmt.paper_link) refs.push({ label: '📄 Paper', url: bmt.paper_link, color: 'bg-purple-900 hover:bg-purple-800 text-purple-200' });
+            if (bmt.github_link) refs.push({ label: '⚙ GitHub', url: bmt.github_link, color: 'bg-gray-700 hover:bg-gray-600 text-gray-200' });
+            if (bench.leaderboard) refs.push({ label: '🏆 Leaderboard', url: bench.leaderboard, color: 'bg-yellow-900 hover:bg-yellow-800 text-yellow-200' });
+            if (refs.length > 0) {
+                var refsBody = Modal._collapsibleSection(container, 'References', 'bench-refs', true);
+                var refsDiv = document.createElement('div');
+                refsDiv.className = 'flex flex-wrap gap-2';
+                refs.forEach(function(r) {
+                    var a = document.createElement('a');
+                    a.href = r.url;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.className = 'inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition ' + r.color;
+                    a.textContent = r.label;
+                    a.title = r.url;
+                    refsDiv.appendChild(a);
+                });
+                refsBody.appendChild(refsDiv);
+            }
+        } catch (e) { console.warn('[modal] benchmark refs error', e); }
+
         // Top 10 leaderboard (collapsible)
         try {
             var benchScores = (App.data.scores || []).filter(function(s) { return s.benchmark_id === benchId; });
@@ -1919,6 +1943,58 @@ var Modal = {
             }
         } catch (e) { /* detail patch non-fatal */ }
 
+        // License inline expansion — append to detail card if enrichment has license_terms
+        try {
+            if (detail && entry.license_terms) {
+                var lt = entry.license_terms;
+                var licName = lt.name || (model.license) || null;
+                if (licName) {
+                    var licWrap = document.createElement('div');
+                    licWrap.className = 'col-span-2';
+                    var licLbl = document.createElement('div');
+                    licLbl.className = 'text-xs text-gray-500';
+                    licLbl.textContent = 'License Terms';
+                    licWrap.appendChild(licLbl);
+                    var licVal = document.createElement('div');
+                    licVal.className = 'text-sm text-gray-200 flex items-center flex-wrap gap-1';
+                    var licTxt = document.createElement('span');
+                    licTxt.textContent = licName;
+                    licVal.appendChild(licTxt);
+                    var expandBtn = document.createElement('button');
+                    expandBtn.className = 'ml-1 text-blue-400 hover:underline text-xs';
+                    expandBtn.textContent = 'ⓞ details';
+                    expandBtn.title = 'Show full license terms';
+                    var detailsDiv = document.createElement('div');
+                    detailsDiv.className = 'w-full mt-1 p-2 bg-gray-900 border border-gray-700 rounded text-xs hidden';
+                    var bullets = document.createElement('ul');
+                    bullets.className = 'space-y-0.5';
+                    function makeLicBullet(labelText, valueText) {
+                        var li = document.createElement('li');
+                        var dot = document.createTextNode('• ' + labelText + ': ');
+                        var strong = document.createElement('strong');
+                        strong.textContent = valueText;
+                        li.appendChild(dot);
+                        li.appendChild(strong);
+                        return li;
+                    }
+                    if (lt.commercial !== undefined) bullets.appendChild(makeLicBullet('Commercial use', lt.commercial ? 'allowed' : 'not allowed'));
+                    if (lt.modify_redistribute !== undefined) bullets.appendChild(makeLicBullet('Modify/redistribute', lt.modify_redistribute ? 'allowed' : 'restricted'));
+                    if (lt.attribution_required !== undefined) bullets.appendChild(makeLicBullet('Attribution required', lt.attribution_required ? 'yes' : 'no'));
+                    if (lt.revenue_threshold) bullets.appendChild(makeLicBullet('Revenue threshold', '$' + Number(lt.revenue_threshold).toLocaleString() + ' (different terms above)'));
+                    if (bullets.children.length) {
+                        detailsDiv.appendChild(bullets);
+                        expandBtn.addEventListener('click', function() {
+                            detailsDiv.classList.toggle('hidden');
+                        });
+                        licVal.appendChild(expandBtn);
+                        licWrap.appendChild(licVal);
+                        licWrap.appendChild(detailsDiv);
+                        detail.appendChild(licWrap);
+                    }
+                }
+            }
+        } catch (e) { console.warn('[modal] license terms expansion error', e); }
+
         // Performance & Cost
         try {
             var bm = entry.benchmarks_meta || {};
@@ -2220,14 +2296,42 @@ var Modal = {
         }
         if (anyQuant) {
             var paramsBNum = arch.total_params_b || arch.active_params_b;
-            var quantStrs = quants.map(function(q) {
+            var hfBaseUrl = (entry.links && entry.links.huggingface) || null;
+            // Custom row for quantizations with clickable badges if HF base URL known
+            var quantRow = document.createElement('div');
+            quantRow.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+            var quantLbl = document.createElement('div');
+            quantLbl.className = 'text-gray-500 col-span-1';
+            quantLbl.textContent = 'Quantizations';
+            quantRow.appendChild(quantLbl);
+            var quantVal = document.createElement('div');
+            quantVal.className = 'text-gray-200 col-span-2 flex flex-wrap gap-1';
+            quants.forEach(function(q) {
                 var qup = q.toUpperCase();
-                if (!paramsBNum) return qup;
-                var bytesPerParam = { fp16: 2, bf16: 2, fp8: 1, awq: 0.5, gguf: 0.6, int8: 1, int4: 0.5 }[q.toLowerCase()];
-                if (bytesPerParam) return qup + ' (~' + (paramsBNum * bytesPerParam).toFixed(1) + 'GB)';
-                return qup;
+                var sizeStr = '';
+                if (paramsBNum) {
+                    var bytesPerParam = { fp16: 2, bf16: 2, fp8: 1, awq: 0.5, gguf: 0.6, int8: 1, int4: 0.5 }[q.toLowerCase()];
+                    if (bytesPerParam) sizeStr = ' (~' + (paramsBNum * bytesPerParam).toFixed(1) + 'GB)';
+                }
+                if (hfBaseUrl) {
+                    var quantUrl = hfBaseUrl + '-' + qup;
+                    var qa = document.createElement('a');
+                    qa.href = quantUrl;
+                    qa.target = '_blank';
+                    qa.rel = 'noopener noreferrer';
+                    qa.className = 'inline-block px-2 py-0.5 rounded text-xs bg-gray-700 hover:bg-gray-600 transition';
+                    qa.title = quantUrl + ' (may not exist)';
+                    qa.textContent = qup + sizeStr;
+                    quantVal.appendChild(qa);
+                } else {
+                    var qspan = document.createElement('span');
+                    qspan.className = 'inline-block px-2 py-0.5 rounded text-xs bg-gray-700';
+                    qspan.textContent = qup + sizeStr;
+                    quantVal.appendChild(qspan);
+                }
             });
-            row('Quantizations', quantStrs);
+            quantRow.appendChild(quantVal);
+            card.appendChild(quantRow);
         }
         if (anyProv) row('API providers', providers);
         archBody.appendChild(card);
