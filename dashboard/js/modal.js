@@ -1158,6 +1158,85 @@ var Modal = {
             var entry = enrichmentMap && enrichmentMap[modelId];
             if (!entry) return;
 
+            // ---- Patch Reference Links + Pricing from enrichment ----
+            try {
+                var entryLinks = entry.links || {};
+                var entryPricing = entry.pricing || {};
+
+                // Augment Reference Links if any enrichment URLs present
+                var enrichedLinks = [];
+                function pushE(label, url, color) {
+                    if (!url || typeof url !== 'string') return;
+                    enrichedLinks.push({ label: label, url: url, color: color });
+                }
+                pushE('📋 System Card', entryLinks.system_card, 'purple');
+                pushE('🪪 Model Card', entryLinks.model_card, 'cyan');
+                pushE('🤗 HuggingFace', entryLinks.huggingface, 'yellow');
+                pushE('🌐 Homepage', entryLinks.homepage, 'blue');
+                pushE('📄 Paper', entryLinks.paper, 'pink');
+                pushE('⚙ GitHub', entryLinks.github, 'gray');
+                pushE('📰 Blog', entryLinks.blog, 'green');
+
+                if (enrichedLinks.length) {
+                    var linksDiv2 = document.createElement('div');
+                    linksDiv2.className = 'flex flex-wrap gap-2 mb-4';
+                    var linksTitle = document.createElement('div');
+                    linksTitle.className = 'w-full text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1';
+                    linksTitle.textContent = 'Reference Links';
+                    linksDiv2.appendChild(linksTitle);
+                    var bgMap = {
+                        purple: 'bg-purple-900 hover:bg-purple-800 text-purple-200',
+                        cyan: 'bg-cyan-900 hover:bg-cyan-800 text-cyan-200',
+                        yellow: 'bg-yellow-900 hover:bg-yellow-800 text-yellow-200',
+                        blue: 'bg-blue-900 hover:bg-blue-800 text-blue-200',
+                        pink: 'bg-pink-900 hover:bg-pink-800 text-pink-200',
+                        gray: 'bg-gray-700 hover:bg-gray-600 text-gray-200',
+                        green: 'bg-green-900 hover:bg-green-800 text-green-200'
+                    };
+                    enrichedLinks.forEach(function (l) {
+                        var a = document.createElement('a');
+                        a.href = l.url;
+                        a.target = '_blank';
+                        a.rel = 'noopener noreferrer';
+                        a.className = 'inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs transition ' + (bgMap[l.color] || bgMap.gray);
+                        a.textContent = l.label;
+                        a.title = l.url;
+                        linksDiv2.appendChild(a);
+                    });
+                    enrichSlot.appendChild(linksDiv2);
+                }
+
+                // Augment Pricing rows in the existing detail card if enrichment has prices
+                if ((entryPricing.input != null || entryPricing.output != null || entryPricing.cached_input != null) && detail) {
+                    var priceCard = document.createElement('div');
+                    priceCard.className = 'mb-4 bg-gray-800 rounded-lg p-4';
+                    var priceTitle = document.createElement('h3');
+                    priceTitle.className = 'text-sm font-semibold text-gray-300 mb-2';
+                    priceTitle.textContent = 'Pricing (per 1M tokens, ' + (entryPricing.currency || 'USD') + ')';
+                    priceCard.appendChild(priceTitle);
+                    function priceRow(label, value) {
+                        if (value == null) return;
+                        var r = document.createElement('div');
+                        r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                        var l = document.createElement('div');
+                        l.className = 'text-gray-500 col-span-1';
+                        l.textContent = label;
+                        r.appendChild(l);
+                        var v = document.createElement('div');
+                        v.className = 'text-gray-200 col-span-2';
+                        v.textContent = '$' + value;
+                        r.appendChild(v);
+                        priceCard.appendChild(r);
+                    }
+                    priceRow('Input', entryPricing.input);
+                    priceRow('Output', entryPricing.output);
+                    priceRow('Cached input', entryPricing.cached_input);
+                    enrichSlot.appendChild(priceCard);
+                }
+            } catch (e) {
+                console.warn('[modal] enrichment links/pricing patch error', e);
+            }
+
             var arch = entry.architecture || {};
             var train = entry.training || {};
             var safety = entry.safety || {};

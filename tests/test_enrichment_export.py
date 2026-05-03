@@ -58,6 +58,8 @@ def test_enrichment_yaml_compiles_to_json(monkeypatch):
         assert m["safety"] == {"aisi_cyber_tier": None, "cbrn_risk": None, "self_reported_safety_card": None}
         assert m["throughput"] == {"tokens_per_second": None, "latency_p50_ms": None}
         assert m["api_providers"] == []
+        assert m["links"] == {"homepage": None, "system_card": None, "model_card": None, "huggingface": None, "paper": None, "github": None, "blog": None}
+        assert m["pricing"] == {"input": None, "output": None, "cached_input": None, "currency": "USD"}
 
 
 def test_enrichment_missing_yaml_writes_empty_sidecar(monkeypatch):

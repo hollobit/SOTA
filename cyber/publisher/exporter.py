@@ -108,6 +108,21 @@ class Exporter:
                 "quantizations": entry.get("quantizations", []) or [],
                 "api_providers": entry.get("api_providers", []) or [],
                 "_sources": entry.get("_sources", []) or [],
+                "links": {
+                    "homepage": (entry.get("links") or {}).get("homepage"),
+                    "system_card": (entry.get("links") or {}).get("system_card"),
+                    "model_card": (entry.get("links") or {}).get("model_card"),
+                    "huggingface": (entry.get("links") or {}).get("huggingface"),
+                    "paper": (entry.get("links") or {}).get("paper"),
+                    "github": (entry.get("links") or {}).get("github"),
+                    "blog": (entry.get("links") or {}).get("blog"),
+                },
+                "pricing": {
+                    "input": (entry.get("pricing") or {}).get("input"),
+                    "output": (entry.get("pricing") or {}).get("output"),
+                    "cached_input": (entry.get("pricing") or {}).get("cached_input"),
+                    "currency": (entry.get("pricing") or {}).get("currency", "USD"),
+                },
             }
 
         out = {
