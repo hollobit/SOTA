@@ -38,6 +38,9 @@ models:
       type: dense
     api_providers: [openai_api]
     _sources: ["https://platform.openai.com/docs/models/gpt-5.5-pro"]
+    lineage:
+      base_model_id: "openai/gpt-5.5"
+      training_method: "parallel test-time compute (multiple completions + voting)"
     links:
       homepage: "https://openai.com"
       model_card: "https://platform.openai.com/docs/models/gpt-5.5-pro"
@@ -94,6 +97,9 @@ models:
       type: dense
     api_providers: [openai_api]
     _sources: ["https://platform.openai.com/docs/models/gpt-5.4-thinking"]
+    lineage:
+      base_model_id: "openai/gpt-5.4"
+      training_method: "RL extended chain-of-thought"
     safety:
       aisi_cyber_tier: "elevated"
       cbrn_risk: "low"
@@ -221,6 +227,8 @@ models:
       type: dense
     api_providers: [google_ai_studio, gcp_vertex]
     _sources: ["https://ai.google.dev/gemini-api/docs/models#gemini-3-1-pro"]
+    training:
+      compute_flops: "2e26"
     links:
       homepage: "https://gemini.google.com"
       model_card: "https://ai.google.dev/gemini-api/docs/models#gemini-3-1-pro"
@@ -251,6 +259,10 @@ models:
       type: dense
     api_providers: [google_ai_studio, gcp_vertex, openrouter]
     _sources: ["https://ai.google.dev/gemini-api/docs/models#gemini-3-pro"]
+    lineage:
+      training_method: "successor of Gemini 3.0 Pro"
+    training:
+      compute_flops: "1.2e26"
     links:
       homepage: "https://gemini.google.com"
       model_card: "https://ai.google.dev/gemini-api/docs/models#gemini-3-pro"
@@ -302,6 +314,9 @@ models:
       type: dense
     api_providers: [xai_api]
     _sources: ["https://docs.x.ai/developers/models/grok-4-heavy"]
+    lineage:
+      base_model_id: "xai/grok-4.3"
+      training_method: "multi-agent voting variant"
     links:
       homepage: "https://x.ai"
       model_card: "https://docs.x.ai/developers/models/grok-4-heavy"
@@ -325,6 +340,9 @@ models:
       type: dense
     api_providers: [openrouter, huggingface_inference]
     _sources: ["https://ai.meta.com/research/publications/muse-spark"]
+    training:
+      compute_flops: "8e25"
+      pretrain_tokens: "15T"
     links:
       homepage: "https://ai.meta.com"
       model_card: "https://ai.meta.com/research/publications/muse-spark"
@@ -523,6 +541,9 @@ models:
       active_params_b: 3
     quantizations: [awq, gguf]
     api_providers: [alibaba_dashscope, huggingface_inference]
+    lineage:
+      teacher_models: ["alibaba/qwen3.6-plus"]
+      training_method: "MoE from dense teacher"
     _sources: ["https://huggingface.co/Qwen/Qwen3.6-35B-A3B"]
     links:
       homepage: "https://qwenlm.github.io"
@@ -766,6 +787,9 @@ models:
       experts_active: 4
     api_providers: [mistral_api, openrouter, huggingface_inference, vllm]
     _sources: ["https://huggingface.co/mistralai/Mistral-Small-4-119B-2603"]
+    lineage:
+      base_model_id: "mistral/mistral-medium-3.5"
+      training_method: "MoE distilled from Medium 3.5"
     links:
       homepage: "https://mistral.ai"
       huggingface: "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603"
@@ -828,6 +852,10 @@ models:
       total_params_b: 24
     training:
       phases: [continuous_pretrain, sft, dpo, grpo]
+    lineage:
+      base_model: "Mistral-Small-3.1-24B-Base-2503"
+      base_model_id: null
+      training_method: "continuous_pretraining + SFT + DPO + GRPO"
     quantizations: [bf16]
     api_providers: [huggingface_inference, vllm]
     _sources:
@@ -861,6 +889,9 @@ models:
       total_params_b: 3.35
       attention: hybrid_swa_global
     api_providers: [huggingface_inference]
+    lineage:
+      base_model: "Aya 8B (distilled)"
+      training_method: "knowledge distillation from Aya teacher"
     _sources:
       - "https://huggingface.co/CohereLabs/tiny-aya-base"
       - "http://arxiv.org/abs/2603.11510"
@@ -884,3 +915,19 @@ models:
       name: "CC-BY-NC 4.0"
       commercial: false
       attribution_required: true
+
+  dicta/dictalm-3.0-12b-instruct:
+    lineage:
+      base_model: "NVIDIA-Nemotron-Nano-12B-v2-Base"
+      training_method: "continuous_pretraining + SFT + DPO"
+
+  dicta/dictalm-3.0-1.7b-thinking:
+    lineage:
+      base_model: "Qwen3-1.7B-Base"
+      training_method: "continuous_pretraining + SFT + DPO + GRPO"
+
+  ai-singapore/apertus-sea-lion-v4-8b:
+    lineage:
+      base_model: "gemma-3-4b-it"
+      base_model_id: null
+      training_method: "post-training on SEA languages"

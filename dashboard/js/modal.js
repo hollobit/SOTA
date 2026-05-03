@@ -905,6 +905,7 @@ var Modal = {
         Modal._renderStrengthsWeaknesses(container, modelId);
         Modal._renderScoreSources(container, scores);
         Modal._renderVersionHistory(container, model, modelId);
+        Modal._renderFamilyTree(container, model, modelId);
 
         var enrichSlot = document.createElement('div');
         enrichSlot.id = 'modal-enrichment-slot';
@@ -1314,6 +1315,146 @@ var Modal = {
         } catch (e) { /* version history is non-fatal */ }
     },
 
+    _renderFamilyTree: function(container, model, modelId) {
+        try {
+            // Find all models from same vendor with release_date
+            var siblings = (App.data.models || []).filter(function(m) {
+                return m.vendor === model.vendor && (m.release_date || m.released_at);
+            }).map(function(m) {
+                return {
+                    id: m.id,
+                    name: m.name,
+                    date: m.release_date || m.released_at,
+                };
+            });
+            // Include target itself even if no release_date
+            if (!siblings.find(function(s) { return s.id === modelId; })) {
+                siblings.push({
+                    id: modelId,
+                    name: model.name,
+                    date: model.release_date || model.released_at || '?',
+                });
+            }
+            siblings.sort(function(a, b) {
+                return (a.date || '').localeCompare(b.date || '');
+            });
+            if (siblings.length < 2) return; // not enough for a tree
+
+            var body = Modal._collapsibleSection(container, 'Family Tree (' + (model.vendor || 'unknown vendor') + ')', 'family', false);
+
+            // Horizontal timeline using flex
+            var tree = document.createElement('div');
+            tree.className = 'flex items-center gap-1 overflow-x-auto py-2';
+            tree.style.minWidth = '0';
+
+            siblings.forEach(function(sib, idx) {
+                var node = document.createElement('div');
+                node.className = 'flex flex-col items-center min-w-[80px] cursor-pointer';
+                node.title = sib.id + ' · ' + sib.date;
+
+                var dot = document.createElement('div');
+                dot.className = 'rounded-full transition';
+                if (sib.id === modelId) {
+                    dot.className += ' w-4 h-4 bg-blue-400 ring-2 ring-blue-200';
+                } else {
+                    dot.className += ' w-3 h-3 bg-gray-500 hover:bg-blue-400';
+                }
+                node.appendChild(dot);
+
+                var label = document.createElement('div');
+                label.className = 'text-[10px] mt-1 text-center truncate w-full';
+                label.style.color = sib.id === modelId ? '#60a5fa' : '#9ca3af';
+                label.textContent = sib.name;
+                node.appendChild(label);
+
+                var dateEl = document.createElement('div');
+                dateEl.className = 'text-[9px] text-gray-500';
+                dateEl.textContent = (sib.date || '').slice(0, 7);
+                node.appendChild(dateEl);
+
+                node.addEventListener('click', (function(sid) {
+                    return function() {
+                        Modal.showModel(sid);
+                    };
+                })(sib.id));
+
+                tree.appendChild(node);
+
+                // Connector line
+                if (idx < siblings.length - 1) {
+                    var line = document.createElement('div');
+                    line.className = 'flex-1 h-px bg-gray-700 mx-1';
+                    line.style.minWidth = '20px';
+                    tree.appendChild(line);
+                }
+            });
+
+            body.appendChild(tree);
+
+            var caption = document.createElement('p');
+            caption.className = 'text-xs text-gray-500 mt-1';
+            caption.textContent = 'Chronological release order. Click any node to navigate to that model.';
+            body.appendChild(caption);
+        } catch (e) {
+            console.warn('[modal] family tree error', e);
+        }
+    },
+
+    _renderLineage: function(enrichSlot, modelId, entry) {
+        try {
+            var lineage = entry && entry.lineage;
+            if (!lineage) return;
+            if (!lineage.base_model && !lineage.base_model_id && !lineage.teacher_models && !lineage.training_method) return;
+
+            var body = Modal._collapsibleSection(enrichSlot, 'Lineage / Distillation', 'lineage', false);
+
+            function row(label, value, isLink, linkId) {
+                if (value == null || value === '' || (Array.isArray(value) && value.length === 0)) return;
+                var r = document.createElement('div');
+                r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                var l = document.createElement('div');
+                l.className = 'text-gray-500 col-span-1';
+                l.textContent = label;
+                r.appendChild(l);
+                var v = document.createElement('div');
+                v.className = 'text-gray-200 col-span-2';
+                if (isLink && linkId) {
+                    var a = document.createElement('a');
+                    a.href = '#';
+                    a.className = 'text-blue-400 hover:underline';
+                    a.textContent = value;
+                    a.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        Modal.showModel(linkId);
+                    });
+                    v.appendChild(a);
+                } else {
+                    v.textContent = Array.isArray(value) ? value.join(', ') : String(value);
+                }
+                r.appendChild(v);
+                body.appendChild(r);
+            }
+
+            if (lineage.base_model_id) {
+                var baseModel = (App.data.models || []).find(function(m) { return m.id === lineage.base_model_id; });
+                row('Base model', baseModel ? baseModel.name : lineage.base_model_id, true, lineage.base_model_id);
+            } else if (lineage.base_model) {
+                row('Base model', lineage.base_model);
+            }
+            if (lineage.teacher_models && lineage.teacher_models.length) {
+                lineage.teacher_models.forEach(function(tid) {
+                    var tm = (App.data.models || []).find(function(m) { return m.id === tid; });
+                    row('Teacher', tm ? tm.name : tid, true, tid);
+                });
+            }
+            if (lineage.training_method) {
+                row('Training method', lineage.training_method);
+            }
+        } catch (e) {
+            console.warn('[modal] lineage error', e);
+        }
+    },
+
     // ---- Helper: Enrichment sections (deferred Promise callback content) ----
     // Called after Promise.all([_enrichmentPromise, _hfPromise]) resolves.
     _renderEnrichmentSections: function(enrichSlot, model, modelId, enrichmentMap, hfMap, detail) {
@@ -1588,6 +1729,29 @@ var Modal = {
                     }
                 } catch (e) { /* hf metadata non-fatal */ }
 
+                // Training compute + carbon estimate
+                try {
+                    var train = entry.training || {};
+                    var flops = train.compute_flops;
+                    if (flops) {
+                        var flopsNum = typeof flops === 'string' ? parseFloat(flops) : flops;
+                        if (flopsNum && flopsNum > 0) {
+                            var exp = Math.log10(flopsNum);
+                            perfRow('Training compute', flopsNum.toExponential(1) + ' FLOPs', '~10^' + Math.round(exp) + ' compute');
+                            // Rough carbon estimate: 1 kWh ≈ 1e16 FLOPs (H100 BF16 ~700 TFLOPs at 700W)
+                            // → flops / 1e16 ≈ kWh; × 0.4 kg CO2/kWh
+                            var kwh = flopsNum / 1e16;
+                            var kgCO2 = kwh * 0.4;
+                            var tons = kgCO2 / 1000;
+                            var carbonStr;
+                            if (tons > 1000) carbonStr = (tons / 1000).toFixed(1) + 'kt CO2';
+                            else if (tons > 1) carbonStr = tons.toFixed(0) + 't CO2';
+                            else carbonStr = kgCO2.toFixed(0) + ' kg CO2';
+                            perfRow('Carbon estimate', carbonStr, 'rough: 1 kWh ≈ 10^16 FLOPs, US grid 0.4 kg CO2/kWh');
+                        }
+                    }
+                } catch (e) { /* carbon non-fatal */ }
+
                 perfBody.appendChild(perfCard);
             }
         } catch (e) {
@@ -1670,6 +1834,8 @@ var Modal = {
         }
         if (anyProv) row('API providers', providers);
         archBody.appendChild(card);
+
+        Modal._renderLineage(enrichSlot, modelId, entry);
     },
 
     // ---- Helper: Strengths Radar ECharts ----
