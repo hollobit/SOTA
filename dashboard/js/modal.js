@@ -213,6 +213,67 @@ var Modal = {
         Modal._lastTrigger = null;
     },
 
+    /**
+     * Wraps a content element in a collapsible <details>-style section with a clickable header.
+     * Returns the content element so callers can append children to it.
+     * Persists open/closed state in localStorage with key 'modal-section:<id>'.
+     *
+     * @param {HTMLElement} container - parent to append the section to
+     * @param {string} title - heading text
+     * @param {string} stateKey - unique short id for localStorage
+     * @param {boolean} defaultOpen - initial open state if no saved preference
+     * @returns {HTMLElement} - the inner content div (caller appends here)
+     */
+    _collapsibleSection: function(container, title, stateKey, defaultOpen) {
+        var lsKey = 'modal-section:' + stateKey;
+        var saved = null;
+        try { saved = localStorage.getItem(lsKey); } catch (e) { /* private mode */ }
+        var isOpen = saved === null ? !!defaultOpen : (saved === '1');
+
+        var wrap = document.createElement('div');
+        wrap.className = 'mb-4';
+
+        var header = document.createElement('div');
+        header.className = 'flex items-center justify-between cursor-pointer select-none px-2 py-1 -mx-2 rounded hover:bg-gray-800 transition';
+        header.setAttribute('role', 'button');
+        header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        header.setAttribute('tabindex', '0');
+
+        var titleEl = document.createElement('h3');
+        titleEl.className = 'text-sm font-semibold text-gray-300';
+        titleEl.textContent = title;
+        header.appendChild(titleEl);
+
+        var caret = document.createElement('span');
+        caret.className = 'text-xs text-gray-500 ml-2';
+        caret.textContent = isOpen ? '▼' : '▶';
+        header.appendChild(caret);
+
+        var body = document.createElement('div');
+        body.className = 'mt-2';
+        body.style.display = isOpen ? '' : 'none';
+
+        function toggle() {
+            isOpen = !isOpen;
+            body.style.display = isOpen ? '' : 'none';
+            caret.textContent = isOpen ? '▼' : '▶';
+            header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            try { localStorage.setItem(lsKey, isOpen ? '1' : '0'); } catch (e) { /* private */ }
+        }
+        header.addEventListener('click', toggle);
+        header.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggle();
+            }
+        });
+
+        wrap.appendChild(header);
+        wrap.appendChild(body);
+        container.appendChild(wrap);
+        return body;
+    },
+
     _makeLabel: function(labelText, valueText) {
         var div = document.createElement('div');
         div.className = 'text-sm';
@@ -890,8 +951,9 @@ var Modal = {
         }
         var refLinks = pickLinks(model);
         if (refLinks.length) {
+            var linksBody = Modal._collapsibleSection(container, 'Reference Links', 'links', true);
             var linksDiv = document.createElement('div');
-            linksDiv.className = 'flex flex-wrap gap-2 mb-4';
+            linksDiv.className = 'flex flex-wrap gap-2';
             refLinks.forEach(function(l) {
                 var a = document.createElement('a');
                 a.href = l.url;
@@ -912,7 +974,7 @@ var Modal = {
                 a.title = l.url;
                 linksDiv.appendChild(a);
             });
-            container.appendChild(linksDiv);
+            linksBody.appendChild(linksDiv);
         }
 
         // ---- Peer Comparison (NEW) ----
@@ -921,12 +983,7 @@ var Modal = {
                 ? PeerMatcher.findPeers(modelId, App.data.models, App.data.scores, 5)
                 : [];
             if (peerCandidates.length > 0) {
-                var peerDiv = document.createElement('div');
-                peerDiv.className = 'mb-4';
-                var ph = document.createElement('h3');
-                ph.className = 'text-sm font-semibold text-gray-300 mb-2';
-                ph.textContent = 'Peer Comparison';
-                peerDiv.appendChild(ph);
+                var peerDiv = Modal._collapsibleSection(container, 'Peer Comparison', 'peer', true);
 
                 var picker = document.createElement('div');
                 picker.className = 'flex items-center gap-2 mb-2 text-xs text-gray-400';
@@ -1045,8 +1102,6 @@ var Modal = {
 
                 sel.onchange = function () { renderPeerTable(sel.value); };
                 renderPeerTable(peerCandidates[0].modelId);
-
-                container.appendChild(peerDiv);
             }
         } catch (e) {
             console.warn('[modal] peer comparison error', e);
@@ -1058,12 +1113,7 @@ var Modal = {
                 var sw = PeerMatcher.extractStrengthsWeaknesses(modelId, App.data.models, App.data.scores);
 
                 if (sw.strengths.length > 0) {
-                    var strDiv = document.createElement('div');
-                    strDiv.className = 'mb-4';
-                    var sh = document.createElement('h3');
-                    sh.className = 'text-sm font-semibold text-gray-300 mb-2';
-                    sh.textContent = 'Strengths (12-month SOTA tier)';
-                    strDiv.appendChild(sh);
+                    var strDiv = Modal._collapsibleSection(container, 'Strengths (12-month SOTA tier)', 'strengths', true);
                     var ul = document.createElement('ul');
                     ul.className = 'text-xs text-gray-200 space-y-1';
                     sw.strengths.forEach(function (r) {
@@ -1087,16 +1137,10 @@ var Modal = {
                         ul.appendChild(li);
                     });
                     strDiv.appendChild(ul);
-                    container.appendChild(strDiv);
                 }
 
                 if (sw.weaknesses.length > 0) {
-                    var weakDiv = document.createElement('div');
-                    weakDiv.className = 'mb-4';
-                    var wh = document.createElement('h3');
-                    wh.className = 'text-sm font-semibold text-gray-300 mb-2';
-                    wh.textContent = 'Weaknesses (vs peer avg)';
-                    weakDiv.appendChild(wh);
+                    var weakDiv = Modal._collapsibleSection(container, 'Weaknesses (vs peer avg)', 'weaknesses', true);
                     var wul = document.createElement('ul');
                     wul.className = 'text-xs text-gray-200 space-y-1';
                     sw.weaknesses.forEach(function (r) {
@@ -1121,7 +1165,6 @@ var Modal = {
                         wul.appendChild(li);
                     });
                     weakDiv.appendChild(wul);
-                    container.appendChild(weakDiv);
                 }
             }
         } catch (e) {
@@ -1136,12 +1179,7 @@ var Modal = {
         });
         var topSrcs = Object.keys(srcUrls).sort(function(a, b) { return srcUrls[b] - srcUrls[a]; }).slice(0, 5);
         if (topSrcs.length) {
-            var srcDiv = document.createElement('div');
-            srcDiv.className = 'mb-4';
-            var stitle = document.createElement('h3');
-            stitle.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2';
-            stitle.textContent = 'Score Sources (' + topSrcs.length + ' unique)';
-            srcDiv.appendChild(stitle);
+            var srcDiv = Modal._collapsibleSection(container, 'Score Sources (' + topSrcs.length + ' unique)', 'sources', false);
             var slist = document.createElement('div');
             slist.className = 'flex flex-wrap gap-1.5';
             topSrcs.forEach(function(u) {
@@ -1158,7 +1196,6 @@ var Modal = {
                 slist.appendChild(a);
             });
             srcDiv.appendChild(slist);
-            container.appendChild(srcDiv);
         }
 
         // ---- Version history (sibling models from same vendor with similar id stem) ----
@@ -1176,12 +1213,7 @@ var Modal = {
                         var ad = a.release_date || ''; var bd = b.release_date || '';
                         return bd.localeCompare(ad);
                     });
-                    var hist = document.createElement('div');
-                    hist.className = 'mb-4';
-                    var ht = document.createElement('h3');
-                    ht.className = 'text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2';
-                    ht.textContent = 'Version History (' + model.vendor + ')';
-                    hist.appendChild(ht);
+                    var hist = Modal._collapsibleSection(container, 'Version History (' + model.vendor + ')', 'version', false);
                     var list = document.createElement('div');
                     list.className = 'flex flex-wrap gap-1.5';
                     siblings.slice(0, 30).forEach(function(sib) {
@@ -1194,7 +1226,6 @@ var Modal = {
                         list.appendChild(pill);
                     });
                     hist.appendChild(list);
-                    container.appendChild(hist);
                 }
             }
         } catch (e) { /* version history is non-fatal */ }
@@ -1232,12 +1263,9 @@ var Modal = {
                 pushE('📰 Blog', entryLinks.blog, 'green');
 
                 if (enrichedLinks.length) {
+                    var linksBody2 = Modal._collapsibleSection(enrichSlot, 'Reference Links', 'links2', true);
                     var linksDiv2 = document.createElement('div');
-                    linksDiv2.className = 'flex flex-wrap gap-2 mb-4';
-                    var linksTitle = document.createElement('div');
-                    linksTitle.className = 'w-full text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1';
-                    linksTitle.textContent = 'Reference Links';
-                    linksDiv2.appendChild(linksTitle);
+                    linksDiv2.className = 'flex flex-wrap gap-2';
                     var bgMap = {
                         purple: 'bg-purple-900 hover:bg-purple-800 text-purple-200',
                         cyan: 'bg-cyan-900 hover:bg-cyan-800 text-cyan-200',
@@ -1257,17 +1285,14 @@ var Modal = {
                         a.title = l.url;
                         linksDiv2.appendChild(a);
                     });
-                    enrichSlot.appendChild(linksDiv2);
+                    linksBody2.appendChild(linksDiv2);
                 }
 
                 // Augment Pricing rows in the existing detail card if enrichment has prices
                 if ((entryPricing.input != null || entryPricing.output != null || entryPricing.cached_input != null) && detail) {
+                    var priceBody = Modal._collapsibleSection(enrichSlot, 'Pricing (per 1M tokens, ' + (entryPricing.currency || 'USD') + ')', 'pricing', false);
                     var priceCard = document.createElement('div');
-                    priceCard.className = 'mb-4 bg-gray-800 rounded-lg p-4';
-                    var priceTitle = document.createElement('h3');
-                    priceTitle.className = 'text-sm font-semibold text-gray-300 mb-2';
-                    priceTitle.textContent = 'Pricing (per 1M tokens, ' + (entryPricing.currency || 'USD') + ')';
-                    priceCard.appendChild(priceTitle);
+                    priceCard.className = 'bg-gray-800 rounded-lg p-4';
                     function priceRow(label, value) {
                         if (value == null) return;
                         var r = document.createElement('div');
@@ -1285,7 +1310,7 @@ var Modal = {
                     priceRow('Input', entryPricing.input);
                     priceRow('Output', entryPricing.output);
                     priceRow('Cached input', entryPricing.cached_input);
-                    enrichSlot.appendChild(priceCard);
+                    priceBody.appendChild(priceCard);
                 }
             } catch (e) {
                 console.warn('[modal] enrichment links/pricing patch error', e);
@@ -1374,12 +1399,9 @@ var Modal = {
 
                 // Only render if we have at least one piece of new data
                 if (intelligenceIdx != null || arenaElo != null || ageStr || costPerIQ != null || cadenceStr || pricePosition) {
+                    var perfBody = Modal._collapsibleSection(enrichSlot, 'Performance & Cost', 'perfcost', false);
                     var perfCard = document.createElement('div');
-                    perfCard.className = 'mb-4 bg-gray-800 rounded-lg p-4';
-                    var perfTitle = document.createElement('h3');
-                    perfTitle.className = 'text-sm font-semibold text-gray-300 mb-2';
-                    perfTitle.textContent = 'Performance & Cost';
-                    perfCard.appendChild(perfTitle);
+                    perfCard.className = 'bg-gray-800 rounded-lg p-4';
 
                     function perfRow(label, value, hint) {
                         if (value == null || value === '') return;
@@ -1553,7 +1575,7 @@ var Modal = {
                         }
                     } catch (e) { /* hf metadata non-fatal */ }
 
-                    enrichSlot.appendChild(perfCard);
+                    perfBody.appendChild(perfCard);
                 }
             } catch (e) {
                 console.warn('[modal] performance & cost section error', e);
@@ -1572,12 +1594,9 @@ var Modal = {
             var anyProv = providers.length > 0;
             if (!(anyArch || anyTrain || anySafety || anyQuant || anyProv)) return;
 
+            var archBody = Modal._collapsibleSection(enrichSlot, 'Architecture / Training / Safety', 'architecture', false);
             var card = document.createElement('div');
-            card.className = 'mb-4 bg-gray-800 rounded-lg p-4';
-            var hd = document.createElement('h3');
-            hd.className = 'text-sm font-semibold text-gray-300 mb-3';
-            hd.textContent = 'Architecture / Training / Safety';
-            card.appendChild(hd);
+            card.className = 'bg-gray-800 rounded-lg p-4';
 
             function row(label, value) {
                 if (value == null || value === '' || (Array.isArray(value) && value.length === 0)) return;
@@ -1658,7 +1677,7 @@ var Modal = {
             }
             if (anyProv) row('API providers', providers);
 
-            enrichSlot.appendChild(card);
+            archBody.appendChild(card);
         });
 
         // ---- Strengths Radar Chart (NEW) ----
@@ -1721,18 +1740,15 @@ var Modal = {
             });
 
             if (radarIndicators.length >= 3) {
+                var radarBody = Modal._collapsibleSection(container, 'Strengths Radar (percentile vs all models)', 'radar', false);
                 var radarCard = document.createElement('div');
-                radarCard.className = 'mb-4 bg-gray-800 rounded-lg p-4';
-                var radarTitle = document.createElement('h3');
-                radarTitle.className = 'text-sm font-semibold text-gray-300 mb-2';
-                radarTitle.textContent = 'Strengths Radar (percentile vs all models)';
-                radarCard.appendChild(radarTitle);
+                radarCard.className = 'bg-gray-800 rounded-lg p-4';
 
                 var radarHost = document.createElement('div');
                 radarHost.style.height = '280px';
                 radarHost.style.width = '100%';
                 radarCard.appendChild(radarHost);
-                container.appendChild(radarCard);
+                radarBody.appendChild(radarCard);
 
                 // Defer init until host is in DOM
                 setTimeout(function () {
@@ -1801,17 +1817,14 @@ var Modal = {
                         return s.data.filter(function (v) { return v != null; }).length >= 2;
                     });
                     if (hasData) {
+                        var historyBody = Modal._collapsibleSection(container, 'Score History (top ' + topBenches.length + ' benchmarks)', 'history', false);
                         var historyCard = document.createElement('div');
-                        historyCard.className = 'mb-4 bg-gray-800 rounded-lg p-4';
-                        var historyTitle = document.createElement('h3');
-                        historyTitle.className = 'text-sm font-semibold text-gray-300 mb-2';
-                        historyTitle.textContent = 'Score History (top ' + topBenches.length + ' benchmarks)';
-                        historyCard.appendChild(historyTitle);
+                        historyCard.className = 'bg-gray-800 rounded-lg p-4';
                         var historyHost = document.createElement('div');
                         historyHost.style.height = '240px';
                         historyHost.style.width = '100%';
                         historyCard.appendChild(historyHost);
-                        container.appendChild(historyCard);
+                        historyBody.appendChild(historyCard);
 
                         setTimeout(function () {
                             if (typeof echarts === 'undefined') return;
@@ -1848,6 +1861,9 @@ var Modal = {
             cybersecurity: 'Cybersecurity (Attack)', cyber_defense: 'Cyber Defense',
             agent: 'Agent', multimodal: 'Multimodal', multilingual: 'Multilingual', other: 'Other'
         };
+
+        var totalScores = scores.length;
+        var scoresBody = Modal._collapsibleSection(container, 'Score Breakdown (' + totalScores + ' benchmarks)', 'scores', false);
 
         catOrder.forEach(function(cat) {
             var items = byCategory[cat];
@@ -1926,7 +1942,7 @@ var Modal = {
                 section.appendChild(row);
             });
 
-            container.appendChild(section);
+            scoresBody.appendChild(section);
         });
 
         Modal._open();
