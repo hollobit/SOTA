@@ -558,12 +558,27 @@ var App = {
         }
 
         var trendBench = document.getElementById('trend-benchmark');
-        this.data.benchmarks.forEach(function(b) {
+        // Sort benchmarks by score-coverage so the most-covered ones surface
+        // first in the dropdown. This is also how we pick the default.
+        var benchCoverage = {};
+        (this.data.scores || []).forEach(function(s) {
+            benchCoverage[s.benchmark_id] = (benchCoverage[s.benchmark_id] || 0) + 1;
+        });
+        var benchesSorted = this.data.benchmarks.slice().sort(function(a, b) {
+            return (benchCoverage[b.id] || 0) - (benchCoverage[a.id] || 0);
+        });
+        benchesSorted.forEach(function(b) {
             var opt = document.createElement('option');
             opt.value = b.id;
             opt.textContent = b.name;
             trendBench.appendChild(opt);
         });
+        // Default-select the most-covered benchmark so Model Rankings,
+        // Category Radar, and Cross-Benchmark Heatmap render on first view
+        // instead of showing the "Choose a benchmark above" placeholder.
+        if (benchesSorted.length > 0 && !trendBench.value) {
+            trendBench.value = benchesSorted[0].id;
+        }
 
         ['filter-category', 'filter-type', 'filter-source', 'filter-benchmark', 'filter-search'].forEach(function(id) {
             var el = document.getElementById(id);
@@ -1782,7 +1797,20 @@ var App = {
         var el = document.getElementById('pricing-chart');
         if (!el) return;
 
-        var pricing = this.data.pricing || [];
+        // pricing is exported as object keyed by model_id, not an array.
+        // Normalise to array of {model_id, price_per_1m_output, intelligence_index, tokens_per_second}.
+        var pricingRaw = this.data.pricing || {};
+        var pricing = Array.isArray(pricingRaw)
+            ? pricingRaw
+            : Object.keys(pricingRaw).map(function(mid) {
+                var p = pricingRaw[mid] || {};
+                return {
+                    model_id: mid,
+                    price_per_1m_output: typeof p.output === 'number' ? p.output : p.price_per_1m_output,
+                    intelligence_index: p.intelligence_index,
+                    tokens_per_second: p.tokens_per_second
+                };
+            });
         var points = pricing
             .filter(function(p) {
                 return typeof p.intelligence_index === 'number' && typeof p.price_per_1m_output === 'number';
