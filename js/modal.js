@@ -2101,18 +2101,21 @@ var Modal = {
                         detail.insertBefore(vWrap, detail.firstChild);
                     }
                 }
-                if (!model.release_date && !model.released_at && entry.release_date_inferred) {
-                    var rdWrap = document.createElement('div');
-                    var rdLbl = document.createElement('div');
-                    rdLbl.className = 'text-xs text-gray-500';
-                    rdLbl.textContent = 'Released (inferred)';
-                    rdWrap.appendChild(rdLbl);
-                    var rdVal = document.createElement('div');
-                    rdVal.className = 'text-sm text-gray-200';
-                    rdVal.style.fontStyle = 'italic';
-                    rdVal.textContent = entry.release_date_inferred;
-                    rdWrap.appendChild(rdVal);
-                    detail.appendChild(rdWrap);
+                // Show system registration date (when we first ingested this model) — always as a
+                // separate secondary row, never as a substitute for the real release date.
+                var sysRegDate = entry.system_registered_date || entry.release_date_inferred; // backwards compat
+                if (sysRegDate && detail) {
+                    var sysRow = document.createElement('div');
+                    var sl = document.createElement('div');
+                    sl.className = 'text-xs text-gray-500';
+                    sl.textContent = '시스템 등록일';
+                    sysRow.appendChild(sl);
+                    var sv = document.createElement('div');
+                    sv.className = 'text-sm text-gray-400 italic';
+                    sv.textContent = sysRegDate;
+                    sv.title = 'When the model was first ingested into the dashboard. Not the public release date.';
+                    sysRow.appendChild(sv);
+                    detail.appendChild(sysRow);
                 }
                 if ((!model.modalities || !model.modalities.length) && entry.modalities_inferred && entry.modalities_inferred.length > 1) {
                     var modWrap = document.createElement('div');
