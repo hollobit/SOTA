@@ -346,7 +346,14 @@ var CyberCoding = {
         'tencent/hy3-preview',
         'xiaomi/mimo-v2.5-pro',
         'inclusionai/ling-2.6-1t',
-        'anthropic/claude-mythos-preview'
+        'anthropic/claude-mythos-preview',
+
+        // May 2026 sovereign batch — coding-relevant
+        'mistral/mistral-medium-3.5',
+        'mistral/mistral-small-4',
+        'sber/gigachat-3.1-ultra',
+        'lg/k-exaone-236b',
+        'dicta/dictalm-3.0-24b-thinking'
     ],
 
     _models: [],

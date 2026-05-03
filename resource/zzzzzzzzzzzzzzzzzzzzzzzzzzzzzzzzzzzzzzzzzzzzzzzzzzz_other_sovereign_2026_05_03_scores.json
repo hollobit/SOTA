@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-03",
+    "sources": [
+      "https://huggingface.co/dicta-il/DictaLM-3.0-24B-Thinking",
+      "https://huggingface.co/dicta-il/DictaLM-3.0-24B-Base",
+      "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf",
+      "https://dicta.org.il/dicta-lm-3",
+      "https://huggingface.co/CohereLabs/tiny-aya-base",
+      "https://huggingface.co/tiiuae/Falcon-OCR",
+      "http://arxiv.org/abs/2603.27365",
+      "http://arxiv.org/abs/2603.11510"
+    ],
+    "_note": "Other sovereign AI updates 2026-05-03. Israel: DICTA DictaLM 3.0 24B Thinking + 12B Instruct (Dec 2025 release, latest Israeli Hebrew sovereign LLM). Canada: Cohere Tiny Aya 3B (Mar 12 2026 multilingual 70+ langs). UAE: TII Falcon-OCR 300M (Mar 28 2026 doc OCR specialty). Saudi Arabia ALLaM 7B is Mar 2025 (already covered/older). Germany Aleph Alpha TFree-HAT 7B (Oct 2025). Switzerland Apertus (Sep 2025). UK Stability AI no LLM 2026."
+  },
+  "benchmarks": [
+    {"id": "omega", "name": "OMEGA", "category": "math", "metric": "accuracy", "description": "Olmes math evaluation"},
+    {"id": "zebra_logic", "name": "ZebraLogic", "category": "reasoning", "metric": "accuracy", "description": "Zebra puzzle logical reasoning"},
+    {"id": "agi_eval_en", "name": "AGI Eval (English)", "category": "reasoning", "metric": "accuracy", "description": "AGI eval English subset"},
+    {"id": "popqa", "name": "PopQA", "category": "knowledge", "metric": "accuracy", "description": "Popularity-stratified factual QA"},
+    {"id": "alpacaeval_2_lc", "name": "AlpacaEval 2 LC", "category": "preference", "metric": "win_rate", "description": "AlpacaEval 2 length-controlled"},
+    {"id": "hebrew_summarization", "name": "Hebrew Summarization", "category": "multilingual", "metric": "win_rate", "description": "Hebrew chat summarization vs Gemini-2.5-Pro"},
+    {"id": "hebrew_translation", "name": "Hebrew Translation", "category": "multilingual", "metric": "win_rate", "description": "EN→HE translation vs Gemini-2.5-Pro"},
+    {"id": "hebrew_winogrande", "name": "Hebrew Winogrande", "category": "multilingual", "metric": "accuracy", "description": "Hebrew Winograd Schema Challenge"},
+    {"id": "israeli_trivia", "name": "Israeli Trivia", "category": "multilingual", "metric": "accuracy", "description": "Israeli cultural and factual trivia"},
+    {"id": "nikud_diacritization", "name": "Nikud (Diacritization)", "category": "multilingual", "metric": "accuracy", "description": "Hebrew nikud (diacritization) accuracy"},
+    {"id": "olm_ocr", "name": "olmOCR Bench", "category": "multimodal", "metric": "accuracy", "description": "Allen Institute OCR evaluation"},
+    {"id": "omnidoc_bench", "name": "OmniDocBench", "category": "multimodal", "metric": "accuracy", "description": "Comprehensive document parsing"},
+    {"id": "snli_he", "name": "Hebrew SNLI", "category": "multilingual", "metric": "accuracy", "description": "Hebrew Stanford NLI"},
+    {"id": "hebrew_qa", "name": "Hebrew QA", "category": "multilingual", "metric": "accuracy", "description": "Hebrew question answering"},
+    {"id": "hebrew_sentiment", "name": "Hebrew Sentiment", "category": "multilingual", "metric": "accuracy", "description": "Hebrew sentiment analysis"},
+    {"id": "il_facts", "name": "IL-Facts", "category": "multilingual", "metric": "accuracy", "description": "Israeli factual benchmark"},
+    {"id": "commonsense_qa", "name": "CommonsenseQA", "category": "reasoning", "metric": "accuracy", "description": "Commonsense reasoning QA"},
+    {"id": "winogrande", "name": "WinoGrande", "category": "reasoning", "metric": "accuracy", "description": "Winograd-style commonsense"}
+  ],
+  "models": [
+    {
+      "id": "dicta/dictalm-3.0-24b-thinking",
+      "vendor": "DICTA (Israel)",
+      "name": "DictaLM 3.0 24B Thinking",
+      "type": "open-weight",
+      "modalities": ["text"],
+      "parameters": "24B (Mistral-Small-3.1 base)",
+      "release_date": "2025-12-10"
+    },
+    {
+      "id": "dicta/dictalm-3.0-24b-base",
+      "vendor": "DICTA (Israel)",
+      "name": "DictaLM 3.0 24B Base",
+      "type": "open-weight",
+      "modalities": ["text"],
+      "parameters": "24B (Mistral-Small-3.1 base, 65K ctx)",
+      "release_date": "2025-12-10"
+    },
+    {
+      "id": "dicta/dictalm-3.0-12b-instruct",
+      "vendor": "DICTA (Israel)",
+      "name": "DictaLM 3.0 12B Instruct",
+      "type": "open-weight",
+      "modalities": ["text"],
+      "parameters": "12B (Nemotron Nano V2 base, hybrid SSM)",
+      "release_date": "2025-12-10"
+    },
+    {
+      "id": "dicta/dictalm-3.0-1.7b-thinking",
+      "vendor": "DICTA (Israel)",
+      "name": "DictaLM 3.0 1.7B Thinking",
+      "type": "open-weight",
+      "modalities": ["text"],
+      "parameters": "1.7B (Qwen3-1.7B base)",
+      "release_date": "2025-12-10"
+    },
+    {
+      "id": "cohere/tiny-aya-3b",
+      "vendor": "Cohere Labs (Canada)",
+      "name": "Tiny Aya 3B",
+      "type": "open-weight",
+      "modalities": ["text"],
+      "parameters": "3.35B (3 layers SWA + 1 global, 8K ctx)",
+      "release_date": "2026-03-12"
+    },
+    {
+      "id": "tii/falcon-ocr",
+      "vendor": "TII (UAE)",
+      "name": "Falcon-OCR 300M",
+      "type": "open-weight",
+      "modalities": ["text", "image"],
+      "parameters": "300M (early-fusion VLM, hybrid attention)",
+      "release_date": "2026-03-28"
+    }
+  ],
+  "scores": [
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "math", "score": 86.41, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 9"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "omega", "score": 28.38, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 9"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "bbh", "score": 73.00, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "BigBenchHard Tech report Table 9"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "zebra_logic", "score": 47.80, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 9"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "agi_eval_en", "score": 82.93, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 9"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "ifeval", "score": 88.17, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 9"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "mmlu", "score": 85.93, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 9"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "popqa", "score": 30.59, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 9"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "gpqa_diamond", "score": 55.13, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 9 GPQA"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "alpacaeval_2_lc", "score": 74.11, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 9"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "hebrew_summarization", "score": 56.86, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 8 - vs Gemini-2.5-Pro"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "hebrew_translation", "score": 30.09, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 8"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "hebrew_winogrande", "score": 78.06, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 8"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "israeli_trivia", "score": 60.13, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 8 - top score"},
+    {"model": "dicta/dictalm-3.0-24b-thinking", "benchmark": "nikud_diacritization", "score": 86.86, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 8 - SOTA"},
+
+    {"model": "dicta/dictalm-3.0-24b-base", "benchmark": "snli_he", "score": 86.0, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 3"},
+    {"model": "dicta/dictalm-3.0-24b-base", "benchmark": "hebrew_qa", "score": 76.6, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 3"},
+    {"model": "dicta/dictalm-3.0-24b-base", "benchmark": "hebrew_sentiment", "score": 68.7, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 3"},
+    {"model": "dicta/dictalm-3.0-24b-base", "benchmark": "hebrew_winogrande", "score": 83.8, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 3"},
+    {"model": "dicta/dictalm-3.0-24b-base", "benchmark": "il_facts", "score": 82.7, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 3"},
+    {"model": "dicta/dictalm-3.0-24b-base", "benchmark": "commonsense_qa", "score": 82.8, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 4"},
+    {"model": "dicta/dictalm-3.0-24b-base", "benchmark": "winogrande", "score": 78.2, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 4"},
+    {"model": "dicta/dictalm-3.0-24b-base", "benchmark": "arc_challenge", "score": 63.4, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 4"},
+
+    {"model": "dicta/dictalm-3.0-12b-instruct", "benchmark": "math", "score": 74.99, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 10"},
+    {"model": "dicta/dictalm-3.0-12b-instruct", "benchmark": "omega", "score": 15.19, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 10"},
+    {"model": "dicta/dictalm-3.0-12b-instruct", "benchmark": "bbh", "score": 71.38, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 10"},
+    {"model": "dicta/dictalm-3.0-12b-instruct", "benchmark": "zebra_logic", "score": 20.90, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 10"},
+    {"model": "dicta/dictalm-3.0-12b-instruct", "benchmark": "agi_eval_en", "score": 73.75, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 10"},
+    {"model": "dicta/dictalm-3.0-12b-instruct", "benchmark": "ifeval", "score": 72.07, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 10"},
+    {"model": "dicta/dictalm-3.0-12b-instruct", "benchmark": "mmlu", "score": 80.16, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 10"},
+    {"model": "dicta/dictalm-3.0-12b-instruct", "benchmark": "popqa", "score": 26.31, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 10"},
+    {"model": "dicta/dictalm-3.0-12b-instruct", "benchmark": "gpqa_diamond", "score": 38.61, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 10"},
+    {"model": "dicta/dictalm-3.0-12b-instruct", "benchmark": "alpacaeval_2_lc", "score": 17.45, "_source": "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf", "_note": "Tech report Table 10"},
+
+    {"model": "tii/falcon-ocr", "benchmark": "olm_ocr", "score": 80.3, "_source": "https://huggingface.co/tiiuae/Falcon-OCR", "_note": "olmOCR average"},
+    {"model": "tii/falcon-ocr", "benchmark": "omnidoc_bench", "score": 88.64, "_source": "https://huggingface.co/tiiuae/Falcon-OCR", "_note": "OmniDocBench overall"}
+  ]
+}
