@@ -130,6 +130,35 @@ var Comparison = {
         if (csvBtn) csvBtn.addEventListener('click', function() { Comparison._exportCSV(); });
         var pngBtn = document.getElementById('cmp-export-png');
         if (pngBtn) pngBtn.addEventListener('click', function() { Comparison._exportPNG(); });
+        var shareBtn = document.getElementById('cmp-share-url');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', function() {
+                var modelSel = document.getElementById('cmp-models');
+                if (!modelSel) return;
+                var modelIds = Array.prototype.map.call(modelSel.selectedOptions, function(o) { return o.value; });
+                if (!modelIds.length) {
+                    alert('Select at least one model first.');
+                    return;
+                }
+                var base = window.location.origin + window.location.pathname;
+                var url = base + '?compare=' + encodeURIComponent(modelIds.join(','));
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Comparison: ' + modelIds.length + ' models',
+                        text: 'Compare these models on the SOTA dashboard',
+                        url: url,
+                    }).catch(function() {});
+                } else if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = shareBtn.textContent;
+                        shareBtn.textContent = '✓ Copied';
+                        setTimeout(function() { shareBtn.textContent = orig; }, 1500);
+                    });
+                } else {
+                    prompt('Copy this URL:', url);
+                }
+            });
+        }
     },
 
     _exportCSV: function() {

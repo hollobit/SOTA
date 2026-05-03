@@ -47,35 +47,136 @@ var App = {
             window.addEventListener('hashchange', function() { self._navigateToHash(); });
 
             // Watchlist button
-            var wlBtn = document.getElementById('watchlist-btn');
-            if (wlBtn) {
-                wlBtn.addEventListener('click', function() {
-                    var watched = [];
-                    try {
+            document.addEventListener('DOMContentLoaded', function() {
+                var wlBtn = document.getElementById('watchlist-btn');
+                if (wlBtn) {
+                    wlBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        var existing = document.getElementById('watchlist-panel');
+                        if (existing) {
+                            existing.parentNode.removeChild(existing);
+                            return;
+                        }
+
+                        // Build watchlist panel
+                        var watched = [];
                         for (var i = 0; i < localStorage.length; i++) {
                             var k = localStorage.key(i);
                             if (k && k.indexOf('watchlist:') === 0 && localStorage.getItem(k) === '1') {
                                 watched.push(k.replace('watchlist:', ''));
                             }
                         }
-                    } catch (e) {}
-                    if (watched.length === 0) {
-                        alert('No models in your watchlist. Open a model and click ☆ Watch.');
-                        return;
-                    }
-                    var msg = 'Watched models:\n\n';
-                    watched.forEach(function(mid) {
-                        var m = (App.data.models || []).find(function(x) { return x.id === mid; });
-                        msg += '• ' + (m ? m.name : mid) + '\n';
-                    });
-                    msg += '\nClick OK to open the first one.';
-                    if (confirm(msg)) {
-                        if (typeof Modal !== 'undefined' && Modal.showModel) {
-                            Modal.showModel(watched[0]);
+
+                        var panel = document.createElement('div');
+                        panel.id = 'watchlist-panel';
+                        panel.className = 'fixed top-14 right-4 z-50 bg-gray-900 border border-gray-700 rounded-lg shadow-xl w-80 max-h-[70vh] overflow-y-auto';
+
+                        var hd = document.createElement('div');
+                        hd.className = 'flex justify-between items-center px-4 py-2 border-b border-gray-700';
+                        var title = document.createElement('h3');
+                        title.className = 'text-sm font-semibold text-gray-200';
+                        title.textContent = '★ Watchlist (' + watched.length + ')';
+                        hd.appendChild(title);
+                        var closeBtn = document.createElement('button');
+                        closeBtn.className = 'text-gray-500 hover:text-gray-200 text-lg';
+                        closeBtn.textContent = '\xd7';
+                        closeBtn.title = 'Close';
+                        closeBtn.addEventListener('click', function() {
+                            panel.parentNode.removeChild(panel);
+                        });
+                        hd.appendChild(closeBtn);
+                        panel.appendChild(hd);
+
+                        if (watched.length === 0) {
+                            var empty = document.createElement('div');
+                            empty.className = 'p-4 text-xs text-gray-500';
+                            empty.textContent = 'No models watched yet. Open any model and click ☆ Watch to add.';
+                            panel.appendChild(empty);
+                        } else {
+                            var ul = document.createElement('ul');
+                            ul.className = 'divide-y divide-gray-800';
+                            watched.forEach(function(mid) {
+                                var m = (App.data.models || []).find(function(x) { return x.id === mid; });
+                                var li = document.createElement('li');
+                                li.className = 'px-3 py-2 hover:bg-gray-800 cursor-pointer flex items-center justify-between';
+                                li.addEventListener('click', function(ev) {
+                                    if (ev.target.tagName === 'BUTTON') return;
+                                    panel.parentNode.removeChild(panel);
+                                    if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid);
+                                });
+
+                                var info = document.createElement('div');
+                                info.className = 'flex-1 min-w-0';
+                                var nm = document.createElement('div');
+                                nm.className = 'text-sm text-blue-400 truncate';
+                                nm.textContent = m ? m.name : mid;
+                                info.appendChild(nm);
+                                var meta = document.createElement('div');
+                                meta.className = 'text-xs text-gray-500 truncate';
+                                meta.textContent = (m ? m.vendor : '?') + ' \xb7 ' + (m && m.type ? m.type : '');
+                                info.appendChild(meta);
+                                li.appendChild(info);
+
+                                // Diff badge — has watched score changed since snapshot?
+                                try {
+                                    var snapStr = localStorage.getItem('watchlist-snap:' + mid);
+                                    if (snapStr) {
+                                        var snap = JSON.parse(snapStr);
+                                        var changes = 0;
+                                        (App.data.scores || []).forEach(function(s) {
+                                            if (s.model_id !== mid) return;
+                                            var old = snap.scores && snap.scores[s.benchmark_id];
+                                            if (old != null && Math.abs(s.value - old) > 0.05) changes++;
+                                        });
+                                        if (changes > 0) {
+                                            var badge = document.createElement('span');
+                                            badge.className = 'bg-yellow-900 text-yellow-300 text-xs px-1.5 py-0.5 rounded ml-2';
+                                            badge.textContent = changes + ' changed';
+                                            li.appendChild(badge);
+                                        }
+                                    }
+                                } catch (e) {}
+
+                                var rmBtn = document.createElement('button');
+                                rmBtn.className = 'text-gray-500 hover:text-red-400 text-xs ml-2';
+                                rmBtn.textContent = '✕';
+                                rmBtn.title = 'Remove from watchlist';
+                                rmBtn.addEventListener('click', function(ev) {
+                                    ev.stopPropagation();
+                                    try {
+                                        localStorage.removeItem('watchlist:' + mid);
+                                        localStorage.removeItem('watchlist-snap:' + mid);
+                                    } catch (e) {}
+                                    li.parentNode.removeChild(li);
+                                    title.textContent = '★ Watchlist (' + (watched.length - 1) + ')';
+                                });
+                                li.appendChild(rmBtn);
+
+                                ul.appendChild(li);
+                            });
+                            panel.appendChild(ul);
                         }
-                    }
-                });
-            }
+
+                        // Footer
+                        var footer = document.createElement('div');
+                        footer.className = 'px-4 py-2 border-t border-gray-700 text-xs text-gray-500';
+                        footer.textContent = 'Click model to open. ✕ to remove. Score changes since first watched are highlighted.';
+                        panel.appendChild(footer);
+
+                        document.body.appendChild(panel);
+
+                        // Click-away to close
+                        setTimeout(function() {
+                            document.addEventListener('click', function closer(ev) {
+                                if (panel.contains(ev.target)) return;
+                                if (ev.target === wlBtn) return;
+                                if (panel.parentNode) panel.parentNode.removeChild(panel);
+                                document.removeEventListener('click', closer);
+                            });
+                        }, 0);
+                    });
+                }
+            });
         });
     },
 
@@ -106,6 +207,29 @@ var App = {
                 var qv = decodeURIComponent(queryVendor);
                 setTimeout(function() { Modal.showVendor(qv); }, 300);
                 return;
+            }
+            var queryCompare = params.get('compare');
+            if (queryCompare) {
+                // Switch to Comparison tab + pre-select models
+                var modelIds = queryCompare.split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+                if (modelIds.length > 0) {
+                    var tabBtn = document.getElementById('tabbtn-comparison');
+                    if (tabBtn) tabBtn.click();
+                    setTimeout(function() {
+                        var msel = document.getElementById('cmp-models');
+                        if (!msel) return;
+                        Array.prototype.forEach.call(msel.options, function(o) { o.selected = false; });
+                        modelIds.forEach(function(id) {
+                            var found = Array.prototype.find.call(msel.options, function(o) { return o.value === id; });
+                            if (found) found.selected = true;
+                        });
+                        if (typeof Comparison !== 'undefined' && Comparison.render) {
+                            if (Comparison._updateCounters) Comparison._updateCounters();
+                            Comparison.render();
+                        }
+                    }, 200);
+                    return;
+                }
             }
         } catch (e) { /* URLSearchParams not supported — fall through */ }
         // Fallback to hash-based routing
@@ -1185,7 +1309,99 @@ var App = {
             return b ? b.name : bid;
         });
         Charts.renderHeatmap('heatmap-chart', hmNames, hmBenchNames, hmMatrix);
+        App._renderSotaHighlights();
         App._renderTrendOverview();
+    },
+
+    _renderSotaHighlights: function() {
+        var container = document.getElementById('sota-highlights-list');
+        if (!container) return;
+        container.textContent = '';
+
+        // Build list of SOTA scores: for each benchmark, find the highest-value score.
+        // Sort by source.date desc.
+        var benchSota = {};
+        (App.data.scores || []).forEach(function(s) {
+            if (!s.is_sota) return;
+            var existing = benchSota[s.benchmark_id];
+            if (!existing || (s.value > existing.value)) {
+                benchSota[s.benchmark_id] = s;
+            }
+        });
+
+        var sotaList = Object.values(benchSota);
+        // Sort by source.date descending; fallback to value desc
+        sotaList.sort(function(a, b) {
+            var ad = (a.source && a.source.date) || '';
+            var bd = (b.source && b.source.date) || '';
+            if (ad !== bd) return bd.localeCompare(ad);
+            return b.value - a.value;
+        });
+
+        if (sotaList.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-gray-500 text-sm';
+            empty.textContent = 'No SOTA-flagged scores in the dataset.';
+            container.appendChild(empty);
+            return;
+        }
+
+        var grid = document.createElement('div');
+        grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3';
+
+        var topN = Math.min(sotaList.length, 30);
+        for (var i = 0; i < topN; i++) {
+            var s = sotaList[i];
+            var bench = (App.data.benchmarks || []).find(function(b) { return b.id === s.benchmark_id; });
+            var model = (App.data.models || []).find(function(m) { return m.id === s.model_id; });
+
+            var card = document.createElement('div');
+            card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-3 hover:border-blue-500 cursor-pointer transition';
+            (function(mid) {
+                card.addEventListener('click', function() {
+                    if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid);
+                });
+            })(s.model_id);
+
+            var topRow = document.createElement('div');
+            topRow.className = 'flex justify-between items-start mb-1';
+            var benchName = document.createElement('div');
+            benchName.className = 'text-xs text-gray-400 uppercase tracking-wider';
+            benchName.textContent = bench ? bench.name : s.benchmark_id;
+            topRow.appendChild(benchName);
+            var dateBadge = document.createElement('div');
+            dateBadge.className = 'text-xs text-gray-600';
+            dateBadge.textContent = (s.source && s.source.date) ? s.source.date : '—';
+            topRow.appendChild(dateBadge);
+            card.appendChild(topRow);
+
+            var midRow = document.createElement('div');
+            midRow.className = 'flex justify-between items-baseline';
+            var modelName = document.createElement('div');
+            modelName.className = 'text-sm text-blue-400 font-semibold truncate';
+            modelName.textContent = model ? model.name : s.model_id;
+            midRow.appendChild(modelName);
+            var val = document.createElement('div');
+            val.className = 'text-lg font-mono text-yellow-300';
+            val.textContent = (typeof s.value === 'number') ? s.value.toFixed(1) : s.value;
+            midRow.appendChild(val);
+            card.appendChild(midRow);
+
+            var bottom = document.createElement('div');
+            bottom.className = 'text-xs text-gray-500';
+            bottom.textContent = (model && model.vendor) || '';
+            card.appendChild(bottom);
+
+            grid.appendChild(card);
+        }
+        container.appendChild(grid);
+
+        if (sotaList.length > topN) {
+            var more = document.createElement('p');
+            more.className = 'text-xs text-gray-500 mt-3';
+            more.textContent = 'Showing top ' + topN + ' SOTA records out of ' + sotaList.length + '.';
+            container.appendChild(more);
+        }
     },
 
     _renderTrendOverview: function() {
