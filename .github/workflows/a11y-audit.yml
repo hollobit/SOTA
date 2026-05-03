@@ -1,0 +1,60 @@
+name: A11y Audit (axe-core)
+
+on:
+  push:
+    paths:
+      - 'dashboard/**'
+      - '.github/workflows/a11y-audit.yml'
+  pull_request:
+    paths:
+      - 'dashboard/**'
+  workflow_dispatch:
+
+jobs:
+  axe-audit:
+    name: axe-core dashboard audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: |
+          npm install --no-save \
+            @axe-core/cli@4 \
+            http-server
+
+      - name: Start static server
+        run: |
+          npx http-server dashboard -p 8765 &
+          sleep 2
+
+      - name: Run axe-core audit
+        run: |
+          # Run axe against the dashboard with output to JSON
+          # --tags wcag2a,wcag2aa for standard compliance
+          npx @axe-core/cli http://localhost:8765/index.html \
+            --tags wcag2a,wcag2aa \
+            --exit \
+            --save dashboard-a11y-report.json || AXE_FAILED=$?
+
+          # Print summary
+          if [ -f dashboard-a11y-report.json ]; then
+            cat dashboard-a11y-report.json | head -50
+          fi
+
+          # Don't fail CI on violations for now — report only
+          # When ready to enforce, set: if [ -n "$AXE_FAILED" ]; then exit 1; fi
+          echo "A11y audit complete (informational)"
+
+      - name: Upload axe report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: axe-report
+          path: dashboard-a11y-report.json
+          retention-days: 14
