@@ -1286,6 +1286,22 @@ var Modal = {
                 val.textContent = item.score.value > 500 ? Math.round(item.score.value) : item.score.value;
                 right.appendChild(val);
 
+                // NEW: 12-month rolling SOTA tier badge from peer-matcher
+                var tier = (window.PeerMatcher && PeerMatcher.sotaTier)
+                    ? PeerMatcher.sotaTier(item.score.value, modelId, item.score.benchmark_id, App.data.models, App.data.scores)
+                    : null;
+                if (tier) {
+                    var tierBadge = document.createElement('span');
+                    tierBadge.className = 'px-1.5 py-0.5 text-xs rounded';
+                    if (tier.tier === 'sota') tierBadge.className += ' bg-yellow-900 text-yellow-300';
+                    else if (tier.tier === 'top3') tierBadge.className += ' bg-gray-600 text-gray-100';
+                    else if (tier.tier === 'top10') tierBadge.className += ' bg-gray-700 text-gray-200';
+                    else tierBadge.className += ' bg-gray-800 text-gray-400';
+                    tierBadge.textContent = tier.label;
+                    tierBadge.title = tier.label + ' (' + tier.rank + '/' + tier.total + ')';
+                    right.appendChild(tierBadge);
+                }
+
                 if (item.score.is_sota) {
                     var sotaBadge = document.createElement('span');
                     sotaBadge.className = 'px-1.5 py-0.5 bg-green-900 text-green-300 text-xs rounded';
