@@ -1171,7 +1171,12 @@ var Modal = {
         var enrichSlot = document.createElement('div');
         enrichSlot.id = 'modal-enrichment-slot';
         container.appendChild(enrichSlot);
-        _enrichmentPromise.then(function (enrichmentMap) {
+        Promise.all([
+            _enrichmentPromise,
+            (typeof App !== 'undefined' && App.loadHFMetadata) ? App.loadHFMetadata() : Promise.resolve({})
+        ]).then(function (results) {
+            var enrichmentMap = results[0];
+            var hfMap = results[1] || {};
             var entry = enrichmentMap && enrichmentMap[modelId];
             if (!entry) return;
 
@@ -1494,6 +1499,27 @@ var Modal = {
                             perfRow('Benchmark coverage', modelBenchCount + ' / ' + totalBench + ' benchmarks (' + pctCov + '%)');
                         }
                     } catch (e) { /* coverage non-fatal */ }
+
+                    // HuggingFace metadata
+                    try {
+                        var hf = hfMap[modelId];
+                        if (hf) {
+                            if (hf.downloads_30d != null) {
+                                perfRow('HF downloads (30d)', hf.downloads_30d.toLocaleString(), 'huggingface.co');
+                            }
+                            if (hf.likes != null) {
+                                perfRow('HF likes', hf.likes.toLocaleString());
+                            }
+                            if (hf.total_size_bytes != null) {
+                                var gb = (hf.total_size_bytes / 1e9).toFixed(1);
+                                perfRow('HF repo size', gb + ' GB', (hf.file_count || '?') + ' files');
+                            }
+                            if (hf.last_modified) {
+                                var hfDate = String(hf.last_modified).slice(0, 10);
+                                perfRow('HF last update', hfDate);
+                            }
+                        }
+                    } catch (e) { /* hf metadata non-fatal */ }
 
                     enrichSlot.appendChild(perfCard);
                 }

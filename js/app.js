@@ -11,7 +11,8 @@ var App = {
         leaderboards: {},
         changelog: [],
         history: {},
-        enrichment: null
+        enrichment: null,
+        hfMetadata: null
     },
 
     // Leaderboard sort state
@@ -2017,6 +2018,25 @@ App.loadEnrichment = function () {
             return App.data.enrichment;
         });
     return App._enrichmentPromise;
+};
+
+App.loadHFMetadata = function () {
+    if (App.data.hfMetadata !== undefined && App.data.hfMetadata !== null) {
+        return Promise.resolve(App.data.hfMetadata);
+    }
+    if (App._hfMetadataPromise) return App._hfMetadataPromise;
+    App._hfMetadataPromise = fetch('data/hf_metadata.json')
+        .then(function (r) { return r.ok ? r.json() : { models: {} }; })
+        .then(function (d) {
+            App.data.hfMetadata = d.models || {};
+            return App.data.hfMetadata;
+        })
+        .catch(function () {
+            console.warn('[modal] hf_metadata.json not loadable');
+            App.data.hfMetadata = {};
+            return App.data.hfMetadata;
+        });
+    return App._hfMetadataPromise;
 };
 
 document.addEventListener('DOMContentLoaded', function() { App.init(); });
