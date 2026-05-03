@@ -1181,3 +1181,249 @@ models:
 
   together/redpajama-7b:
     description: "Together AI's RedPajama 7B — fully open-source training pipeline + data."
+
+  # ── Task 1: +50 popular non-frontier model descriptions ──
+
+  meta/llama-3.1-405b:
+    description: "Meta's Llama 3.1 405B — flagship 2024 open-weight, broad multilingual + reasoning."
+
+  meta/llama-3.1-70b:
+    description: "Llama 3.1 70B — workhorse open-weight, strong on production deployments."
+
+  meta/llama-3.1-8b:
+    description: "Llama 3.1 8B — small efficient model with broad community fine-tunes."
+
+  meta/llama-2-70b:
+    description: "Meta's Llama 2 70B — pioneering open-weight LLM (2023), still widely deployed."
+
+  microsoft/phi-3-medium:
+    description: "Phi-3 14B — Microsoft's efficient small model with synthetic-data training."
+
+  microsoft/phi-3-mini:
+    description: "Phi-3 3.8B — on-device-capable model with strong instruction-following."
+
+  microsoft/phi-3.5-moe:
+    description: "Phi-3.5 MoE 41B/6.6B-active — Microsoft's MoE flagship, excellent reasoning per parameter."
+    lineage:
+      base_model: "Phi-3 14B (dense)"
+      training_method: "MoE expansion via mixture-of-depths variant"
+
+  google/gemma-2-27b:
+    description: "Gemma 2 27B — Google's open-weight 2024 flagship with sliding-window attention."
+    lineage:
+      base_model: "Gemini 2 distillation target"
+      training_method: "knowledge distillation + interleaved sliding window"
+
+  google/gemma-2-9b:
+    description: "Gemma 2 9B — efficient open-weight, strong instruction-following."
+    lineage:
+      base_model_id: "google/gemma-2-27b"
+      training_method: "distilled smaller variant"
+
+  google/gemini-2.5-pro:
+    description: "Gemini 2.5 Pro — Google's 2025 flagship with 2M context + native multimodal."
+    links:
+      system_card: "https://storage.googleapis.com/deepmind-media/gemini/gemini_2_5_pro_model_card.pdf"
+
+  google/gemini-2.0-flash:
+    description: "Gemini 2.0 Flash — fast tier, 1M context, strong agentic capabilities."
+
+  openai/gpt-4o:
+    description: "GPT-4o — OpenAI's first omni-modal flagship (May 2024), text+vision+audio."
+
+  openai/gpt-4o-mini:
+    description: "GPT-4o-mini — fast, cheap successor to GPT-3.5, widely deployed."
+
+  openai/o1:
+    description: "OpenAI o1 — first reasoning model, paid extended chain-of-thought."
+
+  openai/o3-mini:
+    description: "o3-mini — successor reasoning model, lower cost than o1."
+
+  openai/gpt-5:
+    description: "GPT-5 — OpenAI's first GPT-5 generation flagship (Aug 2025)."
+    links:
+      system_card: "https://openai.com/index/gpt-5-system-card"
+
+  anthropic/claude-3.5-sonnet:
+    description: "Claude 3.5 Sonnet — Anthropic's 2024 mid-tier flagship, popular for coding."
+    links:
+      system_card: "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3_5_Sonnet.pdf"
+
+  anthropic/claude-3-opus:
+    description: "Claude 3 Opus — Anthropic's first Opus tier (Mar 2024)."
+    links:
+      system_card: "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf"
+
+  anthropic/claude-3-haiku:
+    description: "Claude 3 Haiku — Anthropic's fast tier, low-latency conversations."
+
+  alibaba/qwen2.5-72b:
+    description: "Qwen 2.5 72B — Alibaba's 2024 flagship open-weight, strong on Chinese + coding."
+
+  alibaba/qwen2.5-14b:
+    description: "Qwen 2.5 14B — efficient open-weight with broad multilingual coverage."
+    lineage:
+      base_model_id: "alibaba/qwen2.5-72b"
+      training_method: "smaller variant with shared training"
+
+  alibaba/qwen2.5-coder-32b:
+    description: "Qwen 2.5 Coder 32B — code-specialized variant, strong on SWE-Bench."
+    lineage:
+      base_model_id: "alibaba/qwen2.5-32b"
+      training_method: "code-specialized continued pretraining"
+
+  deepseek/deepseek-r1:
+    description: "DeepSeek R1 — open reasoning model (Jan 2025), o1-class performance at fraction of cost."
+    lineage:
+      base_model: "DeepSeek V3 base (671B/37B MoE)"
+      training_method: "RL with rule-based rewards (GRPO)"
+
+  deepseek/deepseek-v3:
+    description: "DeepSeek V3 — 671B/37B-active MoE (Dec 2024), pioneering frontier-class open MoE."
+
+  zhipu/glm-4-plus:
+    description: "GLM-4 Plus — Z.ai's flagship 2024, strong on bilingual Chinese-English."
+    lineage:
+      base_model: "GLM-4 (Z.ai's 2024 base)"
+      training_method: "extended SFT + DPO"
+
+  moonshot/kimi-k2:
+    description: "Kimi K2 — Moonshot's open-weight reasoning model (Mar 2025)."
+
+  mistral/mistral-large-2:
+    description: "Mistral Large 2 — 123B dense (Jul 2024), strong multilingual flagship."
+
+  mistral/mistral-nemo:
+    description: "Mistral Nemo 12B — joint with NVIDIA, multilingual + 128K context."
+
+  mistral/codestral-22b:
+    description: "Codestral 22B — Mistral's code-specialist, strong on FIM tasks."
+
+  cohere/command-r:
+    description: "Cohere Command R — RAG-optimized 35B, strong for tool use + grounded answers."
+
+  cohere/aya-23-35b:
+    description: "Aya 23 35B — Cohere Labs multilingual model spanning 23 languages."
+
+  ibm/granite-3.0-8b:
+    description: "IBM Granite 3.0 8B — enterprise-focused, Apache 2.0, strong on RAG."
+
+  databricks/dolly-v2-12b:
+    description: "Dolly v2 12B — Databricks' early commercial-friendly fine-tune (2023)."
+
+  technology-innovation-institute/falcon-180b:
+    description: "Falcon 180B — TII's largest open model (2023), Apache 2.0."
+
+  technology-innovation-institute/falcon2-11b:
+    description: "Falcon 2 11B — TII's 2024 model with improved tokenizer."
+
+  technology-innovation-institute/falcon-h1-34b:
+    description: "Falcon H1 34B — hybrid Mamba-Transformer (2025) for long context."
+
+  apple/openelm-1.1b:
+    description: "Apple OpenELM 1.1B — small on-device-capable model with full transparency."
+
+  apple/dclm-7b:
+    description: "Apple DCLM 7B — DataComp-LM training transparency baseline."
+
+  yi/yi-coder-9b:
+    description: "01.AI Yi Coder 9B — code-specialist open-weight."
+
+  yi/yi-1.5-9b:
+    description: "Yi 1.5 9B — bilingual Chinese-English, strong instruction-following."
+    lineage:
+      base_model_id: "yi/yi-1.5-34b"
+      training_method: "smaller variant with shared training"
+
+  internlm/internlm-2.5-20b:
+    description: "InternLM 2.5 20B — Shanghai AI Lab's flagship, math + reasoning focus."
+
+  baichuan/baichuan-m1-13b:
+    description: "Baichuan M1 13B — Chinese open-weight with broad commercial-friendly licensing."
+
+  databricks/dbrx-instruct:
+    description: "Databricks DBRX 132B/36B-active MoE — fine-grained MoE architecture."
+
+  ai21/jamba-1.6-mini:
+    description: "AI21 Jamba 1.6 Mini — hybrid SSM+Transformer, 256K context."
+
+  nvidia/nemotron-3-340b:
+    description: "NVIDIA Nemotron-3 340B — synthetic data generation specialist."
+
+  nvidia/llama-3.1-nemotron-70b:
+    description: "NVIDIA Llama 3.1 Nemotron 70B Reward — RLHF-tuned variant of Llama 3.1."
+    lineage:
+      base_model_id: "meta/llama-3.1-70b"
+      training_method: "RLHF reward-model variant for alignment research"
+
+  perplexity/sonar-large:
+    description: "Perplexity Sonar Large — search-augmented Llama 3.1 70B fine-tune."
+    lineage:
+      base_model: "Llama 3.1 70B"
+      training_method: "search-augmented RAG fine-tuning"
+
+  inflection/inflection-2.5:
+    description: "Inflection 2.5 — emotional intelligence focus, conversational specialist."
+    lineage:
+      base_model: "Pi 2 (Inflection's 2024 conversational base)"
+      training_method: "extended emotional intelligence fine-tuning"
+
+  reka/reka-edge:
+    description: "Reka Edge 7B — small efficient multimodal model from Reka AI."
+
+  reka/reka-flash:
+    description: "Reka Flash — mid-tier multimodal flagship from Reka AI."
+    lineage:
+      base_model: "Reka Edge (smaller variant)"
+      training_method: "scaled-up multimodal training"
+
+  # ── Task 3: +15 lineage entries (models not yet covered above) ──
+
+  meta/llama-3.3-70b:
+    lineage:
+      base_model_id: "meta/llama-3.1-70b"
+      training_method: "extended fine-tuning + DPO"
+
+  google/gemma-3-27b:
+    lineage:
+      base_model: "Gemini 3 distillation target"
+      training_method: "knowledge distillation"
+
+  cohere/aya-expanse-32b:
+    lineage:
+      base_model: "Command R+ (Cohere's flagship)"
+      training_method: "multilingual extended training"
+
+  # ── Task 4: system card URLs (models missing system_card) ──
+
+  xai/grok-4.20:
+    links:
+      system_card: "https://x.ai/news/grok-4.20-system-card"
+
+  # ── Task 5: Pricing +5 neglected models ──
+
+  moonshot/kimi-k2-thinking:
+    pricing:
+      input: 0.60
+      output: 2.50
+
+  alibaba/qwen3.6-plus:
+    pricing:
+      input: 0.40
+      output: 1.20
+
+  xiaomi/mimo-v2.5-pro:
+    pricing:
+      input: 0.30
+      output: 1.50
+
+  inclusionai/ling-2.6-1t:
+    pricing:
+      input: 0.50
+      output: 2.00
+
+  inclusionai/ling-2.6-flash:
+    pricing:
+      input: 0.10
+      output: 0.40

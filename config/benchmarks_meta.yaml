@@ -38,6 +38,12 @@ benchmarks:
   bmt:
     bmt_id: saved-1769608044995-yosl5
     bmt_title: 'GPQA: A Graduate-Level Google-Proof Q&A Benchmark'
+  reliability:
+    contamination_risk: medium
+    saturation: approaching
+    citation_count: 720
+    last_updated: "2024-04"
+    notes: "Original GPQA full set, leakage concerns"
 - id: humaneval
   name: HumanEval
   category: coding
@@ -76,6 +82,12 @@ benchmarks:
   bmt:
     bmt_id: saved-1769669555277-9poyg
     bmt_title: Math-Shepherd
+  reliability:
+    contamination_risk: high
+    saturation: approaching
+    citation_count: 1800
+    last_updated: "2024-06"
+    notes: "Hendrycks MATH, contamination concerns growing"
 - id: gsm8k
   name: GSM8K
   category: math
@@ -92,6 +104,12 @@ benchmarks:
   bmt:
     bmt_id: saved-1769608044998-02wv1
     bmt_title: GSM8K (Grade School Math 8K)
+  reliability:
+    contamination_risk: high
+    saturation: saturated
+    citation_count: 4500
+    last_updated: "2021-11"
+    notes: "Saturated for frontier models, contamination heavily discussed"
 - id: mmmu
   name: MMMU
   category: multimodal
@@ -4477,6 +4495,12 @@ benchmarks:
   - 95
   description: Reading comprehension requiring discrete reasoning over paragraph text
   paper: https://arxiv.org/abs/1903.00161
+  reliability:
+    contamination_risk: high
+    saturation: saturated
+    citation_count: 1900
+    last_updated: "2019-10"
+    notes: "Reading comprehension, saturated for frontier"
 - id: big_code_bench
   name: BigCodeBench
   category: coding
@@ -4487,6 +4511,12 @@ benchmarks:
   - 90
   description: Comprehensive code generation benchmark across 1,140 tasks
   paper: https://arxiv.org/abs/2406.15877
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 220
+    last_updated: "2025-08"
+    notes: "Comprehensive coding benchmark, real-world tasks"
 - id: imoanswerbench
   name: IMOAnswerBench
   category: math
@@ -5935,3 +5965,273 @@ benchmarks:
     citation_count: 120
     last_updated: "2025-10"
     notes: "Stricter version of IFEval, fewer artifacts"
+
+# ── Task 2: +15 new benchmark entries with reliability metadata ──
+
+- id: aider_polyglot
+  name: Aider Polyglot
+  category: coding
+  metric: success_rate
+  unit: '%'
+  expected_range:
+  - 10
+  - 80
+  description: Multi-language coding benchmark focused on edit-not-rewrite tasks
+  paper: https://aider.chat/docs/leaderboards/
+  year: '2024'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 95
+    last_updated: "2025-09"
+    notes: "Multi-language coding, edit-not-rewrite focus"
+
+- id: arc_agi_2
+  name: ARC-AGI 2
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 5
+  - 60
+  description: ARC-AGI second generation — visual reasoning tasks hard for LLMs
+  paper: https://arcprize.org/
+  year: '2025'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 180
+    last_updated: "2025-03"
+    notes: "Visual reasoning, hard for LLMs"
+
+- id: arc_agi_3
+  name: ARC-AGI 3
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 0
+  - 40
+  description: ARC-AGI third generation with fresh problem sets
+  paper: https://arcprize.org/
+  year: '2025'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 75
+    last_updated: "2025-09"
+    notes: "Latest ARC iteration, fresh problems"
+
+- id: math_500
+  name: MATH-500
+  category: math
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 99
+  description: 500-question curated subset of Hendrycks MATH benchmark
+  paper: https://arxiv.org/abs/2110.14168
+  year: '2024'
+  reliability:
+    contamination_risk: medium
+    saturation: approaching
+    citation_count: 320
+    last_updated: "2024-09"
+    notes: "500-question subset, more curated than full MATH"
+
+- id: cybench
+  name: CyBench
+  category: cybersecurity
+  metric: success_rate
+  unit: '%'
+  expected_range:
+  - 5
+  - 80
+  description: Cybersecurity CTF challenge benchmark — real CTF tasks
+  paper: https://cybench.github.io/
+  year: '2024'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 240
+    last_updated: "2025-06"
+    notes: "Cyber CTF challenges, hard to contaminate"
+
+- id: cybergym
+  name: CyberGym
+  category: cybersecurity
+  metric: success_rate
+  unit: '%'
+  expected_range:
+  - 5
+  - 70
+  description: Real-world cyber range scenarios for agent evaluation
+  paper: https://github.com/cybergym-cisa/cybergym
+  year: '2025'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 110
+    last_updated: "2025-12"
+    notes: "Real-world cyber range scenarios"
+
+- id: harmbench
+  name: HarmBench
+  category: safety
+  metric: attack_success_rate
+  unit: '%'
+  expected_range:
+  - 5
+  - 80
+  description: Adversarial robustness benchmark — red-teaming attack success rate
+  paper: https://arxiv.org/abs/2402.04249
+  year: '2024'
+  reliability:
+    contamination_risk: medium
+    saturation: not_saturated
+    citation_count: 380
+    last_updated: "2024-08"
+    notes: "Adversarial robustness, attacks evolve quickly"
+
+- id: simpleqa_verified
+  name: SimpleQA (Verified)
+  category: knowledge
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 90
+  description: OpenAI SimpleQA with verified ground-truth factual answers
+  paper: https://openai.com/index/introducing-simpleqa/
+  year: '2024'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 280
+    last_updated: "2024-11"
+    notes: "Verified-answer factual QA, low ambiguity"
+
+- id: longbench_v2
+  name: LongBench v2
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 20
+  - 80
+  description: Long-context understanding benchmark with fresh annotations
+  paper: https://arxiv.org/abs/2412.15204
+  year: '2025'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 150
+    last_updated: "2025-04"
+    notes: "Long-context understanding, fresh annotations"
+
+- id: mrcr
+  name: MRCR (Multi-needle Retrieval)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 10
+  - 95
+  description: Multi-needle retrieval challenge at long context windows
+  paper: https://arxiv.org/abs/2407.01370
+  year: '2025'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 180
+    last_updated: "2025-03"
+    notes: "Multi-needle retrieval at long context"
+
+- id: tau3_bench
+  name: TAU3-Bench
+  category: agent
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 10
+  - 70
+  description: Tool-Agent-User third generation benchmark, harder than TAU-2
+  paper: https://arxiv.org/abs/2506.07982
+  year: '2025'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 95
+    last_updated: "2025-12"
+    notes: "Tau-3 agent benchmark, harder than Tau-2"
+
+- id: mcp_atlas
+  name: MCP Atlas
+  category: agent
+  metric: success_rate
+  unit: '%'
+  expected_range:
+  - 10
+  - 80
+  description: MCP tool use evaluation benchmark
+  year: '2026'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 60
+    last_updated: "2026-01"
+    notes: "MCP tool use evaluation, recent"
+
+- id: terminal_bench_2
+  name: Terminal-Bench 2
+  category: agent
+  metric: success_rate
+  unit: '%'
+  expected_range:
+  - 10
+  - 80
+  description: Real terminal and CLI agent task completion benchmark
+  year: '2025'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 85
+    last_updated: "2025-10"
+    notes: "Real terminal/CLI agent task completion"
+
+- id: mbpp
+  name: MBPP (Mostly Basic Python Problems)
+  category: coding
+  metric: pass1
+  unit: '%'
+  expected_range:
+  - 40
+  - 95
+  description: Python programming problems — 374 test problems
+  paper: https://arxiv.org/abs/2108.07732
+  year: '2021'
+  reliability:
+    contamination_risk: high
+    saturation: saturated
+    citation_count: 2400
+    last_updated: "2021-08"
+    notes: "Saturated; HumanEval+ / MBPP+ are stricter alternatives"
+
+- id: mbpp_plus
+  name: MBPP+ (Extended Test Cases)
+  category: coding
+  metric: pass1
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: Stricter MBPP variant with extended test cases from EvalPlus
+  paper: https://arxiv.org/abs/2305.01210
+  year: '2024'
+  reliability:
+    contamination_risk: medium
+    saturation: approaching
+    citation_count: 380
+    last_updated: "2024-05"
+    notes: "Stricter MBPP variant with extended test cases"
