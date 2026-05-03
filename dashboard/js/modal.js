@@ -162,6 +162,25 @@ var Modal = {
             if (e.key !== 'Escape') return;
             if (overlay && !overlay.classList.contains('hidden')) Modal.close();
         });
+
+        // Focus trap — keeps Tab/Shift+Tab cycling inside the modal
+        if (!this._focusTrapInstalled) {
+            this._focusTrapInstalled = true;
+            document.addEventListener('keydown', function(e) {
+                if (e.key !== 'Tab') return;
+                var modalOverlay = document.getElementById('modal-overlay');
+                if (!modalOverlay || modalOverlay.classList.contains('hidden')) return;
+                var focusables = modalOverlay.querySelectorAll('button, a[href], select, textarea, input, [tabindex]:not([tabindex="-1"])');
+                if (!focusables.length) return;
+                var first = focusables[0];
+                var last = focusables[focusables.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault(); last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault(); first.focus();
+                }
+            });
+        }
     },
 
     /**
@@ -198,8 +217,19 @@ var Modal = {
         Modal._lastTrigger = trigger || document.activeElement;
         var overlay = document.getElementById('modal-overlay');
         overlay.classList.remove('hidden');
-        var closeBtn = document.getElementById('modal-close');
-        if (closeBtn) closeBtn.focus();
+        // ARIA: mark the inner dialog div with role/aria attrs and move focus in
+        var dialogDiv = overlay.querySelector('[role="dialog"]');
+        if (dialogDiv) {
+            dialogDiv.setAttribute('aria-modal', 'true');
+            dialogDiv.setAttribute('aria-labelledby', 'modal-title');
+        }
+        var modalContent = document.getElementById('modal-content');
+        if (modalContent) {
+            setTimeout(function() { modalContent.focus(); }, 50);
+        } else {
+            var closeBtn = document.getElementById('modal-close');
+            if (closeBtn) closeBtn.focus();
+        }
     },
 
     close: function() {
@@ -232,6 +262,7 @@ var Modal = {
 
         var wrap = document.createElement('div');
         wrap.className = 'mb-4';
+        wrap.id = 'modal-section-' + stateKey;
 
         var header = document.createElement('div');
         header.className = 'flex items-center justify-between cursor-pointer select-none px-2 py-1 -mx-2 rounded hover:bg-gray-800 transition';
@@ -272,6 +303,51 @@ var Modal = {
         wrap.appendChild(body);
         container.appendChild(wrap);
         return body;
+    },
+
+    // ---- Helper: Sticky Table-of-Contents for long model modals ----
+    _buildModalTOC: function() {
+        var modalContent = document.getElementById('modal-content');
+        if (!modalContent) return;
+        var sections = modalContent.querySelectorAll('div[id^="modal-section-"]');
+        if (sections.length < 4) return; // not worth a TOC for short modals
+
+        // Remove any prior TOC to avoid duplicates on rebuild
+        var existing = document.getElementById('modal-toc');
+        if (existing) existing.parentNode.removeChild(existing);
+
+        var toc = document.createElement('nav');
+        toc.id = 'modal-toc';
+        toc.setAttribute('aria-label', 'Modal sections');
+        toc.className = 'hidden lg:block fixed right-4 top-24 z-20 bg-gray-900/95 border border-gray-700 rounded p-2 text-xs max-w-[180px]';
+
+        var tocTitle = document.createElement('div');
+        tocTitle.className = 'text-gray-500 uppercase tracking-wider text-[10px] mb-1 px-1';
+        tocTitle.textContent = 'Sections';
+        toc.appendChild(tocTitle);
+
+        sections.forEach(function(sec) {
+            var h3 = sec.querySelector('h3');
+            var label = h3 ? h3.textContent.trim() : sec.id.replace('modal-section-', '');
+            var a = document.createElement('a');
+            a.href = '#';
+            a.className = 'block px-2 py-1 rounded text-gray-400 hover:bg-gray-800 hover:text-blue-300 transition truncate';
+            a.textContent = label;
+            a.title = label;
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // If section is collapsed, expand it by clicking the header
+                var body = sec.querySelector('div[style*="display: none"]');
+                if (body) {
+                    var header = sec.querySelector('div[role="button"]');
+                    if (header) header.click();
+                }
+            });
+            toc.appendChild(a);
+        });
+
+        modalContent.appendChild(toc);
     },
 
     _makeLabel: function(labelText, valueText) {
@@ -835,12 +911,14 @@ var Modal = {
         container.appendChild(enrichSlot);
         Promise.all([_enrichmentPromise, _hfPromise]).then(function(results) {
             Modal._renderEnrichmentSections(enrichSlot, model, modelId, results[0], results[1] || {}, detail);
+            Modal._buildModalTOC(); // rebuild after deferred enrichment sections are added
         });
 
         Modal._renderStrengthsRadar(container, model, modelId);
         Modal._renderScoreHistory(container, model, modelId);
         Modal._renderScoreBreakdown(container, modelId, scores);
 
+        Modal._buildModalTOC(); // initial build after synchronous sections render
         Modal._open();
     },
 
@@ -1645,7 +1723,8 @@ var Modal = {
             var radarCard = document.createElement('div');
             radarCard.className = 'bg-gray-800 rounded-lg p-4';
             var radarHost = document.createElement('div');
-            radarHost.style.height = '280px'; radarHost.style.width = '100%';
+            var isMobileRadar = window.innerWidth < 640;
+            radarHost.style.height = isMobileRadar ? '220px' : '280px'; radarHost.style.width = '100%';
             radarCard.appendChild(radarHost);
             radarBody.appendChild(radarCard);
             setTimeout(function() {
@@ -1701,7 +1780,8 @@ var Modal = {
             var historyCard = document.createElement('div');
             historyCard.className = 'bg-gray-800 rounded-lg p-4';
             var historyHost = document.createElement('div');
-            historyHost.style.height = '240px'; historyHost.style.width = '100%';
+            var isMobileHistory = window.innerWidth < 640;
+            historyHost.style.height = isMobileHistory ? '180px' : '240px'; historyHost.style.width = '100%';
             historyCard.appendChild(historyHost);
             historyBody.appendChild(historyCard);
             setTimeout(function() {

@@ -10,13 +10,18 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js" defer></script>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen">
-    <header class="border-b border-gray-800 px-6 py-4">
-        <h1 class="text-display">LLM/Frontier Model's Benchmark & SOTA Dashboard</h1>
-        <p class="text-gray-400 text-sm mt-1">
-            Last updated: <span id="last-updated">—</span>
-            &middot; <span id="model-count">0</span> models
-            &middot; <span id="benchmark-count">0</span> benchmarks
-        </p>
+    <header class="border-b border-gray-800 px-6 py-4 flex justify-between items-start">
+        <div>
+            <h1 class="text-display">LLM/Frontier Model's Benchmark & SOTA Dashboard</h1>
+            <p class="text-gray-400 text-sm mt-1">
+                Last updated: <span id="last-updated">—</span>
+                &middot; <span id="model-count">0</span> models
+                &middot; <span id="benchmark-count">0</span> benchmarks
+            </p>
+        </div>
+        <button id="theme-toggle" class="bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded text-xs mt-1 flex-shrink-0" title="Toggle dark/light theme" aria-label="Toggle theme">
+            🌙 Dark
+        </button>
     </header>
 
     <nav class="flex border-b border-gray-800 px-6 overflow-x-auto flex-nowrap" id="tabs" role="tablist" aria-label="Dashboard sections">
@@ -564,10 +569,10 @@
     </main>
 
     <!-- Modal overlay -->
-    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden flex items-center justify-center p-4" role="presentation">
-        <div class="bg-gray-900 border border-gray-700 rounded-xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 relative" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden flex items-center justify-center p-2 sm:p-4" role="presentation">
+        <div class="bg-gray-900 border border-gray-700 rounded-xl w-full mx-2 sm:mx-auto sm:max-w-2xl max-h-[95vh] overflow-y-auto p-3 sm:p-6 relative" role="dialog" aria-modal="true" aria-labelledby="modal-title">
             <button id="modal-close" class="absolute top-3 right-3 w-11 h-11 flex items-center justify-center text-gray-400 hover:text-white text-xl rounded focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-400" aria-label="Close dialog">&times;</button>
-            <div id="modal-content"></div>
+            <div id="modal-content" tabindex="-1"></div>
         </div>
     </div>
 
@@ -576,9 +581,9 @@
         <p class="text-gray-500 text-sm">Collected by hollobit@etri.re.kr</p>
     </footer>
 
-    <script src="js/theme.js?v=20260424"></script>
+    <script src="js/theme.js?v=20260503a"></script>
     <script src="js/peer-matcher.js?v=20260503a"></script>
-    <script src="js/modal.js?v=20260503o"></script>
+    <script src="js/modal.js?v=20260503p"></script>
     <script src="js/frontier-compare.js?v=20260503d"></script>
     <script src="js/cyber-coding.js?v=20260503c"></script>
     <script src="js/sovereign.js?v=20260503a"></script>
