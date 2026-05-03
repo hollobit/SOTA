@@ -60,6 +60,7 @@ def test_enrichment_yaml_compiles_to_json(monkeypatch):
         assert m["api_providers"] == []
         assert m["links"] == {"homepage": None, "system_card": None, "model_card": None, "huggingface": None, "paper": None, "github": None, "blog": None}
         assert m["pricing"] == {"input": None, "output": None, "cached_input": None, "currency": "USD"}
+        assert m["benchmarks_meta"] == {"arena_elo": None, "arena_elo_source": None, "intelligence_index_override": None}
 
 
 def test_enrichment_missing_yaml_writes_empty_sidecar(monkeypatch):

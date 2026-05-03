@@ -123,6 +123,11 @@ class Exporter:
                     "cached_input": (entry.get("pricing") or {}).get("cached_input"),
                     "currency": (entry.get("pricing") or {}).get("currency", "USD"),
                 },
+                "benchmarks_meta": {
+                    "arena_elo": (entry.get("benchmarks_meta") or {}).get("arena_elo"),
+                    "arena_elo_source": (entry.get("benchmarks_meta") or {}).get("arena_elo_source"),
+                    "intelligence_index_override": (entry.get("benchmarks_meta") or {}).get("intelligence_index_override"),
+                },
             }
 
         out = {
