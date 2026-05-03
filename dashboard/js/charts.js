@@ -31,6 +31,23 @@ var Charts = {
 
         this._instances[containerId] = echarts.init(el, 'dark');
         var chart = this._instances[containerId];
+        // Defer a resize to the next frame so any pending layout (e.g. tab
+        // just transitioned from display:none) is reflected before ECharts
+        // remeasures its container. setOption may run before this fires —
+        // that's fine, resize() will repaint at correct dimensions.
+        requestAnimationFrame(function() {
+            try { chart.resize(); } catch (e) {}
+        });
+        // ResizeObserver covers the case where the element grows later
+        // (e.g. parent grid finalising after fonts load).
+        if (typeof ResizeObserver !== 'undefined') {
+            try {
+                var ro = new ResizeObserver(function() {
+                    try { chart.resize(); } catch (e) {}
+                });
+                ro.observe(el);
+            } catch (e) {}
+        }
         window.addEventListener('resize', function() {
             try { chart.resize(); } catch (e) {}
         });
