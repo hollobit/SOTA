@@ -79,7 +79,7 @@ class Exporter:
             train = entry.get("training") or {}
             safety = entry.get("safety") or {}
             tput = entry.get("throughput") or {}
-            return {
+            out = {
                 "architecture": {
                     "type": arch.get("type"),
                     "total_params_b": arch.get("total_params_b"),
@@ -129,6 +129,12 @@ class Exporter:
                     "intelligence_index_override": (entry.get("benchmarks_meta") or {}).get("intelligence_index_override"),
                 },
             }
+            # Preserve any forward-compat keys that aren't in our known schema
+            known = set(out.keys())
+            for k, v in entry.items():
+                if k not in known:
+                    out[k] = v
+            return out
 
         out = {
             "_meta": {
@@ -207,6 +213,3 @@ class Exporter:
         )
         self._write_json(history_dir / "index.json", {"dates": snapshots})
 
-
-# Alias so both names resolve to the same class
-JSONExporter = Exporter

@@ -108,15 +108,50 @@
     }
 
     function extractStrengthsWeaknesses(modelId, allModels, allScores) {
-        var modelScores = [];
+        // Pre-compute once per call (was previously recomputed per benchmark)
+        var recent = _recentModelIds(allModels);
+        var sortedByBench = {};      // benchmarkId → sorted descending values
+        var avgByBench = {};         // benchmarkId → avg
+        var countByBench = {};       // benchmarkId → count
         for (var i = 0; i < allScores.length; i++) {
-            if (allScores[i].model_id === modelId) modelScores.push(allScores[i]);
+            var s = allScores[i];
+            if (!recent[s.model_id]) continue;
+            if (!sortedByBench[s.benchmark_id]) {
+                sortedByBench[s.benchmark_id] = [];
+                avgByBench[s.benchmark_id] = 0;
+                countByBench[s.benchmark_id] = 0;
+            }
+            sortedByBench[s.benchmark_id].push(s.value);
+            avgByBench[s.benchmark_id] += s.value;
+            countByBench[s.benchmark_id]++;
+        }
+        Object.keys(sortedByBench).forEach(function (b) {
+            sortedByBench[b].sort(function (a, c) { return c - a; });
+            if (countByBench[b] > 0) avgByBench[b] = avgByBench[b] / countByBench[b];
+        });
+
+        function _tierFromCache(score, benchmarkId) {
+            var values = sortedByBench[benchmarkId];
+            if (!values || values.length < MIN_POPULATION) return null;
+            var rank = values.indexOf(score) + 1;
+            if (rank === 0) return null;
+            var total = values.length;
+            if (rank === 1) return { tier: 'sota', label: 'SOTA', rank: rank, total: total };
+            if (rank <= 3) return { tier: 'top3', label: 'Top 3', rank: rank, total: total };
+            if (rank <= 10) return { tier: 'top10', label: 'Top 10', rank: rank, total: total };
+            if (rank / total <= 0.25) return { tier: 'q1', label: 'Top 25%', rank: rank, total: total };
+            return null;
+        }
+
+        var modelScores = [];
+        for (var j = 0; j < allScores.length; j++) {
+            if (allScores[j].model_id === modelId) modelScores.push(allScores[j]);
         }
         var withTier = modelScores.map(function (s) {
             return {
                 benchmark_id: s.benchmark_id,
                 value: s.value,
-                tier: sotaTier(s.value, modelId, s.benchmark_id, allModels, allScores),
+                tier: _tierFromCache(s.value, s.benchmark_id),
             };
         });
 
@@ -129,7 +164,7 @@
 
         var weaknesses = withTier
             .map(function (r) {
-                var avg = _avgPeerScore(r.benchmark_id, allModels, allScores);
+                var avg = countByBench[r.benchmark_id] >= MIN_POPULATION ? avgByBench[r.benchmark_id] : null;
                 return {
                     benchmark_id: r.benchmark_id,
                     value: r.value,

@@ -9,7 +9,7 @@ from pathlib import Path
 import yaml
 
 from cyber.db.schema import init_db
-from cyber.publisher.exporter import JSONExporter
+from cyber.publisher.exporter import Exporter as JSONExporter
 
 
 def _write_yaml(path: Path, data: dict) -> None:
@@ -77,3 +77,29 @@ def test_enrichment_missing_yaml_writes_empty_sidecar(monkeypatch):
         data = json.loads((out_dir / "model_enrichment.json").read_text())
         assert data["models"] == {}
         assert data["_meta"]["covered_models"] == 0
+
+
+def test_export_all_invokes_enrichment_export(monkeypatch):
+    """Regression guard: _export_enrichment must be wired into export_all."""
+    with tempfile.TemporaryDirectory() as td:
+        td_path = Path(td)
+        (td_path / "config").mkdir()
+        # Minimal yaml so we have something to compile
+        _write_yaml(td_path / "config" / "model_enrichment.yaml", {
+            "schema_version": "1.0",
+            "models": {"test/model": {"architecture": {"type": "dense"}}}
+        })
+
+        monkeypatch.chdir(td_path)
+        out_dir = td_path / "out"
+        out_dir.mkdir()
+        conn = sqlite3.connect(":memory:")
+        init_db(conn)
+        exporter = JSONExporter(conn, out_dir)
+        exporter.export_all()
+
+        # Must have produced model_enrichment.json
+        out_file = out_dir / "model_enrichment.json"
+        assert out_file.exists(), "export_all must call _export_enrichment"
+        data = json.loads(out_file.read_text())
+        assert data["models"]["test/model"]["architecture"]["type"] == "dense"
