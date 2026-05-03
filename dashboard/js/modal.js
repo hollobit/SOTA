@@ -181,6 +181,18 @@ var Modal = {
                 }
             });
         }
+
+        // Click-away to close preferences panel
+        if (!this._prefsClickAwayInstalled) {
+            this._prefsClickAwayInstalled = true;
+            document.addEventListener('click', function(e) {
+                var panel = document.getElementById('modal-preferences-panel');
+                if (!panel) return;
+                if (panel.contains(e.target)) return;
+                if (e.target.closest && e.target.closest('button[aria-label="Modal preferences"]')) return;
+                panel.parentNode.removeChild(panel);
+            });
+        }
     },
 
     /**
@@ -348,6 +360,42 @@ var Modal = {
         });
 
         modalContent.appendChild(toc);
+
+        // Mobile-only horizontal TOC strip — visible only on <lg
+        var existingMobile = document.getElementById('modal-toc-mobile');
+        if (existingMobile) existingMobile.parentNode.removeChild(existingMobile);
+
+        var mobileTOC = document.createElement('nav');
+        mobileTOC.id = 'modal-toc-mobile';
+        mobileTOC.setAttribute('aria-label', 'Modal sections (mobile)');
+        mobileTOC.className = 'lg:hidden flex gap-1.5 overflow-x-auto pb-2 mb-3 border-b border-gray-800 -mx-1 px-1';
+        sections.forEach(function(sec) {
+            var h3 = sec.querySelector('h3');
+            var stateKey = sec.id.replace('modal-section-', '');
+            var label = h3 ? h3.textContent.trim() : stateKey;
+            var pill = document.createElement('a');
+            pill.href = '#';
+            pill.className = 'flex-shrink-0 inline-block px-2 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-300 text-xs whitespace-nowrap transition';
+            pill.textContent = label.length > 18 ? label.slice(0, 16) + '…' : label;
+            pill.title = label;
+            pill.addEventListener('click', function(e) {
+                e.preventDefault();
+                sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                var body = sec.querySelector('div[style*="display: none"]');
+                if (body) {
+                    var header = sec.querySelector('div[role="button"]');
+                    if (header) header.click();
+                }
+            });
+            mobileTOC.appendChild(pill);
+        });
+
+        // Insert at the top of modal-content (before all sections)
+        if (modalContent.firstChild) {
+            modalContent.insertBefore(mobileTOC, modalContent.firstChild);
+        } else {
+            modalContent.appendChild(mobileTOC);
+        }
     },
 
     _makeLabel: function(labelText, valueText) {
@@ -951,7 +999,89 @@ var Modal = {
         countBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-gray-800 text-gray-400';
         countBadge.textContent = scores.length + ' benchmarks';
         meta.appendChild(countBadge);
+
+        // Settings cog — opens preferences panel for collapsible defaults
+        var cogBtn = document.createElement('button');
+        cogBtn.className = 'ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-400';
+        cogBtn.title = 'Modal preferences';
+        cogBtn.setAttribute('aria-label', 'Modal preferences');
+        cogBtn.textContent = '⚙';
+        cogBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            Modal._togglePreferencesPanel();
+        });
+        meta.appendChild(cogBtn);
+
         container.appendChild(meta);
+    },
+
+    _togglePreferencesPanel: function() {
+        var existing = document.getElementById('modal-preferences-panel');
+        if (existing) {
+            existing.parentNode.removeChild(existing);
+            return;
+        }
+
+        var panel = document.createElement('div');
+        panel.id = 'modal-preferences-panel';
+        panel.className = 'absolute right-3 top-12 z-40 bg-gray-900 border border-gray-700 rounded-lg p-3 shadow-lg text-xs max-w-[280px]';
+
+        var title = document.createElement('div');
+        title.className = 'text-gray-300 font-semibold mb-2';
+        title.textContent = 'Section defaults (open?)';
+        panel.appendChild(title);
+
+        var prefSections = [
+            { key: 'links', label: 'Reference Links' },
+            { key: 'peer', label: 'Peer Comparison' },
+            { key: 'strengths', label: 'Strengths' },
+            { key: 'weaknesses', label: 'Weaknesses' },
+            { key: 'radar', label: 'Strengths Radar' },
+            { key: 'history', label: 'Score History' },
+            { key: 'family', label: 'Family Tree' },
+            { key: 'architecture', label: 'Architecture' },
+            { key: 'perfcost', label: 'Performance & Cost' },
+            { key: 'lineage', label: 'Lineage' },
+            { key: 'sources', label: 'Score Sources' },
+            { key: 'scores', label: 'Score Breakdown' },
+            { key: 'version', label: 'Version History' },
+        ];
+
+        prefSections.forEach(function(s) {
+            var label = document.createElement('label');
+            label.className = 'flex items-center gap-2 py-0.5 cursor-pointer hover:bg-gray-800 px-1 rounded';
+            var cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.className = 'cursor-pointer';
+            var lsKey = 'modal-section:' + s.key;
+            var savedVal = null;
+            try { savedVal = localStorage.getItem(lsKey); } catch (e) { /* private */ }
+            cb.checked = savedVal === '1';
+            cb.addEventListener('change', function() {
+                try {
+                    localStorage.setItem(lsKey, cb.checked ? '1' : '0');
+                } catch (e) { /* private */ }
+            });
+            label.appendChild(cb);
+            var span = document.createElement('span');
+            span.className = 'text-gray-300';
+            span.textContent = s.label;
+            label.appendChild(span);
+            panel.appendChild(label);
+        });
+
+        var note = document.createElement('div');
+        note.className = 'text-gray-500 text-[10px] mt-2 pt-2 border-t border-gray-800';
+        note.textContent = 'Changes apply on next modal open. Per-section toggles also persist.';
+        panel.appendChild(note);
+
+        var modalEl = document.getElementById('modal');
+        if (modalEl) modalEl.appendChild(panel);
+        else {
+            var dialogEl = document.querySelector('[role="dialog"]');
+            if (dialogEl) dialogEl.appendChild(panel);
+            else document.body.appendChild(panel);
+        }
     },
 
     // ---- Helper: vendor "X tracked models" bar ----
