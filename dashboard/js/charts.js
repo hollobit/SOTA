@@ -5,14 +5,49 @@ var Charts = {
     _instances: {},
 
     _getOrCreate: function(containerId) {
-        if (!this._instances[containerId]) {
-            var el = document.getElementById(containerId);
-            if (!el) return null;
-            this._instances[containerId] = echarts.init(el, 'dark');
-            var chart = this._instances[containerId];
-            window.addEventListener('resize', function() { chart.resize(); });
+        var el = document.getElementById(containerId);
+        if (!el) return null;
+        // If parent is display:none (offsetParent === null), can't measure — skip.
+        // The caller can re-invoke when the tab becomes visible.
+        if (el.offsetParent === null && el.offsetWidth === 0) return null;
+
+        var existing = this._instances[containerId];
+        if (existing) {
+            // Detect cached chart with bad (zero) dimensions — happens when
+            // ECharts.init ran while parent was display:none. Dispose + reinit.
+            try {
+                if (existing.getWidth() < 10 || existing.getHeight() < 10) {
+                    existing.dispose();
+                    existing = null;
+                    delete this._instances[containerId];
+                }
+            } catch (e) {
+                // Disposed already or in bad state
+                existing = null;
+                delete this._instances[containerId];
+            }
         }
-        return this._instances[containerId];
+        if (existing) return existing;
+
+        this._instances[containerId] = echarts.init(el, 'dark');
+        var chart = this._instances[containerId];
+        window.addEventListener('resize', function() {
+            try { chart.resize(); } catch (e) {}
+        });
+        return chart;
+    },
+
+    /**
+     * Force resize all known chart instances. Call after a tab becomes visible.
+     */
+    resizeAll: function() {
+        var self = this;
+        Object.keys(this._instances).forEach(function(id) {
+            try {
+                var inst = self._instances[id];
+                if (inst && !inst.isDisposed()) inst.resize();
+            } catch (e) {}
+        });
     },
 
     renderTrendLine: function(containerId, benchmarkId, historyData) {
