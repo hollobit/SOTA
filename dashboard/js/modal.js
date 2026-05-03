@@ -1457,6 +1457,114 @@ var Modal = {
             enrichSlot.appendChild(card);
         });
 
+        // ---- Strengths Radar Chart (NEW) ----
+        try {
+            // Categories to plot. Must match benchmark.category strings.
+            var radarCats = [
+                { key: 'reasoning', label: 'Reasoning' },
+                { key: 'coding', label: 'Coding' },
+                { key: 'math', label: 'Math' },
+                { key: 'agent', label: 'Agent' },
+                { key: 'multimodal', label: 'Multimodal' }
+            ];
+
+            // Group all scores by (model_id, category) → list of values
+            var catScoresByModel = {};
+            for (var si = 0; si < App.data.scores.length; si++) {
+                var sc = App.data.scores[si];
+                var bench = App.data.benchmarks.find(function (b) { return b.id === sc.benchmark_id; });
+                if (!bench) continue;
+                var cat = bench.category;
+                if (!catScoresByModel[sc.model_id]) catScoresByModel[sc.model_id] = {};
+                if (!catScoresByModel[sc.model_id][cat]) catScoresByModel[sc.model_id][cat] = [];
+                catScoresByModel[sc.model_id][cat].push(sc.value);
+            }
+            function avg(arr) {
+                if (!arr || !arr.length) return null;
+                var s = 0;
+                for (var i = 0; i < arr.length; i++) s += arr[i];
+                return s / arr.length;
+            }
+
+            // For each category, compute target avg + sorted distribution of all models' avgs
+            var distByCat = {};
+            radarCats.forEach(function (rc) {
+                var values = [];
+                Object.keys(catScoresByModel).forEach(function (mid) {
+                    var a = avg(catScoresByModel[mid][rc.key]);
+                    if (a != null) values.push(a);
+                });
+                values.sort(function (a, b) { return a - b; });
+                distByCat[rc.key] = values;
+            });
+
+            // Compute target's percentile per category
+            var radarData = [];
+            var radarIndicators = [];
+            radarCats.forEach(function (rc) {
+                var targetAvg = avg((catScoresByModel[modelId] || {})[rc.key]);
+                if (targetAvg == null) return; // skip — no data for this category
+                var dist = distByCat[rc.key];
+                if (dist.length < 3) return; // skip — too few peers
+                // Percentile = fraction of peers strictly less than target
+                var below = 0;
+                for (var di = 0; di < dist.length; di++) {
+                    if (dist[di] < targetAvg) below++;
+                }
+                var pct = (below / dist.length) * 100;
+                radarIndicators.push({ name: rc.label + ' (' + targetAvg.toFixed(0) + ')', max: 100 });
+                radarData.push(pct);
+            });
+
+            if (radarIndicators.length >= 3) {
+                var radarCard = document.createElement('div');
+                radarCard.className = 'mb-4 bg-gray-800 rounded-lg p-4';
+                var radarTitle = document.createElement('h3');
+                radarTitle.className = 'text-sm font-semibold text-gray-300 mb-2';
+                radarTitle.textContent = 'Strengths Radar (percentile vs all models)';
+                radarCard.appendChild(radarTitle);
+
+                var radarHost = document.createElement('div');
+                radarHost.style.height = '280px';
+                radarHost.style.width = '100%';
+                radarCard.appendChild(radarHost);
+                container.appendChild(radarCard);
+
+                // Defer init until host is in DOM
+                setTimeout(function () {
+                    if (typeof echarts === 'undefined') return;
+                    var chart = echarts.init(radarHost, 'dark');
+                    chart.setOption({
+                        backgroundColor: 'transparent',
+                        tooltip: { trigger: 'item' },
+                        radar: {
+                            indicator: radarIndicators,
+                            shape: 'polygon',
+                            splitNumber: 4,
+                            axisName: { color: '#d1d5db', fontSize: 11 },
+                            splitLine: { lineStyle: { color: 'rgba(160,160,160,0.25)' } },
+                            splitArea: { show: false },
+                            axisLine: { lineStyle: { color: 'rgba(160,160,160,0.4)' } }
+                        },
+                        series: [{
+                            type: 'radar',
+                            data: [{
+                                value: radarData,
+                                name: model.name,
+                                lineStyle: { width: 2 },
+                                areaStyle: { opacity: 0.25 },
+                                itemStyle: { color: '#60a5fa' }
+                            }]
+                        }]
+                    });
+                    // Resize handler
+                    window.addEventListener('resize', function () { chart.resize(); });
+                }, 0);
+            }
+        } catch (e) {
+            console.warn('[modal] strengths radar error', e);
+        }
+
         var catOrder = ['reasoning', 'coding', 'math', 'cybersecurity', 'cyber_defense', 'agent', 'multimodal', 'multilingual', 'other'];
         var catNames = {
             reasoning: 'Reasoning', coding: 'Coding', math: 'Math',
