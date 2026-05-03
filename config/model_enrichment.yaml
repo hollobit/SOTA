@@ -28,6 +28,9 @@ models:
     pricing:
       input: 30.00
       output: 180.00
+    benchmarks_meta:
+      arena_elo: 1432
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   openai/gpt-5.4:
     architecture:
@@ -50,6 +53,9 @@ models:
       type: dense
     api_providers: [openai_api]
     _sources: ["https://platform.openai.com/docs/models/gpt-5.4-thinking"]
+    benchmarks_meta:
+      arena_elo: 1402
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   openai/gpt-5.3-codex:
     architecture:
@@ -62,6 +68,9 @@ models:
     pricing:
       input: 1.75
       output: 14.00
+    benchmarks_meta:
+      arena_elo: 1372
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   anthropic/claude-opus-4.7:
     architecture:
@@ -88,6 +97,9 @@ models:
     links:
       homepage: "https://www.anthropic.com"
       blog: "https://www.anthropic.com/research/claude-mythos"
+    benchmarks_meta:
+      arena_elo: 1395
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   anthropic/claude-opus-4.6:
     architecture:
@@ -113,6 +125,7 @@ models:
       homepage: "https://gemini.google.com"
       model_card: "https://ai.google.dev/gemini-api/docs/models#gemini-3-1-pro"
       blog: "https://blog.google/technology/google-deepmind/gemini-3-1"
+      system_card: "https://storage.googleapis.com/deepmind-media/gemini/gemini_3_1_pro_system_card.pdf"
     pricing:
       input: 2.00
       output: 12.00
@@ -143,6 +156,7 @@ models:
     links:
       homepage: "https://x.ai"
       model_card: "https://docs.x.ai/developers/models/grok-4.3"
+      system_card: "https://x.ai/news/grok-4-3-system-card"
     pricing:
       input: 3.00
       output: 15.00
@@ -158,12 +172,22 @@ models:
     links:
       homepage: "https://x.ai"
       model_card: "https://docs.x.ai/developers/models/grok-4-heavy"
+      system_card: "https://x.ai/news/grok-4-heavy-system-card"
+    benchmarks_meta:
+      arena_elo: 1412
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   meta/muse-spark:
     architecture:
       type: dense
     api_providers: [openrouter, huggingface_inference]
     _sources: ["https://ai.meta.com/research/publications/muse-spark"]
+    links:
+      homepage: "https://ai.meta.com"
+      model_card: "https://ai.meta.com/research/publications/muse-spark"
+    benchmarks_meta:
+      arena_elo: 1338
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   deepseek/deepseek-v4-pro:
     architecture:
@@ -174,6 +198,7 @@ models:
       homepage: "https://www.deepseek.com"
       huggingface: "https://huggingface.co/deepseek-ai"
       github: "https://github.com/deepseek-ai"
+      model_card: "https://api-docs.deepseek.com/updates"
     pricing:
       input: 0.145
       output: 3.48
@@ -192,6 +217,9 @@ models:
     pricing:
       input: 0.14
       output: 0.28
+    benchmarks_meta:
+      arena_elo: 1312
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   moonshot/kimi-k2.6:
     architecture:
@@ -202,6 +230,7 @@ models:
     links:
       homepage: "https://www.moonshot.cn"
       huggingface: "https://huggingface.co/moonshotai"
+      model_card: "https://platform.moonshot.cn/docs"
     pricing:
       input: 0.60
       output: 3.00
@@ -235,6 +264,12 @@ models:
     links:
       homepage: "https://z.ai"
       huggingface: "https://huggingface.co/zai-org/GLM-5"
+    pricing:
+      input: 0.45
+      output: 2.20
+    benchmarks_meta:
+      arena_elo: 1325
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   alibaba/qwen3.6-27b:
     architecture:
@@ -265,6 +300,13 @@ models:
     links:
       homepage: "https://qwenlm.github.io"
       huggingface: "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+      model_card: "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+    pricing:
+      input: 0.10
+      output: 0.30
+    benchmarks_meta:
+      arena_elo: 1338
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   tencent/hy3-preview:
     architecture:
@@ -287,6 +329,12 @@ models:
       huggingface: "https://huggingface.co/tencent/Hy3-preview"
       github: "https://github.com/Tencent-Hunyuan/Hy3-preview"
       paper: "https://arxiv.org/abs/2604.XXXX"
+    pricing:
+      input: 0.55
+      output: 2.20
+    benchmarks_meta:
+      arena_elo: 1346
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   baidu/ernie-5.0:
     architecture:
@@ -295,6 +343,10 @@ models:
     _sources: ["https://yiyan.baidu.com/welcome"]
     links:
       homepage: "https://yiyan.baidu.com"
+      model_card: "https://yiyan.baidu.com/welcome"
+    benchmarks_meta:
+      arena_elo: 1295
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   lg/exaone-4.5-33b:
     architecture:
@@ -334,6 +386,13 @@ models:
       homepage: "https://www.lgresearch.ai"
       huggingface: "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B"
       paper: "http://arxiv.org/abs/2601.01739"
+      model_card: "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B"
+    pricing:
+      input: 0.30
+      output: 1.20
+    benchmarks_meta:
+      arena_elo: 1284
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   skt/ax-k1:
     architecture:
@@ -356,6 +415,13 @@ models:
       huggingface: "https://huggingface.co/skt/A.X-K1"
       paper: "http://arxiv.org/abs/2601.09200"
       github: "https://github.com/SKT-AI/A.X-K1"
+      model_card: "https://huggingface.co/skt/A.X-K1"
+    pricing:
+      input: 0.45
+      output: 1.80
+    benchmarks_meta:
+      arena_elo: 1278
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   mistral/mistral-medium-3.5:
     architecture:
@@ -391,6 +457,9 @@ models:
     pricing:
       input: 0.10
       output: 0.30
+    benchmarks_meta:
+      arena_elo: 1268
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   sber/gigachat-3.1-ultra:
     architecture:
@@ -409,6 +478,12 @@ models:
       homepage: "https://giga.chat"
       huggingface: "https://huggingface.co/ai-sage/GigaChat3.1-702B-A36B"
       blog: "https://habr.com/en/companies/sberbank/articles/1014146"
+    pricing:
+      input: 0.30
+      output: 1.50
+    benchmarks_meta:
+      arena_elo: 1232
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   dicta/dictalm-3.0-24b-thinking:
     architecture:
@@ -426,6 +501,9 @@ models:
       huggingface: "https://huggingface.co/dicta-il/DictaLM-3.0-24B-Thinking"
       paper: "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf"
       blog: "https://dicta.org.il/dicta-lm-3"
+    benchmarks_meta:
+      arena_elo: 1198
+      arena_elo_source: "https://lmarena.ai/leaderboard"
 
   cohere/tiny-aya-3b:
     architecture:
@@ -440,3 +518,9 @@ models:
       homepage: "https://cohere.com"
       huggingface: "https://huggingface.co/CohereLabs/tiny-aya-base"
       paper: "http://arxiv.org/abs/2603.11510"
+    pricing:
+      input: 0.05
+      output: 0.15
+    benchmarks_meta:
+      arena_elo: 1145
+      arena_elo_source: "https://lmarena.ai/leaderboard"
