@@ -119,7 +119,18 @@ var FrontierCompare = {
         // Apr 28-30 2026 additions
         'nvidia/nemotron-3-nano-omni',
         'reka/reka-edge-2603',
-        'google/gemma-4-26b-a4b'
+        'google/gemma-4-26b-a4b',
+
+        // May 2026 sovereign batch — global flagships
+        'mistral/mistral-medium-3.5',
+        'sber/gigachat-3.1-ultra',
+        'sber/gigachat-3.1-lightning',
+        'kakao/kanana-1.5-o-9.8b',
+        'dicta/dictalm-3.0-24b-thinking',
+        'dicta/dictalm-3.0-12b-instruct',
+        'cohere/tiny-aya-3b',
+        'tii/falcon-ocr',
+        'ai-singapore/gemma-sea-lion-v4-4b-vl'
     ],
 
     _models: [],

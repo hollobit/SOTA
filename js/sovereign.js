@@ -198,6 +198,8 @@ var Sovereign = {
                 'ai21/jamba-large-1.5', 'ai21/jamba-1.5-mini',
                 'ai21/jamba-1.0',
                 // DICTA — Hebrew sovereign LLM
+                'dicta/dictalm-3.0-24b-thinking', 'dicta/dictalm-3.0-24b-base',
+                'dicta/dictalm-3.0-12b-instruct', 'dicta/dictalm-3.0-1.7b-thinking',
                 'dicta/dictalm-3.0-24b',
                 'dicta/dictalm-2.0-instruct', 'dicta/dictalm-2.0'
             ]
@@ -212,7 +214,7 @@ var Sovereign = {
                 // TII Falcon3 family (Dec 2024)
                 'tii/falcon3-10b', 'tii/falcon3-7b', 'tii/falcon3-3b', 'tii/falcon3-1b',
                 // TII older
-                'tii/falcon-mamba-7b', 'tii/falcon2-11b', 'tii/falcon-180b', 'tii/falcon-perception',
+                'tii/falcon-ocr', 'tii/falcon-mamba-7b', 'tii/falcon2-11b', 'tii/falcon-180b', 'tii/falcon-perception',
                 // MBZUAI
                 'mbzuai/llm360-k2-65b', 'mbzuai/atlas-chat-9b', 'mbzuai/bimedix'
             ]
@@ -304,7 +306,7 @@ var Sovereign = {
                 'databricks/dbrx-instruct',
                 'snowflake/arctic-instruct',
                 // Cohere
-                'cohere/command-a', 'cohere/command-r-plus', 'cohere/command-r', 'cohere/aya-expanse-32b',
+                'cohere/tiny-aya-3b', 'cohere/command-a', 'cohere/command-r-plus', 'cohere/command-r', 'cohere/aya-expanse-32b',
                 // xAI
                 'xai/grok-1',
                 // StarCoder
@@ -539,6 +541,8 @@ var Sovereign = {
         'ai21/jamba2-mini': '2026-02', 'ai21/jamba2-3b': '2026-02',
         'ai21/jamba-reasoning': '2025-09', 'ai21/maestro': '2025-04',
         // Israel — Dicta
+        'dicta/dictalm-3.0-24b-thinking': '2025-12', 'dicta/dictalm-3.0-24b-base': '2025-12',
+        'dicta/dictalm-3.0-12b-instruct': '2025-12', 'dicta/dictalm-3.0-1.7b-thinking': '2025-12',
         'dicta/dictalm-3.0-24b': '2025-09', 'dicta/dictalm-2.0-instruct': '2024-07', 'dicta/dictalm-2.0': '2024-04',
         // UAE — TII Falcon-H1 (May 2025)
         'tii/falcon-h1-34b': '2025-05', 'tii/falcon-h1-arabic-34b': '2025-08', 'tii/falcon-h1r-7b': '2025-11',
@@ -547,7 +551,7 @@ var Sovereign = {
         // UAE — Falcon3 (Dec 2024)
         'tii/falcon3-10b': '2024-12', 'tii/falcon3-7b': '2024-12', 'tii/falcon3-3b': '2024-12', 'tii/falcon3-1b': '2024-12',
         // UAE — older Falcon
-        'tii/falcon-mamba-7b': '2024-08', 'tii/falcon2-11b': '2024-05', 'tii/falcon-180b': '2023-09', 'tii/falcon-perception': '2025-03',
+        'tii/falcon-ocr': '2026-03', 'tii/falcon-mamba-7b': '2024-08', 'tii/falcon2-11b': '2024-05', 'tii/falcon-180b': '2023-09', 'tii/falcon-perception': '2025-03',
         // UAE — MBZUAI
         'mbzuai/llm360-k2-65b': '2024-08', 'mbzuai/atlas-chat-9b': '2024-09', 'mbzuai/bimedix': '2024-02',
         'epfl/meditron-70b': '2023-11', 'epfl/meditron-7b': '2023-11', 'epfl/llama-3-meditron-70b': '2024-09',
@@ -601,7 +605,7 @@ var Sovereign = {
         'databricks/dbrx-instruct': '2024-03',
         'snowflake/arctic-instruct': '2024-04',
         // US Open — Cohere
-        'cohere/command-a': '2025-03', 'cohere/command-r-plus': '2024-04', 'cohere/command-r': '2024-04', 'cohere/aya-expanse-32b': '2024-10',
+        'cohere/tiny-aya-3b': '2026-03', 'cohere/command-a': '2025-03', 'cohere/command-r-plus': '2024-04', 'cohere/command-r': '2024-04', 'cohere/aya-expanse-32b': '2024-10',
         // US Open — xAI
         'xai/grok-1': '2024-03',
         // US Open — StarCoder
