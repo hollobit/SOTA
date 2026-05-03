@@ -11,6 +11,8 @@ on:
       - 'dashboard/js/**'
       - 'dashboard/tests/**'
   workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1"   # every Monday 05:00 UTC
 
 permissions:
   contents: read
@@ -51,7 +53,7 @@ jobs:
     name: HuggingFace metadata refresh
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
     permissions:
       contents: write
     steps:

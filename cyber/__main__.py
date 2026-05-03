@@ -262,6 +262,9 @@ def ingest(resource_dir: Optional[str]) -> None:
         scores = scout.parse(raw)
         for s in scores:
             # Auto-register model and benchmark if they don't exist yet
+            # Note: raw_data here is plain text (filename/file_type/content), not a
+            # structured model dict. context_window/knowledge_cutoff/languages/parameters
+            # must come via the seed loader path (scripts/load_benchmark_scores.py).
             insert_model(conn, Model(
                 id=s.model_id, vendor=s.model_id.split("/")[0] if "/" in s.model_id else "unknown",
                 name=s.model_id.split("/")[-1], version="",
