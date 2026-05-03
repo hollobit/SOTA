@@ -892,6 +892,111 @@ var Modal = {
             container.appendChild(linksDiv);
         }
 
+        // ---- Peer Comparison (NEW) ----
+        try {
+            var peerCandidates = (window.PeerMatcher && PeerMatcher.findPeers)
+                ? PeerMatcher.findPeers(modelId, App.data.models, App.data.scores, 5)
+                : [];
+            if (peerCandidates.length > 0) {
+                var peerDiv = document.createElement('div');
+                peerDiv.className = 'mb-4';
+                var ph = document.createElement('h3');
+                ph.className = 'text-sm font-semibold text-gray-300 mb-2';
+                ph.textContent = 'Peer Comparison';
+                peerDiv.appendChild(ph);
+
+                var picker = document.createElement('div');
+                picker.className = 'flex items-center gap-2 mb-2 text-xs text-gray-400';
+                var pickerLabel = document.createElement('span');
+                pickerLabel.textContent = 'Most similar:';
+                picker.appendChild(pickerLabel);
+                var sel = document.createElement('select');
+                sel.className = 'bg-gray-800 text-gray-200 rounded px-2 py-1 text-xs';
+                peerCandidates.forEach(function (p) {
+                    var pm = App.data.models.find(function (m) { return m.id === p.modelId; });
+                    var label = (pm ? pm.name : p.modelId) + '  (overlap ' + p.overlap + ', avg d ' + p.avgDelta.toFixed(1) + ')';
+                    var opt = document.createElement('option');
+                    opt.value = p.modelId;
+                    opt.textContent = label;
+                    sel.appendChild(opt);
+                });
+                picker.appendChild(sel);
+                peerDiv.appendChild(picker);
+
+                var tableWrap = document.createElement('div');
+                tableWrap.className = 'overflow-x-auto';
+                peerDiv.appendChild(tableWrap);
+
+                var renderPeerTable = function (peerId) {
+                    tableWrap.textContent = '';
+                    var picked = peerCandidates.find(function (p) { return p.modelId === peerId; });
+                    if (!picked) return;
+                    var peerScores = {};
+                    App.data.scores.forEach(function (s) {
+                        if (s.model_id === peerId) peerScores[s.benchmark_id] = s.value;
+                    });
+                    var targetScores = {};
+                    App.data.scores.forEach(function (s) {
+                        if (s.model_id === modelId) targetScores[s.benchmark_id] = s.value;
+                    });
+
+                    var tbl = document.createElement('table');
+                    tbl.className = 'w-full text-xs text-gray-200';
+                    var thead = document.createElement('thead');
+                    var theadRow = document.createElement('tr');
+                    theadRow.className = 'text-gray-500 border-b border-gray-700';
+                    ['Benchmark', model.name, 'Peer', 'd'].forEach(function (label, idx) {
+                        var th = document.createElement('th');
+                        th.className = idx === 0 ? 'text-left py-1' : 'text-right py-1';
+                        th.textContent = label;
+                        theadRow.appendChild(th);
+                    });
+                    thead.appendChild(theadRow);
+                    tbl.appendChild(thead);
+
+                    var tb = document.createElement('tbody');
+                    picked.sharedBenches.forEach(function (b) {
+                        var bench = App.data.benchmarks.find(function (x) { return x.id === b; });
+                        var name = bench ? bench.name : b;
+                        var t = targetScores[b];
+                        var p = peerScores[b];
+                        var delta = t - p;
+                        var deltaClass = delta > 0 ? 'text-green-400' : (delta < 0 ? 'text-red-400' : 'text-gray-400');
+                        var sign = delta > 0 ? '+' : '';
+                        var tier = window.PeerMatcher
+                            ? PeerMatcher.sotaTier(t, modelId, b, App.data.models, App.data.scores)
+                            : null;
+                        var badgeText = tier ? ' ' + (tier.tier === 'sota' ? '*' : (tier.tier === 'top3' ? '+' : '~')) : '';
+                        var tr = document.createElement('tr');
+                        tr.className = 'border-b border-gray-800';
+
+                        var cName = document.createElement('td'); cName.className = 'py-1'; cName.textContent = name;
+                        var cTarget = document.createElement('td'); cTarget.className = 'text-right py-1'; cTarget.textContent = t.toFixed(1) + badgeText;
+                        var cPeer = document.createElement('td'); cPeer.className = 'text-right py-1 text-gray-400'; cPeer.textContent = p.toFixed(1);
+                        var cDelta = document.createElement('td'); cDelta.className = 'text-right py-1 ' + deltaClass; cDelta.textContent = sign + delta.toFixed(1);
+
+                        tr.appendChild(cName); tr.appendChild(cTarget); tr.appendChild(cPeer); tr.appendChild(cDelta);
+                        tb.appendChild(tr);
+                    });
+                    tbl.appendChild(tb);
+                    tableWrap.appendChild(tbl);
+
+                    var foot = document.createElement('div');
+                    foot.className = 'text-xs text-gray-500 mt-1';
+                    var avgSign = picked.avgDelta >= 0 ? '+' : '';
+                    foot.textContent = 'Avg d ' + avgSign + picked.avgDelta.toFixed(1) + 'pt across ' + picked.overlap + ' shared benchmarks';
+                    peerDiv.appendChild(foot);
+                };
+
+                sel.onchange = function () { renderPeerTable(sel.value); };
+                renderPeerTable(peerCandidates[0].modelId);
+
+                container.appendChild(peerDiv);
+            }
+        } catch (e) {
+            console.warn('[modal] peer comparison error', e);
+        }
+
         // ---- Source URLs from this model's score rows (deduplicated) ----
         var srcUrls = {};
         scores.forEach(function(s) {
