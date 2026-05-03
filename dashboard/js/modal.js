@@ -997,6 +997,82 @@ var Modal = {
             console.warn('[modal] peer comparison error', e);
         }
 
+        // ---- Strengths & Weaknesses (NEW) ----
+        try {
+            if (window.PeerMatcher && PeerMatcher.extractStrengthsWeaknesses) {
+                var sw = PeerMatcher.extractStrengthsWeaknesses(modelId, App.data.models, App.data.scores);
+
+                if (sw.strengths.length > 0) {
+                    var strDiv = document.createElement('div');
+                    strDiv.className = 'mb-4';
+                    var sh = document.createElement('h3');
+                    sh.className = 'text-sm font-semibold text-gray-300 mb-2';
+                    sh.textContent = 'Strengths (12-month SOTA tier)';
+                    strDiv.appendChild(sh);
+                    var ul = document.createElement('ul');
+                    ul.className = 'text-xs text-gray-200 space-y-1';
+                    sw.strengths.forEach(function (r) {
+                        var bench = App.data.benchmarks.find(function (b) { return b.id === r.benchmark_id; });
+                        var name = bench ? bench.name : r.benchmark_id;
+                        var li = document.createElement('li');
+                        li.className = 'flex justify-between border-b border-gray-800 py-1';
+                        var nameSpan = document.createElement('span');
+                        nameSpan.textContent = name;
+                        var valSpan = document.createElement('span');
+                        var bold = document.createElement('strong');
+                        bold.textContent = r.value.toFixed(1);
+                        valSpan.appendChild(bold);
+                        valSpan.appendChild(document.createTextNode(' ' + r.tier.label + ' '));
+                        var rankSpan = document.createElement('span');
+                        rankSpan.className = 'text-gray-500';
+                        rankSpan.textContent = '(' + r.tier.rank + '/' + r.tier.total + ')';
+                        valSpan.appendChild(rankSpan);
+                        li.appendChild(nameSpan);
+                        li.appendChild(valSpan);
+                        ul.appendChild(li);
+                    });
+                    strDiv.appendChild(ul);
+                    container.appendChild(strDiv);
+                }
+
+                if (sw.weaknesses.length > 0) {
+                    var weakDiv = document.createElement('div');
+                    weakDiv.className = 'mb-4';
+                    var wh = document.createElement('h3');
+                    wh.className = 'text-sm font-semibold text-gray-300 mb-2';
+                    wh.textContent = 'Weaknesses (vs peer avg)';
+                    weakDiv.appendChild(wh);
+                    var wul = document.createElement('ul');
+                    wul.className = 'text-xs text-gray-200 space-y-1';
+                    sw.weaknesses.forEach(function (r) {
+                        var bench = App.data.benchmarks.find(function (b) { return b.id === r.benchmark_id; });
+                        var name = bench ? bench.name : r.benchmark_id;
+                        var li = document.createElement('li');
+                        li.className = 'flex justify-between border-b border-gray-800 py-1';
+                        var n = document.createElement('span');
+                        n.textContent = name;
+                        var v = document.createElement('span');
+                        v.appendChild(document.createTextNode(r.value.toFixed(1) + '  '));
+                        var avg = document.createElement('span');
+                        avg.className = 'text-gray-500';
+                        avg.textContent = 'peer avg ' + r.peerAvg.toFixed(1) + '  ';
+                        v.appendChild(avg);
+                        var d = document.createElement('span');
+                        d.className = 'text-red-400';
+                        d.textContent = 'd ' + r.delta.toFixed(1);
+                        v.appendChild(d);
+                        li.appendChild(n);
+                        li.appendChild(v);
+                        wul.appendChild(li);
+                    });
+                    weakDiv.appendChild(wul);
+                    container.appendChild(weakDiv);
+                }
+            }
+        } catch (e) {
+            console.warn('[modal] strengths/weaknesses error', e);
+        }
+
         // ---- Source URLs from this model's score rows (deduplicated) ----
         var srcUrls = {};
         scores.forEach(function(s) {
