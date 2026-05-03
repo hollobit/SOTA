@@ -65,14 +65,26 @@ class Exporter:
         except ImportError:
             yaml = None
 
-        yaml_path = Path("config") / "model_enrichment.yaml"
+        manual_path = Path("config") / "model_enrichment.yaml"
+        auto_path = Path("config") / "model_enrichment_auto.yaml"
         models_in: Dict[str, Dict[str, Any]] = {}
         schema_version = "1.0"
 
-        if yaml is not None and yaml_path.exists():
-            doc = yaml.safe_load(yaml_path.read_text()) or {}
+        # Load auto-extracted first (lowest priority)
+        if yaml is not None and auto_path.exists():
+            try:
+                auto_doc = yaml.safe_load(auto_path.read_text()) or {}
+                models_in.update(auto_doc.get("models", {}) or {})
+            except Exception:
+                pass
+
+        # Load manual second (overrides auto per-model)
+        if yaml is not None and manual_path.exists():
+            doc = yaml.safe_load(manual_path.read_text()) or {}
             schema_version = doc.get("schema_version", "1.0")
-            models_in = doc.get("models", {}) or {}
+            manual_models = doc.get("models", {}) or {}
+            # Manual takes precedence at model level (overwrites auto entries fully)
+            models_in.update(manual_models)
 
         def norm(entry: Dict[str, Any]) -> Dict[str, Any]:
             arch = entry.get("architecture") or {}
