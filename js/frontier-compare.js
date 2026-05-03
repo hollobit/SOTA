@@ -280,10 +280,50 @@ var FrontierCompare = {
         var el = document.getElementById(hostId);
         if (!el || typeof echarts === 'undefined') return;
 
+        // Build category dropdown if not already present
+        var section = document.getElementById('fc-pareto-section');
+        var existingDropdown = document.getElementById('fc-pareto-cat');
+        if (!existingDropdown && section) {
+            var ctrls = document.createElement('div');
+            ctrls.className = 'flex gap-2 mb-2 text-xs items-center';
+            var catLabel = document.createElement('label');
+            catLabel.className = 'text-gray-400';
+            catLabel.textContent = 'Quality metric:';
+            ctrls.appendChild(catLabel);
+            var catSel = document.createElement('select');
+            catSel.id = 'fc-pareto-cat';
+            catSel.className = 'bg-gray-800 border border-gray-700 rounded px-2 py-1 text-xs';
+            [
+                { v: 'all', l: 'All (Intelligence Index)' },
+                { v: 'reasoning', l: 'Reasoning category avg' },
+                { v: 'coding', l: 'Coding category avg' },
+                { v: 'math', l: 'Math category avg' },
+                { v: 'agent', l: 'Agent category avg' },
+                { v: 'multimodal', l: 'Multimodal category avg' },
+            ].forEach(function(opt) {
+                var o = document.createElement('option');
+                o.value = opt.v;
+                o.textContent = opt.l;
+                catSel.appendChild(o);
+            });
+            var self = this;
+            catSel.addEventListener('change', function() {
+                FrontierCompare._renderParetoChart();
+            });
+            ctrls.appendChild(catSel);
+            // Insert before the chart element
+            section.insertBefore(ctrls, el);
+        }
+
+        var catDropdown = document.getElementById('fc-pareto-cat');
+        var catFilter = catDropdown ? catDropdown.value : 'all';
+
         // Build (cost, quality) points for FRONTIER_MODELS that have data
         var pricing = (typeof App !== 'undefined' && App.data && App.data.pricing) || {};
         var enrichment = (typeof App !== 'undefined' && App.data && App.data.enrichment) || {};
         var models = (typeof App !== 'undefined' && App.data && App.data.models) || this._models || [];
+        var allScores = (typeof App !== 'undefined' && App.data && App.data.scores) || this._scores || [];
+        var allBenchmarks = (typeof App !== 'undefined' && App.data && App.data.benchmarks) || this._benchmarks || [];
 
         var points = [];
         var ids = (this.FRONTIER_MODELS || []).slice();
@@ -294,10 +334,24 @@ var FrontierCompare = {
             var output = p.output != null ? p.output : (ent.pricing && ent.pricing.output);
             if (input == null || output == null) return;
             var cost = input + 5 * output;
-            var quality = p.intelligence_index;
-            if (quality == null && ent.benchmarks_meta && ent.benchmarks_meta.arena_elo) {
-                // Convert Elo (1100-1450 typical) to a 0-100 scale roughly comparable
-                quality = (ent.benchmarks_meta.arena_elo - 1100) / 4;
+            var quality;
+            if (catFilter === 'all') {
+                quality = p.intelligence_index;
+                if (quality == null && ent.benchmarks_meta && ent.benchmarks_meta.arena_elo) {
+                    // Convert Elo (1100-1450 typical) to a 0-100 scale roughly comparable
+                    quality = (ent.benchmarks_meta.arena_elo - 1100) / 4;
+                }
+            } else {
+                // Compute category average from scores
+                var catScores = allScores
+                    .filter(function(s) {
+                        if (s.model_id !== mid) return false;
+                        var b = allBenchmarks.find(function(x) { return x.id === s.benchmark_id; });
+                        return b && b.category === catFilter;
+                    })
+                    .map(function(s) { return s.value; });
+                if (catScores.length === 0) return;
+                quality = catScores.reduce(function(a, b) { return a + b; }, 0) / catScores.length;
             }
             if (quality == null) return;
             var m = models.find(function(x) { return x.id === mid; });
@@ -368,7 +422,9 @@ var FrontierCompare = {
             },
             yAxis: {
                 type: 'value',
-                name: 'Quality (Intelligence Index / Arena Elo×0.25)',
+                name: catFilter === 'all'
+                    ? 'Quality (Intelligence Index / Arena Elo×0.25)'
+                    : (catFilter.charAt(0).toUpperCase() + catFilter.slice(1)) + ' category avg score',
                 nameLocation: 'middle',
                 nameGap: 45,
                 nameTextStyle: { color: '#9ca3af' },
