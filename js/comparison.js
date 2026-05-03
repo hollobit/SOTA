@@ -31,6 +31,9 @@ var Comparison = {
         this._loadState();
         this._applySelections();
         this._bindEvents();
+        this._setupSearch();
+        this._setupPresets();
+        this._setupCounters();
     },
 
     _populateSelectors: function() {
@@ -132,7 +135,249 @@ var Comparison = {
         this._state.benchmarks = Array.from(benchSel.selectedOptions).map(function(o) { return o.value; });
     },
 
+    _setupSearch: function() {
+        var self = this;
+        var modelSel = document.getElementById('cmp-models');
+        var benchSel = document.getElementById('cmp-benchmarks');
+        var modelSearch = document.getElementById('cmp-models-search');
+        var benchSearch = document.getElementById('cmp-benchmarks-search');
+
+        // Cache original full options on first call
+        if (modelSel && !modelSel._allOptions) {
+            modelSel._allOptions = Array.prototype.slice.call(modelSel.options).map(function (o) {
+                return { value: o.value, text: o.text };
+            });
+        }
+        if (benchSel && !benchSel._allOptions) {
+            benchSel._allOptions = Array.prototype.slice.call(benchSel.options).map(function (o) {
+                return { value: o.value, text: o.text };
+            });
+        }
+
+        function filterOptions(sel, query) {
+            if (!sel || !sel._allOptions) return;
+            var q = (query || '').toLowerCase();
+            // Preserve currently-selected values
+            var selected = {};
+            Array.prototype.forEach.call(sel.selectedOptions, function (o) {
+                selected[o.value] = true;
+            });
+            sel.textContent = '';
+            sel._allOptions.forEach(function (opt) {
+                if (q && opt.text.toLowerCase().indexOf(q) === -1 && opt.value.toLowerCase().indexOf(q) === -1) return;
+                var o = document.createElement('option');
+                o.value = opt.value;
+                o.textContent = opt.text;
+                if (selected[opt.value]) o.selected = true;
+                sel.appendChild(o);
+            });
+        }
+
+        if (modelSearch && modelSel) {
+            modelSearch.addEventListener('input', function () {
+                filterOptions(modelSel, modelSearch.value);
+            });
+        }
+        if (benchSearch && benchSel) {
+            benchSearch.addEventListener('input', function () {
+                filterOptions(benchSel, benchSearch.value);
+            });
+        }
+    },
+
+    _setupPresets: function() {
+        var self = this;
+        var presetButtons = document.querySelectorAll('.cmp-preset');
+        var modelSel = document.getElementById('cmp-models');
+        if (!modelSel) return;
+
+        // Preset definitions
+        var presets = {
+            'frontier-top5': [
+                'openai/gpt-5.5',
+                'anthropic/claude-opus-4.7',
+                'google/gemini-3.1-pro',
+                'xai/grok-4.3',
+                'deepseek/deepseek-v4-pro',
+            ],
+            'frontier-30': [
+                'openai/gpt-5.5', 'openai/gpt-5.5-pro', 'openai/gpt-5.4', 'openai/gpt-5.4-thinking', 'openai/gpt-5.3-codex',
+                'anthropic/claude-opus-4.7', 'anthropic/claude-mythos-preview', 'anthropic/claude-opus-4.6',
+                'google/gemini-3.1-pro', 'google/gemini-3-pro',
+                'xai/grok-4.3', 'xai/grok-4-heavy',
+                'meta/muse-spark',
+                'deepseek/deepseek-v4-pro', 'deepseek/deepseek-v4-flash',
+                'moonshot/kimi-k2.6',
+                'zhipu/glm-5.1', 'zhipu/glm-5',
+                'alibaba/qwen3.6-27b', 'alibaba/qwen3.6-35b-a3b',
+                'tencent/hy3-preview',
+                'baidu/ernie-5.0',
+                'lg/exaone-4.5-33b', 'lg/k-exaone-236b',
+                'skt/ax-k1',
+                'mistral/mistral-medium-3.5', 'mistral/mistral-small-4',
+                'sber/gigachat-3.1-ultra',
+                'dicta/dictalm-3.0-24b-thinking',
+                'cohere/tiny-aya-3b',
+            ],
+            'korean-sovereign': [
+                'lg/exaone-4.5-33b', 'lg/k-exaone-236b',
+                'skt/ax-k1',
+                'kakao/kanana-2-30b-a3b-thinking', 'kakao/kanana-1.5-o-9.8b',
+                'upstage/solar-open-100b', 'upstage/solar-pro-3',
+                'naver/hyperclova-x-think-32b',
+            ],
+        };
+
+        function applyPreset(presetKey) {
+            var ids;
+            if (presetKey === 'open-weight' || presetKey === 'proprietary') {
+                // Filter from all models by type
+                ids = (self._allModels || []).filter(function (m) {
+                    return m.type === presetKey;
+                }).slice(0, 30).map(function (m) { return m.id; });
+            } else {
+                ids = presets[presetKey] || [];
+            }
+
+            // Clear current selection then select preset ids
+            Array.prototype.forEach.call(modelSel.options, function (o) { o.selected = false; });
+            ids.forEach(function (id) {
+                var found = Array.prototype.find.call(modelSel.options, function (o) { return o.value === id; });
+                if (found) found.selected = true;
+            });
+            // Update counters + render
+            if (self._updateCounters) self._updateCounters();
+            if (typeof self.render === 'function') self.render();
+        }
+
+        presetButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                applyPreset(btn.getAttribute('data-preset'));
+            });
+        });
+    },
+
+    _setupCounters: function() {
+        var self = this;
+        var modelSel = document.getElementById('cmp-models');
+        var benchSel = document.getElementById('cmp-benchmarks');
+        var modelCount = document.getElementById('cmp-models-count');
+        var benchCount = document.getElementById('cmp-benchmarks-count');
+
+        function updateModelCount() {
+            if (modelCount && modelSel) modelCount.textContent = modelSel.selectedOptions.length;
+        }
+        function updateBenchCount() {
+            if (benchCount && benchSel) benchCount.textContent = benchSel.selectedOptions.length;
+        }
+        if (modelSel) modelSel.addEventListener('change', updateModelCount);
+        if (benchSel) benchSel.addEventListener('change', updateBenchCount);
+        updateModelCount();
+        updateBenchCount();
+
+        // Expose so presets can call it
+        this._updateCounters = function () { updateModelCount(); updateBenchCount(); };
+    },
+
+    _renderMetaTable: function(modelIds) {
+        // Render Performance & Cost meta rows ABOVE the matrix
+        var container = document.getElementById('cmp-meta-table');
+        if (!container) return;
+        container.textContent = '';
+        if (!modelIds || modelIds.length === 0) return;
+
+        // Build meta rows: Released, Arena Elo, Intelligence Index, Input price, Output price, Throughput
+        var enrichmentMap = (typeof App !== 'undefined' && App.data && App.data.enrichment) || {};
+        var pricingMap = (typeof App !== 'undefined' && App.data && App.data.pricing) || {};
+
+        var self = this;
+
+        function getCellValue(mid, key) {
+            var ent = enrichmentMap[mid] || {};
+            var price = pricingMap[mid] || {};
+            switch (key) {
+                case 'released':
+                    var m = (self._allModels || []).find(function (x) { return x.id === mid; });
+                    return m ? (m.release_date || m.released_at || '—') : '—';
+                case 'arena_elo':
+                    return (ent.benchmarks_meta || {}).arena_elo || '—';
+                case 'intelligence':
+                    return price.intelligence_index || '—';
+                case 'input_price':
+                    var ip = (ent.pricing || {}).input != null ? (ent.pricing || {}).input : price.input;
+                    return ip != null ? '$' + ip : '—';
+                case 'output_price':
+                    var op = (ent.pricing || {}).output != null ? (ent.pricing || {}).output : price.output;
+                    return op != null ? '$' + op : '—';
+                case 'throughput':
+                    return price.tokens_per_second != null ? price.tokens_per_second + ' t/s' : '—';
+                default:
+                    return '—';
+            }
+        }
+
+        var rows = [
+            { label: 'Released', key: 'released' },
+            { label: 'Arena Elo', key: 'arena_elo' },
+            { label: 'Intelligence Index', key: 'intelligence' },
+            { label: 'Input $/1M', key: 'input_price' },
+            { label: 'Output $/1M', key: 'output_price' },
+            { label: 'Throughput', key: 'throughput' },
+        ];
+
+        var metaTable = document.createElement('table');
+        metaTable.className = 'sota-table text-xs mb-2';
+        var thead = document.createElement('thead');
+        var hr = document.createElement('tr');
+        var thCorner = document.createElement('th');
+        thCorner.textContent = 'Metric';
+        thCorner.className = 'text-left';
+        hr.appendChild(thCorner);
+        modelIds.forEach(function (mid) {
+            var th = document.createElement('th');
+            th.style.fontSize = '10px';
+            th.style.whiteSpace = 'nowrap';
+            var m = (self._allModels || []).find(function (x) { return x.id === mid; });
+            th.textContent = m ? m.name : mid;
+            hr.appendChild(th);
+        });
+        thead.appendChild(hr);
+        metaTable.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+        rows.forEach(function (row) {
+            var tr = document.createElement('tr');
+            var tdLabel = document.createElement('td');
+            tdLabel.textContent = row.label;
+            tdLabel.style.color = '#9ca3af';
+            tr.appendChild(tdLabel);
+            modelIds.forEach(function (mid) {
+                var td = document.createElement('td');
+                td.style.textAlign = 'center';
+                td.style.fontFamily = 'monospace';
+                td.style.fontSize = '11px';
+                td.textContent = String(getCellValue(mid, row.key));
+                tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+        });
+        metaTable.appendChild(tbody);
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'overflow-x-auto bg-gray-900 rounded-lg p-3 border border-gray-800';
+        var title = document.createElement('div');
+        title.className = 'text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2';
+        title.textContent = 'Performance & Cost (Meta Rows)';
+        wrapper.appendChild(title);
+        wrapper.appendChild(metaTable);
+        container.appendChild(wrapper);
+    },
+
     render: function() {
+        var modelSel = document.getElementById('cmp-models');
+        var selectedModelIds = modelSel ? Array.prototype.map.call(modelSel.selectedOptions, function(o) { return o.value; }) : [];
+        // NEW: render meta-rows table at top
+        if (this._renderMetaTable) this._renderMetaTable(selectedModelIds);
         this._renderMatrix();
         this._renderRadar();
     },
