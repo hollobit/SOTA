@@ -1,0 +1,48 @@
+name: Dashboard Tests
+
+on:
+  push:
+    paths:
+      - 'dashboard/js/**'
+      - 'dashboard/tests/**'
+      - '.github/workflows/dashboard-tests.yml'
+  pull_request:
+    paths:
+      - 'dashboard/js/**'
+      - 'dashboard/tests/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  peer-matcher-tests:
+    name: Peer matcher (node assert)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run peer-matcher tests
+        run: node dashboard/js/__tests__/peer-matcher.test.js
+
+  python-tests:
+    name: Python unit tests (schema + exporter)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -e '.[dev]'
+
+      - name: Run pytest
+        run: python -m pytest tests/test_model_schema_extensions.py tests/test_enrichment_export.py -v
