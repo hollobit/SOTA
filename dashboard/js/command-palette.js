@@ -9,6 +9,27 @@
         _index: null,
         _isOpen: false,
 
+        _fuzzyMatch: function(query, target) {
+            // Returns score 0 if no match, higher = better match.
+            // Token-based: each query word must appear in target. Bonus for prefix match.
+            if (!query) return 1;
+            var qLower = query.toLowerCase().trim();
+            var tLower = target.toLowerCase();
+            if (!qLower) return 1;
+            // Quick exact substring
+            var subIdx = tLower.indexOf(qLower);
+            if (subIdx === 0) return 100; // prefix
+            if (subIdx > 0) return 50; // substring
+            // Token mode: split on space + slash + dash + dot
+            var tokens = qLower.split(/[\s\/\-\._]+/).filter(function(t) { return t.length > 0; });
+            if (tokens.length < 2) return 0; // didn't match above and no tokens to split
+            // All tokens must appear (in any order)
+            var allMatch = tokens.every(function(t) { return tLower.indexOf(t) !== -1; });
+            if (!allMatch) return 0;
+            // Score = number of tokens × 10 (higher for more matched tokens)
+            return tokens.length * 10;
+        },
+
         init: function() {
             var self = this;
             // Global keydown for Cmd+K / Ctrl+K
@@ -124,19 +145,14 @@
                     // Show recent / popular suggestions when empty
                     results = self._index.filter(function(e) { return e.type === 'model'; }).slice(0, 12);
                 } else {
-                    results = self._index.filter(function(e) {
-                        return e.search.indexOf(q) !== -1;
-                    });
-                    // Rank: exact name match first, then prefix, then substring
-                    results.sort(function(a, b) {
-                        var aExact = a.name.toLowerCase() === q ? 0 : 1;
-                        var bExact = b.name.toLowerCase() === q ? 0 : 1;
-                        if (aExact !== bExact) return aExact - bExact;
-                        var aPrefix = a.search.indexOf(q) === 0 ? 0 : 1;
-                        var bPrefix = b.search.indexOf(q) === 0 ? 0 : 1;
-                        if (aPrefix !== bPrefix) return aPrefix - bPrefix;
-                        return a.name.localeCompare(b.name);
-                    });
+                    results = self._index.map(function(e) {
+                        return { entry: e, score: self._fuzzyMatch(q, e.search) };
+                    }).filter(function(x) {
+                        return x.score > 0;
+                    }).sort(function(a, b) {
+                        if (b.score !== a.score) return b.score - a.score;
+                        return a.entry.name.localeCompare(b.entry.name);
+                    }).map(function(x) { return x.entry; });
                     results = results.slice(0, 30);
                 }
 

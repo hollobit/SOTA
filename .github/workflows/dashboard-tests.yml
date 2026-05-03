@@ -103,6 +103,19 @@ jobs:
       - name: Validate
         run: python3 scripts/validate_enrichment.py
 
+  arena-elo-refresh:
+    name: Arena Elo refresh (placeholder)
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run placeholder refresh
+        run: python3 scripts/refresh_arena_elo.py
+
   badge-refresh:
     name: Refresh README badge
     runs-on: ubuntu-latest

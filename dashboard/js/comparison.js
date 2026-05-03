@@ -180,10 +180,21 @@ var Comparison = {
     },
 
     _exportPNG: function() {
-        // Use ECharts API to download radar as PNG
         var radarChart = (typeof echarts !== 'undefined' && echarts.getInstanceByDom) ?
             echarts.getInstanceByDom(document.getElementById('cmp-radar-chart')) : null;
-        if (radarChart && radarChart.getDataURL) {
+        if (!radarChart || !radarChart.getDataURL) {
+            alert('Render comparison radar first (click Update).');
+            return;
+        }
+        // Apply Korean-friendly font BEFORE export, then restore
+        var existingOption = radarChart.getOption();
+        var koFontFamily = "'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+        radarChart.setOption({
+            textStyle: { fontFamily: koFontFamily },
+            radar: { axisName: { fontFamily: koFontFamily } },
+            legend: { textStyle: { fontFamily: koFontFamily } },
+        }, false);
+        try {
             var dataUrl = radarChart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: '#0a0a0f' });
             var a = document.createElement('a');
             a.href = dataUrl;
@@ -191,8 +202,9 @@ var Comparison = {
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-        } else {
-            alert('Render comparison radar first (click Update).');
+        } catch (e) {
+            console.error('PNG export error', e);
+            alert('PNG export failed: ' + e.message);
         }
     },
 
