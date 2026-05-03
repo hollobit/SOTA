@@ -25,6 +25,9 @@ class Model:
     modalities: list[str] = field(default_factory=list)
     parameters: str | None = None
     release_date: str | None = None
+    context_window: int | None = None
+    knowledge_cutoff: str | None = None
+    languages: list[str] | None = None
 
 
 @dataclass
