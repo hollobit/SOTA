@@ -1112,6 +1112,115 @@ var App = {
             return b ? b.name : bid;
         });
         Charts.renderHeatmap('heatmap-chart', hmNames, hmBenchNames, hmMatrix);
+        App._renderTrendOverview();
+    },
+
+    _renderTrendOverview: function() {
+        var host = document.getElementById('trend-overview-chart');
+        if (!host || typeof echarts === 'undefined') return;
+
+        var catSel = document.getElementById('trend-overview-cat');
+        var topNSel = document.getElementById('trend-overview-topn');
+        var historyDates = Object.keys(App.data.history || {}).sort();
+
+        function showMsg(text) {
+            host.textContent = '';
+            var p = document.createElement('p');
+            p.className = 'text-gray-500 text-sm p-4';
+            p.textContent = text;
+            host.appendChild(p);
+        }
+
+        if (historyDates.length < 1) {
+            showMsg('No history snapshots yet. Daily snapshots accumulating.');
+            return;
+        }
+
+        // Populate category dropdown (once)
+        if (catSel && catSel.options.length <= 1) {
+            var cats = {};
+            (App.data.benchmarks || []).forEach(function(b) { if (b.category) cats[b.category] = true; });
+            Object.keys(cats).sort().forEach(function(c) {
+                var opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                catSel.appendChild(opt);
+            });
+        }
+
+        function render() {
+            var selectedCat = catSel ? catSel.value : 'all';
+            var topN = topNSel ? parseInt(topNSel.value, 10) : 15;
+            var benches = (App.data.benchmarks || []).filter(function(b) {
+                return selectedCat === 'all' || b.category === selectedCat;
+            });
+
+            // For each benchmark, find SOTA over time across history snapshots
+            var benchSeries = [];
+            benches.forEach(function(b) {
+                var pts = historyDates.map(function(d) {
+                    var snap = App.data.history[d] || [];
+                    var best = null;
+                    snap.forEach(function(s) {
+                        if (s.benchmark_id === b.id) {
+                            if (best === null || s.value > best) best = s.value;
+                        }
+                    });
+                    return best;
+                });
+                var hasData = pts.some(function(v) { return v != null; });
+                if (!hasData) return;
+                var latest = pts.slice().reverse().find(function(v) { return v != null; });
+                benchSeries.push({ name: b.name, data: pts, latest: latest });
+            });
+            benchSeries.sort(function(a, b) { return (b.latest || 0) - (a.latest || 0); });
+            benchSeries = benchSeries.slice(0, topN);
+
+            if (benchSeries.length === 0) {
+                showMsg('No benchmark data in history snapshots for the selected category.');
+                return;
+            }
+
+            var chart = echarts.getInstanceByDom(host);
+            if (chart) chart.dispose();
+            chart = echarts.init(host, 'dark');
+            chart.setOption({
+                backgroundColor: 'transparent',
+                tooltip: { trigger: 'axis' },
+                legend: {
+                    textStyle: { color: '#d1d5db', fontSize: 9 },
+                    top: 0,
+                    type: 'scroll',
+                },
+                grid: { left: 50, right: 30, top: 50, bottom: 40 },
+                xAxis: {
+                    type: 'category',
+                    data: historyDates,
+                    axisLabel: { color: '#9ca3af', fontSize: 10 },
+                },
+                yAxis: {
+                    type: 'value',
+                    name: 'SOTA score',
+                    axisLabel: { color: '#9ca3af', fontSize: 10 },
+                    splitLine: { lineStyle: { color: 'rgba(160,160,160,0.15)' } },
+                },
+                series: benchSeries.map(function(s) {
+                    return {
+                        name: s.name,
+                        type: 'line',
+                        data: s.data,
+                        smooth: true,
+                        connectNulls: true,
+                        showSymbol: false,
+                    };
+                }),
+            });
+            window.addEventListener('resize', function() { chart.resize(); });
+        }
+
+        if (catSel) catSel.onchange = render;
+        if (topNSel) topNSel.onchange = render;
+        render();
     },
 
     _renderSOTAChangeLog: function() {

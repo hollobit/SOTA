@@ -159,6 +159,27 @@
                 <p class="text-xs text-gray-500 mb-3">Artificial Analysis Intelligence Index vs output price (USD / 1M tokens). Points toward the upper-left are the best value for their tier. Log-scale price axis.</p>
                 <div id="pricing-chart" class="h-96"></div>
             </div>
+            <div class="mt-8 mb-6">
+                <h2 class="text-section mb-2">All Benchmarks SOTA Overview</h2>
+                <p class="text-sm text-gray-400 mb-3">Top SOTA scores across all tracked benchmarks. Each line is one benchmark's all-time best.</p>
+                <div class="flex gap-3 mb-3 text-xs items-end flex-wrap">
+                    <div>
+                        <label class="block text-gray-400 mb-1">Category filter</label>
+                        <select id="trend-overview-cat" class="bg-gray-800 border border-gray-700 rounded px-2 py-1">
+                            <option value="all">All categories</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1">Top N benchmarks</label>
+                        <select id="trend-overview-topn" class="bg-gray-800 border border-gray-700 rounded px-2 py-1">
+                            <option value="8">8</option>
+                            <option value="15" selected>15</option>
+                            <option value="30">30</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="trend-overview-chart" class="h-96"></div>
+            </div>
         </section>
 
         <section id="tab-comparison" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-comparison">
@@ -187,6 +208,8 @@
                     <div class="flex flex-col gap-2">
                         <button id="cmp-update" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">Update</button>
                         <button id="cmp-reset" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-sm">Reset</button>
+                        <button id="cmp-export-csv" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-sm">&#128196; CSV</button>
+                        <button id="cmp-export-png" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-sm">&#128444; PNG</button>
                     </div>
                 </div>
             </div>
@@ -589,7 +612,7 @@
 
     <script src="js/theme.js?v=20260503a"></script>
     <script src="js/peer-matcher.js?v=20260503a"></script>
-    <script src="js/modal.js?v=20260503s"></script>
+    <script src="js/modal.js?v=20260503t"></script>
     <script src="js/command-palette.js?v=20260503a"></script>
     <script src="js/frontier-compare.js?v=20260503d"></script>
     <script src="js/cyber-coding.js?v=20260503c"></script>
@@ -599,7 +622,7 @@
     <script src="js/charts.js?v=20260424"></script>
     <script src="js/filters.js?v=20260424"></script>
     <script src="js/explorer.js?v=20260502a"></script>
-    <script src="js/comparison.js?v=20260503b"></script>
+    <script src="js/comparison.js?v=20260503c"></script>
     <script src="js/app.js?v=20260502a"></script>
 </body>
 </html>
