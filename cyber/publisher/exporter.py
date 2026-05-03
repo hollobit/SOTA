@@ -99,6 +99,8 @@ class Exporter:
                 "safety": {
                     "aisi_cyber_tier": safety.get("aisi_cyber_tier"),
                     "cbrn_risk": safety.get("cbrn_risk"),
+                    "metr_autonomy_50pct": safety.get("metr_autonomy_50pct"),
+                    "apollo_schemer_score": safety.get("apollo_schemer_score"),
                     "self_reported_safety_card": safety.get("self_reported_safety_card"),
                 },
                 "throughput": {
