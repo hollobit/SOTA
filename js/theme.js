@@ -81,6 +81,8 @@ var Theme = {
         if (btn) {
             btn.textContent = theme === 'light' ? '☀️ Light' : '🌙 Dark';
         }
+        // Notify charts that theme changed — they may want to reinit
+        document.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: theme } }));
     }
 
     // Apply on page load
