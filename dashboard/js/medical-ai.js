@@ -98,7 +98,10 @@ var MedicalAI = {
                 'snuh/snu-med-llm-v1',
                 'lunit/medscale-foundation-32b',
                 'kakao-healthcare/kakaohealth-foundation-7b',
-                'kaist/medkaist-llm-13b'
+                'kaist/medkaist-llm-13b',
+                // General Korean LLMs w/ medical benchmark coverage (cross-ref baselines)
+                'upstage/solar-open-100b',
+                'lg/exaone-4.5-33b'
             ]
         },
         {
