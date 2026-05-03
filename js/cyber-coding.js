@@ -615,6 +615,14 @@ var CyberCoding = {
             var tdName = document.createElement('td');
             tdName.textContent = self._getModelName(mid);
             tdName.style.whiteSpace = 'nowrap';
+            tdName.style.cursor = 'pointer';
+            tdName.setAttribute('role', 'button');
+            tdName.setAttribute('title', mid + ' — 클릭하면 모델 상세');
+            tdName.addEventListener('click', (function(modelId) {
+                return function() {
+                    if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
+                };
+            })(mid));
             tr.appendChild(tdName);
 
             benchmarkIds.forEach(function(bid) {
