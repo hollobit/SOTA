@@ -748,6 +748,11 @@ var Modal = {
         if (!model) return;
         history.replaceState(null, '', '#model/' + modelId);
 
+        // Lazy load enrichment; render synchronously with what we have, then patch
+        var _enrichmentPromise = (typeof App !== 'undefined' && App.loadEnrichment)
+            ? App.loadEnrichment()
+            : Promise.resolve({});
+
         var scores = App.data.scores.filter(function(s) { return s.model_id === modelId; });
 
         var byCategory = {};
@@ -816,19 +821,22 @@ var Modal = {
         if (model.parameters) addField('Parameters', model.parameters);
         if (model.params_b) addField('Parameters (B)', model.params_b + (model.active_params_b ? ' total / ' + model.active_params_b + ' active' : ''));
         if (model.context_window) addField('Context Window', Number(model.context_window).toLocaleString() + ' tokens');
+        if (model.knowledge_cutoff) addField('Knowledge Cutoff', model.knowledge_cutoff);
+        if (Array.isArray(model.languages) && model.languages.length) {
+            var langs = model.languages;
+            var langText = langs.length <= 6 ? langs.join(', ') : (langs.slice(0, 6).join(', ') + ' (+' + (langs.length - 6) + ')');
+            addField('Languages', langText);
+        }
         if (model.license) addField('License', model.license);
-        // Pricing — prefer model.pricing.input/output if present, else fall back to App.data.pricing[modelId]
+
         var pricing = model.pricing || (App.data.pricing && App.data.pricing[modelId]);
-        if (pricing && (pricing.input !== undefined || pricing.output !== undefined)) {
-            if (pricing.input !== undefined && pricing.input !== null) {
-                addField('Input price (per 1M tokens)', '$' + pricing.input);
+        if (pricing) {
+            if (pricing.tokens_per_second != null) {
+                addField('Throughput', pricing.tokens_per_second + ' tokens/sec');
             }
-            if (pricing.output !== undefined && pricing.output !== null) {
-                addField('Output price (per 1M tokens)', '$' + pricing.output);
-            }
-            if (pricing.cached_input !== undefined && pricing.cached_input !== null) {
-                addField('Cached input', '$' + pricing.cached_input);
-            }
+            if (pricing.input != null) addField('Input price (per 1M tokens)', '$' + pricing.input);
+            if (pricing.output != null) addField('Output price (per 1M tokens)', '$' + pricing.output);
+            if (pricing.cached_input != null) addField('Cached input', '$' + pricing.cached_input);
         }
         if (model._note || model.notes || model.description) {
             addField('Description', model._note || model.notes || model.description, {full: true});
@@ -887,6 +895,187 @@ var Modal = {
                 linksDiv.appendChild(a);
             });
             container.appendChild(linksDiv);
+        }
+
+        // ---- Peer Comparison (NEW) ----
+        try {
+            var peerCandidates = (window.PeerMatcher && PeerMatcher.findPeers)
+                ? PeerMatcher.findPeers(modelId, App.data.models, App.data.scores, 5)
+                : [];
+            if (peerCandidates.length > 0) {
+                var peerDiv = document.createElement('div');
+                peerDiv.className = 'mb-4';
+                var ph = document.createElement('h3');
+                ph.className = 'text-sm font-semibold text-gray-300 mb-2';
+                ph.textContent = 'Peer Comparison';
+                peerDiv.appendChild(ph);
+
+                var picker = document.createElement('div');
+                picker.className = 'flex items-center gap-2 mb-2 text-xs text-gray-400';
+                var pickerLabel = document.createElement('span');
+                pickerLabel.textContent = 'Most similar:';
+                picker.appendChild(pickerLabel);
+                var sel = document.createElement('select');
+                sel.className = 'bg-gray-800 text-gray-200 rounded px-2 py-1 text-xs';
+                peerCandidates.forEach(function (p) {
+                    var pm = App.data.models.find(function (m) { return m.id === p.modelId; });
+                    var label = (pm ? pm.name : p.modelId) + '  (overlap ' + p.overlap + ', avg d ' + p.avgDelta.toFixed(1) + ')';
+                    var opt = document.createElement('option');
+                    opt.value = p.modelId;
+                    opt.textContent = label;
+                    sel.appendChild(opt);
+                });
+                picker.appendChild(sel);
+                peerDiv.appendChild(picker);
+
+                var tableWrap = document.createElement('div');
+                tableWrap.className = 'overflow-x-auto';
+                peerDiv.appendChild(tableWrap);
+
+                var renderPeerTable = function (peerId) {
+                    tableWrap.textContent = '';
+                    var picked = peerCandidates.find(function (p) { return p.modelId === peerId; });
+                    if (!picked) return;
+                    var peerScores = {};
+                    App.data.scores.forEach(function (s) {
+                        if (s.model_id === peerId) peerScores[s.benchmark_id] = s.value;
+                    });
+                    var targetScores = {};
+                    App.data.scores.forEach(function (s) {
+                        if (s.model_id === modelId) targetScores[s.benchmark_id] = s.value;
+                    });
+
+                    var tbl = document.createElement('table');
+                    tbl.className = 'w-full text-xs text-gray-200';
+                    var thead = document.createElement('thead');
+                    var theadRow = document.createElement('tr');
+                    theadRow.className = 'text-gray-500 border-b border-gray-700';
+                    ['Benchmark', model.name, 'Peer', 'd'].forEach(function (label, idx) {
+                        var th = document.createElement('th');
+                        th.className = idx === 0 ? 'text-left py-1' : 'text-right py-1';
+                        th.textContent = label;
+                        theadRow.appendChild(th);
+                    });
+                    thead.appendChild(theadRow);
+                    tbl.appendChild(thead);
+
+                    var tb = document.createElement('tbody');
+                    picked.sharedBenches.forEach(function (b) {
+                        var bench = App.data.benchmarks.find(function (x) { return x.id === b; });
+                        var name = bench ? bench.name : b;
+                        var t = targetScores[b];
+                        var p = peerScores[b];
+                        var delta = t - p;
+                        var deltaClass = delta > 0 ? 'text-green-400' : (delta < 0 ? 'text-red-400' : 'text-gray-400');
+                        var sign = delta > 0 ? '+' : '';
+                        var tier = window.PeerMatcher
+                            ? PeerMatcher.sotaTier(t, modelId, b, App.data.models, App.data.scores)
+                            : null;
+                        var badgeText = tier ? ' ' + (tier.tier === 'sota' ? '*' : (tier.tier === 'top3' ? '+' : '~')) : '';
+                        var tr = document.createElement('tr');
+                        tr.className = 'border-b border-gray-800';
+
+                        var cName = document.createElement('td'); cName.className = 'py-1'; cName.textContent = name;
+                        var cTarget = document.createElement('td'); cTarget.className = 'text-right py-1'; cTarget.textContent = t.toFixed(1) + badgeText;
+                        var cPeer = document.createElement('td'); cPeer.className = 'text-right py-1 text-gray-400'; cPeer.textContent = p.toFixed(1);
+                        var cDelta = document.createElement('td'); cDelta.className = 'text-right py-1 ' + deltaClass; cDelta.textContent = sign + delta.toFixed(1);
+
+                        tr.appendChild(cName); tr.appendChild(cTarget); tr.appendChild(cPeer); tr.appendChild(cDelta);
+                        tb.appendChild(tr);
+                    });
+                    tbl.appendChild(tb);
+                    tableWrap.appendChild(tbl);
+
+                    var foot = document.createElement('div');
+                    foot.className = 'text-xs text-gray-500 mt-1';
+                    var avgSign = picked.avgDelta >= 0 ? '+' : '';
+                    foot.textContent = 'Avg d ' + avgSign + picked.avgDelta.toFixed(1) + 'pt across ' + picked.overlap + ' shared benchmarks';
+                    peerDiv.appendChild(foot);
+                };
+
+                sel.onchange = function () { renderPeerTable(sel.value); };
+                renderPeerTable(peerCandidates[0].modelId);
+
+                container.appendChild(peerDiv);
+            }
+        } catch (e) {
+            console.warn('[modal] peer comparison error', e);
+        }
+
+        // ---- Strengths & Weaknesses (NEW) ----
+        try {
+            if (window.PeerMatcher && PeerMatcher.extractStrengthsWeaknesses) {
+                var sw = PeerMatcher.extractStrengthsWeaknesses(modelId, App.data.models, App.data.scores);
+
+                if (sw.strengths.length > 0) {
+                    var strDiv = document.createElement('div');
+                    strDiv.className = 'mb-4';
+                    var sh = document.createElement('h3');
+                    sh.className = 'text-sm font-semibold text-gray-300 mb-2';
+                    sh.textContent = 'Strengths (12-month SOTA tier)';
+                    strDiv.appendChild(sh);
+                    var ul = document.createElement('ul');
+                    ul.className = 'text-xs text-gray-200 space-y-1';
+                    sw.strengths.forEach(function (r) {
+                        var bench = App.data.benchmarks.find(function (b) { return b.id === r.benchmark_id; });
+                        var name = bench ? bench.name : r.benchmark_id;
+                        var li = document.createElement('li');
+                        li.className = 'flex justify-between border-b border-gray-800 py-1';
+                        var nameSpan = document.createElement('span');
+                        nameSpan.textContent = name;
+                        var valSpan = document.createElement('span');
+                        var bold = document.createElement('strong');
+                        bold.textContent = r.value.toFixed(1);
+                        valSpan.appendChild(bold);
+                        valSpan.appendChild(document.createTextNode(' ' + r.tier.label + ' '));
+                        var rankSpan = document.createElement('span');
+                        rankSpan.className = 'text-gray-500';
+                        rankSpan.textContent = '(' + r.tier.rank + '/' + r.tier.total + ')';
+                        valSpan.appendChild(rankSpan);
+                        li.appendChild(nameSpan);
+                        li.appendChild(valSpan);
+                        ul.appendChild(li);
+                    });
+                    strDiv.appendChild(ul);
+                    container.appendChild(strDiv);
+                }
+
+                if (sw.weaknesses.length > 0) {
+                    var weakDiv = document.createElement('div');
+                    weakDiv.className = 'mb-4';
+                    var wh = document.createElement('h3');
+                    wh.className = 'text-sm font-semibold text-gray-300 mb-2';
+                    wh.textContent = 'Weaknesses (vs peer avg)';
+                    weakDiv.appendChild(wh);
+                    var wul = document.createElement('ul');
+                    wul.className = 'text-xs text-gray-200 space-y-1';
+                    sw.weaknesses.forEach(function (r) {
+                        var bench = App.data.benchmarks.find(function (b) { return b.id === r.benchmark_id; });
+                        var name = bench ? bench.name : r.benchmark_id;
+                        var li = document.createElement('li');
+                        li.className = 'flex justify-between border-b border-gray-800 py-1';
+                        var n = document.createElement('span');
+                        n.textContent = name;
+                        var v = document.createElement('span');
+                        v.appendChild(document.createTextNode(r.value.toFixed(1) + '  '));
+                        var avg = document.createElement('span');
+                        avg.className = 'text-gray-500';
+                        avg.textContent = 'peer avg ' + r.peerAvg.toFixed(1) + '  ';
+                        v.appendChild(avg);
+                        var d = document.createElement('span');
+                        d.className = 'text-red-400';
+                        d.textContent = 'd ' + r.delta.toFixed(1);
+                        v.appendChild(d);
+                        li.appendChild(n);
+                        li.appendChild(v);
+                        wul.appendChild(li);
+                    });
+                    weakDiv.appendChild(wul);
+                    container.appendChild(weakDiv);
+                }
+            }
+        } catch (e) {
+            console.warn('[modal] strengths/weaknesses error', e);
         }
 
         // ---- Source URLs from this model's score rows (deduplicated) ----
@@ -961,6 +1150,103 @@ var Modal = {
             }
         } catch (e) { /* version history is non-fatal */ }
 
+        // ---- Architecture / Training / Safety (NEW, deferred) ----
+        var enrichSlot = document.createElement('div');
+        enrichSlot.id = 'modal-enrichment-slot';
+        container.appendChild(enrichSlot);
+        _enrichmentPromise.then(function (enrichmentMap) {
+            var entry = enrichmentMap && enrichmentMap[modelId];
+            if (!entry) return;
+
+            var arch = entry.architecture || {};
+            var train = entry.training || {};
+            var safety = entry.safety || {};
+            var quants = entry.quantizations || [];
+            var providers = entry.api_providers || [];
+
+            var anyArch = arch.type || arch.total_params_b || arch.attention || arch.attention_pattern || arch.experts_total;
+            var anyTrain = train.pretrain_tokens || train.compute_flops || (train.phases && train.phases.length);
+            var anySafety = safety.aisi_cyber_tier || safety.cbrn_risk || safety.self_reported_safety_card;
+            var anyQuant = quants.length > 0;
+            var anyProv = providers.length > 0;
+            if (!(anyArch || anyTrain || anySafety || anyQuant || anyProv)) return;
+
+            var card = document.createElement('div');
+            card.className = 'mb-4 bg-gray-800 rounded-lg p-4';
+            var hd = document.createElement('h3');
+            hd.className = 'text-sm font-semibold text-gray-300 mb-3';
+            hd.textContent = 'Architecture / Training / Safety';
+            card.appendChild(hd);
+
+            function row(label, value) {
+                if (value == null || value === '' || (Array.isArray(value) && value.length === 0)) return;
+                var r = document.createElement('div');
+                r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                var l = document.createElement('div');
+                l.className = 'text-gray-500 col-span-1';
+                l.textContent = label;
+                r.appendChild(l);
+                var v = document.createElement('div');
+                v.className = 'text-gray-200 col-span-2';
+                v.textContent = Array.isArray(value) ? value.join(', ') : String(value);
+                r.appendChild(v);
+                card.appendChild(r);
+            }
+
+            if (anyArch) {
+                row('Architecture', arch.type ? arch.type.toUpperCase() : null);
+                if (arch.total_params_b != null) {
+                    var paramsLabel = arch.total_params_b + 'B';
+                    if (arch.active_params_b != null) paramsLabel += ' total / ' + arch.active_params_b + 'B active';
+                    if (arch.vision_encoder_b != null) paramsLabel += ' (+' + arch.vision_encoder_b + 'B vision)';
+                    row('Parameters', paramsLabel);
+                }
+                if (arch.layers != null) row('Layers', arch.layers);
+                if (arch.attention != null) row('Attention', arch.attention.toUpperCase().replace(/_/g, ' '));
+                if (arch.attention_pattern != null) row('Pattern', arch.attention_pattern);
+                if (arch.experts_total != null) {
+                    var expLabel = arch.experts_total + ' experts';
+                    if (arch.experts_active != null) expLabel += ', ' + arch.experts_active + ' active';
+                    row('Experts', expLabel);
+                }
+            }
+
+            if (anyTrain) {
+                row('Pretrain tokens', train.pretrain_tokens);
+                row('Compute (FLOPs)', train.compute_flops);
+                if (train.phases && train.phases.length) row('Phases', train.phases);
+            }
+
+            if (anySafety) {
+                row('AISI cyber tier', safety.aisi_cyber_tier);
+                row('CBRN risk', safety.cbrn_risk);
+                if (safety.self_reported_safety_card) {
+                    var sr = document.createElement('div');
+                    sr.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                    var sl = document.createElement('div');
+                    sl.className = 'text-gray-500 col-span-1';
+                    sl.textContent = 'Safety card';
+                    sr.appendChild(sl);
+                    var sv = document.createElement('div');
+                    sv.className = 'col-span-2';
+                    var sa = document.createElement('a');
+                    sa.href = safety.self_reported_safety_card;
+                    sa.target = '_blank';
+                    sa.rel = 'noopener';
+                    sa.className = 'text-blue-400 hover:underline';
+                    sa.textContent = safety.self_reported_safety_card.replace(/^https?:\/\//, '').slice(0, 60);
+                    sv.appendChild(sa);
+                    sr.appendChild(sv);
+                    card.appendChild(sr);
+                }
+            }
+
+            if (anyQuant) row('Quantizations', quants.map(function (q) { return q.toUpperCase(); }));
+            if (anyProv) row('API providers', providers);
+
+            enrichSlot.appendChild(card);
+        });
+
         var catOrder = ['reasoning', 'coding', 'math', 'cybersecurity', 'cyber_defense', 'agent', 'multimodal', 'multilingual', 'other'];
         var catNames = {
             reasoning: 'Reasoning', coding: 'Coding', math: 'Math',
@@ -999,6 +1285,22 @@ var Modal = {
                 val.className += item.score.is_sota ? ' text-green-400 font-bold' : ' text-gray-200';
                 val.textContent = item.score.value > 500 ? Math.round(item.score.value) : item.score.value;
                 right.appendChild(val);
+
+                // NEW: 12-month rolling SOTA tier badge from peer-matcher
+                var tier = (window.PeerMatcher && PeerMatcher.sotaTier)
+                    ? PeerMatcher.sotaTier(item.score.value, modelId, item.score.benchmark_id, App.data.models, App.data.scores)
+                    : null;
+                if (tier) {
+                    var tierBadge = document.createElement('span');
+                    tierBadge.className = 'px-1.5 py-0.5 text-xs rounded';
+                    if (tier.tier === 'sota') tierBadge.className += ' bg-yellow-900 text-yellow-300';
+                    else if (tier.tier === 'top3') tierBadge.className += ' bg-gray-600 text-gray-100';
+                    else if (tier.tier === 'top10') tierBadge.className += ' bg-gray-700 text-gray-200';
+                    else tierBadge.className += ' bg-gray-800 text-gray-400';
+                    tierBadge.textContent = tier.label;
+                    tierBadge.title = tier.label + ' (' + tier.rank + '/' + tier.total + ')';
+                    right.appendChild(tierBadge);
+                }
 
                 if (item.score.is_sota) {
                     var sotaBadge = document.createElement('span');
