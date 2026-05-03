@@ -928,6 +928,130 @@ var Modal = {
         Modal._open();
     },
 
+    showVendor: function(vendor) {
+        if (!vendor) return;
+        history.replaceState(null, '', '#vendor/' + encodeURIComponent(vendor));
+
+        var container = document.getElementById('modal-content');
+        if (!container) return;
+        container.textContent = '';
+
+        var vendorModels = (App.data.models || []).filter(function(m) { return m.vendor === vendor; });
+        if (!vendorModels.length) {
+            container.textContent = 'No models found for vendor: ' + vendor;
+            return;
+        }
+
+        // Header
+        var h2 = document.createElement('h2');
+        h2.id = 'modal-title';
+        h2.className = 'text-xl font-bold text-white mb-1';
+        h2.textContent = vendor;
+        container.appendChild(h2);
+
+        // Stats
+        var ow = vendorModels.filter(function(m) { return m.type === 'open-weight'; }).length;
+        var oss = vendorModels.filter(function(m) { return m.type === 'open-source'; }).length;
+        var prop = vendorModels.filter(function(m) { return m.type === 'proprietary'; }).length;
+
+        var stats = document.createElement('div');
+        stats.className = 'flex gap-2 mb-3 flex-wrap text-xs';
+        function badge(text, bgClass) {
+            var b = document.createElement('span');
+            b.className = 'inline-block px-2 py-0.5 rounded ' + bgClass;
+            b.textContent = text;
+            stats.appendChild(b);
+        }
+        badge(vendorModels.length + ' models', 'bg-gray-700 text-gray-300');
+        if (prop) badge(prop + ' proprietary', 'bg-red-900 text-red-300');
+        if (ow) badge(ow + ' open-weight', 'bg-green-900 text-green-300');
+        if (oss) badge(oss + ' open-source', 'bg-blue-900 text-blue-300');
+        container.appendChild(stats);
+
+        // Cadence
+        var dated = vendorModels
+            .filter(function(m) { return m.release_date || m.released_at; })
+            .map(function(m) { return new Date(m.release_date || m.released_at); })
+            .filter(function(d) { return !isNaN(d.getTime()); })
+            .sort(function(a, b) { return a - b; });
+        if (dated.length >= 3) {
+            var gaps = [];
+            for (var i = 1; i < dated.length; i++) {
+                gaps.push((dated[i] - dated[i-1]) / 86400000);
+            }
+            var avgGap = gaps.reduce(function(a, b) { return a + b; }, 0) / gaps.length;
+            var cadenceP = document.createElement('p');
+            cadenceP.className = 'text-xs text-gray-500 mb-3';
+            cadenceP.textContent = 'Avg ' + Math.round(avgGap) + ' days between releases (' + dated.length + ' dated models)';
+            container.appendChild(cadenceP);
+        }
+
+        // Models table
+        var modelsBody = Modal._collapsibleSection(container, 'Models from ' + vendor, 'vendor-models', true);
+        var tbl = document.createElement('table');
+        tbl.className = 'w-full text-xs text-gray-200';
+        var thead = document.createElement('thead');
+        var hr = document.createElement('tr');
+        hr.className = 'text-gray-500 border-b border-gray-700';
+        ['Model', 'Released', 'Type', 'Modalities', 'Scores'].forEach(function(label) {
+            var th = document.createElement('th');
+            th.className = 'text-left py-1';
+            th.textContent = label;
+            hr.appendChild(th);
+        });
+        thead.appendChild(hr);
+        tbl.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+        // Sort by release_date desc
+        var sorted = vendorModels.slice().sort(function(a, b) {
+            var ad = a.release_date || a.released_at || '';
+            var bd = b.release_date || b.released_at || '';
+            return bd.localeCompare(ad);
+        });
+        sorted.forEach(function(m) {
+            var tr = document.createElement('tr');
+            tr.className = 'border-b border-gray-800 hover:bg-gray-800 transition cursor-pointer';
+            tr.addEventListener('click', (function(mid) {
+                return function() { Modal.showModel(mid); };
+            })(m.id));
+
+            var nameTd = document.createElement('td');
+            nameTd.className = 'py-1 text-blue-400';
+            nameTd.textContent = m.name;
+            tr.appendChild(nameTd);
+
+            var dateTd = document.createElement('td');
+            dateTd.className = 'py-1 text-gray-400';
+            dateTd.textContent = (m.release_date || m.released_at || '—').slice(0, 10);
+            tr.appendChild(dateTd);
+
+            var typeTd = document.createElement('td');
+            var typeColor = m.type === 'proprietary' ? 'text-red-400' : (m.type === 'open-weight' ? 'text-green-400' : 'text-blue-400');
+            typeTd.className = 'py-1 ' + typeColor;
+            typeTd.textContent = m.type || '?';
+            tr.appendChild(typeTd);
+
+            var modTd = document.createElement('td');
+            modTd.className = 'py-1 text-gray-400';
+            modTd.textContent = (Array.isArray(m.modalities) ? m.modalities.join(', ') : '') || '—';
+            tr.appendChild(modTd);
+
+            var scoreCount = (App.data.scores || []).filter(function(s) { return s.model_id === m.id; }).length;
+            var sc = document.createElement('td');
+            sc.className = 'py-1 text-gray-400';
+            sc.textContent = scoreCount;
+            tr.appendChild(sc);
+
+            tbody.appendChild(tr);
+        });
+        tbl.appendChild(tbody);
+        modelsBody.appendChild(tbl);
+
+        // Show modal
+        Modal._open();
+    },
+
     showModel: function(modelId) {
         var model = App.data.models.find(function(m) { return m.id === modelId; });
         if (!model) return;
@@ -983,8 +1107,15 @@ var Modal = {
         meta.className = 'flex gap-2 mb-4';
 
         var vendorBadge = document.createElement('span');
-        vendorBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300';
+        vendorBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300 cursor-pointer hover:bg-gray-600 transition';
         vendorBadge.textContent = model.vendor;
+        vendorBadge.title = 'Click to view all ' + model.vendor + ' models';
+        vendorBadge.addEventListener('click', (function(v) {
+            return function(e) {
+                e.stopPropagation();
+                Modal.showVendor(v);
+            };
+        })(model.vendor));
         meta.appendChild(vendorBadge);
 
         var typeBadge = document.createElement('span');
@@ -1092,13 +1223,20 @@ var Modal = {
             }).length;
             if (vendorCount > 1) {
                 var vBar = document.createElement('div');
-                vBar.className = 'mb-3 text-xs text-gray-400';
+                vBar.className = 'mb-3 text-xs text-gray-400 cursor-pointer hover:text-gray-200 transition';
+                vBar.title = 'Click to view all ' + (model.vendor || 'unknown') + ' models';
+                vBar.addEventListener('click', (function(v) {
+                    return function(e) {
+                        e.stopPropagation();
+                        Modal.showVendor(v);
+                    };
+                })(model.vendor));
                 vBar.appendChild(document.createTextNode((model.vendor || 'unknown') + ' has '));
                 var cs = document.createElement('strong');
                 cs.className = 'text-blue-400';
                 cs.textContent = vendorCount;
                 vBar.appendChild(cs);
-                vBar.appendChild(document.createTextNode(' tracked models'));
+                vBar.appendChild(document.createTextNode(' tracked models →'));
                 container.appendChild(vBar);
             }
         } catch (e) { /* non-fatal */ }
