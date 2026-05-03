@@ -42,9 +42,74 @@ var App = {
                 });
             }
             // Hash-based routing: #overview, #leaderboard, #trends, etc.
-            self._navigateToHash();
+            // Also check ?model=X / ?benchmark=X / ?vendor=X query params (for deep-link sharing)
+            self._navigateFromUrl();
             window.addEventListener('hashchange', function() { self._navigateToHash(); });
+
+            // Watchlist button
+            var wlBtn = document.getElementById('watchlist-btn');
+            if (wlBtn) {
+                wlBtn.addEventListener('click', function() {
+                    var watched = [];
+                    try {
+                        for (var i = 0; i < localStorage.length; i++) {
+                            var k = localStorage.key(i);
+                            if (k && k.indexOf('watchlist:') === 0 && localStorage.getItem(k) === '1') {
+                                watched.push(k.replace('watchlist:', ''));
+                            }
+                        }
+                    } catch (e) {}
+                    if (watched.length === 0) {
+                        alert('No models in your watchlist. Open a model and click ☆ Watch.');
+                        return;
+                    }
+                    var msg = 'Watched models:\n\n';
+                    watched.forEach(function(mid) {
+                        var m = (App.data.models || []).find(function(x) { return x.id === mid; });
+                        msg += '• ' + (m ? m.name : mid) + '\n';
+                    });
+                    msg += '\nClick OK to open the first one.';
+                    if (confirm(msg)) {
+                        if (typeof Modal !== 'undefined' && Modal.showModel) {
+                            Modal.showModel(watched[0]);
+                        }
+                    }
+                });
+            }
         });
+    },
+
+    _navigateFromUrl: function() {
+        // Try query params first (?model=X, ?benchmark=X, ?vendor=X)
+        try {
+            var params = new URLSearchParams(window.location.search);
+            var queryModel = params.get('model');
+            var queryBench = params.get('benchmark');
+            var queryVendor = params.get('vendor');
+            if (queryModel && typeof Modal !== 'undefined' && Modal.showModel) {
+                this._activateTab('overview');
+                this.renderOverview();
+                var qm = queryModel;
+                setTimeout(function() { Modal.showModel(qm); }, 300);
+                return;
+            }
+            if (queryBench && typeof Modal !== 'undefined' && Modal.showBenchmark) {
+                this._activateTab('overview');
+                this.renderOverview();
+                var qb = queryBench;
+                setTimeout(function() { Modal.showBenchmark(qb); }, 300);
+                return;
+            }
+            if (queryVendor && typeof Modal !== 'undefined' && Modal.showVendor) {
+                this._activateTab('overview');
+                this.renderOverview();
+                var qv = decodeURIComponent(queryVendor);
+                setTimeout(function() { Modal.showVendor(qv); }, 300);
+                return;
+            }
+        } catch (e) { /* URLSearchParams not supported — fall through */ }
+        // Fallback to hash-based routing
+        this._navigateToHash();
     },
 
     _activateTab: function(tabName) {

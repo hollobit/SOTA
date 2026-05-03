@@ -1233,6 +1233,68 @@ var Modal = {
         });
         meta.appendChild(cogBtn);
 
+        // Watchlist star button
+        try {
+            var wlKey = 'watchlist:' + model.id;
+            var isWatched = false;
+            try { isWatched = localStorage.getItem(wlKey) === '1'; } catch (e) {}
+            var starBtn = document.createElement('button');
+            starBtn.className = 'ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs ' +
+                (isWatched ? 'bg-yellow-900 text-yellow-300' : 'bg-gray-800 text-gray-400 hover:bg-gray-700');
+            starBtn.textContent = isWatched ? '★ Watching' : '☆ Watch';
+            starBtn.title = isWatched ? 'Click to unwatch' : 'Click to add to watchlist (highlights score changes)';
+            starBtn.addEventListener('click', function() {
+                isWatched = !isWatched;
+                try {
+                    if (isWatched) {
+                        localStorage.setItem(wlKey, '1');
+                        // Snapshot current scores for diff
+                        var snapshot = {};
+                        scores.forEach(function(s) { snapshot[s.benchmark_id] = s.value; });
+                        localStorage.setItem('watchlist-snap:' + model.id, JSON.stringify({
+                            ts: new Date().toISOString(),
+                            scores: snapshot,
+                        }));
+                    } else {
+                        localStorage.removeItem(wlKey);
+                        localStorage.removeItem('watchlist-snap:' + model.id);
+                    }
+                } catch (e) { /* private mode */ }
+                starBtn.className = 'ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs ' +
+                    (isWatched ? 'bg-yellow-900 text-yellow-300' : 'bg-gray-800 text-gray-400 hover:bg-gray-700');
+                starBtn.textContent = isWatched ? '★ Watching' : '☆ Watch';
+            });
+            meta.appendChild(starBtn);
+        } catch (e) { /* watchlist non-fatal */ }
+
+        // Share URL button
+        try {
+            var shareBtn = document.createElement('button');
+            shareBtn.className = 'ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-400';
+            shareBtn.textContent = '🔗 Share';
+            shareBtn.title = 'Copy link to this model';
+            shareBtn.addEventListener('click', function() {
+                var base = window.location.origin + window.location.pathname;
+                var url = base + '?model=' + encodeURIComponent(model.id);
+                if (navigator.share) {
+                    navigator.share({
+                        title: model.name,
+                        text: 'Check out ' + model.name + ' on the SOTA dashboard',
+                        url: url,
+                    }).catch(function() { /* user cancelled */ });
+                } else if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(function() {
+                        var orig = shareBtn.textContent;
+                        shareBtn.textContent = '✓ Copied';
+                        setTimeout(function() { shareBtn.textContent = orig; }, 1500);
+                    });
+                } else {
+                    prompt('Copy this URL:', url);
+                }
+            });
+            meta.appendChild(shareBtn);
+        } catch (e) { /* share non-fatal */ }
+
         container.appendChild(meta);
     },
 
@@ -2355,6 +2417,7 @@ var Modal = {
             desc.textContent = 'Estimate monthly cost. Default ratio: 1 input token = 5 output tokens (typical chat).';
             body.appendChild(desc);
 
+            // Preset buttons — must be defined before recompute so they can call it
             var form = document.createElement('div');
             form.className = 'grid grid-cols-3 gap-2 text-xs items-end mb-2';
 
@@ -2387,6 +2450,35 @@ var Modal = {
             form.appendChild(outputTokens.wrap);
             form.appendChild(requestsCount.wrap);
             body.appendChild(form);
+
+            // Preset workload buttons
+            var presetRow = document.createElement('div');
+            presetRow.className = 'flex flex-wrap gap-2 mb-3 text-xs items-center';
+            var presetLabel = document.createElement('span');
+            presetLabel.className = 'text-gray-500';
+            presetLabel.textContent = 'Presets:';
+            presetRow.appendChild(presetLabel);
+            var presets = [
+                { label: '💬 Chat', input: 5, output: 25, requests: 50000 },
+                { label: '🤖 Agent', input: 50, output: 100, requests: 10000 },
+                { label: '💻 Coding', input: 30, output: 150, requests: 30000 },
+                { label: '🎧 Support', input: 20, output: 60, requests: 100000 },
+                { label: '📊 Analytics', input: 100, output: 200, requests: 5000 },
+            ];
+            presets.forEach(function(p) {
+                var btn = document.createElement('button');
+                btn.className = 'bg-gray-700 hover:bg-gray-600 px-2 py-0.5 rounded text-xs';
+                btn.textContent = p.label;
+                btn.title = p.input + 'M input / ' + p.output + 'M output / ' + p.requests + ' requests';
+                btn.addEventListener('click', function() {
+                    inputTokens.input.value = p.input;
+                    outputTokens.input.value = p.output;
+                    requestsCount.input.value = p.requests;
+                    recompute();
+                });
+                presetRow.appendChild(btn);
+            });
+            body.appendChild(presetRow);
 
             var resultDiv = document.createElement('div');
             resultDiv.className = 'mt-3 p-3 bg-gray-900 rounded border border-gray-700';
@@ -2612,6 +2704,25 @@ var Modal = {
         };
         var scoresBody = Modal._collapsibleSection(container, 'Score Breakdown (' + scores.length + ' benchmarks)', 'scores', false);
 
+        // Search/filter input
+        var filterRow = document.createElement('div');
+        filterRow.className = 'mb-3';
+        var filterInput = document.createElement('input');
+        filterInput.type = 'text';
+        filterInput.placeholder = 'Filter benchmarks (e.g., math, korean)...';
+        filterInput.className = 'bg-gray-800 border border-gray-700 rounded px-3 py-1 w-full text-xs text-gray-100';
+        filterRow.appendChild(filterInput);
+        scoresBody.appendChild(filterRow);
+
+        // Load watchlist snapshot for diff highlighting
+        var snap = null;
+        try {
+            var snapStr = localStorage.getItem('watchlist-snap:' + modelId);
+            if (snapStr) snap = JSON.parse(snapStr);
+        } catch (e) {}
+
+        var allRows = []; // collect row elements for filtering
+
         catOrder.forEach(function(cat) {
             var items = byCategory[cat];
             if (!items || items.length === 0) return;
@@ -2628,6 +2739,10 @@ var Modal = {
                 var row = document.createElement('div');
                 row.className = 'flex items-center justify-between py-1.5 border-t border-gray-800 hover:bg-gray-800 rounded px-2 -mx-2 cursor-pointer transition';
                 row.onclick = (function(bid) { return function() { Modal.showBenchmark(bid); }; })(item.bench ? item.bench.id : item.score.benchmark_id);
+                // Attach metadata for filtering
+                row._benchName = item.bench ? item.bench.name : item.score.benchmark_id;
+                row._category = catNames[cat] || cat;
+                allRows.push(row);
 
                 var left = document.createElement('span');
                 left.className = 'text-sm text-gray-300';
@@ -2663,6 +2778,26 @@ var Modal = {
                     right.appendChild(sotaBadge);
                 }
 
+                // Watchlist diff badge — highlight score changes since snapshot
+                if (snap && snap.scores && snap.scores[item.score.benchmark_id] != null) {
+                    var oldVal = snap.scores[item.score.benchmark_id];
+                    var newVal = item.score.value;
+                    if (Math.abs(newVal - oldVal) > 0.05) {
+                        var diffBadge = document.createElement('span');
+                        diffBadge.className = 'ml-1 inline-block px-1 rounded text-xs';
+                        var delta = newVal - oldVal;
+                        if (delta > 0) {
+                            diffBadge.className += ' bg-green-900 text-green-300';
+                            diffBadge.textContent = '↑+' + delta.toFixed(1);
+                        } else {
+                            diffBadge.className += ' bg-red-900 text-red-300';
+                            diffBadge.textContent = '↓' + delta.toFixed(1);
+                        }
+                        diffBadge.title = 'Changed since last visit (was ' + oldVal.toFixed(1) + ')';
+                        right.appendChild(diffBadge);
+                    }
+                }
+
                 var st = (item.score.source && item.score.source.type) || 'web';
                 var publicUrl = Modal._sourceLink(item.score.source);
                 var srcNode;
@@ -2682,6 +2817,20 @@ var Modal = {
                 section.appendChild(row);
             });
             scoresBody.appendChild(section);
+        });
+
+        // Wire up filter input to hide/show rows
+        filterInput.addEventListener('input', function() {
+            var q = filterInput.value.toLowerCase().trim();
+            allRows.forEach(function(r) {
+                var benchName = (r._benchName || '').toLowerCase();
+                var category = (r._category || '').toLowerCase();
+                if (!q || benchName.indexOf(q) !== -1 || category.indexOf(q) !== -1) {
+                    r.style.display = '';
+                } else {
+                    r.style.display = 'none';
+                }
+            });
         });
     }
 };
