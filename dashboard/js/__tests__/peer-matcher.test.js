@@ -62,10 +62,44 @@ var nullPop = PeerMatcher.sotaTier(90, 'a', 'unknown_bench', sotaModels, sotaSco
 assert.strictEqual(nullPop, null);
 console.log('sotaTier insufficient population OK');
 
+// ---- sotaTier tied-score behavior ----
+var tiedModels = [];
+var tiedScores = [];
+for (var ti = 0; ti < 6; ti++) {
+    var tpad = ((ti + 1) < 10 ? '0' : '') + (ti + 1);
+    tiedModels.push({id: 't' + ti, vendor: 'V', release_date: '2026-' + tpad + '-01'});
+    tiedScores.push({model_id: 't' + ti, benchmark_id: 'mmlu', value: ti < 3 ? 90 : 80});
+}
+var tied1 = PeerMatcher.sotaTier(90, 't0', 'mmlu', tiedModels, tiedScores);
+var tied2 = PeerMatcher.sotaTier(90, 't1', 'mmlu', tiedModels, tiedScores);
+var tied3 = PeerMatcher.sotaTier(90, 't2', 'mmlu', tiedModels, tiedScores);
+assert.strictEqual(tied1.rank, 1, 'tied at top all share rank 1');
+assert.strictEqual(tied2.rank, 1, 'second 90 shares rank 1 not rank 2');
+assert.strictEqual(tied3.rank, 1, 'third 90 shares rank 1 not rank 3');
+assert.strictEqual(tied1.tier, 'sota');
+assert.strictEqual(tied2.tier, 'sota');
+console.log('sotaTier tied scores share rank OK');
+
 // ---- extractStrengthsWeaknesses ----
 var sw = PeerMatcher.extractStrengthsWeaknesses('m0', sotaModels, sotaScores);
 assert.ok(sw.strengths.length >= 1);
 assert.strictEqual(sw.strengths[0].benchmark_id, 'mmlu');
 console.log('extractStrengthsWeaknesses OK');
+
+// ---- extractStrengthsWeaknesses weakness path ----
+// Build population where target model is far below peer avg on one bench
+var weakModels = [];
+var weakScores = [];
+for (var wi = 0; wi < 6; wi++) {
+    var wpad = ((wi + 1) < 10 ? '0' : '') + (wi + 1);
+    weakModels.push({id: 'w' + wi, vendor: 'V', release_date: '2026-' + wpad + '-01'});
+}
+weakScores.push({model_id: 'w0', benchmark_id: 'hard_bench', value: 30});
+for (var wj = 1; wj < 6; wj++) weakScores.push({model_id: 'w' + wj, benchmark_id: 'hard_bench', value: 80});
+var swWeak = PeerMatcher.extractStrengthsWeaknesses('w0', weakModels, weakScores);
+assert.strictEqual(swWeak.weaknesses.length, 1, 'should detect 1 weakness');
+assert.strictEqual(swWeak.weaknesses[0].benchmark_id, 'hard_bench');
+assert.ok(swWeak.weaknesses[0].delta < -10, 'delta below threshold');
+console.log('extractStrengthsWeaknesses weakness path OK');
 
 console.log('\nALL PEER MATCHER TESTS PASS');

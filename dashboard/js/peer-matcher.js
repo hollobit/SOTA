@@ -25,7 +25,7 @@
 
     function _cutoffStr(daysBack) {
         var d = new Date();
-        d.setDate(d.getDate() - daysBack);
+        d.setUTCDate(d.getUTCDate() - daysBack);
         return d.toISOString().slice(0, 10);
     }
 
