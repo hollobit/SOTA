@@ -230,6 +230,10 @@ var App = {
                     });
                 }));
             }).then(function() {
+                var historyCountEl = document.getElementById('history-count');
+                if (historyCountEl) {
+                    historyCountEl.textContent = Object.keys(self.data.history || {}).length;
+                }
                 return self._fetch(base + '/aa_pricing.json').then(function(pricing) {
                     if (pricing && pricing.models) {
                         // Convert array → map keyed by model_id for O(1) lookup

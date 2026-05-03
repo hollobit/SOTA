@@ -16,6 +16,12 @@ benchmarks:
   bmt:
     bmt_id: saved-1769608044991-8duyr
     bmt_title: MMLU-Reason
+  reliability:
+    contamination_risk: high
+    saturation: saturated
+    citation_count: 2500
+    last_updated: "2024-09"
+    notes: "Saturated at 90%+ for frontier models; contamination risk widely discussed"
 - id: gpqa
   name: GPQA
   category: reasoning
@@ -48,6 +54,12 @@ benchmarks:
   bmt:
     bmt_id: saved-1769608044998-38qeu
     bmt_title: HumanEval
+  reliability:
+    contamination_risk: high
+    saturation: saturated
+    citation_count: 3200
+    last_updated: "2021-07"
+    notes: "Saturated; widely-circulated for years"
 - id: math
   name: MATH
   category: math
@@ -148,6 +160,12 @@ benchmarks:
   bmt:
     bmt_id: imported-json-1771222123771-2225-2zvmn
     bmt_title: IFEval (Instruction-Following Evaluation)
+  reliability:
+    contamination_risk: medium
+    saturation: approaching
+    citation_count: 480
+    last_updated: "2024-11"
+    notes: "Constraint-following — patterns memorizable"
 - id: aime
   name: AIME
   category: math
@@ -5391,6 +5409,12 @@ benchmarks:
   - 90
   description: Artificial Analysis Long Context Reasoning benchmark
   leaderboard: https://artificialanalysis.ai/
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 35
+    last_updated: "2026-02"
+    notes: "Long-context reasoning, recent + private test set"
 - id: aa_omniscience_acc
   name: AA-Omniscience Accuracy
   category: knowledge
@@ -5708,3 +5732,206 @@ benchmarks:
   - 50
   - 99
   description: DeepSearchQA accuracy metric
+- id: gpqa_diamond
+  name: GPQA Diamond
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 35
+  - 80
+  description: Graduate-level Google-Proof Q&A Diamond subset - expert-crafted hard questions
+  paper: https://arxiv.org/abs/2311.12022
+  github: https://github.com/idavidrein/gpqa
+  year: '2023'
+  item_count: 198 questions
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 850
+    last_updated: "2025-12"
+    notes: "Domain-expert questions, low contamination risk"
+- id: hle
+  name: HLE (Humanity's Last Exam)
+  category: reasoning
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 0
+  - 30
+  description: Humanity's Last Exam - frontier-difficulty expert questions
+  paper: https://arxiv.org/abs/2501.14249
+  github: https://github.com/centerforaisafety/hle
+  year: '2025'
+  item_count: 2500 questions
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 420
+    last_updated: "2026-02"
+    notes: "Brand-new (2026), uncontaminated"
+- id: aime_2025
+  name: AIME 2025
+  category: math
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 10
+  - 90
+  description: American Invitational Mathematics Examination 2025
+  paper: https://arxiv.org/abs/2503.04235
+  github: https://matharena.ai
+  year: '2025'
+  item_count: 30 problems
+  reliability:
+    contamination_risk: medium
+    saturation: approaching
+    citation_count: 250
+    last_updated: "2025-04"
+    notes: "Math olympiad — contamination risk grows over time"
+- id: aime_2026
+  name: AIME 2026
+  category: math
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 10
+  - 90
+  description: American Invitational Mathematics Examination 2026
+  paper: https://matharena.ai
+  year: '2026'
+  item_count: 30 problems
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 80
+    last_updated: "2026-04"
+    notes: "Recent release, low contamination"
+- id: swe_bench_verified
+  name: SWE-Bench Verified
+  category: coding
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 10
+  - 80
+  description: Real GitHub issues resolved by AI agents - human-verified subset
+  paper: https://arxiv.org/abs/2310.06770
+  github: https://github.com/princeton-nlp/SWE-bench
+  year: '2023'
+  item_count: 2294 tasks
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 580
+    last_updated: "2025-08"
+    notes: "Real-world software engineering tasks, hard to contaminate"
+- id: livecodebench
+  name: LiveCodeBench
+  category: coding
+  metric: pass@1
+  unit: '%'
+  expected_range:
+  - 20
+  - 90
+  description: Contamination-free coding benchmark with monthly-refreshed competitive programming problems
+  paper: https://arxiv.org/abs/2403.07974
+  github: https://github.com/LiveCodeBench/LiveCodeBench
+  year: '2024'
+  reliability:
+    contamination_risk: low
+    saturation: approaching
+    citation_count: 420
+    last_updated: "2025-12"
+    notes: "Time-stamped problems prevent leakage"
+- id: livecodebench_v6
+  name: LiveCodeBench v6
+  category: coding
+  metric: pass@1
+  unit: '%'
+  expected_range:
+  - 20
+  - 90
+  description: LiveCodeBench version 6 - latest contamination-free competitive coding problems
+  paper: https://arxiv.org/abs/2403.07974
+  year: '2025'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 95
+    last_updated: "2026-03"
+    notes: "Latest LCB drop, recent problems"
+- id: mmlu_pro
+  name: MMLU-Pro
+  category: knowledge
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 40
+  - 90
+  description: MMLU-Pro — harder version of MMLU with 10 answer choices and reasoning-focused questions
+  paper: https://arxiv.org/abs/2406.01574
+  github: https://github.com/TIGER-Lab/MMLU-Pro
+  year: '2024'
+  reliability:
+    contamination_risk: medium
+    saturation: approaching
+    citation_count: 380
+    last_updated: "2025-04"
+    notes: "Mostly cleaner than MMLU, but reasoning subset overlaps"
+- id: arena_hard_v2
+  name: Arena Hard v2
+  category: general
+  metric: win_rate
+  unit: '%'
+  expected_range:
+  - 10
+  - 90
+  description: Arena Hard v2 — curated prompts from Chatbot Arena and WildChat-1M
+  paper: https://arxiv.org/abs/2406.11939
+  github: https://github.com/lmarena/arena-hard-auto
+  year: '2024'
+  item_count: 500 prompts
+  reliability:
+    contamination_risk: medium
+    saturation: not_saturated
+    citation_count: 290
+    last_updated: "2025-06"
+    notes: "Crowdsourced prompts, hard to fully contaminate"
+- id: tau2_bench
+  name: TAU2-Bench
+  category: agent
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 20
+  - 80
+  description: Tool-Agent-User interaction v2 with improved evaluation across service domains
+  paper: https://arxiv.org/abs/2506.07982
+  github: https://github.com/sierra-research/tau2-bench
+  year: '2025'
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 180
+    last_updated: "2025-09"
+    notes: "Tool-use benchmark, real API call traces"
+- id: ifbench
+  name: IFBench
+  category: instruction_following
+  metric: accuracy
+  unit: '%'
+  expected_range:
+  - 30
+  - 90
+  description: IFBench — verifiable out-of-domain instruction following constraints
+  paper: https://arxiv.org/abs/2507.02833
+  github: https://github.com/allenai/IFBench
+  year: '2025'
+  item_count: 58 constraints
+  reliability:
+    contamination_risk: low
+    saturation: not_saturated
+    citation_count: 120
+    last_updated: "2025-10"
+    notes: "Stricter version of IFEval, fewer artifacts"

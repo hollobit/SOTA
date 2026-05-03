@@ -182,7 +182,7 @@ class Exporter:
         for b in benchmarks:
             d = asdict(b)
             extra = meta_by_id.get(b.id, {})
-            for key in ("paper", "github", "year", "item_count", "leaderboard", "bmt"):
+            for key in ("paper", "github", "year", "item_count", "leaderboard", "bmt", "reliability"):
                 if key in extra and extra[key] is not None:
                     d[key] = extra[key]
             data.append(d)

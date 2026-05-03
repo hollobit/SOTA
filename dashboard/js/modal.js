@@ -707,6 +707,41 @@ var Modal = {
             }
         } catch (e) { console.warn('[modal] benchmark distribution error', e); }
 
+        // Reliability metadata (NEW)
+        try {
+            var bench = App.data.benchmarks.find(function(b) { return b.id === benchId; });
+            if (bench && bench.reliability) {
+                var rel = bench.reliability;
+                var relBody = Modal._collapsibleSection(container, 'Reliability', 'bench-rel', false);
+                function relRow(label, value, color) {
+                    if (value == null) return;
+                    var r = document.createElement('div');
+                    r.className = 'grid grid-cols-3 gap-2 text-xs py-0.5';
+                    var l = document.createElement('div');
+                    l.className = 'text-gray-500 col-span-1';
+                    l.textContent = label;
+                    r.appendChild(l);
+                    var v = document.createElement('div');
+                    v.className = 'col-span-2 ' + (color || 'text-gray-200');
+                    v.textContent = String(value);
+                    r.appendChild(v);
+                    relBody.appendChild(r);
+                }
+                var contamColor = { low: 'text-green-400', medium: 'text-yellow-300', high: 'text-red-400' }[rel.contamination_risk];
+                relRow('Contamination risk', rel.contamination_risk, contamColor);
+                var satColor = { not_saturated: 'text-green-400', approaching: 'text-yellow-300', saturated: 'text-red-400' }[rel.saturation];
+                relRow('Saturation', (rel.saturation || '').replace(/_/g, ' '), satColor);
+                if (rel.citation_count) relRow('Estimated citations', rel.citation_count.toLocaleString());
+                if (rel.last_updated) relRow('Last updated', rel.last_updated);
+                if (rel.notes) {
+                    var nr = document.createElement('div');
+                    nr.className = 'text-xs text-gray-400 italic mt-2';
+                    nr.textContent = rel.notes;
+                    relBody.appendChild(nr);
+                }
+            }
+        } catch (e) { console.warn('[modal] benchmark reliability error', e); }
+
         Modal._open();
     },
 

@@ -1,4 +1,4 @@
-.PHONY: help test test-py test-js test-e2e export load lint badge coverage clean
+.PHONY: help test test-py test-js test-e2e export load lint badge coverage changelog clean
 
 help:
 	@echo "Common targets:"
@@ -11,6 +11,7 @@ help:
 	@echo "  badge        Refresh README enrichment badge"
 	@echo "  lint         Run ruff over python files"
 	@echo "  coverage     Print enrichment coverage stats"
+	@echo "  changelog    Generate CHANGELOG.md from git log"
 	@echo "  clean        Remove __pycache__"
 
 test: test-py test-js
@@ -38,6 +39,9 @@ lint:
 
 coverage:
 	@python3 -c "import json; d=json.load(open('data/export/model_enrichment.json')); print(f'Total enrichment: {d[\"_meta\"][\"covered_models\"]} models'); print(f'Schema version: {d[\"_meta\"][\"schema_version\"]}')"
+
+changelog:
+	python3 scripts/generate_changelog.py
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
