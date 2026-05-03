@@ -81,6 +81,11 @@ var Theme = {
         if (btn) {
             btn.textContent = theme === 'light' ? '☀️ Light' : '🌙 Dark';
         }
+        // Force-close any open modal so re-open builds fresh charts with the new theme
+        var modalEl = document.getElementById('modal-overlay');
+        if (modalEl && !modalEl.classList.contains('hidden')) {
+            modalEl.classList.add('hidden');
+        }
         // Notify charts that theme changed — they may want to reinit
         document.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: theme } }));
     }

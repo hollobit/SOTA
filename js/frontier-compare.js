@@ -397,7 +397,7 @@ var FrontierCompare = {
             return [p.cost, p.quality, p.name, p.modelId];
         });
 
-        var chart = echarts.init(el, 'dark');
+        var chart = echarts.init(el, (typeof Modal !== 'undefined' && Modal._currentThemeName) ? Modal._currentThemeName() : 'dark');
         chart.setOption({
             backgroundColor: 'transparent',
             grid: { left: 60, right: 30, top: 30, bottom: 60 },
@@ -438,6 +438,10 @@ var FrontierCompare = {
                     data: allSeries,
                     symbolSize: 14,
                     itemStyle: { color: '#6b7280', opacity: 0.7 },
+                    emphasis: {
+                        itemStyle: { color: '#60a5fa', opacity: 1, borderColor: '#fff', borderWidth: 2 },
+                        scale: 1.5,
+                    },
                     label: {
                         show: true,
                         position: 'right',
@@ -454,6 +458,10 @@ var FrontierCompare = {
                     symbolSize: 18,
                     lineStyle: { color: '#10b981', width: 2 },
                     itemStyle: { color: '#10b981' },
+                    emphasis: {
+                        itemStyle: { color: '#34d399', opacity: 1, borderColor: '#fff', borderWidth: 2 },
+                        scale: 1.4,
+                    },
                     label: { show: false },
                     z: 5,
                 }

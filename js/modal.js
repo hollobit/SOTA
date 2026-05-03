@@ -256,6 +256,14 @@ var Modal = {
     },
 
     /**
+     * Returns the current ECharts theme name based on the active HTML class.
+     * Use instead of hardcoding 'dark' so charts stay correct after theme toggle.
+     */
+    _currentThemeName: function() {
+        return document.documentElement.classList.contains('theme-light') ? null : 'dark';
+    },
+
+    /**
      * Wraps a content element in a collapsible <details>-style section with a clickable header.
      * Returns the content element so callers can append children to it.
      * Persists open/closed state in localStorage with key 'modal-section:<id>'.
@@ -378,15 +386,30 @@ var Modal = {
             pill.className = 'flex-shrink-0 inline-block px-2 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-300 text-xs whitespace-nowrap transition';
             pill.textContent = label.length > 18 ? label.slice(0, 16) + '…' : label;
             pill.title = label;
-            pill.addEventListener('click', function(e) {
-                e.preventDefault();
-                sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                var body = sec.querySelector('div[style*="display: none"]');
-                if (body) {
-                    var header = sec.querySelector('div[role="button"]');
-                    if (header) header.click();
-                }
-            });
+            pill.addEventListener('click', (function(secRef, tocRef) {
+                return function(e) {
+                    e.preventDefault();
+                    secRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    var body = secRef.querySelector('div[style*="display: none"]');
+                    if (body) {
+                        var header = secRef.querySelector('div[role="button"]');
+                        if (header) header.click();
+                    }
+                    // Auto-hide mobile TOC after navigation; show a re-open button
+                    tocRef.style.display = 'none';
+                    if (!document.getElementById('modal-toc-mobile-show')) {
+                        var showBtn = document.createElement('button');
+                        showBtn.id = 'modal-toc-mobile-show';
+                        showBtn.className = 'lg:hidden fixed top-3 left-3 z-30 bg-gray-800 text-gray-300 text-xs px-2 py-1 rounded shadow';
+                        showBtn.textContent = '☰ Sections';
+                        showBtn.addEventListener('click', function() {
+                            tocRef.style.display = '';
+                            if (showBtn.parentNode) showBtn.parentNode.removeChild(showBtn);
+                        });
+                        document.body.appendChild(showBtn);
+                    }
+                };
+            })(sec, mobileTOC));
             mobileTOC.appendChild(pill);
         });
 
@@ -695,7 +718,7 @@ var Modal = {
                         bins.push(values.filter(function(v) { return v >= lo && (i === binCount - 1 ? v <= hi : v < hi); }).length);
                         labels.push(lo.toFixed(0) + '-' + hi.toFixed(0));
                     }
-                    var chart = echarts.init(distHost, 'dark');
+                    var chart = echarts.init(distHost, Modal._currentThemeName ? Modal._currentThemeName() : 'dark');
                     chart.setOption({
                         backgroundColor: 'transparent',
                         grid: { left: 40, right: 20, top: 20, bottom: 40 },
@@ -1330,7 +1353,74 @@ var Modal = {
             meta.appendChild(shareBtn);
         } catch (e) { /* share non-fatal */ }
 
+        // Raw data inspect button
+        try {
+            var rawBtn = document.createElement('button');
+            rawBtn.className = 'ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-400';
+            rawBtn.textContent = '{} Raw';
+            rawBtn.title = 'View raw data for this model';
+            var _rawModelId = model.id;
+            rawBtn.addEventListener('click', function() {
+                Modal._showRawData(_rawModelId);
+            });
+            meta.appendChild(rawBtn);
+        } catch (e) { /* raw non-fatal */ }
+
         container.appendChild(meta);
+    },
+
+    _showRawData: function(modelId) {
+        var existing = document.getElementById('modal-raw-data-panel');
+        if (existing) {
+            existing.parentNode.removeChild(existing);
+            return;
+        }
+        var panel = document.createElement('div');
+        panel.id = 'modal-raw-data-panel';
+        panel.className = 'fixed inset-4 z-[80] bg-gray-900 border border-gray-700 rounded-lg p-4 overflow-auto';
+        var title = document.createElement('div');
+        title.className = 'flex justify-between items-center mb-3';
+        var h = document.createElement('h3');
+        h.className = 'text-lg font-semibold text-gray-200';
+        h.textContent = 'Raw data: ' + modelId;
+        title.appendChild(h);
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'bg-gray-700 hover:bg-gray-600 text-gray-300 px-3 py-1 rounded text-sm';
+        closeBtn.textContent = 'Close';
+        closeBtn.addEventListener('click', function() {
+            if (panel.parentNode) panel.parentNode.removeChild(panel);
+        });
+        title.appendChild(closeBtn);
+        panel.appendChild(title);
+
+        var rawData = {
+            model: (App.data.models || []).find(function(m) { return m.id === modelId; }),
+            enrichment: (App.data.enrichment || {})[modelId],
+            pricing: (App.data.pricing || {})[modelId],
+            hf_metadata: (App.data.hfMetadata || {})[modelId],
+            scores: (App.data.scores || []).filter(function(s) { return s.model_id === modelId; }),
+        };
+
+        var pre = document.createElement('pre');
+        pre.className = 'text-xs text-gray-300 bg-gray-950 p-3 rounded overflow-auto whitespace-pre-wrap font-mono';
+        pre.style.maxHeight = 'calc(100vh - 160px)';
+        pre.textContent = JSON.stringify(rawData, null, 2);
+        panel.appendChild(pre);
+
+        var copyBtn = document.createElement('button');
+        copyBtn.className = 'mt-2 bg-blue-700 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm';
+        copyBtn.textContent = 'Copy JSON';
+        copyBtn.addEventListener('click', function() {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(pre.textContent).then(function() {
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(function() { copyBtn.textContent = 'Copy JSON'; }, 1500);
+                });
+            }
+        });
+        panel.appendChild(copyBtn);
+
+        document.body.appendChild(panel);
     },
 
     _togglePreferencesPanel: function() {
@@ -2079,6 +2169,19 @@ var Modal = {
                     if (lt.attribution_required !== undefined) bullets.appendChild(makeLicBullet('Attribution required', lt.attribution_required ? 'yes' : 'no'));
                     if (lt.revenue_threshold) bullets.appendChild(makeLicBullet('Revenue threshold', '$' + Number(lt.revenue_threshold).toLocaleString() + ' (different terms above)'));
                     if (bullets.children.length) {
+                        // Add × close button at top of details panel
+                        var closeRow = document.createElement('div');
+                        closeRow.style.cssText = 'display:flex;justify-content:flex-end;margin-bottom:4px';
+                        var closeX = document.createElement('button');
+                        closeX.className = 'text-gray-500 hover:text-gray-200 text-xs';
+                        closeX.textContent = '×';
+                        closeX.title = 'Close';
+                        closeX.addEventListener('click', function() {
+                            detailsDiv.classList.add('hidden');
+                        });
+                        closeRow.appendChild(closeX);
+                        detailsDiv.insertBefore(closeRow, detailsDiv.firstChild);
+
                         detailsDiv.appendChild(bullets);
                         expandBtn.addEventListener('click', function() {
                             detailsDiv.classList.toggle('hidden');
@@ -2647,7 +2750,7 @@ var Modal = {
             radarBody.appendChild(radarCard);
             setTimeout(function() {
                 if (typeof echarts === 'undefined') return;
-                var chart = echarts.init(radarHost, 'dark');
+                var chart = echarts.init(radarHost, Modal._currentThemeName ? Modal._currentThemeName() : 'dark');
                 chart.setOption({
                     backgroundColor: 'transparent',
                     tooltip: { trigger: 'item' },
@@ -2671,7 +2774,21 @@ var Modal = {
     _renderScoreHistory: function(container, model, modelId) {
         try {
             var historyDates = Object.keys(App.data.history || {}).sort();
-            if (historyDates.length < 2) return;
+            var snapCount = historyDates.length;
+
+            if (snapCount < 2) {
+                var emptyBody = Modal._collapsibleSection(container, 'Score History', 'history', false);
+                var emptyMsg = document.createElement('div');
+                emptyMsg.className = 'text-xs text-gray-500 italic p-2';
+                if (snapCount === 0) {
+                    emptyMsg.textContent = 'No history snapshots yet. Daily snapshots accumulate via the daily benchmark workflow.';
+                } else {
+                    emptyMsg.textContent = 'Only ' + snapCount + ' snapshot accumulated so far. Need 2+ for trend chart. Snapshots refresh daily at 06:00 UTC.';
+                }
+                emptyBody.appendChild(emptyMsg);
+                return;
+            }
+
             var modelScoresMap = {};
             for (var hsi = 0; hsi < App.data.scores.length; hsi++) {
                 var hs = App.data.scores[hsi];
@@ -2704,7 +2821,7 @@ var Modal = {
             historyBody.appendChild(historyCard);
             setTimeout(function() {
                 if (typeof echarts === 'undefined') return;
-                var chart = echarts.init(historyHost, 'dark');
+                var chart = echarts.init(historyHost, Modal._currentThemeName ? Modal._currentThemeName() : 'dark');
                 chart.setOption({
                     backgroundColor: 'transparent',
                     tooltip: { trigger: 'axis' },
