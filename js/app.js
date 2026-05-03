@@ -75,6 +75,13 @@ var App = {
             setTimeout(function() { Modal.showModel(modelId); }, 300);
             return;
         }
+        if (hash.indexOf('vendor/') === 0) {
+            var vendorName = decodeURIComponent(hash.substring(7));
+            this._activateTab('overview');
+            this.renderOverview();
+            setTimeout(function() { Modal.showVendor(vendorName); }, 300);
+            return;
+        }
 
         // Explorer deep link: #explore/model1,model2,...,modelN  (up to 10)
         if (hash.indexOf('explore/') === 0) {
@@ -518,6 +525,7 @@ var App = {
         try { self._renderSOTATable(); } catch(e) { console.warn('SOTA table error:', e); }
         try { self._renderLeaderboardCards(); } catch(e) { console.warn('Leaderboard cards error:', e); }
         try { self._renderRecentChanges(); } catch(e) { console.warn('Recent changes error:', e); }
+        try { self._renderRecentDataFeed(); } catch(e) { console.warn('Recent data feed error:', e); }
     },
 
     _sotaCategoryFilter: null,
@@ -742,6 +750,118 @@ var App = {
                 container.appendChild(card);
             });
         }
+    },
+
+    _renderRecentDataFeed: function() {
+        var container = document.getElementById('recent-data-feed');
+        if (!container) return;
+        container.textContent = '';
+
+        var sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+        var cutoffStr = sevenDaysAgo.toISOString().slice(0, 10);
+
+        // New models in last 7 days
+        var newModels = (App.data.models || []).filter(function(m) {
+            var d = m.release_date || m.released_at;
+            return d && d >= cutoffStr;
+        });
+
+        // New scores: scores with source.date >= cutoff
+        var newScoresByModel = {};
+        (App.data.scores || []).forEach(function(s) {
+            if (s.source && s.source.date && s.source.date >= cutoffStr) {
+                newScoresByModel[s.model_id] = (newScoresByModel[s.model_id] || 0) + 1;
+            }
+        });
+        var modelsWithNewScores = Object.keys(newScoresByModel)
+            .map(function(mid) {
+                var m = App.data.models.find(function(x) { return x.id === mid; });
+                return { id: mid, name: m ? m.name : mid, count: newScoresByModel[mid] };
+            })
+            .sort(function(a, b) { return b.count - a.count; })
+            .slice(0, 8);
+
+        var section = document.createElement('div');
+        section.className = 'bg-gray-900 border border-gray-800 rounded-lg p-4';
+
+        var title = document.createElement('h3');
+        title.className = 'text-widget text-gray-300 mb-2';
+        title.textContent = '🆕 Last 7 days';
+        section.appendChild(title);
+
+        var meta = document.createElement('p');
+        meta.className = 'text-xs text-gray-500 mb-3';
+        meta.textContent = 'Auto-computed from data: ' + newModels.length + ' new models · ' + Object.keys(newScoresByModel).length + ' models received new scores';
+        section.appendChild(meta);
+
+        if (newModels.length > 0) {
+            var newModelsTitle = document.createElement('div');
+            newModelsTitle.className = 'text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1';
+            newModelsTitle.textContent = 'New models';
+            section.appendChild(newModelsTitle);
+
+            var ul = document.createElement('ul');
+            ul.className = 'mb-3';
+            newModels.slice(0, 6).forEach(function(m) {
+                var li = document.createElement('li');
+                li.className = 'flex justify-between text-xs py-0.5 border-b border-gray-800 cursor-pointer hover:bg-gray-800 px-1 -mx-1 rounded';
+                li.addEventListener('click', (function(mid) {
+                    return function() { Modal.showModel(mid); };
+                })(m.id));
+                var name = document.createElement('span');
+                name.className = 'text-blue-400';
+                name.textContent = m.name;
+                li.appendChild(name);
+                var date = document.createElement('span');
+                date.className = 'text-gray-500';
+                date.textContent = (m.release_date || m.released_at || '').slice(0, 10);
+                li.appendChild(date);
+                ul.appendChild(li);
+            });
+            if (newModels.length > 6) {
+                var more = document.createElement('li');
+                more.className = 'text-xs text-gray-500 py-0.5';
+                more.textContent = '+ ' + (newModels.length - 6) + ' more';
+                ul.appendChild(more);
+            }
+            section.appendChild(ul);
+        }
+
+        if (modelsWithNewScores.length > 0) {
+            var scoresTitle = document.createElement('div');
+            scoresTitle.className = 'text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1';
+            scoresTitle.textContent = 'Models with new scores';
+            section.appendChild(scoresTitle);
+
+            var sul = document.createElement('ul');
+            modelsWithNewScores.forEach(function(m) {
+                var li = document.createElement('li');
+                li.className = 'flex justify-between text-xs py-0.5 border-b border-gray-800 cursor-pointer hover:bg-gray-800 px-1 -mx-1 rounded';
+                li.addEventListener('click', (function(mid) {
+                    return function() { Modal.showModel(mid); };
+                })(m.id));
+                var name = document.createElement('span');
+                name.className = 'text-blue-400';
+                name.textContent = m.name;
+                li.appendChild(name);
+                var count = document.createElement('span');
+                count.className = 'text-gray-500';
+                count.textContent = '+' + m.count + ' score' + (m.count > 1 ? 's' : '');
+                li.appendChild(count);
+                sul.appendChild(li);
+            });
+            section.appendChild(sul);
+        }
+
+        if (newModels.length === 0 && modelsWithNewScores.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-xs text-gray-500';
+            empty.textContent = 'No new models or score updates in the last 7 days.';
+            section.appendChild(empty);
+        }
+
+        container.appendChild(section);
     },
 
     renderLeaderboard: function() {
