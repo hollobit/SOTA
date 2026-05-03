@@ -36,3 +36,44 @@ def test_model_dataclass_defaults_new_fields_to_none():
     assert m.context_window is None
     assert m.knowledge_cutoff is None
     assert m.languages is None
+
+
+def test_round_trip_new_fields_through_sqlite():
+    with tempfile.TemporaryDirectory() as td:
+        db = Path(td) / "test.db"
+        conn = sqlite3.connect(str(db))
+        init_db(conn)
+        m = Model(
+            id="lg/exaone-4.5-33b", vendor="LG AI Research",
+            name="EXAONE 4.5 33B", version="", type="open-weight",
+            modalities=["text", "image"],
+            parameters="33B",
+            release_date="2026-04-23",
+            context_window=262144,
+            knowledge_cutoff="2026-04",
+            languages=["en", "ko"],
+        )
+        insert_model(conn, m)
+        row = conn.execute(
+            "SELECT context_window, knowledge_cutoff, languages "
+            "FROM models WHERE id=?", (m.id,)
+        ).fetchone()
+        assert row[0] == 262144
+        assert row[1] == "2026-04"
+        assert json.loads(row[2]) == ["en", "ko"]
+
+
+def test_round_trip_null_languages_preserved():
+    with tempfile.TemporaryDirectory() as td:
+        db = Path(td) / "test.db"
+        conn = sqlite3.connect(str(db))
+        init_db(conn)
+        m = Model(id="x/y", vendor="x", name="y", version="", type="proprietary")
+        insert_model(conn, m)
+        row = conn.execute(
+            "SELECT context_window, knowledge_cutoff, languages "
+            "FROM models WHERE id=?", (m.id,)
+        ).fetchone()
+        assert row[0] is None
+        assert row[1] is None
+        assert row[2] is None

@@ -20,7 +20,10 @@ CREATE TABLE IF NOT EXISTS models (
     type TEXT NOT NULL,
     modalities TEXT NOT NULL DEFAULT '[]',
     parameters TEXT,
-    release_date TEXT
+    release_date TEXT,
+    context_window INTEGER,
+    knowledge_cutoff TEXT,
+    languages TEXT
 );
 
 CREATE TABLE IF NOT EXISTS benchmarks (
@@ -85,16 +88,31 @@ CREATE TABLE IF NOT EXISTS sources (
 
 def init_db(conn: sqlite3.Connection) -> None:
     conn.executescript(SCHEMA_SQL)
+
+    def _add_column_if_missing(table: str, col: str, type_decl: str) -> None:
+        cols = {r[1] for r in conn.execute(f"PRAGMA table_info({table})").fetchall()}
+        if col not in cols:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {type_decl}")
+
+    _add_column_if_missing("models", "context_window", "INTEGER")
+    _add_column_if_missing("models", "knowledge_cutoff", "TEXT")
+    _add_column_if_missing("models", "languages", "TEXT")
+
     conn.commit()
 
 
 def insert_model(conn: sqlite3.Connection, model: Model) -> None:
     conn.execute(
         """INSERT OR REPLACE INTO models
-           (id, vendor, name, version, type, modalities, parameters, release_date)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
-        (model.id, model.vendor, model.name, model.version, model.type,
-         json.dumps(model.modalities), model.parameters, model.release_date),
+           (id, vendor, name, version, type, modalities, parameters, release_date,
+            context_window, knowledge_cutoff, languages)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        (
+            model.id, model.vendor, model.name, model.version, model.type,
+            json.dumps(model.modalities), model.parameters, model.release_date,
+            model.context_window, model.knowledge_cutoff,
+            json.dumps(model.languages) if model.languages is not None else None,
+        ),
     )
     conn.commit()
 
@@ -135,12 +153,19 @@ def insert_leaderboard_ranking(conn: sqlite3.Connection, lr: LeaderboardRanking)
 
 
 def get_all_models(conn: sqlite3.Connection) -> list[Model]:
-    rows = conn.execute("SELECT * FROM models").fetchall()
+    rows = conn.execute(
+        "SELECT id, vendor, name, version, type, modalities, parameters, "
+        "release_date, context_window, knowledge_cutoff, languages FROM models"
+    ).fetchall()
     return [
         Model(
-            id=r["id"], vendor=r["vendor"], name=r["name"], version=r["version"],
-            type=r["type"], modalities=json.loads(r["modalities"]),
-            parameters=r["parameters"], release_date=r["release_date"],
+            id=r[0], vendor=r[1], name=r[2], version=r[3], type=r[4],
+            modalities=json.loads(r[5]) if r[5] else [],
+            parameters=r[6],
+            release_date=r[7],
+            context_window=r[8],
+            knowledge_cutoff=r[9],
+            languages=json.loads(r[10]) if r[10] else None,
         )
         for r in rows
     ]
