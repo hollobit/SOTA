@@ -127,7 +127,9 @@ var FrontierCompare = {
         'sber/gigachat-3.1-lightning',
         'kakao/kanana-1.5-o-9.8b',
         'dicta/dictalm-3.0-24b-thinking',
+        'dicta/dictalm-3.0-24b-base',
         'dicta/dictalm-3.0-12b-instruct',
+        'dicta/dictalm-3.0-1.7b-thinking',
         'cohere/tiny-aya-3b',
         'tii/falcon-ocr',
         'ai-singapore/gemma-sea-lion-v4-4b-vl'

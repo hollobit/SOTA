@@ -352,7 +352,13 @@ var CyberCoding = {
         'mistral/mistral-medium-3.5',
         'mistral/mistral-small-4',
         'sber/gigachat-3.1-ultra',
+        'sber/gigachat-3.1-lightning',
         'lg/k-exaone-236b',
+        'lg/exaone-4.5-33b',
+        'skt/ax-k1',
+        'kakao/kanana-2-30b-a3b-thinking',
+        'upstage/solar-open-100b',
+        'tencent/hy3-preview',
         'dicta/dictalm-3.0-24b-thinking'
     ],
 
