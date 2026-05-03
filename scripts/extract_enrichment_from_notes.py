@@ -13,11 +13,14 @@ Also reads structured model fields:
   - context_window (int)
   - knowledge_cutoff (str)
 
+Wave 2 enhancements (v2.0):
+  - Release date inference from seed filename (YYYY_MM_DD_scores.json)
+  - Modalities inference from name/notes (vision, audio, video, ocr, omni)
+  - Vendor inference from model_id prefix (50+ vendor map)
+  - Improved param regex: catches "33B-A3B", "519B / 33B active", etc.
+
 Writes config/model_enrichment_auto.yaml. The exporter merges this
 with config/model_enrichment.yaml (manual takes precedence).
-
-This is v1.5 of the enrichment rollout — covers gaps that hand-curation
-hasn't filled. Updates as new seed files land.
 """
 from __future__ import annotations
 
@@ -33,26 +36,194 @@ OUT_FILE = Path("config/model_enrichment_auto.yaml")
 MANUAL_FILE = Path("config/model_enrichment.yaml")
 
 
+# ----- Layer 1: Release date from filename -----
+
+SEED_DATE_PATTERN = re.compile(r"(\d{4})_(\d{2})_(\d{2})_scores\.json$")
+
+
+def extract_release_date_from_filename(filename: str) -> str | None:
+    """If a model first appears in a dated seed file, return YYYY-MM-DD."""
+    m = SEED_DATE_PATTERN.search(filename)
+    if not m:
+        return None
+    return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+
+
+# ----- Layer 2: Modalities inference -----
+
+MODALITY_KEYWORDS = {
+    'vision': ['vision', 'multimodal', 'image-to-text', 'visual', 'vlm', 'image+text', 'siglip', 'clip'],
+    'audio': ['audio', 'tts', 'asr', 'speech', 'voice'],
+    'video': ['video', 'temporal'],
+    'ocr': ['ocr', 'document'],
+    'omni': ['omnimodal', 'omni-modal', 'omni model'],
+}
+
+
+def infer_modalities(text: str, model_name: str) -> list[str]:
+    """Return list of modalities inferred from text + name."""
+    combined = (text + " " + (model_name or "")).lower()
+    mods: list[str] = ['text']  # almost always text
+    for mod_label, kws in MODALITY_KEYWORDS.items():
+        if any(kw in combined for kw in kws):
+            if mod_label == 'vision' and 'image' not in mods:
+                mods.append('image')
+            elif mod_label == 'audio' and 'audio' not in mods:
+                mods.append('audio')
+            elif mod_label == 'video' and 'video' not in mods:
+                mods.append('video')
+            elif mod_label == 'ocr' and 'ocr' not in mods:
+                mods.append('ocr')
+            elif mod_label == 'omni' and 'omni' not in mods:
+                mods.append('omni')
+    return list(dict.fromkeys(mods))  # dedupe preserving order
+
+
+# ----- Layer 3: Vendor inference from model_id -----
+
+VENDOR_MAP: dict[str, str] = {
+    'openai': 'OpenAI',
+    'anthropic': 'Anthropic',
+    'google': 'Google DeepMind',
+    'xai': 'xAI',
+    'meta': 'Meta',
+    'deepseek': 'DeepSeek',
+    'moonshot': 'Moonshot AI',
+    'zhipu': 'Z.ai',
+    'alibaba': 'Alibaba',
+    'tencent': 'Tencent',
+    'baidu': 'Baidu',
+    'lg': 'LG AI Research',
+    'skt': 'SK Telecom',
+    'kakao': 'Kakao',
+    'naver': 'Naver',
+    'kt': 'KT',
+    'upstage': 'Upstage',
+    'ncsoft': 'NCSoft',
+    'samsung': 'Samsung Research',
+    'mistral': 'Mistral AI',
+    'sber': 'Sber AI',
+    'dicta': 'DICTA (Israel)',
+    'cohere': 'Cohere Labs',
+    'cohereforall': 'Cohere Labs',
+    'tii': 'TII (UAE)',
+    'ai-singapore': 'AI Singapore',
+    'inceptionai': 'Inception AI / G42',
+    'mbzuai': 'MBZUAI',
+    'allam': 'SDAIA / NCAI',
+    'sarvamai': 'Sarvam AI',
+    'krutrim': 'Krutrim AI Labs',
+    'ai4bharat': 'AI4Bharat',
+    'sbintuitions': 'SB Intuitions',
+    'rinna': 'Rinna',
+    'sakanaai': 'Sakana AI',
+    'yandex': 'Yandex',
+    't-tech': 'T-Tech',
+    'ai-sage': 'Sber AI',
+    '42dot': '42dot (Hyundai-Kia)',
+    'nvidia': 'NVIDIA',
+    'microsoft': 'Microsoft',
+    'reka': 'Reka AI',
+    'inclusionai': 'InclusionAI',
+    'minimax': 'MiniMax',
+    'mimo': 'Xiaomi MiMo',
+    'xiaomi': 'Xiaomi',
+    'trillionlabs': 'TrillionLabs',
+    'motif': 'Motif',
+    'stabilityai': 'Stability AI',
+    'aleph-alpha': 'Aleph Alpha',
+    'swiss-ai': 'Swiss AI Initiative',
+    'cohereforall': 'Cohere Labs',
+    'humain-ai': 'HUMAIN (Saudi)',
+    'k-intelligence': 'KT (K-intelligence)',
+    'falcon-llm': 'TII (UAE)',
+    'tiiuae': 'TII (UAE)',
+    'huggingface': 'HuggingFace',
+    'lgai-exaone': 'LG AI Research',
+    'qwen': 'Alibaba',
+    'fb': 'Meta',
+    'zai-org': 'Z.ai',
+    'sktelecomadt': 'SK Telecom',
+    'kakaocorp': 'Kakao',
+    'lgai-research': 'LG AI Research',
+    'amazon': 'Amazon',
+    'writer': 'Writer',
+    'ai21': 'AI21 Labs',
+    'inflection': 'Inflection AI',
+    'adept': 'Adept AI',
+    'together': 'Together AI',
+    'groq': 'Groq',
+    'perplexity': 'Perplexity AI',
+    'databricks': 'Databricks',
+    'mosaic': 'MosaicML',
+    'mosaicml': 'MosaicML',
+    'teknium': 'Teknium',
+    'wizardlm': 'WizardLM',
+    'internlm': 'Shanghai AI Lab',
+    'internlm-research': 'Shanghai AI Lab',
+    'open-thoughts': 'Open Thoughts',
+    'abacusai': 'Abacus AI',
+    'eleutherai': 'EleutherAI',
+    'falcon': 'TII (UAE)',
+    'lingyiwanwu': 'Lingyiwanwu',
+    'baichuan-inc': 'Baichuan Inc',
+    'zhangir': 'ZhangIR',
+    'sensetime': 'SenseTime',
+    'zhipu-ai': 'Z.ai',
+    'rwkv': 'RWKV Foundation',
+    'qwq': 'Alibaba',
+    'qwenlong': 'Alibaba',
+    'allenai': 'Allen Institute for AI',
+    'ai2': 'Allen Institute for AI',
+    'cohere-for-ai': 'Cohere Labs',
+}
+
+
+def infer_vendor(model_id: str) -> str | None:
+    """Infer vendor from model_id prefix (before first '/')."""
+    if '/' not in model_id:
+        return None
+    prefix = model_id.split('/', 1)[0].lower()
+    return VENDOR_MAP.get(prefix)
+
+
 # ----- regex patterns for free-form _note fields -----
 
-# Matches patterns like:
-#   "519B (33B active MoE)"   -> total=519, active=33
-#   "236B (23B active MoE)"   -> total=236, active=23
-#   "31.7B LM"                -> total=31.7
-#   "33B params"              -> total=33
+# Layer 4: Enhanced param patterns — ordered from most specific to least specific.
+# Patterns with 2 groups: (total_B, active_B)
+# Patterns with 1 group: (total_B,)
+
+# "236B-A23B" / "35B-A3B" — hyphen MoE notation (e.g. "30B-A3B Thinking")
+PARAM_DASH_ACTIVE = re.compile(
+    r"(\d+(?:\.\d+)?)B[\s-]+A(\d+(?:\.\d+)?)B",
+    re.IGNORECASE,
+)
+# "519B / 33B active" — slash separator
+PARAM_SLASH_ACTIVE = re.compile(
+    r"(\d+(?:\.\d+)?)\s*B\s*/\s*(\d+(?:\.\d+)?)\s*B\s*active",
+    re.IGNORECASE,
+)
+# "519B (33B active MoE)" — parenthesized active
 PARAM_WITH_ACTIVE_PATTERN = re.compile(
     r"(\d+(?:\.\d+)?)\s*B[^a-zA-Z]*?\((\d+(?:\.\d+)?)\s*B\s*active",
     re.IGNORECASE,
 )
+# "total NNB ... NNB active" — explicit total/active labels
 PARAM_TOTAL_ACTIVE_ALT = re.compile(
     r"total\s+(\d+(?:\.\d+)?)\s*B[^a-zA-Z]+(\d+(?:\.\d+)?)\s*B\s*active",
     re.IGNORECASE,
 )
-# "33B-A3B" style (e.g. "30B-A3B Thinking" → total=30, active=3)
-PARAM_DASH_ACTIVE = re.compile(
-    r"(\d+(?:\.\d+)?)B-A(\d+(?:\.\d+)?)B",
+# "236B total / 23B active"
+PARAM_TOTAL_SLASH_ACTIVE = re.compile(
+    r"(\d+(?:\.\d+)?)\s*B[^a-zA-Z]*?total[^a-zA-Z]+(\d+(?:\.\d+)?)\s*B\s*active",
     re.IGNORECASE,
 )
+# "33B (31.7B LM + 1.29B vision encoder)" — breakdown in parens, take total
+PARAM_BREAKDOWN = re.compile(
+    r"(\d+(?:\.\d+)?)\s*B[^a-zA-Z]*?\((\d+(?:\.\d+)?)\s*B\s*(?:LM|language)",
+    re.IGNORECASE,
+)
+# Simple "NNB" fallback
 PARAM_SIMPLE = re.compile(r"(\d+(?:\.\d+)?)\s*B(?:\s*(?:params?|total))?", re.IGNORECASE)
 
 ARCH_TYPE_PATTERNS = {
@@ -150,38 +321,30 @@ def _parse_params_string(s: str) -> dict:
     """Parse a parameters string like '519B (33B active MoE)' or '236B-A23B'.
 
     Returns a dict with subset of: total_params_b, active_params_b, type.
+    Uses the same enhanced pattern ordering as extract_one (Layer 4).
     """
     result: dict = {}
     if not s or not isinstance(s, str):
         return result
 
-    # Try "X B (Y B active [MoE])" pattern first
-    m = PARAM_WITH_ACTIVE_PATTERN.search(s)
-    if m:
-        try:
-            result["total_params_b"] = float(m.group(1))
-            result["active_params_b"] = float(m.group(2))
-        except ValueError:
-            pass
-
-    # "XB-AYB" style e.g. "30B-A3B"
-    if not result:
-        m = PARAM_DASH_ACTIVE.search(s)
+    for pat, two_groups in [
+        (PARAM_DASH_ACTIVE, True),
+        (PARAM_SLASH_ACTIVE, True),
+        (PARAM_WITH_ACTIVE_PATTERN, True),
+        (PARAM_TOTAL_ACTIVE_ALT, True),
+        (PARAM_TOTAL_SLASH_ACTIVE, True),
+        (PARAM_BREAKDOWN, False),
+        (PARAM_SIMPLE, False),
+    ]:
+        m = pat.search(s)
         if m:
             try:
                 result["total_params_b"] = float(m.group(1))
-                result["active_params_b"] = float(m.group(2))
-            except ValueError:
+                if two_groups and m.lastindex and m.lastindex >= 2:
+                    result["active_params_b"] = float(m.group(2))
+            except (ValueError, IndexError):
                 pass
-
-    # Simple "NNB" fallback
-    if not result:
-        m = PARAM_SIMPLE.search(s)
-        if m:
-            try:
-                result["total_params_b"] = float(m.group(1))
-            except ValueError:
-                pass
+            break
 
     # Infer MoE type from the string
     if "MoE" in s or "active" in s.lower():
@@ -192,46 +355,40 @@ def _parse_params_string(s: str) -> dict:
     return result
 
 
-def extract_one(text: str) -> dict:
-    """Extract enrichment fields from a single _note text."""
+def extract_one(text: str, model_id: str | None = None, model_name: str | None = None) -> dict:
+    """Extract enrichment fields from a single _note text.
+
+    model_id and model_name are used for vendor/modality inference (Layer 2 & 3).
+    """
     out: dict = {}
-    if not text or not isinstance(text, str):
+    if not text and not model_id:
         return out
+    text = text or ""
 
     # Architecture
     arch_obj: dict = {}
 
-    # Params: try patterns in priority order
-    m = PARAM_WITH_ACTIVE_PATTERN.search(text)
-    if m:
-        try:
-            arch_obj["total_params_b"] = float(m.group(1))
-            arch_obj["active_params_b"] = float(m.group(2))
-        except ValueError:
-            pass
-    else:
-        m2 = PARAM_TOTAL_ACTIVE_ALT.search(text)
-        if m2:
+    # Params: try patterns in priority order (most specific first — Layer 4)
+    _param_found = False
+    for pat, two_groups in [
+        (PARAM_DASH_ACTIVE, True),
+        (PARAM_SLASH_ACTIVE, True),
+        (PARAM_WITH_ACTIVE_PATTERN, True),
+        (PARAM_TOTAL_ACTIVE_ALT, True),
+        (PARAM_TOTAL_SLASH_ACTIVE, True),
+        (PARAM_BREAKDOWN, False),  # only take total from breakdown patterns
+        (PARAM_SIMPLE, False),
+    ]:
+        m = pat.search(text)
+        if m:
             try:
-                arch_obj["total_params_b"] = float(m2.group(1))
-                arch_obj["active_params_b"] = float(m2.group(2))
-            except ValueError:
+                arch_obj["total_params_b"] = float(m.group(1))
+                if two_groups and m.lastindex and m.lastindex >= 2:
+                    arch_obj["active_params_b"] = float(m.group(2))
+            except (ValueError, IndexError):
                 pass
-        else:
-            m3 = PARAM_DASH_ACTIVE.search(text)
-            if m3:
-                try:
-                    arch_obj["total_params_b"] = float(m3.group(1))
-                    arch_obj["active_params_b"] = float(m3.group(2))
-                except ValueError:
-                    pass
-            else:
-                m4 = PARAM_SIMPLE.search(text)
-                if m4:
-                    try:
-                        arch_obj["total_params_b"] = float(m4.group(1))
-                    except ValueError:
-                        pass
+            _param_found = True
+            break
 
     for arch_name, pat in ARCH_TYPE_PATTERNS.items():
         if pat.search(text):
@@ -298,6 +455,18 @@ def extract_one(text: str) -> dict:
         except (ValueError, AttributeError):
             pass
 
+    # Layer 3: Vendor inference from model_id prefix
+    if model_id:
+        v = infer_vendor(model_id)
+        if v:
+            out["vendor_inferred"] = v
+
+    # Layer 2: Modalities inference from text + model name
+    if text or model_name:
+        mods = infer_modalities(text, model_name or "")
+        if len(mods) > 1:  # only set if more than just 'text'
+            out["modalities_inferred"] = mods
+
     return out
 
 
@@ -328,6 +497,10 @@ def main() -> int:
 
     auto_models: dict = {}
     skipped_count = 0
+    # Layer 1: track first-seen filename per model (for release_date inference)
+    first_seen_filename: dict[str, str] = {}
+    # Track display names per model (for modality inference)
+    model_display_names: dict[str, str] = {}
 
     for seed_file in seeds:
         try:
@@ -347,6 +520,11 @@ def main() -> int:
             mid = m.get("id")
             if not mid:
                 continue
+
+            # Layer 1: record first-seen seed filename per model
+            if mid not in first_seen_filename:
+                first_seen_filename[mid] = seed_file.name
+
             text = " ".join(filter(None, [
                 m.get("_note", ""),
                 m.get("description", ""),
@@ -395,6 +573,8 @@ def main() -> int:
             # Name-based inference (lowest confidence) — fills total_params_b if nothing
             # more authoritative is available. Applied only when structured arch is absent.
             model_name = m.get("name", "")
+            if model_name:
+                model_display_names.setdefault(mid, model_name)
             if model_name and "architecture" not in structured:
                 name_arch = _extract_from_name(model_name, mid)
                 if name_arch:
@@ -421,10 +601,11 @@ def main() -> int:
             # Start with structured (most reliable)
             merged = dict(per_model_structured.get(mid) or {})
 
-            # Layer on regex-extracted from notes
+            # Layer on regex-extracted from notes (now with model_id + model_name for Layers 2 & 3)
             texts = per_model_texts.get(mid) or []
             combined_text = " ".join(texts)
-            extracted = extract_one(combined_text)
+            mname = model_display_names.get(mid, "")
+            extracted = extract_one(combined_text, model_id=mid, model_name=mname)
 
             for k, v in extracted.items():
                 if k == "architecture" and "architecture" in merged:
@@ -451,10 +632,21 @@ def main() -> int:
                         existing[k].setdefault(sk, sv)
             auto_models[mid] = existing
 
+    # Layer 1: apply release_date_inferred from first-seen seed filename
+    rd_count = 0
+    for mid, entry in auto_models.items():
+        if "release_date_inferred" not in entry and mid in first_seen_filename:
+            rd = extract_release_date_from_filename(first_seen_filename[mid])
+            if rd:
+                entry["release_date_inferred"] = rd
+                rd_count += 1
+    if rd_count:
+        print(f"[auto-enrich] release_date_inferred: {rd_count} models", file=sys.stderr)
+
     # Write the auto YAML
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     out_doc = {
-        "schema_version": "1.0-auto",
+        "schema_version": "2.0-auto",
         "_meta": {
             "generated_by": "scripts/extract_enrichment_from_notes.py",
             "covered_models": len(auto_models),

@@ -1856,6 +1856,69 @@ var Modal = {
             console.warn('[modal] enrichment links/pricing patch error', e);
         }
 
+        // Patch detail card with inferred fields (vendor / release_date / modalities)
+        try {
+            if (detail) {
+                if (!model.vendor && entry.vendor_inferred) {
+                    var rows = detail.querySelectorAll('div');
+                    rows.forEach(function(r) {
+                        var labelEl = r.querySelector('.text-xs.text-gray-500');
+                        if (labelEl && labelEl.textContent === 'Vendor') {
+                            var valEl = r.querySelector('.text-sm.text-gray-200');
+                            if (valEl && (valEl.textContent === '' || valEl.textContent === 'unknown')) {
+                                valEl.textContent = entry.vendor_inferred + ' (inferred)';
+                                valEl.style.fontStyle = 'italic';
+                            }
+                        }
+                    });
+                    // If no vendor row at all, add one
+                    var hasVendorRow = false;
+                    detail.querySelectorAll('.text-xs.text-gray-500').forEach(function(el) {
+                        if (el.textContent === 'Vendor') hasVendorRow = true;
+                    });
+                    if (!hasVendorRow) {
+                        var vWrap = document.createElement('div');
+                        var vLbl = document.createElement('div');
+                        vLbl.className = 'text-xs text-gray-500';
+                        vLbl.textContent = 'Vendor';
+                        vWrap.appendChild(vLbl);
+                        var vVal = document.createElement('div');
+                        vVal.className = 'text-sm text-gray-200';
+                        vVal.style.fontStyle = 'italic';
+                        vVal.textContent = entry.vendor_inferred + ' (inferred)';
+                        vWrap.appendChild(vVal);
+                        detail.insertBefore(vWrap, detail.firstChild);
+                    }
+                }
+                if (!model.release_date && !model.released_at && entry.release_date_inferred) {
+                    var rdWrap = document.createElement('div');
+                    var rdLbl = document.createElement('div');
+                    rdLbl.className = 'text-xs text-gray-500';
+                    rdLbl.textContent = 'Released (inferred)';
+                    rdWrap.appendChild(rdLbl);
+                    var rdVal = document.createElement('div');
+                    rdVal.className = 'text-sm text-gray-200';
+                    rdVal.style.fontStyle = 'italic';
+                    rdVal.textContent = entry.release_date_inferred;
+                    rdWrap.appendChild(rdVal);
+                    detail.appendChild(rdWrap);
+                }
+                if ((!model.modalities || !model.modalities.length) && entry.modalities_inferred && entry.modalities_inferred.length > 1) {
+                    var modWrap = document.createElement('div');
+                    var modLbl = document.createElement('div');
+                    modLbl.className = 'text-xs text-gray-500';
+                    modLbl.textContent = 'Modalities (inferred)';
+                    modWrap.appendChild(modLbl);
+                    var modVal = document.createElement('div');
+                    modVal.className = 'text-sm text-gray-200';
+                    modVal.style.fontStyle = 'italic';
+                    modVal.textContent = entry.modalities_inferred.join(', ');
+                    modWrap.appendChild(modVal);
+                    detail.appendChild(modWrap);
+                }
+            }
+        } catch (e) { /* detail patch non-fatal */ }
+
         // Performance & Cost
         try {
             var bm = entry.benchmarks_meta || {};
