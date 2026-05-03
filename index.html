@@ -37,6 +37,7 @@
         <button class="tab-btn active" data-tab="overview" role="tab" aria-selected="true" aria-controls="tab-overview" id="tabbtn-overview">Overview</button>
         <button class="tab-btn" data-tab="leaderboard" role="tab" aria-selected="false" aria-controls="tab-leaderboard" id="tabbtn-leaderboard" tabindex="-1">Leaderboard</button>
         <button class="tab-btn" data-tab="trends" role="tab" aria-selected="false" aria-controls="tab-trends" id="tabbtn-trends" tabindex="-1">Trends</button>
+        <button class="tab-btn" data-tab="timeline" role="tab" aria-selected="false" aria-controls="tab-timeline" id="tabbtn-timeline" tabindex="-1">Timeline</button>
         <button class="tab-btn" data-tab="comparison" role="tab" aria-selected="false" aria-controls="tab-comparison" id="tabbtn-comparison" tabindex="-1">Comparison</button>
         <button class="tab-btn" data-tab="frontier-compare" role="tab" aria-selected="false" aria-controls="tab-frontier-compare" id="tabbtn-frontier-compare" tabindex="-1">Frontier Compare</button>
         <button class="tab-btn" data-tab="cyber-coding" role="tab" aria-selected="false" aria-controls="tab-cyber-coding" id="tabbtn-cyber-coding" tabindex="-1">Cyber &amp; Coding</button>
@@ -188,6 +189,55 @@
                     </div>
                 </div>
                 <div id="trend-overview-chart" class="h-96"></div>
+            </div>
+        </section>
+
+        <section id="tab-timeline" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-timeline">
+            <div class="mb-4">
+                <h2 class="text-section mb-1">Model Release Timeline</h2>
+                <p class="text-sm text-gray-400 mb-4">All tracked models ordered by release date. Click any row to open the model.</p>
+
+                <div class="flex gap-3 mb-4 flex-wrap items-end">
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Sort</label>
+                        <select id="timeline-sort" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm">
+                            <option value="date-desc" selected>출시 내림차순 (newest first)</option>
+                            <option value="date-asc">출시 오름차순 (oldest first)</option>
+                            <option value="vendor">제조사별 (by vendor)</option>
+                            <option value="country">국가별 (by country)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Vendor filter</label>
+                        <select id="timeline-vendor-filter" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm">
+                            <option value="">All vendors</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Country filter</label>
+                        <select id="timeline-country-filter" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm">
+                            <option value="">All countries</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Type filter</label>
+                        <select id="timeline-type-filter" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm">
+                            <option value="">All types</option>
+                            <option value="proprietary">Proprietary</option>
+                            <option value="open-weight">Open-weight</option>
+                            <option value="open-source">Open-source</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Search</label>
+                        <input type="text" id="timeline-search" placeholder="Model or vendor..." class="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm w-56" />
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        <span id="timeline-count">0</span> models shown
+                    </div>
+                </div>
+
+                <div id="timeline-container" class="space-y-1"></div>
             </div>
         </section>
 
@@ -645,19 +695,20 @@
         </div>
     </footer>
 
-    <script src="js/theme.js?v=f6f471aa"></script>
-    <script src="js/peer-matcher.js?v=f6f471aa"></script>
-    <script src="js/modal.js?v=f6f471aa"></script>
-    <script src="js/command-palette.js?v=f6f471aa"></script>
-    <script src="js/frontier-compare.js?v=f6f471aa"></script>
-    <script src="js/cyber-coding.js?v=f6f471aa"></script>
-    <script src="js/sovereign.js?v=f6f471aa"></script>
-    <script src="js/physical-ai.js?v=f6f471aa"></script>
-    <script src="js/medical-ai.js?v=f6f471aa"></script>
-    <script src="js/charts.js?v=f6f471aa"></script>
-    <script src="js/filters.js?v=f6f471aa"></script>
-    <script src="js/explorer.js?v=f6f471aa"></script>
-    <script src="js/comparison.js?v=f6f471aa"></script>
-    <script src="js/app.js?v=f6f471aa"></script>
+    <script src="js/theme.js?v=9fb6c2a6"></script>
+    <script src="js/peer-matcher.js?v=9fb6c2a6"></script>
+    <script src="js/modal.js?v=9fb6c2a6"></script>
+    <script src="js/command-palette.js?v=9fb6c2a6"></script>
+    <script src="js/frontier-compare.js?v=9fb6c2a6"></script>
+    <script src="js/cyber-coding.js?v=9fb6c2a6"></script>
+    <script src="js/sovereign.js?v=9fb6c2a6"></script>
+    <script src="js/timeline.js?v=9fb6c2a6"></script>
+    <script src="js/physical-ai.js?v=9fb6c2a6"></script>
+    <script src="js/medical-ai.js?v=9fb6c2a6"></script>
+    <script src="js/charts.js?v=9fb6c2a6"></script>
+    <script src="js/filters.js?v=9fb6c2a6"></script>
+    <script src="js/explorer.js?v=9fb6c2a6"></script>
+    <script src="js/comparison.js?v=9fb6c2a6"></script>
+    <script src="js/app.js?v=9fb6c2a6"></script>
 </body>
 </html>
