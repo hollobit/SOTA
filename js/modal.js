@@ -617,6 +617,72 @@ var Modal = {
         table.appendChild(tbody);
         container.appendChild(table);
 
+        // Top 10 leaderboard (collapsible)
+        try {
+            var benchScores = (App.data.scores || []).filter(function(s) { return s.benchmark_id === benchId; });
+            if (benchScores.length > 0) {
+                benchScores.sort(function(a, b) { return b.value - a.value; });
+                var top10 = benchScores.slice(0, 10);
+                var lbBody = Modal._collapsibleSection(container, 'Top 10 Leaderboard', 'bench-lb', true);
+                var ol = document.createElement('ol');
+                ol.className = 'text-sm space-y-1';
+                top10.forEach(function(s, idx) {
+                    var m = (App.data.models || []).find(function(x) { return x.id === s.model_id; });
+                    var li = document.createElement('li');
+                    li.className = 'flex justify-between border-b border-gray-800 py-1 cursor-pointer hover:bg-gray-800 px-2 -mx-2 rounded';
+                    li.addEventListener('click', (function(mid) {
+                        return function() { Modal.showModel(mid); };
+                    })(s.model_id));
+                    var rankName = document.createElement('span');
+                    rankName.className = idx === 0 ? 'text-yellow-400 font-bold' : (idx < 3 ? 'text-gray-200' : 'text-gray-300');
+                    rankName.textContent = (idx + 1) + '. ' + (m ? m.name : s.model_id);
+                    li.appendChild(rankName);
+                    var val = document.createElement('span');
+                    val.className = 'font-mono text-gray-200';
+                    val.textContent = s.value.toFixed(1);
+                    li.appendChild(val);
+                    ol.appendChild(li);
+                });
+                lbBody.appendChild(ol);
+            }
+        } catch (e) { console.warn('[modal] benchmark leaderboard error', e); }
+
+        // Score distribution histogram
+        try {
+            var benchScores2 = (App.data.scores || []).filter(function(s) { return s.benchmark_id === benchId; });
+            if (benchScores2.length >= 5) {
+                var distBody = Modal._collapsibleSection(container, 'Score Distribution', 'bench-dist', false);
+                var distHost = document.createElement('div');
+                distHost.style.height = '200px';
+                distBody.appendChild(distHost);
+                setTimeout(function() {
+                    if (typeof echarts === 'undefined') return;
+                    // Bucket into 10 bins
+                    var values = benchScores2.map(function(s) { return s.value; });
+                    var minV = Math.min.apply(null, values);
+                    var maxV = Math.max.apply(null, values);
+                    var binCount = 10;
+                    var binSize = (maxV - minV) / binCount || 1;
+                    var bins = [];
+                    var labels = [];
+                    for (var i = 0; i < binCount; i++) {
+                        var lo = minV + i * binSize;
+                        var hi = lo + binSize;
+                        bins.push(values.filter(function(v) { return v >= lo && (i === binCount - 1 ? v <= hi : v < hi); }).length);
+                        labels.push(lo.toFixed(0) + '-' + hi.toFixed(0));
+                    }
+                    var chart = echarts.init(distHost, 'dark');
+                    chart.setOption({
+                        backgroundColor: 'transparent',
+                        grid: { left: 40, right: 20, top: 20, bottom: 40 },
+                        xAxis: { type: 'category', data: labels, axisLabel: { color: '#9ca3af', fontSize: 9, rotate: 30 } },
+                        yAxis: { type: 'value', axisLabel: { color: '#9ca3af', fontSize: 9 } },
+                        series: [{ type: 'bar', data: bins, itemStyle: { color: '#60a5fa' } }],
+                    });
+                }, 0);
+            }
+        } catch (e) { console.warn('[modal] benchmark distribution error', e); }
+
         Modal._open();
     },
 
@@ -2104,6 +2170,130 @@ var Modal = {
         archBody.appendChild(card);
 
         Modal._renderLineage(enrichSlot, modelId, entry);
+        Modal._renderCostCalculator(enrichSlot, modelId, entry);
+    },
+
+    _renderCostCalculator: function(enrichSlot, modelId, entry) {
+        try {
+            var pricing = entry && entry.pricing;
+            var aaPricing = (App.data.pricing && App.data.pricing[modelId]) || {};
+            var input = (pricing && pricing.input != null) ? pricing.input : aaPricing.input;
+            var output = (pricing && pricing.output != null) ? pricing.output : aaPricing.output;
+            if (input == null || output == null) return; // no pricing — skip
+
+            var body = Modal._collapsibleSection(enrichSlot, 'Cost Calculator', 'cost-calc', false);
+
+            var desc = document.createElement('p');
+            desc.className = 'text-xs text-gray-500 mb-2';
+            desc.textContent = 'Estimate monthly cost. Default ratio: 1 input token = 5 output tokens (typical chat).';
+            body.appendChild(desc);
+
+            var form = document.createElement('div');
+            form.className = 'grid grid-cols-3 gap-2 text-xs items-end mb-2';
+
+            function field(labelText, defaultValue, suffix) {
+                var wrap = document.createElement('div');
+                var lbl = document.createElement('label');
+                lbl.className = 'text-gray-500 block mb-1';
+                lbl.textContent = labelText;
+                wrap.appendChild(lbl);
+                var inputEl = document.createElement('input');
+                inputEl.type = 'number';
+                inputEl.value = defaultValue;
+                inputEl.min = '0';
+                inputEl.className = 'bg-gray-700 border border-gray-600 rounded px-2 py-1 w-full text-gray-100';
+                wrap.appendChild(inputEl);
+                if (suffix) {
+                    var sfx = document.createElement('span');
+                    sfx.className = 'text-gray-500 text-[10px]';
+                    sfx.textContent = suffix;
+                    wrap.appendChild(sfx);
+                }
+                return { wrap: wrap, input: inputEl };
+            }
+
+            var inputTokens = field('Input tokens / month (millions)', '10', '');
+            var outputTokens = field('Output tokens / month (millions)', '50', '');
+            var requestsCount = field('Requests / month', '100000', '');
+
+            form.appendChild(inputTokens.wrap);
+            form.appendChild(outputTokens.wrap);
+            form.appendChild(requestsCount.wrap);
+            body.appendChild(form);
+
+            var resultDiv = document.createElement('div');
+            resultDiv.className = 'mt-3 p-3 bg-gray-900 rounded border border-gray-700';
+            body.appendChild(resultDiv);
+
+            function recompute() {
+                var inM = parseFloat(inputTokens.input.value) || 0;
+                var outM = parseFloat(outputTokens.input.value) || 0;
+                var reqs = parseFloat(requestsCount.input.value) || 0;
+                var thisCost = inM * input + outM * output;
+
+                resultDiv.textContent = '';
+
+                var thisRow = document.createElement('div');
+                thisRow.className = 'flex justify-between text-sm py-1';
+                var thisName = document.createElement('span');
+                thisName.className = 'text-blue-400 font-semibold';
+                thisName.textContent = '★ This model';
+                thisRow.appendChild(thisName);
+                var thisCostSpan = document.createElement('span');
+                thisCostSpan.className = 'text-gray-100 font-mono';
+                thisCostSpan.textContent = '$' + thisCost.toFixed(2) + ' / month';
+                thisRow.appendChild(thisCostSpan);
+                resultDiv.appendChild(thisRow);
+
+                // Compare against 3 cheaper + 3 pricier peers with pricing
+                var pricingMap = App.data.pricing || {};
+                var peers = [];
+                Object.keys(pricingMap).forEach(function(mid) {
+                    if (mid === modelId) return;
+                    var p = pricingMap[mid];
+                    if (p.input == null || p.output == null) return;
+                    var cost = inM * p.input + outM * p.output;
+                    peers.push({ id: mid, cost: cost, p: p });
+                });
+                peers.sort(function(a, b) { return a.cost - b.cost; });
+                var cheapestThree = peers.filter(function(x) { return x.cost < thisCost; }).slice(-3).reverse();
+                var pricierThree = peers.filter(function(x) { return x.cost > thisCost; }).slice(0, 3);
+
+                var compareCount = 0;
+                cheapestThree.concat(pricierThree).forEach(function(peer) {
+                    var m = (App.data.models || []).find(function(mm) { return mm.id === peer.id; });
+                    var nm = m ? m.name : peer.id;
+                    var row = document.createElement('div');
+                    row.className = 'flex justify-between text-xs py-0.5 cursor-pointer hover:bg-gray-800 px-1 -mx-1 rounded';
+                    row.addEventListener('click', (function(mid) {
+                        return function() { Modal.showModel(mid); };
+                    })(peer.id));
+                    var name = document.createElement('span');
+                    name.className = 'text-gray-300';
+                    name.textContent = nm;
+                    row.appendChild(name);
+                    var cost = document.createElement('span');
+                    cost.className = peer.cost < thisCost ? 'text-green-400 font-mono text-xs' : 'text-amber-400 font-mono text-xs';
+                    cost.textContent = '$' + peer.cost.toFixed(2);
+                    row.appendChild(cost);
+                    resultDiv.appendChild(row);
+                    compareCount++;
+                });
+                if (compareCount === 0) {
+                    var none = document.createElement('div');
+                    none.className = 'text-gray-500 text-xs mt-1';
+                    none.textContent = 'No peer pricing data for comparison.';
+                    resultDiv.appendChild(none);
+                }
+            }
+
+            inputTokens.input.addEventListener('input', recompute);
+            outputTokens.input.addEventListener('input', recompute);
+            requestsCount.input.addEventListener('input', recompute);
+            recompute();
+        } catch (e) {
+            console.warn('[modal] cost calculator error', e);
+        }
     },
 
     // ---- Helper: Strengths Radar ECharts ----

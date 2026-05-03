@@ -126,6 +126,74 @@ var Comparison = {
             self._applySelections();
             self.render();
         });
+        var csvBtn = document.getElementById('cmp-export-csv');
+        if (csvBtn) csvBtn.addEventListener('click', function() { Comparison._exportCSV(); });
+        var pngBtn = document.getElementById('cmp-export-png');
+        if (pngBtn) pngBtn.addEventListener('click', function() { Comparison._exportPNG(); });
+    },
+
+    _exportCSV: function() {
+        var modelSel = document.getElementById('cmp-models');
+        var benchSel = document.getElementById('cmp-benchmarks');
+        if (!modelSel || !benchSel) return;
+        var modelIds = Array.prototype.map.call(modelSel.selectedOptions, function(o) { return o.value; });
+        var benchIds = Array.prototype.map.call(benchSel.selectedOptions, function(o) { return o.value; });
+        if (!modelIds.length || !benchIds.length) {
+            alert('Select models + benchmarks first.');
+            return;
+        }
+        // Build CSV
+        var rows = [];
+        var header = ['Model'].concat(benchIds.map(function(bid) {
+            var b = (App.data.benchmarks || []).find(function(x) { return x.id === bid; });
+            return b ? b.name : bid;
+        }));
+        rows.push(header);
+        modelIds.forEach(function(mid) {
+            var m = (App.data.models || []).find(function(x) { return x.id === mid; });
+            var row = [m ? m.name : mid];
+            benchIds.forEach(function(bid) {
+                var s = (App.data.scores || []).find(function(x) { return x.model_id === mid && x.benchmark_id === bid; });
+                row.push(s ? s.value : '');
+            });
+            rows.push(row);
+        });
+        // Build CSV string with proper escaping
+        var csv = rows.map(function(r) {
+            return r.map(function(cell) {
+                var s = String(cell);
+                if (s.indexOf(',') !== -1 || s.indexOf('"') !== -1 || s.indexOf('\n') !== -1) {
+                    return '"' + s.replace(/"/g, '""') + '"';
+                }
+                return s;
+            }).join(',');
+        }).join('\n');
+        var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'comparison-' + new Date().toISOString().slice(0, 10) + '.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    },
+
+    _exportPNG: function() {
+        // Use ECharts API to download radar as PNG
+        var radarChart = (typeof echarts !== 'undefined' && echarts.getInstanceByDom) ?
+            echarts.getInstanceByDom(document.getElementById('cmp-radar-chart')) : null;
+        if (radarChart && radarChart.getDataURL) {
+            var dataUrl = radarChart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: '#0a0a0f' });
+            var a = document.createElement('a');
+            a.href = dataUrl;
+            a.download = 'comparison-radar-' + new Date().toISOString().slice(0, 10) + '.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        } else {
+            alert('Render comparison radar first (click Update).');
+        }
     },
 
     _readSelections: function() {
