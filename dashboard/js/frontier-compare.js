@@ -650,6 +650,14 @@ var FrontierCompare = {
             tdName.style.left = '0';
             tdName.style.background = Theme.bgSurface;
             tdName.style.zIndex = '5';
+            tdName.style.cursor = 'pointer';
+            tdName.setAttribute('role', 'button');
+            tdName.setAttribute('title', mid + ' — 클릭하면 모델 상세');
+            tdName.addEventListener('click', (function(modelId) {
+                return function() {
+                    if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(modelId);
+                };
+            })(mid));
             tr.appendChild(tdName);
 
             benchIds.forEach(function(bid) {
