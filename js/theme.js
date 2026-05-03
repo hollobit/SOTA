@@ -49,3 +49,51 @@ var Theme = {
     accentAmber:   '#fbbf24',
     accentBlue:    '#93c5fd'
 };
+
+// Theme toggle — applies a class to <html> and persists in localStorage
+(function() {
+    'use strict';
+
+    var STORAGE_KEY = 'dashboard-theme';
+
+    function getTheme() {
+        try {
+            return localStorage.getItem(STORAGE_KEY) || 'dark';
+        } catch (e) {
+            return 'dark';
+        }
+    }
+
+    function applyTheme(theme) {
+        var root = document.documentElement;
+        if (theme === 'light') {
+            root.classList.remove('theme-dark');
+            root.classList.add('theme-light');
+            document.body.classList.remove('bg-gray-950', 'text-gray-100');
+            document.body.classList.add('bg-gray-50', 'text-gray-900');
+        } else {
+            root.classList.remove('theme-light');
+            root.classList.add('theme-dark');
+            document.body.classList.remove('bg-gray-50', 'text-gray-900');
+            document.body.classList.add('bg-gray-950', 'text-gray-100');
+        }
+        var btn = document.getElementById('theme-toggle');
+        if (btn) {
+            btn.textContent = theme === 'light' ? '☀️ Light' : '🌙 Dark';
+        }
+    }
+
+    // Apply on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        applyTheme(getTheme());
+        var btn = document.getElementById('theme-toggle');
+        if (btn) {
+            btn.addEventListener('click', function() {
+                var current = getTheme();
+                var next = current === 'dark' ? 'light' : 'dark';
+                try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
+                applyTheme(next);
+            });
+        }
+    });
+}());
