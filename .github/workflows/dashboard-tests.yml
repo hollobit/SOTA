@@ -46,3 +46,37 @@ jobs:
 
       - name: Run pytest
         run: python -m pytest tests/test_model_schema_extensions.py tests/test_enrichment_export.py -v
+
+  hf-metadata-fetch:
+    name: HuggingFace metadata refresh
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.event_name == 'workflow_dispatch'
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ops
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install pyyaml
+
+      - name: Fetch HF metadata
+        run: python3 scripts/fetch_hf_metadata.py
+
+      - name: Commit if changed
+        run: |
+          if [[ -n "$(git status --porcelain data/export/hf_metadata.json)" ]]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add data/export/hf_metadata.json
+            git commit -m 'data(hf): refresh metadata via HuggingFace API'
+            git push origin ops
+          else
+            echo 'No changes to commit'
+          fi
