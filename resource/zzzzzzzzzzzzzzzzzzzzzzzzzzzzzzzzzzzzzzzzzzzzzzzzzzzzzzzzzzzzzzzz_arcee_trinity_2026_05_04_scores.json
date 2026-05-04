@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-04",
+    "sources": [
+      "https://www.arcee.ai/blog/trinity-large",
+      "https://arxiv.org/abs/2602.17004"
+    ],
+    "_note": "Arcee Trinity family update — replace placeholder trinity-large-thinking entry with proper trinity-large-preview/base/truebase + add trinity-mini and trinity-nano (3 sparse MoE sizes). Initial release 2026-01-27 per Arcee blog (the 2026-05-01 placeholder date was wrong). Tech report arxiv 2602.17004 published 2026-02-19. Benchmark numbers from Arcee blog comparison vs Llama-4-Maverick Instruct."
+  },
+  "models": [
+    {
+      "id": "arcee/trinity-large-preview",
+      "vendor": "Arcee AI",
+      "name": "Trinity Large Preview",
+      "type": "open-weight",
+      "modalities": ["text"],
+      "release_date": "2026-01-27",
+      "context_window": 524288,
+      "parameters": "400B total / 13B active",
+      "_source": "https://www.arcee.ai/blog/trinity-large — Sparse MoE, 256 experts × 4 active, 17T tokens, $20M training cost, Muon optimizer, 2048 B300 GPUs × 33 days. Native 512k context, 128k via API (8-bit quant). Lightly post-trained chat-ready variant."
+    },
+    {
+      "id": "arcee/trinity-large-base",
+      "vendor": "Arcee AI",
+      "name": "Trinity Large Base",
+      "type": "open-weight",
+      "modalities": ["text"],
+      "release_date": "2026-01-27",
+      "context_window": 524288,
+      "parameters": "400B total / 13B active",
+      "_source": "https://www.arcee.ai/blog/trinity-large — Full 17T-token pretraining checkpoint (no post-training). MoE 256 experts × 4 active, 6 dense layers."
+    },
+    {
+      "id": "arcee/trinity-large-truebase",
+      "vendor": "Arcee AI",
+      "name": "Trinity Large TrueBase",
+      "type": "open-weight",
+      "modalities": ["text"],
+      "release_date": "2026-01-27",
+      "context_window": 524288,
+      "parameters": "400B total / 13B active",
+      "_source": "https://www.arcee.ai/blog/trinity-large — 10T-token early checkpoint with no instruct data — research artifact for studying capability emergence."
+    },
+    {
+      "id": "arcee/trinity-mini",
+      "vendor": "Arcee AI",
+      "name": "Trinity Mini",
+      "type": "open-weight",
+      "modalities": ["text"],
+      "release_date": "2026-02-19",
+      "parameters": "26B total / 3B active",
+      "_source": "https://arxiv.org/abs/2602.17004 — Trinity Technical Report. Sparse MoE, 10T training tokens. Same architecture family as Large: interleaved local+global attention, gated attention, depth-scaled sandwich normalisation, sigmoid routing, Soft-clamped Momentum Expert Bias Updates (SMEBU)."
+    },
+    {
+      "id": "arcee/trinity-nano",
+      "vendor": "Arcee AI",
+      "name": "Trinity Nano",
+      "type": "open-weight",
+      "modalities": ["text"],
+      "release_date": "2026-02-19",
+      "parameters": "6B total / 1B active",
+      "_source": "https://arxiv.org/abs/2602.17004 — Trinity Technical Report. Smallest sparse MoE in the Trinity family, 10T training tokens, 1B active per token."
+    }
+  ],
+  "scores": [
+    {"model": "arcee/trinity-large-preview", "benchmark": "mmlu", "score": 87.2, "unit": "%", "_source": "https://www.arcee.ai/blog/trinity-large", "collected_at": "2026-05-04"},
+    {"model": "arcee/trinity-large-preview", "benchmark": "mmlu_pro", "score": 75.2, "unit": "%", "_source": "https://www.arcee.ai/blog/trinity-large", "collected_at": "2026-05-04"},
+    {"model": "arcee/trinity-large-preview", "benchmark": "gpqa_diamond", "score": 63.3, "unit": "%", "_source": "https://www.arcee.ai/blog/trinity-large", "collected_at": "2026-05-04"},
+    {"model": "arcee/trinity-large-preview", "benchmark": "aime_2025", "score": 24.0, "unit": "%", "_source": "https://www.arcee.ai/blog/trinity-large", "collected_at": "2026-05-04"}
+  ]
+}
