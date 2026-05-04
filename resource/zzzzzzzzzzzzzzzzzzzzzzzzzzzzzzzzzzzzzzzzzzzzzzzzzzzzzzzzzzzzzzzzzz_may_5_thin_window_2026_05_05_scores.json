@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-05",
+    "sources": [
+      "https://www.inceptionlabs.ai/blog/introducing-mercury-2",
+      "https://arxiv.org/abs/2605.00356"
+    ],
+    "_note": "May 5 daily sweep — frontier launch window 2026-05-01 to 2026-05-05 was effectively quiet (no new flagship releases from OpenAI/Anthropic/Google/Meta/xAI/Mistral/Cohere/Alibaba/DeepSeek/Moonshot/Z.AI/Baidu/Tencent in this window per llm-stats.com/llm-updates). Adding (1) Inception Mercury 2 — released 2026-04-23 but missing from our DB; diffusion-based parallel-token reasoning model with 1009 tok/s speed claim. (2) MemRouter benchmark — paper submitted 2026-05-01, lightweight 12M-param routing classifier for long-term conversational memory. No new score triples meet primary-source rule for this window."
+  },
+  "models": [
+    {
+      "id": "inception/mercury-2",
+      "vendor": "Inception Labs",
+      "name": "Mercury 2",
+      "type": "proprietary",
+      "modalities": ["text"],
+      "release_date": "2026-04-23",
+      "context_window": 131072,
+      "_source": "https://www.inceptionlabs.ai/blog/introducing-mercury-2 — Diffusion-based reasoning model with parallel (non-autoregressive) token generation. 1009 tok/s on NVIDIA Blackwell. Pricing $0.25 input / $0.75 output per 1M. OpenAI API compatible. Tunable reasoning, native tool use, schema-aligned JSON."
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "memrouter_locomo",
+      "name": "MemRouter (LoCoMo F1)",
+      "category": "memory",
+      "description": "Memory-as-Embedding Routing for Long-Term Conversational Agents (arxiv 2605.00356, submitted 2026-05-01). Decouples memory admission from answer generation via lightweight 12M-param classification heads. Evaluated on LoCoMo conversational QA. Reports F1 + memory-management latency (p50).",
+      "metric": "f1"
+    }
+  ],
+  "scores": []
+}
