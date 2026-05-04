@@ -376,16 +376,9 @@ var Timeline = {
             col.entries.sort(function(a, b) { return a.ts - b.ts; });
         });
 
-        // Dynamic layout: pick column width and card height so EVERY release fits.
-        // Strategy:
-        //   1. Column width scales up with the busiest month's release count
-        //      (more cards in a column => need slightly wider so the model name
-        //      doesn't truncate aggressively, and so multi-column busy months can
-        //      split into card sub-columns inside one month).
-        //   2. Card height stays at 84 if all months fit; otherwise we shrink down
-        //      to a 60 minimum and split overflow into card sub-columns.
-        //   3. SVG height grows beyond 1080 if needed — host has overflow-x:auto so
-        //      tall infographics still look complete on download.
+        // Dynamic layout: per-month column width scales with that month's release count.
+        // Each month gets its own subColCount based on its own card count;
+        // the global card height is chosen so the busiest month still fits vertically.
         var maxPerCol = 0;
         months.forEach(function(c) { if (c.entries.length > maxPerCol) maxPerCol = c.entries.length; });
 
@@ -393,63 +386,69 @@ var Timeline = {
         var PAD_LEFT = 60;
         var PAD_RIGHT = 60;
         var PAD_BOTTOM = 50;
-        var COL_GAP = 20;
+        var COL_GAP = 24;
         var HEADER_H = 56;
         var CARD_GAP = 6;
-        var INNER_COL_GAP = 8;
 
-        // Decide how many sub-columns of cards per month column. We want enough
-        // sub-columns that every card fits in a reasonable card height.
-        // Target: card height between 60 and 84 px; SVG max height around 2400.
         var CARD_H_PREF = 84;
         var CARD_H_MIN = 64;
-        var CARD_W_BASE = 280;  // sub-column card width
+        var CARD_W_BASE = 280;
         var SUBCOL_GAP = 6;
 
-        // Try card height = 84 first; reduce if SVG would exceed 2400 height.
-        var SVG_W, SVG_H, COL_W, CARD_H, subColsPerMonth, CARD_AREA_TOP, CARD_AREA_H, TIMELINE_AXIS_Y;
-        function computeLayout(cardH) {
-            // total card sub-column rows we need given cardH
-            var rowCapacity = function(maxCardsInCol) {
-                // Per-card-stack height capacity at cardH
-                return Math.max(1, Math.floor((MAX_AVAILABLE_H + CARD_GAP) / (cardH + CARD_GAP)));
-            };
-            // We bake SVG height to fit; choose subColsPerMonth so each sub-column has
-            // <= ceil(maxPerCol / subCols) cards, and SVG height = headers + axis + that*cardH
-            // Try increasing sub-cols until SVG height fits within 2400.
-            for (var sc = 1; sc <= 4; sc++) {
-                var perStack = Math.ceil(maxPerCol / sc);
-                var stackH = perStack * (cardH + CARD_GAP) - CARD_GAP;
+        // Pick a global card height so SVG_H stays under ~2400 even for the busiest
+        // month, given that month gets enough sub-columns. Also pick a per-month
+        // sub-column target — we want at most ~14 cards per sub-column so a column
+        // with 28 releases gets 2 sub-cols, with 56 gets 4, and with 7 gets just 1.
+        function pickGlobalCardHeight() {
+            var heights = [CARD_H_PREF, 76, 72, 68, CARD_H_MIN];
+            for (var i = 0; i < heights.length; i++) {
+                var h = heights[i];
+                // For the busiest month, what's the minimum sub-columns to fit?
+                // Cap at 4 sub-cols and require resulting stack <= ROWS_TARGET rows.
+                var ROWS_TARGET = 14;
+                var subColsForBusy = Math.max(1, Math.ceil(maxPerCol / ROWS_TARGET));
+                if (subColsForBusy > 4) subColsForBusy = 4;
+                var perStack = Math.ceil(maxPerCol / subColsForBusy);
+                var stackH = perStack * (h + CARD_GAP) - CARD_GAP;
                 var totalH = PAD_TOP + HEADER_H + 22 + 28 + stackH + PAD_BOTTOM;
-                if (totalH <= 2400) {
-                    return { subCols: sc, cardH: cardH, totalH: totalH, perStack: perStack };
-                }
+                if (totalH <= 2400) return { cardH: h, totalH: totalH, busySubCols: subColsForBusy, busyStack: perStack };
             }
-            // Fall back to 4 subcolumns
-            return { subCols: 4, cardH: cardH, totalH: PAD_TOP + HEADER_H + 22 + 28 + Math.ceil(maxPerCol / 4) * (cardH + CARD_GAP) - CARD_GAP + PAD_BOTTOM, perStack: Math.ceil(maxPerCol / 4) };
+            return { cardH: CARD_H_MIN, totalH: 2400, busySubCols: 4, busyStack: Math.ceil(maxPerCol / 4) };
         }
-        var MAX_AVAILABLE_H = 2400 - PAD_TOP - HEADER_H - 22 - 28 - PAD_BOTTOM;
+        var globalLayout = pickGlobalCardHeight();
+        var CARD_H = globalLayout.cardH;
 
-        var layout = computeLayout(CARD_H_PREF);
-        if (layout.totalH > 2200 && CARD_H_PREF > CARD_H_MIN) {
-            layout = computeLayout(72);
+        // Per-month sub-column count: scales with release count.
+        // 1 release: 1 sub-col. 2-14: 1 sub-col. 15-28: 2 sub-cols. 29-42: 3. >=43: 4.
+        // The narrow months get a single 280px column; busy ones widen to fit.
+        function subColsForMonth(n) {
+            if (n <= 14) return 1;
+            if (n <= 28) return 2;
+            if (n <= 42) return 3;
+            return 4;
         }
-        if (layout.totalH > 2200) {
-            layout = computeLayout(CARD_H_MIN);
-        }
+        months.forEach(function(c) {
+            c.subCols = subColsForMonth(c.entries.length);
+            c.width = c.subCols * CARD_W_BASE + (c.subCols - 1) * SUBCOL_GAP;
+            // Single-card months get a narrower header — but card width must still
+            // be CARD_W_BASE so vendor logo + name fit; minimum column = CARD_W_BASE.
+        });
 
-        subColsPerMonth = layout.subCols;
-        CARD_H = layout.cardH;
+        // SVG height = enough for the tallest month (count / its own subCols).
+        var maxStack = 0;
+        months.forEach(function(c) {
+            var s = Math.ceil(c.entries.length / c.subCols);
+            if (s > maxStack) maxStack = s;
+        });
+        var stackH = maxStack * (CARD_H + CARD_GAP) - CARD_GAP;
+        var SVG_H = PAD_TOP + HEADER_H + 22 + 28 + stackH + PAD_BOTTOM;
+        var TIMELINE_AXIS_Y = PAD_TOP + HEADER_H + 22;
+        var CARD_AREA_TOP = TIMELINE_AXIS_Y + 28;
+        var CARD_AREA_H = SVG_H - CARD_AREA_TOP - PAD_BOTTOM;
 
-        // Column width fits subColsPerMonth side-by-side card sub-columns
-        COL_W = subColsPerMonth * CARD_W_BASE + (subColsPerMonth - 1) * SUBCOL_GAP;
-
-        // SVG dims
-        SVG_W = PAD_LEFT + months.length * COL_W + (months.length - 1) * COL_GAP + PAD_RIGHT;
-        SVG_H = layout.totalH;
-        TIMELINE_AXIS_Y = PAD_TOP + HEADER_H + 22;
-        CARD_AREA_TOP = TIMELINE_AXIS_Y + 28;
-        CARD_AREA_H = SVG_H - CARD_AREA_TOP - PAD_BOTTOM;
+        // SVG width = sum of per-month widths + gaps + padding
+        var sumColW = months.reduce(function(s, c) { return s + c.width; }, 0);
+        var SVG_W = PAD_LEFT + sumColW + COL_GAP * (months.length - 1) + PAD_RIGHT;
 
         var SVG_NS = 'http://www.w3.org/2000/svg';
         function el(tag, attrs, parent) {
@@ -502,22 +501,26 @@ var Timeline = {
 
         var self = this;
 
+        // Track running X position so each month uses its own width
+        var runningX = PAD_LEFT;
+
         months.forEach(function(col, idx) {
-            var colX = PAD_LEFT + idx * (COL_W + COL_GAP);
+            var colX = runningX;
+            var colW = col.width;
             var headerY = PAD_TOP;
 
             // Month header pill
             el('rect', {
                 x: colX,
                 y: headerY,
-                width: COL_W,
+                width: colW,
                 height: HEADER_H,
                 rx: 8,
                 fill: col.color,
                 opacity: '0.95'
             }, svg);
             var hdrText = el('text', {
-                x: colX + COL_W / 2,
+                x: colX + colW / 2,
                 y: headerY + 24,
                 'text-anchor': 'middle',
                 'font-family': 'system-ui, -apple-system, sans-serif',
@@ -527,7 +530,7 @@ var Timeline = {
             }, svg);
             hdrText.textContent = col.label;
             var hdrCount = el('text', {
-                x: colX + COL_W / 2,
+                x: colX + colW / 2,
                 y: headerY + 44,
                 'text-anchor': 'middle',
                 'font-family': 'system-ui, -apple-system, sans-serif',
@@ -537,9 +540,8 @@ var Timeline = {
             }, svg);
             hdrCount.textContent = col.entries.length + ' release' + (col.entries.length === 1 ? '' : 's');
 
-            // Column node on timeline axis
             el('circle', {
-                cx: colX + COL_W / 2,
+                cx: colX + colW / 2,
                 cy: TIMELINE_AXIS_Y,
                 r: 7,
                 fill: col.color,
@@ -547,12 +549,11 @@ var Timeline = {
                 'stroke-width': '2'
             }, svg);
 
-            // Vertical connector from axis node down to first card
             if (col.entries.length > 0) {
                 el('line', {
-                    x1: colX + COL_W / 2,
+                    x1: colX + colW / 2,
                     y1: TIMELINE_AXIS_Y + 7,
-                    x2: colX + COL_W / 2,
+                    x2: colX + colW / 2,
                     y2: CARD_AREA_TOP - 6,
                     stroke: col.color,
                     'stroke-width': '1.5',
@@ -561,11 +562,10 @@ var Timeline = {
                 }, svg);
             }
 
-            // Render every card — distribute across sub-columns within this month column
-            // Sub-columns are filled top-to-bottom, left-to-right (column-major order)
-            // so the first card (earliest in month) is top-left and reading flows naturally.
+            // Distribute cards across this month's sub-columns (column-major fill)
             var totalCards = col.entries.length;
-            var perStack = Math.ceil(totalCards / subColsPerMonth);
+            var subCols = col.subCols;
+            var perStack = Math.ceil(totalCards / subCols) || 1;
             for (var k = 0; k < totalCards; k++) {
                 var e = col.entries[k];
                 var subColIdx = Math.floor(k / perStack);
@@ -574,6 +574,8 @@ var Timeline = {
                 var cardY = CARD_AREA_TOP + rowIdx * (CARD_H + CARD_GAP);
                 self._renderCard(svg, el, cardX, cardY, CARD_W_BASE, CARD_H, col.color, e);
             }
+
+            runningX += colW + COL_GAP;
         });
 
         // Footer caption
