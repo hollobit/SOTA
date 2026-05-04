@@ -385,7 +385,7 @@ var Timeline = {
         var PAD_TOP = 80;
         var PAD_LEFT = 60;
         var PAD_RIGHT = 60;
-        var PAD_BOTTOM = 50;
+        var PAD_BOTTOM = 70;  // accommodate two-line footer (author + source URL)
         var COL_GAP = 24;
         var HEADER_H = 56;
         var CARD_GAP = 6;
@@ -582,16 +582,36 @@ var Timeline = {
             runningX += colW + COL_GAP;
         });
 
-        // Footer caption
-        var footer = el('text', {
+        // Footer — author, source URL, generation date
+        var footerY = SVG_H - 26;
+        var authorText = el('text', {
+            x: PAD_LEFT,
+            y: footerY,
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '12',
+            'font-weight': '600',
+            fill: '#475569'
+        }, svg);
+        authorText.textContent = 'Author: Jonghong Jeon · hollobit@etri.re.kr';
+
+        var sourceText = el('text', {
+            x: PAD_LEFT,
+            y: footerY + 16,
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '11',
+            fill: '#64748b'
+        }, svg);
+        sourceText.textContent = 'Source: https://hollobit.github.io/SOTA · data verified against vendor blogs, llm-stats.com, HuggingFace model cards';
+
+        var stampText = el('text', {
             x: SVG_W - PAD_RIGHT,
-            y: SVG_H - 14,
+            y: footerY + 16,
             'text-anchor': 'end',
             'font-family': 'system-ui, -apple-system, sans-serif',
             'font-size': '11',
             fill: '#94a3b8'
         }, svg);
-        footer.textContent = 'hollobit.github.io/SOTA · generated ' + new Date().toISOString().slice(0, 10);
+        stampText.textContent = 'Generated ' + new Date().toISOString().slice(0, 10);
 
         host.appendChild(svg);
         this._currentSvg = svg;
