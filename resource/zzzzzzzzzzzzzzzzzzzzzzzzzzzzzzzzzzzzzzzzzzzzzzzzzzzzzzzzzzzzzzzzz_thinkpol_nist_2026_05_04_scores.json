@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-04",
+    "sources": [
+      "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/",
+      "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro"
+    ],
+    "_note": "Two reports: (1) ThinkPol AI Coding Contest Day-12 Word Gem Puzzle ranking + AA Intelligence Index for 3 models. (2) NIST CAISI evaluation of DeepSeek V4 Pro vs GPT-5.5 / GPT-5.4 mini / Claude Opus 4.6 across cyber, SWE, science, math, abstract reasoning. Frontier-model lag estimate: 8 months."
+  },
+  "models": [
+    {"id": "xai/grok-expert-4.2", "vendor": "xAI", "name": "Grok Expert 4.2", "type": "proprietary", "modalities": ["text"], "_source": "thinkpol.ca AI Coding Contest entry — xAI's expert-tier 4.2 variant"},
+    {"id": "deepseek/deepseek-v4", "vendor": "DeepSeek", "name": "DeepSeek V4", "type": "open-weight", "modalities": ["text"], "_source": "thinkpol.ca AI Coding Contest entry — DeepSeek V4 base (non-Pro)"}
+  ],
+  "benchmarks": [
+    {"id": "ctf_archive_diamond", "name": "CTF-Archive-Diamond", "category": "cyber", "description": "NIST CAISI cyber CTF archive — diamond difficulty tier. Used in CAISI DeepSeek V4 Pro evaluation.", "metric": "accuracy"},
+    {"id": "portbench", "name": "PortBench", "category": "coding", "description": "Software engineering benchmark used by NIST CAISI evaluations alongside SWE-Bench Verified.", "metric": "accuracy"},
+    {"id": "arc_agi_2_semi_private", "name": "ARC-AGI-2 semi-private", "category": "reasoning", "description": "ARC-AGI-2 semi-private split (held-out tasks not in public release). Used in NIST CAISI evaluation.", "metric": "accuracy"},
+    {"id": "pumac_2024", "name": "PUMaC 2024", "category": "math", "description": "Princeton University Mathematics Competition 2024 problems. Used in NIST CAISI math evaluation.", "metric": "accuracy"},
+    {"id": "ai_coding_contest_word_gem", "name": "AI Coding Contest — Word Gem Puzzle", "category": "coding", "description": "Day-12 Word Gem Puzzle of the Independent AI Coding Contest tournament covered by ThinkPol. Score = match points won across rounds.", "metric": "match_points"},
+    {"id": "ai_coding_contest_cumulative", "name": "AI Coding Contest — Cumulative", "category": "coding", "description": "Cumulative score across all days of the Independent AI Coding Contest tournament covered by ThinkPol.", "metric": "points"},
+    {"id": "irt_capability_elo", "name": "NIST CAISI IRT Capability Elo", "category": "general", "description": "Item Response Theory-estimated overall capability Elo rating from NIST CAISI evaluation suite (cyber + SWE + science + reasoning + math composite).", "metric": "elo"}
+  ],
+  "scores": [
+    {"model": "moonshot/kimi-k2.6", "benchmark": "ai_coding_contest_word_gem", "score": 22, "unit": "points", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04", "_note": "1st place"},
+    {"model": "mimo/mimo-v2-pro", "benchmark": "ai_coding_contest_word_gem", "score": 20, "unit": "points", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04", "_note": "2nd place"},
+    {"model": "openai/gpt-5.5", "benchmark": "ai_coding_contest_word_gem", "score": 16, "unit": "points", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04", "_note": "3rd place"},
+    {"model": "zhipu/glm-5.1", "benchmark": "ai_coding_contest_word_gem", "score": 15, "unit": "points", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04", "_note": "4th place"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "ai_coding_contest_word_gem", "score": 12, "unit": "points", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04", "_note": "5th place"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "ai_coding_contest_word_gem", "score": 9, "unit": "points", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04", "_note": "6th place"},
+    {"model": "xai/grok-expert-4.2", "benchmark": "ai_coding_contest_word_gem", "score": 9, "unit": "points", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04", "_note": "7th place (tied)"},
+    {"model": "deepseek/deepseek-v4", "benchmark": "ai_coding_contest_word_gem", "score": 3, "unit": "points", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04", "_note": "8th place"},
+    {"model": "meta/muse-spark", "benchmark": "ai_coding_contest_word_gem", "score": 0, "unit": "points", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04", "_note": "9th place"},
+
+    {"model": "moonshot/kimi-k2.6", "benchmark": "ai_coding_contest_cumulative", "score": 77, "unit": "points", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04", "_note": "Highest cumulative across tournament"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "aa_intelligence_index", "score": 60, "unit": "index", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "aa_intelligence_index", "score": 57, "unit": "index", "_source": "https://thinkpol.ca/2026/04/30/an-open-weights-chinese-model-just-beat-claude-gpt-5-5-and-gemini-in-a-programming-challenge/", "collected_at": "2026-05-04"},
+
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "ctf_archive_diamond", "score": 32, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.5", "benchmark": "ctf_archive_diamond", "score": 71, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "ctf_archive_diamond", "score": 32, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "ctf_archive_diamond", "score": 46, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "swe_bench_verified", "score": 74, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.5", "benchmark": "swe_bench_verified", "score": 81, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "swe_bench_verified", "score": 73, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "swe_bench_verified", "score": 79, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "portbench", "score": 44, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.5", "benchmark": "portbench", "score": 78, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "portbench", "score": 41, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "portbench", "score": 60, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "frontier_science", "score": 74, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.5", "benchmark": "frontier_science", "score": 79, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "frontier_science", "score": 74, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "frontier_science", "score": 72, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "gpqa_diamond", "score": 90, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.5", "benchmark": "gpqa_diamond", "score": 96, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "gpqa_diamond", "score": 87, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "gpqa_diamond", "score": 91, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "arc_agi_2_semi_private", "score": 46, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.5", "benchmark": "arc_agi_2_semi_private", "score": 79, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "arc_agi_2_semi_private", "score": 63, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "otis_aime_2025", "score": 97, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.5", "benchmark": "otis_aime_2025", "score": 100, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "otis_aime_2025", "score": 90, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "otis_aime_2025", "score": 92, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "pumac_2024", "score": 96, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.5", "benchmark": "pumac_2024", "score": 96, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "pumac_2024", "score": 93, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "pumac_2024", "score": 95, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "smt_2025", "score": 96, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.5", "benchmark": "smt_2025", "score": 99, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "smt_2025", "score": 92, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "smt_2025", "score": 94, "unit": "%", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "irt_capability_elo", "score": 1260, "unit": "Elo", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04", "_note": "±28 IRT confidence interval"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "irt_capability_elo", "score": 999, "unit": "Elo", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04", "_note": "±27"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "irt_capability_elo", "score": 800, "unit": "Elo", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04", "_note": "±28 — 8-month frontier lag"},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "irt_capability_elo", "score": 749, "unit": "Elo", "_source": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro", "collected_at": "2026-05-04", "_note": "±46"}
+  ]
+}
