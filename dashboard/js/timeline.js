@@ -458,12 +458,16 @@ var Timeline = {
             return node;
         }
 
+        // SVG fills the host width; height is derived from viewBox aspect ratio so
+        // the entire infographic is always visible without horizontal or vertical
+        // scroll inside the host. Internal layout is in viewBox coordinates so the
+        // SVG simply scales down to fit narrower viewports.
         var svg = el('svg', {
             xmlns: SVG_NS,
             viewBox: '0 0 ' + SVG_W + ' ' + SVG_H,
             width: '100%',
-            height: '100%',
-            preserveAspectRatio: 'xMidYMid meet'
+            preserveAspectRatio: 'xMidYMid meet',
+            style: 'display: block; height: auto;'
         });
         // White background (download keeps it)
         el('rect', { x: 0, y: 0, width: SVG_W, height: SVG_H, fill: '#ffffff' }, svg);
