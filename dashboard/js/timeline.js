@@ -639,12 +639,12 @@ var Timeline = {
         }, svg);
         tileText.textContent = this._vendorLogoLetter(e.vendor);
 
-        // Date badge (MM.DD)
+        // Date badge (MM.DD) — placed left of the larger flag tile
         var mm = String(e.dt.getMonth() + 1).padStart(2, '0');
         var dd = String(e.dt.getDate()).padStart(2, '0');
         var dateBadge = el('text', {
-            x: x + w - 12,
-            y: y + 22,
+            x: x + w - 28 - 10 - 8,  // sit just left of the 28px flag tile
+            y: y + 26,
             'text-anchor': 'end',
             'font-family': 'system-ui, -apple-system, sans-serif',
             'font-size': '14',
@@ -653,13 +653,26 @@ var Timeline = {
         }, svg);
         dateBadge.textContent = mm + '.' + dd;
 
-        // Country flag (top-right, just under date)
+        // Country flag — large badge on top-right with subtle background tile
+        var flagSize = 28;
+        var flagX = x + w - flagSize - 10;
+        var flagY = y + 8;
+        el('rect', {
+            x: flagX,
+            y: flagY,
+            width: flagSize,
+            height: flagSize,
+            rx: 6,
+            fill: '#f8fafc',
+            stroke: '#e2e8f0',
+            'stroke-width': '1'
+        }, svg);
         var flagText = el('text', {
-            x: x + w - 12,
-            y: y + 42,
-            'text-anchor': 'end',
-            'font-family': 'system-ui, -apple-system, sans-serif',
-            'font-size': '14'
+            x: flagX + flagSize / 2,
+            y: flagY + flagSize / 2 + 8,
+            'text-anchor': 'middle',
+            'font-family': 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, system-ui, sans-serif',
+            'font-size': '24'
         }, svg);
         flagText.textContent = this._flagFromCountry(e.country);
 
