@@ -1,6 +1,51 @@
 [
   {
     "type": "Feature",
+    "date": "2026-05-04",
+    "benchmark_id": "May 2026 weekly batch — 7 신규 모델 / 3 벤치마크 / 38 점수",
+    "new_model": "Qwen3.6-Max preview · Hunyuan HY3 preview · GLM-5V Turbo · ERNIE 5.1 preview · MiMo-v2 Omni · Grok 4.3 · Trinity Large Thinking + HealthBench Professional · DoctorBench LLM · REBench + DeepSeek V4 Pro Max(12 benches) · Qwen3.6-27B(10 benches) · Claude Opus 4.7 Vellum 9 benches · GPT-5.5 3 benches · Kimi K2.6 AA index",
+    "new_value": "all primary-source verified",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Fix",
+    "date": "2026-05-04",
+    "benchmark_id": "Sovereign AI 모델 type 오분류 489건 일괄 수정",
+    "new_model": "근본 원인: load_benchmark_scores.py가 type 미지정시 'proprietary' 디폴트 + INSERT OR REPLACE로 매번 덮어쓰기. 누적 30개 score batch가 silent overwrite. 354 sovereign 중 321(90.7%)이 잘못 proprietary 표시. 수정: (1)loader가 기존 type 보존 (2)reclassify_model_types.py — per-model override + pattern rule + vendor default 3계층. 339 prop→open-weight 복구, 8 open→prop 정확화. open-weight 64→379, proprietary 511→255",
+    "new_value": "open-weight 379 / open-weights 161 / proprietary 255",
+    "old_model": "",
+    "old_value": "open-weight 64 / open-weights 220 / proprietary 511"
+  },
+  {
+    "type": "Fix",
+    "date": "2026-05-04",
+    "benchmark_id": "Trends 메뉴 그래프 미렌더링 — Playwright 라이브 진단으로 두 버그 발견",
+    "new_model": "(1) _renderPricingChart가 App.data.pricing(이제 model_id키 object)에 .filter() 호출 → TypeError로 후속 모든 차트 abort. object→array 정규화 + output→price_per_1m_output 키 변환. (2) trend-chart/radar-chart/heatmap-chart는 #trend-benchmark 선택시에만 렌더되는데 기본값 empty. 벤치마크 옵션을 score-coverage 내림차순 정렬 + 첫 항목(gpqa_diamond) 자동 선택. (3) 보강: Charts._getOrCreate에 ResizeObserver + post-init RAF resize, _activateTab double-RAF로 grid layout 안정화",
+    "new_value": "7 charts + SOTA Highlights 모두 페인트",
+    "old_model": "",
+    "old_value": "sota-changelog + correlation-chart만 보임 (TypeError로 abort)"
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-04",
+    "benchmark_id": "Release date 백필 v2/v3/v4 — 757/795 (95.2%)",
+    "new_model": "v2(+121) GPT-5.x/Claude 4.x/Grok 1/3/4/4.20/Llama 4/DeepSeek/Qwen3+3.6/Kimi/Mistral 전체/Phi-4/GLM-4.5/4.6/EXAONE/Solar/SmolLM. v3(+153) Mythos preview(2026-04-07)/Opus 4.6/GPT-4.5/o4-mini/5.2-pro/5.3-codex/Llama 3.2/Mistral 7B+Mixtral+Nemo+Saba+Pixtral+Mathstral+Codestral-Mamba+Ministral+Voxtral/QvQ+QwQ+Qwen3.5/GLM-4.7/5/5.1/MiniMax M2.5/ByteDance Seed/Jamba 1.0~1.7+Reasoning+Maestro/Granite 3.1~3.3/Falcon Mamba+3+H1/Stability/FLUX.1+Kontext/OLMo-2/Tulu-3/Molmo/HyperCLOVA-X SEED/Mid-m/Kanana/EXAONE 4.0.1/Atelier/Yandex/Sber/Sarvam/Krutrim. v4(+122) Pi-Zero/0.5/RDT/GR00T N1/1.5/1.6/Cosmos Reason+Predict/Figure Helix/Tesla Optimus/Genie 2/3/Devstral Small 2/Ministral 3 family/Jamba 2/StepFun/Pangu/iFlytek Spark/SenseNova/BAAI Aquila/Skywork R1V/Aleph Alpha/Lucie/Pleias/AI4Bharat/BharatGen Param/Sarvam 30B/105B/MBZUAI/DICTA/Samsung Gauss 2/SKT A.X 4.0/NCSoft VARCO/Trillion/Industrial AI(Siemens/Autodesk/PTC/Dassault/AVEVA)/EPFL Meditron/HuatuoGPT/FoxBrain/Sakana/Bloomberg/Llama 4 Behemoth",
+    "new_value": "출시일 보유 757/795 (95.2%) — 시작 361 (45.7%)에서 +396",
+    "old_model": "",
+    "old_value": "361/789 (45.7%)"
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-04",
+    "benchmark_id": "Timeline 메뉴 — 모델 출시일 / 시스템 등록일 의미 분리",
+    "new_model": "filename에서 추출된 날짜는 모델 출시일이 아니라 시스템 등록일. extract_enrichment_from_notes.py: release_date_inferred → system_registered_date 필드 rename. timeline.js: _getReleaseDate()는 model.release_date/released_at만 반환(fallback 제거), _getSystemRegisteredDate() 별도 메서드. UI 두 컬럼 — primary(실제 출시일) + secondary(+YYYY-MM-DD 회색 italic 시스템 등록일). modal.js: misleading 'Released(inferred)' 행을 '시스템 등록일' italic 행으로 분리",
+    "new_value": "Timeline 정렬은 모델 공개일만 기준",
+    "old_model": "",
+    "old_value": "filename date를 모델 출시일로 misuse"
+  },
+  {
+    "type": "Feature",
     "date": "2026-05-03",
     "benchmark_id": "Model 상세 모달 정보 강화 — Peer 비교 / SOTA 배지 / 강점-약점 / 아키텍처 섹션 (15-task plan 완료)",
     "new_model": "Modal.showModel — 6개 신규 섹션 (Detail card +context_window/cutoff/languages/throughput / Peer Comparison + dropdown / Strengths / Weaknesses / Architecture-Training-Safety / inline SOTA 배지). frontier-30 enrichment 데이터 sidecar 도입.",

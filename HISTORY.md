@@ -1,5 +1,106 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-04: May 2026 batch + release_date backfill (635→757) + type misclassification fix + Trends repair
+
+### Session overview
+하루 동안 5개 영역에서 데이터·코드·UX를 동시 개선. 사용자가 발견한 두 개의 잠재 회귀(Trends 빈 화면, sovereign type 오분류)는 모두 silent 회귀 — 누적 데이터 인제스트가 일으킨 것이지 비즈니스 변화가 아님.
+
+### 1. May 2026 weekly batch (commit `a85f078`)
+신규 모델 7개·벤치마크 3개·점수 38개 추가. 모두 1차 출처 검증.
+
+| 항목 | 출처 | 비고 |
+|------|------|------|
+| Qwen3.6-Max preview (Alibaba) | qwen.ai/blog | 1M context MoE flagship |
+| Hunyuan HY3 preview (Tencent) | arena.ai changelog | frontier-tier |
+| GLM-5V Turbo (Zhipu) | arena.ai changelog | vision variant of GLM-5.1 |
+| ERNIE 5.1 preview (Baidu) | arena.ai changelog | text |
+| MiMo-v2 Omni (Xiaomi) | arena.ai changelog | text+image+audio |
+| Grok 4.3 (xAI) | arena.ai changelog | multimodal |
+| Trinity Large Thinking (Arcee) | arena.ai changelog | ~400B reasoning open-weight |
+| HealthBench Professional (OpenAI) | cdn.openai.com | 525 clinician tasks |
+| DoctorBench LLM (Diagens) | pharmiweb release | LLM/VLM/Agent 3 tracks |
+| REBench | arxiv 2604.27319 | reverse engineering |
+
+신규 점수 38개: DeepSeek V4 Pro Max(12 benches from HF card), Qwen3.6-27B(10 benches), Claude Opus 4.7(9 benches via Vellum), GPT-5.5/Pro(3 benches via Vellum), Kimi K2.6(AA Intelligence Index).
+
+### 2. Release date backfill: 361 → 757 (+396, 95.2%) (commits `4bfa970`, `a85f078`, `4c3b33f`, `368e9ec`)
+출시일 보유율을 4단계 작업으로 45.7% → 95.2%로 끌어올림. 검증 출처: `llm-stats.com/models/<slug>` per-model 페이지, vendor blog 발표일, HuggingFace upload timestamp, arxiv paper 날짜.
+
+| 단계 | 추가 | 누적 | 커버리지 | 핵심 카테고리 |
+|------|------|------|---------|--------------|
+| v1 (기존) | — | 361 | 45.7% | 90 popular flagship |
+| v2 | +121 | 482 | 61.1% | GPT-5.x family, Claude 4.x, Grok 1/3/4/4.20, Llama 4 Scout/Maverick, DeepSeek family, Qwen3 + 3.6, Kimi K1.5/K2/K2.6, Mistral Large/Medium/Small/Devstral/Magistral/Codestral, Phi-4, GLM-4.5/4.6, Hunyuan-Large/T1/Turbo, Baichuan-2/3/4/M1/Omni, ERNIE 4.5, EXAONE 3.0/3.5/4.0/Deep, HyperCLOVA-X, Solar 10.7B/Pro/Pro2, SmolLM, Yi 1.5 |
+| v3 | +153 | 635 | 79.9% | Mythos preview (2026-04-07 Project Glasswing), Opus 4.6, GPT-4.5/o4-mini/5.2-pro/5.3-codex, Llama 3.2 family, Mistral 7B/Mixtral/Nemo/Saba/Pixtral/Mathstral/Codestral-Mamba/Ministral/Voxtral, QvQ-72B/QwQ-32B/Qwen3.5-27B/122B/397B, GLM-4.7/5/5.1, MiniMax M2.5, ByteDance Seed 1.5/1.6/2.0, AI21 Jamba 1.0~1.7+Reasoning+Maestro, IBM Granite 3.1~3.3, TII Falcon Mamba+3+H1, Stability AI 전체, Black Forest FLUX.1+Kontext, Allen AI OLMo-2/Tulu-3/Molmo, Naver HyperCLOVA-X SEED, KT Mid-m, Kakao Kanana/KoGPT, LG EXAONE 4.0.1/Atelier, Yandex YaLM/GPT-4/5, Sber GigaChat 2.x, Sarvam-1/M, Krutrim, AI Singapore SEA-LION |
+| v4 | +122 | 757 | **95.2%** | Pi-Zero/0.5/Pi-Zero-Fast/RDT-1B, GR00T N1/1.5/1.6, Cosmos Reason 1/2 + Predict 1/2.5, Figure Helix, 1X World Model, Tesla Optimus VLM, Genie 2/3, Gemini Robotics ER 1.5/1.6, Devstral Small 2, Ministral 3 family, Jamba 2 (Jamba2-Mini/3B), Step 2/3.5, Huawei Pangu 5/Embedding/Ultra-MoE, iFlytek Spark 4/X1, SenseTime SenseNova v6, BAAI Aquila 2/Wudao 2, Skywork R1V-3, TNG R1T/R1T2 Chimera, Aleph Alpha Luminous/Pharia 1/2, Lucie-7B, CroissantLLM, PleIAs, AI4Bharat 전체, BharatGen Param 1/2, Sarvam 30B/105B, Krutrim Spectre, MBZUAI K2/Atlas/BiMediX, DICTA Lm 2/3, Samsung Gauss 2, SKT A.X 4.0, NCSoft VARCO, Kanana 2 Thinking/Flag, Motif/Trillion, T-Bank, Siemens SIFM/Autodesk Bernini/PTC/Dassault/AVEVA, EPFL Meditron/HuatuoGPT-II/FoxBrain, Sakana Namazu, Bloomberg GPT, Llama 4 Behemoth |
+
+남은 38개는 commercial-only product, roadmap entry, 비공개 specialty(Harvey/Vincent/Oliver/Riiid/Lunit/VUNO/JioBrain/Maitri 등).
+
+### 3. Sovereign AI 모델 type 오분류 일괄 수정 (commit `b338b24`)
+사용자 보고: "대부분의 소버린 AI 모델이 open weight에서 proprietary로 바뀌었다." 진단 결과 비즈니스 변화가 아니라 **데이터 인제스트 누적 회귀** — 354개 sovereign 모델 중 321개(90.7%)가 잘못 proprietary로 표시.
+
+**근본 원인 (2개 결함의 결합):**
+- `scripts/load_benchmark_scores.py:54`의 `m.get("type", "proprietary")` 디폴트
+- `cyber/db/schema.py:106`의 `INSERT OR REPLACE INTO models` (UPSERT 아님)
+- 누적 효과: ~30개 score batch가 매번 type을 `proprietary`로 silent overwrite
+
+**수정:**
+1. **Stop the bleed**: loader가 type 미지정시 기존 DB 값 보존
+2. **Heal existing**: `scripts/reclassify_model_types.py` 신규 — per-model override + pattern rule + vendor default 3계층 룰로 489건 수정
+   - 339건 `proprietary → open-weight` (silent flips 복구)
+   - 8건 `open-weight → proprietary` (정확화: Solar-Pro/2/3, MiMo-v2-flash/pro, Konan, GigaChat 3 등)
+   - 140건 표기 정규화
+
+| 분류 | 이전 | 이후 |
+|------|------|------|
+| proprietary | 511 | 255 (-256) |
+| open-weight | 64 | 379 (+315) |
+| open-weights | 220 | 161 |
+
+검증된 spot check: Qwen3.6-27B / DeepSeek V4 Pro / Kimi K2.6 / EXAONE 4.0 / Mistral 7B / Llama 4 Scout / Gemma 3 27B / Hunyuan-Large / ERNIE 4.5-300B / GLM-4.6 / HyperCLOVA-X Think / Mid-m 2.0 / Solar Mini → all `open-weight`. Solar Pro 3 / GPT-5.5 / Claude Opus 4.7 / Gemini 3 Pro / Grok 4 / GLM-5.1 / A.X 4.0 / HyperCLOVA-X → all `proprietary`. Grok 1 → `open-weight` (xAI 2024-03 release).
+
+### 4. Trends 메뉴 그래프 미렌더링 픽스 (commits `7eecf5b`, `8216c42`)
+사용자 보고: "여전히 Trends의 그래프들이 안보인다." Playwright로 라이브 진단.
+
+**원인 1 — Silent JS 에러로 후속 차트 모두 abort:**
+`App.data.pricing`은 `aa_pricing.json` 재구성 이후 **model_id 키의 object**로 export되는데, `_renderPricingChart`가 `.filter()`를 호출 → `TypeError: pricing.filter is not a function`. 이 에러가 `renderTrends()` 후속 호출(`_renderSotaHighlights`, `_renderTrendOverview`, `_renderSOTATrend`)을 모두 abort. 결과: sota-changelog와 correlation-chart만 보이고 나머지는 모두 빈 화면.
+- 수정: object → array 정규화, `output → price_per_1m_output` 키 변환
+
+**원인 2 — 조건부 차트 기본 빈 상태:**
+trend-chart, radar-chart, heatmap-chart는 `#trend-benchmark` 드롭다운 선택시에만 렌더되는데 기본값이 빈 문자열. 첫 방문자는 항상 placeholder만 봄.
+- 수정: 벤치마크 옵션을 score-coverage 내림차순 정렬 + 첫 항목(`gpqa_diamond`) 자동 선택
+
+**보강 (commit `7eecf5b`)**: `Charts._getOrCreate`에 ResizeObserver + post-init RAF resize 추가, `_activateTab`에 double-RAF 패턴으로 grid layout 안정화 보장.
+
+라이브 검증 결과: 7개 차트(SOTA Trend / Model Rankings / Category Radar / Cross-Benchmark Heatmap / Correlation / Pricing / Trend Overview) + SOTA Highlights 리스트 모두 정상 페인트.
+
+### 5. Timeline 메뉴 출시일 / 시스템 등록일 분리 (이전 commit `4bfa970`)
+사용자 지적: 모델 공개일과 시스템 등록일은 다른 의미인데 같이 사용하고 있음. Timeline은 모델 공개일 기준으로 정렬해야 함.
+- `scripts/extract_enrichment_from_notes.py`: `release_date_inferred` → `system_registered_date` 필드 rename (filename date는 우리가 등록한 날짜이지 모델 출시일이 아님)
+- `dashboard/js/timeline.js`: `_getReleaseDate()`는 `model.release_date` 또는 `released_at`만 반환 (fallback 제거). `_getSystemRegisteredDate()` 별도 메서드 신설. 두 컬럼 표시 — primary(실제 출시일) + secondary(`+YYYY-MM-DD` 회색 italic, 시스템 등록일).
+- `dashboard/js/modal.js`: misleading "Released (inferred)" 행을 "시스템 등록일" 별도 italic 행으로 분리.
+
+### 데이터 규모 증분 (Day-of-day)
+| 항목 | 시작 | 종료 | 증가 |
+|------|------|------|------|
+| 모델 | 789 | **795** | +6 |
+| 벤치마크 | 852 | **855** | +3 |
+| 점수 | 3,331 | **3,369** | +38 |
+| 출시일 보유 | 361 | **757** | +396 |
+| 출시일 커버리지 | 45.7% | **95.2%** | +49.5pp |
+| open-weight 모델 | 64 | **379** | +315 |
+| proprietary 모델 | 511 | **255** | -256 |
+
+### 커밋 시퀀스
+- `4bfa970` Timeline release_date / system_registered_date 분리
+- `a85f078` May 2026 weekly batch (7 models, 3 benches, 38 scores)
+- `4c3b33f` Release date v3 backfill (+153)
+- `368e9ec` Release date v4 backfill (+122, 95.2%)
+- `7eecf5b` Trends ResizeObserver + double-RAF
+- `8216c42` Trends pricing TypeError + auto-select default benchmark
+- `b338b24` Sovereign AI type 오분류 489건 수정 + loader bug fix
+
+---
+
 ## 2026-04-25: Sovereign AI menu + Physical AI / World Models (7 batches)
 
 ### Sovereign AI dashboard menu (NEW)
