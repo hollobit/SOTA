@@ -601,7 +601,7 @@ var Timeline = {
             'font-size': '11',
             fill: '#64748b'
         }, svg);
-        sourceText.textContent = 'Source: https://hollobit.github.io/SOTA · data verified against vendor blogs, llm-stats.com, HuggingFace model cards';
+        sourceText.textContent = 'Source: https://hollobit.github.io/SOTA/#timeline · data verified against vendor blogs, llm-stats.com, HuggingFace model cards';
 
         var stampText = el('text', {
             x: SVG_W - PAD_RIGHT,
