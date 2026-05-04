@@ -178,7 +178,53 @@ var Timeline = {
         if (typeSel) typeSel.addEventListener('change', function() { self.render(); });
         if (searchInput) searchInput.addEventListener('input', function() { self.render(); });
 
+        // Infographic chart controls
+        var rangeSel = document.getElementById('timeline-infographic-range');
+        var groupSel = document.getElementById('timeline-infographic-groupby');
+        var pngBtn = document.getElementById('timeline-download-png');
+        var svgBtn = document.getElementById('timeline-download-svg');
+        var csvBtn = document.getElementById('timeline-download-csv');
+        if (rangeSel) rangeSel.addEventListener('change', function() { self._renderInfographic(); });
+        if (groupSel) groupSel.addEventListener('change', function() { self._renderInfographic(); });
+        if (pngBtn) pngBtn.addEventListener('click', function() { self._downloadInfographic('png'); });
+        if (svgBtn) svgBtn.addEventListener('click', function() { self._downloadInfographic('svg'); });
+        if (csvBtn) csvBtn.addEventListener('click', function() { self._downloadCSV(); });
+
         this._populateFilters();
+    },
+
+    // Color scheme: 12 distinct hues, one per month-of-year
+    _MONTH_COLORS: [
+        '#3b82f6', '#8b5cf6', '#ec4899', '#f43f5e',
+        '#f97316', '#eab308', '#84cc16', '#22c55e',
+        '#10b981', '#14b8a6', '#06b6d4', '#0ea5e9'
+    ],
+
+    _COUNTRY_COLORS: {
+        '🇺🇸 USA': '#3b82f6',
+        '🇨🇳 China': '#ef4444',
+        '🇰🇷 Korea': '#a855f7',
+        '🇫🇷 France': '#0ea5e9',
+        '🇨🇦 Canada': '#dc2626',
+        '🇯🇵 Japan': '#f43f5e',
+        '🇮🇱 Israel': '#3aa6e8',
+        '🇦🇪 UAE': '#10b981',
+        '🇸🇦 Saudi Arabia': '#16a34a',
+        '🇸🇬 Singapore': '#f87171',
+        '🇮🇳 India': '#f59e0b',
+        '🇩🇪 Germany': '#facc15',
+        '🇬🇧 UK': '#1d4ed8',
+        '🇨🇭 Switzerland': '#dc2626',
+        '🇷🇺 Russia': '#ec4899',
+        '🇪🇺 Europe': '#6366f1',
+        '🌐 Other': '#6b7280'
+    },
+
+    _TYPE_COLORS: {
+        'proprietary': '#ef4444',
+        'open-weight': '#22c55e',
+        'open-weights': '#22c55e',
+        'open-source': '#3b82f6'
     },
 
     _getCountry: function(modelId, model) {
@@ -242,7 +288,288 @@ var Timeline = {
         }
     },
 
+    _getInfographicEntries: function(monthsBack) {
+        var self = this;
+        var now = new Date();
+        var cutoff = new Date(now.getFullYear(), now.getMonth() - monthsBack + 1, 1);
+        var entries = [];
+        this._models.forEach(function(m) {
+            var d = self._getReleaseDate(m);
+            if (!d || d.length < 7) return;
+            var dt = new Date(d.length >= 10 ? d.slice(0, 10) : d.slice(0, 7) + '-15');
+            if (isNaN(dt.getTime()) || dt < cutoff || dt > now) return;
+            entries.push({
+                id: m.id,
+                name: m.name || m.id,
+                vendor: m.vendor || (m.id.split('/')[0] || ''),
+                type: m.type || '',
+                date: d,
+                dt: dt,
+                country: self._getCountry(m.id, m),
+                ts: dt.getTime()
+            });
+        });
+        return entries;
+    },
+
+    _renderInfographic: function() {
+        var host = document.getElementById('timeline-infographic-chart');
+        if (!host || typeof echarts === 'undefined') return;
+        var rangeSel = document.getElementById('timeline-infographic-range');
+        var groupSel = document.getElementById('timeline-infographic-groupby');
+        var monthsBack = parseInt((rangeSel || {}).value || '6', 10);
+        var groupBy = (groupSel || {}).value || 'country';
+
+        var entries = this._getInfographicEntries(monthsBack);
+        // Clear host children safely
+        while (host.firstChild) host.removeChild(host.firstChild);
+        if (entries.length === 0) {
+            var empty = document.createElement('p');
+            empty.className = 'text-gray-500 text-sm p-8 text-center';
+            empty.textContent = 'No models with release dates in the selected range.';
+            host.appendChild(empty);
+            return;
+        }
+
+        var self = this;
+
+        // Build month buckets (Y-axis): one row per YYYY-MM in range
+        var months = [];
+        var now = new Date();
+        for (var i = monthsBack - 1; i >= 0; i--) {
+            var d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+            var ym = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+            months.push(ym);
+        }
+
+        function getGroupKey(e) {
+            if (groupBy === 'vendor') return e.vendor;
+            if (groupBy === 'type') return e.type || 'unknown';
+            return e.country;
+        }
+        function getColor(e) {
+            if (groupBy === 'country') return self._COUNTRY_COLORS[e.country] || '#6b7280';
+            if (groupBy === 'type') return self._TYPE_COLORS[e.type] || '#6b7280';
+            return self._MONTH_COLORS[e.dt.getMonth()];
+        }
+
+        var seriesMap = {};
+        entries.forEach(function(e) {
+            var key = getGroupKey(e);
+            if (!seriesMap[key]) seriesMap[key] = [];
+            var ym = e.dt.getFullYear() + '-' + String(e.dt.getMonth() + 1).padStart(2, '0');
+            var yIdx = months.indexOf(ym);
+            if (yIdx < 0) return;
+            var dayInMonth = e.dt.getDate();
+            var jitter = (Math.abs(self._hashCode(e.id)) % 100) / 100 * 0.6 - 0.3;
+            seriesMap[key].push({
+                value: [dayInMonth, yIdx + jitter],
+                entry: e,
+                color: getColor(e)
+            });
+        });
+
+        var series = Object.keys(seriesMap).map(function(key) {
+            return {
+                name: key,
+                type: 'scatter',
+                symbolSize: 14,
+                data: seriesMap[key].map(function(p) {
+                    return {
+                        value: p.value,
+                        entry: p.entry,
+                        itemStyle: { color: p.color }
+                    };
+                }),
+                emphasis: {
+                    focus: 'series',
+                    label: { show: true, position: 'right', formatter: function(p) { return p.data.entry.name; } }
+                }
+            };
+        });
+
+        var option = {
+            title: {
+                text: 'Model Releases — Last ' + monthsBack + ' Months',
+                subtext: entries.length + ' models · grouped by ' + groupBy + ' · click any point for details',
+                left: 'center',
+                textStyle: { color: '#e5e7eb', fontSize: 16 },
+                subtextStyle: { color: '#9ca3af', fontSize: 11 }
+            },
+            tooltip: {
+                trigger: 'item',
+                backgroundColor: '#1f2937',
+                borderColor: '#374151',
+                textStyle: { color: '#e5e7eb' },
+                formatter: function(p) {
+                    var e = p.data.entry;
+                    var parts = [];
+                    parts.push('<strong>' + e.name + '</strong>');
+                    parts.push(e.vendor + (e.country ? ' · ' + e.country : ''));
+                    parts.push('Released: <strong>' + e.date.slice(0, 10) + '</strong>');
+                    if (e.type) parts.push('License: ' + e.type);
+                    return parts.join('<br/>');
+                }
+            },
+            legend: {
+                top: 50,
+                type: 'scroll',
+                textStyle: { color: '#d1d5db', fontSize: 11 },
+                inactiveColor: '#4b5563'
+            },
+            grid: { left: 60, right: 40, top: 100, bottom: 50, containLabel: true },
+            xAxis: {
+                type: 'value',
+                name: 'Day of month',
+                nameLocation: 'middle',
+                nameGap: 28,
+                nameTextStyle: { color: '#9ca3af' },
+                min: 1,
+                max: 31,
+                interval: 5,
+                axisLabel: { color: '#d1d5db' },
+                axisLine: { lineStyle: { color: '#4b5563' } },
+                splitLine: { lineStyle: { color: '#1f2937' } }
+            },
+            yAxis: {
+                type: 'category',
+                data: months,
+                inverse: true,
+                axisLabel: { color: '#d1d5db' },
+                axisLine: { lineStyle: { color: '#4b5563' } },
+                splitLine: { show: true, lineStyle: { color: '#1f2937', type: 'dashed' } }
+            },
+            series: series,
+            toolbox: {
+                feature: {
+                    saveAsImage: {
+                        show: true,
+                        title: 'Save PNG',
+                        backgroundColor: '#0f172a',
+                        pixelRatio: 2,
+                        name: 'model-timeline-' + monthsBack + 'mo-' + new Date().toISOString().slice(0, 10)
+                    }
+                },
+                iconStyle: { borderColor: '#9ca3af' },
+                right: 20, top: 20
+            },
+            animationDuration: 600
+        };
+
+        var chart = (typeof Charts !== 'undefined' && Charts._getOrCreate)
+            ? Charts._getOrCreate('timeline-infographic-chart')
+            : echarts.init(host, 'dark');
+        if (!chart) return;
+        this._infographicChart = chart;
+        chart.setOption(option, true);
+
+        chart.off('click');
+        chart.on('click', function(p) {
+            if (p && p.data && p.data.entry && typeof Modal !== 'undefined' && Modal.showModel) {
+                Modal.showModel(p.data.entry.id);
+            }
+        });
+
+        this._renderLegend(seriesMap, groupBy);
+    },
+
+    _renderLegend: function(seriesMap, groupBy) {
+        var el = document.getElementById('timeline-infographic-legend');
+        if (!el) return;
+        while (el.firstChild) el.removeChild(el.firstChild);
+        var self = this;
+        Object.keys(seriesMap).sort().forEach(function(key) {
+            var color = (groupBy === 'country' ? self._COUNTRY_COLORS[key]
+                : groupBy === 'type' ? self._TYPE_COLORS[key]
+                : self._MONTH_COLORS[(seriesMap[key][0] && seriesMap[key][0].entry.dt.getMonth()) || 0])
+                || '#6b7280';
+            var wrap = document.createElement('span');
+            wrap.className = 'inline-flex items-center gap-1.5';
+            var swatch = document.createElement('span');
+            swatch.className = 'inline-block w-3 h-3 rounded-full';
+            swatch.style.background = color;
+            var label = document.createElement('span');
+            label.className = 'text-gray-400';
+            label.textContent = key;
+            var count = document.createElement('span');
+            count.className = 'text-gray-600';
+            count.textContent = '(' + seriesMap[key].length + ')';
+            wrap.appendChild(swatch);
+            wrap.appendChild(label);
+            wrap.appendChild(count);
+            el.appendChild(wrap);
+        });
+    },
+
+    _hashCode: function(s) {
+        var h = 0;
+        for (var i = 0; i < s.length; i++) h = ((h << 5) - h) + s.charCodeAt(i) | 0;
+        return h;
+    },
+
+    _downloadInfographic: function(format) {
+        var chart = this._infographicChart;
+        if (!chart) return;
+        var rangeSel = document.getElementById('timeline-infographic-range');
+        var monthsBack = (rangeSel || {}).value || '6';
+        var stamp = new Date().toISOString().slice(0, 10);
+        var filename = 'model-timeline-' + monthsBack + 'mo-' + stamp;
+
+        if (format === 'png') {
+            var url = chart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: '#0f172a' });
+            this._triggerDownload(url, filename + '.png');
+        } else if (format === 'svg') {
+            try {
+                var svgEl = chart.getDom().querySelector('svg');
+                if (svgEl) {
+                    var serializer = new XMLSerializer();
+                    var svgStr = serializer.serializeToString(svgEl);
+                    var blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+                    var blobUrl = URL.createObjectURL(blob);
+                    this._triggerDownload(blobUrl, filename + '.svg');
+                    setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 1000);
+                    return;
+                }
+            } catch (e) {}
+            var pngUrl = chart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: '#0f172a' });
+            this._triggerDownload(pngUrl, filename + '.png');
+            alert('SVG renderer not active — saved as PNG instead.');
+        }
+    },
+
+    _downloadCSV: function() {
+        var rangeSel = document.getElementById('timeline-infographic-range');
+        var monthsBack = parseInt((rangeSel || {}).value || '6', 10);
+        var entries = this._getInfographicEntries(monthsBack);
+        entries.sort(function(a, b) { return b.ts - a.ts; });
+        var rows = [['release_date', 'model_id', 'name', 'vendor', 'country', 'type']];
+        entries.forEach(function(e) {
+            rows.push([e.date.slice(0, 10), e.id, e.name, e.vendor, e.country, e.type]);
+        });
+        var csv = rows.map(function(r) {
+            return r.map(function(c) {
+                var s = String(c == null ? '' : c).replace(/"/g, '""');
+                return /[,"\n]/.test(s) ? '"' + s + '"' : s;
+            }).join(',');
+        }).join('\n');
+        var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var stamp = new Date().toISOString().slice(0, 10);
+        this._triggerDownload(url, 'model-timeline-' + monthsBack + 'mo-' + stamp + '.csv');
+        setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+    },
+
+    _triggerDownload: function(url, filename) {
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    },
+
     render: function() {
+        this._renderInfographic();
         var container = document.getElementById('timeline-container');
         if (!container) return;
         container.textContent = '';

@@ -193,8 +193,43 @@
         </section>
 
         <section id="tab-timeline" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-timeline">
+            <!-- 6-Month Infographic Chart (NEW) -->
+            <div class="mb-8">
+                <div class="flex items-end justify-between flex-wrap gap-3 mb-2">
+                    <div>
+                        <h2 class="text-section mb-1">6-Month Release Infographic</h2>
+                        <p class="text-sm text-gray-400">최근 6개월 출시 모델을 월 단위로 색상 구분한 산점 타임라인. 회사명 · 모델명 · 국기 · 라이센스 표시. 점 클릭 시 상세 모달.</p>
+                    </div>
+                    <div class="flex gap-2 items-end">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Range</label>
+                            <select id="timeline-infographic-range" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm">
+                                <option value="6" selected>Last 6 months</option>
+                                <option value="3">Last 3 months</option>
+                                <option value="12">Last 12 months</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Group by</label>
+                            <select id="timeline-infographic-groupby" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm">
+                                <option value="country" selected>Country</option>
+                                <option value="vendor">Vendor</option>
+                                <option value="type">License type</option>
+                            </select>
+                        </div>
+                        <div class="flex gap-1">
+                            <button id="timeline-download-png" class="bg-blue-700 hover:bg-blue-600 text-white text-xs px-3 py-1.5 rounded">⬇ PNG</button>
+                            <button id="timeline-download-svg" class="bg-blue-700 hover:bg-blue-600 text-white text-xs px-3 py-1.5 rounded">⬇ SVG</button>
+                            <button id="timeline-download-csv" class="bg-gray-700 hover:bg-gray-600 text-white text-xs px-3 py-1.5 rounded">⬇ CSV</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="timeline-infographic-chart" class="bg-gray-950 rounded border border-gray-800" style="height: 520px;"></div>
+                <div id="timeline-infographic-legend" class="text-xs text-gray-500 mt-2 flex flex-wrap gap-3"></div>
+            </div>
+
             <div class="mb-4">
-                <h2 class="text-section mb-1">Model Release Timeline</h2>
+                <h2 class="text-section mb-1">Model Release Timeline (Full List)</h2>
                 <p class="text-sm text-gray-400 mb-2">All tracked models ordered by <strong>실제 출시일</strong> (vendor announcement date). Click any row to open the model.</p>
                 <p id="timeline-exclusion-note" class="text-xs text-amber-400 mb-3"></p>
 
@@ -696,20 +731,20 @@
         </div>
     </footer>
 
-    <script src="js/theme.js?v=0de48885"></script>
-    <script src="js/peer-matcher.js?v=0de48885"></script>
-    <script src="js/modal.js?v=0de48885"></script>
-    <script src="js/command-palette.js?v=0de48885"></script>
-    <script src="js/frontier-compare.js?v=0de48885"></script>
-    <script src="js/cyber-coding.js?v=0de48885"></script>
-    <script src="js/sovereign.js?v=0de48885"></script>
-    <script src="js/timeline.js?v=0de48885"></script>
-    <script src="js/physical-ai.js?v=0de48885"></script>
-    <script src="js/medical-ai.js?v=0de48885"></script>
-    <script src="js/charts.js?v=0de48885"></script>
-    <script src="js/filters.js?v=0de48885"></script>
-    <script src="js/explorer.js?v=0de48885"></script>
-    <script src="js/comparison.js?v=0de48885"></script>
-    <script src="js/app.js?v=0de48885"></script>
+    <script src="js/theme.js?v=0307724b"></script>
+    <script src="js/peer-matcher.js?v=0307724b"></script>
+    <script src="js/modal.js?v=0307724b"></script>
+    <script src="js/command-palette.js?v=0307724b"></script>
+    <script src="js/frontier-compare.js?v=0307724b"></script>
+    <script src="js/cyber-coding.js?v=0307724b"></script>
+    <script src="js/sovereign.js?v=0307724b"></script>
+    <script src="js/timeline.js?v=0307724b"></script>
+    <script src="js/physical-ai.js?v=0307724b"></script>
+    <script src="js/medical-ai.js?v=0307724b"></script>
+    <script src="js/charts.js?v=0307724b"></script>
+    <script src="js/filters.js?v=0307724b"></script>
+    <script src="js/explorer.js?v=0307724b"></script>
+    <script src="js/comparison.js?v=0307724b"></script>
+    <script src="js/app.js?v=0307724b"></script>
 </body>
 </html>
