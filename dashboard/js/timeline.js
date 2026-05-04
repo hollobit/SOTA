@@ -376,21 +376,80 @@ var Timeline = {
             col.entries.sort(function(a, b) { return a.ts - b.ts; });
         });
 
-        // 16:9 SVG dimensions (1920×1080 base, scales via viewBox)
-        var SVG_W = 1920;
-        var SVG_H = 1080;
+        // Dynamic layout: pick column width and card height so EVERY release fits.
+        // Strategy:
+        //   1. Column width scales up with the busiest month's release count
+        //      (more cards in a column => need slightly wider so the model name
+        //      doesn't truncate aggressively, and so multi-column busy months can
+        //      split into card sub-columns inside one month).
+        //   2. Card height stays at 84 if all months fit; otherwise we shrink down
+        //      to a 60 minimum and split overflow into card sub-columns.
+        //   3. SVG height grows beyond 1080 if needed — host has overflow-x:auto so
+        //      tall infographics still look complete on download.
+        var maxPerCol = 0;
+        months.forEach(function(c) { if (c.entries.length > maxPerCol) maxPerCol = c.entries.length; });
+
         var PAD_TOP = 80;
         var PAD_LEFT = 60;
         var PAD_RIGHT = 60;
-        var PAD_BOTTOM = 40;
+        var PAD_BOTTOM = 50;
         var COL_GAP = 20;
-        var COL_W = (SVG_W - PAD_LEFT - PAD_RIGHT - COL_GAP * (months.length - 1)) / months.length;
         var HEADER_H = 56;
-        var TIMELINE_AXIS_Y = PAD_TOP + HEADER_H + 22; // horizontal axis line under headers
-        var CARD_AREA_TOP = TIMELINE_AXIS_Y + 28;
-        var CARD_AREA_H = SVG_H - CARD_AREA_TOP - PAD_BOTTOM;
-        var CARD_H = 84;
-        var CARD_GAP = 8;
+        var CARD_GAP = 6;
+        var INNER_COL_GAP = 8;
+
+        // Decide how many sub-columns of cards per month column. We want enough
+        // sub-columns that every card fits in a reasonable card height.
+        // Target: card height between 60 and 84 px; SVG max height around 2400.
+        var CARD_H_PREF = 84;
+        var CARD_H_MIN = 64;
+        var CARD_W_BASE = 280;  // sub-column card width
+        var SUBCOL_GAP = 6;
+
+        // Try card height = 84 first; reduce if SVG would exceed 2400 height.
+        var SVG_W, SVG_H, COL_W, CARD_H, subColsPerMonth, CARD_AREA_TOP, CARD_AREA_H, TIMELINE_AXIS_Y;
+        function computeLayout(cardH) {
+            // total card sub-column rows we need given cardH
+            var rowCapacity = function(maxCardsInCol) {
+                // Per-card-stack height capacity at cardH
+                return Math.max(1, Math.floor((MAX_AVAILABLE_H + CARD_GAP) / (cardH + CARD_GAP)));
+            };
+            // We bake SVG height to fit; choose subColsPerMonth so each sub-column has
+            // <= ceil(maxPerCol / subCols) cards, and SVG height = headers + axis + that*cardH
+            // Try increasing sub-cols until SVG height fits within 2400.
+            for (var sc = 1; sc <= 4; sc++) {
+                var perStack = Math.ceil(maxPerCol / sc);
+                var stackH = perStack * (cardH + CARD_GAP) - CARD_GAP;
+                var totalH = PAD_TOP + HEADER_H + 22 + 28 + stackH + PAD_BOTTOM;
+                if (totalH <= 2400) {
+                    return { subCols: sc, cardH: cardH, totalH: totalH, perStack: perStack };
+                }
+            }
+            // Fall back to 4 subcolumns
+            return { subCols: 4, cardH: cardH, totalH: PAD_TOP + HEADER_H + 22 + 28 + Math.ceil(maxPerCol / 4) * (cardH + CARD_GAP) - CARD_GAP + PAD_BOTTOM, perStack: Math.ceil(maxPerCol / 4) };
+        }
+        var MAX_AVAILABLE_H = 2400 - PAD_TOP - HEADER_H - 22 - 28 - PAD_BOTTOM;
+
+        var layout = computeLayout(CARD_H_PREF);
+        if (layout.totalH > 2200 && CARD_H_PREF > CARD_H_MIN) {
+            layout = computeLayout(72);
+        }
+        if (layout.totalH > 2200) {
+            layout = computeLayout(CARD_H_MIN);
+        }
+
+        subColsPerMonth = layout.subCols;
+        CARD_H = layout.cardH;
+
+        // Column width fits subColsPerMonth side-by-side card sub-columns
+        COL_W = subColsPerMonth * CARD_W_BASE + (subColsPerMonth - 1) * SUBCOL_GAP;
+
+        // SVG dims
+        SVG_W = PAD_LEFT + months.length * COL_W + (months.length - 1) * COL_GAP + PAD_RIGHT;
+        SVG_H = layout.totalH;
+        TIMELINE_AXIS_Y = PAD_TOP + HEADER_H + 22;
+        CARD_AREA_TOP = TIMELINE_AXIS_Y + 28;
+        CARD_AREA_H = SVG_H - CARD_AREA_TOP - PAD_BOTTOM;
 
         var SVG_NS = 'http://www.w3.org/2000/svg';
         function el(tag, attrs, parent) {
@@ -502,42 +561,18 @@ var Timeline = {
                 }, svg);
             }
 
-            // Render cards stacked vertically inside this column
-            var visible = col.entries.length;
-            var maxFit = Math.max(1, Math.floor((CARD_AREA_H + CARD_GAP) / (CARD_H + CARD_GAP)));
-            var truncated = visible > maxFit;
-            var renderCount = truncated ? maxFit - 1 : visible;
-
-            for (var k = 0; k < renderCount; k++) {
+            // Render every card — distribute across sub-columns within this month column
+            // Sub-columns are filled top-to-bottom, left-to-right (column-major order)
+            // so the first card (earliest in month) is top-left and reading flows naturally.
+            var totalCards = col.entries.length;
+            var perStack = Math.ceil(totalCards / subColsPerMonth);
+            for (var k = 0; k < totalCards; k++) {
                 var e = col.entries[k];
-                var cardY = CARD_AREA_TOP + k * (CARD_H + CARD_GAP);
-                self._renderCard(svg, el, colX, cardY, COL_W, CARD_H, col.color, e);
-            }
-
-            if (truncated) {
-                var moreCount = visible - renderCount;
-                var moreY = CARD_AREA_TOP + renderCount * (CARD_H + CARD_GAP);
-                el('rect', {
-                    x: colX,
-                    y: moreY,
-                    width: COL_W,
-                    height: CARD_H,
-                    rx: 6,
-                    fill: '#f1f5f9',
-                    stroke: col.color,
-                    'stroke-width': '1.5',
-                    'stroke-dasharray': '4,4'
-                }, svg);
-                var moreText = el('text', {
-                    x: colX + COL_W / 2,
-                    y: moreY + CARD_H / 2 + 5,
-                    'text-anchor': 'middle',
-                    'font-family': 'system-ui, -apple-system, sans-serif',
-                    'font-size': '14',
-                    'font-weight': '600',
-                    fill: col.color
-                }, svg);
-                moreText.textContent = '+' + moreCount + ' more';
+                var subColIdx = Math.floor(k / perStack);
+                var rowIdx = k % perStack;
+                var cardX = colX + subColIdx * (CARD_W_BASE + SUBCOL_GAP);
+                var cardY = CARD_AREA_TOP + rowIdx * (CARD_H + CARD_GAP);
+                self._renderCard(svg, el, cardX, cardY, CARD_W_BASE, CARD_H, col.color, e);
             }
         });
 
@@ -744,7 +779,12 @@ var Timeline = {
             return;
         }
 
-        // PNG: rasterize via canvas
+        // PNG: rasterize via canvas. Read viewBox to get true SVG dimensions
+        // (which now adapt to release count) so the PNG is sharp regardless of size.
+        var viewBox = (this._currentSvg.getAttribute('viewBox') || '0 0 1920 1080').split(/\s+/);
+        var nativeW = parseFloat(viewBox[2]) || 1920;
+        var nativeH = parseFloat(viewBox[3]) || 1080;
+
         var img = new Image();
         var svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
         var svgUrl = URL.createObjectURL(svgBlob);
@@ -752,8 +792,8 @@ var Timeline = {
         img.onload = function() {
             var canvas = document.createElement('canvas');
             var scale = 2;
-            canvas.width = 1920 * scale;
-            canvas.height = 1080 * scale;
+            canvas.width = nativeW * scale;
+            canvas.height = nativeH * scale;
             var ctx = canvas.getContext('2d');
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
