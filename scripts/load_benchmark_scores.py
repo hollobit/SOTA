@@ -44,14 +44,22 @@ def main():
         collected_at_str = meta.get("collected_at", date.today().isoformat())
         collected_at = date.fromisoformat(collected_at_str)
 
-        # Load models
+        # Load models. INSERT OR REPLACE overwrites the row, so when a JSON
+        # entry lacks `type`, we look up the existing value and preserve it
+        # rather than blindly defaulting to "proprietary" (which historically
+        # caused 90% of sovereign models to flip from open-weight to proprietary
+        # over many score-batch loads).
         for m in data.get("models", []):
+            mtype = m.get("type")
+            if mtype is None:
+                row = conn.execute("SELECT type FROM models WHERE id = ?", (m["id"],)).fetchone()
+                mtype = (row[0] if row else None) or "proprietary"
             insert_model(conn, Model(
                 id=m["id"],
                 vendor=m.get("vendor", "unknown"),
                 name=m.get("name", m["id"]),
                 version="",
-                type=m.get("type", "proprietary"),
+                type=mtype,
                 modalities=m.get("modalities", ["text"]),
                 parameters=m.get("parameters"),
                 release_date=m.get("released_at") or m.get("release_date"),
