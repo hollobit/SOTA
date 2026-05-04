@@ -178,14 +178,12 @@ var Timeline = {
         if (typeSel) typeSel.addEventListener('change', function() { self.render(); });
         if (searchInput) searchInput.addEventListener('input', function() { self.render(); });
 
-        // Infographic chart controls
+        // Infographic controls
         var rangeSel = document.getElementById('timeline-infographic-range');
-        var groupSel = document.getElementById('timeline-infographic-groupby');
         var pngBtn = document.getElementById('timeline-download-png');
         var svgBtn = document.getElementById('timeline-download-svg');
         var csvBtn = document.getElementById('timeline-download-csv');
         if (rangeSel) rangeSel.addEventListener('change', function() { self._renderInfographic(); });
-        if (groupSel) groupSel.addEventListener('change', function() { self._renderInfographic(); });
         if (pngBtn) pngBtn.addEventListener('click', function() { self._downloadInfographic('png'); });
         if (svgBtn) svgBtn.addEventListener('click', function() { self._downloadInfographic('svg'); });
         if (csvBtn) csvBtn.addEventListener('click', function() { self._downloadCSV(); });
@@ -312,17 +310,38 @@ var Timeline = {
         return entries;
     },
 
+    // Country flag extraction from "🇺🇸 USA" → "🇺🇸"
+    _flagFromCountry: function(country) {
+        if (!country) return '';
+        var m = country.match(/^(\p{Extended_Pictographic}\p{Extended_Pictographic}?)/u);
+        return m ? m[0] : (country.split(' ')[0] || '');
+    },
+
+    // First letter of vendor for the simple vector "logo" tile
+    _vendorLogoLetter: function(vendor) {
+        if (!vendor) return '?';
+        var clean = vendor.replace(/\s*\(.*\)\s*$/, '').trim();
+        return clean.charAt(0).toUpperCase();
+    },
+
+    // Stable colour per vendor for the logo tile (consistent across renders)
+    _vendorTileColor: function(vendor) {
+        var palette = ['#1d4ed8', '#7c3aed', '#db2777', '#dc2626', '#ea580c', '#ca8a04',
+            '#65a30d', '#16a34a', '#0d9488', '#0891b2', '#2563eb', '#4f46e5'];
+        var h = this._hashCode(vendor || '');
+        return palette[Math.abs(h) % palette.length];
+    },
+
     _renderInfographic: function() {
-        var host = document.getElementById('timeline-infographic-chart');
-        if (!host || typeof echarts === 'undefined') return;
+        var host = document.getElementById('timeline-infographic-host');
+        if (!host) return;
         var rangeSel = document.getElementById('timeline-infographic-range');
-        var groupSel = document.getElementById('timeline-infographic-groupby');
         var monthsBack = parseInt((rangeSel || {}).value || '6', 10);
-        var groupBy = (groupSel || {}).value || 'country';
 
         var entries = this._getInfographicEntries(monthsBack);
-        // Clear host children safely
+
         while (host.firstChild) host.removeChild(host.firstChild);
+
         if (entries.length === 0) {
             var empty = document.createElement('p');
             empty.className = 'text-gray-500 text-sm p-8 text-center';
@@ -331,210 +350,427 @@ var Timeline = {
             return;
         }
 
-        var self = this;
-
-        // Build month buckets (Y-axis): one row per YYYY-MM in range
+        // Build month columns (left = oldest, right = newest)
         var months = [];
         var now = new Date();
         for (var i = monthsBack - 1; i >= 0; i--) {
             var d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-            var ym = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
-            months.push(ym);
+            months.push({
+                ym: d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'),
+                year: d.getFullYear(),
+                month: d.getMonth(),
+                label: d.toLocaleString('en-US', { month: 'long', year: 'numeric' }),
+                color: this._MONTH_COLORS[d.getMonth()],
+                entries: []
+            });
         }
-
-        function getGroupKey(e) {
-            if (groupBy === 'vendor') return e.vendor;
-            if (groupBy === 'type') return e.type || 'unknown';
-            return e.country;
-        }
-        function getColor(e) {
-            if (groupBy === 'country') return self._COUNTRY_COLORS[e.country] || '#6b7280';
-            if (groupBy === 'type') return self._TYPE_COLORS[e.type] || '#6b7280';
-            return self._MONTH_COLORS[e.dt.getMonth()];
-        }
-
-        var seriesMap = {};
+        // Bucket entries
         entries.forEach(function(e) {
-            var key = getGroupKey(e);
-            if (!seriesMap[key]) seriesMap[key] = [];
             var ym = e.dt.getFullYear() + '-' + String(e.dt.getMonth() + 1).padStart(2, '0');
-            var yIdx = months.indexOf(ym);
-            if (yIdx < 0) return;
-            var dayInMonth = e.dt.getDate();
-            var jitter = (Math.abs(self._hashCode(e.id)) % 100) / 100 * 0.6 - 0.3;
-            seriesMap[key].push({
-                value: [dayInMonth, yIdx + jitter],
-                entry: e,
-                color: getColor(e)
+            months.forEach(function(col) {
+                if (col.ym === ym) col.entries.push(e);
             });
         });
-
-        var series = Object.keys(seriesMap).map(function(key) {
-            return {
-                name: key,
-                type: 'scatter',
-                symbolSize: 14,
-                data: seriesMap[key].map(function(p) {
-                    return {
-                        value: p.value,
-                        entry: p.entry,
-                        itemStyle: { color: p.color }
-                    };
-                }),
-                emphasis: {
-                    focus: 'series',
-                    label: { show: true, position: 'right', formatter: function(p) { return p.data.entry.name; } }
-                }
-            };
+        // Sort within each month: ascending by date (top = earliest day, bottom = latest day)
+        months.forEach(function(col) {
+            col.entries.sort(function(a, b) { return a.ts - b.ts; });
         });
 
-        var option = {
-            title: {
-                text: 'Model Releases — Last ' + monthsBack + ' Months',
-                subtext: entries.length + ' models · grouped by ' + groupBy + ' · click any point for details',
-                left: 'center',
-                textStyle: { color: '#e5e7eb', fontSize: 16 },
-                subtextStyle: { color: '#9ca3af', fontSize: 11 }
-            },
-            tooltip: {
-                trigger: 'item',
-                backgroundColor: '#1f2937',
-                borderColor: '#374151',
-                textStyle: { color: '#e5e7eb' },
-                formatter: function(p) {
-                    var e = p.data.entry;
-                    var parts = [];
-                    parts.push('<strong>' + e.name + '</strong>');
-                    parts.push(e.vendor + (e.country ? ' · ' + e.country : ''));
-                    parts.push('Released: <strong>' + e.date.slice(0, 10) + '</strong>');
-                    if (e.type) parts.push('License: ' + e.type);
-                    return parts.join('<br/>');
-                }
-            },
-            legend: {
-                top: 50,
-                type: 'scroll',
-                textStyle: { color: '#d1d5db', fontSize: 11 },
-                inactiveColor: '#4b5563'
-            },
-            grid: { left: 60, right: 40, top: 100, bottom: 50, containLabel: true },
-            xAxis: {
-                type: 'value',
-                name: 'Day of month',
-                nameLocation: 'middle',
-                nameGap: 28,
-                nameTextStyle: { color: '#9ca3af' },
-                min: 1,
-                max: 31,
-                interval: 5,
-                axisLabel: { color: '#d1d5db' },
-                axisLine: { lineStyle: { color: '#4b5563' } },
-                splitLine: { lineStyle: { color: '#1f2937' } }
-            },
-            yAxis: {
-                type: 'category',
-                data: months,
-                inverse: true,
-                axisLabel: { color: '#d1d5db' },
-                axisLine: { lineStyle: { color: '#4b5563' } },
-                splitLine: { show: true, lineStyle: { color: '#1f2937', type: 'dashed' } }
-            },
-            series: series,
-            toolbox: {
-                feature: {
-                    saveAsImage: {
-                        show: true,
-                        title: 'Save PNG',
-                        backgroundColor: '#0f172a',
-                        pixelRatio: 2,
-                        name: 'model-timeline-' + monthsBack + 'mo-' + new Date().toISOString().slice(0, 10)
-                    }
-                },
-                iconStyle: { borderColor: '#9ca3af' },
-                right: 20, top: 20
-            },
-            animationDuration: 600
-        };
+        // 16:9 SVG dimensions (1920×1080 base, scales via viewBox)
+        var SVG_W = 1920;
+        var SVG_H = 1080;
+        var PAD_TOP = 80;
+        var PAD_LEFT = 60;
+        var PAD_RIGHT = 60;
+        var PAD_BOTTOM = 40;
+        var COL_GAP = 20;
+        var COL_W = (SVG_W - PAD_LEFT - PAD_RIGHT - COL_GAP * (months.length - 1)) / months.length;
+        var HEADER_H = 56;
+        var TIMELINE_AXIS_Y = PAD_TOP + HEADER_H + 22; // horizontal axis line under headers
+        var CARD_AREA_TOP = TIMELINE_AXIS_Y + 28;
+        var CARD_AREA_H = SVG_H - CARD_AREA_TOP - PAD_BOTTOM;
+        var CARD_H = 84;
+        var CARD_GAP = 8;
 
-        var chart = (typeof Charts !== 'undefined' && Charts._getOrCreate)
-            ? Charts._getOrCreate('timeline-infographic-chart')
-            : echarts.init(host, 'dark');
-        if (!chart) return;
-        this._infographicChart = chart;
-        chart.setOption(option, true);
+        var SVG_NS = 'http://www.w3.org/2000/svg';
+        function el(tag, attrs, parent) {
+            var node = document.createElementNS(SVG_NS, tag);
+            if (attrs) Object.keys(attrs).forEach(function(k) { node.setAttribute(k, attrs[k]); });
+            if (parent) parent.appendChild(node);
+            return node;
+        }
 
-        chart.off('click');
-        chart.on('click', function(p) {
-            if (p && p.data && p.data.entry && typeof Modal !== 'undefined' && Modal.showModel) {
-                Modal.showModel(p.data.entry.id);
+        var svg = el('svg', {
+            xmlns: SVG_NS,
+            viewBox: '0 0 ' + SVG_W + ' ' + SVG_H,
+            width: '100%',
+            height: '100%',
+            preserveAspectRatio: 'xMidYMid meet'
+        });
+        // White background (download keeps it)
+        el('rect', { x: 0, y: 0, width: SVG_W, height: SVG_H, fill: '#ffffff' }, svg);
+
+        // Title
+        var title = el('text', {
+            x: SVG_W / 2,
+            y: 44,
+            'text-anchor': 'middle',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '24',
+            'font-weight': '700',
+            fill: '#0f172a'
+        }, svg);
+        title.textContent = 'AI Model Release Timeline · Last ' + monthsBack + ' Months';
+        var subtitle = el('text', {
+            x: SVG_W / 2,
+            y: 68,
+            'text-anchor': 'middle',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '13',
+            fill: '#64748b'
+        }, svg);
+        subtitle.textContent = entries.length + ' verified releases · column = month · color = month band · sorted earliest → latest within column';
+
+        // Main horizontal timeline axis
+        el('line', {
+            x1: PAD_LEFT,
+            y1: TIMELINE_AXIS_Y,
+            x2: SVG_W - PAD_RIGHT,
+            y2: TIMELINE_AXIS_Y,
+            stroke: '#cbd5e1',
+            'stroke-width': '2'
+        }, svg);
+
+        var self = this;
+
+        months.forEach(function(col, idx) {
+            var colX = PAD_LEFT + idx * (COL_W + COL_GAP);
+            var headerY = PAD_TOP;
+
+            // Month header pill
+            el('rect', {
+                x: colX,
+                y: headerY,
+                width: COL_W,
+                height: HEADER_H,
+                rx: 8,
+                fill: col.color,
+                opacity: '0.95'
+            }, svg);
+            var hdrText = el('text', {
+                x: colX + COL_W / 2,
+                y: headerY + 24,
+                'text-anchor': 'middle',
+                'font-family': 'system-ui, -apple-system, sans-serif',
+                'font-size': '17',
+                'font-weight': '700',
+                fill: '#ffffff'
+            }, svg);
+            hdrText.textContent = col.label;
+            var hdrCount = el('text', {
+                x: colX + COL_W / 2,
+                y: headerY + 44,
+                'text-anchor': 'middle',
+                'font-family': 'system-ui, -apple-system, sans-serif',
+                'font-size': '12',
+                fill: '#ffffff',
+                opacity: '0.85'
+            }, svg);
+            hdrCount.textContent = col.entries.length + ' release' + (col.entries.length === 1 ? '' : 's');
+
+            // Column node on timeline axis
+            el('circle', {
+                cx: colX + COL_W / 2,
+                cy: TIMELINE_AXIS_Y,
+                r: 7,
+                fill: col.color,
+                stroke: '#ffffff',
+                'stroke-width': '2'
+            }, svg);
+
+            // Vertical connector from axis node down to first card
+            if (col.entries.length > 0) {
+                el('line', {
+                    x1: colX + COL_W / 2,
+                    y1: TIMELINE_AXIS_Y + 7,
+                    x2: colX + COL_W / 2,
+                    y2: CARD_AREA_TOP - 6,
+                    stroke: col.color,
+                    'stroke-width': '1.5',
+                    'stroke-dasharray': '3,3',
+                    opacity: '0.5'
+                }, svg);
+            }
+
+            // Render cards stacked vertically inside this column
+            var visible = col.entries.length;
+            var maxFit = Math.max(1, Math.floor((CARD_AREA_H + CARD_GAP) / (CARD_H + CARD_GAP)));
+            var truncated = visible > maxFit;
+            var renderCount = truncated ? maxFit - 1 : visible;
+
+            for (var k = 0; k < renderCount; k++) {
+                var e = col.entries[k];
+                var cardY = CARD_AREA_TOP + k * (CARD_H + CARD_GAP);
+                self._renderCard(svg, el, colX, cardY, COL_W, CARD_H, col.color, e);
+            }
+
+            if (truncated) {
+                var moreCount = visible - renderCount;
+                var moreY = CARD_AREA_TOP + renderCount * (CARD_H + CARD_GAP);
+                el('rect', {
+                    x: colX,
+                    y: moreY,
+                    width: COL_W,
+                    height: CARD_H,
+                    rx: 6,
+                    fill: '#f1f5f9',
+                    stroke: col.color,
+                    'stroke-width': '1.5',
+                    'stroke-dasharray': '4,4'
+                }, svg);
+                var moreText = el('text', {
+                    x: colX + COL_W / 2,
+                    y: moreY + CARD_H / 2 + 5,
+                    'text-anchor': 'middle',
+                    'font-family': 'system-ui, -apple-system, sans-serif',
+                    'font-size': '14',
+                    'font-weight': '600',
+                    fill: col.color
+                }, svg);
+                moreText.textContent = '+' + moreCount + ' more';
             }
         });
 
-        this._renderLegend(seriesMap, groupBy);
+        // Footer caption
+        var footer = el('text', {
+            x: SVG_W - PAD_RIGHT,
+            y: SVG_H - 14,
+            'text-anchor': 'end',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '11',
+            fill: '#94a3b8'
+        }, svg);
+        footer.textContent = 'hollobit.github.io/SOTA · generated ' + new Date().toISOString().slice(0, 10);
+
+        host.appendChild(svg);
+        this._currentSvg = svg;
     },
 
-    _renderLegend: function(seriesMap, groupBy) {
-        var el = document.getElementById('timeline-infographic-legend');
-        if (!el) return;
-        while (el.firstChild) el.removeChild(el.firstChild);
+    _renderCard: function(svg, el, x, y, w, h, accentColor, e) {
         var self = this;
-        Object.keys(seriesMap).sort().forEach(function(key) {
-            var color = (groupBy === 'country' ? self._COUNTRY_COLORS[key]
-                : groupBy === 'type' ? self._TYPE_COLORS[key]
-                : self._MONTH_COLORS[(seriesMap[key][0] && seriesMap[key][0].entry.dt.getMonth()) || 0])
-                || '#6b7280';
-            var wrap = document.createElement('span');
-            wrap.className = 'inline-flex items-center gap-1.5';
-            var swatch = document.createElement('span');
-            swatch.className = 'inline-block w-3 h-3 rounded-full';
-            swatch.style.background = color;
-            var label = document.createElement('span');
-            label.className = 'text-gray-400';
-            label.textContent = key;
-            var count = document.createElement('span');
-            count.className = 'text-gray-600';
-            count.textContent = '(' + seriesMap[key].length + ')';
-            wrap.appendChild(swatch);
-            wrap.appendChild(label);
-            wrap.appendChild(count);
-            el.appendChild(wrap);
+
+        // Card background
+        el('rect', {
+            x: x,
+            y: y,
+            width: w,
+            height: h,
+            rx: 6,
+            fill: '#ffffff',
+            stroke: '#e2e8f0',
+            'stroke-width': '1'
+        }, svg);
+        // Left accent stripe (month colour)
+        el('rect', {
+            x: x,
+            y: y,
+            width: 4,
+            height: h,
+            fill: accentColor
+        }, svg);
+
+        // Vendor logo tile
+        var tileSize = 36;
+        var tileX = x + 12;
+        var tileY = y + 10;
+        el('rect', {
+            x: tileX,
+            y: tileY,
+            width: tileSize,
+            height: tileSize,
+            rx: 7,
+            fill: this._vendorTileColor(e.vendor)
+        }, svg);
+        var tileText = el('text', {
+            x: tileX + tileSize / 2,
+            y: tileY + tileSize / 2 + 7,
+            'text-anchor': 'middle',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '20',
+            'font-weight': '700',
+            fill: '#ffffff'
+        }, svg);
+        tileText.textContent = this._vendorLogoLetter(e.vendor);
+
+        // Date badge (MM.DD)
+        var mm = String(e.dt.getMonth() + 1).padStart(2, '0');
+        var dd = String(e.dt.getDate()).padStart(2, '0');
+        var dateBadge = el('text', {
+            x: x + w - 12,
+            y: y + 22,
+            'text-anchor': 'end',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '14',
+            'font-weight': '700',
+            fill: accentColor
+        }, svg);
+        dateBadge.textContent = mm + '.' + dd;
+
+        // Country flag (top-right, just under date)
+        var flagText = el('text', {
+            x: x + w - 12,
+            y: y + 42,
+            'text-anchor': 'end',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '14'
+        }, svg);
+        flagText.textContent = this._flagFromCountry(e.country);
+
+        // Model name (precise version, large) — clip if too long
+        var nameText = el('text', {
+            x: tileX + tileSize + 10,
+            y: y + 28,
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '14',
+            'font-weight': '700',
+            fill: '#0f172a'
+        }, svg);
+        // Strip vendor prefix if present (model name only — no path)
+        var displayName = e.name;
+        if (displayName.indexOf('/') !== -1) {
+            displayName = displayName.split('/').slice(1).join('/');
+        }
+        // Width-aware truncation
+        var maxNameLen = 26;
+        if (displayName.length > maxNameLen) displayName = displayName.slice(0, maxNameLen - 1) + '…';
+        nameText.textContent = displayName;
+        // Tooltip with full version
+        var nameTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        nameTitle.textContent = e.name + '\n' + e.vendor + '\nReleased: ' + e.date.slice(0, 10);
+        nameText.appendChild(nameTitle);
+
+        // Vendor name (smaller, gray)
+        var vendorText = el('text', {
+            x: tileX + tileSize + 10,
+            y: y + 47,
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '11',
+            fill: '#64748b'
+        }, svg);
+        var vendorClean = e.vendor.replace(/\s*\(.*\)\s*$/, '');
+        var maxVendorLen = 32;
+        if (vendorClean.length > maxVendorLen) vendorClean = vendorClean.slice(0, maxVendorLen - 1) + '…';
+        vendorText.textContent = vendorClean;
+
+        // Bottom row: license badge + country full label
+        var licenseColors = {
+            'proprietary': { bg: '#fef2f2', fg: '#b91c1c' },
+            'open-weight': { bg: '#f0fdf4', fg: '#15803d' },
+            'open-weights': { bg: '#f0fdf4', fg: '#15803d' },
+            'open-source': { bg: '#eff6ff', fg: '#1d4ed8' }
+        };
+        var lc = licenseColors[e.type] || { bg: '#f1f5f9', fg: '#475569' };
+        var licenseLabel = e.type || 'unknown';
+        // estimate badge width
+        var badgeW = Math.max(58, licenseLabel.length * 6 + 14);
+        el('rect', {
+            x: tileX + tileSize + 10,
+            y: y + h - 26,
+            width: badgeW,
+            height: 18,
+            rx: 9,
+            fill: lc.bg
+        }, svg);
+        var licenseText = el('text', {
+            x: tileX + tileSize + 10 + badgeW / 2,
+            y: y + h - 13,
+            'text-anchor': 'middle',
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '10',
+            'font-weight': '600',
+            fill: lc.fg
+        }, svg);
+        licenseText.textContent = licenseLabel;
+
+        // Country full label after license badge
+        var countryLabel = (e.country || '').replace(/^\S+\s*/, ''); // strip flag, keep name
+        var countryText = el('text', {
+            x: tileX + tileSize + 10 + badgeW + 8,
+            y: y + h - 13,
+            'font-family': 'system-ui, -apple-system, sans-serif',
+            'font-size': '10',
+            fill: '#94a3b8'
+        }, svg);
+        countryText.textContent = countryLabel;
+
+        // Click target — invisible rect on top routing to modal
+        var click = el('rect', {
+            x: x,
+            y: y,
+            width: w,
+            height: h,
+            fill: 'transparent',
+            style: 'cursor: pointer'
+        }, svg);
+        click.addEventListener('click', function() {
+            if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(e.id);
         });
+        var clickTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        clickTitle.textContent = e.name + ' · ' + e.vendor + ' · ' + e.date.slice(0, 10);
+        click.appendChild(clickTitle);
     },
 
     _hashCode: function(s) {
         var h = 0;
-        for (var i = 0; i < s.length; i++) h = ((h << 5) - h) + s.charCodeAt(i) | 0;
+        for (var i = 0; i < (s || '').length; i++) h = ((h << 5) - h) + s.charCodeAt(i) | 0;
         return h;
     },
 
     _downloadInfographic: function(format) {
-        var chart = this._infographicChart;
-        if (!chart) return;
+        if (!this._currentSvg) return;
         var rangeSel = document.getElementById('timeline-infographic-range');
         var monthsBack = (rangeSel || {}).value || '6';
         var stamp = new Date().toISOString().slice(0, 10);
         var filename = 'model-timeline-' + monthsBack + 'mo-' + stamp;
 
-        if (format === 'png') {
-            var url = chart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: '#0f172a' });
-            this._triggerDownload(url, filename + '.png');
-        } else if (format === 'svg') {
-            try {
-                var svgEl = chart.getDom().querySelector('svg');
-                if (svgEl) {
-                    var serializer = new XMLSerializer();
-                    var svgStr = serializer.serializeToString(svgEl);
-                    var blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
-                    var blobUrl = URL.createObjectURL(blob);
-                    this._triggerDownload(blobUrl, filename + '.svg');
-                    setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 1000);
-                    return;
-                }
-            } catch (e) {}
-            var pngUrl = chart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: '#0f172a' });
-            this._triggerDownload(pngUrl, filename + '.png');
-            alert('SVG renderer not active — saved as PNG instead.');
+        var serializer = new XMLSerializer();
+        var svgStr = serializer.serializeToString(this._currentSvg);
+
+        if (format === 'svg') {
+            var blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+            var blobUrl = URL.createObjectURL(blob);
+            this._triggerDownload(blobUrl, filename + '.svg');
+            setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 1500);
+            return;
         }
+
+        // PNG: rasterize via canvas
+        var img = new Image();
+        var svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+        var svgUrl = URL.createObjectURL(svgBlob);
+        var self = this;
+        img.onload = function() {
+            var canvas = document.createElement('canvas');
+            var scale = 2;
+            canvas.width = 1920 * scale;
+            canvas.height = 1080 * scale;
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            URL.revokeObjectURL(svgUrl);
+            canvas.toBlob(function(blob) {
+                if (!blob) return;
+                var url = URL.createObjectURL(blob);
+                self._triggerDownload(url, filename + '.png');
+                setTimeout(function() { URL.revokeObjectURL(url); }, 1500);
+            }, 'image/png');
+        };
+        img.onerror = function() {
+            URL.revokeObjectURL(svgUrl);
+            alert('PNG export failed — try SVG download instead.');
+        };
+        img.src = svgUrl;
     },
 
     _downloadCSV: function() {
