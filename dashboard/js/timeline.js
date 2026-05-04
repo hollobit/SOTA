@@ -663,24 +663,25 @@ var Timeline = {
         }, svg);
         tileText.textContent = this._vendorLogoLetter(e.vendor);
 
-        // Date badge (MM.DD) — placed left of the larger flag tile
+        // Date badge (MM.DD) — top-right corner, no flag overlap (flag moved to bottom)
         var mm = String(e.dt.getMonth() + 1).padStart(2, '0');
         var dd = String(e.dt.getDate()).padStart(2, '0');
         var dateBadge = el('text', {
-            x: x + w - 28 - 10 - 8,  // sit just left of the 28px flag tile
-            y: y + 26,
+            x: x + w - 12,
+            y: y + 24,
             'text-anchor': 'end',
             'font-family': 'system-ui, -apple-system, sans-serif',
-            'font-size': '14',
+            'font-size': '15',
             'font-weight': '700',
             fill: accentColor
         }, svg);
         dateBadge.textContent = mm + '.' + dd;
 
-        // Country flag — large badge on top-right with subtle background tile
+        // Country flag — placed in BOTTOM-RIGHT so MM.DD has top-right to itself.
+        // Sized 28x28 with subtle slate tile background.
         var flagSize = 28;
-        var flagX = x + w - flagSize - 10;
-        var flagY = y + 8;
+        var flagX = x + w - flagSize - 8;
+        var flagY = y + h - flagSize - 6;
         el('rect', {
             x: flagX,
             y: flagY,
@@ -766,8 +767,14 @@ var Timeline = {
         }, svg);
         licenseText.textContent = licenseLabel;
 
-        // Country full label after license badge
+        // Country full label after license badge — clipped before flag tile
         var countryLabel = (e.country || '').replace(/^\S+\s*/, ''); // strip flag, keep name
+        // Available horizontal space ends at flag tile (x + w - 28 - 8 - 4 padding)
+        var countryMaxX = (x + w - flagSize - 8) - (tileX + tileSize + 10 + badgeW + 8);
+        var maxCountryChars = Math.max(0, Math.floor(countryMaxX / 5));
+        if (countryLabel.length > maxCountryChars && maxCountryChars > 1) {
+            countryLabel = countryLabel.slice(0, maxCountryChars - 1) + '…';
+        }
         var countryText = el('text', {
             x: tileX + tileSize + 10 + badgeW + 8,
             y: y + h - 13,
