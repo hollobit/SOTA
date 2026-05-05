@@ -1,5 +1,124 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-05: 13-category foundation expansion + Timeline infographic + version-vs-date audit + partial-date v6
+
+### Session overview
+하루 동안 7개 영역에서 데이터·코드·시각화 작업을 동시에 진행. Text LLM 중심 dashboard를 13개 foundation 카테고리(audio/video/3D/VLM/VLA/reasoning/diffusion-LM/code/math/medical/legal/bio/time-series/tabular)로 확장하고, Timeline 메뉴에 카드형 인포그래픽 + 다운로드 기능을 추가. 사용자가 발견한 GPT-5.1/5.2 출시일 모순을 시작점으로 전수 audit 자동화 수행.
+
+### 1. Foundation model 13개 카테고리 확장 (commit `a4e063e`)
+이전까지는 text LLM 중심이었던 dashboard를 95개 신규 모델로 비-text foundation까지 cross-category 비교 가능하게 확장. 모든 entry는 1차 출처 검증.
+
+| 카테고리 | 신규 | 핵심 모델 |
+|---------|-----|----------|
+| 🎙️ Audio/Speech | 16 | ElevenLabs v3, Voxtral Small/Mini, Step-Audio R1/EditX, Moshi+Mimi, Sesame CSM-1B, ChatTTS, F5-TTS, Kokoro, Spark-TTS, CosyVoice 2/3, Whisper-v3-turbo |
+| 🎬 Video Gen | 16 | Sora 2, Veo 3/3.1, Kling 2.0/2.5/2.6, HunyuanVideo 1.5/I2V, Wan 2.1/2.2, Mochi 1, CogVideoX 5B/1.5, Pika 2.2, Runway Gen-4/4.5, MiniMax Video-01/Hailuo 02, Luma Ray 2, Pyramid Flow |
+| 🌐 3D/World | 9 | SV4D 2.0, TRELLIS/TRELLIS.2, Hunyuan3D 2/2.1, DUSt3R+MASt3R, Depth-Anything v2, Marigold v1.1, VGGT |
+| 👁️ VLM | 12 | Molmo 7B-D, Janus-Pro, Pixtral 12B/Large 124B, LLaVA-OneVision, Qwen2.5-VL/Omni, Qwen3-VL/Omni, InternVL 2.5/3.5 |
+| 🧠 Reasoning | 10 | DeepSeek-R1, Qwen3-Thinking 235B/30B/4B, Magistral Small, Skywork-OR1, GLM-Z1, Doubao 1.5 Pro, Phi-4-reasoning-vision |
+| 🌊 Diffusion-LM | 1 | Mercury Coder |
+| 💻 Code | 6 | Qwen2.5/3-Coder, Devstral 2, Granite 34B Code, Seed-Coder, Doubao Seed-Code |
+| ➗ Math | 4 | Qwen2.5-Math, NuminaMath 7B/72B, DeepSeek-Math V2 |
+| 🩺 Medical | 3 | HuatuoGPT-o1 72B/8B, Med42 v2 70B |
+| ⚖️ Legal | 2 | Harvey Protégé, CoCounsel Legal |
+| 🧬 Bio/Protein | 5 | AlphaFold-3, Boltz-1/2, ESM-3 98B, Chai-1 |
+| 📈 Time-series | 8 | Chronos-T5/Bolt/2, TimesFM 2.5, Lag-Llama, Moirai, MOMENT |
+| 📊 Tabular | 2 | TabPFN v2 / 2.5 |
+
+### 2. Timeline 메뉴 카드형 인포그래픽 추가 + skill 저장 (commits `0307724` → `d57d534`)
+사용자 스펙: 가로 16:9, 월별 컬럼, 좌→우 시간 진행, 카드형 이벤트 표시, 정확한 버전명 필수, 모호한 표현 금지. ECharts 산점차트에서 hand-rolled SVG 인포그래픽으로 완전 재구성.
+
+**최종 구현:**
+- **SVG 동적 viewBox**: 16:9 base 1920×1080, 카드 수에 따라 너비/높이 확장 (6개월 3064×1490, 12개월 7132×2030)
+- **월별 가변 너비**: 1~14건 280px / 15~28건 566px / 29~42건 852px / 43+건 1138px (sub-column fan-out)
+- **모든 카드 빠짐없이 렌더**: `+N more` truncation 0 (114/114, 12개월 모드 223/223)
+- **카드 4-코너 레이아웃**: 좌상 logo / 우상 MM.DD / 본문 모델명+벤더 / 좌하 license pill / 중하 country / 우하 28×28 flag tile (24px emoji)
+- **국가 매핑 보강**: Sakana(JP), Kakao Healthcare(KR), Arcee/Inception(US), Fractal(IN) prefix 추가
+- **컨테이너 스크롤 0**: `overflow:hidden` + SVG `width:100%` + viewBox 비례 축소로 좁은 viewport에서도 모든 카드 visible
+- **다운로드 3종**: PNG (2x raster, ~3840×2030 native) / SVG (vector ~79KB) / CSV (release_date,model_id,name,vendor,country,type)
+- **Footer attribution**: `Author: Jonghong Jeon · hollobit@etri.re.kr` + `Source: https://hollobit.github.io/SOTA/#timeline · data verified against vendor blogs, llm-stats.com, HuggingFace model cards` + `Generated YYYY-MM-DD`
+- **Skill 저장**: `~/.claude/skills/timeline-infographic/skill.md` + 프로젝트 `.claude/skills/` 미러 — 13개 hard rules + 5단계 구현 절차 + 7-point Playwright 검증 체크리스트 + 9개 anti-patterns 문서화
+
+### 3. Version vs date contradiction 자동 audit + corrections v5 (commit `70b7ceb`)
+사용자 발견: GPT-5.1(2025-11-13) 보다 GPT-5.2(2025-11-10)가 먼저인 모순. 전수 audit 스크립트 작성.
+
+`scripts/audit_version_date_consistency.py` — model_id를 `(family, version_tuple, variant)`로 파싱, 같은 family/variant 그룹에서 version 오름차순 vs date 오름차순 일치 여부 검사. 4건 모순 발견:
+
+| # | 진단 | 조치 |
+|---|------|------|
+| 1 | gpt-5.1 (11-13) > gpt-5.2 (**11-10**) | gpt-5.2 → **2025-12-11** ([OpenAI 공식](https://openai.com/index/introducing-gpt-5-2/), Code Red Gemini 3 대응); gpt-5.1 → **2025-11-12** |
+| 2 | gpt-4.1 vs gpt-4.5 | OpenAI 비순차 명명 (4.5 Orion이 먼저) — 사실, whitelist |
+| 3 | nemotron-3-340b (2025-08) vs nemotron-4-340b (2024-06) | nemotron-3-340b → **2025-12-15** (family 발표일) + whitelist |
+| 4 | grok-4.3 vs grok-4.20 | xAI 농담 명명 (420 meme이 먼저) — 사실, whitelist |
+
+추가 partial date 보강 (8건): gpt-3.5-turbo-0125/0301/0613, gpt-4(2023-03-14), gpt-4-0125-preview, gpt-4-turbo-2024-04-09, gpt-5-nano(2025-08-07), **gpt-5.4-mini(2026-03-17)** (5.4 base 12일 후, OpenAI release notes).
+
+**최종 결과: 0 contradictions** (54 versioned groups). KNOWN_NONSEQUENTIAL whitelist에 3개 vendor의 정당한 비순차 명명 inline 문서화.
+
+### 4. Partial-date v6 — 77건 YYYY-MM → YYYY-MM-DD (commit `d57d534`)
+audit으로 230개 partial-date 항목 발견. 검증 가능한 77개를 정확한 일자로 업그레이드:
+
+- **Meta**: Llama 2 7B/13B (2023-07-18), Llama 3 8B/70B (2024-04-18), SAM 1 (2023-04-05), SAM 2.1 (2024-09-30), SAM 3/3D (2025-11-19)
+- **Anthropic**: Claude 2.1 (2023-11-21), Claude 3 Sonnet (2024-03-04)
+- **Google**: Gemini 1.0 Pro (2023-12-06), Gemini 1.5 Pro (2024-02-15), Gemini 2.5 Flash (2025-04-09), Gemma 7B (2024-02-21), MedGemma 9B/27B (2025-05-20), Med-PaLM 1/2, PH-LLM, Tx-LLM, Med-Gemini-L-1
+- **DeepMind**: AlphaFold 2 (2021-07-15 Nature), AlphaFold 3 (2024-05-08), AlphaFold Server (2024-11-13)
+- **Alibaba/Qwen**: Qwen 1.5 7B/32B/72B (2024-02-04), Qwen 2.5 32B/72B (2024-09-19), Qwen3-30B, Qwen3.5-397B-A17B
+- **Amazon**: Nova Micro (2024-12-03 re:Invent)
+- **Medical foundation**: Meditron 7B/70B, HuatuoGPT-II/Vision, RETFound, Clinical Camel, Med-Flamingo, MedAlpaca, PMC-LLaMA, DoctorGLM, Apollo 2B/6B/7B/MedLM-7B, MedSAM 1/2, SAM-Med2D/3D, H-Optimus, CONCH, UNI2, Virchow2, OpenBioLLM 8B/70B, BioMistral, Med42 v1/v2, BiomedCLIP, BioGPT, LLaVA-Med, PubMedBERT, ClinicalBERT, BioBERT, BlueBERT, GatorTron, MolFormer, BiomedLM-2.7B
+
+남은 153건: 주로 specialty medical/research 모델 (명확한 public release 이벤트 없음, YYYY-MM 자체가 best signal).
+
+### 5. May 2026 weekly batch (commit `0de4888`)
+2026-05-01~05 윈도우는 frontier 모델 출시 공백기 — llm-stats / aiflashreport / mean.ceo / HF Daily Papers 모두 0건 확인. 유일한 backfill: **Inception Mercury 2** (2026-04-23, diffusion-based parallel-token reasoning, 1009 tok/s on Blackwell, 128k ctx) + 신규 벤치마크 **MemRouter** (arxiv 2605.00356, LoCoMo conversational memory routing).
+
+### 6. ThinkPol AI Coding Contest + NIST CAISI evaluation (commit `696e86e`)
+2개 1차 출처 보고서로 51개 신규 점수:
+
+**(1) ThinkPol Word Gem Puzzle**: 오픈웨이트 Kimi K2.6가 frontier closed 모델들을 제치고 우승. 9개 모델 ranking + cumulative 77 (Kimi 1위) + AA Intelligence Index (GPT-5.5: 60, Opus 4.7: 57)
+
+**(2) NIST CAISI DeepSeek V4 Pro 평가**: DeepSeek V4 Pro vs GPT-5.5/5.4-mini/Opus 4.6 9개 차원 평가, IRT Elo composite. 핵심 결론: DeepSeek V4 Pro lag ~8개월. 신규 벤치마크 7개 (ctf_archive_diamond, portbench, arc_agi_2_semi_private, pumac_2024, ai_coding_contest_word_gem/cumulative, irt_capability_elo) + 신규 모델 2개 (xai/grok-expert-4.2, deepseek/deepseek-v4 base).
+
+### 7. Trinity family 정확한 메타데이터 + 4 benchmark scores (commit `e8accab`)
+사용자 제공 링크 (arcee.ai blog + arxiv 2602.17004)로 placeholder `trinity-large-thinking`을 5개 정확한 entries로 교체:
+- arcee/trinity-large-preview/base/truebase (2026-01-27, 400B/13B-active sparse MoE 256 experts × 4 active, 17T tokens, 2048 B300 GPU × 33일, $20M)
+- arcee/trinity-mini (26B/3B-active, 2026-02-19)
+- arcee/trinity-nano (6B/1B-active, 2026-02-19)
+
+벤치마크 점수 4건 (Trinity Large Preview vs Llama-4-Maverick): MMLU 87.2, MMLU-Pro 75.2, GPQA-Diamond 63.3, AIME-2025 24.0.
+
+### 8. National attribution 5건 수정 (commit `e75e4fe`)
+사용자 지적: vendor → country 매핑 오류. timeline.js `VENDOR_TO_COUNTRY`에 prefix 추가:
+- `sakana/` → 🇯🇵 Japan (이전엔 sakanaai만 매핑)
+- `kakao-healthcare/` → 🇰🇷 Korea
+- `arcee/` `arcee-ai/` → 🇺🇸 USA
+- `inception/` `inceptionlabs/` → 🇺🇸 USA
+- `fractal/` `fractalanalytics/` → 🇮🇳 India
+
+DB vendor 라벨도 `(Country)` suffix 정규화 (Sakana AI (Japan), Arcee AI (USA) 등).
+
+### 데이터 규모 증분 (Day-of-day)
+| 항목 | 시작 (5/4 종료) | 종료 (5/5) | 증가 |
+|------|---------------|-----------|------|
+| 모델 | 795 | **893** | +98 |
+| 벤치마크 | 855 | **863** | +8 |
+| 점수 | 3,369 | **3,424** | +55 |
+| 출시일 보유 | 757 | ~880+ | +120 (포함 partial→exact upgrade) |
+| Partial date (YYYY-MM only) | 230 | 153 | -77 (정확한 일자로 업그레이드) |
+| Version-vs-date 모순 | (검사 안됨) | **0 / 59 그룹** | audit 자동화 |
+| Foundation 카테고리 커버 | text+VLA | **13개** | +12 카테고리 |
+
+### 커밋 시퀀스 (2026-05-05)
+- `0de4888` May 2026 daily sweep + Mercury 2 + MemRouter
+- `696e86e` ThinkPol coding contest + NIST CAISI evaluation (51 scores)
+- `e8accab` Arcee Trinity family proper entries + 4 benchmarks
+- `70b7ceb` Version vs date audit script + 11 corrections (GPT-5.2 한 달 오류 등)
+- `0307724` → `0d8a9e7` → `02138d5` → `029cb3b` → `a89f5b8` Timeline 인포그래픽 진화 (column-card → 가변 너비 → 큰 국기 → 4-코너 → 스크롤 제거 → 저자/출처 footer → #timeline anchor)
+- `1ba0d4a` Timeline 인포그래픽 skill 저장
+- `a4e063e` 13개 foundation 카테고리 95개 모델 신규
+- `e75e4fe` Sakana/Kakao Healthcare/Arcee/Inception/Fractal 국가 매핑
+- `d57d534` Partial-date v6 — 77건 YYYY-MM → YYYY-MM-DD
+
+---
+
 ## 2026-05-04: May 2026 batch + release_date backfill (635→757) + type misclassification fix + Trends repair
 
 ### Session overview
