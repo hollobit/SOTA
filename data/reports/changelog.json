@@ -1,6 +1,69 @@
 [
   {
     "type": "Feature",
+    "date": "2026-05-05",
+    "benchmark_id": "Foundation model 13-category 확장 — 95 신규 모델",
+    "new_model": "Audio(16) ElevenLabs v3, Voxtral, Step-Audio, Moshi, Sesame CSM, ChatTTS, F5-TTS, Kokoro, CosyVoice / Video(16) Sora 2, Veo 3/3.1, Kling 2.0/2.5/2.6, HunyuanVideo 1.5, Wan 2.1/2.2, Mochi, CogVideoX, Pika 2.2, Runway Gen-4/4.5, MiniMax/Hailuo, Luma Ray 2, Pyramid Flow / 3D-World(9) SV4D 2.0, TRELLIS/TRELLIS.2, Hunyuan3D 2/2.1, DUSt3R, MASt3R, Depth-Anything v2, Marigold v1.1, VGGT / VLM(12) Molmo, Janus-Pro, Pixtral, LLaVA-OneVision, Qwen2.5-VL/Omni, Qwen3-VL/Omni, InternVL 2.5/3.5 / Reasoning(10) DeepSeek-R1, Qwen3-Thinking 235B/30B/4B, Magistral, Skywork-OR1, GLM-Z1, Doubao 1.5 Pro / Code(6) Qwen2.5/3-Coder, Devstral 2, Granite 34B Code, Seed-Coder / Math(4) Qwen2.5-Math, NuminaMath, DeepSeek-Math V2 / Medical(3) HuatuoGPT-o1, Med42 v2 / Legal(2) Harvey Protégé, CoCounsel / Bio(5) AlphaFold 3, Boltz 1/2, ESM-3, Chai-1 / Time-series(8) Chronos T5/Bolt/2, TimesFM 2.5, Lag-Llama, Moirai, MOMENT / Tabular(2) TabPFN v2/2.5",
+    "new_value": "893 models (+98 from 795)",
+    "old_model": "",
+    "old_value": "text LLM + VLA only (text mostly)"
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-05",
+    "benchmark_id": "Timeline 카드형 인포그래픽 (16:9 SVG)",
+    "new_model": "월별 가변 너비 컬럼(1-14건 280px / 15-28건 566px / 29-42건 852px / 43+ 1138px), 4-코너 카드 레이아웃(좌상 logo / 우상 MM.DD / 좌하 license / 중하 country / 우하 28×28 flag tile), 스크롤 0 (overflow:hidden+viewBox 비례 축소), PNG/SVG/CSV 다운로드 3종, footer attribution(Author: Jonghong Jeon · hollobit@etri.re.kr / Source: hollobit.github.io/SOTA/#timeline / Generated date), 모든 카드 빠짐없이 렌더(6mo 114/114, 12mo 223/223), 12색 월 팔레트, skill 저장 ~/.claude/skills/timeline-infographic/skill.md",
+    "new_value": "한 화면 내 모든 출시 시각화 + skill 코드화",
+    "old_model": "",
+    "old_value": "기존 ECharts 산점차트 + truncation"
+  },
+  {
+    "type": "Fix",
+    "date": "2026-05-05",
+    "benchmark_id": "Version vs date 모순 audit + 11건 수정",
+    "new_model": "사용자 발견: GPT-5.1(2025-11-13)이 GPT-5.2(2025-11-10)보다 나중. audit 스크립트(scripts/audit_version_date_consistency.py)로 4 family 모순 검출. 수정: GPT-5.2 → 2025-12-11 (한 달 오류, OpenAI 공식 Code Red 대응), GPT-5.1 → 2025-11-12, GPT-5.4-mini → 2026-03-17 (5.4 base 12일 후), nemotron-3-340b → 2025-12-15 (family 발표일). Whitelist: gpt-4.1<gpt-4.5(OpenAI 비순차 명명), grok-4.20<grok-4.3(xAI 농담), nemotron-3<4(NVIDIA reset). + partial date 8건 보강(gpt-3.5-turbo-0125/0301/0613, gpt-4, gpt-4.1, gpt-5-nano)",
+    "new_value": "0 contradictions / 59 versioned groups",
+    "old_model": "",
+    "old_value": "4 contradictions found"
+  },
+  {
+    "type": "Fix",
+    "date": "2026-05-05",
+    "benchmark_id": "Partial-date v6 — 77건 YYYY-MM → YYYY-MM-DD",
+    "new_model": "230개 partial-date 항목 audit 후 검증 가능한 77개 정확화. Llama 2/3 family, SAM 1/2.1/3/3D, Claude 2.1/3-Sonnet, Gemini 1.0/1.5/2.5, Gemma 7B, MedGemma 9B/27B, Med-PaLM 1/2, AlphaFold 2/3/Server, Qwen 1.5/2.5 family, Amazon Nova Micro, Boltz 1/2, NVIDIA BioNeMo 2 + medical foundation 30+개(Meditron, HuatuoGPT, RETFound, MedSAM 1/2, OpenBioLLM, BioMistral, Med42 v1/v2, BiomedCLIP, BioGPT, LLaVA-Med 등). 잔여 153건은 specialty research 모델로 명확한 public release 이벤트 없음",
+    "new_value": "153 partial-date (was 230, -77)",
+    "old_model": "",
+    "old_value": "230 partial-date entries"
+  },
+  {
+    "type": "Fix",
+    "date": "2026-05-05",
+    "benchmark_id": "National attribution 5건 수정",
+    "new_model": "사용자 지적: vendor→country 매핑 오류. timeline.js VENDOR_TO_COUNTRY에 prefix 추가 — sakana(JP), kakao-healthcare(KR), arcee/arcee-ai(US), inception/inceptionlabs(US), fractal/fractalanalytics(IN). DB vendor 라벨에 (Country) suffix 정규화 — Sakana AI (Japan), Kakao Healthcare (Korea), Arcee AI (USA), Inception Labs (USA), Fractal Analytics (India)",
+    "new_value": "13 모델 (Sakana 3 + Kakao Healthcare 1 + Arcee 6 + Inception 2 + Fractal 2)",
+    "old_model": "",
+    "old_value": "Other 또는 미매핑"
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-05",
+    "benchmark_id": "Trinity family + ThinkPol/NIST CAISI 점수",
+    "new_model": "Arcee Trinity 5 entries (Large Preview/Base/TrueBase + Mini + Nano) — sparse MoE 400B/13B-active, 17T tokens, $20M training, 256 experts × 4 active, SMEBU load balance, Muon optimizer. Vellum 4 점수 (Trinity vs Llama-4-Maverick). + ThinkPol AI Coding Contest 9-model ranking (Kimi K2.6 1위 cumulative 77, AA Intelligence Index GPT-5.5:60 / Opus 4.7:57). + NIST CAISI DeepSeek V4 Pro 평가 — IRT Elo composite (GPT-5.5 1260, Opus 4.6 999, DSV4 Pro 800, GPT-5.4-mini 749), 9 차원 cyber/SWE/science/reasoning/math 평가, lag ~8개월. 신규 7 벤치마크 (ctf_archive_diamond, portbench, arc_agi_2_semi_private, pumac_2024, ai_coding_contest_word_gem/cumulative, irt_capability_elo) + 2 모델 (grok-expert-4.2, deepseek-v4 base)",
+    "new_value": "55 신규 점수 + 7 벤치마크 + 5+2 모델",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-05",
+    "benchmark_id": "May 5 daily sweep — 공백기 윈도우",
+    "new_model": "2026-05-01~05 frontier 출시 0건 확인. Mercury 2(2026-04-23 backfill, diffusion-based parallel-token, 1009 tok/s, 128k ctx) + MemRouter 벤치마크(arxiv 2605.00356, LoCoMo conversational memory routing)",
+    "new_value": "+1 model, +1 benchmark",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
     "date": "2026-05-04",
     "benchmark_id": "May 2026 weekly batch — 7 신규 모델 / 3 벤치마크 / 38 점수",
     "new_model": "Qwen3.6-Max preview · Hunyuan HY3 preview · GLM-5V Turbo · ERNIE 5.1 preview · MiMo-v2 Omni · Grok 4.3 · Trinity Large Thinking + HealthBench Professional · DoctorBench LLM · REBench + DeepSeek V4 Pro Max(12 benches) · Qwen3.6-27B(10 benches) · Claude Opus 4.7 Vellum 9 benches · GPT-5.5 3 benches · Kimi K2.6 AA index",
