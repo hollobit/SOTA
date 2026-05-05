@@ -7692,5 +7692,68 @@
     "category": "memory",
     "description": "Memory-as-Embedding Routing for Long-Term Conversational Agents (arxiv 2605.00356, submitted 2026-05-01). Decouples memory admission from answer generation via lightweight 12M-param classification heads. Evaluated on LoCoMo conversational QA. Reports F1 + memory-management latency (p50).",
     "metric": "f1"
+  },
+  {
+    "id": "cn_llm_long_doc_understanding",
+    "name": "CN-LLM Long Document Understanding",
+    "category": "language",
+    "description": "Information extraction, logic mapping, critical reading on long Chinese documents. Scored 0-20 by independent reviewer. Source: github.com/happypaul2139-svg/LLM-Of-China-Comparison.",
+    "metric": "score_20"
+  },
+  {
+    "id": "cn_llm_code_writing",
+    "name": "CN-LLM Code Writing",
+    "category": "coding",
+    "description": "Frontend development, algorithm design, engineering completeness on Chinese-context coding tasks. 0-20 score.",
+    "metric": "score_20"
+  },
+  {
+    "id": "cn_llm_professional_writing",
+    "name": "CN-LLM Professional Writing",
+    "category": "language",
+    "description": "Business writing, tone control, format compliance in Chinese professional contexts. 0-20 score.",
+    "metric": "score_20"
+  },
+  {
+    "id": "cn_llm_data_analysis",
+    "name": "CN-LLM Data Analysis",
+    "category": "reasoning",
+    "description": "Data processing, trend identification, business insights extraction. 0-20 score.",
+    "metric": "score_20"
+  },
+  {
+    "id": "cn_llm_research_planning",
+    "name": "CN-LLM Research & Planning",
+    "category": "reasoning",
+    "description": "Market analysis, financial calculations, solution design. 0-20 score.",
+    "metric": "score_20"
+  },
+  {
+    "id": "cn_llm_effect_score",
+    "name": "CN-LLM Effect Score (0-100)",
+    "category": "general",
+    "description": "Aggregate effectiveness rating across the 5 CN-LLM scenarios, normalised to 100. Component of overall composite (0.8 weight).",
+    "metric": "score_100"
+  },
+  {
+    "id": "cn_llm_cost_score",
+    "name": "CN-LLM Cost Score (0-100)",
+    "category": "cost",
+    "description": "Inverse cost rating where 100 = cheapest tier observed in benchmark suite. Component of overall composite (0.1 weight).",
+    "metric": "score_100"
+  },
+  {
+    "id": "cn_llm_speed_score",
+    "name": "CN-LLM Speed Score (0-100)",
+    "category": "speed",
+    "description": "Throughput/latency rating where 100 = fastest tier observed in benchmark suite. Component of overall composite (0.1 weight).",
+    "metric": "score_100"
+  },
+  {
+    "id": "cn_llm_overall_composite",
+    "name": "CN-LLM Overall (0.8E + 0.1C + 0.1S)",
+    "category": "general",
+    "description": "Composite score = 0.8*Effect + 0.1*Cost + 0.1*Speed. Tournament leaderboard from independent CN-LLM head-to-head.",
+    "metric": "score_100"
   }
 ]
