@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-05",
+    "sources": [
+      "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison",
+      "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md"
+    ],
+    "_note": "Independent Chinese-LLM head-to-head comparison covering 6 frontier Chinese models on 5 practical scenarios (long document, code, professional writing, data analysis, research+planning). Each scenario scored 0-20. Composite leaderboard: 0.8 effect + 0.1 cost + 0.1 speed. All 6 models already in DB. 5 new benchmarks + 1 composite + 5 sub-rank meta benchmarks = 9 unique benchmark IDs. 54 score triples (6 models × 9 benchmarks)."
+  },
+  "benchmarks": [
+    {"id": "cn_llm_long_doc_understanding", "name": "CN-LLM Long Document Understanding", "category": "language", "description": "Information extraction, logic mapping, critical reading on long Chinese documents. Scored 0-20 by independent reviewer. Source: github.com/happypaul2139-svg/LLM-Of-China-Comparison.", "metric": "score_20"},
+    {"id": "cn_llm_code_writing", "name": "CN-LLM Code Writing", "category": "coding", "description": "Frontend development, algorithm design, engineering completeness on Chinese-context coding tasks. 0-20 score.", "metric": "score_20"},
+    {"id": "cn_llm_professional_writing", "name": "CN-LLM Professional Writing", "category": "language", "description": "Business writing, tone control, format compliance in Chinese professional contexts. 0-20 score.", "metric": "score_20"},
+    {"id": "cn_llm_data_analysis", "name": "CN-LLM Data Analysis", "category": "reasoning", "description": "Data processing, trend identification, business insights extraction. 0-20 score.", "metric": "score_20"},
+    {"id": "cn_llm_research_planning", "name": "CN-LLM Research & Planning", "category": "reasoning", "description": "Market analysis, financial calculations, solution design. 0-20 score.", "metric": "score_20"},
+    {"id": "cn_llm_effect_score", "name": "CN-LLM Effect Score (0-100)", "category": "general", "description": "Aggregate effectiveness rating across the 5 CN-LLM scenarios, normalised to 100. Component of overall composite (0.8 weight).", "metric": "score_100"},
+    {"id": "cn_llm_cost_score", "name": "CN-LLM Cost Score (0-100)", "category": "cost", "description": "Inverse cost rating where 100 = cheapest tier observed in benchmark suite. Component of overall composite (0.1 weight).", "metric": "score_100"},
+    {"id": "cn_llm_speed_score", "name": "CN-LLM Speed Score (0-100)", "category": "speed", "description": "Throughput/latency rating where 100 = fastest tier observed in benchmark suite. Component of overall composite (0.1 weight).", "metric": "score_100"},
+    {"id": "cn_llm_overall_composite", "name": "CN-LLM Overall (0.8E + 0.1C + 0.1S)", "category": "general", "description": "Composite score = 0.8*Effect + 0.1*Cost + 0.1*Speed. Tournament leaderboard from independent CN-LLM head-to-head.", "metric": "score_100"}
+  ],
+  "scores": [
+    {"model": "moonshot/kimi-k2.6", "benchmark": "cn_llm_long_doc_understanding", "score": 20, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "cn_llm_code_writing", "score": 18, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "cn_llm_professional_writing", "score": 19, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "cn_llm_data_analysis", "score": 19.5, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "cn_llm_research_planning", "score": 19.5, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "cn_llm_effect_score", "score": 96.0, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "cn_llm_cost_score", "score": 75.1, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "cn_llm_speed_score", "score": 83.6, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "cn_llm_overall_composite", "score": 92.7, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05", "_note": "1st place"},
+
+    {"model": "minimax/m2.7", "benchmark": "cn_llm_long_doc_understanding", "score": 15.8, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "minimax/m2.7", "benchmark": "cn_llm_code_writing", "score": 17, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "minimax/m2.7", "benchmark": "cn_llm_professional_writing", "score": 14, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "minimax/m2.7", "benchmark": "cn_llm_data_analysis", "score": 18, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "minimax/m2.7", "benchmark": "cn_llm_research_planning", "score": 15.5, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "minimax/m2.7", "benchmark": "cn_llm_effect_score", "score": 80.3, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "minimax/m2.7", "benchmark": "cn_llm_cost_score", "score": 96.8, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "minimax/m2.7", "benchmark": "cn_llm_speed_score", "score": 89.9, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "minimax/m2.7", "benchmark": "cn_llm_overall_composite", "score": 82.9, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05", "_note": "6th place"},
+
+    {"model": "xiaomi/mimo-v2.5-pro", "benchmark": "cn_llm_long_doc_understanding", "score": 19.5, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "xiaomi/mimo-v2.5-pro", "benchmark": "cn_llm_code_writing", "score": 18, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "xiaomi/mimo-v2.5-pro", "benchmark": "cn_llm_professional_writing", "score": 18, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "xiaomi/mimo-v2.5-pro", "benchmark": "cn_llm_data_analysis", "score": 19.5, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "xiaomi/mimo-v2.5-pro", "benchmark": "cn_llm_research_planning", "score": 19, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "xiaomi/mimo-v2.5-pro", "benchmark": "cn_llm_effect_score", "score": 94.0, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "xiaomi/mimo-v2.5-pro", "benchmark": "cn_llm_cost_score", "score": 73.5, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "xiaomi/mimo-v2.5-pro", "benchmark": "cn_llm_speed_score", "score": 100, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "xiaomi/mimo-v2.5-pro", "benchmark": "cn_llm_overall_composite", "score": 92.6, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05", "_note": "2nd place"},
+
+    {"model": "zhipu/glm-5.1", "benchmark": "cn_llm_long_doc_understanding", "score": 19.7, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "zhipu/glm-5.1", "benchmark": "cn_llm_code_writing", "score": 19, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "zhipu/glm-5.1", "benchmark": "cn_llm_professional_writing", "score": 17, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "zhipu/glm-5.1", "benchmark": "cn_llm_data_analysis", "score": 18, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "zhipu/glm-5.1", "benchmark": "cn_llm_research_planning", "score": 16.5, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "zhipu/glm-5.1", "benchmark": "cn_llm_effect_score", "score": 90.2, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "zhipu/glm-5.1", "benchmark": "cn_llm_cost_score", "score": 74.2, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "zhipu/glm-5.1", "benchmark": "cn_llm_speed_score", "score": 87.2, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "zhipu/glm-5.1", "benchmark": "cn_llm_overall_composite", "score": 88.3, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05", "_note": "5th place"},
+
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "cn_llm_long_doc_understanding", "score": 20, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "cn_llm_code_writing", "score": 19.5, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "cn_llm_professional_writing", "score": 16, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "cn_llm_data_analysis", "score": 18.5, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "cn_llm_research_planning", "score": 17.5, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "cn_llm_effect_score", "score": 91.5, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "cn_llm_cost_score", "score": 99.7, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "cn_llm_speed_score", "score": 73.4, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "cn_llm_overall_composite", "score": 90.5, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05", "_note": "3rd place (tied)"},
+
+    {"model": "alibaba/qwen3.6-plus", "benchmark": "cn_llm_long_doc_understanding", "score": 19.4, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "alibaba/qwen3.6-plus", "benchmark": "cn_llm_code_writing", "score": 18, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "alibaba/qwen3.6-plus", "benchmark": "cn_llm_professional_writing", "score": 16, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "alibaba/qwen3.6-plus", "benchmark": "cn_llm_data_analysis", "score": 18, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "alibaba/qwen3.6-plus", "benchmark": "cn_llm_research_planning", "score": 17.5, "unit": "/20", "_source": "https://raw.githubusercontent.com/happypaul2139-svg/LLM-Of-China-Comparison/main/final_scores.md", "collected_at": "2026-05-05"},
+    {"model": "alibaba/qwen3.6-plus", "benchmark": "cn_llm_effect_score", "score": 88.9, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "alibaba/qwen3.6-plus", "benchmark": "cn_llm_cost_score", "score": 100, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "alibaba/qwen3.6-plus", "benchmark": "cn_llm_speed_score", "score": 93.4, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05"},
+    {"model": "alibaba/qwen3.6-plus", "benchmark": "cn_llm_overall_composite", "score": 90.5, "unit": "/100", "_source": "https://github.com/happypaul2139-svg/LLM-Of-China-Comparison", "collected_at": "2026-05-05", "_note": "4th place (tied)"}
+  ]
+}

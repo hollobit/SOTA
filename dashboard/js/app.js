@@ -2132,6 +2132,7 @@ var App = {
             { name: 'Qwen3.6 — HuggingFace', url: 'https://huggingface.co/Qwen/Qwen3.6-27B', desc: 'Qwen3.6-27B dense + Qwen3.6-35B-A3B MoE model cards' },
             { name: 'LLM Stats — Model Updates', url: 'https://llm-stats.com/llm-updates', desc: 'Daily frontier model release feed (newest first)' },
             { name: 'LLM Stats', url: 'https://llm-stats.com', desc: 'GPQA, SWE-bench, AIME, HLE, ARC-AGI-2, MMLU-Pro' },
+            { name: 'LLM-Of-China-Comparison (GitHub)', url: 'https://github.com/happypaul2139-svg/LLM-Of-China-Comparison', desc: '6 frontier 중국 LLM 비교 (Kimi K2.6 / MiniMax M2.7 / MiMo v2.5-Pro / GLM 5.1 / DeepSeek V4-Pro / Qwen3.6-Plus) on 5 practical scenarios — Long Doc / Code / Professional Writing / Data Analysis / Research & Planning. Composite leaderboard 0.8 effect + 0.1 cost + 0.1 speed.' },
             { name: 'Chatbot Arena (LMSYS)', url: 'https://lmarena.ai', desc: 'Arena Elo rankings' },
             { name: 'Vellum LLM Leaderboard', url: 'https://www.vellum.ai/llm-leaderboard', desc: 'Multi-benchmark comparison' },
             { name: 'Artificial Analysis', url: 'https://artificialanalysis.ai/leaderboards/models', desc: 'Intelligence Index, speed, pricing' },
