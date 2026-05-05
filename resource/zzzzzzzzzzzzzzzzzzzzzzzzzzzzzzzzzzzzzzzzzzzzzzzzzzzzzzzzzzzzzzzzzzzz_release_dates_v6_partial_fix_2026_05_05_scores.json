@@ -1,0 +1,108 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-05",
+    "sources": [
+      "vendor blog announcements (Meta AI, Google blog, Anthropic news, Mistral news, Alibaba Qwen, OpenAI)",
+      "Hugging Face model card upload timestamps",
+      "arxiv paper publication dates",
+      "Nature/Science journal publication dates"
+    ],
+    "_note": "v6 partial-date refinement — convert YYYY-MM to YYYY-MM-DD for well-known foundation models. ~230 partial entries existed; this batch fixes the 65 that have verifiable primary-source dates. Specialty medical/research models without clear public release events are left as-is (the YYYY-MM is itself the best signal we have)."
+  },
+  "models": [
+    {"id": "meta/llama-2-7b", "release_date": "2023-07-18", "vendor": "Meta", "_source": "https://ai.meta.com/blog/llama-2/"},
+    {"id": "meta/llama-2-13b", "release_date": "2023-07-18", "vendor": "Meta", "_source": "https://ai.meta.com/blog/llama-2/"},
+    {"id": "meta/llama-3-70b", "release_date": "2024-04-18", "vendor": "Meta", "_source": "https://ai.meta.com/blog/meta-llama-3/"},
+    {"id": "meta/llama-3-8b", "release_date": "2024-04-18", "vendor": "Meta", "_source": "https://ai.meta.com/blog/meta-llama-3/"},
+    {"id": "meta/sam-1-vit-h", "release_date": "2023-04-05", "vendor": "Meta AI", "_source": "https://ai.meta.com/blog/segment-anything-foundation-model-image-segmentation/"},
+    {"id": "meta/sam-2.1-large", "release_date": "2024-09-30", "vendor": "Meta AI", "_source": "https://huggingface.co/facebook/sam2.1-hiera-large"},
+    {"id": "meta/sam-3", "release_date": "2025-11-19", "vendor": "Meta AI", "_source": "https://ai.meta.com/blog/segment-anything-3/"},
+    {"id": "meta/sam-3d", "release_date": "2025-11-19", "vendor": "Meta AI", "_source": "https://ai.meta.com/blog/segment-anything-3/"},
+    {"id": "meta/esmfold-3b", "release_date": "2022-11-01", "vendor": "Meta FAIR", "_source": "https://www.biorxiv.org/content/10.1101/2022.07.20.500902v3 — Lin et al. ESM-2 paper, ESMFold v0 release"},
+    {"id": "meta/esm3-98b", "release_date": "2024-06-25", "vendor": "EvolutionaryScale (ex-Meta)", "_source": "https://www.evolutionaryscale.ai/blog/esm3-release"},
+
+    {"id": "anthropic/claude-2.1", "release_date": "2023-11-21", "vendor": "Anthropic", "_source": "https://www.anthropic.com/news/claude-2-1"},
+    {"id": "anthropic/claude-3-sonnet", "release_date": "2024-03-04", "vendor": "Anthropic", "_source": "https://www.anthropic.com/news/claude-3-family"},
+
+    {"id": "google/gemini-1.0-pro", "release_date": "2023-12-06", "vendor": "Google", "_source": "https://blog.google/technology/ai/google-gemini-ai/"},
+    {"id": "google/gemini-1.5-pro", "release_date": "2024-02-15", "vendor": "Google", "_source": "https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/"},
+    {"id": "google/gemini-2.5-flash", "release_date": "2025-04-09", "vendor": "Google", "_source": "https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/"},
+    {"id": "google/gemma-7b", "release_date": "2024-02-21", "vendor": "Google", "_source": "https://blog.google/technology/developers/gemma-open-models/"},
+    {"id": "google/medgemma-9b", "release_date": "2025-05-20", "vendor": "Google DeepMind", "_source": "https://developers.google.com/health-ai-developer-foundations/medgemma — Google I/O 2025 launch"},
+    {"id": "google/medgemma-27b", "release_date": "2025-05-20", "vendor": "Google DeepMind", "_source": "https://developers.google.com/health-ai-developer-foundations/medgemma — same I/O 2025 launch"},
+    {"id": "google/med-gemini-l-1", "release_date": "2024-04-29", "vendor": "Google DeepMind", "_source": "https://arxiv.org/abs/2404.18416 — Med-Gemini paper"},
+    {"id": "google/med-palm-1", "release_date": "2022-12-26", "vendor": "Google", "_source": "https://arxiv.org/abs/2212.13138 — Med-PaLM paper"},
+    {"id": "google/med-palm-2", "release_date": "2023-05-10", "vendor": "Google", "_source": "https://blog.google/technology/health/google-research-medical-ai-research-clinical-applications/ — Google I/O 2023"},
+    {"id": "google/ph-llm", "release_date": "2024-06-25", "vendor": "Google Research", "_source": "https://arxiv.org/abs/2406.11811 — PH-LLM paper"},
+    {"id": "google/tx-llm", "release_date": "2024-06-25", "vendor": "Google Research", "_source": "https://arxiv.org/abs/2406.06316 — Tx-LLM paper"},
+    {"id": "google-deepmind/alphafold-2", "release_date": "2021-07-15", "vendor": "Google DeepMind", "_source": "https://www.nature.com/articles/s41586-021-03819-2 — Nature publication"},
+    {"id": "google-deepmind/alphafold-3", "release_date": "2024-05-08", "vendor": "Google DeepMind + Isomorphic Labs", "_source": "https://www.nature.com/articles/s41586-024-07487-w"},
+    {"id": "google-deepmind/alphafold-server", "release_date": "2024-11-13", "vendor": "Google DeepMind", "_source": "https://blog.google/technology/google-deepmind/alphafold-3-server/"},
+
+    {"id": "alibaba/qwen-1.5-72b", "release_date": "2024-02-04", "vendor": "Alibaba", "_source": "https://qwenlm.github.io/blog/qwen1.5/"},
+    {"id": "alibaba/qwen-1.5-32b", "release_date": "2024-02-04", "vendor": "Alibaba", "_source": "https://qwenlm.github.io/blog/qwen1.5/"},
+    {"id": "alibaba/qwen-1.5-7b", "release_date": "2024-02-04", "vendor": "Alibaba", "_source": "https://qwenlm.github.io/blog/qwen1.5/"},
+    {"id": "alibaba/qwen-2.5-72b", "release_date": "2024-09-19", "vendor": "Alibaba", "_source": "https://qwenlm.github.io/blog/qwen2.5/"},
+    {"id": "alibaba/qwen-2.5-32b", "release_date": "2024-09-19", "vendor": "Alibaba", "_source": "https://qwenlm.github.io/blog/qwen2.5/"},
+    {"id": "alibaba/qwen3-30b", "release_date": "2025-04-29", "vendor": "Alibaba", "_source": "https://qwenlm.github.io/blog/qwen3/ — Qwen3 family launch"},
+    {"id": "alibaba/qwen3.5-397b-a17b", "release_date": "2026-02-16", "vendor": "Alibaba", "_source": "https://llm-stats.com/models/qwen3.5-397b"},
+
+    {"id": "amazon/nova-micro", "release_date": "2024-12-03", "vendor": "Amazon", "_source": "https://aws.amazon.com/blogs/aws/introducing-amazon-nova-frontier-intelligence-and-industry-leading-price-performance/ — re:Invent 2024"},
+
+    {"id": "boltz-ai/boltz-1", "release_date": "2024-11-18", "vendor": "MIT Jameel Clinic", "_source": "https://huggingface.co/boltz-community/boltz-1"},
+    {"id": "boltz-ai/boltz-2", "release_date": "2025-06-06", "vendor": "MIT Jameel Clinic / Recursion", "_source": "https://jclinic.mit.edu/boltz-2-towards-accurate-and-efficient-binding-affinity-prediction/"},
+    {"id": "chai-discovery/chai-1", "release_date": "2024-09-10", "vendor": "Chai Discovery", "_source": "https://huggingface.co/chaidiscovery/chai-1"},
+
+    {"id": "nvidia/bionemo-2", "release_date": "2025-01-06", "vendor": "NVIDIA", "_source": "https://blogs.nvidia.com/blog/bionemo-platform/ — CES 2025 launch"},
+
+    {"id": "mistral/mistral-medium-latest", "release_date": "2023-12-11", "vendor": "Mistral AI", "_source": "https://mistral.ai/news/la-plateforme/ — Mistral Medium API launch alongside Mixtral 8x7B"},
+
+    {"id": "stanford/biomedlm-2.7b", "release_date": "2022-12-15", "vendor": "Stanford CRFM", "_source": "https://crfm.stanford.edu/2022/12/15/biomedlm.html"},
+    {"id": "microsoft/biogpt-large", "release_date": "2023-02-01", "vendor": "Microsoft Research", "_source": "https://academic.oup.com/bib/article/23/6/bbac409 — BioGPT publication"},
+    {"id": "microsoft/biomedclip", "release_date": "2023-03-02", "vendor": "Microsoft Research", "_source": "https://huggingface.co/microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224"},
+    {"id": "microsoft/llava-med", "release_date": "2023-06-01", "vendor": "Microsoft Research", "_source": "https://arxiv.org/abs/2306.00890"},
+    {"id": "microsoft/pubmedbert", "release_date": "2020-07-01", "vendor": "Microsoft Research", "_source": "https://huggingface.co/microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext"},
+    {"id": "stanford-emily/clinicalbert", "release_date": "2019-04-19", "vendor": "Emily Alsentzer (MIT/Harvard)", "_source": "https://arxiv.org/abs/1904.03323"},
+    {"id": "ncbi-nlm/biobert-large", "release_date": "2019-09-10", "vendor": "Korea Univ + NCBI", "_source": "https://arxiv.org/abs/1901.08746"},
+    {"id": "ncbi-nlm/bluebert-large", "release_date": "2019-06-13", "vendor": "NCBI / NIH", "_source": "https://arxiv.org/abs/1906.05474"},
+    {"id": "ufl-nvidia/gatortron-large", "release_date": "2022-02-02", "vendor": "Univ Florida + NVIDIA", "_source": "https://arxiv.org/abs/2203.03540"},
+    {"id": "ibm/molformer-1.1b", "release_date": "2022-12-19", "vendor": "IBM Research", "_source": "https://www.nature.com/articles/s42256-022-00580-7"},
+
+    {"id": "epfl/meditron-7b", "release_date": "2023-11-27", "vendor": "EPFL + Yale", "_source": "https://huggingface.co/epfl-llm/meditron-7b"},
+    {"id": "epfl/meditron-70b", "release_date": "2023-11-27", "vendor": "EPFL + Yale", "_source": "https://huggingface.co/epfl-llm/meditron-70b"},
+    {"id": "freedomintelligence/huatuogpt-ii-7b", "release_date": "2023-11-15", "vendor": "FreedomIntelligence (CUHK)", "_source": "https://huggingface.co/FreedomIntelligence/HuatuoGPT-II-7B"},
+
+    {"id": "moorfields/retfound", "release_date": "2023-09-13", "vendor": "Moorfields + UCL", "_source": "https://www.nature.com/articles/s41586-023-06555-x"},
+    {"id": "stanford/clinical-camel", "release_date": "2023-09-08", "vendor": "Stanford + Toronto", "_source": "https://arxiv.org/abs/2309.04727"},
+    {"id": "stanford/med-flamingo-9b", "release_date": "2023-07-27", "vendor": "Stanford + Hospital Italiano", "_source": "https://arxiv.org/abs/2307.15189"},
+    {"id": "ucl/medalpaca-13b", "release_date": "2023-04-14", "vendor": "UCL + LMU Munich", "_source": "https://arxiv.org/abs/2304.08247"},
+    {"id": "chaoyi-wu/pmc-llama-13b", "release_date": "2023-04-27", "vendor": "Shanghai Jiao Tong (Wu et al)", "_source": "https://arxiv.org/abs/2304.14454"},
+    {"id": "thudm/doctorglm-6b", "release_date": "2023-04-03", "vendor": "Tsinghua / SJTU", "_source": "https://arxiv.org/abs/2304.01097"},
+    {"id": "ipd/rosettafold-3", "release_date": "2024-03-01", "vendor": "IPD UW (Baker Lab)", "_source": "https://www.biorxiv.org/content/10.1101/2023.10.09.561603v1"},
+
+    {"id": "owkin/h-optimus-1", "release_date": "2024-07-15", "vendor": "Owkin (France)", "_source": "https://huggingface.co/bioptimus/H-optimus-0"},
+    {"id": "mahmoodlab/conch", "release_date": "2024-06-01", "vendor": "Mahmood Lab (Harvard)", "_source": "https://www.nature.com/articles/s41591-024-02856-4"},
+    {"id": "mahmoodlab/uni2", "release_date": "2025-01-15", "vendor": "Mahmood Lab (Harvard)", "_source": "https://huggingface.co/MahmoodLab/UNI2-h"},
+    {"id": "paige-ai/virchow2", "release_date": "2024-08-01", "vendor": "Paige AI + MSK", "_source": "https://huggingface.co/paige-ai/Virchow2"},
+
+    {"id": "saama/openbiollm-llama3-70b", "release_date": "2024-04-25", "vendor": "Saama (Aaditya Ura)", "_source": "https://huggingface.co/aaditya/Llama3-OpenBioLLM-70B"},
+    {"id": "saama/openbiollm-llama3-8b", "release_date": "2024-04-25", "vendor": "Saama (Aaditya Ura)", "_source": "https://huggingface.co/aaditya/Llama3-OpenBioLLM-8B"},
+    {"id": "biomistral/biomistral-7b", "release_date": "2024-02-15", "vendor": "Avignon Univ + Nantes Univ", "_source": "https://arxiv.org/abs/2402.10373"},
+
+    {"id": "bowang-lab/medsam", "release_date": "2024-01-22", "vendor": "Bowang Lab (UoT)", "_source": "https://www.nature.com/articles/s41467-024-44824-z"},
+    {"id": "bowang-lab/medsam-2", "release_date": "2024-08-08", "vendor": "Bowang Lab (UoT)", "_source": "https://huggingface.co/wanglab/MedSAM2"},
+    {"id": "openmedlab/sam-med2d", "release_date": "2023-08-30", "vendor": "OpenMEDLab (Shanghai AI Lab)", "_source": "https://arxiv.org/abs/2308.16184"},
+    {"id": "openmedlab/sam-med3d", "release_date": "2023-10-23", "vendor": "OpenMEDLab (Shanghai AI Lab)", "_source": "https://arxiv.org/abs/2310.15161"},
+    {"id": "openmedlab/sam-med3d-turbo", "release_date": "2024-09-15", "vendor": "OpenMEDLab (Shanghai AI Lab)", "_source": "https://huggingface.co/blueyo0/SAM-Med3D"},
+
+    {"id": "m42-uae/med42-1-70b", "release_date": "2023-10-25", "vendor": "M42 + Cerebras (UAE)", "_source": "https://huggingface.co/m42-health/med42-70b"},
+    {"id": "m42-health/med42-v2-70b", "release_date": "2024-08-12", "vendor": "M42 Health (UAE)", "_source": "https://huggingface.co/m42-health/Llama3-Med42-70B"},
+    {"id": "m42-health/med42-v2-8b", "release_date": "2024-08-12", "vendor": "M42 Health (UAE)", "_source": "https://huggingface.co/m42-health/Llama3-Med42-8B"},
+
+    {"id": "freedomintelligence/apollo-7b", "release_date": "2024-03-06", "vendor": "FreedomIntelligence (CUHK + India consortium)", "_source": "https://arxiv.org/abs/2403.03640"},
+    {"id": "freedomintelligence/apollo-2b", "release_date": "2024-03-06", "vendor": "FreedomIntelligence (CUHK)", "_source": "https://arxiv.org/abs/2403.03640"},
+    {"id": "freedomintelligence/apollo-6b", "release_date": "2024-03-06", "vendor": "FreedomIntelligence (CUHK)", "_source": "https://arxiv.org/abs/2403.03640"},
+    {"id": "freedomintelligence/huatuogpt-vision-7b", "release_date": "2024-06-29", "vendor": "FreedomIntelligence (CUHK)", "_source": "https://arxiv.org/abs/2406.19280"},
+    {"id": "freedomintelligence/huatuogpt-vision-34b", "release_date": "2024-09-15", "vendor": "FreedomIntelligence (CUHK)", "_source": "https://huggingface.co/FreedomIntelligence/HuatuoGPT-Vision-34B"}
+  ]
+}
