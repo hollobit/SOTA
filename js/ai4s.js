@@ -13,26 +13,31 @@ var AI4S = {
     // Order matters — first match wins. More specific patterns must come before generic ones.
     _CATEGORIES: [
         { key: 'nuclear-fusion', icon: '☢️', label: 'Nuclear / Fusion', match: function(id) {
-            return /(torax|tcv-plasma|tcv-rampdown|diag2diag|elm-suppression|heat-ml|plasma-heating|diii-d-tearing|xihefusion|constellaration|plasma-rampdown|prometheus|nuclear-licensing|tl-pinn-reactor|deeponet-nuclear)/i.test(id)
+            return /(torax|tcv-plasma|tcv-rampdown|diag2diag|elm-suppression|heat-ml|plasma-heating|diii-d-tearing|xihefusion|constellaration|plasma-rampdown|prometheus|nuclear-licensing|tl-pinn-reactor|deeponet-nuclear|tokamind|torax-cfs)/i.test(id)
                 || id.indexOf('mit-cfs/') === 0
                 || id.indexOf('inl-nvidia/') === 0
                 || id.indexOf('msft-inl/') === 0
-                || id.indexOf('cfs-pppl-ornl/') === 0;
+                || id.indexOf('cfs-pppl-ornl/') === 0
+                || id.indexOf('ukaea-ibm/') === 0
+                || id.indexOf('deepmind-cfs/') === 0;
         }},
         { key: 'energy-grid', icon: '⚡', label: 'Energy / Grid / Battery', match: function(id) {
-            return /(aifs-single|aifs-ens|gaia-power|gridfm|egridgpt|energygpt|ef-llm|powergraph-llm|powerpm|weather-fm-grid|battery-transformer|d3batt|polymer-electrolyte|surya|solar-transformer|mattergen-battery)/i.test(id)
+            return /(aifs-single|aifs-ens|aifs-1\.1|gaia-power|gridfm|egridgpt|energygpt|ef-llm|powergraph-llm|powerpm|weather-fm-grid|battery-transformer|d3batt|polymer-electrolyte|surya|solar-transformer|mattergen-battery)/i.test(id)
                 || id.indexOf('ecmwf/aifs-single') === 0
                 || id.indexOf('ecmwf/aifs-ens') === 0
-                || id.indexOf('tri/') === 0;
+                || id.indexOf('ecmwf/aifs-1.1') === 0
+                || id.indexOf('tri/') === 0
+                || id.indexOf('ibm-lf/gridfm') === 0;
         }},
         { key: 'quantum-chem', icon: '🔬', label: 'Quantum Chemistry / DFT', match: function(id) {
-            return /(ferminet|paulinet|psiformer|dm21-functional|neuralxc|orbnet|ani-1ccx|ani-2x|aimnet2|physicsnemo)/i.test(id);
+            return /(ferminet|paulinet|psiformer|dm21-functional|neuralxc|orbnet|ani-1ccx|ani-2x|aimnet2|physicsnemo|alphaqubit-willow|liten-ff)/i.test(id);
         }},
         { key: 'cosmology-particle', icon: '✨', label: 'Cosmology / Particle Physics', match: function(id) {
-            return /(camels|ai-feynman|atlas-cern|cms-cern|anomaly-detection|anomaly-tn|walrus-)/i.test(id)
+            return /(camels|ai-feynman|atlas-cern|cms-cern|anomaly-detection|anomaly-tn|walrus-|genesis-fermi)/i.test(id)
                 || id.indexOf('atlas-cern/') === 0
                 || id.indexOf('cms-cern/') === 0
-                || id.indexOf('simons-flatiron/') === 0;
+                || id.indexOf('simons-flatiron/') === 0
+                || id.indexOf('fermilab/') === 0;
         }},
         { key: 'geosci-seismo', icon: '🌋', label: 'Geosciences / Seismology', match: function(id) {
             return /(eqtransformer|phasenet|seisclip|seismic-foundation|gem-3d-seismic)/i.test(id);
@@ -50,9 +55,11 @@ var AI4S = {
                 || id.indexOf('nasa-harvest/') === 0;
         }},
         { key: 'pharma', icon: '💊', label: 'Pharma / Drug Discovery', match: function(id) {
-            return /(phenom-beta|iso-dde|chemistry42)/i.test(id)
+            return /(phenom-beta|iso-dde|chemistry42|boltzgen|reasyn|anewomni)/i.test(id)
                 || id.indexOf('insilico/') === 0
-                || id.indexOf('isomorphic/iso') === 0;
+                || id.indexOf('isomorphic/iso') === 0
+                || id.indexOf('mit/boltzgen') === 0
+                || id.indexOf('nvidia-clara/reasyn') === 0;
         }},
         { key: 'lab-automation', icon: '🤖', label: 'Lab Automation / Co-Sci tools', match: function(id) {
             return /(coscientist|chemcrow|protein-design-fm)/i.test(id)
@@ -63,14 +70,15 @@ var AI4S = {
             return /(ai-feynman)/i.test(id) && false; // already covered under cosmology-particle to keep AI-Feynman with physics; placeholder for future
         }},
         { key: 'co-scientist', icon: '🧪', label: 'Co-Scientist / Research Agent', match: function(id) {
-            return /\b(ai-co-scientist|ai-scientist|virtual-lab|paperqa|crow|owl|phoenix-chem|darwin-godel|a-lab|falcon-research|auroragpt|khanmigo)\b/i.test(id)
+            return /\b(ai-co-scientist|ai-scientist|virtual-lab|paperqa|crow|owl|phoenix-chem|darwin-godel|a-lab|falcon-research|auroragpt|khanmigo|genesis-ai-co-scientist)\b/i.test(id)
                 || id.indexOf('futurehouse/') === 0
                 || id.indexOf('lbnl/a-lab') === 0
                 || id.indexOf('anl/auroragpt') === 0
-                || id.indexOf('khan-academy-openai/') === 0;
+                || id.indexOf('khan-academy-openai/') === 0
+                || id.indexOf('deepmind-doe/') === 0;
         }},
         { key: 'math', icon: '📐', label: 'Math / Formal Proof', match: function(id) {
-            return /(prover|alphaproof|alphageometry|funsearch|llemma|openmath|mathfusion|reprover|lean-?star|stepprover|internlm.*math|gemini-deepthink-imo|imo-experimental)/i.test(id);
+            return /(prover|alphaproof|alphageometry|funsearch|llemma|openmath|mathfusion|reprover|lean-?star|stepprover|internlm.*math|gemini-deepthink-imo|imo-experimental|gemini-3-deep-think|goedel-prover-v2)/i.test(id);
         }},
         { key: 'chemistry', icon: '⚗️', label: 'Chemistry', match: function(id) {
             return /(chemdfm|chemberta|chemgpt|chemformer|robochem|molgen|uni-mol|mole$|recursion\/mole)/i.test(id);
@@ -79,15 +87,18 @@ var AI4S = {
             return /(astrollama|astropt|astrom3|aion-1|astroclip|astronn|multimodal-universe|polymathic\/aion)/i.test(id);
         }},
         { key: 'physics-materials', icon: '⚛️', label: 'Physics / Materials', match: function(id) {
-            return /(mace-mp|orb-v|dpa-2|equiformer|uma-omat|mattergen|mattersim|gnome|chgnet|m3gnet|nequip|alphaqubit|multiple-physics|the-well|polymathic\/(multiple|the-well|walrus))/i.test(id);
+            return /(mace-mp|orb-v|dpa-2|equiformer|uma-omat|uma-omol25|mattergen|mattersim|gnome|chgnet|m3gnet|nequip|alphaqubit|multiple-physics|the-well|polymathic\/(multiple|the-well|walrus)|alchemi-torchsim|alphachip-2026|cosmos-transfer-2\.5|isaac-gr00t-n1)/i.test(id);
         }},
         { key: 'geo-climate', icon: '🌍', label: 'Earth · Climate', match: function(id) {
-            return /(aurora|pangu-weather|graphcast|gencast|aifs|fuxi|fengwu|climax|prithvi|climategpt|orbit|orbit-2|hclimrep)/i.test(id)
+            return /(aurora|pangu-weather|graphcast|gencast|aifs|fuxi|fengwu|climax|prithvi|climategpt|orbit|orbit-2|hclimrep|weathernext-2)/i.test(id)
                 || id.indexOf('ornl/orbit') === 0
-                || id.indexOf('helmholtz/hclimrep') === 0;
+                || id.indexOf('helmholtz/hclimrep') === 0
+                || id.indexOf('deepmind/weathernext') === 0
+                || id.indexOf('microsoft/aurora-open') === 0;
         }},
         { key: 'bio-genomics', icon: '🧬', label: 'Bio / Genomics', match: function(id) {
-            return /(evo-1|evo-2|rfdiffusion|rosettafold|saprot|protgpt|genslms|scgpt|nucleotide-transformer|hyenadna|caduceus|alphamissense|alphagenome|chai-2)/i.test(id);
+            return /(evo-1|evo-2|rfdiffusion|rosettafold|saprot|protgpt|genslms|scgpt|nucleotide-transformer|hyenadna|caduceus|alphamissense|alphagenome|chai-2|rnapro)/i.test(id)
+                || id.indexOf('nvidia-clara/rnapro') === 0;
         }},
         { key: 'multi-disciplinary', icon: '🌐', label: 'Multi-disciplinary', match: function(id) {
             return /\bgalactica\b/i.test(id);
