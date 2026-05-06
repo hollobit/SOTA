@@ -1073,6 +1073,7 @@ models:
       training_method: post-training on SEA languages
     links:
       system_card: https://huggingface.co/aisingapore/Apertus-SEA-LION-v4-8B/blob/main/README.md
+      huggingface: https://huggingface.co/aisingapore/Apertus-SEA-LION-v4-8B
   naver/hyperclova-x-think-32b:
     architecture:
       type: dense
@@ -1236,38 +1237,58 @@ models:
   meta/llama-4-405b:
     description: Meta's open-weight Llama 4 flagship — 405B dense, broad multilingual
       coverage.
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct
   meta/llama-4-scout-109b:
     description: Llama 4 Scout — 109B/17B active MoE for efficient inference. Apache
       2.0.
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct
   meta/llama-3.3-70b:
     lineage:
       base_model_id: meta/llama-3.1-70b
       training_method: extended fine-tuning + DPO
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct
   microsoft/phi-5-medium:
     description: Microsoft's Phi-5 Medium — small-but-capable distilled model, MIT
       licensed.
+    links:
+      huggingface: https://huggingface.co/microsoft/Phi-5-medium
   microsoft/phi-4:
     description: Phi-4 14B — Microsoft's efficient frontier-class small model with
       strong math.
+    links:
+      huggingface: https://huggingface.co/microsoft/phi-4
   google/gemma-3-27b:
     lineage:
       base_model: Gemini 3 distillation target
       training_method: knowledge distillation
+    links:
+      huggingface: https://huggingface.co/google/gemma-3-27b-it
   alibaba/qwen3-72b:
     description: Qwen 3 72B — Alibaba's open-weight 72B with broad multilingual +
       coding support.
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-72B
   mistral/mixtral-8x22b:
     description: Mistral's Mixtral 8x22B — pioneering MoE open-weight, 39B active
       per token.
+    links:
+      huggingface: https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1
   databricks/dbrx-132b:
     description: Databricks' DBRX 132B/36B-active MoE — enterprise focus, fine-grained
       MoE architecture.
   cohere/command-r-plus:
     description: Cohere's Command R+ — 104B optimized for RAG + tool use, strong multilingual.
+    links:
+      huggingface: https://huggingface.co/CohereForAI/c4ai-command-r-plus-08-2024
   cohere/aya-expanse-32b:
     lineage:
       base_model: Command R+ (Cohere's flagship)
       training_method: multilingual extended training
+    links:
+      huggingface: https://huggingface.co/CohereForAI/aya-expanse-32b
   ibm/granite-3.3:
     description: IBM's Granite 3.3 — enterprise-grade open-weight family, Apache 2.0.
   technology-innovation-institute/falcon3-10b:
@@ -1294,8 +1315,12 @@ models:
   ai21/jamba-1.5-large:
     description: AI21's Jamba 1.5 Large — hybrid SSM+Transformer architecture for
       long context.
+    links:
+      huggingface: https://huggingface.co/ai21labs/AI21-Jamba-1.5-Large
   nvidia/nemotron-4-340b:
     description: NVIDIA's Nemotron-4 340B — synthetic data generation specialist.
+    links:
+      huggingface: https://huggingface.co/nvidia/Nemotron-4-340B-Instruct
   perplexity/pplx-api-llama:
     description: Perplexity's API-tuned Llama variants for search-augmented inference.
   upstage/solar-pro-2:
@@ -1316,35 +1341,53 @@ models:
   meta/llama-3.1-405b:
     description: Meta's Llama 3.1 405B — flagship 2024 open-weight, broad multilingual
       + reasoning.
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct
   meta/llama-3.1-70b:
     description: Llama 3.1 70B — workhorse open-weight, strong on production deployments.
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct
   meta/llama-3.1-8b:
     description: Llama 3.1 8B — small efficient model with broad community fine-tunes.
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct
   meta/llama-2-70b:
     description: Meta's Llama 2 70B — pioneering open-weight LLM (2023), still widely
       deployed.
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-2-70b-chat-hf
   microsoft/phi-3-medium:
     description: Phi-3 14B — Microsoft's efficient small model with synthetic-data
       training.
+    links:
+      huggingface: https://huggingface.co/microsoft/Phi-3-medium-128k-instruct
   microsoft/phi-3-mini:
     description: Phi-3 3.8B — on-device-capable model with strong instruction-following.
+    links:
+      huggingface: https://huggingface.co/microsoft/Phi-3-mini-128k-instruct
   microsoft/phi-3.5-moe:
     description: Phi-3.5 MoE 41B/6.6B-active — Microsoft's MoE flagship, excellent
       reasoning per parameter.
     lineage:
       base_model: Phi-3 14B (dense)
       training_method: MoE expansion via mixture-of-depths variant
+    links:
+      huggingface: https://huggingface.co/microsoft/Phi-3.5-MoE-instruct
   google/gemma-2-27b:
     description: Gemma 2 27B — Google's open-weight 2024 flagship with sliding-window
       attention.
     lineage:
       base_model: Gemini 2 distillation target
       training_method: knowledge distillation + interleaved sliding window
+    links:
+      huggingface: https://huggingface.co/google/gemma-2-27b-it
   google/gemma-2-9b:
     description: Gemma 2 9B — efficient open-weight, strong instruction-following.
     lineage:
       base_model_id: google/gemma-2-27b
       training_method: distilled smaller variant
+    links:
+      huggingface: https://huggingface.co/google/gemma-2-9b-it
   google/gemini-2.5-pro:
     description: Gemini 2.5 Pro — Google's 2025 flagship with 2M context + native
       multimodal.
@@ -1378,25 +1421,37 @@ models:
   alibaba/qwen2.5-72b:
     description: Qwen 2.5 72B — Alibaba's 2024 flagship open-weight, strong on Chinese
       + coding.
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-72B-Instruct
   alibaba/qwen2.5-14b:
     description: Qwen 2.5 14B — efficient open-weight with broad multilingual coverage.
     lineage:
       base_model_id: alibaba/qwen2.5-72b
       training_method: smaller variant with shared training
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-14B-Instruct
   alibaba/qwen2.5-coder-32b:
     description: Qwen 2.5 Coder 32B — code-specialized variant, strong on SWE-Bench.
     lineage:
       base_model_id: alibaba/qwen2.5-32b
       training_method: code-specialized continued pretraining
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct
   deepseek/deepseek-r1:
     description: DeepSeek R1 — open reasoning model (Jan 2025), o1-class performance
       at fraction of cost.
     lineage:
       base_model: DeepSeek V3 base (671B/37B MoE)
       training_method: RL with rule-based rewards (GRPO)
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-R1
+      github: https://github.com/deepseek-ai/DeepSeek-R1
   deepseek/deepseek-v3:
     description: DeepSeek V3 — 671B/37B-active MoE (Dec 2024), pioneering frontier-class
       open MoE.
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-V3
+      github: https://github.com/deepseek-ai/DeepSeek-V3
   zhipu/glm-4-plus:
     description: GLM-4 Plus — Z.ai's flagship 2024, strong on bilingual Chinese-English.
     lineage:
@@ -1406,15 +1461,25 @@ models:
     description: Kimi K2 — Moonshot's open-weight reasoning model (Mar 2025).
   mistral/mistral-large-2:
     description: Mistral Large 2 — 123B dense (Jul 2024), strong multilingual flagship.
+    links:
+      huggingface: https://huggingface.co/mistralai/Mistral-Large-Instruct-2407
   mistral/mistral-nemo:
     description: Mistral Nemo 12B — joint with NVIDIA, multilingual + 128K context.
+    links:
+      huggingface: https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407
   mistral/codestral-22b:
     description: Codestral 22B — Mistral's code-specialist, strong on FIM tasks.
+    links:
+      huggingface: https://huggingface.co/mistralai/Codestral-22B-v0.1
   cohere/command-r:
     description: Cohere Command R — RAG-optimized 35B, strong for tool use + grounded
       answers.
+    links:
+      huggingface: https://huggingface.co/CohereForAI/c4ai-command-r-08-2024
   cohere/aya-23-35b:
     description: Aya 23 35B — Cohere Labs multilingual model spanning 23 languages.
+    links:
+      huggingface: https://huggingface.co/CohereForAI/aya-23-35B
   ibm/granite-3.0-8b:
     description: IBM Granite 3.0 8B — enterprise-focused, Apache 2.0, strong on RAG.
   databricks/dolly-v2-12b:
@@ -1431,6 +1496,8 @@ models:
     description: Apple DCLM 7B — DataComp-LM training transparency baseline.
   yi/yi-coder-9b:
     description: 01.AI Yi Coder 9B — code-specialist open-weight.
+    links:
+      huggingface: https://huggingface.co/01-ai/Yi-Coder-9B-Chat
   yi/yi-1.5-9b:
     description: Yi 1.5 9B — bilingual Chinese-English, strong instruction-following.
     lineage:
@@ -1443,10 +1510,16 @@ models:
       licensing.
   databricks/dbrx-instruct:
     description: Databricks DBRX 132B/36B-active MoE — fine-grained MoE architecture.
+    links:
+      huggingface: https://huggingface.co/databricks/dbrx-instruct
   ai21/jamba-1.6-mini:
     description: AI21 Jamba 1.6 Mini — hybrid SSM+Transformer, 256K context.
+    links:
+      huggingface: https://huggingface.co/ai21labs/AI21-Jamba-Mini-1.6
   nvidia/nemotron-3-340b:
     description: NVIDIA Nemotron-3 340B — synthetic data generation specialist.
+    links:
+      huggingface: https://huggingface.co/nvidia/Llama-3.1-Nemotron-Ultra-340B
   nvidia/llama-3.1-nemotron-70b:
     description: NVIDIA Llama 3.1 Nemotron 70B Reward — RLHF-tuned variant of Llama
       3.1.
@@ -1481,6 +1554,8 @@ models:
     pricing:
       input: 0.4
       output: 1.2
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3.6-Plus
   xiaomi/mimo-v2.5-pro:
     pricing:
       input: 0.3
@@ -1493,6 +1568,8 @@ models:
     pricing:
       input: 0.1
       output: 0.4
+    links:
+      huggingface: https://huggingface.co/inclusionAI/Ling-2.6-Flash
   google/ai-co-scientist:
     links:
       blog: https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/
@@ -1701,6 +1778,7 @@ models:
       paper: https://arxiv.org/abs/2510.17960
       homepage: https://polymathic-ai.org/
       huggingface: https://huggingface.co/datasets/MultimodalUniverse/MultimodalUniverse
+      github: https://github.com/PolymathicAI/AION-1
   polymathic/astroclip:
     links:
       paper: https://academic.oup.com/mnras/article/531/4/4990/7697182
@@ -1792,6 +1870,7 @@ models:
     links:
       paper: https://arxiv.org/abs/2511.15684
       github: https://github.com/PolymathicAI/walrus
+      huggingface: https://huggingface.co/PolymathicAI/Walrus
   nvidia/physicsnemo:
     links:
       blog: https://developer.nvidia.com/blog/physics-ml-platform-physicsnemo-is-now-open-source/
@@ -1966,6 +2045,7 @@ models:
     links:
       blog: https://news.mit.edu/2025/mit-scientists-debut-generative-ai-model-that-could-create-molecules-addressing-hard-to-treat-diseases-1125
       github: https://github.com/jwohlwend/boltz
+      huggingface: https://huggingface.co/jwohlwend/boltz
   evolutionaryscale/esm-3:
     links:
       blog: https://www.evolutionaryscale.ai/blog/esm3-release
@@ -2069,6 +2149,7 @@ models:
   caltech/orbnet:
     links:
       paper: https://arxiv.org/abs/2007.08026
+      github: https://github.com/Microsoft/OrbNet
   ufl/ani-1ccx:
     links:
       paper: https://www.nature.com/articles/s41467-019-10827-4
@@ -2149,9 +2230,11 @@ models:
   nvidia/cosmos-predict-2.5:
     links:
       blog: https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots
+      huggingface: https://huggingface.co/collections/nvidia/cosmos-predict-2-5
   nvidia/cosmos-transfer-2.5:
     links:
       blog: https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots
+      huggingface: https://huggingface.co/collections/nvidia/cosmos-transfer-2-5
   nvidia/gr00t-n1:
     links:
       huggingface: https://huggingface.co/nvidia/GR00T-N1-2B
@@ -2388,3 +2471,1189 @@ models:
   tencent/hunyuan-large:
     links:
       huggingface: https://huggingface.co/tencent/Tencent-Hunyuan-Large
+  alibaba/qwen-1.5-7b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen1.5-7B
+  alibaba/qwen-1.5-32b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen1.5-32B
+  alibaba/qwen-1.5-72b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen1.5-72B
+  alibaba/qwen2-audio:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2-Audio-7B-Instruct
+  alibaba/qwen2-vl-72b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2-VL-72B-Instruct
+  alibaba/qwen2.5-7b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-7B-Instruct
+  alibaba/qwen2.5-32b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-32B-Instruct
+  alibaba/qwen-2.5-32b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-32B-Instruct
+  alibaba/qwen-2.5-72b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-72B-Instruct
+  alibaba/qwen2.5-coder-7b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct
+  alibaba/qwen2.5-coder-14b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct
+  alibaba/qwen2.5-math-7b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-Math-7B-Instruct
+  alibaba/qwen2.5-math-72b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-Math-72B-Instruct
+  alibaba/qwen2.5-vl-72b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct
+  alibaba/qwen2.5-omni-7b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen2.5-Omni-7B
+  alibaba/qwen3-0.6b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-0.6B
+  alibaba/qwen3-1.7b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-1.7B
+  alibaba/qwen3-4b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-4B
+  alibaba/qwen3-8b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-8B
+  alibaba/qwen3-14b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-14B
+  alibaba/qwen3-32b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-32B
+  alibaba/qwen3-30b-a3b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507
+  alibaba/qwen3-30b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507
+  alibaba/qwen3-235b-a22b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-235B-A22B
+  alibaba/qwen3-235b-a22b-instruct-2507:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507
+  alibaba/qwen3-235b-a22b-thinking-2507:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507
+  alibaba/qwen3-235b-thinking-2507:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507
+  alibaba/qwen3-30b-thinking-2507:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-30B-A3B-Thinking-2507
+  alibaba/qwen3-4b-thinking-2507:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-4B-Thinking-2507
+  alibaba/qwen3-vl-32b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct
+  alibaba/qwen3-vl-235b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Instruct
+  alibaba/qwen3-omni-30b-thinking:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Thinking
+  alibaba/qwen3-next:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct
+  alibaba/qwq-32b:
+    links:
+      huggingface: https://huggingface.co/Qwen/QwQ-32B
+  alibaba/qvq-72b-preview:
+    links:
+      huggingface: https://huggingface.co/Qwen/QVQ-72B-Preview
+  alibaba/qwen3.5-27b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3.5-27B
+  alibaba/qwen3.5-122b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3.5-122B-A10B-Instruct
+  alibaba/qwen3.5-397b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3.5-397B-A17B-Instruct
+  alibaba/qwen3.5-397b-a17b:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3.5-397B-A17B-Instruct
+  alibaba/cosyvoice2-0.5b:
+    links:
+      huggingface: https://huggingface.co/FunAudioLLM/CosyVoice2-0.5B
+  alibaba/cosyvoice3-0.5b:
+    links:
+      huggingface: https://huggingface.co/FunAudioLLM/Fun-CosyVoice3-0.5B-2512
+  alibaba/wan-2.1-t2v-14b:
+    links:
+      huggingface: https://huggingface.co/Wan-AI/Wan2.1-T2V-14B
+  alibaba/wan-2.2-t2v-a14b:
+    links:
+      huggingface: https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B
+  mistral/mistral-7b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3
+  mistral/mixtral-8x7b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1
+  mistral/mistral-large-3:
+    links:
+      huggingface: https://huggingface.co/mistralai/Mistral-Large-Instruct-2412
+  mistral/mistral-nemo-12b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407
+  mistral/mistral-small-3:
+    links:
+      huggingface: https://huggingface.co/mistralai/Mistral-Small-3-Instruct-2501
+  mistral/mistral-small-3.1:
+    links:
+      huggingface: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503
+  mistral/mistral-small-3.2:
+    links:
+      huggingface: https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506
+  mistral/mistral-small-2:
+    links:
+      huggingface: https://huggingface.co/mistralai/Mistral-Small-Instruct-2409
+  mistral/codestral-mamba-7b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Mamba-Codestral-7B-v0.1
+  mistral/mathstral-7b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Mathstral-7B-v0.1
+  mistral/pixtral-12b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Pixtral-12B-2409
+  mistral/pixtral-large:
+    links:
+      huggingface: https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411
+  mistral/pixtral-large-124b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Pixtral-Large-Instruct-2411
+  mistral/devstral-small-1:
+    links:
+      huggingface: https://huggingface.co/mistralai/Devstral-Small-2505
+  mistral/devstral-small-1.1:
+    links:
+      huggingface: https://huggingface.co/mistralai/Devstral-Small-2507
+  mistral/devstral-small-2:
+    links:
+      huggingface: https://huggingface.co/mistralai/Devstral-Small-2509
+  mistral/devstral-2:
+    links:
+      huggingface: https://huggingface.co/mistralai/Devstral-Medium-2-2512
+  mistral/magistral-small-1:
+    links:
+      huggingface: https://huggingface.co/mistralai/Magistral-Small-2506
+  mistral/magistral-small-1.2:
+    links:
+      huggingface: https://huggingface.co/mistralai/Magistral-Small-2507
+  mistral/ministral-3-3b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512
+  mistral/ministral-3-8b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512
+  mistral/ministral-3-14b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512
+  mistral/ministral-8b-v1:
+    links:
+      huggingface: https://huggingface.co/mistralai/Ministral-8B-Instruct-2410
+  mistral/voxtral-small-24b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Voxtral-Small-24B-2507
+  mistral/voxtral-mini-3b:
+    links:
+      huggingface: https://huggingface.co/mistralai/Voxtral-Mini-3B-2507
+  mistral/voxtral-tts:
+    links:
+      huggingface: https://huggingface.co/mistralai/Voxtral-Mini-3B-2507
+  meta/llama-2-7b:
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-2-7b-chat-hf
+  meta/llama-2-13b:
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-2-13b-chat-hf
+  meta/llama-3-8b:
+    links:
+      huggingface: https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct
+  meta/llama-3-70b:
+    links:
+      huggingface: https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct
+  meta/llama-3.2-1b:
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct
+  meta/llama-3.2-3b:
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct
+  meta/llama-3.2-11b-vision:
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct
+  meta/llama-3.2-90b:
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-3.2-90B-Vision-Instruct
+  meta/llama-3.2-90b-vision:
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-3.2-90B-Vision-Instruct
+  meta/llama-4-scout:
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct
+  meta/llama-4-maverick:
+    links:
+      huggingface: https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct
+  meta/sam-1-vit-h:
+    links:
+      huggingface: https://huggingface.co/facebook/sam-vit-huge
+      github: https://github.com/facebookresearch/segment-anything
+  meta/sam-2.1-large:
+    links:
+      huggingface: https://huggingface.co/facebook/sam2.1-hiera-large
+      github: https://github.com/facebookresearch/sam2
+  meta/sam-3:
+    links:
+      github: https://github.com/facebookresearch/sam3
+  meta/sam-3d:
+    links:
+      github: https://github.com/facebookresearch/sam3
+  meta/sam-3.1:
+    links:
+      github: https://github.com/facebookresearch/sam3
+  meta/esmfold-3b:
+    links:
+      huggingface: https://huggingface.co/facebook/esmfold_v1
+      github: https://github.com/facebookresearch/esm
+  meta/vggt:
+    links:
+      github: https://github.com/facebookresearch/vggt
+  meta/sapiens2-0.1b:
+    links:
+      huggingface: https://huggingface.co/facebook/sapiens2-0.1b
+      github: https://github.com/facebookresearch/sapiens
+  meta/sapiens2-0.4b:
+    links:
+      huggingface: https://huggingface.co/facebook/sapiens2-0.4b
+      github: https://github.com/facebookresearch/sapiens
+  meta/sapiens2-0.8b:
+    links:
+      huggingface: https://huggingface.co/facebook/sapiens2-0.8b
+      github: https://github.com/facebookresearch/sapiens
+  meta/sapiens2-1b:
+    links:
+      huggingface: https://huggingface.co/facebook/sapiens2-1b
+      github: https://github.com/facebookresearch/sapiens
+  meta/sapiens2-1b-4k:
+    links:
+      huggingface: https://huggingface.co/facebook/sapiens2-1b-4k
+      github: https://github.com/facebookresearch/sapiens
+  meta/sapiens2-5b:
+    links:
+      huggingface: https://huggingface.co/facebook/sapiens2-5b
+      github: https://github.com/facebookresearch/sapiens
+  deepseek/deepseek-r1-0528:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-R1-0528
+      github: https://github.com/deepseek-ai/DeepSeek-R1
+  deepseek/deepseek-v3.2:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-V3.2-Exp
+      github: https://github.com/deepseek-ai/DeepSeek-V3.2-Exp
+  deepseek/deepseek-v3.1-terminus:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-V3.1-Terminus
+  deepseek/deepseek-v3.2-speciale:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-V3.2-Speciale
+  deepseek/deepseek-v4-pro-max:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro
+  deepseek/deepseek-v4:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-V4
+  deepseek/deepseek-vl2:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/deepseek-vl2
+      github: https://github.com/deepseek-ai/DeepSeek-VL2
+  deepseek/deepseek-coder-v2:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct
+      github: https://github.com/deepseek-ai/DeepSeek-Coder-V2
+  deepseek/deepseek-coder-v2-lite:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct
+  deepseek/deepseek-math-7b:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/deepseek-math-7b-instruct
+  deepseek/deepseek-math-v2:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-Math-V2
+  deepseek/janus-pro-7b:
+    links:
+      huggingface: https://huggingface.co/deepseek-ai/Janus-Pro-7B
+      github: https://github.com/deepseek-ai/Janus
+  microsoft/phi-3.5-mini:
+    links:
+      huggingface: https://huggingface.co/microsoft/Phi-3.5-mini-instruct
+  microsoft/phi-4-mini:
+    links:
+      huggingface: https://huggingface.co/microsoft/Phi-4-mini-instruct
+  microsoft/phi-4-multimodal:
+    links:
+      huggingface: https://huggingface.co/microsoft/Phi-4-multimodal-instruct
+  microsoft/phi-4-reasoning:
+    links:
+      huggingface: https://huggingface.co/microsoft/Phi-4-reasoning
+  microsoft/phi-4-reasoning-vision-15b:
+    links:
+      huggingface: https://huggingface.co/microsoft/Phi-4-reasoning-vision-15B
+  microsoft/cxr-foundation:
+    links:
+      github: https://github.com/Google-Health/cxr-foundation
+  microsoft/trellis-image-large:
+    links:
+      huggingface: https://huggingface.co/microsoft/TRELLIS-image-large
+      github: https://github.com/microsoft/TRELLIS
+  microsoft/trellis-2-4b:
+    links:
+      huggingface: https://huggingface.co/microsoft/TRELLIS.2-4B
+      github: https://github.com/microsoft/TRELLIS
+  google/gemma-7b:
+    links:
+      huggingface: https://huggingface.co/google/gemma-1.1-7b-it
+  google/gemma-3-1b:
+    links:
+      huggingface: https://huggingface.co/google/gemma-3-1b-it
+  google/gemma-3-4b:
+    links:
+      huggingface: https://huggingface.co/google/gemma-3-4b-it
+  google/gemma-3-12b:
+    links:
+      huggingface: https://huggingface.co/google/gemma-3-12b-it
+  google/gemma-4:
+    links:
+      huggingface: https://huggingface.co/google/gemma-4
+  google/medgemma-4b-pt:
+    links:
+      huggingface: https://huggingface.co/google/medgemma-4b-pt
+  google/medgemma-9b:
+    links:
+      huggingface: https://huggingface.co/google/medgemma-9b-it
+  google/medgemma-27b:
+    links:
+      huggingface: https://huggingface.co/google/medgemma-27b-text-it
+  google/timesfm-1-200m:
+    links:
+      huggingface: https://huggingface.co/google/timesfm-1.0-200m
+      github: https://github.com/google-research/timesfm
+  google/timesfm-2.5-200m:
+    links:
+      huggingface: https://huggingface.co/google/timesfm-2.5-200m-pytorch
+      github: https://github.com/google-research/timesfm
+  nvidia/cosmos-reason-1-8b:
+    links:
+      huggingface: https://huggingface.co/nvidia/Cosmos-Reason1-7B
+  nvidia/cosmos-reason-1-56b:
+    links:
+      huggingface: https://huggingface.co/nvidia/Cosmos-Reason1-56B
+  nvidia/cosmos-predict-2.5-2b:
+    links:
+      huggingface: https://huggingface.co/nvidia/Cosmos-Predict2.5-2B
+  nvidia/cosmos-predict-2.5-14b:
+    links:
+      huggingface: https://huggingface.co/nvidia/Cosmos-Predict2.5-14B
+  nvidia/cosmos-policy-robocasa:
+    links:
+      github: https://github.com/nvidia-cosmos/cosmos-rl
+  nvidia/gr00t-n1.6:
+    links:
+      huggingface: https://huggingface.co/nvidia/GR00T-N1.6
+  nvidia/gr00t-n1.7:
+    links:
+      github: https://github.com/NVIDIA/Isaac-GR00T
+  shanghai-ai-lab/internlm-2.5-1.8b:
+    links:
+      huggingface: https://huggingface.co/internlm/internlm2_5-1_8b-chat
+  shanghai-ai-lab/internlm-2.5-7b:
+    links:
+      huggingface: https://huggingface.co/internlm/internlm2_5-7b-chat
+  shanghai-ai-lab/internlm-2.5-20b:
+    links:
+      huggingface: https://huggingface.co/internlm/internlm2_5-20b-chat
+  shanghai-ai-lab/internlm-3-8b:
+    links:
+      huggingface: https://huggingface.co/internlm/internlm3-8b-instruct
+  shanghai-ai-lab/internvl-2.5:
+    links:
+      huggingface: https://huggingface.co/OpenGVLab/InternVL2_5-78B
+  shanghai-ai-lab/internvl-2.5-78b:
+    links:
+      huggingface: https://huggingface.co/OpenGVLab/InternVL2_5-78B
+  shanghai-ai-lab/internvl-3:
+    links:
+      huggingface: https://huggingface.co/OpenGVLab/InternVL3-78B
+  shanghai-ai-lab/internvl-3.5-8b:
+    links:
+      huggingface: https://huggingface.co/OpenGVLab/InternVL3_5-8B
+  ai21/jamba-1.0:
+    links:
+      huggingface: https://huggingface.co/ai21labs/Jamba-v0.1
+  ai21/jamba-1.5-mini:
+    links:
+      huggingface: https://huggingface.co/ai21labs/AI21-Jamba-1.5-Mini
+  ai21/jamba-large-1.5:
+    links:
+      huggingface: https://huggingface.co/ai21labs/AI21-Jamba-1.5-Large
+  ai21/jamba-1.6-large:
+    links:
+      huggingface: https://huggingface.co/ai21labs/AI21-Jamba-Large-1.6
+  ai21/jamba-1.7-mini:
+    links:
+      huggingface: https://huggingface.co/ai21labs/AI21-Jamba-Mini-1.7
+  ai21/jamba-large-1.7:
+    links:
+      huggingface: https://huggingface.co/ai21labs/AI21-Jamba-Large-1.7
+  ai21/jamba2-mini:
+    links:
+      huggingface: https://huggingface.co/ai21labs/AI21-Jamba-Mini-2
+  ai21/jamba2-3b:
+    links:
+      huggingface: https://huggingface.co/ai21labs/AI21-Jamba-3B-2
+  lg/exaone-3.0-7.8b:
+    links:
+      huggingface: https://huggingface.co/LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct
+  lg/exaone-3.5-2.4b:
+    links:
+      huggingface: https://huggingface.co/LGAI-EXAONE/EXAONE-3.5-2.4B-Instruct
+  lg/exaone-3.5-7.8b:
+    links:
+      huggingface: https://huggingface.co/LGAI-EXAONE/EXAONE-3.5-7.8B-Instruct
+  lg/exaone-3.5-32b:
+    links:
+      huggingface: https://huggingface.co/LGAI-EXAONE/EXAONE-3.5-32B-Instruct
+  lg/exaone-deep-2.4b:
+    links:
+      huggingface: https://huggingface.co/LGAI-EXAONE/EXAONE-Deep-2.4B
+  lg/exaone-deep-7.8b:
+    links:
+      huggingface: https://huggingface.co/LGAI-EXAONE/EXAONE-Deep-7.8B
+  lg/exaone-deep-32b:
+    links:
+      huggingface: https://huggingface.co/LGAI-EXAONE/EXAONE-Deep-32B
+  lg/exaone-4.0-1.2b:
+    links:
+      huggingface: https://huggingface.co/LGAI-EXAONE/EXAONE-4.0-1.2B
+  lg/exaone-4.0-32b:
+    links:
+      huggingface: https://huggingface.co/LGAI-EXAONE/EXAONE-4.0-32B
+  lg/exaone-4.0.1-32b:
+    links:
+      huggingface: https://huggingface.co/LGAI-EXAONE/EXAONE-4.0.1-32B
+  tii/falcon-h1-1.5b-deep:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon-H1-1.5B-Deep-Instruct
+  tii/falcon-h1-arabic-34b:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon-H1-Arabic-34B
+  tii/falcon-h1r-7b:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon-H1R-7B
+  tii/falcon-perception:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon-Perception
+  zhipu/glm-4.5:
+    links:
+      huggingface: https://huggingface.co/zai-org/GLM-4.5
+      github: https://github.com/THUDM/GLM-4.5
+  zhipu/glm-4.5-air:
+    links:
+      huggingface: https://huggingface.co/zai-org/GLM-4.5-Air
+  zhipu/glm-4.6:
+    links:
+      huggingface: https://huggingface.co/zai-org/GLM-4.6
+  zhipu/glm-4.7:
+    links:
+      huggingface: https://huggingface.co/zai-org/GLM-4.7
+  zhipu/glm-z1-32b:
+    links:
+      huggingface: https://huggingface.co/THUDM/GLM-Z1-32B-0414
+      github: https://github.com/THUDM/GLM-Z1
+  moonshot/kimi-k1.5:
+    links:
+      github: https://github.com/MoonshotAI/Kimi-k1.5
+  moonshot/kimi-k2-base:
+    links:
+      huggingface: https://huggingface.co/moonshotai/Kimi-K2-Base
+  openbmb/minicpm-3-4b:
+    links:
+      huggingface: https://huggingface.co/openbmb/MiniCPM3-4B
+  openbmb/minicpm-4-8b:
+    links:
+      huggingface: https://huggingface.co/openbmb/MiniCPM4-8B
+  openbmb/minicpm-4.1-8b:
+    links:
+      huggingface: https://huggingface.co/openbmb/MiniCPM4.1-8B
+  openbmb/minicpm-o-2.6:
+    links:
+      huggingface: https://huggingface.co/openbmb/MiniCPM-o-2_6
+  openbmb/minicpm-v-2.6:
+    links:
+      huggingface: https://huggingface.co/openbmb/MiniCPM-V-2_6
+  openbmb/uni-med-vlm-8b:
+    links:
+      huggingface: https://huggingface.co/openbmb/UniMed-VLM-8B
+  allenai/molmo-72b:
+    links:
+      huggingface: https://huggingface.co/allenai/Molmo-72B-0924
+  allenai/olmo-2-7b:
+    links:
+      huggingface: https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct
+  allenai/olmo-2-13b:
+    links:
+      huggingface: https://huggingface.co/allenai/OLMo-2-1124-13B-Instruct
+  allenai/tulu-3-70b:
+    links:
+      huggingface: https://huggingface.co/allenai/Llama-3.1-Tulu-3-70B
+  huggingface/smollm-1.7b:
+    links:
+      huggingface: https://huggingface.co/HuggingFaceTB/SmolLM-1.7B-Instruct
+  huggingface/smollm2-135m:
+    links:
+      huggingface: https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct
+  huggingface/smollm2-360m:
+    links:
+      huggingface: https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct
+  huggingface/smollm2-1.7b:
+    links:
+      huggingface: https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct
+  huggingface/smollm3-3b:
+    links:
+      huggingface: https://huggingface.co/HuggingFaceTB/SmolLM3-3B
+  stabilityai/sd-3.5-large:
+    links:
+      huggingface: https://huggingface.co/stabilityai/stable-diffusion-3.5-large
+  stabilityai/sv4d2.0:
+    links:
+      huggingface: https://huggingface.co/stabilityai/sv4d2.0
+  stabilityai/stable-code-3b:
+    links:
+      huggingface: https://huggingface.co/stabilityai/stable-code-3b
+  stabilityai/stablelm-2-1.6b:
+    links:
+      huggingface: https://huggingface.co/stabilityai/stablelm-2-1_6b
+  stabilityai/stablelm-2-12b:
+    links:
+      huggingface: https://huggingface.co/stabilityai/stablelm-2-12b
+  stabilityai/stable-lm-zephyr-3b:
+    links:
+      huggingface: https://huggingface.co/stabilityai/stablelm-zephyr-3b
+  bigcode/starcoder2-7b:
+    links:
+      huggingface: https://huggingface.co/bigcode/starcoder2-7b
+  bigcode/starcoder2-15b:
+    links:
+      huggingface: https://huggingface.co/bigcode/starcoder2-15b
+  black-forest-labs/flux.1-dev:
+    links:
+      huggingface: https://huggingface.co/black-forest-labs/FLUX.1-dev
+  black-forest-labs/flux.1-schnell:
+    links:
+      huggingface: https://huggingface.co/black-forest-labs/FLUX.1-schnell
+  black-forest-labs/flux.1-kontext-dev:
+    links:
+      huggingface: https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev
+  bytedance/seed-coder-8b:
+    links:
+      huggingface: https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct
+      github: https://github.com/ByteDance-Seed/Seed-Coder
+  freedomintelligence/huatuogpt-o1-72b:
+    links:
+      huggingface: https://huggingface.co/FreedomIntelligence/HuatuoGPT-o1-72B
+  freedomintelligence/huatuogpt-o1-8b:
+    links:
+      huggingface: https://huggingface.co/FreedomIntelligence/HuatuoGPT-o1-8B
+  freedomintelligence/huatuogpt-vision-7b:
+    links:
+      huggingface: https://huggingface.co/FreedomIntelligence/HuatuoGPT-Vision-7B
+  freedomintelligence/huatuogpt-vision-34b:
+    links:
+      huggingface: https://huggingface.co/FreedomIntelligence/HuatuoGPT-Vision-34B
+  freedomintelligence/huatuogpt-ii-7b:
+    links:
+      huggingface: https://huggingface.co/FreedomIntelligence/HuatuoGPT-II-7B
+  freedomintelligence/apollo-2b:
+    links:
+      huggingface: https://huggingface.co/FreedomIntelligence/Apollo-2B
+  freedomintelligence/apollo-6b:
+    links:
+      huggingface: https://huggingface.co/FreedomIntelligence/Apollo-6B
+  freedomintelligence/apollo-7b:
+    links:
+      huggingface: https://huggingface.co/FreedomIntelligence/Apollo-7B
+  ai-singapore/sea-lion-v2.1-7b:
+    links:
+      huggingface: https://huggingface.co/aisingapore/llama3-8b-cpt-sea-lionv2.1-instruct
+  ai-singapore/gemma2-sea-lion-v3-9b:
+    links:
+      huggingface: https://huggingface.co/aisingapore/gemma2-9b-cpt-sea-lionv3-instruct
+  ai-singapore/llama-sea-lion-v3.5-8b:
+    links:
+      huggingface: https://huggingface.co/aisingapore/Llama-SEA-LION-v3.5-8B-R
+  ai-singapore/llama-sea-lion-v3.5-70b:
+    links:
+      huggingface: https://huggingface.co/aisingapore/Llama-SEA-LION-v3.5-70B-R
+  dicta/dictalm-2.0:
+    links:
+      huggingface: https://huggingface.co/dicta-il/dictalm2.0
+  dicta/dictalm-2.0-instruct:
+    links:
+      huggingface: https://huggingface.co/dicta-il/dictalm2.0-instruct
+  dicta/dictalm-3.0-24b:
+    links:
+      huggingface: https://huggingface.co/dicta-il/dictalm3.0-24B-instruct
+  kakao/kanana-1.5-8b:
+    links:
+      huggingface: https://huggingface.co/kakaocorp/kanana-1.5-8b-instruct-2505
+  kakao/kanana-1.5-15.7b-a3b:
+    links:
+      huggingface: https://huggingface.co/kakaocorp/kanana-1.5-15.7b-a3b-instruct
+  kakao/kanana-2-30b-a3b-thinking:
+    links:
+      huggingface: https://huggingface.co/kakaocorp/kanana-2-30b-a3b-thinking
+  kakao/kanana-flag-32.5b:
+    links:
+      huggingface: https://huggingface.co/kakaocorp/kanana-flag-32.5b
+  kakao/kogpt-6b:
+    links:
+      huggingface: https://huggingface.co/kakaobrain/kogpt
+  naver/hyperclova-x-seed-vision-3b:
+    links:
+      huggingface: https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Vision-Instruct-3B
+  naver/hyperclova-seed-coder-8b:
+    links:
+      huggingface: https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Coder-Instruct-8B
+  upstage/solar-10.7b:
+    links:
+      huggingface: https://huggingface.co/upstage/SOLAR-10.7B-Instruct-v1.0
+  upstage/solar-mini:
+    links:
+      huggingface: https://huggingface.co/upstage/solar-pro-preview-instruct
+  upstage/solar-docvision:
+    links:
+      huggingface: https://huggingface.co/upstage/solar-docvision-preview
+  kt/midm-2.0-base:
+    links:
+      huggingface: https://huggingface.co/K-intelligence/Midm-2.0-Base-Instruct
+  kt/midm-2.0-mini:
+    links:
+      huggingface: https://huggingface.co/K-intelligence/Midm-2.0-Mini-Instruct
+  ncsoft/llama-varco-8b:
+    links:
+      huggingface: https://huggingface.co/NCSOFT/Llama-VARCO-8B-Instruct
+  trillionlabs/trillion-7b-preview:
+    links:
+      huggingface: https://huggingface.co/trillionlabs/Trillion-7B-preview
+  trillionlabs/tri-7b:
+    links:
+      huggingface: https://huggingface.co/trillionlabs/Tri-7B
+  trillionlabs/tri-21b:
+    links:
+      huggingface: https://huggingface.co/trillionlabs/Tri-21B
+  motif/motif-2-12.7b-instruct:
+    links:
+      huggingface: https://huggingface.co/Motif-Technologies/Motif-2-12.7B-Instruct
+  motif/motif-2-12.7b-reasoning:
+    links:
+      huggingface: https://huggingface.co/Motif-Technologies/Motif-2-12.7B-Reasoning
+  42dot/42dot-llm-plm-1.3b:
+    links:
+      huggingface: https://huggingface.co/42dot/42dot_LLM-PLM-1.3B
+  42dot/42dot-llm-sft-1.3b:
+    links:
+      huggingface: https://huggingface.co/42dot/42dot_LLM-SFT-1.3B
+  saltlux/luxia-21.4b:
+    links:
+      huggingface: https://huggingface.co/saltlux/luxia-21.4b-alignment-v1.0
+  01-ai/yi-1.5-6b:
+    links:
+      huggingface: https://huggingface.co/01-ai/Yi-1.5-6B-Chat
+  01-ai/yi-1.5-9b:
+    links:
+      huggingface: https://huggingface.co/01-ai/Yi-1.5-9B-Chat
+  01-ai/yi-1.5-34b:
+    links:
+      huggingface: https://huggingface.co/01-ai/Yi-1.5-34B-Chat
+  01-ai/yi-coder-9b:
+    links:
+      huggingface: https://huggingface.co/01-ai/Yi-Coder-9B-Chat
+  01-ai/yi-vl-34b:
+    links:
+      huggingface: https://huggingface.co/01-ai/Yi-VL-34B
+  baichuan/baichuan-2-7b:
+    links:
+      huggingface: https://huggingface.co/baichuan-inc/Baichuan2-7B-Chat
+  baichuan/baichuan-2-13b:
+    links:
+      huggingface: https://huggingface.co/baichuan-inc/Baichuan2-13B-Chat
+  baidu/ernie-4.5-300b-a47b:
+    links:
+      huggingface: https://huggingface.co/baidu/ERNIE-4.5-300B-A47B-PT
+  baai/aquila2-7b:
+    links:
+      huggingface: https://huggingface.co/BAAI/Aquila2-7B
+  baai/aquila2-34b:
+    links:
+      huggingface: https://huggingface.co/BAAI/Aquila2-34B
+  aleph-alpha/pharia-1-7b-control:
+    links:
+      huggingface: https://huggingface.co/Aleph-Alpha/Pharia-1-LLM-7B-control
+  aleph-alpha/pharia-1-7b-control-aligned:
+    links:
+      huggingface: https://huggingface.co/Aleph-Alpha/Pharia-1-LLM-7B-control-aligned
+  openllm-france/lucie-7b:
+    links:
+      huggingface: https://huggingface.co/OpenLLM-France/Lucie-7B-Instruct-v1.1
+  croissantllm/croissant-1.3b:
+    links:
+      huggingface: https://huggingface.co/croissantllm/CroissantLLMBase
+  pleias/pleias-1.0-olmo-1b:
+    links:
+      huggingface: https://huggingface.co/PleIAs/Pleias-1.0-Olmo-1B-instruct
+  pleias/pleias-1.0-pico-3.5b:
+    links:
+      huggingface: https://huggingface.co/PleIAs/Pleias-Pico
+  pleias/pleias-rag-1b:
+    links:
+      huggingface: https://huggingface.co/PleIAs/Pleias-RAG-1B
+  pleias/pleias-rag-350m:
+    links:
+      huggingface: https://huggingface.co/PleIAs/Pleias-RAG-350M
+  yandex/yalm-100b:
+    links:
+      huggingface: https://huggingface.co/yandex/yalm-100b
+  yandex/yandexgpt-5-lite-8b:
+    links:
+      huggingface: https://huggingface.co/yandex/YandexGPT-5-Lite-8B-pretrain
+  vikhrmodels/vikhr-nemo-12b:
+    links:
+      huggingface: https://huggingface.co/Vikhrmodels/Vikhr-Nemo-12B-Instruct-R-21-09-24
+  vikhrmodels/vikhr-yandexgpt-5-lite-8b:
+    links:
+      huggingface: https://huggingface.co/Vikhrmodels/Vikhr-YandexGPT-5-Lite-8B-it
+  tbank/t-lite-1:
+    links:
+      huggingface: https://huggingface.co/t-bank-ai/T-lite-it-1.0
+  tbank/t-pro-1:
+    links:
+      huggingface: https://huggingface.co/t-bank-ai/T-pro-it-1.0
+  sber/gigachat-2-lite:
+    links:
+      huggingface: https://huggingface.co/ai-sage/GigaChat-2-Lite
+  sber/gigachat-2-pro:
+    links:
+      huggingface: https://huggingface.co/ai-sage/GigaChat-2-Pro
+  sber/gigachat-2-max:
+    links:
+      huggingface: https://huggingface.co/ai-sage/GigaChat-2-Max
+  sber/rugpt-3.5-13b:
+    links:
+      huggingface: https://huggingface.co/ai-forever/ruGPT-3.5-13B
+  sarvam/sarvam-1:
+    links:
+      huggingface: https://huggingface.co/sarvamai/sarvam-1
+  sarvam/sarvam-30b:
+    links:
+      huggingface: https://huggingface.co/sarvamai/sarvam-2b-v0.5
+  sarvam/sarvam-105b:
+    links:
+      huggingface: https://huggingface.co/sarvamai/sarvam-105b
+  sarvam/sarvam-m:
+    links:
+      huggingface: https://huggingface.co/sarvamai/sarvam-m
+  ola/krutrim:
+    links:
+      huggingface: https://huggingface.co/krutrim-ai-labs/Krutrim-spectre
+  ola/krutrim-2-12b:
+    links:
+      huggingface: https://huggingface.co/krutrim-ai-labs/Krutrim-2-instruct
+  ai4bharat/indictrans2:
+    links:
+      huggingface: https://huggingface.co/ai4bharat/indictrans2-en-indic-1B
+  ai4bharat/indicbert-v2:
+    links:
+      huggingface: https://huggingface.co/ai4bharat/IndicBERTv2-MLM-only
+  ai4bharat/indicllm:
+    links:
+      huggingface: https://huggingface.co/ai4bharat/Airavata
+  bharatgen/param-1-2.9b:
+    links:
+      huggingface: https://huggingface.co/BharatGen/Param-1-2.9B
+  bharatgen/param2-17b:
+    links:
+      huggingface: https://huggingface.co/BharatGen/Param2-17B
+  mbzuai/llm360-k2-65b:
+    links:
+      huggingface: https://huggingface.co/LLM360/K2
+  mbzuai/atlas-chat-9b:
+    links:
+      huggingface: https://huggingface.co/MBZUAI-Paris/Atlas-Chat-9B
+  mbzuai/bimedix:
+    links:
+      huggingface: https://huggingface.co/MBZUAI/BiMediX
+  mbzuai-oryx/bimedix:
+    links:
+      huggingface: https://huggingface.co/MBZUAI/BiMediX
+  mbzuai-oryx/bimedix-2:
+    links:
+      huggingface: https://huggingface.co/MBZUAI/BiMediX2
+  gotoai/sahabat-ai-v1-8b:
+    links:
+      huggingface: https://huggingface.co/GoToCompany/llama3-8b-cpt-sahabatai-v1-instruct
+  gotoai/sahabat-ai-v1-70b:
+    links:
+      huggingface: https://huggingface.co/GoToCompany/llama3-70b-cpt-sahabatai-v1-instruct
+  minimax/m2.5:
+    links:
+      huggingface: https://huggingface.co/MiniMaxAI/MiniMax-M2
+  snowflake/arctic-instruct:
+    links:
+      huggingface: https://huggingface.co/Snowflake/snowflake-arctic-instruct
+  cohere/command-a:
+    links:
+      huggingface: https://huggingface.co/CohereForAI/c4ai-command-a-03-2025
+  tngtech/r1t-chimera:
+    links:
+      huggingface: https://huggingface.co/tngtech/DeepSeek-R1T-Chimera
+  tngtech/r1t2-chimera:
+    links:
+      huggingface: https://huggingface.co/tngtech/DeepSeek-TNG-R1T2-Chimera
+  opencoder/opencoder-8b:
+    links:
+      huggingface: https://huggingface.co/infly/OpenCoder-8B-Instruct
+  ola/krutrim-spectre:
+    links:
+      huggingface: https://huggingface.co/krutrim-ai-labs/Krutrim-spectre
+  skywork/skywork-13b:
+    links:
+      huggingface: https://huggingface.co/Skywork/Skywork-13B-base
+  skywork/skywork-moe:
+    links:
+      huggingface: https://huggingface.co/Skywork/Skywork-MoE-Base
+  skywork/skywork-o1:
+    links:
+      huggingface: https://huggingface.co/Skywork/Skywork-o1-Open-Llama-3.1-8B
+  skywork/skywork-r1v-3:
+    links:
+      huggingface: https://huggingface.co/Skywork/Skywork-R1V3-38B
+  kunlun/skywork-or1-32b:
+    links:
+      huggingface: https://huggingface.co/Skywork/Skywork-OR1-32B
+  kunlun/skywork-or1-7b:
+    links:
+      huggingface: https://huggingface.co/Skywork/Skywork-OR1-7B
+  inceptionai/jais-13b:
+    links:
+      huggingface: https://huggingface.co/inceptionai/jais-13b-chat
+  ai21/jamba-reasoning:
+    links:
+      huggingface: https://huggingface.co/ai21labs/AI21-Jamba-Reasoning-3B
+  huawei/pangu-ultra-moe:
+    links:
+      huggingface: https://huggingface.co/huawei-noah/Pangu-Ultra-MoE
+  arcee/trinity-mini:
+    links:
+      huggingface: https://huggingface.co/arcee-ai/Trinity-Mini
+  arcee/trinity-nano:
+    links:
+      huggingface: https://huggingface.co/arcee-ai/Trinity-Nano
+  arcee/trinity-large-base:
+    links:
+      huggingface: https://huggingface.co/arcee-ai/Trinity-Large-Base
+  arcee/trinity-large-truebase:
+    links:
+      huggingface: https://huggingface.co/arcee-ai/Trinity-Large-TrueBase
+  arcee/trinity-large-preview:
+    links:
+      huggingface: https://huggingface.co/arcee-ai/Trinity-Large-Preview
+  eleutherai/polyglot-ko-1.3b:
+    links:
+      huggingface: https://huggingface.co/EleutherAI/polyglot-ko-1.3b
+  eleutherai/polyglot-ko-3.8b:
+    links:
+      huggingface: https://huggingface.co/EleutherAI/polyglot-ko-3.8b
+  eleutherai/polyglot-ko-5.8b:
+    links:
+      huggingface: https://huggingface.co/EleutherAI/polyglot-ko-5.8b
+  eleutherai/polyglot-ko-12.8b:
+    links:
+      huggingface: https://huggingface.co/EleutherAI/polyglot-ko-12.8b
+  physical-intelligence/pi-zero:
+    links:
+      huggingface: https://huggingface.co/lerobot/pi0
+      github: https://github.com/Physical-Intelligence/openpi
+  physical-intelligence/pi-zero-fast:
+    links:
+      huggingface: https://huggingface.co/lerobot/pi0fast_base
+      github: https://github.com/Physical-Intelligence/openpi
+  physical-intelligence/pi-0.5:
+    links:
+      github: https://github.com/Physical-Intelligence/openpi
+  physical-intelligence/rdt-1b:
+    links:
+      huggingface: https://huggingface.co/robotics-diffusion-transformer/rdt-1b
+      github: https://github.com/thu-ml/RoboticsDiffusionTransformer
+  thudm/glm-medical-9b:
+    links:
+      huggingface: https://huggingface.co/THUDM/GLM-Medical-9B
+  thudm/qwen-2.5-medical:
+    links:
+      huggingface: https://huggingface.co/THUDM/Qwen2.5-Medical
+  thudm/doctorglm-6b:
+    links:
+      github: https://github.com/xionghonglin/DoctorGLM
+  openmedlab/sam-med2d:
+    links:
+      huggingface: https://huggingface.co/blueyo0/SAM-Med2D
+      github: https://github.com/OpenGVLab/SAM-Med2D
+  openmedlab/sam-med3d:
+    links:
+      huggingface: https://huggingface.co/blueyo0/SAM-Med3D
+      github: https://github.com/uni-medical/SAM-Med3D
+  openmedlab/sam-med3d-turbo:
+    links:
+      huggingface: https://huggingface.co/blueyo0/SAM-Med3D-Turbo
+      github: https://github.com/uni-medical/SAM-Med3D
+  amazon/chronos-t5-large:
+    links:
+      huggingface: https://huggingface.co/amazon/chronos-t5-large
+      github: https://github.com/amazon-science/chronos-forecasting
+  amazon/chronos-bolt-base:
+    links:
+      huggingface: https://huggingface.co/amazon/chronos-bolt-base
+  amazon/chronos-2:
+    links:
+      huggingface: https://huggingface.co/amazon/chronos-2
+  stepfun/step-audio-r1:
+    links:
+      huggingface: https://huggingface.co/stepfun-ai/Step-Audio-R1
+  stepfun/step-audio-editx:
+    links:
+      huggingface: https://huggingface.co/stepfun-ai/Step-Audio-EditX
+  stepfun/step-audio-tts-3b:
+    links:
+      huggingface: https://huggingface.co/stepfun-ai/Step-Audio-TTS-3B
+  inclusionai/llada2-uni:
+    links:
+      huggingface: https://huggingface.co/inclusionAI/LLaDA-2.0
+  yi/yi-vl-34b:
+    links:
+      huggingface: https://huggingface.co/01-ai/Yi-VL-34B
+  xiaomi/mimo-v2-omni:
+    links:
+      huggingface: https://huggingface.co/XiaomiMiMo/MiMo-VL-7B-RL
+  kyutai/moshi:
+    links:
+      huggingface: https://huggingface.co/kyutai/moshiko-pytorch-bf16
+      github: https://github.com/kyutai-labs/moshi
+  kyutai/mimi:
+    links:
+      huggingface: https://huggingface.co/kyutai/mimi
+  sesame/csm-1b:
+    links:
+      huggingface: https://huggingface.co/sesame/csm-1b
+  2noise/chattts:
+    links:
+      huggingface: https://huggingface.co/2Noise/ChatTTS
+      github: https://github.com/2noise/ChatTTS
+  swivid/f5-tts:
+    links:
+      huggingface: https://huggingface.co/SWivid/F5-TTS
+      github: https://github.com/SWivid/F5-TTS
+  hexgrad/kokoro-82m:
+    links:
+      huggingface: https://huggingface.co/hexgrad/Kokoro-82M
+  mobvoi/spark-tts-0.5b:
+    links:
+      huggingface: https://huggingface.co/SparkAudio/Spark-TTS-0.5B
+  openai/whisper-large-v3-turbo:
+    links:
+      huggingface: https://huggingface.co/openai/whisper-large-v3-turbo
+  tencent/hunyuanvideo:
+    links:
+      huggingface: https://huggingface.co/tencent/HunyuanVideo
+      github: https://github.com/Tencent-Hunyuan/HunyuanVideo
+  tencent/hunyuanvideo-1.5:
+    links:
+      huggingface: https://huggingface.co/tencent/HunyuanVideo-1.5
+      github: https://github.com/Tencent-Hunyuan/HunyuanVideo
+  tencent/hunyuanvideo-i2v:
+    links:
+      huggingface: https://huggingface.co/tencent/HunyuanVideo-I2V
+  tencent/hunyuan3d-2:
+    links:
+      huggingface: https://huggingface.co/tencent/Hunyuan3D-2
+  tencent/hunyuan3d-2.1:
+    links:
+      huggingface: https://huggingface.co/tencent/Hunyuan3D-2.1
+  genmo/mochi-1-preview:
+    links:
+      huggingface: https://huggingface.co/genmo/mochi-1-preview
+  zhipu/cogvideox-5b:
+    links:
+      huggingface: https://huggingface.co/zai-org/CogVideoX-5b
+  zhipu/cogvideox-1.5-5b:
+    links:
+      huggingface: https://huggingface.co/zai-org/CogVideoX1.5-5B
+  rain1011/pyramid-flow-sd3:
+    links:
+      huggingface: https://huggingface.co/rain1011/pyramid-flow-sd3
+  naver/dust3r:
+    links:
+      huggingface: https://huggingface.co/naver/DUSt3R_ViTLarge_BaseDecoder_512_dpt
+      github: https://github.com/naver/dust3r
+  naver/mast3r:
+    links:
+      huggingface: https://huggingface.co/naver/MASt3R_ViTLarge_BaseDecoder_512_catmlpdpt_metric
+      github: https://github.com/naver/mast3r
+  tiktok/depth-anything-v2-large:
+    links:
+      huggingface: https://huggingface.co/depth-anything/Depth-Anything-V2-Large
+      github: https://github.com/DepthAnything/Depth-Anything-V2
+  ethz/marigold-depth-v1.1:
+    links:
+      huggingface: https://huggingface.co/prs-eth/marigold-depth-v1-1
+  boltz-ai/boltz-1:
+    links:
+      huggingface: https://huggingface.co/boltz-community/boltz-1
+      github: https://github.com/jwohlwend/boltz
+  boltz-ai/boltz-2:
+    links:
+      github: https://github.com/jwohlwend/boltz
+  chai-discovery/chai-1:
+    links:
+      huggingface: https://huggingface.co/chaidiscovery/chai-1
+      github: https://github.com/chaidiscovery/chai-lab
+  ipd/rosettafold-3:
+    links:
+      github: https://github.com/RosettaCommons/RoseTTAFold-AllAtom
+  openvla/openvla-7b:
+    links:
+      huggingface: https://huggingface.co/openvla/openvla-7b
+      github: https://github.com/openvla/openvla
+  openvla/openvla-oft:
+    links:
+      github: https://github.com/moojink/openvla-oft
+  octo/octo-base:
+    links:
+      huggingface: https://huggingface.co/rail-berkeley/octo-base-1.5
+      github: https://github.com/octo-models/octo
+  deepchem/chemberta-3:
+    links:
+      github: https://github.com/seyonechithrananda/bert-loves-chemistry
+  salesforce/moirai-1.0-r-large:
+    links:
+      huggingface: https://huggingface.co/Salesforce/moirai-1.0-R-large
+      github: https://github.com/SalesforceAIResearch/uni2ts
+  cmu/moment-1-large:
+    links:
+      huggingface: https://huggingface.co/AutonLab/MOMENT-1-large
+      github: https://github.com/moment-timeseries-foundation-model/moment
+  servicenow/lag-llama:
+    links:
+      huggingface: https://huggingface.co/time-series-foundation-models/Lag-Llama
+  prior-labs/tabpfn-v2:
+    links:
+      huggingface: https://huggingface.co/Prior-Labs/TabPFN-v2-clf
+      github: https://github.com/PriorLabs/TabPFN
+  prior-labs/tabpfn-2.5:
+    links:
+      huggingface: https://huggingface.co/Prior-Labs/tabpfn_2_5
+  allenai/molmo-7b-d:
+    links:
+      huggingface: https://huggingface.co/allenai/Molmo-7B-D-0924
+  bowang-lab/medsam:
+    links:
+      huggingface: https://huggingface.co/wanglab/MedSAM
+      github: https://github.com/bowang-lab/MedSAM
+  bowang-lab/medsam-2:
+    links:
+      huggingface: https://huggingface.co/wanglab/MedSAM2
+      github: https://github.com/bowang-lab/MedSAM2
+  biomistral/biomistral-7b:
+    links:
+      huggingface: https://huggingface.co/BioMistral/BioMistral-7B
+  chaoyi-wu/pmc-llama-13b:
+    links:
+      huggingface: https://huggingface.co/axiong/PMC_LLaMA_13B
+      github: https://github.com/chaoyi-wu/PMC-LLaMA
+  elyza/elyza-llm-med-7b:
+    links:
+      huggingface: https://huggingface.co/elyza/ELYZA-LLM-Med-7B
+  elyza/elyza-llm-med-70b:
+    links:
+      huggingface: https://huggingface.co/elyza/ELYZA-LLM-Med-70B
+  ai4bharat/airavata-medical:
+    links:
+      huggingface: https://huggingface.co/ai4bharat/Airavata
+  echonet/echofm:
+    links:
+      github: https://github.com/echonet/echo-fm
+  echonet/echo-vision-fm:
+    links:
+      github: https://github.com/echonet/echo-vision-fm
+  echonet/echoclip:
+    links:
+      huggingface: https://huggingface.co/mkaichristensen/echo-clip
+      github: https://github.com/echonet/echo-clip
+  ai-singapore/gemma-sea-lion-v4-4b-vl:
+    links:
+      huggingface: https://huggingface.co/aisingapore/Gemma-SEA-LION-v4-4B-VL
+  ai-singapore/sea-medlex-13b:
+    links:
+      huggingface: https://huggingface.co/aisingapore/SEA-Medlex-13B
+  cyberagent/medcalm-7b:
+    links:
+      huggingface: https://huggingface.co/cyberagent/calm2-7b-chat
+  academic/plantrna-fm:
+    links:
+      github: https://github.com/yangheng95/PlantRNA-FM
+  stockmark/stockmark-medical-13b:
+    links:
+      huggingface: https://huggingface.co/stockmark/stockmark-13b
+  rikkyo/jmedllm-bilingual-13b:
+    links:
+      huggingface: https://huggingface.co/rikkyo/jmedllm-13b
+  stanford/medhalt-eval:
+    links:
+      github: https://github.com/medhalt/medhalt
+  saama/openbiollm-llama3-70b:
+    links:
+      huggingface: https://huggingface.co/aaditya/Llama3-OpenBioLLM-70B
+  saama/openbiollm-llama3-8b:
+    links:
+      huggingface: https://huggingface.co/aaditya/Llama3-OpenBioLLM-8B
+  ola/sutra-2:
+    links:
+      huggingface: https://huggingface.co/krutrim-ai-labs/Sutra-2
+  together-ai/dragonfly-med-8b:
+    links:
+      huggingface: https://huggingface.co/togethercomputer/Llama-3-Dragonfly-Med-v1-8b
+  biomed-ai/segvol:
+    links:
+      github: https://github.com/BAAI-DCAI/SegVol
+      huggingface: https://huggingface.co/BAAI/SegVol
+  alibaba-damo/sumihealth-72b:
+    links:
+      huggingface: https://huggingface.co/Alibaba-NLP/SumiHealth-72B
+  academic/liten-ff:
+    links:
+      paper: https://arxiv.org/abs/2507.00884
+      github: https://github.com/wlsdzyzl/LiTEN-FF
