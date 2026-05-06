@@ -35,6 +35,9 @@ var App = {
             if (typeof Timeline !== 'undefined') {
                 Timeline.init(self.data.models, self.data.benchmarks, self.data.scores);
             }
+            if (typeof AI4S !== 'undefined') {
+                AI4S.init(self.data.models);
+            }
             Modal.init();
             // Frontier Compare category filter
             var fcCat = document.getElementById('fc-category');
@@ -445,6 +448,7 @@ var App = {
                     if (btn.dataset.tab === 'sovereign' && typeof Sovereign !== 'undefined') Sovereign.render();
                     if (btn.dataset.tab === 'physical-ai' && typeof PhysicalAI !== 'undefined') PhysicalAI.render();
                     if (btn.dataset.tab === 'medical-ai' && typeof MedicalAI !== 'undefined') MedicalAI.render();
+                    if (btn.dataset.tab === 'ai4s' && typeof AI4S !== 'undefined') AI4S.render();
                     if (btn.dataset.tab === 'timeline' && typeof Timeline !== 'undefined') Timeline.render();
                     if (btn.dataset.tab === 'resources') self.renderResources();
                     if (btn.dataset.tab === 'changelog') self.renderChangelog();
