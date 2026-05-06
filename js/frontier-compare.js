@@ -46,6 +46,8 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-05 default ChatGPT model (replaces GPT-5.3 Instant)
+        'openai/gpt-5.5-instant',
         // 2026-04 frontier launches (50+ scores each)
         'openai/gpt-5.5',
         'openai/gpt-5.5-pro',

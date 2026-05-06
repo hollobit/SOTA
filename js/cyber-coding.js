@@ -319,6 +319,7 @@ var CyberCoding = {
         'anthropic/claude-sonnet-4.6',
         'google/gemini-3.1-pro',
         'google/gemini-3-pro',
+        'openai/gpt-5.5-instant',
         'openai/gpt-5.5',
         'openai/gpt-5.5-pro',
         'openai/gpt-5.4',
