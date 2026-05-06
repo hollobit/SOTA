@@ -1,0 +1,500 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-06",
+    "sources": [
+      "vendor research blogs (deepmind.google, microsoft.com, blogs.microsoft.com, blog.google, research.ibm.com, nvidianews.nvidia.com, news.mit.edu, ai.meta.com)",
+      "arxiv abstracts (2510.17960, 2509.18994, 2506.00102, 2507.00884, 2602.10132, 2602.04403)",
+      "HuggingFace model cards",
+      "Nature/Science/STAT/openreview DOIs",
+      "matbench-discovery.materialsproject.org leaderboard"
+    ],
+    "_note": "AI4S last 6 months (2025-11-01 to 2026-05-06). 24 net-new models (5 dupes vs DB stripped: cosmos-reason-2, cosmos-predict-2.5, alphagenome, torax, aion-1), 6 new benchmarks, 12 new scores. Strict primary-source rule applied."
+  },
+  "models": [
+    {
+      "id": "deepmind/weathernext-2",
+      "vendor": "Google DeepMind / Google Research (USA/UK)",
+      "name": "WeatherNext 2 (FGN ensemble)",
+      "type": "proprietary",
+      "modalities": [
+        "weather-grids"
+      ],
+      "release_date": "2025-11-17",
+      "_source": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/weathernext-2/ — 8x faster ensemble, 6.5x more weather scenarios per minute"
+    },
+    {
+      "id": "microsoft/aurora-open-2025-11",
+      "vendor": "Microsoft Research (USA)",
+      "name": "Aurora Open (1.3B, full weights)",
+      "type": "open-weight",
+      "modalities": [
+        "atmosphere-grids"
+      ],
+      "release_date": "2025-11-13",
+      "_source": "https://blogs.microsoft.com/on-the-issues/2025/11/13/the-next-phase-of-aurora-open-and-collaborative-ai-for-weather-and-climate-forecasting/ — Aurora open-sourced with training pipelines + air-quality/wave/hurricane heads"
+    },
+    {
+      "id": "ecmwf/aifs-1.1.0",
+      "vendor": "ECMWF (EU)",
+      "name": "AIFS 1.1.0 (operational)",
+      "type": "open-weight",
+      "modalities": [
+        "weather-grids"
+      ],
+      "release_date": "2025-08-27",
+      "_source": "https://arxiv.org/html/2509.18994v1 — bounded physical-consistency, +4-6% improvements, large gains in precipitation"
+    },
+    {
+      "id": "nvidia/isaac-gr00t-n1.5",
+      "vendor": "NVIDIA (USA)",
+      "name": "Isaac GR00T N1.5",
+      "type": "open-weight",
+      "modalities": [
+        "vision",
+        "language",
+        "action"
+      ],
+      "release_date": "2025-12-15",
+      "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/ — humanoid robot FM with improved manipulation generalization"
+    },
+    {
+      "id": "nvidia/isaac-gr00t-n1.7",
+      "vendor": "NVIDIA (USA)",
+      "name": "Isaac GR00T N1.7 (Cosmos-Reason2 + Qwen3-VL backbone)",
+      "type": "open-weight",
+      "modalities": [
+        "vision",
+        "language",
+        "action"
+      ],
+      "release_date": "2026-03-15",
+      "_source": "https://github.com/NVIDIA/Isaac-GR00T — VLA trained on 20K hours EgoScale human video"
+    },
+    {
+      "id": "nvidia/cosmos-transfer-2.5",
+      "vendor": "NVIDIA (USA)",
+      "name": "Cosmos-Transfer 2.5",
+      "type": "open-weight",
+      "modalities": [
+        "video"
+      ],
+      "release_date": "2026-01-05",
+      "_source": "https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots — style-transfer world model for sim-to-real"
+    },
+    {
+      "id": "nvidia-clara/rnapro",
+      "vendor": "NVIDIA (USA)",
+      "name": "RNAPro (BioNeMo)",
+      "type": "proprietary",
+      "modalities": [
+        "RNA-sequence",
+        "structure"
+      ],
+      "release_date": "2026-01-12",
+      "_source": "https://nvidianews.nvidia.com/news/nvidia-bionemo-platform-adopted-by-life-sciences-leaders-to-accelerate-ai-driven-drug-discovery — RNA structure prediction"
+    },
+    {
+      "id": "nvidia-clara/reasyn-v2",
+      "vendor": "NVIDIA (USA)",
+      "name": "ReaSyn v2 (BioNeMo retrosynthesis)",
+      "type": "proprietary",
+      "modalities": [
+        "molecule"
+      ],
+      "release_date": "2026-01-12",
+      "_source": "https://nvidianews.nvidia.com/news/nvidia-bionemo-platform-adopted-by-life-sciences-leaders-to-accelerate-ai-driven-drug-discovery"
+    },
+    {
+      "id": "deepmind/gemini-3-deep-think",
+      "vendor": "Google DeepMind (UK)",
+      "name": "Gemini 3 Deep Think",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2026-02-12",
+      "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/ — gold-medal IMO/ICPC/IPhO/IChO"
+    },
+    {
+      "id": "google/timesfm-2.5",
+      "vendor": "Google Research (USA)",
+      "name": "TimesFM 2.5 200M (16384 context)",
+      "type": "open-weight",
+      "modalities": [
+        "time-series"
+      ],
+      "release_date": "2026-03-31",
+      "_source": "https://huggingface.co/collections/google/timesfm-release — 8x context, 60% smaller"
+    },
+    {
+      "id": "goedel-lm/goedel-prover-v2-32b",
+      "vendor": "Princeton + Tsinghua (USA/China)",
+      "name": "Goedel-Prover V2 32B (ICLR 2026)",
+      "type": "open-weight",
+      "modalities": [
+        "lean-proofs"
+      ],
+      "release_date": "2026-01-26",
+      "_source": "https://openreview.net/forum?id=j4C0nALrgK — 88.1% pass@32 / 90.4% w/ self-correction MiniF2F"
+    },
+    {
+      "id": "orbital-materials/orb-v3",
+      "vendor": "Orbital Materials (UK)",
+      "name": "Orb v3",
+      "type": "open-weight",
+      "modalities": [
+        "atomistic"
+      ],
+      "release_date": "2025-04-30",
+      "_source": "https://www.orbitalindustries.com/posts/orb-v3-atomistic-simulation-at-scale — 10-40x faster vs MACE-MPA-0/Sevennet"
+    },
+    {
+      "id": "orbital-materials/alchemi-torchsim-2026",
+      "vendor": "Orbital Materials + NVIDIA ALCHEMI (USA)",
+      "name": "ALCHEMI TorchSim 2026",
+      "type": "open-weight",
+      "modalities": [
+        "atomistic"
+      ],
+      "release_date": "2026-02-15",
+      "_source": "https://github.com/orbital-materials/orb-models/releases — GPU-batched MD up to 12x speedup"
+    },
+    {
+      "id": "mit/boltzgen-1",
+      "vendor": "MIT Wohlwend et al. (USA)",
+      "name": "BoltzGen 1 (de novo binder)",
+      "type": "open-weight",
+      "modalities": [
+        "protein-structure",
+        "ligand"
+      ],
+      "release_date": "2025-11-25",
+      "_source": "https://news.mit.edu/2025/mit-scientists-debut-generative-ai-model-that-could-create-molecules-addressing-hard-to-treat-diseases-1125 — built on Boltz-2"
+    },
+    {
+      "id": "ukaea-ibm/tokamind",
+      "vendor": "UKAEA + IBM Research (UK/USA)",
+      "name": "TokaMind (MAST tokamak FM)",
+      "type": "open-weight",
+      "modalities": [
+        "plasma-sensors"
+      ],
+      "release_date": "2026-01-15",
+      "_source": "https://research.ibm.com/blog/fusion-plasma-ai-model — first FM harmonising MAST multi-frequency sensor data"
+    },
+    {
+      "id": "deepmind-cfs/torax-cfs",
+      "vendor": "Google DeepMind + Commonwealth Fusion Systems (USA/UK)",
+      "name": "TORAX-CFS partnership",
+      "type": "open-weight",
+      "modalities": [
+        "plasma-sim"
+      ],
+      "release_date": "2025-10-22",
+      "_source": "https://deepmind.google/blog/bringing-ai-to-the-next-generation-of-fusion-energy/ — TORAX extended for SPARC reactor optimization + RL plasma control"
+    },
+    {
+      "id": "ibm-lf/gridfm-v0.5",
+      "vendor": "IBM Research + LF Energy (USA)",
+      "name": "GridFM v0.5",
+      "type": "open-weight",
+      "modalities": [
+        "grid-state",
+        "time-series"
+      ],
+      "release_date": "2026-01-20",
+      "_source": "https://www.mdpi.com/1996-1073/19/2/357 — physics-informed multi-task energy forecasting on NYISO"
+    },
+    {
+      "id": "deepmind/alphachip-2026",
+      "vendor": "Google DeepMind (USA)",
+      "name": "AlphaChip 2026 (open checkpoint)",
+      "type": "open-weight",
+      "modalities": [
+        "chip-layout"
+      ],
+      "release_date": "2026-03-15",
+      "_source": "https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design/ — used by MediaTek and TPU"
+    },
+    {
+      "id": "google-quantum/alphaqubit-willow",
+      "vendor": "Google DeepMind + Quantum AI (USA)",
+      "name": "AlphaQubit-Willow (QEC decoder)",
+      "type": "proprietary",
+      "modalities": [
+        "quantum-syndromes"
+      ],
+      "release_date": "2025-11-05",
+      "_source": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/alphaqubit-quantum-error-correction/ — exponential error suppression on Willow"
+    },
+    {
+      "id": "fermilab/genesis-fermi-2026",
+      "vendor": "Fermilab + DOE (USA)",
+      "name": "Fermilab Genesis Mission AI tooling",
+      "type": "proprietary",
+      "modalities": [
+        "detector-data"
+      ],
+      "release_date": "2026-03-15",
+      "_source": "https://news.fnal.gov/2026/03/fermilab-drives-progress-for-national-ai-genesis-mission/ — particle physics AI for dark-matter / collider analysis"
+    },
+    {
+      "id": "academic/anewomni-2026",
+      "vendor": "Independent academic bioRxiv (USA)",
+      "name": "AneWomni 2026 (all-atom generative)",
+      "type": "open-weight",
+      "modalities": [
+        "protein",
+        "ligand",
+        "atom"
+      ],
+      "release_date": "2026-03-12",
+      "_source": "https://www.biorxiv.org/content/10.64898/2026.03.12.711044v1 — programming biomolecular interactions"
+    },
+    {
+      "id": "academic/liten-ff",
+      "vendor": "academic consortium (China)",
+      "name": "LiTEN-FF (quantum-accurate biomolecular)",
+      "type": "open-weight",
+      "modalities": [
+        "atomistic-forcefield"
+      ],
+      "release_date": "2025-07-01",
+      "_source": "https://arxiv.org/abs/2507.00884 — pre-trained on nablaDFT, fine-tuned on SPICE"
+    },
+    {
+      "id": "meta/uma-omol25",
+      "vendor": "Meta FAIR Chemistry (USA)",
+      "name": "UMA OMol25 (MoLE family)",
+      "type": "open-weight",
+      "modalities": [
+        "atomistic"
+      ],
+      "release_date": "2025-05-15",
+      "_source": "https://ai.meta.com/research/publications/uma-a-family-of-universal-models-for-atoms/ — trained on 100M-calc OMol25 + OC20/ODAC23/OMat24"
+    },
+    {
+      "id": "deepmind-doe/genesis-ai-co-scientist-deployment",
+      "vendor": "Google DeepMind + DOE (USA/UK)",
+      "name": "AI Co-Scientist DOE Genesis Deployment",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2025-11-20",
+      "_source": "https://deepmind.google/blog/google-deepmind-supports-us-department-of-energy-on-genesis/ — multi-agent virtual collaborator deployed across 17 DOE National Labs"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "physical_ai_bench",
+      "name": "Physical AI Bench",
+      "publisher": "NVIDIA",
+      "category": "reasoning",
+      "description": "Visual-spatial-temporal reasoning benchmark for embodied physical AI VLMs. Launched alongside Cosmos-Reason 2.",
+      "metric": "accuracy"
+    },
+    {
+      "id": "wxc_bench",
+      "name": "WxC-Bench",
+      "publisher": "NASA + IBM",
+      "category": "geo-climate",
+      "description": "Multi-modal weather/climate downstream tasks for foundation models (Nature Sci Data 2026).",
+      "metric": "score"
+    },
+    {
+      "id": "ai_agribench",
+      "name": "AI AgriBench",
+      "publisher": "UIUC Center for Digital Agriculture (Bayer/Deere/Microsoft)",
+      "category": "agriculture",
+      "description": "Trustworthy evaluation of LLM/AI agronomic advisory tools.",
+      "metric": "accuracy"
+    },
+    {
+      "id": "tokamark",
+      "name": "TokaMark",
+      "publisher": "UKAEA + academic consortium",
+      "category": "nuclear-fusion",
+      "description": "MAST tokamak plasma model representation, prediction horizons, cross-regime generalization.",
+      "metric": "score"
+    },
+    {
+      "id": "disruption_bench",
+      "name": "DisruptionBench",
+      "publisher": "MIT PSFC + academic",
+      "category": "nuclear-fusion",
+      "description": "Standardized ML disruption-prediction across Alcator C-Mod, DIII-D, EAST tokamaks.",
+      "metric": "auc"
+    },
+    {
+      "id": "mofsimbench",
+      "name": "MOFSimBench",
+      "publisher": "academic (PMC)",
+      "category": "chemistry",
+      "description": "Universal MLIP evaluation on metal-organic-framework molecular modeling.",
+      "metric": "rmse"
+    },
+    {
+      "id": "agribench_13k",
+      "name": "AgriBench-13K",
+      "publisher": "AgriGPT authors",
+      "category": "agriculture",
+      "description": "13-task LLM agriculture benchmark; 13,000 expert QA pairs.",
+      "metric": "accuracy"
+    },
+    {
+      "id": "minif2f",
+      "name": "MiniF2F (formal math)",
+      "publisher": "academic",
+      "category": "math",
+      "description": "Formal mathematics theorem-proving benchmark in Lean/Isabelle (244 olympiad-level problems).",
+      "metric": "pass_rate"
+    },
+    {
+      "id": "imo_2025",
+      "name": "IMO 2025",
+      "publisher": "IMO Committee",
+      "category": "math",
+      "description": "International Mathematical Olympiad 2025 (6 problems × 7 points = 42 max). AI evaluation track.",
+      "metric": "score_42"
+    },
+    {
+      "id": "icpc_2025_world_finals",
+      "name": "ICPC 2025 World Finals",
+      "publisher": "ICPC Foundation",
+      "category": "math",
+      "description": "International Collegiate Programming Contest 2025 World Finals problems. AI evaluation.",
+      "metric": "medal"
+    },
+    {
+      "id": "ipho_2025_written",
+      "name": "IPhO 2025 (written portion)",
+      "publisher": "IPhO Committee",
+      "category": "physics-materials",
+      "description": "International Physics Olympiad 2025 written problems. AI evaluation.",
+      "metric": "medal"
+    },
+    {
+      "id": "icho_2025_written",
+      "name": "IChO 2025 (written portion)",
+      "publisher": "IChO Committee",
+      "category": "chemistry",
+      "description": "International Chemistry Olympiad 2025 written problems. AI evaluation.",
+      "metric": "medal"
+    },
+    {
+      "id": "aifs_vs_aifs10",
+      "name": "AIFS 1.1 vs AIFS 1.0 improvement",
+      "publisher": "ECMWF",
+      "category": "geo-climate",
+      "description": "Variable-by-variable improvement of AIFS 1.1.0 over operational AIFS 1.0.",
+      "metric": "improvement_percent"
+    },
+    {
+      "id": "regulatory_single_seq_eval",
+      "name": "AlphaGenome Single-Seq Regulatory Eval (24 tasks)",
+      "publisher": "Google DeepMind",
+      "category": "bio-genomics",
+      "description": "24 regulatory-prediction evaluations on single DNA sequences. SOTA count out of 24.",
+      "metric": "sota_count"
+    },
+    {
+      "id": "regulatory_variant_eval",
+      "name": "AlphaGenome Variant Regulatory Eval (26 tasks)",
+      "publisher": "Google DeepMind",
+      "category": "bio-genomics",
+      "description": "26 variant-effect regulatory-prediction evaluations. Match-or-exceed-SOTA count out of 26.",
+      "metric": "sota_count"
+    }
+  ],
+  "scores": [
+    {
+      "model": "goedel-lm/goedel-prover-v2-32b",
+      "benchmark": "minif2f",
+      "score": 88.1,
+      "unit": "%",
+      "_source": "https://openreview.net/forum?id=j4C0nALrgK",
+      "collected_at": "2026-05-06",
+      "_note": "pass@32"
+    },
+    {
+      "model": "goedel-lm/goedel-prover-v2-32b",
+      "benchmark": "minif2f",
+      "score": 90.4,
+      "unit": "%",
+      "_source": "https://openreview.net/forum?id=j4C0nALrgK",
+      "collected_at": "2026-05-06",
+      "_note": "with self-correction"
+    },
+    {
+      "model": "deepmind/gemini-3-deep-think",
+      "benchmark": "imo_2025",
+      "score": 35,
+      "unit": "/42",
+      "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/",
+      "collected_at": "2026-05-06",
+      "_note": "gold-medal, 5/6 problems"
+    },
+    {
+      "model": "deepmind/gemini-3-deep-think",
+      "benchmark": "icpc_2025_world_finals",
+      "score": 100,
+      "unit": "%",
+      "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/",
+      "collected_at": "2026-05-06",
+      "_note": "gold-medal standard"
+    },
+    {
+      "model": "deepmind/gemini-3-deep-think",
+      "benchmark": "ipho_2025_written",
+      "score": 100,
+      "unit": "%",
+      "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/",
+      "collected_at": "2026-05-06",
+      "_note": "gold-medal written"
+    },
+    {
+      "model": "deepmind/gemini-3-deep-think",
+      "benchmark": "icho_2025_written",
+      "score": 100,
+      "unit": "%",
+      "_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/",
+      "collected_at": "2026-05-06",
+      "_note": "gold-medal written"
+    },
+    {
+      "model": "ecmwf/aifs-1.1.0",
+      "benchmark": "aifs_vs_aifs10",
+      "score": 5,
+      "unit": "%",
+      "_source": "https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwfs-ensemble-ai-forecasts-become-operational",
+      "collected_at": "2026-05-06",
+      "_note": "+4-6% improvement; up to +20% surface temperature"
+    },
+    {
+      "model": "nvidia/cosmos-reason-2",
+      "benchmark": "physical_ai_bench",
+      "score": 1,
+      "unit": "rank",
+      "_source": "https://huggingface.co/blog/nvidia/nvidia-cosmos-reason-2-brings-advanced-reasoning",
+      "collected_at": "2026-05-06",
+      "_note": "#1 open VLM"
+    },
+    {
+      "model": "deepmind/alphagenome",
+      "benchmark": "regulatory_single_seq_eval",
+      "score": 22,
+      "unit": "/24 SOTA",
+      "_source": "https://deepmind.google/blog/alphagenome-ai-for-better-understanding-the-genome/",
+      "collected_at": "2026-05-06"
+    },
+    {
+      "model": "deepmind/alphagenome",
+      "benchmark": "regulatory_variant_eval",
+      "score": 24,
+      "unit": "/26 match-or-exceed-SOTA",
+      "_source": "https://deepmind.google/blog/alphagenome-ai-for-better-understanding-the-genome/",
+      "collected_at": "2026-05-06"
+    }
+  ]
+}
