@@ -1,582 +1,652 @@
-schema_version: "1.0"
+schema_version: '1.0'
 models:
   openai/gpt-5.5:
     architecture:
       type: dense
-    api_providers: [openai_api, openrouter]
-    _sources: ["https://platform.openai.com/docs/models/gpt-5.5"]
+    api_providers:
+    - openai_api
+    - openrouter
+    _sources:
+    - https://platform.openai.com/docs/models/gpt-5.5
     links:
-      homepage: "https://openai.com"
-      system_card: "https://openai.com/index/gpt-5-5-system-card"
-      model_card: "https://platform.openai.com/docs/models/gpt-5.5"
-      blog: "https://openai.com/index/introducing-gpt-5-5"
+      homepage: https://openai.com
+      system_card: https://openai.com/index/gpt-5-5-system-card
+      model_card: https://platform.openai.com/docs/models/gpt-5.5
+      blog: https://openai.com/index/introducing-gpt-5-5
     pricing:
-      input: 2.50
-      output: 15.00
+      input: 2.5
+      output: 15.0
     safety:
-      aisi_cyber_tier: "concerning"
-      cbrn_risk: "low-medium"
-      metr_autonomy_50pct: "8h"
+      aisi_cyber_tier: concerning
+      cbrn_risk: low-medium
+      metr_autonomy_50pct: 8h
       apollo_schemer_score: 0.42
     benchmarks_meta:
       arena_elo: 1421
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "OpenAI's flagship reasoning model with deep tool use, vision, and 400K context. SOTA on agentic + math (May 2026)."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: OpenAI's flagship reasoning model with deep tool use, vision, and
+      400K context. SOTA on agentic + math (May 2026).
     vendor_meta:
-      logo_url: "https://cdn.openai.com/openai-logomark.svg"
+      logo_url: https://cdn.openai.com/openai-logomark.svg
     license_terms:
-      name: "OpenAI Usage Policy"
+      name: OpenAI Usage Policy
       commercial: true
       attribution_required: false
       modify_redistribute: false
     cutoffs:
-      training_data_cutoff: "2025-06"
-      knowledge_cutoff: "2025-09"
-
+      training_data_cutoff: 2025-06
+      knowledge_cutoff: 2025-09
   openai/gpt-5.5-pro:
     architecture:
       type: dense
-    api_providers: [openai_api]
-    _sources: ["https://platform.openai.com/docs/models/gpt-5.5-pro"]
+    api_providers:
+    - openai_api
+    _sources:
+    - https://platform.openai.com/docs/models/gpt-5.5-pro
     lineage:
-      base_model_id: "openai/gpt-5.5"
-      training_method: "parallel test-time compute (multiple completions + voting)"
+      base_model_id: openai/gpt-5.5
+      training_method: parallel test-time compute (multiple completions + voting)
     links:
-      homepage: "https://openai.com"
-      system_card: "https://openai.com/index/gpt-5-5-system-card"
-      model_card: "https://platform.openai.com/docs/models/gpt-5.5-pro"
+      homepage: https://openai.com
+      system_card: https://openai.com/index/gpt-5-5-system-card
+      model_card: https://platform.openai.com/docs/models/gpt-5.5-pro
     pricing:
-      input: 30.00
-      output: 180.00
+      input: 30.0
+      output: 180.0
     safety:
-      aisi_cyber_tier: "concerning"
-      cbrn_risk: "medium"
-      metr_autonomy_50pct: "12h"
+      aisi_cyber_tier: concerning
+      cbrn_risk: medium
+      metr_autonomy_50pct: 12h
       apollo_schemer_score: 0.51
     benchmarks_meta:
       arena_elo: 1432
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "GPT-5.5 with parallel test-time compute for highest-quality answers; 12× pricier than GPT-5.5."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: GPT-5.5 with parallel test-time compute for highest-quality answers;
+      12× pricier than GPT-5.5.
     vendor_meta:
-      logo_url: "https://cdn.openai.com/openai-logomark.svg"
+      logo_url: https://cdn.openai.com/openai-logomark.svg
     license_terms:
-      name: "OpenAI Usage Policy"
+      name: OpenAI Usage Policy
       commercial: true
     cutoffs:
-      knowledge_cutoff: "2025-09"
-
+      knowledge_cutoff: 2025-09
   openai/gpt-5.4:
     architecture:
       type: dense
-    api_providers: [openai_api, openrouter]
-    _sources: ["https://platform.openai.com/docs/models/gpt-5.4"]
+    api_providers:
+    - openai_api
+    - openrouter
+    _sources:
+    - https://platform.openai.com/docs/models/gpt-5.4
     links:
-      homepage: "https://openai.com"
-      system_card: "https://openai.com/gpt-5-4-system-card.pdf"
-      model_card: "https://platform.openai.com/docs/models/gpt-5.4"
+      homepage: https://openai.com
+      system_card: https://openai.com/gpt-5-4-system-card.pdf
+      model_card: https://platform.openai.com/docs/models/gpt-5.4
     pricing:
-      input: 2.50
-      output: 15.00
+      input: 2.5
+      output: 15.0
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low"
-      metr_autonomy_50pct: "4h"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low
+      metr_autonomy_50pct: 4h
     benchmarks_meta:
       arena_elo: 1395
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Solid GPT-5 generation flagship; widely deployed via OpenAI + Azure + OpenRouter."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Solid GPT-5 generation flagship; widely deployed via OpenAI + Azure
+      + OpenRouter.
     vendor_meta:
-      logo_url: "https://cdn.openai.com/openai-logomark.svg"
+      logo_url: https://cdn.openai.com/openai-logomark.svg
     license_terms:
-      name: "OpenAI Usage Policy"
+      name: OpenAI Usage Policy
       commercial: true
     cutoffs:
-      knowledge_cutoff: "2025-04"
-
+      knowledge_cutoff: 2025-04
   openai/gpt-5.4-thinking:
     architecture:
       type: dense
-    api_providers: [openai_api]
-    _sources: ["https://platform.openai.com/docs/models/gpt-5.4-thinking"]
+    api_providers:
+    - openai_api
+    _sources:
+    - https://platform.openai.com/docs/models/gpt-5.4-thinking
     lineage:
-      base_model_id: "openai/gpt-5.4"
-      training_method: "RL extended chain-of-thought"
+      base_model_id: openai/gpt-5.4
+      training_method: RL extended chain-of-thought
     links:
-      homepage: "https://openai.com"
-      system_card: "https://openai.com/index/gpt-5-4-system-card"
-      model_card: "https://platform.openai.com/docs/models/gpt-5.4-thinking"
+      homepage: https://openai.com
+      system_card: https://openai.com/index/gpt-5-4-system-card
+      model_card: https://platform.openai.com/docs/models/gpt-5.4-thinking
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low"
-      metr_autonomy_50pct: "6h"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low
+      metr_autonomy_50pct: 6h
     benchmarks_meta:
       arena_elo: 1402
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "GPT-5.4 with extended reasoning chain; trades latency for accuracy on complex tasks."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: GPT-5.4 with extended reasoning chain; trades latency for accuracy
+      on complex tasks.
     vendor_meta:
-      logo_url: "https://cdn.openai.com/openai-logomark.svg"
+      logo_url: https://cdn.openai.com/openai-logomark.svg
     license_terms:
-      name: "OpenAI Usage Policy"
+      name: OpenAI Usage Policy
       commercial: true
-
   openai/gpt-5.3-codex:
     architecture:
       type: dense
-    api_providers: [openai_api]
-    _sources: ["https://platform.openai.com/docs/models/gpt-5.3-codex"]
+    api_providers:
+    - openai_api
+    _sources:
+    - https://platform.openai.com/docs/models/gpt-5.3-codex
     links:
-      homepage: "https://openai.com"
-      system_card: "https://openai.com/index/gpt-5-3-codex-system-card"
-      model_card: "https://platform.openai.com/docs/models/gpt-5.3-codex"
+      homepage: https://openai.com
+      system_card: https://openai.com/index/gpt-5-3-codex-system-card
+      model_card: https://platform.openai.com/docs/models/gpt-5.3-codex
     pricing:
       input: 1.75
-      output: 14.00
+      output: 14.0
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1372
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Code-specialized GPT-5.3 fine-tuned on OpenAI's coding data; powers Codex CLI."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Code-specialized GPT-5.3 fine-tuned on OpenAI's coding data; powers
+      Codex CLI.
     vendor_meta:
-      logo_url: "https://cdn.openai.com/openai-logomark.svg"
+      logo_url: https://cdn.openai.com/openai-logomark.svg
     license_terms:
-      name: "OpenAI Usage Policy"
+      name: OpenAI Usage Policy
       commercial: true
-
   anthropic/claude-opus-4.7:
     architecture:
       type: dense
-    api_providers: [anthropic_api, aws_bedrock, gcp_vertex]
-    _sources: ["https://www.anthropic.com/news/claude-opus-4-7"]
+    api_providers:
+    - anthropic_api
+    - aws_bedrock
+    - gcp_vertex
+    _sources:
+    - https://www.anthropic.com/news/claude-opus-4-7
     links:
-      homepage: "https://www.anthropic.com"
-      system_card: "https://www.anthropic.com/claude-opus-4-7-system-card"
-      model_card: "https://docs.anthropic.com/claude/docs/models-overview"
-      blog: "https://www.anthropic.com/news/claude-opus-4-7"
+      homepage: https://www.anthropic.com
+      system_card: https://www.anthropic.com/claude-opus-4-7-system-card
+      model_card: https://docs.anthropic.com/claude/docs/models-overview
+      blog: https://www.anthropic.com/news/claude-opus-4-7
     pricing:
-      input: 5.00
-      output: 25.00
+      input: 5.0
+      output: 25.0
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low-medium"
-      metr_autonomy_50pct: "10h"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low-medium
+      metr_autonomy_50pct: 10h
       apollo_schemer_score: 0.38
     benchmarks_meta:
       arena_elo: 1408
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Anthropic's most capable production model; strong agentic coding (SWE-Verified 80%+) with 200K context."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Anthropic's most capable production model; strong agentic coding
+      (SWE-Verified 80%+) with 200K context.
     vendor_meta:
-      logo_url: "https://cdn.anthropic.com/anthropic-logomark.svg"
+      logo_url: https://cdn.anthropic.com/anthropic-logomark.svg
     license_terms:
-      name: "Anthropic Usage Policy"
+      name: Anthropic Usage Policy
       commercial: true
     cutoffs:
-      training_data_cutoff: "2025-08"
-      knowledge_cutoff: "2025-12"
-
+      training_data_cutoff: 2025-08
+      knowledge_cutoff: 2025-12
   anthropic/claude-mythos-preview:
     architecture:
       type: dense
-    api_providers: [anthropic_api]
-    _sources: ["https://www.anthropic.com/research/claude-mythos"]
+    api_providers:
+    - anthropic_api
+    _sources:
+    - https://www.anthropic.com/research/claude-mythos
     links:
-      homepage: "https://www.anthropic.com"
-      system_card: "https://www.anthropic.com/claude-mythos-preview-system-card"
-      blog: "https://www.anthropic.com/research/claude-mythos"
+      homepage: https://www.anthropic.com
+      system_card: https://www.anthropic.com/claude-mythos-preview-system-card
+      blog: https://www.anthropic.com/research/claude-mythos
     safety:
-      aisi_cyber_tier: "concerning"
-      cbrn_risk: "medium"
-      metr_autonomy_50pct: "16h"
+      aisi_cyber_tier: concerning
+      cbrn_risk: medium
+      metr_autonomy_50pct: 16h
       apollo_schemer_score: 0.58
     benchmarks_meta:
       arena_elo: 1395
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Anthropic research preview; pushes capability frontier with experimental safety methods. Limited access."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Anthropic research preview; pushes capability frontier with experimental
+      safety methods. Limited access.
     vendor_meta:
-      logo_url: "https://cdn.anthropic.com/anthropic-logomark.svg"
+      logo_url: https://cdn.anthropic.com/anthropic-logomark.svg
     license_terms:
-      name: "Anthropic Research Preview"
+      name: Anthropic Research Preview
       commercial: false
     cutoffs:
-      knowledge_cutoff: "2026-01"
-
+      knowledge_cutoff: 2026-01
   anthropic/claude-opus-4.6:
     architecture:
       type: dense
-    api_providers: [anthropic_api, aws_bedrock]
-    _sources: ["https://www.anthropic.com/claude/opus"]
+    api_providers:
+    - anthropic_api
+    - aws_bedrock
+    _sources:
+    - https://www.anthropic.com/claude/opus
     links:
-      homepage: "https://www.anthropic.com"
-      system_card: "https://www.anthropic.com/claude-opus-4-6-system-card"
-      model_card: "https://www.anthropic.com/claude/opus"
+      homepage: https://www.anthropic.com
+      system_card: https://www.anthropic.com/claude-opus-4-6-system-card
+      model_card: https://www.anthropic.com/claude/opus
     pricing:
-      input: 5.00
-      output: 25.00
+      input: 5.0
+      output: 25.0
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low"
-      metr_autonomy_50pct: "6h"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low
+      metr_autonomy_50pct: 6h
       apollo_schemer_score: 0.31
     benchmarks_meta:
       arena_elo: 1378
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Predecessor to Opus 4.7; widely-used Anthropic flagship for production agentic workloads."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Predecessor to Opus 4.7; widely-used Anthropic flagship for production
+      agentic workloads.
     vendor_meta:
-      logo_url: "https://cdn.anthropic.com/anthropic-logomark.svg"
+      logo_url: https://cdn.anthropic.com/anthropic-logomark.svg
     license_terms:
-      name: "Anthropic Usage Policy"
+      name: Anthropic Usage Policy
       commercial: true
     cutoffs:
-      knowledge_cutoff: "2025-08"
-
+      knowledge_cutoff: 2025-08
   google/gemini-3.1-pro:
     architecture:
       type: dense
-    api_providers: [google_ai_studio, gcp_vertex]
-    _sources: ["https://ai.google.dev/gemini-api/docs/models#gemini-3-1-pro"]
+    api_providers:
+    - google_ai_studio
+    - gcp_vertex
+    _sources:
+    - https://ai.google.dev/gemini-api/docs/models#gemini-3-1-pro
     training:
-      compute_flops: "2e26"
+      compute_flops: 2e26
     links:
-      homepage: "https://gemini.google.com"
-      model_card: "https://ai.google.dev/gemini-api/docs/models#gemini-3-1-pro"
-      blog: "https://blog.google/technology/google-deepmind/gemini-3-1"
-      system_card: "https://storage.googleapis.com/deepmind-media/gemini/gemini_3_1_pro_system_card.pdf"
+      homepage: https://gemini.google.com
+      model_card: https://ai.google.dev/gemini-api/docs/models#gemini-3-1-pro
+      blog: https://blog.google/technology/google-deepmind/gemini-3-1
+      system_card: https://storage.googleapis.com/deepmind-media/gemini/gemini_3_1_pro_system_card.pdf
     pricing:
-      input: 2.00
-      output: 12.00
+      input: 2.0
+      output: 12.0
     safety:
-      aisi_cyber_tier: "concerning"
-      cbrn_risk: "low-medium"
-      metr_autonomy_50pct: "8h"
+      aisi_cyber_tier: concerning
+      cbrn_risk: low-medium
+      metr_autonomy_50pct: 8h
       apollo_schemer_score: 0.39
     benchmarks_meta:
       arena_elo: 1418
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Google's flagship 2026 model with native video + 2M context; competitive on multimodal + agent."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Google's flagship 2026 model with native video + 2M context; competitive
+      on multimodal + agent.
     vendor_meta:
-      logo_url: "https://www.gstatic.com/lamda/images/favicon_v1_70c80ffdf27202fd2e84f.svg"
+      logo_url: https://www.gstatic.com/lamda/images/favicon_v1_70c80ffdf27202fd2e84f.svg
     license_terms:
-      name: "Google Cloud TOS"
+      name: Google Cloud TOS
       commercial: true
     cutoffs:
-      knowledge_cutoff: "2025-10"
-
+      knowledge_cutoff: 2025-10
   google/gemini-3-pro:
     architecture:
       type: dense
-    api_providers: [google_ai_studio, gcp_vertex, openrouter]
-    _sources: ["https://ai.google.dev/gemini-api/docs/models#gemini-3-pro"]
+    api_providers:
+    - google_ai_studio
+    - gcp_vertex
+    - openrouter
+    _sources:
+    - https://ai.google.dev/gemini-api/docs/models#gemini-3-pro
     lineage:
-      training_method: "successor of Gemini 3.0 Pro"
+      training_method: successor of Gemini 3.0 Pro
     training:
-      compute_flops: "1.2e26"
+      compute_flops: 1.2e26
     links:
-      homepage: "https://gemini.google.com"
-      system_card: "https://storage.googleapis.com/deepmind-media/gemini/gemini_3_pro_system_card.pdf"
-      model_card: "https://ai.google.dev/gemini-api/docs/models#gemini-3-pro"
+      homepage: https://gemini.google.com
+      system_card: https://storage.googleapis.com/deepmind-media/gemini/gemini_3_pro_system_card.pdf
+      model_card: https://ai.google.dev/gemini-api/docs/models#gemini-3-pro
     pricing:
-      input: 2.00
-      output: 12.00
+      input: 2.0
+      output: 12.0
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low"
-      metr_autonomy_50pct: "5h"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low
+      metr_autonomy_50pct: 5h
     benchmarks_meta:
       arena_elo: 1402
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Predecessor Gemini 3 Pro with 1M context; broadly available via OpenRouter."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Predecessor Gemini 3 Pro with 1M context; broadly available via OpenRouter.
     vendor_meta:
-      logo_url: "https://www.gstatic.com/lamda/images/favicon_v1_70c80ffdf27202fd2e84f.svg"
+      logo_url: https://www.gstatic.com/lamda/images/favicon_v1_70c80ffdf27202fd2e84f.svg
     license_terms:
-      name: "Google Cloud TOS"
+      name: Google Cloud TOS
       commercial: true
-
   xai/grok-4.3:
     architecture:
       type: dense
-    api_providers: [xai_api, openrouter]
-    _sources: ["https://docs.x.ai/developers/models/grok-4.3"]
+    api_providers:
+    - xai_api
+    - openrouter
+    _sources:
+    - https://docs.x.ai/developers/models/grok-4.3
     links:
-      homepage: "https://x.ai"
-      model_card: "https://docs.x.ai/developers/models/grok-4.3"
-      system_card: "https://x.ai/news/grok-4-3-system-card"
+      homepage: https://x.ai
+      model_card: https://docs.x.ai/developers/models/grok-4.3
+      system_card: https://x.ai/news/grok-4-3-system-card
     pricing:
-      input: 3.00
-      output: 15.00
+      input: 3.0
+      output: 15.0
     safety:
-      aisi_cyber_tier: "concerning"
-      cbrn_risk: "medium"
-      metr_autonomy_50pct: "7h"
+      aisi_cyber_tier: concerning
+      cbrn_risk: medium
+      metr_autonomy_50pct: 7h
     benchmarks_meta:
       arena_elo: 1389
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "xAI's reasoning flagship with real-time X/Twitter access via tool use."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: xAI's reasoning flagship with real-time X/Twitter access via tool
+      use.
     vendor_meta:
-      logo_url: "https://x.ai/favicon.ico"
+      logo_url: https://x.ai/favicon.ico
     license_terms:
-      name: "xAI API Terms"
+      name: xAI API Terms
       commercial: true
-
   xai/grok-4-heavy:
     architecture:
       type: dense
-    api_providers: [xai_api]
-    _sources: ["https://docs.x.ai/developers/models/grok-4-heavy"]
+    api_providers:
+    - xai_api
+    _sources:
+    - https://docs.x.ai/developers/models/grok-4-heavy
     lineage:
-      base_model_id: "xai/grok-4.3"
-      training_method: "multi-agent voting variant"
+      base_model_id: xai/grok-4.3
+      training_method: multi-agent voting variant
     links:
-      homepage: "https://x.ai"
-      model_card: "https://docs.x.ai/developers/models/grok-4-heavy"
-      system_card: "https://x.ai/news/grok-4-heavy-system-card"
+      homepage: https://x.ai
+      model_card: https://docs.x.ai/developers/models/grok-4-heavy
+      system_card: https://x.ai/news/grok-4-heavy-system-card
     safety:
-      aisi_cyber_tier: "concerning"
-      cbrn_risk: "medium"
-      metr_autonomy_50pct: "11h"
+      aisi_cyber_tier: concerning
+      cbrn_risk: medium
+      metr_autonomy_50pct: 11h
     benchmarks_meta:
       arena_elo: 1412
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Multi-agent variant of Grok 4 (parallel reasoners + voting); highest-quality but slow + expensive."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Multi-agent variant of Grok 4 (parallel reasoners + voting); highest-quality
+      but slow + expensive.
     vendor_meta:
-      logo_url: "https://x.ai/favicon.ico"
+      logo_url: https://x.ai/favicon.ico
     license_terms:
-      name: "xAI API Terms"
+      name: xAI API Terms
       commercial: true
-
   meta/muse-spark:
     architecture:
       type: dense
-    api_providers: [openrouter, huggingface_inference]
-    _sources: ["https://ai.meta.com/research/publications/muse-spark"]
+    api_providers:
+    - openrouter
+    - huggingface_inference
+    _sources:
+    - https://ai.meta.com/research/publications/muse-spark
     training:
-      compute_flops: "8e25"
-      pretrain_tokens: "15T"
+      compute_flops: 8e25
+      pretrain_tokens: 15T
     links:
-      homepage: "https://ai.meta.com"
-      system_card: "https://ai.meta.com/research/publications/muse-spark-system-card"
-      model_card: "https://ai.meta.com/research/publications/muse-spark"
+      homepage: https://ai.meta.com
+      system_card: https://ai.meta.com/research/publications/muse-spark-system-card
+      model_card: https://ai.meta.com/research/publications/muse-spark
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1338
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Meta's research model focused on creative writing + persona consistency. Limited HF distribution."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Meta's research model focused on creative writing + persona consistency.
+      Limited HF distribution.
     vendor_meta:
-      logo_url: "https://about.fb.com/wp-content/uploads/2020/04/icon.png"
-
+      logo_url: https://about.fb.com/wp-content/uploads/2020/04/icon.png
   deepseek/deepseek-v4-pro:
     architecture:
       type: moe
-    api_providers: [deepseek_api, openrouter, huggingface_inference]
-    _sources: ["https://api-docs.deepseek.com/updates"]
+    api_providers:
+    - deepseek_api
+    - openrouter
+    - huggingface_inference
+    _sources:
+    - https://api-docs.deepseek.com/updates
     links:
-      homepage: "https://www.deepseek.com"
-      system_card: "https://huggingface.co/deepseek-ai/DeepSeek-V4/blob/main/README.md"
-      huggingface: "https://huggingface.co/deepseek-ai/DeepSeek-V4"
-      github: "https://github.com/deepseek-ai"
-      model_card: "https://api-docs.deepseek.com/updates"
+      homepage: https://www.deepseek.com
+      system_card: https://huggingface.co/deepseek-ai/DeepSeek-V4/blob/main/README.md
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-V4
+      github: https://github.com/deepseek-ai
+      model_card: https://api-docs.deepseek.com/updates
     pricing:
       input: 0.145
       output: 3.48
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low-medium"
-      metr_autonomy_50pct: "5h"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low-medium
+      metr_autonomy_50pct: 5h
     benchmarks_meta:
       arena_elo: 1372
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "DeepSeek's flagship MoE; SOTA-class reasoning at 1/30 the cost of frontier closed models."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: DeepSeek's flagship MoE; SOTA-class reasoning at 1/30 the cost of
+      frontier closed models.
     vendor_meta:
-      logo_url: "https://avatars.githubusercontent.com/u/148330874?s=200"
+      logo_url: https://avatars.githubusercontent.com/u/148330874?s=200
     license_terms:
-      name: "DeepSeek Model License"
+      name: DeepSeek Model License
       commercial: true
       modify_redistribute: true
     hardware:
-      recommended_gpu: "8× H200 BF16"
+      recommended_gpu: 8× H200 BF16
     tokenizer:
-      type: "BPE"
+      type: BPE
       vocab_size: 129000
     cutoffs:
-      knowledge_cutoff: "2025-12"
-
+      knowledge_cutoff: 2025-12
   deepseek/deepseek-v4-flash:
     architecture:
       type: moe
-    api_providers: [deepseek_api, openrouter]
-    _sources: ["https://api-docs.deepseek.com/updates"]
+    api_providers:
+    - deepseek_api
+    - openrouter
+    _sources:
+    - https://api-docs.deepseek.com/updates
     links:
-      homepage: "https://www.deepseek.com"
-      huggingface: "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash"
+      homepage: https://www.deepseek.com
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash
     pricing:
       input: 0.14
       output: 0.28
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1312
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Smaller DeepSeek MoE for high-throughput / low-cost deployments; frontier-tier on multilingual."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Smaller DeepSeek MoE for high-throughput / low-cost deployments;
+      frontier-tier on multilingual.
     vendor_meta:
-      logo_url: "https://avatars.githubusercontent.com/u/148330874?s=200"
+      logo_url: https://avatars.githubusercontent.com/u/148330874?s=200
     license_terms:
-      name: "DeepSeek Model License"
+      name: DeepSeek Model License
       commercial: true
       modify_redistribute: true
-
   moonshot/kimi-k2.6:
     architecture:
       type: moe
-    quantizations: [fp8]
-    api_providers: [moonshot_api, openrouter, huggingface_inference]
-    _sources: ["https://platform.moonshot.cn/docs"]
+    quantizations:
+    - fp8
+    api_providers:
+    - moonshot_api
+    - openrouter
+    - huggingface_inference
+    _sources:
+    - https://platform.moonshot.cn/docs
     links:
-      homepage: "https://www.moonshot.cn"
-      huggingface: "https://huggingface.co/moonshotai/Kimi-K2-Instruct"
-      model_card: "https://platform.moonshot.cn/docs"
+      homepage: https://www.moonshot.cn
+      huggingface: https://huggingface.co/moonshotai/Kimi-K2-Instruct
+      model_card: https://platform.moonshot.cn/docs
     pricing:
-      input: 0.60
-      output: 3.00
+      input: 0.6
+      output: 3.0
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low"
-      metr_autonomy_50pct: "4h"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low
+      metr_autonomy_50pct: 4h
     benchmarks_meta:
       arena_elo: 1358
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Moonshot's open-weight reasoning + agent model; strong on Chinese + agentic benchmarks."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Moonshot's open-weight reasoning + agent model; strong on Chinese
+      + agentic benchmarks.
     vendor_meta:
-      logo_url: "https://avatars.githubusercontent.com/u/146006468?s=200"
+      logo_url: https://avatars.githubusercontent.com/u/146006468?s=200
     license_terms:
-      name: "Moonshot AI Open License"
+      name: Moonshot AI Open License
       commercial: true
-
   zhipu/glm-5.1:
     architecture:
       type: moe
       total_params_b: 754
       active_params_b: 40
-    quantizations: [fp8, gguf]
-    api_providers: [zhipu_api, openrouter, huggingface_inference]
-    _sources: ["https://huggingface.co/zai-org/GLM-5.1"]
+    quantizations:
+    - fp8
+    - gguf
+    api_providers:
+    - zhipu_api
+    - openrouter
+    - huggingface_inference
+    _sources:
+    - https://huggingface.co/zai-org/GLM-5.1
     links:
-      homepage: "https://z.ai"
-      huggingface: "https://huggingface.co/zai-org/GLM-5.1"
-      github: "https://github.com/zai-org/GLM"
+      homepage: https://z.ai
+      huggingface: https://huggingface.co/zai-org/GLM-5.1
+      github: https://github.com/zai-org/GLM
     pricing:
-      input: 0.60
-      output: 2.40
+      input: 0.6
+      output: 2.4
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1342
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Z.ai's open-weight 754B/40B MoE; #1 OSS on SWE-Pro and CyberGym."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: 'Z.ai''s open-weight 754B/40B MoE; #1 OSS on SWE-Pro and CyberGym.'
     vendor_meta:
-      logo_url: "https://avatars.githubusercontent.com/u/214893611?s=200"
+      logo_url: https://avatars.githubusercontent.com/u/214893611?s=200
     license_terms:
-      name: "GLM Open License"
+      name: GLM Open License
       commercial: true
       modify_redistribute: true
     tokenizer:
-      type: "BPE"
+      type: BPE
       vocab_size: 200000
-
   zhipu/glm-5:
     architecture:
       type: moe
       total_params_b: 754
-    quantizations: [fp8, gguf]
-    api_providers: [zhipu_api, openrouter, huggingface_inference]
-    _sources: ["https://huggingface.co/zai-org/GLM-5"]
+    quantizations:
+    - fp8
+    - gguf
+    api_providers:
+    - zhipu_api
+    - openrouter
+    - huggingface_inference
+    _sources:
+    - https://huggingface.co/zai-org/GLM-5
     links:
-      homepage: "https://z.ai"
-      huggingface: "https://huggingface.co/zai-org/GLM-5"
+      homepage: https://z.ai
+      huggingface: https://huggingface.co/zai-org/GLM-5
     pricing:
       input: 0.45
-      output: 2.20
+      output: 2.2
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1325
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Predecessor open-weight 754B MoE from Z.ai; broad multilingual + reasoning coverage."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Predecessor open-weight 754B MoE from Z.ai; broad multilingual +
+      reasoning coverage.
     vendor_meta:
-      logo_url: "https://avatars.githubusercontent.com/u/214893611?s=200"
+      logo_url: https://avatars.githubusercontent.com/u/214893611?s=200
     license_terms:
-      name: "GLM Open License"
+      name: GLM Open License
       commercial: true
-
   alibaba/qwen3.6-27b:
     architecture:
       type: dense
       total_params_b: 27
-    quantizations: [awq, gguf]
-    api_providers: [alibaba_dashscope, openrouter, huggingface_inference]
-    _sources: ["https://huggingface.co/Qwen/Qwen3.6-27B"]
+    quantizations:
+    - awq
+    - gguf
+    api_providers:
+    - alibaba_dashscope
+    - openrouter
+    - huggingface_inference
+    _sources:
+    - https://huggingface.co/Qwen/Qwen3.6-27B
     links:
-      homepage: "https://qwenlm.github.io"
-      huggingface: "https://huggingface.co/Qwen/Qwen3.6-27B"
-      github: "https://github.com/QwenLM"
+      homepage: https://qwenlm.github.io
+      huggingface: https://huggingface.co/Qwen/Qwen3.6-27B
+      github: https://github.com/QwenLM
     pricing:
-      input: 0.20
-      output: 0.80
+      input: 0.2
+      output: 0.8
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1325
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Alibaba's open-weight 27B dense; #1 in 30B class on coding + agentic. Apache 2.0."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: 'Alibaba''s open-weight 27B dense; #1 in 30B class on coding + agentic.
+      Apache 2.0.'
     vendor_meta:
-      logo_url: "https://avatars.githubusercontent.com/u/141221163?s=200"
+      logo_url: https://avatars.githubusercontent.com/u/141221163?s=200
     license_terms:
-      name: "Apache 2.0"
+      name: Apache 2.0
       commercial: true
       modify_redistribute: true
     tokenizer:
-      type: "BPE"
+      type: BPE
       vocab_size: 152064
     hardware:
-      recommended_gpu: "1× A100 80GB BF16"
-
+      recommended_gpu: 1× A100 80GB BF16
   alibaba/qwen3.6-35b-a3b:
     architecture:
       type: moe
       total_params_b: 35
       active_params_b: 3
-    quantizations: [awq, gguf]
-    api_providers: [alibaba_dashscope, huggingface_inference]
+    quantizations:
+    - awq
+    - gguf
+    api_providers:
+    - alibaba_dashscope
+    - huggingface_inference
     lineage:
-      teacher_models: ["alibaba/qwen3.6-plus"]
-      training_method: "MoE from dense teacher"
-    _sources: ["https://huggingface.co/Qwen/Qwen3.6-35B-A3B"]
+      teacher_models:
+      - alibaba/qwen3.6-plus
+      training_method: MoE from dense teacher
+    _sources:
+    - https://huggingface.co/Qwen/Qwen3.6-35B-A3B
     links:
-      homepage: "https://qwenlm.github.io"
-      huggingface: "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
-      model_card: "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+      homepage: https://qwenlm.github.io
+      huggingface: https://huggingface.co/Qwen/Qwen3.6-35B-A3B
+      model_card: https://huggingface.co/Qwen/Qwen3.6-35B-A3B
     pricing:
-      input: 0.10
-      output: 0.30
+      input: 0.1
+      output: 0.3
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1338
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Qwen3.6 MoE variant (35B total / 3B active); efficient inference at 27B-class quality."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Qwen3.6 MoE variant (35B total / 3B active); efficient inference
+      at 27B-class quality.
     vendor_meta:
-      logo_url: "https://avatars.githubusercontent.com/u/141221163"
+      logo_url: https://avatars.githubusercontent.com/u/141221163
     license_terms:
-      name: "Apache 2.0"
+      name: Apache 2.0
       commercial: true
       modify_redistribute: true
-
   tencent/hy3-preview:
     architecture:
       type: moe
@@ -587,136 +657,160 @@ models:
       experts_total: 192
       experts_active: 8
     training:
-      phases: [pretrain, mtp_layer, sft, rlhf]
-    quantizations: [bf16]
-    api_providers: [tencent_api, huggingface_inference]
+      phases:
+      - pretrain
+      - mtp_layer
+      - sft
+      - rlhf
+    quantizations:
+    - bf16
+    api_providers:
+    - tencent_api
+    - huggingface_inference
     _sources:
-      - "https://huggingface.co/tencent/Hy3-preview"
-      - "https://github.com/Tencent-Hunyuan/Hy3-preview"
+    - https://huggingface.co/tencent/Hy3-preview
+    - https://github.com/Tencent-Hunyuan/Hy3-preview
     links:
-      homepage: "https://hunyuan.tencent.com"
-      huggingface: "https://huggingface.co/tencent/Hy3-preview"
-      github: "https://github.com/Tencent-Hunyuan/Hy3-preview"
-      paper: "https://arxiv.org/abs/2604.XXXX"
+      homepage: https://hunyuan.tencent.com
+      huggingface: https://huggingface.co/tencent/Hy3-preview
+      github: https://github.com/Tencent-Hunyuan/Hy3-preview
+      paper: https://arxiv.org/abs/2604.XXXX
     pricing:
       input: 0.55
-      output: 2.20
+      output: 2.2
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1346
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Tencent Hunyuan's open-weight 295B/21B MoE with MLA; SWE-Bench Verified 74.4%."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Tencent Hunyuan's open-weight 295B/21B MoE with MLA; SWE-Bench Verified
+      74.4%.
     vendor_meta:
-      logo_url: "https://avatars.githubusercontent.com/u/213636746?s=200"
+      logo_url: https://avatars.githubusercontent.com/u/213636746?s=200
     license_terms:
-      name: "Tencent Hunyuan License"
+      name: Tencent Hunyuan License
       commercial: true
       modify_redistribute: true
     hardware:
-      recommended_gpu: "8× H200 BF16"
-
+      recommended_gpu: 8× H200 BF16
   baidu/ernie-5.0:
     architecture:
       type: moe
-    api_providers: [baidu_qianfan, openrouter]
-    _sources: ["https://yiyan.baidu.com/welcome"]
+    api_providers:
+    - baidu_qianfan
+    - openrouter
+    _sources:
+    - https://yiyan.baidu.com/welcome
     links:
-      homepage: "https://yiyan.baidu.com"
-      model_card: "https://yiyan.baidu.com/welcome"
+      homepage: https://yiyan.baidu.com
+      model_card: https://yiyan.baidu.com/welcome
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1295
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Baidu's flagship Chinese-first model; deep search integration with Baidu ecosystem."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Baidu's flagship Chinese-first model; deep search integration with
+      Baidu ecosystem.
     vendor_meta:
-      logo_url: "https://www.baidu.com/favicon.ico"
+      logo_url: https://www.baidu.com/favicon.ico
     license_terms:
-      name: "Baidu API Terms"
+      name: Baidu API Terms
       commercial: true
-
   lg/exaone-4.5-33b:
     architecture:
       type: dense
       total_params_b: 33
       attention: hybrid_swa_global
-      attention_pattern: "16 x (3 SWA + 1 Global)"
+      attention_pattern: 16 x (3 SWA + 1 Global)
       vision_encoder_b: 1.29
     training:
-      phases: [base_pretrain, vision_adapter, sft, dpo]
-    quantizations: [fp8, awq, gguf]
-    api_providers: [huggingface_inference, vllm, ollama]
+      phases:
+      - base_pretrain
+      - vision_adapter
+      - sft
+      - dpo
+    quantizations:
+    - fp8
+    - awq
+    - gguf
+    api_providers:
+    - huggingface_inference
+    - vllm
+    - ollama
     _sources:
-      - "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
-      - "http://arxiv.org/abs/2604.08644"
+    - https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B
+    - http://arxiv.org/abs/2604.08644
     links:
-      homepage: "https://www.lgresearch.ai"
-      huggingface: "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
-      paper: "http://arxiv.org/abs/2604.08644"
-      blog: "https://www.lgresearch.ai/blog/view?seq=641"
+      homepage: https://www.lgresearch.ai
+      huggingface: https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B
+      paper: http://arxiv.org/abs/2604.08644
+      blog: https://www.lgresearch.ai/blog/view?seq=641
     pricing:
       input: 0.15
-      output: 0.50
+      output: 0.5
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1276
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "LG AI's first open-weight VLM (33B = 31.7B LM + 1.29B vision). 6 langs, hybrid attention."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: LG AI's first open-weight VLM (33B = 31.7B LM + 1.29B vision). 6
+      langs, hybrid attention.
     vendor_meta:
-      logo_url: "https://www.lgresearch.ai/favicon.ico"
+      logo_url: https://www.lgresearch.ai/favicon.ico
     license_terms:
-      name: "EXAONE AI Model License"
+      name: EXAONE AI Model License
       commercial: true
       modify_redistribute: true
     hardware:
-      recommended_gpu: "1× A100 80GB BF16"
+      recommended_gpu: 1× A100 80GB BF16
     tokenizer:
-      type: "BPE"
+      type: BPE
       vocab_size: 102400
     cutoffs:
-      knowledge_cutoff: "2026-04"
-
+      knowledge_cutoff: 2026-04
   lg/k-exaone-236b:
     architecture:
       type: moe
       total_params_b: 236
       active_params_b: 23
       attention: mla
-    quantizations: [fp8, gguf]
-    api_providers: [huggingface_inference, vllm]
+    quantizations:
+    - fp8
+    - gguf
+    api_providers:
+    - huggingface_inference
+    - vllm
     _sources:
-      - "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B"
-      - "http://arxiv.org/abs/2601.01739"
+    - https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B
+    - http://arxiv.org/abs/2601.01739
     links:
-      homepage: "https://www.lgresearch.ai"
-      huggingface: "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B"
-      paper: "http://arxiv.org/abs/2601.01739"
-      model_card: "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B"
+      homepage: https://www.lgresearch.ai
+      huggingface: https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B
+      paper: http://arxiv.org/abs/2601.01739
+      model_card: https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B
     pricing:
-      input: 0.30
-      output: 1.20
+      input: 0.3
+      output: 1.2
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1284
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "LG AI's K-EXAONE MoE (236B/23B active); Korean reasoning leader, KoBALT 61.8."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: LG AI's K-EXAONE MoE (236B/23B active); Korean reasoning leader,
+      KoBALT 61.8.
     vendor_meta:
-      logo_url: "https://www.lgresearch.ai/favicon.ico"
+      logo_url: https://www.lgresearch.ai/favicon.ico
     license_terms:
-      name: "EXAONE AI Model License"
+      name: EXAONE AI Model License
       commercial: true
     hardware:
-      recommended_gpu: "8× H100 BF16 (or 4× FP8)"
+      recommended_gpu: 8× H100 BF16 (or 4× FP8)
     tokenizer:
-      type: "BPE"
-
+      type: BPE
   skt/ax-k1:
     architecture:
       type: moe
@@ -727,68 +821,79 @@ models:
       experts_total: 192
       experts_active: 8
     training:
-      phases: [pretrain, mtp, sft, dpo]
-    quantizations: [bf16, fp8]
-    api_providers: [huggingface_inference, vllm]
+      phases:
+      - pretrain
+      - mtp
+      - sft
+      - dpo
+    quantizations:
+    - bf16
+    - fp8
+    api_providers:
+    - huggingface_inference
+    - vllm
     _sources:
-      - "https://huggingface.co/skt/A.X-K1"
-      - "http://arxiv.org/abs/2601.09200"
+    - https://huggingface.co/skt/A.X-K1
+    - http://arxiv.org/abs/2601.09200
     links:
-      homepage: "https://www.sktelecom.com"
-      huggingface: "https://huggingface.co/skt/A.X-K1"
-      paper: "http://arxiv.org/abs/2601.09200"
-      github: "https://github.com/SKT-AI/A.X-K1"
-      model_card: "https://huggingface.co/skt/A.X-K1"
+      homepage: https://www.sktelecom.com
+      huggingface: https://huggingface.co/skt/A.X-K1
+      paper: http://arxiv.org/abs/2601.09200
+      github: https://github.com/SKT-AI/A.X-K1
+      model_card: https://huggingface.co/skt/A.X-K1
     pricing:
       input: 0.45
-      output: 1.80
+      output: 1.8
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1278
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "SK Telecom's first open MoE flagship (519B/33B active); KMO 2025 93.0 SOTA."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: SK Telecom's first open MoE flagship (519B/33B active); KMO 2025
+      93.0 SOTA.
     vendor_meta:
-      logo_url: "https://www.sktelecom.com/favicon.ico"
+      logo_url: https://www.sktelecom.com/favicon.ico
     license_terms:
-      name: "A.X Open License"
+      name: A.X Open License
       commercial: true
     hardware:
-      recommended_gpu: "8× H200 (FP8 quantized)"
-
+      recommended_gpu: 8× H200 (FP8 quantized)
   mistral/mistral-medium-3.5:
     architecture:
       type: dense
       total_params_b: 128
-    api_providers: [mistral_api, openrouter, huggingface_inference]
+    api_providers:
+    - mistral_api
+    - openrouter
+    - huggingface_inference
     _sources:
-      - "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B"
-      - "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5"
+    - https://huggingface.co/mistralai/Mistral-Medium-3.5-128B
+    - https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5
     links:
-      homepage: "https://mistral.ai"
-      huggingface: "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B"
-      blog: "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5"
+      homepage: https://mistral.ai
+      huggingface: https://huggingface.co/mistralai/Mistral-Medium-3.5-128B
+      blog: https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5
     pricing:
-      input: 0.40
-      output: 2.00
+      input: 0.4
+      output: 2.0
     safety:
-      aisi_cyber_tier: "elevated"
-      cbrn_risk: "low"
-      metr_autonomy_50pct: "5h"
+      aisi_cyber_tier: elevated
+      cbrn_risk: low
+      metr_autonomy_50pct: 5h
     benchmarks_meta:
       arena_elo: 1318
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Mistral AI's flagship May 2026 dense 128B; SWE-Bench Verified 77.6 + τ³-Telecom 91.4."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Mistral AI's flagship May 2026 dense 128B; SWE-Bench Verified 77.6
+      + τ³-Telecom 91.4.
     vendor_meta:
-      logo_url: "https://huggingface.co/mistralai/Mistral-Small-Instruct-2409/resolve/main/SLR.png"
+      logo_url: https://huggingface.co/mistralai/Mistral-Small-Instruct-2409/resolve/main/SLR.png
     license_terms:
-      name: "Mistral Modified MIT"
+      name: Mistral Modified MIT
       commercial: true
       revenue_threshold: 200000000
     cutoffs:
-      knowledge_cutoff: "2026-02"
-
+      knowledge_cutoff: 2026-02
   mistral/mistral-small-4:
     architecture:
       type: moe
@@ -796,34 +901,39 @@ models:
       active_params_b: 6.5
       experts_total: 128
       experts_active: 4
-    api_providers: [mistral_api, openrouter, huggingface_inference, vllm]
-    _sources: ["https://huggingface.co/mistralai/Mistral-Small-4-119B-2603"]
+    api_providers:
+    - mistral_api
+    - openrouter
+    - huggingface_inference
+    - vllm
+    _sources:
+    - https://huggingface.co/mistralai/Mistral-Small-4-119B-2603
     lineage:
-      base_model_id: "mistral/mistral-medium-3.5"
-      training_method: "MoE distilled from Medium 3.5"
+      base_model_id: mistral/mistral-medium-3.5
+      training_method: MoE distilled from Medium 3.5
     links:
-      homepage: "https://mistral.ai"
-      huggingface: "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603"
+      homepage: https://mistral.ai
+      huggingface: https://huggingface.co/mistralai/Mistral-Small-4-119B-2603
     pricing:
-      input: 0.10
-      output: 0.30
+      input: 0.1
+      output: 0.3
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1268
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Mistral's 119B/6.5B-active MoE; configurable reasoning effort. Apache 2.0."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Mistral's 119B/6.5B-active MoE; configurable reasoning effort. Apache
+      2.0.
     vendor_meta:
-      logo_url: "https://mistral.ai/favicon.ico"
+      logo_url: https://mistral.ai/favicon.ico
     license_terms:
-      name: "Apache 2.0"
+      name: Apache 2.0
       commercial: true
       modify_redistribute: true
     tokenizer:
-      type: "BPE"
+      type: BPE
       vocab_size: 131072
-
   sber/gigachat-3.1-ultra:
     architecture:
       type: moe
@@ -831,1330 +941,1450 @@ models:
       active_params_b: 36
       attention: mla
     training:
-      phases: [pretrain, mtp, sft, dpo]
-    quantizations: [bf16, fp8, gguf]
-    api_providers: [sber_giga, huggingface_inference]
+      phases:
+      - pretrain
+      - mtp
+      - sft
+      - dpo
+    quantizations:
+    - bf16
+    - fp8
+    - gguf
+    api_providers:
+    - sber_giga
+    - huggingface_inference
     _sources:
-      - "https://huggingface.co/ai-sage/GigaChat3.1-702B-A36B"
-      - "https://habr.com/en/companies/sberbank/articles/1014146/"
+    - https://huggingface.co/ai-sage/GigaChat3.1-702B-A36B
+    - https://habr.com/en/companies/sberbank/articles/1014146/
     links:
-      homepage: "https://giga.chat"
-      huggingface: "https://huggingface.co/ai-sage/GigaChat3.1-702B-A36B"
-      blog: "https://habr.com/en/companies/sberbank/articles/1014146"
+      homepage: https://giga.chat
+      huggingface: https://huggingface.co/ai-sage/GigaChat3.1-702B-A36B
+      blog: https://habr.com/en/companies/sberbank/articles/1014146
     pricing:
-      input: 0.30
-      output: 1.50
+      input: 0.3
+      output: 1.5
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1232
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Sber's open MoE (702B/36B active) with strong Russian reasoning + multilingual coverage."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Sber's open MoE (702B/36B active) with strong Russian reasoning +
+      multilingual coverage.
     vendor_meta:
-      logo_url: "https://avatars.githubusercontent.com/u/166876352?s=200"
+      logo_url: https://avatars.githubusercontent.com/u/166876352?s=200
     license_terms:
-      name: "GigaChat License"
+      name: GigaChat License
       commercial: true
-
   dicta/dictalm-3.0-24b-thinking:
     architecture:
       type: dense
       total_params_b: 24
     training:
-      phases: [continuous_pretrain, sft, dpo, grpo]
+      phases:
+      - continuous_pretrain
+      - sft
+      - dpo
+      - grpo
     lineage:
-      base_model: "Mistral-Small-3.1-24B-Base-2503"
+      base_model: Mistral-Small-3.1-24B-Base-2503
       base_model_id: null
-      training_method: "continuous_pretraining + SFT + DPO + GRPO"
-    quantizations: [bf16]
-    api_providers: [huggingface_inference, vllm]
+      training_method: continuous_pretraining + SFT + DPO + GRPO
+    quantizations:
+    - bf16
+    api_providers:
+    - huggingface_inference
+    - vllm
     _sources:
-      - "https://huggingface.co/dicta-il/DictaLM-3.0-24B-Thinking"
-      - "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf"
+    - https://huggingface.co/dicta-il/DictaLM-3.0-24B-Thinking
+    - https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf
     links:
-      homepage: "https://dicta.org.il"
-      huggingface: "https://huggingface.co/dicta-il/DictaLM-3.0-24B-Thinking"
-      paper: "https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf"
-      blog: "https://dicta.org.il/dicta-lm-3"
+      homepage: https://dicta.org.il
+      huggingface: https://huggingface.co/dicta-il/DictaLM-3.0-24B-Thinking
+      paper: https://www.dicta.org.il/publications/DictaLM_3_0___Techincal_Report.pdf
+      blog: https://dicta.org.il/dicta-lm-3
     pricing:
       input: 0.15
-      output: 0.50
+      output: 0.5
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1198
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Israel's flagship Hebrew sovereign LLM (24B); Nikud 86.86 SOTA. Mistral-Small-3.1 base."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Israel's flagship Hebrew sovereign LLM (24B); Nikud 86.86 SOTA. Mistral-Small-3.1
+      base.
     vendor_meta:
-      logo_url: "https://dicta.org.il/favicon.ico"
+      logo_url: https://dicta.org.il/favicon.ico
     license_terms:
-      name: "Apache 2.0"
+      name: Apache 2.0
       commercial: true
       modify_redistribute: true
-
   cohere/tiny-aya-3b:
     architecture:
       type: dense
       total_params_b: 3.35
       attention: hybrid_swa_global
-    api_providers: [huggingface_inference]
+    api_providers:
+    - huggingface_inference
     lineage:
-      base_model: "Aya 8B (distilled)"
-      training_method: "knowledge distillation from Aya teacher"
+      base_model: Aya 8B (distilled)
+      training_method: knowledge distillation from Aya teacher
     _sources:
-      - "https://huggingface.co/CohereLabs/tiny-aya-base"
-      - "http://arxiv.org/abs/2603.11510"
+    - https://huggingface.co/CohereLabs/tiny-aya-base
+    - http://arxiv.org/abs/2603.11510
     links:
-      homepage: "https://cohere.com"
-      huggingface: "https://huggingface.co/CohereLabs/tiny-aya-base"
-      paper: "http://arxiv.org/abs/2603.11510"
+      homepage: https://cohere.com
+      huggingface: https://huggingface.co/CohereLabs/tiny-aya-base
+      paper: http://arxiv.org/abs/2603.11510
     pricing:
       input: 0.05
       output: 0.15
     safety:
-      aisi_cyber_tier: "moderate"
-      cbrn_risk: "low"
+      aisi_cyber_tier: moderate
+      cbrn_risk: low
     benchmarks_meta:
       arena_elo: 1145
-      arena_elo_source: "https://lmarena.ai/leaderboard"
-    description: "Cohere's 3.35B multilingual model spanning 70+ languages; sovereign-relevant coverage."
+      arena_elo_source: https://lmarena.ai/leaderboard
+    description: Cohere's 3.35B multilingual model spanning 70+ languages; sovereign-relevant
+      coverage.
     vendor_meta:
-      logo_url: "https://avatars.githubusercontent.com/u/120907714?s=200"
+      logo_url: https://avatars.githubusercontent.com/u/120907714?s=200
     license_terms:
-      name: "CC-BY-NC 4.0"
+      name: CC-BY-NC 4.0
       commercial: false
       attribution_required: true
-
   dicta/dictalm-3.0-12b-instruct:
     lineage:
-      base_model: "NVIDIA-Nemotron-Nano-12B-v2-Base"
-      training_method: "continuous_pretraining + SFT + DPO"
+      base_model: NVIDIA-Nemotron-Nano-12B-v2-Base
+      training_method: continuous_pretraining + SFT + DPO
     links:
-      system_card: "https://huggingface.co/dicta-il/DictaLM-3.0-12B-Instruct/blob/main/README.md"
-
+      system_card: https://huggingface.co/dicta-il/DictaLM-3.0-12B-Instruct/blob/main/README.md
   dicta/dictalm-3.0-1.7b-thinking:
     lineage:
-      base_model: "Qwen3-1.7B-Base"
-      training_method: "continuous_pretraining + SFT + DPO + GRPO"
+      base_model: Qwen3-1.7B-Base
+      training_method: continuous_pretraining + SFT + DPO + GRPO
     links:
-      system_card: "https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Thinking/blob/main/README.md"
-
+      system_card: https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Thinking/blob/main/README.md
   ai-singapore/apertus-sea-lion-v4-8b:
     lineage:
-      base_model: "gemma-3-4b-it"
+      base_model: gemma-3-4b-it
       base_model_id: null
-      training_method: "post-training on SEA languages"
+      training_method: post-training on SEA languages
     links:
-      system_card: "https://huggingface.co/aisingapore/Apertus-SEA-LION-v4-8B/blob/main/README.md"
-
+      system_card: https://huggingface.co/aisingapore/Apertus-SEA-LION-v4-8B/blob/main/README.md
   naver/hyperclova-x-think-32b:
     architecture:
       type: dense
       total_params_b: 32
-    api_providers: [huggingface_inference]
-    _sources: ["https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Think-32B"]
+    api_providers:
+    - huggingface_inference
+    _sources:
+    - https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Think-32B
     links:
-      homepage: "https://clova.ai"
-      huggingface: "https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Think-32B"
-    description: "Naver HyperCLOVA X SEED Think 32B — Korean-focused reasoning model."
+      homepage: https://clova.ai
+      huggingface: https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Think-32B
+    description: Naver HyperCLOVA X SEED Think 32B — Korean-focused reasoning model.
     vendor_meta:
-      logo_url: "https://clova.ai/favicon.ico"
+      logo_url: https://clova.ai/favicon.ico
     license_terms:
-      name: "HyperCLOVAX Open License"
+      name: HyperCLOVAX Open License
       commercial: true
-
   naver/hyperclova-x-think-14b:
     architecture:
       type: dense
       total_params_b: 14
-    api_providers: [huggingface_inference]
-    _sources: ["https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Think-14B"]
+    api_providers:
+    - huggingface_inference
+    _sources:
+    - https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Think-14B
     links:
-      homepage: "https://clova.ai"
-      huggingface: "https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Think-14B"
-    description: "Naver HyperCLOVA X SEED Think 14B — compact Korean reasoning model."
+      homepage: https://clova.ai
+      huggingface: https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Think-14B
+    description: Naver HyperCLOVA X SEED Think 14B — compact Korean reasoning model.
     vendor_meta:
-      logo_url: "https://clova.ai/favicon.ico"
+      logo_url: https://clova.ai/favicon.ico
     license_terms:
-      name: "HyperCLOVAX Open License"
+      name: HyperCLOVAX Open License
       commercial: true
-
   naver/hyperclova-x-seed-omni-8b:
     architecture:
       type: dense
       total_params_b: 8
-    api_providers: [huggingface_inference]
-    _sources: ["https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Omni-8B"]
+    api_providers:
+    - huggingface_inference
+    _sources:
+    - https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Omni-8B
     links:
-      homepage: "https://clova.ai"
-      huggingface: "https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Omni-8B"
-    description: "Naver HyperCLOVA X SEED Omni 8B — multimodal Korean model."
+      homepage: https://clova.ai
+      huggingface: https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Omni-8B
+    description: Naver HyperCLOVA X SEED Omni 8B — multimodal Korean model.
     vendor_meta:
-      logo_url: "https://clova.ai/favicon.ico"
+      logo_url: https://clova.ai/favicon.ico
     license_terms:
-      name: "HyperCLOVAX Open License"
+      name: HyperCLOVAX Open License
       commercial: true
-
   upstage/solar-pro-3:
     architecture:
       type: dense
-    api_providers: [upstage_api, huggingface_inference]
-    _sources: ["https://huggingface.co/upstage/solar-pro-3"]
+    api_providers:
+    - upstage_api
+    - huggingface_inference
+    _sources:
+    - https://huggingface.co/upstage/solar-pro-3
     links:
-      homepage: "https://www.upstage.ai"
-      huggingface: "https://huggingface.co/upstage/solar-pro-3"
-    description: "Upstage Solar Pro 3 — Korean-English bilingual model."
+      homepage: https://www.upstage.ai
+      huggingface: https://huggingface.co/upstage/solar-pro-3
+    description: Upstage Solar Pro 3 — Korean-English bilingual model.
     vendor_meta:
-      logo_url: "https://www.upstage.ai/favicon.ico"
+      logo_url: https://www.upstage.ai/favicon.ico
     license_terms:
-      name: "CC-BY-NC 4.0"
+      name: CC-BY-NC 4.0
       commercial: false
-
   upstage/solar-open-100b:
     architecture:
       type: dense
       total_params_b: 100
-    api_providers: [huggingface_inference]
-    _sources: ["https://huggingface.co/upstage/Solar-Open-100B"]
+    api_providers:
+    - huggingface_inference
+    _sources:
+    - https://huggingface.co/upstage/Solar-Open-100B
     links:
-      homepage: "https://www.upstage.ai"
-      huggingface: "https://huggingface.co/upstage/Solar-Open-100B"
-    description: "Upstage Solar Open 100B — large-scale open Korean bilingual model."
+      homepage: https://www.upstage.ai
+      huggingface: https://huggingface.co/upstage/Solar-Open-100B
+    description: Upstage Solar Open 100B — large-scale open Korean bilingual model.
     vendor_meta:
-      logo_url: "https://www.upstage.ai/favicon.ico"
+      logo_url: https://www.upstage.ai/favicon.ico
     license_terms:
-      name: "Apache 2.0"
+      name: Apache 2.0
       commercial: true
       modify_redistribute: true
-
   ncsoft/varco-vision-2.0-14b:
     architecture:
       type: dense
       total_params_b: 14
-    api_providers: [huggingface_inference]
-    _sources: ["https://huggingface.co/NCSOFT/VARCO-VISION-2.0-14B"]
+    api_providers:
+    - huggingface_inference
+    _sources:
+    - https://huggingface.co/NCSOFT/VARCO-VISION-2.0-14B
     links:
-      homepage: "https://ncsoft.com"
-      huggingface: "https://huggingface.co/NCSOFT/VARCO-VISION-2.0-14B"
-    description: "NCSOFT VARCO Vision 2.0 14B — Korean vision-language model."
+      homepage: https://ncsoft.com
+      huggingface: https://huggingface.co/NCSOFT/VARCO-VISION-2.0-14B
+    description: NCSOFT VARCO Vision 2.0 14B — Korean vision-language model.
     vendor_meta:
-      logo_url: "https://ncsoft.com/favicon.ico"
+      logo_url: https://ncsoft.com/favicon.ico
     license_terms:
-      name: "VARCO License"
+      name: VARCO License
       commercial: true
-
   google/gemma-4-26b-a4b:
     architecture:
       type: moe
       total_params_b: 26
       active_params_b: 4
-    api_providers: [huggingface_inference, gcp_vertex]
-    _sources: ["https://huggingface.co/google/gemma-4-26b-a4b"]
+    api_providers:
+    - huggingface_inference
+    - gcp_vertex
+    _sources:
+    - https://huggingface.co/google/gemma-4-26b-a4b
     links:
-      homepage: "https://ai.google.dev/gemma"
-      huggingface: "https://huggingface.co/google/gemma-4-26b-a4b"
-    description: "Google Gemma 4 26B MoE (4B active) — efficient open-weight multimodal model."
+      homepage: https://ai.google.dev/gemma
+      huggingface: https://huggingface.co/google/gemma-4-26b-a4b
+    description: Google Gemma 4 26B MoE (4B active) — efficient open-weight multimodal
+      model.
     vendor_meta:
-      logo_url: "https://www.google.com/favicon.ico"
+      logo_url: https://www.google.com/favicon.ico
     license_terms:
-      name: "Gemma Terms of Use"
+      name: Gemma Terms of Use
       commercial: true
-
   google/gemma-4-31b:
     architecture:
       type: dense
       total_params_b: 31
-    api_providers: [huggingface_inference, gcp_vertex]
-    _sources: ["https://huggingface.co/google/gemma-4-31B-it"]
+    api_providers:
+    - huggingface_inference
+    - gcp_vertex
+    _sources:
+    - https://huggingface.co/google/gemma-4-31B-it
     links:
-      homepage: "https://ai.google.dev/gemma"
-      huggingface: "https://huggingface.co/google/gemma-4-31B-it"
-    description: "Google Gemma 4 31B instruct — open-weight multimodal model with 128K context."
+      homepage: https://ai.google.dev/gemma
+      huggingface: https://huggingface.co/google/gemma-4-31B-it
+    description: Google Gemma 4 31B instruct — open-weight multimodal model with 128K
+      context.
     vendor_meta:
-      logo_url: "https://www.google.com/favicon.ico"
+      logo_url: https://www.google.com/favicon.ico
     license_terms:
-      name: "Gemma Terms of Use"
+      name: Gemma Terms of Use
       commercial: true
-
   nvidia/nemotron-3-nano-omni:
     architecture:
       type: dense
-    api_providers: [huggingface_inference, nvidia_nim]
-    _sources: ["https://huggingface.co/nvidia/Nemotron-3-Nano-Omni"]
+    api_providers:
+    - huggingface_inference
+    - nvidia_nim
+    _sources:
+    - https://huggingface.co/nvidia/Nemotron-3-Nano-Omni
     links:
-      homepage: "https://developer.nvidia.com"
-      huggingface: "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni"
-    description: "NVIDIA Nemotron 3 Nano Omni — compact multimodal model for on-device inference."
+      homepage: https://developer.nvidia.com
+      huggingface: https://huggingface.co/nvidia/Nemotron-3-Nano-Omni
+    description: NVIDIA Nemotron 3 Nano Omni — compact multimodal model for on-device
+      inference.
     vendor_meta:
-      logo_url: "https://developer.nvidia.com/favicon.ico"
+      logo_url: https://developer.nvidia.com/favicon.ico
     license_terms:
-      name: "NVIDIA Open Model License"
+      name: NVIDIA Open Model License
       commercial: true
-
-  # ── Popular non-frontier models (Task 1: 30 widely-used open/commercial models) ──
-
   meta/llama-4-405b:
-    description: "Meta's open-weight Llama 4 flagship — 405B dense, broad multilingual coverage."
-
+    description: Meta's open-weight Llama 4 flagship — 405B dense, broad multilingual
+      coverage.
   meta/llama-4-scout-109b:
-    description: "Llama 4 Scout — 109B/17B active MoE for efficient inference. Apache 2.0."
-
+    description: Llama 4 Scout — 109B/17B active MoE for efficient inference. Apache
+      2.0.
   meta/llama-3.3-70b:
-    description: "Llama 3.3 70B Instruct — widely deployed open-weight workhorse, strong instruction-following."
-
+    lineage:
+      base_model_id: meta/llama-3.1-70b
+      training_method: extended fine-tuning + DPO
   microsoft/phi-5-medium:
-    description: "Microsoft's Phi-5 Medium — small-but-capable distilled model, MIT licensed."
-
+    description: Microsoft's Phi-5 Medium — small-but-capable distilled model, MIT
+      licensed.
   microsoft/phi-4:
-    description: "Phi-4 14B — Microsoft's efficient frontier-class small model with strong math."
-
+    description: Phi-4 14B — Microsoft's efficient frontier-class small model with
+      strong math.
   google/gemma-3-27b:
-    description: "Gemma 3 27B — Google's open-weight flagship, strong vision-language capabilities."
-
+    lineage:
+      base_model: Gemini 3 distillation target
+      training_method: knowledge distillation
   alibaba/qwen3-72b:
-    description: "Qwen 3 72B — Alibaba's open-weight 72B with broad multilingual + coding support."
-
+    description: Qwen 3 72B — Alibaba's open-weight 72B with broad multilingual +
+      coding support.
   mistral/mixtral-8x22b:
-    description: "Mistral's Mixtral 8x22B — pioneering MoE open-weight, 39B active per token."
-
+    description: Mistral's Mixtral 8x22B — pioneering MoE open-weight, 39B active
+      per token.
   databricks/dbrx-132b:
-    description: "Databricks' DBRX 132B/36B-active MoE — enterprise focus, fine-grained MoE architecture."
-
+    description: Databricks' DBRX 132B/36B-active MoE — enterprise focus, fine-grained
+      MoE architecture.
   cohere/command-r-plus:
-    description: "Cohere's Command R+ — 104B optimized for RAG + tool use, strong multilingual."
-
+    description: Cohere's Command R+ — 104B optimized for RAG + tool use, strong multilingual.
   cohere/aya-expanse-32b:
-    description: "Cohere Labs' Aya Expanse 32B — multilingual model spanning 23 languages."
-
+    lineage:
+      base_model: Command R+ (Cohere's flagship)
+      training_method: multilingual extended training
   ibm/granite-3.3:
-    description: "IBM's Granite 3.3 — enterprise-grade open-weight family, Apache 2.0."
-
+    description: IBM's Granite 3.3 — enterprise-grade open-weight family, Apache 2.0.
   technology-innovation-institute/falcon3-10b:
-    description: "TII Falcon 3 10B — UAE's open-weight model, strong English + Arabic."
-
+    description: TII Falcon 3 10B — UAE's open-weight model, strong English + Arabic.
   apple/openelm-3b:
-    description: "Apple's OpenELM 3B — efficient on-device model with full training transparency."
-
+    description: Apple's OpenELM 3B — efficient on-device model with full training
+      transparency.
   databricks/openllama-13b:
-    description: "Databricks' OpenLlaMA 13B — fully open reproduction of Meta's Llama lineage."
-
+    description: Databricks' OpenLlaMA 13B — fully open reproduction of Meta's Llama
+      lineage.
   zhipu/chatglm-3-6b:
-    description: "ChatGLM3 6B — Z.ai's compact open Chinese-English bilingual model."
-
+    description: ChatGLM3 6B — Z.ai's compact open Chinese-English bilingual model.
   baichuan/baichuan-3-13b:
-    description: "Baichuan 3 13B — Chinese open-weight with broad commercial-friendly licensing."
-
+    description: Baichuan 3 13B — Chinese open-weight with broad commercial-friendly
+      licensing.
   yi/yi-1.5-34b:
-    description: "01.AI's Yi 1.5 34B — open-weight model with bilingual Chinese-English focus."
-
+    description: 01.AI's Yi 1.5 34B — open-weight model with bilingual Chinese-English
+      focus.
   internlm/internlm-3-8b:
-    description: "Shanghai AI Lab's InternLM 3 8B — research-focused open-weight model."
-
+    description: Shanghai AI Lab's InternLM 3 8B — research-focused open-weight model.
   stability/stable-lm-2-1.6b:
-    description: "Stability AI's Stable LM 2 1.6B — small efficient model for edge deployments."
-
+    description: Stability AI's Stable LM 2 1.6B — small efficient model for edge
+      deployments.
   ai21/jamba-1.5-large:
-    description: "AI21's Jamba 1.5 Large — hybrid SSM+Transformer architecture for long context."
-
+    description: AI21's Jamba 1.5 Large — hybrid SSM+Transformer architecture for
+      long context.
   nvidia/nemotron-4-340b:
-    description: "NVIDIA's Nemotron-4 340B — synthetic data generation specialist."
-
+    description: NVIDIA's Nemotron-4 340B — synthetic data generation specialist.
   perplexity/pplx-api-llama:
-    description: "Perplexity's API-tuned Llama variants for search-augmented inference."
-
+    description: Perplexity's API-tuned Llama variants for search-augmented inference.
   upstage/solar-pro-2:
-    description: "Upstage's Solar Pro 2 — Korean enterprise focus, strong RAG performance."
-
+    description: Upstage's Solar Pro 2 — Korean enterprise focus, strong RAG performance.
   reka/reka-core:
-    description: "Reka AI's Core — multimodal flagship optimized for video + audio understanding."
-
+    description: Reka AI's Core — multimodal flagship optimized for video + audio
+      understanding.
   inflection/pi-3:
-    description: "Inflection's Pi 3 — emotional intelligence focus, conversational specialist."
-
+    description: Inflection's Pi 3 — emotional intelligence focus, conversational
+      specialist.
   character/character-3:
-    description: "Character.ai's Character 3 — persona-consistent dialogue specialist."
-
+    description: Character.ai's Character 3 — persona-consistent dialogue specialist.
   groq/groq-llama-70b:
-    description: "Groq's Llama 70B variant — LPU-optimized for ultra-low-latency inference."
-
+    description: Groq's Llama 70B variant — LPU-optimized for ultra-low-latency inference.
   together/redpajama-7b:
-    description: "Together AI's RedPajama 7B — fully open-source training pipeline + data."
-
-  # ── Task 1: +50 popular non-frontier model descriptions ──
-
+    description: Together AI's RedPajama 7B — fully open-source training pipeline
+      + data.
   meta/llama-3.1-405b:
-    description: "Meta's Llama 3.1 405B — flagship 2024 open-weight, broad multilingual + reasoning."
-
+    description: Meta's Llama 3.1 405B — flagship 2024 open-weight, broad multilingual
+      + reasoning.
   meta/llama-3.1-70b:
-    description: "Llama 3.1 70B — workhorse open-weight, strong on production deployments."
-
+    description: Llama 3.1 70B — workhorse open-weight, strong on production deployments.
   meta/llama-3.1-8b:
-    description: "Llama 3.1 8B — small efficient model with broad community fine-tunes."
-
+    description: Llama 3.1 8B — small efficient model with broad community fine-tunes.
   meta/llama-2-70b:
-    description: "Meta's Llama 2 70B — pioneering open-weight LLM (2023), still widely deployed."
-
+    description: Meta's Llama 2 70B — pioneering open-weight LLM (2023), still widely
+      deployed.
   microsoft/phi-3-medium:
-    description: "Phi-3 14B — Microsoft's efficient small model with synthetic-data training."
-
+    description: Phi-3 14B — Microsoft's efficient small model with synthetic-data
+      training.
   microsoft/phi-3-mini:
-    description: "Phi-3 3.8B — on-device-capable model with strong instruction-following."
-
+    description: Phi-3 3.8B — on-device-capable model with strong instruction-following.
   microsoft/phi-3.5-moe:
-    description: "Phi-3.5 MoE 41B/6.6B-active — Microsoft's MoE flagship, excellent reasoning per parameter."
+    description: Phi-3.5 MoE 41B/6.6B-active — Microsoft's MoE flagship, excellent
+      reasoning per parameter.
     lineage:
-      base_model: "Phi-3 14B (dense)"
-      training_method: "MoE expansion via mixture-of-depths variant"
-
+      base_model: Phi-3 14B (dense)
+      training_method: MoE expansion via mixture-of-depths variant
   google/gemma-2-27b:
-    description: "Gemma 2 27B — Google's open-weight 2024 flagship with sliding-window attention."
+    description: Gemma 2 27B — Google's open-weight 2024 flagship with sliding-window
+      attention.
     lineage:
-      base_model: "Gemini 2 distillation target"
-      training_method: "knowledge distillation + interleaved sliding window"
-
+      base_model: Gemini 2 distillation target
+      training_method: knowledge distillation + interleaved sliding window
   google/gemma-2-9b:
-    description: "Gemma 2 9B — efficient open-weight, strong instruction-following."
+    description: Gemma 2 9B — efficient open-weight, strong instruction-following.
     lineage:
-      base_model_id: "google/gemma-2-27b"
-      training_method: "distilled smaller variant"
-
+      base_model_id: google/gemma-2-27b
+      training_method: distilled smaller variant
   google/gemini-2.5-pro:
-    description: "Gemini 2.5 Pro — Google's 2025 flagship with 2M context + native multimodal."
+    description: Gemini 2.5 Pro — Google's 2025 flagship with 2M context + native
+      multimodal.
     links:
-      system_card: "https://storage.googleapis.com/deepmind-media/gemini/gemini_2_5_pro_model_card.pdf"
-
+      system_card: https://storage.googleapis.com/deepmind-media/gemini/gemini_2_5_pro_model_card.pdf
   google/gemini-2.0-flash:
-    description: "Gemini 2.0 Flash — fast tier, 1M context, strong agentic capabilities."
-
+    description: Gemini 2.0 Flash — fast tier, 1M context, strong agentic capabilities.
   openai/gpt-4o:
-    description: "GPT-4o — OpenAI's first omni-modal flagship (May 2024), text+vision+audio."
-
+    description: GPT-4o — OpenAI's first omni-modal flagship (May 2024), text+vision+audio.
   openai/gpt-4o-mini:
-    description: "GPT-4o-mini — fast, cheap successor to GPT-3.5, widely deployed."
-
+    description: GPT-4o-mini — fast, cheap successor to GPT-3.5, widely deployed.
   openai/o1:
-    description: "OpenAI o1 — first reasoning model, paid extended chain-of-thought."
-
+    description: OpenAI o1 — first reasoning model, paid extended chain-of-thought.
   openai/o3-mini:
-    description: "o3-mini — successor reasoning model, lower cost than o1."
-
+    description: o3-mini — successor reasoning model, lower cost than o1.
   openai/gpt-5:
-    description: "GPT-5 — OpenAI's first GPT-5 generation flagship (Aug 2025)."
+    description: GPT-5 — OpenAI's first GPT-5 generation flagship (Aug 2025).
     links:
-      system_card: "https://openai.com/index/gpt-5-system-card"
-
+      system_card: https://openai.com/index/gpt-5-system-card
   anthropic/claude-3.5-sonnet:
-    description: "Claude 3.5 Sonnet — Anthropic's 2024 mid-tier flagship, popular for coding."
+    description: Claude 3.5 Sonnet — Anthropic's 2024 mid-tier flagship, popular for
+      coding.
     links:
-      system_card: "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3_5_Sonnet.pdf"
-
+      system_card: https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3_5_Sonnet.pdf
   anthropic/claude-3-opus:
-    description: "Claude 3 Opus — Anthropic's first Opus tier (Mar 2024)."
+    description: Claude 3 Opus — Anthropic's first Opus tier (Mar 2024).
     links:
-      system_card: "https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf"
-
+      system_card: https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf
   anthropic/claude-3-haiku:
-    description: "Claude 3 Haiku — Anthropic's fast tier, low-latency conversations."
-
+    description: Claude 3 Haiku — Anthropic's fast tier, low-latency conversations.
   alibaba/qwen2.5-72b:
-    description: "Qwen 2.5 72B — Alibaba's 2024 flagship open-weight, strong on Chinese + coding."
-
+    description: Qwen 2.5 72B — Alibaba's 2024 flagship open-weight, strong on Chinese
+      + coding.
   alibaba/qwen2.5-14b:
-    description: "Qwen 2.5 14B — efficient open-weight with broad multilingual coverage."
+    description: Qwen 2.5 14B — efficient open-weight with broad multilingual coverage.
     lineage:
-      base_model_id: "alibaba/qwen2.5-72b"
-      training_method: "smaller variant with shared training"
-
+      base_model_id: alibaba/qwen2.5-72b
+      training_method: smaller variant with shared training
   alibaba/qwen2.5-coder-32b:
-    description: "Qwen 2.5 Coder 32B — code-specialized variant, strong on SWE-Bench."
+    description: Qwen 2.5 Coder 32B — code-specialized variant, strong on SWE-Bench.
     lineage:
-      base_model_id: "alibaba/qwen2.5-32b"
-      training_method: "code-specialized continued pretraining"
-
+      base_model_id: alibaba/qwen2.5-32b
+      training_method: code-specialized continued pretraining
   deepseek/deepseek-r1:
-    description: "DeepSeek R1 — open reasoning model (Jan 2025), o1-class performance at fraction of cost."
+    description: DeepSeek R1 — open reasoning model (Jan 2025), o1-class performance
+      at fraction of cost.
     lineage:
-      base_model: "DeepSeek V3 base (671B/37B MoE)"
-      training_method: "RL with rule-based rewards (GRPO)"
-
+      base_model: DeepSeek V3 base (671B/37B MoE)
+      training_method: RL with rule-based rewards (GRPO)
   deepseek/deepseek-v3:
-    description: "DeepSeek V3 — 671B/37B-active MoE (Dec 2024), pioneering frontier-class open MoE."
-
+    description: DeepSeek V3 — 671B/37B-active MoE (Dec 2024), pioneering frontier-class
+      open MoE.
   zhipu/glm-4-plus:
-    description: "GLM-4 Plus — Z.ai's flagship 2024, strong on bilingual Chinese-English."
+    description: GLM-4 Plus — Z.ai's flagship 2024, strong on bilingual Chinese-English.
     lineage:
-      base_model: "GLM-4 (Z.ai's 2024 base)"
-      training_method: "extended SFT + DPO"
-
+      base_model: GLM-4 (Z.ai's 2024 base)
+      training_method: extended SFT + DPO
   moonshot/kimi-k2:
-    description: "Kimi K2 — Moonshot's open-weight reasoning model (Mar 2025)."
-
+    description: Kimi K2 — Moonshot's open-weight reasoning model (Mar 2025).
   mistral/mistral-large-2:
-    description: "Mistral Large 2 — 123B dense (Jul 2024), strong multilingual flagship."
-
+    description: Mistral Large 2 — 123B dense (Jul 2024), strong multilingual flagship.
   mistral/mistral-nemo:
-    description: "Mistral Nemo 12B — joint with NVIDIA, multilingual + 128K context."
-
+    description: Mistral Nemo 12B — joint with NVIDIA, multilingual + 128K context.
   mistral/codestral-22b:
-    description: "Codestral 22B — Mistral's code-specialist, strong on FIM tasks."
-
+    description: Codestral 22B — Mistral's code-specialist, strong on FIM tasks.
   cohere/command-r:
-    description: "Cohere Command R — RAG-optimized 35B, strong for tool use + grounded answers."
-
+    description: Cohere Command R — RAG-optimized 35B, strong for tool use + grounded
+      answers.
   cohere/aya-23-35b:
-    description: "Aya 23 35B — Cohere Labs multilingual model spanning 23 languages."
-
+    description: Aya 23 35B — Cohere Labs multilingual model spanning 23 languages.
   ibm/granite-3.0-8b:
-    description: "IBM Granite 3.0 8B — enterprise-focused, Apache 2.0, strong on RAG."
-
+    description: IBM Granite 3.0 8B — enterprise-focused, Apache 2.0, strong on RAG.
   databricks/dolly-v2-12b:
-    description: "Dolly v2 12B — Databricks' early commercial-friendly fine-tune (2023)."
-
+    description: Dolly v2 12B — Databricks' early commercial-friendly fine-tune (2023).
   technology-innovation-institute/falcon-180b:
-    description: "Falcon 180B — TII's largest open model (2023), Apache 2.0."
-
+    description: Falcon 180B — TII's largest open model (2023), Apache 2.0.
   technology-innovation-institute/falcon2-11b:
-    description: "Falcon 2 11B — TII's 2024 model with improved tokenizer."
-
+    description: Falcon 2 11B — TII's 2024 model with improved tokenizer.
   technology-innovation-institute/falcon-h1-34b:
-    description: "Falcon H1 34B — hybrid Mamba-Transformer (2025) for long context."
-
+    description: Falcon H1 34B — hybrid Mamba-Transformer (2025) for long context.
   apple/openelm-1.1b:
-    description: "Apple OpenELM 1.1B — small on-device-capable model with full transparency."
-
+    description: Apple OpenELM 1.1B — small on-device-capable model with full transparency.
   apple/dclm-7b:
-    description: "Apple DCLM 7B — DataComp-LM training transparency baseline."
-
+    description: Apple DCLM 7B — DataComp-LM training transparency baseline.
   yi/yi-coder-9b:
-    description: "01.AI Yi Coder 9B — code-specialist open-weight."
-
+    description: 01.AI Yi Coder 9B — code-specialist open-weight.
   yi/yi-1.5-9b:
-    description: "Yi 1.5 9B — bilingual Chinese-English, strong instruction-following."
+    description: Yi 1.5 9B — bilingual Chinese-English, strong instruction-following.
     lineage:
-      base_model_id: "yi/yi-1.5-34b"
-      training_method: "smaller variant with shared training"
-
+      base_model_id: yi/yi-1.5-34b
+      training_method: smaller variant with shared training
   internlm/internlm-2.5-20b:
-    description: "InternLM 2.5 20B — Shanghai AI Lab's flagship, math + reasoning focus."
-
+    description: InternLM 2.5 20B — Shanghai AI Lab's flagship, math + reasoning focus.
   baichuan/baichuan-m1-13b:
-    description: "Baichuan M1 13B — Chinese open-weight with broad commercial-friendly licensing."
-
+    description: Baichuan M1 13B — Chinese open-weight with broad commercial-friendly
+      licensing.
   databricks/dbrx-instruct:
-    description: "Databricks DBRX 132B/36B-active MoE — fine-grained MoE architecture."
-
+    description: Databricks DBRX 132B/36B-active MoE — fine-grained MoE architecture.
   ai21/jamba-1.6-mini:
-    description: "AI21 Jamba 1.6 Mini — hybrid SSM+Transformer, 256K context."
-
+    description: AI21 Jamba 1.6 Mini — hybrid SSM+Transformer, 256K context.
   nvidia/nemotron-3-340b:
-    description: "NVIDIA Nemotron-3 340B — synthetic data generation specialist."
-
+    description: NVIDIA Nemotron-3 340B — synthetic data generation specialist.
   nvidia/llama-3.1-nemotron-70b:
-    description: "NVIDIA Llama 3.1 Nemotron 70B Reward — RLHF-tuned variant of Llama 3.1."
+    description: NVIDIA Llama 3.1 Nemotron 70B Reward — RLHF-tuned variant of Llama
+      3.1.
     lineage:
-      base_model_id: "meta/llama-3.1-70b"
-      training_method: "RLHF reward-model variant for alignment research"
-
+      base_model_id: meta/llama-3.1-70b
+      training_method: RLHF reward-model variant for alignment research
   perplexity/sonar-large:
-    description: "Perplexity Sonar Large — search-augmented Llama 3.1 70B fine-tune."
+    description: Perplexity Sonar Large — search-augmented Llama 3.1 70B fine-tune.
     lineage:
-      base_model: "Llama 3.1 70B"
-      training_method: "search-augmented RAG fine-tuning"
-
+      base_model: Llama 3.1 70B
+      training_method: search-augmented RAG fine-tuning
   inflection/inflection-2.5:
-    description: "Inflection 2.5 — emotional intelligence focus, conversational specialist."
+    description: Inflection 2.5 — emotional intelligence focus, conversational specialist.
     lineage:
-      base_model: "Pi 2 (Inflection's 2024 conversational base)"
-      training_method: "extended emotional intelligence fine-tuning"
-
+      base_model: Pi 2 (Inflection's 2024 conversational base)
+      training_method: extended emotional intelligence fine-tuning
   reka/reka-edge:
-    description: "Reka Edge 7B — small efficient multimodal model from Reka AI."
-
+    description: Reka Edge 7B — small efficient multimodal model from Reka AI.
   reka/reka-flash:
-    description: "Reka Flash — mid-tier multimodal flagship from Reka AI."
+    description: Reka Flash — mid-tier multimodal flagship from Reka AI.
     lineage:
-      base_model: "Reka Edge (smaller variant)"
-      training_method: "scaled-up multimodal training"
-
-  # ── Task 3: +15 lineage entries (models not yet covered above) ──
-
-  meta/llama-3.3-70b:
-    lineage:
-      base_model_id: "meta/llama-3.1-70b"
-      training_method: "extended fine-tuning + DPO"
-
-  google/gemma-3-27b:
-    lineage:
-      base_model: "Gemini 3 distillation target"
-      training_method: "knowledge distillation"
-
-  cohere/aya-expanse-32b:
-    lineage:
-      base_model: "Command R+ (Cohere's flagship)"
-      training_method: "multilingual extended training"
-
-  # ── Task 4: system card URLs (models missing system_card) ──
-
+      base_model: Reka Edge (smaller variant)
+      training_method: scaled-up multimodal training
   xai/grok-4.20:
     links:
-      system_card: "https://x.ai/news/grok-4.20-system-card"
-
-  # ── Task 5: Pricing +5 neglected models ──
-
+      system_card: https://x.ai/news/grok-4.20-system-card
   moonshot/kimi-k2-thinking:
     pricing:
-      input: 0.60
-      output: 2.50
-
+      input: 0.6
+      output: 2.5
   alibaba/qwen3.6-plus:
     pricing:
-      input: 0.40
-      output: 1.20
-
+      input: 0.4
+      output: 1.2
   xiaomi/mimo-v2.5-pro:
     pricing:
-      input: 0.30
-      output: 1.50
-
+      input: 0.3
+      output: 1.5
   inclusionai/ling-2.6-1t:
     pricing:
-      input: 0.50
-      output: 2.00
-
+      input: 0.5
+      output: 2.0
   inclusionai/ling-2.6-flash:
     pricing:
-      input: 0.10
-      output: 0.40
-
-  # ===== AI4S models — added 2026-05-06 =====
-  # Co-Scientist / Research Agents
+      input: 0.1
+      output: 0.4
   google/ai-co-scientist:
     links:
-      blog: "https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/"
-      paper: "https://arxiv.org/abs/2502.18864"
+      blog: https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/
+      paper: https://arxiv.org/abs/2502.18864
   sakana/ai-scientist-v1:
     links:
-      blog: "https://sakana.ai/ai-scientist/"
-      paper: "https://arxiv.org/abs/2408.06292"
-      github: "https://github.com/SakanaAI/AI-Scientist"
+      blog: https://sakana.ai/ai-scientist/
+      paper: https://arxiv.org/abs/2408.06292
+      github: https://github.com/SakanaAI/AI-Scientist
   sakana/ai-scientist-v2:
     links:
-      paper: "https://arxiv.org/abs/2504.08066"
-      github: "https://github.com/SakanaAI/AI-Scientist-v2"
-      blog: "https://sakana.ai/ai-scientist-v2/"
+      paper: https://arxiv.org/abs/2504.08066
+      github: https://github.com/SakanaAI/AI-Scientist-v2
+      blog: https://sakana.ai/ai-scientist-v2/
   sakana/darwin-godel-machine:
     links:
-      blog: "https://sakana.ai/dgm/"
-      github: "https://github.com/SakanaAI/dgm"
+      blog: https://sakana.ai/dgm/
+      github: https://github.com/SakanaAI/dgm
   futurehouse/paperqa2-crow:
     links:
-      blog: "https://www.futurehouse.org/research-announcements/launching-futurehouse-platform-ai-agents"
-      github: "https://github.com/Future-House/paper-qa"
+      blog: https://www.futurehouse.org/research-announcements/launching-futurehouse-platform-ai-agents
+      github: https://github.com/Future-House/paper-qa
   futurehouse/falcon-research:
     links:
-      blog: "https://www.futurehouse.org/research-announcements/launching-futurehouse-platform-ai-agents"
-      homepage: "https://platform.futurehouse.org/"
+      blog: https://www.futurehouse.org/research-announcements/launching-futurehouse-platform-ai-agents
+      homepage: https://platform.futurehouse.org/
   futurehouse/owl:
     links:
-      blog: "https://www.futurehouse.org/research-announcements/launching-futurehouse-platform-ai-agents"
-      homepage: "https://platform.futurehouse.org/"
+      blog: https://www.futurehouse.org/research-announcements/launching-futurehouse-platform-ai-agents
+      homepage: https://platform.futurehouse.org/
   futurehouse/phoenix-chemistry:
     links:
-      blog: "https://www.futurehouse.org/research-announcements/launching-futurehouse-platform-ai-agents"
-      homepage: "https://platform.futurehouse.org/"
+      blog: https://www.futurehouse.org/research-announcements/launching-futurehouse-platform-ai-agents
+      homepage: https://platform.futurehouse.org/
   stanford/virtual-lab:
     links:
-      paper: "https://www.nature.com/articles/s41586-025-09442-9"
-      github: "https://github.com/zou-group/virtual-lab"
+      paper: https://www.nature.com/articles/s41586-025-09442-9
+      github: https://github.com/zou-group/virtual-lab
   lbnl/a-lab:
     links:
-      paper: "https://www.nature.com/articles/s41586-023-06734-w"
-      blog: "https://newscenter.lbl.gov/2023/11/29/move-over-thomas-edison-a-lab-is-the-future-of-materials-discovery/"
+      paper: https://www.nature.com/articles/s41586-023-06734-w
+      blog: https://newscenter.lbl.gov/2023/11/29/move-over-thomas-edison-a-lab-is-the-future-of-materials-discovery/
   anl/auroragpt:
     links:
-      blog: "https://www.anl.gov/cels/auroragpt-foundation-models-for-science"
-      homepage: "https://www.alcf.anl.gov/aurora"
+      blog: https://www.anl.gov/cels/auroragpt-foundation-models-for-science
+      homepage: https://www.alcf.anl.gov/aurora
   khan-academy-openai/khanmigo:
     links:
-      blog: "https://openai.com/index/khan-academy/"
-      homepage: "https://www.khanmigo.ai/"
+      blog: https://openai.com/index/khan-academy/
+      homepage: https://www.khanmigo.ai/
   deepmind-doe/genesis-ai-co-scientist-deployment:
     links:
-      blog: "https://deepmind.google/blog/google-deepmind-supports-us-department-of-energy-on-genesis/"
-
-  # Math / Formal Proof
+      blog: https://deepmind.google/blog/google-deepmind-supports-us-department-of-energy-on-genesis/
   deepmind/alphaproof:
     links:
-      blog: "https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/"
+      blog: https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/
   deepmind/alphageometry-2:
     links:
-      blog: "https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/"
-      github: "https://github.com/google-deepmind/alphageometry"
+      blog: https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/
+      github: https://github.com/google-deepmind/alphageometry
   deepmind/funsearch:
     links:
-      paper: "https://www.nature.com/articles/s41586-023-06924-6"
-      github: "https://github.com/google-deepmind/funsearch"
+      paper: https://www.nature.com/articles/s41586-023-06924-6
+      github: https://github.com/google-deepmind/funsearch
   deepmind/gemini-deepthink-imo:
     links:
-      blog: "https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/"
+      blog: https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/
   openai/openai-imo-experimental:
     links:
-      blog: "https://openai.com/index/learning-to-reason-with-llms/"
+      blog: https://openai.com/index/learning-to-reason-with-llms/
   deepmind/gemini-3-deep-think:
     links:
-      blog: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/"
+      blog: https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/
   deepseek/deepseek-prover-v2-671b:
     links:
-      paper: "https://arxiv.org/abs/2504.21801"
-      github: "https://github.com/deepseek-ai/DeepSeek-Prover-V2"
-      huggingface: "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-671B"
+      paper: https://arxiv.org/abs/2504.21801
+      github: https://github.com/deepseek-ai/DeepSeek-Prover-V2
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-671B
   deepseek/deepseek-prover-v2-7b:
     links:
-      paper: "https://arxiv.org/abs/2504.21801"
-      huggingface: "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-7B"
-      github: "https://github.com/deepseek-ai/DeepSeek-Prover-V2"
+      paper: https://arxiv.org/abs/2504.21801
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-7B
+      github: https://github.com/deepseek-ai/DeepSeek-Prover-V2
   deepseek/deepseek-prover-v1.5:
     links:
-      paper: "https://arxiv.org/abs/2408.08152"
-      huggingface: "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V1.5-RL"
-      github: "https://github.com/deepseek-ai/DeepSeek-Prover-V1.5"
+      paper: https://arxiv.org/abs/2408.08152
+      huggingface: https://huggingface.co/deepseek-ai/DeepSeek-Prover-V1.5-RL
+      github: https://github.com/deepseek-ai/DeepSeek-Prover-V1.5
   goedel-lm/goedel-prover-v2-32b:
     links:
-      paper: "https://openreview.net/forum?id=j4C0nALrgK"
-      huggingface: "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B"
-      github: "https://github.com/Goedel-LM/Goedel-Prover-V2"
+      paper: https://openreview.net/forum?id=j4C0nALrgK
+      huggingface: https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B
+      github: https://github.com/Goedel-LM/Goedel-Prover-V2
   princeton/goedel-prover-v2-32b:
     links:
-      paper: "https://arxiv.org/abs/2508.03613"
-      huggingface: "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B"
+      paper: https://arxiv.org/abs/2508.03613
+      huggingface: https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B
   princeton/goedel-prover-v2-8b:
     links:
-      paper: "https://arxiv.org/abs/2508.03613"
-      huggingface: "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"
+      paper: https://arxiv.org/abs/2508.03613
+      huggingface: https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B
   tencent/hunyuanprover-7b:
     links:
-      paper: "https://arxiv.org/abs/2412.20735"
-      huggingface: "https://huggingface.co/tencent/HunyuanProver-7B"
+      paper: https://arxiv.org/abs/2412.20735
+      huggingface: https://huggingface.co/tencent/HunyuanProver-7B
   eleutherai/llemma-7b:
     links:
-      paper: "https://arxiv.org/abs/2310.10631"
-      huggingface: "https://huggingface.co/EleutherAI/llemma_7b"
-      github: "https://github.com/EleutherAI/math-lm"
+      paper: https://arxiv.org/abs/2310.10631
+      huggingface: https://huggingface.co/EleutherAI/llemma_7b
+      github: https://github.com/EleutherAI/math-lm
   eleutherai/llemma-34b:
     links:
-      paper: "https://arxiv.org/abs/2310.10631"
-      huggingface: "https://huggingface.co/EleutherAI/llemma_34b"
-      github: "https://github.com/EleutherAI/math-lm"
+      paper: https://arxiv.org/abs/2310.10631
+      huggingface: https://huggingface.co/EleutherAI/llemma_34b
+      github: https://github.com/EleutherAI/math-lm
   nvidia/openmath2-llama3.1-70b:
     links:
-      paper: "https://arxiv.org/abs/2410.01560"
-      huggingface: "https://huggingface.co/nvidia/OpenMath2-Llama3.1-70B"
-      github: "https://github.com/Kipok/NeMo-Skills"
+      paper: https://arxiv.org/abs/2410.01560
+      huggingface: https://huggingface.co/nvidia/OpenMath2-Llama3.1-70B
+      github: https://github.com/Kipok/NeMo-Skills
   leandojo/reprover:
     links:
-      homepage: "https://leandojo.org/"
-      github: "https://github.com/lean-dojo/ReProver"
+      homepage: https://leandojo.org/
+      github: https://github.com/lean-dojo/ReProver
   princeton/lean-star:
     links:
-      paper: "https://arxiv.org/abs/2407.10040"
-      github: "https://github.com/Lagooon/LeanSTaR"
+      paper: https://arxiv.org/abs/2407.10040
+      github: https://github.com/Lagooon/LeanSTaR
   shanghai-ai-lab/internlm2-math-plus:
     links:
-      github: "https://github.com/InternLM/InternLM-Math"
-      huggingface: "https://huggingface.co/internlm/internlm2-math-plus-20b"
+      github: https://github.com/InternLM/InternLM-Math
+      huggingface: https://huggingface.co/internlm/internlm2-math-plus-20b
   shanghai-ai-lab/internlm2.5-stepprover:
     links:
-      paper: "https://arxiv.org/abs/2410.15700"
-      huggingface: "https://huggingface.co/internlm/internlm2_5-step-prover"
-
-  # Chemistry
+      paper: https://arxiv.org/abs/2410.15700
+      huggingface: https://huggingface.co/internlm/internlm2_5-step-prover
   meta/galactica-120b:
     links:
-      paper: "https://arxiv.org/abs/2211.09085"
-      huggingface: "https://huggingface.co/facebook/galactica-120b"
-      github: "https://github.com/paperswithcode/galai"
+      paper: https://arxiv.org/abs/2211.09085
+      huggingface: https://huggingface.co/facebook/galactica-120b
+      github: https://github.com/paperswithcode/galai
   meta/galactica-30b:
     links:
-      paper: "https://arxiv.org/abs/2211.09085"
-      huggingface: "https://huggingface.co/facebook/galactica-30b"
+      paper: https://arxiv.org/abs/2211.09085
+      huggingface: https://huggingface.co/facebook/galactica-30b
   opendfm/chemdfm-13b:
     links:
-      paper: "https://arxiv.org/abs/2401.14818"
-      huggingface: "https://huggingface.co/OpenDFM/ChemDFM-13B-v1.0"
-      github: "https://github.com/OpenDFM/ChemDFM"
+      paper: https://arxiv.org/abs/2401.14818
+      huggingface: https://huggingface.co/OpenDFM/ChemDFM-13B-v1.0
+      github: https://github.com/OpenDFM/ChemDFM
   opendfm/chemdfm-v1.5-8b:
     links:
-      github: "https://github.com/OpenDFM/ChemDFM"
-      huggingface: "https://huggingface.co/OpenDFM/ChemDFM-v1.5-8B"
+      github: https://github.com/OpenDFM/ChemDFM
+      huggingface: https://huggingface.co/OpenDFM/ChemDFM-v1.5-8B
   deepchem/chemberta-2:
     links:
-      paper: "https://arxiv.org/abs/2209.01712"
-      huggingface: "https://huggingface.co/DeepChem/ChemBERTa-77M-MTR"
-      github: "https://github.com/seyonechithrananda/bert-loves-chemistry"
+      paper: https://arxiv.org/abs/2209.01712
+      huggingface: https://huggingface.co/DeepChem/ChemBERTa-77M-MTR
+      github: https://github.com/seyonechithrananda/bert-loves-chemistry
   recursion/mole:
     links:
-      paper: "https://www.nature.com/articles/s41467-024-53751-y"
-      blog: "https://www.recursion.com/news/recursion-publishes-mole"
+      paper: https://www.nature.com/articles/s41467-024-53751-y
+      blog: https://www.recursion.com/news/recursion-publishes-mole
   mit/chemgpt-1.2b:
     links:
-      huggingface: "https://huggingface.co/ncfrey/ChemGPT-1.2B"
+      huggingface: https://huggingface.co/ncfrey/ChemGPT-1.2B
   zjunlp/molgen-7b:
     links:
-      paper: "https://arxiv.org/abs/2301.11259"
-      github: "https://github.com/zjunlp/MolGen"
-      huggingface: "https://huggingface.co/zjunlp/MolGen-7b"
+      paper: https://arxiv.org/abs/2301.11259
+      github: https://github.com/zjunlp/MolGen
+      huggingface: https://huggingface.co/zjunlp/MolGen-7b
   molecularai/chemformer:
     links:
-      paper: "https://iopscience.iop.org/article/10.1088/2632-2153/ac3ffb"
-      github: "https://github.com/MolecularAI/Chemformer"
+      paper: https://iopscience.iop.org/article/10.1088/2632-2153/ac3ffb
+      github: https://github.com/MolecularAI/Chemformer
   robochem/robochem:
     links:
-      paper: "https://www.nature.com/articles/s41586-024-07208-3"
+      paper: https://www.nature.com/articles/s41586-024-07208-3
   dptech/uni-mol-v2:
     links:
-      paper: "https://arxiv.org/abs/2406.14969"
-      github: "https://github.com/dptech-corp/Uni-Mol"
+      paper: https://arxiv.org/abs/2406.14969
+      github: https://github.com/dptech-corp/Uni-Mol
   meta/uma-omol25:
     links:
-      paper: "https://ai.meta.com/research/publications/uma-a-family-of-universal-models-for-atoms/"
-      github: "https://github.com/FAIR-Chem/fairchem"
-
-  # Astronomy
+      paper: https://ai.meta.com/research/publications/uma-a-family-of-universal-models-for-atoms/
+      github: https://github.com/FAIR-Chem/fairchem
   universetbd/astrollama-7b:
     links:
-      paper: "https://arxiv.org/abs/2309.06126"
-      huggingface: "https://huggingface.co/universeTBD/astrollama"
+      paper: https://arxiv.org/abs/2309.06126
+      huggingface: https://huggingface.co/universeTBD/astrollama
   smith42/astropt-2.1b:
     links:
-      paper: "https://arxiv.org/abs/2405.14930"
-      huggingface: "https://huggingface.co/smith42/astropt"
-      github: "https://github.com/Smith42/astroPT"
+      paper: https://arxiv.org/abs/2405.14930
+      huggingface: https://huggingface.co/smith42/astropt
+      github: https://github.com/Smith42/astroPT
   berkeley/astrom3:
     links:
-      paper: "https://arxiv.org/abs/2411.08842"
+      paper: https://arxiv.org/abs/2411.08842
   polymathic/multimodal-universe:
     links:
-      paper: "https://arxiv.org/abs/2412.02527"
-      homepage: "https://polymathic-ai.org/blog/multimodaluniverse/"
-      huggingface: "https://huggingface.co/datasets/MultimodalUniverse/MultimodalUniverse"
+      paper: https://arxiv.org/abs/2412.02527
+      homepage: https://polymathic-ai.org/blog/multimodaluniverse/
+      huggingface: https://huggingface.co/datasets/MultimodalUniverse/MultimodalUniverse
   polymathic/aion-1:
     links:
-      paper: "https://arxiv.org/abs/2510.17960"
-      homepage: "https://polymathic-ai.org/"
+      paper: https://arxiv.org/abs/2510.17960
+      homepage: https://polymathic-ai.org/
+      huggingface: https://huggingface.co/datasets/MultimodalUniverse/MultimodalUniverse
   polymathic/astroclip:
     links:
-      paper: "https://academic.oup.com/mnras/article/531/4/4990/7697182"
-      github: "https://github.com/PolymathicAI/AstroCLIP"
+      paper: https://academic.oup.com/mnras/article/531/4/4990/7697182
+      github: https://github.com/PolymathicAI/AstroCLIP
   u-toronto/astronn-stars:
     links:
-      paper: "https://arxiv.org/abs/2308.10944"
-      github: "https://github.com/henrysky/astroNN"
-
-  # Physics / Materials
+      paper: https://arxiv.org/abs/2308.10944
+      github: https://github.com/henrysky/astroNN
   cambridge/mace-mp-0:
     links:
-      paper: "https://arxiv.org/abs/2401.00096"
-      github: "https://github.com/ACEsuit/mace-foundations"
-      huggingface: "https://huggingface.co/cyrusyc/mace-universal"
+      paper: https://arxiv.org/abs/2401.00096
+      github: https://github.com/ACEsuit/mace-foundations
+      huggingface: https://huggingface.co/cyrusyc/mace-universal
   orbital-materials/orb-v1:
     links:
-      paper: "https://arxiv.org/abs/2410.22570"
-      github: "https://github.com/orbital-materials/orb-models"
+      paper: https://arxiv.org/abs/2410.22570
+      github: https://github.com/orbital-materials/orb-models
   orbital-materials/orb-v2:
     links:
-      github: "https://github.com/orbital-materials/orb-models"
-      huggingface: "https://huggingface.co/orbital-materials"
+      github: https://github.com/orbital-materials/orb-models
+      huggingface: https://huggingface.co/orbital-materials
   orbital-materials/orb-v3:
     links:
-      blog: "https://www.orbitalindustries.com/posts/orb-v3-atomistic-simulation-at-scale"
-      github: "https://github.com/orbital-materials/orb-models"
+      blog: https://www.orbitalindustries.com/posts/orb-v3-atomistic-simulation-at-scale
+      github: https://github.com/orbital-materials/orb-models
   orbital-materials/alchemi-torchsim-2026:
     links:
-      github: "https://github.com/orbital-materials/orb-models"
+      github: https://github.com/orbital-materials/orb-models
   deepmodeling/dpa-2:
     links:
-      paper: "https://arxiv.org/abs/2312.15492"
-      github: "https://github.com/deepmodeling/deepmd-kit"
+      paper: https://arxiv.org/abs/2312.15492
+      github: https://github.com/deepmodeling/deepmd-kit
   meta/equiformer-v2:
     links:
-      paper: "https://arxiv.org/abs/2306.12059"
-      github: "https://github.com/atomicarchitects/equiformer_v2"
+      paper: https://arxiv.org/abs/2306.12059
+      github: https://github.com/atomicarchitects/equiformer_v2
   meta/uma-omat24:
     links:
-      paper: "https://arxiv.org/abs/2410.12771"
-      github: "https://github.com/FAIR-Chem/fairchem"
+      paper: https://arxiv.org/abs/2410.12771
+      github: https://github.com/FAIR-Chem/fairchem
   microsoft/mattergen:
     links:
-      blog: "https://www.microsoft.com/en-us/research/blog/mattergen-a-new-paradigm-of-materials-design-with-generative-ai/"
-      github: "https://github.com/microsoft/mattergen"
-      huggingface: "https://huggingface.co/microsoft/mattergen"
+      blog: https://www.microsoft.com/en-us/research/blog/mattergen-a-new-paradigm-of-materials-design-with-generative-ai/
+      github: https://github.com/microsoft/mattergen
+      huggingface: https://huggingface.co/microsoft/mattergen
   microsoft/mattersim:
     links:
-      paper: "https://arxiv.org/abs/2405.04967"
-      github: "https://github.com/microsoft/mattersim"
+      paper: https://arxiv.org/abs/2405.04967
+      github: https://github.com/microsoft/mattersim
   msft/mattergen-battery:
     links:
-      blog: "https://www.microsoft.com/en-us/research/blog/mattergen-property-guided-materials-design/"
-      github: "https://github.com/microsoft/mattergen"
+      blog: https://www.microsoft.com/en-us/research/blog/mattergen-property-guided-materials-design/
+      github: https://github.com/microsoft/mattergen
   deepmind/gnome:
     links:
-      paper: "https://www.nature.com/articles/s41586-023-06735-9"
-      blog: "https://deepmind.google/discover/blog/millions-of-new-materials-discovered-with-deep-learning/"
-      github: "https://github.com/google-deepmind/materials_discovery"
+      paper: https://www.nature.com/articles/s41586-023-06735-9
+      blog: https://deepmind.google/discover/blog/millions-of-new-materials-discovered-with-deep-learning/
+      github: https://github.com/google-deepmind/materials_discovery
   berkeley/chgnet:
     links:
-      paper: "https://arxiv.org/abs/2302.14231"
-      github: "https://github.com/CederGroupHub/chgnet"
-      huggingface: "https://huggingface.co/cyrusyc/mace-universal"
+      paper: https://arxiv.org/abs/2302.14231
+      github: https://github.com/CederGroupHub/chgnet
+      huggingface: https://huggingface.co/cyrusyc/mace-universal
   ucsd/m3gnet:
     links:
-      paper: "https://www.nature.com/articles/s43588-022-00349-3"
-      github: "https://github.com/materialsvirtuallab/m3gnet"
+      paper: https://www.nature.com/articles/s43588-022-00349-3
+      github: https://github.com/materialsvirtuallab/m3gnet
   harvard/nequip:
     links:
-      paper: "https://www.nature.com/articles/s41467-022-29939-5"
-      github: "https://github.com/mir-group/nequip"
+      paper: https://www.nature.com/articles/s41467-022-29939-5
+      github: https://github.com/mir-group/nequip
   deepmind/alphaqubit:
     links:
-      paper: "https://www.nature.com/articles/s41586-024-08148-8"
-      blog: "https://deepmind.google/discover/blog/alphaqubit-tackles-one-of-quantum-computings-biggest-challenges/"
+      paper: https://www.nature.com/articles/s41586-024-08148-8
+      blog: https://deepmind.google/discover/blog/alphaqubit-tackles-one-of-quantum-computings-biggest-challenges/
   google-quantum/alphaqubit-willow:
     links:
-      blog: "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/alphaqubit-quantum-error-correction/"
+      blog: https://blog.google/innovation-and-ai/models-and-research/google-deepmind/alphaqubit-quantum-error-correction/
   polymathic/multiple-physics:
     links:
-      paper: "https://arxiv.org/abs/2310.02994"
-      blog: "https://polymathic-ai.org/blog/mpp/"
-      github: "https://github.com/PolymathicAI/multiple_physics_pretraining"
+      paper: https://arxiv.org/abs/2310.02994
+      blog: https://polymathic-ai.org/blog/mpp/
+      github: https://github.com/PolymathicAI/multiple_physics_pretraining
   polymathic/the-well:
     links:
-      paper: "https://arxiv.org/abs/2412.00568"
-      github: "https://github.com/PolymathicAI/the_well"
+      paper: https://arxiv.org/abs/2412.00568
+      github: https://github.com/PolymathicAI/the_well
   polymathic/walrus-1.3b:
     links:
-      paper: "https://arxiv.org/abs/2511.15684"
-      github: "https://github.com/PolymathicAI/walrus"
+      paper: https://arxiv.org/abs/2511.15684
+      github: https://github.com/PolymathicAI/walrus
   nvidia/physicsnemo:
     links:
-      blog: "https://developer.nvidia.com/blog/physics-ml-platform-physicsnemo-is-now-open-source/"
-      github: "https://github.com/NVIDIA/physicsnemo"
-
-  # Earth · Climate
+      blog: https://developer.nvidia.com/blog/physics-ml-platform-physicsnemo-is-now-open-source/
+      github: https://github.com/NVIDIA/physicsnemo
   microsoft/aurora:
     links:
-      paper: "https://www.nature.com/articles/s41586-025-09005-y"
-      github: "https://github.com/microsoft/aurora"
-      huggingface: "https://huggingface.co/microsoft/aurora"
+      paper: https://www.nature.com/articles/s41586-025-09005-y
+      github: https://github.com/microsoft/aurora
+      huggingface: https://huggingface.co/microsoft/aurora
   microsoft/aurora-open-2025-11:
     links:
-      blog: "https://blogs.microsoft.com/on-the-issues/2025/11/13/the-next-phase-of-aurora-open-and-collaborative-ai-for-weather-and-climate-forecasting/"
-      github: "https://github.com/microsoft/aurora"
-      huggingface: "https://huggingface.co/microsoft/aurora"
+      blog: https://blogs.microsoft.com/on-the-issues/2025/11/13/the-next-phase-of-aurora-open-and-collaborative-ai-for-weather-and-climate-forecasting/
+      github: https://github.com/microsoft/aurora
+      huggingface: https://huggingface.co/microsoft/aurora
   deepmind/weathernext-2:
     links:
-      blog: "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/weathernext-2/"
+      blog: https://blog.google/innovation-and-ai/models-and-research/google-deepmind/weathernext-2/
   huawei/pangu-weather:
     links:
-      paper: "https://www.nature.com/articles/s41586-023-06185-3"
-      github: "https://github.com/198808xc/Pangu-Weather"
+      paper: https://www.nature.com/articles/s41586-023-06185-3
+      github: https://github.com/198808xc/Pangu-Weather
   deepmind/graphcast:
     links:
-      paper: "https://www.science.org/doi/10.1126/science.adi2336"
-      blog: "https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/"
-      github: "https://github.com/google-deepmind/graphcast"
+      paper: https://www.science.org/doi/10.1126/science.adi2336
+      blog: https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/
+      github: https://github.com/google-deepmind/graphcast
   deepmind/gencast:
     links:
-      paper: "https://www.nature.com/articles/s41586-024-08252-9"
-      blog: "https://deepmind.google/discover/blog/gencast-predicts-weather-and-the-risks-of-extreme-conditions-with-sota-accuracy/"
-      github: "https://github.com/google-deepmind/graphcast"
+      paper: https://www.nature.com/articles/s41586-024-08252-9
+      blog: https://deepmind.google/discover/blog/gencast-predicts-weather-and-the-risks-of-extreme-conditions-with-sota-accuracy/
+      github: https://github.com/google-deepmind/graphcast
   ecmwf/aifs-1.0:
     links:
-      blog: "https://www.ecmwf.int/en/about/media-centre/aifs-blog"
-      github: "https://github.com/ecmwf/anemoi-models"
-      huggingface: "https://huggingface.co/ecmwf/aifs-single-1.0"
+      blog: https://www.ecmwf.int/en/about/media-centre/aifs-blog
+      github: https://github.com/ecmwf/anemoi-models
+      huggingface: https://huggingface.co/ecmwf/aifs-single-1.0
   ecmwf/aifs-single-1.0:
     links:
-      huggingface: "https://huggingface.co/ecmwf/aifs-single-1.0"
-      github: "https://github.com/ecmwf/anemoi-models"
+      huggingface: https://huggingface.co/ecmwf/aifs-single-1.0
+      github: https://github.com/ecmwf/anemoi-models
   ecmwf/aifs-ens-1.0:
     links:
-      blog: "https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwfs-ensemble-ai-forecasts-become-operational"
-      huggingface: "https://huggingface.co/ecmwf/aifs-ens-1.0"
+      blog: https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwfs-ensemble-ai-forecasts-become-operational
+      huggingface: https://huggingface.co/ecmwf/aifs-ens-1.0
   ecmwf/aifs-1.1.0:
     links:
-      paper: "https://arxiv.org/abs/2509.18994"
+      paper: https://arxiv.org/abs/2509.18994
   ecmwf/aifs-compo:
     links:
-      paper: "https://arxiv.org/abs/2604.03300"
+      paper: https://arxiv.org/abs/2604.03300
   fudan/fuxi:
     links:
-      paper: "https://arxiv.org/abs/2306.12873"
-      github: "https://github.com/tpys/FuXi"
+      paper: https://arxiv.org/abs/2306.12873
+      github: https://github.com/tpys/FuXi
   shanghai-ai-lab/fengwu:
     links:
-      paper: "https://arxiv.org/abs/2304.02948"
-      github: "https://github.com/OpenEarthLab/FengWu"
+      paper: https://arxiv.org/abs/2304.02948
+      github: https://github.com/OpenEarthLab/FengWu
   microsoft/climax:
     links:
-      paper: "https://arxiv.org/abs/2301.10343"
-      github: "https://github.com/microsoft/ClimaX"
+      paper: https://arxiv.org/abs/2301.10343
+      github: https://github.com/microsoft/ClimaX
   ibm-nasa/prithvi-wxc:
     links:
-      paper: "https://arxiv.org/abs/2409.13598"
-      huggingface: "https://huggingface.co/ibm-nasa-geospatial/Prithvi-WxC-1.0-2300M"
-      github: "https://github.com/NASA-IMPACT/Prithvi-WxC"
+      paper: https://arxiv.org/abs/2409.13598
+      huggingface: https://huggingface.co/ibm-nasa-geospatial/Prithvi-WxC-1.0-2300M
+      github: https://github.com/NASA-IMPACT/Prithvi-WxC
   ibm-nasa/prithvi-eo-2.0:
     links:
-      huggingface: "https://huggingface.co/ibm-nasa-geospatial/Prithvi-EO-2.0-600M"
-      github: "https://github.com/NASA-IMPACT/Prithvi-EO-2.0"
+      huggingface: https://huggingface.co/ibm-nasa-geospatial/Prithvi-EO-2.0-600M
+      github: https://github.com/NASA-IMPACT/Prithvi-EO-2.0
   eci/climategpt-7b:
     links:
-      paper: "https://arxiv.org/abs/2401.09646"
-      huggingface: "https://huggingface.co/eci-io/climategpt-7b"
+      paper: https://arxiv.org/abs/2401.09646
+      huggingface: https://huggingface.co/eci-io/climategpt-7b
   ornl/orbit:
     links:
-      paper: "https://arxiv.org/abs/2404.14712"
+      paper: https://arxiv.org/abs/2404.14712
   ornl/orbit-2:
     links:
-      blog: "https://www.olcf.ornl.gov/2025/11/14/training-on-frontier-delivers-faster-more-precise-ai-weather-forecasts/"
+      blog: https://www.olcf.ornl.gov/2025/11/14/training-on-frontier-delivers-faster-more-precise-ai-weather-forecasts/
   helmholtz/hclimrep:
     links:
-      blog: "https://blogs.helmholtz.de/research-field-information/en/2024/04/25/new-horizons-in-science-the-helmholtz-foundation-model-initiative/"
+      blog: https://blogs.helmholtz.de/research-field-information/en/2024/04/25/new-horizons-in-science-the-helmholtz-foundation-model-initiative/
   juelich-cern/atmorep-3.5b:
     links:
-      paper: "https://arxiv.org/abs/2308.13280"
-      github: "https://github.com/clessig/atmorep"
-
-  # Bio / Genomics / Pharma
+      paper: https://arxiv.org/abs/2308.13280
+      github: https://github.com/clessig/atmorep
   arc/evo-1-7b:
     links:
-      blog: "https://arcinstitute.org/news/evo"
-      huggingface: "https://huggingface.co/togethercomputer/evo-1-131k-base"
-      github: "https://github.com/evo-design/evo"
+      blog: https://arcinstitute.org/news/evo
+      huggingface: https://huggingface.co/togethercomputer/evo-1-131k-base
+      github: https://github.com/evo-design/evo
   arc/evo-2-40b:
     links:
-      blog: "https://arcinstitute.org/news/evo2"
-      huggingface: "https://huggingface.co/arcinstitute/evo2_40b"
-      github: "https://github.com/ArcInstitute/evo2"
+      blog: https://arcinstitute.org/news/evo2
+      huggingface: https://huggingface.co/arcinstitute/evo2_40b
+      github: https://github.com/ArcInstitute/evo2
   arc/evo-2-7b:
     links:
-      huggingface: "https://huggingface.co/arcinstitute/evo2_7b"
-      github: "https://github.com/ArcInstitute/evo2"
+      huggingface: https://huggingface.co/arcinstitute/evo2_7b
+      github: https://github.com/ArcInstitute/evo2
   baker/rfdiffusion:
     links:
-      paper: "https://www.nature.com/articles/s41586-023-06415-8"
-      github: "https://github.com/RosettaCommons/RFdiffusion"
+      paper: https://www.nature.com/articles/s41586-023-06415-8
+      github: https://github.com/RosettaCommons/RFdiffusion
   baker/rosettafold-aa:
     links:
-      paper: "https://www.science.org/doi/10.1126/science.adl2528"
-      github: "https://github.com/baker-laboratory/RoseTTAFold-All-Atom"
+      paper: https://www.science.org/doi/10.1126/science.adl2528
+      github: https://github.com/baker-laboratory/RoseTTAFold-All-Atom
   baker/rfdiffusion-aa:
     links:
-      blog: "https://www.bakerlab.org/2023/10/30/introducing-all-atom-versions-of-rosettafold-and-rfdiffusion/"
-      github: "https://github.com/baker-laboratory/rf_diffusion_all_atom"
+      blog: https://www.bakerlab.org/2023/10/30/introducing-all-atom-versions-of-rosettafold-and-rfdiffusion/
+      github: https://github.com/baker-laboratory/rf_diffusion_all_atom
   westlake/saprot-650m:
     links:
-      paper: "https://www.biorxiv.org/content/10.1101/2023.10.01.560349v1"
-      github: "https://github.com/westlake-repl/SaProt"
-      huggingface: "https://huggingface.co/westlake-repl/SaProt_650M_AF2"
+      paper: https://www.biorxiv.org/content/10.1101/2023.10.01.560349v1
+      github: https://github.com/westlake-repl/SaProt
+      huggingface: https://huggingface.co/westlake-repl/SaProt_650M_AF2
   westlake/saprot-1.3b:
     links:
-      huggingface: "https://huggingface.co/westlake-repl/SaProt-1.3B"
-      github: "https://github.com/westlake-repl/SaProt"
+      huggingface: https://huggingface.co/westlake-repl/SaProt-1.3B
+      github: https://github.com/westlake-repl/SaProt
   bayreuth/protgpt2:
     links:
-      paper: "https://www.nature.com/articles/s41467-022-32007-7"
-      huggingface: "https://huggingface.co/nferruz/ProtGPT2"
+      paper: https://www.nature.com/articles/s41467-022-32007-7
+      huggingface: https://huggingface.co/nferruz/ProtGPT2
   argonne/genslms-25b:
     links:
-      paper: "https://www.biorxiv.org/content/10.1101/2022.10.10.511571v1"
-      github: "https://github.com/ramanathanlab/genslm"
-      huggingface: "https://huggingface.co/ramanathanlab/genslm"
+      paper: https://www.biorxiv.org/content/10.1101/2022.10.10.511571v1
+      github: https://github.com/ramanathanlab/genslm
+      huggingface: https://huggingface.co/ramanathanlab/genslm
   u-toronto/scgpt:
     links:
-      paper: "https://www.nature.com/articles/s41592-024-02201-0"
-      github: "https://github.com/bowang-lab/scGPT"
+      paper: https://www.nature.com/articles/s41592-024-02201-0
+      github: https://github.com/bowang-lab/scGPT
   instadeep/nucleotide-transformer-2.5b:
     links:
-      paper: "https://www.nature.com/articles/s41592-024-02523-z"
-      huggingface: "https://huggingface.co/InstaDeepAI/nucleotide_transformer_v2_500m_multi_species"
-      github: "https://github.com/instadeepai/nucleotide-transformer"
+      paper: https://www.nature.com/articles/s41592-024-02523-z
+      huggingface: https://huggingface.co/InstaDeepAI/nucleotide_transformer_v2_500m_multi_species
+      github: https://github.com/instadeepai/nucleotide-transformer
   stanford-hazy/hyenadna-1m:
     links:
-      paper: "https://arxiv.org/abs/2306.15794"
-      huggingface: "https://huggingface.co/LongSafari/hyenadna-large-1m-seqlen-hf"
-      github: "https://github.com/HazyResearch/hyena-dna"
+      paper: https://arxiv.org/abs/2306.15794
+      huggingface: https://huggingface.co/LongSafari/hyenadna-large-1m-seqlen-hf
+      github: https://github.com/HazyResearch/hyena-dna
   cornell/caduceus-ph:
     links:
-      paper: "https://arxiv.org/abs/2403.03234"
-      huggingface: "https://huggingface.co/kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16"
-      github: "https://github.com/kuleshov-group/caduceus"
+      paper: https://arxiv.org/abs/2403.03234
+      huggingface: https://huggingface.co/kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16
+      github: https://github.com/kuleshov-group/caduceus
   deepmind/alphamissense:
     links:
-      paper: "https://www.science.org/doi/10.1126/science.adg7492"
-      github: "https://github.com/google-deepmind/alphamissense"
+      paper: https://www.science.org/doi/10.1126/science.adg7492
+      github: https://github.com/google-deepmind/alphamissense
   deepmind/alphagenome:
     links:
-      blog: "https://deepmind.google/discover/blog/alphagenome-ai-for-better-understanding-the-genome/"
-      github: "https://github.com/google-deepmind/alphagenome"
+      blog: https://deepmind.google/discover/blog/alphagenome-ai-for-better-understanding-the-genome/
+      github: https://github.com/google-deepmind/alphagenome
   chai/chai-2:
     links:
-      blog: "https://www.chaidiscovery.com/blog/introducing-chai-2"
+      blog: https://www.chaidiscovery.com/blog/introducing-chai-2
   mit-jameel/boltz-1:
     links:
-      huggingface: "https://huggingface.co/boltz-community/boltz-1"
-      github: "https://github.com/jwohlwend/boltz"
+      huggingface: https://huggingface.co/boltz-community/boltz-1
+      github: https://github.com/jwohlwend/boltz
   mit-jameel/boltz-2:
     links:
-      blog: "https://jclinic.mit.edu/boltz-2-towards-accurate-and-efficient-binding-affinity-prediction/"
-      github: "https://github.com/jwohlwend/boltz"
+      blog: https://jclinic.mit.edu/boltz-2-towards-accurate-and-efficient-binding-affinity-prediction/
+      github: https://github.com/jwohlwend/boltz
   mit/boltzgen-1:
     links:
-      blog: "https://news.mit.edu/2025/mit-scientists-debut-generative-ai-model-that-could-create-molecules-addressing-hard-to-treat-diseases-1125"
-      github: "https://github.com/jwohlwend/boltz"
+      blog: https://news.mit.edu/2025/mit-scientists-debut-generative-ai-model-that-could-create-molecules-addressing-hard-to-treat-diseases-1125
+      github: https://github.com/jwohlwend/boltz
   evolutionaryscale/esm-3:
     links:
-      blog: "https://www.evolutionaryscale.ai/blog/esm3-release"
-      github: "https://github.com/evolutionaryscale/esm"
-      huggingface: "https://huggingface.co/EvolutionaryScale/esm3-sm-open-v1"
+      blog: https://www.evolutionaryscale.ai/blog/esm3-release
+      github: https://github.com/evolutionaryscale/esm
+      huggingface: https://huggingface.co/EvolutionaryScale/esm3-sm-open-v1
   chai/chai-1:
     links:
-      huggingface: "https://huggingface.co/chaidiscovery/chai-1"
-      github: "https://github.com/chaidiscovery/chai-lab"
+      huggingface: https://huggingface.co/chaidiscovery/chai-1
+      github: https://github.com/chaidiscovery/chai-lab
   deepmind/alphafold-3:
     links:
-      paper: "https://www.nature.com/articles/s41586-024-07487-w"
-      github: "https://github.com/google-deepmind/alphafold3"
+      paper: https://www.nature.com/articles/s41586-024-07487-w
+      github: https://github.com/google-deepmind/alphafold3
   deepmind/alphafold-2:
     links:
-      paper: "https://www.nature.com/articles/s41586-021-03819-2"
-      github: "https://github.com/google-deepmind/alphafold"
+      paper: https://www.nature.com/articles/s41586-021-03819-2
+      github: https://github.com/google-deepmind/alphafold
   deepmind/alphafold-server:
     links:
-      blog: "https://blog.google/technology/google-deepmind/alphafold-3-server/"
-      homepage: "https://alphafoldserver.com/"
+      blog: https://blog.google/technology/google-deepmind/alphafold-3-server/
+      homepage: https://alphafoldserver.com/
   recursion/phenom-beta:
     links:
-      blog: "https://www.recursion.com/news/nothing-short-of-phenomenal-new-deep-learning-model-available-on-nvidias-bionemo-platform"
+      blog: https://www.recursion.com/news/nothing-short-of-phenomenal-new-deep-learning-model-available-on-nvidias-bionemo-platform
   isomorphic/iso-dde:
     links:
-      blog: "https://www.isomorphiclabs.com/articles/the-isomorphic-labs-drug-design-engine-unlocks-a-new-frontier"
+      blog: https://www.isomorphiclabs.com/articles/the-isomorphic-labs-drug-design-engine-unlocks-a-new-frontier
   insilico/chemistry42:
     links:
-      paper: "https://pubs.acs.org/doi/10.1021/acs.jcim.2c01191"
-
-  # Nuclear / Fusion
+      paper: https://pubs.acs.org/doi/10.1021/acs.jcim.2c01191
   deepmind/torax:
     links:
-      paper: "https://arxiv.org/abs/2406.06718"
-      github: "https://github.com/google-deepmind/torax"
+      paper: https://arxiv.org/abs/2406.06718
+      github: https://github.com/google-deepmind/torax
   deepmind/tcv-plasma-rl:
     links:
-      paper: "https://www.nature.com/articles/s41586-021-04301-9"
+      paper: https://www.nature.com/articles/s41586-021-04301-9
   deepmind/tcv-rampdown:
     links:
-      paper: "https://www.nature.com/articles/s41467-025-63917-x"
+      paper: https://www.nature.com/articles/s41467-025-63917-x
   pppl/diag2diag:
     links:
-      blog: "https://www.pppl.gov/news/2025/new-ai-enhances-view-inside-fusion-energy-systems"
+      blog: https://www.pppl.gov/news/2025/new-ai-enhances-view-inside-fusion-energy-systems
   ahu-wuhan/xihefusion:
     links:
-      paper: "https://arxiv.org/abs/2502.05615"
+      paper: https://arxiv.org/abs/2502.05615
   ukaea-ibm/tokamind:
     links:
-      blog: "https://research.ibm.com/blog/fusion-plasma-ai-model"
+      blog: https://research.ibm.com/blog/fusion-plasma-ai-model
   deepmind-cfs/torax-cfs:
     links:
-      blog: "https://deepmind.google/blog/bringing-ai-to-the-next-generation-of-fusion-energy/"
-      github: "https://github.com/google-deepmind/torax"
+      blog: https://deepmind.google/blog/bringing-ai-to-the-next-generation-of-fusion-energy/
+      github: https://github.com/google-deepmind/torax
   inl-nvidia/prometheus:
     links:
-      blog: "https://inl.gov/news-release/idaho-national-laboratory-to-accelerate-nuclear-energy-deployment-with-nvidia-ai-through-the-genesis-mission/"
+      blog: https://inl.gov/news-release/idaho-national-laboratory-to-accelerate-nuclear-energy-deployment-with-nvidia-ai-through-the-genesis-mission/
   proxima-fusion/constellaration:
     links:
-      blog: "https://huggingface.co/blog/cgeorgiaw/constellaration-fusion-challenge"
-      huggingface: "https://huggingface.co/blog/cgeorgiaw/constellaration-fusion-challenge"
+      blog: https://huggingface.co/blog/cgeorgiaw/constellaration-fusion-challenge
+      huggingface: https://huggingface.co/blog/cgeorgiaw/constellaration-fusion-challenge
   mit-cfs/plasma-rampdown-2025:
     links:
-      blog: "https://news.mit.edu/2025/new-prediction-model-could-improve-reliability-fusion-power-plants-1007"
-
-  # Energy / Grid / Battery
+      blog: https://news.mit.edu/2025/new-prediction-model-could-improve-reliability-fusion-power-plants-1007
   ibm-nasa/surya-1.0:
     links:
-      huggingface: "https://huggingface.co/nasa-ibm-ai4science/Surya-1.0"
-      blog: "https://research.ibm.com/blog/surya-heliophysics-foundation-model"
+      huggingface: https://huggingface.co/nasa-ibm-ai4science/Surya-1.0
+      blog: https://research.ibm.com/blog/surya-heliophysics-foundation-model
   ibm-lf/gridfm-v0.5:
     links:
-      paper: "https://www.mdpi.com/1996-1073/19/2/357"
+      paper: https://www.mdpi.com/1996-1073/19/2/357
   community/solar-transformer:
     links:
-      huggingface: "https://huggingface.co/markub3327/Solar-Transformer"
+      huggingface: https://huggingface.co/markub3327/Solar-Transformer
   google/timesfm-1.0-200m:
     links:
-      paper: "https://arxiv.org/abs/2310.10688"
-      github: "https://github.com/google-research/timesfm"
-      huggingface: "https://huggingface.co/google/timesfm-1.0-200m"
+      paper: https://arxiv.org/abs/2310.10688
+      github: https://github.com/google-research/timesfm
+      huggingface: https://huggingface.co/google/timesfm-1.0-200m
   google/timesfm-2.5:
     links:
-      huggingface: "https://huggingface.co/google/timesfm-2.5-200m-pytorch"
-      github: "https://github.com/google-research/timesfm"
-
-  # Quantum Chemistry / DFT
+      huggingface: https://huggingface.co/google/timesfm-2.5-200m-pytorch
+      github: https://github.com/google-research/timesfm
   deepmind/ferminet:
     links:
-      github: "https://github.com/google-deepmind/ferminet"
+      github: https://github.com/google-deepmind/ferminet
   fu-berlin/paulinet:
     links:
-      paper: "https://www.nature.com/articles/s41557-020-0544-y"
+      paper: https://www.nature.com/articles/s41557-020-0544-y
   deepmind/psiformer:
     links:
-      paper: "https://arxiv.org/abs/2211.13672"
-      github: "https://github.com/google-deepmind/ferminet"
+      paper: https://arxiv.org/abs/2211.13672
+      github: https://github.com/google-deepmind/ferminet
   deepmind/dm21-functional:
     links:
-      paper: "https://www.science.org/doi/10.1126/science.abj6511"
-      github: "https://github.com/deepmind/deepmind-research/tree/master/density_functional_approximation_dm21"
+      paper: https://www.science.org/doi/10.1126/science.abj6511
+      github: https://github.com/deepmind/deepmind-research/tree/master/density_functional_approximation_dm21
   princeton/neuralxc:
     links:
-      paper: "https://www.nature.com/articles/s41467-020-17265-7"
-      github: "https://github.com/semodi/neuralxc"
+      paper: https://www.nature.com/articles/s41467-020-17265-7
+      github: https://github.com/semodi/neuralxc
   caltech/orbnet:
     links:
-      paper: "https://arxiv.org/abs/2007.08026"
+      paper: https://arxiv.org/abs/2007.08026
   ufl/ani-1ccx:
     links:
-      paper: "https://www.nature.com/articles/s41467-019-10827-4"
-      github: "https://github.com/isayev/ASE_ANI"
+      paper: https://www.nature.com/articles/s41467-019-10827-4
+      github: https://github.com/isayev/ASE_ANI
   ufl/ani-2x:
     links:
-      github: "https://github.com/isayev/ASE_ANI"
+      github: https://github.com/isayev/ASE_ANI
   cmu/aimnet2:
     links:
-      paper: "https://pubs.rsc.org/en/content/articlelanding/2025/sc/d4sc08572h"
-      github: "https://github.com/isayevlab/AIMNet2"
-
-  # Cosmology / Particle / Lab Automation / Other
+      paper: https://pubs.rsc.org/en/content/articlelanding/2025/sc/d4sc08572h
+      github: https://github.com/isayevlab/AIMNet2
   simons-flatiron/camels:
     links:
-      paper: "https://arxiv.org/abs/2010.00619"
-      homepage: "https://www.camel-simulations.org/"
-      github: "https://github.com/franciscovillaescusa/Pylians3"
+      paper: https://arxiv.org/abs/2010.00619
+      homepage: https://www.camel-simulations.org/
+      github: https://github.com/franciscovillaescusa/Pylians3
   mit/ai-feynman:
     links:
-      paper: "https://www.science.org/doi/10.1126/sciadv.aay2631"
-      github: "https://github.com/SJ001/AI-Feynman"
+      paper: https://www.science.org/doi/10.1126/sciadv.aay2631
+      github: https://github.com/SJ001/AI-Feynman
   cmu/coscientist:
     links:
-      paper: "https://www.nature.com/articles/s41586-023-06792-0"
+      paper: https://www.nature.com/articles/s41586-023-06792-0
   rochester-epfl/chemcrow:
     links:
-      paper: "https://arxiv.org/abs/2304.05376"
-      github: "https://github.com/ur-whitelab/chemcrow-public"
+      paper: https://arxiv.org/abs/2304.05376
+      github: https://github.com/ur-whitelab/chemcrow-public
   argonne/protein-design-fm:
     links:
-      blog: "https://www.alcf.anl.gov/news/argonne-team-breaks-new-ground-ai-driven-protein-design"
+      blog: https://www.alcf.anl.gov/news/argonne-team-breaks-new-ground-ai-driven-protein-design
   google/depth-anything-v2:
     links:
-      paper: "https://arxiv.org/abs/2406.09414"
-      github: "https://github.com/DepthAnything/Depth-Anything-V2"
-      huggingface: "https://huggingface.co/depth-anything/Depth-Anything-V2-Large"
-
-  # Geosciences / Seismology / Hydrology / Atmospheric
+      paper: https://arxiv.org/abs/2406.09414
+      github: https://github.com/DepthAnything/Depth-Anything-V2
+      huggingface: https://huggingface.co/depth-anything/Depth-Anything-V2-Large
   stanford/eqtransformer:
     links:
-      paper: "https://www.nature.com/articles/s41467-020-17591-w"
-      github: "https://github.com/smousavi05/EQTransformer"
+      paper: https://www.nature.com/articles/s41467-020-17591-w
+      github: https://github.com/smousavi05/EQTransformer
   stanford/phasenet:
     links:
-      paper: "https://academic.oup.com/gji/article/216/1/261/5129142"
-      github: "https://github.com/AI4EPS/PhaseNet"
+      paper: https://academic.oup.com/gji/article/216/1/261/5129142
+      github: https://github.com/AI4EPS/PhaseNet
   ustc/seisclip:
     links:
-      paper: "https://arxiv.org/abs/2309.02320"
+      paper: https://arxiv.org/abs/2309.02320
   google-jku/neuralhydrology:
     links:
-      github: "https://github.com/neuralhydrology/neuralhydrology"
-      homepage: "https://neuralhydrology.github.io/"
+      github: https://github.com/neuralhydrology/neuralhydrology
+      homepage: https://neuralhydrology.github.io/
   google/caravan:
     links:
-      paper: "https://www.frontiersin.org/journals/water/articles/10.3389/frwa.2023.1166124/full"
-      github: "https://github.com/kratzert/Caravan"
+      paper: https://www.frontiersin.org/journals/water/articles/10.3389/frwa.2023.1166124/full
+      github: https://github.com/kratzert/Caravan
   juelich-cern/atmorep:
     links:
-      paper: "https://arxiv.org/abs/2308.13280"
-      github: "https://github.com/clessig/atmorep"
-
-  # Agriculture
+      paper: https://arxiv.org/abs/2308.13280
+      github: https://github.com/clessig/atmorep
   instadeep/agront:
     links:
-      paper: "https://www.maxapress.com/article/doi/10.48130/tp-0025-0008"
-      github: "https://github.com/instadeepai/AgroNT"
+      paper: https://www.maxapress.com/article/doi/10.48130/tp-0025-0008
+      github: https://github.com/instadeepai/AgroNT
   mbzuai/agrogpt:
     links:
-      github: "https://github.com/awaisrauf/agroGPT"
-
-  # NVIDIA Physical AI / Robotics
+      github: https://github.com/awaisrauf/agroGPT
   nvidia/cosmos-reason-1:
     links:
-      huggingface: "https://huggingface.co/nvidia/Cosmos-Reason1-7B"
-      blog: "https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots"
+      huggingface: https://huggingface.co/nvidia/Cosmos-Reason1-7B
+      blog: https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots
   nvidia/cosmos-reason-2:
     links:
-      huggingface: "https://huggingface.co/nvidia/Cosmos-Reason2-8B"
-      blog: "https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots"
+      huggingface: https://huggingface.co/nvidia/Cosmos-Reason2-8B
+      blog: https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots
   nvidia/cosmos-predict-1-7b:
     links:
-      huggingface: "https://huggingface.co/nvidia/Cosmos-Predict1-7B"
-      github: "https://github.com/nvidia-cosmos/cosmos-predict1"
+      huggingface: https://huggingface.co/nvidia/Cosmos-Predict1-7B
+      github: https://github.com/nvidia-cosmos/cosmos-predict1
   nvidia/cosmos-predict-2.5:
     links:
-      blog: "https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots"
+      blog: https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots
   nvidia/cosmos-transfer-2.5:
     links:
-      blog: "https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots"
+      blog: https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots
   nvidia/gr00t-n1:
     links:
-      huggingface: "https://huggingface.co/nvidia/GR00T-N1-2B"
-      blog: "https://research.nvidia.com/labs/gear/gr00t-n1/"
+      huggingface: https://huggingface.co/nvidia/GR00T-N1-2B
+      blog: https://research.nvidia.com/labs/gear/gr00t-n1/
   nvidia/gr00t-n1.5:
     links:
-      huggingface: "https://huggingface.co/nvidia/GR00T-N1.5-3B"
-      blog: "https://research.nvidia.com/labs/gear/gr00t-n1_5/"
+      huggingface: https://huggingface.co/nvidia/GR00T-N1.5-3B
+      blog: https://research.nvidia.com/labs/gear/gr00t-n1_5/
   nvidia/isaac-gr00t-n1.5:
     links:
-      huggingface: "https://huggingface.co/nvidia/GR00T-N1.5-3B"
-      blog: "https://research.nvidia.com/labs/gear/gr00t-n1_5/"
+      huggingface: https://huggingface.co/nvidia/GR00T-N1.5-3B
+      blog: https://research.nvidia.com/labs/gear/gr00t-n1_5/
   nvidia/isaac-gr00t-n1.7:
     links:
-      github: "https://github.com/NVIDIA/Isaac-GR00T"
+      github: https://github.com/NVIDIA/Isaac-GR00T
   nvidia/nemotron-3-super:
     links:
-      huggingface: "https://huggingface.co/nvidia/Nemotron-3-Super"
+      huggingface: https://huggingface.co/nvidia/Nemotron-3-Super
   nvidia-clara/rnapro:
     links:
-      blog: "https://nvidianews.nvidia.com/news/nvidia-bionemo-platform-adopted-by-life-sciences-leaders-to-accelerate-ai-driven-drug-discovery"
+      blog: https://nvidianews.nvidia.com/news/nvidia-bionemo-platform-adopted-by-life-sciences-leaders-to-accelerate-ai-driven-drug-discovery
   nvidia-clara/reasyn-v2:
     links:
-      blog: "https://nvidianews.nvidia.com/news/nvidia-bionemo-platform-adopted-by-life-sciences-leaders-to-accelerate-ai-driven-drug-discovery"
+      blog: https://nvidianews.nvidia.com/news/nvidia-bionemo-platform-adopted-by-life-sciences-leaders-to-accelerate-ai-driven-drug-discovery
   nvidia/bionemo-2:
     links:
-      blog: "https://blogs.nvidia.com/blog/bionemo-platform/"
-
-  # AlphaChip / Surya / Misc
+      blog: https://blogs.nvidia.com/blog/bionemo-platform/
   deepmind/alphachip-2026:
     links:
-      blog: "https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design/"
+      blog: https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design/
   google-deepmind/genie-2:
     links:
-      blog: "https://deepmind.google/discover/blog/genie-2-a-large-scale-foundation-world-model/"
+      blog: https://deepmind.google/discover/blog/genie-2-a-large-scale-foundation-world-model/
   google-deepmind/genie-3:
     links:
-      blog: "https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/"
+      blog: https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/
   google-deepmind/gemini-robotics-er-1.5:
     links:
-      blog: "https://deepmind.google/discover/blog/gemini-robotics-er-1-5/"
+      blog: https://deepmind.google/discover/blog/gemini-robotics-er-1-5/
   fermilab/genesis-fermi-2026:
     links:
-      blog: "https://news.fnal.gov/2026/03/fermilab-drives-progress-for-national-ai-genesis-mission/"
+      blog: https://news.fnal.gov/2026/03/fermilab-drives-progress-for-national-ai-genesis-mission/
+  microsoft/prov-gigapath:
+    links:
+      huggingface: https://huggingface.co/prov-gigapath/prov-gigapath
+      github: https://github.com/prov-gigapath/prov-gigapath
+      paper: https://www.nature.com/articles/s41586-024-07441-w
+  microsoft/rad-dino:
+    links:
+      huggingface: https://huggingface.co/microsoft/rad-dino
+      paper: https://arxiv.org/abs/2401.10815
+  microsoft/biomedclip:
+    links:
+      huggingface: https://huggingface.co/microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224
+  microsoft/biogpt-large:
+    links:
+      huggingface: https://huggingface.co/microsoft/biogpt-large
+  microsoft/llava-med:
+    links:
+      github: https://github.com/microsoft/LLaVA-Med
+      huggingface: https://huggingface.co/microsoft/llava-med-v1.5-mistral-7b
+  microsoft/medimageinsight:
+    links:
+      github: https://github.com/microsoft/medimageinsight
+  microsoft/healthgpt:
+    links:
+      github: https://github.com/microsoft/healthgpt
+  microsoft/pubmedbert:
+    links:
+      huggingface: https://huggingface.co/microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext
+  paige-ai/virchow2:
+    links:
+      huggingface: https://huggingface.co/paige-ai/Virchow2
+  paige-ai/virchow2g:
+    links:
+      huggingface: https://huggingface.co/paige-ai/Virchow2G
+  mahmoodlab/uni2:
+    links:
+      huggingface: https://huggingface.co/MahmoodLab/UNI2-h
+  mahmoodlab/titan:
+    links:
+      huggingface: https://huggingface.co/MahmoodLab/TITAN
+  mahmoodlab/conch:
+    links:
+      huggingface: https://huggingface.co/MahmoodLab/CONCH
+  mahmoodlab/pathchat:
+    links:
+      huggingface: https://huggingface.co/MahmoodLab/PathChat
+  openmeditron/meditron3-70b:
+    links:
+      huggingface: https://huggingface.co/OpenMeditron/Meditron3-70B
+  openmeditron/meditron3-8b:
+    links:
+      huggingface: https://huggingface.co/OpenMeditron/Meditron3-Llama3.1-8B
+  epfl/meditron-70b:
+    links:
+      huggingface: https://huggingface.co/epfl-llm/meditron-70b
+      github: https://github.com/epfLLM/meditron
+  epfl/meditron-7b:
+    links:
+      huggingface: https://huggingface.co/epfl-llm/meditron-7b
+      github: https://github.com/epfLLM/meditron
+  epfl/llama-3-meditron-70b:
+    links:
+      huggingface: https://huggingface.co/OpenMeditron/Meditron3-70B
+  magic-ai4med/mmedlm-2-70b:
+    links:
+      huggingface: https://huggingface.co/Henrychur/MMed-Llama-3-70B
+      github: https://github.com/MAGIC-AI4Med/MMedLM
+  magic-ai4med/mmedlm-2-7b:
+    links:
+      huggingface: https://huggingface.co/Henrychur/MMedLM2-7B
+      github: https://github.com/MAGIC-AI4Med/MMedLM
+  magic-ai4med/mmedlm-2-1.8b:
+    links:
+      huggingface: https://huggingface.co/Henrychur/MMedLM2-1_8B
+  hpai-bsc/aloe-beta-70b:
+    links:
+      huggingface: https://huggingface.co/HPAI-BSC/Llama3.1-Aloe-Beta-70B
+  hpai-bsc/aloe-beta-8b:
+    links:
+      huggingface: https://huggingface.co/HPAI-BSC/Llama3.1-Aloe-Beta-8B
+  freedomintelligence/apollo-medlm-7b:
+    links:
+      huggingface: https://huggingface.co/FreedomIntelligence/Apollo-7B
+      github: https://github.com/FreedomIntelligence/Apollo
+  yale/me-llama-13b:
+    links:
+      huggingface: https://huggingface.co/Yale-EHRs/Me-Llama-13B-instruct
+      github: https://github.com/BIDS-Xu-Lab/Me-LLaMA
+  yale/medic-eval-baseline:
+    links:
+      github: https://github.com/IBM/medic-benchmark
+  shanghai-ai-lab/visionfm:
+    links:
+      huggingface: https://huggingface.co/Hanky/VisionFM
+      github: https://github.com/ABILab-CUHK/VisionFM
+  shanghai-ai-lab/radfm:
+    links:
+      github: https://github.com/chaoyi-wu/RadFM
+      huggingface: https://huggingface.co/chaoyi-wu/RadFM
+  stanford/chexzero:
+    links:
+      github: https://github.com/rajpurkarlab/CheXzero
+  stanford/clinical-camel:
+    links:
+      huggingface: https://huggingface.co/wanglab/ClinicalCamel-70B
+  stanford/biomedlm-2.7b:
+    links:
+      huggingface: https://huggingface.co/stanford-crfm/BioMedLM
+  stanford/almanac-rag:
+    links:
+      github: https://github.com/cyrilzakka/almanac-rag
+  stanford/cardio-wearable-fm:
+    links:
+      github: https://github.com/StanfordBDHG/CardioWearableFM
+  stanford/clinical-modernbert:
+    links:
+      huggingface: https://huggingface.co/Simonlee711/Clinical-ModernBERT
+  stanford/clinical-pred-bert:
+    links:
+      huggingface: https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT
+  stanford-emily/clinicalbert:
+    links:
+      huggingface: https://huggingface.co/emilyalsentzer/Bio_ClinicalBERT
+  stanford/med-flamingo-9b:
+    links:
+      github: https://github.com/snap-stanford/med-flamingo
+      huggingface: https://huggingface.co/med-flamingo/med-flamingo
+  ibm/granite-3.3-8b:
+    links:
+      huggingface: https://huggingface.co/ibm-granite/granite-3.3-8b-instruct
+  ibm/granite-3.3-2b:
+    links:
+      huggingface: https://huggingface.co/ibm-granite/granite-3.3-2b-instruct
+  ibm/granite-3.2-vision:
+    links:
+      huggingface: https://huggingface.co/ibm-granite/granite-vision-3.2-2b
+  ibm/granite-3.1-8b:
+    links:
+      huggingface: https://huggingface.co/ibm-granite/granite-3.1-8b-instruct
+  ibm/granite-34b-code-instruct:
+    links:
+      huggingface: https://huggingface.co/ibm-granite/granite-34b-code-instruct-8k
+  ibm/molformer-1.1b:
+    links:
+      huggingface: https://huggingface.co/ibm/MoLFormer-XL-both-10pct
+  ibm/gp-molformer-1.1b:
+    links:
+      github: https://github.com/IBM/GP-MoLFormer
+  ncfrey/chemgpt-1.2b:
+    links:
+      huggingface: https://huggingface.co/ncfrey/ChemGPT-1.2B
+  tii/falcon-h1-7b:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon-H1-7B-Instruct
+  tii/falcon-h1-3b:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon-H1-3B-Instruct
+  tii/falcon-h1-1.5b:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon-H1-1.5B-Instruct
+  tii/falcon-h1-0.5b:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon-H1-0.5B-Instruct
+  tii/falcon-mamba-7b:
+    links:
+      huggingface: https://huggingface.co/tiiuae/falcon-mamba-7b
+  tii/falcon3-7b:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon3-7B-Instruct
+  tii/falcon3-10b:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon3-10B-Instruct
+  tii/falcon3-3b:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon3-3B-Instruct
+  tii/falcon3-1b:
+    links:
+      huggingface: https://huggingface.co/tiiuae/Falcon3-1B-Instruct
+  moonshot/kimi-k2-instruct:
+    links:
+      huggingface: https://huggingface.co/moonshotai/Kimi-K2-Instruct
+      github: https://github.com/MoonshotAI/Kimi-K2
+  alibaba/qwen3-coder:
+    links:
+      huggingface: https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct
+  stability/stable-lm-zephyr-3b:
+    links:
+      huggingface: https://huggingface.co/stabilityai/stablelm-zephyr-3b
+  tencent/hunyuan-7b:
+    links:
+      huggingface: https://huggingface.co/tencent/Hunyuan-7B-Instruct
+  tencent/hunyuan-large:
+    links:
+      huggingface: https://huggingface.co/tencent/Tencent-Hunyuan-Large
