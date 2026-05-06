@@ -1,5 +1,157 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-06: AI4S menu + nuclear/energy expansion + open-weight curation + non-FM scale_class
+
+### Session overview
+하루 동안 5개 영역 작업: (1) AI4S(AI for Science) 신규 메뉴 + 배경 데이터 적재 + 6개월 업데이트 + reference 사이트, (2) 모델 detail link 일괄 enrichment, (3) open-weight 모델 검증 (실제 weight 공개 여부), (4) 비-FM(narrow ML, agent system, dataset, tool) 메타데이터 분류, (5) 모달 UI에 scale_class 배지 표시.
+
+### 1. AI for Science (AI4S) 메뉴 신설 + 모델 적재 (commit `2829449`)
+text LLM 중심 dashboard를 13개 foundation model 카테고리로 확장. 93개 신규 모델 + 8개 sub-category:
+
+| 카테고리 | 핵심 |
+|---------|------|
+| 🧪 Co-Scientist (10) | Google AI Co-Scientist, Sakana AI Scientist v1/v2/DGM, FutureHouse PaperQA2-Crow/Falcon/Owl/Phoenix, Stanford Virtual Lab (Nature 2025 SARS-CoV-2 nanobodies), LBNL A-Lab |
+| 📐 Math / Formal Proof (15) | DeepMind AlphaProof + AlphaGeometry-2 (IMO 2024 silver), DeepSeek-Prover V1.5/V2 671B+7B, Goedel-Prover V2 32B+8B (Princeton+Tsinghua), HunyuanProver, Llemma 7B+34B, OpenMath2-70B, MathFusion, ReProver, Lean-STaR, InternLM2-Math/StepProver, Gemini Deep Think IMO 2025 gold |
+| ⚗️ Chemistry (8) | ChemDFM 13B/v1.5-8B, ChemBERTa-2/3, Recursion MolE (Nature Comm), ChemGPT, MolGen, Chemformer, RoboChem (Nature), Uni-Mol V2 |
+| 🔭 Astronomy (7) | AstroLLaMA, AstroPT (DESI galaxy stamps), AstroM3 tri-modal, Polymathic AION-1/AstroCLIP/Multimodal-Universe (100TB), AstroNN-Stars |
+| ⚛️ Physics / Materials (15) | MACE-MP, Orb v1/v2, DPA-2, EquiformerV2, UMA OMat24, MatterGen + MatterSim (Microsoft), GNoME (Nature), CHGNet, M3GNet, NequIP, AlphaQubit (Nature), Polymathic Multiple-Physics + The-Well |
+| 🌍 Earth / Climate (11) | Microsoft Aurora (Nature 2025), Pangu-Weather, GraphCast, GenCast (Nature 2024), ECMWF AIFS-1.0, FuXi, FengWu, ClimaX, IBM-NASA Prithvi WxC + EO-2.0, ClimateGPT |
+| 🧬 Bio / Genomics (16) | Arc Evo 1/2 (40B+7B 1Mb-context), Baker Lab RFdiffusion + RoseTTAFold-AA + RFdiffusion-AA, SaProt 650M+1.3B, ProtGPT2, GenSLMs (Gordon Bell), scGPT (Nature Methods), Nucleotide Transformer, HyenaDNA, Caduceus, AlphaMissense (Science), AlphaGenome, Chai-2 |
+| 🌐 Multi-disciplinary (2) | Galactica 30B+120B (Meta) |
+
+UI: tab between Medical AI and Explorer, 8 summary tiles + category filter + search, cards grouped by category sorted by release_date desc, click→Modal.showModel.
+
+### 2. AI4S 확장 — 원자력/에너지/양자화학 등 11 sub-categories (commit `4e772a2`)
+84개 신규 모델 (8 → 19 sub-categories):
+
+| 신규 카테고리 | 모델 수 | 핵심 |
+|------|------|------|
+| ☢️ Nuclear / Fusion (15) | DeepMind TORAX (JAX tokamak transport), TCV plasma RL (Nature 2022), TCV rampdown (Nat Comm 2025), PPPL Diag2Diag/ELM/Plasma-Heating, KFE+DIII-D Tearing RL (Nature 2024), AHU XiHeFusion, Proxima ConStellaRation, MIT-CFS, INL+NVIDIA Prometheus |
+| ⚡ Energy / Grid / Battery (16) | ECMWF AIFS Single/Ensemble, ETH+IBM GAIA Power Dispatch, IBM GridFM, NREL eGridGPT, EnergyGPT 8B, EF-LLM, PowerGraph-LLM, PBT Battery Transformer, TRI D3BATT, IBM-NASA Surya 1.0 (366M heliophysics) |
+| 🔬 Quantum Chemistry / DFT (11) | DeepMind FermiNet/Psiformer/DM21, FU Berlin PauliNet, Princeton NeuralXC, Caltech OrbNet + Entos Denali, U.Florida ANI-1ccx/2x, CMU AIMNet2, NVIDIA PhysicsNeMo |
+| ✨ Cosmology / Particle Physics (5) | Simons CAMELS (4,233 sims), MIT AI Feynman, ATLAS+CMS CERN anomaly detection, Polymathic Walrus 1.3B |
+| 🌋 Geosciences / Seismology (5) | Stanford EQTransformer + PhaseNet, USTC SeisCLIP, Tsinghua Seismic FM, GEM-3D |
+| 💨 Atmospheric Chemistry (5) | Juelich+CERN AtmoRep 3.5B, ECMWF AIFS-COMPO, Zeeman ML-CTM, ECCC EnsAI, PCDC-Net |
+| 💧 Hydrology / Water (3) | Google+JKU NeuralHydrology, Google Caravan, Fine Flood FM |
+| 🌾 Agriculture / Plant (13) | AgriGPT, AgriGPT-VL, MBZUAI AgroGPT, InstaDeep AgroNT, PlantRNA-FM, scPlantLLM, NASA Harvest GeoCIF/ARYA/VeRCYe, ORNL APPL/GPGP |
+| 💊 Pharma / Drug Discovery (4) | Recursion Phenom-Beta, Isomorphic Iso-DDE, Insilico Chemistry42 |
+| 🤖 Lab Automation (3) | CMU Coscientist (Nature 2023), ChemCrow, ANL protein-design FM |
+| ➕ Co-Scientist 추가 | AuroraGPT (Argonne exascale), Khanmigo (pedagogy) |
+
+기존 카테고리 보강: ORNL ORBIT 113B + ORBIT-2, Helmholtz HClimRep, Polymathic Walrus 1.3B.
+
+### 3. AI4S 6개월 업데이트 (commit `15e496f`)
+2025-11-01 ~ 2026-05-06 윈도우 신규 24 모델 + 16 벤치마크 + 10 점수:
+
+- **Climate**: WeatherNext 2 (Google, 8x faster), Aurora Open full weights (Microsoft), AIFS 1.1.0 (ECMWF)
+- **Nuclear**: TORAX-CFS 파트너십, TokaMind (UKAEA+IBM, MAST tokamak FM)
+- **Energy**: GridFM v0.5 (IBM+LF Energy)
+- **Math**: **Goedel-Prover V2 32B (88.1%/90.4% MiniF2F, ICLR 2026)**, **Gemini 3 Deep Think (gold IMO/ICPC/IPhO/IChO)**
+- **Bio/Pharma**: BoltzGen 1 (MIT), AneWomni 2026, NVIDIA RNAPro/ReaSyn v2
+- **Materials**: Orb v3 (10-40x faster), ALCHEMI TorchSim, AlphaChip 2026 open checkpoint, GR00T N1.5/N1.7, Cosmos-Transfer 2.5
+- **Time-series**: TimesFM 2.5 (16384 context, 60% smaller)
+
+신규 벤치마크: Physical AI Bench (NVIDIA), WxC-Bench (NASA+IBM), AI AgriBench (UIUC), TokaMark (UKAEA), DisruptionBench (MIT PSFC), MOFSimBench, AgriBench-13K, MiniF2F, IMO 2025, ICPC 2025, IPhO/IChO 2025, AIFS 1.1↑1.0, AlphaGenome 24-task/26-task.
+
+### 4. AI4S Reference 사이트 36개 추가 (commit `f8fbe1f`)
+9개 도메인의 leaderboard / benchmark / dataset / DOE national lab 사이트:
+- Math: MathArena (ETH 라이브), MiniF2F GitHub, PutnamBench, OlympiadBench, IMO-Bench (DeepMind ProofBench), OlympicArena
+- Materials: Matbench Discovery, Matbench v0.1, Open Catalyst Project, FAIR Chemistry, GuacaMol, MoleculeNet, Open Reaction Database
+- Bio: CASP Prediction Center, ProteinGym, PDB Statistics
+- Climate: WeatherBench 2 (Google+ECMWF 라이브), ECMWF AIFS Blog/Charts, Microsoft Aurora GitHub
+- Robotics: RoboArena (DROID Elo), LIBERO, RoboCasa 365, NVIDIA Cosmos
+- Astronomy/Cosmology: Polymathic AI, MultiModalUniverse, DESI, SDSS
+- Particle Physics: LHC Olympics 2020, ML4Jets, Dark Machines
+- Nuclear: DisruptionBench, DisruptionPy
+- Aggregators: SciArena (Allen AI Elo), Papers with Code, HF Papers, DOE Office of Science, Argonne ALCF, ORNL AI
+
+dashboard Resources 탭 + config/seed_sources.yaml 양쪽 등록.
+
+### 5. 모델별 1차 출처 링크 enrichment (commits `16e333b`, `df3bdb1`, `3eb6d73`)
+175개 AI4S 모델에 `links.{huggingface, github, paper, blog, model_card, system_card, homepage}` 7-필드 enrichment 추가. 모달이 자동 인식하여 컬러 코딩된 Reference Links 버튼으로 표시.
+
+이후 4-pass deep audit:
+- Pass 1 (이전): 75 링크 + 66 reclassify
+- Pass 2 (`curate_open_links_v2.py`): Major-vendor 329 모델 verified URL +352 fields
+- Pass 3 (extension): Arcee Trinity, EleutherAI Polyglot-Ko, Physical Intelligence Pi-Zero, OpenMEDLab, Audio family, Video gen, Time-series, Tabular +86 fields
+- Pass 4 (long-tail): Cohere Aya, Databricks DBRX, Bowang MedSAM, ELYZA Med, AI Singapore SEA-LION v4, JMedLLM +33 fields
+- Pass 5 (reclassify): paper-only academic 109건 → proprietary
+- Pass 6 (cleanup): 마지막 2개 outlier 수작업
+
+**최종 100% open-weight 모델 HF/GitHub 커버리지 달성** (이전 27%):
+- proprietary 500 (46%) / open-weight 485 (44%) / open-weights 85 (8%) / open-source 23 (2%)
+- Open w/o HF/GitHub: **0개** (이전 511)
+
+### 6. 비-FM `scale_class` 메타데이터 + 모달 배지 (commit `d3ce2f2`)
+사용자 audit 발견: 1,093개 dashboard 항목 중 ~127개가 large-scale LLM/FM이 아님 (narrow specialty network, agent system, dataset, simulator/tool, benchmark baseline, product wrapper 등). 사용자가 Option A(메타데이터 표시) 선택.
+
+`scripts/tag_non_fm_class.py` — 216개 항목을 22개 카테고리로 태깅:
+
+| 분류 | 개수 | 라벨 |
+|------|-----|------|
+| classical-ml | 21 | 🔬 Classical ML (M3GNet 250K, NequIP 1M, MACE, CHGNet, Orb v1/v2/v3, ChemBERTa) |
+| narrow-encoder | 17 | 🎨 Narrow encoder (CONCH, UNI2, TITAN, Virchow2, Prov-GigaPath, RAD-DINO, RETFound) |
+| narrow-segmentation | 15 | ✂️ Narrow segmentation (MedSAM, SAM-Med2D/3D, SAM 1/2.1/3/3D) |
+| agent-system | 15 | 🤖 Agent system (AI Co-Scientist, Sakana AI Scientist, ChemCrow, FutureHouse) |
+| product-wrapper | 15 | 🏷 Product wrapper (Khanmigo, Harvey, CoCounsel, Runway/Kling/Pika/Luma/Sora) |
+| narrow-timeseries | 11 | 📈 Narrow time-series (TimesFM, Chronos, Lag-Llama, Moirai, MOMENT) |
+| classical-bert | 10 | 📚 Classical BERT (BiomedCLIP, BioGPT, PubMedBERT, ClinicalBERT, BioBERT, GatorTron) |
+| benchmark-baseline | 9 | 🎯 Benchmark baseline (CheXpert, MIMIC-CXR, MedPerf-FETs, MedHallu) |
+| narrow-tts | 7 | 🔊 Narrow TTS (Kokoro, Spark-TTS, CosyVoice 2/3, ChatTTS, F5-TTS) |
+| robotics-policy | 7 | 🤖 Robotics policy (Octo, OpenVLA, Pi-Zero/0.5, RDT-1B) |
+| dataset | 6 | 📦 Dataset (MultiModalUniverse, CAMELS, The Well, MPP) |
+| dft-functional | 4 | ⚛️ DFT functional (DM21, NeuralXC, OrbNet) |
+| analysis-pipeline | 4 | 🔬 Analysis pipeline (ATLAS/CMS CERN, Fermilab Genesis) |
+| simulator-tool | 3 | 🛠 Simulator/Tool (TORAX, PhysicsNeMo) |
+| wavefunction-net | 3 | ⚛️ Wavefunction net (FermiNet, PauliNet, Psiformer) |
+| small-mlp-potential | 3 | ⚛️ Small MLP potential (ANI-1ccx/2x, AIMNet2) |
+| rl-search-system | 3 | 🔍 RL-search system (FunSearch, AlphaChip, GNoME) |
+| hydrology-lstm | 3 | 💧 Hydrology LSTM (NeuralHydrology, Caravan) |
+| roadmap | 3 | 🗺 Roadmap (placeholder) |
+| narrow-task | 24 | 🎯 Narrow task (RFdiffusion, RoseTTAFold-AA, AlphaFold 2/3, Boltz, EQTransformer, FLUX.1) |
+| narrow-tabular | 2 | 📊 Narrow tabular (TabPFN v2/2.5) |
+| qec-decoder | 2 | 🧊 QEC decoder (AlphaQubit) |
+| audio-codec / symbolic-regression / human-baseline | 1+1+1 | 🎙 ∑ 👤 |
+
+**모달 UI 변경**: `_renderHeader`가 enrichment.scale_class를 읽어 amber 배지로 표시. Frontier FM (GPT-5.5, Claude, Llama 등)은 배지 없음 (clean default).
+
+라이브 검증 8개 sample 전부 정확:
+- cmu/coscientist → 🤖 Agent system
+- deepmind/torax → 🛠 Simulator/Tool
+- meta/sam-3 → ✂️ Narrow segmentation
+- prior-labs/tabpfn-v2 → 📊 Narrow tabular
+- google/timesfm-2.5 → 📈 Narrow time-series
+- simons-flatiron/camels → 📦 Dataset
+- stanford/eqtransformer → 🎯 Narrow task
+- khan-academy-openai/khanmigo → 🏷 Product wrapper
+- openai/gpt-5.5 → (no badge — frontier FM)
+
+### 데이터 규모 증분 (Day-of-day, 5/5 종료 → 5/6 종료)
+| 항목 | 5/5 | 5/6 | 증가 |
+|------|------|------|------|
+| 모델 | 893 | **1,093** | +200 |
+| AI4S 카테고리 | 0 | **19 sub-categories** | NEW |
+| AI4S 모델 | 0 | **177~200** | NEW |
+| Resource sites | 311 | **347** | +36 (모두 AI4S leaderboards) |
+| Enrichment 항목 | 130 | **305** | +175 |
+| 1차 링크 보유 모델 | ~32 | **593 (100% open)** | +561 |
+| Open w/o HF/GitHub | 511 | **0** | -511 |
+| Type 분포 | 64% open | 54% open / 46% proprietary | 109 reclassify |
+| scale_class 태깅 | 0 | **216** | NEW (22 categories) |
+| Version-vs-date 모순 | 0 | **0** | 유지 |
+
+### 커밋 시퀀스 (2026-05-06)
+- `2829449` AI4S 메뉴 신설 + 93 모델 + 8 sub-categories
+- `4e772a2` AI4S 11 sub-categories 추가 (nuclear/energy/quantum-chem 등 +84 모델)
+- `15e496f` AI4S 6-month updates (+24 모델 +16 benchmarks +10 scores)
+- `f8fbe1f` AI4S Resource 사이트 36개 추가
+- `16e333b` 175 AI4S 모델 enrichment 1차 링크
+- `df3bdb1` 67 mis-classified open→proprietary + 75 HF/GitHub 링크 보강
+- `3eb6d73` 4-pass open-weight 100% 커버리지 달성 (1093 → 0 missing)
+- `d3ce2f2` 비-FM scale_class 배지 시스템 (216 entries × 22 categories)
+
+---
+
 ## 2026-05-05: 13-category foundation expansion + Timeline infographic + version-vs-date audit + partial-date v6
 
 ### Session overview
