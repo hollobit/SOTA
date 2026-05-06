@@ -1279,6 +1279,52 @@ var Modal = {
         countBadge.textContent = scores.length + ' benchmarks';
         meta.appendChild(countBadge);
 
+        // Scale-class badge — visible only when entry is NOT a frontier-class
+        // foundation model (e.g. agent-system, simulator, classical-ml, narrow-task,
+        // dataset, benchmark-baseline). Surfaced from enrichment.scale_class.
+        try {
+            var enrMap = (typeof App !== 'undefined' && App.data && App.data.enrichment) || {};
+            var entry = enrMap[model.id];
+            var scaleClass = entry && entry.scale_class;
+            if (scaleClass) {
+                var SCALE_LABELS = {
+                    'agent-system': '🤖 Agent system',
+                    'simulator-tool': '🛠 Simulator/Tool',
+                    'dataset': '📦 Dataset',
+                    'benchmark-baseline': '🎯 Benchmark baseline',
+                    'product-wrapper': '🏷 Product wrapper',
+                    'classical-ml': '🔬 Classical ML',
+                    'classical-bert': '📚 Classical BERT',
+                    'narrow-encoder': '🎨 Narrow encoder',
+                    'narrow-segmentation': '✂️ Narrow segmentation',
+                    'narrow-task': '🎯 Narrow task',
+                    'narrow-timeseries': '📈 Narrow time-series',
+                    'narrow-tabular': '📊 Narrow tabular',
+                    'narrow-tts': '🔊 Narrow TTS',
+                    'audio-codec': '🎙 Audio codec',
+                    'robotics-policy': '🤖 Robotics policy',
+                    'wavefunction-net': '⚛️ Wavefunction net',
+                    'dft-functional': '⚛️ DFT functional',
+                    'small-mlp-potential': '⚛️ Small MLP potential',
+                    'qec-decoder': '🧊 QEC decoder',
+                    'rl-search-system': '🔍 RL-search system',
+                    'symbolic-regression': '∑ Symbolic regression',
+                    'analysis-pipeline': '🔬 Analysis pipeline',
+                    'hydrology-lstm': '💧 Hydrology LSTM',
+                    'roadmap': '🗺 Roadmap (placeholder)',
+                    'human-baseline': '👤 Human baseline'
+                };
+                var label = SCALE_LABELS[scaleClass] || ('• ' + scaleClass);
+                var scaleBadge = document.createElement('span');
+                scaleBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-amber-900 text-amber-200';
+                scaleBadge.textContent = label;
+                scaleBadge.title = 'Not a frontier-class foundation model: ' + scaleClass;
+                meta.appendChild(scaleBadge);
+            }
+        } catch (e) {
+            // enrichment may not be loaded yet — fail silent
+        }
+
         // Settings cog — opens preferences panel for collapsible defaults
         var cogBtn = document.createElement('button');
         cogBtn.className = 'ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-800 hover:bg-gray-700 text-gray-400';
