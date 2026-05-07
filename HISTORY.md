@@ -102,6 +102,30 @@ DB delta: benchmarks 887 → 888 (+1), scores 3508 → 3554 (+46).
 
 Vision Arena 와 Search Arena 는 별도 신규 benchmark 등록 + 이름 매핑 필요로 다음 sweep 으로 보류.
 
+### 7. Playwright sweep R2 — cc:TODO 부분 closure + Arena V/S + MRCR v2 + LiveBench backlog (commit `4f6e06e`)
+
+Plans.md "Next Steps" 의 cc:TODO 항목 4건 + 오늘 sweep 의 deferred 항목 2건을 일괄 처리:
+
+**신규 벤치마크 3건**:
+- `arena_vision_elo` — arena.ai Vision Arena Elo
+- `arena_search_elo` — arena.ai Search/grounding Arena Elo
+- `mrcr_v2_8needle` — OpenAI MRCR v2 8-needle (1M long-context retrieval)
+
+**신규 점수 30건**:
+- Arena Vision Elo: 7 (Opus 4.7 thinking 1305 / Opus 4.6 1300 / Muse Spark 1298 / Gemini 3 Pro 1288 / GPT-5.5 1288 / GPT-5.2 1279 / Gemini 3.1 Pro 1277)
+- Arena Search Elo: 10 (Opus 4.6-search 1255 / GPT-5.5-search 1235 / Opus 4.7 1233 / Sonnet 4.6-search 1221 / Gemini 3.1 Pro grounding 1218 / GPT-5.2-search 1213 / Gemini 3 Pro grounding 1210 / Grok 4.20 1209 / Gemini 3 Flash grounding 1208 / Grok 4.3 1205)
+- MRCR v2 8-needle: 7 (Opus 4.6 93.0 / GPT-5.5 74.0 / Gemini 3.1 Flash-Lite 60.1 / GPT-5.4 mini 33.6 / Gemini 3 Pro 26.3 / Gemini 3.1 Pro 26.3 / Gemini 3 Flash 22.1)
+- LiveBench backlog: 6 (GPT-5.1 Codex Max 73.98 / Gemini 3 Flash 72.40 / GPT-5 Pro 70.48 / Sonnet 4.5 68.19 / GPT-5.4 mini 67.54 / GPT-5 mini 65.91)
+
+**cc:TODO 상태 업데이트**:
+- ✅ MRCR v2 8-needle: closure
+- ⚠️ Video-MME: Playwright 렌더링 성공 (technical block 해제) 했으나 leaderboard 가 2025-09 까지로 stale. 2026 frontier 모델 미반영 → BLOCKED on external publication 그대로
+- ❌ HarmBench / StrongREJECT / AIR-Bench: 2026 frontier 점수 미발견 (이전 sweep 과 동일)
+- ❌ MMAU: 2026 frontier 점수 미발견
+- ✅ UK AISI Cyber Expert tier: 이미 DB 적재 (verified — gpt-5.5 71.4 / mythos 68.6 / gpt-5.4 52.4 / opus 4.7 48.6 on aisi_advanced_expert_avg)
+
+DB final delta (오늘 세션 누적): benchmarks 839 → 842 (+3 today, +4 this session if EQ-Bench Longform counted from earlier), distinct scores 3261 → 3291 (+30 this round).
+
 ### Reproducibility
 ```bash
 python scripts/load_benchmark_scores.py resource/zzzz...aa_intelligence_2026_05_08_scores.json
