@@ -138,10 +138,10 @@
 - [x] P11 BLINK + Finance Agent — 4 scores (Finance Agent Anthropic sweep: opus-4.7 64.37 / sonnet-4.6 63.33 / opus-4.6 60.05 / o3 48.3)
 
 ### cc:TODO — Watch for future publications (external dependency)
-- [ ] MRCR / RULER / LongBench v2 expansion — frontier long-context SOTA (current LongBench v2 tracked)
-- [ ] HarmBench / StrongREJECT / AIR-Bench frontier backfill (watch Stanford HELM Safety, UK AISI inspect_evals, Gray Swan Arena)
-- [ ] Video-MME leaderboard live scrape for Claude/GPT/Gemini-3 family (video-mme.github.io client-side render)
-- [ ] MMAU frontier scores (watch Gemini 3 audio model card, GPT-5 audio, Claude 4.x audio evaluation)
+- [x] MRCR v2 8-needle expansion — 7 frontier scores ingested 2026-05-08 (Opus 4.6 93.0 / GPT-5.5 74.0 / Gemini 3.x family). LongBench v2 / RULER 미진
+- [ ] HarmBench / StrongREJECT / AIR-Bench frontier backfill — 2026-05-08 재조사 결과 frontier 점수 미공개. UK AISI inspect_evals / Gray Swan Arena 추가 모니터링 필요
+- [ ] Video-MME leaderboard — 2026-05-08 Playwright 렌더링 성공 (client-side block 해제). 그러나 leaderboard 자체가 2025-09 까지로 stale, 2026 frontier 미반영. 외부 publication 대기
+- [ ] MMAU frontier scores — 2026-05-08 재조사 결과 미공개
 
 ### Completed (2026-04-18 `/design-review` follow-up — 22 atomic commits)
 - [x] F-005: Overview 탭 IA 재구성 — SOTA Leaderboard를 full-width primary로 승격, Leaderboard Rankings + Recent Changes는 2-column secondary로 강등 (commit `c199996`)
