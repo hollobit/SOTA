@@ -87,6 +87,21 @@ Kenya는 Network 멤버이나 독립 사이트 미존재 → Network mission ent
 
 Resources 탭: 404 → 417 entries. seed_sources.yaml 일치.
 
+### 6. Playwright sweep — LiveBench / EQ-Bench / Arena 46 점수 ingest (commit `7568163`)
+
+이전 5/8 sweep 에서 client-side rendered table 때문에 WebFetch 로 추출 불가했던 3개 leaderboard 를 Playwright headless browser 로 직접 렌더링해서 strict-attribution 으로 ingest:
+
+- **LiveBench Global Average** (기존 `livebench`): top 30 frontier 모델 중 DB 매핑 가능한 20개. 1위 GPT-5.5 80.71 / 2위 GPT-5.4-thinking 80.28 / 3위 Gemini 3.1 Pro 79.93 / Claude Opus 4.7 76.91 / Sonnet 4.6 75.47 / DeepSeek V4 Pro 73.58 / Kimi K2.6 72.17 / GLM-5.1 70.18 / Grok 4.20 67.96 / Grok 4.3 66.74 / Minimax M2.7 63.49 등.
+- **EQ-Bench Creative Writing Longform** (NEW 벤치마크 `eq_bench_creative_writing_longform`): top 10 등록. 1위 Claude Opus 4.7 81.8 / Sonnet 4.6 79.9 / Kimi K2.6 78.5 / GPT-5.4 78.3 / GPT-5.5 78.2 / Opus 4.6 77.7 / DeepSeek V4 Pro 75.6 / Kimi K2.5 74.9 / GLM-5.1 73.5 / Opus 4.5 73.1.
+- **Arena Text** (기존 `lmarena` — lmarena.ai → arena.ai 리브랜딩): top 10 → unique 8개. Opus 4.7-thinking 1503 / Opus 4.6-thinking 1502 / Gemini 3.1 Pro 1492 / Muse Spark 1490 / Gemini 3 Pro 1486 / GPT-5.5 1484 / Grok 4.20 1480 / GPT-5.2 1477.
+- **Arena WebDev** (기존 `webdev_arena`): top 10 → unique 8개. Opus 4.7 1570 / Opus 4.6 1549 / GLM-5.1 1531 / Sonnet 4.6 1524 / Kimi K2.6 1523 / Muse Spark 1509 / GPT-5.5 1491 / Opus 4.5 1490.
+
+Variant convention: 다중 effort/thinking 변형이 있는 경우 모델별 highest variant 선택 (기존 80.3/79.9/76.3 이 LiveBench top-effort 와 일치하는 관행 따름).
+
+DB delta: benchmarks 887 → 888 (+1), scores 3508 → 3554 (+46).
+
+Vision Arena 와 Search Arena 는 별도 신규 benchmark 등록 + 이름 매핑 필요로 다음 sweep 으로 보류.
+
 ### Reproducibility
 ```bash
 python scripts/load_benchmark_scores.py resource/zzzz...aa_intelligence_2026_05_08_scores.json
