@@ -1,5 +1,63 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-08: AA Intelligence Index sweep + Resources tab refresh + ZAYA1/PhysForge daily ingest
+
+### Session overview
+오늘 세션은 (1) ZAYA1-8B (Zyphra MoE on AMD) + PhysForge (HKU 3D physical-AI) 2건 daily-sweep ingest, (2) 4개 reference leaderboard (artificialanalysis.ai, lmarena.ai/arena.ai, livebench.ai, eqbench.com) Resources 탭 description 보강 + EQ-Bench Creative Writing Longform 신규 등록, (3) artificialanalysis.ai top-25 leaderboard 에서 AA Intelligence Index 신규 점수 10건 ingest 로 구성됨.
+
+### 1. AA Intelligence Index 5/8 sweep (commit `c577b4f`)
+artificialanalysis.ai/leaderboards/models top-25 를 직접 fetch 해서, DB에 model 은 있지만 `aa_intelligence_index` 점수가 없던 10개에 대해 strict-attribution 으로 점수 추가:
+
+| Rank | Model | Score |
+|------|-------|-------|
+| 4 | google/gemini-3.1-pro (Gemini 3.1 Pro Preview) | 57 |
+| 8 | openai/gpt-5.3-codex (GPT-5.3 Codex xhigh) | 54 |
+| 10 | meta/muse-spark | 52 |
+| 12 | alibaba/qwen3.6-max-preview | 52 |
+| 13 | anthropic/claude-sonnet-4.6 (Sonnet 4.6 max) | 52 |
+| 14 | deepseek/deepseek-v4-pro-max (V4 Pro Max) | 52 |
+| 15 | zhipu/glm-5.1 | 51 |
+| 17 | alibaba/qwen3.6-plus | 50 |
+| 19 | zhipu/glm-5 | 50 |
+| 20 | minimax/m2.7 | 50 |
+
+기존 5건(gpt-5.5 60, claude-opus-4.7 57, mimo-v2.5-pro 54, kimi-k2.6 54, grok-4.3 53.2) 은 leaderboard 값과 일치하므로 그대로 유지. `aa_intelligence_index` 커버리지 8 → 18 (+10).
+
+**다른 reference 사이트의 한계**: lmarena.ai (→ arena.ai 리디렉트), livebench.ai/#/, eqbench.com/creative_writing_longform.html 모두 client-side React/Vue 로 leaderboard table 을 렌더링 → WebFetch 는 빈 헤더만 반환. 강한 추출은 browser automation 필요. Resources 탭 discovery link 로 유지하되 자동 ingest 는 보류.
+
+### 2. Resources 탭 + seed_sources.yaml 보강 (commit `e1b323b`, `13c37a9`)
+4개 reference 사이트에 대해 description 을 기능적으로 보강:
+- **Chatbot Arena (lmarena.ai → arena.ai)**: redirect 노트 + 모달리티/scoring 설명 추가
+- **Artificial Analysis Leaderboard**: "356+ models, 4-axis Intelligence/Speed/Cost/Context ranking" 명시
+- **LiveBench (livebench.ai)**: 6 categories, monthly refresh, contamination-free 강조
+- **EQ-Bench Creative Writing Longform**: 신규 등록 (1 entry, paragraph-level analytical writing 평가)
+
+`config/seed_sources.yaml` 에 EQ-Bench, LiveBench(refreshed), AA Leaderboard 3건 등록.
+
+### 3. ZAYA1-8B + PhysForge daily sweep (commit `9f5929f`)
+2026-05-06 ~ 05-08 window 에서 strict-attribution 으로 검증된 2건:
+- **Zyphra ZAYA1-8B (MoE, 2026-05-06)**: 8.4B total / 760M active, AMD 하드웨어 전용 학습, Markovian RSA test-time compute 도입. 8개 점수 (AIME 2026: 89.1, HMMT 2026: 71.6, HMMT 2025: 89.6, IMO-AnswerBench: 59.3, LiveCodeBench-v6: 65.8, GPQA-Diamond: 71.0, MMLU-Pro: 74.2, IFEval: 85.58)
+- **HKU MMLab PhysForge (2026-05-06)**: VLM physical-architect + physics-grounded diffusion (KineVoxel Injection), PhysDB 150k assets, ICML 2026 — `scale_class=agent-system` 로 등록.
+
+Frontier Compare 메뉴 `FRONTIER_MODELS` 에 zaya1-8b 추가.
+
+### 4. Frontier Compare + Cyber & Coding 메뉴 propagation
+AA Intelligence Index 데이터로 점수 커버리지가 확장된 모델 중 menu 누락분 보강:
+- **Frontier Compare**: `anthropic/claude-sonnet-4.6` 추가 (Sonnet 4.6 max — 36개 score 보유, opus 와 함께 비교 가능)
+- **Cyber & Coding**: `deepseek/deepseek-v4-pro-max` 추가 (24개 score, 코딩계열 reasoning 비교)
+- `qwen3.6-max-preview` 는 AA 점수 단 1건뿐이라 menu propagation 보류.
+
+cache-bust: `frontier-compare.js?v=20260508b`, `cyber-coding.js?v=20260508a`
+
+### Reproducibility
+```bash
+python scripts/load_benchmark_scores.py resource/zzzz...aa_intelligence_2026_05_08_scores.json
+python -m cyber export
+python scripts/audit_version_date_consistency.py   # 0 contradictions
+```
+
+---
+
 ## 2026-05-06: AI4S menu + nuclear/energy expansion + open-weight curation + non-FM scale_class
 
 ### Session overview

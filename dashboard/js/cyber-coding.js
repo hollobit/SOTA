@@ -335,6 +335,7 @@ var CyberCoding = {
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-27b',
         'alibaba/qwen3.6-35b-a3b',
+        'deepseek/deepseek-v4-pro-max',
         'deepseek/deepseek-v3.2',
         'moonshot/kimi-k2.6',
         'moonshot/kimi-k2.5',
