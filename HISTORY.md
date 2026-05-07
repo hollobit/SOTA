@@ -1,9 +1,9 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
-## 2026-05-08: AA Intelligence Index sweep + Resources tab refresh + ZAYA1/PhysForge daily ingest
+## 2026-05-08: AA Intelligence Index sweep + Resources tab refresh + ZAYA1/PhysForge daily ingest + AISI 13건 reference 보강
 
 ### Session overview
-오늘 세션은 (1) ZAYA1-8B (Zyphra MoE on AMD) + PhysForge (HKU 3D physical-AI) 2건 daily-sweep ingest, (2) 4개 reference leaderboard (artificialanalysis.ai, lmarena.ai/arena.ai, livebench.ai, eqbench.com) Resources 탭 description 보강 + EQ-Bench Creative Writing Longform 신규 등록, (3) artificialanalysis.ai top-25 leaderboard 에서 AA Intelligence Index 신규 점수 10건 ingest 로 구성됨.
+오늘 세션은 (1) ZAYA1-8B (Zyphra MoE on AMD) + PhysForge (HKU 3D physical-AI) 2건 daily-sweep ingest, (2) 4개 reference leaderboard (artificialanalysis.ai, lmarena.ai/arena.ai, livebench.ai, eqbench.com) Resources 탭 description 보강 + EQ-Bench Creative Writing Longform 신규 등록, (3) artificialanalysis.ai top-25 leaderboard 에서 AA Intelligence Index 신규 점수 10건 ingest, (4) 6개 기존 AISI(US/UK/JP/SG/KR/CN) reference description 갱신 + US AISI → CAISI URL 교체, (5) 7개 신규 AISI(호주/캐나다/CIFAR/프랑스 INESIA/인도/EU AI Office/Network mission) Resources 탭 등록, (6) 6개 AISI 1차 출처 문서(Joint Testing 보고서/Synthetic Content Research Agenda/GPAI Code of Practice/UK 연구 agenda + Year in Review) 추가로 구성됨.
 
 ### 1. AA Intelligence Index 5/8 sweep (commit `c577b4f`)
 artificialanalysis.ai/leaderboards/models top-25 를 직접 fetch 해서, DB에 model 은 있지만 `aa_intelligence_index` 점수가 없던 10개에 대해 strict-attribution 으로 점수 추가:
@@ -48,6 +48,44 @@ AA Intelligence Index 데이터로 점수 커버리지가 확장된 모델 중 m
 - `qwen3.6-max-preview` 는 AA 점수 단 1건뿐이라 menu propagation 보류.
 
 cache-bust: `frontier-compare.js?v=20260508b`, `cyber-coding.js?v=20260508a`
+
+### 5. AISI Resources 탭 13건 신규/갱신 (commits `c6cc9fc` / `a210daa` / `d386060`)
+
+기존 등록되어 있던 6개 AISI(US/UK/JP/SG/KR/CN) description 을 구체적 최근 작업 기준으로 갱신하고, 누락된 7개 AISI 와 6개 1차 출처 문서를 추가했습니다.
+
+**기존 AISI 6건 갱신** (`c6cc9fc`):
+- **US AISI → US CAISI**: 2025년 중반 정부 개편으로 NIST 산하 "Center for AI Standards and Innovation" 으로 재명명. URL `nist.gov/artificial-intelligence/ai-safety-institute` → `nist.gov/caisi`. 새 활동: Google DeepMind/MS/xAI Frontier 사전배포 평가 합의(May 2026), DeepSeek V4 평가(May 2026), AI Agent Red-Teaming Competition(Mar 2026), AI Agent Standards Initiative, OpenMined 보안 평가 파트너십.
+- **UK AISI Blog**: 최근 6편 게시물(MS 파트너십 May 5/GPT-5.5 사이버 평가 Apr 30/Mythos 사이버 평가 Apr 13/OpenClaw sandboxed-agent recon/sycophancy 감소/alignment-sabotage 평가) 명시.
+- **Japan AISI**: AI Safety Annual Report 2025 (Apr 28), Known Attacks and Their Impacts EN/JP (Apr 24), FY2025 Conformity Assessment SWG (Apr 23) 반영.
+- **Singapore AISI**: International Joint Testing(3JT), 다국어 LLM 평가 (UK+Japan), AI 에이전트 데이터 유출 테스트(Korea), SCAI 2025 + Singapore Consensus 추가.
+- **Korea AISI**: URL `/eng` → `/kor` (사용자 지정), 4개 트랙 명시.
+- **China AISI** (3건): 변경 없음 (이미 충분).
+
+**신규 AISI 7건** (`a210daa`) — International Network of AI Safety Institutes 10개 창립 멤버 100% 커버리지 달성:
+| AISI | URL | 메타 |
+|------|-----|------|
+| Australia AISI (DISR) | industry.gov.au | A$30M, 2026 초 운영 시작 |
+| Canada AISI / CAISI Canada (ISED) | ised-isde.canada.ca | C$50M/5y, NRC 연구팀 + CIFAR |
+| CAISI Research Program (CIFAR) | cifar.ca/ai/caisi | 2026 calls: interpretability/robustness/cyber-misuse |
+| France INESIA | inria.fr | ANSSI+LNE+PEReN+Inria 4-org federation, 2026-2027 roadmap |
+| India AISI (IndiaAI MeitY) | indiaai.gov.in | 2025-01-30 발표, 7-Sutras 프레임워크 India AI Impact Summit 2026 |
+| EU AI Office | digital-strategy.ec.europa.eu | GPAI 의무 2025-08-02, high-risk 2026-08-02 |
+| AISI International Network Mission | ised-isde.canada.ca | 10개 창립 멤버, Vancouver 2nd convening Jul 2025 |
+
+UAE는 별도 국가 AISI 없음 → MBZUAI Institute of Foundation Models는 LLM 연구소(국가 안전 평가 기관 X), 기존 TII Falcon 등록으로 충분 → 추가 보류.
+Kenya는 Network 멤버이나 독립 사이트 미존재 → Network mission entry 로 커버.
+
+**AISI 1차 출처 6건** (`d386060`):
+- 3rd Joint Testing Exercise — Agentic Eval Report (sgaisi.sg, Jul 17 2025) — Singapore lead 누출/사기 + UK lead 사이버보안, ~1500 tasks/1200 tools, Cybench+Intercode 사용. **모델 익명화 (A-F)** 으로 strict-attribution 규칙상 점수 적재 불가; pass rate 만 공개 (~57% / ~35% leakage, 23%/28% judge discrepancy). 9개 AISI 참가.
+- Synthetic Content Research Agenda (DISR + ISED 공동, Jul 14 2025) — AI 생성 합성 콘텐츠 위험 연구 의제.
+- GPAI Code of Practice 최종본 (code-of-practice.ai, EU AI Office Jul 10 2025) — 전체 signatory: Anthropic / Google / IBM / Microsoft / OpenAI / Amazon / Mistral / Aleph Alpha. xAI는 Safety & Security 챕터만 부분 서명. **Meta 미서명** (2026-01 기준).
+- GPAI Signatory Taskforce.
+- UK AISI Research Agenda.
+- UK AISI 2025 Year in Review — 30+ frontier 모델 평가, self-replication 벤치마크, sandbagging 탐지, 76K 참가 설득력 연구 (Science 발표).
+
+**Strict-attribution rule 적용 결과**: 신규 모델 0건, 신규 벤치마크 점수 0건. AISI joint testing 보고서가 모델명을 의도적으로 익명화하기 때문. 새 점수 적재는 불가능했으나 **메타데이터 layer (1차 출처 reference)** 로는 13건 모두 가치 보존됨.
+
+Resources 탭: 404 → 417 entries. seed_sources.yaml 일치.
 
 ### Reproducibility
 ```bash
