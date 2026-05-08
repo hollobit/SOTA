@@ -1,0 +1,65 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-08",
+    "_note": "Wave 1B — Vision-Language agent benchmarks. Adds 6 VL/computer-use/web-nav benchmarks beyond the existing OSWorld family. Strict attribution: every (model_id, benchmark_id, value) row visible on the cited primary source.",
+    "sources": [
+      "https://jykoh.com/vwa",
+      "https://arxiv.org/abs/2401.13649",
+      "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard",
+      "https://hal.cs.princeton.edu/online_mind2web",
+      "https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding",
+      "https://gui-agent.github.io/grounding-leaderboard/",
+      "https://os-copilot.github.io/",
+      "https://arxiv.org/abs/2402.07456",
+      "https://github.com/princeton-nlp/WebShop",
+      "https://arxiv.org/abs/2207.01206",
+      "https://arxiv.org/abs/2408.06327",
+      "https://github.com/THUDM/VisualAgentBench"
+    ]
+  },
+  "benchmarks": [
+    {"id": "visualwebarena", "name": "VisualWebArena (visual web nav)", "_source": "https://jykoh.com/vwa", "_note": "910 tasks across 3 visually-grounded sites (Classifieds, Shopping, Reddit). Multimodal browser agent SR. Koh et al. ACL 2024."},
+    {"id": "online_mind2web", "name": "Online-Mind2Web (live web agents)", "_source": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard", "_note": "300 verified tasks across 136 live websites. Auto-eval (WebJudge LLM-judge) + human-verified success rate. OSU NLP. ACL 2025."},
+    {"id": "screenspot_pro", "name": "ScreenSpot-Pro (high-res GUI grounding)", "_source": "https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding", "_note": "1,581 instructions across 23 professional applications, 5 industries, 3 OSes. Click-coordinate accuracy on uncropped full-screen captures. Li et al. 2025."},
+    {"id": "oscopilot_gaia", "name": "OS-Copilot / FRIDAY on GAIA", "_source": "https://os-copilot.github.io/", "_note": "Self-improving OS agent with vision. Reports per-level (L1/L2/L3) success rate on GAIA validation set. ICLR 2024 LLM Agents Workshop. arXiv 2402.07456."},
+    {"id": "webshop", "name": "WebShop (1.18M-product e-commerce nav)", "_source": "https://github.com/princeton-nlp/WebShop", "_note": "12,087 crowd-sourced shopping tasks over 1.18M real-world products. Task score (partial reward) and success rate. Yao et al. NeurIPS 2022."},
+    {"id": "visualagentbench", "name": "VisualAgentBench (VAB)", "_source": "https://github.com/THUDM/VisualAgentBench", "_note": "5 environments — VAB-OmniGibson, VAB-Minecraft, VAB-Mobile, VAB-WebArena-Lite, VAB-CSS. Reports per-env and overall success rate. Liu et al. ICLR 2025."}
+  ],
+  "scores": [
+    {"model": "openai/gpt-4o", "benchmark": "visualwebarena", "score": 19.78, "unit": "%", "_source": "https://arxiv.org/abs/2401.13649", "collected_at": "2026-05-08", "_note": "VisualWebArena overall SR for GPT-4o multimodal agent (paper update; outperforms GPT-4V at 16.37%)"},
+    {"model": "openai/gpt-4", "benchmark": "visualwebarena", "score": 16.37, "unit": "%", "_source": "https://arxiv.org/abs/2401.13649", "collected_at": "2026-05-08", "_note": "VisualWebArena overall SR for GPT-4V + Set-of-Marks (paper Table 3, best vision config in original release)"},
+    {"model": "google/gemini-1.0-pro", "benchmark": "visualwebarena", "score": 6.04, "unit": "%", "_source": "https://arxiv.org/abs/2401.13649", "collected_at": "2026-05-08", "_note": "VisualWebArena overall SR for Gemini-Pro (Multimodal), paper Table 3"},
+    {"model": "mistral/mixtral-8x7b", "benchmark": "visualwebarena", "score": 1.76, "unit": "%", "_source": "https://arxiv.org/abs/2401.13649", "collected_at": "2026-05-08", "_note": "VisualWebArena overall SR for Mixtral-8x7B text-only agent, paper Table 3"},
+    {"model": "meta/llama-2-70b", "benchmark": "visualwebarena", "score": 1.10, "unit": "%", "_source": "https://arxiv.org/abs/2401.13649", "collected_at": "2026-05-08", "_note": "VisualWebArena overall SR for LLaMA-2-70B text-only agent, paper Table 3"},
+
+    {"model": "openai/operator", "benchmark": "online_mind2web", "score": 61.3, "unit": "%", "_source": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard", "collected_at": "2026-05-08", "_note": "Online-Mind2Web human-eval Average SR for OpenAI Operator (CUA) — leaderboard 2025-03-22"},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "online_mind2web", "score": 56.3, "unit": "%", "_source": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard", "collected_at": "2026-05-08", "_note": "Online-Mind2Web human-eval Average SR for Claude Computer Use 3.7 (w/o thinking), 2025-04-20"},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "online_mind2web", "score": 29.0, "unit": "%", "_source": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard", "collected_at": "2026-05-08", "_note": "Online-Mind2Web human-eval Average SR for Claude Computer Use 3.5, 2025-03-22"},
+    {"model": "openai/gpt-4o", "benchmark": "online_mind2web", "score": 30.7, "unit": "%", "_source": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard", "collected_at": "2026-05-08", "_note": "Online-Mind2Web human-eval Average SR for SeeAct + gpt-4o-2024-08-06, 2025-03-22"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "online_mind2web", "score": 69.0, "unit": "%", "_source": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard", "collected_at": "2026-05-08", "_note": "Online-Mind2Web human-eval Average SR for Google Computer Use (Sept 2025) on Gemini 2.5 Computer Use"},
+    {"model": "openai/gpt-5", "benchmark": "online_mind2web", "score": 42.33, "unit": "%", "_source": "https://hal.cs.princeton.edu/online_mind2web", "collected_at": "2026-05-08", "_note": "HAL Online-Mind2Web — GPT-5 Medium (Aug 2025) with SeeAct agent, rank 1"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "online_mind2web", "score": 40.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/online_mind2web", "collected_at": "2026-05-08", "_note": "HAL Online-Mind2Web — Claude Sonnet 4 (May 2025) with Browser-Use, rank 2"},
+    {"model": "openai/o3", "benchmark": "online_mind2web", "score": 39.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/online_mind2web", "collected_at": "2026-05-08", "_note": "HAL Online-Mind2Web — o3 Medium (Apr 2025) with SeeAct, rank 5"},
+    {"model": "openai/gpt-4.1", "benchmark": "online_mind2web", "score": 36.33, "unit": "%", "_source": "https://hal.cs.princeton.edu/online_mind2web", "collected_at": "2026-05-08", "_note": "HAL Online-Mind2Web — GPT-4.1 (Apr 2025) with Browser-Use, rank 9"},
+    {"model": "deepseek/deepseek-v3", "benchmark": "online_mind2web", "score": 32.33, "unit": "%", "_source": "https://hal.cs.princeton.edu/online_mind2web", "collected_at": "2026-05-08", "_note": "HAL Online-Mind2Web — DeepSeek V3 (Mar 2025) with Browser-Use, rank 10"},
+
+    {"model": "openai/gpt-5.2", "benchmark": "screenspot_pro", "score": 86.3, "unit": "%", "_source": "https://gui-agent.github.io/grounding-leaderboard/", "collected_at": "2026-05-08", "_note": "ScreenSpot-Pro overall accuracy, GPT-5.2, leaderboard rank 1"},
+    {"model": "google/gemini-3-pro", "benchmark": "screenspot_pro", "score": 72.7, "unit": "%", "_source": "https://gui-agent.github.io/grounding-leaderboard/", "collected_at": "2026-05-08", "_note": "ScreenSpot-Pro overall accuracy, Gemini 3 Pro, leaderboard rank 3"},
+    {"model": "alibaba/qwen3.5-122b", "benchmark": "screenspot_pro", "score": 70.4, "unit": "%", "_source": "https://gui-agent.github.io/grounding-leaderboard/", "collected_at": "2026-05-08", "_note": "ScreenSpot-Pro overall accuracy, Qwen3.5-122B-A10B, leaderboard rank 4"},
+    {"model": "alibaba/qwen3.5-27b", "benchmark": "screenspot_pro", "score": 70.3, "unit": "%", "_source": "https://gui-agent.github.io/grounding-leaderboard/", "collected_at": "2026-05-08", "_note": "ScreenSpot-Pro overall accuracy, Qwen3.5-27B, leaderboard rank 5"},
+    {"model": "google/gemini-3-flash", "benchmark": "screenspot_pro", "score": 69.1, "unit": "%", "_source": "https://gui-agent.github.io/grounding-leaderboard/", "collected_at": "2026-05-08", "_note": "ScreenSpot-Pro overall accuracy, Gemini 3 Flash, leaderboard rank 6"},
+    {"model": "alibaba/qwen3.6-plus", "benchmark": "screenspot_pro", "score": 68.2, "unit": "%", "_source": "https://gui-agent.github.io/grounding-leaderboard/", "collected_at": "2026-05-08", "_note": "ScreenSpot-Pro overall accuracy, Qwen3.6 Plus, leaderboard rank 8"},
+    {"model": "alibaba/qwen3-vl-235b", "benchmark": "screenspot_pro", "score": 62.0, "unit": "%", "_source": "https://gui-agent.github.io/grounding-leaderboard/", "collected_at": "2026-05-08", "_note": "ScreenSpot-Pro overall accuracy, Qwen3-VL-235B-A22B Instruct, leaderboard rank 9"},
+    {"model": "alibaba/qwen3-vl-32b", "benchmark": "screenspot_pro", "score": 57.9, "unit": "%", "_source": "https://gui-agent.github.io/grounding-leaderboard/", "collected_at": "2026-05-08", "_note": "ScreenSpot-Pro overall accuracy, Qwen3-VL-32B Instruct, leaderboard rank 13"},
+
+    {"model": "openai/gpt-4", "benchmark": "oscopilot_gaia", "score": 40.86, "unit": "%", "_source": "https://arxiv.org/abs/2402.07456", "collected_at": "2026-05-08", "_note": "OS-Copilot/FRIDAY on GAIA Level 1 — backbone GPT-4 (paper Table on Level-1 SR; +35% relative over prior best)"},
+    {"model": "openai/gpt-4", "benchmark": "webshop", "score": 29.0, "unit": "%", "_source": "https://arxiv.org/abs/2207.01206", "collected_at": "2026-05-08", "_note": "WebShop best-model task success rate (29%), paper headline result, vs human expert 59%. Yao et al. NeurIPS 2022."},
+
+    {"model": "openai/gpt-4o", "benchmark": "visualagentbench", "score": 36.2, "unit": "%", "_source": "https://arxiv.org/abs/2408.06327", "collected_at": "2026-05-08", "_note": "VisualAgentBench overall average SR for GPT-4o (best proprietary), paper Table 4"},
+    {"model": "openai/gpt-4", "benchmark": "visualagentbench", "score": 31.7, "unit": "%", "_source": "https://arxiv.org/abs/2408.06327", "collected_at": "2026-05-08", "_note": "VisualAgentBench overall average SR for GPT-4-vision-preview, paper Table 4"},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "visualagentbench", "score": 26.9, "unit": "%", "_source": "https://arxiv.org/abs/2408.06327", "collected_at": "2026-05-08", "_note": "VisualAgentBench overall average SR for Claude-3.5-Sonnet (paper Table 4); 56.0% on VAB-Mobile"},
+    {"model": "anthropic/claude-3-opus", "benchmark": "visualagentbench", "score": 21.9, "unit": "%", "_source": "https://arxiv.org/abs/2408.06327", "collected_at": "2026-05-08", "_note": "VisualAgentBench overall average SR for Claude-3-Opus, paper Table 4"},
+    {"model": "google/gemini-1.5-pro", "benchmark": "visualagentbench", "score": 19.8, "unit": "%", "_source": "https://arxiv.org/abs/2408.06327", "collected_at": "2026-05-08", "_note": "VisualAgentBench overall average SR for Gemini-1.5-Pro, paper Table 4"},
+    {"model": "google/gemini-1.0-pro", "benchmark": "visualagentbench", "score": 6.3, "unit": "%", "_source": "https://arxiv.org/abs/2408.06327", "collected_at": "2026-05-08", "_note": "VisualAgentBench overall average SR for Gemini-1.0-Pro, paper Table 4"}
+  ]
+}

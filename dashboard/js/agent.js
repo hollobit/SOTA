@@ -46,7 +46,10 @@ var Agent = (function() {
                 'gaia',
                 'gaia2',
                 'webarena',
-                'appworld'
+                'appworld',
+                'visualwebarena',
+                'online_mind2web',
+                'webshop'
             ]
         },
         {
@@ -57,7 +60,10 @@ var Agent = (function() {
                 'osworld',
                 'osworld_verified',
                 'windows_agent_arena',
-                'the_agent_company'
+                'the_agent_company',
+                'screenspot_pro',
+                'oscopilot_gaia',
+                'visualagentbench'
             ]
         },
         {
