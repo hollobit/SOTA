@@ -1289,6 +1289,8 @@ var Modal = {
             if (scaleClass) {
                 var SCALE_LABELS = {
                     'agent-system': '🤖 Agent system',
+                    'agent-product': '🛠️ Agent product',
+                    'edge-slm': '📱 Edge SLM',
                     'simulator-tool': '🛠 Simulator/Tool',
                     'dataset': '📦 Dataset',
                     'benchmark-baseline': '🎯 Benchmark baseline',
@@ -1316,7 +1318,11 @@ var Modal = {
                 };
                 var label = SCALE_LABELS[scaleClass] || ('• ' + scaleClass);
                 var scaleBadge = document.createElement('span');
-                scaleBadge.className = 'inline-block px-2 py-0.5 rounded text-xs bg-amber-900 text-amber-200';
+                // edge-slm gets a green pill; everything else uses the default amber.
+                var badgeColor = (scaleClass === 'edge-slm')
+                    ? 'bg-green-900 text-green-200'
+                    : 'bg-amber-900 text-amber-200';
+                scaleBadge.className = 'inline-block px-2 py-0.5 rounded text-xs ' + badgeColor;
                 scaleBadge.textContent = label;
                 scaleBadge.title = 'Not a frontier-class foundation model: ' + scaleClass;
                 meta.appendChild(scaleBadge);
