@@ -2895,13 +2895,20 @@ var AgentCharts = (function() {
   });
 
   var _WIZARD_SLIDERS = [
-    { key: 'coding',           label: 'Coding' },
-    { key: 'web-browse',       label: 'Web & Browsing' },
-    { key: 'os-computer',      label: 'OS / Computer Use' },
-    { key: 'tool-use',         label: 'Tool Use & Function Calling' },
-    { key: 'mcp',              label: 'MCP' },
-    { key: 'customer-service', label: 'Customer Service' },
-    { key: 'safety',           label: 'Safety' }
+    { key: 'coding',           label: 'Coding',
+      tooltip: 'SWE-Bench Verified, SWE-Bench Pro, Aider Polyglot, USACO. 코드 생성·디버깅·복잡한 PR 작업 능력.' },
+    { key: 'web-browse',       label: 'Web & Browsing',
+      tooltip: 'BrowseComp, Online-Mind2Web, VisualWebArena, WebShop. 실제 웹사이트 탐색·검색·정보 수집 능력.' },
+    { key: 'os-computer',      label: 'OS / Computer Use',
+      tooltip: 'OSWorld Verified, ScreenSpot-Pro, OSCopilot-GAIA. GUI 클릭, 데스크톱 자동화, OS 환경 조작.' },
+    { key: 'tool-use',         label: 'Tool Use & Function Calling',
+      tooltip: 'BFCL v4, GAIA, Tau2-Bench, AppWorld. API 호출, 함수 시그니처 매칭, 다단계 도구 조합.' },
+    { key: 'mcp',              label: 'MCP',
+      tooltip: 'Model Context Protocol — Anthropic 표준. 툴/리소스/프롬프트 등 컨텍스트 인터페이스 호환성.' },
+    { key: 'customer-service', label: 'Customer Service',
+      tooltip: 'Tau2-Bench (Retail/Telecom/Airline). 멀티턴 대화, 정책 준수, 사용자 의도 파악.' },
+    { key: 'safety',           label: 'Safety',
+      tooltip: 'AgentDojo (lower=better ASR), Apollo scheming oversight. 프롬프트 인젝션·탈옥·은폐 시도 저항.' }
   ];
 
   // Mean of _normalizedScore() across the category's benchmarks for a model.
@@ -2998,9 +3005,19 @@ var AgentCharts = (function() {
       row.className = 'flex items-center gap-2 text-xs';
 
       var lab = document.createElement('label');
-      lab.className = 'text-gray-300 w-44 shrink-0';
-      lab.textContent = s.label;
+      lab.className = 'text-gray-300 w-44 shrink-0 flex items-center gap-1';
       lab.htmlFor = 'wizard-slider-' + s.key;
+      var labText = document.createElement('span');
+      labText.textContent = s.label;
+      lab.appendChild(labText);
+      if (s.tooltip) {
+        var info = document.createElement('span');
+        info.className = 'text-gray-500 cursor-help text-[10px]';
+        info.textContent = 'ⓘ';
+        info.title = s.tooltip;
+        info.setAttribute('aria-label', s.tooltip);
+        lab.appendChild(info);
+      }
       row.appendChild(lab);
 
       var input = document.createElement('input');
@@ -4760,11 +4777,23 @@ var AgentCharts = (function() {
   // others, hence the per-call try/catch.
   // ======================================================================
   function renderAll() {
-    var fns = [
+    // Above-the-fold widgets render synchronously to fill the visible viewport
+    // immediately. The remaining 12 widgets are deferred to the next idle frame
+    // so the initial paint isn't blocked by ~12 ECharts.init + setOption calls.
+    // requestIdleCallback gives the browser room to settle layout before we
+    // stack more chart work; setTimeout is the fallback for Safari < 17 etc.
+    var eagerFns = [
       renderCostScatter,
       renderCapabilityHeatmap,
       renderCategoryRadar,
-      renderClassDotPlot,
+      renderClassDotPlot
+    ];
+    for (var i = 0; i < eagerFns.length; i++) {
+      try { eagerFns[i](); } catch (e) {
+        if (window.console) console.warn('[AgentCharts] eager widget failed:', eagerFns[i].name || i, e);
+      }
+    }
+    var lazyFns = [
       renderSOTATimeline,
       renderVendorMatrix,
       renderClassViolin,
@@ -4778,10 +4807,17 @@ var AgentCharts = (function() {
       renderEdgeUtilityScatter,
       renderConfidenceIntervals
     ];
-    for (var i = 0; i < fns.length; i++) {
-      try { fns[i](); } catch (e) {
-        if (window.console) console.warn('[AgentCharts] widget failed:', fns[i].name || i, e);
+    function _runLazy() {
+      for (var i = 0; i < lazyFns.length; i++) {
+        try { lazyFns[i](); } catch (e) {
+          if (window.console) console.warn('[AgentCharts] lazy widget failed:', lazyFns[i].name || i, e);
+        }
       }
+    }
+    if (typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(_runLazy, { timeout: 1500 });
+    } else {
+      setTimeout(_runLazy, 50);
     }
     // Widget 7 hooks the leaderboard renderer; that integration lives in agent.js.
   }
