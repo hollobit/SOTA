@@ -610,11 +610,87 @@
   }
 
   // ====================================================================
+  // W3 — Frontier vs Specialist Compare. Grouped bar.
+  // For each math benchmark, show frontier LLM vs domain specialist.
+  // ====================================================================
+  var _FRONTIER_IDS_FOR_W3 = [
+    'openai/gpt-5.5', 'anthropic/claude-opus-4.7', 'google/gemini-3.1-pro',
+    'xai/grok-4.20', 'deepseek/deepseek-v4-pro'
+  ];
+  var _SPECIALIST_IDS_FOR_W3 = [
+    'deepmind/alphaproof', 'deepmind/alphageometry-2',
+    'goedel/goedel-prover-v2', 'kimi/k1.5-math', 'meta/llemma-34b'
+  ];
+
+  function _avgScoreForGroup(modelIds, benchmarkId) {
+    var scores = _scoresFor(benchmarkId).filter(function(s) {
+      return modelIds.indexOf(s.model_id) !== -1 && typeof s.value === 'number';
+    });
+    if (!scores.length) return null;
+    var sum = 0;
+    for (var i = 0; i < scores.length; i++) sum += scores[i].value;
+    return sum / scores.length;
+  }
+
+  function renderFrontierVsSpecialist() {
+    _ensureMountPoint('ai4s-chart-frontier-vs-specialist',
+      'Frontier LLM vs Domain Specialist',
+      'Frontier general-purpose models vs domain specialists on shared benchmarks.');
+    if (typeof echarts === 'undefined') return;
+
+    var benches = ['math_500', 'imo_answerbench', 'frontiermath', 'matharena_apex',
+                   'mathvision', 'putnambench'];
+    var labels = []; var fr = []; var sp = [];
+    benches.forEach(function(bid) {
+      var f = _avgScoreForGroup(_FRONTIER_IDS_FOR_W3, bid);
+      var s = _avgScoreForGroup(_SPECIALIST_IDS_FOR_W3, bid);
+      if (f === null && s === null) return;
+      labels.push(bid);
+      fr.push(f === null ? null : Math.round(f * 10) / 10);
+      sp.push(s === null ? null : Math.round(s * 10) / 10);
+    });
+
+    var mountEl = document.getElementById('ai4s-chart-frontier-vs-specialist');
+    if (!labels.length) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'No shared benchmarks have both frontier + specialist scores yet';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('ai4s-chart-frontier-vs-specialist');
+    if (!chart) return;
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 50, right: 24, top: 30, bottom: 70 },
+      legend: { bottom: 0, textStyle: { color: '#d1d5db' } },
+      tooltip: { trigger: 'axis', backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151', textStyle: { color: '#e5e7eb' } },
+      xAxis: { type: 'category', data: labels,
+        axisLabel: { color: '#9ca3af', rotate: 30, fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } } },
+      yAxis: { type: 'value', name: 'Avg Score',
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      series: [
+        { name: 'Frontier LLM (avg)', type: 'bar', data: fr, itemStyle: { color: '#60a5fa' } },
+        { name: 'Domain Specialist (avg)', type: 'bar', data: sp, itemStyle: { color: '#a78bfa' } }
+      ]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from AI4S.render().
   // Phase 1: stub — actual widget calls added per Task 5-9.
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline, renderMathProgression, renderBenchmarkCatalog];
+    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline, renderMathProgression, renderBenchmarkCatalog, renderFrontierVsSpecialist];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[AI4SCharts] failed:', fns[i].name || i, e);
@@ -802,6 +878,7 @@
     renderBreakthroughTimeline: renderBreakthroughTimeline,
     renderMathProgression: renderMathProgression,
     renderBenchmarkCatalog: renderBenchmarkCatalog,
+    renderFrontierVsSpecialist: renderFrontierVsSpecialist,
     renderAll: renderAll
   };
 
