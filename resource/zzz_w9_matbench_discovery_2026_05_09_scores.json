@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-09",
+    "_note": "Wave 9 — Matbench Discovery leaderboard ingest. Strict primary-source attribution: every (model_id, benchmark_id, value) triple is visible on https://matbench-discovery.materialsproject.org/ leaderboard table (data-sort-value attributes for F1 and MAE columns, scraped 2026-05-09). Mappings to DB model IDs: berkeley/chgnet→CHGNet (chgnet-0.3.0 row), cambridge/mace-mp-0→MACE-MP-0, deepmind/gnome→GNoME, meta/equiformer-v2→eqV2 M (eqV2-m-omat-salex-mp, the canonical EquiformerV2 entry by Meta FAIR), microsoft/mattersim→MatterSim v1 5M, orbital-materials/orb-v2→ORB v2, orbital-materials/orb-v3→ORB v3. Skipped: deepmodeling/dpa-2 (leaderboard only has DPA-3.1 variants, different model generation; no DPA-2 row), harvard/nequip (leaderboard has multiple retrained NequIP variants — Nequip-MP-L/OAM-L/OAM-XL — but DB id is generic so attribution to a specific variant is ambiguous), meta/uma-omat24 (not on leaderboard), microsoft/mattergen (generative model, not evaluated on Matbench Discovery F1/MAE). The mattergen_yield benchmark was NOT created because the Nature MatterGen paper (s41586-025-08628-5) main text reports only RELATIVE comparisons ('60% more SUN', '70% increase') and individual component percentages (52% unique at 10M, 61% novel) but no single absolute 'SUN yield %' figure. Per strict-attribution rule, no extrapolation. Matbench Discovery method paper: https://www.nature.com/articles/s42256-025-01055-1.",
+    "sources": [
+      "https://matbench-discovery.materialsproject.org/",
+      "https://www.nature.com/articles/s42256-025-01055-1"
+    ]
+  },
+  "benchmarks": [
+    {
+      "id": "matbench_discovery_f1",
+      "name": "Matbench Discovery (F1)",
+      "category": "physics-materials",
+      "description": "Matbench Discovery — F1 score on stable-vs-unstable classification of WBM test set crystals (energy above hull). Higher is better. Leaderboard at matbench-discovery.materialsproject.org.",
+      "metric": "f1"
+    },
+    {
+      "id": "matbench_discovery_mae",
+      "name": "Matbench Discovery (MAE)",
+      "category": "physics-materials",
+      "description": "Matbench Discovery — Mean Absolute Error (eV/atom) on formation-energy-per-atom prediction over WBM test set. Lower is better.",
+      "metric": "mae_lower_better"
+    }
+  ],
+  "scores": [
+    {"model": "berkeley/chgnet", "benchmark": "matbench_discovery_f1", "score": 0.613, "unit": "f1", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'CHGNet' (slug chgnet-0.3.0), data-sort-value=\"0.613\" in F1 column (scraped 2026-05-09)."},
+    {"model": "berkeley/chgnet", "benchmark": "matbench_discovery_mae", "score": 0.063, "unit": "eV/atom", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'CHGNet' (slug chgnet-0.3.0), data-sort-value=\"0.063\" in MAE column (eV/atom; scraped 2026-05-09)."},
+
+    {"model": "cambridge/mace-mp-0", "benchmark": "matbench_discovery_f1", "score": 0.669, "unit": "f1", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'MACE-MP-0', data-sort-value=\"0.669\" in F1 column (scraped 2026-05-09). MACE paper: arxiv.org/abs/2401.00096."},
+    {"model": "cambridge/mace-mp-0", "benchmark": "matbench_discovery_mae", "score": 0.057, "unit": "eV/atom", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'MACE-MP-0', data-sort-value=\"0.057\" in MAE column (scraped 2026-05-09)."},
+
+    {"model": "deepmind/gnome", "benchmark": "matbench_discovery_f1", "score": 0.829, "unit": "f1", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'GNoME', data-sort-value=\"0.829\" in F1 column (scraped 2026-05-09). GNoME paper: nature.com/articles/s41586-023-06735-9."},
+    {"model": "deepmind/gnome", "benchmark": "matbench_discovery_mae", "score": 0.035, "unit": "eV/atom", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'GNoME', data-sort-value=\"0.035\" in MAE column (scraped 2026-05-09)."},
+
+    {"model": "meta/equiformer-v2", "benchmark": "matbench_discovery_f1", "score": 0.917, "unit": "f1", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'eqV2 M' (slug eqV2-m-omat-salex-mp; canonical EquiformerV2 by Meta FAIR), data-sort-value=\"0.917\" in F1 column (scraped 2026-05-09)."},
+    {"model": "meta/equiformer-v2", "benchmark": "matbench_discovery_mae", "score": 0.020, "unit": "eV/atom", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'eqV2 M' (slug eqV2-m-omat-salex-mp), data-sort-value=\"0.02\" in MAE column (scraped 2026-05-09)."},
+
+    {"model": "microsoft/mattersim", "benchmark": "matbench_discovery_f1", "score": 0.862, "unit": "f1", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'MatterSim v1 5M' (slug mattersim-v1-5M), data-sort-value=\"0.862\" in F1 column (scraped 2026-05-09)."},
+    {"model": "microsoft/mattersim", "benchmark": "matbench_discovery_mae", "score": 0.024, "unit": "eV/atom", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'MatterSim v1 5M' (slug mattersim-v1-5M), data-sort-value=\"0.024\" in MAE column (scraped 2026-05-09)."},
+
+    {"model": "orbital-materials/orb-v2", "benchmark": "matbench_discovery_f1", "score": 0.880, "unit": "f1", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'ORB v2' (slug orb-v2), data-sort-value=\"0.88\" in F1 column (scraped 2026-05-09)."},
+    {"model": "orbital-materials/orb-v2", "benchmark": "matbench_discovery_mae", "score": 0.028, "unit": "eV/atom", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'ORB v2' (slug orb-v2), data-sort-value=\"0.028\" in MAE column (scraped 2026-05-09)."},
+
+    {"model": "orbital-materials/orb-v3", "benchmark": "matbench_discovery_f1", "score": 0.905, "unit": "f1", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'ORB v3' (slug orb-v3), data-sort-value=\"0.905\" in F1 column (scraped 2026-05-09)."},
+    {"model": "orbital-materials/orb-v3", "benchmark": "matbench_discovery_mae", "score": 0.024, "unit": "eV/atom", "_source": "https://matbench-discovery.materialsproject.org/", "collected_at": "2026-05-09", "_note": "Matbench Discovery leaderboard row 'ORB v3' (slug orb-v3), data-sort-value=\"0.024\" in MAE column (scraped 2026-05-09)."}
+  ]
+}
