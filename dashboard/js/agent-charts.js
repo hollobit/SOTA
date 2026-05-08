@@ -3142,6 +3142,352 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Widget 12 (C1) — Cost Simulator
+  // Interactive monthly inference cost calculator. Three sliders (req/day,
+  // input tokens, output tokens) + reasoning/edge/subscription toggles
+  // produce a ranked top-15 table of cheapest models. Edge SLMs are pinned
+  // at $0 (on-device). Subscription products (Devin/Manus) are toggleable
+  // and use a flat-fee + per-task cost model.
+  // ======================================================================
+  var _simulatorState = _loadState('simulator-state', {
+    requestsPerDay: 1000,
+    inputTokens: 2000,
+    outputTokens: 500,
+    reasoningMultiplier: false,
+    edgeOnly: false,
+    showSubscription: false
+  });
+
+  // Subscription tiers — fixed monthly fee + optional per-task cost. Daily $
+  // is computed as (monthly_fee / 30) + (req/day × per_task_cost) so heavy
+  // workloads still scale with usage even when most cost is the flat fee.
+  var _SIMULATOR_SUBSCRIPTIONS = [
+    { model_id: 'cognition/devin',  monthly: 20,  per_task: 2.25, label: 'Devin (Core + ACU)' },
+    { model_id: 'manus-ai/manus',   monthly: 500, per_task: 0,    label: 'Manus (Pro)' }
+  ];
+
+  // Composite agent score for edge SLMs — average of normalized scores
+  // across the wizard's seven categories. Used purely for ordering free
+  // on-device entries (which all share daily_cost = 0).
+  function _simulatorEdgeScore(modelId) {
+    var keys = ['coding', 'web-browse', 'os-computer', 'tool-use', 'mcp', 'customer-service', 'safety'];
+    var sum = 0;
+    var n = 0;
+    for (var i = 0; i < keys.length; i++) {
+      var s = _wizardCoverageScore(modelId, keys[i]);
+      if (typeof s === 'number' && s > 0) { sum += s; n += 1; }
+    }
+    return n > 0 ? (sum / n) : 0;
+  }
+
+  // Compute daily inference cost for a frontier model. Returns null if no
+  // pricing available. Output cost is multiplied by 3.5x when the reasoning
+  // toggle is on (proxy for thinking-token expansion across the field).
+  function _simulatorFrontierCost(modelId) {
+    if (!window.App || !App.data || !App.data.pricing) return null;
+    var p = App.data.pricing[modelId];
+    if (!p) return null;
+    var inputPrice = (typeof p.input === 'number') ? p.input : null;
+    var outputPrice = (typeof p.output === 'number') ? p.output : null;
+    if (inputPrice == null || outputPrice == null) return null;
+    var req = _simulatorState.requestsPerDay;
+    var inputCost = req * _simulatorState.inputTokens * inputPrice / 1000000;
+    var outputCost = req * _simulatorState.outputTokens * outputPrice / 1000000;
+    if (_simulatorState.reasoningMultiplier) outputCost *= 3.5;
+    return inputCost + outputCost;
+  }
+
+  // Build the row list. Rows sorted ascending by daily cost. Edge SLMs
+  // (all daily=0) ranked among themselves by composite agent score.
+  function _simulatorBuildRows() {
+    var rows = [];
+
+    if (window.App && App.data && App.data.pricing && App.data.models) {
+      for (var i = 0; i < App.data.models.length; i++) {
+        var m = App.data.models[i];
+        if (!m || !m.id) continue;
+        var klass = _modelClass(m.id);
+        if (_simulatorState.edgeOnly && klass !== 'edge-slm') continue;
+        if (klass === 'edge-slm') continue; // edge handled below
+        var daily = _simulatorFrontierCost(m.id);
+        if (daily == null) continue;
+        rows.push({
+          modelId: m.id, name: _modelDisplayName(m.id), vendor: _vendorOf(m.id),
+          klass: klass, daily: daily, monthly: daily * 30, yearly: daily * 365, note: ''
+        });
+      }
+    }
+
+    var edgeIds = (window.Agent && Agent._EDGE_SLMS) || [];
+    var edgeRows = [];
+    for (var e = 0; e < edgeIds.length; e++) {
+      var eid = edgeIds[e];
+      edgeRows.push({
+        modelId: eid, name: _modelDisplayName(eid), vendor: _vendorOf(eid),
+        klass: 'edge-slm', daily: 0, monthly: 0, yearly: 0,
+        note: 'on-device · score ' + _simulatorEdgeScore(eid).toFixed(0)
+      });
+    }
+    edgeRows.sort(function(a, b) {
+      return _simulatorEdgeScore(b.modelId) - _simulatorEdgeScore(a.modelId);
+    });
+
+    if (_simulatorState.showSubscription && !_simulatorState.edgeOnly) {
+      for (var s = 0; s < _SIMULATOR_SUBSCRIPTIONS.length; s++) {
+        var sub = _SIMULATOR_SUBSCRIPTIONS[s];
+        var dailyFlat = sub.monthly / 30;
+        var dailyTask = _simulatorState.requestsPerDay * sub.per_task;
+        var dailySub = dailyFlat + dailyTask;
+        rows.push({
+          modelId: sub.model_id, name: _modelDisplayName(sub.model_id),
+          vendor: _vendorOf(sub.model_id), klass: _modelClass(sub.model_id),
+          daily: dailySub, monthly: dailySub * 30, yearly: dailySub * 365,
+          note: '$' + sub.monthly + '/mo + $' + sub.per_task + '/task'
+        });
+      }
+    }
+
+    rows.sort(function(a, b) { return a.daily - b.daily; });
+    if (_simulatorState.edgeOnly) return edgeRows.slice(0, 15);
+    return edgeRows.concat(rows).slice(0, 15);
+  }
+
+  function _simulatorClassLabel(klass) {
+    if (klass === 'agent-product') return 'Agent';
+    if (klass === 'edge-slm') return 'Edge';
+    return 'Frontier';
+  }
+
+  function _simulatorFormatCost(v) {
+    if (v <= 0) return '$0';
+    if (v < 1) return '$' + v.toFixed(3);
+    if (v < 100) return '$' + v.toFixed(2);
+    return '$' + Math.round(v).toLocaleString();
+  }
+
+  function _ensureSimulatorControls(section) {
+    if (section.getAttribute('data-simulator-built') === '1') return;
+    section.setAttribute('data-simulator-built', '1');
+
+    var defaultMount = document.getElementById('agent-chart-cost-simulator');
+    if (defaultMount) defaultMount.style.display = 'none';
+
+    var grid = document.createElement('div');
+    grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-6 mt-2';
+
+    var left = document.createElement('div');
+    left.className = 'space-y-3';
+
+    var leftHead = document.createElement('div');
+    leftHead.className = 'text-sm font-semibold text-gray-300 mb-2';
+    leftHead.textContent = 'Workload';
+    left.appendChild(leftHead);
+
+    var sliderSpecs = [
+      { key: 'requestsPerDay', label: 'Requests / day',           min: 100, max: 1000000, step: 1,   log: true,  format: function(v) { return v.toLocaleString(); } },
+      { key: 'inputTokens',    label: 'Avg input tokens / req',   min: 100, max: 50000,   step: 100, log: false, format: function(v) { return v.toLocaleString(); } },
+      { key: 'outputTokens',   label: 'Avg output tokens / req',  min: 50,  max: 10000,   step: 50,  log: false, format: function(v) { return v.toLocaleString(); } }
+    ];
+
+    for (var i = 0; i < sliderSpecs.length; i++) {
+      var spec = sliderSpecs[i];
+      var row = document.createElement('div');
+      row.className = 'flex items-center gap-2 text-xs';
+
+      var lab = document.createElement('label');
+      lab.className = 'text-gray-300 w-44 shrink-0';
+      lab.textContent = spec.label;
+      lab.htmlFor = 'simulator-slider-' + spec.key;
+      row.appendChild(lab);
+
+      var input = document.createElement('input');
+      input.type = 'range';
+      input.id = 'simulator-slider-' + spec.key;
+      input.className = 'flex-1 accent-blue-400';
+      if (spec.log) {
+        input.min = String(Math.log10(spec.min));
+        input.max = String(Math.log10(spec.max));
+        input.step = '0.01';
+        input.value = String(Math.log10(_simulatorState[spec.key]));
+      } else {
+        input.min = String(spec.min);
+        input.max = String(spec.max);
+        input.step = String(spec.step);
+        input.value = String(_simulatorState[spec.key]);
+      }
+      row.appendChild(input);
+
+      var val = document.createElement('span');
+      val.className = 'text-gray-400 w-20 text-right tabular-nums';
+      val.textContent = spec.format(_simulatorState[spec.key]);
+      row.appendChild(val);
+
+      (function(s, valRef) {
+        input.addEventListener('input', function(e) {
+          var raw = parseFloat(e.target.value);
+          if (isNaN(raw)) return;
+          var v = s.log ? Math.round(Math.pow(10, raw)) : Math.round(raw);
+          if (v < s.min) v = s.min;
+          if (v > s.max) v = s.max;
+          _simulatorState[s.key] = v;
+          valRef.textContent = s.format(v);
+          _saveState('simulator-state', _simulatorState);
+          _renderSimulatorOutput();
+        });
+      })(spec, val);
+
+      left.appendChild(row);
+    }
+
+    var checkSpecs = [
+      { key: 'reasoningMultiplier', label: 'Include reasoning models (×3.5 output for thinking tokens)' },
+      { key: 'edgeOnly',            label: 'Edge-only filter (on-device SLMs)' },
+      { key: 'showSubscription',    label: 'Show subscription products (Devin / Manus)' }
+    ];
+
+    for (var c = 0; c < checkSpecs.length; c++) {
+      var cspec = checkSpecs[c];
+      var crow = document.createElement('div');
+      crow.className = c === 0
+        ? 'flex items-center gap-2 text-xs mt-3 pt-3 border-t border-gray-800'
+        : 'flex items-center gap-2 text-xs';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.id = 'simulator-cb-' + cspec.key;
+      cb.className = 'accent-blue-400';
+      cb.checked = !!_simulatorState[cspec.key];
+      (function(key) {
+        cb.addEventListener('change', function(e) {
+          _simulatorState[key] = !!e.target.checked;
+          _saveState('simulator-state', _simulatorState);
+          _renderSimulatorOutput();
+        });
+      })(cspec.key);
+      var clab = document.createElement('label');
+      clab.htmlFor = 'simulator-cb-' + cspec.key;
+      clab.className = 'text-gray-300';
+      clab.textContent = cspec.label;
+      crow.appendChild(cb);
+      crow.appendChild(clab);
+      left.appendChild(crow);
+    }
+
+    var right = document.createElement('div');
+    right.className = 'space-y-2';
+
+    var rightHead = document.createElement('div');
+    rightHead.className = 'text-sm font-semibold text-gray-300 mb-2';
+    rightHead.textContent = 'Top 15 — cheapest first';
+    right.appendChild(rightHead);
+
+    var tableMount = document.createElement('div');
+    tableMount.id = 'agent-chart-cost-simulator-table';
+    tableMount.className = 'overflow-x-auto';
+    right.appendChild(tableMount);
+
+    grid.appendChild(left);
+    grid.appendChild(right);
+    section.appendChild(grid);
+  }
+
+  function _renderSimulatorOutput() {
+    var mount = document.getElementById('agent-chart-cost-simulator-table');
+    if (!mount) return;
+    while (mount.firstChild) mount.removeChild(mount.firstChild);
+
+    var rows = _simulatorBuildRows();
+    if (!rows.length) {
+      var msg = document.createElement('div');
+      msg.className = 'text-sm text-gray-400 italic';
+      msg.textContent = 'No models matched current filters.';
+      mount.appendChild(msg);
+      return;
+    }
+
+    var table = document.createElement('table');
+    table.className = 'w-full text-xs text-gray-300';
+
+    var thead = document.createElement('thead');
+    var hr = document.createElement('tr');
+    hr.className = 'text-gray-400 border-b border-gray-800';
+    var heads = ['#', 'Model', 'Vendor', 'Class', 'Daily', 'Monthly', 'Yearly'];
+    for (var h = 0; h < heads.length; h++) {
+      var th = document.createElement('th');
+      th.className = h === 0
+        ? 'text-left py-1 pr-2 w-6'
+        : (h >= 4 ? 'text-right py-1 px-2 tabular-nums' : 'text-left py-1 px-2');
+      th.textContent = heads[h];
+      hr.appendChild(th);
+    }
+    thead.appendChild(hr);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    for (var r = 0; r < rows.length; r++) {
+      var row = rows[r];
+      var tr = document.createElement('tr');
+      tr.className = 'border-b border-gray-900 hover:bg-gray-800';
+
+      var rankTd = document.createElement('td');
+      rankTd.className = 'py-1 pr-2 text-gray-500 tabular-nums';
+      rankTd.textContent = String(r + 1);
+      tr.appendChild(rankTd);
+
+      var nameTd = document.createElement('td');
+      nameTd.className = 'py-1 px-2 text-gray-200';
+      var nameSpan = document.createElement('span');
+      nameSpan.textContent = row.name;
+      nameTd.appendChild(nameSpan);
+      if (row.note) {
+        var noteSpan = document.createElement('span');
+        noteSpan.className = 'ml-2 text-gray-500';
+        noteSpan.textContent = '(' + row.note + ')';
+        nameTd.appendChild(noteSpan);
+      }
+      tr.appendChild(nameTd);
+
+      var vendorTd = document.createElement('td');
+      vendorTd.className = 'py-1 px-2 text-gray-400';
+      vendorTd.textContent = row.vendor || '—';
+      tr.appendChild(vendorTd);
+
+      var klassTd = document.createElement('td');
+      klassTd.className = 'py-1 px-2';
+      klassTd.style.color = _classColor(row.klass);
+      klassTd.textContent = _simulatorClassLabel(row.klass);
+      tr.appendChild(klassTd);
+
+      var dailyTd = document.createElement('td');
+      dailyTd.className = 'py-1 px-2 text-right tabular-nums';
+      dailyTd.textContent = row.klass === 'edge-slm' ? '$0' : _simulatorFormatCost(row.daily);
+      tr.appendChild(dailyTd);
+
+      var monthTd = document.createElement('td');
+      monthTd.className = 'py-1 px-2 text-right tabular-nums';
+      monthTd.textContent = row.klass === 'edge-slm' ? '$0' : _simulatorFormatCost(row.monthly);
+      tr.appendChild(monthTd);
+
+      var yearTd = document.createElement('td');
+      yearTd.className = 'py-1 px-2 text-right tabular-nums text-gray-400';
+      yearTd.textContent = row.klass === 'edge-slm' ? '$0' : _simulatorFormatCost(row.yearly);
+      tr.appendChild(yearTd);
+
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    mount.appendChild(table);
+  }
+
+  function renderCostSimulator() {
+    var section = _ensureMountPoint('agent-chart-cost-simulator',
+      'Cost Simulator',
+      'Estimate monthly inference cost across frontier models. Adjust sliders to match your workload — output ranks models cheapest-first.');
+    if (!section) return;
+    _ensureSimulatorControls(section);
+    _renderSimulatorOutput();
+  }
+
+  // ======================================================================
   // Top-level render — called from Agent.render() after _renderCompare.
   // Each widget renders independently; one failing must not break the
   // others, hence the per-call try/catch.
@@ -3157,7 +3503,8 @@ var AgentCharts = (function() {
       renderClassViolin,
       renderCapabilitySankey,
       renderCumulativeSOTAWins,
-      renderAgentWizard
+      renderAgentWizard,
+      renderCostSimulator
     ];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
@@ -3182,6 +3529,7 @@ var AgentCharts = (function() {
     renderCumulativeSOTAWins: renderCumulativeSOTAWins,
     renderAgentWizard: renderAgentWizard,
     renderRecommendationBreakdown: renderRecommendationBreakdown,
+    renderCostSimulator: renderCostSimulator,
     // Helpers exported for widgets to reuse.
     _scoresFor: _scoresFor,
     _modelDisplayName: _modelDisplayName,
