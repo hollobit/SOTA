@@ -222,6 +222,35 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Cross-widget brush bus — pub/sub by model_id.
+  // Subscribers register handlers via _brush.on(fn) and _brush.off(fn);
+  // emitters call _brush.emit(modelId | null) on hover-in / hover-out.
+  // Listeners re-render or dispatch ECharts highlight actions accordingly.
+  // ======================================================================
+  var _brush = (function() {
+    var listeners = [];
+    var current = null;
+    return {
+      on: function(fn) {
+        if (typeof fn !== 'function') return;
+        for (var i = 0; i < listeners.length; i++) if (listeners[i] === fn) return;
+        listeners.push(fn);
+      },
+      off: function(fn) {
+        for (var i = listeners.length - 1; i >= 0; i--) if (listeners[i] === fn) listeners.splice(i, 1);
+      },
+      emit: function(modelId) {
+        if (current === modelId) return;
+        current = modelId;
+        for (var i = 0; i < listeners.length; i++) {
+          try { listeners[i](modelId); } catch (e) {}
+        }
+      },
+      current: function() { return current; }
+    };
+  })();
+
+  // ======================================================================
   // Widget 1 — Cost vs Performance Scatter
   // X = $/1M output tokens (log scale), Y = composite Agent Score (0–100),
   // bubble color = class, size = coverage, Pareto frontier dashed line.
@@ -423,24 +452,46 @@ var AgentCharts = (function() {
 
       var frontierPts = _paretoFrontier(priced);
       var frontierLineData = frontierPts.map(function(p) { return [p.cost, p.score]; });
+      var frontierIds = {};
+      for (var fi = 0; fi < frontierPts.length; fi++) frontierIds[frontierPts[fi].model_id] = true;
+
+      function _bubbleWithLabel(p) {
+        var b = _bubble(p);
+        if (frontierIds[p.model_id]) {
+          b.label = {
+            show: true,
+            position: 'top',
+            distance: 6,
+            color: '#e5e7eb',
+            backgroundColor: 'rgba(17,24,39,0.85)',
+            borderColor: '#a78bfa',
+            borderWidth: 1,
+            borderRadius: 3,
+            padding: [2, 4],
+            fontSize: 10,
+            formatter: _modelDisplayName(p.model_id)
+          };
+        }
+        return b;
+      }
 
       var series = [
         {
           name: 'Frontier',
           type: 'scatter',
-          data: priced.filter(function(p) { return p.klass === 'frontier'; }).map(_bubble),
+          data: priced.filter(function(p) { return p.klass === 'frontier'; }).map(_bubbleWithLabel),
           emphasis: { focus: 'series' }
         },
         {
           name: 'Agent-Product',
           type: 'scatter',
-          data: priced.filter(function(p) { return p.klass === 'agent-product'; }).map(_bubble),
+          data: priced.filter(function(p) { return p.klass === 'agent-product'; }).map(_bubbleWithLabel),
           emphasis: { focus: 'series' }
         },
         {
           name: 'Edge-SLM',
           type: 'scatter',
-          data: edge.map(_bubble),
+          data: edge.map(_bubbleWithLabel),
           emphasis: { focus: 'series' }
         }
       ];
@@ -533,6 +584,32 @@ var AgentCharts = (function() {
       };
 
       chart.setOption(_applyToolbox(opt), true);
+
+      // Brush sync: highlight the matching bubble (across all 3 series) when a
+      // leaderboard row is hovered. Reset on null. We rebuild the index map
+      // each render to track current data, and unsubscribe the prior handler.
+      var seriesIndex = {}; // model_id → {sIdx, dIdx}
+      for (var sI = 0; sI < series.length; sI++) {
+        var sData = series[sI].data || [];
+        for (var dI = 0; dI < sData.length; dI++) {
+          var meta = sData[dI] && sData[dI]._meta;
+          if (meta && meta.model_id) seriesIndex[meta.model_id] = { sIdx: sI, dIdx: dI };
+        }
+      }
+      if (chart._agentBrushHandler) _brush.off(chart._agentBrushHandler);
+      chart._agentBrushHandler = function(modelId) {
+        try {
+          chart.dispatchAction({ type: 'downplay' });
+          if (modelId && seriesIndex[modelId]) {
+            chart.dispatchAction({
+              type: 'highlight',
+              seriesIndex: seriesIndex[modelId].sIdx,
+              dataIndex: seriesIndex[modelId].dIdx
+            });
+          }
+        } catch (e) {}
+      };
+      _brush.on(chart._agentBrushHandler);
     });
   }
 
@@ -1845,6 +1922,8 @@ var AgentCharts = (function() {
         canvas.width = 60;
         canvas.height = 60;
         canvas.style.display = 'block';
+        canvas.style.transition = 'box-shadow 120ms ease, transform 120ms ease';
+        canvas.dataset.fpCanvas = '1';
         cell.appendChild(canvas);
         rows[i].appendChild(cell);
       }
@@ -1859,6 +1938,33 @@ var AgentCharts = (function() {
         cv.title = tip;
         _drawFingerprintCanvas(cv, values, klass);
       }
+
+      // Brush emit: row hover broadcasts modelId; row leave clears.
+      // Idempotent — guard via dataset flag so re-renders don't stack listeners.
+      if (!rows[i].dataset.brushBound) {
+        rows[i].dataset.brushBound = '1';
+        rows[i].addEventListener('mouseenter', (function(mid) {
+          return function() { _brush.emit(mid); };
+        })(modelId));
+        rows[i].addEventListener('mouseleave', function() { _brush.emit(null); });
+      }
+    }
+
+    // Row-side highlight: subscribe once, re-applied across re-renders.
+    if (!lb.dataset.brushSub) {
+      lb.dataset.brushSub = '1';
+      _brush.on(function(modelId) {
+        var trs = lb.querySelectorAll('tbody tr[data-model]');
+        for (var k = 0; k < trs.length; k++) {
+          var match = modelId && trs[k].dataset.model === modelId;
+          var fp = trs[k].querySelector('canvas[data-fp-canvas]');
+          if (fp) {
+            fp.style.boxShadow = match ? '0 0 0 2px #a78bfa' : 'none';
+            fp.style.transform = match ? 'scale(1.08)' : 'scale(1)';
+          }
+          trs[k].style.background = match ? 'rgba(167,139,250,0.10)' : '';
+        }
+      });
     }
   }
 
