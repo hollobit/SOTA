@@ -2196,6 +2196,234 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Widget 13 (C2) — Provider Availability Map
+  // Heatmap: top 25 models (by composite score) × 14 inference providers.
+  // Cell = 1 (green) if model hosted on provider, 0 (gray) otherwise.
+  // Source: api_providers field in config/model_enrichment.yaml.
+  // ======================================================================
+  var _PROVIDER_KEYS = [
+    'anthropic_api', 'openai_api', 'google_ai_studio', 'aws_bedrock', 'azure_openai',
+    'together_ai', 'replicate', 'huggingface', 'groq', 'fireworks', 'openrouter',
+    'ollama', 'lmstudio', 'apple_intelligence'
+  ];
+  var _PROVIDER_LABELS = {
+    'anthropic_api': 'Anthropic',
+    'openai_api': 'OpenAI',
+    'google_ai_studio': 'Google AI',
+    'aws_bedrock': 'AWS Bedrock',
+    'azure_openai': 'Azure OpenAI',
+    'together_ai': 'Together AI',
+    'replicate': 'Replicate',
+    'huggingface': 'HuggingFace',
+    'groq': 'Groq',
+    'fireworks': 'Fireworks',
+    'openrouter': 'OpenRouter',
+    'ollama': 'Ollama',
+    'lmstudio': 'LM Studio',
+    'apple_intelligence': 'Apple Intelligence'
+  };
+  var _PROVIDER_URLS = {
+    'anthropic_api': 'https://www.anthropic.com/api',
+    'openai_api': 'https://platform.openai.com',
+    'google_ai_studio': 'https://aistudio.google.com',
+    'aws_bedrock': 'https://aws.amazon.com/bedrock/',
+    'azure_openai': 'https://azure.microsoft.com/en-us/products/ai-services/openai-service',
+    'together_ai': 'https://www.together.ai',
+    'replicate': 'https://replicate.com',
+    'huggingface': 'https://huggingface.co/inference-endpoints',
+    'groq': 'https://groq.com',
+    'fireworks': 'https://fireworks.ai',
+    'openrouter': 'https://openrouter.ai',
+    'ollama': 'https://ollama.com',
+    'lmstudio': 'https://lmstudio.ai',
+    'apple_intelligence': 'https://www.apple.com/apple-intelligence/'
+  };
+  // Older yaml entries used different aliases; normalize to canonical keys.
+  var _PROVIDER_ALIASES = {
+    'huggingface_inference': 'huggingface',
+    'hf_inference': 'huggingface'
+  };
+
+  function _normalizeProviders(arr) {
+    if (!arr || !arr.length) return [];
+    var out = {};
+    for (var i = 0; i < arr.length; i++) {
+      var raw = arr[i];
+      if (!raw) continue;
+      var key = _PROVIDER_ALIASES[raw] || raw;
+      out[key] = true;
+    }
+    return Object.keys(out);
+  }
+
+  function _showProviderToast(message) {
+    var host = document.getElementById('agent-chart-provider-availability-section');
+    if (!host) return;
+    var prev = document.getElementById('agent-chart-provider-availability-toast');
+    if (prev && prev.parentNode) prev.parentNode.removeChild(prev);
+    var toast = document.createElement('div');
+    toast.id = 'agent-chart-provider-availability-toast';
+    toast.className = 'mt-2 text-xs text-gray-200 bg-gray-800 border border-gray-700 rounded px-3 py-2';
+    toast.textContent = message;
+    host.appendChild(toast);
+    setTimeout(function() {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 5000);
+  }
+
+  function renderProviderAvailability() {
+    _ensureMountPoint('agent-chart-provider-availability',
+      'Provider Availability Map',
+      'Top 25 models × 14 inference providers. Green = hosted; click a cell for the provider link.');
+    if (typeof echarts === 'undefined') return;
+    if (!(window.App && App.data && App.data.scores && App.data.models)) return;
+    var mountEl = document.getElementById('agent-chart-provider-availability');
+    if (!mountEl) return;
+
+    // Lazy-load enrichment, then re-render once it's available.
+    if (App.data.enrichment === null) {
+      if (App.loadEnrichment) {
+        App.loadEnrichment().then(function() { renderProviderAvailability(); });
+      }
+      return;
+    }
+    var enrich = App.data.enrichment || {};
+
+    // Pick rows: top 25 by composite score, restricted to models that have any
+    // api_providers populated. Falls back to score-coverage if composite empty.
+    var ranked = _composite();
+    ranked.sort(function(a, b) { return b.agent_score - a.agent_score; });
+    var rows = [];
+    var seen = {};
+    for (var i = 0; i < ranked.length && rows.length < 25; i++) {
+      var mid = ranked[i].model_id;
+      if (seen[mid]) continue;
+      var ent = enrich[mid];
+      if (!ent || !ent.api_providers || !ent.api_providers.length) continue;
+      seen[mid] = true;
+      rows.push(mid);
+    }
+    if (rows.length < 5) {
+      // Fallback: any model with api_providers, ordered by enrichment-key.
+      for (var midKey in enrich) {
+        if (rows.length >= 25) break;
+        if (seen[midKey]) continue;
+        var en2 = enrich[midKey];
+        if (!en2 || !en2.api_providers || !en2.api_providers.length) continue;
+        seen[midKey] = true;
+        rows.push(midKey);
+      }
+    }
+    if (rows.length === 0) return;
+
+    // Reverse so highest-rank row is at top of y-axis (ECharts renders bottom-up).
+    var rowOrder = rows.slice().reverse();
+
+    var data = [];
+    var providerSets = {};
+    for (var r = 0; r < rowOrder.length; r++) {
+      var rid = rowOrder[r];
+      var providers = _normalizeProviders((enrich[rid] && enrich[rid].api_providers) || []);
+      var pset = {};
+      for (var pi = 0; pi < providers.length; pi++) pset[providers[pi]] = true;
+      providerSets[rid] = pset;
+      for (var c = 0; c < _PROVIDER_KEYS.length; c++) {
+        var pkey = _PROVIDER_KEYS[c];
+        data.push([c, r, pset[pkey] ? 1 : 0]);
+      }
+    }
+
+    var xLabels = _PROVIDER_KEYS.map(function(k) { return _PROVIDER_LABELS[k] || k; });
+    var yLabels = rowOrder.map(function(mid) {
+      return _classEmoji(_modelClass(mid)) + ' ' + _modelDisplayName(mid);
+    });
+
+    var chart = Charts._getOrCreate('agent-chart-provider-availability');
+    if (!chart) return;
+    mountEl.style.height = Math.max(420, 24 * rowOrder.length + 140) + 'px';
+    chart.resize();
+
+    var option = {
+      backgroundColor: 'transparent',
+      grid: { left: 220, right: 30, top: 30, bottom: 80, containLabel: false },
+      tooltip: {
+        position: 'top',
+        backgroundColor: 'rgba(17, 24, 39, 0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb', fontSize: 12 },
+        formatter: function(p) {
+          if (!p || !p.value) return '';
+          var col = p.value[0], row = p.value[1], val = p.value[2];
+          var rid = rowOrder[row];
+          var pkey = _PROVIDER_KEYS[col];
+          var provLabel = _PROVIDER_LABELS[pkey] || pkey;
+          var modelLabel = _modelDisplayName(rid);
+          if (val === 1) {
+            return '<b>' + modelLabel + '</b><br>available on <b>' + provLabel + '</b>';
+          }
+          return '<b>' + modelLabel + '</b><br>not on ' + provLabel +
+                 '<br><span style="color:#6b7280">(per vendor docs)</span>';
+        }
+      },
+      xAxis: {
+        type: 'category',
+        data: xLabels,
+        splitArea: { show: true },
+        axisLabel: { rotate: 35, fontSize: 10, color: '#d1d5db', interval: 0 },
+        axisLine: { lineStyle: { color: '#374151' } },
+        axisTick: { show: false }
+      },
+      yAxis: {
+        type: 'category',
+        data: yLabels,
+        splitArea: { show: true },
+        axisLabel: { fontSize: 10, color: '#d1d5db' },
+        axisLine: { lineStyle: { color: '#374151' } },
+        axisTick: { show: false }
+      },
+      visualMap: {
+        show: false,
+        min: 0, max: 1,
+        inRange: { color: ['#1f2937', '#16a34a'] }
+      },
+      series: [{
+        name: 'Availability',
+        type: 'heatmap',
+        data: data,
+        label: { show: false },
+        itemStyle: { borderColor: '#0f172a', borderWidth: 1 },
+        emphasis: {
+          itemStyle: {
+            borderColor: '#fbbf24', borderWidth: 2,
+            shadowBlur: 6, shadowColor: 'rgba(251, 191, 36, 0.6)'
+          }
+        },
+        progressive: 0
+      }]
+    };
+
+    chart.setOption(_applyToolbox(option), true);
+
+    chart.off('click');
+    chart.on('click', function(p) {
+      if (!p || !p.value) return;
+      var col = p.value[0], row = p.value[1], val = p.value[2];
+      var rid = rowOrder[row];
+      var pkey = _PROVIDER_KEYS[col];
+      var provLabel = _PROVIDER_LABELS[pkey] || pkey;
+      var modelLabel = _modelDisplayName(rid);
+      if (val === 1) {
+        var url = _PROVIDER_URLS[pkey];
+        var msg = modelLabel + ' is available on ' + provLabel +
+                  (url ? ' — ' + url : '');
+        _showProviderToast(msg);
+      } else {
+        _showProviderToast(modelLabel + ' is not listed on ' + provLabel + ' (per vendor docs).');
+      }
+    });
+  }
+
+  // ======================================================================
   // Widget 9 (C1) — Capability Sankey
   // 3-level data flow: Top 12 models → 10 categories → top 20 benchmarks.
   // Edge weight = score count. A benchmark may live in multiple categories;
@@ -3501,6 +3729,7 @@ var AgentCharts = (function() {
       renderSOTATimeline,
       renderVendorMatrix,
       renderClassViolin,
+      renderProviderAvailability,
       renderCapabilitySankey,
       renderCumulativeSOTAWins,
       renderAgentWizard,
@@ -3525,6 +3754,7 @@ var AgentCharts = (function() {
     renderVendorMatrix: renderVendorMatrix,
     renderFingerprintsInLeaderboard: renderFingerprintsInLeaderboard,
     renderClassViolin: renderClassViolin,
+    renderProviderAvailability: renderProviderAvailability,
     renderCapabilitySankey: renderCapabilitySankey,
     renderCumulativeSOTAWins: renderCumulativeSOTAWins,
     renderAgentWizard: renderAgentWizard,
