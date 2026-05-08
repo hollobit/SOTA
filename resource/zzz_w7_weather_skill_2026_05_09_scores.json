@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-09",
+    "_note": "Phase 2A Task 10 — W7 weather forecast skill. Z500 RMSE @ 72h (3-day) primary-source-verified ingest. STRICT attribution: only entries where {model_id, benchmark_id, value} are co-visible on a primary source. Aurora, GraphCast, AIFS report 72h Z500 RMSE only in figure form (no numerical text); skipped to avoid extrapolation. IFS HRES (ecmwf/ifs) value 152.8 m^2/s^2 is co-cited in Pangu paper but model_id not present in DB; skipped.",
+    "sources": [
+      "https://arxiv.org/pdf/2211.02556",
+      "https://www.nature.com/articles/s41586-023-06185-3",
+      "https://sites.research.google/weatherbench/"
+    ]
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "weatherbench_z500_72h",
+      "name": "WeatherBench 2 — Z500 72h RMSE",
+      "publisher": "Google / ECMWF",
+      "category": "geo-climate",
+      "description": "Geopotential at 500 hPa (Z500) RMSE at 72-hour (3-day) forecast lead time, latitude-weighted, m^2/s^2. Lower is better. Headline upper-air variable for medium-range global weather forecast skill (WeatherBench-2 protocol; Rasp et al. 2024).",
+      "metric": "rmse_lower_better"
+    }
+  ],
+  "scores": [
+    {
+      "model": "huawei/pangu-weather",
+      "benchmark": "weatherbench_z500_72h",
+      "score": 134.5,
+      "unit": "m^2/s^2",
+      "_source": "https://arxiv.org/pdf/2211.02556",
+      "collected_at": "2026-05-09",
+      "_note": "Z500 RMSE @ 72h (3-day) for Pangu-Weather, evaluated on 2018, paper text: 'for Z500, the 3-day and 5-day RMSEs (in m^2/s^2) of operational IFS are 152.8 and 333.7, respectively, and Pangu-Weather reduces them to 134.5 and 296.7'. Source: Bi et al., Pangu-Weather paper (Nature 2023; arxiv 2211.02556 v1)."
+    }
+  ]
+}
