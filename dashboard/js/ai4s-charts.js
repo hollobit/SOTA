@@ -1011,11 +1011,35 @@
   // Phase 1: stub — actual widget calls added per Task 5-9.
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline, renderMathProgression, renderBenchmarkCatalog, renderFrontierVsSpecialist, renderWeatherSkillCurve, renderCASPProgression, renderMaterialsYield];
-    for (var i = 0; i < fns.length; i++) {
-      try { fns[i](); } catch (e) {
-        if (typeof console !== 'undefined') console.warn('[AI4SCharts] failed:', fns[i].name || i, e);
+    // Eager: above-the-fold widgets that fill the visible viewport on tab open.
+    var eagerFns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline];
+    eagerFns.forEach(function(fn) {
+      try { fn(); } catch (e) {
+        if (typeof console !== 'undefined') console.warn('[AI4SCharts] eager failed:', fn.name, e);
       }
+    });
+    // Lazy: deferred to next idle frame so initial paint isn't blocked
+    // by ~6 ECharts.init + setOption calls. setTimeout fallback for browsers
+    // without requestIdleCallback (Safari < 17 etc.).
+    var lazyFns = [
+      renderMathProgression,
+      renderFrontierVsSpecialist,
+      renderWeatherSkillCurve,
+      renderCASPProgression,
+      renderMaterialsYield,
+      renderBenchmarkCatalog
+    ];
+    function _runLazy() {
+      lazyFns.forEach(function(fn) {
+        try { fn(); } catch (e) {
+          if (typeof console !== 'undefined') console.warn('[AI4SCharts] lazy failed:', fn.name, e);
+        }
+      });
+    }
+    if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(_runLazy, { timeout: 1500 });
+    } else if (typeof setTimeout !== 'undefined') {
+      setTimeout(_runLazy, 50);
     }
   }
 
