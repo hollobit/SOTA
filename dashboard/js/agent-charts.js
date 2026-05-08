@@ -4015,6 +4015,225 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Widget 16 (Wave 6C2) — Score Trajectory Replay (animated)
+  //
+  // Animates how SOTA scores have evolved over time on a chosen agentic
+  // benchmark. Each ECharts timeline step = one snapshot date; each step's
+  // option re-renders the scatter of (model, score) pairs observed on or
+  // before that date. Press the built-in timeline play button to scrub
+  // through history and watch the leaderboard reshuffle.
+  //
+  // Data source: data/scores/history/<date>.json snapshots (same source as
+  // Widget 5 SOTA Timeline). Top-10 holders per benchmark are tracked.
+  // Falls back to "Insufficient history" if fewer than 5 distinct dates
+  // contain scores for the chosen benchmark.
+  // ======================================================================
+  function _drawTrajectoryReplay(bid) {
+    var mountEl = document.getElementById('agent-chart-trajectory-replay');
+    if (!mountEl) return;
+    if (typeof echarts === 'undefined') return;
+
+    _loadHistoryIndex().then(function(idx) {
+      var dates = (idx && idx.dates) || [];
+      if (dates.length < 5) {
+        _emptyStateMessage(mountEl, 'Insufficient history — need at least 5 snapshot dates for animation.');
+        return;
+      }
+
+      Promise.all(dates.map(_loadSnapshot)).then(function(snapshots) {
+        // Build per-date best-score-per-model map for the chosen benchmark.
+        // datesWithData = subset of dates where the benchmark has at least
+        // one row (used to gate the "insufficient history" message).
+        var datesWithData = [];
+        var perDate = []; // perDate[i] = { modelId: bestValueOnOrBeforeDate }
+        var cumulative = {}; // running best-per-model across all snapshots so far
+        for (var i = 0; i < dates.length; i++) {
+          var rows = snapshots[i] || [];
+          var hadRow = false;
+          for (var j = 0; j < rows.length; j++) {
+            var r = rows[j];
+            if (!r || r.benchmark_id !== bid) continue;
+            if (typeof r.value !== 'number' || isNaN(r.value)) continue;
+            hadRow = true;
+            var prev = cumulative[r.model_id];
+            if (prev === undefined || r.value > prev) {
+              cumulative[r.model_id] = r.value;
+            }
+          }
+          if (hadRow) datesWithData.push(dates[i]);
+          // Snapshot a copy of the current cumulative state for this frame.
+          var snap = {};
+          for (var mid in cumulative) {
+            if (Object.prototype.hasOwnProperty.call(cumulative, mid)) {
+              snap[mid] = cumulative[mid];
+            }
+          }
+          perDate.push(snap);
+        }
+
+        if (datesWithData.length < 5) {
+          _emptyStateMessage(mountEl,
+            'Insufficient history for ' + _benchmarkLabel(bid) +
+            ' — only ' + datesWithData.length + ' date(s) have scores (need 5+).');
+          return;
+        }
+
+        // Determine final-frame top-10 model ids — these are the bubbles we
+        // animate across all frames. Models that don't yet have a score on
+        // an earlier frame are simply absent from that frame's data.
+        var finalSnap = perDate[perDate.length - 1];
+        var finalArr = [];
+        for (var fmid in finalSnap) {
+          if (Object.prototype.hasOwnProperty.call(finalSnap, fmid)) {
+            finalArr.push({ model_id: fmid, value: finalSnap[fmid] });
+          }
+        }
+        finalArr.sort(function(a, b) { return b.value - a.value; });
+        var top10 = finalArr.slice(0, 10);
+        var top10Ids = top10.map(function(t) { return t.model_id; });
+        var top10Set = {};
+        for (var ti = 0; ti < top10Ids.length; ti++) top10Set[top10Ids[ti]] = true;
+
+        // Build keyframe options — one per snapshot date.
+        var options = [];
+        for (var d = 0; d < dates.length; d++) {
+          var snapD = perDate[d];
+          var scatterPoints = [];
+          for (var k = 0; k < top10Ids.length; k++) {
+            var midK = top10Ids[k];
+            if (snapD[midK] === undefined) continue;
+            scatterPoints.push({
+              value: [k, snapD[midK]],
+              name: _modelDisplayName(midK),
+              itemStyle: { color: _modelBandColor(midK) }
+            });
+          }
+          options.push({
+            title: {
+              text: 'Frame: ' + dates[d],
+              left: 'center', top: 6,
+              textStyle: { color: '#9ca3af', fontSize: 11, fontWeight: 'normal' }
+            },
+            series: [{
+              name: 'Score',
+              type: 'scatter',
+              symbolSize: function(v) {
+                // Size = sqrt(value) so high scores stand out without dwarfing low ones.
+                var s = (v && typeof v[1] === 'number') ? v[1] : 0;
+                return Math.max(10, Math.min(38, Math.sqrt(s) * 4.5));
+              },
+              data: scatterPoints,
+              label: {
+                show: true,
+                position: 'top',
+                color: '#e5e7eb',
+                fontSize: 10,
+                formatter: function(p) { return p.name || ''; },
+                backgroundColor: 'rgba(17,24,39,0.7)',
+                padding: [2, 4],
+                borderRadius: 3
+              },
+              emphasis: { focus: 'series' }
+            }]
+          });
+        }
+
+        // Base option = axes + timeline definition. Each option in `options`
+        // overrides only the title + series for that frame.
+        var xLabels = top10Ids.map(function(mid) { return _modelDisplayName(mid); });
+
+        if (!Charts._instances || !Charts._instances['agent-chart-trajectory-replay']) {
+          while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        }
+        var chart = Charts._getOrCreate('agent-chart-trajectory-replay');
+        if (!chart) return;
+
+        // _applyToolbox attaches `toolbox` at the top of an option object,
+        // but ECharts timeline mode reads toolbox from `baseOption`. So we
+        // run _applyToolbox on a stub, then move the toolbox config inside.
+        var _stub = _applyToolbox({});
+        var baseOption = {
+          backgroundColor: 'transparent',
+          baseOption: {
+            toolbox: _stub.toolbox,
+            timeline: {
+              axisType: 'category',
+              autoPlay: false,
+              playInterval: 1000,
+              loop: false,
+              currentIndex: dates.length - 1,
+              data: dates,
+              label: { color: '#9ca3af', fontSize: 10 },
+              lineStyle: { color: '#374151' },
+              checkpointStyle: { color: '#60a5fa', borderColor: '#1e3a8a' },
+              controlStyle: {
+                color: '#9ca3af',
+                borderColor: '#9ca3af'
+              },
+              emphasis: {
+                label: { color: '#e5e7eb' },
+                controlStyle: { color: '#60a5fa', borderColor: '#60a5fa' }
+              },
+              bottom: 4
+            },
+            grid: { left: 64, right: 24, top: 56, bottom: 110 },
+            tooltip: {
+              trigger: 'item',
+              backgroundColor: 'rgba(17,24,39,0.95)',
+              borderColor: '#374151',
+              textStyle: { color: '#e5e7eb' },
+              formatter: function(p) {
+                if (!p || !p.value) return '';
+                var v = p.value[1];
+                return '<b>' + p.name + '</b><br>' +
+                  _benchmarkLabel(bid) + ': ' +
+                  (typeof v === 'number' ? v.toFixed(1) : v);
+              }
+            },
+            xAxis: {
+              type: 'category',
+              data: xLabels,
+              axisLabel: { color: '#9ca3af', rotate: 35, fontSize: 10, interval: 0 },
+              axisLine: { lineStyle: { color: '#4b5563' } },
+              splitLine: { show: false }
+            },
+            yAxis: {
+              type: 'value',
+              name: 'Score (' + _benchmarkLabel(bid) + ')',
+              nameLocation: 'middle',
+              nameGap: 46,
+              nameTextStyle: { color: '#9ca3af' },
+              min: 0,
+              axisLabel: { color: '#9ca3af' },
+              axisLine: { lineStyle: { color: '#4b5563' } },
+              splitLine: { lineStyle: { color: '#1f2937' } }
+            }
+          },
+          options: options
+        };
+
+        chart.setOption(baseOption, true);
+      });
+    });
+  }
+
+  function renderTrajectoryReplay() {
+    var section = _ensureMountPoint('agent-chart-trajectory-replay',
+      'Score Trajectory Replay — Watch SOTA Evolve',
+      'Animates score-over-time for top models on the selected benchmark. Use the play button to scrub through history.');
+    if (!section) return;
+    var savedBid = _loadState('trajectory-replay-bid', 'swe_bench_verified');
+    _ensureBenchmarkSelect(section, 'agent-chart-trajectory-replay', savedBid,
+      function(newBid) {
+        _saveState('trajectory-replay-bid', newBid);
+        _drawTrajectoryReplay(newBid);
+      });
+    var sel = document.getElementById('agent-chart-trajectory-replay-select');
+    var bid = (sel && sel.value) || savedBid;
+    _drawTrajectoryReplay(bid);
+  }
+
+  // ======================================================================
   // Top-level render — called from Agent.render() after _renderCompare.
   // Each widget renders independently; one failing must not break the
   // others, hence the per-call try/catch.
@@ -4033,7 +4252,8 @@ var AgentCharts = (function() {
       renderCumulativeSOTAWins,
       renderAgentWizard,
       renderCostSimulator,
-      renderVendorCoverageMatrix
+      renderVendorCoverageMatrix,
+      renderTrajectoryReplay
     ];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
@@ -4061,6 +4281,7 @@ var AgentCharts = (function() {
     renderRecommendationBreakdown: renderRecommendationBreakdown,
     renderCostSimulator: renderCostSimulator,
     renderVendorCoverageMatrix: renderVendorCoverageMatrix,
+    renderTrajectoryReplay: renderTrajectoryReplay,
     // Helpers exported for widgets to reuse.
     _scoresFor: _scoresFor,
     _modelDisplayName: _modelDisplayName,
