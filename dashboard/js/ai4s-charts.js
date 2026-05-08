@@ -325,11 +325,80 @@
   }
 
   // ====================================================================
+  // W4 — Breakthrough Timeline. Year × milestone scatter, color = domain.
+  // ====================================================================
+  function renderBreakthroughTimeline() {
+    _ensureMountPoint('ai4s-chart-breakthrough-timeline',
+      'Breakthrough Timeline',
+      'When each AI4S milestone landed. Y-axis groups by milestone; color shows domain.');
+    if (typeof echarts === 'undefined') return;
+    var mountEl = document.getElementById('ai4s-chart-breakthrough-timeline');
+    if (!mountEl) return;
+
+    var chart = Charts._getOrCreate('ai4s-chart-breakthrough-timeline');
+    if (!chart) return;
+
+    var domains = {};
+    _BREAKTHROUGHS.forEach(function(b) {
+      if (!domains[b.domain]) domains[b.domain] = [];
+      domains[b.domain].push(b);
+    });
+
+    var labels = _BREAKTHROUGHS.map(function(b) { return b.title; });
+    var series = Object.keys(domains).map(function(d) {
+      return {
+        name: d,
+        type: 'scatter',
+        symbolSize: 22,
+        data: domains[d].map(function(b) {
+          return { value: [b.year, labels.indexOf(b.title)], _meta: b };
+        }),
+        itemStyle: { color: _domainColor(d) },
+        label: {
+          show: true, position: 'right', color: '#d1d5db', fontSize: 10,
+          formatter: function(p) { return p.data._meta.value; }
+        }
+      };
+    });
+
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 130, right: 80, top: 30, bottom: 50 },
+      legend: { bottom: 0, textStyle: { color: '#d1d5db' }, data: Object.keys(domains) },
+      tooltip: {
+        backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          var b = p.data._meta;
+          return '<b>' + b.title + '</b><br>' + b.narrative + '<br>' +
+            '<span style="color:#60a5fa">' + b.value + '</span> · ' + b.domain + ' · ' + b.year +
+            '<br><a href="' + b.source_url + '" target="_blank" style="color:#9ca3af;font-size:10px">source ↗</a>';
+        }
+      },
+      xAxis: {
+        type: 'value', min: 2017, max: 2026, interval: 1,
+        name: 'Year', nameLocation: 'middle', nameGap: 28,
+        nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af', formatter: '{value}' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } }
+      },
+      yAxis: {
+        type: 'category', data: labels, inverse: true,
+        axisLabel: { color: '#9ca3af', fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } }
+      },
+      series: series
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from AI4S.render().
   // Phase 1: stub — actual widget calls added per Task 5-9.
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderLabDomainMatrix];
+    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[AI4SCharts] failed:', fns[i].name || i, e);
@@ -514,6 +583,7 @@
     _applyToolbox: _applyToolbox,
     renderHeroCards: renderHeroCards,
     renderLabDomainMatrix: renderLabDomainMatrix,
+    renderBreakthroughTimeline: renderBreakthroughTimeline,
     renderAll: renderAll
   };
 
