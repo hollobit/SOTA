@@ -45,3 +45,33 @@ AI4SCharts._BREAKTHROUGHS.forEach(function(b, i) {
 });
 
 console.log('Task 4 _BREAKTHROUGHS schema OK');
+
+// Task 14 — _perDomainComposite (pure logic test; no DOM)
+assert.ok(AI4SCharts._perDomainComposite, '_perDomainComposite must be exported');
+
+// Mock window.App for the test
+global.window = global.window || {};
+global.window.App = { data: { scores: [
+  { model_id: 'm1', benchmark_id: 'math_500', value: 80 },
+  { model_id: 'm2', benchmark_id: 'math_500', value: 100 },
+  { model_id: 'm1', benchmark_id: 'frontiermath', value: 60 },
+  { model_id: 'm2', benchmark_id: 'frontiermath', value: 50 }
+]}};
+
+var c1 = AI4SCharts._perDomainComposite('m1', ['math_500', 'frontiermath']);
+assert.ok(c1, 'm1 should have composite');
+assert.strictEqual(c1.coverage, 2);
+// m1: math_500 = 80/100 * 100 = 80; frontiermath = 60/60 * 100 = 100
+// composite = (80 + 100) / 2 = 90
+assert.strictEqual(c1.score, 90);
+
+var c2 = AI4SCharts._perDomainComposite('m2', ['math_500', 'frontiermath']);
+assert.strictEqual(c2.coverage, 2);
+// m2: math_500 = 100/100 * 100 = 100; frontiermath = 50/60 * 100 ≈ 83.33
+// composite = (100 + 83.33) / 2 ≈ 91.67
+assert.ok(Math.abs(c2.score - 91.6667) < 0.001);
+
+// Model with no scores → null
+assert.strictEqual(AI4SCharts._perDomainComposite('m3', ['math_500']), null);
+
+console.log('Task 14 _perDomainComposite OK');

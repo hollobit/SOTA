@@ -188,13 +188,18 @@ var AI4S = {
         this._CATEGORIES.forEach(function(cat) {
             var tile = document.createElement('div');
             tile.className = 'bg-gray-900 border border-gray-800 rounded p-3 hover:border-blue-600 cursor-pointer transition';
-            tile.addEventListener('click', function() {
+            tile.addEventListener('click', function(e) {
+                if (e.shiftKey && typeof AI4SCharts !== 'undefined' && AI4SCharts.openDomainLeaderboard) {
+                    AI4SCharts.openDomainLeaderboard(cat.key);
+                    return;
+                }
                 var sel = document.getElementById('ai4s-category-filter');
                 if (sel) {
                     sel.value = (sel.value === cat.key) ? '' : cat.key;
                     sel.dispatchEvent(new Event('change'));
                 }
             });
+            tile.title = (tile.title || '') + ' · Shift+click for leaderboard';
             var head = document.createElement('div');
             head.className = 'flex items-baseline gap-2';
             var iconSpan = document.createElement('span');
