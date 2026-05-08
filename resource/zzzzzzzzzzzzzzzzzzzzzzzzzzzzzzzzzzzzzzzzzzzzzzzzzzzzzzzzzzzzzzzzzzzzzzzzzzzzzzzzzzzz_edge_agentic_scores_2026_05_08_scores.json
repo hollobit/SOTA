@@ -1,0 +1,22 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-08",
+    "_note": "Wave 1A — edge SLM agentic score backfill. Strict primary-source attribution: Phi-4-Mini Technical Report (arxiv 2503.01743) Table 7, Meta Llama 3.2 official MODEL_CARD.md (BFCL V2), FunctionGemma model card on Google AI for Developers / HuggingFace (BFCL 0-shot sub-tasks + Mobile Actions). Phi-4 (14B base), Gemma 3 270M base, Gemma 3n, and Apple Foundation models do NOT have primary-source-attested agentic benchmark scores published on these benchmarks; deferred. Llama 3.2 3B had two primary-source numbers — 67.0 from Meta MODEL_CARD.md and 78.6 from Phi-4-Mini Technical Report (independent eval); Meta's official self-report (67.0) used per attribution policy.",
+    "sources": [
+      "https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/MODEL_CARD.md",
+      "https://arxiv.org/abs/2503.01743",
+      "https://arxiv.org/html/2503.01743v1",
+      "https://ai.google.dev/gemma/docs/functiongemma/model_card",
+      "https://huggingface.co/google/functiongemma-270m-it",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/functiongemma/"
+    ]
+  },
+  "scores": [
+    {"model": "meta/llama-3.2-1b-instruct", "benchmark": "bfcl_v4", "score": 25.7, "unit": "%", "_source": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/MODEL_CARD.md", "collected_at": "2026-05-08", "_note": "BFCL V2 acc, 0-shot, bf16 baseline. Official Meta MODEL_CARD.md, 'Tool Use' section."},
+    {"model": "meta/llama-3.2-3b-instruct", "benchmark": "bfcl_v4", "score": 67.0, "unit": "%", "_source": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/MODEL_CARD.md", "collected_at": "2026-05-08", "_note": "BFCL V2 acc, 0-shot, bf16 baseline. Official Meta MODEL_CARD.md, 'Tool Use' section."},
+    {"model": "microsoft/phi-4-mini-instruct", "benchmark": "bfcl_v4", "score": 70.3, "unit": "%", "_source": "https://arxiv.org/abs/2503.01743", "collected_at": "2026-05-08", "_note": "BFCL score from Phi-4-Mini Technical Report (arxiv 2503.01743) Table 7, 0-shot. Phi-4-Mini 3.8B."},
+    {"model": "google/function-gemma", "benchmark": "bfcl_v4", "score": 61.6, "unit": "%", "_source": "https://ai.google.dev/gemma/docs/functiongemma/model_card", "collected_at": "2026-05-08", "_note": "BFCL Simple 0-shot. FunctionGemma 270M (built on Gemma 3 270M, function-calling fine-tune). Official Google model card."},
+    {"model": "google/function-gemma", "benchmark": "bfcl_v3_live", "score": 36.2, "unit": "%", "_source": "https://ai.google.dev/gemma/docs/functiongemma/model_card", "collected_at": "2026-05-08", "_note": "BFCL Live Simple 0-shot. Live (real-world distribution) sub-task from FunctionGemma model card."},
+    {"model": "google/function-gemma", "benchmark": "mobile_actions", "score": 58.0, "unit": "%", "_source": "https://ai.google.dev/gemma/docs/functiongemma/model_card", "collected_at": "2026-05-08", "_note": "Mobile Actions accuracy, base FunctionGemma 270M (pre-fine-tune). Per Google blog: 'fine-tuning transformed the model's reliability, boosting accuracy from a 58% baseline to 85%'. Official model card baseline."}
+  ]
+}
