@@ -924,11 +924,94 @@
   }
 
   // ====================================================================
+  // W9 — Materials Discovery Yield. Bubble chart: model × MAE × yield.
+  // ====================================================================
+  function renderMaterialsYield() {
+    _ensureMountPoint('ai4s-chart-materials-yield',
+      'Materials Discovery Yield',
+      'X = Matbench Discovery MAE (lower=better). Y = MatterGen-style novel yield. Size = F1.');
+    if (typeof echarts === 'undefined') return;
+
+    var maeRows = _scoresFor('matbench_discovery_mae');
+    var yieldRows = _scoresFor('mattergen_yield');
+    var f1Rows = _scoresFor('matbench_discovery_f1');
+
+    var byModel = {};
+    function add(rows, key) {
+      rows.forEach(function(r) {
+        if (typeof r.value !== 'number') return;
+        byModel[r.model_id] = byModel[r.model_id] || {};
+        byModel[r.model_id][key] = r.value;
+      });
+    }
+    add(maeRows, 'mae');
+    add(yieldRows, 'yield');
+    add(f1Rows, 'f1');
+
+    var pts = [];
+    Object.keys(byModel).forEach(function(mid) {
+      var b = byModel[mid];
+      if (typeof b.mae !== 'number') return;
+      pts.push({
+        value: [b.mae, b.yield || 0],
+        symbolSize: Math.min(40, 8 + (b.f1 || 0) * 30),
+        _meta: { model_id: mid, mae: b.mae, yield: b.yield || 0, f1: b.f1 || 0 }
+      });
+    });
+
+    var mountEl = document.getElementById('ai4s-chart-materials-yield');
+    if (pts.length < 2) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'Insufficient materials data — run Phase 2A Task 12 ingest first';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('ai4s-chart-materials-yield');
+    if (!chart) return;
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 50, right: 24, top: 30, bottom: 50 },
+      tooltip: { trigger: 'item', backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151', textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          var m = p.data._meta;
+          return '<b>' + m.model_id + '</b><br>' +
+            'MAE: ' + m.mae.toFixed(3) + '<br>' +
+            'Yield: ' + m.yield + '<br>' +
+            'F1: ' + (m.f1 || '—');
+        }
+      },
+      xAxis: { type: 'value', name: 'Matbench MAE (lower=better)',
+        nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      yAxis: { type: 'value', name: 'Yield (novel materials)',
+        nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      series: [{
+        name: 'Materials models',
+        type: 'scatter',
+        data: pts,
+        itemStyle: { color: '#f59e0b', opacity: 0.85 }
+      }]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from AI4S.render().
   // Phase 1: stub — actual widget calls added per Task 5-9.
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline, renderMathProgression, renderBenchmarkCatalog, renderFrontierVsSpecialist, renderWeatherSkillCurve, renderCASPProgression];
+    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline, renderMathProgression, renderBenchmarkCatalog, renderFrontierVsSpecialist, renderWeatherSkillCurve, renderCASPProgression, renderMaterialsYield];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[AI4SCharts] failed:', fns[i].name || i, e);
@@ -1119,6 +1202,7 @@
     renderFrontierVsSpecialist: renderFrontierVsSpecialist,
     renderWeatherSkillCurve: renderWeatherSkillCurve,
     renderCASPProgression: renderCASPProgression,
+    renderMaterialsYield: renderMaterialsYield,
     _domainBenchmarks: _domainBenchmarks,
     _perDomainComposite: _perDomainComposite,
     openDomainLeaderboard: openDomainLeaderboard,
