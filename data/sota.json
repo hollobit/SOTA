@@ -810,19 +810,19 @@
     "notes": ""
   },
   "gaia": {
-    "model_id": "anthropic/claude-sonnet-4.5",
+    "model_id": "manus-ai/manus",
     "benchmark_id": "gaia",
-    "value": 74.6,
+    "value": 86.5,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://llm-stats.com/benchmarks/gpqa",
-      "date": "2026-04-17",
+      "url": "https://www.helicone.ai/blog/manus-benchmark-operator-comparison",
+      "date": "2026-05-08",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-04-17",
-    "notes": "HAL Generalist agent"
+    "collected_at": "2026-05-08",
+    "notes": "Manus AI — GAIA Level 1 self-disclosed at Mar 6 2025 launch (recapped on Helicone benchmark report; SOTA vs OpenAI Deep Research 74.3%; vendor-self-reported, not independently verified)"
   },
   "tau_bench": {
     "model_id": "anthropic/claude-sonnet-4.6",
@@ -11488,5 +11488,50 @@
     "is_sota": true,
     "collected_at": "2026-05-08",
     "notes": "USACO Episodic + Semantic, GPT-5 Medium (Aug 2025), HAL rank 1"
+  },
+  "webvoyager": {
+    "model_id": "openai/operator",
+    "benchmark_id": "webvoyager",
+    "value": 87.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/index/computer-using-agent/",
+      "date": "2026-05-08",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-08",
+    "notes": "OpenAI Operator (CUA) — WebVoyager success rate disclosed in Jan 23 2025 CUA research blog (state-of-the-art at announcement)"
+  },
+  "swe_bench": {
+    "model_id": "cognition/devin",
+    "benchmark_id": "swe_bench",
+    "value": 13.86,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cognition.ai/blog/swe-bench-technical-report",
+      "date": "2026-05-08",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-08",
+    "notes": "Cognition Devin (1.0) — SWE-bench technical report (Mar 2024): resolved 79 of 570 issues end-to-end, exceeding prior SOTA unassisted baseline of 1.96%"
+  },
+  "hal_overall_accuracy_at_fixed_cost": {
+    "model_id": "anthropic/claude-sonnet-4.5",
+    "benchmark_id": "hal_overall_accuracy_at_fixed_cost",
+    "value": 42.34,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://hal.cs.princeton.edu/",
+      "date": "2026-05-08",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-08",
+    "notes": "HAL composite (mean of best per-bench accuracy on 6/9 HAL sub-leaderboards: AssistantBench 11.80, CORE-Bench Hard 62.22, GAIA 74.55, SWE-bench Verified Mini 72.00, Scicode 3.08, ScienceAgentBench 30.39); total cost across these 6 = $921.42; partial coverage — Sonnet 4.5 not on Online Mind2Web/TAU-bench Airline/USACO at HAL. ICLR 2026 paper."
   }
 }

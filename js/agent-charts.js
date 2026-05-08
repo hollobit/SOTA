@@ -150,10 +150,24 @@ var AgentCharts = (function() {
     section.id = id + '-section';
     section.className = 'rounded border bg-gray-900 border-gray-800 p-4';
 
+    // Title row: <h2> + optional ⓘ info icon (B-polish — inline help via the
+    // browser-native title attribute → free tooltip, no extra JS).
+    var headRow = document.createElement('div');
+    headRow.className = 'flex items-center mb-1';
+
     var h = document.createElement('h2');
-    h.className = 'text-lg font-semibold text-gray-200 mb-1';
+    h.className = 'text-lg font-semibold text-gray-200';
     h.textContent = title;
-    section.appendChild(h);
+    headRow.appendChild(h);
+
+    if (hint) {
+      var infoIcon = document.createElement('span');
+      infoIcon.className = 'ml-2 text-gray-500 hover:text-blue-400 cursor-help text-sm';
+      infoIcon.textContent = 'ⓘ'; // ⓘ
+      infoIcon.title = hint;
+      headRow.appendChild(infoIcon);
+    }
+    section.appendChild(headRow);
 
     if (hint) {
       var p = document.createElement('p');
@@ -170,6 +184,41 @@ var AgentCharts = (function() {
 
     host.appendChild(section);
     return section;
+  }
+
+  // ======================================================================
+  // B-polish helpers (Wave 2D)
+  // _applyToolbox: attach ECharts toolbox (PNG / data view / restore).
+  // _saveState / _loadState: persist user selections in localStorage; failures
+  // (private mode, quota) are swallowed silently.
+  // ======================================================================
+  function _applyToolbox(option) {
+    if (!option || typeof option !== 'object') return option;
+    option.toolbox = {
+      show: true,
+      feature: {
+        saveAsImage: { title: 'PNG', pixelRatio: 2, name: 'agent-chart' },
+        dataView: { title: 'Data', readOnly: true, lang: ['Data', 'Close', 'Refresh'] },
+        restore: { title: 'Reset' }
+      },
+      right: 12,
+      top: 4,
+      iconStyle: { borderColor: '#9ca3af' },
+      emphasis: { iconStyle: { borderColor: '#60a5fa' } }
+    };
+    return option;
+  }
+
+  function _saveState(key, value) {
+    try { localStorage.setItem('agent-charts:' + key, JSON.stringify(value)); } catch (e) {}
+  }
+
+  function _loadState(key, defaultValue) {
+    try {
+      var v = localStorage.getItem('agent-charts:' + key);
+      if (v == null) return defaultValue;
+      return JSON.parse(v);
+    } catch (e) { return defaultValue; }
   }
 
   // ======================================================================
@@ -483,7 +532,7 @@ var AgentCharts = (function() {
         }] : []
       };
 
-      chart.setOption(opt, true);
+      chart.setOption(_applyToolbox(opt), true);
     });
   }
 
@@ -717,7 +766,7 @@ var AgentCharts = (function() {
       }]
     };
 
-    chart.setOption(option, true);
+    chart.setOption(_applyToolbox(option), true);
 
     chart.off('click');
     chart.on('click', function(p) {
@@ -734,7 +783,7 @@ var AgentCharts = (function() {
   // Widget 3 — Per-category Radar (interactive agent picker)
   // State persists across re-renders so toggles survive ECharts dispose.
   // ======================================================================
-  var _radarState = { categoryKey: 'coding', selectedAgents: null };
+  var _radarState = _loadState('radar-state', { categoryKey: 'coding', selectedAgents: null });
   var MAX_RADAR_AGENTS = 5;
 
   function renderCategoryRadar() {
@@ -774,6 +823,7 @@ var AgentCharts = (function() {
         _radarState.categoryKey = this.value;
         _radarState.selectedAgents = null; // reset → defaults will repopulate
         _refreshRadarControls(controls);
+        _saveState('radar-state', _radarState);
         _drawRadar();
       });
       rowCat.appendChild(sel);
@@ -886,6 +936,7 @@ var AgentCharts = (function() {
     } else if (idx !== -1) {
       _radarState.selectedAgents.splice(idx, 1);
     }
+    _saveState('radar-state', _radarState);
     var section = document.getElementById('agent-chart-radar-section');
     if (section) {
       var controls = section.querySelector('[data-radar-controls]');
@@ -958,7 +1009,7 @@ var AgentCharts = (function() {
       };
     });
 
-    chart.setOption({
+    chart.setOption(_applyToolbox({
       backgroundColor: 'transparent',
       tooltip: {
         trigger: 'item',
@@ -997,7 +1048,7 @@ var AgentCharts = (function() {
         emphasis: { focus: 'series' },
         data: seriesData
       }]
-    }, true);
+    }), true);
   }
 
   // ======================================================================
@@ -1102,7 +1153,7 @@ var AgentCharts = (function() {
            + bench + ': <b>' + (Math.round(v * 10) / 10) + '</b></div>';
     }
 
-    chart.setOption({
+    chart.setOption(_applyToolbox({
       backgroundColor: 'transparent',
       tooltip: {
         trigger: 'item',
@@ -1179,7 +1230,7 @@ var AgentCharts = (function() {
           z: 3
         }
       ]
-    }, true);
+    }), true);
   }
 
   // ======================================================================
@@ -1424,7 +1475,7 @@ var AgentCharts = (function() {
         var chart = Charts._getOrCreate('agent-chart-sota-timeline');
         if (!chart) return;
 
-        chart.setOption({
+        chart.setOption(_applyToolbox({
           backgroundColor: 'transparent',
           grid: { left: 64, right: 24, top: 40, bottom: 70 },
           legend: {
@@ -1469,7 +1520,7 @@ var AgentCharts = (function() {
             splitLine: { lineStyle: { color: '#1f2937' } }
           },
           series: series
-        }, true);
+        }), true);
       });
     });
   }
@@ -1479,10 +1530,14 @@ var AgentCharts = (function() {
       'SOTA Timeline (Agent benchmarks)',
       'Step plot of SOTA holder over time on a selected agentic benchmark. Drawn from data/scores/history snapshots.');
     if (!section) return;
-    _ensureBenchmarkSelect(section, 'agent-chart-sota-timeline', 'swe_bench_verified',
-      function(newBid) { _drawSOTATimeline(newBid); });
+    var savedBid = _loadState('sota-timeline-bid', 'swe_bench_verified');
+    _ensureBenchmarkSelect(section, 'agent-chart-sota-timeline', savedBid,
+      function(newBid) {
+        _saveState('sota-timeline-bid', newBid);
+        _drawSOTATimeline(newBid);
+      });
     var sel = document.getElementById('agent-chart-sota-timeline-select');
-    var bid = (sel && sel.value) || 'swe_bench_verified';
+    var bid = (sel && sel.value) || savedBid;
     _drawSOTATimeline(bid);
   }
 
@@ -1592,7 +1647,7 @@ var AgentCharts = (function() {
            + 'best: ' + modelName + '</div>';
     }
 
-    chart.setOption({
+    chart.setOption(_applyToolbox({
       backgroundColor: 'transparent',
       tooltip: {
         trigger: 'item',
@@ -1647,7 +1702,7 @@ var AgentCharts = (function() {
           itemStyle: { borderColor: '#f8fafc', borderWidth: 2 }
         }
       }]
-    }, true);
+    }), true);
   }
 
   // ======================================================================
@@ -1964,7 +2019,7 @@ var AgentCharts = (function() {
       })
     }] : [];
 
-    chart.setOption({
+    chart.setOption(_applyToolbox({
       backgroundColor: 'transparent',
       grid: { left: 64, right: 24, top: 30, bottom: 60 },
       tooltip: {
@@ -2111,7 +2166,7 @@ var AgentCharts = (function() {
           z: 5
         }
       ].concat(emptyLabelSeries)
-    }, true);
+    }), true);
   }
 
   // hex like '#60a5fa' → '96,165,250'
@@ -2129,11 +2184,730 @@ var AgentCharts = (function() {
       'Score Distribution by Class',
       'Three violins (Frontier / Agent-Product / Edge) for a selected benchmark. Shows median, spread, outliers — answers whether the gap is systematic or benchmark-specific.');
     if (!section) return;
-    _ensureBenchmarkSelect(section, 'agent-chart-class-violin', 'swe_bench_verified',
-      function(newBid) { _drawClassViolin(newBid); });
+    var savedBid = _loadState('class-violin-bid', 'swe_bench_verified');
+    _ensureBenchmarkSelect(section, 'agent-chart-class-violin', savedBid,
+      function(newBid) {
+        _saveState('class-violin-bid', newBid);
+        _drawClassViolin(newBid);
+      });
     var sel = document.getElementById('agent-chart-class-violin-select');
-    var bid = (sel && sel.value) || 'swe_bench_verified';
+    var bid = (sel && sel.value) || savedBid;
     _drawClassViolin(bid);
+  }
+
+  // ======================================================================
+  // Widget 9 (C1) — Capability Sankey
+  // 3-level data flow: Top 12 models → 10 categories → top 20 benchmarks.
+  // Edge weight = score count. A benchmark may live in multiple categories;
+  // each membership is counted once so column totals stay consistent.
+  // ======================================================================
+  var _SANKEY_CAT_PAL = [
+    '#60a5fa', '#a78bfa', '#f472b6', '#fb7185', '#fbbf24',
+    '#facc15', '#a3e635', '#34d399', '#22d3ee', '#94a3b8'
+  ];
+
+  function renderCapabilitySankey() {
+    _ensureMountPoint('agent-chart-sankey',
+      'Capability Sankey',
+      'Data flow: Top 12 models → 10 categories → top 20 benchmarks. Edge weight = score count.');
+    if (typeof echarts === 'undefined') return;
+    if (!(window.App && App.data && App.data.scores)) return;
+    var cats = (window.Agent && Agent._CATEGORIES) ? Agent._CATEGORIES : [];
+    var mountEl = document.getElementById('agent-chart-sankey');
+    if (!cats.length || !mountEl) return;
+
+    // benchmark_id -> [categoryIndex...] (a benchmark can sit in many).
+    var benchToCats = {};
+    for (var ci = 0; ci < cats.length; ci++) {
+      var bs = cats[ci].benchmarks || [];
+      for (var bi = 0; bi < bs.length; bi++) {
+        (benchToCats[bs[bi]] = benchToCats[bs[bi]] || []).push(ci);
+      }
+    }
+
+    // One sweep — tally model / benchmark / (model,cat) / (cat,bench) counts.
+    var mCount = {}, bCount = {}, mCov = {}, mcCount = {}, cbCount = {};
+    var scores = App.data.scores;
+    for (var s = 0; s < scores.length; s++) {
+      var r = scores[s];
+      if (!r || r.model_id == null || typeof r.value !== 'number') continue;
+      var memberships = benchToCats[r.benchmark_id];
+      if (!memberships) continue;
+      var mid = r.model_id, bid2 = r.benchmark_id;
+      mCount[mid] = (mCount[mid] || 0) + 1;
+      bCount[bid2] = (bCount[bid2] || 0) + 1;
+      (mCov[mid] = mCov[mid] || {})[bid2] = true;
+      for (var mi = 0; mi < memberships.length; mi++) {
+        var c = memberships[mi];
+        mcCount[mid + '||' + c] = (mcCount[mid + '||' + c] || 0) + 1;
+        cbCount[c + '||' + bid2] = (cbCount[c + '||' + bid2] || 0) + 1;
+      }
+    }
+
+    // ≥3 covered benchmarks gate — at least 3 such models needed.
+    var enoughModels = 0;
+    for (var k in mCov) {
+      if (Object.prototype.hasOwnProperty.call(mCov, k) &&
+          Object.keys(mCov[k]).length >= 3) enoughModels++;
+    }
+    if (enoughModels < 3) {
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+      var emptyMsg = document.createElement('div');
+      emptyMsg.className = 'text-xs text-gray-500 italic';
+      emptyMsg.textContent = 'Insufficient coverage for Sankey diagram';
+      mountEl.appendChild(emptyMsg);
+      return;
+    }
+
+    function _topIds(map, n) {
+      var arr = Object.keys(map).map(function(id) { return [id, map[id]]; });
+      arr.sort(function(a, b) { return b[1] - a[1]; });
+      return arr.slice(0, n).map(function(x) { return x[0]; });
+    }
+    var topModels = _topIds(mCount, 12);
+    var topBenches = _topIds(bCount, 20);
+    if (!topModels.length || !topBenches.length) return;
+    var mSet = {}, bSet = {};
+    topModels.forEach(function(id) { mSet[id] = true; });
+    topBenches.forEach(function(id) { bSet[id] = true; });
+
+    // Build nodes (prefixed names avoid cross-column collisions) + name index.
+    var nodes = [], byName = {};
+    function _push(node) { nodes.push(node); byName[node.name] = node; }
+    topModels.forEach(function(id) {
+      _push({
+        name: 'M::' + id, _label: _modelDisplayName(id), _modelId: id, _kind: 'model',
+        itemStyle: { color: _classColor(_modelClass(id)) },
+        label: { color: '#e5e7eb', fontSize: 10, formatter: _modelDisplayName(id) }
+      });
+    });
+    cats.forEach(function(cat, idx) {
+      _push({
+        name: 'C::' + cat.key, _label: cat.label, _kind: 'category',
+        itemStyle: { color: _SANKEY_CAT_PAL[idx % _SANKEY_CAT_PAL.length] },
+        label: { color: '#e5e7eb', fontSize: 10, formatter: cat.label }
+      });
+    });
+    topBenches.forEach(function(id) {
+      _push({
+        name: 'B::' + id, _label: _benchmarkLabel(id), _kind: 'benchmark',
+        itemStyle: { color: '#9ca3af' },
+        label: { color: '#cbd5e1', fontSize: 9, formatter: _benchmarkLabel(id) }
+      });
+    });
+
+    // Edges: model→category and category→benchmark, restricted to top sets.
+    var links = [];
+    Object.keys(mcCount).forEach(function(key) {
+      var p = key.split('||');
+      if (!mSet[p[0]]) return;
+      links.push({ source: 'M::' + p[0], target: 'C::' + cats[+p[1]].key, value: mcCount[key] });
+    });
+    Object.keys(cbCount).forEach(function(key) {
+      var p = key.split('||');
+      if (!bSet[p[1]]) return;
+      links.push({ source: 'C::' + cats[+p[0]].key, target: 'B::' + p[1], value: cbCount[key] });
+    });
+
+    var chart = Charts._getOrCreate('agent-chart-sankey');
+    if (!chart) return;
+
+    chart.setOption(_applyToolbox({
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(17, 24, 39, 0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb', fontSize: 12 },
+        formatter: function(p) {
+          if (!p) return '';
+          if (p.dataType === 'edge') {
+            var sN = byName[p.data.source], tN = byName[p.data.target];
+            var sLab = sN ? sN._label : p.data.source;
+            var tLab = tN ? tN._label : p.data.target;
+            if (sN && tN && sN._kind === 'model' && tN._kind === 'category') {
+              return '<b>' + sLab + '</b> has <b>' + p.data.value + '</b> scores in ' + tLab;
+            }
+            if (sN && tN && sN._kind === 'category' && tN._kind === 'benchmark') {
+              return tLab + ' contributes <b>' + p.data.value + '</b> scores to ' + sLab;
+            }
+            return sLab + ' → ' + tLab + ': <b>' + p.data.value + '</b>';
+          }
+          var nN = byName[p.name];
+          return '<b>' + (nN ? nN._label : p.name) + '</b><br>Total flow: ' +
+                 (p.value != null ? p.value : '');
+        }
+      },
+      series: [{
+        type: 'sankey',
+        left: 20, right: 160, top: 20, bottom: 20,
+        nodeWidth: 14, nodeGap: 8, nodeAlign: 'justify', layoutIterations: 32,
+        emphasis: { focus: 'adjacency' },
+        lineStyle: { color: 'gradient', curveness: 0.5, opacity: 0.55 },
+        label: { color: '#e5e7eb', fontSize: 10 },
+        data: nodes, links: links
+      }]
+    }), true);
+
+    chart.off('click');
+    chart.on('click', function(p) {
+      if (!p || p.dataType !== 'node') return;
+      var nN = byName[p.name];
+      if (nN && nN._kind === 'model' && nN._modelId &&
+          window.Modal && typeof Modal.showModel === 'function') {
+        Modal.showModel(nN._modelId);
+      }
+    });
+  }
+
+  // ======================================================================
+  // Widget 10 (C2) — Cumulative SOTA Wins (stacked area)
+  // X = date, Y = cumulative SOTA-holder days per model, stacked.
+  // Each model that EVER held SOTA on the chosen benchmark gets a band that
+  // grows by 1 on every date it owns SOTA, and is flat otherwise. Final view:
+  // band thicknesses = total days at SOTA per model.
+  // ======================================================================
+  function _drawCumulativeSOTA(bid) {
+    var mountEl = document.getElementById('agent-chart-cumulative-sota');
+    if (!mountEl) return;
+    if (typeof echarts === 'undefined') return;
+
+    _loadHistoryIndex().then(function(idx) {
+      var dates = (idx && idx.dates) || [];
+      if (dates.length < 2) {
+        _emptyStateMessage(mountEl, 'Need at least 2 days of history snapshots');
+        return;
+      }
+      Promise.all(dates.map(_loadSnapshot)).then(function(snapshots) {
+        // Per-date best holder for the chosen benchmark — same logic as W5.
+        var dailyBest = [];
+        for (var i = 0; i < dates.length; i++) {
+          var rows = snapshots[i] || [];
+          var bestVal = -Infinity;
+          var bestMid = null;
+          for (var j = 0; j < rows.length; j++) {
+            var r = rows[j];
+            if (r && r.benchmark_id === bid && typeof r.value === 'number') {
+              if (r.value > bestVal) {
+                bestVal = r.value;
+                bestMid = r.model_id;
+              }
+            }
+          }
+          dailyBest.push({ date: dates[i], value: bestVal, model_id: bestMid });
+        }
+
+        // Running SOTA — only updates when a strictly higher score appears,
+        // otherwise the previous holder keeps the crown for that day.
+        var runningHolders = [];
+        var bestSoFar = -Infinity;
+        var bestHolder = null;
+        for (var p = 0; p < dailyBest.length; p++) {
+          var d = dailyBest[p];
+          if (d.model_id !== null && d.value > bestSoFar) {
+            bestSoFar = d.value;
+            bestHolder = d.model_id;
+          }
+          runningHolders.push(bestHolder); // null until first holder appears
+        }
+
+        // Discover holder set (preserve first-seen order so legend reads
+        // chronologically: who held SOTA first appears first).
+        var holders = [];
+        var seenHolder = {};
+        for (var h = 0; h < runningHolders.length; h++) {
+          var mid = runningHolders[h];
+          if (mid && !seenHolder[mid]) {
+            holders.push(mid);
+            seenHolder[mid] = true;
+          }
+        }
+        if (!holders.length) {
+          _emptyStateMessage(mountEl, 'No SOTA holder found on this benchmark');
+          return;
+        }
+
+        // Build cumulative-days series, one per holder. On each date, the
+        // current holder's counter increments by 1; everyone else stays flat.
+        var series = [];
+        var cumByModel = {};
+        for (var ih = 0; ih < holders.length; ih++) cumByModel[holders[ih]] = [];
+
+        for (var di = 0; di < dates.length; di++) {
+          var owner = runningHolders[di];
+          for (var ho = 0; ho < holders.length; ho++) {
+            var hm = holders[ho];
+            var prev = cumByModel[hm].length
+              ? cumByModel[hm][cumByModel[hm].length - 1]
+              : 0;
+            cumByModel[hm].push(hm === owner ? prev + 1 : prev);
+          }
+        }
+
+        for (var s = 0; s < holders.length; s++) {
+          var hid = holders[s];
+          var color = _classColor(_modelClass(hid));
+          series.push({
+            name: _modelDisplayName(hid),
+            type: 'line',
+            stack: 'sota-days',
+            step: 'end',
+            showSymbol: false,
+            smooth: false,
+            areaStyle: { color: color, opacity: 0.7 },
+            lineStyle: { color: color, width: 1 },
+            itemStyle: { color: color },
+            emphasis: { focus: 'series' },
+            data: cumByModel[hid]
+          });
+        }
+
+        if (!Charts._instances || !Charts._instances['agent-chart-cumulative-sota']) {
+          while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        }
+        var chart = Charts._getOrCreate('agent-chart-cumulative-sota');
+        if (!chart) return;
+
+        chart.setOption(_applyToolbox({
+          backgroundColor: 'transparent',
+          grid: { left: 64, right: 24, top: 40, bottom: 70 },
+          legend: {
+            bottom: 0,
+            type: 'scroll',
+            textStyle: { color: '#d1d5db' }
+          },
+          tooltip: {
+            trigger: 'axis',
+            backgroundColor: 'rgba(17,24,39,0.95)',
+            borderColor: '#374151',
+            textStyle: { color: '#e5e7eb' },
+            formatter: function(params) {
+              if (!params || !params.length) return '';
+              var lines = ['<b>' + params[0].axisValue + '</b>'];
+              // Sort descending by cumulative days for readability.
+              var sorted = params.slice().sort(function(a, b) {
+                return (b.value || 0) - (a.value || 0);
+              });
+              for (var k = 0; k < sorted.length; k++) {
+                var pp = sorted[k];
+                var v = pp.value;
+                if (v === undefined || v === null || v === 0) continue;
+                lines.push(pp.marker + pp.seriesName + ': ' + v + ' day' + (v === 1 ? '' : 's'));
+              }
+              return lines.join('<br>');
+            }
+          },
+          xAxis: {
+            type: 'category',
+            data: dates,
+            boundaryGap: false,
+            axisLabel: { color: '#9ca3af', rotate: 30 },
+            axisLine: { lineStyle: { color: '#4b5563' } },
+            splitLine: { show: false }
+          },
+          yAxis: {
+            type: 'value',
+            name: 'Cumulative SOTA-holder days',
+            nameLocation: 'middle',
+            nameGap: 46,
+            nameTextStyle: { color: '#9ca3af' },
+            axisLabel: { color: '#9ca3af' },
+            axisLine: { lineStyle: { color: '#4b5563' } },
+            splitLine: { lineStyle: { color: '#1f2937' } }
+          },
+          series: series
+        }), true);
+      });
+    });
+  }
+
+  function renderCumulativeSOTAWins() {
+    var section = _ensureMountPoint('agent-chart-cumulative-sota',
+      'Cumulative SOTA Wins (days at SOTA)',
+      'How long each model held the SOTA crown on the selected benchmark. Stacked by date — band thickness = total days at the top.');
+    if (!section) return;
+    var savedBid = _loadState('cumulative-sota-bid', 'swe_bench_verified');
+    _ensureBenchmarkSelect(section, 'agent-chart-cumulative-sota', savedBid,
+      function(newBid) {
+        _saveState('cumulative-sota-bid', newBid);
+        _drawCumulativeSOTA(newBid);
+      });
+    var sel = document.getElementById('agent-chart-cumulative-sota-select');
+    var bid = (sel && sel.value) || savedBid;
+    _drawCumulativeSOTA(bid);
+  }
+
+
+  // ======================================================================
+  // Widget 11 (C4) — Build Your Agent wizard
+  // Priority sliders (one per major capability category) drive a weighted
+  // ranking of agents. The right column shows the top-10 recommendations,
+  // each with a sparkline-bar of category contributions. No ECharts — pure
+  // DOM widget; recompute happens on every slider/checkbox change without a
+  // full chart rebuild.
+  // ======================================================================
+  var _wizardState = _loadState('wizard-state', {
+    priorities: {
+      coding: 50,
+      'web-browse': 50,
+      'os-computer': 50,
+      'tool-use': 50,
+      mcp: 50,
+      'customer-service': 50,
+      safety: 50
+    },
+    includeCost: false,
+    edgeOnly: false
+  });
+
+  var _WIZARD_SLIDERS = [
+    { key: 'coding',           label: 'Coding' },
+    { key: 'web-browse',       label: 'Web & Browsing' },
+    { key: 'os-computer',      label: 'OS / Computer Use' },
+    { key: 'tool-use',         label: 'Tool Use & Function Calling' },
+    { key: 'mcp',              label: 'MCP' },
+    { key: 'customer-service', label: 'Customer Service' },
+    { key: 'safety',           label: 'Safety' }
+  ];
+
+  // Mean of _normalizedScore() across the category's benchmarks for a model.
+  // Returns 0 when the model has no scores in the category (so the prior is
+  // "no contribution" rather than "missing data" — keeps ranking stable).
+  function _wizardCoverageScore(modelId, categoryKey) {
+    var cat = _categoryByKey(categoryKey);
+    if (!cat || !cat.benchmarks || !cat.benchmarks.length) return 0;
+    var sum = 0;
+    var n = 0;
+    for (var i = 0; i < cat.benchmarks.length; i++) {
+      var s = _normalizedScore(modelId, cat.benchmarks[i], cat);
+      if (typeof s === 'number' && !isNaN(s)) {
+        sum += s;
+        n += 1;
+      }
+    }
+    return n > 0 ? (sum / n) : 0;
+  }
+
+  // Pricing lookup — synchronous, based on App.data.pricing already loaded
+  // by App.loadData. Returns null if missing so we can skip cost penalty.
+  function _wizardOutputCost(modelId) {
+    if (!window.App || !App.data || !App.data.pricing) return null;
+    var p = App.data.pricing[modelId];
+    if (!p) return null;
+    var v = (typeof p.output === 'number') ? p.output : p.price_per_1m_output;
+    return (typeof v === 'number' && v > 0) ? v : null;
+  }
+
+  // Returns sorted list (desc) of { model_id, score, contributions }.
+  function _wizardRank() {
+    if (!window.App || !App.data || !App.data.models) return [];
+    var models = App.data.models;
+    var out = [];
+    for (var i = 0; i < models.length; i++) {
+      var m = models[i];
+      if (!m || !m.id) continue;
+      if (_wizardState.edgeOnly && _modelClass(m.id) !== 'edge-slm') continue;
+
+      var score = 0;
+      var contributions = [];
+      var anyCoverage = false;
+      for (var j = 0; j < _WIZARD_SLIDERS.length; j++) {
+        var key = _WIZARD_SLIDERS[j].key;
+        var w = (_wizardState.priorities[key] || 0) / 100;
+        var cov = _wizardCoverageScore(m.id, key);
+        if (cov > 0) anyCoverage = true;
+        var contrib = w * cov;
+        score += contrib;
+        contributions.push({ key: key, value: contrib, raw: cov });
+      }
+      if (!anyCoverage) continue; // skip models with zero data in any chosen category
+
+      if (_wizardState.includeCost) {
+        var cost = _wizardOutputCost(m.id);
+        if (typeof cost === 'number' && cost > 0) {
+          var penalty = Math.log(cost + 1) / Math.LN10; // log10
+          if (penalty > 0) score = score / penalty;
+        }
+      }
+
+      out.push({ model_id: m.id, score: score, contributions: contributions });
+    }
+    out.sort(function(a, b) { return b.score - a.score; });
+    return out;
+  }
+
+  // Idempotent — section already has a chart div (height 420) from
+  // _ensureMountPoint. We hide that and append our 2-column grid once.
+  function _ensureWizardControls(section) {
+    if (section.getAttribute('data-wizard-built') === '1') return;
+    section.setAttribute('data-wizard-built', '1');
+
+    // Hide the default chart mount (we don't render an ECharts chart).
+    var defaultMount = document.getElementById('agent-chart-wizard');
+    if (defaultMount) defaultMount.style.display = 'none';
+
+    var grid = document.createElement('div');
+    grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-6 mt-2';
+
+    // Left column — sliders + checkboxes
+    var left = document.createElement('div');
+    left.className = 'space-y-3';
+
+    var leftHead = document.createElement('div');
+    leftHead.className = 'text-sm font-semibold text-gray-300 mb-2';
+    leftHead.textContent = 'Priorities';
+    left.appendChild(leftHead);
+
+    for (var i = 0; i < _WIZARD_SLIDERS.length; i++) {
+      var s = _WIZARD_SLIDERS[i];
+      var row = document.createElement('div');
+      row.className = 'flex items-center gap-2 text-xs';
+
+      var lab = document.createElement('label');
+      lab.className = 'text-gray-300 w-44 shrink-0';
+      lab.textContent = s.label;
+      lab.htmlFor = 'wizard-slider-' + s.key;
+      row.appendChild(lab);
+
+      var input = document.createElement('input');
+      input.type = 'range';
+      input.min = '0';
+      input.max = '100';
+      input.value = String(_wizardState.priorities[s.key]);
+      input.step = '1';
+      input.id = 'wizard-slider-' + s.key;
+      input.className = 'flex-1 accent-blue-400';
+      input.setAttribute('data-cat', s.key);
+      row.appendChild(input);
+
+      var val = document.createElement('span');
+      val.className = 'text-gray-400 w-8 text-right tabular-nums';
+      val.id = 'wizard-slider-val-' + s.key;
+      val.textContent = String(_wizardState.priorities[s.key]);
+      row.appendChild(val);
+
+      // Closure-safe handler (capture key + val ref).
+      (function(key, valRef) {
+        input.addEventListener('input', function(e) {
+          var v = parseInt(e.target.value, 10);
+          if (isNaN(v)) v = 0;
+          _wizardState.priorities[key] = v;
+          valRef.textContent = String(v);
+          _saveState('wizard-state', _wizardState);
+          _renderWizardOutput();
+        });
+      })(s.key, val);
+
+      left.appendChild(row);
+    }
+
+    // Checkbox row — Include cost
+    var costRow = document.createElement('div');
+    costRow.className = 'flex items-center gap-2 text-xs mt-3 pt-3 border-t border-gray-800';
+    var costCb = document.createElement('input');
+    costCb.type = 'checkbox';
+    costCb.id = 'wizard-include-cost';
+    costCb.className = 'accent-blue-400';
+    costCb.checked = _wizardState.includeCost;
+    costCb.addEventListener('change', function(e) {
+      _wizardState.includeCost = !!e.target.checked;
+      _saveState('wizard-state', _wizardState);
+      _renderWizardOutput();
+    });
+    var costLab = document.createElement('label');
+    costLab.htmlFor = 'wizard-include-cost';
+    costLab.className = 'text-gray-300';
+    costLab.textContent = 'Include cost in scoring (penalize expensive models)';
+    costRow.appendChild(costCb);
+    costRow.appendChild(costLab);
+    left.appendChild(costRow);
+
+    // Checkbox row — Edge-only
+    var edgeRow = document.createElement('div');
+    edgeRow.className = 'flex items-center gap-2 text-xs';
+    var edgeCb = document.createElement('input');
+    edgeCb.type = 'checkbox';
+    edgeCb.id = 'wizard-edge-only';
+    edgeCb.className = 'accent-blue-400';
+    edgeCb.checked = _wizardState.edgeOnly;
+    edgeCb.addEventListener('change', function(e) {
+      _wizardState.edgeOnly = !!e.target.checked;
+      _saveState('wizard-state', _wizardState);
+      _renderWizardOutput();
+    });
+    var edgeLab = document.createElement('label');
+    edgeLab.htmlFor = 'wizard-edge-only';
+    edgeLab.className = 'text-gray-300';
+    edgeLab.textContent = 'Edge-only filter (small/on-device models)';
+    edgeRow.appendChild(edgeCb);
+    edgeRow.appendChild(edgeLab);
+    left.appendChild(edgeRow);
+
+    // Right column — output list mount
+    var right = document.createElement('div');
+    right.className = 'space-y-2';
+
+    var rightHead = document.createElement('div');
+    rightHead.className = 'text-sm font-semibold text-gray-300 mb-2';
+    rightHead.textContent = 'Recommended agents';
+    right.appendChild(rightHead);
+
+    var listMount = document.createElement('div');
+    listMount.id = 'agent-chart-wizard-list';
+    listMount.className = 'space-y-2';
+    right.appendChild(listMount);
+
+    grid.appendChild(left);
+    grid.appendChild(right);
+    section.appendChild(grid);
+  }
+
+  function _wizardClassLabel(klass) {
+    if (klass === 'agent-product') return 'Agent Product';
+    if (klass === 'edge-slm') return 'Edge SLM';
+    return 'Frontier';
+  }
+
+  function _wizardCostTier(cost) {
+    if (typeof cost !== 'number' || cost <= 0) return '';
+    if (cost < 1) return '$';
+    if (cost < 5) return '$$';
+    if (cost < 20) return '$$$';
+    return '$$$$';
+  }
+
+  function _renderWizardOutput() {
+    var listMount = document.getElementById('agent-chart-wizard-list');
+    if (!listMount) return;
+    while (listMount.firstChild) listMount.removeChild(listMount.firstChild);
+
+    var ranked = _wizardRank();
+    if (!ranked.length) {
+      var msg = document.createElement('div');
+      msg.className = 'text-sm text-gray-400 italic';
+      msg.textContent = _wizardState.edgeOnly
+        ? 'No edge-class models matched your priorities.'
+        : 'No models matched your priorities — try raising at least one slider.';
+      listMount.appendChild(msg);
+      return;
+    }
+
+    var top = ranked.slice(0, 10);
+
+    // Global max contribution for sparkline normalization across the top-10.
+    var globalMaxContrib = 0;
+    for (var i = 0; i < top.length; i++) {
+      for (var j = 0; j < top[i].contributions.length; j++) {
+        if (top[i].contributions[j].value > globalMaxContrib) {
+          globalMaxContrib = top[i].contributions[j].value;
+        }
+      }
+    }
+    if (globalMaxContrib <= 0) globalMaxContrib = 1;
+
+    for (var k = 0; k < top.length; k++) {
+      var entry = top[k];
+      var item = document.createElement('div');
+      item.className = 'rounded border border-gray-800 bg-gray-950 p-3 cursor-pointer hover:border-blue-500 transition-colors';
+      item.setAttribute('data-model-id', entry.model_id);
+
+      // Header line — rank + name
+      var head = document.createElement('div');
+      head.className = 'flex items-baseline gap-2';
+
+      var rank = document.createElement('span');
+      rank.className = 'text-xs text-gray-500 tabular-nums w-6 shrink-0';
+      rank.textContent = (k + 1) + '.';
+      head.appendChild(rank);
+
+      var name = document.createElement('span');
+      name.className = 'text-sm font-medium text-gray-200 truncate';
+      name.textContent = _modelDisplayName(entry.model_id);
+      head.appendChild(name);
+
+      item.appendChild(head);
+
+      // Meta line — vendor · class · score · cost
+      var meta = document.createElement('div');
+      meta.className = 'flex items-center gap-2 text-xs text-gray-400 mt-1 ml-7 flex-wrap';
+
+      var vendor = document.createElement('span');
+      vendor.textContent = _vendorOf(entry.model_id) || 'unknown';
+      meta.appendChild(vendor);
+
+      var sep1 = document.createElement('span');
+      sep1.className = 'text-gray-600';
+      sep1.textContent = '·';
+      meta.appendChild(sep1);
+
+      var klass = _modelClass(entry.model_id);
+      var klabel = document.createElement('span');
+      klabel.style.color = _classColor(klass);
+      klabel.textContent = _wizardClassLabel(klass);
+      meta.appendChild(klabel);
+
+      var sep2 = document.createElement('span');
+      sep2.className = 'text-gray-600';
+      sep2.textContent = '·';
+      meta.appendChild(sep2);
+
+      var score = document.createElement('span');
+      score.className = 'text-gray-300 tabular-nums';
+      score.textContent = 'Score: ' + entry.score.toFixed(1);
+      meta.appendChild(score);
+
+      var costVal = _wizardOutputCost(entry.model_id);
+      var tier = _wizardCostTier(costVal);
+      if (tier) {
+        var sep3 = document.createElement('span');
+        sep3.className = 'text-gray-600';
+        sep3.textContent = '·';
+        meta.appendChild(sep3);
+        var costSpan = document.createElement('span');
+        costSpan.className = 'text-gray-500';
+        costSpan.textContent = 'Cost: ' + tier;
+        meta.appendChild(costSpan);
+      }
+
+      item.appendChild(meta);
+
+      // Sparkline-like contribution bars (one column per slider)
+      var spark = document.createElement('div');
+      spark.className = 'flex items-end gap-1 mt-2 ml-7';
+      spark.style.height = '24px';
+      for (var sp = 0; sp < entry.contributions.length; sp++) {
+        var c = entry.contributions[sp];
+        var bar = document.createElement('div');
+        var pct = Math.max(2, Math.round((c.value / globalMaxContrib) * 100));
+        bar.style.height = pct + '%';
+        bar.style.width = '12px';
+        bar.style.backgroundColor = _classColor(klass);
+        bar.style.opacity = '0.75';
+        bar.title = c.key + ': weighted ' + c.value.toFixed(1) + ' (raw ' + c.raw.toFixed(0) + ')';
+        spark.appendChild(bar);
+      }
+      item.appendChild(spark);
+
+      // Click → modal drilldown
+      (function(mid) {
+        item.addEventListener('click', function() {
+          if (window.Modal && typeof Modal.showModel === 'function') {
+            Modal.showModel(mid);
+          }
+        });
+      })(entry.model_id);
+
+      listMount.appendChild(item);
+    }
+  }
+
+  function renderAgentWizard() {
+    var section = _ensureMountPoint('agent-chart-wizard',
+      'Build Your Agent — Priority-driven ranking',
+      'Set capability priorities (sliders) → ranked agent recommendations. Toggle cost or edge-only filtering.');
+    if (!section) return;
+    _ensureWizardControls(section);
+    _renderWizardOutput();
   }
 
   // ======================================================================
@@ -2149,7 +2923,10 @@ var AgentCharts = (function() {
       renderClassDotPlot,
       renderSOTATimeline,
       renderVendorMatrix,
-      renderClassViolin
+      renderClassViolin,
+      renderCapabilitySankey,
+      renderCumulativeSOTAWins,
+      renderAgentWizard
     ];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
@@ -2170,6 +2947,9 @@ var AgentCharts = (function() {
     renderVendorMatrix: renderVendorMatrix,
     renderFingerprintsInLeaderboard: renderFingerprintsInLeaderboard,
     renderClassViolin: renderClassViolin,
+    renderCapabilitySankey: renderCapabilitySankey,
+    renderCumulativeSOTAWins: renderCumulativeSOTAWins,
+    renderAgentWizard: renderAgentWizard,
     // Helpers exported for widgets to reuse.
     _scoresFor: _scoresFor,
     _modelDisplayName: _modelDisplayName,
