@@ -17,3 +17,14 @@ assert.strictEqual(AI4SCharts._resolveLab('random-vendor/unknown').key, 'other')
 assert.strictEqual(AI4SCharts._resolveLab('').key, 'other');
 
 console.log('Task 1 _resolveLab OK');
+
+// Task 2 — _resolveDomain
+assert.ok(AI4SCharts._resolveDomain, '_resolveDomain must be exported');
+assert.strictEqual(AI4SCharts._resolveDomain('casp16_gdt'), 'bio-genomics');
+assert.strictEqual(AI4SCharts._resolveDomain('alphafold3_pae'), 'bio-genomics');
+assert.strictEqual(AI4SCharts._resolveDomain('imo_answerbench'), 'math');
+assert.strictEqual(AI4SCharts._resolveDomain('frontiermath'), 'math');
+assert.strictEqual(AI4SCharts._resolveDomain('matharena_apex'), 'math');
+assert.strictEqual(AI4SCharts._resolveDomain('unknown_benchmark'), null);
+
+console.log('Task 2 _resolveDomain OK');

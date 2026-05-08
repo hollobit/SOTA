@@ -65,11 +65,75 @@
   }
 
   // ====================================================================
+  // Benchmark → AI4S category mapping. Used by W5 (per-domain modal
+  // filters benchmarks to that domain) and W10 (catalog domain filter).
+  // Domain keys must match AI4S._CATEGORIES keys (see dashboard/js/ai4s.js).
+  // ====================================================================
+  var _BENCHMARK_DOMAIN_MAP = {
+    // bio-genomics
+    'casp16_gdt':                'bio-genomics',
+    'casp15_gdt':                'bio-genomics',
+    'casp14_gdt':                'bio-genomics',
+    'casp13_gdt':                'bio-genomics',
+    'casp12_gdt':                'bio-genomics',
+    'alphafold3_pae':            'bio-genomics',
+    'protein_binding':           'bio-genomics',
+    'chai2_pae':                 'bio-genomics',
+    'evo2_zeroshot':             'bio-genomics',
+    // math
+    'math':                      'math',
+    'math_500':                  'math',
+    'math_level5':               'math',
+    'imo_answerbench':           'math',
+    'imoanswerbench':            'math',
+    'imo_2024':                  'math',
+    'imo_2025':                  'math',
+    'frontiermath':              'math',
+    'frontiermath_t4':           'math',
+    'matharena_apex':            'math',
+    'matharena_arxivmath':       'math',
+    'matharena_arxivlean':       'math',
+    'matharena_brokenarxiv':     'math',
+    'matharena_brumo_2025':      'math',
+    'matharena_final_answer':    'math',
+    'matharena_project_euler':   'math',
+    'matharena_visualmath':      'math',
+    'mathvision':                'math',
+    'math_vision':               'math',
+    'mathvista':                 'math',
+    'mathvista_mini':            'math',
+    'putnambench':               'math',
+    'cmath':                     'math',
+    't_math':                    'math',
+    'wemath':                    'math',
+    // physics-materials
+    'matbench_discovery_mae':    'physics-materials',
+    'matbench_discovery_f1':     'physics-materials',
+    'mattergen_yield':           'physics-materials',
+    'alphaqubit_decoder_acc':    'physics-materials',
+    // geo-climate
+    'aurora_rmse':               'geo-climate',
+    'graphcast_rmse':            'geo-climate',
+    'pangu_rmse':                'geo-climate',
+    'aifs_rmse':                 'geo-climate',
+    'weatherbench_z500_72h':     'geo-climate'
+  };
+
+  function _resolveDomain(benchmarkId) {
+    if (!benchmarkId) return null;
+    return Object.prototype.hasOwnProperty.call(_BENCHMARK_DOMAIN_MAP, benchmarkId)
+      ? _BENCHMARK_DOMAIN_MAP[benchmarkId]
+      : null;
+  }
+
+  // ====================================================================
   // Public API.
   // ====================================================================
   var api = {
     _LAB_MAP: _LAB_MAP,
-    _resolveLab: _resolveLab
+    _resolveLab: _resolveLab,
+    _BENCHMARK_DOMAIN_MAP: _BENCHMARK_DOMAIN_MAP,
+    _resolveDomain: _resolveDomain
   };
 
   root.AI4SCharts = api;
