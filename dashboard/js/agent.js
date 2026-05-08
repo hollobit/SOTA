@@ -209,6 +209,20 @@ var Agent = (function() {
     // Utility-vs-cost / latency metrics map. Filled by _loadUtility (Task 17).
     var UTILITY_METRICS = {};
 
+    // Benchmarks selectable in the Compare panel dropdown. The first entry is
+    // the default selection.
+    var COMPARE_BENCHMARKS = [
+        { id: 'swe_bench_verified',   label: 'SWE-bench Verified' },
+        { id: 'swe_bench_pro',        label: 'SWE-bench Pro' },
+        { id: 'terminal_bench_2',     label: 'Terminal-Bench 2.0' },
+        { id: 'osworld_verified',     label: 'OSWorld-Verified' },
+        { id: 'gaia',                 label: 'GAIA' },
+        { id: 'tau2_bench',           label: 'τ2-Bench' },
+        { id: 'bfcl_v4',              label: 'BFCL v4' },
+        { id: 'mobile_actions',       label: 'Mobile Actions' },
+        { id: 'mobile_agent_bench',   label: 'MobileAgentBench' }
+    ];
+
     // Returns the flat union of every category's benchmark IDs, deduped.
     function _allAgentBenchmarks() {
         var seen = {};
@@ -622,12 +636,183 @@ var Agent = (function() {
         }
     }
 
+    // Classify a model id into one of three columns used by the Compare panel.
+    // Membership is checked against the curated AGENT_PRODUCTS / EDGE_SLMS
+    // arrays; everything else is treated as a frontier model.
+    function _modelClass(modelId) {
+        for (var i = 0; i < AGENT_PRODUCTS.length; i++) {
+            if (AGENT_PRODUCTS[i] === modelId) return 'agent-product';
+        }
+        for (var j = 0; j < EDGE_SLMS.length; j++) {
+            if (EDGE_SLMS[j] === modelId) return 'edge-slm';
+        }
+        return 'frontier';
+    }
+
+    // Returns the utility metrics object (size_gb, latency, cost, etc.) for a
+    // model id, or {} if none registered. UTILITY_METRICS is filled by Task 17.
+    function _utilityFor(modelId) {
+        return UTILITY_METRICS[modelId] || {};
+    }
+
+    // Build one column body for the Compare panel. Returns a table element
+    // with up to 10 rows, or a "No data" placeholder div when rows is empty.
+    function _renderCompareColumn(rows, klass, showSize) {
+        if (!rows || rows.length === 0) {
+            var empty = document.createElement('div');
+            empty.className = 'text-xs text-gray-500 italic';
+            empty.textContent = 'No data';
+            return empty;
+        }
+
+        var table = document.createElement('table');
+        table.className = 'w-full text-xs';
+
+        var thead = document.createElement('thead');
+        var theadRow = document.createElement('tr');
+        theadRow.className = 'text-gray-500';
+
+        var thRank = document.createElement('th');
+        thRank.className = 'text-left';
+        thRank.textContent = '#';
+        theadRow.appendChild(thRank);
+
+        var thModel = document.createElement('th');
+        thModel.className = 'text-left';
+        thModel.textContent = 'Model';
+        theadRow.appendChild(thModel);
+
+        var thScore = document.createElement('th');
+        thScore.className = 'text-right';
+        thScore.textContent = 'Score';
+        theadRow.appendChild(thScore);
+
+        if (showSize === true) {
+            var thSize = document.createElement('th');
+            thSize.className = 'text-right';
+            thSize.textContent = 'Size';
+            theadRow.appendChild(thSize);
+        }
+
+        thead.appendChild(theadRow);
+        table.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+        var top = rows.slice(0, 10);
+        for (var i = 0; i < top.length; i++) {
+            var r = top[i];
+            var tr = document.createElement('tr');
+            tr.className = 'border-t border-gray-800';
+
+            var tdRank = document.createElement('td');
+            tdRank.className = 'py-1';
+            tdRank.textContent = String(i + 1);
+            tr.appendChild(tdRank);
+
+            var tdModel = document.createElement('td');
+            tdModel.className = 'py-1';
+            var nameSpan = document.createElement('span');
+            nameSpan.textContent = _modelDisplayName(r.model_id);
+            tdModel.appendChild(nameSpan);
+            tr.appendChild(tdModel);
+
+            var tdScore = document.createElement('td');
+            tdScore.className = 'py-1 text-right text-gray-100';
+            tdScore.textContent = String(r.value);
+            tr.appendChild(tdScore);
+
+            if (showSize === true) {
+                var tdSize = document.createElement('td');
+                tdSize.className = 'py-1 text-right text-gray-400';
+                var sizeGb = _utilityFor(r.model_id).size_gb;
+                tdSize.textContent = sizeGb ? (sizeGb + ' GB') : '—';
+                tr.appendChild(tdSize);
+            }
+
+            tbody.appendChild(tr);
+        }
+        table.appendChild(tbody);
+
+        return table;
+    }
+
+    // Renders the 3-column compare panel for the selected benchmark.
+    // Defaults to the first entry of COMPARE_BENCHMARKS when called with no arg.
+    function _renderCompare(benchmarkId) {
+        var host = document.getElementById('agent-compare');
+        if (!host) return;
+        while (host.firstChild) host.removeChild(host.firstChild);
+
+        var bid = benchmarkId || COMPARE_BENCHMARKS[0].id;
+
+        var rows = _scoresFor(bid);
+        var frontier = [], product = [], edge = [];
+        for (var i = 0; i < rows.length; i++) {
+            var k = _modelClass(rows[i].model_id);
+            if (k === 'agent-product') product.push(rows[i]);
+            else if (k === 'edge-slm') edge.push(rows[i]);
+            else frontier.push(rows[i]);
+        }
+        var sortDesc = function(a, b) { return b.value - a.value; };
+        frontier.sort(sortDesc);
+        product.sort(sortDesc);
+        edge.sort(sortDesc);
+
+        // Heading
+        var h = document.createElement('h2');
+        h.className = 'text-lg font-semibold text-gray-200 mb-3 mt-6';
+        h.textContent = 'Frontier vs Agent-Product vs On-device/Edge';
+        host.appendChild(h);
+
+        // Dropdown wrapper
+        var ctrlWrap = document.createElement('div');
+        ctrlWrap.className = 'mb-3 text-xs text-gray-300';
+        ctrlWrap.appendChild(document.createTextNode('Benchmark: '));
+        var sel = document.createElement('select');
+        sel.id = 'agent-compare-bench';
+        sel.className = 'bg-gray-900 border border-gray-700 rounded px-2 py-1 text-gray-200 text-xs';
+        for (var c = 0; c < COMPARE_BENCHMARKS.length; c++) {
+            var opt = document.createElement('option');
+            opt.value = COMPARE_BENCHMARKS[c].id;
+            opt.textContent = COMPARE_BENCHMARKS[c].label;
+            if (COMPARE_BENCHMARKS[c].id === bid) opt.selected = true;
+            sel.appendChild(opt);
+        }
+        sel.addEventListener('change', function(e) {
+            _renderCompare(e.target.value);
+        });
+        ctrlWrap.appendChild(sel);
+        host.appendChild(ctrlWrap);
+
+        // Grid container
+        var grid = document.createElement('div');
+        grid.className = 'grid grid-cols-1 md:grid-cols-3 gap-3';
+        host.appendChild(grid);
+
+        // Three columns
+        var columns = [
+            { rows: frontier, heading: 'Frontier (general-purpose)', klass: 'frontier',      showSize: false },
+            { rows: product,  heading: 'Agent products',             klass: 'agent-product', showSize: false },
+            { rows: edge,     heading: 'On-device / Edge',           klass: 'edge-slm',      showSize: true }
+        ];
+        for (var col = 0; col < columns.length; col++) {
+            var box = document.createElement('div');
+            box.className = 'rounded border bg-gray-900 border-gray-800 p-3';
+            var subhead = document.createElement('div');
+            subhead.className = 'text-xs font-semibold text-gray-200 mb-2';
+            subhead.textContent = columns[col].heading;
+            box.appendChild(subhead);
+            box.appendChild(_renderCompareColumn(columns[col].rows, columns[col].klass, columns[col].showSize));
+            grid.appendChild(box);
+        }
+    }
+
     function render() {
         _bootValidate();
         _renderSOTAWatch();
         _renderCategories();
-        // Real renderers added in Tasks 6-7
-        _placeholder(document.getElementById('agent-compare'), '[Compare — Task 6]');
+        _renderCompare();
+        // Real renderer added in Task 7
         _placeholder(document.getElementById('agent-leaderboard'), '[Leaderboard — Task 7]');
     }
 
