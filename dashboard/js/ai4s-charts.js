@@ -127,13 +127,111 @@
   }
 
   // ====================================================================
+  // Style block — mobile + a11y. Inject once on first mount.
+  // ====================================================================
+  function _ensureAi4sChartsStyle() {
+    if (typeof document === 'undefined') return;
+    if (document.getElementById('ai4s-charts-style')) return;
+    var s = document.createElement('style');
+    s.id = 'ai4s-charts-style';
+    s.textContent = [
+      '@media (max-width: 768px) {',
+      '  .ai4s-chart-mount { height: 320px !important; }',
+      '  .ai4s-chart-mount canvas { max-width: 100% !important; }',
+      '  #ai4s-charts h2 { font-size: 1rem !important; }',
+      '}',
+      '@media (prefers-reduced-motion: reduce) {',
+      '  .ai4s-chart-mount * { animation-duration: 0.001s !important; transition-duration: 0.001s !important; }',
+      '}',
+      '.ai4s-chart-mount:focus { outline: 2px solid #60a5fa; outline-offset: 2px; }'
+    ].join('\n');
+    document.head.appendChild(s);
+  }
+
+  // ====================================================================
+  // Mount-point factory. Each widget calls this to lazily create its
+  // section inside #ai4s-charts. Idempotent — safe to call repeatedly.
+  // ====================================================================
+  function _ensureMountPoint(id, title, hint) {
+    if (typeof document === 'undefined') return null;
+    _ensureAi4sChartsStyle();
+    var host = document.getElementById('ai4s-charts');
+    if (!host) return null;
+    var existing = document.getElementById(id + '-section');
+    if (existing) return existing;
+    var section = document.createElement('div');
+    section.id = id + '-section';
+    section.className = 'rounded border bg-gray-900 border-gray-800 p-4';
+
+    var headRow = document.createElement('div');
+    headRow.className = 'flex items-center mb-1';
+    var h = document.createElement('h2');
+    h.className = 'text-lg font-semibold text-gray-200';
+    h.textContent = title;
+    headRow.appendChild(h);
+    if (hint) {
+      var info = document.createElement('span');
+      info.className = 'ml-2 text-gray-500 hover:text-blue-400 cursor-help text-sm';
+      info.textContent = 'ⓘ';
+      info.title = hint;
+      headRow.appendChild(info);
+    }
+    section.appendChild(headRow);
+    if (hint) {
+      var p = document.createElement('p');
+      p.className = 'text-xs text-gray-500 mb-3';
+      p.textContent = hint;
+      section.appendChild(p);
+    }
+    var chart = document.createElement('div');
+    chart.id = id;
+    chart.className = 'w-full ai4s-chart-mount';
+    chart.style.height = '420px';
+    chart.setAttribute('role', 'img');
+    chart.setAttribute('aria-label', 'Chart: ' + title + (hint ? ' — ' + hint : ''));
+    chart.setAttribute('tabindex', '0');
+    section.appendChild(chart);
+    host.appendChild(section);
+    return section;
+  }
+
+  // ====================================================================
+  // Toolbox helper (PNG export + dataView + restore). Mirrors agent-charts.
+  // ====================================================================
+  function _applyToolbox(opt) {
+    opt.toolbox = opt.toolbox || {
+      right: 12, top: 8,
+      iconStyle: { borderColor: '#9ca3af' },
+      feature: {
+        saveAsImage: { backgroundColor: '#0f172a' },
+        dataView: { readOnly: true, backgroundColor: '#0f172a',
+          textareaColor: '#1f2937', textareaBorderColor: '#374151',
+          textColor: '#e5e7eb' },
+        restore: {}
+      }
+    };
+    return opt;
+  }
+
+  // ====================================================================
+  // Public render orchestrator. Called from AI4S.render().
+  // Phase 1: stub — actual widget calls added per Task 5-9.
+  // ====================================================================
+  function renderAll() {
+    // Widgets are registered as Phase 1 tasks land. Empty for now.
+  }
+
+  // ====================================================================
   // Public API.
   // ====================================================================
   var api = {
     _LAB_MAP: _LAB_MAP,
     _resolveLab: _resolveLab,
     _BENCHMARK_DOMAIN_MAP: _BENCHMARK_DOMAIN_MAP,
-    _resolveDomain: _resolveDomain
+    _resolveDomain: _resolveDomain,
+    _ensureMountPoint: _ensureMountPoint,
+    _applyToolbox: _applyToolbox,
+    renderAll: renderAll
   };
 
   root.AI4SCharts = api;

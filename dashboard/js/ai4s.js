@@ -312,5 +312,10 @@ var AI4S = {
             section.appendChild(grid);
             container.appendChild(section);
         });
+
+        // Hand off to ai4s-charts.js for chart widgets (loaded after this file).
+        if (typeof AI4SCharts !== 'undefined' && AI4SCharts.renderAll) {
+            AI4SCharts.renderAll();
+        }
     }
 };
