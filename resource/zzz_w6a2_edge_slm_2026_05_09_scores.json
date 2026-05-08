@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-09",
+    "_note": "Wave 6A2 — Edge SLM agentic benchmark coverage expansion. Strict primary-source attribution policy. Of the 9 EDGE_SLMS curated in dashboard/js/agent.js, prior to this wave 5 had agentic scores (microsoft/phi-4-mini-instruct, microsoft/phi-4 [non-agentic only], google/function-gemma, meta/llama-3.2-1b-instruct, meta/llama-3.2-3b-instruct) and 4 had none (apple/foundation-3b, apple/foundation-private-cloud, google/gemma-3-270m, google/gemma-3n). microsoft/phi-4 (14B) had no agentic-bench scores in DB despite a registered model row — added BFCL v4 from the official Berkeley Gorilla data_overall.csv (model row 'Phi-4 (Prompt)', linked to https://huggingface.co/microsoft/phi-4 by the leaderboard itself). For the remaining 3 (apple/foundation-3b, apple/foundation-private-cloud, google/gemma-3-270m, google/gemma-3n): Apple's 2025 Foundation Language Models Tech Report (arxiv 2507.13575) reports IFEval & MMLU but NO BFCL/function-calling/mobile-actions agentic benchmarks; Gemma-3 270M model card reports IFEval=51.2 but no agentic numbers; Gemma-3n E4B model card reports MMLU/coding/math but no BFCL/function-calling/mobile-actions; and the Berkeley BFCL v4 leaderboard (data_overall.csv pulled 2026-05-09) lists no Apple models, no Gemma-3-270m, and no Gemma-3n. Therefore agentic coverage stays deferred for those 3 vendors pending vendor publication or community eval. Net: 5/9 → 6/9 covered.",
+    "sources": [
+      "https://gorilla.cs.berkeley.edu/data_overall.csv",
+      "https://gorilla.cs.berkeley.edu/leaderboard.html",
+      "https://huggingface.co/microsoft/phi-4"
+    ]
+  },
+  "scores": [
+    {"model": "microsoft/phi-4", "benchmark": "bfcl_v4", "score": 28.79, "unit": "%", "_source": "https://gorilla.cs.berkeley.edu/leaderboard.html", "collected_at": "2026-05-09", "_note": "BFCL v4 Overall Acc, prompt-mode (no native function-calling fine-tune). Row 'Phi-4 (Prompt)' rank #70 in Berkeley data_overall.csv (pulled 2026-05-09); model link points to https://huggingface.co/microsoft/phi-4 (14B base). Microsoft/MIT license per leaderboard."},
+    {"model": "microsoft/phi-4", "benchmark": "bfcl_v3_live", "score": 60.70, "unit": "%", "_source": "https://gorilla.cs.berkeley.edu/leaderboard.html", "collected_at": "2026-05-09", "_note": "BFCL Live Acc (real-world distribution sub-task), prompt-mode. Row 'Phi-4 (Prompt)' Live Acc column in Berkeley data_overall.csv (pulled 2026-05-09)."},
+    {"model": "microsoft/phi-4", "benchmark": "bfcl_v3_multi_turn", "score": 3.88, "unit": "%", "_source": "https://gorilla.cs.berkeley.edu/leaderboard.html", "collected_at": "2026-05-09", "_note": "BFCL Multi-Turn Acc (multi-step interactive function-calling), prompt-mode. Row 'Phi-4 (Prompt)' Multi Turn Acc column in Berkeley data_overall.csv (pulled 2026-05-09)."}
+  ]
+}

@@ -957,6 +957,81 @@ var Sovereign = {
         'xai/':                 { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' }
     },
 
+    // Sovereign agent products — regional equivalents of Cursor / Devin /
+    // Claude Code. Strict-attribution: each entry has a verifiable primary
+    // source URL (vendor site or official GitHub). Metadata only — no scores.
+    // `crossLinkAgent: true` flags products already in main Agent menu's
+    // AGENT_PRODUCTS list (rendered with a cross-link badge).
+    AGENT_PRODUCTS: [
+        // ── 🇨🇳 China ──
+        {
+            id: 'butterfly/manus',
+            name: 'Manus',
+            region: 'cn', flag: '🇨🇳', regionLabel: 'China',
+            vendor: 'Butterfly Effect',
+            status: 'production',
+            note: 'General-purpose AI agent (also tracked in Agent menu as manus-ai/manus)',
+            source_url: 'https://manus.im/',
+            crossLinkAgent: true
+        },
+        {
+            id: 'alibaba/qwen-code',
+            name: 'Qwen Code',
+            region: 'cn', flag: '🇨🇳', regionLabel: 'China',
+            vendor: 'Alibaba (QwenLM)',
+            status: 'production',
+            note: 'Open-source coding agent for terminal — fork of Gemini CLI',
+            source_url: 'https://github.com/QwenLM/qwen-code'
+        },
+        {
+            id: 'zhipu/autoglm',
+            name: 'AutoGLM / Z.ai Agent',
+            region: 'cn', flag: '🇨🇳', regionLabel: 'China',
+            vendor: 'Zhipu AI (Z.ai)',
+            status: 'production',
+            note: 'Browser/phone agent powered by GLM family',
+            source_url: 'https://z.ai/'
+        },
+        {
+            id: 'bytedance/coze',
+            name: 'Coze',
+            region: 'cn', flag: '🇨🇳', regionLabel: 'China',
+            vendor: 'ByteDance',
+            status: 'production',
+            note: 'Agent platform / bot builder powered by Doubao',
+            source_url: 'https://www.coze.com/'
+        },
+        {
+            id: 'moonshot/kimi',
+            name: 'Kimi (Researcher)',
+            region: 'cn', flag: '🇨🇳', regionLabel: 'China',
+            vendor: 'Moonshot AI',
+            status: 'production',
+            note: 'Long-context assistant + Kimi Researcher deep-research agent',
+            source_url: 'https://www.kimi.com/'
+        },
+        // ── 🇰🇷 Korea ──
+        {
+            id: 'upstage/solar-pro',
+            name: 'Solar Pro 2 + Document Parse',
+            region: 'kr', flag: '🇰🇷', regionLabel: 'Korea',
+            vendor: 'Upstage',
+            status: 'production',
+            note: 'Solar Pro 2 with Document Parse / Information Extract agent APIs',
+            source_url: 'https://www.upstage.ai/'
+        },
+        // ── 🇮🇳 India ──
+        {
+            id: 'sarvam/sarvam-agent',
+            name: 'Sarvam-M Agent',
+            region: 'in', flag: '🇮🇳', regionLabel: 'India',
+            vendor: 'Sarvam AI',
+            status: 'production',
+            note: 'Indic-language assistant + Sarvam-M agent stack',
+            source_url: 'https://www.sarvam.ai/'
+        }
+    ],
+
     _cycleSort: function(tableId, key, defaultDir) {
         var s = this._sortStates[tableId] || { key: null, dir: null };
         if (s.key !== key) {
@@ -1012,6 +1087,7 @@ var Sovereign = {
             self._renderDimension(dim);
         });
         this._renderPerfSuites();
+        this._renderAgentProducts();
         this._renderHeatmap();
 
         // Wire timeline filter + map view toggle controls (only on first render)
@@ -2625,5 +2701,103 @@ var Sovereign = {
             }
         });
         window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    // Render the sovereign agent products grid. Cards are grouped visually
+    // by region (via flag in header). DOM-only — no innerHTML, no scores.
+    _renderAgentProducts: function() {
+        var container = document.getElementById('sov-agent-products');
+        if (!container) return;
+        container.textContent = '';
+
+        var products = this.AGENT_PRODUCTS || [];
+        if (!products.length) {
+            var empty = document.createElement('p');
+            empty.className = 'text-xs text-gray-500';
+            empty.textContent = 'No sovereign agent products listed.';
+            container.appendChild(empty);
+            return;
+        }
+
+        // Status → badge color mapping.
+        var statusColor = {
+            production: 'bg-green-900/40 text-green-300 border-green-700',
+            beta:       'bg-amber-900/40 text-amber-300 border-amber-700',
+            preview:    'bg-blue-900/40 text-blue-300 border-blue-700'
+        };
+
+        products.forEach(function(p) {
+            var card = document.createElement('div');
+            card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-4 flex flex-col hover:border-blue-600 transition';
+            card.dataset.productId = p.id;
+
+            // Header: flag + region label + status badge
+            var head = document.createElement('div');
+            head.className = 'flex items-center gap-2 mb-2 flex-wrap';
+
+            var flag = document.createElement('span');
+            flag.style.fontSize = '18px';
+            flag.textContent = p.flag || '';
+            head.appendChild(flag);
+
+            var regionEl = document.createElement('span');
+            regionEl.className = 'text-xs text-gray-400 uppercase tracking-wide';
+            regionEl.textContent = p.regionLabel || '';
+            head.appendChild(regionEl);
+
+            var statusBadge = document.createElement('span');
+            var sCls = statusColor[p.status] || 'bg-gray-800 text-gray-300 border-gray-700';
+            statusBadge.className = 'ml-auto text-xs px-2 py-0.5 rounded border ' + sCls;
+            statusBadge.textContent = p.status || 'unknown';
+            head.appendChild(statusBadge);
+
+            card.appendChild(head);
+
+            // Product name (large)
+            var name = document.createElement('div');
+            name.className = 'text-base font-semibold text-gray-100 mb-1';
+            name.textContent = p.name;
+            card.appendChild(name);
+
+            // Vendor line
+            var vendor = document.createElement('div');
+            vendor.className = 'text-xs text-gray-400 mb-2';
+            vendor.textContent = p.vendor || '';
+            card.appendChild(vendor);
+
+            // Optional descriptive note
+            if (p.note) {
+                var note = document.createElement('div');
+                note.className = 'text-xs text-gray-500 mb-3 leading-relaxed';
+                note.textContent = p.note;
+                card.appendChild(note);
+            }
+
+            // Footer: source link + cross-link badge if applicable
+            var footer = document.createElement('div');
+            footer.className = 'mt-auto flex items-center gap-2 flex-wrap';
+
+            if (p.source_url) {
+                var link = document.createElement('a');
+                link.href = p.source_url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.className = 'text-xs text-blue-400 hover:text-blue-300 underline';
+                link.textContent = 'Primary source ↗';
+                link.title = p.source_url;
+                footer.appendChild(link);
+            }
+
+            if (p.crossLinkAgent) {
+                var crossBadge = document.createElement('span');
+                crossBadge.className = 'text-xs text-amber-300 bg-amber-900/30 border border-amber-700 rounded px-1.5 py-0.5';
+                crossBadge.textContent = 'Also in Agent menu';
+                crossBadge.title = '이 제품은 상위 Agent 메뉴의 AGENT_PRODUCTS 리스트에도 포함되어 있습니다.';
+                footer.appendChild(crossBadge);
+            }
+
+            card.appendChild(footer);
+            container.appendChild(card);
+        });
     }
 };
