@@ -1,6 +1,78 @@
 [
   {
     "type": "Feature",
+    "date": "2026-05-08",
+    "benchmark_id": "Agent menu 신설 + agentic data sweep — 14 신규 벤치마크 + 19 신규 모델 + 24 신규 점수 + 20 Resources",
+    "new_model": "agent-products(10): Claude Code/Codex CLI/Cursor Composer/Replit Agent/Devin/Manus/Computer Use/Mariner/Operator/Cowork. edge-SLMs(9): Apple Foundation 3B+Private Cloud/Phi-4+mini/Gemma 3-270M+3n+Function/Llama 3.2 1B+3B. 14 new benchmarks: aider_polyglot/swe_lancer/mle_bench/usaco/appworld/hal_composite/mobile_agent_bench/mobilebench_v2/mobilebench_xiaomi/mlperf_mobile_llm/mlperf_inference_edge_v5_1/mlperf_tiny_v1_2/tinyml_energy_v1/function_gemma_calling. UI: 4 sub-sections in /Agent tab — SOTA Watch (4 tiles) + 10 Category cards (edge spans full row) + Frontier-vs-AgentProduct-vs-Edge Compare panel (switchable benchmark) + Composite Agent Score Leaderboard (top 25, normalized, coverage≥3). Modal: 2 new scale_class badges (agent-product amber + edge-slm green). 24 new score rows: USACO 8 (HAL Princeton), GAIA 5 (HAL), Aider Polyglot 7, Claude Code SWE-Verified 87.6, Codex CLI SWE-Verified 85.0+Terminal-Bench 82.0+SWE-Pro 56.8. Edge utility metrics file with size/battery citations for 9 SLMs. 20 Resources additions (HAL/AA Agents/BenchLM/MorphLLM/Helicone/Phil Schmid Compendium/MobileAgentBench/Xiaomi/MLPerf x3/Google AI Edge/Apple ML/SmolLM/Local AI Master). Strict-attribution maintained throughout — each row cites primary source.",
+    "new_value": "벤치마크 +14 (842 → 854), 모델 +19 (1096 → 1114), 점수 +54 (3261 → 3315). Resources +20.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-08",
+    "benchmark_id": "Playwright sweep round 2 — Arena Vision/Search Elo + MRCR v2 8-needle + LiveBench backlog (30 신규 점수, 3 신규 벤치마크)",
+    "new_model": "(1) Arena Vision Elo (NEW): claude-opus-4.7 1305 / opus-4.6 1300 / muse-spark 1298 / gemini-3-pro 1288 / gpt-5.5 1288 / gpt-5.2 1279 / gemini-3.1-pro 1277. (2) Arena Search Elo (NEW): claude-opus-4.6-search 1255 / gpt-5.5-search 1235 / opus-4.7 1233 / sonnet-4.6-search 1221 / gemini-3.1-pro-grounding 1218 / gpt-5.2-search 1213 / gemini-3-pro-grounding 1210 / grok-4.20 1209 / gemini-3-flash 1208 / grok-4.3 1205. (3) MRCR v2 8-needle (NEW, OpenAI HF dataset): Claude Opus 4.6 93.0 / GPT-5.5 74.0 / Gemini 3.1 Flash-Lite 60.1 / GPT-5.4 mini 33.6 / Gemini 3 Pro 26.3 / Gemini 3.1 Pro 26.3 / Gemini 3 Flash 22.1. (4) LiveBench 추가 6건 (이전 ingest 의 backlog): GPT-5.1 Codex Max 73.98 / Gemini 3 Flash 72.40 / GPT-5 Pro 70.48 / Claude Sonnet 4.5 68.19 / GPT-5.4 mini 67.54 / GPT-5 mini 65.91. cc:TODO Video-MME — Playwright 렌더링 성공했으나 leaderboard 가 2025-09 까지로 stale; 2026 frontier 미반영 (외부 의존성 BLOCKED 그대로). UK AISI Cyber Expert tier 점수 (GPT-5.5 71.4 / Mythos 68.6 / GPT-5.4 52.4 / Opus 4.7 48.6) 는 이미 DB 에 적재됨.",
+    "new_value": "벤치마크 839 → 842 (+3), scores 3261 → 3291 (+30 distinct rows). LiveBench 21 → 27. cc:TODO 항목 4개 중 MRCR/RULER 부분 closure",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-08",
+    "benchmark_id": "Playwright 추출 — LiveBench / EQ-Bench Creative Writing Longform / Arena.ai (Text + WebDev) 49 신규 점수",
+    "new_model": "이전 sweep 에서 client-side rendered table 때문에 추출 불가했던 3개 leaderboard 를 Playwright headless browser 로 직접 렌더링하고 strict-attribution 으로 ingest. (1) LiveBench Global Average 20개 (top 30 frontier 중 DB 매핑 가능한 모델만): GPT-5.5 80.71 / GPT-5.4-thinking 80.28 / Gemini 3.1 Pro 79.93 / Claude 4.7 Opus 76.91 / Claude 4.6 Opus 76.33 / Claude 4.5 Opus 75.96 / Claude Sonnet 4.6 75.47 / GPT-5.2 74.84 / DeepSeek V4 Pro 73.58 / Gemini 3 Pro 73.39 / GPT-5.3 Codex 72.76 / Kimi K2.6 72.17 / Qwen 3.6 Plus 70.85 / GLM-5.1 70.18 / Kimi K2.5 69.07 / GLM-5 68.85 / Grok 4.20 67.96 / DeepSeek V4 Flash 67.25 / Grok 4.3 66.74 / Minimax M2.7 63.49. (2) EQ-Bench Creative Writing Longform — NEW 벤치마크 등록 + top 10: Claude 4.7 Opus 81.8 / Sonnet 4.6 79.9 / Kimi K2.6 78.5 / GPT-5.4 78.3 / GPT-5.5 78.2 / Opus 4.6 77.7 / DeepSeek V4 Pro 75.6 / Kimi K2.5 74.9 / GLM-5.1 73.5 / Opus 4.5 73.1. (3) Arena Text top 10 → 8 unique: Opus 4.7 1503 / Opus 4.6 1502 / Gemini 3.1 Pro 1492 / Muse Spark 1490 / Gemini 3 Pro 1486 / GPT-5.5 1484 / Grok 4.20 1480 / GPT-5.2 1477. (4) Arena WebDev top 10 → 8 unique: Opus 4.7 1570 / Opus 4.6 1549 / GLM-5.1 1531 / Sonnet 4.6 1524 / Kimi K2.6 1523 / Muse Spark 1509 / GPT-5.5 1491 / Opus 4.5 1490.",
+    "new_value": "총 46+1 신규 항목 (벤치마크 887 → 888, 점수 3508 → 3554). 모든 row 모델명+벤치마크명+값이 live leaderboard 에 가시되어 strict-attribution 충족",
+    "old_model": "이전 sweep: livebench/eqbench/arena.ai 는 WebFetch SSR 로 추출 불가",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-08",
+    "benchmark_id": "Resources 탭 — 신규 AISI 6개 1차 출처 추가 (Joint Testing 보고서 / Synthetic Content Agenda / GPAI Code of Practice / UK AISI 연구 agenda+연차보고)",
+    "new_model": "3rd Joint Testing — Agentic Eval Report (sgaisi.sg, Jul 17 2025, Singapore lead 누출/사기 + UK lead 사이버보안, 9개 AISI 참가, ~1500 tasks/1200 tools, Cybench+Intercode 사용, 모델 익명화 A-F: leakage pass ~57%/~35%, judge discrepancy 23%/28%) / Synthetic Content Research Agenda (DISR+ISED 공동 publish Jul 14 2025) / GPAI Code of Practice 최종본 (code-of-practice.ai, EU AI Office Jul 10 2025, 전체 signatory: Anthropic/Google/IBM/Microsoft/OpenAI/Amazon/Mistral/Aleph Alpha + xAI Safety & Security 부분 / Meta 미서명, 시행 2026-08-02) + GPAI Signatory Taskforce / UK AISI Research Agenda + 2025 Year in Review (30+ frontier 모델 평가, self-replication 벤치마크, sandbagging 탐지, 76K 참가 설득력 연구 Science 발표). NEW MODEL/SCORE 신규 적재는 0건: AISI joint testing 보고서가 모델명을 익명화(Model A/B/C/D/E/F)해 strict-attribution 규칙으로 차단됨.",
+    "new_value": "Resources 411 → 417 entries (+6), seed_sources.yaml +6. 모든 entry 1차 출처 PDF 또는 정부 도메인",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-08",
+    "benchmark_id": "Resources 탭 — 7개 신규 AISI/AI 거버넌스 reference 추가 (호주/캐나다/프랑스/인도/EU/네트워크)",
+    "new_model": "Australia AISI (DISR — industry.gov.au, A$30M, 2026 초 운영 시작) / Canada AISI (CAISI Canada — ised-isde.canada.ca, C$50M/5y) + CAISI Research Program at CIFAR (cifar.ca/ai/caisi/, 2026 calls: interpretability/robustness/cyber-misuse, 2025 연차보고서 report.buildingsafeai.ca) / France INESIA (inria.fr — ANSSI+LNE+PEReN+Inria 4-org federation, 2025-01-31 출범, 2026-2027 roadmap: systemic risk + AI Act 지원 + 모델 신뢰성 평가, AGENTIA agent eval 2025-07) / India AISI (IndiaAI MeitY — indiaai.gov.in, 2025-01-30 발표, hub-and-spoke 모델 + 7-Sutras 프레임워크 India AI Impact Summit 2026 출범) / EU AI Office (digital-strategy.ec.europa.eu — GPAI 의무 2025-08-02 발효, high-risk 2026-08-02, Digital Omnibus 단순화 합의 2026-05-07) / AISI International Network Mission (10개 창립 멤버: US/UK/JP/SG/KR/AU/CA/FR/EU/KE, Vancouver 2nd convening 2025-07, Africa/SEA/LATAM mini-AISI capacity building). UAE — MBZUAI Institute of Foundation Models 는 별도 Frontier AI 안전 센터가 아닌 LLM 연구소로 기존 등록(TII Falcon)으로 충분히 커버.",
+    "new_value": "Resources 탭 +7 신규 entries (404 → 411 sites), seed_sources.yaml +7. 모든 entry strict-attribution: 정부/공식 도메인 1차 출처만 사용",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-08",
+    "benchmark_id": "Resources 탭 — 6개 AISI(AI Safety Institute) reference 갱신",
+    "new_model": "US CAISI 출범 반영: nist.gov/artificial-intelligence/ai-safety-institute → nist.gov/caisi (Center for AI Standards and Innovation, mid-2025 개편). UK AISI Blog desc 에 최근 게시물 반영(May 5 Microsoft 파트너십 / Apr 30 GPT-5.5 사이버 평가 / Apr 13 Mythos 사이버 평가 / OpenClaw sandboxed-agent recon / sycophancy 감소 / 정렬-방해 평가). Japan AISI 에 AI Safety Annual Report 2025 (Apr 28) + Known Attacks and Their Impacts (Apr 24) + FY2025 SWG report (Apr 23) 반영. Singapore AISI 에 3JT (International Joint Testing) + 다국어 LLM 평가 (UK/Japan 협업 Feb 2025) + AI 에이전트 데이터 유출 테스트 (Korea 협업) + SCAI 2025 + Singapore Consensus 추가. Korea AISI URL /eng → /kor 로 변경 (사용자 지정), 다음 트랙 명시. China AISI 3건은 기등록.",
+    "new_value": "Resources 탭/seed_sources.yaml 5건 갱신 (US/UK/JP/SG/KR), 1건 URL 교체 (US AISI → US CAISI)",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-08",
+    "benchmark_id": "AA Intelligence Index — 5/8 sweep from artificialanalysis.ai (10 신규 점수)",
+    "new_model": "google/gemini-3.1-pro 57 (rank 4) / openai/gpt-5.3-codex 54 (rank 8) / meta/muse-spark 52 (rank 10) / alibaba/qwen3.6-max-preview 52 (rank 12) / anthropic/claude-sonnet-4.6 52 (rank 13) / deepseek/deepseek-v4-pro-max 52 (rank 14) / zhipu/glm-5.1 51 (rank 15) / alibaba/qwen3.6-plus 50 (rank 17) / zhipu/glm-5 50 (rank 19) / minimax/m2.7 50 (rank 20). 기존 5개 모델(gpt-5.5 60, claude-opus-4.7 57, mimo-v2.5-pro 54, kimi-k2.6 54, grok-4.3 53.2)은 leaderboard 값과 일치하므로 그대로 유지. AA 외 livebench/eqbench/arena.ai 는 client-side rendered 라 WebFetch 추출 불가 → Resources 탭 discovery link 로만 유지.",
+    "new_value": "aa_intelligence_index 커버리지 8 → 18 모델 (+10)",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-08",
+    "benchmark_id": "Frontier Compare + Cyber & Coding 메뉴 propagation",
+    "new_model": "Frontier Compare 에 anthropic/claude-sonnet-4.6 추가 (Sonnet 4.6 max — AA Intelligence rank 13, 36 scores 보유). Cyber & Coding 에 deepseek/deepseek-v4-pro-max 추가 (V4 Pro Max — AA Intelligence rank 14, 24 scores 보유). qwen3.6-max-preview 는 AA 점수 1개뿐이라 menu 추가 보류.",
+    "new_value": "Frontier Compare +1, Cyber & Coding +1, cache-bust v20260508b/v20260508a",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
     "date": "2026-05-06",
     "benchmark_id": "AI for Science (AI4S) 메뉴 신설 — 19 sub-categories, 200+ 모델",
     "new_model": "Co-Scientist (AI Co-Scientist Google, Sakana AI Scientist v1/v2, FutureHouse Crow/Falcon/Owl/Phoenix, Stanford Virtual Lab, LBNL A-Lab, AuroraGPT, Khanmigo) / Math (DeepSeek-Prover V2 671B, Goedel-Prover V2 32B/8B, Llemma, OpenMath2, AlphaProof, AlphaGeometry-2, FunSearch, Gemini Deep Think IMO/3, HunyuanProver, ReProver, Lean-STaR, InternLM2-Math) / Chemistry (ChemDFM, ChemBERTa, MolGen, Chemformer, RoboChem, Uni-Mol V2) / Astronomy (AstroLLaMA, AstroPT, AION-1, AstroCLIP, MultiModalUniverse) / Physics-Materials (MACE-MP, Orb v1/v2/v3, EquiformerV2, MatterGen, GNoME, CHGNet, NequIP, AlphaQubit, Walrus 1.3B, The Well) / Earth-Climate (Aurora, Pangu-Weather, GraphCast, GenCast, AIFS, FuXi, FengWu, ClimaX, Prithvi WxC+EO-2.0, ORBIT 113B, ClimateGPT) / Bio-Genomics (Evo 1/2, RFdiffusion, SaProt, ProtGPT2, scGPT, Nucleotide Transformer, HyenaDNA, AlphaMissense, AlphaGenome, Boltz family) / Nuclear-Fusion (TORAX, TCV plasma RL, Diag2Diag, ELM-Suppression, TokaMind, ConStellaRation, INL+NVIDIA Prometheus) / Energy-Grid (Surya 1.0 366M, GAIA, GridFM, eGridGPT, EnergyGPT, PBT Battery Transformer, D3BATT) / Quantum-Chem (FermiNet, PauliNet, Psiformer, DM21, NeuralXC, OrbNet, ANI, AIMNet2) / Cosmology-Particle (CAMELS, AI Feynman, ATLAS+CMS anomaly) / Geosci-Seismo (EQTransformer, PhaseNet, SeisCLIP) / Atmospheric-Chem (AtmoRep) / Hydrology (NeuralHydrology, Caravan) / Agriculture (AgriGPT, AgroNT, NASA Harvest) / Pharma (Phenom-Beta, Iso-DDE, Chemistry42) / Lab-Automation (CMU Coscientist, ChemCrow)",

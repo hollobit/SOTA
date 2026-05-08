@@ -61,6 +61,7 @@ var FrontierCompare = {
 
         // Existing frontier leaders
         'anthropic/claude-opus-4.7',
+        'anthropic/claude-sonnet-4.6',
         'anthropic/claude-mythos-preview',
         'anthropic/claude-opus-4.6',
         'anthropic/claude-opus-4.5',
