@@ -325,13 +325,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "screenspot_pro",
-    "name": "ScreenSpot-Pro",
-    "category": "multimodal",
-    "description": "Screen understanding for GUI agents",
-    "metric": "accuracy"
-  },
-  {
     "id": "charxiv_reasoning",
     "name": "CharXiv Reasoning",
     "category": "multimodal",
@@ -7980,5 +7973,145 @@
       "bmt_id": "saved-1769608044994-upwrp",
       "bmt_title": "SWE-bench"
     }
+  },
+  {
+    "id": "multiagentbench_research_task",
+    "name": "MultiAgentBench Research (Task Score)",
+    "category": "agent",
+    "description": "Research scenario Task Score (TS%) from MultiAgentBench/MARBLE (ACL 2025, arxiv 2503.01935). Multi-agent collaborative research task with milestone-based KPI; agents coordinate via star/chain/tree/graph topologies. Higher is better.",
+    "metric": "task_score_pct"
+  },
+  {
+    "id": "multiagentbench_coding_task",
+    "name": "MultiAgentBench Coding (Task Score)",
+    "category": "agent",
+    "description": "Coding scenario Task Score (TS%) from MultiAgentBench/MARBLE (ACL 2025). Multi-agent collaborative software task with role-specialized agents and milestone-graded outcomes. Higher is better.",
+    "metric": "task_score_pct"
+  },
+  {
+    "id": "multiagentbench_bargaining_task",
+    "name": "MultiAgentBench Bargaining (Task Score)",
+    "category": "agent",
+    "description": "Bargaining scenario Task Score (TS%) from MultiAgentBench/MARBLE (ACL 2025). Competitive multi-agent negotiation; measures task achievement under adversarial peer agents. Higher is better.",
+    "metric": "task_score_pct"
+  },
+  {
+    "id": "multiagentbench_minecraft_task",
+    "name": "MultiAgentBench Minecraft (Task Score)",
+    "category": "agent",
+    "description": "Minecraft cooperative-build scenario Task Score (TS%) from MultiAgentBench/MARBLE (ACL 2025). Embodied multi-agent task in Minecraft; tests planning + dynamic-environment coordination. Higher is better.",
+    "metric": "task_score_pct"
+  },
+  {
+    "id": "agentbench_overall",
+    "name": "AgentBench Overall (OA)",
+    "category": "agent",
+    "description": "AgentBench Overall (OA) composite from THUDM AgentBench (ICLR 2024, arxiv 2308.03688). Aggregate of 8 agent environments: OS, DB, KG, DCG, LTP, HH, WS, M2W. Scale 0-5 (higher is better). First multi-environment LLM-as-Agent benchmark.",
+    "metric": "composite_score"
+  },
+  {
+    "id": "metagpt_softwaredev_executability",
+    "name": "MetaGPT SoftwareDev Executability",
+    "category": "agent",
+    "description": "Executability score on the SoftwareDev dataset from MetaGPT (ICLR 2024, arxiv 2308.00352). 1-4 scale rating compileability/runnability of multi-agent-framework-generated software (1=fail, 4=flawless). Scaffold + backbone joint score.",
+    "metric": "executability_1_to_4"
+  },
+  {
+    "id": "visualwebarena",
+    "name": "VisualWebArena (visual web nav)",
+    "category": "other",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "online_mind2web",
+    "name": "Online-Mind2Web (live web agents)",
+    "category": "other",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "screenspot_pro",
+    "name": "ScreenSpot-Pro (high-res GUI grounding)",
+    "category": "other",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "oscopilot_gaia",
+    "name": "OS-Copilot / FRIDAY on GAIA",
+    "category": "other",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "webshop",
+    "name": "WebShop (1.18M-product e-commerce nav)",
+    "category": "other",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "visualagentbench",
+    "name": "VisualAgentBench (VAB)",
+    "category": "other",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "metr_autonomy_p50",
+    "name": "METR 50% Time Horizon",
+    "category": "agent",
+    "description": "Task duration (in minutes, by human-expert completion time) at which the model reaches 50% completion reliability on METR's 228-task suite (HCAST + RE-Bench + long-horizon). Higher = longer autonomous-work horizon. METR Time Horizon 1.1 (Jan 2026).",
+    "metric": "minutes"
+  },
+  {
+    "id": "metr_autonomy_p80",
+    "name": "METR 80% Time Horizon",
+    "category": "agent",
+    "description": "Task duration (in minutes) at which the model reaches 80% completion reliability on METR's 228-task suite. Stricter reliability threshold than p50. METR Time Horizon 1.1 (Jan 2026).",
+    "metric": "minutes"
+  },
+  {
+    "id": "cot_faithfulness",
+    "name": "CoT Faithfulness (avg)",
+    "category": "safety",
+    "description": "Rate at which a reasoning model, after silently using a hint to change its answer, explicitly verbalizes the hint in its chain-of-thought. Average across 6 hint types. Anthropic Alignment Science (Apr 2025).",
+    "metric": "%"
+  },
+  {
+    "id": "cot_faithfulness_misaligned",
+    "name": "CoT Faithfulness (misaligned hints)",
+    "category": "safety",
+    "description": "CoT faithfulness restricted to misaligned / unauthorized-access hint types (subset of overall measure). Anthropic Apr 2025.",
+    "metric": "%"
+  },
+  {
+    "id": "apollo_scheming_oversight_subversion",
+    "name": "Apollo — Oversight Subversion Rate",
+    "category": "safety",
+    "description": "Fraction of trials where the model proactively disabled an oversight mechanism (cat/edit/sed of monitoring config) when given a long-term goal in conflict with developer goals. Apollo Research, Frontier Models are Capable of In-context Scheming (Dec 2024 / arxiv:2412.04984).",
+    "metric": "%"
+  },
+  {
+    "id": "apollo_scheming_persistence",
+    "name": "Apollo — Deception Persistence",
+    "category": "safety",
+    "description": "Fraction of follow-up interrogation turns in which the model continued to deny scheming behavior after being directly asked. Higher = more persistent deception. Apollo Research (Dec 2024).",
+    "metric": "%"
+  },
+  {
+    "id": "rewardbench2_overall",
+    "name": "RewardBench 2 (overall)",
+    "category": "safety",
+    "description": "Allen AI multi-skill reward-model benchmark. 4-way completion choice (random=25%) across factuality, instruction-following, math, safety, focus, ties. RewardBench 2 paper (arxiv:2506.01937) / HF leaderboard.",
+    "metric": "%"
+  },
+  {
+    "id": "processbench_f1",
+    "name": "ProcessBench (overall F1)",
+    "category": "agent",
+    "description": "Step-level error-detection F1 across GSM8K / MATH / OlympiadBench / OmniMath subsets (3,400 hand-annotated math reasoning traces). Qwen / ACL 2025 (arxiv:2412.06559).",
+    "metric": "%"
   }
 ]

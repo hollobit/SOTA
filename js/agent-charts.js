@@ -222,6 +222,35 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Cross-widget brush bus — pub/sub by model_id.
+  // Subscribers register handlers via _brush.on(fn) and _brush.off(fn);
+  // emitters call _brush.emit(modelId | null) on hover-in / hover-out.
+  // Listeners re-render or dispatch ECharts highlight actions accordingly.
+  // ======================================================================
+  var _brush = (function() {
+    var listeners = [];
+    var current = null;
+    return {
+      on: function(fn) {
+        if (typeof fn !== 'function') return;
+        for (var i = 0; i < listeners.length; i++) if (listeners[i] === fn) return;
+        listeners.push(fn);
+      },
+      off: function(fn) {
+        for (var i = listeners.length - 1; i >= 0; i--) if (listeners[i] === fn) listeners.splice(i, 1);
+      },
+      emit: function(modelId) {
+        if (current === modelId) return;
+        current = modelId;
+        for (var i = 0; i < listeners.length; i++) {
+          try { listeners[i](modelId); } catch (e) {}
+        }
+      },
+      current: function() { return current; }
+    };
+  })();
+
+  // ======================================================================
   // Widget 1 — Cost vs Performance Scatter
   // X = $/1M output tokens (log scale), Y = composite Agent Score (0–100),
   // bubble color = class, size = coverage, Pareto frontier dashed line.
@@ -423,24 +452,46 @@ var AgentCharts = (function() {
 
       var frontierPts = _paretoFrontier(priced);
       var frontierLineData = frontierPts.map(function(p) { return [p.cost, p.score]; });
+      var frontierIds = {};
+      for (var fi = 0; fi < frontierPts.length; fi++) frontierIds[frontierPts[fi].model_id] = true;
+
+      function _bubbleWithLabel(p) {
+        var b = _bubble(p);
+        if (frontierIds[p.model_id]) {
+          b.label = {
+            show: true,
+            position: 'top',
+            distance: 6,
+            color: '#e5e7eb',
+            backgroundColor: 'rgba(17,24,39,0.85)',
+            borderColor: '#a78bfa',
+            borderWidth: 1,
+            borderRadius: 3,
+            padding: [2, 4],
+            fontSize: 10,
+            formatter: _modelDisplayName(p.model_id)
+          };
+        }
+        return b;
+      }
 
       var series = [
         {
           name: 'Frontier',
           type: 'scatter',
-          data: priced.filter(function(p) { return p.klass === 'frontier'; }).map(_bubble),
+          data: priced.filter(function(p) { return p.klass === 'frontier'; }).map(_bubbleWithLabel),
           emphasis: { focus: 'series' }
         },
         {
           name: 'Agent-Product',
           type: 'scatter',
-          data: priced.filter(function(p) { return p.klass === 'agent-product'; }).map(_bubble),
+          data: priced.filter(function(p) { return p.klass === 'agent-product'; }).map(_bubbleWithLabel),
           emphasis: { focus: 'series' }
         },
         {
           name: 'Edge-SLM',
           type: 'scatter',
-          data: edge.map(_bubble),
+          data: edge.map(_bubbleWithLabel),
           emphasis: { focus: 'series' }
         }
       ];
@@ -533,6 +584,32 @@ var AgentCharts = (function() {
       };
 
       chart.setOption(_applyToolbox(opt), true);
+
+      // Brush sync: highlight the matching bubble (across all 3 series) when a
+      // leaderboard row is hovered. Reset on null. We rebuild the index map
+      // each render to track current data, and unsubscribe the prior handler.
+      var seriesIndex = {}; // model_id → {sIdx, dIdx}
+      for (var sI = 0; sI < series.length; sI++) {
+        var sData = series[sI].data || [];
+        for (var dI = 0; dI < sData.length; dI++) {
+          var meta = sData[dI] && sData[dI]._meta;
+          if (meta && meta.model_id) seriesIndex[meta.model_id] = { sIdx: sI, dIdx: dI };
+        }
+      }
+      if (chart._agentBrushHandler) _brush.off(chart._agentBrushHandler);
+      chart._agentBrushHandler = function(modelId) {
+        try {
+          chart.dispatchAction({ type: 'downplay' });
+          if (modelId && seriesIndex[modelId]) {
+            chart.dispatchAction({
+              type: 'highlight',
+              seriesIndex: seriesIndex[modelId].sIdx,
+              dataIndex: seriesIndex[modelId].dIdx
+            });
+          }
+        } catch (e) {}
+      };
+      _brush.on(chart._agentBrushHandler);
     });
   }
 
@@ -1845,6 +1922,8 @@ var AgentCharts = (function() {
         canvas.width = 60;
         canvas.height = 60;
         canvas.style.display = 'block';
+        canvas.style.transition = 'box-shadow 120ms ease, transform 120ms ease';
+        canvas.dataset.fpCanvas = '1';
         cell.appendChild(canvas);
         rows[i].appendChild(cell);
       }
@@ -1859,6 +1938,33 @@ var AgentCharts = (function() {
         cv.title = tip;
         _drawFingerprintCanvas(cv, values, klass);
       }
+
+      // Brush emit: row hover broadcasts modelId; row leave clears.
+      // Idempotent — guard via dataset flag so re-renders don't stack listeners.
+      if (!rows[i].dataset.brushBound) {
+        rows[i].dataset.brushBound = '1';
+        rows[i].addEventListener('mouseenter', (function(mid) {
+          return function() { _brush.emit(mid); };
+        })(modelId));
+        rows[i].addEventListener('mouseleave', function() { _brush.emit(null); });
+      }
+    }
+
+    // Row-side highlight: subscribe once, re-applied across re-renders.
+    if (!lb.dataset.brushSub) {
+      lb.dataset.brushSub = '1';
+      _brush.on(function(modelId) {
+        var trs = lb.querySelectorAll('tbody tr[data-model]');
+        for (var k = 0; k < trs.length; k++) {
+          var match = modelId && trs[k].dataset.model === modelId;
+          var fp = trs[k].querySelector('canvas[data-fp-canvas]');
+          if (fp) {
+            fp.style.boxShadow = match ? '0 0 0 2px #a78bfa' : 'none';
+            fp.style.transform = match ? 'scale(1.08)' : 'scale(1)';
+          }
+          trs[k].style.background = match ? 'rgba(167,139,250,0.10)' : '';
+        }
+      });
     }
   }
 
@@ -2193,6 +2299,234 @@ var AgentCharts = (function() {
     var sel = document.getElementById('agent-chart-class-violin-select');
     var bid = (sel && sel.value) || savedBid;
     _drawClassViolin(bid);
+  }
+
+  // ======================================================================
+  // Widget 13 (C2) — Provider Availability Map
+  // Heatmap: top 25 models (by composite score) × 14 inference providers.
+  // Cell = 1 (green) if model hosted on provider, 0 (gray) otherwise.
+  // Source: api_providers field in config/model_enrichment.yaml.
+  // ======================================================================
+  var _PROVIDER_KEYS = [
+    'anthropic_api', 'openai_api', 'google_ai_studio', 'aws_bedrock', 'azure_openai',
+    'together_ai', 'replicate', 'huggingface', 'groq', 'fireworks', 'openrouter',
+    'ollama', 'lmstudio', 'apple_intelligence'
+  ];
+  var _PROVIDER_LABELS = {
+    'anthropic_api': 'Anthropic',
+    'openai_api': 'OpenAI',
+    'google_ai_studio': 'Google AI',
+    'aws_bedrock': 'AWS Bedrock',
+    'azure_openai': 'Azure OpenAI',
+    'together_ai': 'Together AI',
+    'replicate': 'Replicate',
+    'huggingface': 'HuggingFace',
+    'groq': 'Groq',
+    'fireworks': 'Fireworks',
+    'openrouter': 'OpenRouter',
+    'ollama': 'Ollama',
+    'lmstudio': 'LM Studio',
+    'apple_intelligence': 'Apple Intelligence'
+  };
+  var _PROVIDER_URLS = {
+    'anthropic_api': 'https://www.anthropic.com/api',
+    'openai_api': 'https://platform.openai.com',
+    'google_ai_studio': 'https://aistudio.google.com',
+    'aws_bedrock': 'https://aws.amazon.com/bedrock/',
+    'azure_openai': 'https://azure.microsoft.com/en-us/products/ai-services/openai-service',
+    'together_ai': 'https://www.together.ai',
+    'replicate': 'https://replicate.com',
+    'huggingface': 'https://huggingface.co/inference-endpoints',
+    'groq': 'https://groq.com',
+    'fireworks': 'https://fireworks.ai',
+    'openrouter': 'https://openrouter.ai',
+    'ollama': 'https://ollama.com',
+    'lmstudio': 'https://lmstudio.ai',
+    'apple_intelligence': 'https://www.apple.com/apple-intelligence/'
+  };
+  // Older yaml entries used different aliases; normalize to canonical keys.
+  var _PROVIDER_ALIASES = {
+    'huggingface_inference': 'huggingface',
+    'hf_inference': 'huggingface'
+  };
+
+  function _normalizeProviders(arr) {
+    if (!arr || !arr.length) return [];
+    var out = {};
+    for (var i = 0; i < arr.length; i++) {
+      var raw = arr[i];
+      if (!raw) continue;
+      var key = _PROVIDER_ALIASES[raw] || raw;
+      out[key] = true;
+    }
+    return Object.keys(out);
+  }
+
+  function _showProviderToast(message) {
+    var host = document.getElementById('agent-chart-provider-availability-section');
+    if (!host) return;
+    var prev = document.getElementById('agent-chart-provider-availability-toast');
+    if (prev && prev.parentNode) prev.parentNode.removeChild(prev);
+    var toast = document.createElement('div');
+    toast.id = 'agent-chart-provider-availability-toast';
+    toast.className = 'mt-2 text-xs text-gray-200 bg-gray-800 border border-gray-700 rounded px-3 py-2';
+    toast.textContent = message;
+    host.appendChild(toast);
+    setTimeout(function() {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 5000);
+  }
+
+  function renderProviderAvailability() {
+    _ensureMountPoint('agent-chart-provider-availability',
+      'Provider Availability Map',
+      'Top 25 models × 14 inference providers. Green = hosted; click a cell for the provider link.');
+    if (typeof echarts === 'undefined') return;
+    if (!(window.App && App.data && App.data.scores && App.data.models)) return;
+    var mountEl = document.getElementById('agent-chart-provider-availability');
+    if (!mountEl) return;
+
+    // Lazy-load enrichment, then re-render once it's available.
+    if (App.data.enrichment === null) {
+      if (App.loadEnrichment) {
+        App.loadEnrichment().then(function() { renderProviderAvailability(); });
+      }
+      return;
+    }
+    var enrich = App.data.enrichment || {};
+
+    // Pick rows: top 25 by composite score, restricted to models that have any
+    // api_providers populated. Falls back to score-coverage if composite empty.
+    var ranked = _composite();
+    ranked.sort(function(a, b) { return b.agent_score - a.agent_score; });
+    var rows = [];
+    var seen = {};
+    for (var i = 0; i < ranked.length && rows.length < 25; i++) {
+      var mid = ranked[i].model_id;
+      if (seen[mid]) continue;
+      var ent = enrich[mid];
+      if (!ent || !ent.api_providers || !ent.api_providers.length) continue;
+      seen[mid] = true;
+      rows.push(mid);
+    }
+    if (rows.length < 5) {
+      // Fallback: any model with api_providers, ordered by enrichment-key.
+      for (var midKey in enrich) {
+        if (rows.length >= 25) break;
+        if (seen[midKey]) continue;
+        var en2 = enrich[midKey];
+        if (!en2 || !en2.api_providers || !en2.api_providers.length) continue;
+        seen[midKey] = true;
+        rows.push(midKey);
+      }
+    }
+    if (rows.length === 0) return;
+
+    // Reverse so highest-rank row is at top of y-axis (ECharts renders bottom-up).
+    var rowOrder = rows.slice().reverse();
+
+    var data = [];
+    var providerSets = {};
+    for (var r = 0; r < rowOrder.length; r++) {
+      var rid = rowOrder[r];
+      var providers = _normalizeProviders((enrich[rid] && enrich[rid].api_providers) || []);
+      var pset = {};
+      for (var pi = 0; pi < providers.length; pi++) pset[providers[pi]] = true;
+      providerSets[rid] = pset;
+      for (var c = 0; c < _PROVIDER_KEYS.length; c++) {
+        var pkey = _PROVIDER_KEYS[c];
+        data.push([c, r, pset[pkey] ? 1 : 0]);
+      }
+    }
+
+    var xLabels = _PROVIDER_KEYS.map(function(k) { return _PROVIDER_LABELS[k] || k; });
+    var yLabels = rowOrder.map(function(mid) {
+      return _classEmoji(_modelClass(mid)) + ' ' + _modelDisplayName(mid);
+    });
+
+    var chart = Charts._getOrCreate('agent-chart-provider-availability');
+    if (!chart) return;
+    mountEl.style.height = Math.max(420, 24 * rowOrder.length + 140) + 'px';
+    chart.resize();
+
+    var option = {
+      backgroundColor: 'transparent',
+      grid: { left: 220, right: 30, top: 30, bottom: 80, containLabel: false },
+      tooltip: {
+        position: 'top',
+        backgroundColor: 'rgba(17, 24, 39, 0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb', fontSize: 12 },
+        formatter: function(p) {
+          if (!p || !p.value) return '';
+          var col = p.value[0], row = p.value[1], val = p.value[2];
+          var rid = rowOrder[row];
+          var pkey = _PROVIDER_KEYS[col];
+          var provLabel = _PROVIDER_LABELS[pkey] || pkey;
+          var modelLabel = _modelDisplayName(rid);
+          if (val === 1) {
+            return '<b>' + modelLabel + '</b><br>available on <b>' + provLabel + '</b>';
+          }
+          return '<b>' + modelLabel + '</b><br>not on ' + provLabel +
+                 '<br><span style="color:#6b7280">(per vendor docs)</span>';
+        }
+      },
+      xAxis: {
+        type: 'category',
+        data: xLabels,
+        splitArea: { show: true },
+        axisLabel: { rotate: 35, fontSize: 10, color: '#d1d5db', interval: 0 },
+        axisLine: { lineStyle: { color: '#374151' } },
+        axisTick: { show: false }
+      },
+      yAxis: {
+        type: 'category',
+        data: yLabels,
+        splitArea: { show: true },
+        axisLabel: { fontSize: 10, color: '#d1d5db' },
+        axisLine: { lineStyle: { color: '#374151' } },
+        axisTick: { show: false }
+      },
+      visualMap: {
+        show: false,
+        min: 0, max: 1,
+        inRange: { color: ['#1f2937', '#16a34a'] }
+      },
+      series: [{
+        name: 'Availability',
+        type: 'heatmap',
+        data: data,
+        label: { show: false },
+        itemStyle: { borderColor: '#0f172a', borderWidth: 1 },
+        emphasis: {
+          itemStyle: {
+            borderColor: '#fbbf24', borderWidth: 2,
+            shadowBlur: 6, shadowColor: 'rgba(251, 191, 36, 0.6)'
+          }
+        },
+        progressive: 0
+      }]
+    };
+
+    chart.setOption(_applyToolbox(option), true);
+
+    chart.off('click');
+    chart.on('click', function(p) {
+      if (!p || !p.value) return;
+      var col = p.value[0], row = p.value[1], val = p.value[2];
+      var rid = rowOrder[row];
+      var pkey = _PROVIDER_KEYS[col];
+      var provLabel = _PROVIDER_LABELS[pkey] || pkey;
+      var modelLabel = _modelDisplayName(rid);
+      if (val === 1) {
+        var url = _PROVIDER_URLS[pkey];
+        var msg = modelLabel + ' is available on ' + provLabel +
+                  (url ? ' — ' + url : '');
+        _showProviderToast(msg);
+      } else {
+        _showProviderToast(modelLabel + ' is not listed on ' + provLabel + ' (per vendor docs).');
+      }
+    });
   }
 
   // ======================================================================
@@ -2888,6 +3222,21 @@ var AgentCharts = (function() {
       }
       item.appendChild(spark);
 
+      // "Why?" button — opens C4 Recommendation Breakdown modal without
+      // triggering the row-level Modal.showModel handler.
+      var whyBtn = document.createElement('button');
+      whyBtn.type = 'button';
+      whyBtn.className = 'mt-2 ml-7 text-xs px-2 py-1 rounded border border-gray-700 text-gray-300 hover:border-blue-500 hover:text-blue-300';
+      whyBtn.textContent = 'Why?';
+      whyBtn.setAttribute('aria-label', 'Why this model ranked here');
+      (function(mid) {
+        whyBtn.addEventListener('click', function(ev) {
+          ev.stopPropagation();
+          renderRecommendationBreakdown(mid);
+        });
+      })(entry.model_id);
+      item.appendChild(whyBtn);
+
       // Click → modal drilldown
       (function(mid) {
         item.addEventListener('click', function() {
@@ -2911,6 +3260,568 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Widget 14 (C4) — Recommendation Breakdown drill-down (per-category
+  // contribution). Invoked on demand from the wizard's "Why?" button.
+  // Overlays a modal showing how a model's weighted score is composed.
+  // ======================================================================
+  function _categoryColor(catKey) {
+    var palette = {
+      'coding': '#3b82f6', 'web-browse': '#10b981', 'os-computer': '#f59e0b',
+      'tool-use': '#8b5cf6', 'mcp': '#ec4899', 'customer-service': '#06b6d4',
+      'safety': '#ef4444'
+    };
+    return palette[catKey] || '#9ca3af';
+  }
+
+  // Track active modal so we can clean up listeners + dispose ECharts.
+  var _breakdownState = { overlay: null, escHandler: null, chartId: null };
+
+  function _closeBreakdownModal() {
+    if (_breakdownState.escHandler) {
+      document.removeEventListener('keydown', _breakdownState.escHandler);
+      _breakdownState.escHandler = null;
+    }
+    if (_breakdownState.chartId && window.Charts && Charts._instances) {
+      var inst = Charts._instances[_breakdownState.chartId];
+      if (inst) {
+        try { inst.dispose(); } catch (e) {}
+        delete Charts._instances[_breakdownState.chartId];
+      }
+      _breakdownState.chartId = null;
+    }
+    if (_breakdownState.overlay && _breakdownState.overlay.parentNode) {
+      _breakdownState.overlay.parentNode.removeChild(_breakdownState.overlay);
+    }
+    _breakdownState.overlay = null;
+  }
+
+  function renderRecommendationBreakdown(modelId) {
+    if (!modelId) return;
+    // Close any pre-existing breakdown modal so we don't stack overlays.
+    _closeBreakdownModal();
+
+    var cats = (window.Agent && Agent._CATEGORIES) ? Agent._CATEGORIES : [];
+    var priorities = _wizardState.priorities || {};
+    var rows = [];
+    for (var i = 0; i < cats.length; i++) {
+      var cat = cats[i];
+      if (!cat || !cat.key) continue;
+      if (!Object.prototype.hasOwnProperty.call(priorities, cat.key)) continue;
+      var raw = _wizardCoverageScore(modelId, cat.key);
+      var priority = priorities[cat.key] || 0;
+      var contribution = raw * (priority / 100);
+      rows.push({ cat: cat, raw: raw, priority: priority, contribution: contribution });
+    }
+    rows.sort(function(a, b) { return b.contribution - a.contribution; });
+
+    _showBreakdownModal(modelId, rows);
+  }
+
+  function _showBreakdownModal(modelId, rows) {
+    var overlay = document.createElement('div');
+    overlay.className = 'fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center p-4';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.addEventListener('click', function(ev) {
+      if (ev.target === overlay) _closeBreakdownModal();
+    });
+
+    var panel = document.createElement('div');
+    panel.className = 'bg-gray-900 border border-gray-800 rounded p-6 max-w-3xl w-full overflow-y-auto';
+    panel.style.maxHeight = '90vh';
+
+    // Header — title + close button
+    var header = document.createElement('div');
+    header.className = 'flex items-start justify-between gap-4 mb-3';
+
+    var titleWrap = document.createElement('div');
+    var title = document.createElement('div');
+    title.className = 'text-base font-semibold text-gray-100';
+    title.textContent = 'Why ' + _modelDisplayName(modelId) + ' ranked here';
+    titleWrap.appendChild(title);
+
+    var sub = document.createElement('div');
+    sub.className = 'text-xs text-gray-400 mt-1 flex items-center gap-2 flex-wrap';
+    var vendor = document.createElement('span');
+    vendor.textContent = _vendorOf(modelId) || 'unknown';
+    sub.appendChild(vendor);
+    var sepA = document.createElement('span');
+    sepA.className = 'text-gray-600';
+    sepA.textContent = '·';
+    sub.appendChild(sepA);
+    var klass = _modelClass(modelId);
+    var klassSpan = document.createElement('span');
+    klassSpan.style.color = _classColor(klass);
+    klassSpan.textContent = _wizardClassLabel(klass);
+    sub.appendChild(klassSpan);
+    titleWrap.appendChild(sub);
+
+    header.appendChild(titleWrap);
+
+    var closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'text-gray-400 hover:text-gray-100 text-xl leading-none px-2';
+    closeBtn.textContent = '×';
+    closeBtn.setAttribute('aria-label', 'Close');
+    closeBtn.addEventListener('click', _closeBreakdownModal);
+    header.appendChild(closeBtn);
+
+    panel.appendChild(header);
+
+    // Chart container — dedicated id so Charts._getOrCreate can manage it.
+    var chartId = 'agent-breakdown-chart';
+    var chartDiv = document.createElement('div');
+    chartDiv.id = chartId;
+    chartDiv.style.width = '100%';
+    chartDiv.style.height = '320px';
+    panel.appendChild(chartDiv);
+
+    // Total weighted score
+    var total = 0;
+    for (var i = 0; i < rows.length; i++) total += rows[i].contribution;
+
+    var totalLine = document.createElement('div');
+    totalLine.className = 'text-sm text-gray-200 mt-3';
+    totalLine.textContent = 'Total weighted score: ' + total.toFixed(1);
+    panel.appendChild(totalLine);
+
+    // Summary table
+    var table = document.createElement('table');
+    table.className = 'w-full text-xs mt-2 border-collapse';
+
+    var thead = document.createElement('thead');
+    var thr = document.createElement('tr');
+    ['Category', 'Raw avg', 'Priority %', 'Contribution'].forEach(function(h) {
+      var th = document.createElement('th');
+      th.className = 'text-left text-gray-400 font-normal py-1 pr-3 border-b border-gray-800';
+      th.textContent = h;
+      thr.appendChild(th);
+    });
+    thead.appendChild(thr);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    function _appendCell(tr, txt, cls) {
+      var td = document.createElement('td');
+      td.className = cls;
+      td.textContent = txt;
+      tr.appendChild(td);
+      return td;
+    }
+    for (var r = 0; r < rows.length; r++) {
+      var row = rows[r];
+      var tr = document.createElement('tr');
+
+      var tdCat = document.createElement('td');
+      tdCat.className = 'py-1 pr-3 text-gray-200';
+      var swatch = document.createElement('span');
+      swatch.style.cssText = 'display:inline-block;width:8px;height:8px;margin-right:6px;border-radius:2px;background-color:' + _categoryColor(row.cat.key) + ';';
+      tdCat.appendChild(swatch);
+      var catText = document.createElement('span');
+      catText.textContent = row.cat.label || row.cat.key;
+      tdCat.appendChild(catText);
+      tr.appendChild(tdCat);
+
+      _appendCell(tr, row.raw.toFixed(1),       'py-1 pr-3 text-gray-300 tabular-nums');
+      _appendCell(tr, String(row.priority),     'py-1 pr-3 text-gray-300 tabular-nums');
+      _appendCell(tr, row.contribution.toFixed(1), 'py-1 pr-3 text-gray-100 tabular-nums');
+
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    panel.appendChild(table);
+
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+
+    // Esc → close
+    var escHandler = function(ev) {
+      if (ev.key === 'Escape' || ev.keyCode === 27) _closeBreakdownModal();
+    };
+    document.addEventListener('keydown', escHandler);
+    _breakdownState.overlay = overlay;
+    _breakdownState.escHandler = escHandler;
+    _breakdownState.chartId = chartId;
+
+    // Init ECharts after the overlay is in the DOM (so dimensions are real).
+    if (window.Charts && typeof Charts._getOrCreate === 'function' && typeof echarts !== 'undefined') {
+      var chart = Charts._getOrCreate(chartId);
+      if (chart) {
+        var labels = rows.map(function(r) { return r.cat.label || r.cat.key; });
+        var data = rows.map(function(r) {
+          return { value: Number(r.contribution.toFixed(2)), itemStyle: { color: _categoryColor(r.cat.key) } };
+        });
+        // ECharts horizontal bar — y-axis is category, x-axis is value.
+        // Reverse so highest contribution appears on top.
+        labels.reverse();
+        data.reverse();
+        chart.setOption({
+          grid: { left: 140, right: 30, top: 20, bottom: 30 },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: { type: 'shadow' },
+            formatter: function(p) {
+              if (!p || !p.length) return '';
+              var d = p[0];
+              return d.name + '<br/>Contribution: <b>' + d.value.toFixed(2) + '</b>';
+            }
+          },
+          xAxis: { type: 'value', axisLabel: { color: '#9ca3af' } },
+          yAxis: { type: 'category', data: labels, axisLabel: { color: '#d1d5db' } },
+          series: [{ type: 'bar', data: data, barWidth: '60%' }]
+        });
+        try { chart.resize(); } catch (e) {}
+      }
+    }
+  }
+
+  // ======================================================================
+  // Widget 12 (C1) — Cost Simulator
+  // Interactive monthly inference cost calculator. Three sliders (req/day,
+  // input tokens, output tokens) + reasoning/edge/subscription toggles
+  // produce a ranked top-15 table of cheapest models. Edge SLMs are pinned
+  // at $0 (on-device). Subscription products (Devin/Manus) are toggleable
+  // and use a flat-fee + per-task cost model.
+  // ======================================================================
+  var _simulatorState = _loadState('simulator-state', {
+    requestsPerDay: 1000,
+    inputTokens: 2000,
+    outputTokens: 500,
+    reasoningMultiplier: false,
+    edgeOnly: false,
+    showSubscription: false
+  });
+
+  // Subscription tiers — fixed monthly fee + optional per-task cost. Daily $
+  // is computed as (monthly_fee / 30) + (req/day × per_task_cost) so heavy
+  // workloads still scale with usage even when most cost is the flat fee.
+  var _SIMULATOR_SUBSCRIPTIONS = [
+    { model_id: 'cognition/devin',  monthly: 20,  per_task: 2.25, label: 'Devin (Core + ACU)' },
+    { model_id: 'manus-ai/manus',   monthly: 500, per_task: 0,    label: 'Manus (Pro)' }
+  ];
+
+  // Composite agent score for edge SLMs — average of normalized scores
+  // across the wizard's seven categories. Used purely for ordering free
+  // on-device entries (which all share daily_cost = 0).
+  function _simulatorEdgeScore(modelId) {
+    var keys = ['coding', 'web-browse', 'os-computer', 'tool-use', 'mcp', 'customer-service', 'safety'];
+    var sum = 0;
+    var n = 0;
+    for (var i = 0; i < keys.length; i++) {
+      var s = _wizardCoverageScore(modelId, keys[i]);
+      if (typeof s === 'number' && s > 0) { sum += s; n += 1; }
+    }
+    return n > 0 ? (sum / n) : 0;
+  }
+
+  // Compute daily inference cost for a frontier model. Returns null if no
+  // pricing available. Output cost is multiplied by 3.5x when the reasoning
+  // toggle is on (proxy for thinking-token expansion across the field).
+  function _simulatorFrontierCost(modelId) {
+    if (!window.App || !App.data || !App.data.pricing) return null;
+    var p = App.data.pricing[modelId];
+    if (!p) return null;
+    var inputPrice = (typeof p.input === 'number') ? p.input : null;
+    var outputPrice = (typeof p.output === 'number') ? p.output : null;
+    if (inputPrice == null || outputPrice == null) return null;
+    var req = _simulatorState.requestsPerDay;
+    var inputCost = req * _simulatorState.inputTokens * inputPrice / 1000000;
+    var outputCost = req * _simulatorState.outputTokens * outputPrice / 1000000;
+    if (_simulatorState.reasoningMultiplier) outputCost *= 3.5;
+    return inputCost + outputCost;
+  }
+
+  // Build the row list. Rows sorted ascending by daily cost. Edge SLMs
+  // (all daily=0) ranked among themselves by composite agent score.
+  function _simulatorBuildRows() {
+    var rows = [];
+
+    if (window.App && App.data && App.data.pricing && App.data.models) {
+      for (var i = 0; i < App.data.models.length; i++) {
+        var m = App.data.models[i];
+        if (!m || !m.id) continue;
+        var klass = _modelClass(m.id);
+        if (_simulatorState.edgeOnly && klass !== 'edge-slm') continue;
+        if (klass === 'edge-slm') continue; // edge handled below
+        var daily = _simulatorFrontierCost(m.id);
+        if (daily == null) continue;
+        rows.push({
+          modelId: m.id, name: _modelDisplayName(m.id), vendor: _vendorOf(m.id),
+          klass: klass, daily: daily, monthly: daily * 30, yearly: daily * 365, note: ''
+        });
+      }
+    }
+
+    var edgeIds = (window.Agent && Agent._EDGE_SLMS) || [];
+    var edgeRows = [];
+    for (var e = 0; e < edgeIds.length; e++) {
+      var eid = edgeIds[e];
+      edgeRows.push({
+        modelId: eid, name: _modelDisplayName(eid), vendor: _vendorOf(eid),
+        klass: 'edge-slm', daily: 0, monthly: 0, yearly: 0,
+        note: 'on-device · score ' + _simulatorEdgeScore(eid).toFixed(0)
+      });
+    }
+    edgeRows.sort(function(a, b) {
+      return _simulatorEdgeScore(b.modelId) - _simulatorEdgeScore(a.modelId);
+    });
+
+    if (_simulatorState.showSubscription && !_simulatorState.edgeOnly) {
+      for (var s = 0; s < _SIMULATOR_SUBSCRIPTIONS.length; s++) {
+        var sub = _SIMULATOR_SUBSCRIPTIONS[s];
+        var dailyFlat = sub.monthly / 30;
+        var dailyTask = _simulatorState.requestsPerDay * sub.per_task;
+        var dailySub = dailyFlat + dailyTask;
+        rows.push({
+          modelId: sub.model_id, name: _modelDisplayName(sub.model_id),
+          vendor: _vendorOf(sub.model_id), klass: _modelClass(sub.model_id),
+          daily: dailySub, monthly: dailySub * 30, yearly: dailySub * 365,
+          note: '$' + sub.monthly + '/mo + $' + sub.per_task + '/task'
+        });
+      }
+    }
+
+    rows.sort(function(a, b) { return a.daily - b.daily; });
+    if (_simulatorState.edgeOnly) return edgeRows.slice(0, 15);
+    return edgeRows.concat(rows).slice(0, 15);
+  }
+
+  function _simulatorClassLabel(klass) {
+    if (klass === 'agent-product') return 'Agent';
+    if (klass === 'edge-slm') return 'Edge';
+    return 'Frontier';
+  }
+
+  function _simulatorFormatCost(v) {
+    if (v <= 0) return '$0';
+    if (v < 1) return '$' + v.toFixed(3);
+    if (v < 100) return '$' + v.toFixed(2);
+    return '$' + Math.round(v).toLocaleString();
+  }
+
+  function _ensureSimulatorControls(section) {
+    if (section.getAttribute('data-simulator-built') === '1') return;
+    section.setAttribute('data-simulator-built', '1');
+
+    var defaultMount = document.getElementById('agent-chart-cost-simulator');
+    if (defaultMount) defaultMount.style.display = 'none';
+
+    var grid = document.createElement('div');
+    grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-6 mt-2';
+
+    var left = document.createElement('div');
+    left.className = 'space-y-3';
+
+    var leftHead = document.createElement('div');
+    leftHead.className = 'text-sm font-semibold text-gray-300 mb-2';
+    leftHead.textContent = 'Workload';
+    left.appendChild(leftHead);
+
+    var sliderSpecs = [
+      { key: 'requestsPerDay', label: 'Requests / day',           min: 100, max: 1000000, step: 1,   log: true,  format: function(v) { return v.toLocaleString(); } },
+      { key: 'inputTokens',    label: 'Avg input tokens / req',   min: 100, max: 50000,   step: 100, log: false, format: function(v) { return v.toLocaleString(); } },
+      { key: 'outputTokens',   label: 'Avg output tokens / req',  min: 50,  max: 10000,   step: 50,  log: false, format: function(v) { return v.toLocaleString(); } }
+    ];
+
+    for (var i = 0; i < sliderSpecs.length; i++) {
+      var spec = sliderSpecs[i];
+      var row = document.createElement('div');
+      row.className = 'flex items-center gap-2 text-xs';
+
+      var lab = document.createElement('label');
+      lab.className = 'text-gray-300 w-44 shrink-0';
+      lab.textContent = spec.label;
+      lab.htmlFor = 'simulator-slider-' + spec.key;
+      row.appendChild(lab);
+
+      var input = document.createElement('input');
+      input.type = 'range';
+      input.id = 'simulator-slider-' + spec.key;
+      input.className = 'flex-1 accent-blue-400';
+      if (spec.log) {
+        input.min = String(Math.log10(spec.min));
+        input.max = String(Math.log10(spec.max));
+        input.step = '0.01';
+        input.value = String(Math.log10(_simulatorState[spec.key]));
+      } else {
+        input.min = String(spec.min);
+        input.max = String(spec.max);
+        input.step = String(spec.step);
+        input.value = String(_simulatorState[spec.key]);
+      }
+      row.appendChild(input);
+
+      var val = document.createElement('span');
+      val.className = 'text-gray-400 w-20 text-right tabular-nums';
+      val.textContent = spec.format(_simulatorState[spec.key]);
+      row.appendChild(val);
+
+      (function(s, valRef) {
+        input.addEventListener('input', function(e) {
+          var raw = parseFloat(e.target.value);
+          if (isNaN(raw)) return;
+          var v = s.log ? Math.round(Math.pow(10, raw)) : Math.round(raw);
+          if (v < s.min) v = s.min;
+          if (v > s.max) v = s.max;
+          _simulatorState[s.key] = v;
+          valRef.textContent = s.format(v);
+          _saveState('simulator-state', _simulatorState);
+          _renderSimulatorOutput();
+        });
+      })(spec, val);
+
+      left.appendChild(row);
+    }
+
+    var checkSpecs = [
+      { key: 'reasoningMultiplier', label: 'Include reasoning models (×3.5 output for thinking tokens)' },
+      { key: 'edgeOnly',            label: 'Edge-only filter (on-device SLMs)' },
+      { key: 'showSubscription',    label: 'Show subscription products (Devin / Manus)' }
+    ];
+
+    for (var c = 0; c < checkSpecs.length; c++) {
+      var cspec = checkSpecs[c];
+      var crow = document.createElement('div');
+      crow.className = c === 0
+        ? 'flex items-center gap-2 text-xs mt-3 pt-3 border-t border-gray-800'
+        : 'flex items-center gap-2 text-xs';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.id = 'simulator-cb-' + cspec.key;
+      cb.className = 'accent-blue-400';
+      cb.checked = !!_simulatorState[cspec.key];
+      (function(key) {
+        cb.addEventListener('change', function(e) {
+          _simulatorState[key] = !!e.target.checked;
+          _saveState('simulator-state', _simulatorState);
+          _renderSimulatorOutput();
+        });
+      })(cspec.key);
+      var clab = document.createElement('label');
+      clab.htmlFor = 'simulator-cb-' + cspec.key;
+      clab.className = 'text-gray-300';
+      clab.textContent = cspec.label;
+      crow.appendChild(cb);
+      crow.appendChild(clab);
+      left.appendChild(crow);
+    }
+
+    var right = document.createElement('div');
+    right.className = 'space-y-2';
+
+    var rightHead = document.createElement('div');
+    rightHead.className = 'text-sm font-semibold text-gray-300 mb-2';
+    rightHead.textContent = 'Top 15 — cheapest first';
+    right.appendChild(rightHead);
+
+    var tableMount = document.createElement('div');
+    tableMount.id = 'agent-chart-cost-simulator-table';
+    tableMount.className = 'overflow-x-auto';
+    right.appendChild(tableMount);
+
+    grid.appendChild(left);
+    grid.appendChild(right);
+    section.appendChild(grid);
+  }
+
+  function _renderSimulatorOutput() {
+    var mount = document.getElementById('agent-chart-cost-simulator-table');
+    if (!mount) return;
+    while (mount.firstChild) mount.removeChild(mount.firstChild);
+
+    var rows = _simulatorBuildRows();
+    if (!rows.length) {
+      var msg = document.createElement('div');
+      msg.className = 'text-sm text-gray-400 italic';
+      msg.textContent = 'No models matched current filters.';
+      mount.appendChild(msg);
+      return;
+    }
+
+    var table = document.createElement('table');
+    table.className = 'w-full text-xs text-gray-300';
+
+    var thead = document.createElement('thead');
+    var hr = document.createElement('tr');
+    hr.className = 'text-gray-400 border-b border-gray-800';
+    var heads = ['#', 'Model', 'Vendor', 'Class', 'Daily', 'Monthly', 'Yearly'];
+    for (var h = 0; h < heads.length; h++) {
+      var th = document.createElement('th');
+      th.className = h === 0
+        ? 'text-left py-1 pr-2 w-6'
+        : (h >= 4 ? 'text-right py-1 px-2 tabular-nums' : 'text-left py-1 px-2');
+      th.textContent = heads[h];
+      hr.appendChild(th);
+    }
+    thead.appendChild(hr);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    for (var r = 0; r < rows.length; r++) {
+      var row = rows[r];
+      var tr = document.createElement('tr');
+      tr.className = 'border-b border-gray-900 hover:bg-gray-800';
+
+      var rankTd = document.createElement('td');
+      rankTd.className = 'py-1 pr-2 text-gray-500 tabular-nums';
+      rankTd.textContent = String(r + 1);
+      tr.appendChild(rankTd);
+
+      var nameTd = document.createElement('td');
+      nameTd.className = 'py-1 px-2 text-gray-200';
+      var nameSpan = document.createElement('span');
+      nameSpan.textContent = row.name;
+      nameTd.appendChild(nameSpan);
+      if (row.note) {
+        var noteSpan = document.createElement('span');
+        noteSpan.className = 'ml-2 text-gray-500';
+        noteSpan.textContent = '(' + row.note + ')';
+        nameTd.appendChild(noteSpan);
+      }
+      tr.appendChild(nameTd);
+
+      var vendorTd = document.createElement('td');
+      vendorTd.className = 'py-1 px-2 text-gray-400';
+      vendorTd.textContent = row.vendor || '—';
+      tr.appendChild(vendorTd);
+
+      var klassTd = document.createElement('td');
+      klassTd.className = 'py-1 px-2';
+      klassTd.style.color = _classColor(row.klass);
+      klassTd.textContent = _simulatorClassLabel(row.klass);
+      tr.appendChild(klassTd);
+
+      var dailyTd = document.createElement('td');
+      dailyTd.className = 'py-1 px-2 text-right tabular-nums';
+      dailyTd.textContent = row.klass === 'edge-slm' ? '$0' : _simulatorFormatCost(row.daily);
+      tr.appendChild(dailyTd);
+
+      var monthTd = document.createElement('td');
+      monthTd.className = 'py-1 px-2 text-right tabular-nums';
+      monthTd.textContent = row.klass === 'edge-slm' ? '$0' : _simulatorFormatCost(row.monthly);
+      tr.appendChild(monthTd);
+
+      var yearTd = document.createElement('td');
+      yearTd.className = 'py-1 px-2 text-right tabular-nums text-gray-400';
+      yearTd.textContent = row.klass === 'edge-slm' ? '$0' : _simulatorFormatCost(row.yearly);
+      tr.appendChild(yearTd);
+
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    mount.appendChild(table);
+  }
+
+  function renderCostSimulator() {
+    var section = _ensureMountPoint('agent-chart-cost-simulator',
+      'Cost Simulator',
+      'Estimate monthly inference cost across frontier models. Adjust sliders to match your workload — output ranks models cheapest-first.');
+    if (!section) return;
+    _ensureSimulatorControls(section);
+    _renderSimulatorOutput();
+  }
+
+  // ======================================================================
   // Top-level render — called from Agent.render() after _renderCompare.
   // Each widget renders independently; one failing must not break the
   // others, hence the per-call try/catch.
@@ -2924,9 +3835,11 @@ var AgentCharts = (function() {
       renderSOTATimeline,
       renderVendorMatrix,
       renderClassViolin,
+      renderProviderAvailability,
       renderCapabilitySankey,
       renderCumulativeSOTAWins,
-      renderAgentWizard
+      renderAgentWizard,
+      renderCostSimulator
     ];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
@@ -2947,9 +3860,12 @@ var AgentCharts = (function() {
     renderVendorMatrix: renderVendorMatrix,
     renderFingerprintsInLeaderboard: renderFingerprintsInLeaderboard,
     renderClassViolin: renderClassViolin,
+    renderProviderAvailability: renderProviderAvailability,
     renderCapabilitySankey: renderCapabilitySankey,
     renderCumulativeSOTAWins: renderCumulativeSOTAWins,
     renderAgentWizard: renderAgentWizard,
+    renderRecommendationBreakdown: renderRecommendationBreakdown,
+    renderCostSimulator: renderCostSimulator,
     // Helpers exported for widgets to reuse.
     _scoresFor: _scoresFor,
     _modelDisplayName: _modelDisplayName,

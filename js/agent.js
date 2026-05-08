@@ -46,7 +46,10 @@ var Agent = (function() {
                 'gaia',
                 'gaia2',
                 'webarena',
-                'appworld'
+                'appworld',
+                'visualwebarena',
+                'online_mind2web',
+                'webshop'
             ]
         },
         {
@@ -57,7 +60,10 @@ var Agent = (function() {
                 'osworld',
                 'osworld_verified',
                 'windows_agent_arena',
-                'the_agent_company'
+                'the_agent_company',
+                'screenspot_pro',
+                'oscopilot_gaia',
+                'visualagentbench'
             ]
         },
         {
@@ -125,7 +131,9 @@ var Agent = (function() {
                 'anthropic_shade_browser_asr_scenarios',
                 'anthropic_shade_browser_asr_with_safeguards',
                 'agent_red_teaming',
-                'agentsmith_inf'
+                'agentsmith_inf',
+                'apollo_scheming_oversight_subversion',
+                'apollo_scheming_persistence'
             ],
             benchmarks: [
                 'agentdojo_targeted_asr',
@@ -136,7 +144,12 @@ var Agent = (function() {
                 'anthropic_shade_browser_asr_scenarios',
                 'anthropic_shade_browser_asr_with_safeguards',
                 'agent_red_teaming',
-                'agentsmith_inf'
+                'agentsmith_inf',
+                'cot_faithfulness',
+                'cot_faithfulness_misaligned',
+                'apollo_scheming_oversight_subversion',
+                'apollo_scheming_persistence',
+                'rewardbench2_overall'
             ]
         },
         {
@@ -148,7 +161,16 @@ var Agent = (function() {
                 'apex_agents_hard',
                 'terminal_bench_2',
                 'terminal_bench_hard',
-                'hal_overall_accuracy_at_fixed_cost'
+                'hal_overall_accuracy_at_fixed_cost',
+                'metr_autonomy_p50',
+                'metr_autonomy_p80',
+                'processbench_f1',
+                'multiagentbench_research_task',
+                'multiagentbench_coding_task',
+                'multiagentbench_bargaining_task',
+                'multiagentbench_minecraft_task',
+                'agentbench_overall',
+                'metagpt_softwaredev_executability'
             ]
         },
         {
