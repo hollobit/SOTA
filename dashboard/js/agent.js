@@ -268,10 +268,167 @@ var Agent = (function() {
         host.appendChild(div);
     }
 
+    // Defensive lookup: returns all score rows for the given benchmark_id.
+    // Returns [] if App data is not yet loaded.
+    function _scoresFor(benchmarkId) {
+        if (!(window.App && App.data && App.data.scores)) return [];
+        var scores = App.data.scores;
+        if (!scores || !scores.length) return [];
+        var out = [];
+        for (var i = 0; i < scores.length; i++) {
+            var s = scores[i];
+            if (s && s.benchmark_id === benchmarkId) out.push(s);
+        }
+        return out;
+    }
+
+    // Returns the top-1 score row for benchmarkId. lowerBetter inverts the sort.
+    // Returns null if no scores match.
+    function _topModel(benchmarkId, lowerBetter) {
+        var rows = _scoresFor(benchmarkId);
+        if (!rows.length) return null;
+        rows.sort(function(a, b) {
+            var av = (a && typeof a.value === 'number') ? a.value : -Infinity;
+            var bv = (b && typeof b.value === 'number') ? b.value : -Infinity;
+            return lowerBetter ? (av - bv) : (bv - av);
+        });
+        return rows[0];
+    }
+
+    // Resolve a model id → display name; falls back to the id if unknown.
+    function _modelDisplayName(modelId) {
+        if (!modelId) return '';
+        if (window.App && App.data && App.data.models) {
+            var models = App.data.models;
+            if (Array.isArray(models)) {
+                for (var i = 0; i < models.length; i++) {
+                    var m = models[i];
+                    if (m && m.id === modelId) {
+                        if (m.name && String(m.name).length) return m.name;
+                        return modelId;
+                    }
+                }
+            } else if (typeof models === 'object') {
+                var hit = models[modelId];
+                if (hit && hit.name) return hit.name;
+            }
+        }
+        return modelId;
+    }
+
+    // Resolve a benchmark id → display name; falls back to the id if unknown.
+    function _benchmarkName(benchmarkId) {
+        if (!benchmarkId) return '';
+        if (window.App && App.data && App.data.benchmarks) {
+            var benchmarks = App.data.benchmarks;
+            if (Array.isArray(benchmarks)) {
+                for (var i = 0; i < benchmarks.length; i++) {
+                    var b = benchmarks[i];
+                    if (b && b.id === benchmarkId) {
+                        if (b.name && String(b.name).length) return b.name;
+                        return benchmarkId;
+                    }
+                }
+            } else if (typeof benchmarks === 'object') {
+                var hit = benchmarks[benchmarkId];
+                if (hit && hit.name) return hit.name;
+            }
+        }
+        return benchmarkId;
+    }
+
+    // Defensive HTML escape — kept available for future use even though the
+    // current renderers rely on textContent (which auto-escapes).
+    function _escape(s) {
+        return String(s == null ? '' : s)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    // Renders the 4 SOTA Watch tiles into #agent-sota-watch.
+    // Each tile shows: icon+label (top), top model name, top score, benchmark name.
+    // Empty fallback (amber border) when a benchmark has 0 scores in the DB.
+    function _renderSOTAWatch() {
+        var host = document.getElementById('agent-sota-watch');
+        if (!host) return;
+        while (host.firstChild) host.removeChild(host.firstChild);
+
+        var heading = document.createElement('h2');
+        heading.className = 'text-section mb-3';
+        heading.textContent = 'SOTA Watch';
+        host.appendChild(heading);
+
+        var grid = document.createElement('div');
+        grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3';
+        host.appendChild(grid);
+
+        for (var i = 0; i < SOTA_WATCH.length; i++) {
+            var w = SOTA_WATCH[i];
+            var top = _topModel(w.benchmark, false);
+            var benchName = _benchmarkName(w.benchmark);
+
+            if (!top) {
+                // Empty-state tile — graceful fallback, no JS error.
+                var emptyTile = document.createElement('div');
+                emptyTile.className = 'bg-gray-900 border border-amber-700 rounded p-4';
+
+                var emptyHead = document.createElement('div');
+                emptyHead.className = 'text-xs text-amber-300';
+                emptyHead.textContent = w.icon + ' ' + w.label;
+                emptyTile.appendChild(emptyHead);
+
+                var emptyDash = document.createElement('div');
+                emptyDash.className = 'text-2xl mt-2 text-gray-500';
+                emptyDash.textContent = '—';
+                emptyTile.appendChild(emptyDash);
+
+                var emptyMsg = document.createElement('div');
+                emptyMsg.className = 'text-xs text-gray-500 mt-1';
+                emptyMsg.textContent = 'No scores for ' + benchName;
+                emptyTile.appendChild(emptyMsg);
+
+                grid.appendChild(emptyTile);
+                continue;
+            }
+
+            var tile = document.createElement('div');
+            tile.className = 'bg-gray-900 border border-gray-800 rounded p-4 hover:border-blue-600 cursor-pointer transition';
+            tile.dataset.bench = w.benchmark;
+            tile.addEventListener('click', function() {
+                if (window.Modal && Modal.showBenchmark) {
+                    Modal.showBenchmark(this.dataset.bench);
+                }
+            });
+
+            var head = document.createElement('div');
+            head.className = 'text-xs text-gray-300';
+            head.textContent = w.icon + ' ' + w.label;
+            tile.appendChild(head);
+
+            var modelEl = document.createElement('div');
+            modelEl.className = 'text-base font-semibold mt-1 text-gray-100';
+            modelEl.textContent = _modelDisplayName(top.model_id);
+            tile.appendChild(modelEl);
+
+            var valueEl = document.createElement('div');
+            valueEl.className = 'text-2xl font-bold mt-1 text-blue-400';
+            valueEl.textContent = top.value;
+            tile.appendChild(valueEl);
+
+            var benchEl = document.createElement('div');
+            benchEl.className = 'text-xs text-gray-500 mt-1';
+            benchEl.textContent = benchName;
+            tile.appendChild(benchEl);
+
+            grid.appendChild(tile);
+        }
+    }
+
     function render() {
         _bootValidate();
-        // Real renderers added in Tasks 4-7
-        _placeholder(document.getElementById('agent-sota-watch'), '[SOTA Watch — Task 4]');
+        _renderSOTAWatch();
+        // Real renderers added in Tasks 5-7
         _placeholder(document.getElementById('agent-categories'), '[Categories — Task 5]');
         _placeholder(document.getElementById('agent-compare'), '[Compare — Task 6]');
         _placeholder(document.getElementById('agent-leaderboard'), '[Leaderboard — Task 7]');
