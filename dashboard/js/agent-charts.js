@@ -489,12 +489,245 @@ var AgentCharts = (function() {
 
   // ======================================================================
   // Widget 2 — Capability Heatmap (models × benchmarks)
+  //
+  // Rows: top 20 agents by coverage (≥ 3 of the 12 core benchmarks scored).
+  //       Sort by coverage desc, tie-break by composite (mean of normalized).
+  // Cols: 12-benchmark curated core set (higher-better only — agentdojo_utility
+  //       is the "utility" direction so higher == better).
+  // Cell value: value / max(benchmark) * 100, with `'-'` for missing pairs
+  //       (ECharts heatmap convention).
+  // Color scale: red (0) → yellow (50) → green (100), dark-friendly.
+  // Click → Modal.showModel(modelId) for drilldown.
   // ======================================================================
+  var _HEATMAP_BENCHMARKS = [
+    'swe_bench_verified', 'swe_bench_pro', 'terminal_bench_2', 'osworld_verified',
+    'gaia', 'tau2_bench', 'bfcl_v4', 'browsecomp', 'aider_polyglot', 'usaco',
+    'mobile_actions', 'agentdojo_utility'
+  ];
+
+  function _benchmarkShortName(bid) {
+    var raw = bid;
+    if (window.Agent && typeof window.Agent._benchmarkName === 'function') {
+      raw = window.Agent._benchmarkName(bid) || bid;
+    } else if (window.App && App.data && App.data.benchmarks) {
+      var bs = App.data.benchmarks;
+      if (Array.isArray(bs)) {
+        for (var i = 0; i < bs.length; i++) {
+          if (bs[i] && bs[i].id === bid) { raw = bs[i].name || bid; break; }
+        }
+      }
+    }
+    var s = String(raw);
+    if (s.length > 22) s = s.slice(0, 20) + '…';
+    return s;
+  }
+
+  function _classEmoji(klass) {
+    if (klass === 'agent-product') return '🟧';
+    if (klass === 'edge-slm') return '🟩';
+    return '🟦';
+  }
+
+  function _emptyHeatmapMount(message) {
+    var el = document.getElementById('agent-chart-heatmap');
+    if (!el) return;
+    if (Charts && Charts._instances && Charts._instances['agent-chart-heatmap']) {
+      try { Charts._instances['agent-chart-heatmap'].dispose(); } catch (e) {}
+      delete Charts._instances['agent-chart-heatmap'];
+    }
+    while (el.firstChild) el.removeChild(el.firstChild);
+    var p = document.createElement('div');
+    p.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+    p.textContent = message;
+    el.appendChild(p);
+  }
+
   function renderCapabilityHeatmap() {
     _ensureMountPoint('agent-chart-heatmap',
       'Capability Heatmap',
       'Top 20 agents (rows) × 12 core agentic benchmarks (cols). Cell color = normalized score 0–100.');
-    // implementation body: Phase 2 Agent B
+    if (typeof echarts === 'undefined') return;
+    if (!(window.App && App.data && App.data.scores && App.data.models)) return;
+
+    // 1. For each benchmark, gather all (model_id, value) and compute max.
+    //    Build modelStats: { coverage, perBench: { bid: {value, norm} } }.
+    var benchMax = {};
+    var modelStats = {};
+    var BSET = {};
+    for (var b = 0; b < _HEATMAP_BENCHMARKS.length; b++) BSET[_HEATMAP_BENCHMARKS[b]] = true;
+
+    var scores = App.data.scores;
+    for (var i = 0; i < scores.length; i++) {
+      var s = scores[i];
+      if (!s || !BSET[s.benchmark_id]) continue;
+      var v = (typeof s.value === 'number') ? s.value : null;
+      if (v === null || isNaN(v)) continue;
+      if (!(s.benchmark_id in benchMax) || v > benchMax[s.benchmark_id]) {
+        benchMax[s.benchmark_id] = v;
+      }
+      if (!modelStats[s.model_id]) {
+        modelStats[s.model_id] = { coverage: 0, perBench: {} };
+      }
+      var prev = modelStats[s.model_id].perBench[s.benchmark_id];
+      if (!prev || v > prev.value) {
+        modelStats[s.model_id].perBench[s.benchmark_id] = { value: v };
+      }
+    }
+
+    var modelIds = Object.keys(modelStats);
+    for (var m = 0; m < modelIds.length; m++) {
+      modelStats[modelIds[m]].coverage = Object.keys(modelStats[modelIds[m]].perBench).length;
+    }
+
+    // 2. Coverage >= 3, then top 20 by coverage desc (composite tie-break).
+    var eligible = [];
+    for (var k = 0; k < modelIds.length; k++) {
+      if (modelStats[modelIds[k]].coverage >= 3) eligible.push(modelIds[k]);
+    }
+    if (eligible.length < 5) {
+      _emptyHeatmapMount(
+        'Not enough coverage yet — need ≥5 models scored on ≥3 of the 12 core benchmarks. (' +
+        eligible.length + ' eligible.)');
+      return;
+    }
+
+    for (var n = 0; n < eligible.length; n++) {
+      var midN = eligible[n];
+      var pbN = modelStats[midN].perBench;
+      var sumN = 0, cntN = 0;
+      for (var bidN in pbN) {
+        if (!Object.prototype.hasOwnProperty.call(pbN, bidN)) continue;
+        var maxV = benchMax[bidN];
+        if (!maxV || maxV <= 0) continue;
+        var nrm = (pbN[bidN].value / maxV) * 100;
+        pbN[bidN].norm = nrm;
+        sumN += nrm;
+        cntN += 1;
+      }
+      modelStats[midN].composite = cntN ? sumN / cntN : 0;
+    }
+
+    eligible.sort(function(a, bb) {
+      var ca = modelStats[a].coverage, cb = modelStats[bb].coverage;
+      if (cb !== ca) return cb - ca;
+      return modelStats[bb].composite - modelStats[a].composite;
+    });
+    var topModels = eligible.slice(0, 20);
+
+    // 3. ECharts y-axis renders bottom-up, so reverse so top-coverage sits at
+    //    the top of the y-axis. Fill `'-'` for missing cells per the spec.
+    var rowOrder = topModels.slice().reverse();
+    var data = [];
+    var rawByCell = {};
+    for (var r = 0; r < rowOrder.length; r++) {
+      var rid = rowOrder[r];
+      var pbR = modelStats[rid].perBench;
+      for (var c = 0; c < _HEATMAP_BENCHMARKS.length; c++) {
+        var bidC = _HEATMAP_BENCHMARKS[c];
+        var cell = pbR[bidC];
+        if (cell && typeof cell.norm === 'number') {
+          var roundedNorm = Math.round(cell.norm * 10) / 10;
+          data.push([c, r, roundedNorm]);
+          rawByCell[c + ':' + r] = { raw: cell.value, modelId: rid, benchmarkId: bidC };
+        } else {
+          data.push([c, r, '-']);
+        }
+      }
+    }
+
+    // 4. Axis labels.
+    var xLabels = _HEATMAP_BENCHMARKS.map(function(bid) { return _benchmarkShortName(bid); });
+    var yLabels = rowOrder.map(function(mid) {
+      return _classEmoji(_modelClass(mid)) + ' ' + _modelDisplayName(mid);
+    });
+
+    var chart = Charts._getOrCreate('agent-chart-heatmap');
+    if (!chart) return;
+
+    var option = {
+      backgroundColor: 'transparent',
+      grid: { left: 200, right: 30, top: 30, bottom: 90, containLabel: false },
+      tooltip: {
+        position: 'top',
+        backgroundColor: 'rgba(17, 24, 39, 0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb', fontSize: 12 },
+        formatter: function(p) {
+          if (!p || !p.value) return '';
+          var col = p.value[0], row = p.value[1], norm = p.value[2];
+          var rid = rowOrder[row];
+          var bid = _HEATMAP_BENCHMARKS[col];
+          var meta = rawByCell[col + ':' + row];
+          var klass = _modelClass(rid);
+          var klassLabel = klass === 'agent-product' ? 'Agent-Product'
+                         : klass === 'edge-slm' ? 'Edge-SLM' : 'Frontier';
+          var nameLine = '<b>' + _modelDisplayName(rid) + '</b>' +
+            ' <span style="color:#9ca3af">(' + klassLabel + ')</span>';
+          var benchLine = _benchmarkShortName(bid);
+          if (norm === '-' || !meta) {
+            return nameLine + '<br>' + benchLine + '<br><span style="color:#6b7280">No score</span>';
+          }
+          var rawDisplay = (meta.raw > 500) ? Math.round(meta.raw) : (Math.round(meta.raw * 100) / 100);
+          return nameLine + '<br>' + benchLine +
+                 '<br>Normalized: <b>' + norm + '</b> / 100' +
+                 '<br>Raw: ' + rawDisplay;
+        }
+      },
+      xAxis: {
+        type: 'category',
+        data: xLabels,
+        splitArea: { show: true },
+        axisLabel: { rotate: 30, fontSize: 10, color: '#d1d5db', interval: 0 },
+        axisLine: { lineStyle: { color: '#374151' } },
+        axisTick: { show: false }
+      },
+      yAxis: {
+        type: 'category',
+        data: yLabels,
+        splitArea: { show: true },
+        axisLabel: { fontSize: 10, color: '#d1d5db' },
+        axisLine: { lineStyle: { color: '#374151' } },
+        axisTick: { show: false }
+      },
+      visualMap: {
+        min: 0, max: 100, calculable: true,
+        orient: 'horizontal', left: 'center', bottom: 8,
+        inRange: { color: ['#7f1d1d', '#dc2626', '#f59e0b', '#fde047', '#84cc16', '#16a34a'] },
+        textStyle: { color: '#9ca3af', fontSize: 10 },
+        text: ['100', '0']
+      },
+      series: [{
+        name: 'Capability',
+        type: 'heatmap',
+        data: data,
+        label: {
+          show: true, fontSize: 9, color: '#0f172a', fontWeight: 600,
+          formatter: function(p) {
+            if (!p || !p.value || p.value[2] === '-') return '';
+            return p.value[2];
+          }
+        },
+        emphasis: {
+          itemStyle: {
+            borderColor: '#fff', borderWidth: 1,
+            shadowBlur: 8, shadowColor: 'rgba(96, 165, 250, 0.5)'
+          }
+        },
+        progressive: 0
+      }]
+    };
+
+    chart.setOption(option, true);
+
+    chart.off('click');
+    chart.on('click', function(p) {
+      if (!p || !p.value) return;
+      var rIdx = p.value[1];
+      var rid = rowOrder[rIdx];
+      if (rid && window.Modal && typeof Modal.showModel === 'function') {
+        Modal.showModel(rid);
+      }
+    });
   }
 
   // ======================================================================
