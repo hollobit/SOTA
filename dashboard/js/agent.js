@@ -965,12 +965,30 @@ var Agent = (function() {
         }
     }
 
+    // Lazy-load edge model utility metrics (size_gb, ttft_ms, etc.) before rendering.
+    // The fetch path mirrors how App.loadData resolves base — the dashboard symlinks
+    // /data → ../data/export, so 'data/edge_models_utility.json' resolves correctly
+    // when served from /dashboard/.
+    function _loadUtility(cb) {
+        if (Object.keys(UTILITY_METRICS).length) { cb(); return; }
+        var base = (window.location.pathname.indexOf('/dashboard/') !== -1) ? '../data' : 'data';
+        fetch(base + '/edge_models_utility.json')
+            .then(function(r) { return r.ok ? r.json() : null; })
+            .then(function(d) {
+                UTILITY_METRICS = (d && d.models) || {};
+                cb();
+            })
+            .catch(function() { cb(); }); // Fail-open: leave UTILITY_METRICS empty
+    }
+
     function render() {
-        _bootValidate();
-        _renderSOTAWatch();
-        _renderCategories();
-        _renderCompare();
-        _renderLeaderboard();
+        _loadUtility(function() {
+            _bootValidate();
+            _renderSOTAWatch();
+            _renderCategories();
+            _renderCompare();
+            _renderLeaderboard();
+        });
     }
 
     return {
