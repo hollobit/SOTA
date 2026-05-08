@@ -449,6 +449,7 @@ var App = {
                     if (btn.dataset.tab === 'physical-ai' && typeof PhysicalAI !== 'undefined') PhysicalAI.render();
                     if (btn.dataset.tab === 'medical-ai' && typeof MedicalAI !== 'undefined') MedicalAI.render();
                     if (btn.dataset.tab === 'ai4s' && typeof AI4S !== 'undefined') AI4S.render();
+                    if (btn.dataset.tab === 'agent' && typeof Agent !== 'undefined') Agent.render();
                     if (btn.dataset.tab === 'timeline' && typeof Timeline !== 'undefined') Timeline.render();
                     if (btn.dataset.tab === 'resources') self.renderResources();
                     if (btn.dataset.tab === 'changelog') self.renderChangelog();
