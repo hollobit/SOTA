@@ -587,10 +587,32 @@ var Agent = (function() {
         if (!host) return;
         while (host.firstChild) host.removeChild(host.firstChild);
 
+        // Header row: 'SOTA Watch' title + 'Export PDF' button on the right.
+        // The button uses window.print(); a print-only stylesheet
+        // (dashboard/css/print.css) hides the rest of the dashboard so the
+        // browser's "Save as PDF" output contains only the Agent tab.
+        var headRow = document.createElement('div');
+        headRow.className = 'flex items-center justify-between mb-3 flex-wrap gap-2';
+
         var heading = document.createElement('h2');
-        heading.className = 'text-section mb-3';
+        heading.className = 'text-section';
         heading.textContent = 'SOTA Watch';
-        host.appendChild(heading);
+        headRow.appendChild(heading);
+
+        var exportBtn = document.createElement('button');
+        exportBtn.id = 'agent-export-pdf-btn';
+        exportBtn.type = 'button';
+        exportBtn.className = 'no-print bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-blue-500 text-gray-100 text-xs px-3 py-2 rounded transition';
+        exportBtn.title = 'Print or save the Agent tab as a PDF (uses browser Print dialog)';
+        exportBtn.setAttribute('aria-label', 'Export Agent tab as PDF');
+        exportBtn.textContent = '🖨 Export PDF';
+        exportBtn.addEventListener('click', function() {
+            try { window.print(); }
+            catch (e) { if (window.console) console.warn('[Agent] window.print() failed:', e); }
+        });
+        headRow.appendChild(exportBtn);
+
+        host.appendChild(headRow);
 
         var grid = document.createElement('div');
         grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3';

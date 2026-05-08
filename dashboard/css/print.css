@@ -1,0 +1,127 @@
+/*
+ * Print stylesheet — Agent tab PDF export (Wave 6B4).
+ *
+ * Linked with media="print" so it has ZERO effect on screen rendering.
+ * When the user invokes window.print() (or browser Cmd/Ctrl+P), the browser
+ * applies these rules and offers a "Save as PDF" destination.
+ *
+ * Strategy:
+ *   - Hide everything except the active #tab-agent panel.
+ *   - Force the tab-agent panel visible regardless of its on-screen .hidden state.
+ *   - Reset the dark theme (white background / dark text) for printability.
+ *   - Page-break before each widget heading so each chart gets its own page.
+ *   - Drop overflow clipping so wide tables / charts aren't cut.
+ */
+
+@page {
+    size: A4;
+    margin: 12mm 10mm;
+}
+
+/* ---------- Hide chrome (header, nav, footer, modal, other tabs) ---------- */
+header,
+nav#tabs,
+footer,
+#modal-overlay,
+#cmdk-palette,
+#watchlist-btn,
+#cmdk-hint,
+#theme-toggle,
+.tab-content:not(#tab-agent) {
+    display: none !important;
+}
+
+/* ---------- Force the Agent tab visible even if it has .hidden ---------- */
+#tab-agent,
+#tab-agent.hidden {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* ---------- Reset dark theme for paper printability ---------- */
+html,
+body {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+main,
+#tab-agent,
+#tab-agent * {
+    background: transparent !important;
+    color: #000000 !important;
+    border-color: #999999 !important;
+    box-shadow: none !important;
+}
+
+#tab-agent a {
+    color: #000000 !important;
+    text-decoration: underline;
+}
+
+/* Tile / card wrappers — keep a thin grey border so blocks remain readable */
+#tab-agent .rounded,
+#tab-agent .border,
+#tab-agent [class*="border-"] {
+    border: 1px solid #cccccc !important;
+}
+
+/* ---------- Reset overflow so widgets aren't clipped ---------- */
+main,
+#tab-agent,
+#tab-agent * {
+    overflow: visible !important;
+    max-height: none !important;
+}
+
+/* ---------- Page break before each widget header ---------- */
+#tab-agent h2,
+#tab-agent h3 {
+    break-before: page;
+    page-break-before: always;
+    break-after: avoid;
+    page-break-after: avoid;
+}
+
+/* The very first heading (SOTA Watch) shouldn't push a blank first page */
+#tab-agent > div > :first-child h2:first-child,
+#tab-agent #agent-sota-watch h2:first-child {
+    break-before: auto;
+    page-break-before: auto;
+}
+
+/* Avoid splitting a single chart/card across two pages */
+#tab-agent #agent-charts > div,
+#tab-agent #agent-categories > div,
+#tab-agent #agent-leaderboard,
+#tab-agent #agent-compare,
+#tab-agent #agent-sota-watch {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+/* ---------- Force charts to render at full visible width ---------- */
+#tab-agent .w-full,
+#tab-agent canvas,
+#tab-agent [_echarts_instance_] {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* ---------- Hide the Export button itself when printing ---------- */
+#agent-export-pdf-btn,
+.no-print {
+    display: none !important;
+}
+
+/* ---------- Tables: keep readable, allow wrapping ---------- */
+#tab-agent table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    font-size: 10pt;
+}
+#tab-agent table th,
+#tab-agent table td {
+    border: 1px solid #cccccc !important;
+    padding: 4px 6px !important;
+}
