@@ -4234,6 +4234,248 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Widget 19 (Wave 6C5) — Edge SLM Utility Scatter (size × battery × score)
+  //
+  // Plots on-device SLMs as bubbles to help users pick the right model
+  // for phone constraints. X = model size on disk (GB, log scale), Y =
+  // battery % drained per 25 conversations (lower is better — flagged in
+  // the axis label). Bubble color = vendor, bubble size = composite agent
+  // score (small fallback if not in _composite()). Source citation URL
+  // surfaced on hover. Battery values are sparse in the dataset; missing
+  // ones are estimated from size_gb (calibrated against gemma-3-270m's
+  // published 0.75% / 25 convos at 0.5 GB → ~1.5%/GB) and clearly tagged
+  // as estimates in the tooltip.
+  //
+  // Fetches data/edge_models_utility.json directly because UTILITY_METRICS
+  // is private inside the Agent IIFE. Result cached on
+  // AgentCharts._edgeUtilityPromise.
+  // ======================================================================
+  function _edgeVendorColor(vendor) {
+    var map = {
+      'apple':     '#f472b6', // pink-400
+      'google':    '#34d399', // emerald-400
+      'meta':      '#60a5fa', // blue-400
+      'microsoft': '#fbbf24', // amber-400
+      'openai':    '#a78bfa', // violet-400
+      'anthropic': '#f87171'  // red-400
+    };
+    return map[(vendor || '').toLowerCase()] || '#9ca3af'; // gray-400 fallback
+  }
+
+  function _edgeVendorOf(modelId) {
+    if (!modelId) return '';
+    var slash = modelId.indexOf('/');
+    return slash > 0 ? modelId.slice(0, slash) : modelId;
+  }
+
+  function _edgeModelShortName(modelId) {
+    var registered = _modelDisplayName(modelId);
+    if (registered && registered !== modelId) return registered;
+    // No registered model record — derive a readable label from the id.
+    var slash = modelId.indexOf('/');
+    return slash > 0 ? modelId.slice(slash + 1) : modelId;
+  }
+
+  function renderEdgeUtilityScatter() {
+    _ensureMountPoint('agent-chart-edge-utility',
+      'Edge SLM Utility — Size × Battery × Capability',
+      'On-device models plotted by file size (X) and battery cost (Y). Bubble size = composite agent score. Source citations on hover.');
+    if (typeof echarts === 'undefined') return;
+
+    function getEdgeUtility() {
+      AgentCharts._edgeUtilityPromise = AgentCharts._edgeUtilityPromise || (function() {
+        var base = (window.location.pathname.indexOf('/dashboard/') !== -1) ? '../data' : 'data';
+        return fetch(base + '/edge_models_utility.json')
+          .then(function(r) { return r.ok ? r.json() : { models: {} }; })
+          .catch(function() { return { models: {} }; });
+      })();
+      return AgentCharts._edgeUtilityPromise;
+    }
+
+    getEdgeUtility().then(function(data) {
+      var mountEl = document.getElementById('agent-chart-edge-utility');
+      if (!mountEl) return;
+
+      var models = (data && data.models) || {};
+      var keys = Object.keys(models);
+
+      function _showEmpty(message) {
+        if (Charts && Charts._instances && Charts._instances['agent-chart-edge-utility']) {
+          try { Charts._instances['agent-chart-edge-utility'].dispose(); } catch (e) {}
+          delete Charts._instances['agent-chart-edge-utility'];
+        }
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = message;
+        mountEl.appendChild(msg);
+      }
+
+      if (!keys.length) { _showEmpty('Edge utility data unavailable'); return; }
+
+      // Composite-score lookup so bubble size can encode agentic capability.
+      var compositeMap = {};
+      var rows = _composite();
+      for (var ci = 0; ci < rows.length; ci++) compositeMap[rows[ci].model_id] = rows[ci].agent_score;
+
+      // Calibration: gemma-3-270m → 0.5 GB consumes 0.75% / 25 convos →
+      // ~1.5 %/GB. Use this when battery_pct is missing.
+      var BATTERY_PER_GB_ESTIMATE = 1.5;
+
+      // Group points by vendor for legend coloring.
+      var byVendor = {};
+      var plotted = 0;
+
+      for (var i = 0; i < keys.length; i++) {
+        var mid = keys[i];
+        var entry = models[mid] || {};
+        var sizeGb = entry.size_gb;
+        if (typeof sizeGb !== 'number' || sizeGb <= 0) continue; // X-axis required
+
+        var vendor = _edgeVendorOf(mid);
+        var battery = entry.battery_pct_per_25_conversations;
+        var batteryEstimated = false;
+        if (typeof battery !== 'number') {
+          battery = sizeGb * BATTERY_PER_GB_ESTIMATE;
+          batteryEstimated = true;
+        }
+
+        var score = compositeMap[mid];
+        var hasScore = typeof score === 'number';
+        // Bubble size: 10..40 for scored models, 8 fallback for unscored.
+        var symbolSize = hasScore ? Math.max(10, Math.min(40, 8 + score * 0.35)) : 8;
+
+        var label = _edgeModelShortName(mid);
+        var point = {
+          name: label,
+          value: [sizeGb, battery, hasScore ? score : null],
+          symbolSize: symbolSize,
+          label: {
+            show: true,
+            position: 'top',
+            distance: 6,
+            color: '#e5e7eb',
+            backgroundColor: 'rgba(17,24,39,0.85)',
+            borderColor: '#4b5563',
+            borderWidth: 1,
+            borderRadius: 3,
+            padding: [2, 4],
+            fontSize: 10,
+            formatter: label
+          },
+          _meta: {
+            model_id: mid,
+            vendor: vendor,
+            size_gb: sizeGb,
+            battery_pct: battery,
+            battery_estimated: batteryEstimated,
+            agent_score: hasScore ? score : null,
+            citation: entry._source || ''
+          }
+        };
+
+        if (!byVendor[vendor]) byVendor[vendor] = [];
+        byVendor[vendor].push(point);
+        plotted++;
+      }
+
+      if (!plotted) { _showEmpty('Edge utility data unavailable'); return; }
+
+      var chart = Charts._getOrCreate('agent-chart-edge-utility');
+      if (!chart) return;
+
+      var vendorNames = Object.keys(byVendor).sort();
+      var series = vendorNames.map(function(v) {
+        return {
+          name: v.charAt(0).toUpperCase() + v.slice(1),
+          type: 'scatter',
+          data: byVendor[v],
+          itemStyle: { color: _edgeVendorColor(v), opacity: 0.85 },
+          emphasis: { focus: 'series' }
+        };
+      });
+
+      var opt = {
+        backgroundColor: 'transparent',
+        grid: { left: 70, right: 24, top: 30, bottom: 70 },
+        legend: {
+          bottom: 0,
+          textStyle: { color: '#d1d5db' },
+          data: series.map(function(s) { return s.name; })
+        },
+        tooltip: {
+          trigger: 'item',
+          backgroundColor: 'rgba(17,24,39,0.95)',
+          borderColor: '#374151',
+          textStyle: { color: '#e5e7eb' },
+          formatter: function(params) {
+            var m = params.data && params.data._meta;
+            if (!m) return params.name;
+            var batteryStr = m.battery_pct.toFixed(2) + '% / 25 convos'
+              + (m.battery_estimated ? ' (est. from size)' : '');
+            var scoreStr = (m.agent_score == null) ? 'n/a (unscored)' : m.agent_score.toFixed(1);
+            var citation = m.citation
+              ? '<a href="' + m.citation + '" target="_blank" rel="noopener" style="color:#60a5fa">source</a>'
+              : '—';
+            var lines = [
+              '<b>' + params.name + '</b>',
+              'vendor: ' + (m.vendor || '—'),
+              'size: ' + m.size_gb.toFixed(2) + ' GB',
+              'battery: ' + batteryStr,
+              'agent score: ' + scoreStr,
+              'citation: ' + citation
+            ];
+            return lines.join('<br>');
+          }
+        },
+        xAxis: {
+          type: 'log',
+          name: 'Model size (GB, log)',
+          nameLocation: 'middle',
+          nameGap: 30,
+          nameTextStyle: { color: '#9ca3af' },
+          axisLabel: {
+            color: '#9ca3af',
+            formatter: function(v) { return v + ' GB'; }
+          },
+          axisLine: { lineStyle: { color: '#4b5563' } },
+          splitLine: { lineStyle: { color: '#1f2937' } },
+          min: 0.3,
+          max: 30
+        },
+        yAxis: {
+          type: 'value',
+          name: 'Battery % / 25 convos (lower is better)',
+          nameLocation: 'middle',
+          nameGap: 48,
+          nameTextStyle: { color: '#9ca3af' },
+          min: 0,
+          axisLabel: {
+            color: '#9ca3af',
+            formatter: function(v) { return v.toFixed(1) + '%'; }
+          },
+          axisLine: { lineStyle: { color: '#4b5563' } },
+          splitLine: { lineStyle: { color: '#1f2937' } }
+        },
+        series: series,
+        graphic: [{
+          type: 'text',
+          left: 8,
+          bottom: 24,
+          style: {
+            text: 'Bubble size = composite agent score · battery values flagged "(est.)" derived from size × 1.5 %/GB',
+            fill: '#9ca3af',
+            fontSize: 10,
+            fontStyle: 'italic'
+          }
+        }]
+      };
+
+      chart.setOption(_applyToolbox(opt), true);
+    });
+  }
+
+  // ======================================================================
   // Top-level render — called from Agent.render() after _renderCompare.
   // Each widget renders independently; one failing must not break the
   // others, hence the per-call try/catch.
@@ -4253,7 +4495,8 @@ var AgentCharts = (function() {
       renderAgentWizard,
       renderCostSimulator,
       renderVendorCoverageMatrix,
-      renderTrajectoryReplay
+      renderTrajectoryReplay,
+      renderEdgeUtilityScatter
     ];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
@@ -4282,6 +4525,7 @@ var AgentCharts = (function() {
     renderCostSimulator: renderCostSimulator,
     renderVendorCoverageMatrix: renderVendorCoverageMatrix,
     renderTrajectoryReplay: renderTrajectoryReplay,
+    renderEdgeUtilityScatter: renderEdgeUtilityScatter,
     // Helpers exported for widgets to reuse.
     _scoresFor: _scoresFor,
     _modelDisplayName: _modelDisplayName,
