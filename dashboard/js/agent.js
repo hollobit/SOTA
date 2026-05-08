@@ -346,6 +346,203 @@ var Agent = (function() {
             .replace(/>/g, '&gt;');
     }
 
+    // Compute aggregate stats for a category card:
+    //   { benchCount, modelCount, totalScores, top3 }
+    // top3 is sorted descending by per-model best normalized score (0..100).
+    // Normalization is per-benchmark: value/maxV*100, or (1 - v/maxV)*100 when
+    // the benchmark id is in cat.lower_better. Benchmarks with maxV === 0 are
+    // skipped to avoid divide-by-zero.
+    function _categoryStats(cat) {
+        var lowerBetterSet = {};
+        if (cat && cat.lower_better && cat.lower_better.length) {
+            for (var i = 0; i < cat.lower_better.length; i++) {
+                lowerBetterSet[cat.lower_better[i]] = true;
+            }
+        }
+
+        var ids = (cat && cat.benchmarks) ? cat.benchmarks : [];
+        var modelSet = {};
+        var totalScores = 0;
+        var modelBest = {}; // model_id -> { model_id, norm, raw, bid }
+
+        for (var b = 0; b < ids.length; b++) {
+            var bid = ids[b];
+            var rows = _scoresFor(bid);
+            if (!rows.length) continue;
+
+            // Compute maxV across rows (numeric values only).
+            var maxV = 0;
+            for (var r = 0; r < rows.length; r++) {
+                var rv = rows[r];
+                if (rv && typeof rv.value === 'number' && rv.value > maxV) {
+                    maxV = rv.value;
+                }
+            }
+            if (maxV === 0) {
+                // Still count rows toward totals + model coverage even if
+                // we can't normalize (avoids divide-by-zero).
+                for (var c = 0; c < rows.length; c++) {
+                    var rc = rows[c];
+                    totalScores++;
+                    if (rc && rc.model_id) modelSet[rc.model_id] = true;
+                }
+                continue;
+            }
+
+            for (var k = 0; k < rows.length; k++) {
+                var row = rows[k];
+                totalScores++;
+                if (!row || row.model_id == null) continue;
+                modelSet[row.model_id] = true;
+                if (typeof row.value !== 'number') continue;
+
+                var norm;
+                if (lowerBetterSet[bid]) {
+                    norm = (1 - row.value / maxV) * 100;
+                } else {
+                    norm = (row.value / maxV) * 100;
+                }
+
+                var prev = modelBest[row.model_id];
+                if (!prev || norm > prev.norm) {
+                    modelBest[row.model_id] = {
+                        model_id: row.model_id,
+                        norm: norm,
+                        raw: row.value,
+                        bid: bid
+                    };
+                }
+            }
+        }
+
+        var modelCount = 0;
+        for (var mk in modelSet) {
+            if (Object.prototype.hasOwnProperty.call(modelSet, mk)) modelCount++;
+        }
+
+        var arr = [];
+        for (var mb in modelBest) {
+            if (Object.prototype.hasOwnProperty.call(modelBest, mb)) {
+                arr.push(modelBest[mb]);
+            }
+        }
+        arr.sort(function(a, b) { return b.norm - a.norm; });
+        var top3 = arr.slice(0, 3);
+
+        return {
+            benchCount: ids.length,
+            modelCount: modelCount,
+            totalScores: totalScores,
+            top3: top3
+        };
+    }
+
+    // Build a single category card element. The 10th category (utility_emphasis)
+    // spans the full row width via md:col-span-3.
+    function _renderCategoryCard(cat) {
+        var stats = _categoryStats(cat);
+
+        var card = document.createElement('div');
+        var cls = 'rounded border bg-gray-900 border-gray-800 hover:border-blue-600 p-4 cursor-pointer transition';
+        if (cat.utility_emphasis) {
+            cls = 'col-span-1 md:col-span-3 ' + cls;
+        }
+        card.className = cls;
+        card.dataset.cat = cat.key;
+        card.addEventListener('click', function() {
+            console.log('[Agent] category click:', this.dataset.cat);
+        });
+
+        // Heading row: icon + label + optional crossListed badge.
+        var head = document.createElement('div');
+        head.className = 'flex items-baseline gap-2 flex-wrap';
+
+        var iconEl = document.createElement('span');
+        iconEl.className = 'text-xl';
+        iconEl.textContent = cat.icon;
+        head.appendChild(iconEl);
+
+        var labelEl = document.createElement('span');
+        labelEl.className = 'text-base font-semibold text-gray-100';
+        labelEl.textContent = cat.label;
+        head.appendChild(labelEl);
+
+        if (cat.crossListed && cat.crossListed.length) {
+            var badge = document.createElement('span');
+            badge.className = 'text-xs text-amber-300 bg-amber-900/30 rounded px-1.5 py-0.5';
+            badge.textContent = 'Also in ' + cat.crossListed.join(' / ');
+            head.appendChild(badge);
+        }
+        card.appendChild(head);
+
+        // Metric row.
+        var metric = document.createElement('div');
+        metric.className = 'text-xs text-gray-400 mt-1';
+        metric.textContent = stats.benchCount + ' benchmarks · ' +
+            stats.modelCount + ' models · ' +
+            stats.totalScores + ' scores';
+        card.appendChild(metric);
+
+        // Optional lower-better microtext for safety category.
+        if (cat.lower_better && cat.lower_better.length) {
+            var lb = document.createElement('div');
+            lb.className = 'text-xs text-gray-500 mt-0.5';
+            lb.textContent = '↓ lower-better for ASR/jailbreak rows';
+            card.appendChild(lb);
+        }
+
+        // Top-3 list.
+        var ol = document.createElement('ol');
+        ol.className = 'mt-2 list-decimal pl-5 text-xs text-gray-300 space-y-0.5';
+
+        if (!stats.top3.length) {
+            var emptyLi = document.createElement('li');
+            emptyLi.className = 'text-gray-500';
+            emptyLi.textContent = 'No scores yet.';
+            ol.appendChild(emptyLi);
+        } else {
+            var top3 = stats.top3.slice(0, 3);
+            for (var t = 0; t < top3.length; t++) {
+                var entry = top3[t];
+                var li = document.createElement('li');
+
+                var mainSpan = document.createElement('span');
+                mainSpan.textContent = _modelDisplayName(entry.model_id);
+                li.appendChild(mainSpan);
+
+                var subSpan = document.createElement('span');
+                subSpan.className = 'text-gray-500 ml-1';
+                subSpan.textContent = String(entry.raw) + ' (' + _benchmarkName(entry.bid) + ')';
+                li.appendChild(subSpan);
+
+                ol.appendChild(li);
+            }
+        }
+        card.appendChild(ol);
+
+        return card;
+    }
+
+    // Renders the 10 category cards into #agent-categories.
+    function _renderCategories() {
+        var host = document.getElementById('agent-categories');
+        if (!host) return;
+        while (host.firstChild) host.removeChild(host.firstChild);
+
+        var heading = document.createElement('h2');
+        heading.className = 'text-lg font-semibold text-gray-200 mb-3 mt-6';
+        heading.textContent = 'Categories';
+        host.appendChild(heading);
+
+        var grid = document.createElement('div');
+        grid.className = 'grid grid-cols-1 md:grid-cols-3 gap-3';
+        host.appendChild(grid);
+
+        for (var i = 0; i < CATEGORIES.length; i++) {
+            grid.appendChild(_renderCategoryCard(CATEGORIES[i]));
+        }
+    }
+
     // Renders the 4 SOTA Watch tiles into #agent-sota-watch.
     // Each tile shows: icon+label (top), top model name, top score, benchmark name.
     // Empty fallback (amber border) when a benchmark has 0 scores in the DB.
@@ -428,8 +625,8 @@ var Agent = (function() {
     function render() {
         _bootValidate();
         _renderSOTAWatch();
-        // Real renderers added in Tasks 5-7
-        _placeholder(document.getElementById('agent-categories'), '[Categories — Task 5]');
+        _renderCategories();
+        // Real renderers added in Tasks 6-7
         _placeholder(document.getElementById('agent-compare'), '[Compare — Task 6]');
         _placeholder(document.getElementById('agent-leaderboard'), '[Leaderboard — Task 7]');
     }
