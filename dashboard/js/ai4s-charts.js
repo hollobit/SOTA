@@ -852,11 +852,83 @@
   }
 
   // ====================================================================
+  // W8 — Protein folding (CASP) progression. Step-line by CASP edition.
+  // ====================================================================
+  function renderCASPProgression() {
+    _ensureMountPoint('ai4s-chart-casp-progression',
+      'Protein Folding (CASP) Progression',
+      'Top GDT-TS by CASP edition. Stepwise → AlphaFold v1 → v2 → v3 → Chai-2.');
+    if (typeof echarts === 'undefined') return;
+
+    var caspBenches = ['casp12_gdt', 'casp13_gdt', 'casp14_gdt', 'casp15_gdt', 'casp16_gdt'];
+    var caspYears  = { casp12: 2016, casp13: 2018, casp14: 2020, casp15: 2022, casp16: 2024 };
+    var data = [];
+    caspBenches.forEach(function(bid) {
+      var rows = _scoresFor(bid);
+      if (!rows.length) return;
+      var top = rows.slice().sort(function(a, b) { return b.value - a.value; })[0];
+      var ed = bid.split('_')[0];
+      data.push([caspYears[ed], top.value, top.model_id, ed.toUpperCase()]);
+    });
+    data.sort(function(a, b) { return a[0] - b[0]; });
+
+    var mountEl = document.getElementById('ai4s-chart-casp-progression');
+    if (data.length < 2) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'Insufficient CASP data — run Phase 2A Task 11 ingest first';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('ai4s-chart-casp-progression');
+    if (!chart) return;
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 50, right: 24, top: 30, bottom: 50 },
+      tooltip: { trigger: 'axis', backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151', textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          var d = p[0].data;
+          return d[3] + ' (' + d[0] + ')<br><b>' + d[2] + '</b><br>GDT-TS: ' + d[1];
+        }
+      },
+      xAxis: { type: 'value', name: 'Year', min: 2014, max: 2026,
+        axisLabel: { color: '#9ca3af', formatter: '{value}' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      yAxis: { type: 'value', name: 'Top GDT-TS', min: 0, max: 100,
+        nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      series: [{
+        name: 'Top CASP GDT-TS',
+        type: 'line',
+        step: 'end',
+        data: data,
+        symbol: 'circle', symbolSize: 10,
+        lineStyle: { color: '#10b981', width: 3 },
+        itemStyle: { color: '#10b981' },
+        areaStyle: { color: 'rgba(16,185,129,0.15)' },
+        label: {
+          show: true, position: 'top', color: '#d1d5db', fontSize: 10,
+          formatter: function(p) { return p.data[3]; }
+        }
+      }]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from AI4S.render().
   // Phase 1: stub — actual widget calls added per Task 5-9.
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline, renderMathProgression, renderBenchmarkCatalog, renderFrontierVsSpecialist, renderWeatherSkillCurve];
+    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline, renderMathProgression, renderBenchmarkCatalog, renderFrontierVsSpecialist, renderWeatherSkillCurve, renderCASPProgression];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[AI4SCharts] failed:', fns[i].name || i, e);
@@ -1046,6 +1118,7 @@
     renderBenchmarkCatalog: renderBenchmarkCatalog,
     renderFrontierVsSpecialist: renderFrontierVsSpecialist,
     renderWeatherSkillCurve: renderWeatherSkillCurve,
+    renderCASPProgression: renderCASPProgression,
     _domainBenchmarks: _domainBenchmarks,
     _perDomainComposite: _perDomainComposite,
     openDomainLeaderboard: openDomainLeaderboard,
