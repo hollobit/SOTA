@@ -394,11 +394,106 @@
   }
 
   // ====================================================================
+  // Helpers — score lookup + release date.
+  // (These are also used by W3/W7/W8/W9 in Phase 2.)
+  // ====================================================================
+  function _scoresFor(benchmarkId) {
+    if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.scores) return [];
+    var out = [];
+    var ss = window.App.data.scores;
+    for (var i = 0; i < ss.length; i++) {
+      if (ss[i].benchmark_id === benchmarkId) out.push(ss[i]);
+    }
+    return out;
+  }
+
+  function _modelReleaseDate(modelId) {
+    if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.models) return null;
+    var ms = window.App.data.models;
+    for (var i = 0; i < ms.length; i++) {
+      if (ms[i].id === modelId) return ms[i].release_date || null;
+    }
+    return null;
+  }
+
+  // ====================================================================
+  // W6 — Math Progression Curve. Multi-line: math benchmarks vs release date.
+  // ====================================================================
+  function renderMathProgression() {
+    _ensureMountPoint('ai4s-chart-math-progression',
+      'Math Benchmark Progression',
+      'Multi-line: each math benchmark over time. X = model release date, Y = score.');
+    if (typeof echarts === 'undefined') return;
+
+    var benches = ['math', 'math_500', 'imo_answerbench', 'frontiermath',
+                   'matharena_apex', 'mathvision', 'matharena_final_answer'];
+
+    var seriesByBench = {};
+    benches.forEach(function(bid) {
+      var rows = _scoresFor(bid);
+      var pts = [];
+      rows.forEach(function(r) {
+        var d = _modelReleaseDate(r.model_id);
+        if (!d || typeof r.value !== 'number') return;
+        pts.push([d, r.value, r.model_id]);
+      });
+      pts.sort(function(a, b) { return a[0].localeCompare(b[0]); });
+      if (pts.length >= 2) seriesByBench[bid] = pts;
+    });
+
+    var mountEl = document.getElementById('ai4s-chart-math-progression');
+    if (!Object.keys(seriesByBench).length) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'No math scores loaded — verify App.data.scores';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('ai4s-chart-math-progression');
+    if (!chart) return;
+
+    var palette = ['#a78bfa', '#60a5fa', '#34d399', '#f59e0b', '#fb7185', '#22d3ee', '#fbbf24'];
+    var i = 0;
+    var series = Object.keys(seriesByBench).map(function(bid) {
+      var color = palette[i++ % palette.length];
+      return {
+        name: bid, type: 'line',
+        data: seriesByBench[bid].map(function(p) { return [p[0], p[1]]; }),
+        symbol: 'circle', symbolSize: 6,
+        lineStyle: { color: color, width: 2 },
+        itemStyle: { color: color }
+      };
+    });
+
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 50, right: 24, top: 30, bottom: 70 },
+      legend: { bottom: 0, textStyle: { color: '#d1d5db' } },
+      tooltip: { trigger: 'axis', backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151', textStyle: { color: '#e5e7eb' } },
+      xAxis: { type: 'time', axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      yAxis: { type: 'value', name: 'Score',
+        nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      series: series
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from AI4S.render().
   // Phase 1: stub — actual widget calls added per Task 5-9.
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline];
+    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline, renderMathProgression];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[AI4SCharts] failed:', fns[i].name || i, e);
@@ -584,6 +679,7 @@
     renderHeroCards: renderHeroCards,
     renderLabDomainMatrix: renderLabDomainMatrix,
     renderBreakthroughTimeline: renderBreakthroughTimeline,
+    renderMathProgression: renderMathProgression,
     renderAll: renderAll
   };
 
