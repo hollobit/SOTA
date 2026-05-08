@@ -770,11 +770,183 @@ var AgentCharts = (function() {
   // ======================================================================
   // Widget 4 — Frontier-Product-Edge Diverging Dot Plot
   // ======================================================================
+  // Curated 10-benchmark list shared by Widgets 4 and 6.
+  var DOT_PLOT_BENCHMARKS = [
+    'swe_bench_verified', 'swe_bench_pro', 'terminal_bench_2', 'osworld_verified',
+    'gaia', 'tau2_bench', 'bfcl_v4', 'browsecomp', 'aider_polyglot', 'mobile_actions'
+  ];
+
+  function _classLabelLong(k) {
+    if (k === 'agent-product') return 'Agent-Product';
+    if (k === 'edge-slm') return 'Edge-SLM';
+    return 'Frontier';
+  }
+
+  // Strip parenthetical / country / comma suffix from vendor strings so
+  // "Google (USA)", "Google DeepMind (USA/UK)", "Alibaba (Qwen)" all collapse
+  // to a sensible canonical key while keeping "Google DeepMind" distinct
+  // from "Google".
+  function _canonVendor(v) {
+    if (!v) return '';
+    var s = String(v);
+    var cut = s.length;
+    var paren = s.indexOf('(');
+    var comma = s.indexOf(',');
+    if (paren >= 0 && paren < cut) cut = paren;
+    if (comma >= 0 && comma < cut) cut = comma;
+    return s.substring(0, cut).trim();
+  }
+
   function renderClassDotPlot() {
     _ensureMountPoint('agent-chart-classplot',
       'Frontier vs Agent-Product vs Edge — per benchmark',
       'For each benchmark, shows the best Frontier / Agent-Product / Edge score. Connecting line visualizes the "scaffolding tax" / "edge gap".');
-    // implementation body: Phase 2 Agent D
+    if (typeof echarts === 'undefined') return;
+    var chart = Charts._getOrCreate('agent-chart-classplot');
+    if (!chart) return;
+
+    // Aggregate: per benchmark, best score per class.
+    var rows = [];
+    for (var i = 0; i < DOT_PLOT_BENCHMARKS.length; i++) {
+      var bid = DOT_PLOT_BENCHMARKS[i];
+      var scores = _scoresFor(bid);
+      var byClass = { 'frontier': null, 'agent-product': null, 'edge-slm': null };
+      for (var j = 0; j < scores.length; j++) {
+        var s = scores[j];
+        var v = (typeof s.value === 'number') ? s.value : parseFloat(s.value);
+        if (!isFinite(v)) continue;
+        var k = _modelClass(s.model_id);
+        if (!byClass[k] || v > byClass[k]._v) {
+          byClass[k] = { model_id: s.model_id, _v: v };
+        }
+      }
+      rows.push({ bid: bid, byClass: byClass, label: _benchmarkLabel(bid) });
+    }
+
+    var yLabels = rows.map(function(r) { return r.label; });
+
+    var frontierData = [];
+    var productData = [];
+    var edgeData = [];
+    var lineSegments = [];
+
+    for (var rIdx = 0; rIdx < rows.length; rIdx++) {
+      var row = rows[rIdx];
+      var pts = [];
+      if (row.byClass['frontier']) {
+        var f = row.byClass['frontier'];
+        frontierData.push({ value: [f._v, rIdx], modelId: f.model_id, klass: 'frontier', bid: row.bid });
+        pts.push(f._v);
+      }
+      if (row.byClass['agent-product']) {
+        var pr = row.byClass['agent-product'];
+        productData.push({ value: [pr._v, rIdx], modelId: pr.model_id, klass: 'agent-product', bid: row.bid });
+        pts.push(pr._v);
+      }
+      if (row.byClass['edge-slm']) {
+        var ed = row.byClass['edge-slm'];
+        edgeData.push({ value: [ed._v, rIdx], modelId: ed.model_id, klass: 'edge-slm', bid: row.bid });
+        pts.push(ed._v);
+      }
+      if (pts.length >= 2) {
+        pts.sort(function(a, b) { return a - b; });
+        lineSegments.push([
+          { coord: [pts[0], rIdx] },
+          { coord: [pts[pts.length - 1], rIdx] }
+        ]);
+      }
+    }
+
+    function _tooltip(p) {
+      if (!p || !p.data) return '';
+      var d = p.data;
+      if (!d.modelId) return '';
+      var v = d.value && d.value[0];
+      var name = _modelDisplayName(d.modelId);
+      var bench = _benchmarkLabel(d.bid);
+      return '<div style="font-size:11px;line-height:1.5"><b>' + _classLabelLong(d.klass) + '</b><br>'
+           + name + '<br>'
+           + bench + ': <b>' + (Math.round(v * 10) / 10) + '</b></div>';
+    }
+
+    chart.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: _tooltip
+      },
+      legend: {
+        top: 4,
+        textStyle: { color: '#d1d5db', fontSize: 11 },
+        data: [
+          { name: 'Frontier',      icon: 'circle', itemStyle: { color: _classColor('frontier') } },
+          { name: 'Agent-Product', icon: 'circle', itemStyle: { color: _classColor('agent-product') } },
+          { name: 'Edge-SLM',      icon: 'circle', itemStyle: { color: _classColor('edge-slm') } }
+        ]
+      },
+      grid: { left: 200, right: 32, top: 40, bottom: 50 },
+      xAxis: {
+        type: 'value',
+        min: 0, max: 100,
+        name: 'Score',
+        nameLocation: 'middle',
+        nameGap: 28,
+        nameTextStyle: { color: '#9ca3af', fontSize: 11 },
+        axisLabel: { color: '#9ca3af', fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } }
+      },
+      yAxis: {
+        type: 'category',
+        data: yLabels,
+        inverse: true,
+        axisLabel: { color: '#d1d5db', fontSize: 11 },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        axisTick: { show: false },
+        splitLine: { show: true, lineStyle: { color: '#1f2937', type: 'dashed' } }
+      },
+      series: [
+        {
+          name: 'connector',
+          type: 'lines',
+          coordinateSystem: 'cartesian2d',
+          silent: true,
+          lineStyle: { color: '#475569', width: 1.5, opacity: 0.6 },
+          data: lineSegments,
+          z: 1
+        },
+        {
+          name: 'Frontier',
+          type: 'scatter',
+          symbol: 'circle',
+          symbolSize: 14,
+          itemStyle: { color: _classColor('frontier'), borderColor: '#0f172a', borderWidth: 1 },
+          data: frontierData,
+          z: 3
+        },
+        {
+          name: 'Agent-Product',
+          type: 'scatter',
+          symbol: 'circle',
+          symbolSize: 14,
+          itemStyle: { color: _classColor('agent-product'), borderColor: '#0f172a', borderWidth: 1 },
+          data: productData,
+          z: 3
+        },
+        {
+          name: 'Edge-SLM',
+          type: 'scatter',
+          symbol: 'circle',
+          symbolSize: 14,
+          itemStyle: { color: _classColor('edge-slm'), borderColor: '#0f172a', borderWidth: 1 },
+          data: edgeData,
+          z: 3
+        }
+      ]
+    }, true);
   }
 
   // ======================================================================
@@ -794,18 +966,318 @@ var AgentCharts = (function() {
     _ensureMountPoint('agent-chart-vendor-matrix',
       'Vendor × Benchmark Matrix',
       'Bubble size = vendor\'s top score on that benchmark. Quick visual scan for which vendor dominates which axis.');
-    // implementation body: Phase 2 Agent D
+    if (typeof echarts === 'undefined') return;
+    var chart = Charts._getOrCreate('agent-chart-vendor-matrix');
+    if (!chart) return;
+
+    var benches = DOT_PLOT_BENCHMARKS;
+
+    // Pass 1: count agentic-score occurrences per canonical vendor across the
+    // 10 curated benchmarks → use this to pick the top 12 vendor rows.
+    var vendorCounts = {};
+    for (var bi = 0; bi < benches.length; bi++) {
+      var rows = _scoresFor(benches[bi]);
+      for (var ri = 0; ri < rows.length; ri++) {
+        var raw = _vendorOf(rows[ri].model_id);
+        var canon = _canonVendor(raw);
+        if (!canon) continue;
+        vendorCounts[canon] = (vendorCounts[canon] || 0) + 1;
+      }
+    }
+    var vendorList = [];
+    for (var v in vendorCounts) {
+      if (Object.prototype.hasOwnProperty.call(vendorCounts, v)) {
+        vendorList.push({ vendor: v, count: vendorCounts[v] });
+      }
+    }
+    vendorList.sort(function(a, b) {
+      if (b.count !== a.count) return b.count - a.count;
+      return a.vendor.localeCompare(b.vendor);
+    });
+    var topVendors = vendorList.slice(0, 12).map(function(x) { return x.vendor; });
+    if (!topVendors.length) {
+      // Empty state — clear chart and return.
+      chart.setOption({
+        title: {
+          text: 'No agentic scores available yet for the curated benchmark set.',
+          left: 'center', top: 'middle',
+          textStyle: { color: '#9ca3af', fontSize: 12, fontWeight: 'normal' }
+        }
+      }, true);
+      return;
+    }
+    var vendorIndex = {};
+    for (var vi = 0; vi < topVendors.length; vi++) vendorIndex[topVendors[vi]] = vi;
+
+    // Pass 2: for each (vendor, benchmark) cell, find the vendor's best score
+    // and which model achieved it.
+    // bestCell[bIdx + ',' + vIdx] = { value, model_id }
+    var bubbleData = [];
+    var minVal = Infinity;
+    var maxVal = -Infinity;
+
+    for (var bIdx = 0; bIdx < benches.length; bIdx++) {
+      var bid = benches[bIdx];
+      var sRows = _scoresFor(bid);
+      var bestForCell = {}; // vIdx -> {value, model_id}
+      for (var sIdx = 0; sIdx < sRows.length; sIdx++) {
+        var s = sRows[sIdx];
+        var canonV = _canonVendor(_vendorOf(s.model_id));
+        if (!(canonV in vendorIndex)) continue;
+        var val = (typeof s.value === 'number') ? s.value : parseFloat(s.value);
+        if (!isFinite(val)) continue;
+        var slot = vendorIndex[canonV];
+        if (!bestForCell[slot] || val > bestForCell[slot].value) {
+          bestForCell[slot] = { value: val, model_id: s.model_id };
+        }
+      }
+      for (var slotKey in bestForCell) {
+        if (!Object.prototype.hasOwnProperty.call(bestForCell, slotKey)) continue;
+        var entry = bestForCell[slotKey];
+        if (entry.value < minVal) minVal = entry.value;
+        if (entry.value > maxVal) maxVal = entry.value;
+        bubbleData.push({
+          // ECharts cartesian: [xIndex, yIndex, sizeValue]
+          value: [bIdx, parseInt(slotKey, 10), entry.value],
+          modelId: entry.model_id,
+          vendor: topVendors[parseInt(slotKey, 10)],
+          bid: bid
+        });
+      }
+    }
+
+    if (!isFinite(minVal)) { minVal = 0; maxVal = 100; }
+
+    var xLabels = benches.map(function(b) { return _benchmarkLabel(b); });
+
+    // Viridis-like dark scale (low → high).
+    var VIRIDIS = ['#440154', '#414487', '#2a788e', '#22a884', '#7ad151', '#fde725'];
+
+    function _tooltip(p) {
+      if (!p || !p.data) return '';
+      var d = p.data;
+      var modelName = _modelDisplayName(d.modelId);
+      var bench = _benchmarkLabel(d.bid);
+      var val = d.value[2];
+      return '<div style="font-size:11px;line-height:1.5">'
+           + '<b>' + d.vendor + '</b><br>'
+           + bench + ': <b>' + (Math.round(val * 10) / 10) + '</b><br>'
+           + 'best: ' + modelName + '</div>';
+    }
+
+    chart.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: _tooltip
+      },
+      grid: { left: 160, right: 80, top: 60, bottom: 80 },
+      xAxis: {
+        type: 'category',
+        data: xLabels,
+        axisLabel: { color: '#d1d5db', fontSize: 10, rotate: 35, interval: 0 },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        axisTick: { show: false },
+        splitLine: { show: true, lineStyle: { color: '#1f2937', type: 'dashed' } }
+      },
+      yAxis: {
+        type: 'category',
+        data: topVendors,
+        inverse: true,
+        axisLabel: { color: '#d1d5db', fontSize: 11 },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        axisTick: { show: false },
+        splitLine: { show: true, lineStyle: { color: '#1f2937', type: 'dashed' } }
+      },
+      visualMap: {
+        min: Math.floor(minVal),
+        max: Math.ceil(maxVal),
+        dimension: 2,
+        orient: 'vertical',
+        right: 10,
+        top: 'middle',
+        calculable: true,
+        textStyle: { color: '#d1d5db', fontSize: 10 },
+        inRange: { color: VIRIDIS },
+        text: ['high', 'low']
+      },
+      series: [{
+        name: 'Vendor best',
+        type: 'scatter',
+        symbol: 'circle',
+        data: bubbleData,
+        symbolSize: function(val) {
+          // val = [xIdx, yIdx, score]
+          var s = (val && val.length >= 3) ? val[2] : 0;
+          return Math.min(30, 8 + s / 4);
+        },
+        itemStyle: { borderColor: 'rgba(15,23,42,0.7)', borderWidth: 1 },
+        emphasis: {
+          focus: 'self',
+          itemStyle: { borderColor: '#f8fafc', borderWidth: 2 }
+        }
+      }]
+    }, true);
   }
 
   // ======================================================================
   // Widget 7 — Capability Fingerprint (mini-radar in leaderboard rows)
-  // Distinctly: this hooks into the existing leaderboard table renderer in
-  // agent.js — not a top-level chart section. Marked as a no-op here so the
-  // implementation sits in agent.js _renderLeaderboard.
+  // Hooks the rendered leaderboard table; appends a 60x60 canvas cell per row
+  // showing a 4-axis radar (Coding / Web / OS / Tool-use). Pure Canvas2D so
+  // we don't pay an ECharts init for ~25 sparklines.
   // ======================================================================
+  var _FINGERPRINT_CATS = ['coding', 'web-browse', 'os-computer', 'tool-use'];
+  var _FINGERPRINT_AXIS_LABELS = ['Cod', 'Web', 'OS', 'Tool'];
+
+  function _fingerprintValues(modelId) {
+    var out = [0, 0, 0, 0];
+    for (var i = 0; i < _FINGERPRINT_CATS.length; i++) {
+      var cat = _categoryByKey(_FINGERPRINT_CATS[i]);
+      if (!cat || !cat.benchmarks) continue;
+      var best = 0;
+      for (var j = 0; j < cat.benchmarks.length; j++) {
+        var n = _normalizedScore(modelId, cat.benchmarks[j], cat);
+        if (typeof n === 'number' && n > best) best = n;
+      }
+      out[i] = best;
+    }
+    return out;
+  }
+
+  function _drawFingerprintCanvas(canvas, values, klass) {
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var w = canvas.width;
+    var h = canvas.height;
+    var cx = w / 2;
+    var cy = h / 2;
+    var R = Math.min(w, h) / 2 - 4;
+    var color = _classColor(klass);
+
+    ctx.clearRect(0, 0, w, h);
+
+    // Background grid square (50% threshold ring + outer ring)
+    ctx.strokeStyle = 'rgba(75,85,99,0.6)';
+    ctx.fillStyle = 'rgba(31,41,55,0.5)';
+    ctx.lineWidth = 1;
+
+    // Outer polygon (max ring) — fill subtle gray, stroke ring
+    var rings = [R, R * 0.5];
+    for (var ri = 0; ri < rings.length; ri++) {
+      ctx.beginPath();
+      for (var a = 0; a < 4; a++) {
+        var ang = -Math.PI / 2 + a * (Math.PI / 2);
+        var x = cx + Math.cos(ang) * rings[ri];
+        var y = cy + Math.sin(ang) * rings[ri];
+        if (a === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      if (ri === 0) ctx.fill();
+      ctx.stroke();
+    }
+
+    // Spokes (4 axes at N/E/S/W)
+    ctx.beginPath();
+    for (var s = 0; s < 4; s++) {
+      var sang = -Math.PI / 2 + s * (Math.PI / 2);
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + Math.cos(sang) * R, cy + Math.sin(sang) * R);
+    }
+    ctx.stroke();
+
+    // Data polygon
+    var pts = [];
+    for (var i = 0; i < 4; i++) {
+      var v = Math.max(0, Math.min(100, values[i] || 0));
+      var ang2 = -Math.PI / 2 + i * (Math.PI / 2);
+      var rr = (v / 100) * R;
+      pts.push([cx + Math.cos(ang2) * rr, cy + Math.sin(ang2) * rr]);
+    }
+
+    // Fill (30% alpha) + stroke
+    ctx.beginPath();
+    for (var p = 0; p < pts.length; p++) {
+      if (p === 0) ctx.moveTo(pts[p][0], pts[p][1]);
+      else ctx.lineTo(pts[p][0], pts[p][1]);
+    }
+    ctx.closePath();
+    ctx.fillStyle = _hexToRgba(color, 0.30);
+    ctx.fill();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Vertex dots
+    ctx.fillStyle = color;
+    for (var d = 0; d < pts.length; d++) {
+      ctx.beginPath();
+      ctx.arc(pts[d][0], pts[d][1], 1.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function _hexToRgba(hex, alpha) {
+    if (!hex || hex.charAt(0) !== '#' || (hex.length !== 7 && hex.length !== 4)) {
+      return 'rgba(96,165,250,' + alpha + ')';
+    }
+    var r, g, b;
+    if (hex.length === 7) {
+      r = parseInt(hex.substr(1, 2), 16);
+      g = parseInt(hex.substr(3, 2), 16);
+      b = parseInt(hex.substr(5, 2), 16);
+    } else {
+      r = parseInt(hex.charAt(1) + hex.charAt(1), 16);
+      g = parseInt(hex.charAt(2) + hex.charAt(2), 16);
+      b = parseInt(hex.charAt(3) + hex.charAt(3), 16);
+    }
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+  }
+
   function renderFingerprintsInLeaderboard() {
-    // implementation body: Phase 2 Agent C — adds a 60x60 radar canvas to
-    // each existing leaderboard <tr> via Agent._afterLeaderboardRender hook.
+    var lb = document.getElementById('agent-leaderboard');
+    if (!lb) return;
+    var thead = lb.querySelector('thead tr');
+    if (thead && !thead.querySelector('[data-fingerprint-header]')) {
+      var th = document.createElement('th');
+      th.dataset.fingerprintHeader = '1';
+      th.className = 'text-left px-2 py-1';
+      th.textContent = 'Fingerprint';
+      thead.appendChild(th);
+    }
+
+    var rows = lb.querySelectorAll('tbody tr[data-model]');
+    for (var i = 0; i < rows.length; i++) {
+      var modelId = rows[i].dataset.model;
+      if (!modelId) continue;
+      var values = _fingerprintValues(modelId);
+      var klass = _modelClass(modelId);
+      var cell = rows[i].querySelector('[data-fingerprint-cell]');
+      if (!cell) {
+        cell = document.createElement('td');
+        cell.dataset.fingerprintCell = '1';
+        cell.className = 'px-2 py-1';
+        var canvas = document.createElement('canvas');
+        canvas.width = 60;
+        canvas.height = 60;
+        canvas.style.display = 'block';
+        cell.appendChild(canvas);
+        rows[i].appendChild(cell);
+      }
+      var cv = cell.querySelector('canvas');
+      // Tooltip via title attribute (simple, no extra DOM).
+      var tip = _modelDisplayName(modelId) + '\n' +
+                _FINGERPRINT_AXIS_LABELS[0] + ': ' + values[0].toFixed(0) + '\n' +
+                _FINGERPRINT_AXIS_LABELS[1] + ': ' + values[1].toFixed(0) + '\n' +
+                _FINGERPRINT_AXIS_LABELS[2] + ': ' + values[2].toFixed(0) + '\n' +
+                _FINGERPRINT_AXIS_LABELS[3] + ': ' + values[3].toFixed(0);
+      if (cv) {
+        cv.title = tip;
+        _drawFingerprintCanvas(cv, values, klass);
+      }
+    }
   }
 
   // ======================================================================
