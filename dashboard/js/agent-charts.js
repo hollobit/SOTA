@@ -783,7 +783,7 @@ var AgentCharts = (function() {
   // Widget 3 — Per-category Radar (interactive agent picker)
   // State persists across re-renders so toggles survive ECharts dispose.
   // ======================================================================
-  var _radarState = { categoryKey: 'coding', selectedAgents: null };
+  var _radarState = _loadState('radar-state', { categoryKey: 'coding', selectedAgents: null });
   var MAX_RADAR_AGENTS = 5;
 
   function renderCategoryRadar() {
@@ -823,6 +823,7 @@ var AgentCharts = (function() {
         _radarState.categoryKey = this.value;
         _radarState.selectedAgents = null; // reset → defaults will repopulate
         _refreshRadarControls(controls);
+        _saveState('radar-state', _radarState);
         _drawRadar();
       });
       rowCat.appendChild(sel);
@@ -935,6 +936,7 @@ var AgentCharts = (function() {
     } else if (idx !== -1) {
       _radarState.selectedAgents.splice(idx, 1);
     }
+    _saveState('radar-state', _radarState);
     var section = document.getElementById('agent-chart-radar-section');
     if (section) {
       var controls = section.querySelector('[data-radar-controls]');
@@ -1528,10 +1530,14 @@ var AgentCharts = (function() {
       'SOTA Timeline (Agent benchmarks)',
       'Step plot of SOTA holder over time on a selected agentic benchmark. Drawn from data/scores/history snapshots.');
     if (!section) return;
-    _ensureBenchmarkSelect(section, 'agent-chart-sota-timeline', 'swe_bench_verified',
-      function(newBid) { _drawSOTATimeline(newBid); });
+    var savedBid = _loadState('sota-timeline-bid', 'swe_bench_verified');
+    _ensureBenchmarkSelect(section, 'agent-chart-sota-timeline', savedBid,
+      function(newBid) {
+        _saveState('sota-timeline-bid', newBid);
+        _drawSOTATimeline(newBid);
+      });
     var sel = document.getElementById('agent-chart-sota-timeline-select');
-    var bid = (sel && sel.value) || 'swe_bench_verified';
+    var bid = (sel && sel.value) || savedBid;
     _drawSOTATimeline(bid);
   }
 
@@ -2013,7 +2019,7 @@ var AgentCharts = (function() {
       })
     }] : [];
 
-    chart.setOption({
+    chart.setOption(_applyToolbox({
       backgroundColor: 'transparent',
       grid: { left: 64, right: 24, top: 30, bottom: 60 },
       tooltip: {
@@ -2160,7 +2166,7 @@ var AgentCharts = (function() {
           z: 5
         }
       ].concat(emptyLabelSeries)
-    }, true);
+    }), true);
   }
 
   // hex like '#60a5fa' → '96,165,250'
@@ -2178,10 +2184,14 @@ var AgentCharts = (function() {
       'Score Distribution by Class',
       'Three violins (Frontier / Agent-Product / Edge) for a selected benchmark. Shows median, spread, outliers — answers whether the gap is systematic or benchmark-specific.');
     if (!section) return;
-    _ensureBenchmarkSelect(section, 'agent-chart-class-violin', 'swe_bench_verified',
-      function(newBid) { _drawClassViolin(newBid); });
+    var savedBid = _loadState('class-violin-bid', 'swe_bench_verified');
+    _ensureBenchmarkSelect(section, 'agent-chart-class-violin', savedBid,
+      function(newBid) {
+        _saveState('class-violin-bid', newBid);
+        _drawClassViolin(newBid);
+      });
     var sel = document.getElementById('agent-chart-class-violin-select');
-    var bid = (sel && sel.value) || 'swe_bench_verified';
+    var bid = (sel && sel.value) || savedBid;
     _drawClassViolin(bid);
   }
 
@@ -2302,7 +2312,7 @@ var AgentCharts = (function() {
     var chart = Charts._getOrCreate('agent-chart-sankey');
     if (!chart) return;
 
-    chart.setOption({
+    chart.setOption(_applyToolbox({
       backgroundColor: 'transparent',
       tooltip: {
         trigger: 'item',
@@ -2337,7 +2347,7 @@ var AgentCharts = (function() {
         label: { color: '#e5e7eb', fontSize: 10 },
         data: nodes, links: links
       }]
-    }, true);
+    }), true);
 
     chart.off('click');
     chart.on('click', function(p) {
@@ -2458,7 +2468,7 @@ var AgentCharts = (function() {
         var chart = Charts._getOrCreate('agent-chart-cumulative-sota');
         if (!chart) return;
 
-        chart.setOption({
+        chart.setOption(_applyToolbox({
           backgroundColor: 'transparent',
           grid: { left: 64, right: 24, top: 40, bottom: 70 },
           legend: {
@@ -2506,7 +2516,7 @@ var AgentCharts = (function() {
             splitLine: { lineStyle: { color: '#1f2937' } }
           },
           series: series
-        }, true);
+        }), true);
       });
     });
   }
@@ -2516,10 +2526,14 @@ var AgentCharts = (function() {
       'Cumulative SOTA Wins (days at SOTA)',
       'How long each model held the SOTA crown on the selected benchmark. Stacked by date — band thickness = total days at the top.');
     if (!section) return;
-    _ensureBenchmarkSelect(section, 'agent-chart-cumulative-sota', 'swe_bench_verified',
-      function(newBid) { _drawCumulativeSOTA(newBid); });
+    var savedBid = _loadState('cumulative-sota-bid', 'swe_bench_verified');
+    _ensureBenchmarkSelect(section, 'agent-chart-cumulative-sota', savedBid,
+      function(newBid) {
+        _saveState('cumulative-sota-bid', newBid);
+        _drawCumulativeSOTA(newBid);
+      });
     var sel = document.getElementById('agent-chart-cumulative-sota-select');
-    var bid = (sel && sel.value) || 'swe_bench_verified';
+    var bid = (sel && sel.value) || savedBid;
     _drawCumulativeSOTA(bid);
   }
 
@@ -2532,7 +2546,7 @@ var AgentCharts = (function() {
   // DOM widget; recompute happens on every slider/checkbox change without a
   // full chart rebuild.
   // ======================================================================
-  var _wizardState = {
+  var _wizardState = _loadState('wizard-state', {
     priorities: {
       coding: 50,
       'web-browse': 50,
@@ -2544,7 +2558,7 @@ var AgentCharts = (function() {
     },
     includeCost: false,
     edgeOnly: false
-  };
+  });
 
   var _WIZARD_SLIDERS = [
     { key: 'coding',           label: 'Coding' },
@@ -2679,6 +2693,7 @@ var AgentCharts = (function() {
           if (isNaN(v)) v = 0;
           _wizardState.priorities[key] = v;
           valRef.textContent = String(v);
+          _saveState('wizard-state', _wizardState);
           _renderWizardOutput();
         });
       })(s.key, val);
@@ -2696,6 +2711,7 @@ var AgentCharts = (function() {
     costCb.checked = _wizardState.includeCost;
     costCb.addEventListener('change', function(e) {
       _wizardState.includeCost = !!e.target.checked;
+      _saveState('wizard-state', _wizardState);
       _renderWizardOutput();
     });
     var costLab = document.createElement('label');
@@ -2716,6 +2732,7 @@ var AgentCharts = (function() {
     edgeCb.checked = _wizardState.edgeOnly;
     edgeCb.addEventListener('change', function(e) {
       _wizardState.edgeOnly = !!e.target.checked;
+      _saveState('wizard-state', _wizardState);
       _renderWizardOutput();
     });
     var edgeLab = document.createElement('label');
