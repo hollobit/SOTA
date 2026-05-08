@@ -1,5 +1,67 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-09 (Session 7): AI4S menu widget expansion — 10 widgets across 2 phases (19 tasks, 17 commits)
+
+### 13. AI4S 위젯 신설 (commits `5489408` → `0c21c75`)
+
+기존 0 chart widgets → **10 widgets** + 4 unit tests + 2 새 데이터 file. Sub-section 구조: SOTA Watch + 19 Domain Cards + Cross-Lab Compare + Domain Mini-Leaderboards.
+
+브레인스토밍(/superpowers:brainstorming) → spec(`docs/superpowers/specs/2026-05-09-ai4s-widget-expansion-design.md`, 258 LOC) → plan(`docs/superpowers/plans/2026-05-09-ai4s-widget-expansion.md`, 2171 LOC) → subagent-driven 실행.
+
+**Phase 1A — Foundation (Tasks 1-4, 4 sequential commits)**:
+- **Task 1 (`5489408`)**: UMD skeleton + `_LAB_MAP` (16 labs) + `_resolveLab` + 7-assertion node test.
+- **Task 2 (`e715972`)**: `_BENCHMARK_DOMAIN_MAP` (43 entries: bio-genomics/math/physics-materials/geo-climate) + `_resolveDomain` + test.
+- **Task 3 (`51e6fd6`)**: `_ensureMountPoint` factory (a11y role=img/aria-label/tabindex) + `_ensureAi4sChartsStyle` (mobile + reduced-motion) + `_applyToolbox` + `renderAll` stub. Wired `<div id="ai4s-charts">` + `<script>` in index.html, `AI4SCharts.renderAll()` call from `AI4S.render()`.
+- **Task 4 (`1ec8005`)**: `_BREAKTHROUGHS` 8 milestone tiles (AlphaFold 3 / AlphaProof / Aurora / MatterGen / Evo 2 / AlphaQubit / Chai-2 / Goedel-Prover v2) + schema test.
+
+**Phase 1B — 5 immediate-render widgets (Tasks 5-9, 5 sequential commits)**:
+- **W1 Breakthrough Hero Cards** (`a24cf60`): SOTA Watch sub-section, 8 anchor tiles, 4-column grid, 9-domain palette + gray fallback.
+- **W2 Lab × Domain Bubble Matrix** (`970351d`): 16 labs × 19 domains heatmap. Cell value = distinct model count.
+- **W4 Breakthrough Timeline** (`80733c2`): year (2017-2026) × milestone scatter, color = domain. Source-link tooltip.
+- **W6 Math Progression Curve** (`45522aa`): 7 math benchmarks multi-line vs release date. Includes shared helpers `_scoresFor`, `_modelReleaseDate`.
+- **W10 Benchmark Catalog Grid** (`5e6e6e5`): searchable DOM table for AI4S-tagged benchmarks (~33 entries) with domain pill + paper link.
+
+**Phase 2A — Data sweeps (Tasks 10-12, 3 parallel agents)**:
+- **Task 10 W7 Weather skill** (`ca5869e`): Pangu-Weather Z500 RMSE@72h = 134.5 (Bi et al. Nature 2023). Aurora/GraphCast/AIFS skipped — RMSE only in figures, no numerical text. Strict-attribution maintained. +1 score, +1 benchmark (`weatherbench_z500_72h`).
+- **Task 11 W8 CASP12-15** (`33108b4`): AlphaFold-2 CASP14 GDT-TS = 92.4 (DeepMind blog). CASP12/13/15 skipped — predictioncenter only z-scores; Nature paywall; WebFetch denied. 4 benchmark stubs registered. +1 score.
+- **Task 12 W9 Matbench Discovery** (`73b6183`): 7 models × 2 metrics = 14 scores from matbench-discovery.materialsproject.org leaderboard (CHGNet/MACE-MP-0/GNoME/MatterSim/ORB v2/ORB v3/EquiformerV2). MatterGen yield benchmark not created (paper has only relative percentages). +14 scores, +2 benchmarks.
+
+Net Phase 2A: **+16 scores, +7 benchmarks** (DB 874→881 benchmarks, 3472→3488 scores).
+
+**Phase 2B — 5 data-dependent widgets (Tasks 13-17, 5 sequential commits)**:
+- **W3 Frontier vs Specialist Compare** (`5e31048`): grouped bar across math benchmarks, frontier 5 LLMs vs specialist 5 (AlphaProof/AlphaGeometry-2/Goedel/Kimi-math/Llemma).
+- **W5 Per-Domain Mini-Leaderboard Modal** (`2041aa0`): Shift+click on domain card → modal with per-domain composite (max-normalized mean, coverage ≥1). 4th unit test (composite arithmetic).
+- **W7 Weather Forecast Skill Curve** (`dd7e434`): line+area on `weatherbench_z500_72h`. Empty state with current 1 datapoint.
+- **W8 CASP Protein Folding Progression** (`f7e0b71`): step-line CASP12→16. Renders 2 datapoints (CASP14 + CASP16).
+- **W9 Materials Discovery Yield** (`fc0d49a`): bubble on MAE × yield × F1. 7 models render with yield=0 axis until mattergen_yield ingested.
+
+**Phase 3 — Polish + deploy (Tasks 18-19, 2 commits)**:
+- **Task 18 Lazy render** (`d63ec54`): renderAll → eager 3 (Hero/Lab×Domain/Timeline) + lazy 6 via requestIdleCallback (timeout 1500ms) + setTimeout fallback. 초기 paint 차단 방지.
+- **Task 19 Cache-bust + deploy** (`0c21c75`): `?v=20260509b` for ai4s.js + ai4s-charts.js. Push to origin/ops, trigger benchmark-update.yml CI.
+
+**파일 deltas**:
+- `dashboard/js/ai4s-charts.js`: NEW **1240 LOC**
+- `dashboard/js/__tests__/ai4s-charts.test.js`: NEW **47 LOC** (4 tests)
+- `dashboard/js/ai4s.js`: +5 LOC (renderAll hook + Shift+click handler)
+- `dashboard/index.html`: +3 LOC (mount div + script tag + cache-bust)
+- `resource/zzz_w7_weather_skill_2026_05_09_scores.json`: NEW
+- `resource/zzz_w8_casp_progression_2026_05_09_scores.json`: NEW
+- `resource/zzz_w9_matbench_discovery_2026_05_09_scores.json`: NEW
+- `docs/superpowers/specs/2026-05-09-ai4s-widget-expansion-design.md`: NEW (258 LOC)
+- `docs/superpowers/plans/2026-05-09-ai4s-widget-expansion.md`: NEW (2171 LOC)
+
+**스코어카드**:
+- 위젯: AI4S 0 → **10** (W1/W2/W3/W4/W5/W6/W7/W8/W9/W10)
+- 신규 score: **+16** (3472→3488)
+- 신규 benchmark: **+7** (874→881)
+- 신규 unit test: **+4** (vanilla node assert pattern)
+- a11y: role=img + aria-label + tabindex on every chart mount, mobile @media ≤768px, prefers-reduced-motion
+- 17 commits 세션, subagent-driven-development 패턴 (per-task 별도 dispatch + spec/code review for foundation, 데이터 sweep만 병렬 3 agents)
+
+**Live deploy**: CI run `25583205588` triggered, awaiting completion.
+
+---
+
 ## 2026-05-09 (Session 6): Agent menu A+B+C+D+E — 18 sub-tasks across 5 waves (16 commits)
 
 ### 12. 풀 스펙트럼 batch (commits `3065c59` → `f1c8df6`)
