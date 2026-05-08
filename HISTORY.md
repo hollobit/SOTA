@@ -1,5 +1,55 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-08 (Session 4): Agent menu A+B+C+E batch — 3 new widgets + polish + data fills
+
+### 10. Agent 탭 종합 보강 (commits `6bbfe57` → `cbc1916`)
+
+이전 세션의 8개 위젯을 ship한 후 사용자 피드백 반영. A(데이터 채우기) + B(위젯 폴리시) + C(새 위젯) + E(housekeeping) 4 카테고리 동시 진행. 9개 병렬 에이전트가 2 wave로 작업:
+
+**Wave 1 (5 병렬, 분리된 파일)**:
+- **E1 README** (`6bbfe57`): 14 tabs + 8 widgets 문서화, screenshot embed, CI workflow 노트.
+- **E2+E3 Modal** (`3142413`): agent-product 모달에 "Built on: <base model>" 링크 + Devin/Manus 'subscription' 태그.
+- **A3 HAL composite** (`d92dd53`): HAL Princeton 9 sub-leaderboard에서 11 모델 cost-controlled aggregate score 추출.
+- **A1 Edge SLM** (`97bdbb9`): Phi-4-mini / Gemma 3 / FunctionGemma / Llama 3.2의 BFCL/mobile_actions 점수 6건 (DONE_WITH_CONCERNS — Apple FM, Phi-4 14B는 vendor 미공개).
+- **A2 Agent product** (`0488ff3`): Cursor / Devin / Manus / Operator / Mariner / Computer Use / Claude Code 11 신규 점수.
+
+**Wave 2 (4 병렬, agent-charts.js NEW 함수)**:
+- **C1 Capability Sankey** (`0f30aef`): 12 모델 → 10 카테고리 → 20 벤치마크 flow. ECharts sankey, 42 nodes / 97 edges.
+- **C2 Cumulative SOTA Wins** (`bd73921`): 11 history snapshot 활용한 시간별 SOTA 보유 일수 stacked area.
+- **C4 Build Your Agent wizard** (`d70a40c`): 7개 priority slider + 2 toggle → top-10 추천. 374 LOC. Default state top: claude-mythos-preview 350.0.
+- **B-polish bundle** (`64cdeec`): 모든 ECharts 위젯에 toolbox (PNG/dataView/restore), 모든 위젯에 ⓘ help icon, W3/W5/W8/C2/C4에 LocalStorage 상태 저장.
+
+**Wave 3 (controller fix)**:
+- **CI 로더 버그 수정** (`cbc1916`): W1A/W1B 파일명에 `_scores_<date>_<scores>` 패턴이 있어 로더 glob `*_scores_*.json`이 모델 등록 파일(`*_scores.json`)보다 먼저 처리되어 FK constraint failure. 파일명에서 mid-string `_scores_` 제거.
+
+**병렬 작업 패턴 흥미점**:
+- 모든 5+4 = 9 에이전트가 같은 작업 디렉토리(/Users/user/git/cyber)에서 cwd-isolated 모드로 동작.
+- agent-charts.js 동시 편집 시 W2B/W2C 에이전트가 다른 에이전트들의 WIP를 stash로 처리 후 자기 작업만 깔끔하게 commit (Python 원자적 rewrite 패턴 사용).
+- Race conditions 발생했으나 stash + atomic rewrite로 모두 복구. 최종 commit chain은 깔끔.
+
+**DB delta**:
+- 신규 점수: 28 (W1A 6 + W1B 11 + W1C 11)
+- agent-products with scores: 1 → **8** (10개 중)
+- edge-SLMs with scores: 0 → **5** (9개 중)
+- HAL composite: 0 → **11**
+- TOTAL scores: 3315 → **3343**
+- TOTAL benchmarks: 854 → **855** (+1, swe_bench original)
+
+**파일 deltas**:
+- `dashboard/js/agent-charts.js`: 2181 → **2961 LOC** (+780, 3 new widgets + polish)
+- `dashboard/js/modal.js`: +69
+- `README.md`: 47 → 71 LOC + 1 screenshot
+- 4 신규 resource JSON ingest 파일
+
+**라이브 deploy**: gh-pages `7e0cb7e`, cache-bust `?v=cbc19163`. 11개 위젯(8 + Sankey + Cumulative SOTA + Wizard) + leaderboard fingerprints 모두 라이브.
+
+**Deferred (backlog)**:
+- B1 Linked brushing (cross-widget 모델 hover→highlight) — 복잡도 높고 ROI 제한적. 각 위젯이 독립적으로 toolbox/info/click-to-modal을 갖춘 상태라 나중에 단계적으로.
+- C3 Pareto frontier 시간 애니메이션 — 가격 historical data 부재로 부분 구현만 가능.
+- Edge SLM 추가 점수 (Apple FM / Phi-4 14B vendor 미공개) — 외부 publication 대기.
+
+---
+
 ## 2026-05-08 (Session 3): Agent menu graphical widgets — 8 ECharts visualisations via parallel agents
 
 ### 9. Agent 탭에 8개 그래픽 비교 위젯 추가 (commits `b24fcaf` → `82dcdef`)
