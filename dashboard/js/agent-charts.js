@@ -3822,6 +3822,199 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Widget 15 — Vendor × Benchmark Coverage Matrix (Reporting Gap View)
+  //
+  // Rows: top 12 vendors by total scored-model count across the 12 core
+  //       agentic benchmarks (_HEATMAP_BENCHMARKS).
+  // Cols: the 12 core agentic benchmarks.
+  // Cell value: NUMBER of distinct scored models from that vendor on that
+  //             benchmark (NOT the score itself). Empty cells render as
+  //             '-' so reporting gaps stand out.
+  // Color scale: light gray (1) → blue (mid) → bright blue (5+).
+  //              0/empty cells use ECharts '-' convention (transparent).
+  // Tooltip: lists which models from that vendor reported scores.
+  //
+  // Complements Widget 2 (model × benchmark heatmap): this is the
+  // "vendor accountability" view — useful for spotting reporting gaps
+  // (e.g., "Anthropic doesn't report on tau2_bench").
+  // ======================================================================
+  function _topVendors(limit) {
+    // Count distinct (vendor, model_id) pairs scored on _HEATMAP_BENCHMARKS,
+    // then rank canonical vendors by total scored-model count desc.
+    if (!(window.App && App.data && App.data.scores)) return [];
+    var BSET = {};
+    for (var b = 0; b < _HEATMAP_BENCHMARKS.length; b++) BSET[_HEATMAP_BENCHMARKS[b]] = true;
+
+    var vendorModels = {}; // vendor -> { modelId: true }
+    var scores = App.data.scores;
+    for (var i = 0; i < scores.length; i++) {
+      var s = scores[i];
+      if (!s || !BSET[s.benchmark_id]) continue;
+      if (typeof s.value !== 'number' || isNaN(s.value)) continue;
+      var canon = _canonVendor(_vendorOf(s.model_id));
+      if (!canon) continue;
+      if (!vendorModels[canon]) vendorModels[canon] = {};
+      vendorModels[canon][s.model_id] = true;
+    }
+    var arr = [];
+    for (var v in vendorModels) {
+      if (!Object.prototype.hasOwnProperty.call(vendorModels, v)) continue;
+      arr.push({ vendor: v, count: Object.keys(vendorModels[v]).length });
+    }
+    arr.sort(function(a, b) {
+      if (b.count !== a.count) return b.count - a.count;
+      return a.vendor.localeCompare(b.vendor);
+    });
+    var n = (typeof limit === 'number' && limit > 0) ? limit : 12;
+    return arr.slice(0, n).map(function(x) { return x.vendor; });
+  }
+
+  function renderVendorCoverageMatrix() {
+    _ensureMountPoint('agent-chart-vendor-coverage',
+      'Vendor × Benchmark Coverage Matrix — Reporting Gap View',
+      'Shows how many scored models each vendor has on each agentic benchmark. White cells = no reported scores from that vendor.');
+    if (typeof echarts === 'undefined') return;
+    if (!(window.App && App.data && App.data.scores && App.data.models)) return;
+
+    var chart = Charts._getOrCreate('agent-chart-vendor-coverage');
+    if (!chart) return;
+
+    var topVendors = _topVendors(12);
+    if (!topVendors.length) {
+      chart.setOption({
+        title: {
+          text: 'No vendor coverage data available yet for the curated benchmark set.',
+          left: 'center', top: 'middle',
+          textStyle: { color: '#9ca3af', fontSize: 12, fontWeight: 'normal' }
+        }
+      }, true);
+      return;
+    }
+
+    var vendorIndex = {};
+    for (var vi = 0; vi < topVendors.length; vi++) vendorIndex[topVendors[vi]] = vi;
+
+    // Build cell -> { count, models: [name,...] }.
+    // cellKey = bIdx + ':' + vIdx
+    var cellModels = {};
+    var BSET = {};
+    for (var b = 0; b < _HEATMAP_BENCHMARKS.length; b++) BSET[_HEATMAP_BENCHMARKS[b]] = true;
+
+    var scores = App.data.scores;
+    for (var si = 0; si < scores.length; si++) {
+      var s = scores[si];
+      if (!s || !BSET[s.benchmark_id]) continue;
+      if (typeof s.value !== 'number' || isNaN(s.value)) continue;
+      var canon = _canonVendor(_vendorOf(s.model_id));
+      if (!(canon in vendorIndex)) continue;
+      var bIdx = -1;
+      for (var bi2 = 0; bi2 < _HEATMAP_BENCHMARKS.length; bi2++) {
+        if (_HEATMAP_BENCHMARKS[bi2] === s.benchmark_id) { bIdx = bi2; break; }
+      }
+      if (bIdx < 0) continue;
+      var vIdx = vendorIndex[canon];
+      var key = bIdx + ':' + vIdx;
+      if (!cellModels[key]) cellModels[key] = {};
+      cellModels[key][s.model_id] = true;
+    }
+
+    // Build heatmap data array. Use '-' (ECharts convention) for empty cells
+    // so they render transparent and gaps stand out.
+    var data = [];
+    var maxCount = 0;
+    for (var c = 0; c < _HEATMAP_BENCHMARKS.length; c++) {
+      for (var r = 0; r < topVendors.length; r++) {
+        var ck = c + ':' + r;
+        if (cellModels[ck]) {
+          var n = Object.keys(cellModels[ck]).length;
+          if (n > maxCount) maxCount = n;
+          data.push([c, r, n]);
+        } else {
+          data.push([c, r, '-']);
+        }
+      }
+    }
+    if (maxCount < 1) maxCount = 1;
+
+    var xLabels = _HEATMAP_BENCHMARKS.map(function(bid) { return _benchmarkShortName(bid); });
+
+    var option = {
+      backgroundColor: 'transparent',
+      grid: { left: 160, right: 30, top: 30, bottom: 90, containLabel: false },
+      tooltip: {
+        position: 'top',
+        backgroundColor: 'rgba(17, 24, 39, 0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb', fontSize: 12 },
+        formatter: function(p) {
+          if (!p || !p.value) return '';
+          var col = p.value[0], row = p.value[1], val = p.value[2];
+          var vendor = topVendors[row];
+          var bid = _HEATMAP_BENCHMARKS[col];
+          var benchLine = _benchmarkShortName(bid);
+          var head = '<b>' + vendor + '</b><br>' + benchLine;
+          if (val === '-' || !cellModels[col + ':' + row]) {
+            return head + '<br><span style="color:#fca5a5">No reported scores</span>';
+          }
+          var ids = Object.keys(cellModels[col + ':' + row]);
+          var lines = [head, '<span style="color:#9ca3af">' + ids.length + ' scored model' + (ids.length === 1 ? '' : 's') + ':</span>'];
+          var max = Math.min(ids.length, 6);
+          for (var i = 0; i < max; i++) {
+            lines.push('• ' + _modelDisplayName(ids[i]));
+          }
+          if (ids.length > max) lines.push('<span style="color:#6b7280">…and ' + (ids.length - max) + ' more</span>');
+          return lines.join('<br>');
+        }
+      },
+      xAxis: {
+        type: 'category',
+        data: xLabels,
+        splitArea: { show: true },
+        axisLabel: { rotate: 30, fontSize: 10, color: '#d1d5db', interval: 0 },
+        axisLine: { lineStyle: { color: '#374151' } },
+        axisTick: { show: false }
+      },
+      yAxis: {
+        type: 'category',
+        data: topVendors,
+        inverse: true,
+        splitArea: { show: true },
+        axisLabel: { fontSize: 11, color: '#d1d5db' },
+        axisLine: { lineStyle: { color: '#374151' } },
+        axisTick: { show: false }
+      },
+      visualMap: {
+        min: 1, max: maxCount, calculable: true,
+        orient: 'horizontal', left: 'center', bottom: 8,
+        inRange: { color: ['#e5e7eb', '#93c5fd', '#3b82f6', '#1d4ed8', '#1e3a8a'] },
+        textStyle: { color: '#9ca3af', fontSize: 10 },
+        text: [String(maxCount) + '+ models', '1 model']
+      },
+      series: [{
+        name: 'Scored Models',
+        type: 'heatmap',
+        data: data,
+        label: {
+          show: true, fontSize: 10, color: '#0f172a', fontWeight: 600,
+          formatter: function(p) {
+            if (!p || !p.value || p.value[2] === '-') return '';
+            return p.value[2];
+          }
+        },
+        emphasis: {
+          itemStyle: {
+            borderColor: '#fff', borderWidth: 1,
+            shadowBlur: 8, shadowColor: 'rgba(96, 165, 250, 0.5)'
+          }
+        },
+        progressive: 0
+      }]
+    };
+
+    chart.setOption(_applyToolbox(option), true);
+  }
+
+  // ======================================================================
   // Top-level render — called from Agent.render() after _renderCompare.
   // Each widget renders independently; one failing must not break the
   // others, hence the per-call try/catch.
@@ -3839,7 +4032,8 @@ var AgentCharts = (function() {
       renderCapabilitySankey,
       renderCumulativeSOTAWins,
       renderAgentWizard,
-      renderCostSimulator
+      renderCostSimulator,
+      renderVendorCoverageMatrix
     ];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
@@ -3866,6 +4060,7 @@ var AgentCharts = (function() {
     renderAgentWizard: renderAgentWizard,
     renderRecommendationBreakdown: renderRecommendationBreakdown,
     renderCostSimulator: renderCostSimulator,
+    renderVendorCoverageMatrix: renderVendorCoverageMatrix,
     // Helpers exported for widgets to reuse.
     _scoresFor: _scoresFor,
     _modelDisplayName: _modelDisplayName,
