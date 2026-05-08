@@ -4476,6 +4476,285 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Widget 17 (Wave 6C3) — Multi-Source Confidence Intervals
+  //
+  // For (model, benchmark) pairs where the same pair appears across MULTIPLE
+  // independent source URLs (current scores + history snapshots), compute the
+  // min/max/median range. Widest-range pairs surface the most-disputed scores —
+  // i.e., where vendor self-reports diverge from third-party leaderboards.
+  //
+  // Render as a horizontal dumbbell:
+  //   - line connector from min → max
+  //   - scatter dot at min (red), max (green), median (gray diamond)
+  // Top 20 pairs by range desc; tooltip lists every source with its value.
+  // Empty-state below 5 pairs prints an explanatory message instead.
+  // ======================================================================
+  function _confidenceSourceUrl(score) {
+    if (!score) return '';
+    var src = score.source;
+    if (typeof src === 'string') return src;
+    if (src && typeof src === 'object') return src.url || src.citation || '';
+    return score.source_url || score.url || '';
+  }
+
+  function _collectMultiSourcePairs() {
+    if (!(window.App && App.data && App.data.scores)) return [];
+    // Bucket all observations by "model|benchmark"; each entry is {value, url, date}.
+    var groups = {};
+    function _ingest(arr) {
+      if (!arr || !arr.length) return;
+      for (var i = 0; i < arr.length; i++) {
+        var s = arr[i];
+        if (!s || !s.model_id || !s.benchmark_id) continue;
+        var v = (typeof s.value === 'number') ? s.value : parseFloat(s.value);
+        if (!isFinite(v)) continue;
+        var url = _confidenceSourceUrl(s);
+        var key = s.model_id + '|' + s.benchmark_id;
+        if (!groups[key]) groups[key] = [];
+        groups[key].push({ value: v, url: url || '(unknown)', date: s.collected_at || '' });
+      }
+    }
+    _ingest(App.data.scores);
+    if (App.data.history && typeof App.data.history === 'object') {
+      for (var d in App.data.history) {
+        if (!Object.prototype.hasOwnProperty.call(App.data.history, d)) continue;
+        _ingest(App.data.history[d]);
+      }
+    }
+
+    var pairs = [];
+    for (var k in groups) {
+      if (!Object.prototype.hasOwnProperty.call(groups, k)) continue;
+      var obs = groups[k];
+      // Distinct URLs (excluding empty/unknown placeholders).
+      var urlSet = {};
+      for (var oi = 0; oi < obs.length; oi++) {
+        var u = obs[oi].url;
+        if (u && u !== '(unknown)') urlSet[u] = true;
+      }
+      var urlCount = 0;
+      for (var uk in urlSet) {
+        if (Object.prototype.hasOwnProperty.call(urlSet, uk)) urlCount++;
+      }
+      if (urlCount < 2) continue;
+
+      // Per-URL collapse: keep one observation per source URL (latest by date).
+      // Avoids history snapshots inflating "agreement" via duplicate rows from
+      // the same upstream URL re-ingested across dates.
+      var bySource = {};
+      for (var oj = 0; oj < obs.length; oj++) {
+        var ob = obs[oj];
+        if (!ob.url || ob.url === '(unknown)') continue;
+        var prev = bySource[ob.url];
+        if (!prev || (ob.date && ob.date > prev.date)) {
+          bySource[ob.url] = ob;
+        }
+      }
+      var perSource = [];
+      for (var sk in bySource) {
+        if (Object.prototype.hasOwnProperty.call(bySource, sk)) perSource.push(bySource[sk]);
+      }
+      if (perSource.length < 2) continue;
+
+      var vals = perSource.map(function(o) { return o.value; }).sort(function(a, b) { return a - b; });
+      var min = vals[0];
+      var max = vals[vals.length - 1];
+      var range = max - min;
+      if (range < 1.0) continue;
+      var med = (vals.length % 2 === 1)
+        ? vals[(vals.length - 1) >> 1]
+        : (vals[vals.length / 2 - 1] + vals[vals.length / 2]) / 2;
+
+      var parts = k.split('|');
+      pairs.push({
+        model_id: parts[0],
+        benchmark_id: parts[1],
+        min: min, max: max, median: med, range: range,
+        sources: perSource
+      });
+    }
+    pairs.sort(function(a, b) { return b.range - a.range; });
+    return pairs;
+  }
+
+  function renderConfidenceIntervals() {
+    var section = _ensureMountPoint('agent-chart-confidence-intervals',
+      'Multi-Source Confidence Intervals — Where Reports Disagree',
+      'For (model, benchmark) pairs with ≥2 independent sources, shows the min-max range. Wider bars = more disagreement.');
+    if (!section) return;
+    var mountEl = document.getElementById('agent-chart-confidence-intervals');
+    if (!mountEl) return;
+
+    var pairs = _collectMultiSourcePairs();
+    var top = pairs.slice(0, 20);
+
+    // Empty-state branch: insufficient multi-source data.
+    if (top.length < 5) {
+      if (window.Charts && Charts._instances && Charts._instances['agent-chart-confidence-intervals']) {
+        try { Charts._instances['agent-chart-confidence-intervals'].dispose(); } catch (e) {}
+        delete Charts._instances['agent-chart-confidence-intervals'];
+      }
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+      var msg = document.createElement('div');
+      msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full text-center px-6';
+      msg.textContent = 'Insufficient multi-source data — most scores are single-attestation. '
+        + 'This will fill in as more independent evaluations are added.';
+      mountEl.appendChild(msg);
+      return;
+    }
+
+    if (typeof echarts === 'undefined' || !window.Charts) return;
+    // Clear leftover empty-state text node so ECharts can take the div.
+    if (!Charts._instances || !Charts._instances['agent-chart-confidence-intervals']) {
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+    }
+    var chart = Charts._getOrCreate('agent-chart-confidence-intervals');
+    if (!chart) return;
+
+    // Y-axis label = "<model display name> / <benchmark name>".
+    // ECharts category y-axis renders bottom-up; with `inverse: true` the
+    // first item sits at the top — i.e., widest range at the top of the plot.
+    var yLabels = top.map(function(p) {
+      var m = _modelDisplayName(p.model_id);
+      var b = _benchmarkLabel(p.benchmark_id);
+      return m + ' / ' + b;
+    });
+
+    var minPoints = [];
+    var maxPoints = [];
+    var medianPoints = [];
+    var lineSegments = [];
+
+    for (var i = 0; i < top.length; i++) {
+      var p = top[i];
+      var datum = {
+        model_id: p.model_id,
+        benchmark_id: p.benchmark_id,
+        min: p.min, max: p.max, median: p.median, range: p.range,
+        sources: p.sources
+      };
+      minPoints.push({ value: [p.min, i], _meta: datum });
+      maxPoints.push({ value: [p.max, i], _meta: datum });
+      medianPoints.push({ value: [p.median, i], _meta: datum });
+      lineSegments.push([
+        { coord: [p.min, i] },
+        { coord: [p.max, i] }
+      ]);
+    }
+
+    function _ciTooltip(p) {
+      if (!p || !p.data || !p.data._meta) return '';
+      var d = p.data._meta;
+      var name = _modelDisplayName(d.model_id);
+      var bench = _benchmarkLabel(d.benchmark_id);
+      var html = '<div style="font-size:11px;line-height:1.5;max-width:380px">'
+        + '<b>' + name + '</b><br>'
+        + bench + '<br>'
+        + 'Range: <b>' + (Math.round(d.range * 10) / 10) + '</b> '
+        + '(min ' + (Math.round(d.min * 10) / 10)
+        + ' → max ' + (Math.round(d.max * 10) / 10)
+        + ', median ' + (Math.round(d.median * 10) / 10) + ')<br>'
+        + '<span style="color:#9ca3af">' + d.sources.length + ' sources:</span>'
+        + '<ul style="margin:4px 0 0 14px;padding:0;color:#d1d5db">';
+      var srcs = d.sources.slice().sort(function(a, b) { return b.value - a.value; });
+      for (var si = 0; si < srcs.length; si++) {
+        var s = srcs[si];
+        var u = s.url || '(unknown)';
+        var short = u;
+        if (short.length > 60) short = short.slice(0, 57) + '…';
+        html += '<li><b>' + (Math.round(s.value * 10) / 10) + '</b> — '
+             + '<span style="color:#9ca3af">' + short + '</span></li>';
+      }
+      html += '</ul></div>';
+      return html;
+    }
+
+    var option = {
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: _ciTooltip
+      },
+      legend: {
+        top: 4,
+        textStyle: { color: '#d1d5db', fontSize: 11 },
+        data: [
+          { name: 'Min',    icon: 'circle',  itemStyle: { color: '#ef4444' } },
+          { name: 'Median', icon: 'diamond', itemStyle: { color: '#9ca3af' } },
+          { name: 'Max',    icon: 'circle',  itemStyle: { color: '#10b981' } }
+        ]
+      },
+      grid: { left: 240, right: 32, top: 40, bottom: 50 },
+      xAxis: {
+        type: 'value',
+        min: 0, max: 100,
+        name: 'Score',
+        nameLocation: 'middle',
+        nameGap: 28,
+        nameTextStyle: { color: '#9ca3af', fontSize: 11 },
+        axisLabel: { color: '#9ca3af', fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } }
+      },
+      yAxis: {
+        type: 'category',
+        data: yLabels,
+        inverse: true,
+        axisLabel: {
+          color: '#d1d5db', fontSize: 11,
+          formatter: function(v) { return (v && v.length > 38) ? v.slice(0, 36) + '…' : v; }
+        },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        axisTick: { show: false },
+        splitLine: { show: true, lineStyle: { color: '#1f2937', type: 'dashed' } }
+      },
+      series: [
+        {
+          name: 'range',
+          type: 'lines',
+          coordinateSystem: 'cartesian2d',
+          silent: true,
+          lineStyle: { color: '#475569', width: 4, opacity: 0.7 },
+          data: lineSegments,
+          z: 1
+        },
+        {
+          name: 'Min',
+          type: 'scatter',
+          symbol: 'circle',
+          symbolSize: 12,
+          itemStyle: { color: '#ef4444', borderColor: '#0f172a', borderWidth: 1 },
+          data: minPoints,
+          z: 3
+        },
+        {
+          name: 'Median',
+          type: 'scatter',
+          symbol: 'diamond',
+          symbolSize: 10,
+          itemStyle: { color: '#9ca3af', borderColor: '#0f172a', borderWidth: 1 },
+          data: medianPoints,
+          z: 3
+        },
+        {
+          name: 'Max',
+          type: 'scatter',
+          symbol: 'circle',
+          symbolSize: 12,
+          itemStyle: { color: '#10b981', borderColor: '#0f172a', borderWidth: 1 },
+          data: maxPoints,
+          z: 3
+        }
+      ]
+    };
+
+    chart.setOption(_applyToolbox(option), true);
+  }
+
+  // ======================================================================
   // Top-level render — called from Agent.render() after _renderCompare.
   // Each widget renders independently; one failing must not break the
   // others, hence the per-call try/catch.
@@ -4496,7 +4775,8 @@ var AgentCharts = (function() {
       renderCostSimulator,
       renderVendorCoverageMatrix,
       renderTrajectoryReplay,
-      renderEdgeUtilityScatter
+      renderEdgeUtilityScatter,
+      renderConfidenceIntervals
     ];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
@@ -4526,6 +4806,7 @@ var AgentCharts = (function() {
     renderVendorCoverageMatrix: renderVendorCoverageMatrix,
     renderTrajectoryReplay: renderTrajectoryReplay,
     renderEdgeUtilityScatter: renderEdgeUtilityScatter,
+    renderConfidenceIntervals: renderConfidenceIntervals,
     // Helpers exported for widgets to reuse.
     _scoresFor: _scoresFor,
     _modelDisplayName: _modelDisplayName,
