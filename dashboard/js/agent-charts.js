@@ -62,6 +62,80 @@ var AgentCharts = (function() {
     return '#60a5fa';                                 // blue-400
   }
 
+  function _benchmarkLabel(benchmarkId) {
+    if (!benchmarkId) return '';
+    if (window.App && App.data && App.data.benchmarks) {
+      var bs = App.data.benchmarks;
+      if (Array.isArray(bs)) {
+        for (var i = 0; i < bs.length; i++) {
+          if (bs[i] && bs[i].id === benchmarkId) {
+            return (bs[i].name && String(bs[i].name).length) ? bs[i].name : benchmarkId;
+          }
+        }
+      } else if (typeof bs === 'object') {
+        var hit = bs[benchmarkId];
+        if (hit && hit.name) return hit.name;
+      }
+    }
+    return benchmarkId;
+  }
+
+  function _categoryByKey(key) {
+    if (!window.Agent || !Agent._CATEGORIES) return null;
+    var cats = Agent._CATEGORIES;
+    for (var i = 0; i < cats.length; i++) if (cats[i].key === key) return cats[i];
+    return null;
+  }
+
+  function _isLowerBetter(cat, benchmarkId) {
+    if (!cat || !cat.lower_better) return false;
+    for (var i = 0; i < cat.lower_better.length; i++) {
+      if (cat.lower_better[i] === benchmarkId) return true;
+    }
+    return false;
+  }
+
+  // Per-benchmark normalized score lookup for a given model (0-100).
+  // Honors lower_better via the supplied category. Returns null if no score.
+  function _normalizedScore(modelId, benchmarkId, cat) {
+    var rows = _scoresFor(benchmarkId);
+    if (!rows.length) return null;
+    var maxV = 0;
+    var mine = null;
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      if (!r || typeof r.value !== 'number') continue;
+      if (r.value > maxV) maxV = r.value;
+      if (r.model_id === modelId) mine = r.value;
+    }
+    if (mine === null || maxV <= 0) return null;
+    if (_isLowerBetter(cat, benchmarkId)) return (1 - mine / maxV) * 100;
+    return (mine / maxV) * 100;
+  }
+
+  // Coverage per model in a category — count of benchmarks the model has a
+  // numeric score on. Used for picking default agents and the top-8 list.
+  function _categoryCoverage(cat) {
+    if (!cat || !cat.benchmarks) return [];
+    var counts = {};
+    for (var i = 0; i < cat.benchmarks.length; i++) {
+      var rows = _scoresFor(cat.benchmarks[i]);
+      for (var j = 0; j < rows.length; j++) {
+        var r = rows[j];
+        if (!r || r.model_id == null || typeof r.value !== 'number') continue;
+        counts[r.model_id] = (counts[r.model_id] || 0) + 1;
+      }
+    }
+    var arr = [];
+    for (var mid in counts) {
+      if (Object.prototype.hasOwnProperty.call(counts, mid)) {
+        arr.push({ model_id: mid, coverage: counts[mid] });
+      }
+    }
+    arr.sort(function(a, b) { return b.coverage - a.coverage; });
+    return arr;
+  }
+
   // ======================================================================
   // Mount-point management. Each widget's container is created lazily
   // inside #agent-charts so widgets ship independently and any one being
@@ -425,12 +499,272 @@ var AgentCharts = (function() {
 
   // ======================================================================
   // Widget 3 — Per-category Radar (interactive agent picker)
+  // State persists across re-renders so toggles survive ECharts dispose.
   // ======================================================================
+  var _radarState = { categoryKey: 'coding', selectedAgents: null };
+  var MAX_RADAR_AGENTS = 5;
+
   function renderCategoryRadar() {
-    _ensureMountPoint('agent-chart-radar',
+    var section = _ensureMountPoint('agent-chart-radar',
       'Category Radar',
       'Per-category capability profile. Pick a category and up to 5 agents to overlay polygons.');
-    // implementation body: Phase 2 Agent C
+    if (!section) return;
+
+    var canvasDiv = section.querySelector('#agent-chart-radar');
+    if (!canvasDiv) return;
+
+    var controls = section.querySelector('[data-radar-controls]');
+    if (!controls) {
+      controls = document.createElement('div');
+      controls.dataset.radarControls = '1';
+      controls.className = 'mb-3 text-xs text-gray-300 space-y-2';
+
+      // Row 1: category select
+      var rowCat = document.createElement('div');
+      rowCat.className = 'flex items-center gap-2 flex-wrap';
+      var labelCat = document.createElement('label');
+      labelCat.className = 'text-gray-400';
+      labelCat.textContent = 'Category:';
+      rowCat.appendChild(labelCat);
+
+      var sel = document.createElement('select');
+      sel.dataset.radarCategorySelect = '1';
+      sel.className = 'bg-gray-800 border border-gray-700 rounded px-2 py-1 text-gray-100';
+      var cats = (window.Agent && Agent._CATEGORIES) ? Agent._CATEGORIES : [];
+      for (var i = 0; i < cats.length; i++) {
+        var opt = document.createElement('option');
+        opt.value = cats[i].key;
+        opt.textContent = (cats[i].icon ? cats[i].icon + ' ' : '') + cats[i].label;
+        sel.appendChild(opt);
+      }
+      sel.addEventListener('change', function() {
+        _radarState.categoryKey = this.value;
+        _radarState.selectedAgents = null; // reset → defaults will repopulate
+        _refreshRadarControls(controls);
+        _drawRadar();
+      });
+      rowCat.appendChild(sel);
+      controls.appendChild(rowCat);
+
+      // Row 2: agent checkbox container — populated by _refreshRadarControls
+      var rowAgents = document.createElement('div');
+      rowAgents.dataset.radarAgentList = '1';
+      rowAgents.className = 'flex items-center gap-3 flex-wrap';
+      controls.appendChild(rowAgents);
+
+      // Row 3: status / hint
+      var status = document.createElement('div');
+      status.dataset.radarStatus = '1';
+      status.className = 'text-gray-500';
+      controls.appendChild(status);
+
+      section.insertBefore(controls, canvasDiv);
+    }
+
+    _refreshRadarControls(controls);
+    _drawRadar();
+  }
+
+  function _refreshRadarControls(controls) {
+    if (!controls) return;
+    var sel = controls.querySelector('[data-radar-category-select]');
+    if (sel && sel.value !== _radarState.categoryKey) {
+      sel.value = _radarState.categoryKey;
+    }
+
+    var cat = _categoryByKey(_radarState.categoryKey);
+    var coverage = _categoryCoverage(cat);
+    var top8 = coverage.slice(0, 8);
+
+    // Initialize defaults: top 3 by coverage on first render for this category.
+    if (!_radarState.selectedAgents) {
+      _radarState.selectedAgents = top8.slice(0, 3).map(function(x) { return x.model_id; });
+    } else {
+      // Drop any selected agents that aren't in top8 anymore (after category change).
+      var validIds = {};
+      for (var i = 0; i < top8.length; i++) validIds[top8[i].model_id] = true;
+      _radarState.selectedAgents = _radarState.selectedAgents.filter(function(id) {
+        return validIds[id];
+      });
+    }
+
+    var list = controls.querySelector('[data-radar-agent-list]');
+    if (!list) return;
+    while (list.firstChild) list.removeChild(list.firstChild);
+
+    if (!top8.length) {
+      var none = document.createElement('span');
+      none.className = 'text-gray-500 italic';
+      none.textContent = 'No agents have scores in this category yet.';
+      list.appendChild(none);
+    }
+
+    for (var k = 0; k < top8.length; k++) {
+      var mid = top8[k].model_id;
+      var label = document.createElement('label');
+      label.className = 'inline-flex items-center gap-1 cursor-pointer';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = mid;
+      cb.className = 'accent-blue-400';
+      cb.checked = _radarState.selectedAgents.indexOf(mid) !== -1;
+      cb.addEventListener('change', _onRadarAgentToggle);
+      label.appendChild(cb);
+
+      var dot = document.createElement('span');
+      dot.style.display = 'inline-block';
+      dot.style.width = '8px';
+      dot.style.height = '8px';
+      dot.style.borderRadius = '50%';
+      dot.style.background = _classColor(_modelClass(mid));
+      label.appendChild(dot);
+
+      var nm = document.createElement('span');
+      nm.className = 'text-gray-200';
+      nm.textContent = _modelDisplayName(mid);
+      label.appendChild(nm);
+
+      var cov = document.createElement('span');
+      cov.className = 'text-gray-500';
+      cov.textContent = '(' + top8[k].coverage + ')';
+      label.appendChild(cov);
+
+      list.appendChild(label);
+    }
+
+    var status = controls.querySelector('[data-radar-status]');
+    if (status) {
+      status.textContent = 'Selected ' + _radarState.selectedAgents.length + ' / ' + MAX_RADAR_AGENTS +
+                           ' (top 8 by coverage shown). Values normalized 0–100 per benchmark.';
+    }
+  }
+
+  function _onRadarAgentToggle(e) {
+    var mid = e.target.value;
+    var idx = _radarState.selectedAgents.indexOf(mid);
+    if (e.target.checked) {
+      if (idx === -1) {
+        if (_radarState.selectedAgents.length >= MAX_RADAR_AGENTS) {
+          e.target.checked = false;
+          return;
+        }
+        _radarState.selectedAgents.push(mid);
+      }
+    } else if (idx !== -1) {
+      _radarState.selectedAgents.splice(idx, 1);
+    }
+    var section = document.getElementById('agent-chart-radar-section');
+    if (section) {
+      var controls = section.querySelector('[data-radar-controls]');
+      if (controls) _refreshRadarControls(controls);
+    }
+    _drawRadar();
+  }
+
+  function _drawRadar() {
+    if (typeof echarts === 'undefined' || !window.Charts) return;
+    var chart = Charts._getOrCreate('agent-chart-radar');
+    if (!chart) return;
+
+    var cat = _categoryByKey(_radarState.categoryKey);
+    if (!cat) { chart.setOption({}, true); return; }
+
+    // Only include benchmarks where at least one model has a score.
+    var benchIds = [];
+    for (var i = 0; i < (cat.benchmarks || []).length; i++) {
+      var bid = cat.benchmarks[i];
+      if (_scoresFor(bid).some(function(r) { return typeof r.value === 'number'; })) {
+        benchIds.push(bid);
+      }
+    }
+
+    if (benchIds.length < 3) {
+      // Radar chart needs at least 3 axes — fall back to a friendly message.
+      chart.setOption({
+        title: {
+          text: 'Need at least 3 benchmarks with scores in this category.',
+          left: 'center', top: 'middle',
+          textStyle: { color: '#9ca3af', fontSize: 12, fontWeight: 'normal' }
+        }
+      }, true);
+      return;
+    }
+
+    var indicator = benchIds.map(function(b) {
+      return { name: _benchmarkLabel(b), max: 100 };
+    });
+
+    var selected = _radarState.selectedAgents || [];
+    var rawByAgent = {};
+    var seriesData = selected.map(function(mid) {
+      var raw = [];
+      var norm = benchIds.map(function(bid) {
+        var n = _normalizedScore(mid, bid, cat);
+        // Pull raw value too for tooltip
+        var rows = _scoresFor(bid);
+        var rawV = null;
+        for (var r = 0; r < rows.length; r++) {
+          if (rows[r].model_id === mid && typeof rows[r].value === 'number') {
+            rawV = rows[r].value; break;
+          }
+        }
+        raw.push(rawV);
+        return n === null ? 0 : n;
+      });
+      rawByAgent[mid] = raw;
+      var color = _classColor(_modelClass(mid));
+      return {
+        name: _modelDisplayName(mid),
+        modelId: mid,
+        value: norm,
+        symbol: 'circle',
+        symbolSize: 4,
+        lineStyle: { color: color, width: 2 },
+        areaStyle: { color: color, opacity: 0.18 },
+        itemStyle: { color: color }
+      };
+    });
+
+    chart.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'item',
+        formatter: function(p) {
+          if (!p || !p.value) return '';
+          var mid = p.data && p.data.modelId;
+          var raw = mid ? rawByAgent[mid] : null;
+          var lines = ['<b>' + p.name + '</b>'];
+          for (var i = 0; i < benchIds.length; i++) {
+            var n = p.value[i];
+            var nDisp = (typeof n === 'number') ? n.toFixed(1) : '–';
+            var r = raw ? raw[i] : null;
+            var rDisp = (typeof r === 'number') ? (r > 500 ? Math.round(r) : r.toFixed(2)) : '–';
+            lines.push(_benchmarkLabel(benchIds[i]) + ': ' + rDisp + ' (norm ' + nDisp + ')');
+          }
+          return lines.join('<br>');
+        }
+      },
+      legend: {
+        bottom: 0,
+        type: 'scroll',
+        textStyle: { color: '#d1d5db', fontSize: 11 },
+        data: seriesData.map(function(s) { return s.name; })
+      },
+      radar: {
+        indicator: indicator,
+        shape: 'polygon',
+        splitNumber: 4,
+        axisName: { color: '#d1d5db', fontSize: 11 },
+        splitLine: { lineStyle: { color: 'rgba(75,85,99,0.5)' } },
+        splitArea: { areaStyle: { color: ['rgba(31,41,55,0.3)', 'rgba(17,24,39,0.3)'] } },
+        axisLine: { lineStyle: { color: 'rgba(75,85,99,0.5)' } }
+      },
+      series: [{
+        type: 'radar',
+        emphasis: { focus: 'series' },
+        data: seriesData
+      }]
+    }, true);
   }
 
   // ======================================================================
