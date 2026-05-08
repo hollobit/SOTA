@@ -1,5 +1,36 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-08 (Session 2): Agent menu launch + agentic data sweep
+
+### 8. Agent menu — new top-level tab + 28-task plan execution
+
+새로운 `Agent` 탭을 메뉴 바에 추가 (AI4S 와 Explorer 사이). 4개 sub-section 구조:
+
+**4 sub-section UI** (vanilla ES5 + Tailwind dark theme, ~990 LOC `dashboard/js/agent.js`):
+- **SOTA Watch** (4 tiles): Top Coder / Top Web Agent / Top OS Agent / Best Defense — 매핑은 swe_bench_verified / browsecomp / osworld_verified / agentdojo_utility
+- **Categories** (10 cards, edge spans full row): Coding / Web & Browsing / OS-Computer Use / Tool Use & Function Calling / MCP / Customer Service / Domain (cross-listed Medical/AI4S) / Safety (lower-better marked) / General/Composite / On-device-Edge
+- **Compare** (3-column dropdown-switchable): Frontier (general-purpose) / Agent Products / On-device-Edge — switches across SWE Verified / SWE Pro / Terminal-Bench 2.0 / OSWorld-V / GAIA / TAU2 / BFCL v4 / Mobile Actions / MobileAgentBench
+- **Composite Leaderboard** (top 25): normalized agent_score across all agentic benchmarks, coverage threshold ≥3, safety ASR/jailbreak rows inverted (lower-better)
+
+**Modal extension**: 2 new `scale_class` badges added — `agent-product` (amber `🛠️ Agent product`), `edge-slm` (green `📱 Edge SLM`).
+
+**Data deltas (Tasks 10-23)**:
+- 14 new agentic benchmarks: aider_polyglot, swe_lancer, mle_bench, usaco, appworld, hal_overall_accuracy_at_fixed_cost, mobile_agent_bench, mobilebench_v2, mobilebench_xiaomi, mlperf_mobile_llm, mlperf_inference_edge_v5_1, mlperf_tiny_v1_2, tinyml_energy_v1, function_gemma_calling
+- 19 new model_ids registered (10 agent-product wrappers: Claude Code/Codex CLI/Cursor Composer/Replit Agent/Devin/Manus/Computer Use/Mariner/Operator/Cowork; 9 edge-SLMs: Apple FM 3B+Private Cloud/Phi-4+mini/Gemma 3-270M+3n+Function/Llama 3.2 1B+3B)
+- 10 retag candidates upgraded to `scale_class: edge-slm` in `model_enrichment.yaml` (Phi-4, Jamba 1.5/1.6/1.7/2 mini, Jamba2 3B, Qwen 1.5/2.5 7B, Qwen3 8B, OLMo 2 7B)
+- 24 new score rows via Playwright + WebFetch primary-source extraction: USACO 8 (HAL Princeton) / GAIA 5 (HAL) / Aider Polyglot 7 (aider.chat) / Claude Code SWE-Verified 87.6 (Anthropic) / Codex CLI SWE-Verified 85.0 + Terminal-Bench 82.0 + SWE-Pro 56.8 (OpenAI/Scale SEAL)
+- 20 Resources entries added (11 agent leaderboards + 9 on-device sites): HAL Princeton (4 sub-leaderboards) / AA Coding Agents / BenchLM Agent / AI Agent Square / Rapid Claw Framework Scorecard / MorphLLM Coding Agents / Helicone Manus / Phil Schmid Compendium / MobileAgentBench / Xiaomi Mobile-Bench / MLCommons MLPerf Mobile/Tiny/Edge / Google AI Edge LiteRT-LM / Apple ML / HuggingFace SmolLM / Local AI Master SLM Guide
+
+**Edge utility metrics file** (`config/edge_models_utility.json`): 9 SLM entries with size_gb / battery_pct_per_25_conversations citations from primary sources (Apple ML, HuggingFace, Google blog "Pixel 9 Pro 0.75% per 25 conversations").
+
+**Strict-attribution applied throughout**: every score row has model_id + benchmark_id + value visible in cited primary source. Anonymized AISI joint-testing scores excluded. SWE-bench self-reporting concerns flagged in benchmark notes.
+
+**DB final state**: benchmarks 842 → **854** (+12 net), models 1096 → **1114** (+18), scores 3261 → **3315** (+54). Coverage gap warning eliminated for all 72 hardcoded benchmark IDs in `agent.js CATEGORIES`.
+
+**14 commits** (`079cac2` → `f34d77c`) — see `git log --oneline 3559b5d..f34d77c` for the chronological build sequence.
+
+---
+
 ## 2026-05-08: AA Intelligence Index sweep + Resources tab refresh + ZAYA1/PhysForge daily ingest + AISI 13건 reference 보강
 
 ### Session overview
