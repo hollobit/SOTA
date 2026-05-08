@@ -218,7 +218,9 @@
   // Phase 1: stub — actual widget calls added per Task 5-9.
   // ====================================================================
   function renderAll() {
-    // Widgets are registered as Phase 1 tasks land. Empty for now.
+    try { renderHeroCards(); } catch (e) {
+      if (typeof console !== 'undefined') console.warn('[AI4SCharts] hero failed:', e);
+    }
   }
 
   // ====================================================================
@@ -310,6 +312,82 @@
   ];
 
   // ====================================================================
+  // W1 — Breakthrough Hero Cards (DOM, no chart).
+  // 5-8 hero tiles for SOTA Watch sub-section.
+  // ====================================================================
+  function _domainColor(domain) {
+    var palette = {
+      'bio-genomics':      '#10b981', // emerald
+      'math':              '#a78bfa', // violet
+      'physics-materials': '#f59e0b', // amber
+      'geo-climate':       '#3b82f6', // blue
+      'chemistry':         '#ec4899', // pink
+      'astronomy':         '#8b5cf6', // purple
+      'energy-grid':       '#eab308', // yellow
+      'pharma':            '#14b8a6', // teal
+      'co-scientist':      '#f97316'  // orange
+    };
+    return palette[domain] || '#6b7280';
+  }
+
+  function renderHeroCards() {
+    if (typeof document === 'undefined') return;
+    var host = document.getElementById('ai4s-charts');
+    if (!host) return;
+    var existing = document.getElementById('ai4s-hero-cards-section');
+    if (existing) return; // idempotent
+    var section = document.createElement('div');
+    section.id = 'ai4s-hero-cards-section';
+    section.className = 'rounded border bg-gray-900 border-gray-800 p-4';
+
+    var head = document.createElement('h2');
+    head.className = 'text-lg font-semibold text-gray-200 mb-1';
+    head.textContent = 'SOTA Watch — Science Breakthroughs';
+    section.appendChild(head);
+    var sub = document.createElement('p');
+    sub.className = 'text-xs text-gray-500 mb-3';
+    sub.textContent = 'Milestone moments in AI for Science — primary-source links, no extrapolation.';
+    section.appendChild(sub);
+
+    var grid = document.createElement('div');
+    grid.className = 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3';
+
+    _BREAKTHROUGHS.forEach(function(b) {
+      var card = document.createElement('a');
+      card.href = b.source_url;
+      card.target = '_blank';
+      card.rel = 'noopener';
+      card.className = 'block rounded border bg-gray-950 border-gray-800 p-3 hover:border-blue-600 transition';
+      card.style.borderLeft = '4px solid ' + _domainColor(b.domain);
+
+      var title = document.createElement('div');
+      title.className = 'text-sm font-semibold text-gray-100';
+      title.textContent = b.title;
+      card.appendChild(title);
+
+      var year = document.createElement('div');
+      year.className = 'text-[10px] text-gray-500 uppercase tracking-wider mt-0.5';
+      year.textContent = b.domain + ' · ' + b.year;
+      card.appendChild(year);
+
+      var nar = document.createElement('div');
+      nar.className = 'text-xs text-gray-400 mt-1.5';
+      nar.textContent = b.narrative;
+      card.appendChild(nar);
+
+      var val = document.createElement('div');
+      val.className = 'text-sm font-mono text-blue-300 mt-2';
+      val.textContent = b.value;
+      card.appendChild(val);
+
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    host.appendChild(section);
+  }
+
+  // ====================================================================
   // Public API.
   // ====================================================================
   var api = {
@@ -320,6 +398,7 @@
     _BREAKTHROUGHS: _BREAKTHROUGHS,
     _ensureMountPoint: _ensureMountPoint,
     _applyToolbox: _applyToolbox,
+    renderHeroCards: renderHeroCards,
     renderAll: renderAll
   };
 
