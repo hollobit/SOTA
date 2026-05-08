@@ -1419,6 +1419,37 @@ var Modal = {
         } catch (e) { /* raw non-fatal */ }
 
         container.appendChild(meta);
+
+        // "Built on: <base model>" — for agent-products and other derived
+        // entries whose enrichment lists a base_model_id. Click → opens that
+        // base model's modal. Defensive null checks: if enrichment isn't
+        // loaded, base_model_id missing, or base model not in DB → render
+        // nothing.
+        try {
+            var enrMap2 = (typeof App !== 'undefined' && App.data && App.data.enrichment) || {};
+            var entry2 = enrMap2[model.id];
+            var baseId = entry2 && entry2.base_model_id;
+            if (baseId) {
+                var baseModel = (App.data.models || []).find(function(m) { return m.id === baseId; });
+                if (baseModel) {
+                    var builtOn = document.createElement('div');
+                    builtOn.className = 'text-xs text-gray-400 mt-1 mb-3';
+                    builtOn.appendChild(document.createTextNode('Built on: '));
+                    var baseLink = document.createElement('a');
+                    baseLink.className = 'text-blue-400 hover:text-blue-300 cursor-pointer';
+                    baseLink.textContent = baseModel.name || baseId;
+                    baseLink.title = 'Open ' + baseId + ' modal';
+                    baseLink.addEventListener('click', (function(bid) {
+                        return function(e) {
+                            e.stopPropagation();
+                            Modal.showModel(bid);
+                        };
+                    })(baseId));
+                    builtOn.appendChild(baseLink);
+                    container.appendChild(builtOn);
+                }
+            }
+        } catch (e) { /* base_model_id render non-fatal */ }
     },
 
     _showRawData: function(modelId) {
@@ -1612,6 +1643,44 @@ var Modal = {
             if (pricing.input != null) addField('Input price (per 1M tokens)', '$' + pricing.input);
             if (pricing.output != null) addField('Output price (per 1M tokens)', '$' + pricing.output);
             if (pricing.cached_input != null) addField('Cached input', '$' + pricing.cached_input);
+        } else {
+            // No per-token pricing → show "subscription" pill for agent-products
+            // (Devin, Manus, Claude Code, Codex CLI, etc.) which are sold
+            // subscription-style rather than metered API. Frontier models with
+            // no pricing data simply omit this row.
+            try {
+                var isAgentProduct = false;
+                if (typeof Agent !== 'undefined' && Agent._AGENT_PRODUCTS) {
+                    isAgentProduct = Agent._AGENT_PRODUCTS.indexOf(modelId) !== -1;
+                }
+                if (isAgentProduct) {
+                    var subWrap = document.createElement('div');
+                    var subLbl = document.createElement('div');
+                    subLbl.className = 'text-xs text-gray-500';
+                    subLbl.textContent = 'Pricing model';
+                    subWrap.appendChild(subLbl);
+                    var subVal = document.createElement('div');
+                    subVal.className = 'text-sm text-gray-200 flex items-center gap-2 flex-wrap';
+                    var pill = document.createElement('span');
+                    pill.className = 'text-xs bg-amber-900 text-amber-200 px-2 py-0.5 rounded';
+                    pill.textContent = 'subscription';
+                    subVal.appendChild(pill);
+                    // Vendor-disclosed subscription annotations (when known)
+                    var SUBSCRIPTION_NOTES = {
+                        'cognition/devin': '$20/mo Core + $2.25/ACU',
+                        'manus-ai/manus': '$500/mo (Pro)'
+                    };
+                    var note = SUBSCRIPTION_NOTES[modelId];
+                    if (note) {
+                        var noteSpan = document.createElement('span');
+                        noteSpan.className = 'text-xs text-gray-400';
+                        noteSpan.textContent = note;
+                        subVal.appendChild(noteSpan);
+                    }
+                    subWrap.appendChild(subVal);
+                    detail.appendChild(subWrap);
+                }
+            } catch (e) { /* subscription pill non-fatal */ }
         }
         if (model._note || model.notes || model.description) {
             addField('Description', model._note || model.notes || model.description, {full: true});
