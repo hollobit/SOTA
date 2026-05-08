@@ -1,6 +1,15 @@
 [
   {
     "type": "Feature",
+    "date": "2026-05-09",
+    "benchmark_id": "Agent 탭 풀 스펙트럼 batch — A+B+C+D+E (Session 6, 19 sub-task, 5 wave, 13 병렬 에이전트 + 4 controller-direct, 15 commits)",
+    "new_model": "Wave 1 (6 병렬, data+cross-tab): A1 VL/multi-agent/reasoning trace 점수 +14, A2 Edge SLM Phi-4 BFCL +3, A3 api_providers 61→104, A4 frontier agentic backfill +27 (bfcl_v4 7→25, gaia 10→16, osworld/terminal-bench/usaco 추가), D1 Frontier Compare class filter (Frontier/Agent-Product/Edge-SLM 3 pill toggle + LocalStorage), D2 Sovereign agent products 7개 (Manus/Qwen Code/AutoGLM/Coze/Kimi/Solar Pro 2/Sarvam-M Agent — China 5 + Korea 1 + India 1). Wave 2 (4 병렬, JS 파일 분리): D3 Resources 탭에 18 agentic leaderboards 추가, E1 신규 methodology.html (352 LOC) — composite score 공식/3 클래스 정의/strict-attribution/Pareto/14 widgets/versioning, E3 90+일 stale-score 배지 (modal.js 3 callsites), B4 Agent 탭 PDF export 버튼 + 신규 print.css (127 LOC, A4/page-break/dark→light 변환). Wave 3 (4 병렬, agent-charts.js NEW widgets): C1 W15 Vendor × Benchmark Coverage Matrix (12×12 heatmap), C2 W16 Score Trajectory Replay (ECharts timeline keyframe 애니메이션, score_history 활용), C3 W17 Multi-Source Confidence Intervals (38 disputed pairs as dumbbell), C5 W19 Edge SLM Utility Scatter (size×battery×score 7/9 SLMs). Wave 4 (controller): E2 wizard 7 슬라이더 ⓘ tooltip + benchmark 설명, B3 lazy render (eager 4 + lazy 12 via requestIdleCallback). Wave 5 (controller): B1 mobile @media ≤768px chart 320px, B2 a11y role=img/aria-label/tabindex/focus outline + prefers-reduced-motion ECharts 애니메이션 0.001s.",
+    "new_value": "신규 점수 +44 (3432→3476). 신규 위젯 4 (W15/W16/W17/W19, 총 14→18). api_providers 61→104. agent-charts.js 3877→4883 LOC (+1006). 신규 페이지 methodology.html 352 LOC. 신규 CSS print.css 127 LOC. 15 commits, 13 병렬 에이전트 + 4 controller-direct.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
     "date": "2026-05-08",
     "benchmark_id": "Agent 탭 다음 라운드 — Loader 2-pass + 20 신규 벤치마크 + 3 신규 위젯 + cross-widget brushing (Session 5, A+B+C, 7 병렬 에이전트)",
     "new_model": "A1 Loader 2-pass 영구 수정: scripts/load_benchmark_scores.py를 2-step (모든 파일에서 모델/벤치마크 등록 → 모든 파일에서 점수 삽입)으로 리팩터, FK 제약 우회 위한 파일명 트릭 제거. CONTRIBUTING.md 신설(74 LOC). B1 Vision-Language agent benchmarks 6종 (VisualWebArena/Online-Mind2Web/ScreenSpot-Pro/OSCopilot-GAIA/WebShop/VisualAgentBench, 31 scores). B2 Multi-agent collaboration 6종 (AgentBench/MetaGPT-Eval/MultiAgentBench 외, 19 scores). B3 Reasoning trace quality 8종 (METR autonomy P50/P80/CoT faithfulness/Apollo scheming oversight subversion+persistence/RewardBench2/ProcessBench-F1, 39 scores). C1 Cost Simulator (W12) — 일일 요청·토큰·reasoning 슬라이더 → 모델별 월 비용 ranked 테이블. C2 Provider Availability Map (W13) — top-25 모델 × 14 프로바이더 ECharts heatmap; config/model_enrichment.yaml에 22개 새 모델 api_providers 추가 (39→61). C4 Recommendation Breakdown (W14) — Build Your Agent 위저드 행에 'Why?' 버튼 + 카테고리 기여도 horizontal bar chart 모달. A2 Cross-widget linked brushing — _brush.on/off/emit pub/sub로 leaderboard 행 hover ↔ W1 Cost Scatter highlight ↔ fingerprint 캔버스 violet ring 동기화. A3 Pareto frontier 라벨 — _paretoFrontier() 결과 model_id에만 W1 라벨 표시 (~3-6개 best-in-class).",
