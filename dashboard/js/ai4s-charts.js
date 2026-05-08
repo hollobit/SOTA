@@ -222,6 +222,94 @@
   }
 
   // ====================================================================
+  // Hero breakthroughs — milestone events featured in W1 SOTA Watch tiles.
+  // 8 entries spanning 4 domains (bio-genomics 3, math 2, physics-materials
+  // 2, geo-climate 1). Updated when major AI4S milestones land.
+  // ====================================================================
+  var _BREAKTHROUGHS = [
+    {
+      title: 'AlphaFold 3',
+      narrative: 'Single-model protein structure prediction with bound ligands',
+      value: '~91 GDT-TS',
+      domain: 'bio-genomics',
+      model_id: 'deepmind/alphafold-3',
+      benchmark_id: 'casp16_gdt',
+      source_url: 'https://www.nature.com/articles/s41586-024-07487-w',
+      year: 2024
+    },
+    {
+      title: 'AlphaProof',
+      narrative: 'IMO 2024 Silver Medal — RL-trained Lean proof system',
+      value: 'Silver Medal',
+      domain: 'math',
+      model_id: 'deepmind/alphaproof',
+      benchmark_id: 'imo_2024',
+      source_url: 'https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/',
+      year: 2024
+    },
+    {
+      title: 'Aurora',
+      narrative: '1.3B-param atmospheric foundation model — IFS-beating skill',
+      value: 'IFS-beating RMSE',
+      domain: 'geo-climate',
+      model_id: 'microsoft/aurora-open',
+      benchmark_id: 'aurora_rmse',
+      source_url: 'https://www.nature.com/articles/s41586-025-09005-y',
+      year: 2024
+    },
+    {
+      title: 'MatterGen',
+      narrative: 'Diffusion model for inorganic crystal generation',
+      value: '~10x novel materials yield',
+      domain: 'physics-materials',
+      model_id: 'microsoft/mattergen',
+      benchmark_id: 'mattergen_yield',
+      source_url: 'https://www.nature.com/articles/s41586-025-08628-5',
+      year: 2025
+    },
+    {
+      title: 'Evo 2',
+      narrative: 'Genome-scale foundation model across DNA / RNA / protein',
+      value: '7B params, 9.3T tokens',
+      domain: 'bio-genomics',
+      model_id: 'arc-institute-stanford/evo-2',
+      benchmark_id: 'evo2_zeroshot',
+      source_url: 'https://arcinstitute.org/news/blog/evo2',
+      year: 2025
+    },
+    {
+      title: 'AlphaQubit',
+      narrative: 'Neural decoder for quantum error correction below threshold',
+      value: 'Sub-threshold decode',
+      domain: 'physics-materials',
+      model_id: 'deepmind/alphaqubit',
+      benchmark_id: 'alphaqubit_decoder_acc',
+      source_url: 'https://www.nature.com/articles/s41586-024-08148-8',
+      year: 2024
+    },
+    {
+      title: 'Chai-2',
+      narrative: 'AlphaFold-3-class structure prediction with antibody focus',
+      value: '~92% accuracy',
+      domain: 'bio-genomics',
+      model_id: 'isomorphic/iso-dde-chai-2',
+      benchmark_id: 'chai2_pae',
+      source_url: 'https://www.chai-discovery.com/blog/introducing-chai-2',
+      year: 2025
+    },
+    {
+      title: 'Goedel-Prover v2',
+      narrative: 'Open-weight Lean theorem prover — Putnam SOTA',
+      value: 'Putnam SOTA',
+      domain: 'math',
+      model_id: 'goedel/goedel-prover-v2',
+      benchmark_id: 'putnambench',
+      source_url: 'https://arxiv.org/abs/2502.07640',
+      year: 2025
+    }
+  ];
+
+  // ====================================================================
   // Public API.
   // ====================================================================
   var api = {
@@ -229,6 +317,7 @@
     _resolveLab: _resolveLab,
     _BENCHMARK_DOMAIN_MAP: _BENCHMARK_DOMAIN_MAP,
     _resolveDomain: _resolveDomain,
+    _BREAKTHROUGHS: _BREAKTHROUGHS,
     _ensureMountPoint: _ensureMountPoint,
     _applyToolbox: _applyToolbox,
     renderAll: renderAll

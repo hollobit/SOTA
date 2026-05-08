@@ -28,3 +28,20 @@ assert.strictEqual(AI4SCharts._resolveDomain('matharena_apex'), 'math');
 assert.strictEqual(AI4SCharts._resolveDomain('unknown_benchmark'), null);
 
 console.log('Task 2 _resolveDomain OK');
+
+// Task 4 — _BREAKTHROUGHS schema
+assert.ok(Array.isArray(AI4SCharts._BREAKTHROUGHS), '_BREAKTHROUGHS must be array');
+assert.ok(AI4SCharts._BREAKTHROUGHS.length >= 5 && AI4SCharts._BREAKTHROUGHS.length <= 8,
+    'expected 5-8 breakthrough tiles');
+
+AI4SCharts._BREAKTHROUGHS.forEach(function(b, i) {
+    assert.ok(b.title,        'entry ' + i + ' missing title');
+    assert.ok(b.narrative,    'entry ' + i + ' missing narrative');
+    assert.ok(b.value,        'entry ' + i + ' missing value');
+    assert.ok(b.domain,       'entry ' + i + ' missing domain');
+    assert.ok(b.source_url && b.source_url.indexOf('http') === 0,
+        'entry ' + i + ' source_url must be http(s)://...');
+    assert.ok(typeof b.year === 'number', 'entry ' + i + ' year must be number');
+});
+
+console.log('Task 4 _BREAKTHROUGHS schema OK');
