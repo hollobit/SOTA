@@ -1,5 +1,69 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-09 (Session 6): Agent menu A+B+C+D+E — 19 sub-tasks across 5 waves (15 commits)
+
+### 12. 풀 스펙트럼 batch (commits `3065c59` → `15f86de`)
+
+사용자가 "A+B+C+D+E를 진행해주세요" — 단일 세션에서 모든 카테고리(데이터 + UX + 위젯 + 통합 + 문서화) 동시 진행. 19 sub-task를 5 wave로 분해해서 13 병렬 에이전트 + 4 controller-direct 작업 실행.
+
+**Wave 1 (6 병렬 — data + cross-tab files isolated)**:
+- **A1 VL/multi-agent/reasoning expansion** (`50f6a72`): VL agent benchmarks +5 (visualagentbench/online_mind2web), reasoning trace +9 (METR p50/p80/ProcessBench/QwQ-32B). Multi-agent 0 (출처 고갈). +14 scores. Strict-attribution 유지.
+- **A2 Edge SLM 5→9 expansion** (`ccf1eba` 번들): Phi-4 (14B) BFCL v4/v3-live/v3-multi-turn 3건. Apple FM 3B / Gemma-3-270m / Gemma-3n는 공식 1차 출처 부재로 스킵.
+- **A3 api_providers enrichment** (`3065c59`): 61 → 104 모델 (+43). OpenAI/Anthropic/Google/Chinese/xAI/Meta/Mistral/Cohere/regional 모두 포함.
+- **A4 frontier agentic backfill** (`b3f4758`): bfcl_v4 7→25 (+18), gaia 10→16 (+6), osworld_verified +2, terminal_bench_2 +1, usaco +1. Berkeley Gorilla CSV + HAL Princeton + Anthropic launch announcements 출처. +27 scores 5 benchmarks.
+- **D1 Frontier Compare class filter** (`803ccd4`): 3 pill toggles (Frontier/Agent-Product/Edge-SLM), LocalStorage 영속, 클래스 색깔 매핑(blue/amber/emerald). 117 LOC.
+- **D2 Sovereign agent products** (`ccf1eba`): 7개 sovereign agent products (Manus/Qwen Code/AutoGLM/Coze/Kimi/Solar Pro 2/Sarvam-M Agent), China 5 + Korea 1 + India 1. Manus는 main Agent 메뉴와 cross-link.
+
+**Wave 2 (4 병렬 — different JS files)**:
+- **D3 Resources agent leaderboards** (`767ea42`): Resources 탭에 18개 agentic leaderboard 항목 (HAL/AgentBench/VisualAgentBench/Mind2Web/ScreenSpot/OSWorld/BFCL/Aider/Terminal-Bench/SWE-Bench/Tau/AgentDojo/METR/Apollo/RewardBench/ProcessBench/USACO/AppWorld 등).
+- **E1 Methodology page** (`2ec37fb`): 신규 `dashboard/methodology.html` 352 LOC — composite score 공식, 3 클래스 정의, strict-attribution 정책, Pareto frontier 정의, edge SLM cost treatment, 14 widget inventory, versioning. Header pill + footer 링크.
+- **E3 Stale-score badge** (`b1aa91e`): 90+일 된 점수에 amber `90d+` 배지 + 한국어 툴팁. modal.js 3 render location (showBenchmark/score history/score breakdown).
+- **B4 PDF export** (`9884a36`): Agent 탭 상단 `🖨 Export PDF` 버튼 + 신규 `dashboard/css/print.css` (127 LOC). `window.print()` 트리거, A4 페이지 사이즈, 위젯별 page-break.
+
+**Wave 3 (4 병렬 — agent-charts.js NEW widgets, cache-bust q/r/s/u)**:
+- **C1 W15 Vendor × Benchmark Coverage Matrix** (`ea97b8e`): 12 vendors × 12 core benchmarks heatmap, cell value = 점수 보유 모델 수. 가시적 reporting gaps. +195 LOC.
+- **C2 W16 Score Trajectory Replay** (`794a3ba`): ECharts timeline keyframe 애니메이션. score_history snapshots 활용. 기본 swe_bench_verified, 5 dates 미만 시 empty state. +221 LOC.
+- **C3 W17 Multi-Source Confidence Intervals** (`fc606f2`): (model, benchmark) 쌍 중 ≥2 distinct sources를 dumbbell chart로. 38 disputed pairs detected (cybench/cybergym 가장 큰 disagreement). +283 LOC.
+- **C5 W19 Edge SLM Utility Scatter** (`e15d700`): edge_models_utility.json의 size_gb × battery_pct × composite score 3D-ish bubble. 7/9 SLMs 플롯. +246 LOC.
+
+**Wave 4 (controller direct — agent-charts.js sequential)**:
+- **E2 Wizard tooltips** (`a0216e7`): Build Your Agent 위저드 7개 슬라이더에 ⓘ icon + benchmark 설명 (예: "BFCL v4, GAIA, Tau2-Bench, AppWorld. API 호출, 함수 시그니처 매칭, 다단계 도구 조합").
+- **B3 Lazy render** (`a0216e7`): renderAll → eager(4 above-fold) + lazy(12 below-fold via requestIdleCallback). 초기 paint가 ~12 ECharts.init 동시 실행으로 막히지 않음. setTimeout fallback.
+
+**Wave 5 (controller direct — mobile + a11y)**:
+- **B1 Mobile responsive** (`15f86de`): one-time `<style>` injection — `@media (max-width:768px)` chart 높이 420→320px, canvas max-width 100%, h2 1rem.
+- **B2 Accessibility** (`15f86de`): 모든 chart mount div에 role=img + aria-label (title + hint), tabindex=0, focus outline. `prefers-reduced-motion` ECharts 애니메이션 0.001s로 단축.
+
+**총 스코어카드**:
+- 신규 점수: **+44** (3432→3476): A1 +14, A2 +3, A4 +27
+- 신규 위젯: **W15/W16/W17/W19** (4개 추가, 14→18 widgets, W18 deferred)
+- 모델 enrichment: api_providers 61→**104** (+43)
+- Cross-tab UI: Frontier Compare class filter, Sovereign agent products section, Resources agentic leaderboards section
+- 새 페이지: `methodology.html` (352 LOC)
+- UX/a11y: PDF export, stale-score badge, wizard tooltips, lazy render, mobile responsive, role=img/aria-label/reduced-motion
+
+**파일 deltas**:
+- `dashboard/js/agent-charts.js`: 3877 → **4883 LOC** (+1006)
+- `dashboard/js/app.js`: +20 (D3)
+- `dashboard/js/frontier-compare.js`: +117 (D1)
+- `dashboard/js/sovereign.js`: +174 (D2)
+- `dashboard/js/modal.js`: stale-badge function + 3 callsites (E3)
+- `dashboard/js/agent.js`: +PDF button (B4)
+- `dashboard/methodology.html`: NEW 352 LOC
+- `dashboard/css/print.css`: NEW 127 LOC
+- `config/model_enrichment.yaml`: +220 lines (A3)
+- `resource/zzz_w6a2_edge_slm_2026_05_09_scores.json`: NEW (A2)
+- `resource/zzz_w6a4_frontier_agentic_2026_05_09_scores.json`: NEW (A4)
+
+**병렬 작업 패턴**:
+- Wave 1 6 에이전트가 6개 독립 파일 → conflict 없이 병렬 진행. D2가 D1+A2 변경을 같은 commit에 번들한 마이너 race 발생.
+- Wave 2 4 에이전트가 다른 4개 JS 파일 → 충돌 없음.
+- Wave 3 4 에이전트 모두 agent-charts.js NEW 함수 → cache-bust race-aware bumping (q→r→s→t→u, C3가 t 충돌 보고 u로 점프).
+
+**Live deploy**: CI run `25575571685` (15 commits push 후 즉시 트리거).
+
+---
+
 ## 2026-05-08 (Session 5): Agent menu A+B+C — loader 2-pass + 20 new benchmarks + 3 new widgets + cross-widget brushing
 
 ### 11. Agent 탭 다음 라운드 (commits `5a0128b` → `f0a77b9`)
