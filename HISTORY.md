@@ -1,10 +1,10 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
-## 2026-05-09 (Session 6): Agent menu A+B+C+D+E — 19 sub-tasks across 5 waves (15 commits)
+## 2026-05-09 (Session 6): Agent menu A+B+C+D+E — 18 sub-tasks across 5 waves (16 commits)
 
-### 12. 풀 스펙트럼 batch (commits `3065c59` → `15f86de`)
+### 12. 풀 스펙트럼 batch (commits `3065c59` → `f1c8df6`)
 
-사용자가 "A+B+C+D+E를 진행해주세요" — 단일 세션에서 모든 카테고리(데이터 + UX + 위젯 + 통합 + 문서화) 동시 진행. 19 sub-task를 5 wave로 분해해서 13 병렬 에이전트 + 4 controller-direct 작업 실행.
+사용자가 "A+B+C+D+E를 진행해주세요" — 단일 세션에서 모든 카테고리(데이터 + UX + 위젯 + 통합 + 문서화) 동시 진행. 18 sub-task를 5 wave로 분해해서 14 병렬 에이전트 (Wave 1×6 + Wave 2×4 + Wave 3×4) + 4 controller-direct 작업(Wave 4 E2/B3, Wave 5 B1/B2) 실행. 총 16 commits (15 작업 + 1 docs).
 
 **Wave 1 (6 병렬 — data + cross-tab files isolated)**:
 - **A1 VL/multi-agent/reasoning expansion** (`50f6a72`): VL agent benchmarks +5 (visualagentbench/online_mind2web), reasoning trace +9 (METR p50/p80/ProcessBench/QwQ-32B). Multi-agent 0 (출처 고갈). +14 scores. Strict-attribution 유지.
@@ -60,7 +60,9 @@
 - Wave 2 4 에이전트가 다른 4개 JS 파일 → 충돌 없음.
 - Wave 3 4 에이전트 모두 agent-charts.js NEW 함수 → cache-bust race-aware bumping (q→r→s→t→u, C3가 t 충돌 보고 u로 점프).
 
-**Live deploy**: CI run `25575571685` (15 commits push 후 즉시 트리거).
+**Live deploy**: CI runs `25575571685` (Wave 5 push) + `25575673196` (docs push). 라이브 cache-bust SHA prefix `f1c8df64`. 라이브 JS에서 `renderVendorCoverageMatrix`(3) / `renderTrajectoryReplay`(3) / `renderConfidenceIntervals`(3) / `renderEdgeUtilityScatter`(3) / `requestIdleCallback`(3) / `_ensureAgentChartsStyle`(2) 마커 모두 확인.
+
+**Main 동기화**: `cc88549` (HISTORY.md only, docs-only main rule 준수).
 
 ---
 
