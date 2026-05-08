@@ -987,7 +987,19 @@ var Agent = (function() {
             _renderSOTAWatch();
             _renderCategories();
             _renderCompare();
+            // 8 graphical widgets — each renders independently, one failure
+            // doesn't break the others. See dashboard/js/agent-charts.js.
+            if (window.AgentCharts && AgentCharts.renderAll) {
+                try { AgentCharts.renderAll(); }
+                catch (e) { if (window.console) console.warn('[Agent] charts render failed:', e); }
+            }
             _renderLeaderboard();
+            // Widget 7 — fingerprint mini-radars hooked into leaderboard rows
+            // after they've been rendered.
+            if (window.AgentCharts && AgentCharts.renderFingerprintsInLeaderboard) {
+                try { AgentCharts.renderFingerprintsInLeaderboard(); }
+                catch (e) { if (window.console) console.warn('[Agent] fingerprint hook failed:', e); }
+            }
         });
     }
 
