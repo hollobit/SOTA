@@ -2137,6 +2137,179 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Widget 10 (C2) — Cumulative SOTA Wins (stacked area)
+  // X = date, Y = cumulative SOTA-holder days per model, stacked.
+  // Each model that EVER held SOTA on the chosen benchmark gets a band that
+  // grows by 1 on every date it owns SOTA, and is flat otherwise. Final view:
+  // band thicknesses = total days at SOTA per model.
+  // ======================================================================
+  function _drawCumulativeSOTA(bid) {
+    var mountEl = document.getElementById('agent-chart-cumulative-sota');
+    if (!mountEl) return;
+    if (typeof echarts === 'undefined') return;
+
+    _loadHistoryIndex().then(function(idx) {
+      var dates = (idx && idx.dates) || [];
+      if (dates.length < 2) {
+        _emptyStateMessage(mountEl, 'Need at least 2 days of history snapshots');
+        return;
+      }
+      Promise.all(dates.map(_loadSnapshot)).then(function(snapshots) {
+        // Per-date best holder for the chosen benchmark — same logic as W5.
+        var dailyBest = [];
+        for (var i = 0; i < dates.length; i++) {
+          var rows = snapshots[i] || [];
+          var bestVal = -Infinity;
+          var bestMid = null;
+          for (var j = 0; j < rows.length; j++) {
+            var r = rows[j];
+            if (r && r.benchmark_id === bid && typeof r.value === 'number') {
+              if (r.value > bestVal) {
+                bestVal = r.value;
+                bestMid = r.model_id;
+              }
+            }
+          }
+          dailyBest.push({ date: dates[i], value: bestVal, model_id: bestMid });
+        }
+
+        // Running SOTA — only updates when a strictly higher score appears,
+        // otherwise the previous holder keeps the crown for that day.
+        var runningHolders = [];
+        var bestSoFar = -Infinity;
+        var bestHolder = null;
+        for (var p = 0; p < dailyBest.length; p++) {
+          var d = dailyBest[p];
+          if (d.model_id !== null && d.value > bestSoFar) {
+            bestSoFar = d.value;
+            bestHolder = d.model_id;
+          }
+          runningHolders.push(bestHolder); // null until first holder appears
+        }
+
+        // Discover holder set (preserve first-seen order so legend reads
+        // chronologically: who held SOTA first appears first).
+        var holders = [];
+        var seenHolder = {};
+        for (var h = 0; h < runningHolders.length; h++) {
+          var mid = runningHolders[h];
+          if (mid && !seenHolder[mid]) {
+            holders.push(mid);
+            seenHolder[mid] = true;
+          }
+        }
+        if (!holders.length) {
+          _emptyStateMessage(mountEl, 'No SOTA holder found on this benchmark');
+          return;
+        }
+
+        // Build cumulative-days series, one per holder. On each date, the
+        // current holder's counter increments by 1; everyone else stays flat.
+        var series = [];
+        var cumByModel = {};
+        for (var ih = 0; ih < holders.length; ih++) cumByModel[holders[ih]] = [];
+
+        for (var di = 0; di < dates.length; di++) {
+          var owner = runningHolders[di];
+          for (var ho = 0; ho < holders.length; ho++) {
+            var hm = holders[ho];
+            var prev = cumByModel[hm].length
+              ? cumByModel[hm][cumByModel[hm].length - 1]
+              : 0;
+            cumByModel[hm].push(hm === owner ? prev + 1 : prev);
+          }
+        }
+
+        for (var s = 0; s < holders.length; s++) {
+          var hid = holders[s];
+          var color = _classColor(_modelClass(hid));
+          series.push({
+            name: _modelDisplayName(hid),
+            type: 'line',
+            stack: 'sota-days',
+            step: 'end',
+            showSymbol: false,
+            smooth: false,
+            areaStyle: { color: color, opacity: 0.7 },
+            lineStyle: { color: color, width: 1 },
+            itemStyle: { color: color },
+            emphasis: { focus: 'series' },
+            data: cumByModel[hid]
+          });
+        }
+
+        if (!Charts._instances || !Charts._instances['agent-chart-cumulative-sota']) {
+          while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        }
+        var chart = Charts._getOrCreate('agent-chart-cumulative-sota');
+        if (!chart) return;
+
+        chart.setOption({
+          backgroundColor: 'transparent',
+          grid: { left: 64, right: 24, top: 40, bottom: 70 },
+          legend: {
+            bottom: 0,
+            type: 'scroll',
+            textStyle: { color: '#d1d5db' }
+          },
+          tooltip: {
+            trigger: 'axis',
+            backgroundColor: 'rgba(17,24,39,0.95)',
+            borderColor: '#374151',
+            textStyle: { color: '#e5e7eb' },
+            formatter: function(params) {
+              if (!params || !params.length) return '';
+              var lines = ['<b>' + params[0].axisValue + '</b>'];
+              // Sort descending by cumulative days for readability.
+              var sorted = params.slice().sort(function(a, b) {
+                return (b.value || 0) - (a.value || 0);
+              });
+              for (var k = 0; k < sorted.length; k++) {
+                var pp = sorted[k];
+                var v = pp.value;
+                if (v === undefined || v === null || v === 0) continue;
+                lines.push(pp.marker + pp.seriesName + ': ' + v + ' day' + (v === 1 ? '' : 's'));
+              }
+              return lines.join('<br>');
+            }
+          },
+          xAxis: {
+            type: 'category',
+            data: dates,
+            boundaryGap: false,
+            axisLabel: { color: '#9ca3af', rotate: 30 },
+            axisLine: { lineStyle: { color: '#4b5563' } },
+            splitLine: { show: false }
+          },
+          yAxis: {
+            type: 'value',
+            name: 'Cumulative SOTA-holder days',
+            nameLocation: 'middle',
+            nameGap: 46,
+            nameTextStyle: { color: '#9ca3af' },
+            axisLabel: { color: '#9ca3af' },
+            axisLine: { lineStyle: { color: '#4b5563' } },
+            splitLine: { lineStyle: { color: '#1f2937' } }
+          },
+          series: series
+        }, true);
+      });
+    });
+  }
+
+  function renderCumulativeSOTAWins() {
+    var section = _ensureMountPoint('agent-chart-cumulative-sota',
+      'Cumulative SOTA Wins (days at SOTA)',
+      'How long each model held the SOTA crown on the selected benchmark. Stacked by date — band thickness = total days at the top.');
+    if (!section) return;
+    _ensureBenchmarkSelect(section, 'agent-chart-cumulative-sota', 'swe_bench_verified',
+      function(newBid) { _drawCumulativeSOTA(newBid); });
+    var sel = document.getElementById('agent-chart-cumulative-sota-select');
+    var bid = (sel && sel.value) || 'swe_bench_verified';
+    _drawCumulativeSOTA(bid);
+  }
+
+  // ======================================================================
   // Top-level render — called from Agent.render() after _renderCompare.
   // Each widget renders independently; one failing must not break the
   // others, hence the per-call try/catch.
@@ -2149,7 +2322,8 @@ var AgentCharts = (function() {
       renderClassDotPlot,
       renderSOTATimeline,
       renderVendorMatrix,
-      renderClassViolin
+      renderClassViolin,
+      renderCumulativeSOTAWins
     ];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
@@ -2170,6 +2344,7 @@ var AgentCharts = (function() {
     renderVendorMatrix: renderVendorMatrix,
     renderFingerprintsInLeaderboard: renderFingerprintsInLeaderboard,
     renderClassViolin: renderClassViolin,
+    renderCumulativeSOTAWins: renderCumulativeSOTAWins,
     // Helpers exported for widgets to reuse.
     _scoresFor: _scoresFor,
     _modelDisplayName: _modelDisplayName,
