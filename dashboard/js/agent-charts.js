@@ -150,10 +150,24 @@ var AgentCharts = (function() {
     section.id = id + '-section';
     section.className = 'rounded border bg-gray-900 border-gray-800 p-4';
 
+    // Title row: <h2> + optional ⓘ info icon (B-polish — inline help via the
+    // browser-native title attribute → free tooltip, no extra JS).
+    var headRow = document.createElement('div');
+    headRow.className = 'flex items-center mb-1';
+
     var h = document.createElement('h2');
-    h.className = 'text-lg font-semibold text-gray-200 mb-1';
+    h.className = 'text-lg font-semibold text-gray-200';
     h.textContent = title;
-    section.appendChild(h);
+    headRow.appendChild(h);
+
+    if (hint) {
+      var infoIcon = document.createElement('span');
+      infoIcon.className = 'ml-2 text-gray-500 hover:text-blue-400 cursor-help text-sm';
+      infoIcon.textContent = 'ⓘ'; // ⓘ
+      infoIcon.title = hint;
+      headRow.appendChild(infoIcon);
+    }
+    section.appendChild(headRow);
 
     if (hint) {
       var p = document.createElement('p');
@@ -170,6 +184,41 @@ var AgentCharts = (function() {
 
     host.appendChild(section);
     return section;
+  }
+
+  // ======================================================================
+  // B-polish helpers (Wave 2D)
+  // _applyToolbox: attach ECharts toolbox (PNG / data view / restore).
+  // _saveState / _loadState: persist user selections in localStorage; failures
+  // (private mode, quota) are swallowed silently.
+  // ======================================================================
+  function _applyToolbox(option) {
+    if (!option || typeof option !== 'object') return option;
+    option.toolbox = {
+      show: true,
+      feature: {
+        saveAsImage: { title: 'PNG', pixelRatio: 2, name: 'agent-chart' },
+        dataView: { title: 'Data', readOnly: true, lang: ['Data', 'Close', 'Refresh'] },
+        restore: { title: 'Reset' }
+      },
+      right: 12,
+      top: 4,
+      iconStyle: { borderColor: '#9ca3af' },
+      emphasis: { iconStyle: { borderColor: '#60a5fa' } }
+    };
+    return option;
+  }
+
+  function _saveState(key, value) {
+    try { localStorage.setItem('agent-charts:' + key, JSON.stringify(value)); } catch (e) {}
+  }
+
+  function _loadState(key, defaultValue) {
+    try {
+      var v = localStorage.getItem('agent-charts:' + key);
+      if (v == null) return defaultValue;
+      return JSON.parse(v);
+    } catch (e) { return defaultValue; }
   }
 
   // ======================================================================
@@ -483,7 +532,7 @@ var AgentCharts = (function() {
         }] : []
       };
 
-      chart.setOption(opt, true);
+      chart.setOption(_applyToolbox(opt), true);
     });
   }
 
@@ -717,7 +766,7 @@ var AgentCharts = (function() {
       }]
     };
 
-    chart.setOption(option, true);
+    chart.setOption(_applyToolbox(option), true);
 
     chart.off('click');
     chart.on('click', function(p) {
@@ -958,7 +1007,7 @@ var AgentCharts = (function() {
       };
     });
 
-    chart.setOption({
+    chart.setOption(_applyToolbox({
       backgroundColor: 'transparent',
       tooltip: {
         trigger: 'item',
@@ -997,7 +1046,7 @@ var AgentCharts = (function() {
         emphasis: { focus: 'series' },
         data: seriesData
       }]
-    }, true);
+    }), true);
   }
 
   // ======================================================================
@@ -1102,7 +1151,7 @@ var AgentCharts = (function() {
            + bench + ': <b>' + (Math.round(v * 10) / 10) + '</b></div>';
     }
 
-    chart.setOption({
+    chart.setOption(_applyToolbox({
       backgroundColor: 'transparent',
       tooltip: {
         trigger: 'item',
@@ -1179,7 +1228,7 @@ var AgentCharts = (function() {
           z: 3
         }
       ]
-    }, true);
+    }), true);
   }
 
   // ======================================================================
@@ -1424,7 +1473,7 @@ var AgentCharts = (function() {
         var chart = Charts._getOrCreate('agent-chart-sota-timeline');
         if (!chart) return;
 
-        chart.setOption({
+        chart.setOption(_applyToolbox({
           backgroundColor: 'transparent',
           grid: { left: 64, right: 24, top: 40, bottom: 70 },
           legend: {
@@ -1469,7 +1518,7 @@ var AgentCharts = (function() {
             splitLine: { lineStyle: { color: '#1f2937' } }
           },
           series: series
-        }, true);
+        }), true);
       });
     });
   }
@@ -1592,7 +1641,7 @@ var AgentCharts = (function() {
            + 'best: ' + modelName + '</div>';
     }
 
-    chart.setOption({
+    chart.setOption(_applyToolbox({
       backgroundColor: 'transparent',
       tooltip: {
         trigger: 'item',
@@ -1647,7 +1696,7 @@ var AgentCharts = (function() {
           itemStyle: { borderColor: '#f8fafc', borderWidth: 2 }
         }
       }]
-    }, true);
+    }), true);
   }
 
   // ======================================================================
@@ -2134,6 +2183,171 @@ var AgentCharts = (function() {
     var sel = document.getElementById('agent-chart-class-violin-select');
     var bid = (sel && sel.value) || 'swe_bench_verified';
     _drawClassViolin(bid);
+  }
+
+  // ======================================================================
+  // Widget 9 (C1) — Capability Sankey
+  // 3-level data flow: Top 12 models → 10 categories → top 20 benchmarks.
+  // Edge weight = score count. A benchmark may live in multiple categories;
+  // each membership is counted once so column totals stay consistent.
+  // ======================================================================
+  var _SANKEY_CAT_PAL = [
+    '#60a5fa', '#a78bfa', '#f472b6', '#fb7185', '#fbbf24',
+    '#facc15', '#a3e635', '#34d399', '#22d3ee', '#94a3b8'
+  ];
+
+  function renderCapabilitySankey() {
+    _ensureMountPoint('agent-chart-sankey',
+      'Capability Sankey',
+      'Data flow: Top 12 models → 10 categories → top 20 benchmarks. Edge weight = score count.');
+    if (typeof echarts === 'undefined') return;
+    if (!(window.App && App.data && App.data.scores)) return;
+    var cats = (window.Agent && Agent._CATEGORIES) ? Agent._CATEGORIES : [];
+    var mountEl = document.getElementById('agent-chart-sankey');
+    if (!cats.length || !mountEl) return;
+
+    // benchmark_id -> [categoryIndex...] (a benchmark can sit in many).
+    var benchToCats = {};
+    for (var ci = 0; ci < cats.length; ci++) {
+      var bs = cats[ci].benchmarks || [];
+      for (var bi = 0; bi < bs.length; bi++) {
+        (benchToCats[bs[bi]] = benchToCats[bs[bi]] || []).push(ci);
+      }
+    }
+
+    // One sweep — tally model / benchmark / (model,cat) / (cat,bench) counts.
+    var mCount = {}, bCount = {}, mCov = {}, mcCount = {}, cbCount = {};
+    var scores = App.data.scores;
+    for (var s = 0; s < scores.length; s++) {
+      var r = scores[s];
+      if (!r || r.model_id == null || typeof r.value !== 'number') continue;
+      var memberships = benchToCats[r.benchmark_id];
+      if (!memberships) continue;
+      var mid = r.model_id, bid2 = r.benchmark_id;
+      mCount[mid] = (mCount[mid] || 0) + 1;
+      bCount[bid2] = (bCount[bid2] || 0) + 1;
+      (mCov[mid] = mCov[mid] || {})[bid2] = true;
+      for (var mi = 0; mi < memberships.length; mi++) {
+        var c = memberships[mi];
+        mcCount[mid + '||' + c] = (mcCount[mid + '||' + c] || 0) + 1;
+        cbCount[c + '||' + bid2] = (cbCount[c + '||' + bid2] || 0) + 1;
+      }
+    }
+
+    // ≥3 covered benchmarks gate — at least 3 such models needed.
+    var enoughModels = 0;
+    for (var k in mCov) {
+      if (Object.prototype.hasOwnProperty.call(mCov, k) &&
+          Object.keys(mCov[k]).length >= 3) enoughModels++;
+    }
+    if (enoughModels < 3) {
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+      var emptyMsg = document.createElement('div');
+      emptyMsg.className = 'text-xs text-gray-500 italic';
+      emptyMsg.textContent = 'Insufficient coverage for Sankey diagram';
+      mountEl.appendChild(emptyMsg);
+      return;
+    }
+
+    function _topIds(map, n) {
+      var arr = Object.keys(map).map(function(id) { return [id, map[id]]; });
+      arr.sort(function(a, b) { return b[1] - a[1]; });
+      return arr.slice(0, n).map(function(x) { return x[0]; });
+    }
+    var topModels = _topIds(mCount, 12);
+    var topBenches = _topIds(bCount, 20);
+    if (!topModels.length || !topBenches.length) return;
+    var mSet = {}, bSet = {};
+    topModels.forEach(function(id) { mSet[id] = true; });
+    topBenches.forEach(function(id) { bSet[id] = true; });
+
+    // Build nodes (prefixed names avoid cross-column collisions) + name index.
+    var nodes = [], byName = {};
+    function _push(node) { nodes.push(node); byName[node.name] = node; }
+    topModels.forEach(function(id) {
+      _push({
+        name: 'M::' + id, _label: _modelDisplayName(id), _modelId: id, _kind: 'model',
+        itemStyle: { color: _classColor(_modelClass(id)) },
+        label: { color: '#e5e7eb', fontSize: 10, formatter: _modelDisplayName(id) }
+      });
+    });
+    cats.forEach(function(cat, idx) {
+      _push({
+        name: 'C::' + cat.key, _label: cat.label, _kind: 'category',
+        itemStyle: { color: _SANKEY_CAT_PAL[idx % _SANKEY_CAT_PAL.length] },
+        label: { color: '#e5e7eb', fontSize: 10, formatter: cat.label }
+      });
+    });
+    topBenches.forEach(function(id) {
+      _push({
+        name: 'B::' + id, _label: _benchmarkLabel(id), _kind: 'benchmark',
+        itemStyle: { color: '#9ca3af' },
+        label: { color: '#cbd5e1', fontSize: 9, formatter: _benchmarkLabel(id) }
+      });
+    });
+
+    // Edges: model→category and category→benchmark, restricted to top sets.
+    var links = [];
+    Object.keys(mcCount).forEach(function(key) {
+      var p = key.split('||');
+      if (!mSet[p[0]]) return;
+      links.push({ source: 'M::' + p[0], target: 'C::' + cats[+p[1]].key, value: mcCount[key] });
+    });
+    Object.keys(cbCount).forEach(function(key) {
+      var p = key.split('||');
+      if (!bSet[p[1]]) return;
+      links.push({ source: 'C::' + cats[+p[0]].key, target: 'B::' + p[1], value: cbCount[key] });
+    });
+
+    var chart = Charts._getOrCreate('agent-chart-sankey');
+    if (!chart) return;
+
+    chart.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(17, 24, 39, 0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb', fontSize: 12 },
+        formatter: function(p) {
+          if (!p) return '';
+          if (p.dataType === 'edge') {
+            var sN = byName[p.data.source], tN = byName[p.data.target];
+            var sLab = sN ? sN._label : p.data.source;
+            var tLab = tN ? tN._label : p.data.target;
+            if (sN && tN && sN._kind === 'model' && tN._kind === 'category') {
+              return '<b>' + sLab + '</b> has <b>' + p.data.value + '</b> scores in ' + tLab;
+            }
+            if (sN && tN && sN._kind === 'category' && tN._kind === 'benchmark') {
+              return tLab + ' contributes <b>' + p.data.value + '</b> scores to ' + sLab;
+            }
+            return sLab + ' → ' + tLab + ': <b>' + p.data.value + '</b>';
+          }
+          var nN = byName[p.name];
+          return '<b>' + (nN ? nN._label : p.name) + '</b><br>Total flow: ' +
+                 (p.value != null ? p.value : '');
+        }
+      },
+      series: [{
+        type: 'sankey',
+        left: 20, right: 160, top: 20, bottom: 20,
+        nodeWidth: 14, nodeGap: 8, nodeAlign: 'justify', layoutIterations: 32,
+        emphasis: { focus: 'adjacency' },
+        lineStyle: { color: 'gradient', curveness: 0.5, opacity: 0.55 },
+        label: { color: '#e5e7eb', fontSize: 10 },
+        data: nodes, links: links
+      }]
+    }, true);
+
+    chart.off('click');
+    chart.on('click', function(p) {
+      if (!p || p.dataType !== 'node') return;
+      var nN = byName[p.name];
+      if (nN && nN._kind === 'model' && nN._modelId &&
+          window.Modal && typeof Modal.showModel === 'function') {
+        Modal.showModel(nN._modelId);
+      }
+    });
   }
 
   // ======================================================================
@@ -2693,6 +2907,7 @@ var AgentCharts = (function() {
       renderSOTATimeline,
       renderVendorMatrix,
       renderClassViolin,
+      renderCapabilitySankey,
       renderCumulativeSOTAWins,
       renderAgentWizard
     ];
@@ -2715,6 +2930,7 @@ var AgentCharts = (function() {
     renderVendorMatrix: renderVendorMatrix,
     renderFingerprintsInLeaderboard: renderFingerprintsInLeaderboard,
     renderClassViolin: renderClassViolin,
+    renderCapabilitySankey: renderCapabilitySankey,
     renderCumulativeSOTAWins: renderCumulativeSOTAWins,
     renderAgentWizard: renderAgentWizard,
     // Helpers exported for widgets to reuse.
