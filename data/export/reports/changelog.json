@@ -2,6 +2,15 @@
   {
     "type": "Feature",
     "date": "2026-05-08",
+    "benchmark_id": "Agent 탭 종합 보강 — 신규 위젯 3개 + 폴리시 + 데이터 채우기 (9 병렬 에이전트, A+B+C+E 카테고리)",
+    "new_model": "신규 위젯 3개: (9) 🔀 Capability Sankey — 12 모델 → 10 카테고리 → 20 벤치마크 flow (42 nodes/97 edges). (10) 📈 Cumulative SOTA Wins — 시간별 SOTA 보유 일수 stacked area. (11) 🧙 Build Your Agent wizard — 7 priority sliders + 2 toggle → ranked top-10 추천. 폴리시 일괄: ECharts toolbox (PNG/dataView/restore) 모든 위젯, ⓘ help tooltip 모든 위젯, LocalStorage state persistence (radar/timeline/violin/cumulative-SOTA/wizard). 데이터 채우기: A1 edge SLM 6 점수 (Phi-4-mini/Gemma 3/FunctionGemma/Llama 3.2 BFCL+mobile_actions), A2 agent product 11 점수 (Cursor/Devin/Manus/Operator/Mariner/Computer Use 등), A3 HAL composite 11 점수 (Princeton 9 sub-leaderboard aggregate). 모달 enhancement: 'Built on: <base>' 링크 + Devin/Manus 'subscription' 태그. README + screenshot 추가. CI 로더 버그 수정 (파일명 glob 패턴).",
+    "new_value": "agent-charts.js 2181 → 2961 LOC (+780). 신규 점수 28건 (3315 → 3343). agent-product 점수 보유 모델 1 → 8개. edge-SLM 점수 보유 0 → 5개. HAL composite 0 → 11. 위젯 8 → 11. README 47 → 71 LOC.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-08",
     "benchmark_id": "Agent 탭 그래픽 위젯 8개 — ECharts 시각화 (병렬 worktree 에이전트 5명)",
     "new_model": "8개 위젯 추가: (1) 💰 Cost vs Performance Scatter — Y=composite agent score, X=$/1M out log, 색=class, Pareto frontier dashed line. (2) 🔥 Capability Heatmap — Top 20 agents × 12 benchmarks, 정규화 색상 스케일. (3) 🕸️ Category Radar — 카테고리 + 5개 agent 동시 overlay. (4) ⚖️ Frontier-Product-Edge dot plot — 10 benchmark 행마다 3 클래스 비교. (5) ⏱️ SOTA Timeline — 벤치마크 선택 dropdown + history snapshot 활용. (6) 📊 Vendor × Benchmark bubble matrix — 12 vendors × 10 benchmarks. (7) 🧬 Capability Fingerprint mini-radar — leaderboard 25행 각자 60×60 Canvas2D 4축 시그니처. (8) 📈 Score Distribution Violin — 3 클래스 boxplot + horizontal jitter 점. 신규 파일 dashboard/js/agent-charts.js (2181 LOC). 병렬 에이전트 5명이 worktree 격리에서 약 12분 만에 완성 (직렬 시 5-6시간 추정).",
     "new_value": "agent-charts.js +2181 LOC, agent.js +14, index.html +2. 신규 데이터 0건 (기존 App.data + edge_models_utility.json + aa_pricing.json 재사용).",
