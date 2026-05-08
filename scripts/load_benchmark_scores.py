@@ -1,4 +1,13 @@
-"""Load comprehensive benchmark scores from resource/benchmark_scores_*.json into the database."""
+"""Load comprehensive benchmark scores from resource/benchmark_scores_*.json into the database.
+
+2-pass loader (since 2026-05-08):
+  Pass 1 — register every models[] and benchmarks[] across ALL files.
+  Pass 2 — insert every scores[] across ALL files.
+
+This makes the order of files irrelevant for FK satisfaction: a score in file
+A can reference a model registered only in file B without IntegrityError on a
+fresh DB rebuild.
+"""
 import json
 import sys
 from datetime import date
@@ -16,7 +25,7 @@ DB_PATH = "data/benchmark.db"
 def main():
     resource_dir = Path("resource")
     json_files = sorted(resource_dir.glob("*_scores_*.json")) + sorted(resource_dir.glob("*_scores.json"))
-    # Deduplicate
+    # Deduplicate (a file like foo_scores_2026_04_18.json matches both globs)
     seen = set()
     unique = []
     for f in json_files:
@@ -36,13 +45,12 @@ def main():
     total_benchmarks = 0
     total_scores = 0
 
+    # Pass 1 — register all models and benchmarks across every file first,
+    # so any score in pass 2 can resolve its model_id / benchmark_id FK
+    # regardless of which file (or glob ordering) declared it.
     for json_path in json_files:
-        print(f"Loading {json_path.name}...")
+        print(f"Loading [pass 1: schema] {json_path.name}...")
         data = json.loads(json_path.read_text())
-        meta = data.get("_meta", {})
-        sources = meta.get("sources", [])
-        collected_at_str = meta.get("collected_at", date.today().isoformat())
-        collected_at = date.fromisoformat(collected_at_str)
 
         # Load models. INSERT OR REPLACE overwrites the row, so when a JSON
         # entry lacks `type`, we look up the existing value and preserve it
@@ -79,6 +87,15 @@ def main():
                 metric=b.get("metric", "accuracy"),
             ))
             total_benchmarks += 1
+
+    # Pass 2 — insert all scores. Every model/benchmark FK target now exists.
+    for json_path in json_files:
+        print(f"Loading [pass 2: scores] {json_path.name}...")
+        data = json.loads(json_path.read_text())
+        meta = data.get("_meta", {})
+        sources = meta.get("sources", [])
+        collected_at_str = meta.get("collected_at", date.today().isoformat())
+        collected_at = date.fromisoformat(collected_at_str)
 
         # Build source lookup: PDF sources get type "pdf", web sources get "leaderboard"
         pdf_sources = {s for s in sources if s.startswith("resource/") or s.endswith(".pdf")}
