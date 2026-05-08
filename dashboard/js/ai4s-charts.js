@@ -789,11 +789,74 @@
   }
 
   // ====================================================================
+  // W7 — Weather Forecast Skill Curve. Lower-better RMSE, model release date X.
+  // ====================================================================
+  function renderWeatherSkillCurve() {
+    _ensureMountPoint('ai4s-chart-weather-skill',
+      'Weather Forecast Skill Progression',
+      'Z500 RMSE on WeatherBench-2 by model release date. Lower is better.');
+    if (typeof echarts === 'undefined') return;
+
+    var rows = _scoresFor('weatherbench_z500_72h');
+    var pts = [];
+    rows.forEach(function(r) {
+      var d = _modelReleaseDate(r.model_id);
+      if (!d || typeof r.value !== 'number') return;
+      pts.push([d, r.value, r.model_id]);
+    });
+    pts.sort(function(a, b) { return a[0].localeCompare(b[0]); });
+
+    var mountEl = document.getElementById('ai4s-chart-weather-skill');
+    if (pts.length < 2) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'Insufficient weather skill data — run Phase 2A Task 10 ingest first';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('ai4s-chart-weather-skill');
+    if (!chart) return;
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 50, right: 24, top: 30, bottom: 50 },
+      tooltip: { trigger: 'axis', backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151', textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          var d = p[0];
+          return d.value[0] + '<br><b>' + d.value[2] + '</b><br>RMSE: ' + d.value[1];
+        }
+      },
+      xAxis: { type: 'time', axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      yAxis: { type: 'value', name: 'Z500 RMSE (m, lower=better)',
+        nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      series: [{
+        name: 'Weather skill',
+        type: 'line',
+        data: pts.map(function(p) { return [p[0], p[1], p[2]]; }),
+        symbol: 'circle', symbolSize: 8,
+        lineStyle: { color: '#3b82f6', width: 2 },
+        itemStyle: { color: '#3b82f6' },
+        areaStyle: { color: 'rgba(59,130,246,0.15)' }
+      }]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from AI4S.render().
   // Phase 1: stub — actual widget calls added per Task 5-9.
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline, renderMathProgression, renderBenchmarkCatalog, renderFrontierVsSpecialist];
+    var fns = [renderHeroCards, renderLabDomainMatrix, renderBreakthroughTimeline, renderMathProgression, renderBenchmarkCatalog, renderFrontierVsSpecialist, renderWeatherSkillCurve];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[AI4SCharts] failed:', fns[i].name || i, e);
@@ -982,6 +1045,7 @@
     renderMathProgression: renderMathProgression,
     renderBenchmarkCatalog: renderBenchmarkCatalog,
     renderFrontierVsSpecialist: renderFrontierVsSpecialist,
+    renderWeatherSkillCurve: renderWeatherSkillCurve,
     _domainBenchmarks: _domainBenchmarks,
     _perDomainComposite: _perDomainComposite,
     openDomainLeaderboard: openDomainLeaderboard,
