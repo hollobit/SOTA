@@ -807,13 +807,170 @@ var Agent = (function() {
         }
     }
 
+    function _allLowerBetterSet() {
+        var s = {};
+        for (var i = 0; i < CATEGORIES.length; i++) {
+            var lb = CATEGORIES[i].lower_better;
+            if (!lb) continue;
+            for (var j = 0; j < lb.length; j++) s[lb[j]] = true;
+        }
+        return s;
+    }
+
+    function _benchmarkMaxes(benchIds) {
+        var maxes = {};
+        for (var i = 0; i < benchIds.length; i++) {
+            var rows = _scoresFor(benchIds[i]);
+            var m = 0;
+            for (var j = 0; j < rows.length; j++) {
+                if (rows[j].value > m) m = rows[j].value;
+            }
+            maxes[benchIds[i]] = m;
+        }
+        return maxes;
+    }
+
+    function _compositeScores() {
+        var ids = _allAgentBenchmarks();
+        var lowerSet = _allLowerBetterSet();
+        var maxes = _benchmarkMaxes(ids);
+        var byModel = {}; // model_id -> { sum, count }
+        for (var i = 0; i < ids.length; i++) {
+            var rows = _scoresFor(ids[i]);
+            var maxV = maxes[ids[i]];
+            if (!maxV) continue;
+            var lower = !!lowerSet[ids[i]];
+            for (var j = 0; j < rows.length; j++) {
+                var v = rows[j].value;
+                var norm = lower ? (1 - v / maxV) * 100 : (v / maxV) * 100;
+                var mid = rows[j].model_id;
+                if (!byModel[mid]) byModel[mid] = { sum: 0, count: 0 };
+                byModel[mid].sum += norm;
+                byModel[mid].count++;
+            }
+        }
+        var arr = [];
+        for (var mid in byModel) {
+            if (!Object.prototype.hasOwnProperty.call(byModel, mid)) continue;
+            if (byModel[mid].count < 3) continue;
+            arr.push({
+                model_id: mid,
+                agent_score: byModel[mid].sum / byModel[mid].count,
+                coverage: byModel[mid].count
+            });
+        }
+        arr.sort(function(a, b) {
+            if (b.agent_score !== a.agent_score) return b.agent_score - a.agent_score;
+            return b.coverage - a.coverage;
+        });
+        return { rows: arr, totalBenchmarks: ids.length };
+    }
+
+    function _vendorOf(modelId) {
+        if (!window.App || !App.data || !App.data.models) return '';
+        for (var i = 0; i < App.data.models.length; i++) {
+            if (App.data.models[i].id === modelId) return App.data.models[i].vendor || '';
+        }
+        return '';
+    }
+
+    function _classLabel(klass) {
+        if (klass === 'agent-product') return 'Agent-Product';
+        if (klass === 'edge-slm') return 'Edge-SLM';
+        return 'Frontier';
+    }
+
+    function _renderLeaderboard() {
+        var host = document.getElementById('agent-leaderboard');
+        if (!host) return;
+        while (host.firstChild) host.removeChild(host.firstChild);
+
+        var data = _compositeScores();
+        var rows = data.rows.slice(0, 25);
+
+        var heading = document.createElement('h2');
+        heading.className = 'text-lg font-semibold text-gray-200 mb-3 mt-6';
+        heading.textContent = 'Composite Agent Score (Top 25)';
+        host.appendChild(heading);
+
+        var disc = document.createElement('div');
+        disc.className = 'text-xs text-gray-400 mb-2';
+        disc.textContent = 'Coverage threshold: ≥ 3 agentic benchmarks. Total tracked: ' + data.totalBenchmarks +
+                           '. Safety ASR / jailbreak rows inverted (lower-better).';
+        host.appendChild(disc);
+
+        var tableWrap = document.createElement('div');
+        tableWrap.className = 'overflow-x-auto rounded border border-gray-800';
+        host.appendChild(tableWrap);
+
+        var table = document.createElement('table');
+        table.className = 'w-full text-xs';
+        tableWrap.appendChild(table);
+
+        var thead = document.createElement('thead');
+        table.appendChild(thead);
+        var trh = document.createElement('tr');
+        trh.className = 'text-gray-500 bg-gray-900/50';
+        thead.appendChild(trh);
+        var headers = [
+            { text: 'Rank', cls: 'text-left px-2 py-1' },
+            { text: 'Model', cls: 'text-left px-2 py-1' },
+            { text: 'Vendor', cls: 'text-left px-2 py-1' },
+            { text: 'Class', cls: 'text-left px-2 py-1' },
+            { text: 'Agent Score', cls: 'text-right px-2 py-1' },
+            { text: 'Coverage', cls: 'text-right px-2 py-1' }
+        ];
+        for (var h = 0; h < headers.length; h++) {
+            var th = document.createElement('th');
+            th.className = headers[h].cls;
+            th.textContent = headers[h].text;
+            trh.appendChild(th);
+        }
+
+        var tbody = document.createElement('tbody');
+        table.appendChild(tbody);
+
+        for (var i = 0; i < rows.length; i++) {
+            var r = rows[i];
+            var klass = _modelClass(r.model_id);
+            var tr = document.createElement('tr');
+            tr.className = 'border-t border-gray-800 hover:bg-gray-900/40 cursor-pointer';
+            tr.dataset.model = r.model_id;
+            tr.addEventListener('click', function() {
+                if (window.Modal && Modal.showModel) Modal.showModel(this.dataset.model);
+            });
+
+            var cells = [
+                { text: String(i + 1), cls: 'px-2 py-1 text-gray-400' },
+                { text: _modelDisplayName(r.model_id), cls: 'px-2 py-1 text-gray-100' },
+                { text: _vendorOf(r.model_id), cls: 'px-2 py-1 text-gray-300' },
+                { text: _classLabel(klass), cls: 'px-2 py-1 text-gray-300' },
+                { text: r.agent_score.toFixed(1), cls: 'px-2 py-1 text-right text-blue-400 font-semibold' },
+                { text: r.coverage + '/' + data.totalBenchmarks, cls: 'px-2 py-1 text-right text-gray-400' }
+            ];
+            for (var c = 0; c < cells.length; c++) {
+                var td = document.createElement('td');
+                td.className = cells[c].cls;
+                td.textContent = cells[c].text;
+                tr.appendChild(td);
+            }
+            tbody.appendChild(tr);
+        }
+
+        if (!rows.length) {
+            var empty = document.createElement('div');
+            empty.className = 'text-xs text-gray-500 italic p-2';
+            empty.textContent = 'No models meet the coverage threshold yet.';
+            host.appendChild(empty);
+        }
+    }
+
     function render() {
         _bootValidate();
         _renderSOTAWatch();
         _renderCategories();
         _renderCompare();
-        // Real renderer added in Task 7
-        _placeholder(document.getElementById('agent-leaderboard'), '[Leaderboard — Task 7]');
+        _renderLeaderboard();
     }
 
     return {
