@@ -1183,13 +1183,307 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Shared infrastructure for Widgets 5 + 8.
+  // Curated 9-benchmark agentic list — used as the dropdown options.
+  // ======================================================================
+  var AGENTIC_BENCHMARKS = [
+    'swe_bench_verified',
+    'swe_bench_pro',
+    'terminal_bench_2',
+    'osworld_verified',
+    'gaia',
+    'tau2_bench',
+    'bfcl_v4',
+    'browsecomp',
+    'mobile_actions'
+  ];
+
+  function _historyBase() {
+    return (window.location.pathname.indexOf('/dashboard/') !== -1) ? '../data' : 'data';
+  }
+
+  // Cache: index promise + per-date snapshot promises keyed by date string.
+  var _historyCache = { indexPromise: null, snapshots: {} };
+
+  function _loadHistoryIndex() {
+    if (_historyCache.indexPromise) return _historyCache.indexPromise;
+    var url = _historyBase() + '/scores/history/index.json';
+    _historyCache.indexPromise = fetch(url)
+      .then(function(r) { return r.ok ? r.json() : { dates: [] }; })
+      .catch(function() { return { dates: [] }; });
+    return _historyCache.indexPromise;
+  }
+
+  function _loadSnapshot(date) {
+    if (_historyCache.snapshots[date]) return _historyCache.snapshots[date];
+    var url = _historyBase() + '/scores/history/' + date + '.json';
+    _historyCache.snapshots[date] = fetch(url)
+      .then(function(r) { return r.ok ? r.json() : []; })
+      .catch(function() { return []; });
+    return _historyCache.snapshots[date];
+  }
+
+  // Stable color hash for SOTA-holder bands.
+  function _modelBandColor(modelId) {
+    var palette = [
+      '#60a5fa', '#fbbf24', '#34d399', '#f472b6', '#a78bfa',
+      '#fb7185', '#22d3ee', '#facc15', '#4ade80', '#c084fc',
+      '#fb923c', '#2dd4bf'
+    ];
+    var h = 0;
+    var s = modelId || '';
+    for (var i = 0; i < s.length; i++) {
+      h = (h * 31 + s.charCodeAt(i)) >>> 0;
+    }
+    return palette[h % palette.length];
+  }
+
+  function _emptyStateMessage(mountEl, message) {
+    if (window.Charts && Charts._instances && Charts._instances[mountEl.id]) {
+      try { Charts._instances[mountEl.id].dispose(); } catch (e) {}
+      delete Charts._instances[mountEl.id];
+    }
+    while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+    var msg = document.createElement('div');
+    msg.className = 'text-sm text-gray-400 italic flex items-center justify-center';
+    msg.style.height = '100%';
+    msg.textContent = message;
+    mountEl.appendChild(msg);
+  }
+
+  function _ensureBenchmarkSelect(section, idPrefix, defaultBid, onChange) {
+    var controlsId = idPrefix + '-controls';
+    if (document.getElementById(controlsId)) return;
+    var wrap = document.createElement('div');
+    wrap.id = controlsId;
+    wrap.className = 'mb-3 flex items-center gap-2 flex-wrap text-xs text-gray-300';
+
+    var label = document.createElement('label');
+    label.className = 'text-gray-400';
+    label.textContent = 'Benchmark:';
+    label.htmlFor = idPrefix + '-select';
+    wrap.appendChild(label);
+
+    var select = document.createElement('select');
+    select.id = idPrefix + '-select';
+    select.className = 'bg-gray-800 border border-gray-700 text-gray-100 rounded px-2 py-1';
+    for (var i = 0; i < AGENTIC_BENCHMARKS.length; i++) {
+      var opt = document.createElement('option');
+      opt.value = AGENTIC_BENCHMARKS[i];
+      opt.textContent = _benchmarkLabel(AGENTIC_BENCHMARKS[i]);
+      if (AGENTIC_BENCHMARKS[i] === defaultBid) opt.selected = true;
+      select.appendChild(opt);
+    }
+    select.addEventListener('change', function() { onChange(select.value); });
+    wrap.appendChild(select);
+
+    var chartDiv = document.getElementById(idPrefix);
+    if (chartDiv && chartDiv.parentNode === section) {
+      section.insertBefore(wrap, chartDiv);
+    } else {
+      section.appendChild(wrap);
+    }
+  }
+
+  // ======================================================================
   // Widget 5 — SOTA Timeline / Handover Log (per benchmark)
   // ======================================================================
+  function _drawSOTATimeline(bid) {
+    var mountEl = document.getElementById('agent-chart-sota-timeline');
+    if (!mountEl) return;
+    if (typeof echarts === 'undefined') return;
+
+    _loadHistoryIndex().then(function(idx) {
+      var dates = (idx && idx.dates) || [];
+      if (dates.length < 2) {
+        _emptyStateMessage(mountEl, 'Not enough history snapshots — need at least 2 days of data.');
+        return;
+      }
+      Promise.all(dates.map(_loadSnapshot)).then(function(snapshots) {
+        // Per-date: max value on the chosen benchmark + the model that owns it.
+        var dailyBest = [];
+        for (var i = 0; i < dates.length; i++) {
+          var rows = snapshots[i] || [];
+          var bestVal = -Infinity;
+          var bestMid = null;
+          for (var j = 0; j < rows.length; j++) {
+            var r = rows[j];
+            if (r && r.benchmark_id === bid && typeof r.value === 'number') {
+              if (r.value > bestVal) {
+                bestVal = r.value;
+                bestMid = r.model_id;
+              }
+            }
+          }
+          if (bestMid !== null) {
+            dailyBest.push({ date: dates[i], value: bestVal, model_id: bestMid });
+          }
+        }
+
+        if (dailyBest.length < 2) {
+          _emptyStateMessage(mountEl, 'Not enough history snapshots — need at least 2 days of data.');
+          return;
+        }
+
+        // Running SOTA — never decreases. Carry the previous holder forward
+        // when a snapshot lacks a higher score.
+        var sota = [];
+        var bestSoFar = -Infinity;
+        var bestHolder = null;
+        for (var p = 0; p < dailyBest.length; p++) {
+          if (dailyBest[p].value > bestSoFar) {
+            bestSoFar = dailyBest[p].value;
+            bestHolder = dailyBest[p].model_id;
+          }
+          sota.push({ date: dailyBest[p].date, value: bestSoFar, model_id: bestHolder });
+        }
+
+        // Group consecutive same-holder points into colored segments.
+        var segments = [];
+        var current = null;
+        for (var k = 0; k < sota.length; k++) {
+          var s = sota[k];
+          if (!current || current.model_id !== s.model_id) {
+            if (current) {
+              // Bridge to the new date for visual continuity.
+              current.points.push([s.date, current.points[current.points.length - 1][1]]);
+              segments.push(current);
+            }
+            current = { model_id: s.model_id, points: [[s.date, s.value]] };
+          } else {
+            current.points.push([s.date, s.value]);
+          }
+        }
+        if (current) segments.push(current);
+
+        // Handover annotation markers — first point of each segment past 0.
+        var handovers = [];
+        for (var sIdx = 1; sIdx < segments.length; sIdx++) {
+          var seg = segments[sIdx];
+          handovers.push({
+            value: seg.points[0],
+            name: _modelDisplayName(seg.model_id),
+            itemStyle: { color: _modelBandColor(seg.model_id) }
+          });
+        }
+
+        var legendData = [];
+        var seenLegend = {};
+        var series = [];
+        for (var s2 = 0; s2 < segments.length; s2++) {
+          var sg = segments[s2];
+          var nm = _modelDisplayName(sg.model_id);
+          if (!seenLegend[nm]) {
+            legendData.push(nm);
+            seenLegend[nm] = true;
+          }
+          series.push({
+            name: nm,
+            type: 'line',
+            step: 'end',
+            showSymbol: true,
+            symbolSize: 6,
+            data: sg.points,
+            lineStyle: { color: _modelBandColor(sg.model_id), width: 2.5 },
+            itemStyle: { color: _modelBandColor(sg.model_id) },
+            emphasis: { focus: 'series' }
+          });
+        }
+
+        if (handovers.length) {
+          series.push({
+            name: 'Handover',
+            type: 'scatter',
+            data: handovers.map(function(h) {
+              return {
+                value: h.value,
+                name: h.name,
+                itemStyle: h.itemStyle,
+                symbolSize: 14,
+                label: {
+                  show: true,
+                  position: 'top',
+                  formatter: h.name,
+                  color: '#e5e7eb',
+                  fontSize: 10,
+                  backgroundColor: 'rgba(17,24,39,0.85)',
+                  padding: [2, 4],
+                  borderRadius: 3
+                }
+              };
+            }),
+            z: 5
+          });
+        }
+
+        // If a previous render left a placeholder text node behind, clear it
+        // so ECharts.init can take over the empty div.
+        if (!Charts._instances || !Charts._instances['agent-chart-sota-timeline']) {
+          while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        }
+        var chart = Charts._getOrCreate('agent-chart-sota-timeline');
+        if (!chart) return;
+
+        chart.setOption({
+          backgroundColor: 'transparent',
+          grid: { left: 64, right: 24, top: 40, bottom: 70 },
+          legend: {
+            bottom: 0,
+            type: 'scroll',
+            textStyle: { color: '#d1d5db' },
+            data: legendData
+          },
+          tooltip: {
+            trigger: 'axis',
+            backgroundColor: 'rgba(17,24,39,0.95)',
+            borderColor: '#374151',
+            textStyle: { color: '#e5e7eb' },
+            formatter: function(params) {
+              if (!params || !params.length) return '';
+              var lines = ['<b>' + params[0].axisValue + '</b>'];
+              for (var i = 0; i < params.length; i++) {
+                var pp = params[i];
+                if (pp.seriesName === 'Handover') continue;
+                var v = pp.value && pp.value[1];
+                if (v === undefined || v === null) continue;
+                lines.push(pp.marker + pp.seriesName + ': ' + (typeof v === 'number' ? v.toFixed(1) : v));
+              }
+              return lines.join('<br>');
+            }
+          },
+          xAxis: {
+            type: 'category',
+            data: dates,
+            axisLabel: { color: '#9ca3af', rotate: 30 },
+            axisLine: { lineStyle: { color: '#4b5563' } },
+            splitLine: { show: false }
+          },
+          yAxis: {
+            type: 'value',
+            name: 'SOTA score (' + _benchmarkLabel(bid) + ')',
+            nameLocation: 'middle',
+            nameGap: 46,
+            nameTextStyle: { color: '#9ca3af' },
+            axisLabel: { color: '#9ca3af' },
+            axisLine: { lineStyle: { color: '#4b5563' } },
+            splitLine: { lineStyle: { color: '#1f2937' } }
+          },
+          series: series
+        }, true);
+      });
+    });
+  }
+
   function renderSOTATimeline() {
-    _ensureMountPoint('agent-chart-sota-timeline',
+    var section = _ensureMountPoint('agent-chart-sota-timeline',
       'SOTA Timeline (Agent benchmarks)',
       'Step plot of SOTA holder over time on a selected agentic benchmark. Drawn from data/scores/history snapshots.');
-    // implementation body: Phase 2 Agent E
+    if (!section) return;
+    _ensureBenchmarkSelect(section, 'agent-chart-sota-timeline', 'swe_bench_verified',
+      function(newBid) { _drawSOTATimeline(newBid); });
+    var sel = document.getElementById('agent-chart-sota-timeline-select');
+    var bid = (sel && sel.value) || 'swe_bench_verified';
+    _drawSOTATimeline(bid);
   }
 
   // ======================================================================
@@ -1515,12 +1809,331 @@ var AgentCharts = (function() {
 
   // ======================================================================
   // Widget 8 — Score Distribution Violin (per class)
+  // ECharts has no native violin → boxplot per class + jittered scatter
+  // overlay of every individual data point. 5-number summary in tooltip.
   // ======================================================================
+  var _CLASS_ORDER = ['frontier', 'agent-product', 'edge-slm'];
+  var _CLASS_LABELS = {
+    'frontier': 'Frontier',
+    'agent-product': 'Agent-Product',
+    'edge-slm': 'Edge-SLM'
+  };
+
+  function _percentile(sorted, p) {
+    if (!sorted.length) return null;
+    if (sorted.length === 1) return sorted[0];
+    var idx = (sorted.length - 1) * p;
+    var lo = Math.floor(idx);
+    var hi = Math.ceil(idx);
+    if (lo === hi) return sorted[lo];
+    var frac = idx - lo;
+    return sorted[lo] * (1 - frac) + sorted[hi] * frac;
+  }
+
+  function _summary(values) {
+    if (!values.length) return null;
+    var sorted = values.slice().sort(function(a, b) { return a - b; });
+    var min = sorted[0];
+    var max = sorted[sorted.length - 1];
+    var q1 = _percentile(sorted, 0.25);
+    var med = _percentile(sorted, 0.5);
+    var q3 = _percentile(sorted, 0.75);
+    return { min: min, q1: q1, median: med, q3: q3, max: max, n: values.length };
+  }
+
+  function _drawClassViolin(bid) {
+    var mountEl = document.getElementById('agent-chart-class-violin');
+    if (!mountEl) return;
+    if (typeof echarts === 'undefined') return;
+
+    var rows = _scoresFor(bid);
+    var byClass = { 'frontier': [], 'agent-product': [], 'edge-slm': [] };
+    var pointsByClass = { 'frontier': [], 'agent-product': [], 'edge-slm': [] };
+
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      if (!r || typeof r.value !== 'number') continue;
+      var klass = _modelClass(r.model_id);
+      if (!byClass[klass]) continue;
+      byClass[klass].push(r.value);
+      pointsByClass[klass].push({ value: r.value, model_id: r.model_id });
+    }
+
+    // Empty-overall state
+    var totalN = byClass['frontier'].length + byClass['agent-product'].length + byClass['edge-slm'].length;
+    if (totalN === 0) {
+      _emptyStateMessage(mountEl, 'No scores available for this benchmark.');
+      return;
+    }
+
+    var summaries = {};
+    for (var ci = 0; ci < _CLASS_ORDER.length; ci++) {
+      summaries[_CLASS_ORDER[ci]] = _summary(byClass[_CLASS_ORDER[ci]]);
+    }
+
+    // Compute "median of others" for empty-class fallback placement.
+    var nonEmptyMeds = [];
+    for (var c2 = 0; c2 < _CLASS_ORDER.length; c2++) {
+      var sm = summaries[_CLASS_ORDER[c2]];
+      if (sm) nonEmptyMeds.push(sm.median);
+    }
+    var fallbackMed = nonEmptyMeds.length
+      ? nonEmptyMeds.reduce(function(a, b) { return a + b; }, 0) / nonEmptyMeds.length
+      : 50;
+
+    // Boxplot data: index by category position. Empty classes get a tiny
+    // placeholder box at fallbackMed with dashed border + "No data" label.
+    var boxData = [];
+    var emptyMarkers = [];
+    for (var c3 = 0; c3 < _CLASS_ORDER.length; c3++) {
+      var k = _CLASS_ORDER[c3];
+      var sm2 = summaries[k];
+      if (sm2) {
+        boxData.push({
+          value: [sm2.min, sm2.q1, sm2.median, sm2.q3, sm2.max],
+          itemStyle: {
+            color: 'rgba(' + _hexToRgb(_classColor(k)) + ',0.35)',
+            borderColor: _classColor(k),
+            borderWidth: 2
+          }
+        });
+      } else {
+        boxData.push({
+          value: [fallbackMed - 1, fallbackMed - 0.5, fallbackMed, fallbackMed + 0.5, fallbackMed + 1],
+          itemStyle: {
+            color: 'rgba(75,85,99,0.15)',
+            borderColor: '#6b7280',
+            borderWidth: 1,
+            borderType: 'dashed'
+          }
+        });
+        emptyMarkers.push({ x: c3, y: fallbackMed });
+      }
+    }
+
+    // Scatter overlay — jitter horizontally so identical scores don't stack.
+    // ECharts category axis uses index as the X position; we deterministically
+    // jitter within ±0.32 around that index.
+    var scatterPoints = [];
+    for (var c4 = 0; c4 < _CLASS_ORDER.length; c4++) {
+      var key = _CLASS_ORDER[c4];
+      var pts = pointsByClass[key];
+      for (var pi = 0; pi < pts.length; pi++) {
+        // Deterministic jitter from model_id hash.
+        var midStr = pts[pi].model_id || '';
+        var hash = 0;
+        for (var hi = 0; hi < midStr.length; hi++) {
+          hash = (hash * 31 + midStr.charCodeAt(hi)) >>> 0;
+        }
+        var jitter = ((hash % 1000) / 1000 - 0.5) * 0.64; // ±0.32
+        scatterPoints.push({
+          value: [c4 + jitter, pts[pi].value],
+          model_id: pts[pi].model_id,
+          klass: key,
+          itemStyle: { color: _classColor(key), opacity: 0.7, borderColor: '#0f172a', borderWidth: 0.5 }
+        });
+      }
+    }
+
+    // Clear placeholder text from a prior empty-state render before ECharts
+    // takes the div.
+    if (!Charts._instances || !Charts._instances['agent-chart-class-violin']) {
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+    }
+    var chart = Charts._getOrCreate('agent-chart-class-violin');
+    if (!chart) return;
+
+    // Render "No data" labels for empty classes via a silent scatter series so
+    // ECharts does the data→pixel conversion for us.
+    var emptyLabelSeries = emptyMarkers.length ? [{
+      name: 'Empty',
+      type: 'scatter',
+      symbol: 'none',
+      silent: true,
+      data: emptyMarkers.map(function(em) {
+        return {
+          value: [em.x, em.y],
+          label: {
+            show: true,
+            formatter: 'No data',
+            color: '#9ca3af',
+            fontSize: 11,
+            fontStyle: 'italic'
+          }
+        };
+      })
+    }] : [];
+
+    chart.setOption({
+      backgroundColor: 'transparent',
+      grid: { left: 64, right: 24, top: 30, bottom: 60 },
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: function(params) {
+          if (params.seriesName === 'Distribution') {
+            var idx = params.dataIndex;
+            var k = _CLASS_ORDER[idx];
+            var sm = summaries[k];
+            if (!sm) {
+              return '<b>' + _CLASS_LABELS[k] + '</b><br>No data';
+            }
+            return '<b>' + _CLASS_LABELS[k] + '</b><br>'
+              + 'n: ' + sm.n + '<br>'
+              + 'min: ' + sm.min.toFixed(1) + '<br>'
+              + 'Q1: ' + sm.q1.toFixed(1) + '<br>'
+              + 'median: ' + sm.median.toFixed(1) + '<br>'
+              + 'Q3: ' + sm.q3.toFixed(1) + '<br>'
+              + 'max: ' + sm.max.toFixed(1);
+          }
+          if (params.seriesType === 'scatter' && params.data && params.data.model_id) {
+            return '<b>' + _modelDisplayName(params.data.model_id) + '</b><br>'
+              + 'class: ' + _CLASS_LABELS[params.data.klass] + '<br>'
+              + 'score: ' + params.value[1].toFixed(1);
+          }
+          return '';
+        }
+      },
+      xAxis: {
+        // Numeric axis for scatter jitter — show category-style labels via
+        // axisLabel formatter.
+        type: 'value',
+        min: -0.5,
+        max: _CLASS_ORDER.length - 0.5,
+        interval: 1,
+        axisLabel: {
+          color: '#d1d5db',
+          formatter: function(v) {
+            var i = Math.round(v);
+            if (i < 0 || i >= _CLASS_ORDER.length) return '';
+            return _CLASS_LABELS[_CLASS_ORDER[i]];
+          }
+        },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { show: false }
+      },
+      yAxis: {
+        type: 'value',
+        name: 'Score',
+        nameLocation: 'middle',
+        nameGap: 42,
+        nameTextStyle: { color: '#9ca3af' },
+        min: 0,
+        max: 100,
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } }
+      },
+      series: [
+        {
+          name: 'Distribution',
+          // ECharts boxplot series expects a category x-axis; we use a value
+          // x-axis so scatter points can jitter horizontally. So render the
+          // box ourselves via a `custom` series.
+          type: 'custom',
+          renderItem: function(p, api) {
+            var idx = api.value(0);
+            var minV = api.value(1);
+            var q1V = api.value(2);
+            var medV = api.value(3);
+            var q3V = api.value(4);
+            var maxV = api.value(5);
+
+            var halfWidth = 0.32;
+            var x = api.coord([idx, 0])[0];
+            var xL = api.coord([idx - halfWidth, 0])[0];
+            var xR = api.coord([idx + halfWidth, 0])[0];
+            var yMin = api.coord([0, minV])[1];
+            var yQ1 = api.coord([0, q1V])[1];
+            var yMed = api.coord([0, medV])[1];
+            var yQ3 = api.coord([0, q3V])[1];
+            var yMax = api.coord([0, maxV])[1];
+
+            var style = api.style();
+
+            return {
+              type: 'group',
+              children: [
+                // Whisker line min->max
+                {
+                  type: 'line',
+                  shape: { x1: x, y1: yMin, x2: x, y2: yMax },
+                  style: { stroke: style.stroke, lineWidth: 1, lineDash: style.lineDash || null }
+                },
+                // Min cap
+                {
+                  type: 'line',
+                  shape: { x1: xL + (xR - xL) * 0.25, y1: yMin, x2: xR - (xR - xL) * 0.25, y2: yMin },
+                  style: { stroke: style.stroke, lineWidth: 1 }
+                },
+                // Max cap
+                {
+                  type: 'line',
+                  shape: { x1: xL + (xR - xL) * 0.25, y1: yMax, x2: xR - (xR - xL) * 0.25, y2: yMax },
+                  style: { stroke: style.stroke, lineWidth: 1 }
+                },
+                // Box Q1->Q3
+                {
+                  type: 'rect',
+                  shape: { x: xL, y: yQ3, width: xR - xL, height: yQ1 - yQ3 },
+                  style: {
+                    fill: style.fill,
+                    stroke: style.stroke,
+                    lineWidth: style.lineWidth,
+                    lineDash: style.lineDash || null
+                  }
+                },
+                // Median bar
+                {
+                  type: 'line',
+                  shape: { x1: xL, y1: yMed, x2: xR, y2: yMed },
+                  style: { stroke: style.stroke, lineWidth: 2 }
+                }
+              ]
+            };
+          },
+          encode: { x: 0, y: [1, 2, 3, 4, 5], tooltip: [1, 2, 3, 4, 5] },
+          data: boxData.map(function(b, i) {
+            return {
+              value: [i, b.value[0], b.value[1], b.value[2], b.value[3], b.value[4]],
+              itemStyle: b.itemStyle
+            };
+          }),
+          z: 2
+        },
+        {
+          name: 'Models',
+          type: 'scatter',
+          symbolSize: 6,
+          data: scatterPoints,
+          z: 5
+        }
+      ].concat(emptyLabelSeries)
+    }, true);
+  }
+
+  // hex like '#60a5fa' → '96,165,250'
+  function _hexToRgb(hex) {
+    var h = (hex || '').replace('#', '');
+    if (h.length === 3) h = h.split('').map(function(c) { return c + c; }).join('');
+    var r = parseInt(h.substring(0, 2), 16) || 0;
+    var g = parseInt(h.substring(2, 4), 16) || 0;
+    var b = parseInt(h.substring(4, 6), 16) || 0;
+    return r + ',' + g + ',' + b;
+  }
+
   function renderClassViolin() {
-    _ensureMountPoint('agent-chart-class-violin',
+    var section = _ensureMountPoint('agent-chart-class-violin',
       'Score Distribution by Class',
       'Three violins (Frontier / Agent-Product / Edge) for a selected benchmark. Shows median, spread, outliers — answers whether the gap is systematic or benchmark-specific.');
-    // implementation body: Phase 2 Agent E
+    if (!section) return;
+    _ensureBenchmarkSelect(section, 'agent-chart-class-violin', 'swe_bench_verified',
+      function(newBid) { _drawClassViolin(newBid); });
+    var sel = document.getElementById('agent-chart-class-violin-select');
+    var bid = (sel && sel.value) || 'swe_bench_verified';
+    _drawClassViolin(bid);
   }
 
   // ======================================================================
