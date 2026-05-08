@@ -1,5 +1,47 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-08 (Session 3): Agent menu graphical widgets — 8 ECharts visualisations via parallel agents
+
+### 9. Agent 탭에 8개 그래픽 비교 위젯 추가 (commits `b24fcaf` → `82dcdef`)
+
+기존 텍스트 위주 Agent 탭에 ECharts 기반 그래픽 위젯 8개를 추가. 5개의 병렬 worktree-격리 에이전트가 동시 작업하여 ~60분에 완성.
+
+**구현된 위젯 8개**:
+1. **💰 Cost vs Performance Scatter** (`agent-chart-cost-scatter`) — Y=종합 Agent Score, X=$/1M out (log scale), 색=class, 크기=coverage, 보라색 dashed Pareto frontier 라인. 의사결정 도구 1순위 차트.
+2. **🔥 Capability Heatmap** (`agent-chart-heatmap`) — Top 20 agents × 12 핵심 벤치마크. red→green 색상 스케일, 정규화된 점수, 클릭 → Modal.showModel.
+3. **🕸️ Category Radar** (`agent-chart-radar`) — 카테고리 선택 + top 8 에이전트 체크박스 (최대 5개 동시 overlay). 사용자가 비교할 에이전트를 직접 선택.
+4. **⚖️ Frontier vs Agent-Product vs Edge Dot Plot** (`agent-chart-classplot`) — 10개 벤치마크 행마다 3 클래스 best 점수의 점 + 연결선. "scaffolding tax" / "edge gap" 시각화.
+5. **⏱️ SOTA Timeline** (`agent-chart-sota-timeline`) — 벤치마크 선택 가능. `data/scores/history/<date>.json` 일별 스냅샷 11일치 활용. SOTA holder 전환 시 색 밴드 변경 + handover 라벨.
+6. **📊 Vendor × Benchmark Bubble Matrix** (`agent-chart-vendor-matrix`) — Top 12 벤더 × 10 벤치마크. 버블 크기/색=벤더 best score. viridis 색상 스케일.
+7. **🧬 Capability Fingerprint Mini-Radar** — Composite Leaderboard 각 행에 60×60 Canvas2D 4축 (Coding/Web/OS/Tool-use) 마이크로 레이더. 25개 행 = 25개 미니 시그니처.
+8. **📈 Score Distribution Violin** (`agent-chart-class-violin`) — Frontier/Agent-Product/Edge 3개 boxplot + horizontal jitter 점들. ECharts custom series 사용. 클래스 간 분포 차이 시각화.
+
+**병렬 작업 패턴 (worktree-격리 에이전트 5명)**:
+- Agent A: Widget 1 — `5a44392` (250 LOC body, ~3분)
+- Agent B: Widget 2 — `31b7c34` (193 LOC body)
+- Agent C: Widget 3+7 — bundled into `f0c18cf` + `cb50c36` (radar 59+~200 helpers, fingerprints 45+~150 helpers)
+- Agent D: Widget 4+6 — `cb50c36` (153+168 LOC, vendor canonicalization 포함)
+- Agent E: Widget 5+8 — `82dcdef` (8+15 entry + 600 LOC helpers like `_drawSOTATimeline`/`_drawClassViolin`/`_loadHistoryIndex`)
+
+다섯 에이전트가 동시에 같은 파일(`dashboard/js/agent-charts.js`)에 작업했으나 각자 다른 함수를 추가하는 구조라 머지 충돌 없음. 병렬화로 실시간 약 12분 만에 8개 위젯 완성 (직렬이었으면 5-6시간 추정).
+
+**파일 deltas**: `dashboard/js/agent-charts.js` 0 → **2,181 LOC** (신규), `dashboard/index.html` +1 (script tag + cache-bust), `dashboard/js/agent.js` +14 (renderAll 호출 wiring).
+
+**라이브 검증**: Playwright headless 로 `http://localhost:8765/index.html#agent` 접속, 7개 ECharts 캔버스 렌더링 + 25개 fingerprint 미니레이더 + Fingerprint 헤더 모두 확인. DevTools console: 0개 errors (favicon 404 만 — 무관).
+
+**아키텍처 노트**:
+- 모든 위젯 mount-point lazy 생성 (`_ensureMountPoint`) → 한 위젯이 실패해도 다른 위젯 무관.
+- 데이터 fetch는 promise-cached (`_pricingPromise`, `_loadHistoryIndex`) → 사용자 dropdown 토글 시 재페치 없음.
+- 모든 DOM 조작 `createElement`/`appendChild`/`textContent` (security hook 통과). innerHTML 0건.
+- ECharts 'dark' 테마 일관 사용 (`Charts._getOrCreate` 팩토리).
+- 공유 헬퍼 (`_normalizedScore`, `_categoryCoverage`, `_classColor`, `_modelClass`, `_canonVendor` 등) 8개 위젯이 재사용.
+
+**남은 한계**: Edge SLM 점수 부족 (Cost Scatter 상의 Edge 점이 placeholder `$0.01` 위치, agentic 점수 0건이라 종합 점수 계산에 진입 못 함). Edge 컬럼 데이터는 후속 sweep 필요.
+
+**Cache-bust 최종**: `agent.js?v=20260508g`, `agent-charts.js?v=20260508f`, `modal.js?v=20260508a`. CI 자동으로 `?v=<commit-sha-prefix>` 로 재작성하여 deploy.
+
+---
+
 ## 2026-05-08 (Session 2): Agent menu launch + agentic data sweep
 
 ### 8. Agent menu — new top-level tab + 28-task plan execution

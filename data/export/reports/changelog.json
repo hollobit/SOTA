@@ -2,6 +2,15 @@
   {
     "type": "Feature",
     "date": "2026-05-08",
+    "benchmark_id": "Agent 탭 그래픽 위젯 8개 — ECharts 시각화 (병렬 worktree 에이전트 5명)",
+    "new_model": "8개 위젯 추가: (1) 💰 Cost vs Performance Scatter — Y=composite agent score, X=$/1M out log, 색=class, Pareto frontier dashed line. (2) 🔥 Capability Heatmap — Top 20 agents × 12 benchmarks, 정규화 색상 스케일. (3) 🕸️ Category Radar — 카테고리 + 5개 agent 동시 overlay. (4) ⚖️ Frontier-Product-Edge dot plot — 10 benchmark 행마다 3 클래스 비교. (5) ⏱️ SOTA Timeline — 벤치마크 선택 dropdown + history snapshot 활용. (6) 📊 Vendor × Benchmark bubble matrix — 12 vendors × 10 benchmarks. (7) 🧬 Capability Fingerprint mini-radar — leaderboard 25행 각자 60×60 Canvas2D 4축 시그니처. (8) 📈 Score Distribution Violin — 3 클래스 boxplot + horizontal jitter 점. 신규 파일 dashboard/js/agent-charts.js (2181 LOC). 병렬 에이전트 5명이 worktree 격리에서 약 12분 만에 완성 (직렬 시 5-6시간 추정).",
+    "new_value": "agent-charts.js +2181 LOC, agent.js +14, index.html +2. 신규 데이터 0건 (기존 App.data + edge_models_utility.json + aa_pricing.json 재사용).",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-08",
     "benchmark_id": "Agent menu 신설 + agentic data sweep — 14 신규 벤치마크 + 19 신규 모델 + 24 신규 점수 + 20 Resources",
     "new_model": "agent-products(10): Claude Code/Codex CLI/Cursor Composer/Replit Agent/Devin/Manus/Computer Use/Mariner/Operator/Cowork. edge-SLMs(9): Apple Foundation 3B+Private Cloud/Phi-4+mini/Gemma 3-270M+3n+Function/Llama 3.2 1B+3B. 14 new benchmarks: aider_polyglot/swe_lancer/mle_bench/usaco/appworld/hal_composite/mobile_agent_bench/mobilebench_v2/mobilebench_xiaomi/mlperf_mobile_llm/mlperf_inference_edge_v5_1/mlperf_tiny_v1_2/tinyml_energy_v1/function_gemma_calling. UI: 4 sub-sections in /Agent tab — SOTA Watch (4 tiles) + 10 Category cards (edge spans full row) + Frontier-vs-AgentProduct-vs-Edge Compare panel (switchable benchmark) + Composite Agent Score Leaderboard (top 25, normalized, coverage≥3). Modal: 2 new scale_class badges (agent-product amber + edge-slm green). 24 new score rows: USACO 8 (HAL Princeton), GAIA 5 (HAL), Aider Polyglot 7, Claude Code SWE-Verified 87.6, Codex CLI SWE-Verified 85.0+Terminal-Bench 82.0+SWE-Pro 56.8. Edge utility metrics file with size/battery citations for 9 SLMs. 20 Resources additions (HAL/AA Agents/BenchLM/MorphLLM/Helicone/Phil Schmid Compendium/MobileAgentBench/Xiaomi/MLPerf x3/Google AI Edge/Apple ML/SmolLM/Local AI Master). Strict-attribution maintained throughout — each row cites primary source.",
     "new_value": "벤치마크 +14 (842 → 854), 모델 +19 (1096 → 1114), 점수 +54 (3261 → 3315). Resources +20.",
