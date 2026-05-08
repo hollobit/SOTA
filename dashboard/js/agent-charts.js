@@ -2309,6 +2309,376 @@ var AgentCharts = (function() {
     _drawCumulativeSOTA(bid);
   }
 
+
+  // ======================================================================
+  // Widget 11 (C4) — Build Your Agent wizard
+  // Priority sliders (one per major capability category) drive a weighted
+  // ranking of agents. The right column shows the top-10 recommendations,
+  // each with a sparkline-bar of category contributions. No ECharts — pure
+  // DOM widget; recompute happens on every slider/checkbox change without a
+  // full chart rebuild.
+  // ======================================================================
+  var _wizardState = {
+    priorities: {
+      coding: 50,
+      'web-browse': 50,
+      'os-computer': 50,
+      'tool-use': 50,
+      mcp: 50,
+      'customer-service': 50,
+      safety: 50
+    },
+    includeCost: false,
+    edgeOnly: false
+  };
+
+  var _WIZARD_SLIDERS = [
+    { key: 'coding',           label: 'Coding' },
+    { key: 'web-browse',       label: 'Web & Browsing' },
+    { key: 'os-computer',      label: 'OS / Computer Use' },
+    { key: 'tool-use',         label: 'Tool Use & Function Calling' },
+    { key: 'mcp',              label: 'MCP' },
+    { key: 'customer-service', label: 'Customer Service' },
+    { key: 'safety',           label: 'Safety' }
+  ];
+
+  // Mean of _normalizedScore() across the category's benchmarks for a model.
+  // Returns 0 when the model has no scores in the category (so the prior is
+  // "no contribution" rather than "missing data" — keeps ranking stable).
+  function _wizardCoverageScore(modelId, categoryKey) {
+    var cat = _categoryByKey(categoryKey);
+    if (!cat || !cat.benchmarks || !cat.benchmarks.length) return 0;
+    var sum = 0;
+    var n = 0;
+    for (var i = 0; i < cat.benchmarks.length; i++) {
+      var s = _normalizedScore(modelId, cat.benchmarks[i], cat);
+      if (typeof s === 'number' && !isNaN(s)) {
+        sum += s;
+        n += 1;
+      }
+    }
+    return n > 0 ? (sum / n) : 0;
+  }
+
+  // Pricing lookup — synchronous, based on App.data.pricing already loaded
+  // by App.loadData. Returns null if missing so we can skip cost penalty.
+  function _wizardOutputCost(modelId) {
+    if (!window.App || !App.data || !App.data.pricing) return null;
+    var p = App.data.pricing[modelId];
+    if (!p) return null;
+    var v = (typeof p.output === 'number') ? p.output : p.price_per_1m_output;
+    return (typeof v === 'number' && v > 0) ? v : null;
+  }
+
+  // Returns sorted list (desc) of { model_id, score, contributions }.
+  function _wizardRank() {
+    if (!window.App || !App.data || !App.data.models) return [];
+    var models = App.data.models;
+    var out = [];
+    for (var i = 0; i < models.length; i++) {
+      var m = models[i];
+      if (!m || !m.id) continue;
+      if (_wizardState.edgeOnly && _modelClass(m.id) !== 'edge-slm') continue;
+
+      var score = 0;
+      var contributions = [];
+      var anyCoverage = false;
+      for (var j = 0; j < _WIZARD_SLIDERS.length; j++) {
+        var key = _WIZARD_SLIDERS[j].key;
+        var w = (_wizardState.priorities[key] || 0) / 100;
+        var cov = _wizardCoverageScore(m.id, key);
+        if (cov > 0) anyCoverage = true;
+        var contrib = w * cov;
+        score += contrib;
+        contributions.push({ key: key, value: contrib, raw: cov });
+      }
+      if (!anyCoverage) continue; // skip models with zero data in any chosen category
+
+      if (_wizardState.includeCost) {
+        var cost = _wizardOutputCost(m.id);
+        if (typeof cost === 'number' && cost > 0) {
+          var penalty = Math.log(cost + 1) / Math.LN10; // log10
+          if (penalty > 0) score = score / penalty;
+        }
+      }
+
+      out.push({ model_id: m.id, score: score, contributions: contributions });
+    }
+    out.sort(function(a, b) { return b.score - a.score; });
+    return out;
+  }
+
+  // Idempotent — section already has a chart div (height 420) from
+  // _ensureMountPoint. We hide that and append our 2-column grid once.
+  function _ensureWizardControls(section) {
+    if (section.getAttribute('data-wizard-built') === '1') return;
+    section.setAttribute('data-wizard-built', '1');
+
+    // Hide the default chart mount (we don't render an ECharts chart).
+    var defaultMount = document.getElementById('agent-chart-wizard');
+    if (defaultMount) defaultMount.style.display = 'none';
+
+    var grid = document.createElement('div');
+    grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-6 mt-2';
+
+    // Left column — sliders + checkboxes
+    var left = document.createElement('div');
+    left.className = 'space-y-3';
+
+    var leftHead = document.createElement('div');
+    leftHead.className = 'text-sm font-semibold text-gray-300 mb-2';
+    leftHead.textContent = 'Priorities';
+    left.appendChild(leftHead);
+
+    for (var i = 0; i < _WIZARD_SLIDERS.length; i++) {
+      var s = _WIZARD_SLIDERS[i];
+      var row = document.createElement('div');
+      row.className = 'flex items-center gap-2 text-xs';
+
+      var lab = document.createElement('label');
+      lab.className = 'text-gray-300 w-44 shrink-0';
+      lab.textContent = s.label;
+      lab.htmlFor = 'wizard-slider-' + s.key;
+      row.appendChild(lab);
+
+      var input = document.createElement('input');
+      input.type = 'range';
+      input.min = '0';
+      input.max = '100';
+      input.value = String(_wizardState.priorities[s.key]);
+      input.step = '1';
+      input.id = 'wizard-slider-' + s.key;
+      input.className = 'flex-1 accent-blue-400';
+      input.setAttribute('data-cat', s.key);
+      row.appendChild(input);
+
+      var val = document.createElement('span');
+      val.className = 'text-gray-400 w-8 text-right tabular-nums';
+      val.id = 'wizard-slider-val-' + s.key;
+      val.textContent = String(_wizardState.priorities[s.key]);
+      row.appendChild(val);
+
+      // Closure-safe handler (capture key + val ref).
+      (function(key, valRef) {
+        input.addEventListener('input', function(e) {
+          var v = parseInt(e.target.value, 10);
+          if (isNaN(v)) v = 0;
+          _wizardState.priorities[key] = v;
+          valRef.textContent = String(v);
+          _renderWizardOutput();
+        });
+      })(s.key, val);
+
+      left.appendChild(row);
+    }
+
+    // Checkbox row — Include cost
+    var costRow = document.createElement('div');
+    costRow.className = 'flex items-center gap-2 text-xs mt-3 pt-3 border-t border-gray-800';
+    var costCb = document.createElement('input');
+    costCb.type = 'checkbox';
+    costCb.id = 'wizard-include-cost';
+    costCb.className = 'accent-blue-400';
+    costCb.checked = _wizardState.includeCost;
+    costCb.addEventListener('change', function(e) {
+      _wizardState.includeCost = !!e.target.checked;
+      _renderWizardOutput();
+    });
+    var costLab = document.createElement('label');
+    costLab.htmlFor = 'wizard-include-cost';
+    costLab.className = 'text-gray-300';
+    costLab.textContent = 'Include cost in scoring (penalize expensive models)';
+    costRow.appendChild(costCb);
+    costRow.appendChild(costLab);
+    left.appendChild(costRow);
+
+    // Checkbox row — Edge-only
+    var edgeRow = document.createElement('div');
+    edgeRow.className = 'flex items-center gap-2 text-xs';
+    var edgeCb = document.createElement('input');
+    edgeCb.type = 'checkbox';
+    edgeCb.id = 'wizard-edge-only';
+    edgeCb.className = 'accent-blue-400';
+    edgeCb.checked = _wizardState.edgeOnly;
+    edgeCb.addEventListener('change', function(e) {
+      _wizardState.edgeOnly = !!e.target.checked;
+      _renderWizardOutput();
+    });
+    var edgeLab = document.createElement('label');
+    edgeLab.htmlFor = 'wizard-edge-only';
+    edgeLab.className = 'text-gray-300';
+    edgeLab.textContent = 'Edge-only filter (small/on-device models)';
+    edgeRow.appendChild(edgeCb);
+    edgeRow.appendChild(edgeLab);
+    left.appendChild(edgeRow);
+
+    // Right column — output list mount
+    var right = document.createElement('div');
+    right.className = 'space-y-2';
+
+    var rightHead = document.createElement('div');
+    rightHead.className = 'text-sm font-semibold text-gray-300 mb-2';
+    rightHead.textContent = 'Recommended agents';
+    right.appendChild(rightHead);
+
+    var listMount = document.createElement('div');
+    listMount.id = 'agent-chart-wizard-list';
+    listMount.className = 'space-y-2';
+    right.appendChild(listMount);
+
+    grid.appendChild(left);
+    grid.appendChild(right);
+    section.appendChild(grid);
+  }
+
+  function _wizardClassLabel(klass) {
+    if (klass === 'agent-product') return 'Agent Product';
+    if (klass === 'edge-slm') return 'Edge SLM';
+    return 'Frontier';
+  }
+
+  function _wizardCostTier(cost) {
+    if (typeof cost !== 'number' || cost <= 0) return '';
+    if (cost < 1) return '$';
+    if (cost < 5) return '$$';
+    if (cost < 20) return '$$$';
+    return '$$$$';
+  }
+
+  function _renderWizardOutput() {
+    var listMount = document.getElementById('agent-chart-wizard-list');
+    if (!listMount) return;
+    while (listMount.firstChild) listMount.removeChild(listMount.firstChild);
+
+    var ranked = _wizardRank();
+    if (!ranked.length) {
+      var msg = document.createElement('div');
+      msg.className = 'text-sm text-gray-400 italic';
+      msg.textContent = _wizardState.edgeOnly
+        ? 'No edge-class models matched your priorities.'
+        : 'No models matched your priorities — try raising at least one slider.';
+      listMount.appendChild(msg);
+      return;
+    }
+
+    var top = ranked.slice(0, 10);
+
+    // Global max contribution for sparkline normalization across the top-10.
+    var globalMaxContrib = 0;
+    for (var i = 0; i < top.length; i++) {
+      for (var j = 0; j < top[i].contributions.length; j++) {
+        if (top[i].contributions[j].value > globalMaxContrib) {
+          globalMaxContrib = top[i].contributions[j].value;
+        }
+      }
+    }
+    if (globalMaxContrib <= 0) globalMaxContrib = 1;
+
+    for (var k = 0; k < top.length; k++) {
+      var entry = top[k];
+      var item = document.createElement('div');
+      item.className = 'rounded border border-gray-800 bg-gray-950 p-3 cursor-pointer hover:border-blue-500 transition-colors';
+      item.setAttribute('data-model-id', entry.model_id);
+
+      // Header line — rank + name
+      var head = document.createElement('div');
+      head.className = 'flex items-baseline gap-2';
+
+      var rank = document.createElement('span');
+      rank.className = 'text-xs text-gray-500 tabular-nums w-6 shrink-0';
+      rank.textContent = (k + 1) + '.';
+      head.appendChild(rank);
+
+      var name = document.createElement('span');
+      name.className = 'text-sm font-medium text-gray-200 truncate';
+      name.textContent = _modelDisplayName(entry.model_id);
+      head.appendChild(name);
+
+      item.appendChild(head);
+
+      // Meta line — vendor · class · score · cost
+      var meta = document.createElement('div');
+      meta.className = 'flex items-center gap-2 text-xs text-gray-400 mt-1 ml-7 flex-wrap';
+
+      var vendor = document.createElement('span');
+      vendor.textContent = _vendorOf(entry.model_id) || 'unknown';
+      meta.appendChild(vendor);
+
+      var sep1 = document.createElement('span');
+      sep1.className = 'text-gray-600';
+      sep1.textContent = '·';
+      meta.appendChild(sep1);
+
+      var klass = _modelClass(entry.model_id);
+      var klabel = document.createElement('span');
+      klabel.style.color = _classColor(klass);
+      klabel.textContent = _wizardClassLabel(klass);
+      meta.appendChild(klabel);
+
+      var sep2 = document.createElement('span');
+      sep2.className = 'text-gray-600';
+      sep2.textContent = '·';
+      meta.appendChild(sep2);
+
+      var score = document.createElement('span');
+      score.className = 'text-gray-300 tabular-nums';
+      score.textContent = 'Score: ' + entry.score.toFixed(1);
+      meta.appendChild(score);
+
+      var costVal = _wizardOutputCost(entry.model_id);
+      var tier = _wizardCostTier(costVal);
+      if (tier) {
+        var sep3 = document.createElement('span');
+        sep3.className = 'text-gray-600';
+        sep3.textContent = '·';
+        meta.appendChild(sep3);
+        var costSpan = document.createElement('span');
+        costSpan.className = 'text-gray-500';
+        costSpan.textContent = 'Cost: ' + tier;
+        meta.appendChild(costSpan);
+      }
+
+      item.appendChild(meta);
+
+      // Sparkline-like contribution bars (one column per slider)
+      var spark = document.createElement('div');
+      spark.className = 'flex items-end gap-1 mt-2 ml-7';
+      spark.style.height = '24px';
+      for (var sp = 0; sp < entry.contributions.length; sp++) {
+        var c = entry.contributions[sp];
+        var bar = document.createElement('div');
+        var pct = Math.max(2, Math.round((c.value / globalMaxContrib) * 100));
+        bar.style.height = pct + '%';
+        bar.style.width = '12px';
+        bar.style.backgroundColor = _classColor(klass);
+        bar.style.opacity = '0.75';
+        bar.title = c.key + ': weighted ' + c.value.toFixed(1) + ' (raw ' + c.raw.toFixed(0) + ')';
+        spark.appendChild(bar);
+      }
+      item.appendChild(spark);
+
+      // Click → modal drilldown
+      (function(mid) {
+        item.addEventListener('click', function() {
+          if (window.Modal && typeof Modal.showModel === 'function') {
+            Modal.showModel(mid);
+          }
+        });
+      })(entry.model_id);
+
+      listMount.appendChild(item);
+    }
+  }
+
+  function renderAgentWizard() {
+    var section = _ensureMountPoint('agent-chart-wizard',
+      'Build Your Agent — Priority-driven ranking',
+      'Set capability priorities (sliders) → ranked agent recommendations. Toggle cost or edge-only filtering.');
+    if (!section) return;
+    _ensureWizardControls(section);
+    _renderWizardOutput();
+  }
+
   // ======================================================================
   // Top-level render — called from Agent.render() after _renderCompare.
   // Each widget renders independently; one failing must not break the
@@ -2323,7 +2693,8 @@ var AgentCharts = (function() {
       renderSOTATimeline,
       renderVendorMatrix,
       renderClassViolin,
-      renderCumulativeSOTAWins
+      renderCumulativeSOTAWins,
+      renderAgentWizard
     ];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
@@ -2345,6 +2716,7 @@ var AgentCharts = (function() {
     renderFingerprintsInLeaderboard: renderFingerprintsInLeaderboard,
     renderClassViolin: renderClassViolin,
     renderCumulativeSOTAWins: renderCumulativeSOTAWins,
+    renderAgentWizard: renderAgentWizard,
     // Helpers exported for widgets to reuse.
     _scoresFor: _scoresFor,
     _modelDisplayName: _modelDisplayName,
