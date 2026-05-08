@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-08",
+    "sources": [
+      "https://www.anthropic.com/news/3-5-models-and-computer-use",
+      "https://www.anthropic.com/news/claude-opus-4-7",
+      "https://openai.com/index/introducing-operator/",
+      "https://openai.com/index/introducing-codex/",
+      "https://openai.com/index/introducing-gpt-5-3-codex/",
+      "https://openai.com/index/introducing-gpt-5-5/",
+      "https://cursor.com/blog/composer-2",
+      "https://cursor.com/blog/composer-2-technical-report",
+      "https://cognition.ai/blog/swe-bench-technical-report",
+      "https://deepmind.google/technologies/project-mariner/",
+      "https://www.helicone.ai/blog/manus-benchmark-operator-comparison"
+    ],
+    "_note": "Wave 1B — agent product score backfill. Strict-attribution: every (model_id, benchmark_id, value) row maps to a vendor-published primary number (Anthropic/OpenAI/Cursor/Cognition/Google blogs or system cards). Manus GAIA values are Manus's launch self-disclosure recapped on Helicone benchmark report (acknowledged self-reported). Skips (cursor/composer aider_polyglot, replit/agent SWE-bench, anthropic/claude-cowork *) where no vendor primary disclosure exists."
+  },
+  "benchmarks": [
+    {"id": "swe_bench", "name": "SWE-bench (full)", "category": "coding", "metric": "resolve_rate", "description": "Software engineering benchmark - real GitHub issues from popular Python repositories (full 2,294 task instances; Devin evaluated on 570-issue subset)"}
+  ],
+  "scores": [
+    {"model": "cursor/composer", "benchmark": "swe_bench_multilingual", "score": 73.7, "unit": "%", "_source": "https://cursor.com/blog/composer-2", "collected_at": "2026-05-08", "_note": "Cursor Composer 2 release blog (Mar 19 2026) — public benchmark score on SWE-bench Multilingual"},
+    {"model": "cursor/composer", "benchmark": "terminal_bench_2", "score": 61.7, "unit": "%", "_source": "https://cursor.com/blog/composer-2", "collected_at": "2026-05-08", "_note": "Cursor Composer 2 release blog — public benchmark score on Terminal-Bench 2.0 (Harbor evaluation harness, 5-iteration average)"},
+
+    {"model": "anthropic/computer-use", "benchmark": "osworld", "score": 22.0, "unit": "%", "_source": "https://www.anthropic.com/news/3-5-models-and-computer-use", "collected_at": "2026-05-08", "_note": "Anthropic Computer Use (Claude 3.5 Sonnet) — OSWorld score Anthropic disclosed at Oct 22 2024 launch when afforded more steps; screenshot-only category was 14.9%"},
+
+    {"model": "openai/operator", "benchmark": "osworld", "score": 38.1, "unit": "%", "_source": "https://openai.com/index/computer-using-agent/", "collected_at": "2026-05-08", "_note": "OpenAI Operator (CUA) — OSWorld success rate disclosed in Jan 23 2025 CUA research blog"},
+    {"model": "openai/operator", "benchmark": "webvoyager", "score": 87.0, "unit": "%", "_source": "https://openai.com/index/computer-using-agent/", "collected_at": "2026-05-08", "_note": "OpenAI Operator (CUA) — WebVoyager success rate disclosed in Jan 23 2025 CUA research blog (state-of-the-art at announcement)"},
+    {"model": "openai/operator", "benchmark": "webarena", "score": 58.1, "unit": "%", "_source": "https://openai.com/index/computer-using-agent/", "collected_at": "2026-05-08", "_note": "OpenAI Operator (CUA) — WebArena success rate disclosed in Jan 23 2025 CUA research blog"},
+
+    {"model": "google/mariner", "benchmark": "webvoyager", "score": 83.5, "unit": "%", "_source": "https://deepmind.google/technologies/project-mariner/", "collected_at": "2026-05-08", "_note": "Project Mariner (Gemini 2.0) — DeepMind disclosed WebVoyager benchmark score at Dec 11 2024 unveiling"},
+
+    {"model": "manus-ai/manus", "benchmark": "gaia", "score": 86.5, "unit": "%", "_source": "https://www.helicone.ai/blog/manus-benchmark-operator-comparison", "collected_at": "2026-05-08", "_note": "Manus AI — GAIA Level 1 self-disclosed at Mar 6 2025 launch (recapped on Helicone benchmark report; SOTA vs OpenAI Deep Research 74.3%; vendor-self-reported, not independently verified)"},
+
+    {"model": "cognition/devin", "benchmark": "swe_bench", "score": 13.86, "unit": "%", "_source": "https://cognition.ai/blog/swe-bench-technical-report", "collected_at": "2026-05-08", "_note": "Cognition Devin (1.0) — SWE-bench technical report (Mar 2024): resolved 79 of 570 issues end-to-end, exceeding prior SOTA unassisted baseline of 1.96%"},
+
+    {"model": "anthropic/claude-code", "benchmark": "swe_bench_pro", "score": 64.3, "unit": "%", "_source": "https://www.anthropic.com/news/claude-opus-4-7", "collected_at": "2026-05-08", "_note": "Claude Code on Claude Opus 4.7 — Anthropic disclosed SWE-bench Pro score at Apr 16 2026 launch (vs GPT-5.4 57.7%)"},
+    {"model": "anthropic/claude-code", "benchmark": "terminal_bench_2", "score": 69.4, "unit": "%", "_source": "https://www.anthropic.com/news/claude-opus-4-7", "collected_at": "2026-05-08", "_note": "Claude Code on Claude Opus 4.7 — Anthropic disclosed Terminal-Bench 2.0 score at Apr 16 2026 launch"}
+  ]
+}
