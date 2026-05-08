@@ -214,12 +214,126 @@
   }
 
   // ====================================================================
+  // W2 — Lab × Domain bubble matrix.
+  // Rows: 16 labs (incl. 'other'). Cols: 19 domains from AI4S._CATEGORIES.
+  // Cell value: count of distinct AI4S models from that lab in that domain.
+  // ====================================================================
+  function _ai4sCategories() {
+    if (typeof window === 'undefined') return [];
+    if (typeof window.AI4S !== 'undefined' && window.AI4S._CATEGORIES) return window.AI4S._CATEGORIES;
+    return [];
+  }
+
+  function _ai4sModels() {
+    if (typeof window === 'undefined') return [];
+    if (typeof window.AI4S !== 'undefined' && typeof window.AI4S._getAI4SModels === 'function') {
+      return window.AI4S._getAI4SModels(); // [{model, category}]
+    }
+    return [];
+  }
+
+  function renderLabDomainMatrix() {
+    _ensureMountPoint('ai4s-chart-lab-domain',
+      'Lab × Domain Coverage',
+      'Which research labs work on which AI4S domains. Cell value = number of distinct models.');
+    if (typeof echarts === 'undefined') return;
+    var mountEl = document.getElementById('ai4s-chart-lab-domain');
+    if (!mountEl) return;
+
+    var categories = _ai4sCategories();
+    var entries = _ai4sModels();
+    if (!categories.length || !entries.length) return;
+
+    var labOrder = _LAB_MAP.map(function(l) { return l.key; }).concat(['other']);
+    var labLabel = {}; _LAB_MAP.forEach(function(l) { labLabel[l.key] = l.label; });
+    labLabel['other'] = 'Other';
+
+    var domainKeys = categories.map(function(c) { return c.key; });
+    var domainLabel = {}; categories.forEach(function(c) { domainLabel[c.key] = c.label; });
+
+    var counts = {};
+    entries.forEach(function(e) {
+      var lab = _resolveLab(e.model.id).key;
+      var dom = e.category.key;
+      var k = lab + '|' + dom;
+      counts[k] = (counts[k] || 0) + 1;
+    });
+
+    var data = [];
+    var maxV = 0;
+    for (var li = 0; li < labOrder.length; li++) {
+      for (var di = 0; di < domainKeys.length; di++) {
+        var v = counts[labOrder[li] + '|' + domainKeys[di]] || 0;
+        data.push([di, li, v === 0 ? '-' : v]);
+        if (v > maxV) maxV = v;
+      }
+    }
+
+    if (maxV === 0) {
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+      var msg = document.createElement('div');
+      msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+      msg.textContent = 'No AI4S models loaded — ensure App.data is populated';
+      mountEl.appendChild(msg);
+      return;
+    }
+
+    var chart = Charts._getOrCreate('ai4s-chart-lab-domain');
+    if (!chart) return;
+
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 110, right: 24, top: 30, bottom: 80 },
+      tooltip: {
+        position: 'top',
+        backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          return '<b>' + (labLabel[labOrder[p.value[1]]] || '?') + '</b><br>' +
+            (domainLabel[domainKeys[p.value[0]]] || '?') + '<br>' +
+            'Models: ' + (p.value[2] === '-' ? 0 : p.value[2]);
+        }
+      },
+      xAxis: {
+        type: 'category',
+        data: domainKeys.map(function(k) { return domainLabel[k] || k; }),
+        axisLabel: { color: '#9ca3af', rotate: 45, fontSize: 9 },
+        axisLine: { lineStyle: { color: '#4b5563' } }
+      },
+      yAxis: {
+        type: 'category',
+        data: labOrder.map(function(k) { return labLabel[k] || k; }),
+        axisLabel: { color: '#9ca3af', fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } }
+      },
+      visualMap: {
+        min: 1, max: maxV,
+        calculable: false,
+        orient: 'horizontal', left: 'center', bottom: 8,
+        textStyle: { color: '#9ca3af' },
+        inRange: { color: ['#1e3a8a', '#3b82f6', '#60a5fa', '#bfdbfe'] }
+      },
+      series: [{
+        name: 'Models',
+        type: 'heatmap',
+        data: data,
+        label: { show: true, color: '#0f172a', fontSize: 9 },
+        emphasis: { itemStyle: { shadowBlur: 6, shadowColor: 'rgba(96,165,250,0.6)' } }
+      }]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from AI4S.render().
   // Phase 1: stub — actual widget calls added per Task 5-9.
   // ====================================================================
   function renderAll() {
-    try { renderHeroCards(); } catch (e) {
-      if (typeof console !== 'undefined') console.warn('[AI4SCharts] hero failed:', e);
+    var fns = [renderHeroCards, renderLabDomainMatrix];
+    for (var i = 0; i < fns.length; i++) {
+      try { fns[i](); } catch (e) {
+        if (typeof console !== 'undefined') console.warn('[AI4SCharts] failed:', fns[i].name || i, e);
+      }
     }
   }
 
@@ -399,6 +513,7 @@
     _ensureMountPoint: _ensureMountPoint,
     _applyToolbox: _applyToolbox,
     renderHeroCards: renderHeroCards,
+    renderLabDomainMatrix: renderLabDomainMatrix,
     renderAll: renderAll
   };
 
