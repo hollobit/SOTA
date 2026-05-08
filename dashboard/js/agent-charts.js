@@ -141,7 +141,30 @@ var AgentCharts = (function() {
   // inside #agent-charts so widgets ship independently and any one being
   // unimplemented is a no-op (just empty section).
   // ======================================================================
+  // Inject responsive + reduced-motion CSS once. Mobile (≤768px) shrinks the
+  // 420px chart heights to 320px so they're readable on phones; users with
+  // prefers-reduced-motion get ECharts animation suppressed so they don't get
+  // a wave of bouncing bars on tab open.
+  function _ensureAgentChartsStyle() {
+    if (document.getElementById('agent-charts-style')) return;
+    var s = document.createElement('style');
+    s.id = 'agent-charts-style';
+    s.textContent = [
+      '@media (max-width: 768px) {',
+      '  .agent-chart-mount { height: 320px !important; }',
+      '  .agent-chart-mount canvas { max-width: 100% !important; }',
+      '  #agent-charts h2 { font-size: 1rem !important; }',
+      '}',
+      '@media (prefers-reduced-motion: reduce) {',
+      '  .agent-chart-mount * { animation-duration: 0.001s !important; transition-duration: 0.001s !important; }',
+      '}',
+      '.agent-chart-mount:focus { outline: 2px solid #60a5fa; outline-offset: 2px; }'
+    ].join('\n');
+    document.head.appendChild(s);
+  }
+
   function _ensureMountPoint(id, title, hint) {
+    _ensureAgentChartsStyle();
     var host = document.getElementById('agent-charts');
     if (!host) return null;
     var existing = document.getElementById(id + '-section');
@@ -178,8 +201,14 @@ var AgentCharts = (function() {
 
     var chart = document.createElement('div');
     chart.id = id;
-    chart.className = 'w-full';
+    chart.className = 'w-full agent-chart-mount';
     chart.style.height = '420px';
+    // a11y: ECharts renders into a canvas with no semantic structure.
+    // role + aria-label gives screen readers something to announce when the
+    // chart container is focused or summarized in the page outline.
+    chart.setAttribute('role', 'img');
+    chart.setAttribute('aria-label', 'Chart: ' + title + (hint ? ' — ' + hint : ''));
+    chart.setAttribute('tabindex', '0');
     section.appendChild(chart);
 
     host.appendChild(section);
