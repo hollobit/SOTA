@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology — LLM/Frontier Model's Benchmark &amp; SOTA Dashboard</title>
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Methodology-page-only readability tuning. Body classes already give us
+           the dark theme; this just tightens line-height + max width for prose. */
+        .prose-doc { max-width: 56rem; line-height: 1.7; }
+        .prose-doc h2 { margin-top: 2.5rem; margin-bottom: 0.75rem; }
+        .prose-doc h3 { margin-top: 1.75rem; margin-bottom: 0.5rem; }
+        .prose-doc p, .prose-doc ul, .prose-doc ol { margin-bottom: 1rem; }
+        .prose-doc ul, .prose-doc ol { padding-left: 1.5rem; }
+        .prose-doc ul { list-style: disc; }
+        .prose-doc ol { list-style: decimal; }
+        .prose-doc li { margin-bottom: 0.35rem; }
+        .prose-doc code {
+            background: #1f2937;
+            padding: 0.1rem 0.35rem;
+            border-radius: 0.25rem;
+            font-size: 0.85em;
+            color: #93c5fd;
+        }
+        .prose-doc pre {
+            background: #111827;
+            border: 1px solid #1f2937;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .prose-doc pre code { background: transparent; padding: 0; color: #e5e7eb; }
+        .prose-doc table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .prose-doc th, .prose-doc td {
+            border: 1px solid #1f2937;
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        .prose-doc th { background: #111827; color: #e5e7eb; font-weight: 600; }
+        .callout {
+            background: #0b1220;
+            border-left: 3px solid #3b82f6;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 0.375rem 0.375rem 0;
+        }
+        .callout.warn { border-left-color: #f59e0b; background: #1a130a; }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen">
+    <header class="border-b border-gray-800 px-6 py-4 flex justify-between items-start">
+        <div>
+            <h1 class="text-display">Methodology</h1>
+            <p class="text-gray-400 text-sm mt-1">
+                How scores are computed, how models are classified, and how widgets render the data.
+            </p>
+        </div>
+        <div class="flex items-center gap-2 mt-1 flex-shrink-0">
+            <a href="index.html" class="bg-gray-800 hover:bg-gray-700 px-3 py-1 rounded text-xs" title="Back to dashboard">
+                &larr; Dashboard
+            </a>
+        </div>
+    </header>
+
+    <main class="px-6 py-8">
+        <article class="prose-doc text-gray-300">
+
+            <p class="text-sm text-gray-400">
+                This page documents the conventions used by the SOTA Dashboard: how the
+                <strong>Composite Agent Score</strong> is computed, what counts as a
+                <strong>Frontier / Agent-Product / Edge-SLM</strong> model, how the
+                <strong>Pareto frontier</strong> is drawn, and what each of the
+                <strong>14 Agent widgets</strong> measures. If you only have five minutes,
+                the &ldquo;Composite Agent Score&rdquo; section below covers 80% of what you need.
+            </p>
+
+            <h2 class="text-section text-gray-100">Composite Agent Score</h2>
+
+            <p>
+                The Composite Agent Score collapses a model&rsquo;s performance across all
+                tracked agentic benchmarks into a single 0&ndash;100 number. It is computed
+                client-side in <code>dashboard/js/agent-charts.js</code> by the
+                <code>_composite()</code> function (mirrored in
+                <code>Agent._compositeScores()</code> in <code>agent.js</code>).
+            </p>
+
+            <h3 class="text-widget text-gray-100">Formula</h3>
+
+            <p>For a model <em>m</em> with scores on a set of benchmarks <em>B(m)</em>:</p>
+
+            <pre><code>For each benchmark b in B(m):
+    max_b   = max value reported for b across all models
+    v       = m's value on b
+    if b is in CATEGORIES[*].lower_better:
+        norm_b = (1 - v / max_b) * 100      # invert "lower is better"
+    else:
+        norm_b = (v / max_b) * 100           # higher-is-better
+
+agent_score(m) = mean( norm_b  for all b in B(m) )
+coverage(m)    = |B(m)|</code></pre>
+
+            <p>
+                In words: each benchmark is rescaled to 0&ndash;100 by dividing by the
+                <em>highest value any model has achieved on that benchmark</em>, then we
+                take the simple mean of all per-benchmark scores. Lower-is-better
+                metrics (jailbreak ASR, scheming subversion rate, etc.) are inverted
+                first so &ldquo;higher = better&rdquo; on the final scale.
+            </p>
+
+            <h3 class="text-widget text-gray-100">Coverage threshold</h3>
+
+            <p>
+                A model is shown on rankings, scatter plots, and leaderboards only when
+                it has scores on <strong>&ge; 3 distinct agentic benchmarks</strong>.
+                Models with 1&ndash;2 benchmarks are excluded to avoid noisy outliers
+                from cherry-picked single-benchmark wins. The threshold is enforced in
+                <code>_composite()</code> at the line
+                <code>if (byModel[midKey].count &lt; 3) continue;</code>.
+            </p>
+
+            <h3 class="text-widget text-gray-100">Lower-better benchmarks (inverted before averaging)</h3>
+
+            <p>
+                The following benchmark IDs are listed in
+                <code>CATEGORIES.safety.lower_better</code> and inverted before they
+                contribute to the composite:
+            </p>
+            <ul>
+                <li><code>agentdojo_targeted_asr</code> &mdash; AgentDojo prompt-injection attack success rate</li>
+                <li><code>injecagent</code> &mdash; InjecAgent indirect injection success rate</li>
+                <li><code>browserart</code> &mdash; BrowserART browser-agent jailbreak rate</li>
+                <li><code>anthropic_shade_browser_asr_attempts</code></li>
+                <li><code>anthropic_shade_browser_asr_scenarios</code></li>
+                <li><code>anthropic_shade_browser_asr_with_safeguards</code></li>
+                <li><code>agent_red_teaming</code> &mdash; red-team success rate</li>
+                <li><code>agentsmith_inf</code></li>
+                <li><code>apollo_scheming_oversight_subversion</code></li>
+                <li><code>apollo_scheming_persistence</code></li>
+            </ul>
+
+            <div class="callout warn">
+                <strong>Normalization caveat.</strong> The 0&ndash;100 scale is
+                <em>relative to the highest value currently in the dataset for that
+                benchmark</em>, not to an absolute SOTA upper bound. When a new model
+                pushes the SOTA on a benchmark upward, every other model&rsquo;s
+                normalized score on that benchmark drops slightly. This makes the
+                composite useful for ranking but not for tracking absolute progress
+                over time &mdash; for that, look at the raw per-benchmark scores or the
+                W5 SOTA Timeline.
+            </div>
+
+            <h2 class="text-section text-gray-100">Model Class Definitions</h2>
+
+            <p>
+                Every model in the dashboard is tagged with one of three classes. The
+                Agent tab&rsquo;s W4 Frontier-Product-Edge dot plot uses these classes
+                directly; the W1 cost scatter colors bubbles by class.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>Definition</th>
+                        <th>Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong class="text-blue-300">Frontier</strong></td>
+                        <td>Large hosted general-purpose foundation models. Usually proprietary or open-weight at multi-100B scale, accessed via API or web chat. The base substrate that agent products build on top of.</td>
+                        <td>GPT-5, Claude Opus 4.5/Sonnet 4.5, Gemini 2.5 Pro, Grok 4, DeepSeek V3.2, Qwen3-Max, Kimi K2, GLM-4.6</td>
+                    </tr>
+                    <tr>
+                        <td><strong class="text-purple-300">Agent-Product</strong></td>
+                        <td>Packaged agent products built on top of a base frontier model. They add scaffolding (tool use, memory, planners, IDE/OS hooks) and ship as a product, not a raw model. Curated list lives in <code>AGENT_PRODUCTS</code> in <code>agent.js</code>.</td>
+                        <td>Claude Code, OpenAI Codex CLI, Cursor Composer, Replit Agent, Cognition Devin, Manus, Anthropic Computer Use, Google Mariner, OpenAI Operator, Claude Cowork</td>
+                    </tr>
+                    <tr>
+                        <td><strong class="text-emerald-300">Edge-SLM</strong></td>
+                        <td>Small / on-device language models intended for laptops, phones, or embedded devices. Curated list lives in <code>EDGE_SLMS</code> in <code>agent.js</code>. Treated as <em>$0/month</em> in the cost simulator (W12) and at a placeholder $0.01 on the W1 log-scale X axis.</td>
+                        <td>Apple Foundation 3B, Apple Foundation Private Cloud, Microsoft Phi-4-mini-instruct, Phi-4, Google Gemma-3-270m, Gemma 3n, Function Gemma, Meta Llama-3.2-1B/3B-Instruct</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 class="text-section text-gray-100">Strict Score Attribution Policy</h2>
+
+            <p>
+                Every score in <code>data/scores.json</code> must satisfy this rule:
+            </p>
+
+            <div class="callout">
+                A score is admissible only when a primary source (vendor model card,
+                tech report, arXiv paper, official leaderboard, or vendor blog post)
+                shows the <strong>model name</strong>, <strong>benchmark name</strong>,
+                and <strong>numeric value</strong> visible together on the same page.
+            </div>
+
+            <p>The following are explicitly <em>not</em> admissible and have been purged from the dataset:</p>
+            <ul>
+                <li>&ldquo;Frontier baseline&rdquo; placeholders that approximate a model&rsquo;s likely performance.</li>
+                <li>Linear or log extrapolations from older versions of the same model family.</li>
+                <li>Numbers cited &ldquo;from a web report&rdquo; without a working primary URL.</li>
+                <li>Numbers attached to the wrong model (e.g. a Claude Opus 4 score reported on a Claude Sonnet 4.5 row).</li>
+                <li>Rounded headline numbers from press releases that conflict with the model card&rsquo;s exact value.</li>
+            </ul>
+
+            <p>
+                Each row in <code>scores.json</code> carries a <code>source_url</code>
+                field. The Score History modal opens that URL when a user clicks a
+                score, so the chain of evidence is always one click away.
+            </p>
+
+            <h2 class="text-section text-gray-100">Pareto Frontier Definition</h2>
+
+            <p>
+                The W1 Cost vs Performance Scatter draws a dashed line through the
+                Pareto-efficient set: the subset of models for which no other model is
+                <em>strictly better on both axes simultaneously</em>.
+            </p>
+
+            <p>Formally, given points <em>p<sub>i</sub> = (cost<sub>i</sub>, score<sub>i</sub>)</em>:</p>
+
+            <pre><code>p_i is on the frontier  ⇔
+    no p_j  exists with
+        cost_j ≤ cost_i  AND  score_j ≥ score_i
+        AND  (cost_j &lt; cost_i  OR  score_j &gt; score_i)</code></pre>
+
+            <p>
+                In plain language: a point is on the frontier if you cannot find
+                another point that is at least as cheap AND at least as good, with at
+                least one of those being strictly true. The dashed line connects
+                frontier points sorted left-to-right by ascending cost. Implementation
+                lives in <code>_paretoFrontier()</code> in <code>agent-charts.js</code>.
+            </p>
+
+            <h2 class="text-section text-gray-100">Edge SLM Cost Treatment</h2>
+
+            <ul>
+                <li>
+                    <strong>W1 Cost vs Performance Scatter:</strong> Edge SLMs run
+                    free on-device, so they have no per-token API price. They are
+                    plotted at the placeholder X = <code>$0.01 / 1M output tokens</code>
+                    (a log-scale-friendly value defined as
+                    <code>EDGE_X_PLACEHOLDER</code>). A note in the chart legend tells
+                    readers this is a visualization convention, not a real price.
+                </li>
+                <li>
+                    <strong>W12 Cost Simulator:</strong> Edge SLMs are counted as
+                    <strong>$0/month</strong> regardless of token volume. Compute,
+                    electricity, and device amortization are out of scope for the
+                    simulator &mdash; the goal is API-cost comparison, and on-device
+                    inference simply does not have an API bill.
+                </li>
+            </ul>
+
+            <h2 class="text-section text-gray-100">14 Widget Inventory</h2>
+
+            <p>The Agent tab is built from 14 named widgets. Each widget has a single canonical purpose:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Widget</th>
+                        <th>What it shows</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>W1</td><td>Cost vs Performance Scatter</td><td>Composite score (Y) vs $/1M output tokens (X, log scale). Pareto frontier dashed.</td></tr>
+                    <tr><td>W2</td><td>Capability Heatmap</td><td>Models &times; categories matrix; cell color = mean normalized score in that category.</td></tr>
+                    <tr><td>W3</td><td>Category Radar</td><td>Per-model radar across the 10 agent categories.</td></tr>
+                    <tr><td>W4</td><td>Frontier-Product-Edge Dot Plot</td><td>Three-class strip plot showing where each class sits on the composite score axis.</td></tr>
+                    <tr><td>W5</td><td>SOTA Timeline</td><td>Time-series of SOTA holders per benchmark; shows which model held the crown when.</td></tr>
+                    <tr><td>W6</td><td>Vendor &times; Benchmark Bubble Matrix</td><td>Vendor rows, benchmark columns, bubble size = score, color = recency.</td></tr>
+                    <tr><td>W7</td><td>Capability Fingerprint Mini-Radar</td><td>Compact radar variant for inline use in compare panels.</td></tr>
+                    <tr><td>W8</td><td>Score Distribution Violin</td><td>Per-benchmark distribution of all model scores; shows where the field clusters.</td></tr>
+                    <tr><td>W9</td><td>Capability Sankey</td><td>Flow from category &rarr; benchmark &rarr; SOTA holder; thickness = score share.</td></tr>
+                    <tr><td>W10</td><td>Cumulative SOTA Wins</td><td>Stacked area of cumulative SOTA-holder counts by vendor over time.</td></tr>
+                    <tr><td>W11</td><td>Build Your Agent Wizard</td><td>Interactive picker: choose required capabilities &rarr; get model recommendations.</td></tr>
+                    <tr><td>W12</td><td>Cost Simulator</td><td>Estimate monthly API cost given input/output token volume across selected models.</td></tr>
+                    <tr><td>W13</td><td>Provider Availability Map</td><td>Which models are available on which inference providers (OpenAI, Anthropic, Vertex, Bedrock, Together, etc.).</td></tr>
+                    <tr><td>W14</td><td>Recommendation Breakdown</td><td>Explains <em>why</em> the wizard recommended a model: per-capability score contributions.</td></tr>
+                </tbody>
+            </table>
+
+            <h2 class="text-section text-gray-100">Versioning &amp; Updates</h2>
+
+            <ul>
+                <li>
+                    <strong>Score updates</strong> are recorded in
+                    <code>data/export/reports/changelog.json</code>. Each entry tags
+                    the model, benchmark, old &rarr; new value, and source URL.
+                </li>
+                <li>
+                    <strong>Session-level work</strong> (waves, sweeps, audits) is
+                    summarized in <code>HISTORY.md</code> at the repository root.
+                </li>
+                <li>
+                    <strong>Ingest rules</strong> (file naming, source priority,
+                    duplicate handling) are documented in <code>CONTRIBUTING.md</code>.
+                </li>
+                <li>
+                    <strong>Cache busting</strong>: each JS &lt;script&gt; tag carries
+                    a <code>?v=YYYYMMDD&lt;letter&gt;</code> query string. When the
+                    deploy workflow ships a new build, it stamps the version with
+                    <code>git rev-parse HEAD</code> so browsers always see the latest
+                    code.
+                </li>
+            </ul>
+
+            <h2 class="text-section text-gray-100">Source code references</h2>
+
+            <ul>
+                <li><code>dashboard/js/agent-charts.js</code> &mdash; <code>_composite()</code>, <code>_paretoFrontier()</code>, all 14 widgets.</li>
+                <li><code>dashboard/js/agent.js</code> &mdash; <code>CATEGORIES</code>, <code>AGENT_PRODUCTS</code>, <code>EDGE_SLMS</code>, <code>_allAgentBenchmarks()</code>.</li>
+                <li><code>data/scores.json</code> &mdash; one row per (model, benchmark, value, source_url) tuple.</li>
+                <li><code>data/aa_pricing.json</code> &mdash; per-model input/output token prices used by W1 and W12.</li>
+                <li><code>data/export/reports/changelog.json</code> &mdash; score-update audit log.</li>
+            </ul>
+
+        </article>
+    </main>
+
+    <footer class="border-t border-gray-800 px-6 py-6 mt-12 text-xs text-gray-500">
+        <div class="text-center">
+            <p>
+                <a href="index.html" class="hover:text-blue-400">&larr; Back to dashboard</a>
+                &middot;
+                <a href="https://github.com/hollobit/SOTA" target="_blank" rel="noopener" class="hover:text-blue-400">GitHub</a>
+                &middot;
+                <a href="https://github.com/hollobit/SOTA/blob/main/HISTORY.md" target="_blank" rel="noopener" class="hover:text-blue-400">HISTORY.md</a>
+                &middot;
+                MIT License (code) &middot; Data sources cited per benchmark/model.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
