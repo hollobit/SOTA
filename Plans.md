@@ -1,9 +1,18 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Medical AI 메뉴 신설 + 종합 expansion (2026-04-26 ~ 04-28)
-**~750 models · 188 benchmarks · ~1,500 scores · 30 Medical AI categories · 32 sub-suite leaderboards · BMT registry mapping (119/188 = 63%)**
+## Current Status: Agent menu launch (2026-05-08, Session 2)
+**1,114 models · 854 benchmarks · 3,315 scores · 14 active tabs (Overview / Leaderboard / Trends / Timeline / Comparison / Frontier Compare / Cyber & Coding / Sovereign AI / Physical AI / Medical AI / AI4S / **Agent (10 sub-categories)** / Explorer / Resources / Changelog)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
+
+### 2026-05-08 Session 2 — Agent menu launch
+- 28-task plan executed via subagent-driven-development skill: `docs/superpowers/specs/2026-05-08-agent-menu-design.md` + `docs/superpowers/plans/2026-05-08-agent-menu.md`
+- 14 commits (`079cac2` → `f34d77c`): UI scaffolding (Tasks 1-9), benchmark registration (10-12), model registration (13-17), score sweep (18-23), Resources/docs sync (24-28)
+- 4 sub-section UI: SOTA Watch + Categories + Frontier-vs-AgentProduct-vs-Edge Compare + Composite Leaderboard
+- Strict-attribution maintained for all 24 new score rows
+
+## 2026-04-26 ~ 04-28 Medical AI 메뉴 신설 + 종합 expansion
+**~750 models · 188 benchmarks · ~1,500 scores · 30 Medical AI categories · 32 sub-suite leaderboards · BMT registry mapping (119/188 = 63%)**
 
 ## 2026-04-26 ~ 04-28 Medical AI Sessions (10+ batches)
 
