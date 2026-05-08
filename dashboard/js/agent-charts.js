@@ -2888,6 +2888,21 @@ var AgentCharts = (function() {
       }
       item.appendChild(spark);
 
+      // "Why?" button — opens C4 Recommendation Breakdown modal without
+      // triggering the row-level Modal.showModel handler.
+      var whyBtn = document.createElement('button');
+      whyBtn.type = 'button';
+      whyBtn.className = 'mt-2 ml-7 text-xs px-2 py-1 rounded border border-gray-700 text-gray-300 hover:border-blue-500 hover:text-blue-300';
+      whyBtn.textContent = 'Why?';
+      whyBtn.setAttribute('aria-label', 'Why this model ranked here');
+      (function(mid) {
+        whyBtn.addEventListener('click', function(ev) {
+          ev.stopPropagation();
+          renderRecommendationBreakdown(mid);
+        });
+      })(entry.model_id);
+      item.appendChild(whyBtn);
+
       // Click → modal drilldown
       (function(mid) {
         item.addEventListener('click', function() {
@@ -2908,6 +2923,222 @@ var AgentCharts = (function() {
     if (!section) return;
     _ensureWizardControls(section);
     _renderWizardOutput();
+  }
+
+  // ======================================================================
+  // Widget 14 (C4) — Recommendation Breakdown drill-down (per-category
+  // contribution). Invoked on demand from the wizard's "Why?" button.
+  // Overlays a modal showing how a model's weighted score is composed.
+  // ======================================================================
+  function _categoryColor(catKey) {
+    var palette = {
+      'coding': '#3b82f6', 'web-browse': '#10b981', 'os-computer': '#f59e0b',
+      'tool-use': '#8b5cf6', 'mcp': '#ec4899', 'customer-service': '#06b6d4',
+      'safety': '#ef4444'
+    };
+    return palette[catKey] || '#9ca3af';
+  }
+
+  // Track active modal so we can clean up listeners + dispose ECharts.
+  var _breakdownState = { overlay: null, escHandler: null, chartId: null };
+
+  function _closeBreakdownModal() {
+    if (_breakdownState.escHandler) {
+      document.removeEventListener('keydown', _breakdownState.escHandler);
+      _breakdownState.escHandler = null;
+    }
+    if (_breakdownState.chartId && window.Charts && Charts._instances) {
+      var inst = Charts._instances[_breakdownState.chartId];
+      if (inst) {
+        try { inst.dispose(); } catch (e) {}
+        delete Charts._instances[_breakdownState.chartId];
+      }
+      _breakdownState.chartId = null;
+    }
+    if (_breakdownState.overlay && _breakdownState.overlay.parentNode) {
+      _breakdownState.overlay.parentNode.removeChild(_breakdownState.overlay);
+    }
+    _breakdownState.overlay = null;
+  }
+
+  function renderRecommendationBreakdown(modelId) {
+    if (!modelId) return;
+    // Close any pre-existing breakdown modal so we don't stack overlays.
+    _closeBreakdownModal();
+
+    var cats = (window.Agent && Agent._CATEGORIES) ? Agent._CATEGORIES : [];
+    var priorities = _wizardState.priorities || {};
+    var rows = [];
+    for (var i = 0; i < cats.length; i++) {
+      var cat = cats[i];
+      if (!cat || !cat.key) continue;
+      if (!Object.prototype.hasOwnProperty.call(priorities, cat.key)) continue;
+      var raw = _wizardCoverageScore(modelId, cat.key);
+      var priority = priorities[cat.key] || 0;
+      var contribution = raw * (priority / 100);
+      rows.push({ cat: cat, raw: raw, priority: priority, contribution: contribution });
+    }
+    rows.sort(function(a, b) { return b.contribution - a.contribution; });
+
+    _showBreakdownModal(modelId, rows);
+  }
+
+  function _showBreakdownModal(modelId, rows) {
+    var overlay = document.createElement('div');
+    overlay.className = 'fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center p-4';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.addEventListener('click', function(ev) {
+      if (ev.target === overlay) _closeBreakdownModal();
+    });
+
+    var panel = document.createElement('div');
+    panel.className = 'bg-gray-900 border border-gray-800 rounded p-6 max-w-3xl w-full overflow-y-auto';
+    panel.style.maxHeight = '90vh';
+
+    // Header — title + close button
+    var header = document.createElement('div');
+    header.className = 'flex items-start justify-between gap-4 mb-3';
+
+    var titleWrap = document.createElement('div');
+    var title = document.createElement('div');
+    title.className = 'text-base font-semibold text-gray-100';
+    title.textContent = 'Why ' + _modelDisplayName(modelId) + ' ranked here';
+    titleWrap.appendChild(title);
+
+    var sub = document.createElement('div');
+    sub.className = 'text-xs text-gray-400 mt-1 flex items-center gap-2 flex-wrap';
+    var vendor = document.createElement('span');
+    vendor.textContent = _vendorOf(modelId) || 'unknown';
+    sub.appendChild(vendor);
+    var sepA = document.createElement('span');
+    sepA.className = 'text-gray-600';
+    sepA.textContent = '·';
+    sub.appendChild(sepA);
+    var klass = _modelClass(modelId);
+    var klassSpan = document.createElement('span');
+    klassSpan.style.color = _classColor(klass);
+    klassSpan.textContent = _wizardClassLabel(klass);
+    sub.appendChild(klassSpan);
+    titleWrap.appendChild(sub);
+
+    header.appendChild(titleWrap);
+
+    var closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'text-gray-400 hover:text-gray-100 text-xl leading-none px-2';
+    closeBtn.textContent = '×';
+    closeBtn.setAttribute('aria-label', 'Close');
+    closeBtn.addEventListener('click', _closeBreakdownModal);
+    header.appendChild(closeBtn);
+
+    panel.appendChild(header);
+
+    // Chart container — dedicated id so Charts._getOrCreate can manage it.
+    var chartId = 'agent-breakdown-chart';
+    var chartDiv = document.createElement('div');
+    chartDiv.id = chartId;
+    chartDiv.style.width = '100%';
+    chartDiv.style.height = '320px';
+    panel.appendChild(chartDiv);
+
+    // Total weighted score
+    var total = 0;
+    for (var i = 0; i < rows.length; i++) total += rows[i].contribution;
+
+    var totalLine = document.createElement('div');
+    totalLine.className = 'text-sm text-gray-200 mt-3';
+    totalLine.textContent = 'Total weighted score: ' + total.toFixed(1);
+    panel.appendChild(totalLine);
+
+    // Summary table
+    var table = document.createElement('table');
+    table.className = 'w-full text-xs mt-2 border-collapse';
+
+    var thead = document.createElement('thead');
+    var thr = document.createElement('tr');
+    ['Category', 'Raw avg', 'Priority %', 'Contribution'].forEach(function(h) {
+      var th = document.createElement('th');
+      th.className = 'text-left text-gray-400 font-normal py-1 pr-3 border-b border-gray-800';
+      th.textContent = h;
+      thr.appendChild(th);
+    });
+    thead.appendChild(thr);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    function _appendCell(tr, txt, cls) {
+      var td = document.createElement('td');
+      td.className = cls;
+      td.textContent = txt;
+      tr.appendChild(td);
+      return td;
+    }
+    for (var r = 0; r < rows.length; r++) {
+      var row = rows[r];
+      var tr = document.createElement('tr');
+
+      var tdCat = document.createElement('td');
+      tdCat.className = 'py-1 pr-3 text-gray-200';
+      var swatch = document.createElement('span');
+      swatch.style.cssText = 'display:inline-block;width:8px;height:8px;margin-right:6px;border-radius:2px;background-color:' + _categoryColor(row.cat.key) + ';';
+      tdCat.appendChild(swatch);
+      var catText = document.createElement('span');
+      catText.textContent = row.cat.label || row.cat.key;
+      tdCat.appendChild(catText);
+      tr.appendChild(tdCat);
+
+      _appendCell(tr, row.raw.toFixed(1),       'py-1 pr-3 text-gray-300 tabular-nums');
+      _appendCell(tr, String(row.priority),     'py-1 pr-3 text-gray-300 tabular-nums');
+      _appendCell(tr, row.contribution.toFixed(1), 'py-1 pr-3 text-gray-100 tabular-nums');
+
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    panel.appendChild(table);
+
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+
+    // Esc → close
+    var escHandler = function(ev) {
+      if (ev.key === 'Escape' || ev.keyCode === 27) _closeBreakdownModal();
+    };
+    document.addEventListener('keydown', escHandler);
+    _breakdownState.overlay = overlay;
+    _breakdownState.escHandler = escHandler;
+    _breakdownState.chartId = chartId;
+
+    // Init ECharts after the overlay is in the DOM (so dimensions are real).
+    if (window.Charts && typeof Charts._getOrCreate === 'function' && typeof echarts !== 'undefined') {
+      var chart = Charts._getOrCreate(chartId);
+      if (chart) {
+        var labels = rows.map(function(r) { return r.cat.label || r.cat.key; });
+        var data = rows.map(function(r) {
+          return { value: Number(r.contribution.toFixed(2)), itemStyle: { color: _categoryColor(r.cat.key) } };
+        });
+        // ECharts horizontal bar — y-axis is category, x-axis is value.
+        // Reverse so highest contribution appears on top.
+        labels.reverse();
+        data.reverse();
+        chart.setOption({
+          grid: { left: 140, right: 30, top: 20, bottom: 30 },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: { type: 'shadow' },
+            formatter: function(p) {
+              if (!p || !p.length) return '';
+              var d = p[0];
+              return d.name + '<br/>Contribution: <b>' + d.value.toFixed(2) + '</b>';
+            }
+          },
+          xAxis: { type: 'value', axisLabel: { color: '#9ca3af' } },
+          yAxis: { type: 'category', data: labels, axisLabel: { color: '#d1d5db' } },
+          series: [{ type: 'bar', data: data, barWidth: '60%' }]
+        });
+        try { chart.resize(); } catch (e) {}
+      }
+    }
   }
 
   // ======================================================================
@@ -2950,6 +3181,7 @@ var AgentCharts = (function() {
     renderCapabilitySankey: renderCapabilitySankey,
     renderCumulativeSOTAWins: renderCumulativeSOTAWins,
     renderAgentWizard: renderAgentWizard,
+    renderRecommendationBreakdown: renderRecommendationBreakdown,
     // Helpers exported for widgets to reuse.
     _scoresFor: _scoresFor,
     _modelDisplayName: _modelDisplayName,
