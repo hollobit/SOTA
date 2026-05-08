@@ -1,5 +1,50 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-08 (Session 5): Agent menu A+B+C — loader 2-pass + 20 new benchmarks + 3 new widgets + cross-widget brushing
+
+### 11. Agent 탭 다음 라운드 (commits `5a0128b` → `f0a77b9`)
+
+Session 4 batch 직후 사용자가 "A+B+C를 진행해주세요. 동시 작업이 가능하면 병렬 에이전트로 작업해주세요"로 추가 요청. A(loader 견고화 + cross-widget brushing) + B(신규 벤치마크 3개 카테고리) + C(신규 위젯 3개)로 분해. 3-wave 병렬 패턴:
+
+**Wave 1 (4 병렬, 독립 파일)**:
+- **A1 Loader 2-pass** (`5a0128b`): `scripts/load_benchmark_scores.py`를 두 단계로 리팩터 — 1) 모든 파일에서 모델/벤치마크 등록, 2) 모든 파일에서 점수 삽입. 파일 순서에 무관하게 FK constraint 통과. CONTRIBUTING.md 신설(74 LOC) — 파일 명명 규칙(`*_scores.json` suffix), 엄격 출처 규칙, JSON 스키마, 로딩 검증법 문서화. Session 4 `cbc1916` 임시 수정의 영구 해결책.
+- **B1 Vision-Language agent benchmarks** (`7c8c7e4`): VisualWebArena / Online-Mind2Web / ScreenSpot-Pro / OSCopilot-GAIA / WebShop / VisualAgentBench, 6 benchmarks + 31 scores.
+- **B2 Multi-agent collaboration** (`e5447e6`): AgentBench / MetaGPT-Eval / MultiAgentBench 외 3종, 6 benchmarks + 19 scores.
+- **B3 Reasoning trace quality** (bundled into `e5447e6`): METR autonomy P50/P80, CoT faithfulness, Apollo scheming oversight subversion/persistence, RewardBench2, ProcessBench-F1 — 8 benchmarks + 39 scores.
+
+**Wave 2 (3 병렬, agent-charts.js NEW 함수)**:
+- **C1 Cost Simulator (W12)** (`9a816e1`): 일일 요청 수 / 평균 입출력 토큰 / reasoning toggle 슬라이더 → 모델별 월 비용 ranked 테이블. Sanity: Opus 4.7 = $22.50/일 (예상치와 일치). 348 LOC.
+- **C2 Provider Availability Map (W13)** (`edb03e4`): top-25 모델 × 14 클라우드 프로바이더 ECharts heatmap. `config/model_enrichment.yaml`에 22개 새 모델의 `api_providers` 필드 채움 (총 61개 모델 enrichment 보유).
+- **C4 Recommendation Breakdown (W14)** (`cb2741a`): "Build Your Agent" 위저드의 각 결과 행에 "Why?" 버튼 추가 → 카테고리별 기여도를 보여주는 horizontal bar chart 모달.
+
+**Wave 3 (controller 직접, 기존 위젯 augment)**:
+- **A2 Cross-widget linked brushing** (`f0a77b9`): IIFE 상단에 `_brush.on/off/emit/current` pub/sub 추가. 리더보드 행 hover → W1 Cost Scatter의 매칭 bubble을 `dispatchAction({type:'highlight'})`로 강조 + 행 내 fingerprint 캔버스에 violet ring + scale(1.08) + 행에 violet 틴트. 데이터셋 가드(`brushBound`/`brushSub`)로 재렌더 시 리스너 누적 방지.
+- **A3 Pareto frontier 라벨**: `_paretoFrontier()` 결과 model_id를 set으로 모은 후, 프론티어에 있는 bubble만 model 이름 라벨 표시. 약 3-6개 "best-in-class" 마커가 라벨링되고 나머지는 깨끗.
+
+**병렬 작업 흥미점**:
+- Wave 1 4개 에이전트는 완전 독립 파일(scripts/, resource/×3)이라 충돌 0건.
+- Wave 2 3개 에이전트가 `agent-charts.js` 동시 편집 — 각자 _NEW_ 함수만 추가하는 패턴으로 conflict-free. 각 에이전트가 cache-bust를 다른 letter로 bump.
+- Wave 3는 기존 함수 augment라 controller 직접 작업.
+
+**DB delta**:
+- 신규 벤치마크: **+20** (855 → 875)
+- 신규 점수: **+89** (3343 → 3432)
+- API providers 채워진 모델: 39 → **61**
+
+**파일 deltas**:
+- `dashboard/js/agent-charts.js`: 2961 → **3877 LOC** (+916, 3 new widgets + brushing)
+- `dashboard/index.html`: agent-charts.js cache-bust `?v=20260508o` → `?v=20260508p`
+- `scripts/load_benchmark_scores.py`: 1-pass → **2-pass refactor**
+- `CONTRIBUTING.md`: NEW (74 LOC)
+- `config/model_enrichment.yaml`: 39 → **61** entries with `api_providers`
+- `resource/zzz...vl_agent_benchmarks_2026_05_08_scores.json`: NEW (6 benches, 31 scores)
+- `resource/zzz...multi_agent_2026_05_08_scores.json`: NEW (6 benches, 19 scores)
+- `resource/zzz...reasoning_trace_2026_05_08_scores.json`: NEW (8 benches, 39 scores)
+
+**Live deploy**: CI run `25546781257` (1m42s 성공), 캐시-버스트 SHA prefix `f0a77b92`. 라이브 JS에서 `_brush`(8) / `frontierIds`(3) / `_bubbleWithLabel`(4) 마커 모두 확인.
+
+---
+
 ## 2026-05-08 (Session 4): Agent menu A+B+C+E batch — 3 new widgets + polish + data fills
 
 ### 10. Agent 탭 종합 보강 (commits `6bbfe57` → `cbc1916`)

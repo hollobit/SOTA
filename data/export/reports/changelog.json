@@ -2,6 +2,15 @@
   {
     "type": "Feature",
     "date": "2026-05-08",
+    "benchmark_id": "Agent 탭 다음 라운드 — Loader 2-pass + 20 신규 벤치마크 + 3 신규 위젯 + cross-widget brushing (Session 5, A+B+C, 7 병렬 에이전트)",
+    "new_model": "A1 Loader 2-pass 영구 수정: scripts/load_benchmark_scores.py를 2-step (모든 파일에서 모델/벤치마크 등록 → 모든 파일에서 점수 삽입)으로 리팩터, FK 제약 우회 위한 파일명 트릭 제거. CONTRIBUTING.md 신설(74 LOC). B1 Vision-Language agent benchmarks 6종 (VisualWebArena/Online-Mind2Web/ScreenSpot-Pro/OSCopilot-GAIA/WebShop/VisualAgentBench, 31 scores). B2 Multi-agent collaboration 6종 (AgentBench/MetaGPT-Eval/MultiAgentBench 외, 19 scores). B3 Reasoning trace quality 8종 (METR autonomy P50/P80/CoT faithfulness/Apollo scheming oversight subversion+persistence/RewardBench2/ProcessBench-F1, 39 scores). C1 Cost Simulator (W12) — 일일 요청·토큰·reasoning 슬라이더 → 모델별 월 비용 ranked 테이블. C2 Provider Availability Map (W13) — top-25 모델 × 14 프로바이더 ECharts heatmap; config/model_enrichment.yaml에 22개 새 모델 api_providers 추가 (39→61). C4 Recommendation Breakdown (W14) — Build Your Agent 위저드 행에 'Why?' 버튼 + 카테고리 기여도 horizontal bar chart 모달. A2 Cross-widget linked brushing — _brush.on/off/emit pub/sub로 leaderboard 행 hover ↔ W1 Cost Scatter highlight ↔ fingerprint 캔버스 violet ring 동기화. A3 Pareto frontier 라벨 — _paretoFrontier() 결과 model_id에만 W1 라벨 표시 (~3-6개 best-in-class).",
+    "new_value": "신규 벤치마크 +20 (855→875), 신규 점수 +89 (3343→3432). agent-charts.js 2961→3877 LOC (+916). 위젯 11→14 (W12/W13/W14). API providers 39→61 모델. 라이브 deploy: SHA prefix f0a77b92, _brush(8)/frontierIds(3)/_bubbleWithLabel(4) 마커 모두 확인.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-08",
     "benchmark_id": "Agent 탭 종합 보강 — 신규 위젯 3개 + 폴리시 + 데이터 채우기 (9 병렬 에이전트, A+B+C+E 카테고리)",
     "new_model": "신규 위젯 3개: (9) 🔀 Capability Sankey — 12 모델 → 10 카테고리 → 20 벤치마크 flow (42 nodes/97 edges). (10) 📈 Cumulative SOTA Wins — 시간별 SOTA 보유 일수 stacked area. (11) 🧙 Build Your Agent wizard — 7 priority sliders + 2 toggle → ranked top-10 추천. 폴리시 일괄: ECharts toolbox (PNG/dataView/restore) 모든 위젯, ⓘ help tooltip 모든 위젯, LocalStorage state persistence (radar/timeline/violin/cumulative-SOTA/wizard). 데이터 채우기: A1 edge SLM 6 점수 (Phi-4-mini/Gemma 3/FunctionGemma/Llama 3.2 BFCL+mobile_actions), A2 agent product 11 점수 (Cursor/Devin/Manus/Operator/Mariner/Computer Use 등), A3 HAL composite 11 점수 (Princeton 9 sub-leaderboard aggregate). 모달 enhancement: 'Built on: <base>' 링크 + Devin/Manus 'subscription' 태그. README + screenshot 추가. CI 로더 버그 수정 (파일명 glob 패턴).",
     "new_value": "agent-charts.js 2181 → 2961 LOC (+780). 신규 점수 28건 (3315 → 3343). agent-product 점수 보유 모델 1 → 8개. edge-SLM 점수 보유 0 → 5개. HAL composite 0 → 11. 위젯 8 → 11. README 47 → 71 LOC.",
