@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-08",
+    "sources": [
+      "https://arxiv.org/abs/2503.01935",
+      "https://arxiv.org/html/2503.01935v1",
+      "https://github.com/ulab-uiuc/MARBLE",
+      "https://aclanthology.org/2025.acl-long.421/",
+      "https://arxiv.org/abs/2308.03688",
+      "https://arxiv.org/html/2308.03688v3",
+      "https://github.com/THUDM/AgentBench",
+      "https://arxiv.org/abs/2308.00352",
+      "https://arxiv.org/html/2308.00352v6",
+      "https://github.com/geekan/MetaGPT"
+    ],
+    "_note": "Wave 1C — Multi-agent collaboration benchmarks. Frontier-disclosed scores only (strict-attribution): MultiAgentBench/MARBLE Table 1 (ACL 2025) per-scenario Task Score (TS%) for the 5 explicitly-named LLM backbones, AgentBench Overall (OA, ICLR 2024) for API-based frontier models, and MetaGPT SoftwareDev Executability (ICLR 2024) for the GPT-4 scaffolded multi-agent framework. Anonymized 'best model' rows or extrapolated values were excluded. Multi-agent collaboration research is academic-heavy in 2024-2025, so per-model disclosures are sparse vs. single-agent benchmarks; sticking to paper-published Tables only. AGORA-Bench/VillagerBench/PillagerBench/MAgIC paper tables checked but did not yield per-frontier-model scores in extractable form (paper text only references aggregate gaps); deferred. AutoGen/AutoGen Studio has no published model-level leaderboard — it's a framework, not an eval target. GPT-3.5-turbo entries from MultiAgentBench/AgentBench excluded per repo policy on 2년+된 모델."
+  },
+  "benchmarks": [
+    {
+      "id": "multiagentbench_research_task",
+      "name": "MultiAgentBench Research (Task Score)",
+      "category": "agent",
+      "description": "Research scenario Task Score (TS%) from MultiAgentBench/MARBLE (ACL 2025, arxiv 2503.01935). Multi-agent collaborative research task with milestone-based KPI; agents coordinate via star/chain/tree/graph topologies. Higher is better.",
+      "metric": "task_score_pct"
+    },
+    {
+      "id": "multiagentbench_coding_task",
+      "name": "MultiAgentBench Coding (Task Score)",
+      "category": "agent",
+      "description": "Coding scenario Task Score (TS%) from MultiAgentBench/MARBLE (ACL 2025). Multi-agent collaborative software task with role-specialized agents and milestone-graded outcomes. Higher is better.",
+      "metric": "task_score_pct"
+    },
+    {
+      "id": "multiagentbench_bargaining_task",
+      "name": "MultiAgentBench Bargaining (Task Score)",
+      "category": "agent",
+      "description": "Bargaining scenario Task Score (TS%) from MultiAgentBench/MARBLE (ACL 2025). Competitive multi-agent negotiation; measures task achievement under adversarial peer agents. Higher is better.",
+      "metric": "task_score_pct"
+    },
+    {
+      "id": "multiagentbench_minecraft_task",
+      "name": "MultiAgentBench Minecraft (Task Score)",
+      "category": "agent",
+      "description": "Minecraft cooperative-build scenario Task Score (TS%) from MultiAgentBench/MARBLE (ACL 2025). Embodied multi-agent task in Minecraft; tests planning + dynamic-environment coordination. Higher is better.",
+      "metric": "task_score_pct"
+    },
+    {
+      "id": "agentbench_overall",
+      "name": "AgentBench Overall (OA)",
+      "category": "agent",
+      "description": "AgentBench Overall (OA) composite from THUDM AgentBench (ICLR 2024, arxiv 2308.03688). Aggregate of 8 agent environments: OS, DB, KG, DCG, LTP, HH, WS, M2W. Scale 0-5 (higher is better). First multi-environment LLM-as-Agent benchmark.",
+      "metric": "composite_score"
+    },
+    {
+      "id": "metagpt_softwaredev_executability",
+      "name": "MetaGPT SoftwareDev Executability",
+      "category": "agent",
+      "description": "Executability score on the SoftwareDev dataset from MetaGPT (ICLR 2024, arxiv 2308.00352). 1-4 scale rating compileability/runnability of multi-agent-framework-generated software (1=fail, 4=flawless). Scaffold + backbone joint score.",
+      "metric": "executability_1_to_4"
+    }
+  ],
+  "scores": [
+    {"model": "openai/gpt-4o-mini", "benchmark": "multiagentbench_research_task", "score": 84.13, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench/MARBLE Table 1 (ACL 2025). gpt-4o-mini Research scenario TS = 84.13%, leading all evaluated backbones. Coordination Score (CS) = 52.00."},
+    {"model": "meta/llama-3.1-8b", "benchmark": "multiagentbench_research_task", "score": 80.87, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Meta-Llama-3.1-8B-Instruct Research TS = 80.87%, CS 52.40."},
+    {"model": "meta/llama-3.1-70b", "benchmark": "multiagentbench_research_task", "score": 80.80, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Meta-Llama-3.1-70B-Instruct Research TS = 80.80%, CS 49.50."},
+    {"model": "meta/llama-3.3-70b", "benchmark": "multiagentbench_research_task", "score": 80.00, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Meta-Llama-3.3-70B-Instruct Research TS = 80.00%, CS 72.00 (highest CS)."},
+
+    {"model": "openai/gpt-4o-mini", "benchmark": "multiagentbench_coding_task", "score": 65.10, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. gpt-4o-mini Coding scenario TS = 65.10%, CS 66.30."},
+    {"model": "meta/llama-3.1-70b", "benchmark": "multiagentbench_coding_task", "score": 62.10, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Llama-3.1-70B Coding TS = 62.10%, CS 67.18."},
+    {"model": "meta/llama-3.1-8b", "benchmark": "multiagentbench_coding_task", "score": 59.90, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Llama-3.1-8B Coding TS = 59.90%, CS 67.24."},
+    {"model": "meta/llama-3.3-70b", "benchmark": "multiagentbench_coding_task", "score": 56.60, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Llama-3.3-70B Coding TS = 56.60%, CS 74.40."},
+
+    {"model": "openai/gpt-4o-mini", "benchmark": "multiagentbench_bargaining_task", "score": 74.47, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. gpt-4o-mini Bargaining TS = 74.47%, CS 74.20."},
+    {"model": "meta/llama-3.3-70b", "benchmark": "multiagentbench_bargaining_task", "score": 73.15, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Llama-3.3-70B Bargaining TS = 73.15%, CS 69.56."},
+    {"model": "meta/llama-3.1-8b", "benchmark": "multiagentbench_bargaining_task", "score": 72.81, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Llama-3.1-8B Bargaining TS = 72.81%, CS 73.36."},
+    {"model": "meta/llama-3.1-70b", "benchmark": "multiagentbench_bargaining_task", "score": 72.13, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Llama-3.1-70B Bargaining TS = 72.13%, CS 71.46."},
+
+    {"model": "openai/gpt-4o-mini", "benchmark": "multiagentbench_minecraft_task", "score": 33.60, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. gpt-4o-mini Minecraft cooperative-build TS = 33.60% — leads all backbones by a wide margin (next is Llama-3.3-70B at 9.15%). CS 61.50."},
+    {"model": "meta/llama-3.3-70b", "benchmark": "multiagentbench_minecraft_task", "score": 9.15, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Llama-3.3-70B Minecraft TS = 9.15%, CS 69.00."},
+    {"model": "meta/llama-3.1-8b", "benchmark": "multiagentbench_minecraft_task", "score": 6.12, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Llama-3.1-8B Minecraft TS = 6.12%, CS 54.40."},
+    {"model": "meta/llama-3.1-70b", "benchmark": "multiagentbench_minecraft_task", "score": 0.21, "unit": "%", "_source": "https://arxiv.org/html/2503.01935v1", "collected_at": "2026-05-08", "_note": "MultiAgentBench Table 1. Llama-3.1-70B Minecraft TS = 0.21%, CS 75.00 (high coordination but near-zero task completion — coordination ≠ achievement here)."},
+
+    {"model": "openai/gpt-4", "benchmark": "agentbench_overall", "score": 4.01, "unit": "score", "_source": "https://arxiv.org/abs/2308.03688", "collected_at": "2026-05-08", "_note": "AgentBench Table 3 (ICLR 2024, THUDM). GPT-4 Overall (OA) = 4.01 across 8 environments. OS=42.4, DB=32.0, KG=58.8, DCG=74.5, LTP=16.6, HH=78.0, WS=61.1, M2W=29.0. Top API-based score in the original paper."},
+    {"model": "anthropic/claude-3-opus", "benchmark": "agentbench_overall", "score": 3.11, "unit": "score", "_source": "https://arxiv.org/abs/2308.03688", "collected_at": "2026-05-08", "_note": "AgentBench Table 3 (ICLR 2024 / extended evaluation). Claude-3 Opus OA = 3.11. Second among API models."},
+
+    {"model": "openai/gpt-4", "benchmark": "metagpt_softwaredev_executability", "score": 3.75, "unit": "score", "_source": "https://arxiv.org/html/2308.00352v6", "collected_at": "2026-05-08", "_note": "MetaGPT paper (ICLR 2024) — MetaGPT scaffold with GPT-4 backbone scores 3.75/4.0 executability on SoftwareDev (close to flawless = 4). Beats ChatDev (2.25) significantly. Score reflects scaffold+backbone joint result; attribution to GPT-4 because that's the disclosed backbone."}
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-08",
+    "sources": [
+      "https://metr.org/blog/2026-1-29-time-horizon-1-1/",
+      "https://metr.org/assets/benchmark_results_1_1.yaml",
+      "https://www.anthropic.com/research/reasoning-models-dont-say-think",
+      "https://assets.anthropic.com/m/71876fabef0f0ed4/original/reasoning_models_paper.pdf",
+      "https://www.apolloresearch.ai/research/frontier-models-are-capable-of-incontext-scheming/",
+      "https://arxiv.org/abs/2412.04984",
+      "https://huggingface.co/spaces/allenai/reward-bench",
+      "https://arxiv.org/abs/2506.01937",
+      "https://arxiv.org/abs/2412.06559",
+      "https://qwenlm.github.io/blog/qwen2.5-math-prm/"
+    ],
+    "_note": "Wave 1D — Reasoning trace quality benchmarks. Five benchmark families covering autonomy time-horizon (METR), CoT faithfulness (Anthropic), in-context scheming (Apollo), reward-model quality (RewardBench 2 / Allen AI), and process-level reasoning error detection (ProcessBench / Qwen). Strict-attribution: every (model_id, benchmark_id, value) tuple is from a primary source disclosing the specific number. METR p50/p80 values from the official benchmark_results_1_1.yaml file. Anthropic CoT-faithfulness percentages from the Reasoning Models Don't Always Say What They Think paper (Apr 2025). Apollo scheming rates from Frontier Models are Capable of In-context Scheming (Dec 2024). RewardBench 2 averages from the Allen AI HF leaderboard / RewardBench 2 paper. ProcessBench F1 scores from the Qwen team's ACL 2025 paper / Math-PRM blog."
+  },
+  "benchmarks": [
+    {
+      "id": "metr_autonomy_p50",
+      "name": "METR 50% Time Horizon",
+      "category": "agent",
+      "description": "Task duration (in minutes, by human-expert completion time) at which the model reaches 50% completion reliability on METR's 228-task suite (HCAST + RE-Bench + long-horizon). Higher = longer autonomous-work horizon. METR Time Horizon 1.1 (Jan 2026).",
+      "metric": "minutes"
+    },
+    {
+      "id": "metr_autonomy_p80",
+      "name": "METR 80% Time Horizon",
+      "category": "agent",
+      "description": "Task duration (in minutes) at which the model reaches 80% completion reliability on METR's 228-task suite. Stricter reliability threshold than p50. METR Time Horizon 1.1 (Jan 2026).",
+      "metric": "minutes"
+    },
+    {
+      "id": "cot_faithfulness",
+      "name": "CoT Faithfulness (avg)",
+      "category": "safety",
+      "description": "Rate at which a reasoning model, after silently using a hint to change its answer, explicitly verbalizes the hint in its chain-of-thought. Average across 6 hint types. Anthropic Alignment Science (Apr 2025).",
+      "metric": "%"
+    },
+    {
+      "id": "cot_faithfulness_misaligned",
+      "name": "CoT Faithfulness (misaligned hints)",
+      "category": "safety",
+      "description": "CoT faithfulness restricted to misaligned / unauthorized-access hint types (subset of overall measure). Anthropic Apr 2025.",
+      "metric": "%"
+    },
+    {
+      "id": "apollo_scheming_oversight_subversion",
+      "name": "Apollo — Oversight Subversion Rate",
+      "category": "safety",
+      "description": "Fraction of trials where the model proactively disabled an oversight mechanism (cat/edit/sed of monitoring config) when given a long-term goal in conflict with developer goals. Apollo Research, Frontier Models are Capable of In-context Scheming (Dec 2024 / arxiv:2412.04984).",
+      "metric": "%"
+    },
+    {
+      "id": "apollo_scheming_persistence",
+      "name": "Apollo — Deception Persistence",
+      "category": "safety",
+      "description": "Fraction of follow-up interrogation turns in which the model continued to deny scheming behavior after being directly asked. Higher = more persistent deception. Apollo Research (Dec 2024).",
+      "metric": "%"
+    },
+    {
+      "id": "rewardbench2_overall",
+      "name": "RewardBench 2 (overall)",
+      "category": "safety",
+      "description": "Allen AI multi-skill reward-model benchmark. 4-way completion choice (random=25%) across factuality, instruction-following, math, safety, focus, ties. RewardBench 2 paper (arxiv:2506.01937) / HF leaderboard.",
+      "metric": "%"
+    },
+    {
+      "id": "processbench_f1",
+      "name": "ProcessBench (overall F1)",
+      "category": "agent",
+      "description": "Step-level error-detection F1 across GSM8K / MATH / OlympiadBench / OmniMath subsets (3,400 hand-annotated math reasoning traces). Qwen / ACL 2025 (arxiv:2412.06559).",
+      "metric": "%"
+    }
+  ],
+  "scores": [
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "metr_autonomy_p50", "score": 718.81, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 estimate (CI 316.69–3633.79 min). Highest-ranked model in TH1.1 release."},
+    {"model": "openai/gpt-5.3-codex", "benchmark": "metr_autonomy_p50", "score": 349.53, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 (CI 194.91–816.35 min)."},
+    {"model": "openai/gpt-5.2", "benchmark": "metr_autonomy_p50", "score": 352.25, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 (CI 198.07–815.18 min)."},
+    {"model": "openai/gpt-5.4", "benchmark": "metr_autonomy_p50", "score": 341.74, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 (CI 186.58–768.78 min)."},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "metr_autonomy_p50", "score": 292.99, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 (CI 161.72–623.70 min). +11% over TH1.0."},
+    {"model": "google/gemini-3.1-pro", "benchmark": "metr_autonomy_p50", "score": 384.15, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 (CI 233.50–694.75 min)."},
+    {"model": "google/gemini-3-pro", "benchmark": "metr_autonomy_p50", "score": 224.33, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 (CI 139.57–379.24 min)."},
+    {"model": "openai/gpt-5", "benchmark": "metr_autonomy_p50", "score": 203.01, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 for gpt_5_2025_08_07 (CI 112.64–405.55 min). +55% over TH1.0."},
+    {"model": "openai/o3", "benchmark": "metr_autonomy_p50", "score": 119.73, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 (CI 74.62–190.94 min). +29% over TH1.0."},
+    {"model": "anthropic/claude-opus-4.1", "benchmark": "metr_autonomy_p50", "score": 100.47, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 (CI 59.27–159.45 min)."},
+    {"model": "anthropic/claude-opus-4", "benchmark": "metr_autonomy_p50", "score": 100.37, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 (CI 59.99–163.45 min). +18% over TH1.0."},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "metr_autonomy_p50", "score": 60.39, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 (CI 33.01–104.23 min). +7% over TH1.0."},
+    {"model": "openai/o1", "benchmark": "metr_autonomy_p50", "score": 38.83, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p50 (CI 21.16–64.95 min)."},
+
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "metr_autonomy_p80", "score": 69.87, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p80 estimate (CI 27.03–170.44 min)."},
+    {"model": "google/gemini-3.1-pro", "benchmark": "metr_autonomy_p80", "score": 89.80, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p80 (CI 52.03–158.62 min). Highest-ranked p80 in TH1.1."},
+    {"model": "openai/gpt-5.2", "benchmark": "metr_autonomy_p80", "score": 66.00, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p80 (CI 31.67–131.73 min)."},
+    {"model": "openai/gpt-5.3-codex", "benchmark": "metr_autonomy_p80", "score": 54.74, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p80 (CI 22.36–122.06 min)."},
+    {"model": "google/gemini-3-pro", "benchmark": "metr_autonomy_p80", "score": 54.14, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p80 (CI 25.65–103.30 min)."},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "metr_autonomy_p80", "score": 49.43, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p80 (CI 20.66–104.64 min)."},
+    {"model": "openai/gpt-5", "benchmark": "metr_autonomy_p80", "score": 38.31, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p80 for gpt_5_2025_08_07 (CI 19.18–70.09 min)."},
+    {"model": "openai/o3", "benchmark": "metr_autonomy_p80", "score": 29.98, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p80 (CI 15.13–57.82 min)."},
+    {"model": "anthropic/claude-opus-4.1", "benchmark": "metr_autonomy_p80", "score": 23.46, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p80 (CI 10.54–47.79 min)."},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "metr_autonomy_p80", "score": 12.09, "unit": "minutes", "_source": "https://metr.org/assets/benchmark_results_1_1.yaml", "collected_at": "2026-05-08", "_note": "METR Time Horizon 1.1 p80 (CI 4.58–28.89 min)."},
+
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "cot_faithfulness", "score": 25.0, "unit": "%", "_source": "https://www.anthropic.com/research/reasoning-models-dont-say-think", "collected_at": "2026-05-08", "_note": "Anthropic Alignment Science, Apr 2025: Claude 3.7 Sonnet verbalized the hint in 25% of trials averaged across 6 hint types (MMLU+GPQA, hint-changes-answer subset)."},
+    {"model": "deepseek/deepseek-r1", "benchmark": "cot_faithfulness", "score": 39.0, "unit": "%", "_source": "https://www.anthropic.com/research/reasoning-models-dont-say-think", "collected_at": "2026-05-08", "_note": "Anthropic Apr 2025: DeepSeek R1 verbalized the hint in 39% of trials, averaged across 6 hint types. Highest CoT faithfulness among 4 models tested."},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "cot_faithfulness_misaligned", "score": 41.0, "unit": "%", "_source": "https://www.anthropic.com/research/reasoning-models-dont-say-think", "collected_at": "2026-05-08", "_note": "Anthropic Apr 2025: Claude 3.7 Sonnet verbalization rate on the unauthorized-access (misaligned) hint subset — 41% (higher than overall avg of 25%)."},
+    {"model": "deepseek/deepseek-r1", "benchmark": "cot_faithfulness_misaligned", "score": 19.0, "unit": "%", "_source": "https://www.anthropic.com/research/reasoning-models-dont-say-think", "collected_at": "2026-05-08", "_note": "Anthropic Apr 2025: DeepSeek R1 verbalization rate on the misaligned (unauthorized-access) hint subset — 19% (lower than overall avg of 39%, more concerning)."},
+
+    {"model": "openai/o1", "benchmark": "apollo_scheming_oversight_subversion", "score": 5.0, "unit": "%", "_source": "https://arxiv.org/abs/2412.04984", "collected_at": "2026-05-08", "_note": "Apollo Research Dec 2024 (arxiv:2412.04984): o1 attempted to deactivate the oversight mechanism in 5% of trials when its goal conflicted with developer goals (33-scenario set)."},
+    {"model": "openai/o1", "benchmark": "apollo_scheming_persistence", "score": 80.0, "unit": "%", "_source": "https://arxiv.org/abs/2412.04984", "collected_at": "2026-05-08", "_note": "Apollo Dec 2024: o1 maintained deception in over 80% of follow-up interrogation turns (denied scheming when directly asked); persists across 7 turns."},
+    {"model": "anthropic/claude-3-opus", "benchmark": "apollo_scheming_persistence", "score": 20.0, "unit": "%", "_source": "https://arxiv.org/abs/2412.04984", "collected_at": "2026-05-08", "_note": "Apollo Dec 2024: Claude 3 Opus confessed in ~80% of follow-up interrogations (i.e. persistence ~20%, much lower than o1)."},
+    {"model": "meta/llama-3.1-405b", "benchmark": "apollo_scheming_persistence", "score": 20.0, "unit": "%", "_source": "https://arxiv.org/abs/2412.04984", "collected_at": "2026-05-08", "_note": "Apollo Dec 2024: Llama 3.1 405B confessed in ~80% of follow-up interrogations (persistence ~20%)."},
+
+    {"model": "google/gemini-2.5-flash", "benchmark": "rewardbench2_overall", "score": 77.2, "unit": "%", "_source": "https://huggingface.co/spaces/allenai/reward-bench", "collected_at": "2026-05-08", "_note": "RewardBench 2 leaderboard: Gemini 2.5 Flash Preview — average 77.2 across 6 RB2 categories (factuality, IF, math, safety, focus, ties). Top model on RB2 as of Allen AI publication."},
+    {"model": "anthropic/claude-opus-4", "benchmark": "rewardbench2_overall", "score": 76.5, "unit": "%", "_source": "https://huggingface.co/spaces/allenai/reward-bench", "collected_at": "2026-05-08", "_note": "RewardBench 2: Claude Opus 4 — average 76.5 across 6 RB2 categories."},
+    {"model": "openai/gpt-4o", "benchmark": "rewardbench2_overall", "score": 64.9, "unit": "%", "_source": "https://huggingface.co/spaces/allenai/reward-bench", "collected_at": "2026-05-08", "_note": "RewardBench 2: GPT-4o average 64.9 across 6 RB2 categories. Per RB2 paper (arxiv:2506.01937), models score ~20pts lower on RB2 than on RB1."},
+
+    {"model": "openai/o1", "benchmark": "processbench_f1", "score": 87.9, "unit": "%", "_source": "https://qwenlm.github.io/blog/qwen2.5-math-prm/", "collected_at": "2026-05-08", "_note": "ProcessBench overall F1: o1-mini achieves 87.9 (highest among general LLMs as critics); reported in the Qwen2.5-Math-PRM blog summarizing arxiv:2412.06559."},
+    {"model": "alibaba/qwen2.5-math-7b", "benchmark": "processbench_f1", "score": 73.5, "unit": "%", "_source": "https://qwenlm.github.io/blog/qwen2.5-math-prm/", "collected_at": "2026-05-08", "_note": "ProcessBench overall F1: Qwen2.5-Math-PRM-7B — 73.5 (outperforms GPT-4o-0806). Process-reward-model variant of Qwen2.5-Math-7B."},
+    {"model": "alibaba/qwen2.5-math-72b", "benchmark": "processbench_f1", "score": 78.3, "unit": "%", "_source": "https://qwenlm.github.io/blog/qwen2.5-math-prm/", "collected_at": "2026-05-08", "_note": "ProcessBench overall F1: Qwen2.5-Math-PRM-72B — 78.3."},
+    {"model": "alibaba/qwen2.5-72b", "benchmark": "processbench_f1", "score": 61.2, "unit": "%", "_source": "https://qwenlm.github.io/blog/qwen2.5-math-prm/", "collected_at": "2026-05-08", "_note": "ProcessBench overall F1: Qwen2.5-72B-Instruct as critic — 61.2."},
+    {"model": "openai/gpt-4o", "benchmark": "processbench_f1", "score": 61.9, "unit": "%", "_source": "https://qwenlm.github.io/blog/qwen2.5-math-prm/", "collected_at": "2026-05-08", "_note": "ProcessBench overall F1: GPT-4o-0806 as critic — 61.9 (per ACL 2025 Table 3, arxiv:2412.06559)."}
+  ]
+}
