@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-09",
+    "_note": "Wave 8 — CASP12-15 protein folding GDT-TS progression backfill. STRICT-ATTRIBUTION: each (model_id, benchmark_id, value) triple must be visible together on a primary source. CASP14 / AlphaFold2 = 92.4 (median GDT overall across all CASP14 targets) is verified from the DeepMind official blog announcement (https://www.deepmind.google/discover/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/), exact quote: 'our latest AlphaFold system achieves a median score of 92.4 GDT overall across all targets'. CASP12 (Zhang/Baker top), CASP13 (AlphaFold v1), and CASP15 (Yang-Server / RoseTTAFold) primary-source GDT-TS values were NOT verifiable — predictioncenter.org rankings publish z-scores rather than raw GDT-TS, the AlphaFold-v1 Nature paper s41586-019-1923-7 abstract reports TM-score (>=0.7 for 24/43 FM domains) not GDT_TS, and AlphaFold-v1 model_id is not in the DB anyway. Per the strict-attribution rule (no extrapolation; skip un-verified triples) only the CASP14 / AlphaFold2 score is ingested. Benchmark stubs casp12_gdt / casp13_gdt / casp15_gdt are still registered so future ingest waves can populate them when primary-source values are obtained.",
+    "sources": [
+      "https://www.deepmind.google/discover/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+      "https://www.nature.com/articles/s41586-021-03819-2",
+      "https://predictioncenter.org/casp14/",
+      "https://predictioncenter.org/casp13/",
+      "https://predictioncenter.org/casp15/",
+      "https://predictioncenter.org/casp12/"
+    ]
+  },
+  "benchmarks": [
+    {
+      "id": "casp12_gdt",
+      "name": "CASP12 GDT-TS (Protein Structure, 2016)",
+      "category": "protein",
+      "metric": "gdt_ts",
+      "description": "CASP (Critical Assessment of Structure Prediction) round 12 GDT-TS score on free-modeling targets — biennial blind protein structure prediction competition (2016)."
+    },
+    {
+      "id": "casp13_gdt",
+      "name": "CASP13 GDT-TS (Protein Structure, 2018)",
+      "category": "protein",
+      "metric": "gdt_ts",
+      "description": "CASP (Critical Assessment of Structure Prediction) round 13 GDT-TS score on free-modeling targets — biennial blind protein structure prediction competition (2018), DeepMind's AlphaFold v1 was the top scorer."
+    },
+    {
+      "id": "casp14_gdt",
+      "name": "CASP14 GDT-TS (Protein Structure, 2020)",
+      "category": "protein",
+      "metric": "gdt_ts",
+      "description": "CASP (Critical Assessment of Structure Prediction) round 14 GDT-TS score — biennial blind protein structure prediction competition (2020), AlphaFold2 achieved median 92.4 GDT overall across all targets, widely regarded as the protein-folding inflection point."
+    },
+    {
+      "id": "casp15_gdt",
+      "name": "CASP15 GDT-TS (Protein Structure, 2022)",
+      "category": "protein",
+      "metric": "gdt_ts",
+      "description": "CASP (Critical Assessment of Structure Prediction) round 15 GDT-TS score on free-modeling targets — biennial blind protein structure prediction competition (2022)."
+    }
+  ],
+  "scores": [
+    {
+      "model": "google-deepmind/alphafold-2",
+      "benchmark": "casp14_gdt",
+      "score": 92.4,
+      "unit": "%",
+      "_source": "https://www.deepmind.google/discover/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+      "collected_at": "2026-05-09",
+      "_note": "DeepMind official CASP14 announcement blog (Nov 30 2020): 'In the results from the 14th CASP assessment, released today, our latest AlphaFold system achieves a median score of 92.4 GDT overall across all targets.' Median GDT_TS across all CASP14 targets, AlphaFold2 group 427. Also reported in companion Nature paper s41586-021-03819-2 (Jumper et al. 2021)."
+    }
+  ]
+}
