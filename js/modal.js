@@ -435,6 +435,34 @@ var Modal = {
         return div;
     },
 
+    // Wave 6E3: stale-score badge. Given a score (or a candidate date string),
+    // returns a small amber pill element if the evaluation date is 90+ days
+    // old; returns null otherwise (missing date, parse failure, future date,
+    // or fresh enough). Uses today as 2026-05-09 baseline. Caller must
+    // appendChild the result if non-null.
+    _makeStaleBadge: function(scoreOrDate) {
+        var dateStr = null;
+        if (scoreOrDate && typeof scoreOrDate === 'object') {
+            if (scoreOrDate.source && scoreOrDate.source.date) dateStr = scoreOrDate.source.date;
+            else if (scoreOrDate.collected_at) dateStr = scoreOrDate.collected_at;
+        } else if (typeof scoreOrDate === 'string') {
+            dateStr = scoreOrDate;
+        }
+        if (!dateStr) return null;
+        var evalMs = Date.parse(dateStr);
+        if (isNaN(evalMs)) return null;
+        // Fixed "today" anchor — keeps badge stable across the dashboard load
+        // and avoids drift on long-running tabs. Bump on each rebuild.
+        var todayMs = Date.parse('2026-05-09');
+        var ageDays = Math.floor((todayMs - evalMs) / 86400000);
+        if (ageDays < 90) return null; // includes future dates (negative)
+        var badge = document.createElement('span');
+        badge.className = 'inline-block ml-1 px-1.5 py-0.5 rounded text-xs bg-yellow-700 text-yellow-100 font-medium align-middle';
+        badge.textContent = '90d+';
+        badge.title = '이 점수는 ' + ageDays + '일 전에 측정되었습니다. 더 최신 점수가 있을 수 있습니다.';
+        return badge;
+    },
+
     showBenchmark: function(benchId) {
         var bench = App.data.benchmarks.find(function(b) { return b.id === benchId; });
         if (!bench) return;
@@ -820,6 +848,8 @@ var Modal = {
         unitSpan.className = 'text-gray-400 text-lg';
         unitSpan.textContent = score.unit || '';
         scoreBlock.appendChild(unitSpan);
+        var primaryStale = Modal._makeStaleBadge(score);
+        if (primaryStale) scoreBlock.appendChild(primaryStale);
         container.appendChild(scoreBlock);
 
         // Provenance block: source URL, type, dates, notes
@@ -1012,6 +1042,9 @@ var Modal = {
                     sotaTag.textContent = 'SOTA';
                     head.appendChild(sotaTag);
                 }
+
+                var runStale = Modal._makeStaleBadge(run.score) || Modal._makeStaleBadge(run.lastDate);
+                if (runStale) head.appendChild(runStale);
 
                 // Show delta vs previous run
                 if (idx > 0) {
@@ -3053,6 +3086,9 @@ var Modal = {
                     sotaBadge.textContent = 'SOTA';
                     right.appendChild(sotaBadge);
                 }
+
+                var rowStale = Modal._makeStaleBadge(item.score);
+                if (rowStale) right.appendChild(rowStale);
 
                 // Watchlist diff badge — highlight score changes since snapshot
                 if (snap && snap.scores && snap.scores[item.score.benchmark_id] != null) {

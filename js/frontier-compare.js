@@ -144,6 +144,118 @@ var FrontierCompare = {
     _benchmarks: [],
     _scores: [],
 
+    // ─── Model-class filter (Wave 6D1) ───
+    // Three toggleable classes mirroring the Agent menu taxonomy.
+    // State persists in LocalStorage under FC_CLASS_FILTER_KEY.
+    // Class colors match agent-charts.js: frontier=#60a5fa, agent-product=#fbbf24, edge-slm=#34d399.
+    FC_CLASS_FILTER_KEY: 'frontier-compare-class-filter',
+    _classFilter: { 'frontier': true, 'agent-product': true, 'edge-slm': true },
+
+    _loadClassFilter: function() {
+        try {
+            var raw = localStorage.getItem(this.FC_CLASS_FILTER_KEY);
+            if (!raw) return;
+            var parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === 'object') {
+                if (typeof parsed['frontier'] === 'boolean') this._classFilter['frontier'] = parsed['frontier'];
+                if (typeof parsed['agent-product'] === 'boolean') this._classFilter['agent-product'] = parsed['agent-product'];
+                if (typeof parsed['edge-slm'] === 'boolean') this._classFilter['edge-slm'] = parsed['edge-slm'];
+            }
+        } catch (e) { /* ignore corrupt state */ }
+    },
+
+    _saveClassFilter: function() {
+        try {
+            localStorage.setItem(this.FC_CLASS_FILTER_KEY, JSON.stringify(this._classFilter));
+        } catch (e) { /* ignore quota errors */ }
+    },
+
+    _modelClass: function(modelId) {
+        if (typeof Agent !== 'undefined') {
+            var ap = Agent._AGENT_PRODUCTS || [];
+            for (var i = 0; i < ap.length; i++) if (ap[i] === modelId) return 'agent-product';
+            var es = Agent._EDGE_SLMS || [];
+            for (var j = 0; j < es.length; j++) if (es[j] === modelId) return 'edge-slm';
+        }
+        return 'frontier';
+    },
+
+    // FRONTIER_MODELS list, filtered by the current class-filter toggles.
+    _filteredModels: function() {
+        var self = this;
+        return this.FRONTIER_MODELS.filter(function(mid) {
+            var k = self._modelClass(mid);
+            return self._classFilter[k] !== false;
+        });
+    },
+
+    _renderClassFilterUI: function() {
+        var host = document.getElementById('fc-class-filter');
+        if (!host) {
+            // Inject the host directly after the existing category controls (above heatmap).
+            var heatmap = document.getElementById('fc-heatmap');
+            if (!heatmap || !heatmap.parentNode) return;
+            host = document.createElement('div');
+            host.id = 'fc-class-filter';
+            host.className = 'flex gap-2 mb-3 items-center flex-wrap';
+            heatmap.parentNode.insertBefore(host, heatmap);
+        }
+        host.textContent = '';
+
+        var label = document.createElement('span');
+        label.className = 'text-xs text-gray-400 mr-1';
+        label.textContent = 'Model class:';
+        host.appendChild(label);
+
+        var classes = [
+            { key: 'frontier',      label: 'Frontier',      color: '#60a5fa' },
+            { key: 'agent-product', label: 'Agent-Product', color: '#fbbf24' },
+            { key: 'edge-slm',      label: 'Edge-SLM',      color: '#34d399' }
+        ];
+
+        var self = this;
+        classes.forEach(function(cls) {
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.setAttribute('role', 'switch');
+            var on = self._classFilter[cls.key] !== false;
+            btn.setAttribute('aria-checked', on ? 'true' : 'false');
+            btn.className = 'px-3 py-1 rounded-full text-xs font-medium border transition-colors';
+            btn.style.borderColor = cls.color;
+            if (on) {
+                btn.style.background = cls.color;
+                btn.style.color = '#0f172a';
+            } else {
+                btn.style.background = 'transparent';
+                btn.style.color = cls.color;
+                btn.style.opacity = '0.55';
+            }
+            btn.textContent = (on ? '✓ ' : '○ ') + cls.label;
+            btn.title = 'Toggle ' + cls.label + ' models';
+            btn.addEventListener('click', function() {
+                self._classFilter[cls.key] = !on;
+                // Guard: never let all three turn off (would render an empty heatmap).
+                var anyOn = ['frontier', 'agent-product', 'edge-slm'].some(function(k) {
+                    return self._classFilter[k] !== false;
+                });
+                if (!anyOn) {
+                    self._classFilter[cls.key] = true;
+                }
+                self._saveClassFilter();
+                // Re-render whole tab with current category.
+                var fcCat = document.getElementById('fc-category');
+                self.render(fcCat ? fcCat.value : 'all');
+            });
+            host.appendChild(btn);
+        });
+
+        var hint = document.createElement('span');
+        hint.className = 'text-xs text-gray-500 ml-2';
+        var visible = this._filteredModels().length;
+        hint.textContent = '(' + visible + ' / ' + this.FRONTIER_MODELS.length + ' models visible)';
+        host.appendChild(hint);
+    },
+
     // ─── Performance Suites (multi-table leaderboard, full coverage) ───
     // 8 thematic groupings, each with its own table. Surfaces the FULL set
     // of frontier-scored benchmarks (vs Heatmap's hand-curated CORE_BENCHMARKS).
@@ -267,6 +379,10 @@ var FrontierCompare = {
         this._benchmarks = App.data.benchmarks;
         this._scores = App.data.scores;
 
+        // Load persisted class-filter state once per render cycle.
+        this._loadClassFilter();
+        this._renderClassFilterUI();
+
         category = category || 'all';
         var benchIds = this._getBenchmarkIds(category);
         this._renderHeatmap(benchIds);
@@ -331,7 +447,7 @@ var FrontierCompare = {
         var allBenchmarks = (typeof App !== 'undefined' && App.data && App.data.benchmarks) || this._benchmarks || [];
 
         var points = [];
-        var ids = (this.FRONTIER_MODELS || []).slice();
+        var ids = this._filteredModels();
         ids.forEach(function(mid) {
             var p = pricing[mid] || {};
             var ent = enrichment[mid] || {};
@@ -490,7 +606,7 @@ var FrontierCompare = {
         el.textContent = '';
         var self = this;
 
-        var rowIds = this.FRONTIER_MODELS.filter(function(mid) {
+        var rowIds = this._filteredModels().filter(function(mid) {
             return self._models.some(function(m) { return m.id === mid; });
         });
 
@@ -773,8 +889,8 @@ var FrontierCompare = {
         var scoreMap = this._getScoreMap();
         var self = this;
 
-        // Filter to models that have at least one score
-        var modelIds = this.FRONTIER_MODELS.filter(function(mid) {
+        // Filter to models that have at least one score (and pass class-filter)
+        var modelIds = this._filteredModels().filter(function(mid) {
             return benchIds.some(function(bid) { return scoreMap[mid + '|' + bid] !== undefined; });
         });
 
@@ -935,15 +1051,16 @@ var FrontierCompare = {
         var self = this;
         var scoreMap = this._getScoreMap();
 
-        // Pick top models with most coverage for radar (max 6)
+        // Pick top models with most coverage for radar (max 6) — class-filter applied
         var coverage = {};
-        this.FRONTIER_MODELS.forEach(function(mid) {
+        var filtered = this._filteredModels();
+        filtered.forEach(function(mid) {
             var cnt = 0;
             benchIds.forEach(function(bid) { if (scoreMap[mid + '|' + bid] !== undefined) cnt++; });
             coverage[mid] = cnt;
         });
 
-        var topModels = this.FRONTIER_MODELS.slice().sort(function(a, b) {
+        var topModels = filtered.slice().sort(function(a, b) {
             return coverage[b] - coverage[a];
         }).filter(function(mid) { return coverage[mid] >= 3; }).slice(0, 6);
 
@@ -1016,9 +1133,9 @@ var FrontierCompare = {
             primaryBench = defaults[category] || benchIds[0];
         }
 
-        // Get all models with this benchmark score, sorted desc
+        // Get all models with this benchmark score, sorted desc (class-filter applied)
         var entries = [];
-        this.FRONTIER_MODELS.forEach(function(mid) {
+        this._filteredModels().forEach(function(mid) {
             var v = scoreMap[mid + '|' + primaryBench];
             if (v !== undefined) entries.push({ mid: mid, val: v });
         });

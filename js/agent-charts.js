@@ -141,7 +141,30 @@ var AgentCharts = (function() {
   // inside #agent-charts so widgets ship independently and any one being
   // unimplemented is a no-op (just empty section).
   // ======================================================================
+  // Inject responsive + reduced-motion CSS once. Mobile (≤768px) shrinks the
+  // 420px chart heights to 320px so they're readable on phones; users with
+  // prefers-reduced-motion get ECharts animation suppressed so they don't get
+  // a wave of bouncing bars on tab open.
+  function _ensureAgentChartsStyle() {
+    if (document.getElementById('agent-charts-style')) return;
+    var s = document.createElement('style');
+    s.id = 'agent-charts-style';
+    s.textContent = [
+      '@media (max-width: 768px) {',
+      '  .agent-chart-mount { height: 320px !important; }',
+      '  .agent-chart-mount canvas { max-width: 100% !important; }',
+      '  #agent-charts h2 { font-size: 1rem !important; }',
+      '}',
+      '@media (prefers-reduced-motion: reduce) {',
+      '  .agent-chart-mount * { animation-duration: 0.001s !important; transition-duration: 0.001s !important; }',
+      '}',
+      '.agent-chart-mount:focus { outline: 2px solid #60a5fa; outline-offset: 2px; }'
+    ].join('\n');
+    document.head.appendChild(s);
+  }
+
   function _ensureMountPoint(id, title, hint) {
+    _ensureAgentChartsStyle();
     var host = document.getElementById('agent-charts');
     if (!host) return null;
     var existing = document.getElementById(id + '-section');
@@ -178,8 +201,14 @@ var AgentCharts = (function() {
 
     var chart = document.createElement('div');
     chart.id = id;
-    chart.className = 'w-full';
+    chart.className = 'w-full agent-chart-mount';
     chart.style.height = '420px';
+    // a11y: ECharts renders into a canvas with no semantic structure.
+    // role + aria-label gives screen readers something to announce when the
+    // chart container is focused or summarized in the page outline.
+    chart.setAttribute('role', 'img');
+    chart.setAttribute('aria-label', 'Chart: ' + title + (hint ? ' — ' + hint : ''));
+    chart.setAttribute('tabindex', '0');
     section.appendChild(chart);
 
     host.appendChild(section);
@@ -2895,13 +2924,20 @@ var AgentCharts = (function() {
   });
 
   var _WIZARD_SLIDERS = [
-    { key: 'coding',           label: 'Coding' },
-    { key: 'web-browse',       label: 'Web & Browsing' },
-    { key: 'os-computer',      label: 'OS / Computer Use' },
-    { key: 'tool-use',         label: 'Tool Use & Function Calling' },
-    { key: 'mcp',              label: 'MCP' },
-    { key: 'customer-service', label: 'Customer Service' },
-    { key: 'safety',           label: 'Safety' }
+    { key: 'coding',           label: 'Coding',
+      tooltip: 'SWE-Bench Verified, SWE-Bench Pro, Aider Polyglot, USACO. 코드 생성·디버깅·복잡한 PR 작업 능력.' },
+    { key: 'web-browse',       label: 'Web & Browsing',
+      tooltip: 'BrowseComp, Online-Mind2Web, VisualWebArena, WebShop. 실제 웹사이트 탐색·검색·정보 수집 능력.' },
+    { key: 'os-computer',      label: 'OS / Computer Use',
+      tooltip: 'OSWorld Verified, ScreenSpot-Pro, OSCopilot-GAIA. GUI 클릭, 데스크톱 자동화, OS 환경 조작.' },
+    { key: 'tool-use',         label: 'Tool Use & Function Calling',
+      tooltip: 'BFCL v4, GAIA, Tau2-Bench, AppWorld. API 호출, 함수 시그니처 매칭, 다단계 도구 조합.' },
+    { key: 'mcp',              label: 'MCP',
+      tooltip: 'Model Context Protocol — Anthropic 표준. 툴/리소스/프롬프트 등 컨텍스트 인터페이스 호환성.' },
+    { key: 'customer-service', label: 'Customer Service',
+      tooltip: 'Tau2-Bench (Retail/Telecom/Airline). 멀티턴 대화, 정책 준수, 사용자 의도 파악.' },
+    { key: 'safety',           label: 'Safety',
+      tooltip: 'AgentDojo (lower=better ASR), Apollo scheming oversight. 프롬프트 인젝션·탈옥·은폐 시도 저항.' }
   ];
 
   // Mean of _normalizedScore() across the category's benchmarks for a model.
@@ -2998,9 +3034,19 @@ var AgentCharts = (function() {
       row.className = 'flex items-center gap-2 text-xs';
 
       var lab = document.createElement('label');
-      lab.className = 'text-gray-300 w-44 shrink-0';
-      lab.textContent = s.label;
+      lab.className = 'text-gray-300 w-44 shrink-0 flex items-center gap-1';
       lab.htmlFor = 'wizard-slider-' + s.key;
+      var labText = document.createElement('span');
+      labText.textContent = s.label;
+      lab.appendChild(labText);
+      if (s.tooltip) {
+        var info = document.createElement('span');
+        info.className = 'text-gray-500 cursor-help text-[10px]';
+        info.textContent = 'ⓘ';
+        info.title = s.tooltip;
+        info.setAttribute('aria-label', s.tooltip);
+        lab.appendChild(info);
+      }
       row.appendChild(lab);
 
       var input = document.createElement('input');
@@ -3822,16 +3868,961 @@ var AgentCharts = (function() {
   }
 
   // ======================================================================
+  // Widget 15 — Vendor × Benchmark Coverage Matrix (Reporting Gap View)
+  //
+  // Rows: top 12 vendors by total scored-model count across the 12 core
+  //       agentic benchmarks (_HEATMAP_BENCHMARKS).
+  // Cols: the 12 core agentic benchmarks.
+  // Cell value: NUMBER of distinct scored models from that vendor on that
+  //             benchmark (NOT the score itself). Empty cells render as
+  //             '-' so reporting gaps stand out.
+  // Color scale: light gray (1) → blue (mid) → bright blue (5+).
+  //              0/empty cells use ECharts '-' convention (transparent).
+  // Tooltip: lists which models from that vendor reported scores.
+  //
+  // Complements Widget 2 (model × benchmark heatmap): this is the
+  // "vendor accountability" view — useful for spotting reporting gaps
+  // (e.g., "Anthropic doesn't report on tau2_bench").
+  // ======================================================================
+  function _topVendors(limit) {
+    // Count distinct (vendor, model_id) pairs scored on _HEATMAP_BENCHMARKS,
+    // then rank canonical vendors by total scored-model count desc.
+    if (!(window.App && App.data && App.data.scores)) return [];
+    var BSET = {};
+    for (var b = 0; b < _HEATMAP_BENCHMARKS.length; b++) BSET[_HEATMAP_BENCHMARKS[b]] = true;
+
+    var vendorModels = {}; // vendor -> { modelId: true }
+    var scores = App.data.scores;
+    for (var i = 0; i < scores.length; i++) {
+      var s = scores[i];
+      if (!s || !BSET[s.benchmark_id]) continue;
+      if (typeof s.value !== 'number' || isNaN(s.value)) continue;
+      var canon = _canonVendor(_vendorOf(s.model_id));
+      if (!canon) continue;
+      if (!vendorModels[canon]) vendorModels[canon] = {};
+      vendorModels[canon][s.model_id] = true;
+    }
+    var arr = [];
+    for (var v in vendorModels) {
+      if (!Object.prototype.hasOwnProperty.call(vendorModels, v)) continue;
+      arr.push({ vendor: v, count: Object.keys(vendorModels[v]).length });
+    }
+    arr.sort(function(a, b) {
+      if (b.count !== a.count) return b.count - a.count;
+      return a.vendor.localeCompare(b.vendor);
+    });
+    var n = (typeof limit === 'number' && limit > 0) ? limit : 12;
+    return arr.slice(0, n).map(function(x) { return x.vendor; });
+  }
+
+  function renderVendorCoverageMatrix() {
+    _ensureMountPoint('agent-chart-vendor-coverage',
+      'Vendor × Benchmark Coverage Matrix — Reporting Gap View',
+      'Shows how many scored models each vendor has on each agentic benchmark. White cells = no reported scores from that vendor.');
+    if (typeof echarts === 'undefined') return;
+    if (!(window.App && App.data && App.data.scores && App.data.models)) return;
+
+    var chart = Charts._getOrCreate('agent-chart-vendor-coverage');
+    if (!chart) return;
+
+    var topVendors = _topVendors(12);
+    if (!topVendors.length) {
+      chart.setOption({
+        title: {
+          text: 'No vendor coverage data available yet for the curated benchmark set.',
+          left: 'center', top: 'middle',
+          textStyle: { color: '#9ca3af', fontSize: 12, fontWeight: 'normal' }
+        }
+      }, true);
+      return;
+    }
+
+    var vendorIndex = {};
+    for (var vi = 0; vi < topVendors.length; vi++) vendorIndex[topVendors[vi]] = vi;
+
+    // Build cell -> { count, models: [name,...] }.
+    // cellKey = bIdx + ':' + vIdx
+    var cellModels = {};
+    var BSET = {};
+    for (var b = 0; b < _HEATMAP_BENCHMARKS.length; b++) BSET[_HEATMAP_BENCHMARKS[b]] = true;
+
+    var scores = App.data.scores;
+    for (var si = 0; si < scores.length; si++) {
+      var s = scores[si];
+      if (!s || !BSET[s.benchmark_id]) continue;
+      if (typeof s.value !== 'number' || isNaN(s.value)) continue;
+      var canon = _canonVendor(_vendorOf(s.model_id));
+      if (!(canon in vendorIndex)) continue;
+      var bIdx = -1;
+      for (var bi2 = 0; bi2 < _HEATMAP_BENCHMARKS.length; bi2++) {
+        if (_HEATMAP_BENCHMARKS[bi2] === s.benchmark_id) { bIdx = bi2; break; }
+      }
+      if (bIdx < 0) continue;
+      var vIdx = vendorIndex[canon];
+      var key = bIdx + ':' + vIdx;
+      if (!cellModels[key]) cellModels[key] = {};
+      cellModels[key][s.model_id] = true;
+    }
+
+    // Build heatmap data array. Use '-' (ECharts convention) for empty cells
+    // so they render transparent and gaps stand out.
+    var data = [];
+    var maxCount = 0;
+    for (var c = 0; c < _HEATMAP_BENCHMARKS.length; c++) {
+      for (var r = 0; r < topVendors.length; r++) {
+        var ck = c + ':' + r;
+        if (cellModels[ck]) {
+          var n = Object.keys(cellModels[ck]).length;
+          if (n > maxCount) maxCount = n;
+          data.push([c, r, n]);
+        } else {
+          data.push([c, r, '-']);
+        }
+      }
+    }
+    if (maxCount < 1) maxCount = 1;
+
+    var xLabels = _HEATMAP_BENCHMARKS.map(function(bid) { return _benchmarkShortName(bid); });
+
+    var option = {
+      backgroundColor: 'transparent',
+      grid: { left: 160, right: 30, top: 30, bottom: 90, containLabel: false },
+      tooltip: {
+        position: 'top',
+        backgroundColor: 'rgba(17, 24, 39, 0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb', fontSize: 12 },
+        formatter: function(p) {
+          if (!p || !p.value) return '';
+          var col = p.value[0], row = p.value[1], val = p.value[2];
+          var vendor = topVendors[row];
+          var bid = _HEATMAP_BENCHMARKS[col];
+          var benchLine = _benchmarkShortName(bid);
+          var head = '<b>' + vendor + '</b><br>' + benchLine;
+          if (val === '-' || !cellModels[col + ':' + row]) {
+            return head + '<br><span style="color:#fca5a5">No reported scores</span>';
+          }
+          var ids = Object.keys(cellModels[col + ':' + row]);
+          var lines = [head, '<span style="color:#9ca3af">' + ids.length + ' scored model' + (ids.length === 1 ? '' : 's') + ':</span>'];
+          var max = Math.min(ids.length, 6);
+          for (var i = 0; i < max; i++) {
+            lines.push('• ' + _modelDisplayName(ids[i]));
+          }
+          if (ids.length > max) lines.push('<span style="color:#6b7280">…and ' + (ids.length - max) + ' more</span>');
+          return lines.join('<br>');
+        }
+      },
+      xAxis: {
+        type: 'category',
+        data: xLabels,
+        splitArea: { show: true },
+        axisLabel: { rotate: 30, fontSize: 10, color: '#d1d5db', interval: 0 },
+        axisLine: { lineStyle: { color: '#374151' } },
+        axisTick: { show: false }
+      },
+      yAxis: {
+        type: 'category',
+        data: topVendors,
+        inverse: true,
+        splitArea: { show: true },
+        axisLabel: { fontSize: 11, color: '#d1d5db' },
+        axisLine: { lineStyle: { color: '#374151' } },
+        axisTick: { show: false }
+      },
+      visualMap: {
+        min: 1, max: maxCount, calculable: true,
+        orient: 'horizontal', left: 'center', bottom: 8,
+        inRange: { color: ['#e5e7eb', '#93c5fd', '#3b82f6', '#1d4ed8', '#1e3a8a'] },
+        textStyle: { color: '#9ca3af', fontSize: 10 },
+        text: [String(maxCount) + '+ models', '1 model']
+      },
+      series: [{
+        name: 'Scored Models',
+        type: 'heatmap',
+        data: data,
+        label: {
+          show: true, fontSize: 10, color: '#0f172a', fontWeight: 600,
+          formatter: function(p) {
+            if (!p || !p.value || p.value[2] === '-') return '';
+            return p.value[2];
+          }
+        },
+        emphasis: {
+          itemStyle: {
+            borderColor: '#fff', borderWidth: 1,
+            shadowBlur: 8, shadowColor: 'rgba(96, 165, 250, 0.5)'
+          }
+        },
+        progressive: 0
+      }]
+    };
+
+    chart.setOption(_applyToolbox(option), true);
+  }
+
+  // ======================================================================
+  // Widget 16 (Wave 6C2) — Score Trajectory Replay (animated)
+  //
+  // Animates how SOTA scores have evolved over time on a chosen agentic
+  // benchmark. Each ECharts timeline step = one snapshot date; each step's
+  // option re-renders the scatter of (model, score) pairs observed on or
+  // before that date. Press the built-in timeline play button to scrub
+  // through history and watch the leaderboard reshuffle.
+  //
+  // Data source: data/scores/history/<date>.json snapshots (same source as
+  // Widget 5 SOTA Timeline). Top-10 holders per benchmark are tracked.
+  // Falls back to "Insufficient history" if fewer than 5 distinct dates
+  // contain scores for the chosen benchmark.
+  // ======================================================================
+  function _drawTrajectoryReplay(bid) {
+    var mountEl = document.getElementById('agent-chart-trajectory-replay');
+    if (!mountEl) return;
+    if (typeof echarts === 'undefined') return;
+
+    _loadHistoryIndex().then(function(idx) {
+      var dates = (idx && idx.dates) || [];
+      if (dates.length < 5) {
+        _emptyStateMessage(mountEl, 'Insufficient history — need at least 5 snapshot dates for animation.');
+        return;
+      }
+
+      Promise.all(dates.map(_loadSnapshot)).then(function(snapshots) {
+        // Build per-date best-score-per-model map for the chosen benchmark.
+        // datesWithData = subset of dates where the benchmark has at least
+        // one row (used to gate the "insufficient history" message).
+        var datesWithData = [];
+        var perDate = []; // perDate[i] = { modelId: bestValueOnOrBeforeDate }
+        var cumulative = {}; // running best-per-model across all snapshots so far
+        for (var i = 0; i < dates.length; i++) {
+          var rows = snapshots[i] || [];
+          var hadRow = false;
+          for (var j = 0; j < rows.length; j++) {
+            var r = rows[j];
+            if (!r || r.benchmark_id !== bid) continue;
+            if (typeof r.value !== 'number' || isNaN(r.value)) continue;
+            hadRow = true;
+            var prev = cumulative[r.model_id];
+            if (prev === undefined || r.value > prev) {
+              cumulative[r.model_id] = r.value;
+            }
+          }
+          if (hadRow) datesWithData.push(dates[i]);
+          // Snapshot a copy of the current cumulative state for this frame.
+          var snap = {};
+          for (var mid in cumulative) {
+            if (Object.prototype.hasOwnProperty.call(cumulative, mid)) {
+              snap[mid] = cumulative[mid];
+            }
+          }
+          perDate.push(snap);
+        }
+
+        if (datesWithData.length < 5) {
+          _emptyStateMessage(mountEl,
+            'Insufficient history for ' + _benchmarkLabel(bid) +
+            ' — only ' + datesWithData.length + ' date(s) have scores (need 5+).');
+          return;
+        }
+
+        // Determine final-frame top-10 model ids — these are the bubbles we
+        // animate across all frames. Models that don't yet have a score on
+        // an earlier frame are simply absent from that frame's data.
+        var finalSnap = perDate[perDate.length - 1];
+        var finalArr = [];
+        for (var fmid in finalSnap) {
+          if (Object.prototype.hasOwnProperty.call(finalSnap, fmid)) {
+            finalArr.push({ model_id: fmid, value: finalSnap[fmid] });
+          }
+        }
+        finalArr.sort(function(a, b) { return b.value - a.value; });
+        var top10 = finalArr.slice(0, 10);
+        var top10Ids = top10.map(function(t) { return t.model_id; });
+        var top10Set = {};
+        for (var ti = 0; ti < top10Ids.length; ti++) top10Set[top10Ids[ti]] = true;
+
+        // Build keyframe options — one per snapshot date.
+        var options = [];
+        for (var d = 0; d < dates.length; d++) {
+          var snapD = perDate[d];
+          var scatterPoints = [];
+          for (var k = 0; k < top10Ids.length; k++) {
+            var midK = top10Ids[k];
+            if (snapD[midK] === undefined) continue;
+            scatterPoints.push({
+              value: [k, snapD[midK]],
+              name: _modelDisplayName(midK),
+              itemStyle: { color: _modelBandColor(midK) }
+            });
+          }
+          options.push({
+            title: {
+              text: 'Frame: ' + dates[d],
+              left: 'center', top: 6,
+              textStyle: { color: '#9ca3af', fontSize: 11, fontWeight: 'normal' }
+            },
+            series: [{
+              name: 'Score',
+              type: 'scatter',
+              symbolSize: function(v) {
+                // Size = sqrt(value) so high scores stand out without dwarfing low ones.
+                var s = (v && typeof v[1] === 'number') ? v[1] : 0;
+                return Math.max(10, Math.min(38, Math.sqrt(s) * 4.5));
+              },
+              data: scatterPoints,
+              label: {
+                show: true,
+                position: 'top',
+                color: '#e5e7eb',
+                fontSize: 10,
+                formatter: function(p) { return p.name || ''; },
+                backgroundColor: 'rgba(17,24,39,0.7)',
+                padding: [2, 4],
+                borderRadius: 3
+              },
+              emphasis: { focus: 'series' }
+            }]
+          });
+        }
+
+        // Base option = axes + timeline definition. Each option in `options`
+        // overrides only the title + series for that frame.
+        var xLabels = top10Ids.map(function(mid) { return _modelDisplayName(mid); });
+
+        if (!Charts._instances || !Charts._instances['agent-chart-trajectory-replay']) {
+          while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        }
+        var chart = Charts._getOrCreate('agent-chart-trajectory-replay');
+        if (!chart) return;
+
+        // _applyToolbox attaches `toolbox` at the top of an option object,
+        // but ECharts timeline mode reads toolbox from `baseOption`. So we
+        // run _applyToolbox on a stub, then move the toolbox config inside.
+        var _stub = _applyToolbox({});
+        var baseOption = {
+          backgroundColor: 'transparent',
+          baseOption: {
+            toolbox: _stub.toolbox,
+            timeline: {
+              axisType: 'category',
+              autoPlay: false,
+              playInterval: 1000,
+              loop: false,
+              currentIndex: dates.length - 1,
+              data: dates,
+              label: { color: '#9ca3af', fontSize: 10 },
+              lineStyle: { color: '#374151' },
+              checkpointStyle: { color: '#60a5fa', borderColor: '#1e3a8a' },
+              controlStyle: {
+                color: '#9ca3af',
+                borderColor: '#9ca3af'
+              },
+              emphasis: {
+                label: { color: '#e5e7eb' },
+                controlStyle: { color: '#60a5fa', borderColor: '#60a5fa' }
+              },
+              bottom: 4
+            },
+            grid: { left: 64, right: 24, top: 56, bottom: 110 },
+            tooltip: {
+              trigger: 'item',
+              backgroundColor: 'rgba(17,24,39,0.95)',
+              borderColor: '#374151',
+              textStyle: { color: '#e5e7eb' },
+              formatter: function(p) {
+                if (!p || !p.value) return '';
+                var v = p.value[1];
+                return '<b>' + p.name + '</b><br>' +
+                  _benchmarkLabel(bid) + ': ' +
+                  (typeof v === 'number' ? v.toFixed(1) : v);
+              }
+            },
+            xAxis: {
+              type: 'category',
+              data: xLabels,
+              axisLabel: { color: '#9ca3af', rotate: 35, fontSize: 10, interval: 0 },
+              axisLine: { lineStyle: { color: '#4b5563' } },
+              splitLine: { show: false }
+            },
+            yAxis: {
+              type: 'value',
+              name: 'Score (' + _benchmarkLabel(bid) + ')',
+              nameLocation: 'middle',
+              nameGap: 46,
+              nameTextStyle: { color: '#9ca3af' },
+              min: 0,
+              axisLabel: { color: '#9ca3af' },
+              axisLine: { lineStyle: { color: '#4b5563' } },
+              splitLine: { lineStyle: { color: '#1f2937' } }
+            }
+          },
+          options: options
+        };
+
+        chart.setOption(baseOption, true);
+      });
+    });
+  }
+
+  function renderTrajectoryReplay() {
+    var section = _ensureMountPoint('agent-chart-trajectory-replay',
+      'Score Trajectory Replay — Watch SOTA Evolve',
+      'Animates score-over-time for top models on the selected benchmark. Use the play button to scrub through history.');
+    if (!section) return;
+    var savedBid = _loadState('trajectory-replay-bid', 'swe_bench_verified');
+    _ensureBenchmarkSelect(section, 'agent-chart-trajectory-replay', savedBid,
+      function(newBid) {
+        _saveState('trajectory-replay-bid', newBid);
+        _drawTrajectoryReplay(newBid);
+      });
+    var sel = document.getElementById('agent-chart-trajectory-replay-select');
+    var bid = (sel && sel.value) || savedBid;
+    _drawTrajectoryReplay(bid);
+  }
+
+  // ======================================================================
+  // Widget 19 (Wave 6C5) — Edge SLM Utility Scatter (size × battery × score)
+  //
+  // Plots on-device SLMs as bubbles to help users pick the right model
+  // for phone constraints. X = model size on disk (GB, log scale), Y =
+  // battery % drained per 25 conversations (lower is better — flagged in
+  // the axis label). Bubble color = vendor, bubble size = composite agent
+  // score (small fallback if not in _composite()). Source citation URL
+  // surfaced on hover. Battery values are sparse in the dataset; missing
+  // ones are estimated from size_gb (calibrated against gemma-3-270m's
+  // published 0.75% / 25 convos at 0.5 GB → ~1.5%/GB) and clearly tagged
+  // as estimates in the tooltip.
+  //
+  // Fetches data/edge_models_utility.json directly because UTILITY_METRICS
+  // is private inside the Agent IIFE. Result cached on
+  // AgentCharts._edgeUtilityPromise.
+  // ======================================================================
+  function _edgeVendorColor(vendor) {
+    var map = {
+      'apple':     '#f472b6', // pink-400
+      'google':    '#34d399', // emerald-400
+      'meta':      '#60a5fa', // blue-400
+      'microsoft': '#fbbf24', // amber-400
+      'openai':    '#a78bfa', // violet-400
+      'anthropic': '#f87171'  // red-400
+    };
+    return map[(vendor || '').toLowerCase()] || '#9ca3af'; // gray-400 fallback
+  }
+
+  function _edgeVendorOf(modelId) {
+    if (!modelId) return '';
+    var slash = modelId.indexOf('/');
+    return slash > 0 ? modelId.slice(0, slash) : modelId;
+  }
+
+  function _edgeModelShortName(modelId) {
+    var registered = _modelDisplayName(modelId);
+    if (registered && registered !== modelId) return registered;
+    // No registered model record — derive a readable label from the id.
+    var slash = modelId.indexOf('/');
+    return slash > 0 ? modelId.slice(slash + 1) : modelId;
+  }
+
+  function renderEdgeUtilityScatter() {
+    _ensureMountPoint('agent-chart-edge-utility',
+      'Edge SLM Utility — Size × Battery × Capability',
+      'On-device models plotted by file size (X) and battery cost (Y). Bubble size = composite agent score. Source citations on hover.');
+    if (typeof echarts === 'undefined') return;
+
+    function getEdgeUtility() {
+      AgentCharts._edgeUtilityPromise = AgentCharts._edgeUtilityPromise || (function() {
+        var base = (window.location.pathname.indexOf('/dashboard/') !== -1) ? '../data' : 'data';
+        return fetch(base + '/edge_models_utility.json')
+          .then(function(r) { return r.ok ? r.json() : { models: {} }; })
+          .catch(function() { return { models: {} }; });
+      })();
+      return AgentCharts._edgeUtilityPromise;
+    }
+
+    getEdgeUtility().then(function(data) {
+      var mountEl = document.getElementById('agent-chart-edge-utility');
+      if (!mountEl) return;
+
+      var models = (data && data.models) || {};
+      var keys = Object.keys(models);
+
+      function _showEmpty(message) {
+        if (Charts && Charts._instances && Charts._instances['agent-chart-edge-utility']) {
+          try { Charts._instances['agent-chart-edge-utility'].dispose(); } catch (e) {}
+          delete Charts._instances['agent-chart-edge-utility'];
+        }
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = message;
+        mountEl.appendChild(msg);
+      }
+
+      if (!keys.length) { _showEmpty('Edge utility data unavailable'); return; }
+
+      // Composite-score lookup so bubble size can encode agentic capability.
+      var compositeMap = {};
+      var rows = _composite();
+      for (var ci = 0; ci < rows.length; ci++) compositeMap[rows[ci].model_id] = rows[ci].agent_score;
+
+      // Calibration: gemma-3-270m → 0.5 GB consumes 0.75% / 25 convos →
+      // ~1.5 %/GB. Use this when battery_pct is missing.
+      var BATTERY_PER_GB_ESTIMATE = 1.5;
+
+      // Group points by vendor for legend coloring.
+      var byVendor = {};
+      var plotted = 0;
+
+      for (var i = 0; i < keys.length; i++) {
+        var mid = keys[i];
+        var entry = models[mid] || {};
+        var sizeGb = entry.size_gb;
+        if (typeof sizeGb !== 'number' || sizeGb <= 0) continue; // X-axis required
+
+        var vendor = _edgeVendorOf(mid);
+        var battery = entry.battery_pct_per_25_conversations;
+        var batteryEstimated = false;
+        if (typeof battery !== 'number') {
+          battery = sizeGb * BATTERY_PER_GB_ESTIMATE;
+          batteryEstimated = true;
+        }
+
+        var score = compositeMap[mid];
+        var hasScore = typeof score === 'number';
+        // Bubble size: 10..40 for scored models, 8 fallback for unscored.
+        var symbolSize = hasScore ? Math.max(10, Math.min(40, 8 + score * 0.35)) : 8;
+
+        var label = _edgeModelShortName(mid);
+        var point = {
+          name: label,
+          value: [sizeGb, battery, hasScore ? score : null],
+          symbolSize: symbolSize,
+          label: {
+            show: true,
+            position: 'top',
+            distance: 6,
+            color: '#e5e7eb',
+            backgroundColor: 'rgba(17,24,39,0.85)',
+            borderColor: '#4b5563',
+            borderWidth: 1,
+            borderRadius: 3,
+            padding: [2, 4],
+            fontSize: 10,
+            formatter: label
+          },
+          _meta: {
+            model_id: mid,
+            vendor: vendor,
+            size_gb: sizeGb,
+            battery_pct: battery,
+            battery_estimated: batteryEstimated,
+            agent_score: hasScore ? score : null,
+            citation: entry._source || ''
+          }
+        };
+
+        if (!byVendor[vendor]) byVendor[vendor] = [];
+        byVendor[vendor].push(point);
+        plotted++;
+      }
+
+      if (!plotted) { _showEmpty('Edge utility data unavailable'); return; }
+
+      var chart = Charts._getOrCreate('agent-chart-edge-utility');
+      if (!chart) return;
+
+      var vendorNames = Object.keys(byVendor).sort();
+      var series = vendorNames.map(function(v) {
+        return {
+          name: v.charAt(0).toUpperCase() + v.slice(1),
+          type: 'scatter',
+          data: byVendor[v],
+          itemStyle: { color: _edgeVendorColor(v), opacity: 0.85 },
+          emphasis: { focus: 'series' }
+        };
+      });
+
+      var opt = {
+        backgroundColor: 'transparent',
+        grid: { left: 70, right: 24, top: 30, bottom: 70 },
+        legend: {
+          bottom: 0,
+          textStyle: { color: '#d1d5db' },
+          data: series.map(function(s) { return s.name; })
+        },
+        tooltip: {
+          trigger: 'item',
+          backgroundColor: 'rgba(17,24,39,0.95)',
+          borderColor: '#374151',
+          textStyle: { color: '#e5e7eb' },
+          formatter: function(params) {
+            var m = params.data && params.data._meta;
+            if (!m) return params.name;
+            var batteryStr = m.battery_pct.toFixed(2) + '% / 25 convos'
+              + (m.battery_estimated ? ' (est. from size)' : '');
+            var scoreStr = (m.agent_score == null) ? 'n/a (unscored)' : m.agent_score.toFixed(1);
+            var citation = m.citation
+              ? '<a href="' + m.citation + '" target="_blank" rel="noopener" style="color:#60a5fa">source</a>'
+              : '—';
+            var lines = [
+              '<b>' + params.name + '</b>',
+              'vendor: ' + (m.vendor || '—'),
+              'size: ' + m.size_gb.toFixed(2) + ' GB',
+              'battery: ' + batteryStr,
+              'agent score: ' + scoreStr,
+              'citation: ' + citation
+            ];
+            return lines.join('<br>');
+          }
+        },
+        xAxis: {
+          type: 'log',
+          name: 'Model size (GB, log)',
+          nameLocation: 'middle',
+          nameGap: 30,
+          nameTextStyle: { color: '#9ca3af' },
+          axisLabel: {
+            color: '#9ca3af',
+            formatter: function(v) { return v + ' GB'; }
+          },
+          axisLine: { lineStyle: { color: '#4b5563' } },
+          splitLine: { lineStyle: { color: '#1f2937' } },
+          min: 0.3,
+          max: 30
+        },
+        yAxis: {
+          type: 'value',
+          name: 'Battery % / 25 convos (lower is better)',
+          nameLocation: 'middle',
+          nameGap: 48,
+          nameTextStyle: { color: '#9ca3af' },
+          min: 0,
+          axisLabel: {
+            color: '#9ca3af',
+            formatter: function(v) { return v.toFixed(1) + '%'; }
+          },
+          axisLine: { lineStyle: { color: '#4b5563' } },
+          splitLine: { lineStyle: { color: '#1f2937' } }
+        },
+        series: series,
+        graphic: [{
+          type: 'text',
+          left: 8,
+          bottom: 24,
+          style: {
+            text: 'Bubble size = composite agent score · battery values flagged "(est.)" derived from size × 1.5 %/GB',
+            fill: '#9ca3af',
+            fontSize: 10,
+            fontStyle: 'italic'
+          }
+        }]
+      };
+
+      chart.setOption(_applyToolbox(opt), true);
+    });
+  }
+
+  // ======================================================================
+  // Widget 17 (Wave 6C3) — Multi-Source Confidence Intervals
+  //
+  // For (model, benchmark) pairs where the same pair appears across MULTIPLE
+  // independent source URLs (current scores + history snapshots), compute the
+  // min/max/median range. Widest-range pairs surface the most-disputed scores —
+  // i.e., where vendor self-reports diverge from third-party leaderboards.
+  //
+  // Render as a horizontal dumbbell:
+  //   - line connector from min → max
+  //   - scatter dot at min (red), max (green), median (gray diamond)
+  // Top 20 pairs by range desc; tooltip lists every source with its value.
+  // Empty-state below 5 pairs prints an explanatory message instead.
+  // ======================================================================
+  function _confidenceSourceUrl(score) {
+    if (!score) return '';
+    var src = score.source;
+    if (typeof src === 'string') return src;
+    if (src && typeof src === 'object') return src.url || src.citation || '';
+    return score.source_url || score.url || '';
+  }
+
+  function _collectMultiSourcePairs() {
+    if (!(window.App && App.data && App.data.scores)) return [];
+    // Bucket all observations by "model|benchmark"; each entry is {value, url, date}.
+    var groups = {};
+    function _ingest(arr) {
+      if (!arr || !arr.length) return;
+      for (var i = 0; i < arr.length; i++) {
+        var s = arr[i];
+        if (!s || !s.model_id || !s.benchmark_id) continue;
+        var v = (typeof s.value === 'number') ? s.value : parseFloat(s.value);
+        if (!isFinite(v)) continue;
+        var url = _confidenceSourceUrl(s);
+        var key = s.model_id + '|' + s.benchmark_id;
+        if (!groups[key]) groups[key] = [];
+        groups[key].push({ value: v, url: url || '(unknown)', date: s.collected_at || '' });
+      }
+    }
+    _ingest(App.data.scores);
+    if (App.data.history && typeof App.data.history === 'object') {
+      for (var d in App.data.history) {
+        if (!Object.prototype.hasOwnProperty.call(App.data.history, d)) continue;
+        _ingest(App.data.history[d]);
+      }
+    }
+
+    var pairs = [];
+    for (var k in groups) {
+      if (!Object.prototype.hasOwnProperty.call(groups, k)) continue;
+      var obs = groups[k];
+      // Distinct URLs (excluding empty/unknown placeholders).
+      var urlSet = {};
+      for (var oi = 0; oi < obs.length; oi++) {
+        var u = obs[oi].url;
+        if (u && u !== '(unknown)') urlSet[u] = true;
+      }
+      var urlCount = 0;
+      for (var uk in urlSet) {
+        if (Object.prototype.hasOwnProperty.call(urlSet, uk)) urlCount++;
+      }
+      if (urlCount < 2) continue;
+
+      // Per-URL collapse: keep one observation per source URL (latest by date).
+      // Avoids history snapshots inflating "agreement" via duplicate rows from
+      // the same upstream URL re-ingested across dates.
+      var bySource = {};
+      for (var oj = 0; oj < obs.length; oj++) {
+        var ob = obs[oj];
+        if (!ob.url || ob.url === '(unknown)') continue;
+        var prev = bySource[ob.url];
+        if (!prev || (ob.date && ob.date > prev.date)) {
+          bySource[ob.url] = ob;
+        }
+      }
+      var perSource = [];
+      for (var sk in bySource) {
+        if (Object.prototype.hasOwnProperty.call(bySource, sk)) perSource.push(bySource[sk]);
+      }
+      if (perSource.length < 2) continue;
+
+      var vals = perSource.map(function(o) { return o.value; }).sort(function(a, b) { return a - b; });
+      var min = vals[0];
+      var max = vals[vals.length - 1];
+      var range = max - min;
+      if (range < 1.0) continue;
+      var med = (vals.length % 2 === 1)
+        ? vals[(vals.length - 1) >> 1]
+        : (vals[vals.length / 2 - 1] + vals[vals.length / 2]) / 2;
+
+      var parts = k.split('|');
+      pairs.push({
+        model_id: parts[0],
+        benchmark_id: parts[1],
+        min: min, max: max, median: med, range: range,
+        sources: perSource
+      });
+    }
+    pairs.sort(function(a, b) { return b.range - a.range; });
+    return pairs;
+  }
+
+  function renderConfidenceIntervals() {
+    var section = _ensureMountPoint('agent-chart-confidence-intervals',
+      'Multi-Source Confidence Intervals — Where Reports Disagree',
+      'For (model, benchmark) pairs with ≥2 independent sources, shows the min-max range. Wider bars = more disagreement.');
+    if (!section) return;
+    var mountEl = document.getElementById('agent-chart-confidence-intervals');
+    if (!mountEl) return;
+
+    var pairs = _collectMultiSourcePairs();
+    var top = pairs.slice(0, 20);
+
+    // Empty-state branch: insufficient multi-source data.
+    if (top.length < 5) {
+      if (window.Charts && Charts._instances && Charts._instances['agent-chart-confidence-intervals']) {
+        try { Charts._instances['agent-chart-confidence-intervals'].dispose(); } catch (e) {}
+        delete Charts._instances['agent-chart-confidence-intervals'];
+      }
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+      var msg = document.createElement('div');
+      msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full text-center px-6';
+      msg.textContent = 'Insufficient multi-source data — most scores are single-attestation. '
+        + 'This will fill in as more independent evaluations are added.';
+      mountEl.appendChild(msg);
+      return;
+    }
+
+    if (typeof echarts === 'undefined' || !window.Charts) return;
+    // Clear leftover empty-state text node so ECharts can take the div.
+    if (!Charts._instances || !Charts._instances['agent-chart-confidence-intervals']) {
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+    }
+    var chart = Charts._getOrCreate('agent-chart-confidence-intervals');
+    if (!chart) return;
+
+    // Y-axis label = "<model display name> / <benchmark name>".
+    // ECharts category y-axis renders bottom-up; with `inverse: true` the
+    // first item sits at the top — i.e., widest range at the top of the plot.
+    var yLabels = top.map(function(p) {
+      var m = _modelDisplayName(p.model_id);
+      var b = _benchmarkLabel(p.benchmark_id);
+      return m + ' / ' + b;
+    });
+
+    var minPoints = [];
+    var maxPoints = [];
+    var medianPoints = [];
+    var lineSegments = [];
+
+    for (var i = 0; i < top.length; i++) {
+      var p = top[i];
+      var datum = {
+        model_id: p.model_id,
+        benchmark_id: p.benchmark_id,
+        min: p.min, max: p.max, median: p.median, range: p.range,
+        sources: p.sources
+      };
+      minPoints.push({ value: [p.min, i], _meta: datum });
+      maxPoints.push({ value: [p.max, i], _meta: datum });
+      medianPoints.push({ value: [p.median, i], _meta: datum });
+      lineSegments.push([
+        { coord: [p.min, i] },
+        { coord: [p.max, i] }
+      ]);
+    }
+
+    function _ciTooltip(p) {
+      if (!p || !p.data || !p.data._meta) return '';
+      var d = p.data._meta;
+      var name = _modelDisplayName(d.model_id);
+      var bench = _benchmarkLabel(d.benchmark_id);
+      var html = '<div style="font-size:11px;line-height:1.5;max-width:380px">'
+        + '<b>' + name + '</b><br>'
+        + bench + '<br>'
+        + 'Range: <b>' + (Math.round(d.range * 10) / 10) + '</b> '
+        + '(min ' + (Math.round(d.min * 10) / 10)
+        + ' → max ' + (Math.round(d.max * 10) / 10)
+        + ', median ' + (Math.round(d.median * 10) / 10) + ')<br>'
+        + '<span style="color:#9ca3af">' + d.sources.length + ' sources:</span>'
+        + '<ul style="margin:4px 0 0 14px;padding:0;color:#d1d5db">';
+      var srcs = d.sources.slice().sort(function(a, b) { return b.value - a.value; });
+      for (var si = 0; si < srcs.length; si++) {
+        var s = srcs[si];
+        var u = s.url || '(unknown)';
+        var short = u;
+        if (short.length > 60) short = short.slice(0, 57) + '…';
+        html += '<li><b>' + (Math.round(s.value * 10) / 10) + '</b> — '
+             + '<span style="color:#9ca3af">' + short + '</span></li>';
+      }
+      html += '</ul></div>';
+      return html;
+    }
+
+    var option = {
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: _ciTooltip
+      },
+      legend: {
+        top: 4,
+        textStyle: { color: '#d1d5db', fontSize: 11 },
+        data: [
+          { name: 'Min',    icon: 'circle',  itemStyle: { color: '#ef4444' } },
+          { name: 'Median', icon: 'diamond', itemStyle: { color: '#9ca3af' } },
+          { name: 'Max',    icon: 'circle',  itemStyle: { color: '#10b981' } }
+        ]
+      },
+      grid: { left: 240, right: 32, top: 40, bottom: 50 },
+      xAxis: {
+        type: 'value',
+        min: 0, max: 100,
+        name: 'Score',
+        nameLocation: 'middle',
+        nameGap: 28,
+        nameTextStyle: { color: '#9ca3af', fontSize: 11 },
+        axisLabel: { color: '#9ca3af', fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } }
+      },
+      yAxis: {
+        type: 'category',
+        data: yLabels,
+        inverse: true,
+        axisLabel: {
+          color: '#d1d5db', fontSize: 11,
+          formatter: function(v) { return (v && v.length > 38) ? v.slice(0, 36) + '…' : v; }
+        },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        axisTick: { show: false },
+        splitLine: { show: true, lineStyle: { color: '#1f2937', type: 'dashed' } }
+      },
+      series: [
+        {
+          name: 'range',
+          type: 'lines',
+          coordinateSystem: 'cartesian2d',
+          silent: true,
+          lineStyle: { color: '#475569', width: 4, opacity: 0.7 },
+          data: lineSegments,
+          z: 1
+        },
+        {
+          name: 'Min',
+          type: 'scatter',
+          symbol: 'circle',
+          symbolSize: 12,
+          itemStyle: { color: '#ef4444', borderColor: '#0f172a', borderWidth: 1 },
+          data: minPoints,
+          z: 3
+        },
+        {
+          name: 'Median',
+          type: 'scatter',
+          symbol: 'diamond',
+          symbolSize: 10,
+          itemStyle: { color: '#9ca3af', borderColor: '#0f172a', borderWidth: 1 },
+          data: medianPoints,
+          z: 3
+        },
+        {
+          name: 'Max',
+          type: 'scatter',
+          symbol: 'circle',
+          symbolSize: 12,
+          itemStyle: { color: '#10b981', borderColor: '#0f172a', borderWidth: 1 },
+          data: maxPoints,
+          z: 3
+        }
+      ]
+    };
+
+    chart.setOption(_applyToolbox(option), true);
+  }
+
+  // ======================================================================
   // Top-level render — called from Agent.render() after _renderCompare.
   // Each widget renders independently; one failing must not break the
   // others, hence the per-call try/catch.
   // ======================================================================
   function renderAll() {
-    var fns = [
+    // Above-the-fold widgets render synchronously to fill the visible viewport
+    // immediately. The remaining 12 widgets are deferred to the next idle frame
+    // so the initial paint isn't blocked by ~12 ECharts.init + setOption calls.
+    // requestIdleCallback gives the browser room to settle layout before we
+    // stack more chart work; setTimeout is the fallback for Safari < 17 etc.
+    var eagerFns = [
       renderCostScatter,
       renderCapabilityHeatmap,
       renderCategoryRadar,
-      renderClassDotPlot,
+      renderClassDotPlot
+    ];
+    for (var i = 0; i < eagerFns.length; i++) {
+      try { eagerFns[i](); } catch (e) {
+        if (window.console) console.warn('[AgentCharts] eager widget failed:', eagerFns[i].name || i, e);
+      }
+    }
+    var lazyFns = [
       renderSOTATimeline,
       renderVendorMatrix,
       renderClassViolin,
@@ -3839,12 +4830,23 @@ var AgentCharts = (function() {
       renderCapabilitySankey,
       renderCumulativeSOTAWins,
       renderAgentWizard,
-      renderCostSimulator
+      renderCostSimulator,
+      renderVendorCoverageMatrix,
+      renderTrajectoryReplay,
+      renderEdgeUtilityScatter,
+      renderConfidenceIntervals
     ];
-    for (var i = 0; i < fns.length; i++) {
-      try { fns[i](); } catch (e) {
-        if (window.console) console.warn('[AgentCharts] widget failed:', fns[i].name || i, e);
+    function _runLazy() {
+      for (var i = 0; i < lazyFns.length; i++) {
+        try { lazyFns[i](); } catch (e) {
+          if (window.console) console.warn('[AgentCharts] lazy widget failed:', lazyFns[i].name || i, e);
+        }
       }
+    }
+    if (typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(_runLazy, { timeout: 1500 });
+    } else {
+      setTimeout(_runLazy, 50);
     }
     // Widget 7 hooks the leaderboard renderer; that integration lives in agent.js.
   }
@@ -3866,6 +4868,10 @@ var AgentCharts = (function() {
     renderAgentWizard: renderAgentWizard,
     renderRecommendationBreakdown: renderRecommendationBreakdown,
     renderCostSimulator: renderCostSimulator,
+    renderVendorCoverageMatrix: renderVendorCoverageMatrix,
+    renderTrajectoryReplay: renderTrajectoryReplay,
+    renderEdgeUtilityScatter: renderEdgeUtilityScatter,
+    renderConfidenceIntervals: renderConfidenceIntervals,
     // Helpers exported for widgets to reuse.
     _scoresFor: _scoresFor,
     _modelDisplayName: _modelDisplayName,
