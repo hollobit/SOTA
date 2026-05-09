@@ -618,10 +618,96 @@
   }
 
   // ====================================================================
+  // W4 — World Model Quality Radar.
+  // Top 5 models on world-model + cosmos sub-benches.
+  // Coverage threshold ≥2 (sparser data than LIBERO).
+  // ====================================================================
+  function renderWorldModelRadar() {
+    _ensureMountPoint('physical-ai-chart-world-model-radar',
+      'World Model Quality Radar',
+      'Top 5 models on world-model + cosmos sub-benches. Coverage threshold ≥2.');
+    if (typeof echarts === 'undefined') return;
+
+    var subs = [
+      'cosmos_embodied_reasoning',
+      'cosmos_intuitive_physics',
+      'cosmos_physical_common_sense',
+      'world_model_consistency',
+      'world_model_fps',
+      'world_model_visual_memory'
+    ];
+
+    var byModel = {};
+    subs.forEach(function(b) {
+      _scoresFor(b).forEach(function(s) {
+        if (typeof s.value !== 'number') return;
+        byModel[s.model_id] = byModel[s.model_id] || {};
+        byModel[s.model_id][b] = s.value;
+      });
+    });
+
+    var ranked = Object.keys(byModel).map(function(mid) {
+      var v = byModel[mid];
+      var sum = 0; var cov = 0;
+      subs.forEach(function(b) {
+        if (typeof v[b] === 'number') { sum += v[b]; cov++; }
+      });
+      return { model_id: mid, mean: cov > 0 ? sum / cov : 0, coverage: cov };
+    }).filter(function(r) { return r.coverage >= 2; })
+      .sort(function(a, b) { return b.mean - a.mean; })
+      .slice(0, 5);
+
+    var mountEl = document.getElementById('physical-ai-chart-world-model-radar');
+    if (ranked.length < 2) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'Insufficient world-model coverage — need ≥2 models with ≥2 sub-benches';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('physical-ai-chart-world-model-radar');
+    if (!chart) return;
+    var subLabels = ['Embodied Reasoning','Intuitive Physics','Common Sense','Consistency','FPS','Visual Memory'];
+    var indicators = subLabels.map(function(label) { return { name: label, max: 100 }; });
+    var palette = ['#60a5fa','#a78bfa','#34d399','#f59e0b','#fb7185'];
+    var series = [{
+      type: 'radar', emphasis: { focus: 'series' },
+      data: ranked.map(function(r, i) {
+        return {
+          name: _modelDisplayName(r.model_id),
+          value: subs.map(function(b) {
+            var v = byModel[r.model_id][b];
+            return typeof v === 'number' ? v : 0;
+          }),
+          lineStyle: { color: palette[i % palette.length], width: 2 },
+          areaStyle: { color: palette[i % palette.length], opacity: 0.15 },
+          itemStyle: { color: palette[i % palette.length] }
+        };
+      })
+    }];
+    var opt = {
+      backgroundColor: 'transparent',
+      legend: { bottom: 0, textStyle: { color: '#d1d5db' } },
+      tooltip: { backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151', textStyle: { color: '#e5e7eb' } },
+      radar: { indicator: indicators,
+        axisName: { color: '#9ca3af', fontSize: 10 },
+        splitLine: { lineStyle: { color: '#1f2937' } },
+        splitArea: { areaStyle: { color: ['rgba(17,24,39,0.5)','rgba(17,24,39,0.3)'] } },
+        axisLine: { lineStyle: { color: '#4b5563' } } },
+      series: series
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from PhysicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderFamilyMatrix, renderLiberoSuiteRadar, renderLiberoProgression, renderBenchmarkCatalog];
+    var fns = [renderHeroCards, renderFamilyMatrix, renderLiberoSuiteRadar, renderLiberoProgression, renderWorldModelRadar, renderBenchmarkCatalog];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] failed:', fns[i].name || i, e);
@@ -804,6 +890,7 @@
     renderFamilyMatrix: renderFamilyMatrix,
     renderLiberoSuiteRadar: renderLiberoSuiteRadar,
     renderLiberoProgression: renderLiberoProgression,
+    renderWorldModelRadar: renderWorldModelRadar,
     renderBenchmarkCatalog: renderBenchmarkCatalog,
     renderAll: renderAll
   };
