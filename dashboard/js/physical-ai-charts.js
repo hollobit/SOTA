@@ -894,10 +894,129 @@
   }
 
   // ====================================================================
+  // W8 — Industrial Deployment Map (DOM cards, no chart).
+  // Shows real-world deployment status of industrial robotics + manufacturing
+  // foundation models. Static metadata table — sources are vendor announcements.
+  // ====================================================================
+  var _DEPLOYMENT_STATUS = {
+    'foxconn/foxbrain-70b':       { status: 'production', region: 'Taiwan / Asia', note: 'Deployed in Foxconn factories' },
+    'figure-ai/helix':            { status: 'pilot',      region: 'US',            note: 'Real-world VLA in factory pilot' },
+    'tesla/optimus-vlm':          { status: 'beta',       region: 'US',            note: 'Tesla factory walking tasks' },
+    'apptronik/apollo-gemini':    { status: 'pilot',      region: 'US',            note: 'Mercedes-Benz pilot' },
+    'agility/digit-arc':          { status: 'production', region: 'US',            note: 'Amazon warehouse' },
+    'sanctuary/carbon':           { status: 'pilot',      region: 'Canada',        note: 'Sanctuary Phoenix' },
+    'siemens/sifm':               { status: 'production', region: 'EU',            note: 'Industrial copilot deployment' },
+    'bosch/industrial-genai':     { status: 'production', region: 'EU',            note: 'Factory automation copilot' },
+    'covariant/rfm-1':            { status: 'production', region: 'Global',        note: 'Warehouse picking RFM' },
+    'skild/skild-brain':          { status: 'beta',       region: 'US',            note: 'Generalist robotics brain' },
+    'aveva/industrial-ai-assistant': { status: 'production', region: 'Global',     note: 'Industrial process AI' },
+    'autodesk/bernini':           { status: 'beta',       region: 'Global',        note: 'Industrial design FM' }
+  };
+
+  function _statusColor(status) {
+    var p = {
+      'production': '#10b981',
+      'pilot':      '#f59e0b',
+      'beta':       '#a78bfa',
+      'preview':    '#3b82f6'
+    };
+    return p[status] || '#6b7280';
+  }
+
+  function renderIndustrialDeployment() {
+    if (typeof document === 'undefined') return;
+    var host = document.getElementById('physical-ai-charts');
+    if (!host) return;
+    var existing = document.getElementById('physical-ai-industrial-deployment-section');
+    if (existing) return;
+
+    var cats = _physicalAICategories();
+    var targetCats = cats.filter(function(c) {
+      return c.code === 'manufacturing-fm' || c.code === 'industrial-robots';
+    });
+    if (!targetCats.length) return;
+
+    var section = document.createElement('div');
+    section.id = 'physical-ai-industrial-deployment-section';
+    section.className = 'rounded border bg-gray-900 border-gray-800 p-4';
+
+    var head = document.createElement('h2');
+    head.className = 'text-lg font-semibold text-gray-200 mb-1';
+    head.textContent = 'Industrial Deployment Map';
+    section.appendChild(head);
+    var sub = document.createElement('p');
+    sub.className = 'text-xs text-gray-500 mb-3';
+    sub.textContent = 'Real-world deployment status of industrial robots + manufacturing foundation models. Status colors: green=production, amber=pilot, violet=beta.';
+    section.appendChild(sub);
+
+    var modelsById = {};
+    if (window.App && window.App.data && window.App.data.models) {
+      window.App.data.models.forEach(function(m) { modelsById[m.id] = m; });
+    }
+
+    targetCats.forEach(function(cat) {
+      var catTitle = document.createElement('h3');
+      catTitle.className = 'text-sm font-semibold text-gray-300 mb-2 mt-3';
+      catTitle.textContent = (cat.icon ? cat.icon + ' ' : '') + cat.label;
+      section.appendChild(catTitle);
+
+      var grid = document.createElement('div');
+      grid.className = 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3';
+
+      (cat.models || []).forEach(function(mid) {
+        var info = _DEPLOYMENT_STATUS[mid];
+        var m = modelsById[mid] || { id: mid, name: mid, vendor: '' };
+
+        var card = document.createElement('div');
+        card.className = 'rounded border bg-gray-950 border-gray-800 p-3';
+        var leftColor = info ? _statusColor(info.status) : '#6b7280';
+        card.style.borderLeft = '4px solid ' + leftColor;
+
+        var titleRow = document.createElement('div');
+        titleRow.className = 'flex items-baseline justify-between gap-2';
+
+        var name = document.createElement('div');
+        name.className = 'text-sm font-semibold text-gray-100';
+        name.textContent = m.name || mid;
+        titleRow.appendChild(name);
+
+        if (info) {
+          var pill = document.createElement('span');
+          pill.className = 'text-[10px] px-1.5 py-0.5 rounded';
+          pill.style.background = _statusColor(info.status) + '33';
+          pill.style.color = _statusColor(info.status);
+          pill.textContent = info.status;
+          titleRow.appendChild(pill);
+        }
+
+        card.appendChild(titleRow);
+
+        var vendor = document.createElement('div');
+        vendor.className = 'text-[10px] text-gray-500 uppercase tracking-wider mt-0.5';
+        vendor.textContent = (m.vendor || mid.split('/')[0]) + (info ? ' · ' + info.region : '');
+        card.appendChild(vendor);
+
+        if (info && info.note) {
+          var note = document.createElement('div');
+          note.className = 'text-xs text-gray-400 mt-1.5';
+          note.textContent = info.note;
+          card.appendChild(note);
+        }
+
+        grid.appendChild(card);
+      });
+
+      section.appendChild(grid);
+    });
+
+    host.appendChild(section);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from PhysicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderFamilyMatrix, renderLiberoSuiteRadar, renderLiberoProgression, renderWorldModelRadar, renderBenchmarkCatalog, renderSimToRealCompare];
+    var fns = [renderHeroCards, renderFamilyMatrix, renderLiberoSuiteRadar, renderLiberoProgression, renderWorldModelRadar, renderBenchmarkCatalog, renderSimToRealCompare, renderIndustrialDeployment];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] failed:', fns[i].name || i, e);
@@ -1083,6 +1202,8 @@
     renderWorldModelRadar: renderWorldModelRadar,
     renderBenchmarkCatalog: renderBenchmarkCatalog,
     renderSimToRealCompare: renderSimToRealCompare,
+    renderIndustrialDeployment: renderIndustrialDeployment,
+    _DEPLOYMENT_STATUS: _DEPLOYMENT_STATUS,
     _categoryBenchmarks: _categoryBenchmarks,
     _perCategoryComposite: _perCategoryComposite,
     openCategoryLeaderboard: openCategoryLeaderboard,
