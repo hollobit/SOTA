@@ -148,11 +148,106 @@
     // Widgets registered as Phase 1B + Phase 2 tasks land. Empty for now.
   }
 
+  // ====================================================================
+  // Sovereign breakthroughs — 8 milestone tiles spanning 5 regions.
+  // ====================================================================
+  var _SOV_BREAKTHROUGHS = [
+    {
+      title: 'KMed.ai (SNUH × Naver)',
+      narrative: 'Korean medical FM — KMLE 96.4 SOTA',
+      value: 'KMLE 96.4%',
+      region: 'kr',
+      flag: '🇰🇷',
+      model_id: 'snuh-naver/kmed-ai',
+      benchmark_id: 'kmle',
+      source_url: 'https://www.naver.com/healthcare-ai',
+      year: 2025
+    },
+    {
+      title: 'HyperCLOVA X',
+      narrative: 'Naver Korean foundation model',
+      value: 'Korea sovereign FM',
+      region: 'kr',
+      flag: '🇰🇷',
+      model_id: 'naver/hyperclova-x',
+      benchmark_id: 'kmlu',
+      source_url: 'https://clova.ai/hyperclova',
+      year: 2024
+    },
+    {
+      title: 'DeepSeek V4 Pro',
+      narrative: 'Open-weight Chinese frontier',
+      value: 'Frontier-class V4',
+      region: 'cn',
+      flag: '🇨🇳',
+      model_id: 'deepseek/deepseek-v4-pro',
+      benchmark_id: 'chinese_simpleqa',
+      source_url: 'https://www.deepseek.com/',
+      year: 2025
+    },
+    {
+      title: 'Qwen 3.6 Plus',
+      narrative: 'Alibaba Tongyi flagship',
+      value: 'C-Eval / CMMLU SOTA',
+      region: 'cn',
+      flag: '🇨🇳',
+      model_id: 'alibaba/qwen-3.6-plus',
+      benchmark_id: 'c_eval',
+      source_url: 'https://qwenlm.github.io/',
+      year: 2025
+    },
+    {
+      title: 'Mistral Large 3',
+      narrative: 'European frontier model',
+      value: 'EU sovereign frontier',
+      region: 'fr',
+      flag: '🇫🇷',
+      model_id: 'mistral/mistral-large-3',
+      benchmark_id: 'mmmlu',
+      source_url: 'https://mistral.ai/news/',
+      year: 2025
+    },
+    {
+      title: 'Falcon (TII)',
+      narrative: 'UAE Technology Innovation Institute',
+      value: 'Arabic medical SOTA',
+      region: 'ae',
+      flag: '🇦🇪',
+      model_id: 'tii/falcon-h1-arabic-34b',
+      benchmark_id: 'arabic_medical_eval',
+      source_url: 'https://www.tii.ae/news/falcon-arabic',
+      year: 2024
+    },
+    {
+      title: 'Aya 23 (Cohere)',
+      narrative: 'Multilingual covering 23 languages',
+      value: 'Global PIQA SOTA',
+      region: 'us-open',
+      flag: '🌐',
+      model_id: 'cohere/aya-23',
+      benchmark_id: 'global_piqa',
+      source_url: 'https://cohere.com/research/aya',
+      year: 2024
+    },
+    {
+      title: 'Sea-LION v4',
+      narrative: 'AI Singapore SE Asian languages',
+      value: 'SEA multilingual',
+      region: 'sg',
+      flag: '🇸🇬',
+      model_id: 'ai-singapore/apertus-sea-lion-v4-8b',
+      benchmark_id: 'mmmlu',
+      source_url: 'https://aisingapore.org/sea-lion/',
+      year: 2025
+    }
+  ];
+
   var api = {
     _BENCHMARK_DIMENSION_MAP: _BENCHMARK_DIMENSION_MAP,
     _resolveDimension: _resolveDimension,
     _ensureMountPoint: _ensureMountPoint,
     _applyToolbox: _applyToolbox,
+    _SOV_BREAKTHROUGHS: _SOV_BREAKTHROUGHS,
     renderAll: renderAll
   };
 
