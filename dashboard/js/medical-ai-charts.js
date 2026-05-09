@@ -402,10 +402,127 @@
   }
 
   // ====================================================================
+  // Shared helpers — used by W3/W4/W6/W7/W8/W9.
+  // ====================================================================
+  function _scoresFor(benchmarkId) {
+    if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.scores) return [];
+    var out = [];
+    var ss = window.App.data.scores;
+    for (var i = 0; i < ss.length; i++) {
+      if (ss[i].benchmark_id === benchmarkId) out.push(ss[i]);
+    }
+    return out;
+  }
+
+  function _modelReleaseDate(modelId) {
+    if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.models) return null;
+    var ms = window.App.data.models;
+    for (var i = 0; i < ms.length; i++) {
+      if (ms[i].id === modelId) return ms[i].release_date || null;
+    }
+    return null;
+  }
+
+  function _modelDisplayName(modelId) {
+    if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.models) return modelId;
+    var ms = window.App.data.models;
+    for (var i = 0; i < ms.length; i++) {
+      if (ms[i].id === modelId) return ms[i].name || modelId;
+    }
+    return modelId;
+  }
+
+  // ====================================================================
+  // W4 — HealthBench Sub-benchmarks Radar.
+  // Top 5 models on the 7 HealthBench-Pro sub-benches.
+  // ====================================================================
+  function renderHealthBenchRadar() {
+    _ensureMountPoint('medical-ai-chart-healthbench-radar',
+      'HealthBench Sub-benchmarks Radar',
+      'Top 5 models on the 7 HealthBench-Pro sub-benches (consensus / professional / redteam / research / care-consult / good-faith / writing).');
+    if (typeof echarts === 'undefined') return;
+
+    var subs = [
+      'healthbench_consensus',
+      'healthbench_professional',
+      'healthbench_pro_care_consult',
+      'healthbench_pro_redteam',
+      'healthbench_pro_research',
+      'healthbench_pro_goodfaith',
+      'healthbench_pro_writing'
+    ];
+
+    var byModel = {};
+    subs.forEach(function(b) {
+      _scoresFor(b).forEach(function(s) {
+        if (typeof s.value !== 'number') return;
+        byModel[s.model_id] = byModel[s.model_id] || {};
+        byModel[s.model_id][b] = s.value;
+      });
+    });
+
+    var ranked = Object.keys(byModel).map(function(mid) {
+      var v = byModel[mid];
+      var sum = 0; var cov = 0;
+      subs.forEach(function(b) {
+        if (typeof v[b] === 'number') { sum += v[b]; cov++; }
+      });
+      return { model_id: mid, mean: cov > 0 ? sum / cov : 0, coverage: cov };
+    }).filter(function(r) { return r.coverage >= 3; })
+      .sort(function(a, b) { return b.mean - a.mean; })
+      .slice(0, 5);
+
+    var mountEl = document.getElementById('medical-ai-chart-healthbench-radar');
+    if (ranked.length < 2) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'Insufficient HealthBench coverage — need ≥2 models with ≥3 sub-benches';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('medical-ai-chart-healthbench-radar');
+    if (!chart) return;
+    var subLabels = ['Consensus','Professional','Care Consult','Red Team','Research','Good Faith','Writing'];
+    var indicators = subLabels.map(function(label) { return { name: label, max: 100 }; });
+    var palette = ['#60a5fa','#a78bfa','#34d399','#f59e0b','#fb7185'];
+    var series = [{
+      type: 'radar', emphasis: { focus: 'series' },
+      data: ranked.map(function(r, i) {
+        return {
+          name: _modelDisplayName(r.model_id),
+          value: subs.map(function(b) {
+            var v = byModel[r.model_id][b];
+            return typeof v === 'number' ? v : 0;
+          }),
+          lineStyle: { color: palette[i % palette.length], width: 2 },
+          areaStyle: { color: palette[i % palette.length], opacity: 0.15 },
+          itemStyle: { color: palette[i % palette.length] }
+        };
+      })
+    }];
+    var opt = {
+      backgroundColor: 'transparent',
+      legend: { bottom: 0, textStyle: { color: '#d1d5db' } },
+      tooltip: { backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151', textStyle: { color: '#e5e7eb' } },
+      radar: { indicator: indicators,
+        axisName: { color: '#9ca3af', fontSize: 10 },
+        splitLine: { lineStyle: { color: '#1f2937' } },
+        splitArea: { areaStyle: { color: ['rgba(17,24,39,0.5)','rgba(17,24,39,0.3)'] } },
+        axisLine: { lineStyle: { color: '#4b5563' } } },
+      series: series
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from MedicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderSpecialtyMatrix];
+    var fns = [renderHeroCards, renderSpecialtyMatrix, renderHealthBenchRadar];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[MedicalAICharts] failed:', fns[i].name || i, e);
@@ -509,6 +626,7 @@
     _MED_BREAKTHROUGHS: _MED_BREAKTHROUGHS,
     renderHeroCards: renderHeroCards,
     renderSpecialtyMatrix: renderSpecialtyMatrix,
+    renderHealthBenchRadar: renderHealthBenchRadar,
     renderAll: renderAll
   };
 
