@@ -831,10 +831,73 @@
   }
 
   // ====================================================================
+  // W7 — Sim-to-Real Compare. Bar showing top score per benchmark.
+  // ====================================================================
+  function renderSimToRealCompare() {
+    _ensureMountPoint('physical-ai-chart-sim-to-real',
+      'Sim-to-Real Compare',
+      'Top model on each sim-to-real benchmark — simpler_env_avg / robocasa / robocasa365.');
+    if (typeof echarts === 'undefined') return;
+
+    var benches = ['simpler_env_avg', 'robocasa', 'robocasa365'];
+    var data = [];
+    benches.forEach(function(bid) {
+      var rows = _scoresFor(bid);
+      if (!rows.length) return;
+      var top = rows.slice().sort(function(a, b) { return b.value - a.value; })[0];
+      data.push({
+        bid: bid,
+        value: typeof top.value === 'number' ? Math.round(top.value * 10) / 10 : 0,
+        model: top.model_id
+      });
+    });
+
+    var mountEl = document.getElementById('physical-ai-chart-sim-to-real');
+    if (data.length < 2) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'Insufficient sim-to-real scores';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('physical-ai-chart-sim-to-real');
+    if (!chart) return;
+    var palette = ['#10b981','#a78bfa','#f59e0b'];
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 60, right: 24, top: 30, bottom: 60 },
+      tooltip: { trigger: 'axis', backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151', textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          var d = data[p[0].dataIndex];
+          return d.bid + '<br>Top: <b>' + _modelDisplayName(d.model) + '</b><br>Score: ' + d.value;
+        }
+      },
+      xAxis: { type: 'category', data: data.map(function(d) { return d.bid; }),
+        axisLabel: { color: '#9ca3af', rotate: 20, fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } } },
+      yAxis: { type: 'value', name: 'Top Score',
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      series: [{
+        type: 'bar', data: data.map(function(d, i) {
+          return { value: d.value, itemStyle: { color: palette[i % palette.length] } };
+        })
+      }]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from PhysicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderFamilyMatrix, renderLiberoSuiteRadar, renderLiberoProgression, renderWorldModelRadar, renderBenchmarkCatalog];
+    var fns = [renderHeroCards, renderFamilyMatrix, renderLiberoSuiteRadar, renderLiberoProgression, renderWorldModelRadar, renderBenchmarkCatalog, renderSimToRealCompare];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] failed:', fns[i].name || i, e);
@@ -1019,6 +1082,7 @@
     renderLiberoProgression: renderLiberoProgression,
     renderWorldModelRadar: renderWorldModelRadar,
     renderBenchmarkCatalog: renderBenchmarkCatalog,
+    renderSimToRealCompare: renderSimToRealCompare,
     _categoryBenchmarks: _categoryBenchmarks,
     _perCategoryComposite: _perCategoryComposite,
     openCategoryLeaderboard: openCategoryLeaderboard,
