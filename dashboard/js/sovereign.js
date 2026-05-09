@@ -1155,6 +1155,10 @@ var Sovereign = {
             if (cumRegionSel) cumRegionSel.addEventListener('change', function() { self._renderCumulative(); });
         }
         this._initialized = true;
+
+        if (typeof SovereignCharts !== 'undefined' && SovereignCharts.renderAll) {
+            SovereignCharts.renderAll();
+        }
     },
 
     _updateMapToggleStyles: function() {
