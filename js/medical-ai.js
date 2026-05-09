@@ -831,6 +831,9 @@ var MedicalAI = {
             yModeSel._wired = true;
             yModeSel.addEventListener('change', function() { self._renderTimeline(); });
         }
+        if (typeof MedicalAICharts !== 'undefined' && MedicalAICharts.renderAll) {
+            MedicalAICharts.renderAll();
+        }
     },
 
     _getModel: function(mid) {
@@ -859,6 +862,14 @@ var MedicalAI = {
         this.CATEGORIES.forEach(function(cat) {
             var card = document.createElement('div');
             card.className = 'bg-gray-900 border border-gray-800 rounded-lg p-4';
+            card.addEventListener('click', (function(catCode) {
+                return function(e) {
+                    if (e.shiftKey && typeof MedicalAICharts !== 'undefined' && MedicalAICharts.openCategoryLeaderboard) {
+                        MedicalAICharts.openCategoryLeaderboard(catCode);
+                    }
+                };
+            })(cat.code));
+            card.title = (card.title || '') + ' · Shift+click for leaderboard';
 
             var head = document.createElement('div');
             head.className = 'flex items-center justify-between mb-2';
