@@ -1145,11 +1145,35 @@
   // Public render orchestrator. Called from MedicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderSpecialtyMatrix, renderHealthBenchRadar, renderUSMLEProgression, renderFrontierVsMedicalSpecialist, renderBenchmarkCatalog, renderMultilangCompare, renderSafetyHeatmap, renderClinicalPredictionBubble];
-    for (var i = 0; i < fns.length; i++) {
-      try { fns[i](); } catch (e) {
-        if (typeof console !== 'undefined') console.warn('[MedicalAICharts] failed:', fns[i].name || i, e);
+    // Eager: above-the-fold widgets that fill the visible viewport on tab open.
+    var eagerFns = [renderHeroCards, renderSpecialtyMatrix, renderHealthBenchRadar];
+    eagerFns.forEach(function(fn) {
+      try { fn(); } catch (e) {
+        if (typeof console !== 'undefined') console.warn('[MedicalAICharts] eager failed:', fn.name, e);
       }
+    });
+    // Lazy: deferred to next idle frame so initial paint isn't blocked
+    // by ~6 ECharts.init + setOption calls. setTimeout fallback for browsers
+    // without requestIdleCallback (Safari < 17 etc.).
+    var lazyFns = [
+      renderUSMLEProgression,
+      renderFrontierVsMedicalSpecialist,
+      renderMultilangCompare,
+      renderSafetyHeatmap,
+      renderClinicalPredictionBubble,
+      renderBenchmarkCatalog
+    ];
+    function _runLazy() {
+      lazyFns.forEach(function(fn) {
+        try { fn(); } catch (e) {
+          if (typeof console !== 'undefined') console.warn('[MedicalAICharts] lazy failed:', fn.name, e);
+        }
+      });
+    }
+    if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(_runLazy, { timeout: 1500 });
+    } else if (typeof setTimeout !== 'undefined') {
+      setTimeout(_runLazy, 50);
     }
   }
 
