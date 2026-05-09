@@ -1102,11 +1102,34 @@
   // Public render orchestrator. Called from PhysicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderFamilyMatrix, renderLiberoSuiteRadar, renderLiberoProgression, renderWorldModelRadar, renderBenchmarkCatalog, renderSimToRealCompare, renderIndustrialDeployment, renderEmbodiedHeatmap];
-    for (var i = 0; i < fns.length; i++) {
-      try { fns[i](); } catch (e) {
-        if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] failed:', fns[i].name || i, e);
+    // Eager: above-the-fold widgets that fill the visible viewport on tab open.
+    var eagerFns = [renderHeroCards, renderFamilyMatrix, renderLiberoSuiteRadar];
+    eagerFns.forEach(function(fn) {
+      try { fn(); } catch (e) {
+        if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] eager failed:', fn.name, e);
       }
+    });
+    // Lazy: deferred to next idle frame so initial paint isn't blocked.
+    // setTimeout fallback for browsers without requestIdleCallback.
+    var lazyFns = [
+      renderLiberoProgression,
+      renderWorldModelRadar,
+      renderSimToRealCompare,
+      renderIndustrialDeployment,
+      renderEmbodiedHeatmap,
+      renderBenchmarkCatalog
+    ];
+    function _runLazy() {
+      lazyFns.forEach(function(fn) {
+        try { fn(); } catch (e) {
+          if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] lazy failed:', fn.name, e);
+        }
+      });
+    }
+    if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(_runLazy, { timeout: 1500 });
+    } else if (typeof setTimeout !== 'undefined') {
+      setTimeout(_runLazy, 50);
     }
   }
 
