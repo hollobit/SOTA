@@ -36,3 +36,28 @@ M._MED_BREAKTHROUGHS.forEach(function(b, i) {
   assert.ok(typeof b.year === 'number', 'entry ' + i + ' year must be number');
 });
 console.log('Task 4 _MED_BREAKTHROUGHS schema OK');
+
+// Task 11 — _perCategoryComposite (pure logic test; no DOM)
+assert.ok(M._perCategoryComposite, '_perCategoryComposite must be exported');
+
+// Mock window.App for the test (idempotent — also set in earlier Task tests if any)
+global.window = global.window || {};
+global.window.App = { data: { scores: [
+  { model_id: 'm1', benchmark_id: 'medqa_usmle', value: 80 },
+  { model_id: 'm2', benchmark_id: 'medqa_usmle', value: 100 },
+  { model_id: 'm1', benchmark_id: 'pubmedqa', value: 60 },
+  { model_id: 'm2', benchmark_id: 'pubmedqa', value: 50 }
+]}};
+
+var c1 = M._perCategoryComposite('m1', ['medqa_usmle', 'pubmedqa']);
+assert.ok(c1, 'm1 should have composite');
+assert.strictEqual(c1.coverage, 2);
+assert.strictEqual(c1.score, 90); // (80 + 100)/2
+
+var c2 = M._perCategoryComposite('m2', ['medqa_usmle', 'pubmedqa']);
+assert.strictEqual(c2.coverage, 2);
+assert.ok(Math.abs(c2.score - 91.6667) < 0.001);
+
+assert.strictEqual(M._perCategoryComposite('m3', ['medqa_usmle']), null);
+
+console.log('Task 11 _perCategoryComposite OK');
