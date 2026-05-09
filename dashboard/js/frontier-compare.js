@@ -126,6 +126,9 @@ var FrontierCompare = {
         'reka/reka-edge-2603',
         'google/gemma-4-26b-a4b',
 
+        // May 7 2026 — NVIDIA Nemotron Labs Elastic (3-in-1 nested 30B/23B/12B, ICML 2026)
+        'nvidia/nemotron-labs-3-elastic-30b-a3b',
+
         // May 2026 sovereign batch — global flagships
         'mistral/mistral-medium-3.5',
         'sber/gigachat-3.1-ultra',

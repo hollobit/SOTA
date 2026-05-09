@@ -5,7 +5,7 @@ var CyberCoding = {
     CYBER_BENCHMARKS: ['cybench', 'cvebench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'airtbench', 'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range', 'openai_ctf_professional', 'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion', 'uk_aisi_narrow_cyber'],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric'],
     AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'gaia2', 'browsecomp', 'tau_bench', 'tau2_bench', 'tau3_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'arc_agi_3', 'claw_eval'],
-    CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v6', 'nl2repo', 'codeforces_elo'],
+    CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
@@ -18,7 +18,7 @@ var CyberCoding = {
             note: 'SWE-Verified · SWE-Pro · SWE-Multilingual · SWE-rebench · LiveCodeBench (+ v6) · HumanEval+ · MBPP+ · Aider Polyglot · Codeforces · GDPval-AA · SciCode · WebDev Arena · Monorepo-Bench · Expert-SWE · GSO · MLE-Bench · WeirdML v2 · PaperBench · Terminal-Bench 2 · NL2Repo · RepoBench · Vibe Code Bench',
             benchmarks: [
                 'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'swe_rebench',
-                'livecodebench', 'livecodebench_v6', 'livecodebench_elo',
+                'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'livecodebench_elo',
                 'humaneval', 'humaneval_plus', 'mbpp', 'mbpp_plus',
                 'aider_polyglot', 'codeforces_rating', 'codeforces_elo',
                 'gdpval_aa', 'scicode', 'webdev_arena', 'monorepo_bench',

@@ -32,7 +32,9 @@ var PhysicalAI = {
                 'physical-intelligence/pi-zero', 'physical-intelligence/pi-zero-fast', 'physical-intelligence/pi-0.5', 'physical-intelligence/rdt-1b',
                 'openvla/openvla-7b', 'openvla/openvla-oft',
                 'octo/octo-base',
-                'google-deepmind/gemini-robotics-er-1.6', 'google-deepmind/gemini-robotics-er-1.5'
+                'google-deepmind/gemini-robotics-er-1.6', 'google-deepmind/gemini-robotics-er-1.5',
+                // May 2026 additions — Allen AI MolmoAct2 family + NVIDIA CaP-X coding-agent for manipulation
+                'allenai/molmoact2', 'allenai/molmoer', 'nvidia/cap-agent0'
             ]
         },
         {
@@ -48,7 +50,9 @@ var PhysicalAI = {
                 'apptronik/apollo-gemini',
                 'agility/digit-arc',
                 'sanctuary/carbon',
-                'tesla/optimus-vlm'
+                'tesla/optimus-vlm',
+                // May 6 2026 — Genesis AI robotic FM with dexterous hand + tactile glove
+                'genesis-ai/gene-26.5'
             ]
         },
         {
@@ -153,13 +157,15 @@ var PhysicalAI = {
         {
             id: 'industrial-deployment',
             label: '🏭 Industrial Deployment Metrics',
-            note: 'Real-world deployment KPIs — Skild failure recovery · Covariant pick retry · Figure Helix throughput / barcode / T_eff / BMW uptime · OpenVLA LoRA efficiency · FoxBrain news rewrite / TMMLU+',
+            note: 'Real-world deployment KPIs — Skild failure recovery · Covariant pick retry · Figure Helix throughput / barcode / T_eff / BMW uptime · OpenVLA LoRA efficiency · FoxBrain news rewrite / TMMLU+ · CaP-Bench (39 tasks × 8 tiers, robot manipulation coding agents, NVIDIA + Stanford + Berkeley + UT Austin Mar 2026)',
             benchmarks: [
                 'skild_failure_recovery', 'humanoid_failure_recovery_time',
                 'pick_retry_reduction',
                 'helix_logistics_throughput', 'helix_barcode_accuracy', 'helix_effective_throughput', 'bmw_deployment_uptime',
                 'openvla_lora_efficiency',
-                'mfg_news_rewrite', 'tmmlu_plus'
+                'mfg_news_rewrite', 'tmmlu_plus',
+                // May 2026 addition — robot-manipulation coding-agent benchmark (CaP-X / arxiv 2603.22435)
+                'cap_bench'
             ]
         }
     ],
