@@ -831,6 +831,9 @@ var MedicalAI = {
             yModeSel._wired = true;
             yModeSel.addEventListener('change', function() { self._renderTimeline(); });
         }
+        if (typeof MedicalAICharts !== 'undefined' && MedicalAICharts.renderAll) {
+            MedicalAICharts.renderAll();
+        }
     },
 
     _getModel: function(mid) {
