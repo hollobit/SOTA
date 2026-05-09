@@ -250,6 +250,10 @@ var PhysicalAI = {
         this._renderTimeline();
         this._renderRadar();
         this._initialized = true;
+
+        if (typeof PhysicalAICharts !== 'undefined' && PhysicalAICharts.renderAll) {
+            PhysicalAICharts.renderAll();
+        }
     },
 
     // ─────────────── Helpers (mirror Sovereign's where useful) ───────────────
