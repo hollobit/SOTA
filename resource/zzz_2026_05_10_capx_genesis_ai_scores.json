@@ -1,0 +1,43 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-10",
+    "_note": "Strict primary-source ingestion from 3 user-provided links: (1-2) CaP-X — github.com/capgym/cap-x + arxiv 2603.22435 (Mar 23 2026, NVIDIA + Stanford + Berkeley + UT Austin authors incl. Fei-Fei Li, Linxi Jim Fan). New benchmark cap_bench (39 robotic manipulation tasks across 8 tiers — S1-S4 single-turn + M1-M4 multi-turn, 12 frontier models evaluated incl. Gemini-3-Pro/GPT o1/o4-mini/GPT-5.1/5.2/Claude Haiku/Opus 4.5/GPT-OSS 20B+120B/Qwen3 235B/Qwen2.5-Coder-7B/DeepSeek-V3.1-Terminus). Tasks drawn from Robosuite + LIBERO-PRO + BEHAVIOR-1K simulators on Franka Panda + R1Pro platforms. Specific (model, tier, score) triples not extractable: arxiv PDF >10MB exceeds WebFetch limit, HTML page does not enumerate full tier-by-tier results in extracted view (Appendix B Full Benchmark Table referenced but not in extract). Qualitative cited claims (frontier ~30% avg, Qwen2.5-Coder 20%→72%) deferred — strict-attribution requires per-tier model attribution. (3) Genesis AI GENE-26.5 — genesis.ai/press release May 6 2026. Robotic foundation model with proprietary dexterous hand + tactile glove (5× data efficiency vs teleoperation, 100× cheaper hardware). Capabilities: cooking / lab pipetting / wire harnessing / Rubik's cube / piano / single-handed multi-grasp. No standardized benchmark scores published. Backers: Eclipse, Khosla Ventures, Bpifrance, HSG; investors Eric Schmidt, Xavier Niel.",
+    "sources": [
+      "https://github.com/capgym/cap-x",
+      "https://arxiv.org/abs/2603.22435",
+      "https://capgym.github.io/",
+      "https://arxiv.org/html/2603.22435v1",
+      "https://www.genesis.ai/press/press-release-gene-265"
+    ]
+  },
+  "models": [
+    {
+      "id": "genesis-ai/gene-26.5",
+      "vendor": "Genesis AI",
+      "name": "Genesis AI GENE-26.5",
+      "type": "proprietary",
+      "modalities": ["image", "text", "action"],
+      "release_date": "2026-05-06",
+      "_sources": ["https://www.genesis.ai/press/press-release-gene-265"]
+    },
+    {
+      "id": "nvidia/cap-agent0",
+      "vendor": "NVIDIA + Stanford + Berkeley",
+      "name": "CaP-Agent0 (training-free agentic framework)",
+      "type": "open-weight",
+      "modalities": ["image", "text", "action"],
+      "release_date": "2026-04-01",
+      "_sources": ["https://github.com/capgym/cap-x", "https://arxiv.org/abs/2603.22435"]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "cap_bench",
+      "name": "CaP-Bench (Coding Agents for Robot Manipulation)",
+      "category": "robotics-coding",
+      "description": "First comprehensive benchmark for evaluating LLM coding agents on robotic manipulation. 39 tasks across 8 tiers (S1-S4 single-turn + M1-M4 multi-turn), varying by abstraction levels, interaction modes, and visual grounding modalities. Tasks drawn from Robosuite + LIBERO-PRO (130+ tasks) + BEHAVIOR-1K. Robot platforms: Franka Panda + R1Pro. Companion components: CaP-Gym (interactive env), CaP-Agent0 (training-free framework), CaP-RL (RL pipeline). NVIDIA + Stanford + Berkeley + UT Austin (arxiv 2603.22435, Mar 2026).",
+      "metric": "success_rate"
+    }
+  ],
+  "scores": []
+}
