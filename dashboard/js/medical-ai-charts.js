@@ -519,10 +519,74 @@
   }
 
   // ====================================================================
+  // W6 — USMLE Progression Curve.
+  // medqa_usmle scores over model release date.
+  // ====================================================================
+  function renderUSMLEProgression() {
+    _ensureMountPoint('medical-ai-chart-usmle-progression',
+      'USMLE Progression Curve',
+      'medqa_usmle scores over model release date. Tracks the medical-AI capability frontier on USMLE-class questions.');
+    if (typeof echarts === 'undefined') return;
+
+    var rows = _scoresFor('medqa_usmle');
+    var pts = [];
+    rows.forEach(function(r) {
+      var d = _modelReleaseDate(r.model_id);
+      if (!d || typeof r.value !== 'number') return;
+      pts.push([d, r.value, r.model_id]);
+    });
+    pts.sort(function(a, b) { return a[0].localeCompare(b[0]); });
+
+    var mountEl = document.getElementById('medical-ai-chart-usmle-progression');
+    if (pts.length < 2) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'No USMLE scores loaded — verify App.data.scores';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('medical-ai-chart-usmle-progression');
+    if (!chart) return;
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 50, right: 24, top: 30, bottom: 50 },
+      tooltip: { trigger: 'axis', backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151', textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          var d = p[0];
+          return d.value[0] + '<br><b>' + _modelDisplayName(d.value[2]) + '</b><br>USMLE: ' + d.value[1];
+        }
+      },
+      xAxis: { type: 'time', axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      yAxis: { type: 'value', name: 'medqa_usmle Score', min: 0, max: 100,
+        nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      series: [{
+        name: 'USMLE',
+        type: 'line',
+        data: pts.map(function(p) { return [p[0], p[1], p[2]]; }),
+        symbol: 'circle', symbolSize: 6,
+        lineStyle: { color: '#10b981', width: 2 },
+        itemStyle: { color: '#10b981' },
+        areaStyle: { color: 'rgba(16,185,129,0.15)' }
+      }]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from MedicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderSpecialtyMatrix, renderHealthBenchRadar];
+    var fns = [renderHeroCards, renderSpecialtyMatrix, renderHealthBenchRadar, renderUSMLEProgression];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[MedicalAICharts] failed:', fns[i].name || i, e);
@@ -627,6 +691,7 @@
     renderHeroCards: renderHeroCards,
     renderSpecialtyMatrix: renderSpecialtyMatrix,
     renderHealthBenchRadar: renderHealthBenchRadar,
+    renderUSMLEProgression: renderUSMLEProgression,
     renderAll: renderAll
   };
 
