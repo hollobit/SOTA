@@ -490,10 +490,138 @@
   }
 
   // ====================================================================
+  // W10 — Physical AI Benchmark Catalog Grid. DOM table with search.
+  // ====================================================================
+  function renderBenchmarkCatalog() {
+    if (typeof document === 'undefined') return;
+    var host = document.getElementById('physical-ai-charts');
+    if (!host) return;
+    var existing = document.getElementById('physical-ai-bench-catalog-section');
+    if (existing) return;
+    if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.benchmarks) return;
+
+    var domainBenches = Object.keys(_BENCHMARK_FAMILY_MAP);
+    var rows = window.App.data.benchmarks
+      .filter(function(b) { return domainBenches.indexOf(b.id) !== -1; })
+      .map(function(b) {
+        var n = _scoresFor(b.id).length;
+        return {
+          id: b.id,
+          name: b.name || b.id,
+          suite: _BENCHMARK_FAMILY_MAP[b.id] || '?',
+          n: n,
+          paper: b.paper_url || b.url || ''
+        };
+      })
+      .sort(function(a, b) { return b.n - a.n; });
+
+    if (!rows.length) return;
+
+    var section = document.createElement('div');
+    section.id = 'physical-ai-bench-catalog-section';
+    section.className = 'rounded border bg-gray-900 border-gray-800 p-4';
+
+    var head = document.createElement('h2');
+    head.className = 'text-lg font-semibold text-gray-200 mb-1';
+    head.textContent = 'Physical AI Benchmark Catalog';
+    section.appendChild(head);
+    var sub = document.createElement('p');
+    sub.className = 'text-xs text-gray-500 mb-3';
+    sub.textContent = 'Searchable list of physical-AI-tagged benchmarks. Click a row icon to open paper.';
+    section.appendChild(sub);
+
+    var searchRow = document.createElement('div');
+    searchRow.className = 'flex gap-2 mb-2';
+    var search = document.createElement('input');
+    search.type = 'text';
+    search.placeholder = 'Filter by name or suite…';
+    search.className = 'bg-gray-800 border border-gray-700 rounded px-2 py-1 text-xs flex-1 text-gray-200';
+    searchRow.appendChild(search);
+    section.appendChild(searchRow);
+
+    var table = document.createElement('table');
+    table.className = 'w-full text-xs';
+    var thead = document.createElement('thead');
+    var trH = document.createElement('tr');
+    trH.className = 'text-gray-400';
+    ['Benchmark', 'Suite', 'Scores', 'Paper'].forEach(function(t) {
+      var th = document.createElement('th');
+      th.className = 'text-left px-2 py-1';
+      th.textContent = t;
+      trH.appendChild(th);
+    });
+    thead.appendChild(trH);
+    table.appendChild(thead);
+    var tbody = document.createElement('tbody');
+
+    var suitePalette = {
+      'vla-manipulation': '#10b981',
+      'world-model': '#3b82f6',
+      'embodied-reasoning': '#a78bfa'
+    };
+    function _suiteColor(s) { return suitePalette[s] || '#6b7280'; }
+
+    rows.forEach(function(r) {
+      var tr = document.createElement('tr');
+      tr.className = 'border-t border-gray-800';
+      tr.dataset.search = (r.name + ' ' + r.id + ' ' + r.suite).toLowerCase();
+
+      var tdName = document.createElement('td');
+      tdName.className = 'px-2 py-1 text-gray-200';
+      tdName.textContent = r.name;
+      tr.appendChild(tdName);
+
+      var tdSuite = document.createElement('td');
+      tdSuite.className = 'px-2 py-1';
+      var pill = document.createElement('span');
+      pill.className = 'px-1.5 py-0.5 rounded text-[10px]';
+      pill.style.background = _suiteColor(r.suite) + '33';
+      pill.style.color = _suiteColor(r.suite);
+      pill.textContent = r.suite;
+      tdSuite.appendChild(pill);
+      tr.appendChild(tdSuite);
+
+      var tdN = document.createElement('td');
+      tdN.className = 'px-2 py-1 tabular-nums text-gray-400';
+      tdN.textContent = String(r.n);
+      tr.appendChild(tdN);
+
+      var tdP = document.createElement('td');
+      tdP.className = 'px-2 py-1';
+      if (r.paper) {
+        var a = document.createElement('a');
+        a.href = r.paper;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.className = 'text-blue-400 hover:underline';
+        a.textContent = '↗';
+        tdP.appendChild(a);
+      } else {
+        tdP.textContent = '—';
+        tdP.className += ' text-gray-600';
+      }
+      tr.appendChild(tdP);
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    section.appendChild(table);
+
+    search.addEventListener('input', function() {
+      var q = search.value.toLowerCase().trim();
+      var trs = tbody.querySelectorAll('tr');
+      for (var i = 0; i < trs.length; i++) {
+        trs[i].style.display = (!q || trs[i].dataset.search.indexOf(q) !== -1) ? '' : 'none';
+      }
+    });
+
+    host.appendChild(section);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from PhysicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderFamilyMatrix, renderLiberoSuiteRadar, renderLiberoProgression];
+    var fns = [renderHeroCards, renderFamilyMatrix, renderLiberoSuiteRadar, renderLiberoProgression, renderBenchmarkCatalog];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] failed:', fns[i].name || i, e);
@@ -676,6 +804,7 @@
     renderFamilyMatrix: renderFamilyMatrix,
     renderLiberoSuiteRadar: renderLiberoSuiteRadar,
     renderLiberoProgression: renderLiberoProgression,
+    renderBenchmarkCatalog: renderBenchmarkCatalog,
     renderAll: renderAll
   };
 
