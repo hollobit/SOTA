@@ -1,5 +1,57 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-09 (Session 10): Sovereign AI menu widget expansion — 6 NEW widgets (11 tasks, 11 commits)
+
+### 16. Sovereign AI 위젯 확충 (commits `55db2d9` → `6cbc145`)
+
+**Focused approach**: Sovereign AI는 이미 9 widgets (Region Map / Timeline / Cumulative / Country Radar / Country Leaderboard / 3 Dimension renders / Perf Suites / Agent Products / Heatmap)을 보유하므로 다른 메뉴와 동일한 10개 widget을 강제 추가하지 않고, **부족한 영역에 6 NEW widgets만** 추가. 다른 메뉴와 차별화된 scope.
+
+브레인스토밍(이전 메뉴별 별도 spec 합의 B 옵션) → spec(`docs/superpowers/specs/2026-05-09-sovereign-ai-widget-expansion-design.md`, 262 LOC) → plan(`docs/superpowers/plans/2026-05-09-sovereign-ai-widget-expansion.md`, 573 LOC) → subagent-driven 실행.
+
+**Phase 1A — Foundation (Tasks 1-3)**:
+- **Task 1 (`55db2d9`)**: UMD skeleton + `_BENCHMARK_DIMENSION_MAP` (29 entries: language/medical/domain) + `_resolveDimension` + 7-assertion test.
+- **Task 2 (`e291c25`)**: `_ensureMountPoint` factory (a11y role=img/aria-label) + `_ensureSovereignChartsStyle` (mobile + reduced-motion) + `_applyToolbox` + `renderAll` stub. `<div id="sovereign-charts">` + `<script>` wired in index.html, `SovereignCharts.renderAll()` called from `Sovereign.render()`.
+- **Task 3 (`a9f295c`)**: `_SOV_BREAKTHROUGHS` 8 milestone tiles (KMed.ai SNUH×Naver / HyperCLOVA X / DeepSeek V4 Pro / Qwen 3.6 Plus / Mistral Large 3 / Falcon TII / Aya 23 Cohere / Sea-LION v4) — 6 regions, flag emoji + region accent.
+
+**Phase 1B — 3 immediate widgets (Tasks 4-6)**:
+- **W1 Hero Cards** (`a421a64`): 8 anchor tiles, 4-col grid, region-color border-left + flag emoji. SOTA Watch sub-section (이전엔 없었던 sovereign-only NEW).
+- **W3 VLAIR Legal Sub-benchmarks Radar** (`dc3f3ff`): top-5 models × 5 VLAIR sub-benches (doc_qa/summarization/chronology/redlining/data_extract). Coverage ≥3.
+- **W6 Sovereign Benchmark Catalog Grid** (`31dc2a0`): searchable DOM table, ~28 sovereign-tagged benchmarks with dimension pill (language=blue/medical=emerald/domain=violet) + paper link.
+
+**Phase 2 — 3 data-dependent widgets (Tasks 7-9)**:
+- **W2 Frontier vs Sovereign-Specialist** (`20c5245`): grouped bar — frontier 5 LLMs vs sovereign 8 (DeepSeek/Qwen/Mistral/Falcon/Aya/Sea-LION/HyperCLOVA/Kimi) on multilingual benchmarks (mmmlu/c_eval/cmmlu/chinese_simpleqa/global_piqa/swe_bench_multilingual).
+- **W4 Multi-language Progression** (`9d7ced1`): 6 multilingual benches multi-line over release_date.
+- **W5 Per-Dimension Drill-down Modal** (`d836895`): Shift+click on dimension card (`#sov-<dim.id>-chart`) → modal with per-dimension composite. 3rd unit test (composite arithmetic).
+
+**Phase 3 — Polish + deploy (Tasks 10-11)**:
+- **Task 10 Lazy render** (`6db5e61`): renderAll → eager 2 (Hero/VLAIR) + lazy 3 (Frontier-vs-Sov / Multi-lang / Catalog) via requestIdleCallback (timeout 1500ms) + setTimeout fallback.
+- **Task 11 Cache-bust + deploy** (`6cbc145`): `?v=20260509c` for sovereign.js + `?v=20260509b` for sovereign-charts.js. Push to origin/ops, trigger benchmark-update.yml CI.
+
+**파일 deltas**:
+- `dashboard/js/sovereign-charts.js`: NEW **872 LOC**
+- `dashboard/js/__tests__/sovereign-charts.test.js`: NEW **(3 tests)**
+- `dashboard/js/sovereign.js`: +5 LOC (renderAll hook + Shift+click handler with `_sovDimDrillWired` once-flag)
+- `dashboard/index.html`: +3 LOC (mount div + script tag + cache-bust)
+- `docs/superpowers/specs/2026-05-09-sovereign-ai-widget-expansion-design.md`: NEW (262 LOC)
+- `docs/superpowers/plans/2026-05-09-sovereign-ai-widget-expansion.md`: NEW (573 LOC)
+
+**스코어카드**:
+- 위젯: Sovereign AI 9 → **15** (기존 9 + 6 NEW = W1/W2/W3/W4/W5/W6)
+- 신규 unit test: **+3** (`_resolveDimension` / `_SOV_BREAKTHROUGHS` schema / `_perDimensionComposite`)
+- 11 commits, subagent-driven-development pattern (sequential per-task)
+- 신규 데이터 ingest 0건
+
+**4-menu cumulative (Sessions 7-10)**:
+- 신규 widget JS modules: **4** (ai4s 1240 + medical 1293 + physical 1327 + sovereign 872 = **4732 LOC**)
+- 신규 unit tests: **15** (4+4+4+3)
+- 신규 widgets: **36** (10+10+10+6)
+- 신규 specs/plans: **8 docs** (4 specs + 4 plans, ~5,200 LOC)
+- Total commits across S7-S10: **~60**
+
+**Live deploy**: CI run `25601793594` triggered, awaiting completion.
+
+---
+
 ## 2026-05-09 (Session 9): Physical AI menu widget expansion — 10 widgets (16 tasks, 16 commits)
 
 ### 15. Physical AI 위젯 확충 (commits `4bf0dcb` → `b8ada37`)
