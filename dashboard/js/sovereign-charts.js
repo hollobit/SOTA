@@ -443,11 +443,92 @@
     chart.setOption(_applyToolbox(opt), true);
   }
 
+  function _modelReleaseDate(modelId) {
+    if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.models) return null;
+    var ms = window.App.data.models;
+    for (var i = 0; i < ms.length; i++) {
+      if (ms[i].id === modelId) return ms[i].release_date || null;
+    }
+    return null;
+  }
+
+  // ====================================================================
+  // W4 — Multi-language Progression Curve. Multi-line: each multilingual
+  // benchmark over time. X = model release date, Y = score.
+  // ====================================================================
+  function renderMultilangProgression() {
+    _ensureMountPoint('sovereign-chart-multilang-progression',
+      'Multi-language Progression Curve',
+      'Multi-line: each multilingual benchmark over time. X = model release date, Y = score.');
+    if (typeof echarts === 'undefined') return;
+
+    var benches = ['mmmlu', 'c_eval', 'cmmlu', 'chinese_simpleqa', 'global_piqa', 'swe_bench_multilingual'];
+
+    var seriesByBench = {};
+    benches.forEach(function(bid) {
+      var rows = _scoresFor(bid);
+      var pts = [];
+      rows.forEach(function(r) {
+        var d = _modelReleaseDate(r.model_id);
+        if (!d || typeof r.value !== 'number') return;
+        pts.push([d, r.value, r.model_id]);
+      });
+      pts.sort(function(a, b) { return a[0].localeCompare(b[0]); });
+      if (pts.length >= 2) seriesByBench[bid] = pts;
+    });
+
+    var mountEl = document.getElementById('sovereign-chart-multilang-progression');
+    if (!Object.keys(seriesByBench).length) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'No multilingual scores loaded';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('sovereign-chart-multilang-progression');
+    if (!chart) return;
+
+    var palette = ['#a78bfa', '#60a5fa', '#34d399', '#f59e0b', '#fb7185', '#22d3ee'];
+    var i = 0;
+    var series = Object.keys(seriesByBench).map(function(bid) {
+      var color = palette[i++ % palette.length];
+      return {
+        name: bid, type: 'line',
+        data: seriesByBench[bid].map(function(p) { return [p[0], p[1]]; }),
+        symbol: 'circle', symbolSize: 6,
+        lineStyle: { color: color, width: 2 },
+        itemStyle: { color: color }
+      };
+    });
+
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 50, right: 24, top: 30, bottom: 70 },
+      legend: { bottom: 0, textStyle: { color: '#d1d5db' } },
+      tooltip: { trigger: 'axis', backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151', textStyle: { color: '#e5e7eb' } },
+      xAxis: { type: 'time', axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      yAxis: { type: 'value', name: 'Score',
+        nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      series: series
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
   // ====================================================================
   // Public render orchestrator. Called from Sovereign.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderVLAIRRadar, renderBenchmarkCatalog, renderFrontierVsSovereign];
+    var fns = [renderHeroCards, renderVLAIRRadar, renderBenchmarkCatalog, renderFrontierVsSovereign, renderMultilangProgression];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[SovereignCharts] failed:', fns[i].name || i, e);
@@ -653,6 +734,8 @@
     _SOV_SPECIALIST_IDS: _SOV_SPECIALIST_IDS,
     _avgScoreForGroup: _avgScoreForGroup,
     renderFrontierVsSovereign: renderFrontierVsSovereign,
+    _modelReleaseDate: _modelReleaseDate,
+    renderMultilangProgression: renderMultilangProgression,
     renderAll: renderAll
   };
 
