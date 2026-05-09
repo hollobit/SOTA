@@ -1,5 +1,68 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-10 (Session 11): Reference-link investigation sweeps — 5 ingest rounds (21 models, 6 benchmarks, 38 scores, 15 Resources refs)
+
+### 17. 5-round 참조 링크 조사 (commits `45c1035` → `25b3c55`)
+
+User-provided reference links 13개 (3 batches: 5+3+3+2)를 조사하고 strict-attribution rule 하에 1차 source에서 확인 가능한 정량 데이터만 ingest. 매 round는 별도 JSON file + 별도 changelog entry로 분리해서 추적성 유지.
+
+**Round 1 — Nemotron Elastic + OpenAI Voice + Luma UNI-1** (commit `45c1035`):
+- 5 links: HF model card BF16/FP8/NVFP4 (×3) + Luma UNI-1 + OpenAI Voice announcement
+- **+8 models**: nvidia/nemotron-labs-3-elastic-30b/23b/12b-a3b (3 sliced variants from Star Elastic ICML 2026 paper) + openai/gpt-realtime-1.5/2/translate/whisper (4 voice models May 2026 release) + luma/uni-1 (image FM, no scores)
+- **+3 benchmarks**: livecodebench_v5, big_bench_audio, audio_multichallenge
+- **+19 scores**: 3 elastic × 5 benchmarks (AIME/GPQA/LiveCodeBench v5/MMLU-Pro/IFBench) + gpt-realtime-2 + 1.5 × audio benchmarks (96.6/81.4 + 48.5/34.7)
+
+**Round 2 — Epoch ECI + MolmoAct2 + saturation analysis** (commit `a0a4878`):
+- 3 links: epoch.ai/eci + arxiv 2605.02881 (MolmoAct2) + Epoch substack RIP Classic Reasoning Benchmarks
+- **+2 models**: allenai/molmoact2, allenai/molmoer (VLM backbone, metadata only — PDF >10MB)
+- **+2 benchmarks**: epoch_capabilities_index, epoch_capabilities_index_swe (composite metric registered)
+- **+2 scores**: ECI calibration anchors per primary source explicit definition (claude-3.5-sonnet=130, gpt-5=150)
+- 검증: substack 인용 "Claude Mythos GraphWalks 80%" → DB의 graphwalks_bfs 80.0과 정확 일치
+
+**Round 3 — Resources references** (commit `461c850`):
+- **+11 references** to dashboard/js/app.js 통합 그룹 `// ── 2026-05-10 link-investigation additions ──`
+- Epoch ECI ecosystem 5 (epoch.ai/eci, 2 substacks, LessWrong intro, Benchmarks alt URL)
+- NVIDIA Nemotron Elastic 4 (BF16/FP8/NVFP4 HF cards + arxiv 2511.16664 Star Elastic ICML 2026)
+- OpenAI Voice 1, Luma UNI-1 1, MolmoAct2 1
+- Cache-bust app.js v=20260510a, deploy 검증 461c8505 SHA prefix
+
+**Round 4 — Audio MultiChallenge + Big Bench Audio deep-dive** (commit `db64d5b`):
+- Round 3에서 추가한 references를 deep-dive: Scale Labs Audio MultiChallenge leaderboard (labs.scale.com/leaderboard/audiomc, arxiv 2512.14865) 30 entries 채굴 + HF Big Bench Audio release blog
+- **+9 models**: gemini-3.1-flash-live-preview, gemini-2.5-flash-native-audio-preview, gpt-4o-audio-preview, gpt-4o-mini-audio-preview, gpt-realtime-mini, qwen3-omni-30b-a3b-instruct (separate from existing thinking variant), mimo-audio-7b-instruct, kimi-audio-7b-instruct, lfm2-audio-1.5b
+- **+17 scores**: 16 Audio MultiChallenge (gemini-3-pro-preview 54.65 rank #1 / gemini-2.5-pro 46.90 / gemini-2.5-flash 40.04 / 등) + 1 Big Bench Audio (gpt-4o = 92 text-only baseline)
+- Skipped duplicates: gpt-realtime-2 48.45 = 48.5 in DB; gpt-realtime-1.5 34.73 = 34.7
+
+**Round 5 — CaP-X + Genesis AI GENE-26.5** (commit `25b3c55`):
+- 3 links: github.com/capgym/cap-x + arxiv 2603.22435 + genesis.ai/press
+- **+2 models**: genesis-ai/gene-26.5 (robotic FM May 6 2026, Eric Schmidt + Xavier Niel 투자) + nvidia/cap-agent0 (training-free agentic framework, NVIDIA + Stanford + Berkeley + UT Austin, Fei-Fei Li / Linxi Jim Fan 저자)
+- **+1 benchmark**: cap_bench (39 robot manipulation tasks × 8 tiers S1-S4 + M1-M4, Robosuite + LIBERO-PRO + BEHAVIOR-1K, 12 frontier models 평가)
+- **+0 scores** (arxiv PDF >10MB / HTML 추출에서 Appendix B Full Benchmark Table 미포함, qualitative claims만 — strict-attribution defer)
+- **+4 Resources references**: CaP-X project page + GitHub + paper + Genesis AI
+
+**스코어카드 Total (5 rounds)**:
+- 신규 모델: **+21** (1721 → 1742)
+- 신규 benchmarks: **+6** (933 → 939)
+- 신규 scores: **+38** (3785 → 3823)
+- Resources references: **+15** (Audio + Robotics + Foundational AI sources)
+- Audio MultiChallenge benchmark: 0 → 16 entries with full leaderboard top-N coverage
+- Big Bench Audio: 0 → 3 entries
+
+**파일 deltas**:
+- 5 new ingest JSON files in `resource/zzz_2026_05_10_*.json`
+- `dashboard/js/app.js`: +15 Resources entries (~25 LOC)
+- `data/export/reports/changelog.json`: +5 detailed per-round entries
+
+**병렬 작업 패턴**: Round별 sequential. 각 round = WebFetch/WebSearch 조사 + DB 매핑 확인 + JSON 작성 + loader 검증 + commit + push + CI deploy + live 검증. 매 round 평균 ~12-15분. CI race condition 1회 발생 (Round 3 deploy → 첫 trigger가 이전 commit 기준 → 재trigger로 해결).
+
+**Strict-attribution rule 효과**:
+- Total candidate ingest items: 약 60건 (5 rounds 합산)
+- Actual ingest: 38 scores + 21 models + 6 benchmarks
+- Reject 사유: PDF 크기 한계 (CaP-X / MolmoAct2), Elo-only / qualitative claims (Luma UNI-1 / Genesis AI), 모델 attribution 부재 (PostTrainBench 51.1%, IKEA assembly ~40%)
+
+**Live deploy**: 매 round CI run completion + cache-bust 검증. 최종 cache-bust SHA prefix `25b3c55` (round 5 commit).
+
+---
+
 ## 2026-05-09 (Session 10): Sovereign AI menu widget expansion — 6 NEW widgets (11 tasks, 11 commits)
 
 ### 16. Sovereign AI 위젯 확충 (commits `55db2d9` → `6cbc145`)
