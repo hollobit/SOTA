@@ -715,10 +715,85 @@
   }
 
   // ====================================================================
+  // W3 — Frontier vs Medical-Specialist Compare. Grouped bar.
+  // ====================================================================
+  var _FRONTIER_IDS_FOR_MED = [
+    'openai/gpt-5.5','openai/gpt-5.4','anthropic/claude-opus-4.7',
+    'google/gemini-3.1-pro','xai/grok-4.20','deepseek/deepseek-v4-pro'
+  ];
+  var _MED_SPECIALIST_IDS = [
+    'google/med-gemini-3-pro','google/med-palm-2','google/medgemma-27b',
+    'google/medgemma-9b','m42-health/med42-v2-70b','saama/openbiollm-llama3-70b',
+    'epfl/meditron-70b','openmeditron/meditron3-70b'
+  ];
+
+  function _avgScoreForGroup(modelIds, benchmarkId) {
+    var scores = _scoresFor(benchmarkId).filter(function(s) {
+      return modelIds.indexOf(s.model_id) !== -1 && typeof s.value === 'number';
+    });
+    if (!scores.length) return null;
+    var sum = 0;
+    for (var i = 0; i < scores.length; i++) sum += scores[i].value;
+    return sum / scores.length;
+  }
+
+  function renderFrontierVsMedicalSpecialist() {
+    _ensureMountPoint('medical-ai-chart-frontier-vs-specialist',
+      'Frontier LLM vs Medical Specialist',
+      'Frontier general LLMs vs medical foundation models on shared MedQA-class benchmarks.');
+    if (typeof echarts === 'undefined') return;
+
+    var benches = ['medqa_usmle','medqa','medmcqa','pubmedqa','medexpqa','healthbench'];
+    var labels = []; var fr = []; var sp = [];
+    benches.forEach(function(bid) {
+      var f = _avgScoreForGroup(_FRONTIER_IDS_FOR_MED, bid);
+      var s = _avgScoreForGroup(_MED_SPECIALIST_IDS, bid);
+      if (f === null && s === null) return;
+      labels.push(bid);
+      fr.push(f === null ? null : Math.round(f * 10) / 10);
+      sp.push(s === null ? null : Math.round(s * 10) / 10);
+    });
+
+    var mountEl = document.getElementById('medical-ai-chart-frontier-vs-specialist');
+    if (!labels.length) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'No shared benchmarks have both frontier + medical-specialist scores';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('medical-ai-chart-frontier-vs-specialist');
+    if (!chart) return;
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 50, right: 24, top: 30, bottom: 70 },
+      legend: { bottom: 0, textStyle: { color: '#d1d5db' } },
+      tooltip: { trigger: 'axis', backgroundColor: 'rgba(17,24,39,0.95)',
+        borderColor: '#374151', textStyle: { color: '#e5e7eb' } },
+      xAxis: { type: 'category', data: labels,
+        axisLabel: { color: '#9ca3af', rotate: 30, fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } } },
+      yAxis: { type: 'value', name: 'Avg Score', min: 0, max: 100,
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      series: [
+        { name: 'Frontier LLM (avg)', type: 'bar', data: fr, itemStyle: { color: '#60a5fa' } },
+        { name: 'Medical Specialist (avg)', type: 'bar', data: sp, itemStyle: { color: '#10b981' } }
+      ]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from MedicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderSpecialtyMatrix, renderHealthBenchRadar, renderUSMLEProgression, renderBenchmarkCatalog];
+    var fns = [renderHeroCards, renderSpecialtyMatrix, renderHealthBenchRadar, renderUSMLEProgression, renderFrontierVsMedicalSpecialist, renderBenchmarkCatalog];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[MedicalAICharts] failed:', fns[i].name || i, e);
@@ -824,6 +899,7 @@
     renderSpecialtyMatrix: renderSpecialtyMatrix,
     renderHealthBenchRadar: renderHealthBenchRadar,
     renderUSMLEProgression: renderUSMLEProgression,
+    renderFrontierVsMedicalSpecialist: renderFrontierVsMedicalSpecialist,
     renderBenchmarkCatalog: renderBenchmarkCatalog,
     renderAll: renderAll
   };
