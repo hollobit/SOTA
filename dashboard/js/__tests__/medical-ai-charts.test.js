@@ -13,3 +13,13 @@ assert.strictEqual(M._resolveSpecialty('').key, 'other');
 assert.strictEqual(M._resolveSpecialty('random/unknown').key, 'other');
 
 console.log('Task 1 _resolveSpecialty OK');
+
+// Task 2
+assert.ok(M._resolveCategory, '_resolveCategory must be exported');
+assert.strictEqual(M._resolveCategory('medqa_usmle'), 'clinical-knowledge');
+assert.strictEqual(M._resolveCategory('pubmedqa'), 'biomedical-research');
+assert.strictEqual(M._resolveCategory('healthbench_pro_redteam'), 'healthbench');
+assert.strictEqual(M._resolveCategory('mmedbench'), 'multilingual');
+assert.strictEqual(M._resolveCategory('unknown_bench'), null);
+
+console.log('Task 2 _resolveCategory OK');

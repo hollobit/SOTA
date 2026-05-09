@@ -54,9 +54,57 @@
     return _OTHER_SPECIALTY;
   }
 
+  // ====================================================================
+  // Benchmark → category mapping. Used by W2 / W5 / W10.
+  // ====================================================================
+  var _BENCHMARK_CATEGORY_MAP = {
+    // clinical-knowledge
+    'medqa_usmle':                'clinical-knowledge',
+    'medqa':                      'clinical-knowledge',
+    'medqa_vals_ai':              'clinical-knowledge',
+    'medmcqa':                    'clinical-knowledge',
+    'medexpqa':                   'clinical-knowledge',
+    // biomedical-research
+    'pubmedqa':                   'biomedical-research',
+    // healthbench
+    'healthbench':                'healthbench',
+    'healthbench_hard':           'healthbench',
+    'healthbench_consensus':      'healthbench',
+    'healthbench_professional':   'healthbench',
+    'healthbench_pro_care_consult':   'healthbench',
+    'healthbench_pro_gf_difficult':   'healthbench',
+    'healthbench_pro_goodfaith':  'healthbench',
+    'healthbench_pro_redteam':    'healthbench',
+    'healthbench_pro_research':   'healthbench',
+    'healthbench_pro_writing':    'healthbench',
+    'healthbench_pro_orthopedics':'healthbench',
+    // specialty
+    'dermabench':                 'specialty',
+    'dermavqa':                   'specialty',
+    'medcalc_bench':              'specialty',
+    'medcalc_bench_verified':     'specialty',
+    // multilingual
+    'mmedbench':                  'multilingual',
+    'jmedbench':                  'multilingual',
+    'medbench_cn':                'multilingual',
+    'climedbench_cn':             'multilingual',
+    // dialog
+    'meddialog':                  'dialog',
+    'meddialog_rubrics':          'dialog'
+  };
+
+  function _resolveCategory(benchmarkId) {
+    if (!benchmarkId) return null;
+    return Object.prototype.hasOwnProperty.call(_BENCHMARK_CATEGORY_MAP, benchmarkId)
+      ? _BENCHMARK_CATEGORY_MAP[benchmarkId]
+      : null;
+  }
+
   var api = {
     _SPECIALTY_MAP: _SPECIALTY_MAP,
-    _resolveSpecialty: _resolveSpecialty
+    _resolveSpecialty: _resolveSpecialty,
+    _BENCHMARK_CATEGORY_MAP: _BENCHMARK_CATEGORY_MAP,
+    _resolveCategory: _resolveCategory
   };
 
   root.MedicalAICharts = api;
