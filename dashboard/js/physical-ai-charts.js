@@ -310,10 +310,110 @@
   }
 
   // ====================================================================
+  // Shared helpers — used by W3/W6/W7/W9.
+  // ====================================================================
+  function _scoresFor(benchmarkId) {
+    if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.scores) return [];
+    var out = [];
+    var ss = window.App.data.scores;
+    for (var i = 0; i < ss.length; i++) {
+      if (ss[i].benchmark_id === benchmarkId) out.push(ss[i]);
+    }
+    return out;
+  }
+
+  function _modelDisplayName(modelId) {
+    if (typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.models) return modelId;
+    var ms = window.App.data.models;
+    for (var i = 0; i < ms.length; i++) {
+      if (ms[i].id === modelId) return ms[i].name || modelId;
+    }
+    return modelId;
+  }
+
+  // ====================================================================
+  // W3 — LIBERO Suite Radar.
+  // Top 5 models on the 5 LIBERO sub-benches.
+  // ====================================================================
+  function renderLiberoSuiteRadar() {
+    _ensureMountPoint('physical-ai-chart-libero-radar',
+      'LIBERO Suite Radar',
+      'Top 5 models on the 5 LIBERO sub-benches (libero / spatial / object / goal / long).');
+    if (typeof echarts === 'undefined') return;
+
+    var subs = ['libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long'];
+
+    var byModel = {};
+    subs.forEach(function(b) {
+      _scoresFor(b).forEach(function(s) {
+        if (typeof s.value !== 'number') return;
+        byModel[s.model_id] = byModel[s.model_id] || {};
+        byModel[s.model_id][b] = s.value;
+      });
+    });
+
+    var ranked = Object.keys(byModel).map(function(mid) {
+      var v = byModel[mid];
+      var sum = 0; var cov = 0;
+      subs.forEach(function(b) {
+        if (typeof v[b] === 'number') { sum += v[b]; cov++; }
+      });
+      return { model_id: mid, mean: cov > 0 ? sum / cov : 0, coverage: cov };
+    }).filter(function(r) { return r.coverage >= 3; })
+      .sort(function(a, b) { return b.mean - a.mean; })
+      .slice(0, 5);
+
+    var mountEl = document.getElementById('physical-ai-chart-libero-radar');
+    if (ranked.length < 2) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'Insufficient LIBERO coverage — need ≥2 models with ≥3 sub-benches';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var chart = Charts._getOrCreate('physical-ai-chart-libero-radar');
+    if (!chart) return;
+    var subLabels = ['LIBERO', 'Spatial', 'Object', 'Goal', 'Long'];
+    var indicators = subLabels.map(function(label) { return { name: label, max: 100 }; });
+    var palette = ['#60a5fa','#a78bfa','#34d399','#f59e0b','#fb7185'];
+    var series = [{
+      type: 'radar', emphasis: { focus: 'series' },
+      data: ranked.map(function(r, i) {
+        return {
+          name: _modelDisplayName(r.model_id),
+          value: subs.map(function(b) {
+            var v = byModel[r.model_id][b];
+            return typeof v === 'number' ? v : 0;
+          }),
+          lineStyle: { color: palette[i % palette.length], width: 2 },
+          areaStyle: { color: palette[i % palette.length], opacity: 0.15 },
+          itemStyle: { color: palette[i % palette.length] }
+        };
+      })
+    }];
+    var opt = {
+      backgroundColor: 'transparent',
+      legend: { bottom: 0, textStyle: { color: '#d1d5db' } },
+      tooltip: { backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151', textStyle: { color: '#e5e7eb' } },
+      radar: { indicator: indicators,
+        axisName: { color: '#9ca3af', fontSize: 10 },
+        splitLine: { lineStyle: { color: '#1f2937' } },
+        splitArea: { areaStyle: { color: ['rgba(17,24,39,0.5)','rgba(17,24,39,0.3)'] } },
+        axisLine: { lineStyle: { color: '#4b5563' } } },
+      series: series
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from PhysicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderFamilyMatrix];
+    var fns = [renderHeroCards, renderFamilyMatrix, renderLiberoSuiteRadar];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] failed:', fns[i].name || i, e);
@@ -490,8 +590,11 @@
     _ensureMountPoint: _ensureMountPoint,
     _applyToolbox: _applyToolbox,
     _PHY_BREAKTHROUGHS: _PHY_BREAKTHROUGHS,
+    _scoresFor: _scoresFor,
+    _modelDisplayName: _modelDisplayName,
     renderHeroCards: renderHeroCards,
     renderFamilyMatrix: renderFamilyMatrix,
+    renderLiberoSuiteRadar: renderLiberoSuiteRadar,
     renderAll: renderAll
   };
 
