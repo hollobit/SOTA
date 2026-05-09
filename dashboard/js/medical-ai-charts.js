@@ -974,10 +974,101 @@
   }
 
   // ====================================================================
+  // W8 — Medical Safety / Hallucination Heatmap.
+  // Top models × HealthBench safety sub-benches.
+  // ====================================================================
+  function renderSafetyHeatmap() {
+    _ensureMountPoint('medical-ai-chart-safety-heatmap',
+      'Medical Safety / Hallucination Heatmap',
+      'Top models × HealthBench safety sub-benches (redteam / good-faith / care-consult / writing). Cell = score (higher = safer/better).');
+    if (typeof echarts === 'undefined') return;
+
+    var safetySubs = [
+      'healthbench_pro_redteam',
+      'healthbench_pro_goodfaith',
+      'healthbench_pro_gf_difficult',
+      'healthbench_pro_care_consult',
+      'healthbench_pro_writing'
+    ];
+
+    var byModel = {};
+    safetySubs.forEach(function(b) {
+      _scoresFor(b).forEach(function(s) {
+        if (typeof s.value !== 'number') return;
+        byModel[s.model_id] = byModel[s.model_id] || {};
+        byModel[s.model_id][b] = s.value;
+      });
+    });
+
+    var ranked = Object.keys(byModel).map(function(mid) {
+      var sum = 0; var cov = 0;
+      safetySubs.forEach(function(b) {
+        var v = byModel[mid][b];
+        if (typeof v === 'number') { sum += v; cov++; }
+      });
+      return { model_id: mid, mean: cov > 0 ? sum / cov : 0, coverage: cov };
+    }).filter(function(r) { return r.coverage >= 2; })
+      .sort(function(a, b) { return b.mean - a.mean; })
+      .slice(0, 8);
+
+    var mountEl = document.getElementById('medical-ai-chart-safety-heatmap');
+    if (ranked.length < 2) {
+      if (mountEl) {
+        while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+        var msg = document.createElement('div');
+        msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+        msg.textContent = 'Insufficient safety scores — need ≥2 models with ≥2 safety sub-benches';
+        mountEl.appendChild(msg);
+      }
+      return;
+    }
+
+    var subLabels = ['Red Team','Good Faith','GF Difficult','Care Consult','Writing'];
+    var data = [];
+    var maxV = 0;
+    ranked.forEach(function(r, ri) {
+      safetySubs.forEach(function(b, bi) {
+        var v = byModel[r.model_id][b];
+        var val = (typeof v === 'number') ? v : null;
+        data.push([bi, ri, val === null ? '-' : Math.round(val * 10) / 10]);
+        if (val !== null && val > maxV) maxV = val;
+      });
+    });
+
+    var chart = Charts._getOrCreate('medical-ai-chart-safety-heatmap');
+    if (!chart) return;
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 180, right: 24, top: 30, bottom: 80 },
+      tooltip: { position: 'top',
+        backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          return '<b>' + _modelDisplayName(ranked[p.value[1]].model_id) + '</b><br>' +
+            subLabels[p.value[0]] + ': ' + (p.value[2] === '-' ? 'n/a' : p.value[2]);
+        }
+      },
+      xAxis: { type: 'category', data: subLabels,
+        axisLabel: { color: '#9ca3af', rotate: 20, fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } } },
+      yAxis: { type: 'category', data: ranked.map(function(r) { return _modelDisplayName(r.model_id); }),
+        axisLabel: { color: '#9ca3af', fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } } },
+      visualMap: { min: 0, max: maxV || 100, calculable: false,
+        orient: 'horizontal', left: 'center', bottom: 8,
+        textStyle: { color: '#9ca3af' },
+        inRange: { color: ['#7f1d1d','#ef4444','#f59e0b','#10b981','#34d399'] } },
+      series: [{ name: 'Score', type: 'heatmap', data: data,
+        label: { show: true, color: '#0f172a', fontSize: 9 } }]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from MedicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderSpecialtyMatrix, renderHealthBenchRadar, renderUSMLEProgression, renderFrontierVsMedicalSpecialist, renderBenchmarkCatalog, renderMultilangCompare];
+    var fns = [renderHeroCards, renderSpecialtyMatrix, renderHealthBenchRadar, renderUSMLEProgression, renderFrontierVsMedicalSpecialist, renderBenchmarkCatalog, renderMultilangCompare, renderSafetyHeatmap];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[MedicalAICharts] failed:', fns[i].name || i, e);
@@ -1086,6 +1177,7 @@
     renderFrontierVsMedicalSpecialist: renderFrontierVsMedicalSpecialist,
     renderBenchmarkCatalog: renderBenchmarkCatalog,
     renderMultilangCompare: renderMultilangCompare,
+    renderSafetyHeatmap: renderSafetyHeatmap,
     _categoryBenchmarks: _categoryBenchmarks,
     _perCategoryComposite: _perCategoryComposite,
     openCategoryLeaderboard: openCategoryLeaderboard,
