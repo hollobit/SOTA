@@ -1155,6 +1155,10 @@ var Sovereign = {
             if (cumRegionSel) cumRegionSel.addEventListener('change', function() { self._renderCumulative(); });
         }
         this._initialized = true;
+
+        if (typeof SovereignCharts !== 'undefined' && SovereignCharts.renderAll) {
+            SovereignCharts.renderAll();
+        }
     },
 
     _updateMapToggleStyles: function() {
@@ -2236,6 +2240,18 @@ var Sovereign = {
         if (!chartEl || !tableEl) return;
         chartEl.textContent = '';
         tableEl.textContent = '';
+
+        // W5: Shift+click on dimension chart card opens per-dimension leaderboard modal.
+        if (!chartEl._sovDimDrillWired) {
+            chartEl.addEventListener('click', function(e) {
+                if (e.shiftKey && typeof SovereignCharts !== 'undefined' && SovereignCharts.openDimensionLeaderboard) {
+                    SovereignCharts.openDimensionLeaderboard(dim.id);
+                    return;
+                }
+            });
+            chartEl.title = (chartEl.title || '') + ' · Shift+click for leaderboard';
+            chartEl._sovDimDrillWired = true;
+        }
 
         if (activeBids.length === 0 || combined.length === 0) {
             var empty = document.createElement('p');
