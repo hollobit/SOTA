@@ -632,11 +632,30 @@
   // Public render orchestrator. Called from Sovereign.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderVLAIRRadar, renderBenchmarkCatalog, renderFrontierVsSovereign, renderMultilangProgression];
-    for (var i = 0; i < fns.length; i++) {
-      try { fns[i](); } catch (e) {
-        if (typeof console !== 'undefined') console.warn('[SovereignCharts] failed:', fns[i].name || i, e);
+    // Eager: hero cards (always above the fold) + VLAIR radar (close to fold).
+    var eagerFns = [renderHeroCards, renderVLAIRRadar];
+    eagerFns.forEach(function(fn) {
+      try { fn(); } catch (e) {
+        if (typeof console !== 'undefined') console.warn('[SovereignCharts] eager failed:', fn.name, e);
       }
+    });
+    // Lazy: deferred to next idle frame so initial paint isn't blocked.
+    var lazyFns = [
+      renderFrontierVsSovereign,
+      renderMultilangProgression,
+      renderBenchmarkCatalog
+    ];
+    function _runLazy() {
+      lazyFns.forEach(function(fn) {
+        try { fn(); } catch (e) {
+          if (typeof console !== 'undefined') console.warn('[SovereignCharts] lazy failed:', fn.name, e);
+        }
+      });
+    }
+    if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(_runLazy, { timeout: 1500 });
+    } else if (typeof setTimeout !== 'undefined') {
+      setTimeout(_runLazy, 50);
     }
   }
 
