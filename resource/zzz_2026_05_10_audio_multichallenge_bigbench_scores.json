@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-10",
+    "_note": "Strict primary-source ingestion from 2 NEW reference investigations: (1) Scale Labs Audio MultiChallenge leaderboard at labs.scale.com/leaderboard/audiomc — 30 leaderboard entries extracted, ingest the canonical highest-mode score per model. arxiv 2512.14865 paper. Audio MultiChallenge by Scale AI SEAL: 452 conversations / 47 speakers / 14.99 hr / 1,712 instance-specific rubrics / 5 axes (Inference Memory + Instruction Retention + Self Coherence + Voice Editing + Audio-Cue). Average Pass Rate (APR) metric. (2) HuggingFace Big Bench Audio release blog (https://huggingface.co/blog/big-bench-audio-release, Dec 20 2024) — 1,000 audio Qs across 4 BIG-Bench-Hard categories (Formal Fallacies/Navigate/Object Counting/Web of Lies). GPT-4o text-only = 92 ingested as primary baseline. Skipped duplicates: gpt-realtime-2 (48.45 audio xHigh already in DB as 48.5 from OpenAI primary) + gpt-realtime-1.5 (34.73 already in DB as 34.7). Snapshot IDs (gpt-realtime-2025-08-28) collapsed to canonical names. New audio model variants (qwen3-omni-instruct vs existing thinking variant) registered separately per their distinct evals.",
+    "sources": [
+      "https://labs.scale.com/leaderboard/audiomc",
+      "https://arxiv.org/abs/2512.14865",
+      "https://huggingface.co/blog/big-bench-audio-release",
+      "https://github.com/google/BIG-bench"
+    ]
+  },
+  "models": [
+    {
+      "id": "google/gemini-3.1-flash-live-preview",
+      "vendor": "Google",
+      "name": "Gemini 3.1 Flash Live Preview",
+      "type": "proprietary",
+      "modalities": ["audio", "text"],
+      "_sources": ["https://labs.scale.com/leaderboard/audiomc"]
+    },
+    {
+      "id": "google/gemini-2.5-flash-native-audio-preview",
+      "vendor": "Google",
+      "name": "Gemini 2.5 Flash Native Audio Preview",
+      "type": "proprietary",
+      "modalities": ["audio", "text"],
+      "_sources": ["https://labs.scale.com/leaderboard/audiomc"]
+    },
+    {
+      "id": "openai/gpt-4o-audio-preview",
+      "vendor": "OpenAI",
+      "name": "GPT-4o Audio Preview",
+      "type": "proprietary",
+      "modalities": ["audio", "text"],
+      "release_date": "2025-06-03",
+      "_sources": ["https://labs.scale.com/leaderboard/audiomc"]
+    },
+    {
+      "id": "openai/gpt-4o-mini-audio-preview",
+      "vendor": "OpenAI",
+      "name": "GPT-4o-mini Audio Preview",
+      "type": "proprietary",
+      "modalities": ["audio", "text"],
+      "release_date": "2024-12-17",
+      "_sources": ["https://labs.scale.com/leaderboard/audiomc"]
+    },
+    {
+      "id": "openai/gpt-realtime-mini",
+      "vendor": "OpenAI",
+      "name": "GPT-Realtime-Mini",
+      "type": "proprietary",
+      "modalities": ["audio", "text"],
+      "release_date": "2025-12-15",
+      "_sources": ["https://labs.scale.com/leaderboard/audiomc"]
+    },
+    {
+      "id": "alibaba/qwen3-omni-30b-a3b-instruct",
+      "vendor": "Alibaba",
+      "name": "Qwen3-Omni-30B-A3B-Instruct",
+      "type": "open-weight",
+      "modalities": ["audio", "image", "text"],
+      "_sources": ["https://labs.scale.com/leaderboard/audiomc"]
+    },
+    {
+      "id": "xiaomi/mimo-audio-7b-instruct",
+      "vendor": "Xiaomi",
+      "name": "MiMo-Audio-7B-Instruct",
+      "type": "open-weight",
+      "modalities": ["audio", "text"],
+      "_sources": ["https://labs.scale.com/leaderboard/audiomc"]
+    },
+    {
+      "id": "moonshot/kimi-audio-7b-instruct",
+      "vendor": "Moonshot AI",
+      "name": "Kimi-Audio-7B-Instruct",
+      "type": "open-weight",
+      "modalities": ["audio", "text"],
+      "_sources": ["https://labs.scale.com/leaderboard/audiomc"]
+    },
+    {
+      "id": "liquid/lfm2-audio-1.5b",
+      "vendor": "Liquid AI",
+      "name": "LFM2-Audio-1.5B",
+      "type": "open-weight",
+      "modalities": ["audio", "text"],
+      "_sources": ["https://labs.scale.com/leaderboard/audiomc"]
+    }
+  ],
+  "scores": [
+    {"model": "google/gemini-3-pro-preview", "benchmark": "audio_multichallenge", "score": 54.65, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge leaderboard #1 overall — gemini-3-pro-preview Thinking [Text output mode] = 54.65 ± 4.57 APR. Highest-performing model on the benchmark."},
+    {"model": "google/gemini-2.5-pro", "benchmark": "audio_multichallenge", "score": 46.90, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — gemini-2.5-pro Thinking [Text] = 46.90 ± 4.58 APR."},
+    {"model": "google/gemini-2.5-flash", "benchmark": "audio_multichallenge", "score": 40.04, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — gemini-2.5-flash Thinking [Text] = 40.04 ± 4.50 APR (vs default 26.11)."},
+    {"model": "google/gemini-3.1-flash-live-preview", "benchmark": "audio_multichallenge", "score": 36.06, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — gemini-3.1-flash-live-preview Thinking [Audio output] = 36.06 ± 4.41 APR."},
+    {"model": "mistral/voxtral-small-24b", "benchmark": "audio_multichallenge", "score": 26.33, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — Voxtral-Small-24B-2507 [Text] = 26.33 ± 4.05 APR."},
+    {"model": "openai/gpt-4o-audio-preview", "benchmark": "audio_multichallenge", "score": 25.44, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — gpt-4o-audio-preview-2025-06-03 [Text] = 25.44 ± 4.00 APR (Audio mode 23.23)."},
+    {"model": "alibaba/qwen3-omni-30b-a3b-instruct", "benchmark": "audio_multichallenge", "score": 24.34, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — Qwen3-Omni-30B-A3B-Instruct [Audio] = 24.34 ± 3.95 APR."},
+    {"model": "google/gemini-2.5-flash-native-audio-preview", "benchmark": "audio_multichallenge", "score": 21.46, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — gemini-2.5-flash-native-audio-preview-12-2025 thinking [Audio] = 21.46 ± 3.48 APR."},
+    {"model": "xiaomi/mimo-audio-7b-instruct", "benchmark": "audio_multichallenge", "score": 19.69, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — MiMo-Audio-7B-Instruct Thinking [Text] = 19.69 ± 3.66 APR (vs non-thinking 18.58)."},
+    {"model": "openai/gpt-realtime-mini", "benchmark": "audio_multichallenge", "score": 16.59, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — gpt-realtime-mini-2025-12-15 [Text] = 16.59 ± 3.43 APR (Audio mode 13.94)."},
+    {"model": "google/gemma-3n", "benchmark": "audio_multichallenge", "score": 15.49, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — gemma-3n-E4B-it [Text] = 15.49 ± 3.33 APR."},
+    {"model": "microsoft/phi-4-multimodal", "benchmark": "audio_multichallenge", "score": 15.49, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — Phi-4-multimodal-instruct [Text] = 15.49 ± 3.33 APR."},
+    {"model": "openai/gpt-4o-mini-audio-preview", "benchmark": "audio_multichallenge", "score": 14.82, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — gpt-4o-mini-audio-preview-2024-12-17 [Text] = 14.82 ± 3.28 APR (Audio mode 13.05)."},
+    {"model": "moonshot/kimi-audio-7b-instruct", "benchmark": "audio_multichallenge", "score": 13.72, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — Kimi-Audio-7B-Instruct [Text] = 13.72 ± 3.17 APR (Audio mode 10.40)."},
+    {"model": "alibaba/qwen2.5-omni-7b", "benchmark": "audio_multichallenge", "score": 11.95, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — Qwen2.5-Omni-7B [Text] = 11.95 ± 2.99 APR."},
+    {"model": "liquid/lfm2-audio-1.5b", "benchmark": "audio_multichallenge", "score": 9.29, "unit": "%", "_source": "https://labs.scale.com/leaderboard/audiomc", "_note": "Scale Labs Audio MultiChallenge — LFM2-Audio-1.5B [Audio] = 9.29 ± 2.69 APR."},
+
+    {"model": "openai/gpt-4o", "benchmark": "big_bench_audio", "score": 92, "unit": "%", "_source": "https://huggingface.co/blog/big-bench-audio-release", "_note": "HuggingFace Big Bench Audio release blog (Dec 20 2024): 'GPT-4o (Aug 2024) achieves 92% accuracy on a text-only version of the dataset.' Text-to-Text mode baseline reference for the 1,000-question audio reasoning benchmark."}
+  ]
+}
