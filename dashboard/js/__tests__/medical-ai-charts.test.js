@@ -23,3 +23,16 @@ assert.strictEqual(M._resolveCategory('mmedbench'), 'multilingual');
 assert.strictEqual(M._resolveCategory('unknown_bench'), null);
 
 console.log('Task 2 _resolveCategory OK');
+
+// Task 4
+assert.ok(Array.isArray(M._MED_BREAKTHROUGHS));
+assert.ok(M._MED_BREAKTHROUGHS.length >= 6 && M._MED_BREAKTHROUGHS.length <= 8);
+M._MED_BREAKTHROUGHS.forEach(function(b, i) {
+  assert.ok(b.title, 'entry ' + i + ' missing title');
+  assert.ok(b.narrative, 'entry ' + i + ' missing narrative');
+  assert.ok(b.value, 'entry ' + i + ' missing value');
+  assert.ok(b.domain, 'entry ' + i + ' missing domain');
+  assert.ok(b.source_url && b.source_url.indexOf('http') === 0, 'entry ' + i + ' source_url must be http(s)');
+  assert.ok(typeof b.year === 'number', 'entry ' + i + ' year must be number');
+});
+console.log('Task 4 _MED_BREAKTHROUGHS schema OK');

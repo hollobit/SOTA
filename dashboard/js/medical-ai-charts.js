@@ -194,6 +194,92 @@
     // Widgets are registered as Phase 1B + Phase 2B tasks land. Empty for now.
   }
 
+  // ====================================================================
+  // Medical breakthroughs — milestone events featured in W1 SOTA Watch tiles.
+  // ====================================================================
+  var _MED_BREAKTHROUGHS = [
+    {
+      title: 'Med-Gemini-3-Pro',
+      narrative: 'Frontier medical reasoning + multimodal',
+      value: 'MedQA SOTA',
+      domain: 'clinical-llm',
+      model_id: 'google/med-gemini-3-pro',
+      benchmark_id: 'medqa_usmle',
+      source_url: 'https://arxiv.org/abs/2404.18416',
+      year: 2025
+    },
+    {
+      title: 'Med-PaLM 2',
+      narrative: 'First model to pass USMLE expert level',
+      value: 'USMLE 86.5%',
+      domain: 'clinical-llm',
+      model_id: 'google/med-palm-2',
+      benchmark_id: 'medqa_usmle',
+      source_url: 'https://www.nature.com/articles/s41591-024-02855-5',
+      year: 2023
+    },
+    {
+      title: 'MedGemma 27B',
+      narrative: 'Open-weight Gemma-class medical FM',
+      value: 'MedQA 87.7%',
+      domain: 'clinical-llm',
+      model_id: 'google/medgemma-27b',
+      benchmark_id: 'medqa_usmle',
+      source_url: 'https://huggingface.co/google/medgemma-27b-it',
+      year: 2025
+    },
+    {
+      title: 'Polaris-3',
+      narrative: 'Hippocratic AI 70B clinical conversation',
+      value: 'HealthBench top',
+      domain: 'clinical-llm',
+      model_id: 'hippocratic-ai/polaris-3',
+      benchmark_id: 'healthbench',
+      source_url: 'https://www.hippocraticai.com/research/polaris-3',
+      year: 2025
+    },
+    {
+      title: 'OpenBioLLM-70B',
+      narrative: 'Open biomedical LLM (Saama)',
+      value: 'PubMedQA 80%',
+      domain: 'biomedical-llm',
+      model_id: 'saama/openbiollm-llama3-70b',
+      benchmark_id: 'pubmedqa',
+      source_url: 'https://huggingface.co/aaditya/Llama3-OpenBioLLM-70B',
+      year: 2024
+    },
+    {
+      title: 'M42 Med42-v2-70B',
+      narrative: 'UAE Cerebras-trained clinical LLM',
+      value: 'MedQA Foundation-class',
+      domain: 'biomedical-llm',
+      model_id: 'm42-health/med42-v2-70b',
+      benchmark_id: 'medqa_usmle',
+      source_url: 'https://m42.ae/media-resources/news/m42-announces-new-clinical-llm-to-transform-the-future-of-ai-in-healthcare/',
+      year: 2024
+    },
+    {
+      title: 'HuatuoGPT-o1 72B',
+      narrative: 'Chinese medical reasoning LLM',
+      value: 'climedbench_cn SOTA',
+      domain: 'multilingual-medical',
+      model_id: 'freedomintelligence/huatuogpt-o1-72b',
+      benchmark_id: 'climedbench_cn',
+      source_url: 'https://github.com/FreedomIntelligence/HuatuoGPT-o1',
+      year: 2024
+    },
+    {
+      title: 'KMed.ai (SNUH × Naver)',
+      narrative: 'Korean medical FM — KMLE 96.4 SOTA',
+      value: 'KMLE 96.4%',
+      domain: 'korean-medical',
+      model_id: 'snuh-naver/kmed-ai',
+      benchmark_id: 'kmle',
+      source_url: 'https://www.naver.com/healthcare-ai',
+      year: 2025
+    }
+  ];
+
   var api = {
     _SPECIALTY_MAP: _SPECIALTY_MAP,
     _resolveSpecialty: _resolveSpecialty,
@@ -201,6 +287,7 @@
     _resolveCategory: _resolveCategory,
     _ensureMountPoint: _ensureMountPoint,
     _applyToolbox: _applyToolbox,
+    _MED_BREAKTHROUGHS: _MED_BREAKTHROUGHS,
     renderAll: renderAll
   };
 
