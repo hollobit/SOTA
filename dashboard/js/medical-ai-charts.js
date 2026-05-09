@@ -1065,10 +1065,87 @@
   }
 
   // ====================================================================
+  // W9 — Clinical Prediction Bubble (MIMIC/eICU). Models in clinical-prediction
+  // category plotted by their available scores.
+  // ====================================================================
+  function renderClinicalPredictionBubble() {
+    _ensureMountPoint('medical-ai-chart-clinical-prediction',
+      'Clinical Prediction Models (MIMIC / eICU)',
+      'Models in the clinical-prediction category plotted by their available scores. Empty state if no scores loaded.');
+    if (typeof echarts === 'undefined') return;
+    var mountEl = document.getElementById('medical-ai-chart-clinical-prediction');
+    if (!mountEl) return;
+
+    var cats = _medicalAICategories();
+    var cpCat = cats.filter(function(c) { return c.code === 'clinical-prediction'; })[0];
+    if (!cpCat || !cpCat.models || !cpCat.models.length) {
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+      var msg = document.createElement('div');
+      msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+      msg.textContent = 'clinical-prediction category not loaded';
+      mountEl.appendChild(msg);
+      return;
+    }
+
+    var pts = [];
+    if (window.App && window.App.data && window.App.data.scores) {
+      cpCat.models.forEach(function(mid) {
+        var rows = window.App.data.scores.filter(function(s) { return s.model_id === mid && typeof s.value === 'number'; });
+        if (!rows.length) return;
+        var avg = rows.reduce(function(a, s) { return a + s.value; }, 0) / rows.length;
+        pts.push({
+          value: [rows.length, avg],
+          symbolSize: Math.min(40, 12 + rows.length * 1.5),
+          _meta: { model_id: mid, n: rows.length, avg: avg }
+        });
+      });
+    }
+
+    if (pts.length < 1) {
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+      var msg2 = document.createElement('div');
+      msg2.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+      msg2.textContent = 'No clinical-prediction model scores loaded yet';
+      mountEl.appendChild(msg2);
+      return;
+    }
+
+    var chart = Charts._getOrCreate('medical-ai-chart-clinical-prediction');
+    if (!chart) return;
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 50, right: 24, top: 30, bottom: 50 },
+      tooltip: { trigger: 'item',
+        backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          var m = p.data._meta;
+          return '<b>' + _modelDisplayName(m.model_id) + '</b><br>Scored benchmarks: ' + m.n + '<br>Avg: ' + m.avg.toFixed(2);
+        }
+      },
+      xAxis: { type: 'value', name: 'Scored benchmarks (n)',
+        nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      yAxis: { type: 'value', name: 'Avg score',
+        nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: '#1f2937' } } },
+      series: [{
+        name: 'Clinical Prediction Models', type: 'scatter', data: pts,
+        itemStyle: { color: '#fb7185', opacity: 0.85 }
+      }]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from MedicalAI.render().
   // ====================================================================
   function renderAll() {
-    var fns = [renderHeroCards, renderSpecialtyMatrix, renderHealthBenchRadar, renderUSMLEProgression, renderFrontierVsMedicalSpecialist, renderBenchmarkCatalog, renderMultilangCompare, renderSafetyHeatmap];
+    var fns = [renderHeroCards, renderSpecialtyMatrix, renderHealthBenchRadar, renderUSMLEProgression, renderFrontierVsMedicalSpecialist, renderBenchmarkCatalog, renderMultilangCompare, renderSafetyHeatmap, renderClinicalPredictionBubble];
     for (var i = 0; i < fns.length; i++) {
       try { fns[i](); } catch (e) {
         if (typeof console !== 'undefined') console.warn('[MedicalAICharts] failed:', fns[i].name || i, e);
@@ -1178,6 +1255,7 @@
     renderBenchmarkCatalog: renderBenchmarkCatalog,
     renderMultilangCompare: renderMultilangCompare,
     renderSafetyHeatmap: renderSafetyHeatmap,
+    renderClinicalPredictionBubble: renderClinicalPredictionBubble,
     _categoryBenchmarks: _categoryBenchmarks,
     _perCategoryComposite: _perCategoryComposite,
     openCategoryLeaderboard: openCategoryLeaderboard,
