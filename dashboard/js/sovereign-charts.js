@@ -525,6 +525,110 @@
   }
 
   // ====================================================================
+  // W5 — Per-Dimension Drill-down Modal. Opened from dimension card Shift+click.
+  // ====================================================================
+  function _dimensionBenchmarks(dimensionId) {
+    var out = [];
+    Object.keys(_BENCHMARK_DIMENSION_MAP).forEach(function(bid) {
+      if (_BENCHMARK_DIMENSION_MAP[bid] === dimensionId) out.push(bid);
+    });
+    return out;
+  }
+
+  function _perDimensionComposite(modelId, benchmarkIds) {
+    if (!benchmarkIds || !benchmarkIds.length) return null;
+    var sum = 0; var cov = 0;
+    for (var i = 0; i < benchmarkIds.length; i++) {
+      var rows = _scoresFor(benchmarkIds[i]);
+      var maxV = 0; var mine = null;
+      for (var j = 0; j < rows.length; j++) {
+        var r = rows[j];
+        if (typeof r.value !== 'number') continue;
+        if (r.value > maxV) maxV = r.value;
+        if (r.model_id === modelId) mine = r.value;
+      }
+      if (mine !== null && maxV > 0) {
+        sum += (mine / maxV) * 100;
+        cov++;
+      }
+    }
+    return cov >= 1 ? { score: sum / cov, coverage: cov } : null;
+  }
+
+  function openDimensionLeaderboard(dimensionId) {
+    if (typeof document === 'undefined' || typeof window === 'undefined') return;
+    var benches = _dimensionBenchmarks(dimensionId);
+    if (!benches.length || !window.App || !window.App.data || !window.App.data.models) {
+      if (typeof console !== 'undefined') console.warn('[SovereignCharts] No benches for dimension', dimensionId);
+      return;
+    }
+
+    var rows = [];
+    window.App.data.models.forEach(function(m) {
+      var c = _perDimensionComposite(m.id, benches);
+      if (c) rows.push({ model: m, score: c.score, coverage: c.coverage });
+    });
+    rows.sort(function(a, b) { return b.score - a.score; });
+    rows = rows.slice(0, 15);
+
+    var overlay = document.createElement('div');
+    overlay.className = 'fixed inset-0 z-50 flex items-center justify-center';
+    overlay.style.background = 'rgba(0,0,0,0.6)';
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) overlay.remove();
+    });
+
+    var box = document.createElement('div');
+    box.className = 'bg-gray-900 border border-gray-700 rounded-lg p-5 max-w-2xl w-11/12 max-h-[80vh] overflow-y-auto';
+    var title = document.createElement('h3');
+    title.className = 'text-lg font-semibold text-gray-200 mb-1';
+    title.textContent = dimensionId + ' Leaderboard';
+    box.appendChild(title);
+    var sub = document.createElement('p');
+    sub.className = 'text-xs text-gray-500 mb-3';
+    sub.textContent = 'Per-dimension composite (mean of normalized scores). Coverage = # benches scored.';
+    box.appendChild(sub);
+
+    if (!rows.length) {
+      var empty = document.createElement('div');
+      empty.className = 'text-sm text-gray-400 italic';
+      empty.textContent = 'No models with scores in this dimension yet.';
+      box.appendChild(empty);
+    } else {
+      var table = document.createElement('table');
+      table.className = 'w-full text-xs';
+      var thead = document.createElement('thead');
+      var trH = document.createElement('tr');
+      trH.className = 'text-gray-400';
+      ['#', 'Model', 'Vendor', 'Composite', 'Coverage'].forEach(function(t) {
+        var th = document.createElement('th'); th.className = 'text-left px-2 py-1';
+        th.textContent = t; trH.appendChild(th);
+      });
+      thead.appendChild(trH); table.appendChild(thead);
+      var tbody = document.createElement('tbody');
+      rows.forEach(function(r, i) {
+        var tr = document.createElement('tr'); tr.className = 'border-t border-gray-800';
+        [String(i + 1), r.model.name || r.model.id, r.model.vendor || '—',
+         r.score.toFixed(1), String(r.coverage)].forEach(function(v) {
+          var td = document.createElement('td'); td.className = 'px-2 py-1 text-gray-200';
+          td.textContent = v; tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody); box.appendChild(table);
+    }
+
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'mt-4 px-3 py-1.5 rounded bg-gray-800 text-gray-300 hover:bg-gray-700 text-xs';
+    closeBtn.textContent = 'Close';
+    closeBtn.addEventListener('click', function() { overlay.remove(); });
+    box.appendChild(closeBtn);
+
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from Sovereign.render().
   // ====================================================================
   function renderAll() {
@@ -736,6 +840,9 @@
     renderFrontierVsSovereign: renderFrontierVsSovereign,
     _modelReleaseDate: _modelReleaseDate,
     renderMultilangProgression: renderMultilangProgression,
+    _dimensionBenchmarks: _dimensionBenchmarks,
+    _perDimensionComposite: _perDimensionComposite,
+    openDimensionLeaderboard: openDimensionLeaderboard,
     renderAll: renderAll
   };
 

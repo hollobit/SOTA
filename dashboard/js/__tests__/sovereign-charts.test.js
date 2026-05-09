@@ -28,3 +28,22 @@ S._SOV_BREAKTHROUGHS.forEach(function(b, i) {
   assert.ok(typeof b.year === 'number', 'entry ' + i + ' year must be number');
 });
 console.log('Task 3 _SOV_BREAKTHROUGHS schema OK');
+
+// Task 9
+assert.ok(S._perDimensionComposite, '_perDimensionComposite must be exported');
+global.window = global.window || {};
+global.window.App = { data: { scores: [
+  { model_id: 'm1', benchmark_id: 'mmmlu', value: 80 },
+  { model_id: 'm2', benchmark_id: 'mmmlu', value: 100 },
+  { model_id: 'm1', benchmark_id: 'c_eval', value: 60 },
+  { model_id: 'm2', benchmark_id: 'c_eval', value: 50 }
+]}};
+var c1 = S._perDimensionComposite('m1', ['mmmlu','c_eval']);
+assert.ok(c1, 'm1 should have composite');
+assert.strictEqual(c1.coverage, 2);
+assert.strictEqual(c1.score, 90);
+var c2 = S._perDimensionComposite('m2', ['mmmlu','c_eval']);
+assert.strictEqual(c2.coverage, 2);
+assert.ok(Math.abs(c2.score - 91.6667) < 0.001);
+assert.strictEqual(S._perDimensionComposite('m3', ['mmmlu']), null);
+console.log('Task 9 _perDimensionComposite OK');
