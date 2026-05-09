@@ -264,11 +264,152 @@
   }
 
   // ====================================================================
+  // W2 — Specialty × Benchmark Coverage Matrix.
+  // Rows: 12 specialties (incl. 'other'). Cols: 6 benchmark categories.
+  // Cell value: count of distinct Medical AI models in that specialty
+  // that have a score in any benchmark of that category.
+  // ====================================================================
+  function _medicalAICategories() {
+    if (typeof window === 'undefined') return [];
+    if (typeof window.MedicalAI !== 'undefined' && window.MedicalAI.CATEGORIES) return window.MedicalAI.CATEGORIES;
+    return [];
+  }
+
+  // Returns [{model_id, specialty_key}] for all distinct models in any
+  // Medical AI category (deduplicated across categories).
+  function _medicalAIModels() {
+    var cats = _medicalAICategories();
+    if (!cats.length || typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.models) return [];
+    var modelsById = {};
+    window.App.data.models.forEach(function(m) { modelsById[m.id] = m; });
+    var seen = {}; var out = [];
+    cats.forEach(function(c) {
+      (c.models || []).forEach(function(mid) {
+        if (seen[mid]) return;
+        seen[mid] = true;
+        var m = modelsById[mid] || { id: mid, name: '' };
+        var sp = _resolveSpecialty(mid, m.name);
+        out.push({ model_id: mid, specialty_key: sp.key });
+      });
+    });
+    return out;
+  }
+
+  function renderSpecialtyMatrix() {
+    _ensureMountPoint('medical-ai-chart-specialty-matrix',
+      'Specialty × Benchmark Category Matrix',
+      'Which medical specialties report on which benchmark categories. Cell = distinct model count.');
+    if (typeof echarts === 'undefined') return;
+    var mountEl = document.getElementById('medical-ai-chart-specialty-matrix');
+    if (!mountEl) return;
+
+    var entries = _medicalAIModels();
+    if (!entries.length) return;
+
+    var specOrder = _SPECIALTY_MAP.map(function(s) { return s.key; }).concat(['other']);
+    var specLabel = {}; _SPECIALTY_MAP.forEach(function(s) { specLabel[s.key] = s.label; });
+    specLabel['other'] = 'Other';
+    var categories = ['clinical-knowledge','biomedical-research','healthbench','specialty','multilingual','dialog'];
+    var categoryLabel = {
+      'clinical-knowledge': 'Clinical Knowledge',
+      'biomedical-research': 'Biomedical Research',
+      'healthbench': 'HealthBench Family',
+      'specialty': 'Specialty Eval',
+      'multilingual': 'Multi-language',
+      'dialog': 'Dialog / Safety'
+    };
+
+    // Index scores by model: which categories does each model have any score in?
+    var scoresByModel = {};
+    if (window.App && window.App.data && window.App.data.scores) {
+      window.App.data.scores.forEach(function(s) {
+        var cat = _resolveCategory(s.benchmark_id);
+        if (!cat) return;
+        scoresByModel[s.model_id] = scoresByModel[s.model_id] || {};
+        scoresByModel[s.model_id][cat] = true;
+      });
+    }
+
+    var counts = {}; var maxV = 0;
+    entries.forEach(function(e) {
+      var cats = scoresByModel[e.model_id] || {};
+      Object.keys(cats).forEach(function(c) {
+        var k = e.specialty_key + '|' + c;
+        counts[k] = (counts[k] || 0) + 1;
+        if (counts[k] > maxV) maxV = counts[k];
+      });
+    });
+
+    var data = [];
+    for (var si = 0; si < specOrder.length; si++) {
+      for (var ci = 0; ci < categories.length; ci++) {
+        var v = counts[specOrder[si] + '|' + categories[ci]] || 0;
+        data.push([ci, si, v === 0 ? '-' : v]);
+      }
+    }
+
+    if (maxV === 0) {
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+      var msg = document.createElement('div');
+      msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+      msg.textContent = 'No medical scores loaded — verify App.data';
+      mountEl.appendChild(msg);
+      return;
+    }
+
+    var chart = Charts._getOrCreate('medical-ai-chart-specialty-matrix');
+    if (!chart) return;
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 130, right: 24, top: 30, bottom: 80 },
+      tooltip: {
+        position: 'top',
+        backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          return '<b>' + (specLabel[specOrder[p.value[1]]] || '?') + '</b><br>' +
+            (categoryLabel[categories[p.value[0]]] || '?') + '<br>Models: ' +
+            (p.value[2] === '-' ? 0 : p.value[2]);
+        }
+      },
+      xAxis: {
+        type: 'category',
+        data: categories.map(function(c) { return categoryLabel[c] || c; }),
+        axisLabel: { color: '#9ca3af', rotate: 30, fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } }
+      },
+      yAxis: {
+        type: 'category',
+        data: specOrder.map(function(k) { return specLabel[k] || k; }),
+        axisLabel: { color: '#9ca3af', fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } }
+      },
+      visualMap: {
+        min: 1, max: maxV,
+        calculable: false,
+        orient: 'horizontal', left: 'center', bottom: 8,
+        textStyle: { color: '#9ca3af' },
+        inRange: { color: ['#1e3a8a', '#3b82f6', '#60a5fa', '#bfdbfe'] }
+      },
+      series: [{
+        name: 'Models', type: 'heatmap',
+        data: data,
+        label: { show: true, color: '#0f172a', fontSize: 9 },
+        emphasis: { itemStyle: { shadowBlur: 6, shadowColor: 'rgba(96,165,250,0.6)' } }
+      }]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from MedicalAI.render().
   // ====================================================================
   function renderAll() {
-    try { renderHeroCards(); } catch (e) {
-      if (typeof console !== 'undefined') console.warn('[MedicalAICharts] hero failed:', e);
+    var fns = [renderHeroCards, renderSpecialtyMatrix];
+    for (var i = 0; i < fns.length; i++) {
+      try { fns[i](); } catch (e) {
+        if (typeof console !== 'undefined') console.warn('[MedicalAICharts] failed:', fns[i].name || i, e);
+      }
     }
   }
 
@@ -367,6 +508,7 @@
     _applyToolbox: _applyToolbox,
     _MED_BREAKTHROUGHS: _MED_BREAKTHROUGHS,
     renderHeroCards: renderHeroCards,
+    renderSpecialtyMatrix: renderSpecialtyMatrix,
     renderAll: renderAll
   };
 
