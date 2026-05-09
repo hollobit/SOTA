@@ -1,5 +1,56 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-09 (Session 8): Medical AI menu widget expansion — 10 widgets (16 tasks, 16 commits)
+
+### 14. Medical AI 위젯 확충 (commits `1ac79cb` → `73d1917`)
+
+기존 2 chart widgets (timeline + radar) → **10+ widgets**. AI4S 패턴(Session 7) 그대로 적용. Sub-section 구조: SOTA Watch + 18 Category Cards + Cross-Specialty Compare + Per-Category Mini-Leaderboards.
+
+브레인스토밍 (이전 메뉴별 별도 spec 합의 B 옵션 적용) → spec(`docs/superpowers/specs/2026-05-09-medical-ai-widget-expansion-design.md`, 341 LOC) → plan(`docs/superpowers/plans/2026-05-09-medical-ai-widget-expansion.md`, 1238 LOC) → subagent-driven 실행.
+
+**Phase 1A — Foundation (Tasks 1-4)**:
+- **Task 1 (`1ac79cb`)**: UMD skeleton + `_SPECIALTY_MAP` (12 medical specialties: general/biomedical/radiology/pathology/derm/cardio/onc/protein/multilingual/safety/mental-health/other) + `_resolveSpecialty(modelId, modelName)` + 8-assertion test.
+- **Task 2 (`b4cb99c`)**: `_BENCHMARK_CATEGORY_MAP` (28 entries: clinical-knowledge/biomedical-research/healthbench/specialty/multilingual/dialog) + `_resolveCategory` + test.
+- **Task 3 (`26ef737`)**: `_ensureMountPoint` factory (a11y role=img/aria-label) + `_ensureMedicalAIChartsStyle` (mobile + reduced-motion) + `_applyToolbox` + `renderAll` stub. `<div id="medical-ai-charts">` + `<script>` wired in index.html, `MedicalAICharts.renderAll()` called from `MedicalAI.render()`.
+- **Task 4 (`da2255f`)**: `_MED_BREAKTHROUGHS` 8 milestone tiles (Med-Gemini-3-Pro / Med-PaLM 2 USMLE 86.5 / MedGemma 27B / Polaris-3 / OpenBioLLM-70B / M42 Med42-v2-70B / HuatuoGPT-o1 72B / KMed.ai SNUH×Naver) + schema test.
+
+**Phase 1B — 5 immediate-render widgets (Tasks 5-9)**:
+- **W1 Hero Cards** (`851499b`): 8 anchor tiles, 4-col grid, 11-domain medical palette + gray fallback.
+- **W2 Specialty × Benchmark Matrix** (`f41b4a1`): 12 specialties × 6 benchmark categories heatmap. Cell = distinct model count.
+- **W4 HealthBench Sub-benchmarks Radar** (`0c99587`): top-5 models × 7 sub-benches (consensus/professional/care_consult/redteam/research/goodfaith/writing). Coverage ≥3 filter.
+- **W6 USMLE Progression Curve** (`f9889ec`): medqa_usmle 34 scores time-series with 0-100 yAxis.
+- **W10 Medical Benchmark Catalog Grid** (`27f1787`): searchable DOM table for ~30 medical-tagged benchmarks.
+
+**Phase 2B — 5 data-dependent widgets (Tasks 10-14)**:
+- **W3 Frontier vs Medical-Specialist** (`2ec8f52`): grouped bar — frontier 6 LLMs vs medical specialist 8 (Med-Gemini/MedGemma/Med-PaLM/Med42/OpenBioLLM/Meditron) on shared MedQA-class benchmarks.
+- **W5 Per-Category Mini-Leaderboard Modal** (`47a168a`): Shift+click on category card → modal with per-category composite (max-normalized mean over all medical benchmarks). 4th unit test (composite arithmetic).
+- **W7 Multi-language Medical Compare** (`813bb7f`): top-model bar across mmedbench / jmedbench / medbench_cn / climedbench_cn.
+- **W8 Medical Safety Heatmap** (`ee23666`): top-8 models × 5 safety sub-benches (red→green visualMap). Coverage ≥2.
+- **W9 Clinical Prediction Bubble** (`4c4b0f0`): scatter (n scored × avg score) for clinical-prediction category models. MIMIC/eICU emphasis.
+
+**Phase 3 — Polish + deploy (Tasks 15-16)**:
+- **Task 15 Lazy render** (`0c71f44`): renderAll → eager 3 (Hero/Specialty/HealthBench) + lazy 6 via requestIdleCallback (timeout 1500ms) + setTimeout fallback.
+- **Task 16 Cache-bust + deploy** (`73d1917`): `?v=20260509b` for medical-ai.js + medical-ai-charts.js. Push to origin/ops, trigger benchmark-update.yml CI.
+
+**파일 deltas**:
+- `dashboard/js/medical-ai-charts.js`: NEW **1293 LOC**
+- `dashboard/js/__tests__/medical-ai-charts.test.js`: NEW **(4 tests)**
+- `dashboard/js/medical-ai.js`: +5 LOC (renderAll hook + Shift+click handler)
+- `dashboard/index.html`: +3 LOC (mount div + script tag + cache-bust)
+- `docs/superpowers/specs/2026-05-09-medical-ai-widget-expansion-design.md`: NEW (341 LOC)
+- `docs/superpowers/plans/2026-05-09-medical-ai-widget-expansion.md`: NEW (1238 LOC)
+
+**스코어카드**:
+- 위젯: Medical AI 2 → **12** (W1/W2/W3/W4/W5/W6/W7/W8/W9/W10 + 기존 timeline + radar)
+- 신규 unit test: **+4** (`_resolveSpecialty` / `_resolveCategory` / `_MED_BREAKTHROUGHS` schema / `_perCategoryComposite`)
+- a11y: role=img + aria-label + tabindex on every chart mount
+- 16 commits, subagent-driven-development pattern (sequential per-task)
+- 신규 데이터 ingest 0건 — 모든 widget이 현재 데이터(881 benchmarks, 3488 scores)로 작동
+
+**Live deploy**: CI run `25587893301` triggered, awaiting completion.
+
+---
+
 ## 2026-05-09 (Session 7): AI4S menu widget expansion — 10 widgets across 2 phases (19 tasks, 17 commits)
 
 ### 13. AI4S 위젯 신설 (commits `5489408` → `0c21c75`)
