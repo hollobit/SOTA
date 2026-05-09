@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-10",
+    "_note": "Strict primary-source ingestion from 3 user-provided links: (1) Epoch AI ECI leaderboard at epoch.ai/eci — registered Epoch Capabilities Index general + Software Engineering subset as new benchmarks. ECI calibration anchors (Claude 3.5 Sonnet = 130, GPT-5 medium = 150) explicitly stated by Epoch AI as the SCALE-DEFINING values, ingested as scores. (2) arxiv 2605.02881 MolmoAct2 — registered MolmoAct2 + MolmoER models with metadata; PDF extraction exceeded WebFetch limit so specific benchmark values from paper tables not ingested (paper claims 7 sim+real benchmarks + 13 embodied-reasoning benchmarks; outperforms Pi-0.5; MolmoER beats GPT-5 + Gemini Robotics ER-1.5 — qualitative only without specific numerical attribution). (3) Epoch AI substack 'RIP Classic Reasoning Benchmarks' — qualitative analysis of benchmark saturation (GPQA/GraphWalks/SimpleBench saturating). Concrete cited score: Claude Mythos GraphWalks 80% — verified as already in DB (anthropic/claude-mythos-preview / graphwalks_bfs = 80.0). Substack-recommended replacement benchmarks (SpatialBench/IRGB/PostTrainBench/ALE-bench/AlgoTune/CRUX/FrontierMath Open Problems) NOT ingested: each requires its own primary-source benchmark registration with verified model+score attribution, deferred to follow-up sweeps.",
+    "sources": [
+      "https://epoch.ai/eci",
+      "https://epochai.substack.com/p/epochs-capabilities-index-stitches",
+      "https://www.lesswrong.com/posts/2RtuThoZwP4o8aEpS/introducing-the-epoch-capabilities-index-eci",
+      "https://arxiv.org/abs/2605.02881",
+      "https://epochai.substack.com/p/rip-classic-reasoning-benchmarks"
+    ]
+  },
+  "models": [
+    {
+      "id": "allenai/molmoact2",
+      "vendor": "Allen AI",
+      "name": "MolmoAct2",
+      "type": "open-weight",
+      "modalities": ["image", "text", "action"],
+      "release_date": "2026-05-09",
+      "_sources": ["https://arxiv.org/abs/2605.02881"]
+    },
+    {
+      "id": "allenai/molmoer",
+      "vendor": "Allen AI",
+      "name": "MolmoER (Embodied Reasoning VLM backbone)",
+      "type": "open-weight",
+      "modalities": ["image", "text"],
+      "release_date": "2026-05-09",
+      "_sources": ["https://arxiv.org/abs/2605.02881"]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "epoch_capabilities_index",
+      "name": "Epoch Capabilities Index (ECI)",
+      "category": "composite",
+      "description": "Cross-benchmark composite metric combining 40+ AI benchmarks into a single 'general capability' scale. Calibrated so that Claude 3.5 Sonnet = 130 and GPT-5 (medium) = 150. Linear scale: a 10-point jump represents equivalent capability gain regardless of position. Methodology paper 'A Rosetta Stone for AI Benchmarks' (Google DeepMind funded) infers benchmark difficulty statistically from overlapping model results, weights harder benchmarks more, and avoids inflation from specialized models. Domain-specific subsets available (Software Engineering, Math).",
+      "metric": "score"
+    },
+    {
+      "id": "epoch_capabilities_index_swe",
+      "name": "Epoch Capabilities Index — Software Engineering",
+      "category": "composite",
+      "description": "Domain-specific Epoch Capabilities Index using only software engineering benchmarks (SWE-Bench Verified, SWE-Bench Pro, Terminal-Bench, Aider Polyglot, etc). Same Rosetta Stone methodology as general ECI applied to software engineering subset only.",
+      "metric": "score"
+    }
+  ],
+  "scores": [
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "epoch_capabilities_index", "score": 130, "unit": "score", "_source": "https://epoch.ai/eci", "_note": "Epoch AI ECI calibration anchor — Claude 3.5 Sonnet defined as ECI = 130 (one of two scale-defining anchor points; the other is GPT-5 medium = 150). Also stated explicitly in introductory substack 'we've chosen to scale things such that Claude 3.5 Sonnet gets 130 and GPT-5 (medium) gets 150.'"},
+    {"model": "openai/gpt-5", "benchmark": "epoch_capabilities_index", "score": 150, "unit": "score", "_source": "https://epoch.ai/eci", "_note": "Epoch AI ECI calibration anchor — GPT-5 (medium) defined as ECI = 150 (the other scale-defining point alongside Claude 3.5 Sonnet = 130). As of search snapshot 2026-05-10 also noted as the top score on the leaderboard ('Currently, the top score is GPT-5-Medium with 150')."}
+  ]
+}
