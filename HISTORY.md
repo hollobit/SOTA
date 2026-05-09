@@ -1,5 +1,56 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-09 (Session 9): Physical AI menu widget expansion — 10 widgets (16 tasks, 16 commits)
+
+### 15. Physical AI 위젯 확충 (commits `4bf0dcb` → `b8ada37`)
+
+기존 2 chart widgets (timeline + radar) → **12 widgets**. AI4S/Medical AI 패턴 그대로 적용. Sub-section 구조: SOTA Watch + 5 Category Cards + Cross-Family Compare + Per-Category Mini-Leaderboards.
+
+브레인스토밍(이전 메뉴별 별도 spec 합의 B 옵션) → spec(`docs/superpowers/specs/2026-05-09-physical-ai-widget-expansion-design.md`, 276 LOC) → plan(`docs/superpowers/plans/2026-05-09-physical-ai-widget-expansion.md`, 453 LOC) → subagent-driven 실행.
+
+**Phase 1A — Foundation (Tasks 1-4)**:
+- **Task 1 (`4bf0dcb`)**: UMD skeleton + `_FAMILY_MAP` (10 robot/vendor families: gr00t/pi/openvla/octo/gemini-robotics/industrial-humanoid/industrial-fm/world-model/human-vision/industrial-vendor) + `_resolveFamily(modelId, modelName)` + 10-assertion test.
+- **Task 2 (`5802d84`)**: `_BENCHMARK_FAMILY_MAP` (28 entries: vla-manipulation/world-model/embodied-reasoning) + `_resolveSuite` + test.
+- **Task 3 (`71c10fe`)**: `_ensureMountPoint` factory + `_ensurePhysicalAIChartsStyle` + `_applyToolbox` + `renderAll` stub. `<div id="physical-ai-charts">` + `<script>` wired in index.html, `PhysicalAICharts.renderAll()` from `PhysicalAI.render()`.
+- **Task 4 (`815d18f`)**: `_PHY_BREAKTHROUGHS` 8 milestone tiles (NVIDIA GR00T-N1.7 / Gemini Robotics ER 1.6 / π-zero / OpenVLA-7B / NVIDIA Cosmos / FoxBrain 70B / Figure Helix / Meta Sapiens2) + schema test.
+
+**Phase 1B — 5 immediate-render widgets (Tasks 5-9)**:
+- **W1 Hero Cards** (`0b60320`): 8 anchor tiles, 4-col grid, 5-domain palette + gray fallback.
+- **W2 Family × Benchmark Suite Coverage Matrix** (`0468881`): 11 robot families × 3 suite categories heatmap.
+- **W3 LIBERO Suite Radar** (`274d5b5`): top-5 models × 5 LIBERO sub-benches (libero/spatial/object/goal/long). Coverage ≥3.
+- **W6 LIBERO Progression Curve** (`1691010`): 5 LIBERO sub-benches multi-line over release_date.
+- **W10 Physical AI Benchmark Catalog Grid** (`2f32a14`): searchable DOM table for ~28 physical-AI-tagged benchmarks.
+
+**Phase 2B — 5 data-dependent widgets (Tasks 10-14)**:
+- **W4 World Model Quality Radar** (`70e76f2`): top-5 models × 6 sub-benches (cosmos × 3 + world_model × 3). Coverage ≥2.
+- **W5 Per-Category Mini-Leaderboard Modal** (`933523f`): Shift+click on category card → modal with per-category composite (max-normalized mean over all physical AI benchmarks). 4th unit test (composite arithmetic).
+- **W7 Sim-to-Real Compare** (`7330057`): top-model bar across simpler_env_avg / robocasa / robocasa365.
+- **W8 Industrial Deployment Map** (`30a2561`): DOM cards for manufacturing-fm + industrial-robots categories with `_DEPLOYMENT_STATUS` metadata table (FoxBrain/Helix/Optimus/Apollo/Digit/Carbon/SiFM/Bosch 등 12개 vendor 배포 status).
+- **W9 Embodied Reasoning Heatmap** (`675fbf7`): top-8 models × 3 cosmos sub-benches (red→green visualMap). Coverage ≥1.
+
+**Phase 3 — Polish + deploy (Tasks 15-16)**:
+- **Task 15 Lazy render** (`611ddc5`): renderAll → eager 3 (Hero/Family/LIBERO) + lazy 6 via requestIdleCallback (timeout 1500ms) + setTimeout fallback.
+- **Task 16 Cache-bust + deploy** (`b8ada37`): `?v=20260509b` for physical-ai.js + physical-ai-charts.js. Push to origin/ops, trigger benchmark-update.yml CI.
+
+**파일 deltas**:
+- `dashboard/js/physical-ai-charts.js`: NEW **1327 LOC**
+- `dashboard/js/__tests__/physical-ai-charts.test.js`: NEW **(4 tests)**
+- `dashboard/js/physical-ai.js`: +5 LOC (renderAll hook + Shift+click)
+- `dashboard/index.html`: +3 LOC (mount div + script tag + cache-bust)
+- `docs/superpowers/specs/2026-05-09-physical-ai-widget-expansion-design.md`: NEW (276 LOC)
+- `docs/superpowers/plans/2026-05-09-physical-ai-widget-expansion.md`: NEW (453 LOC)
+
+**스코어카드**:
+- 위젯: Physical AI 2 → **12** (timeline + radar + W1-W10)
+- 신규 unit test: **+4** (`_resolveFamily` / `_resolveSuite` / `_PHY_BREAKTHROUGHS` schema / `_perCategoryComposite`)
+- a11y: role=img + aria-label + tabindex on every chart mount, mobile @media ≤768px, prefers-reduced-motion
+- 16 commits, subagent-driven-development pattern (sequential per-task)
+- 신규 데이터 ingest 0건 — 모든 widget이 현재 데이터로 작동
+
+**Live deploy**: CI run `25589049659` triggered, awaiting completion.
+
+---
+
 ## 2026-05-09 (Session 8): Medical AI menu widget expansion — 10 widgets (16 tasks, 16 commits)
 
 ### 14. Medical AI 위젯 확충 (commits `1ac79cb` → `73d1917`)
