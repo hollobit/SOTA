@@ -177,11 +177,147 @@
   }
 
   // ====================================================================
+  // W2 — Family × Benchmark Suite Coverage Matrix.
+  // Rows: 11 robot/vendor families (incl. 'other'). Cols: 3 suite categories.
+  // Cell value: count of distinct Physical AI models in that family that
+  // have a score in any benchmark of that suite.
+  // ====================================================================
+  function _physicalAICategories() {
+    if (typeof window === 'undefined') return [];
+    if (typeof window.PhysicalAI !== 'undefined' && window.PhysicalAI.CATEGORIES) return window.PhysicalAI.CATEGORIES;
+    return [];
+  }
+
+  // Returns [{model_id, family_key}] for all distinct Physical AI models.
+  function _physicalAIModels() {
+    var cats = _physicalAICategories();
+    if (!cats.length || typeof window === 'undefined' || !window.App || !window.App.data || !window.App.data.models) return [];
+    var modelsById = {};
+    window.App.data.models.forEach(function(m) { modelsById[m.id] = m; });
+    var seen = {}; var out = [];
+    cats.forEach(function(c) {
+      (c.models || []).forEach(function(mid) {
+        if (seen[mid]) return;
+        seen[mid] = true;
+        var m = modelsById[mid] || { id: mid, name: '' };
+        var fam = _resolveFamily(mid, m.name);
+        out.push({ model_id: mid, family_key: fam.key });
+      });
+    });
+    return out;
+  }
+
+  function renderFamilyMatrix() {
+    _ensureMountPoint('physical-ai-chart-family-matrix',
+      'Family × Benchmark Suite Matrix',
+      'Which robot/vendor families report on which benchmark suites. Cell = distinct model count.');
+    if (typeof echarts === 'undefined') return;
+    var mountEl = document.getElementById('physical-ai-chart-family-matrix');
+    if (!mountEl) return;
+
+    var entries = _physicalAIModels();
+    if (!entries.length) return;
+
+    var famOrder = _FAMILY_MAP.map(function(f) { return f.key; }).concat(['other']);
+    var famLabel = {}; _FAMILY_MAP.forEach(function(f) { famLabel[f.key] = f.label; });
+    famLabel['other'] = 'Other';
+    var suites = ['vla-manipulation','world-model','embodied-reasoning'];
+    var suiteLabel = {
+      'vla-manipulation': 'VLA Manipulation',
+      'world-model': 'World Model Quality',
+      'embodied-reasoning': 'Embodied Reasoning'
+    };
+
+    var scoresByModel = {};
+    if (window.App && window.App.data && window.App.data.scores) {
+      window.App.data.scores.forEach(function(s) {
+        var suite = _resolveSuite(s.benchmark_id);
+        if (!suite) return;
+        scoresByModel[s.model_id] = scoresByModel[s.model_id] || {};
+        scoresByModel[s.model_id][suite] = true;
+      });
+    }
+
+    var counts = {}; var maxV = 0;
+    entries.forEach(function(e) {
+      var sm = scoresByModel[e.model_id] || {};
+      Object.keys(sm).forEach(function(s) {
+        var k = e.family_key + '|' + s;
+        counts[k] = (counts[k] || 0) + 1;
+        if (counts[k] > maxV) maxV = counts[k];
+      });
+    });
+
+    var data = [];
+    for (var fi = 0; fi < famOrder.length; fi++) {
+      for (var si = 0; si < suites.length; si++) {
+        var v = counts[famOrder[fi] + '|' + suites[si]] || 0;
+        data.push([si, fi, v === 0 ? '-' : v]);
+      }
+    }
+
+    if (maxV === 0) {
+      while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
+      var msg = document.createElement('div');
+      msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
+      msg.textContent = 'No physical AI scores loaded — verify App.data';
+      mountEl.appendChild(msg);
+      return;
+    }
+
+    var chart = Charts._getOrCreate('physical-ai-chart-family-matrix');
+    if (!chart) return;
+    var opt = {
+      backgroundColor: 'transparent',
+      grid: { left: 180, right: 24, top: 30, bottom: 80 },
+      tooltip: {
+        position: 'top',
+        backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          return '<b>' + (famLabel[famOrder[p.value[1]]] || '?') + '</b><br>' +
+            (suiteLabel[suites[p.value[0]]] || '?') + '<br>Models: ' +
+            (p.value[2] === '-' ? 0 : p.value[2]);
+        }
+      },
+      xAxis: {
+        type: 'category',
+        data: suites.map(function(s) { return suiteLabel[s] || s; }),
+        axisLabel: { color: '#9ca3af', rotate: 20, fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } }
+      },
+      yAxis: {
+        type: 'category',
+        data: famOrder.map(function(k) { return famLabel[k] || k; }),
+        axisLabel: { color: '#9ca3af', fontSize: 10 },
+        axisLine: { lineStyle: { color: '#4b5563' } }
+      },
+      visualMap: {
+        min: 1, max: maxV,
+        calculable: false,
+        orient: 'horizontal', left: 'center', bottom: 8,
+        textStyle: { color: '#9ca3af' },
+        inRange: { color: ['#1e3a8a', '#3b82f6', '#60a5fa', '#bfdbfe'] }
+      },
+      series: [{
+        name: 'Models', type: 'heatmap',
+        data: data,
+        label: { show: true, color: '#0f172a', fontSize: 9 },
+        emphasis: { itemStyle: { shadowBlur: 6, shadowColor: 'rgba(96,165,250,0.6)' } }
+      }]
+    };
+    chart.setOption(_applyToolbox(opt), true);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from PhysicalAI.render().
   // ====================================================================
   function renderAll() {
-    try { renderHeroCards(); } catch (e) {
-      if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] hero failed:', e);
+    var fns = [renderHeroCards, renderFamilyMatrix];
+    for (var i = 0; i < fns.length; i++) {
+      try { fns[i](); } catch (e) {
+        if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] failed:', fns[i].name || i, e);
+      }
     }
   }
 
@@ -355,6 +491,7 @@
     _applyToolbox: _applyToolbox,
     _PHY_BREAKTHROUGHS: _PHY_BREAKTHROUGHS,
     renderHeroCards: renderHeroCards,
+    renderFamilyMatrix: renderFamilyMatrix,
     renderAll: renderAll
   };
 
