@@ -48,11 +48,56 @@
   }
 
   // ====================================================================
+  // Benchmark → suite mapping. Used by W2 / W5 / W10.
+  // ====================================================================
+  var _BENCHMARK_FAMILY_MAP = {
+    // VLA manipulation
+    'libero': 'vla-manipulation',
+    'libero_spatial': 'vla-manipulation',
+    'libero_object': 'vla-manipulation',
+    'libero_goal': 'vla-manipulation',
+    'libero_long': 'vla-manipulation',
+    'robocasa': 'vla-manipulation',
+    'robocasa365': 'vla-manipulation',
+    'robotwin2': 'vla-manipulation',
+    'vlabench': 'vla-manipulation',
+    'vlabench_track1_primitive': 'vla-manipulation',
+    'bridge_v2': 'vla-manipulation',
+    'aloha_4task_avg': 'vla-manipulation',
+    'open_x_embodiment': 'vla-manipulation',
+    'dexmimicgen': 'vla-manipulation',
+    'gr1_tabletop': 'vla-manipulation',
+    'simpler_env_avg': 'vla-manipulation',
+    'roboarena_elo': 'vla-manipulation',
+    'gr1_real_lang_following': 'vla-manipulation',
+    'unitree_g1_1k_demos': 'vla-manipulation',
+    'realworld_language_following': 'vla-manipulation',
+    // World model
+    'world_model_consistency': 'world-model',
+    'world_model_fps': 'world-model',
+    'world_model_visual_memory': 'world-model',
+    'cosmos_embodied_reasoning': 'world-model',
+    'cosmos_intuitive_physics': 'world-model',
+    'cosmos_physical_common_sense': 'world-model',
+    // Embodied reasoning
+    'embodied_qa': 'embodied-reasoning',
+    'embodied_planning': 'embodied-reasoning'
+  };
+
+  function _resolveSuite(benchmarkId) {
+    if (!benchmarkId) return null;
+    return Object.prototype.hasOwnProperty.call(_BENCHMARK_FAMILY_MAP, benchmarkId)
+      ? _BENCHMARK_FAMILY_MAP[benchmarkId] : null;
+  }
+
+  // ====================================================================
   // Public API.
   // ====================================================================
   var api = {
     _FAMILY_MAP: _FAMILY_MAP,
-    _resolveFamily: _resolveFamily
+    _resolveFamily: _resolveFamily,
+    _BENCHMARK_FAMILY_MAP: _BENCHMARK_FAMILY_MAP,
+    _resolveSuite: _resolveSuite
   };
 
   root.PhysicalAICharts = api;

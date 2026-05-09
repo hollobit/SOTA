@@ -17,3 +17,12 @@ assert.strictEqual(P._resolveFamily('').key, 'other');
 assert.strictEqual(P._resolveFamily('random/unknown').key, 'other');
 
 console.log('Task 1 _resolveFamily OK');
+
+// Task 2
+assert.ok(P._resolveSuite, '_resolveSuite must be exported');
+assert.strictEqual(P._resolveSuite('libero'), 'vla-manipulation');
+assert.strictEqual(P._resolveSuite('libero_spatial'), 'vla-manipulation');
+assert.strictEqual(P._resolveSuite('cosmos_embodied_reasoning'), 'world-model');
+assert.strictEqual(P._resolveSuite('world_model_consistency'), 'world-model');
+assert.strictEqual(P._resolveSuite('unknown_bench'), null);
+console.log('Task 2 _resolveSuite OK');
