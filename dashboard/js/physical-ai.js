@@ -379,6 +379,18 @@ var PhysicalAI = {
                 list.appendChild(empty);
             }
             card.appendChild(list);
+
+            card.addEventListener('click', (function(catCode) {
+                return function(e) {
+                    if (e.shiftKey && typeof PhysicalAICharts !== 'undefined' && PhysicalAICharts.openCategoryLeaderboard) {
+                        PhysicalAICharts.openCategoryLeaderboard(catCode);
+                        return;
+                    }
+                    // (preserve any existing non-shift click behavior here, or no-op)
+                };
+            })(cat.code));
+            card.title = (card.title || '') + ' · Shift+click for leaderboard';
+
             container.appendChild(card);
         });
     },

@@ -39,3 +39,22 @@ P._PHY_BREAKTHROUGHS.forEach(function(b, i) {
   assert.ok(typeof b.year === 'number', 'entry ' + i + ' year must be number');
 });
 console.log('Task 4 _PHY_BREAKTHROUGHS schema OK');
+
+// Task 11
+assert.ok(P._perCategoryComposite, '_perCategoryComposite must be exported');
+global.window = global.window || {};
+global.window.App = { data: { scores: [
+  { model_id: 'm1', benchmark_id: 'libero', value: 80 },
+  { model_id: 'm2', benchmark_id: 'libero', value: 100 },
+  { model_id: 'm1', benchmark_id: 'libero_spatial', value: 60 },
+  { model_id: 'm2', benchmark_id: 'libero_spatial', value: 50 }
+]}};
+var c1 = P._perCategoryComposite('m1', ['libero','libero_spatial']);
+assert.ok(c1, 'm1 should have composite');
+assert.strictEqual(c1.coverage, 2);
+assert.strictEqual(c1.score, 90);
+var c2 = P._perCategoryComposite('m2', ['libero','libero_spatial']);
+assert.strictEqual(c2.coverage, 2);
+assert.ok(Math.abs(c2.score - 91.6667) < 0.001);
+assert.strictEqual(P._perCategoryComposite('m3', ['libero']), null);
+console.log('Task 11 _perCategoryComposite OK');

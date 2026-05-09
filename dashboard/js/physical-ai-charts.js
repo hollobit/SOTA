@@ -704,6 +704,133 @@
   }
 
   // ====================================================================
+  // W5 — Per-Category Mini-Leaderboard Modal. Opened from category card Shift+click.
+  // ====================================================================
+  function _categoryBenchmarks(categoryCode) {
+    // For Physical AI: categoryCode is from PhysicalAI.CATEGORIES[].code (e.g. 'world-models',
+    // 'vla-policies'). Match against _BENCHMARK_FAMILY_MAP suite values:
+    //   - 'world-models' / 'world-model' → suite 'world-model'
+    //   - 'vla-policies' / 'industrial-robots' / 'manufacturing-fm' → suite 'vla-manipulation'
+    //     (best approximation; users can refine later via more specific buckets)
+    //   - 'human-centric-vision' → no direct benchmark suite mapping (returns [])
+    var suiteMap = {
+      'world-models': 'world-model',
+      'world-model': 'world-model',
+      'vla-policies': 'vla-manipulation',
+      'industrial-robots': 'vla-manipulation',
+      'manufacturing-fm': 'vla-manipulation'
+    };
+    var suite = suiteMap[categoryCode];
+    if (!suite) return [];
+    var out = [];
+    Object.keys(_BENCHMARK_FAMILY_MAP).forEach(function(bid) {
+      if (_BENCHMARK_FAMILY_MAP[bid] === suite) out.push(bid);
+    });
+    return out;
+  }
+
+  function _perCategoryComposite(modelId, benchmarkIds) {
+    if (!benchmarkIds || !benchmarkIds.length) return null;
+    var sum = 0; var cov = 0;
+    for (var i = 0; i < benchmarkIds.length; i++) {
+      var rows = _scoresFor(benchmarkIds[i]);
+      var maxV = 0; var mine = null;
+      for (var j = 0; j < rows.length; j++) {
+        var r = rows[j];
+        if (typeof r.value !== 'number') continue;
+        if (r.value > maxV) maxV = r.value;
+        if (r.model_id === modelId) mine = r.value;
+      }
+      if (mine !== null && maxV > 0) {
+        sum += (mine / maxV) * 100;
+        cov++;
+      }
+    }
+    return cov >= 1 ? { score: sum / cov, coverage: cov } : null;
+  }
+
+  function openCategoryLeaderboard(categoryCode) {
+    if (typeof document === 'undefined' || typeof window === 'undefined') return;
+    var cats = _physicalAICategories();
+    var cat = cats.filter(function(c) { return c.code === categoryCode; })[0];
+    if (!cat || !cat.models || !cat.models.length) {
+      if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] No models for category', categoryCode);
+      return;
+    }
+
+    // Rank using ALL physical-AI benchmarks (any benchmark in _BENCHMARK_FAMILY_MAP)
+    // — gives richer ranking than only the category-suite benchmarks.
+    var allPhyBenches = Object.keys(_BENCHMARK_FAMILY_MAP);
+    var rows = [];
+    if (window.App && window.App.data && window.App.data.models) {
+      var modelsById = {};
+      window.App.data.models.forEach(function(m) { modelsById[m.id] = m; });
+      cat.models.forEach(function(mid) {
+        var c = _perCategoryComposite(mid, allPhyBenches);
+        if (c) rows.push({ model: modelsById[mid] || { id: mid, name: mid, vendor: '' }, score: c.score, coverage: c.coverage });
+      });
+    }
+    rows.sort(function(a, b) { return b.score - a.score; });
+    rows = rows.slice(0, 15);
+
+    var overlay = document.createElement('div');
+    overlay.className = 'fixed inset-0 z-50 flex items-center justify-center';
+    overlay.style.background = 'rgba(0,0,0,0.6)';
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) overlay.remove();
+    });
+
+    var box = document.createElement('div');
+    box.className = 'bg-gray-900 border border-gray-700 rounded-lg p-5 max-w-2xl w-11/12 max-h-[80vh] overflow-y-auto';
+    var title = document.createElement('h3');
+    title.className = 'text-lg font-semibold text-gray-200 mb-1';
+    title.textContent = (cat.label || categoryCode) + ' Leaderboard';
+    box.appendChild(title);
+    var sub = document.createElement('p');
+    sub.className = 'text-xs text-gray-500 mb-3';
+    sub.textContent = 'Per-category composite (mean of normalized scores across physical AI benchmarks). Coverage = # benches scored.';
+    box.appendChild(sub);
+
+    if (!rows.length) {
+      var empty = document.createElement('div');
+      empty.className = 'text-sm text-gray-400 italic';
+      empty.textContent = 'No models with scores in this category yet.';
+      box.appendChild(empty);
+    } else {
+      var table = document.createElement('table');
+      table.className = 'w-full text-xs';
+      var thead = document.createElement('thead');
+      var trH = document.createElement('tr');
+      trH.className = 'text-gray-400';
+      ['#', 'Model', 'Vendor', 'Composite', 'Coverage'].forEach(function(t) {
+        var th = document.createElement('th'); th.className = 'text-left px-2 py-1';
+        th.textContent = t; trH.appendChild(th);
+      });
+      thead.appendChild(trH); table.appendChild(thead);
+      var tbody = document.createElement('tbody');
+      rows.forEach(function(r, i) {
+        var tr = document.createElement('tr'); tr.className = 'border-t border-gray-800';
+        [String(i + 1), r.model.name || r.model.id, r.model.vendor || '—',
+         r.score.toFixed(1), String(r.coverage)].forEach(function(v) {
+          var td = document.createElement('td'); td.className = 'px-2 py-1 text-gray-200';
+          td.textContent = v; tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody); box.appendChild(table);
+    }
+
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'mt-4 px-3 py-1.5 rounded bg-gray-800 text-gray-300 hover:bg-gray-700 text-xs';
+    closeBtn.textContent = 'Close';
+    closeBtn.addEventListener('click', function() { overlay.remove(); });
+    box.appendChild(closeBtn);
+
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+  }
+
+  // ====================================================================
   // Public render orchestrator. Called from PhysicalAI.render().
   // ====================================================================
   function renderAll() {
@@ -892,6 +1019,9 @@
     renderLiberoProgression: renderLiberoProgression,
     renderWorldModelRadar: renderWorldModelRadar,
     renderBenchmarkCatalog: renderBenchmarkCatalog,
+    _categoryBenchmarks: _categoryBenchmarks,
+    _perCategoryComposite: _perCategoryComposite,
+    openCategoryLeaderboard: openCategoryLeaderboard,
     renderAll: renderAll
   };
 
