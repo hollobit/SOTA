@@ -178,10 +178,11 @@
 
   // ====================================================================
   // Public render orchestrator. Called from PhysicalAI.render().
-  // Empty stub — populated as widgets land per Tasks 5-14.
   // ====================================================================
   function renderAll() {
-    // Widgets registered as Phase 1B + Phase 2B tasks land. Empty for now.
+    try { renderHeroCards(); } catch (e) {
+      if (typeof console !== 'undefined') console.warn('[PhysicalAICharts] hero failed:', e);
+    }
   }
 
   // ====================================================================
@@ -271,6 +272,78 @@
   ];
 
   // ====================================================================
+  // W1 — Physical AI Breakthrough Hero Cards (DOM, no chart).
+  // ====================================================================
+  function _categoryColor(domain) {
+    var palette = {
+      'world-models':         '#3b82f6', // blue
+      'world-model':          '#3b82f6',
+      'vla-policies':         '#10b981', // emerald
+      'industrial-robots':    '#f59e0b', // amber
+      'manufacturing-fm':     '#a78bfa', // violet
+      'human-centric-vision': '#ec4899'  // pink
+    };
+    return palette[domain] || '#6b7280';
+  }
+
+  function renderHeroCards() {
+    if (typeof document === 'undefined') return;
+    var host = document.getElementById('physical-ai-charts');
+    if (!host) return;
+    var existing = document.getElementById('physical-ai-hero-cards-section');
+    if (existing) return;
+    var section = document.createElement('div');
+    section.id = 'physical-ai-hero-cards-section';
+    section.className = 'rounded border bg-gray-900 border-gray-800 p-4';
+
+    var head = document.createElement('h2');
+    head.className = 'text-lg font-semibold text-gray-200 mb-1';
+    head.textContent = 'SOTA Watch — Physical AI Breakthroughs';
+    section.appendChild(head);
+    var sub = document.createElement('p');
+    sub.className = 'text-xs text-gray-500 mb-3';
+    sub.textContent = 'Milestone moments in Physical AI — primary-source links, no extrapolation.';
+    section.appendChild(sub);
+
+    var grid = document.createElement('div');
+    grid.className = 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3';
+
+    _PHY_BREAKTHROUGHS.forEach(function(b) {
+      var card = document.createElement('a');
+      card.href = b.source_url;
+      card.target = '_blank';
+      card.rel = 'noopener';
+      card.className = 'block rounded border bg-gray-950 border-gray-800 p-3 hover:border-blue-600 transition';
+      card.style.borderLeft = '4px solid ' + _categoryColor(b.domain);
+
+      var title = document.createElement('div');
+      title.className = 'text-sm font-semibold text-gray-100';
+      title.textContent = b.title;
+      card.appendChild(title);
+
+      var year = document.createElement('div');
+      year.className = 'text-[10px] text-gray-500 uppercase tracking-wider mt-0.5';
+      year.textContent = b.domain + ' · ' + b.year;
+      card.appendChild(year);
+
+      var nar = document.createElement('div');
+      nar.className = 'text-xs text-gray-400 mt-1.5';
+      nar.textContent = b.narrative;
+      card.appendChild(nar);
+
+      var val = document.createElement('div');
+      val.className = 'text-sm font-mono text-blue-300 mt-2';
+      val.textContent = b.value;
+      card.appendChild(val);
+
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    host.appendChild(section);
+  }
+
+  // ====================================================================
   // Public API.
   // ====================================================================
   var api = {
@@ -281,6 +354,7 @@
     _ensureMountPoint: _ensureMountPoint,
     _applyToolbox: _applyToolbox,
     _PHY_BREAKTHROUGHS: _PHY_BREAKTHROUGHS,
+    renderHeroCards: renderHeroCards,
     renderAll: renderAll
   };
 
