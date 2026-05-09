@@ -26,3 +26,16 @@ assert.strictEqual(P._resolveSuite('cosmos_embodied_reasoning'), 'world-model');
 assert.strictEqual(P._resolveSuite('world_model_consistency'), 'world-model');
 assert.strictEqual(P._resolveSuite('unknown_bench'), null);
 console.log('Task 2 _resolveSuite OK');
+
+// Task 4
+assert.ok(Array.isArray(P._PHY_BREAKTHROUGHS));
+assert.ok(P._PHY_BREAKTHROUGHS.length >= 6 && P._PHY_BREAKTHROUGHS.length <= 8);
+P._PHY_BREAKTHROUGHS.forEach(function(b, i) {
+  assert.ok(b.title, 'entry ' + i + ' missing title');
+  assert.ok(b.narrative, 'entry ' + i + ' missing narrative');
+  assert.ok(b.value, 'entry ' + i + ' missing value');
+  assert.ok(b.domain, 'entry ' + i + ' missing domain');
+  assert.ok(b.source_url && b.source_url.indexOf('http') === 0, 'entry ' + i + ' source_url must be http(s)');
+  assert.ok(typeof b.year === 'number', 'entry ' + i + ' year must be number');
+});
+console.log('Task 4 _PHY_BREAKTHROUGHS schema OK');

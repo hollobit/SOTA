@@ -185,6 +185,92 @@
   }
 
   // ====================================================================
+  // Physical AI breakthroughs — milestone events featured in W1 SOTA Watch.
+  // ====================================================================
+  var _PHY_BREAKTHROUGHS = [
+    {
+      title: 'NVIDIA GR00T-N1.7',
+      narrative: 'Foundation model for general-purpose humanoid robots',
+      value: 'Generalist VLA',
+      domain: 'vla-policies',
+      model_id: 'nvidia/gr00t-n1.7',
+      benchmark_id: 'libero',
+      source_url: 'https://developer.nvidia.com/isaac/gr00t',
+      year: 2025
+    },
+    {
+      title: 'Gemini Robotics ER 1.6',
+      narrative: 'Vision-language-action with embodied reasoning',
+      value: 'Robot Arena top',
+      domain: 'vla-policies',
+      model_id: 'google-deepmind/gemini-robotics-er-1.6',
+      benchmark_id: 'roboarena_elo',
+      source_url: 'https://deepmind.google/discover/blog/gemini-robotics/',
+      year: 2025
+    },
+    {
+      title: 'π-zero (Physical Intelligence)',
+      narrative: 'Generalist robot policy across embodiments',
+      value: 'Bridge V2 SOTA',
+      domain: 'vla-policies',
+      model_id: 'physical-intelligence/pi-zero',
+      benchmark_id: 'bridge_v2',
+      source_url: 'https://www.physicalintelligence.company/blog/pi0',
+      year: 2024
+    },
+    {
+      title: 'OpenVLA-7B',
+      narrative: 'Open-weight vision-language-action policy',
+      value: 'Open VLA leader',
+      domain: 'vla-policies',
+      model_id: 'openvla/openvla-7b',
+      benchmark_id: 'libero',
+      source_url: 'https://openvla.github.io/',
+      year: 2024
+    },
+    {
+      title: 'NVIDIA Cosmos',
+      narrative: 'World foundation model for physical AI',
+      value: 'Embodied SOTA',
+      domain: 'world-models',
+      model_id: 'nvidia/cosmos-transfer-2.5',
+      benchmark_id: 'cosmos_embodied_reasoning',
+      source_url: 'https://www.nvidia.com/en-us/ai/cosmos/',
+      year: 2025
+    },
+    {
+      title: 'FoxBrain 70B (Foxconn)',
+      narrative: 'Large-scale industrial AI for manufacturing',
+      value: '70B params industrial FM',
+      domain: 'manufacturing-fm',
+      model_id: 'foxconn/foxbrain-70b',
+      benchmark_id: 'industrial_deployment',
+      source_url: 'https://www.foxconn.com/news/2024/foxbrain',
+      year: 2025
+    },
+    {
+      title: 'Figure Helix',
+      narrative: 'End-to-end VLA for humanoid robots',
+      value: 'Real-world deployment',
+      domain: 'industrial-robots',
+      model_id: 'figure-ai/helix',
+      benchmark_id: 'realworld_language_following',
+      source_url: 'https://www.figure.ai/news/helix',
+      year: 2025
+    },
+    {
+      title: 'Meta Sapiens2',
+      narrative: 'Human-centric vision foundation model',
+      value: '5B-class HCV FM',
+      domain: 'human-centric-vision',
+      model_id: 'meta/sapiens2-5b',
+      benchmark_id: 'human_pose',
+      source_url: 'https://about.meta.com/realitylabs/sapiens',
+      year: 2025
+    }
+  ];
+
+  // ====================================================================
   // Public API.
   // ====================================================================
   var api = {
@@ -194,6 +280,7 @@
     _resolveSuite: _resolveSuite,
     _ensureMountPoint: _ensureMountPoint,
     _applyToolbox: _applyToolbox,
+    _PHY_BREAKTHROUGHS: _PHY_BREAKTHROUGHS,
     renderAll: renderAll
   };
 
