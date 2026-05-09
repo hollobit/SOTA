@@ -142,10 +142,11 @@
 
   // ====================================================================
   // Public render orchestrator. Called from Sovereign.render().
-  // Empty stub — populated as widgets land per Tasks 4-9.
   // ====================================================================
   function renderAll() {
-    // Widgets registered as Phase 1B + Phase 2 tasks land. Empty for now.
+    try { renderHeroCards(); } catch (e) {
+      if (typeof console !== 'undefined') console.warn('[SovereignCharts] hero failed:', e);
+    }
   }
 
   // ====================================================================
@@ -242,12 +243,104 @@
     }
   ];
 
+  // ====================================================================
+  // W1 — Sovereign Breakthrough Hero Cards (DOM, no chart).
+  // ====================================================================
+  function _regionColor(region) {
+    var palette = {
+      'kr':       '#3b82f6', // blue
+      'cn':       '#ef4444', // red
+      'jp':       '#ec4899', // pink
+      'in':       '#f97316', // orange
+      'fr':       '#a78bfa', // violet
+      'de':       '#fbbf24', // yellow
+      'uk':       '#1d4ed8', // dark blue
+      'il':       '#3b82f6', // blue
+      'ae':       '#10b981', // emerald
+      'sg':       '#fb7185', // rose
+      'ch':       '#dc2626', // dark red
+      'ru':       '#dc2626', // dark red
+      'us-legal': '#9ca3af',
+      'us-fin':   '#9ca3af',
+      'us-open':  '#60a5fa'
+    };
+    return palette[region] || '#6b7280';
+  }
+
+  function renderHeroCards() {
+    if (typeof document === 'undefined') return;
+    var host = document.getElementById('sovereign-charts');
+    if (!host) return;
+    var existing = document.getElementById('sovereign-hero-cards-section');
+    if (existing) return;
+    var section = document.createElement('div');
+    section.id = 'sovereign-hero-cards-section';
+    section.className = 'rounded border bg-gray-900 border-gray-800 p-4';
+
+    var head = document.createElement('h2');
+    head.className = 'text-lg font-semibold text-gray-200 mb-1';
+    head.textContent = 'SOTA Watch — Sovereign Breakthroughs';
+    section.appendChild(head);
+    var sub = document.createElement('p');
+    sub.className = 'text-xs text-gray-500 mb-3';
+    sub.textContent = 'Milestone moments in regional sovereign AI — primary-source links.';
+    section.appendChild(sub);
+
+    var grid = document.createElement('div');
+    grid.className = 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3';
+
+    _SOV_BREAKTHROUGHS.forEach(function(b) {
+      var card = document.createElement('a');
+      card.href = b.source_url;
+      card.target = '_blank';
+      card.rel = 'noopener';
+      card.className = 'block rounded border bg-gray-950 border-gray-800 p-3 hover:border-blue-600 transition';
+      card.style.borderLeft = '4px solid ' + _regionColor(b.region);
+
+      var titleRow = document.createElement('div');
+      titleRow.className = 'flex items-baseline gap-2';
+
+      var flagSpan = document.createElement('span');
+      flagSpan.className = 'text-base';
+      flagSpan.textContent = b.flag;
+      titleRow.appendChild(flagSpan);
+
+      var title = document.createElement('div');
+      title.className = 'text-sm font-semibold text-gray-100';
+      title.textContent = b.title;
+      titleRow.appendChild(title);
+
+      card.appendChild(titleRow);
+
+      var year = document.createElement('div');
+      year.className = 'text-[10px] text-gray-500 uppercase tracking-wider mt-0.5';
+      year.textContent = b.region + ' · ' + b.year;
+      card.appendChild(year);
+
+      var nar = document.createElement('div');
+      nar.className = 'text-xs text-gray-400 mt-1.5';
+      nar.textContent = b.narrative;
+      card.appendChild(nar);
+
+      var val = document.createElement('div');
+      val.className = 'text-sm font-mono text-blue-300 mt-2';
+      val.textContent = b.value;
+      card.appendChild(val);
+
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    host.appendChild(section);
+  }
+
   var api = {
     _BENCHMARK_DIMENSION_MAP: _BENCHMARK_DIMENSION_MAP,
     _resolveDimension: _resolveDimension,
     _ensureMountPoint: _ensureMountPoint,
     _applyToolbox: _applyToolbox,
     _SOV_BREAKTHROUGHS: _SOV_BREAKTHROUGHS,
+    renderHeroCards: renderHeroCards,
     renderAll: renderAll
   };
 
