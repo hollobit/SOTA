@@ -20515,9 +20515,54 @@
       "date": "2026-05-09",
       "citation": null
     },
-    "is_sota": true,
+    "is_sota": false,
     "collected_at": "2026-05-09",
     "notes": "Z500 RMSE @ 72h (3-day) for Pangu-Weather, evaluated on 2018, paper text: 'for Z500, the 3-day and 5-day RMSEs (in m^2/s^2) of operational IFS are 152.8 and 333.7, respectively, and Pangu-Weather reduces them to 134.5 and 296.7'. Source: Bi et al., Pangu-Weather paper (Nature 2023; arxiv 2211.02556 v1)."
+  },
+  {
+    "model_id": "ecmwf/ifs",
+    "benchmark_id": "weatherbench_z500_72h",
+    "value": 152.8,
+    "unit": "m^2/s^2",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/pdf/2211.02556",
+      "date": "2026-05-09",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-09",
+    "notes": "Z500 RMSE @ 72h (3-day) for operational IFS HRES (ECMWF, 0.25 degree native), evaluated on 2018. Co-cited in Pangu-Weather paper (Bi et al., Nature 2023; arxiv 2211.02556) with explicit text: 'for Z500, the 3-day and 5-day RMSEs (in m^2/s^2) of operational IFS are 152.8 and 333.7'. The operational IFS forecast values used by the Pangu authors are sourced from ECMWF's TIGGE archive (cited as ref [16] in the Pangu paper)."
+  },
+  {
+    "model_id": "microsoft/climax",
+    "benchmark_id": "weatherbench_z500_72h",
+    "value": 201.0,
+    "unit": "m^2/s^2",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2301.10343",
+      "date": "2026-05-09",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-09",
+    "notes": "Z500 RMSE @ 72h (3-day) for ClimaX at 1.40625 degree resolution, from Table 10 (RMSE on global forecasting) of Nguyen et al. ClimaX paper (arxiv 2301.10343). Note ClimaX is also reported at 5.625 degree (244.08); the higher-resolution 1.40625 variant is used as the headline value here. Evaluation is on ERA5 down-sampled to ClimaX's training resolution (not native 0.25 degree); not directly comparable to Pangu/GraphCast at 0.25 degree."
+  },
+  {
+    "model_id": "google-deepmind/alphafold-1",
+    "benchmark_id": "casp13_gdt",
+    "value": 58.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/prot.25834",
+      "date": "2026-05-09",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-09",
+    "notes": "Senior et al. 2019 'Protein structure prediction using multiple deep neural networks in CASP13', Proteins 87(12) prot.25834 (companion to AlphaFold-v1 Nature 2020 s41586-019-1923-7). AlphaFold (group A7D, DeepMind) achieved median GDT_TS = 58.9 on CASP13 free-modeling (FM) domains — first place, ahead of 52.5 and 52.4 by the two next best-placed teams. Overall median GDT_TS across all CASP13 targets was 68.5 (not used here; this benchmark is FM-only). Cross-confirmed by Wikipedia AlphaFold article and DeepMind CASP13 retrospective."
   },
   {
     "model_id": "google-deepmind/alphafold-2",
@@ -20533,6 +20578,21 @@
     "is_sota": true,
     "collected_at": "2026-05-09",
     "notes": "DeepMind official CASP14 announcement blog (Nov 30 2020): 'In the results from the 14th CASP assessment, released today, our latest AlphaFold system achieves a median score of 92.4 GDT overall across all targets.' Median GDT_TS across all CASP14 targets, AlphaFold2 group 427. Also reported in companion Nature paper s41586-021-03819-2 (Jumper et al. 2021)."
+  },
+  {
+    "model_id": "google-deepmind/alphafold-2",
+    "benchmark_id": "casp15_gdt",
+    "value": 73.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s42004-023-00991-6",
+      "date": "2026-05-09",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-09",
+    "notes": "Liu et al. 2023 'Improving AlphaFold2-based protein tertiary structure prediction with MULTICOM in CASP15', Communications Chemistry s42004-023-00991-6 (also PMC10484931). Reports the standard AlphaFold2 predictor achieved average GDT-TS ~0.73 on 94 CASP15 domains — i.e. 73.0% on the GDT_TS [0,100] scale used in this DB. The MULTICOM_refine variant (top-3 server in CASP15) reached ~0.80 avg GDT-TS on the same 94-domain set, 9.6% improvement over standard AlphaFold2. CASP15 was substantially harder than CASP14 (more targets with novel folds / scarce MSAs), explaining the drop from 92.4 (CASP14) → 73.0 (CASP15) for the same model class."
   },
   {
     "model_id": "berkeley/chgnet",
