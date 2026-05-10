@@ -49,8 +49,9 @@ var FrontierCompare = {
         composite: [
             // The composite scores themselves (lead columns)
             'epoch_capabilities_index', 'epoch_capabilities_index_swe',
-            // Internal Evaluations (Epoch-run): GPQA Diamond, FrontierMath, MATH Level 5, SimpleQA Verified
-            'gpqa_diamond', 'frontiermath', 'math_500', 'simpleqa_verified',
+            // Internal Evaluations (Epoch-run): now includes chess/Tier4/OTIS-AIME ingested 2026-05-10
+            'gpqa_diamond', 'frontiermath', 'frontiermath_tier4', 'math_500',
+            'simpleqa_verified', 'chess_puzzles', 'otis_aime',
             // External Leaderboards: Aider, APEX, ARC-AGI-2, DeepResearch, Fiction.liveBench, GSO, HLE, SimpleBench, SWE, Terminal-Bench, WeirdML
             'aider_polyglot', 'apex_agents_hard', 'arc_agi_2', 'deepsearchqa',
             'livebench', 'gso', 'hle', 'simplebench',
