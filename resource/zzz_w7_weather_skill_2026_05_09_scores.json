@@ -1,14 +1,25 @@
 {
   "_meta": {
     "collected_at": "2026-05-09",
-    "_note": "Phase 2A Task 10 — W7 weather forecast skill. Z500 RMSE @ 72h (3-day) primary-source-verified ingest. STRICT attribution: only entries where {model_id, benchmark_id, value} are co-visible on a primary source. Aurora, GraphCast, AIFS report 72h Z500 RMSE only in figure form (no numerical text); skipped to avoid extrapolation. IFS HRES (ecmwf/ifs) value 152.8 m^2/s^2 is co-cited in Pangu paper but model_id not present in DB; skipped.",
+    "_note": "Phase 2A Task 10 — W7 weather forecast skill. Z500 RMSE @ 72h (3-day) primary-source-verified ingest. STRICT attribution: only entries where {model_id, benchmark_id, value} are co-visible on a primary source (paper text or numerical Table). Aurora (Nature 2025), GraphCast (Science 2023), AIFS (arxiv 2406.01465), FengWu (arxiv 2304.02948), and FourCastNet (arxiv 2202.11214) report Z500 72h RMSE only in figure form (no numerical text/table); skipped to avoid extrapolation. ClimaX paper Table 10 provides absolute numerical values for ClimaX, IFS, FourCastNet, GraphCast, Pangu — but only the ClimaX self-report is admitted here (other models' numbers in that table are ClimaX's re-evaluation on 5.625° downsampled ERA5 2017, not their own primary source). IFS HRES = 152.8 m^2/s^2 is admitted because it is co-cited with model name and benchmark in the Pangu paper text (operational IFS at native 0.25°, year 2018).",
     "sources": [
       "https://arxiv.org/pdf/2211.02556",
       "https://www.nature.com/articles/s41586-023-06185-3",
+      "https://arxiv.org/abs/2301.10343",
       "https://sites.research.google/weatherbench/"
     ]
   },
-  "models": [],
+  "models": [
+    {
+      "id": "ecmwf/ifs",
+      "vendor": "ECMWF (EU)",
+      "name": "IFS HRES (operational)",
+      "type": "proprietary",
+      "modalities": ["weather-fields"],
+      "release_date": "2016-03-08",
+      "_source": "https://www.ecmwf.int/en/forecasts/documentation-and-support/changes-ecmwf-model"
+    }
+  ],
   "benchmarks": [
     {
       "id": "weatherbench_z500_72h",
@@ -28,6 +39,24 @@
       "_source": "https://arxiv.org/pdf/2211.02556",
       "collected_at": "2026-05-09",
       "_note": "Z500 RMSE @ 72h (3-day) for Pangu-Weather, evaluated on 2018, paper text: 'for Z500, the 3-day and 5-day RMSEs (in m^2/s^2) of operational IFS are 152.8 and 333.7, respectively, and Pangu-Weather reduces them to 134.5 and 296.7'. Source: Bi et al., Pangu-Weather paper (Nature 2023; arxiv 2211.02556 v1)."
+    },
+    {
+      "model": "ecmwf/ifs",
+      "benchmark": "weatherbench_z500_72h",
+      "score": 152.8,
+      "unit": "m^2/s^2",
+      "_source": "https://arxiv.org/pdf/2211.02556",
+      "collected_at": "2026-05-09",
+      "_note": "Z500 RMSE @ 72h (3-day) for operational IFS HRES (ECMWF, 0.25 degree native), evaluated on 2018. Co-cited in Pangu-Weather paper (Bi et al., Nature 2023; arxiv 2211.02556) with explicit text: 'for Z500, the 3-day and 5-day RMSEs (in m^2/s^2) of operational IFS are 152.8 and 333.7'. The operational IFS forecast values used by the Pangu authors are sourced from ECMWF's TIGGE archive (cited as ref [16] in the Pangu paper)."
+    },
+    {
+      "model": "microsoft/climax",
+      "benchmark": "weatherbench_z500_72h",
+      "score": 201.0,
+      "unit": "m^2/s^2",
+      "_source": "https://arxiv.org/abs/2301.10343",
+      "collected_at": "2026-05-09",
+      "_note": "Z500 RMSE @ 72h (3-day) for ClimaX at 1.40625 degree resolution, from Table 10 (RMSE on global forecasting) of Nguyen et al. ClimaX paper (arxiv 2301.10343). Note ClimaX is also reported at 5.625 degree (244.08); the higher-resolution 1.40625 variant is used as the headline value here. Evaluation is on ERA5 down-sampled to ClimaX's training resolution (not native 0.25 degree); not directly comparable to Pangu/GraphCast at 0.25 degree."
     }
   ]
 }
