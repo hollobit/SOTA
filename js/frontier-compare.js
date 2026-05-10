@@ -175,6 +175,10 @@ var FrontierCompare = {
         'alibaba/qwen3-max',              // ECI 144.52 — Qwen3 flagship (paired with 3.5/3.6 in list)
         'openai/gpt-oss-120b',            // ECI 140.71 — OpenAI open-weight flagship 2025-08
 
+        // May 8 2026 — OpenAI Trusted Access for Cyber program (TAC) cyber-specialized variants
+        'openai/gpt-5.5-cyber',           // Cyber-permissive variant of GPT-5.5; CyberGym 81.9%
+        'openai/gpt-5.4-cyber',           // Cyber-permissive variant of GPT-5.4 (Feb 2026, scores undisclosed)
+
         // May 2026 sovereign batch — global flagships
         'mistral/mistral-medium-3.5',
         'sber/gigachat-3.1-ultra',
