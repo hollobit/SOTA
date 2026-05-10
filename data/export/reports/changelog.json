@@ -2374,5 +2374,14 @@
     "new_value": "79.3%",
     "old_model": null,
     "old_value": null
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-10",
+    "benchmark_id": "Epoch ECI canonical CSV ingest — 16 models, 106 new scores (3 → 109 ECI entries)",
+    "new_model": "Round 6b — Deep-dive into 6 user-provided epoch.ai/eci subset URLs (graph/leaderboard, training-compute SE/Math/custom, release-date custom). epoch.ai pages JS-rendered → WebFetch can't extract leaderboard. Discovered canonical CSV at https://epoch.ai/data/eci_scores.csv (172 rows, 17.9 KB) containing full ECI leaderboard with 95% bootstrap confidence intervals. Methodology: 'A Rosetta Stone for AI Benchmarks' (arxiv 2512.00193) by Anson Ho, Jean-Stanislas Denain, David Atanasov, Samuel Albanie, Rohin Shah — IRT-style statistical model that stitches benchmarks together onto a single capability scale without temporal/compute assumptions. Calibration: GPT-5 (medium) = 150, Claude 3.5 Sonnet (Oct 2024) = 130. Mapping strategy: CSV 'Display name' → manual_map (90 entries) + normalized name lookup → 109 unique model_ids matched (87 unmatched skipped — older Llama 2 / starcoder / Yi / Phi-3 variants outside latest-models focus + 2-year exclusion rule). Time-versioned variants (e.g., 'Gemini 2.5 Pro (Mar 2025)' vs '(Jun 2025)') deduped to highest-ECI per canonical model_id. Top 5: GPT-5.5 Pro 159.50, GPT-5.5 158.37, GPT-5.4 Pro 158.16, Gemini 3.1 Pro 156.77, GPT-5.4 156.30. Bottom: StarCoder2-7B 93.31. 16 new model registrations: openai/o3-pro/gpt-5.4-nano/gpt-4.1-mini/gpt-4.1-nano/o1-mini/o1-preview/gpt-oss-120b, deepseek/deepseek-v3.2-exp/v3.1, xai/grok-4-fast/grok-3-mini, alibaba/qwen3-max/qwen2.5-max, google/gemini-2.0-flash-thinking/gemini-2.0-pro, mistral/mistral-large.",
+    "new_value": "+16 models (1749→1765), +106 ECI scores (3844→3950, total ECI entries 3 → 109). 3 new Resources references: arxiv 2512.00193 Rosetta Stone paper + epoch.ai/data/eci_scores.csv canonical CSV + github.com/epoch-research/eci-public open repo. Frontier Compare propagation skipped per latest-models-focus memory rule — 16 new ids are mostly 2024-2025 older variants, ECI table-only exposure.",
+    "old_model": "",
+    "old_value": ""
   }
 ]

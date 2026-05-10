@@ -2035,6 +2035,55 @@
     }
   },
   {
+    "id": "cap_bench",
+    "name": "CaP-Bench (Coding Agents for Robot Manipulation)",
+    "category": "robotics-coding",
+    "description": "First comprehensive benchmark for evaluating LLM coding agents on robotic manipulation. 39 tasks across 8 tiers (S1-S4 single-turn + M1-M4 multi-turn), varying by abstraction levels, interaction modes, and visual grounding modalities. Tasks drawn from Robosuite + LIBERO-PRO (130+ tasks) + BEHAVIOR-1K. Robot platforms: Franka Panda + R1Pro. Companion components: CaP-Gym (interactive env), CaP-Agent0 (training-free framework), CaP-RL (RL pipeline). NVIDIA + Stanford + Berkeley + UT Austin (arxiv 2603.22435, Mar 2026).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "ailuminate_v1",
+    "name": "MLCommons AILuminate v1.0 (overall grade)",
+    "category": "safety",
+    "description": "MLCommons AI safety benchmark v1.0 (arxiv 2503.05731). 12 hazard categories (violent/nonviolent/sex-related crimes, CSE, indiscriminate weapons, suicide/self-harm, IP, privacy, defamation, hate, sexual content, specialized advice). 24,000 test prompts/language. 5-point overall grade scale: Poor=1, Fair=2, Good=3, Very Good=4, Excellent=5. Overall grade based on % responses violating assessment standard. No model has achieved Excellent yet (target: Very Good).",
+    "metric": "grade_1_to_5"
+  },
+  {
+    "id": "epoch_capabilities_index",
+    "name": "Epoch Capabilities Index (ECI)",
+    "category": "composite",
+    "description": "Cross-benchmark composite metric combining 40+ AI benchmarks into a single 'general capability' scale. Calibrated so that Claude 3.5 Sonnet = 130 and GPT-5 (medium) = 150. Linear scale: a 10-point jump represents equivalent capability gain regardless of position. Methodology paper 'A Rosetta Stone for AI Benchmarks' (Google DeepMind funded) infers benchmark difficulty statistically from overlapping model results, weights harder benchmarks more, and avoids inflation from specialized models. Domain-specific subsets available (Software Engineering, Math).",
+    "metric": "score"
+  },
+  {
+    "id": "epoch_capabilities_index_swe",
+    "name": "Epoch Capabilities Index — Software Engineering",
+    "category": "composite",
+    "description": "Domain-specific Epoch Capabilities Index using only software engineering benchmarks (SWE-Bench Verified, SWE-Bench Pro, Terminal-Bench, Aider Polyglot, etc). Same Rosetta Stone methodology as general ECI applied to software engineering subset only.",
+    "metric": "score"
+  },
+  {
+    "id": "livecodebench_v5",
+    "name": "LiveCodeBench v5",
+    "category": "code",
+    "description": "LiveCodeBench v5 — competitive programming/code-generation benchmark (specific v5 release used by NVIDIA Nemotron Labs Elastic evaluation framework).",
+    "metric": "pass@1"
+  },
+  {
+    "id": "big_bench_audio",
+    "name": "Big Bench Audio",
+    "category": "audio",
+    "description": "OpenAI's audio reasoning benchmark for evaluating multi-modal models on spoken-input reasoning tasks.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "audio_multichallenge",
+    "name": "Audio MultiChallenge",
+    "category": "audio",
+    "description": "Audio instruction-following benchmark across multi-turn spoken dialogue (probes the ability to track and execute instructions in conversational audio).",
+    "metric": "pass_rate"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",
@@ -2098,6 +2147,55 @@
     "category": "math",
     "description": "USA Mathematical Olympiad — high-school-level rigorous proof problems. Claude Mythos Preview 97.6.",
     "metric": "accuracy"
+  },
+  {
+    "id": "weatherbench_z500_72h",
+    "name": "WeatherBench 2 — Z500 72h RMSE",
+    "category": "geo-climate",
+    "description": "Geopotential at 500 hPa (Z500) RMSE at 72-hour (3-day) forecast lead time, latitude-weighted, m^2/s^2. Lower is better. Headline upper-air variable for medium-range global weather forecast skill (WeatherBench-2 protocol; Rasp et al. 2024).",
+    "metric": "rmse_lower_better"
+  },
+  {
+    "id": "casp12_gdt",
+    "name": "CASP12 GDT-TS (Protein Structure, 2016)",
+    "category": "protein",
+    "description": "CASP (Critical Assessment of Structure Prediction) round 12 GDT-TS score on free-modeling targets — biennial blind protein structure prediction competition (2016).",
+    "metric": "gdt_ts"
+  },
+  {
+    "id": "casp13_gdt",
+    "name": "CASP13 GDT-TS (Protein Structure, 2018)",
+    "category": "protein",
+    "description": "CASP (Critical Assessment of Structure Prediction) round 13 GDT-TS score on free-modeling targets — biennial blind protein structure prediction competition (2018), DeepMind's AlphaFold v1 was the top scorer.",
+    "metric": "gdt_ts"
+  },
+  {
+    "id": "casp14_gdt",
+    "name": "CASP14 GDT-TS (Protein Structure, 2020)",
+    "category": "protein",
+    "description": "CASP (Critical Assessment of Structure Prediction) round 14 GDT-TS score — biennial blind protein structure prediction competition (2020), AlphaFold2 achieved median 92.4 GDT overall across all targets, widely regarded as the protein-folding inflection point.",
+    "metric": "gdt_ts"
+  },
+  {
+    "id": "casp15_gdt",
+    "name": "CASP15 GDT-TS (Protein Structure, 2022)",
+    "category": "protein",
+    "description": "CASP (Critical Assessment of Structure Prediction) round 15 GDT-TS score on free-modeling targets — biennial blind protein structure prediction competition (2022).",
+    "metric": "gdt_ts"
+  },
+  {
+    "id": "matbench_discovery_f1",
+    "name": "Matbench Discovery (F1)",
+    "category": "physics-materials",
+    "description": "Matbench Discovery — F1 score on stable-vs-unstable classification of WBM test set crystals (energy above hull). Higher is better. Leaderboard at matbench-discovery.materialsproject.org.",
+    "metric": "f1"
+  },
+  {
+    "id": "matbench_discovery_mae",
+    "name": "Matbench Discovery (MAE)",
+    "category": "physics-materials",
+    "description": "Matbench Discovery — Mean Absolute Error (eV/atom) on formation-energy-per-atom prediction over WBM test set. Lower is better.",
+    "metric": "mae_lower_better"
   },
   {
     "id": "pai_bench_text2world",

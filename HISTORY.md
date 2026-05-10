@@ -61,6 +61,32 @@ User-provided reference links 13개 (3 batches: 5+3+3+2)를 조사하고 strict-
 
 **Live deploy**: 매 round CI run completion + cache-bust 검증. 최종 cache-bust SHA prefix `25b3c55` (round 5 commit).
 
+### 18. Round 6 — AILuminate v1.0 + Epoch ECI full leaderboard (172 → 109 ingested)
+
+ECI 점수가 단 3개 (calibration anchors + GPT-5.5 Pro)뿐이라는 한계를 해결하기 위해 Epoch ECI deep-dive 진행.
+
+**Round 6a — MLCommons AILuminate v1.0** (commit `167ff2d`):
+- 1차 source: `https://ailuminate.mlcommons.org/benchmarks/` + arxiv 2503.05731
+- **+7 model registrations**: amazon/nova-lite, google/gemini-2.0-flash-lite, nexusflow/athene-v2-chat, cohere/aya-expanse-8b, alibaba/qwen1.5-110b-chat, mistral/mistral-large-24.11, allenai/olmo-7b-0724-instruct
+- **+1 benchmark**: ailuminate_v1 (12 hazard categories × 24,000 prompts/lang × 5-point overall grade)
+- **+21 scores**: 20 AILuminate v1.0 grades (Claude 3.5 Haiku/Sonnet 4 / Mistral Large 2 / Gemma 2 9b / Phi 3.5 MoE / Phi 4 = Very Good 4/5; OLMo 7b = Poor 1/5) + GPT-5.5 Pro ECI = 159 (Manifold market resolution Apr 28 2026)
+
+**Round 6b — Epoch ECI canonical CSV ingest** (this commit):
+- 1차 source: `https://epoch.ai/data/eci_scores.csv` (172 rows full leaderboard, 17.9 KB)
+- Methodology: arxiv 2512.00193 "A Rosetta Stone for AI Benchmarks" (Anson Ho et al, IRT-style stitching)
+- 매핑 전략: CSV `Display name` → manual_map (90 entries) + normalized name lookup → 109 unique model_ids matched
+- **+16 new model registrations**: openai/o3-pro, openai/gpt-5.4-nano, openai/gpt-4.1-mini/nano, openai/o1-mini/preview, openai/gpt-oss-120b, deepseek/deepseek-v3.2-exp/v3.1, xai/grok-4-fast/grok-3-mini, alibaba/qwen3-max/qwen2.5-max, google/gemini-2.0-flash-thinking/gemini-2.0-pro, mistral/mistral-large
+- **+106 new ECI scores** (3 → 109 total): top 159.50 (GPT-5.5 Pro), bottom 93.31 (StarCoder2-7B). 95% bootstrap CI included in `_note`. Time-versioned variants (예: 'Gemini 2.5 Pro (Mar 2025)' vs '(Jun 2025)') deduped to highest-ECI per canonical model_id.
+- **+3 Resources references**: arxiv 2512.00193 (Rosetta Stone paper), epoch.ai/data/eci_scores.csv (canonical CSV), github.com/epoch-research/eci-public (open repo)
+- 매뉴 propagation 생략: 16개 신규 model_ids는 대부분 2024-2025 older variants → "latest models focus" 메모리 룰에 따라 Frontier Compare hardcoded 리스트에 추가하지 않음. ECI 테이블에서만 노출.
+
+**Round 6 cumulative deltas**:
+- 신규 모델: +23 (1742 → 1765)
+- 신규 benchmarks: +1 (939 → 940)
+- 신규 scores: +127 (3823 → 3950)
+- Resources references: +3
+- ECI table: 3 → 109 entries (36× 데이터 증대)
+
 ---
 
 ## 2026-05-09 (Session 10): Sovereign AI menu widget expansion — 6 NEW widgets (11 tasks, 11 commits)
