@@ -277,8 +277,28 @@ var FrontierCompare = {
 
         var hint = document.createElement('span');
         hint.className = 'text-xs text-gray-500 ml-2';
-        var visible = this._filteredModels().length;
-        hint.textContent = '(' + visible + ' / ' + this.FRONTIER_MODELS.length + ' models visible)';
+        // For composite, the heatmap pool expands beyond FRONTIER_MODELS, so
+        // show the actual ECI-scored model count instead of the curated 75.
+        var fcCat = document.getElementById('fc-category');
+        var category = fcCat ? fcCat.value : 'all';
+        if (category === 'composite') {
+            var benchIds = this._getBenchmarkIds(category);
+            var visible = this._modelsForCategory(category, benchIds).length;
+            var total = (function() {
+                var seen = {};
+                var n = 0;
+                self._scores.forEach(function(s) {
+                    if (benchIds.indexOf(s.benchmark_id) === -1) return;
+                    if (seen[s.model_id]) return;
+                    seen[s.model_id] = true; n++;
+                });
+                return n;
+            })();
+            hint.textContent = '(' + visible + ' / ' + total + ' ECI-scored models visible)';
+        } else {
+            var visibleF = this._filteredModels().length;
+            hint.textContent = '(' + visibleF + ' / ' + this.FRONTIER_MODELS.length + ' models visible)';
+        }
         host.appendChild(hint);
     },
 
