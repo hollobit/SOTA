@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-10",
+    "_note": "MatterGen Nature paper (s41586-025-08628-5) verified SUN (Stable+Unique+Novel) yield percentages — fills the previously-empty mattergen_yield benchmark for W9 Materials Discovery widget. CDVAE + DiffCSP MP20 registered as competitor baselines per primary-source attribution.",
+    "sources": [
+      "https://www.nature.com/articles/s41586-025-08628-5",
+      "https://arxiv.org/abs/2312.03687",
+      "https://github.com/microsoft/mattergen"
+    ]
+  },
+  "models": [
+    {
+      "id": "mit/cdvae",
+      "vendor": "MIT",
+      "name": "CDVAE",
+      "type": "open-source",
+      "modalities": [
+        "materials"
+      ],
+      "release_date": "2021-10-01",
+      "_sources": [
+        "https://arxiv.org/abs/2110.06197"
+      ],
+      "_note": "Crystal Diffusion Variational AutoEncoder — early generative model for periodic materials. Baseline in MatterGen paper."
+    },
+    {
+      "id": "mit/diffcsp",
+      "vendor": "MIT",
+      "name": "DiffCSP (MP-20)",
+      "type": "open-source",
+      "modalities": [
+        "materials"
+      ],
+      "release_date": "2023-03-01",
+      "_sources": [
+        "https://arxiv.org/abs/2309.04475"
+      ],
+      "_note": "Diffusion-based Crystal Structure Prediction model. Baseline in MatterGen paper."
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "mattergen_yield",
+      "name": "MatterGen SUN Yield",
+      "category": "physics-materials",
+      "metric": "percent",
+      "description": "Stable+Unique+Novel (SUN) yield rate for generative materials models. % of generated structures that are simultaneously thermodynamically stable, structurally unique, and not in MP20 training set. Per MatterGen Nature 2025 paper Table 1."
+    }
+  ],
+  "scores": [
+    {
+      "model": "microsoft/mattergen",
+      "benchmark": "mattergen_yield",
+      "score": 38.57,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41586-025-08628-5",
+      "_note": "MatterGen Nature 2025 paper Table 1 — SUN (Stable+Unique+Novel) rate = 38.57%. Sub-metrics: 74.41% stable, 100.0% unique, 61.96% novel. Best of generative models tested. SUN measures % of generated crystal structures that are simultaneously thermodynamically stable, structurally unique, and not in MP20 training set."
+    },
+    {
+      "model": "mit/cdvae",
+      "benchmark": "mattergen_yield",
+      "score": 13.99,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41586-025-08628-5",
+      "_note": "MatterGen Nature 2025 paper Table 1 — CDVAE baseline SUN rate = 13.99% (19.31% stable, 100.0% unique, 92.00% novel)."
+    },
+    {
+      "model": "mit/diffcsp",
+      "benchmark": "mattergen_yield",
+      "score": 12.71,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41586-025-08628-5",
+      "_note": "MatterGen Nature 2025 paper Table 1 — DiffCSP MP-20 baseline SUN rate = 12.71% (36.23% stable, 100.0% unique, 70.73% novel)."
+    }
+  ]
+}

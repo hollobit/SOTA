@@ -1,0 +1,94 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-10",
+    "_note": "Math specialist models scores for W3 'Frontier vs Specialist' widget. AlphaProof / Goedel-Prover-V2 / DeepSeek-Prover-V2 / DeepSeek-Math V2 — all from verified primary sources. AlphaProof IMO 2024 silver level qualitative claim — skipped per strict-attribution (no exact %).",
+    "sources": [
+      "https://arxiv.org/abs/2511.22570",
+      "https://huggingface.co/deepseek-ai/DeepSeek-Math-V2",
+      "https://github.com/deepseek-ai/DeepSeek-Prover-V2",
+      "https://arxiv.org/abs/2504.21801",
+      "https://arxiv.org/pdf/2508.03613",
+      "https://github.com/Goedel-LM/Goedel-Prover-V2",
+      "https://www.marktechpost.com/2025/11/28/deepseek-ai-releases-deepseekmath-v2-the-open-weights-maths-model-that-scored-118-120-on-putnam-2024/"
+    ]
+  },
+  "models": [
+    {
+      "id": "goedel/goedel-prover-v2",
+      "vendor": "Goedel-LM",
+      "name": "Goedel-Prover-V2-32B",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2025-08-01",
+      "_sources": [
+        "https://arxiv.org/pdf/2508.03613"
+      ],
+      "_note": "Lean theorem prover specialist, 32B params. Outperforms DeepSeek-Prover-V2-671B on MiniF2F/PutnamBench."
+    },
+    {
+      "id": "deepmind/alphaproof",
+      "vendor": "Google DeepMind",
+      "name": "AlphaProof",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2024-07-25",
+      "_sources": [
+        "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/"
+      ],
+      "_note": "Formal proof search system specialized for olympiad-level mathematics. Achieved silver-level performance at IMO 2024 (4 of 6 problems solved). Specific MATH-500/FrontierMath scores not published — strict-attribution skipped."
+    },
+    {
+      "id": "deepmind/alphageometry-2",
+      "vendor": "Google DeepMind",
+      "name": "AlphaGeometry-2",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2024-07-25",
+      "_sources": [
+        "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/"
+      ],
+      "_note": "Olympiad-level geometry specialist. Worked alongside AlphaProof at IMO 2024 silver-medal performance. Specific bench scores not published — strict-attribution applies."
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "putnambench",
+      "name": "PutnamBench",
+      "category": "math",
+      "metric": "percent",
+      "description": "Lean theorem proving on Putnam Mathematical Competition problems. Pass rate = N solved / total problems. Used by formal proof systems (DeepSeek-Prover, Goedel-Prover, AlphaProof)."
+    }
+  ],
+  "scores": [
+    {
+      "model": "deepseek/deepseek-math-v2",
+      "benchmark": "putnambench",
+      "score": 98.33,
+      "unit": "%",
+      "_source": "https://www.marktechpost.com/2025/11/28/deepseek-ai-releases-deepseekmath-v2-the-open-weights-maths-model-that-scored-118-120-on-putnam-2024/",
+      "_note": "DeepSeekMath-V2 Putnam 2024 = 118/120 = 98.33% (with scaled test-time compute). Per HuggingFace + paper https://arxiv.org/abs/2511.22570."
+    },
+    {
+      "model": "deepseek/deepseek-prover-v2-671b",
+      "benchmark": "putnambench",
+      "score": 7.45,
+      "unit": "%",
+      "_source": "https://github.com/deepseek-ai/DeepSeek-Prover-V2",
+      "_note": "DeepSeek-Prover-V2-671B solved 49 of 658 problems on PutnamBench = 7.45%. Lean theorem proving specialist. Paper arxiv 2504.21801."
+    },
+    {
+      "model": "goedel/goedel-prover-v2",
+      "benchmark": "putnambench",
+      "score": 13.03,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2508.03613",
+      "_note": "Goedel-Prover-V2-32B solved 86 of 660 PutnamBench problems = 13.03% (pass@184 with error correction). Outperforms DeepSeek-Prover-V2-671B (49/658=7.45%) and Kimina-Prover-72B."
+    }
+  ]
+}
