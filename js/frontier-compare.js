@@ -194,6 +194,27 @@ var FrontierCompare = {
         });
     },
 
+    // For the 'composite' category we want every model that has an ECI score,
+    // not just the curated FRONTIER_MODELS pool — otherwise the heatmap shows
+    // only ~18 of the 109 ECI-scored models. This helper expands the pool when
+    // the user picks composite, and falls back to FRONTIER_MODELS otherwise.
+    _modelsForCategory: function(category, benchIds) {
+        if (category !== 'composite') return this._filteredModels();
+        var self = this;
+        var seen = {};
+        var ids = [];
+        this._scores.forEach(function(s) {
+            if (benchIds.indexOf(s.benchmark_id) === -1) return;
+            if (seen[s.model_id]) return;
+            seen[s.model_id] = true;
+            // Apply class filter (frontier / agent-product / edge-slm)
+            var k = self._modelClass(s.model_id);
+            if (self._classFilter[k] === false) return;
+            ids.push(s.model_id);
+        });
+        return ids;
+    },
+
     _renderClassFilterUI: function() {
         var host = document.getElementById('fc-class-filter');
         if (!host) {
@@ -390,7 +411,7 @@ var FrontierCompare = {
 
         category = category || 'all';
         var benchIds = this._getBenchmarkIds(category);
-        this._renderHeatmap(benchIds);
+        this._renderHeatmap(benchIds, category);
         this._renderParetoChart();
         this._renderRadar(benchIds, category);
         this._populateBarSelect(benchIds, category);
@@ -886,7 +907,7 @@ var FrontierCompare = {
         return s.dir === 'asc' ? ' ▲' : s.dir === 'desc' ? ' ▼' : '';
     },
 
-    _renderHeatmap: function(benchIds) {
+    _renderHeatmap: function(benchIds, category) {
         var container = document.getElementById('fc-heatmap');
         if (!container) return;
         container.textContent = '';
@@ -894,8 +915,9 @@ var FrontierCompare = {
         var scoreMap = this._getScoreMap();
         var self = this;
 
-        // Filter to models that have at least one score (and pass class-filter)
-        var modelIds = this._filteredModels().filter(function(mid) {
+        // Pool: composite expands beyond FRONTIER_MODELS to the full set of
+        // models that have a score in the requested benchmarks (ECI: 109 models).
+        var modelIds = this._modelsForCategory(category, benchIds).filter(function(mid) {
             return benchIds.some(function(bid) { return scoreMap[mid + '|' + bid] !== undefined; });
         });
 
@@ -937,7 +959,7 @@ var FrontierCompare = {
         }
         thCorner.addEventListener('click', function() {
             self._cycleSort('model');
-            self._renderHeatmap(benchIds);
+            self._renderHeatmap(benchIds, category);
         });
         hr.appendChild(thCorner);
 
@@ -962,7 +984,7 @@ var FrontierCompare = {
             th.textContent = self._getBenchName(bid) + self._sortIndicator(bid);
             th.addEventListener('click', function() {
                 self._cycleSort(bid);
-                self._renderHeatmap(benchIds);
+                self._renderHeatmap(benchIds, category);
             });
             hr.appendChild(th);
         });
