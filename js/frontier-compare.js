@@ -39,7 +39,9 @@ var FrontierCompare = {
             'uk_aisi_narrow_cyber'
         ],
         cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench'],
-        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en']
+        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en'],
+        // 2026-05 — Composite "general capability" indices (cross-benchmark)
+        composite: ['epoch_capabilities_index', 'epoch_capabilities_index_swe']
     },
 
     // Top frontier models to compare. Ordered by frontier tier and recency —
