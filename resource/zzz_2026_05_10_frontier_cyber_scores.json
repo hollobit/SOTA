@@ -1,0 +1,27 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-10",
+    "_note": "Cyber benchmark research for non-OpenAI frontier models (Mythos / Opus 4.7 / Sonnet 4.6 / Opus 4.6 / Gemini 3.1 Pro / Gemini 3 Pro / Grok 4.20 / Grok 4.3). Strict primary-source attribution: only ingest if source explicitly names model + benchmark + numeric value. Sources investigated: (1) UK AISI blogs on Mythos and GPT-5.5 cyber capabilities — already ingested via apr30_aisi and aisi_gpt55 batches (Mythos/Opus 4.7 advanced expert avg, TLO completions, narrow cyber, sabotage, etc.). (2) Anthropic system cards (Mythos / Opus 4.7 / Opus 4.6 / Sonnet 4.6) — Mythos card already mined for cybench/cybergym/firefox_147; Opus 4.6 and Sonnet 4.6 cards confirmed via primary-source PDFs from www-cdn.anthropic.com (sha 0dd86507... and 78073f73...). (3) Anthropic Mythos blog (red.anthropic.com) — already mined. (4) Fluid Attacks / BenchLM mention Opus 4.7 CyberGym=73.1% — but not present in red.anthropic.com or any Anthropic primary text accessible to us; existing DB value of 24.5% from cybergym.io leaderboard is itself a primary source and we keep it. SKIPPED 73.1% under strict-attribution. (5) Google DeepMind Gemini 3 Pro / 3.1 Pro model cards + FSF report — only state '11/12 hard challenges solved' for Gemini 3 Pro internal CTF (Google's proprietary eval, not mapped to our DB benchmarks like cybench/cybergym/cvebench). No Cybench/CyberGym/CVE-Bench numbers published for Gemini 3 Pro or 3.1 Pro. (6) xAI Grok 4.20 / 4.3 — no model card published as of May 2026 (per artificialanalysis.ai); no Cybench/CyberGym/AIRTBench numbers published. NEW SCORES: only Sonnet 4.6 cybench (pass@30 saturated, pass@1 average) explicitly stated in Sonnet 4.6 system card section 6.4.7 and not yet in DB. All other gaps blocked by missing primary attribution.",
+    "sources": [
+      "https://www-cdn.anthropic.com/78073f739564e986ff3e28522761a7a0b4484f84.pdf",
+      "https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf",
+      "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities",
+      "https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities",
+      "https://red.anthropic.com/2026/mythos-preview/",
+      "https://fluidattacks.com/blog/gpt-5-4-cyber-gpt-5-5-ai-cybersecurity-future",
+      "https://deepmind.google/models/model-cards/gemini-3-1-pro/",
+      "https://storage.googleapis.com/deepmind-media/gemini/gemini_3_pro_fsf_report.pdf",
+      "https://benchlm.ai/benchmarks/cyberGym"
+    ]
+  },
+  "scores": [
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cybench",
+      "score": 100.0,
+      "unit": "%",
+      "_source": "https://www-cdn.anthropic.com/78073f739564e986ff3e28522761a7a0b4484f84.pdf",
+      "_note": "pass@30 — saturated. Claude Sonnet 4.6 System Card section 6.4.7. Quote: 'Claude Sonnet 4.6 scored 0.90 average pass@1 on the subset of tasks used for RSP evaluations, just below Claude Opus 4.6 (0.93). Similarly, Claude Sonnet 4.6 achieved a 100% pass@30 success rate, we consider this evaluation to be saturated.' 35-challenge subset (3/40 dropped for infra)"
+    }
+  ]
+}
