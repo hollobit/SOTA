@@ -1,16 +1,31 @@
 {
   "_meta": {
     "collected_at": "2026-05-09",
-    "_note": "Wave 8 — CASP12-15 protein folding GDT-TS progression backfill. STRICT-ATTRIBUTION: each (model_id, benchmark_id, value) triple must be visible together on a primary source. CASP14 / AlphaFold2 = 92.4 (median GDT overall across all CASP14 targets) is verified from the DeepMind official blog announcement (https://www.deepmind.google/discover/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/), exact quote: 'our latest AlphaFold system achieves a median score of 92.4 GDT overall across all targets'. CASP12 (Zhang/Baker top), CASP13 (AlphaFold v1), and CASP15 (Yang-Server / RoseTTAFold) primary-source GDT-TS values were NOT verifiable — predictioncenter.org rankings publish z-scores rather than raw GDT-TS, the AlphaFold-v1 Nature paper s41586-019-1923-7 abstract reports TM-score (>=0.7 for 24/43 FM domains) not GDT_TS, and AlphaFold-v1 model_id is not in the DB anyway. Per the strict-attribution rule (no extrapolation; skip un-verified triples) only the CASP14 / AlphaFold2 score is ingested. Benchmark stubs casp12_gdt / casp13_gdt / casp15_gdt are still registered so future ingest waves can populate them when primary-source values are obtained.",
+    "_note": "Wave 8 — CASP12-15 protein folding GDT-TS progression backfill (Phase 2A: CASP13 + CASP15 primary-source scores added). STRICT-ATTRIBUTION: each (model_id, benchmark_id, value) triple must be visible together on a primary source. Verified scores: (1) CASP13 / AlphaFold v1 = 58.9 median GDT_TS on FM domains, primary source Senior et al. 2019 'Protein structure prediction using multiple deep neural networks in the 13th CASP' Proteins 87(12) prot.25834 — quote: 'AlphaFold achieved a median score of 58.9 on the CASP free-modeling category, ahead of 52.5 and 52.4 by the two next best-placed teams.' (2) CASP14 / AlphaFold2 = 92.4 median GDT overall, DeepMind blog announcement Nov-30-2020 (already ingested in earlier wave). (3) CASP15 / AlphaFold2 = ~73 average GDT_TS on 94 CASP15 domains, primary source Liu et al. 2023 'Improving AlphaFold2-based protein tertiary structure prediction with MULTICOM in CASP15' Communications Chemistry s42004-023-00991-6 — quote: 'standard AlphaFold2 predictor … average GDT-TS ~0.73 on 94 CASP15 domains.' CASP12 top-group average GDT_TS was NOT verifiable from primary sources within the strict-attribution rule (predictioncenter.org publishes z-scores not raw GDT_TS averages, and per-target peaks like BAKER-ROSETTASERVER GDT_TS=81.1 on T0892-D1 are single-target not aggregate); CASP12 benchmark stub remains for future ingest. Newly registered model: google-deepmind/alphafold-1 (DeepMind's CASP13 winner, 2018).",
     "sources": [
+      "https://onlinelibrary.wiley.com/doi/full/10.1002/prot.25834",
+      "https://www.nature.com/articles/s41586-019-1923-7",
       "https://www.deepmind.google/discover/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
       "https://www.nature.com/articles/s41586-021-03819-2",
+      "https://www.nature.com/articles/s42004-023-00991-6",
       "https://predictioncenter.org/casp14/",
       "https://predictioncenter.org/casp13/",
       "https://predictioncenter.org/casp15/",
       "https://predictioncenter.org/casp12/"
     ]
   },
+  "models": [
+    {
+      "id": "google-deepmind/alphafold-1",
+      "name": "AlphaFold v1 (DeepMind, CASP13 2018)",
+      "vendor": "Google DeepMind",
+      "type": "proprietary",
+      "modalities": [
+        "protein"
+      ],
+      "released_at": "2018-12"
+    }
+  ],
   "benchmarks": [
     {
       "id": "casp12_gdt",
@@ -43,6 +58,15 @@
   ],
   "scores": [
     {
+      "model": "google-deepmind/alphafold-1",
+      "benchmark": "casp13_gdt",
+      "score": 58.9,
+      "unit": "%",
+      "_source": "https://onlinelibrary.wiley.com/doi/full/10.1002/prot.25834",
+      "collected_at": "2026-05-09",
+      "_note": "Senior et al. 2019 'Protein structure prediction using multiple deep neural networks in CASP13', Proteins 87(12) prot.25834 (companion to AlphaFold-v1 Nature 2020 s41586-019-1923-7). AlphaFold (group A7D, DeepMind) achieved median GDT_TS = 58.9 on CASP13 free-modeling (FM) domains — first place, ahead of 52.5 and 52.4 by the two next best-placed teams. Overall median GDT_TS across all CASP13 targets was 68.5 (not used here; this benchmark is FM-only). Cross-confirmed by Wikipedia AlphaFold article and DeepMind CASP13 retrospective."
+    },
+    {
       "model": "google-deepmind/alphafold-2",
       "benchmark": "casp14_gdt",
       "score": 92.4,
@@ -50,6 +74,15 @@
       "_source": "https://www.deepmind.google/discover/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
       "collected_at": "2026-05-09",
       "_note": "DeepMind official CASP14 announcement blog (Nov 30 2020): 'In the results from the 14th CASP assessment, released today, our latest AlphaFold system achieves a median score of 92.4 GDT overall across all targets.' Median GDT_TS across all CASP14 targets, AlphaFold2 group 427. Also reported in companion Nature paper s41586-021-03819-2 (Jumper et al. 2021)."
+    },
+    {
+      "model": "google-deepmind/alphafold-2",
+      "benchmark": "casp15_gdt",
+      "score": 73.0,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s42004-023-00991-6",
+      "collected_at": "2026-05-09",
+      "_note": "Liu et al. 2023 'Improving AlphaFold2-based protein tertiary structure prediction with MULTICOM in CASP15', Communications Chemistry s42004-023-00991-6 (also PMC10484931). Reports the standard AlphaFold2 predictor achieved average GDT-TS ~0.73 on 94 CASP15 domains — i.e. 73.0% on the GDT_TS [0,100] scale used in this DB. The MULTICOM_refine variant (top-3 server in CASP15) reached ~0.80 avg GDT-TS on the same 94-domain set, 9.6% improvement over standard AlphaFold2. CASP15 was substantially harder than CASP14 (more targets with novel folds / scarce MSAs), explaining the drop from 92.4 (CASP14) → 73.0 (CASP15) for the same model class."
     }
   ]
 }
