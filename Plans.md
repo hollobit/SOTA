@@ -1,7 +1,7 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
 ## Current Status: ECI + AAII composite duo + cyber variants (2026-05-11, Session 11 마무리)
-**1,869 models · 956 benchmarks · 5,194 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+**1,259 models · 900 benchmarks · 4,672 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
 

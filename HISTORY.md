@@ -214,10 +214,11 @@ User-prompted: "GPT-5.5-cyber와 GPT-5.4-cyber 평가 결과 조사". OpenAI Tru
 
 **Frontier Compare hardcoded list**: +2 cyber 변형 model_ids per full-menu propagation rule. Resources tab: +3 references (TAC 공지 + GPT-5.5-Cyber 발표 + AISI 외부 평가).
 
-**Round 24 cumulative deltas (Section 19-24 합산)**:
-- 신규 모델: **+93** (1768 → 1861) — variants + AAII new + cyber + Llama 3.2 + GLM-4.6 등
-- 신규 benchmarks: **+13** (940 → 953) — chess_puzzles, frontiermath_tier4, otis_aime, fiction_livebench, the_agent_company, vpct, balrog, arc_ai2_easy, lech_mazur_writing, piqa, scienceqa, winogrande, openbookqa, lambada, csqa2, anli, superglue, boolq, cadeval (일부)
-- 신규 scores: **+1232** (3954 → 5187) — ECI bulk + AAII full + cyber-related + variants
+**Round 24 cumulative deltas (Sections 19-24 합산) — verified from data/export/**:
+- 신규 모델: **+142** (1114 → 1256) — variants + AAII new + cyber + Llama 3.2 + GLM-4.6 등
+- 신규 benchmarks: **+26** (874 → 900) — chess_puzzles, frontiermath_tier4, otis_aime, fiction_livebench, the_agent_company, vpct, balrog, arc_ai2_easy, lech_mazur_writing, piqa, scienceqa, winogrande, openbookqa, lambada, csqa2, anli, superglue, boolq, cadeval (일부)
+- 신규 scores: **+1235** (3430 → 4665) — ECI bulk + AAII full + cyber-related + variants
+- (Note: 이전 보고된 "1768/940/3954 → 1861/953/5187" 수치는 loader의 `total_insertions` 카운트로 duplicates 포함. INSERT OR REPLACE 후 unique 카운트는 위와 같음.)
 - composite category 분리: 1 → 2 (composite_eci, composite_aaii)
 
 **Live deploy verified**: 모든 round CI run completion + cache-bust SHA prefix 검증.
@@ -266,10 +267,11 @@ User-prompted "1,2,3,4,5,6" — 6개 follow-up 항목 일괄 처리.
 - README badges: 1114→**1869** models / 854→**956** benchmarks / 3315→**5194** scores
 - Plans.md 207 lines (200 line 한도 초과) — 차후 maintenance에서 archive 권장
 
-**Cumulative deltas (Session 11 종합, Sections 19-25)**:
-- 신규 모델: **+101** (1768 → 1869) — ECI variants + AAII variants + cyber variants + specialists + Materials baselines
-- 신규 benchmarks: **+16** (940 → 956) — Epoch internal (chess/Tier4/OTIS) + bench-stitching (ARC-AI2/LeahMazur/PIQA/ScienceQA/WinoGrande/OpenBookQA/LAMBADA/CSQA2/ANLI/SuperGLUE/BoolQ/CADEval) + W9 mattergen_yield + W3 putnambench
-- 신규 scores: **+1240** (3954 → 5194) — ECI bulk 858 + AAII bulk 221 + Sub-scores 197 + variants 24 + cyber 1 + math specialists 6 + mattergen yield 3 + frontier ECI gaps 5 + zero-coverage 11 + variant register 14
+**Cumulative deltas (Session 11 종합, Sections 19-25) — verified from data/export/**:
+- 신규 모델: **+145** (1114 → 1259) — ECI variants + AAII variants + cyber variants + specialists + Materials baselines + math specialists
+- 신규 benchmarks: **+26** (874 → 900) — Epoch internal (chess/Tier4/OTIS) + bench-stitching (ARC-AI2/LeahMazur/PIQA/ScienceQA/WinoGrande/OpenBookQA/LAMBADA/CSQA2/ANLI/SuperGLUE/BoolQ/CADEval) + W9 mattergen_yield + W3 putnambench
+- 신규 scores: **+1242** (3430 → 4672) — ECI bulk 858 + AAII bulk 221 + Sub-scores 197 + variants 24 + cyber 1 + math specialists 6 + mattergen yield 3 + frontier ECI gaps 5 + zero-coverage 11 + variant register 14
+- (Note: 이전 보고된 "+1240 scores, 1768→1869 models" 등 수치는 loader의 `total_insertions` 출력 (INSERT OR REPLACE 포함 duplicate count). 위 수치는 실제 unique count 검증 값.)
 - composite category 분리: 1 → 2 (composite_eci 33 cols / composite_aaii 13 cols)
 - PDFs archived: +6 (22.67 MB), `resource/` 디렉토리 누적
 - Memory entries: +3 new (`feedback_aa_subscore_charts`, `feedback_cyber_variant_publishing`, `reference_aa_benchmarking_data_sources`)

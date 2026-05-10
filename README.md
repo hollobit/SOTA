@@ -1,7 +1,7 @@
 # SOTA
 LLM benchmark &amp; SOTA
 <!-- BADGES:START -->
-![Total enrichment](https://img.shields.io/badge/enrichment-1869%20models-blue) ![Manual curation](https://img.shields.io/badge/manual%20frontier-127-green) ![Benchmarks](https://img.shields.io/badge/benchmarks-956-orange) ![Scores](https://img.shields.io/badge/scores-5194%2B-purple)
+![Total enrichment](https://img.shields.io/badge/enrichment-1259%20models-blue) ![Manual curation](https://img.shields.io/badge/manual%20frontier-127-green) ![Benchmarks](https://img.shields.io/badge/benchmarks-900-orange) ![Scores](https://img.shields.io/badge/scores-4672%2B-purple)
 <!-- BADGES:END -->
 
 **Live site:** https://hollobit.github.io/SOTA/
