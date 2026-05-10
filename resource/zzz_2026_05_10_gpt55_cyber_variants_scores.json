@@ -1,0 +1,58 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-10",
+    "_note": "OpenAI cyber-specialized model variants. GPT-5.5-Cyber (May 2026) and GPT-5.4-Cyber (Feb 2026) launched via OpenAI's Trusted Access for Cyber (TAC) program to vetted defenders. These are cyber-permissive variants — lower refusal boundary for legitimate security research, not raw capability uplift. Per strict-attribution: only ingesting CyberGym 81.9% for GPT-5.5-Cyber (the only publicly-disclosed numeric score). GPT-5.4-Cyber scores not publicly disclosed per OpenAI policy. Base GPT-5.5/GPT-5.4 cyber scores (Cyber Range 93.33%/73.33%, Irregular Atomic suite 98%/92%/54%, UK AISI 90.5%/71.4%, etc.) already ingested in prior commits.",
+    "sources": [
+      "https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber/",
+      "https://openai.com/index/scaling-trusted-access-for-cyber-defense/",
+      "https://www.aisi.gov.uk/blog/our-evaluation-of-openais-gpt-5-5-cyber-capabilities",
+      "https://fluidattacks.com/blog/gpt-5-4-cyber-gpt-5-5-ai-cybersecurity-future",
+      "https://siliconangle.com/2026/05/08/openai-introduces-gpt-5-5-cyber-high-impact-cybersecurity-research/",
+      "https://www.mindfort.ai/blog/how-good-is-gpt-5-5-for-cybersecurity",
+      "https://deploymentsafety.openai.com/gpt-5-5"
+    ]
+  },
+  "models": [
+    {
+      "id": "openai/gpt-5.5-cyber",
+      "vendor": "OpenAI",
+      "name": "GPT-5.5-Cyber",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2026-05-08",
+      "_sources": [
+        "https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber/",
+        "https://openai.com/index/scaling-trusted-access-for-cyber-defense/"
+      ],
+      "_note": "Cyber-specialized variant of GPT-5.5 launched 2026-05-08 via OpenAI's Trusted Access for Cyber (TAC) program. Lower refusal boundary for legitimate security research; binary reverse engineering capabilities. Limited preview to vetted defenders."
+    },
+    {
+      "id": "openai/gpt-5.4-cyber",
+      "vendor": "OpenAI",
+      "name": "GPT-5.4-Cyber",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2026-02-01",
+      "_sources": [
+        "https://openai.com/index/scaling-trusted-access-for-cyber-defense/",
+        "https://fluidattacks.com/blog/gpt-5-4-cyber-gpt-5-5-ai-cybersecurity-future"
+      ],
+      "_note": "Cyber-permissive variant of GPT-5.4, fine-tuned for security workflows. Released Feb 2026 as predecessor to GPT-5.5-Cyber via TAC program. Specific public benchmark scores not yet disclosed by OpenAI per strict-attribution rule (cyber-permissive variant performance not in public model cards)."
+    }
+  ],
+  "benchmarks": [],
+  "scores": [
+    {
+      "model": "openai/gpt-5.5-cyber",
+      "benchmark": "cybergym",
+      "score": 81.9,
+      "unit": "%",
+      "_source": "https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber/",
+      "_note": "OpenAI Trusted Access for Cyber announcement (2026-05-08): GPT-5.5-Cyber = 81.9% on CyberGym (1500+ historical vulnerabilities from open-source projects). Marginal improvement over GPT-5.5 base 81.8% — the cyber variant primarily lowers refusal boundary, not raw capability."
+    }
+  ]
+}
