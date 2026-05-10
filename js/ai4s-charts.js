@@ -618,8 +618,12 @@
     'xai/grok-4.20', 'deepseek/deepseek-v4-pro'
   ];
   var _SPECIALIST_IDS_FOR_W3 = [
-    'deepmind/alphaproof', 'deepmind/alphageometry-2',
-    'goedel/goedel-prover-v2', 'kimi/k1.5-math', 'meta/llemma-34b'
+    // Math specialists — scored on PutnamBench (Lean theorem proving)
+    'deepseek/deepseek-math-v2',           // 98.33% Putnam 2024
+    'deepseek/deepseek-prover-v2-671b',    // 7.45% PutnamBench
+    'goedel/goedel-prover-v2',             // 13.03% PutnamBench
+    'deepseek/deepseek-prover-v2-7b',
+    'deepmind/alphaproof', 'deepmind/alphageometry-2'
   ];
 
   function _avgScoreForGroup(modelIds, benchmarkId) {
