@@ -224,13 +224,19 @@ var FrontierCompare = {
     // not just the curated FRONTIER_MODELS pool — otherwise the heatmap shows
     // only ~18 of the 109 ECI-scored models. This helper expands the pool when
     // the user picks composite, and falls back to FRONTIER_MODELS otherwise.
+    //
+    // Contributing benchmarks (GPQA, HLE, MMLU, etc.) appear as extra columns,
+    // but only models with an ECI score qualify for inclusion — otherwise the
+    // heatmap balloons with hundreds of GPQA-scored-but-not-ECI-scored models
+    // and the focus on "ECI + its evaluation data" is lost.
+    _ANCHOR_BENCHIDS: ['epoch_capabilities_index', 'epoch_capabilities_index_swe'],
     _modelsForCategory: function(category, benchIds) {
         if (category !== 'composite') return this._filteredModels();
         var self = this;
         var seen = {};
         var ids = [];
         this._scores.forEach(function(s) {
-            if (benchIds.indexOf(s.benchmark_id) === -1) return;
+            if (self._ANCHOR_BENCHIDS.indexOf(s.benchmark_id) === -1) return;
             if (seen[s.model_id]) return;
             seen[s.model_id] = true;
             // Apply class filter (frontier / agent-product / edge-slm)
@@ -310,11 +316,13 @@ var FrontierCompare = {
         if (category === 'composite') {
             var benchIds = this._getBenchmarkIds(category);
             var visible = this._modelsForCategory(category, benchIds).length;
+            // Total = all ECI-scored models, regardless of class filter
+            var anchors = this._ANCHOR_BENCHIDS;
             var total = (function() {
                 var seen = {};
                 var n = 0;
                 self._scores.forEach(function(s) {
-                    if (benchIds.indexOf(s.benchmark_id) === -1) return;
+                    if (anchors.indexOf(s.benchmark_id) === -1) return;
                     if (seen[s.model_id]) return;
                     seen[s.model_id] = true; n++;
                 });
