@@ -2446,5 +2446,50 @@
     "new_value": "+2 model registrations (openai/gpt-5.5-cyber, openai/gpt-5.4-cyber) + 1 verified score (GPT-5.5-Cyber CyberGym 81.9%). Cache-bust frontier-compare.js v=20260510l → m, app.js v=20260510h → i.",
     "old_model": "",
     "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-11",
+    "benchmark_id": "W3 + W9 widget data fill — mattergen_yield + math specialist PutnamBench (commit a20bd96)",
+    "new_model": "Two data fills addressing AI4S widgets rendering empty. (1) W9 Materials Yield Y-axis was 0 — ingested MatterGen Nature 2025 paper Table 1 SUN (Stable+Unique+Novel) yield: microsoft/mattergen 38.57% (74.41/100/61.96 sub-metrics) + mit/cdvae 13.99% (NEW) + mit/diffcsp 12.71% (NEW). (2) W3 Frontier vs Specialist had null Specialist column — ingested 3 math specialist scores on PutnamBench: deepseek/deepseek-math-v2 98.33% (Putnam 2024 = 118/120 with test-time compute, arxiv 2511.22570), goedel/goedel-prover-v2 13.03% (NEW, 86/660 pass@184 + error correction, arxiv 2508.03613), deepseek/deepseek-prover-v2-671b 7.45% (49/658 problems, arxiv 2504.21801). AlphaProof + AlphaGeometry-2 registered with metadata only (IMO 2024 silver-level qualitative; strict-attribution skipped specific scores). Benchmarks `mattergen_yield` + `putnambench` registered in MatterGen-physics-materials + math categories. W3 _SPECIALIST_IDS_FOR_W3 list updated to 6 specialists (3 with verified PutnamBench scores + 3 metadata-only). Cache-bust ai4s-charts.js v=20260509b → 20260510a.",
+    "new_value": "+5 model registrations (mit/cdvae, mit/diffcsp, goedel/goedel-prover-v2, deepmind/alphaproof, deepmind/alphageometry-2), +2 benchmarks (mattergen_yield, putnambench), +6 scores. W9 widget mattergen_yield axis now data-populated (visualization refactor needed for generative vs predictive model split — separate issue).",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-11",
+    "benchmark_id": "Frontier model cyber scores research — Mythos/Claude/Gemini/Grok (commit da910ad, subagent)",
+    "new_model": "Subagent dispatched to mine cybersecurity benchmark scores for non-OpenAI frontier models from primary sources. Investigated UK AISI / Anthropic / Google / xAI system cards + external evals. ✅ Verified: anthropic/claude-sonnet-4.6 × cybench = 100% pass@30 (Sonnet 4.6 system card §6.4.7 PDF extraction). ⊘ Attribution failures: claude-opus-4.7 × cybergym 73.1% (only third-party Fluid Attacks / BenchLM aggregator — no Anthropic primary source); claude-mythos-preview cyber values already in DB (cybench 100, cybergym 83.1, firefox_147 84.0); gemini-3-pro / gemini-3.1-pro cybench (Google FSF model card has internal CTF '11/12 hard' only, doesn't map to Cybench DB id); grok-4.20 / grok-4.3 cyber benchmarks (no xAI model card as of May 2026); Opus 4.6 cybench=0.93 pass@1 (DB already has 100 pass@30 — duplicate skip). Confirmed AISI Advanced Expert Cyber data already loaded as aisi_advanced_expert_avg.",
+    "new_value": "+1 score (claude-sonnet-4.6 cybench 100). Strict-attribution rule effect: rejected ~10 third-party / un-attributed score citations. DB delta 5193 → 5194.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Reference",
+    "date": "2026-05-11",
+    "benchmark_id": "6 paper PDFs archived to resource/ (commit 8147981, subagent)",
+    "new_model": "PDF storage subagent dispatched per feedback_system_card_pdf_storage memory rule. Downloaded 6 paper PDFs for recently-registered models/methodologies and stored in resource/ directory. Total 22.67 MB added. Files: A_Rosetta_Stone_for_AI_Benchmarks_arxiv_2512.00193.pdf (3.48 MB, 11 pages — ECI methodology paper), DeepSeek-Math_V2_arxiv_2511.22570.pdf (0.39 MB — Putnam 2024 98.33% paper), Goedel-Prover-V2_arxiv_2508.03613.pdf (2.45 MB — Lean theorem proving 32B), DeepSeek-Prover-V2_arxiv_2504.21801.pdf (1.89 MB), MatterGen_Nature_2025_s41586-025-08628-5.pdf (12.15 MB — SUN yield 38.57% paper), AILuminate_v1_arxiv_2503.05731.pdf (2.31 MB — MLCommons AI safety benchmark v1.0). Resources tab: +6 entries under '2026-05-11 — Archived paper PDFs (local copies in resource/)' section. seed_sources.yaml skipped (file is leaderboard-source-only, no paper PDF section exists; all arxiv URLs implicitly covered by existing arxiv.org aggregator entry).",
+    "new_value": "+6 PDFs (22.67 MB to resource/), +6 Resources tab entries. No data score deltas (PDFs are reference archive, not score data).",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-11",
+    "benchmark_id": "Frontier Compare math category expansion (commit a0a1d8b)",
+    "new_model": "After Session 11 specialist score ingest (W3 widget) became visible, discovered Frontier Compare heatmap math category didn't expose the new benchmarks. Added 4 columns to CORE_BENCHMARKS.math: putnambench (Lean theorem proving — math specialists score here), frontiermath (Epoch internal evals), frontiermath_tier4 (research-level math, new from Epoch internal), otis_aime (OTIS Mock AIME 2024-2025). Cache-bust frontier-compare.js v=20260510m → 20260511a. Math heatmap now full-coverage across AIME 2024-26, HMMT 2025/26, IMO-AnswerBench, AMC23, USAMO, GSM8K, MATH-500 + 4 new columns = 16 math benchmarks visible.",
+    "new_value": "+4 math benchmark columns in Frontier Compare. No score changes; UI exposure only.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Docs",
+    "date": "2026-05-11",
+    "benchmark_id": "Plans.md + README badges sync (commit 1035378)",
+    "new_model": "Session 11 마무리 documentation sync. Plans.md: new 'Current Status' section for 2026-05-10/11 Session 11 covering ECI + AAII composite duo, cyber variants, AI4S widget fixes, SOTA harness fix, PDF archive, memory updates. Old 2026-05-08 Agent menu status preserved under 'Previous'. README.md badges updated from 1114→1869 models / 854→956 benchmarks / 3315→5194 scores. Plans.md now 207 lines (above 200 line limit — future maintenance pass can prune old sessions via /maintenance).",
+    "new_value": "Docs only. Models 1114→1869 (+755), Benchmarks 854→956 (+102), Scores 3315→5194 (+1879) — cumulative since 2026-05-08 Session 2.",
+    "old_model": "",
+    "old_value": ""
   }
 ]

@@ -222,6 +222,65 @@ User-prompted: "GPT-5.5-cyber와 GPT-5.4-cyber 평가 결과 조사". OpenAI Tru
 
 **Live deploy verified**: 모든 round CI run completion + cache-bust SHA prefix 검증.
 
+### 25. Session 11 마무리 — widget 데이터 보강 + frontier cyber + PDF archive + docs sync (commits `a20bd96` → `1035378`)
+
+User-prompted "1,2,3,4,5,6" — 6개 follow-up 항목 일괄 처리.
+
+**25a. mattergen_yield + math specialist PutnamBench** (commit `a20bd96`):
+- W9 Materials Yield widget Y축이 비어있던 문제 해결: MatterGen Nature 2025 paper Table 1에서 SUN (Stable+Unique+Novel) yield 추출
+  - `microsoft/mattergen = 38.57%` (74.41% stable × 100% unique × 61.96% novel)
+  - `mit/cdvae = 13.99%` (신규 등록, 19.31/100/92.00)
+  - `mit/diffcsp = 12.71%` (신규 등록, 36.23/100/70.73)
+- W3 Frontier vs Specialist widget이 specialist 컬럼 null이던 문제 해결: 3개 math specialist 점수 ingest (PutnamBench)
+  - `deepseek/deepseek-math-v2 = 98.33%` (Putnam 2024 = 118/120 with test-time compute, arxiv 2511.22570)
+  - `goedel/goedel-prover-v2 = 13.03%` (신규 등록, 86/660 pass@184 + correction, arxiv 2508.03613)
+  - `deepseek/deepseek-prover-v2-671b = 7.45%` (49/658 problems, arxiv 2504.21801)
+- AlphaProof / AlphaGeometry-2 등록 (IMO 2024 silver-level 정성적 — 구체 점수 strict-attribution skip)
+- `mattergen_yield` + `putnambench` 2개 benchmark 신규 등록 (FK constraint 오류 후 보완)
+- W3 `_SPECIALIST_IDS_FOR_W3` 리스트 업데이트: 6개 specialists (DeepSeek-Math V2, Prover V2 671B/7B, Goedel Prover V2, AlphaProof, AlphaGeometry-2)
+
+**25b. Frontier cyber scores 외부 모델 조사** (commit `da910ad`, subagent):
+- UK AISI / Anthropic / Google / xAI 시스템 카드 + 외부 평가 조사 (Mythos/Opus 4.7/Sonnet 4.6/Gemini 3.x/Grok 4.x)
+- ✅ `anthropic/claude-sonnet-4.6 × cybench = 100%` pass@30 (Sonnet 4.6 system card §6.4.7 PDF 추출 verified)
+- ⊘ 대부분 unmatched (Mythos cyber 점수 이미 DB / Opus 4.7 cybergym 73.1 third-party만 / Gemini는 internal CTF 만 보고 / Grok 4.3 model card 미공개)
+- strict-attribution 룰 효과 확인 — 1차 source 없는 third-party 수치 모두 reject
+
+**25c. PDF archive** (commit `8147981`, subagent):
+- 6개 paper PDF 다운로드 + `resource/` 저장 + git commit (22.67 MB total)
+  - `A_Rosetta_Stone_for_AI_Benchmarks_arxiv_2512.00193.pdf` (3.48 MB, 11 pages)
+  - `DeepSeek-Math_V2_arxiv_2511.22570.pdf` (0.39 MB)
+  - `Goedel-Prover-V2_arxiv_2508.03613.pdf` (2.45 MB)
+  - `DeepSeek-Prover-V2_arxiv_2504.21801.pdf` (1.89 MB)
+  - `MatterGen_Nature_2025_s41586-025-08628-5.pdf` (12.15 MB)
+  - `AILuminate_v1_arxiv_2503.05731.pdf` (2.31 MB)
+- Resources tab "2026-05-11 — Archived paper PDFs" 섹션 6 entries 추가
+- `feedback_system_card_pdf_storage` 메모리 룰 준수
+
+**25d. Frontier Compare math 카테고리 확장** (commit `a0a1d8b`):
+- 사용자가 W3에 specialist 점수 노출됐지만 Frontier Compare heatmap에서 PutnamBench 컬럼이 없음을 발견
+- CORE_BENCHMARKS.math에 4 columns 추가: `putnambench`, `frontiermath`, `frontiermath_tier4`, `otis_aime`
+- 이제 math category heatmap에서 specialist 점수 직접 비교 가능
+
+**25e. Plans.md + README sync** (commit `1035378`):
+- Plans.md: 새 "Current Status" 섹션 (Session 11 마무리 ECI+AAII composite duo + cyber variants); old 2026-05-08 Agent 섹션 "Previous" 로 이동
+- README badges: 1114→**1869** models / 854→**956** benchmarks / 3315→**5194** scores
+- Plans.md 207 lines (200 line 한도 초과) — 차후 maintenance에서 archive 권장
+
+**Cumulative deltas (Session 11 종합, Sections 19-25)**:
+- 신규 모델: **+101** (1768 → 1869) — ECI variants + AAII variants + cyber variants + specialists + Materials baselines
+- 신규 benchmarks: **+16** (940 → 956) — Epoch internal (chess/Tier4/OTIS) + bench-stitching (ARC-AI2/LeahMazur/PIQA/ScienceQA/WinoGrande/OpenBookQA/LAMBADA/CSQA2/ANLI/SuperGLUE/BoolQ/CADEval) + W9 mattergen_yield + W3 putnambench
+- 신규 scores: **+1240** (3954 → 5194) — ECI bulk 858 + AAII bulk 221 + Sub-scores 197 + variants 24 + cyber 1 + math specialists 6 + mattergen yield 3 + frontier ECI gaps 5 + zero-coverage 11 + variant register 14
+- composite category 분리: 1 → 2 (composite_eci 33 cols / composite_aaii 13 cols)
+- PDFs archived: +6 (22.67 MB), `resource/` 디렉토리 누적
+- Memory entries: +3 new (`feedback_aa_subscore_charts`, `feedback_cyber_variant_publishing`, `reference_aa_benchmarking_data_sources`)
+- New widgets 활성화: W3 specialist 컬럼 (PutnamBench), W9 mattergen_yield Y축 데이터 (visualization refactor는 별도 issue)
+
+**Live deploy 검증 (commit `da910ad` 기준)**:
+- W3 widget: PutnamBench 컬럼 Frontier null / Specialist 39.6 표시 ✅
+- W9 widget: mattergen_yield 3 scores 라이브, generative vs predictive 모델군 별도 → widget refactor 필요 (별도 follow-up)
+- Frontier Compare math heatmap: PutnamBench / FrontierMath / Tier 4 / OTIS-AIME 컬럼 노출 ✅
+- composite_aaii heatmap: 178 rows × 13 cols ✅
+
 ---
 
 ## 2026-05-09 (Session 10): Sovereign AI menu widget expansion — 6 NEW widgets (11 tasks, 11 commits)
