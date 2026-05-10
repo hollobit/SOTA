@@ -131,6 +131,15 @@ var FrontierCompare = {
         // May 7 2026 — NVIDIA Nemotron Labs Elastic (3-in-1 nested 30B/23B/12B, ICML 2026)
         'nvidia/nemotron-labs-3-elastic-30b-a3b',
 
+        // May 10 2026 — Epoch ECI canonical CSV ingest, frontier-eligible variants
+        // (added after evaluating 16 newly-registered ECI-only models against latest-models rule)
+        'openai/o3-pro',                  // ECI 148.11 — o3 family flagship reasoning
+        'openai/gpt-5.4-nano',            // ECI 146.21 — GPT-5.4 edge variant
+        'deepseek/deepseek-v3.2-exp',     // ECI 145.08 — recent open-weight flagship
+        'xai/grok-4-fast',                // ECI 144.83 — Grok 4 family edge variant
+        'alibaba/qwen3-max',              // ECI 144.52 — Qwen3 flagship (paired with 3.5/3.6 in list)
+        'openai/gpt-oss-120b',            // ECI 140.71 — OpenAI open-weight flagship 2025-08
+
         // May 2026 sovereign batch — global flagships
         'mistral/mistral-medium-3.5',
         'sber/gigachat-3.1-ultra',
