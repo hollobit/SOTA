@@ -46,10 +46,11 @@ var FrontierCompare = {
         // 24 mapped to existing DB ids; 18 not in DB include: Chess Puzzles, BALROG,
         // GeoBench, The Agent Company, VPCT, plus 13 older NLP benches like
         // ANLI/PIQA/WinoGrande/SuperGLUE).
-        composite: [
-            // The composite scores themselves (lead columns)
-            'epoch_capabilities_index', 'epoch_capabilities_index_swe', 'aa_intelligence_index',
-            // Internal Evaluations (Epoch-run, 7 of 7 ingested from epoch.ai/data/benchmarks.csv)
+        // ECI composite (Epoch Capabilities Index): 42 contributing benchmarks per
+        // https://epoch.ai/data/eci-documentation/data — 30 of those mapped to DB ids.
+        composite_eci: [
+            'epoch_capabilities_index', 'epoch_capabilities_index_swe',
+            // Internal Evaluations (7 of 7 ingested from epoch.ai/data/benchmarks.csv)
             'gpqa_diamond', 'frontiermath', 'frontiermath_tier4', 'math_500',
             'simpleqa_verified', 'chess_puzzles', 'otis_aime',
             // External Leaderboards (15 of 15 ingested from epoch-research/benchmark-stitching)
@@ -61,6 +62,20 @@ var FrontierCompare = {
             // Developer Reported (10+ of 20 ingested)
             'arc_agi_3', 'bbh', 'cybench', 'gsm8k', 'hellaswag', 'mmlu',
             'osworld_verified', 'triviaqa', 'video_mme'
+        ],
+        // AAII composite (Artificial Analysis Intelligence Index v4.0.4): 10 contributing
+        // benchmarks across 4 categories per
+        // https://artificialanalysis.ai/methodology/intelligence-benchmarking
+        composite_aaii: [
+            'aa_intelligence_index',
+            // Agents (25%): GDPval-AA + τ²-Bench Telecom
+            'gdpval_aa', 'tau2_telecom',
+            // Coding (25%): Terminal-Bench Hard + SciCode
+            'terminal_bench_hard', 'scicode',
+            // General (25%): AA-LCR + AA-Omniscience + IFBench
+            'aa_lcr', 'aa_omniscience_acc', 'aa_omniscience_non_hall', 'ifbench',
+            // Scientific Reasoning (25%): HLE + GPQA Diamond + CritPt
+            'hle', 'gpqa_diamond', 'critpt'
         ]
     },
 
@@ -232,14 +247,24 @@ var FrontierCompare = {
     // but only models with an ECI score qualify for inclusion — otherwise the
     // heatmap balloons with hundreds of GPQA-scored-but-not-ECI-scored models
     // and the focus on "ECI + its evaluation data" is lost.
-    _ANCHOR_BENCHIDS: ['epoch_capabilities_index', 'epoch_capabilities_index_swe', 'aa_intelligence_index'],
+    // Per-category anchor benchmark sets — only models with a score in one of
+    // these anchors qualify for the heatmap pool (so contributing benchmarks
+    // appear as columns without ballooning the row count).
+    _ANCHORS_BY_CATEGORY: {
+        composite_eci: ['epoch_capabilities_index', 'epoch_capabilities_index_swe'],
+        composite_aaii: ['aa_intelligence_index']
+    },
+    _anchorsFor: function(category) {
+        return this._ANCHORS_BY_CATEGORY[category] || [];
+    },
     _modelsForCategory: function(category, benchIds) {
-        if (category !== 'composite') return this._filteredModels();
+        if (!this._ANCHORS_BY_CATEGORY[category]) return this._filteredModels();
         var self = this;
+        var anchors = this._anchorsFor(category);
         var seen = {};
         var ids = [];
         this._scores.forEach(function(s) {
-            if (self._ANCHOR_BENCHIDS.indexOf(s.benchmark_id) === -1) return;
+            if (anchors.indexOf(s.benchmark_id) === -1) return;
             if (seen[s.model_id]) return;
             seen[s.model_id] = true;
             // Apply class filter (frontier / agent-product / edge-slm)
@@ -316,11 +341,11 @@ var FrontierCompare = {
         // show the actual ECI-scored model count instead of the curated 75.
         var fcCat = document.getElementById('fc-category');
         var category = fcCat ? fcCat.value : 'all';
-        if (category === 'composite') {
+        if (this._ANCHORS_BY_CATEGORY[category]) {
             var benchIds = this._getBenchmarkIds(category);
             var visible = this._modelsForCategory(category, benchIds).length;
-            // Total = all ECI-scored models, regardless of class filter
-            var anchors = this._ANCHOR_BENCHIDS;
+            // Total = all anchor-scored models for this category, regardless of class filter
+            var anchors = this._anchorsFor(category);
             var total = (function() {
                 var seen = {};
                 var n = 0;
@@ -331,7 +356,8 @@ var FrontierCompare = {
                 });
                 return n;
             })();
-            hint.textContent = '(' + visible + ' / ' + total + ' composite-scored models visible)';
+            var label = (category === 'composite_aaii') ? 'AAII-scored' : 'ECI-scored';
+            hint.textContent = '(' + visible + ' / ' + total + ' ' + label + ' models visible)';
         } else {
             var visibleF = this._filteredModels().length;
             hint.textContent = '(' + visibleF + ' / ' + this.FRONTIER_MODELS.length + ' models visible)';
