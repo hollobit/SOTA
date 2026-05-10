@@ -48,7 +48,7 @@ var FrontierCompare = {
         // ANLI/PIQA/WinoGrande/SuperGLUE).
         composite: [
             // The composite scores themselves (lead columns)
-            'epoch_capabilities_index', 'epoch_capabilities_index_swe',
+            'epoch_capabilities_index', 'epoch_capabilities_index_swe', 'aa_intelligence_index',
             // Internal Evaluations (Epoch-run, 7 of 7 ingested from epoch.ai/data/benchmarks.csv)
             'gpqa_diamond', 'frontiermath', 'frontiermath_tier4', 'math_500',
             'simpleqa_verified', 'chess_puzzles', 'otis_aime',
@@ -232,7 +232,7 @@ var FrontierCompare = {
     // but only models with an ECI score qualify for inclusion — otherwise the
     // heatmap balloons with hundreds of GPQA-scored-but-not-ECI-scored models
     // and the focus on "ECI + its evaluation data" is lost.
-    _ANCHOR_BENCHIDS: ['epoch_capabilities_index', 'epoch_capabilities_index_swe'],
+    _ANCHOR_BENCHIDS: ['epoch_capabilities_index', 'epoch_capabilities_index_swe', 'aa_intelligence_index'],
     _modelsForCategory: function(category, benchIds) {
         if (category !== 'composite') return this._filteredModels();
         var self = this;
@@ -331,7 +331,7 @@ var FrontierCompare = {
                 });
                 return n;
             })();
-            hint.textContent = '(' + visible + ' / ' + total + ' ECI-scored models visible)';
+            hint.textContent = '(' + visible + ' / ' + total + ' composite-scored models visible)';
         } else {
             var visibleF = this._filteredModels().length;
             hint.textContent = '(' + visibleF + ' / ' + this.FRONTIER_MODELS.length + ' models visible)';
