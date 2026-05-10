@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-10",
+    "_note": "Strict primary-source ingestion from MLCommons AILuminate v1.0 leaderboard (ailuminate.mlcommons.org/benchmarks/) + Epoch ECI follow-up. (1) MLCommons AILuminate v1.0 — first comprehensive industry-standard benchmark for AI-product risk and reliability. 12 hazard categories (violent crimes, nonviolent crimes, sex-related crimes, child sexual exploitation, indiscriminate weapons, suicide/self-harm, IP, privacy, defamation, hate, sexual content, specialized advice). 24,000 test prompts/lang. 5-point overall grade (Poor=1/Fair=2/Good=3/Very Good=4/Excellent=5). 20 models with overall grades extracted. arxiv 2503.05731. (2) Epoch ECI follow-up: openai/gpt-5.5-pro = 159 (Apr 28 2026 new high score per search-confirmed Manifold market resolution + LessWrong analysis). 7 new models registered (amazon/nova-lite, google/gemini-2.0-flash-lite, nexusflow/athene-v2-chat, cohere/aya-expanse-8b, alibaba/qwen1.5-110b-chat, mistral/mistral-large-24.11, allenai/olmo-7b-0724-instruct). New benchmark ailuminate_v1 registered. MLPerf Inference v5.0/5.1 system-level performance metrics (tokens/sec, latency) intentionally NOT ingested — different metric type than capability-accuracy benchmarks our DB tracks (hardware/system not model capability).",
+    "sources": [
+      "https://ailuminate.mlcommons.org/benchmarks/",
+      "https://mlcommons.org/benchmarks/ailuminate/",
+      "https://arxiv.org/abs/2503.05731",
+      "https://epoch.ai/eci",
+      "https://manifold.markets/SG/top-ai-model-2026-epoch-capabilitie"
+    ]
+  },
+  "models": [
+    {"id": "amazon/nova-lite", "vendor": "Amazon", "name": "Amazon Nova Lite v1.0", "type": "proprietary", "modalities": ["text", "image"], "_sources": ["https://ailuminate.mlcommons.org/benchmarks/"]},
+    {"id": "google/gemini-2.0-flash-lite", "vendor": "Google", "name": "Gemini 2.0 Flash Lite", "type": "proprietary", "modalities": ["text", "image"], "_sources": ["https://ailuminate.mlcommons.org/benchmarks/"]},
+    {"id": "nexusflow/athene-v2-chat", "vendor": "Nexusflow", "name": "Athene V2 Chat (HF)", "type": "open-weight", "modalities": ["text"], "_sources": ["https://ailuminate.mlcommons.org/benchmarks/"]},
+    {"id": "cohere/aya-expanse-8b", "vendor": "Cohere", "name": "Aya Expanse 8B (HF)", "type": "open-weight", "modalities": ["text"], "_sources": ["https://ailuminate.mlcommons.org/benchmarks/"]},
+    {"id": "alibaba/qwen1.5-110b-chat", "vendor": "Alibaba", "name": "Qwen 1.5 110B Chat (HF)", "type": "open-weight", "modalities": ["text"], "_sources": ["https://ailuminate.mlcommons.org/benchmarks/"]},
+    {"id": "mistral/mistral-large-24.11", "vendor": "Mistral AI", "name": "Mistral Large 24.11", "type": "proprietary", "modalities": ["text"], "release_date": "2024-11-01", "_sources": ["https://ailuminate.mlcommons.org/benchmarks/"]},
+    {"id": "allenai/olmo-7b-0724-instruct", "vendor": "Allen AI", "name": "OLMo 7B 0724 Instruct", "type": "open-weight", "modalities": ["text"], "release_date": "2024-07-01", "_sources": ["https://ailuminate.mlcommons.org/benchmarks/"]}
+  ],
+  "benchmarks": [
+    {
+      "id": "ailuminate_v1",
+      "name": "MLCommons AILuminate v1.0 (overall grade)",
+      "category": "safety",
+      "description": "MLCommons AI safety benchmark v1.0 (arxiv 2503.05731). 12 hazard categories (violent/nonviolent/sex-related crimes, CSE, indiscriminate weapons, suicide/self-harm, IP, privacy, defamation, hate, sexual content, specialized advice). 24,000 test prompts/language. 5-point overall grade scale: Poor=1, Fair=2, Good=3, Very Good=4, Excellent=5. Overall grade based on % responses violating assessment standard. No model has achieved Excellent yet (target: Very Good).",
+      "metric": "grade_1_to_5"
+    }
+  ],
+  "scores": [
+    {"model": "anthropic/claude-3.5-haiku", "benchmark": "ailuminate_v1", "score": 4, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 leaderboard — Claude 3.5 Haiku 20241022 = Very Good (4/5) overall."},
+    {"model": "anthropic/claude-3.5-sonnet", "benchmark": "ailuminate_v1", "score": 4, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 leaderboard — Claude 3.5 Sonnet 20241022 = Very Good (4/5) overall."},
+    {"model": "mistral/mistral-large-2", "benchmark": "ailuminate_v1", "score": 4, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Mistralai Mistral Large 2402 Moderated = Very Good (4/5) overall. Tested with output moderation enabled."},
+    {"model": "amazon/nova-lite", "benchmark": "ailuminate_v1", "score": 3, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Amazon Nova Lite v1.0 = Good (3/5) overall."},
+    {"model": "google/gemini-1.5-pro", "benchmark": "ailuminate_v1", "score": 3, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Gemini 1.5 Pro (API, with option) = Good (3/5) overall."},
+    {"model": "google/gemini-2.0-flash", "benchmark": "ailuminate_v1", "score": 3, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Gemini 2.0 Flash 001 = Good (3/5) overall."},
+    {"model": "google/gemini-2.0-flash-lite", "benchmark": "ailuminate_v1", "score": 3, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Gemini 2.0 Flash Lite = Good (3/5) overall."},
+    {"model": "openai/gpt-4o", "benchmark": "ailuminate_v1", "score": 3, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — GPT-4o = Good (3/5) overall."},
+    {"model": "openai/gpt-4o-mini", "benchmark": "ailuminate_v1", "score": 3, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — GPT-4o mini = Good (3/5) overall."},
+    {"model": "mistral/ministral-8b-v1", "benchmark": "ailuminate_v1", "score": 3, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Ministral 8B 24.10 with output moderation = Good (3/5) overall."},
+    {"model": "google/gemma-2-9b", "benchmark": "ailuminate_v1", "score": 4, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Gemma 2 9b (bare model) = Very Good (4/5) overall."},
+    {"model": "microsoft/phi-3.5-moe", "benchmark": "ailuminate_v1", "score": 4, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Phi 3.5 MoE Instruct (bare model) = Very Good (4/5) overall."},
+    {"model": "microsoft/phi-4", "benchmark": "ailuminate_v1", "score": 4, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Phi 4 (bare model) = Very Good (4/5) overall."},
+    {"model": "nexusflow/athene-v2-chat", "benchmark": "ailuminate_v1", "score": 3, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Athene V2 Chat HF (bare model) = Good (3/5) overall."},
+    {"model": "cohere/aya-expanse-8b", "benchmark": "ailuminate_v1", "score": 3, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Aya Expanse 8B HF (bare model) = Good (3/5) overall."},
+    {"model": "meta/llama-3.1-405b", "benchmark": "ailuminate_v1", "score": 3, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Llama 3.1 405B Instruct (bare model) = Good (3/5) overall."},
+    {"model": "alibaba/qwen1.5-110b-chat", "benchmark": "ailuminate_v1", "score": 3, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Qwen 1.5 110B Chat HF (bare model) = Good (3/5) overall."},
+    {"model": "ai21/jamba-large-1.5", "benchmark": "ailuminate_v1", "score": 2, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Ai21Labs Jamba Large 1.5 Azure = Fair (2/5) overall."},
+    {"model": "mistral/mistral-large-24.11", "benchmark": "ailuminate_v1", "score": 2, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — Mistral Large 24.11 (bare model) = Fair (2/5) overall."},
+    {"model": "allenai/olmo-7b-0724-instruct", "benchmark": "ailuminate_v1", "score": 1, "unit": "grade", "_source": "https://ailuminate.mlcommons.org/benchmarks/", "_note": "AILuminate v1.0 — OLMo 7b 0724 Instruct (bare model) = Poor (1/5) overall."},
+
+    {"model": "openai/gpt-5.5-pro", "benchmark": "epoch_capabilities_index", "score": 159, "unit": "score", "_source": "https://epoch.ai/eci", "_note": "Epoch Capabilities Index update — GPT-5.5 Pro = 159 (new high as of Apr 28 2026 per Manifold market resolution + Epoch leaderboard). Exceeds the 150 calibration anchor (GPT-5 medium) by 9 points; ECI scale is linear so 9-pt gap = ~9-pt capability gain over GPT-5."}
+  ]
+}

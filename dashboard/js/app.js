@@ -2264,6 +2264,8 @@ var App = {
             { name: 'MorphLLM Coding Guide', url: 'https://www.morphllm.com/ai-coding-benchmarks-2026', desc: 'Every coding eval explained and ranked' },
             { name: 'Vibe Bench', url: 'https://vibe-bench.com/', desc: 'Tool-level AI coding benchmarks for vibe coding' },
             { name: 'MLCommons AILuminate', url: 'https://mlcommons.org/benchmarks/ailuminate/', desc: 'Jailbreak benchmark, adversarial attack taxonomy' },
+            { name: 'AILuminate v1.0 Leaderboard', url: 'https://ailuminate.mlcommons.org/benchmarks/', desc: 'MLCommons AI safety v1.0 industry-standard benchmark — 12 hazard categories × 24,000 prompts/lang. Overall 5-point grade (Poor/Fair/Good/Very Good/Excellent). 20+ models tested as of arxiv 2503.05731. Top: Claude 3.5 Haiku/Sonnet, Mistral Large 2402, Phi 4, Gemma 2 9b at "Very Good". No model has reached "Excellent" yet.' },
+            { name: 'AILuminate paper (arxiv 2503.05731)', url: 'https://arxiv.org/abs/2503.05731', desc: 'AILuminate v1.0 paper introducing the AI Risk and Reliability Benchmark — methodology details for 12-hazard taxonomy, prompt construction, grade scoring rubric. Mar 2025.' },
             { name: 'Humanity Last Exam (CAISI)', url: 'https://agi.safe.ai/', desc: 'Expert-level AGI benchmark, published in Nature' },
             { name: 'Convergence Analysis', url: 'https://www.convergenceanalysis.org/ai-regulatory-landscape', desc: 'AI safety regulatory landscape, CBRN analysis' },
             { name: 'Steel.dev Agent Results', url: 'https://leaderboard.steel.dev/results', desc: '121 results across 16 agent benchmarks' },
