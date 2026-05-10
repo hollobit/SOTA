@@ -131,9 +131,11 @@ def analyze() -> None:
         else:
             valid_scores.append(s)
 
-    # Mark SOTA
+    # Mark SOTA (lower-better metrics use min instead of max)
+    from cyber.db.schema import get_all_benchmarks
+    benchmarks = {b.id: b for b in get_all_benchmarks(conn)}
     tracker = SOTATracker()
-    marked = tracker.mark_sota(valid_scores)
+    marked = tracker.mark_sota(valid_scores, benchmarks)
 
     # Persist updated SOTA flags
     for s in marked:
@@ -141,7 +143,7 @@ def analyze() -> None:
     conn.close()
 
     # Print summary table
-    sota = tracker.compute_sota(valid_scores)
+    sota = tracker.compute_sota(valid_scores, benchmarks)
     table = Table(title="SOTA Leaderboard")
     table.add_column("Benchmark", style="cyan")
     table.add_column("Model", style="green")

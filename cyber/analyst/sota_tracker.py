@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import copy
 from dataclasses import dataclass
-from typing import Dict, List, Optional
+from typing import Dict, List, Mapping, Optional
 
-from cyber.models.types import Score
+from cyber.models.types import Benchmark, Score
 
 
 @dataclass
@@ -19,15 +19,66 @@ class SOTAChange:
     old_value: Optional[float] = None
 
 
+# Metric tokens that mean "lower is better." Match either an explicit
+# `_lower_better` suffix or one of these substrings (case-insensitive).
+# Conservative: only metrics where lower-better is unambiguous.
+_LOWER_BETTER_TOKENS = (
+    "rmse",
+    "mae",
+    "loss",
+    "perplexity",
+    "fvd",                    # Fréchet Video Distance
+    "mean_angular_error",
+    "seconds",                # latency
+    "ms_latency",
+    "_error_deg",
+    "harm",                   # safety: lower harm = better
+    "leakage_pct",
+    "asr",                    # attack success rate (red-team perspective)
+    "lying_rate",
+    "control_rate",           # apollo eval-aware control
+)
+
+
+def _is_lower_better(metric: Optional[str]) -> bool:
+    """Return True iff the benchmark metric should be minimized for SOTA."""
+    if not metric:
+        return False
+    m = metric.lower()
+    if m.endswith("_lower_better"):
+        return True
+    return any(tok in m for tok in _LOWER_BETTER_TOKENS)
+
+
 class SOTATracker:
     """Tracks state-of-the-art scores across benchmarks."""
 
-    def compute_sota(self, scores: List[Score]) -> Dict[str, Score]:
-        """Find highest score per benchmark."""
+    def compute_sota(
+        self,
+        scores: List[Score],
+        benchmarks: Optional[Mapping[str, Benchmark]] = None,
+    ) -> Dict[str, Score]:
+        """Find the SOTA score per benchmark.
+
+        For higher-better metrics (default) this returns the max.
+        For lower-better metrics — detected from the benchmark's `metric`
+        string when `benchmarks` is provided — it returns the min.
+        Without `benchmarks`, every benchmark is treated as higher-better
+        (preserves the legacy behaviour).
+        """
         best: Dict[str, Score] = {}
         for s in scores:
-            if s.benchmark_id not in best or s.value > best[s.benchmark_id].value:
+            bench = benchmarks.get(s.benchmark_id) if benchmarks else None
+            lower_better = _is_lower_better(bench.metric) if bench else False
+            current = best.get(s.benchmark_id)
+            if current is None:
                 best[s.benchmark_id] = s
+            elif lower_better:
+                if s.value < current.value:
+                    best[s.benchmark_id] = s
+            else:
+                if s.value > current.value:
+                    best[s.benchmark_id] = s
         return best
 
     def detect_changes(
@@ -59,9 +110,13 @@ class SOTATracker:
                     ))
         return changes
 
-    def mark_sota(self, scores: List[Score]) -> List[Score]:
+    def mark_sota(
+        self,
+        scores: List[Score],
+        benchmarks: Optional[Mapping[str, Benchmark]] = None,
+    ) -> List[Score]:
         """Return new list with is_sota flags set correctly."""
-        sota = self.compute_sota(scores)
+        sota = self.compute_sota(scores, benchmarks)
         sota_keys = {
             (s.model_id, s.benchmark_id) for s in sota.values()
         }

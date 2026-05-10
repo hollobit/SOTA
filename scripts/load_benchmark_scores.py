@@ -135,10 +135,11 @@ def main():
 
     # Mark SOTA
     from cyber.analyst.sota_tracker import SOTATracker
-    from cyber.db.schema import get_scores
+    from cyber.db.schema import get_all_benchmarks, get_scores
     tracker = SOTATracker()
     all_scores = get_scores(conn)
-    marked = tracker.mark_sota(all_scores)
+    benchmarks = {b.id: b for b in get_all_benchmarks(conn)}
+    marked = tracker.mark_sota(all_scores, benchmarks)
     for s in marked:
         insert_score(conn, s)
 
