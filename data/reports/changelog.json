@@ -2491,5 +2491,14 @@
     "new_value": "Docs only. Models 1114→1869 (+755), Benchmarks 854→956 (+102), Scores 3315→5194 (+1879) — cumulative since 2026-05-08 Session 2.",
     "old_model": "",
     "old_value": ""
+  },
+  {
+    "type": "Correction",
+    "date": "2026-05-11",
+    "benchmark_id": "Counts correction — README/Plans/HISTORY actual deltas (1259/900/4672)",
+    "new_model": "Earlier HISTORY/changelog/README quoted counts (1869 models, 956 benchmarks, 5194 scores) were derived from loader output line `Loaded N models, N benchmarks, N scores` which counts total INSERT operations including INSERT OR REPLACE duplicates. The actual unique row count after dedup is significantly lower. Verified via data/export/models.json + benchmarks.json + scores/current.json and direct sqlite query. ACTUAL Session 11 deltas: Models 1114 → 1259 (+145, not +755), Benchmarks 874 → 900 (+26, not +102), Scores 3430 → 4672 (+1242, ~consistent). README badges, Plans.md Current Status, and HISTORY Sections 24-25 cumulative-delta lines all corrected. Memory/feedback note for future: loader's print statement counts insertions not unique entities; always check data/export/ + sqlite directly for ground truth.",
+    "new_value": "Live data unchanged. Documentation accuracy restored. README 1869→1259 models / 956→900 benchmarks / 5194→4672 scores.",
+    "old_model": "",
+    "old_value": ""
   }
 ]
