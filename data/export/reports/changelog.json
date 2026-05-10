@@ -2392,5 +2392,59 @@
     "new_value": "+0 models, +0 benchmarks, +0 scores. dashboard/js/frontier-compare.js: +1 category 'composite' in CORE_BENCHMARKS, +_modelsForCategory helper, _renderHeatmap accepts category arg, _renderClassFilterUI hint branches on category. dashboard/index.html: +1 <option value='composite'>. Cache-bust frontier-compare.js v=20260510b → e (3 commits 20ba001 → 4e13ec6 → 80aa467). 4 CI runs all success.",
     "old_model": "",
     "old_value": ""
+  },
+  {
+    "type": "Fix",
+    "date": "2026-05-10",
+    "benchmark_id": "SOTA harness lower-better metric bug fix (commit 58c5be4)",
+    "new_model": "Discovered during Phase 2A W7 weather ingest: SOTATracker.compute_sota always picked max value, so on RMSE/MAE/loss/perplexity/FVD/latency benchmarks it flagged the WORST model as SOTA. Concrete bug: ClimaX 201.0 m^2/s^2 was marked SOTA on weatherbench_z500_72h ahead of Pangu 134.5 — backwards. Fix: _is_lower_better(metric) helper recognizing _lower_better suffix + known tokens (rmse/mae/loss/perplexity/fvd/seconds/asr/harm/etc). compute_sota and mark_sota now accept optional benchmarks: Mapping[str, Benchmark] argument. Both callsites (cyber.__main__.analyze + scripts/load_benchmark_scores.py) pass benchmarks dict from get_all_benchmarks(conn). Verification: weatherbench Pangu 134.5 [SOTA], matbench_discovery_mae equiformer-v2 0.020 [SOTA], casp16_gdt AlphaFold-3 89.4 [SOTA] (higher-better unchanged). 14/14 unit tests pass.",
+    "new_value": "+9 unit tests covering both regimes + legacy path. cyber/analyst/sota_tracker.py + cyber/__main__.py + scripts/load_benchmark_scores.py + tests/test_sota_tracker.py modified.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-10",
+    "benchmark_id": "Round 6c — ECI 24 contributing benchmarks + Epoch internal evals + benchmark-stitching bulk (commits b84dceb d1aa38a 1e5cd28 e9f4d93 9731146)",
+    "new_model": "ECI documentation deep-dive: https://epoch.ai/data/eci-documentation/data lists 42 contributing benchmarks across 3 categories (7 internal evals + 15 external leaderboards + 20 developer reported). 24 mapped to existing DB ids → composite category in Frontier Compare expanded with these columns. _ANCHOR_BENCHIDS introduced to filter pool to ECI-scored 109 models only. Epoch internal evals from canonical CSV https://epoch.ai/data/benchmarks.csv (5542 rows) — 90+ MANUAL DISPLAY_MAP entries → +111 scores (chess_puzzles, frontiermath, frontiermath_tier4, math_500, simpleqa_verified, gpqa_diamond, swe_bench_verified, otis_aime). 3 new benchmark registrations. Epoch external bulk via Rosetta Stone paper (arxiv 2512.00193) cited GitHub repo https://github.com/epoch-research/benchmark-stitching/tree/main/data — 33 external_benchmark_*.csv files, +594 scores in Round 1 (basic mapping) + +153 in Round 2 (date-suffix smart-mapping). 10 new benchmark registrations (arc_ai2_easy, lech_mazur_writing, piqa, scienceqa, winogrande, openbookqa, lambada, csqa2, anli, superglue, boolq, cadeval). Plus zero-coverage models scrape: Llama 3.2 90B 10 scores + GLM-4.6 1 score; Qwen2.5/3-Max + Mistral Medium 3 blocked (vendor publishes only image charts). DeepSeek V4 Tech Report Tables 1+7: +5 frontier ECI gap fills.",
+    "new_value": "+13 benchmarks (940→953), +858 scores (combined). ECI heatmap fill rate: 254/2616 (9.7%) → 631/3270 (19.3%). 104/109 ECI models now have at least 1 contributing benchmark score.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-10",
+    "benchmark_id": "AAII (Artificial Analysis Intelligence Index) v4.0.4 composite category (commits 0c4bfb3 558edb9 b422e0c)",
+    "new_model": "User-prompted 2nd composite metric alongside ECI. AAII v4.0.4 (Mar 2026): weighted avg across 4 categories (each 25%): Agents (GDPval-AA 16.7% + τ²-Bench Telecom 8.3%), Coding (Terminal-Bench Hard 16.7% + SciCode 8.3%), General (AA-LCR 6.25% + AA-Omniscience 12.5% + IFBench 6.25%), Sci Reasoning (HLE 12.5% + GPQA Diamond 6.25% + CritPt 6.25%). 95% CI ±1%. Methodology page: https://artificialanalysis.ai/methodology/intelligence-benchmarking. aa_intelligence_index benchmark category changed from 'reasoning' to 'composite' (config/benchmarks_meta.yaml + 2 resource/*.json). Duplicate 'artificial_analysis_intelligence' benchmark deleted from sqlite (1 score migrated). composite category split into composite_eci (33 cols) + composite_aaii (13 cols) in Frontier Compare. _ANCHORS_BY_CATEGORY mapping for per-category model pool filtering. HTML dropdown 두 옵션, class-filter hint 카테고리별 분기.",
+    "new_value": "+11 NEW AAII scores (29 → 40 then 154 with full leaderboard refresh). Cache-bust frontier-compare.js v=20260510k → l. Frontier Compare → Category dropdown: composite_eci + composite_aaii.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-10",
+    "benchmark_id": "AAII full leaderboard refresh (commit 0c3a47e)",
+    "new_model": "Playwright scrape of https://artificialanalysis.ai/leaderboards/models 216-row table (down through rank ~170, AAII 5-60 range). 173 entries with non-empty AAII (43 deduplicated to highest per canonical model_id). Methodology + trends pages investigated. trends page is JS-rendered + WebFetch can't extract; leaderboards/models page IS scrape-able. 67 new model registrations across 35 vendors: Granite (IBM), LFM (Liquid AI), Apertus (Swiss AI), Sarvam, Nanbeige, Mercury (Inception), JT-MINI (China Mobile), Trinity Large Thinking (Arcee AI), INTELLECT-3 (Prime Intellect), Motif-2-12.7B, Tencent Hy3-preview, Doubao Seed Code (ByteDance), MiMo variants (Xiaomi), Ling/Ring (InclusionAI), Nova 2.0 family (Amazon), Phi-4 family (Microsoft), Mistral Devstral/Magistral/Ministral, Llama Nemotron variants (NVIDIA), GLM 5V Turbo, K-EXAONE / EXAONE 4.0/4.5 1.2B, Mi:dm K 2.5 Pro (KT). Resources tab: +1 reference (AAII Trends page); existing AAII Methodology entry expanded with exact per-benchmark weights + version history.",
+    "new_value": "+126 NEW AAII scores (29 → 154, 5.3× increase), +67 model registrations. Cache-bust app.js v=20260510g → h.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-10",
+    "benchmark_id": "AAII per-benchmark sub-scores + reasoning-effort variant fidelity (commit cba8a55)",
+    "new_model": "Two follow-up ingests. (1) Per-benchmark sub-scores via Playwright scrape of https://artificialanalysis.ai/models/gpt-5-5 detail page — 11 SVG bar charts (one per AAII contributing benchmark, 28 frontier models each). Chart-index → benchmark mapping verified via DOM ancestor scan. +197 sub-scores across GDPval-AA 27, Terminal-Bench Hard 25, τ²-Bench Telecom 28, AA-LCR 30, AA-Omniscience Acc 24, AA-Omniscience Non-Hall 24, HLE 56, GPQA Diamond 109, SciCode 30, IFBench 36, CritPt 24. 12th chart (18 entries, uncertain attribution) skipped per strict-attribution. (2) Reasoning-effort variant fidelity — AA publishes separate scores per same parent model at xhigh/high/medium/low/Non-reasoning/max effort levels. Previously deduped to single canonical model_id keeping highest. Now register variants as distinct model_ids: openai/gpt-5.5-{xhigh:60, high:59, medium:57, low:51, non-reasoning:41} + 19 more variants for Claude Opus 4.7 / Sonnet 4.6, GPT-5.4 family, GPT-5.4 mini, DeepSeek V4 Pro/Flash, Gemini 3 Pro low, Amazon Nova 2.0 family. +24 variant model_ids and 24 AAII variant scores.",
+    "new_value": "+221 scores total (197 sub-scores + 24 variant AAII), +26 models (2 from sub-score ingest, 24 variants). Total benchmark scores 4965 → 5186. DB models 1768 → 1861. AAII total 154 → 178.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-10",
+    "benchmark_id": "GPT-5.5-Cyber + GPT-5.4-Cyber registration (commit 1ea66b4)",
+    "new_model": "User request: investigate cyber variants. 7 sources: OpenAI Trusted Access for Cyber (TAC) program announcement (Feb 2026 GPT-5.4-Cyber, May 2026 GPT-5.5-Cyber), OpenAI deployment safety hub system card, UK AISI external evaluation, Fluid Attacks blog, MindFort blog, SiliconANGLE, AISI blog. ✅ Ingested per strict-attribution: openai/gpt-5.5-cyber × cybergym = 81.9% (only publicly-disclosed numeric for cyber variant; vs base GPT-5.5 81.8% — marginal +0.1%). ⊘ Skipped: GPT-5.4-Cyber separate scores not publicly disclosed by OpenAI per policy (fluidattacks: 'performance remains undisclosed'). Cyber Range / Atomic suite / Cybench etc only published for base models. Key insight: cyber-permissive variant primarily lowers refusal boundary, NOT raw capability uplift. Frontier Compare hardcoded list: +2 cyber variant model_ids per full-menu propagation rule. Resources tab: +3 references (TAC announcement + GPT-5.5-Cyber blog + AISI external eval).",
+    "new_value": "+2 model registrations (openai/gpt-5.5-cyber, openai/gpt-5.4-cyber) + 1 verified score (GPT-5.5-Cyber CyberGym 81.9%). Cache-bust frontier-compare.js v=20260510l → m, app.js v=20260510h → i.",
+    "old_model": "",
+    "old_value": ""
   }
 ]

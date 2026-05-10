@@ -106,6 +106,122 @@ User-prompted: "Frontier Compare에 composite 카테고리 추가하고 109개 E
 - **Lazy render** — `requestIdleCallback` 사용, eager 3개 + lazy 6개 split
 - 단위 테스트 4개 모두 PASS (Task 1 _resolveLab, Task 2 _resolveDomain, Task 4 _BREAKTHROUGHS schema, Task 14 _perDomainComposite)
 
+### 20. SOTA harness lower-better 버그 수정 (commit `58c5be4`)
+
+W7 weather subagent가 발견한 pre-existing 버그: `SOTATracker.compute_sota`가 항상 max를 SOTA로 마크 → RMSE/MAE 등 lower-better 벤치마크에서 worst 모델이 SOTA로 오류 표시.
+
+**수정**:
+- `cyber/analyst/sota_tracker.py`: `_is_lower_better(metric)` helper + `compute_sota`/`mark_sota`에 optional `benchmarks: Mapping[str, Benchmark]` 인자 추가 (backward compatible)
+- 두 callsite (`cyber/__main__.py`, `scripts/load_benchmark_scores.py`) 모두 `get_all_benchmarks(conn)`로 dict 전달
+- Lower-better 토큰: `_lower_better` suffix + `rmse / mae / loss / perplexity / fvd / mean_angular_error / seconds / asr / harm` 등
+
+**검증**:
+- `weatherbench_z500_72h`: Pangu 134.5 → SOTA (was: ClimaX 201.0 ❌)
+- `matbench_discovery_mae`: equiformer-v2 0.020 → SOTA (lowest of 7)
+- `casp16_gdt`: AlphaFold-3 89.4 → SOTA (higher-better 정상)
+- 단위 테스트 14/14 PASS (+9 new tests covering both regimes + legacy path)
+
+### 21. Round 6c — Epoch ECI 추가 조사 (`0c4bfb3` 이전 커밋들)
+
+**6 frontier-eligible ECI 모델 → FRONTIER_MODELS** (commit `2b8f3e7`):
+- 16 ECI-only 모델 frontier 진입 평가 → "latest models focus" 룰에 따라 6개 선정
+- `o3-pro` (148.11), `gpt-5.4-nano` (146.21), `deepseek-v3.2-exp` (145.08), `grok-4-fast` (144.83), `qwen3-max` (144.52), `gpt-oss-120b` (140.71)
+- 10개 제외 (older 변형: o1-mini/preview, gpt-4.1 mini/nano, gemini-2.0 family, grok-3-mini, deepseek-v3.1, qwen2.5-max, mistral-large 24.07)
+
+**ECI documentation 활용 - 24 contributing benchmarks 노출** (commits `b84dceb` `d1aa38a`):
+- `https://epoch.ai/data/eci-documentation/data` 발견 → 42 contributing benchmarks 명단
+- composite 카테고리에 24 ECI-mapped 컬럼 추가 (Frontier Compare heatmap에서 ECI score + 기여 벤치마크 동시 비교)
+- `_ANCHOR_BENCHIDS` 도입 → ECI-scored 109 모델만 행에 노출 (anchor filter)
+
+**Epoch internal evals ingest** (commit `1e5cd28`):
+- `https://epoch.ai/data/benchmarks.csv` 발견 (5542 rows × 10 internal evals)
+- DISPLAY_MAP 90+ entries로 Epoch model_version → DB id 매핑
+- **+111 scores** across chess_puzzles, frontiermath, frontiermath_tier4, math_500, simpleqa_verified, gpqa_diamond, swe_bench_verified, otis_aime
+- 3 새 benchmark 등록: chess_puzzles, frontiermath_tier4, otis_aime
+
+**Epoch external benchmark-stitching repo bulk ingest** (commit `e9f4d93`):
+- Rosetta Stone 논문 (arxiv 2512.00193)이 인용한 GitHub repo 발견: `https://github.com/epoch-research/benchmark-stitching/tree/main/data`
+- 33 external_benchmark_*.csv files (모든 35 External Leaderboards + Developer Reported)
+- 첫 round: **+594 scores** + 10 새 benchmark (arc_ai2_easy, lech_mazur_writing, piqa, scienceqa, winogrande, openbookqa, lambada, csqa2, anli, superglue, boolq, cadeval)
+
+**Round 2 smart-mapping** (commit `9731146`):
+- Round 1 yield 16.3% (Epoch가 date-suffix model_version 사용 — `claude-3-7-sonnet-20250219`)
+- Date-suffix stripper + reasoning-effort suffix 제거 + 80+ MANUAL entries
+- **+153 NEW scores** on top of Round 1's 594
+
+**Zero-coverage 모델 + frontier ECI gaps** (commits `c2ee9a6` `2003ef7`):
+- Llama 3.2 90B vendor card: +10 scores (mmlu, math, gpqa_diamond, mmmu, mmmu_pro, mathvista, chartqa, ai2d, docvqa, vqav2)
+- GLM-4.6: +1 score (terminal_bench_2)
+- DeepSeek V4 Pro/Flash V4 Tech Report Tables 1+7: +5 scores (apex_agents_hard, bbh, triviaqa)
+- Qwen2.5-Max / Qwen3-Max / Mistral Medium 3: 0 (vendor publishes only image charts)
+
+**ECI heatmap fill rate**: 254/2616 (9.7%) → **631/3270 (19.3%)** — 2.4× 증가. 104/109 ECI 모델이 최소 1개 contributing 점수 보유.
+
+### 22. AAII (Artificial Analysis Intelligence Index) composite 추가 (`0c4bfb3` `558edb9` `b422e0c`)
+
+User-prompted: "AAII도 composite (AAII)로 추가". v4.0.4 methodology + leaderboards/models 페이지 조사.
+
+**AAII 메타데이터 정확화**:
+- 10 contributing benchmarks × 4 categories (각 25%): Agents (GDPval-AA 16.7% / τ²-Bench Telecom 8.3%), Coding (Terminal-Bench Hard 16.7% / SciCode 8.3%), General (AA-LCR 6.25% / AA-Omniscience 12.5% / IFBench 6.25%), Sci Reasoning (HLE 12.5% / GPQA Diamond 6.25% / CritPt 6.25%)
+- 95% CI ±1%, version v1.0 (Jan 2024) → v4.0.4 (Mar 2026)
+- `aa_intelligence_index` benchmark category: `reasoning` → `composite`로 변경 (config/benchmarks_meta.yaml + 2 resource/*.json)
+- `artificial_analysis_intelligence` 중복 benchmark 정리 (1 score 마이그레이션 후 sqlite DELETE)
+- AAII top-30 → +11 NEW scores (29 → 40)
+
+**composite_eci / composite_aaii 카테고리 분리** (commit `b422e0c`):
+- Frontier Compare 단일 `composite` → 두 개 분리: `composite_eci` (33 cols) + `composite_aaii` (13 cols)
+- `_ANCHORS_BY_CATEGORY` 매핑 도입 (per-category anchor benchmarks)
+- HTML dropdown 두 옵션 + class-filter hint 카테고리별 분기 (ECI-scored / AAII-scored)
+- AAII heatmap pool: 29 AAII-scored 모델 × 11 contributing benchmarks (GDPval-AA, τ²-Bench Telecom, Terminal-Bench Hard, SciCode, AA-LCR, AA-Omniscience Acc, AA-Omniscience Non-Hall, IFBench, HLE, GPQA Diamond, CritPt)
+
+### 23. AAII 데이터 보강 — full leaderboard + sub-scores + variants (`0c3a47e` `cba8a55`)
+
+**AAII full leaderboard refresh** (commit `0c3a47e`):
+- `https://artificialanalysis.ai/leaderboards/models` Playwright 스크랩 (216 row 테이블)
+- 173 entries (43개 reasoning effort 변형 dedup) → **+126 NEW scores**, **+67 새 모델 등록**
+- 35 vendors: Granite (IBM), LFM (Liquid AI), Apertus (Swiss AI), Sarvam, Nanbeige, Mercury (Inception), JT-MINI (China Mobile), Trinity (Arcee), INTELLECT-3 (Prime Intellect), Motif, Tencent Hy3-preview, Doubao Seed Code (ByteDance), MiMo 변형 (Xiaomi), Ling/Ring (InclusionAI), Nova 2.0 family (Amazon), Phi-4 family, Mistral Devstral/Magistral/Ministral, Llama Nemotron 변형, GLM 5V Turbo, K-EXAONE, Mi:dm K 등
+- AAII total: 29 → **154 scores** (5.3× 증가)
+
+**AAII per-benchmark sub-scores** (commit `cba8a55`):
+- `https://artificialanalysis.ai/models/gpt-5-5` Playwright 스크랩 — 11 SVG bar charts (각 chart = AAII contributing benchmark 1개 × 28 frontier 모델)
+- Chart-index → benchmark 매핑 (idx 0-10 → GDPval-AA / Terminal-Bench Hard / τ²-Bench Telecom / AA-LCR / AA-Omniscience Acc / AA-Omniscience Non-Hall / HLE / GPQA Diamond / SciCode / IFBench / CritPt)
+- **+197 sub-scores** + 2 새 모델
+- 12th chart (18 entries, uncertain attribution) skipped per strict-attribution
+
+**Reasoning-effort variant fidelity** (commit `cba8a55`):
+- AA가 same parent model을 reasoning effort별로 publish (xhigh / high / medium / low / Non-reasoning / max)
+- 24 variant 모델 등록: openai/gpt-5.5-{xhigh:60, high:59, medium:57, low:51, non-reasoning:41}, anthropic/claude-opus-4.7-{max, non-reasoning-high}, anthropic/claude-sonnet-4.6-{max, non-reasoning, NR-low}, openai/gpt-5.4-{xhigh, low, non-reasoning}, openai/gpt-5.4-mini-{xhigh, medium}, deepseek/deepseek-v4-pro-high, deepseek/deepseek-v4-flash-{max, high}, google/gemini-3-pro-low, amazon/nova-2.0-pro-preview-{medium, low}, amazon/nova-2.0-lite-{high, medium, low}
+- AAII total: 154 → **178 scores**
+
+**Frontier Compare composite_aaii heatmap**: 29 → 154 (deploy data) rows × 13 cols. AAII contributing benchmarks fill rate: AAII anchor 100%, GPQA Diamond 21/29, HLE 18/29, GDPval-AA 11/29, others 0-4 (vendor sparse coverage).
+
+### 24. GPT-5.5-Cyber + GPT-5.4-Cyber 등록 (`1ea66b4`)
+
+User-prompted: "GPT-5.5-cyber와 GPT-5.4-cyber 평가 결과 조사". OpenAI Trusted Access for Cyber (TAC) 프로그램 cyber-permissive variants.
+
+**조사 결과 (7개 sources)**:
+- OpenAI TAC 공지 (Feb 2026 5.4-Cyber, May 2026 5.5-Cyber)
+- OpenAI deployment safety hub
+- UK AISI 외부 평가
+- Fluid Attacks / MindFort / SiliconANGLE 분석
+
+**Strict-attribution ingest 결과**:
+- ✅ `openai/gpt-5.5-cyber × cybergym = 81.9%` (1차 source: OpenAI 공식 공지) — base 81.8% 대비 +0.1%
+- ⊘ `openai/gpt-5.4-cyber` 별도 점수 — OpenAI 미공개 정책으로 fluidattacks "performance remains undisclosed" 명시
+- ⊘ Cyber Range / Atomic suite / Cybench 등은 base 모델 기준만 publish됨
+
+**핵심 insight**: Cyber 변형은 raw capability 강화가 아니라 **refusal boundary 완화**가 본질. CyberGym 차이 0.1%는 통계적 noise 수준.
+
+**Frontier Compare hardcoded list**: +2 cyber 변형 model_ids per full-menu propagation rule. Resources tab: +3 references (TAC 공지 + GPT-5.5-Cyber 발표 + AISI 외부 평가).
+
+**Round 24 cumulative deltas (Section 19-24 합산)**:
+- 신규 모델: **+93** (1768 → 1861) — variants + AAII new + cyber + Llama 3.2 + GLM-4.6 등
+- 신규 benchmarks: **+13** (940 → 953) — chess_puzzles, frontiermath_tier4, otis_aime, fiction_livebench, the_agent_company, vpct, balrog, arc_ai2_easy, lech_mazur_writing, piqa, scienceqa, winogrande, openbookqa, lambada, csqa2, anli, superglue, boolq, cadeval (일부)
+- 신규 scores: **+1232** (3954 → 5187) — ECI bulk + AAII full + cyber-related + variants
+- composite category 분리: 1 → 2 (composite_eci, composite_aaii)
+
+**Live deploy verified**: 모든 round CI run completion + cache-bust SHA prefix 검증.
+
 ---
 
 ## 2026-05-09 (Session 10): Sovereign AI menu widget expansion — 6 NEW widgets (11 tasks, 11 commits)
