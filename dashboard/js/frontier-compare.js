@@ -49,14 +49,16 @@ var FrontierCompare = {
         composite: [
             // The composite scores themselves (lead columns)
             'epoch_capabilities_index', 'epoch_capabilities_index_swe',
-            // Internal Evaluations (Epoch-run): now includes chess/Tier4/OTIS-AIME ingested 2026-05-10
+            // Internal Evaluations (Epoch-run, 7 of 7 ingested from epoch.ai/data/benchmarks.csv)
             'gpqa_diamond', 'frontiermath', 'frontiermath_tier4', 'math_500',
             'simpleqa_verified', 'chess_puzzles', 'otis_aime',
-            // External Leaderboards: Aider, APEX, ARC-AGI-2, DeepResearch, Fiction.liveBench, GSO, HLE, SimpleBench, SWE, Terminal-Bench, WeirdML
-            'aider_polyglot', 'apex_agents_hard', 'arc_agi_2', 'deepsearchqa',
-            'livebench', 'gso', 'hle', 'simplebench',
-            'swe_bench_verified', 'terminal_bench_2', 'weirdml_v2',
-            // Developer Reported: ARC-AGI-3, BBH, Cybench, GSM8K, HellaSwag, MMLU, OSWorld, TriviaQA, Video-MME
+            // External Leaderboards (15 of 15 ingested from epoch-research/benchmark-stitching)
+            'aider_polyglot', 'apex_agents_hard', 'arc_agi_2', 'balrog',
+            'deepsearchqa', 'fiction_livebench',
+            'gso', 'hle', 'simplebench',
+            'swe_bench_verified', 'terminal_bench_2', 'the_agent_company',
+            'vpct', 'weirdml_v2',
+            // Developer Reported (10+ of 20 ingested)
             'arc_agi_3', 'bbh', 'cybench', 'gsm8k', 'hellaswag', 'mmlu',
             'osworld_verified', 'triviaqa', 'video_mme'
         ]
