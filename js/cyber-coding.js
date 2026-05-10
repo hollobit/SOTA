@@ -50,7 +50,9 @@ var CyberCoding = {
                 'dynamic_self_harm_adversarial', 'dynamic_mental_health', 'dynamic_emotional_reliance',
                 'cot_controllability', 'cot_monitorability',
                 'prompt_injection', 'first_person_fairness',
-                'cybersoceval', 'autopatchbench', 'baxbench'
+                'cybersoceval', 'autopatchbench', 'baxbench',
+                // May 2026 — MLCommons AI safety v1.0 (12 hazard categories, 5-point grade scale)
+                'ailuminate_v1'
             ]
         },
         {
