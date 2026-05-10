@@ -41,7 +41,24 @@ var FrontierCompare = {
         cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench'],
         multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en'],
         // 2026-05 — Composite "general capability" indices (cross-benchmark)
-        composite: ['epoch_capabilities_index', 'epoch_capabilities_index_swe']
+        // ECI scores + the 24 underlying contributing benchmarks our DB covers
+        // (per https://epoch.ai/data/eci-documentation/data — 42 total contributors,
+        // 24 mapped to existing DB ids; 18 not in DB include: Chess Puzzles, BALROG,
+        // GeoBench, The Agent Company, VPCT, plus 13 older NLP benches like
+        // ANLI/PIQA/WinoGrande/SuperGLUE).
+        composite: [
+            // The composite scores themselves (lead columns)
+            'epoch_capabilities_index', 'epoch_capabilities_index_swe',
+            // Internal Evaluations (Epoch-run): GPQA Diamond, FrontierMath, MATH Level 5, SimpleQA Verified
+            'gpqa_diamond', 'frontiermath', 'math_500', 'simpleqa_verified',
+            // External Leaderboards: Aider, APEX, ARC-AGI-2, DeepResearch, Fiction.liveBench, GSO, HLE, SimpleBench, SWE, Terminal-Bench, WeirdML
+            'aider_polyglot', 'apex_agents_hard', 'arc_agi_2', 'deepsearchqa',
+            'livebench', 'gso', 'hle', 'simplebench',
+            'swe_bench_verified', 'terminal_bench_2', 'weirdml_v2',
+            // Developer Reported: ARC-AGI-3, BBH, Cybench, GSM8K, HellaSwag, MMLU, OSWorld, TriviaQA, Video-MME
+            'arc_agi_3', 'bbh', 'cybench', 'gsm8k', 'hellaswag', 'mmlu',
+            'osworld_verified', 'triviaqa', 'video_mme'
+        ]
     },
 
     // Top frontier models to compare. Ordered by frontier tier and recency —
