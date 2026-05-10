@@ -87,6 +87,25 @@ ECI 점수가 단 3개 (calibration anchors + GPT-5.5 Pro)뿐이라는 한계를
 - Resources references: +3
 - ECI table: 3 → 109 entries (36× 데이터 증대)
 
+### 19. AI4S Phase 2B verification + Frontier Compare ECI heatmap (commits `4e13ec6` `80aa467`)
+
+User-prompted: "Frontier Compare에 composite 카테고리 추가하고 109개 ECI 점수가 heatmap에서 직접 비교 가능하도록".
+
+**Frontier Compare composite category** (commits `20ba001` `4e13ec6` `80aa467`):
+- 기존 7개 hardcoded 카테고리(reasoning/coding/math/agent/cybersecurity/cyber_defense/multimodal)에 `composite` 추가 → epoch_capabilities_index + epoch_capabilities_index_swe 노출
+- `_modelsForCategory(category, benchIds)` helper로 heatmap pool dynamic 확장: composite 시 FRONTIER_MODELS 75개 → ECI 점수 보유 109개로 자동 확장 (다른 카테고리는 기존 75개 유지)
+- 두 sort callback에 category 전파; class-filter hint를 카테고리별 context-aware로 수정 ("(109 / 109 ECI-scored models visible)")
+- Live 검증: 109 row heatmap, top: GPT-5.5 Pro 159.0, GPT-5.5 158.4, GPT-5.4 Pro 158.2, Gemini 3.1 Pro 156.8
+
+**Phase 2B AI4S widget verification** (Tasks 13-19): Session 7에서 함께 만들어진 위젯들이 오늘 Phase 2A 데이터로 채워진 것을 확인:
+- **W3 Frontier vs Specialist** — `renderFrontierVsSpecialist` (51 LOC, 3 math benchmarks 표시; specialist column null = 모델 라벨링 차이)
+- **W5 Per-Domain Modal** — `openDomainLeaderboard` + `_perDomainComposite` + Shift+click wire (bio-genomics 검증: AlphaFold v1/v2/v3 + OpenFold 3 + GPT-5.4-thinking; math 검증: 7개+ 모델)
+- **W7 Weather Skill** — 3 points (Pangu 134.5 / IFS 152.8 / ClimaX 201.0) — 2026-05-10 Phase 2A round 6 backfill 적용
+- **W8 CASP Progression** — 4 points (CASP13 AF1=58.9, CASP14 AF2=92.4, CASP15 AF2=73.0, CASP16 AF3=89.4)
+- **W9 Materials Yield** — 7 points (chgnet/mace-mp-0/gnome 등); yield axis = 0 (mattergen_yield 0 scores)
+- **Lazy render** — `requestIdleCallback` 사용, eager 3개 + lazy 6개 split
+- 단위 테스트 4개 모두 PASS (Task 1 _resolveLab, Task 2 _resolveDomain, Task 4 _BREAKTHROUGHS schema, Task 14 _perDomainComposite)
+
 ---
 
 ## 2026-05-09 (Session 10): Sovereign AI menu widget expansion — 6 NEW widgets (11 tasks, 11 commits)

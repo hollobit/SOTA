@@ -2383,5 +2383,14 @@
     "new_value": "+16 models (1749→1765), +106 ECI scores (3844→3950, total ECI entries 3 → 109). 3 new Resources references: arxiv 2512.00193 Rosetta Stone paper + epoch.ai/data/eci_scores.csv canonical CSV + github.com/epoch-research/eci-public open repo. Frontier Compare propagation skipped per latest-models-focus memory rule — 16 new ids are mostly 2024-2025 older variants, ECI table-only exposure.",
     "old_model": "",
     "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-10",
+    "benchmark_id": "Phase 2B verification + Frontier Compare composite category (ECI heatmap)",
+    "new_model": "User request: 'Frontier Compare에 composite 카테고리 추가하고 109개 ECI 점수가 heatmap에서 직접 비교 가능하도록'. Implemented composite category as a new top-level option in fc-category dropdown (reasoning/coding/math/agent/cybersecurity/cyber_defense/multimodal/composite). _modelsForCategory(category, benchIds) helper expands heatmap pool dynamically: composite uses all model_ids with at least one ECI score (109 models), other categories keep curated FRONTIER_MODELS pool (75 models). Class-filter hint context-aware: shows '(109 / 109 ECI-scored models visible)' for composite, '(N / 75 models visible)' otherwise. Two sort callbacks (model-name, per-bench column) pass category through to preserve composite mode on re-render. Live verification: 109 rows render with GPT-5.5 Pro 159.0 at top, calibration anchors visible (GPT-5=150, Claude 3.5 Sonnet=130). AI4S Phase 2B widgets (W3 Frontier vs Specialist, W5 Per-Domain Modal, W7 Weather Skill, W8 CASP Progression, W9 Materials Yield, Lazy render) verified live in browser — all 5 chart widgets rendering with Phase 2A data ingested earlier today, W5 Shift+click modal verified for bio-genomics (AlphaFold v1/v2/v3 + OpenFold 3) and math domains. All 4 ai4s-charts.test.js unit tests pass.",
+    "new_value": "+0 models, +0 benchmarks, +0 scores. dashboard/js/frontier-compare.js: +1 category 'composite' in CORE_BENCHMARKS, +_modelsForCategory helper, _renderHeatmap accepts category arg, _renderClassFilterUI hint branches on category. dashboard/index.html: +1 <option value='composite'>. Cache-bust frontier-compare.js v=20260510b → e (3 commits 20ba001 → 4e13ec6 → 80aa467). 4 CI runs all success.",
+    "old_model": "",
+    "old_value": ""
   }
 ]
