@@ -1,0 +1,127 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-12",
+    "_note": "Claude Mythos Preview unique cyber capability benchmarks from red.anthropic.com/2026/mythos-preview/ red team report. These benchmarks are Mythos-specific (no direct comparators on other models yet) but represent quantitative cyber capability measurements. Strict-attribution: all values directly quoted from Anthropic primary source.",
+    "sources": [
+      "https://red.anthropic.com/2026/mythos-preview/",
+      "https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities"
+    ]
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "oss_fuzz_tier12",
+      "name": "OSS-Fuzz (Tier 1+2 Crashes)",
+      "category": "cyber_defense",
+      "description": "Google OSS-Fuzz vulnerability fuzzing benchmark — count of tier 1 (compile/run crash) + tier 2 (memory error) crashes discovered across patched targets. Per Anthropic Mythos Preview red team report. Higher = more vulnerabilities found.",
+      "metric": "count",
+      "leaderboard": "https://red.anthropic.com/2026/mythos-preview/"
+    },
+    {
+      "id": "oss_fuzz_tier5",
+      "name": "OSS-Fuzz (Tier 5 — Full Control Flow Hijack)",
+      "category": "cyber_defense",
+      "description": "Google OSS-Fuzz tier 5 — successful full control flow hijack on fully patched targets. Per Anthropic Mythos Preview red team report.",
+      "metric": "count",
+      "leaderboard": "https://red.anthropic.com/2026/mythos-preview/"
+    },
+    {
+      "id": "firefox_147_exploits",
+      "name": "Firefox 147 Working Exploits Developed",
+      "category": "cyber_defense",
+      "description": "Count of working JavaScript shell exploits developed from Firefox 147 JS engine vulnerabilities across several hundred attempts. Per Anthropic Mythos Preview red team report. Higher = more capable exploit development. (Separate from `firefox_147` which uses a different scoring scale.)",
+      "metric": "count",
+      "leaderboard": "https://red.anthropic.com/2026/mythos-preview/"
+    },
+    {
+      "id": "vuln_severity_assessment_acc",
+      "name": "Vulnerability Severity Assessment Accuracy",
+      "category": "cyber_defense",
+      "description": "% of 198 manually-reviewed vulnerability reports where expert contractors agreed EXACTLY with model's severity assessment. Per Anthropic Mythos Preview red team report.",
+      "metric": "accuracy",
+      "leaderboard": "https://red.anthropic.com/2026/mythos-preview/"
+    },
+    {
+      "id": "tlo_steps_completed",
+      "name": "The Last Ones (TLO) Average Steps Completed",
+      "category": "cyber_defense",
+      "description": "Average number of steps completed (out of 32) on UK AISI 'The Last Ones' (TLO) corporate network attack simulation across 10 attempts. Per AISI external evaluation. Higher = more capable end-to-end multi-step attack execution.",
+      "metric": "score_32",
+      "leaderboard": "https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities"
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "oss_fuzz_tier12",
+      "score": 595,
+      "unit": "count",
+      "_source": "https://red.anthropic.com/2026/mythos-preview/",
+      "_note": "Mythos Preview achieved 595 crashes at tiers 1 and 2 on OSS-Fuzz benchmark (vs Sonnet 4.6 and Opus 4.6 ~150-175 cases at tier 1)."
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "oss_fuzz_tier5",
+      "score": 10,
+      "unit": "count",
+      "_source": "https://red.anthropic.com/2026/mythos-preview/",
+      "_note": "Mythos Preview achieved full control flow hijack on 10 separate fully-patched targets (tier 5). Previous models (Sonnet 4.6, Opus 4.6) achieved 1 each."
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "firefox_147_exploits",
+      "score": 181,
+      "unit": "count",
+      "_source": "https://red.anthropic.com/2026/mythos-preview/",
+      "_note": "Mythos Preview developed working exploits 181 times from Firefox 147 JS engine vulnerabilities (plus 29 register-control). Opus 4.6 achieved only 2 of several hundred attempts."
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "vuln_severity_assessment_acc",
+      "score": 89,
+      "unit": "%",
+      "_source": "https://red.anthropic.com/2026/mythos-preview/",
+      "_note": "89% exact agreement with expert contractors on 198 manually-reviewed vulnerability reports. 98% within one severity level."
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "tlo_steps_completed",
+      "score": 22,
+      "unit": "score_32",
+      "_source": "https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities",
+      "_note": "Mythos Preview averaged 22 of 32 steps across all 10 attempts on UK AISI 'The Last Ones' (TLO) corporate network attack simulation. First model to complete all 32 steps (3 of 10 attempts)."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "tlo_steps_completed",
+      "score": 16,
+      "unit": "score_32",
+      "_source": "https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities",
+      "_note": "Claude Opus 4.6 averaged 16 of 32 steps on TLO (next-best after Mythos Preview's 22). Per AISI external evaluation."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "oss_fuzz_tier12",
+      "score": 175,
+      "unit": "count",
+      "_source": "https://red.anthropic.com/2026/mythos-preview/",
+      "_note": "Claude Opus 4.6 reached tier 1+2 in ~150-175 cases on OSS-Fuzz (approximate upper bound cited in Anthropic Mythos red team report comparison)."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "firefox_147_exploits",
+      "score": 2,
+      "unit": "count",
+      "_source": "https://red.anthropic.com/2026/mythos-preview/",
+      "_note": "Claude Opus 4.6 turned Firefox 147 vulnerabilities into working JavaScript shell exploits only 2 times out of several hundred attempts."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "oss_fuzz_tier12",
+      "score": 175,
+      "unit": "count",
+      "_source": "https://red.anthropic.com/2026/mythos-preview/",
+      "_note": "Claude Sonnet 4.6 reached tier 1+2 in ~150-175 cases on OSS-Fuzz (same range as Opus 4.6, per Anthropic Mythos red team report)."
+    }
+  ]
+}

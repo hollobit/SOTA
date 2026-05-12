@@ -931,48 +931,65 @@
   }
 
   // ====================================================================
-  // W9 — Materials Discovery Yield. Bubble chart: model × MAE × yield.
+  // W9 — Materials Discovery: side-by-side bar charts for two model classes.
+  // Refactor 2026-05-12: Predictive (Matbench MAE/F1) vs Generative (SUN yield)
+  // are separate evaluation regimes — splitting into 2 charts replaces the
+  // earlier scatter that always had Y=0 because no model has both metrics.
   // ====================================================================
   function renderMaterialsYield() {
     _ensureMountPoint('ai4s-chart-materials-yield',
-      'Materials Discovery Yield',
-      'X = Matbench Discovery MAE (lower=better). Y = MatterGen-style novel yield. Size = F1.');
+      'Materials Discovery — Predictive vs Generative',
+      'LEFT: Predictive models on Matbench Discovery (F1, higher=better). ' +
+      'RIGHT: Generative models on MatterGen-style SUN yield (% Stable+Unique+Novel).');
     if (typeof echarts === 'undefined') return;
 
     var maeRows = _scoresFor('matbench_discovery_mae');
-    var yieldRows = _scoresFor('mattergen_yield');
     var f1Rows = _scoresFor('matbench_discovery_f1');
+    var yieldRows = _scoresFor('mattergen_yield');
 
-    var byModel = {};
-    function add(rows, key) {
+    // Predictive models: have F1 (or MAE) on Matbench Discovery
+    var predictive = {};
+    [['mae', maeRows], ['f1', f1Rows]].forEach(function(p) {
+      var key = p[0]; var rows = p[1];
       rows.forEach(function(r) {
         if (typeof r.value !== 'number') return;
-        byModel[r.model_id] = byModel[r.model_id] || {};
-        byModel[r.model_id][key] = r.value;
-      });
-    }
-    add(maeRows, 'mae');
-    add(yieldRows, 'yield');
-    add(f1Rows, 'f1');
-
-    var pts = [];
-    Object.keys(byModel).forEach(function(mid) {
-      var b = byModel[mid];
-      if (typeof b.mae !== 'number') return;
-      pts.push({
-        value: [b.mae, b.yield || 0],
-        symbolSize: Math.min(40, 8 + (b.f1 || 0) * 30),
-        _meta: { model_id: mid, mae: b.mae, yield: b.yield || 0, f1: b.f1 || 0 }
+        predictive[r.model_id] = predictive[r.model_id] || {};
+        predictive[r.model_id][key] = r.value;
       });
     });
 
+    // Generative models: have mattergen_yield (SUN%)
+    var generative = {};
+    yieldRows.forEach(function(r) {
+      if (typeof r.value !== 'number') return;
+      generative[r.model_id] = r.value;
+    });
+
+    var predLabels = []; var predF1 = []; var predMAE = [];
+    Object.keys(predictive).sort(function(a, b) {
+      return (predictive[b].f1 || 0) - (predictive[a].f1 || 0);
+    }).forEach(function(mid) {
+      var d = predictive[mid];
+      predLabels.push(mid.split('/').pop());
+      predF1.push(typeof d.f1 === 'number' ? Math.round(d.f1 * 1000) / 1000 : null);
+      predMAE.push(typeof d.mae === 'number' ? d.mae : null);
+    });
+
+    var genLabels = []; var genYield = [];
+    Object.keys(generative).sort(function(a, b) {
+      return generative[b] - generative[a];
+    }).forEach(function(mid) {
+      genLabels.push(mid.split('/').pop());
+      genYield.push(generative[mid]);
+    });
+
     var mountEl = document.getElementById('ai4s-chart-materials-yield');
-    if (pts.length < 2) {
+    if (predLabels.length === 0 && genLabels.length === 0) {
       if (mountEl) {
         while (mountEl.firstChild) mountEl.removeChild(mountEl.firstChild);
         var msg = document.createElement('div');
         msg.className = 'text-sm text-gray-400 italic flex items-center justify-center h-full';
-        msg.textContent = 'Insufficient materials data — run Phase 2A Task 12 ingest first';
+        msg.textContent = 'No materials data — run Phase 2A Task 12 ingest first';
         mountEl.appendChild(msg);
       }
       return;
@@ -982,33 +999,56 @@
     if (!chart) return;
     var opt = {
       backgroundColor: 'transparent',
-      grid: { left: 50, right: 24, top: 30, bottom: 50 },
+      title: [
+        { text: 'Predictive (Matbench Discovery F1)', left: '5%', top: 0,
+          textStyle: { color: '#d1d5db', fontSize: 12, fontWeight: 'normal' } },
+        { text: 'Generative (MatterGen SUN Yield %)', left: '55%', top: 0,
+          textStyle: { color: '#d1d5db', fontSize: 12, fontWeight: 'normal' } }
+      ],
+      grid: [
+        { left: '5%', right: '52%', top: 30, bottom: 60, containLabel: true },
+        { left: '52%', right: '5%', top: 30, bottom: 60, containLabel: true }
+      ],
       tooltip: { trigger: 'item', backgroundColor: 'rgba(17,24,39,0.95)',
         borderColor: '#374151', textStyle: { color: '#e5e7eb' },
         formatter: function(p) {
-          var m = p.data._meta;
-          return '<b>' + m.model_id + '</b><br>' +
-            'MAE: ' + m.mae.toFixed(3) + '<br>' +
-            'Yield: ' + m.yield + '<br>' +
-            'F1: ' + (m.f1 || '—');
+          if (p.seriesIndex === 0) {
+            // predictive
+            var mid = predLabels[p.dataIndex];
+            var mae = predMAE[p.dataIndex];
+            return '<b>' + mid + '</b><br>F1: ' + p.value +
+              (mae !== null ? '<br>MAE: ' + mae.toFixed(3) : '');
+          }
+          return '<b>' + genLabels[p.dataIndex] + '</b><br>SUN Yield: ' + p.value + '%';
         }
       },
-      xAxis: { type: 'value', name: 'Matbench MAE (lower=better)',
-        nameTextStyle: { color: '#9ca3af' },
-        axisLabel: { color: '#9ca3af' },
-        axisLine: { lineStyle: { color: '#4b5563' } },
-        splitLine: { lineStyle: { color: '#1f2937' } } },
-      yAxis: { type: 'value', name: 'Yield (novel materials)',
-        nameTextStyle: { color: '#9ca3af' },
-        axisLabel: { color: '#9ca3af' },
-        axisLine: { lineStyle: { color: '#4b5563' } },
-        splitLine: { lineStyle: { color: '#1f2937' } } },
-      series: [{
-        name: 'Materials models',
-        type: 'scatter',
-        data: pts,
-        itemStyle: { color: '#f59e0b', opacity: 0.85 }
-      }]
+      xAxis: [
+        { type: 'value', gridIndex: 0, max: 1,
+          axisLabel: { color: '#9ca3af', fontSize: 9 },
+          axisLine: { lineStyle: { color: '#4b5563' } },
+          splitLine: { lineStyle: { color: '#1f2937' } } },
+        { type: 'value', gridIndex: 1, max: 100,
+          axisLabel: { color: '#9ca3af', fontSize: 9, formatter: '{value}%' },
+          axisLine: { lineStyle: { color: '#4b5563' } },
+          splitLine: { lineStyle: { color: '#1f2937' } } }
+      ],
+      yAxis: [
+        { type: 'category', gridIndex: 0, data: predLabels, inverse: true,
+          axisLabel: { color: '#d1d5db', fontSize: 10 },
+          axisLine: { lineStyle: { color: '#4b5563' } } },
+        { type: 'category', gridIndex: 1, data: genLabels, inverse: true,
+          axisLabel: { color: '#d1d5db', fontSize: 10 },
+          axisLine: { lineStyle: { color: '#4b5563' } } }
+      ],
+      series: [
+        { name: 'F1', type: 'bar', xAxisIndex: 0, yAxisIndex: 0, data: predF1,
+          itemStyle: { color: '#60a5fa', opacity: 0.85 },
+          label: { show: true, position: 'right', color: '#e5e7eb', fontSize: 10 } },
+        { name: 'SUN Yield', type: 'bar', xAxisIndex: 1, yAxisIndex: 1, data: genYield,
+          itemStyle: { color: '#a78bfa', opacity: 0.85 },
+          label: { show: true, position: 'right', color: '#e5e7eb', fontSize: 10,
+            formatter: '{c}%' } }
+      ]
     };
     chart.setOption(_applyToolbox(opt), true);
   }
