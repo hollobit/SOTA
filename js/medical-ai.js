@@ -819,6 +819,7 @@ var MedicalAI = {
         this._renderCategoryMap();
         this._renderBenchmarkTable();
         this._renderTimeline();
+        this._renderTimelineInfographic();
         this._renderRadar();
         var self = this;
         var periodSel = document.getElementById('med-timeline-period');
@@ -831,6 +832,14 @@ var MedicalAI = {
             yModeSel._wired = true;
             yModeSel.addEventListener('change', function() { self._renderTimeline(); });
         }
+        // Wire download buttons for timeline infographic
+        ['png', 'svg', 'csv'].forEach(function(fmt) {
+            var btn = document.getElementById('med-ti-' + fmt);
+            if (btn && !btn._wired) {
+                btn._wired = true;
+                btn.addEventListener('click', function() { self._downloadTimelineInfographic(fmt); });
+            }
+        });
         if (typeof MedicalAICharts !== 'undefined' && MedicalAICharts.renderAll) {
             MedicalAICharts.renderAll();
         }
@@ -1677,5 +1686,406 @@ var MedicalAI = {
             series: [{ type: 'radar', data: series, symbolSize: 4, areaStyle: { opacity: 0.15 } }]
         });
         window.addEventListener('resize', function() { chart.resize(); });
+    },
+
+    // ========================================================================
+    // Medical AI Release Timeline — Month-Column SVG Infographic
+    // Per timeline-infographic skill: vanilla SVG, 4-corner card layout,
+    // variable column widths, no truncation, no overflow.
+    // ========================================================================
+    _MONTH_COLORS: [
+        '#3b82f6', '#8b5cf6', '#ec4899', '#f97316', '#10b981', '#0ea5e9',
+        '#14b8a6', '#84cc16', '#eab308', '#f43f5e', '#a855f7', '#06b6d4'
+    ],
+    _COUNTRY_MAP: {
+        'openai': ['United States', '🇺🇸'], 'anthropic': ['United States', '🇺🇸'],
+        'google': ['United States', '🇺🇸'], 'google-deepmind': ['United Kingdom', '🇬🇧'],
+        'deepmind': ['United Kingdom', '🇬🇧'], 'meta': ['United States', '🇺🇸'],
+        'microsoft': ['United States', '🇺🇸'], 'nvidia': ['United States', '🇺🇸'],
+        'allenai': ['United States', '🇺🇸'], 'apple': ['United States', '🇺🇸'],
+        'ibm': ['United States', '🇺🇸'], 'amazon': ['United States', '🇺🇸'],
+        'stanford': ['United States', '🇺🇸'], 'mit': ['United States', '🇺🇸'],
+        'jameel-clinic': ['United States', '🇺🇸'], 'boltz-ai': ['United States', '🇺🇸'],
+        'cohere': ['Canada', '🇨🇦'], 'vector': ['Canada', '🇨🇦'],
+        'mistral': ['France', '🇫🇷'], 'biomistral': ['France', '🇫🇷'], 'cnrs': ['France', '🇫🇷'],
+        'nhs': ['United Kingdom', '🇬🇧'], 'imperial': ['United Kingdom', '🇬🇧'],
+        'dkfz': ['Germany', '🇩🇪'], 'siemens-healthineers': ['Germany', '🇩🇪'],
+        'alibaba': ['China', '🇨🇳'], 'deepseek': ['China', '🇨🇳'], 'baidu': ['China', '🇨🇳'],
+        'tencent': ['China', '🇨🇳'], 'moonshot': ['China', '🇨🇳'], 'zhipu': ['China', '🇨🇳'],
+        'xiaomi': ['China', '🇨🇳'], 'huawei': ['China', '🇨🇳'], 'huatuo': ['China', '🇨🇳'],
+        'pharmaron': ['China', '🇨🇳'],
+        'lg': ['Korea', '🇰🇷'], 'kakao': ['Korea', '🇰🇷'], 'naver': ['Korea', '🇰🇷'],
+        'kt': ['Korea', '🇰🇷'], 'skt': ['Korea', '🇰🇷'], 'upstage': ['Korea', '🇰🇷'],
+        'snuh': ['Korea', '🇰🇷'], 'lunit': ['Korea', '🇰🇷'],
+        'kakao-healthcare': ['Korea', '🇰🇷'], 'samsung-medison': ['Korea', '🇰🇷'],
+        'medkaist': ['Korea', '🇰🇷'], 'lunit-medscale': ['Korea', '🇰🇷'],
+        'elyza': ['Japan', '🇯🇵'], 'rinna': ['Japan', '🇯🇵'],
+        'preferred-networks': ['Japan', '🇯🇵'],
+        'm42': ['UAE', '🇦🇪'], 'tii': ['UAE', '🇦🇪'], 'falcon': ['UAE', '🇦🇪'],
+        'synapxe': ['Singapore', '🇸🇬'], 'ai-singapore': ['Singapore', '🇸🇬'],
+        'vaidya': ['India', '🇮🇳'], 'sarvam': ['India', '🇮🇳'],
+        'aalto': ['Finland', '🇫🇮']
+    },
+
+    _countryForMid: function(mid) {
+        var org = mid.split('/')[0];
+        return this._COUNTRY_MAP[org] || ['International', '🌐'];
+    },
+
+    _licenseColors: function(t) {
+        if (t === 'open-source') return { bg: '#eff6ff', fg: '#1d4ed8' };
+        if (t === 'open-weight') return { bg: '#f0fdf4', fg: '#15803d' };
+        return { bg: '#fef2f2', fg: '#b91c1c' }; // proprietary or default
+    },
+
+    _vendorColor: function(name) {
+        // Hash vendor name to a stable accent color
+        var h = 0;
+        for (var i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) & 0xffff;
+        var hue = h % 360;
+        return 'hsl(' + hue + ', 55%, 45%)';
+    },
+
+    _bucketMedicalByMonth: function(monthsBack) {
+        var self = this;
+        // Collect medical model IDs from CATEGORIES
+        var medicalIds = {};
+        this.CATEGORIES.forEach(function(cat) {
+            cat.models.forEach(function(mid) { medicalIds[mid] = true; });
+        });
+
+        var now = new Date();
+        var buckets = [];
+        for (var i = monthsBack - 1; i >= 0; i--) {
+            var d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+            var ym = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+            buckets.push({
+                ym: ym,
+                month: d.getMonth(),
+                year: d.getFullYear(),
+                label: d.toLocaleString('en-US', { month: 'short' }) + ' ' + d.getFullYear(),
+                shortLabel: d.toLocaleString('en-US', { month: 'short' }),
+                color: this._MONTH_COLORS[d.getMonth()],
+                entries: []
+            });
+        }
+        var ymIdx = {};
+        buckets.forEach(function(b, i) { ymIdx[b.ym] = i; });
+
+        this._models.forEach(function(model) {
+            if (!medicalIds[model.id]) return;
+            var date = model.release_date;
+            if (!date) return;
+            var ym = String(date).slice(0, 7);
+            if (!(ym in ymIdx)) return;
+            var co = self._countryForMid(model.id);
+            buckets[ymIdx[ym]].entries.push({
+                date: date, id: model.id, name: model.name || model.id,
+                vendor: model.vendor || '', type: model.type || 'proprietary',
+                country: co[0], flag: co[1]
+            });
+        });
+
+        buckets.forEach(function(b) {
+            b.entries.sort(function(a, c) { return a.date.localeCompare(c.date); });
+        });
+        return buckets;
+    },
+
+    _subColsForMonth: function(n) {
+        if (n <= 6) return 1;
+        if (n <= 12) return 2;
+        if (n <= 18) return 3;
+        return 4;
+    },
+
+    _renderTimelineInfographic: function() {
+        var host = document.getElementById('med-timeline-infographic-host');
+        if (!host) return;
+        host.textContent = '';
+
+        var MONTHS_BACK = 24;
+        var buckets = this._bucketMedicalByMonth(MONTHS_BACK);
+        // Drop empty trailing buckets at left to compact view? Keep all for consistency.
+
+        var totalEvents = buckets.reduce(function(a, b) { return a + b.entries.length; }, 0);
+        if (totalEvents === 0) {
+            var msg = document.createElement('div');
+            msg.className = 'p-8 text-sm text-gray-500';
+            msg.textContent = '데이터 없음 (지난 ' + MONTHS_BACK + '개월 의료 AI 모델 release_date 없음)';
+            host.appendChild(msg);
+            return;
+        }
+
+        // Layout constants
+        var PAD_LEFT = 40, PAD_RIGHT = 40, PAD_TOP = 90, PAD_BOTTOM = 80;
+        var HEADER_PILL_H = 28, HEADER_GAP = 8;
+        var AXIS_GAP = 36;
+        var CARD_W_BASE = 280, CARD_H = 84, SUBCOL_GAP = 6, CARD_GAP = 8;
+        var COL_GAP = 14;
+
+        // Compute sub-columns per bucket + width
+        var maxStack = 0;
+        buckets.forEach(function(b) {
+            b.subCols = this._subColsForMonth(b.entries.length);
+            b.width = b.subCols * CARD_W_BASE + (b.subCols - 1) * SUBCOL_GAP;
+            var stack = Math.ceil(b.entries.length / Math.max(1, b.subCols));
+            if (stack > maxStack) maxStack = stack;
+        }, this);
+
+        // SVG dimensions
+        var colsWidth = buckets.reduce(function(a, b) { return a + b.width; }, 0);
+        var SVG_W = PAD_LEFT + colsWidth + (buckets.length - 1) * COL_GAP + PAD_RIGHT;
+        var contentH = PAD_TOP + HEADER_PILL_H + HEADER_GAP + AXIS_GAP +
+                       maxStack * CARD_H + (maxStack - 1) * CARD_GAP + PAD_BOTTOM;
+        var SVG_H = Math.max(600, contentH);
+
+        // Build SVG
+        var SVG_NS = 'http://www.w3.org/2000/svg';
+        var svg = document.createElementNS(SVG_NS, 'svg');
+        svg.setAttribute('viewBox', '0 0 ' + SVG_W + ' ' + SVG_H);
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        svg.style.display = 'block';
+        svg.style.height = 'auto';
+
+        function el(name, attrs, text) {
+            var e = document.createElementNS(SVG_NS, name);
+            if (attrs) Object.keys(attrs).forEach(function(k) { e.setAttribute(k, attrs[k]); });
+            if (text !== undefined && text !== null) e.textContent = String(text);
+            return e;
+        }
+
+        // Background
+        svg.appendChild(el('rect', { x: 0, y: 0, width: SVG_W, height: SVG_H, fill: '#ffffff' }));
+
+        // Title
+        svg.appendChild(el('text', {
+            x: SVG_W / 2, y: 40, 'text-anchor': 'middle',
+            'font-family': 'system-ui, -apple-system, sans-serif', 'font-size': 22,
+            'font-weight': 700, fill: '#0f172a'
+        }, 'Medical AI Model Release Timeline'));
+        svg.appendChild(el('text', {
+            x: SVG_W / 2, y: 64, 'text-anchor': 'middle',
+            'font-family': 'system-ui, -apple-system, sans-serif', 'font-size': 13,
+            fill: '#475569'
+        }, 'Last ' + MONTHS_BACK + ' months · ' + totalEvents + ' models · color-coded by release month'));
+
+        // Compute column x-positions
+        var x = PAD_LEFT;
+        var axisY = PAD_TOP + HEADER_PILL_H + HEADER_GAP;
+        buckets.forEach(function(b, i) {
+            b.x = x;
+            b.cx = x + b.width / 2;
+            x += b.width + COL_GAP;
+        });
+
+        // Main axis line
+        svg.appendChild(el('line', {
+            x1: PAD_LEFT, y1: axisY, x2: SVG_W - PAD_RIGHT, y2: axisY,
+            stroke: '#cbd5e1', 'stroke-width': 2
+        }));
+
+        // Header pills + axis nodes + connectors
+        buckets.forEach(function(b) {
+            // Header pill
+            var pillW = Math.min(b.width, 180);
+            svg.appendChild(el('rect', {
+                x: b.cx - pillW / 2, y: PAD_TOP, width: pillW, height: HEADER_PILL_H,
+                rx: 8, fill: b.color
+            }));
+            svg.appendChild(el('text', {
+                x: b.cx, y: PAD_TOP + HEADER_PILL_H / 2 + 4, 'text-anchor': 'middle',
+                'font-family': 'system-ui', 'font-size': 11, 'font-weight': 700, fill: '#ffffff'
+            }, b.shortLabel + " '" + String(b.year).slice(2) + ' · ' + b.entries.length));
+
+            // Axis node
+            svg.appendChild(el('circle', {
+                cx: b.cx, cy: axisY, r: 6, fill: b.color, stroke: '#ffffff', 'stroke-width': 2
+            }));
+
+            // Render cards
+            var firstCardY = axisY + AXIS_GAP;
+            var subColW = (b.width - (b.subCols - 1) * SUBCOL_GAP) / b.subCols;
+            b.entries.forEach(function(entry, idx) {
+                var col = Math.floor(idx / Math.ceil(b.entries.length / b.subCols));
+                var row = idx % Math.ceil(b.entries.length / b.subCols);
+                var cx = b.x + col * (subColW + SUBCOL_GAP);
+                var cy = firstCardY + row * (CARD_H + CARD_GAP);
+
+                // First-in-column dotted connector
+                if (row === 0) {
+                    svg.appendChild(el('line', {
+                        x1: cx + subColW / 2, y1: axisY + 6, x2: cx + subColW / 2, y2: cy,
+                        stroke: b.color, 'stroke-width': 1, 'stroke-dasharray': '3,3'
+                    }));
+                }
+
+                // Card background
+                var card = el('rect', {
+                    x: cx, y: cy, width: subColW, height: CARD_H, rx: 6,
+                    fill: '#ffffff', stroke: '#e2e8f0', 'stroke-width': 1
+                });
+                svg.appendChild(card);
+                // Accent stripe
+                svg.appendChild(el('rect', {
+                    x: cx, y: cy, width: 4, height: CARD_H, rx: 2, fill: b.color
+                }));
+
+                // Vendor logo tile (top-left, 36×36 inside card padding 10)
+                var vColor = (function(v){ var h=0; for(var i=0;i<v.length;i++) h=(h*31+v.charCodeAt(i))&0xffff; return 'hsl('+(h%360)+',55%,45%)'; })(entry.vendor || 'X');
+                svg.appendChild(el('rect', {
+                    x: cx + 12, y: cy + 10, width: 32, height: 32, rx: 6, fill: vColor
+                }));
+                svg.appendChild(el('text', {
+                    x: cx + 12 + 16, y: cy + 10 + 22, 'text-anchor': 'middle',
+                    'font-family': 'system-ui', 'font-size': 14, 'font-weight': 700, fill: '#ffffff'
+                }, (entry.vendor || '?').charAt(0).toUpperCase()));
+
+                // Date (top-right)
+                var mmdd = entry.date.slice(5).replace('-', '.');
+                svg.appendChild(el('text', {
+                    x: cx + subColW - 12, y: cy + 22, 'text-anchor': 'end',
+                    'font-family': 'system-ui', 'font-size': 13, 'font-weight': 700, fill: b.color
+                }, mmdd));
+
+                // Model name (centered, vendor-prefix stripped, 26-char truncate)
+                var nameClean = (entry.name || entry.id).replace(/^[^/]+\//, '');
+                if (nameClean.length > 30) nameClean = nameClean.slice(0, 28) + '…';
+                var nameText = el('text', {
+                    x: cx + 52, y: cy + 28, 'font-family': 'system-ui',
+                    'font-size': 12, 'font-weight': 600, fill: '#0f172a'
+                }, nameClean);
+                nameText.appendChild(el('title', null, entry.name + ' (' + entry.id + ')'));
+                svg.appendChild(nameText);
+
+                // Vendor (smaller, slate)
+                svg.appendChild(el('text', {
+                    x: cx + 52, y: cy + 42, 'font-family': 'system-ui',
+                    'font-size': 10, fill: '#64748b'
+                }, entry.vendor || ''));
+
+                // License pill (bottom-left)
+                var lc = this._licenseColors(entry.type);
+                var lLabel = (entry.type || 'prop').toString();
+                var pillTextW = lLabel.length * 6 + 12;
+                svg.appendChild(el('rect', {
+                    x: cx + 12, y: cy + CARD_H - 22, width: pillTextW, height: 16, rx: 8,
+                    fill: lc.bg
+                }));
+                svg.appendChild(el('text', {
+                    x: cx + 12 + pillTextW / 2, y: cy + CARD_H - 10, 'text-anchor': 'middle',
+                    'font-family': 'system-ui', 'font-size': 9, 'font-weight': 600, fill: lc.fg
+                }, lLabel));
+
+                // Country name (mid-bottom)
+                var countryX = cx + 12 + pillTextW + 8;
+                var flagTileX = cx + subColW - 36;
+                var maxCountryW = flagTileX - countryX - 6;
+                var cnLabel = entry.country;
+                while (cnLabel.length > 4 && cnLabel.length * 5.5 > maxCountryW) {
+                    cnLabel = cnLabel.slice(0, -1);
+                }
+                if (cnLabel !== entry.country) cnLabel = cnLabel.slice(0, -1) + '…';
+                svg.appendChild(el('text', {
+                    x: countryX, y: cy + CARD_H - 10, 'font-family': 'system-ui',
+                    'font-size': 9, fill: '#475569'
+                }, cnLabel));
+
+                // Flag tile (bottom-right)
+                svg.appendChild(el('rect', {
+                    x: flagTileX, y: cy + CARD_H - 32, width: 24, height: 24, rx: 4,
+                    fill: '#f8fafc'
+                }));
+                svg.appendChild(el('text', {
+                    x: flagTileX + 12, y: cy + CARD_H - 14, 'text-anchor': 'middle',
+                    'font-family': 'system-ui', 'font-size': 16
+                }, entry.flag));
+
+                // Invisible click rect
+                var clickRect = el('rect', {
+                    x: cx, y: cy, width: subColW, height: CARD_H, fill: 'transparent',
+                    style: 'cursor:pointer'
+                });
+                clickRect.addEventListener('click', (function(mid) {
+                    return function() {
+                        if (typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(mid);
+                    };
+                })(entry.id));
+                svg.appendChild(clickRect);
+            }, this);
+        }, this);
+
+        // Footer (3-element 2-row attribution)
+        var footerY = SVG_H - PAD_BOTTOM + 30;
+        svg.appendChild(el('text', {
+            x: PAD_LEFT, y: footerY, 'font-family': 'system-ui',
+            'font-size': 12, 'font-weight': 600, fill: '#475569'
+        }, 'Author: SOTA Dashboard · hollobit@etri.re.kr'));
+        svg.appendChild(el('text', {
+            x: PAD_LEFT, y: footerY + 16, 'font-family': 'system-ui',
+            'font-size': 11, fill: '#94a3b8'
+        }, 'Source: https://hollobit.github.io/SOTA/ · data verified against vendor model cards + papers'));
+        var todayStr = new Date().toISOString().slice(0, 10);
+        svg.appendChild(el('text', {
+            x: SVG_W - PAD_RIGHT, y: footerY + 16, 'text-anchor': 'end',
+            'font-family': 'system-ui', 'font-size': 11, fill: '#94a3b8'
+        }, 'Generated ' + todayStr));
+
+        host.appendChild(svg);
+        // Cache state for download handlers
+        this._timelineInfographicData = buckets;
+        this._timelineInfographicSvg = svg;
+    },
+
+    _downloadTimelineInfographic: function(fmt) {
+        var svg = this._timelineInfographicSvg;
+        if (!svg) return;
+        var filename = 'medical-ai-timeline-' + new Date().toISOString().slice(0, 10);
+
+        function triggerDownload(url, name) {
+            var a = document.createElement('a');
+            a.href = url; a.download = name;
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        }
+
+        if (fmt === 'svg') {
+            var svgStr = new XMLSerializer().serializeToString(svg);
+            var blob = new Blob([svgStr], { type: 'image/svg+xml' });
+            triggerDownload(URL.createObjectURL(blob), filename + '.svg');
+        } else if (fmt === 'png') {
+            var viewBox = svg.getAttribute('viewBox').split(/\s+/);
+            var nativeW = parseFloat(viewBox[2]), nativeH = parseFloat(viewBox[3]);
+            var svgStr2 = new XMLSerializer().serializeToString(svg);
+            var img = new Image();
+            var url = URL.createObjectURL(new Blob([svgStr2], { type: 'image/svg+xml' }));
+            img.onload = function() {
+                var canvas = document.createElement('canvas');
+                canvas.width = nativeW * 2; canvas.height = nativeH * 2;
+                var ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                canvas.toBlob(function(blob) {
+                    triggerDownload(URL.createObjectURL(blob), filename + '.png');
+                }, 'image/png');
+                URL.revokeObjectURL(url);
+            };
+            img.src = url;
+        } else if (fmt === 'csv') {
+            var rows = [['date', 'id', 'name', 'vendor', 'country', 'type']];
+            (this._timelineInfographicData || []).forEach(function(b) {
+                b.entries.forEach(function(e) {
+                    rows.push([e.date, e.id, e.name, e.vendor, e.country, e.type]);
+                });
+            });
+            var csv = rows.map(function(r) {
+                return r.map(function(v) {
+                    v = String(v || '');
+                    return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+                }).join(',');
+            }).join('\n');
+            var blob = new Blob([csv], { type: 'text/csv' });
+            triggerDownload(URL.createObjectURL(blob), filename + '.csv');
+        }
     }
 };
