@@ -341,13 +341,40 @@ User-prompted: "참조 링크들을 조사해 새로운 모델, 벤치마크 데
 - Frontier Compare math 카테고리: +6 컬럼 (imo_2025, minif2f, proofnet, imo_proofbench_basic, imo_proofbench_advanced, cmo_2024) — 총 22개 math benchmarks
 - Cache-bust frontier-compare.js v=20260511a → 20260512a, ai4s-charts.js v=20260510a → 20260512a
 
+### 28. AA detail pages — 11 SVG chart scraping × 5 frontier 모델 (commit `b3f65f1`)
+
+PDF mining과 병렬 dispatch한 AA detail pages subagent 결과. `https://artificialanalysis.ai/models/{slug}` 페이지가 11개 SVG bar chart로 AAII contributing benchmark sub-scores 제공하는 패턴을 (feedback_aa_subscore_charts.md 메모리 기록) 5개 다른 frontier 모델 페이지에 적용:
+
+**Scrape 대상 + yield**:
+| URL | 새 scores |
+|---|---:|
+| `artificialanalysis.ai/models/claude-opus-4-7` | 0 (gpt-5-5 페이지와 100% 중복) |
+| `artificialanalysis.ai/models/gemini-3-1-pro-preview` | 0 (100% 중복) |
+| `artificialanalysis.ai/models/grok-4-3` | 0 (100% 중복) |
+| `artificialanalysis.ai/models/deepseek-v4-pro` | 103 (older lineup w/ 11 새 모델 노출) |
+| `artificialanalysis.ai/models/kimi-k2-6` | 103 (deepseek 페이지와 동일 lineup, 0 net new) |
+
+**핵심 발견**: Newer Claude/Gemini/Grok 페이지들은 GPT-5-5 페이지와 동일한 28-model frontier lineup으로 chart를 렌더링 — 100% redundant. DeepSeek 페이지가 **older lineup**을 렌더링해서 추가 11개 모델 노출.
+
+**+11 새로 스코어된 모델**:
+- `alibaba/qwen3.5-397b-a17b`
+- `deepseek/deepseek-v3.2`
+- `deepseek/deepseek-v4-flash`
+- `minimax/m2.5`, `minimax/m2.7`
+- `moonshot/kimi-k2-thinking`, `moonshot/kimi-k2.5`
+- `tencent/hy3-preview`
+- `xiaomi/mimo-v2-flash`, `xiaomi/mimo-v2.5`
+- `zhipu/glm-4.7`
+
+이 11개 모델이 11 AAII contributing benchmarks 각각에 ~9-11 scores → 총 **+103 새 scores**. Strict-attribution failures **zero** (모든 chart label이 known DB model_id로 resolve, 12th chart skip 유지).
+
 ### Session 12 cumulative deltas (verified from data/export/)
 - 신규 모델: **+2** (princeton/goedel-prover-v2-8b, deepmind/gemini-3-deep-think 활성화) — 일부는 이미 등록되어 있던 모델에 점수 추가
 - 신규 benchmarks: **+4** (cmo_2024, proofnet, imo_proofbench_basic, imo_proofbench_advanced)
-- 신규 scores: **+12** (1 Gemini MRCR + 11 PDF mining)
+- 신규 scores: **+115** (1 Gemini MRCR + 11 PDF mining + 103 AA detail pages)
 - model_id 통합 (cleanup): 3 → 1 Goedel-Prover-V2-32B canonical
 
-**Live deploy**: CI run `25705599966` 진행 중.
+**Live deploy**: CI run `25705599966` deploy 완료.
 
 ---
 
