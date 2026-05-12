@@ -29,7 +29,9 @@ var FrontierCompare = {
             'deepsearchqa', 'vending_bench_2', 'toolathlon',
             'android_world', 'qwen_web_bench', 'skills_bench', 'finance_agent',
             'apex_agents_hard', 'apex_shortlist',
-            'gaia2', 'claw_eval'
+            'gaia2', 'claw_eval',
+            // 2026-05-12 — DELEGATE-52 from arxiv 2604.15597 (Microsoft Research)
+            'delegate_52'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
