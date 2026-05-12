@@ -376,6 +376,62 @@ PDF mining과 병렬 dispatch한 AA detail pages subagent 결과. `https://artif
 
 **Live deploy**: CI run `25705599966` deploy 완료.
 
+### 29. Changelog UI 렌더 버그 수정 (commit `e5ac346`)
+
+User-flagged: "Changelog 메뉴에서 보이는 업데이트 목록이 최신순이 아니게 되었을까요?"
+
+**원인 진단** (`dashboard/js/app.js renderChangelog()`):
+1. **typeOrder 하드코딩 → 36 entries 숨김**: 원래 배열에 6 type만 (Deploy/Feature/PDF Analysis/Web Collection/Data Collection/SOTA). Session 11+12에서 사용한 `Data` (15), `Fix` (15), `Bugfix` (3), `Docs` (1), `Reference` (1), `Correction` (1) 모두 silent drop.
+2. **그룹 내 정렬 부재**: forEach가 file insertion order로 렌더 (오래된 것이 위).
+
+**수정**:
+- typeOrder 12 type으로 확장 + auto-append (`indexOf(t) === -1 → push`)
+- `groups[t].sort((a,b) => (b.date || '').localeCompare(a.date || ''))` 그룹별 date desc 정렬
+- 12 color theme 추가 (cyan/orange/slate/red/indigo 등)
+
+**Live 검증**: 281 entries 모두 12 sections로 렌더, 각 그룹 최상위 = 최신 날짜.
+
+### 30. May 2026 model release 점검 (commit `0f4394f`, subagent)
+
+User-prompted "GPT-5.5 Instant / Grok 4.20 / Kimi K2.6 paper / 최근 release 점검". Subagent 결과:
+
+**+12 새 scores** across 2 models:
+- **Kimi K2.6**: charxiv_reasoning_no_tools 80.4, charxiv_reasoning_tools 86.7, babyvision 39.8 (HF model card)
+- **DeepSeek V4 Flash High** variant: mmlu_pro 86.4, simpleqa_verified 28.9, chinese_simpleqa 73.2, gpqa_diamond 87.4, hle 29.4, livecodebench 88.4, hmmt_2026 91.9, imo_answerbench 85.1, apex_shortlist 72.1 (HF model card)
+
+**Attribution failures**:
+- **GPT-5.5 Instant**: OpenAI 비공개 — Instant 변형 별도 numeric table 없음
+- **Grok 4.20**: DB에 32 AA scores 이미 존재, xAI primary model card 없음, designforonline.com 등 third-party numbers는 reasoning variant 충돌로 skip
+- **Kimi K2.6 _python tools 변형**: schema가 tools-mode를 mmmu_pro/mathvision에 구분하지 않음 (charxiv는 explicit `_tools` / `_no_tools` 존재)
+
+### 31. Mythos cyber benchmarks + W9 widget refactor (commit `b684a34`)
+
+**Mythos cyber 5 benchmarks 등록**:
+- `oss_fuzz_tier12` — OSS-Fuzz tier 1+2 crashes (count)
+- `oss_fuzz_tier5` — Full control flow hijack (count)
+- `firefox_147_exploits` — Firefox 147 working exploits (count)
+- `vuln_severity_assessment_acc` — Vuln severity assessment accuracy
+- `tlo_steps_completed` — UK AISI TLO avg steps (out of 32)
+
+**+9 scores**: Mythos Preview 595/10/181/89/22 + Opus 4.6 175/16/2 + Sonnet 4.6 175. Sources: red.anthropic.com/2026/mythos-preview/ + AISI evaluation.
+
+**W9 Materials Yield widget refactor**:
+- 이전: scatter (X=MAE, Y=yield) — Y축 항상 0 (predictive vs generative 모델군 분리 → overlap 없음)
+- 신규: side-by-side bar chart (좌: Predictive F1, 우: Generative SUN%)
+- 좌: 7 predictive 모델 (chgnet, mace-mp-0, gnome, equiformer-v2, mattersim, orb-v2, orb-v3 등) F1 정렬
+- 우: 3 generative 모델 (MatterGen 38.57 / CDVAE 13.99 / DiffCSP 12.71) SUN% 정렬
+- 도구설명: 모델 ID + (F1+MAE) 또는 SUN%
+
+### Session 12 final cumulative deltas
+- 신규 모델: +2 (princeton/goedel-prover-v2-8b 등)
+- 신규 benchmarks: **+9** (cmo_2024, proofnet, imo_proofbench_basic, imo_proofbench_advanced + oss_fuzz_tier12/tier5, firefox_147_exploits, vuln_severity_assessment_acc, tlo_steps_completed)
+- 신규 scores: **+136** (1 Gemini MRCR + 11 PDF mining + 103 AA detail + 12 May release + 9 Mythos cyber)
+- model_id cleanup: 3 Goedel-Prover-V2-32B → 1 canonical
+- Bug fixes: Changelog UI typeOrder (36 hidden entries restored) + W9 widget data fit
+- 새 메모리: 3개 (changelog typeOrder, AA detail page redundancy, AAII subscore charts)
+
+**Live deploy verified**: 모든 CI run 완료, e5ac346 (changelog fix) 시점에서 281 entries 모두 12 sections로 렌더링 확인.
+
 ---
 
 ## 2026-05-09 (Session 10): Sovereign AI menu widget expansion — 6 NEW widgets (11 tasks, 11 commits)
