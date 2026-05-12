@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-12",
+    "_note": "Deep-mined paper PDFs already in resource/: (1) DeepSeek-Math-V2 arxiv 2511.22570, (2) Goedel-Prover-V2 arxiv 2508.03613, (3) DeepSeek-Prover-V2 arxiv 2504.21801. Strict primary-source attribution — every (model, benchmark, value) triple is explicitly stated in the original paper. New benchmarks: cmo_2024, proofnet, imo_proofbench_basic, imo_proofbench_advanced. Existing benchmark imo_2025 reuses 35/42 = 83.3% IMO scoring for DeepSeekMath-V2 (matches Gemini Deep Think entry).",
+    "sources": [
+      "https://arxiv.org/abs/2511.22570",
+      "https://arxiv.org/abs/2508.03613",
+      "https://arxiv.org/abs/2504.21801"
+    ]
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "cmo_2024",
+      "name": "CMO 2024 (China Mathematical Olympiad)",
+      "category": "math",
+      "metric": "percent",
+      "description": "China Mathematical Olympiad 2024 — 6 proof-based problems, 42-point scale (7 per problem). Gold-medal cutoff ~21/42. Reported by DeepSeekMath-V2 paper (arxiv 2511.22570)."
+    },
+    {
+      "id": "proofnet",
+      "name": "ProofNet (Lean 4 test split)",
+      "category": "math",
+      "metric": "pass_rate",
+      "description": "186 undergraduate-level theorem proving problems in Lean 4 (real/complex analysis, linear algebra, abstract algebra, topology). Test split per DeepSeek-Prover-V2 paper."
+    },
+    {
+      "id": "imo_proofbench_basic",
+      "name": "IMO-ProofBench Basic",
+      "category": "math",
+      "metric": "percent",
+      "description": "DeepMind IMO-ProofBench Basic set — 30 problems at pre-IMO to IMO-Medium difficulty, expert-graded human evaluation. Introduced by Luong et al. 2025 (EMNLP)."
+    },
+    {
+      "id": "imo_proofbench_advanced",
+      "name": "IMO-ProofBench Advanced",
+      "category": "math",
+      "metric": "percent",
+      "description": "DeepMind IMO-ProofBench Advanced set — 30 challenging problems simulating complete IMO examinations up to IMO-Hard level. Expert-graded."
+    }
+  ],
+  "scores": [
+    {
+      "model": "deepseek/deepseek-math-v2",
+      "benchmark": "imo_2025",
+      "score": 35.0,
+      "unit": "/42",
+      "_source": "https://arxiv.org/abs/2511.22570",
+      "_note": "DeepSeekMath-V2 Table 1: IMO 2025 P1,P2,P3,P4,P5 fully solved = 83.3% = 35/42 (gold-medal). Same scoring as Gemini Deep Think entry."
+    },
+    {
+      "model": "deepseek/deepseek-math-v2",
+      "benchmark": "cmo_2024",
+      "score": 73.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2511.22570",
+      "_note": "DeepSeekMath-V2 Table 1: CMO 2024 = 73.8% — solved P1,P2,P4,P5,P6 with partial credit on one. Gold-medal performance."
+    },
+    {
+      "model": "deepseek/deepseek-math-v2",
+      "benchmark": "imo_proofbench_basic",
+      "score": 99.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2511.22570",
+      "_note": "DeepSeekMath-V2 (Heavy) on IMO-ProofBench Basic = 99.0% per Figure 3 (expert evaluation), outperforming DeepMind DeepThink IMO Gold (89.0%) and Gemini Deep Think IMO lite (83.8%)."
+    },
+    {
+      "model": "deepseek/deepseek-math-v2",
+      "benchmark": "imo_proofbench_advanced",
+      "score": 61.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2511.22570",
+      "_note": "DeepSeekMath-V2 (Heavy) on IMO-ProofBench Advanced = 61.9% per Figure 3 (expert eval). Beats GPT-5 (37.6%), Gemini Deep Think IMO lite (24.8%), and Gemini Deep Think IMO Gold (65.7% — also DeepMind's highest)."
+    },
+    {
+      "model": "princeton/goedel-prover-v2-32b",
+      "benchmark": "minif2f",
+      "score": 90.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2508.03613",
+      "_note": "Goedel-Prover-V2-32B Table 2: MiniF2F pass@32 with self-correction = 90.4% (88.1% without self-correction). Outperforms DeepSeek-Prover-V2-671B (82.4% pass@32) and Kimina-Prover-72B (84.0% pass@32)."
+    },
+    {
+      "model": "princeton/goedel-prover-v2-8b",
+      "benchmark": "minif2f",
+      "score": 86.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2508.03613",
+      "_note": "Goedel-Prover-V2-8B Table 2: MiniF2F pass@32 with self-correction = 86.7% (84.6% without). Despite 80x smaller, outperforms DeepSeek-Prover-V2-671B (82.4% pass@32)."
+    },
+    {
+      "model": "deepseek/deepseek-prover-v2-671b",
+      "benchmark": "minif2f",
+      "score": 88.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2504.21801",
+      "_note": "DeepSeek-Prover-V2-671B (CoT) Table 1: MiniF2F-test pass@8192 = 88.9% (82.4% pass@32). Previous SOTA for whole-proof generation before Goedel-Prover-V2."
+    },
+    {
+      "model": "deepseek/deepseek-prover-v2-7b",
+      "benchmark": "minif2f",
+      "score": 82.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2504.21801",
+      "_note": "DeepSeek-Prover-V2-7B (CoT) Table 1: MiniF2F-test pass@8192 = 82.0% (75.6% pass@32)."
+    },
+    {
+      "model": "deepseek/deepseek-prover-v2-671b",
+      "benchmark": "proofnet",
+      "score": 37.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2504.21801",
+      "_note": "DeepSeek-Prover-V2-671B (CoT) Table 4: ProofNet-test pass@1024 = 37.1% (30.5% pass@32). Strong generalization from high-school training to college-level theorem proving."
+    },
+    {
+      "model": "deepseek/deepseek-prover-v2-7b",
+      "benchmark": "proofnet",
+      "score": 29.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2504.21801",
+      "_note": "DeepSeek-Prover-V2-7B (CoT) Table 4: ProofNet-test pass@1024 = 29.6% (23.0% pass@32)."
+    },
+    {
+      "model": "deepseek/deepseek-prover-v2-7b",
+      "benchmark": "putnambench",
+      "score": 1.67,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2504.21801",
+      "_note": "DeepSeek-Prover-V2-7B (CoT) Table 4: PutnamBench pass@1024 = 11/658 = 1.67%."
+    }
+  ]
+}
