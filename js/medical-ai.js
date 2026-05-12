@@ -1793,10 +1793,14 @@ var MedicalAI = {
     },
 
     _subColsForMonth: function(n) {
-        if (n <= 6) return 1;
-        if (n <= 12) return 2;
-        if (n <= 18) return 3;
-        return 4;
+        if (n <= 5) return 1;
+        if (n <= 10) return 2;
+        if (n <= 15) return 3;
+        if (n <= 20) return 4;
+        if (n <= 28) return 5;
+        if (n <= 36) return 6;
+        if (n <= 48) return 7;
+        return 8;
     },
 
     _renderTimelineInfographic: function() {
@@ -1804,7 +1808,7 @@ var MedicalAI = {
         if (!host) return;
         host.textContent = '';
 
-        var MONTHS_BACK = 12;
+        var MONTHS_BACK = 6;
         var buckets = this._bucketMedicalByMonth(MONTHS_BACK);
         // Drop empty trailing buckets at left to compact view? Keep all for consistency.
 
@@ -1821,7 +1825,7 @@ var MedicalAI = {
         var PAD_LEFT = 40, PAD_RIGHT = 40, PAD_TOP = 90, PAD_BOTTOM = 80;
         var HEADER_PILL_H = 28, HEADER_GAP = 8;
         var AXIS_GAP = 36;
-        var CARD_W_BASE = 280, CARD_H = 84, SUBCOL_GAP = 6, CARD_GAP = 8;
+        var CARD_W_BASE = 220, CARD_H = 80, SUBCOL_GAP = 6, CARD_GAP = 8;
         var COL_GAP = 14;
 
         // Compute sub-columns per bucket + width
