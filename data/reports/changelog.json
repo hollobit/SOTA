@@ -2527,5 +2527,32 @@
     "new_value": "+103 scores. DB total moved from 5206 to 5309 per loader output (note: actual unique counts lower per feedback_loader_counts_misleading rule).",
     "old_model": "",
     "old_value": ""
+  },
+  {
+    "type": "Fix",
+    "date": "2026-05-12",
+    "benchmark_id": "Changelog UI render — typeOrder exhaustive + group date desc sort (commit e5ac346)",
+    "new_model": "User-flagged: Changelog menu list not in newest-first order. Root cause analysis: dashboard/js/app.js renderChangelog() had hardcoded typeOrder = ['Deploy','Feature','PDF Analysis','Web Collection','Data Collection','SOTA'] which silently dropped 36 entries with new types ('Data' 15, 'Fix' 15, 'Bugfix' 3, 'Docs' 1, 'Reference' 1, 'Correction' 1) — all Session 11+12 entries used these. Plus forEach rendered entries in file insertion order, not date-descending. Fix: extended typeOrder to 12 + auto-append unknown types via indexOf check; added groups[t].sort by date descending. New memory feedback_changelog_render_typeorder.md prevents recurrence.",
+    "new_value": "All 281 entries render across 12 sections (was 6 before fix). Cache-bust app.js v=20260510i → 20260512b.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-12",
+    "benchmark_id": "May 2026 release check — Kimi K2.6 vision + DeepSeek V4 Flash High (commit 0f4394f, subagent)",
+    "new_model": "Subagent dispatched for May 2026 model release check (GPT-5.5 Instant, Grok 4.20, Kimi K2.6 paper, recent releases). Verified primary sources from huggingface.co/moonshotai/Kimi-K2.6 + huggingface.co/deepseek-ai/DeepSeek-V4-Flash. +3 vision scores Kimi K2.6 (charxiv_reasoning_no_tools 80.4 / charxiv_reasoning_tools 86.7 / babyvision 39.8). +9 scores DeepSeek V4 Flash High variant (mmlu_pro 86.4 / simpleqa_verified 28.9 / chinese_simpleqa 73.2 / gpqa_diamond 87.4 / hle 29.4 / livecodebench 88.4 / hmmt_2026 91.9 / imo_answerbench 85.1 / apex_shortlist 72.1). Skipped: GPT-5.5 Instant (OpenAI undisclosed Instant-variant numbers), Grok 4.20 (DB already has 32 AA scores; designforonline.com third-party numbers conflict with reasoning-variant convention), Kimi K2.6 _python tools-mode variants (schema doesn't distinguish for mmmu_pro/mathvision benchmark IDs).",
+    "new_value": "+12 scores. DB models 1259 → 1259, benchmarks 902 → 902 (no new), scores 4672 → 4684. Validation passed.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-12",
+    "benchmark_id": "Mythos cyber benchmarks (5 new) + W9 widget refactor (commit b684a34)",
+    "new_model": "Two-part. (1) Anthropic Claude Mythos Preview red team report (red.anthropic.com/2026/mythos-preview/) + UK AISI external evaluation — register 5 Mythos-specific cyber benchmarks: oss_fuzz_tier12 (OSS-Fuzz tier 1+2 crash count), oss_fuzz_tier5 (full control flow hijack count), firefox_147_exploits (Firefox 147 working exploits developed, count), vuln_severity_assessment_acc (vuln severity assessment accuracy %), tlo_steps_completed (UK AISI TLO avg steps out of 32). Ingest 9 scores: Mythos Preview 595/10/181/89/22 across the 5 benches + Opus 4.6 baselines (175 OSS-Fuzz / 16 TLO steps / 2 Firefox exploits) + Sonnet 4.6 (175 OSS-Fuzz). (2) W9 Materials Yield widget refactor — previous MAE×yield scatter always Y=0 because no model has both metrics (predictive ML vs generative diffusion are separate evaluation regimes). Refactored to side-by-side bar charts: LEFT predictive (7 models on Matbench Discovery F1, sorted desc), RIGHT generative (3 models on MatterGen-style SUN yield %, sorted desc). Cache-bust ai4s-charts.js v=20260512a → 20260512b.",
+    "new_value": "+5 benchmark registrations, +9 scores. DB benchmarks 902 → 907. W9 widget visual completeness fixed.",
+    "old_model": "",
+    "old_value": ""
   }
 ]

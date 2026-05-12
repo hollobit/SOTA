@@ -3899,6 +3899,126 @@
     "collected_at": "2026-05-10",
     "notes": "HF model card — Elastic-30B LiveCodeBench v5 = 72.70."
   },
+  "charxiv_reasoning_no_tools": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "charxiv_reasoning_no_tools",
+    "value": 86.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026",
+      "date": "2026-04-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-28",
+    "notes": "+24.6 over Opus 4.6"
+  },
+  "charxiv_reasoning_tools": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "charxiv_reasoning_tools",
+    "value": 93.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026",
+      "date": "2026-04-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-28",
+    "notes": "+14.3 over Opus 4.6"
+  },
+  "babyvision": {
+    "model_id": "moonshot/kimi-k2.6",
+    "benchmark_id": "babyvision",
+    "value": 39.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+      "date": "2026-05-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-10",
+    "notes": "Kimi K2.6 model card vision benchmarks table — BabyVision = 39.8"
+  },
+  "oss_fuzz_tier12": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "oss_fuzz_tier12",
+    "value": 595.0,
+    "unit": "count",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://red.anthropic.com/2026/mythos-preview/",
+      "date": "2026-05-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-12",
+    "notes": "Mythos Preview achieved 595 crashes at tiers 1 and 2 on OSS-Fuzz benchmark (vs Sonnet 4.6 and Opus 4.6 ~150-175 cases at tier 1)."
+  },
+  "oss_fuzz_tier5": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "oss_fuzz_tier5",
+    "value": 10.0,
+    "unit": "count",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://red.anthropic.com/2026/mythos-preview/",
+      "date": "2026-05-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-12",
+    "notes": "Mythos Preview achieved full control flow hijack on 10 separate fully-patched targets (tier 5). Previous models (Sonnet 4.6, Opus 4.6) achieved 1 each."
+  },
+  "firefox_147_exploits": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "firefox_147_exploits",
+    "value": 181.0,
+    "unit": "count",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://red.anthropic.com/2026/mythos-preview/",
+      "date": "2026-05-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-12",
+    "notes": "Mythos Preview developed working exploits 181 times from Firefox 147 JS engine vulnerabilities (plus 29 register-control). Opus 4.6 achieved only 2 of several hundred attempts."
+  },
+  "vuln_severity_assessment_acc": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "vuln_severity_assessment_acc",
+    "value": 89.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://red.anthropic.com/2026/mythos-preview/",
+      "date": "2026-05-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-12",
+    "notes": "89% exact agreement with expert contractors on 198 manually-reviewed vulnerability reports. 98% within one severity level."
+  },
+  "tlo_steps_completed": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "tlo_steps_completed",
+    "value": 22.0,
+    "unit": "score_32",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities",
+      "date": "2026-05-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-12",
+    "notes": "Mythos Preview averaged 22 of 32 steps across all 10 attempts on UK AISI 'The Last Ones' (TLO) corporate network attack simulation. First model to complete all 32 steps (3 of 10 attempts)."
+  },
   "imo_2025": {
     "model_id": "deepseek/deepseek-math-v2",
     "benchmark_id": "imo_2025",
@@ -8159,36 +8279,6 @@
     "collected_at": "2026-04-28",
     "notes": "Long-context 256K-1M — Opus 4.6 38.7, GPT-5.4 21.4"
   },
-  "charxiv_reasoning_no_tools": {
-    "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "charxiv_reasoning_no_tools",
-    "value": 86.1,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026",
-      "date": "2026-04-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-28",
-    "notes": "+24.6 over Opus 4.6"
-  },
-  "charxiv_reasoning_tools": {
-    "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "charxiv_reasoning_tools",
-    "value": 93.2,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026",
-      "date": "2026-04-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-28",
-    "notes": "+14.3 over Opus 4.6"
-  },
   "ossfuzz_tier1_2_crashes": {
     "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "ossfuzz_tier1_2_crashes",
@@ -10413,21 +10503,6 @@
     "model_id": "lg/exaone-4.5-33b",
     "benchmark_id": "logicvista",
     "value": 73.8,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
-      "date": "2026-05-03",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-03",
-    "notes": ""
-  },
-  "babyvision": {
-    "model_id": "lg/exaone-4.5-33b",
-    "benchmark_id": "babyvision",
-    "value": 18.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
