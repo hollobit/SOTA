@@ -2500,5 +2500,23 @@
     "new_value": "Live data unchanged. Documentation accuracy restored. README 1869→1259 models / 956→900 benchmarks / 5194→4672 scores.",
     "old_model": "",
     "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-12",
+    "benchmark_id": "Ref-link inline check (commit 8734b33)",
+    "new_model": "User-prompted ref-link investigation. Quick web search + WebFetch verification of frontier models against DB. Findings: Gemini 3.1 Pro had 1 missing benchmark — MRCR v2 84.9% added (Google DeepMind official model card). Other Gemini 3.1 Pro scores (GPQA 94.3 / MMLU-Pro 91.0 / HLE 44.4 / ARC-AGI-2 77.1 / SWE-Bench 80.6 / MMMU-Pro 80.5 / Terminal-Bench 68.5 / MMMLU 92.6) already in DB from prior sweeps. DeepSeek V4 Pro Max also fully covered (MMLU-Pro 87.5 / GPQA 90.1 / HLE 37.7 / SWE 80.6 / LiveCodeBench 93.5). Claude Mythos Preview cyber benchmarks (cybench 100 / cybergym 83.1 / firefox_147 84.0 / tlo_cyber_range 68.8 / uk_aisi_narrow_cyber 92.5 / aisi_advanced_expert_avg 68.6) all already present. Verification confirms Session 11 ECI/AAII bulk + AISI ingest was comprehensive.",
+    "new_value": "+1 score (Gemini 3.1 Pro × MRCR v2 = 84.9%). Inline check completed in parallel with 2 subagents doing heavy research (AA detail pages + PDF deep mining).",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-12",
+    "benchmark_id": "PDF deep mining for math/proof specialists (commits fec77dd + 326aa00)",
+    "new_model": "Subagent deep-mined 6 archived paper PDFs from resource/ for benchmark scores beyond what was already in DB. 4 new benchmarks registered: cmo_2024 (China Mathematical Olympiad 2024), proofnet (ProofNet Lean 4 test split), imo_proofbench_basic + imo_proofbench_advanced (DeepMind IMO-ProofBench). 11 new scores ingested across DeepSeekMath-V2 / Goedel-Prover-V2 (32B + 8B) / DeepSeek-Prover-V2 (671B + 7B). Highlights: DeepSeekMath-V2 IMO 2025 35/42 gold-medal + IMO-ProofBench Basic 99.0% / Advanced 61.9% / CMO 2024 73.8%; Goedel-Prover-V2-32B MiniF2F 90.4%, 8B 86.7%; DeepSeek-Prover-V2-671B MiniF2F 88.9% + ProofNet 37.1%, 7B MiniF2F 82.0% + ProofNet 29.6% + PutnamBench 1.67%. Strict-attribution skips: Rosetta Stone IRT capability values (overlap with ECI), MatterGen RMSD/stability sub-metrics (no baselines), AlphaProof IMO 2024 silver (no specific % published). Sources: arxiv 2511.22570 / 2508.03613 / 2504.21801 — all PDFs in resource/. Cleanup: 3 Goedel-Prover-V2-32B duplicate model_ids consolidated to canonical goedel-lm/goedel-prover-v2-32b (per Goedel-LM HuggingFace org); 3 resource/*.json files patched + sqlite DELETE + reload. princeton/goedel-prover-v2-8b kept as separate 8B variant.",
+    "new_value": "+4 benchmarks (cmo_2024 / proofnet / imo_proofbench_basic / imo_proofbench_advanced), +11 scores, model_id deduplication. W3 widget _SPECIALIST_IDS_FOR_W3 expanded to 8 specialists. Frontier Compare math category: +6 columns (22 total math benchmarks). Cache-bust frontier-compare.js v=20260511a → 20260512a, ai4s-charts.js v=20260510a → 20260512a.",
+    "old_model": "",
+    "old_value": ""
   }
 ]

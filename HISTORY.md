@@ -285,6 +285,72 @@ User-prompted "1,2,3,4,5,6" — 6개 follow-up 항목 일괄 처리.
 
 ---
 
+## 2026-05-12 (Session 12): Ref-link 조사 + PDF deep mining + Goedel dedup
+
+User-prompted: "참조 링크들을 조사해 새로운 모델, 벤치마크 데이터셋, 평가 결과로 추가할 내용".
+
+### 26. Inline ref-link check (commit `8734b33`)
+
+웹 검색 + WebFetch로 frontier 모델들의 ref link 빠른 검증:
+- **Gemini 3.1 Pro**: GPQA 94.3 / MMLU-Pro 91.0 / HLE 44.4 / ARC-AGI-2 77.1 / SWE-Bench 80.6 / MMMU-Pro 80.5 / Terminal-Bench 68.5 / MMMLU 92.6 모두 DB에 이미 존재. **MRCR v2 84.9% 만 누락 → +1 score 추가** (Google DeepMind 공식 model card 출처).
+- **DeepSeek V4 Pro Max**: MMLU-Pro 87.5 / GPQA 90.1 / HLE 37.7 / SWE 80.6 / LiveCodeBench 93.5 — 모두 DB에 존재.
+- **Kimi K2.6**: GPQA 90.5 존재. MMLU-Pro 87.1 (다른 출처 84.6과 다름, 덮어쓰기 skip).
+- **Claude Mythos Preview**: cybench 100 / cybergym 83.1 / firefox_147 84.0 / tlo_cyber_range 68.8 / uk_aisi_narrow_cyber 92.5 / aisi_advanced_expert_avg 68.6 — 모두 DB에 존재.
+
+**효과 확인**: Session 11 ECI/AAII bulk + AISI evaluation ingest로 frontier 모델 coverage가 이미 포화. ref-link 1차 source 추가 검색은 marginal yield.
+
+### 27. PDF deep mining (commits `fec77dd` + `326aa00`)
+
+이전 세션에 archive한 6개 PDF에서 누락된 benchmark 점수 deep mining (subagent 실행):
+
+**+4 새 benchmarks 등록**:
+- `cmo_2024` — China Mathematical Olympiad 2024 (math, percent)
+- `proofnet` — ProofNet Lean 4 test split (math, pass_rate)
+- `imo_proofbench_basic` — DeepMind IMO-ProofBench Basic (math, percent)
+- `imo_proofbench_advanced` — DeepMind IMO-ProofBench Advanced (math, percent)
+
+**+11 새 scores**:
+
+| Model | Benchmark | Score | Source |
+|---|---|---:|---|
+| DeepSeekMath-V2 | imo_2025 | 35/42 (gold) | arxiv 2511.22570 |
+| DeepSeekMath-V2 | cmo_2024 | 73.8% | arxiv 2511.22570 |
+| DeepSeekMath-V2 | imo_proofbench_basic | 99.0% | arxiv 2511.22570 |
+| DeepSeekMath-V2 | imo_proofbench_advanced | 61.9% | arxiv 2511.22570 |
+| Goedel-Prover-V2-32B | minif2f | 90.4% | arxiv 2508.03613 |
+| Goedel-Prover-V2-8B | minif2f | 86.7% | arxiv 2508.03613 |
+| DeepSeek-Prover-V2-671B | minif2f | 88.9% | arxiv 2504.21801 |
+| DeepSeek-Prover-V2-7B | minif2f | 82.0% | arxiv 2504.21801 |
+| DeepSeek-Prover-V2-671B | proofnet | 37.1% | arxiv 2504.21801 |
+| DeepSeek-Prover-V2-7B | proofnet | 29.6% | arxiv 2504.21801 |
+| DeepSeek-Prover-V2-7B | putnambench | 1.67% (11/658) | arxiv 2504.21801 |
+
+**Strict-attribution skips**:
+- Rosetta Stone capability values (Table 1: IRT-style aggregate fits, ECI과 conceptually 중복 — skip)
+- MatterGen sub-metrics (RMSD / stability — 비교 가능성 부족, headline은 SUN yield 38.57이 이미 capture)
+- AlphaProof IMO 2024 silver (구체 % 없음)
+
+**Cleanup — Goedel-Prover-V2-32B 중복 model_id 통합**:
+- 발견: `goedel/goedel-prover-v2` (commit a20bd96) + `princeton/goedel-prover-v2-32b` (subagent fec77dd) + `goedel-lm/goedel-prover-v2-32b` (subagent fec77dd) 3개 ID가 동일 모델 가리킴
+- 통합 → `goedel-lm/goedel-prover-v2-32b` (canonical per Goedel-LM HuggingFace org)
+- 3개 resource/*.json 파일 patches; sqlite DELETE + 통합
+- `princeton/goedel-prover-v2-8b`는 별도 8B 변형이므로 유지
+
+**UI propagation** (commit `326aa00`):
+- W3 widget `_SPECIALIST_IDS_FOR_W3`: 8개 specialists로 확장 (gemini-3-deep-think 포함, IMO 2025 35/42)
+- Frontier Compare math 카테고리: +6 컬럼 (imo_2025, minif2f, proofnet, imo_proofbench_basic, imo_proofbench_advanced, cmo_2024) — 총 22개 math benchmarks
+- Cache-bust frontier-compare.js v=20260511a → 20260512a, ai4s-charts.js v=20260510a → 20260512a
+
+### Session 12 cumulative deltas (verified from data/export/)
+- 신규 모델: **+2** (princeton/goedel-prover-v2-8b, deepmind/gemini-3-deep-think 활성화) — 일부는 이미 등록되어 있던 모델에 점수 추가
+- 신규 benchmarks: **+4** (cmo_2024, proofnet, imo_proofbench_basic, imo_proofbench_advanced)
+- 신규 scores: **+12** (1 Gemini MRCR + 11 PDF mining)
+- model_id 통합 (cleanup): 3 → 1 Goedel-Prover-V2-32B canonical
+
+**Live deploy**: CI run `25705599966` 진행 중.
+
+---
+
 ## 2026-05-09 (Session 10): Sovereign AI menu widget expansion — 6 NEW widgets (11 tasks, 11 commits)
 
 ### 16. Sovereign AI 위젯 확충 (commits `55db2d9` → `6cbc145`)
