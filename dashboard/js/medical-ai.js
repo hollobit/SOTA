@@ -1818,11 +1818,10 @@ var MedicalAI = {
         if (!host) return;
         host.textContent = '';
 
-        // Default 36 months — captures all 211 medical models with date (most are 2023+).
-        // Selector below allows user to pick 12/24/36/60/all months.
+        // Window selector — 3 / 6 / 12 months (default 12)
         var monthsSel = document.getElementById('med-ti-months');
-        var sel = monthsSel ? monthsSel.value : '36';
-        var MONTHS_BACK = sel === 'all' ? 90 : parseInt(sel, 10);
+        var sel = monthsSel ? monthsSel.value : '12';
+        var MONTHS_BACK = parseInt(sel, 10);
         var buckets = this._bucketMedicalByMonth(MONTHS_BACK);
         // Drop empty trailing buckets at left to compact view? Keep all for consistency.
 
