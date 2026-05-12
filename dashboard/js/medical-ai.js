@@ -840,6 +840,14 @@ var MedicalAI = {
                 btn.addEventListener('click', function() { self._downloadTimelineInfographic(fmt); });
             }
         });
+        // Wire window selector
+        var tiMonths = document.getElementById('med-ti-months');
+        if (tiMonths && !tiMonths._wired) {
+            tiMonths._wired = true;
+            tiMonths.addEventListener('change', function() {
+                self._renderTimelineInfographic();
+            });
+        }
         if (typeof MedicalAICharts !== 'undefined' && MedicalAICharts.renderAll) {
             MedicalAICharts.renderAll();
         }
@@ -1774,7 +1782,9 @@ var MedicalAI = {
 
         this._models.forEach(function(model) {
             if (!medicalIds[model.id]) return;
-            var date = model.release_date;
+            // Use release_date OR released_at — both formats appear in metadata
+            // (release_date covers 65 medical models; released_at covers 207).
+            var date = model.release_date || model.released_at;
             if (!date) return;
             var ym = String(date).slice(0, 7);
             if (!(ym in ymIdx)) return;
@@ -1808,7 +1818,11 @@ var MedicalAI = {
         if (!host) return;
         host.textContent = '';
 
-        var MONTHS_BACK = 6;
+        // Default 36 months — captures all 211 medical models with date (most are 2023+).
+        // Selector below allows user to pick 12/24/36/60/all months.
+        var monthsSel = document.getElementById('med-ti-months');
+        var sel = monthsSel ? monthsSel.value : '36';
+        var MONTHS_BACK = sel === 'all' ? 90 : parseInt(sel, 10);
         var buckets = this._bucketMedicalByMonth(MONTHS_BACK);
         // Drop empty trailing buckets at left to compact view? Keep all for consistency.
 
