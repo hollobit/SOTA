@@ -619,11 +619,14 @@
   ];
   var _SPECIALIST_IDS_FOR_W3 = [
     // Math specialists — scored on PutnamBench (Lean theorem proving)
-    'deepseek/deepseek-math-v2',           // 98.33% Putnam 2024
-    'deepseek/deepseek-prover-v2-671b',    // 7.45% PutnamBench
-    'goedel/goedel-prover-v2',             // 13.03% PutnamBench
-    'deepseek/deepseek-prover-v2-7b',
-    'deepmind/alphaproof', 'deepmind/alphageometry-2'
+    // + MiniF2F (Olympiad theorem prove) + ProofNet + IMO-ProofBench
+    'deepseek/deepseek-math-v2',           // Putnam 2024 98.33% / IMO 2025 35/42 / IMO-ProofBench-Basic 99
+    'deepseek/deepseek-prover-v2-671b',    // PutnamBench 7.45 / MiniF2F 88.9 / ProofNet 37.1
+    'deepseek/deepseek-prover-v2-7b',      // MiniF2F 82.0 / ProofNet 29.6 / PutnamBench 1.67
+    'goedel-lm/goedel-prover-v2-32b',      // MiniF2F 90.4 / PutnamBench 13.03
+    'princeton/goedel-prover-v2-8b',       // MiniF2F 86.7
+    'deepmind/alphaproof', 'deepmind/alphageometry-2',  // IMO 2024 silver (qualitative)
+    'deepmind/gemini-3-deep-think'          // IMO 2025 35/42
   ];
 
   function _avgScoreForGroup(modelIds, benchmarkId) {
