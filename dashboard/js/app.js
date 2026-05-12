@@ -2665,20 +2665,41 @@ var App = {
         // Group by type
         var groups = {};
         this.data.changelog.forEach(function(c) {
-            var type = c.type;
+            var type = c.type || 'Other';
             if (!groups[type]) groups[type] = [];
             groups[type].push(c);
         });
 
-        var typeOrder = ['Deploy', 'Feature', 'PDF Analysis', 'Web Collection', 'Data Collection', 'SOTA'];
+        // Sort each group by date descending (newest first)
+        Object.keys(groups).forEach(function(t) {
+            groups[t].sort(function(a, b) {
+                return (b.date || '').localeCompare(a.date || '');
+            });
+        });
+
+        // Type order — known types first, then any unknown types alphabetically
+        var typeOrder = ['Deploy', 'Feature', 'Data', 'Fix', 'Bugfix', 'Docs', 'Correction',
+                         'PDF Analysis', 'Web Collection', 'Data Collection', 'Reference', 'SOTA'];
         var typeColors = {
             'Deploy': 'bg-green-900 text-green-300',
             'Feature': 'bg-blue-900 text-blue-300',
+            'Data': 'bg-cyan-900 text-cyan-300',
+            'Fix': 'bg-orange-900 text-orange-300',
+            'Bugfix': 'bg-orange-900 text-orange-300',
+            'Docs': 'bg-slate-700 text-slate-300',
+            'Correction': 'bg-red-900 text-red-300',
             'PDF Analysis': 'bg-purple-900 text-purple-300',
             'Web Collection': 'bg-yellow-900 text-yellow-300',
             'Data Collection': 'bg-gray-700 text-gray-300',
-            'SOTA': 'bg-emerald-900 text-emerald-300'
+            'Reference': 'bg-indigo-900 text-indigo-300',
+            'SOTA': 'bg-emerald-900 text-emerald-300',
+            'Other': 'bg-gray-800 text-gray-400'
         };
+
+        // Auto-append any types not in typeOrder (e.g. future-added types)
+        Object.keys(groups).forEach(function(t) {
+            if (typeOrder.indexOf(t) === -1) typeOrder.push(t);
+        });
 
         typeOrder.forEach(function(type) {
             var items = groups[type];
