@@ -1804,7 +1804,7 @@ var MedicalAI = {
         if (!host) return;
         host.textContent = '';
 
-        var MONTHS_BACK = 24;
+        var MONTHS_BACK = 12;
         var buckets = this._bucketMedicalByMonth(MONTHS_BACK);
         // Drop empty trailing buckets at left to compact view? Keep all for consistency.
 
