@@ -1,0 +1,1391 @@
+{
+  "_meta": {
+    "date": "2026-05-13",
+    "title": "Sovereign AI sweep — 13 countries researched in parallel via 6 subagents",
+    "regions_covered": [
+      "Japan",
+      "Switzerland",
+      "Canada",
+      "Australia",
+      "Germany",
+      "Korea-recent",
+      "India-recent",
+      "Singapore-recent",
+      "France-recent",
+      "UAE-recent",
+      "Russia-recent"
+    ],
+    "rule": "STRICT-ATTRIBUTION — only models with primary-source URLs (vendor blog / HF model card / arxiv) registered. Scores only when paper or HF card shows explicit (model, benchmark, value) triple. Quantized variants (FP8/AWQ/GGUF) of already-registered base models omitted to avoid duplication."
+  },
+  "models": [
+    {
+      "_section": "=== SWITZERLAND — Apertus (Swiss AI Initiative: ETH Zurich + EPFL + CSCS) ===",
+      "id": "swiss-ai/apertus-8b",
+      "vendor": "Swiss AI Initiative",
+      "name": "Apertus 8B (Base)",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Switzerland",
+      "released_at": "2025-09-17",
+      "_note": "ETH Zurich + EPFL + Swiss National Supercomputing Centre (CSCS); trained on Alps supercomputer (4,096 GPUs); 15T tokens; 1,811 languages incl. Swiss German + Romansh; 65,536 context; Apache 2.0; arxiv 2509.14233. Used as backbone for AI Singapore SEA-LION v4 8B.",
+      "_sources": [
+        "https://huggingface.co/swiss-ai/Apertus-8B-2509",
+        "https://arxiv.org/abs/2509.14233"
+      ]
+    },
+    {
+      "id": "swiss-ai/apertus-8b-instruct",
+      "vendor": "Swiss AI Initiative",
+      "name": "Apertus 8B Instruct",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Switzerland",
+      "released_at": "2025-09-17",
+      "_sources": [
+        "https://huggingface.co/swiss-ai/Apertus-8B-Instruct-2509"
+      ]
+    },
+    {
+      "id": "swiss-ai/apertus-70b",
+      "vendor": "Swiss AI Initiative",
+      "name": "Apertus 70B (Base)",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Switzerland",
+      "released_at": "2025-09-17",
+      "_note": "HF card lists 71B params. Apache 2.0.",
+      "_sources": [
+        "https://huggingface.co/swiss-ai/Apertus-70B-2509"
+      ]
+    },
+    {
+      "id": "swiss-ai/apertus-70b-instruct",
+      "vendor": "Swiss AI Initiative",
+      "name": "Apertus 70B Instruct",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Switzerland",
+      "released_at": "2025-09-17",
+      "_sources": [
+        "https://huggingface.co/swiss-ai/Apertus-70B-Instruct-2509"
+      ]
+    },
+    {
+      "_section": "=== GERMANY — OpenGPT-X Teuken + Aleph Alpha TFree-HAT ===",
+      "id": "opengpt-x/teuken-7b-instruct-v0.6",
+      "vendor": "OpenGPT-X (Fraunhofer IAIS/IIS + Jülich + TU Dresden + DFKI)",
+      "name": "Teuken 7B Instruct v0.6",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Germany",
+      "released_at": "2025-07-28",
+      "_note": "EU sovereign LLM trained from scratch on 6T tokens across all 24 official EU languages. CC-BY-NC-4.0. Project Teuken ended 2025-03-31; participants rolled into OpenEuroLLM consortium.",
+      "_sources": [
+        "https://huggingface.co/openGPT-X/Teuken-7B-instruct-v0.6",
+        "https://www.iais.fraunhofer.de/en/press-events/press-releases/press-release-241126.html"
+      ]
+    },
+    {
+      "id": "opengpt-x/teuken-7b-base-v0.6",
+      "vendor": "OpenGPT-X",
+      "name": "Teuken 7B Base v0.6",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Germany",
+      "released_at": "2025-07-28",
+      "_sources": [
+        "https://huggingface.co/openGPT-X/Teuken-7B-base-v0.6"
+      ]
+    },
+    {
+      "id": "opengpt-x/teuken-7b-instruct-commercial-v0.4",
+      "vendor": "OpenGPT-X",
+      "name": "Teuken 7B Instruct Commercial v0.4",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Germany",
+      "released_at": "2024-12-11",
+      "_note": "Apache-2.0 commercial-permissive variant of v0.4.",
+      "_sources": [
+        "https://huggingface.co/openGPT-X/Teuken-7B-instruct-commercial-v0.4"
+      ]
+    },
+    {
+      "id": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "vendor": "Aleph Alpha",
+      "name": "TFree-HAT Pretrained 7B Base",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Germany",
+      "released_at": "2025-01-17",
+      "_note": "Hierarchical Autoregressive Transformer (HAT, byte-level, tokenizer-free). 7.19B params. arXiv 2501.10322.",
+      "_sources": [
+        "https://huggingface.co/Aleph-Alpha/tfree-hat-pretrained-7b-base",
+        "https://arxiv.org/abs/2501.10322"
+      ]
+    },
+    {
+      "id": "aleph-alpha/llama-3.1-8b-tfree-hat-dpo",
+      "vendor": "Aleph Alpha",
+      "name": "Llama-3.1 8B TFree-HAT DPO",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Germany",
+      "released_at": "2025-10-22",
+      "_sources": [
+        "https://huggingface.co/Aleph-Alpha/llama-3_1-8b-tfree-hat-dpo"
+      ]
+    },
+    {
+      "id": "aleph-alpha/llama-3.1-70b-tfree-hat-sft",
+      "vendor": "Aleph Alpha",
+      "name": "Llama-3.1 70B TFree-HAT SFT",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Germany",
+      "released_at": "2025-09-15",
+      "_sources": [
+        "https://huggingface.co/Aleph-Alpha/llama-3_1-70b-tfree-hat-sft"
+      ]
+    },
+    {
+      "id": "black-forest-labs/flux.2-dev",
+      "vendor": "Black Forest Labs",
+      "name": "FLUX.2 dev",
+      "type": "open-weight",
+      "modalities": [
+        "image"
+      ],
+      "country": "Germany",
+      "released_at": "2025-11-25",
+      "_note": "Open-weight image gen, 32B; FLUX.2 generation.",
+      "_sources": [
+        "https://huggingface.co/black-forest-labs/FLUX.2-dev",
+        "https://bfl.ai/blog/flux-2"
+      ]
+    },
+    {
+      "id": "ellamind/propella-1-4b",
+      "vendor": "Ellamind",
+      "name": "Propella-1 4B",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Germany",
+      "released_at": "2026-02-12",
+      "_note": "German BMWE-funded sovereign SLM; Apache-2.0.",
+      "_sources": [
+        "https://huggingface.co/ellamind/propella-1-4b"
+      ]
+    },
+    {
+      "id": "occiglot/occiglot-7b-eu5",
+      "vendor": "Occiglot (DFKI + hessian.AI)",
+      "name": "Occiglot 7B EU5",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Germany",
+      "released_at": "2024-04-01",
+      "_note": "Mistral-7B continued pretrain on 5 EU languages; community sovereign-EU release.",
+      "_sources": [
+        "https://huggingface.co/occiglot/occiglot-7b-eu5"
+      ]
+    },
+    {
+      "_section": "=== JAPAN — top 20 sovereign LLMs ===",
+      "id": "pfn/plamo-100b",
+      "vendor": "Preferred Networks",
+      "name": "PLaMo-100B",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2024-10-10",
+      "_note": "100B dense Japanese LLM trained from scratch. GENIAC Phase 1 winner. arxiv 2410.07563. PFN PLaMo License (NC + commercial dual).",
+      "_sources": [
+        "https://arxiv.org/abs/2410.07563",
+        "https://huggingface.co/pfnet/plamo-100b"
+      ]
+    },
+    {
+      "id": "pfn/plamo-2-prime",
+      "vendor": "Preferred Networks",
+      "name": "PLaMo 2.0 Prime",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2025-05-21",
+      "_note": "Samba hybrid architecture (Mamba + sliding-window attention). arxiv 2509.04897.",
+      "_sources": [
+        "https://tech.preferred.jp/en/blog/plamo-prime-release-feature-improvement/",
+        "https://arxiv.org/abs/2509.04897"
+      ]
+    },
+    {
+      "id": "pfn/plamo-2.1-prime",
+      "vendor": "Preferred Networks",
+      "name": "PLaMo 2.1 Prime",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2025-10-07",
+      "_sources": [
+        "https://www.preferred.jp/en/news/pr20251007-2"
+      ]
+    },
+    {
+      "id": "pfn/plamo-2-8b",
+      "vendor": "Preferred Networks",
+      "name": "PLaMo 2 8B",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2025-09-05",
+      "_sources": [
+        "https://arxiv.org/abs/2509.04897"
+      ]
+    },
+    {
+      "id": "ntt/tsuzumi-1",
+      "vendor": "NTT",
+      "name": "tsuzumi 1",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2024-03-01",
+      "_note": "NTT's first enterprise sovereign LLM (7B + 0.6B ultra-light); govt/finance/medical focus.",
+      "_sources": [
+        "https://group.ntt/en/magazine/blog/tsuzumi/",
+        "https://www.rd.ntt/e/research/LLM_tsuzumi.html"
+      ]
+    },
+    {
+      "id": "ntt/tsuzumi-2",
+      "vendor": "NTT",
+      "name": "tsuzumi 2",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2025-10-20",
+      "_note": "30B, runs on single H100. NTT R&D flagship.",
+      "_sources": [
+        "https://group.ntt/en/newsrelease/2025/10/20/251020a.html"
+      ]
+    },
+    {
+      "id": "nec/cotomi-pro",
+      "vendor": "NEC",
+      "name": "cotomi Pro",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2024-04-24",
+      "_sources": [
+        "https://www.nec.com/en/press/202404/global_20240424_01.html"
+      ]
+    },
+    {
+      "id": "nec/cotomi-light",
+      "vendor": "NEC",
+      "name": "cotomi Light",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2024-04-24",
+      "_sources": [
+        "https://www.nec.com/en/press/202404/global_20240424_01.html"
+      ]
+    },
+    {
+      "id": "fujitsu/takane",
+      "vendor": "Fujitsu",
+      "name": "Takane (Fujitsu × Cohere)",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2024-09-30",
+      "_note": "Cohere Command R+ derivative (~104B) deployed as private sovereign instance.",
+      "_sources": [
+        "https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2024/0930-01.html",
+        "https://cohere.com/customer-stories/fujitsu"
+      ]
+    },
+    {
+      "id": "rakuten/rakuten-ai-7b",
+      "vendor": "Rakuten",
+      "name": "RakutenAI 7B",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2024-03-21",
+      "_note": "Mistral-7B base, Apache 2.0.",
+      "_sources": [
+        "https://huggingface.co/Rakuten/RakutenAI-7B"
+      ]
+    },
+    {
+      "id": "rakuten/rakuten-ai-2.0-8x7b-instruct",
+      "vendor": "Rakuten",
+      "name": "RakutenAI 2.0 8x7B Instruct",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2025-02-12",
+      "_note": "8x7B MoE (13B active), Apache 2.0.",
+      "_sources": [
+        "https://huggingface.co/Rakuten/RakutenAI-2.0-8x7B-instruct"
+      ]
+    },
+    {
+      "id": "rakuten/rakuten-ai-3.0",
+      "vendor": "Rakuten",
+      "name": "Rakuten AI 3.0",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2026-03-17",
+      "_note": "~700B MoE; Apache 2.0; DeepSeek-V3 architecture (controversy: rebrand vs from-scratch — flagged on release).",
+      "_sources": [
+        "https://global.rakuten.com/corp/news/press/2026/0317_01.html"
+      ]
+    },
+    {
+      "id": "elyza/llama-3-elyza-jp-8b",
+      "vendor": "ELYZA",
+      "name": "Llama-3 ELYZA-JP 8B",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2024-06-26",
+      "_note": "Llama-3 continued pretrain on Japanese. Llama 3 Community License.",
+      "_sources": [
+        "https://huggingface.co/elyza/Llama-3-ELYZA-JP-8B"
+      ]
+    },
+    {
+      "id": "elyza/llama-3-elyza-jp-70b",
+      "vendor": "ELYZA",
+      "name": "Llama-3 ELYZA-JP 70B",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2024-06-26",
+      "_sources": [
+        "https://it.impress.co.jp/articles/-/26511"
+      ]
+    },
+    {
+      "id": "karakuri-ai/karakuri-lm-8x7b-chat",
+      "vendor": "Karakuri",
+      "name": "KARAKURI LM 8x7B Chat",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2024-06-01",
+      "_note": "Mixtral-based 8x7B MoE, Apache 2.0.",
+      "_sources": [
+        "https://huggingface.co/karakuri-ai/karakuri-lm-8x7b-chat-v0.1"
+      ]
+    },
+    {
+      "id": "stockmark/stockmark-2-100b-instruct",
+      "vendor": "Stockmark",
+      "name": "Stockmark 2 100B Instruct",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2025-05-01",
+      "_note": "100B from-scratch Japanese LLM, MIT license. GENIAC Phase 2 outcome.",
+      "_sources": [
+        "https://huggingface.co/stockmark/Stockmark-2-100B-Instruct"
+      ]
+    },
+    {
+      "id": "llm-jp/llm-jp-3-172b-instruct3",
+      "vendor": "NII LLM-JP Consortium",
+      "name": "LLM-JP 3 172B Instruct3",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2026-02-01",
+      "_note": "National Institute of Informatics (NII)-led Japan LLM consortium; 172B from-scratch, Apache 2.0. Surpasses GPT-3.5-turbo-16k on llm-jp-eval.",
+      "_sources": [
+        "https://huggingface.co/llm-jp/llm-jp-3-172b-instruct3",
+        "https://llmc.nii.ac.jp/en/topics/llm-jp-3-172b-beta2/"
+      ]
+    },
+    {
+      "id": "tokyotech-llm/llama-3.3-swallow-70b-instruct",
+      "vendor": "Institute of Science Tokyo + AIST (Swallow)",
+      "name": "Llama-3.3 Swallow 70B Instruct v0.4",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2025-03-10",
+      "_note": "Llama-3.3 continued pretrain on Japanese. Swallow project (Tokyo Tech + AIST).",
+      "_sources": [
+        "https://huggingface.co/tokyotech-llm/Llama-3.3-Swallow-70B-Instruct-v0.4",
+        "https://swallow-llm.github.io/llama3.3-swallow.en.html"
+      ]
+    },
+    {
+      "id": "sbintuitions/sarashina2-13b",
+      "vendor": "SB Intuitions (SoftBank)",
+      "name": "Sarashina2 13B",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2024-06-14",
+      "_note": "SoftBank's SB Intuitions Japanese LLM. MIT license.",
+      "_sources": [
+        "https://huggingface.co/sbintuitions/sarashina2-13b"
+      ]
+    },
+    {
+      "id": "sbintuitions/sarashina2-vision-14b",
+      "vendor": "SB Intuitions",
+      "name": "Sarashina2 Vision 14B",
+      "type": "open-source",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "Japan",
+      "released_at": "2025-03-01",
+      "_sources": [
+        "https://huggingface.co/sbintuitions/sarashina2-vision-14b"
+      ]
+    },
+    {
+      "id": "cyberagent/calm3-22b-chat",
+      "vendor": "CyberAgent",
+      "name": "calm3 22B Chat",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2024-07-01",
+      "_sources": [
+        "https://huggingface.co/cyberagent/calm3-22b-chat"
+      ]
+    },
+    {
+      "id": "abeja/abeja-qwen2.5-32b-japanese",
+      "vendor": "ABEJA",
+      "name": "ABEJA Qwen2.5 32B Japanese v1.0",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2025-01-01",
+      "_note": "Qwen2.5-32B CPT+SFT+DPO for Japanese.",
+      "_sources": [
+        "https://huggingface.co/abeja/ABEJA-Qwen2.5-32b-Japanese-v1.0"
+      ]
+    },
+    {
+      "id": "sakana/tinyswallow-1.5b",
+      "vendor": "Sakana AI",
+      "name": "TinySwallow 1.5B",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Japan",
+      "released_at": "2025-01-30",
+      "_note": "TAID distillation method. Apache 2.0.",
+      "_sources": [
+        "https://sakana.ai/taid/"
+      ]
+    },
+    {
+      "_section": "=== CANADA — Cohere Labs (Toronto) + Vector Institute ===",
+      "id": "cohere/command-a",
+      "vendor": "Cohere Labs",
+      "name": "Command A",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Canada",
+      "released_at": "2025-03-01",
+      "_note": "111B flagship. CC-BY-NC 4.0 + AUP. Toronto-based.",
+      "_sources": [
+        "https://huggingface.co/CohereLabs/c4ai-command-a-03-2025"
+      ]
+    },
+    {
+      "id": "cohere/command-a-vision",
+      "vendor": "Cohere Labs",
+      "name": "Command A Vision",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "Canada",
+      "released_at": "2025-07-31",
+      "_sources": [
+        "https://huggingface.co/CohereLabs/command-a-vision-07-2025"
+      ]
+    },
+    {
+      "id": "cohere/command-a-reasoning",
+      "vendor": "Cohere Labs",
+      "name": "Command A Reasoning",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Canada",
+      "released_at": "2025-08-01",
+      "_sources": [
+        "https://huggingface.co/CohereLabs/command-a-reasoning-08-2025"
+      ]
+    },
+    {
+      "id": "cohere/command-r7b-arabic",
+      "vendor": "Cohere Labs",
+      "name": "Command R7B Arabic",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Canada",
+      "released_at": "2025-02-01",
+      "_sources": [
+        "https://huggingface.co/CohereLabs/c4ai-command-r7b-arabic-02-2025"
+      ]
+    },
+    {
+      "id": "cohere/cohere-transcribe",
+      "vendor": "Cohere Labs",
+      "name": "Cohere Transcribe",
+      "type": "open-source",
+      "modalities": [
+        "audio",
+        "speech"
+      ],
+      "country": "Canada",
+      "released_at": "2026-03-26",
+      "_note": "2B ASR. Apache 2.0 (rare open-source from Cohere).",
+      "_sources": [
+        "https://huggingface.co/CohereLabs/cohere-transcribe-03-2026"
+      ]
+    },
+    {
+      "id": "cohere/aya-23-35b",
+      "vendor": "Cohere Labs",
+      "name": "Aya 23 35B",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Canada",
+      "released_at": "2024-05-23",
+      "_note": "Multilingual 35B from Cohere For AI (now Cohere Labs).",
+      "_sources": [
+        "https://huggingface.co/CohereLabs/aya-23-35B"
+      ]
+    },
+    {
+      "id": "cohere/aya-vision-8b",
+      "vendor": "Cohere Labs",
+      "name": "Aya Vision 8B",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "Canada",
+      "released_at": "2024-12-05",
+      "_sources": [
+        "https://huggingface.co/CohereLabs/aya-vision-8b"
+      ]
+    },
+    {
+      "id": "cohere/tiny-aya-base",
+      "vendor": "Cohere Labs",
+      "name": "Tiny Aya Base",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Canada",
+      "released_at": "2026-03-12",
+      "_note": "3.35B multilingual base model.",
+      "_sources": [
+        "https://huggingface.co/CohereLabs/tiny-aya-base"
+      ]
+    },
+    {
+      "_section": "=== AUSTRALIA ===",
+      "id": "maincode/maincoder-1b",
+      "vendor": "Maincode",
+      "name": "Maincoder 1B",
+      "type": "open-source",
+      "modalities": [
+        "text",
+        "code"
+      ],
+      "country": "Australia",
+      "released_at": "2026-01-02",
+      "_note": "Melbourne-based; Australia's emerging AI factory (US$30M AMD + Telstra DC). Apache 2.0.",
+      "_sources": [
+        "https://huggingface.co/Maincode/Maincoder-1B"
+      ]
+    },
+    {
+      "id": "isaacus/open-australian-legal-llm",
+      "vendor": "Isaacus",
+      "name": "Open Australian Legal LLM",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Australia",
+      "released_at": "2023-12-15",
+      "_note": "1.5B Australian legal-domain LLM. Apache 2.0.",
+      "_sources": [
+        "https://huggingface.co/isaacus/open-australian-legal-llm"
+      ]
+    },
+    {
+      "id": "isaacus/emubert",
+      "vendor": "Isaacus",
+      "name": "EmuBERT",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Australia",
+      "released_at": "2024-06-12",
+      "_note": "Australian legal-domain BERT-style encoder.",
+      "_sources": [
+        "https://huggingface.co/isaacus/emubert"
+      ]
+    },
+    {
+      "_section": "=== UAE — Falcon-H1R + K2 Think V2 ===",
+      "id": "tii/falcon-h1r-7b",
+      "vendor": "TII",
+      "name": "Falcon-H1R 7B (Reasoning)",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "UAE",
+      "released_at": "2026-01-05",
+      "_note": "Hybrid Mamba-Transformer reasoning model. 256k context. Falcon LLM License. arxiv 2601.02346.",
+      "_sources": [
+        "https://huggingface.co/tiiuae/Falcon-H1R-7B",
+        "https://arxiv.org/abs/2601.02346"
+      ]
+    },
+    {
+      "id": "tii/falcon-perception",
+      "vendor": "TII",
+      "name": "Falcon Perception",
+      "type": "open-weight",
+      "modalities": [
+        "vision",
+        "text"
+      ],
+      "country": "UAE",
+      "released_at": "2026-04-02",
+      "_note": "0.6B early-fusion Transformer for open-vocab grounding + segmentation.",
+      "_sources": [
+        "https://huggingface.co/tiiuae/Falcon-Perception"
+      ]
+    },
+    {
+      "id": "mbzuai/k2-think-v2",
+      "vendor": "MBZUAI / G42 / Cerebras",
+      "name": "K2 Think V2",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "UAE",
+      "released_at": "2026-01-27",
+      "_note": "73B fully-open reasoning model. Apache 2.0 (LLM360). arxiv 2512.06201.",
+      "_sources": [
+        "https://huggingface.co/LLM360/K2-Think-V2",
+        "https://mbzuai.ac.ae/news/k2-think-v2-a-fully-sovereign-reasoning-model/"
+      ]
+    },
+    {
+      "id": "mbzuai/k2-v2-instruct",
+      "vendor": "MBZUAI / G42 / Cerebras",
+      "name": "K2-V2 Instruct",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "UAE",
+      "released_at": "2026-01-27",
+      "_note": "70B dense Instruct, Apache 2.0.",
+      "_sources": [
+        "https://huggingface.co/LLM360/K2-V2-Instruct"
+      ]
+    },
+    {
+      "_section": "=== INDIA — BharatGen Param2-17B-Thinking + Shrutam-2 ===",
+      "id": "bharatgen/param2-17b-thinking",
+      "vendor": "BharatGen",
+      "name": "Param2-17B-A2.4B-Thinking",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "India",
+      "released_at": "2026-04-09",
+      "_note": "Hybrid MoE 17B/2.4B-active reasoning post-train of Param2 base; 23 languages incl. all major Indic.",
+      "_sources": [
+        "https://huggingface.co/bharatgenai/Param2-17B-A2.4B-Thinking"
+      ]
+    },
+    {
+      "id": "bharatgen/shrutam-2",
+      "vendor": "BharatGen",
+      "name": "Shrutam-2",
+      "type": "open-weight",
+      "modalities": [
+        "audio",
+        "speech"
+      ],
+      "country": "India",
+      "released_at": "2026-05-02",
+      "_note": "LLM-powered ASR for 12 Indic languages; Conformer + LLM decoder + MoE projection. arxiv 2601.19451.",
+      "_sources": [
+        "https://huggingface.co/bharatgenai/Shrutam-2"
+      ]
+    },
+    {
+      "_section": "=== SINGAPORE — SEA-LION ModernBERT suite (Mar 2026) ===",
+      "id": "ai-singapore/sea-lion-modernbert-600m",
+      "vendor": "AI Singapore",
+      "name": "SEA-LION ModernBERT 600M",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Singapore",
+      "released_at": "2026-03-16",
+      "_note": "Encoder-only, 8K context, 13 SEA languages, MIT.",
+      "_sources": [
+        "https://huggingface.co/aisingapore/SEA-LION-ModernBERT-600M"
+      ]
+    },
+    {
+      "id": "ai-singapore/sea-lion-modernbert-300m",
+      "vendor": "AI Singapore",
+      "name": "SEA-LION ModernBERT 300M",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Singapore",
+      "released_at": "2026-03-16",
+      "_sources": [
+        "https://huggingface.co/aisingapore/SEA-LION-ModernBERT-300M"
+      ]
+    },
+    {
+      "id": "ai-singapore/sea-lion-e5-embedding-600m",
+      "vendor": "AI Singapore",
+      "name": "SEA-LION E5 Embedding 600M",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Singapore",
+      "released_at": "2026-04-09",
+      "_note": "Fine-tune of multilingual-e5-large for 11 SEA languages.",
+      "_sources": [
+        "https://huggingface.co/aisingapore/SEA-LION-E5-Embedding-600M"
+      ]
+    },
+    {
+      "_section": "=== FRANCE recent (Mistral Medium 3.5 2604 EAGLE variant) ===",
+      "id": "mistral/mistral-medium-3.5-eagle",
+      "vendor": "Mistral AI",
+      "name": "Mistral Medium 3.5 EAGLE",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "France",
+      "released_at": "2026-04-30",
+      "_note": "Speculative-decoding EAGLE head over 128B base. Modified MIT.",
+      "_sources": [
+        "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B-EAGLE"
+      ]
+    },
+    {
+      "id": "mistral/leanstral",
+      "vendor": "Mistral AI Labs",
+      "name": "Leanstral",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "code"
+      ],
+      "country": "France",
+      "released_at": "2026-03-16",
+      "_note": "Open-source code agent for Lean 4 formal proofs.",
+      "_sources": [
+        "https://docs.mistral.ai/getting-started/changelog"
+      ]
+    },
+    {
+      "_section": "=== RUSSIA recent — GigaChat 3 Ultra Preview ===",
+      "id": "sber/gigachat-3-ultra-preview",
+      "vendor": "Sber",
+      "name": "GigaChat 3 Ultra Preview",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Russia",
+      "released_at": "2025-11-24",
+      "_note": "702B / 36B active MoE. MIT license. Preview of production 3.1 Ultra.",
+      "_sources": [
+        "https://huggingface.co/ai-sage/GigaChat3-702B-A36B-preview"
+      ]
+    },
+    {
+      "id": "tbank/t-pro-2.0",
+      "vendor": "T-Bank (T-Tech)",
+      "name": "T-Pro 2.0",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "Russia",
+      "released_at": "2025-12-15",
+      "_note": "Hybrid-reasoning Russian LLM with EAGLE speculative decoding. arxiv 2512.10430.",
+      "_sources": [
+        "https://arxiv.org/abs/2512.10430"
+      ]
+    },
+    {
+      "id": "mts-ai/cotype-pro-2",
+      "vendor": "MTS AI",
+      "name": "Cotype Pro 2",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "country": "Russia",
+      "released_at": "2026-02-01",
+      "_note": "Business-focused LLM, 128k context, on-prem deployment.",
+      "_sources": [
+        "https://mts.ai/en/tech/mts-ai-releases-cotype-pro-2-second-generation-business-focused-llm/"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "xnli",
+      "name": "XNLI",
+      "category": "multilingual",
+      "description": "Cross-lingual Natural Language Inference benchmark (15 languages, NLI premise-hypothesis pairs). Standard LM Eval Harness benchmark. Higher = better.",
+      "metric": "accuracy",
+      "leaderboard": "https://huggingface.co/datasets/facebook/xnli"
+    },
+    {
+      "id": "xcopa",
+      "name": "XCOPA",
+      "category": "multilingual",
+      "description": "Cross-lingual Choice of Plausible Alternatives — commonsense causal reasoning across 11 typologically diverse languages.",
+      "metric": "accuracy",
+      "leaderboard": "https://huggingface.co/datasets/facebook/xcopa"
+    },
+    {
+      "id": "amo_bench",
+      "name": "AMO-Bench",
+      "category": "math",
+      "description": "Asian Math Olympiad Bench — competition-level math problems sourced from regional olympiads. Higher = better.",
+      "metric": "accuracy",
+      "leaderboard": "https://arxiv.org/abs/2601.02346"
+    },
+    {
+      "id": "omni_math_hard",
+      "name": "OMNI-Math-HARD",
+      "category": "math",
+      "description": "Hard subset of OMNI-Math competition benchmark. Released by K2 Think V2 team.",
+      "metric": "accuracy",
+      "leaderboard": "https://mbzuai.ac.ae/news/k2-think-v2-a-fully-sovereign-reasoning-model/"
+    },
+    {
+      "id": "eu21_avg",
+      "name": "EU21 Average",
+      "category": "multilingual",
+      "description": "OpenGPT-X EU21 benchmark — average across ARC, HellaSwag, TruthfulQA, MMLU evaluated across 21 EU languages. Headline metric for European sovereign LLMs.",
+      "metric": "accuracy",
+      "leaderboard": "https://huggingface.co/openGPT-X/Teuken-7B-instruct-v0.6"
+    },
+    {
+      "id": "japanese_mt_bench",
+      "name": "Japanese MT-Bench",
+      "category": "multilingual",
+      "description": "Japanese MT-Bench — multi-turn LLM judge evaluation translated to Japanese (LMSYS adaptation). 0-10 scale, GPT-4-judged. Higher = better.",
+      "metric": "score",
+      "leaderboard": "https://github.com/lmarena/mt-bench"
+    },
+    {
+      "id": "llm_jp_eval",
+      "name": "LLM-JP-Eval",
+      "category": "multilingual",
+      "description": "NII LLM-JP Consortium's Japanese LLM evaluation suite (v1.4.1). 0-1 normalized average across 50+ Japanese-language tasks.",
+      "metric": "accuracy",
+      "leaderboard": "https://llmc.nii.ac.jp/en/topics/llm-jp-3-172b-beta2/"
+    },
+    {
+      "id": "japanese_jaster",
+      "name": "Japanese Jaster",
+      "category": "multilingual",
+      "description": "Japanese Jaster 0-shot benchmark suite — Japanese-language understanding and reasoning, 0-1 averaged.",
+      "metric": "accuracy",
+      "leaderboard": "https://arxiv.org/abs/2410.07563"
+    },
+    {
+      "id": "sanskriti",
+      "name": "Sanskriti",
+      "category": "multilingual",
+      "description": "Indic cultural-knowledge benchmark — Sanskriti = Sanskrit for 'culture'. Indian-context world knowledge across multiple Indic languages.",
+      "metric": "accuracy",
+      "leaderboard": "https://huggingface.co/bharatgenai/Param2-17B-A2.4B-Thinking"
+    },
+    {
+      "id": "mmlu_hindi",
+      "name": "MMLU Hindi",
+      "category": "multilingual",
+      "description": "MMLU translated to Hindi. Higher = better.",
+      "metric": "accuracy",
+      "leaderboard": "https://huggingface.co/datasets/MilaWang/MMLU-Hindi"
+    }
+  ],
+  "scores": [
+    {
+      "_comment": "=== SWITZERLAND — Apertus 8B base ===",
+      "model": "swiss-ai/apertus-8b",
+      "benchmark": "arc_challenge",
+      "score": 72.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-8B-2509",
+      "_note": "Apertus 8B base pretraining eval (HF card, arxiv 2509.14233 Section 5)."
+    },
+    {
+      "model": "swiss-ai/apertus-8b",
+      "benchmark": "hellaswag",
+      "score": 59.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-8B-2509"
+    },
+    {
+      "model": "swiss-ai/apertus-8b",
+      "benchmark": "winogrande",
+      "score": 70.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-8B-2509"
+    },
+    {
+      "model": "swiss-ai/apertus-8b",
+      "benchmark": "xnli",
+      "score": 45.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-8B-2509"
+    },
+    {
+      "model": "swiss-ai/apertus-8b",
+      "benchmark": "xcopa",
+      "score": 66.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-8B-2509"
+    },
+    {
+      "model": "swiss-ai/apertus-8b",
+      "benchmark": "piqa",
+      "score": 79.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-8B-2509"
+    },
+    {
+      "_comment": "=== Apertus 70B base ===",
+      "model": "swiss-ai/apertus-70b",
+      "benchmark": "arc_challenge",
+      "score": 70.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-70B-2509"
+    },
+    {
+      "model": "swiss-ai/apertus-70b",
+      "benchmark": "hellaswag",
+      "score": 64.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-70B-2509"
+    },
+    {
+      "model": "swiss-ai/apertus-70b",
+      "benchmark": "winogrande",
+      "score": 73.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-70B-2509"
+    },
+    {
+      "model": "swiss-ai/apertus-70b",
+      "benchmark": "xnli",
+      "score": 45.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-70B-2509"
+    },
+    {
+      "model": "swiss-ai/apertus-70b",
+      "benchmark": "xcopa",
+      "score": 69.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-70B-2509"
+    },
+    {
+      "model": "swiss-ai/apertus-70b",
+      "benchmark": "piqa",
+      "score": 81.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/swiss-ai/Apertus-70B-2509"
+    },
+    {
+      "_comment": "=== GERMANY — Teuken 7B Instruct v0.6 EU21 ===",
+      "model": "opengpt-x/teuken-7b-instruct-v0.6",
+      "benchmark": "eu21_avg",
+      "score": 57.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/openGPT-X/Teuken-7B-instruct-v0.6",
+      "_note": "EU21 = avg across ARC + HellaSwag + TruthfulQA + MMLU, 21 EU languages."
+    },
+    {
+      "model": "opengpt-x/teuken-7b-instruct-v0.6",
+      "benchmark": "mmlu",
+      "score": 45.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/openGPT-X/Teuken-7B-instruct-v0.6",
+      "_note": "EU21-MMLU"
+    },
+    {
+      "model": "opengpt-x/teuken-7b-instruct-v0.6",
+      "benchmark": "hellaswag",
+      "score": 66.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/openGPT-X/Teuken-7B-instruct-v0.6"
+    },
+    {
+      "_comment": "=== Aleph Alpha TFree-HAT 7B base ===",
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "mmlu",
+      "score": 66.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/Aleph-Alpha/tfree-hat-pretrained-7b-base"
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "mmlu_pro",
+      "score": 38.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/Aleph-Alpha/tfree-hat-pretrained-7b-base"
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "arc_challenge",
+      "score": 58.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/Aleph-Alpha/tfree-hat-pretrained-7b-base"
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "winogrande",
+      "score": 75.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/Aleph-Alpha/tfree-hat-pretrained-7b-base"
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "gsm8k",
+      "score": 52.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/Aleph-Alpha/tfree-hat-pretrained-7b-base"
+    },
+    {
+      "_comment": "=== JAPAN — PLaMo-100B-instruct ===",
+      "model": "pfn/plamo-100b",
+      "benchmark": "japanese_mt_bench",
+      "score": 7.781,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2410.07563",
+      "_note": "PLaMo-100B Technical Report Table; J-MT-Bench 0-10 scale, 1 run."
+    },
+    {
+      "model": "pfn/plamo-100b",
+      "benchmark": "japanese_jaster",
+      "score": 0.738,
+      "unit": "ratio",
+      "_source": "https://arxiv.org/abs/2410.07563",
+      "_note": "Japanese Jaster 0-shot avg, 0-1 scale."
+    },
+    {
+      "_comment": "=== Rakuten AI 2.0 ===",
+      "model": "rakuten/rakuten-ai-2.0-8x7b-instruct",
+      "benchmark": "japanese_mt_bench",
+      "score": 7.08,
+      "unit": "score",
+      "_source": "https://huggingface.co/Rakuten/RakutenAI-2.0-8x7B-instruct",
+      "_note": "Japanese MT-Bench avg of 3 runs, ±0.035 sd."
+    },
+    {
+      "_comment": "=== LLM-JP 3 172B Instruct3 ===",
+      "model": "llm-jp/llm-jp-3-172b-instruct3",
+      "benchmark": "llm_jp_eval",
+      "score": 0.547,
+      "unit": "ratio",
+      "_source": "https://llmc.nii.ac.jp/en/topics/llm-jp-3-172b-beta2/",
+      "_note": "LLM-JP-Eval v1.4.1, 0-1 avg. Surpasses GPT-3.5-turbo-16k-0613 (0.538)."
+    },
+    {
+      "_comment": "=== UAE — Falcon-H1R 7B (reasoning) ===",
+      "model": "tii/falcon-h1r-7b",
+      "benchmark": "aime_24",
+      "score": 88.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.02346"
+    },
+    {
+      "model": "tii/falcon-h1r-7b",
+      "benchmark": "aime_2025",
+      "score": 83.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.02346"
+    },
+    {
+      "model": "tii/falcon-h1r-7b",
+      "benchmark": "hmmt_2025",
+      "score": 64.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.02346"
+    },
+    {
+      "model": "tii/falcon-h1r-7b",
+      "benchmark": "amo_bench",
+      "score": 36.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.02346"
+    },
+    {
+      "model": "tii/falcon-h1r-7b",
+      "benchmark": "math_500",
+      "score": 97.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.02346"
+    },
+    {
+      "model": "tii/falcon-h1r-7b",
+      "benchmark": "livecodebench_v6",
+      "score": 68.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.02346"
+    },
+    {
+      "model": "tii/falcon-h1r-7b",
+      "benchmark": "ifbench",
+      "score": 53.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.02346"
+    },
+    {
+      "_comment": "=== UAE — K2 Think V2 ===",
+      "model": "mbzuai/k2-think-v2",
+      "benchmark": "omni_math_hard",
+      "score": 60.73,
+      "unit": "%",
+      "_source": "https://mbzuai.ac.ae/news/k2-think-v2-a-fully-sovereign-reasoning-model/"
+    },
+    {
+      "model": "mbzuai/k2-think-v2",
+      "benchmark": "gpqa_diamond",
+      "score": 71.08,
+      "unit": "%",
+      "_source": "https://mbzuai.ac.ae/news/k2-think-v2-a-fully-sovereign-reasoning-model/"
+    },
+    {
+      "model": "mbzuai/k2-think-v2",
+      "benchmark": "bfcl_v4",
+      "score": 52.4,
+      "unit": "%",
+      "_source": "https://mbzuai.ac.ae/news/k2-think-v2-a-fully-sovereign-reasoning-model/"
+    },
+    {
+      "model": "mbzuai/k2-think-v2",
+      "benchmark": "livecodebench_v5",
+      "score": 63.97,
+      "unit": "%",
+      "_source": "https://mbzuai.ac.ae/news/k2-think-v2-a-fully-sovereign-reasoning-model/"
+    },
+    {
+      "_comment": "=== FRANCE — Mistral Medium 3.5 (Apr 2026 refresh) ===",
+      "model": "mistral/mistral-medium-3.5",
+      "benchmark": "swe_bench_verified",
+      "score": 77.6,
+      "unit": "%",
+      "_source": "https://docs.mistral.ai/models/model-cards/mistral-medium-3-5-26-04",
+      "_note": "Medium 3.5 (2604) refresh."
+    },
+    {
+      "model": "mistral/mistral-medium-3.5",
+      "benchmark": "tau3_telecom",
+      "score": 91.4,
+      "unit": "%",
+      "_source": "https://docs.mistral.ai/models/model-cards/mistral-medium-3-5-26-04"
+    },
+    {
+      "_comment": "=== KOREA — EXAONE 4.5 33B scores ===",
+      "model": "lg/exaone-4.5-33b",
+      "benchmark": "aime_2026",
+      "score": 92.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+    },
+    {
+      "model": "lg/exaone-4.5-33b",
+      "benchmark": "aime_2025",
+      "score": 92.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+    },
+    {
+      "model": "lg/exaone-4.5-33b",
+      "benchmark": "livecodebench_v6",
+      "score": 81.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B"
+    },
+    {
+      "_comment": "=== INDIA — BharatGen Param2-17B-Thinking ===",
+      "model": "bharatgen/param2-17b-thinking",
+      "benchmark": "mmlu",
+      "score": 57.79,
+      "unit": "%",
+      "_source": "https://huggingface.co/bharatgenai/Param2-17B-A2.4B-Thinking"
+    },
+    {
+      "model": "bharatgen/param2-17b-thinking",
+      "benchmark": "arc_challenge",
+      "score": 56.83,
+      "unit": "%",
+      "_source": "https://huggingface.co/bharatgenai/Param2-17B-A2.4B-Thinking"
+    },
+    {
+      "model": "bharatgen/param2-17b-thinking",
+      "benchmark": "hellaswag",
+      "score": 77.43,
+      "unit": "%",
+      "_source": "https://huggingface.co/bharatgenai/Param2-17B-A2.4B-Thinking"
+    },
+    {
+      "model": "bharatgen/param2-17b-thinking",
+      "benchmark": "gsm8k",
+      "score": 57.32,
+      "unit": "%",
+      "_source": "https://huggingface.co/bharatgenai/Param2-17B-A2.4B-Thinking"
+    },
+    {
+      "model": "bharatgen/param2-17b-thinking",
+      "benchmark": "humaneval",
+      "score": 36.59,
+      "unit": "%",
+      "_source": "https://huggingface.co/bharatgenai/Param2-17B-A2.4B-Thinking"
+    },
+    {
+      "model": "bharatgen/param2-17b-thinking",
+      "benchmark": "mbpp",
+      "score": 47.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/bharatgenai/Param2-17B-A2.4B-Thinking"
+    },
+    {
+      "model": "bharatgen/param2-17b-thinking",
+      "benchmark": "sanskriti",
+      "score": 66.54,
+      "unit": "%",
+      "_source": "https://huggingface.co/bharatgenai/Param2-17B-A2.4B-Thinking"
+    },
+    {
+      "model": "bharatgen/param2-17b-thinking",
+      "benchmark": "mmlu_hindi",
+      "score": 59.23,
+      "unit": "%",
+      "_source": "https://huggingface.co/bharatgenai/Param2-17B-A2.4B-Thinking"
+    }
+  ]
+}
