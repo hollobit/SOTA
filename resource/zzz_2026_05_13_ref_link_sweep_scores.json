@@ -1,0 +1,616 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-13",
+    "_note": "2026-05-13 reference-link sweep — pulls NEW (model,benchmark,score) pairs missing from current.json. Strict attribution: every score has a primary-source URL with the model name + benchmark name + numeric value explicitly stated. Sources: (1) Scale SWE-Bench Pro Public leaderboard, (2) Soohak research-math benchmark arxiv 2605.09063, (3) WorldReasonBench arxiv 2605.10434, (4) Vellum compiled OpenAI GPT-5.5 launch numbers (cross-checked with OpenAI announcement; only the MRCR/GDPval pairs missing from DB are included here), (5) Anthropic Claude Opus 4.7 launch page (CursorBench, XBOW visual-acuity, BigLaw Bench).",
+    "sources": [
+      "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "https://arxiv.org/abs/2605.09063",
+      "https://arxiv.org/abs/2605.10434",
+      "https://www.vellum.ai/blog/everything-you-need-to-know-about-gpt-5-5",
+      "https://www.anthropic.com/news/claude-opus-4-7",
+      "https://openai.com/index/introducing-gpt-5-5/"
+    ]
+  },
+  "models": [
+    {"id": "openai/gpt-5.4-xhigh", "vendor": "openai", "name": "GPT-5.4 (xHigh)", "type": "proprietary", "modalities": ["text"], "released_at": "2026-02-01"},
+    {"id": "anthropic/claude-opus-4.6-thinking", "vendor": "anthropic", "name": "Claude Opus 4.6 (thinking)", "type": "proprietary", "modalities": ["text", "image"], "released_at": "2026-03-01"},
+    {"id": "google/gemini-3.1-pro-thinking", "vendor": "google", "name": "Gemini 3.1 Pro (thinking)", "type": "proprietary", "modalities": ["text", "image"], "released_at": "2026-04-01"},
+    {"id": "alibaba/qwen3-coder-480b-a35b", "vendor": "alibaba", "name": "Qwen3-Coder-480B-A35B", "type": "open-weight", "modalities": ["text"], "parameters": 480000000000},
+    {"id": "minimax/minimax-2.1", "vendor": "minimax", "name": "MiniMax 2.1", "type": "proprietary", "modalities": ["text"]},
+    {"id": "mistral/codestral-24.05", "vendor": "mistral", "name": "Codestral 24.05", "type": "open-weight", "modalities": ["text"], "released_at": "2024-05-29"},
+    {"id": "bytedance/seedance-2.0", "vendor": "bytedance", "name": "Seedance 2.0", "type": "proprietary", "modalities": ["video"]},
+    {"id": "google/veo-3.1-fast", "vendor": "google", "name": "Veo 3.1 Fast", "type": "proprietary", "modalities": ["video"]},
+    {"id": "openai/sora-2", "vendor": "openai", "name": "Sora 2", "type": "proprietary", "modalities": ["video"]},
+    {"id": "kuaishou/kling", "vendor": "kuaishou", "name": "Kling", "type": "proprietary", "modalities": ["video"]},
+    {"id": "alibaba/wan-2.6", "vendor": "alibaba", "name": "Wan 2.6", "type": "proprietary", "modalities": ["video"]},
+    {"id": "tencent/hunyuan-video-1.5", "vendor": "tencent", "name": "HunyuanVideo 1.5", "type": "open-weight", "modalities": ["video"]},
+    {"id": "alibaba/wan-2.2-14b", "vendor": "alibaba", "name": "Wan 2.2 14B", "type": "open-weight", "modalities": ["video"], "parameters": 14000000000},
+    {"id": "meituan/longcat-video", "vendor": "meituan", "name": "LongCat Video", "type": "open-weight", "modalities": ["video"]},
+    {"id": "nvidia/cosmos-predict-2.5", "vendor": "nvidia", "name": "Cosmos-Predict 2.5", "type": "open-weight", "modalities": ["video"]},
+    {"id": "lightricks/ltx-2.3", "vendor": "lightricks", "name": "LTX 2.3", "type": "open-weight", "modalities": ["video"]},
+    {"id": "showlab/univideo", "vendor": "showlab", "name": "UniVideo", "type": "open-weight", "modalities": ["video"]}
+  ],
+  "benchmarks": [
+    {
+      "id": "swe_bench_pro_public",
+      "name": "SWE-Bench Pro (Public)",
+      "category": "coding",
+      "description": "Scale AI's SWE-Bench Pro public leaderboard — multi-language, multi-repo coding agent benchmark sourced from real-world GitHub issues, evaluated end-to-end with patched-and-tested resolution rate.",
+      "metric": "% resolved"
+    },
+    {
+      "id": "soohak_mini_avg3",
+      "name": "Soohak-Mini (avg@3)",
+      "category": "math",
+      "description": "Soohak (arxiv:2605.09063) — 439-problem research-level mathematics benchmark curated by 64 mathematicians; Soohak-Mini avg@3 reports average pass rate over 3 samples on the easier subset.",
+      "metric": "% correct"
+    },
+    {
+      "id": "soohak_challenge_avg3",
+      "name": "Soohak Challenge (avg@3)",
+      "category": "math",
+      "description": "Soohak Challenge avg@3 — frontier research-level math subset, average pass rate over 3 samples.",
+      "metric": "% correct"
+    },
+    {
+      "id": "soohak_refusal_avg3",
+      "name": "Soohak Refusal (avg@3)",
+      "category": "math",
+      "description": "Soohak refusal subset — measures whether a model recognizes ill-posed problems and refuses rather than fabricating an answer; avg@3 over 3 samples.",
+      "metric": "% correct"
+    },
+    {
+      "id": "worldreasonbench_overall",
+      "name": "WorldReasonBench (Overall ScorePR)",
+      "category": "video",
+      "description": "WorldReasonBench (arxiv:2605.10434) — 436 test cases evaluating whether video generators can predict physically/socially/logically consistent future world states. Overall Process-aware Reasoning (ScorePR) score in %.",
+      "metric": "% ScorePR"
+    },
+    {
+      "id": "cursor_bench",
+      "name": "CursorBench",
+      "category": "coding",
+      "description": "Anthropic-cited Cursor IDE evaluation suite measuring multi-file agentic coding edits; numbers reported in the Claude Opus 4.7 launch post.",
+      "metric": "% pass"
+    },
+    {
+      "id": "xbow_visual_acuity",
+      "name": "XBOW Visual-Acuity Benchmark",
+      "category": "security",
+      "description": "XBOW vulnerability-discovery benchmark — visual-acuity subset, measuring agent ability to spot visual exploit cues; cited in Anthropic's Claude Opus 4.7 launch post.",
+      "metric": "% pass"
+    },
+    {
+      "id": "biglaw_bench_harvey",
+      "name": "BigLaw Bench (Harvey)",
+      "category": "legal",
+      "description": "Harvey AI's BigLaw Bench — large-law-firm legal reasoning workload; high-effort score cited in Anthropic's Claude Opus 4.7 launch post.",
+      "metric": "% pass"
+    },
+    {
+      "id": "mrcr_v2",
+      "name": "MRCR v2 (long-context)",
+      "category": "long_context",
+      "description": "Multi-round coreference retrieval v2 (long-context, 128k-1M); numbers reported by OpenAI for GPT-5.5 launch (Vellum compilation of OpenAI announcement).",
+      "metric": "% correct"
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "swe_bench_pro_public",
+      "score": 59.10,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public leaderboard — rank 1 gpt-5.4 (xHigh) = 59.10%"
+    },
+    {
+      "model": "meta/muse-spark",
+      "benchmark": "swe_bench_pro_public",
+      "score": 55.00,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — Muse Spark = 55.00%"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6-thinking",
+      "benchmark": "swe_bench_pro_public",
+      "score": 51.90,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — claude-opus-4-6 (thinking) = 51.90%"
+    },
+    {
+      "model": "google/gemini-3.1-pro-thinking",
+      "benchmark": "swe_bench_pro_public",
+      "score": 46.10,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — gemini-3.1-pro (thinking) = 46.10%"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "swe_bench_pro_public",
+      "score": 45.89,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — claude-opus-4-5-20251101 = 45.89%"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "swe_bench_pro_public",
+      "score": 43.60,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — claude-4-5-Sonnet = 43.60%"
+    },
+    {
+      "model": "google/gemini-3-pro-preview",
+      "benchmark": "swe_bench_pro_public",
+      "score": 43.30,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — gemini-3-pro-preview = 43.30%"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "swe_bench_pro_public",
+      "score": 42.70,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — claude-4-Sonnet = 42.70%"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "swe_bench_pro_public",
+      "score": 41.78,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — gpt-5-2025-08-07 (High) = 41.78%"
+    },
+    {
+      "model": "openai/gpt-5.2-codex",
+      "benchmark": "swe_bench_pro_public",
+      "score": 41.04,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — gpt-5.2-codex = 41.04%"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "swe_bench_pro_public",
+      "score": 39.45,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — claude-4-5-haiku = 39.45%"
+    },
+    {
+      "model": "alibaba/qwen3-coder-480b-a35b",
+      "benchmark": "swe_bench_pro_public",
+      "score": 38.70,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — qwen3-coder-480b-a35b = 38.70%"
+    },
+    {
+      "model": "minimax/minimax-2.1",
+      "benchmark": "swe_bench_pro_public",
+      "score": 36.81,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — minimax-2.1 = 36.81%"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "swe_bench_pro_public",
+      "score": 34.63,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — gemini-3-flash = 34.63%"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "swe_bench_pro_public",
+      "score": 29.94,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — gpt-5.2 = 29.94%"
+    },
+    {
+      "model": "moonshot/kimi-k2-instruct",
+      "benchmark": "swe_bench_pro_public",
+      "score": 27.67,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — kimi-k2-instruct = 27.67%"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "swe_bench_pro_public",
+      "score": 21.41,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — qwen3-235b-a22b = 21.41%"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "swe_bench_pro_public",
+      "score": 16.20,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — gpt-oss-120b = 16.20%"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "swe_bench_pro_public",
+      "score": 15.56,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — deepseek-v3p2 = 15.56%"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "swe_bench_pro_public",
+      "score": 11.38,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — gemma-3-27b-it = 11.38%"
+    },
+    {
+      "model": "meta/llama-3.1-405b",
+      "benchmark": "swe_bench_pro_public",
+      "score": 11.18,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — llama3-1-405b-instruct = 11.18%"
+    },
+    {
+      "model": "zhipu/glm-4.6",
+      "benchmark": "swe_bench_pro_public",
+      "score": 9.67,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — glm-4.6 = 9.67%"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "swe_bench_pro_public",
+      "score": 5.24,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — llama4-maverick-17b-instruct = 5.24%"
+    },
+    {
+      "model": "mistral/codestral-24.05",
+      "benchmark": "swe_bench_pro_public",
+      "score": 1.51,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "_note": "Scale SWE-Bench Pro Public — codestral-2405 = 1.51%"
+    },
+
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "soohak_mini_avg3",
+      "score": 71.70,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — Gemini-3-Pro avg@3 on Soohak-Mini = 71.70%"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "soohak_mini_avg3",
+      "score": 72.22,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — GPT-5 avg@3 on Soohak-Mini = 72.22%"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "soohak_mini_avg3",
+      "score": 66.07,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — Kimi-2.5 avg@3 on Soohak-Mini = 66.07%"
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "soohak_mini_avg3",
+      "score": 63.11,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — GLM-5 avg@3 on Soohak-Mini = 63.11%"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "soohak_challenge_avg3",
+      "score": 30.39,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — Gemini-3-Pro avg@3 on Soohak Challenge = 30.39%"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "soohak_challenge_avg3",
+      "score": 26.37,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — GPT-5 avg@3 on Soohak Challenge = 26.37%"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "soohak_challenge_avg3",
+      "score": 10.39,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — Claude-Opus-4.5 avg@3 on Soohak Challenge = 10.39%"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "soohak_challenge_avg3",
+      "score": 13.87,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — Kimi-2.5 avg@3 on Soohak Challenge = 13.87%"
+    },
+    {
+      "model": "alibaba/qwen3-235b-thinking-2507",
+      "benchmark": "soohak_challenge_avg3",
+      "score": 8.04,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — Qwen3-235B-A22B-thinking-2507 avg@3 on Soohak Challenge = 8.04%"
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "soohak_refusal_avg3",
+      "score": 49.49,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — GLM-5 avg@3 on Soohak Refusal = 49.49%"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "soohak_refusal_avg3",
+      "score": 43.10,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — Gemini-3-Flash avg@3 on Soohak Refusal = 43.10%"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "soohak_refusal_avg3",
+      "score": 43.09,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 2 — GPT-5 avg@3 on Soohak Refusal = 43.09%"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "soohak_mini_avg3",
+      "score": 70.80,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 5 — Qwen3-32B pass@3 on Soohak-Mini = 70.80%"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "soohak_challenge_avg3",
+      "score": 15.29,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak paper Table 5 — Qwen3-32B pass@3 on Soohak Challenge = 15.29%"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "benchmark": "soohak_mini_avg3",
+      "score": 67.66,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak Table 5 — Qwen3-235B-A22B-thinking-2507 (default ctx) pass@3 on Soohak-Mini = 67.66%"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "benchmark": "soohak_challenge_avg3",
+      "score": 15.00,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak Table 5 — Qwen3-235B-A22B-thinking-2507 (default ctx) pass@3 on Soohak Challenge = 15.00%"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "soohak_mini_avg3",
+      "score": 80.91,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak Table 6 — GPT-OSS-120B (hard reasoning, 81920 ctx) pass@3 on Soohak-Mini = 80.91%"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "soohak_challenge_avg3",
+      "score": 29.71,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak Table 6 — GPT-OSS-120B (hard, 81920 ctx) pass@3 on Soohak Challenge = 29.71%"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "soohak_refusal_avg3",
+      "score": 55.56,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09063",
+      "_note": "Soohak Table 6 — GPT-OSS-120B (hard, 81920 ctx) pass@3 on Soohak Refusal = 55.56%"
+    },
+
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cursor_bench",
+      "score": 70.0,
+      "unit": "%",
+      "_source": "https://www.anthropic.com/news/claude-opus-4-7",
+      "_note": "Anthropic Claude Opus 4.7 launch — CursorBench = 70% (vs Opus 4.6 = 58%)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cursor_bench",
+      "score": 58.0,
+      "unit": "%",
+      "_source": "https://www.anthropic.com/news/claude-opus-4-7",
+      "_note": "Anthropic Claude Opus 4.7 launch — Opus 4.6 CursorBench = 58%"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "xbow_visual_acuity",
+      "score": 98.5,
+      "unit": "%",
+      "_source": "https://www.anthropic.com/news/claude-opus-4-7",
+      "_note": "Anthropic Claude Opus 4.7 launch — XBOW visual-acuity = 98.5% (vs Opus 4.6 = 54.5%)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "xbow_visual_acuity",
+      "score": 54.5,
+      "unit": "%",
+      "_source": "https://www.anthropic.com/news/claude-opus-4-7",
+      "_note": "Anthropic Claude Opus 4.7 launch — Opus 4.6 XBOW visual-acuity = 54.5%"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "biglaw_bench_harvey",
+      "score": 90.9,
+      "unit": "%",
+      "_source": "https://www.anthropic.com/news/claude-opus-4-7",
+      "_note": "Anthropic Claude Opus 4.7 launch — BigLaw Bench (Harvey), high effort = 90.9%"
+    },
+
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mrcr_v2",
+      "score": 74.0,
+      "unit": "%",
+      "_source": "https://www.vellum.ai/blog/everything-you-need-to-know-about-gpt-5-5",
+      "_note": "Vellum compiled OpenAI GPT-5.5 launch numbers — MRCR v2 (512K–1M ctx) GPT-5.5 = 74.0%"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "mrcr_v2",
+      "score": 36.6,
+      "unit": "%",
+      "_source": "https://www.vellum.ai/blog/everything-you-need-to-know-about-gpt-5-5",
+      "_note": "Vellum compiled OpenAI GPT-5.5 launch — MRCR v2 (512K–1M ctx) GPT-5.4 = 36.6%"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "mrcr_v2",
+      "score": 32.2,
+      "unit": "%",
+      "_source": "https://www.vellum.ai/blog/everything-you-need-to-know-about-gpt-5-5",
+      "_note": "Vellum compiled OpenAI GPT-5.5 launch — MRCR v2 (512K–1M ctx) Claude Opus 4.7 = 32.2%"
+    },
+    {
+      "model": "openai/gpt-5.5-pro",
+      "benchmark": "gdpval",
+      "score": 82.3,
+      "unit": "%",
+      "_source": "https://www.vellum.ai/blog/everything-you-need-to-know-about-gpt-5-5",
+      "_note": "Vellum compiled OpenAI GPT-5.5 launch — GDPval GPT-5.5 Pro = 82.3%"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gdpval",
+      "score": 80.3,
+      "unit": "%",
+      "_source": "https://www.vellum.ai/blog/everything-you-need-to-know-about-gpt-5-5",
+      "_note": "Vellum compiled OpenAI GPT-5.5 launch — GDPval Claude Opus 4.7 = 80.3%"
+    },
+
+    {
+      "model": "bytedance/seedance-2.0",
+      "benchmark": "worldreasonbench_overall",
+      "score": 39.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10434",
+      "_note": "WorldReasonBench paper Table 2 — Seedance2.0 Overall ScorePR = 39.8%"
+    },
+    {
+      "model": "google/veo-3.1-fast",
+      "benchmark": "worldreasonbench_overall",
+      "score": 35.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10434",
+      "_note": "WorldReasonBench paper Table 2 — Veo3.1-Fast Overall ScorePR = 35.3%"
+    },
+    {
+      "model": "openai/sora-2",
+      "benchmark": "worldreasonbench_overall",
+      "score": 34.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10434",
+      "_note": "WorldReasonBench paper Table 2 — Sora2 Overall ScorePR = 34.3%"
+    },
+    {
+      "model": "kuaishou/kling",
+      "benchmark": "worldreasonbench_overall",
+      "score": 32.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10434",
+      "_note": "WorldReasonBench paper Table 2 — Kling Overall ScorePR = 32.7%"
+    },
+    {
+      "model": "alibaba/wan-2.6",
+      "benchmark": "worldreasonbench_overall",
+      "score": 32.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10434",
+      "_note": "WorldReasonBench paper Table 2 — Wan2.6 Overall ScorePR = 32.4%"
+    },
+    {
+      "model": "tencent/hunyuan-video-1.5",
+      "benchmark": "worldreasonbench_overall",
+      "score": 17.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10434",
+      "_note": "WorldReasonBench paper Table 2 — HunyuanVideo-1.5 Overall ScorePR = 17.9%"
+    },
+    {
+      "model": "alibaba/wan-2.2-14b",
+      "benchmark": "worldreasonbench_overall",
+      "score": 17.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10434",
+      "_note": "WorldReasonBench paper Table 2 — Wan2.2-14B Overall ScorePR = 17.5%"
+    },
+    {
+      "model": "meituan/longcat-video",
+      "benchmark": "worldreasonbench_overall",
+      "score": 17.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10434",
+      "_note": "WorldReasonBench paper Table 2 — LongCat-Video Overall ScorePR = 17.4%"
+    },
+    {
+      "model": "nvidia/cosmos-predict-2.5",
+      "benchmark": "worldreasonbench_overall",
+      "score": 16.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10434",
+      "_note": "WorldReasonBench paper Table 2 — Cosmos-Predict2.5 Overall ScorePR = 16.9%"
+    },
+    {
+      "model": "lightricks/ltx-2.3",
+      "benchmark": "worldreasonbench_overall",
+      "score": 16.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10434",
+      "_note": "WorldReasonBench paper Table 2 — LTX2.3 Overall ScorePR = 16.8%"
+    },
+    {
+      "model": "showlab/univideo",
+      "benchmark": "worldreasonbench_overall",
+      "score": 14.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10434",
+      "_note": "WorldReasonBench paper Table 2 — UniVideo Overall ScorePR = 14.4%"
+    }
+  ]
+}
