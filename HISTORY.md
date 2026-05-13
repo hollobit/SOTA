@@ -1,8 +1,44 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
-## 2026-05-13 (Session 13): Post-closeout ingest sweep + Medical AI timeline widget + CI test drift fix
+## 2026-05-13 (Session 13): Post-closeout ingest sweep + Medical AI timeline widget + CI test drift fix + PDF deep mining
 
-Session 12 final sync (commit `9058ab5`) declared closeout, but a string of user-prompted ref-link investigations + a major Medical AI widget request + a pre-existing CI red flag added 10 commits across 2026-05-12 evening → 2026-05-13 morning. Captured here for completeness.
+Session 12 final sync (commit `9058ab5`) declared closeout, but a string of user-prompted ref-link investigations + a major Medical AI widget request + a pre-existing CI red flag + a follow-up PDF deep-mining pass added 11 commits across 2026-05-12 evening → 2026-05-13 morning. Captured here for completeness.
+
+### 38. PDF deep mining batch — 4 parallel subagents (commit `af22a15`)
+
+User-prompted re-investigation of the same 6 ref links from Section 36, but this time with explicit instruction to **download PDFs and analyze deeply** (vs prior abstract-only pass). Downloaded the 3 missing arxiv PDFs (2604.22446 / 2604.18292 / 2604.25917, 9-13 MB each, 33-48 pages) and dispatched 4 parallel subagents to mine each paper for benchmark tables.
+
+**Per-paper yields:**
+
+| Paper | Prior pass | Deep mine | Delta |
+|---|---:|---:|---:|
+| OneManCompany (2604.22446) | 1 score | **13 scores** | +12 |
+| AI Co-Mathematician (2605.06651) | 1 score | **5 scores** | +4 |
+| Agent-World (2604.18292) | 0 scores (rejected as "abstract only") | **62 scores** | +62 |
+| Recursive Multi-Agent (2604.25917) | 0 scores (rejected as "aggregate only") | **0 scores** (still rejected per §B.3 — framework paper, all rows attribute to systems not base LLMs) | 0 |
+
+**Key extractions**:
+
+- **OneManCompany Table 2 page 14** — full 13-model PRDBench leaderboard. New rows: Claude-4.5 69.19, GPT-5.2 62.49, CodeX 62.09, Claude Code 56.65, Qwen3-Coder 43.84, Qwen Code 39.91, DeepSeek-V3.2 40.11, GLM-4.7 38.39, Gemini-3-Pro 22.76, Kimi-K2 20.52, Minimax-M2 17.60, Gemini CLI 11.29 (OMC 84.67 already in DB).
+
+- **AI Co-Mathematician** — Figure 5 page 13 internal-100-Q research-math leaderboard: AI Co-Math 87 / Gemini Deep Think 70 / Gemini 3.1 Pro 57. Plus FrontierMath Tier 4 paired baseline (Gemini 3.1 Pro 19 vs AI Co-Math 48). New benchmark: `deepmind_internal_research_math_100`.
+
+- **Agent-World Tables 1 + 2 page 14-16** — 13-model × {MCP-Mark, BFCL-V4, τ²-Bench} score matrix incl. all sub-categories that existed in DB. τ²-Bench Avg leaders: Gemini-3-Pro 85.4 / Claude-Sonnet-4.5 84.7 / Seed-2.0 83.0 / GPT-5.2-High 80.2. New canonical IDs: `ruc-bytedance/agent-world-{8b,14b}` (own models), `alibaba/qwen3-{8b,14b,32b,235b-a22b}` (base comparators), `google/gemini-cli`, `alibaba/qwen-code`, `minimax/m2`. Plus inline body-text triples for SkillsBench/ARC-AGI-2/Claw-Eval on AW-8B/14B.
+
+- **Recursive Multi-Agent Systems** — still rejected. Subagent confirmed: Tables 2/3/4/5/9 attribute to systems (RecursiveMAS / MoA / TextGrad / LoopLM), Tables 6/7/8 with single-LLM agent rows are explicitly fine-tuned with role-specific supervised targets via inner-loop RecursiveLink (§B.3) — they do not represent raw base-model capability. Zero frontier models tested.
+
+**Non-PDF links** (AA speech-to-speech leaderboard + Epoch FrontierMath tiers-1-4 page): both JS-rendered without exposed CSV/JSON endpoints. AA speech-to-speech was already exhausted in Section 36 (12 scores). Epoch FrontierMath page itself notes "AI-assisted review flagged fatal errors in ~1/3 problems" → strict-attribution defer (data quality red flag from the source).
+
+**Batch deltas (verified from data/export/)**:
+- Models: 1279 → **1284** (+5 net new — paper used different naming so most mapped to existing IDs)
+- Benchmarks: 924 → **925** (+1 net new: deepmind_internal_research_math_100)
+- Scores: 4994 → **5059** (+65 net new of 78 inserted; 13 absorbed by INSERT OR REPLACE on existing rows)
+
+**Artifacts archived**:
+- 3 new PDFs in `resource/arxiv_*.pdf` (per system_card_pdf_storage rule)
+- 4 audit-trail findings files in `resource/mine_*.md` for downstream review
+
+**Cache-bust**: `app.js v=20260513a → 20260513b`. Resources tab descriptions for OneManCompany + Agent-World entries upgraded with leaderboard summaries.
 
 ### 32. DELEGATE-52 benchmark — Microsoft Research document corruption (commit `171c9d3`)
 
