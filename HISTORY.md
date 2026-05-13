@@ -1,5 +1,126 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-13 (Session 13): Post-closeout ingest sweep + Medical AI timeline widget + CI test drift fix
+
+Session 12 final sync (commit `9058ab5`) declared closeout, but a string of user-prompted ref-link investigations + a major Medical AI widget request + a pre-existing CI red flag added 10 commits across 2026-05-12 evening → 2026-05-13 morning. Captured here for completeness.
+
+### 32. DELEGATE-52 benchmark — Microsoft Research document corruption (commit `171c9d3`)
+
+User-provided: arxiv `2604.15597` — "LLMs Corrupt Your Documents When You Delegate" (Philippe Laban, Tobias Schnabel, Jennifer Neville, MSR, Apr 17 2026).
+
+**New benchmark `delegate_52`** (agent category, percent metric):
+- 52 professional domains (coding, crystallography, music notation, etc.)
+- RS@20 metric = % original document content preserved after 20 LLM editing interactions in delegated workflow
+- Headline finding: frontier models average **~25% degradation**, only Python achieves "ready" status (≥98% preservation) across most models
+
+**+1 model**: `openai/gpt-5-chat` (Chat variant separate from base gpt-5).
+**+19 scores** (full Table 1 leaderboard):
+- Top 5: Gemini 3.1 Pro **80.9** / Claude Opus 4.6 73.1 / GPT-5.4 71.5 / GPT-5.2 66.1 / Claude Sonnet 4.6 66.0
+- Mid: Kimi K2.5 64.1, GPT-5.1 60.5, Grok 4 59.3, GPT-4.1 49.5, GPT-5 48.3, o3 48.2, o1 48.1, GPT-5 Chat 46.8, GPT-5 Mini 45.1
+- Bottom: Gemini 3 Flash 35.8, Mistral Large 3 35.5, gpt-oss-120B 19.2, GPT-4o 14.7, GPT-5 Nano 10.0
+
+PDF archived to `resource/` per system_card_pdf_storage rule.
+
+### 33. Onyx Open LLM Leaderboard 2026 ingest (commit `493f892`)
+
+User-provided: `onyx.app/open-llm-leaderboard` (Roshan Desai's Onyx AI maintainer page). 19 models × 10 benchmarks (MMLU, MMLU-Pro, GPQA Diamond, IFEval, LMArena Elo, SWE-bench Verified, HumanEval, LiveCodeBench, AIME 2025, MATH-500), scores sourced from official tech reports. Last updated 2026-03-24.
+
+- **+1 model**: `stepfun/step3` (316B params)
+- **+93 (model, benchmark) score pairs** — many duplicates rejected via INSERT OR REPLACE (already in DB from primary sources)
+
+Score distribution by benchmark: lmarena 19 / livecodebench 14 / humaneval 10 / ifeval+mmlu 9 / mmlu_pro+aime_2025 8 / math_500 6 / swe_bench_verified+gpqa_diamond 5.
+
+### 34. Medical AI Release Timeline month-column infographic (commits `b0925b7` → `0599cb2`)
+
+User-prompted: "Medical AI 메뉴에 ... 타임라인 그래픽 ... timeline-infographic 스킬을 이용". Built vanilla-SVG month-column timeline per `timeline-infographic` skill rules.
+
+**Initial implementation** (`b0925b7`):
+- Mount: `#med-timeline-infographic-host` (below existing scatter timeline)
+- Month buckets, 12-color palette (Jan blue → Dec cyan)
+- Variable sub-column width (1–4 cols/month based on density)
+- 4-corner card layout: vendor logo (TL) / MM.DD date (TR) / license pill (BL) / country name (BC) / flag tile (BR)
+- Header pills + axis line + dotted connectors
+- Footer attribution (author + source + generated date)
+- 3 download handlers: PNG (2× scale via Canvas) / SVG (XMLSerializer) / CSV (RFC 4180)
+
+**Tuning iterations**:
+- `250637e`: extended window to 12 months + horizontal scroll for very wide timelines
+- `54f1680`: 6mo window + 8 subcols + 220px cards
+- `14a355c`: **user-flagged scope bug** — only 65/211 medical models rendered because code only read `release_date`; switched to `release_date || released_at` fallback (207 of 211 models now eligible)
+- `0599cb2`: user requested "3개월, 6개월, 12개월만 선택 가능" — restricted window selector to 3/6/12 (from 12/24/36/60/all)
+
+**Final state**: 207-model candidate pool, 3/6/12 month selector, all 4 corner anchors validated, no card truncation across density ranges.
+
+### 35. 2026-05-13 ref-link sweep — broad SOTA gather (commit `a80d526`)
+
+Strict-attribution ingest of 64 new (model, benchmark, score) tuples from primary publications between 2026-04-26 → 2026-05-13:
+
+**Sources**:
+- **Scale SWE-Bench Pro Public leaderboard** — new bench `swe_bench_pro_public`, 24 model scores incl. gpt-5.4-xhigh **59.10**, Muse Spark 55.0, Claude Opus 4.6 thinking 51.90 down to Codestral 24.05 1.51
+- **Soohak research-math** (arxiv 2605.09063) — 19 scores across Mini/Challenge/Refusal subsets; GPT-OSS-120B hard-reasoning + 81920-ctx achieves **80.91 on Soohak-Mini**
+- **WorldReasonBench** (arxiv 2605.10434) — 11 video-model overall ScorePR scores; Seedance2.0 39.8, Veo3.1-Fast 35.3
+- **Anthropic Claude Opus 4.7 launch page** — CursorBench (70 vs 4.6=58), XBOW visual-acuity (98.5 vs 4.6=54.5), BigLaw Bench (Harvey, 90.9)
+- **Vellum-compiled OpenAI GPT-5.5 launch numbers** — MRCR v2 (74.0 / 36.6 / 32.2) + GDPval pairs for GPT-5.5-Pro and Claude Opus 4.7
+
+**+9 new benchmark IDs**: `swe_bench_pro_public`, `soohak_mini_avg3`, `soohak_challenge_avg3`, `soohak_refusal_avg3`, `worldreasonbench_overall`, `cursor_bench`, `xbow_visual_acuity`, `biglaw_bench_harvey`, `mrcr_v2`.
+**+6 new model IDs** (text variants + select cycles).
+
+### 36. Ref-link batch 2 — speech-to-speech + AI Co-Mathematician + OneManCompany (commit `6f81130`)
+
+User-provided 6 URLs. Per strict-attribution rule: 3 yielded primary-source data, 3 rejected (abstract-only / aggregate-only / JS-rendered with explicit "fatal errors flagged in ~1/3 problems" note).
+
+**Yields**:
+1. **arxiv 2604.22446 (OneManCompany)** → `+1 model onemancompany/omc`, `+1 benchmark prdbench`, **84.67%** score
+2. **artificialanalysis.ai/speech-to-speech** → `+4 audio models` (stepfun/step-audio-r1.1, xai/grok-voice-think-fast, google/gemini-3.1-flash-live, alibaba/qwen3.5-omni-plus-realtime), `+2 benchmarks` (full_duplex_bench, tau_voice), 9 scores across Big Bench Audio + Full Duplex Bench + τ-Voice
+3. **arxiv 2605.06651 (AI Co-Mathematician, DeepMind)** → `+1 model deepmind/ai-co-mathematician`, **FrontierMath Tier 4 = 48%** — significant SOTA leap (vs prior <20% on this benchmark). Daniel Zheng et al.
+
+**Rejected**:
+4. arxiv 2604.18292 (Agent-World) — abstract only, no per-model scores
+5. arxiv 2604.25917 (Recursive Multi-Agent Systems) — aggregate framework results only
+6. epoch.ai/frontiermath/tiers-1-4 — JS-rendered table + page itself notes "AI-assisted review flagged fatal errors in ~1/3 problems" (data quality warning ⇒ defer)
+
+**Highlights** post-ingest:
+- `frontiermath_tier4` top 2: GPT-5.4 50% / **AI Co-Math 48%** (new #2)
+- `big_bench_audio` top 3: Step-Audio R1.1 98 / Grok Voice 97 / GPT-Realtime-2 97
+- `full_duplex_bench`: GPT-Realtime-2 95.3 / Grok Voice 77.8
+- `tau_voice`: Grok Voice **52.1** / GPT-Realtime-2 39.8 / Gemini 3.1 Flash Live 37.7
+
+AI Co-Mathematician paper PDF (851 KB) archived to `resource/AI_Co-Mathematician_arxiv_2605.06651.pdf` per system_card_pdf_storage rule. Resources tab: +6 entries.
+
+### 37. CI red on stale safety-dict test (commit `deaa61d`)
+
+**Pre-existing failure surfaced**: Dashboard Tests had been red since `0599cb2` due to test/schema drift in `tests/test_enrichment_export.py:58`.
+
+`cyber/publisher/exporter.py:111-117` had been expanded with 2 new safety dimensions:
+- `metr_autonomy_50pct` — METR autonomous task ladder 50% threshold
+- `apollo_schemer_score` — Apollo Research scheming evaluation
+
+…but the unit test assertion still expected the old 3-key shape `{aisi_cyber_tier, cbrn_risk, self_reported_safety_card}`.
+
+**Fix**: updated test assertion to match exporter's actual 5-key schema. 237/237 tests now pass locally; Dashboard Tests green on next CI run.
+
+**Note for ops hygiene**: this kind of test/schema drift was hidden because Dashboard Tests was the only CI gate that ran on Python schema changes, and the failure had been quietly accumulating across 5 commits before anyone noticed.
+
+### Session 13 cumulative deltas (verified from `data/export/`)
+
+| Metric | Session 12 close | Session 13 close | Delta |
+|---|---:|---:|---:|
+| Models | 1259 | **1279** | **+20** |
+| Benchmarks | 902 | **924** | **+22** |
+| Scores | 4672 | **4994** | **+322** |
+
+**Top benchmark adds**: delegate_52, prdbench, full_duplex_bench, tau_voice, swe_bench_pro_public, soohak_mini/challenge/refusal_avg3, worldreasonbench_overall, cursor_bench, xbow_visual_acuity, biglaw_bench_harvey, mrcr_v2 (+13 of 22 net new benches captured here).
+
+**Notable SOTA shifts**:
+- FrontierMath Tier 4: AI Co-Mathematician **48%** (was prior <20% range) — new #2 behind GPT-5.4 50%
+- SWE-Bench Pro Public: gpt-5.4-xhigh **59.10%** as new headline
+- DELEGATE-52: Gemini 3.1 Pro 80.9 leads document-preservation
+- τ-Voice: Grok Voice Think Fast **52.1** SOTA on voice-agent customer service
+
+**Live deploy**: CI run for `6f81130` pushed; `deaa61d` test fix re-triggered CI clean. Cache-bust: `app.js v=20260513a`.
+
+---
+
 ## 2026-05-10 (Session 11): Reference-link investigation sweeps — 5 ingest rounds (21 models, 6 benchmarks, 38 scores, 15 Resources refs)
 
 ### 17. 5-round 참조 링크 조사 (commits `45c1035` → `25b3c55`)
