@@ -55,7 +55,13 @@ def test_enrichment_yaml_compiles_to_json(monkeypatch):
         assert m["architecture"]["total_params_b"] == 33
         assert m["quantizations"] == ["fp8", "awq", "gguf"]
         assert m["training"] == {"pretrain_tokens": None, "compute_flops": None, "phases": []}
-        assert m["safety"] == {"aisi_cyber_tier": None, "cbrn_risk": None, "self_reported_safety_card": None}
+        assert m["safety"] == {
+            "aisi_cyber_tier": None,
+            "cbrn_risk": None,
+            "metr_autonomy_50pct": None,
+            "apollo_schemer_score": None,
+            "self_reported_safety_card": None,
+        }
         assert m["throughput"] == {"tokens_per_second": None, "latency_p50_ms": None}
         assert m["api_providers"] == []
         assert m["links"] == {"homepage": None, "system_card": None, "model_card": None, "huggingface": None, "paper": None, "github": None, "blog": None}
