@@ -441,8 +441,35 @@ var Sovereign = {
         }
     ],
 
+    // Resolve release month for a model id with DB fallback.
+    // Order: explicit RELEASE_DATES entry → DB `release_date` (YYYY-MM-DD → YYYY-MM)
+    //      → DB `released_at` → null.
+    // This means newly-added sovereign models pick up their date from data/export/models.json
+    // without requiring a manual RELEASE_DATES entry.
+    _resolveReleaseDate: function(mid) {
+        var hard = this.RELEASE_DATES[mid];
+        if (hard) return hard;
+        var m = this._modelById && this._modelById[mid];
+        if (!m && this._models) {
+            // Build index lazily on first use
+            this._modelById = {};
+            for (var i = 0; i < this._models.length; i++) this._modelById[this._models[i].id] = this._models[i];
+            m = this._modelById[mid];
+        }
+        if (!m) return null;
+        var d = m.release_date || m.released_at;
+        if (!d) return null;
+        // Normalize YYYY-MM-DD → YYYY-MM (or pass through YYYY/YYYY-MM)
+        if (/^\d{4}-\d{2}-\d{2}/.test(d)) return d.slice(0, 7);
+        if (/^\d{4}-\d{2}$/.test(d)) return d;
+        if (/^\d{4}$/.test(d)) return d;
+        return null;
+    },
+
     // Release / announcement dates (YYYY-MM, or YYYY when month is unknown).
     // Used for sorting newest-first and surfacing the year next to model names.
+    // NOTE: For models with `release_date` in DB, _resolveReleaseDate() falls back to that
+    // automatically — only add hardcoded entries here for cases where DB date is missing or wrong.
     RELEASE_DATES: {
         // Korea — LG
         'lg/exaone-4.5-33b': '2026-04', 'lg/k-exaone-236b': '2026-01',
@@ -1402,7 +1429,7 @@ var Sovereign = {
             if (!region) return;
             totalProcessed++;
 
-            var date = self.RELEASE_DATES[mid] || (self._localReleaseDates && self._localReleaseDates[mid]);
+            var date = self._resolveReleaseDate(mid) || (self._localReleaseDates && self._localReleaseDates[mid]);
             if (!date) return;
 
             // Period filter
@@ -1684,7 +1711,7 @@ var Sovereign = {
             }
             region.models.forEach(function(mid) {
                 var m = modelById[mid];
-                var date = self.RELEASE_DATES[mid];
+                var date = self._resolveReleaseDate(mid);
                 if (!m || !date) return;
                 var bucketTs = self._bucketKey(date, granularity);
                 if (self._cumViewMode === 'region') {
@@ -2108,7 +2135,7 @@ var Sovereign = {
         function buildModelRow(mid) {
             var m = self._models.find(function(x) { return x.id === mid; });
             if (!m) return null;
-            var releaseDate = self.RELEASE_DATES[mid];
+            var releaseDate = self._resolveReleaseDate(mid);
             var row = document.createElement('div');
             row.className = 'flex items-center justify-between gap-2 text-xs';
             var name = document.createElement('span');
@@ -2130,8 +2157,8 @@ var Sovereign = {
 
         function sortByDateDesc(ids) {
             return ids.slice().sort(function(a, b) {
-                var da = self.RELEASE_DATES[a] || '';
-                var db = self.RELEASE_DATES[b] || '';
+                var da = self._resolveReleaseDate(a) || '';
+                var db = self._resolveReleaseDate(b) || '';
                 if (!da && !db) return 0;
                 if (!da) return 1;
                 if (!db) return -1;
@@ -2148,7 +2175,7 @@ var Sovereign = {
                 return self._models.some(function(m) { return m.id === mid; });
             });
             var visibleModels = activeMode
-                ? presentModels.filter(function(mid) { return self._isActive(self.RELEASE_DATES[mid]); })
+                ? presentModels.filter(function(mid) { return self._isActive(self._resolveReleaseDate(mid)); })
                 : presentModels;
 
             // ── Card header ──
@@ -2205,7 +2232,7 @@ var Sovereign = {
                 var vendorLatest = {};
                 Object.keys(vendorGroups).forEach(function(v) {
                     var mostRecent = vendorGroups[v].reduce(function(acc, mid) {
-                        var d = self.RELEASE_DATES[mid] || '';
+                        var d = self._resolveReleaseDate(mid) || '';
                         return d > acc ? d : acc;
                     }, '');
                     vendorLatest[v] = mostRecent;
