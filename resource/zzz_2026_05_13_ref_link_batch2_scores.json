@@ -1,0 +1,217 @@
+{
+  "_meta": {
+    "collected_at": "2026-05-13",
+    "_note": "Ref-link sweep batch 2 (user-provided 6 links). Sources: (1) arxiv 2604.22446 — OneManCompany on PRDBench; (2) artificialanalysis.ai/speech-to-speech — 6-model speech-to-speech leaderboard with Big Bench Audio + Full Duplex Bench + τ-Voice; (3) arxiv 2604.18292 — Agent-World (abstract only, no scores); (4) arxiv 2604.25917 — Recursive Multi-Agent (aggregate only, no per-model); (5) arxiv 2605.06651 — AI Co-Mathematician on FrontierMath Tier 4 = 48%; (6) epoch.ai/frontiermath/tiers-1-4 — JS-rendered, page notes 'AI-assisted review flagged fatal errors in ~1/3 of problems', no data extracted.",
+    "sources": [
+      "https://arxiv.org/abs/2604.22446",
+      "https://artificialanalysis.ai/speech-to-speech",
+      "https://arxiv.org/abs/2605.06651"
+    ]
+  },
+  "models": [
+    {
+      "id": "stepfun/step-audio-r1.1",
+      "vendor": "StepFun",
+      "name": "Step-Audio R1.1 (Realtime)",
+      "type": "proprietary",
+      "modalities": [
+        "audio",
+        "speech"
+      ],
+      "_sources": [
+        "https://artificialanalysis.ai/speech-to-speech"
+      ]
+    },
+    {
+      "id": "xai/grok-voice-think-fast",
+      "vendor": "xAI",
+      "name": "Grok Voice Think Fast 1.0",
+      "type": "proprietary",
+      "modalities": [
+        "audio",
+        "speech"
+      ],
+      "_sources": [
+        "https://artificialanalysis.ai/speech-to-speech"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-flash-live",
+      "vendor": "Google",
+      "name": "Gemini 3.1 Flash Live (High)",
+      "type": "proprietary",
+      "modalities": [
+        "audio",
+        "speech"
+      ],
+      "_sources": [
+        "https://artificialanalysis.ai/speech-to-speech"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-omni-plus-realtime",
+      "vendor": "Alibaba",
+      "name": "Qwen3.5 Omni Plus Realtime",
+      "type": "open-weight",
+      "modalities": [
+        "audio",
+        "speech"
+      ],
+      "_sources": [
+        "https://artificialanalysis.ai/speech-to-speech"
+      ]
+    },
+    {
+      "id": "deepmind/ai-co-mathematician",
+      "vendor": "Google DeepMind",
+      "name": "AI Co-Mathematician",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2026-05-07",
+      "_sources": [
+        "https://arxiv.org/abs/2605.06651"
+      ],
+      "_note": "DeepMind agentic AI for mathematicians (Zheng et al, May 7 2026). FrontierMath Tier 4 = 48% SOTA. Interactive workbench for ideation/lit search/theorem proving."
+    },
+    {
+      "id": "onemancompany/omc",
+      "vendor": "OneManCompany",
+      "name": "OneManCompany (OMC)",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2026-04-24",
+      "_sources": [
+        "https://arxiv.org/abs/2604.22446"
+      ],
+      "_note": "Heterogeneous agent organization framework. PRDBench 84.67% success rate (+15.48pp over prior SOTA)."
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "prdbench",
+      "name": "PRDBench",
+      "category": "agent",
+      "description": "Product Requirements Document benchmark — evaluates agent systems on PRD generation and refinement tasks. Per OneManCompany paper (arxiv 2604.22446). Higher = better.",
+      "metric": "success_rate",
+      "leaderboard": "https://arxiv.org/abs/2604.22446"
+    },
+    {
+      "id": "full_duplex_bench",
+      "name": "Full Duplex Bench (Conversational Dynamics)",
+      "category": "audio",
+      "description": "Speech-to-speech conversational dynamics benchmark — measures pause handling, turn-taking, interruption handling, and backchannel handling. Weighted average of v1 + v1.5. Per Artificial Analysis speech-to-speech evaluation.",
+      "metric": "percent",
+      "leaderboard": "https://artificialanalysis.ai/speech-to-speech"
+    },
+    {
+      "id": "tau_voice",
+      "name": "τ-Voice (Agentic Performance)",
+      "category": "audio",
+      "description": "Voice agent task completion benchmark — replica customer service scenarios with domain-specific tools across Airline, Retail, and Telecom domains. Per Artificial Analysis speech-to-speech evaluation.",
+      "metric": "percent",
+      "leaderboard": "https://artificialanalysis.ai/speech-to-speech"
+    }
+  ],
+  "scores": [
+    {
+      "model": "deepmind/ai-co-mathematician",
+      "benchmark": "frontiermath_tier4",
+      "score": 48.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.06651",
+      "_note": "AI Co-Mathematician (DeepMind, Zheng et al, May 7 2026): FrontierMath Tier 4 = 48% SOTA. Interactive agentic workbench for mathematicians."
+    },
+    {
+      "model": "onemancompany/omc",
+      "benchmark": "prdbench",
+      "score": 84.67,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany framework on PRDBench = 84.67% success rate. +15.48pp over prior SOTA. Per Yu et al (April 24 2026)."
+    },
+    {
+      "model": "stepfun/step-audio-r1.1",
+      "benchmark": "big_bench_audio",
+      "score": 98,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-speech",
+      "_note": "AA speech-to-speech leaderboard: Step-Audio R1.1 (Realtime) Speech Reasoning = 98% on Big Bench Audio."
+    },
+    {
+      "model": "xai/grok-voice-think-fast",
+      "benchmark": "big_bench_audio",
+      "score": 97,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-speech",
+      "_note": "AA speech-to-speech leaderboard: Grok Voice Think Fast 1.0 Speech Reasoning = 97%."
+    },
+    {
+      "model": "openai/gpt-realtime-2",
+      "benchmark": "big_bench_audio",
+      "score": 97,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-speech",
+      "_note": "AA leaderboard: GPT-Realtime-2 (High) Speech Reasoning = 97% on Big Bench Audio (vs Minimal variant 72%)."
+    },
+    {
+      "model": "google/gemini-3.1-flash-live",
+      "benchmark": "big_bench_audio",
+      "score": 97,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-speech",
+      "_note": "AA leaderboard: Gemini 3.1 Flash Live (High) Speech Reasoning = 97%."
+    },
+    {
+      "model": "alibaba/qwen3.5-omni-plus-realtime",
+      "benchmark": "big_bench_audio",
+      "score": 73,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-speech",
+      "_note": "AA leaderboard: Qwen3.5 Omni Plus Realtime Speech Reasoning = 73%."
+    },
+    {
+      "model": "openai/gpt-realtime-2",
+      "benchmark": "full_duplex_bench",
+      "score": 95.3,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-speech",
+      "_note": "GPT-Realtime-2 (High) Conversational Dynamics = 95.3% on Full Duplex Bench (96.1% Minimal). Per AA speech-to-speech."
+    },
+    {
+      "model": "xai/grok-voice-think-fast",
+      "benchmark": "full_duplex_bench",
+      "score": 77.8,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-speech",
+      "_note": "Grok Voice Think Fast 1.0 Conversational Dynamics = 77.8%."
+    },
+    {
+      "model": "xai/grok-voice-think-fast",
+      "benchmark": "tau_voice",
+      "score": 52.1,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-speech",
+      "_note": "Grok Voice Think Fast 1.0 τ-Voice Agentic Performance = 52.1% (top of leaderboard)."
+    },
+    {
+      "model": "openai/gpt-realtime-2",
+      "benchmark": "tau_voice",
+      "score": 39.8,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-speech",
+      "_note": "GPT-Realtime-2 (High) τ-Voice = 39.8% (vs Minimal 30.8%)."
+    },
+    {
+      "model": "google/gemini-3.1-flash-live",
+      "benchmark": "tau_voice",
+      "score": 37.7,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-speech",
+      "_note": "Gemini 3.1 Flash Live (High) τ-Voice = 37.7%."
+    }
+  ]
+}
