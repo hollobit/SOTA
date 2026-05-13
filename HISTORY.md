@@ -1,5 +1,126 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-13 (Session 13): Post-closeout ingest sweep + Medical AI timeline widget + CI test drift fix
+
+Session 12 final sync (commit `9058ab5`) declared closeout, but a string of user-prompted ref-link investigations + a major Medical AI widget request + a pre-existing CI red flag added 10 commits across 2026-05-12 evening → 2026-05-13 morning. Captured here for completeness.
+
+### 32. DELEGATE-52 benchmark — Microsoft Research document corruption (commit `171c9d3`)
+
+User-provided: arxiv `2604.15597` — "LLMs Corrupt Your Documents When You Delegate" (Philippe Laban, Tobias Schnabel, Jennifer Neville, MSR, Apr 17 2026).
+
+**New benchmark `delegate_52`** (agent category, percent metric):
+- 52 professional domains (coding, crystallography, music notation, etc.)
+- RS@20 metric = % original document content preserved after 20 LLM editing interactions in delegated workflow
+- Headline finding: frontier models average **~25% degradation**, only Python achieves "ready" status (≥98% preservation) across most models
+
+**+1 model**: `openai/gpt-5-chat` (Chat variant separate from base gpt-5).
+**+19 scores** (full Table 1 leaderboard):
+- Top 5: Gemini 3.1 Pro **80.9** / Claude Opus 4.6 73.1 / GPT-5.4 71.5 / GPT-5.2 66.1 / Claude Sonnet 4.6 66.0
+- Mid: Kimi K2.5 64.1, GPT-5.1 60.5, Grok 4 59.3, GPT-4.1 49.5, GPT-5 48.3, o3 48.2, o1 48.1, GPT-5 Chat 46.8, GPT-5 Mini 45.1
+- Bottom: Gemini 3 Flash 35.8, Mistral Large 3 35.5, gpt-oss-120B 19.2, GPT-4o 14.7, GPT-5 Nano 10.0
+
+PDF archived to `resource/` per system_card_pdf_storage rule.
+
+### 33. Onyx Open LLM Leaderboard 2026 ingest (commit `493f892`)
+
+User-provided: `onyx.app/open-llm-leaderboard` (Roshan Desai's Onyx AI maintainer page). 19 models × 10 benchmarks (MMLU, MMLU-Pro, GPQA Diamond, IFEval, LMArena Elo, SWE-bench Verified, HumanEval, LiveCodeBench, AIME 2025, MATH-500), scores sourced from official tech reports. Last updated 2026-03-24.
+
+- **+1 model**: `stepfun/step3` (316B params)
+- **+93 (model, benchmark) score pairs** — many duplicates rejected via INSERT OR REPLACE (already in DB from primary sources)
+
+Score distribution by benchmark: lmarena 19 / livecodebench 14 / humaneval 10 / ifeval+mmlu 9 / mmlu_pro+aime_2025 8 / math_500 6 / swe_bench_verified+gpqa_diamond 5.
+
+### 34. Medical AI Release Timeline month-column infographic (commits `b0925b7` → `0599cb2`)
+
+User-prompted: "Medical AI 메뉴에 ... 타임라인 그래픽 ... timeline-infographic 스킬을 이용". Built vanilla-SVG month-column timeline per `timeline-infographic` skill rules.
+
+**Initial implementation** (`b0925b7`):
+- Mount: `#med-timeline-infographic-host` (below existing scatter timeline)
+- Month buckets, 12-color palette (Jan blue → Dec cyan)
+- Variable sub-column width (1–4 cols/month based on density)
+- 4-corner card layout: vendor logo (TL) / MM.DD date (TR) / license pill (BL) / country name (BC) / flag tile (BR)
+- Header pills + axis line + dotted connectors
+- Footer attribution (author + source + generated date)
+- 3 download handlers: PNG (2× scale via Canvas) / SVG (XMLSerializer) / CSV (RFC 4180)
+
+**Tuning iterations**:
+- `250637e`: extended window to 12 months + horizontal scroll for very wide timelines
+- `54f1680`: 6mo window + 8 subcols + 220px cards
+- `14a355c`: **user-flagged scope bug** — only 65/211 medical models rendered because code only read `release_date`; switched to `release_date || released_at` fallback (207 of 211 models now eligible)
+- `0599cb2`: user requested "3개월, 6개월, 12개월만 선택 가능" — restricted window selector to 3/6/12 (from 12/24/36/60/all)
+
+**Final state**: 207-model candidate pool, 3/6/12 month selector, all 4 corner anchors validated, no card truncation across density ranges.
+
+### 35. 2026-05-13 ref-link sweep — broad SOTA gather (commit `a80d526`)
+
+Strict-attribution ingest of 64 new (model, benchmark, score) tuples from primary publications between 2026-04-26 → 2026-05-13:
+
+**Sources**:
+- **Scale SWE-Bench Pro Public leaderboard** — new bench `swe_bench_pro_public`, 24 model scores incl. gpt-5.4-xhigh **59.10**, Muse Spark 55.0, Claude Opus 4.6 thinking 51.90 down to Codestral 24.05 1.51
+- **Soohak research-math** (arxiv 2605.09063) — 19 scores across Mini/Challenge/Refusal subsets; GPT-OSS-120B hard-reasoning + 81920-ctx achieves **80.91 on Soohak-Mini**
+- **WorldReasonBench** (arxiv 2605.10434) — 11 video-model overall ScorePR scores; Seedance2.0 39.8, Veo3.1-Fast 35.3
+- **Anthropic Claude Opus 4.7 launch page** — CursorBench (70 vs 4.6=58), XBOW visual-acuity (98.5 vs 4.6=54.5), BigLaw Bench (Harvey, 90.9)
+- **Vellum-compiled OpenAI GPT-5.5 launch numbers** — MRCR v2 (74.0 / 36.6 / 32.2) + GDPval pairs for GPT-5.5-Pro and Claude Opus 4.7
+
+**+9 new benchmark IDs**: `swe_bench_pro_public`, `soohak_mini_avg3`, `soohak_challenge_avg3`, `soohak_refusal_avg3`, `worldreasonbench_overall`, `cursor_bench`, `xbow_visual_acuity`, `biglaw_bench_harvey`, `mrcr_v2`.
+**+6 new model IDs** (text variants + select cycles).
+
+### 36. Ref-link batch 2 — speech-to-speech + AI Co-Mathematician + OneManCompany (commit `6f81130`)
+
+User-provided 6 URLs. Per strict-attribution rule: 3 yielded primary-source data, 3 rejected (abstract-only / aggregate-only / JS-rendered with explicit "fatal errors flagged in ~1/3 problems" note).
+
+**Yields**:
+1. **arxiv 2604.22446 (OneManCompany)** → `+1 model onemancompany/omc`, `+1 benchmark prdbench`, **84.67%** score
+2. **artificialanalysis.ai/speech-to-speech** → `+4 audio models` (stepfun/step-audio-r1.1, xai/grok-voice-think-fast, google/gemini-3.1-flash-live, alibaba/qwen3.5-omni-plus-realtime), `+2 benchmarks` (full_duplex_bench, tau_voice), 9 scores across Big Bench Audio + Full Duplex Bench + τ-Voice
+3. **arxiv 2605.06651 (AI Co-Mathematician, DeepMind)** → `+1 model deepmind/ai-co-mathematician`, **FrontierMath Tier 4 = 48%** — significant SOTA leap (vs prior <20% on this benchmark). Daniel Zheng et al.
+
+**Rejected**:
+4. arxiv 2604.18292 (Agent-World) — abstract only, no per-model scores
+5. arxiv 2604.25917 (Recursive Multi-Agent Systems) — aggregate framework results only
+6. epoch.ai/frontiermath/tiers-1-4 — JS-rendered table + page itself notes "AI-assisted review flagged fatal errors in ~1/3 problems" (data quality warning ⇒ defer)
+
+**Highlights** post-ingest:
+- `frontiermath_tier4` top 2: GPT-5.4 50% / **AI Co-Math 48%** (new #2)
+- `big_bench_audio` top 3: Step-Audio R1.1 98 / Grok Voice 97 / GPT-Realtime-2 97
+- `full_duplex_bench`: GPT-Realtime-2 95.3 / Grok Voice 77.8
+- `tau_voice`: Grok Voice **52.1** / GPT-Realtime-2 39.8 / Gemini 3.1 Flash Live 37.7
+
+AI Co-Mathematician paper PDF (851 KB) archived to `resource/AI_Co-Mathematician_arxiv_2605.06651.pdf` per system_card_pdf_storage rule. Resources tab: +6 entries.
+
+### 37. CI red on stale safety-dict test (commit `deaa61d`)
+
+**Pre-existing failure surfaced**: Dashboard Tests had been red since `0599cb2` due to test/schema drift in `tests/test_enrichment_export.py:58`.
+
+`cyber/publisher/exporter.py:111-117` had been expanded with 2 new safety dimensions:
+- `metr_autonomy_50pct` — METR autonomous task ladder 50% threshold
+- `apollo_schemer_score` — Apollo Research scheming evaluation
+
+…but the unit test assertion still expected the old 3-key shape `{aisi_cyber_tier, cbrn_risk, self_reported_safety_card}`.
+
+**Fix**: updated test assertion to match exporter's actual 5-key schema. 237/237 tests now pass locally; Dashboard Tests green on next CI run.
+
+**Note for ops hygiene**: this kind of test/schema drift was hidden because Dashboard Tests was the only CI gate that ran on Python schema changes, and the failure had been quietly accumulating across 5 commits before anyone noticed.
+
+### Session 13 cumulative deltas (verified from `data/export/`)
+
+| Metric | Session 12 close | Session 13 close | Delta |
+|---|---:|---:|---:|
+| Models | 1259 | **1279** | **+20** |
+| Benchmarks | 902 | **924** | **+22** |
+| Scores | 4672 | **4994** | **+322** |
+
+**Top benchmark adds**: delegate_52, prdbench, full_duplex_bench, tau_voice, swe_bench_pro_public, soohak_mini/challenge/refusal_avg3, worldreasonbench_overall, cursor_bench, xbow_visual_acuity, biglaw_bench_harvey, mrcr_v2 (+13 of 22 net new benches captured here).
+
+**Notable SOTA shifts**:
+- FrontierMath Tier 4: AI Co-Mathematician **48%** (was prior <20% range) — new #2 behind GPT-5.4 50%
+- SWE-Bench Pro Public: gpt-5.4-xhigh **59.10%** as new headline
+- DELEGATE-52: Gemini 3.1 Pro 80.9 leads document-preservation
+- τ-Voice: Grok Voice Think Fast **52.1** SOTA on voice-agent customer service
+
+**Live deploy**: CI run for `6f81130` pushed; `deaa61d` test fix re-triggered CI clean. Cache-bust: `app.js v=20260513a`.
+
+---
+
 ## 2026-05-10 (Session 11): Reference-link investigation sweeps — 5 ingest rounds (21 models, 6 benchmarks, 38 scores, 15 Resources refs)
 
 ### 17. 5-round 참조 링크 조사 (commits `45c1035` → `25b3c55`)
@@ -60,6 +181,377 @@ User-provided reference links 13개 (3 batches: 5+3+3+2)를 조사하고 strict-
 - Reject 사유: PDF 크기 한계 (CaP-X / MolmoAct2), Elo-only / qualitative claims (Luma UNI-1 / Genesis AI), 모델 attribution 부재 (PostTrainBench 51.1%, IKEA assembly ~40%)
 
 **Live deploy**: 매 round CI run completion + cache-bust 검증. 최종 cache-bust SHA prefix `25b3c55` (round 5 commit).
+
+### 18. Round 6 — AILuminate v1.0 + Epoch ECI full leaderboard (172 → 109 ingested)
+
+ECI 점수가 단 3개 (calibration anchors + GPT-5.5 Pro)뿐이라는 한계를 해결하기 위해 Epoch ECI deep-dive 진행.
+
+**Round 6a — MLCommons AILuminate v1.0** (commit `167ff2d`):
+- 1차 source: `https://ailuminate.mlcommons.org/benchmarks/` + arxiv 2503.05731
+- **+7 model registrations**: amazon/nova-lite, google/gemini-2.0-flash-lite, nexusflow/athene-v2-chat, cohere/aya-expanse-8b, alibaba/qwen1.5-110b-chat, mistral/mistral-large-24.11, allenai/olmo-7b-0724-instruct
+- **+1 benchmark**: ailuminate_v1 (12 hazard categories × 24,000 prompts/lang × 5-point overall grade)
+- **+21 scores**: 20 AILuminate v1.0 grades (Claude 3.5 Haiku/Sonnet 4 / Mistral Large 2 / Gemma 2 9b / Phi 3.5 MoE / Phi 4 = Very Good 4/5; OLMo 7b = Poor 1/5) + GPT-5.5 Pro ECI = 159 (Manifold market resolution Apr 28 2026)
+
+**Round 6b — Epoch ECI canonical CSV ingest** (this commit):
+- 1차 source: `https://epoch.ai/data/eci_scores.csv` (172 rows full leaderboard, 17.9 KB)
+- Methodology: arxiv 2512.00193 "A Rosetta Stone for AI Benchmarks" (Anson Ho et al, IRT-style stitching)
+- 매핑 전략: CSV `Display name` → manual_map (90 entries) + normalized name lookup → 109 unique model_ids matched
+- **+16 new model registrations**: openai/o3-pro, openai/gpt-5.4-nano, openai/gpt-4.1-mini/nano, openai/o1-mini/preview, openai/gpt-oss-120b, deepseek/deepseek-v3.2-exp/v3.1, xai/grok-4-fast/grok-3-mini, alibaba/qwen3-max/qwen2.5-max, google/gemini-2.0-flash-thinking/gemini-2.0-pro, mistral/mistral-large
+- **+106 new ECI scores** (3 → 109 total): top 159.50 (GPT-5.5 Pro), bottom 93.31 (StarCoder2-7B). 95% bootstrap CI included in `_note`. Time-versioned variants (예: 'Gemini 2.5 Pro (Mar 2025)' vs '(Jun 2025)') deduped to highest-ECI per canonical model_id.
+- **+3 Resources references**: arxiv 2512.00193 (Rosetta Stone paper), epoch.ai/data/eci_scores.csv (canonical CSV), github.com/epoch-research/eci-public (open repo)
+- 매뉴 propagation 생략: 16개 신규 model_ids는 대부분 2024-2025 older variants → "latest models focus" 메모리 룰에 따라 Frontier Compare hardcoded 리스트에 추가하지 않음. ECI 테이블에서만 노출.
+
+**Round 6 cumulative deltas**:
+- 신규 모델: +23 (1742 → 1765)
+- 신규 benchmarks: +1 (939 → 940)
+- 신규 scores: +127 (3823 → 3950)
+- Resources references: +3
+- ECI table: 3 → 109 entries (36× 데이터 증대)
+
+### 19. AI4S Phase 2B verification + Frontier Compare ECI heatmap (commits `4e13ec6` `80aa467`)
+
+User-prompted: "Frontier Compare에 composite 카테고리 추가하고 109개 ECI 점수가 heatmap에서 직접 비교 가능하도록".
+
+**Frontier Compare composite category** (commits `20ba001` `4e13ec6` `80aa467`):
+- 기존 7개 hardcoded 카테고리(reasoning/coding/math/agent/cybersecurity/cyber_defense/multimodal)에 `composite` 추가 → epoch_capabilities_index + epoch_capabilities_index_swe 노출
+- `_modelsForCategory(category, benchIds)` helper로 heatmap pool dynamic 확장: composite 시 FRONTIER_MODELS 75개 → ECI 점수 보유 109개로 자동 확장 (다른 카테고리는 기존 75개 유지)
+- 두 sort callback에 category 전파; class-filter hint를 카테고리별 context-aware로 수정 ("(109 / 109 ECI-scored models visible)")
+- Live 검증: 109 row heatmap, top: GPT-5.5 Pro 159.0, GPT-5.5 158.4, GPT-5.4 Pro 158.2, Gemini 3.1 Pro 156.8
+
+**Phase 2B AI4S widget verification** (Tasks 13-19): Session 7에서 함께 만들어진 위젯들이 오늘 Phase 2A 데이터로 채워진 것을 확인:
+- **W3 Frontier vs Specialist** — `renderFrontierVsSpecialist` (51 LOC, 3 math benchmarks 표시; specialist column null = 모델 라벨링 차이)
+- **W5 Per-Domain Modal** — `openDomainLeaderboard` + `_perDomainComposite` + Shift+click wire (bio-genomics 검증: AlphaFold v1/v2/v3 + OpenFold 3 + GPT-5.4-thinking; math 검증: 7개+ 모델)
+- **W7 Weather Skill** — 3 points (Pangu 134.5 / IFS 152.8 / ClimaX 201.0) — 2026-05-10 Phase 2A round 6 backfill 적용
+- **W8 CASP Progression** — 4 points (CASP13 AF1=58.9, CASP14 AF2=92.4, CASP15 AF2=73.0, CASP16 AF3=89.4)
+- **W9 Materials Yield** — 7 points (chgnet/mace-mp-0/gnome 등); yield axis = 0 (mattergen_yield 0 scores)
+- **Lazy render** — `requestIdleCallback` 사용, eager 3개 + lazy 6개 split
+- 단위 테스트 4개 모두 PASS (Task 1 _resolveLab, Task 2 _resolveDomain, Task 4 _BREAKTHROUGHS schema, Task 14 _perDomainComposite)
+
+### 20. SOTA harness lower-better 버그 수정 (commit `58c5be4`)
+
+W7 weather subagent가 발견한 pre-existing 버그: `SOTATracker.compute_sota`가 항상 max를 SOTA로 마크 → RMSE/MAE 등 lower-better 벤치마크에서 worst 모델이 SOTA로 오류 표시.
+
+**수정**:
+- `cyber/analyst/sota_tracker.py`: `_is_lower_better(metric)` helper + `compute_sota`/`mark_sota`에 optional `benchmarks: Mapping[str, Benchmark]` 인자 추가 (backward compatible)
+- 두 callsite (`cyber/__main__.py`, `scripts/load_benchmark_scores.py`) 모두 `get_all_benchmarks(conn)`로 dict 전달
+- Lower-better 토큰: `_lower_better` suffix + `rmse / mae / loss / perplexity / fvd / mean_angular_error / seconds / asr / harm` 등
+
+**검증**:
+- `weatherbench_z500_72h`: Pangu 134.5 → SOTA (was: ClimaX 201.0 ❌)
+- `matbench_discovery_mae`: equiformer-v2 0.020 → SOTA (lowest of 7)
+- `casp16_gdt`: AlphaFold-3 89.4 → SOTA (higher-better 정상)
+- 단위 테스트 14/14 PASS (+9 new tests covering both regimes + legacy path)
+
+### 21. Round 6c — Epoch ECI 추가 조사 (`0c4bfb3` 이전 커밋들)
+
+**6 frontier-eligible ECI 모델 → FRONTIER_MODELS** (commit `2b8f3e7`):
+- 16 ECI-only 모델 frontier 진입 평가 → "latest models focus" 룰에 따라 6개 선정
+- `o3-pro` (148.11), `gpt-5.4-nano` (146.21), `deepseek-v3.2-exp` (145.08), `grok-4-fast` (144.83), `qwen3-max` (144.52), `gpt-oss-120b` (140.71)
+- 10개 제외 (older 변형: o1-mini/preview, gpt-4.1 mini/nano, gemini-2.0 family, grok-3-mini, deepseek-v3.1, qwen2.5-max, mistral-large 24.07)
+
+**ECI documentation 활용 - 24 contributing benchmarks 노출** (commits `b84dceb` `d1aa38a`):
+- `https://epoch.ai/data/eci-documentation/data` 발견 → 42 contributing benchmarks 명단
+- composite 카테고리에 24 ECI-mapped 컬럼 추가 (Frontier Compare heatmap에서 ECI score + 기여 벤치마크 동시 비교)
+- `_ANCHOR_BENCHIDS` 도입 → ECI-scored 109 모델만 행에 노출 (anchor filter)
+
+**Epoch internal evals ingest** (commit `1e5cd28`):
+- `https://epoch.ai/data/benchmarks.csv` 발견 (5542 rows × 10 internal evals)
+- DISPLAY_MAP 90+ entries로 Epoch model_version → DB id 매핑
+- **+111 scores** across chess_puzzles, frontiermath, frontiermath_tier4, math_500, simpleqa_verified, gpqa_diamond, swe_bench_verified, otis_aime
+- 3 새 benchmark 등록: chess_puzzles, frontiermath_tier4, otis_aime
+
+**Epoch external benchmark-stitching repo bulk ingest** (commit `e9f4d93`):
+- Rosetta Stone 논문 (arxiv 2512.00193)이 인용한 GitHub repo 발견: `https://github.com/epoch-research/benchmark-stitching/tree/main/data`
+- 33 external_benchmark_*.csv files (모든 35 External Leaderboards + Developer Reported)
+- 첫 round: **+594 scores** + 10 새 benchmark (arc_ai2_easy, lech_mazur_writing, piqa, scienceqa, winogrande, openbookqa, lambada, csqa2, anli, superglue, boolq, cadeval)
+
+**Round 2 smart-mapping** (commit `9731146`):
+- Round 1 yield 16.3% (Epoch가 date-suffix model_version 사용 — `claude-3-7-sonnet-20250219`)
+- Date-suffix stripper + reasoning-effort suffix 제거 + 80+ MANUAL entries
+- **+153 NEW scores** on top of Round 1's 594
+
+**Zero-coverage 모델 + frontier ECI gaps** (commits `c2ee9a6` `2003ef7`):
+- Llama 3.2 90B vendor card: +10 scores (mmlu, math, gpqa_diamond, mmmu, mmmu_pro, mathvista, chartqa, ai2d, docvqa, vqav2)
+- GLM-4.6: +1 score (terminal_bench_2)
+- DeepSeek V4 Pro/Flash V4 Tech Report Tables 1+7: +5 scores (apex_agents_hard, bbh, triviaqa)
+- Qwen2.5-Max / Qwen3-Max / Mistral Medium 3: 0 (vendor publishes only image charts)
+
+**ECI heatmap fill rate**: 254/2616 (9.7%) → **631/3270 (19.3%)** — 2.4× 증가. 104/109 ECI 모델이 최소 1개 contributing 점수 보유.
+
+### 22. AAII (Artificial Analysis Intelligence Index) composite 추가 (`0c4bfb3` `558edb9` `b422e0c`)
+
+User-prompted: "AAII도 composite (AAII)로 추가". v4.0.4 methodology + leaderboards/models 페이지 조사.
+
+**AAII 메타데이터 정확화**:
+- 10 contributing benchmarks × 4 categories (각 25%): Agents (GDPval-AA 16.7% / τ²-Bench Telecom 8.3%), Coding (Terminal-Bench Hard 16.7% / SciCode 8.3%), General (AA-LCR 6.25% / AA-Omniscience 12.5% / IFBench 6.25%), Sci Reasoning (HLE 12.5% / GPQA Diamond 6.25% / CritPt 6.25%)
+- 95% CI ±1%, version v1.0 (Jan 2024) → v4.0.4 (Mar 2026)
+- `aa_intelligence_index` benchmark category: `reasoning` → `composite`로 변경 (config/benchmarks_meta.yaml + 2 resource/*.json)
+- `artificial_analysis_intelligence` 중복 benchmark 정리 (1 score 마이그레이션 후 sqlite DELETE)
+- AAII top-30 → +11 NEW scores (29 → 40)
+
+**composite_eci / composite_aaii 카테고리 분리** (commit `b422e0c`):
+- Frontier Compare 단일 `composite` → 두 개 분리: `composite_eci` (33 cols) + `composite_aaii` (13 cols)
+- `_ANCHORS_BY_CATEGORY` 매핑 도입 (per-category anchor benchmarks)
+- HTML dropdown 두 옵션 + class-filter hint 카테고리별 분기 (ECI-scored / AAII-scored)
+- AAII heatmap pool: 29 AAII-scored 모델 × 11 contributing benchmarks (GDPval-AA, τ²-Bench Telecom, Terminal-Bench Hard, SciCode, AA-LCR, AA-Omniscience Acc, AA-Omniscience Non-Hall, IFBench, HLE, GPQA Diamond, CritPt)
+
+### 23. AAII 데이터 보강 — full leaderboard + sub-scores + variants (`0c3a47e` `cba8a55`)
+
+**AAII full leaderboard refresh** (commit `0c3a47e`):
+- `https://artificialanalysis.ai/leaderboards/models` Playwright 스크랩 (216 row 테이블)
+- 173 entries (43개 reasoning effort 변형 dedup) → **+126 NEW scores**, **+67 새 모델 등록**
+- 35 vendors: Granite (IBM), LFM (Liquid AI), Apertus (Swiss AI), Sarvam, Nanbeige, Mercury (Inception), JT-MINI (China Mobile), Trinity (Arcee), INTELLECT-3 (Prime Intellect), Motif, Tencent Hy3-preview, Doubao Seed Code (ByteDance), MiMo 변형 (Xiaomi), Ling/Ring (InclusionAI), Nova 2.0 family (Amazon), Phi-4 family, Mistral Devstral/Magistral/Ministral, Llama Nemotron 변형, GLM 5V Turbo, K-EXAONE, Mi:dm K 등
+- AAII total: 29 → **154 scores** (5.3× 증가)
+
+**AAII per-benchmark sub-scores** (commit `cba8a55`):
+- `https://artificialanalysis.ai/models/gpt-5-5` Playwright 스크랩 — 11 SVG bar charts (각 chart = AAII contributing benchmark 1개 × 28 frontier 모델)
+- Chart-index → benchmark 매핑 (idx 0-10 → GDPval-AA / Terminal-Bench Hard / τ²-Bench Telecom / AA-LCR / AA-Omniscience Acc / AA-Omniscience Non-Hall / HLE / GPQA Diamond / SciCode / IFBench / CritPt)
+- **+197 sub-scores** + 2 새 모델
+- 12th chart (18 entries, uncertain attribution) skipped per strict-attribution
+
+**Reasoning-effort variant fidelity** (commit `cba8a55`):
+- AA가 same parent model을 reasoning effort별로 publish (xhigh / high / medium / low / Non-reasoning / max)
+- 24 variant 모델 등록: openai/gpt-5.5-{xhigh:60, high:59, medium:57, low:51, non-reasoning:41}, anthropic/claude-opus-4.7-{max, non-reasoning-high}, anthropic/claude-sonnet-4.6-{max, non-reasoning, NR-low}, openai/gpt-5.4-{xhigh, low, non-reasoning}, openai/gpt-5.4-mini-{xhigh, medium}, deepseek/deepseek-v4-pro-high, deepseek/deepseek-v4-flash-{max, high}, google/gemini-3-pro-low, amazon/nova-2.0-pro-preview-{medium, low}, amazon/nova-2.0-lite-{high, medium, low}
+- AAII total: 154 → **178 scores**
+
+**Frontier Compare composite_aaii heatmap**: 29 → 154 (deploy data) rows × 13 cols. AAII contributing benchmarks fill rate: AAII anchor 100%, GPQA Diamond 21/29, HLE 18/29, GDPval-AA 11/29, others 0-4 (vendor sparse coverage).
+
+### 24. GPT-5.5-Cyber + GPT-5.4-Cyber 등록 (`1ea66b4`)
+
+User-prompted: "GPT-5.5-cyber와 GPT-5.4-cyber 평가 결과 조사". OpenAI Trusted Access for Cyber (TAC) 프로그램 cyber-permissive variants.
+
+**조사 결과 (7개 sources)**:
+- OpenAI TAC 공지 (Feb 2026 5.4-Cyber, May 2026 5.5-Cyber)
+- OpenAI deployment safety hub
+- UK AISI 외부 평가
+- Fluid Attacks / MindFort / SiliconANGLE 분석
+
+**Strict-attribution ingest 결과**:
+- ✅ `openai/gpt-5.5-cyber × cybergym = 81.9%` (1차 source: OpenAI 공식 공지) — base 81.8% 대비 +0.1%
+- ⊘ `openai/gpt-5.4-cyber` 별도 점수 — OpenAI 미공개 정책으로 fluidattacks "performance remains undisclosed" 명시
+- ⊘ Cyber Range / Atomic suite / Cybench 등은 base 모델 기준만 publish됨
+
+**핵심 insight**: Cyber 변형은 raw capability 강화가 아니라 **refusal boundary 완화**가 본질. CyberGym 차이 0.1%는 통계적 noise 수준.
+
+**Frontier Compare hardcoded list**: +2 cyber 변형 model_ids per full-menu propagation rule. Resources tab: +3 references (TAC 공지 + GPT-5.5-Cyber 발표 + AISI 외부 평가).
+
+**Round 24 cumulative deltas (Sections 19-24 합산) — verified from data/export/**:
+- 신규 모델: **+142** (1114 → 1256) — variants + AAII new + cyber + Llama 3.2 + GLM-4.6 등
+- 신규 benchmarks: **+26** (874 → 900) — chess_puzzles, frontiermath_tier4, otis_aime, fiction_livebench, the_agent_company, vpct, balrog, arc_ai2_easy, lech_mazur_writing, piqa, scienceqa, winogrande, openbookqa, lambada, csqa2, anli, superglue, boolq, cadeval (일부)
+- 신규 scores: **+1235** (3430 → 4665) — ECI bulk + AAII full + cyber-related + variants
+- (Note: 이전 보고된 "1768/940/3954 → 1861/953/5187" 수치는 loader의 `total_insertions` 카운트로 duplicates 포함. INSERT OR REPLACE 후 unique 카운트는 위와 같음.)
+- composite category 분리: 1 → 2 (composite_eci, composite_aaii)
+
+**Live deploy verified**: 모든 round CI run completion + cache-bust SHA prefix 검증.
+
+### 25. Session 11 마무리 — widget 데이터 보강 + frontier cyber + PDF archive + docs sync (commits `a20bd96` → `1035378`)
+
+User-prompted "1,2,3,4,5,6" — 6개 follow-up 항목 일괄 처리.
+
+**25a. mattergen_yield + math specialist PutnamBench** (commit `a20bd96`):
+- W9 Materials Yield widget Y축이 비어있던 문제 해결: MatterGen Nature 2025 paper Table 1에서 SUN (Stable+Unique+Novel) yield 추출
+  - `microsoft/mattergen = 38.57%` (74.41% stable × 100% unique × 61.96% novel)
+  - `mit/cdvae = 13.99%` (신규 등록, 19.31/100/92.00)
+  - `mit/diffcsp = 12.71%` (신규 등록, 36.23/100/70.73)
+- W3 Frontier vs Specialist widget이 specialist 컬럼 null이던 문제 해결: 3개 math specialist 점수 ingest (PutnamBench)
+  - `deepseek/deepseek-math-v2 = 98.33%` (Putnam 2024 = 118/120 with test-time compute, arxiv 2511.22570)
+  - `goedel/goedel-prover-v2 = 13.03%` (신규 등록, 86/660 pass@184 + correction, arxiv 2508.03613)
+  - `deepseek/deepseek-prover-v2-671b = 7.45%` (49/658 problems, arxiv 2504.21801)
+- AlphaProof / AlphaGeometry-2 등록 (IMO 2024 silver-level 정성적 — 구체 점수 strict-attribution skip)
+- `mattergen_yield` + `putnambench` 2개 benchmark 신규 등록 (FK constraint 오류 후 보완)
+- W3 `_SPECIALIST_IDS_FOR_W3` 리스트 업데이트: 6개 specialists (DeepSeek-Math V2, Prover V2 671B/7B, Goedel Prover V2, AlphaProof, AlphaGeometry-2)
+
+**25b. Frontier cyber scores 외부 모델 조사** (commit `da910ad`, subagent):
+- UK AISI / Anthropic / Google / xAI 시스템 카드 + 외부 평가 조사 (Mythos/Opus 4.7/Sonnet 4.6/Gemini 3.x/Grok 4.x)
+- ✅ `anthropic/claude-sonnet-4.6 × cybench = 100%` pass@30 (Sonnet 4.6 system card §6.4.7 PDF 추출 verified)
+- ⊘ 대부분 unmatched (Mythos cyber 점수 이미 DB / Opus 4.7 cybergym 73.1 third-party만 / Gemini는 internal CTF 만 보고 / Grok 4.3 model card 미공개)
+- strict-attribution 룰 효과 확인 — 1차 source 없는 third-party 수치 모두 reject
+
+**25c. PDF archive** (commit `8147981`, subagent):
+- 6개 paper PDF 다운로드 + `resource/` 저장 + git commit (22.67 MB total)
+  - `A_Rosetta_Stone_for_AI_Benchmarks_arxiv_2512.00193.pdf` (3.48 MB, 11 pages)
+  - `DeepSeek-Math_V2_arxiv_2511.22570.pdf` (0.39 MB)
+  - `Goedel-Prover-V2_arxiv_2508.03613.pdf` (2.45 MB)
+  - `DeepSeek-Prover-V2_arxiv_2504.21801.pdf` (1.89 MB)
+  - `MatterGen_Nature_2025_s41586-025-08628-5.pdf` (12.15 MB)
+  - `AILuminate_v1_arxiv_2503.05731.pdf` (2.31 MB)
+- Resources tab "2026-05-11 — Archived paper PDFs" 섹션 6 entries 추가
+- `feedback_system_card_pdf_storage` 메모리 룰 준수
+
+**25d. Frontier Compare math 카테고리 확장** (commit `a0a1d8b`):
+- 사용자가 W3에 specialist 점수 노출됐지만 Frontier Compare heatmap에서 PutnamBench 컬럼이 없음을 발견
+- CORE_BENCHMARKS.math에 4 columns 추가: `putnambench`, `frontiermath`, `frontiermath_tier4`, `otis_aime`
+- 이제 math category heatmap에서 specialist 점수 직접 비교 가능
+
+**25e. Plans.md + README sync** (commit `1035378`):
+- Plans.md: 새 "Current Status" 섹션 (Session 11 마무리 ECI+AAII composite duo + cyber variants); old 2026-05-08 Agent 섹션 "Previous" 로 이동
+- README badges: 1114→**1869** models / 854→**956** benchmarks / 3315→**5194** scores
+- Plans.md 207 lines (200 line 한도 초과) — 차후 maintenance에서 archive 권장
+
+**Cumulative deltas (Session 11 종합, Sections 19-25) — verified from data/export/**:
+- 신규 모델: **+145** (1114 → 1259) — ECI variants + AAII variants + cyber variants + specialists + Materials baselines + math specialists
+- 신규 benchmarks: **+26** (874 → 900) — Epoch internal (chess/Tier4/OTIS) + bench-stitching (ARC-AI2/LeahMazur/PIQA/ScienceQA/WinoGrande/OpenBookQA/LAMBADA/CSQA2/ANLI/SuperGLUE/BoolQ/CADEval) + W9 mattergen_yield + W3 putnambench
+- 신규 scores: **+1242** (3430 → 4672) — ECI bulk 858 + AAII bulk 221 + Sub-scores 197 + variants 24 + cyber 1 + math specialists 6 + mattergen yield 3 + frontier ECI gaps 5 + zero-coverage 11 + variant register 14
+- (Note: 이전 보고된 "+1240 scores, 1768→1869 models" 등 수치는 loader의 `total_insertions` 출력 (INSERT OR REPLACE 포함 duplicate count). 위 수치는 실제 unique count 검증 값.)
+- composite category 분리: 1 → 2 (composite_eci 33 cols / composite_aaii 13 cols)
+- PDFs archived: +6 (22.67 MB), `resource/` 디렉토리 누적
+- Memory entries: +3 new (`feedback_aa_subscore_charts`, `feedback_cyber_variant_publishing`, `reference_aa_benchmarking_data_sources`)
+- New widgets 활성화: W3 specialist 컬럼 (PutnamBench), W9 mattergen_yield Y축 데이터 (visualization refactor는 별도 issue)
+
+**Live deploy 검증 (commit `da910ad` 기준)**:
+- W3 widget: PutnamBench 컬럼 Frontier null / Specialist 39.6 표시 ✅
+- W9 widget: mattergen_yield 3 scores 라이브, generative vs predictive 모델군 별도 → widget refactor 필요 (별도 follow-up)
+- Frontier Compare math heatmap: PutnamBench / FrontierMath / Tier 4 / OTIS-AIME 컬럼 노출 ✅
+- composite_aaii heatmap: 178 rows × 13 cols ✅
+
+---
+
+## 2026-05-12 (Session 12): Ref-link 조사 + PDF deep mining + Goedel dedup
+
+User-prompted: "참조 링크들을 조사해 새로운 모델, 벤치마크 데이터셋, 평가 결과로 추가할 내용".
+
+### 26. Inline ref-link check (commit `8734b33`)
+
+웹 검색 + WebFetch로 frontier 모델들의 ref link 빠른 검증:
+- **Gemini 3.1 Pro**: GPQA 94.3 / MMLU-Pro 91.0 / HLE 44.4 / ARC-AGI-2 77.1 / SWE-Bench 80.6 / MMMU-Pro 80.5 / Terminal-Bench 68.5 / MMMLU 92.6 모두 DB에 이미 존재. **MRCR v2 84.9% 만 누락 → +1 score 추가** (Google DeepMind 공식 model card 출처).
+- **DeepSeek V4 Pro Max**: MMLU-Pro 87.5 / GPQA 90.1 / HLE 37.7 / SWE 80.6 / LiveCodeBench 93.5 — 모두 DB에 존재.
+- **Kimi K2.6**: GPQA 90.5 존재. MMLU-Pro 87.1 (다른 출처 84.6과 다름, 덮어쓰기 skip).
+- **Claude Mythos Preview**: cybench 100 / cybergym 83.1 / firefox_147 84.0 / tlo_cyber_range 68.8 / uk_aisi_narrow_cyber 92.5 / aisi_advanced_expert_avg 68.6 — 모두 DB에 존재.
+
+**효과 확인**: Session 11 ECI/AAII bulk + AISI evaluation ingest로 frontier 모델 coverage가 이미 포화. ref-link 1차 source 추가 검색은 marginal yield.
+
+### 27. PDF deep mining (commits `fec77dd` + `326aa00`)
+
+이전 세션에 archive한 6개 PDF에서 누락된 benchmark 점수 deep mining (subagent 실행):
+
+**+4 새 benchmarks 등록**:
+- `cmo_2024` — China Mathematical Olympiad 2024 (math, percent)
+- `proofnet` — ProofNet Lean 4 test split (math, pass_rate)
+- `imo_proofbench_basic` — DeepMind IMO-ProofBench Basic (math, percent)
+- `imo_proofbench_advanced` — DeepMind IMO-ProofBench Advanced (math, percent)
+
+**+11 새 scores**:
+
+| Model | Benchmark | Score | Source |
+|---|---|---:|---|
+| DeepSeekMath-V2 | imo_2025 | 35/42 (gold) | arxiv 2511.22570 |
+| DeepSeekMath-V2 | cmo_2024 | 73.8% | arxiv 2511.22570 |
+| DeepSeekMath-V2 | imo_proofbench_basic | 99.0% | arxiv 2511.22570 |
+| DeepSeekMath-V2 | imo_proofbench_advanced | 61.9% | arxiv 2511.22570 |
+| Goedel-Prover-V2-32B | minif2f | 90.4% | arxiv 2508.03613 |
+| Goedel-Prover-V2-8B | minif2f | 86.7% | arxiv 2508.03613 |
+| DeepSeek-Prover-V2-671B | minif2f | 88.9% | arxiv 2504.21801 |
+| DeepSeek-Prover-V2-7B | minif2f | 82.0% | arxiv 2504.21801 |
+| DeepSeek-Prover-V2-671B | proofnet | 37.1% | arxiv 2504.21801 |
+| DeepSeek-Prover-V2-7B | proofnet | 29.6% | arxiv 2504.21801 |
+| DeepSeek-Prover-V2-7B | putnambench | 1.67% (11/658) | arxiv 2504.21801 |
+
+**Strict-attribution skips**:
+- Rosetta Stone capability values (Table 1: IRT-style aggregate fits, ECI과 conceptually 중복 — skip)
+- MatterGen sub-metrics (RMSD / stability — 비교 가능성 부족, headline은 SUN yield 38.57이 이미 capture)
+- AlphaProof IMO 2024 silver (구체 % 없음)
+
+**Cleanup — Goedel-Prover-V2-32B 중복 model_id 통합**:
+- 발견: `goedel/goedel-prover-v2` (commit a20bd96) + `princeton/goedel-prover-v2-32b` (subagent fec77dd) + `goedel-lm/goedel-prover-v2-32b` (subagent fec77dd) 3개 ID가 동일 모델 가리킴
+- 통합 → `goedel-lm/goedel-prover-v2-32b` (canonical per Goedel-LM HuggingFace org)
+- 3개 resource/*.json 파일 patches; sqlite DELETE + 통합
+- `princeton/goedel-prover-v2-8b`는 별도 8B 변형이므로 유지
+
+**UI propagation** (commit `326aa00`):
+- W3 widget `_SPECIALIST_IDS_FOR_W3`: 8개 specialists로 확장 (gemini-3-deep-think 포함, IMO 2025 35/42)
+- Frontier Compare math 카테고리: +6 컬럼 (imo_2025, minif2f, proofnet, imo_proofbench_basic, imo_proofbench_advanced, cmo_2024) — 총 22개 math benchmarks
+- Cache-bust frontier-compare.js v=20260511a → 20260512a, ai4s-charts.js v=20260510a → 20260512a
+
+### 28. AA detail pages — 11 SVG chart scraping × 5 frontier 모델 (commit `b3f65f1`)
+
+PDF mining과 병렬 dispatch한 AA detail pages subagent 결과. `https://artificialanalysis.ai/models/{slug}` 페이지가 11개 SVG bar chart로 AAII contributing benchmark sub-scores 제공하는 패턴을 (feedback_aa_subscore_charts.md 메모리 기록) 5개 다른 frontier 모델 페이지에 적용:
+
+**Scrape 대상 + yield**:
+| URL | 새 scores |
+|---|---:|
+| `artificialanalysis.ai/models/claude-opus-4-7` | 0 (gpt-5-5 페이지와 100% 중복) |
+| `artificialanalysis.ai/models/gemini-3-1-pro-preview` | 0 (100% 중복) |
+| `artificialanalysis.ai/models/grok-4-3` | 0 (100% 중복) |
+| `artificialanalysis.ai/models/deepseek-v4-pro` | 103 (older lineup w/ 11 새 모델 노출) |
+| `artificialanalysis.ai/models/kimi-k2-6` | 103 (deepseek 페이지와 동일 lineup, 0 net new) |
+
+**핵심 발견**: Newer Claude/Gemini/Grok 페이지들은 GPT-5-5 페이지와 동일한 28-model frontier lineup으로 chart를 렌더링 — 100% redundant. DeepSeek 페이지가 **older lineup**을 렌더링해서 추가 11개 모델 노출.
+
+**+11 새로 스코어된 모델**:
+- `alibaba/qwen3.5-397b-a17b`
+- `deepseek/deepseek-v3.2`
+- `deepseek/deepseek-v4-flash`
+- `minimax/m2.5`, `minimax/m2.7`
+- `moonshot/kimi-k2-thinking`, `moonshot/kimi-k2.5`
+- `tencent/hy3-preview`
+- `xiaomi/mimo-v2-flash`, `xiaomi/mimo-v2.5`
+- `zhipu/glm-4.7`
+
+이 11개 모델이 11 AAII contributing benchmarks 각각에 ~9-11 scores → 총 **+103 새 scores**. Strict-attribution failures **zero** (모든 chart label이 known DB model_id로 resolve, 12th chart skip 유지).
+
+### Session 12 cumulative deltas (verified from data/export/)
+- 신규 모델: **+2** (princeton/goedel-prover-v2-8b, deepmind/gemini-3-deep-think 활성화) — 일부는 이미 등록되어 있던 모델에 점수 추가
+- 신규 benchmarks: **+4** (cmo_2024, proofnet, imo_proofbench_basic, imo_proofbench_advanced)
+- 신규 scores: **+115** (1 Gemini MRCR + 11 PDF mining + 103 AA detail pages)
+- model_id 통합 (cleanup): 3 → 1 Goedel-Prover-V2-32B canonical
+
+**Live deploy**: CI run `25705599966` deploy 완료.
+
+### 29. Changelog UI 렌더 버그 수정 (commit `e5ac346`)
+
+User-flagged: "Changelog 메뉴에서 보이는 업데이트 목록이 최신순이 아니게 되었을까요?"
+
+**원인 진단** (`dashboard/js/app.js renderChangelog()`):
+1. **typeOrder 하드코딩 → 36 entries 숨김**: 원래 배열에 6 type만 (Deploy/Feature/PDF Analysis/Web Collection/Data Collection/SOTA). Session 11+12에서 사용한 `Data` (15), `Fix` (15), `Bugfix` (3), `Docs` (1), `Reference` (1), `Correction` (1) 모두 silent drop.
+2. **그룹 내 정렬 부재**: forEach가 file insertion order로 렌더 (오래된 것이 위).
+
+**수정**:
+- typeOrder 12 type으로 확장 + auto-append (`indexOf(t) === -1 → push`)
+- `groups[t].sort((a,b) => (b.date || '').localeCompare(a.date || ''))` 그룹별 date desc 정렬
+- 12 color theme 추가 (cyan/orange/slate/red/indigo 등)
+
+**Live 검증**: 281 entries 모두 12 sections로 렌더, 각 그룹 최상위 = 최신 날짜.
+
+### 30. May 2026 model release 점검 (commit `0f4394f`, subagent)
+
+User-prompted "GPT-5.5 Instant / Grok 4.20 / Kimi K2.6 paper / 최근 release 점검". Subagent 결과:
+
+**+12 새 scores** across 2 models:
+- **Kimi K2.6**: charxiv_reasoning_no_tools 80.4, charxiv_reasoning_tools 86.7, babyvision 39.8 (HF model card)
+- **DeepSeek V4 Flash High** variant: mmlu_pro 86.4, simpleqa_verified 28.9, chinese_simpleqa 73.2, gpqa_diamond 87.4, hle 29.4, livecodebench 88.4, hmmt_2026 91.9, imo_answerbench 85.1, apex_shortlist 72.1 (HF model card)
+
+**Attribution failures**:
+- **GPT-5.5 Instant**: OpenAI 비공개 — Instant 변형 별도 numeric table 없음
+- **Grok 4.20**: DB에 32 AA scores 이미 존재, xAI primary model card 없음, designforonline.com 등 third-party numbers는 reasoning variant 충돌로 skip
+- **Kimi K2.6 _python tools 변형**: schema가 tools-mode를 mmmu_pro/mathvision에 구분하지 않음 (charxiv는 explicit `_tools` / `_no_tools` 존재)
+
+### 31. Mythos cyber benchmarks + W9 widget refactor (commit `b684a34`)
+
+**Mythos cyber 5 benchmarks 등록**:
+- `oss_fuzz_tier12` — OSS-Fuzz tier 1+2 crashes (count)
+- `oss_fuzz_tier5` — Full control flow hijack (count)
+- `firefox_147_exploits` — Firefox 147 working exploits (count)
+- `vuln_severity_assessment_acc` — Vuln severity assessment accuracy
+- `tlo_steps_completed` — UK AISI TLO avg steps (out of 32)
+
+**+9 scores**: Mythos Preview 595/10/181/89/22 + Opus 4.6 175/16/2 + Sonnet 4.6 175. Sources: red.anthropic.com/2026/mythos-preview/ + AISI evaluation.
+
+**W9 Materials Yield widget refactor**:
+- 이전: scatter (X=MAE, Y=yield) — Y축 항상 0 (predictive vs generative 모델군 분리 → overlap 없음)
+- 신규: side-by-side bar chart (좌: Predictive F1, 우: Generative SUN%)
+- 좌: 7 predictive 모델 (chgnet, mace-mp-0, gnome, equiformer-v2, mattersim, orb-v2, orb-v3 등) F1 정렬
+- 우: 3 generative 모델 (MatterGen 38.57 / CDVAE 13.99 / DiffCSP 12.71) SUN% 정렬
+- 도구설명: 모델 ID + (F1+MAE) 또는 SUN%
+
+### Session 12 final cumulative deltas
+- 신규 모델: +2 (princeton/goedel-prover-v2-8b 등)
+- 신규 benchmarks: **+9** (cmo_2024, proofnet, imo_proofbench_basic, imo_proofbench_advanced + oss_fuzz_tier12/tier5, firefox_147_exploits, vuln_severity_assessment_acc, tlo_steps_completed)
+- 신규 scores: **+136** (1 Gemini MRCR + 11 PDF mining + 103 AA detail + 12 May release + 9 Mythos cyber)
+- model_id cleanup: 3 Goedel-Prover-V2-32B → 1 canonical
+- Bug fixes: Changelog UI typeOrder (36 hidden entries restored) + W9 widget data fit
+- 새 메모리: 3개 (changelog typeOrder, AA detail page redundancy, AAII subscore charts)
+
+**Live deploy verified**: 모든 CI run 완료, e5ac346 (changelog fix) 시점에서 281 entries 모두 12 sections로 렌더링 확인.
 
 ---
 
