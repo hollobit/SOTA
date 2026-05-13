@@ -2554,5 +2554,77 @@
     "new_value": "+5 benchmark registrations, +9 scores. DB benchmarks 902 → 907. W9 widget visual completeness fixed.",
     "old_model": "",
     "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-12",
+    "benchmark_id": "DELEGATE-52 benchmark — Microsoft Research document corruption (commit 171c9d3)",
+    "new_model": "User-provided paper arxiv 2604.15597 — 'LLMs Corrupt Your Documents When You Delegate' (Philippe Laban / Tobias Schnabel / Jennifer Neville, Microsoft Research, April 17 2026). New benchmark delegate_52 (agent category, RS@20 percent metric): 52 professional domains (coding, crystallography, music notation, etc.), measures original document content preserved after 20 delegated LLM editing interactions. Headline finding: frontier models average ~25% degradation, only Python achieves ≥98% preservation 'ready' status across most models. Ingest: +1 benchmark (delegate_52), +1 model (openai/gpt-5-chat — Chat variant separate from base gpt-5), +19 scores covering full Table 1 leaderboard. Top 5: Gemini 3.1 Pro 80.9 / Claude Opus 4.6 73.1 / GPT-5.4 71.5 / GPT-5.2 66.1 / Claude Sonnet 4.6 66.0. Bottom: Gemini 3 Flash 35.8 / Mistral Large 3 35.5 / gpt-oss-120B 19.2 / GPT-4o 14.7 / GPT-5 Nano 10.0. PDF archived to resource/ per system_card_pdf_storage rule.",
+    "new_value": "+1 benchmark, +1 model, +19 scores. Frontier Compare agent column.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-12",
+    "benchmark_id": "Onyx Open LLM Leaderboard 2026 ingest (commit 493f892)",
+    "new_model": "User-provided link onyx.app/open-llm-leaderboard (Roshan Desai, Onyx AI). 19 models × 10 benchmarks (MMLU, MMLU-Pro, GPQA Diamond, IFEval, LMArena Elo, SWE-bench Verified, HumanEval, LiveCodeBench, AIME 2025, MATH-500); scores from official tech reports; last updated 2026-03-24. Ingest: +1 model (stepfun/step3 316B), +93 (model, benchmark) score pairs across 18 existing models + new Step3. Many redundant scores absorbed via INSERT OR REPLACE (already in DB from primary sources). Score distribution by bench: lmarena 19 (every model has Elo) / livecodebench 14 / humaneval 10 / ifeval+mmlu 9 each / mmlu_pro+aime_2025 8 each / math_500 6 / swe_bench_verified+gpqa_diamond 5 each.",
+    "new_value": "+1 model, +93 score pairs (many dedup-skipped by REPLACE).",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Feature",
+    "date": "2026-05-12",
+    "benchmark_id": "Medical AI Release Timeline month-column infographic (commits b0925b7 → 0599cb2)",
+    "new_model": "User-prompted: 'Medical AI 메뉴에 ... 타임라인 그래픽 ... timeline-infographic 스킬을 이용'. Built vanilla-SVG month-column timeline per timeline-infographic skill rules. Mount #med-timeline-infographic-host below existing scatter timeline. 12-color month palette (Jan blue → Dec cyan), variable sub-column width (1-4 cols/month by density), 4-corner card layout (vendor logo TL / MM.DD date TR / license pill BL / country name BC / flag tile BR). Header pills + axis line + dotted connectors. Footer attribution (author + source URL + generated date). 3 download handlers: PNG (2× scale via Canvas) / SVG (XMLSerializer) / CSV (RFC 4180). Tuning iterations: 250637e (12mo window + horizontal scroll), 54f1680 (6mo window + 8 subcols + 220px cards), 14a355c (USER-FLAGGED scope bug — code only read release_date returning 65/211 models; switched to release_date || released_at fallback → 207/211 eligible), 0599cb2 (USER-REQUESTED — restrict window selector to 3/6/12 months only, from 12/24/36/60/all).",
+    "new_value": "New widget. 207-model candidate pool, 3/6/12 month selector. PNG/SVG/CSV download. All 4 corners validated, no card truncation across density ranges.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-13",
+    "benchmark_id": "2026-05-13 ref-link sweep — broad SOTA gather (commit a80d526)",
+    "new_model": "Strict-attribution ingest of 64 new (model, benchmark, score) tuples from primary publications between 2026-04-26 → 2026-05-13. Sources: (1) Scale SWE-Bench Pro Public leaderboard — new bench swe_bench_pro_public, 24 model scores incl. gpt-5.4-xhigh 59.10, Muse Spark 55.0, Claude Opus 4.6 thinking 51.90 down to Codestral 24.05 1.51. (2) Soohak research-math (arxiv 2605.09063) — 19 scores across Mini/Challenge/Refusal subsets; GPT-OSS-120B hard-reasoning+81920ctx achieves Soohak-Mini 80.91. (3) WorldReasonBench (arxiv 2605.10434) — 11 video-model overall ScorePR scores; Seedance2.0 39.8, Veo3.1-Fast 35.3. (4) Anthropic Claude Opus 4.7 launch page — CursorBench (70 vs 4.6=58), XBOW visual-acuity (98.5 vs 4.6=54.5), BigLaw Bench (Harvey, 90.9). (5) Vellum-compiled OpenAI GPT-5.5 launch numbers — MRCR v2 (74.0/36.6/32.2) + GDPval pairs for GPT-5.5-Pro and Claude Opus 4.7. +9 new benchmark IDs: swe_bench_pro_public, soohak_mini_avg3, soohak_challenge_avg3, soohak_refusal_avg3, worldreasonbench_overall, cursor_bench, xbow_visual_acuity, biglaw_bench_harvey, mrcr_v2. +6 new model IDs (text variants + select cycles).",
+    "new_value": "+9 benchmarks, +6 models, +64 scores. New SOTA: SWE-Bench Pro Public gpt-5.4-xhigh 59.10.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-13",
+    "benchmark_id": "Ref-link batch 2 — speech-to-speech + AI Co-Mathematician + OneManCompany (commit 6f81130)",
+    "new_model": "User-provided 6 URLs. Per strict-attribution rule: 3 yielded primary-source data, 3 rejected (abstract-only / aggregate-only / JS-rendered with explicit 'fatal errors flagged in ~1/3 problems' note). YIELDS: (1) arxiv 2604.22446 (OneManCompany): +1 model onemancompany/omc, +1 benchmark prdbench, 84.67% score. (2) artificialanalysis.ai/speech-to-speech: +4 audio models (stepfun/step-audio-r1.1, xai/grok-voice-think-fast, google/gemini-3.1-flash-live, alibaba/qwen3.5-omni-plus-realtime), +2 benchmarks (full_duplex_bench, tau_voice), 9 scores across Big Bench Audio + Full Duplex Bench + τ-Voice. (3) arxiv 2605.06651 (AI Co-Mathematician, DeepMind, Daniel Zheng et al): +1 model deepmind/ai-co-mathematician, FrontierMath Tier 4 = 48% — significant SOTA leap vs prior <20% range, new #2 behind GPT-5.4 50%. REJECTED: arxiv 2604.18292 (Agent-World — abstract only), arxiv 2604.25917 (Recursive Multi-Agent — aggregate only), epoch.ai/frontiermath/tiers-1-4 (JS-rendered + page-level warning 'AI-assisted review flagged fatal errors in ~1/3 problems'). Highlights post-ingest: big_bench_audio top 3 (Step-Audio R1.1 98 / Grok Voice 97 / GPT-Realtime-2 97), full_duplex_bench (GPT-Realtime-2 95.3 / Grok Voice 77.8), tau_voice (Grok Voice 52.1 SOTA / GPT-Realtime-2 39.8 / Gemini 3.1 Flash Live 37.7). AI Co-Math PDF (851KB) archived to resource/. Resources tab: +6 entries. Cache-bust app.js v=20260512d → 20260513a.",
+    "new_value": "+6 models, +3 benchmarks, +12 scores. FrontierMath Tier 4 new #2 (48%). τ-Voice debut SOTA (Grok Voice 52.1).",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Fix",
+    "date": "2026-05-13",
+    "benchmark_id": "CI red on stale safety-dict test assertion (commit deaa61d)",
+    "new_model": "Pre-existing failure surfaced — Dashboard Tests had been red since 0599cb2 due to test/schema drift. cyber/publisher/exporter.py:111-117 had been expanded with 2 new safety dimensions (metr_autonomy_50pct = METR autonomous task ladder 50% threshold, apollo_schemer_score = Apollo Research scheming evaluation) but tests/test_enrichment_export.py:58 still expected the old 3-key shape {aisi_cyber_tier, cbrn_risk, self_reported_safety_card}. Fix: updated test assertion to match exporter's actual 5-key schema. 237/237 tests now pass locally; Dashboard Tests green on next CI run. Note for ops hygiene: this kind of test/schema drift was hidden because Dashboard Tests was the only CI gate running on Python schema changes, and the failure had quietly accumulated across 5 commits before anyone investigated.",
+    "new_value": "237/237 tests passing. Dashboard Tests CI green-able again.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-13",
+    "benchmark_id": "PDF deep mining batch — 4 parallel subagents on arxiv PDFs (commit af22a15)",
+    "new_model": "User-prompted re-investigation of the same 6 ref links from Section 36 with explicit instruction to download PDFs and analyze deeply. Downloaded 3 missing arxiv PDFs (2604.22446 / 2604.18292 / 2604.25917, 9-13MB each, 33-48 pages) and dispatched 4 parallel subagents. Per-paper yields vs prior pass: OneManCompany 1 -> 13 scores (+12, full Table 2 PRDBench leaderboard); AI Co-Mathematician 1 -> 5 scores (+4, internal-100-Q research-math benchmark from Figure 5); Agent-World 0 -> 62 scores (+62, Tables 1+2 across MCP-Mark / BFCL-V4 / tau2-Bench matrix + body-text inline); Recursive Multi-Agent 0 -> 0 (still rejected — framework paper, Section B.3 confirms per-role agents are role-specific fine-tuned, not raw base models). Key extractions: PRDBench full leaderboard (Claude-4.5 69.19, GPT-5.2 62.49, CodeX 62.09, Claude Code 56.65, Qwen3-Coder 43.84, Qwen Code 39.91, DeepSeek-V3.2 40.11, GLM-4.7 38.39, Gemini-3-Pro 22.76, Kimi-K2 20.52, Minimax-M2 17.60, Gemini CLI 11.29); DeepMind internal research-math (AI Co-Math 87 / Gemini Deep Think 70 / Gemini 3.1 Pro 57); Agent-World tau2-Bench Avg leaders (Gemini-3-Pro 85.4 / Claude-Sonnet-4.5 84.7 / Seed-2.0 83.0 / GPT-5.2-High 80.2). New canonical IDs: google/gemini-cli, alibaba/qwen-code, minimax/m2, alibaba/qwen3-{8b,14b,32b,235b-a22b}, ruc-bytedance/agent-world-{8b,14b}. New benchmark: deepmind_internal_research_math_100. Non-PDF links (AA speech-to-speech + Epoch FrontierMath tiers-1-4) both JS-rendered without CSV/JSON endpoints; AA already exhausted in Section 36; Epoch page itself flags 'AI-assisted review flagged fatal errors in ~1/3 problems' so strict-attribution defers.",
+    "new_value": "+5 models, +1 benchmark, +65 scores (1279->1284 / 924->925 / 4994->5059). 4 PDFs archived to resource/. 4 findings markdown files for audit trail. Cache-bust app.js v=20260513a -> 20260513b.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-13",
+    "benchmark_id": "Sovereign AI 13-country sweep — 6 parallel subagents (commit 9dce957)",
+    "new_model": "User-prompted investigation across Korea/China/France/Japan/India/Germany/UAE/Singapore/Switzerland/Russia/US/Canada/Australia. 6 parallel subagents per region cluster produced strict-attribution research markdowns. KEY ADDITIONS: (1) Switzerland Apertus 8B/70B base+instruct from Swiss AI Initiative (ETH+EPFL+CSCS, Apache 2.0, 1,811 languages, arxiv 2509.14233) — 4 models + 12 scores. (2) NEW Canada region 'ca': Cohere Labs Toronto 8 models (Command A / A Vision / A Reasoning / R7B Arabic / Cohere Transcribe Apache 2.0 / Aya 23 35B / Aya Vision 8B / Tiny Aya Base) — previously misfiled under us-open. (3) NEW Australia region 'au': Maincoder 1B (Melbourne) + Isaacus Open Australian Legal LLM 1.5B + EmuBERT. (4) Germany OpenGPT-X Teuken (Fraunhofer EU sovereign 24-language) + Aleph Alpha TFree-HAT family + Black Forest Labs FLUX.2 dev + Ellamind Propella + Occiglot. (5) Japan 20-model expansion (3 -> 23): PFN PLaMo / NTT tsuzumi 1+2 / NEC cotomi / Fujitsu Takane / Rakuten AI 3.0 700B MoE / ELYZA / Karakuri / Stockmark 2 100B / NII LLM-JP 3 172B / Tokyo Tech Swallow / SB Intuitions Sarashina2 / CyberAgent calm3 / ABEJA. (6) UAE Falcon-H1R 7B (AIME24 88.1 / MATH500 97.4) + Falcon Perception VLM + MBZUAI K2 Think V2 73B fully-open + K2-V2 Instruct. (7) Korea EXAONE 4.5 +3 scores; India BharatGen Param2-17B-Thinking +8 scores (incl. Indic Sanskriti 66.5 / MMLU Hindi 59.2). (8) Singapore SEA-LION ModernBERT/E5 (Mar 2026 encoder/embedding suite). (9) France Mistral Medium 3.5 EAGLE + Leanstral. (10) Russia GigaChat 3 Ultra Preview + T-Pro 2.0 + Cotype Pro 2. New benchmarks: xnli, xcopa, amo_bench, omni_math_hard, eu21_avg, japanese_mt_bench, llm_jp_eval, japanese_jaster, sanskriti, mmlu_hindi. Skipped per strict-attribution: Krutrim 3 cancelled, Reliance JioBrain internal-only, Maincode Matilda private beta, Mistral Large 4 / Magistral 2 / SmolLM 4 / YandexGPT 6 / GigaChat 4 / Vikhr 3 no release, TELUS/Telstra/CSIRO infrastructure announcements only.",
+    "new_value": "+55 models, +10 benchmarks, +43 scores (1284->1339 / 925->935 / 5059->5102). Dashboard sovereign.js REGIONS map: 2 NEW regions (ca, au) + 8 expanded regions. Cache-bust sovereign.js v=20260509c -> 20260513a. 7 audit-trail research markdowns in resource/research_*_2026.md.",
+    "old_model": "",
+    "old_value": ""
   }
 ]

@@ -60,7 +60,8 @@ var Sovereign = {
             note: '프랑스 sovereign frontier — Mistral 풀라인업 (Mistral 7B·Mixtral·Nemo·Saba·Codestral·Mathstral·Pixtral·Magistral·Devstral·Ministral·Voxtral) + PleIAs · Lucie · CroissantLLM · HuggingFace SmolLM',
             models: [
                 // Mistral — flagship & frontier
-                'mistral/mistral-large-3', 'mistral/mistral-medium-3.5', 'mistral/mistral-medium-3.1', 'mistral/mistral-medium-3',
+                'mistral/mistral-large-3', 'mistral/mistral-medium-3.5', 'mistral/mistral-medium-3.5-eagle', 'mistral/mistral-medium-3.1', 'mistral/mistral-medium-3',
+                'mistral/leanstral',
                 'mistral/mistral-large-2', 'mistral/mistral-large-1',
                 'mistral/mistral-small-4', 'mistral/mistral-small-3.2', 'mistral/mistral-small-3.1', 'mistral/mistral-small-3', 'mistral/mistral-small-2', 'mistral/mistral-small-1',
                 // Mistral — reasoning
@@ -161,8 +162,38 @@ var Sovereign = {
         },
         {
             code: 'jp', label: 'Japan', flag: '🇯🇵',
-            note: 'Sakana AI multi-agent orchestration + evolutionary models',
-            models: ['sakana/fugu-ultra', 'sakana/fugu-mini', 'sakana/namazu']
+            note: 'Major sovereign players — PFN PLaMo · NTT tsuzumi · NEC cotomi · Fujitsu Takane · Rakuten AI · ELYZA · Swallow (Tokyo Tech) · Stockmark · NII llm-jp · SoftBank Sarashina · CyberAgent · Karakuri · ABEJA · Sakana',
+            models: [
+                // Preferred Networks (PFN) — flagship JP sovereign
+                'pfn/plamo-100b', 'pfn/plamo-2-prime', 'pfn/plamo-2.1-prime', 'pfn/plamo-2-8b',
+                // NTT
+                'ntt/tsuzumi-1', 'ntt/tsuzumi-2',
+                // NEC
+                'nec/cotomi-pro', 'nec/cotomi-light',
+                // Fujitsu × Cohere
+                'fujitsu/takane',
+                // Rakuten
+                'rakuten/rakuten-ai-7b', 'rakuten/rakuten-ai-2.0-8x7b-instruct', 'rakuten/rakuten-ai-3.0',
+                // ELYZA
+                'elyza/llama-3-elyza-jp-8b', 'elyza/llama-3-elyza-jp-70b',
+                // Karakuri
+                'karakuri-ai/karakuri-lm-8x7b-chat',
+                // Stockmark (GENIAC Phase 2)
+                'stockmark/stockmark-2-100b-instruct',
+                // NII LLM-JP Consortium
+                'llm-jp/llm-jp-3-172b-instruct3',
+                // Tokyo Tech + AIST (Swallow)
+                'tokyotech-llm/llama-3.3-swallow-70b-instruct',
+                // SB Intuitions (SoftBank)
+                'sbintuitions/sarashina2-13b', 'sbintuitions/sarashina2-vision-14b',
+                // CyberAgent
+                'cyberagent/calm3-22b-chat',
+                // ABEJA
+                'abeja/abeja-qwen2.5-32b-japanese',
+                // Sakana (existing + new)
+                'sakana/tinyswallow-1.5b',
+                'sakana/fugu-ultra', 'sakana/fugu-mini', 'sakana/namazu'
+            ]
         },
         {
             code: 'in', label: 'India', flag: '🇮🇳',
@@ -172,6 +203,8 @@ var Sovereign = {
                 'sarvam/sarvam-105b', 'sarvam/sarvam-30b',
                 'sarvam/sarvam-m', 'sarvam/sarvam-1',
                 // BharatGen (govt-funded IIT Bombay TIH)
+                'bharatgen/param2-17b-thinking',  // 2026-04 reasoning
+                'bharatgen/shrutam-2',  // 2026-05 ASR
                 'bharatgen/param2-17b', 'bharatgen/param-1-2.9b',
                 'bharatgen/param2-sutra', 'bharatgen/param-1t-roadmap',
                 // Krutrim (Ola)
@@ -206,33 +239,68 @@ var Sovereign = {
         },
         {
             code: 'ae', label: 'UAE', flag: '🇦🇪',
-            note: 'TII Falcon-H1/H1R/Falcon3/Mamba/Falcon2/180B + MBZUAI K2/Atlas-Chat/BiMediX (Arabic)',
+            note: 'TII Falcon-H1/H1R/Perception/Falcon3/Mamba/Falcon2/180B + MBZUAI K2 Think V2 (G42+Cerebras, 73B fully-open reasoning) + Atlas-Chat/BiMediX (Arabic)',
             models: [
-                // TII Falcon-H1 family (May 2025)
-                'tii/falcon-h1-34b', 'tii/falcon-h1-arabic-34b', 'tii/falcon-h1r-7b', 'tii/falcon-h1-7b',
+                // TII Falcon-H1 family (May 2025) + Reasoning + Perception
+                'tii/falcon-h1r-7b',  // 2026-01-05 reasoning
+                'tii/falcon-perception',  // 2026-04 vision
+                'tii/falcon-h1-34b', 'tii/falcon-h1-arabic-34b', 'tii/falcon-h1-7b',
                 'tii/falcon-h1-3b', 'tii/falcon-h1-1.5b-deep', 'tii/falcon-h1-1.5b', 'tii/falcon-h1-0.5b',
                 // TII Falcon3 family (Dec 2024)
                 'tii/falcon3-10b', 'tii/falcon3-7b', 'tii/falcon3-3b', 'tii/falcon3-1b',
                 // TII older
-                'tii/falcon-ocr', 'tii/falcon-mamba-7b', 'tii/falcon2-11b', 'tii/falcon-180b', 'tii/falcon-perception',
-                // MBZUAI
+                'tii/falcon-ocr', 'tii/falcon-mamba-7b', 'tii/falcon2-11b', 'tii/falcon-180b',
+                // MBZUAI / G42 / Cerebras
+                'mbzuai/k2-think-v2',  // 2026-01-27 73B reasoning SOTA
+                'mbzuai/k2-v2-instruct',
                 'mbzuai/llm360-k2-65b', 'mbzuai/atlas-chat-9b', 'mbzuai/bimedix'
             ]
         },
         {
             code: 'sg', label: 'Singapore', flag: '🇸🇬',
-            note: 'AI Singapore SEA-LION 풀라인업 (Llama/Gemma2/Apertus 기반) + GoTo Sahabat-AI (인도네시아어)',
+            note: 'AI Singapore SEA-LION 풀라인업 (Llama/Gemma2/Apertus 기반) + SEA-LION ModernBERT/E5 임베딩 (2026-03) + GoTo Sahabat-AI (인도네시아어)',
             models: [
+                // SEA-LION encoder / embedding suite (Mar-Apr 2026)
+                'ai-singapore/sea-lion-modernbert-600m', 'ai-singapore/sea-lion-modernbert-300m',
+                'ai-singapore/sea-lion-e5-embedding-600m',
+                // SEA-LION v4 (text generation)
                 'ai-singapore/apertus-sea-lion-v4-8b', 'ai-singapore/gemma-sea-lion-v4-4b-vl',
                 'ai-singapore/llama-sea-lion-v3.5-70b', 'ai-singapore/llama-sea-lion-v3.5-8b',
                 'ai-singapore/gemma2-sea-lion-v3-9b', 'ai-singapore/sea-lion-v2.1-7b',
+                // GoTo Sahabat-AI
                 'gotoai/sahabat-ai-v1-70b', 'gotoai/sahabat-ai-v1-8b'
             ]
         },
         {
             code: 'ch', label: 'Switzerland', flag: '🇨🇭',
-            note: 'EPFL Meditron / Apertus (의료·인도주의)',
-            models: ['epfl/meditron-70b', 'epfl/meditron-7b', 'epfl/llama-3-meditron-70b']
+            note: 'Swiss AI Initiative (ETH Zurich + EPFL + CSCS) — Apertus 8B/70B 풀라인업 (Alps supercomputer, 1,811 languages incl. Swiss German + Romansh, Apache 2.0) + EPFL Meditron 의료',
+            models: [
+                // Swiss AI Initiative — Apertus flagship (ETH + EPFL + CSCS, Sep 2025)
+                'swiss-ai/apertus-70b', 'swiss-ai/apertus-70b-instruct',
+                'swiss-ai/apertus-8b', 'swiss-ai/apertus-8b-instruct',
+                // EPFL medical
+                'epfl/meditron-70b', 'epfl/meditron-7b', 'epfl/llama-3-meditron-70b'
+            ]
+        },
+        {
+            code: 'ca', label: 'Canada', flag: '🇨🇦',
+            note: 'Cohere Labs (Toronto, 구 Cohere For AI) — Command A 풀라인업 + Aya 시리즈 + Cohere Transcribe',
+            models: [
+                // Cohere Labs flagships
+                'cohere/command-a', 'cohere/command-a-vision', 'cohere/command-a-reasoning',
+                'cohere/command-r7b-arabic',
+                'cohere/cohere-transcribe',
+                // Aya multilingual series
+                'cohere/aya-23-35b', 'cohere/aya-vision-8b', 'cohere/tiny-aya-base'
+            ]
+        },
+        {
+            code: 'au', label: 'Australia', flag: '🇦🇺',
+            note: 'Maincode (Melbourne AI factory) + Isaacus (Australian legal AI)',
+            models: [
+                'maincode/maincoder-1b',
+                'isaacus/open-australian-legal-llm', 'isaacus/emubert'
+            ]
         },
         {
             code: 'us-legal', label: 'US (Legal AI)', flag: '⚖️',
@@ -251,26 +319,40 @@ var Sovereign = {
         },
         {
             code: 'ru', label: 'Russia', flag: '🇷🇺',
-            note: 'Yandex YandexGPT 5 + Sber GigaChat 1/2/3 (incl. 3 Ultra Preview 702B-A36B MoE) + Vikhr opensource + T-Bank',
+            note: 'Yandex YandexGPT 5 + Sber GigaChat 1/2/3 (incl. 3 Ultra Preview 702B-A36B MoE) + Vikhr opensource + T-Bank T-Pro 2.0 + MTS AI Cotype Pro 2',
             models: [
                 'yandex/yandexgpt-5-pro', 'yandex/yandexgpt-5-lite-8b', 'yandex/yandexgpt-4-pro', 'yandex/yalm-100b',
                 'sber/gigachat-3.1-ultra', 'sber/gigachat-3.1-lightning',
-                'sber/gigachat-3-ultra', 'sber/gigachat-3-lightning',
+                'sber/gigachat-3-ultra', 'sber/gigachat-3-lightning', 'sber/gigachat-3-ultra-preview',
                 'sber/gigachat-2-max', 'sber/gigachat-2-pro', 'sber/gigachat-2-lite', 'sber/gigachat-1.5',
                 'sber/rugpt-3.5-13b',
                 'vikhrmodels/vikhr-nemo-12b', 'vikhrmodels/vikhr-yandexgpt-5-lite-8b',
-                'tbank/t-pro-1', 'tbank/t-lite-1'
+                'tbank/t-pro-2.0', 'tbank/t-pro-1', 'tbank/t-lite-1',
+                'mts-ai/cotype-pro-2'
             ]
         },
         {
             code: 'de', label: 'Germany', flag: '🇩🇪',
-            note: 'Aleph Alpha Pharia (sovereign EU AI Act compliant) + Black Forest Labs FLUX (image gen) + TNG DeepSeek Chimera',
+            note: 'OpenGPT-X Teuken (Fraunhofer EU sovereign LLM, 24 EU 언어) + Aleph Alpha Pharia/TFree-HAT + Black Forest Labs FLUX 1/2 + TNG Chimera + Ellamind Propella + Occiglot',
             models: [
+                // OpenGPT-X Teuken (Fraunhofer + Jülich + TU Dresden + DFKI)
+                'opengpt-x/teuken-7b-instruct-v0.6', 'opengpt-x/teuken-7b-base-v0.6',
+                'opengpt-x/teuken-7b-instruct-commercial-v0.4',
+                // Aleph Alpha
                 'aleph-alpha/pharia-1-7b-control', 'aleph-alpha/pharia-1-7b-control-aligned',
                 'aleph-alpha/pharia-2-tfree', 'aleph-alpha/luminous',
+                'aleph-alpha/tfree-hat-pretrained-7b-base',
+                'aleph-alpha/llama-3.1-8b-tfree-hat-dpo', 'aleph-alpha/llama-3.1-70b-tfree-hat-sft',
+                // Black Forest Labs (FLUX 1 + 2)
+                'black-forest-labs/flux.2-dev',
                 'black-forest-labs/flux.1-pro', 'black-forest-labs/flux.1-dev', 'black-forest-labs/flux.1-schnell',
                 'black-forest-labs/flux.1-kontext-pro', 'black-forest-labs/flux.1-kontext-dev',
-                'tngtech/r1t-chimera', 'tngtech/r1t2-chimera'
+                // TNG
+                'tngtech/r1t-chimera', 'tngtech/r1t2-chimera',
+                // Ellamind (BMWE-funded sovereign SLM)
+                'ellamind/propella-1-4b',
+                // Occiglot (DFKI + hessian.AI)
+                'occiglot/occiglot-7b-eu5'
             ]
         },
         {
@@ -359,8 +441,35 @@ var Sovereign = {
         }
     ],
 
+    // Resolve release month for a model id with DB fallback.
+    // Order: explicit RELEASE_DATES entry → DB `release_date` (YYYY-MM-DD → YYYY-MM)
+    //      → DB `released_at` → null.
+    // This means newly-added sovereign models pick up their date from data/export/models.json
+    // without requiring a manual RELEASE_DATES entry.
+    _resolveReleaseDate: function(mid) {
+        var hard = this.RELEASE_DATES[mid];
+        if (hard) return hard;
+        var m = this._modelById && this._modelById[mid];
+        if (!m && this._models) {
+            // Build index lazily on first use
+            this._modelById = {};
+            for (var i = 0; i < this._models.length; i++) this._modelById[this._models[i].id] = this._models[i];
+            m = this._modelById[mid];
+        }
+        if (!m) return null;
+        var d = m.release_date || m.released_at;
+        if (!d) return null;
+        // Normalize YYYY-MM-DD → YYYY-MM (or pass through YYYY/YYYY-MM)
+        if (/^\d{4}-\d{2}-\d{2}/.test(d)) return d.slice(0, 7);
+        if (/^\d{4}-\d{2}$/.test(d)) return d;
+        if (/^\d{4}$/.test(d)) return d;
+        return null;
+    },
+
     // Release / announcement dates (YYYY-MM, or YYYY when month is unknown).
     // Used for sorting newest-first and surfacing the year next to model names.
+    // NOTE: For models with `release_date` in DB, _resolveReleaseDate() falls back to that
+    // automatically — only add hardcoded entries here for cases where DB date is missing or wrong.
     RELEASE_DATES: {
         // Korea — LG
         'lg/exaone-4.5-33b': '2026-04', 'lg/k-exaone-236b': '2026-01',
@@ -1320,7 +1429,7 @@ var Sovereign = {
             if (!region) return;
             totalProcessed++;
 
-            var date = self.RELEASE_DATES[mid] || (self._localReleaseDates && self._localReleaseDates[mid]);
+            var date = self._resolveReleaseDate(mid) || (self._localReleaseDates && self._localReleaseDates[mid]);
             if (!date) return;
 
             // Period filter
@@ -1602,7 +1711,7 @@ var Sovereign = {
             }
             region.models.forEach(function(mid) {
                 var m = modelById[mid];
-                var date = self.RELEASE_DATES[mid];
+                var date = self._resolveReleaseDate(mid);
                 if (!m || !date) return;
                 var bucketTs = self._bucketKey(date, granularity);
                 if (self._cumViewMode === 'region') {
@@ -2026,7 +2135,7 @@ var Sovereign = {
         function buildModelRow(mid) {
             var m = self._models.find(function(x) { return x.id === mid; });
             if (!m) return null;
-            var releaseDate = self.RELEASE_DATES[mid];
+            var releaseDate = self._resolveReleaseDate(mid);
             var row = document.createElement('div');
             row.className = 'flex items-center justify-between gap-2 text-xs';
             var name = document.createElement('span');
@@ -2048,8 +2157,8 @@ var Sovereign = {
 
         function sortByDateDesc(ids) {
             return ids.slice().sort(function(a, b) {
-                var da = self.RELEASE_DATES[a] || '';
-                var db = self.RELEASE_DATES[b] || '';
+                var da = self._resolveReleaseDate(a) || '';
+                var db = self._resolveReleaseDate(b) || '';
                 if (!da && !db) return 0;
                 if (!da) return 1;
                 if (!db) return -1;
@@ -2066,7 +2175,7 @@ var Sovereign = {
                 return self._models.some(function(m) { return m.id === mid; });
             });
             var visibleModels = activeMode
-                ? presentModels.filter(function(mid) { return self._isActive(self.RELEASE_DATES[mid]); })
+                ? presentModels.filter(function(mid) { return self._isActive(self._resolveReleaseDate(mid)); })
                 : presentModels;
 
             // ── Card header ──
@@ -2123,7 +2232,7 @@ var Sovereign = {
                 var vendorLatest = {};
                 Object.keys(vendorGroups).forEach(function(v) {
                     var mostRecent = vendorGroups[v].reduce(function(acc, mid) {
-                        var d = self.RELEASE_DATES[mid] || '';
+                        var d = self._resolveReleaseDate(mid) || '';
                         return d > acc ? d : acc;
                     }, '');
                     vendorLatest[v] = mostRecent;
