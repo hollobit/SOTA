@@ -1,0 +1,711 @@
+{
+  "_meta": {
+    "date": "2026-05-13",
+    "title": "PDF deep mining batch — OneManCompany PRDBench leaderboard + Agent-World Table 1/2 + AI Co-Mathematician additional scores",
+    "sources": [
+      "https://arxiv.org/abs/2604.22446",
+      "https://arxiv.org/abs/2604.18292",
+      "https://arxiv.org/abs/2605.06651"
+    ],
+    "rejected_sources": [
+      {
+        "url": "https://arxiv.org/abs/2604.25917",
+        "reason": "Recursive Multi-Agent Systems — framework paper, all rows attribute to systems (RecursiveMAS / MoA / TextGrad / LoopLM) not base LLMs; per-role fine-tuned modules in Tables 6-8 do not represent raw base-model capability per Section B.3"
+      }
+    ],
+    "rule": "strict-attribution — only (model, benchmark, value) triples explicitly stated in primary-source tables / numbered figures with explicit per-model attribution. Aggregate framework results, projected/expected values, ambiguous Qwen3-8B-vs-14B attributions all rejected."
+  },
+  "models": [
+    {
+      "id": "google/gemini-cli",
+      "vendor": "Google",
+      "name": "Gemini CLI",
+      "type": "proprietary",
+      "modalities": ["text", "code", "agentic"],
+      "_note": "Commercial coding agent product based on Gemini family; tested as PRDBench baseline in OneManCompany paper",
+      "_sources": ["https://arxiv.org/abs/2604.22446"]
+    },
+    {
+      "id": "alibaba/qwen-code",
+      "vendor": "Alibaba",
+      "name": "Qwen Code",
+      "type": "proprietary",
+      "modalities": ["text", "code", "agentic"],
+      "_note": "Commercial coding agent product from Alibaba; tested as PRDBench baseline",
+      "_sources": ["https://arxiv.org/abs/2604.22446"]
+    },
+    {
+      "id": "minimax/m2",
+      "vendor": "MiniMax",
+      "name": "MiniMax M2",
+      "type": "open-weight",
+      "modalities": ["text"],
+      "_note": "MiniMax M2 base model (paper refers to 'Minimax-M2'); distinct from M2.5 and M2.7 family upgrades",
+      "_sources": ["https://arxiv.org/abs/2604.22446"]
+    },
+    {
+      "id": "alibaba/qwen3-8b",
+      "vendor": "Alibaba",
+      "name": "Qwen3 8B",
+      "type": "open-source",
+      "modalities": ["text"],
+      "_note": "Qwen3 8B base model — distinct from Qwen3.5 generation; Agent-World 8B is fine-tuned on this",
+      "_sources": ["https://arxiv.org/abs/2604.18292"]
+    },
+    {
+      "id": "alibaba/qwen3-14b",
+      "vendor": "Alibaba",
+      "name": "Qwen3 14B",
+      "type": "open-source",
+      "modalities": ["text"],
+      "_note": "Qwen3 14B base model; Agent-World 14B is fine-tuned on this",
+      "_sources": ["https://arxiv.org/abs/2604.18292"]
+    },
+    {
+      "id": "alibaba/qwen3-32b",
+      "vendor": "Alibaba",
+      "name": "Qwen3 32B",
+      "type": "open-source",
+      "modalities": ["text"],
+      "_note": "Qwen3 32B base model",
+      "_sources": ["https://arxiv.org/abs/2604.18292"]
+    },
+    {
+      "id": "alibaba/qwen3-235b-a22b",
+      "vendor": "Alibaba",
+      "name": "Qwen3 235B-A22B",
+      "type": "open-source",
+      "modalities": ["text"],
+      "_note": "Qwen3 235B MoE, 22B active; Agent-World comparator",
+      "_sources": ["https://arxiv.org/abs/2604.18292"]
+    },
+    {
+      "id": "ruc-bytedance/agent-world-8b",
+      "vendor": "RUC + ByteDance",
+      "name": "Agent-World 8B",
+      "type": "open-source",
+      "modalities": ["text", "agentic"],
+      "_note": "Agent-World 8B (RUC + ByteDance Seed, Qwen3-8B base) — continuous self-evolving agent trained on 1M+ environments per arxiv 2604.18292",
+      "released_at": "2026-04-21",
+      "_sources": ["https://arxiv.org/abs/2604.18292"]
+    },
+    {
+      "id": "ruc-bytedance/agent-world-14b",
+      "vendor": "RUC + ByteDance",
+      "name": "Agent-World 14B",
+      "type": "open-source",
+      "modalities": ["text", "agentic"],
+      "_note": "Agent-World 14B (RUC + ByteDance Seed, Qwen3-14B base) — continuous self-evolving agent per arxiv 2604.18292",
+      "released_at": "2026-04-21",
+      "_sources": ["https://arxiv.org/abs/2604.18292"]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "deepmind_internal_research_math_100",
+      "name": "DeepMind Internal Research Math 100",
+      "category": "math",
+      "description": "DeepMind internal unleaked research-level mathematics benchmark — 100 problems with code-checkable answers, sourced from professional mathematicians (AI Co-Mathematician paper, Figure 5). Higher = better. Single-paper benchmark.",
+      "metric": "accuracy",
+      "leaderboard": "https://arxiv.org/abs/2605.06651"
+    }
+  ],
+  "scores": [
+    {
+      "_comment": "=== PRDBench leaderboard from OneManCompany Table 2 (page 14) ===",
+      "model": "openai/gpt-5.2",
+      "benchmark": "prdbench",
+      "score": 62.49,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Minimal AgentType (single-agent baseline), DEV mode, zero-shot. Success Rate."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "prdbench",
+      "score": 69.19,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Minimal AgentType. Paper string: 'Claude-4.5'. Top baseline before OMC."
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "prdbench",
+      "score": 22.76,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Minimal AgentType."
+    },
+    {
+      "model": "alibaba/qwen3-coder",
+      "benchmark": "prdbench",
+      "score": 43.84,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Minimal AgentType."
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "prdbench",
+      "score": 20.52,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Minimal AgentType."
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "prdbench",
+      "score": 40.11,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Minimal AgentType."
+    },
+    {
+      "model": "zhipu/glm-4.7",
+      "benchmark": "prdbench",
+      "score": 38.39,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Minimal AgentType."
+    },
+    {
+      "model": "minimax/m2",
+      "benchmark": "prdbench",
+      "score": 17.60,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Minimal AgentType."
+    },
+    {
+      "model": "openai/codex-cli",
+      "benchmark": "prdbench",
+      "score": 62.09,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Commercial agent product. Paper string: 'CodeX'."
+    },
+    {
+      "model": "anthropic/claude-code",
+      "benchmark": "prdbench",
+      "score": 56.65,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Commercial agent product (Claude Code)."
+    },
+    {
+      "model": "google/gemini-cli",
+      "benchmark": "prdbench",
+      "score": 11.29,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Commercial agent product."
+    },
+    {
+      "model": "alibaba/qwen-code",
+      "benchmark": "prdbench",
+      "score": 39.91,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.22446",
+      "_note": "OneManCompany Table 2 p.14 — Commercial agent product."
+    },
+
+    {
+      "_comment": "=== AI Co-Mathematician — additional scores beyond the previously-ingested FrontierMath Tier 4 48% ===",
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "frontiermath_tier4",
+      "score": 19.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.06651",
+      "_note": "AI Co-Mathematician p.14 §6.2 — explicit comparison: 'significant increase over the Gemini 3.1 Pro base model which achieved 19% accuracy'. AI Co-Math 48% = +29pp uplift over this baseline."
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "deepmind_internal_research_math_100",
+      "score": 57.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.06651",
+      "_note": "AI Co-Mathematician Figure 5 p.13 — DeepMind internal unleaked 100-question research-math benchmark; single-call Gemini 3.1 Pro baseline."
+    },
+    {
+      "model": "deepmind/gemini-3-deep-think",
+      "benchmark": "deepmind_internal_research_math_100",
+      "score": 70.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.06651",
+      "_note": "AI Co-Mathematician Figure 5 p.13 — single-call Gemini 3.1 Deep Think baseline on internal 100-Q research math."
+    },
+    {
+      "model": "deepmind/ai-co-mathematician",
+      "benchmark": "deepmind_internal_research_math_100",
+      "score": 87.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.06651",
+      "_note": "AI Co-Mathematician Figure 5 p.13 — agentic harness on internal 100-Q research math; +30pp over Gemini 3.1 Deep Think, +17pp from harness-vs-DT delta vs +29pp on FrontierMath Tier 4."
+    },
+
+    {
+      "_comment": "=== Agent-World Table 1 (page 14) — frontier-model rows on MCP-Mark Avg, BFCL-V4 Avg + WebSearch sub, τ²-Bench Avg + Retail/Telecom/Airline sub ===",
+      "model": "openai/gpt-5.2",
+      "benchmark": "mcpmark",
+      "score": 53.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14 — paper string 'GPT-5.2 High' (high-effort variant), MCP-Mark average across File/Github/Notion/Playwright/Postgres sub-domains."
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "bfcl_v4",
+      "score": 62.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14 — BFCL-V4 average (7 sub-categories)."
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "bfcl_v4_web_search",
+      "score": 75.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14 — BFCL-V4 WebSearch sub-category."
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "tau2_bench",
+      "score": 80.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14 — τ²-Bench average."
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "tau2_retail",
+      "score": 81.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "tau2_telecom",
+      "score": 95.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "tau2_airline",
+      "score": 62.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14"
+    },
+
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "mcpmark",
+      "score": 33.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "bfcl_v4",
+      "score": 73.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "bfcl_v4_web_search",
+      "score": 81.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "tau2_bench",
+      "score": 84.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "tau2_retail",
+      "score": 86.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "tau2_telecom",
+      "score": 98.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "tau2_airline",
+      "score": 70.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "mcpmark",
+      "score": 50.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "bfcl_v4",
+      "score": 72.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "bfcl_v4_web_search",
+      "score": 80.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "tau2_bench",
+      "score": 85.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "tau2_retail",
+      "score": 85.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "tau2_telecom",
+      "score": 98.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "tau2_airline",
+      "score": 72.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+
+    {
+      "model": "bytedance/seed-2.0-pro",
+      "benchmark": "mcpmark",
+      "score": 54.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14 — paper string 'Seed 2.0', mapped to existing canonical bytedance/seed-2.0-pro"
+    },
+    {
+      "model": "bytedance/seed-2.0-pro",
+      "benchmark": "bfcl_v4",
+      "score": 73.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "bytedance/seed-2.0-pro",
+      "benchmark": "bfcl_v4_web_search",
+      "score": 92.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "bytedance/seed-2.0-pro",
+      "benchmark": "tau2_bench",
+      "score": 83.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "bytedance/seed-2.0-pro",
+      "benchmark": "tau2_retail",
+      "score": 90.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "bytedance/seed-2.0-pro",
+      "benchmark": "tau2_telecom",
+      "score": 94.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "bytedance/seed-2.0-pro",
+      "benchmark": "tau2_airline",
+      "score": 64.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "mcpmark",
+      "score": 36.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14 — paper string 'DeepSeek-V3.2-685B'"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "bfcl_v4",
+      "score": 54.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "bfcl_v4_web_search",
+      "score": 69.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "tau2_bench",
+      "score": 80.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14 — tau2_bench avg; per-subdomain shown as '–' for V3.2"
+    },
+
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "mcpmark",
+      "score": 4.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World Table 1 p.14 — BFCL row blank"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "tau2_bench",
+      "score": 55.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "tau2_retail",
+      "score": 67.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "tau2_telecom",
+      "score": 49.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "tau2_airline",
+      "score": 48.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+
+    {
+      "_comment": "=== Qwen3 base models — Agent-World Table 1 comparators ===",
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "mcpmark",
+      "score": 2.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "bfcl_v4",
+      "score": 40.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "bfcl_v4_web_search",
+      "score": 7.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "tau2_bench",
+      "score": 26.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "mcpmark",
+      "score": 3.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "bfcl_v4",
+      "score": 41.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "tau2_bench",
+      "score": 32.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "mcpmark",
+      "score": 7.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "bfcl_v4",
+      "score": 46.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "tau2_bench",
+      "score": 44.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "mcpmark",
+      "score": 5.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "bfcl_v4",
+      "score": 47.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "tau2_bench",
+      "score": 58.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+
+    {
+      "_comment": "=== Agent-World 8B / 14B (paper's own models) — Table 1 ===",
+      "model": "ruc-bytedance/agent-world-8b",
+      "benchmark": "mcpmark",
+      "score": 8.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "ruc-bytedance/agent-world-8b",
+      "benchmark": "bfcl_v4",
+      "score": 51.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "ruc-bytedance/agent-world-8b",
+      "benchmark": "tau2_bench",
+      "score": 61.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "ruc-bytedance/agent-world-8b",
+      "benchmark": "skillsbench",
+      "score": 9.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World p.15 body — explicit triple 'Agent-World-8B achieves 9.2% on SkillsBench'"
+    },
+    {
+      "model": "ruc-bytedance/agent-world-8b",
+      "benchmark": "arc_agi_2",
+      "score": 6.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World p.15 body — 'Agent-World-8B: 6.5% on ARC-AGI-2'"
+    },
+    {
+      "model": "ruc-bytedance/agent-world-8b",
+      "benchmark": "claw_eval",
+      "score": 30.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Agent-World p.15 body — 'Agent-World-8B: 30.5% on Claw-Eval'"
+    },
+    {
+      "model": "ruc-bytedance/agent-world-14b",
+      "benchmark": "mcpmark",
+      "score": 13.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "ruc-bytedance/agent-world-14b",
+      "benchmark": "bfcl_v4",
+      "score": 55.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "ruc-bytedance/agent-world-14b",
+      "benchmark": "tau2_bench",
+      "score": 65.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": "Table 2 self-evolution round-2 value (authoritative over conflicting body text 50.5)"
+    },
+    {
+      "model": "ruc-bytedance/agent-world-14b",
+      "benchmark": "skillsbench",
+      "score": 12.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "ruc-bytedance/agent-world-14b",
+      "benchmark": "arc_agi_2",
+      "score": 8.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "model": "ruc-bytedance/agent-world-14b",
+      "benchmark": "claw_eval",
+      "score": 31.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.18292"
+    }
+  ]
+}
