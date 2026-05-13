@@ -1,6 +1,6 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
-## 2026-05-13 (Session 13): Post-closeout ingest sweep + Medical AI timeline widget + CI test drift fix + PDF deep mining
+## 2026-05-13 (Session 13): Post-closeout ingest sweep + Medical AI timeline widget + CI test drift fix + PDF deep mining + sovereign AI 13-country sweep
 
 Session 12 final sync (commit `9058ab5`) declared closeout, but a string of user-prompted ref-link investigations + a major Medical AI widget request + a pre-existing CI red flag + a follow-up PDF deep-mining pass added 11 commits across 2026-05-12 evening → 2026-05-13 morning. Captured here for completeness.
 
@@ -154,6 +154,58 @@ AI Co-Mathematician paper PDF (851 KB) archived to `resource/AI_Co-Mathematician
 - τ-Voice: Grok Voice Think Fast **52.1** SOTA on voice-agent customer service
 
 **Live deploy**: CI run for `6f81130` pushed; `deaa61d` test fix re-triggered CI clean. Cache-bust: `app.js v=20260513a`.
+
+### 39. Sovereign AI 13-country sweep — 6 parallel subagents (commit `9dce957`)
+
+User-prompted: "한국, 중국, 프랑스, 일본, 인도, 독일, UAE, 싱가폴, 스위스, 러시아, 미국, 캐나다, 호주 등에서 새롭게 발표된 소버린 AI 모델은 없는지 조사".
+
+**6 parallel subagents** dispatched per region cluster: Japan / Switzerland / Canada+Australia / Germany / Korea+India+Singapore-recent / France+UAE+Russia-recent. Each produced an audit-trail markdown in `resource/research_*_2026.md` and a strict-attribution table of new findings.
+
+**Total batch deltas (verified from data/export/)**:
+- Models: 1284 → **1339** (+55 net new — many candidates absorbed into existing IDs)
+- Benchmarks: 925 → **935** (+10 net new)
+- Scores: 5059 → **5102** (+43 net new)
+
+**Key regional additions**:
+
+| Region | Headline | Highlights |
+|---|---|---|
+| 🇨🇭 Switzerland | **Apertus 8B/70B** (ETH+EPFL+CSCS) | 4 models + 12 scores; Apache 2.0; 1,811 languages incl. Swiss German + Romansh; arxiv 2509.14233 |
+| 🇨🇦 Canada | **NEW `ca` region** | Cohere Labs (Toronto): Command A / A Vision / A Reasoning / R7B Arabic / Cohere Transcribe (Apache 2.0) / Aya 23 35B / Aya Vision 8B / Tiny Aya Base. Previously misfiled under us-open. |
+| 🇦🇺 Australia | **NEW `au` region** | Maincoder 1B (Melbourne, Apache 2.0); Isaacus Open Australian Legal LLM 1.5B; EmuBERT. First Australian entries. |
+| 🇩🇪 Germany | **OpenGPT-X Teuken** | EU sovereign LLM (Fraunhofer + Jülich + TU Dresden + DFKI), 24 EU languages; Aleph Alpha TFree-HAT (byte-level, tokenizer-free); FLUX.2 dev (32B); Ellamind Propella; Occiglot 7B EU5 |
+| 🇯🇵 Japan | **20 models added (3 → 23)** | PFN PLaMo (100B + 2 Prime + 2.1 + 2-8B, GENIAC Phase 1); NTT tsuzumi 1/2; NEC cotomi Pro/Light; Fujitsu Takane (Cohere partnership); Rakuten AI 3.0 (700B MoE, DeepSeek-V3 arch); ELYZA Llama-3-JP; Karakuri 8x7B; Stockmark 2 100B; NII LLM-JP 3 172B; Tokyo Tech Swallow; SB Intuitions Sarashina2; CyberAgent calm3; ABEJA |
+| 🇦🇪 UAE | **Falcon-H1R 7B + K2 Think V2** | Falcon-H1R reasoning: AIME24 88.1 / MATH500 97.4 / LiveCodeBench v6 68.6 SOTA-class. K2 Think V2 (MBZUAI + G42 + Cerebras): 73B fully-open Apache-2.0 reasoning, OMNI-Math-HARD 60.73 / GPQA-D 71.08. Falcon Perception 0.6B VLM. |
+| 🇰🇷 Korea | **EXAONE 4.5 scores** | +3 benchmark scores: AIME 2026 92.6, AIME 2025 92.9, LiveCodeBench v6 81.4 (LG AI Research vision-language flagship) |
+| 🇮🇳 India | **BharatGen Param2-17B-Thinking** | +8 benchmark scores incl. Indic-specific Sanskriti 66.5, MMLU Hindi 59.2. Plus Shrutam-2 ASR for 12 Indic languages. |
+| 🇸🇬 Singapore | **SEA-LION ModernBERT/E5** | 3 encoder/embedding models (Mar-Apr 2026, MIT, 13 SEA languages) |
+| 🇫🇷 France | **Mistral Medium 3.5 EAGLE + Leanstral** | Speculative-decoding head; open-source Lean 4 proof agent |
+| 🇷🇺 Russia | **GigaChat 3 Ultra Preview + T-Pro 2.0 + Cotype Pro 2** | 702B MoE preview of 3.1 production; T-Bank hybrid-reasoning with EAGLE; MTS AI 128k-ctx business LLM |
+
+**New benchmarks registered (+10)**: `xnli`, `xcopa`, `amo_bench`, `omni_math_hard`, `eu21_avg`, `japanese_mt_bench`, `llm_jp_eval`, `japanese_jaster`, `sanskriti`, `mmlu_hindi`.
+
+**Dashboard wiring (sovereign.js REGIONS map)**:
+- **NEW**: `ca` Canada (8 Cohere Labs models)
+- **NEW**: `au` Australia (3 Maincode + Isaacus models)
+- **EXPANDED**: jp (3 → 23), ch (3 → 7), de (11 → 19), ae (+H1R/Perception/K2 Think V2/K2-V2 Instruct), in (+2), sg (+3), ru (+4), fr (+2)
+- Cache-bust `sovereign.js v=20260509c → 20260513a`
+
+**Skipped per strict-attribution**:
+- Krutrim 3 cancelled (Ola pivoted to cloud); Reliance JioBrain internal-only deploy
+- Maincode Matilda (private beta, no HF artifact); Soket EKA Pro (roadmap only)
+- Kakao Kanana 2.5 / SKT AX K2 / LG EXAONE 5 / Samsung Gauss 3 / Mistral Large 4 / YandexGPT 6 / GigaChat 4 / Vikhr 3 (no release)
+- TELUS / Telstra / CSIRO sovereign LLMs (infrastructure announcements only)
+- RBC Borealis ATOM, DeepJudge, Lakera (proprietary or non-LLM tooling)
+
+**Artifacts**: 7 audit-trail research markdowns in `resource/research_*_2026.md`.
+
+### Session 13 cumulative deltas (final, verified from `data/export/`)
+
+| Metric | Session 12 close | Session 13 close | Δ |
+|---|---:|---:|---:|
+| Models | 1259 | **1339** | **+80** |
+| Benchmarks | 902 | **935** | **+33** |
+| Scores | 4672 | **5102** | **+430** |
 
 ---
 
