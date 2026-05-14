@@ -1,0 +1,182 @@
+{
+  "_meta": {
+    "date": "2026-05-14",
+    "title": "Deepfake / AIGC detection benchmarks — first DB coverage of this domain",
+    "context": "BMT/BMT-mapping.json had zero deepfake entries; DB had zero before this ingest. This batch establishes media-forensics (video/image/audio) as a tracked category with 12 benchmark families.",
+    "sources": [
+      "FaceForensics++ (arxiv 1901.08971 + kaldir.vc.in.tum.de leaderboard)",
+      "DFDC (arxiv 2006.07397 + Meta AI blog)",
+      "Celeb-DF v2 (arxiv 1909.12962)",
+      "DF40 (arxiv 2406.13495, NeurIPS 2024)",
+      "DeepfakeBench (arxiv 2307.01426, NeurIPS 2023)",
+      "AV-Deepfake1M (arxiv 2311.15308, ACM MM 2024 Best Paper)",
+      "ASVspoof 5 (arxiv 2408.08739)",
+      "GenImage (arxiv 2306.08571, NeurIPS 2023)",
+      "DIRE/DiffusionForensics (arxiv 2303.09295, ICCV 2023)",
+      "Deepfake-Eval-2024 (arxiv 2503.02857)",
+      "VLM zero-shot deepfake (arxiv 2506.10474)"
+    ],
+    "rule": "STRICT-ATTRIBUTION — only paper Table N / official leaderboard rows."
+  },
+  "models": [
+    {"id": "selim-seferbekov/dfdc-winner", "vendor": "Selim Seferbekov", "name": "Seferbekov DFDC #1 ensemble", "type": "open-source", "modalities": ["video"], "_note": "DFDC #1 (Kaggle 2020); EfficientNet-B7 ensemble. Open-sourced at github.com/selimsef/dfdc_deepfake_challenge", "_sources": ["https://ai.meta.com/blog/deepfake-detection-challenge-results-an-open-initiative-to-advance-ai/"]},
+
+    {"id": "sclbd/ucf", "vendor": "SCLBD lab", "name": "UCF (Uncovering Common Features)", "type": "open-source", "modalities": ["video"], "_note": "ICCV 2023 paper, top performer on DeepfakeBench within-domain (FF++_c23 AUC 0.9705).", "_sources": ["https://arxiv.org/abs/2307.01426"]},
+    {"id": "sclbd/xception-df", "vendor": "SCLBD lab", "name": "Xception (deepfake baseline)", "type": "open-source", "modalities": ["video"], "_note": "Reference Xception baseline for FF++/deepfake detection.", "_sources": ["https://arxiv.org/abs/1901.08971"]},
+    {"id": "sclbd/efficientnet-b4-df", "vendor": "SCLBD lab", "name": "EfficientNet-B4 (deepfake)", "type": "open-source", "modalities": ["video"], "_sources": ["https://arxiv.org/abs/2307.01426"]},
+    {"id": "sclbd/recce", "vendor": "SCLBD lab", "name": "RECCE", "type": "open-source", "modalities": ["video"], "_note": "CVPR 2022 reconstruction-classification network.", "_sources": ["https://arxiv.org/abs/2307.01426"]},
+    {"id": "sclbd/spsl", "vendor": "SCLBD lab", "name": "SPSL (Spatial-Phase Shallow Learning)", "type": "open-source", "modalities": ["video"], "_sources": ["https://arxiv.org/abs/2307.01426"]},
+    {"id": "sclbd/meso4", "vendor": "SCLBD lab", "name": "Meso-4 / MesoInception4", "type": "open-source", "modalities": ["video"], "_sources": ["https://arxiv.org/abs/2307.01426"]},
+    {"id": "sclbd/cnn-aug", "vendor": "SCLBD lab", "name": "CNN-Aug", "type": "open-source", "modalities": ["video"], "_sources": ["https://arxiv.org/abs/2307.01426"]},
+    {"id": "sclbd/f3-net", "vendor": "SCLBD lab", "name": "F3-Net", "type": "open-source", "modalities": ["video"], "_sources": ["https://arxiv.org/abs/2307.01426"]},
+    {"id": "df40/sbi", "vendor": "DF40", "name": "SBI (Self-Blended Images)", "type": "open-source", "modalities": ["video"], "_note": "CVPR 2022 blend-based detection, evaluated on DF40 protocol-1 AUC 0.734.", "_sources": ["https://arxiv.org/abs/2406.13495"]},
+    {"id": "df40/clip-large-df", "vendor": "DF40", "name": "CLIP-Large (DF40-evaluated)", "type": "open-source", "modalities": ["image", "video"], "_note": "Best non-face AIGC detector on DF40 (AUC 0.746).", "_sources": ["https://arxiv.org/abs/2406.13495"]},
+
+    {"id": "ustc/dire", "vendor": "USTC", "name": "DIRE (Diffusion Reconstruction Error)", "type": "open-source", "modalities": ["image"], "_note": "ICCV 2023, near-perfect on diffusion-generated images (ACC 99.9%, AP 100%).", "_sources": ["https://arxiv.org/abs/2303.09295"]},
+
+    {"id": "gen-image/swin-t", "vendor": "GenImage", "name": "Swin-T (GenImage trained)", "type": "open-source", "modalities": ["image"], "_sources": ["https://arxiv.org/abs/2306.08571"]},
+    {"id": "gen-image/resnet50", "vendor": "GenImage", "name": "ResNet-50 (GenImage trained)", "type": "open-source", "modalities": ["image"], "_sources": ["https://arxiv.org/abs/2306.08571"]},
+    {"id": "gen-image/deit-s", "vendor": "GenImage", "name": "DeiT-S (GenImage trained)", "type": "open-source", "modalities": ["image"], "_sources": ["https://arxiv.org/abs/2306.08571"]},
+    {"id": "wang-cvpr/cnnspot", "vendor": "Wang et al CVPR 2020", "name": "CNNSpot", "type": "open-source", "modalities": ["image"], "_note": "Classic GAN/AIGC detection baseline; CVPR 2020.", "_sources": ["https://arxiv.org/abs/2306.08571"]},
+    {"id": "gen-image/gramnet", "vendor": "GenImage", "name": "GramNet", "type": "open-source", "modalities": ["image"], "_sources": ["https://arxiv.org/abs/2306.08571"]},
+
+    {"id": "genconvit/genconvit", "vendor": "GenConViT", "name": "GenConViT", "type": "open-source", "modalities": ["video"], "_sources": ["https://arxiv.org/abs/2503.02857"]},
+    {"id": "ftcn/ftcn", "vendor": "FTCN", "name": "FTCN (Frequency-Temporal Convolutional Network)", "type": "open-source", "modalities": ["video"], "_sources": ["https://arxiv.org/abs/2503.02857"]},
+    {"id": "styleflow/styleflow", "vendor": "Styleflow", "name": "Styleflow", "type": "open-source", "modalities": ["video"], "_sources": ["https://arxiv.org/abs/2503.02857"]},
+    {"id": "aasist/aasist", "vendor": "AASIST", "name": "AASIST", "type": "open-source", "modalities": ["audio"], "_note": "Spectro-temporal graph attention network for audio deepfake. ICASSP 2022.", "_sources": ["https://arxiv.org/abs/2503.02857"]},
+    {"id": "rawnet2/rawnet2", "vendor": "RawNet2", "name": "RawNet2", "type": "open-source", "modalities": ["audio"], "_sources": ["https://arxiv.org/abs/2503.02857"]},
+    {"id": "p3/p3", "vendor": "P3", "name": "P3 (audio detector)", "type": "open-source", "modalities": ["audio"], "_sources": ["https://arxiv.org/abs/2503.02857"]},
+    {"id": "ufd/ufd", "vendor": "UFD", "name": "UFD (Universal Fake Detector)", "type": "open-source", "modalities": ["image"], "_sources": ["https://arxiv.org/abs/2503.02857"]},
+    {"id": "ustc/distildire", "vendor": "USTC", "name": "DistilDIRE", "type": "open-source", "modalities": ["image"], "_sources": ["https://arxiv.org/abs/2503.02857"]},
+    {"id": "npr/npr", "vendor": "NPR", "name": "NPR (Noise Prior Residual)", "type": "open-source", "modalities": ["image"], "_sources": ["https://arxiv.org/abs/2503.02857"]},
+
+    {"id": "av-deepfake1m/ummaformer", "vendor": "AV-Deepfake1M", "name": "UMMAFormer", "type": "open-source", "modalities": ["audio", "video"], "_sources": ["https://arxiv.org/abs/2311.15308"]},
+    {"id": "av-deepfake1m/ba-tfd-plus", "vendor": "AV-Deepfake1M", "name": "BA-TFD+", "type": "open-source", "modalities": ["audio", "video"], "_sources": ["https://arxiv.org/abs/2311.15308"]},
+    {"id": "pindrop/av-deepfake1m-winner", "vendor": "Pindrop Labs", "name": "Pindrop AV-Deepfake1M Challenge Winner", "type": "proprietary", "modalities": ["audio", "video"], "_note": "ACM MM 2024 AV-Deepfake1M Challenge winner — TestA AP@0.5 = 77.94.", "_sources": ["https://arxiv.org/abs/2311.15308"]},
+
+    {"id": "asvspoof/t32-2024", "vendor": "ASVspoof 5 Team T32", "name": "T32 (ASVspoof 5 closed #1)", "type": "open-source", "modalities": ["audio"], "_sources": ["https://arxiv.org/abs/2408.08739"]},
+    {"id": "asvspoof/t45-2024", "vendor": "ASVspoof 5 Team T45", "name": "T45 (ASVspoof 5 open #1)", "type": "open-source", "modalities": ["audio"], "_sources": ["https://arxiv.org/abs/2408.08739"]},
+    {"id": "asvspoof/szu-afs", "vendor": "SZU-AFS", "name": "SZU-AFS", "type": "open-source", "modalities": ["audio"], "_note": "Shenzhen University Audio Forensics Team; ASVspoof 5 strong performer.", "_sources": ["https://arxiv.org/abs/2408.08739"]},
+
+    {"id": "tum-vc/dirichlet-ensemble-ff", "vendor": "TUM Visual Computing", "name": "DirichletEnsemble-Classifier (FF++ #1)", "type": "open-source", "modalities": ["video"], "_note": "FF++ official leaderboard top entry.", "_sources": ["https://kaldir.vc.in.tum.de/faceforensics_benchmark/"]},
+    {"id": "tum-vc/beijing-zkj-ff", "vendor": "Beijing ZKJ", "name": "Beijing ZKJ (FF++ #2)", "type": "proprietary", "modalities": ["video"], "_sources": ["https://kaldir.vc.in.tum.de/faceforensics_benchmark/"]},
+    {"id": "tum-vc/zantifakebio-ff", "vendor": "TUM-VC ZAntiFakeBio", "name": "ZAntiFakeBio (FF++ #3)", "type": "open-source", "modalities": ["video"], "_sources": ["https://kaldir.vc.in.tum.de/faceforensics_benchmark/"]}
+  ],
+  "benchmarks": [
+    {"id": "face_forensics_pp", "name": "FaceForensics++ (FF++)", "category": "media-forensics", "description": "Classic video deepfake detection bench — 4 manipulation types (DeepFakes / Face2Face / FaceSwap / NeuralTextures), 1.8M images from 1,000 videos. ICCV 2019 (Rössler et al, arxiv 1901.08971). Metric on official leaderboard: 5-way classification accuracy on hidden binary test set.", "metric": "accuracy", "leaderboard": "https://kaldir.vc.in.tum.de/faceforensics_benchmark/"},
+
+    {"id": "dfdc_log_loss", "name": "DFDC (log-loss)", "category": "media-forensics", "description": "Facebook Deepfake Detection Challenge — 124k clips from 3,426 paid actors, multiple synthesis methods. arxiv 2006.07397, Kaggle 2020. Primary metric: log-loss on private leaderboard (lower=better).", "metric": "log_loss", "leaderboard": "https://www.kaggle.com/c/deepfake-detection-challenge/leaderboard"},
+
+    {"id": "dfdc_ap_blackbox", "name": "DFDC AP (black-box)", "category": "media-forensics", "description": "DFDC black-box test set average precision (higher=better). Companion metric to log-loss.", "metric": "average_precision", "leaderboard": "https://ai.meta.com/blog/deepfake-detection-challenge-results-an-open-initiative-to-advance-ai/"},
+
+    {"id": "celeb_df_v2_auc", "name": "Celeb-DF v2 (AUC)", "category": "media-forensics", "description": "5,639 high-quality DeepFake videos of celebrities. CVPR 2020 (Li et al, arxiv 1909.12962). Frame-level AUC, cross-dataset eval (trained on FF++ c23).", "metric": "auc", "leaderboard": "https://github.com/SCLBD/DeepfakeBench"},
+
+    {"id": "deepfake_bench_ffpp_c23", "name": "DeepfakeBench FF++ c23 (AUC)", "category": "media-forensics", "description": "DeepfakeBench unified eval (NeurIPS 2023, arxiv 2307.01426) — FaceForensics++ c23 compression, within-domain frame-level AUC.", "metric": "auc", "leaderboard": "https://github.com/SCLBD/DeepfakeBench"},
+
+    {"id": "df40_auc", "name": "DF40 (AUC)", "category": "media-forensics", "description": "DF40 — next-generation deepfake detection bench with 40 manipulation methods (10 face-swap / 13 reenactment / 12 face-synthesis / 5 editing). NeurIPS 2024 D&B (arxiv 2406.13495). Cross-domain AUC.", "metric": "auc", "leaderboard": "https://github.com/YZY-stack/DF40"},
+
+    {"id": "av_deepfake_1m_ap50", "name": "AV-Deepfake1M AP@0.5", "category": "media-forensics", "description": "Audio-visual deepfake temporal localization — 1M+ videos, 2,000+ subjects, LLM-edited manipulations. ACM MM 2024 Best Paper (arxiv 2311.15308). Temporal-localization AP@0.5 (higher=better).", "metric": "ap_at_0_5", "leaderboard": "https://github.com/ControlNet/AV-Deepfake1M"},
+
+    {"id": "asvspoof_5_min_dcf", "name": "ASVspoof 5 min-DCF", "category": "audio-forensics", "description": "Speech deepfake detection — ASVspoof 5 (2024). Primary metric: minimum Detection Cost Function (min-DCF). Lower=better. Closed condition.", "metric": "min_dcf", "leaderboard": "https://www.asvspoof.org"},
+
+    {"id": "asvspoof_5_eer", "name": "ASVspoof 5 EER", "category": "audio-forensics", "description": "ASVspoof 5 Equal Error Rate (lower=better). Closed condition.", "metric": "eer_percent", "leaderboard": "https://www.asvspoof.org"},
+
+    {"id": "gen_image_avg", "name": "GenImage (avg across 8 generators)", "category": "aigc-detection", "description": "AI-generated image detection — ~1M paired images across 8 generators (Midjourney/SDv1.4/SDv1.5/ADM/GLIDE/Wukong/VQDM/BigGAN). NeurIPS 2023 D&B (arxiv 2306.08571). Cross-generator accuracy, models trained on SDv1.4.", "metric": "accuracy", "leaderboard": "https://github.com/GenImage-Dataset/GenImage"},
+
+    {"id": "diffusion_forensics_dire", "name": "DiffusionForensics (DIRE)", "category": "aigc-detection", "description": "Diffusion-generated image detection via Diffusion Reconstruction Error. ICCV 2023 (Wang et al, arxiv 2303.09295). Cross-diffusion accuracy avg.", "metric": "accuracy", "leaderboard": "https://github.com/ZhendongWang6/DIRE"},
+
+    {"id": "deepfake_eval_2024_video", "name": "Deepfake-Eval-2024 Video (AUC)", "category": "media-forensics-wild", "description": "In-the-wild 2024 deepfake bench — 45 hours video, 56.5 hours audio, 1,975 images from 88 sites in 52 languages. Mar 2025 (arxiv 2503.02857). Reveals 45-50% AUC drop vs academic benchmarks. Video modality.", "metric": "auc", "leaderboard": "https://huggingface.co/datasets/nuriachandra/Deepfake-Eval-2024"},
+
+    {"id": "deepfake_eval_2024_audio", "name": "Deepfake-Eval-2024 Audio (AUC)", "category": "audio-forensics-wild", "description": "Deepfake-Eval-2024 in-the-wild audio modality AUC.", "metric": "auc", "leaderboard": "https://arxiv.org/abs/2503.02857"},
+
+    {"id": "deepfake_eval_2024_image", "name": "Deepfake-Eval-2024 Image (AUC)", "category": "aigc-detection-wild", "description": "Deepfake-Eval-2024 in-the-wild image modality AUC.", "metric": "auc", "leaderboard": "https://arxiv.org/abs/2503.02857"},
+
+    {"id": "vlm_deepfake_faceswap_zeroshot", "name": "VLM Deepfake Detection — Faceswap+Reenactment (zero-shot)", "category": "aigc-detection-vlm", "description": "Zero-shot frontier VLM accuracy on deepfake detection — faceswap + reenactment categories. arxiv 2506.10474 (2025).", "metric": "accuracy_ratio", "leaderboard": "https://arxiv.org/abs/2506.10474"},
+
+    {"id": "vlm_deepfake_synthetic_zeroshot", "name": "VLM Deepfake Detection — Synthetic (zero-shot)", "category": "aigc-detection-vlm", "description": "Zero-shot frontier VLM accuracy on synthetic (GAN + Diffusion) detection.", "metric": "accuracy_ratio", "leaderboard": "https://arxiv.org/abs/2506.10474"}
+  ],
+  "scores": [
+    {"_section": "=== FaceForensics++ official leaderboard (5-way classification accuracy) ===",
+     "model": "tum-vc/dirichlet-ensemble-ff", "benchmark": "face_forensics_pp", "score": 0.973, "unit": "accuracy", "_source": "https://kaldir.vc.in.tum.de/faceforensics_benchmark/", "_note": "FF++ official leaderboard #1, hidden binary test set, 5-way overall accuracy"},
+    {"model": "tum-vc/beijing-zkj-ff", "benchmark": "face_forensics_pp", "score": 0.941, "unit": "accuracy", "_source": "https://kaldir.vc.in.tum.de/faceforensics_benchmark/"},
+    {"model": "tum-vc/zantifakebio-ff", "benchmark": "face_forensics_pp", "score": 0.940, "unit": "accuracy", "_source": "https://kaldir.vc.in.tum.de/faceforensics_benchmark/"},
+
+    {"_section": "=== DFDC log-loss (lower=better) + AP (higher=better) ===",
+     "model": "selim-seferbekov/dfdc-winner", "benchmark": "dfdc_log_loss", "score": 0.42798, "unit": "log_loss", "_source": "https://ai.meta.com/blog/deepfake-detection-challenge-results-an-open-initiative-to-advance-ai/", "_note": "DFDC #1; private leaderboard."},
+    {"model": "selim-seferbekov/dfdc-winner", "benchmark": "dfdc_ap_blackbox", "score": 65.18, "unit": "%", "_source": "https://ai.meta.com/blog/deepfake-detection-challenge-results-an-open-initiative-to-advance-ai/", "_note": "AP on hidden black-box test set."},
+
+    {"_section": "=== DeepfakeBench within-domain FF++_c23 (frame AUC) ===",
+     "model": "sclbd/ucf", "benchmark": "deepfake_bench_ffpp_c23", "score": 0.9705, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426", "_note": "Top DeepfakeBench within-domain. ICCV 2023."},
+    {"model": "sclbd/xception-df", "benchmark": "deepfake_bench_ffpp_c23", "score": 0.9637, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426"},
+    {"model": "sclbd/recce", "benchmark": "deepfake_bench_ffpp_c23", "score": 0.9621, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426"},
+    {"model": "sclbd/spsl", "benchmark": "deepfake_bench_ffpp_c23", "score": 0.9610, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426"},
+    {"model": "sclbd/efficientnet-b4-df", "benchmark": "deepfake_bench_ffpp_c23", "score": 0.9567, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426"},
+    {"model": "sclbd/cnn-aug", "benchmark": "deepfake_bench_ffpp_c23", "score": 0.8493, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426"},
+    {"model": "sclbd/meso4", "benchmark": "deepfake_bench_ffpp_c23", "score": 0.7583, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426", "_note": "MesoInception4 variant"},
+
+    {"_section": "=== Celeb-DF v2 cross-dataset AUC (train FF++ c23 → test Celeb-DF v2) ===",
+     "model": "sclbd/spsl", "benchmark": "celeb_df_v2_auc", "score": 0.7650, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426", "_note": "Best cross-dataset on Celeb-DF v2"},
+    {"model": "sclbd/ucf", "benchmark": "celeb_df_v2_auc", "score": 0.7527, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426"},
+    {"model": "sclbd/efficientnet-b4-df", "benchmark": "celeb_df_v2_auc", "score": 0.7487, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426"},
+    {"model": "sclbd/xception-df", "benchmark": "celeb_df_v2_auc", "score": 0.7365, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426"},
+    {"model": "sclbd/recce", "benchmark": "celeb_df_v2_auc", "score": 0.7319, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426"},
+    {"model": "sclbd/cnn-aug", "benchmark": "celeb_df_v2_auc", "score": 0.7027, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426"},
+    {"model": "sclbd/meso4", "benchmark": "celeb_df_v2_auc", "score": 0.6091, "unit": "auc", "_source": "https://arxiv.org/abs/2307.01426"},
+
+    {"_section": "=== DF40 protocol-1 avg AUC ===",
+     "model": "df40/clip-large-df", "benchmark": "df40_auc", "score": 0.746, "unit": "auc", "_source": "https://arxiv.org/abs/2406.13495", "_note": "Best non-face AIGC detection on DF40."},
+    {"model": "df40/sbi", "benchmark": "df40_auc", "score": 0.734, "unit": "auc", "_source": "https://arxiv.org/abs/2406.13495"},
+    {"model": "sclbd/xception-df", "benchmark": "df40_auc", "score": 0.535, "unit": "auc", "_source": "https://arxiv.org/abs/2406.13495", "_note": "Xception baseline on DF40 protocol-1."},
+
+    {"_section": "=== AV-Deepfake1M temporal localization AP@0.5 ===",
+     "model": "pindrop/av-deepfake1m-winner", "benchmark": "av_deepfake_1m_ap50", "score": 77.94, "unit": "%", "_source": "https://arxiv.org/abs/2311.15308", "_note": "ACM MM 2024 challenge winner, TestA."},
+    {"model": "av-deepfake1m/ummaformer", "benchmark": "av_deepfake_1m_ap50", "score": 51.64, "unit": "%", "_source": "https://arxiv.org/abs/2311.15308"},
+    {"model": "av-deepfake1m/ba-tfd-plus", "benchmark": "av_deepfake_1m_ap50", "score": 44.42, "unit": "%", "_source": "https://arxiv.org/abs/2311.15308"},
+
+    {"_section": "=== ASVspoof 5 Track 1 closed condition (Top 5 by min-DCF + EER) ===",
+     "model": "asvspoof/t32-2024", "benchmark": "asvspoof_5_min_dcf", "score": 0.2436, "unit": "min_dcf", "_source": "https://arxiv.org/abs/2408.08739", "_note": "ASVspoof 5 closed condition #1."},
+    {"model": "asvspoof/t32-2024", "benchmark": "asvspoof_5_eer", "score": 8.61, "unit": "%", "_source": "https://arxiv.org/abs/2408.08739"},
+
+    {"_section": "=== ASVspoof 5 Track 1 open condition top systems ===",
+     "model": "asvspoof/t45-2024", "benchmark": "asvspoof_5_min_dcf", "score": 0.0750, "unit": "min_dcf", "_source": "https://arxiv.org/abs/2408.08739", "_note": "ASVspoof 5 open condition #1; open=allows external data."},
+    {"model": "asvspoof/t45-2024", "benchmark": "asvspoof_5_eer", "score": 2.59, "unit": "%", "_source": "https://arxiv.org/abs/2408.08739"},
+    {"model": "asvspoof/szu-afs", "benchmark": "asvspoof_5_min_dcf", "score": 0.115, "unit": "min_dcf", "_source": "https://arxiv.org/abs/2408.08739"},
+    {"model": "asvspoof/szu-afs", "benchmark": "asvspoof_5_eer", "score": 4.04, "unit": "%", "_source": "https://arxiv.org/abs/2408.08739"},
+
+    {"_section": "=== GenImage avg across 8 generators (models trained on SDv1.4) ===",
+     "model": "gen-image/swin-t", "benchmark": "gen_image_avg", "score": 74.8, "unit": "%", "_source": "https://arxiv.org/abs/2306.08571", "_note": "Best avg on GenImage NeurIPS 2023."},
+    {"model": "gen-image/resnet50", "benchmark": "gen_image_avg", "score": 72.1, "unit": "%", "_source": "https://arxiv.org/abs/2306.08571"},
+    {"model": "gen-image/deit-s", "benchmark": "gen_image_avg", "score": 71.6, "unit": "%", "_source": "https://arxiv.org/abs/2306.08571"},
+    {"model": "gen-image/gramnet", "benchmark": "gen_image_avg", "score": 69.9, "unit": "%", "_source": "https://arxiv.org/abs/2306.08571"},
+    {"model": "sclbd/f3-net", "benchmark": "gen_image_avg", "score": 68.7, "unit": "%", "_source": "https://arxiv.org/abs/2306.08571"},
+    {"model": "wang-cvpr/cnnspot", "benchmark": "gen_image_avg", "score": 64.2, "unit": "%", "_source": "https://arxiv.org/abs/2306.08571"},
+
+    {"_section": "=== DIRE/DiffusionForensics avg ACC (near-perfect on diffusion) ===",
+     "model": "ustc/dire", "benchmark": "diffusion_forensics_dire", "score": 99.9, "unit": "%", "_source": "https://arxiv.org/abs/2303.09295", "_note": "ICCV 2023, near-saturated on diffusion-generated."},
+
+    {"_section": "=== Deepfake-Eval-2024 Video AUC (in-the-wild 2024) ===",
+     "model": "genconvit/genconvit", "benchmark": "deepfake_eval_2024_video", "score": 0.63, "unit": "auc", "_source": "https://arxiv.org/abs/2503.02857", "_note": "Best open-source video detector on in-the-wild 2024 — much lower than academic benchmarks."},
+    {"model": "ftcn/ftcn", "benchmark": "deepfake_eval_2024_video", "score": 0.50, "unit": "auc", "_source": "https://arxiv.org/abs/2503.02857"},
+    {"model": "styleflow/styleflow", "benchmark": "deepfake_eval_2024_video", "score": 0.51, "unit": "auc", "_source": "https://arxiv.org/abs/2503.02857"},
+
+    {"_section": "=== Deepfake-Eval-2024 Audio AUC ===",
+     "model": "aasist/aasist", "benchmark": "deepfake_eval_2024_audio", "score": 0.43, "unit": "auc", "_source": "https://arxiv.org/abs/2503.02857"},
+    {"model": "rawnet2/rawnet2", "benchmark": "deepfake_eval_2024_audio", "score": 0.53, "unit": "auc", "_source": "https://arxiv.org/abs/2503.02857"},
+    {"model": "p3/p3", "benchmark": "deepfake_eval_2024_audio", "score": 0.58, "unit": "auc", "_source": "https://arxiv.org/abs/2503.02857", "_note": "Best open-source audio detector."},
+
+    {"_section": "=== Deepfake-Eval-2024 Image AUC ===",
+     "model": "ufd/ufd", "benchmark": "deepfake_eval_2024_image", "score": 0.56, "unit": "auc", "_source": "https://arxiv.org/abs/2503.02857", "_note": "Best open-source image detector."},
+    {"model": "ustc/distildire", "benchmark": "deepfake_eval_2024_image", "score": 0.52, "unit": "auc", "_source": "https://arxiv.org/abs/2503.02857"},
+    {"model": "npr/npr", "benchmark": "deepfake_eval_2024_image", "score": 0.53, "unit": "auc", "_source": "https://arxiv.org/abs/2503.02857"},
+
+    {"_section": "=== VLM zero-shot deepfake detection (arxiv 2506.10474, 2025) ===",
+     "model": "openai/gpt-4o", "benchmark": "vlm_deepfake_faceswap_zeroshot", "score": 0.77, "unit": "accuracy_ratio", "_source": "https://arxiv.org/abs/2506.10474", "_note": "Best frontier VLM on faceswap+reenactment zero-shot."},
+    {"model": "openai/gpt-4o", "benchmark": "vlm_deepfake_synthetic_zeroshot", "score": 0.67, "unit": "accuracy_ratio", "_source": "https://arxiv.org/abs/2506.10474"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "vlm_deepfake_faceswap_zeroshot", "score": 0.30, "unit": "accuracy_ratio", "_source": "https://arxiv.org/abs/2506.10474"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "vlm_deepfake_synthetic_zeroshot", "score": 0.60, "unit": "accuracy_ratio", "_source": "https://arxiv.org/abs/2506.10474"},
+    {"model": "google/gemini-2.5-flash", "benchmark": "vlm_deepfake_faceswap_zeroshot", "score": 0.10, "unit": "accuracy_ratio", "_source": "https://arxiv.org/abs/2506.10474"},
+    {"model": "google/gemini-2.5-flash", "benchmark": "vlm_deepfake_synthetic_zeroshot", "score": 0.27, "unit": "accuracy_ratio", "_source": "https://arxiv.org/abs/2506.10474"},
+    {"model": "xai/grok-3", "benchmark": "vlm_deepfake_faceswap_zeroshot", "score": 0.00, "unit": "accuracy_ratio", "_source": "https://arxiv.org/abs/2506.10474", "_note": "Grok 3 refused or failed all faceswap zero-shot tests."},
+    {"model": "xai/grok-3", "benchmark": "vlm_deepfake_synthetic_zeroshot", "score": 0.27, "unit": "accuracy_ratio", "_source": "https://arxiv.org/abs/2506.10474"}
+  ]
+}
