@@ -1,6 +1,74 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
-## 2026-05-14 (Session 14): Recent arxiv sweep — 11 new benchmarks + frontier safety/coding/agent SOTAs
+## 2026-05-14 (Session 14): Recent arxiv sweep + deepfake / media forensics benchmark family (first DB coverage)
+
+### 41. Deepfake / AIGC detection benchmarks (commit `767061a`)
+
+User-prompted: "BMT.json 내용을 기반으로 deepfake 관련 벤치마크 데이터셋에 대한 평가 결과들을 조사해서 업데이트". Investigation revealed `BMT/BMT-mapping.json` (331 benchmarks) had **zero** deepfake / media-forensics entries, and DB had zero too — this batch establishes the entire category.
+
+Dispatched research subagent to map the major deepfake / AIGC detection benchmark families with strict-attribution rule.
+
+**Ingest deltas**:
+
+| Metric | Before | After | Δ |
+|---|---:|---:|---:|
+| Models | 1351 | **1386** | **+35** |
+| Benchmarks | 950 | **966** | **+16** |
+| Scores | 5206 | **5261** | **+55** |
+
+**12 benchmark families covered** (16 IDs incl. metric-split variants):
+
+| Sub-domain | Benchmark | Year | Top SOTA |
+|---|---|---|---|
+| Video | **FaceForensics++** (FF++) | 2019 (ICCV) | DirichletEnsemble **97.3%** accuracy (5-way) |
+| Video | **DFDC** | 2020 (Meta) | Seferbekov #1: log-loss 0.428, AP 65.18% |
+| Video | **Celeb-DF v2** | 2020 (CVPR) | SPSL **0.7650** AUC cross-dataset |
+| Video | **DF40** (40 manipulation methods) | 2024 (NeurIPS) | CLIP-Large **0.746** AUC (non-face AIGC) |
+| Video | **DeepfakeBench** umbrella | 2023 (NeurIPS) | UCF **0.9705** AUC (FF++ within-domain) |
+| Video | **Deepfake-Eval-2024** in-the-wild | 2025 | GenConViT **0.63** AUC (45-50% drop vs academic) |
+| Audio-Video | **AV-Deepfake1M** | 2024 (ACM MM Best Paper) | Pindrop Labs **77.94** AP@0.5 (Challenge winner) |
+| Audio | **ASVspoof 5** | 2024 | T45 open: **min-DCF 0.075, EER 2.59%** |
+| Audio | Deepfake-Eval-2024 audio | 2025 | P3 0.58 AUC (open-source best) |
+| Image (AIGC) | **GenImage** (8 generators) | 2023 (NeurIPS) | Swin-T **74.8%** avg |
+| Image (AIGC) | **DIRE / DiffusionForensics** | 2023 (ICCV) | DIRE **99.9% ACC** (near-saturated) |
+| Image (AIGC) | Deepfake-Eval-2024 image | 2025 | UFD 0.56 AUC (open-source best) |
+| VLM zero-shot | **VLM-Deepfake** (frontier evaluation) | 2025 | GPT-4o **0.77** faceswap / **0.67** synthetic |
+
+**Frontier VLM evaluation** (arxiv 2506.10474, only primary source with explicit VLM × bench × score triples):
+
+| VLM | Faceswap+Reenactment | Synthetic (GAN+Diffusion) |
+|---|---:|---:|
+| OpenAI GPT-4o | **0.77** | **0.67** |
+| Anthropic Claude Sonnet 4 | 0.30 | 0.60 |
+| Google Gemini 2.5 Flash | 0.10 | 0.27 |
+| xAI Grok 3 | 0.00 | 0.27 |
+
+Paper title says it all: *"LLMs Are Not Yet Ready for Deepfake Image Detection"*. Specialist CNN/Transformer detectors (UCF, DIRE, CLIP-Large) dominate frontier VLMs by wide margins.
+
+**Cross-dataset generalization remains the hard problem**:
+- Within-domain FF++ AUC ~0.96-0.97 → Celeb-DF v2 drops to ~0.73-0.77 (cross-dataset eval, train FF++ c23 → test Celeb-DF v2)
+- Deepfake-Eval-2024 (2024 in-the-wild data): 45-50% AUC drop vs academic benchmarks
+- Commercial detectors in Deepfake-Eval-2024 (anonymized per contract): video 0.79 / audio 0.93 / image 0.90 — still better than open-source SOTA
+
+**35 detection-specialist models registered** under various vendor namespaces (sclbd/, gen-image/, ustc/, df40/, av-deepfake1m/, asvspoof/, tum-vc/). Plus 4 existing frontier VLMs (gpt-4o, claude-sonnet-4, gemini-2.5-flash, grok-3) scored on VLM benchmarks.
+
+**Skipped per strict-attribution**: WildDeepfake (no maintained leaderboard), DF-Platter, DF-TIMIT, WaveFake, ADD 2023, AIGCDetectBenchmark, Sentry, WildFake, DeepfakeArt, Mirage. DeeperForensics-1.0 superseded by DeepfakeBench's cross-dataset eval.
+
+**Live deploy**: 11 new Resources tab entries, cache-bust `app.js v=20260514a → 20260514b`.
+
+Audit trail: `resource/research_deepfake_benchmarks_2026_05_14.md`.
+
+### Session 14 cumulative deltas (final, verified from `data/export/`)
+
+| Metric | Before Session 14 | After | Δ |
+|---|---:|---:|---:|
+| Models | 1339 | **1386** | **+47** |
+| Benchmarks | 935 | **966** | **+31** |
+| Scores | 5102 | **5261** | **+159** |
+
+---
+
+### Session 14 — also (Recent arxiv sweep — 11 new benchmarks + frontier safety/coding/agent SOTAs)
 
 User-prompted: "참조 링크들을 조사해 새로운 모델, 벤치마크 데이터셋, 평가 결과로 추가할 내용이 있는지 확인하고 업데이트". Dispatched 3 parallel subagents:
 
