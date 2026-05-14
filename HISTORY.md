@@ -1,5 +1,65 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-14 (Session 14): Recent arxiv sweep — 11 new benchmarks + frontier safety/coding/agent SOTAs
+
+User-prompted: "참조 링크들을 조사해 새로운 모델, 벤치마크 데이터셋, 평가 결과로 추가할 내용이 있는지 확인하고 업데이트". Dispatched 3 parallel subagents:
+
+1. **Major leaderboards** (LMArena / AA / LiveBench / Vellum / Onyx / Terminal-Bench / SWE-Bench / Epoch ECI) → 0 new entries this week; AA / Epoch / LiveBench all quiet since 2026-05-07.
+2. **Vendor announcements** (OpenAI / Anthropic / Google / Meta / DeepSeek / Moonshot / Qwen / 18 others) → 3 new releases: Baidu ERNIE 5.1, AI2 MolmoAct 2, OpenAI Realtime trio (already in DB).
+3. **Recent arxiv** (2026-05-04 to 2026-05-14) → **12 new benchmark papers** with explicit leaderboard tables, ~200 verifiable triples.
+
+### 40. Arxiv sweep batch (commit `9047176`)
+
+**11 new benchmarks ingested** (15 IDs incl. sub-metric variants):
+
+| Bench | arxiv | What it measures | Top finding |
+|---|---|---|---|
+| **TableVista** | 2605.05955 | Multimodal table reasoning, 30K samples × 10 visual variants × 29 models | GPT-5.4 **72.1%** leads; long tail to LLaVA-1.5-7B 5.7% |
+| **XL-SafetyBench** | 2605.05662 | 10-country cross-cultural safety (ASR + CSR) | Claude Sonnet 4.5 **2.8% ASR** safest, Mistral-Large-3 98.8% least safe |
+| **GR-Ben** | 2605.01203 | Process-reward + science/logic reasoning, 22 models | Gemini-3-Flash **60.5%** F1 best frontier |
+| **TableVista** subdomain richness | — | 10 scenarios × 29 models | up to 290 sub-triples available |
+| **SWE-Atlas** | 2605.08366 | Coding agent beyond issue resolution (3 SWE workflows) | GPT-5.4 Codex **43.49%** vs Claude Opus 4.7 41.89% |
+| **ComplexMCP** | 2605.10787 | MCP agent eval, 300+ tools × 7 stateful sandboxes | Gemini-3-Flash **55.31%** SR (best LLM); Human 93.61% |
+| **MCJudgeBench** | 2605.03858 | Multi-constraint judge eval (CJAR + Macro-F1) | Gemini 3.1 Pro **0.858** CJAR; Claude Sonnet 4.6 0.637 Macro-F1 |
+| **VURB** | 2605.07872 | Video understanding reward, 2,100 video pairs | GPT-5.2 **62.9%** pairwise; VideoDRM 63.8% pointwise |
+| **Agentick** | 2605.06869 | Sequential decision-making agent, 37 tasks × 90k episodes | GPT-5 mini **0.309 ONS** (barely beats PPO 2M 0.287) |
+| **ProgramBench** | 2605.03546 | Full-program rebuild from scratch | ALL frontier **0% Resolved**; Claude Opus 4.7 leads "Almost" 3.0% |
+| **TriBench-Ko** | 2605.03792 | Korean judicial-workflow risk, 4 tasks × 8 risk types × 13 models | GPT-5.4 **0.835 F1**; KT Mi:dm 2.0-base 0.728 (best Korean sovereign) |
+| **FinSafetyBench** | 2605.00706 | Bilingual EN/ZH financial safety red-team | Frontier GPT-5.1 **35.27% ASR** vs DeepSeek V3.2 89.45% (Financial-Crimes) |
+
+**+12 new models registered**:
+- `baidu/ernie-5.1` (May 9 2026 — ~1/3 params of 5.0, ~6% cost; AIME26 99.6% w/ tools)
+- `allenai/molmoact-2` (May 5 2026 — bimanual robot FM, 0.51 real-world manipulation avg)
+- `alibaba/qwen3-vl-{8b,30b-a3b}`, `qwen3.5-{9b,35b-a3b}`
+- `allenai/molmo2-8b`
+- `shanghai-ai-lab/internvl-3.5-{8b,14b,30b-a3b}`
+- `openbmb/minicpm-v-4.5`
+- `skt/ax-3.1-light` (Korean sovereign)
+- `duxiaoman/xuanyuan-13b` (Chinese financial-domain)
+- `videoresearch/videogrm`, `videodrm`
+
+**Ingest deltas** (verified from `data/export/`):
+
+| Metric | Before | After | Δ |
+|---|---:|---:|---:|
+| Models | 1339 | **1351** | **+12** |
+| Benchmarks | 935 | **950** | **+15** |
+| Scores | 5102 | **5206** | **+104** |
+
+**Notable cross-cutting findings**:
+- **Frontier safety asymmetry**: Claude family dramatically safer than other frontiers on XL-SafetyBench cross-cultural (Sonnet 4.5 = 2.8% ASR vs Mistral Large 3 = 98.8%, 35× gap).
+- **Coding agent ceiling**: SWE-Atlas reveals GPT-5.4 Codex (43.49%) and Claude Opus 4.7 (41.89%) within 2pp on a 3-workflow eval, but ProgramBench (full rebuild) is a wall — every frontier scores 0% Resolved.
+- **MCP tool-use frontier**: ComplexMCP shows surprising Gemini-3-Flash 55.31% > Gemini-3-Pro 44.67% on success rate; Human still 38pp ahead at 93.61%.
+- **Korean sovereign coverage**: TriBench-Ko provides first Korean judicial F1 leaderboard with KT/EXAONE/kanana/A.X all scored.
+
+**Skipped** (under strict-attribution): AssayBench (abstract only), MedMosaic (partial), ProCodeBench (partial), plus 18 method-only papers with no per-model leaderboard tables.
+
+**Live deploy**: cache-bust `app.js v=20260513b → 20260514a`. 13 new Resources tab entries.
+
+3 audit-trail sweep markdowns in `resource/sweep_*_2026_05_14.md`.
+
+---
+
 ## 2026-05-13 (Session 13): Post-closeout ingest sweep + Medical AI timeline widget + CI test drift fix + PDF deep mining + sovereign AI 13-country sweep
 
 Session 12 final sync (commit `9058ab5`) declared closeout, but a string of user-prompted ref-link investigations + a major Medical AI widget request + a pre-existing CI red flag + a follow-up PDF deep-mining pass added 11 commits across 2026-05-12 evening → 2026-05-13 morning. Captured here for completeness.
