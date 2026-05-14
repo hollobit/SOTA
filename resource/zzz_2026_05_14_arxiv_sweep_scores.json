@@ -1,0 +1,1120 @@
+{
+  "_meta": {
+    "date": "2026-05-14",
+    "title": "Recent arxiv benchmark + vendor announcement sweep — 11 new benchmarks + frontier scores",
+    "sources_top": [
+      "arxiv 2605.05955 TableVista",
+      "arxiv 2605.05662 XL-SafetyBench",
+      "arxiv 2605.01203 GR-Ben",
+      "arxiv 2605.08366 SWE Atlas",
+      "arxiv 2605.10787 ComplexMCP",
+      "arxiv 2605.03858 MCJudgeBench",
+      "arxiv 2605.07872 VURB",
+      "arxiv 2605.06869 Agentick",
+      "arxiv 2605.03546 ProgramBench",
+      "arxiv 2605.03792 TriBench-Ko",
+      "arxiv 2605.00706 FinSafetyBench",
+      "ernie.baidu.com/blog/posts/ernie-5.1-0508-release",
+      "allenai.org/blog/molmoact2"
+    ],
+    "rule": "STRICT-ATTRIBUTION — only Table N (model, benchmark, value) explicit triples. Sub-domain scores omitted to keep ingest focused on overall/average metrics."
+  },
+  "models": [
+    {
+      "id": "baidu/ernie-5.1",
+      "vendor": "Baidu",
+      "name": "ERNIE 5.1",
+      "type": "proprietary",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "China",
+      "released_at": "2026-05-09",
+      "_note": "Baidu flagship — total params ~1/3 of ERNIE 5.0, active params ~1/2, trained at ~6% the cost. AIME26 (with tool use) 99.6%; LMArena Search Arena Elo 1223 (4th global, 1st Chinese). Outperforms DeepSeek V4 Pro on agent benchmarks per vendor blog.",
+      "_sources": [
+        "https://ernie.baidu.com/blog/posts/ernie-5.1-0508-release/"
+      ]
+    },
+    {
+      "id": "allenai/molmoact-2",
+      "vendor": "Allen AI (AI2)",
+      "name": "MolmoAct 2",
+      "type": "open-source",
+      "modalities": [
+        "vision",
+        "robotics"
+      ],
+      "country": "USA",
+      "released_at": "2026-05-05",
+      "_note": "Open-source bimanual robot foundation model. Real-world manipulation avg success 0.51 vs OpenVLA-OFT 0.36, π0.5 0.32, Cosmos Policy 0.16, X-VLA 0.05. Up to 37× faster than predecessor.",
+      "_sources": [
+        "https://allenai.org/blog/molmoact2"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-30b-a3b",
+      "vendor": "Alibaba",
+      "name": "Qwen3-VL 30B-A3B",
+      "type": "open-source",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2605.05955"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-8b",
+      "vendor": "Alibaba",
+      "name": "Qwen3-VL 8B",
+      "type": "open-source",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2605.05955"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-9b",
+      "vendor": "Alibaba",
+      "name": "Qwen3.5 9B",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2605.05955"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-35b-a3b",
+      "vendor": "Alibaba",
+      "name": "Qwen3.5 35B-A3B",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2605.05955"
+      ]
+    },
+    {
+      "id": "allenai/molmo2-8b",
+      "vendor": "Allen AI",
+      "name": "Molmo2 8B",
+      "type": "open-source",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "USA",
+      "_sources": [
+        "https://arxiv.org/abs/2605.05955"
+      ]
+    },
+    {
+      "id": "shanghai-ai-lab/internvl-3.5-30b-a3b",
+      "vendor": "Shanghai AI Lab",
+      "name": "InternVL 3.5 30B-A3B",
+      "type": "open-source",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2605.05955"
+      ]
+    },
+    {
+      "id": "shanghai-ai-lab/internvl-3.5-14b",
+      "vendor": "Shanghai AI Lab",
+      "name": "InternVL 3.5 14B",
+      "type": "open-source",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2605.05955"
+      ]
+    },
+    {
+      "id": "shanghai-ai-lab/internvl-3.5-8b",
+      "vendor": "Shanghai AI Lab",
+      "name": "InternVL 3.5 8B",
+      "type": "open-source",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2605.05955"
+      ]
+    },
+    {
+      "id": "openbmb/minicpm-v-4.5",
+      "vendor": "OpenBMB",
+      "name": "MiniCPM-V 4.5",
+      "type": "open-source",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2605.05955"
+      ]
+    },
+    {
+      "id": "skt/ax-3.1-light",
+      "vendor": "SK Telecom",
+      "name": "A.X 3.1 Light",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "country": "Korea",
+      "_sources": [
+        "https://arxiv.org/abs/2605.03792"
+      ]
+    },
+    {
+      "id": "duxiaoman/xuanyuan-13b",
+      "vendor": "Duxiaoman",
+      "name": "XuanYuan-13B",
+      "type": "open-source",
+      "modalities": [
+        "text"
+      ],
+      "country": "China",
+      "_note": "Chinese financial-domain LLM, used in FinSafetyBench.",
+      "_sources": [
+        "https://arxiv.org/abs/2605.00706"
+      ]
+    },
+    {
+      "id": "videoresearch/videogrm",
+      "vendor": "Video research",
+      "name": "VideoGRM",
+      "type": "open-source",
+      "modalities": [
+        "video"
+      ],
+      "country": "USA",
+      "_sources": [
+        "https://arxiv.org/abs/2605.07872"
+      ]
+    },
+    {
+      "id": "videoresearch/videodrm",
+      "vendor": "Video research",
+      "name": "VideoDRM",
+      "type": "open-source",
+      "modalities": [
+        "video"
+      ],
+      "country": "USA",
+      "_sources": [
+        "https://arxiv.org/abs/2605.07872"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "finsafetybench",
+      "name": "FinSafetyBench",
+      "category": "safety",
+      "description": "Bilingual EN/ZH financial-domain LLM safety red-teaming benchmark, 1,881 instances × 14 sub-categories. arxiv 2605.00706 (Shanghai University of Finance and Economics et al). Metric = Attack Success Rate (ASR%); lower=safer.",
+      "metric": "asr_percent",
+      "leaderboard": "https://arxiv.org/abs/2605.00706"
+    },
+    {
+      "id": "xl_safetybench_asr",
+      "name": "XL-SafetyBench ASR",
+      "category": "safety",
+      "description": "Cross-cultural safety benchmark covering 10 countries (AE/DE/ES/FR/ID/IN/JP/KR/TR/US) — Attack Success Rate (lower=safer). arxiv 2605.05662 (AIM Intelligence + Microsoft + Korea AISI + 7 institutions).",
+      "metric": "asr_percent",
+      "leaderboard": "https://arxiv.org/abs/2605.05662"
+    },
+    {
+      "id": "xl_safetybench_csr",
+      "name": "XL-SafetyBench CSR",
+      "category": "safety",
+      "description": "Cross-cultural Cultural Sensitivity Rate (higher=better) — paired metric with ASR.",
+      "metric": "csr_percent",
+      "leaderboard": "https://arxiv.org/abs/2605.05662"
+    },
+    {
+      "id": "tribench_ko",
+      "name": "TriBench-Ko",
+      "category": "domain",
+      "description": "Korean judicial-workflow risk benchmark across 4 tasks × 8 risk types. arxiv 2605.03792 (Korean institutions). Metric = Macro-F1.",
+      "metric": "macro_f1",
+      "leaderboard": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "id": "gr_ben",
+      "name": "GR-Ben",
+      "category": "reasoning",
+      "description": "General Reasoning Benchmark for process reward models — science (Bio/Phys/Chem/CompSci) + logic (Abduct/Analogical/Mix/Deduct/Induct), 9 subdomains. arxiv 2605.01203 (HIT et al). Metric = F1.",
+      "metric": "f1",
+      "leaderboard": "https://arxiv.org/abs/2605.01203"
+    },
+    {
+      "id": "tablevista",
+      "name": "TableVista",
+      "category": "multimodal",
+      "description": "Multimodal table reasoning benchmark — 30,000 samples across 10 visual variants × 8 difficulty buckets. arxiv 2605.05955 (Tongji/Bristol/Tianjin/Yale). Metric = accuracy %.",
+      "metric": "accuracy",
+      "leaderboard": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "id": "swe_atlas",
+      "name": "SWE-Atlas",
+      "category": "coding",
+      "description": "Coding agent benchmark beyond issue resolution — 3 SWE workflows (Codebase Q&A 124 + Test Writing 90 + Refactoring 70). arxiv 2605.08366. Metric = Pass@1 %.",
+      "metric": "pass_at_1",
+      "leaderboard": "https://arxiv.org/abs/2605.08366"
+    },
+    {
+      "id": "complexmcp",
+      "name": "ComplexMCP",
+      "category": "agent",
+      "description": "LLM agent tool-use evaluation in dynamic interdependent large-scale MCP sandbox — 300+ tools across 7 stateful sandboxes. arxiv 2605.10787. Metric = Success Rate %.",
+      "metric": "success_rate",
+      "leaderboard": "https://arxiv.org/abs/2605.10787"
+    },
+    {
+      "id": "mcjudgebench_cjar",
+      "name": "MCJudgeBench CJAR",
+      "category": "agent",
+      "description": "Multi-constraint judge evaluation — Constraint Judge Agreement Rate. arxiv 2605.03858.",
+      "metric": "rate",
+      "leaderboard": "https://arxiv.org/abs/2605.03858"
+    },
+    {
+      "id": "mcjudgebench_macro_f1",
+      "name": "MCJudgeBench Macro-F1",
+      "category": "agent",
+      "description": "Multi-constraint judge evaluation — Macro F1 across constraint types. arxiv 2605.03858.",
+      "metric": "macro_f1",
+      "leaderboard": "https://arxiv.org/abs/2605.03858"
+    },
+    {
+      "id": "vurb_pairwise",
+      "name": "VURB Pairwise",
+      "category": "multimodal",
+      "description": "Video Understanding Reward Bench — 2,100 video preference pairs with long CoT (~1,143 tokens avg). Pairwise accuracy %. arxiv 2605.07872.",
+      "metric": "accuracy",
+      "leaderboard": "https://arxiv.org/abs/2605.07872"
+    },
+    {
+      "id": "vurb_pointwise",
+      "name": "VURB Pointwise",
+      "category": "multimodal",
+      "description": "Video Understanding Reward Bench — pointwise accuracy %. arxiv 2605.07872.",
+      "metric": "accuracy",
+      "leaderboard": "https://arxiv.org/abs/2605.07872"
+    },
+    {
+      "id": "agentick",
+      "name": "Agentick",
+      "category": "agent",
+      "description": "Unified benchmark for general sequential decision-making agents — 37 procedurally generated tasks × 6 categories × 4 difficulties × 5 modalities, 90k+ episodes. arxiv 2605.06869. Metric = Oracle-Normalized Score (ONS).",
+      "metric": "ons",
+      "leaderboard": "https://arxiv.org/abs/2605.06869"
+    },
+    {
+      "id": "programbench",
+      "name": "ProgramBench",
+      "category": "coding",
+      "description": "Full-program rebuild from scratch — can language models rebuild programs? arxiv 2605.03546 (John Yang, Diyi Yang, Ofir Press et al). Metric = % Resolved. All frontier models score 0% Resolved currently.",
+      "metric": "resolved_percent",
+      "leaderboard": "https://arxiv.org/abs/2605.03546"
+    },
+    {
+      "id": "programbench_almost",
+      "name": "ProgramBench Almost",
+      "category": "coding",
+      "description": "ProgramBench % Almost = ≥95% tests passing. arxiv 2605.03546. Tiebreaker when Resolved is 0%.",
+      "metric": "almost_percent",
+      "leaderboard": "https://arxiv.org/abs/2605.03546"
+    }
+  ],
+  "scores": [
+    {
+      "_section": "=== TableVista (arxiv 2605.05955) — 29 models on multimodal table reasoning ===",
+      "model": "openai/gpt-5.4",
+      "benchmark": "tablevista",
+      "score": 72.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955",
+      "_note": "Table 4 — overall avg across 10 scenarios"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b",
+      "benchmark": "tablevista",
+      "score": 55.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "tablevista",
+      "score": 54.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "google/gemma-4-31b",
+      "benchmark": "tablevista",
+      "score": 54.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "tablevista",
+      "score": 51.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "tablevista",
+      "score": 51.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "tablevista",
+      "score": 49.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "meta/llama-4-scout",
+      "benchmark": "tablevista",
+      "score": 49.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "shanghai-ai-lab/internvl-3.5-14b",
+      "benchmark": "tablevista",
+      "score": 46.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "shanghai-ai-lab/internvl-3.5-30b-a3b",
+      "benchmark": "tablevista",
+      "score": 45.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b",
+      "benchmark": "tablevista",
+      "score": 44.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b",
+      "benchmark": "tablevista",
+      "score": 43.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "tablevista",
+      "score": 43.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "tablevista",
+      "score": 42.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "google/gemma-4-26b-a4b",
+      "benchmark": "tablevista",
+      "score": 42.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "tablevista",
+      "score": 40.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "shanghai-ai-lab/internvl-3.5-8b",
+      "benchmark": "tablevista",
+      "score": 40.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "tablevista",
+      "score": 40.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "allenai/molmo2-8b",
+      "benchmark": "tablevista",
+      "score": 39.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "google/gemma-3-12b",
+      "benchmark": "tablevista",
+      "score": 38.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "model": "openbmb/minicpm-v-4.5",
+      "benchmark": "tablevista",
+      "score": 34.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05955"
+    },
+    {
+      "_section": "=== XL-SafetyBench (arxiv 2605.05662) — frontier safety cross-cultural ===",
+      "model": "openai/gpt-5.4",
+      "benchmark": "xl_safetybench_asr",
+      "score": 47.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662",
+      "_note": "Table 4 — avg of 10 countries (AE/DE/ES/FR/ID/IN/JP/KR/TR/US). Lower=safer."
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "xl_safetybench_asr",
+      "score": 43.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "xl_safetybench_asr",
+      "score": 50.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "xl_safetybench_asr",
+      "score": 5.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "xl_safetybench_asr",
+      "score": 2.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662",
+      "_note": "Lowest ASR — safest in cross-cultural evaluation"
+    },
+    {
+      "model": "xai/grok-4.20",
+      "benchmark": "xl_safetybench_asr",
+      "score": 30.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "xl_safetybench_asr",
+      "score": 92.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662"
+    },
+    {
+      "model": "mistral/mistral-large-3",
+      "benchmark": "xl_safetybench_asr",
+      "score": 98.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662",
+      "_note": "Highest ASR — least safe"
+    },
+    {
+      "model": "alibaba/qwen3.5-397b",
+      "benchmark": "xl_safetybench_asr",
+      "score": 18.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "xl_safetybench_csr",
+      "score": 64.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662",
+      "_note": "Higher=better cultural sensitivity"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "xl_safetybench_csr",
+      "score": 76.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "xl_safetybench_csr",
+      "score": 72.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "xl_safetybench_csr",
+      "score": 68.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.05662"
+    },
+    {
+      "_section": "=== GR-Ben (arxiv 2605.01203) — process reward + frontier reasoning ===",
+      "model": "openai/gpt-5.2",
+      "benchmark": "gr_ben",
+      "score": 47.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01203",
+      "_note": "Table 3 — avg F1 across 9 subdomains"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "gr_ben",
+      "score": 60.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01203",
+      "_note": "Best frontier"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "gr_ben",
+      "score": 55.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01203"
+    },
+    {
+      "model": "moonshot/kimi-k2-instruct",
+      "benchmark": "gr_ben",
+      "score": 49.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01203"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "gr_ben",
+      "score": 22.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01203"
+    },
+    {
+      "model": "alibaba/qwen3-4b",
+      "benchmark": "gr_ben",
+      "score": 29.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01203"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "gr_ben",
+      "score": 34.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01203"
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "gr_ben",
+      "score": 34.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01203"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "gr_ben",
+      "score": 36.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01203"
+    },
+    {
+      "model": "google/gemma-3-12b",
+      "benchmark": "gr_ben",
+      "score": 25.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01203"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "gr_ben",
+      "score": 34.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01203"
+    },
+    {
+      "_section": "=== SWE-Atlas (arxiv 2605.08366) — coding agent beyond issue resolution ===",
+      "model": "openai/gpt-5.4",
+      "benchmark": "swe_atlas",
+      "score": 43.49,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.08366",
+      "_note": "Table 1 — Codex scaffold, overall Pass@1"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "swe_atlas",
+      "score": 41.89,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.08366",
+      "_note": "Claude Code scaffold"
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "swe_atlas",
+      "score": 37.38,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.08366"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "swe_atlas",
+      "score": 34.93,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.08366"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "swe_atlas",
+      "score": 31.63,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.08366"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "swe_atlas",
+      "score": 25.23,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.08366"
+    },
+    {
+      "_section": "=== ComplexMCP (arxiv 2605.10787) — MCP agent eval, 17 entries ===",
+      "model": "openai/gpt-4o",
+      "benchmark": "complexmcp",
+      "score": 14.89,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10787",
+      "_note": "Success Rate"
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "complexmcp",
+      "score": 19.14,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10787"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "complexmcp",
+      "score": 24.81,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10787"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "complexmcp",
+      "score": 55.31,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10787",
+      "_note": "Best LLM"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "complexmcp",
+      "score": 44.67,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10787"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "complexmcp",
+      "score": 39.71,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10787"
+    },
+    {
+      "model": "meta/llama-3.1-405b",
+      "benchmark": "complexmcp",
+      "score": 26.94,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10787"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "complexmcp",
+      "score": 21.89,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10787"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "complexmcp",
+      "score": 19.86,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10787"
+    },
+    {
+      "model": "moonshot/kimi-k2-instruct",
+      "benchmark": "complexmcp",
+      "score": 26.22,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10787"
+    },
+    {
+      "model": "zhipu/glm-4.7",
+      "benchmark": "complexmcp",
+      "score": 42.55,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.10787"
+    },
+    {
+      "_section": "=== MCJudgeBench (arxiv 2605.03858) — multi-constraint judge ===",
+      "model": "openai/gpt-5.2",
+      "benchmark": "mcjudgebench_cjar",
+      "score": 0.809,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2605.03858",
+      "_note": "Table 5 — reasoning mode"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "mcjudgebench_cjar",
+      "score": 0.828,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2605.03858"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "mcjudgebench_cjar",
+      "score": 0.848,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2605.03858"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mcjudgebench_cjar",
+      "score": 0.858,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2605.03858",
+      "_note": "Best CJAR"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "mcjudgebench_macro_f1",
+      "score": 0.616,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03858"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "mcjudgebench_macro_f1",
+      "score": 0.637,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03858",
+      "_note": "Best Macro-F1"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "mcjudgebench_macro_f1",
+      "score": 0.603,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03858"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mcjudgebench_macro_f1",
+      "score": 0.598,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03858"
+    },
+    {
+      "_section": "=== VURB (arxiv 2605.07872) — video understanding reward ===",
+      "model": "openai/gpt-5.2",
+      "benchmark": "vurb_pairwise",
+      "score": 62.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.07872",
+      "_note": "Best LLM on pairwise"
+    },
+    {
+      "model": "bytedance/seed-1.6",
+      "benchmark": "vurb_pairwise",
+      "score": 62.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.07872",
+      "_note": "Seed1.6-VL-Thinking"
+    },
+    {
+      "model": "videoresearch/videogrm",
+      "benchmark": "vurb_pairwise",
+      "score": 59.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.07872"
+    },
+    {
+      "model": "videoresearch/videodrm",
+      "benchmark": "vurb_pointwise",
+      "score": 63.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.07872",
+      "_note": "Best on pointwise"
+    },
+    {
+      "_section": "=== Agentick (arxiv 2605.06869) — sequential decision making ===",
+      "model": "openai/gpt-5-mini",
+      "benchmark": "agentick",
+      "score": 0.309,
+      "unit": "ons",
+      "_source": "https://arxiv.org/abs/2605.06869",
+      "_note": "Overall ONS — top LLM (vs PPO 2M at 0.287)"
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "agentick",
+      "score": 0.187,
+      "unit": "ons",
+      "_source": "https://arxiv.org/abs/2605.06869"
+    },
+    {
+      "model": "alibaba/qwen3-4b",
+      "benchmark": "agentick",
+      "score": 0.085,
+      "unit": "ons",
+      "_source": "https://arxiv.org/abs/2605.06869"
+    },
+    {
+      "_section": "=== ProgramBench (arxiv 2605.03546) — all frontier 0% Resolved ===",
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "programbench",
+      "score": 0.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03546"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "programbench_almost",
+      "score": 3.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03546",
+      "_note": "Leader on Almost (≥95% tests)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "programbench",
+      "score": 0.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03546"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "programbench_almost",
+      "score": 2.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03546"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "programbench",
+      "score": 0.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03546"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "programbench_almost",
+      "score": 1.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03546"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "programbench",
+      "score": 0.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03546"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "programbench",
+      "score": 0.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03546"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "programbench",
+      "score": 0.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03546"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "programbench",
+      "score": 0.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03546"
+    },
+    {
+      "_section": "=== TriBench-Ko (arxiv 2605.03792) — Korean judicial workflow ===",
+      "model": "openai/gpt-5.4",
+      "benchmark": "tribench_ko",
+      "score": 0.835,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792",
+      "_note": "Best frontier"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "tribench_ko",
+      "score": 0.781,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "tribench_ko",
+      "score": 0.771,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "model": "kt/midm-2.0-base",
+      "benchmark": "tribench_ko",
+      "score": 0.728,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792",
+      "_note": "Best Korean sovereign"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "tribench_ko",
+      "score": 0.715,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "tribench_ko",
+      "score": 0.712,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "model": "mistral/ministral-3-8b",
+      "benchmark": "tribench_ko",
+      "score": 0.691,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "model": "google/gemma-3-12b",
+      "benchmark": "tribench_ko",
+      "score": 0.629,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "tribench_ko",
+      "score": 0.608,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "model": "lg/exaone-3.5-7.8b",
+      "benchmark": "tribench_ko",
+      "score": 0.551,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "model": "kakao/kanana-1.5-8b",
+      "benchmark": "tribench_ko",
+      "score": 0.525,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "tribench_ko",
+      "score": 0.386,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "model": "skt/ax-3.1-light",
+      "benchmark": "tribench_ko",
+      "score": 0.342,
+      "unit": "f1",
+      "_source": "https://arxiv.org/abs/2605.03792"
+    },
+    {
+      "_section": "=== FinSafetyBench (arxiv 2605.00706) — financial safety ===",
+      "model": "openai/gpt-5.1",
+      "benchmark": "finsafetybench",
+      "score": 35.27,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.00706",
+      "_note": "Financial-Crimes PAIR ASR (lower=safer)"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "finsafetybench",
+      "score": 89.45,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.00706"
+    },
+    {
+      "model": "duxiaoman/xuanyuan-13b",
+      "benchmark": "finsafetybench",
+      "score": 57.47,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.00706"
+    },
+    {
+      "_section": "=== ERNIE 5.1 — vendor-reported numbers ===",
+      "model": "baidu/ernie-5.1",
+      "benchmark": "aime_2026",
+      "score": 99.6,
+      "unit": "%",
+      "_source": "https://ernie.baidu.com/blog/posts/ernie-5.1-0508-release/",
+      "_note": "AIME 2026 with tool use, per vendor blog"
+    }
+  ]
+}
