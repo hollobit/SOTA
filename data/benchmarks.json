@@ -2406,6 +2406,223 @@
     "metric": "accuracy"
   },
   {
+    "id": "finsafetybench",
+    "name": "FinSafetyBench",
+    "category": "safety",
+    "description": "Bilingual EN/ZH financial-domain LLM safety red-teaming benchmark, 1,881 instances × 14 sub-categories. arxiv 2605.00706 (Shanghai University of Finance and Economics et al). Metric = Attack Success Rate (ASR%); lower=safer.",
+    "metric": "asr_percent"
+  },
+  {
+    "id": "xl_safetybench_asr",
+    "name": "XL-SafetyBench ASR",
+    "category": "safety",
+    "description": "Cross-cultural safety benchmark covering 10 countries (AE/DE/ES/FR/ID/IN/JP/KR/TR/US) — Attack Success Rate (lower=safer). arxiv 2605.05662 (AIM Intelligence + Microsoft + Korea AISI + 7 institutions).",
+    "metric": "asr_percent"
+  },
+  {
+    "id": "xl_safetybench_csr",
+    "name": "XL-SafetyBench CSR",
+    "category": "safety",
+    "description": "Cross-cultural Cultural Sensitivity Rate (higher=better) — paired metric with ASR.",
+    "metric": "csr_percent"
+  },
+  {
+    "id": "tribench_ko",
+    "name": "TriBench-Ko",
+    "category": "domain",
+    "description": "Korean judicial-workflow risk benchmark across 4 tasks × 8 risk types. arxiv 2605.03792 (Korean institutions). Metric = Macro-F1.",
+    "metric": "macro_f1"
+  },
+  {
+    "id": "gr_ben",
+    "name": "GR-Ben",
+    "category": "reasoning",
+    "description": "General Reasoning Benchmark for process reward models — science (Bio/Phys/Chem/CompSci) + logic (Abduct/Analogical/Mix/Deduct/Induct), 9 subdomains. arxiv 2605.01203 (HIT et al). Metric = F1.",
+    "metric": "f1"
+  },
+  {
+    "id": "tablevista",
+    "name": "TableVista",
+    "category": "multimodal",
+    "description": "Multimodal table reasoning benchmark — 30,000 samples across 10 visual variants × 8 difficulty buckets. arxiv 2605.05955 (Tongji/Bristol/Tianjin/Yale). Metric = accuracy %.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "swe_atlas",
+    "name": "SWE-Atlas",
+    "category": "coding",
+    "description": "Coding agent benchmark beyond issue resolution — 3 SWE workflows (Codebase Q&A 124 + Test Writing 90 + Refactoring 70). arxiv 2605.08366. Metric = Pass@1 %.",
+    "metric": "pass_at_1"
+  },
+  {
+    "id": "complexmcp",
+    "name": "ComplexMCP",
+    "category": "agent",
+    "description": "LLM agent tool-use evaluation in dynamic interdependent large-scale MCP sandbox — 300+ tools across 7 stateful sandboxes. arxiv 2605.10787. Metric = Success Rate %.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "mcjudgebench_cjar",
+    "name": "MCJudgeBench CJAR",
+    "category": "agent",
+    "description": "Multi-constraint judge evaluation — Constraint Judge Agreement Rate. arxiv 2605.03858.",
+    "metric": "rate"
+  },
+  {
+    "id": "mcjudgebench_macro_f1",
+    "name": "MCJudgeBench Macro-F1",
+    "category": "agent",
+    "description": "Multi-constraint judge evaluation — Macro F1 across constraint types. arxiv 2605.03858.",
+    "metric": "macro_f1"
+  },
+  {
+    "id": "vurb_pairwise",
+    "name": "VURB Pairwise",
+    "category": "multimodal",
+    "description": "Video Understanding Reward Bench — 2,100 video preference pairs with long CoT (~1,143 tokens avg). Pairwise accuracy %. arxiv 2605.07872.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "vurb_pointwise",
+    "name": "VURB Pointwise",
+    "category": "multimodal",
+    "description": "Video Understanding Reward Bench — pointwise accuracy %. arxiv 2605.07872.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "agentick",
+    "name": "Agentick",
+    "category": "agent",
+    "description": "Unified benchmark for general sequential decision-making agents — 37 procedurally generated tasks × 6 categories × 4 difficulties × 5 modalities, 90k+ episodes. arxiv 2605.06869. Metric = Oracle-Normalized Score (ONS).",
+    "metric": "ons"
+  },
+  {
+    "id": "programbench",
+    "name": "ProgramBench",
+    "category": "coding",
+    "description": "Full-program rebuild from scratch — can language models rebuild programs? arxiv 2605.03546 (John Yang, Diyi Yang, Ofir Press et al). Metric = % Resolved. All frontier models score 0% Resolved currently.",
+    "metric": "resolved_percent"
+  },
+  {
+    "id": "programbench_almost",
+    "name": "ProgramBench Almost",
+    "category": "coding",
+    "description": "ProgramBench % Almost = ≥95% tests passing. arxiv 2605.03546. Tiebreaker when Resolved is 0%.",
+    "metric": "almost_percent"
+  },
+  {
+    "id": "face_forensics_pp",
+    "name": "FaceForensics++ (FF++)",
+    "category": "media-forensics",
+    "description": "Classic video deepfake detection bench — 4 manipulation types (DeepFakes / Face2Face / FaceSwap / NeuralTextures), 1.8M images from 1,000 videos. ICCV 2019 (Rössler et al, arxiv 1901.08971). Metric on official leaderboard: 5-way classification accuracy on hidden binary test set.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "dfdc_log_loss",
+    "name": "DFDC (log-loss)",
+    "category": "media-forensics",
+    "description": "Facebook Deepfake Detection Challenge — 124k clips from 3,426 paid actors, multiple synthesis methods. arxiv 2006.07397, Kaggle 2020. Primary metric: log-loss on private leaderboard (lower=better).",
+    "metric": "log_loss"
+  },
+  {
+    "id": "dfdc_ap_blackbox",
+    "name": "DFDC AP (black-box)",
+    "category": "media-forensics",
+    "description": "DFDC black-box test set average precision (higher=better). Companion metric to log-loss.",
+    "metric": "average_precision"
+  },
+  {
+    "id": "celeb_df_v2_auc",
+    "name": "Celeb-DF v2 (AUC)",
+    "category": "media-forensics",
+    "description": "5,639 high-quality DeepFake videos of celebrities. CVPR 2020 (Li et al, arxiv 1909.12962). Frame-level AUC, cross-dataset eval (trained on FF++ c23).",
+    "metric": "auc"
+  },
+  {
+    "id": "deepfake_bench_ffpp_c23",
+    "name": "DeepfakeBench FF++ c23 (AUC)",
+    "category": "media-forensics",
+    "description": "DeepfakeBench unified eval (NeurIPS 2023, arxiv 2307.01426) — FaceForensics++ c23 compression, within-domain frame-level AUC.",
+    "metric": "auc"
+  },
+  {
+    "id": "df40_auc",
+    "name": "DF40 (AUC)",
+    "category": "media-forensics",
+    "description": "DF40 — next-generation deepfake detection bench with 40 manipulation methods (10 face-swap / 13 reenactment / 12 face-synthesis / 5 editing). NeurIPS 2024 D&B (arxiv 2406.13495). Cross-domain AUC.",
+    "metric": "auc"
+  },
+  {
+    "id": "av_deepfake_1m_ap50",
+    "name": "AV-Deepfake1M AP@0.5",
+    "category": "media-forensics",
+    "description": "Audio-visual deepfake temporal localization — 1M+ videos, 2,000+ subjects, LLM-edited manipulations. ACM MM 2024 Best Paper (arxiv 2311.15308). Temporal-localization AP@0.5 (higher=better).",
+    "metric": "ap_at_0_5"
+  },
+  {
+    "id": "asvspoof_5_min_dcf",
+    "name": "ASVspoof 5 min-DCF",
+    "category": "audio-forensics",
+    "description": "Speech deepfake detection — ASVspoof 5 (2024). Primary metric: minimum Detection Cost Function (min-DCF). Lower=better. Closed condition.",
+    "metric": "min_dcf"
+  },
+  {
+    "id": "asvspoof_5_eer",
+    "name": "ASVspoof 5 EER",
+    "category": "audio-forensics",
+    "description": "ASVspoof 5 Equal Error Rate (lower=better). Closed condition.",
+    "metric": "eer_percent"
+  },
+  {
+    "id": "gen_image_avg",
+    "name": "GenImage (avg across 8 generators)",
+    "category": "aigc-detection",
+    "description": "AI-generated image detection — ~1M paired images across 8 generators (Midjourney/SDv1.4/SDv1.5/ADM/GLIDE/Wukong/VQDM/BigGAN). NeurIPS 2023 D&B (arxiv 2306.08571). Cross-generator accuracy, models trained on SDv1.4.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "diffusion_forensics_dire",
+    "name": "DiffusionForensics (DIRE)",
+    "category": "aigc-detection",
+    "description": "Diffusion-generated image detection via Diffusion Reconstruction Error. ICCV 2023 (Wang et al, arxiv 2303.09295). Cross-diffusion accuracy avg.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "deepfake_eval_2024_video",
+    "name": "Deepfake-Eval-2024 Video (AUC)",
+    "category": "media-forensics-wild",
+    "description": "In-the-wild 2024 deepfake bench — 45 hours video, 56.5 hours audio, 1,975 images from 88 sites in 52 languages. Mar 2025 (arxiv 2503.02857). Reveals 45-50% AUC drop vs academic benchmarks. Video modality.",
+    "metric": "auc"
+  },
+  {
+    "id": "deepfake_eval_2024_audio",
+    "name": "Deepfake-Eval-2024 Audio (AUC)",
+    "category": "audio-forensics-wild",
+    "description": "Deepfake-Eval-2024 in-the-wild audio modality AUC.",
+    "metric": "auc"
+  },
+  {
+    "id": "deepfake_eval_2024_image",
+    "name": "Deepfake-Eval-2024 Image (AUC)",
+    "category": "aigc-detection-wild",
+    "description": "Deepfake-Eval-2024 in-the-wild image modality AUC.",
+    "metric": "auc"
+  },
+  {
+    "id": "vlm_deepfake_faceswap_zeroshot",
+    "name": "VLM Deepfake Detection — Faceswap+Reenactment (zero-shot)",
+    "category": "aigc-detection-vlm",
+    "description": "Zero-shot frontier VLM accuracy on deepfake detection — faceswap + reenactment categories. arxiv 2506.10474 (2025).",
+    "metric": "accuracy_ratio"
+  },
+  {
+    "id": "vlm_deepfake_synthetic_zeroshot",
+    "name": "VLM Deepfake Detection — Synthetic (zero-shot)",
+    "category": "aigc-detection-vlm",
+    "description": "Zero-shot frontier VLM accuracy on synthetic (GAN + Diffusion) detection.",
+    "metric": "accuracy_ratio"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",
