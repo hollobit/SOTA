@@ -1,0 +1,893 @@
+{
+  "_meta": {
+    "date": "2026-05-15",
+    "title": "World Foundation Models — VBench/VBench-2.0 + V-JEPA 2 + Meta Physical Reasoning + Cosmos Predict 2.5 + LIBERO supplements",
+    "scope": "Extends Physical AI category with academic-grade benchmarks. Most major WFMs already in DB; this batch adds the canonical eval benches.",
+    "sources": [
+      "huggingface.co/spaces/Vchitect/VBench_Leaderboard (HF Space)",
+      "arxiv 2503.21755 VBench-2.0 Table 2",
+      "arxiv 2506.09985 V-JEPA 2 (Meta)",
+      "arxiv 2603.14482 V-JEPA 2.1 (Meta)",
+      "huggingface.co/spaces/facebook/physical_reasoning_leaderboard",
+      "arxiv 2511.00062 NVIDIA Cosmos Predict 2.5",
+      "arxiv 2502.19645 OpenVLA-OFT (LIBERO breakdowns)"
+    ],
+    "rule": "STRICT-ATTRIBUTION — only primary-source numeric values with explicit model attribution.",
+    "skipped": [
+      "World Labs Marble (no primary-source numerics)",
+      "Wayve GAIA-2 (paper has no leaderboard table)",
+      "Sora 2 Pro (no separate eval from Sora 2 base)",
+      "1X Redwood (no primary benchmark)",
+      "CALVIN / MetaWorld (no centralized canonical leaderboard for current WFM policies)"
+    ]
+  },
+  "models": [
+    {
+      "id": "meta/v-jepa-2",
+      "vendor": "Meta AI (FAIR)",
+      "name": "V-JEPA 2",
+      "type": "open-source",
+      "modalities": [
+        "video",
+        "world-model"
+      ],
+      "country": "USA",
+      "released_at": "2025-06-11",
+      "_note": "Meta's flagship video world model (Yann LeCun's project). 1.2B params JEPA architecture. Strong on action recognition + Epic-Kitchens anticipation + physical reasoning. arxiv 2506.09985.",
+      "_sources": [
+        "https://arxiv.org/abs/2506.09985",
+        "https://ai.meta.com/blog/v-jepa-2-world-model-benchmarks/"
+      ]
+    },
+    {
+      "id": "meta/v-jepa-2.1",
+      "vendor": "Meta AI (FAIR)",
+      "name": "V-JEPA 2.1",
+      "type": "open-source",
+      "modalities": [
+        "video",
+        "world-model"
+      ],
+      "country": "USA",
+      "released_at": "2026-03-15",
+      "_note": "V-JEPA 2 refresh — improved on Ego4D LTA, Epic-Kitchens, TartanDrive ATE. arxiv 2603.14482.",
+      "_sources": [
+        "https://arxiv.org/abs/2603.14482"
+      ]
+    },
+    {
+      "id": "world-labs/marble",
+      "vendor": "World Labs",
+      "name": "Marble",
+      "type": "proprietary",
+      "modalities": [
+        "video",
+        "world-model",
+        "3d-scene"
+      ],
+      "country": "USA",
+      "released_at": "2025-11-12",
+      "_note": "Fei-Fei Li's World Labs first commercial product — 3D persistent scene generation WFM. No public quantitative benchmark claims; registered as model-only.",
+      "_sources": [
+        "https://www.worldlabs.ai/",
+        "https://techcrunch.com/2025/11/12/fei-fei-lis-world-labs-speeds-up-the-world-model-race-with-marble-its-first-commercial-product/"
+      ]
+    },
+    {
+      "id": "wayve/gaia-2",
+      "vendor": "Wayve",
+      "name": "GAIA-2",
+      "type": "proprietary",
+      "modalities": [
+        "video",
+        "world-model",
+        "driving"
+      ],
+      "country": "UK",
+      "released_at": "2025-03-26",
+      "_note": "Wayve latent-diffusion multi-view driving WFM. arxiv 2503.20523. No canonical leaderboard table — model-only registration. (Note: Wayve's GAIA-2 is distinct from the HF GAIA Level-2 agent benchmark.)",
+      "_sources": [
+        "https://arxiv.org/abs/2503.20523",
+        "https://wayve.ai/thinking/gaia-2/"
+      ]
+    },
+    {
+      "id": "vchitect/ipow",
+      "vendor": "Vchitect (Shanghai AI Lab)",
+      "name": "IPOW",
+      "type": "open-source",
+      "modalities": [
+        "video"
+      ],
+      "country": "China",
+      "_note": "VBench Total Score #1 at 88.26%.",
+      "_sources": [
+        "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+      ]
+    },
+    {
+      "id": "shengshu/vidu-q1",
+      "vendor": "Shengshu",
+      "name": "Vidu Q1",
+      "type": "proprietary",
+      "modalities": [
+        "video"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+      ]
+    },
+    {
+      "id": "alibaba/wan-2.1",
+      "vendor": "Alibaba",
+      "name": "Wan 2.1",
+      "type": "open-weight",
+      "modalities": [
+        "video"
+      ],
+      "country": "China",
+      "released_at": "2025-02-24",
+      "_sources": [
+        "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+      ]
+    },
+    {
+      "id": "alibaba/wan-2.2-5b",
+      "vendor": "Alibaba",
+      "name": "Wan 2.2 5B",
+      "type": "open-weight",
+      "modalities": [
+        "video"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2511.00062"
+      ]
+    },
+    {
+      "id": "jiutian/jt-3.5",
+      "vendor": "China Mobile Jiutian",
+      "name": "JT-3.5",
+      "type": "proprietary",
+      "modalities": [
+        "video"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+      ]
+    },
+    {
+      "id": "miraclevision/v5",
+      "vendor": "MiracleVision (Meitu)",
+      "name": "MiracleVision V5",
+      "type": "proprietary",
+      "modalities": [
+        "video"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+      ]
+    },
+    {
+      "id": "google/veo-3",
+      "vendor": "Google DeepMind",
+      "name": "Veo 3",
+      "type": "proprietary",
+      "modalities": [
+        "video"
+      ],
+      "country": "USA",
+      "_sources": [
+        "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+      ]
+    },
+    {
+      "id": "openai/sora",
+      "vendor": "OpenAI",
+      "name": "Sora (original)",
+      "type": "proprietary",
+      "modalities": [
+        "video"
+      ],
+      "country": "USA",
+      "released_at": "2024-12-09",
+      "_note": "Original Sora (Dec 2024), distinct from Sora 2 (2025-12).",
+      "_sources": [
+        "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+      ]
+    },
+    {
+      "id": "open-sora/open-sora-2.0",
+      "vendor": "Open-Sora",
+      "name": "Open-Sora 2.0",
+      "type": "open-source",
+      "modalities": [
+        "video"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+      ]
+    },
+    {
+      "id": "landiff/landiff",
+      "vendor": "LanDiff",
+      "name": "LanDiff",
+      "type": "open-source",
+      "modalities": [
+        "video"
+      ],
+      "country": "Academic",
+      "_sources": [
+        "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+      ]
+    },
+    {
+      "id": "tencent/hunyuan-video",
+      "vendor": "Tencent Hunyuan",
+      "name": "HunyuanVideo",
+      "type": "open-weight",
+      "modalities": [
+        "video"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2503.21755"
+      ]
+    },
+    {
+      "id": "zhipu/cogvideox-1.5",
+      "vendor": "Zhipu AI",
+      "name": "CogVideoX 1.5",
+      "type": "open-weight",
+      "modalities": [
+        "video"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2503.21755"
+      ]
+    },
+    {
+      "id": "kuaishou/kling-1.6",
+      "vendor": "Kuaishou",
+      "name": "Kling 1.6",
+      "type": "proprietary",
+      "modalities": [
+        "video"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://arxiv.org/abs/2503.21755"
+      ]
+    },
+    {
+      "id": "nvidia/cosmos-reason-1-7b",
+      "vendor": "NVIDIA",
+      "name": "Cosmos Reason 1 7B",
+      "type": "open-weight",
+      "modalities": [
+        "video",
+        "world-model"
+      ],
+      "country": "USA",
+      "_sources": [
+        "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+      ]
+    },
+    {
+      "id": "nvidia/cosmos-predict-1-7b",
+      "vendor": "NVIDIA",
+      "name": "Cosmos Predict 1 7B",
+      "type": "open-weight",
+      "modalities": [
+        "video",
+        "world-model"
+      ],
+      "country": "USA",
+      "_sources": [
+        "https://arxiv.org/abs/2511.00062"
+      ]
+    },
+    {
+      "id": "nvidia/cosmos-predict-2.5-14b",
+      "vendor": "NVIDIA",
+      "name": "Cosmos Predict 2.5 14B",
+      "type": "open-weight",
+      "modalities": [
+        "video",
+        "world-model"
+      ],
+      "country": "USA",
+      "_sources": [
+        "https://arxiv.org/abs/2511.00062"
+      ]
+    },
+    {
+      "id": "meta/plm-8b",
+      "vendor": "Meta",
+      "name": "PLM-8B",
+      "type": "open-source",
+      "modalities": [
+        "video"
+      ],
+      "country": "USA",
+      "_note": "Perception Language Model 8B used in Meta Physical Reasoning Leaderboard.",
+      "_sources": [
+        "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-vl",
+      "vendor": "Alibaba",
+      "name": "Qwen2.5-VL (Physical Reasoning eval)",
+      "type": "open-source",
+      "modalities": [
+        "text",
+        "vision"
+      ],
+      "country": "China",
+      "_sources": [
+        "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "vbench_total",
+      "name": "VBench Total Score",
+      "category": "multimodal",
+      "description": "VBench composite total score across 16 dimensions (Quality+Semantic weighted average). Higher=better. Vchitect Shanghai AI Lab.",
+      "metric": "percent",
+      "leaderboard": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "id": "vbench_quality",
+      "name": "VBench Quality Score",
+      "category": "multimodal",
+      "description": "VBench Quality sub-score: subject consistency, motion smoothness, aesthetic, imaging quality, etc.",
+      "metric": "percent",
+      "leaderboard": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "id": "vbench_semantic",
+      "name": "VBench Semantic Score",
+      "category": "multimodal",
+      "description": "VBench Semantic sub-score: object class, multi-objects, color, scene, etc.",
+      "metric": "percent",
+      "leaderboard": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "id": "vbench2_total",
+      "name": "VBench-2.0 Total Score",
+      "category": "multimodal",
+      "description": "VBench-2.0 (arxiv 2503.21755) intrinsic faithfulness, mean of 5 categories: Creativity + Commonsense + Controllability + Human Fidelity + Physics.",
+      "metric": "percent",
+      "leaderboard": "https://arxiv.org/abs/2503.21755"
+    },
+    {
+      "id": "vbench2_physics",
+      "name": "VBench-2.0 Physics",
+      "category": "multimodal",
+      "description": "Physics sub-dim: Mechanics + Material + Thermotics + Multi-View Consistency.",
+      "metric": "percent",
+      "leaderboard": "https://arxiv.org/abs/2503.21755"
+    },
+    {
+      "id": "vbench2_commonsense",
+      "name": "VBench-2.0 Commonsense",
+      "category": "multimodal",
+      "description": "VBench-2.0 dynamic spatial + dynamic attribute + motion order + human interaction.",
+      "metric": "percent",
+      "leaderboard": "https://arxiv.org/abs/2503.21755"
+    },
+    {
+      "id": "vbench2_controllability",
+      "name": "VBench-2.0 Controllability",
+      "category": "multimodal",
+      "description": "VBench-2.0 complex landscape + complex plot + camera motion + motion rationality + instance preservation.",
+      "metric": "percent",
+      "leaderboard": "https://arxiv.org/abs/2503.21755"
+    },
+    {
+      "id": "vbench2_human_fidelity",
+      "name": "VBench-2.0 Human Fidelity",
+      "category": "multimodal",
+      "description": "VBench-2.0 human anatomy + clothes + identity.",
+      "metric": "percent",
+      "leaderboard": "https://arxiv.org/abs/2503.21755"
+    },
+    {
+      "id": "vbench2_creativity",
+      "name": "VBench-2.0 Creativity",
+      "category": "multimodal",
+      "description": "VBench-2.0 composition + diversity.",
+      "metric": "percent",
+      "leaderboard": "https://arxiv.org/abs/2503.21755"
+    },
+    {
+      "id": "intphys2",
+      "name": "IntPhys 2",
+      "category": "world-model",
+      "description": "Meta IntPhys 2 — physically plausible vs implausible scenario classification. Part of Physical Reasoning Leaderboard. arxiv 2506.09849.",
+      "metric": "accuracy",
+      "leaderboard": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "id": "mvpbench",
+      "name": "MVPBench (Minimal Video Pairs)",
+      "category": "world-model",
+      "description": "MCQ physical understanding with minimal-change video pairs. Meta. arxiv 2506.09987.",
+      "metric": "accuracy",
+      "leaderboard": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "id": "causalvqa",
+      "name": "CausalVQA",
+      "category": "world-model",
+      "description": "Counterfactual + anticipation + planning VQA on physical videos. Meta. arxiv 2506.09943.",
+      "metric": "accuracy",
+      "leaderboard": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "id": "ss_v2_top1",
+      "name": "Something-Something v2 (Top-1)",
+      "category": "world-model",
+      "description": "Action recognition top-1 accuracy on SSv2 dataset. Standard video understanding bench.",
+      "metric": "top1_accuracy",
+      "leaderboard": "https://arxiv.org/abs/2506.09985"
+    },
+    {
+      "id": "epic_kitchens_recall5",
+      "name": "Epic-Kitchens-100 Recall@5",
+      "category": "world-model",
+      "description": "Human action anticipation Recall@5 on Epic-Kitchens-100.",
+      "metric": "recall",
+      "leaderboard": "https://arxiv.org/abs/2506.09985"
+    },
+    {
+      "id": "perception_test",
+      "name": "Perception Test",
+      "category": "world-model",
+      "description": "DeepMind Perception Test video QA benchmark.",
+      "metric": "accuracy",
+      "leaderboard": "https://arxiv.org/abs/2506.09985"
+    },
+    {
+      "id": "tempcompass",
+      "name": "TempCompass",
+      "category": "world-model",
+      "description": "Temporal video understanding benchmark.",
+      "metric": "accuracy",
+      "leaderboard": "https://arxiv.org/abs/2506.09985"
+    },
+    {
+      "id": "pai_bench_text2world_post",
+      "name": "PAI-Bench Text2World (post-train)",
+      "category": "world-model",
+      "description": "NVIDIA Physical AI Benchmark — Text-to-World overall post-training score. arxiv 2511.00062.",
+      "metric": "score",
+      "leaderboard": "https://arxiv.org/abs/2511.00062"
+    },
+    {
+      "id": "pai_bench_image2world_overall",
+      "name": "PAI-Bench Image2World Overall",
+      "category": "world-model",
+      "description": "NVIDIA Physical AI Benchmark — Image-to-World overall score.",
+      "metric": "score",
+      "leaderboard": "https://arxiv.org/abs/2511.00062"
+    },
+    {
+      "id": "fvd_av_multiview",
+      "name": "FVD (AV 7-cam multiview)",
+      "category": "world-model",
+      "description": "Fréchet Video Distance with StyleGAN backbone on AV multiview. Lower=better. NVIDIA Cosmos Predict 2.5 paper.",
+      "metric": "fvd",
+      "leaderboard": "https://arxiv.org/abs/2511.00062"
+    },
+    {
+      "id": "assistantbench",
+      "name": "AssistantBench",
+      "category": "agent",
+      "description": "Open-ended web research questions benchmark — agent must navigate the web to find answers. Used in HAL leaderboard. arxiv 2407.15711.",
+      "metric": "accuracy",
+      "leaderboard": "https://hal.cs.princeton.edu/assistantbench"
+    }
+  ],
+  "scores": [
+    {
+      "_section": "=== VBench Total Score leaderboard ===",
+      "model": "vchitect/ipow",
+      "benchmark": "vbench_total",
+      "score": 88.26,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard",
+      "_note": "VBench #1 (current)."
+    },
+    {
+      "model": "vchitect/ipow",
+      "benchmark": "vbench_quality",
+      "score": 87.83,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "vchitect/ipow",
+      "benchmark": "vbench_semantic",
+      "score": 90.01,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "shengshu/vidu-q1",
+      "benchmark": "vbench_total",
+      "score": 87.41,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "jiutian/jt-3.5",
+      "benchmark": "vbench_total",
+      "score": 86.47,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "alibaba/wan-2.1",
+      "benchmark": "vbench_total",
+      "score": 86.22,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "miraclevision/v5",
+      "benchmark": "vbench_total",
+      "score": 85.23,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "google/veo-3",
+      "benchmark": "vbench_total",
+      "score": 85.06,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "google/veo-3",
+      "benchmark": "vbench_quality",
+      "score": 85.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "google/veo-3",
+      "benchmark": "vbench_semantic",
+      "score": 82.49,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "landiff/landiff",
+      "benchmark": "vbench_total",
+      "score": 84.87,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "open-sora/open-sora-2.0",
+      "benchmark": "vbench_total",
+      "score": 84.34,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "openai/sora",
+      "benchmark": "vbench_total",
+      "score": 84.28,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "openai/sora",
+      "benchmark": "vbench_quality",
+      "score": 85.51,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "openai/sora",
+      "benchmark": "vbench_semantic",
+      "score": 79.35,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "_section": "=== VBench-2.0 — Veo 3 full breakdown ===",
+      "model": "google/veo-3",
+      "benchmark": "vbench2_total",
+      "score": 66.72,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard",
+      "_note": "Total = mean of 5 categories."
+    },
+    {
+      "model": "google/veo-3",
+      "benchmark": "vbench2_creativity",
+      "score": 60.85,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "google/veo-3",
+      "benchmark": "vbench2_commonsense",
+      "score": 69.48,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "google/veo-3",
+      "benchmark": "vbench2_controllability",
+      "score": 47.04,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "google/veo-3",
+      "benchmark": "vbench2_human_fidelity",
+      "score": 86.88,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "model": "google/veo-3",
+      "benchmark": "vbench2_physics",
+      "score": 69.35,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/Vchitect/VBench_Leaderboard"
+    },
+    {
+      "_section": "=== V-JEPA 2 (Meta video WFM, arxiv 2506.09985) ===",
+      "model": "meta/v-jepa-2",
+      "benchmark": "ss_v2_top1",
+      "score": 77.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2506.09985"
+    },
+    {
+      "model": "meta/v-jepa-2",
+      "benchmark": "epic_kitchens_recall5",
+      "score": 39.7,
+      "unit": "recall",
+      "_source": "https://arxiv.org/abs/2506.09985"
+    },
+    {
+      "model": "meta/v-jepa-2",
+      "benchmark": "perception_test",
+      "score": 84.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2506.09985"
+    },
+    {
+      "model": "meta/v-jepa-2",
+      "benchmark": "tempcompass",
+      "score": 76.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2506.09985"
+    },
+    {
+      "model": "meta/v-jepa-2",
+      "benchmark": "intphys2",
+      "score": 56.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "meta/v-jepa-2",
+      "benchmark": "mvpbench",
+      "score": 44.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "meta/v-jepa-2",
+      "benchmark": "causalvqa",
+      "score": 44.89,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "_section": "=== V-JEPA 2.1 (arxiv 2603.14482) ===",
+      "model": "meta/v-jepa-2.1",
+      "benchmark": "ss_v2_top1",
+      "score": 77.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2603.14482"
+    },
+    {
+      "model": "meta/v-jepa-2.1",
+      "benchmark": "epic_kitchens_recall5",
+      "score": 40.8,
+      "unit": "recall",
+      "_source": "https://arxiv.org/abs/2603.14482"
+    },
+    {
+      "_section": "=== Meta Physical Reasoning Leaderboard — frontier comparisons ===",
+      "model": "google/gemini-1.5-pro",
+      "benchmark": "intphys2",
+      "score": 92.44,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard",
+      "_note": "Best frontier on IntPhys 2."
+    },
+    {
+      "model": "google/gemini-1.5-pro",
+      "benchmark": "mvpbench",
+      "score": 47.19,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "google/gemini-1.5-pro",
+      "benchmark": "causalvqa",
+      "score": 84.78,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard",
+      "_note": "Best on CausalVQA."
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "intphys2",
+      "score": 56.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "causalvqa",
+      "score": 61.66,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "intphys2",
+      "score": 53.19,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "mvpbench",
+      "score": 32.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "causalvqa",
+      "score": 50.95,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "nvidia/cosmos-reason-2",
+      "benchmark": "intphys2",
+      "score": 58.14,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard",
+      "_note": "Cosmos Reason 2 8B specialist."
+    },
+    {
+      "model": "nvidia/cosmos-reason-2",
+      "benchmark": "mvpbench",
+      "score": 47.19,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "nvidia/cosmos-reason-2",
+      "benchmark": "causalvqa",
+      "score": 59.14,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "nvidia/cosmos-reason-1-7b",
+      "benchmark": "intphys2",
+      "score": 59.88,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "nvidia/cosmos-reason-1-7b",
+      "benchmark": "mvpbench",
+      "score": 41.31,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "nvidia/cosmos-reason-1-7b",
+      "benchmark": "causalvqa",
+      "score": 48.17,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl",
+      "benchmark": "intphys2",
+      "score": 49.12,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl",
+      "benchmark": "mvpbench",
+      "score": 36.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl",
+      "benchmark": "causalvqa",
+      "score": 49.05,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "meta/plm-8b",
+      "benchmark": "mvpbench",
+      "score": 39.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "model": "meta/plm-8b",
+      "benchmark": "causalvqa",
+      "score": 50.06,
+      "unit": "%",
+      "_source": "https://huggingface.co/spaces/facebook/physical_reasoning_leaderboard"
+    },
+    {
+      "_section": "=== NVIDIA Cosmos Predict 2.5 (arxiv 2511.00062) ===",
+      "model": "nvidia/cosmos-predict-2.5-14b",
+      "benchmark": "pai_bench_text2world_post",
+      "score": 0.768,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2511.00062"
+    },
+    {
+      "model": "nvidia/cosmos-predict-2.5-14b",
+      "benchmark": "pai_bench_image2world_overall",
+      "score": 0.81,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2511.00062"
+    },
+    {
+      "model": "nvidia/cosmos-predict-2.5-14b",
+      "benchmark": "fvd_av_multiview",
+      "score": 23.06,
+      "unit": "fvd",
+      "_source": "https://arxiv.org/abs/2511.00062",
+      "_note": "Lower=better. Down from Cosmos Predict 1 63.69 — 2.8x improvement."
+    },
+    {
+      "model": "nvidia/cosmos-predict-1-7b",
+      "benchmark": "fvd_av_multiview",
+      "score": 63.69,
+      "unit": "fvd",
+      "_source": "https://arxiv.org/abs/2511.00062"
+    },
+    {
+      "model": "alibaba/wan-2.2-5b",
+      "benchmark": "pai_bench_text2world_post",
+      "score": 0.764,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2511.00062",
+      "_note": "Wan 2.2 5B as comparison on PAI-Bench."
+    }
+  ]
+}
