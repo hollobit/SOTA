@@ -315,19 +315,19 @@
     "notes": "Liu et al. 2023 'Improving AlphaFold2-based protein tertiary structure prediction with MULTICOM in CASP15', Communications Chemistry s42004-023-00991-6 (also PMC10484931). Reports the standard AlphaFold2 predictor achieved average GDT-TS ~0.73 on 94 CASP15 domains — i.e. 73.0% on the GDT_TS [0,100] scale used in this DB. The MULTICOM_refine variant (top-3 server in CASP15) reached ~0.80 avg GDT-TS on the same 94-domain set, 9.6% improvement over standard AlphaFold2. CASP15 was substantially harder than CASP14 (more targets with novel folds / scarce MSAs), explaining the drop from 92.4 (CASP14) → 73.0 (CASP15) for the same model class."
   },
   "matbench_discovery_f1": {
-    "model_id": "meta/equiformer-v2",
+    "model_id": "matbench-oam/equiformerv3-dens-oam",
     "benchmark_id": "matbench_discovery_f1",
-    "value": 0.917,
+    "value": 0.931,
     "unit": "f1",
     "source": {
       "type": "leaderboard",
       "url": "https://matbench-discovery.materialsproject.org/",
-      "date": "2026-05-09",
+      "date": "2026-05-15",
       "citation": null
     },
-    "is_sota": true,
-    "collected_at": "2026-05-09",
-    "notes": "Matbench Discovery leaderboard row 'eqV2 M' (slug eqV2-m-omat-salex-mp; canonical EquiformerV2 by Meta FAIR), data-sort-value=\"0.917\" in F1 column (scraped 2026-05-09)."
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": "Top of leaderboard."
   },
   "matbench_discovery_mae": {
     "model_id": "berkeley/chgnet",
@@ -13303,6 +13303,186 @@
     "is_sota": false,
     "collected_at": "2026-05-15",
     "notes": "Best PACE."
+  },
+  "posebusters_v2": {
+    "model_id": "deepmind/alphafold-3",
+    "benchmark_id": "posebusters_v2",
+    "value": 76.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-024-07487-w",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": "RMSD<2Å + PB-valid. +50% rel. accuracy improvement over Vina/RFAA per paper."
+  },
+  "bhrf1_binder": {
+    "model_id": "deepmind/alphaproteo",
+    "benchmark_id": "bhrf1_binder",
+    "value": 88.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2409.08022",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": "BHRF1 experimental success rate. 3-300x tighter binding affinity on 7-target panel."
+  },
+  "weatherbench_2_ifs_targets": {
+    "model_id": "microsoft/aurora",
+    "benchmark_id": "weatherbench_2_ifs_targets",
+    "value": 92.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-025-09005-y",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": "Nature 2025. 24% RMSE reduction at >12h lead time. 5000x compute speedup vs IFS."
+  },
+  "tdc_66_vs_genrlst": {
+    "model_id": "google/txgemma-27b",
+    "benchmark_id": "tdc_66_vs_genrlst",
+    "value": 64.0,
+    "unit": "tasks",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2504.06196",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": ""
+  },
+  "tdc_66_vs_specialist": {
+    "model_id": "google/txgemma-27b",
+    "benchmark_id": "tdc_66_vs_specialist",
+    "value": 50.0,
+    "unit": "tasks",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2504.06196",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": ""
+  },
+  "esmgfp_sequence_identity": {
+    "model_id": "evolutionaryscale/esm-3",
+    "benchmark_id": "esmgfp_sequence_identity",
+    "value": 58.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.evolutionaryscale.ai/blog/esm3-release",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": "Generated ESMGFP only 58% similar to closest natural GFP — major novel-design feat."
+  },
+  "oc20_s2ef_force_mae": {
+    "model_id": "fair-chem/equiformerv2-153m",
+    "benchmark_id": "oc20_s2ef_force_mae",
+    "value": 14.2,
+    "unit": "mev/a",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://opencatalystproject.org/leaderboard.html",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": ""
+  },
+  "oc20_s2ef_energy_mae": {
+    "model_id": "fair-chem/equiformerv2-153m",
+    "benchmark_id": "oc20_s2ef_energy_mae",
+    "value": 15.0,
+    "unit": "mev",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://opencatalystproject.org/leaderboard.html",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": ""
+  },
+  "aa_t2i_arena_elo": {
+    "model_id": "openai/gpt-image-2",
+    "benchmark_id": "aa_t2i_arena_elo",
+    "value": 1336.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": "T2I Arena #1, 9576 comparisons."
+  },
+  "aa_t2v_arena_elo": {
+    "model_id": "bytedance/dreamina-seedance-2.0-720p",
+    "benchmark_id": "aa_t2v_arena_elo",
+    "value": 1222.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": "T2V Arena #1."
+  },
+  "aa_i2v_arena_elo": {
+    "model_id": "google/veo-3.1-fast",
+    "benchmark_id": "aa_i2v_arena_elo",
+    "value": 1086.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": ""
+  },
+  "suno_elo": {
+    "model_id": "suno/suno-v5",
+    "benchmark_id": "suno_elo",
+    "value": 1293.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://suno.com/blog/v5-5",
+      "date": "2026-05-15",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-15",
+    "notes": ""
   },
   "sde_avg": {
     "model_id": "openai/gpt-5",
