@@ -1,0 +1,154 @@
+{
+  "_meta": {
+    "date": "2026-05-15",
+    "title": "User-provided refs — SDE (arxiv 2512.15567) + HAL (arxiv 2510.11977 + hal.cs.princeton.edu)",
+    "sources": [
+      "arxiv 2512.15567 Scientific Discovery Evaluation (Deep Principle + 35 labs, May 2026)",
+      "arxiv 2510.11977 Holistic Agent Leaderboard (Princeton PLI, Oct 2025, ICLR 2026)",
+      "https://hal.cs.princeton.edu/ live leaderboard (fetched 2026-05-15)"
+    ],
+    "rejected_sources": [
+      {
+        "url": "https://github.com/PolymathicAI/the_well",
+        "reason": "The Well is primarily a 15TB physics-simulation training dataset, not a benchmark for frontier LLMs. The paper (arxiv 2412.00568 NeurIPS 2024 D&B) only evaluates 4 physics-surrogate baselines (FNO, TFNO, U-Net, CNextU-Net) with explicit author note 'should not be considered state-of-the-art'. Zero frontier LLM scores. Skipped from this ingest per the latest-models-focus + frontier-eval focus."
+      }
+    ],
+    "rule": "STRICT-ATTRIBUTION — only Table N / numbered Figure / live-leaderboard rows."
+  },
+  "models": [
+    {"id": "openai/gpt-5-chat-latest", "vendor": "OpenAI", "name": "GPT-5 Chat (latest)", "type": "proprietary", "modalities": ["text"], "_note": "Non-reasoning Chat variant of GPT-5, current API alias. Evaluated in SDE paper as separate from gpt-5 (reasoning).", "_sources": ["https://arxiv.org/abs/2512.15567"]},
+    {"id": "openai/gpt-5-medium", "vendor": "OpenAI", "name": "GPT-5 Medium (reasoning)", "type": "proprietary", "modalities": ["text"], "_note": "GPT-5 medium reasoning-effort variant; distinct row on HAL live leaderboard alongside o3-medium.", "_sources": ["https://hal.cs.princeton.edu/"]},
+    {"id": "anthropic/claude-opus-4.1-high", "vendor": "Anthropic", "name": "Claude Opus 4.1 High (reasoning)", "type": "proprietary", "modalities": ["text"], "_note": "Extended thinking variant — separate row on HAL live leaderboard.", "_sources": ["https://hal.cs.princeton.edu/"]}
+  ],
+  "benchmarks": [
+    {"id": "sde_avg", "name": "SDE (Scientific Discovery Evaluation) — Average", "category": "ai4s", "description": "Scenario-grounded scientific discovery benchmark across 4 domains × 43 scenarios × 1,125 questions. arxiv 2512.15567 (Deep Principle + 35 labs, May 2026). Datasets at HF deep-principle/datasets. Metric: exact-match accuracy averaged across 43 scenarios.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_hard", "name": "SDE-hard (86 hardest questions)", "category": "ai4s", "description": "SDE-hard subset: 2 hardest questions per scenario where top LLMs make most mistakes. Currently UNSOLVED — gpt-5-pro best at 22.4%, all others ≤12%. arxiv 2512.15567.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_biology", "name": "SDE-Biology", "category": "ai4s", "description": "SDE biology domain — 10 scenarios × 200 questions. arxiv 2512.15567.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_chemistry", "name": "SDE-Chemistry", "category": "ai4s", "description": "SDE chemistry domain — 12 scenarios × 276 questions. arxiv 2512.15567.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_materials", "name": "SDE-Materials", "category": "ai4s", "description": "SDE materials domain — 13 scenarios × 486 questions. arxiv 2512.15567.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_physics", "name": "SDE-Physics", "category": "ai4s", "description": "SDE physics domain — 8 scenarios × 163 questions. arxiv 2512.15567.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+
+    {"id": "sde_protein_design", "name": "SDE Project — Protein Design", "category": "ai4s", "description": "SDE-harness project-level protein design optimization (Top-1 normalized score, 5-task avg). arxiv 2512.15567.", "metric": "score_top1", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_gene_editing", "name": "SDE Project — Gene Editing (IFNG)", "category": "ai4s", "description": "SDE-harness gene editing IFNG discovery. arxiv 2512.15567.", "metric": "score", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_retrosynthesis", "name": "SDE Project — Retrosynthesis (Pistachio Hard)", "category": "ai4s", "description": "SDE-harness retrosynthesis solve rate on Pistachio Hard. arxiv 2512.15567.", "metric": "solve_rate", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_molecule_optimization", "name": "SDE Project — Molecule Optimization", "category": "ai4s", "description": "SDE-harness molecule optimization (jnk3 + gsk3β + sitagliptin_mpo, normalized AUC/Avg-Top-10). arxiv 2512.15567.", "metric": "score", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_tmc_optimization", "name": "SDE Project — TMC Optimization", "category": "ai4s", "description": "SDE-harness Transition Metal Complex (TMC) optimization, normalized score. arxiv 2512.15567.", "metric": "score", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_crystal_design", "name": "SDE Project — Crystal Design (MatLLMSearch SUN)", "category": "ai4s", "description": "SDE-harness crystal design — MatLLMSearch S.U.N. (Stable + Unique + Novel) rate. arxiv 2512.15567.", "metric": "sun_rate", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_ising_model", "name": "SDE Project — Ising Model", "category": "ai4s", "description": "SDE-harness Ising model symbolic discovery, normalized score (1.0 = ground truth). arxiv 2512.15567.", "metric": "score", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+    {"id": "sde_symbolic_regression", "name": "SDE Project — Symbolic Regression", "category": "ai4s", "description": "SDE-harness symbolic regression, normalized score (avg of Acc@0.1 ID/OOD and NMSE). arxiv 2512.15567.", "metric": "score", "leaderboard": "https://arxiv.org/abs/2512.15567"},
+
+    {"id": "corebench_hard", "name": "CORE-Bench Hard", "category": "agent", "description": "Code-Replication on Research Eval (Hard split) — agent benchmark for reproducing published-paper computational experiments end-to-end. HAL is the official leaderboard. arxiv ref: Siegel et al.", "metric": "accuracy", "leaderboard": "https://hal.cs.princeton.edu/corebench_hard"},
+    {"id": "tau_bench_airline", "name": "TAU-bench Airline (original)", "category": "agent", "description": "Original TAU-bench Airline domain (Yao et al. 2024 — distinct from tau2_airline / tau3_airline). Tool-calling customer-service agent eval. HAL live leaderboard provides scaffold-paired scores.", "metric": "pass_at_1", "leaderboard": "https://hal.cs.princeton.edu/taubench_airline"}
+  ],
+  "scores": [
+    {"_section": "=== SDE-avg (43 scenarios, Fig 1 SI p.27) ===",
+     "model": "openai/gpt-5", "benchmark": "sde_avg", "score": 0.658, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567", "_note": "SI Fig.1 p.27 — best on SDE-avg."},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "sde_avg", "score": 0.637, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "openai/o3", "benchmark": "sde_avg", "score": 0.627, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "xai/grok-4", "benchmark": "sde_avg", "score": 0.619, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "anthropic/claude-opus-4.1", "benchmark": "sde_avg", "score": 0.610, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "sde_avg", "score": 0.600, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "xai/grok-3", "benchmark": "sde_avg", "score": 0.515, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "deepseek/deepseek-v3.1", "benchmark": "sde_avg", "score": 0.506, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "openai/gpt-5-chat-latest", "benchmark": "sde_avg", "score": 0.491, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "openai/gpt-4o", "benchmark": "sde_avg", "score": 0.489, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "sde_avg", "score": 0.447, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+
+    {"_section": "=== SDE-hard (86 hardest, p.8 Fig.3f) — only gpt-5-pro is meaningfully above 12% ===",
+     "model": "openai/gpt-5-pro", "benchmark": "sde_hard", "score": 0.224, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567", "_note": "Strict scoring (no-response = wrong). Only frontier model to clear 20% on SDE-hard."},
+    {"model": "openai/gpt-5", "benchmark": "sde_hard", "score": 0.084, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "sde_hard", "score": 0.120, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "sde_hard", "score": 0.120, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "xai/grok-4", "benchmark": "sde_hard", "score": 0.116, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+
+    {"_section": "=== SDE per-domain (p.6 main text) ===",
+     "model": "anthropic/claude-opus-4.1", "benchmark": "sde_biology", "score": 0.71, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "sde_chemistry", "score": 0.60, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "openai/gpt-5", "benchmark": "sde_materials", "score": 0.75, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "openai/gpt-5", "benchmark": "sde_physics", "score": 0.60, "unit": "accuracy", "_source": "https://arxiv.org/abs/2512.15567"},
+
+    {"_section": "=== SDE Project tracks (p.10 Fig.4a) ===",
+     "model": "openai/gpt-5", "benchmark": "sde_protein_design", "score": 0.856, "unit": "top1", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "sde_protein_design", "score": 0.871, "unit": "top1", "_source": "https://arxiv.org/abs/2512.15567", "_note": "Best on protein design — beats GPT-5."},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "sde_protein_design", "score": 0.776, "unit": "top1", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "openai/gpt-5-chat-latest", "benchmark": "sde_protein_design", "score": 0.788, "unit": "top1", "_source": "https://arxiv.org/abs/2512.15567"},
+
+    {"model": "openai/gpt-5", "benchmark": "sde_gene_editing", "score": 0.138, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "sde_gene_editing", "score": 0.127, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "sde_gene_editing", "score": 0.147, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567", "_note": "Best on gene editing."},
+    {"model": "openai/gpt-5-chat-latest", "benchmark": "sde_gene_editing", "score": 0.089, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+
+    {"model": "openai/gpt-5", "benchmark": "sde_retrosynthesis", "score": 0.530, "unit": "solve_rate", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "sde_retrosynthesis", "score": 0.420, "unit": "solve_rate", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "sde_retrosynthesis", "score": 0.530, "unit": "solve_rate", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "openai/gpt-5-chat-latest", "benchmark": "sde_retrosynthesis", "score": 0.490, "unit": "solve_rate", "_source": "https://arxiv.org/abs/2512.15567"},
+
+    {"model": "openai/gpt-5", "benchmark": "sde_molecule_optimization", "score": 0.690, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "sde_molecule_optimization", "score": 0.724, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "sde_molecule_optimization", "score": 0.756, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567", "_note": "Best on molecule optimization. gsk3β AUC 0.981 / Avg-Top-10 1.000 perfect."},
+    {"model": "openai/gpt-5-chat-latest", "benchmark": "sde_molecule_optimization", "score": 0.667, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+
+    {"model": "openai/gpt-5", "benchmark": "sde_tmc_optimization", "score": 0.681, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "sde_tmc_optimization", "score": 0.730, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567", "_note": "Best on TMC optimization."},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "sde_tmc_optimization", "score": 0.691, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+
+    {"model": "openai/gpt-5", "benchmark": "sde_crystal_design", "score": 0.632, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567", "_note": "Best on crystal design. MatLLMSearch S.U.N. 55.31%."},
+    {"model": "deepseek/deepseek-r1", "benchmark": "sde_crystal_design", "score": 0.612, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "sde_crystal_design", "score": 0.502, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "openai/gpt-5-chat-latest", "benchmark": "sde_crystal_design", "score": 0.469, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+
+    {"model": "openai/gpt-5", "benchmark": "sde_ising_model", "score": 0.658, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "sde_ising_model", "score": 1.000, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567", "_note": "Matched analytical baseline — perfect symbolic discovery."},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "sde_ising_model", "score": 0.476, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+
+    {"model": "openai/gpt-5", "benchmark": "sde_symbolic_regression", "score": 0.517, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "sde_symbolic_regression", "score": 0.517, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "sde_symbolic_regression", "score": 0.483, "unit": "score", "_source": "https://arxiv.org/abs/2512.15567"},
+
+    {"_section": "=== HAL live leaderboard — CORE-Bench Hard ===",
+     "model": "anthropic/claude-opus-4.5", "benchmark": "corebench_hard", "score": 77.78, "unit": "%", "_source": "https://hal.cs.princeton.edu/corebench_hard", "_note": "Live HAL leaderboard 2026-05-15; HAL is the official leaderboard for CORE-Bench Hard."},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "corebench_hard", "score": 62.22, "unit": "%", "_source": "https://hal.cs.princeton.edu/corebench_hard"},
+    {"model": "google/gemini-3-pro-preview", "benchmark": "corebench_hard", "score": 40.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/corebench_hard", "_note": "Gemini 3 Pro Preview High scaffold."},
+
+    {"_section": "=== HAL live — SWE-bench Verified Mini ===",
+     "model": "anthropic/claude-sonnet-4.5", "benchmark": "swe_bench_verified_mini", "score": 72.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/swebench_verified_mini", "_note": "Sonnet 4.5 High scaffold, SWE-Agent."},
+    {"model": "anthropic/claude-opus-4.1", "benchmark": "swe_bench_verified_mini", "score": 61.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/swebench_verified_mini"},
+    {"model": "openai/gpt-5-medium", "benchmark": "swe_bench_verified_mini", "score": 46.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/swebench_verified_mini"},
+
+    {"_section": "=== HAL live — GAIA ===",
+     "model": "anthropic/claude-sonnet-4.5", "benchmark": "gaia", "score": 74.55, "unit": "%", "_source": "https://hal.cs.princeton.edu/gaia", "_note": "Sonnet 4.5 HAL Generalist scaffold."},
+    {"model": "anthropic/claude-opus-4.1-high", "benchmark": "gaia", "score": 68.48, "unit": "%", "_source": "https://hal.cs.princeton.edu/gaia"},
+    {"model": "openai/gpt-5-medium", "benchmark": "gaia", "score": 62.80, "unit": "%", "_source": "https://hal.cs.princeton.edu/gaia"},
+    {"model": "anthropic/claude-haiku-4.5", "benchmark": "gaia", "score": 56.36, "unit": "%", "_source": "https://hal.cs.princeton.edu/gaia"},
+
+    {"_section": "=== HAL live — TAU-bench Airline (original) ===",
+     "model": "openai/o4-mini", "benchmark": "tau_bench_airline", "score": 56.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/taubench_airline", "_note": "o4-mini High, TAU Tool Calling."},
+    {"model": "anthropic/claude-3.7-sonnet", "benchmark": "tau_bench_airline", "score": 56.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/taubench_airline"},
+    {"model": "openai/o3", "benchmark": "tau_bench_airline", "score": 54.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/taubench_airline"},
+    {"model": "anthropic/claude-opus-4.1", "benchmark": "tau_bench_airline", "score": 54.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/taubench_airline"},
+    {"model": "openai/gpt-5-medium", "benchmark": "tau_bench_airline", "score": 48.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/taubench_airline"},
+
+    {"_section": "=== HAL live — USACO ===",
+     "model": "openai/gpt-5-medium", "benchmark": "usaco", "score": 69.71, "unit": "%", "_source": "https://hal.cs.princeton.edu/usaco"},
+    {"model": "openai/o4-mini", "benchmark": "usaco", "score": 57.98, "unit": "%", "_source": "https://hal.cs.princeton.edu/usaco"},
+    {"model": "anthropic/claude-opus-4.1-high", "benchmark": "usaco", "score": 51.47, "unit": "%", "_source": "https://hal.cs.princeton.edu/usaco"},
+
+    {"_section": "=== HAL live — ScienceAgentBench ===",
+     "model": "openai/o3", "benchmark": "scienceagentbench", "score": 33.33, "unit": "%", "_source": "https://hal.cs.princeton.edu/scienceagentbench", "_note": "HAL is the official leaderboard for ScienceAgentBench."},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "scienceagentbench", "score": 30.39, "unit": "%", "_source": "https://hal.cs.princeton.edu/scienceagentbench"},
+    {"model": "openai/gpt-5-medium", "benchmark": "scienceagentbench", "score": 30.39, "unit": "%", "_source": "https://hal.cs.princeton.edu/scienceagentbench"},
+
+    {"_section": "=== HAL live — Online Mind2Web ===",
+     "model": "openai/gpt-5-medium", "benchmark": "online_mind2web", "score": 42.33, "unit": "%", "_source": "https://hal.cs.princeton.edu/online_mind2web", "_note": "SeeAct scaffold."},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "online_mind2web", "score": 40.00, "unit": "%", "_source": "https://hal.cs.princeton.edu/online_mind2web"},
+
+    {"_section": "=== HAL live — AssistantBench ===",
+     "model": "openai/o3", "benchmark": "assistantbench", "score": 38.81, "unit": "%", "_source": "https://hal.cs.princeton.edu/assistantbench"},
+    {"model": "openai/gpt-5-medium", "benchmark": "assistantbench", "score": 35.23, "unit": "%", "_source": "https://hal.cs.princeton.edu/assistantbench"},
+
+    {"_section": "=== HAL live — SciCode (all frontier <10% — wall) ===",
+     "model": "openai/o4-mini", "benchmark": "scicode", "score": 9.23, "unit": "%", "_source": "https://hal.cs.princeton.edu/scicode", "_note": "Zero-shot scaffold."},
+    {"model": "openai/o3", "benchmark": "scicode", "score": 9.23, "unit": "%", "_source": "https://hal.cs.princeton.edu/scicode"},
+    {"model": "anthropic/claude-opus-4.1", "benchmark": "scicode", "score": 7.69, "unit": "%", "_source": "https://hal.cs.princeton.edu/scicode"}
+  ]
+}
