@@ -1,5 +1,61 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-15 (Session 15): Daily ref-link sweep + user-provided refs (SDE + HAL + The Well)
+
+### 43. User-provided refs — SDE + HAL + The Well evaluation (commit `0def876`)
+
+User provided 4 specific links: arxiv 2512.15567 (SDE), arxiv 2510.11977 (HAL paper), hal.cs.princeton.edu (HAL live leaderboard), github.com/PolymathicAI/the_well. Dispatched 3 parallel subagents (SDE PDF mine, HAL PDF + live fetch, The Well GitHub research).
+
+**Ingest deltas**:
+
+| Metric | Before | After | Δ |
+|---|---:|---:|---:|
+| Models | 1388 | **1391** | **+3** |
+| Benchmarks | 978 | **994** | **+16** |
+| Scores | 5340 | **5408** | **+68** |
+
+**SDE — Scientific Discovery Evaluation (arxiv 2512.15567)**
+
+Comprehensive AI-for-Science benchmark from Deep Principle + 35 academic groups (May 8 2026). 14 new benchmark IDs registered:
+- `sde_avg` (43 scenarios × 1,125 questions composite)
+- `sde_hard` (86 hardest)
+- 4 domain splits: `sde_biology` (200q) / `sde_chemistry` (276q) / `sde_materials` (486q) / `sde_physics` (163q)
+- 8 project tracks via sde-harness: `sde_protein_design`, `sde_gene_editing`, `sde_retrosynthesis`, `sde_molecule_optimization`, `sde_tmc_optimization`, `sde_crystal_design`, `sde_ising_model`, `sde_symbolic_regression`
+
+**Top SDE findings**:
+- **SDE-avg**: GPT-5 **0.658** leads, Sonnet 4.5 0.637, o3 0.627, Grok-4 0.619, Opus 4.1 0.610
+- **SDE-hard**: GPT-5-Pro **22.4%** is ONLY frontier ≥20% — others all ≤12%
+- **Project-level leadership rotates by task**:
+  - DeepSeek R1 wins protein design (0.871) and Ising model (1.000 = ground truth)
+  - Claude Sonnet 4.5 wins molecule optimization (0.756, gsk3β AUC 0.981 perfect)
+  - GPT-5 wins crystal design (0.632, MatLLMSearch S.U.N. 55.31%)
+- **Dissociation from GPQA/MMMU/AIME**: GPT-5 scores 0.86/0.84/0.94 on those but only 0.658 on SDE → SDE is distinct, non-saturated frontier eval
+
+**HAL — Holistic Agent Leaderboard (arxiv 2510.11977 + hal.cs.princeton.edu)**
+
+Princeton PLI (Kapoor + Stroebl + Narayanan et al., Oct 2025, ICLR 2026). HAL is a **meta-aggregator/harness**, not a new composite benchmark. Wraps 9 existing benches (Online Mind2Web, AssistantBench, GAIA, CORE-Bench Hard, ScienceAgentBench, SciCode, SWE-bench Verified Mini, USACO, TAU-bench Airline) with Azure VM orchestration + cost Pareto frontiers + Docent log analysis.
+
+Registered 2 new bench IDs not yet in DB: `corebench_hard` (HAL is the OFFICIAL leaderboard) + `tau_bench_airline` (original Yao 2024, distinct from tau2/tau3).
+
+**Top HAL live scores (2026-05-15)**:
+- **Claude Opus 4.5** 77.78% CORE-Bench Hard #1 (Sonnet 4.5 62.22%, Gemini 3 Pro Preview 40.00%)
+- **Sonnet 4.5** 74.55% GAIA #1
+- **GPT-5 Medium** 69.71% USACO best
+- **SciCode is a wall**: all frontier <10% (o4-mini = o3 = 9.23%, Opus 4.1 7.69%)
+- **Key insight from paper**: higher reasoning effort REDUCES accuracy in 21/36 model-bench combos (counterintuitive)
+
+**The Well (Polymathic AI dataset) — REJECTED from frontier SOTA dashboard**
+
+Polymathic AI Simons Foundation flagship — 15TB across 16 physics-simulation datasets. Primarily a TRAINING dataset for physics-ML foundation models (FNO/CNO/U-Net/MPP/Stable-Sci). Only 4 physics-surrogate baselines evaluated (paper authors explicitly note "should not be considered state-of-the-art"). Zero frontier LLM scores. Out of scope for the frontier benchmark dashboard.
+
+**3 new models registered**: `openai/gpt-5-chat-latest`, `openai/gpt-5-medium`, `anthropic/claude-opus-4.1-high`.
+
+**Live deploy**: 3 new Resources tab entries. Cache-bust `app.js v=20260515a → 20260515b`. 2 arxiv PDFs archived (12-17MB, 63-66 pages each) per system_card_pdf_storage rule.
+
+Audit trail: `resource/mine_arxiv_2512_15567.md`, `mine_arxiv_2510_11977_hal.md`, `research_the_well_polymathic.md`.
+
+---
+
 ## 2026-05-15 (Session 15): Daily ref-link sweep — May 11-13 arxiv PDF mine, 5 new benchmark papers
 
 User-prompted daily sweep. Initial scout found frontier vendor week was quiet (zero new SKUs Mon-Wed from OpenAI/Anthropic/Google/xAI/etc.) but identified 14 new arxiv benchmark papers from May 11-13. Dispatched 2 parallel mining subagents on the 5 highest-yield papers; the all-14-at-once approach hit a 32MB request-size guardrail and was split into focused batches.
