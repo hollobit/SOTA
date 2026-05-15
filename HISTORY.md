@@ -1,5 +1,82 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-15 (Session 15): Daily ref-link sweep + user-provided refs (SDE + HAL + The Well) + Science FM / Universal FM / World FM coverage expansion
+
+### 45. World Foundation Models — VBench + V-JEPA 2 + Cosmos Predict 2.5 (commit `cf1a93b`)
+
+User-prompted: "World foundation model 들에 대해 조사하고 벤치마크 데이터셋과 평가 결과들이 있는지 조사해주세요". Most major WFMs already in DB from prior sessions (Cosmos, GR00T, Genie, π-zero, OpenVLA, MolmoAct 2, HY-World 2.0). This batch fills the **canonical evaluation benchmark side**.
+
+**Ingest deltas**:
+
+| Metric | Before | After | Δ |
+|---|---:|---:|---:|
+| Models | 1433 | **1452** | **+19** |
+| Benchmarks | 1006 | **1026** | **+20** |
+| Scores | 5452 | **5511** | **+59** |
+
+**Benchmarks added** (20 across 4 families):
+
+**VBench family (9 IDs)** — gold-standard video gen evaluation:
+- `vbench_total` / `vbench_quality` / `vbench_semantic` (Vchitect HF leaderboard, 16 dimensions)
+- `vbench2_total` + 5 category splits per arxiv 2503.21755: `vbench2_physics`, `vbench2_commonsense`, `vbench2_controllability`, `vbench2_human_fidelity`, `vbench2_creativity`
+
+**Meta Physical Reasoning Leaderboard (3 IDs)**:
+- `intphys2` (arxiv 2506.09849) — physical plausibility
+- `mvpbench` (arxiv 2506.09987) — minimal video pairs
+- `causalvqa` (arxiv 2506.09943) — counterfactual physical VQA
+
+**V-JEPA video understanding (4 IDs)**:
+- `ss_v2_top1`, `epic_kitchens_recall5`, `perception_test`, `tempcompass`
+
+**NVIDIA Cosmos PAI-Bench (3 IDs)**:
+- `pai_bench_text2world_post`, `pai_bench_image2world_overall`, `fvd_av_multiview`
+
+Plus `assistantbench` (HAL-related fix).
+
+**Models added (19)**:
+- `meta/v-jepa-2` + `meta/v-jepa-2.1` — Yann LeCun's video WFM flagship
+- `world-labs/marble` (Fei-Fei Li's first commercial product, Nov 2025)
+- `wayve/gaia-2` (UK driving WFM)
+- `vchitect/ipow` (VBench #1 at 88.26%)
+- 11 video gen models for VBench coverage (Vidu Q1, Wan 2.1/2.2, JT-3.5, MiracleVision V5, Veo 3, original Sora, Open-Sora 2.0, LanDiff, HunyuanVideo, CogVideoX 1.5, Kling 1.6)
+- 3 Cosmos lineage (Reason 1 7B, Predict 1 7B, Predict 2.5 14B)
+- `meta/plm-8b`, `alibaba/qwen2.5-vl`
+
+**Notable cross-cutting findings**:
+
+1. **VBench leaderboard is Chinese-dominated** — top 8 entries (88.26% to 85.06%) are all Chinese (IPOW, Vidu Q1, JT-3.5, Wan 2.1, MiracleVision V5, etc.). Veo 3 at 85.06% (USA leader). Open-Sora 2.0 at 84.34% (top open-weights).
+
+2. **Frontier LLMs still strong on physical reasoning despite specialist WFMs**:
+   - Gemini 1.5 Pro **92.44% IntPhys 2** (best overall), 84.78% CausalVQA
+   - NVIDIA Cosmos Reason 2 8B 58.14% IntPhys 2 — specialist closing gap at SLM scale
+   - V-JEPA 2 (1.2B) competitive at 56.4 / 44.5 / 44.89 (much smaller than frontier)
+
+3. **Cosmos Predict 2.5 14B**: 2.8× FVD improvement vs Predict 1 7B (23.06 vs 63.69) — major progress on physical world generation quality
+
+4. **VBench-2.0 reveals frontier weakness areas**:
+   - Veo 3 Controllability only **47.04%** (vs Human Fidelity 86.88%) — frontier struggles with precise control more than realism
+   - Complex Plot universally hard: HunyuanVideo 10.11%, Sora dynamic attribute 8.06%
+
+**Skipped per strict-attribution**:
+- World Labs Marble (qualitative claims only, no numerics)
+- Wayve GAIA-2 (paper has validation loss but no leaderboard table)
+- Sora 2 Pro (no separate eval distinct from Sora 2 base)
+- 1X Redwood (no primary benchmark)
+- CALVIN / MetaWorld (no canonical leaderboard for current WFM policies)
+- PhysReasonBench (conflated with Meta Physical Reasoning Leaderboard above)
+
+**Live deploy**: 8 new Resources tab entries. Cache-bust `app.js v=20260515c → 20260515d`. Audit trail: `resource/research_wfm_2026_05_15.md` (248 lines).
+
+### Session 15 cumulative deltas (final)
+
+| Metric | Before Session 15 | After | Δ |
+|---|---:|---:|---:|
+| Models | 1386 | **1452** | **+66** |
+| Benchmarks | 966 | **1026** | **+60** |
+| Scores | 5261 | **5511** | **+250** |
+
+---
+
 ## 2026-05-15 (Session 15): Daily ref-link sweep + user-provided refs (SDE + HAL + The Well) + Science FM / Universal FM coverage expansion
 
 ### 44. Science FM + Universal FM coverage expansion (commit `d3f429a`)
