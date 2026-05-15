@@ -2637,6 +2637,90 @@
     "metric": "accuracy_ratio"
   },
   {
+    "id": "realicu_gold",
+    "name": "RealICU-Gold",
+    "category": "medical",
+    "description": "Long-context ICU benchmark, gold set: 94 MIMIC-IV patients / 930 windows. Headline metric: Acute Problems Hit@5 (set-matching). Bench 'remains unsolved' per paper — all configs far below Oracle F1=0.987. arxiv 2605.13542 (TUM+LMU+Oxford+Sheffield+Imperial, May 13 2026).",
+    "metric": "hit_at_5"
+  },
+  {
+    "id": "realicu_scale",
+    "name": "RealICU-Scale",
+    "category": "medical",
+    "description": "RealICU at scale — 11,862 windows, Oracle-labeled. Same metric family (Acute Problems Hit@5 headline). RAG baseline used for Gemini/GPT due to full-context compute cost.",
+    "metric": "hit_at_5"
+  },
+  {
+    "id": "exploitbench_ace",
+    "name": "ExploitBench (ACE bugs / 41)",
+    "category": "cybersecurity",
+    "description": "ExploitBench V8 N-day exploit capability ladder (41 JS+WebAssembly bugs, patch given, 300-turn budget). Headline: ACE (arbitrary code execution) count out of 41 — top of 5-tier ladder (T5 Coverage → T4 Triggering → T3 Engine → T2 General → pc_control → ace). arxiv 2605.14153 (CMU, Lee & Brumley, May 13 2026).",
+    "metric": "bug_count_of_41"
+  },
+  {
+    "id": "exploitbench_t3",
+    "name": "ExploitBench (T3 Engine bugs / 41)",
+    "category": "cybersecurity",
+    "description": "ExploitBench Tier 3 — engine primitives reached, out of 41 bugs.",
+    "metric": "bug_count_of_41"
+  },
+  {
+    "id": "exploitbench_t4",
+    "name": "ExploitBench (T4 Triggering bugs / 41)",
+    "category": "cybersecurity",
+    "description": "ExploitBench Tier 4 — triggering reached, out of 41 bugs.",
+    "metric": "bug_count_of_41"
+  },
+  {
+    "id": "geobuildbench",
+    "name": "GeoBuildBench",
+    "category": "math",
+    "description": "Interactive geometry construction from Chinese-textbook natural-language problems via DSL execution — 489 problems. Headline: Success Rate %. arxiv 2605.13167 (Peking University, May 13 2026).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "knotbench",
+    "name": "KnotBench",
+    "category": "reasoning",
+    "description": "Diagrammatic knot reasoning for VLMs — 2,000-item locked split across 14 tasks (A0-A3 × I/S, B0 × I/S, C0/C1, D0/D1). NYU+USC (Liu & Liu), May 11 2026. arxiv 2605.09900.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "drat",
+    "name": "DRAT (Divergent Remote Association Test)",
+    "category": "reasoning",
+    "description": "LLM creativity bench — Divergent Remote Association Test. UIUC, May 13 2026. Range [0, 200]. arxiv 2605.13450.",
+    "metric": "score_0_200"
+  },
+  {
+    "id": "dat",
+    "name": "DAT (Divergent Association Task)",
+    "category": "reasoning",
+    "description": "Divergent Association Task — generate 10 nouns maximally distant semantically. Range [0, 200]. arxiv 2605.13450.",
+    "metric": "score_0_200"
+  },
+  {
+    "id": "cdat",
+    "name": "CDAT (Constrained DAT)",
+    "category": "reasoning",
+    "description": "Constrained Divergent Association Task — DAT with semantic constraints. arxiv 2605.13450.",
+    "metric": "score"
+  },
+  {
+    "id": "rat_30",
+    "name": "RAT-30 (Remote Associates Test)",
+    "category": "reasoning",
+    "description": "Remote Associates Test — 30-item zero-shot strict accuracy. arxiv 2605.13450.",
+    "metric": "accuracy_of_30"
+  },
+  {
+    "id": "pace_creativity",
+    "name": "PACE Creativity",
+    "category": "reasoning",
+    "description": "Probabilistic Associative Creativity Evaluation. Range [0, 1]. arxiv 2605.13450.",
+    "metric": "score_0_1"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",

@@ -1,0 +1,138 @@
+{
+  "_meta": {
+    "date": "2026-05-15",
+    "title": "Arxiv PDF deep mine (May 11-13) — 5 benchmark papers ingested",
+    "sources": [
+      "arxiv 2605.13542 RealICU (TUM+LMU+Oxford+Sheffield+Imperial)",
+      "arxiv 2605.14153 ExploitBench (CMU, Lee + Brumley)",
+      "arxiv 2605.13167 GeoBuildBench (PKU)",
+      "arxiv 2605.09900 KnotBench (NYU+USC)",
+      "arxiv 2605.13450 DRAT (UIUC creativity)"
+    ],
+    "rule": "STRICT-ATTRIBUTION — only Table N rows. For 54-model DRAT paper, cherry-picked frontier subset that maps to canonical DB IDs."
+  },
+  "models": [
+    {"id": "anthropic/claude-opus-4.7-thinking", "vendor": "Anthropic", "name": "Claude Opus 4.7 (thinking mode)", "type": "proprietary", "modalities": ["text"], "_note": "Claude Opus 4.7 with extended thinking enabled. Significant uplift on reasoning-heavy benches (KnotBench +2.95pt).", "_sources": ["https://arxiv.org/abs/2605.09900"]},
+    {"id": "openai/gpt-5-thinking", "vendor": "OpenAI", "name": "GPT-5 (thinking mode)", "type": "proprietary", "modalities": ["text"], "_note": "GPT-5 with reasoning mode enabled. +9.25pt uplift on KnotBench vs non-thinking.", "_sources": ["https://arxiv.org/abs/2605.09900"]}
+  ],
+  "benchmarks": [
+    {"id": "realicu_gold", "name": "RealICU-Gold", "category": "medical", "description": "Long-context ICU benchmark, gold set: 94 MIMIC-IV patients / 930 windows. Headline metric: Acute Problems Hit@5 (set-matching). Bench 'remains unsolved' per paper — all configs far below Oracle F1=0.987. arxiv 2605.13542 (TUM+LMU+Oxford+Sheffield+Imperial, May 13 2026).", "metric": "hit_at_5", "leaderboard": "https://arxiv.org/abs/2605.13542"},
+    {"id": "realicu_scale", "name": "RealICU-Scale", "category": "medical", "description": "RealICU at scale — 11,862 windows, Oracle-labeled. Same metric family (Acute Problems Hit@5 headline). RAG baseline used for Gemini/GPT due to full-context compute cost.", "metric": "hit_at_5", "leaderboard": "https://arxiv.org/abs/2605.13542"},
+
+    {"id": "exploitbench_ace", "name": "ExploitBench (ACE bugs / 41)", "category": "cybersecurity", "description": "ExploitBench V8 N-day exploit capability ladder (41 JS+WebAssembly bugs, patch given, 300-turn budget). Headline: ACE (arbitrary code execution) count out of 41 — top of 5-tier ladder (T5 Coverage → T4 Triggering → T3 Engine → T2 General → pc_control → ace). arxiv 2605.14153 (CMU, Lee & Brumley, May 13 2026).", "metric": "bug_count_of_41", "leaderboard": "https://arxiv.org/abs/2605.14153"},
+    {"id": "exploitbench_t3", "name": "ExploitBench (T3 Engine bugs / 41)", "category": "cybersecurity", "description": "ExploitBench Tier 3 — engine primitives reached, out of 41 bugs.", "metric": "bug_count_of_41", "leaderboard": "https://arxiv.org/abs/2605.14153"},
+    {"id": "exploitbench_t4", "name": "ExploitBench (T4 Triggering bugs / 41)", "category": "cybersecurity", "description": "ExploitBench Tier 4 — triggering reached, out of 41 bugs.", "metric": "bug_count_of_41", "leaderboard": "https://arxiv.org/abs/2605.14153"},
+
+    {"id": "geobuildbench", "name": "GeoBuildBench", "category": "math", "description": "Interactive geometry construction from Chinese-textbook natural-language problems via DSL execution — 489 problems. Headline: Success Rate %. arxiv 2605.13167 (Peking University, May 13 2026).", "metric": "success_rate", "leaderboard": "https://arxiv.org/abs/2605.13167"},
+
+    {"id": "knotbench", "name": "KnotBench", "category": "reasoning", "description": "Diagrammatic knot reasoning for VLMs — 2,000-item locked split across 14 tasks (A0-A3 × I/S, B0 × I/S, C0/C1, D0/D1). NYU+USC (Liu & Liu), May 11 2026. arxiv 2605.09900.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2605.09900"},
+
+    {"id": "drat", "name": "DRAT (Divergent Remote Association Test)", "category": "reasoning", "description": "LLM creativity bench — Divergent Remote Association Test. UIUC, May 13 2026. Range [0, 200]. arxiv 2605.13450.", "metric": "score_0_200", "leaderboard": "https://arxiv.org/abs/2605.13450"},
+    {"id": "dat", "name": "DAT (Divergent Association Task)", "category": "reasoning", "description": "Divergent Association Task — generate 10 nouns maximally distant semantically. Range [0, 200]. arxiv 2605.13450.", "metric": "score_0_200", "leaderboard": "https://arxiv.org/abs/2605.13450"},
+    {"id": "cdat", "name": "CDAT (Constrained DAT)", "category": "reasoning", "description": "Constrained Divergent Association Task — DAT with semantic constraints. arxiv 2605.13450.", "metric": "score", "leaderboard": "https://arxiv.org/abs/2605.13450"},
+    {"id": "rat_30", "name": "RAT-30 (Remote Associates Test)", "category": "reasoning", "description": "Remote Associates Test — 30-item zero-shot strict accuracy. arxiv 2605.13450.", "metric": "accuracy_of_30", "leaderboard": "https://arxiv.org/abs/2605.13450"},
+    {"id": "pace_creativity", "name": "PACE Creativity", "category": "reasoning", "description": "Probabilistic Associative Creativity Evaluation. Range [0, 1]. arxiv 2605.13450.", "metric": "score_0_1", "leaderboard": "https://arxiv.org/abs/2605.13450"}
+  ],
+  "scores": [
+    {"_section": "=== RealICU-Gold — Acute Problems Hit@5 (paper headline) ===",
+     "model": "google/gemini-3.1-pro", "benchmark": "realicu_gold", "score": 0.486, "unit": "hit@5", "_source": "https://arxiv.org/abs/2605.13542", "_note": "Table 2 p.7 — full-context bare baseline."},
+    {"model": "openai/gpt-5.4", "benchmark": "realicu_gold", "score": 0.510, "unit": "hit@5", "_source": "https://arxiv.org/abs/2605.13542", "_note": "Best on RealICU-Gold (still 'unsolved' per paper)."},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "realicu_gold", "score": 0.384, "unit": "hit@5", "_source": "https://arxiv.org/abs/2605.13542"},
+
+    {"_section": "=== RealICU-Scale — Acute Problems Hit@5 (RAG baseline) ===",
+     "model": "google/gemini-3.1-pro", "benchmark": "realicu_scale", "score": 0.568, "unit": "hit@5", "_source": "https://arxiv.org/abs/2605.13542", "_note": "Table 4 p.15 — RAG baseline."},
+    {"model": "openai/gpt-5.4", "benchmark": "realicu_scale", "score": 0.584, "unit": "hit@5", "_source": "https://arxiv.org/abs/2605.13542"},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "realicu_scale", "score": 0.401, "unit": "hit@5", "_source": "https://arxiv.org/abs/2605.13542", "_note": "Full-context arm (used for Qwen due to no RAG run)."},
+
+    {"_section": "=== ExploitBench ACE bugs (out of 41) — headline ===",
+     "model": "anthropic/claude-mythos-preview", "benchmark": "exploitbench_ace", "score": 18, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153", "_note": "Mythos Preview private model leads dramatically (18/41 ACE = 43.9%)."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "exploitbench_ace", "score": 0, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "exploitbench_ace", "score": 0, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "anthropic/claude-haiku-4.5", "benchmark": "exploitbench_ace", "score": 0, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "openai/gpt-5.5", "benchmark": "exploitbench_ace", "score": 0, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153", "_note": "Bare-arm 0/41 ACE; vendor-CLI (Codex) arm raises to 1/41."},
+    {"model": "google/gemini-3.1-pro", "benchmark": "exploitbench_ace", "score": 0, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "zhipu/glm-5.1", "benchmark": "exploitbench_ace", "score": 0, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "exploitbench_ace", "score": 0, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "minimax/m2.7", "benchmark": "exploitbench_ace", "score": 0, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+
+    {"_section": "=== ExploitBench T3 Engine primitives ===",
+     "model": "anthropic/claude-mythos-preview", "benchmark": "exploitbench_t3", "score": 35, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "exploitbench_t3", "score": 16, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153", "_note": "Best public model on T3."},
+    {"model": "openai/gpt-5.5", "benchmark": "exploitbench_t3", "score": 13, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "exploitbench_t3", "score": 12, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "exploitbench_t3", "score": 10, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "zhipu/glm-5.1", "benchmark": "exploitbench_t3", "score": 3, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "anthropic/claude-haiku-4.5", "benchmark": "exploitbench_t3", "score": 0, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "exploitbench_t3", "score": 0, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "minimax/m2.7", "benchmark": "exploitbench_t3", "score": 0, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+
+    {"_section": "=== ExploitBench T4 Triggering ===",
+     "model": "anthropic/claude-mythos-preview", "benchmark": "exploitbench_t4", "score": 38, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "openai/gpt-5.5", "benchmark": "exploitbench_t4", "score": 27, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "exploitbench_t4", "score": 24, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "exploitbench_t4", "score": 23, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "exploitbench_t4", "score": 21, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "exploitbench_t4", "score": 16, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "zhipu/glm-5.1", "benchmark": "exploitbench_t4", "score": 13, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "minimax/m2.7", "benchmark": "exploitbench_t4", "score": 6, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+    {"model": "anthropic/claude-haiku-4.5", "benchmark": "exploitbench_t4", "score": 5, "unit": "bugs", "_source": "https://arxiv.org/abs/2605.14153"},
+
+    {"_section": "=== GeoBuildBench Success Rate ===",
+     "model": "openai/gpt-5.1", "benchmark": "geobuildbench", "score": 78.9, "unit": "%", "_source": "https://arxiv.org/abs/2605.13167", "_note": "Table 1 p.7 — best."},
+    {"model": "google/gemini-3-flash", "benchmark": "geobuildbench", "score": 75.3, "unit": "%", "_source": "https://arxiv.org/abs/2605.13167"},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "geobuildbench", "score": 42.2, "unit": "%", "_source": "https://arxiv.org/abs/2605.13167", "_note": "Qwen3-VL-235B-A22B-Instruct, vision-enabled mode."},
+    {"model": "meta/llama-3.2-90b-vision", "benchmark": "geobuildbench", "score": 21.3, "unit": "%", "_source": "https://arxiv.org/abs/2605.13167"},
+
+    {"_section": "=== KnotBench overall accuracy ===",
+     "model": "anthropic/claude-opus-4.7", "benchmark": "knotbench", "score": 51.65, "unit": "%", "_source": "https://arxiv.org/abs/2605.09900"},
+    {"model": "anthropic/claude-opus-4.7-thinking", "benchmark": "knotbench", "score": 54.60, "unit": "%", "_source": "https://arxiv.org/abs/2605.09900", "_note": "Best — thinking-mode +2.95pt over non-thinking."},
+    {"model": "openai/gpt-5", "benchmark": "knotbench", "score": 43.00, "unit": "%", "_source": "https://arxiv.org/abs/2605.09900"},
+    {"model": "openai/gpt-5-thinking", "benchmark": "knotbench", "score": 52.25, "unit": "%", "_source": "https://arxiv.org/abs/2605.09900", "_note": "Thinking-mode +9.25pt over non-thinking — much bigger uplift than Claude."},
+
+    {"_section": "=== DRAT (Divergent Remote Association Test) — frontier subset ===",
+     "model": "openai/gpt-5.4-nano", "benchmark": "drat", "score": 69.11, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450", "_note": "Best on DRAT (UIUC, May 13 2026, Table 3 Appendix p.27-29)."},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "drat", "score": 68.43, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "drat", "score": 54.44, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "drat", "score": 54.22, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "drat", "score": 47.45, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/gpt-5-mini", "benchmark": "drat", "score": 42.27, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/gpt-5-nano", "benchmark": "drat", "score": 49.27, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/o3", "benchmark": "drat", "score": 33.28, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/gpt-5.4", "benchmark": "drat", "score": 51.99, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/gpt-5", "benchmark": "drat", "score": 16.68, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "alibaba/qwen3-8b", "benchmark": "drat", "score": 34.50, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "alibaba/qwen3-32b", "benchmark": "drat", "score": 23.39, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "drat", "score": 28.77, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "drat", "score": 21.24, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+
+    {"_section": "=== DAT (Divergent Association Task) — frontier subset ===",
+     "model": "openai/gpt-5.4", "benchmark": "dat", "score": 91.72, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450", "_note": "Best on DAT."},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "dat", "score": 89.70, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/o3", "benchmark": "dat", "score": 89.46, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "dat", "score": 89.69, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/gpt-5", "benchmark": "dat", "score": 89.33, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "dat", "score": 89.26, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "dat", "score": 86.69, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "dat", "score": 86.67, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "dat", "score": 84.95, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "dat", "score": 83.80, "unit": "score", "_source": "https://arxiv.org/abs/2605.13450"},
+
+    {"_section": "=== RAT-30 (Remote Associates Test, 30-item) — frontier subset ===",
+     "model": "openai/gpt-5-mini", "benchmark": "rat_30", "score": 97, "unit": "of_30", "_source": "https://arxiv.org/abs/2605.13450", "_note": "Tied #1 along with gpt-4.1 + mistral-large-2407."},
+    {"model": "openai/gpt-4.1", "benchmark": "rat_30", "score": 97, "unit": "of_30", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/gpt-5.4", "benchmark": "rat_30", "score": 93, "unit": "of_30", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/o3", "benchmark": "rat_30", "score": 93, "unit": "of_30", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/gpt-5", "benchmark": "rat_30", "score": 93, "unit": "of_30", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "rat_30", "score": 90, "unit": "of_30", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "rat_30", "score": 90, "unit": "of_30", "_source": "https://arxiv.org/abs/2605.13450"},
+
+    {"_section": "=== PACE Creativity (probabilistic associative) ===",
+     "model": "anthropic/claude-sonnet-4.5", "benchmark": "pace_creativity", "score": 0.756, "unit": "ratio", "_source": "https://arxiv.org/abs/2605.13450", "_note": "Best PACE."},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "pace_creativity", "score": 0.750, "unit": "ratio", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/o3", "benchmark": "pace_creativity", "score": 0.748, "unit": "ratio", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/gpt-5", "benchmark": "pace_creativity", "score": 0.747, "unit": "ratio", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "pace_creativity", "score": 0.742, "unit": "ratio", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "pace_creativity", "score": 0.739, "unit": "ratio", "_source": "https://arxiv.org/abs/2605.13450"},
+    {"model": "openai/gpt-5.4", "benchmark": "pace_creativity", "score": 0.727, "unit": "ratio", "_source": "https://arxiv.org/abs/2605.13450"}
+  ]
+}
