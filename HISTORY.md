@@ -1,5 +1,46 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-15 (Session 15): Daily ref-link sweep — May 11-13 arxiv PDF mine, 5 new benchmark papers
+
+User-prompted daily sweep. Initial scout found frontier vendor week was quiet (zero new SKUs Mon-Wed from OpenAI/Anthropic/Google/xAI/etc.) but identified 14 new arxiv benchmark papers from May 11-13. Dispatched 2 parallel mining subagents on the 5 highest-yield papers; the all-14-at-once approach hit a 32MB request-size guardrail and was split into focused batches.
+
+### 42. Arxiv PDF mine — May 11-13 benchmark papers (commit `6d02663`)
+
+**Ingest deltas** (verified from `data/export/`):
+
+| Metric | Before | After | Δ |
+|---|---:|---:|---:|
+| Models | 1386 | **1388** | **+2** (thinking-mode variants) |
+| Benchmarks | 966 | **978** | **+12** |
+| Scores | 5261 | **5340** | **+79** |
+
+**5 papers ingested with headline findings**:
+
+| Paper | Bench(s) | Top finding |
+|---|---|---|
+| **ExploitBench** (CMU, arxiv 2605.14153) | `exploitbench_ace` / `_t3` / `_t4` | **Mythos Preview ACE = 18/41 bugs (43.9%)**. ALL 8 public frontiers score 0/41 ACE bare-arm; GPT-5.5 Codex CLI raises to 1/41. First bench surfacing Mythos's quiet dominance |
+| **RealICU** (TUM+LMU+Oxford+Sheffield+Imperial, arxiv 2605.13542) | `realicu_gold` + `_scale` | GPT-5.4 **0.510** Acute Problems Hit@5; paper declares "remains unsolved" (Oracle F1=0.987). Long-context ICU is a current capability cliff |
+| **GeoBuildBench** (PKU, arxiv 2605.13167) | `geobuildbench` | GPT-5.1 **78.9%** Success Rate, Gemini-3-Flash 75.3% (close pair); Qwen3-VL-235B 42.2%, Llama-3.2-90B-Vision 21.3% |
+| **KnotBench** (NYU+USC, arxiv 2605.09900) | `knotbench` | Claude Opus 4.7+thinking **54.60%** > GPT-5+thinking 52.25% > Claude 51.65% > GPT-5 43.00%. GPT-5 thinking uplift +9.25pt is **3× larger** than Claude's +2.95pt |
+| **DRAT/creativity family** (UIUC, arxiv 2605.13450) | `drat` / `dat` / `cdat` / `rat_30` / `pace_creativity` | GPT-5.4-**nano** leads DRAT at 69.11 (beats gpt-5.4 51.99); Qwen3-235B 68.43 close 2nd. RAT-30 tied #1: GPT-5-mini = GPT-4.1 = Mistral-Large-2407 at 97/30. Bigger isn't always better for creativity |
+
+**2 new models registered**:
+- `anthropic/claude-opus-4.7-thinking` — separate row for thinking-mode evaluations
+- `openai/gpt-5-thinking` — same pattern; large KnotBench delta from non-thinking
+
+**Cross-cutting observations**:
+- **Mythos Preview's exploit ceiling matters**: This is the first benchmark where Anthropic's private Mythos Preview shows a 18× advantage over all public frontiers on a cybersec capability — and the only public model that reaches even 1 ACE bug is GPT-5.5 with the Codex CLI harness.
+- **Thinking-mode asymmetry**: GPT-5's thinking-mode uplift (+9.25pt on KnotBench) is 3× larger than Claude Opus 4.7's (+2.95pt) — suggesting different RL strategies dominate at different points.
+- **Creativity inverse-scaling**: GPT-5.4-nano > GPT-5.4 on DRAT (69.11 vs 51.99), GPT-5-mini = GPT-4.1 on RAT-30. Specialist creativity tests reward smaller models with less "anchored" generation.
+
+**Quiet on vendors**: Zero new frontier model SKUs from OpenAI, Anthropic, Google, xAI, DeepSeek, Moonshot, Qwen, Zhipu, Mistral, Cohere, Apple, Microsoft Phi, NVIDIA, LG, SKT, KT, Sber, Yandex, TII, MBZUAI in the 36-hour window. Only product/distribution announcements: OpenAI Codex on mobile, Anthropic × Gates Foundation $200M partnership, Anthropic "Claude for Small Business" — none model-level. Google I/O 2026 scheduled May 19-20.
+
+**Skipped per strict-attribution**: VectraYX-Nano (42M Spanish cybersec LM, paper has internal evals only — no frontier comparison); 7 May-11 papers (SciVQR, AgentRx, GraphInstruct, TeleResilienceBench, gwBenchmarks, CommonWhy, ATD-Trans) deferred to next pass; Epoch ECI CSV grew claim was incorrect (172 → still 172, subagent misread).
+
+**Live deploy**: 5 new Resources tab entries. Cache-bust `app.js v=20260514b → 20260515a`. 4 audit-trail markdowns (`sweep_2026_05_15.md` + `mine_2026_05_15_batch_a.md` + `_batch_b.md`). 5 arxiv PDFs archived per system_card_pdf_storage rule.
+
+---
+
 ## 2026-05-14 (Session 14): Recent arxiv sweep + deepfake / media forensics benchmark family (first DB coverage)
 
 ### 41. Deepfake / AIGC detection benchmarks (commit `767061a`)
