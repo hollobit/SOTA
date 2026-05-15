@@ -1,5 +1,80 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-15 (Session 15): Daily ref-link sweep + user-provided refs (SDE + HAL + The Well) + Science FM / Universal FM coverage expansion
+
+### 44. Science FM + Universal FM coverage expansion (commit `d3f429a`)
+
+User-prompted: "Science Foundation model 및 Universal foundation model 들에 대해 조사하고 벤치마크 데이터셋과 평가 결과들이 있는지 조사해주세요". Dispatched 2 parallel research subagents covering 22 SciFM families + 17 UFM categories.
+
+**Ingest deltas**:
+
+| Metric | Before | After | Δ |
+|---|---:|---:|---:|
+| Models | 1391 | **1433** | **+42** |
+| Benchmarks | 994 | **1006** | **+12** |
+| Scores | 5408 | **5452** | **+44** |
+
+**SCIENCE FM ADDITIONS** (drug discovery + materials + climate + bio + time series):
+
+| Domain | Top FM | Headline |
+|---|---|---|
+| Protein-ligand docking | **AlphaFold 3** | PoseBusters v2 76% success (+50% rel. vs Vina/RFAA), Nature 2024 |
+| Protein binder design | **AlphaProteo** | BHRF1 88% experimental success, 3-300× tighter affinity |
+| Weather | **Aurora (MSFT)** | Beats IFS on 92% of WeatherBench-2 targets; 24% RMSE reduction at >12h; 5000× compute speedup |
+| Drug discovery | **TxGemma 27B** | TDC 64/66 ≥ Tx-LLM, 50/66 ≥ specialist |
+| Drug discovery (agentic) | **TxGemma Agentic-Tx** | +52.3% rel. over o3-mini on HLE chem/bio |
+| Genomics | **Evo 2** (Arc Institute) | 7B+40B DNA-RNA-protein FM, Nature 2025 |
+| Protein generation | **ESM-3** | ESMGFP novel design at 58% sequence similarity to natural |
+| Materials | **EquiformerV3+DeNS-OAM** | MatBench Discovery 0.931 F1 / 0.018 eV/atom MAE |
+| Time series | **Moirai 2.0 / TimesFM 2.5** | GIFT-Eval rank #1 |
+| Catalyst | **EquiformerV2-153M** | OC20 S2EF force MAE 14.2 meV/Å |
+
+**UNIVERSAL FM ADDITIONS** (image + video + voice + music):
+
+| Category | Top model | Score |
+|---|---|---:|
+| 🖼️ AA T2I Arena | **OpenAI GPT Image 2** | **1336 Elo** #1 |
+| 🖼️ AA T2I Arena | Google Nano Banana 2 (Gemini 3.1 Flash Image) | 1263 |
+| 🖼️ AA T2I Arena | HiDream-O1 (open-weights leader) | 1187 |
+| 🖼️ AA T2I Arena | BFL FLUX.2 dev | 1159 |
+| 🎬 AA T2V Arena | **ByteDance Dreamina Seedance 2.0** | **1222 Elo** #1 |
+| 🎬 AA T2V Arena | Alibaba HappyHorse 1.0 | 1214 |
+| 🎬 AA T2V Arena | Veo 3.1 | 1102 |
+| 🎬 AA T2V Arena | Sora 2 December | 1087 |
+| 🎬 AA T2V Arena | LTX-2.3 Fast (top open-weights) | 979 |
+| 🎤 Big Bench Audio | xAI Grok Voice Think Fast 1.0 | 97.1% |
+| 🎤 Big Bench Audio | xAI Grok Voice Agent | 92.3% |
+| 🎵 Suno music Elo | Suno V5 | 1293 |
+
+**Cross-cutting findings**:
+
+1. **Specialist-vs-Generalist asymmetry confirmed across SciFM**: AlphaFold 3 / Aurora / MatterGen / Evo dominate all in-domain metrics; frontier LLMs (GPT-5/Claude/Gemini) compete only on text-reasoning chem/bio benches. TDC ADMET had a 2026 reproducibility scandal (only 3/22 top models reproducible per bioRxiv 2026.02.26.708193) — register but be conservative.
+
+2. **Image gen frontier dominated by API-only**: GPT Image 2 + Nano Banana 2 lead open-weights by ~120 Elo (HiDream-O1 best open at 1187 vs GPT Image 2 1336).
+
+3. **Video gen has Chinese dominance**: Top 2 (Dreamina Seedance + HappyHorse) at >1200 Elo are Chinese. Veo 3.1 and Sora 2 sub-1110. Open-weights LTX-2.3 ~250 Elo behind frontier.
+
+4. **Time-series FMs converging at similar level**: Moirai 2.0, TimesFM 2.5, Chronos-2 all claim GIFT-Eval rank #1 with relative-only margins. Hard to register absolute scores without HF Space scraping.
+
+**Skipped** (no clean absolute scores):
+- TabPFN-3 (relative-only +200/+420 Elo deltas)
+- GIFT-Eval full leaderboard (rank-only metadata)
+- VBench-2.0 sub-dimensions (HF Space iframe-rendered)
+- DALL-E 4 (does not exist; OpenAI now uses GPT Image naming)
+- MovieGen (Meta, not released)
+
+**Live deploy**: 13 new Resources tab entries. Cache-bust `app.js v=20260515b → 20260515c`. Audit trail: `resource/research_scifm_2026_05_15.md` + `research_ufm_2026_05_15.md`.
+
+### Session 15 cumulative deltas (final)
+
+| Metric | Before Session 15 | After | Δ |
+|---|---:|---:|---:|
+| Models | 1386 | **1433** | **+47** |
+| Benchmarks | 966 | **1006** | **+40** |
+| Scores | 5261 | **5452** | **+191** |
+
+---
+
 ## 2026-05-15 (Session 15): Daily ref-link sweep + user-provided refs (SDE + HAL + The Well)
 
 ### 43. User-provided refs — SDE + HAL + The Well evaluation (commit `0def876`)
