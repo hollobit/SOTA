@@ -2623,6 +2623,426 @@
     "metric": "accuracy_ratio"
   },
   {
+    "id": "realicu_gold",
+    "name": "RealICU-Gold",
+    "category": "medical",
+    "description": "Long-context ICU benchmark, gold set: 94 MIMIC-IV patients / 930 windows. Headline metric: Acute Problems Hit@5 (set-matching). Bench 'remains unsolved' per paper — all configs far below Oracle F1=0.987. arxiv 2605.13542 (TUM+LMU+Oxford+Sheffield+Imperial, May 13 2026).",
+    "metric": "hit_at_5"
+  },
+  {
+    "id": "realicu_scale",
+    "name": "RealICU-Scale",
+    "category": "medical",
+    "description": "RealICU at scale — 11,862 windows, Oracle-labeled. Same metric family (Acute Problems Hit@5 headline). RAG baseline used for Gemini/GPT due to full-context compute cost.",
+    "metric": "hit_at_5"
+  },
+  {
+    "id": "exploitbench_ace",
+    "name": "ExploitBench (ACE bugs / 41)",
+    "category": "cybersecurity",
+    "description": "ExploitBench V8 N-day exploit capability ladder (41 JS+WebAssembly bugs, patch given, 300-turn budget). Headline: ACE (arbitrary code execution) count out of 41 — top of 5-tier ladder (T5 Coverage → T4 Triggering → T3 Engine → T2 General → pc_control → ace). arxiv 2605.14153 (CMU, Lee & Brumley, May 13 2026).",
+    "metric": "bug_count_of_41"
+  },
+  {
+    "id": "exploitbench_t3",
+    "name": "ExploitBench (T3 Engine bugs / 41)",
+    "category": "cybersecurity",
+    "description": "ExploitBench Tier 3 — engine primitives reached, out of 41 bugs.",
+    "metric": "bug_count_of_41"
+  },
+  {
+    "id": "exploitbench_t4",
+    "name": "ExploitBench (T4 Triggering bugs / 41)",
+    "category": "cybersecurity",
+    "description": "ExploitBench Tier 4 — triggering reached, out of 41 bugs.",
+    "metric": "bug_count_of_41"
+  },
+  {
+    "id": "geobuildbench",
+    "name": "GeoBuildBench",
+    "category": "math",
+    "description": "Interactive geometry construction from Chinese-textbook natural-language problems via DSL execution — 489 problems. Headline: Success Rate %. arxiv 2605.13167 (Peking University, May 13 2026).",
+    "metric": "success_rate"
+  },
+  {
+    "id": "knotbench",
+    "name": "KnotBench",
+    "category": "reasoning",
+    "description": "Diagrammatic knot reasoning for VLMs — 2,000-item locked split across 14 tasks (A0-A3 × I/S, B0 × I/S, C0/C1, D0/D1). NYU+USC (Liu & Liu), May 11 2026. arxiv 2605.09900.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "drat",
+    "name": "DRAT (Divergent Remote Association Test)",
+    "category": "reasoning",
+    "description": "LLM creativity bench — Divergent Remote Association Test. UIUC, May 13 2026. Range [0, 200]. arxiv 2605.13450.",
+    "metric": "score_0_200"
+  },
+  {
+    "id": "dat",
+    "name": "DAT (Divergent Association Task)",
+    "category": "reasoning",
+    "description": "Divergent Association Task — generate 10 nouns maximally distant semantically. Range [0, 200]. arxiv 2605.13450.",
+    "metric": "score_0_200"
+  },
+  {
+    "id": "cdat",
+    "name": "CDAT (Constrained DAT)",
+    "category": "reasoning",
+    "description": "Constrained Divergent Association Task — DAT with semantic constraints. arxiv 2605.13450.",
+    "metric": "score"
+  },
+  {
+    "id": "rat_30",
+    "name": "RAT-30 (Remote Associates Test)",
+    "category": "reasoning",
+    "description": "Remote Associates Test — 30-item zero-shot strict accuracy. arxiv 2605.13450.",
+    "metric": "accuracy_of_30"
+  },
+  {
+    "id": "pace_creativity",
+    "name": "PACE Creativity",
+    "category": "reasoning",
+    "description": "Probabilistic Associative Creativity Evaluation. Range [0, 1]. arxiv 2605.13450.",
+    "metric": "score_0_1"
+  },
+  {
+    "id": "posebusters_v2",
+    "name": "PoseBusters v2",
+    "category": "ai4s",
+    "description": "Protein-ligand docking benchmark. Success = RMSD<2Å + PoseBusters-valid. AlphaFold 3 paper headline.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "bhrf1_binder",
+    "name": "BHRF1 protein binder design",
+    "category": "ai4s",
+    "description": "AlphaProteo binder design success rate. Experimental confirmation on BHRF1 target.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "weatherbench_2_ifs_targets",
+    "name": "WeatherBench-2 vs IFS targets",
+    "category": "ai4s",
+    "description": "% of variable/level/lead-time combinations where the model RMSE is lower than IFS (deterministic forecast). Aurora paper claims 92% across all targets.",
+    "metric": "percent_of_targets"
+  },
+  {
+    "id": "tdc_66_vs_genrlst",
+    "name": "TDC 66-task vs Tx-LLM (generalist baseline)",
+    "category": "ai4s",
+    "description": "Therapeutics Data Commons 66-task suite — count of tasks where model meets or beats Tx-LLM baseline.",
+    "metric": "tasks_won_of_66"
+  },
+  {
+    "id": "tdc_66_vs_specialist",
+    "name": "TDC 66-task vs specialist",
+    "category": "ai4s",
+    "description": "TDC 66-task tasks won vs domain specialists.",
+    "metric": "tasks_won_of_66"
+  },
+  {
+    "id": "oc20_s2ef_force_mae",
+    "name": "OC20 S2EF Force MAE",
+    "category": "ai4s",
+    "description": "Open Catalyst 2020 S2EF (Structure to Energy and Forces) force MAE in meV/Å. Lower=better.",
+    "metric": "force_mae_mev_a"
+  },
+  {
+    "id": "oc20_s2ef_energy_mae",
+    "name": "OC20 S2EF Energy MAE",
+    "category": "ai4s",
+    "description": "OC20 S2EF energy MAE in meV. Lower=better.",
+    "metric": "energy_mae_mev"
+  },
+  {
+    "id": "esmgfp_sequence_identity",
+    "name": "ESMGFP sequence identity",
+    "category": "ai4s",
+    "description": "% sequence similarity of ESM-3-generated GFP to closest natural homolog (lower=more novel design).",
+    "metric": "percent_identity"
+  },
+  {
+    "id": "aa_t2i_arena_elo",
+    "name": "Artificial Analysis Text-to-Image Arena Elo",
+    "category": "multimodal",
+    "description": "AA T2I head-to-head arena Elo ranking. Higher=better. ~9,576 paired comparisons at top of leaderboard.",
+    "metric": "elo"
+  },
+  {
+    "id": "aa_t2v_arena_elo",
+    "name": "Artificial Analysis Text-to-Video Arena Elo",
+    "category": "multimodal",
+    "description": "AA T2V head-to-head arena Elo (with audio). Higher=better.",
+    "metric": "elo"
+  },
+  {
+    "id": "aa_i2v_arena_elo",
+    "name": "Artificial Analysis Image-to-Video Arena Elo",
+    "category": "multimodal",
+    "description": "AA I2V head-to-head arena Elo (with audio).",
+    "metric": "elo"
+  },
+  {
+    "id": "suno_elo",
+    "name": "Suno music side-by-side Elo",
+    "category": "multimodal",
+    "description": "Suno music generation human-rated side-by-side Elo. Higher=better.",
+    "metric": "elo"
+  },
+  {
+    "id": "sde_avg",
+    "name": "SDE (Scientific Discovery Evaluation) — Average",
+    "category": "ai4s",
+    "description": "Scenario-grounded scientific discovery benchmark across 4 domains × 43 scenarios × 1,125 questions. arxiv 2512.15567 (Deep Principle + 35 labs, May 2026). Datasets at HF deep-principle/datasets. Metric: exact-match accuracy averaged across 43 scenarios.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "sde_hard",
+    "name": "SDE-hard (86 hardest questions)",
+    "category": "ai4s",
+    "description": "SDE-hard subset: 2 hardest questions per scenario where top LLMs make most mistakes. Currently UNSOLVED — gpt-5-pro best at 22.4%, all others ≤12%. arxiv 2512.15567.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "sde_biology",
+    "name": "SDE-Biology",
+    "category": "ai4s",
+    "description": "SDE biology domain — 10 scenarios × 200 questions. arxiv 2512.15567.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "sde_chemistry",
+    "name": "SDE-Chemistry",
+    "category": "ai4s",
+    "description": "SDE chemistry domain — 12 scenarios × 276 questions. arxiv 2512.15567.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "sde_materials",
+    "name": "SDE-Materials",
+    "category": "ai4s",
+    "description": "SDE materials domain — 13 scenarios × 486 questions. arxiv 2512.15567.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "sde_physics",
+    "name": "SDE-Physics",
+    "category": "ai4s",
+    "description": "SDE physics domain — 8 scenarios × 163 questions. arxiv 2512.15567.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "sde_protein_design",
+    "name": "SDE Project — Protein Design",
+    "category": "ai4s",
+    "description": "SDE-harness project-level protein design optimization (Top-1 normalized score, 5-task avg). arxiv 2512.15567.",
+    "metric": "score_top1"
+  },
+  {
+    "id": "sde_gene_editing",
+    "name": "SDE Project — Gene Editing (IFNG)",
+    "category": "ai4s",
+    "description": "SDE-harness gene editing IFNG discovery. arxiv 2512.15567.",
+    "metric": "score"
+  },
+  {
+    "id": "sde_retrosynthesis",
+    "name": "SDE Project — Retrosynthesis (Pistachio Hard)",
+    "category": "ai4s",
+    "description": "SDE-harness retrosynthesis solve rate on Pistachio Hard. arxiv 2512.15567.",
+    "metric": "solve_rate"
+  },
+  {
+    "id": "sde_molecule_optimization",
+    "name": "SDE Project — Molecule Optimization",
+    "category": "ai4s",
+    "description": "SDE-harness molecule optimization (jnk3 + gsk3β + sitagliptin_mpo, normalized AUC/Avg-Top-10). arxiv 2512.15567.",
+    "metric": "score"
+  },
+  {
+    "id": "sde_tmc_optimization",
+    "name": "SDE Project — TMC Optimization",
+    "category": "ai4s",
+    "description": "SDE-harness Transition Metal Complex (TMC) optimization, normalized score. arxiv 2512.15567.",
+    "metric": "score"
+  },
+  {
+    "id": "sde_crystal_design",
+    "name": "SDE Project — Crystal Design (MatLLMSearch SUN)",
+    "category": "ai4s",
+    "description": "SDE-harness crystal design — MatLLMSearch S.U.N. (Stable + Unique + Novel) rate. arxiv 2512.15567.",
+    "metric": "sun_rate"
+  },
+  {
+    "id": "sde_ising_model",
+    "name": "SDE Project — Ising Model",
+    "category": "ai4s",
+    "description": "SDE-harness Ising model symbolic discovery, normalized score (1.0 = ground truth). arxiv 2512.15567.",
+    "metric": "score"
+  },
+  {
+    "id": "sde_symbolic_regression",
+    "name": "SDE Project — Symbolic Regression",
+    "category": "ai4s",
+    "description": "SDE-harness symbolic regression, normalized score (avg of Acc@0.1 ID/OOD and NMSE). arxiv 2512.15567.",
+    "metric": "score"
+  },
+  {
+    "id": "corebench_hard",
+    "name": "CORE-Bench Hard",
+    "category": "agent",
+    "description": "Code-Replication on Research Eval (Hard split) — agent benchmark for reproducing published-paper computational experiments end-to-end. HAL is the official leaderboard. arxiv ref: Siegel et al.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "tau_bench_airline",
+    "name": "TAU-bench Airline (original)",
+    "category": "agent",
+    "description": "Original TAU-bench Airline domain (Yao et al. 2024 — distinct from tau2_airline / tau3_airline). Tool-calling customer-service agent eval. HAL live leaderboard provides scaffold-paired scores.",
+    "metric": "pass_at_1"
+  },
+  {
+    "id": "vbench_total",
+    "name": "VBench Total Score",
+    "category": "multimodal",
+    "description": "VBench composite total score across 16 dimensions (Quality+Semantic weighted average). Higher=better. Vchitect Shanghai AI Lab.",
+    "metric": "percent"
+  },
+  {
+    "id": "vbench_quality",
+    "name": "VBench Quality Score",
+    "category": "multimodal",
+    "description": "VBench Quality sub-score: subject consistency, motion smoothness, aesthetic, imaging quality, etc.",
+    "metric": "percent"
+  },
+  {
+    "id": "vbench_semantic",
+    "name": "VBench Semantic Score",
+    "category": "multimodal",
+    "description": "VBench Semantic sub-score: object class, multi-objects, color, scene, etc.",
+    "metric": "percent"
+  },
+  {
+    "id": "vbench2_total",
+    "name": "VBench-2.0 Total Score",
+    "category": "multimodal",
+    "description": "VBench-2.0 (arxiv 2503.21755) intrinsic faithfulness, mean of 5 categories: Creativity + Commonsense + Controllability + Human Fidelity + Physics.",
+    "metric": "percent"
+  },
+  {
+    "id": "vbench2_physics",
+    "name": "VBench-2.0 Physics",
+    "category": "multimodal",
+    "description": "Physics sub-dim: Mechanics + Material + Thermotics + Multi-View Consistency.",
+    "metric": "percent"
+  },
+  {
+    "id": "vbench2_commonsense",
+    "name": "VBench-2.0 Commonsense",
+    "category": "multimodal",
+    "description": "VBench-2.0 dynamic spatial + dynamic attribute + motion order + human interaction.",
+    "metric": "percent"
+  },
+  {
+    "id": "vbench2_controllability",
+    "name": "VBench-2.0 Controllability",
+    "category": "multimodal",
+    "description": "VBench-2.0 complex landscape + complex plot + camera motion + motion rationality + instance preservation.",
+    "metric": "percent"
+  },
+  {
+    "id": "vbench2_human_fidelity",
+    "name": "VBench-2.0 Human Fidelity",
+    "category": "multimodal",
+    "description": "VBench-2.0 human anatomy + clothes + identity.",
+    "metric": "percent"
+  },
+  {
+    "id": "vbench2_creativity",
+    "name": "VBench-2.0 Creativity",
+    "category": "multimodal",
+    "description": "VBench-2.0 composition + diversity.",
+    "metric": "percent"
+  },
+  {
+    "id": "intphys2",
+    "name": "IntPhys 2",
+    "category": "world-model",
+    "description": "Meta IntPhys 2 — physically plausible vs implausible scenario classification. Part of Physical Reasoning Leaderboard. arxiv 2506.09849.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mvpbench",
+    "name": "MVPBench (Minimal Video Pairs)",
+    "category": "world-model",
+    "description": "MCQ physical understanding with minimal-change video pairs. Meta. arxiv 2506.09987.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "causalvqa",
+    "name": "CausalVQA",
+    "category": "world-model",
+    "description": "Counterfactual + anticipation + planning VQA on physical videos. Meta. arxiv 2506.09943.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "ss_v2_top1",
+    "name": "Something-Something v2 (Top-1)",
+    "category": "world-model",
+    "description": "Action recognition top-1 accuracy on SSv2 dataset. Standard video understanding bench.",
+    "metric": "top1_accuracy"
+  },
+  {
+    "id": "epic_kitchens_recall5",
+    "name": "Epic-Kitchens-100 Recall@5",
+    "category": "world-model",
+    "description": "Human action anticipation Recall@5 on Epic-Kitchens-100.",
+    "metric": "recall"
+  },
+  {
+    "id": "perception_test",
+    "name": "Perception Test",
+    "category": "world-model",
+    "description": "DeepMind Perception Test video QA benchmark.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "tempcompass",
+    "name": "TempCompass",
+    "category": "world-model",
+    "description": "Temporal video understanding benchmark.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "pai_bench_text2world_post",
+    "name": "PAI-Bench Text2World (post-train)",
+    "category": "world-model",
+    "description": "NVIDIA Physical AI Benchmark — Text-to-World overall post-training score. arxiv 2511.00062.",
+    "metric": "score"
+  },
+  {
+    "id": "pai_bench_image2world_overall",
+    "name": "PAI-Bench Image2World Overall",
+    "category": "world-model",
+    "description": "NVIDIA Physical AI Benchmark — Image-to-World overall score.",
+    "metric": "score"
+  },
+  {
+    "id": "fvd_av_multiview",
+    "name": "FVD (AV 7-cam multiview)",
+    "category": "world-model",
+    "description": "Fréchet Video Distance with StyleGAN backbone on AV multiview. Lower=better. NVIDIA Cosmos Predict 2.5 paper.",
+    "metric": "fvd"
+  },
+  {
+    "id": "assistantbench",
+    "name": "AssistantBench",
+    "category": "agent",
+    "description": "Open-ended web research questions benchmark — agent must navigate the web to find answers. Used in HAL leaderboard. arxiv 2407.15711.",
+    "metric": "accuracy"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",

@@ -2644,5 +2644,41 @@
     "new_value": "+35 detection models, +16 benchmarks (4 sub-domains), +55 scores (1351->1386 / 950->966 / 5206->5261). 11 Resources entries. Cache-bust app.js v=20260514a -> 20260514b.",
     "old_model": "",
     "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-15",
+    "benchmark_id": "Arxiv PDF mine — 5 May-11/13 benchmark papers (commit 6d02663)",
+    "new_model": "User-prompted daily ref-link sweep. Vendor week quiet (zero new frontier SKUs from OpenAI/Anthropic/Google/xAI/DeepSeek/etc Mon-Wed; Google I/O 2026 May 19-20 upcoming). Initial scout identified 14 new arxiv benchmark papers May 11-13. Dispatched 2 parallel mining subagents on 5 highest-yield papers (32MB request guardrail forced batch splitting). PAPERS INGESTED: (1) ExploitBench (CMU, arxiv 2605.14153) — 41 V8 N-day bugs, 5-tier capability ladder. Mythos Preview achieves ACE on 18/41 (43.9%) — ALL 8 public frontiers score 0/41 ACE bare-arm. (2) RealICU (TUM+LMU+Oxford+Sheffield+Imperial, arxiv 2605.13542) — long-context ICU agent bench. GPT-5.4 0.510 Hit@5 best, paper declares 'remains unsolved' (Oracle F1=0.987). (3) GeoBuildBench (PKU, arxiv 2605.13167) — Chinese geometry construction via DSL. GPT-5.1 78.9% / Gemini-3-Flash 75.3%. (4) KnotBench (NYU+USC, arxiv 2605.09900) — VLM diagrammatic knot reasoning. Claude Opus 4.7+thinking 54.60% best; GPT-5 thinking uplift +9.25pt is 3x larger than Claude's +2.95pt. (5) DRAT/creativity family (UIUC, arxiv 2605.13450) — 7 creativity tests x 54 models. GPT-5.4-nano leads DRAT at 69.11 (beats gpt-5.4 51.99); RAT-30 tied #1: GPT-5-mini=GPT-4.1=Mistral-Large-2407 at 97/30. NEW MODELS: anthropic/claude-opus-4.7-thinking + openai/gpt-5-thinking (thinking-mode variants for KnotBench).",
+    "new_value": "+2 models, +12 benchmarks, +79 scores (1386->1388 / 966->978 / 5261->5340). 5 Resources entries. Cache-bust app.js v=20260514b -> 20260515a. 5 PDFs archived. Skipped: VectraYX-Nano (no frontier comparison), CommonWhy/ATD-Trans/SciVQR/AgentRx/GraphInstruct/TeleResilienceBench/gwBenchmarks (deferred).",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-15",
+    "benchmark_id": "User refs — SDE benchmark + HAL leaderboard + The Well rejected (commit 0def876)",
+    "new_model": "User provided 4 specific links. (1) SDE (arxiv 2512.15567, Deep Principle + 35 labs, May 8 2026) — comprehensive AI-for-Science benchmark. 14 new IDs: sde_avg / sde_hard / 4 domains / 8 project tracks. 1,125 questions across Biology+Chemistry+Materials+Physics + 86 hardest + 8 sde-harness loops. (2) HAL (arxiv 2510.11977, Princeton PLI, Oct 2025) — meta-aggregator over 9 existing benches with cost Pareto frontiers + Docent log analysis. 2 new IDs registered: corebench_hard (HAL official leaderboard) + tau_bench_airline (Yao 2024 original). Live leaderboard fetched 2026-05-15. (3) The Well REJECTED — Polymathic AI 15TB physics-simulation TRAINING dataset, not frontier-LLM eval. (4) hal.cs.princeton.edu = HAL live. NOTABLE FINDINGS: SDE-avg top GPT-5 0.658 / Sonnet 4.5 0.637; SDE-hard top GPT-5-Pro 22.4% is ONLY frontier ≥20%; Project leadership rotates — DeepSeek R1 wins protein design 0.871 + Ising model 1.000 (ground truth); Sonnet 4.5 wins molecule opt 0.756 (gsk3β AUC 0.981 perfect); GPT-5 wins crystal design 0.632. HAL CORE-Bench Hard #1: Claude Opus 4.5 77.78%; SciCode is wall (all frontier <10%); paper finds higher reasoning REDUCES accuracy in 21/36 combos. Strong dissociation SDE vs GPQA/MMMU/AIME confirms SDE is non-saturated frontier eval.",
+    "new_value": "+3 models, +16 benchmarks, +68 scores (1388->1391 / 978->994 / 5340->5408). 3 Resources entries. Cache-bust app.js v=20260515a -> 20260515b. 2 PDFs archived. 9/77 inserted scores hit FK due to ID variants — follow-up.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-15",
+    "benchmark_id": "Science FM + Universal FM coverage expansion (commit d3f429a)",
+    "new_model": "User-prompted SciFM + UFM survey. 2 parallel research subagents covered 22 SciFM families + 17 UFM categories. SCIENCE FMs: AlphaFold 3 (PoseBusters v2 76%), AlphaProteo (BHRF1 88%), Aurora weather (92% IFS targets beaten, Nature 2025), TxGemma 27B (TDC 50/66 ≥ specialist), TxGemma Agentic-Tx (+52.3% rel. on HLE chem/bio), Evo 2 (Arc Institute 7B+40B), ESM-3 (ESMGFP novel 58% identity), 10 MatBench Discovery OAM detectors (EquiformerV3 0.931 F1 best), Moirai 2.0 + TimesFM 2.5 (GIFT-Eval rank #1), OC20 (EquiformerV2 14.2 meV/Å), Chronos-2, ChemFM 3B, Helix-mRNA, AstroCLIP, DNABERT-2. UNIVERSAL FMs: AA T2I Arena (GPT Image 2 1336 #1, Nano Banana 2 1263, HiDream-O1 1187 open-weights leader, FLUX.2 dev 1159), AA T2V Arena (Dreamina Seedance 2.0 1222 #1, HappyHorse 1.0 1214, Veo 3.1 1102, Sora 2 1087, LTX-2.3 979 open-weights), AA I2V Arena (Veo 3.1 Fast 1086), Big Bench Audio (Grok Voice Think Fast 97.1, Grok Voice Agent 92.3), Suno V5 music Elo 1293. CROSS-CUTTING: (1) Specialist dominates SciFM domains (frontier LLMs only compete on text-reasoning). (2) Image gen API-only frontier ~120 Elo above open-weights. (3) Video gen has Chinese dominance (top 2 Chinese >1200 Elo). (4) TDC ADMET reproducibility scandal (3/22 reproducible). SKIPPED: TabPFN-3 (relative-only), GIFT-Eval full board (rank-only), VBench-2.0 sub-dims (iframe), DALL-E 4 (doesn't exist), MovieGen (not released).",
+    "new_value": "+42 models, +12 benchmarks, +44 scores (1391->1433 / 994->1006 / 5408->5452). 13 Resources entries. Cache-bust app.js v=20260515b -> 20260515c.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-15",
+    "benchmark_id": "World Foundation Models — VBench + V-JEPA 2 + Cosmos Predict 2.5 (commit cf1a93b)",
+    "new_model": "User-prompted WFM survey. Most major WFMs already in DB; this batch fills the canonical evaluation benchmark side. NEW BENCHES (20): VBench family (vbench_total/quality/semantic + vbench2_total + 5 category splits — physics/commonsense/controllability/human_fidelity/creativity per arxiv 2503.21755); Meta Physical Reasoning Leaderboard (intphys2/mvpbench/causalvqa per arxiv 2506.09849/09987/09943); V-JEPA video understanding (ss_v2_top1/epic_kitchens_recall5/perception_test/tempcompass per arxiv 2506.09985); NVIDIA Cosmos PAI-Bench (pai_bench_text2world_post/image2world_overall + fvd_av_multiview per arxiv 2511.00062); plus assistantbench fix. NEW MODELS (19): meta/v-jepa-2 + 2.1 (Yann LeCun's video WFM flagship); world-labs/marble (Fei-Fei Li's first commercial product Nov 2025); wayve/gaia-2 (UK driving WFM); vchitect/ipow (VBench #1 at 88.26%); 11 video gen models (Vidu Q1, Wan 2.1/2.2, JT-3.5, MiracleVision V5, Veo 3, original Sora, Open-Sora 2.0, LanDiff, HunyuanVideo, CogVideoX 1.5, Kling 1.6); 3 Cosmos lineage models. KEY FINDINGS: (1) VBench leaderboard Chinese-dominated — top 8 (88.26-85.06%) all Chinese; Veo 3 USA leader at 85.06%. (2) Gemini 1.5 Pro 92.44% IntPhys 2 best frontier; Cosmos Reason 2 8B specialist 58.14%; V-JEPA 2 (1.2B) competitive at 56.4. (3) Cosmos Predict 2.5 14B: 2.8x FVD improvement vs Predict 1 (23.06 vs 63.69). (4) VBench-2.0 reveals frontier weakness — Veo 3 Controllability only 47.04% (vs Human Fidelity 86.88%); Complex Plot universally hard (HunyuanVideo 10.11%). SKIPPED: World Labs Marble (qualitative only), Wayve GAIA-2 (no leaderboard), Sora 2 Pro (no separate eval), 1X Redwood, CALVIN/MetaWorld (no canonical).",
+    "new_value": "+19 models, +20 benchmarks, +59 scores (1433->1452 / 1006->1026 / 5452->5511). 8 Resources entries. Cache-bust app.js v=20260515c -> 20260515d.",
+    "old_model": "",
+    "old_value": ""
   }
 ]
