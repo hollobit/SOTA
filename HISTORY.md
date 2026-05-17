@@ -1,5 +1,49 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-17 (Session 16): GBA Eval ingest — real-world coding agent benchmark
+
+### 46. GBA Eval — Frontier coding agents writing a Game Boy Advance emulator from scratch (commit `9b628a6`)
+
+User provided link: `http://gbaeval.com`. Discovered the underlying JSON API at `https://gbaeval.com/results/leaderboard.json` by inspecting the SPA's results module. 9 frontier AI coding agents asked to write a GBA emulator in WebAssembly from scratch; output graded against Mesen2 reference across 27 testcases × 3 sections (procedural 20% / replay 60% / audio 20%).
+
+**Ingest deltas**:
+- Models: 1452 → 1452 (0 new — all 9 IDs already in DB)
+- Benchmarks: 1026 → **1030** (+4 GBA Eval IDs)
+- Scores: 5511 → **5537** (+26 new)
+
+**4 new benchmarks**: `gba_eval_overall` (composite), `gba_eval_procedural` (CPU/memory/timer/DMA correctness), `gba_eval_replay` (13 game walkthroughs incl. Celeste / Spout / Heartwrench / piuGBA / etc.), `gba_eval_audio` (tonc-snd1 + gameplay audio).
+
+**Leaderboard (Overall)**:
+
+| # | Model | Overall | Procedural | Replay | Audio |
+|---:|---|---:|---:|---:|---:|
+| 1 | **GPT-5.5** | **0.5322** | 0.2444 | **0.6093** | **0.5888** |
+| 2 | Claude Sonnet 4.6 | 0.4876 | 0.4840 | 0.5941 | 0.1714 |
+| 3 | Claude Opus 4.6 | 0.4412 | 0.4354 | 0.5853 | 0.0145 |
+| 4 | Claude Opus 4.7 | 0.4381 | **0.5326** | 0.5196 | 0.0993 |
+| 5 | GPT-5.4 | 0.3160 | 0.2931 | 0.5329 | 0.3655 |
+| 6 | Kimi K2.6 (via Goose) | 0.0086 | 0 | 0.0144 | 0 |
+| 7 | Gemini 3.1 Pro | 0.0085 | 0 | 0.0141 | 0 |
+| 8= | GLM 5.1 (via Goose) | 0.0000 | 0 | 0 | 0 |
+| 8= | MiniMax M2.7 (via Goose) | 0.0000 | 0 | 0 | 0 |
+
+**Notable findings**:
+
+1. **GPT-5.4 → 5.5 jump is +21pp** (0.316 → 0.532) — largest generational gap on this benchmark.
+
+2. **Claude-vs-GPT sub-score asymmetry**:
+   - Claude Opus 4.7 leads **procedural** (CPU/memory tests) at 53.26%
+   - But GPT-5.5 leads both **replay** (60.93%) and **audio** (58.88%)
+   - Claude better at "correct emulator instructions"; GPT better at "playable game output"
+
+3. **Opus 4.6 → 4.7 mild regression** on overall (0.4412 → 0.4381). New model gains +9pp on procedural but loses on replay (-6.6pp). Sample of one but notable.
+
+4. **Gemini 3.1 Pro shockingly weak at 0.0085** — bottom-tier alongside the Goose-wrapped open-source models. One of the rare benchmarks where Gemini 3.1 Pro doesn't compete. Likely because it's a long-horizon coding task (>300k tokens, multi-hour wall-clock) where Gemini's agentic loop underperforms.
+
+1 new Resources entry. Cache-bust `app.js v=20260515d → 20260517a`.
+
+---
+
 ## 2026-05-15 (Session 15): Daily ref-link sweep + user-provided refs (SDE + HAL + The Well) + Science FM / Universal FM / World FM coverage expansion
 
 ### 45. World Foundation Models — VBench + V-JEPA 2 + Cosmos Predict 2.5 (commit `cf1a93b`)
