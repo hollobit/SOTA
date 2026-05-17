@@ -3141,6 +3141,55 @@
     "metric": "score_0_1"
   },
   {
+    "id": "sana_wm_1min_simple_vbench",
+    "name": "SANA-WM 1-min benchmark (Simple) — VBench Overall",
+    "category": "world-model",
+    "description": "SANA-WM one-minute world-model benchmark, Simple-Trajectory split — smooth navigation (arcs, S-curves, backtracking, figure-eights). 80 first-frame scenes × 60s rollouts, balanced across game/indoor/outdoor-city/outdoor-nature. Metric: VBench Overall (higher=better, aggregate of 8 VBench dimensions). arxiv 2605.15178.",
+    "metric": "vbench_overall"
+  },
+  {
+    "id": "sana_wm_1min_hard_vbench",
+    "name": "SANA-WM 1-min benchmark (Hard) — VBench Overall",
+    "category": "world-model",
+    "description": "SANA-WM Hard-Trajectory split — yaw changes, vertical motion, extreme pitch, whip-pans, loop-closure, crane-like trajectories. 80 scenes × 60s.",
+    "metric": "vbench_overall"
+  },
+  {
+    "id": "sana_wm_1min_simple_pose_r",
+    "name": "SANA-WM 1-min (Simple) — PoseAcc Rotation Error",
+    "category": "world-model",
+    "description": "Pi3X-derived rotation error (degrees). Lower=better. Measures camera trajectory adherence on Simple split.",
+    "metric": "rotation_error_degrees"
+  },
+  {
+    "id": "sana_wm_1min_hard_pose_r",
+    "name": "SANA-WM 1-min (Hard) — PoseAcc Rotation Error",
+    "category": "world-model",
+    "description": "Rotation error on Hard split. Lower=better. SANA-WM+refiner 8.34deg best.",
+    "metric": "rotation_error_degrees"
+  },
+  {
+    "id": "sana_wm_1min_simple_diq",
+    "name": "SANA-WM 1-min (Simple) — dIQ Temporal Stability",
+    "category": "world-model",
+    "description": "Delta image quality (IQ-first − IQ-last) on revisit memory eval. Lower=better (more temporally stable).",
+    "metric": "delta_iq"
+  },
+  {
+    "id": "sana_wm_1min_hard_diq",
+    "name": "SANA-WM 1-min (Hard) — dIQ Temporal Stability",
+    "category": "world-model",
+    "description": "dIQ on Hard split.",
+    "metric": "delta_iq"
+  },
+  {
+    "id": "sana_wm_1min_throughput",
+    "name": "SANA-WM 1-min — Throughput",
+    "category": "world-model",
+    "description": "Generation throughput (videos/hour). Higher=better. SANA-WM 24.1 vs LingBot-World 0.6 (40x), HY-WorldPlay 1.1 (22x).",
+    "metric": "videos_per_hour"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",
