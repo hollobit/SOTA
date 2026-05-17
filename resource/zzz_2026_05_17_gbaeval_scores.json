@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "date": "2026-05-17",
+    "title": "GBA Eval — Frontier AI coding agents writing a Game Boy Advance emulator from scratch",
+    "scope": "Real-world coding agent benchmark. Models write a GBA emulator in WebAssembly from scratch; emulator output is graded against Mesen2 reference across 4 sections (procedural CPU/memory/timer/DMA correctness tests, replay gameplay walkthroughs, audio fidelity). 9 frontier models evaluated.",
+    "source": "https://gbaeval.com/ (Cloudflare-served SPA + https://gbaeval.com/results/leaderboard.json)",
+    "fetched_at": "2026-05-17",
+    "rule": "STRICT-ATTRIBUTION — values from authoritative gbaeval.com/results/leaderboard.json API."
+  },
+  "models": [],
+  "benchmarks": [
+    {"id": "gba_eval_overall", "name": "GBA Eval (Overall)", "category": "coding", "description": "GBA Eval — composite score: frontier AI coding agents asked to write a Game Boy Advance emulator in WebAssembly from scratch. Emulator runs against Mesen2 reference. Weighted: procedural 20% + replay 60% + audio 20%. Higher=better.", "metric": "score_0_1", "leaderboard": "https://gbaeval.com/"},
+    {"id": "gba_eval_procedural", "name": "GBA Eval — Procedural", "category": "coding", "description": "GBA Eval procedural sub-score (CPU / memory / timer / DMA / halt_irq correctness tests). Weight 20%.", "metric": "score_0_1", "leaderboard": "https://gbaeval.com/"},
+    {"id": "gba_eval_replay", "name": "GBA Eval — Replay (Gameplay)", "category": "coding", "description": "GBA Eval replay sub-score — actual gameplay walkthroughs of 13 commercial / homebrew GBA games (Celeste, Spout, Heartwrench, piuGBA, Waimanu, goodboy, chip advance, bulletGBA, Varooom 3D, Collie Defense, etc.). Weight 60% (primary).", "metric": "score_0_1", "leaderboard": "https://gbaeval.com/"},
+    {"id": "gba_eval_audio", "name": "GBA Eval — Audio", "category": "coding", "description": "GBA Eval audio fidelity sub-score (tonc-snd1 + audio playback during gameplay). Weight 20%.", "metric": "score_0_1", "leaderboard": "https://gbaeval.com/"}
+  ],
+  "scores": [
+    {"_section": "=== GBA Eval Overall (composite) ===",
+     "model": "openai/gpt-5.5", "benchmark": "gba_eval_overall", "score": 0.5322, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json", "_note": "#1 overall. Graded 2026-05-03."},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "gba_eval_overall", "score": 0.4876, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "gba_eval_overall", "score": 0.4412, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "gba_eval_overall", "score": 0.4381, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "openai/gpt-5.4", "benchmark": "gba_eval_overall", "score": 0.3160, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "gba_eval_overall", "score": 0.0086, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json", "_note": "Via OpenRouter + goose agent framework."},
+    {"model": "google/gemini-3.1-pro", "benchmark": "gba_eval_overall", "score": 0.0085, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json", "_note": "Surprisingly weak — bottom-tier on this real-world coding eval."},
+    {"model": "zhipu/glm-5.1", "benchmark": "gba_eval_overall", "score": 0.0000, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "minimax/m2.7", "benchmark": "gba_eval_overall", "score": 0.0000, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+
+    {"_section": "=== Procedural (CPU/memory/timer/DMA tests) ===",
+     "model": "anthropic/claude-opus-4.7", "benchmark": "gba_eval_procedural", "score": 0.5326, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json", "_note": "Best procedural — Opus 4.7 dominates on CPU/memory/timer correctness."},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "gba_eval_procedural", "score": 0.4840, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "gba_eval_procedural", "score": 0.4354, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "openai/gpt-5.4", "benchmark": "gba_eval_procedural", "score": 0.2931, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "openai/gpt-5.5", "benchmark": "gba_eval_procedural", "score": 0.2444, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json", "_note": "GPT-5.5 weaker than Claude on procedural CPU/memory tests."},
+
+    {"_section": "=== Replay (gameplay walkthroughs, 60% weight) ===",
+     "model": "openai/gpt-5.5", "benchmark": "gba_eval_replay", "score": 0.6093, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json", "_note": "Best on actual gameplay — GPT-5.5 dominates here."},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "gba_eval_replay", "score": 0.5941, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "gba_eval_replay", "score": 0.5853, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "openai/gpt-5.4", "benchmark": "gba_eval_replay", "score": 0.5329, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "gba_eval_replay", "score": 0.5196, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "gba_eval_replay", "score": 0.0144, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "gba_eval_replay", "score": 0.0141, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+
+    {"_section": "=== Audio (tonc-snd1 + gameplay audio) ===",
+     "model": "openai/gpt-5.5", "benchmark": "gba_eval_audio", "score": 0.5888, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json", "_note": "Best audio fidelity."},
+    {"model": "openai/gpt-5.4", "benchmark": "gba_eval_audio", "score": 0.3655, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "gba_eval_audio", "score": 0.1714, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "gba_eval_audio", "score": 0.0993, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json"},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "gba_eval_audio", "score": 0.0145, "unit": "score", "_source": "https://gbaeval.com/results/leaderboard.json", "_note": "Opus 4.6 essentially fails on audio."}
+  ]
+}
