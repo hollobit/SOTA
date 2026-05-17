@@ -1,5 +1,59 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-17 (Session 16): GBA Eval ingest + daily ref-link sweep (MDASH CyberGym SOTA + CurveBench + 5 new benches)
+
+### 47. Daily ref-link sweep — Microsoft MDASH CyberGym SOTA + CurveBench (commit `dcfae29`)
+
+User-prompted daily sweep covering 2026-05-15 → 2026-05-17 (~48 hours).
+
+**Ingest deltas**:
+- Models: 1452 → **1453** (+1: `microsoft/mdash`)
+- Benchmarks: 1030 → **1038** (+8 new)
+- Scores: 5537 → **5543** (+6 new)
+
+**Headline finding — Microsoft MDASH new CyberGym SOTA**:
+- 88.45% on CyberGym, **5pp ahead** of next entry (Claude Mythos Preview 83.1%)
+- Multi-Model Agentic Scanning Harness orchestrating 100+ specialized AI agents
+- System-level harness, not single-model SKU
+- Source: Microsoft Security Blog, 2026-05-12
+
+**Frontier vendor week QUIET**: Zero new model SKUs from OpenAI / Anthropic / Google / xAI / DeepSeek / Moonshot / Qwen / Zhipu / Mistral / Cohere / Apple / Microsoft / NVIDIA / TII / MBZUAI / Korean / Chinese in 48-hour window. AAII top-15 + arena.ai top-15 unchanged.
+
+**False rumors filtered out** (failed STRICT-ATTRIBUTION):
+- "Qwen3 Coder Next May 15 release" — actual launch 2026-02-04; May 15 = Bedrock availability
+- "MiniMax M2.7 May 15" — actual launch 2026-03-18
+- "Gemini Omni leak May 14" — no model card; Google I/O 2026 is May 19-20
+
+**6 new benchmarks from May 13-14 arxiv** (PDF mining deferred for most):
+
+| Bench | arxiv | What it tests |
+|---|---|---|
+| **CurveBench** | 2605.14068 | Jordan-curve topological reasoning, 756 images × 5 difficulty |
+| **MemLens** | 2605.14906 | Multimodal Long-Term Memory, 789 Q × 32K-256K context |
+| **MemEye** | 2605.15128 | Visual-centric agent memory eval, 8 life-scenario tasks |
+| **ViMU** | 2605.14607 | Video Metaphorical Understanding (subtext) |
+| **PROVE-Bench** | 2605.14534 | Perceptual RemOVal cohErence (visual media) |
+| **SVC mobile EER** | 2605.14845 | Signature Verification Challenge — GPT-5.2 0.32% EER |
+
+**Notable CurveBench finding**: Gemini 3.1 Pro 71.1% Easy → **19.1% Hard** = 52pp drop. Topological reasoning is a current capability cliff even for top frontier VLMs. Qwen3-VL-8B 2.8% baseline → 33.3% after CurveBench fine-tune (+30.5pp), showing the task is learnable but not zero-shot solvable.
+
+**SKIPPED per strict-attribution**:
+- SU-01 (arxiv 2605.13301, 30B-A3B math model) — no quantitative scores in abstract; defer
+- TRAIL eval framework (arxiv 2605.14865) — methodology paper, not benchmark
+- Most CyberGym scores (Opus 4.7 Adaptive, Sonnet 4.6, etc.) — already in DB; dedup avoided
+
+6 new Resources entries. Cache-bust `app.js v=20260517a → 20260517b`. Audit trail: `resource/sweep_2026_05_17.md`.
+
+### Session 16 cumulative deltas
+
+| Metric | Before Session 16 | After | Δ |
+|---|---:|---:|---:|
+| Models | 1452 | **1453** | **+1** |
+| Benchmarks | 1026 | **1038** | **+12** |
+| Scores | 5511 | **5543** | **+32** |
+
+---
+
 ## 2026-05-17 (Session 16): GBA Eval ingest — real-world coding agent benchmark
 
 ### 46. GBA Eval — Frontier coding agents writing a Game Boy Advance emulator from scratch (commit `9b628a6`)
