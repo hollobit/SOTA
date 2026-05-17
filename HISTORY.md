@@ -1,5 +1,63 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-18 (Session 17): NVIDIA SANA-WM — efficient minute-scale world model + 1-min benchmark
+
+### 48. NVIDIA SANA-WM 1-minute world-model benchmark (commit `409226a`)
+
+User-provided link: `nvlabs.github.io/Sana/WM/` (initially typo "nviabs", corrected to NVIDIA Labs). Paper: arxiv 2605.15178 (May 14 2026, 19.3 MB PDF).
+
+NVIDIA SANA-WM: 2.6B open-source efficient minute-scale world model with hybrid Gated DeltaNet + softmax attention, dual-branch UCPE+Plucker camera control, native 60s 720p generation. Introduces NEW benchmark with 2 splits (Simple + Hard trajectories).
+
+**Ingest deltas**:
+- Models: 1453 → **1459** (+6 new world models)
+- Benchmarks: 1038 → **1045** (+7 new IDs)
+- Scores: 5543 → **5585** (+42 new)
+
+**New models (6)**:
+- `nvidia/sana-wm` (2.6B, 720p), `nvidia/sana-wm-refiner` (2.6B + 17B refiner)
+- `lingbot/lingbot-world` (14B+14B large industrial baseline, ref [7])
+- `tencent/hy-worldplay` (8B, 480p, distinct from existing `tencent/hy-world-2.0`)
+- `skywork/matrix-game-3.0` (5B, 720p)
+- `infinite-world/infinite-world` (1.3B small baseline, ref [8])
+
+**Headline finding — SANA-WM+refiner ties LingBot-World on quality but wins on efficiency**:
+
+| Metric | SANA-WM+refiner | LingBot-World | Advantage |
+|---|---:|---:|---|
+| VBench-Overall (Hard) | **81.89** | 81.89 | tie |
+| PoseAcc-R (Hard) | **8.34°** | 18.99° | **2.3× better** camera control |
+| Throughput | **22.0 vid/hr** | 0.6 vid/hr | **36× faster** |
+| Peak memory | **74.7 GB** | 454.1 GB | **6× less** |
+
+Open-source 2.6B+17B competitive with proprietary 14B+14B.
+
+**HY-WorldPlay (Tencent) catastrophic temporal drift**:
+- dIQ Simple = **23.59** (vs LingBot 0.04, SANA-WM 3.79). Image quality degrades 70.08 → 46.50 over 60s.
+- dIQ Hard even worse: 25.88
+- Tencent's HY-WorldPlay is much weaker than competitors on minute-scale generation. (Note: distinct from Tencent's HY-World 2.0 which is already in DB.)
+
+**Throughput leaderboard reveals scale-vs-speed tradeoff**:
+
+| Model | Params | vid/hr |
+|---|---|---:|
+| SANA-WM | 2.6B | **24.1** |
+| SANA-WM+refiner | 2.6B+17B | 22.0 |
+| Infinite-World | 1.3B | 5.9 |
+| Matrix-Game 3.0 | 5B | 3.1 |
+| HY-WorldPlay | 8B | 1.1 |
+| LingBot-World | 14B+14B | 0.6 |
+
+**Camera control = SANA-WM's strongest dimension**: dominates ALL splits + both metrics. PoseAcc-R Hard: SANA-WM+refiner 8.34° < SANA-WM 10.02° < Matrix-Game 18.79° < LingBot 18.99° < HY-WorldPlay 35.46° < Infinite-World 41.31°.
+
+**Skipped** per STRICT-ATTRIBUTION:
+- Tables 3-5, 9-10 (internal SANA-WM ablations only — Plucker/UCPE/PRoPE variants)
+- "36× speedup" claim (derived from throughput ratios, not separate Table cell)
+- RTX 5090 / NVFP4 34s claim (efficiency narrative, not a benchmark cell)
+
+1 new Resources entry. Cache-bust `app.js v=20260517b → 20260518a`. PDF archived to `resource/arxiv_2605.15178.pdf` (19.3 MB) per system_card_pdf_storage rule.
+
+---
+
 ## 2026-05-17 (Session 16): GBA Eval ingest + daily ref-link sweep (MDASH CyberGym SOTA + CurveBench + 5 new benches)
 
 ### 47. Daily ref-link sweep — Microsoft MDASH CyberGym SOTA + CurveBench (commit `dcfae29`)
