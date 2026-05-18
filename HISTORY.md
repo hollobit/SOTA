@@ -1,5 +1,51 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-18 (Session 17): NVIDIA SANA-WM + xAI Grok Build CLI
+
+### 49. xAI Grok Build CLI launch (commit `c028e94`)
+
+User-provided link: `https://x.ai/news/grok-build-cli`. Direct curl blocked by Cloudflare (403); data cross-confirmed via 6+ news outlets and AA / llm-stats / OpenRouter pages for the underlying model.
+
+**Grok Build** = xAI's agentic coding CLI (rival to Anthropic Claude Code, OpenAI Codex CLI, Google Gemini CLI, Alibaba Qwen Code). Launched **2026-05-14**. Powered by `grok-code-fast-1` (already in DB).
+
+**Ingest deltas**:
+- Models: 1459 → **1460** (+1: `xai/grok-build`)
+- Benchmarks: 1045 → 1045 (0 new)
+- Scores: 5585 → **5586** (+1: grok-code-fast-1 SWE-bench Verified backfill)
+
+**Key product details**:
+- Up to **8 concurrent sub-agents** on parallel branches
+- Plan-mode approval gating before file writes
+- Beta access via SuperGrok Heavy ($299/mo) or SuperHeavy intro tier ($99/mo, 67% discount first 6 months)
+
+**Score backfill** (grok-code-fast-1 was in DB but missing SWE-bench Verified):
+- **70.8% SWE-bench Verified** via xAI internal harness
+- Just below Claude Sonnet 4.6 (72.7%)
+- Well behind Claude Opus 4.7 (87.6%) and Claude Mythos Preview (93.9%)
+- Strategy positioning: **speed** (~92 tok/sec) **+ price** ($0.20/$1.50 per M tokens — orders of magnitude cheaper than frontier coding models)
+
+**Competitive landscape update** — agentic coding CLI race now has **5+ vendor entries**:
+- Anthropic Claude Code
+- OpenAI Codex CLI
+- Google Gemini CLI
+- Alibaba Qwen Code
+- **xAI Grok Build (NEW)**
+- Plus multi-agent OneManCompany framework (84.67% PRDBench)
+
+xAI pricing is the cheapest in the tier; trade-off is 16-23pp accuracy gap vs Claude Opus 4.7 / Mythos Preview on SWE-bench Verified.
+
+1 new Resources entry. Cache-bust `app.js v=20260518a → 20260518b`.
+
+### Session 17 cumulative deltas (final)
+
+| Metric | Before Session 17 | After | Δ |
+|---|---:|---:|---:|
+| Models | 1453 | **1460** | **+7** |
+| Benchmarks | 1038 | **1045** | **+7** |
+| Scores | 5543 | **5586** | **+43** |
+
+---
+
 ## 2026-05-18 (Session 17): NVIDIA SANA-WM — efficient minute-scale world model + 1-min benchmark
 
 ### 48. NVIDIA SANA-WM 1-minute world-model benchmark (commit `409226a`)
