@@ -3190,6 +3190,69 @@
     "metric": "videos_per_hour"
   },
   {
+    "id": "simbian_cyber_defense_coverage",
+    "name": "Simbian Cyber Defense Benchmark — Coverage Score",
+    "category": "cybersecurity",
+    "description": "Simbian AI agentic threat-hunting eval for LLMs in SecOps. Coverage Score [0,1] = fraction of attack-chain narrative steps detected. Agent given raw Windows event logs (75k-135k rows in SQLite) + 50-query budget, no guided questions. 106 OTRF procedures × 93 ATT&CK sub-techniques × 13 tactics × 26 campaign instances. arxiv 2604.19533 (Simbian AI, Apr 2026).",
+    "metric": "coverage_score_0_1"
+  },
+  {
+    "id": "nyu_ctf_bench_crypto",
+    "name": "NYU CTF Bench — Crypto",
+    "category": "cybersecurity",
+    "description": "CSAW 2016-2024 cryptography challenges (52 of 200 total). NYU CTF Bench D-CIPHER agent harness. arxiv 2604.17159.",
+    "metric": "solve_rate"
+  },
+  {
+    "id": "nyu_ctf_bench_pwn",
+    "name": "NYU CTF Bench — Pwn (Binary Exploitation)",
+    "category": "cybersecurity",
+    "description": "CSAW binary exploitation challenges (39 of 200). arxiv 2604.17159.",
+    "metric": "solve_rate"
+  },
+  {
+    "id": "nyu_ctf_bench_web",
+    "name": "NYU CTF Bench — Web",
+    "category": "cybersecurity",
+    "description": "CSAW web exploitation (19 of 200). arxiv 2604.17159.",
+    "metric": "solve_rate"
+  },
+  {
+    "id": "nyu_ctf_bench_reverse",
+    "name": "NYU CTF Bench — Reverse Engineering",
+    "category": "cybersecurity",
+    "description": "CSAW reverse engineering (51 of 200). arxiv 2604.17159.",
+    "metric": "solve_rate"
+  },
+  {
+    "id": "harmful_skill_bench_b_score",
+    "name": "HarmfulSkillBench (B — Active Invocation)",
+    "category": "safety",
+    "description": "HarmfulSkillBench Condition B — Active Invocation Harm Score [0,1] (lower=safer). 200 human-verified harmful skills (13 Tier-1 Prohibited + 7 Tier-2 High-Risk categories). Agent explicitly invokes skill. CISPA, arxiv 2604.15415.",
+    "metric": "score_0_1"
+  },
+  {
+    "id": "harmful_skill_bench_a_score",
+    "name": "HarmfulSkillBench (A — Passive Exposure)",
+    "category": "safety",
+    "description": "Condition A — Passive Exposure. Agent reads but doesn't invoke skill. Harm Score [0,1] lower=safer. Skill-reading exploit reveals safeguard bypass.",
+    "metric": "score_0_1"
+  },
+  {
+    "id": "harmful_skill_bench_d_score",
+    "name": "HarmfulSkillBench (D — No-Skill Baseline)",
+    "category": "safety",
+    "description": "Condition D — No-Skill Baseline. Agent receives only natural-language harmful task, no skill. Pure refusal-rate measure.",
+    "metric": "score_0_1"
+  },
+  {
+    "id": "harmful_skill_bench_tier1_refusal",
+    "name": "HarmfulSkillBench Tier-1 Refusal Rate (Cond D)",
+    "category": "safety",
+    "description": "Tier-1 Prohibited category refusal rate, no-skill baseline. Higher=safer.",
+    "metric": "percent"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",

@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "date": "2026-05-18",
+    "title": "User refs (4 arxiv) — Cyber Defense + NYU CTF + HarmfulSkillBench (WAM survey skipped)",
+    "sources": [
+      "arxiv 2604.19533 — Simbian Cyber Defense Benchmark (Apr 2026)",
+      "arxiv 2604.17159 — NYU CTF Bench systematic benchmarking (Apr 18 2026, SUNY Albany)",
+      "arxiv 2604.15415 — HarmfulSkillBench (CISPA, Apr 16 2026)"
+    ],
+    "rejected_sources": [
+      {"url": "arxiv 2605.12090", "reason": "World Action Models (WAM) survey paper — 0 extractable triples. Pure taxonomy of ~150 WAM methods; no model×benchmark×value rows. Useful index pointing to 10 primary papers (Ctrl-World, π0.5/0.7, V-JEPA 2/2.1, etc.) for follow-up mining."}
+    ],
+    "rule": "STRICT-ATTRIBUTION — paper Table N values only."
+  },
+  "models": [],
+  "benchmarks": [
+    {"id": "simbian_cyber_defense_coverage", "name": "Simbian Cyber Defense Benchmark — Coverage Score", "category": "cybersecurity", "description": "Simbian AI agentic threat-hunting eval for LLMs in SecOps. Coverage Score [0,1] = fraction of attack-chain narrative steps detected. Agent given raw Windows event logs (75k-135k rows in SQLite) + 50-query budget, no guided questions. 106 OTRF procedures × 93 ATT&CK sub-techniques × 13 tactics × 26 campaign instances. arxiv 2604.19533 (Simbian AI, Apr 2026).", "metric": "coverage_score_0_1", "leaderboard": "https://arxiv.org/abs/2604.19533"},
+
+    {"id": "nyu_ctf_bench_crypto", "name": "NYU CTF Bench — Crypto", "category": "cybersecurity", "description": "CSAW 2016-2024 cryptography challenges (52 of 200 total). NYU CTF Bench D-CIPHER agent harness. arxiv 2604.17159.", "metric": "solve_rate", "leaderboard": "https://arxiv.org/abs/2604.17159"},
+    {"id": "nyu_ctf_bench_pwn", "name": "NYU CTF Bench — Pwn (Binary Exploitation)", "category": "cybersecurity", "description": "CSAW binary exploitation challenges (39 of 200). arxiv 2604.17159.", "metric": "solve_rate", "leaderboard": "https://arxiv.org/abs/2604.17159"},
+    {"id": "nyu_ctf_bench_web", "name": "NYU CTF Bench — Web", "category": "cybersecurity", "description": "CSAW web exploitation (19 of 200). arxiv 2604.17159.", "metric": "solve_rate", "leaderboard": "https://arxiv.org/abs/2604.17159"},
+    {"id": "nyu_ctf_bench_reverse", "name": "NYU CTF Bench — Reverse Engineering", "category": "cybersecurity", "description": "CSAW reverse engineering (51 of 200). arxiv 2604.17159.", "metric": "solve_rate", "leaderboard": "https://arxiv.org/abs/2604.17159"},
+
+    {"id": "harmful_skill_bench_b_score", "name": "HarmfulSkillBench (B — Active Invocation)", "category": "safety", "description": "HarmfulSkillBench Condition B — Active Invocation Harm Score [0,1] (lower=safer). 200 human-verified harmful skills (13 Tier-1 Prohibited + 7 Tier-2 High-Risk categories). Agent explicitly invokes skill. CISPA, arxiv 2604.15415.", "metric": "score_0_1", "leaderboard": "https://arxiv.org/abs/2604.15415"},
+    {"id": "harmful_skill_bench_a_score", "name": "HarmfulSkillBench (A — Passive Exposure)", "category": "safety", "description": "Condition A — Passive Exposure. Agent reads but doesn't invoke skill. Harm Score [0,1] lower=safer. Skill-reading exploit reveals safeguard bypass.", "metric": "score_0_1", "leaderboard": "https://arxiv.org/abs/2604.15415"},
+    {"id": "harmful_skill_bench_d_score", "name": "HarmfulSkillBench (D — No-Skill Baseline)", "category": "safety", "description": "Condition D — No-Skill Baseline. Agent receives only natural-language harmful task, no skill. Pure refusal-rate measure.", "metric": "score_0_1", "leaderboard": "https://arxiv.org/abs/2604.15415"},
+    {"id": "harmful_skill_bench_tier1_refusal", "name": "HarmfulSkillBench Tier-1 Refusal Rate (Cond D)", "category": "safety", "description": "Tier-1 Prohibited category refusal rate, no-skill baseline. Higher=safer.", "metric": "percent", "leaderboard": "https://arxiv.org/abs/2604.15415"}
+  ],
+  "scores": [
+    {"_section": "=== Simbian Cyber Defense (arxiv 2604.19533) — Coverage Score (higher=better, max 1.0) ===",
+     "model": "anthropic/claude-opus-4.6", "benchmark": "simbian_cyber_defense_coverage", "score": 0.55, "unit": "coverage", "_source": "https://arxiv.org/abs/2604.19533", "_note": "Best frontier. Clears 7/13 ATT&CK tactics at ≥50% recall. Paper finds NO model crosses ≥50% all-tactics bar."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "simbian_cyber_defense_coverage", "score": 0.44, "unit": "coverage", "_source": "https://arxiv.org/abs/2604.19533"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "simbian_cyber_defense_coverage", "score": 0.38, "unit": "coverage", "_source": "https://arxiv.org/abs/2604.19533"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "simbian_cyber_defense_coverage", "score": 0.31, "unit": "coverage", "_source": "https://arxiv.org/abs/2604.19533", "_note": "Gemini 3.1 Pro Preview"},
+    {"model": "google/gemini-3-flash", "benchmark": "simbian_cyber_defense_coverage", "score": 0.18, "unit": "coverage", "_source": "https://arxiv.org/abs/2604.19533"},
+    {"model": "openai/gpt-5", "benchmark": "simbian_cyber_defense_coverage", "score": 0.27, "unit": "coverage", "_source": "https://arxiv.org/abs/2604.19533"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "simbian_cyber_defense_coverage", "score": 0.22, "unit": "coverage", "_source": "https://arxiv.org/abs/2604.19533"},
+    {"model": "moonshot/kimi-k2.5", "benchmark": "simbian_cyber_defense_coverage", "score": 0.19, "unit": "coverage", "_source": "https://arxiv.org/abs/2604.19533"},
+    {"model": "alibaba/qwen3.6-plus", "benchmark": "simbian_cyber_defense_coverage", "score": 0.15, "unit": "coverage", "_source": "https://arxiv.org/abs/2604.19533"},
+    {"model": "minimax/m2.7", "benchmark": "simbian_cyber_defense_coverage", "score": 0.13, "unit": "coverage", "_source": "https://arxiv.org/abs/2604.19533"},
+    {"model": "deepseek/deepseek-v3.2", "benchmark": "simbian_cyber_defense_coverage", "score": 0.10, "unit": "coverage", "_source": "https://arxiv.org/abs/2604.19533"},
+
+    {"_section": "=== NYU CTF Bench backfill (arxiv 2604.17159) — Claude Opus 4.5 leads ===",
+     "model": "anthropic/claude-opus-4.5", "benchmark": "nyu_ctf", "score": 59.0, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159", "_note": "SUNY Albany run on 200 CSAW challenges (Kali + Generic no-AutoPrompt). Solved 118/200. Cost: $249.92 total ($2.12/solve)."},
+    {"model": "google/gemini-3-pro", "benchmark": "nyu_ctf", "score": 52.0, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159", "_note": "104/200. 6x cheaper per solve than Claude ($0.43/solve)."},
+    {"model": "google/gemini-3-flash", "benchmark": "nyu_ctf", "score": 27.0, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159", "_note": "54/200. Cost-efficiency winner — $0.05/solve."},
+    {"model": "zhipu/glm-5", "benchmark": "nyu_ctf", "score": 19.5, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "openai/gpt-5.2-codex", "benchmark": "nyu_ctf", "score": 18.0, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "openai/gpt-5.2", "benchmark": "nyu_ctf", "score": 13.5, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "deepseek/deepseek-v3", "benchmark": "nyu_ctf", "score": 6.5, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "deepseek/deepseek-r1", "benchmark": "nyu_ctf", "score": 4.0, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "alibaba/qwen3.5-397b-a17b", "benchmark": "nyu_ctf", "score": 3.5, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "meta/llama-3.3-70b", "benchmark": "nyu_ctf", "score": 2.5, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+
+    {"_section": "=== NYU CTF Bench sub-categories — Claude Opus 4.5 / Gemini 3 Pro ===",
+     "model": "anthropic/claude-opus-4.5", "benchmark": "nyu_ctf_bench_crypto", "score": 61.5, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "nyu_ctf_bench_pwn", "score": 41.0, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159", "_note": "Best pwn (binary exploit) category."},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "nyu_ctf_bench_web", "score": 52.6, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "nyu_ctf_bench_reverse", "score": 64.7, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "google/gemini-3-pro", "benchmark": "nyu_ctf_bench_crypto", "score": 53.8, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "google/gemini-3-pro", "benchmark": "nyu_ctf_bench_pwn", "score": 33.3, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "google/gemini-3-pro", "benchmark": "nyu_ctf_bench_web", "score": 47.4, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+    {"model": "google/gemini-3-pro", "benchmark": "nyu_ctf_bench_reverse", "score": 58.8, "unit": "%", "_source": "https://arxiv.org/abs/2604.17159"},
+
+    {"_section": "=== HarmfulSkillBench (arxiv 2604.15415) — composite Harm Score (lower=safer) ===",
+     "model": "openai/gpt-5.4-mini", "benchmark": "harmful_skill_bench_b_score", "score": 0.23, "unit": "score", "_source": "https://arxiv.org/abs/2604.15415", "_note": "SAFEST model overall — best on every condition. Refuses 99.23% of Tier-1 active invocations."},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "harmful_skill_bench_a_score", "score": 0.52, "unit": "score", "_source": "https://arxiv.org/abs/2604.15415"},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "harmful_skill_bench_d_score", "score": 0.18, "unit": "score", "_source": "https://arxiv.org/abs/2604.15415"},
+
+    {"model": "openai/gpt-4o", "benchmark": "harmful_skill_bench_a_score", "score": 0.85, "unit": "score", "_source": "https://arxiv.org/abs/2604.15415", "_note": "LEAST safe under Passive Exposure. Never refuses Tier-1 under Conditions A or B."},
+    {"model": "openai/gpt-4o", "benchmark": "harmful_skill_bench_b_score", "score": 0.70, "unit": "score", "_source": "https://arxiv.org/abs/2604.15415"},
+    {"model": "openai/gpt-4o", "benchmark": "harmful_skill_bench_d_score", "score": 0.29, "unit": "score", "_source": "https://arxiv.org/abs/2604.15415"},
+
+    {"model": "deepseek/deepseek-v3.2", "benchmark": "harmful_skill_bench_a_score", "score": 0.88, "unit": "score", "_source": "https://arxiv.org/abs/2604.15415", "_note": "Highest unsafe Score_A. 0% Tier-1 refusal under Condition A."},
+
+    {"_section": "=== HarmfulSkillBench Tier-1 Refusal (Cond D, no-skill baseline; higher=safer) ===",
+     "model": "openai/gpt-5.4-mini", "benchmark": "harmful_skill_bench_tier1_refusal", "score": 100.00, "unit": "%", "_source": "https://arxiv.org/abs/2604.15415", "_note": "Perfect Tier-1 refusal without any skill context."},
+    {"model": "openai/gpt-4o", "benchmark": "harmful_skill_bench_tier1_refusal", "score": 83.85, "unit": "%", "_source": "https://arxiv.org/abs/2604.15415"}
+  ]
+}
