@@ -1,5 +1,59 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-18 (Session 17): NVIDIA SANA-WM + xAI Grok Build CLI + 14-paper cyber megabatch
+
+### 51. 10-paper cyber arxiv batch — PACEbench + CTI-REALM + AISI + CyberTeam + Auto Adversary (commit `3bf5585`)
+
+User provided 10 arxiv links (all cyber-themed). Dispatched 3 parallel mining subagents covering ~640 potential triples. Strategic ingest of **5 highest-value benchmark families**; 5 papers deferred (2 position papers, plus Kimi K2.5 safety eval 86p needing dedicated pass).
+
+**Ingest deltas**:
+- Models: 1460 → 1460 (all referenced IDs map to existing canonical)
+- Benchmarks: 1054 → **1064** (+10 new IDs)
+- Scores: 5624 → **5670** (+46 new)
+
+**5 papers INGESTED**:
+
+| Paper | Bench introduced | Top finding |
+|---|---|---|
+| **PACEbench** (arxiv 2602.14457, Shanghai AI Lab v1.5) | `pacebench_a/b/c/d_cve` + `_overall` | **Claude Sonnet 4.5 thinking 0.335 overall** leader. GPT-5.2 #2 at 0.280. Surprise: MiniMax M2.1 ties top WAF bypass (D-CVE 0.333). Grok 4 near-zero (0.012). |
+| **CTI-REALM** (arxiv 2603.13517) | `cti_realm_50` | Anthropic sweeps top 3 detection-rule gen: **Opus 4.6 High 0.6373** / Opus 4.5 0.6244 / Sonnet 4.5 0.5872. GPT-5 Med 0.572 best OpenAI. |
+| **Autonomous Adversary** (arxiv 2605.06486, NRC Canada) | `autoadversary_s1_autonomous_pct/_expert_pct` | All 3 frontier hit 100% with expert plan but drop sharply autonomous: **Sonnet 4.5 80% > Opus 4.5 25% > GPT-5.1 20%**. Scaffolding dominates raw capability. |
+| **UK AISI multi-step** (arxiv 2603.11214) | `aisi_last_ones_100m_avg` + `aisi_cooling_tower_100m_avg` | 'The Last Ones' 32-step corp exfil: Opus 4.6 **15.6/32 avg** (+42% over Opus 4.5's 11.0). 'Cooling Tower' 7-step ICS: only **1.4/7 (20%)** — frontier ICS capability still floored. |
+| **CyberTeam** (arxiv 2509.23571) | `cyberteam_rm_avg` | Blue-team Response & Mitigation: **GPT-o4-mini 91.5/100 best**; Gemini 2.5 Pro 88.6; Llama 3.1 405B 86.9. |
+
+**5 papers DEFERRED** (5 of 10):
+- arxiv 2602.02595 "Hack-to-Defend" — position paper, 0 attribution
+- arxiv 2509.11398 "AI Red-Teaming evolution" — position paper, 0 triples
+- arxiv 2604.03121 "Kimi K2.5 Independent Safety Eval" — 86p, 250+ triples; needs dedicated ingest with bench-id reconciliation. ABC-Bench / VCT-multiselect / EVMBench / DFIR-Metric / Petri 2.0 / ControlArena / WMDP-sandbagging / BBQ / AgentHarm
+- arxiv 2510.14113 "CyberPal-2.0 IBM SLM" — small SLM tier (cyberpal-2.0-4b/8b/14b/20b), thin frontier signal
+- arxiv 2510.24317 "CAIBench" meta-benchmark — mostly aggregates over existing benches; new rctf2/cyberpii_bench only 1-3 frontier entries
+
+**Notable cross-cutting patterns**:
+
+1. **Scaffolding dominates raw capability on hard cyber tasks.** Autonomous Adversary: all 3 frontiers hit 100% with expert plan, but autonomous mode drops to 20-80% — same model, same task, 5× scaffolding gap.
+
+2. **Frontier ICS (industrial control) is STILL the wall.** Opus 4.6 only 1.4/7 (20%) on Cooling Tower power-plant attack chain. Best frontier model cannot yet execute multi-step physical-process attacks.
+
+3. **Anthropic dominates cyber detection generation.** Claude Opus 4.6 / 4.5 / Sonnet 4.5 sweep CTI-REALM top 3 (0.63/0.62/0.59). GPT-5 Med best OpenAI at 0.572.
+
+4. **Grok 4 cyber-offense outlier weakness.** PACEbench overall 0.012 (10th of 10). Same pattern as earlier GBA Eval finding — long-horizon agentic eval reveals differential model strength not visible on standard Q&A.
+
+5. **Sonnet > Opus on autonomous adversary** (80% vs 25%). Mid-tier MoE model beats top reasoning model when scaffold is removed. Recurrent pattern of Sonnet > Opus on agentic-execution benches.
+
+**Loader FK gotcha caught**: `bytedance/doubao-seed-1.6` → `doubao-1.5-pro`; `minimax/m2.1` → `minimax-2.1`. Papers commonly use non-canonical model names; map to existing canonical or register variant.
+
+9 new Resources entries (5 ingested + 4 deferred-tagged). Cache-bust `app.js v=20260518c → 20260518d`. 10 PDFs archived (614KB-10.5MB each). 3 audit-trail markdowns at `resource/mine_cyber_batch_*.md` (969 lines total).
+
+### Session 17 cumulative deltas (final)
+
+| Metric | Before Session 17 | After | Δ |
+|---|---:|---:|---:|
+| Models | 1453 | **1460** | **+7** |
+| Benchmarks | 1038 | **1064** | **+26** |
+| Scores | 5543 | **5670** | **+127** |
+
+---
+
 ## 2026-05-18 (Session 17): NVIDIA SANA-WM + xAI Grok Build CLI + user refs (4 arxiv: Simbian Cyber Defense + NYU CTF + HarmfulSkillBench + WAM survey)
 
 ### 50. User refs (4 arxiv) — Cyber Defense + NYU CTF + HarmfulSkillBench (commit `3866e44`)
