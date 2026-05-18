@@ -2689,5 +2689,32 @@
     "new_value": "+0 models (all 9 IDs existed), +4 benchmarks (gba_eval_overall + procedural + replay + audio), +26 scores. 1 Resources entry. Cache-bust app.js v=20260515d -> 20260517a.",
     "old_model": "",
     "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-17",
+    "benchmark_id": "Daily sweep — Microsoft MDASH CyberGym SOTA + CurveBench + 5 new benches (commit dcfae29)",
+    "new_model": "User-prompted daily sweep covering 2026-05-15 -> 2026-05-17 (~48 hours). HEADLINE: Microsoft MDASH (Multi-Model Agentic Scanning Harness, 100+ AI agents) — NEW SOTA on CyberGym at 88.45% (5pp ahead of Claude Mythos Preview 83.1%). System-level harness, not a single model SKU. Microsoft Security Blog 2026-05-12. FRONTIER VENDOR WEEK QUIET — zero new SKUs from OpenAI/Anthropic/Google/xAI/DeepSeek/Moonshot/Qwen/Zhipu/Mistral/Cohere/Apple/Microsoft/NVIDIA/TII/MBZUAI/Korean/Chinese. AAII + arena.ai top-15 unchanged. Filtered false rumors: Qwen3 Coder Next 'release' was actually Feb 4 Bedrock availability; MiniMax M2.7 was March 18; Gemini Omni leak has no model card. 6 NEW BENCHMARKS from May 13-14 arxiv: CurveBench (2605.14068, Jordan-curve topology — Gemini 3.1 Pro 71.1% Easy / 19.1% Hard, 52pp gap); MemLens (2605.14906, multimodal LT memory 789Q × 32K-256K); MemEye (2605.15128, visual-centric agent memory 8 tasks × 13 methods); ViMU (2605.14607, video metaphor/irony); PROVE-Bench (2605.14534, visual removal coherence); SVC EER (2605.14845, signature verification — GPT-5.2 0.32% EER). NOTABLE: CurveBench reveals topological reasoning is current capability cliff; Qwen3-VL-8B improves +30.5pp with fine-tune (2.8 -> 33.3) showing task is learnable. SKIPPED: SU-01 30B-A3B math model (no scores in abstract), TRAIL framework (methodology paper).",
+    "new_value": "+1 model (microsoft/mdash), +8 benchmarks, +6 scores (1452->1453 / 1030->1038 / 5537->5543). 6 Resources entries. Cache-bust app.js v=20260517a -> 20260517b.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-18",
+    "benchmark_id": "NVIDIA SANA-WM 1-minute world-model benchmark (commit 409226a)",
+    "new_model": "User-provided link nvlabs.github.io/Sana/WM/. NVIDIA Labs SANA-WM (arxiv 2605.15178, May 14 2026): 2.6B open-source efficient minute-scale world model with hybrid Gated DeltaNet + softmax attention; dual-branch UCPE+Plucker camera control; native 60s 720p generation. NEW benchmark with 2 splits (Simple + Hard trajectories). NEW MODELS (6): nvidia/sana-wm + nvidia/sana-wm-refiner (2.6B and 2.6B+17B refiner); lingbot/lingbot-world (14B+14B large industrial baseline); tencent/hy-worldplay (8B 480p, distinct from existing tencent/hy-world-2.0); skywork/matrix-game-3.0 (5B 720p); infinite-world (1.3B small baseline). NEW BENCHES (7): sana_wm_1min_simple/hard_vbench + _pose_r + _diq + throughput. HEADLINE: SANA-WM+refiner ties LingBot-World on VBench-Overall Hard (81.89 vs 81.89) but 2.3x better camera control (8.34deg vs 18.99deg), 36x faster (22 vs 0.6 vid/hr), 6x less memory (74.7 GB vs 454.1 GB). Open-source 2.6B+17B competitive with proprietary 14B+14B. Tencent HY-WorldPlay shows catastrophic temporal drift: dIQ 23.59 Simple / 25.88 Hard (IQ degrades 70.08->46.50 over 60s). Throughput leaderboard: SANA-WM 24.1 vid/hr > +refiner 22.0 > Infinite-World 5.9 > Matrix-Game 3.1 > HY-WorldPlay 1.1 > LingBot-World 0.6. Camera control is SANA-WM's strongest dim — dominates all splits + both metrics. SKIPPED: Tables 3-5/9-10 internal SANA-WM ablations.",
+    "new_value": "+6 models, +7 benchmarks, +42 scores (1453->1459 / 1038->1045 / 5543->5585). 1 Resources entry. Cache-bust app.js v=20260517b -> 20260518a. PDF (19.3 MB) archived.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-18",
+    "benchmark_id": "xAI Grok Build CLI launch + grok-code-fast-1 SWE-bench backfill (commit c028e94)",
+    "new_model": "User-provided link x.ai/news/grok-build-cli. Direct curl blocked by Cloudflare 403; data cross-confirmed via 6+ news outlets (dataconomy, devops.com, byteiota, techloy, basenor, greyjournal) + AA / llm-stats / OpenRouter pages for the underlying model. GROK BUILD = xAI's agentic coding CLI (rival to Claude Code / Codex CLI / Gemini CLI / Qwen Code), launched 2026-05-14. Powered by grok-code-fast-1 (already in DB). KEY DETAILS: up to 8 concurrent sub-agents on parallel branches, plan-mode approval gating; beta access via SuperGrok Heavy ($299/mo) or SuperHeavy intro tier ($99/mo first 6 months, 67% discount). SCORE BACKFILL: grok-code-fast-1 was in DB but missing SWE-bench Verified — now 70.8% via xAI internal harness. Just below Claude Sonnet 4.6 (72.7%); well behind Claude Opus 4.7 (87.6%) and Claude Mythos Preview (93.9%). STRATEGY: speed (~92 tok/sec) + price ($0.20/$1.50 per M tokens) — orders of magnitude cheaper than frontier coding models. COMPETITIVE LANDSCAPE: agentic coding CLI race now has 5+ vendor entries (Anthropic, OpenAI, Google, Alibaba, xAI) plus multi-agent OneManCompany framework (84.67% PRDBench). xAI pricing cheapest in tier, accuracy 16-23pp behind top.",
+    "new_value": "+1 model (xai/grok-build), +0 benchmarks, +1 score (1459->1460 / 1045->1045 / 5585->5586). 1 Resources entry. Cache-bust app.js v=20260518a -> 20260518b.",
+    "old_model": "",
+    "old_value": ""
   }
 ]
