@@ -1,5 +1,52 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-18 (Session 17): NVIDIA SANA-WM + xAI Grok Build CLI + user refs (4 arxiv: Simbian Cyber Defense + NYU CTF + HarmfulSkillBench + WAM survey)
+
+### 50. User refs (4 arxiv) — Cyber Defense + NYU CTF + HarmfulSkillBench (commit `3866e44`)
+
+User provided 4 arxiv links. Dispatched 4 parallel mining subagents.
+
+**Ingest deltas**:
+- Models: 1460 → 1460 (all referenced IDs already in DB)
+- Benchmarks: 1045 → **1054** (+9 new IDs)
+- Scores: 5586 → **5624** (+38 new)
+
+**Per-paper yields**:
+
+| Paper | What it is | Top finding |
+|---|---|---|
+| arxiv 2604.19533 | **Simbian Cyber Defense Benchmark** — agentic threat-hunting via raw Windows event logs + 50-query budget | Claude Opus 4.6 **0.55 Coverage** (clears 7/13 ATT&CK tactics); NO model crosses ≥50% per-tactic bar |
+| arxiv 2604.17159 | **NYU CTF Bench systematic** (SUNY Albany) — 10 LLMs × 200 CSAW challenges via D-CIPHER + Kali | Claude Opus 4.5 **59.0%** ($2.12/solve); Gemini 3 Pro 52.0% ($0.43/solve, 6× cheaper); Gemini 3 Flash 27.0% (cost-efficiency $0.05/solve) |
+| arxiv 2604.15415 | **HarmfulSkillBench** (CISPA) — first harmful-skill agent registry eval | **GPT-5.4-mini safest** (Score_B 0.23, 100% Tier-1 refusal); GPT-4o + DeepSeek V3.2 least safe (Score_A 0.85, 0.88); skill-reading exploit raises harm 0.27 → 0.76 |
+| arxiv 2605.12090 | **World Action Models survey** (Fudan) — 69-page taxonomy of ~150 WAM methods | **SKIPPED** — survey, 0 extractable triples |
+
+**Notable cross-cutting patterns**:
+
+1. **Cyber defense vs offense generation split**: Claude Opus 4.6 LEADS cyber defense (Simbian 0.55) but trails Claude Opus 4.5 on cyber offense (NYU CTF: 4.6 = 56% vs 4.5 = 59%). Different generation strengths on attacker vs defender roles.
+
+2. **NYU CTF cost-efficiency tiering**:
+   - Gemini 3 Flash $0.05/solve (27.0%) — cheapest competent
+   - Gemini 3 Pro $0.43/solve (52.0%) — best value (12pp ahead at 6× cheaper)
+   - Claude Opus 4.5 $2.12/solve (59.0%) — best accuracy but priciest
+
+3. **Skill-reading is a novel attack vector**: HarmfulSkillBench exposes a *passive exposure* exploit where reading (not invoking) a harmful skill raises harm score from 0.27 (no skill) to 0.76 (Cond A). GPT-4o + DeepSeek V3.2 fail safety checks under this pattern.
+
+4. **GPT-5.4-mini > GPT-4o safety generational jump**: Score_A 0.52 vs 0.85 (+63pp safer under passive exposure). Major safety improvement in the GPT-5 series.
+
+**Tooling note**: This batch caught a loader-file-glob bug — `*_scores*.json` pattern requires `_scores` in filename. Initial commit name lacked it; renamed to `zzz_2026_05_18_user_refs_4papers_scores.json` and re-ran loader to land the data. See feedback memory candidate.
+
+4 new Resources entries. Cache-bust `app.js v=20260518b → 20260518c`. 4 PDFs archived (1.3-2.2 MB each). 4 audit-trail markdowns at `resource/mine_arxiv_*.md` (787 lines total).
+
+### Session 17 cumulative deltas (final)
+
+| Metric | Before Session 17 | After | Δ |
+|---|---:|---:|---:|
+| Models | 1453 | **1460** | **+7** |
+| Benchmarks | 1038 | **1054** | **+16** |
+| Scores | 5543 | **5624** | **+81** |
+
+---
+
 ## 2026-05-18 (Session 17): NVIDIA SANA-WM + xAI Grok Build CLI
 
 ### 49. xAI Grok Build CLI launch (commit `c028e94`)
