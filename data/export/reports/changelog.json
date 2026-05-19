@@ -2734,5 +2734,23 @@
     "new_value": "+0 models, +10 benchmarks, +46 scores (1460->1460 / 1054->1064 / 5624->5670). 9 Resources entries. Cache-bust app.js v=20260518c -> 20260518d. 10 PDFs archived. Loader FK gotcha: bytedance/doubao-seed-1.6 -> doubao-1.5-pro; minimax/m2.1 -> minimax-2.1.",
     "old_model": "",
     "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-19",
+    "benchmark_id": "ExploitBench live leaderboard + sovereign delta sweep (commits 7be38b0)",
+    "new_model": "User-provided arxiv 2605.14153 (already mined in commit 9047176) + exploitbench.ai live leaderboard. Live site exposes 3 new dimensions vs paper: (1) AutoNudge scaffold variants, (2) GPT-5.5 + Codex CLI as separate scaffold row, (3) aggregate mean-score-per-(model,scaffold) across 41 V8 bugs. INGEST: +1 model openai/gpt-5.5-codex, +2 benchmarks exploitbench_mean_score + exploitbench_pct, +8 scores. Top 6 live: Mythos Preview AutoNudge 9.90/68.9% > Mythos bare 9.55/67.5% > GPT-5.5 Codex+AN 5.51/40.9% > GPT-5.5 AN 4.44/34.5% > GPT-5.5 Codex bare 3.76/32.6% > Opus 4.7 AN 3.66/26.5%. Codex CLI grew GPT-5.5 T3 reach 13->20 bugs at 1/5 cost. Sovereign-AI delta sweep 2026-05-13 to 2026-05-19: 0 new sovereign SKUs from any of 13 countries (window quiet, held for Google I/O May 19-20).",
+    "new_value": "+1 model, +2 benchmarks, +8 scores (1460->1461 / 1064->1066 / 5670->5678).",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Fix",
+    "date": "2026-05-19",
+    "benchmark_id": "7-menu hardcoded-list refresh (commit c94699b)",
+    "new_model": "User-prompted menu audit. Frontier Compare and Cyber & Coding had stale hardcoded FRONTIER_MODELS arrays missing 24+ recent flagship additions (SANA-WM, V-JEPA 2, MDASH, Grok Build, GPT-5.5 Codex, ERNIE 5.1, Evo 2, AlphaProteo, TxGemma, Apertus, Command A, PLaMo 2.1, tsuzumi 2, Teuken, etc.). Sovereign AI China region missing baidu/ernie-5.1. PATCHES: (1) frontier-compare.js FRONTIER_MODELS 83->107 (+24); (2) cyber-coding.js FRONTIER_MODELS 47->53 (+6); (3) sovereign.js China region +1. Medical AI / Physical AI / AI4S / Agent menus are DATA-DRIVEN — no hardcoded model lists; they auto-include from data/export/models.json so no patch needed.",
+    "new_value": "+24 frontier-compare entries, +6 cyber-coding entries, +1 sovereign China entry. Cache-bust: frontier-compare.js v=20260512c -> 20260519a, cyber-coding.js v=20260510c -> 20260519a, sovereign.js v=20260513b -> 20260519a.",
+    "old_model": "",
+    "old_value": ""
   }
 ]
