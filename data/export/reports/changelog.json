@@ -2752,5 +2752,14 @@
     "new_value": "+24 frontier-compare entries, +6 cyber-coding entries, +1 sovereign China entry. Cache-bust: frontier-compare.js v=20260512c -> 20260519a, cyber-coding.js v=20260510c -> 20260519a, sovereign.js v=20260513b -> 20260519a.",
     "old_model": "",
     "old_value": ""
+  },
+  {
+    "type": "Fix",
+    "date": "2026-05-19",
+    "benchmark_id": "Deep menu audit pass 2 — Agent / AI4S / Physical AI hardcoded lists (commit 9ce27df)",
+    "new_model": "User re-prompted menu audit with deeper inspection beyond just FRONTIER_MODELS arrays. Found 7 additional hardcoded structures needing refresh. PATCHES: (1) agent.js COMPARE_BENCHMARKS 9 -> 22 (+13 recent agent benches: prdbench/mcpmark/tau3_bench/delegate_52/exploitbench_ace/simbian/cyberteam/corebench_hard/tau_bench_airline/assistantbench/mcjudgebench_cjar/agentick/complexmcp). (2) agent-charts.js _HEATMAP_BENCHMARKS 12 -> 21. (3) ai4s-charts.js _BENCHMARK_DOMAIN_MAP 43 -> 65 (all 14 SDE family + 5 SciFM additions + weatherbench_2 etc). (4) ai4s-charts.js _BREAKTHROUGHS hero cards 8 -> 13 (AlphaProteo/TxGemma 27B/ESM-3 ESMGFP/SDE-hard GPT-5-Pro/AI Co-Mathematician). (5) physical-ai.js CATEGORIES.world-models +10 (SANA-WM + refiner / V-JEPA 2 + 2.1 / World Labs Marble / Wayve GAIA-2 / LingBot-World / Matrix-Game 3.0 / HY-WorldPlay / Infinite-World). (6) physical-ai.js BENCHMARK_SUITES.world-model 16 -> 32 (VBench 9 + SANA-WM 1-min 7 + PAI-Bench Cosmos Predict 2.5). (7) physical-ai.js BENCHMARK_SUITES.embodied-reasoning +7 (Meta Physical Reasoning intphys2/mvpbench/causalvqa + V-JEPA 2 video ss_v2_top1/epic_kitchens/perception_test/tempcompass). MENUS CLEAN: Medical AI uses keyword-based classification (auto-matches); Sovereign/Frontier Compare/Cyber & Coding patched in prior commit c94699b.",
+    "new_value": "+13 agent COMPARE_BENCHMARKS, +9 _HEATMAP_BENCHMARKS, +22 _BENCHMARK_DOMAIN_MAP, +5 _BREAKTHROUGHS, +10 physical-ai world-models, +26 BENCHMARK_SUITES.world-model + embodied-reasoning. Cache-bust agent.js + agent-charts.js + ai4s-charts.js + physical-ai.js all -> 20260519b.",
+    "old_model": "",
+    "old_value": ""
   }
 ]
