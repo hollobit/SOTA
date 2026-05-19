@@ -363,7 +363,25 @@ var CyberCoding = {
         'kakao/kanana-2-30b-a3b-thinking',
         'upstage/solar-open-100b',
         'tencent/hy3-preview',
-        'dicta/dictalm-3.0-24b-thinking'
+        'dicta/dictalm-3.0-24b-thinking',
+
+        // 2026-05-14 — xAI Grok Build CLI launch + GPT-5.5 Codex variant
+        // (5-vendor agentic coding CLI race: Claude Code / Codex CLI / Gemini CLI / Qwen Code / Grok Build)
+        'xai/grok-build',
+        'openai/gpt-5.5-codex',
+        // grok-code-fast-1 already in list (was earlier)
+
+        // 2026-05-12 — Microsoft MDASH multi-agent cyber harness (NEW CyberGym SOTA 88.45)
+        'microsoft/mdash',
+
+        // 2026-05-14 — Baidu ERNIE 5.1
+        'baidu/ernie-5.1',
+
+        // 2026-05-09 — Anthropic safety-strong frontier
+        'anthropic/claude-sonnet-4.5',
+
+        // Cyber/coding-specialist variants from TAC program (already partially listed)
+        'openai/gpt-5.5-cyber'
     ],
 
     _models: [],
