@@ -116,7 +116,33 @@
     'graphcast_rmse':            'geo-climate',
     'pangu_rmse':                'geo-climate',
     'aifs_rmse':                 'geo-climate',
-    'weatherbench_z500_72h':     'geo-climate'
+    'weatherbench_z500_72h':     'geo-climate',
+    'weatherbench_2_ifs_targets':'geo-climate',
+
+    // 2026-05 SDE family (Section 43) — Scientific Discovery Evaluation
+    'sde_avg':                   'math',  // multi-domain composite, but math-anchored eval framework
+    'sde_hard':                  'math',
+    'sde_biology':               'bio-genomics',
+    'sde_chemistry':             'physics-materials',
+    'sde_materials':             'physics-materials',
+    'sde_physics':               'physics-materials',
+    'sde_protein_design':        'bio-genomics',
+    'sde_gene_editing':          'bio-genomics',
+    'sde_retrosynthesis':        'physics-materials',
+    'sde_molecule_optimization': 'physics-materials',
+    'sde_tmc_optimization':      'physics-materials',
+    'sde_crystal_design':        'physics-materials',
+    'sde_ising_model':           'physics-materials',
+    'sde_symbolic_regression':   'math',
+
+    // 2026-05-15 SciFM batch (Section 44)
+    'posebusters_v2':            'bio-genomics',
+    'bhrf1_binder':              'bio-genomics',
+    'tdc_66_vs_genrlst':         'bio-genomics',
+    'tdc_66_vs_specialist':      'bio-genomics',
+    'esmgfp_sequence_identity':  'bio-genomics',
+    'oc20_s2ef_force_mae':       'physics-materials',
+    'oc20_s2ef_energy_mae':      'physics-materials'
   };
 
   function _resolveDomain(benchmarkId) {
@@ -1175,6 +1201,56 @@
       benchmark_id: 'putnambench',
       source_url: 'https://arxiv.org/abs/2502.07640',
       year: 2025
+    },
+    {
+      title: 'AlphaProteo',
+      narrative: 'DeepMind protein binder design — 88% experimental success on BHRF1',
+      value: '88% BHRF1 hit rate',
+      domain: 'bio-genomics',
+      model_id: 'deepmind/alphaproteo',
+      benchmark_id: 'bhrf1_binder',
+      source_url: 'https://arxiv.org/abs/2409.08022',
+      year: 2024
+    },
+    {
+      title: 'TxGemma 27B',
+      narrative: 'Google therapeutics foundation model — beats specialists on 50/66 TDC tasks',
+      value: '50/66 TDC tasks',
+      domain: 'bio-genomics',
+      model_id: 'google/txgemma-27b',
+      benchmark_id: 'tdc_66_vs_specialist',
+      source_url: 'https://arxiv.org/abs/2504.06196',
+      year: 2025
+    },
+    {
+      title: 'ESM-3 (ESMGFP)',
+      narrative: 'EvolutionaryScale generative protein FM — designed novel GFP at 58% identity',
+      value: '58% identity to nearest natural',
+      domain: 'bio-genomics',
+      model_id: 'evolutionaryscale/esm-3',
+      benchmark_id: 'esmgfp_sequence_identity',
+      source_url: 'https://www.evolutionaryscale.ai/blog/esm3-release',
+      year: 2024
+    },
+    {
+      title: 'SDE-hard (GPT-5-Pro)',
+      narrative: 'Scientific Discovery Evaluation hardest 86 questions — only frontier model ≥20%',
+      value: '22.4% (only ≥20%)',
+      domain: 'math',
+      model_id: 'openai/gpt-5-pro',
+      benchmark_id: 'sde_hard',
+      source_url: 'https://arxiv.org/abs/2512.15567',
+      year: 2026
+    },
+    {
+      title: 'AI Co-Mathematician',
+      narrative: 'DeepMind agentic math system — 48% on FrontierMath Tier 4 (+29pp over Gemini 3.1 Pro base)',
+      value: '48% FrontierMath T4',
+      domain: 'math',
+      model_id: 'deepmind/ai-co-mathematician',
+      benchmark_id: 'frontiermath_tier4',
+      source_url: 'https://arxiv.org/abs/2605.06651',
+      year: 2026
     }
   ];
 

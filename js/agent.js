@@ -240,9 +240,30 @@ var Agent = (function() {
         { id: 'osworld_verified',     label: 'OSWorld-Verified' },
         { id: 'gaia',                 label: 'GAIA' },
         { id: 'tau2_bench',           label: 'τ2-Bench' },
+        { id: 'tau3_bench',           label: 'τ3-Bench' },
         { id: 'bfcl_v4',              label: 'BFCL v4' },
         { id: 'mobile_actions',       label: 'Mobile Actions' },
-        { id: 'mobile_agent_bench',   label: 'MobileAgentBench' }
+        { id: 'mobile_agent_bench',   label: 'MobileAgentBench' },
+        // 2026-04-22 — OneManCompany agent framework PRD benchmark (Section 36)
+        { id: 'prdbench',             label: 'PRDBench' },
+        // 2026-04 — Agent-World batch (Section 36)
+        { id: 'mcpmark',              label: 'MCP-Mark' },
+        // 2026-04-17 — Microsoft Research DELEGATE-52 (Section 32)
+        { id: 'delegate_52',          label: 'DELEGATE-52' },
+        // 2026-05-13 — Cybersecurity agent benches (Section 50/51)
+        { id: 'exploitbench_ace',     label: 'ExploitBench (ACE)' },
+        { id: 'simbian_cyber_defense_coverage', label: 'Simbian Cyber Defense' },
+        { id: 'cyberteam_rm_avg',     label: 'CyberTeam (R&M avg)' },
+        // 2026-05-15 — HAL Princeton meta-leaderboard sub-benches (Section 43)
+        { id: 'corebench_hard',       label: 'CORE-Bench Hard' },
+        { id: 'tau_bench_airline',    label: 'TAU-bench Airline' },
+        { id: 'assistantbench',       label: 'AssistantBench' },
+        // 2026-05-14 — Multi-constraint judge eval (Section 40)
+        { id: 'mcjudgebench_cjar',    label: 'MCJudgeBench (CJAR)' },
+        // 2026-05-14 — Sequential decision-making agent (Section 40)
+        { id: 'agentick',             label: 'Agentick (ONS)' },
+        // 2026-05-14 — MCP tool sandbox (Section 40)
+        { id: 'complexmcp',           label: 'ComplexMCP' }
     ];
 
     // Returns the flat union of every category's benchmark IDs, deduped.

@@ -192,7 +192,35 @@ var FrontierCompare = {
         'dicta/dictalm-3.0-1.7b-thinking',
         'cohere/tiny-aya-3b',
         'tii/falcon-ocr',
-        'ai-singapore/gemma-sea-lion-v4-4b-vl'
+        'ai-singapore/gemma-sea-lion-v4-4b-vl',
+
+        // 2026-05-14 — Baidu ERNIE 5.1 (AIME26 99.6 w/ tools, LMArena Search Elo 1223)
+        'baidu/ernie-5.1',
+
+        // 2026-05-14 — xAI Grok Build CLI launch + Codex CLI variant
+        'xai/grok-build',
+        'openai/gpt-5.5-codex',
+
+        // 2026-05-12 — Microsoft MDASH multi-model agentic security harness (CyberGym 88.45 SOTA)
+        'microsoft/mdash',
+
+        // World Foundation Model frontier (May 2026 batch)
+        'nvidia/sana-wm', 'nvidia/sana-wm-refiner',
+        'meta/v-jepa-2', 'meta/v-jepa-2.1',
+        'world-labs/marble', 'wayve/gaia-2',
+        'allenai/molmoact-2',
+
+        // Science FM frontier (Apr-May 2026 batch)
+        'arc-institute/evo-2',
+        'deepmind/alphaproteo',
+        'google/txgemma-27b',
+
+        // 2026-05 sovereign coverage additions
+        'swiss-ai/apertus-70b', 'swiss-ai/apertus-70b-instruct',
+        'cohere/command-a', 'cohere/command-a-reasoning',
+        'pfn/plamo-2.1-prime', 'ntt/tsuzumi-2',
+        'opengpt-x/teuken-7b-instruct-v0.6',
+        'mistral/mistral-medium-3.5-eagle'
     ],
 
     _models: [],

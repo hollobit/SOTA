@@ -114,7 +114,7 @@ var Sovereign = {
                 'mimo/mimo-v2-pro', 'mimo/mimo-v2-flash',
                 'stepfun/step-3.5-flash', 'stepfun/step-2-pro', 'stepfun/step-2-mini',
                 // Baidu ERNIE
-                'baidu/ernie-5.0', 'baidu/ernie-4.5-300b-a47b', 'baidu/ernie-4.5-turbo', 'baidu/ernie-speed', 'baidu/ernie-lite',
+                'baidu/ernie-5.1', 'baidu/ernie-5.0', 'baidu/ernie-4.5-300b-a47b', 'baidu/ernie-4.5-turbo', 'baidu/ernie-speed', 'baidu/ernie-lite',
                 // Tencent Hunyuan
                 'tencent/hunyuan-t1', 'tencent/hunyuan-large', 'tencent/hunyuan-turbo', 'tencent/hunyuan-7b',
                 // ByteDance Doubao Seed

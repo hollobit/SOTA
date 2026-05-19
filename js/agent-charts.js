@@ -657,7 +657,11 @@ var AgentCharts = (function() {
   var _HEATMAP_BENCHMARKS = [
     'swe_bench_verified', 'swe_bench_pro', 'terminal_bench_2', 'osworld_verified',
     'gaia', 'tau2_bench', 'bfcl_v4', 'browsecomp', 'aider_polyglot', 'usaco',
-    'mobile_actions', 'agentdojo_utility'
+    'mobile_actions', 'agentdojo_utility',
+    // 2026-04-05 — Recent agent benchmark additions (Sections 36, 40, 43)
+    'mcpmark', 'tau3_bench', 'prdbench',
+    'corebench_hard', 'tau_bench_airline', 'assistantbench',
+    'complexmcp', 'agentick', 'delegate_52'
   ];
 
   function _benchmarkShortName(bid) {

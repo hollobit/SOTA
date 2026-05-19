@@ -19,7 +19,16 @@ var PhysicalAI = {
                 'tencent/hy-world-2.0',
                 'wonderworld/wonderworld', 'zhipu/cogvideox-i2v', 'runway/gen-3',
                 'agibot/genie-envisioner',
-                'nvidia/omniverse-mega'
+                'nvidia/omniverse-mega',
+                // 2026-05 World Foundation Model batch (Sections 45, 48)
+                'nvidia/sana-wm', 'nvidia/sana-wm-refiner',
+                'meta/v-jepa-2', 'meta/v-jepa-2.1',
+                'world-labs/marble',
+                'wayve/gaia-2',
+                'lingbot/lingbot-world',
+                'skywork/matrix-game-3.0',
+                'tencent/hy-worldplay',
+                'infinite-world/infinite-world'
             ]
         },
         {
@@ -34,7 +43,8 @@ var PhysicalAI = {
                 'octo/octo-base',
                 'google-deepmind/gemini-robotics-er-1.6', 'google-deepmind/gemini-robotics-er-1.5',
                 // May 2026 additions — Allen AI MolmoAct2 family + NVIDIA CaP-X coding-agent for manipulation
-                'allenai/molmoact2', 'allenai/molmoer', 'nvidia/cap-agent0'
+                'allenai/molmoact2', 'allenai/molmoer', 'nvidia/cap-agent0',
+                'allenai/molmoact-2'  // canonical id used in newer ingest (Section 38)
             ]
         },
         {
@@ -135,11 +145,22 @@ var PhysicalAI = {
             note: 'PAI-Bench · WorldScore (Stanford) · WorldModelBench (NeurIPS 2025) · EWMBench (AgiBot) · 1X World Model Challenge · AV/Robot FVD-FID-PSNR · World-model real-time FPS / consistency horizon',
             benchmarks: [
                 'pai_bench_text2world', 'pai_bench_image2world',
+                'pai_bench_text2world_post', 'pai_bench_image2world_overall',  // 2026-05 NVIDIA Cosmos Predict 2.5 paper
+                'fvd_av_multiview',  // 2026-05 Cosmos Predict 2.5 FVD
                 'worldscore_static', 'worldscore_dynamic', 'worldscore_3d_consistency',
                 'ewmbench', 'worldmodelbench_avg',
                 'humanoid_sampling_psnr', 'humanoid_compression_top500_ce',
                 'world_model_fps', 'world_model_consistency', 'world_model_visual_memory',
-                'av_fvd', 'av_fid', 'robot_manip_psnr', 'robot_manip_fvd'
+                'av_fvd', 'av_fid', 'robot_manip_psnr', 'robot_manip_fvd',
+                // 2026-05 VBench / VBench-2.0 (Section 45)
+                'vbench_total', 'vbench_quality', 'vbench_semantic',
+                'vbench2_total', 'vbench2_physics', 'vbench2_commonsense',
+                'vbench2_controllability', 'vbench2_human_fidelity', 'vbench2_creativity',
+                // 2026-05 NVIDIA SANA-WM 1-minute world model bench (Section 48)
+                'sana_wm_1min_simple_vbench', 'sana_wm_1min_hard_vbench',
+                'sana_wm_1min_simple_pose_r', 'sana_wm_1min_hard_pose_r',
+                'sana_wm_1min_simple_diq', 'sana_wm_1min_hard_diq',
+                'sana_wm_1min_throughput'
             ]
         },
         {
@@ -151,7 +172,10 @@ var PhysicalAI = {
                 'intuitive_physics_spatial_puzzle', 'intuitive_physics_arrow_of_time', 'intuitive_physics_object_permanence',
                 'gemini_instrument_reading', 'instrument_reading_agentic_vision',
                 'erqa', 'pixmo_point', 'physical_ai_bench', 'physical_reasoning_leaderboard',
-                'robovqa', 'lingoqa'
+                'robovqa', 'lingoqa',
+                // 2026-05 Meta Physical Reasoning Leaderboard + V-JEPA 2 video understanding (Section 45)
+                'intphys2', 'mvpbench', 'causalvqa',
+                'ss_v2_top1', 'epic_kitchens_recall5', 'perception_test', 'tempcompass'
             ]
         },
         {
