@@ -2,7 +2,22 @@
  * Cyber & Coding tab: renders cybersecurity attack and coding capability views.
  */
 var CyberCoding = {
-    CYBER_BENCHMARKS: ['cybench', 'cvebench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'airtbench', 'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range', 'openai_ctf_professional', 'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion', 'uk_aisi_narrow_cyber'],
+    CYBER_BENCHMARKS: ['cybench', 'cvebench', 'cybergym', 'evmbench_exploit', 'evmbench_detect', 'airtbench', 'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range', 'openai_ctf_professional', 'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion', 'uk_aisi_narrow_cyber',
+        // 2026-05 ExploitBench (arxiv 2605.14153, CMU + exploitbench.ai live) — 41 V8 N-day exploit capability ladder
+        'exploitbench_ace', 'exploitbench_t3', 'exploitbench_t4', 'exploitbench_mean_score', 'exploitbench_pct',
+        // 2026-04 PACEbench (Shanghai AI Lab v1.5, arxiv 2602.14457)
+        'pacebench_overall', 'pacebench_a_cve', 'pacebench_b_cve', 'pacebench_c_cve', 'pacebench_d_cve',
+        // 2026-04 NYU CTF Bench (arxiv 2604.17159, SUNY Albany)
+        'nyu_ctf', 'nyu_ctf_bench_crypto', 'nyu_ctf_bench_pwn', 'nyu_ctf_bench_web', 'nyu_ctf_bench_reverse',
+        // 2026-05 UK AISI multi-step ranges (arxiv 2603.11214)
+        'aisi_last_ones_100m_avg', 'aisi_cooling_tower_100m_avg',
+        // 2026-04 Simbian Cyber Defense (arxiv 2604.19533) + CyberTeam blue-team (arxiv 2509.23571)
+        'simbian_cyber_defense_coverage', 'cyberteam_rm_avg',
+        // 2026-05 CTI-REALM detection rule generation (arxiv 2603.13517)
+        'cti_realm_50',
+        // 2026-05 Autonomous Adversary (arxiv 2605.06486, NRC Canada)
+        'autoadversary_s1_autonomous_pct', 'autoadversary_s1_expert_pct'
+    ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric'],
     AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'gaia2', 'browsecomp', 'tau_bench', 'tau2_bench', 'tau3_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'arc_agi_3', 'claw_eval'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo'],
@@ -29,20 +44,30 @@ var CyberCoding = {
         {
             id: 'cyber-attack',
             label: '🛡️ Cyber Attack / CTF',
-            note: 'Cybench · CyberGym · CVE-Bench · EVMbench Detect/Exploit · The Last Ones (TLO) · OpenAI CTF Professional · Firefox 147 · Cyber Range · MHBench (Multi-Host) · AIRTBench · UK AISI Narrow Cyber · CyScenarioBench · Irregular Atomic 3-suite (Network/Vuln-Research/Evasion) · AIxCC · FORTRESS',
+            note: 'Cybench · CyberGym · CVE-Bench · EVMbench Detect/Exploit · The Last Ones (TLO) · OpenAI CTF Professional · Firefox 147 · Cyber Range · MHBench (Multi-Host) · AIRTBench · UK AISI Narrow Cyber · CyScenarioBench · Irregular Atomic 3-suite (Network/Vuln-Research/Evasion) · AIxCC · FORTRESS · ExploitBench (V8 N-day) · PACEbench (Shanghai AI Lab) · NYU CTF Bench · AISI multi-step (Last-Ones / Cooling Tower) · Autonomous Adversary (NRC Canada)',
             benchmarks: [
                 'cybench', 'cybergym', 'cvebench',
                 'evmbench_detect', 'evmbench_exploit',
                 'tlo_cyber_range', 'openai_ctf_professional', 'firefox_147', 'cyber_range',
                 'mhbench', 'airtbench', 'uk_aisi_narrow_cyber', 'cyscenariobench',
                 'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion',
-                'aixcc_synth_vuln', 'fortress'
+                'aixcc_synth_vuln', 'fortress',
+                // 2026-05 ExploitBench (arxiv 2605.14153) — V8 N-day exploit capability ladder
+                'exploitbench_ace', 'exploitbench_t3', 'exploitbench_t4', 'exploitbench_mean_score', 'exploitbench_pct',
+                // 2026-04 PACEbench (Shanghai AI Lab v1.5, arxiv 2602.14457)
+                'pacebench_overall', 'pacebench_a_cve', 'pacebench_b_cve', 'pacebench_c_cve', 'pacebench_d_cve',
+                // 2026-04 NYU CTF Bench (arxiv 2604.17159)
+                'nyu_ctf', 'nyu_ctf_bench_crypto', 'nyu_ctf_bench_pwn', 'nyu_ctf_bench_web', 'nyu_ctf_bench_reverse',
+                // 2026-05 UK AISI multi-step ranges (arxiv 2603.11214)
+                'aisi_last_ones_100m_avg', 'aisi_cooling_tower_100m_avg',
+                // 2026-05 Autonomous Adversary (arxiv 2605.06486, NRC Canada)
+                'autoadversary_s1_autonomous_pct', 'autoadversary_s1_expert_pct'
             ]
         },
         {
             id: 'cyber-defense',
             label: '🔒 Cyber Defense / Safety',
-            note: 'ZeroDayBench · SecRepoBench · EVMbench Patch · DFIR-Metric · Apollo Sabotage / Impossible-Task Lying / Eval-Awareness / Strategic Deception / Sandbagging · Dynamic Self-Harm / Mental Health / Emotional Reliance · CoT Controllability / Monitorability · Prompt Injection · First-Person Fairness · CyberSocEval · AutoPatchBench',
+            note: 'ZeroDayBench · SecRepoBench · EVMbench Patch · DFIR-Metric · Apollo Sabotage / Impossible-Task Lying / Eval-Awareness / Strategic Deception / Sandbagging · Dynamic Self-Harm / Mental Health / Emotional Reliance · CoT Controllability / Monitorability · Prompt Injection · First-Person Fairness · CyberSocEval · AutoPatchBench · Simbian Cyber Defense · CyberTeam (blue-team) · CTI-REALM (detection rule gen)',
             benchmarks: [
                 'zerodaybench', 'secrepobench', 'evmbench_patch', 'dfir_metric',
                 'apollo_sabotage_mean', 'apollo_impossible_task_lying', 'apollo_eval_awareness',
@@ -52,7 +77,11 @@ var CyberCoding = {
                 'prompt_injection', 'first_person_fairness',
                 'cybersoceval', 'autopatchbench', 'baxbench',
                 // May 2026 — MLCommons AI safety v1.0 (12 hazard categories, 5-point grade scale)
-                'ailuminate_v1'
+                'ailuminate_v1',
+                // 2026-04 Simbian Cyber Defense (arxiv 2604.19533) + CyberTeam blue-team (arxiv 2509.23571)
+                'simbian_cyber_defense_coverage', 'cyberteam_rm_avg',
+                // 2026-05 CTI-REALM detection-rule generation (arxiv 2603.13517)
+                'cti_realm_50'
             ]
         },
         {
