@@ -28,6 +28,26 @@ User-provided links: `https://arxiv.org/abs/2605.14153` (already mined as Exploi
 
 **Sovereign-AI delta sweep (2026-05-13 → 2026-05-19)**: **0 new sovereign SKUs** from any of 13 countries. Window was quiet — frontier cadence clustered just before window; widely held for Google I/O 2026 (May 19-20). Audit-trail: `resource/sovereign_delta_2026_05_19.md`.
 
+### 54. Deep menu audit pass 2 — Agent / AI4S / Physical AI hardcoded lists (commit `9ce27df`)
+
+User re-prompted: same menu audit, but this time with **deeper inspection** beyond just FRONTIER_MODELS arrays. Found 7 additional hardcoded structures that needed refresh:
+
+| File | Hardcoded list | Before → After | Additions |
+|---|---|---|---|
+| `agent.js` | `COMPARE_BENCHMARKS` | 9 → 22 | +13 agent benches: prdbench, mcpmark, tau3_bench, delegate_52, exploitbench_ace, simbian_cyber_defense_coverage, cyberteam_rm_avg, corebench_hard, tau_bench_airline, assistantbench, mcjudgebench_cjar, agentick, complexmcp |
+| `agent-charts.js` | `_HEATMAP_BENCHMARKS` | 12 → 21 | Same 9 most-important agent benches for heatmap |
+| `ai4s-charts.js` | `_BENCHMARK_DOMAIN_MAP` | 43 → 65 | All 14 SDE family + 5 SciFM Section 44 (posebusters_v2, bhrf1_binder, tdc_66_vs_*, esmgfp_sequence_identity, oc20_s2ef_*) + weatherbench_2_ifs_targets |
+| `ai4s-charts.js` | `_BREAKTHROUGHS` hero cards | 8 → 13 | AlphaProteo, TxGemma 27B, ESM-3 ESMGFP, SDE-hard (GPT-5-Pro 22.4%), AI Co-Mathematician |
+| `physical-ai.js` | `CATEGORIES.world-models` | +10 | SANA-WM + refiner, V-JEPA 2 + 2.1, World Labs Marble, Wayve GAIA-2, LingBot-World, Matrix-Game 3.0, HY-WorldPlay, Infinite-World |
+| `physical-ai.js` | `BENCHMARK_SUITES.world-model` | 16 → 32 | VBench 9 IDs + SANA-WM 1-min 7 IDs + PAI-Bench Cosmos Predict 2.5 |
+| `physical-ai.js` | `BENCHMARK_SUITES.embodied-reasoning` | +7 | Meta Physical Reasoning (intphys2, mvpbench, causalvqa) + V-JEPA 2 video (ss_v2_top1, epic_kitchens_recall5, perception_test, tempcompass) |
+
+**Menus confirmed clean (no patch needed)**:
+- **Medical AI**: classification is keyword-based via `_SPECIALTIES` array — auto-matches new med models without per-category lists
+- **Sovereign AI / Frontier Compare / Cyber & Coding**: already patched in commit `c94699b`
+
+**Cache-bust**: `agent.js / agent-charts.js / ai4s-charts.js / physical-ai.js` all → `20260519b`.
+
 ### 53. 7-menu hardcoded-list refresh (commit `c94699b`)
 
 User-prompted audit: "Frontier Compare / Cyber & Coding / Sovereign AI / Medical AI / Physical AI / AI4S / Agent menus에 추가하고 반영해야 할 업데이트 사항".
