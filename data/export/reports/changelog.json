@@ -1,5 +1,14 @@
 [
   {
+    "type": "Feature",
+    "date": "2026-05-19",
+    "benchmark_id": "ExploitBench surfaced in Cyber & Coding menu (commit ef81976)",
+    "new_model": "User follow-up: 'ExploitBench에 대한 사항은 Cyber & Coding 메뉴에서도 보이게 해주세요.' Section 52 ingested ExploitBench scores into the DB and Agent menu already exposed exploitbench_ace, but the Cyber & Coding multi-table leaderboard (natural home for offensive-security benches) was still missing all 5 ExploitBench dimensions — visible only via modal score-history when drilling into a model. Patch wires them in as first-class table columns. PERF_SUITES.cyber-attack +18 bench IDs (ExploitBench 5: ace/t3/t4/mean_score/pct + PACEbench 5: overall/a_cve/b_cve/c_cve/d_cve + NYU CTF Bench 5: top/crypto/pwn/web/reverse + AISI 2: last_ones_100m_avg/cooling_tower_100m_avg + AutoAdversary 2: s1_autonomous_pct/s1_expert_pct). PERF_SUITES.cyber-defense +3 bench IDs (Simbian Cyber Defense Coverage + CyberTeam RM-avg blue-team + CTI-REALM 50 detection-rule generation). Legacy CYBER_BENCHMARKS filter-chip array already updated in Session 18 deep-audit pass; this commit completes menu-surface symmetry by wiring the same IDs into suite-based table view.",
+    "new_value": "1 file edited (dashboard/js/cyber-coding.js, +35/-6 lines). cyber-attack suite 18 IDs → 36 IDs, cyber-defense suite 20 IDs → 23 IDs. Cache-bust cyber-coding.js v=20260519a → 20260519b. Frontier models / benchmarks / scores counts unchanged — pure menu-surface patch.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
     "type": "Data",
     "date": "2026-05-10",
     "benchmark_id": "Epoch ECI + MLCommons AILuminate v1.0 — 7 models / 1 benchmark / 21 scores",

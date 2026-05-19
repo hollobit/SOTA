@@ -28,6 +28,21 @@ User-provided links: `https://arxiv.org/abs/2605.14153` (already mined as Exploi
 
 **Sovereign-AI delta sweep (2026-05-13 → 2026-05-19)**: **0 new sovereign SKUs** from any of 13 countries. Window was quiet — frontier cadence clustered just before window; widely held for Google I/O 2026 (May 19-20). Audit-trail: `resource/sovereign_delta_2026_05_19.md`.
 
+### 55. ExploitBench surfaced in Cyber & Coding menu (commit `ef81976`)
+
+User follow-up: "ExploitBench에 대한 사항은 Cyber & Coding 메뉴에서도 보이게 해주세요." Section 52 had ingested ExploitBench scores into the DB and the Agent menu already exposed `exploitbench_ace`, but the **Cyber & Coding multi-table leaderboard** (the natural home for offensive-security benches) was still missing all 5 ExploitBench dimensions — they appeared only in the modal score-history when drilling into a model. The fix surfaces them as first-class columns in both relevant suite tables.
+
+**`cyber-coding.js` patch** (1 file, 2 arrays):
+
+| Suite | Additions |
+|---|---|
+| `PERF_SUITES.cyber-attack` | **+18 bench IDs**: ExploitBench 5 (ace / t3 / t4 / mean_score / pct) + PACEbench 5 (overall + a/b/c/d_cve) + NYU CTF Bench 5 (top + crypto / pwn / web / reverse) + AISI 2 (last_ones_100m_avg, cooling_tower_100m_avg) + AutoAdversary 2 (s1_autonomous_pct, s1_expert_pct) |
+| `PERF_SUITES.cyber-defense` | **+3 bench IDs**: Simbian Cyber Defense Coverage + CyberTeam RM-avg (blue-team) + CTI-REALM 50 (detection-rule generation) |
+
+The legacy `CYBER_BENCHMARKS` filter-chip array was already updated in Session 18's deep audit pass; this commit completes the menu-surface symmetry by also wiring the same IDs into the suite-based table view. Cache-bust `cyber-coding.js` `20260519a → 20260519b`.
+
+**Outcome**: Cyber & Coding tab now shows ExploitBench scores side-by-side with Cybench / CVE-Bench / CyberGym in the Cyber-Attack suite table — drilling into any frontier model surfaces the 41 V8 N-day ladder leaderboard directly.
+
 ### 54. Deep menu audit pass 2 — Agent / AI4S / Physical AI hardcoded lists (commit `9ce27df`)
 
 User re-prompted: same menu audit, but this time with **deeper inspection** beyond just FRONTIER_MODELS arrays. Found 7 additional hardcoded structures that needed refresh:
