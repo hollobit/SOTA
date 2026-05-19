@@ -1,5 +1,74 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-19 (Session 18): ExploitBench live + sovereign delta + 7-menu hardcoded-list refresh
+
+### 52. ExploitBench live leaderboard delta + sovereign-AI delta (commit `7be38b0`)
+
+User-provided links: `https://arxiv.org/abs/2605.14153` (already mined as ExploitBench Sept 2026) + `https://exploitbench.ai` (live leaderboard).
+
+**Live leaderboard adds 3 new dimensions** vs paper version:
+1. **AutoNudge scaffold variants** (improved coaching prompts) for every model
+2. **GPT-5.5 Codex CLI scaffold** as separate row from bare GPT-5.5
+3. **Aggregate mean-score-per-(model, scaffold) across 41 V8 bugs** (0-16 scale, T1/ACE=16)
+
+**Ingest**: +1 model (`openai/gpt-5.5-codex`) / +2 benchmarks (`exploitbench_mean_score`, `exploitbench_pct`) / +8 scores.
+
+**Live leaderboard top 6**:
+
+| Rank | Model | Scaffold | Mean | % of max |
+|---:|---|---|---:|---:|
+| 1 | Mythos Preview | AutoNudge | **9.90** | **68.9%** |
+| 2 | Mythos Preview | bare | 9.55 | 67.5% |
+| 3 | GPT-5.5 | Codex+AutoNudge | 5.51 | 40.9% |
+| 4 | GPT-5.5 | AutoNudge | 4.44 | 34.5% |
+| 5 | GPT-5.5 | Codex (bare) | 3.76 | 32.6% |
+| 6 | Claude Opus 4.7 | AutoNudge | 3.66 | 26.5% |
+
+**Notable**: GPT-5.5 + Codex CLI scaffold grew T3 reach from 13→20 bugs at ~1/5 per-episode cost vs bare arm. Scaffolding dominates capability gain.
+
+**Sovereign-AI delta sweep (2026-05-13 → 2026-05-19)**: **0 new sovereign SKUs** from any of 13 countries. Window was quiet — frontier cadence clustered just before window; widely held for Google I/O 2026 (May 19-20). Audit-trail: `resource/sovereign_delta_2026_05_19.md`.
+
+### 53. 7-menu hardcoded-list refresh (commit `c94699b`)
+
+User-prompted audit: "Frontier Compare / Cyber & Coding / Sovereign AI / Medical AI / Physical AI / AI4S / Agent menus에 추가하고 반영해야 할 업데이트 사항".
+
+**Audit findings**:
+- **Frontier Compare** + **Cyber & Coding** had stale hardcoded `FRONTIER_MODELS` arrays missing 24+ recent flagship additions
+- **Sovereign AI** REGIONS map missing `baidu/ernie-5.1` in China region
+- **Medical AI / Physical AI / AI4S / Agent**: data-driven (no hardcoded model lists) — auto-include from `data/export/models.json` and `benchmarks.json`, no patch needed
+
+**Patches**:
+
+(1) `frontier-compare.js` FRONTIER_MODELS: **83 → 107 models** (+24)
+   - World Foundation Models: SANA-WM + refiner, V-JEPA 2 + 2.1, World Labs Marble, Wayve GAIA-2, MolmoAct 2
+   - Science FMs: Evo 2 (Arc), AlphaProteo (DeepMind), TxGemma 27B
+   - Cyber agents: Microsoft MDASH, xAI Grok Build, GPT-5.5 Codex
+   - Frontiers: Baidu ERNIE 5.1
+   - Sovereign: Swiss-AI Apertus 70B/Instruct, Cohere Command A/Reasoning, PFN PLaMo 2.1, NTT tsuzumi 2, OpenGPT-X Teuken, Mistral Medium 3.5 EAGLE
+
+(2) `cyber-coding.js` FRONTIER_MODELS: **47 → 53 models** (+6)
+   - 5-vendor agentic coding CLI race: Grok Build, GPT-5.5 Codex (joining Claude Code / Codex CLI / Gemini CLI / Qwen Code)
+   - Microsoft MDASH (CyberGym SOTA 88.45)
+   - Baidu ERNIE 5.1
+   - Claude Sonnet 4.5
+   - GPT-5.5 Cyber
+
+(3) `sovereign.js` China region: +1 entry (`baidu/ernie-5.1`)
+
+**Cache-bust**: `frontier-compare.js v=20260512c → 20260519a`, `cyber-coding.js v=20260510c → 20260519a`, `sovereign.js v=20260513b → 20260519a`
+
+**Medical AI / Physical AI / AI4S / Agent menus require no patch** — all 4 read directly from `data/export/models.json` and benchmark JSON, so they automatically pick up the 200+ models added since Session 14. No hardcoded model lists in any of these 4 files.
+
+### Session 18 cumulative deltas (running)
+
+| Metric | Before Session 18 | After | Δ |
+|---|---:|---:|---:|
+| Models | 1460 | **1461** | **+1** |
+| Benchmarks | 1064 | **1066** | **+2** |
+| Scores | 5670 | **5678** | **+8** |
+
+---
+
 ## 2026-05-18 (Session 17): NVIDIA SANA-WM + xAI Grok Build CLI + 14-paper cyber megabatch
 
 ### 51. 10-paper cyber arxiv batch — PACEbench + CTI-REALM + AISI + CyberTeam + Auto Adversary (commit `3bf5585`)
