@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/tailwind.css">
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/print.css?v=20260509a" media="print">
+    <link rel="stylesheet" href="css/print.css?v=20260520a" media="print">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js" defer></script>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen">
@@ -773,6 +773,23 @@
         </section>
 
         <section id="tab-changelog" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-changelog">
+            <div id="changelog-controls" class="flex flex-wrap items-center gap-3 mb-4 pb-3 border-b border-gray-800 print:hidden">
+                <label for="changelog-period" class="text-sm text-gray-400">Period:</label>
+                <select id="changelog-period" class="bg-gray-800 border border-gray-700 text-gray-200 text-sm rounded px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="7">Last 7 days</option>
+                    <option value="30" selected>Last 30 days</option>
+                    <option value="90">Last 90 days</option>
+                    <option value="all">All time</option>
+                </select>
+                <span id="changelog-count" class="text-xs text-gray-500"></span>
+                <button id="changelog-export-pdf" class="ml-auto bg-blue-700 hover:bg-blue-600 text-white text-sm px-3 py-1.5 rounded transition-colors flex items-center gap-1.5" title="Open print dialog — choose 'Save as PDF' as destination">
+                    <span>📄</span><span>Export to PDF</span>
+                </button>
+            </div>
+            <div id="changelog-print-header" class="hidden print:block mb-4">
+                <h1 class="text-xl font-bold text-gray-900">Cyber LLM Benchmark Dashboard — Changelog</h1>
+                <p id="changelog-print-meta" class="text-sm text-gray-600 mt-1"></p>
+            </div>
             <div id="changelog-list"></div>
         </section>
     </main>
@@ -831,12 +848,12 @@
     <script src="js/medical-ai-charts.js?v=20260509b"></script>
     <script src="js/ai4s.js?v=20260509b"></script>
     <script src="js/ai4s-charts.js?v=20260519b"></script>
-    <script src="js/agent.js?v=20260519b"></script>
+    <script src="js/agent.js?v=20260520c"></script>
     <script src="js/agent-charts.js?v=20260519b"></script>
     <script src="js/charts.js?v=20260504c"></script>
     <script src="js/filters.js?v=20260424"></script>
     <script src="js/explorer.js?v=20260502a"></script>
     <script src="js/comparison.js?v=20260503e"></script>
-    <script src="js/app.js?v=20260520b"></script>
+    <script src="js/app.js?v=20260520c"></script>
 </body>
 </html>

@@ -628,8 +628,10 @@ var Agent = (function() {
         exportBtn.setAttribute('aria-label', 'Export Agent tab as PDF');
         exportBtn.textContent = '🖨 Export PDF';
         exportBtn.addEventListener('click', function() {
+            document.body.classList.add('print-agent');
             try { window.print(); }
             catch (e) { if (window.console) console.warn('[Agent] window.print() failed:', e); }
+            finally { document.body.classList.remove('print-agent'); }
         });
         headRow.appendChild(exportBtn);
 
