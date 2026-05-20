@@ -1,5 +1,64 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-20 (Session 19 cont'd 2): Gemini 3.5 Flash PDF backfill — 6-column comparison table
+
+### 58. Gemini 3.5 Flash + Omni Flash PDF model card analysis (35 backfill triples)
+
+User asked us to analyze the actual PDF model cards (vs HTML summaries used in Section 56). The PDFs revealed:
+
+**Gemini 3.5 Flash PDF page 4** — full 14-benchmark × 6-model comparison table with comparison columns I previously missed:
+
+| Benchmark | 3.5 Flash | 3 Flash | 3.1 Pro | Sonnet 4.6 | Opus 4.7 | GPT-5.5 |
+|---|---:|---:|---:|---:|---:|---:|
+| Terminal-Bench 2.1 | **76.2** | 58.0 | 70.3 | - | 66.1 | **78.2** |
+| SWE-Bench Pro Public | 53.9 | 48.4 | 54.2 | 53.0 | **64.3** | 58.6 |
+| MCP Atlas | **83.6** | 62.0 | 78.2 | 69.5 | 79.1 | 75.3 |
+| Toolathlon | **56.5** | 49.4 | - | - | - | 55.6 |
+| OSWorld-Verified | 78.4 | 65.1 | 76.2 | 72.5 | 78.0 | **78.7** |
+| Finance Agent v2 | **57.9** | 42.6 | 43.0 | 51.0 | 51.5 | 51.8 |
+| GDPval-AA Elo | 1656 | 1204 | 1314 | 1674 | 1753 | **1773** |
+| CharXiv Reasoning | **84.2** | 80.3 | 83.3 | 70.5 | 82.1 | 84.1 |
+| MMMU-Pro | **83.6** | 81.2 | 80.5 | 74.5 | 75.2 | 81.2 |
+| Blueprint-Bench 2 | 33.6 | 0.0 | 26.5 | 6.7 | 24.5 | **36.2** |
+| MRCR v2 128k | 77.3 | 67.2 | 84.9 | 84.9 | 59.3 | **94.8** |
+| MRCR v2 1M | 26.6 | 22.1 | 26.3 | n/a | n/a | n/a |
+| Humanity's Last Exam | 40.2 | 33.7 | 44.4 | 33.2 | **46.9** | 41.4 |
+| ARC-AGI-2 | 72.1 | 33.6 | 77.1 | 58.3 | 75.8 | **85.0** |
+
+**1 correction (via SQL UPDATE)**: Gemini 3.5 Flash SWE-Bench Pro `55.1 → 53.9` — earlier WebFetch + llm-stats both reported 55.1, but canonical PDF page 4 shows 53.9. Updated source_url to PDF.
+
+**35 backfill triples loaded** (only NEW model+bench pairs not already in DB):
+
+| Model | New triples | Notes |
+|---|---:|---|
+| `google/gemini-3-flash` | **12** | Massive backfill — Gemini 3 Flash had only 2 of 14 benches. Blueprint-Bench 2 = 0.0% (complete failure); 3.5 Flash jumps to 33.6%. |
+| `google/gemini-3.1-pro` | 5 | terminal_bench_2_1 70.3 (distinct from existing terminal_bench_2 v2.0 68.5), osworld_verified 76.2, finance_agent_v2 43.0, charxiv 83.3, blueprint 26.5 |
+| `anthropic/claude-sonnet-4.6` | 6 | swe_bench_pro 53.0, finance v2 51.0, charxiv 70.5, mmmu_pro 74.5, blueprint 6.7, mrcr_128k 84.9 |
+| `anthropic/claude-opus-4.7` | 5 | terminal_2_1 66.1, finance v2 51.5, charxiv 82.1, blueprint 24.5, mrcr_128k 59.3 (surprise weakness on long-context recall) |
+| `openai/gpt-5.5` | **7** | terminal_2_1 78.2 (top), mcp_atlas 75.3, toolathlon 55.6, finance v2 51.8, charxiv 84.1, blueprint 36.2 (top), mrcr_128k 94.8 (top) |
+
+**Skipped per strict-attribution preservation policy** (preserved existing primary-source scores):
+- `gemini-3.1-pro/swe_bench_pro 48.4` (sakana.ai third-party eval) — PDF shows 54.2 (Google internal), both primary, keep first
+- `gemini-3.1-pro/mcp_atlas 69.2` vs PDF 78.2 — different harness, preserve existing
+- `claude-sonnet-4.6/hle 49.0` vs PDF 33.2 — different harness/full-set, preserve
+- `claude-opus-4.7/mmmu_pro 80.6` vs PDF 75.2 — different version, preserve
+- `gpt-5.5/gdpval_aa 84.9` (legacy accuracy-encoding) vs PDF 1773 (Elo) — metric encoding mismatch, defer to data quality cleanup
+- `-` cells (Terminal-Bench 2.1 + Toolathlon for Sonnet 4.6 / Opus 4.7; Toolathlon for Gemini 3.1 Pro): not evaluated, no data
+- `Not supported` cells (MRCR v2 1M for Sonnet 4.6 / Opus 4.7 / GPT-5.5): vendor limitation
+
+**Gemini Omni Flash PDF** (5 pages) — confirmed NO benchmark scores. Verbatim from page 2: "We will share Gemini Omni Flash's evaluations for the following capabilities – T2VA, I2VA, R2VA, video editing, and image generation – when we roll out to developers and enterprise customers via APIs." Additional model details extracted (training on TPUs / JAX + ML Pathways, pre-training synthetic captioning mitigations, SynthID post-training watermarking, restricted speech-conversion capability) — all qualitative, no new scores.
+
+**Headline insights uncovered**:
+- GPT-5.5 tops 4 of 14 PDF benches (Terminal-Bench 2.1, GDPval-AA, Blueprint-Bench 2, MRCR v2 128k 94.8 ← strongest long-context model in panel) + ARC-AGI-2 85.0
+- Claude Opus 4.7 surprisingly weak on long-context: MRCR 128k only 59.3 vs panel average ~80. Likely reasoning-tuning trade-off.
+- Gemini 3 Flash is a baseline 0.0% on Blueprint-Bench 2 (agentic spatial reasoning) — entire new benchmark family for 3 Flash to fail at
+- Sonnet 4.6 ties Gemini 3.1 Pro on MRCR 128k at exactly 84.9 (rounded — suspicious coincidence, may indicate different harnesses converging)
+
+**Files patched**:
+- `resource/zzz_2026_05_20_gemini_3_5_flash_pdf_backfill_scores.json` (new, 35 scores)
+- SQL UPDATE on gemini-3.5-flash/swe_bench_pro
+- No code/UI changes needed (data-only ingest visible via existing model modals + frontier comparison views)
+
 ## 2026-05-20 (Session 19 cont'd): TextArena + arena.ai vision/text + Qwen 3.7 Max/Plus preview
 
 ### 57. TextArena + arena.ai Vision/Text leaderboard ingest + 2 new Alibaba Qwen 3.7 models

@@ -1,0 +1,60 @@
+{
+  "_meta": {
+    "date": "2026-05-20",
+    "title": "Gemini 3.5 Flash PDF model card — 6-column comparison backfill",
+    "context": "User re-asked us to analyze the actual PDF model cards (vs HTML). The PDF reveals a 14-benchmark × 6-model comparison table that wasn't fully captured in the earlier HTML/llm-stats ingest. Comparison columns: Gemini 3.5 Flash / Gemini 3 Flash / Gemini 3.1 Pro / Claude Sonnet 4.6 / Claude Opus 4.7 / GPT-5.5. The Gemini Omni Flash PDF has NO benchmark scores (vendor explicitly defers to API rollout, confirmed verbatim from page 2 of PDF). Strict-attribution: only ingest (model, bench) pairs NOT yet in DB or where the PDF authoritatively corrects a value. Preserve existing third-party scores (e.g. sakana.ai SWE-Bench Pro) since the PDF uses Google's internal harness which is a different methodology context.",
+    "sources": [
+      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf",
+      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-Omni-Flash-Model-Card.pdf"
+    ],
+    "rule": "STRICT-ATTRIBUTION — all values verbatim from PDF page 4 table (rendered May 20 2026). Skipped cells: '-' (not evaluated, e.g. Sonnet/Opus on Terminal-Bench 2.1 and Toolathlon), 'Not supported' (Sonnet/Opus/GPT-5.5 on MRCR v2 1M), and pre-existing scores from other primary sources where the PDF would conflict (e.g. gemini-3.1-pro/swe_bench_pro existing 48.4 from sakana.ai vs PDF 54.2 — preserve sakana.ai third-party eval, both are primary)."
+  },
+  "models": [],
+  "benchmarks": [],
+  "scores": [
+    {"_section": "=== Gemini 3 Flash (existing model) — 12 backfill scores from PDF ===",
+     "model": "google/gemini-3-flash", "benchmark": "terminal_bench_2_1", "score": 58.0, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Terminal-Bench 2.1 (Terminus-2 harness). Page 4 PDF."},
+    {"model": "google/gemini-3-flash", "benchmark": "swe_bench_pro", "score": 48.4, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "SWE-Bench Pro (Public) single attempt. PDF page 4."},
+    {"model": "google/gemini-3-flash", "benchmark": "mcp_atlas", "score": 62.0, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "MCP Atlas multi-step workflows."},
+    {"model": "google/gemini-3-flash", "benchmark": "toolathlon", "score": 49.4, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Toolathlon real-world general tool use."},
+    {"model": "google/gemini-3-flash", "benchmark": "osworld_verified", "score": 65.1, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "OSWorld-Verified agentic computer use."},
+    {"model": "google/gemini-3-flash", "benchmark": "finance_agent_v2", "score": 42.6, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Finance Agent v2 financial analysis."},
+    {"model": "google/gemini-3-flash", "benchmark": "gdpval_aa", "score": 1204, "unit": "elo", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "GDPval-AA Elo (economically valuable knowledge work)."},
+    {"model": "google/gemini-3-flash", "benchmark": "charxiv_reasoning_no_tools", "score": 80.3, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "CharXiv Reasoning (no tools) info synthesis from charts."},
+    {"model": "google/gemini-3-flash", "benchmark": "mmmu_pro", "score": 81.2, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "MMMU-Pro (no tools) multimodal understanding."},
+    {"model": "google/gemini-3-flash", "benchmark": "blueprint_bench_2", "score": 0.0, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Blueprint-Bench 2 normalized score. 3 Flash COMPLETELY FAILS this agentic spatial reasoning task (0%); 3.5 Flash jumps to 33.6%."},
+    {"model": "google/gemini-3-flash", "benchmark": "mrcr_v2_128k", "score": 67.2, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "MRCR v2 8-needle 128k average. Long-context performance."},
+    {"model": "google/gemini-3-flash", "benchmark": "mrcr_v2_1m", "score": 22.1, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "MRCR v2 8-needle 1M pointwise."},
+
+    {"_section": "=== Gemini 3.1 Pro (existing model) — 5 backfill on new benchmarks ===",
+     "model": "google/gemini-3.1-pro", "benchmark": "terminal_bench_2_1", "score": 70.3, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Terminal-Bench 2.1 (different harness vs existing v2.0 68.5)."},
+    {"model": "google/gemini-3.1-pro", "benchmark": "osworld_verified", "score": 76.2, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "OSWorld-Verified."},
+    {"model": "google/gemini-3.1-pro", "benchmark": "finance_agent_v2", "score": 43.0, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Finance Agent v2."},
+    {"model": "google/gemini-3.1-pro", "benchmark": "charxiv_reasoning_no_tools", "score": 83.3, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "CharXiv Reasoning (no tools)."},
+    {"model": "google/gemini-3.1-pro", "benchmark": "blueprint_bench_2", "score": 26.5, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Blueprint-Bench 2 normalized score."},
+
+    {"_section": "=== Claude Sonnet 4.6 (existing model) — 6 backfill scores ===",
+     "model": "anthropic/claude-sonnet-4.6", "benchmark": "swe_bench_pro", "score": 53.0, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Single attempt. Google's internal harness for cross-vendor comparison."},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "finance_agent_v2", "score": 51.0, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Finance Agent v2."},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "charxiv_reasoning_no_tools", "score": 70.5, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "CharXiv Reasoning (no tools)."},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "mmmu_pro", "score": 74.5, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "MMMU-Pro."},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "blueprint_bench_2", "score": 6.7, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Blueprint-Bench 2 — Sonnet 4.6 weak on agentic spatial reasoning."},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "mrcr_v2_128k", "score": 84.9, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "MRCR v2 128k average. Ties Gemini 3.1 Pro at top of 128k long-context recall."},
+
+    {"_section": "=== Claude Opus 4.7 (existing model) — 5 backfill scores ===",
+     "model": "anthropic/claude-opus-4.7", "benchmark": "terminal_bench_2_1", "score": 66.1, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Terminal-Bench 2.1 (Terminus-2 harness)."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "finance_agent_v2", "score": 51.5, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Finance Agent v2."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "charxiv_reasoning_no_tools", "score": 82.1, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "CharXiv Reasoning (no tools)."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "blueprint_bench_2", "score": 24.5, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Blueprint-Bench 2."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "mrcr_v2_128k", "score": 59.3, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "MRCR v2 128k. Surprising: Opus 4.7 weakest of frontier on long-context recall (59.3 vs Gemini 84.9 / Sonnet 84.9 / GPT-5.5 94.8)."},
+
+    {"_section": "=== GPT-5.5 (existing model) — 7 backfill scores ===",
+     "model": "openai/gpt-5.5", "benchmark": "terminal_bench_2_1", "score": 78.2, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Terminal-Bench 2.1. Top of leaderboard (bold in PDF)."},
+    {"model": "openai/gpt-5.5", "benchmark": "mcp_atlas", "score": 75.3, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "MCP Atlas."},
+    {"model": "openai/gpt-5.5", "benchmark": "toolathlon", "score": 55.6, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Toolathlon."},
+    {"model": "openai/gpt-5.5", "benchmark": "finance_agent_v2", "score": 51.8, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Finance Agent v2."},
+    {"model": "openai/gpt-5.5", "benchmark": "charxiv_reasoning_no_tools", "score": 84.1, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "CharXiv Reasoning (no tools)."},
+    {"model": "openai/gpt-5.5", "benchmark": "blueprint_bench_2", "score": 36.2, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "Blueprint-Bench 2. Top of leaderboard (bold in PDF)."},
+    {"model": "openai/gpt-5.5", "benchmark": "mrcr_v2_128k", "score": 94.8, "unit": "%", "_source": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-5-Flash-Model-Card.pdf", "_note": "MRCR v2 128k. TOP long-context recall (bold in PDF)."}
+  ]
+}
