@@ -1,5 +1,66 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-21 (Session 20): FactoryBench — industrial machine understanding ingest
+
+### 60. FactoryBench (arxiv 2605.07675) — 4-level Pearl's-ladder reasoning over industrial robot telemetry
+
+User provided arxiv link `https://arxiv.org/abs/2605.07675` and asked us to check whether the paper contains new models/benchmarks/scores worth adding. After downloading + reading the 18-page PDF (Merzouki et al, ETH Zurich + Forgis + UC3M + Imperial College London + UC Berkeley + KTH + University of Vienna, May 8 2026):
+
+**Paper character**: FactoryBench is a brand-new industrial-robotics benchmark that evaluates LLMs on machine-behavior reasoning over multivariate robot telemetry. Built on Pearl's ladder of causation extended with a fourth decision-making rung. Companion dataset **FactoryWave** is the first public industrial-arm telemetry corpus bridging the cobot↔industrial-machine gap.
+
+**4 reasoning levels** registered as separate benchmark IDs:
+
+| ID | Level | N | What it tests |
+|---|---|---:|---|
+| `factorybench_l1_state` | State (L1) | 1,209 | Interpret current operational state from raw multivariate signals |
+| `factorybench_l2_intervention` | Intervention (L2) | 3,132 | Reason about consequences of present-timestep interventions |
+| `factorybench_l3_counterfactual` | Counterfactual (L3) | 297 | Simulate alternative histories (Pearl's rung 3) |
+| `factorybench_l4_decision` | Decision Making (L4) | 113 | Free-form troubleshooting + optimization (LLM-judge median over 3 judges) |
+
+**6 frontier LLMs evaluated zero-shot (April 2026 submission cohort)** — all already in our DB:
+- `anthropic/claude-sonnet-4.6` (closed-weight)
+- `openai/gpt-5.1` (closed-weight)
+- `deepseek/deepseek-v3.2` (open-weight)
+- `mistral/mistral-large-3` (open-weight)
+- `alibaba/qwen3-235b-a22b` (open-weight)
+- `alibaba/qwen3-4b` (lightweight open-weight reference)
+
+**Chance-corrected accuracy (%) from PDF Figure 3a — 24 scores total**:
+
+| Model | L1 State | L2 Intervention | L3 Counterfactual | L4 Decision |
+|---|---:|---:|---:|---:|
+| Claude Sonnet 4.6 | **46.8** | **47.1** | **45.9** | 4.3 |
+| Qwen3-235B | 36.0 | 35.6 | **43.6** | 4.4 |
+| Mistral Large 3 | 34.6 | 31.7 | 36.3 | 5.4 |
+| GPT-5.1 | 30.9 | 30.0 | 31.7 | **17.7** |
+| DeepSeek V3.2 | 25.0 | 29.1 | 28.5 | 7.6 |
+| Qwen3-4B | 21.8 | 27.5 | 28.8 | 2.9 |
+| _Simple Baseline_ | _28.4_ | _24.1_ | _20.4_ | _(n/a)_ |
+
+**Headline findings**:
+- **Sonnet 4.6 dominates L1-L3 but collapses on L4** — a 10× drop from L3 (45.9%) to L4 (4.3%). Largest L3→L4 gap in the panel. Strong pattern-recognition + state inference, weak action sequencing under recovery protocols.
+- **GPT-5.1 is the only L4 outlier** — 17.7% on decision-making, ~2.3× the next model. PDF sub-breakdown: L4.1 Troubleshooting 17.4% / L4.2 Optimization 20.1%. The paper notes GPT-5.1 fails to clear the simple baseline on L1 (30.9% vs 28.4%), but recovers on harder reasoning rungs — a profile inverted from the rest of the panel.
+- **Qwen3-235B has unusually strong counterfactual reasoning** — ties Sonnet 4.6 on L3 (43.6 vs 45.9) despite 10-point gap on L1/L2. Suggests open-weight RL+thinking architecture punches above its L1 weight on Pearl's higher rungs.
+- **DeepSeek V3.2 + Qwen3-4B sit below the no-LLM simple baseline on L1** (25.0/21.8 vs 28.4) — the linear-regression + uniform-random baseline is strong evidence that L1 measures something raw-scale doesn't confer.
+- **Universal failure on L4**: no model exceeds 18% — paper's headline insight that there's "a wide gap between current models and operational machine understanding."
+
+**Skipped per strict-attribution**: Simple Baseline row (not a frontier model, included only for calibration). No-LLM baseline values do appear in figure for reference (28.4 / 24.1 / 20.4) but are not ingested.
+
+**Propagation across UI/registry**:
+- Score JSON: `resource/zzz_2026_05_21_factorybench_scores.json` (4 benchmarks + 24 scores)
+- PDF archived: `resource/factorybench_2605_07675.pdf` (15MB) per memory rule
+- Physical AI tab: 4 IDs added to `embodied-reasoning` BENCHMARK_SUITE (alongside Cosmos-Reason / Gemini Robotics ER / V-JEPA 2 / IntPhys 2 / MVPBench / CausalVQA)
+- Resources tab: 2 new entries (paper + HF dataset) inserted right after WorldModelBench in app.js
+- seed_sources.yaml: 2 new sources (paper + dataset) under Physical AI section
+- changelog.json: new Session 20 entry prepended
+- Cache-bust: `physical-ai.js` + `app.js` → `v=20260521a`
+
+**Delta to DB**: 1465 models (unchanged) / 1071 → **1075 benchmarks** (+4) / 5763 → **5787 scores** (+24).
+
+**Why this benchmark matters for the dashboard**: This is the first industrial-robotics-telemetry benchmark in the Physical AI tab. Prior embodied-reasoning entries (Cosmos / Gemini Robotics ER / IntPhys / V-JEPA 2) test world-model generation quality or video commonsense; FactoryBench tests *causal reasoning over dense multivariate sensor signals from real manufacturing arms*, with ground truth from physical re-execution (L3) and manufacturer recovery protocols (L4). It's the first benchmark in our registry where every frontier model fails catastrophically (≤18%) on the highest reasoning rung, which makes it a useful saturation-resistant axis for Frontier Compare.
+
+---
+
 ## 2026-05-20 (Session 19 cont'd 3): Reference leaderboard mining for new Session 19 models
 
 ### 59. Cross-leaderboard mining for Gemini 3.5 Flash + Omni Flash + Qwen 3.7 Max/Plus preview

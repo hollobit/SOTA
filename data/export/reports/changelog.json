@@ -1,6 +1,15 @@
 [
   {
     "type": "Data",
+    "date": "2026-05-21",
+    "benchmark_id": "FactoryBench (arxiv 2605.07675) ingest — 4 levels / 6 models / 24 scores",
+    "new_model": "User-provided arxiv 2605.07675 (FactoryBench: Evaluating Industrial Machine Understanding, Merzouki et al, May 8 2026, ETH+Forgis+UC3M+Imperial+UC Berkeley+KTH+U. Vienna). PDF Figure 3a contains canonical Model × Level chance-corrected accuracy table for 6 frontier LLMs (April 2026 submission cohort): Claude Sonnet 4.6, GPT-5.1, DeepSeek V3.2, Mistral Large 3, Qwen3-235B, Qwen3-4B. 4 benchmark levels per Pearl's ladder: L1 State (N=1,209), L2 Intervention (N=3,132), L3 Counterfactual (N=297), L4 Decision Making (N=113 free-form via LLM-judge median). Companion FactoryWave dataset (8,983 episodes at 125/83 Hz on UR3 + KUKA KR10, 27 fault types). All 6 models already in DB — only 4 new benchmark IDs registered. Headline findings: Sonnet 4.6 leads L1-L3 (46.8/47.1/45.9%) but L4 collapses 10× to 4.3%; GPT-5.1 alone clears L4 at 17.7% despite mediocre L1-L3 (~31%); Qwen3-235B unusually strong on counterfactual (L3 43.6%, ties Sonnet); DeepSeek V3.2 and Qwen3-4B sit below the no-LLM simple baseline (28.4%) on L1. 15MB PDF archived in resource/factorybench_2605_07675.pdf per memory rule.",
+    "new_value": "+0 models, +4 benchmarks (1071→1075: factorybench_l1_state / l2_intervention / l3_counterfactual / l4_decision), +24 scores (5763→5787). Added to Physical AI embodied-reasoning suite. +2 Resources references (paper + HF dataset). +2 seed_sources.yaml entries. Cache-bust physical-ai.js + app.js v=20260521a.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
     "date": "2026-05-20",
     "benchmark_id": "Reference leaderboard mining for new Session 19 models — 13 new Gemini 3.5 Flash scores",
     "new_model": "User asked to mine reference leaderboards for additional benchmark coverage of 4 newly-added Session 19 models. Subagent checked: AA Intelligence Index (per-model detail), arena.ai (text/vision/webdev/sub-categories), LMArena, LiveBench, MathArena, Aider Polyglot, Epoch ECI, Scale SEAL, OpenRouter, VBench, VBench-2.0, Bambooshi, HF Video Generation Arena. Results: gemini-3.5-flash +13 new scores (AA detail page sub-benchmarks: aa_intelligence_index 55 / terminal_bench_hard 41% / tau2_telecom 95% / aa_lcr 69% / aa_omniscience_acc 52% / aa_omniscience_non_hall 39% / gpqa_diamond 92% / scicode 53% / ifbench 76% / critpt 13% + arena.ai text 1480 rank 9 + WebDev Arena 1507 rank 9 + MathArena Final-Answer Comps 51.22% rank 5). gemini-omni-flash absent everywhere (confirms vendor deferral). qwen3.7-max-preview and qwen3.7-plus-preview have only existing arena.ai entries (still preview-only, not yet on AA/LiveBench/MathArena). Skipped per preservation policy: AA hle 41% rounded (DB 40.2% Google primary), AA mmmu_pro 84% rounded (DB 83.6% Google primary), AA gdpval_aa 58% (metric mismatch with DB 1656 Elo).",

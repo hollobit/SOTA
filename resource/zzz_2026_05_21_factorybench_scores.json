@@ -1,0 +1,81 @@
+{
+  "_meta": {
+    "date": "2026-05-21",
+    "title": "FactoryBench: Evaluating Industrial Machine Understanding (arxiv 2605.07675)",
+    "context": "FactoryBench is a new industrial-robotics benchmark from ETH Zurich + Forgis + UC3M + Imperial + UC Berkeley + KTH + University of Vienna (Merzouki et al, May 8 2026). Evaluates LLMs on machine-behavior reasoning over multivariate robot telemetry (UR3 cobot + KUKA KR10 industrial arm). Four-level causal hierarchy per Pearl's ladder: L1 State (N=1,209) / L2 Intervention (N=3,132) / L3 Counterfactual (N=297) / L4 Decision (N=113). Companion dataset FactoryWave (8,983 episodes at 125/83 Hz, 27 fault types, 3 tasks: pick-and-place, peg-in-hole, screwdriving). 6 frontier LLMs evaluated zero-shot (April 2026 submission cohort).",
+    "sources": [
+      "https://arxiv.org/abs/2605.07675",
+      "https://arxiv.org/pdf/2605.07675",
+      "https://huggingface.co/datasets/FactoryBench/FactoryBench"
+    ],
+    "rule": "STRICT-ATTRIBUTION — all values verbatim from PDF Figure 3a 'FactoryBench Results: Model × Level (Chance-Corrected)'. Metric is chance-corrected accuracy (%) — paper explicitly chance-corrects per level. Simple Baseline row (no-LLM linear regression + uniform random) omitted as it's not a frontier model. L4 'Simple Baseline' cell is blank in figure (paper notes 'free-form Level 4 templates are excluded from the baseline')."
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "factorybench_l1_state",
+      "name": "FactoryBench L1 — State",
+      "category": "world-model",
+      "description": "FactoryBench Level 1 (State): interpret current operational state of an industrial robot from raw multivariate telemetry. N=1,209 Q&A items. Probes basic temporal feature extraction. Chance-corrected accuracy (%). arxiv 2605.07675.",
+      "metric": "chance_corrected_accuracy",
+      "leaderboard": "https://anonymous.4open.science/r/FactoryBench"
+    },
+    {
+      "id": "factorybench_l2_intervention",
+      "name": "FactoryBench L2 — Intervention",
+      "category": "world-model",
+      "description": "FactoryBench Level 2 (Intervention): reason about consequences of present-timestep interventions/events on machine states. N=3,132 Q&A items. Targets fault diagnosis and control-action impact prediction. Chance-corrected accuracy (%). arxiv 2605.07675.",
+      "metric": "chance_corrected_accuracy",
+      "leaderboard": "https://anonymous.4open.science/r/FactoryBench"
+    },
+    {
+      "id": "factorybench_l3_counterfactual",
+      "name": "FactoryBench L3 — Counterfactual",
+      "category": "world-model",
+      "description": "FactoryBench Level 3 (Counterfactual): simulate alternative histories — what would have happened under different past interventions. N=297 Q&A items (ground truth via expensive physical re-execution). Pearl's ladder rung 3. Chance-corrected accuracy (%). arxiv 2605.07675.",
+      "metric": "chance_corrected_accuracy",
+      "leaderboard": "https://anonymous.4open.science/r/FactoryBench"
+    },
+    {
+      "id": "factorybench_l4_decision",
+      "name": "FactoryBench L4 — Decision Making",
+      "category": "world-model",
+      "description": "FactoryBench Level 4 (Decision Making): given recorded episode + task, produce recommended sequence of corrective actions grounded in manufacturer recovery protocols. N=113 free-form items, scored by median of 3 LLM judges. Most LLMs fail catastrophically (4.3-17.7%); GPT-5.1 leads at 17.7%. arxiv 2605.07675.",
+      "metric": "chance_corrected_accuracy",
+      "leaderboard": "https://anonymous.4open.science/r/FactoryBench"
+    }
+  ],
+  "scores": [
+    {"_section": "=== L1 State (N=1,209) — chance-corrected accuracy (higher=better) ===",
+     "model": "anthropic/claude-sonnet-4.6", "benchmark": "factorybench_l1_state", "score": 46.8, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675", "_note": "L1 SOTA on FactoryBench. PDF Figure 3a."},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "factorybench_l1_state", "score": 36.0, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "mistral/mistral-large-3", "benchmark": "factorybench_l1_state", "score": 34.6, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "openai/gpt-5.1", "benchmark": "factorybench_l1_state", "score": 30.9, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675", "_note": "Fails to beat simple baseline (28.4%) by meaningful margin — paper highlights this as surprising for the largest model in panel."},
+    {"model": "deepseek/deepseek-v3.2", "benchmark": "factorybench_l1_state", "score": 25.0, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675", "_note": "Below simple baseline."},
+    {"model": "alibaba/qwen3-4b", "benchmark": "factorybench_l1_state", "score": 21.8, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675", "_note": "Lightweight open-weight reference point. Below baseline."},
+
+    {"_section": "=== L2 Intervention (N=3,132) ===",
+     "model": "anthropic/claude-sonnet-4.6", "benchmark": "factorybench_l2_intervention", "score": 47.1, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "factorybench_l2_intervention", "score": 35.6, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "mistral/mistral-large-3", "benchmark": "factorybench_l2_intervention", "score": 31.7, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "openai/gpt-5.1", "benchmark": "factorybench_l2_intervention", "score": 30.0, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "deepseek/deepseek-v3.2", "benchmark": "factorybench_l2_intervention", "score": 29.1, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "alibaba/qwen3-4b", "benchmark": "factorybench_l2_intervention", "score": 27.5, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+
+    {"_section": "=== L3 Counterfactual (N=297) ===",
+     "model": "anthropic/claude-sonnet-4.6", "benchmark": "factorybench_l3_counterfactual", "score": 45.9, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "factorybench_l3_counterfactual", "score": 43.6, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675", "_note": "Notably strong on counterfactual reasoning relative to L1 — narrows gap with Sonnet 4.6."},
+    {"model": "mistral/mistral-large-3", "benchmark": "factorybench_l3_counterfactual", "score": 36.3, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "openai/gpt-5.1", "benchmark": "factorybench_l3_counterfactual", "score": 31.7, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "alibaba/qwen3-4b", "benchmark": "factorybench_l3_counterfactual", "score": 28.8, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "deepseek/deepseek-v3.2", "benchmark": "factorybench_l3_counterfactual", "score": 28.5, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+
+    {"_section": "=== L4 Decision Making (N=113) — all models collapse below 18% ===",
+     "model": "openai/gpt-5.1", "benchmark": "factorybench_l4_decision", "score": 17.7, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675", "_note": "Only model with meaningful decision-making signal. Far ahead of pack (next is DeepSeek V3.2 at 7.6%). Paper sub-breakdown: L4.1 Troubleshooting 17.4%, L4.2 Optimization 20.1%."},
+    {"model": "deepseek/deepseek-v3.2", "benchmark": "factorybench_l4_decision", "score": 7.6, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "mistral/mistral-large-3", "benchmark": "factorybench_l4_decision", "score": 5.4, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "factorybench_l4_decision", "score": 4.4, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "factorybench_l4_decision", "score": 4.3, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675", "_note": "L1-L3 SOTA but L4 collapse — 10x drop. Largest L3→L4 gap in panel."},
+    {"model": "alibaba/qwen3-4b", "benchmark": "factorybench_l4_decision", "score": 2.9, "unit": "%", "_source": "https://arxiv.org/pdf/2605.07675"}
+  ]
+}
