@@ -1,5 +1,61 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-20 (Session 19): Gemini 3.5 Flash + Omni Flash launch ingest
+
+### 56. Google DeepMind Gemini 3.5 Flash + Omni Flash (May 19 2026)
+
+User-provided 4 reference links investigated and ingested:
+- `https://deepmind.google/models/model-cards/gemini-3-5-flash/`
+- `https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/`
+- `https://deepmind.google/models/model-cards/gemini-omni-flash/`
+- `https://llm-stats.com/blog/research/gemini-3.5-flash-launch`
+
+**Two new models added** (commit pending):
+
+| Model | Type | Modalities | Released | Note |
+|---|---|---|---|---|
+| `google/gemini-3.5-flash` | proprietary | text/image/audio/video/code/agentic | 2026-05-19 | Default model in Gemini app + AI Mode in Search + Antigravity. 1M context, 64K output. Pricing $1.50/$9.00/$0.15 cached. 4× faster, <half the cost of competing frontier models. |
+| `google/gemini-omni-flash` | proprietary | text/image/audio/video | 2026-05-19 | Multimodal video+audio generation FM. Outputs high-res video with audio. T2VA/I2VA/R2VA + video editing + image gen. Distributed via Gemini App / YouTube / Google Flow. **No benchmark scores published yet** ("will share when rolled out via APIs"). |
+
+**Gemini 3.5 Pro** mentioned as "rolling out next month" but **NOT YET RELEASED** — skipped per STRICT-ATTRIBUTION.
+
+**14 Gemini 3.5 Flash scores** (deepmind.google model card, cross-confirmed by llm-stats.com):
+
+| Benchmark | Gemini 3.5 Flash | vs Gemini 3.1 Pro |
+|---|---:|---|
+| Terminal-Bench 2.1 (NEW bench) | 76.2% | +5.9 |
+| SWE-Bench Pro (Public) | 55.1% | +0.9 |
+| MCP Atlas | 83.6% | +5.4 |
+| Toolathlon | 56.5% | +7.1 |
+| OSWorld-Verified | 78.4% | +2.2 |
+| Finance Agent v2 (NEW bench) | 57.9% | **+14.9** ← biggest delta |
+| GDPval-AA Elo | 1656 | +342 |
+| CharXiv (no tools) | 84.2% | +0.9 |
+| MMMU-Pro | 83.6% | +3.1 |
+| Blueprint-Bench 2 (NEW bench) | 33.6% | +7.1 |
+| MRCR v2 128k | 77.3% | **-7.6** ← long-context regression |
+| MRCR v2 1M | 26.6% | +0.3 (tied) |
+| HLE (text + multimodal) | 40.2% | **-4.2** ← reasoning regression |
+| ARC-AGI-2 | 72.1% | **-5.0** ← abstract reasoning regression |
+
+**3 new benchmarks registered**:
+- `terminal_bench_2_1` (Terminal-Bench 2.1, revised task set vs v2.0; v2.0 Gemini 3.1 Pro 68.5 vs v2.1 70.3 confirms split difference)
+- `finance_agent_v2` (Finance Agent Benchmark v2)
+- `blueprint_bench_2` (Blueprint-Bench 2 image-to-floor-plan reasoning)
+
+**Profile**: Flash variant trades **long-context recall + abstract reasoning depth** for **speed + cost**. Wins on every agentic/coding/multimodal bench except 4 reasoning/long-context outliers. Largest improvements on agentic workflows (Finance Agent v2 +14.9, Toolathlon +7.1, MCP Atlas +5.4).
+
+**Files patched**:
+- `resource/zzz_2026_05_20_gemini_3_5_flash_scores.json` (new, +2 models / +3 benches / +14 scores)
+- `resource/Gemini-3-5-Flash-Model-Card.pdf` (downloaded, 557KB)
+- `resource/Gemini-Omni-Flash-Model-Card.pdf` (downloaded, 178KB)
+- `dashboard/js/app.js` Resources tab +4 URLs (2 model cards + Google blog + llm-stats blog) + 2 PDF entries
+- `dashboard/js/frontier-compare.js` FRONTIER_MODELS +`google/gemini-3.5-flash`
+- `dashboard/js/cyber-coding.js` FRONTIER_MODELS +`google/gemini-3.5-flash`
+- `dashboard/js/sovereign.js` RELEASE_DATE_OVERRIDES + PARAMS maps +2 models
+- `config/seed_sources.yaml` +2 paper_pdf entries
+- Cache-bust `app.js v=20260520a, frontier-compare.js v=20260520a, cyber-coding.js v=20260520a, sovereign.js v=20260520a`
+
 ## 2026-05-19 (Session 18): ExploitBench live + sovereign delta + 7-menu hardcoded-list refresh
 
 ### 52. ExploitBench live leaderboard delta + sovereign-AI delta (commit `7be38b0`)
