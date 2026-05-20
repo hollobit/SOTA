@@ -1,9 +1,64 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: ECI + AAII composite duo + cyber variants (2026-05-11, Session 11 마무리)
-**1,259 models · 900 benchmarks · 4,672 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 20 — FactoryBench (industrial machine understanding) ingest (2026-05-21)
+**1,465 models · 1,075 benchmarks · 5,787 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
+
+### 2026-05-21 Session 20 — FactoryBench industrial-robotics causal-reasoning benchmark
+- **FactoryBench** (arxiv 2605.07675, Merzouki et al, May 8 2026, ETH + Forgis + UC3M + Imperial + UC Berkeley + KTH + U. Vienna): 4-level Pearl's-ladder reasoning over UR3 cobot + KUKA KR10 industrial-arm telemetry. 6 frontier LLMs × 4 levels (L1 State / L2 Intervention / L3 Counterfactual / L4 Decision) = **+4 benchmarks, +24 scores**
+- **Headline**: Claude Sonnet 4.6 dominates L1-L3 (46.8/47.1/45.9%) but L4 decision-making collapses 10x to 4.3%; GPT-5.1 alone clears L4 at 17.7%; Qwen3-235B uniquely strong on counterfactual reasoning (L3 43.6%, ties Sonnet)
+- **All 6 models pre-existing in DB** (anthropic/claude-sonnet-4.6, openai/gpt-5.1, deepseek/deepseek-v3.2, mistral/mistral-large-3, alibaba/qwen3-235b-a22b, alibaba/qwen3-4b) — data-only ingest, no new models
+- **PDF archived** (15MB) at `resource/factorybench_2605_07675.pdf` per memory rule; Physical AI embodied-reasoning suite + Resources tab + seed_sources.yaml all patched; cache-bust physical-ai.js + app.js v=20260521a
+
+### 2026-05-20 Session 19 — Gemini 3.5 Flash launch + TextArena/arena.ai + 35-row PDF backfill (6 commits)
+- **Gemini 3.5 Flash + Omni Flash** (May 19 launch): 14 initial benches + Omni Flash deferred-to-API model registration (`11bb478`)
+- **TextArena + arena.ai vision/text** ingest + Alibaba Qwen 3.7 Max/Plus preview (`9f210a0`)
+- **35 cross-model triples** backfilled from Gemini 3.5 Flash PDF page 4 (6-column comparison table: 3 Flash / 3.1 Pro / Sonnet 4.6 / Opus 4.7 / GPT-5.5 / 3.5 Flash) — Gemini 3 Flash gained 12 triples, GPT-5.5 +7 (incl. MRCR 128k 94.8 top, Blueprint 36.2 top), Opus 4.7 +5 (incl. surprise MRCR 128k 59.3 weakness) (`6e4950c`)
+- **SWE-Bench Pro 55.1 → 53.9** correction for Gemini 3.5 Flash via canonical PDF source (`555902d`)
+- **Reference leaderboard mining** for Session 19 models — +13 new scores for Gemini 3.5 Flash via AA detail page + arena.ai + matharena (`65271d8`)
+- **Changelog PDF export** with period filter (7d/30d/90d/All) (`44aa7a8`)
+
+### 2026-05-19 Session 18 — ExploitBench + deep menu audit pass 2 (8 commits)
+- **ExploitBench live leaderboard delta** + sovereign-AI delta sweep (0 new) (`7be38b0`)
+- **FRONTIER_MODELS hardcoded list propagation** — recent flagship models wired into Frontier Compare et al (`c94699b`)
+- **Deep menu audit pass 2** — Agent / AI4S / Physical AI hardcoded lists refreshed (`9ce27df`)
+- **ExploitBench cyber-coding menu surface** + 6 recent cyber bench families exposed in Cyber & Coding menu (`ef81976`)
+
+### 2026-05-18 Session 17 — NVIDIA SANA-WM + xAI Grok Build CLI + cyber arxiv mega-batch (8 commits)
+- **NVIDIA SANA-WM** — 1-min world-model benchmark + 6 model comparison (`409226a`)
+- **xAI Grok Build CLI** (May 14 launch) + grok-code-fast-1 SWE-bench backfill (`c028e94`)
+- **User refs (4 arxiv)** — Simbian Cyber Defense + NYU CTF + HarmfulSkillBench (`3866e44`)
+- **10-paper cyber arxiv batch** — PACEbench + CTI-REALM + AISI + CyberTeam + Auto Adversary (`3bf5585`)
+
+### 2026-05-17 Session 16 — GBA Eval + daily cyber sweep (4 commits)
+- **GBA Eval** ingest — frontier coding agents building Game Boy Advance emulator from scratch (`9b628a6`)
+- **2026-05-17 daily sweep** — MDASH CyberGym SOTA + CurveBench + 5 new benches (`dcfae29`)
+
+### 2026-05-15 Session 15 — World FM + Science FM + arxiv ref-link sweep (8 commits)
+- **2026-05-15 arxiv mine batch** — PDF mine of 5 May-11/13 benchmark papers (`6d02663`)
+- **User refs** — SDE benchmark + HAL leaderboard + The Well (rejected) (`0def876`)
+- **Science FM + Universal FM coverage expansion** (`d3f429a`)
+- **World Foundation Models** — VBench + V-JEPA 2 + Meta Physical Reasoning + Cosmos Predict 2.5 (`cf1a93b`)
+
+### 2026-05-14 Session 14 — arxiv sweep + deepfake/AIGC first-coverage (4 commits)
+- **2026-05-14 arxiv sweep** — 11 new benchmarks + 12 new models + 104 scores (`9047176`)
+- **Deepfake / AIGC detection benchmarks** — first DB coverage of media forensics (`767061a`)
+
+### 2026-05-13 Session 13 — Sovereign AI 13-country sweep + PDF deep mining (8 commits)
+- **2026-05-13 ref-link sweep** — new models/benchmarks from recent sources (`a80d526`)
+- **Ref-link batch 2** — speech-to-speech + AI Co-Mathematician + OneManCompany (`6f81130`)
+- **PDF deep mining batch** — OneManCompany + Agent-World + AI Co-Math additional scores (`af22a15`)
+- **Sovereign AI 13-country sweep** (6-subagent parallel research) + Sovereign AI menu wiring (`9dce957`, `495ad9e`)
+
+### 2026-05-12 Session 12 — Mythos cyber + Onyx Open LLM + Medical AI timeline (16+ commits)
+- **Mythos cyber benchmarks** — +5 benches, +9 scores + W9 widget refactor (`b684a34`)
+- **DELEGATE-52** Microsoft Research document corruption benchmark (arxiv 2604.15597) (`171c9d3`)
+- **Onyx Open LLM Leaderboard 2026** — 19 open-source models × 10 benchmarks (`493f892`)
+- **Medical AI Release Timeline** month-column infographic + 4 follow-up tuning fixes (`b0925b7` → `0599cb2`)
+- **AA per-benchmark sub-scores** from frontier model detail pages (`b3f65f1`)
+- **PDF deep mining** for math/materials specialists (MiniF2F + Rosetta Stone) (`fec77dd`, `326aa00`)
+- **Changelog UI fix** — show all types + sort descending by date (`e5ac346`)
 
 ### 2026-05-10 ~ 11 Session 11 — ECI + AAII composite mega-ingest (16+ commits)
 - **ECI ingest**: 3 → 178 scores (incl. reasoning-effort variants) via canonical CSV `https://epoch.ai/data/eci_scores.csv` (172 rows) + Rosetta Stone paper (arxiv 2512.00193) + benchmark-stitching repo 33 external CSVs
@@ -78,55 +133,17 @@
 
 ## Next Steps (향후 작업)
 
-### Completed — 데이터 수집 자동화
-- [x] `python -m cyber discover` 명령 — 새 벤치마크/모델 자동 감지 (이미 구현, seed_sources.yaml에서 68개 신규 등록 확인)
-- [x] `python -m cyber collect` 명령 — 정기 데이터 수집 (이미 구현, scheduler 기반 due sources 필터)
-- [x] GitHub Actions 파이프라인 — `discovery.yml` 주 2회 (수/토) discover+collect, `benchmark-update.yml` 일간 scout→analyze→export→build→deploy, `librarian-weekly.yml` 주간 trust/health 업데이트
-
-### Completed — 대시보드 개선 (2026-04-18)
-- [x] Cyber & Coding 탭에 방어 벤치마크 바 차트 추가 (commit `1657b90`)
-- [x] 벤치마크 카테고리 필터 (Overview SOTA Leaderboard pill-filter, commit `3ec4a0f`)
-- [x] 모델 간 head-to-head 비교 레이더 차트 개선 — shared-axis 우선 정렬, spread tiebreak, 풍부한 tooltip (commit `a268c3a`)
-- [x] PDF 소스 출처 표시 — modal score row마다 vendor canonical URL로 링크 (commit `01dfd74`)
-
-### Completed — 추가 데이터 소스 (2026-04-18)
-- [x] Grok-4.20 벤치마크 점수 수집 — BenchLM + Arena에서 11 scores ingest (commit `f8b37f4`)
-- [x] GPT-5.4 System Card — 이미 33 scores (gpt-5.4: 17, -thinking: 6, -mini: 8, -pro: 2) — resource/gpt-5-4-thinking.pdf 기반 완전 분석됨
-- [x] Gemini 3.1 Pro — 이미 15 scores 수집됨
-- [ ] **BLOCKED (외부 데이터 부재)**: AutoPatchBench / CyberSOCEval — 2026-04-18 재조사 결과, 해당 논문들은 pre-frontier 모델(Gemini 1.5 Pro, Llama 4 Maverick, o3, GPT-4o)만 테스트했고 값이 PNG 그림에만 있음. OCR 또는 후속 논문 발표 대기. ZeroDayBench는 3 frontier scores (Claude Sonnet 4.5, GPT-5, Grok 4) ingest 완료.
-
-### Completed — 분석 기능 (2026-04-18)
-- [x] 벤치마크 간 상관관계 분석 — Trends 탭 Cross-Benchmark Correlation heatmap (Top-15 benchmarks, Pearson r, red-neutral-green scale, commit `0f0f754`)
-- [x] 시간별 SOTA 변화 추적 — Trends 탭 SOTA Handover Log + 동적 history index.json (commit `43248cd`)
-- [x] 모델 성능/비용 효율성 — `data/export/aa_pricing.json` (20/22 모델 Intelligence Index + USD/1M + tokens/s) + Trends 탭 Intelligence vs Price scatter (log x, linear y, vendor-colored, size=speed)
-
-### Completed — BMT batch-1 priorities 1-11 (2026-04-18)
-26 benchmarks registered, 33 real frontier scores ingested from 9 agent research passes. Metadata-only for benchmarks whose paper cohorts predate 2026 frontier models.
-
-- [x] P1 HealthBench + Arena-Hard-Auto — 20 scores (o3, gpt-5, gpt-5.1, gpt-5.2, gpt-5.4-thinking, claude-3.7-sonnet, gemini-3.1-pro, grok-4.20 across HB/Hard/Consensus); Arena-Hard v1 superseded by v2
-- [x] P2 HarmBench + StrongREJECT + AIR-Bench — metadata only; frontier evals have migrated to Gray Swan Arena / Anthropic Petri / OpenAI Preparedness
-- [x] P3 Multi-SWE-bench + SWE-PolyBench — metadata only; consolidated on SWE-bench Verified/Pro/rebench/Multilingual
-- [x] P4 CTI-Bench + CyberMetric — metadata only; 2024 cohorts
-- [x] P5 Video-MME — 2 provisional Gemini scores (78.2% each)
-- [x] P6 HELMET — metadata only; frontier uses MRCR/RULER/LongBench v2 instead
-- [x] P7 AudioBench + MMAU — metadata only; opens new 'audio' category
-- [x] P8 Windows Agent Arena + ScienceAgentBench + MCP-Bench + LiveMCPBench + BrowseComp-Plus — 5 benchmarks metadata only
-- [x] P9 SuperGPQA + ZebraLogic + LiveBench — 4 scores (LiveBench: gpt-5.4-thinking 80.3 / gemini-3.1-pro 79.9 / claude-opus-4.6 76.3 · SuperGPQA: glm-5 92.0); ZebraLogic deprecated
-- [x] P10 SecRepoBench + MegaVul — 3 scores (gpt-5 39.3 / o3 32.4 / claude-sonnet-4.5 31.1 secure-pass@1)
-- [x] P11 BLINK + Finance Agent — 4 scores (Finance Agent Anthropic sweep: opus-4.7 64.37 / sonnet-4.6 63.33 / opus-4.6 60.05 / o3 48.3)
+### Completed (2026-04-18 batches — full details in HISTORY.md)
+데이터 수집 자동화 (discover/collect, GitHub Actions discovery·benchmark-update·librarian-weekly) · 대시보드 개선 (Cyber & Coding bar chart, category pill-filter, head-to-head radar, PDF source linking) · 추가 데이터 소스 (Grok-4.20, GPT-5.4 System Card, Gemini 3.1 Pro) · 분석 기능 (correlation heatmap, SOTA handover log, intelligence-vs-price scatter) · BMT batch-1 P1–P11 (26 benchmarks, 33 frontier scores) · `/design-review` follow-up (22 atomic commits: IA 재구성, Tailwind 빌드, typography ramp, motion 언어)
 
 ### cc:TODO — Watch for future publications (external dependency)
 - [x] MRCR v2 8-needle expansion — 7 frontier scores ingested 2026-05-08 (Opus 4.6 93.0 / GPT-5.5 74.0 / Gemini 3.x family). LongBench v2 / RULER 미진
 - [ ] HarmBench / StrongREJECT / AIR-Bench frontier backfill — 2026-05-08 재조사 결과 frontier 점수 미공개. UK AISI inspect_evals / Gray Swan Arena 추가 모니터링 필요
-- [ ] Video-MME leaderboard — 2026-05-08 Playwright 렌더링 성공 (client-side block 해제). 그러나 leaderboard 자체가 2025-09 까지로 stale, 2026 frontier 미반영. 외부 publication 대기
+- [ ] Video-MME leaderboard — 2026-05-08 Playwright 렌더링 성공. 그러나 leaderboard 자체가 2025-09 까지로 stale, 2026 frontier 미반영. 외부 publication 대기
 - [ ] MMAU frontier scores — 2026-05-08 재조사 결과 미공개
-
-### Completed (2026-04-18 `/design-review` follow-up — 22 atomic commits)
-- [x] F-005: Overview 탭 IA 재구성 — SOTA Leaderboard를 full-width primary로 승격, Leaderboard Rankings + Recent Changes는 2-column secondary로 강등 (commit `c199996`)
-- [x] F-006: 카드 → 레이아웃 전환 — Resources PDF/Sites를 bordered-row 리스트로, Cyber & Coding benchmark descriptions를 uppercase-tracked 4-column glossary로 재구성 (commit `ad8cda7`)
-- [x] F-016: Tailwind Play CDN → 빌드 파이프라인 — `package.json` + `tailwind.config.js` + `dashboard/src/tailwind.css` + `npm run build:css` → 13.7KB 번들 (commit `59f8ca9`)
-- [x] Typography ramp — `text-display / text-section / text-widget / text-meta` 시맨틱 스케일을 Tailwind theme에 등록. H3가 더 이상 본문보다 작지 않음 (commit `b7acce2`)
-- [x] Motion 언어 — modal fade+scale (160ms), tab-panel enter (120ms), `@media (prefers-reduced-motion: reduce)` 전면 적용 (commit `dbe7462`)
+- [ ] AutoPatchBench / CyberSOCEval — pre-frontier 모델만 PNG 그림에 노출. OCR / 후속 논문 발표 대기 (BLOCKED)
+- [ ] Gemini Omni Flash — 2026-05-19 launch but vendor deferred eval to API rollout (no public benches as of Session 19)
+- [ ] Qwen 3.7 Max/Plus preview — Session 19 첫 등록 후 arena.ai text/vision 1점만, 2-3주 후 leaderboard 재확인 필요
 
 ---
 
