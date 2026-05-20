@@ -348,6 +348,7 @@ var CyberCoding = {
         'anthropic/claude-opus-4.6',
         'anthropic/claude-opus-4.5',
         'anthropic/claude-sonnet-4.6',
+        'google/gemini-3.5-flash',
         'google/gemini-3.1-pro',
         'google/gemini-3-pro',
         'openai/gpt-5.5-instant',

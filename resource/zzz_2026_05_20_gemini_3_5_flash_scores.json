@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "date": "2026-05-20",
+    "title": "Gemini 3.5 Flash + Gemini Omni Flash launch (May 19 2026)",
+    "context": "Google DeepMind announced Gemini 3.5 Flash and Gemini Omni Flash on May 19 2026. 3.5 Flash is the new default in Gemini app + AI Mode in Search, marketed as 'frontier intelligence at exceptional speed' at <half the cost of competing frontier models. Outperforms Gemini 3.1 Pro on most coding/agentic benchmarks. Gemini Omni Flash is a multimodal video+audio generation model deployed via Gemini App / YouTube / Google Flow — no benchmark scores published yet (model card explicitly defers benchmarks: 'will share evaluations when we roll out to developers via APIs'). Gemini 3.5 Pro mentioned as rolling out 'next month' — NOT YET RELEASED, skipped per strict-attribution.",
+    "sources": [
+      "https://deepmind.google/models/model-cards/gemini-3-5-flash/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+      "https://deepmind.google/models/model-cards/gemini-omni-flash/",
+      "https://llm-stats.com/blog/research/gemini-3.5-flash-launch"
+    ],
+    "rule": "STRICT-ATTRIBUTION — all 14 Gemini 3.5 Flash scores cross-verified between deepmind.google model card + llm-stats.com blog comparison table. Three new benchmarks introduced (terminal_bench_2_1, finance_agent_v2, blueprint_bench_2) because model card explicitly labels them with version suffixes that produce different scores than the existing v1/v2 variants in DB (e.g. terminal_bench_2 gemini-3.1-pro=68.5 vs terminal_bench_2.1 gemini-3.1-pro=70.3)."
+  },
+  "models": [
+    {
+      "id": "google/gemini-3.5-flash",
+      "vendor": "Google",
+      "name": "Gemini 3.5 Flash",
+      "type": "proprietary",
+      "modalities": ["text", "image", "audio", "video", "code", "agentic"],
+      "country": "USA",
+      "released_at": "2026-05-19",
+      "context_window": 1048576,
+      "_note": "Default model in Gemini app + Google Search AI Mode + Google Antigravity from May 19 2026. Pricing $1.50/M input / $9.00/M output / $0.15/M cached input. Output up to 64K tokens. Architecture extends Gemini 3 Flash with thinking levels (quality/cost/latency tradeoff). Outperforms Gemini 3.1 Pro on 10 of 14 published benchmarks; trails on MRCR-128k / HLE / ARC-AGI-2.",
+      "_sources": [
+        "https://deepmind.google/models/model-cards/gemini-3-5-flash/",
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+        "https://llm-stats.com/blog/research/gemini-3.5-flash-launch"
+      ]
+    },
+    {
+      "id": "google/gemini-omni-flash",
+      "vendor": "Google",
+      "name": "Gemini Omni Flash",
+      "type": "proprietary",
+      "modalities": ["text", "image", "audio", "video"],
+      "country": "USA",
+      "released_at": "2026-05-19",
+      "_note": "Multimodal video+audio generation model. Inputs: text/images/audio/video. Outputs: high-resolution video with audio. Capabilities scope T2VA / I2VA / R2VA / video editing / image generation. Distributed via Gemini App / YouTube / Google Flow / Google Flow Music. No benchmark scores published yet — model card explicitly states evaluations will be released when rolled out via APIs. Speech-conversion capability deliberately restricted.",
+      "_sources": [
+        "https://deepmind.google/models/model-cards/gemini-omni-flash/"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "terminal_bench_2_1",
+      "name": "Terminal-Bench 2.1",
+      "category": "coding",
+      "description": "Terminal-Bench 2.1 — agentic terminal coding benchmark, version 2.1 (revised task set vs v2.0). Gemini 3.1 Pro scores 68.5 on v2.0 vs 70.3 on v2.1, confirming v2.0/v2.1 are non-overlapping splits.",
+      "metric": "accuracy",
+      "leaderboard": "https://www.tbench.ai/leaderboard"
+    },
+    {
+      "id": "finance_agent_v2",
+      "name": "Finance Agent Benchmark v2",
+      "category": "agent",
+      "description": "Finance Agent Benchmark version 2 — financial analysis tasks. Updated task set vs v1. Used by Google for Gemini 3.5 Flash launch comparison.",
+      "metric": "accuracy",
+      "leaderboard": "https://deepmind.google/models/model-cards/gemini-3-5-flash/"
+    },
+    {
+      "id": "blueprint_bench_2",
+      "name": "Blueprint-Bench 2",
+      "category": "multimodal",
+      "description": "Blueprint-Bench v2 — image-to-floor-plan reasoning benchmark, version 2. Normalized score 0-100. Introduced as eval target in Gemini 3.5 Flash model card.",
+      "metric": "normalized_score",
+      "leaderboard": "https://deepmind.google/models/model-cards/gemini-3-5-flash/"
+    }
+  ],
+  "scores": [
+    {"_section": "=== Gemini 3.5 Flash (deepmind.google model card, cross-confirmed by llm-stats.com) ===",
+     "model": "google/gemini-3.5-flash", "benchmark": "terminal_bench_2_1", "score": 76.2, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "Agentic terminal coding. +5.9 over Gemini 3.1 Pro (70.3)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "swe_bench_pro", "score": 55.1, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "SWE-Bench Pro Public split, single attempt. +0.9 over Gemini 3.1 Pro (54.2)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "mcp_atlas", "score": 83.6, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "MCP Atlas multi-step workflows. +5.4 over Gemini 3.1 Pro (78.2)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "toolathlon", "score": 56.5, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "Toolathlon real-world tool use. +7.1 over Gemini 3.1 Pro (49.4)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "osworld_verified", "score": 78.4, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "OSWorld-Verified agentic computer use. +2.2 over Gemini 3.1 Pro (76.2)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "finance_agent_v2", "score": 57.9, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "Finance Agent v2 — biggest delta vs Gemini 3.1 Pro: +14.9 (vs 43.0)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "gdpval_aa", "score": 1656, "unit": "elo", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "GDPval-AA Elo rating. +342 over Gemini 3.1 Pro (1314)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "charxiv_reasoning_no_tools", "score": 84.2, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "CharXiv (no tools). +0.9 over Gemini 3.1 Pro (83.3)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "mmmu_pro", "score": 83.6, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "MMMU-Pro (no tools). +3.1 over Gemini 3.1 Pro (80.5)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "blueprint_bench_2", "score": 33.6, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "Blueprint-Bench 2 normalized score. +7.1 over Gemini 3.1 Pro (26.5)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "mrcr_v2_128k", "score": 77.3, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "MRCR v2 8-needle 128k average. REGRESSION: -7.6 vs Gemini 3.1 Pro (84.9). Long-context recall trade-off for speed."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "mrcr_v2_1m", "score": 26.6, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "MRCR v2 8-needle 1M pointwise. +0.3 over Gemini 3.1 Pro (26.3) — essentially tied."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "hle", "score": 40.2, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "Humanity's Last Exam (text + multimodal). REGRESSION: -4.2 vs Gemini 3.1 Pro (44.4)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "arc_agi_2", "score": 72.1, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-5-flash/", "_note": "ARC-AGI-2 abstract reasoning. REGRESSION: -5.0 vs Gemini 3.1 Pro (77.1). Flash variant trades abstract-reasoning depth for speed."}
+  ]
+}
