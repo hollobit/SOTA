@@ -2782,19 +2782,70 @@ var App = {
     },
 
     renderChangelog: function() {
+        var self = this;
         var container = document.getElementById('changelog-list');
+        var countLabel = document.getElementById('changelog-count');
         container.textContent = '';
+
+        // Wire up controls once (idempotent)
+        var periodSelect = document.getElementById('changelog-period');
+        var exportBtn = document.getElementById('changelog-export-pdf');
+        if (periodSelect && !periodSelect._wired) {
+            periodSelect.addEventListener('change', function() { self.renderChangelog(); });
+            periodSelect._wired = true;
+        }
+        if (exportBtn && !exportBtn._wired) {
+            exportBtn.addEventListener('click', function() {
+                var meta = document.getElementById('changelog-print-meta');
+                if (meta) {
+                    var period = periodSelect ? periodSelect.options[periodSelect.selectedIndex].text : 'All time';
+                    var today = new Date().toISOString().slice(0, 10);
+                    meta.textContent = period + ' · Generated ' + today;
+                }
+                document.body.classList.add('print-changelog');
+                try { window.print(); }
+                finally { document.body.classList.remove('print-changelog'); }
+            });
+            exportBtn._wired = true;
+        }
+
         if (!this.data.changelog.length) {
             var p = document.createElement('p');
             p.className = 'text-gray-500';
             p.textContent = 'No changes recorded yet.';
             container.appendChild(p);
+            if (countLabel) countLabel.textContent = '';
+            return;
+        }
+
+        // Filter by period
+        var periodValue = periodSelect ? periodSelect.value : '30';
+        var filtered = this.data.changelog;
+        if (periodValue !== 'all') {
+            var days = parseInt(periodValue, 10);
+            var cutoff = new Date();
+            cutoff.setDate(cutoff.getDate() - days);
+            var cutoffStr = cutoff.toISOString().slice(0, 10);
+            filtered = this.data.changelog.filter(function(c) {
+                return (c.date || '') >= cutoffStr;
+            });
+        }
+
+        if (countLabel) {
+            countLabel.textContent = filtered.length + ' / ' + this.data.changelog.length + ' entries';
+        }
+
+        if (filtered.length === 0) {
+            var none = document.createElement('p');
+            none.className = 'text-gray-500';
+            none.textContent = 'No entries in the selected period.';
+            container.appendChild(none);
             return;
         }
 
         // Group by type
         var groups = {};
-        this.data.changelog.forEach(function(c) {
+        filtered.forEach(function(c) {
             var type = c.type || 'Other';
             if (!groups[type]) groups[type] = [];
             groups[type].push(c);
