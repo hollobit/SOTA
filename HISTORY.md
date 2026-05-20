@@ -1,5 +1,58 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-20 (Session 19 cont'd): TextArena + arena.ai vision/text + Qwen 3.7 Max/Plus preview
+
+### 57. TextArena + arena.ai Vision/Text leaderboard ingest + 2 new Alibaba Qwen 3.7 models
+
+User-provided 5 reference links investigated (Playwright + subagent verification):
+- `https://www.textarena.ai/` (Next.js SPA + Supabase RPC backend)
+- `https://x.com/arena/status/2056400044862111757` (X/Twitter — 402 paywall, SKIPPED)
+- `https://atalupadhyay.wordpress.com/2026/05/19/qwen-3-7-deep-dive-honest-review-hands-on-testing-and-when-to-use-max-vs-plus/` (qualitative-only, SKIPPED per strict-attribution)
+- `https://arxiv.org/abs/2504.11442` (TextArena paper, Guertler et al CFAR @ A*STAR)
+- `https://arena.ai/leaderboard/vision` (Sierra Arena vision leaderboard — initially flagged as possibly hallucinated WebFetch, but **verified GENUINE** via Playwright DOM read)
+
+**Verification note**: `dola-seed-2.0-pro` on arena.ai is real — Bytedance has a Dola Seed product line distinct from Doubao (confirmed via `seed.bytedance.com/en/blog/dola-seed-2-0-preview-model-release-on-arena`). Aliased to existing DB id `bytedance/seed-2.0-pro` (same upstream model, different vendor naming on Arena).
+
+**2 new models added**:
+
+| Model | Vendor | Released | Note |
+|---|---|---|---|
+| `alibaba/qwen3.7-max-preview` | Alibaba | 2026-05-14 | Flagship preview on arena.ai text leaderboard. Thinking mode required. 1475 Elo. Preview-only — no weights/API yet. |
+| `alibaba/qwen3.7-plus-preview` | Alibaba | 2026-05-14 | Mid-tier preview on arena.ai vision leaderboard. 1260 Elo. |
+
+**2 new benchmarks registered**:
+- `textarena_trueskill_balanced` — TextArena TrueSkill (Balanced Subset). Open-source competitive text-game benchmark (~100 envs in v0.6.9: chess/diplomacy/secret mafia/negotiation/codenames/etc). Tests dynamic social skills.
+- `arena_ai_text_elo` — arena.ai Text Elo (distinct from existing `lmarena` for lmarena.ai/LMSYS).
+
+**28 scores ingested** across 3 benchmarks:
+
+| Benchmark | Scores | Source date |
+|---|---:|---|
+| `textarena_trueskill_balanced` | 10 (frontier-relevant models from Balanced Subset top 21) | 2026-05-20 |
+| `arena_vision_elo` | 17 (top frontier from May 17 snapshot — refreshed from 7 → 19 total DB coverage) | 2026-05-17 |
+| `arena_ai_text_elo` | 1 (qwen3.7-max-preview 1475) | 2026-05-19 |
+
+**Top arena_vision_elo May 17 2026 snapshot** (870706 votes / 126 models):
+- Claude Opus 4.7 Thinking 1306 / Opus 4.7 1304 / Opus 4.6 Thinking 1300 / Muse Spark 1296 / Opus 4.6 1293 / Gemini 3 Pro 1289 / GPT-5.5 1288
+- **Qwen 3.7 Plus Preview debut**: 1260 (Alibaba's first entry on Vision Arena)
+- **Bytedance Seed 2.0 Pro (Dola)**: 1259 (Bytedance Dola line)
+
+**Top textarena_trueskill_balanced** (Balanced Subset):
+- Claude 3.5 Sonnet 30.61 / Llama-4-Maverick 28.46 / Qwen2.5-VL-72B 28.44 / Nova Pro 27.84 / Gemini 2.0 Flash Lite 27.72 / Mistral Ministral 8B 27.68 / Claude 3.5 Haiku 27.59
+
+Skipped per strict-attribution:
+- TextArena scores for `qwen-maxa(deletethe-a)` (deliberately scrambled admin marker)
+- TextArena scores for very old models (Llama 3.1, Gemma 3, DeepSeek R1 Distill — 2-year-old SKUs per user memory rule)
+- Variant model rows (`gpt-5.2-chat-latest-20260210`, `gemini-3-flash thinking-minimal`) — variant subscript naming on Arena, not canonical SKUs
+- All Qwen 3.7 wordpress blog content (qualitative-only review)
+
+**Files patched**:
+- `resource/zzz_2026_05_20_arena_textarena_scores.json` (new, +2 models / +2 benches / +28 scores)
+- `dashboard/js/app.js` Resources tab +6 entries (TextArena live + paper + GitHub + Qwen blog + arena.ai vision + arena.ai text)
+- `dashboard/js/frontier-compare.js` FRONTIER_MODELS +2 Qwen 3.7 entries
+- `dashboard/js/sovereign.js` China REGIONS +2 Qwen 3.7 + RELEASE_DATE + PARAMS maps
+- Cache-bust `app.js v=20260520b, frontier-compare.js v=20260520b, sovereign.js v=20260520b`
+
 ## 2026-05-20 (Session 19): Gemini 3.5 Flash + Omni Flash launch ingest
 
 ### 56. Google DeepMind Gemini 3.5 Flash + Omni Flash (May 19 2026)

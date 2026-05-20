@@ -93,6 +93,7 @@ var Sovereign = {
             note: '중국 frontier 전체 — Qwen 풀+specialists · DeepSeek (V3-V4/R1/Coder/Math/VL) · Kimi · GLM · Hunyuan · ERNIE · Doubao · iFlytek Spark · Yi · Baichuan · InternLM · SenseNova · Skywork · MiniCPM · PanGu · Aquila · MOSS · Yuan',
             models: [
                 // Alibaba Qwen — full param lineup
+                'alibaba/qwen3.7-max-preview', 'alibaba/qwen3.7-plus-preview',
                 'alibaba/qwen3.6-plus', 'alibaba/qwen3.6-27b', 'alibaba/qwen3.6-35b-a3b',
                 'alibaba/qwen3.5-397b', 'alibaba/qwen3.5-122b', 'alibaba/qwen3.5-27b',
                 'alibaba/qwen3-235b-a22b-thinking-2507', 'alibaba/qwen3-235b-a22b-instruct-2507', 'alibaba/qwen3-235b-a22b',
@@ -524,6 +525,7 @@ var Sovereign = {
         'deepseek/deepseek-v3.1-terminus': '2025-09', 'deepseek/deepseek-v3': '2024-12',
         'deepseek/deepseek-r1-0528': '2025-05', 'deepseek/deepseek-r1': '2025-01',
         // China — Alibaba Qwen
+        'alibaba/qwen3.7-max-preview': '2026-05', 'alibaba/qwen3.7-plus-preview': '2026-05',
         'alibaba/qwen3.6-plus': '2026-04', 'alibaba/qwen3.6-27b': '2026-04', 'alibaba/qwen3.6-35b-a3b': '2026-04',
         'alibaba/qwen3.5-397b': '2025-12', 'alibaba/qwen3.5-122b': '2025-12', 'alibaba/qwen3.5-27b': '2025-12',
         'alibaba/qwen3-235b-a22b-thinking-2507': '2025-07', 'alibaba/qwen3-235b-a22b-instruct-2507': '2025-07', 'alibaba/qwen3-235b-a22b': '2025-04',
@@ -938,6 +940,7 @@ var Sovereign = {
         'ai21/jamba2-mini': 52,
         // Alibaba Qwen ambiguous names
         'alibaba/qwen3-next': 80, 'alibaba/qwen3.6-plus': 235,
+        'alibaba/qwen3.7-max-preview': 500, 'alibaba/qwen3.7-plus-preview': 100,
         // Baichuan
         'baichuan/baichuan-3': 175, 'baichuan/baichuan-4': 1000,
         'baichuan/baichuan-omni-1.5': 7,

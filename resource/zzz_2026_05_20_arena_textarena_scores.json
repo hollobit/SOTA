@@ -1,0 +1,99 @@
+{
+  "_meta": {
+    "date": "2026-05-20",
+    "title": "TextArena + arena.ai vision + Qwen 3.7 Max/Plus preview launch",
+    "context": "User-provided 5 reference links investigated and verified by Playwright subagent. (1) TextArena (arxiv 2504.11442, Leon Guertler et al CFAR @ A*STAR Singapore) — open-source competitive text-game benchmark suite (~100 envs in v0.6.9, paper claimed 57+) with TrueSkill scoring. Data fetched via Supabase RPC /rest/v1/rpc/get_leaderboard_from_mv_trueskill with {skill_subset: 'Balanced Subset'}. (2-3) arena.ai vision leaderboard — Sierra-style head-to-head Elo with 870,706 votes / 126 models as of May 17 2026 snapshot. Distinct from lmarena.ai/LMArena (already in DB as 'lmarena'). VERIFIED genuine via Playwright DOM read; earlier WebFetch result was NOT hallucinated. (4) X tweet 402-blocked, no content. (5) Qwen 3.7 wordpress review has no verbatim scores, SKIPPED. Cross-source: arena.ai changelog confirms qwen3.7-max-preview added May 14 2026 (text) and qwen3.7-plus-preview added to vision shortly after — no official Alibaba release yet, preview-only on Arena.",
+    "sources": [
+      "https://www.textarena.ai/leaderboard",
+      "https://arxiv.org/abs/2504.11442",
+      "https://github.com/LeonGuertler/TextArena",
+      "https://arena.ai/leaderboard/vision",
+      "https://arena.ai/leaderboard/text",
+      "https://atalupadhyay.wordpress.com/2026/05/19/qwen-3-7-deep-dive-honest-review-hands-on-testing-and-when-to-use-max-vs-plus/"
+    ],
+    "rule": "STRICT-ATTRIBUTION — TextArena values from Supabase RPC live response (May 20 2026 snapshot). Arena.ai Vision Elo from arena.ai/leaderboard/vision May 17 2026 snapshot (verified via Playwright). 'dola-seed-2.0-pro' on arena.ai aliased to existing DB id bytedance/seed-2.0-pro (Bytedance Dola Seed line, same model). Skipping: gpt-5.2-chat-latest-20260210 dated snapshot variant (not a registered model variant), gemini-3-flash thinking-minimal variant, qwen-maxa(deletethe-a) deliberately scrambled admin marker."
+  },
+  "models": [
+    {
+      "id": "alibaba/qwen3.7-max-preview",
+      "vendor": "Alibaba",
+      "name": "Qwen 3.7 Max Preview",
+      "type": "proprietary",
+      "modalities": ["text", "code", "reasoning"],
+      "country": "China",
+      "released_at": "2026-05-14",
+      "_note": "Alibaba's flagship Qwen 3.7 Max in preview on arena.ai text leaderboard from May 14 2026. Thinking mode required. Positioned for agent workflows, research, complex coding. No public weights/API yet; preview-only on Arena.",
+      "_sources": [
+        "https://arena.ai/leaderboard/text",
+        "https://atalupadhyay.wordpress.com/2026/05/19/qwen-3-7-deep-dive-honest-review-hands-on-testing-and-when-to-use-max-vs-plus/"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.7-plus-preview",
+      "vendor": "Alibaba",
+      "name": "Qwen 3.7 Plus Preview",
+      "type": "proprietary",
+      "modalities": ["text", "image", "code"],
+      "country": "China",
+      "released_at": "2026-05-14",
+      "_note": "Mid-tier Qwen 3.7 Plus in preview on arena.ai vision leaderboard. Balanced cost-efficiency variant. Thinking mode required. Positioned for production workloads, chat, routine tasks. No public weights/API yet; preview-only on Arena.",
+      "_sources": [
+        "https://arena.ai/leaderboard/vision",
+        "https://atalupadhyay.wordpress.com/2026/05/19/qwen-3-7-deep-dive-honest-review-hands-on-testing-and-when-to-use-max-vs-plus/"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "textarena_trueskill_balanced",
+      "name": "TextArena TrueSkill (Balanced Subset)",
+      "category": "agent",
+      "description": "TextArena open-source competitive text-game benchmark (Leon Guertler et al, CFAR @ A*STAR Singapore, arxiv 2504.11442). ~100 game environments (single-player + two-player + multi-player) — chess, diplomacy, secret mafia, iterated prisoner's dilemma, negotiation, codenames, truth-and-deception, etc. TrueSkill rating (Microsoft's online competitive ranking) computed across the 'Balanced Subset' splits. Tests dynamic social skills: negotiation, theory of mind, deception. Live at textarena.ai with online play vs humans + other models.",
+      "metric": "trueskill",
+      "leaderboard": "https://www.textarena.ai/leaderboard"
+    },
+    {
+      "id": "arena_ai_text_elo",
+      "name": "Arena.ai Text Elo",
+      "category": "general",
+      "description": "arena.ai head-to-head Text leaderboard Elo (Sierra-style community vote arena, distinct from lmarena.ai/LMSYS). 870k+ votes across 126+ models as of May 2026 snapshot. Categories: Overall, English, Chinese, plus task-specific (Captioning, Creative Writing, Diagram, Entity Recognition, Homework, Humor, OCR).",
+      "metric": "elo",
+      "leaderboard": "https://arena.ai/leaderboard/text"
+    }
+  ],
+  "scores": [
+    {"_section": "=== TextArena TrueSkill (Balanced Subset) — selected frontier-relevant models, 2026-05-20 snapshot ===",
+     "model": "anthropic/claude-3.5-sonnet", "benchmark": "textarena_trueskill_balanced", "score": 30.61, "unit": "trueskill", "_source": "https://www.textarena.ai/leaderboard", "_note": "Rank 1 / SD 3.43 / 130 games / 48.5% win rate. Top of Balanced Subset."},
+    {"model": "anthropic/claude-3.5-haiku", "benchmark": "textarena_trueskill_balanced", "score": 27.59, "unit": "trueskill", "_source": "https://www.textarena.ai/leaderboard", "_note": "Rank 10 / SD 1.53 / 1084 games / 47.5% win rate."},
+    {"model": "mistral/ministral-8b-v1", "benchmark": "textarena_trueskill_balanced", "score": 27.68, "unit": "trueskill", "_source": "https://www.textarena.ai/leaderboard", "_note": "Rank 8 / SD 3.29 / 563 games / 39.1% win rate."},
+    {"model": "openai/gpt-4o-mini", "benchmark": "textarena_trueskill_balanced", "score": 25.58, "unit": "trueskill", "_source": "https://www.textarena.ai/leaderboard", "_note": "Rank 15 / SD 4.01 / 130 games / 39.2% win rate."},
+    {"model": "google/gemini-2.0-flash-lite", "benchmark": "textarena_trueskill_balanced", "score": 27.72, "unit": "trueskill", "_source": "https://www.textarena.ai/leaderboard", "_note": "Rank 7 / SD 1.58 / 6152 games / 46.8% win rate. Largest game count (heavy testing)."},
+    {"model": "meta/llama-4-maverick", "benchmark": "textarena_trueskill_balanced", "score": 28.46, "unit": "trueskill", "_source": "https://www.textarena.ai/leaderboard", "_note": "Rank 4 / SD 1.61 / 6986 games / 46.9% win rate. Top Llama 4 entry."},
+    {"model": "meta/llama-4-scout", "benchmark": "textarena_trueskill_balanced", "score": 26.14, "unit": "trueskill", "_source": "https://www.textarena.ai/leaderboard", "_note": "Rank 13 / SD 1.64 / 4884 games / 45.3% win rate."},
+    {"model": "alibaba/qwen2.5-vl-72b", "benchmark": "textarena_trueskill_balanced", "score": 28.44, "unit": "trueskill", "_source": "https://www.textarena.ai/leaderboard", "_note": "Rank 5 / SD 1.69 / 546 games / 46.2% win rate."},
+    {"model": "amazon/nova-lite", "benchmark": "textarena_trueskill_balanced", "score": 26.99, "unit": "trueskill", "_source": "https://www.textarena.ai/leaderboard", "_note": "Rank 11 / SD 1.74 / 678 games / 38.3% win rate."},
+    {"model": "amazon/nova-micro", "benchmark": "textarena_trueskill_balanced", "score": 24.69, "unit": "trueskill", "_source": "https://www.textarena.ai/leaderboard", "_note": "Rank 16 / SD 2.02 / 783 games / 35.8% win rate."},
+
+    {"_section": "=== arena.ai Vision Elo — May 17 2026 snapshot (870706 votes / 126 models) — top frontier ===",
+     "model": "anthropic/claude-opus-4.7-thinking", "benchmark": "arena_vision_elo", "score": 1306, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 1 / ±9. New top of Vision Arena."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "arena_vision_elo", "score": 1304, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 2 / ±9. (Was 1305 on 2026-05-08 snapshot — virtually flat.)"},
+    {"model": "anthropic/claude-opus-4.6-thinking", "benchmark": "arena_vision_elo", "score": 1300, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 3 / ±9."},
+    {"model": "meta/muse-spark", "benchmark": "arena_vision_elo", "score": 1296, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 4 / ±10."},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "arena_vision_elo", "score": 1293, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 5 / ±8."},
+    {"model": "google/gemini-3-pro", "benchmark": "arena_vision_elo", "score": 1289, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 6 / ±8."},
+    {"model": "openai/gpt-5.5", "benchmark": "arena_vision_elo", "score": 1288, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 7 / ±10."},
+    {"model": "openai/gpt-5.5-high", "benchmark": "arena_vision_elo", "score": 1278, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 9 / ±10."},
+    {"model": "google/gemini-3.1-pro-preview", "benchmark": "arena_vision_elo", "score": 1277, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 10 / ±7."},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "arena_vision_elo", "score": 1275, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 12 / ±8."},
+    {"model": "openai/gpt-5.5-instant", "benchmark": "arena_vision_elo", "score": 1275, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 13 / ±11."},
+    {"model": "google/gemini-3-flash", "benchmark": "arena_vision_elo", "score": 1271, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 14 / ±6."},
+    {"model": "openai/gpt-5.4", "benchmark": "arena_vision_elo", "score": 1269, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 15 / ±10."},
+    {"model": "alibaba/qwen3.7-plus-preview", "benchmark": "arena_vision_elo", "score": 1260, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 16 / ±11. Best Qwen entry on Vision Arena. Preview-only on arena.ai."},
+    {"model": "bytedance/seed-2.0-pro", "benchmark": "arena_vision_elo", "score": 1259, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 18 / ±8 (displayed as 'dola-seed-2.0-pro' on arena.ai — Bytedance Dola Seed product line; same upstream model as DB id seed-2.0-pro per seed.bytedance.com)."},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "arena_vision_elo", "score": 1259, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 19 / ±9."},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "arena_vision_elo", "score": 1254, "unit": "elo", "_source": "https://arena.ai/leaderboard/vision", "_note": "Rank 20 (gpt-5.4-mini-high label on arena.ai) / ±8."},
+
+    {"_section": "=== arena.ai Text Elo — Qwen 3.7 Max launch score (May 14 2026 entry) ===",
+     "model": "alibaba/qwen3.7-max-preview", "benchmark": "arena_ai_text_elo", "score": 1475, "unit": "elo", "_source": "https://arena.ai/leaderboard/text", "_note": "Verbatim from arena.ai/leaderboard/text snapshot 2026-05-19. Preview added May 14 2026."}
+  ]
+}
