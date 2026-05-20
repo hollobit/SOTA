@@ -1,5 +1,55 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-20 (Session 19 cont'd 3): Reference leaderboard mining for new Session 19 models
+
+### 59. Cross-leaderboard mining for Gemini 3.5 Flash + Omni Flash + Qwen 3.7 Max/Plus preview
+
+User asked us to mine reference leaderboards and find additional benchmark coverage for the 4 newly-added Session 19 models. Subagent systematically checked: **AA Intelligence Index** (per-model detail page), **arena.ai** (text + vision + webdev + sub-categories), **LMArena**, **LiveBench**, **MathArena** (Final-Answer Comps), **Aider Polyglot**, **Epoch ECI CSV**, **Scale SEAL**, **OpenRouter**, **VBench**, **VBench-2.0**, **Bambooshi**, **Hugging Face Video Generation Arena**.
+
+**Results per model**:
+
+| Model | Existing scores | New scores | Total |
+|---|---:|---:|---:|
+| `google/gemini-3.5-flash` | 14 | **+13** | 27 |
+| `google/gemini-omni-flash` | 0 | 0 (absent across all video gen leaderboards) | 0 |
+| `alibaba/qwen3.7-max-preview` | 1 | 0 (no new leaderboard appearances yet) | 1 |
+| `alibaba/qwen3.7-plus-preview` | 1 | 0 (no new leaderboard appearances yet) | 1 |
+
+**13 NEW scores for Gemini 3.5 Flash**:
+
+| Bench | Value | Source |
+|---|---:|---|
+| `aa_intelligence_index` | 55 | AA detail page (rank 5/28) |
+| `terminal_bench_hard` | 41% | AA detail (pos 23/28) — distinct from terminal_bench_2/2.1 |
+| `tau2_telecom` | 95% | AA detail (pos 9/28) — strong agentic-tool signal |
+| `aa_lcr` | 69% | AA detail (pos 18/28) |
+| `aa_omniscience_acc` | 52% | AA detail (pos 6/28) |
+| `aa_omniscience_non_hall` | 39% | AA detail (pos 15/28) |
+| `gpqa_diamond` | 92% | AA detail (pos 5/28) |
+| `scicode` | 53% | AA detail (pos 9/28) |
+| `ifbench` | 76% | AA detail (pos 7/28) |
+| `critpt` | 13% | AA detail (pos 7/28) |
+| `arena_ai_text_elo` | 1480 | arena.ai/leaderboard/text rank 9 / 5907 votes / ±8 |
+| `webdev_arena` | 1507 | arena.ai/leaderboard/code/webdev rank 9 / 2148 votes / ±14 |
+| `matharena_final_answer` | 51.22% | matharena.ai rank 5 / ±8.83 / $0.22 cost / 24812 tokens |
+
+**Skipped per preservation policy** (existing primary-source preserved):
+- `gemini-3.5-flash/gdpval_aa` AA shows 58% but DB has 1656 Elo (metric encoding mismatch — accuracy vs Elo)
+- `gemini-3.5-flash/hle` AA shows 41% rounded vs DB 40.2% Google primary
+- `gemini-3.5-flash/mmmu_pro` AA shows 84% rounded vs DB 83.6% Google primary
+
+**Confirmed absent everywhere**:
+- `google/gemini-omni-flash`: absent from AA T2V/I2V, arena.ai T2V/I2V, VBench (HF), VBench-2.0, Bambooshi (site down). Confirms vendor's deferred-to-API-rollout note — no public benchmark exposure as of 2026-05-20.
+- `alibaba/qwen3.7-max-preview`: no scores beyond arena.ai text 1475 — absent from AA, LMArena, LiveBench, MathArena, Aider, Epoch ECI, Scale SEAL.
+- `alibaba/qwen3.7-plus-preview`: no scores beyond arena.ai vision 1260.
+
+**Insight**: Both Qwen 3.7 previews + Omni Flash are recent-week launches still in early arena rotation. Re-check in 2-3 weeks for broader leaderboard coverage.
+
+**Files patched**:
+- `resource/zzz_2026_05_20_gemini_3_5_flash_leaderboard_mine_scores.json` (new, 13 scores)
+- No new models, no new benchmarks (all 14 target benchmark IDs already in DB)
+- Data-only ingest, no code/UI changes
+
 ## 2026-05-20 (Session 19 cont'd 2): Gemini 3.5 Flash PDF backfill — 6-column comparison table
 
 ### 58. Gemini 3.5 Flash + Omni Flash PDF model card analysis (35 backfill triples)

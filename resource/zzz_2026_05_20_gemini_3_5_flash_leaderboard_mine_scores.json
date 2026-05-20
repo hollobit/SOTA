@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "date": "2026-05-20",
+    "title": "Gemini 3.5 Flash leaderboard mining — 13 cross-leaderboard scores from AA + arena.ai + MathArena + WebDev Arena",
+    "context": "User asked us to mine reference leaderboards for additional benchmark scores covering the 4 newly-added Session 19 models. Subagent systematically checked AA Intelligence Index, LMArena/arena.ai (all sub-categories), LiveBench, MathArena, Aider, Epoch ECI, Scale SEAL, OpenRouter, VBench, Bambooshi. Result: gemini-3.5-flash has appeared on 3 third-party leaderboards (AA model detail page, arena.ai text + WebDev, MathArena Final-Answer Comps) — 13 NEW score triples extractable. Gemini Omni Flash absent everywhere (vendor's deferred-to-API note confirmed). Qwen 3.7 Max + Plus Preview have only their existing arena.ai entries — no additional coverage on AA/LiveBench/MathArena/etc.",
+    "sources": [
+      "https://artificialanalysis.ai/models/gemini-3-5-flash",
+      "https://arena.ai/leaderboard/text",
+      "https://arena.ai/leaderboard/code/webdev",
+      "https://matharena.ai/"
+    ],
+    "rule": "STRICT-ATTRIBUTION — values verbatim from leaderboard DOM (Playwright-verified). Skipped: gdpval_aa AA=58% vs existing PDF=1656 Elo (metric encoding mismatch), hle AA=41% rounded vs existing 40.2% Google primary, mmmu_pro AA=84% rounded vs existing 83.6% Google primary. All preserved-existing scores are from Google's deepmind.google primary source which takes precedence over AA chart rounding."
+  },
+  "models": [],
+  "benchmarks": [],
+  "scores": [
+    {"_section": "=== Gemini 3.5 Flash — Artificial Analysis Intelligence Index v4.x detail page (28-model panel, rank shown) ===",
+     "model": "google/gemini-3.5-flash", "benchmark": "aa_intelligence_index", "score": 55, "unit": "score", "_source": "https://artificialanalysis.ai/models/gemini-3-5-flash", "_note": "AAII composite v4.x. Rank pos 5 of frontier panel. (Existing AAII coverage for Gemini family: 3-pro 41, 3-flash 46, 3.1-flash-lite-preview 34, 2.5-pro 35.)"},
+    {"model": "google/gemini-3.5-flash", "benchmark": "terminal_bench_hard", "score": 41, "unit": "%", "_source": "https://artificialanalysis.ai/models/gemini-3-5-flash", "_note": "AA detail Intelligence Evaluations chart, pos 23/28. Different metric/split from terminal_bench_2 v2.0/v2.1."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "tau2_telecom", "score": 95, "unit": "%", "_source": "https://artificialanalysis.ai/models/gemini-3-5-flash", "_note": "τ²-Bench Telecom success rate. Pos 9/28. Strong agentic-tool-use signal."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "aa_lcr", "score": 69, "unit": "%", "_source": "https://artificialanalysis.ai/models/gemini-3-5-flash", "_note": "AA-LCR (Long-Context Recall). Pos 18/28. Consistent with Flash long-context regression vs 3.1 Pro on MRCR 128k 77.3 (PDF)."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "aa_omniscience_acc", "score": 52, "unit": "%", "_source": "https://artificialanalysis.ai/models/gemini-3-5-flash", "_note": "AA-Omniscience accuracy. Pos 6/28."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "aa_omniscience_non_hall", "score": 39, "unit": "%", "_source": "https://artificialanalysis.ai/models/gemini-3-5-flash", "_note": "AA-Omniscience non-hallucination rate. Pos 15/28."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "gpqa_diamond", "score": 92, "unit": "%", "_source": "https://artificialanalysis.ai/models/gemini-3-5-flash", "_note": "GPQA Diamond (graduate-level science Q&A). Pos 5/28. Saturating bench but still useful for frontier ranking."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "scicode", "score": 53, "unit": "%", "_source": "https://artificialanalysis.ai/models/gemini-3-5-flash", "_note": "SciCode. Pos 9/28."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "ifbench", "score": 76, "unit": "%", "_source": "https://artificialanalysis.ai/models/gemini-3-5-flash", "_note": "IFBench instruction following. Pos 7/28."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "critpt", "score": 13, "unit": "%", "_source": "https://artificialanalysis.ai/models/gemini-3-5-flash", "_note": "CritPt (Critical Programming). Pos 7/28. Saturating bench, single-digit absolute gap between frontier and tail."},
+
+    {"_section": "=== Gemini 3.5 Flash — arena.ai (Sierra) Text + WebDev sub-leaderboards ===",
+     "model": "google/gemini-3.5-flash", "benchmark": "arena_ai_text_elo", "score": 1480, "unit": "elo", "_source": "https://arena.ai/leaderboard/text", "_note": "Rank 9 / 5907 votes / ±8 CI / Preliminary. (Slightly ahead of qwen3.7-max-preview 1475 at rank 14.)"},
+    {"model": "google/gemini-3.5-flash", "benchmark": "webdev_arena", "score": 1507, "unit": "elo", "_source": "https://arena.ai/leaderboard/code/webdev", "_note": "Rank 9 / 2148 votes / ±14 CI / Preliminary. arena.ai WebDev Arena (distinct from existing webdev_arena measurements from lmarena.ai)."},
+
+    {"_section": "=== Gemini 3.5 Flash — MathArena Final-Answer Comps ===",
+     "model": "google/gemini-3.5-flash", "benchmark": "matharena_final_answer", "score": 51.22, "unit": "%", "_source": "https://matharena.ai/", "_note": "Rank 5 / ±8.83 CI / $0.22 cost / 24812 tokens avg. Final-Answer Competitions composite across AIME/Apex/USAMO/Putnam/etc."}
+  ]
+}
