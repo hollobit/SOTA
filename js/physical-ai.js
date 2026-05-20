@@ -175,7 +175,10 @@ var PhysicalAI = {
                 'robovqa', 'lingoqa',
                 // 2026-05 Meta Physical Reasoning Leaderboard + V-JEPA 2 video understanding (Section 45)
                 'intphys2', 'mvpbench', 'causalvqa',
-                'ss_v2_top1', 'epic_kitchens_recall5', 'perception_test', 'tempcompass'
+                'ss_v2_top1', 'epic_kitchens_recall5', 'perception_test', 'tempcompass',
+                // 2026-05-21 FactoryBench (arxiv 2605.07675) — 4-level causal reasoning over industrial robot telemetry
+                'factorybench_l1_state', 'factorybench_l2_intervention',
+                'factorybench_l3_counterfactual', 'factorybench_l4_decision'
             ]
         },
         {
