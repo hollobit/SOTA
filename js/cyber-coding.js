@@ -16,7 +16,9 @@ var CyberCoding = {
         // 2026-05 CTI-REALM detection rule generation (arxiv 2603.13517)
         'cti_realm_50',
         // 2026-05 Autonomous Adversary (arxiv 2605.06486, NRC Canada)
-        'autoadversary_s1_autonomous_pct', 'autoadversary_s1_expert_pct'
+        'autoadversary_s1_autonomous_pct', 'autoadversary_s1_expert_pct',
+        // 2026-05-21 Palisade Research GPT-5 at CTFs (arxiv 2511.04860) — live CTFTime 2025 competition percentiles
+        'asis_ctf_quals_2025_percentile', 'corctf_2025_percentile', 'snakectf_quals_2025_percentile'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric'],
     AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'gaia2', 'browsecomp', 'tau_bench', 'tau2_bench', 'tau3_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'arc_agi_3', 'claw_eval'],
@@ -61,7 +63,9 @@ var CyberCoding = {
                 // 2026-05 UK AISI multi-step ranges (arxiv 2603.11214)
                 'aisi_last_ones_100m_avg', 'aisi_cooling_tower_100m_avg',
                 // 2026-05 Autonomous Adversary (arxiv 2605.06486, NRC Canada)
-                'autoadversary_s1_autonomous_pct', 'autoadversary_s1_expert_pct'
+                'autoadversary_s1_autonomous_pct', 'autoadversary_s1_expert_pct',
+                // 2026-05-21 Palisade Research GPT-5 at CTFs (arxiv 2511.04860) — live CTFTime 2025 percentile
+                'asis_ctf_quals_2025_percentile', 'corctf_2025_percentile', 'snakectf_quals_2025_percentile'
             ]
         },
         {
