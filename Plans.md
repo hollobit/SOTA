@@ -1,9 +1,16 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 20 — FactoryBench + cyber-variant audit + Palisade GPT-5 CTF (2026-05-21)
-**1,465 models · 1,078 benchmarks · 5,790 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 20 — FactoryBench + cyber-variant audit + Palisade CTF + Qwen3.7-Max (2026-05-21)
+**1,465 models · 1,090 benchmarks · 5,862 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
+
+### 2026-05-21 Session 20 cont'd 2 — Qwen3.7-Max launch blog ingest (May 20 2026)
+- **Qwen3.7-Max** (qwen.ai/blog?id=qwen3.7): "the Agent Frontier" launch — 41-bench × 6-model panel (Opus-4.6 Max / K2.6 Thinking / GLM-5.1 Thinking / DS-V4-Pro Max / Qwen3.6-Plus / Qwen3.7-Max) = **+12 new benchmarks, +72 scores**
+- 12 new bench IDs: qwen_webdev / qwen_svg / qwenclaw / cowork_bench / vitabench / spreadsheet_bench_v1 / kernelbench_l3 / qwen_worldbench / maxife / mmlu_prox / nova_63 / polymath
+- **AAII 57** (#1-tier with GPT-5.4 Pro / Opus 4.7 / Gemini 3.1 Pro; behind only GPT-5.5 family); AA "self-reported, not yet independently verified"
+- **Headline**: wins 18/41 incl. MRCR-128k 90.4 (beats Opus 4.6 Max 84.0 long-context), Apex 44.5 (+6.2 vs DS-V4-Pro Max), PolyMATH 86.5, HMMT 2026 Feb 97.1, IMOAnswerBench 90.0. Trails LiveCodeBench (91.6 vs DS 93.5), Qwenclaw 64.3 vs Opus 65.5
+- 88KB HTML archived; Resources + seed_sources patched; cache-bust app.js v=20260521c
 
 ### 2026-05-21 Session 20 cont'd — Cyber-variant audit + Palisade GPT-5 CTF ingest
 - **Audit of GPT-5.5-Cyber / GPT-5.4-Cyber / Claude Mythos** for additional benchmark coverage:
