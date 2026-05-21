@@ -121,6 +121,7 @@ var FrontierCompare = {
         'moonshot/kimi-k2.5',
         'zhipu/glm-5',
         'zhipu/glm-5.1',
+        'alibaba/qwen3.7-max',
         'alibaba/qwen3.7-max-preview',
         'alibaba/qwen3.7-plus-preview',
         'alibaba/qwen3.6-plus',
