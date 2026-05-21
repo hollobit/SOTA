@@ -1,34 +1,24 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 20 — FactoryBench + cyber audit + Palisade CTF + Qwen3.7-Max + OpenAI Deployment Safety + Qwen3.7 deep-dive + table completion (2026-05-21)
-**1,470 models · 1,106 benchmarks · 6,008 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 20 cont'd 6 — Qwen3.7-Max official model split from preview (2026-05-22)
+**1,471 models · 1,106 benchmarks · 6,008 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
 
-### 2026-05-21 Session 20 cont'd 5 — Qwen3.7 blog table completion (96 cross-vendor cells fill)
-- User asked us to verify the FULL Qwen3.7 blog Performance table (41 rows × 6 model columns = 246 cells) is reflected in DB
-- Cross-checked all 246 cells: **96 cells had no DB entry** for that (model, bench) pair (no PRESERVE conflict)
-- All 96 ingested as Qwen-administered cross-vendor evals under the blog's stated harness conditions (uniform across all 6 panel models)
-- **Per-model deltas**: Opus 4.6 Max +17 (168→185, top-covered model in DB); K2.6 Thinking +17 (85→102); GLM-5.1 Thinking +17 (61→78); DS-V4-Pro Max +20 (41→61); Qwen3.6-Plus +25 (49→74, full 41-bench panel coverage)
-- Loader inserted 4 '--' placeholders as -1; SQL-cleaned post-load. JSON also cleaned to prevent CI re-insertion.
-- **+0 models / +0 benchmarks / +96 scores** = 1470 / 1106 / 6008. Cache-bust app.js v=20260521f
+### 2026-05-22 Session 20 cont'd 6 — Qwen3.7-Max official model split from preview ID
+- Re-checked Qwen blog (May 20): model referenced 30x as "Qwen3.7-Max", **ZERO "preview" mentions**. Qwen3.7-Plus mentioned 0 times (Plus didn't launch)
+- First-pass ingest (commit f120612) erroneously used `qwen3.7-max-preview` ID for all 41-bench blog scores. Corrected:
+  - **alibaba/qwen3.7-max** (NEW, May 20 official): inherits 45 scores (44 blog + 1 AA)
+  - **alibaba/qwen3.7-max-preview** (May 14 arena.ai early build): retains only arena.ai text Elo 1475
+  - **alibaba/qwen3.7-plus-preview**: untouched (Plus not yet launched)
+- SQL UPDATE migrated 45 rows; source JSON files (qwen37_max_scores + qwen37_deepdive_scores) re-attributed at model_id level for CI consistency
+- Menu propagation: sovereign.js (China-CN category, RELEASE_DATES, PARAMS_BILLIONS) + frontier-compare.js FRONTIER_MODELS now include both IDs
+- **+1 model / 0 benches / 0 score delta** = 1471 / 1106 / 6008. Cache-bust sovereign.js + frontier-compare.js + app.js v=20260522a
 
-### 2026-05-21 Session 20 cont'd 4 — Qwen3.7 blog deep re-investigation (sections beyond 41-bench table)
-- User re-asked us to dig more deeply into qwen.ai/blog?id=qwen3.7 + AA detail page — first ingest only captured the top comparison table
-- **YC-Bench** (new benchmark): 1-year startup lifecycle simulator with hundreds of decision rounds. Qwen3.7-Max **$2.08M revenue / 237 tasks**; Qwen3.6-Plus $1.05M (2x lower); Qwen3.5-Plus $352K (5.9x lower)
-- **Qwen-RobotClaw + Qwen-RobotNav** — new robotics models (quadruped robot dog control via tool-use, no public benchmark scores yet)
-- **KernelBench L3 speedup** — added as companion benchmark (first pass captured pass-rate only). Opus 4.6 Max 2.63x leads, Qwen3.7-Max 1.98x at 96% pass-rate
-- AA JSON-embedded ranking confirms Qwen3.7-Max AAII=56.58 (rank 4: behind GPT-5.5 60.24 / Opus 4.7 57.28 / Gemini 3.1 Pro 57.18); existing aa_intelligence_index=57 preserved (page text rounds to 57)
-- **Self-Evolving** + **Reward Hacking Monitoring** case studies noted in seed_sources but not ingested as scores (single-run anecdotes, not population benchmarks)
-- **+3 models / +3 benchmarks / +10 scores** = 1470 / 1106 / 5912. Cache-bust app.js v=20260521e
-
-### 2026-05-21 Session 20 cont'd 3 — OpenAI Deployment Safety Hub ingest (3 living-doc safety pages)
-- **GPT-5.4 Thinking** (Mar 5 2026, deploymentsafety.openai.com/gpt-5-4-thinking): +10 scores filling Preparedness Framework Bio gaps (Virology MCQ 50.4 / ProtocolQA-OE 42.5 / Tacit 65.0 / TroubleshootingBench 35.8 / OPQA 4.16) + Apollo deception (sabotage 0.56, eval-awareness 21.3) + Irregular cyber (Network 88, Vuln-Research 73, Evasion 48). 36 → 46 scores.
-- **GPT-5.4 Mini** (Mar 17 2026): +6 scores (Bio prep frame + CTF pass@12 81.3). 36 → 42.
-- **GPT-5.5 Instant** (May 5 2026, deploymentsafety.openai.com/gpt-5-5-instant): +14 scores. First Instant-family model classified High Capability in cyber+bio. **Stat-significant safety regressions** on Gore 70.3 / Sexual 80.6 / Hate 82.7. HealthBench length-adj +1.8 to +5.5 across variants. Cyber Range 76.9% vs Thinking 92.3%. 4 → 18 scores.
-- **ChatGPT Images 2.0** (Apr 21 2026, NEW model + Thinking variant): 5 image-safety bench IDs registered. Thinking variant reduces violative output rate 3.3x (22.0% → 6.7%) but harder-to-flag (12.5% remaining undetected vs 3.9% base).
-- 8 new production-safety benchmark IDs (not_unsafe_violent/nonviolent/extremism/hate/self_harm/gore/sexual/sexual_minors) + 5 image-safety bench IDs = **+13 benchmarks, +40 scores, +2 models**
-- Resources tab + seed_sources patched with 3 deployment safety URLs; cache-bust app.js v=20260521d
+### 2026-05-21 Session 20 cont'd 3-5 (compressed)
+- **cont'd 5 — Qwen3.7 table completion**: 96 cross-vendor cells fill (no PRESERVE conflict). Per-model deltas: Opus 4.6 Max +17 (168→185), K2.6 +17, GLM-5.1 +17, DS-V4-Pro Max +20, Qwen3.6-Plus +25. **+96 scores** = 6008. v=20260521f
+- **cont'd 4 — Qwen3.7 deep dive**: YC-Bench startup simulator ($2.08M/$1.05M/$352K), KernelBench L3 speedup (Opus 4.6 Max 2.63x #1, Qwen3.7-Max 1.98x), Qwen-RobotClaw + Qwen-RobotNav new models. AAII actual 56.58 (rank 4). **+3 models / +3 benches / +10 scores**. v=20260521e
+- **cont'd 3 — OpenAI Deployment Safety Hub (3 pages)**: GPT-5.4 Thinking +10 (Prep Bio + Apollo + Irregular cyber), GPT-5.4 Mini +6, GPT-5.5 Instant +14 (first High-Capability Instant; stat-sig safety regressions Gore 70.3/Sexual 80.6/Hate 82.7), ChatGPT Images 2.0 + Thinking (5 image-safety bench IDs, 3.3x lower violative but harder to flag). **+2 models / +13 benches / +40 scores**. v=20260521d
 
 ### 2026-05-21 Session 20 cont'd 2 — Qwen3.7-Max launch blog ingest (May 20 2026)
 - **Qwen3.7-Max** (qwen.ai/blog?id=qwen3.7): "the Agent Frontier" launch — 41-bench × 6-model panel (Opus-4.6 Max / K2.6 Thinking / GLM-5.1 Thinking / DS-V4-Pro Max / Qwen3.6-Plus / Qwen3.7-Max) = **+12 new benchmarks, +72 scores**

@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "date": "2026-05-22",
+    "title": "Qwen3.7-Max official launch model registration — split from early-preview ID",
+    "context": "User noted that Qwen3.7-Max (official, May 20 launch via qwen.ai/blog) and Qwen3.7-Max-Preview (early arena.ai listing from ~May 14) are distinct artifacts that should be tracked as separate model IDs. Re-checked Qwen blog (May 20) — model is referenced 30 times as 'Qwen3.7-Max' with ZERO 'preview' mentions. Qwen3.7-Plus is not mentioned in the blog at all (0 mentions; Plus didn't launch). Original arena.ai listing (Session 19 ingest) used 'qwen3.7-max-preview' suffix because that's how arena.ai labeled the May-14 early build. First-pass blog ingest (commit f120612) inadvertently re-used the -preview ID for all 41-benchmark blog scores; this was an attribution error. Correct split: (1) alibaba/qwen3.7-max-preview — early-build evaluated only on arena.ai text Elo at 1475 on May 14; (2) alibaba/qwen3.7-max — official May 20 launch, full blog Performance table + AA detail page. Re-attribution scope: 45 scores (44 from qwen.ai/blog + 1 from artificialanalysis.ai/models/qwen3-7-max) moved from preview ID to official ID. Preserved on preview: 1 score (arena.ai text Elo 1475 — explicit preview rotation listing). Qwen3.7-Plus-Preview (1 score, arena.ai vision Elo 1260) stays untouched — Plus official hasn't launched.",
+    "sources": [
+      "https://qwen.ai/blog?id=qwen3.7",
+      "https://artificialanalysis.ai/models/qwen3-7-max",
+      "https://arena.ai/leaderboard/text"
+    ],
+    "rule": "MODEL-ID CORRECTION. New model alibaba/qwen3.7-max registered. Source JSON files for Session 20 (qwen37_max_scores + qwen37_deepdive_scores) updated to use the official ID for all qwen.ai/blog + AA-detail-page sourced scores so CI re-loading produces correct attribution. arena.ai-sourced score remains on alibaba/qwen3.7-max-preview. SQL UPDATE executed at load time to migrate the 45 previously-misattributed score rows."
+  },
+  "models": [
+    {
+      "id": "alibaba/qwen3.7-max",
+      "name": "Qwen 3.7 Max",
+      "vendor": "Alibaba",
+      "release_date": "2026-05-20",
+      "modalities": ["text"],
+      "_note": "Official launch via qwen.ai/blog 'The Agent Frontier' (May 20 2026). Proprietary frontier coding-agent foundation. Available via Alibaba Cloud Model Studio. Supports preserve_thinking feature for agentic tasks. 1M context window per AA detail page. Successor lineage: 3.5-Plus -> 3.6-Plus -> 3.7-Max. Distinct from the May-14 early build labeled qwen3.7-max-preview on arena.ai."
+    }
+  ],
+  "benchmarks": [],
+  "scores": []
+}
