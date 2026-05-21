@@ -1,9 +1,17 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 20 — FactoryBench + cyber-variant audit + Palisade CTF + Qwen3.7-Max (2026-05-21)
-**1,465 models · 1,090 benchmarks · 5,862 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 20 — FactoryBench + cyber audit + Palisade CTF + Qwen3.7-Max + OpenAI Deployment Safety (2026-05-21)
+**1,467 models · 1,103 benchmarks · 5,902 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
+
+### 2026-05-21 Session 20 cont'd 3 — OpenAI Deployment Safety Hub ingest (3 living-doc safety pages)
+- **GPT-5.4 Thinking** (Mar 5 2026, deploymentsafety.openai.com/gpt-5-4-thinking): +10 scores filling Preparedness Framework Bio gaps (Virology MCQ 50.4 / ProtocolQA-OE 42.5 / Tacit 65.0 / TroubleshootingBench 35.8 / OPQA 4.16) + Apollo deception (sabotage 0.56, eval-awareness 21.3) + Irregular cyber (Network 88, Vuln-Research 73, Evasion 48). 36 → 46 scores.
+- **GPT-5.4 Mini** (Mar 17 2026): +6 scores (Bio prep frame + CTF pass@12 81.3). 36 → 42.
+- **GPT-5.5 Instant** (May 5 2026, deploymentsafety.openai.com/gpt-5-5-instant): +14 scores. First Instant-family model classified High Capability in cyber+bio. **Stat-significant safety regressions** on Gore 70.3 / Sexual 80.6 / Hate 82.7. HealthBench length-adj +1.8 to +5.5 across variants. Cyber Range 76.9% vs Thinking 92.3%. 4 → 18 scores.
+- **ChatGPT Images 2.0** (Apr 21 2026, NEW model + Thinking variant): 5 image-safety bench IDs registered. Thinking variant reduces violative output rate 3.3x (22.0% → 6.7%) but harder-to-flag (12.5% remaining undetected vs 3.9% base).
+- 8 new production-safety benchmark IDs (not_unsafe_violent/nonviolent/extremism/hate/self_harm/gore/sexual/sexual_minors) + 5 image-safety bench IDs = **+13 benchmarks, +40 scores, +2 models**
+- Resources tab + seed_sources patched with 3 deployment safety URLs; cache-bust app.js v=20260521d
 
 ### 2026-05-21 Session 20 cont'd 2 — Qwen3.7-Max launch blog ingest (May 20 2026)
 - **Qwen3.7-Max** (qwen.ai/blog?id=qwen3.7): "the Agent Frontier" launch — 41-bench × 6-model panel (Opus-4.6 Max / K2.6 Thinking / GLM-5.1 Thinking / DS-V4-Pro Max / Qwen3.6-Plus / Qwen3.7-Max) = **+12 new benchmarks, +72 scores**
@@ -45,40 +53,13 @@
 - **Deep menu audit pass 2** — Agent / AI4S / Physical AI hardcoded lists refreshed (`9ce27df`)
 - **ExploitBench cyber-coding menu surface** + 6 recent cyber bench families exposed in Cyber & Coding menu (`ef81976`)
 
-### 2026-05-18 Session 17 — NVIDIA SANA-WM + xAI Grok Build CLI + cyber arxiv mega-batch (8 commits)
-- **NVIDIA SANA-WM** — 1-min world-model benchmark + 6 model comparison (`409226a`)
-- **xAI Grok Build CLI** (May 14 launch) + grok-code-fast-1 SWE-bench backfill (`c028e94`)
-- **User refs (4 arxiv)** — Simbian Cyber Defense + NYU CTF + HarmfulSkillBench (`3866e44`)
-- **10-paper cyber arxiv batch** — PACEbench + CTI-REALM + AISI + CyberTeam + Auto Adversary (`3bf5585`)
-
-### 2026-05-17 Session 16 — GBA Eval + daily cyber sweep (4 commits)
-- **GBA Eval** ingest — frontier coding agents building Game Boy Advance emulator from scratch (`9b628a6`)
-- **2026-05-17 daily sweep** — MDASH CyberGym SOTA + CurveBench + 5 new benches (`dcfae29`)
-
-### 2026-05-15 Session 15 — World FM + Science FM + arxiv ref-link sweep (8 commits)
-- **2026-05-15 arxiv mine batch** — PDF mine of 5 May-11/13 benchmark papers (`6d02663`)
-- **User refs** — SDE benchmark + HAL leaderboard + The Well (rejected) (`0def876`)
-- **Science FM + Universal FM coverage expansion** (`d3f429a`)
-- **World Foundation Models** — VBench + V-JEPA 2 + Meta Physical Reasoning + Cosmos Predict 2.5 (`cf1a93b`)
-
-### 2026-05-14 Session 14 — arxiv sweep + deepfake/AIGC first-coverage (4 commits)
-- **2026-05-14 arxiv sweep** — 11 new benchmarks + 12 new models + 104 scores (`9047176`)
-- **Deepfake / AIGC detection benchmarks** — first DB coverage of media forensics (`767061a`)
-
-### 2026-05-13 Session 13 — Sovereign AI 13-country sweep + PDF deep mining (8 commits)
-- **2026-05-13 ref-link sweep** — new models/benchmarks from recent sources (`a80d526`)
-- **Ref-link batch 2** — speech-to-speech + AI Co-Mathematician + OneManCompany (`6f81130`)
-- **PDF deep mining batch** — OneManCompany + Agent-World + AI Co-Math additional scores (`af22a15`)
-- **Sovereign AI 13-country sweep** (6-subagent parallel research) + Sovereign AI menu wiring (`9dce957`, `495ad9e`)
-
-### 2026-05-12 Session 12 — Mythos cyber + Onyx Open LLM + Medical AI timeline (16+ commits)
-- **Mythos cyber benchmarks** — +5 benches, +9 scores + W9 widget refactor (`b684a34`)
-- **DELEGATE-52** Microsoft Research document corruption benchmark (arxiv 2604.15597) (`171c9d3`)
-- **Onyx Open LLM Leaderboard 2026** — 19 open-source models × 10 benchmarks (`493f892`)
-- **Medical AI Release Timeline** month-column infographic + 4 follow-up tuning fixes (`b0925b7` → `0599cb2`)
-- **AA per-benchmark sub-scores** from frontier model detail pages (`b3f65f1`)
-- **PDF deep mining** for math/materials specialists (MiniF2F + Rosetta Stone) (`fec77dd`, `326aa00`)
-- **Changelog UI fix** — show all types + sort descending by date (`e5ac346`)
+### 2026-05-12 ~ 18 Sessions 12-17 (compressed — see HISTORY.md for full details)
+- **Session 17** (May 18): NVIDIA SANA-WM + xAI Grok Build CLI + 10-paper cyber arxiv batch (PACEbench/CTI-REALM/AISI/CyberTeam/Auto Adversary) + 4-paper user refs (Simbian/NYU CTF/HarmfulSkillBench)
+- **Session 16** (May 17): GBA Eval + daily sweep (MDASH CyberGym SOTA + CurveBench + 5 benches)
+- **Session 15** (May 15): arxiv mine + World FM (VBench/V-JEPA 2/Meta Physical/Cosmos Predict 2.5) + Science FM + user refs (SDE/HAL)
+- **Session 14** (May 14): arxiv sweep (11 benches, 12 models, 104 scores) + first deepfake/AIGC media-forensics coverage
+- **Session 13** (May 13): Sovereign AI 13-country sweep + PDF deep mining (OneManCompany/Agent-World/AI Co-Math)
+- **Session 12** (May 12): Mythos cyber + DELEGATE-52 + Onyx Open LLM (19 models × 10 benches) + Medical AI timeline + AA per-bench sub-scores
 
 ### 2026-05-10 ~ 11 Session 11 — ECI + AAII composite mega-ingest (16+ commits)
 - **ECI ingest**: 3 → 178 scores (incl. reasoning-effort variants) via canonical CSV `https://epoch.ai/data/eci_scores.csv` (172 rows) + Rosetta Stone paper (arxiv 2512.00193) + benchmark-stitching repo 33 external CSVs
