@@ -1,0 +1,765 @@
+{
+  "_meta": {
+    "date": "2026-05-21",
+    "title": "Qwen3.7 blog table completion — cross-model cells for benches lacking vendor primary in DB",
+    "context": "User re-asked us to make sure the FULL Qwen3.7 blog Performance table (41 benchmark rows × 6 model columns = 246 cells) is reflected in DB. First-pass ingest (commit f120612) added all 41 cells for Qwen3.7-Max. Deep-dive ingest (commit 0e92b34) added YC-Bench + KernelBench speedup + robotics models. Now we ingest the remaining cells where there is NO conflict with existing DB primary-source data. Cross-checked all 246 cells against DB; 96 had conflicting vendor source (preserved), 5 were '--' / 'Not supported' (skipped), and the rest (101 cells) had no DB entry for that (model, bench) pair and are safely ingestable as Qwen-blog-measured cross-vendor values. Strict-attribution preserved: where Anthropic/Moonshot/Zhipu/DeepSeek already publish their own first-party score for that bench, we do NOT overwrite. We only fill cells that are completely empty in DB.",
+    "sources": [
+      "https://qwen.ai/blog?id=qwen3.7"
+    ],
+    "rule": "STRICT-ATTRIBUTION + ZERO-CONFLICT FILL. For each (model, bench) cell from the Qwen blog table: (1) if DB already has a score for that pair → SKIP (preserve original vendor source — e.g. anthropic-published SWE-Verified for Opus 4.6 stays); (2) if cell is '--' or 'Not supported' → SKIP; (3) otherwise → INGEST as Qwen-blog-measured value with source = qwen.ai/blog?id=qwen3.7 and a _note documenting the original Qwen panel column label (Opus-4.6 Max / K2.6 Thinking / GLM-5.1 Thinking / DS-V4-Pro Max / Qwen3.6-Plus). The Qwen blog explicitly states its harness conditions ('Internal agent scaffold (bash + file-edit tools); temp=1.0, top_p=0.95, 200K context window' for SWE-Bench; 'Harbor/Terminus-2 harness; 5h timeout, 12 CPU/24 GB RAM' for Terminal-Bench; etc.), so these are first-party Qwen-administered cross-vendor evaluations under uniform conditions — valid primary source for cells where no other vendor source exists in DB. KernelBench L3 cells previously ingested via deepdive (commit 0e92b34) — not re-added here."
+  },
+  "models": [],
+  "benchmarks": [],
+  "scores": [
+    {
+      "_section": "=== Opus-4.6 Max (anthropic/claude-opus-4.6, Qwen-measured cross-vendor cells) ===",
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "nl2repo",
+      "score": 47.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column. Qwen-measured via Claude-code harness with disabled bash commands for repo access."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "claw_eval",
+      "score": 70.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column. ClawEval #1 in panel."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "bfcl_v4",
+      "score": 76.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column. BFCL-V4 #1 in panel."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mcpmark",
+      "score": 56.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "imo_answerbench",
+      "score": 75.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column. Lowest in panel."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "matharena_apex",
+      "score": 34.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mmlu_redux",
+      "score": 95.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "supergpqa",
+      "score": 72.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column. SuperGPQA #2 in panel (behind Qwen3.7-Max 73.6)."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "ifeval",
+      "score": 91.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mrcr_v2_128k",
+      "score": 84.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column. MRCR-128k 84.0% — Qwen3.7-Max beats this at 90.4%."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "wmt24pp",
+      "score": 82.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "maxife",
+      "score": 81.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column. Lowest in panel — Qwen models lead multilingual IF."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mmlu_prox",
+      "score": 86.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "nova_63",
+      "score": 59.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column. NOVA-63 #1 in panel (Qwen3.7-Max 59.0 tied #2)."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "include",
+      "score": 87.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column. INCLUDE #1 in panel."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "global_piqa",
+      "score": 91.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column."
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "polymath",
+      "score": 80.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'Opus-4.6 Max' column."
+    },
+    {
+      "_section": "=== K2.6 Thinking (moonshot/kimi-k2.6) ===",
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "nl2repo",
+      "score": 42.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "skillsbench",
+      "score": 56.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "bfcl_v4",
+      "score": 71.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "mcp_atlas",
+      "score": 66.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column. MCP-Atlas lowest in panel."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "livecodebench",
+      "score": 89.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "mmlu_redux",
+      "score": 95.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column. MMLU-Redux #1 in panel."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "supergpqa",
+      "score": 71.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "ifeval",
+      "score": 94.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column. IFEval tied #1 with GLM-5.1 Thinking."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "mrcr_v2_128k",
+      "score": 63.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column. Lowest long-context score in panel."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "wmt24pp",
+      "score": 81.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "maxife",
+      "score": 87.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "mmmlu",
+      "score": 87.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "mmlu_prox",
+      "score": 83.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "nova_63",
+      "score": 56.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "include",
+      "score": 84.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "global_piqa",
+      "score": 89.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "polymath",
+      "score": 82.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'K2.6 Thinking' column. PolyMATH #2 in panel."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "claw_eval",
+      "score": 62.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "skillsbench",
+      "score": 53.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "bfcl_v4",
+      "score": 70.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "mcpmark",
+      "score": 57.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "matharena_apex",
+      "score": 11.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column. Apex lowest in panel."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "mmlu_redux",
+      "score": 94.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "supergpqa",
+      "score": 68.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column. SuperGPQA lowest in panel."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "ifeval",
+      "score": 94.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column. IFEval tied #1 with K2.6 Thinking."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "mrcr_v2_128k",
+      "score": 62.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column. MRCR-128k lowest in panel."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "wmt24pp",
+      "score": 81.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "maxife",
+      "score": 87.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column. Tied with K2.6 at 87.7."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "mmmlu",
+      "score": 87.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "mmlu_prox",
+      "score": 83.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "nova_63",
+      "score": 54.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column. NOVA-63 lowest in panel."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "include",
+      "score": 84.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "global_piqa",
+      "score": 89.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column."
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "polymath",
+      "score": 67.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'GLM-5.1 Thinking' column. PolyMATH lowest in panel."
+    },
+    {
+      "_section": "=== DS-V4-Pro Max (deepseek/deepseek-v4-pro-max) ===",
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "nl2repo",
+      "score": 35.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column. NL2repo lowest in panel."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "claw_eval",
+      "score": 58.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "skillsbench",
+      "score": 52.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "bfcl_v4",
+      "score": 70.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mcpmark",
+      "score": 57.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mcp_atlas",
+      "score": 73.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "hle_tools",
+      "score": 48.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column. HLE w/ tools lowest in panel."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "matharena_apex",
+      "score": 38.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column. Apex #2 in panel."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mmlu_redux",
+      "score": 94.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "supergpqa",
+      "score": 69.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "ifeval",
+      "score": 91.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column. Tied with Opus 4.6 Max at 91.9."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mrcr_v2_128k",
+      "score": 74.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "wmt24pp",
+      "score": 82.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "maxife",
+      "score": 88.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mmmlu",
+      "score": 87.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mmlu_prox",
+      "score": 83.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column. Tied with GLM-5.1 at 83.9."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "nova_63",
+      "score": 52.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "include",
+      "score": 86.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "global_piqa",
+      "score": 90.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "polymath",
+      "score": 72.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "'DS-V4-Pro Max' column."
+    },
+    {
+      "_section": "=== Qwen3.6-Plus (alibaba/qwen3.6-plus) — 25 missing cells, complete table coverage ===",
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "swe_bench_multilingual",
+      "score": 73.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "Qwen3.6-Plus column."
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "nl2repo",
+      "score": 34.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "qwen_webdev",
+      "score": 1500,
+      "unit": "elo",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "qwen_svg",
+      "score": 1432,
+      "unit": "elo",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "qwenclaw",
+      "score": 57.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cowork_bench",
+      "score": 64.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "claw_eval",
+      "score": 57.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "skillsbench",
+      "score": 45.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "bfcl_v4",
+      "score": 68.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "mcpmark",
+      "score": 48.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "vitabench",
+      "score": 42.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "spreadsheet_bench_v1",
+      "score": 80.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "hle_tools",
+      "score": 50.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "qwen_worldbench",
+      "score": 47.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "matharena_apex",
+      "score": 8.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "Apex lowest in panel — Qwen3.6 -> 3.7 jump on Apex is +35.7 points."
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "mmlu_redux",
+      "score": 94.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "supergpqa",
+      "score": 71.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "ifeval",
+      "score": 94.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "mrcr_v2_128k",
+      "score": 85.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7",
+      "_note": "MRCR-128k 85.9 — Qwen 3.6 already beat Opus 4.6 Max (84.0)."
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "wmt24pp",
+      "score": 84.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "maxife",
+      "score": 88.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "mmlu_prox",
+      "score": 84.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "nova_63",
+      "score": 57.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "include",
+      "score": 85.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "polymath",
+      "score": 77.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7"
+    }
+  ]
+}

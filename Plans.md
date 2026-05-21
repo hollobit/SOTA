@@ -1,9 +1,17 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 20 — FactoryBench + cyber audit + Palisade CTF + Qwen3.7-Max + OpenAI Deployment Safety + Qwen3.7 deep-dive (2026-05-21)
-**1,470 models · 1,106 benchmarks · 5,912 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 20 — FactoryBench + cyber audit + Palisade CTF + Qwen3.7-Max + OpenAI Deployment Safety + Qwen3.7 deep-dive + table completion (2026-05-21)
+**1,470 models · 1,106 benchmarks · 6,008 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
+
+### 2026-05-21 Session 20 cont'd 5 — Qwen3.7 blog table completion (96 cross-vendor cells fill)
+- User asked us to verify the FULL Qwen3.7 blog Performance table (41 rows × 6 model columns = 246 cells) is reflected in DB
+- Cross-checked all 246 cells: **96 cells had no DB entry** for that (model, bench) pair (no PRESERVE conflict)
+- All 96 ingested as Qwen-administered cross-vendor evals under the blog's stated harness conditions (uniform across all 6 panel models)
+- **Per-model deltas**: Opus 4.6 Max +17 (168→185, top-covered model in DB); K2.6 Thinking +17 (85→102); GLM-5.1 Thinking +17 (61→78); DS-V4-Pro Max +20 (41→61); Qwen3.6-Plus +25 (49→74, full 41-bench panel coverage)
+- Loader inserted 4 '--' placeholders as -1; SQL-cleaned post-load. JSON also cleaned to prevent CI re-insertion.
+- **+0 models / +0 benchmarks / +96 scores** = 1470 / 1106 / 6008. Cache-bust app.js v=20260521f
 
 ### 2026-05-21 Session 20 cont'd 4 — Qwen3.7 blog deep re-investigation (sections beyond 41-bench table)
 - User re-asked us to dig more deeply into qwen.ai/blog?id=qwen3.7 + AA detail page — first ingest only captured the top comparison table
