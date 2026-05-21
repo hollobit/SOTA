@@ -1,9 +1,22 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 20 — FactoryBench (industrial machine understanding) ingest (2026-05-21)
-**1,465 models · 1,075 benchmarks · 5,787 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 20 — FactoryBench + cyber-variant audit + Palisade GPT-5 CTF (2026-05-21)
+**1,465 models · 1,078 benchmarks · 5,790 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
+
+### 2026-05-21 Session 20 cont'd — Cyber-variant audit + Palisade GPT-5 CTF ingest
+- **Audit of GPT-5.5-Cyber / GPT-5.4-Cyber / Claude Mythos** for additional benchmark coverage:
+  - **Mythos**: 47 scores already in DB (AISI Cyber Range, ExploitBench, Firefox 147, CyberGym, OSS-Fuzz, CTF, SWE-bench) — comprehensive, cross-checked against the 244-page Anthropic System Card overview (no gap)
+  - **GPT-5.5-Cyber**: only CyberGym 81.9% public (vs base GPT-5.5 81.8% — 0.1% noise, confirms variant is refusal-boundary relaxation per existing memory rule); OpenAI Trusted Access page Cloudflare-gated
+  - **GPT-5.4-Cyber**: 0 public scores per OpenAI non-disclosure policy
+  - Opus 4.6 system-card comparison cells (USAMO 42.3 / HLE-tools 53.1 / GraphWalks-BFS 38.7 / OSWorld 72.7 / Terminal-2.0 65.4) all already in DB
+- **Palisade Research GPT-5 at CTFs** (arxiv 2511.04860, Reworr/Petrov/Volkov, Nov 7 2025): first peer-reportable evaluation of a frontier LLM in elite live CTFs. GPT-5 Pro (0 prior cyber scores in DB) competed as Team [AI] Palisade Research = **+3 benchmarks, +3 scores**
+  - **ASIS CTF Quals 2025**: 25/368 = **93rd percentile** (top-8-worldwide event, weight 96.29), placed between The Flat Network Society (#3) and thehackerscrew (#7)
+  - **CorCTF 2025**: 49/474 = 90th percentile (weight 82.00)
+  - **snakeCTF Quals 2025**: 43/518 = 92nd percentile (weight 36.65)
+  - Newly-created challenges rule out training-data memorization
+- **PDF archived** (3.5MB) at `resource/palisade_gpt5_ctfs_2511_04860.pdf`; Cyber & Coding cyber-attack suite + Resources tab + seed_sources.yaml all patched; cache-bust cyber-coding.js + app.js v=20260521b
 
 ### 2026-05-21 Session 20 — FactoryBench industrial-robotics causal-reasoning benchmark
 - **FactoryBench** (arxiv 2605.07675, Merzouki et al, May 8 2026, ETH + Forgis + UC3M + Imperial + UC Berkeley + KTH + U. Vienna): 4-level Pearl's-ladder reasoning over UR3 cobot + KUKA KR10 industrial-arm telemetry. 6 frontier LLMs × 4 levels (L1 State / L2 Intervention / L3 Counterfactual / L4 Decision) = **+4 benchmarks, +24 scores**
