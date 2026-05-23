@@ -1,9 +1,16 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 20 cont'd 6 — Qwen3.7-Max official model split from preview (2026-05-22)
-**1,471 models · 1,106 benchmarks · 6,008 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 21 — arena.ai 12-board sweep (2026-05-23)
+**1,488 models · 1,114 benchmarks · 6,084 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
+
+### 2026-05-23 Session 21 — arena.ai 12-leaderboard sweep
+- Live Playwright snapshot of arena.ai/leaderboard, top-10 Elo per board ingested across 12 active arenas
+- **+8 new arena bench IDs**: arena_webdev_elo / arena_document_elo / arena_image_to_webdev_elo / arena_text_to_image_elo / arena_image_edit_elo / arena_text_to_video_elo / arena_image_to_video_elo / arena_video_edit_elo
+- **+16 new models**: 5 Grok-Imagine image+video variants, 3 Kling (v3/o1/o3-pro), Wan 2.6 T2V, Runway Gen-4 Aleph, MAI-Image-2, 3 Grok-4.20 internal variants, Qwen 3.5 Max Preview, Gemini 3 Flash thinking-minimal, GPT-5.4-high
+- **Headline**: GPT-Image-2 leads text-to-image (1389) + image-edit (1467); Bytedance Dreamina Seedance 2.0 720p sweeps video (1457/1462/1379); Claude Opus 4.7 Thinking leads WebDev (1567) + Image-to-WebDev (1581); Opus 4.6 Thinking leads Document (1522). Alibaba happyhorse-1.0 ranks #2 across all 3 video boards
+- **+16 models / +8 benches / +76 scores** = 1488 / 1114 / 6084. Cache-bust app.js v=20260523a
 
 ### 2026-05-22 Session 20 cont'd 6 — Qwen3.7-Max official model split from preview ID
 - Re-checked Qwen blog (May 20): model referenced 30x as "Qwen3.7-Max", **ZERO "preview" mentions**. Qwen3.7-Plus mentioned 0 times (Plus didn't launch)
