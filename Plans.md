@@ -1,9 +1,17 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 22 — arena.ai refresh (Qwen3.7-Max-20260517 + Recraft + image-gen registry expansion, 2026-05-26)
-**1,519 models · 1,114 benchmarks · 6,132 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 23 — Fara1.5 + Asa-W1 + Open Agent Leaderboard (2026-05-26)
+**1,530 models · 1,122 benchmarks · 6,167 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
+
+### 2026-05-26 Session 23 — 7 user-provided refs (Fara1.5 + Asa-W1 + Open Agent Leaderboard)
+- 7 ref URLs investigated; 4 yielded ingestable data, 3 SKIP (arxiv 2604.05550 system paper, agent.openmed.life product page, arxiv 2602.22953 methodology paper)
+- **Microsoft Fara1.5** (May 21 2026): NEW browser computer-use agent family — Fara1.5-4B/9B/27B + Fara-7B predecessor (base Qwen3.5). Fara1.5-27B #1 on Online-Mind2Web 72.0 and WebVoyager 88.6 (beats OpenAI Operator 87.0)
+- **NexgeneAI Asa-W1**: NEW medical reasoning model. HealthBench Professional **80.2 overall** vs ChatGPT-for-Clinicians 59.0 = +21.2 points (largest jump in HealthBench Pro history). 28 specialties tracked. 4 new HealthBench Pro slice IDs registered (consult/writing/research/redteaming)
+- **Open Agent Leaderboard** (HF Space): 5×5 agent-framework × backbone matrix. Top: OpenAI Solo + Opus 4.5 = 72.7%. Best price/perf: React+Shortlist + Gemini Pro 3 = 62.2% at $0.51 (12x cheaper)
+- 6 comparison models from Fara1.5 panel registered: OpenAI Operator, Gemini 2.5 CU, GUI-Owl 1.5 8B/32B, Yutori Navigator n1, Holo2 30B, o3-SOM
+- **+11 models / +8 benches / +35 scores** = 1530 / 1122 / 6167. 740KB PDF archived. Cache-bust app.js v=20260526b
 
 ### 2026-05-26 Session 22 — arena.ai sweep refresh (WebDev + Text-to-Image rank 11-34 expansion)
 - Changelog targets (May 22 + May 25): recraft-v4.1-pro / recraft-v4.1-utility-pro (Text-to-Image), qwen3.7-max-20260517 (WebDev #4 at 1541 Elo, Preliminary)
