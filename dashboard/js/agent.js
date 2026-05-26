@@ -212,7 +212,19 @@ var Agent = (function() {
         'anthropic/computer-use',
         'google/mariner',
         'openai/operator',
-        'anthropic/claude-cowork'
+        'anthropic/claude-cowork',
+        // 2026-05-21 Microsoft Fara 1.5 browser computer-use agent family (Qwen3.5-based)
+        'microsoft/fara1.5-27b',
+        'microsoft/fara1.5-9b',
+        'microsoft/fara1.5-4b',
+        'microsoft/fara-7b',
+        // 2026 computer-use agents from various vendors
+        'google/gemini-2.5-cu',
+        'alibaba/gui-owl-1.5-32b',
+        'alibaba/gui-owl-1.5-8b',
+        'yutori/navigator-n1',
+        'holo/holo2-30b',
+        'openai/o3-som'
     ];
 
     // Curated list of 9 on-device / edge SLMs for the compare panel.
@@ -257,6 +269,14 @@ var Agent = (function() {
         // 2026-05-15 — HAL Princeton meta-leaderboard sub-benches (Section 43)
         { id: 'corebench_hard',       label: 'CORE-Bench Hard' },
         { id: 'tau_bench_airline',    label: 'TAU-bench Airline' },
+        // 2026-05-21 — Microsoft Fara 1.5 browser CU benchmarks (Session 23)
+        { id: 'online_mind2web',      label: 'Online-Mind2Web' },
+        { id: 'webvoyager',           label: 'WebVoyager' },
+        { id: 'webtailbench_v15_outcome',  label: 'WebTailBench v1.5 (Outcome)' },
+        { id: 'webtailbench_v15_process',  label: 'WebTailBench v1.5 (Process)' },
+        // 2026-05-26 — Open Agent Leaderboard HF Space sub-benches (Session 23)
+        { id: 'open_agent_avg_success', label: 'Open Agent — Avg Success' },
+        { id: 'open_agent_swe',       label: 'Open Agent — SWE' },
         { id: 'assistantbench',       label: 'AssistantBench' },
         // 2026-05-14 — Multi-constraint judge eval (Section 40)
         { id: 'mcjudgebench_cjar',    label: 'MCJudgeBench (CJAR)' },

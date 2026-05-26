@@ -32,8 +32,12 @@ var MedicalAI = {
             code: 'biomedical-llm',
             label: 'Biomedical LLMs',
             icon: '🧬',
-            note: 'PubMed·Clinical guideline 사전학습 — OpenBioLLM · BioMistral · Meditron · BioGPT · Med42 · Aloe · BioMedLM · PMC-LLaMA · Me-LLaMA',
+            note: 'PubMed·Clinical guideline 사전학습 — Asa-W1 (NexgeneAI medical reasoning, HealthBench Pro 80.2 SOTA) · OpenBioLLM · BioMistral · Meditron · BioGPT · Med42 · Aloe · BioMedLM · PMC-LLaMA · Me-LLaMA · ChatGPT-for-Clinicians',
             models: [
+                // 2026-05 Asa-W1 — HealthBench Professional SOTA (80.2, +21.2 over ChatGPT-for-Clinicians)
+                'nexgene-ai/asa-w1',
+                // OpenAI clinical product line
+                'openai/chatgpt-clinicians-gpt54',
                 'saama/openbiollm-llama3-70b',
                 'saama/openbiollm-llama3-8b',
                 'biomistral/biomistral-7b',
@@ -489,8 +493,13 @@ var MedicalAI = {
     BENCHMARK_SUITES: [
         {
             label: '🩺 Clinical Workflow Chat & Safety',
-            note: 'OpenAI HealthBench Professional/Base · Polaris clinical safety · CARE-QA · Almanac RAG factuality',
-            benchmarks: ['healthbench_professional', 'healthbench', 'polaris_safety', 'care_qa']
+            note: 'OpenAI HealthBench Professional/Base + 4 slices (Care Consult / Writing / Research / Red-teaming Difficult) · Polaris clinical safety · CARE-QA · Almanac RAG factuality. Asa-W1 (NexgeneAI) holds HealthBench Pro overall SOTA 80.2 (+21.2 over ChatGPT-for-Clinicians 59.0).',
+            benchmarks: [
+                'healthbench_professional', 'healthbench', 'polaris_safety', 'care_qa',
+                // 2026-05-22 Asa-W1 publication introduced 4 HealthBench Pro use-case + slice IDs
+                'healthbench_professional_consult', 'healthbench_professional_writing',
+                'healthbench_professional_research', 'healthbench_professional_redteaming'
+            ]
         },
         {
             label: '🎓 Medical Licensing & QA',

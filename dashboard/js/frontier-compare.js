@@ -224,7 +224,32 @@ var FrontierCompare = {
         'cohere/command-a', 'cohere/command-a-reasoning',
         'pfn/plamo-2.1-prime', 'ntt/tsuzumi-2',
         'opengpt-x/teuken-7b-instruct-v0.6',
-        'mistral/mistral-medium-3.5-eagle'
+        'mistral/mistral-medium-3.5-eagle',
+
+        // 2026-05-20 Qwen3.7-Max official launch + May 25 dated build
+        'alibaba/qwen3.7-max-20260517',
+
+        // 2026-05-23/26 arena.ai sweep — new reasoning/coding variants surfaced on WebDev arena
+        'anthropic/claude-opus-4.5-thinking',
+        'deepseek/deepseek-v4-pro-thinking',
+        'openai/gpt-5.4-medium', 'openai/gpt-5.4-high',
+        'openai/gpt-5.4-mini-high',
+        'moonshot/kimi-k2.5-thinking', 'moonshot/kimi-k2.5-instant',
+        'minimax/minimax-m2.7',
+        'alibaba/qwen3.5-max-preview',
+        'google/gemini-3-flash-thinking-minimal',
+
+        // 2026-05-21 Microsoft Fara 1.5 computer-use agent family (Qwen3.5-based)
+        'microsoft/fara1.5-27b', 'microsoft/fara1.5-9b',
+        'microsoft/fara1.5-4b', 'microsoft/fara-7b',
+
+        // 2026-05-22 NexgeneAI Asa-W1 medical reasoning foundational model
+        'nexgene-ai/asa-w1',
+
+        // 2026-05 xAI Grok 4.20 internal variants (arena listings)
+        'xai/grok-4.20-beta1',
+        'xai/grok-4.20-beta-0309-reasoning',
+        'xai/grok-4.20-multi-agent-beta-0309'
     ],
 
     _models: [],

@@ -1,9 +1,20 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 23 — Fara1.5 + Asa-W1 + Open Agent Leaderboard (2026-05-26)
+## Current Status: Session 24 — 7-menu propagation audit (2026-05-26)
 **1,530 models · 1,122 benchmarks · 6,167 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
+
+### 2026-05-26 Session 24 — 7-menu propagation audit (Frontier / Cyber / Sovereign / Medical / Physical / AI4S / Agent)
+- Sessions 20-23이 73개 신규 모델을 DB에 등록했으나 **7개 visible menu의 hardcoded list에는 반영 안 됨** — propagation 진행
+- **Frontier Compare FRONTIER_MODELS**: +18 entries (Qwen3.7-Max-20260517 + 8 reasoning variants + Fara 1.5 family + Asa-W1 + Grok-4.20 internal variants)
+- **Sovereign AI China-CN**: 25+ models 추가 (Bytedance Seedream/Dreamina, Hunyuan Image 3.0, Wan 2.5/2.6 T2V+T2I, Qwen Image 3 builds, Qwen-Robot 2 모델, GUI-Owl 8B/32B, 3 Kling, happyhorse, K2.5 thinking/instant, DS V4 Pro thinking). FRONTIER_VENDOR_REGION에 microsoft/runway/reve/recraft/nexgene-ai/yutori/holo/luma (US), black-forest-labs (EU), kling/alibaba-ath/tencent (CN) 자동 매핑 추가
+- **Physical AI vla-policies**: Qwen-RobotClaw + Qwen-RobotNav 추가
+- **Medical AI biomedical-llm**: Asa-W1 (HealthBench Pro 80.2 SOTA) + ChatGPT-for-Clinicians 추가. clinical-workflow suite에 4 HealthBench Pro 슬라이스 추가
+- **Agent AGENT_PRODUCTS**: 10 new CU agents (Fara 1.5 4-size family + Gemini 2.5 CU + GUI-Owl 8B/32B + Yutori Navigator n1 + Holo2 30B + o3-SOM). COMPARE_BENCHMARKS에 6 새 benches (Online-Mind2Web, WebVoyager, WebTailBench v1.5 ×2, Open Agent ×2)
+- **Cyber & Coding cyber-defense**: 13 새 benches (8 production safety not_unsafe categories + 5 ChatGPT Images 2.0 image-safety pipeline)
+- **AI4S**: no new science models in Sessions 20-23, no patch
+- 0 DB delta (pure UI propagation). Cache-bust 6 JS files v=20260526c
 
 ### 2026-05-26 Session 23 — 7 user-provided refs (Fara1.5 + Asa-W1 + Open Agent Leaderboard)
 - 7 ref URLs investigated; 4 yielded ingestable data, 3 SKIP (arxiv 2604.05550 system paper, agent.openmed.life product page, arxiv 2602.22953 methodology paper)

@@ -85,7 +85,15 @@ var CyberCoding = {
                 // 2026-04 Simbian Cyber Defense (arxiv 2604.19533) + CyberTeam blue-team (arxiv 2509.23571)
                 'simbian_cyber_defense_coverage', 'cyberteam_rm_avg',
                 // 2026-05 CTI-REALM detection-rule generation (arxiv 2603.13517)
-                'cti_realm_50'
+                'cti_realm_50',
+                // 2026-05-21 OpenAI Deployment Safety Hub — 8 production safety not_unsafe categories
+                'not_unsafe_violent_illicit', 'not_unsafe_nonviolent_illicit',
+                'not_unsafe_extremism', 'not_unsafe_hate', 'not_unsafe_self_harm',
+                'not_unsafe_gore', 'not_unsafe_sexual', 'not_unsafe_sexual_minors',
+                // 2026-04-21 ChatGPT Images 2.0 image-safety pipeline (5 metrics)
+                'image_safety_violative_rate', 'image_safety_combined_detection',
+                'image_safety_safe_output_rate', 'image_safety_image_layer_detection',
+                'image_safety_prompt_layer_detection'
             ]
         },
         {

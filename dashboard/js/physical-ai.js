@@ -44,7 +44,9 @@ var PhysicalAI = {
                 'google-deepmind/gemini-robotics-er-1.6', 'google-deepmind/gemini-robotics-er-1.5',
                 // May 2026 additions — Allen AI MolmoAct2 family + NVIDIA CaP-X coding-agent for manipulation
                 'allenai/molmoact2', 'allenai/molmoer', 'nvidia/cap-agent0',
-                'allenai/molmoact-2'  // canonical id used in newer ingest (Section 38)
+                'allenai/molmoact-2',  // canonical id used in newer ingest (Section 38)
+                // 2026-05-20 Alibaba Qwen robotics — quadruped robot dog control + navigation FM
+                'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav'
             ]
         },
         {
