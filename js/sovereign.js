@@ -93,33 +93,48 @@ var Sovereign = {
             note: '중국 frontier 전체 — Qwen 풀+specialists · DeepSeek (V3-V4/R1/Coder/Math/VL) · Kimi · GLM · Hunyuan · ERNIE · Doubao · iFlytek Spark · Yi · Baichuan · InternLM · SenseNova · Skywork · MiniCPM · PanGu · Aquila · MOSS · Yuan',
             models: [
                 // Alibaba Qwen — full param lineup
-                'alibaba/qwen3.7-max', 'alibaba/qwen3.7-max-preview', 'alibaba/qwen3.7-plus-preview',
+                'alibaba/qwen3.7-max', 'alibaba/qwen3.7-max-20260517', 'alibaba/qwen3.7-max-preview', 'alibaba/qwen3.7-plus-preview',
                 'alibaba/qwen3.6-plus', 'alibaba/qwen3.6-27b', 'alibaba/qwen3.6-35b-a3b',
+                'alibaba/qwen3.5-max-preview', 'alibaba/qwen3.5-plus',
                 'alibaba/qwen3.5-397b', 'alibaba/qwen3.5-122b', 'alibaba/qwen3.5-27b',
                 'alibaba/qwen3-235b-a22b-thinking-2507', 'alibaba/qwen3-235b-a22b-instruct-2507', 'alibaba/qwen3-235b-a22b',
                 'alibaba/qwen3-30b-a3b', 'alibaba/qwen3-32b', 'alibaba/qwen3-14b', 'alibaba/qwen3-8b', 'alibaba/qwen3-4b', 'alibaba/qwen3-1.7b', 'alibaba/qwen3-0.6b',
                 'alibaba/qwen3-next',
                 'alibaba/qwen2.5-72b', 'alibaba/qwen2.5-32b', 'alibaba/qwen2.5-14b', 'alibaba/qwen2.5-7b',
                 // DeepSeek
-                'deepseek/deepseek-v4-pro-max', 'deepseek/deepseek-v4-pro', 'deepseek/deepseek-v4-flash',
+                'deepseek/deepseek-v4-pro-max', 'deepseek/deepseek-v4-pro-thinking', 'deepseek/deepseek-v4-pro', 'deepseek/deepseek-v4-flash',
                 'deepseek/deepseek-v3.2', 'deepseek/deepseek-v3.2-speciale',
                 'deepseek/deepseek-v3.1-terminus', 'deepseek/deepseek-v3',
                 'deepseek/deepseek-r1-0528', 'deepseek/deepseek-r1',
                 // Zhipu GLM
                 'zhipu/glm-5.1', 'zhipu/glm-5', 'zhipu/glm-4.7', 'zhipu/glm-4.6', 'zhipu/glm-4.5', 'zhipu/glm-4.5-air',
                 // Moonshot Kimi
-                'moonshot/kimi-k2.6', 'moonshot/kimi-k2.5', 'moonshot/kimi-k2-thinking',
+                'moonshot/kimi-k2.6', 'moonshot/kimi-k2.5', 'moonshot/kimi-k2.5-thinking', 'moonshot/kimi-k2.5-instant',
+                'moonshot/kimi-k2-thinking',
                 'moonshot/kimi-k2-instruct', 'moonshot/kimi-k2-base', 'moonshot/kimi-k1.5',
                 // MiniMax / MiMo / StepFun
-                'minimax/m2.7', 'minimax/m2.5',
+                'minimax/m2.7', 'minimax/m2.5', 'minimax/minimax-m2.7',
                 'mimo/mimo-v2-pro', 'mimo/mimo-v2-flash',
                 'stepfun/step-3.5-flash', 'stepfun/step-2-pro', 'stepfun/step-2-mini',
                 // Baidu ERNIE
                 'baidu/ernie-5.1', 'baidu/ernie-5.0', 'baidu/ernie-4.5-300b-a47b', 'baidu/ernie-4.5-turbo', 'baidu/ernie-speed', 'baidu/ernie-lite',
                 // Tencent Hunyuan
                 'tencent/hunyuan-t1', 'tencent/hunyuan-large', 'tencent/hunyuan-turbo', 'tencent/hunyuan-7b',
-                // ByteDance Doubao Seed
+                'tencent/hunyuan-image-3.0',
+                // ByteDance Doubao Seed + Seedream image/video family
                 'bytedance/seed-2.0-pro', 'bytedance/seed-1.6', 'bytedance/seed-1.5-pro', 'bytedance/seed-1.5-lite',
+                'bytedance/dreamina-seedance-2.0-720p', 'bytedance/seedance-2.0',
+                'bytedance/seedream-4.5', 'bytedance/seedream-4-2k', 'bytedance/seedream-5.0-lite',
+                'bytedance/seedream-4-fal', 'bytedance/seedream-4-high-res-fal',
+                // 2026-05 Alibaba image/video gen + robotics (sovereign expansion)
+                'alibaba/wan2.6-t2v', 'alibaba/wan2.6-t2i', 'alibaba/wan2.5-t2i-preview',
+                'alibaba/qwen-image-2.0-pro-2026-04-22', 'alibaba/qwen-image-2512', 'alibaba/qwen-image-2.0-2026-03-03',
+                'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav',
+                'alibaba/gui-owl-1.5-8b', 'alibaba/gui-owl-1.5-32b',
+                // 2026-05 Kuaishou Kling (video gen)
+                'kling/kling-v3-pro', 'kling/kling-o1-pro', 'kling/kling-o3-pro',
+                // 2026-05 Alibaba-ATH happyhorse (video gen #2 across all arena video boards)
+                'alibaba-ath/happyhorse-1.0',
                 // Apr 2026 sweep — new Chinese flagships
                 'tencent/hy3-preview', 'tencent/hy-world-2.0',
                 'xiaomi/mimo-v2.5-pro', 'xiaomi/mimo-v2.5',
@@ -1064,11 +1079,23 @@ var Sovereign = {
         'google/':              { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
         'google-deepmind/':     { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
         'meta/':                { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'microsoft/':           { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'runway/':              { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'reve/':                { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'recraft/':             { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'nexgene-ai/':          { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'yutori/':              { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'holo/':                { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'luma/':                { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'black-forest-labs/':   { code: 'frontier-eu-prop', label: 'EU Frontier (Germany)',     flag: '🇩🇪' },
         'nvidia/':              { code: 'physical-ai',      label: 'Physical AI',                flag: '🦾' },
         'agibot/':              { code: 'physical-ai',      label: 'Physical AI',                flag: '🦾' },
         'openvla/':             { code: 'physical-ai',      label: 'Physical AI',                flag: '🦾' },
         'physical-intelligence/':{ code: 'physical-ai',     label: 'Physical AI',                flag: '🦾' },
-        'xai/':                 { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' }
+        'xai/':                 { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'kling/':               { code: 'cn',               label: 'China',                      flag: '🇨🇳' },
+        'alibaba-ath/':         { code: 'cn',               label: 'China',                      flag: '🇨🇳' },
+        'tencent/':             { code: 'cn',               label: 'China',                      flag: '🇨🇳' }
     },
 
     // Sovereign agent products — regional equivalents of Cursor / Devin /
