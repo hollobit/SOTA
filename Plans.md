@@ -1,9 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 21 — arena.ai 12-board sweep (2026-05-23)
-**1,488 models · 1,114 benchmarks · 6,084 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 22 — arena.ai refresh (Qwen3.7-Max-20260517 + Recraft + image-gen registry expansion, 2026-05-26)
+**1,519 models · 1,114 benchmarks · 6,132 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
+
+### 2026-05-26 Session 22 — arena.ai sweep refresh (WebDev + Text-to-Image rank 11-34 expansion)
+- Changelog targets (May 22 + May 25): recraft-v4.1-pro / recraft-v4.1-utility-pro (Text-to-Image), qwen3.7-max-20260517 (WebDev #4 at 1541 Elo, Preliminary)
+- **+31 new models**: 5 changelog targets + 9 WebDev rank 12-34 (claude-opus-4.5-thinking, deepseek-v4-pro-thinking, gpt-5.4-medium, gpt-5.4-mini-high, kimi-k2.5-thinking, kimi-k2.5-instant, minimax-m2.7) + 18 image-gen models (Flux 2 family 4 variants, Bytedance Seedream 5 variants, Tencent Hunyuan Image 3.0, Google Imagen Ultra 4.0 + 4.0, Reve v1.5, Qwen Image 3 builds, Wan 2.5/2.6 T2I, gpt-image-1 vintage, grok-imagine-image-pro, gemini-2.5-flash-image/nano-banana)
+- **Headlines**: Qwen3.7-Max-20260517 enters WebDev at #4 ahead of Opus 4.6 base. Recraft v4.1-utility-pro (1169 #11) beats Recraft v4.1-pro (1130 #26). gemini-2.5-flash-image (original nano-banana) #18 with 777K+ votes — most-voted T2I entry
+- **+31 models / 0 benches / +48 scores** = 1519 / 1114 / 6132. Cache-bust app.js v=20260526a
 
 ### 2026-05-23 Session 21 — arena.ai 12-leaderboard sweep
 - Live Playwright snapshot of arena.ai/leaderboard, top-10 Elo per board ingested across 12 active arenas
@@ -27,31 +33,10 @@
 - **cont'd 4 — Qwen3.7 deep dive**: YC-Bench startup simulator ($2.08M/$1.05M/$352K), KernelBench L3 speedup (Opus 4.6 Max 2.63x #1, Qwen3.7-Max 1.98x), Qwen-RobotClaw + Qwen-RobotNav new models. AAII actual 56.58 (rank 4). **+3 models / +3 benches / +10 scores**. v=20260521e
 - **cont'd 3 — OpenAI Deployment Safety Hub (3 pages)**: GPT-5.4 Thinking +10 (Prep Bio + Apollo + Irregular cyber), GPT-5.4 Mini +6, GPT-5.5 Instant +14 (first High-Capability Instant; stat-sig safety regressions Gore 70.3/Sexual 80.6/Hate 82.7), ChatGPT Images 2.0 + Thinking (5 image-safety bench IDs, 3.3x lower violative but harder to flag). **+2 models / +13 benches / +40 scores**. v=20260521d
 
-### 2026-05-21 Session 20 cont'd 2 — Qwen3.7-Max launch blog ingest (May 20 2026)
-- **Qwen3.7-Max** (qwen.ai/blog?id=qwen3.7): "the Agent Frontier" launch — 41-bench × 6-model panel (Opus-4.6 Max / K2.6 Thinking / GLM-5.1 Thinking / DS-V4-Pro Max / Qwen3.6-Plus / Qwen3.7-Max) = **+12 new benchmarks, +72 scores**
-- 12 new bench IDs: qwen_webdev / qwen_svg / qwenclaw / cowork_bench / vitabench / spreadsheet_bench_v1 / kernelbench_l3 / qwen_worldbench / maxife / mmlu_prox / nova_63 / polymath
-- **AAII 57** (#1-tier with GPT-5.4 Pro / Opus 4.7 / Gemini 3.1 Pro; behind only GPT-5.5 family); AA "self-reported, not yet independently verified"
-- **Headline**: wins 18/41 incl. MRCR-128k 90.4 (beats Opus 4.6 Max 84.0 long-context), Apex 44.5 (+6.2 vs DS-V4-Pro Max), PolyMATH 86.5, HMMT 2026 Feb 97.1, IMOAnswerBench 90.0. Trails LiveCodeBench (91.6 vs DS 93.5), Qwenclaw 64.3 vs Opus 65.5
-- 88KB HTML archived; Resources + seed_sources patched; cache-bust app.js v=20260521c
-
-### 2026-05-21 Session 20 cont'd — Cyber-variant audit + Palisade GPT-5 CTF ingest
-- **Audit of GPT-5.5-Cyber / GPT-5.4-Cyber / Claude Mythos** for additional benchmark coverage:
-  - **Mythos**: 47 scores already in DB (AISI Cyber Range, ExploitBench, Firefox 147, CyberGym, OSS-Fuzz, CTF, SWE-bench) — comprehensive, cross-checked against the 244-page Anthropic System Card overview (no gap)
-  - **GPT-5.5-Cyber**: only CyberGym 81.9% public (vs base GPT-5.5 81.8% — 0.1% noise, confirms variant is refusal-boundary relaxation per existing memory rule); OpenAI Trusted Access page Cloudflare-gated
-  - **GPT-5.4-Cyber**: 0 public scores per OpenAI non-disclosure policy
-  - Opus 4.6 system-card comparison cells (USAMO 42.3 / HLE-tools 53.1 / GraphWalks-BFS 38.7 / OSWorld 72.7 / Terminal-2.0 65.4) all already in DB
-- **Palisade Research GPT-5 at CTFs** (arxiv 2511.04860, Reworr/Petrov/Volkov, Nov 7 2025): first peer-reportable evaluation of a frontier LLM in elite live CTFs. GPT-5 Pro (0 prior cyber scores in DB) competed as Team [AI] Palisade Research = **+3 benchmarks, +3 scores**
-  - **ASIS CTF Quals 2025**: 25/368 = **93rd percentile** (top-8-worldwide event, weight 96.29), placed between The Flat Network Society (#3) and thehackerscrew (#7)
-  - **CorCTF 2025**: 49/474 = 90th percentile (weight 82.00)
-  - **snakeCTF Quals 2025**: 43/518 = 92nd percentile (weight 36.65)
-  - Newly-created challenges rule out training-data memorization
-- **PDF archived** (3.5MB) at `resource/palisade_gpt5_ctfs_2511_04860.pdf`; Cyber & Coding cyber-attack suite + Resources tab + seed_sources.yaml all patched; cache-bust cyber-coding.js + app.js v=20260521b
-
-### 2026-05-21 Session 20 — FactoryBench industrial-robotics causal-reasoning benchmark
-- **FactoryBench** (arxiv 2605.07675, Merzouki et al, May 8 2026, ETH + Forgis + UC3M + Imperial + UC Berkeley + KTH + U. Vienna): 4-level Pearl's-ladder reasoning over UR3 cobot + KUKA KR10 industrial-arm telemetry. 6 frontier LLMs × 4 levels (L1 State / L2 Intervention / L3 Counterfactual / L4 Decision) = **+4 benchmarks, +24 scores**
-- **Headline**: Claude Sonnet 4.6 dominates L1-L3 (46.8/47.1/45.9%) but L4 decision-making collapses 10x to 4.3%; GPT-5.1 alone clears L4 at 17.7%; Qwen3-235B uniquely strong on counterfactual reasoning (L3 43.6%, ties Sonnet)
-- **All 6 models pre-existing in DB** (anthropic/claude-sonnet-4.6, openai/gpt-5.1, deepseek/deepseek-v3.2, mistral/mistral-large-3, alibaba/qwen3-235b-a22b, alibaba/qwen3-4b) — data-only ingest, no new models
-- **PDF archived** (15MB) at `resource/factorybench_2605_07675.pdf` per memory rule; Physical AI embodied-reasoning suite + Resources tab + seed_sources.yaml all patched; cache-bust physical-ai.js + app.js v=20260521a
+### 2026-05-21 Session 20 (parts 1-2, compressed — see HISTORY.md)
+- **cont'd 2 — Qwen3.7-Max launch**: 41-bench × 6-model panel ingested. +12 new benches (qwen_webdev / svg / claw / cowork_bench / vitabench / spreadsheet_bench_v1 / kernelbench_l3 / worldbench / maxife / mmlu_prox / nova_63 / polymath). **+72 scores**. AAII 57 (#1-tier). Wins 18/41 incl. MRCR-128k 90.4 (beats Opus 4.6 Max long-context). v=20260521c
+- **cont'd — Cyber audit + Palisade GPT-5 CTFs**: Mythos already comprehensive (47 scores); GPT-5.5/5.4-Cyber non-public; Palisade arxiv 2511.04860 adds GPT-5 Pro ASIS Quals 93rd / CorCTF 90th / snakeCTF 92nd percentile. **+3 benches / +3 scores**. v=20260521b
+- **FactoryBench (arxiv 2605.07675)** — industrial robot Pearl's-ladder 4-level reasoning (ETH+UC3M+KTH May 8 2026). 6 LLMs × 4 levels = **+4 benches / +24 scores**. Sonnet 4.6 dominates L1-L3 but L4 collapses 10x; GPT-5.1 alone clears L4 at 17.7%. v=20260521a
 
 ### 2026-05-20 Session 19 — Gemini 3.5 Flash launch + TextArena/arena.ai + 35-row PDF backfill (6 commits)
 - **Gemini 3.5 Flash + Omni Flash** (May 19 launch): 14 initial benches + Omni Flash deferred-to-API model registration (`11bb478`)
