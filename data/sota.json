@@ -464,6 +464,21 @@
     "collected_at": "2026-05-26",
     "notes": "MCP Atlas multi-step workflows. +5.4 over Gemini 3.1 Pro (78.2)."
   },
+  "healthbench_professional": {
+    "model_id": "nexgene-ai/asa-w1",
+    "benchmark_id": "healthbench_professional",
+    "value": 80.2,
+    "unit": "score",
+    "source": {
+      "type": "pdf",
+      "url": "https://reports.nexgene.ai/NexgeneAI_AsaW1_HealthBench-Professional_2026.pdf",
+      "date": "2026-05-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-26",
+    "notes": "Overall rubric-weighted (n=524). SE 1.57. +21.2 over CGPT-C; +36.5 over physician baseline. Largest reported gap vs physician baseline on this benchmark to date."
+  },
   "matharena_brokenarxiv": {
     "model_id": "openai/gpt-5.5",
     "benchmark_id": "matharena_brokenarxiv",
@@ -5700,19 +5715,19 @@
     "notes": "HAL is the official leaderboard for ScienceAgentBench."
   },
   "online_mind2web": {
-    "model_id": "google/gemini-2.5-pro",
+    "model_id": "microsoft/fara1.5-27b",
     "benchmark_id": "online_mind2web",
-    "value": 69.0,
+    "value": 72.0,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard",
-      "date": "2026-05-08",
+      "url": "https://www.microsoft.com/en-us/research/articles/fara1-5-computer-use-agent/",
+      "date": "2026-05-26",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-05-08",
-    "notes": "Online-Mind2Web human-eval Average SR for Google Computer Use (Sept 2025) on Gemini 2.5 Computer Use"
+    "collected_at": "2026-05-26",
+    "notes": "Online-Mind2Web #1 in panel."
   },
   "assistantbench": {
     "model_id": "openai/o3",
@@ -6854,21 +6869,6 @@
     "collected_at": "2026-05-26",
     "notes": "Regression from gpt-5.3-instant 84.5."
   },
-  "healthbench_professional": {
-    "model_id": "openai/openai-health-research",
-    "benchmark_id": "healthbench_professional",
-    "value": 65.8,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://openai.com/index/healthbench/",
-      "date": "2026-04-26",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-26",
-    "notes": "OpenAI internal medical research eval"
-  },
   "cyber_range_combined": {
     "model_id": "openai/gpt-5.5",
     "benchmark_id": "cyber_range_combined",
@@ -7423,6 +7423,141 @@
     "is_sota": true,
     "collected_at": "2026-05-26",
     "notes": "Video-Edit rank #1."
+  },
+  "webvoyager": {
+    "model_id": "microsoft/fara1.5-27b",
+    "benchmark_id": "webvoyager",
+    "value": 88.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.microsoft.com/en-us/research/articles/fara1-5-computer-use-agent/",
+      "date": "2026-05-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-26",
+    "notes": "WebVoyager #1 (beats OpenAI Operator 87.0)."
+  },
+  "webtailbench_v15_outcome": {
+    "model_id": "openai/gpt-5.4",
+    "benchmark_id": "webtailbench_v15_outcome",
+    "value": 57.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.microsoft.com/en-us/research/articles/fara1-5-computer-use-agent/",
+      "date": "2026-05-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-26",
+    "notes": "Comparison from Fara1.5 paper."
+  },
+  "webtailbench_v15_process": {
+    "model_id": "openai/gpt-5.4",
+    "benchmark_id": "webtailbench_v15_process",
+    "value": 79.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.microsoft.com/en-us/research/articles/fara1-5-computer-use-agent/",
+      "date": "2026-05-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-26",
+    "notes": ""
+  },
+  "healthbench_professional_consult": {
+    "model_id": "nexgene-ai/asa-w1",
+    "benchmark_id": "healthbench_professional_consult",
+    "value": 80.9,
+    "unit": "score",
+    "source": {
+      "type": "pdf",
+      "url": "https://reports.nexgene.ai/NexgeneAI_AsaW1_HealthBench-Professional_2026.pdf",
+      "date": "2026-05-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-26",
+    "notes": "Care consult slice. SE 2.35. vs CGPT-C 51.0 / GPT-5.4 50.8 / GPT-5.4+browse 50.0 / Physician 42.7."
+  },
+  "healthbench_professional_writing": {
+    "model_id": "nexgene-ai/asa-w1",
+    "benchmark_id": "healthbench_professional_writing",
+    "value": 71.0,
+    "unit": "score",
+    "source": {
+      "type": "pdf",
+      "url": "https://reports.nexgene.ai/NexgeneAI_AsaW1_HealthBench-Professional_2026.pdf",
+      "date": "2026-05-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-26",
+    "notes": "Writing & documentation. SE 3.53. vs CGPT-C 64.1 / GPT-5.4 34.6 / GPT-5.4+browse 19.7 / Physician 32.1."
+  },
+  "healthbench_professional_research": {
+    "model_id": "nexgene-ai/asa-w1",
+    "benchmark_id": "healthbench_professional_research",
+    "value": 87.8,
+    "unit": "score",
+    "source": {
+      "type": "pdf",
+      "url": "https://reports.nexgene.ai/NexgeneAI_AsaW1_HealthBench-Professional_2026.pdf",
+      "date": "2026-05-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-26",
+    "notes": "Medical research. SE 2.13. vs CGPT-C 67.0 / GPT-5.4 58.1 / GPT-5.4+browse 66.5 / Physician 56.3."
+  },
+  "healthbench_professional_redteaming": {
+    "model_id": "nexgene-ai/asa-w1",
+    "benchmark_id": "healthbench_professional_redteaming",
+    "value": 67.4,
+    "unit": "score",
+    "source": {
+      "type": "pdf",
+      "url": "https://reports.nexgene.ai/NexgeneAI_AsaW1_HealthBench-Professional_2026.pdf",
+      "date": "2026-05-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-26",
+    "notes": "Red-teaming difficult slice (n=190). SE 3.33. vs CGPT-C 55.8 / GPT-5.4 26.2 / Physician 30.0. +11.6 over CGPT-C; +41.2 over GPT-5.4 base."
+  },
+  "open_agent_avg_success": {
+    "model_id": "anthropic/claude-opus-4.5",
+    "benchmark_id": "open_agent_avg_success",
+    "value": 72.7,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/spaces/open-agent-leaderboard/leaderboard",
+      "date": "2026-05-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-26",
+    "notes": "OpenAI Solo sdk 0.7.0 agent — top entry at 72.7% Avg Success, $5.97. Best on App 68 / Browse 61 / SWE 80.7 / Tau-Air 74 / Tau-Ret 85 / Tau-Tel 84."
+  },
+  "open_agent_swe": {
+    "model_id": "anthropic/claude-opus-4.5",
+    "benchmark_id": "open_agent_swe",
+    "value": 80.7,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/spaces/open-agent-leaderboard/leaderboard",
+      "date": "2026-05-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-26",
+    "notes": "OpenAI Solo + Opus 4.5 — top SWE score in panel."
   },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
@@ -14968,21 +15103,6 @@
     "is_sota": true,
     "collected_at": "2026-05-08",
     "notes": "MRCR v2 8-needle rank 1, 1M context"
-  },
-  "webvoyager": {
-    "model_id": "openai/operator",
-    "benchmark_id": "webvoyager",
-    "value": 87.0,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://openai.com/index/computer-using-agent/",
-      "date": "2026-05-08",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-08",
-    "notes": "OpenAI Operator (CUA) — WebVoyager success rate disclosed in Jan 23 2025 CUA research blog (state-of-the-art at announcement)"
   },
   "swe_bench": {
     "model_id": "cognition/devin",
