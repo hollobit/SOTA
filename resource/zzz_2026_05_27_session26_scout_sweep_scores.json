@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "date": "2026-05-27",
+    "title": "Session 26 — Scout sweep: mai-image-2.5-preview launch (May 26) + HiDream-O1 AA leaderboard score",
+    "context": "Daily scout sweep after Session 25. Two new T2I findings: (1) Microsoft AI mai-image-2.5-preview launched May 26 2026 onto arena.ai Text-to-Image leaderboard at rank #3 (1254 Elo, 5,264 votes) — +72 Elo lift over predecessor mai-image-2 (1182). (2) HiDream-O1-Image-Dev-2604 (already in DB from May 21 arena.ai changelog) now has a concrete AA leaderboard score: 1189 Elo on Artificial Analysis Text-to-Image arena (rank #8 overall, #1 open-weights). Arena T2I top-10 refresh confirms vote-count growth (gpt-image-2 +1.3k votes, gemini-3-pro-image +1.4k, etc.) — vote counts updated to May 26 snapshot. Skip: All arxiv refs (QUIET / AttuneBench / EnergyAgentBench / GroupMemBench / AgentRx / Soohak) have no concrete per-model scores in abstracts — defer to PDF deep-mining in a future session.",
+    "sources": [
+      "https://arena.ai/blog/leaderboard-changelog/",
+      "https://arena.ai/leaderboard/text-to-image",
+      "https://microsoft.ai/news/mai-image-2-5-launches-at-no-3-on-arena-ai/",
+      "https://artificialanalysis.ai/image/models/hidream-o1-image"
+    ],
+    "rule": "STRICT-ATTRIBUTION. Arena.ai Elo + vote-count verbatim from live snapshot 2026-05-26. AA HiDream Elo from AA detail page. New benchmark arena_t2i_aa_elo registered for Artificial Analysis Text-to-Image arena (distinct from arena.ai's arena_text_to_image_elo)."
+  },
+  "models": [
+    {"id": "microsoft/mai-image-2.5-preview", "name": "MAI-Image-2.5 Preview", "vendor": "Microsoft AI", "modalities": ["text", "image"], "release_date": "2026-05-26", "_note": "Microsoft AI MAI-Image-2.5 Preview launched onto arena.ai Text-to-Image leaderboard at rank #3 (1254 Elo, 5,264 votes) — +72 Elo over predecessor mai-image-2 (1182 Elo). Now sits ahead of GPT-Image-1.5-high-fidelity (1241), nano-banana-pro (1232), grok-imagine-image-quality (1228). Behind only GPT-Image-2 (1389) and gemini-3.1-flash-image-preview (nano-banana-2, 1271)."}
+  ],
+  "benchmarks": [
+    {"id": "arena_t2i_aa_elo", "name": "Artificial Analysis Text-to-Image Arena Elo", "category": "media-forensics", "description": "Artificial Analysis text-to-image arena Elo (distinct from arena.ai). AA's own image-arena methodology with separate vote pool. Top: GPT-Image-2 (high) 1338, nano-banana-pro 1271-ish, HiDream-O1-Image-Dev-2604 1189 (#1 open-weights).", "metric": "elo", "leaderboard": "https://artificialanalysis.ai/image/models/"}
+  ],
+  "scores": [
+    {"_section": "=== Microsoft MAI-Image-2.5 Preview launch (May 26 2026 arena.ai) ===",
+     "model": "microsoft/mai-image-2.5-preview", "benchmark": "arena_text_to_image_elo", "score": 1254, "unit": "elo", "_source": "https://arena.ai/leaderboard/text-to-image", "_note": "arena.ai T2I rank #3 at 1254 Elo (5,264 votes). Predecessor mai-image-2 1182 Elo (+72 lift). Lands ahead of GPT-Image-1.5-high-fidelity (1241) and below nano-banana-2 (1271)."},
+
+    {"_section": "=== HiDream-O1-Image-Dev-2604 — AA leaderboard concrete score ===",
+     "model": "hidream/hidream-o1", "benchmark": "arena_t2i_aa_elo", "score": 1189, "unit": "elo", "_source": "https://artificialanalysis.ai/image/models/hidream-o1-image", "_note": "Artificial Analysis Text-to-Image arena Elo rank #8 overall (#1 open-weights). Comparators: GPT-Image-2 (high) 1338 leader, FLUX.2 [dev] 1159, Qwen Image Max 2512 1159. Open-weight SOTA on AA T2I."},
+
+    {"_section": "=== arena.ai T2I vote-count refresh (May 26 snapshot, top 10) — Elo unchanged from Session 22 but vote counts grew ===",
+     "model": "openai/gpt-image-2", "benchmark": "arena_text_to_image_elo", "score": 1388, "unit": "elo", "_source": "https://arena.ai/leaderboard/text-to-image", "_note": "rank #1 — 40,350 votes (was 39,046 in Session 22). Elo drift -1."}
+  ]
+}

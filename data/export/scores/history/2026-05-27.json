@@ -36961,51 +36961,6 @@
   },
   {
     "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "oss_fuzz_tier12",
-    "value": 595.0,
-    "unit": "count",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://red.anthropic.com/2026/mythos-preview/",
-      "date": "2026-05-12",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-12",
-    "notes": "Mythos Preview achieved 595 crashes at tiers 1 and 2 on OSS-Fuzz benchmark (vs Sonnet 4.6 and Opus 4.6 ~150-175 cases at tier 1)."
-  },
-  {
-    "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "oss_fuzz_tier5",
-    "value": 10.0,
-    "unit": "count",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://red.anthropic.com/2026/mythos-preview/",
-      "date": "2026-05-12",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-12",
-    "notes": "Mythos Preview achieved full control flow hijack on 10 separate fully-patched targets (tier 5). Previous models (Sonnet 4.6, Opus 4.6) achieved 1 each."
-  },
-  {
-    "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "firefox_147_exploits",
-    "value": 181.0,
-    "unit": "count",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://red.anthropic.com/2026/mythos-preview/",
-      "date": "2026-05-12",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-12",
-    "notes": "Mythos Preview developed working exploits 181 times from Firefox 147 JS engine vulnerabilities (plus 29 register-control). Opus 4.6 achieved only 2 of several hundred attempts."
-  },
-  {
-    "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "vuln_severity_assessment_acc",
     "value": 89.0,
     "unit": "%",
@@ -37063,21 +37018,6 @@
     "is_sota": false,
     "collected_at": "2026-05-12",
     "notes": "Claude Opus 4.6 reached tier 1+2 in ~150-175 cases on OSS-Fuzz (approximate upper bound cited in Anthropic Mythos red team report comparison)."
-  },
-  {
-    "model_id": "anthropic/claude-opus-4.6",
-    "benchmark_id": "firefox_147_exploits",
-    "value": 2.0,
-    "unit": "count",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://red.anthropic.com/2026/mythos-preview/",
-      "date": "2026-05-12",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-05-12",
-    "notes": "Claude Opus 4.6 turned Firefox 147 vulnerabilities into working JavaScript shell exploits only 2 times out of several hundred attempts."
   },
   {
     "model_id": "anthropic/claude-sonnet-4.6",
@@ -55530,21 +55470,6 @@
     "notes": ""
   },
   {
-    "model_id": "openai/gpt-image-2",
-    "benchmark_id": "arena_text_to_image_elo",
-    "value": 1389.0,
-    "unit": "elo",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arena.ai/leaderboard",
-      "date": "2026-05-27",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-27",
-    "notes": "Text-to-Image rank #1 (gpt-image-2 medium variant)."
-  },
-  {
     "model_id": "google/nano-banana-2",
     "benchmark_id": "arena_text_to_image_elo",
     "value": 1271.0,
@@ -57658,6 +57583,51 @@
     "is_sota": false,
     "collected_at": "2026-05-27",
     "notes": "Paper states Mythos found '10x more than previous testing with Opus 4.6'. With Mythos at 271, the implied Opus 4.6 baseline is ~27. Approximate value flagged by 'paper claim' attribution."
+  },
+  {
+    "model_id": "microsoft/mai-image-2.5-preview",
+    "benchmark_id": "arena_text_to_image_elo",
+    "value": 1254.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arena.ai/leaderboard/text-to-image",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-05-27",
+    "notes": "arena.ai T2I rank #3 at 1254 Elo (5,264 votes). Predecessor mai-image-2 1182 Elo (+72 lift). Lands ahead of GPT-Image-1.5-high-fidelity (1241) and below nano-banana-2 (1271)."
+  },
+  {
+    "model_id": "hidream/hidream-o1",
+    "benchmark_id": "arena_t2i_aa_elo",
+    "value": 1189.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/image/models/hidream-o1-image",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Artificial Analysis Text-to-Image arena Elo rank #8 overall (#1 open-weights). Comparators: GPT-Image-2 (high) 1338 leader, FLUX.2 [dev] 1159, Qwen Image Max 2512 1159. Open-weight SOTA on AA T2I."
+  },
+  {
+    "model_id": "openai/gpt-image-2",
+    "benchmark_id": "arena_text_to_image_elo",
+    "value": 1388.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arena.ai/leaderboard/text-to-image",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "rank #1 — 40,350 votes (was 39,046 in Session 22). Elo drift -1."
   },
   {
     "model_id": "tencent/hy3-preview",
@@ -70726,7 +70696,7 @@
   },
   {
     "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "ossfuzz_tier1_2_crashes",
+    "benchmark_id": "oss_fuzz_tier12",
     "value": 595.0,
     "unit": "count",
     "source": {
@@ -70741,7 +70711,7 @@
   },
   {
     "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "ossfuzz_tier5_control_flow",
+    "benchmark_id": "oss_fuzz_tier5",
     "value": 10.0,
     "unit": "count",
     "source": {
@@ -70756,7 +70726,7 @@
   },
   {
     "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "firefox_exploit_dev",
+    "benchmark_id": "firefox_147_exploits",
     "value": 181.0,
     "unit": "count",
     "source": {
@@ -70771,7 +70741,7 @@
   },
   {
     "model_id": "anthropic/claude-opus-4.6",
-    "benchmark_id": "firefox_exploit_dev",
+    "benchmark_id": "firefox_147_exploits",
     "value": 2.0,
     "unit": "count",
     "source": {

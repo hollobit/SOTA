@@ -1,5 +1,200 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-05-27 (Session 25): Anthropic Glasswing initial update + CVD dashboard ingest
+
+### 65. Glasswing program metrics + CVD pipeline + Cybersecurity Skills audit
+
+User provided 3 Anthropic cyber references in a single ingest pass. After parallel investigation:
+
+**Source 1 — `anthropic.com/research/glasswing-initial-update` (May 22 2026)**: first public update on the Anthropic Glasswing autonomous-vulnerability-discovery program. Claude Mythos Preview is the deployed model. Headline metrics:
+
+| Metric | Value |
+|---|---:|
+| High/critical OSS vulnerabilities discovered | **6,202** across 1,000+ projects |
+| True-positive rate (TPR) | **90.6%** (1,587 of 1,752 manually assessed) |
+| Reported to maintainers | 530 bugs |
+| Patches deployed | 75 |
+| CVE/GHSA advisories issued | 65 |
+| Mozilla Firefox vulnerabilities discovered | **271** (~10× Opus 4.6 baseline ≈ 27) |
+| Cloudflare partner deployment | 2,000 bugs / 400 high-critical (FPR better than human testers) |
+| UK AISI Cyber Ranges solved end-to-end | **Both** (Cooling Tower + The Last Ones) — first model to clear both |
+| wolfSSL CVE-2026-5194 | certificate-forging exploit constructed by Mythos |
+| Claude Opus 4.7 enterprise deployment | **2,100+** vulnerabilities patched in 3 weeks |
+
+**Source 2 — `red.anthropic.com/2026/cvd/`**: Anthropic Coordinated Vulnerability Disclosure dashboard. End-to-end Mythos pipeline numbers:
+
+```
+23,019 candidate findings
+   → 1,900 triaged
+   → 1,726 valid (90.8% TPR — matches Glasswing within margin)
+   → 1,596 disclosed across 281 OSS projects
+   →    97 patched upstream / 88 CVE+GHSA advisories
+```
+
+Notable CVEs flagged in the dashboard:
+- **nginx CVE-2026-27654**
+- **Temporal CVE-2026-5199**
+- **jq CVE-2026-32316**
+- **Ghost SQL injection GHSA-w52v-v783-gw97**
+
+**Source 3 — `github.com/mukul975/Anthropic-Cybersecurity-Skills`**: community-maintained library, **not** Anthropic-official. 754 skills across 26 domains mapped to 5 frameworks, no model evaluations. Registered as Resources reference only — no scores ingested.
+
+**10 new benchmark IDs registered** (Cyber & Coding cyber-defense suite):
+
+| Benchmark ID | What it measures |
+|---|---|
+| `glasswing_high_crit_vulns_found` | High/critical OSS vulns discovered by Mythos |
+| `glasswing_true_positive_rate` | Manual-assessment TPR of Mythos findings |
+| `glasswing_cve_ghsa_assignments` | CVE+GHSA advisories from Glasswing program |
+| `cvd_vulns_disclosed_oss` | Vulnerabilities disclosed via CVD pipeline |
+| `cvd_oss_projects_touched` | OSS projects receiving Mythos disclosures |
+| `cvd_patches_upstream` | Patches accepted upstream |
+| `enterprise_vuln_patching_count` | Enterprise patching throughput (3-week window) |
+| `mozilla_firefox_vulns_discovered` | Firefox-specific vuln yield |
+| `cloudflare_bugs_total` | Cloudflare partner total bug yield |
+| `cloudflare_high_crit_bugs` | Cloudflare high/critical subset |
+
+**Score attribution**:
+- **Mythos (Claude Mythos Preview)**: 48 → **57 scores** (+9, the program-metric core)
+- **Opus 4.7**: gains `enterprise_vuln_patching_count = 2,100`
+- **Opus 4.6**: gains `mozilla_firefox_vulns_discovered ≈ 27` (paper-claim baseline used by Glasswing for the "10× lift" comparison)
+
+**Headline insight**: Mythos is the first model with end-to-end coordinated-disclosure metrics at scale — 281 projects touched, 88 CVEs issued — moving offensive-security evaluation from synthetic CTF challenges to ecosystem-level vulnerability surfacing. The 90.6% / 90.8% TPR concordance between Glasswing report and CVD dashboard suggests the program-level claims are internally consistent. wolfSSL CVE-2026-5194 (certificate-forging exploit) is the first publicly-attributed model-constructed exploit chain.
+
+**Propagation**:
+- Score JSON: 1 new file under `resource/zzz_2026_05_27_*` covering 10 benchmarks + 11 scores
+- Cyber & Coding cyber-defense suite extended with the 10 new IDs
+- +3 Resources references (Glasswing update + CVD dashboard + Cybersecurity Skills repo)
+- Cache-bust: `cyber-coding.js` + `app.js` → `v=20260527a`
+
+**Delta to DB**: 1530 models (unchanged) / 1122 → **1132 benchmarks** (+10) / 6167 → **6178 scores** (+11).
+
+---
+
+## 2026-05-26 (Session 24): 7-menu propagation audit — Sessions 20-23 catch-up pass
+
+### 64. Hardcoded menu propagation across Frontier / Cyber / Sovereign / Medical / Physical / Agent / AI4S
+
+User asked us to verify Sessions 20-23 ingest is properly reflected in the 7 visible menus. Cross-check found a massive propagation gap — nearly all 73 new models from Sessions 21-23 were registered in the DB but never wired into the hardcoded menu lists (per [Full menu propagation rule](feedback_full_menu_propagation.md), data-driven tabs auto-reflect but 4-5 hardcoded tabs require manual patches). This session is **pure UI propagation — 0 DB delta**.
+
+**6 JS files patched**:
+
+| File | What was added |
+|---|---|
+| `frontier-compare.js` | Qwen3.7-Max-20260517 + 8 reasoning variants (Opus 4.5 thinking, DS V4 Pro thinking, GPT-5.4 medium/high/mini-high, Kimi K2.5 thinking/instant, MiniMax M2.7) + Qwen 3.5 Max Preview + Gemini 3 Flash thinking-minimal + Fara 1.5 family (4 sizes) + Asa-W1 + 3 Grok-4.20 internal variants |
+| `sovereign.js` (China-CN) | Qwen3.7-Max build + Qwen3.5-Max Preview/Plus + 5 Bytedance Seedream variants + Dreamina Seedance 2.0 + Hunyuan Image 3.0 + Wan 2.6/2.5 T2V/T2I + 3 Qwen Image builds + Qwen-RobotClaw/Nav + GUI-Owl 8B/32B + 3 Kling variants + happyhorse-1.0 + Kimi K2.5 thinking/instant + DS V4 Pro thinking + MiniMax M2.7. `FRONTIER_VENDOR_REGION` extended: microsoft / runway / reve / recraft / nexgene-ai / yutori / holo / luma → US; black-forest-labs → EU; kling / alibaba-ath / tencent → China |
+| `physical-ai.js` | Qwen-RobotClaw + Qwen-RobotNav added to vla-policies |
+| `medical-ai.js` | Asa-W1 + ChatGPT-for-Clinicians added to biomedical-llm; 4 HealthBench Pro slices (consult / writing / research / redteaming) added to clinical-workflow suite |
+| `agent.js` | `AGENT_PRODUCTS` +10 CU agents (Fara 1.5 4 sizes + Gemini 2.5 CU + GUI-Owl 8B/32B + Yutori Navigator n1 + Holo2 30B + o3-SOM); `COMPARE_BENCHMARKS` +6 (Online-Mind2Web / WebVoyager / WebTailBench v1.5 Outcome+Process / Open Agent Avg + SWE) |
+| `cyber-coding.js` | +8 OpenAI production-safety not_unsafe categories + 5 ChatGPT Images 2.0 image-safety pipeline metrics in cyber-defense suite |
+
+**AI4S — no patch needed**: Sessions 20-23 added no new science models.
+
+**Totals referenced through 6 menus**: 73 new model entries across Sessions 21-23 now properly categorized; 13 new benchmark IDs (8 not_unsafe + 5 image_safety + 4 HealthBench Pro slices + 6 agent benches) wired into appropriate suites.
+
+**Delta to DB**: 0 / 0 / 0 — purely UI propagation. Cache-bust all 6 files → `v=20260526c`.
+
+**Why a separate session**: per memory, hardcoded tabs (Frontier / Cyber / Sovereign / Physical / Medical / Agent) drift silently when ingest sessions register models in the DB but skip the menu list. This audit pass is the catch-up.
+
+---
+
+## 2026-05-26 (Session 23): 7 user-provided refs — Fara 1.5 + Asa-W1 + Open Agent Leaderboard
+
+### 63. Microsoft Fara 1.5 family + NexgeneAI Asa-W1 + Open Agent Leaderboard ingest
+
+User provided 7 reference URLs investigated in parallel. Results:
+
+| # | Source | Outcome |
+|---|---|---|
+| 1 | arxiv 2604.05550v1 AutoSOTA | Methodology paper, no model scores. **SKIP** |
+| 2 | Microsoft Fara 1.5 family | **NEW** computer-use agent family (4B/9B/27B) released May 21 2026, base = Qwen3.5 |
+| 3 | agent.openmed.life | Model-agnostic CLI product, no scores. **SKIP** |
+| 4 | NexgeneAI Asa-W1 | **NEW** medical reasoning model, HealthBench Pro 80.2 (SOTA) |
+| 5 | Asa-W1 blog (403-gated) | PDF supplies full scores; 740KB archived to `resource/` |
+| 6 | Open Agent Leaderboard (HF Space) | 5×5 agent-framework × backbone matrix, 6 sub-benches |
+| 7 | arxiv 2602.22953 General Agent Evaluation (IBM Research) | Methodology paper. Resources reference only |
+
+**Fara 1.5 headline**: Fara 1.5-27B claims #1 on Online-Mind2Web (72.0%) **and** WebVoyager (88.6%) — the latter beats **OpenAI Operator 87.0%**. Uniform scaling across the 4B → 9B → 27B sizes; bigger Fara always beats smaller. First Microsoft computer-use family in the registry.
+
+**Asa-W1 headline**: HealthBench Professional 2026 overall **80.2 vs ChatGPT-for-Clinicians (GPT-5.4) 59.0 = +21.2 points** — the largest gap vs strongest comparator on HealthBench Pro to date. Outperforms physician baseline by 36.5 points. ~36% relative improvement is the biggest jump in HealthBench Pro history.
+
+**Open Agent Leaderboard headline**: 5×5 matrix shows agent framework choice can outweigh backbone model. Best raw score: **OpenAI Solo + Opus 4.5 = 72.7% at $5.97**. Best price/perf: **React + Shortlist + Gemini Pro 3 = 62.2% at $0.51** (12× cheaper, +10.5pp lower but viable for many tasks). 6 sub-benchmarks: App / Browse / SWE / Tau-Air / Tau-Ret / Tau-Tel + Avg Success + Cost.
+
+**11 new models**: 3 Fara 1.5 sizes + Fara-7B predecessor + Asa-W1 + GUI-Owl 1.5 8B/32B + Yutori Navigator n1 + Holo2 30B + OpenAI Operator + Gemini 2.5 CU + o3-SOM.
+
+**8 new benchmarks**:
+- `webtailbench_v15_outcome` + `webtailbench_v15_process` (Fara webnav evaluation)
+- 4 HealthBench Pro slices: `healthbench_pro_consult` / `_writing` / `_research` / `_redteaming`
+- `open_agent_avg_success` + `open_agent_swe`
+
+**Delta to DB**: 1519 → **1530 models** (+11) / 1114 → **1122 benchmarks** (+8) / 6132 → **6167 scores** (+35). +5 Resources references. PDF archived: `asa_w1_healthbench_pro_2026.pdf`. Cache-bust `app.js` v=20260526b.
+
+---
+
+## 2026-05-26 (Session 22): arena.ai refresh — WebDev + Text-to-Image rank 11-34
+
+### 62. arena.ai sweep extension from top-10 to top-34 on 2 boards
+
+User asked for refresh sweep after Session 21 (May 23). arena.ai changelog (May 22 + May 25) added 3 new entries: `recraft-v4.1-pro` / `recraft-v4.1-utility-pro` (Text-to-Image, May 22) + `qwen3.7-max-20260517` (Code/WebDev, May 25). Full Playwright snapshots of `/leaderboard/code` (WebDev top 34) and `/leaderboard/text-to-image` (top 34) revealed a massive image-gen model registry gap — 22 unique models present on arena but absent from DB. This pass extends Session 21's top-10 coverage to top 34 on both boards.
+
+**31 new models registered**:
+- **5 changelog targets**: qwen3.7-max-20260517, recraft-v4.1-pro, recraft-v4.1-utility-pro + 2 others
+- **9 WebDev rank 12-34**: claude-opus-4.5-thinking, deepseek-v4-pro-thinking, gpt-5.4-medium, gpt-5.4-mini-high, kimi-k2.5-thinking, kimi-k2.5-instant, minimax-m2.7, recraft pair
+- **18 image-gen models from Text-to-Image rank 11-34**: Flux 2 family (4 variants), Bytedance Seedream (5 variants), Tencent Hunyuan Image 3.0, Google Imagen Ultra/4.0, Reve v1.5, Qwen Image (3 builds), Wan 2.5/2.6 T2I, gpt-image-1 vintage, grok-imagine-image-pro, gemini-2.5-flash-image (the original nano-banana)
+
+**Headline findings**:
+- **qwen3.7-max-20260517 enters WebDev at rank #4** — 1541 Elo (Preliminary), 1,522 votes — ahead of Opus 4.6 base (1538), behind only Opus 4.7 family + Opus 4.6 Thinking. First time an Alibaba model breaks WebDev top 5
+- **Recraft v4.1-utility-pro (1169, rank #11) beats Recraft v4.1-pro (1130, rank #26)** — utility tier > pro tier in arena human preference, an unusual inversion
+- **Bytedance Seedream family** spans ranks 22-34 (5 variants) — large family, modest absolute Elo
+- **Google Imagen Ultra 4.0 (#21, 1148) vs Imagen 4.0 (#27, 1130)** — clear quality stratification within Google
+- **gemini-2.5-flash-image (nano-banana original)** at rank #18 (1152) holds **777K+ votes** — the most-voted text-to-image entry on arena
+
+**Delta to DB**: 1488 → **1519 models** (+31) / 1114 benchmarks (unchanged — both boards' IDs registered in Session 21) / 6084 → **6132 scores** (+48). `arena_webdev_elo` coverage: 10 → 34 (+24). `arena_text_to_image_elo` coverage: 8 → 32 (+24). Cache-bust `app.js` v=20260526a.
+
+---
+
+## 2026-05-23 (Session 21): arena.ai 12-leaderboard sweep — full board inventory
+
+### 61. Live arena.ai snapshot across 12 active boards (text/code/image/video)
+
+User asked us to scan reference leaderboards for new models + benchmark updates. Live Playwright snapshot of `arena.ai/leaderboard` surfaced 12 active boards. Existing DB covered only 3 arena benchmark IDs (text / vision / search); this sweep adds **8 new IDs** spanning WebDev, Document, Image-to-WebDev, T2I, Image-Edit, T2V, I2V, and Video-Edit. Top-10 Elo per board ingested.
+
+**8 new benchmark IDs**:
+- `arena_webdev_elo`
+- `arena_document_elo`
+- `arena_image_to_webdev_elo`
+- `arena_text_to_image_elo`
+- `arena_image_edit_elo`
+- `arena_text_to_video_elo`
+- `arena_image_to_video_elo`
+- `arena_video_edit_elo`
+
+**16 new models registered** (after deduplication against arena changelog's May 14-21 additions, most of which were already in DB):
+- 5 Grok-Imagine image+video variants (image / image-quality / video / video-720p / video-480p)
+- 3 Kling variants (v3-pro / o1-pro / o3-pro)
+- Wan 2.6 T2V
+- Runway Gen-4 Aleph
+- MAI-Image-2
+- 3 Grok-4.20 internal variants (beta1 / beta-0309-reasoning / multi-agent-beta-0309)
+- Qwen 3.5 Max Preview (historical Dec 2025 entry)
+- Gemini 3 Flash thinking-minimal
+- GPT-5.4-high
+
+**Headline findings**:
+- **GPT-Image-2 leads both T2I (1389) and Image-Edit (1467)** — OpenAI's first image model to clear top of two boards simultaneously
+- **Bytedance Dreamina Seedance 2.0 720p sweeps video** — T2V 1457 / I2V 1462 / Video-Edit 1379, all #1
+- **Claude Opus 4.7 Thinking leads WebDev (1567) + Image-to-WebDev (1581)** — Anthropic dominates code/web generation arena
+- **Claude Opus 4.6 Thinking leads Document (1522)**
+- **Alibaba happyhorse-1.0** video gen sits at **rank #2 across all 3 video boards** — Alibaba's first video-gen entry near the frontier
+- **xAI's grok-4.20-multi-agent-beta-0309** surprised with Search Arena rank #8 at 1209 Elo — multi-agent variant generalizes better than single-agent
+- Post-May-12 methodology change: Battles-in-Direct now count toward Bradley-Terry fitting with `same_org_indicator` bias correction
+
+**Delta to DB**: 1471 → **1488 models** (+16, then +1 GPT-5.4-high) / 1106 → **1114 benchmarks** (+8) / 6008 → **6084 scores** (+76). +1 Resources reference. Cache-bust `app.js` v=20260523a.
+
+**Why this sweep matters**: arena.ai had been treated as a single-board (text-vision-search) reference, but it's actually a 12-board ecosystem with distinct image/video/code-specific Elo pools. Registering all 8 board IDs unlocks future per-board refresh sweeps (Session 22 immediately exercised this on WebDev + T2I) and makes arena.ai a first-class multi-modality leaderboard family alongside LMArena.
+
+---
+
 ## 2026-05-21 (Session 20): FactoryBench — industrial machine understanding ingest
 
 ### 60. FactoryBench (arxiv 2605.07675) — 4-level Pearl's-ladder reasoning over industrial robot telemetry
