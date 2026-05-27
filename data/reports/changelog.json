@@ -1,5 +1,14 @@
 [
   {
+    "type": "Feature",
+    "date": "2026-05-27",
+    "benchmark_id": "Session 26 — Image Gen + Video Gen tabs (data-driven from arena.ai 7 image/video boards)",
+    "new_model": "User asked to split sessions A-F into parallel work. 3 agents handled (A) scout sweep, (C) cc:TODO re-check, (F) HISTORY.md sync; main handled (D) DB cleanup, (E) Node 24 migration, (B) new tabs. Image Gen tab pulls 4 boards: arena.ai T2I + Image-Edit + Image-to-WebDev + AA-T2I. Video Gen tab pulls 3 boards: arena.ai T2V + I2V + Video-Edit. Both tabs are 100% data-driven (no hardcoded model list) — models auto-surface when scored on any covered board. Total tab count 14 → 16. Image Gen card layout: per-board Top-N table with rank + medal + model name (clickable to model modal) + vendor + Elo. Same shape on Video Gen via shared _makeBoardCard helper. Tab activation wired into app.js dataset.tab dispatcher.",
+    "new_value": "+2 tabs (Image Gen + Video Gen). +2 JS files (image-gen.js + video-gen.js). index.html nav button + tabpanel section added for each. app.js dataset.tab dispatcher extended. README updated to 16-tab list. 0 DB delta (pure UI feature on existing data). Cache-bust new files v=20260527a.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
     "type": "Data",
     "date": "2026-05-27",
     "benchmark_id": "Session 25 — Anthropic Glasswing + CVD + Cybersecurity Skills (10 new benchmarks / 11 scores)",
