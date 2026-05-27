@@ -1,34 +1,23 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 24 — 7-menu propagation audit (2026-05-26)
-**1,530 models · 1,122 benchmarks · 6,167 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 25 — Anthropic Glasswing + CVD (2026-05-27)
+**1,530 models · 1,132 benchmarks · 6,178 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
 
-### 2026-05-26 Session 24 — 7-menu propagation audit (Frontier / Cyber / Sovereign / Medical / Physical / AI4S / Agent)
-- Sessions 20-23이 73개 신규 모델을 DB에 등록했으나 **7개 visible menu의 hardcoded list에는 반영 안 됨** — propagation 진행
-- **Frontier Compare FRONTIER_MODELS**: +18 entries (Qwen3.7-Max-20260517 + 8 reasoning variants + Fara 1.5 family + Asa-W1 + Grok-4.20 internal variants)
-- **Sovereign AI China-CN**: 25+ models 추가 (Bytedance Seedream/Dreamina, Hunyuan Image 3.0, Wan 2.5/2.6 T2V+T2I, Qwen Image 3 builds, Qwen-Robot 2 모델, GUI-Owl 8B/32B, 3 Kling, happyhorse, K2.5 thinking/instant, DS V4 Pro thinking). FRONTIER_VENDOR_REGION에 microsoft/runway/reve/recraft/nexgene-ai/yutori/holo/luma (US), black-forest-labs (EU), kling/alibaba-ath/tencent (CN) 자동 매핑 추가
-- **Physical AI vla-policies**: Qwen-RobotClaw + Qwen-RobotNav 추가
-- **Medical AI biomedical-llm**: Asa-W1 (HealthBench Pro 80.2 SOTA) + ChatGPT-for-Clinicians 추가. clinical-workflow suite에 4 HealthBench Pro 슬라이스 추가
-- **Agent AGENT_PRODUCTS**: 10 new CU agents (Fara 1.5 4-size family + Gemini 2.5 CU + GUI-Owl 8B/32B + Yutori Navigator n1 + Holo2 30B + o3-SOM). COMPARE_BENCHMARKS에 6 새 benches (Online-Mind2Web, WebVoyager, WebTailBench v1.5 ×2, Open Agent ×2)
-- **Cyber & Coding cyber-defense**: 13 새 benches (8 production safety not_unsafe categories + 5 ChatGPT Images 2.0 image-safety pipeline)
-- **AI4S**: no new science models in Sessions 20-23, no patch
-- 0 DB delta (pure UI propagation). Cache-bust 6 JS files v=20260526c
+### 2026-05-27 Session 25 — Anthropic Glasswing initial update + CVD dashboard ingest
+- 3 Anthropic cyber refs investigated: Glasswing initial update + CVD dashboard (May 22 2026) + Cybersecurity Skills GitHub (community)
+- **Glasswing program metrics (Claude Mythos Preview)**: 6,202 high/crit OSS vulns found (90.6% TPR), 65 CVE/GHSA advisories, Mozilla Firefox 271 vulns (10x Opus 4.6 ~27 baseline), Cloudflare 2,000 bugs/400 high-crit
+- **CVD pipeline (Mythos)**: 23,019 candidates → 1,726 valid → 1,596 disclosed (281 OSS projects) → 97 patched / 88 CVE+GHSA. Notable: nginx CVE-2026-27654, Temporal CVE-2026-5199, jq CVE-2026-32316
+- **Opus 4.7 enterprise deployment**: 2,100+ vulnerabilities patched in 3 weeks
+- **+10 new benchmark IDs** (Glasswing + CVD + enterprise + partner metrics) added to Cyber & Coding cyber-defense suite
+- Cybersecurity Skills GitHub (754 skills, 26 domains, 10.1k stars) — community library, no model evals → Resources reference only
+- **+0 models / +10 benches / +11 scores** = 1530 / 1132 / 6178. Cache-bust cyber-coding + app.js v=20260527a
 
-### 2026-05-26 Session 23 — 7 user-provided refs (Fara1.5 + Asa-W1 + Open Agent Leaderboard)
-- 7 ref URLs investigated; 4 yielded ingestable data, 3 SKIP (arxiv 2604.05550 system paper, agent.openmed.life product page, arxiv 2602.22953 methodology paper)
-- **Microsoft Fara1.5** (May 21 2026): NEW browser computer-use agent family — Fara1.5-4B/9B/27B + Fara-7B predecessor (base Qwen3.5). Fara1.5-27B #1 on Online-Mind2Web 72.0 and WebVoyager 88.6 (beats OpenAI Operator 87.0)
-- **NexgeneAI Asa-W1**: NEW medical reasoning model. HealthBench Professional **80.2 overall** vs ChatGPT-for-Clinicians 59.0 = +21.2 points (largest jump in HealthBench Pro history). 28 specialties tracked. 4 new HealthBench Pro slice IDs registered (consult/writing/research/redteaming)
-- **Open Agent Leaderboard** (HF Space): 5×5 agent-framework × backbone matrix. Top: OpenAI Solo + Opus 4.5 = 72.7%. Best price/perf: React+Shortlist + Gemini Pro 3 = 62.2% at $0.51 (12x cheaper)
-- 6 comparison models from Fara1.5 panel registered: OpenAI Operator, Gemini 2.5 CU, GUI-Owl 1.5 8B/32B, Yutori Navigator n1, Holo2 30B, o3-SOM
-- **+11 models / +8 benches / +35 scores** = 1530 / 1122 / 6167. 740KB PDF archived. Cache-bust app.js v=20260526b
-
-### 2026-05-26 Session 22 — arena.ai sweep refresh (WebDev + Text-to-Image rank 11-34 expansion)
-- Changelog targets (May 22 + May 25): recraft-v4.1-pro / recraft-v4.1-utility-pro (Text-to-Image), qwen3.7-max-20260517 (WebDev #4 at 1541 Elo, Preliminary)
-- **+31 new models**: 5 changelog targets + 9 WebDev rank 12-34 (claude-opus-4.5-thinking, deepseek-v4-pro-thinking, gpt-5.4-medium, gpt-5.4-mini-high, kimi-k2.5-thinking, kimi-k2.5-instant, minimax-m2.7) + 18 image-gen models (Flux 2 family 4 variants, Bytedance Seedream 5 variants, Tencent Hunyuan Image 3.0, Google Imagen Ultra 4.0 + 4.0, Reve v1.5, Qwen Image 3 builds, Wan 2.5/2.6 T2I, gpt-image-1 vintage, grok-imagine-image-pro, gemini-2.5-flash-image/nano-banana)
-- **Headlines**: Qwen3.7-Max-20260517 enters WebDev at #4 ahead of Opus 4.6 base. Recraft v4.1-utility-pro (1169 #11) beats Recraft v4.1-pro (1130 #26). gemini-2.5-flash-image (original nano-banana) #18 with 777K+ votes — most-voted T2I entry
-- **+31 models / 0 benches / +48 scores** = 1519 / 1114 / 6132. Cache-bust app.js v=20260526a
+### 2026-05-22 ~ 26 Sessions 22-24 (compressed)
+- **Session 24** (menu propagation): 6 JS files patched. Frontier +18 models, Sovereign China-CN +25 models + 12-vendor auto-mapping, Physical AI +2 (Qwen-Robot), Medical +Asa-W1 + 4 HealthBench Pro slices, Agent +10 CU agents + 6 benches, Cyber & Coding +13 safety benches. 0 DB delta. v=20260526c
+- **Session 23** (7 user refs): Microsoft Fara1.5 family (4B/9B/27B + 7B predecessor) — WebVoyager 88.6 beats Operator 87.0. NexgeneAI Asa-W1 HealthBench Pro 80.2 (+21.2 over ChatGPT-for-Clinicians). Open Agent Leaderboard 5×5 matrix. **+11 models / +8 benches / +35 scores**. v=20260526b
+- **Session 22** (arena.ai refresh): WebDev + T2I rank 11-34. qwen3.7-max-20260517 WebDev #4. **+31 models / +48 scores**. v=20260526a
 
 ### 2026-05-23 Session 21 — arena.ai 12-leaderboard sweep
 - Live Playwright snapshot of arena.ai/leaderboard, top-10 Elo per board ingested across 12 active arenas

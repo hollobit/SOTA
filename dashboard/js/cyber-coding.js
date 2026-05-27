@@ -93,7 +93,14 @@ var CyberCoding = {
                 // 2026-04-21 ChatGPT Images 2.0 image-safety pipeline (5 metrics)
                 'image_safety_violative_rate', 'image_safety_combined_detection',
                 'image_safety_safe_output_rate', 'image_safety_image_layer_detection',
-                'image_safety_prompt_layer_detection'
+                'image_safety_prompt_layer_detection',
+                // 2026-05-22 Anthropic Project Glasswing + Coordinated Vuln Disclosure (Mythos deployment metrics)
+                'glasswing_high_crit_vulns_found', 'glasswing_true_positive_rate',
+                'glasswing_cve_ghsa_assignments',
+                'cvd_vulns_disclosed_oss', 'cvd_oss_projects_touched', 'cvd_patches_upstream',
+                'enterprise_vuln_patching_count',
+                'mozilla_firefox_vulns_discovered',
+                'cloudflare_bugs_total', 'cloudflare_high_crit_bugs'
             ]
         },
         {
