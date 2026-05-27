@@ -1,26 +1,30 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 26 — Maintenance batch + Image/Video Gen tabs (2026-05-27)
-**1,531 models · 1,130 benchmarks · 6,176 scores · 16 active tabs (+ Image Gen + Video Gen) + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 28 — 5 PDFs deep-mine (MDASH + AutoSOTA + 3 Nature) (2026-05-27)
+**1,539 models · 1,149 benchmarks · 6,200 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-05-27 Session 26 — Multi-task maintenance batch + Image/Video Gen tab신설
-- **(A) Scout sweep**: microsoft/mai-image-2.5-preview (May 26 launch) — arena.ai T2I rank #3 at 1254 Elo (+72 lift). hidream-o1 AA T2I Elo 1189 (#1 open-weights). +1 model / +1 bench (arena_t2i_aa_elo) / +3 scores
-- **(D) DB cleanup**: 3 Mythos duplicate bench IDs merged (firefox_exploit_dev → firefox_147_exploits, ossfuzz_tier1_2_crashes → oss_fuzz_tier12, ossfuzz_tier5_control_flow → oss_fuzz_tier5). Mythos: 57 → 54 scores
-- **(E) Node 24 migration**: 3 GitHub Actions workflows (a11y-audit / benchmark-update / dashboard-tests) node-version 20 → 24 (deadline 2026-06-02)
-- **(F) HISTORY.md sync**: Sections 61-65 (Sessions 21-25) backfilled. +195 lines
-- **(B) Image Gen + Video Gen tabs 신설**: 2 new tabs (14 → 16). image-gen.js + video-gen.js data-driven render from arena.ai 7 image/video boards. Image Gen tracks T2I + Image-Edit + Image-to-WebDev + AA-T2I (4 boards, 40+ models). Video Gen tracks T2V + I2V + Video-Edit (3 boards, ~20 models)
-- **+1 model / -2 benches net / -2 scores net** = 1531 / 1130 / 6176. Cache-bust app.js + new image-gen/video-gen.js v=20260527a
+### 2026-05-27 Session 28 — 5 PDFs deep-mine (MDASH + AutoSOTA + 3 Nature)
+- **MDASH**: 4 NEW Windows kernel metrics (StorageDrive 100% 21/21, clfs.sys 96%, tcpip.sys 100%, 16 new netstack vulns / 4 Critical RCE)
+- **AutoSOTA** (NEW, arxiv 2604.05550v1, Tsinghua+Peking+USTC): 8 agents, 105 papers replicated, avg 5h, max 63.64% improvement (ID 70 Certified Unlearning)
+- **Co-Scientist** (Nature 10644-y, Google): 15 goals + 3 biomed validation (AML / liver fibrosis / AMR cf-PICIs)
+- **ERA** (NEW, Nature 10658-6, Google DeepMind+Caltech+MIT+Harvard+McGill): LLM+Tree Search for expert scientific software
+- **FutureHouse Multi-Agent** (NEW, Nature 10652-y): meta-orchestration above Falcon/Owl/PaperQA2/Phoenix
+- 4 PDFs (50MB) archived; Cyber & Coding +4 MDASH IDs. **+3 models / +9 benches / +9 scores** = 1539/1149/6200. v=20260527c
+
+### 2026-05-27 Session 27 — Google SensorFM Wearable Health FM (arxiv 2605.22759)
+- 4 SensorFM sizes (XXS/XS/S/B 100K-100M params) pretrained on 1T+ min from 5M participants. SensorFM-B wins 33/35 tasks; gen lifts 74.8%/83.7%/38.8%/39.6%; 60-min ablation 99.7/99.9/99.2%; Gemini classroom 3.1 Pro 0.54 top; 1,860 clinician ratings ≈ ground truth. Medical AI 'wearable-health' sub-cat + 10-bench suite. **+5 models / +10 benches / +15 scores** = 1536/1140/6191. v=20260527b
+
+### 2026-05-27 Session 26 — Multi-task maintenance + Image/Video Gen tabs (A-F batch)
+- (A) Scout sweep: mai-image-2.5-preview T2I #3 at 1254 Elo (+72 lift); hidream-o1 AA T2I 1189 (#1 open-weights)
+- (D) DB cleanup: 3 Mythos duplicate IDs merged; (E) Node 20→24 on 3 workflows; (F) HISTORY 5 sections backfilled
+- (B) **Image Gen + Video Gen 신규 탭** (14→16). Data-driven from arena.ai 7 boards (T2I/Image-Edit/I2WebDev/AA-T2I + T2V/I2V/V-Edit)
+- **+1 model / -2 benches / -2 scores** = 1531 / 1130 / 6176. v=20260527a
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
 
-### 2026-05-27 Session 25 — Anthropic Glasswing initial update + CVD dashboard ingest
-- 3 Anthropic cyber refs investigated: Glasswing initial update + CVD dashboard (May 22 2026) + Cybersecurity Skills GitHub (community)
-- **Glasswing program metrics (Claude Mythos Preview)**: 6,202 high/crit OSS vulns found (90.6% TPR), 65 CVE/GHSA advisories, Mozilla Firefox 271 vulns (10x Opus 4.6 ~27 baseline), Cloudflare 2,000 bugs/400 high-crit
-- **CVD pipeline (Mythos)**: 23,019 candidates → 1,726 valid → 1,596 disclosed (281 OSS projects) → 97 patched / 88 CVE+GHSA. Notable: nginx CVE-2026-27654, Temporal CVE-2026-5199, jq CVE-2026-32316
-- **Opus 4.7 enterprise deployment**: 2,100+ vulnerabilities patched in 3 weeks
-- **+10 new benchmark IDs** (Glasswing + CVD + enterprise + partner metrics) added to Cyber & Coding cyber-defense suite
-- Cybersecurity Skills GitHub (754 skills, 26 domains, 10.1k stars) — community library, no model evals → Resources reference only
-- **+0 models / +10 benches / +11 scores** = 1530 / 1132 / 6178. Cache-bust cyber-coding + app.js v=20260527a
+### 2026-05-27 Session 25 — Anthropic Glasswing + CVD (3 refs)
+- Mythos: 6,202 high/crit OSS vulns (90.6% TPR), 65 CVE/GHSA, Mozilla Firefox 271 (10x Opus 4.6), Cloudflare 2,000/400 high-crit. CVD pipeline: 23,019→1,726 valid→1,596 disclosed (281 projects)→97 patched/88 CVE+GHSA. Notable: nginx CVE-2026-27654, Temporal CVE-2026-5199, jq CVE-2026-32316. Opus 4.7 enterprise: 2,100 vulns/3wk
+- Cybersec Skills GitHub (community 754-skill library) Resources only. **+0 models / +10 benches / +11 scores** = 1530/1132/6178. v=20260527a
 
 ### 2026-05-22 ~ 26 Sessions 22-24 (compressed)
 - **Session 24** (menu propagation): 6 JS files patched. Frontier +18 models, Sovereign China-CN +25 models + 12-vendor auto-mapping, Physical AI +2 (Qwen-Robot), Medical +Asa-W1 + 4 HealthBench Pro slices, Agent +10 CU agents + 6 benches, Cyber & Coding +13 safety benches. 0 DB delta. v=20260526c

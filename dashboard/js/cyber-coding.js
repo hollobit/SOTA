@@ -100,7 +100,10 @@ var CyberCoding = {
                 'cvd_vulns_disclosed_oss', 'cvd_oss_projects_touched', 'cvd_patches_upstream',
                 'enterprise_vuln_patching_count',
                 'mozilla_firefox_vulns_discovered',
-                'cloudflare_bugs_total', 'cloudflare_high_crit_bugs'
+                'cloudflare_bugs_total', 'cloudflare_high_crit_bugs',
+                // 2026-05-12 Microsoft MDASH — internal Windows kernel deployment metrics
+                'mdash_storagedrive_recall', 'mdash_clfs_sys_recall',
+                'mdash_tcpip_sys_recall', 'mdash_windows_networking_new_vulns'
             ]
         },
         {

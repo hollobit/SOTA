@@ -3799,11 +3799,144 @@
     "metric": "bug_count"
   },
   {
+    "id": "wearable_health_35tasks_winrate",
+    "name": "Wearable Health 35-task Win-Rate",
+    "category": "medical",
+    "description": "SensorFM downstream health task win-rate over the 35-task suite (Cardiovascular 6 / Metabolic 8 / Mental Health 8 / Sleep 3 / Demographic 4 / Lifestyle 6). Comparison: SensorFM variants vs supervised baselines trained on engineered features. Reports tasks where the variant ranks #1 in its panel. arxiv 2605.22759.",
+    "metric": "tasks_won_of_35"
+  },
+  {
+    "id": "wearable_health_vs_supervised_winrate_35",
+    "name": "Wearable Health — Win-Rate vs Supervised Baseline (35 tasks)",
+    "category": "medical",
+    "description": "Number of tasks (out of 35 discriminative health tasks) where SensorFM outperforms a supervised feature-engineered baseline.",
+    "metric": "tasks_won_of_35"
+  },
+  {
+    "id": "sensorfm_random_imputation_lift_pct",
+    "name": "Sensor Random Imputation — Lift over Baseline",
+    "category": "medical",
+    "description": "Random missingness imputation on wearable sensor streams — percent improvement over best-performing prior baseline. arxiv 2605.22759.",
+    "metric": "improvement_pct"
+  },
+  {
+    "id": "sensorfm_temporal_interp_lift_pct",
+    "name": "Sensor Temporal Interpolation — Lift over Baseline",
+    "category": "medical",
+    "description": "Temporal interpolation of missing sensor segments — percent improvement.",
+    "metric": "improvement_pct"
+  },
+  {
+    "id": "sensorfm_temporal_extrap_lift_pct",
+    "name": "Sensor Temporal Extrapolation — Lift over Baseline",
+    "category": "medical",
+    "description": "Temporal forecasting/extrapolation — percent improvement.",
+    "metric": "improvement_pct"
+  },
+  {
+    "id": "sensorfm_sensor_signal_imput_lift_pct",
+    "name": "Sensor Signal Imputation — Lift over Baseline",
+    "category": "medical",
+    "description": "Full sensor signal channel imputation — percent improvement.",
+    "metric": "improvement_pct"
+  },
+  {
+    "id": "sensorfm_daily_step_acc_60min_ablation",
+    "name": "Daily Step Count Accuracy (60-min Ablation)",
+    "category": "medical",
+    "description": "Daily step count prediction accuracy when 60 contiguous minutes of sensor data are ablated. Tests generative imputation robustness.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "sensorfm_deep_sleep_acc_60min_ablation",
+    "name": "Deep Sleep Prediction Accuracy (60-min Ablation)",
+    "category": "medical",
+    "description": "Deep-sleep stage prediction accuracy with 60-min sensor data ablation.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "sensorfm_light_exercise_acc_60min_ablation",
+    "name": "Light Exercise Tracking Accuracy (60-min Ablation)",
+    "category": "medical",
+    "description": "Light-exercise tracking accuracy with 60-min sensor data ablation.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "sensorfm_classroom_final_cycle_score",
+    "name": "SensorFM LLM Classroom — Final Cycle Score",
+    "category": "medical",
+    "description": "SensorFM 'Prediction Head Classroom' — overall task-score achieved by a student LLM after 20 cycles of iterative code-generation/refinement on SensorFM embeddings. Higher = better. Tests LLM-driven autonomous ML-engineering on wearable embeddings.",
+    "metric": "score"
+  },
+  {
     "id": "arena_t2i_aa_elo",
     "name": "Artificial Analysis Text-to-Image Arena Elo",
     "category": "media-forensics",
     "description": "Artificial Analysis text-to-image arena Elo (distinct from arena.ai). AA's own image-arena methodology with separate vote pool. Top: GPT-Image-2 (high) 1338, nano-banana-pro 1271-ish, HiDream-O1-Image-Dev-2604 1189 (#1 open-weights).",
     "metric": "elo"
+  },
+  {
+    "id": "autosota_papers_replicated",
+    "name": "AutoSOTA — Papers Replicated & Improved (105 filter)",
+    "category": "agent",
+    "description": "AutoSOTA end-to-end replication count: filtered 105 papers from 8 top-tier AI conferences across NeurIPS/ICLR/ICML/CVPR/ICCV/ACL/NAACL/AAAI through 4-stage filtering. arxiv 2604.05550.",
+    "metric": "paper_count"
+  },
+  {
+    "id": "autosota_avg_hours_per_paper",
+    "name": "AutoSOTA — Avg Hours/Paper",
+    "category": "agent",
+    "description": "Average hours of compute per paper replicated + improved by AutoSOTA. Lower = better.",
+    "metric": "hours"
+  },
+  {
+    "id": "autosota_max_improvement_pct",
+    "name": "AutoSOTA — Max Single-Paper Improvement",
+    "category": "agent",
+    "description": "Largest SOTA-surpassing improvement found by AutoSOTA on any single paper in the 105-paper benchmark suite. From Table 1.",
+    "metric": "improvement_pct"
+  },
+  {
+    "id": "mdash_storagedrive_recall",
+    "name": "MDASH — StorageDrive Vuln Recall",
+    "category": "cybersecurity",
+    "description": "Microsoft MDASH multi-model agentic security system — StorageDrive component vulnerability discovery recall. Identifies ground-truth vulnerabilities with zero false positives.",
+    "metric": "recall_pct"
+  },
+  {
+    "id": "mdash_clfs_sys_recall",
+    "name": "MDASH — clfs.sys MSRC Recall (5-year span)",
+    "category": "cybersecurity",
+    "description": "MDASH recall on clfs.sys MSRC vulnerability cases over a 5-year span (28 cases).",
+    "metric": "recall_pct"
+  },
+  {
+    "id": "mdash_tcpip_sys_recall",
+    "name": "MDASH — tcpip.sys MSRC Recall (5-year span)",
+    "category": "cybersecurity",
+    "description": "MDASH recall on tcpip.sys MSRC cases over a 5-year span (7 cases).",
+    "metric": "recall_pct"
+  },
+  {
+    "id": "mdash_windows_networking_new_vulns",
+    "name": "MDASH — New Windows Networking Vulns Discovered",
+    "category": "cybersecurity",
+    "description": "Net new vulnerabilities discovered by MDASH in Windows networking stack during deployment evaluation.",
+    "metric": "vuln_count"
+  },
+  {
+    "id": "co_scientist_scientific_goals",
+    "name": "Co-Scientist — Expert-Curated Scientific Goals Evaluated",
+    "category": "agent",
+    "description": "Number of expert-curated open scientific goals on which Co-Scientist was systematically evaluated. Nature 10644-y.",
+    "metric": "goal_count"
+  },
+  {
+    "id": "co_scientist_biomedicine_validation_domains",
+    "name": "Co-Scientist — Biomedicine Validation Domains",
+    "category": "agent",
+    "description": "Number of distinct biomedical research domains in which Co-Scientist's predictions were validated by in vitro / clinical experiments: drug repurposing (AML), novel target discovery (liver fibrosis), antimicrobial resistance (cf-PICIs).",
+    "metric": "domain_count"
   },
   {
     "id": "arc_agi_3",

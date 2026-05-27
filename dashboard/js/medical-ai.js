@@ -109,6 +109,15 @@ var MedicalAI = {
             ]
         },
         {
+            code: 'wearable-health',
+            label: 'Wearable Health Foundation Models',
+            icon: '⌚',
+            note: 'Sensor foundation models for wearable streams — Google SensorFM (4 sizes: XXS/XS/S/B, 1T+ minutes pretrain, 35 downstream tasks across CV/Metabolic/Mental/Sleep/Demographic/Lifestyle). Integrates with Gemini Personal Health Agent. arxiv 2605.22759.',
+            models: [
+                'google/sensorfm-b', 'google/sensorfm-s', 'google/sensorfm-xs', 'google/sensorfm-xxs'
+            ]
+        },
+        {
             code: 'medical-vlm',
             label: 'Medical Vision-Language Models',
             icon: '👁️',
@@ -499,6 +508,17 @@ var MedicalAI = {
                 // 2026-05-22 Asa-W1 publication introduced 4 HealthBench Pro use-case + slice IDs
                 'healthbench_professional_consult', 'healthbench_professional_writing',
                 'healthbench_professional_research', 'healthbench_professional_redteaming'
+            ]
+        },
+        {
+            label: '⌚ Wearable Health Foundation Models',
+            note: 'Google SensorFM (arxiv 2605.22759, May 21 2026) — 1T+ minutes pretrained, 5M participants, 35 downstream tasks. SensorFM-B wins 33/35 tasks. Includes Gemini classroom (5 student LLMs find optimal prediction heads) + Personal Health Agent integration.',
+            benchmarks: [
+                'wearable_health_35tasks_winrate', 'wearable_health_vs_supervised_winrate_35',
+                'sensorfm_random_imputation_lift_pct', 'sensorfm_temporal_interp_lift_pct',
+                'sensorfm_temporal_extrap_lift_pct', 'sensorfm_sensor_signal_imput_lift_pct',
+                'sensorfm_daily_step_acc_60min_ablation', 'sensorfm_deep_sleep_acc_60min_ablation',
+                'sensorfm_light_exercise_acc_60min_ablation', 'sensorfm_classroom_final_cycle_score'
             ]
         },
         {
