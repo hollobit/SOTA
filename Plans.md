@@ -1,18 +1,18 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 28 — 5 PDFs deep-mine (MDASH + AutoSOTA + 3 Nature) (2026-05-27)
-**1,539 models · 1,149 benchmarks · 6,200 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 29 — ERA + Robin + AutoSOTA per-task deep-mine (2026-05-28)
+**1,542 models · 1,169 benchmarks · 6,224 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-05-27 Session 28 — 5 PDFs deep-mine (MDASH + AutoSOTA + 3 Nature)
-- **MDASH**: 4 NEW Windows kernel metrics (StorageDrive 100% 21/21, clfs.sys 96%, tcpip.sys 100%, 16 new netstack vulns / 4 Critical RCE)
-- **AutoSOTA** (NEW, arxiv 2604.05550v1, Tsinghua+Peking+USTC): 8 agents, 105 papers replicated, avg 5h, max 63.64% improvement (ID 70 Certified Unlearning)
-- **Co-Scientist** (Nature 10644-y, Google): 15 goals + 3 biomed validation (AML / liver fibrosis / AMR cf-PICIs)
-- **ERA** (NEW, Nature 10658-6, Google DeepMind+Caltech+MIT+Harvard+McGill): LLM+Tree Search for expert scientific software
-- **FutureHouse Multi-Agent** (NEW, Nature 10652-y): meta-orchestration above Falcon/Owl/PaperQA2/Phoenix
-- 4 PDFs (50MB) archived; Cyber & Coding +4 MDASH IDs. **+3 models / +9 benches / +9 scores** = 1539/1149/6200. v=20260527c
+### 2026-05-28 Session 29 — ERA + Robin + AutoSOTA per-task deep-mine (Sessions 27-28 follow-up)
+- **ERA** (Nature 10658-6) per-task: OpenProblems v2.0.0 BBKNN(TS) +14% vs ComBat, 8/9 pairwise improved, 40/87 total beat full leaderboard. CovidHub 2024-25 WIS 26 vs Ensemble 29 (+3 points), 14 strategies beat ensemble, 11/26 recombinations beat parents
+- **Robin** (Nature 10652-y FutureHouse) per-task: dAMD $10.76/run + 200-fold time reduction. Ripasudil 1.89x ARPE-19 / 1.75x RPE-SC phagocytosis. Finch 86/100% rubric adherence. BixBench 22.8% Finch vs 1.6% Sonnet 3.7 alone (14x lift). Crow 0% hallucinated refs vs o4-mini 44.5%
+- **AutoSOTA Table 1** complete: Top-5 avg 43.55% (max ID 70 Certified Unlearning 63.64%). Mean across 105 papers 7.49%. Case studies: FR-Spec MT-Bench throughput +13.44%, Moral Values correlation_care +3.76%
+- 3 new comparison models (openai/deep-research, openproblems/combat-leaderboard, cdc/covidhub-ensemble)
+- **+3 models / +20 benches / +24 scores** = 1542/1169/6224. Cache-bust app.js v=20260528a
 
-### 2026-05-27 Session 27 — Google SensorFM Wearable Health FM (arxiv 2605.22759)
-- 4 SensorFM sizes (XXS/XS/S/B 100K-100M params) pretrained on 1T+ min from 5M participants. SensorFM-B wins 33/35 tasks; gen lifts 74.8%/83.7%/38.8%/39.6%; 60-min ablation 99.7/99.9/99.2%; Gemini classroom 3.1 Pro 0.54 top; 1,860 clinician ratings ≈ ground truth. Medical AI 'wearable-health' sub-cat + 10-bench suite. **+5 models / +10 benches / +15 scores** = 1536/1140/6191. v=20260527b
+### 2026-05-27 Sessions 27-28 — SensorFM + 5-PDF deep-mine (compressed)
+- **27 SensorFM** (arxiv 2605.22759): 4 sizes (XXS/XS/S/B 100K-100M) pretrained on 1T+ min from 5M participants. SensorFM-B wins 33/35 tasks; gen lifts 74.8/83.7/38.8/39.6%; 60-min ablation 99.7/99.9/99.2%. **+5/+10/+15** = 1536/1140/6191. v=20260527b
+- **28 MDASH + AutoSOTA + 3 Nature**: MDASH 4 NEW Windows kernel metrics (StorageDrive 100%, clfs.sys 96%, tcpip.sys 100%, 16 new netstack vulns). AutoSOTA NEW (8 agents, 105 papers, max 63.64% ID 70). Co-Scientist Google (15 goals, 3 biomed). ERA NEW (Google DeepMind LLM+TreeSearch). FutureHouse Multi-Agent NEW. **+3/+9/+9** = 1539/1149/6200. v=20260527c
 
 ### 2026-05-27 Session 26 — Multi-task maintenance + Image/Video Gen tabs (A-F batch)
 - (A) Scout sweep: mai-image-2.5-preview T2I #3 at 1254 Elo (+72 lift); hidream-o1 AA T2I 1189 (#1 open-weights)
