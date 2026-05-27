@@ -479,6 +479,21 @@
     "collected_at": "2026-05-27",
     "notes": "Overall rubric-weighted (n=524). SE 1.57. +21.2 over CGPT-C; +36.5 over physician baseline. Largest reported gap vs physician baseline on this benchmark to date."
   },
+  "bixbench": {
+    "model_id": "futurehouse/multi-agent-discovery",
+    "benchmark_id": "bixbench",
+    "value": 22.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10652-y",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Finch agent overall BixBench score (170 Q-A pairs from bioinformatics + statistics). Mean ± SEM 22.8 ± 1.7% (n=3 runs). 14x improvement over Sonnet 3.7 alone without harness."
+  },
   "matharena_brokenarxiv": {
     "model_id": "openai/gpt-5.5",
     "benchmark_id": "matharena_brokenarxiv",
@@ -7978,6 +7993,306 @@
     "is_sota": true,
     "collected_at": "2026-05-27",
     "notes": "End-to-end biomedicine validation in 3 distinct domains: (1) drug repurposing for AML (acute myeloid leukemia) — selective cytotoxicity at clinically-relevant concentrations validated in vitro; (2) novel epigenetic target discovery for liver fibrosis — anti-fibrotic + hepatocyte-regeneration activity in human hepatic organoids; (3) antimicrobial resistance — cf-PICIs phage-tail mechanism hypothesis matched independent researchers' unpublished findings."
+  },
+  "era_openproblems_bbknn_ts_improvement_pct": {
+    "model_id": "google-deepmind/era",
+    "benchmark_id": "era_openproblems_bbknn_ts_improvement_pct",
+    "value": 14.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10658-6",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "BBKNN (TS) — 14% overall improvement over published ComBat. Equaled/outperformed BBKNN published in every dataset across 11/13 metrics."
+  },
+  "era_openproblems_pairwise_methods_improved": {
+    "model_id": "google-deepmind/era",
+    "benchmark_id": "era_openproblems_pairwise_methods_improved",
+    "value": 8.0,
+    "unit": "methods",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10658-6",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "ERA improved 8 of 9 OpenProblems methods in pairwise comparisons when given paper PDF + Gemini 2.5 Pro summary."
+  },
+  "era_openproblems_recombination_winrate_pct": {
+    "model_id": "google-deepmind/era",
+    "benchmark_id": "era_openproblems_recombination_winrate_pct",
+    "value": 43.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10658-6",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "24/55 recombinations outperformed BOTH parents. Idea-recombination strategy validates value of cross-method synthesis."
+  },
+  "era_openproblems_total_outperforming_leaderboard": {
+    "model_id": "google-deepmind/era",
+    "benchmark_id": "era_openproblems_total_outperforming_leaderboard",
+    "value": 40.0,
+    "unit": "methods",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10658-6",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "40 of 87 ERA-generated solutions outperform ALL currently-published methods on OpenProblems leaderboard. Breakdown: 6/11 base + 29/55 recombination + 4/9 Deep Research seeds + 1/12 AI co-scientist seeds."
+  },
+  "era_covidhub_avg_wis": {
+    "model_id": "cdc/covidhub-ensemble",
+    "benchmark_id": "era_covidhub_avg_wis",
+    "value": 29.0,
+    "unit": "wis",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10658-6",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "CovidHub Ensemble baseline WIS 29. CDC-coordinated gold standard for U.S. COVID-19 forecasting."
+  },
+  "era_covidhub_strategies_beating_ensemble": {
+    "model_id": "google-deepmind/era",
+    "benchmark_id": "era_covidhub_strategies_beating_ensemble",
+    "value": 14.0,
+    "unit": "strategies",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10658-6",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "14 distinct ERA strategies beat the official CovidHub ensemble: 10 from recombination, 2 from Gemini Deep Research, 1 from AI Co-Scientist, 1 from baseline replication."
+  },
+  "era_covidhub_recombination_winrate_pct": {
+    "model_id": "google-deepmind/era",
+    "benchmark_id": "era_covidhub_recombination_winrate_pct",
+    "value": 42.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10658-6",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "11/26 recombination forecast strategies beat both parent models."
+  },
+  "robin_dramd_workflow_cost_usd": {
+    "model_id": "futurehouse/multi-agent-discovery",
+    "benchmark_id": "robin_dramd_workflow_cost_usd",
+    "value": 10.76,
+    "unit": "usd",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10652-y",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Full Robin dAMD workflow cost: 45 Crow calls ($4.33 avg) + 30 Falcon calls ($6.43 avg) = $10.76."
+  },
+  "robin_time_reduction_factor": {
+    "model_id": "futurehouse/multi-agent-discovery",
+    "benchmark_id": "robin_time_reduction_factor",
+    "value": 200.0,
+    "unit": "x",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10652-y",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "200-fold time reduction in full discovery cycle (Robin 30 min for 551 papers + workflow synthesis; ~540 hours estimated for human equivalent)."
+  },
+  "robin_ripasudil_phagocytosis_arpe19_fold": {
+    "model_id": "futurehouse/multi-agent-discovery",
+    "benchmark_id": "robin_ripasudil_phagocytosis_arpe19_fold",
+    "value": 1.89,
+    "unit": "fold",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10652-y",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Ripasudil (ROCK inhibitor) phagocytosis 1.89-fold increase in ARPE-19 RPE cells vs DMSO control. Robin-proposed candidate, lab-validated."
+  },
+  "robin_ripasudil_phagocytosis_rpesc_fold": {
+    "model_id": "futurehouse/multi-agent-discovery",
+    "benchmark_id": "robin_ripasudil_phagocytosis_rpesc_fold",
+    "value": 1.75,
+    "unit": "fold",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10652-y",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Same Ripasudil phagocytosis 1.75-fold increase in primary human RPE-SC cells from a >60-year-old donor — confirming translational potential."
+  },
+  "robin_crow_hallucinated_refs_pct": {
+    "model_id": "openai/o4-mini",
+    "benchmark_id": "robin_crow_hallucinated_refs_pct",
+    "value": 44.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10652-y",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Ablation baseline — replacing Robin's Crow+Falcon literature-search pipeline with o4-mini alone yields 44.5 ± 6.37% hallucinated references (n=15 assay proposals)."
+  },
+  "robin_finch_rnaseq_consistency_pct": {
+    "model_id": "futurehouse/multi-agent-discovery",
+    "benchmark_id": "robin_finch_rnaseq_consistency_pct",
+    "value": 86.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10652-y",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Finch agent RNA-seq adherence to expert rubrics, mean ± SEM across n=3 runs: 86% ± 0%."
+  },
+  "robin_finch_flowcyt_consistency_pct": {
+    "model_id": "futurehouse/multi-agent-discovery",
+    "benchmark_id": "robin_finch_flowcyt_consistency_pct",
+    "value": 100.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10652-y",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Finch flow cytometry adherence: 100% ± 0% (n=3 runs)."
+  },
+  "robin_bixbench_bio": {
+    "model_id": "futurehouse/multi-agent-discovery",
+    "benchmark_id": "robin_bixbench_bio",
+    "value": 15.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10652-y",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Finch bioinformatics subset: 15.3 ± 2.0% — harder than stats due to multi-step pipeline sensitivity."
+  },
+  "robin_bixbench_stats": {
+    "model_id": "futurehouse/multi-agent-discovery",
+    "benchmark_id": "robin_bixbench_stats",
+    "value": 47.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-026-10652-y",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Finch statistics subset: 47.9 ± 1.5% — much higher than bio (single-step computations on clean tabular data)."
+  },
+  "autosota_mean_improvement_pct": {
+    "model_id": "tsinghua-fib-lab/autosota",
+    "benchmark_id": "autosota_mean_improvement_pct",
+    "value": 7.49,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/pdf/2604.05550v1",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Sum of all 105 individual-paper improvements / 105. Heavy right-skew: top 5 papers (>30% each) drive much of the gain; ~50 papers in the 1-5% range; ~26 papers <1%. Max 63.64% (ID 70). Median ~2.5%."
+  },
+  "autosota_top_papers_avg_pct": {
+    "model_id": "tsinghua-fib-lab/autosota",
+    "benchmark_id": "autosota_top_papers_avg_pct",
+    "value": 43.55,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/pdf/2604.05550v1",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "Top-5 papers average: (63.64 + 51.40 + 36.60 + 35.80 + 30.30) / 5 = 43.55%. IDs: 70 Certified Unlearning (ICML2025), 87 Vehicle Routing MoE (NeurIPS2025), 69 TreeHFD (NeurIPS2025), 31 Circuit Stability (ACL2025), 48 Proxy-SPEX (NeurIPS2025)."
+  },
+  "autosota_frspec_mtbench_throughput_lift_pct": {
+    "model_id": "tsinghua-fib-lab/autosota",
+    "benchmark_id": "autosota_frspec_mtbench_throughput_lift_pct",
+    "value": 13.44,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/pdf/2604.05550v1",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "FR-Spec LLM case study (Section 3.3.1) — MT-Bench throughput 674.58 → 765.27 tok/s. AutoSOTA found 3 bugs/inefficiencies: incorrect tree_draft_ids reuse, Python-side terminal-token check, CPU-GPU sync overhead."
+  },
+  "autosota_moral_values_correlation_lift_pct": {
+    "model_id": "tsinghua-fib-lab/autosota",
+    "benchmark_id": "autosota_moral_values_correlation_lift_pct",
+    "value": 3.76,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/pdf/2604.05550v1",
+      "date": "2026-05-27",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-27",
+    "notes": "NLP case study (Section 3.3.2) — Graph Moral Network correlation_care 0.4577 → 0.4749. AutoSOTA applied triple-log1p edge transformation + multi-scale propagation."
   },
   "superqpga": {
     "model_id": "tencent/hy3-preview",

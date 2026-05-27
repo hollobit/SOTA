@@ -3925,6 +3925,146 @@
     "metric": "domain_count"
   },
   {
+    "id": "era_openproblems_bbknn_ts_improvement_pct",
+    "name": "ERA — OpenProblems v2.0.0 BBKNN (TS) improvement",
+    "category": "ai4s",
+    "description": "ERA's BBKNN+Tree-Search variant lift over best-published ComBat on OpenProblems batch integration. 14% overall improvement; equaled/outperformed published BBKNN in every dataset + 11/13 metrics.",
+    "metric": "improvement_pct"
+  },
+  {
+    "id": "era_openproblems_pairwise_methods_improved",
+    "name": "ERA — OpenProblems Pairwise Methods Improved",
+    "category": "ai4s",
+    "description": "Count of OpenProblems published methods that ERA pairwise-improved when given the corresponding paper PDF + Gemini 2.5 Pro summary. 8/9 methods improved.",
+    "metric": "methods_count"
+  },
+  {
+    "id": "era_openproblems_recombination_winrate_pct",
+    "name": "ERA — OpenProblems Recombination Win-Rate",
+    "category": "ai4s",
+    "description": "% of 55 programmatic pairwise-recombination solutions that outperformed BOTH parent methods on OpenProblems. 24/55 = 43.6%.",
+    "metric": "winrate_pct"
+  },
+  {
+    "id": "era_openproblems_total_outperforming_leaderboard",
+    "name": "ERA — Total Methods Beating Full Leaderboard",
+    "category": "ai4s",
+    "description": "Across base methods (6/11) + recombinations (29/55) + Deep Research seeds (4/9) + AI co-scientist seeds (1/12) = 40 of 87 total ERA solutions beat ALL currently-published OpenProblems leaderboard methods.",
+    "metric": "methods_count"
+  },
+  {
+    "id": "era_covidhub_avg_wis",
+    "name": "ERA — CovidHub Average WIS (lower=better)",
+    "category": "ai4s",
+    "description": "Weighted Interval Score on CovidHub's 52 US states + 23 quantiles + 4-week horizon, 2024-2025 season retrospective. ERA Google Retrospective 26 vs CovidHub Ensemble 29 (lower is better).",
+    "metric": "wis_score"
+  },
+  {
+    "id": "era_covidhub_strategies_beating_ensemble",
+    "name": "ERA — Distinct Strategies Beating CovidHub Ensemble",
+    "category": "ai4s",
+    "description": "Total distinct ERA-generated forecasting strategies that beat the official CovidHub Ensemble. 14 = 10 recombinations + 2 Deep Research + 1 AI co-scientist + 1 baseline replication.",
+    "metric": "strategy_count"
+  },
+  {
+    "id": "era_covidhub_recombination_winrate_pct",
+    "name": "ERA — CovidHub Recombination Win-Rate",
+    "category": "ai4s",
+    "description": "% of 26 LLM-generated hybrid forecast strategies (combining principles of 2 different parent models) that achieved WIS superior to BOTH parents. 11/26 = 42.3%.",
+    "metric": "winrate_pct"
+  },
+  {
+    "id": "robin_dramd_workflow_cost_usd",
+    "name": "Robin — dAMD Workflow Cost (USD)",
+    "category": "ai4s",
+    "description": "Total LLM API cost of a Robin run on dAMD drug-repurposing workflow with num_queries=5, num_assays=10, num_candidates=30 — 45 Crow calls ($4.33 avg) + 30 Falcon calls ($6.43 avg).",
+    "metric": "usd"
+  },
+  {
+    "id": "robin_time_reduction_factor",
+    "name": "Robin — Time Reduction Factor vs Manual",
+    "category": "ai4s",
+    "description": "Estimated time-on-task speedup of full Robin discovery cycle vs human manual baseline. 30 min for Robin vs 540 hours estimated for a single human — 200-fold reduction.",
+    "metric": "factor"
+  },
+  {
+    "id": "robin_ripasudil_phagocytosis_arpe19_fold",
+    "name": "Robin — Ripasudil Phagocytosis (ARPE-19)",
+    "category": "medical",
+    "description": "Robin-proposed Ripasudil (ROCK inhibitor) phagocytosis enhancement fold-change in ARPE-19 RPE cells vs DMSO. Validated in lab.",
+    "metric": "fold_change"
+  },
+  {
+    "id": "robin_ripasudil_phagocytosis_rpesc_fold",
+    "name": "Robin — Ripasudil Phagocytosis (RPE-SC primary)",
+    "category": "medical",
+    "description": "Robin-proposed Ripasudil phagocytosis enhancement fold-change in primary human RPE-SC cells (>60-year-old donor). Lab-validated.",
+    "metric": "fold_change"
+  },
+  {
+    "id": "robin_finch_rnaseq_consistency_pct",
+    "name": "Robin — Finch RNA-seq Adherence to Rubric",
+    "category": "ai4s",
+    "description": "Finch agent's adherence to expert-generated rubrics on RNA-seq analysis (round 2 of dAMD assay), mean ± SEM across n=3 runs. 86% ± 0%.",
+    "metric": "consistency_pct"
+  },
+  {
+    "id": "robin_finch_flowcyt_consistency_pct",
+    "name": "Robin — Finch Flow Cytometry Adherence",
+    "category": "ai4s",
+    "description": "Finch agent's flow cytometry analysis adherence to expert rubrics, mean ± SEM across n=3 runs. 100% ± 0%.",
+    "metric": "consistency_pct"
+  },
+  {
+    "id": "robin_bixbench_bio",
+    "name": "Robin Finch — BixBench Bioinformatics Subset",
+    "category": "ai4s",
+    "description": "Finch agent BixBench bioinformatics question-answer subset (170 total Q-A, of which bio sub-set). 15.3 ± 2.0%.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "robin_bixbench_stats",
+    "name": "Robin Finch — BixBench Statistics Subset",
+    "category": "ai4s",
+    "description": "Finch agent BixBench statistics question-answer subset. 47.9 ± 1.5% — much higher than bio subset (statistics involves single-step computations on clean tabular data, bio requires multi-step pipelines).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "robin_crow_hallucinated_refs_pct",
+    "name": "Robin Crow — Hallucinated References Rate",
+    "category": "ai4s",
+    "description": "Hallucinated reference rate in Crow agent's literature-search output (assessed via human reference check, n=15 assay proposals). 0% for Crow vs 44.5 ± 6.37% for o4-mini ablation baseline. Lower=better.",
+    "metric": "hallucinated_pct"
+  },
+  {
+    "id": "autosota_mean_improvement_pct",
+    "name": "AutoSOTA — Mean Improvement (105 papers)",
+    "category": "agent",
+    "description": "Average single-paper improvement % across the AutoSOTA 105-paper benchmark suite (Table 1). Sum-of-improvements / 105.",
+    "metric": "mean_improvement_pct"
+  },
+  {
+    "id": "autosota_top_papers_avg_pct",
+    "name": "AutoSOTA — Top-5 Papers Average Improvement",
+    "category": "agent",
+    "description": "Average single-paper improvement % across the Top-5 highest-gain papers in AutoSOTA Table 1: ID 70 Certified Unlearning (63.64%), ID 87 Vehicle Routing MoE (51.40%), ID 69 TreeHFD (36.60%), ID 31 Circuit Stability (35.80%), ID 48 Proxy-SPEX (30.30%).",
+    "metric": "mean_improvement_pct"
+  },
+  {
+    "id": "autosota_frspec_mtbench_throughput_lift_pct",
+    "name": "AutoSOTA Case Study — FR-Spec MT-Bench Throughput",
+    "category": "agent",
+    "description": "AutoSOTA case study (Section 3.3.1) — improved FR-Spec speculative-decoding implementation from 674.58 to 765.27 tok/s on MT-Bench throughput = 13.44% lift over released baseline. Found by detecting incorrect tree_draft_ids reuse + Python-side terminal-token check + CPU-GPU sync overhead.",
+    "metric": "throughput_lift_pct"
+  },
+  {
+    "id": "autosota_moral_values_correlation_lift_pct",
+    "name": "AutoSOTA Case Study — Moral Values correlation_care",
+    "category": "agent",
+    "description": "AutoSOTA case study (Section 3.3.2) — improved graph-based moral value inference correlation_care metric 0.4577 → 0.4749 = 3.76% lift via triple-log1p edge transformation + multi-scale propagation.",
+    "metric": "improvement_pct"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",
