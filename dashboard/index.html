@@ -50,6 +50,8 @@
         <button class="tab-btn" data-tab="medical-ai" role="tab" aria-selected="false" aria-controls="tab-medical-ai" id="tabbtn-medical-ai" tabindex="-1">Medical AI</button>
         <button class="tab-btn" data-tab="ai4s" role="tab" aria-selected="false" aria-controls="tab-ai4s" id="tabbtn-ai4s" tabindex="-1">AI4S</button>
         <button class="tab-btn" data-tab="agent" role="tab" aria-selected="false" aria-controls="tab-agent" id="tabbtn-agent" tabindex="-1">Agent</button>
+        <button class="tab-btn" data-tab="image-gen" role="tab" aria-selected="false" aria-controls="tab-image-gen" id="tabbtn-image-gen" tabindex="-1">Image Gen</button>
+        <button class="tab-btn" data-tab="video-gen" role="tab" aria-selected="false" aria-controls="tab-video-gen" id="tabbtn-video-gen" tabindex="-1">Video Gen</button>
         <button class="tab-btn" data-tab="explorer" role="tab" aria-selected="false" aria-controls="tab-explorer" id="tabbtn-explorer" tabindex="-1">Explorer</button>
         <button class="tab-btn" data-tab="resources" role="tab" aria-selected="false" aria-controls="tab-resources" id="tabbtn-resources" tabindex="-1">Resources</button>
         <button class="tab-btn" data-tab="changelog" role="tab" aria-selected="false" aria-controls="tab-changelog" id="tabbtn-changelog" tabindex="-1">Changelog</button>
@@ -745,6 +747,22 @@
           </div>
         </section>
 
+        <section id="tab-image-gen" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-image-gen">
+          <div class="space-y-8">
+            <h2 class="text-section mb-2">🎨 Image Generation Arena</h2>
+            <p class="text-sm text-gray-400 mb-4">Text-to-image + Image-edit + Image-to-WebDev arenas. Pulls top-N Elo from arena.ai (live) and Artificial Analysis (T2I arena). 40+ image-gen models tracked across OpenAI / Google / Microsoft / xAI / Black Forest Labs / Bytedance / Alibaba / Tencent / Reve / Recraft / HiDream / Luma.</p>
+            <div id="image-gen-content"></div>
+          </div>
+        </section>
+
+        <section id="tab-video-gen" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-video-gen">
+          <div class="space-y-8">
+            <h2 class="text-section mb-2">🎬 Video Generation Arena</h2>
+            <p class="text-sm text-gray-400 mb-4">Text-to-video + Image-to-video + Video-edit arenas. arena.ai live snapshot. 20+ video-gen models tracked — Bytedance Dreamina Seedance / Alibaba Wan / Kuaishou Kling / Google Veo / xAI Grok Imagine Video / OpenAI Sora / Vidu / Runway Gen-4 Aleph.</p>
+            <div id="video-gen-content"></div>
+          </div>
+        </section>
+
         <section id="tab-explorer" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-explorer">
             <h2 class="text-section mb-4">Model Explorer — Compare 2 to 10 models</h2>
             <p class="text-sm text-gray-400 mb-4">2개 모델로 시작합니다. <strong class="text-gray-300">+ 모델 추가</strong> 버튼으로 최대 10개까지 모델을 더할 수 있고, 각 행의 × 버튼으로 제거할 수 있습니다 (최소 2개 유지). <strong class="text-gray-300">Compare</strong>를 누르면 공유 벤치마크 기준 radar chart와 모든 선택 모델이 채점된 벤치마크의 side-by-side matrix가 표시됩니다.</p>
@@ -849,6 +867,8 @@
     <script src="js/ai4s.js?v=20260509b"></script>
     <script src="js/ai4s-charts.js?v=20260519b"></script>
     <script src="js/agent.js?v=20260526c"></script>
+    <script src="js/image-gen.js?v=20260527a"></script>
+    <script src="js/video-gen.js?v=20260527a"></script>
     <script src="js/agent-charts.js?v=20260519b"></script>
     <script src="js/charts.js?v=20260504c"></script>
     <script src="js/filters.js?v=20260424"></script>

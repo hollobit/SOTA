@@ -1,7 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 25 — Anthropic Glasswing + CVD (2026-05-27)
-**1,530 models · 1,132 benchmarks · 6,178 scores · 14 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 26 — Maintenance batch + Image/Video Gen tabs (2026-05-27)
+**1,531 models · 1,130 benchmarks · 6,176 scores · 16 active tabs (+ Image Gen + Video Gen) + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-05-27 Session 26 — Multi-task maintenance batch + Image/Video Gen tab신설
+- **(A) Scout sweep**: microsoft/mai-image-2.5-preview (May 26 launch) — arena.ai T2I rank #3 at 1254 Elo (+72 lift). hidream-o1 AA T2I Elo 1189 (#1 open-weights). +1 model / +1 bench (arena_t2i_aa_elo) / +3 scores
+- **(D) DB cleanup**: 3 Mythos duplicate bench IDs merged (firefox_exploit_dev → firefox_147_exploits, ossfuzz_tier1_2_crashes → oss_fuzz_tier12, ossfuzz_tier5_control_flow → oss_fuzz_tier5). Mythos: 57 → 54 scores
+- **(E) Node 24 migration**: 3 GitHub Actions workflows (a11y-audit / benchmark-update / dashboard-tests) node-version 20 → 24 (deadline 2026-06-02)
+- **(F) HISTORY.md sync**: Sections 61-65 (Sessions 21-25) backfilled. +195 lines
+- **(B) Image Gen + Video Gen tabs 신설**: 2 new tabs (14 → 16). image-gen.js + video-gen.js data-driven render from arena.ai 7 image/video boards. Image Gen tracks T2I + Image-Edit + Image-to-WebDev + AA-T2I (4 boards, 40+ models). Video Gen tracks T2V + I2V + Video-Edit (3 boards, ~20 models)
+- **+1 model / -2 benches net / -2 scores net** = 1531 / 1130 / 6176. Cache-bust app.js + new image-gen/video-gen.js v=20260527a
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
 

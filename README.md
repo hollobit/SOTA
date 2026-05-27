@@ -6,9 +6,9 @@ LLM benchmark &amp; SOTA
 
 **Live site:** https://hollobit.github.io/SOTA/
 
-## Dashboard tabs (14)
+## Dashboard tabs (16)
 
-Overview · Leaderboard · Trends · Timeline · Comparison · Frontier Compare · Cyber & Coding · Sovereign AI · Physical AI · Medical AI · AI4S · **Agent** *(new — 10 sub-categories + 8 graphical widgets)* · Explorer · Resources · Changelog
+Overview · Leaderboard · Trends · Timeline · Comparison · Frontier Compare · Cyber & Coding · Sovereign AI · Physical AI · Medical AI · AI4S · Agent · **Image Gen** *(new — arena.ai T2I+Image-Edit+Image-to-WebDev+AA-T2I, 40+ models)* · **Video Gen** *(new — arena.ai T2V+I2V+Video-Edit)* · Explorer · Resources · Changelog
 
 ## Agent Menu (2026-05-08)
 
