@@ -376,11 +376,30 @@ var MedicalAI = {
             ]
         },
         {
+            code: 'rare-disease',
+            label: '🧬 Rare Disease Diagnosis',
+            icon: '🧬',
+            note: 'DeepRare (SJTU+Xinhua+Harvard agentic system, Nature 10097-9, R@1 57.18% on 7 datasets / R@1 64.4% vs Physician 54.6%) · classical tools PhenoBrain · Exomiser · PubCaseFinder · MDAgents · MMedS-Llama 3',
+            models: [
+                'sjtu-xinhua-harvard/deeprare',
+                'tsinghua-bgi/phenobrain',
+                'monarch-initiative/exomiser',
+                'riken/pubcasefinder',
+                'mit-mgb/mdagents',
+                'icl/mmeds-llama-3',
+                'deepseek/deepseek-r1-search',
+                'anthropic/claude-3.7-sonnet-thinking',
+                'google/gemini-2.0-flash-ft',
+                'baichuan/baichuan-m1-14b'
+            ]
+        },
+        {
             code: 'global-china',
             label: '🇨🇳 China Medical AI',
             icon: '🇨🇳',
-            note: 'Alibaba SumiHealth · Tencent MedLLM-2 (Yuanbao) · Baidu Wenxin Yiyi · Shanghai AI Lab Puyu Medical · Tsinghua GLM-Medical · iFLYTEK Spark Medical · MMedLM 2 · HuatuoGPT 시리즈',
+            note: 'Alibaba SumiHealth · Tencent MedLLM-2 (Yuanbao) · Baidu Wenxin Yiyi · Shanghai AI Lab Puyu Medical · Tsinghua GLM-Medical · iFLYTEK Spark Medical · MMedLM 2 · HuatuoGPT · DeepRare (SJTU+Xinhua rare-disease agentic)',
             models: [
+                'sjtu-xinhua-harvard/deeprare',
                 'alibaba-damo/sumihealth-72b',
                 'tencent/medllm-2',
                 'baidu/wenxin-yiyi-medical',
@@ -402,7 +421,8 @@ var MedicalAI = {
                 'shanghai-ai-lab/radfm',
                 'shanghai-ai-lab/visionfm',
                 'openmedlab/sam-med2d',
-                'openmedlab/sam-med3d'
+                'openmedlab/sam-med3d',
+                'tsinghua-bgi/phenobrain'
             ]
         },
         {

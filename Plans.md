@@ -1,14 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 29 — ERA + Robin + AutoSOTA per-task deep-mine (2026-05-28)
-**1,542 models · 1,169 benchmarks · 6,224 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 30 — DeepRare + AgingBench + SciMuse + Gemini-for-Science (2026-05-28)
+**1,555 models · 1,187 benchmarks · 6,257 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-05-28 Session 29 — ERA + Robin + AutoSOTA per-task deep-mine (Sessions 27-28 follow-up)
-- **ERA** (Nature 10658-6) per-task: OpenProblems v2.0.0 BBKNN(TS) +14% vs ComBat, 8/9 pairwise improved, 40/87 total beat full leaderboard. CovidHub 2024-25 WIS 26 vs Ensemble 29 (+3 points), 14 strategies beat ensemble, 11/26 recombinations beat parents
-- **Robin** (Nature 10652-y FutureHouse) per-task: dAMD $10.76/run + 200-fold time reduction. Ripasudil 1.89x ARPE-19 / 1.75x RPE-SC phagocytosis. Finch 86/100% rubric adherence. BixBench 22.8% Finch vs 1.6% Sonnet 3.7 alone (14x lift). Crow 0% hallucinated refs vs o4-mini 44.5%
-- **AutoSOTA Table 1** complete: Top-5 avg 43.55% (max ID 70 Certified Unlearning 63.64%). Mean across 105 papers 7.49%. Case studies: FR-Spec MT-Bench throughput +13.44%, Moral Values correlation_care +3.76%
-- 3 new comparison models (openai/deep-research, openproblems/combat-leaderboard, cdc/covidhub-ensemble)
-- **+3 models / +20 benches / +24 scores** = 1542/1169/6224. Cache-bust app.js v=20260528a
+### 2026-05-28 Session 30 — DeepRare + AgingBench + SciMuse + Gemini-for-Science (7 user refs)
+- **DeepRare** (Nature 10097-9 SJTU+Xinhua+Harvard) agentic rare-disease dx. Aggregate HPO R@1 57.18% (vs Reasoning LLM 2nd-best 33.39 = +23.79). Per-dataset R@1: MME 78 / LIRICAL 58 / HMS 57 / RAMEDIS 73 / MIMIC-IV-Rare 29 / MyGene2 76 / DDD 48. Multimodal HPO+gene: Xinhua 69.1 vs Exomiser 55.9 (+13.2); Hunan 63.6 vs 41.4 (+22.2). Physician (5 MDs, 163 cases): DeepRare R@1 64.4 vs MD 54.6; 95.4% reasoning agreement. 9 baselines: PhenoBrain/Exomiser/PubCaseFinder/MDAgents/MMedS-Llama/DS-R1-Search/Claude-3.7-Sonnet-thinking/Gemini-2.0-Flash-FT
+- **AgingBench** (arxiv 2605.26302 UT Austin) longitudinal Agent Lifespan Engineering: 4 mechanisms × 7 scenarios × 14 models × ~400 runs × 8-200 sessions. **SciMuse** (2405.17044 Max Planck) GPT-4 + KG 2.44M papers/123K concepts/58.5M edges; Pearson 0.51 graph↔expert, top-quartile 86.7% rated ≥5/7. **Gemini for Science** I/O 2026: AlphaEvolve + Antigravity-Science-Skills NEW
+- Medical AI menu: NEW 'rare-disease' sub-category (10 models). Sovereign vendor-region map +8. **+13 models / +18 benches / +33 scores** = 1555/1187/6257. v=20260528b
+
+### 2026-05-28 Session 29 — ERA + Robin + AutoSOTA per-task deep-mine
+- ERA OpenProblems BBKNN(TS) +14%, 40/87 beat all-published, CovidHub WIS 26 vs Ensemble 29. Robin dAMD $10.76/200-fold + Ripasudil 1.89x/1.75x phagocytosis + Crow 0% vs o4-mini 44.5% hallucinated refs. AutoSOTA Table 1 Top-5 avg 43.55%. **+3/+20/+24** = 1542/1169/6224. v=20260528a
 
 ### 2026-05-27 Sessions 27-28 — SensorFM + 5-PDF deep-mine (compressed)
 - **27 SensorFM** (arxiv 2605.22759): 4 sizes (XXS/XS/S/B 100K-100M) pretrained on 1T+ min from 5M participants. SensorFM-B wins 33/35 tasks; gen lifts 74.8/83.7/38.8/39.6%; 60-min ablation 99.7/99.9/99.2%. **+5/+10/+15** = 1536/1140/6191. v=20260527b
@@ -196,5 +197,4 @@ BMT/                         → Benchmark Library 카탈로그 (2,559 엔트리
 | `data/export/scores/current.json` | 현재 점수 707개 |
 | `data/export/sota.json` | SOTA 레코드 78개 |
 | `data/export/scores/history/YYYY-MM-DD.json` | 일별 스냅샷 (2026-04-16 ~ 04-18) |
-| `data/bmt_connections.json` | BMT ↔ 점수 ID 매핑 |
-| `data/bmt_catalog.json` | BMT 전체 카탈로그 (2,559개) |
+| `data/bmt_connections.json` / `bmt_catalog.json` | BMT 매핑 + 카탈로그 (2,559개) |
