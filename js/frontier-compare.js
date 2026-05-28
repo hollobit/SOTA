@@ -249,7 +249,13 @@ var FrontierCompare = {
         // 2026-05 xAI Grok 4.20 internal variants (arena listings)
         'xai/grok-4.20-beta1',
         'xai/grok-4.20-beta-0309-reasoning',
-        'xai/grok-4.20-multi-agent-beta-0309'
+        'xai/grok-4.20-multi-agent-beta-0309',
+
+        // 2026-05-28 Session 30 — DeepRare paper baseline reasoning variants + Gemini-for-Science
+        'anthropic/claude-3.7-sonnet-thinking',
+        'deepseek/deepseek-r1-search',
+        'google/alphaevolve',
+        'google/antigravity-science-skills'
     ],
 
     _models: [],
