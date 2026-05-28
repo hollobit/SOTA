@@ -4065,6 +4065,132 @@
     "metric": "improvement_pct"
   },
   {
+    "id": "deeprare_aggregate_recall_at_1",
+    "name": "DeepRare — Aggregate HPO Recall@1",
+    "category": "medical",
+    "description": "Aggregate Recall@1 across all 7 public HPO-only datasets (RareBench-MME, LIRICAL, HMS, RAMEDIS, MIMIC-IV-Rare, MyGene2, DDD). Headline metric in Nature 10097-9 Figure 1c.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "deeprare_aggregate_recall_at_3",
+    "name": "DeepRare — Aggregate HPO Recall@3",
+    "category": "medical",
+    "description": "Aggregate Recall@3 across 7 public HPO-only rare-disease datasets. Nature 10097-9 Figure 1c.",
+    "metric": "recall_at_3_pct"
+  },
+  {
+    "id": "rarebench_mme_recall_at_1",
+    "name": "RareBench-MME Recall@1 (HPO)",
+    "category": "medical",
+    "description": "RareBench multimodal MME subset (rare-disease cases with HPO + clinical narrative). Recall@1 = correct disease in top-1 prediction. 165 cases.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "rarebench_lirical_recall_at_1",
+    "name": "RareBench-LIRICAL Recall@1 (HPO)",
+    "category": "medical",
+    "description": "RareBench LIRICAL subset (385 LIRICAL benchmark cases). Recall@1 on HPO-only input.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "rarebench_hms_recall_at_1",
+    "name": "RareBench-HMS Recall@1 (HPO)",
+    "category": "medical",
+    "description": "RareBench HMS (Harvard Medical School Undiagnosed Diseases Network) subset. Recall@1 on HPO-only.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "rarebench_ramedis_recall_at_1",
+    "name": "RareBench-RAMEDIS Recall@1 (HPO)",
+    "category": "medical",
+    "description": "RareBench RAMEDIS (rare-disease database, 624 cases). Recall@1 on HPO-only.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "mimic_iv_rare_recall_at_1",
+    "name": "MIMIC-IV-Rare Recall@1 (HPO)",
+    "category": "medical",
+    "description": "Rare-disease subset of MIMIC-IV electronic health records. Recall@1 of disease prediction from HPO terms.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "mygene2_recall_at_1",
+    "name": "MyGene2 Recall@1 (HPO)",
+    "category": "medical",
+    "description": "MyGene2 rare-disease family-reported case dataset. Recall@1 on HPO-only.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "ddd_recall_at_1",
+    "name": "DDD Recall@1 (HPO)",
+    "category": "medical",
+    "description": "DDD (Deciphering Developmental Disorders) UK cohort. Recall@1 of disease diagnosis from HPO terms.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "xinhua_hpo_only_recall_at_1",
+    "name": "Xinhua Hospital HPO-only Recall@1",
+    "category": "medical",
+    "description": "Xinhua Hospital (SJTU) prospective cohort of 168 rare-disease cases with HPO-only input. In-house dataset in DeepRare paper.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "xinhua_hpo_gene_recall_at_1",
+    "name": "Xinhua Hospital HPO+Gene Recall@1 (multimodal)",
+    "category": "medical",
+    "description": "Same Xinhua 168-case cohort with HPO + WES genetic variants (multimodal). Recall@1.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "hunan_hpo_gene_recall_at_1",
+    "name": "Hunan Children Hospital HPO+Gene Recall@1",
+    "category": "medical",
+    "description": "Hunan Children's Hospital prospective cohort of 162 pediatric rare-disease cases with HPO + WES.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "deeprare_physician_recall_at_1",
+    "name": "DeepRare vs Physician Recall@1 (163 cases)",
+    "category": "medical",
+    "description": "Head-to-head DeepRare vs 5 physicians (10+ years experience) on 163 rare-disease cases. Recall@1.",
+    "metric": "recall_at_1_pct"
+  },
+  {
+    "id": "deeprare_physician_recall_at_5",
+    "name": "DeepRare vs Physician Recall@5 (163 cases)",
+    "category": "medical",
+    "description": "Same head-to-head, Recall@5.",
+    "metric": "recall_at_5_pct"
+  },
+  {
+    "id": "deeprare_reasoning_chain_agreement",
+    "name": "DeepRare Reasoning-Chain Agreement (Physician)",
+    "category": "medical",
+    "description": "% of DeepRare's diagnostic reasoning steps that 5 senior physicians independently agreed with on 163 cases. Headline qualitative result.",
+    "metric": "agreement_pct"
+  },
+  {
+    "id": "agingbench_overall",
+    "name": "AgingBench (Agent Lifespan)",
+    "category": "agent",
+    "description": "Longitudinal benchmark foundation for Agent Lifespan Engineering (ALE). Measures HOW agents degrade (compression/interference/revision/maintenance) across 7 scenarios (S1 Research Lit, S2 Lifestyle, S3 Knowledge Base, S4 SWE, S5 Self-Mgmt, S6 Naturalistic, S7 Self-Planning). Headline = half-life t½ (sessions until 50% capability loss) — exact numeric values in Figure 4 not extractable at point-precision; benchmark family registered for future score ingest.",
+    "metric": "half_life_sessions"
+  },
+  {
+    "id": "scimuse_pearson_correlation",
+    "name": "SciMuse — Graph-Feature ↔ Expert Interest",
+    "category": "ai4s",
+    "description": "Pearson correlation between SciMuse's 16-feature knowledge-graph signal and expert (research group leader) interest score on 4,400+ research ideas. Headline of arxiv 2405.17044.",
+    "metric": "pearson_r"
+  },
+  {
+    "id": "scimuse_topquartile_expert_satisfaction",
+    "name": "SciMuse — Top-Quartile Expert Approval",
+    "category": "ai4s",
+    "description": "% of SciMuse top-quartile predicted ideas (by graph features) that received expert rating >=5/7. Headline of arxiv 2405.17044.",
+    "metric": "approval_pct"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",

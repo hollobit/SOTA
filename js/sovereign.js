@@ -1095,7 +1095,15 @@ var Sovereign = {
         'xai/':                 { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
         'kling/':               { code: 'cn',               label: 'China',                      flag: '🇨🇳' },
         'alibaba-ath/':         { code: 'cn',               label: 'China',                      flag: '🇨🇳' },
-        'tencent/':             { code: 'cn',               label: 'China',                      flag: '🇨🇳' }
+        'tencent/':             { code: 'cn',               label: 'China',                      flag: '🇨🇳' },
+        'sjtu-xinhua-harvard/': { code: 'cn',               label: 'China (academic-led)',       flag: '🇨🇳' },
+        'tsinghua-bgi/':        { code: 'cn',               label: 'China (academic-led)',       flag: '🇨🇳' },
+        'monarch-initiative/':  { code: 'frontier-us-prop', label: 'US/EU Open Science',         flag: '🌐' },
+        'riken/':               { code: 'jp',               label: 'Japan',                      flag: '🇯🇵' },
+        'mit-mgb/':             { code: 'frontier-us-prop', label: 'US Frontier (research)',     flag: '🌐' },
+        'icl/':                 { code: 'eu',               label: 'EU (Imperial College London)', flag: '🇬🇧' },
+        'mpi-light/':           { code: 'eu',               label: 'EU (Max Planck)',            flag: '🇩🇪' },
+        'ut-austin/':           { code: 'frontier-us-prop', label: 'US Frontier (research)',     flag: '🌐' }
     },
 
     // Sovereign agent products — regional equivalents of Cursor / Devin /
