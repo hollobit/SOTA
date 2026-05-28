@@ -22,7 +22,7 @@ var CyberCoding = {
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric'],
     AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'gaia2', 'browsecomp', 'tau_bench', 'tau2_bench', 'tau3_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'arc_agi_3', 'claw_eval'],
-    CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo'],
+    CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
@@ -32,9 +32,10 @@ var CyberCoding = {
         {
             id: 'coding-se',
             label: '💻 Coding & Software Engineering',
-            note: 'SWE-Verified · SWE-Pro · SWE-Multilingual · SWE-rebench · LiveCodeBench (+ v6) · HumanEval+ · MBPP+ · Aider Polyglot · Codeforces · GDPval-AA · SciCode · WebDev Arena · Monorepo-Bench · Expert-SWE · GSO · MLE-Bench · WeirdML v2 · PaperBench · Terminal-Bench 2 · NL2Repo · RepoBench · Vibe Code Bench',
+            note: 'SWE-Verified · SWE-Pro · SWE-Multilingual · SWE-rebench · DeepSWE (Datacurve, contamination-free 113 tasks) · LiveCodeBench (+ v6) · HumanEval+ · MBPP+ · Aider Polyglot · Codeforces · GDPval-AA · SciCode · WebDev Arena · Monorepo-Bench · Expert-SWE · GSO · MLE-Bench · WeirdML v2 · PaperBench · Terminal-Bench 2 · NL2Repo · RepoBench · Vibe Code Bench',
             benchmarks: [
                 'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'swe_rebench',
+                'deepswe_pass_at_1',
                 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'livecodebench_elo',
                 'humaneval', 'humaneval_plus', 'mbpp', 'mbpp_plus',
                 'aider_polyglot', 'codeforces_rating', 'codeforces_elo',

@@ -32,7 +32,9 @@ var Agent = (function() {
                 'aider_polyglot',
                 'swe_lancer',
                 'mle_bench',
-                'usaco'
+                'usaco',
+                // 2026-05-28 Session 31 — Datacurve DeepSWE (contamination-free SWE bench)
+                'deepswe_pass_at_1'
             ]
         },
         {
@@ -300,7 +302,9 @@ var Agent = (function() {
         // 2026-05-28 Session 30 — DeepRare rare-disease + AgingBench lifespan engineering
         { id: 'deeprare_aggregate_recall_at_1', label: 'DeepRare R@1 (HPO aggregate)' },
         { id: 'deeprare_physician_recall_at_1', label: 'DeepRare vs Physician R@1' },
-        { id: 'agingbench_overall',   label: 'AgingBench (lifespan t½)' }
+        { id: 'agingbench_overall',   label: 'AgingBench (lifespan t½)' },
+        // 2026-05-28 Session 31 — Datacurve DeepSWE contamination-free SWE bench
+        { id: 'deepswe_pass_at_1',    label: 'DeepSWE Pass@1 (Datacurve)' }
     ];
 
     // Returns the flat union of every category's benchmark IDs, deduped.
