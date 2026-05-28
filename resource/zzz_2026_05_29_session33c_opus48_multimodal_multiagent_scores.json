@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "date": "2026-05-29",
+    "title": "Session 33c — Opus 4.8 System Card completeness pass: Multimodal (8.12) + Multi-Agent (8.11) + OSS-Fuzz (3.3.4)",
+    "context": "Completeness re-pass of the Claude Opus 4.8 System Card sections skipped in the Session 33 first pass. (1) Multimodal 8.12: ChartMuseum (arxiv 2505.13444), LAB-Bench FigQA, CharXiv Reasoning (re-graded) — all with no-tools + Python-tools splits. (2) Multi-Agent 8.11: BrowseComp orchestrator-with-blocking-subagents reaches 88.5 (vs single-agent 84.3). (3) Cyber 3.3.4 OSS-Fuzz: Opus 4.8 made any progress (>0) on 38.5% of ~830 entry-points/228 projects vs Mythos 76.7%, neither Opus reached a 1.0 working exploit (Mythos hit 1.0 on 12 targets). ChartQAPro/ScreenSpot-Pro/OSWorld-Verified already ingested in Session 33.",
+    "sources": [
+      "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"
+    ],
+    "rule": "STRICT-ATTRIBUTION. All values verbatim from System Card Figures 8.12.1.A/8.12.2.A/8.12.3.A/8.12.4.A + Section 8.11.1 + page 53. charxiv_reasoning_no_tools/_tools already exist in DB — only Opus 4.8 added (existing comparison rows untouched). chartmuseum/lab_bench_figqa split into _no_tools/_tools NEW IDs with full Claude-family comparison. OSS-Fuzz progress-rate is a new clean metric (% targets with score>0); Opus 4.7 not cleanly stated for this metric so omitted."
+  },
+  "models": [],
+  "benchmarks": [
+    {"id": "chartmuseum_no_tools", "name": "ChartMuseum (no tools)", "category": "agent", "description": "Chart QA requiring genuine visual reasoning that cannot be solved from extracted chart text (Tang et al, arxiv 2505.13444). 1,162 expert-annotated questions over real-world charts from 184 sources. No-tools config, Sonnet 4.6 grader, 5-run avg.", "metric": "accuracy_pct", "leaderboard": "https://www.anthropic.com/news/claude-opus-4-8"},
+    {"id": "chartmuseum_tools", "name": "ChartMuseum (Python tools)", "category": "agent", "description": "ChartMuseum with adaptive thinking + max effort + Python tools.", "metric": "accuracy_pct", "leaderboard": "https://www.anthropic.com/news/claude-opus-4-8"},
+    {"id": "lab_bench_figqa_no_tools", "name": "LAB-Bench FigQA (no tools)", "category": "ai4s", "description": "Visual reasoning over scientific figures in biology papers (FutureHouse LAB-Bench, arxiv 2407.10362). 181 public questions. Expert human baseline 77.0%. No-tools config, 5-run avg.", "metric": "accuracy_pct", "leaderboard": "https://www.anthropic.com/news/claude-opus-4-8"},
+    {"id": "lab_bench_figqa_tools", "name": "LAB-Bench FigQA (Python tools)", "category": "ai4s", "description": "LAB-Bench FigQA with adaptive thinking + max effort + Python tools. Expert human baseline 77.0%.", "metric": "accuracy_pct", "leaderboard": "https://www.anthropic.com/news/claude-opus-4-8"},
+    {"id": "browsecomp_multiagent", "name": "BrowseComp (multi-agent orchestrator)", "category": "agent", "description": "BrowseComp run with a multi-agent orchestrator-with-blocking-subagents harness (orchestrator spawns subagents, 200k subagent context, 1M orchestrator + compaction, max effort). Highest BrowseComp config — exceeds single-agent (84.3) and 5-agent team (85.4).", "metric": "accuracy_pct", "leaderboard": "https://www.anthropic.com/news/claude-opus-4-8"},
+    {"id": "oss_fuzz_progress_rate", "name": "OSS-Fuzz — Any-Progress Rate (score>0)", "category": "cyber", "description": "Claude Opus 4.8 System Card OSS-Fuzz eval (Section 3.3.4): ~830 fuzzing entry-points from 228 open-source projects, model turns a found bug into an exploit primitive (grades 0.2 mem-safety crash → 1.0 control-flow hijack). % of targets reaching any non-zero grade, no safeguards. Neither Opus reached 1.0; Mythos hit 1.0 on 12 targets.", "metric": "progress_rate_pct", "leaderboard": "https://www.anthropic.com/news/claude-opus-4-8"}
+  ],
+  "scores": [
+    {"_section": "=== CharXiv Reasoning (re-graded) — Opus 4.8 added to existing _no_tools/_tools IDs ===",
+     "model": "anthropic/claude-opus-4.8", "benchmark": "charxiv_reasoning_no_tools", "score": 80.5, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf", "_note": "Figure 8.12.4.A, new grader (thinking trace removed). Opus 4.7 81.3, Sonnet 4.6 71.6, Mythos 86.2 in card."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "charxiv_reasoning_tools", "score": 89.9, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf", "_note": "Python tools. Opus 4.7 90.1 (4.8 marginally below), Sonnet 4.6 85.3, Mythos 92.5."},
+
+    {"_section": "=== ChartMuseum (NEW) ===",
+     "model": "anthropic/claude-opus-4.8", "benchmark": "chartmuseum_no_tools", "score": 75.8, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "chartmuseum_no_tools", "score": 70.3, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "chartmuseum_no_tools", "score": 59.3, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "chartmuseum_no_tools", "score": 80.7, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "chartmuseum_tools", "score": 89.7, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf", "_note": "Python tools. Opus 4.7 85.9."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "chartmuseum_tools", "score": 85.9, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "chartmuseum_tools", "score": 80.9, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "chartmuseum_tools", "score": 92.2, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+
+    {"_section": "=== LAB-Bench FigQA (NEW) — human baseline 77.0 ===",
+     "model": "anthropic/claude-opus-4.8", "benchmark": "lab_bench_figqa_no_tools", "score": 80.4, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf", "_note": "Above expert human baseline 77.0."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "lab_bench_figqa_no_tools", "score": 79.3, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "lab_bench_figqa_no_tools", "score": 60.2, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "lab_bench_figqa_no_tools", "score": 82.4, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "lab_bench_figqa_tools", "score": 87.3, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf", "_note": "Python tools. Opus 4.7 85.4."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "lab_bench_figqa_tools", "score": 85.4, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "lab_bench_figqa_tools", "score": 78.6, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "lab_bench_figqa_tools", "score": 89.3, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf"},
+
+    {"_section": "=== Multi-Agent BrowseComp (NEW) + OSS-Fuzz (NEW) ===",
+     "model": "anthropic/claude-opus-4.8", "benchmark": "browsecomp_multiagent", "score": 88.5, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf", "_note": "Orchestrator-with-blocking-subagents harness — highest BrowseComp config (single-agent 84.3, 5-agent team 85.4). Multi-agent productively absorbs extra token budget."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "oss_fuzz_progress_rate", "score": 38.5, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf", "_note": "Any-progress (score>0) on 38.5% of targets (failed >0 on 61.5%). Reached 0.6 only once, no 1.0. With safeguards: max 0.4, 4.9% rate (vs 18.1% without). Roughly equivalent to Opus 4.7."},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "oss_fuzz_progress_rate", "score": 76.7, "unit": "%", "_source": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf", "_note": "Failed on only 23.3% of targets. Scored 1.0 on 12 targets, 0.8 on 4, 0.6 on 7, 0.4 on 28.3%, 0.2 on 45.6%. Far ahead of both Opus 4.x."}
+  ]
+}

@@ -8,6 +8,7 @@
 - **AutoScientists** (Harvard 2605.28655): BioML-Bench 74.40 percentile (vs Autoresearch 66.07), ProteinGym 217-assay 0.657→0.700, ACE2-Spike +12.5%, nanochat 0.9730 bpb. **SkillOpt** (Microsoft 2605.23904): GPT-5.5 skill uplift +23.5/+24.8/+19.1 (chat/Codex/Claude Code)
 - harness-conflict benches → new IDs (cybergym_targeted_repro, firefox_147_full_exploit, terminal_bench_2_1). Menus: Frontier(Opus 4.8 top), Cyber, Agent(+11 benches), AI4S, Medical(frontier-baseline). 3 PDFs archived. **+3 models / +31 benches / +125 scores** = 1559/1219/6395. v=20260529a
 - **33b ref-link sync**: Resources sites +6 (DeepSWE/FrontierSWE/Harvey LAB/Vending-Bench 2/AutoScientists/DeepRare) + seed_sources +10. 0 score delta. v=20260529b
+- **33c completeness pass** (re-provided Opus 4.8 card): mined skipped §8.12 Multimodal + §8.11 Multi-Agent + §3.3.4 OSS-Fuzz. ChartMuseum 89.7 / LAB-Bench FigQA 87.3 (>human 77) / CharXiv 89.9 / BrowseComp multi-agent 88.5 / OSS-Fuzz 38.5% (Mythos 76.7). **+0/+6/+21**=1559/1225/6416. v=20260529c
 
 ### 2026-05-28 Session 32 — 4-link analysis: 2 references, 1 already-ingested, 1 out-of-scope
 - 2405.17044 **SciMuse** already in DB (Session 30). 2605.00080 **World Model survey** (NTU+Berkeley+Stanford, ~50-policy taxonomy, no 1st-party scores) → Physical AI ref + PDF archived. 2605.22391 **Epicure** (food embedding, unreleased + out-of-scope) → excluded. **Google Threat Intel** (5/12, first AI zero-day, PROMPTSPY/Gemini-abuse, Big Sleep/CodeMender) → Cyber ref. **0 score delta**. Resources +2 refs, seed_sources +3. v=20260528e
