@@ -2,6 +2,15 @@
   {
     "type": "Data",
     "date": "2026-05-29",
+    "benchmark_id": "Session 34 — Leaderboard sweep: SubQ (Subquadratic) new model (1 model / 1 benchmark / 4 scores)",
+    "new_model": "Periodic leaderboard/reference sweep for new models since the Opus 4.8 ingest. Cross-checked llm-stats.com release feed + artificialanalysis.ai + WhatLLM May-2026 roundup against DB. Confirmed already-tracked: Opus 4.8, Gemini 3.5 Flash, Qwen3.7 Max, Grok 4.3, GPT-5.5 Instant, ZAYA1-8B, Gemini 3.1 Flash Lite (+preview). ONE genuinely-new model: SubQ 1M-Preview (Subquadratic, Miami, out of stealth May 5 2026, $29M seed) — first frontier-scale LLM on a fully sub-quadratic sparse attention (SSA) architecture instead of a transformer, native 12M-token context, near-linear compute/memory scaling, ~52x faster attention at scale + ~1/5 frontier cost on long-context. Vendor-self-reported benchmarks (paper pending, not independently reproduced): RULER@128K 95.0% at $8 vs Opus 4.6 94.8% at ~$2,600 (~325x cheaper), MRCR v2@1M 65.9%, SWE-Bench Verified 81.8%.",
+    "new_value": "+1 model (1559->1560): subquadratic/subq-1m-preview. +1 benchmark (1225->1226): ruler_128k (RULER long-context @128K, NEW; SubQ 95.0 SOTA vs Opus 4.6 94.8). +4 scores (6416->6420): SubQ on ruler_128k/mrcr_v2_1m/swe_bench_verified + Opus 4.6 ruler_128k comparison. All SubQ scores flagged VENDOR-SELF-REPORTED in notes. Menus: Frontier Compare (SubQ added), Agent general (+ruler_128k), Resources sites (+SubQ). Cache-bust frontier-compare + agent + app.js v=20260529d. No other new scored models found — May 2026 was architecture-led not scale-led.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-05-29",
     "benchmark_id": "Session 33c — Opus 4.8 System Card completeness pass: Multimodal + Multi-Agent + OSS-Fuzz (0 models / 6 benchmarks / 21 scores)",
     "new_model": "Completeness re-pass of Claude Opus 4.8 System Card sections skipped in Session 33's first pass (re-provided links). (1) Multimodal 8.12: ChartMuseum (arxiv 2505.13444) no-tools/Python-tools — Opus 4.8 75.8/89.7 (4.7=70.3/85.9, Sonnet 4.6=59.3/80.9, Mythos=80.7/92.2). LAB-Bench FigQA — Opus 4.8 80.4/87.3 (above expert human baseline 77.0; 4.7=79.3/85.4, Mythos=82.4/89.3). CharXiv Reasoning re-graded — Opus 4.8 80.5/89.9 added to existing _no_tools/_tools IDs. (2) Multi-Agent 8.11: BrowseComp orchestrator-with-blocking-subagents 88.5 (vs single-agent 84.3, 5-agent team 85.4). (3) Cyber 3.3.4 OSS-Fuzz: Opus 4.8 any-progress 38.5% over ~830 entrypoints/228 projects (no 1.0 exploit) vs Mythos 76.7% (1.0 on 12 targets). ChartQAPro/ScreenSpot-Pro/OSWorld-Verified confirmed already-ingested in Session 33.",
     "new_value": "+0 models. +6 benchmarks (1219->1225): chartmuseum_no_tools/tools + lab_bench_figqa_no_tools/tools + browsecomp_multiagent + oss_fuzz_progress_rate. +21 scores (6395->6416), 5 on Opus 4.8 (charxiv reuses existing IDs). Menus: Cyber & Coding cyber-attack suite +oss_fuzz_progress_rate, Agent web-browse +browsecomp_multiagent. Cache-bust cyber-coding + agent + app.js v=20260529c.",

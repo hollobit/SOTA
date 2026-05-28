@@ -87,6 +87,8 @@ var FrontierCompare = {
     FRONTIER_MODELS: [
         // 2026-05-28 Anthropic Claude Opus 4.8 — new flagship (SWE-Verified 88.6, USAMO 2026 96.7, GDPval-AA 1890 ELO)
         'anthropic/claude-opus-4.8',
+        // 2026-05-05 Subquadratic SubQ 1M-Preview — first sub-quadratic frontier LLM, 12M ctx (RULER@128K 95.0, SWE-Verified 81.8, vendor-reported)
+        'subquadratic/subq-1m-preview',
         // 2026-05 default ChatGPT model (replaces GPT-5.3 Instant)
         'openai/gpt-5.5-instant',
         // 2026-05-06 Zyphra ZAYA1-8B — small MoE frontier on AMD hardware
