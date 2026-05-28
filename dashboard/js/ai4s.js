@@ -62,7 +62,7 @@ var AI4S = {
                 || id.indexOf('nvidia-clara/reasyn') === 0;
         }},
         { key: 'lab-automation', icon: '🤖', label: 'Lab Automation / Co-Sci tools', match: function(id) {
-            return /(coscientist|chemcrow|protein-design-fm)/i.test(id)
+            return /(coscientist|chemcrow|protein-design-fm|antigravity-science-skills)/i.test(id)
                 || id.indexOf('cmu/coscientist') === 0
                 || id.indexOf('argonne/protein-design') === 0;
         }},
@@ -70,15 +70,16 @@ var AI4S = {
             return /(ai-feynman)/i.test(id) && false; // already covered under cosmology-particle to keep AI-Feynman with physics; placeholder for future
         }},
         { key: 'co-scientist', icon: '🧪', label: 'Co-Scientist / Research Agent', match: function(id) {
-            return /\b(ai-co-scientist|ai-scientist|virtual-lab|paperqa|crow|owl|phoenix-chem|darwin-godel|a-lab|falcon-research|auroragpt|khanmigo|genesis-ai-co-scientist)\b/i.test(id)
+            return /\b(ai-co-scientist|ai-scientist|virtual-lab|paperqa|crow|owl|phoenix-chem|darwin-godel|a-lab|falcon-research|auroragpt|khanmigo|genesis-ai-co-scientist|scimuse)\b/i.test(id)
                 || id.indexOf('futurehouse/') === 0
                 || id.indexOf('lbnl/a-lab') === 0
                 || id.indexOf('anl/auroragpt') === 0
                 || id.indexOf('khan-academy-openai/') === 0
-                || id.indexOf('deepmind-doe/') === 0;
+                || id.indexOf('deepmind-doe/') === 0
+                || id.indexOf('mpi-light/') === 0;
         }},
         { key: 'math', icon: '📐', label: 'Math / Formal Proof', match: function(id) {
-            return /(prover|alphaproof|alphageometry|funsearch|llemma|openmath|mathfusion|reprover|lean-?star|stepprover|internlm.*math|gemini-deepthink-imo|imo-experimental|gemini-3-deep-think|goedel-prover-v2)/i.test(id);
+            return /(prover|alphaproof|alphageometry|alphaevolve|funsearch|llemma|openmath|mathfusion|reprover|lean-?star|stepprover|internlm.*math|gemini-deepthink-imo|imo-experimental|gemini-3-deep-think|goedel-prover-v2)/i.test(id);
         }},
         { key: 'chemistry', icon: '⚗️', label: 'Chemistry', match: function(id) {
             return /(chemdfm|chemberta|chemgpt|chemformer|robochem|molgen|uni-mol|mole$|recursion\/mole)/i.test(id);

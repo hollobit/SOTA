@@ -173,7 +173,9 @@ var Sovereign = {
                 'deepseek/deepseek-coder-v2', 'deepseek/deepseek-coder-v2-lite',
                 'deepseek/deepseek-math-7b', 'deepseek/deepseek-vl2', 'deepseek/janus-pro-7b',
                 // Medical specialist
-                'freedomintelligence/huatuogpt-ii'
+                'freedomintelligence/huatuogpt-ii',
+                // 2026-05-28 Session 30 — SJTU+Xinhua+Harvard DeepRare rare-disease agentic + Tsinghua+BGI PhenoBrain
+                'sjtu-xinhua-harvard/deeprare', 'tsinghua-bgi/phenobrain'
             ]
         },
         {
@@ -208,7 +210,9 @@ var Sovereign = {
                 'abeja/abeja-qwen2.5-32b-japanese',
                 // Sakana (existing + new)
                 'sakana/tinyswallow-1.5b',
-                'sakana/fugu-ultra', 'sakana/fugu-mini', 'sakana/namazu'
+                'sakana/fugu-ultra', 'sakana/fugu-mini', 'sakana/namazu',
+                // 2026-05-28 Session 30 — RIKEN PubCaseFinder (phenotype-driven rare disease HPO tool)
+                'riken/pubcasefinder'
             ]
         },
         {
@@ -368,17 +372,21 @@ var Sovereign = {
                 // Ellamind (BMWE-funded sovereign SLM)
                 'ellamind/propella-1-4b',
                 // Occiglot (DFKI + hessian.AI)
-                'occiglot/occiglot-7b-eu5'
+                'occiglot/occiglot-7b-eu5',
+                // 2026-05-28 Session 30 — Max Planck Institute for the Science of Light (SciMuse research-idea generation)
+                'mpi-light/scimuse'
             ]
         },
         {
             code: 'uk', label: 'United Kingdom', flag: '🇬🇧',
-            note: 'Stability AI (StableLM/Stable Diffusion) + Synthesia + Wayve · UK Sovereign AI Fund £500M (2025)',
+            note: 'Stability AI (StableLM/Stable Diffusion) + Synthesia + Wayve + Imperial College MMedS · UK Sovereign AI Fund £500M (2025)',
             models: [
                 'stabilityai/stablelm-2-12b', 'stabilityai/stablelm-2-1.6b',
                 'stabilityai/stable-code-3b', 'stabilityai/stable-lm-zephyr-3b',
                 'stabilityai/sd-3.5-large',
-                'synthesia/synthesia-vlm', 'wayve/lingo-2'
+                'synthesia/synthesia-vlm', 'wayve/lingo-2',
+                // 2026-05-28 Session 30 — Imperial College London MMedS-Llama 3 medical SLM
+                'icl/mmeds-llama-3'
             ]
         },
         {

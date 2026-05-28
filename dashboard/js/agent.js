@@ -116,7 +116,13 @@ var Agent = (function() {
                 'agentclinic_medqa',
                 'agentclinic_nejm',
                 'medagentbench',
-                'medagentsbench'
+                'medagentsbench',
+                // 2026-05-28 Session 30 — DeepRare rare-disease agentic system
+                'deeprare_aggregate_recall_at_1',
+                'deeprare_aggregate_recall_at_3',
+                'deeprare_physician_recall_at_1',
+                'deeprare_physician_recall_at_5',
+                'deeprare_reasoning_chain_agreement'
             ]
         },
         {
@@ -170,7 +176,9 @@ var Agent = (function() {
                 'multiagentbench_bargaining_task',
                 'multiagentbench_minecraft_task',
                 'agentbench_overall',
-                'metagpt_softwaredev_executability'
+                'metagpt_softwaredev_executability',
+                // 2026-05-28 Session 30 — AgingBench longitudinal Agent Lifespan Engineering
+                'agingbench_overall'
             ]
         },
         {
@@ -224,7 +232,12 @@ var Agent = (function() {
         'alibaba/gui-owl-1.5-8b',
         'yutori/navigator-n1',
         'holo/holo2-30b',
-        'openai/o3-som'
+        'openai/o3-som',
+        // 2026-05-28 Session 30 — Gemini for Science I/O 2026 + DeepRare rare-disease
+        'google/alphaevolve',
+        'google/antigravity-science-skills',
+        'sjtu-xinhua-harvard/deeprare',
+        'mit-mgb/mdagents'
     ];
 
     // Curated list of 9 on-device / edge SLMs for the compare panel.
@@ -283,7 +296,11 @@ var Agent = (function() {
         // 2026-05-14 — Sequential decision-making agent (Section 40)
         { id: 'agentick',             label: 'Agentick (ONS)' },
         // 2026-05-14 — MCP tool sandbox (Section 40)
-        { id: 'complexmcp',           label: 'ComplexMCP' }
+        { id: 'complexmcp',           label: 'ComplexMCP' },
+        // 2026-05-28 Session 30 — DeepRare rare-disease + AgingBench lifespan engineering
+        { id: 'deeprare_aggregate_recall_at_1', label: 'DeepRare R@1 (HPO aggregate)' },
+        { id: 'deeprare_physician_recall_at_1', label: 'DeepRare vs Physician R@1' },
+        { id: 'agingbench_overall',   label: 'AgingBench (lifespan t½)' }
     ];
 
     // Returns the flat union of every category's benchmark IDs, deduped.
