@@ -1,7 +1,12 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 32 — 4-link analysis (2 refs, 0 new scores) (2026-05-28)
-**1,556 models · 1,188 benchmarks · 6,270 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 33 — Claude Opus 4.8 System Card + AutoScientists + SkillOpt (2026-05-29)
+**1,559 models · 1,219 benchmarks · 6,395 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-05-29 Session 33 — Claude Opus 4.8 System Card + AutoScientists + SkillOpt (4 links)
+- **Claude Opus 4.8** (244pp card, 47 scores): SWE-Verified 88.6 / SWE-Pro 69.2 / USAMO 2026 96.7 (vs 4.7 69.3) / GDPval-AA 1890 ELO (+121 over GPT-5.5) / GraphWalks BFS 1M 68.1 (vs 4.7 40.3) / HealthBench Pro 55.8 / Terminal-Bench 2.1 74.6 / BioMysteryBench-Difficult 40.0 (beats Mythos 29.6). Cyber: CyberGym 78.8 / Firefox-147 8.8% / ExploitBench 5.02/16 (Mythos leads cyber). Weaker than Mythos overall
+- **AutoScientists** (Harvard 2605.28655): BioML-Bench 74.40 percentile (vs Autoresearch 66.07), ProteinGym 217-assay 0.657→0.700, ACE2-Spike +12.5%, nanochat 0.9730 bpb. **SkillOpt** (Microsoft 2605.23904): GPT-5.5 skill uplift +23.5/+24.8/+19.1 (chat/Codex/Claude Code)
+- harness-conflict benches → new IDs (cybergym_targeted_repro, firefox_147_full_exploit, terminal_bench_2_1). Menus: Frontier(Opus 4.8 top), Cyber, Agent(+11 benches), AI4S, Medical(frontier-baseline). 3 PDFs archived. **+3 models / +31 benches / +125 scores** = 1559/1219/6395. v=20260529a
 
 ### 2026-05-28 Session 32 — 4-link analysis: 2 references, 1 already-ingested, 1 out-of-scope
 - 2405.17044 **SciMuse** already in DB (Session 30). 2605.00080 **World Model survey** (NTU+Berkeley+Stanford, ~50-policy taxonomy, no 1st-party scores) → Physical AI ref + PDF archived. 2605.22391 **Epicure** (food embedding, unreleased + out-of-scope) → excluded. **Google Threat Intel** (5/12, first AI zero-day, PROMPTSPY/Gemini-abuse, Big Sleep/CodeMender) → Cyber ref. **0 score delta**. Resources +2 refs, seed_sources +3. v=20260528e
@@ -9,8 +14,8 @@
 ### 2026-05-28 Session 31 — DeepSWE (Datacurve) + AA AAII delta sweep
 - **DeepSWE** (deepswe.datacurve.ai NEW): 113 contamination-free SWE tasks × 91 repos × 5 lang. Pass@1: gpt-5.5 70 / gpt-5.4 56 / opus-4.7 54 / sonnet-4.6 32 / gemini-3.5-flash 28 / gpt-5.4-mini 24 / kimi-k2.6 24 / mimo-v2.5-pro 19 / glm-5.1 18 / gemini-3.1-pro 10 / ds-v4-pro 8 / gemini-3-flash 5. Inversion: 3.5-flash > 3.1-pro 3x. AAII fills: glm-5-turbo 47/glm-5v-turbo 43/mimo-v2.5 49/mimo-v2-omni 43/hy3-preview 42. Agent+Cyber menu +deepswe. **+1/+1/+13** = 1556/1188/6270. v=20260528d
 
-### 2026-05-28 Session 30 — DeepRare + AgingBench + SciMuse + Gemini-for-Science (compressed)
-- DeepRare HPO R@1 57.18% (vs Claude-3.7-thinking 33.39 = +23.79). Per-dataset R@1: MME 78 / LIRICAL 58 / HMS 57 / RAMEDIS 73 / MIMIC-IV-Rare 29 / MyGene2 76 / DDD 48. Multimodal HPO+gene Xinhua 69.1 vs Exomiser 55.9. Physician 163 cases: 64.4 vs 54.6; 95.4% reasoning agreement. AgingBench (UT Austin 4 mech × 7 scen × 14 models). SciMuse (Max Planck Pearson 0.51). AlphaEvolve + Antigravity-Science-Skills NEW. **+13/+18/+33** = 1555/1187/6257. v=20260528b
+### 2026-05-28 Session 30 — DeepRare + AgingBench + SciMuse + Gemini-for-Science
+- DeepRare HPO R@1 57.18% (vs Claude-3.7-thinking 33.39). Multimodal Xinhua 69.1 vs Exomiser 55.9. Physician 163 cases 64.4 vs 54.6. AgingBench (UT Austin) + SciMuse (Max Planck 0.51) + AlphaEvolve + Antigravity NEW. **+13/+18/+33**=1555/1187/6257. v=20260528b
 
 ### 2026-05-28 Session 29 — ERA + Robin + AutoSOTA per-task deep-mine
 - ERA OpenProblems BBKNN(TS) +14%, CovidHub WIS 26 vs 29. Robin dAMD $10.76/200-fold + Ripasudil 1.89x/1.75x + Crow 0% vs o4-mini 44.5% hallucinated. AutoSOTA Top-5 avg 43.55%. **+3/+20/+24**=1542/1169/6224. v=20260528a
@@ -24,8 +29,7 @@
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
 
 ### 2026-05-27 Session 25 — Anthropic Glasswing + CVD (3 refs)
-- Mythos: 6,202 high/crit OSS vulns (90.6% TPR), 65 CVE/GHSA, Mozilla Firefox 271 (10x Opus 4.6), Cloudflare 2,000/400 high-crit. CVD pipeline: 23,019→1,726 valid→1,596 disclosed (281 projects)→97 patched/88 CVE+GHSA. Notable: nginx CVE-2026-27654, Temporal CVE-2026-5199, jq CVE-2026-32316. Opus 4.7 enterprise: 2,100 vulns/3wk
-- Cybersec Skills GitHub (community 754-skill library) Resources only. **+0 models / +10 benches / +11 scores** = 1530/1132/6178. v=20260527a
+- Mythos: 6,202 high/crit OSS vulns (90.6% TPR), Firefox 271 (10x Opus 4.6), Cloudflare 2,000/400. CVD: 23,019→1,596 disclosed→97 patched/88 CVE. Cybersec Skills (754-skill lib) Resources. **+0/+10/+11**=1530/1132/6178. v=20260527a
 
 ### 2026-05-22 ~ 26 Sessions 22-24 (compressed)
 - **Session 24** (menu propagation): 6 JS files patched. Frontier +18 models, Sovereign China-CN +25 models + 12-vendor auto-mapping, Physical AI +2 (Qwen-Robot), Medical +Asa-W1 + 4 HealthBench Pro slices, Agent +10 CU agents + 6 benches, Cyber & Coding +13 safety benches. 0 DB delta. v=20260526c
@@ -33,21 +37,10 @@
 - **Session 22** (arena.ai refresh): WebDev + T2I rank 11-34. qwen3.7-max-20260517 WebDev #4. **+31 models / +48 scores**. v=20260526a
 
 ### 2026-05-23 Session 21 — arena.ai 12-leaderboard sweep
-- Live Playwright snapshot of arena.ai/leaderboard, top-10 Elo per board ingested across 12 active arenas
-- **+8 new arena bench IDs**: arena_webdev_elo / arena_document_elo / arena_image_to_webdev_elo / arena_text_to_image_elo / arena_image_edit_elo / arena_text_to_video_elo / arena_image_to_video_elo / arena_video_edit_elo
-- **+16 new models**: 5 Grok-Imagine image+video variants, 3 Kling (v3/o1/o3-pro), Wan 2.6 T2V, Runway Gen-4 Aleph, MAI-Image-2, 3 Grok-4.20 internal variants, Qwen 3.5 Max Preview, Gemini 3 Flash thinking-minimal, GPT-5.4-high
-- **Headline**: GPT-Image-2 leads text-to-image (1389) + image-edit (1467); Bytedance Dreamina Seedance 2.0 720p sweeps video (1457/1462/1379); Claude Opus 4.7 Thinking leads WebDev (1567) + Image-to-WebDev (1581); Opus 4.6 Thinking leads Document (1522). Alibaba happyhorse-1.0 ranks #2 across all 3 video boards
-- **+16 models / +8 benches / +76 scores** = 1488 / 1114 / 6084. Cache-bust app.js v=20260523a
+- 12-arena Playwright snapshot, +8 arena bench IDs (webdev/document/i2webdev/t2i/image-edit/t2v/i2v/v-edit). +16 models (Grok-Imagine, Kling v3/o1/o3, Wan 2.6, MAI-Image-2). GPT-Image-2 leads T2I 1389/edit 1467; Seedance 2.0 sweeps video; Opus 4.7 Thinking WebDev 1567. **+16/+8/+76**=1488/1114/6084. v=20260523a
 
-### 2026-05-22 Session 20 cont'd 6 — Qwen3.7-Max official model split from preview ID
-- Re-checked Qwen blog (May 20): model referenced 30x as "Qwen3.7-Max", **ZERO "preview" mentions**. Qwen3.7-Plus mentioned 0 times (Plus didn't launch)
-- First-pass ingest (commit f120612) erroneously used `qwen3.7-max-preview` ID for all 41-bench blog scores. Corrected:
-  - **alibaba/qwen3.7-max** (NEW, May 20 official): inherits 45 scores (44 blog + 1 AA)
-  - **alibaba/qwen3.7-max-preview** (May 14 arena.ai early build): retains only arena.ai text Elo 1475
-  - **alibaba/qwen3.7-plus-preview**: untouched (Plus not yet launched)
-- SQL UPDATE migrated 45 rows; source JSON files (qwen37_max_scores + qwen37_deepdive_scores) re-attributed at model_id level for CI consistency
-- Menu propagation: sovereign.js (China-CN category, RELEASE_DATES, PARAMS_BILLIONS) + frontier-compare.js FRONTIER_MODELS now include both IDs
-- **+1 model / 0 benches / 0 score delta** = 1471 / 1106 / 6008. Cache-bust sovereign.js + frontier-compare.js + app.js v=20260522a
+### 2026-05-22 Session 20 cont'd 6 — Qwen3.7-Max official split from preview ID
+- Split alibaba/qwen3.7-max (May 20 official, 45 scores) from qwen3.7-max-preview (May 14 arena, Elo 1475 only). SQL migrated 45 rows + JSON re-attributed. Menu: sovereign + frontier-compare. **+1/0/0**=1471/1106/6008. v=20260522a
 
 ### 2026-05-21 Session 20 cont'd 3-5 (compressed)
 - **cont'd 5 — Qwen3.7 table completion**: 96 cross-vendor cells fill (no PRESERVE conflict). Per-model deltas: Opus 4.6 Max +17 (168→185), K2.6 +17, GLM-5.1 +17, DS-V4-Pro Max +20, Qwen3.6-Plus +25. **+96 scores** = 6008. v=20260521f

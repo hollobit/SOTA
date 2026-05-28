@@ -22,7 +22,7 @@ var CyberCoding = {
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric'],
     AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'gaia2', 'browsecomp', 'tau_bench', 'tau2_bench', 'tau3_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'arc_agi_3', 'claw_eval'],
-    CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1'],
+    CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
@@ -66,7 +66,9 @@ var CyberCoding = {
                 // 2026-05 Autonomous Adversary (arxiv 2605.06486, NRC Canada)
                 'autoadversary_s1_autonomous_pct', 'autoadversary_s1_expert_pct',
                 // 2026-05-21 Palisade Research GPT-5 at CTFs (arxiv 2511.04860) — live CTFTime 2025 percentile
-                'asis_ctf_quals_2025_percentile', 'corctf_2025_percentile', 'snakectf_quals_2025_percentile'
+                'asis_ctf_quals_2025_percentile', 'corctf_2025_percentile', 'snakectf_quals_2025_percentile',
+                // 2026-05-28 Claude Opus 4.8 System Card cyber evals (Section 3.3)
+                'cybergym_targeted_repro', 'firefox_147_full_exploit', 'exploitbench_v2_flags'
             ]
         },
         {

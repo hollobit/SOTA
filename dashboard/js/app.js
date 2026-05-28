@@ -2045,6 +2045,9 @@ var App = {
         sitesContainer.textContent = '';
 
         var pdfDocs = [
+            { name: 'Claude Opus 4.8 System Card', file: 'claude_opus_4_8_system_card.pdf', vendor: 'Anthropic', date: 'May 2026', url: 'https://www.anthropic.com/news/claude-opus-4-8' },
+            { name: 'AutoScientists — Self-Organizing Agent Teams', file: 'autoscientists_2605.28655.pdf', vendor: 'Harvard', date: 'May 2026', url: 'https://arxiv.org/abs/2605.28655' },
+            { name: 'SkillOpt — Self-Evolving Agent Skills', file: 'skillopt_2605.23904.pdf', vendor: 'Microsoft', date: 'May 2026', url: 'https://arxiv.org/abs/2605.23904' },
             { name: 'GPT-5.5 System Card', file: 'GPT-5-5-System-Card.pdf', vendor: 'OpenAI', date: 'Apr 2026', url: 'https://deploymentsafety.openai.com/gpt-5-5/introduction' },
             { name: 'DeepSeek V4-Pro Technical Report', file: 'DeepSeek-V4-Pro-Technical-Report.pdf', vendor: 'DeepSeek', date: 'Apr 2026', url: 'https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro' },
             { name: 'MedGemma Technical Report', file: 'MedGemma-Technical-Report-2507.05201.pdf', vendor: 'Google', date: 'Jul 2025', url: 'https://arxiv.org/abs/2507.05201' },

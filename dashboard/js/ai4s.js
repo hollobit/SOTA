@@ -70,13 +70,14 @@ var AI4S = {
             return /(ai-feynman)/i.test(id) && false; // already covered under cosmology-particle to keep AI-Feynman with physics; placeholder for future
         }},
         { key: 'co-scientist', icon: '🧪', label: 'Co-Scientist / Research Agent', match: function(id) {
-            return /\b(ai-co-scientist|ai-scientist|virtual-lab|paperqa|crow|owl|phoenix-chem|darwin-godel|a-lab|falcon-research|auroragpt|khanmigo|genesis-ai-co-scientist|scimuse)\b/i.test(id)
+            return /\b(ai-co-scientist|ai-scientist|autoscientists|virtual-lab|paperqa|crow|owl|phoenix-chem|darwin-godel|a-lab|falcon-research|auroragpt|khanmigo|genesis-ai-co-scientist|scimuse)\b/i.test(id)
                 || id.indexOf('futurehouse/') === 0
                 || id.indexOf('lbnl/a-lab') === 0
                 || id.indexOf('anl/auroragpt') === 0
                 || id.indexOf('khan-academy-openai/') === 0
                 || id.indexOf('deepmind-doe/') === 0
-                || id.indexOf('mpi-light/') === 0;
+                || id.indexOf('mpi-light/') === 0
+                || id.indexOf('harvard/autoscientists') === 0;
         }},
         { key: 'math', icon: '📐', label: 'Math / Formal Proof', match: function(id) {
             return /(prover|alphaproof|alphageometry|alphaevolve|funsearch|llemma|openmath|mathfusion|reprover|lean-?star|stepprover|internlm.*math|gemini-deepthink-imo|imo-experimental|gemini-3-deep-think|goedel-prover-v2)/i.test(id);
