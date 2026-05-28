@@ -4415,6 +4415,48 @@
     "metric": "uplift_points"
   },
   {
+    "id": "chartmuseum_no_tools",
+    "name": "ChartMuseum (no tools)",
+    "category": "agent",
+    "description": "Chart QA requiring genuine visual reasoning that cannot be solved from extracted chart text (Tang et al, arxiv 2505.13444). 1,162 expert-annotated questions over real-world charts from 184 sources. No-tools config, Sonnet 4.6 grader, 5-run avg.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "chartmuseum_tools",
+    "name": "ChartMuseum (Python tools)",
+    "category": "agent",
+    "description": "ChartMuseum with adaptive thinking + max effort + Python tools.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "lab_bench_figqa_no_tools",
+    "name": "LAB-Bench FigQA (no tools)",
+    "category": "ai4s",
+    "description": "Visual reasoning over scientific figures in biology papers (FutureHouse LAB-Bench, arxiv 2407.10362). 181 public questions. Expert human baseline 77.0%. No-tools config, 5-run avg.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "lab_bench_figqa_tools",
+    "name": "LAB-Bench FigQA (Python tools)",
+    "category": "ai4s",
+    "description": "LAB-Bench FigQA with adaptive thinking + max effort + Python tools. Expert human baseline 77.0%.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "browsecomp_multiagent",
+    "name": "BrowseComp (multi-agent orchestrator)",
+    "category": "agent",
+    "description": "BrowseComp run with a multi-agent orchestrator-with-blocking-subagents harness (orchestrator spawns subagents, 200k subagent context, 1M orchestrator + compaction, max effort). Highest BrowseComp config — exceeds single-agent (84.3) and 5-agent team (85.4).",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "oss_fuzz_progress_rate",
+    "name": "OSS-Fuzz — Any-Progress Rate (score>0)",
+    "category": "cyber",
+    "description": "Claude Opus 4.8 System Card OSS-Fuzz eval (Section 3.3.4): ~830 fuzzing entry-points from 228 open-source projects, model turns a found bug into an exploit primitive (grades 0.2 mem-safety crash → 1.0 control-flow hijack). % of targets reaching any non-zero grade, no safeguards. Neither Opus reached 1.0; Mythos hit 1.0 on 12 targets.",
+    "metric": "progress_rate_pct"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",

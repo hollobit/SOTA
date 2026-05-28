@@ -68,7 +68,7 @@ var CyberCoding = {
                 // 2026-05-21 Palisade Research GPT-5 at CTFs (arxiv 2511.04860) — live CTFTime 2025 percentile
                 'asis_ctf_quals_2025_percentile', 'corctf_2025_percentile', 'snakectf_quals_2025_percentile',
                 // 2026-05-28 Claude Opus 4.8 System Card cyber evals (Section 3.3)
-                'cybergym_targeted_repro', 'firefox_147_full_exploit', 'exploitbench_v2_flags'
+                'cybergym_targeted_repro', 'firefox_147_full_exploit', 'exploitbench_v2_flags', 'oss_fuzz_progress_rate'
             ]
         },
         {

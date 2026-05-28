@@ -43,6 +43,7 @@ var Agent = (function() {
             label: 'Web & Browsing',
             benchmarks: [
                 'browsecomp',
+                'browsecomp_multiagent',
                 'browsecomp_plus',
                 'browsecomp_agent_swarm',
                 'gaia',
