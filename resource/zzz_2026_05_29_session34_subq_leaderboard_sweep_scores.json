@@ -1,0 +1,27 @@
+{
+  "_meta": {
+    "date": "2026-05-29",
+    "title": "Session 34 — Leaderboard sweep: SubQ (Subquadratic) new model",
+    "context": "Periodic reference-link + leaderboard sweep for new models since the Opus 4.8 ingest. Cross-checked llm-stats.com release feed, artificialanalysis.ai, and WhatLLM May-2026 roundup against DB. Result: nearly all May-2026 launches already tracked (Opus 4.8, Gemini 3.5 Flash, Qwen3.7 Max, Grok 4.3, GPT-5.5 Instant, ZAYA1-8B, Gemini 3.1 Flash Lite). ONE genuinely-new model: SubQ 1M-Preview (Subquadratic, Miami startup, emerged from stealth May 5 2026, $29M seed). First frontier-scale LLM on a fully sub-quadratic sparse attention (SSA) architecture instead of a transformer — native 12M-token context, near-linear compute/memory scaling, vendor claims ~52x faster attention at scale + ~1/5 frontier cost on long-context. Vendor-published benchmark scores: RULER@128K 95.0% (vs Opus 4.6 94.8% at ~325x lower cost: $8 vs ~$2,600), MRCR v2@1M 65.9%, SWE-Bench Verified 81.8%.",
+    "sources": [
+      "https://siliconangle.com/2026/05/05/subquadratic-launches-29m-bring-12m-token-context-windows-ai/",
+      "https://thenewstack.io/subquadratic-12-million-context-window/",
+      "https://www.datacamp.com/blog/subq-ai-explained",
+      "https://llm-stats.com/llm-updates"
+    ],
+    "rule": "STRICT-ATTRIBUTION with CAVEAT. SubQ scores are VENDOR-SELF-REPORTED (Subquadratic launch materials) — no peer-reviewed paper yet ('paper coming soon'), not independently reproduced, narrow eval scope. Each score has model+benchmark+value from the vendor as primary source, so admitted, but every note flags the unverified status. RULER 128K cited as 95.0 (some secondary sources say 97/97.1; 95.0 chosen as the value tied to the vendor's $8-vs-$2,600 cost comparison). Other May-2026 launches confirmed already in DB — no other new scored models found."
+  },
+  "models": [
+    {"id": "subquadratic/subq-1m-preview", "name": "SubQ 1M-Preview", "vendor": "Subquadratic", "modalities": ["text"], "release_date": "2026-05-05", "_note": "First frontier-scale LLM on a fully sub-quadratic sparse attention (SSA) architecture — content-dependent sparse routing computes exact attention only on relevant tokens, near-linear scaling. Native 12M-token context window. Miami startup, out of stealth May 5 2026 with $29M seed. Vendor claims ~52x faster attention at scale + ~1/5 frontier cost on long-context workloads. NO peer-reviewed paper yet (pending) — all scores vendor-self-reported, not independently reproduced."}
+  ],
+  "benchmarks": [
+    {"id": "ruler_128k", "name": "RULER @ 128K", "category": "agent", "description": "RULER long-context retrieval/reasoning benchmark at 128K context. Synthetic needle-in-haystack + multi-hop variable tracking + aggregation across a 128K window. Higher=better accuracy.", "metric": "accuracy_pct", "leaderboard": "https://www.datacamp.com/blog/subq-ai-explained"}
+  ],
+  "scores": [
+    {"_section": "=== SubQ 1M-Preview — vendor-self-reported (paper pending, not independently verified) ===",
+     "model": "subquadratic/subq-1m-preview", "benchmark": "ruler_128k", "score": 95.0, "unit": "%", "_source": "https://www.datacamp.com/blog/subq-ai-explained", "_note": "VENDOR-REPORTED. RULER@128K 95.0% at $8 total vs Claude Opus 4.6 94.8% at ~$2,600 (~325x cheaper) — the long-context cost-efficiency headline. Not independently reproduced; paper pending. Secondary sources also cite 97/97.1."},
+    {"model": "anthropic/claude-opus-4.6", "benchmark": "ruler_128k", "score": 94.8, "unit": "%", "_source": "https://www.datacamp.com/blog/subq-ai-explained", "_note": "Comparison point cited in SubQ launch materials — Opus 4.6 RULER@128K 94.8% at ~$2,600 cost. Vendor-stated comparison."},
+    {"model": "subquadratic/subq-1m-preview", "benchmark": "mrcr_v2_1m", "score": 65.9, "unit": "%", "_source": "https://www.datacamp.com/blog/subq-ai-explained", "_note": "VENDOR-REPORTED. MRCR v2 multi-round coreference resolution at 1M-token context. Demonstrates retention across the full 12M-capable window. Not independently verified."},
+    {"model": "subquadratic/subq-1m-preview", "benchmark": "swe_bench_verified", "score": 81.8, "unit": "%", "_source": "https://www.datacamp.com/blog/subq-ai-explained", "_note": "VENDOR-REPORTED. SWE-Bench Verified 81.8% — shows the subquadratic architecture is competitive on agentic coding, not only long-context retrieval. Not independently reproduced; paper pending."}
+  ]
+}

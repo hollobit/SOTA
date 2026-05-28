@@ -1,7 +1,10 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 33 — Claude Opus 4.8 System Card + AutoScientists + SkillOpt (2026-05-29)
-**1,559 models · 1,219 benchmarks · 6,395 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 34 — Leaderboard sweep: SubQ new model (2026-05-29)
+**1,560 models · 1,226 benchmarks · 6,420 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-05-29 Session 34 — Leaderboard sweep (new models)
+- Swept llm-stats + AA + WhatLLM. All May-2026 launches already tracked except **SubQ 1M-Preview** (Subquadratic, May 5) — first sub-quadratic frontier LLM (SSA, 12M ctx). Vendor-reported (paper pending): RULER@128K 95.0 ($8 vs Opus 4.6 94.8 @ ~$2,600 = 325x cheaper) / MRCR v2@1M 65.9 / SWE-Verified 81.8. ruler_128k NEW bench (SubQ SOTA). Menus: Frontier+Agent+Resources. **+1/+1/+4**=1560/1226/6420. v=20260529d
 
 ### 2026-05-29 Session 33 — Claude Opus 4.8 System Card + AutoScientists + SkillOpt (4 links)
 - **Claude Opus 4.8** (244pp card, 47 scores): SWE-Verified 88.6 / SWE-Pro 69.2 / USAMO 2026 96.7 (vs 4.7 69.3) / GDPval-AA 1890 ELO (+121 over GPT-5.5) / GraphWalks BFS 1M 68.1 (vs 4.7 40.3) / HealthBench Pro 55.8 / Terminal-Bench 2.1 74.6 / BioMysteryBench-Difficult 40.0 (beats Mythos 29.6). Cyber: CyberGym 78.8 / Firefox-147 8.8% / ExploitBench 5.02/16 (Mythos leads cyber). Weaker than Mythos overall

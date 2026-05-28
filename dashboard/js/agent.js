@@ -184,7 +184,9 @@ var Agent = (function() {
                 'agingbench_overall',
                 // 2026-05-28 Session 33 — Claude Opus 4.8 System Card agentic + long-context + research benches
                 'terminal_bench_2_1', 'hle_with_tools', 'usamo_2026', 'arxivmath', 'draco', 'automation_bench', 'officeqa',
-                'graphwalks_bfs_256k', 'graphwalks_parents_256k', 'graphwalks_bfs_1m', 'graphwalks_parents_1m'
+                'graphwalks_bfs_256k', 'graphwalks_parents_256k', 'graphwalks_bfs_1m', 'graphwalks_parents_1m',
+                // 2026-05-29 Session 34 — SubQ long-context (RULER@128K)
+                'ruler_128k'
             ]
         },
         {
