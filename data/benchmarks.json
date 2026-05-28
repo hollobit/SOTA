@@ -3337,13 +3337,6 @@
     "metric": "elo"
   },
   {
-    "id": "terminal_bench_2_1",
-    "name": "Terminal-Bench 2.1",
-    "category": "coding",
-    "description": "Terminal-Bench 2.1 — agentic terminal coding benchmark, version 2.1 (revised task set vs v2.0). Gemini 3.1 Pro scores 68.5 on v2.0 vs 70.3 on v2.1, confirming v2.0/v2.1 are non-overlapping splits.",
-    "metric": "accuracy"
-  },
-  {
     "id": "finance_agent_v2",
     "name": "Finance Agent Benchmark v2",
     "category": "agent",
@@ -4196,6 +4189,230 @@
     "category": "coding",
     "description": "DeepSWE leaderboard headline metric — Pass@1 resolve rate ± 95% CI on 113 hand-crafted long-horizon software-engineering tasks across 91 repositories × 5 languages. Contamination-free (no model encountered solutions during pretraining). Each task evaluated across ~64 trials = 7,232 trials total dataset.",
     "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "terminal_bench_2_1",
+    "name": "Terminal-Bench 2.1",
+    "category": "agent",
+    "description": "Terminal-Bench 2.1 (Merrill et al, arxiv 2601.11868) — agentic tasks in terminal/CLI environments. Run on Harbor/Daytona via Terminus-2 harness, 89 unique tasks × 5 attempts = 445 trials, mean reward.",
+    "metric": "mean_reward_pct"
+  },
+  {
+    "id": "hle_with_tools",
+    "name": "Humanity's Last Exam (with tools)",
+    "category": "agent",
+    "description": "HLE (Phan et al, 2,500 questions) with web search + web fetch + programmatic tool calling + code execution. Distinct from no-tools HLE. Blocklist applied to prevent contamination.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "usamo_2026",
+    "name": "USAMO 2026",
+    "category": "agent",
+    "description": "USA Mathematical Olympiad 2026 (6-problem proof-based, held Mar 21-22 2026 — post-Opus-4.8 training cutoff, contamination-free). MathArena grading: proofs rewritten by neutral model + judged by 3-model panel, final score = minimum judge.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "arxivmath",
+    "name": "ArxivMath (MathArena)",
+    "category": "agent",
+    "description": "Final-answer benchmark of research-level math maintained by MathArena. Problems extracted monthly from arXiv abstracts, filtered for self-contained/non-trivial/verifiable. Mar+Apr 2026 releases (71 problems), chosen to avoid Opus 4.8 contamination.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "graphwalks_bfs_256k",
+    "name": "GraphWalks BFS 256K",
+    "category": "agent",
+    "description": "Multi-hop long-context reasoning — context filled with directed graph of hex-hash nodes, model performs breadth-first search. 256K subset, F1, avg 5 trials.",
+    "metric": "f1_pct"
+  },
+  {
+    "id": "graphwalks_parents_256k",
+    "name": "GraphWalks Parents 256K",
+    "category": "agent",
+    "description": "GraphWalks parent-node identification, 256K subset, F1, avg 5 trials.",
+    "metric": "f1_pct"
+  },
+  {
+    "id": "graphwalks_bfs_1m",
+    "name": "GraphWalks BFS 1M",
+    "category": "agent",
+    "description": "GraphWalks BFS, 1M-token subset (exceeds public API limit — not reproducible via API). F1, avg 5 trials.",
+    "metric": "f1_pct"
+  },
+  {
+    "id": "graphwalks_parents_1m",
+    "name": "GraphWalks Parents 1M",
+    "category": "agent",
+    "description": "GraphWalks parent-node identification, 1M-token subset. F1, avg 5 trials.",
+    "metric": "f1_pct"
+  },
+  {
+    "id": "officeqa",
+    "name": "OfficeQA (full set)",
+    "category": "agent",
+    "description": "Databricks benchmark — end-to-end grounded reasoning over US Treasury Bulletin documents; locate tables across corpus + precise numerical reasoning. Anthropic internal agentic harness (extracted text + code-execution tools), exact-match. Harness-sensitive — not externally comparable.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "automation_bench",
+    "name": "AutomationBench (Zapier)",
+    "category": "agent",
+    "description": "Zapier benchmark (Shepard & Salimans, arxiv 2604.18934) — end-to-end business workflow across 47 apps. Agent discovers REST endpoints via search, makes dozens of interdependent API calls, obeys policy docs, sidesteps distractors. Private held-out leaderboard, pass/fail.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "gmmlu",
+    "name": "Global MMLU (GMMLU)",
+    "category": "sovereign",
+    "description": "Cohere Labs Global MMLU (Singh et al, arxiv 2412.03304) — MMLU across 42 languages (high-resource French/German to low-resource Yoruba/Igbo/Chichewa). Average accuracy across all languages.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "milu",
+    "name": "MILU (Indic)",
+    "category": "sovereign",
+    "description": "AI4Bharat Multi-task Indic Language Understanding (Verma et al, arxiv 2411.02538) — 10 Indic languages + English, culturally-grounded comprehension. Average accuracy.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "draco",
+    "name": "DRACO (Perplexity)",
+    "category": "agent",
+    "description": "Deep Research Accuracy/Completeness/Objectivity (Zhong et al, arxiv 2602.11685) — 100 curated deep-research tasks from real user queries, 4 rubric categories. Opus 4.6 judge, 5 grading runs, normalized score.",
+    "metric": "score_pct"
+  },
+  {
+    "id": "cybergym_targeted_repro",
+    "name": "CyberGym Targeted Vuln Reproduction (no safeguards)",
+    "category": "cyber",
+    "description": "CyberGym pass@1 targeted vulnerability reproduction over 1,507 tasks, safeguards OFF. Distinct ID from generic cybergym (different harness/methodology). Tier-3 safeguards collapse Opus 4.8 to 1.0%, Opus 4.7 to 7.1%.",
+    "metric": "pass_at_1_pct"
+  },
+  {
+    "id": "firefox_147_full_exploit",
+    "name": "Firefox 147 JS Shell — Full Working Exploit Rate",
+    "category": "cyber",
+    "description": "Anthropic+Mozilla Firefox 147 exploit eval (50 crash categories, 250 trials). Fraction of trials achieving a full working exploit (grade 1.0). Safeguards-on yields 0 for all. Distinct from generic firefox_147 ID.",
+    "metric": "exploit_rate_pct"
+  },
+  {
+    "id": "exploitbench_v2_flags",
+    "name": "ExploitBench v2 — Capability Flags (plain, /16)",
+    "category": "cyber",
+    "description": "ExploitBench: write end-to-end exploits for 41 patched V8 JS/WASM vulns. Mean capability flags (max 16) across 3 trials, 'plain' variant (no AutoNudge), 300-turn budget. Tier-3 safeguards drop Opus 4.8 to 0.46 (-91%).",
+    "metric": "flags_count"
+  },
+  {
+    "id": "biomysterybench_solvable",
+    "name": "BioMysteryBench Verified (Human Solvable)",
+    "category": "ai4s",
+    "description": "Difficult analytical challenges interleaving computational analysis + biological reasoning (identify knocked-out gene from transcriptomics, determine infecting virus). Human Solvable subset.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "biomysterybench_difficult",
+    "name": "BioMysteryBench Verified (Human Difficult)",
+    "category": "ai4s",
+    "description": "BioMysteryBench Human Difficult subset — unsolved by humans but with objective ground-truth.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "latchbio_spatialbench",
+    "name": "LatchBio SpatialBench",
+    "category": "ai4s",
+    "description": "LatchBio spatial transcriptomics analysis — gene expression mapped to tissue-slice locations, answer biological questions from results.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "latchbio_singlecellbench",
+    "name": "LatchBio SingleCellBench",
+    "category": "ai4s",
+    "description": "LatchBio single-cell RNA-seq analysis — cell-type labeling, differential expression, batch correction.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "structural_biology_openended",
+    "name": "Structural Biology (open-ended)",
+    "category": "ai4s",
+    "description": "Anthropic eval — understand biomolecular structure-function relationship; given structural data + basic tools, answer open-ended function questions.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "proteingym_hard",
+    "name": "ProteinGym Hard",
+    "category": "ai4s",
+    "description": "Predict how mutations affect protein function by ranking mutant sequences vs wild type. Rank correlation against real lab measurements from published ProteinGym (hard subset).",
+    "metric": "correlation_pct"
+  },
+  {
+    "id": "organic_chemistry_eval",
+    "name": "Organic Chemistry (Anthropic)",
+    "category": "ai4s",
+    "description": "Fundamental chemistry — predict structures from spectroscopy, design multi-step synthetic routes, predict reaction products, convert IUPAC/SMILES/structure images.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "protocol_troubleshooting",
+    "name": "Protocol Troubleshooting",
+    "category": "ai4s",
+    "description": "Detect+fix errors in molecular biology protocols, using web search for protocol details. Bash + web-search tools.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "labbench2_patent",
+    "name": "LAB-Bench 2 (patent questions)",
+    "category": "ai4s",
+    "description": "LAB-Bench 2 (Laurent et al, arxiv 2604.09554) — biology research from live web evidence. Patent-question subset.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "labbench2_clinical_trial",
+    "name": "LAB-Bench 2 (clinical-trial questions)",
+    "category": "ai4s",
+    "description": "LAB-Bench 2 clinical-trial-question subset.",
+    "metric": "accuracy_pct"
+  },
+  {
+    "id": "bioml_bench",
+    "name": "BioML-Bench",
+    "category": "ai4s",
+    "description": "Biomedical ML agent benchmark (24 tasks: imaging, protein engineering, single-cell omics, drug discovery). Mean leaderboard percentile across tasks under matched compute.",
+    "metric": "percentile"
+  },
+  {
+    "id": "proteingym_substitution_spearman",
+    "name": "ProteinGym Substitution (217-assay Spearman)",
+    "category": "ai4s",
+    "description": "ProteinGym supervised substitution benchmark — average Spearman correlation across all 217 assays predicting mutation fitness effects.",
+    "metric": "spearman"
+  },
+  {
+    "id": "gpt_nanochat_bpb",
+    "name": "GPT nanochat — Validation BPB (lower=better)",
+    "category": "ai4s",
+    "description": "GPT nanochat LM training optimization — validation bits-per-byte reached by an agent-discovered training recipe. Lower is better.",
+    "metric": "bits_per_byte"
+  },
+  {
+    "id": "skillopt_uplift_gpt55_directchat",
+    "name": "SkillOpt Skill Uplift — GPT-5.5 Direct Chat",
+    "category": "agent",
+    "description": "Average accuracy improvement (percentage points) over no-skill baseline that SkillOpt-optimized skills give GPT-5.5 in direct-chat harness, across 6 benchmarks.",
+    "metric": "uplift_points"
+  },
+  {
+    "id": "skillopt_uplift_gpt55_codex",
+    "name": "SkillOpt Skill Uplift — GPT-5.5 Codex Loop",
+    "category": "agent",
+    "description": "Average no-skill-baseline uplift (points) SkillOpt gives GPT-5.5 inside the Codex agentic loop.",
+    "metric": "uplift_points"
+  },
+  {
+    "id": "skillopt_uplift_gpt55_claudecode",
+    "name": "SkillOpt Skill Uplift — GPT-5.5 Claude Code",
+    "category": "agent",
+    "description": "Average no-skill-baseline uplift (points) SkillOpt gives GPT-5.5 inside Claude Code.",
+    "metric": "uplift_points"
   },
   {
     "id": "arc_agi_3",

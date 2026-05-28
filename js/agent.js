@@ -180,7 +180,10 @@ var Agent = (function() {
                 'agentbench_overall',
                 'metagpt_softwaredev_executability',
                 // 2026-05-28 Session 30 — AgingBench longitudinal Agent Lifespan Engineering
-                'agingbench_overall'
+                'agingbench_overall',
+                // 2026-05-28 Session 33 — Claude Opus 4.8 System Card agentic + long-context + research benches
+                'terminal_bench_2_1', 'hle_with_tools', 'usamo_2026', 'arxivmath', 'draco', 'automation_bench', 'officeqa',
+                'graphwalks_bfs_256k', 'graphwalks_parents_256k', 'graphwalks_bfs_1m', 'graphwalks_parents_1m'
             ]
         },
         {
@@ -239,7 +242,10 @@ var Agent = (function() {
         'google/alphaevolve',
         'google/antigravity-science-skills',
         'sjtu-xinhua-harvard/deeprare',
-        'mit-mgb/mdagents'
+        'mit-mgb/mdagents',
+        // 2026-05-29 Session 33 — Harvard AutoScientists (self-organizing science) + Microsoft SkillOpt (skill optimizer)
+        'harvard/autoscientists',
+        'microsoft/skillopt'
     ];
 
     // Curated list of 9 on-device / edge SLMs for the compare panel.
@@ -304,7 +310,12 @@ var Agent = (function() {
         { id: 'deeprare_physician_recall_at_1', label: 'DeepRare vs Physician R@1' },
         { id: 'agingbench_overall',   label: 'AgingBench (lifespan t½)' },
         // 2026-05-28 Session 31 — Datacurve DeepSWE contamination-free SWE bench
-        { id: 'deepswe_pass_at_1',    label: 'DeepSWE Pass@1 (Datacurve)' }
+        { id: 'deepswe_pass_at_1',    label: 'DeepSWE Pass@1 (Datacurve)' },
+        // 2026-05-28 Session 33 — Claude Opus 4.8 System Card benches
+        { id: 'terminal_bench_2_1',   label: 'Terminal-Bench 2.1' },
+        { id: 'hle_with_tools',       label: 'HLE (with tools)' },
+        { id: 'usamo_2026',           label: 'USAMO 2026' },
+        { id: 'graphwalks_bfs_1m',    label: 'GraphWalks BFS 1M' }
     ];
 
     // Returns the flat union of every category's benchmark IDs, deduped.

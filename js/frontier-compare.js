@@ -85,6 +85,8 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-05-28 Anthropic Claude Opus 4.8 — new flagship (SWE-Verified 88.6, USAMO 2026 96.7, GDPval-AA 1890 ELO)
+        'anthropic/claude-opus-4.8',
         // 2026-05 default ChatGPT model (replaces GPT-5.3 Instant)
         'openai/gpt-5.5-instant',
         // 2026-05-06 Zyphra ZAYA1-8B — small MoE frontier on AMD hardware
@@ -255,7 +257,11 @@ var FrontierCompare = {
         'anthropic/claude-3.7-sonnet-thinking',
         'deepseek/deepseek-r1-search',
         'google/alphaevolve',
-        'google/antigravity-science-skills'
+        'google/antigravity-science-skills',
+
+        // 2026-05-29 Session 33 — Harvard AutoScientists + Microsoft SkillOpt agent systems
+        'harvard/autoscientists',
+        'microsoft/skillopt'
     ],
 
     _models: [],
