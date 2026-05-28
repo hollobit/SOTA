@@ -1,7 +1,7 @@
 /* Consumes design tokens from css/tokens.css */
 
 .tab-btn {
-    padding: 0.875rem 1.25rem;   /* >=44px tall per WCAG 2.5.5 */
+    padding: 0.5rem 0.625rem;    /* tighter horizontal — vertical floor via min-height */
     color: var(--color-text-muted);
     border-bottom: 2px solid transparent;
     transition: color 0.2s, border-color 0.2s;
@@ -10,10 +10,11 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    font-size: 0.9rem;
+    font-size: 0.8125rem;        /* 13px — slightly tighter than 14.4px */
+    letter-spacing: -0.005em;
     white-space: nowrap;         /* prevent wrapping in horizontal-scroll tab strip */
     flex: 0 0 auto;
-    min-height: 44px;            /* explicit floor for WCAG touch target */
+    min-height: 44px;            /* explicit floor for WCAG 2.5.5 touch target */
 }
 .tab-btn:focus { outline: none; }
 .tab-btn:focus-visible {
