@@ -1,22 +1,22 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 31 — DeepSWE (Datacurve) + AA AAII sweep (2026-05-28)
+## Current Status: Session 32 — 4-link analysis (2 refs, 0 new scores) (2026-05-28)
 **1,556 models · 1,188 benchmarks · 6,270 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
+### 2026-05-28 Session 32 — 4-link analysis: 2 references, 1 already-ingested, 1 out-of-scope
+- 2405.17044 **SciMuse** already in DB (Session 30). 2605.00080 **World Model survey** (NTU+Berkeley+Stanford, ~50-policy taxonomy, no 1st-party scores) → Physical AI ref + PDF archived. 2605.22391 **Epicure** (food embedding, unreleased + out-of-scope) → excluded. **Google Threat Intel** (5/12, first AI zero-day, PROMPTSPY/Gemini-abuse, Big Sleep/CodeMender) → Cyber ref. **0 score delta**. Resources +2 refs, seed_sources +3. v=20260528e
+
 ### 2026-05-28 Session 31 — DeepSWE (Datacurve) + AA AAII delta sweep
-- **DeepSWE** (deepswe.datacurve.ai, NEW): 113 contamination-free SWE tasks × 91 repos × 5 lang × 7,232 trials. Pass@1±CI. Leaderboard: gpt-5.5[xhigh] 70±4% / gpt-5.4[xhigh] 56 / opus-4.7[max] 54 / sonnet-4.6[high] 32 / gemini-3.5-flash 28 / gpt-5.4-mini 24 / kimi-k2.6 24 / mimo-v2.5-pro 19 / glm-5.1 18 / gemini-3.1-pro 10 / deepseek-v4-pro 8 / gemini-3-flash 5. Notable inversions: gemini-3.5-flash > 3.1-pro (3x), DS-V4-Pro 8% exposes coding gap on hand-crafted tasks
-- AAII fills: glm-5-turbo 47, glm-5v-turbo 43, mimo-v2.5 49, mimo-v2-omni 43, hunyuan-hy3-preview 42
-- Agent menu: +deepswe_pass_at_1 to coding CATEGORY + COMPARE dropdown. Cyber & Coding: +deepswe_pass_at_1 to CODING_BENCHMARKS + coding-se suite. **+1 model / +1 bench / +13 scores** = 1556/1188/6270. v=20260528d
+- **DeepSWE** (deepswe.datacurve.ai NEW): 113 contamination-free SWE tasks × 91 repos × 5 lang. Pass@1: gpt-5.5 70 / gpt-5.4 56 / opus-4.7 54 / sonnet-4.6 32 / gemini-3.5-flash 28 / gpt-5.4-mini 24 / kimi-k2.6 24 / mimo-v2.5-pro 19 / glm-5.1 18 / gemini-3.1-pro 10 / ds-v4-pro 8 / gemini-3-flash 5. Inversion: 3.5-flash > 3.1-pro 3x. AAII fills: glm-5-turbo 47/glm-5v-turbo 43/mimo-v2.5 49/mimo-v2-omni 43/hy3-preview 42. Agent+Cyber menu +deepswe. **+1/+1/+13** = 1556/1188/6270. v=20260528d
 
 ### 2026-05-28 Session 30 — DeepRare + AgingBench + SciMuse + Gemini-for-Science (compressed)
 - DeepRare HPO R@1 57.18% (vs Claude-3.7-thinking 33.39 = +23.79). Per-dataset R@1: MME 78 / LIRICAL 58 / HMS 57 / RAMEDIS 73 / MIMIC-IV-Rare 29 / MyGene2 76 / DDD 48. Multimodal HPO+gene Xinhua 69.1 vs Exomiser 55.9. Physician 163 cases: 64.4 vs 54.6; 95.4% reasoning agreement. AgingBench (UT Austin 4 mech × 7 scen × 14 models). SciMuse (Max Planck Pearson 0.51). AlphaEvolve + Antigravity-Science-Skills NEW. **+13/+18/+33** = 1555/1187/6257. v=20260528b
 
 ### 2026-05-28 Session 29 — ERA + Robin + AutoSOTA per-task deep-mine
-- ERA OpenProblems BBKNN(TS) +14%, 40/87 beat all-published, CovidHub WIS 26 vs Ensemble 29. Robin dAMD $10.76/200-fold + Ripasudil 1.89x/1.75x phagocytosis + Crow 0% vs o4-mini 44.5% hallucinated refs. AutoSOTA Table 1 Top-5 avg 43.55%. **+3/+20/+24** = 1542/1169/6224. v=20260528a
+- ERA OpenProblems BBKNN(TS) +14%, CovidHub WIS 26 vs 29. Robin dAMD $10.76/200-fold + Ripasudil 1.89x/1.75x + Crow 0% vs o4-mini 44.5% hallucinated. AutoSOTA Top-5 avg 43.55%. **+3/+20/+24**=1542/1169/6224. v=20260528a
 
 ### 2026-05-27 Sessions 27-28 — SensorFM + 5-PDF deep-mine (compressed)
-- **27 SensorFM** (arxiv 2605.22759): 4 sizes (XXS/XS/S/B 100K-100M) pretrained on 1T+ min from 5M participants. SensorFM-B wins 33/35 tasks; gen lifts 74.8/83.7/38.8/39.6%; 60-min ablation 99.7/99.9/99.2%. **+5/+10/+15** = 1536/1140/6191. v=20260527b
-- **28 MDASH + AutoSOTA + 3 Nature**: MDASH 4 NEW Windows kernel metrics (StorageDrive 100%, clfs.sys 96%, tcpip.sys 100%, 16 new netstack vulns). AutoSOTA NEW (8 agents, 105 papers, max 63.64% ID 70). Co-Scientist Google (15 goals, 3 biomed). ERA NEW (Google DeepMind LLM+TreeSearch). FutureHouse Multi-Agent NEW. **+3/+9/+9** = 1539/1149/6200. v=20260527c
+- **27 SensorFM** (2605.22759): 4 sizes pretrained 1T+ min/5M ppl. SensorFM-B wins 33/35. **+5/+10/+15**=1536/1140/6191. v=20260527b. **28 MDASH+AutoSOTA+3 Nature**: MDASH Windows kernel (StorageDrive 100%/clfs 96%/tcpip 100%/16 netstack vulns). AutoSOTA (8 agents/105 papers/max 63.64%). Co-Scientist + ERA + FutureHouse NEW. **+3/+9/+9**=1539/1149/6200. v=20260527c
 
 ### 2026-05-27 Session 26 — Multi-task maintenance + Image/Video Gen tabs (A-F batch, compressed)
 - Scout +mai-image-2.5-preview T2I #3 1254 Elo, +hidream-o1 1189. DB: 3 Mythos dup IDs merged. Node 20→24 on 3 workflows. HISTORY +5 sections. **Image Gen + Video Gen 신규 탭** 14→16 (data-driven 7 arena boards). **+1/-2/-2** = 1531/1130/6176. v=20260527a

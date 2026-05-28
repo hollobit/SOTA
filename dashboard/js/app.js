@@ -2102,7 +2102,8 @@ var App = {
             { name: 'ChemFM — 3B Chemistry FM (Nature Comm. Chem.)', file: 'chemfm-nature-comm-chem.pdf', vendor: 'UC San Diego', date: 'May 2025', url: 'https://www.nature.com/articles/s42004-025-01793-8' },
             { name: 'TamGen — Target-Aware Molecule Generation (Nature Comm.)', file: 'tamgen-nature-comm.pdf', vendor: 'Microsoft Research Asia', date: 'Oct 2024', url: 'https://www.nature.com/articles/s41467-024-53632-4' },
             { name: 'Prov-GigaPath — Whole-Slide Pathology FM (Nature)', file: 'prov-gigapath-nature.pdf', vendor: 'Microsoft + Providence', date: 'May 2024', url: 'https://www.nature.com/articles/s41586-024-07441-w' },
-            { name: 'Pathology FM Clinical Benchmarking (PMC)', file: 'pathology-fm-bench-pmc.pdf', vendor: 'PMC', date: 'Apr 2025', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/' }
+            { name: 'Pathology FM Clinical Benchmarking (PMC)', file: 'pathology-fm-bench-pmc.pdf', vendor: 'PMC', date: 'Apr 2025', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/' },
+            { name: 'World Model for Robot Learning — Comprehensive Survey', file: 'world_model_robot_survey_2605.00080.pdf', vendor: 'NTU + Berkeley + Stanford et al', date: 'Apr 2026', url: 'https://arxiv.org/abs/2605.00080' }
         ];
 
         pdfDocs.forEach(function(doc) {
@@ -2783,7 +2784,13 @@ var App = {
             { name: 'Luma Labs UNI-1', url: 'https://lumalabs.ai/uni-1', desc: 'Luma multimodal image-generation foundation model (May 2026). Text-to-image, multi-reference, image editing, common-sense scene completion, culture-aware aesthetics. Token-based pricing ($0.50/1M text in, $45.45/1M image out). Human-preference Elo: #1 Style/Editing + #1 Reference-Based, #2 Text-to-Image. Quantitative benchmarks not yet published.' },
 
             // MolmoAct2 / MolmoER (Allen AI VLA + embodied reasoning)
-            { name: 'MolmoAct2 / MolmoER paper', url: 'https://arxiv.org/abs/2605.02881', desc: 'Allen AI MolmoAct2 — open Vision-Language-Action model for real-world deployment. MolmoER specialized VLM backbone (claims to surpass GPT-5 + Gemini Robotics ER-1.5 on 13 embodied-reasoning benchmarks). 7 sim+real benchmarks, MolmoAct2-BimanualYAM (720 hr teleoperated trajectories — largest open bimanual dataset to date), OpenFAST action tokenizer, MolmoThink adaptive-depth reasoning.' }
+            { name: 'MolmoAct2 / MolmoER paper', url: 'https://arxiv.org/abs/2605.02881', desc: 'Allen AI MolmoAct2 — open Vision-Language-Action model for real-world deployment. MolmoER specialized VLM backbone (claims to surpass GPT-5 + Gemini Robotics ER-1.5 on 13 embodied-reasoning benchmarks). 7 sim+real benchmarks, MolmoAct2-BimanualYAM (720 hr teleoperated trajectories — largest open bimanual dataset to date), OpenFAST action tokenizer, MolmoThink adaptive-depth reasoning.' },
+
+            // 2026-05-12 Google Threat Intelligence — AI vulnerability exploitation & initial access (cyber)
+            { name: 'GTIG — AI Vulnerability Exploitation & Initial Access (May 2026)', url: 'https://cloud.google.com/blog/topics/threat-intelligence/ai-vulnerability-exploitation-initial-access', desc: 'Google Threat Intelligence Group report (May 12 2026). FIRST documented AI-developed zero-day (2FA bypass semantic logic flaw in OSS sysadmin tool, counter-discovered before mass exploitation). PRC-nexus actors (APT45 recursive CVE/PoC at scale, APT27 ORB networks, UNC2814/UNC6201) + AI-powered malware families PROMPTSPY/PROMPTFLUX/HONESTCUE (Gemini 2.5-flash-lite) + agentic recon frameworks Hexstrike/Strix + LLM-abuse proxy infra. Defensive: Google Big Sleep (vuln discovery agent) + CodeMender (auto-fix). Threat-intel report — no benchmark scores; cyber reference only.' },
+
+            // 2026-04-30 World Model for Robot Learning — comprehensive survey (Physical AI reference)
+            { name: 'World Model for Robot Learning — Comprehensive Survey (arXiv 2605.00080)', url: 'https://arxiv.org/abs/2605.00080', desc: 'NTU+Berkeley+Stanford+Tokyo+Oxford+Microsoft+ETH+Princeton+Harvard (Apr 30 2026, 8pp). Taxonomy of ~50 world-model-based robot policies across 5 paradigms (IDM-style / Single-backbone / MoE-MoT / Unified-VLA / Latent-space WM). Table 1 classifies UniPi/VidMan/Vidar/GR-1/UP-VLA/WorldVLA/DreamVLA/UniVLA/F1/InternVLA-A1/HALO/TriVLA/FLARE/VLA-JEPA by backbone (VGM/UMM/MLLM) + coupling style. Survey — architectural classification only, no first-party benchmark scores. PDF archived in resource/. Physical AI reference.' }
         ];
 
         sites.forEach(function(site) {
