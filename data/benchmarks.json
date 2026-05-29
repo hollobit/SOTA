@@ -4464,6 +4464,139 @@
     "metric": "accuracy_pct"
   },
   {
+    "id": "video_mme_audio",
+    "name": "Video-MME (with audio)",
+    "category": "multimodal",
+    "description": "Video-MME evaluated in audiovisual->text mode with use_audio_in_video=True — the audio track is provided alongside sampled frames. Distinct, materially-higher-scoring protocol vs the standard vision-only Video-MME (w/o subtitles) column. Higher = better accuracy.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "r_judge",
+    "name": "R-Judge",
+    "category": "agent",
+    "description": "Agent-safety judge benchmark — classify whether an agent interaction trajectory is safe/unsafe. Reported as Accuracy (also Prec/Rec/F1). Higher=better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "atbench",
+    "name": "ATBench",
+    "category": "agent",
+    "description": "Agent-Trajectory safety benchmark (1,000 trajectories) — binary safe/unsafe classification of agentic execution traces. Accuracy. Higher=better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mteb_code",
+    "name": "MTEB (Code)",
+    "category": "embedding",
+    "description": "Massive Text Embedding Benchmark — code retrieval subset. Mean score across code-retrieval tasks. Higher=better.",
+    "metric": "mean"
+  },
+  {
+    "id": "coir",
+    "name": "CoIR",
+    "category": "embedding",
+    "description": "Code Information Retrieval benchmark — mean across code search/retrieval tasks. Higher=better.",
+    "metric": "mean"
+  },
+  {
+    "id": "mteb_multilingual",
+    "name": "MTEB (Multilingual)",
+    "category": "embedding",
+    "description": "Massive Text Embedding Benchmark — multilingual track, mean (task). Higher=better.",
+    "metric": "mean"
+  },
+  {
+    "id": "mseb",
+    "name": "MSEB",
+    "category": "embedding",
+    "description": "Massive Sound Embedding Benchmark — audio retrieval, average mrr@10. Higher=better.",
+    "metric": "mrr@10"
+  },
+  {
+    "id": "refcocog",
+    "name": "RefCOCOg",
+    "category": "multimodal",
+    "description": "Referring expression comprehension — localize the object described by a natural-language expression. Reported as F1 (test split). Higher=better.",
+    "metric": "f1"
+  },
+  {
+    "id": "lvis_detection",
+    "name": "LVIS (detection)",
+    "category": "multimodal",
+    "description": "Large-Vocabulary Instance Segmentation detection — open-vocabulary object detection mean F1 (avg of F1@0.5 and F1@0.95). Higher=better.",
+    "metric": "mean_f1"
+  },
+  {
+    "id": "coco_detection",
+    "name": "COCO (detection)",
+    "category": "multimodal",
+    "description": "COCO object detection — mean F1 (avg of F1@0.5 and F1@0.95) in the LocateAnything grounding eval protocol. Higher=better.",
+    "metric": "mean_f1"
+  },
+  {
+    "id": "offensive_cyber_time_horizon_p50",
+    "name": "Offensive Cyber Time Horizon (P50)",
+    "category": "cyber",
+    "description": "METR-style time-horizon extended to offensive cyber: the human-expert task duration (hours) at which a model reaches 50% success, IRT-fit over 316 tasks across 7 cyber benchmarks (CyBench/InterCode-CTF/NL2Bash/CyBashBench/NYUCTF/CVEBench/CyberGym). Higher=more capable.",
+    "metric": "hours"
+  },
+  {
+    "id": "offensive_cyber_success_rate",
+    "name": "Offensive Cyber Success Rate",
+    "category": "cyber",
+    "description": "Overall task success rate across the 316-task offensive-cyber suite (7 benchmarks). Higher=better. Lyptus Research time-horizon study.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "multi_if",
+    "name": "Multi-IF",
+    "category": "language",
+    "description": "Multi-turn instruction-following benchmark. Higher=better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "aa_omniscience_index",
+    "name": "AA-Omniscience Index",
+    "category": "knowledge",
+    "description": "Artificial Analysis Omniscience Index — knowledge-recall reliability score that penalizes hallucination; can be negative. Higher=better.",
+    "metric": "score"
+  },
+  {
+    "id": "bioml_bench_imaging",
+    "name": "BioML-Bench (Biomedical Imaging)",
+    "category": "ai4s",
+    "description": "BioML-Bench biomedical-imaging domain — leaderboard percentile achieved by an autonomous research agent. Higher=better.",
+    "metric": "percentile"
+  },
+  {
+    "id": "bioml_bench_drug_discovery",
+    "name": "BioML-Bench (Drug Discovery)",
+    "category": "ai4s",
+    "description": "BioML-Bench drug-discovery domain — leaderboard percentile. Higher=better.",
+    "metric": "percentile"
+  },
+  {
+    "id": "bioml_bench_protein_eng",
+    "name": "BioML-Bench (Protein Engineering)",
+    "category": "ai4s",
+    "description": "BioML-Bench protein-engineering domain — leaderboard percentile. Higher=better.",
+    "metric": "percentile"
+  },
+  {
+    "id": "bioml_bench_single_cell",
+    "name": "BioML-Bench (Single Cell Omics)",
+    "category": "ai4s",
+    "description": "BioML-Bench single-cell-omics domain — leaderboard percentile. Higher=better.",
+    "metric": "percentile"
+  },
+  {
+    "id": "tdc_herg",
+    "name": "TDC hERG",
+    "category": "ai4s",
+    "description": "Therapeutics Data Commons hERG cardiotoxicity blocker classification — AUROC. Higher=better.",
+    "metric": "auroc"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",
