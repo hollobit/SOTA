@@ -1,7 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 35 — Stale monitoring TODOs resolved: Video-MME + MMAU frontier backfill (2026-05-29)
-**1,561 models · 1,227 benchmarks · 6,432 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 36 — 10-link multi-source analysis: 4 new models + 18 new benchmarks (2026-05-29)
+**1,565 models · 1,245 benchmarks · 6,478 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-05-29 Session 36 — 10-link multi-source analysis (every result table direct-WebFetch verified)
+- 10 user links → 4 NEW models, 18 NEW benchmarks, 46 scores. De-dups resolved: arxiv 2605.27365 == NVIDIA LocateAnything HF/project page; arxiv 2605.26302 == agingbench.github.io (already S30 — re-checked, SKIPPED: no composite, non-frontier board); arxiv 2605.28655 AutoScientists (S33, 3 scores) → +5 new table-based sub-scores.
+- **Models**: AgentDoG 1.5-4B (Shanghai AI Lab, agent-safety judge) · Gemini Embedding 2 (Google, multimodal embedding, MTEB-Code 84.0 SOTA) · LocateAnything-3B (NVIDIA, vision grounding, ScreenSpot-Pro 60.3 SOTA@3B) · LFM2.5-8B-A1B (Liquid, on-device MoE 8B/A1B 128K)
+- **Bench families**: AgentDoG R-Judge/ATBench (Gemini-3.1-Pro R-Judge 97.3) · Offensive Cyber Time Horizons (Lyptus, METR-style — GPT-5.5 saturates: P50 5.1h@2M, 92.4%@50M; Opus 4.6 3.2h) · embedding (MTEB-Code/CoIR/MSEB) · vision grounding (RefCOCOg/LVIS/COCO) · AA-Omniscience/Multi-IF · AutoScientists BioML sub-domains + TDC-hERG
+- strict-attribution: comparison scores only on NEW benches (no REPLACE clobber). Excluded figure-only (AgentDoG ATBench-Claw/Codex, AutoScientists nanochat). 3 PDFs archived + Resources + seed_sources. Menus: Frontier Compare + Cyber & Coding. **+4 / +18 / +46** = 1565/1245/6478. v=20260529f
 
 ### 2026-05-29 Session 35 — Resolve stale monitoring TODOs (re-swept the cc:TODO watch-list)
 - Re-investigated all 6 "Watch for future publications" cc:TODO items (last checked 2026-05-08, ~3 weeks stale) via 4 parallel research agents + **direct WebFetch verification of every source table** (not agent-relayed). Result: only **Video-MME + MMAU** yielded ingestible frontier data; the rest remain externally blocked (dates refreshed below).
@@ -55,10 +61,8 @@
 ### 2026-05-22 Session 20 cont'd 6 — Qwen3.7-Max official split from preview ID
 - Split alibaba/qwen3.7-max (May 20 official, 45 scores) from qwen3.7-max-preview (May 14 arena, Elo 1475 only). SQL migrated 45 rows + JSON re-attributed. Menu: sovereign + frontier-compare. **+1/0/0**=1471/1106/6008. v=20260522a
 
-### 2026-05-21 Session 20 cont'd 3-5 (compressed)
-- **cont'd 5 — Qwen3.7 table completion**: 96 cross-vendor cells fill (no PRESERVE conflict). Per-model deltas: Opus 4.6 Max +17 (168→185), K2.6 +17, GLM-5.1 +17, DS-V4-Pro Max +20, Qwen3.6-Plus +25. **+96 scores** = 6008. v=20260521f
-- **cont'd 4 — Qwen3.7 deep dive**: YC-Bench startup simulator ($2.08M/$1.05M/$352K), KernelBench L3 speedup (Opus 4.6 Max 2.63x #1, Qwen3.7-Max 1.98x), Qwen-RobotClaw + Qwen-RobotNav new models. AAII actual 56.58 (rank 4). **+3 models / +3 benches / +10 scores**. v=20260521e
-- **cont'd 3 — OpenAI Deployment Safety Hub (3 pages)**: GPT-5.4 Thinking +10 (Prep Bio + Apollo + Irregular cyber), GPT-5.4 Mini +6, GPT-5.5 Instant +14 (first High-Capability Instant; stat-sig safety regressions Gore 70.3/Sexual 80.6/Hate 82.7), ChatGPT Images 2.0 + Thinking (5 image-safety bench IDs, 3.3x lower violative but harder to flag). **+2 models / +13 benches / +40 scores**. v=20260521d
+### 2026-05-21 Session 20 cont'd 3-5 (compressed — see HISTORY.md)
+- **cont'd 5** Qwen3.7 table completion (96 cross-vendor cells, +96 scores). **cont'd 4** Qwen3.7 deep dive (YC-Bench, KernelBench L3, Qwen-RobotClaw/Nav, AAII 56.58; +3 models/+3 benches/+10). **cont'd 3** OpenAI Deployment Safety Hub (GPT-5.4 Thinking/Mini, GPT-5.5 Instant first High-Capability, ChatGPT Images 2.0; +2 models/+13 benches/+40). v=20260521d-f
 
 ### 2026-05-21 Session 20 (parts 1-2, compressed — see HISTORY.md)
 - **cont'd 2 — Qwen3.7-Max launch**: 41-bench × 6-model panel ingested. +12 new benches (qwen_webdev / svg / claw / cowork_bench / vitabench / spreadsheet_bench_v1 / kernelbench_l3 / worldbench / maxife / mmlu_prox / nova_63 / polymath). **+72 scores**. AAII 57 (#1-tier). Wins 18/41 incl. MRCR-128k 90.4 (beats Opus 4.6 Max long-context). v=20260521c
