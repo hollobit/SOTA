@@ -1,7 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 34 — Leaderboard sweep: SubQ new model (2026-05-29)
-**1,560 models · 1,226 benchmarks · 6,420 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 35 — Stale monitoring TODOs resolved: Video-MME + MMAU frontier backfill (2026-05-29)
+**1,561 models · 1,227 benchmarks · 6,432 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-05-29 Session 35 — Resolve stale monitoring TODOs (re-swept the cc:TODO watch-list)
+- Re-investigated all 6 "Watch for future publications" cc:TODO items (last checked 2026-05-08, ~3 weeks stale) via 4 parallel research agents + **direct WebFetch verification of every source table** (not agent-relayed). Result: only **Video-MME + MMAU** yielded ingestible frontier data; the rest remain externally blocked (dates refreshed below).
+- **NEW DATA** from two 2026 primary-source tech reports (official leaderboards video-mme.github.io / mmau_homepage STILL stale at 2025-09 / May-2025): **Qwen3.5-Omni Tech Report** (arxiv 2604.15804, 04-17) + **Step-Audio-R1.5 Tech Report** (arxiv 2604.25719, 04-28).
+  - **MMAU first coverage** (was 0): Qwen3.5-Omni-Plus 82.2 (SOTA, >human 78) / Flash 80.4 / Gemini-3.1 Pro 81.1 / Gemini 3 Pro 79.8 / Gemini 3 Flash 75.9 / Step-Audio-R1.5 77.9 / Step-Audio-R1 77.0
+  - **Video-MME** first 2026-frontier additions (w/o-sub): Omni-Plus 81.9 / Flash 77.0 (existing Qwen3.6-27B 87.7 stays SOTA)
+  - **video_mme_audio** NEW bench (use_audio_in_video=True protocol, split from standard): Gemini-3.1 Pro 89.0 (SOTA) / Omni-Plus 83.7 / Omni-Flash 79.3
+- first-party Qwen values used over StepFun's lower comparison figures (conflict resolved). 2 PDFs archived → resource/ + Resources tab + seed_sources. Menus: Frontier Compare multimodal (+video_mme_audio +mmau). **+1 model / +1 bench / +12 scores** = 1561/1227/6432. v=20260529e
 
 ### 2026-05-29 Session 34 — Leaderboard sweep (new models)
 - Swept llm-stats + AA + WhatLLM. All May-2026 launches already tracked except **SubQ 1M-Preview** (Subquadratic, May 5) — first sub-quadratic frontier LLM (SSA, 12M ctx). Vendor-reported (paper pending): RULER@128K 95.0 ($8 vs Opus 4.6 94.8 @ ~$2,600 = 325x cheaper) / MRCR v2@1M 65.9 / SWE-Verified 81.8. ruler_128k NEW bench (SubQ SOTA). Menus: Frontier+Agent+Resources. **+1/+1/+4**=1560/1226/6420. v=20260529d
@@ -57,19 +65,9 @@
 - **cont'd — Cyber audit + Palisade GPT-5 CTFs**: Mythos already comprehensive (47 scores); GPT-5.5/5.4-Cyber non-public; Palisade arxiv 2511.04860 adds GPT-5 Pro ASIS Quals 93rd / CorCTF 90th / snakeCTF 92nd percentile. **+3 benches / +3 scores**. v=20260521b
 - **FactoryBench (arxiv 2605.07675)** — industrial robot Pearl's-ladder 4-level reasoning (ETH+UC3M+KTH May 8 2026). 6 LLMs × 4 levels = **+4 benches / +24 scores**. Sonnet 4.6 dominates L1-L3 but L4 collapses 10x; GPT-5.1 alone clears L4 at 17.7%. v=20260521a
 
-### 2026-05-20 Session 19 — Gemini 3.5 Flash launch + TextArena/arena.ai + 35-row PDF backfill (6 commits)
-- **Gemini 3.5 Flash + Omni Flash** (May 19 launch): 14 initial benches + Omni Flash deferred-to-API model registration (`11bb478`)
-- **TextArena + arena.ai vision/text** ingest + Alibaba Qwen 3.7 Max/Plus preview (`9f210a0`)
-- **35 cross-model triples** backfilled from Gemini 3.5 Flash PDF page 4 (6-column comparison table: 3 Flash / 3.1 Pro / Sonnet 4.6 / Opus 4.7 / GPT-5.5 / 3.5 Flash) — Gemini 3 Flash gained 12 triples, GPT-5.5 +7 (incl. MRCR 128k 94.8 top, Blueprint 36.2 top), Opus 4.7 +5 (incl. surprise MRCR 128k 59.3 weakness) (`6e4950c`)
-- **SWE-Bench Pro 55.1 → 53.9** correction for Gemini 3.5 Flash via canonical PDF source (`555902d`)
-- **Reference leaderboard mining** for Session 19 models — +13 new scores for Gemini 3.5 Flash via AA detail page + arena.ai + matharena (`65271d8`)
-- **Changelog PDF export** with period filter (7d/30d/90d/All) (`44aa7a8`)
-
-### 2026-05-19 Session 18 — ExploitBench + deep menu audit pass 2 (8 commits)
-- **ExploitBench live leaderboard delta** + sovereign-AI delta sweep (0 new) (`7be38b0`)
-- **FRONTIER_MODELS hardcoded list propagation** — recent flagship models wired into Frontier Compare et al (`c94699b`)
-- **Deep menu audit pass 2** — Agent / AI4S / Physical AI hardcoded lists refreshed (`9ce27df`)
-- **ExploitBench cyber-coding menu surface** + 6 recent cyber bench families exposed in Cyber & Coding menu (`ef81976`)
+### 2026-05-19 ~ 20 Sessions 18-19 (compressed — see HISTORY.md for full details)
+- **Session 19** (May 20): Gemini 3.5 Flash + Omni Flash launch (14 benches) + TextArena/arena.ai + Qwen 3.7 Max/Plus preview + 35 cross-model triples from Gemini PDF page-4 comparison table (GPT-5.5 MRCR 128k 94.8 top, Opus 4.7 59.3 weakness) + SWE-Bench Pro correction + changelog PDF export
+- **Session 18** (May 19): ExploitBench leaderboard delta + FRONTIER_MODELS hardcoded propagation + deep menu audit pass 2 (Agent/AI4S/Physical AI) + cyber-coding menu surface
 
 ### 2026-05-12 ~ 18 Sessions 12-17 (compressed — see HISTORY.md for full details)
 - **Session 17** (May 18): NVIDIA SANA-WM + xAI Grok Build CLI + 10-paper cyber arxiv batch (PACEbench/CTI-REALM/AISI/CyberTeam/Auto Adversary) + 4-paper user refs (Simbian/NYU CTF/HarmfulSkillBench)
@@ -155,14 +153,14 @@
 ### Completed (2026-04-18 batches — full details in HISTORY.md)
 데이터 수집 자동화 (discover/collect, GitHub Actions discovery·benchmark-update·librarian-weekly) · 대시보드 개선 (Cyber & Coding bar chart, category pill-filter, head-to-head radar, PDF source linking) · 추가 데이터 소스 (Grok-4.20, GPT-5.4 System Card, Gemini 3.1 Pro) · 분석 기능 (correlation heatmap, SOTA handover log, intelligence-vs-price scatter) · BMT batch-1 P1–P11 (26 benchmarks, 33 frontier scores) · `/design-review` follow-up (22 atomic commits: IA 재구성, Tailwind 빌드, typography ramp, motion 언어)
 
-### cc:TODO — Watch for future publications (external dependency)
-- [x] MRCR v2 8-needle expansion — 7 frontier scores ingested 2026-05-08 (Opus 4.6 93.0 / GPT-5.5 74.0 / Gemini 3.x family). LongBench v2 / RULER 미진
-- [ ] HarmBench / StrongREJECT / AIR-Bench frontier backfill — 2026-05-08 재조사 결과 frontier 점수 미공개. UK AISI inspect_evals / Gray Swan Arena 추가 모니터링 필요
-- [ ] Video-MME leaderboard — 2026-05-08 Playwright 렌더링 성공. 그러나 leaderboard 자체가 2025-09 까지로 stale, 2026 frontier 미반영. 외부 publication 대기
-- [ ] MMAU frontier scores — 2026-05-08 재조사 결과 미공개
-- [ ] AutoPatchBench / CyberSOCEval — pre-frontier 모델만 PNG 그림에 노출. OCR / 후속 논문 발표 대기 (BLOCKED)
-- [ ] Gemini Omni Flash — 2026-05-19 launch but vendor deferred eval to API rollout (no public benches as of Session 19)
-- [ ] Qwen 3.7 Max/Plus preview — Session 19 첫 등록 후 arena.ai text/vision 1점만, 2-3주 후 leaderboard 재확인 필요
+### cc:TODO — Watch for future publications (external dependency) — last full re-sweep 2026-05-29 (Session 35)
+- [x] MRCR v2 8-needle — ingested 2026-05-08 (Opus 4.6 93.0 / GPT-5.5 74.0 / Gemini 3.x)
+- [x] Video-MME — **RESOLVED S35**: official board still stale (2025-09), but ingested 2026-frontier from Qwen3.5-Omni report (Omni-Plus 81.9/Flash 77.0 w/o-sub) + new `video_mme_audio` bench (Gemini-3.1 Pro 89.0)
+- [x] MMAU — **RESOLVED S35**: first coverage (7 scores) from Qwen3.5-Omni + Step-Audio-R1.5 reports; Omni-Plus 82.2 SOTA (>human 78)
+- [x] Qwen 3.7 Max/Plus preview — **RESOLVED-superseded**: official qwen3.7-max ingested S20 (45 scores); previews stay arena-Elo-only (category boards rank-only)
+- [ ] HarmBench / StrongREJECT / AIR-Bench — **STILL BLOCKED** (rechecked 2026-05-29): Opus 4.8/GPT-5.5/Gemini 3.5 cards dropped these public benches for internal evals; HELM AIR-Bench frozen v1.1.0 (2024)
+- [ ] Gemini Omni Flash — **STILL BLOCKED** (rechecked 2026-05-29): generative-media model, benches still deferred to API rollout; AA model page 404
+- [ ] AutoPatchBench / CyberSOCEval — **STILL BLOCKED** (rechecked 2026-05-29): per-model scores image-only (PNG figures); paper lineups predate current frontier
 
 ---
 

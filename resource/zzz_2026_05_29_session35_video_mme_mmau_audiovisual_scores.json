@@ -1,0 +1,45 @@
+{
+  "_meta": {
+    "date": "2026-05-29",
+    "title": "Session 35 — Resolve stale monitoring TODOs: Video-MME + MMAU frontier backfill",
+    "context": "Re-investigation of the 'Watch for future publications' cc:TODO list in Plans.md (last checked 2026-05-08, ~3 weeks stale). Four items re-swept via parallel research + direct source verification. RESULT: only Video-MME + MMAU yielded ingestible frontier data. Official leaderboards (video-mme.github.io, sakshi113.github.io/mmau_homepage) are STILL stale (latest entries 2025-09 / May-2025), but two 2026 primary-source technical reports now carry frontier numbers: (1) Qwen3.5-Omni Technical Report (arxiv 2604.15804, Qwen Team, 2026-04-17) and (2) Step-Audio-R1.5 Technical Report (arxiv 2604.25719, StepFun / Yuxin Zhang et al, 2026-04-28). This is the FIRST MMAU coverage (was 0 scores) and the first 2026-frontier Video-MME additions. Other three TODO items remain blocked (see notes) — dates refreshed in Plans.md.",
+    "sources": [
+      "https://arxiv.org/abs/2604.15804",
+      "https://arxiv.org/html/2604.15804v1",
+      "https://arxiv.org/abs/2604.25719",
+      "https://arxiv.org/html/2604.25719v1"
+    ],
+    "rule": "STRICT-ATTRIBUTION. Every score has model+benchmark+value appearing together in one primary-source table, verified by direct WebFetch of the arxiv HTML (not agent-relayed). First-party reports win on conflict: Qwen3.5-Omni MMAU uses Qwen's own Table 5 (Plus 82.2 / Flash 80.4), NOT StepFun's lower comparison figures (Plus 79.6 / Flash 77.2) — discrepancy noted, likely different eval protocol. Gemini values are third-party comparison numbers (reported by Qwen/StepFun in their own tables) — admitted under the same practice used in Session 19 (cross-model comparison-table backfill), each flagged as reported-by-X. video_mme_audio is split from video_mme because it is a distinct protocol (use_audio_in_video=True, audiovisual->text) that scores materially higher than vision-only Video-MME and must not share the standard column.",
+    "blocked_items_rechecked_2026_05_29": {
+      "harmbench_strongreject_airbench": "STILL BLOCKED — Opus 4.8 card (244pp), GPT-5.5 deployment-safety hub, Gemini 3.5 Flash card all abandoned these public benchmarks for internal/proprietary evals. HELM AIR-Bench leaderboard frozen at v1.1.0 (2024, no frontier). inspect_evals dirs have no results tables.",
+      "gemini_omni_flash": "STILL BLOCKED — launched 2026-05-19 as a generative-media model (text/image/video/audio->video); vendor still defers benchmarks to API rollout ('coming in weeks'). AA model page 404, no LMArena/llm-stats entry. (Do NOT confuse with Gemini 3.5 Flash, which DOES have scores.)",
+      "qwen37_preview": "RESOLVED-AS-SUPERSEDED — official alibaba/qwen3.7-max already fully ingested (Session 20, 45 scores). Preview variants (qwen3.7-max-preview / plus-preview) still only carry arena Elo; category boards report ranks only (no numeric values). No further action.",
+      "autopatchbench_cybersoceval": "STILL BLOCKED — all per-model scores remain image-only (PNG figures) in Meta AutoPatchBench blog + CyberSOCEval paper arxiv 2509.20166; repos hold only eval inputs / output schema, no results tables. Paper model lineups (GPT-5/o3/Claude-4/gemini-2.5-pro/Llama 3-4) predate current frontier targets anyway."
+    }
+  },
+  "models": [
+    {"id": "stepfun/step-audio-r1.5", "name": "Step-Audio-R1.5", "vendor": "StepFun", "modalities": ["audio", "text"], "release_date": "2026-04-28", "_note": "StepFun audio-reasoning model, successor to Step-Audio-R1 / R1.1. Technical report arxiv 2604.25719 (Yuxin Zhang et al, 18 co-authors). MMAU 77.9 (self-reported), trails Qwen3.5-Omni-Plus 82.2 and Gemini-3.1 Pro 81.1 on audio understanding."}
+  ],
+  "benchmarks": [
+    {"id": "video_mme_audio", "name": "Video-MME (with audio)", "category": "multimodal", "description": "Video-MME evaluated in audiovisual->text mode with use_audio_in_video=True — the audio track is provided alongside sampled frames. Distinct, materially-higher-scoring protocol vs the standard vision-only Video-MME (w/o subtitles) column. Higher = better accuracy.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2604.15804"}
+  ],
+  "scores": [
+    {"_section": "=== MMAU (first coverage; was 0 scores) — first-party Qwen3.5-Omni Table 5 (arxiv 2604.15804) ===",
+     "model": "alibaba/qwen3.5-omni-plus", "benchmark": "mmau", "score": 82.2, "unit": "%", "_source": "https://arxiv.org/html/2604.15804v1", "_note": "First-party. Qwen3.5-Omni Technical Report, Table 5 (audio benchmark comparison). SOTA on MMAU. (StepFun's comparison report 2604.25719 lists 79.6 for this model — lower, different protocol; first-party value used.)"},
+    {"model": "alibaba/qwen3.5-omni-flash", "benchmark": "mmau", "score": 80.4, "unit": "%", "_source": "https://arxiv.org/html/2604.15804v1", "_note": "First-party. Qwen3.5-Omni Technical Report, Table 5. (StepFun 2604.25719 lists 77.2 for this model — first-party value used.)"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "mmau", "score": 81.1, "unit": "%", "_source": "https://arxiv.org/html/2604.15804v1", "_note": "Comparison number reported by the Qwen team in Qwen3.5-Omni Technical Report, Table 5 (third-party-reported, official-API eval)."},
+    {"model": "google/gemini-3-pro", "benchmark": "mmau", "score": 79.8, "unit": "%", "_source": "https://arxiv.org/html/2604.25719v1", "_note": "Comparison number reported by StepFun in Step-Audio-R1.5 Technical Report, Table 1 (third-party-reported via official API)."},
+    {"model": "google/gemini-3-flash", "benchmark": "mmau", "score": 75.9, "unit": "%", "_source": "https://arxiv.org/html/2604.25719v1", "_note": "Comparison number reported by StepFun in Step-Audio-R1.5 Technical Report, Table 1 (third-party-reported via official API)."},
+    {"model": "stepfun/step-audio-r1.5", "benchmark": "mmau", "score": 77.9, "unit": "%", "_source": "https://arxiv.org/html/2604.25719v1", "_note": "First-party (self-reported). Step-Audio-R1.5 Technical Report, Table 1 — the paper's current model."},
+    {"model": "stepfun/step-audio-r1", "benchmark": "mmau", "score": 77.0, "unit": "%", "_source": "https://arxiv.org/html/2604.25719v1", "_note": "Step-Audio-R1 (prior version) as re-reported in the R1.5 Technical Report, Table 1."},
+
+    {"_section": "=== Video-MME (standard, w/o subtitles) — first 2026-frontier additions, Qwen Table 6 (arxiv 2604.15804) ===",
+     "model": "alibaba/qwen3.5-omni-plus", "benchmark": "video_mme", "score": 81.9, "unit": "%", "_source": "https://arxiv.org/html/2604.15804v1", "_note": "First-party. Qwen3.5-Omni Technical Report, Table 6 (Vision->Text, Video-MME w/o subtitles). Comparable to existing vision-only Video-MME column."},
+    {"model": "alibaba/qwen3.5-omni-flash", "benchmark": "video_mme", "score": 77.0, "unit": "%", "_source": "https://arxiv.org/html/2604.15804v1", "_note": "First-party. Qwen3.5-Omni Technical Report, Table 6 (Video-MME w/o subtitles)."},
+
+    {"_section": "=== Video-MME with audio (NEW benchmark video_mme_audio) — Qwen Table 7 (arxiv 2604.15804) ===",
+     "model": "google/gemini-3.1-pro", "benchmark": "video_mme_audio", "score": 89.0, "unit": "%", "_source": "https://arxiv.org/html/2604.15804v1", "_note": "Comparison number reported by Qwen team, Table 7 (AudioVisual->Text, use_audio_in_video=True). Leads the audiovisual variant."},
+    {"model": "alibaba/qwen3.5-omni-plus", "benchmark": "video_mme_audio", "score": 83.7, "unit": "%", "_source": "https://arxiv.org/html/2604.15804v1", "_note": "First-party. Qwen3.5-Omni Technical Report, Table 7 (audiovisual->text, use_audio_in_video=True)."},
+    {"model": "alibaba/qwen3.5-omni-flash", "benchmark": "video_mme_audio", "score": 79.3, "unit": "%", "_source": "https://arxiv.org/html/2604.15804v1", "_note": "First-party. Qwen3.5-Omni Technical Report, Table 7 (audiovisual->text, use_audio_in_video=True)."}
+  ]
+}

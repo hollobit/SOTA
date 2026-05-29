@@ -41,7 +41,7 @@ var FrontierCompare = {
             'uk_aisi_narrow_cyber'
         ],
         cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench'],
-        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en'],
+        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en'],
         // 2026-05 — Composite "general capability" indices (cross-benchmark)
         // ECI scores + the 24 underlying contributing benchmarks our DB covers
         // (per https://epoch.ai/data/eci-documentation/data — 42 total contributors,
@@ -491,10 +491,10 @@ var FrontierCompare = {
         {
             id: 'multimodal',
             label: '🖼️ Multimodal',
-            note: 'MMMU-Pro · MathVision · CharXiv Reasoning · Video-MMMU · Video-MME · LongVideoBench · ScreenSpot-Pro · OmniDocBench · DocVQA · ChartQA · AI2D · MathVista · OCRBench · MMBench EN · RealWorldQA · VLMs-Are-Blind · VPCT · K-MMBench · VQAv2',
+            note: 'MMMU-Pro · MathVision · CharXiv Reasoning · Video-MMMU · Video-MME · Video-MME (Audio) · MMAU · LongVideoBench · ScreenSpot-Pro · OmniDocBench · DocVQA · ChartQA · AI2D · MathVista · OCRBench · MMBench EN · RealWorldQA · VLMs-Are-Blind · VPCT · K-MMBench · VQAv2',
             benchmarks: [
                 'mmmu_pro', 'mathvision', 'charxiv_reasoning',
-                'video_mmmu', 'video_mme', 'longvideobench',
+                'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench',
                 'screenspot_pro', 'omnidocbench',
                 'docvqa', 'chartqa', 'ai2d', 'mathvista', 'mathvista_mini',
                 'ocrbench', 'mmbench_en', 'realworldqa',
