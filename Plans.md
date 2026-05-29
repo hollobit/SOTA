@@ -1,7 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 36 — 10-link multi-source analysis: 4 new models + 18 new benchmarks (2026-05-29)
-**1,565 models · 1,245 benchmarks · 6,478 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 37 — 17-link multi-source ingest: 3 CAD benchmarks + FACTS + SCADBench + CompassRank (2026-05-30)
+**1,574 models · 1,253 benchmarks · 6,536 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-05-30 Session 37 — 17-link multi-source ingest (every key table direct-WebFetch verified)
+- 17 user links → 9 NEW models, 8 NEW benchmarks, 58 scores. De-dups: SCADBench (ELO arena) ≠ Modelrift (1-task Pantheon), only SCADBench ingested. world-models.io editorial / GigaBrain team submissions / Kilo TB2 re-run / official SWE-Bench stale / T-Bench v1.0 / Vellum → Resources only (clobber/staleness risks).
+- **Models** (9): google/gemini-3-flash-preview + 8 sovereign-CN VLMs: JT3.5 (China Mobile), SenseNova-V6.5-Pro (SenseTime), TeleMM-2.0/Thinking (China Telecom), InternVL3-78B (Shanghai AI Lab), MiniCPM-o-4.5 (OpenBMB), Ovis2.5-9B (AIDC-AI), Step-1o (StepFun)
+- **Bench families** (8): 3 CAD code-gen — CADBench (MIT, 18k samples, IoU) / BenchCAD (UVA/Rice, CadQuery QA) / Text2CAD-Bench (L1-L4 0-10) · SCADBench (OpenSCAD ELO arena, 5,325 votes, gemini-3.1-pro-preview 1721 SOTA) · FACTS Leaderboard (Google+Anthropic Dec 2025 — Gemini 3 Pro 68.8 SOTA across 4 sub-benches) · CompassRank Multimodal Avg (REALTIME 20260526 — JT3.5 82.7 sovereign-CN SOTA over Western frontier)
+- strict-attribution: comparison scores only on NEW benches (no REPLACE). T-Bench 2.1 only net-new model entries (gemini-3-pro 74.4, glm-5.1 58.7). 4 PDFs archived + 12 Resources/seed entries. Menus: FC reasoning(+FACTS 3) + coding(+CAD 4) + multimodal(+compass), Cyber & Coding CODING(+CAD 4). **+9 / +8 / +58** = 1574/1253/6536. v=20260530a
 
 ### 2026-05-29 Session 36 — 10-link multi-source analysis (every result table direct-WebFetch verified)
 - 10 user links → 4 NEW models, 18 NEW benchmarks, 46 scores. De-dups resolved: arxiv 2605.27365 == NVIDIA LocateAnything HF/project page; arxiv 2605.26302 == agingbench.github.io (already S30 — re-checked, SKIPPED: no composite, non-frontier board); arxiv 2605.28655 AutoScientists (S33, 3 scores) → +5 new table-based sub-scores.
@@ -9,13 +15,8 @@
 - **Bench families**: AgentDoG R-Judge/ATBench (Gemini-3.1-Pro R-Judge 97.3) · Offensive Cyber Time Horizons (Lyptus, METR-style — GPT-5.5 saturates: P50 5.1h@2M, 92.4%@50M; Opus 4.6 3.2h) · embedding (MTEB-Code/CoIR/MSEB) · vision grounding (RefCOCOg/LVIS/COCO) · AA-Omniscience/Multi-IF · AutoScientists BioML sub-domains + TDC-hERG
 - strict-attribution: comparison scores only on NEW benches (no REPLACE clobber). Excluded figure-only (AgentDoG ATBench-Claw/Codex, AutoScientists nanochat). 3 PDFs archived + Resources + seed_sources. Menus: Frontier Compare + Cyber & Coding. **+4 / +18 / +46** = 1565/1245/6478. v=20260529f
 
-### 2026-05-29 Session 35 — Resolve stale monitoring TODOs (re-swept the cc:TODO watch-list)
-- Re-investigated all 6 "Watch for future publications" cc:TODO items (last checked 2026-05-08, ~3 weeks stale) via 4 parallel research agents + **direct WebFetch verification of every source table** (not agent-relayed). Result: only **Video-MME + MMAU** yielded ingestible frontier data; the rest remain externally blocked (dates refreshed below).
-- **NEW DATA** from two 2026 primary-source tech reports (official leaderboards video-mme.github.io / mmau_homepage STILL stale at 2025-09 / May-2025): **Qwen3.5-Omni Tech Report** (arxiv 2604.15804, 04-17) + **Step-Audio-R1.5 Tech Report** (arxiv 2604.25719, 04-28).
-  - **MMAU first coverage** (was 0): Qwen3.5-Omni-Plus 82.2 (SOTA, >human 78) / Flash 80.4 / Gemini-3.1 Pro 81.1 / Gemini 3 Pro 79.8 / Gemini 3 Flash 75.9 / Step-Audio-R1.5 77.9 / Step-Audio-R1 77.0
-  - **Video-MME** first 2026-frontier additions (w/o-sub): Omni-Plus 81.9 / Flash 77.0 (existing Qwen3.6-27B 87.7 stays SOTA)
-  - **video_mme_audio** NEW bench (use_audio_in_video=True protocol, split from standard): Gemini-3.1 Pro 89.0 (SOTA) / Omni-Plus 83.7 / Omni-Flash 79.3
-- first-party Qwen values used over StepFun's lower comparison figures (conflict resolved). 2 PDFs archived → resource/ + Resources tab + seed_sources. Menus: Frontier Compare multimodal (+video_mme_audio +mmau). **+1 model / +1 bench / +12 scores** = 1561/1227/6432. v=20260529e
+### 2026-05-29 Session 35 — Resolve stale monitoring TODOs (compressed — see HISTORY.md)
+- Re-swept 6 cc:TODOs. Only Video-MME + MMAU ingestable (Qwen3.5-Omni 2604.15804 + Step-Audio-R1.5 2604.25719). MMAU first coverage (Omni-Plus 82.2 SOTA), Video-MME +2 2026-frontier, video_mme_audio NEW bench (Gemini-3.1 Pro 89.0). 3 still blocked, dates refreshed. **+1/+1/+12** = 1561/1227/6432. v=20260529e
 
 ### 2026-05-29 Session 34 — Leaderboard sweep (new models)
 - Swept llm-stats + AA + WhatLLM. All May-2026 launches already tracked except **SubQ 1M-Preview** (Subquadratic, May 5) — first sub-quadratic frontier LLM (SSA, 12M ctx). Vendor-reported (paper pending): RULER@128K 95.0 ($8 vs Opus 4.6 94.8 @ ~$2,600 = 325x cheaper) / MRCR v2@1M 65.9 / SWE-Verified 81.8. ruler_128k NEW bench (SubQ SOTA). Menus: Frontier+Agent+Resources. **+1/+1/+4**=1560/1226/6420. v=20260529d
@@ -23,9 +24,7 @@
 ### 2026-05-29 Session 33 — Claude Opus 4.8 System Card + AutoScientists + SkillOpt (4 links)
 - **Claude Opus 4.8** (244pp card, 47 scores): SWE-Verified 88.6 / SWE-Pro 69.2 / USAMO 2026 96.7 (vs 4.7 69.3) / GDPval-AA 1890 ELO (+121 over GPT-5.5) / GraphWalks BFS 1M 68.1 (vs 4.7 40.3) / HealthBench Pro 55.8 / Terminal-Bench 2.1 74.6 / BioMysteryBench-Difficult 40.0 (beats Mythos 29.6). Cyber: CyberGym 78.8 / Firefox-147 8.8% / ExploitBench 5.02/16 (Mythos leads cyber). Weaker than Mythos overall
 - **AutoScientists** (Harvard 2605.28655): BioML-Bench 74.40 percentile (vs Autoresearch 66.07), ProteinGym 217-assay 0.657→0.700, ACE2-Spike +12.5%, nanochat 0.9730 bpb. **SkillOpt** (Microsoft 2605.23904): GPT-5.5 skill uplift +23.5/+24.8/+19.1 (chat/Codex/Claude Code)
-- harness-conflict benches → new IDs (cybergym_targeted_repro, firefox_147_full_exploit, terminal_bench_2_1). Menus: Frontier(Opus 4.8 top), Cyber, Agent(+11 benches), AI4S, Medical(frontier-baseline). 3 PDFs archived. **+3 models / +31 benches / +125 scores** = 1559/1219/6395. v=20260529a
-- **33b ref-link sync**: Resources sites +6 (DeepSWE/FrontierSWE/Harvey LAB/Vending-Bench 2/AutoScientists/DeepRare) + seed_sources +10. 0 score delta. v=20260529b
-- **33c completeness pass** (re-provided Opus 4.8 card): mined skipped §8.12 Multimodal + §8.11 Multi-Agent + §3.3.4 OSS-Fuzz. ChartMuseum 89.7 / LAB-Bench FigQA 87.3 (>human 77) / CharXiv 89.9 / BrowseComp multi-agent 88.5 / OSS-Fuzz 38.5% (Mythos 76.7). **+0/+6/+21**=1559/1225/6416. v=20260529c
+- harness-conflict benches → new IDs (cybergym_targeted_repro, firefox_147_full_exploit, terminal_bench_2_1). Menus: Frontier+Cyber+Agent(+11)+AI4S+Medical. 3 PDFs archived. **+3/+31/+125**=1559/1219/6395. v=20260529a. **33b** ref-link sync (+6 Resources +10 seed). **33c** Opus 4.8 §8.11/§8.12/§3.3.4 mine (ChartMuseum 89.7 / OSS-Fuzz 38.5%). **+0/+6/+21**=1559/1225/6416. v=20260529b-c
 
 ### 2026-05-28 Session 32 — 4-link analysis: 2 references, 1 already-ingested, 1 out-of-scope
 - 2405.17044 **SciMuse** already in DB (Session 30). 2605.00080 **World Model survey** (NTU+Berkeley+Stanford, ~50-policy taxonomy, no 1st-party scores) → Physical AI ref + PDF archived. 2605.22391 **Epicure** (food embedding, unreleased + out-of-scope) → excluded. **Google Threat Intel** (5/12, first AI zero-day, PROMPTSPY/Gemini-abuse, Big Sleep/CodeMender) → Cyber ref. **0 score delta**. Resources +2 refs, seed_sources +3. v=20260528e
