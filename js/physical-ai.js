@@ -138,7 +138,9 @@ var PhysicalAI = {
                 'bridge_v2', 'aloha_4task_avg',
                 'open_x_embodiment', 'dexmimicgen', 'gr1_tabletop',
                 'simpler_env_avg', 'roboarena_elo',
-                'gr1_real_lang_following', 'unitree_g1_1k_demos', 'realworld_language_following'
+                'gr1_real_lang_following', 'unitree_g1_1k_demos', 'realworld_language_following',
+                // 2026-05-30 Positronic Robotics PhAIL v1.0 — real-hardware bin-picking
+                'phail_v1_uph'
             ]
         },
         {
@@ -162,7 +164,9 @@ var PhysicalAI = {
                 'sana_wm_1min_simple_vbench', 'sana_wm_1min_hard_vbench',
                 'sana_wm_1min_simple_pose_r', 'sana_wm_1min_hard_pose_r',
                 'sana_wm_1min_simple_diq', 'sana_wm_1min_hard_diq',
-                'sana_wm_1min_throughput'
+                'sana_wm_1min_throughput',
+                // 2026-05-30 Tsinghua FIB WorldArena + SHI-Labs PAI-Bench Generation (arxiv 2512.01989)
+                'worldarena', 'pai_bench_g'
             ]
         },
         {
@@ -180,7 +184,9 @@ var PhysicalAI = {
                 'ss_v2_top1', 'epic_kitchens_recall5', 'perception_test', 'tempcompass',
                 // 2026-05-21 FactoryBench (arxiv 2605.07675) — 4-level causal reasoning over industrial robot telemetry
                 'factorybench_l1_state', 'factorybench_l2_intervention',
-                'factorybench_l3_counterfactual', 'factorybench_l4_decision'
+                'factorybench_l3_counterfactual', 'factorybench_l4_decision',
+                // 2026-05-30 SHI-Labs PAI-Bench Understanding (arxiv 2512.01989)
+                'pai_bench_u'
             ]
         },
         {
