@@ -10,7 +10,7 @@ var FrontierCompare = {
         reasoning: [
             'gpqa_diamond', 'hle', 'mmlu_pro', 'mmlu_pro_aa', 'mmlu', 'mmlu_redux', 'mmmlu',
             'arc_agi_2', 'arc_agi_3', 'frontiermath', 'frontier_science', 'gdpval', 'officeqa_pro',
-            'simpleqa_verified', 'chinese_simpleqa', 'facts_parametric', 'facts_score', 'facts_grounding_v2', 'facts_search', 'triviaqa',
+            'simpleqa_verified', 'chinese_simpleqa', 'facts_parametric', 'facts_score', 'facts_grounding_v2', 'facts_search', 'facts_multimodal', 'triviaqa',
             'longbench_v2', 'mrcr', 'corpusqa_1m', 'superqpga',
             'healthbench', 'healthbench_hard', 'healthbench_consensus', 'healthbench_professional',
             'virology_mcq', 'biochem_reward4', 'c_eval', 'cmmlu', 'agieval',
@@ -24,7 +24,9 @@ var FrontierCompare = {
             'codeforces_rating', 'codeforces_elo', 'humaneval', 'humaneval_plus', 'bigcodebench',
             'mbpp', 'mbpp_plus', 'cruxeval', 'repobench',
             // 2026-05 CAD-coding specialty benches
-            'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo'
+            'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',
+            // 2026-05-30 Session 39 BenchCAD sub-tasks (Edit / QA Code / Vision2Code)
+            'benchcad_edit_acc', 'benchcad_qa_code', 'benchcad_vision2code'
         ],
         math: ['aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026', 'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024'],
         agent: [
@@ -45,7 +47,7 @@ var FrontierCompare = {
             'uk_aisi_narrow_cyber', 'offensive_cyber_time_horizon_p50', 'offensive_cyber_success_rate'
         ],
         cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench', 'r_judge', 'atbench'],
-        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'compass_multimodal_avg', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en'],
+        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'compass_multimodal_avg', 'mmbench_v1_1', 'mmstar', 'mmmu', 'mathvista', 'hallusionbench', 'mmvet', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en'],
         // 2026-05 — Composite "general capability" indices (cross-benchmark)
         // ECI scores + the 24 underlying contributing benchmarks our DB covers
         // (per https://epoch.ai/data/eci-documentation/data — 42 total contributors,

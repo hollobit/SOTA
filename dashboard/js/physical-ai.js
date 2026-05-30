@@ -18,6 +18,9 @@ var PhysicalAI = {
                 // 2026-05-30 Session 38 — NVIDIA Cosmos3 + Cosmos-Reason2 (PAI-Bench SOTA family)
                 'nvidia/cosmos3-super', 'nvidia/cosmos3-nano',
                 'nvidia/cosmos-reason2-32b', 'nvidia/cosmos-reason2-8b',
+                // 2026-05-30 Session 39 — Conditional video generation (PAI-Bench-C)
+                'nvidia/cosmos-transfer2.5-2b',
+                'alibaba/wan-2.2-fun-a14b-control', 'alibaba/wan-2.2-fun-5b-control',
                 // 2026-05-30 WorldArena named baselines (Tsinghua FIB)
                 'tsinghua/ctrl-world', 'bytedance/irasim',
                 // 2026-05-30 PAI-Bench-G additional video gen entries (S38)
@@ -175,7 +178,9 @@ var PhysicalAI = {
                 'sana_wm_1min_simple_diq', 'sana_wm_1min_hard_diq',
                 'sana_wm_1min_throughput',
                 // 2026-05-30 Tsinghua FIB WorldArena + SHI-Labs PAI-Bench Generation (arxiv 2512.01989)
-                'worldarena', 'pai_bench_g'
+                'worldarena', 'pai_bench_g',
+                // 2026-05-30 Session 39 PAI-Bench Conditional Generation Quality
+                'pai_bench_c_quality'
             ]
         },
         {

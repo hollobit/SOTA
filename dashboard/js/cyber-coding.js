@@ -30,7 +30,9 @@ var CyberCoding = {
     AGENT_BENCHMARKS: ['osworld_verified', 'gaia', 'gaia2', 'browsecomp', 'tau_bench', 'tau2_bench', 'tau3_bench', 'webarena', 'deepsearchqa', 'mcp_atlas', 'toolathlon', 'mcpmark', 'android_world', 'qwen_web_bench', 'arc_agi_3', 'claw_eval'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
         // 2026-05 CAD-coding specialty (3 arxiv benches + SCADBench ELO arena)
-        'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo'],
+        'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',
+        // 2026-05-30 Session 39 BenchCAD sub-tasks (Edit / QA Code / Vision2Code)
+        'benchcad_edit_acc', 'benchcad_qa_code', 'benchcad_vision2code'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the

@@ -1,7 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 38 — 13-link multi-source ingest: WorldArena + PhAIL + PAI-Bench + CritPT + MMLU-Pro AA + IPhO 2025 (2026-05-30)
-**1,583 models · 1,259 benchmarks · 6,557 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 39 — Deep re-mine of S33-S38: FACTS sub-benches + CompassRank sub-benches + LocateAnything detection + BenchCAD sub-tasks + PAI-Bench-C (2026-05-30)
+**1,590 models · 1,272 benchmarks · 6,700 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-05-30 Session 39 — Deep re-mine of S33-S38 sources (user-requested completeness audit)
+- User: "꼼꼼하게 읽고 표 등에서 누락된 모델/벤치마크/평가결과 조사." Re-mine S33-S38 partial ingests where scope-tight decisions left value on the table. Direct WebFetch verification of FACTS Table 1 (all 4 sub-benches × 15 frontier), PAI-Bench Conditional JSON, CompassRank per-model sub-scores.
+- **Models** (7): openai/gpt-5.3 + nvidia/nemotron-3-120b (BenchCAD comparison) · idea/rex-omni-3b + bytedance/seed1.5-vl (LocateAnything baselines; SEED1.5-VL HumanRef 81.6 SOTA) · nvidia/cosmos-transfer2.5-2b + alibaba/wan-2.2-fun-a14b-control + alibaba/wan-2.2-fun-5b-control (PAI-Bench-C, 5B Depth 9.317 SOTA)
+- **Bench families** (13): 6 LocateAnything detection (dense200/visdrone/doclaynet/m6doc/totaltext/humanref) · 3 BenchCAD sub-tasks (Edit Acc — GPT-5.3 thinking 0.865 SOTA / QA Code Total — Gemini 3.1 Pro 0.838 / Vision2Code — Gemini 3.1 Pro 0.397) · facts_multimodal (Gemini 2.5 Pro 46.9 leads) · pai_bench_c_quality · mmvet + mmbench_v1_1 (CompassRank)
+- **MAJOR BACKFILL**: FACTS grounding_v2/parametric/search filled 1→15 each (Gemini 2.5 Pro 74.2 grounding leader, Gemini 3 Pro 76.4 parametric SOTA, Gemini 3 Pro 83.8 search SOTA). CompassRank 6 existing benches enriched (mmmu 9→17, mathvista 2→10, mmstar 1→9, ai2d 4→12, hallusionbench 1→9). SKIPPED OCRBench (unit conflict).
+- 8-tab audit ran post-ingest per new memory rule → 4 tabs patched (FC reasoning/coding/multimodal, Cyber-Coding CODING, Physical AI). LocateAnything 6 specialist detection benches deliberately not propagated to FC (would render empty columns). **+7/+13/+143** = 1590/1272/6700. v=20260530d
 
 ### 2026-05-30 Session 38 — 13-link multi-source ingest (every key JSON source direct-WebFetch verified)
 - 13 user links → 9 NEW models, 6 NEW benchmarks, 21 scores. Critical de-dup: arxiv 2512.01989 = PAI-Bench (NOT PhysBench — PhysBench is arxiv 2501.16411, ICLR 2025). PhysBench JS-rendered no data, SKIPPED. PIQA frontier-dead (no 2026 vendors), CodeSOTA Robotics editorial/loose, SAILResearch top 5 already in DB → Resources only.
@@ -46,16 +53,8 @@
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
 
-### 2026-05-27 Session 25 — Anthropic Glasswing + CVD (3 refs)
-- Mythos: 6,202 high/crit OSS vulns (90.6% TPR), Firefox 271 (10x Opus 4.6), Cloudflare 2,000/400. CVD: 23,019→1,596 disclosed→97 patched/88 CVE. Cybersec Skills (754-skill lib) Resources. **+0/+10/+11**=1530/1132/6178. v=20260527a
-
-### 2026-05-22 ~ 26 Sessions 22-24 (compressed)
-- **Session 24** (menu propagation): 6 JS files patched. Frontier +18 models, Sovereign China-CN +25 models + 12-vendor auto-mapping, Physical AI +2 (Qwen-Robot), Medical +Asa-W1 + 4 HealthBench Pro slices, Agent +10 CU agents + 6 benches, Cyber & Coding +13 safety benches. 0 DB delta. v=20260526c
-- **Session 23** (7 user refs): Microsoft Fara1.5 family (4B/9B/27B + 7B predecessor) — WebVoyager 88.6 beats Operator 87.0. NexgeneAI Asa-W1 HealthBench Pro 80.2 (+21.2 over ChatGPT-for-Clinicians). Open Agent Leaderboard 5×5 matrix. **+11 models / +8 benches / +35 scores**. v=20260526b
-- **Session 22** (arena.ai refresh): WebDev + T2I rank 11-34. qwen3.7-max-20260517 WebDev #4. **+31 models / +48 scores**. v=20260526a
-
-### 2026-05-23 Session 21 — arena.ai 12-leaderboard sweep
-- 12-arena Playwright snapshot, +8 arena bench IDs (webdev/document/i2webdev/t2i/image-edit/t2v/i2v/v-edit). +16 models (Grok-Imagine, Kling v3/o1/o3, Wan 2.6, MAI-Image-2). GPT-Image-2 leads T2I 1389/edit 1467; Seedance 2.0 sweeps video; Opus 4.7 Thinking WebDev 1567. **+16/+8/+76**=1488/1114/6084. v=20260523a
+### 2026-05-23 ~ 27 Sessions 21-25 (compressed — see HISTORY.md)
+- **S25** Anthropic Glasswing/CVD (Mythos OSS vulns 90.6% TPR, Firefox 271; **+0/+10/+11** v=20260527a). **S24** menu propagation (6 JS patched, 0 DB delta v=20260526c). **S23** 7 user refs (Fara1.5, Asa-W1 HealthBench Pro 80.2; **+11/+8/+35** v=20260526b). **S22** arena.ai refresh (**+31/0/+48** v=20260526a). **S21** arena.ai 12-leaderboard sweep (+8 arena IDs, GPT-Image-2 T2I 1389 SOTA; **+16/+8/+76** v=20260523a)
 
 ### 2026-05-22 Session 20 cont'd 6 — Qwen3.7-Max official split from preview ID
 - Split alibaba/qwen3.7-max (May 20 official, 45 scores) from qwen3.7-max-preview (May 14 arena, Elo 1475 only). SQL migrated 45 rows + JSON re-attributed. Menu: sovereign + frontier-compare. **+1/0/0**=1471/1106/6008. v=20260522a
