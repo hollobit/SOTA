@@ -8,12 +8,14 @@ var FrontierCompare = {
     // so the leftmost columns in the heatmap are the most-compared benchmarks.
     CORE_BENCHMARKS: {
         reasoning: [
-            'gpqa_diamond', 'hle', 'mmlu_pro', 'mmlu', 'mmlu_redux', 'mmmlu',
+            'gpqa_diamond', 'hle', 'mmlu_pro', 'mmlu_pro_aa', 'mmlu', 'mmlu_redux', 'mmmlu',
             'arc_agi_2', 'arc_agi_3', 'frontiermath', 'frontier_science', 'gdpval', 'officeqa_pro',
             'simpleqa_verified', 'chinese_simpleqa', 'facts_parametric', 'facts_score', 'facts_grounding_v2', 'facts_search', 'triviaqa',
             'longbench_v2', 'mrcr', 'corpusqa_1m', 'superqpga',
             'healthbench', 'healthbench_hard', 'healthbench_consensus', 'healthbench_professional',
-            'virology_mcq', 'biochem_reward4', 'c_eval', 'cmmlu', 'agieval'
+            'virology_mcq', 'biochem_reward4', 'c_eval', 'cmmlu', 'agieval',
+            // 2026-05-30 IPhO 2025 physics olympiad (llm-stats)
+            'ipho_2025'
         ],
         coding: [
             'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',

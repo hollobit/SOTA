@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "date": "2026-05-30",
+    "title": "Session 38 — 13-link multi-source ingest: WorldArena + PhAIL + PAI-Bench (G/U) + CritPT additions + MMLU-Pro AA + IPhO 2025",
+    "context": "13 user-provided links analyzed via 7 parallel research agents + direct WebFetch verification of 3 critical JSON sources (PAI-Bench Generation + Understanding leaderboards, PhAIL API). Critical de-dup: arxiv 2512.01989 = PAI-Bench (NOT PhysBench). PhysBench is a separate ICLR-2025 paper (arxiv 2501.16411) — JS-rendered, no extractable data, SKIPPED. The SHI-Labs HF Space is PAI-Bench's leaderboard, registered as new bench distinct from existing physical_ai_bench (which has only 2 yes/no flag entries). PIQA leaderboard has no 2026 frontier models — SKIPPED. CodeSOTA Robotics is editorial overview with loose triples — SKIPPED. SAILResearch awesome list + Medium article meta-resources: top 5 recommended benches (ARC-AGI-2/GDPval/LiveBench/BFCL/LMArena) all ALREADY in our DB — Resources only.",
+    "sources": [
+      "https://github.com/tsinghua-fib-lab/WorldArena",
+      "https://world-arena.ai/",
+      "https://huggingface.co/spaces/WorldArena/WorldArena",
+      "https://phail.ai/",
+      "https://phail.ai/api/groups/leaderboard",
+      "https://arxiv.org/abs/2512.01989",
+      "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard",
+      "https://artificialanalysis.ai/evaluations/critpt",
+      "https://artificialanalysis.ai/evaluations/mmlu-pro",
+      "https://llm-stats.com/benchmarks/ipho-2025"
+    ],
+    "rule": "STRICT-ATTRIBUTION. Every triple verified by direct WebFetch of source JSON/table (PAI-Bench generation-leaderboard.json + understanding-leaderboard.json, PhAIL /api/groups/leaderboard). MMLU-Pro AA registered as SEPARATE bench (mmlu_pro_aa) because AA states 'evaluations independently conducted by Artificial Analysis' — values differ from vendor self-reported (existing mmlu_pro 73 scores). CritPT additions only on net-new model rows (gpt-5.5-pro, gpt-5.4-pro have no existing critpt scores). Existing gpt-5.5 critpt 27.0 left untouched (AA xhigh 27.1 too close to be different). EXCLUDED: PhysBench (arxiv 2501.16411, JS-rendered no data); PIQA frontier sweep (no 2026 frontier vendors); CodeSOTA Robotics (loose +50%/80% strings); WorldArena Track 2 sub-benches (anonymous CVPR-2026 submissions); PhysicsFinals/OlympiadBench/GPQA-Physics (older non-frontier data on llm-stats). PAI-Bench-C Conditional skipped (only 3 model rows, low coverage).",
+    "deltas_expected": "+9 models / +6 benchmarks / +20 scores"
+  },
+  "models": [
+    {"id": "nvidia/cosmos3-super", "name": "Cosmos3-Super", "vendor": "NVIDIA", "modalities": ["image", "video"], "release_date": "2026-05-29", "_note": "PAI-Bench Generation SOTA at 83.9% (first model to exceed Source oracle 82.6%). Added to PAI-Bench leaderboard ~2026-05-29 per agent."},
+    {"id": "nvidia/cosmos3-nano", "name": "Cosmos3-Nano", "vendor": "NVIDIA", "modalities": ["image", "video"], "release_date": "2026-05-29", "_note": "PAI-Bench Generation #2 at 83.7% — small variant of Cosmos3-Super."},
+    {"id": "nvidia/cosmos-reason2-32b", "name": "Cosmos-Reason2-32B", "vendor": "NVIDIA", "modalities": ["text", "image", "video"], "release_date": "2026-04", "_note": "Physical-reasoning VLM. PAI-Bench Understanding SOTA at 70.8% — beats GPT-5 thinking (69.8). HF: nvidia/Cosmos-Reason2-32B."},
+    {"id": "nvidia/cosmos-reason2-8b", "name": "Cosmos-Reason2-8B", "vendor": "NVIDIA", "modalities": ["text", "image", "video"], "release_date": "2026-04", "_note": "8B variant — PAI-Bench-U #3 at 65.7%. HF: nvidia/Cosmos-Reason2-8B."},
+    {"id": "tsinghua/ctrl-world", "name": "Ctrl-World", "vendor": "Tsinghua", "modalities": ["video"], "release_date": "2026-02", "_note": "Embodied world model — WorldArena named-baseline leader at EWMScore 0.6006. Strong on Trajectory Accuracy (0.482) and Depth (0.9325)."},
+    {"id": "bytedance/irasim", "name": "IRASim", "vendor": "ByteDance", "modalities": ["video"], "release_date": "2026-02", "_note": "WorldArena baseline EWMScore 0.5589. Depth Accuracy 0.9350."},
+    {"id": "huggingface/smolvla", "name": "SmolVLA", "vendor": "Hugging Face", "modalities": ["image", "text"], "release_date": "2026-04", "_note": "HuggingFace VLA model — PhAIL UPH 18.2 (low end of autonomous policies)."},
+    {"id": "alibaba/wan-2.2-i2v-a14b", "name": "Wan2.2-I2V-A14B", "vendor": "Alibaba", "modalities": ["image", "video"], "release_date": "2026-04", "_note": "Wan 2.2 Image-to-Video A14B MoE — PAI-Bench-G #7 at 80.6%, top open video gen."},
+    {"id": "alibaba/qwen3-vl-235b-a22b-instruct", "name": "Qwen3-VL-235B-A22B-Instruct", "vendor": "Alibaba", "modalities": ["text", "image"], "release_date": "2026-03", "_note": "Qwen3-VL flagship 235B MoE-A22B instruct — PAI-Bench-U #4 at 64.7%. Distinct from existing qwen3-vl-8b/30b variants."}
+  ],
+  "benchmarks": [
+    {"id": "worldarena", "name": "WorldArena (Track 1 EWMScore)", "category": "ai4s", "description": "Tsinghua FIB Lab Embodied World Models benchmark — Track 1 Video Perception. EWMScore = arithmetic mean of 16 numerical metrics across 6 perceptual dimensions (visual quality, motion, content consistency, physics, 3D, controllability). Built on RoboTwin 2.0 Clean-50 (50 manipulation tasks). 0-1, higher=better. arxiv 2602.08971; CVPR 2026 challenge.", "metric": "ewmscore", "leaderboard": "https://world-arena.ai/"},
+    {"id": "pai_bench_g", "name": "PAI-Bench-G (Generation Overall)", "category": "ai4s", "description": "SHI Labs / CMU PAI-Bench Generation track — physical AI video generation across 6 axes (Physics + AV + Robot + Industry + Human + Common Sense). Overall = mean. Higher=better. arxiv 2512.01989. 2,808 real-world cases.", "metric": "accuracy", "leaderboard": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard"},
+    {"id": "pai_bench_u", "name": "PAI-Bench-U (Understanding Overall)", "category": "ai4s", "description": "PAI-Bench Understanding track — physical AI video understanding (embodied + physics + common-sense). Overall %. Higher=better. arxiv 2512.01989.", "metric": "accuracy", "leaderboard": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard"},
+    {"id": "phail_v1_uph", "name": "PhAIL v1.0 (UPH)", "category": "ai4s", "description": "Positronic Robotics Physical AI Leaderboard v1.0 — real-hardware bin-to-bin order picking on Franka FR3 + Robotiq 2F-85. UPH = Units Per Hour, higher=better. 4 object classes × 1,083 logged rollouts. Whitepaper 2026-05-28.", "metric": "units_per_hour", "leaderboard": "https://phail.ai/"},
+    {"id": "mmlu_pro_aa", "name": "MMLU-Pro (AA independent re-run)", "category": "reasoning", "description": "MMLU-Pro re-run independently by Artificial Analysis (different from vendor-reported mmlu_pro). AA states 'all evaluations conducted independently by Artificial Analysis'. Includes reasoning-effort variants (high/low). Higher=better.", "metric": "accuracy", "leaderboard": "https://artificialanalysis.ai/evaluations/mmlu-pro"},
+    {"id": "ipho_2025", "name": "IPhO 2025", "category": "reasoning", "description": "International Physics Olympiad 2025 — all 3 theory problems, blinded human grading. Frontier-only benchmark, 2026-new on llm-stats. Higher=better.", "metric": "score", "leaderboard": "https://llm-stats.com/benchmarks/ipho-2025"}
+  ],
+  "scores": [
+    {"_section": "=== WorldArena Track 1 EWMScore (Tsinghua FIB Lab, HF Space JSON) — named baselines ===",
+     "model": "tsinghua/ctrl-world", "benchmark": "worldarena", "score": 0.6006, "unit": "ewmscore", "_source": "https://huggingface.co/spaces/WorldArena/WorldArena", "_note": "First-party. Named-baseline leader. Strong Trajectory Accuracy 0.482."},
+    {"model": "bytedance/irasim", "benchmark": "worldarena", "score": 0.5589, "unit": "ewmscore", "_source": "https://huggingface.co/spaces/WorldArena/WorldArena", "_note": "First-party. Depth 0.935."},
+    {"model": "nvidia/cosmos-predict-2.5", "benchmark": "worldarena", "score": 0.5306, "unit": "ewmscore", "_source": "https://huggingface.co/spaces/WorldArena/WorldArena", "_note": "First-party. Text-conditioned variant. Strong Perspectivity 0.982 / Semantic Alignment 0.863."},
+    {"model": "agibot/genie-envisioner", "benchmark": "worldarena", "score": 0.3950, "unit": "ewmscore", "_source": "https://huggingface.co/spaces/WorldArena/WorldArena", "_note": "First-party. Weakest named baseline."},
+
+    {"_section": "=== PAI-Bench-G Generation Overall (SHI Labs / arxiv 2512.01989, HF Space generation-leaderboard.json) ===",
+     "model": "nvidia/cosmos3-super", "benchmark": "pai_bench_g", "score": 83.9, "unit": "%", "_source": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard/raw/main/data/generation-leaderboard.json", "_note": "First-party. SOTA — first model to exceed Source oracle 82.6%."},
+    {"model": "nvidia/cosmos3-nano", "benchmark": "pai_bench_g", "score": 83.7, "unit": "%", "_source": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard/raw/main/data/generation-leaderboard.json", "_note": "First-party. #2."},
+    {"model": "google/veo-3", "benchmark": "pai_bench_g", "score": 82.1, "unit": "%", "_source": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard/raw/main/data/generation-leaderboard.json", "_note": "First-party. #4 (after Source oracle)."},
+    {"model": "nvidia/cosmos-predict-2.5", "benchmark": "pai_bench_g", "score": 81.0, "unit": "%", "_source": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard/raw/main/data/generation-leaderboard.json", "_note": "First-party. Cosmos-Predict2.5-14B variant."},
+    {"model": "alibaba/wan-2.2-i2v-a14b", "benchmark": "pai_bench_g", "score": 80.6, "unit": "%", "_source": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard/raw/main/data/generation-leaderboard.json", "_note": "First-party. Top open video gen."},
+
+    {"_section": "=== PAI-Bench-U Understanding Overall (SHI Labs, HF Space understanding-leaderboard.json) ===",
+     "model": "nvidia/cosmos-reason2-32b", "benchmark": "pai_bench_u", "score": 70.8, "unit": "%", "_source": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard/raw/main/data/understanding-leaderboard.json", "_note": "First-party. SOTA — non-thinking variant beats GPT-5 thinking (69.8). Strongest open physical-reasoning VLM."},
+    {"model": "openai/gpt-5", "benchmark": "pai_bench_u", "score": 69.8, "unit": "%", "_source": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard/raw/main/data/understanding-leaderboard.json", "_note": "Comparison (Thinking=Yes variant per source JSON). #2."},
+    {"model": "nvidia/cosmos-reason2-8b", "benchmark": "pai_bench_u", "score": 65.7, "unit": "%", "_source": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard/raw/main/data/understanding-leaderboard.json", "_note": "First-party. 8B variant."},
+    {"model": "alibaba/qwen3-vl-235b-a22b-instruct", "benchmark": "pai_bench_u", "score": 64.7, "unit": "%", "_source": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard/raw/main/data/understanding-leaderboard.json", "_note": "Comparison. Top Qwen3-VL frontier MoE. Non-thinking ranks higher than Thinking variant (63.7)."},
+
+    {"_section": "=== PhAIL v1.0 UPH (Positronic Robotics, /api/groups/leaderboard) — bin-picking on Franka FR3 ===",
+     "model": "physical-intelligence/pi-0.5", "benchmark": "phail_v1_uph", "score": 59.2, "unit": "units_per_hour", "_source": "https://phail.ai/api/groups/leaderboard", "_note": "First-party. Rank #1 autonomous (Completion 44.9%, MTBF/A 4.0min, 163 runs). Pi 0.5 generalist VLA finetuned."},
+    {"model": "nvidia/gr00t-n1.6", "benchmark": "phail_v1_uph", "score": 56.8, "unit": "units_per_hour", "_source": "https://phail.ai/api/groups/leaderboard", "_note": "First-party. Rank #2 (Completion 45.0%, statistically tied with Pi 0.5)."},
+    {"model": "huggingface/smolvla", "benchmark": "phail_v1_uph", "score": 18.2, "unit": "units_per_hour", "_source": "https://phail.ai/api/groups/leaderboard", "_note": "First-party. Rank #4 (Completion 10.8%) — clear low-end outlier. Note: Human baseline 1330.8 UPH (~22x best autonomous)."},
+
+    {"_section": "=== CritPT additions (AA, frontier Pro variants, no clobber on existing) ===",
+     "model": "openai/gpt-5.5-pro", "benchmark": "critpt", "score": 30.6, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt", "_note": "AA-reported, xhigh reasoning-effort variant. NEW SOTA — beats existing gpt-5.5 27.0 (vendor-reported, untouched)."},
+    {"model": "openai/gpt-5.4-pro", "benchmark": "critpt", "score": 30.0, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt", "_note": "AA-reported, xhigh variant. #2."},
+
+    {"_section": "=== MMLU-Pro AA (independent re-run, distinct from existing mmlu_pro) ===",
+     "model": "google/gemini-3.1-pro-preview", "benchmark": "mmlu_pro_aa", "score": 89.8, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/mmlu-pro", "_note": "AA independent re-run, high reasoning effort. SOTA on AA's variant. (Vendor mmlu_pro for gemini-3.1-pro = 91.0 — different model variant + different methodology.)"},
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "mmlu_pro_aa", "score": 89.5, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/mmlu-pro", "_note": "AA re-run, Reasoning mode. Tied for #2 with Gemini 3 Pro Preview (low)."},
+
+    {"_section": "=== IPhO 2025 (llm-stats, freshly-minted Olympiad bench) ===",
+     "model": "meta/muse-spark", "benchmark": "ipho_2025", "score": 82.6, "unit": "%", "_source": "https://llm-stats.com/benchmarks/ipho-2025", "_note": "First-party (Meta). SOTA — sole frontier entry on this 2026-new benchmark. All 3 theory problems blinded human-graded."}
+  ]
+}
