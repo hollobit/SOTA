@@ -524,6 +524,21 @@
     "collected_at": "2026-05-30",
     "notes": "First-party. AA-Omniscience Index (negative scale, higher=better). +53.62 over LFM2-8B-A1B; beats Gemma-4-26B-A4B (-62.07)."
   },
+  "mmmu": {
+    "model_id": "alibaba/qwen3.6-27b",
+    "benchmark_id": "mmmu",
+    "value": 82.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "date": "2026-05-04",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-04",
+    "notes": ""
+  },
   "matharena_brokenarxiv": {
     "model_id": "openai/gpt-5.5",
     "benchmark_id": "matharena_brokenarxiv",
@@ -612,21 +627,6 @@
     },
     "is_sota": true,
     "collected_at": "2026-05-02",
-    "notes": ""
-  },
-  "mmmu": {
-    "model_id": "alibaba/qwen3.6-27b",
-    "benchmark_id": "mmmu",
-    "value": 82.9,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/Qwen/Qwen3.6-27B",
-      "date": "2026-05-04",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-04",
     "notes": ""
   },
   "mbpp_plus": {
@@ -1770,19 +1770,19 @@
     "notes": "Pass@1 over 108 tasks × 3 trials (internal harness, ~3pts above upstream). Opus 4.7 59.3, Opus 4.6 56.8, Gemini 3.5 Flash 56.5 (upstream). Pass@3 67.6."
   },
   "facts_parametric": {
-    "model_id": "deepseek/deepseek-v4-pro",
+    "model_id": "google/gemini-3-pro",
     "benchmark_id": "facts_parametric",
-    "value": 62.6,
+    "value": 76.4,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
-      "date": "2026-04-24",
+      "url": "https://arxiv.org/html/2512.10791v1",
+      "date": "2026-05-30",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-04-24",
-    "notes": "V4-Pro-Base 25-shot EM"
+    "collected_at": "2026-05-30",
+    "notes": "First-party. SOTA parametric."
   },
   "triviaqa": {
     "model_id": "meta/llama-2-70b",
@@ -2550,19 +2550,19 @@
     "notes": "K-MMBench DEV"
   },
   "mathvista": {
-    "model_id": "ncsoft/varco-vision-2.0-14b",
+    "model_id": "sensetime/sensenova-v6-5-pro",
     "benchmark_id": "mathvista",
-    "value": 73.2,
+    "value": 82.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://huggingface.co/NCSOFT/VARCO-VISION-2.0-14B",
-      "date": "2026-04-25",
+      "url": "https://cdn.opencompass.org.cn/assets/mm-rank/mmlb-data.REALTIME.20260526.json",
+      "date": "2026-05-30",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-04-25",
-    "notes": "MathVista"
+    "collected_at": "2026-05-30",
+    "notes": ""
   },
   "ocrbench": {
     "model_id": "ncsoft/varco-vision-2.0-14b",
@@ -9554,36 +9554,6 @@
     "collected_at": "2026-05-30",
     "notes": "First-party. FACTS SOTA — leads every sub-bench."
   },
-  "facts_grounding_v2": {
-    "model_id": "google/gemini-3-pro",
-    "benchmark_id": "facts_grounding_v2",
-    "value": 69.0,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/html/2512.10791v1",
-      "date": "2026-05-30",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-30",
-    "notes": "First-party. Table 1 Grounding v2."
-  },
-  "facts_search": {
-    "model_id": "google/gemini-3-pro",
-    "benchmark_id": "facts_search",
-    "value": 83.8,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/html/2512.10791v1",
-      "date": "2026-05-30",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-30",
-    "notes": "First-party. Search SOTA."
-  },
   "compass_multimodal_avg": {
     "model_id": "china-mobile/jt3.5",
     "benchmark_id": "compass_multimodal_avg",
@@ -9688,6 +9658,261 @@
     "is_sota": true,
     "collected_at": "2026-05-30",
     "notes": "First-party (Meta). SOTA — sole frontier entry on this 2026-new benchmark. All 3 theory problems blinded human-graded."
+  },
+  "facts_grounding_v2": {
+    "model_id": "google/gemini-2.5-pro",
+    "benchmark_id": "facts_grounding_v2",
+    "value": 74.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2512.10791v1",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "First-party. Leads grounding (+5.2 over Gemini 3 Pro)."
+  },
+  "facts_multimodal": {
+    "model_id": "google/gemini-2.5-pro",
+    "benchmark_id": "facts_multimodal",
+    "value": 46.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2512.10791v1",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "Leads multimodal."
+  },
+  "facts_search": {
+    "model_id": "google/gemini-3-pro",
+    "benchmark_id": "facts_search",
+    "value": 83.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2512.10791v1",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "First-party. Search SOTA."
+  },
+  "mmbench_v1_1": {
+    "model_id": "china-mobile/jt3.5",
+    "benchmark_id": "mmbench_v1_1",
+    "value": 88.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cdn.opencompass.org.cn/assets/mm-rank/mmlb-data.REALTIME.20260526.json",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "Comparison (CompassRank-reported MMBench_TEST)."
+  },
+  "mmstar": {
+    "model_id": "china-mobile/jt3.5",
+    "benchmark_id": "mmstar",
+    "value": 83.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cdn.opencompass.org.cn/assets/mm-rank/mmlb-data.REALTIME.20260526.json",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "Comparison."
+  },
+  "hallusionbench": {
+    "model_id": "sensetime/sensenova-v6-5-pro",
+    "benchmark_id": "hallusionbench",
+    "value": 66.7,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cdn.opencompass.org.cn/assets/mm-rank/mmlb-data.REALTIME.20260526.json",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "Leads hallucination control across sovereign-CN VLMs."
+  },
+  "mmvet": {
+    "model_id": "sensetime/sensenova-v6-5-pro",
+    "benchmark_id": "mmvet",
+    "value": 89.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cdn.opencompass.org.cn/assets/mm-rank/mmlb-data.REALTIME.20260526.json",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "Top MMVet."
+  },
+  "dense200": {
+    "model_id": "nvidia/locateanything-3b",
+    "benchmark_id": "dense200",
+    "value": 58.7,
+    "unit": "mean_f1",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2605.27365v2",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "First-party. Table 2."
+  },
+  "visdrone": {
+    "model_id": "nvidia/locateanything-3b",
+    "benchmark_id": "visdrone",
+    "value": 39.9,
+    "unit": "mean_f1",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2605.27365v2",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "First-party. Table 2."
+  },
+  "doclaynet": {
+    "model_id": "nvidia/locateanything-3b",
+    "benchmark_id": "doclaynet",
+    "value": 76.8,
+    "unit": "mean_f1",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2605.27365v2",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "First-party. Table 4. (DocLayout-YOLO specialist 81.1 still ahead.)"
+  },
+  "m6doc": {
+    "model_id": "nvidia/locateanything-3b",
+    "benchmark_id": "m6doc",
+    "value": 70.1,
+    "unit": "mean_f1",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2605.27365v2",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "First-party. Table 4."
+  },
+  "totaltext": {
+    "model_id": "nvidia/locateanything-3b",
+    "benchmark_id": "totaltext",
+    "value": 43.3,
+    "unit": "mean_f1",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2605.27365v2",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "First-party. Table 4."
+  },
+  "humanref": {
+    "model_id": "bytedance/seed1.5-vl",
+    "benchmark_id": "humanref",
+    "value": 81.6,
+    "unit": "mean_f1",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2605.27365v2",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "SEED1.5-VL HumanRef SOTA, beats LocateAnything-3B by 2.9."
+  },
+  "benchcad_edit_acc": {
+    "model_id": "openai/gpt-5.3",
+    "benchmark_id": "benchcad_edit_acc",
+    "value": 0.865,
+    "unit": "accuracy",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2605.10865v1",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "Comparison. SOTA — GPT-5.3 (thinking variant). Table 3."
+  },
+  "benchcad_qa_code": {
+    "model_id": "google/gemini-3.1-pro",
+    "benchmark_id": "benchcad_qa_code",
+    "value": 0.838,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2605.10865v1",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "Comparison. SOTA on QA Code Total."
+  },
+  "benchcad_vision2code": {
+    "model_id": "google/gemini-3.1-pro",
+    "benchmark_id": "benchcad_vision2code",
+    "value": 0.397,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/html/2605.10865v1",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "Comparison. Vision2Code SOTA (thinking)."
+  },
+  "pai_bench_c_quality": {
+    "model_id": "alibaba/wan-2.2-fun-5b-control",
+    "benchmark_id": "pai_bench_c_quality",
+    "value": 9.317,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard/raw/main/data/conditional_generation-leaderboard.json",
+      "date": "2026-05-30",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-30",
+    "notes": "First-party. SOTA — Depth condition. Also Edge 8.793."
   },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
@@ -15824,40 +16049,10 @@
     "collected_at": "2026-05-03",
     "notes": ""
   },
-  "mmstar": {
-    "model_id": "lg/exaone-4.5-33b",
-    "benchmark_id": "mmstar",
-    "value": 74.9,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
-      "date": "2026-05-03",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-03",
-    "notes": ""
-  },
   "blink": {
     "model_id": "lg/exaone-4.5-33b",
     "benchmark_id": "blink",
     "value": 68.8,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B",
-      "date": "2026-05-03",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-03",
-    "notes": ""
-  },
-  "hallusionbench": {
-    "model_id": "lg/exaone-4.5-33b",
-    "benchmark_id": "hallusionbench",
-    "value": 63.7,
     "unit": "%",
     "source": {
       "type": "leaderboard",
