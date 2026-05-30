@@ -20,7 +20,9 @@ var CyberCoding = {
         // 2026-05-21 Palisade Research GPT-5 at CTFs (arxiv 2511.04860) — live CTFTime 2025 competition percentiles
         'asis_ctf_quals_2025_percentile', 'corctf_2025_percentile', 'snakectf_quals_2025_percentile',
         // 2026-05-27 Lyptus Research — offensive-cyber time horizons (METR-style, 316 tasks × 7 benches); GPT-5.5 saturates
-        'offensive_cyber_time_horizon_p50', 'offensive_cyber_success_rate'
+        'offensive_cyber_time_horizon_p50', 'offensive_cyber_success_rate',
+        // 2026-05-28 S33 Claude Opus 4.8 System Card — harness-conflict cyber bench IDs (Section 3.3)
+        'cybergym_targeted_repro', 'firefox_147_full_exploit', 'exploitbench_v2_flags', 'oss_fuzz_progress_rate'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
         // 2026-05-28 AgentDoG 1.5 (arxiv 2605.29801, Shanghai AI Lab) — agentic-trajectory safety judging

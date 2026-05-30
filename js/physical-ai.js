@@ -15,6 +15,15 @@ var PhysicalAI = {
                 'nvidia/cosmos-predict-2.5', 'nvidia/cosmos-predict-2.5-2b', 'nvidia/cosmos-predict-2.5-14b', 'nvidia/cosmos-predict-1-7b',
                 'nvidia/cosmos-reason-2', 'nvidia/cosmos-reason-1', 'nvidia/cosmos-reason-1-56b', 'nvidia/cosmos-reason-1-8b',
                 'nvidia/cosmos-policy-robocasa',
+                // 2026-05-30 Session 38 — NVIDIA Cosmos3 + Cosmos-Reason2 (PAI-Bench SOTA family)
+                'nvidia/cosmos3-super', 'nvidia/cosmos3-nano',
+                'nvidia/cosmos-reason2-32b', 'nvidia/cosmos-reason2-8b',
+                // 2026-05-30 WorldArena named baselines (Tsinghua FIB)
+                'tsinghua/ctrl-world', 'bytedance/irasim',
+                // 2026-05-30 PAI-Bench-G additional video gen entries (S38)
+                'alibaba/wan-2.2-i2v-a14b',
+                // 2026-05-30 PAI-Bench-U VLM frontier (S38)
+                'alibaba/qwen3-vl-235b-a22b-instruct',
                 'google-deepmind/genie-3', 'google-deepmind/genie-2',
                 'tencent/hy-world-2.0',
                 'wonderworld/wonderworld', 'zhipu/cogvideox-i2v', 'runway/gen-3',
