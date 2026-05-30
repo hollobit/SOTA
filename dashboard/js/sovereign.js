@@ -90,7 +90,7 @@ var Sovereign = {
         },
         {
             code: 'cn', label: 'China', flag: '🇨🇳',
-            note: '중국 frontier 전체 — Qwen 풀+specialists · DeepSeek (V3-V4/R1/Coder/Math/VL) · Kimi · GLM · Hunyuan · ERNIE · Doubao · iFlytek Spark · Yi · Baichuan · InternLM · SenseNova · Skywork · MiniCPM · PanGu · Aquila · MOSS · Yuan',
+            note: '중국 frontier 전체 — Qwen 풀+specialists (incl. Qwen3-VL-235B/Wan-2.2-I2V) · DeepSeek (V3-V4/R1/Coder/Math/VL) · Kimi · GLM · Hunyuan · ERNIE · Doubao · iFlytek Spark · Yi · Baichuan · InternLM/InternVL3 · SenseNova-V6.5-Pro · Skywork · MiniCPM-o · Ovis2.5 (AIDC-AI) · Step-1o (StepFun) · JT3.5 (China Mobile) · TeleMM-2.0 (China Telecom) · PanGu · Aquila · MOSS · Yuan',
             models: [
                 // Alibaba Qwen — full param lineup
                 'alibaba/qwen3.7-max', 'alibaba/qwen3.7-max-20260517', 'alibaba/qwen3.7-max-preview', 'alibaba/qwen3.7-plus-preview',
@@ -116,6 +116,7 @@ var Sovereign = {
                 'minimax/m2.7', 'minimax/m2.5', 'minimax/minimax-m2.7',
                 'mimo/mimo-v2-pro', 'mimo/mimo-v2-flash',
                 'stepfun/step-3.5-flash', 'stepfun/step-2-pro', 'stepfun/step-2-mini',
+                'stepfun/step-1o',
                 // Baidu ERNIE
                 'baidu/ernie-5.1', 'baidu/ernie-5.0', 'baidu/ernie-4.5-300b-a47b', 'baidu/ernie-4.5-turbo', 'baidu/ernie-speed', 'baidu/ernie-lite',
                 // Tencent Hunyuan
@@ -131,6 +132,8 @@ var Sovereign = {
                 'alibaba/qwen-image-2.0-pro-2026-04-22', 'alibaba/qwen-image-2512', 'alibaba/qwen-image-2.0-2026-03-03',
                 'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav',
                 'alibaba/gui-owl-1.5-8b', 'alibaba/gui-owl-1.5-32b',
+                // 2026-05 Alibaba VLM frontier — S37 CompassRank + S38 PAI-Bench-U entries
+                'alibaba/qwen3-vl-235b-a22b-instruct', 'alibaba/wan-2.2-i2v-a14b',
                 // 2026-05 Kuaishou Kling (video gen)
                 'kling/kling-v3-pro', 'kling/kling-o1-pro', 'kling/kling-o3-pro',
                 // 2026-05 Alibaba-ATH happyhorse (video gen #2 across all arena video boards)
@@ -151,13 +154,18 @@ var Sovereign = {
                 'shanghai-ai-lab/internlm-3-8b', 'shanghai-ai-lab/internlm-2.5-20b',
                 'shanghai-ai-lab/internlm-2.5-7b', 'shanghai-ai-lab/internlm-2.5-1.8b',
                 'shanghai-ai-lab/internvl-3', 'shanghai-ai-lab/internvl-2.5',
+                'shanghai-ai-lab/internvl3-78b',
                 // SenseTime
-                'sensetime/sensenova-v6', 'sensetime/sensechat-5', 'sensetime/sensenova',
+                'sensetime/sensenova-v6-5-pro', 'sensetime/sensenova-v6', 'sensetime/sensechat-5', 'sensetime/sensenova',
+                // 2026-05 Sovereign-CN VLM frontier — S37 CompassRank entries
+                'china-mobile/jt3.5',
+                'china-telecom/telemm-2.0', 'china-telecom/telemm-2.0-thinking',
+                'aidc-ai/ovis2.5-9b',
                 // Skywork (Kunlun)
                 'skywork/skywork-moe', 'skywork/skywork-13b', 'skywork/skywork-r1v-3', 'skywork/skywork-o1',
                 // OpenBMB MiniCPM (Tsinghua)
                 'openbmb/minicpm-4.1-8b', 'openbmb/minicpm-4-8b', 'openbmb/minicpm-3-4b',
-                'openbmb/minicpm-v-2.6', 'openbmb/minicpm-o-2.6',
+                'openbmb/minicpm-v-2.6', 'openbmb/minicpm-o-2.6', 'openbmb/minicpm-o-4.5',
                 // Huawei PanGu
                 'huawei/pangu-ultra-moe', 'huawei/pangu-5', 'huawei/pangu-embedding',
                 // BAAI Aquila / Wudao

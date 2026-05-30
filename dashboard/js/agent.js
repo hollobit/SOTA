@@ -158,7 +158,9 @@ var Agent = (function() {
                 'cot_faithfulness_misaligned',
                 'apollo_scheming_oversight_subversion',
                 'apollo_scheming_persistence',
-                'rewardbench2_overall'
+                'rewardbench2_overall',
+                // 2026-05-28 Session 36 — AgentDoG 1.5 (Shanghai AI Lab, arxiv 2605.29801)
+                'r_judge', 'atbench'
             ]
         },
         {
