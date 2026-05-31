@@ -1,7 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 41 — WorldArena.ai deep re-mine: 16 Track-1 sub-metrics + 3 frontier video-gen baselines (Veo 3.1, Wan 2.2, Wan 2.6) (2026-05-31)
-**1,591 models · 1,298 benchmarks · 6,866 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 42 — ESM Cambrian / ESMFold2 paper (Biohub + EvolutionaryScale 2026): pLM scaling + protein structure prediction SOTA (2026-05-31)
+**1,598 models · 1,307 benchmarks · 6,885 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-05-31 Session 42 — ESM Cambrian / ESMFold2 deep-mine (user-provided 71MB PDF, 104pp)
+- **Paper**: "Language Modeling Materializes a World Model of Protein Biology" (Candido et al, Biohub + EvolutionaryScale, 2026). PDF archived (71MB).
+- **Models** (7): ESMC 300M/600M/**6B** (protein language models, 6.35B flagship, 80 layers) · **ESMFold2 + ESMFold2-Fast** (multi-modality structure prediction) · ESM2-15B (Meta baseline) · Boltz-2 (MIT comparison)
+- **Bench family**: FoldBench introduces 6 modality sub-benches (Antibody-Antigen / PPI / Protein-Ligand / Protein-DNA / Protein-Peptide / Monomer LDDT) + Recent-PDB PPI hold-out · p_at_l_lr (contact precision long-range scaling, R²=0.99 ESMC scaling law) · megascale_dg_spearman
+- **SOTAs**: **ESMFold2+MSA PPI 76% (vs AlphaFold3 73%)** · **AbAg 53% (vs AF3 47%)** · beats Boltz-2 Recent-PDB PPI 77 vs 70 · ESMC 6B contact precision **0.725 (+22% over ESM2-15B 0.593)** · ESMFold2-Fast **9.4s @L=1024 — fastest folder (2.2x faster than AF3 ~20.5s)**
+- 8-tab audit: AI4S regex extended to esmc-/esmfold/esm2-/boltz-/protenix + evolutionaryscale/ prefix. FoldBench data-driven only (FC axes don't include AI4S/bio). EXCLUDED figure-only Chai-1/OpenFold3 coverage counts, Protenix-v1 bars, binder hit-rate ranges. **+7/+9/+19** = 1598/1307/6885. v=20260531c
 
 ### 2026-05-31 Session 41 — WorldArena.ai re-investigation (user-requested deep table analysis)
 - HF Space worldarena-results/ grew **6→86 baselines since S38**. 3 NEW frontier video-gen baselines (Veo 3.1, Wan 2.2, Wan 2.6); 80+ CVPR-2026 anonymous submissions SKIPPED. Each baseline JSON has 16 sub-metrics × 6 dimensions (visual quality+motion+content consistency+physics+3D+controllability) — S38 only ingested EWMScore aggregate.
@@ -80,15 +87,8 @@
 - **Session 13** (May 13): Sovereign AI 13-country sweep + PDF deep mining (OneManCompany/Agent-World/AI Co-Math)
 - **Session 12** (May 12): Mythos cyber + DELEGATE-52 + Onyx Open LLM (19 models × 10 benches) + Medical AI timeline + AA per-bench sub-scores
 
-### 2026-05-10 ~ 11 Session 11 — ECI + AAII composite mega-ingest (16+ commits)
-- **ECI ingest**: 3 → 178 scores (incl. reasoning-effort variants) via canonical CSV `https://epoch.ai/data/eci_scores.csv` (172 rows) + Rosetta Stone paper (arxiv 2512.00193) + benchmark-stitching repo 33 external CSVs
-- **AAII ingest**: 29 → 178 scores (incl. variants) via Playwright scrape of `artificialanalysis.ai/leaderboards/models` (216 rows) + per-benchmark sub-scores from `/models/gpt-5-5` (11 SVG charts × 28 frontier models)
-- **Frontier Compare composite split**: 1 → 2 categories — composite_eci (ECI + 30 contributing benchmarks) / composite_aaii (AAII + 11 contributing benchmarks)
-- **AI4S widget activation**: W3 Frontier vs Specialist (DeepSeek-Math V2 / Goedel-Prover-V2 / DeepSeek-Prover-V2 on PutnamBench), W9 Materials Yield mattergen_yield (MatterGen 38.57 / CDVAE 13.99 / DiffCSP 12.71)
-- **SOTA harness fix**: lower-better 메트릭 (RMSE/MAE/loss 등) min-based SOTA detection (commit `58c5be4`)
-- **Cyber variants**: GPT-5.5-Cyber + GPT-5.4-Cyber 등록 (CyberGym 81.9% verified)
-- **6 PDFs archived to resource/** (22.67 MB): Rosetta Stone, DeepSeek-Math V2, Goedel-Prover-V2, DeepSeek-Prover-V2, MatterGen Nature, AILuminate v1
-- **3 new memory files**: AA SVG chart pattern + cyber variant publishing + AA benchmarking data sources
+### 2026-05-10 ~ 11 Session 11 — ECI + AAII composite mega-ingest (compressed — see HISTORY.md)
+- ECI ingest 3→178 (canonical CSV + Rosetta Stone paper 2512.00193 + 33 external CSVs). AAII 29→178 (Playwright /leaderboards/models 216 rows + per-bench sub-scores). FC composite_eci/composite_aaii split. AI4S widget W3/W9 + SOTA lower-better fix. GPT-5.5/5.4-Cyber + 6 PDFs + 3 memory files (AA SVG/cyber variants/AA data sources)
 
 ## Previous: Agent menu launch (2026-05-08, Session 2)
 **1,114 models · 854 benchmarks · 3,315 scores · 14 active tabs (Overview / Leaderboard / Trends / Timeline / Comparison / Frontier Compare / Cyber & Coding / Sovereign AI / Physical AI / Medical AI / AI4S / **Agent (10 sub-categories)** / Explorer / Resources / Changelog)**

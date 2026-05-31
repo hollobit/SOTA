@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "date": "2026-05-31",
+    "title": "Session 42 — ESM Cambrian / ESMFold2 paper (Biohub + EvolutionaryScale, 2026): pLM scaling + protein structure prediction SOTA",
+    "context": "Deep-mine of 'Language Modeling Materializes a World Model of Protein Biology' (Candido et al., ~45 authors, Biohub + EvolutionaryScale, Copyright 2026). PDF accessed via presigned S3 URL (bhp-papers-prod) — 71 MB, 104 pages, archived locally as resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf. Introduces 5 new models (ESMC 300M/600M/6B protein language models + ESMFold2 / ESMFold2-Fast structure prediction) trained on UniRef 83M + MGnify 372M + JGI 2B = 2.8B sequences. Introduces FoldBench (multi-modality folding eval — Antibody-Antigen + PPI + Protein-Ligand + Protein-DNA + Protein-Peptide + Monomer) and EC-CATH (enzyme class prediction). KEY SOTA: ESMFold2 + MSA reaches 76% PPI (vs AlphaFold3 73%), 53% AbAg (vs AF3 47%). ESMFold2-Fast 9.4s at L=1024 (vs AF3 ~20.5s = 2.2x faster). ESMC 6B contact precision 0.725 vs ESM2-15B 0.593 (+22%, R²=0.99 scaling law).",
+    "sources": [
+      "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf",
+      "https://bhp-papers-prod.s3.us-west-2.amazonaws.com/esm_protein.pdf"
+    ],
+    "rule": "STRICT-ATTRIBUTION. Every triple verified by agent extraction of TEXT TABLES on PDF pp.6 + §A.1.4.1 + §A.1.4.4 + §A.2.10 + §A.2.11. EXCLUDED figure-only: Figure S6 monomer LDDTs for Chai-1/OpenFold3/Boltz-2/AF3/Protenix-v1 (bar chart only); Figure S7 per-modality bars for OpenFold3/Boltz-2/AF3/Protenix-v1; Figure 3A target-specific hit rates 36-88% minibinder / 15-29% scFv (range in text, not per-target); de novo binder design IC50/affinity values (single-experimental, not multi-model). EXCLUDED EC-CATH bench (ESMC 6B 'best on 53/73 tasks' is task-win-rate not standardized MCC value). FoldBench MSA variant ingested as canonical for ESMFold2 + AlphaFold3 (matches paper's headline comparison); single-seq for ESMFold2-Fast (the fast variant doesn't take MSA). Chai-1 / OpenFold-3 / Protenix-v1 comparison values are coverage-count or figure-only → skipped (chai/chai-1 and openfold/openfold-3 already in DB, no ingestible scores from this paper).",
+    "deltas_expected": "+7 models / +9 benchmarks / +19 scores"
+  },
+  "models": [
+    {"id": "evolutionaryscale/esmc-300m", "name": "ESMC 300M", "vendor": "EvolutionaryScale", "modalities": ["protein_sequence"], "release_date": "2026-05", "_note": "ESM Cambrian 333M-param protein language model (30 layers, d=960). Trained on 2.8B sequences (UniRef + MGnify + JGI). Contact precision P@L-LR 0.552."},
+    {"id": "evolutionaryscale/esmc-600m", "name": "ESMC 600M", "vendor": "EvolutionaryScale", "modalities": ["protein_sequence"], "release_date": "2026-05", "_note": "ESM Cambrian 575M-param pLM (36 layers, d=1152). P@L-LR 0.589 — matches ESM2-15B with 26x fewer params."},
+    {"id": "evolutionaryscale/esmc-6b", "name": "ESMC 6B", "vendor": "EvolutionaryScale", "modalities": ["protein_sequence"], "release_date": "2026-05", "_note": "ESM Cambrian flagship 6.35B-param pLM (80 layers, d=2560). SOTA contact precision P@L-LR 0.725 (+22% over ESM2-15B). Scaling law R²=0.99."},
+    {"id": "evolutionaryscale/esmfold-2", "name": "ESMFold2", "vendor": "EvolutionaryScale", "modalities": ["protein_sequence", "protein_structure"], "release_date": "2026-05", "_note": "Multi-modality structure prediction model (single-seq + MSA, 48 pair folding layers). FoldBench MSA SOTA: PPI 76% (vs AF3 73%), AbAg 53% (vs AF3 47%). Recent-PDB PPI 77% beats Boltz-2 70%. Latency 15.8s at L=1024 (1.3x faster than AF3)."},
+    {"id": "evolutionaryscale/esmfold-2-fast", "name": "ESMFold2-Fast", "vendor": "EvolutionaryScale", "modalities": ["protein_sequence", "protein_structure"], "release_date": "2026-05", "_note": "Fast single-seq-only variant (24 pair folding layers). Latency 9.4s at L=1024 — fastest folder evaluated (2.2x faster than AF3). Single-seq FoldBench: AbAg 50% / PPI 68% / Protein-Ligand 55%."},
+    {"id": "meta/esm2-15b", "name": "ESM2 15B", "vendor": "Meta", "modalities": ["protein_sequence"], "release_date": "2022-11", "_note": "Meta ESM2 15B-param baseline pLM. Contact precision P@L-LR 0.593 — top of ESM2 family. Now superseded by ESMC 6B (0.725) at ~2.4x smaller param count when matched to 6B variant."},
+    {"id": "mit/boltz-2", "name": "Boltz-2", "vendor": "MIT", "modalities": ["protein_sequence", "protein_structure"], "release_date": "2025-09", "_note": "MIT open-source protein structure prediction model (successor to Boltz-1). Recent-PDB PPI 70% — strong baseline beaten by ESMFold2 (77%, +7pp)."}
+  ],
+  "benchmarks": [
+    {"id": "p_at_l_lr", "name": "Contact Precision @ L (Long-Range)", "category": "ai4s", "description": "Unsupervised contact prediction precision at top-L long-range residue pairs (|i-j|>24). Higher=better. Standard protein language model evaluation metric. ESM Cambrian paper §A.1.4.1. Scaling law fit R²=0.99: P@L-LR = 0.115*log10(FLOPs) - 1.982.", "metric": "precision", "leaderboard": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf"},
+    {"id": "foldbench_abag", "name": "FoldBench Antibody-Antigen DockQ Pass Rate", "category": "ai4s", "description": "FoldBench Antibody-Antigen interface folding — 172 low-homology AbAg targets, DockQ pass-rate at ≥0.23 (acceptable). Higher=better. Hardest folding modality. ESM Cambrian paper introduces FoldBench (ref 33).", "metric": "accuracy", "leaderboard": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf"},
+    {"id": "foldbench_ppi", "name": "FoldBench Protein-Protein Interaction DockQ Pass", "category": "ai4s", "description": "FoldBench general Protein-Protein Interaction — 278/279 PPI targets, DockQ ≥0.23 pass-rate. Higher=better.", "metric": "accuracy", "leaderboard": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf"},
+    {"id": "foldbench_protein_ligand", "name": "FoldBench Protein-Ligand Pass", "category": "ai4s", "description": "FoldBench Protein-Ligand binding pose — 511/518 protein-ligand targets, success rate from Runs N' Poses metric. Higher=better.", "metric": "accuracy", "leaderboard": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf"},
+    {"id": "foldbench_protein_dna", "name": "FoldBench Protein-DNA DockQ Pass", "category": "ai4s", "description": "FoldBench Protein-DNA complex — 273/333 protein-DNA targets, DockQ pass-rate. Higher=better.", "metric": "accuracy", "leaderboard": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf"},
+    {"id": "foldbench_protein_peptide", "name": "FoldBench Protein-Peptide DockQ Pass", "category": "ai4s", "description": "FoldBench Protein-Peptide complex — 16/51 protein-peptide targets, DockQ pass-rate. Higher=better.", "metric": "accuracy", "leaderboard": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf"},
+    {"id": "foldbench_monomer_lddt", "name": "FoldBench Monomer LDDT", "category": "ai4s", "description": "FoldBench protein monomer LDDT — 333/334 monomer targets. LDDT score (0-100), higher=better. MSA variant.", "metric": "lddt", "leaderboard": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf"},
+    {"id": "megascale_dg_spearman", "name": "Megascale ΔG Spearman", "category": "ai4s", "description": "Spearman correlation between predicted and measured ΔG (folding stability) on Megascale holdout (Foldseek-resplit, 47 train / 13 val / 50 test families). Higher=better.", "metric": "spearman", "leaderboard": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf"},
+    {"id": "recent_pdb_ppi", "name": "Recent-PDB PPI DockQ Pass", "category": "ai4s", "description": "Held-out Recent-PDB Protein-Protein Interaction set (post-training cutoff). DockQ pass-rate. Higher=better. Companion validation set to FoldBench PPI.", "metric": "accuracy", "leaderboard": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf"}
+  ],
+  "scores": [
+    {"_section": "=== Contact Precision @ L Long-Range (ESMC scaling law) ===",
+     "model": "evolutionaryscale/esmc-300m", "benchmark": "p_at_l_lr", "score": 0.552, "unit": "precision", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. §A.1.4.1 (±0.002)."},
+    {"model": "evolutionaryscale/esmc-600m", "benchmark": "p_at_l_lr", "score": 0.589, "unit": "precision", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. §A.1.4.1. Matches ESM2-15B at 26x fewer params."},
+    {"model": "evolutionaryscale/esmc-6b", "benchmark": "p_at_l_lr", "score": 0.725, "unit": "precision", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. §A.1.4.1. SOTA (+22% over ESM2-15B). Scaling law R²=0.99."},
+    {"model": "meta/esm2-15b", "benchmark": "p_at_l_lr", "score": 0.593, "unit": "precision", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "Comparison. §A.1.4.1. Top ESM2 family before ESMC."},
+
+    {"_section": "=== FoldBench Antibody-Antigen (hardest modality) ===",
+     "model": "evolutionaryscale/esmfold-2", "benchmark": "foldbench_abag", "score": 53, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. MSA variant (canonical). p.6. SOTA — beats AlphaFold3 with same MSA (47)."},
+    {"model": "evolutionaryscale/esmfold-2-fast", "benchmark": "foldbench_abag", "score": 50, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. Single-seq only (fast variant). Ties single-seq SOTA — matches MSA AlphaFold3 without using MSA."},
+    {"model": "google-deepmind/alphafold-3", "benchmark": "foldbench_abag", "score": 47, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "Comparison. MSA variant. p.6."},
+
+    {"_section": "=== FoldBench Protein-Protein Interaction ===",
+     "model": "evolutionaryscale/esmfold-2", "benchmark": "foldbench_ppi", "score": 76, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. MSA variant. p.6. SOTA — beats AlphaFold3 (73)."},
+    {"model": "evolutionaryscale/esmfold-2-fast", "benchmark": "foldbench_ppi", "score": 68, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. Single-seq."},
+    {"model": "google-deepmind/alphafold-3", "benchmark": "foldbench_ppi", "score": 73, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "Comparison. MSA. p.6."},
+
+    {"_section": "=== FoldBench Protein-Ligand ===",
+     "model": "evolutionaryscale/esmfold-2", "benchmark": "foldbench_protein_ligand", "score": 57, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. Runs N' Poses metric. p.6."},
+    {"model": "evolutionaryscale/esmfold-2-fast", "benchmark": "foldbench_protein_ligand", "score": 55, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party."},
+
+    {"_section": "=== FoldBench Protein-DNA / Peptide / Monomer ===",
+     "model": "evolutionaryscale/esmfold-2", "benchmark": "foldbench_protein_dna", "score": 79, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. §A.2.10."},
+    {"model": "evolutionaryscale/esmfold-2", "benchmark": "foldbench_protein_peptide", "score": 82, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. §A.2.10. Strongest modality."},
+    {"model": "evolutionaryscale/esmfold-2", "benchmark": "foldbench_monomer_lddt", "score": 89, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. §A.2.10 MSA variant."},
+
+    {"_section": "=== Recent-PDB PPI (held-out validation, single-seq) — Boltz-2 comparison ===",
+     "model": "evolutionaryscale/esmfold-2", "benchmark": "recent_pdb_ppi", "score": 77, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. MSA variant. §A.2.10. SOTA on held-out PPI."},
+    {"model": "evolutionaryscale/esmfold-2-fast", "benchmark": "recent_pdb_ppi", "score": 66, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. Single-seq."},
+    {"model": "mit/boltz-2", "benchmark": "recent_pdb_ppi", "score": 70, "unit": "%", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "Comparison. §A.2.10."},
+
+    {"_section": "=== Megascale ΔG Spearman (stability prediction) ===",
+     "model": "evolutionaryscale/esmc-6b", "benchmark": "megascale_dg_spearman", "score": 0.68, "unit": "spearman", "_source": "resource/esm_cambrian_esmfold2_biohub_evolutionaryscale.pdf", "_note": "First-party. §A.1.4.4. Holdout 47 train/13 val/50 test families."}
+  ]
+}
