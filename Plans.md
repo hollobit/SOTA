@@ -1,7 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 40 — Deep re-mine round 2: Opus 4.8 unmined + SkillOpt + WorldArena T2 + AA Playwright (2026-05-31)
-**1,590 models · 1,282 benchmarks · 6,735 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 41 — WorldArena.ai deep re-mine: 16 Track-1 sub-metrics + 3 frontier video-gen baselines (Veo 3.1, Wan 2.2, Wan 2.6) (2026-05-31)
+**1,591 models · 1,298 benchmarks · 6,866 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-05-31 Session 41 — WorldArena.ai re-investigation (user-requested deep table analysis)
+- HF Space worldarena-results/ grew **6→86 baselines since S38**. 3 NEW frontier video-gen baselines (Veo 3.1, Wan 2.2, Wan 2.6); 80+ CVPR-2026 anonymous submissions SKIPPED. Each baseline JSON has 16 sub-metrics × 6 dimensions (visual quality+motion+content consistency+physics+3D+controllability) — S38 only ingested EWMScore aggregate.
+- **3 new frontier models**: Google Veo 3.1 (#3 EWMScore 0.578, **Perspectivity 0.996 SOTA + Instruction Following 0.971 SOTA**), Alibaba Wan 2.2 (EWMScore 0.549), Alibaba **Wan 2.6 (#2 EWMScore 0.592** — between Ctrl-World 0.601 leader and Veo 3.1)
+- **Per-dimension SOTA**: Wan 2.6 Image Quality 0.674 + Motion 0.821 / Veo 3.1 Background 0.917 + Interaction 0.815 + Perspectivity 0.996 + Instruction 0.971 / Ctrl-World Trajectory 0.482 / IRASim Depth 0.935 + Photometric 0.457 / CogVideoX JEPA 0.948 / Cosmos-Predict 2.5 Perspectivity 0.982 + Action Following 0.100
+- 8-tab audit → Physical AI World Model patched (+16 sub-metric benches + 3 new models). All values direct-WebFetch verified per JSON. EWMScore computed for new models (arithmetic mean of 16). **+1/+16/+131** = 1591/1298/6866. v=20260531b
 
 ### 2026-05-31 Session 40 — Deep re-mine round 2 (user "다시 조사" — sources still had unmined regions)
 - 6 sources re-mined for content deferred per scope. **Opus 4.8 sys card** unmined sections (pp.17/41/193-234): 7 NEW benches (AutomationBench/BioPipelineBench/BioMysteryBench Human-Solvable/GMMLU 90.4/MILU 90.3/INCLUDE 87.6/AECI 155.5) + 3 net-new (mcpatlas_public 82.2, finance_agent 53.9, charxiv_reasoning 80.5)
@@ -43,14 +49,8 @@
 ### 2026-05-28 Session 30 — DeepRare + AgingBench + SciMuse + Gemini-for-Science
 - DeepRare HPO R@1 57.18% (vs Claude-3.7-thinking 33.39). Multimodal Xinhua 69.1 vs Exomiser 55.9. Physician 163 cases 64.4 vs 54.6. AgingBench (UT Austin) + SciMuse (Max Planck 0.51) + AlphaEvolve + Antigravity NEW. **+13/+18/+33**=1555/1187/6257. v=20260528b
 
-### 2026-05-28 Session 29 — ERA + Robin + AutoSOTA per-task deep-mine
-- ERA OpenProblems BBKNN(TS) +14%, CovidHub WIS 26 vs 29. Robin dAMD $10.76/200-fold + Ripasudil 1.89x/1.75x + Crow 0% vs o4-mini 44.5% hallucinated. AutoSOTA Top-5 avg 43.55%. **+3/+20/+24**=1542/1169/6224. v=20260528a
-
-### 2026-05-27 Sessions 27-28 — SensorFM + 5-PDF deep-mine (compressed)
-- **27 SensorFM** (2605.22759): 4 sizes pretrained 1T+ min/5M ppl. SensorFM-B wins 33/35. **+5/+10/+15**=1536/1140/6191. v=20260527b. **28 MDASH+AutoSOTA+3 Nature**: MDASH Windows kernel (StorageDrive 100%/clfs 96%/tcpip 100%/16 netstack vulns). AutoSOTA (8 agents/105 papers/max 63.64%). Co-Scientist + ERA + FutureHouse NEW. **+3/+9/+9**=1539/1149/6200. v=20260527c
-
-### 2026-05-27 Session 26 — Multi-task maintenance + Image/Video Gen tabs (A-F batch, compressed)
-- Scout +mai-image-2.5-preview T2I #3 1254 Elo, +hidream-o1 1189. DB: 3 Mythos dup IDs merged. Node 20→24 on 3 workflows. HISTORY +5 sections. **Image Gen + Video Gen 신규 탭** 14→16 (data-driven 7 arena boards). **+1/-2/-2** = 1531/1130/6176. v=20260527a
+### 2026-05-27 ~ 28 Sessions 26-29 (compressed — see HISTORY.md)
+- **S29** ERA+Robin+AutoSOTA deep-mine (Crow 0% vs o4-mini 44.5%; **+3/+20/+24** v=20260528a). **S28** MDASH+AutoSOTA+3 Nature (Co-Scientist/ERA/FutureHouse NEW; **+3/+9/+9** v=20260527c). **S27** SensorFM 4 sizes (33/35 wins; **+5/+10/+15** v=20260527b). **S26** Image/Video Gen 신규 탭(14→16); **+1/-2/-2** v=20260527a
 **Live Site**: https://hollobit.github.io/SOTA/
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
 
