@@ -4968,6 +4968,69 @@
     "metric": "score"
   },
   {
+    "id": "p_at_l_lr",
+    "name": "Contact Precision @ L (Long-Range)",
+    "category": "ai4s",
+    "description": "Unsupervised contact prediction precision at top-L long-range residue pairs (|i-j|>24). Higher=better. Standard protein language model evaluation metric. ESM Cambrian paper §A.1.4.1. Scaling law fit R²=0.99: P@L-LR = 0.115*log10(FLOPs) - 1.982.",
+    "metric": "precision"
+  },
+  {
+    "id": "foldbench_abag",
+    "name": "FoldBench Antibody-Antigen DockQ Pass Rate",
+    "category": "ai4s",
+    "description": "FoldBench Antibody-Antigen interface folding — 172 low-homology AbAg targets, DockQ pass-rate at ≥0.23 (acceptable). Higher=better. Hardest folding modality. ESM Cambrian paper introduces FoldBench (ref 33).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "foldbench_ppi",
+    "name": "FoldBench Protein-Protein Interaction DockQ Pass",
+    "category": "ai4s",
+    "description": "FoldBench general Protein-Protein Interaction — 278/279 PPI targets, DockQ ≥0.23 pass-rate. Higher=better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "foldbench_protein_ligand",
+    "name": "FoldBench Protein-Ligand Pass",
+    "category": "ai4s",
+    "description": "FoldBench Protein-Ligand binding pose — 511/518 protein-ligand targets, success rate from Runs N' Poses metric. Higher=better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "foldbench_protein_dna",
+    "name": "FoldBench Protein-DNA DockQ Pass",
+    "category": "ai4s",
+    "description": "FoldBench Protein-DNA complex — 273/333 protein-DNA targets, DockQ pass-rate. Higher=better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "foldbench_protein_peptide",
+    "name": "FoldBench Protein-Peptide DockQ Pass",
+    "category": "ai4s",
+    "description": "FoldBench Protein-Peptide complex — 16/51 protein-peptide targets, DockQ pass-rate. Higher=better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "foldbench_monomer_lddt",
+    "name": "FoldBench Monomer LDDT",
+    "category": "ai4s",
+    "description": "FoldBench protein monomer LDDT — 333/334 monomer targets. LDDT score (0-100), higher=better. MSA variant.",
+    "metric": "lddt"
+  },
+  {
+    "id": "megascale_dg_spearman",
+    "name": "Megascale ΔG Spearman",
+    "category": "ai4s",
+    "description": "Spearman correlation between predicted and measured ΔG (folding stability) on Megascale holdout (Foldseek-resplit, 47 train / 13 val / 50 test families). Higher=better.",
+    "metric": "spearman"
+  },
+  {
+    "id": "recent_pdb_ppi",
+    "name": "Recent-PDB PPI DockQ Pass",
+    "category": "ai4s",
+    "description": "Held-out Recent-PDB Protein-Protein Interaction set (post-training cutoff). DockQ pass-rate. Higher=better. Companion validation set to FoldBench PPI.",
+    "metric": "accuracy"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",

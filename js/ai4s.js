@@ -99,8 +99,9 @@ var AI4S = {
                 || id.indexOf('microsoft/aurora-open') === 0;
         }},
         { key: 'bio-genomics', icon: '🧬', label: 'Bio / Genomics', match: function(id) {
-            return /(evo-1|evo-2|rfdiffusion|rosettafold|saprot|protgpt|genslms|scgpt|nucleotide-transformer|hyenadna|caduceus|alphamissense|alphagenome|chai-2|rnapro)/i.test(id)
-                || id.indexOf('nvidia-clara/rnapro') === 0;
+            return /(evo-1|evo-2|rfdiffusion|rosettafold|saprot|protgpt|genslms|scgpt|nucleotide-transformer|hyenadna|caduceus|alphamissense|alphagenome|chai-2|rnapro|esmc-|esmfold|esm2-|esm-2|boltz-|protenix)/i.test(id)
+                || id.indexOf('nvidia-clara/rnapro') === 0
+                || id.indexOf('evolutionaryscale/') === 0;
         }},
         { key: 'multi-disciplinary', icon: '🌐', label: 'Multi-disciplinary', match: function(id) {
             return /\bgalactica\b/i.test(id);
