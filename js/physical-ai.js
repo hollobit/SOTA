@@ -21,6 +21,8 @@ var PhysicalAI = {
                 // 2026-05-30 Session 39 — Conditional video generation (PAI-Bench-C)
                 'nvidia/cosmos-transfer2.5-2b',
                 'alibaba/wan-2.2-fun-a14b-control', 'alibaba/wan-2.2-fun-5b-control',
+                // 2026-05-31 S41 — WorldArena Track 1 new frontier baselines
+                'google/veo-3.1', 'alibaba/wan-2.2', 'alibaba/wan-2.6',
                 // 2026-05-30 WorldArena named baselines (Tsinghua FIB)
                 'tsinghua/ctrl-world', 'bytedance/irasim',
                 // 2026-05-30 PAI-Bench-G additional video gen entries (S38)
@@ -182,7 +184,14 @@ var PhysicalAI = {
                 // 2026-05-30 Session 39 PAI-Bench Conditional Generation Quality
                 'pai_bench_c_quality',
                 // 2026-05-31 S40 WorldArena Track 2 Policy Evaluator (HF Space public 05-29)
-                'worldarena_track2_policy'
+                'worldarena_track2_policy',
+                // 2026-05-31 S41 WorldArena Track 1 — 16 sub-metrics across 6 dimensions
+                'worldarena_image_quality', 'worldarena_aesthetic_quality',
+                'worldarena_jepa_similarity', 'worldarena_dynamic_degree', 'worldarena_flow_score', 'worldarena_motion_smoothness',
+                'worldarena_subject_consistency', 'worldarena_background_consistency', 'worldarena_photometric_consistency',
+                'worldarena_interaction_quality', 'worldarena_trajectory_accuracy',
+                'worldarena_depth_accuracy', 'worldarena_perspectivity',
+                'worldarena_instruction_following', 'worldarena_semantic_alignment', 'worldarena_action_following'
             ]
         },
         {
