@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "date": "2026-05-31",
+    "title": "Session 40 — Deep re-mine round 2: Opus 4.8 sys card missing benches + SkillOpt full paper + WorldArena Track 2 Policy + AA CritPT/MMLU-Pro full leaderboards via Playwright",
+    "context": "User-requested second deep-investigation pass. After S39 surfaced sub-bench backfills, this session targets 6 sources with deeper unmined regions: (1) Opus 4.8 system card pp17-234 — Table 8.1.A had been mostly mined in S33 but 3 frontier benches missed scores for opus-4.8 + 7 NEW benchmarks (AutomationBench, BioPipelineBench, BioMysteryBench Human-Solvable, GMMLU/MILU/INCLUDE multilingual, AECI agentic-economy index); (2) SkillOpt 2605.23904 full Table 1 — Microsoft/SJTU/Tongji/Fudan executive-strategy paper, 5 frontier models × 6 new benches × 2 conditions; (3) WorldArena Track 2 Policy Evaluator HF Space JSON now PUBLIC (was unavailable in S38); (4) AA CritPT Playwright extracted full 33-model chart (15 net-new rows after S38's 22); (5) AA MMLU-Pro AA full 14-model chart (7 net-new after S38's 2). Vellum: confirmed Resources-only — 8/12 candidates MATCH existing DB and 4 DIFF cases DB values are vendor first-party (preserve).",
+    "sources": [
+      "resource/claude_opus_4_8_system_card.pdf",
+      "https://arxiv.org/abs/2605.23904",
+      "https://huggingface.co/spaces/WorldArena/WorldArena",
+      "https://artificialanalysis.ai/evaluations/critpt",
+      "https://artificialanalysis.ai/evaluations/mmlu-pro"
+    ],
+    "rule": "STRICT-ATTRIBUTION. Opus 4.8 net-new validated by direct PDF page citation (pages 17/41/193-194/216-217/222-225/230-234). SkillOpt direct Table 1 extraction (5 frontier rows: GPT-5.5/GPT-5.4/GPT-5.4-mini/GPT-5.2/Qwen3.6-35B-A3B). WorldArena Track 2 Policy from worldarena-results(policy evaluator)/*.json on HF Space (6 models, latest commit 2026-05-29). AA CritPT/MMLU-Pro full leaderboards extracted via Playwright SVG label nodes — only net-new rows (mapping to existing DB models) ingested; skip new vendors (Gemini 3 Deep Think, K2 Think V2, Mistral Medium 3.5, Solar Pro 3, Nova 2.0 Pro Preview, Gemma 4 31B) to stay focused. CLOBBER-SAFE: All scores are NEW benches OR existing-bench-new-model combinations; SkillOpt scores on NEW benches only (no existing SearchQA/LiveMath in DB); AA scores on mmlu_pro_aa/critpt only for models without existing entries on those benches. SKIPPED: SkillOpt baseline (no-skill) scores avoid duplicate model rows on same benches; Opus 4.8 figure-only sections (Petri 3.0, HealthBench Pro per-slice, CoT controllability sub-bars); LocateAnything no-tools variants of chartmuseum/lab_bench_figqa (sub-variant noise); WorldArena Track 2 Data Engine (7 anonymous competition models × 5 tasks, too noisy); SkillOpt SpreadsheetBench/OfficeQA/DocVQA/ALFWorld (clobber risk with existing); Track 3 Action Planner (not yet released per CVPR challenge schedule).",
+    "deltas_expected": "+0 models / +10 benchmarks / ~40 scores"
+  },
+  "models": [],
+  "benchmarks": [
+    {"id": "automationbench", "name": "AutomationBench", "category": "agent", "description": "Zapier-style end-to-end business workflow automation benchmark (47 apps, dozens of interdependent API calls + policy docs). Private held-out. Higher=better. Opus 4.8 system card Table 8.1.A.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2604.18934"},
+    {"id": "biopipelinebench_verified", "name": "BioPipelineBench (Verified)", "category": "ai4s", "description": "Biology research pipeline benchmark — verified subset. Higher=better. Opus 4.8 system card p.232.", "metric": "accuracy", "leaderboard": "resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "biomystery_human_solvable", "name": "BioMysteryBench (Human Solvable)", "category": "ai4s", "description": "BioMysteryBench Human-Solvable sub-slice (vs the Human-Difficult slice). Higher=better. Opus 4.8 sys card p.233.", "metric": "accuracy", "leaderboard": "resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "gmmlu_average", "name": "GMMLU (42-language average)", "category": "language", "description": "Global MMLU — translations across 42 languages, average accuracy. Higher=better. Opus 4.8 sys card p.230 Table 8.15.1.B.", "metric": "accuracy", "leaderboard": "resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "milu_average", "name": "MILU (Indic average)", "category": "language", "description": "MILU Indic multilingual benchmark — 11 Indian languages, average accuracy. Higher=better. Opus 4.8 sys card p.231.", "metric": "accuracy", "leaderboard": "resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "include_average", "name": "INCLUDE (multilingual average)", "category": "language", "description": "INCLUDE multilingual benchmark — average accuracy across regional language exams. Higher=better. Opus 4.8 sys card p.231.", "metric": "accuracy", "leaderboard": "resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "aeci_index", "name": "AECI (Agentic Economic Capability Index)", "category": "agent", "description": "Anthropic-defined Agentic Economic Capability Index — n=11 subset. Composite index across agentic work. Higher=better. Opus 4.8 sys card p.41.", "metric": "index", "leaderboard": "resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "search_qa", "name": "SearchQA", "category": "agent", "description": "Single-round extractive search QA benchmark. SkillOpt arxiv 2605.23904 Table 1 — measures search-augmented retrieval. Higher=better.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2605.23904"},
+    {"id": "live_math", "name": "LiveMathematicianBench", "category": "reasoning", "description": "Live MCQ math reasoning benchmark, 134 test envs. SkillOpt arxiv 2605.23904 Table 1. Higher=better.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2605.23904"},
+    {"id": "worldarena_track2_policy", "name": "WorldArena Track 2 Policy Evaluator", "category": "ai4s", "description": "WorldArena Track 2 — world model used as policy evaluator (predict rollout success). Single composite metric 0-1. Higher=better. Public on HF Space worldarena-results(policy evaluator)/.", "metric": "score", "leaderboard": "https://huggingface.co/spaces/WorldArena/WorldArena"}
+  ],
+  "scores": [
+    {"_section": "=== Opus 4.8 system card — NET-NEW on existing benches (frontier-relevant gaps) ===",
+     "model": "anthropic/claude-opus-4.8", "benchmark": "mcpatlas_public", "score": 82.2, "unit": "%", "_source": "resource/claude_opus_4_8_system_card.pdf", "_note": "Sys card p.194 Table 8.1.A. mcp_atlas-public variant complement to existing mcp_atlas=82.2."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "finance_agent", "score": 53.9, "unit": "%", "_source": "resource/claude_opus_4_8_system_card.pdf", "_note": "Sys card p.194. Finance Agent v2 base bench (companion to existing finance_agent_v2)."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "charxiv_reasoning", "score": 80.5, "unit": "%", "_source": "resource/claude_opus_4_8_system_card.pdf", "_note": "Sys card p.218 — no-tools variant. Existing charxiv 89.9 is with-tools."},
+
+    {"_section": "=== Opus 4.8 system card — NEW benches (7) ===",
+     "model": "anthropic/claude-opus-4.8", "benchmark": "automationbench", "score": 15.5, "unit": "%", "_source": "resource/claude_opus_4_8_system_card.pdf", "_note": "Sys card p.194 Table 8.1.A. Hardest agent benchmark — only 15.5% solvable."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "biopipelinebench_verified", "score": 87.7, "unit": "%", "_source": "resource/claude_opus_4_8_system_card.pdf", "_note": "Sys card p.232."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "biomystery_human_solvable", "score": 80.4, "unit": "%", "_source": "resource/claude_opus_4_8_system_card.pdf", "_note": "Sys card p.233. Human-Solvable sub-slice (vs Human-Difficult 40.0 existing). 2x gap shows reasoning-bound vs knowledge-bound split."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "gmmlu_average", "score": 90.4, "unit": "%", "_source": "resource/claude_opus_4_8_system_card.pdf", "_note": "Sys card p.230 Table 8.15.1.B. Global MMLU 42-language average."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "milu_average", "score": 90.3, "unit": "%", "_source": "resource/claude_opus_4_8_system_card.pdf", "_note": "Sys card p.231. Indic multilingual MILU average."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "include_average", "score": 87.6, "unit": "%", "_source": "resource/claude_opus_4_8_system_card.pdf", "_note": "Sys card p.231. INCLUDE multilingual average across regional language exams."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "aeci_index", "score": 155.5, "unit": "index", "_source": "resource/claude_opus_4_8_system_card.pdf", "_note": "Sys card p.41. Agentic Economic Capability Index (n=11 subset)."},
+
+    {"_section": "=== SkillOpt (arxiv 2605.23904, Microsoft+SJTU+Tongji+Fudan, May 25 2026) — SearchQA + LiveMath, 5 frontier (with-SkillOpt scores from Table 1 direct-chat) ===",
+     "model": "openai/gpt-5.5", "benchmark": "search_qa", "score": 87.3, "unit": "%", "_source": "https://arxiv.org/abs/2605.23904", "_note": "First-party. Table 1 direct-chat harness, SkillOpt skill applied. Baseline (no-skill) 77.7."},
+    {"model": "openai/gpt-5.4", "benchmark": "search_qa", "score": 83.1, "unit": "%", "_source": "https://arxiv.org/abs/2605.23904", "_note": "Table 1 direct-chat + SkillOpt. Baseline 76.9."},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "search_qa", "score": 80.2, "unit": "%", "_source": "https://arxiv.org/abs/2605.23904", "_note": "Table 1 direct-chat + SkillOpt. Baseline 75.9."},
+    {"model": "openai/gpt-5.2", "benchmark": "search_qa", "score": 83.1, "unit": "%", "_source": "https://arxiv.org/abs/2605.23904", "_note": "Table 1 + SkillOpt. Baseline 71.9."},
+    {"model": "alibaba/qwen3.6-35b-a3b", "benchmark": "search_qa", "score": 80.3, "unit": "%", "_source": "https://arxiv.org/abs/2605.23904", "_note": "Table 1 + SkillOpt. Baseline 72.7."},
+
+    {"model": "openai/gpt-5.5", "benchmark": "live_math", "score": 66.9, "unit": "%", "_source": "https://arxiv.org/abs/2605.23904", "_note": "First-party. Table 1 direct-chat + SkillOpt. Baseline (no-skill) 37.6 — +29.3pp uplift."},
+    {"model": "openai/gpt-5.4", "benchmark": "live_math", "score": 44.0, "unit": "%", "_source": "https://arxiv.org/abs/2605.23904", "_note": "Table 1 + SkillOpt. Baseline 36.8."},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "live_math", "score": 32.8, "unit": "%", "_source": "https://arxiv.org/abs/2605.23904", "_note": "Table 1 + SkillOpt. Baseline 14.7 — +18.1pp."},
+    {"model": "openai/gpt-5.2", "benchmark": "live_math", "score": 36.0, "unit": "%", "_source": "https://arxiv.org/abs/2605.23904", "_note": "Table 1 + SkillOpt. Baseline 20.8 — +15.2pp."},
+    {"model": "alibaba/qwen3.6-35b-a3b", "benchmark": "live_math", "score": 41.6, "unit": "%", "_source": "https://arxiv.org/abs/2605.23904", "_note": "Table 1 + SkillOpt. Baseline 31.2 — +10.4pp."},
+
+    {"_section": "=== WorldArena Track 2 Policy Evaluator (HF Space, public 2026-05-29) ===",
+     "model": "tsinghua/ctrl-world", "benchmark": "worldarena_track2_policy", "score": 0.986, "unit": "score", "_source": "https://huggingface.co/spaces/WorldArena/WorldArena", "_note": "First-party. SOTA Track 2 Policy among named baselines. Source: worldarena-results(policy evaluator)/Ctrl-World.json."},
+    {"model": "bytedance/irasim", "benchmark": "worldarena_track2_policy", "score": 0.658, "unit": "score", "_source": "https://huggingface.co/spaces/WorldArena/WorldArena", "_note": "First-party."},
+    {"model": "nvidia/cosmos-predict-2.5", "benchmark": "worldarena_track2_policy", "score": 0.483, "unit": "score", "_source": "https://huggingface.co/spaces/WorldArena/WorldArena", "_note": "First-party. Cosmos-Predict 2.5 (action) variant. Note: WorldScape v0.2 0.9893 + Robohero_0 0.9230 + RoboScape 0.863 also on the leaderboard but anonymous/competition — skipped per S38 precedent."},
+
+    {"_section": "=== AA CritPT — 10 net-new frontier rows (Playwright SVG extraction, 33 total chart rows) ===",
+     "model": "anthropic/claude-opus-4.8", "benchmark": "critpt", "score": 20.9, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt", "_note": "AA Playwright SVG. Opus 4.8 (max) — Rank 7. NET-NEW: opus-4.8 had no critpt score before."},
+    {"model": "alibaba/qwen3.7-max", "benchmark": "critpt", "score": 13.4, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt", "_note": "AA Playwright."},
+    {"model": "google/gemini-3.5-flash", "benchmark": "critpt", "score": 13.1, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt"},
+    {"model": "openai/gpt-5.4-mini", "benchmark": "critpt", "score": 10.0, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt", "_note": "GPT-5.4 mini (xhigh)."},
+    {"model": "deepseek/deepseek-v4-flash", "benchmark": "critpt", "score": 7.1, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt", "_note": "DeepSeek V4 Flash (Max effort)."},
+    {"model": "alibaba/qwen3.5-397b", "benchmark": "critpt", "score": 1.7, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt", "_note": "Qwen3.5 397B A17B."},
+    {"model": "openai/gpt-oss-20b", "benchmark": "critpt", "score": 1.4, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt", "_note": "gpt-oss-20B (high)."},
+    {"model": "openai/gpt-oss-120b", "benchmark": "critpt", "score": 1.1, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt", "_note": "gpt-oss-120b (high)."},
+    {"model": "minimax/m2.7", "benchmark": "critpt", "score": 0.6, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt", "_note": "MiniMax-M2.7."},
+    {"model": "anthropic/claude-haiku-4.5", "benchmark": "critpt", "score": 0.0, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/critpt", "_note": "Claude 4.5 Haiku — completely fails physics research challenges."},
+
+    {"_section": "=== AA MMLU-Pro AA — 7 net-new frontier rows (Playwright SVG, 14 total) ===",
+     "model": "google/gemini-3-flash", "benchmark": "mmlu_pro_aa", "score": 89.0, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/mmlu-pro", "_note": "AA Playwright SVG. Gemini 3 Flash high reasoning."},
+    {"model": "anthropic/claude-opus-4.1", "benchmark": "mmlu_pro_aa", "score": 88.0, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/mmlu-pro", "_note": "Claude 4.1 Opus."},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "mmlu_pro_aa", "score": 87.5, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/mmlu-pro", "_note": "Claude 4.5 Sonnet."},
+    {"model": "openai/gpt-5.2", "benchmark": "mmlu_pro_aa", "score": 87.4, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/mmlu-pro", "_note": "GPT-5.2 (xhigh)."},
+    {"model": "openai/gpt-oss-120b", "benchmark": "mmlu_pro_aa", "score": 80.8, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/mmlu-pro", "_note": "gpt-oss-120b (high)."},
+    {"model": "anthropic/claude-haiku-4.5", "benchmark": "mmlu_pro_aa", "score": 76.0, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/mmlu-pro", "_note": "Claude 4.5 Haiku."},
+    {"model": "openai/gpt-oss-20b", "benchmark": "mmlu_pro_aa", "score": 74.8, "unit": "%", "_source": "https://artificialanalysis.ai/evaluations/mmlu-pro", "_note": "gpt-oss-20B (high)."}
+  ]
+}

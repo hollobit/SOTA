@@ -180,7 +180,9 @@ var PhysicalAI = {
                 // 2026-05-30 Tsinghua FIB WorldArena + SHI-Labs PAI-Bench Generation (arxiv 2512.01989)
                 'worldarena', 'pai_bench_g',
                 // 2026-05-30 Session 39 PAI-Bench Conditional Generation Quality
-                'pai_bench_c_quality'
+                'pai_bench_c_quality',
+                // 2026-05-31 S40 WorldArena Track 2 Policy Evaluator (HF Space public 05-29)
+                'worldarena_track2_policy'
             ]
         },
         {

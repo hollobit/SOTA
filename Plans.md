@@ -1,7 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 39 — Deep re-mine of S33-S38: FACTS sub-benches + CompassRank sub-benches + LocateAnything detection + BenchCAD sub-tasks + PAI-Bench-C (2026-05-30)
-**1,590 models · 1,272 benchmarks · 6,700 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 40 — Deep re-mine round 2: Opus 4.8 unmined + SkillOpt + WorldArena T2 + AA Playwright (2026-05-31)
+**1,590 models · 1,282 benchmarks · 6,735 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-05-31 Session 40 — Deep re-mine round 2 (user "다시 조사" — sources still had unmined regions)
+- 6 sources re-mined for content deferred per scope. **Opus 4.8 sys card** unmined sections (pp.17/41/193-234): 7 NEW benches (AutomationBench/BioPipelineBench/BioMysteryBench Human-Solvable/GMMLU 90.4/MILU 90.3/INCLUDE 87.6/AECI 155.5) + 3 net-new (mcpatlas_public 82.2, finance_agent 53.9, charxiv_reasoning 80.5)
+- **SkillOpt 2605.23904** (Microsoft+SJTU+Tongji+Fudan executive-strategy agent skill optimizer) — 2 NEW benches (SearchQA, LiveMath) × 5 frontier (GPT-5.5 LiveMath +29.3pp uplift over baseline)
+- **WorldArena Track 2 Policy Evaluator** HF Space JSON now public — Ctrl-World 0.986 SOTA / IRASim 0.658 / Cosmos-Predict 2.5 action 0.483
+- **AA CritPT Playwright** full 33-row chart → 10 net-new (Opus 4.8 20.9 / Qwen3.7 Max 13.4 / Gemini 3.5 Flash 13.1 / Claude Haiku 4.5 0.0)
+- **AA MMLU-Pro AA Playwright** 14-row chart → 7 net-new (Gemini 3 Flash 89.0, Opus 4.1 88.0, Sonnet 4.5 87.5, GPT-5.2 87.4, gpt-oss-120b/20B, Haiku 4.5)
+- **Vellum CONFIRMED Resources-only** — 8/12 candidates MATCH DB, 4 DIFF cases DB vendor first-party preserved. 8-tab audit ran post-ingest → 4 tabs patched (FC reasoning/agent, Cyber-Coding AGENT, Physical AI World Model, Agent CATEGORIES tool-use/domain/general). **+0/+10/+35** = 1590/1282/6735. v=20260531a
 
 ### 2026-05-30 Session 39 — Deep re-mine of S33-S38 sources (user-requested completeness audit)
 - User: "꼼꼼하게 읽고 표 등에서 누락된 모델/벤치마크/평가결과 조사." Re-mine S33-S38 partial ingests where scope-tight decisions left value on the table. Direct WebFetch verification of FACTS Table 1 (all 4 sub-benches × 15 frontier), PAI-Bench Conditional JSON, CompassRank per-model sub-scores.
@@ -28,16 +36,9 @@
 ### 2026-05-29 Session 34 — Leaderboard sweep (new models)
 - Swept llm-stats + AA + WhatLLM. All May-2026 launches already tracked except **SubQ 1M-Preview** (Subquadratic, May 5) — first sub-quadratic frontier LLM (SSA, 12M ctx). Vendor-reported (paper pending): RULER@128K 95.0 ($8 vs Opus 4.6 94.8 @ ~$2,600 = 325x cheaper) / MRCR v2@1M 65.9 / SWE-Verified 81.8. ruler_128k NEW bench (SubQ SOTA). Menus: Frontier+Agent+Resources. **+1/+1/+4**=1560/1226/6420. v=20260529d
 
-### 2026-05-29 Session 33 — Claude Opus 4.8 System Card + AutoScientists + SkillOpt (4 links)
-- **Claude Opus 4.8** (244pp card, 47 scores): SWE-Verified 88.6 / SWE-Pro 69.2 / USAMO 2026 96.7 (vs 4.7 69.3) / GDPval-AA 1890 ELO (+121 over GPT-5.5) / GraphWalks BFS 1M 68.1 (vs 4.7 40.3) / HealthBench Pro 55.8 / Terminal-Bench 2.1 74.6 / BioMysteryBench-Difficult 40.0 (beats Mythos 29.6). Cyber: CyberGym 78.8 / Firefox-147 8.8% / ExploitBench 5.02/16 (Mythos leads cyber). Weaker than Mythos overall
-- **AutoScientists** (Harvard 2605.28655): BioML-Bench 74.40 percentile (vs Autoresearch 66.07), ProteinGym 217-assay 0.657→0.700, ACE2-Spike +12.5%, nanochat 0.9730 bpb. **SkillOpt** (Microsoft 2605.23904): GPT-5.5 skill uplift +23.5/+24.8/+19.1 (chat/Codex/Claude Code)
-- harness-conflict benches → new IDs (cybergym_targeted_repro, firefox_147_full_exploit, terminal_bench_2_1). Menus: Frontier+Cyber+Agent(+11)+AI4S+Medical. 3 PDFs archived. **+3/+31/+125**=1559/1219/6395. v=20260529a. **33b** ref-link sync (+6 Resources +10 seed). **33c** Opus 4.8 §8.11/§8.12/§3.3.4 mine (ChartMuseum 89.7 / OSS-Fuzz 38.5%). **+0/+6/+21**=1559/1225/6416. v=20260529b-c
-
-### 2026-05-28 Session 32 — 4-link analysis: 2 references, 1 already-ingested, 1 out-of-scope
-- 2405.17044 **SciMuse** already in DB (Session 30). 2605.00080 **World Model survey** (NTU+Berkeley+Stanford, ~50-policy taxonomy, no 1st-party scores) → Physical AI ref + PDF archived. 2605.22391 **Epicure** (food embedding, unreleased + out-of-scope) → excluded. **Google Threat Intel** (5/12, first AI zero-day, PROMPTSPY/Gemini-abuse, Big Sleep/CodeMender) → Cyber ref. **0 score delta**. Resources +2 refs, seed_sources +3. v=20260528e
-
-### 2026-05-28 Session 31 — DeepSWE (Datacurve) + AA AAII delta sweep
-- **DeepSWE** (deepswe.datacurve.ai NEW): 113 contamination-free SWE tasks × 91 repos × 5 lang. Pass@1: gpt-5.5 70 / gpt-5.4 56 / opus-4.7 54 / sonnet-4.6 32 / gemini-3.5-flash 28 / gpt-5.4-mini 24 / kimi-k2.6 24 / mimo-v2.5-pro 19 / glm-5.1 18 / gemini-3.1-pro 10 / ds-v4-pro 8 / gemini-3-flash 5. Inversion: 3.5-flash > 3.1-pro 3x. AAII fills: glm-5-turbo 47/glm-5v-turbo 43/mimo-v2.5 49/mimo-v2-omni 43/hy3-preview 42. Agent+Cyber menu +deepswe. **+1/+1/+13** = 1556/1188/6270. v=20260528d
+### 2026-05-28 ~ 29 Sessions 31-33 (compressed — see HISTORY.md)
+- **S33** Claude Opus 4.8 244pp card (47 scores SWE-Verified 88.6/USAMO 96.7/GDPval-AA 1890 ELO; Mythos leads cyber), AutoScientists BioML 74.40, SkillOpt headline. 33b/c sync + §8.11/12/3.3.4 mine (ChartMuseum 89.7). **+3/+37/+146** = 1559/1225/6416 v=20260529a-c
+- **S32** 4-link: 2 refs (SciMuse/WorldModelSurvey/Epicure/Google ThreatIntel), 0 score delta v=20260528e. **S31** DeepSWE 113 SWE tasks (gpt-5.5 70 SOTA, 3.5-flash > 3.1-pro inversion) + AAII fills. **+1/+1/+13** v=20260528d
 
 ### 2026-05-28 Session 30 — DeepRare + AgingBench + SciMuse + Gemini-for-Science
 - DeepRare HPO R@1 57.18% (vs Claude-3.7-thinking 33.39). Multimodal Xinhua 69.1 vs Exomiser 55.9. Physician 163 cases 64.4 vs 54.6. AgingBench (UT Austin) + SciMuse (Max Planck 0.51) + AlphaEvolve + Antigravity NEW. **+13/+18/+33**=1555/1187/6257. v=20260528b

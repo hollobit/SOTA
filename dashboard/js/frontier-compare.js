@@ -15,7 +15,9 @@ var FrontierCompare = {
             'healthbench', 'healthbench_hard', 'healthbench_consensus', 'healthbench_professional',
             'virology_mcq', 'biochem_reward4', 'c_eval', 'cmmlu', 'agieval',
             // 2026-05-30 IPhO 2025 physics olympiad (llm-stats)
-            'ipho_2025'
+            'ipho_2025',
+            // 2026-05-31 S40 Opus 4.8 multilingual knowledge benches + SkillOpt LiveMath
+            'gmmlu_average', 'milu_average', 'include_average', 'live_math'
         ],
         coding: [
             'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
@@ -37,7 +39,9 @@ var FrontierCompare = {
             'apex_agents_hard', 'apex_shortlist',
             'gaia2', 'claw_eval',
             // 2026-05-12 — DELEGATE-52 from arxiv 2604.15597 (Microsoft Research)
-            'delegate_52'
+            'delegate_52',
+            // 2026-05-31 S40 — Opus 4.8 system card + SkillOpt agentic
+            'automationbench', 'aeci_index', 'search_qa'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
