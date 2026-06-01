@@ -134,6 +134,9 @@ var Sovereign = {
                 'alibaba/gui-owl-1.5-8b', 'alibaba/gui-owl-1.5-32b',
                 // 2026-05 Alibaba VLM frontier — S37 CompassRank + S38 PAI-Bench-U entries
                 'alibaba/qwen3-vl-235b-a22b-instruct', 'alibaba/wan-2.2-i2v-a14b',
+                // 2026-05-30/31 Alibaba Wan video gen — S39 conditional + S41 WorldArena frontier
+                'alibaba/wan-2.2', 'alibaba/wan-2.6',
+                'alibaba/wan-2.2-fun-a14b-control', 'alibaba/wan-2.2-fun-5b-control',
                 // 2026-05 Kuaishou Kling (video gen)
                 'kling/kling-v3-pro', 'kling/kling-o1-pro', 'kling/kling-o3-pro',
                 // 2026-05 Alibaba-ATH happyhorse (video gen #2 across all arena video boards)
