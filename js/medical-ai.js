@@ -139,20 +139,24 @@ var MedicalAI = {
             code: 'protein-fm',
             label: 'Protein Structure & Design FMs',
             icon: '🧪',
-            note: 'AlphaFold 2/3 + Server · ESMFold/ESM3 · RoseTTAFold 3 · Boltz-1/2 · Chai-1 · OpenFold 3 · Absci de novo antibody · Isomorphic Iso-RX',
+            note: 'AlphaFold 2/3 + Server · ESMFold/ESM3/ESMFold2 · ESM Cambrian (ESMC 6B) · RoseTTAFold 3 · Boltz-1/2 · Chai-1 · OpenFold 3 · Absci de novo antibody · Isomorphic Iso-RX',
             models: [
                 'google-deepmind/alphafold-3',
                 'google-deepmind/alphafold-2',
                 'deepmind/alphafold-server',
                 'meta/esmfold-3b',
                 'meta/esm3-98b',
+                'meta/esm2-15b',
                 'ipd/rosettafold-3',
                 'boltz-ai/boltz-2',
                 'boltz-ai/boltz-1',
                 'chai-discovery/chai-1',
                 'openfold/openfold-3',
                 'absci/absci-design-fm',
-                'isomorphic/iso-rx-v1'
+                'isomorphic/iso-rx-v1',
+                // 2026-05-31 S42 — EvolutionaryScale ESM Cambrian + ESMFold2 (FoldBench SOTA)
+                'evolutionaryscale/esmc-6b', 'evolutionaryscale/esmc-600m', 'evolutionaryscale/esmc-300m',
+                'evolutionaryscale/esmfold-2', 'evolutionaryscale/esmfold-2-fast'
             ]
         },
         {
@@ -590,8 +594,12 @@ var MedicalAI = {
         },
         {
             label: '🧪 Protein Structure & Design',
-            note: 'CASP16 GDT-TS · AlphaFold3 confident pLDDT · PDBBind RMSD (docking) · Absci de novo antibody binding yield',
-            benchmarks: ['casp16_gdt', 'alphafold3_pae', 'pdbbind_rmsd', 'absci_yield']
+            note: 'CASP16 GDT-TS · AlphaFold3 confident pLDDT · PDBBind RMSD (docking) · Absci de novo antibody binding yield · FoldBench (AbAg/PPI/Ligand/DNA/Peptide/Monomer LDDT — ESMFold2 SOTA across 5/6 modalities) · Megascale ΔG · Recent-PDB PPI · ESMC contact precision scaling (R²=0.99)',
+            benchmarks: ['casp16_gdt', 'alphafold3_pae', 'pdbbind_rmsd', 'absci_yield',
+                // 2026-05-31 S42 — ESM Cambrian + ESMFold2 paper FoldBench family
+                'foldbench_abag', 'foldbench_ppi', 'foldbench_protein_ligand',
+                'foldbench_protein_dna', 'foldbench_protein_peptide', 'foldbench_monomer_lddt',
+                'recent_pdb_ppi', 'megascale_dg_spearman', 'p_at_l_lr']
         },
         {
             label: '💊 Drug Discovery & Chemistry FMs',

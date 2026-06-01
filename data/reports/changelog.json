@@ -1,5 +1,14 @@
 [
   {
+    "type": "Fix",
+    "date": "2026-06-01",
+    "benchmark_id": "Menu propagation patch: Sovereign CN +4 Alibaba models + Medical AI Protein Structure +3 ESM Cambrian models + 5 FoldBench sub-benches (audit fix S39-S42 gaps)",
+    "new_model": "User-requested 7-tab audit. Real gaps after S39/S40/S41/S42 ingest: (1) Sovereign AI China region missing 4 Alibaba video gen models added in S39/S41: wan-2.2-fun-a14b-control + wan-2.2-fun-5b-control (PAI-Bench-C conditional video) + wan-2.2 + wan-2.6 (WorldArena Track 1 baselines, both Alibaba proprietary); (2) Medical AI 'Protein Structure & Design FMs' section + benchmark suite both missing S42 ESM Cambrian / ESMFold2 paper additions — 3 ESMC pLM (300M/600M/6B) + 2 ESMFold2 (full + Fast) + meta/esm2-15b baseline + 5 new FoldBench sub-benches + p_at_l_lr + recent_pdb_ppi + megascale_dg_spearman. Updated section note to mention 'ESMFold2 + ESM Cambrian (ESMC 6B)' + 'FoldBench (ESMFold2 SOTA across 5/6 modalities)'. NO US sovereign region exists (Sovereign AI tracks non-US sovereign countries only). Boltz-2 vendor namespace already in Medical AI as boltz-ai/boltz-2 — duplicate with S42's mit/boltz-2 noted for future cleanup; both kept as-is to avoid breaking deployed score (mit/boltz-2 recent_pdb_ppi 70).",
+    "new_value": "Data unchanged: 1598 models / 1307 benchmarks / 6885 scores. Sovereign CN models[] +4 Alibaba Wan entries (alibaba/wan-2.2, wan-2.6, wan-2.2-fun-a14b-control, wan-2.2-fun-5b-control). Medical AI protein-structure region models[] +5 evolutionaryscale models (esmc-300m/600m/6b/esmfold-2/esmfold-2-fast) + meta/esm2-15b baseline. Medical AI BENCHMARK_SUITES protein-structure benchmarks[] +9 (foldbench_abag/ppi/protein_ligand/protein_dna/protein_peptide/monomer_lddt + recent_pdb_ppi + megascale_dg_spearman + p_at_l_lr). Region note updated. Cache-bust sovereign + medical-ai v=20260601a.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
     "type": "Data",
     "date": "2026-05-31",
     "benchmark_id": "Session 42 — ESM Cambrian / ESMFold2 paper (Biohub + EvolutionaryScale 2026): pLM scaling + protein structure prediction SOTA (7 models / 9 benchmarks / 19 scores)",
