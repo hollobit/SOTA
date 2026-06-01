@@ -2,6 +2,15 @@
   {
     "type": "Data",
     "date": "2026-06-01",
+    "benchmark_id": "Session 45 — Qwen-VLA paper (Alibaba Qwen Team, arxiv 2605.30280, May 28 2026): unified VLA across tasks/environments/embodiments (+6 models / +8 benchmarks / +36 scores)",
+    "new_model": "User-provided 2 links converge on same release: qwen.ai/blog?id=qwenvla (JS-shell) + arxiv 2605.30280 (authoritative source). Qwen-VLA = Qwen3.5-4B backbone + DiT flow-matching action decoder + 4-stage training (T2A pre-training → CPT → SFT → RL on SimplerEnv). 4 NEW Qwen-VLA variants (Base/Instruct/ALOHA-pretrain/ALOHA-no-pretrain) + 2 frontier comparison models (AMAP-CVLab ABot-M0, StarVLA-OFT). NEW benchmark dataset SimplerEnv-OOD (6 OOD WidowX tasks introduced by paper). KEY SOTAs: Qwen-VLA-Instruct RoboTwin-Hard 87.2 (vs ABot-M0 85.0 prior), Simpler-WidowX 73.7 (vs StarVLA-OFT 64.6 prior), SimplerEnv-OOD 32.0 (vs π0.5 12.6 — 2.5x gap), DOMINO zero-shot SR 26.6 (beats every fine-tuned baseline incl. PUMA 17.2). ALOHA real hardware in-domain: pretrain 83.6 vs no-pretrain 48.5 (+35pp pretraining gain). R2R navigation 57.5 SR (beats StreamVLN 56.9). 13MB PDF (34pp) archived.",
+    "new_value": "+6 models (1606→1612): qwen-vla-base/instruct/aloha-pretrain/aloha-no-pretrain + amap-cvlab/abot-m0 + starvla/starvla-oft. +8 benchmarks (1321→1329): robotwin_easy/hard split, simpler_widowx, robocasa_gr1, simplerenv_ood (NEW dataset), domino_sr, aloha_real_in_domain, r2r_val_unseen_sr. +36 scores (6908→6944). 8-tab audit → Sovereign CN Alibaba +4 Qwen-VLA + Physical AI VLA Manipulation Suites +6 models +8 benches. EXCLUDED comparison models (Being-H0.5/RDT-1B/InternVLA-M1/VLA-Adapter/PUMA/NaVid/NaVILA/StreamVLN) per scope. Cache-bust sovereign/physical-ai v=20260601d.",
+    "old_model": "",
+    "old_value": ""
+  },
+  {
+    "type": "Data",
+    "date": "2026-06-01",
     "benchmark_id": "Session 44 — MiniMax M3 release + Biohub ESM page confirmed S42 coverage (1 model / 3 benchmarks / 8 scores)",
     "new_model": "User-provided 2 links. (1) minimax.io/blog/minimax-m3 — TODAY release. M3 native multimodal, MSA architecture, 1M ctx, open-weight. SOTAs: SWE-Bench Pro 59.0%, Terminal-Bench 2.1 66.0%, MCP Atlas 74.2%, KernelBench Hard 28.8%, SWE-fficiency 34.8%, PostTrainBench 0.37 (vs Opus 4.7 0.42 leader, GPT-5.5 0.39). (2) biohub.ai/esm/protein/about — JS-rendered shell, S42 fully covers. NEW BENCHES: PostTrainBench (autonomous 12h ML loop), SWE-fficiency, KernelBench Hard (distinct from existing kernelbench_l3 speedup).",
     "new_value": "+1/+3/+8 = 1606/1321/6908. 8-tab audit: Sovereign CN MiniMax + FC coding/agent + Cyber-Coding CODING/AGENT + Agent CATEGORIES general patched. Biohub→0 ingest. v=20260601c.",

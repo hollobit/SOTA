@@ -131,6 +131,9 @@ var Sovereign = {
                 'alibaba/wan2.6-t2v', 'alibaba/wan2.6-t2i', 'alibaba/wan2.5-t2i-preview',
                 'alibaba/qwen-image-2.0-pro-2026-04-22', 'alibaba/qwen-image-2512', 'alibaba/qwen-image-2.0-2026-03-03',
                 'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav',
+                // 2026-06-01 S45 — Qwen-VLA family (arxiv 2605.30280, Alibaba Qwen Team)
+                'alibaba/qwen-vla-base', 'alibaba/qwen-vla-instruct',
+                'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',
                 'alibaba/gui-owl-1.5-8b', 'alibaba/gui-owl-1.5-32b',
                 // 2026-05 Alibaba VLM frontier — S37 CompassRank + S38 PAI-Bench-U entries
                 'alibaba/qwen3-vl-235b-a22b-instruct', 'alibaba/wan-2.2-i2v-a14b',
