@@ -1,7 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 43 — NVIDIA Nemotron 4 NEW families (RAG/Parse/Speech/Safety) deep-mine (2026-06-01)
-**1,605 models · 1,318 benchmarks · 6,900 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 44 — MiniMax M3 release (1M ctx multimodal + MSA + open-weight, 2026-06-01) + Biohub ESM page confirmed S42 (2026-06-01)
+**1,606 models · 1,321 benchmarks · 6,908 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-06-01 Session 44 — MiniMax M3 + Biohub ESM (2 user links)
+- **MiniMax M3** TODAY release — native multimodal (image+video input), MiniMax Sparse Attention 1M ctx, open-weight, per-token compute **1/20 of M2**. Tech report + weights releasing over next 10 days. SOTAs: **SWE-Bench Pro 59.0%** (surpasses GPT-5.5 + Gemini 3.1 Pro, approaches Opus 4.7), Terminal-Bench 2.1 66.0%, MCP Atlas 74.2%, KernelBench Hard 28.8%, SWE-fficiency 34.8%, **PostTrainBench 0.37** (vs Opus 4.7 0.42 leader, GPT-5.5 0.39)
+- **Biohub ESM page** (biohub.ai/esm/protein/about) — JS-rendered empty shell, all content S42-covered (Biohub news 2026-05-27 = marketing landing for ESM Cambrian/ESMFold2 paper). Only new datum: binder hit-rate ranges 36-88%/15-29% (per-target ranges, not per-model triples). **0 ingest.**
+- **3 NEW benches**: PostTrainBench (autonomous 'Base→data synth→train→eval→iterate' 12h loop across AIME2025/BFCL/GPQA/GSM8K/HumanEval — agentic ML automation), SWE-fficiency (open-source agentic SWE eval), KernelBench Hard (CUDA pass rate, distinct from kernelbench_l3 speedup)
+- 8-tab audit: Sovereign CN MiniMax section + FC coding/agent + Cyber-Coding CODING/AGENT + Agent CATEGORIES general patched. EXCLUDED qual-only: SVG-Bench/OmniDocBench/Claw-Eval (no M3 numbers), 20+ benches listed without M3 values. **+1/+3/+8** = 1606/1321/6908. v=20260601c
 
 ### 2026-06-01 Session 43 — NVIDIA Nemotron developer page deep-mine (4 family announcements)
 - User-provided https://developer.nvidia.com/nemotron — main page description-only; 4 NEW Nemotron families surfaced. Sub-pages (/nemotron-rag/-parse/-speech/-safety) 404 — actual data on HF model cards (nvidia/*) + arxiv 2511.20478 + NVIDIA blog. Cherry-pick from 12 found models + 24 found benches.
@@ -19,16 +25,10 @@
 ### 2026-05-31 Session 41 — WorldArena.ai re-investigation (user-requested deep table analysis)
 - HF Space worldarena-results/ grew **6→86 baselines since S38**. 3 NEW frontier video-gen baselines (Veo 3.1, Wan 2.2, Wan 2.6); 80+ CVPR-2026 anonymous submissions SKIPPED. Each baseline JSON has 16 sub-metrics × 6 dimensions (visual quality+motion+content consistency+physics+3D+controllability) — S38 only ingested EWMScore aggregate.
 - **3 new frontier models**: Google Veo 3.1 (#3 EWMScore 0.578, **Perspectivity 0.996 SOTA + Instruction Following 0.971 SOTA**), Alibaba Wan 2.2 (EWMScore 0.549), Alibaba **Wan 2.6 (#2 EWMScore 0.592** — between Ctrl-World 0.601 leader and Veo 3.1)
-- **Per-dimension SOTA**: Wan 2.6 Image Quality 0.674 + Motion 0.821 / Veo 3.1 Background 0.917 + Interaction 0.815 + Perspectivity 0.996 + Instruction 0.971 / Ctrl-World Trajectory 0.482 / IRASim Depth 0.935 + Photometric 0.457 / CogVideoX JEPA 0.948 / Cosmos-Predict 2.5 Perspectivity 0.982 + Action Following 0.100
-- 8-tab audit → Physical AI World Model patched (+16 sub-metric benches + 3 new models). All values direct-WebFetch verified per JSON. EWMScore computed for new models (arithmetic mean of 16). **+1/+16/+131** = 1591/1298/6866. v=20260531b
+- Per-dimension SOTA: Wan 2.6 Image/Motion · Veo 3.1 BG/Interaction/Persp 0.996/Instr 0.971 · Ctrl-World Trajectory 0.482 · IRASim Depth 0.935 · CogVideoX JEPA 0.948 · Cosmos Action Following 0.100. 8-tab audit → Physical AI patched (+16 sub-metric +3 models). **+1/+16/+131** = 1591/1298/6866. v=20260531b
 
-### 2026-05-31 Session 40 — Deep re-mine round 2 (user "다시 조사" — sources still had unmined regions)
-- 6 sources re-mined for content deferred per scope. **Opus 4.8 sys card** unmined sections (pp.17/41/193-234): 7 NEW benches (AutomationBench/BioPipelineBench/BioMysteryBench Human-Solvable/GMMLU 90.4/MILU 90.3/INCLUDE 87.6/AECI 155.5) + 3 net-new (mcpatlas_public 82.2, finance_agent 53.9, charxiv_reasoning 80.5)
-- **SkillOpt 2605.23904** (Microsoft+SJTU+Tongji+Fudan executive-strategy agent skill optimizer) — 2 NEW benches (SearchQA, LiveMath) × 5 frontier (GPT-5.5 LiveMath +29.3pp uplift over baseline)
-- **WorldArena Track 2 Policy Evaluator** HF Space JSON now public — Ctrl-World 0.986 SOTA / IRASim 0.658 / Cosmos-Predict 2.5 action 0.483
-- **AA CritPT Playwright** full 33-row chart → 10 net-new (Opus 4.8 20.9 / Qwen3.7 Max 13.4 / Gemini 3.5 Flash 13.1 / Claude Haiku 4.5 0.0)
-- **AA MMLU-Pro AA Playwright** 14-row chart → 7 net-new (Gemini 3 Flash 89.0, Opus 4.1 88.0, Sonnet 4.5 87.5, GPT-5.2 87.4, gpt-oss-120b/20B, Haiku 4.5)
-- **Vellum CONFIRMED Resources-only** — 8/12 candidates MATCH DB, 4 DIFF cases DB vendor first-party preserved. 8-tab audit ran post-ingest → 4 tabs patched (FC reasoning/agent, Cyber-Coding AGENT, Physical AI World Model, Agent CATEGORIES tool-use/domain/general). **+0/+10/+35** = 1590/1282/6735. v=20260531a
+### 2026-05-31 Session 40 — Deep re-mine round 2 (compressed)
+- Opus 4.8 sys card unmined (+7 NEW: AutomationBench/BioPipelineBench/BioMysteryBench Human-Solvable/GMMLU 90.4/MILU 90.3/INCLUDE 87.6/AECI 155.5 + 3 net-new). SkillOpt 2605.23904 (+SearchQA/LiveMath, GPT-5.5 +29.3pp uplift). WorldArena T2 Policy public (Ctrl-World 0.986 SOTA). AA CritPT/MMLU-Pro Playwright full charts (+17 net-new). Vellum CONFIRMED Resources-only. **+0/+10/+35** = 1590/1282/6735. v=20260531a
 
 ### 2026-05-30 Session 39 — Deep re-mine of S33-S38 sources (user-requested completeness audit)
 - User: "꼼꼼하게 읽고 표 등에서 누락된 모델/벤치마크/평가결과 조사." Re-mine S33-S38 partial ingests where scope-tight decisions left value on the table. Direct WebFetch verification of FACTS Table 1 (all 4 sub-benches × 15 frontier), PAI-Bench Conditional JSON, CompassRank per-model sub-scores.

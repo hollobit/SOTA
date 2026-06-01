@@ -192,6 +192,8 @@ var Agent = (function() {
                 'terminal_bench_2_1', 'hle_with_tools', 'usamo_2026', 'arxivmath', 'draco', 'automation_bench', 'officeqa',
                 // 2026-05-31 S40 — AECI (Agentic Economic Capability Index) from Opus 4.8 card
                 'aeci_index',
+                // 2026-06-01 S44 — MiniMax M3 PostTrainBench (autonomous 12h ML training loop)
+                'posttrainbench',
                 'graphwalks_bfs_256k', 'graphwalks_parents_256k', 'graphwalks_bfs_1m', 'graphwalks_parents_1m',
                 // 2026-05-29 Session 34 — SubQ long-context (RULER@128K)
                 'ruler_128k'

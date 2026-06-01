@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "date": "2026-06-01",
+    "title": "Session 44 — MiniMax M3 release (1M ctx multimodal + MSA + open-weight, 2026-06-01); Biohub ESM page confirms S42 coverage",
+    "context": "User-provided 2 links: (1) https://www.minimax.io/blog/minimax-m3 — TODAY release of MiniMax M3, native multimodal (image+video input), MiniMax Sparse Attention (MSA), 1M context, open-weight; (2) https://biohub.ai/esm/protein/about — Biohub ESM page, confirmed JS-rendered empty shell, all content already covered by S42 ingest (ESM Cambrian + ESMFold2 71MB PDF). Only marketing landing for ESM Cambrian announcement (biohub.org news 2026-05-27) restating S42 paper SOTAs qualitatively + binder hit-rate ranges 36-88% / 15-29%. NO NET-NEW DATA from Biohub side. MiniMax M3 introduces 1 NEW model + 2 NEW agentic-coding benchmarks: PostTrainBench (autonomous 'Base→ML→eval→iterate' loop in 12hr) + KernelBench Hard (% pass at Hardest CUDA kernel difficulty, distinct from existing kernelbench_l3 speedup metric) + SWE-fficiency (existing open-source dataset M3 uses for self-eval — NEW bench id to track).",
+    "sources": [
+      "https://www.minimax.io/blog/minimax-m3",
+      "https://biohub.ai/esm/protein/about",
+      "https://biohub.org/news/world-model-of-protein-biology/"
+    ],
+    "rule": "STRICT-ATTRIBUTION. M3 scores from MiniMax blog text (verbatim). PostTrainBench cross-comparisons (Opus 4.7 0.42, GPT-5.5 0.39) are third-party-reported by MiniMax — admitted under same practice as S37 cross-model comparison tables, flagged in note as MiniMax-reported. KernelBench Hard 28.8% registered as new bench distinct from existing kernelbench_l3 (which tracks speedup x not percent pass). SWE-fficiency registered new because it's a distinct agentic-coding bench (different from swe_bench_verified/pro). EXCLUDED qualitative-only claims: SVG-Bench 'surpasses Opus 4.7' (no number), OmniDocBench 'above Gemini 3.1 Pro' (no number — also S43 ingested OmniDocBench NED separately for Nemotron), Claw-Eval 'highest Pass³' (no number), and the 20+ benches listed in M3 blog without M3-specific numbers. SKIPPED Biohub binder hit-rate ranges (36-88% / 15-29%) — these are per-target ranges across PD-L1/EGFR/CTLA-4/PDGFRβ/CD45 with no per-model triple structure.",
+    "deltas_expected": "+1 model / +3 benchmarks / +8 scores"
+  },
+  "models": [
+    {"id": "minimax/m3", "name": "MiniMax M3", "vendor": "MiniMax", "modalities": ["text", "image", "video"], "release_date": "2026-06-01", "_note": "MiniMax M3 — native multimodal (image+video input). MiniMax Sparse Attention (MSA) architecture, 1M context. open-weight. Per-token compute 1/20 of M2. SWE-Bench Pro 59.0% (surpasses GPT-5.5 + Gemini 3.1 Pro, approaches Opus 4.7). Technical report + weights releasing over next 10 days. Parameter count not yet disclosed."}
+  ],
+  "benchmarks": [
+    {"id": "posttrainbench", "name": "PostTrainBench", "category": "agent", "description": "Autonomous post-training agent eval — given 4 Base models, must autonomously complete data synthesis + training + evaluation + iteration within 12 hours across AIME2025/BFCL/GPQA Main/GSM8K/HumanEval. Score 0-1 higher=better. Introduced/used by MiniMax M3 blog.", "metric": "score", "leaderboard": "https://www.minimax.io/blog/minimax-m3"},
+    {"id": "swe_fficiency", "name": "SWE-fficiency", "category": "coding", "description": "SWE-fficiency benchmark — agentic SWE eval (open-source dataset M3 uses for self-evaluation per MiniMax blog). Higher=better.", "metric": "accuracy", "leaderboard": "https://www.minimax.io/blog/minimax-m3"},
+    {"id": "kernelbench_hard", "name": "KernelBench (Hard split, Pass)", "category": "coding", "description": "KernelBench Hardest difficulty split — CUDA kernel generation pass rate. Distinct from existing kernelbench_l3 (which tracks speedup x metric). Higher=better.", "metric": "accuracy", "leaderboard": "https://www.minimax.io/blog/minimax-m3"}
+  ],
+  "scores": [
+    {"_section": "=== MiniMax M3 launch scores (2026-06-01 blog) ===",
+     "model": "minimax/m3", "benchmark": "swe_bench_pro", "score": 59.0, "unit": "%", "_source": "https://www.minimax.io/blog/minimax-m3", "_note": "First-party. Headline — surpasses GPT-5.5 + Gemini 3.1 Pro, approaches Claude Opus 4.7 (qual-only for those)."},
+    {"model": "minimax/m3", "benchmark": "terminal_bench_2_1", "score": 66.0, "unit": "%", "_source": "https://www.minimax.io/blog/minimax-m3", "_note": "First-party."},
+    {"model": "minimax/m3", "benchmark": "swe_fficiency", "score": 34.8, "unit": "%", "_source": "https://www.minimax.io/blog/minimax-m3", "_note": "First-party. Open-source SWE-fficiency dataset (M3 self-eval)."},
+    {"model": "minimax/m3", "benchmark": "kernelbench_hard", "score": 28.8, "unit": "%", "_source": "https://www.minimax.io/blog/minimax-m3", "_note": "First-party. KernelBench Hardest split — CUDA kernel pass rate."},
+    {"model": "minimax/m3", "benchmark": "mcp_atlas", "score": 74.2, "unit": "%", "_source": "https://www.minimax.io/blog/minimax-m3", "_note": "First-party. Tool/agent eval."},
+
+    {"_section": "=== PostTrainBench cross-model (MiniMax-reported triples) ===",
+     "model": "minimax/m3", "benchmark": "posttrainbench", "score": 0.37, "unit": "score", "_source": "https://www.minimax.io/blog/minimax-m3", "_note": "First-party. Autonomous 12-hour Base→training→eval→iterate loop."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "posttrainbench", "score": 0.42, "unit": "score", "_source": "https://www.minimax.io/blog/minimax-m3", "_note": "Comparison (MiniMax-reported). PostTrainBench leader."},
+    {"model": "openai/gpt-5.5", "benchmark": "posttrainbench", "score": 0.39, "unit": "score", "_source": "https://www.minimax.io/blog/minimax-m3", "_note": "Comparison (MiniMax-reported)."}
+  ]
+}

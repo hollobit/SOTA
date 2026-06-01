@@ -113,7 +113,7 @@ var Sovereign = {
                 'moonshot/kimi-k2-thinking',
                 'moonshot/kimi-k2-instruct', 'moonshot/kimi-k2-base', 'moonshot/kimi-k1.5',
                 // MiniMax / MiMo / StepFun
-                'minimax/m2.7', 'minimax/m2.5', 'minimax/minimax-m2.7',
+                'minimax/m3', 'minimax/m2.7', 'minimax/m2.5', 'minimax/minimax-m2.7',
                 'mimo/mimo-v2-pro', 'mimo/mimo-v2-flash',
                 'stepfun/step-3.5-flash', 'stepfun/step-2-pro', 'stepfun/step-2-mini',
                 'stepfun/step-1o',

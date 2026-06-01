@@ -28,7 +28,9 @@ var FrontierCompare = {
             // 2026-05 CAD-coding specialty benches
             'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',
             // 2026-05-30 Session 39 BenchCAD sub-tasks (Edit / QA Code / Vision2Code)
-            'benchcad_edit_acc', 'benchcad_qa_code', 'benchcad_vision2code'
+            'benchcad_edit_acc', 'benchcad_qa_code', 'benchcad_vision2code',
+            // 2026-06-01 S44 MiniMax M3 agentic-coding benches
+            'kernelbench_hard', 'swe_fficiency'
         ],
         math: ['aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026', 'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024'],
         agent: [
@@ -41,7 +43,9 @@ var FrontierCompare = {
             // 2026-05-12 — DELEGATE-52 from arxiv 2604.15597 (Microsoft Research)
             'delegate_52',
             // 2026-05-31 S40 — Opus 4.8 system card + SkillOpt agentic
-            'automationbench', 'aeci_index', 'search_qa'
+            'automationbench', 'aeci_index', 'search_qa',
+            // 2026-06-01 S44 MiniMax M3 PostTrainBench (autonomous 12h ML loop)
+            'posttrainbench'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
