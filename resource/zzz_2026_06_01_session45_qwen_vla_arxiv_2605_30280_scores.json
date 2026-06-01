@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "date": "2026-06-01",
+    "title": "Session 45 — Qwen-VLA paper (Alibaba Qwen Team, arxiv 2605.30280, May 28 2026): unified VLA for tasks/environments/embodiments",
+    "context": "Two user-provided links = same release. qwen.ai/blog?id=qwenvla is JS-rendered shell; arxiv 2605.30280 is the actual source. Paper introduces Qwen-VLA (Qwen3.5-4B backbone + DiT flow-matching action decoder), 4-stage training (T2A pre-training → CPT → SFT → RL on SimplerEnv). 4 NEW Qwen-VLA model variants: Base (CPT), Instruct (SFT+RL), ALOHA w/o pretrain, ALOHA w/ pretrain. NEW benchmark introduced: SimplerEnv-OOD (6 OOD tasks on WidowX). DOMINO is a NEW eval-only dataset cited (Qwen-VLA-Instruct 26.6 zero-shot SR beats every fine-tuned baseline). KEY SOTAs: RoboTwin-Hard 87.2 (vs prior best ABot-M0 85.0), Simpler-WidowX 73.7 (vs StarVLA-OFT 64.6, GR00T N1.6 63.2), SimplerEnv-OOD 32.0 (vs π0.5 12.6 — 2.5x gap), ALOHA real-world in-domain 83.6 + OOD 76.9 (vs π0.5 71.6/41.5). Navigation: R2R 57.5 + RxR 59.6 SR (beats StreamVLN). 2 frontier comparison models registered (ABot-M0, StarVLA-OFT); other comparisons (Being-H0.5, RDT-1B, InternVLA-M1, VLA-Adapter, PUMA, NaVid/Uni-NaVid/NaVILA/StreamVLN) skipped per scope.",
+    "sources": [
+      "https://qwen.ai/blog?id=qwenvla",
+      "https://arxiv.org/abs/2605.30280",
+      "https://arxiv.org/pdf/2605.30280"
+    ],
+    "rule": "STRICT-ATTRIBUTION. Triples extracted by agent from Tables in arxiv 2605.30280v1. NEW benches: robotwin_easy/hard split (distinct from existing robotwin2 which is 0-1 aggregate), simpler_widowx (WidowX-specific subset of SimplerEnv, distinct from existing simpler_env_avg), robocasa_gr1 (RoboCasa-GR1 specific eval, distinct from existing robocasa/robocasa365), simplerenv_ood (NEW 6-OOD tasks introduced by paper), domino_sr (NEW DOMINO Success Rate), aloha_real_in_domain (real-world ALOHA hardware eval, distinct from existing aloha_4task_avg simulated), r2r_val_unseen_sr + rxr_val_unseen_sr (vision-language navigation). LIBERO aggregate skipped (existing per-suite libero_spatial/object/goal/long covers more granular). EXCLUDED comparison models: Being-H0.5, RDT-1B, InternVLA-M1, VLA-Adapter, PUMA, OpenVLA-OFT (FT), π0-FAST (existing), LingBot-VA (existing), NaVid/Uni-NaVid/NaVILA/StreamVLN — too many; only 2 frontier comparisons (ABot-M0, StarVLA-OFT) registered.",
+    "deltas_expected": "+6 models / +8 benchmarks / +29 scores"
+  },
+  "models": [
+    {"id": "alibaba/qwen-vla-base", "name": "Qwen-VLA-Base", "vendor": "Alibaba", "modalities": ["text", "image", "video", "action"], "release_date": "2026-05-28", "_note": "Generalist VLA after Continued Pre-Training. Qwen3.5-4B backbone + DiT flow-matching action decoder. arxiv 2605.30280."},
+    {"id": "alibaba/qwen-vla-instruct", "name": "Qwen-VLA-Instruct", "vendor": "Alibaba", "modalities": ["text", "image", "video", "action"], "release_date": "2026-05-28", "_note": "After multi-task SFT + RL on SimplerEnv. RoboTwin-Hard 87.2 SOTA, SimplerEnv-OOD 32.0 (2.5x π0.5), DOMINO zero-shot SR 26.6 SOTA (beats every fine-tuned baseline)."},
+    {"id": "alibaba/qwen-vla-aloha-no-pretrain", "name": "Qwen-VLA-aloha (w/o pretrain)", "vendor": "Alibaba", "modalities": ["text", "image", "action"], "release_date": "2026-05-28", "_note": "Real-world ALOHA hardware variant, trained from scratch. In-domain 48.5 / OOD 36.2."},
+    {"id": "alibaba/qwen-vla-aloha-pretrain", "name": "Qwen-VLA-aloha (w/ pretrain)", "vendor": "Alibaba", "modalities": ["text", "image", "action"], "release_date": "2026-05-28", "_note": "Real-world ALOHA, fine-tuned from Qwen-VLA-Base. In-domain 83.6 SOTA / OOD 76.9 SOTA — pretraining +35pp in-domain + +41pp OOD."},
+    {"id": "amap-cvlab/abot-m0", "name": "ABot-M0", "vendor": "AMAP CV Lab", "modalities": ["text", "image", "action"], "release_date": "2026", "_note": "Frontier VLA — RoboTwin-Easy 86.0 / Hard 85.0 (was prior SOTA before Qwen-VLA). LIBERO 98.6."},
+    {"id": "starvla/starvla-oft", "name": "StarVLA-OFT", "vendor": "StarVLA", "modalities": ["text", "image", "action"], "release_date": "2026", "_note": "Frontier VLA baseline — LIBERO 96.6, Simpler-WidowX 64.6, RoboCasa-GR1 48.8."}
+  ],
+  "benchmarks": [
+    {"id": "robotwin_easy", "name": "RoboTwin (Easy split)", "category": "ai4s", "description": "RoboTwin Easy difficulty split — robot manipulation simulation. Accuracy %. Higher=better. Used in Qwen-VLA paper Table.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2605.30280"},
+    {"id": "robotwin_hard", "name": "RoboTwin (Hard split)", "category": "ai4s", "description": "RoboTwin Hard difficulty split. Accuracy %. Higher=better.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2605.30280"},
+    {"id": "simpler_widowx", "name": "SimplerEnv (WidowX)", "category": "ai4s", "description": "SimplerEnv WidowX-specific evaluation subset (distinct from aggregate simpler_env_avg). Accuracy %. Higher=better.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2605.30280"},
+    {"id": "robocasa_gr1", "name": "RoboCasa-GR1", "category": "ai4s", "description": "RoboCasa-GR1 specific embodiment evaluation. Accuracy %. Higher=better.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2605.30280"},
+    {"id": "simplerenv_ood", "name": "SimplerEnv-OOD", "category": "ai4s", "description": "NEW SimplerEnv Out-Of-Distribution benchmark introduced by Qwen-VLA paper — 6 OOD tasks (MoveAway/MoveRight/PlaceNear/PlaceRight/PutFront/StackYellow) × 3 tabletop scenes on WidowX, models fine-tuned only on Bridge pick-and-place. Average accuracy %. Higher=better.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2605.30280"},
+    {"id": "domino_sr", "name": "DOMINO Success Rate", "category": "ai4s", "description": "DOMINO dataset Success Rate — multi-task manipulation eval. Higher=better. Used in Qwen-VLA Table.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2605.30280"},
+    {"id": "aloha_real_in_domain", "name": "ALOHA Real-World In-Domain", "category": "ai4s", "description": "ALOHA real-world hardware in-domain average success rate. Distinct from existing aloha_4task_avg (simulated). Higher=better.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2605.30280"},
+    {"id": "r2r_val_unseen_sr", "name": "R2R Val-Unseen Success Rate", "category": "ai4s", "description": "Room-to-Room (R2R) vision-language navigation Val-Unseen split Success Rate. Higher=better.", "metric": "accuracy", "leaderboard": "https://arxiv.org/abs/2605.30280"}
+  ],
+  "scores": [
+    {"_section": "=== RoboTwin Easy split (Qwen-VLA + frontier comparisons) ===",
+     "model": "alibaba/qwen-vla-instruct", "benchmark": "robotwin_easy", "score": 86.1, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party. SOTA — beats ABot-M0 86.0."},
+    {"model": "alibaba/qwen-vla-base", "benchmark": "robotwin_easy", "score": 64.3, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party. Base (CPT only)."},
+    {"model": "amap-cvlab/abot-m0", "benchmark": "robotwin_easy", "score": 86.0, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Comparison."},
+    {"model": "physical-intelligence/pi-0.5", "benchmark": "robotwin_easy", "score": 82.7, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Comparison."},
+    {"model": "physical-intelligence/pi-zero", "benchmark": "robotwin_easy", "score": 65.9, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Comparison."},
+    {"model": "starvla/starvla-oft", "benchmark": "robotwin_easy", "score": 50.4, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Comparison."},
+    {"model": "nvidia/gr00t-n1.6", "benchmark": "robotwin_easy", "score": 47.6, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Comparison."},
+
+    {"_section": "=== RoboTwin Hard split (much harder) ===",
+     "model": "alibaba/qwen-vla-instruct", "benchmark": "robotwin_hard", "score": 87.2, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party. SOTA — beats ABot-M0 85.0."},
+    {"model": "alibaba/qwen-vla-base", "benchmark": "robotwin_hard", "score": 66.4, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party."},
+    {"model": "amap-cvlab/abot-m0", "benchmark": "robotwin_hard", "score": 85.0, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Comparison."},
+    {"model": "physical-intelligence/pi-0.5", "benchmark": "robotwin_hard", "score": 76.8, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Comparison."},
+    {"model": "physical-intelligence/pi-zero", "benchmark": "robotwin_hard", "score": 58.4, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Comparison."},
+
+    {"_section": "=== Simpler-WidowX ===",
+     "model": "alibaba/qwen-vla-instruct", "benchmark": "simpler_widowx", "score": 73.7, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party. SOTA."},
+    {"model": "alibaba/qwen-vla-base", "benchmark": "simpler_widowx", "score": 64.3, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party."},
+    {"model": "starvla/starvla-oft", "benchmark": "simpler_widowx", "score": 64.6, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280"},
+    {"model": "nvidia/gr00t-n1.6", "benchmark": "simpler_widowx", "score": 63.2, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280"},
+    {"model": "physical-intelligence/pi-0.5", "benchmark": "simpler_widowx", "score": 46.9, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280"},
+
+    {"_section": "=== RoboCasa-GR1 ===",
+     "model": "alibaba/qwen-vla-instruct", "benchmark": "robocasa_gr1", "score": 56.7, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party. Behind ABot-M0 58.3."},
+    {"model": "alibaba/qwen-vla-base", "benchmark": "robocasa_gr1", "score": 40.4, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280"},
+    {"model": "amap-cvlab/abot-m0", "benchmark": "robocasa_gr1", "score": 58.3, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "SOTA on RoboCasa-GR1 in this paper."},
+    {"model": "nvidia/gr00t-n1.6", "benchmark": "robocasa_gr1", "score": 49.9, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280"},
+    {"model": "starvla/starvla-oft", "benchmark": "robocasa_gr1", "score": 48.8, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280"},
+    {"model": "physical-intelligence/pi-0.5", "benchmark": "robocasa_gr1", "score": 37.0, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280"},
+
+    {"_section": "=== SimplerEnv-OOD (NEW bench introduced by paper) ===",
+     "model": "alibaba/qwen-vla-instruct", "benchmark": "simplerenv_ood", "score": 32.0, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party. SOTA — 2.5x π0.5."},
+    {"model": "alibaba/qwen-vla-base", "benchmark": "simplerenv_ood", "score": 25.3, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party."},
+    {"model": "physical-intelligence/pi-0.5", "benchmark": "simplerenv_ood", "score": 12.6, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Comparison."},
+
+    {"_section": "=== DOMINO Success Rate (Qwen-VLA-Instruct zero-shot beats fine-tuned baselines) ===",
+     "model": "alibaba/qwen-vla-instruct", "benchmark": "domino_sr", "score": 26.6, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party. Zero-shot SOTA — beats every fine-tuned baseline incl. PUMA 17.2."},
+    {"model": "alibaba/qwen-vla-base", "benchmark": "domino_sr", "score": 21.1, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280"},
+    {"model": "physical-intelligence/pi-zero", "benchmark": "domino_sr", "score": 8.2, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280"},
+    {"model": "physical-intelligence/pi-0.5", "benchmark": "domino_sr", "score": 9.6, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Comparison. Fine-tuned variant."},
+
+    {"_section": "=== ALOHA Real-World hardware eval (in-domain) ===",
+     "model": "alibaba/qwen-vla-aloha-pretrain", "benchmark": "aloha_real_in_domain", "score": 83.6, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party. SOTA — pretraining +35pp over no-pretrain."},
+    {"model": "alibaba/qwen-vla-aloha-no-pretrain", "benchmark": "aloha_real_in_domain", "score": 48.5, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party. Ablation."},
+    {"model": "physical-intelligence/pi-0.5", "benchmark": "aloha_real_in_domain", "score": 71.6, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Comparison."},
+    {"model": "nvidia/gr00t-n1.6", "benchmark": "aloha_real_in_domain", "score": 28.6, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280"},
+
+    {"_section": "=== R2R Val-Unseen Success Rate (vision-language navigation) ===",
+     "model": "alibaba/qwen-vla-instruct", "benchmark": "r2r_val_unseen_sr", "score": 57.5, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party. SOTA — beats StreamVLN 56.9, NaVILA 54.0."},
+    {"model": "alibaba/qwen-vla-base", "benchmark": "r2r_val_unseen_sr", "score": 53.8, "unit": "%", "_source": "https://arxiv.org/abs/2605.30280", "_note": "First-party."}
+  ]
+}

@@ -60,7 +60,11 @@ var PhysicalAI = {
                 'allenai/molmoact2', 'allenai/molmoer', 'nvidia/cap-agent0',
                 'allenai/molmoact-2',  // canonical id used in newer ingest (Section 38)
                 // 2026-05-20 Alibaba Qwen robotics — quadruped robot dog control + navigation FM
-                'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav'
+                'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav',
+                // 2026-06-01 S45 — Alibaba Qwen-VLA paper (arxiv 2605.30280): unified VLA across tasks/environments/embodiments
+                'alibaba/qwen-vla-base', 'alibaba/qwen-vla-instruct',
+                'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',
+                'amap-cvlab/abot-m0', 'starvla/starvla-oft'
             ]
         },
         {
@@ -154,7 +158,10 @@ var PhysicalAI = {
                 'simpler_env_avg', 'roboarena_elo',
                 'gr1_real_lang_following', 'unitree_g1_1k_demos', 'realworld_language_following',
                 // 2026-05-30 Positronic Robotics PhAIL v1.0 — real-hardware bin-picking
-                'phail_v1_uph'
+                'phail_v1_uph',
+                // 2026-06-01 S45 — Qwen-VLA paper (arxiv 2605.30280) benches
+                'robotwin_easy', 'robotwin_hard', 'simpler_widowx', 'robocasa_gr1',
+                'simplerenv_ood', 'domino_sr', 'aloha_real_in_domain', 'r2r_val_unseen_sr'
             ]
         },
         {

@@ -1,13 +1,17 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 44 — MiniMax M3 release (1M ctx multimodal + MSA + open-weight, 2026-06-01) + Biohub ESM page confirmed S42 (2026-06-01)
-**1,606 models · 1,321 benchmarks · 6,908 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 45 — Qwen-VLA paper deep-mine (Alibaba Qwen Team, arxiv 2605.30280, 2026-06-01)
+**1,612 models · 1,329 benchmarks · 6,944 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-01 Session 44 — MiniMax M3 + Biohub ESM (2 user links)
-- **MiniMax M3** TODAY release — native multimodal (image+video input), MiniMax Sparse Attention 1M ctx, open-weight, per-token compute **1/20 of M2**. Tech report + weights releasing over next 10 days. SOTAs: **SWE-Bench Pro 59.0%** (surpasses GPT-5.5 + Gemini 3.1 Pro, approaches Opus 4.7), Terminal-Bench 2.1 66.0%, MCP Atlas 74.2%, KernelBench Hard 28.8%, SWE-fficiency 34.8%, **PostTrainBench 0.37** (vs Opus 4.7 0.42 leader, GPT-5.5 0.39)
-- **Biohub ESM page** (biohub.ai/esm/protein/about) — JS-rendered empty shell, all content S42-covered (Biohub news 2026-05-27 = marketing landing for ESM Cambrian/ESMFold2 paper). Only new datum: binder hit-rate ranges 36-88%/15-29% (per-target ranges, not per-model triples). **0 ingest.**
-- **3 NEW benches**: PostTrainBench (autonomous 'Base→data synth→train→eval→iterate' 12h loop across AIME2025/BFCL/GPQA/GSM8K/HumanEval — agentic ML automation), SWE-fficiency (open-source agentic SWE eval), KernelBench Hard (CUDA pass rate, distinct from kernelbench_l3 speedup)
-- 8-tab audit: Sovereign CN MiniMax section + FC coding/agent + Cyber-Coding CODING/AGENT + Agent CATEGORIES general patched. EXCLUDED qual-only: SVG-Bench/OmniDocBench/Claw-Eval (no M3 numbers), 20+ benches listed without M3 values. **+1/+3/+8** = 1606/1321/6908. v=20260601c
+### 2026-06-01 Session 45 — Qwen-VLA unified VLA paper (2 user links → same release)
+- **2 user-provided links converge**: qwen.ai/blog?id=qwenvla (JS-shell) + arxiv 2605.30280 (authoritative, 34pp). Qwen-VLA = **Qwen3.5-4B backbone + DiT flow-matching action decoder + 4-stage training** (T2A pre-train → CPT → SFT → RL on SimplerEnv). Unified VLA across tasks/environments/embodiments.
+- **6 NEW models**: alibaba/qwen-vla-base · qwen-vla-instruct · qwen-vla-aloha-pretrain · qwen-vla-aloha-no-pretrain · amap-cvlab/abot-m0 (prior RoboTwin-Hard SOTA 85.0) · starvla/starvla-oft (prior Simpler-WidowX SOTA 64.6)
+- **KEY SOTAs**: Qwen-VLA-Instruct **RoboTwin-Hard 87.2** (+2.2 over ABot-M0) · **Simpler-WidowX 73.7** (+9.1 over StarVLA-OFT) · **SimplerEnv-OOD 32.0** (vs π0.5 12.6 — **2.5x gap**) · **DOMINO zero-shot SR 26.6** (beats every fine-tuned baseline incl. PUMA 17.2) · ALOHA real hardware in-domain pretrain 83.6 vs no-pretrain 48.5 (**+35pp pretrain gain**) · **R2R nav SR 57.5** (beats StreamVLN 56.9)
+- **8 NEW benches**: robotwin_easy/hard split · simpler_widowx · robocasa_gr1 · **simplerenv_ood (NEW dataset introduced by paper, 6 OOD WidowX tasks)** · domino_sr · aloha_real_in_domain · r2r_val_unseen_sr
+- 8-tab audit: Sovereign CN Alibaba +4 Qwen-VLA + Physical AI VLA Manipulation Suites +6 models +8 benches. EXCLUDED comparison models (Being-H0.5/RDT-1B/InternVLA-M1/VLA-Adapter/PUMA/NaVid/NaVILA/StreamVLN) per scope. **+6/+8/+36** = 1612/1329/6944. v=20260601d
+
+### 2026-06-01 Session 44 — MiniMax M3 release + Biohub ESM page confirmed S42 coverage
+- MiniMax M3 native multimodal MSA 1M ctx open-weight, **SWE-Bench Pro 59.0%** (surpasses GPT-5.5+Gemini 3.1 Pro, approaches Opus 4.7), PostTrainBench 0.37. 3 NEW benches: PostTrainBench/SWE-fficiency/KernelBench Hard. Biohub ESM page 0 ingest (S42-covered). **+1/+3/+8** = 1606/1321/6908. v=20260601c
 
 ### 2026-06-01 Session 43 — NVIDIA Nemotron developer page deep-mine (4 family announcements)
 - User-provided https://developer.nvidia.com/nemotron — main page description-only; 4 NEW Nemotron families surfaced. Sub-pages (/nemotron-rag/-parse/-speech/-safety) 404 — actual data on HF model cards (nvidia/*) + arxiv 2511.20478 + NVIDIA blog. Cherry-pick from 12 found models + 24 found benches.
@@ -15,17 +19,11 @@
 - **Bench families** (11): ViDoRe V1/V2/V3 (visual document retrieval) · MMTEB v2 (multilingual text embedding) · OmniDocBench EN/ZH (document understanding NED lower=better) · 5 ASR benches (LibriSpeech×2/AMI/GigaSpeech/Open ASR Leaderboard avg WER lower=better)
 - 8-tab audit: FC multimodal +ViDoRe 3 +OmniDoc 2. ASR + MMTEB v2 data-driven only (FC no audio/embedding axis). SKIPPED: VDR rerank-only pipeline, MIRACL/MLDR/BEIR-TechQA (rerank), throughput, MMTEB Borda votes, OmniDoc Text/Table sub-NED, Parse TC variant, OCR-en sub, streaming-en, Safety Guard aggregate 84.2%, Content Safety 4B aggregate 84%. **+7/+11/+15** = 1605/1318/6900. v=20260601b
 
-### 2026-05-31 Session 42 — ESM Cambrian / ESMFold2 deep-mine (user-provided 71MB PDF, 104pp)
-- **Paper**: "Language Modeling Materializes a World Model of Protein Biology" (Candido et al, Biohub + EvolutionaryScale, 2026). PDF archived (71MB).
-- **Models** (7): ESMC 300M/600M/**6B** (protein language models, 6.35B flagship, 80 layers) · **ESMFold2 + ESMFold2-Fast** (multi-modality structure prediction) · ESM2-15B (Meta baseline) · Boltz-2 (MIT comparison)
-- **Bench family**: FoldBench introduces 6 modality sub-benches (Antibody-Antigen / PPI / Protein-Ligand / Protein-DNA / Protein-Peptide / Monomer LDDT) + Recent-PDB PPI hold-out · p_at_l_lr (contact precision long-range scaling, R²=0.99 ESMC scaling law) · megascale_dg_spearman
-- **SOTAs**: **ESMFold2+MSA PPI 76% (vs AlphaFold3 73%)** · **AbAg 53% (vs AF3 47%)** · beats Boltz-2 Recent-PDB PPI 77 vs 70 · ESMC 6B contact precision **0.725 (+22% over ESM2-15B 0.593)** · ESMFold2-Fast **9.4s @L=1024 — fastest folder (2.2x faster than AF3 ~20.5s)**
-- 8-tab audit: AI4S regex extended to esmc-/esmfold/esm2-/boltz-/protenix + evolutionaryscale/ prefix. FoldBench data-driven only (FC axes don't include AI4S/bio). EXCLUDED figure-only Chai-1/OpenFold3 coverage counts, Protenix-v1 bars, binder hit-rate ranges. **+7/+9/+19** = 1598/1307/6885. v=20260531c
+### 2026-05-31 Session 42 — ESM Cambrian / ESMFold2 deep-mine (71MB PDF, 104pp; compressed)
+- Candido et al Biohub+EvolutionaryScale. 7 models (ESMC 300M/600M/6B · ESMFold2/-Fast · ESM2-15B · Boltz-2). FoldBench 6 modality sub-benches + Recent-PDB PPI + p_at_l_lr + megascale_dg. SOTAs: ESMFold2+MSA PPI 76% (vs AF3 73%) · AbAg 53% (vs AF3 47%) · ESMC 6B contact 0.725 (+22% vs ESM2-15B) · ESMFold2-Fast 9.4s @L=1024 (2.2x AF3). **+7/+9/+19** = 1598/1307/6885. v=20260531c
 
-### 2026-05-31 Session 41 — WorldArena.ai re-investigation (user-requested deep table analysis)
-- HF Space worldarena-results/ grew **6→86 baselines since S38**. 3 NEW frontier video-gen baselines (Veo 3.1, Wan 2.2, Wan 2.6); 80+ CVPR-2026 anonymous submissions SKIPPED. Each baseline JSON has 16 sub-metrics × 6 dimensions (visual quality+motion+content consistency+physics+3D+controllability) — S38 only ingested EWMScore aggregate.
-- **3 new frontier models**: Google Veo 3.1 (#3 EWMScore 0.578, **Perspectivity 0.996 SOTA + Instruction Following 0.971 SOTA**), Alibaba Wan 2.2 (EWMScore 0.549), Alibaba **Wan 2.6 (#2 EWMScore 0.592** — between Ctrl-World 0.601 leader and Veo 3.1)
-- Per-dimension SOTA: Wan 2.6 Image/Motion · Veo 3.1 BG/Interaction/Persp 0.996/Instr 0.971 · Ctrl-World Trajectory 0.482 · IRASim Depth 0.935 · CogVideoX JEPA 0.948 · Cosmos Action Following 0.100. 8-tab audit → Physical AI patched (+16 sub-metric +3 models). **+1/+16/+131** = 1591/1298/6866. v=20260531b
+### 2026-05-31 Session 41 — WorldArena.ai HF Space re-investigation (compressed)
+- HF Space grew 6→86 baselines since S38. 3 NEW frontier video-gen: Veo 3.1 (#3 EWMScore 0.578, Persp 0.996+Instr 0.971 SOTA), Wan 2.2 (0.549), **Wan 2.6 #2 0.592**. Per-dim SOTAs: Wan 2.6 Image/Motion · Veo 3.1 BG/Interact/Persp/Instr · Ctrl-World Trajectory 0.482. Physical AI +16 sub-metrics +3 models. **+1/+16/+131** = 1591/1298/6866. v=20260531b
 
 ### 2026-05-31 Session 40 — Deep re-mine round 2 (compressed)
 - Opus 4.8 sys card unmined (+7 NEW: AutomationBench/BioPipelineBench/BioMysteryBench Human-Solvable/GMMLU 90.4/MILU 90.3/INCLUDE 87.6/AECI 155.5 + 3 net-new). SkillOpt 2605.23904 (+SearchQA/LiveMath, GPT-5.5 +29.3pp uplift). WorldArena T2 Policy public (Ctrl-World 0.986 SOTA). AA CritPT/MMLU-Pro Playwright full charts (+17 net-new). Vellum CONFIRMED Resources-only. **+0/+10/+35** = 1590/1282/6735. v=20260531a
