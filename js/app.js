@@ -2106,7 +2106,8 @@ var App = {
             { name: 'TamGen — Target-Aware Molecule Generation (Nature Comm.)', file: 'tamgen-nature-comm.pdf', vendor: 'Microsoft Research Asia', date: 'Oct 2024', url: 'https://www.nature.com/articles/s41467-024-53632-4' },
             { name: 'Prov-GigaPath — Whole-Slide Pathology FM (Nature)', file: 'prov-gigapath-nature.pdf', vendor: 'Microsoft + Providence', date: 'May 2024', url: 'https://www.nature.com/articles/s41586-024-07441-w' },
             { name: 'Pathology FM Clinical Benchmarking (PMC)', file: 'pathology-fm-bench-pmc.pdf', vendor: 'PMC', date: 'Apr 2025', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/' },
-            { name: 'World Model for Robot Learning — Comprehensive Survey', file: 'world_model_robot_survey_2605.00080.pdf', vendor: 'NTU + Berkeley + Stanford et al', date: 'Apr 2026', url: 'https://arxiv.org/abs/2605.00080' }
+            { name: 'World Model for Robot Learning — Comprehensive Survey', file: 'world_model_robot_survey_2605.00080.pdf', vendor: 'NTU + Berkeley + Stanford et al', date: 'Apr 2026', url: 'https://arxiv.org/abs/2605.00080' },
+            { name: 'Qwen-VLA — Unified Vision-Language-Action Model', file: 'qwen_vla_2605.30280.pdf', vendor: 'Alibaba Qwen Team', date: 'May 2026', url: 'https://arxiv.org/abs/2605.30280' }
         ];
 
         pdfDocs.forEach(function(doc) {
