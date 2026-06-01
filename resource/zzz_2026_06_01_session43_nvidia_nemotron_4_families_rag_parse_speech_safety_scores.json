@@ -1,0 +1,68 @@
+{
+  "_meta": {
+    "date": "2026-06-01",
+    "title": "Session 43 — NVIDIA Nemotron developer page deep-mine: 4 NEW family announcements (Nemotron RAG + Parse + Speech + Safety) with frontier benchmark coverage",
+    "context": "User-provided https://developer.nvidia.com/nemotron landing page. Main page is description-only (no score tables). Found 4 NEW Nemotron families not in our DB: Nemotron RAG (retrieval/embedding/reranking — ViDoRe/MMTEB leaderboard leaders), Nemotron Parse (document vision — OmniDocBench), Nemotron Speech (ASR/TTS/S2S — Parakeet-TDT), Nemotron Safety (moderation/PII/jailbreak). Triple scores harvested by parallel research agent across HuggingFace model cards (nvidia/* org), arxiv 2511.20478 (Nemotron-Parse 1.1), NVIDIA developer blog (Nemotron Vision RAG and Guardrail Models). Sub-pages developer.nvidia.com/nemotron-rag/-parse/-speech/-safety all 404 — actual data lives on HF model cards + blog + tech reports. Selective cherry-pick (7 of 12 found new models + 11 of 24 found new benchmarks) to keep frontier-relevant + standard-bench-focused; skipped niche metrics (VDR rerank-pipeline, MIRACL/MLDR/BEIR-TechQA rerank-only, throughput, MMTEB Borda votes, OmniDocBench Text/Table sub-NED, Nemotron-Parse TC variant, Nemotron-OCR English-only sub, streaming-en sub-variant, older Safety Guard).",
+    "sources": [
+      "https://developer.nvidia.com/nemotron",
+      "https://huggingface.co/nvidia/nemotron-colembed-vl-8b-v2",
+      "https://huggingface.co/nvidia/nemotron-colembed-vl-4b-v2",
+      "https://huggingface.co/nvidia/llama-embed-nemotron-8b",
+      "https://huggingface.co/nvidia/llama-nemotron-rerank-vl-1b-v2",
+      "https://huggingface.co/nvidia/nemotron-ocr-v2",
+      "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3",
+      "https://arxiv.org/abs/2511.20478",
+      "https://developer.nvidia.com/blog/develop-specialized-ai-agents-with-new-nvidia-nemotron-vision-rag-and-guardrail-models/"
+    ],
+    "rule": "STRICT-ATTRIBUTION. Each triple agent-extracted from a single primary source (HF model cards + arxiv) with model + benchmark + value appearing together. Lower-is-better metrics (WER, NED) flagged in unit field; project SOTA harness supports min-based detection (per memory feedback_lower_better_sota_fix). EXCLUDED niche/sub-variant entries: VDR/BEIR-TechQA/MIRACL/MLDR pipeline-dependent recall (rerank-only), OmniDocBench sub-NED for Text/Table, throughput pages/s, MMTEB v2 Borda votes (non-standard metric), Nemotron-Parse TC variant (near-duplicate of Parse 1.1), Nemotron-OCR English-only model (subset of multilingual), Nemotron-Speech streaming-en sub (sub-variant of parakeet family), Llama 3.1 Nemotron Safety Guard 8B V3 (single aggregate accuracy 84.2%, no per-bench split), Nemotron 3 Content Safety 4B (single 84% F1).",
+    "deltas_expected": "+7 models / +11 benchmarks / +15 scores"
+  },
+  "models": [
+    {"id": "nvidia/nemotron-colembed-vl-8b-v2", "name": "Nemotron-ColEmbed-VL-8B-v2", "vendor": "NVIDIA", "modalities": ["text", "image"], "release_date": "2026-05", "_note": "NVIDIA Nemotron RAG family — visual embedder, 8.8B. ViDoRe V3 NDCG@10 63.54 SOTA + ViDoRe V1 NDCG@5 92.65. Hybrid ColBERT-style multi-vector embeddings."},
+    {"id": "nvidia/nemotron-colembed-vl-4b-v2", "name": "Nemotron-ColEmbed-VL-4B-v2", "vendor": "NVIDIA", "modalities": ["text", "image"], "release_date": "2026-05", "_note": "Smaller variant — 4.8B. Within ~2pp of 8B on ViDoRe V3 (61.42 vs 63.54)."},
+    {"id": "nvidia/llama-embed-nemotron-8b", "name": "Llama-Embed-Nemotron-8B", "vendor": "NVIDIA", "modalities": ["text"], "release_date": "2026-05", "_note": "Nemotron RAG text embedder, 8B. MMTEB v2 Mean Task 69.46 — leader on multilingual text embedding."},
+    {"id": "nvidia/llama-nemotron-rerank-vl-1b-v2", "name": "Llama-Nemotron-Rerank-VL-1B-v2", "vendor": "NVIDIA", "modalities": ["text", "image"], "release_date": "2026-05", "_note": "Nemotron RAG reranker, ~1.7B. VDR Image+Text Recall@5 77.64% pipeline-aware reranking."},
+    {"id": "nvidia/nemotron-parse-1.1", "name": "Nemotron-Parse 1.1", "vendor": "NVIDIA", "modalities": ["image", "text"], "release_date": "2025-11", "_note": "Nemotron Parse family — document understanding VLM, 885M. OmniDocBench EN Overall NED 0.131. arxiv 2511.20478."},
+    {"id": "nvidia/nemotron-ocr-v2", "name": "Nemotron-OCR-v2 (multilingual)", "vendor": "NVIDIA", "modalities": ["image", "text"], "release_date": "2026-04", "_note": "Nemotron Parse family — multilingual OCR, 83.9M. OmniDocBench EN NED 0.048 SOTA (lower=better). Also ZH NED 0.072."},
+    {"id": "nvidia/parakeet-tdt-0.6b-v3", "name": "Parakeet-TDT-0.6B-v3", "vendor": "NVIDIA", "modalities": ["audio", "text"], "release_date": "2026-04", "_note": "Nemotron Speech family — Token-and-Duration Transducer ASR, 0.6B. LibriSpeech test-clean WER 1.93% SOTA-class. Open ASR avg WER 6.34%."}
+  ],
+  "benchmarks": [
+    {"id": "vidore_v1", "name": "ViDoRe V1 (Visual Document Retrieval)", "category": "embedding", "description": "ViDoRe V1 — visual document retrieval benchmark, average NDCG@5 across multiple sub-tasks (InfoVQA, SynAI, etc.). Higher=better.", "metric": "ndcg_at_5", "leaderboard": "https://huggingface.co/spaces/vidore/vidore-leaderboard"},
+    {"id": "vidore_v2", "name": "ViDoRe V2", "category": "embedding", "description": "ViDoRe V2 — refreshed visual document retrieval benchmark, average NDCG@5. Higher=better.", "metric": "ndcg_at_5", "leaderboard": "https://huggingface.co/spaces/vidore/vidore-leaderboard"},
+    {"id": "vidore_v3", "name": "ViDoRe V3", "category": "embedding", "description": "ViDoRe V3 — 8-task visual document retrieval benchmark, average NDCG@10. Higher=better. Most recent ViDoRe iteration.", "metric": "ndcg_at_10", "leaderboard": "https://huggingface.co/spaces/vidore/vidore-leaderboard"},
+    {"id": "mmteb_v2", "name": "MMTEB v2 (Multilingual MTEB)", "category": "embedding", "description": "Massive Multilingual Text Embedding Benchmark v2 — Mean Task score across multilingual embedding tasks. Higher=better.", "metric": "mean", "leaderboard": "https://huggingface.co/spaces/mteb/leaderboard"},
+    {"id": "omnidocbench_en", "name": "OmniDocBench EN (Normalized Edit Distance)", "category": "multimodal", "description": "OmniDocBench English overall NED (Normalized Edit Distance between predicted and reference document text). LOWER=better. Document understanding benchmark.", "metric": "ned_lower_better", "leaderboard": "https://github.com/opendatalab/OmniDocBench"},
+    {"id": "omnidocbench_zh", "name": "OmniDocBench ZH (Normalized Edit Distance)", "category": "multimodal", "description": "OmniDocBench Chinese overall NED. LOWER=better.", "metric": "ned_lower_better", "leaderboard": "https://github.com/opendatalab/OmniDocBench"},
+    {"id": "librispeech_test_clean", "name": "LibriSpeech test-clean (WER)", "category": "audio", "description": "LibriSpeech test-clean Word Error Rate. LOWER=better. Standard ASR benchmark.", "metric": "wer_lower_better", "leaderboard": "https://www.openslr.org/12"},
+    {"id": "librispeech_test_other", "name": "LibriSpeech test-other (WER)", "category": "audio", "description": "LibriSpeech test-other Word Error Rate (harder split). LOWER=better.", "metric": "wer_lower_better", "leaderboard": "https://www.openslr.org/12"},
+    {"id": "ami_wer", "name": "AMI Meeting Corpus (WER)", "category": "audio", "description": "AMI meeting-speech Word Error Rate. LOWER=better.", "metric": "wer_lower_better", "leaderboard": "https://groups.inf.ed.ac.uk/ami/corpus/"},
+    {"id": "gigaspeech_wer", "name": "GigaSpeech (WER)", "category": "audio", "description": "GigaSpeech Word Error Rate. LOWER=better.", "metric": "wer_lower_better", "leaderboard": "https://github.com/SpeechColab/GigaSpeech"},
+    {"id": "open_asr_avg", "name": "Open ASR Leaderboard (Avg WER)", "category": "audio", "description": "HuggingFace Open ASR Leaderboard average WER across 8 datasets (LibriSpeech clean/other, AMI, GigaSpeech, Earnings-22, SPGISpeech, Tedlium, VoxPopuli). LOWER=better.", "metric": "wer_lower_better", "leaderboard": "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard"}
+  ],
+  "scores": [
+    {"_section": "=== Nemotron-ColEmbed-VL — visual document retrieval embeddings (ViDoRe family) ===",
+     "model": "nvidia/nemotron-colembed-vl-8b-v2", "benchmark": "vidore_v1", "score": 92.65, "unit": "ndcg_at_5", "_source": "https://huggingface.co/nvidia/nemotron-colembed-vl-8b-v2", "_note": "First-party. Avg NDCG@5 (including InfoVQA 94.56 + Syn-AI 100.00 sub-task SOTAs)."},
+    {"model": "nvidia/nemotron-colembed-vl-4b-v2", "benchmark": "vidore_v1", "score": 91.62, "unit": "ndcg_at_5", "_source": "https://huggingface.co/nvidia/nemotron-colembed-vl-4b-v2", "_note": "First-party. Smaller variant — within 1pp of 8B."},
+
+    {"model": "nvidia/nemotron-colembed-vl-8b-v2", "benchmark": "vidore_v2", "score": 65.16, "unit": "ndcg_at_5", "_source": "https://huggingface.co/nvidia/nemotron-colembed-vl-8b-v2", "_note": "First-party. ViDoRe V2 avg."},
+    {"model": "nvidia/nemotron-colembed-vl-4b-v2", "benchmark": "vidore_v2", "score": 64.49, "unit": "ndcg_at_5", "_source": "https://huggingface.co/nvidia/nemotron-colembed-vl-4b-v2", "_note": "First-party."},
+
+    {"model": "nvidia/nemotron-colembed-vl-8b-v2", "benchmark": "vidore_v3", "score": 63.54, "unit": "ndcg_at_10", "_source": "https://huggingface.co/nvidia/nemotron-colembed-vl-8b-v2", "_note": "First-party. ViDoRe V3 8-task avg — SOTA among announced entries."},
+    {"model": "nvidia/nemotron-colembed-vl-4b-v2", "benchmark": "vidore_v3", "score": 61.42, "unit": "ndcg_at_10", "_source": "https://huggingface.co/nvidia/nemotron-colembed-vl-4b-v2", "_note": "First-party. Within 2pp of 8B."},
+
+    {"_section": "=== Llama-Embed-Nemotron-8B (RAG text embedder) ===",
+     "model": "nvidia/llama-embed-nemotron-8b", "benchmark": "mmteb_v2", "score": 69.46, "unit": "mean", "_source": "https://huggingface.co/nvidia/llama-embed-nemotron-8b", "_note": "First-party. Mean Task score across MMTEB v2 multilingual benchmarks. Leader on MMTEB v2 leaderboard."},
+
+    {"_section": "=== Nemotron Parse + OCR (document understanding) — LOWER=better NED ===",
+     "model": "nvidia/nemotron-parse-1.1", "benchmark": "omnidocbench_en", "score": 0.131, "unit": "ned_lower_better", "_source": "https://arxiv.org/abs/2511.20478", "_note": "First-party. 885M VLM, overall English NED."},
+    {"model": "nvidia/nemotron-ocr-v2", "benchmark": "omnidocbench_en", "score": 0.048, "unit": "ned_lower_better", "_source": "https://huggingface.co/nvidia/nemotron-ocr-v2", "_note": "First-party. 83.9M multilingual — 2.7x better NED than Parse 1.1 (lower=better)."},
+    {"model": "nvidia/nemotron-ocr-v2", "benchmark": "omnidocbench_zh", "score": 0.072, "unit": "ned_lower_better", "_source": "https://huggingface.co/nvidia/nemotron-ocr-v2", "_note": "First-party. Chinese NED."},
+
+    {"_section": "=== Parakeet-TDT-0.6B-v3 (ASR) — LOWER=better WER ===",
+     "model": "nvidia/parakeet-tdt-0.6b-v3", "benchmark": "librispeech_test_clean", "score": 1.93, "unit": "wer_lower_better", "_source": "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3", "_note": "First-party. SOTA-class — sub-2% WER on standard clean speech."},
+    {"model": "nvidia/parakeet-tdt-0.6b-v3", "benchmark": "librispeech_test_other", "score": 3.59, "unit": "wer_lower_better", "_source": "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3", "_note": "First-party. Harder split."},
+    {"model": "nvidia/parakeet-tdt-0.6b-v3", "benchmark": "ami_wer", "score": 11.31, "unit": "wer_lower_better", "_source": "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3", "_note": "First-party. AMI meeting speech."},
+    {"model": "nvidia/parakeet-tdt-0.6b-v3", "benchmark": "gigaspeech_wer", "score": 9.59, "unit": "wer_lower_better", "_source": "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3", "_note": "First-party."},
+    {"model": "nvidia/parakeet-tdt-0.6b-v3", "benchmark": "open_asr_avg", "score": 6.34, "unit": "wer_lower_better", "_source": "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3", "_note": "First-party. HuggingFace Open ASR Leaderboard 8-dataset average."}
+  ]
+}

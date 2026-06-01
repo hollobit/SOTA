@@ -51,7 +51,9 @@ var FrontierCompare = {
             'uk_aisi_narrow_cyber', 'offensive_cyber_time_horizon_p50', 'offensive_cyber_success_rate'
         ],
         cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench', 'r_judge', 'atbench'],
-        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'compass_multimodal_avg', 'mmbench_v1_1', 'mmstar', 'mmmu', 'mathvista', 'hallusionbench', 'mmvet', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en'],
+        multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'compass_multimodal_avg', 'mmbench_v1_1', 'mmstar', 'mmmu', 'mathvista', 'hallusionbench', 'mmvet', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en',
+            // 2026-06-01 S43 Nemotron RAG visual document retrieval + Parse document understanding
+            'vidore_v1', 'vidore_v2', 'vidore_v3', 'omnidocbench_en', 'omnidocbench_zh'],
         // 2026-05 — Composite "general capability" indices (cross-benchmark)
         // ECI scores + the 24 underlying contributing benchmarks our DB covers
         // (per https://epoch.ai/data/eci-documentation/data — 42 total contributors,

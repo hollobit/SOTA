@@ -1,7 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 42 — ESM Cambrian / ESMFold2 paper (Biohub + EvolutionaryScale 2026): pLM scaling + protein structure prediction SOTA (2026-05-31)
-**1,598 models · 1,307 benchmarks · 6,885 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 43 — NVIDIA Nemotron 4 NEW families (RAG/Parse/Speech/Safety) deep-mine (2026-06-01)
+**1,605 models · 1,318 benchmarks · 6,900 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-06-01 Session 43 — NVIDIA Nemotron developer page deep-mine (4 family announcements)
+- User-provided https://developer.nvidia.com/nemotron — main page description-only; 4 NEW Nemotron families surfaced. Sub-pages (/nemotron-rag/-parse/-speech/-safety) 404 — actual data on HF model cards (nvidia/*) + arxiv 2511.20478 + NVIDIA blog. Cherry-pick from 12 found models + 24 found benches.
+- **Models** (7): nemotron-colembed-vl-8b-v2 (**ViDoRe V3 NDCG@10 63.54 SOTA**, V1 92.65) + 4b-v2 sibling · llama-embed-nemotron-8b (**MMTEB v2 Mean Task 69.46 leader**) · llama-nemotron-rerank-vl-1b-v2 · nemotron-parse-1.1 (885M VLM) · nemotron-ocr-v2 (83.9M, **OmniDoc EN NED 0.048 SOTA** lower=better) · parakeet-tdt-0.6b-v3 (**LibriSpeech clean WER 1.93%**, Open ASR avg 6.34%)
+- **Bench families** (11): ViDoRe V1/V2/V3 (visual document retrieval) · MMTEB v2 (multilingual text embedding) · OmniDocBench EN/ZH (document understanding NED lower=better) · 5 ASR benches (LibriSpeech×2/AMI/GigaSpeech/Open ASR Leaderboard avg WER lower=better)
+- 8-tab audit: FC multimodal +ViDoRe 3 +OmniDoc 2. ASR + MMTEB v2 data-driven only (FC no audio/embedding axis). SKIPPED: VDR rerank-only pipeline, MIRACL/MLDR/BEIR-TechQA (rerank), throughput, MMTEB Borda votes, OmniDoc Text/Table sub-NED, Parse TC variant, OCR-en sub, streaming-en, Safety Guard aggregate 84.2%, Content Safety 4B aggregate 84%. **+7/+11/+15** = 1605/1318/6900. v=20260601b
 
 ### 2026-05-31 Session 42 — ESM Cambrian / ESMFold2 deep-mine (user-provided 71MB PDF, 104pp)
 - **Paper**: "Language Modeling Materializes a World Model of Protein Biology" (Candido et al, Biohub + EvolutionaryScale, 2026). PDF archived (71MB).
@@ -100,12 +106,7 @@
 - Strict-attribution maintained for all 24 new score rows
 
 ## Earlier sessions (compressed — see HISTORY.md for full details)
-- **2026-04-26 ~ 04-28 Medical AI Sessions (10+ batches)**: 750 models · 188 benchmarks · 1,500 scores · 30 Medical AI categories · 32 sub-suite leaderboards · BMT registry mapping (119/188 = 63%). Initial Medical AI tab launch, expansion through 7→12→27→30 categories (Multilingual + Encoder + Korean + VLM + Protein + Drug + 10-country sovereign + Safety + Radiology + Clinical Outcome + Nursing + SAM 3 family + Google TS/Wearable + MLCommons MedPerf). BMT registry integration, release timeline chart. (See HISTORY.md for full breakdown.)
-- **2026-04-25 (7 batches)**: RU/DE/UK +US-Open lineup (+72 models, 4 new regions) · India+Israel param-scale (+29) · France Mistral/PleIAs/CNRS (+32) · SG/UAE/China param-scale (+59) · Korean sovereign deep-dive (+40 models / 13 benches) · Sovereign AI menu (15 region cards) · Physical AI / World Models (+11 models / +7 benchmarks)
-- **2026-04-24**: GPT-5.5 + Pro, Kimi K2.6, Qwen3.6-27B (+9 benchmarks)
-- **2026-04-23**: Sovereign timeline + map view toggle (461 models · 241 benchmarks · 1,130 scores)
-- **Phase 1-9 (2026-04-16/17/18)**: 67 models · 95 benchmarks · 721 scores · 78 SOTA
-- **CI / Infrastructure (2026-04-24/25)**: gh-pages rsync `--exclude='/data'` fix · curated seed score load step · auto cache-bust `?v=$BUILD_SHA[:8]` · score click-modal across 5 tables · sortable Frontier Compare columns
+- **2026-04-26~28 Medical AI 10+ batches**: 750 models / 188 benches / 1500 scores / 30 categories / 32 sub-suites / BMT registry 63%. **2026-04-25 7 batches**: sovereign param-scale (+232 models, 15 region cards), Physical AI/World Models. **2026-04-24**: GPT-5.5/Pro, Kimi K2.6, Qwen3.6-27B. **2026-04-23**: Sovereign timeline+map. **Phase 1-9 (04-16/17/18)**: 67 models/95 benches/721 scores. **CI infra (04-24/25)**: gh-pages rsync fix, auto cache-bust, click-modal, sortable cols
 
 ---
 
