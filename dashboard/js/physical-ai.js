@@ -18,6 +18,10 @@ var PhysicalAI = {
                 // 2026-05-30 Session 38 — NVIDIA Cosmos3 + Cosmos-Reason2 (PAI-Bench SOTA family)
                 'nvidia/cosmos3-super', 'nvidia/cosmos3-nano',
                 'nvidia/cosmos-reason2-32b', 'nvidia/cosmos-reason2-8b',
+                // 2026-06-02 S46 — Cosmos 3 Tech Report (NVIDIA): Edge + post-trained variants
+                'nvidia/cosmos3-edge',
+                'nvidia/cosmos3-super-text2image', 'nvidia/cosmos3-super-image2video',
+                'nvidia/cosmos3-nano-policy-droid',
                 // 2026-05-30 Session 39 — Conditional video generation (PAI-Bench-C)
                 'nvidia/cosmos-transfer2.5-2b',
                 'alibaba/wan-2.2-fun-a14b-control', 'alibaba/wan-2.2-fun-5b-control',
@@ -161,7 +165,9 @@ var PhysicalAI = {
                 'phail_v1_uph',
                 // 2026-06-01 S45 — Qwen-VLA paper (arxiv 2605.30280) benches
                 'robotwin_easy', 'robotwin_hard', 'simpler_widowx', 'robocasa_gr1',
-                'simplerenv_ood', 'domino_sr', 'aloha_real_in_domain', 'r2r_val_unseen_sr'
+                'simplerenv_ood', 'domino_sr', 'aloha_real_in_domain', 'r2r_val_unseen_sr',
+                // 2026-06-02 S46 — Cosmos 3 Tech Report benches (RoboLab DROID / LIBERO-10 adaptation)
+                'robolab_droid_specific', 'libero_10_adaptation_2k'
             ]
         },
         {
@@ -198,7 +204,13 @@ var PhysicalAI = {
                 'worldarena_subject_consistency', 'worldarena_background_consistency', 'worldarena_photometric_consistency',
                 'worldarena_interaction_quality', 'worldarena_trajectory_accuracy',
                 'worldarena_depth_accuracy', 'worldarena_perspectivity',
-                'worldarena_instruction_following', 'worldarena_semantic_alignment', 'worldarena_action_following'
+                'worldarena_instruction_following', 'worldarena_semantic_alignment', 'worldarena_action_following',
+                // 2026-06-02 S46 — Cosmos 3 Tech Report video/image generation + physics + HUE + audio
+                'paibench_g_t2v_overall', 'paibench_g_i2v_overall', 'rbench_i2v',
+                'physics_iq_i2v', 'physics_iq_v2v',
+                'cosmos_hue_t2v', 'cosmos_hue_i2v', 'human_world_bench_i2v',
+                'soundbench_avq', 'soundbench_sav',
+                'unigenbench_all_1170', 'cvtg_500l_pned', 'cvtg_102ch_pned', 'hpsv3', 'aesthetic_v2'
             ]
         },
         {

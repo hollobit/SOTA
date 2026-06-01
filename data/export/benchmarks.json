@@ -3547,13 +3547,6 @@
     "metric": "success_rate_pct"
   },
   {
-    "id": "cowork_bench",
-    "name": "CoWorkBench",
-    "category": "agent",
-    "description": "Qwen-team internal multi-agent coworking benchmark. Tests cooperation between multiple agent instances on shared workflows (planning, hand-off, parallel sub-tasks). Scored on completion rate (%). First published Qwen3.7-Max launch blog 2026-05-20.",
-    "metric": "success_rate_pct"
-  },
-  {
     "id": "vitabench",
     "name": "Vitabench",
     "category": "agent",
@@ -5196,6 +5189,356 @@
     "name": "R2R Val-Unseen Success Rate",
     "category": "ai4s",
     "description": "Room-to-Room (R2R) vision-language navigation Val-Unseen split Success Rate. Higher=better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "unigenbench_all_1170",
+    "name": "UniGenBench (All 1170)",
+    "category": "image-generation",
+    "description": "Text-to-image evaluation. 1170 prompts (600 Orig + 570 Physical AI). Fraction of criteria satisfied (higher better).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cvtg_500l_pned",
+    "name": "CVTG-500L PNED",
+    "category": "image-generation",
+    "description": "Long-prompt English character-level text rendering (higher better, character-level accuracy).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cvtg_102ch_pned",
+    "name": "CVTG-102ch PNED",
+    "category": "image-generation",
+    "description": "Chinese-character text rendering accuracy (102 prompts).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "hpsv3",
+    "name": "HPSv3",
+    "category": "image-generation",
+    "description": "Learned human-preference reward (VLM-based, uncertainty-aware ranking, prompt-aware).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "aesthetic_v2",
+    "name": "Aesthetic v2 (LAION)",
+    "category": "image-generation",
+    "description": "Prompt-independent visual appeal (1-10 scale on CLIP embeddings).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "paibench_g_t2v_overall",
+    "name": "PAIBench-G T2V Overall",
+    "category": "video-generation",
+    "description": "Physical AI video generation Text-to-Video overall (0.5×Quality + 0.5×Domain).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "paibench_g_i2v_overall",
+    "name": "PAIBench-G I2V Overall",
+    "category": "video-generation",
+    "description": "Physical AI video generation Image-to-Video overall.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "rbench_i2v",
+    "name": "RBench Image2Video Score",
+    "category": "video-generation",
+    "description": "Embodied task scenarios — task correctness and physical plausibility (650 cases, 2 splits).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "physics_iq_i2v",
+    "name": "Physics-IQ I2V",
+    "category": "video-generation",
+    "description": "Physics-grounded video evaluation, image-to-video mode (396 scenes, 5 physics categories). 0-100 score.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "physics_iq_v2v",
+    "name": "Physics-IQ V2V",
+    "category": "video-generation",
+    "description": "Physics-IQ video-to-video continuation mode (3s in, 5s out).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cosmos_hue_t2v",
+    "name": "Cosmos HUE T2V",
+    "category": "video-generation",
+    "description": "NVIDIA Cosmos Human EUval — 100 prompts, atomic binary fact-verification across 4 dimensions (Semantic Align / Physical Laws / Geometric Reasoning / Visual Integrity).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cosmos_hue_i2v",
+    "name": "Cosmos HUE I2V",
+    "category": "video-generation",
+    "description": "Cosmos HUE Image-to-Video track.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "human_world_bench_i2v",
+    "name": "Human World Bench (HWB)",
+    "category": "video-generation",
+    "description": "Egocentric image-to-video for human manipulation tasks. Pass rates for instruction-following + physical plausibility (180 samples from EgoVerse).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "soundbench_avq",
+    "name": "Cosmos-SoundBench AVQ",
+    "category": "audio-visual",
+    "description": "Overall Audiovisual Quality (0-10, higher better).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "soundbench_sav",
+    "name": "Cosmos-SoundBench SAV",
+    "category": "audio-visual",
+    "description": "Semantic Audiovisual Quality sub-score.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "robolab_droid_specific",
+    "name": "RoboLab-120 (Specific Inst.)",
+    "category": "physical-ai",
+    "description": "120 DROID Franka Panda manipulation tasks, specific instruction granularity, overall success rate (10 rollouts/task).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "libero_10_adaptation_2k",
+    "name": "LIBERO-10 Adaptation (2k iter)",
+    "category": "physical-ai",
+    "description": "Closed-loop success rate after 2000 post-training iters (500 rollouts/checkpoint).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "terminal_bench_2_0",
+    "name": "Terminal-Bench 2.0-Terminus",
+    "category": "coding-agent",
+    "description": "Harbor/Terminus-2 harness; 5h timeout, 12 CPU/24 GB RAM; avg of 5 runs.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "swe_multilingual",
+    "name": "SWE-Multilingual",
+    "category": "coding-agent",
+    "description": "Multilingual SWE-Bench.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "nl2repo_qwen",
+    "name": "NL2repo",
+    "category": "coding-agent",
+    "description": "Natural language to repository-level code generation.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "qwen_webdev_elo",
+    "name": "QwenWebDev (Elo)",
+    "category": "coding-agent",
+    "description": "Qwen web development Elo rating.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "qwen_svg_elo",
+    "name": "QwenSVG (Elo)",
+    "category": "coding-agent",
+    "description": "Qwen SVG generation Elo rating.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "qwen_world_bench",
+    "name": "QwenWorldBench",
+    "category": "agent",
+    "description": "Qwen-internal world benchmark for general agent.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cowork_bench",
+    "name": "CoWorkBench",
+    "category": "agent",
+    "description": "Internal long-horizon tasks across CS/finance/law/medical/productivity.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mcp_mark",
+    "name": "MCP-Mark",
+    "category": "agent",
+    "description": "GitHub MCP v0.30.3 evaluation; Playwright responses truncated at 32K tokens.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "deep_planning",
+    "name": "Deep-Planning",
+    "category": "agent",
+    "description": "Multi-step planning benchmark.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "spreadsheetbench_v1",
+    "name": "SpreadSheetBench-v1",
+    "category": "agent",
+    "description": "Spreadsheet manipulation tasks.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "hmmt_2026_feb",
+    "name": "HMMT 2026 Feb",
+    "category": "reasoning",
+    "description": "Harvard-MIT Math Tournament February 2026.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mrcr_v2_128k_full",
+    "name": "MRCR-v2 128k",
+    "category": "long-context",
+    "description": "Multi-Reference Coreference v2 at 128k context.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "babyvision_with_ci",
+    "name": "BabyVision (with CI)",
+    "category": "multimodal-reasoning",
+    "description": "Early-human visual cognition tasks, with-CI scoring.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "charxiv_rq",
+    "name": "CharXiv (RQ, with CI)",
+    "category": "multimodal-reasoning",
+    "description": "Chart understanding from arXiv; Reasoning Question subset, with-CI scoring.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "hipho",
+    "name": "HiPhO",
+    "category": "multimodal-reasoning",
+    "description": "Multimodal physics olympiad reasoning.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "visfactor",
+    "name": "VisFactor",
+    "category": "multimodal-reasoning",
+    "description": "Visual reasoning factors benchmark.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "qwen_vision2code",
+    "name": "QwenVision2Code (Elo)",
+    "category": "visual-agent",
+    "description": "Vision-to-code generation, Elo score.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "clawval_mm",
+    "name": "ClawEval-MM",
+    "category": "agent",
+    "description": "Multimodal ClawEval.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "simplevqa_search",
+    "name": "SimpleVQA (search-aug)",
+    "category": "multimodal-search",
+    "description": "Simple VQA with search augmentation.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "worldvqa_search",
+    "name": "WorldVQA (search-aug)",
+    "category": "multimodal-search",
+    "description": "World knowledge VQA with search.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mmsearchplus",
+    "name": "MMSearchPlus",
+    "category": "multimodal-search",
+    "description": "Multimodal search-augmented QA.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "bc_vl",
+    "name": "BC-VL",
+    "category": "multimodal-search",
+    "description": "BC vision-language search; presence_penalty 1.5 recommended.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mmbc",
+    "name": "MMBC",
+    "category": "multimodal-search",
+    "description": "Multimodal BC search.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "countqa",
+    "name": "CountQA",
+    "category": "vision-understanding",
+    "description": "Counting in visual scenes.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "omnidocbench_1_5",
+    "name": "OmniDocBench 1.5",
+    "category": "doc-understanding",
+    "description": "OmniDoc v1.5 document understanding.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "odinw13",
+    "name": "ODinW13",
+    "category": "vision-detection",
+    "description": "Object detection in the wild — 13 datasets.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "lingoqa_driving",
+    "name": "LingoQA (driving)",
+    "category": "driving",
+    "description": "Language QA on driving scenes.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "ego3d_bench",
+    "name": "Ego3D-Bench (lower better)",
+    "category": "driving",
+    "description": "Egocentric 3D understanding (lower error = better).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "surds",
+    "name": "SURDS",
+    "category": "driving",
+    "description": "Spatial Understanding for Driving Scenes.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "vladbench",
+    "name": "VLADBench",
+    "category": "driving",
+    "description": "Vision-Language Autonomous Driving Benchmark.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "videommmu_test",
+    "name": "VideoMMMU",
+    "category": "video-understanding",
+    "description": "Multi-modal multi-discipline understanding for video.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "tvbench",
+    "name": "TVBench",
+    "category": "video-understanding",
+    "description": "TV video understanding.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "lvbench",
+    "name": "LVBench",
+    "category": "video-understanding",
+    "description": "Long-video understanding benchmark.",
     "metric": "accuracy"
   },
   {
