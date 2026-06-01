@@ -31,14 +31,18 @@ var CyberCoding = {
         // 2026-05-31 S40 — Opus 4.8 + SkillOpt agentic benches
         'automationbench', 'aeci_index', 'search_qa',
         // 2026-06-01 S44 MiniMax M3 — PostTrainBench autonomous 12h ML loop
-        'posttrainbench'],
+        'posttrainbench',
+        // 2026-06-02 S46 Qwen3.7-Plus — multimodal agent benches
+        'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench', 'cowork_bench', 'vitabench', 'clawval_mm'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
         // 2026-05 CAD-coding specialty (3 arxiv benches + SCADBench ELO arena)
         'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',
         // 2026-05-30 Session 39 BenchCAD sub-tasks (Edit / QA Code / Vision2Code)
         'benchcad_edit_acc', 'benchcad_qa_code', 'benchcad_vision2code',
         // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
-        'kernelbench_hard', 'swe_fficiency'],
+        'kernelbench_hard', 'swe_fficiency',
+        // 2026-06-02 S46 Qwen3.7-Plus — coding agent benches
+        'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen', 'qwen_webdev_elo', 'qwen_svg_elo'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the

@@ -30,7 +30,9 @@ var FrontierCompare = {
             // 2026-05-30 Session 39 BenchCAD sub-tasks (Edit / QA Code / Vision2Code)
             'benchcad_edit_acc', 'benchcad_qa_code', 'benchcad_vision2code',
             // 2026-06-01 S44 MiniMax M3 agentic-coding benches
-            'kernelbench_hard', 'swe_fficiency'
+            'kernelbench_hard', 'swe_fficiency',
+            // 2026-06-02 S46 Qwen3.7-Plus + Cosmos 3 — coding agent benches
+            'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen'
         ],
         math: ['aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026', 'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024'],
         agent: [
@@ -45,7 +47,9 @@ var FrontierCompare = {
             // 2026-05-31 S40 — Opus 4.8 system card + SkillOpt agentic
             'automationbench', 'aeci_index', 'search_qa',
             // 2026-06-01 S44 MiniMax M3 PostTrainBench (autonomous 12h ML loop)
-            'posttrainbench'
+            'posttrainbench',
+            // 2026-06-02 S46 Qwen3.7-Plus agent benches
+            'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench', 'cowork_bench', 'vitabench'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
@@ -57,7 +61,14 @@ var FrontierCompare = {
         cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench', 'r_judge', 'atbench'],
         multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'compass_multimodal_avg', 'mmbench_v1_1', 'mmstar', 'mmmu', 'mathvista', 'hallusionbench', 'mmvet', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en',
             // 2026-06-01 S43 Nemotron RAG visual document retrieval + Parse document understanding
-            'vidore_v1', 'vidore_v2', 'vidore_v3', 'omnidocbench_en', 'omnidocbench_zh'],
+            'vidore_v1', 'vidore_v2', 'vidore_v3', 'omnidocbench_en', 'omnidocbench_zh',
+            // 2026-06-02 S46 Qwen3.7-Plus multimodal benches
+            'babyvision_with_ci', 'charxiv_rq', 'hipho', 'visfactor', 'medxpertqa_mm',
+            'qwen_vision2code', 'clawval_mm',
+            'simplevqa_search', 'worldvqa_search', 'mmsearchplus', 'bc_vl', 'mmbc',
+            'countqa', 'omnidocbench_1_5', 'odinw13',
+            'lingoqa_driving', 'ego3d_bench', 'surds', 'vladbench',
+            'videommmu_test', 'tvbench', 'lvbench'],
         // 2026-05 — Composite "general capability" indices (cross-benchmark)
         // ECI scores + the 24 underlying contributing benchmarks our DB covers
         // (per https://epoch.ai/data/eci-documentation/data — 42 total contributors,
@@ -144,6 +155,7 @@ var FrontierCompare = {
         'alibaba/qwen3.7-max',
         'alibaba/qwen3.7-max-preview',
         'alibaba/qwen3.7-plus-preview',
+        'alibaba/qwen3.7-plus',  // 2026-06-02 S46 — Qwen3.7-Plus GA (Multimodal Agent)
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-35b-a3b',
         'minimax/m2.7',

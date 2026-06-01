@@ -194,6 +194,9 @@ var Agent = (function() {
                 'aeci_index',
                 // 2026-06-01 S44 — MiniMax M3 PostTrainBench (autonomous 12h ML training loop)
                 'posttrainbench',
+                // 2026-06-02 S46 — Qwen3.7-Plus agent benches
+                'terminal_bench_2_0', 'mcp_mark', 'deep_planning', 'spreadsheetbench_v1',
+                'qwen_world_bench', 'cowork_bench', 'vitabench', 'clawval_mm',
                 'graphwalks_bfs_256k', 'graphwalks_parents_256k', 'graphwalks_bfs_1m', 'graphwalks_parents_1m',
                 // 2026-05-29 Session 34 — SubQ long-context (RULER@128K)
                 'ruler_128k'

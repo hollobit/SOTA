@@ -2107,7 +2107,8 @@ var App = {
             { name: 'Prov-GigaPath — Whole-Slide Pathology FM (Nature)', file: 'prov-gigapath-nature.pdf', vendor: 'Microsoft + Providence', date: 'May 2024', url: 'https://www.nature.com/articles/s41586-024-07441-w' },
             { name: 'Pathology FM Clinical Benchmarking (PMC)', file: 'pathology-fm-bench-pmc.pdf', vendor: 'PMC', date: 'Apr 2025', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/' },
             { name: 'World Model for Robot Learning — Comprehensive Survey', file: 'world_model_robot_survey_2605.00080.pdf', vendor: 'NTU + Berkeley + Stanford et al', date: 'Apr 2026', url: 'https://arxiv.org/abs/2605.00080' },
-            { name: 'Qwen-VLA — Unified Vision-Language-Action Model', file: 'qwen_vla_2605.30280.pdf', vendor: 'Alibaba Qwen Team', date: 'May 2026', url: 'https://arxiv.org/abs/2605.30280' }
+            { name: 'Qwen-VLA — Unified Vision-Language-Action Model', file: 'qwen_vla_2605.30280.pdf', vendor: 'Alibaba Qwen Team', date: 'May 2026', url: 'https://arxiv.org/abs/2605.30280' },
+            { name: 'Cosmos 3 — Omnimodal World Models for Physical AI', file: 'cosmos3_technical_report.pdf', vendor: 'NVIDIA', date: 'Jun 2026', url: 'https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf' }
         ];
 
         pdfDocs.forEach(function(doc) {

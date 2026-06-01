@@ -94,6 +94,7 @@ var Sovereign = {
             models: [
                 // Alibaba Qwen — full param lineup
                 'alibaba/qwen3.7-max', 'alibaba/qwen3.7-max-20260517', 'alibaba/qwen3.7-max-preview', 'alibaba/qwen3.7-plus-preview',
+                'alibaba/qwen3.7-plus',  // 2026-06-02 S46 — Qwen3.7-Plus GA (Multimodal Agent Intelligence, qwen.ai blog)
                 'alibaba/qwen3.6-plus', 'alibaba/qwen3.6-27b', 'alibaba/qwen3.6-35b-a3b',
                 'alibaba/qwen3.5-max-preview', 'alibaba/qwen3.5-plus',
                 'alibaba/qwen3.5-397b', 'alibaba/qwen3.5-122b', 'alibaba/qwen3.5-27b',
