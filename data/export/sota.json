@@ -1,4 +1,19 @@
 {
+  "arena_t2i_aa_elo": {
+    "model_id": "microsoft/mai-image-2.5",
+    "benchmark_id": "arena_t2i_aa_elo",
+    "value": 1254.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://microsoft.ai/news/introducing-mai-image-2-5/",
+      "date": "2026-06-03",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": "Arena T2I Overall — #3 rank, MAI Family +75pts over MAI-Image-2 1178"
+  },
   "deepsearchqa": {
     "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "deepsearchqa",
@@ -149,21 +164,6 @@
     "collected_at": "2026-06-03",
     "notes": "MMMU-Pro (no tools). +3.1 over Gemini 3.1 Pro (80.5)."
   },
-  "aime_2025": {
-    "model_id": "google/gemini-3.1-pro",
-    "benchmark_id": "aime_2025",
-    "value": 100.0,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://llm-stats.com/benchmarks/gpqa",
-      "date": "2026-04-17",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-17",
-    "notes": ""
-  },
   "mmmlu": {
     "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "mmmlu",
@@ -207,6 +207,21 @@
     },
     "is_sota": true,
     "collected_at": "2026-05-04",
+    "notes": ""
+  },
+  "aime_2025": {
+    "model_id": "google/gemini-3.1-pro",
+    "benchmark_id": "aime_2025",
+    "value": 100.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://llm-stats.com/benchmarks/gpqa",
+      "date": "2026-04-17",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-17",
     "notes": ""
   },
   "livecodebench": {
@@ -419,21 +434,6 @@
     "collected_at": "2026-04-17",
     "notes": "pass@1, blind 0-day, 34 challenges"
   },
-  "terminal_bench_2": {
-    "model_id": "openai/gpt-5.5",
-    "benchmark_id": "terminal_bench_2",
-    "value": 82.7,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://openai.com/index/introducing-gpt-5-5/",
-      "date": "2026-04-26",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-26",
-    "notes": "GPT-5.5 Terminal-Bench 2.0 SOTA"
-  },
   "simpleqa_verified": {
     "model_id": "google/gemini-3.1-pro",
     "benchmark_id": "simpleqa_verified",
@@ -493,6 +493,21 @@
     "is_sota": true,
     "collected_at": "2026-04-17",
     "notes": "Gemini 3 Pro Model Card"
+  },
+  "terminal_bench_2": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "terminal_bench_2",
+    "value": 82.7,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://openai.com/index/introducing-gpt-5-5/",
+      "date": "2026-04-26",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-26",
+    "notes": "GPT-5.5 Terminal-Bench 2.0 SOTA"
   },
   "evmbench_exploit": {
     "model_id": "openai/gpt-5.3-codex",
@@ -1560,9 +1575,9 @@
     "notes": "Apollo §9.2.1 — accuracy on Strategic Deception Capability Sandbagging when incentivized to score <50%"
   },
   "apollo_impossible_task_lying": {
-    "model_id": "openai/gpt-5.5",
+    "model_id": "openai/gpt-5.4",
     "benchmark_id": "apollo_impossible_task_lying",
-    "value": 29.0,
+    "value": 7.0,
     "unit": "%",
     "source": {
       "type": "pdf",
@@ -1570,9 +1585,9 @@
       "date": "2026-04-24",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-24",
-    "notes": "Apollo §9.2.1 — model lied about completing an impossible programming task in 29% of samples (higher lying = worse)"
+    "notes": "Apollo §9.2.1 — GPT-5.4 baseline"
   },
   "apollo_sabotage_mean": {
     "model_id": "openai/gpt-5.5",
@@ -1710,9 +1725,9 @@
     "notes": "Table 8 — gpt-5.4-thinking"
   },
   "cot_controllability": {
-    "model_id": "openai/gpt-5.2",
+    "model_id": "openai/gpt-5.5",
     "benchmark_id": "cot_controllability",
-    "value": 0.5,
+    "value": 0.2,
     "unit": "%",
     "source": {
       "type": "pdf",
@@ -1720,9 +1735,9 @@
       "date": "2026-04-24",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-24",
-    "notes": "System Card §7.3.2 — gpt-5.2-thinking baseline"
+    "notes": "System Card §7.3.2 — at 50K char CoT length; LOWER is safer (less able to obfuscate reasoning)"
   },
   "cot_monitorability": {
     "model_id": "openai/gpt-5.5",
@@ -1875,9 +1890,9 @@
     "notes": "System Card Table 11; +8.29pt vs GPT-5.4 Thinking"
   },
   "first_person_fairness": {
-    "model_id": "openai/gpt-5.5",
+    "model_id": "openai/gpt-5.4-thinking",
     "benchmark_id": "first_person_fairness",
-    "value": 0.0112,
+    "value": 0.0088,
     "unit": "ratio",
     "source": {
       "type": "pdf",
@@ -1885,9 +1900,9 @@
       "date": "2026-04-24",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-24",
-    "notes": "System Card Table 9 harm_overall (lower is better)"
+    "notes": "System Card Table 9 harm_overall"
   },
   "prompt_injection": {
     "model_id": "openai/gpt-5.4-thinking",
@@ -2580,9 +2595,9 @@
     "notes": "Genie 3 — 24fps real-time at 720p resolution"
   },
   "world_model_consistency": {
-    "model_id": "google-deepmind/genie-3",
+    "model_id": "google-deepmind/genie-2",
     "benchmark_id": "world_model_consistency",
-    "value": 180.0,
+    "value": 60.0,
     "unit": "seconds",
     "source": {
       "type": "leaderboard",
@@ -2590,9 +2605,9 @@
       "date": "2026-04-25",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-25",
-    "notes": "Genie 3 ~3 minutes consistency, 1-minute visual memory horizon. Includes promptable world events (weather, objects)."
+    "notes": "Genie 2 baseline — ~1 minute interaction horizon"
   },
   "pubmedqa": {
     "model_id": "google/med-palm-2",
@@ -4485,9 +4500,9 @@
     "notes": "Table 4 — overall avg across 10 scenarios"
   },
   "xl_safetybench_asr": {
-    "model_id": "mistral/mistral-large-3",
+    "model_id": "anthropic/claude-sonnet-4.5",
     "benchmark_id": "xl_safetybench_asr",
-    "value": 98.8,
+    "value": 2.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -4495,9 +4510,9 @@
       "date": "2026-06-03",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-06-03",
-    "notes": "Highest ASR — least safe"
+    "notes": "Lowest ASR — safest in cross-cultural evaluation"
   },
   "xl_safetybench_csr": {
     "model_id": "google/gemini-3.1-pro",
@@ -4680,9 +4695,9 @@
     "notes": "Best frontier"
   },
   "finsafetybench": {
-    "model_id": "deepseek/deepseek-v3.2",
+    "model_id": "openai/gpt-5.1",
     "benchmark_id": "finsafetybench",
-    "value": 89.45,
+    "value": 35.27,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -4690,9 +4705,9 @@
       "date": "2026-06-03",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-06-03",
-    "notes": ""
+    "notes": "Financial-Crimes PAIR ASR (lower=safer)"
   },
   "face_forensics_pp": {
     "model_id": "tum-vc/dirichlet-ensemble-ff",
@@ -5205,19 +5220,19 @@
     "notes": "Top of leaderboard."
   },
   "matbench_discovery_mae": {
-    "model_id": "berkeley/chgnet",
+    "model_id": "matbench-oam/equiformerv3-dens-oam",
     "benchmark_id": "matbench_discovery_mae",
-    "value": 0.063,
-    "unit": "eV/atom",
+    "value": 0.018,
+    "unit": "ev/atom",
     "source": {
       "type": "leaderboard",
       "url": "https://matbench-discovery.materialsproject.org/",
-      "date": "2026-05-09",
+      "date": "2026-06-03",
       "citation": null
     },
-    "is_sota": false,
-    "collected_at": "2026-05-09",
-    "notes": "Matbench Discovery leaderboard row 'CHGNet' (slug chgnet-0.3.0), data-sort-value=\"0.063\" in MAE column (eV/atom; scraped 2026-05-09)."
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": ""
   },
   "oc20_s2ef_force_mae": {
     "model_id": "fair-chem/equiformerv2-153m",
@@ -5895,9 +5910,9 @@
     "notes": ""
   },
   "fvd_av_multiview": {
-    "model_id": "nvidia/cosmos-predict-1-7b",
+    "model_id": "nvidia/cosmos-predict-2.5-14b",
     "benchmark_id": "fvd_av_multiview",
-    "value": 63.69,
+    "value": 23.06,
     "unit": "fvd",
     "source": {
       "type": "leaderboard",
@@ -5905,9 +5920,9 @@
       "date": "2026-06-03",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-06-03",
-    "notes": ""
+    "notes": "Lower=better. Down from Cosmos Predict 1 63.69 — 2.8x improvement."
   },
   "curvebench_easy": {
     "model_id": "google/gemini-3.1-pro",
@@ -6195,9 +6210,9 @@
     "notes": "Tied #1 with SANA-WM+refiner."
   },
   "sana_wm_1min_simple_pose_r": {
-    "model_id": "tencent/hy-worldplay",
+    "model_id": "nvidia/sana-wm-refiner",
     "benchmark_id": "sana_wm_1min_simple_pose_r",
-    "value": 17.89,
+    "value": 4.5,
     "unit": "degrees",
     "source": {
       "type": "leaderboard",
@@ -6205,14 +6220,14 @@
       "date": "2026-06-03",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-06-03",
-    "notes": ""
+    "notes": "Best camera control on Simple split."
   },
   "sana_wm_1min_hard_pose_r": {
-    "model_id": "infinite-world/infinite-world",
+    "model_id": "nvidia/sana-wm-refiner",
     "benchmark_id": "sana_wm_1min_hard_pose_r",
-    "value": 41.31,
+    "value": 8.34,
     "unit": "degrees",
     "source": {
       "type": "leaderboard",
@@ -6220,9 +6235,9 @@
       "date": "2026-06-03",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-06-03",
-    "notes": ""
+    "notes": "Best camera control on Hard split. LingBot-World 18.99 = 2.3x worse."
   },
   "sana_wm_1min_simple_diq": {
     "model_id": "tencent/hy-worldplay",
@@ -7768,21 +7783,6 @@
     "is_sota": true,
     "collected_at": "2026-06-03",
     "notes": "Highest-intelligence student LLM in classroom. Best final overall score. Figure 2d (Intelligence Index ≈ 55+)."
-  },
-  "arena_t2i_aa_elo": {
-    "model_id": "hidream/hidream-o1",
-    "benchmark_id": "arena_t2i_aa_elo",
-    "value": 1189.0,
-    "unit": "elo",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://artificialanalysis.ai/image/models/hidream-o1-image",
-      "date": "2026-06-03",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-03",
-    "notes": "Artificial Analysis Text-to-Image arena Elo rank #8 overall (#1 open-weights). Comparators: GPT-Image-2 (high) 1338 leader, FLUX.2 [dev] 1159, Qwen Image Max 2512 1159. Open-weight SOTA on AA T2I."
   },
   "autosota_papers_replicated": {
     "model_id": "tsinghua-fib-lab/autosota",
@@ -10440,19 +10440,19 @@
     "notes": "First-party. Mean Task score across MMTEB v2 multilingual benchmarks. Leader on MMTEB v2 leaderboard."
   },
   "omnidocbench_en": {
-    "model_id": "nvidia/nemotron-parse-1.1",
+    "model_id": "nvidia/nemotron-ocr-v2",
     "benchmark_id": "omnidocbench_en",
-    "value": 0.131,
+    "value": 0.048,
     "unit": "ned_lower_better",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2511.20478",
+      "url": "https://huggingface.co/nvidia/nemotron-ocr-v2",
       "date": "2026-06-03",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-06-03",
-    "notes": "First-party. 885M VLM, overall English NED."
+    "notes": "First-party. 83.9M multilingual — 2.7x better NED than Parse 1.1 (lower=better)."
   },
   "omnidocbench_zh": {
     "model_id": "nvidia/nemotron-ocr-v2",
@@ -11759,6 +11759,171 @@
     "collected_at": "2026-06-03",
     "notes": "arena.ai Text Arena top — refresh"
   },
+  "hmmt_feb_2026": {
+    "model_id": "deepseek/deepseek-v4-pro",
+    "benchmark_id": "hmmt_feb_2026",
+    "value": 95.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://microsoft.ai/news/introducing-mai-thinking-1/",
+      "date": "2026-06-03",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": "Table 1 comparison col — DeepSeek V4 'highest in table'"
+  },
+  "lcb_v6": {
+    "model_id": "deepseek/deepseek-v4-pro",
+    "benchmark_id": "lcb_v6",
+    "value": 93.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://microsoft.ai/news/introducing-mai-thinking-1/",
+      "date": "2026-06-03",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": "Table 1 comparison col — DeepSeek V4 LCB v6 SOTA"
+  },
+  "amo_bench_olympiad": {
+    "model_id": "microsoft/mai-code-1-flash",
+    "benchmark_id": "amo_bench_olympiad",
+    "value": 40.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://microsoft.ai/news/introducingmai-code-1-flash/",
+      "date": "2026-06-03",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": "Code-03 — Olympiad math"
+  },
+  "frontier_math_t1_3": {
+    "model_id": "microsoft/mai-code-1-flash",
+    "benchmark_id": "frontier_math_t1_3",
+    "value": 6.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://microsoft.ai/news/introducingmai-code-1-flash/",
+      "date": "2026-06-03",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": "Code-03 — FrontierMath Tier 1-3"
+  },
+  "frontier_science": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "frontier_science",
+    "value": 79.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro",
+      "date": "2026-05-04",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-05-04",
+    "notes": ""
+  },
+  "artifacts_bench": {
+    "model_id": "anthropic/claude-haiku-4.5",
+    "benchmark_id": "artifacts_bench",
+    "value": 36.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://microsoft.ai/news/introducingmai-code-1-flash/",
+      "date": "2026-06-03",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": "Code-03 — only bench where Haiku narrowly ahead"
+  },
+  "if_bench_precise": {
+    "model_id": "microsoft/mai-code-1-flash",
+    "benchmark_id": "if_bench_precise",
+    "value": 75.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://microsoft.ai/news/introducingmai-code-1-flash/",
+      "date": "2026-06-03",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": "Code-04"
+  },
+  "advanced_if_rubric": {
+    "model_id": "microsoft/mai-code-1-flash",
+    "benchmark_id": "advanced_if_rubric",
+    "value": 71.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://microsoft.ai/news/introducingmai-code-1-flash/",
+      "date": "2026-06-03",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": "Code-04"
+  },
+  "robust_if_diverse": {
+    "model_id": "microsoft/mai-code-1-flash",
+    "benchmark_id": "robust_if_diverse",
+    "value": 61.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://microsoft.ai/news/introducingmai-code-1-flash/",
+      "date": "2026-06-03",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": "Code-04"
+  },
+  "aa_transcribe_wer": {
+    "model_id": "microsoft/mai-transcribe-1.5",
+    "benchmark_id": "aa_transcribe_wer",
+    "value": 2.4,
+    "unit": "wer_lower_better",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://microsoft.ai/news/mai-transcribe-1-5more-accurate-context-aware-and-built-for-production/",
+      "date": "2026-06-03",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": "AA Transcribe leaderboard WER 2.4% — #3 rank. Best Accuracy x Speed (5x faster than comparable accuracy models)"
+  },
+  "fleurs_keyword_biasing_wer_improvement": {
+    "model_id": "microsoft/mai-transcribe-1.5",
+    "benchmark_id": "fleurs_keyword_biasing_wer_improvement",
+    "value": 30.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://microsoft.ai/news/mai-transcribe-1-5more-accurate-context-aware-and-built-for-production/",
+      "date": "2026-06-03",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-03",
+    "notes": "FLEURS WER reduction 30% with domain keyword biasing"
+  },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
     "benchmark_id": "superqpga",
@@ -11788,21 +11953,6 @@
     "is_sota": true,
     "collected_at": "2026-04-26",
     "notes": "Gemma 4 31B Codeforces ELO"
-  },
-  "frontier_science": {
-    "model_id": "openai/gpt-5.5",
-    "benchmark_id": "frontier_science",
-    "value": 79.0,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro",
-      "date": "2026-05-04",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-05-04",
-    "notes": ""
   },
   "gaia2": {
     "model_id": "openai/gpt-5",
@@ -11850,19 +12000,19 @@
     "notes": ""
   },
   "weatherbench_z500_72h": {
-    "model_id": "microsoft/climax",
+    "model_id": "huawei/pangu-weather",
     "benchmark_id": "weatherbench_z500_72h",
-    "value": 201.0,
+    "value": 134.5,
     "unit": "m^2/s^2",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2301.10343",
+      "url": "https://arxiv.org/pdf/2211.02556",
       "date": "2026-05-09",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-05-09",
-    "notes": "Z500 RMSE @ 72h (3-day) for ClimaX at 1.40625 degree resolution, from Table 10 (RMSE on global forecasting) of Nguyen et al. ClimaX paper (arxiv 2301.10343). Note ClimaX is also reported at 5.625 degree (244.08); the higher-resolution 1.40625 variant is used as the headline value here. Evaluation is on ERA5 down-sampled to ClimaX's training resolution (not native 0.25 degree); not directly comparable to Pangu/GraphCast at 0.25 degree."
+    "notes": "Z500 RMSE @ 72h (3-day) for Pangu-Weather, evaluated on 2018, paper text: 'for Z500, the 3-day and 5-day RMSEs (in m^2/s^2) of operational IFS are 152.8 and 333.7, respectively, and Pangu-Weather reduces them to 134.5 and 296.7'. Source: Bi et al., Pangu-Weather paper (Nature 2023; arxiv 2211.02556 v1)."
   },
   "casp13_gdt": {
     "model_id": "google-deepmind/alphafold-1",
@@ -11940,9 +12090,9 @@
     "notes": "Cosmos Predict 2.5 2B Image2World — beats Wan2.2-27B"
   },
   "av_fvd": {
-    "model_id": "nvidia/cosmos-predict-1-7b",
+    "model_id": "nvidia/cosmos-predict-2.5-2b",
     "benchmark_id": "av_fvd",
-    "value": 63.69,
+    "value": 23.06,
     "unit": "fvd",
     "source": {
       "type": "leaderboard",
@@ -11950,9 +12100,9 @@
       "date": "2026-04-26",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-26",
-    "notes": "Cosmos Predict 1 7B AV-FVD baseline (Cosmos 2.5 2B 2.3x improvement)"
+    "notes": "Cosmos Predict 2.5 2B AV-FVD StyleGAN — 2.3x over Predict1"
   },
   "av_fid": {
     "model_id": "nvidia/cosmos-predict-1-7b",
@@ -11985,9 +12135,9 @@
     "notes": "Cosmos Predict 2.5 2B robot manipulation PSNR (dB)"
   },
   "robot_manip_fvd": {
-    "model_id": "nvidia/cosmos-predict-1-7b",
+    "model_id": "nvidia/cosmos-predict-2.5-2b",
     "benchmark_id": "robot_manip_fvd",
-    "value": 190.0,
+    "value": 146.0,
     "unit": "fvd",
     "source": {
       "type": "leaderboard",
@@ -11995,9 +12145,9 @@
       "date": "2026-04-26",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-26",
-    "notes": "Cosmos Predict 1 7B robot manip FVD"
+    "notes": "Cosmos Predict 2.5 2B robot manipulation FVD"
   },
   "intuitive_physics_spatial_puzzle": {
     "model_id": "nvidia/cosmos-reason-1-8b",
@@ -12450,19 +12600,19 @@
     "notes": ""
   },
   "echonet_lvef_mae": {
-    "model_id": "echonet/echoclip",
+    "model_id": "echonet/echo-vision-fm",
     "benchmark_id": "echonet_lvef_mae",
-    "value": 7.1,
+    "value": 3.87,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://www.nature.com/articles/s41591-024-02959-y",
+      "url": "https://www.nature.com/articles/s41467-025-66340-4",
       "date": "2026-04-26",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-26",
-    "notes": "lower=better, MAE %"
+    "notes": "r2 0.825"
   },
   "echonet_lvef_auc50": {
     "model_id": "echonet/echofm",
@@ -12720,32 +12870,32 @@
     "notes": "Hard target avg GDT-TS"
   },
   "moleculenet_avg": {
-    "model_id": "ucsd/chemfm-3b",
+    "model_id": "ibm/molformer-1.1b",
     "benchmark_id": "moleculenet_avg",
-    "value": 81.5,
+    "value": 76.2,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://www.nature.com/articles/s42004-025-01793-8",
+      "url": "https://pubs.rsc.org/en/content/articlepdf/2025/dd/d5dd00122f",
       "date": "2026-04-26",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-26",
-    "notes": "Up to +67.48% gain across 34 prop pred benches"
+    "notes": ""
   },
   "tdc_admet": {
-    "model_id": "ucsd/chemfm-3b",
+    "model_id": "ibm/molformer-1.1b",
     "benchmark_id": "tdc_admet",
-    "value": 79.0,
+    "value": 72.3,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://www.nature.com/articles/s42004-025-01793-8",
+      "url": "https://pubs.rsc.org/en/content/articlepdf/2025/dd/d5dd00122f",
       "date": "2026-04-26",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-26",
     "notes": ""
   },
@@ -12810,19 +12960,19 @@
     "notes": ""
   },
   "medsafetybench": {
-    "model_id": "epfl/meditron-70b",
+    "model_id": "anthropic/claude-medical-eval",
     "benchmark_id": "medsafetybench",
-    "value": 18.6,
+    "value": 4.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2403.03744",
+      "url": "https://www.anthropic.com/research/medical-eval",
       "date": "2026-04-26",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-26",
-    "notes": ""
+    "notes": "Lower=safer"
   },
   "patientsafebench": {
     "model_id": "hippocratic-ai/polaris-3",
@@ -14535,19 +14685,19 @@
     "notes": "Hypertension+anxiety+20-class activity"
   },
   "lsm2_bmi_regression": {
-    "model_id": "google/lsm-1",
+    "model_id": "google/lsm-2",
     "benchmark_id": "lsm2_bmi_regression",
-    "value": 3.1,
+    "value": 2.4,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://research.google/blog/scaling-wearable-foundation-models/",
+      "url": "https://arxiv.org/abs/2506.05321",
       "date": "2026-04-27",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-27",
-    "notes": ""
+    "notes": "BMI MAE — lower better"
   },
   "lsm2_imputation": {
     "model_id": "google/lsm-2",
@@ -14910,9 +15060,9 @@
     "notes": ""
   },
   "harmbench": {
-    "model_id": "deepseek/deepseek-v4-pro",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "harmbench",
-    "value": 18.7,
+    "value": 3.1,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -14920,14 +15070,14 @@
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
     "notes": ""
   },
   "strongreject": {
-    "model_id": "moonshot/kimi-k2.6",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "strongreject",
-    "value": 25.7,
+    "value": 3.5,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -14935,14 +15085,14 @@
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
     "notes": ""
   },
   "jailbreakbench": {
-    "model_id": "google/gemini-3.1-pro",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "jailbreakbench",
-    "value": 14.2,
+    "value": 4.1,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -14950,7 +15100,7 @@
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
     "notes": ""
   },
@@ -14985,17 +15135,17 @@
     "notes": ""
   },
   "redbench": {
-    "model_id": "deepseek/deepseek-v4-pro",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "redbench",
-    "value": 21.5,
+    "value": 3.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+      "url": "https://www.anthropic.com/news/claude-opus-4-7",
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
     "notes": ""
   },
@@ -15015,9 +15165,9 @@
     "notes": ""
   },
   "enkrypt_cbrn": {
-    "model_id": "deepseek/deepseek-v4-pro",
+    "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "enkrypt_cbrn",
-    "value": 23.6,
+    "value": 8.3,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -15025,9 +15175,9 @@
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
-    "notes": ""
+    "notes": "Lower=safer. Project Glasswing safer"
   },
   "impossiblebench": {
     "model_id": "google/gemini-3.1-pro",
@@ -15045,17 +15195,17 @@
     "notes": ""
   },
   "cuaharm": {
-    "model_id": "google/gemini-3.1-pro",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "cuaharm",
-    "value": 18.7,
+    "value": 11.2,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://research.google/computer-use",
+      "url": "https://www.anthropic.com/computer-use",
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
     "notes": ""
   },
@@ -15075,9 +15225,9 @@
     "notes": ""
   },
   "pandabench": {
-    "model_id": "deepseek/deepseek-v4-pro",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "pandabench",
-    "value": 17.4,
+    "value": 5.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -15085,14 +15235,14 @@
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
     "notes": ""
   },
   "alert_safety": {
-    "model_id": "google/gemini-3.1-pro",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "alert_safety",
-    "value": 13.8,
+    "value": 5.2,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -15100,7 +15250,7 @@
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
     "notes": ""
   },
@@ -15120,9 +15270,9 @@
     "notes": ""
   },
   "injecagent": {
-    "model_id": "google/gemini-3.1-pro",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "injecagent",
-    "value": 19.1,
+    "value": 8.5,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -15130,7 +15280,7 @@
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
     "notes": ""
   },
@@ -15165,9 +15315,9 @@
     "notes": "Infection rate — lower=safer"
   },
   "jailbreakv_28k": {
-    "model_id": "google/gemini-3.1-pro",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "jailbreakv_28k",
-    "value": 16.5,
+    "value": 4.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -15175,14 +15325,14 @@
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
     "notes": ""
   },
   "browserart": {
-    "model_id": "openai/gpt-5.5",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "browserart",
-    "value": 11.4,
+    "value": 7.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -15190,9 +15340,9 @@
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
-    "notes": "Browser agent red-team ASR"
+    "notes": ""
   },
   "cybersec_eval3": {
     "model_id": "anthropic/claude-opus-4.7",
@@ -15240,9 +15390,9 @@
     "notes": ""
   },
   "llmail_inject": {
-    "model_id": "openai/gpt-5.5",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "llmail_inject",
-    "value": 9.8,
+    "value": 6.4,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -15250,9 +15400,9 @@
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
-    "notes": "ASR adaptive prompt injection. Lower=safer"
+    "notes": ""
   },
   "consistency_sandbagging": {
     "model_id": "anthropic/claude-opus-4.7",
@@ -15705,24 +15855,24 @@
     "notes": "GDT_TS"
   },
   "sair_ic50": {
-    "model_id": "msr-asia/tamgen-3b",
+    "model_id": "ucsd/chemfm-3b",
     "benchmark_id": "sair_ic50",
-    "value": 1.42,
+    "value": 1.18,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://www.nature.com/articles/s41467-024-53632-4",
+      "url": "https://www.nature.com/articles/s42004-025-01793-8",
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
-    "notes": "RMSE — lower=better"
+    "notes": ""
   },
   "bipia": {
-    "model_id": "openai/gpt-5.5",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "bipia",
-    "value": 11.5,
+    "value": 7.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -15730,9 +15880,9 @@
       "date": "2026-04-28",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-28",
-    "notes": "ASR — lower=safer"
+    "notes": ""
   },
   "mol_instructions": {
     "model_id": "ucsd/chemfm-3b",
@@ -16500,9 +16650,9 @@
     "notes": "Table 5 L2 abs err (×10⁻¹), lower=better"
   },
   "sapiens2_normal_10k_4k": {
-    "model_id": "meta/sapiens2-0.4b",
+    "model_id": "meta/sapiens2-5b",
     "benchmark_id": "sapiens2_normal_10k_4k",
-    "value": 8.63,
+    "value": 6.73,
     "unit": "deg",
     "source": {
       "type": "leaderboard",
@@ -16510,9 +16660,9 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": "Table 6 mean angular error °, lower=better"
+    "notes": "Table 6 SOTA — 45.6% lower angular error vs Sapiens v1"
   },
   "sapiens2_albedo_10k_psnr": {
     "model_id": "meta/sapiens2-5b",
@@ -16530,9 +16680,9 @@
     "notes": "Table 7 SOTA — best albedo"
   },
   "aisi_sabotage_continuation": {
-    "model_id": "anthropic/claude-mythos-preview",
+    "model_id": "anthropic/claude-opus-4.7",
     "benchmark_id": "aisi_sabotage_continuation",
-    "value": 7.0,
+    "value": 0.0,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -16540,9 +16690,9 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": "Continuation sabotage rate, lower=safer. AISI Apr 28 2026"
+    "notes": "Lowest sabotage rate among 4 evaluated"
   },
   "aisi_cot_output_discrepancy": {
     "model_id": "anthropic/claude-mythos-preview",
@@ -16890,24 +17040,24 @@
     "notes": "claude-3-7-sonnet-20250219 row"
   },
   "agentdojo_targeted_asr": {
-    "model_id": "openai/gpt-4o",
+    "model_id": "anthropic/claude-3.5-sonnet",
     "benchmark_id": "agentdojo_targeted_asr",
-    "value": 47.69,
+    "value": 1.11,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/html/2406.13352v3",
+      "url": "https://agentdojo.spylab.ai/results/",
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": "High ASR — vulnerable to prompt injection"
+    "notes": "Lowest ASR among frontier — most resistant to prompt injection"
   },
   "asb_direct_prompt_injection": {
-    "model_id": "google/gemma-2-27b",
+    "model_id": "openai/gpt-4o",
     "benchmark_id": "asb_direct_prompt_injection",
-    "value": 96.75,
+    "value": 60.35,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -16915,14 +17065,14 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": "Worst — almost all DPI succeed"
+    "notes": "ASB Table 5 — most resistant frontier on direct PI"
   },
   "asb_indirect_prompt_injection": {
-    "model_id": "anthropic/claude-3.5-sonnet",
+    "model_id": "google/gemma-2-27b",
     "benchmark_id": "asb_indirect_prompt_injection",
-    "value": 59.7,
+    "value": 14.2,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -16930,14 +17080,14 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": ""
+    "notes": "Best — most resistant to indirect PI"
   },
   "asb_memory_poisoning": {
-    "model_id": "anthropic/claude-3.5-sonnet",
+    "model_id": "meta/llama-3-70b",
     "benchmark_id": "asb_memory_poisoning",
-    "value": 19.75,
+    "value": 1.85,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -16945,14 +17095,14 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": ""
+    "notes": "Most resistant"
   },
   "asb_pot_backdoor": {
-    "model_id": "meta/llama-3-70b",
+    "model_id": "openai/gpt-4o",
     "benchmark_id": "asb_pot_backdoor",
-    "value": 57.0,
+    "value": 14.5,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -16960,9 +17110,9 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": ""
+    "notes": "Plan-of-Thought reasoning backdoor"
   },
   "online_mind2web_human": {
     "model_id": "anthropic/claude-3.7-sonnet",
@@ -17055,9 +17205,9 @@
     "notes": "Highest probing accuracy"
   },
   "privacylens_action_lr": {
-    "model_id": "anthropic/claude-3-haiku",
+    "model_id": "meta/llama-3-8b",
     "benchmark_id": "privacylens_action_lr",
-    "value": 38.95,
+    "value": 21.3,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -17065,14 +17215,14 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
     "notes": ""
   },
   "privacylens_action_lr_pep": {
-    "model_id": "meta/llama-3-70b",
+    "model_id": "openai/gpt-4",
     "benchmark_id": "privacylens_action_lr_pep",
-    "value": 39.15,
+    "value": 24.54,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -17080,9 +17230,9 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": "Highest leakage even with PEP"
+    "notes": "Privacy-Enhancing Prompt still leaks 24.54%"
   },
   "iapp_cipp_us": {
     "model_id": "openai/gpt-5",
@@ -17145,9 +17295,9 @@
     "notes": "Aggregate top — most comprehensive privacy/governance knowledge"
   },
   "privacybench_direct_lr": {
-    "model_id": "google/gemini-2.5-flash",
+    "model_id": "openai/gpt-5-nano",
     "benchmark_id": "privacybench_direct_lr",
-    "value": 26.56,
+    "value": 6.13,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -17155,14 +17305,14 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": "Highest direct leakage among 5 evaluated"
+    "notes": "Lowest direct leakage rate"
   },
   "privacybench_indirect_lr": {
-    "model_id": "google/gemini-2.5-flash",
+    "model_id": "openai/gpt-5-nano",
     "benchmark_id": "privacybench_indirect_lr",
-    "value": 23.98,
+    "value": 6.52,
     "unit": "%",
     "source": {
       "type": "leaderboard",
@@ -17170,14 +17320,14 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
     "notes": ""
   },
   "anthropic_shade_browser_asr_scenarios": {
-    "model_id": "anthropic/claude-sonnet-4.5",
+    "model_id": "anthropic/claude-opus-4.6",
     "benchmark_id": "anthropic_shade_browser_asr_scenarios",
-    "value": 1.54,
+    "value": 0.26,
     "unit": "%",
     "source": {
       "type": "pdf",
@@ -17185,14 +17335,14 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": ""
+    "notes": "Opus 4.6 SC Table 5.2.2.3.A — standard thinking, with previous safeguards. Best frontier"
   },
   "anthropic_shade_browser_asr_attempts": {
-    "model_id": "anthropic/claude-sonnet-4.5",
+    "model_id": "anthropic/claude-opus-4.6",
     "benchmark_id": "anthropic_shade_browser_asr_attempts",
-    "value": 0.41,
+    "value": 0.03,
     "unit": "%",
     "source": {
       "type": "pdf",
@@ -17200,14 +17350,14 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": ""
+    "notes": "Per-attempt aggregated. 4-30x lower than predecessors"
   },
   "anthropic_shade_browser_asr_with_safeguards": {
-    "model_id": "anthropic/claude-sonnet-4.5",
+    "model_id": "anthropic/claude-opus-4.6",
     "benchmark_id": "anthropic_shade_browser_asr_with_safeguards",
-    "value": 2.06,
+    "value": 0.77,
     "unit": "%",
     "source": {
       "type": "pdf",
@@ -17215,9 +17365,9 @@
       "date": "2026-04-30",
       "citation": null
     },
-    "is_sota": false,
+    "is_sota": true,
     "collected_at": "2026-04-30",
-    "notes": ""
+    "notes": "With updated safeguards"
   },
   "cyber_web_ctf": {
     "model_id": "anthropic/claude-sonnet-4.6",

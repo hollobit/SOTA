@@ -1,22 +1,19 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 47 — Leaderboard sweep (2026-06-03)
-**1,621 models · 1,397 benchmarks · 7,157 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 48 — Microsoft MAI 7-model family launch (2026-06-03)
+**1,630 models · 1,408 benchmarks · 7,206 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-03 Session 47 — Reference-link sweep (AA + Epoch + arena.ai)
-- **Anthropic Claude Opus 4.8** AAII **61** confirmed (#1 / 150 — highest AAII ever, 110M output tokens during eval, 1M ctx, released May 28 2026)
-- **Gemini 3.5 Flash** ECI **156.31** NEW from Epoch CSV (CI [154.32, 164.67])
-- **Cosmos3-Super-Text2Image** AA T2I Arena Elo **1243** (#4 overall, #1 open-weight) — confirms S46 self-reported claim via 3rd-party leaderboard
-- Arena Elo refresh: text arena 9 cols (Opus 4.6 Thinking 1502 leader / Opus 4.7 Thinking 1500 / Gemini 3.5 Flash 1479) · webdev 5 cols · vision 5 cols · image-edit 2 cols. DeepSeek V4 Flash High AAII 45→46
-- AA model leaderboard top-30 sweep: 0 NEW model entries (all already in DB — Grok 4.3, MiMo-V2.5-Pro, GPT-5.4 mini, DeepSeek V4 Flash already covered). **+0/+1/+12** = 1621/1397/7157. New bench: text_arena_elo (arena.ai blind-vote Elo)
+### 2026-06-03 Session 48 — Microsoft AI 7-model launch (user-provided microsoft.ai blog)
+- **7 NEW MAI models** (zero-distillation, clean-data philosophy): **MAI-Thinking-1** (35B-active/~1T MoE, 256k ctx — AIME25 97.0/AIME26 94.5/HMMT Feb26 84.9/GPQA 84.2/LCB v6 87.7/**SWE-Bench Pro 52.8 ~ Opus 4.6** 53.4; preferred to Sonnet 4.6 in 1,276 Surge blind human evals) · **MAI-Code-1-Flash** (5B agentic — beats Haiku 4.5 across 11 benches incl. **SWE-Bench Pro 51.2 vs 35.2 +16pp** / SWE-Bench Verified 71.6 with **60% fewer tokens** / IF Bench 75.0 vs 46.1 +28.9pp / GPQA 84.6 / τ²-Telecom 71.7) · **MAI-Image-2.5+Flash** (Arena T2I 1254 #3 +75pts vs MAI-Image-2; #2 Image Edit) · **MAI-Transcribe-1.5** (43 langs, **AA WER 2.4% #3, FLEURS #1**, 30% WER reduction with keyword biasing, 5x faster) · MAI-Voice-2+Flash (15 lang TTS)
+- 11 NEW benches: hmmt_feb_2026 / lcb_v6 / amo_bench_olympiad / frontier_math_t1_3 / artifacts_bench / if_bench_precise / advanced_if_rubric / robust_if_diverse / fleurs_43lang_wer / aa_transcribe_wer / fleurs_keyword_biasing_wer_improvement. 14 cross-comparison cols ingested (Sonnet 4.6/Opus 4.6/GPT 5.4/K2.6/DeepSeek V3.2/V4 Pro/GLM-5.1). Mayo Clinic frontier health model collab announced.
+- **🔧 BUG FIX**: exporter._export_sota() now passes benchmarks dict — **fixes lower-better SOTA detection** for ALL audio/document benches. MAI-Transcribe-1.5 WER 2.4 now SOTA on aa_transcribe_wer (was older MAI-Transcribe-1 2.6); Nemotron-OCR-v2 0.048 SOTA on omnidocbench_en NED. Bench id consolidation: orphan arena_t2i_aa_elo → aa_t2i_arena_elo (S47 canonical) + HiDream O1 1189 migrated.
+- 8-tab propagation: FC FRONTIER_MODELS + math/coding/agent suites + Cyber-Coding FRONTIER + suites + Agent CATEGORIES + Resources +1 PDF entry. **+7/+11/+49** = 1630/1408/7206. v=20260603a
 
-### 2026-06-02 Session 46b — Deep re-mine of same 2 user links (user re-requested same Cosmos 3 + Qwen3.7-Plus URLs)
-- **Cosmos3-Edge Tab 27 text reasoning** (NEW): HMMT25 Feb **76.3** vs Qwen3.5-2B 22.9 = **3.3x improvement on same backbone**, GPQA 56.4 (+4.8), IFBench 43.6 (+2.3). MMLU Pro 62.6 / AA-LCR 22.8 / Scale AI Multi-Challenge 28.1
-- **Cosmos HUE per-dimension** (Tab 32 T2V + Tab 33 I2V, 4 dims × top-3 models): Cosmos3-Super DOMINATES on **AV 87.7** + **Physics 91.5** among ALL generators incl. closed-source Veo-3.1 / Seedance. Cosmos3-Super-I2V **Visual Integrity 94.2** SOTA
-- **PAIBench-G T2V/I2V sub-scores** (Domain+Quality split Tab 12): Cosmos3-Super T2V Domain 86.8 / Quality 73.1 · Super-I2V Domain 87.3 / Quality 78.2
-- **SoundBench PQ** Tab 15: Seedance-1.5-Pro 7.06 SOTA · Veo-3.1 6.68 · Cosmos3-Nano 6.32. (Cosmos 3 still leads SAV semantic A/V grounding from S46 — see S46 entry)
-- **Qwen3.7-Plus complete 69-bench coverage**: All Qwen3.7-Plus column scores + cross-comparison cols Opus-4.6 Max (12), DeepSeek V4 Pro Max (6), GLM-5.1 (2), Qwen3.6-Plus baseline (11), Gemini-3.1 Pro (5 MM), GPT-5.4 xhigh (5 MM incl. QwenVision2Code 1884 SOTA)
-- 30 bench ID remaps (`_qwen` suffix → canonical existing IDs e.g. gpqa_diamond/hle/livecodebench/mmlu_pro/mmmu_pro) — avoids duplicate creation. 18 genuinely-NEW benches added (Cosmos HUE dims/domains + PAIBench-G sub-scores + SoundBench PQ + mmlu_redux + wmt24++ + scale_ai_multi_challenge). **+0/+18/+98** = 1621/1396/7145. Physical AI World Model Quality +14 sub-dim benches. v=20260602c
+### 2026-06-03 Session 47 — Leaderboard sweep (compressed)
+- Opus 4.8 AAII 61 (#1, highest ever) · Gemini 3.5 Flash ECI 156.31 · Cosmos3-Super-T2I AA T2I Arena 1243 (#4 overall, #1 open-weight) · arena.ai text/webdev/vision/image-edit Elo refresh · DeepSeek V4 Flash High AAII 45→46. text_arena_elo NEW. **+0/+1/+12** = 1621/1397/7157.
+
+### 2026-06-02 Session 46b — Cosmos 3 + Qwen3.7-Plus deep re-mine (compressed)
+- Cosmos3-Edge HMMT25 Feb 76.3 vs Qwen3.5-2B 22.9 (3.3x improvement). Cosmos HUE per-dim/per-domain — **Cosmos3-Super DOMINATES AV 87.7 + Physics 91.5** among open+closed. Super-I2V Visual Integrity 94.2 SOTA. PAIBench-G T2V/I2V Domain+Quality split. SoundBench PQ Seedance-1.5-Pro 7.06 SOTA. Qwen3.7-Plus complete 69-bench coverage + 6 cross-comparison cols. 30 bench ID remaps, 18 NEW benches. **+0/+18/+98** = 1621/1396/7145.
 
 ### 2026-06-02 Session 46 — NVIDIA Cosmos 3 + Qwen3.7-Plus GA (compressed)
 - **Cosmos 3** (27MB tech report, omnimodal MoT, Qwen3-VL init): 5 NEW models — cosmos3-edge/-super-text2image/-super-image2video/-nano-policy-droid. NEW Cosmos-HUE eval suite. SOTAs: UniGenBench 91.36 (AA T2I #1 open) · PAIBench-G T2V 80.0 / I2V 82.8 · Physics-IQ I2V 48.9 / V2V 63.4 BoN · HWB 71.9 · SoundBench SAV 8.35 · RoboLab 39.7 (RoboArena #1) · LIBERO-10 MT-init 97.4

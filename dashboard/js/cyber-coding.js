@@ -33,7 +33,9 @@ var CyberCoding = {
         // 2026-06-01 S44 MiniMax M3 — PostTrainBench autonomous 12h ML loop
         'posttrainbench',
         // 2026-06-02 S46 Qwen3.7-Plus — multimodal agent benches
-        'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench', 'cowork_bench', 'vitabench', 'clawval_mm', 'skillsbench'],
+        'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench', 'cowork_bench', 'vitabench', 'clawval_mm', 'skillsbench',
+        // 2026-06-02 S48 — Microsoft MAI Instruction Following benches
+        'if_bench_precise', 'advanced_if_rubric', 'robust_if_diverse'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
         // 2026-05 CAD-coding specialty (3 arxiv benches + SCADBench ELO arena)
         'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',
@@ -42,7 +44,9 @@ var CyberCoding = {
         // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
         'kernelbench_hard', 'swe_fficiency',
         // 2026-06-02 S46 Qwen3.7-Plus — coding agent benches
-        'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen', 'qwen_webdev_elo', 'qwen_svg_elo'],
+        'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen', 'qwen_webdev_elo', 'qwen_svg_elo',
+        // 2026-06-02 S48 — Microsoft MAI Code/Thinking benches
+        'lcb_v6', 'artifacts_bench'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
@@ -424,6 +428,8 @@ var CyberCoding = {
         'zhipu/glm-5',
         'zhipu/glm-5.1',
         'alibaba/qwen3.7-plus',  // 2026-06-02 S46 GA
+        'microsoft/mai-thinking-1',  // 2026-06-02 S48 — MS MAI Thinking-1 35B/1T MoE
+        'microsoft/mai-code-1-flash',  // 2026-06-02 S48 — MS MAI Code-1-Flash 5B
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-27b',
         'alibaba/qwen3.6-35b-a3b',

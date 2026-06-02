@@ -195,8 +195,10 @@ class Exporter:
 
     def _export_sota(self) -> None:
         scores = get_scores(self._conn)
+        from cyber.db.schema import get_all_benchmarks
+        benchmarks = {b.id: b for b in get_all_benchmarks(self._conn)}
         tracker = SOTATracker()
-        sota = tracker.compute_sota(scores)
+        sota = tracker.compute_sota(scores, benchmarks=benchmarks)
         data = {k: self._score_to_dict(v) for k, v in sota.items()}
         self._write_json(self._output_dir / "sota.json", data)
 
