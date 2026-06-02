@@ -1,7 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 46b — Cosmos 3 + Qwen3.7-Plus deep re-mine (2026-06-02)
-**1,621 models · 1,396 benchmarks · 7,145 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 47 — Leaderboard sweep (2026-06-03)
+**1,621 models · 1,397 benchmarks · 7,157 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+
+### 2026-06-03 Session 47 — Reference-link sweep (AA + Epoch + arena.ai)
+- **Anthropic Claude Opus 4.8** AAII **61** confirmed (#1 / 150 — highest AAII ever, 110M output tokens during eval, 1M ctx, released May 28 2026)
+- **Gemini 3.5 Flash** ECI **156.31** NEW from Epoch CSV (CI [154.32, 164.67])
+- **Cosmos3-Super-Text2Image** AA T2I Arena Elo **1243** (#4 overall, #1 open-weight) — confirms S46 self-reported claim via 3rd-party leaderboard
+- Arena Elo refresh: text arena 9 cols (Opus 4.6 Thinking 1502 leader / Opus 4.7 Thinking 1500 / Gemini 3.5 Flash 1479) · webdev 5 cols · vision 5 cols · image-edit 2 cols. DeepSeek V4 Flash High AAII 45→46
+- AA model leaderboard top-30 sweep: 0 NEW model entries (all already in DB — Grok 4.3, MiMo-V2.5-Pro, GPT-5.4 mini, DeepSeek V4 Flash already covered). **+0/+1/+12** = 1621/1397/7157. New bench: text_arena_elo (arena.ai blind-vote Elo)
 
 ### 2026-06-02 Session 46b — Deep re-mine of same 2 user links (user re-requested same Cosmos 3 + Qwen3.7-Plus URLs)
 - **Cosmos3-Edge Tab 27 text reasoning** (NEW): HMMT25 Feb **76.3** vs Qwen3.5-2B 22.9 = **3.3x improvement on same backbone**, GPQA 56.4 (+4.8), IFBench 43.6 (+2.3). MMLU Pro 62.6 / AA-LCR 22.8 / Scale AI Multi-Challenge 28.1
@@ -31,18 +38,11 @@
 ### 2026-05-31 Session 40 — Deep re-mine round 2 (compressed)
 - Opus 4.8 sys card unmined (+7 NEW: AutomationBench/BioPipelineBench/BioMysteryBench Human-Solvable/GMMLU 90.4/MILU 90.3/INCLUDE 87.6/AECI 155.5 + 3 net-new). SkillOpt 2605.23904 (+SearchQA/LiveMath, GPT-5.5 +29.3pp uplift). WorldArena T2 Policy public (Ctrl-World 0.986 SOTA). AA CritPT/MMLU-Pro Playwright full charts (+17 net-new). Vellum CONFIRMED Resources-only. **+0/+10/+35** = 1590/1282/6735. v=20260531a
 
-### 2026-05-30 Session 39 — Deep re-mine of S33-S38 sources (user-requested completeness audit)
-- User: "꼼꼼하게 읽고 표 등에서 누락된 모델/벤치마크/평가결과 조사." Re-mine S33-S38 partial ingests where scope-tight decisions left value on the table. Direct WebFetch verification of FACTS Table 1 (all 4 sub-benches × 15 frontier), PAI-Bench Conditional JSON, CompassRank per-model sub-scores.
-- **Models** (7): openai/gpt-5.3 + nvidia/nemotron-3-120b (BenchCAD comparison) · idea/rex-omni-3b + bytedance/seed1.5-vl (LocateAnything baselines; SEED1.5-VL HumanRef 81.6 SOTA) · nvidia/cosmos-transfer2.5-2b + alibaba/wan-2.2-fun-a14b-control + alibaba/wan-2.2-fun-5b-control (PAI-Bench-C, 5B Depth 9.317 SOTA)
-- **Bench families** (13): 6 LocateAnything detection (dense200/visdrone/doclaynet/m6doc/totaltext/humanref) · 3 BenchCAD sub-tasks (Edit Acc — GPT-5.3 thinking 0.865 SOTA / QA Code Total — Gemini 3.1 Pro 0.838 / Vision2Code — Gemini 3.1 Pro 0.397) · facts_multimodal (Gemini 2.5 Pro 46.9 leads) · pai_bench_c_quality · mmvet + mmbench_v1_1 (CompassRank)
-- **MAJOR BACKFILL**: FACTS grounding_v2/parametric/search filled 1→15 each (Gemini 2.5 Pro 74.2 grounding leader, Gemini 3 Pro 76.4 parametric SOTA, Gemini 3 Pro 83.8 search SOTA). CompassRank 6 existing benches enriched (mmmu 9→17, mathvista 2→10, mmstar 1→9, ai2d 4→12, hallusionbench 1→9). SKIPPED OCRBench (unit conflict).
-- 8-tab audit ran post-ingest per new memory rule → 4 tabs patched (FC reasoning/coding/multimodal, Cyber-Coding CODING, Physical AI). LocateAnything 6 specialist detection benches deliberately not propagated to FC (would render empty columns). **+7/+13/+143** = 1590/1272/6700. v=20260530d
+### 2026-05-30 Session 39 — Deep re-mine S33-S38 (compressed)
+- User completeness audit. 7 models (gpt-5.3/nemotron-3-120b/rex-omni-3b/seed1.5-vl/cosmos-transfer2.5-2b/wan-2.2-fun-a14b/5b-control). 13 benches (LocateAnything 6, BenchCAD 3, FACTS multimodal, PAI-Bench-C quality). MAJOR BACKFILL: FACTS grounding 1→15, CompassRank 6 benches. **+7/+13/+143** = 1590/1272/6700.
 
-### 2026-05-30 Session 38 — 13-link multi-source ingest (every key JSON source direct-WebFetch verified)
-- 13 user links → 9 NEW models, 6 NEW benchmarks, 21 scores. Critical de-dup: arxiv 2512.01989 = PAI-Bench (NOT PhysBench — PhysBench is arxiv 2501.16411, ICLR 2025). PhysBench JS-rendered no data, SKIPPED. PIQA frontier-dead (no 2026 vendors), CodeSOTA Robotics editorial/loose, SAILResearch top 5 already in DB → Resources only.
-- **Models** (9): NVIDIA Cosmos3-Super (PAI-Bench-G SOTA 83.9 — first to exceed Source oracle 82.6) · Cosmos3-Nano · Cosmos-Reason2-32B (PAI-Bench-U SOTA 70.8 — beats GPT-5 thinking 69.8) · Cosmos-Reason2-8B · Tsinghua Ctrl-World (WorldArena named-baseline leader 0.6006) · ByteDance IRASim · HuggingFace SmolVLA · Alibaba Wan-2.2-I2V-A14B · Qwen3-VL-235B-A22B-Instruct
-- **Bench families** (6): WorldArena (Tsinghua FIB embodied world models, EWMScore over 16 metrics) · PAI-Bench-G + PAI-Bench-U (SHI Labs/CMU physical-AI generation+understanding) · PhAIL v1.0 UPH (Positronic real-hardware bin-picking — Pi 0.5 59.2 SOTA, Human 1330.8 = 22x gap) · MMLU-Pro AA (AA independent re-run, SEPARATE bench to avoid clobbering vendor mmlu_pro) · IPhO 2025 (Meta Muse Spark 82.6 SOTA on freshly-minted physics olympiad)
-- strict-attribution: CritPT additions only net-new model rows (gpt-5.5-pro 30.6 SOTA, gpt-5.4-pro 30.0), existing gpt-5.5 27.0 preserved. MMLU-Pro AA registered separately (73 vendor mmlu_pro scores untouched). 1 PDF archived + 12 Resources/seed entries. Menus: FC reasoning(+mmlu_pro_aa +ipho_2025), Physical AI VLA Manipulation(+phail) + World Model(+worldarena +pai_bench_g) + Embodied Reasoning(+pai_bench_u). **+9 / +6 / +21** = 1583/1259/6557. v=20260530b
+### 2026-05-30 Session 38 — 13-link multi-source (compressed)
+- 9 models (Cosmos3-Super/Nano, Cosmos-Reason2-32B/8B, Ctrl-World, IRASim, SmolVLA, Wan-2.2-I2V-A14B, Qwen3-VL-235B). 6 benches (WorldArena, PAI-Bench-G/U, PhAIL v1.0, MMLU-Pro AA, IPhO 2025). Cosmos3-Super PAI-Bench-G 83.9 first to exceed Source oracle 82.6. **+9/+6/+21** = 1583/1259/6557.
 
 ### 2026-05-30 Session 37 — 17-link multi-source ingest (compressed)
 - gemini-3-flash-preview + 8 sovereign-CN VLMs (JT3.5/SenseNova-V6.5-Pro/TeleMM-2.0±Thinking/InternVL3-78B/MiniCPM-o-4.5/Ovis2.5-9B/Step-1o). Benches: 3 CAD code-gen (CADBench MIT / BenchCAD UVA-Rice / Text2CAD L1-L4) + SCADBench ELO arena (gemini-3.1-pro-preview 1721 SOTA) + FACTS suite (Gemini 3 Pro 68.8 SOTA) + CompassRank multimodal (JT3.5 82.7 sovereign-CN SOTA) + T-Bench 2.1 net-new. SKIP: Modelrift/world-models/GigaBrain/Kilo TB2/official SWE/T-Bench v1.0/Vellum (Resources). **+9/+8/+58**=1574/1253/6536. v=20260530a

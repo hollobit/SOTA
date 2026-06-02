@@ -1,0 +1,257 @@
+{
+  "_meta": {
+    "session": "Session 47 — Leaderboard sweep",
+    "date": "2026-06-03",
+    "sources": [
+      "https://artificialanalysis.ai/leaderboards/models (AAII model leaderboard)",
+      "https://epoch.ai/data/eci_scores.csv (Epoch ECI)",
+      "https://arena.ai/leaderboard (12 arena boards)",
+      "https://artificialanalysis.ai/image/leaderboard/text-to-image (AA T2I Arena)",
+      "https://artificialanalysis.ai/models/claude-opus-4-8 (AA Opus 4.8 profile)"
+    ],
+    "notes": "Routine leaderboard sweep per user request. Sources audited: AA model leaderboard top-30 (no new model entrants — all in DB), Epoch ECI CSV (+Gemini 3.5 Flash), AA T2I Arena (Cosmos3-Super-T2I 4th @1243), arena.ai 4 boards (text/webdev/vision/image-edit — minor Elo deltas). Focus on net-new scores rather than churn replays."
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "text_arena_elo",
+      "name": "arena.ai Text Arena Elo",
+      "category": "general",
+      "description": "arena.ai Text Arena (chatbot Elo from blind preference votes)"
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "aa_intelligence_index",
+      "score": 61.0,
+      "unit": "score_0_100",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "AAII #1 / 150 — highest AAII score ever recorded. Released May 28 2026, 1M ctx, 110M output tokens during eval (very verbose vs 35M avg)."
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "epoch_capabilities_index",
+      "score": 156.31,
+      "unit": "eci",
+      "_source": "https://epoch.ai/data/eci_scores.csv",
+      "_note": "Epoch ECI 2026-06 — Gemini 3.5 Flash 156.31 (CI [154.32, 164.67])."
+    },
+    {
+      "model": "nvidia/cosmos3-super-text2image",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1243.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "AA T2I Arena rank #4 with agentic harness, #1 open-weight. Confirms S46 self-reported 'AA T2I Leaderboard #1 open-weight, #4 overall' claim."
+    },
+    {
+      "model": "openai/gpt-image-2",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1339.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "AA T2I Arena top — updates DB 1336 → 1339 (high reasoning level)"
+    },
+    {
+      "model": "openai/gpt-image-1.5",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1267.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "AA T2I Arena (high) — DB 1268 → 1267 (negligible)"
+    },
+    {
+      "model": "google/nano-banana-2",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1259.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "AA T2I Arena (Gemini 3.1 Flash Image Preview) — DB 1263 → 1259"
+    },
+    {
+      "model": "google/nano-banana-pro",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1219.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "AA T2I (Gemini 3 Pro Image)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6-thinking",
+      "benchmark": "text_arena_elo",
+      "score": 1502.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Text Arena top — refresh"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7-thinking",
+      "benchmark": "text_arena_elo",
+      "score": 1500.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Text Arena"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "text_arena_elo",
+      "score": 1498.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Text Arena"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "text_arena_elo",
+      "score": 1494.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Text Arena"
+    },
+    {
+      "model": "meta/muse-spark",
+      "benchmark": "text_arena_elo",
+      "score": 1489.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Text Arena"
+    },
+    {
+      "model": "google/gemini-3.1-pro-preview",
+      "benchmark": "text_arena_elo",
+      "score": 1487.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Text Arena"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "text_arena_elo",
+      "score": 1486.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Text Arena"
+    },
+    {
+      "model": "openai/gpt-5.5-high",
+      "benchmark": "text_arena_elo",
+      "score": 1482.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Text Arena"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "text_arena_elo",
+      "score": 1479.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Text Arena"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7-thinking",
+      "benchmark": "arena_webdev_elo",
+      "score": 1567.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai WebDev Arena — same"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "arena_webdev_elo",
+      "score": 1562.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai WebDev Arena — DB 1560 → 1562"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6-thinking",
+      "benchmark": "arena_webdev_elo",
+      "score": 1542.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai WebDev Arena — DB 1545 → 1542"
+    },
+    {
+      "model": "alibaba/qwen3.7-max-20260517",
+      "benchmark": "arena_webdev_elo",
+      "score": 1541.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai WebDev Arena — Qwen 3.7 Max #4"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "arena_webdev_elo",
+      "score": 1538.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai WebDev Arena — DB 1540 → 1538"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7-thinking",
+      "benchmark": "arena_vision_elo",
+      "score": 1306.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Vision Arena — same"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "arena_vision_elo",
+      "score": 1304.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Vision Arena — DB 1305 → 1304"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6-thinking",
+      "benchmark": "arena_vision_elo",
+      "score": 1300.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Vision Arena"
+    },
+    {
+      "model": "meta/muse-spark",
+      "benchmark": "arena_vision_elo",
+      "score": 1296.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Vision Arena — DB 1298 → 1296"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "arena_vision_elo",
+      "score": 1293.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Vision Arena — DB 1300 → 1293"
+    },
+    {
+      "model": "openai/gpt-image-2",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1467.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Image Edit — same as DB (confirms 2026-06-03 still valid)"
+    },
+    {
+      "model": "openai/chatgpt-images-2.0",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1392.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "arena.ai Image Edit"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "aa_intelligence_index",
+      "score": 46.0,
+      "unit": "score_0_100",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "AA leaderboard update — DB 45 → 46"
+    }
+  ]
+}
