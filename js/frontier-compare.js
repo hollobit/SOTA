@@ -32,11 +32,15 @@ var FrontierCompare = {
             // 2026-06-01 S44 MiniMax M3 agentic-coding benches
             'kernelbench_hard', 'swe_fficiency',
             // 2026-06-02 S46 Qwen3.7-Plus + Cosmos 3 — coding agent benches
-            'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen'
+            'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen',
+            // 2026-06-02 S48 — Microsoft MAI Thinking/Code benches
+            'lcb_v6', 'artifacts_bench'
         ],
         math: ['aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026',
             // 2026-06-02 S46 — Qwen3.7-Plus HMMT 2026 Feb + IMOAnswerBench (existing id) + PolyMATH
             'hmmt_2026_feb', 'imoanswerbench', 'polymath',
+            // 2026-06-02 S48 — Microsoft MAI math/sci benches
+            'hmmt_feb_2026', 'amo_bench_olympiad', 'frontier_math_t1_3',
             'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024'],
         agent: [
             'browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench',
@@ -52,7 +56,9 @@ var FrontierCompare = {
             // 2026-06-01 S44 MiniMax M3 PostTrainBench (autonomous 12h ML loop)
             'posttrainbench',
             // 2026-06-02 S46 Qwen3.7-Plus agent benches
-            'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench', 'cowork_bench', 'vitabench'
+            'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench', 'cowork_bench', 'vitabench',
+            // 2026-06-02 S48 — Microsoft MAI Instruction Following suite
+            'if_bench_precise', 'advanced_if_rubric', 'robust_if_diverse'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
@@ -161,6 +167,8 @@ var FrontierCompare = {
         'alibaba/qwen3.7-max-preview',
         'alibaba/qwen3.7-plus-preview',
         'alibaba/qwen3.7-plus',  // 2026-06-02 S46 — Qwen3.7-Plus GA (Multimodal Agent)
+        'microsoft/mai-thinking-1',  // 2026-06-02 S48 — MAI-Thinking-1 35B/~1T MoE
+        'microsoft/mai-code-1-flash',  // 2026-06-02 S48 — MAI-Code-1-Flash 5B agentic
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-35b-a3b',
         'minimax/m3',  // 2026-06-01 S44 GA — SWE-Bench Pro 59.0% (surpasses GPT-5.5)
