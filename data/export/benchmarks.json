@@ -49,13 +49,6 @@
     }
   },
   {
-    "id": "mmmlu",
-    "name": "MMMLU (Multilingual)",
-    "category": "multilingual",
-    "description": "",
-    "metric": "accuracy"
-  },
-  {
     "id": "aime_2025",
     "name": "AIME 2025",
     "category": "math",
@@ -750,13 +743,6 @@
     "name": "HELMET",
     "category": "reasoning",
     "description": "Princeton ICLR 2025: application-centric long-context benchmark across 7 categories (RAG, passage re-ranking, long-doc QA, summarization, many-shot ICL, synthetic recall, citation). Paper cohort: 59 LCLMs up to 128k.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "supergpqa",
-    "name": "SuperGPQA",
-    "category": "reasoning",
-    "description": "26,529 graduate-level questions across 285 disciplines (wider coverage than GPQA Diamond).",
     "metric": "accuracy"
   },
   {
@@ -1771,28 +1757,6 @@
     "category": "multimodal",
     "description": "Dermatology multiple choice QA on skin condition images.",
     "metric": "accuracy"
-  },
-  {
-    "id": "ifeval",
-    "name": "IFEval",
-    "category": "reasoning",
-    "description": "541 instruction-following prompts with 25 verifiable constraint types. Standard for measuring constraint adherence.",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2311.07911",
-    "github": "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
-    "year": "2023",
-    "item_count": "approx. 500 prompts",
-    "bmt": {
-      "bmt_id": "imported-json-1771222123771-2225-2zvmn",
-      "bmt_title": "IFEval (Instruction-Following Evaluation)"
-    },
-    "reliability": {
-      "contamination_risk": "medium",
-      "saturation": "approaching",
-      "citation_count": 480,
-      "last_updated": "2024-11",
-      "notes": "Constraint-following — patterns memorizable"
-    }
   },
   {
     "id": "libero_spatial",
@@ -3579,13 +3543,6 @@
     "name": "MAXIFE",
     "category": "multilingual",
     "description": "Multilingual extreme instruction-following eval — extension of IFEval to many languages. Published in Qwen3.7-Max launch blog 2026-05-20.",
-    "metric": "accuracy_pct"
-  },
-  {
-    "id": "mmlu_prox",
-    "name": "MMLU-ProX",
-    "category": "multilingual",
-    "description": "MMLU-Pro extended to non-English locales — translated and re-validated questions across additional languages. Published in Qwen3.7-Max launch blog 2026-05-20.",
     "metric": "accuracy_pct"
   },
   {
@@ -5539,6 +5496,175 @@
     "name": "LVBench",
     "category": "video-understanding",
     "description": "Long-video understanding benchmark.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "scale_ai_multi_challenge",
+    "name": "Scale AI Multi-Challenge",
+    "category": "reasoning",
+    "description": "Scale AI Multi-Challenge multi-turn reasoning eval.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cosmos_hue_t2v_sem_align",
+    "name": "Cosmos HUE T2V Semantic Alignment",
+    "category": "video-generation",
+    "description": "Cosmos HUE T2V dimension 1 — Semantic Alignment binary verification.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cosmos_hue_t2v_phys_laws",
+    "name": "Cosmos HUE T2V Physical Laws",
+    "category": "video-generation",
+    "description": "Cosmos HUE T2V dimension 2 — Physical Laws binary verification.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cosmos_hue_t2v_geom_reas",
+    "name": "Cosmos HUE T2V Geometric Reasoning",
+    "category": "video-generation",
+    "description": "Cosmos HUE T2V dimension 3 — Geometric Reasoning binary verification.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cosmos_hue_t2v_vis_integ",
+    "name": "Cosmos HUE T2V Visual Integrity",
+    "category": "video-generation",
+    "description": "Cosmos HUE T2V dimension 4 — Visual Integrity binary verification.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cosmos_hue_t2v_av",
+    "name": "Cosmos HUE T2V — Autonomous Vehicle domain",
+    "category": "video-generation",
+    "description": "Per-domain Cosmos HUE T2V restricted to Autonomous Vehicle prompts.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cosmos_hue_t2v_physics",
+    "name": "Cosmos HUE T2V — Physics domain",
+    "category": "video-generation",
+    "description": "Per-domain Cosmos HUE T2V restricted to Physics prompts.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cosmos_hue_t2v_robot",
+    "name": "Cosmos HUE T2V — Robotics domain",
+    "category": "video-generation",
+    "description": "Per-domain Cosmos HUE T2V restricted to Robotics prompts.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cosmos_hue_i2v_phys_laws",
+    "name": "Cosmos HUE I2V Physical Laws",
+    "category": "video-generation",
+    "description": "Cosmos HUE I2V dimension — Physical Laws.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cosmos_hue_i2v_vis_integ",
+    "name": "Cosmos HUE I2V Visual Integrity",
+    "category": "video-generation",
+    "description": "Cosmos HUE I2V dimension — Visual Integrity.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "paibench_g_t2v_domain",
+    "name": "PAIBench-G T2V Domain",
+    "category": "video-generation",
+    "description": "PAIBench-G T2V Domain sub-score (VLM-as-Judge physical/semantic accuracy).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "paibench_g_t2v_quality",
+    "name": "PAIBench-G T2V Quality",
+    "category": "video-generation",
+    "description": "PAIBench-G T2V Quality sub-score (frame consistency + motion smoothness + aesthetics + text alignment).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "paibench_g_i2v_domain",
+    "name": "PAIBench-G I2V Domain",
+    "category": "video-generation",
+    "description": "PAIBench-G I2V Domain sub-score.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "paibench_g_i2v_quality",
+    "name": "PAIBench-G I2V Quality",
+    "category": "video-generation",
+    "description": "PAIBench-G I2V Quality sub-score.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "soundbench_pq",
+    "name": "Cosmos-SoundBench PQ",
+    "category": "audio-visual",
+    "description": "Audiobox-aesthetics Production Quality.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "supergpqa",
+    "name": "SuperGPQA",
+    "category": "general",
+    "description": "SuperGPQA general capability.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "ifeval",
+    "name": "IFEval",
+    "category": "general",
+    "description": "Instruction Following Evaluation.",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2311.07911",
+    "github": "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+    "year": "2023",
+    "item_count": "approx. 500 prompts",
+    "bmt": {
+      "bmt_id": "imported-json-1771222123771-2225-2zvmn",
+      "bmt_title": "IFEval (Instruction-Following Evaluation)"
+    },
+    "reliability": {
+      "contamination_risk": "medium",
+      "saturation": "approaching",
+      "citation_count": 480,
+      "last_updated": "2024-11",
+      "notes": "Constraint-following — patterns memorizable"
+    }
+  },
+  {
+    "id": "wmt24_plus_plus",
+    "name": "WMT24++",
+    "category": "multilingual",
+    "description": "Harder WMT24 subset, 55 langs via XCOMET-XXL.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mmmlu",
+    "name": "MMMLU",
+    "category": "multilingual",
+    "description": "Multilingual MMLU.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mmlu_prox",
+    "name": "MMLU-ProX",
+    "category": "multilingual",
+    "description": "29 languages avg accuracy.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "ocr_bench_v2_en",
+    "name": "OCR-Bench-V2 (EN)",
+    "category": "doc-understanding",
+    "description": "OCR-Bench-V2 English.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "ocr_bench_v2_zh",
+    "name": "OCR-Bench-V2 (ZH)",
+    "category": "doc-understanding",
+    "description": "OCR-Bench-V2 Chinese.",
     "metric": "accuracy"
   },
   {

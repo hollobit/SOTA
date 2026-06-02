@@ -1,0 +1,1178 @@
+{
+  "_meta": {
+    "session": "Session 46b (deep re-mine)",
+    "date": "2026-06-02",
+    "sources": [
+      "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "https://qwen.ai/blog?id=qwen3.7-plus"
+    ],
+    "notes": "S46 follow-up — user re-requested same 2 links → deep re-mine pattern. Coverage now extends to: (1) Cosmos3-Edge text Tab 27, (2) Cosmos HUE T2V/I2V per-dimension Tabs 32-33, (3) PAIBench-G T2V/I2V Domain+Quality sub-scores Tab 12, (4) all Cosmos 3 baseline models on NEW Cosmos HUE benches, (5) Qwen3.7-Plus complete 69 scores + comparison columns on NEW Qwen-introduced benches.",
+    "collected_at": "2026-06-02"
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "scale_ai_multi_challenge",
+      "name": "Scale AI Multi-Challenge",
+      "category": "reasoning",
+      "description": "Scale AI Multi-Challenge multi-turn reasoning eval.",
+      "introduced_by": "Scale AI"
+    },
+    {
+      "id": "cosmos_hue_t2v_sem_align",
+      "name": "Cosmos HUE T2V Semantic Alignment",
+      "category": "video-generation",
+      "description": "Cosmos HUE T2V dimension 1 — Semantic Alignment binary verification.",
+      "introduced_by": "Cosmos 3 tech report"
+    },
+    {
+      "id": "cosmos_hue_t2v_phys_laws",
+      "name": "Cosmos HUE T2V Physical Laws",
+      "category": "video-generation",
+      "description": "Cosmos HUE T2V dimension 2 — Physical Laws binary verification.",
+      "introduced_by": "Cosmos 3 tech report"
+    },
+    {
+      "id": "cosmos_hue_t2v_geom_reas",
+      "name": "Cosmos HUE T2V Geometric Reasoning",
+      "category": "video-generation",
+      "description": "Cosmos HUE T2V dimension 3 — Geometric Reasoning binary verification.",
+      "introduced_by": "Cosmos 3 tech report"
+    },
+    {
+      "id": "cosmos_hue_t2v_vis_integ",
+      "name": "Cosmos HUE T2V Visual Integrity",
+      "category": "video-generation",
+      "description": "Cosmos HUE T2V dimension 4 — Visual Integrity binary verification.",
+      "introduced_by": "Cosmos 3 tech report"
+    },
+    {
+      "id": "cosmos_hue_t2v_av",
+      "name": "Cosmos HUE T2V — Autonomous Vehicle domain",
+      "category": "video-generation",
+      "description": "Per-domain Cosmos HUE T2V restricted to Autonomous Vehicle prompts.",
+      "introduced_by": "Cosmos 3 tech report"
+    },
+    {
+      "id": "cosmos_hue_t2v_physics",
+      "name": "Cosmos HUE T2V — Physics domain",
+      "category": "video-generation",
+      "description": "Per-domain Cosmos HUE T2V restricted to Physics prompts.",
+      "introduced_by": "Cosmos 3 tech report"
+    },
+    {
+      "id": "cosmos_hue_t2v_robot",
+      "name": "Cosmos HUE T2V — Robotics domain",
+      "category": "video-generation",
+      "description": "Per-domain Cosmos HUE T2V restricted to Robotics prompts.",
+      "introduced_by": "Cosmos 3 tech report"
+    },
+    {
+      "id": "cosmos_hue_i2v_phys_laws",
+      "name": "Cosmos HUE I2V Physical Laws",
+      "category": "video-generation",
+      "description": "Cosmos HUE I2V dimension — Physical Laws.",
+      "introduced_by": "Cosmos 3 tech report"
+    },
+    {
+      "id": "cosmos_hue_i2v_vis_integ",
+      "name": "Cosmos HUE I2V Visual Integrity",
+      "category": "video-generation",
+      "description": "Cosmos HUE I2V dimension — Visual Integrity.",
+      "introduced_by": "Cosmos 3 tech report"
+    },
+    {
+      "id": "paibench_g_t2v_domain",
+      "name": "PAIBench-G T2V Domain",
+      "category": "video-generation",
+      "description": "PAIBench-G T2V Domain sub-score (VLM-as-Judge physical/semantic accuracy).",
+      "introduced_by": "Zhou et al., 2025c"
+    },
+    {
+      "id": "paibench_g_t2v_quality",
+      "name": "PAIBench-G T2V Quality",
+      "category": "video-generation",
+      "description": "PAIBench-G T2V Quality sub-score (frame consistency + motion smoothness + aesthetics + text alignment).",
+      "introduced_by": "Zhou et al., 2025c"
+    },
+    {
+      "id": "paibench_g_i2v_domain",
+      "name": "PAIBench-G I2V Domain",
+      "category": "video-generation",
+      "description": "PAIBench-G I2V Domain sub-score.",
+      "introduced_by": "Zhou et al., 2025c"
+    },
+    {
+      "id": "paibench_g_i2v_quality",
+      "name": "PAIBench-G I2V Quality",
+      "category": "video-generation",
+      "description": "PAIBench-G I2V Quality sub-score.",
+      "introduced_by": "Zhou et al., 2025c"
+    },
+    {
+      "id": "soundbench_pq",
+      "name": "Cosmos-SoundBench PQ",
+      "category": "audio-visual",
+      "description": "Audiobox-aesthetics Production Quality.",
+      "introduced_by": "Cosmos 3 tech report"
+    },
+    {
+      "id": "mmlu_redux",
+      "name": "MMLU-Redux",
+      "category": "general",
+      "description": "MMLU-Redux refined evaluation."
+    },
+    {
+      "id": "supergpqa",
+      "name": "SuperGPQA",
+      "category": "general",
+      "description": "SuperGPQA general capability."
+    },
+    {
+      "id": "ifeval",
+      "name": "IFEval",
+      "category": "general",
+      "description": "Instruction Following Evaluation."
+    },
+    {
+      "id": "wmt24_plus_plus",
+      "name": "WMT24++",
+      "category": "multilingual",
+      "description": "Harder WMT24 subset, 55 langs via XCOMET-XXL."
+    },
+    {
+      "id": "mmmlu",
+      "name": "MMMLU",
+      "category": "multilingual",
+      "description": "Multilingual MMLU."
+    },
+    {
+      "id": "mmlu_prox",
+      "name": "MMLU-ProX",
+      "category": "multilingual",
+      "description": "29 languages avg accuracy."
+    },
+    {
+      "id": "ocr_bench_v2_en",
+      "name": "OCR-Bench-V2 (EN)",
+      "category": "doc-understanding",
+      "description": "OCR-Bench-V2 English."
+    },
+    {
+      "id": "ocr_bench_v2_zh",
+      "name": "OCR-Bench-V2 (ZH)",
+      "category": "doc-understanding",
+      "description": "OCR-Bench-V2 Chinese."
+    }
+  ],
+  "scores": [
+    {
+      "model": "nvidia/cosmos3-edge",
+      "benchmark": "hmmt_2026_feb",
+      "score": 76.3,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 27 — Cosmos3-Edge HMMT25 Feb 76.3 vs Qwen3.5-2B 22.9 (3.3x improvement on the same backbone)"
+    },
+    {
+      "model": "nvidia/cosmos3-edge",
+      "benchmark": "gpqa_diamond",
+      "score": 56.4,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 27"
+    },
+    {
+      "model": "nvidia/cosmos3-edge",
+      "benchmark": "mmlu_pro",
+      "score": 62.6,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 27"
+    },
+    {
+      "model": "nvidia/cosmos3-edge",
+      "benchmark": "aa_lcr",
+      "score": 22.8,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 27"
+    },
+    {
+      "model": "nvidia/cosmos3-edge",
+      "benchmark": "ifbench",
+      "score": 43.6,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 27 (prompt)"
+    },
+    {
+      "model": "nvidia/cosmos3-edge",
+      "benchmark": "scale_ai_multi_challenge",
+      "score": 28.1,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 27"
+    },
+    {
+      "model": "nvidia/cosmos3-super",
+      "benchmark": "cosmos_hue_t2v_sem_align",
+      "score": 92.4,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32 — Cosmos3-Super best open-source"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "cosmos_hue_t2v_sem_align",
+      "score": 94.3,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32 — Veo-3.1 leads"
+    },
+    {
+      "model": "alibaba/wan-2.2",
+      "benchmark": "cosmos_hue_t2v_sem_align",
+      "score": 92.1,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "nvidia/cosmos3-super",
+      "benchmark": "cosmos_hue_t2v_phys_laws",
+      "score": 85.4,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "bytedance/seedance-1.5-pro",
+      "benchmark": "cosmos_hue_t2v_phys_laws",
+      "score": 88.4,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "nvidia/cosmos3-super",
+      "benchmark": "cosmos_hue_t2v_geom_reas",
+      "score": 86.6,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "cosmos_hue_t2v_geom_reas",
+      "score": 91.0,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "nvidia/cosmos3-super",
+      "benchmark": "cosmos_hue_t2v_vis_integ",
+      "score": 93.7,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "cosmos_hue_t2v_vis_integ",
+      "score": 93.9,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "nvidia/cosmos3-super",
+      "benchmark": "cosmos_hue_t2v_av",
+      "score": 87.7,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32 — Cosmos3-Super BEATS ALL generators incl. closed-source on AV domain"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "cosmos_hue_t2v_av",
+      "score": 85.6,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "alibaba/wan-2.2",
+      "benchmark": "cosmos_hue_t2v_av",
+      "score": 84.9,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "nvidia/cosmos3-super",
+      "benchmark": "cosmos_hue_t2v_physics",
+      "score": 91.5,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32 — Cosmos3-Super BEATS ALL generators incl. closed-source on Physics domain"
+    },
+    {
+      "model": "bytedance/seedance-1.5-pro",
+      "benchmark": "cosmos_hue_t2v_physics",
+      "score": 91.4,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "cosmos_hue_t2v_physics",
+      "score": 90.4,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "nvidia/cosmos3-super",
+      "benchmark": "cosmos_hue_t2v_robot",
+      "score": 88.4,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "cosmos_hue_t2v_robot",
+      "score": 91.5,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 32"
+    },
+    {
+      "model": "nvidia/cosmos3-super-image2video",
+      "benchmark": "cosmos_hue_i2v_phys_laws",
+      "score": 87.5,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 33"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "cosmos_hue_i2v_phys_laws",
+      "score": 87.7,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 33"
+    },
+    {
+      "model": "nvidia/cosmos3-super-image2video",
+      "benchmark": "cosmos_hue_i2v_vis_integ",
+      "score": 94.2,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 33 — Cosmos3-Super-I2V Visual Integrity SOTA among open + closed"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "cosmos_hue_i2v_vis_integ",
+      "score": 93.2,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 33"
+    },
+    {
+      "model": "nvidia/cosmos3-super",
+      "benchmark": "paibench_g_t2v_domain",
+      "score": 86.8,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "nvidia/cosmos3-super",
+      "benchmark": "paibench_g_t2v_quality",
+      "score": 73.1,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "nvidia/cosmos3-super-image2video",
+      "benchmark": "paibench_g_i2v_domain",
+      "score": 87.3,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "nvidia/cosmos3-super-image2video",
+      "benchmark": "paibench_g_i2v_quality",
+      "score": 78.2,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "paibench_g_t2v_domain",
+      "score": 85.2,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "paibench_g_i2v_domain",
+      "score": 87.6,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "alibaba/wan2.6-t2v",
+      "benchmark": "paibench_g_t2v_domain",
+      "score": 85.2,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "bytedance/seedance-1.5-pro",
+      "benchmark": "soundbench_pq",
+      "score": 7.06,
+      "unit": "score_0_10",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 15 — Seedance-1.5-Pro PQ SOTA"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "soundbench_pq",
+      "score": 6.68,
+      "unit": "score_0_10",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 15"
+    },
+    {
+      "model": "nvidia/cosmos3-nano",
+      "benchmark": "soundbench_pq",
+      "score": 6.32,
+      "unit": "score_0_10",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 15"
+    },
+    {
+      "model": "nvidia/cosmos3-super",
+      "benchmark": "soundbench_pq",
+      "score": 6.28,
+      "unit": "score_0_10",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 15"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "swe_bench_verified",
+      "score": 77.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — SWE-Verified"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "swe_bench_pro",
+      "score": 57.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — SWE-Pro"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "scicode",
+      "score": 51.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — SciCode"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "bfcl_v4",
+      "score": 72.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — BFCL-V4"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "mcp_atlas",
+      "score": 73.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — MCP-Atlas"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "kernelbench_l3_speedup",
+      "score": 2.06,
+      "unit": "speedup_x_torch_eager",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — Kernel Bench L3 (2.06x speedup, 98% faster than torch.compile)"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "gpqa_diamond",
+      "score": 90.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — GPQA Diamond"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "hle",
+      "score": 34.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — HLE"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "livecodebench",
+      "score": 89.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — LiveCodeBench"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "critpt",
+      "score": 6.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — CritPT"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "apex_agents_hard",
+      "score": 22.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — Apex"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "mmlu_pro",
+      "score": 88.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — MMLU-Pro"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "mmlu_redux",
+      "score": 94.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — MMLU-Redux"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "supergpqa",
+      "score": 71.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — SuperGPQA"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "ifeval",
+      "score": 94.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — IFEval"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "ifbench",
+      "score": 79.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — IFBench"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "wmt24_plus_plus",
+      "score": 84.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — WMT24++"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "maxife",
+      "score": 88.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — MAXIFE"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "mmmlu",
+      "score": 89.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — MMMLU"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "mmlu_prox",
+      "score": 85.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — MMLU-ProX"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "nova_63",
+      "score": 58.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — NOVA-63"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "include",
+      "score": 83.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — INCLUDE"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "global_piqa",
+      "score": 90.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Text — Global PIQA"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "mmmu_pro",
+      "score": 79.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM — MMMU-Pro"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "mathvision",
+      "score": 90.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM — MathVision"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "erqa",
+      "score": 69.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM — ERQA"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "realworldqa",
+      "score": 86.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM — RealWorldQA"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "ocr_bench_v2_en",
+      "score": 70.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM — OCR-Bench-V2 (EN)"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "ocr_bench_v2_zh",
+      "score": 67.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM — OCR-Bench-V2 (ZH)"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "video_mme",
+      "score": 88.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM — VideoMME (w/ sub)"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "mlvu",
+      "score": 87.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM — MLVU M-Avg"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "swe_bench_verified",
+      "score": 80.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "swe_bench_pro",
+      "score": 57.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "scicode",
+      "score": 51.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "kernelbench_l3_speedup",
+      "score": 2.63,
+      "unit": "speedup_x_torch_eager",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col — Opus 4.6 Max highest L3 speedup 2.63x"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "gpqa_diamond",
+      "score": 91.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "hle",
+      "score": 40.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mmlu_pro",
+      "score": 89.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "supergpqa",
+      "score": 72.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mmlu_prox",
+      "score": 86.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mmmu_pro",
+      "score": 73.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mathvision",
+      "score": 65.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "ocr_bench_v2_en",
+      "score": 54.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "swe_bench_verified",
+      "score": 80.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "gpqa_diamond",
+      "score": 90.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "hle",
+      "score": 37.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "livecodebench",
+      "score": 93.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog — DeepSeek V4 Pro Max top LiveCodeBench 93.5"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "critpt",
+      "score": 12.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "apex_agents_hard",
+      "score": 38.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog — DeepSeek V4 Pro Max Apex 38.3 highest"
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "gpqa_diamond",
+      "score": 86.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog comparison col"
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "scicode",
+      "score": 45.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "swe_bench_verified",
+      "score": 78.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog Qwen3.6-Plus baseline"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "gpqa_diamond",
+      "score": 90.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "deep_planning",
+      "score": 40.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog — Qwen3.7-Plus +21.4pp over 3.6-Plus"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "spreadsheetbench_v1",
+      "score": 80.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "qwen_world_bench",
+      "score": 47.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "babyvision_with_ci",
+      "score": 37.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog — Qwen3.7-Plus +33pp over 3.6-Plus"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "screenspot_pro",
+      "score": 68.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "androidworld",
+      "score": 67.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "lingoqa_driving",
+      "score": 76.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "ego3d_bench",
+      "score": 6.1,
+      "unit": "error_lower_better",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "omnidocbench_1_5",
+      "score": 91.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen blog"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mmmu_pro",
+      "score": 81.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM comparison col"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "babyvision_with_ci",
+      "score": 55.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "androidworld",
+      "score": 70.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "countqa",
+      "score": 72.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "lingoqa_driving",
+      "score": 66.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "mmmu_pro",
+      "score": 81.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "babyvision_with_ci",
+      "score": 53.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "qwen_vision2code",
+      "score": 1884.0,
+      "unit": "elo",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM — GPT-5.4 xhigh QwenVision2Code SOTA 1884"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "videommmu_test",
+      "score": 82.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "lvbench",
+      "score": 77.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": "Qwen MM"
+    },
+    {
+      "model": "alibaba/wan-2.2",
+      "benchmark": "cosmos_hue_t2v",
+      "score": 88.2,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 14 — Wan2.2-A14B"
+    },
+    {
+      "model": "tencent/hunyuanvideo-1.5",
+      "benchmark": "cosmos_hue_t2v",
+      "score": 86.5,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 14"
+    },
+    {
+      "model": "bytedance/seedance-1.5-pro",
+      "benchmark": "cosmos_hue_t2v",
+      "score": 90.0,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 14"
+    },
+    {
+      "model": "alibaba/wan-2.2",
+      "benchmark": "cosmos_hue_i2v",
+      "score": 88.4,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 14"
+    },
+    {
+      "model": "tencent/hunyuanvideo-1.5",
+      "benchmark": "cosmos_hue_i2v",
+      "score": 85.6,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 14"
+    },
+    {
+      "model": "bytedance/seedance-1.5-pro",
+      "benchmark": "cosmos_hue_i2v",
+      "score": 87.6,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 14"
+    },
+    {
+      "model": "alibaba/wan-2.2",
+      "benchmark": "human_world_bench_i2v",
+      "score": 60.7,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 14"
+    },
+    {
+      "model": "tencent/hunyuanvideo-1.5",
+      "benchmark": "human_world_bench_i2v",
+      "score": 54.7,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 14"
+    },
+    {
+      "model": "alibaba/wan-2.2",
+      "benchmark": "paibench_g_t2v_overall",
+      "score": 78.0,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12 — Wan2.2-A14B"
+    },
+    {
+      "model": "tencent/hunyuanvideo-1.5",
+      "benchmark": "paibench_g_t2v_overall",
+      "score": 76.5,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "alibaba/wan-2.2",
+      "benchmark": "paibench_g_i2v_overall",
+      "score": 81.3,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "tencent/hunyuanvideo-1.5",
+      "benchmark": "paibench_g_i2v_overall",
+      "score": 81.7,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "alibaba/wan-2.2",
+      "benchmark": "rbench_i2v",
+      "score": 50.7,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "tencent/hunyuanvideo-1.5",
+      "benchmark": "rbench_i2v",
+      "score": 46.0,
+      "unit": "%",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 12"
+    },
+    {
+      "model": "alibaba/wan-2.2",
+      "benchmark": "physics_iq_i2v",
+      "score": 38.3,
+      "unit": "score_0_100",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 13 — Wan2.2-A14B direct mode"
+    },
+    {
+      "model": "alibaba/wan-2.2",
+      "benchmark": "physics_iq_i2v",
+      "score": 44.4,
+      "unit": "score_0_100",
+      "_source": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "_note": "Tab 13 — Wan2.2-A14B with WMReward (BoN)"
+    }
+  ]
+}

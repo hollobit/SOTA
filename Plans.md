@@ -1,28 +1,32 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 46 — NVIDIA Cosmos 3 Tech Report + Qwen3.7-Plus GA (2026-06-02)
-**1,621 models · 1,378 benchmarks · 7,047 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 46b — Cosmos 3 + Qwen3.7-Plus deep re-mine (2026-06-02)
+**1,621 models · 1,396 benchmarks · 7,145 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-02 Session 46 — NVIDIA Cosmos 3 + Qwen3.7-Plus GA (2 user links)
-- **Cosmos 3** (research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf, 27MB, 130+pp): omnimodal world models for Physical AI. Dual-tower MoT (Mixture-of-Transformers) initialized from Qwen3-VL. 5 NEW models: **cosmos3-edge** (2B dense from-scratch) + **cosmos3-super-text2image** (UniGenBench 91.36 → AA T2I Leaderboard #1 open-weight, #4 overall) + **cosmos3-super-image2video** (PAIBench-G I2V 82.8 SOTA, RBench top open-source) + **cosmos3-nano-policy-droid** (RoboLab Specific 39.7 vs π0.5 28.1 = +11.6pp, RoboArena #1). NEW eval suite **Cosmos-HUE** (HumanEval video gen, HF Cosmos-HumanEval-v1, 4 dimensions atomic binary).
-- **Cosmos 3 SOTAs**: Cosmos3-Super Physics-IQ **I2V 48.9** + **V2V 63.4** (BoN) · Cosmos HUE T2V 89.3 (#1 open-source vs Veo-3.1 91.3 closed) · **HWB 71.9** (beats Veo-3.1 67.8) · SoundBench **SAV 8.35** (Cosmos3-Nano SAV SOTA — strongest semantic audio-visual grounding) · **LIBERO-10 MT-init 97.4%** @ 2k iter (vs PT-init 95.2%) — MT-init faster adaptation
-- **Qwen3.7-Plus** (qwen.ai/blog?id=qwen3.7-plus): 1M ctx multimodal hybrid agent via Alibaba Cloud Model Studio. 69 benchmarks (37 text + 32 multimodal). SOTAs **vs Qwen-selected comparison columns**: Terminal-Bench 2.0 70.3 / Deep-Planning 62.3 / QwenWorldBench 62.1 / PolyMATH 84.0 / MRCR-v2 128k 91.7 / ScreenSpot Pro 79.0 / AndroidWorld 81.0 / BabyVision 70.4 / OmniDocBench 1.5 91.4 / LingoQA 83.4 / VideoMMMU 85.4 / Ego3D-Bench 5.9 (lower) / CountQA 77.0 / VLADBench 77.2 (ties GPT-5.4 xhigh)
-- 8-tab audit: Physical AI VLA + World Model Quality (+17 benches) · Sovereign CN Alibaba +Qwen3.7-Plus · FC coding/agent/multimodal +Qwen3.7-Plus +many benches · Cyber-Coding CODING/AGENT · Agent CATEGORIES general · Resources +2 PDFs. EXCLUDED Cosmos HUE per-dimension breakdowns (Tab 32/33), ablation tables, RynnBrain/MiMo-Embodied/DreamZero/Magi-1 comparison-only models. **+5/+49/+103** = 1621/1378/7047. v=20260602a
+### 2026-06-02 Session 46b — Deep re-mine of same 2 user links (user re-requested same Cosmos 3 + Qwen3.7-Plus URLs)
+- **Cosmos3-Edge Tab 27 text reasoning** (NEW): HMMT25 Feb **76.3** vs Qwen3.5-2B 22.9 = **3.3x improvement on same backbone**, GPQA 56.4 (+4.8), IFBench 43.6 (+2.3). MMLU Pro 62.6 / AA-LCR 22.8 / Scale AI Multi-Challenge 28.1
+- **Cosmos HUE per-dimension** (Tab 32 T2V + Tab 33 I2V, 4 dims × top-3 models): Cosmos3-Super DOMINATES on **AV 87.7** + **Physics 91.5** among ALL generators incl. closed-source Veo-3.1 / Seedance. Cosmos3-Super-I2V **Visual Integrity 94.2** SOTA
+- **PAIBench-G T2V/I2V sub-scores** (Domain+Quality split Tab 12): Cosmos3-Super T2V Domain 86.8 / Quality 73.1 · Super-I2V Domain 87.3 / Quality 78.2
+- **SoundBench PQ** Tab 15: Seedance-1.5-Pro 7.06 SOTA · Veo-3.1 6.68 · Cosmos3-Nano 6.32. (Cosmos 3 still leads SAV semantic A/V grounding from S46 — see S46 entry)
+- **Qwen3.7-Plus complete 69-bench coverage**: All Qwen3.7-Plus column scores + cross-comparison cols Opus-4.6 Max (12), DeepSeek V4 Pro Max (6), GLM-5.1 (2), Qwen3.6-Plus baseline (11), Gemini-3.1 Pro (5 MM), GPT-5.4 xhigh (5 MM incl. QwenVision2Code 1884 SOTA)
+- 30 bench ID remaps (`_qwen` suffix → canonical existing IDs e.g. gpqa_diamond/hle/livecodebench/mmlu_pro/mmmu_pro) — avoids duplicate creation. 18 genuinely-NEW benches added (Cosmos HUE dims/domains + PAIBench-G sub-scores + SoundBench PQ + mmlu_redux + wmt24++ + scale_ai_multi_challenge). **+0/+18/+98** = 1621/1396/7145. Physical AI World Model Quality +14 sub-dim benches. v=20260602c
 
-### 2026-06-01 Session 44 — MiniMax M3 release + Biohub ESM page confirmed S42 coverage
-- MiniMax M3 native multimodal MSA 1M ctx open-weight, **SWE-Bench Pro 59.0%** (surpasses GPT-5.5+Gemini 3.1 Pro, approaches Opus 4.7), PostTrainBench 0.37. 3 NEW benches: PostTrainBench/SWE-fficiency/KernelBench Hard. Biohub ESM page 0 ingest (S42-covered). **+1/+3/+8** = 1606/1321/6908. v=20260601c
+### 2026-06-02 Session 46 — NVIDIA Cosmos 3 + Qwen3.7-Plus GA (compressed)
+- **Cosmos 3** (27MB tech report, omnimodal MoT, Qwen3-VL init): 5 NEW models — cosmos3-edge/-super-text2image/-super-image2video/-nano-policy-droid. NEW Cosmos-HUE eval suite. SOTAs: UniGenBench 91.36 (AA T2I #1 open) · PAIBench-G T2V 80.0 / I2V 82.8 · Physics-IQ I2V 48.9 / V2V 63.4 BoN · HWB 71.9 · SoundBench SAV 8.35 · RoboLab 39.7 (RoboArena #1) · LIBERO-10 MT-init 97.4
+- **Qwen3.7-Plus** (1M ctx multimodal hybrid agent GA): SOTAs vs Qwen comparison cols — Terminal-Bench 2.0 70.3 / Deep-Planning 62.3 / MRCR-v2 128k 91.7 / ScreenSpot Pro 79.0 / AndroidWorld 81.0 / BabyVision 70.4 / OmniDocBench 1.5 91.4 / LingoQA 83.4 / VideoMMMU 85.4 / Ego3D 5.9 (lower)
+- 8-tab + dual-layer Cyber-Coding propagation; Resources +2 PDFs. **+5/+49/+103** = 1621/1378/7047. v=20260602a→b (audit fix)
 
-### 2026-06-01 Session 43 — NVIDIA Nemotron developer page deep-mine (4 family announcements)
-- User-provided https://developer.nvidia.com/nemotron — main page description-only; 4 NEW Nemotron families surfaced. Sub-pages (/nemotron-rag/-parse/-speech/-safety) 404 — actual data on HF model cards (nvidia/*) + arxiv 2511.20478 + NVIDIA blog. Cherry-pick from 12 found models + 24 found benches.
-- **Models** (7): nemotron-colembed-vl-8b-v2 (**ViDoRe V3 NDCG@10 63.54 SOTA**, V1 92.65) + 4b-v2 sibling · llama-embed-nemotron-8b (**MMTEB v2 Mean Task 69.46 leader**) · llama-nemotron-rerank-vl-1b-v2 · nemotron-parse-1.1 (885M VLM) · nemotron-ocr-v2 (83.9M, **OmniDoc EN NED 0.048 SOTA** lower=better) · parakeet-tdt-0.6b-v3 (**LibriSpeech clean WER 1.93%**, Open ASR avg 6.34%)
-- **Bench families** (11): ViDoRe V1/V2/V3 (visual document retrieval) · MMTEB v2 (multilingual text embedding) · OmniDocBench EN/ZH (document understanding NED lower=better) · 5 ASR benches (LibriSpeech×2/AMI/GigaSpeech/Open ASR Leaderboard avg WER lower=better)
-- 8-tab audit: FC multimodal +ViDoRe 3 +OmniDoc 2. ASR + MMTEB v2 data-driven only (FC no audio/embedding axis). SKIPPED: VDR rerank-only pipeline, MIRACL/MLDR/BEIR-TechQA (rerank), throughput, MMTEB Borda votes, OmniDoc Text/Table sub-NED, Parse TC variant, OCR-en sub, streaming-en, Safety Guard aggregate 84.2%, Content Safety 4B aggregate 84%. **+7/+11/+15** = 1605/1318/6900. v=20260601b
+### 2026-06-01 Session 44 — MiniMax M3 release (compressed)
+- MiniMax M3 native multimodal MSA 1M ctx open-weight, SWE-Bench Pro 59.0% (surpasses GPT-5.5+Gemini 3.1 Pro). 3 NEW benches: PostTrainBench/SWE-fficiency/KernelBench Hard. Biohub ESM 0 ingest. **+1/+3/+8** = 1606/1321/6908. v=20260601c
 
-### 2026-05-31 Session 42 — ESM Cambrian / ESMFold2 deep-mine (71MB PDF, 104pp; compressed)
-- Candido et al Biohub+EvolutionaryScale. 7 models (ESMC 300M/600M/6B · ESMFold2/-Fast · ESM2-15B · Boltz-2). FoldBench 6 modality sub-benches + Recent-PDB PPI + p_at_l_lr + megascale_dg. SOTAs: ESMFold2+MSA PPI 76% (vs AF3 73%) · AbAg 53% (vs AF3 47%) · ESMC 6B contact 0.725 (+22% vs ESM2-15B) · ESMFold2-Fast 9.4s @L=1024 (2.2x AF3). **+7/+9/+19** = 1598/1307/6885. v=20260531c
+### 2026-06-01 Session 43 — NVIDIA Nemotron 4-family ingest (compressed)
+- Nemotron RAG/Parse/Speech/Safety from HF cards + arxiv 2511.20478. 7 models, 11 bench families. SOTAs: ViDoRe V3 63.54 (colembed-vl-8b-v2) · MMTEB v2 69.46 (llama-embed-nemotron-8b) · OmniDoc EN NED 0.048 (ocr-v2) · LibriSpeech clean WER 1.93% (parakeet-tdt v3). **+7/+11/+15** = 1605/1318/6900. v=20260601b
 
-### 2026-05-31 Session 41 — WorldArena.ai HF Space re-investigation (compressed)
-- HF Space grew 6→86 baselines since S38. 3 NEW frontier video-gen: Veo 3.1 (#3 EWMScore 0.578, Persp 0.996+Instr 0.971 SOTA), Wan 2.2 (0.549), **Wan 2.6 #2 0.592**. Per-dim SOTAs: Wan 2.6 Image/Motion · Veo 3.1 BG/Interact/Persp/Instr · Ctrl-World Trajectory 0.482. Physical AI +16 sub-metrics +3 models. **+1/+16/+131** = 1591/1298/6866. v=20260531b
+### 2026-05-31 Session 42 — ESM Cambrian / ESMFold2 (compressed)
+- Biohub+EvolutionaryScale 71MB PDF. 7 protein models. SOTAs: ESMFold2+MSA PPI 76% / AbAg 53% / ESMC 6B 0.725 contact / ESMFold2-Fast 9.4s. **+7/+9/+19** = 1598/1307/6885.
+
+### 2026-05-31 Session 41 — WorldArena.ai HF Space (compressed)
+- HF grew 6→86 baselines. 3 NEW video-gen: Veo 3.1 / Wan 2.2 / Wan 2.6 #2. Physical AI +16 sub-metrics. **+1/+16/+131** = 1591/1298/6866.
 
 ### 2026-05-31 Session 40 — Deep re-mine round 2 (compressed)
 - Opus 4.8 sys card unmined (+7 NEW: AutomationBench/BioPipelineBench/BioMysteryBench Human-Solvable/GMMLU 90.4/MILU 90.3/INCLUDE 87.6/AECI 155.5 + 3 net-new). SkillOpt 2605.23904 (+SearchQA/LiveMath, GPT-5.5 +29.3pp uplift). WorldArena T2 Policy public (Ctrl-World 0.986 SOTA). AA CritPT/MMLU-Pro Playwright full charts (+17 net-new). Vellum CONFIRMED Resources-only. **+0/+10/+35** = 1590/1282/6735. v=20260531a
@@ -192,6 +196,5 @@ BMT/                         → Benchmark Library 카탈로그 (2,559 엔트리
 | `data/export/models.json` | 빌드된 모델 63개 |
 | `data/export/benchmarks.json` | 빌드된 벤치마크 91개 |
 | `data/export/scores/current.json` | 현재 점수 707개 |
-| `data/export/sota.json` | SOTA 레코드 78개 |
-| `data/export/scores/history/YYYY-MM-DD.json` | 일별 스냅샷 (2026-04-16 ~ 04-18) |
+| `data/export/sota.json` / `history/YYYY-MM-DD.json` | SOTA + 일별 스냅샷 |
 | `data/bmt_connections.json` / `bmt_catalog.json` | BMT 매핑 + 카탈로그 (2,559개) |

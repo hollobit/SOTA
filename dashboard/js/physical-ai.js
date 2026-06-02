@@ -210,7 +210,14 @@ var PhysicalAI = {
                 'physics_iq_i2v', 'physics_iq_v2v',
                 'cosmos_hue_t2v', 'cosmos_hue_i2v', 'human_world_bench_i2v',
                 'soundbench_avq', 'soundbench_sav',
-                'unigenbench_all_1170', 'cvtg_500l_pned', 'cvtg_102ch_pned', 'hpsv3', 'aesthetic_v2'
+                'unigenbench_all_1170', 'cvtg_500l_pned', 'cvtg_102ch_pned', 'hpsv3', 'aesthetic_v2',
+                // 2026-06-02 S46b deep re-mine — Cosmos HUE per-dimension + per-domain + PAIBench-G sub-scores + SoundBench PQ
+                'cosmos_hue_t2v_sem_align', 'cosmos_hue_t2v_phys_laws', 'cosmos_hue_t2v_geom_reas', 'cosmos_hue_t2v_vis_integ',
+                'cosmos_hue_t2v_av', 'cosmos_hue_t2v_physics', 'cosmos_hue_t2v_robot',
+                'cosmos_hue_i2v_phys_laws', 'cosmos_hue_i2v_vis_integ',
+                'paibench_g_t2v_domain', 'paibench_g_t2v_quality',
+                'paibench_g_i2v_domain', 'paibench_g_i2v_quality',
+                'soundbench_pq'
             ]
         },
         {
