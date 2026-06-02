@@ -33,7 +33,7 @@ var CyberCoding = {
         // 2026-06-01 S44 MiniMax M3 — PostTrainBench autonomous 12h ML loop
         'posttrainbench',
         // 2026-06-02 S46 Qwen3.7-Plus — multimodal agent benches
-        'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench', 'cowork_bench', 'vitabench', 'clawval_mm'],
+        'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench', 'cowork_bench', 'vitabench', 'clawval_mm', 'skillsbench'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
         // 2026-05 CAD-coding specialty (3 arxiv benches + SCADBench ELO arena)
         'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',
@@ -61,7 +61,11 @@ var CyberCoding = {
                 'aider_polyglot', 'codeforces_rating', 'codeforces_elo',
                 'gdpval_aa', 'scicode', 'webdev_arena', 'monorepo_bench',
                 'expert_swe', 'gso', 'mle_bench', 'weirdml_v2', 'paperbench',
-                'terminal_bench_2', 'nl2repo', 'repobench', 'vibe_code_bench'
+                'terminal_bench_2', 'nl2repo', 'repobench', 'vibe_code_bench',
+                // 2026-06-02 S46 Qwen3.7-Plus coding suite
+                'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen', 'qwen_webdev_elo', 'qwen_svg_elo',
+                // 2026-06-01 S44 MiniMax M3 — KernelBench Hard + SWE-fficiency
+                'kernelbench_hard', 'swe_fficiency'
             ]
         },
         {
@@ -138,7 +142,12 @@ var CyberCoding = {
                 'mcp_atlas', 'mcpatlas_public', 'mcpmark',
                 'bfcl', 'bfcl_v3', 'bfcl_v4',
                 'toolathlon', 'finance_agent', 'vending_bench_2',
-                'apex_agents_hard', 'apex_shortlist', 'skills_bench'
+                'apex_agents_hard', 'apex_shortlist', 'skills_bench',
+                // 2026-06-02 S46 Qwen3.7-Plus general-agent benches
+                'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench',
+                'cowork_bench', 'vitabench', 'clawval_mm', 'skillsbench',
+                // 2026-06-01 S44 MiniMax M3 PostTrainBench
+                'posttrainbench'
             ]
         },
         {
@@ -160,7 +169,12 @@ var CyberCoding = {
                 'aloha_4task_avg', 'robocasa', 'robocasa365',
                 'unitree_g1_1k_demos', 'gr1_real_lang_following', 'realworld_language_following',
                 'open_x_embodiment', 'dexmimicgen', 'gr1_tabletop',
-                'simpler_env_avg', 'roboarena_elo'
+                'simpler_env_avg', 'roboarena_elo',
+                // 2026-06-01 S45 Qwen-VLA paper benches
+                'robotwin_easy', 'robotwin_hard', 'simpler_widowx', 'robocasa_gr1',
+                'simplerenv_ood', 'domino_sr', 'aloha_real_in_domain', 'r2r_val_unseen_sr',
+                // 2026-06-02 S46 Cosmos 3 robot policy + adaptation benches
+                'robolab_droid_specific', 'libero_10_adaptation_2k'
             ]
         },
         {
@@ -409,6 +423,7 @@ var CyberCoding = {
         'meta/muse-spark',
         'zhipu/glm-5',
         'zhipu/glm-5.1',
+        'alibaba/qwen3.7-plus',  // 2026-06-02 S46 GA
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-27b',
         'alibaba/qwen3.6-35b-a3b',
@@ -417,6 +432,7 @@ var CyberCoding = {
         'moonshot/kimi-k2.6',
         'moonshot/kimi-k2.5',
         'moonshot/kimi-k2-thinking',
+        'minimax/m3',  // 2026-06-01 S44 GA
         'minimax/m2.7',
         'baidu/ernie-5.0',
         'lg/exaone-4.5-33b',
