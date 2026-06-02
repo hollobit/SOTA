@@ -34,7 +34,10 @@ var FrontierCompare = {
             // 2026-06-02 S46 Qwen3.7-Plus + Cosmos 3 — coding agent benches
             'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen'
         ],
-        math: ['aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026', 'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024'],
+        math: ['aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026',
+            // 2026-06-02 S46 — Qwen3.7-Plus HMMT 2026 Feb + IMOAnswerBench (existing id) + PolyMATH
+            'hmmt_2026_feb', 'imoanswerbench', 'polymath',
+            'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024'],
         agent: [
             'browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench',
             'mcp_atlas', 'mcpatlas_public', 'mcpmark', 'webarena',
@@ -68,7 +71,9 @@ var FrontierCompare = {
             'simplevqa_search', 'worldvqa_search', 'mmsearchplus', 'bc_vl', 'mmbc',
             'countqa', 'omnidocbench_1_5', 'odinw13',
             'lingoqa_driving', 'ego3d_bench', 'surds', 'vladbench',
-            'videommmu_test', 'tvbench', 'lvbench'],
+            'videommmu_test', 'tvbench', 'lvbench',
+            // 2026-06-02 S46 Cosmos 3 video-gen NEW datasets — surfaced on FC multimodal axis
+            'cosmos_hue_t2v', 'cosmos_hue_i2v', 'human_world_bench_i2v'],
         // 2026-05 — Composite "general capability" indices (cross-benchmark)
         // ECI scores + the 24 underlying contributing benchmarks our DB covers
         // (per https://epoch.ai/data/eci-documentation/data — 42 total contributors,
@@ -158,6 +163,7 @@ var FrontierCompare = {
         'alibaba/qwen3.7-plus',  // 2026-06-02 S46 — Qwen3.7-Plus GA (Multimodal Agent)
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-35b-a3b',
+        'minimax/m3',  // 2026-06-01 S44 GA — SWE-Bench Pro 59.0% (surpasses GPT-5.5)
         'minimax/m2.7',
         'baidu/ernie-5.0',
         // Mistral specialist line (2025-09 to 2025-12 open-weight)
