@@ -2109,7 +2109,9 @@ var App = {
             { name: 'World Model for Robot Learning — Comprehensive Survey', file: 'world_model_robot_survey_2605.00080.pdf', vendor: 'NTU + Berkeley + Stanford et al', date: 'Apr 2026', url: 'https://arxiv.org/abs/2605.00080' },
             { name: 'Qwen-VLA — Unified Vision-Language-Action Model', file: 'qwen_vla_2605.30280.pdf', vendor: 'Alibaba Qwen Team', date: 'May 2026', url: 'https://arxiv.org/abs/2605.30280' },
             { name: 'Cosmos 3 — Omnimodal World Models for Physical AI', file: 'cosmos3_technical_report.pdf', vendor: 'NVIDIA', date: 'Jun 2026', url: 'https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf' },
-            { name: 'Microsoft MAI: Hill-Climbing Machine + 7 New Models', file: '', vendor: 'Microsoft AI', date: 'Jun 2026', url: 'https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/' }
+            { name: 'Microsoft MAI: Hill-Climbing Machine + 7 New Models', file: '', vendor: 'Microsoft AI', date: 'Jun 2026', url: 'https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/' },
+            { name: 'Spacer: Towards Engineered Scientific Inspiration', file: 'spacer_2508.17661.pdf', vendor: 'Asteromorph', date: 'Aug 2025', url: 'https://arxiv.org/abs/2508.17661' },
+            { name: 'The AI Scientist: End-to-End AI Research (Nature)', file: 'nature_10265_5.pdf', vendor: 'Sakana AI + Oxford + UBC + Vector', date: 'Mar 2026', url: 'https://www.nature.com/articles/s41586-026-10265-5' }
         ];
 
         pdfDocs.forEach(function(doc) {

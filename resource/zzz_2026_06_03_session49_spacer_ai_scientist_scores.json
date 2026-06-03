@@ -1,0 +1,273 @@
+{
+  "_meta": {
+    "session": "Session 49 — Spacer + The AI Scientist (Nature)",
+    "date": "2026-06-03",
+    "sources": [
+      "https://arxiv.org/pdf/2508.17661 (Spacer — Asteromorph, Aug 26 2025, v1)",
+      "https://www.nature.com/articles/s41586-026-10265-5.pdf (The AI Scientist — Sakana AI + Oxford + UBC + Vector, Nature Vol 651 March 25 2026)"
+    ],
+    "pdf_archives": [
+      "resource/spacer_2508.17661.pdf",
+      "resource/nature_10265_5.pdf"
+    ],
+    "notes": "Two scientific discovery automation systems. Spacer (Asteromorph): keyword-graph-based inspiration engine (Nuri AUROC 0.737) + Manifesting Pipeline (Weaver/Sketcher, thesis reconstruction 85.44% overall). The AI Scientist (Sakana AI/Lu et al.): end-to-end ML research pipeline + Automated Reviewer. WORLD FIRST: AI-generated paper passed peer review at ICLR 2025 ICBINB workshop (6.33 avg score on 6/7/6, above 70% accept threshold)."
+  },
+  "models": [
+    {
+      "id": "asteromorph/spacer",
+      "name": "Spacer (Asteromorph)",
+      "vendor": "Asteromorph",
+      "type": "research-system",
+      "release_date": "2025-08-26",
+      "parameters": "Pipeline (Nuri inspiration engine + Manifesting Pipeline)",
+      "context_window": null,
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "asteromorph/spacer-nuri",
+      "name": "Spacer Nuri (inspiration engine)",
+      "vendor": "Asteromorph",
+      "type": "research-system",
+      "release_date": "2025-08-26",
+      "parameters": "Keyword graph (180k bio publications)",
+      "context_window": null,
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "asteromorph/spacer-weaver",
+      "name": "Spacer Weaver (DeepSeek-R1 fine-tuned)",
+      "vendor": "Asteromorph",
+      "type": "research-system",
+      "release_date": "2025-08-26",
+      "parameters": "DeepSeek-R1 fine-tuned",
+      "context_window": null,
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "sakana-ai/the-ai-scientist",
+      "name": "The AI Scientist (Sakana AI)",
+      "vendor": "Sakana AI / Oxford / UBC / Vector Institute",
+      "type": "research-system",
+      "release_date": "2026-03-25",
+      "parameters": "Pipeline (template-based + template-free) leveraging Claude Sonnet 4 + o3 + GPT-4o + o4-mini",
+      "context_window": null,
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "sakana-ai/automated-reviewer",
+      "name": "The Automated Reviewer (Sakana AI)",
+      "vendor": "Sakana AI",
+      "type": "research-system",
+      "release_date": "2026-03-25",
+      "parameters": "5-review ensemble + meta-review on o4-mini",
+      "context_window": null,
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "nuri_high_impact_paper_auroc",
+      "name": "Nuri High-Impact Paper Classifier AUROC",
+      "category": "ai4science",
+      "description": "Nuri evaluation function EVAL(p) classifies high-impact (FWCI≥15) vs low-impact (FWCI<1) publications. AUROC on 400 papers (200 high + 200 low).",
+      "introduced_by": "Spacer (arxiv 2508.17661)",
+      "metric": "auroc"
+    },
+    {
+      "id": "weaver_thesis_reconstruction_overall",
+      "name": "Weaver Thesis Reconstruction Pass Rate (Overall)",
+      "category": "ai4science",
+      "description": "Weaver reconstructs research theses from keyword sets. Overall pass rate judged by o3 across 158 papers from Science/Nature/Others.",
+      "introduced_by": "Spacer (arxiv 2508.17661)",
+      "metric": "accuracy"
+    },
+    {
+      "id": "weaver_thesis_reconstruction_logic",
+      "name": "Weaver Thesis Reconstruction (Logic criterion)",
+      "category": "ai4science",
+      "description": "Logic-aspect pass rate.",
+      "introduced_by": "Spacer (arxiv 2508.17661)",
+      "metric": "accuracy"
+    },
+    {
+      "id": "weaver_thesis_reconstruction_topic",
+      "name": "Weaver Thesis Reconstruction (Topic criterion)",
+      "category": "ai4science",
+      "description": "Topic-aspect pass rate.",
+      "introduced_by": "Spacer (arxiv 2508.17661)",
+      "metric": "accuracy"
+    },
+    {
+      "id": "weaver_thesis_reconstruction_objective",
+      "name": "Weaver Thesis Reconstruction (Objective criterion)",
+      "category": "ai4science",
+      "description": "Objective-aspect pass rate.",
+      "introduced_by": "Spacer (arxiv 2508.17661)",
+      "metric": "accuracy"
+    },
+    {
+      "id": "weaver_thesis_reconstruction_approach",
+      "name": "Weaver Thesis Reconstruction (Approach criterion)",
+      "category": "ai4science",
+      "description": "Approach-aspect pass rate.",
+      "introduced_by": "Spacer (arxiv 2508.17661)",
+      "metric": "accuracy"
+    },
+    {
+      "id": "automated_reviewer_balanced_accuracy_pre",
+      "name": "Automated Reviewer Balanced Accuracy (pre-cutoff 2017-2024)",
+      "category": "ai4science",
+      "description": "AI peer-review decision balanced accuracy, on ICLR papers from 2017-2024 (within training cutoff).",
+      "introduced_by": "The AI Scientist (Nature 2026)",
+      "metric": "balanced_accuracy"
+    },
+    {
+      "id": "automated_reviewer_balanced_accuracy_post",
+      "name": "Automated Reviewer Balanced Accuracy (post-cutoff 2025)",
+      "category": "ai4science",
+      "description": "AI peer-review decision balanced accuracy, on ICLR papers from 2025 (outside training cutoff).",
+      "introduced_by": "The AI Scientist (Nature 2026)",
+      "metric": "balanced_accuracy"
+    },
+    {
+      "id": "automated_reviewer_f1_post",
+      "name": "Automated Reviewer F1 (post-cutoff 2025)",
+      "category": "ai4science",
+      "description": "F1 score for peer-review decisions, post-cutoff.",
+      "introduced_by": "The AI Scientist (Nature 2026)",
+      "metric": "f1"
+    },
+    {
+      "id": "automated_reviewer_auc_pre",
+      "name": "Automated Reviewer AUC (pre-cutoff)",
+      "category": "ai4science",
+      "description": "AUC of peer-review decisions, pre-cutoff (2017-2024).",
+      "introduced_by": "The AI Scientist (Nature 2026)",
+      "metric": "auc"
+    },
+    {
+      "id": "icbinb_workshop_peer_review_score",
+      "name": "ICLR 2025 ICBINB Workshop Peer-Review Score (1-10)",
+      "category": "ai4science",
+      "description": "Average peer-review score on ICLR 2025 ICBINB workshop scale (1-10). Workshop acceptance threshold ~6. Workshop has 70% acceptance rate.",
+      "introduced_by": "The AI Scientist (Nature 2026)",
+      "metric": "score_1_10"
+    },
+    {
+      "id": "icbinb_workshop_acceptance_rate_threshold",
+      "name": "ICLR 2025 ICBINB Workshop Acceptance Threshold",
+      "category": "ai4science",
+      "description": "Whether the paper's average score exceeded the workshop's acceptance threshold (binary indicator, 100=passed).",
+      "introduced_by": "The AI Scientist (Nature 2026)",
+      "metric": "accuracy"
+    }
+  ],
+  "scores": [
+    {
+      "model": "asteromorph/spacer-nuri",
+      "benchmark": "nuri_high_impact_paper_auroc",
+      "score": 0.737,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/pdf/2508.17661",
+      "_note": "Nuri EVAL(p) AUROC 0.737 ± 0.025 (95% CI). Classifies 400 papers (200 high-impact FWCI≥15 vs 200 low-impact FWCI<1). Validates Nuri's ability to find high-potential keyword sets."
+    },
+    {
+      "model": "asteromorph/spacer-weaver",
+      "benchmark": "weaver_thesis_reconstruction_logic",
+      "score": 96.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2508.17661",
+      "_note": "152/158 — Logic similarity, Science 75/78 + Nature 47/50 + Others (Nat Methods/Cell/Neuron) 30/30"
+    },
+    {
+      "model": "asteromorph/spacer-weaver",
+      "benchmark": "weaver_thesis_reconstruction_topic",
+      "score": 100.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2508.17661",
+      "_note": "158/158 — Topic similarity, perfect across all journals"
+    },
+    {
+      "model": "asteromorph/spacer-weaver",
+      "benchmark": "weaver_thesis_reconstruction_objective",
+      "score": 98.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2508.17661",
+      "_note": "155/158 — Objective"
+    },
+    {
+      "model": "asteromorph/spacer-weaver",
+      "benchmark": "weaver_thesis_reconstruction_approach",
+      "score": 97.47,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2508.17661",
+      "_note": "154/158 — Approach"
+    },
+    {
+      "model": "asteromorph/spacer-weaver",
+      "benchmark": "weaver_thesis_reconstruction_overall",
+      "score": 85.44,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2508.17661",
+      "_note": "135/158 — Overall holistic match. Hardest criterion. Judged by o3."
+    },
+    {
+      "model": "sakana-ai/automated-reviewer",
+      "benchmark": "automated_reviewer_balanced_accuracy_pre",
+      "score": 0.69,
+      "unit": "balanced_accuracy",
+      "_source": "https://www.nature.com/articles/s41586-026-10265-5.pdf",
+      "_note": "Pre-cutoff (2017-2024) balanced accuracy 0.69 ± 0.04 — superior to Human (NeurIPS) 0.66"
+    },
+    {
+      "model": "sakana-ai/automated-reviewer",
+      "benchmark": "automated_reviewer_balanced_accuracy_post",
+      "score": 0.66,
+      "unit": "balanced_accuracy",
+      "_source": "https://www.nature.com/articles/s41586-026-10265-5.pdf",
+      "_note": "Post-cutoff (2025) balanced accuracy 0.66 ± 0.03 — comparable to Human 0.66, validates no significant data contamination"
+    },
+    {
+      "model": "sakana-ai/automated-reviewer",
+      "benchmark": "automated_reviewer_f1_post",
+      "score": 0.67,
+      "unit": "f1",
+      "_source": "https://www.nature.com/articles/s41586-026-10265-5.pdf",
+      "_note": "Post-cutoff F1 0.67 ± 0.09, beats Human F1 0.49 — AR significantly better at F1 even post-cutoff"
+    },
+    {
+      "model": "sakana-ai/automated-reviewer",
+      "benchmark": "automated_reviewer_auc_pre",
+      "score": 0.69,
+      "unit": "auc",
+      "_source": "https://www.nature.com/articles/s41586-026-10265-5.pdf",
+      "_note": "Pre-cutoff AUC 0.69 ± 0.09 vs Human 0.65"
+    },
+    {
+      "model": "sakana-ai/the-ai-scientist",
+      "benchmark": "icbinb_workshop_peer_review_score",
+      "score": 6.33,
+      "unit": "score_1_10",
+      "_source": "https://www.nature.com/articles/s41586-026-10265-5.pdf",
+      "_note": "🌍 WORLD FIRST: Fully AI-generated paper passed peer review at top-tier ML conference workshop. Avg of 6/7/6 = 6.33. Above ICBINB workshop acceptance threshold. Workshop accept rate 70%, 43 papers reviewed. Paper would have been ACCEPTED but withdrawn per pre-established protocol. 3 papers submitted total; 1/3 accepted (33%). Approved by ICLR leadership + UBC IRB H24-02652."
+    },
+    {
+      "model": "sakana-ai/the-ai-scientist",
+      "benchmark": "icbinb_workshop_acceptance_rate_threshold",
+      "score": 100,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41586-026-10265-5.pdf",
+      "_note": "Binary: paper exceeded acceptance threshold (6.33 > workshop acceptance bar). 1 of 3 AI-generated submissions cleared threshold."
+    }
+  ]
+}

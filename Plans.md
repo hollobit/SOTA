@@ -1,13 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 48 — Microsoft MAI 7-model family launch (2026-06-03)
-**1,630 models · 1,408 benchmarks · 7,206 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 49 — Spacer + The AI Scientist (Nature) (2026-06-03)
+**1,635 models · 1,420 benchmarks · 7,221 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-03 Session 48 — Microsoft AI 7-model launch (user-provided microsoft.ai blog)
-- **7 NEW MAI models** (zero-distillation, clean-data philosophy): **MAI-Thinking-1** (35B-active/~1T MoE, 256k ctx — AIME25 97.0/AIME26 94.5/HMMT Feb26 84.9/GPQA 84.2/LCB v6 87.7/**SWE-Bench Pro 52.8 ~ Opus 4.6** 53.4; preferred to Sonnet 4.6 in 1,276 Surge blind human evals) · **MAI-Code-1-Flash** (5B agentic — beats Haiku 4.5 across 11 benches incl. **SWE-Bench Pro 51.2 vs 35.2 +16pp** / SWE-Bench Verified 71.6 with **60% fewer tokens** / IF Bench 75.0 vs 46.1 +28.9pp / GPQA 84.6 / τ²-Telecom 71.7) · **MAI-Image-2.5+Flash** (Arena T2I 1254 #3 +75pts vs MAI-Image-2; #2 Image Edit) · **MAI-Transcribe-1.5** (43 langs, **AA WER 2.4% #3, FLEURS #1**, 30% WER reduction with keyword biasing, 5x faster) · MAI-Voice-2+Flash (15 lang TTS)
-- 11 NEW benches: hmmt_feb_2026 / lcb_v6 / amo_bench_olympiad / frontier_math_t1_3 / artifacts_bench / if_bench_precise / advanced_if_rubric / robust_if_diverse / fleurs_43lang_wer / aa_transcribe_wer / fleurs_keyword_biasing_wer_improvement. 14 cross-comparison cols ingested (Sonnet 4.6/Opus 4.6/GPT 5.4/K2.6/DeepSeek V3.2/V4 Pro/GLM-5.1). Mayo Clinic frontier health model collab announced.
-- **🔧 BUG FIX**: exporter._export_sota() now passes benchmarks dict — **fixes lower-better SOTA detection** for ALL audio/document benches. MAI-Transcribe-1.5 WER 2.4 now SOTA on aa_transcribe_wer (was older MAI-Transcribe-1 2.6); Nemotron-OCR-v2 0.048 SOTA on omnidocbench_en NED. Bench id consolidation: orphan arena_t2i_aa_elo → aa_t2i_arena_elo (S47 canonical) + HiDream O1 1189 migrated.
-- 8-tab propagation: FC FRONTIER_MODELS + math/coding/agent suites + Cyber-Coding FRONTIER + suites + Agent CATEGORIES + Resources +1 PDF entry. **+7/+11/+49** = 1630/1408/7206. v=20260603a
+### 2026-06-03 Session 49 — Scientific discovery automation (user-provided 2 PDFs)
+- **Spacer (Asteromorph, arxiv 2508.17661, Aug 26 2025)** — keyword-graph 'deliberate decontextualization'. 3 models: spacer/-nuri/-weaver. **Nuri AUROC 0.737** ± 0.025 on high-impact paper classification (400 papers FWCI≥15 vs <1). **Weaver thesis reconstruction** 158 Science/Nature/Others — Logic 96.20 / Topic 100.0 / Objective 98.10 / Approach 97.47 / **Overall 85.44** (judged by o3)
+- **The AI Scientist (Sakana AI/Lu/Lange/Yamada et al, Nature Vol 651 Mar 25 2026)** — end-to-end ML research pipeline. 2 models: the-ai-scientist + automated-reviewer. **🌍 WORLD FIRST: AI-generated paper passed blind peer review at ICLR 2025 ICBINB workshop** — avg 6.33/10 score from 6/7/6, above acceptance threshold (workshop 70% accept rate, 43 papers reviewed, would have been accepted). Automated Reviewer Table 1: Bal Acc 0.69 pre-cutoff / 0.66 post-cutoff vs Human 0.66; **F1 0.62 pre / 0.67 post vs Human 0.49** (AR significantly better)
+- AI4S regex extended (Co-Scientist/Research Agent category +the-ai-scientist|automated-reviewer|spacer|nuri|weaver + sakana-ai/+asteromorph/ prefix). Resources +2 PDFs. seed_sources.yaml +2 entries. **+5/+12/+15** = 1635/1420/7221. v=20260603b
+
+### 2026-06-03 Session 48 — Microsoft MAI 7-model launch (compressed)
+- 7 NEW MAI (zero-distillation): MAI-Thinking-1 (35B/~1T MoE, AIME25 97.0/SWE-Bench Pro 52.8 ~ Opus 4.6) · MAI-Code-1-Flash (5B agentic, beats Haiku 4.5 across 11 benches: SWE-Bench Pro 51.2 vs 35.2 +16pp, IF Bench 75.0 vs 46.1) · MAI-Image-2.5+Flash (Arena T2I 1254 #3) · MAI-Transcribe-1.5 (AA WER 2.4%, FLEURS #1, 43 lang) · MAI-Voice-2+Flash. 11 NEW benches, 14 comparison cols. **🔧 BUG FIX**: exporter._export_sota() lower-better metric handling — fixes all audio/document SOTA. **+7/+11/+49** = 1630/1408/7206.
 
 ### 2026-06-03 Session 47 — Leaderboard sweep (compressed)
 - Opus 4.8 AAII 61 (#1, highest ever) · Gemini 3.5 Flash ECI 156.31 · Cosmos3-Super-T2I AA T2I Arena 1243 (#4 overall, #1 open-weight) · arena.ai text/webdev/vision/image-edit Elo refresh · DeepSeek V4 Flash High AAII 45→46. text_arena_elo NEW. **+0/+1/+12** = 1621/1397/7157.
