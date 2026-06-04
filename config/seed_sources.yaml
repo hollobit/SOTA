@@ -2040,3 +2040,13 @@ sources:
     type: model_paper
     format: pdf
     notes: "Lu, Lu, Lange, Yamada et al. (Sakana AI/Oxford/UBC/Vector). Nature Vol 651, March 25 2026. End-to-end ML research pipeline (template-based + template-free open-ended) + Automated Reviewer ensemble. 🌍 WORLD FIRST: AI-generated paper passed blind peer review at ICLR 2025 ICBINB workshop (avg 6.33/10 score from 6/7/6 reviews, above ~6 acceptance threshold; workshop 70% accept rate, 43 papers reviewed). Automated Reviewer Table 1: Bal Acc 0.69 pre-cutoff / 0.66 post-cutoff (vs Human NeurIPS 0.66); F1 0.62 pre / 0.67 post (vs Human 0.49). Approved by ICLR leadership + UBC IRB H24-02652. Uses Claude Sonnet 4 (code) + o3 (idea/critique) + GPT-4o (vision) + o4-mini (review). PDF resource/nature_10265_5.pdf."
+  - url: "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/"
+    name: "OpenAI GPT-Rosalind life sciences update (Jun 3 2026)"
+    type: vendor_blog
+    format: web_page
+    notes: "OpenAI life-sciences model update built on GPT-5.5 backbone. 4 NEW expert-judged benchmarks introduced: LifeSciBench (6 workflow areas — Evidence/Analysis/Design/Reasoning/Validation/Translation): GPT-Rosalind 63.4 (CI 61.75-64.96), GPT-5.5 58.8, Gemini 3.1 Pro 51.7, Grok 4.3 33.7. MedChemBench (medicinal chemistry): GPT-Rosalind 27.5 vs 25.1 (7.2% fewer tokens). GeneBench (agentic genomics): 21.6 vs 20.4 (31% fewer tokens). LabWorkBench (real wet lab, proprietary uncontaminated): 63.2 vs 55.8 (5.3% fewer tokens). Research preview to eligible orgs globally. Novo Nordisk partnership. Codex Life Sciences Research + NGS Analysis plugins."
+  - url: "https://huggingface.co/google/gemma-4-12B"
+    name: "Google Gemma 4 12B (encoder-free unified multimodal)"
+    type: vendor_model_card
+    format: hf_card
+    notes: "Jun 3 2026 — NEW architecture: NO multimodal encoders. Vision/audio inputs flow directly into LLM backbone via lightweight embedding (single matrix multiply + positional + norm). Raw audio waveform projected to same dim as text tokens. 11.95B params, 48 layers, 256k ctx, 262k vocab, hybrid sliding-window+global attention with p-RoPE. Jan 2025 cutoff, 140+ langs. Scores: MMLU Pro 77.2 / AIME 2026 77.5 / LCB v6 72.0 / Codeforces 1659 ELO / GPQA 78.8 / τ²-Bench avg-3 69.0 / BBEH 53.0 / MMMLU 83.4 / MMMU Pro 69.1 / OmniDocBench 1.5 0.164 NED / MATH-Vision 79.7 / MedXPertQA MM 48.7 / CoVoST 38.5 / FLEURS 0.069 WER (excl. Chinese) / MRCR-v2 8-needle 128k 43.4. Multi-Token Prediction (MTP) drafters for latency."

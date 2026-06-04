@@ -1,12 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 49 — Spacer + The AI Scientist (Nature) (2026-06-03)
-**1,635 models · 1,420 benchmarks · 7,221 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 50 — GPT-Rosalind + Gemma 4 12B (2026-06-04)
+**1,637 models · 1,428 benchmarks · 7,246 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-03 Session 49 — Scientific discovery automation (user-provided 2 PDFs)
-- **Spacer (Asteromorph, arxiv 2508.17661, Aug 26 2025)** — keyword-graph 'deliberate decontextualization'. 3 models: spacer/-nuri/-weaver. **Nuri AUROC 0.737** ± 0.025 on high-impact paper classification (400 papers FWCI≥15 vs <1). **Weaver thesis reconstruction** 158 Science/Nature/Others — Logic 96.20 / Topic 100.0 / Objective 98.10 / Approach 97.47 / **Overall 85.44** (judged by o3)
-- **The AI Scientist (Sakana AI/Lu/Lange/Yamada et al, Nature Vol 651 Mar 25 2026)** — end-to-end ML research pipeline. 2 models: the-ai-scientist + automated-reviewer. **🌍 WORLD FIRST: AI-generated paper passed blind peer review at ICLR 2025 ICBINB workshop** — avg 6.33/10 score from 6/7/6, above acceptance threshold (workshop 70% accept rate, 43 papers reviewed, would have been accepted). Automated Reviewer Table 1: Bal Acc 0.69 pre-cutoff / 0.66 post-cutoff vs Human 0.66; **F1 0.62 pre / 0.67 post vs Human 0.49** (AR significantly better)
-- AI4S regex extended (Co-Scientist/Research Agent category +the-ai-scientist|automated-reviewer|spacer|nuri|weaver + sakana-ai/+asteromorph/ prefix). Resources +2 PDFs. seed_sources.yaml +2 entries. **+5/+12/+15** = 1635/1420/7221. v=20260603b
+### 2026-06-04 Session 50 — OpenAI GPT-Rosalind + Google Gemma 4 12B (user-provided 3 links)
+- **OpenAI GPT-Rosalind** (Jun 3 update on GPT-5.5 backbone, life sciences). 4 NEW expert-judged benches: **LifeSciBench Overall** GPT-Rosalind **63.4** vs GPT-5.5 58.8 vs Gemini 3.1 Pro 51.7 vs Grok 4.3 33.7. **MedChemBench 27.5** vs 25.1 (7.2% fewer tokens). **GeneBench 21.6** vs 20.4 (31% fewer). **LabWorkBench 63.2** vs 55.8 (5.3% fewer). Research preview + Novo Nordisk partnership.
+- **Google Gemma 4 12B** (Jun 3 release) — NEW unified encoder-free multimodal architecture: vision/audio inputs flow directly into LLM backbone (no separate encoders). 11.95B/48 layers/256k ctx/262k vocab, hybrid sliding+global attention with p-RoPE, MTP drafters. 140+ langs. Headline scores: **MMLU Pro 77.2 / AIME 2026 77.5 / LCB v6 72.0 / Codeforces 1659 / GPQA 78.8 / MMMLU 83.4 / MMMU Pro 69.1 / OmniDoc 1.5 0.164 NED / MATH-Vision 79.7 / CoVoST 38.5 / FLEURS 0.069 WER**
+- 8 NEW benches: lifesci_bench_overall · medchembench · genebench · labworkbench · tau2_avg_3 · bbeh · covost_no_chinese · fleurs_wer_no_chinese. Propagation: FC FRONTIER_MODELS +gemma-4-12b · math +bbeh · agent +tau2_avg_3 · Medical AI NEW '🧬 Life Sciences Research' suite + Clinical LLMs +gpt-rosalind. Resources +2 / seed_sources +2. **+2/+8/+25** = 1637/1428/7246. v=20260604a
+
+### 2026-06-03 Session 49 — Spacer + The AI Scientist (compressed)
+- Spacer (Asteromorph, arxiv 2508.17661) — Nuri AUROC 0.737 / Weaver Overall 85.44 (158 papers). The AI Scientist (Sakana AI, Nature) — **🌍 WORLD FIRST: AI paper passed ICLR 2025 ICBINB blind peer review** (avg 6.33/10). Automated Reviewer F1 0.67 post-cutoff vs Human 0.49. **+5/+12/+15** = 1635/1420/7221.
 
 ### 2026-06-03 Session 48 — Microsoft MAI 7-model launch (compressed)
 - 7 NEW MAI (zero-distillation): MAI-Thinking-1 (35B/~1T MoE, AIME25 97.0/SWE-Bench Pro 52.8 ~ Opus 4.6) · MAI-Code-1-Flash (5B agentic, beats Haiku 4.5 across 11 benches: SWE-Bench Pro 51.2 vs 35.2 +16pp, IF Bench 75.0 vs 46.1) · MAI-Image-2.5+Flash (Arena T2I 1254 #3) · MAI-Transcribe-1.5 (AA WER 2.4%, FLEURS #1, 43 lang) · MAI-Voice-2+Flash. 11 NEW benches, 14 comparison cols. **🔧 BUG FIX**: exporter._export_sota() lower-better metric handling — fixes all audio/document SOTA. **+7/+11/+49** = 1630/1408/7206.
@@ -17,10 +20,8 @@
 ### 2026-06-02 Session 46b — Cosmos 3 + Qwen3.7-Plus deep re-mine (compressed)
 - Cosmos3-Edge HMMT25 Feb 76.3 vs Qwen3.5-2B 22.9 (3.3x improvement). Cosmos HUE per-dim/per-domain — **Cosmos3-Super DOMINATES AV 87.7 + Physics 91.5** among open+closed. Super-I2V Visual Integrity 94.2 SOTA. PAIBench-G T2V/I2V Domain+Quality split. SoundBench PQ Seedance-1.5-Pro 7.06 SOTA. Qwen3.7-Plus complete 69-bench coverage + 6 cross-comparison cols. 30 bench ID remaps, 18 NEW benches. **+0/+18/+98** = 1621/1396/7145.
 
-### 2026-06-02 Session 46 — NVIDIA Cosmos 3 + Qwen3.7-Plus GA (compressed)
-- **Cosmos 3** (27MB tech report, omnimodal MoT, Qwen3-VL init): 5 NEW models — cosmos3-edge/-super-text2image/-super-image2video/-nano-policy-droid. NEW Cosmos-HUE eval suite. SOTAs: UniGenBench 91.36 (AA T2I #1 open) · PAIBench-G T2V 80.0 / I2V 82.8 · Physics-IQ I2V 48.9 / V2V 63.4 BoN · HWB 71.9 · SoundBench SAV 8.35 · RoboLab 39.7 (RoboArena #1) · LIBERO-10 MT-init 97.4
-- **Qwen3.7-Plus** (1M ctx multimodal hybrid agent GA): SOTAs vs Qwen comparison cols — Terminal-Bench 2.0 70.3 / Deep-Planning 62.3 / MRCR-v2 128k 91.7 / ScreenSpot Pro 79.0 / AndroidWorld 81.0 / BabyVision 70.4 / OmniDocBench 1.5 91.4 / LingoQA 83.4 / VideoMMMU 85.4 / Ego3D 5.9 (lower)
-- 8-tab + dual-layer Cyber-Coding propagation; Resources +2 PDFs. **+5/+49/+103** = 1621/1378/7047. v=20260602a→b (audit fix)
+### 2026-06-02 Session 46 — Cosmos 3 + Qwen3.7-Plus GA (compressed)
+- Cosmos 3 omnimodal MoT (5 NEW models) — UniGenBench 91.36 (AA T2I #1 open) / PAIBench-G T2V 80.0 / I2V 82.8 / Physics-IQ V2V 63.4 BoN / RoboLab 39.7 (RoboArena #1). Qwen3.7-Plus 1M ctx — Terminal-Bench 2.0 70.3 / MRCR-v2 128k 91.7 / ScreenSpot Pro 79.0. **+5/+49/+103** = 1621/1378/7047.
 
 ### 2026-06-01 Session 44 — MiniMax M3 release (compressed)
 - MiniMax M3 native multimodal MSA 1M ctx open-weight, SWE-Bench Pro 59.0% (surpasses GPT-5.5+Gemini 3.1 Pro). 3 NEW benches: PostTrainBench/SWE-fficiency/KernelBench Hard. Biohub ESM 0 ingest. **+1/+3/+8** = 1606/1321/6908. v=20260601c

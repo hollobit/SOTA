@@ -41,6 +41,8 @@ var FrontierCompare = {
             'hmmt_2026_feb', 'imoanswerbench', 'polymath',
             // 2026-06-02 S48 — Microsoft MAI math/sci benches
             'hmmt_feb_2026', 'amo_bench_olympiad', 'frontier_math_t1_3',
+            // 2026-06-04 S50 — Gemma 4 12B BBEH
+            'bbeh',
             'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024'],
         agent: [
             'browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench',
@@ -58,7 +60,9 @@ var FrontierCompare = {
             // 2026-06-02 S46 Qwen3.7-Plus agent benches
             'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench', 'cowork_bench', 'vitabench',
             // 2026-06-02 S48 — Microsoft MAI Instruction Following suite
-            'if_bench_precise', 'advanced_if_rubric', 'robust_if_diverse'
+            'if_bench_precise', 'advanced_if_rubric', 'robust_if_diverse',
+            // 2026-06-04 S50 — Gemma 4 12B tau2 avg
+            'tau2_avg_3'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
@@ -214,6 +218,7 @@ var FrontierCompare = {
         'nvidia/nemotron-3-nano-omni',
         'reka/reka-edge-2603',
         'google/gemma-4-26b-a4b',
+        'google/gemma-4-12b',  // 2026-06-03 S50 — Gemma 4 12B unified encoder-free multimodal (T/I/A)
 
         // May 7 2026 — NVIDIA Nemotron Labs Elastic (3-in-1 nested 30B/23B/12B, ICML 2026)
         'nvidia/nemotron-labs-3-elastic-30b-a3b',

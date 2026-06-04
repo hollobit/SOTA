@@ -1,0 +1,305 @@
+{
+  "_meta": {
+    "session": "Session 50 — GPT-Rosalind + Gemma 4 12B",
+    "date": "2026-06-04",
+    "sources": [
+      "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/ (OpenAI GPT-Rosalind update, Jun 3 2026)",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemma-4-12b/ (Google Gemma 4 12B blog, Jun 3 2026)",
+      "https://huggingface.co/google/gemma-4-12B (HF Gemma 4 12B model card with benchmark table)"
+    ],
+    "notes": "(1) GPT-Rosalind: OpenAI life-sciences model update built on GPT-5.5 backbone, 4 NEW benches LifeSciBench/MedChemBench/GeneBench/LabWorkBench. Research preview to eligible orgs (Novo Nordisk partnership). (2) Gemma 4 12B: NEW unified encoder-free multimodal architecture — vision/audio inputs flow directly into LLM backbone (no separate encoders). 11.95B params, 48 layers, 256k ctx, 262k vocab, hybrid sliding+global attention, p-RoPE. Cutoff Jan 2025, 140+ languages.",
+    "collected_at": "2026-06-04"
+  },
+  "models": [
+    {
+      "id": "openai/gpt-rosalind",
+      "name": "GPT-Rosalind (Jun 2026 update)",
+      "vendor": "OpenAI",
+      "type": "proprietary",
+      "release_date": "2026-06-03",
+      "parameters": "Not disclosed (built on GPT-5.5 backbone)",
+      "context_window": null,
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-12b",
+      "name": "Gemma 4 12B",
+      "vendor": "Google",
+      "type": "open-weight",
+      "release_date": "2026-06-03",
+      "parameters": "11.95B (48 layers, 262k vocab, sliding window 1024 + full global hybrid attention, proportional RoPE)",
+      "context_window": 262144,
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "lifesci_bench_overall",
+      "name": "LifeSciBench Overall",
+      "category": "medical",
+      "description": "OpenAI LifeSciBench — externally expert-judged end-to-end life sciences benchmark across 6 workflow areas (Evidence Handling / Analysis / Design Optimization / Reasoning / Validation Operations / Translation).",
+      "introduced_by": "OpenAI GPT-Rosalind blog (Jun 3 2026)",
+      "metric": "accuracy"
+    },
+    {
+      "id": "medchembench",
+      "name": "MedChemBench",
+      "category": "medical",
+      "description": "Medicinal chemistry workflows — multimodal structure understanding, SAR prediction, ADME/potency/toxicity, multi-parameter lead optimization, retrosynthesis.",
+      "introduced_by": "OpenAI GPT-Rosalind blog",
+      "metric": "accuracy"
+    },
+    {
+      "id": "genebench",
+      "name": "GeneBench",
+      "category": "medical",
+      "description": "Genomics + quantitative biology agentic eval, long-horizon analysis across functional genomics, spatial transcriptomics, proteomics, epigenomics, applied genetics.",
+      "introduced_by": "OpenAI GPT-Rosalind blog",
+      "metric": "accuracy"
+    },
+    {
+      "id": "labworkbench",
+      "name": "LabWorkBench",
+      "category": "medical",
+      "description": "Real wet lab protocol assistance — perturbation-to-outcome linking, troubleshooting, optimization. Uses proprietary uncontaminated data.",
+      "introduced_by": "OpenAI GPT-Rosalind blog",
+      "metric": "accuracy"
+    },
+    {
+      "id": "tau2_avg_3",
+      "name": "τ²-Bench Average (3 splits)",
+      "category": "agent",
+      "description": "τ²-Bench average across airline/retail/telecom splits.",
+      "metric": "accuracy"
+    },
+    {
+      "id": "bbeh",
+      "name": "BIG-Bench Extra Hard (BBEH)",
+      "category": "reasoning",
+      "description": "BIG-Bench Extra Hard — harder reasoning subset of BIG-Bench.",
+      "metric": "accuracy"
+    },
+    {
+      "id": "covost_no_chinese",
+      "name": "CoVoST (excluding Chinese)",
+      "category": "audio",
+      "description": "Speech translation benchmark, excluding Chinese languages.",
+      "metric": "bleu"
+    },
+    {
+      "id": "fleurs_wer_no_chinese",
+      "name": "FLEURS WER (excluding Chinese, lower better)",
+      "category": "audio",
+      "description": "FLEURS multilingual ASR, average WER across non-Chinese languages.",
+      "metric": "wer_lower_better"
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-rosalind",
+      "benchmark": "lifesci_bench_overall",
+      "score": 63.4,
+      "unit": "%",
+      "_source": "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/",
+      "_note": "LifeSciBench Overall — GPT-Rosalind 63.4 (CI 61.75-64.96). Externally expert-judged."
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "lifesci_bench_overall",
+      "score": 58.8,
+      "unit": "%",
+      "_source": "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/",
+      "_note": "LifeSciBench Overall — GPT-5.5 baseline (CI 57.26-60.42)"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "lifesci_bench_overall",
+      "score": 51.7,
+      "unit": "%",
+      "_source": "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/",
+      "_note": "LifeSciBench Overall — Gemini 3.1 Pro (CI 50.00-53.20)"
+    },
+    {
+      "model": "xai/grok-4.3",
+      "benchmark": "lifesci_bench_overall",
+      "score": 33.7,
+      "unit": "%",
+      "_source": "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/",
+      "_note": "LifeSciBench Overall — Grok 4.3 (CI 33.30-34.20)"
+    },
+    {
+      "model": "openai/gpt-rosalind",
+      "benchmark": "medchembench",
+      "score": 27.5,
+      "unit": "%",
+      "_source": "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/",
+      "_note": "MedChemBench — GPT-Rosalind 27.5% vs GPT-5.5 25.1% (+2.4pp). Industry-leading. 7.2% fewer tokens than GPT-5.5."
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medchembench",
+      "score": 25.1,
+      "unit": "%",
+      "_source": "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/",
+      "_note": "MedChemBench — GPT-5.5 baseline"
+    },
+    {
+      "model": "openai/gpt-rosalind",
+      "benchmark": "genebench",
+      "score": 21.6,
+      "unit": "%",
+      "_source": "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/",
+      "_note": "GeneBench (agentic genomics/quant bio) — GPT-Rosalind 21.6 vs GPT-5.5 20.4 (+1.2pp). 31% fewer tokens."
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "genebench",
+      "score": 20.4,
+      "unit": "%",
+      "_source": "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/",
+      "_note": "GeneBench — GPT-5.5 baseline"
+    },
+    {
+      "model": "openai/gpt-rosalind",
+      "benchmark": "labworkbench",
+      "score": 63.2,
+      "unit": "%",
+      "_source": "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/",
+      "_note": "LabWorkBench (real wet lab protocols, proprietary uncontaminated data) — GPT-Rosalind 63.2 vs GPT-5.5 55.8 (+7.4pp). 5.3% fewer tokens."
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "labworkbench",
+      "score": 55.8,
+      "unit": "%",
+      "_source": "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/",
+      "_note": "LabWorkBench — GPT-5.5 baseline"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "mmlu_pro",
+      "score": 77.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "aime_2026",
+      "score": 77.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card — AIME 2026 (no tools)"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "lcb_v6",
+      "score": 72.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card — LiveCodeBench v6"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "codeforces_elo",
+      "score": 1659,
+      "unit": "elo",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "gpqa_diamond",
+      "score": 78.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "tau2_avg_3",
+      "score": 69.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card — τ²-Bench average over 3 splits"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "bbeh",
+      "score": 53.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card — BigBench Extra Hard"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "mmmlu",
+      "score": 83.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card — Multilingual MMLU"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "mmmu_pro",
+      "score": 69.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "omnidocbench_1_5",
+      "score": 0.164,
+      "unit": "ned_lower_better",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card — OmniDocBench 1.5 average edit distance (lower better)"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "math_vision",
+      "score": 79.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card — MATH-Vision"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "medxpertqa_mm",
+      "score": 48.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card — MedXPertQA MM"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "covost_no_chinese",
+      "score": 38.5,
+      "unit": "bleu",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card — CoVoST (excluding Chinese)"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "fleurs_wer_no_chinese",
+      "score": 0.069,
+      "unit": "wer_lower_better",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card — FLEURS WER (excl. Chinese), lower better. 6.9% WER."
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "mrcr_v2_8needle",
+      "score": 43.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B",
+      "_note": "Gemma 4 12B HF card — MRCR v2 8-needle 128k (average). Long context."
+    }
+  ]
+}
