@@ -1,24 +1,28 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 50 — GPT-Rosalind + Gemma 4 12B (2026-06-04)
-**1,637 models · 1,428 benchmarks · 7,246 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 51 — Leaderboard sweep + 7-tab audit fix (2026-06-04)
+**1,640 models · 1,430 benchmarks · 7,260 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-04 Session 50 — OpenAI GPT-Rosalind + Google Gemma 4 12B (user-provided 3 links)
-- **OpenAI GPT-Rosalind** (Jun 3 update on GPT-5.5 backbone, life sciences). 4 NEW expert-judged benches: **LifeSciBench Overall** GPT-Rosalind **63.4** vs GPT-5.5 58.8 vs Gemini 3.1 Pro 51.7 vs Grok 4.3 33.7. **MedChemBench 27.5** vs 25.1 (7.2% fewer tokens). **GeneBench 21.6** vs 20.4 (31% fewer). **LabWorkBench 63.2** vs 55.8 (5.3% fewer). Research preview + Novo Nordisk partnership.
-- **Google Gemma 4 12B** (Jun 3 release) — NEW unified encoder-free multimodal architecture: vision/audio inputs flow directly into LLM backbone (no separate encoders). 11.95B/48 layers/256k ctx/262k vocab, hybrid sliding+global attention with p-RoPE, MTP drafters. 140+ langs. Headline scores: **MMLU Pro 77.2 / AIME 2026 77.5 / LCB v6 72.0 / Codeforces 1659 / GPQA 78.8 / MMMLU 83.4 / MMMU Pro 69.1 / OmniDoc 1.5 0.164 NED / MATH-Vision 79.7 / CoVoST 38.5 / FLEURS 0.069 WER**
-- 8 NEW benches: lifesci_bench_overall · medchembench · genebench · labworkbench · tau2_avg_3 · bbeh · covost_no_chinese · fleurs_wer_no_chinese. Propagation: FC FRONTIER_MODELS +gemma-4-12b · math +bbeh · agent +tau2_avg_3 · Medical AI NEW '🧬 Life Sciences Research' suite + Clinical LLMs +gpt-rosalind. Resources +2 / seed_sources +2. **+2/+8/+25** = 1637/1428/7246. v=20260604a
+### 2026-06-04 Session 51 — Leaderboard sweep + 7-tab audit fix (S50 follow-up)
+- **AAII NEW**: minimax/m3 **55** (#1/217 in class), alibaba/qwen3.7-plus **53** (S46 release now AA-evaluated). Epoch ECI no new vs S47.
+- **3 NEW arena.ai models**: Reve 2.0 (T2I #2, Elo **1280**), Wan 2.7 T2V (T2V Arena #3, **1385**), Grok Imagine Video 1.5 Preview 720p (I2V Arena #1, **1473**)
+- 2 NEW benches: arena_i2v_elo / arena_t2v_elo (top-5 each ingested). arena_image_to_webdev_elo top-3 / arena_search_elo top-4 refresh. MAI-Image-2.5 confirmed arena_image_edit_elo #2 (1401)
+- **7-tab audit fix**: Cyber-Coding FRONTIER +gemma-4-12b (S50 silent gap), Sovereign CN +wan2.7-t2v, Physical AI WFM +wan2.7-t2v +grok-imagine-1.5-720p + World Model Quality +arena_i2v/t2v_elo. **+3/+2/+14** = 1640/1430/7260. v=20260604b
+
+### 2026-06-04 Session 50 — GPT-Rosalind + Gemma 4 12B (compressed)
+- GPT-Rosalind (GPT-5.5 backbone) — 4 NEW life-sci benches LifeSciBench 63.4 / MedChem 27.5 / Gene 21.6 / LabWork 63.2. Gemma 4 12B encoder-free unified multimodal (11.95B/256k ctx) — MMLU Pro 77.2 / AIME26 77.5 / GPQA 78.8 / FLEURS 0.069 WER. 8 NEW benches. **+2/+8/+25** = 1637/1428/7246.
 
 ### 2026-06-03 Session 49 — Spacer + The AI Scientist (compressed)
 - Spacer (Asteromorph, arxiv 2508.17661) — Nuri AUROC 0.737 / Weaver Overall 85.44 (158 papers). The AI Scientist (Sakana AI, Nature) — **🌍 WORLD FIRST: AI paper passed ICLR 2025 ICBINB blind peer review** (avg 6.33/10). Automated Reviewer F1 0.67 post-cutoff vs Human 0.49. **+5/+12/+15** = 1635/1420/7221.
 
-### 2026-06-03 Session 48 — Microsoft MAI 7-model launch (compressed)
-- 7 NEW MAI (zero-distillation): MAI-Thinking-1 (35B/~1T MoE, AIME25 97.0/SWE-Bench Pro 52.8 ~ Opus 4.6) · MAI-Code-1-Flash (5B agentic, beats Haiku 4.5 across 11 benches: SWE-Bench Pro 51.2 vs 35.2 +16pp, IF Bench 75.0 vs 46.1) · MAI-Image-2.5+Flash (Arena T2I 1254 #3) · MAI-Transcribe-1.5 (AA WER 2.4%, FLEURS #1, 43 lang) · MAI-Voice-2+Flash. 11 NEW benches, 14 comparison cols. **🔧 BUG FIX**: exporter._export_sota() lower-better metric handling — fixes all audio/document SOTA. **+7/+11/+49** = 1630/1408/7206.
+### 2026-06-03 Session 48 — MS MAI 7-model launch (compressed)
+- 7 NEW MAI: MAI-Thinking-1 35B/~1T MoE (SWE-Bench Pro 52.8 ~ Opus 4.6), MAI-Code-1-Flash 5B (beats Haiku 4.5 across 11 benches), MAI-Image-2.5+Flash, MAI-Transcribe-1.5 (AA WER 2.4%, 43 lang), MAI-Voice-2+Flash. 11 NEW benches. **🔧 BUG FIX**: exporter lower-better SOTA. **+7/+11/+49** = 1630/1408/7206.
 
 ### 2026-06-03 Session 47 — Leaderboard sweep (compressed)
-- Opus 4.8 AAII 61 (#1, highest ever) · Gemini 3.5 Flash ECI 156.31 · Cosmos3-Super-T2I AA T2I Arena 1243 (#4 overall, #1 open-weight) · arena.ai text/webdev/vision/image-edit Elo refresh · DeepSeek V4 Flash High AAII 45→46. text_arena_elo NEW. **+0/+1/+12** = 1621/1397/7157.
+- Opus 4.8 AAII 61 (#1 ever) / Gemini 3.5 Flash ECI 156.31 / Cosmos3-Super-T2I 1243 / DeepSeek V4 Flash High AAII 45→46. text_arena_elo NEW. **+0/+1/+12** = 1621/1397/7157.
 
 ### 2026-06-02 Session 46b — Cosmos 3 + Qwen3.7-Plus deep re-mine (compressed)
-- Cosmos3-Edge HMMT25 Feb 76.3 vs Qwen3.5-2B 22.9 (3.3x improvement). Cosmos HUE per-dim/per-domain — **Cosmos3-Super DOMINATES AV 87.7 + Physics 91.5** among open+closed. Super-I2V Visual Integrity 94.2 SOTA. PAIBench-G T2V/I2V Domain+Quality split. SoundBench PQ Seedance-1.5-Pro 7.06 SOTA. Qwen3.7-Plus complete 69-bench coverage + 6 cross-comparison cols. 30 bench ID remaps, 18 NEW benches. **+0/+18/+98** = 1621/1396/7145.
+- Cosmos3-Edge HMMT25 76.3 vs Qwen3.5-2B 22.9. Cosmos HUE per-dim — **Cosmos3-Super AV 87.7 / Physics 91.5 SOTA**. Qwen3.7-Plus complete 69-bench + 6 comparison cols. 18 NEW benches. **+0/+18/+98** = 1621/1396/7145.
 
 ### 2026-06-02 Session 46 — Cosmos 3 + Qwen3.7-Plus GA (compressed)
 - Cosmos 3 omnimodal MoT (5 NEW models) — UniGenBench 91.36 (AA T2I #1 open) / PAIBench-G T2V 80.0 / I2V 82.8 / Physics-IQ V2V 63.4 BoN / RoboLab 39.7 (RoboArena #1). Qwen3.7-Plus 1M ctx — Terminal-Bench 2.0 70.3 / MRCR-v2 128k 91.7 / ScreenSpot Pro 79.0. **+5/+49/+103** = 1621/1378/7047.
@@ -36,25 +40,22 @@
 - HF grew 6→86 baselines. 3 NEW video-gen: Veo 3.1 / Wan 2.2 / Wan 2.6 #2. Physical AI +16 sub-metrics. **+1/+16/+131** = 1591/1298/6866.
 
 ### 2026-05-31 Session 40 — Deep re-mine round 2 (compressed)
-- Opus 4.8 sys card unmined (+7 NEW: AutomationBench/BioPipelineBench/BioMysteryBench Human-Solvable/GMMLU 90.4/MILU 90.3/INCLUDE 87.6/AECI 155.5 + 3 net-new). SkillOpt 2605.23904 (+SearchQA/LiveMath, GPT-5.5 +29.3pp uplift). WorldArena T2 Policy public (Ctrl-World 0.986 SOTA). AA CritPT/MMLU-Pro Playwright full charts (+17 net-new). Vellum CONFIRMED Resources-only. **+0/+10/+35** = 1590/1282/6735. v=20260531a
+- Opus 4.8 sys card unmined +7 NEW + SkillOpt + WorldArena T2 + AA Playwright. **+0/+10/+35** = 1590/1282/6735.
 
 ### 2026-05-30 Session 39 — Deep re-mine S33-S38 (compressed)
-- User completeness audit. 7 models (gpt-5.3/nemotron-3-120b/rex-omni-3b/seed1.5-vl/cosmos-transfer2.5-2b/wan-2.2-fun-a14b/5b-control). 13 benches (LocateAnything 6, BenchCAD 3, FACTS multimodal, PAI-Bench-C quality). MAJOR BACKFILL: FACTS grounding 1→15, CompassRank 6 benches. **+7/+13/+143** = 1590/1272/6700.
+- 7 models + 13 benches. MAJOR BACKFILL FACTS+CompassRank. **+7/+13/+143** = 1590/1272/6700.
 
 ### 2026-05-30 Session 38 — 13-link multi-source (compressed)
-- 9 models (Cosmos3-Super/Nano, Cosmos-Reason2-32B/8B, Ctrl-World, IRASim, SmolVLA, Wan-2.2-I2V-A14B, Qwen3-VL-235B). 6 benches (WorldArena, PAI-Bench-G/U, PhAIL v1.0, MMLU-Pro AA, IPhO 2025). Cosmos3-Super PAI-Bench-G 83.9 first to exceed Source oracle 82.6. **+9/+6/+21** = 1583/1259/6557.
+- 9 models + 6 benches. Cosmos3-Super PAI-Bench-G 83.9 SOTA. **+9/+6/+21** = 1583/1259/6557.
 
-### 2026-05-30 Session 37 — 17-link multi-source ingest (compressed)
-- gemini-3-flash-preview + 8 sovereign-CN VLMs (JT3.5/SenseNova-V6.5-Pro/TeleMM-2.0±Thinking/InternVL3-78B/MiniCPM-o-4.5/Ovis2.5-9B/Step-1o). Benches: 3 CAD code-gen (CADBench MIT / BenchCAD UVA-Rice / Text2CAD L1-L4) + SCADBench ELO arena (gemini-3.1-pro-preview 1721 SOTA) + FACTS suite (Gemini 3 Pro 68.8 SOTA) + CompassRank multimodal (JT3.5 82.7 sovereign-CN SOTA) + T-Bench 2.1 net-new. SKIP: Modelrift/world-models/GigaBrain/Kilo TB2/official SWE/T-Bench v1.0/Vellum (Resources). **+9/+8/+58**=1574/1253/6536. v=20260530a
+### 2026-05-30 Session 37 — 17-link multi-source (compressed)
+- gemini-3-flash-preview + 8 CN VLMs + CAD benches + FACTS/CompassRank. **+9/+8/+58** = 1574/1253/6536.
 
-### 2026-05-29 Session 36 — 10-link multi-source analysis (compressed)
-- AgentDoG 1.5-4B (Shanghai agent-safety) · Gemini Embedding 2 (MTEB-Code 84.0 SOTA) · LocateAnything-3B (NVIDIA, ScreenSpot-Pro 60.3 SOTA@3B) · LFM2.5-8B-A1B (Liquid MoE). Benches: R-Judge/ATBench, Offensive Cyber Time Horizons (Lyptus — GPT-5.5 P50 5.1h saturates), MTEB-Code/CoIR/MSEB embedding, vision grounding, AA-Omniscience, AutoScientists BioML sub-domains + TDC-hERG. De-dup: 2605.27365=LocateAnything, 2605.26302=AgingBench (S30 covered). **+4/+18/+46**=1565/1245/6478. v=20260529f
+### 2026-05-29 Session 36 — 10-link multi-source (compressed)
+- AgentDoG 1.5-4B + Gemini Embedding 2 + LocateAnything-3B + LFM2.5. R-Judge/ATBench/Offensive Cyber/MTEB-Code/AutoScientists BioML. **+4/+18/+46** = 1565/1245/6478.
 
-### 2026-05-29 Session 35 — Resolve stale monitoring TODOs (compressed — see HISTORY.md)
-- Re-swept 6 cc:TODOs. Only Video-MME + MMAU ingestable (Qwen3.5-Omni 2604.15804 + Step-Audio-R1.5 2604.25719). MMAU first coverage (Omni-Plus 82.2 SOTA), Video-MME +2 2026-frontier, video_mme_audio NEW bench (Gemini-3.1 Pro 89.0). 3 still blocked, dates refreshed. **+1/+1/+12** = 1561/1227/6432. v=20260529e
-
-### 2026-05-29 Session 34 — Leaderboard sweep (new models)
-- Swept llm-stats + AA + WhatLLM. All May-2026 launches already tracked except **SubQ 1M-Preview** (Subquadratic, May 5) — first sub-quadratic frontier LLM (SSA, 12M ctx). Vendor-reported (paper pending): RULER@128K 95.0 ($8 vs Opus 4.6 94.8 @ ~$2,600 = 325x cheaper) / MRCR v2@1M 65.9 / SWE-Verified 81.8. ruler_128k NEW bench (SubQ SOTA). Menus: Frontier+Agent+Resources. **+1/+1/+4**=1560/1226/6420. v=20260529d
+### 2026-05-29 Sessions 34-35 (compressed)
+- S35 Qwen3.5-Omni + Step-Audio-R1.5 / MMAU NEW. S34 SubQ 1M-Preview Subquadratic (RULER@128K 95.0). **+2/+2/+16** = 1561/1227/6432.
 
 ### 2026-05-28 ~ 29 Sessions 31-33 (compressed — see HISTORY.md)
 - **S33** Claude Opus 4.8 244pp card (47 scores SWE-Verified 88.6/USAMO 96.7/GDPval-AA 1890 ELO; Mythos leads cyber), AutoScientists BioML 74.40, SkillOpt headline. 33b/c sync + §8.11/12/3.3.4 mine (ChartMuseum 89.7). **+3/+37/+146** = 1559/1225/6416 v=20260529a-c
@@ -69,7 +70,7 @@
 **CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
 
 ### 2026-05-23 ~ 27 Sessions 21-25 (compressed — see HISTORY.md)
-- **S25** Anthropic Glasswing/CVD (Mythos OSS vulns 90.6% TPR, Firefox 271; **+0/+10/+11** v=20260527a). **S24** menu propagation (6 JS patched, 0 DB delta v=20260526c). **S23** 7 user refs (Fara1.5, Asa-W1 HealthBench Pro 80.2; **+11/+8/+35** v=20260526b). **S22** arena.ai refresh (**+31/0/+48** v=20260526a). **S21** arena.ai 12-leaderboard sweep (+8 arena IDs, GPT-Image-2 T2I 1389 SOTA; **+16/+8/+76** v=20260523a)
+- **S25-S21** Glasswing/CVD + menu propagation + 7 user refs + arena.ai 12-leaderboard sweep. **+58/+26/+170**
 
 ### 2026-05-22 Session 20 cont'd 6 — Qwen3.7-Max official split from preview ID
 - Split alibaba/qwen3.7-max (May 20 official, 45 scores) from qwen3.7-max-preview (May 14 arena, Elo 1475 only). SQL migrated 45 rows + JSON re-attributed. Menu: sovereign + frontier-compare. **+1/0/0**=1471/1106/6008. v=20260522a
@@ -106,8 +107,7 @@
 - 4 sub-section UI: SOTA Watch + Categories + Frontier-vs-AgentProduct-vs-Edge Compare + Composite Leaderboard
 - Strict-attribution maintained for all 24 new score rows
 
-## Earlier sessions (compressed — see HISTORY.md for full details)
-- **2026-04-26~28 Medical AI 10+ batches**: 750 models / 188 benches / 1500 scores / 30 categories / 32 sub-suites / BMT registry 63%. **2026-04-25 7 batches**: sovereign param-scale (+232 models, 15 region cards), Physical AI/World Models. **2026-04-24**: GPT-5.5/Pro, Kimi K2.6, Qwen3.6-27B. **2026-04-23**: Sovereign timeline+map. **Phase 1-9 (04-16/17/18)**: 67 models/95 benches/721 scores. **CI infra (04-24/25)**: gh-pages rsync fix, auto cache-bust, click-modal, sortable cols
+## Earlier sessions (compressed — see HISTORY.md)
 
 ---
 
@@ -155,8 +155,7 @@
 
 ## Next Steps (향후 작업)
 
-### Completed (2026-04-18 batches — full details in HISTORY.md)
-데이터 수집 자동화 (discover/collect, GitHub Actions discovery·benchmark-update·librarian-weekly) · 대시보드 개선 (Cyber & Coding bar chart, category pill-filter, head-to-head radar, PDF source linking) · 추가 데이터 소스 (Grok-4.20, GPT-5.4 System Card, Gemini 3.1 Pro) · 분석 기능 (correlation heatmap, SOTA handover log, intelligence-vs-price scatter) · BMT batch-1 P1–P11 (26 benchmarks, 33 frontier scores) · `/design-review` follow-up (22 atomic commits: IA 재구성, Tailwind 빌드, typography ramp, motion 언어)
+### Completed (compressed — see HISTORY.md)
 
 ### cc:TODO — Watch for future publications (external dependency) — last full re-sweep 2026-05-29 (Session 35)
 - [x] MRCR v2 8-needle — ingested 2026-05-08 (Opus 4.6 93.0 / GPT-5.5 74.0 / Gemini 3.x)

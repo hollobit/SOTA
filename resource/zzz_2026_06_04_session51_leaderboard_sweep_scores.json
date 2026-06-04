@@ -1,0 +1,256 @@
+{
+  "_meta": {
+    "session": "Session 51 — Leaderboard sweep (S50 follow-up)",
+    "date": "2026-06-04",
+    "sources": [
+      "https://artificialanalysis.ai/leaderboards/models (AAII top-30 sweep)",
+      "https://artificialanalysis.ai/models/minimax-m3 (AAII profile)",
+      "https://artificialanalysis.ai/models/qwen3-7-plus (AAII profile)",
+      "https://artificialanalysis.ai/image/leaderboard/text-to-image (AA T2I Arena)",
+      "https://arena.ai/leaderboard (12 arena boards)",
+      "https://epoch.ai/data/eci_scores.csv (Epoch ECI)"
+    ],
+    "notes": "Routine S47-style leaderboard sweep. KEY: AAII NEW for minimax/m3 (55) + qwen3.7-plus (53). 3 NEW models from arena.ai sweep (reve-2.0 T2I #2, wan2.7-t2v T2V #3, grok-imagine-video-1.5-preview-720p I2V #1). NEW benches arena_i2v_elo + arena_t2v_elo. Epoch ECI no new entries vs S47.",
+    "collected_at": "2026-06-04"
+  },
+  "models": [
+    {
+      "id": "reve/reve-2.0",
+      "name": "Reve 2.0",
+      "vendor": "Reve",
+      "type": "proprietary",
+      "release_date": "2026-05-15",
+      "modalities": [
+        "image-generation"
+      ]
+    },
+    {
+      "id": "alibaba/wan2.7-t2v",
+      "name": "Wan 2.7 T2V",
+      "vendor": "Alibaba",
+      "type": "open-weight",
+      "release_date": "2026-05-30",
+      "modalities": [
+        "video-generation"
+      ]
+    },
+    {
+      "id": "xai/grok-imagine-video-1.5-preview-720p",
+      "name": "Grok Imagine Video 1.5 Preview 720p",
+      "vendor": "xAI",
+      "type": "proprietary",
+      "release_date": "2026-05-25",
+      "modalities": [
+        "video-generation"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "arena_i2v_elo",
+      "name": "arena.ai Image-to-Video Arena Elo",
+      "category": "video-generation",
+      "description": "arena.ai I2V Arena blind-vote Elo."
+    },
+    {
+      "id": "arena_t2v_elo",
+      "name": "arena.ai Text-to-Video Arena Elo",
+      "category": "video-generation",
+      "description": "arena.ai T2V Arena blind-vote Elo."
+    }
+  ],
+  "scores": [
+    {
+      "model": "minimax/m3",
+      "benchmark": "aa_intelligence_index",
+      "score": 55.0,
+      "unit": "score_0_100",
+      "_source": "https://artificialanalysis.ai/models/minimax-m3",
+      "_note": "AAII 55 — confirmed via AA profile, #1/217 in class for intelligence+pricing"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "aa_intelligence_index",
+      "score": 53.0,
+      "unit": "score_0_100",
+      "_source": "https://artificialanalysis.ai/models/qwen3-7-plus",
+      "_note": "AAII 53 — confirmed via AA profile (S46 release got AA-evaluated)"
+    },
+    {
+      "model": "microsoft/mai-image-2.5",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1401.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "MAI-Image-2.5 #2 on Image Edit Arena, NEW arena_image_edit_elo placement (S48 had MS internal claim, now arena.ai validates)"
+    },
+    {
+      "model": "openai/gpt-image-2",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1465.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "GPT Image 2 (medium) — DB 1467 → 1465 (tiny drift)"
+    },
+    {
+      "model": "openai/chatgpt-images-2.0",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1390.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "ChatGPT Images 2.0 — DB 1392 → 1390 (tiny drift)"
+    },
+    {
+      "model": "google/nano-banana-pro",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1388.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Nano Banana Pro — DB 1387 → 1388"
+    },
+    {
+      "model": "reve/reve-2.0",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1280.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Reve 2.0 NEW #2 entry on arena.ai T2I Arena 1280 Elo"
+    },
+    {
+      "model": "xai/grok-imagine-video-1.5-preview-720p",
+      "benchmark": "arena_i2v_elo",
+      "score": 1473.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Grok Imagine Video 1.5 Preview 720p #1 on I2V Arena"
+    },
+    {
+      "model": "bytedance/dreamina-seedance-2.0-720p",
+      "benchmark": "arena_i2v_elo",
+      "score": 1467.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Dreamina Seedance 2.0 720p #2 I2V"
+    },
+    {
+      "model": "alibaba-ath/happyhorse-1.0",
+      "benchmark": "arena_i2v_elo",
+      "score": 1443.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Happyhorse 1.0 #3 I2V"
+    },
+    {
+      "model": "xai/grok-imagine-video",
+      "benchmark": "arena_i2v_elo",
+      "score": 1421.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Grok Imagine Video 720p #4 I2V"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "arena_i2v_elo",
+      "score": 1397.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Veo 3.1 audio #5 I2V"
+    },
+    {
+      "model": "bytedance/dreamina-seedance-2.0-720p",
+      "benchmark": "arena_t2v_elo",
+      "score": 1463.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Dreamina Seedance 2.0 720p #1 T2V Arena"
+    },
+    {
+      "model": "alibaba-ath/happyhorse-1.0",
+      "benchmark": "arena_t2v_elo",
+      "score": 1440.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Happyhorse 1.0 #2 T2V"
+    },
+    {
+      "model": "alibaba/wan2.7-t2v",
+      "benchmark": "arena_t2v_elo",
+      "score": 1385.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Wan 2.7 T2V NEW #3 T2V Arena entry"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "arena_t2v_elo",
+      "score": 1370.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Veo 3.1 audio 1080p #4 T2V"
+    },
+    {
+      "model": "openai/sora-2",
+      "benchmark": "arena_t2v_elo",
+      "score": 1367.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Sora 2 Pro #5 T2V — using sora-2 canonical id"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7-thinking",
+      "benchmark": "arena_image_to_webdev_elo",
+      "score": 1581.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Image-to-WebDev Arena #1"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "arena_image_to_webdev_elo",
+      "score": 1557.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Image-to-WebDev Arena #2"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "arena_image_to_webdev_elo",
+      "score": 1556.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Image-to-WebDev Arena #3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "arena_search_elo",
+      "score": 1251.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Opus 4.6 Search #1 arena Search"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "arena_search_elo",
+      "score": 1239.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "GPT-5.5-search #2"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "arena_search_elo",
+      "score": 1237.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Opus 4.7 #3"
+    },
+    {
+      "model": "baidu/ernie-5.1",
+      "benchmark": "arena_search_elo",
+      "score": 1226.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "Ernie 5.1 #4 — sovereign CN entry on Search Arena"
+    }
+  ]
+}
