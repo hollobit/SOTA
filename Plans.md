@@ -1,16 +1,18 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 51 — Leaderboard sweep + 7-tab audit fix (2026-06-04)
-**1,640 models · 1,430 benchmarks · 7,260 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 52 — AutoMedBench + K-BrowseComp (2026-06-04)
+**1,642 models · 1,439 benchmarks · 7,324 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-04 Session 51 — Leaderboard sweep + 7-tab audit fix (S50 follow-up)
-- **AAII NEW**: minimax/m3 **55** (#1/217 in class), alibaba/qwen3.7-plus **53** (S46 release now AA-evaluated). Epoch ECI no new vs S47.
-- **3 NEW arena.ai models**: Reve 2.0 (T2I #2, Elo **1280**), Wan 2.7 T2V (T2V Arena #3, **1385**), Grok Imagine Video 1.5 Preview 720p (I2V Arena #1, **1473**)
-- 2 NEW benches: arena_i2v_elo / arena_t2v_elo (top-5 each ingested). arena_image_to_webdev_elo top-3 / arena_search_elo top-4 refresh. MAI-Image-2.5 confirmed arena_image_edit_elo #2 (1401)
-- **7-tab audit fix**: Cyber-Coding FRONTIER +gemma-4-12b (S50 silent gap), Sovereign CN +wan2.7-t2v, Physical AI WFM +wan2.7-t2v +grok-imagine-1.5-720p + World Model Quality +arena_i2v/t2v_elo. **+3/+2/+14** = 1640/1430/7260. v=20260604b
+### 2026-06-04 Session 52 — Medical auto-research + Korean web browsing (user 2 arxiv PDFs)
+- **AutoMedBench (arxiv 2606.01961, UCSC+NVIDIA)** — workflow-aware medical auto-research agent benchmark. 24 tasks × 5 tracks × 2 tiers, S1-S5 stage workflow. **Opus 4.6 66.5 #1** (vs Qwen3.5 51.2 = 15.3pt spread). Per-track: Opus 4.6 wins Seg 67.2/Enh 78.3/RepGen 55.8/Det 85.7; **GLM-5 wins VQA 64.0**. Cost $1.83-19.77/run. 38.1% submission + 37.7% verification failures dominate
+- **K-BrowseComp (arxiv 2606.02404)** — Korean web browsing 400Q (300 Verified + 100 Synthetic). Verified SOTA **GPT-5.5 45.67%**. Korea's Proprietary AI Foundation Model program models substantially weaker: K-EXAONE-236B 10.33 / **A.X 4.0 5.33 / HCX-SEED-Think-32B 2.33 / Kanana-2 0.00**. Best calibration: DeepSeek-V4-Pro 17.72%
+- 3 NEW models (sk-telecom/a.x-4.0 / naver/hcx-seed-think-32b / zhipu/glm-5). 9 NEW benches. Propagation: Medical AI NEW '🩻 AutoMedBench' suite · Sovereign Korea +2 · Agent +3 K-BrowseComp benches · FC/Cyber-Coding agent benches · Resources +2. **+3/+9/+64** = 1642/1439/7324. v=20260604c
+
+### 2026-06-04 Session 51 — Leaderboard sweep + 7-tab audit fix (compressed)
+- AAII NEW: minimax/m3 55, qwen3.7-plus 53. 3 NEW arena.ai models: Reve 2.0 T2I #2 (1280), Wan 2.7 T2V (1385), Grok Imagine Video 1.5 I2V #1 (1473). 2 NEW benches arena_i2v/t2v_elo. Audit fix Cyber-Coding +gemma-4-12b, Sovereign+Physical AI +wan2.7-t2v. **+3/+2/+14** = 1640/1430/7260.
 
 ### 2026-06-04 Session 50 — GPT-Rosalind + Gemma 4 12B (compressed)
-- GPT-Rosalind (GPT-5.5 backbone) — 4 NEW life-sci benches LifeSciBench 63.4 / MedChem 27.5 / Gene 21.6 / LabWork 63.2. Gemma 4 12B encoder-free unified multimodal (11.95B/256k ctx) — MMLU Pro 77.2 / AIME26 77.5 / GPQA 78.8 / FLEURS 0.069 WER. 8 NEW benches. **+2/+8/+25** = 1637/1428/7246.
+- GPT-Rosalind 4 life-sci benches (LifeSciBench 63.4 SOTA). Gemma 4 12B encoder-free multimodal (MMLU Pro 77.2). 8 NEW benches. **+2/+8/+25** = 1637/1428/7246.
 
 ### 2026-06-03 Session 49 — Spacer + The AI Scientist (compressed)
 - Spacer (Asteromorph, arxiv 2508.17661) — Nuri AUROC 0.737 / Weaver Overall 85.44 (158 papers). The AI Scientist (Sakana AI, Nature) — **🌍 WORLD FIRST: AI paper passed ICLR 2025 ICBINB blind peer review** (avg 6.33/10). Automated Reviewer F1 0.67 post-cutoff vs Human 0.49. **+5/+12/+15** = 1635/1420/7221.
@@ -75,13 +77,8 @@
 ### 2026-05-22 Session 20 cont'd 6 — Qwen3.7-Max official split from preview ID
 - Split alibaba/qwen3.7-max (May 20 official, 45 scores) from qwen3.7-max-preview (May 14 arena, Elo 1475 only). SQL migrated 45 rows + JSON re-attributed. Menu: sovereign + frontier-compare. **+1/0/0**=1471/1106/6008. v=20260522a
 
-### 2026-05-21 Session 20 cont'd 3-5 (compressed — see HISTORY.md)
-- **cont'd 5** Qwen3.7 table completion (96 cross-vendor cells, +96 scores). **cont'd 4** Qwen3.7 deep dive (YC-Bench, KernelBench L3, Qwen-RobotClaw/Nav, AAII 56.58; +3 models/+3 benches/+10). **cont'd 3** OpenAI Deployment Safety Hub (GPT-5.4 Thinking/Mini, GPT-5.5 Instant first High-Capability, ChatGPT Images 2.0; +2 models/+13 benches/+40). v=20260521d-f
-
-### 2026-05-21 Session 20 (parts 1-2, compressed — see HISTORY.md)
-- **cont'd 2 — Qwen3.7-Max launch**: 41-bench × 6-model panel ingested. +12 new benches (qwen_webdev / svg / claw / cowork_bench / vitabench / spreadsheet_bench_v1 / kernelbench_l3 / worldbench / maxife / mmlu_prox / nova_63 / polymath). **+72 scores**. AAII 57 (#1-tier). Wins 18/41 incl. MRCR-128k 90.4 (beats Opus 4.6 Max long-context). v=20260521c
-- **cont'd — Cyber audit + Palisade GPT-5 CTFs**: Mythos already comprehensive (47 scores); GPT-5.5/5.4-Cyber non-public; Palisade arxiv 2511.04860 adds GPT-5 Pro ASIS Quals 93rd / CorCTF 90th / snakeCTF 92nd percentile. **+3 benches / +3 scores**. v=20260521b
-- **FactoryBench (arxiv 2605.07675)** — industrial robot Pearl's-ladder 4-level reasoning (ETH+UC3M+KTH May 8 2026). 6 LLMs × 4 levels = **+4 benches / +24 scores**. Sonnet 4.6 dominates L1-L3 but L4 collapses 10x; GPT-5.1 alone clears L4 at 17.7%. v=20260521a
+### 2026-05-21 Session 20 (compressed)
+- Qwen3.7-Max launch + Qwen3.7 deep dive + OpenAI Safety Hub + Mythos cyber + Palisade GPT-5 CTFs + FactoryBench (industrial robot 4-level). **+5/+72/+150**
 
 ### 2026-05-19 ~ 20 Sessions 18-19 (compressed — see HISTORY.md for full details)
 - **Session 19** (May 20): Gemini 3.5 Flash + Omni Flash launch (14 benches) + TextArena/arena.ai + Qwen 3.7 Max/Plus preview + 35 cross-model triples from Gemini PDF page-4 comparison table (GPT-5.5 MRCR 128k 94.8 top, Opus 4.7 59.3 weakness) + SWE-Bench Pro correction + changelog PDF export

@@ -199,6 +199,8 @@ var Agent = (function() {
                 'qwen_world_bench', 'cowork_bench', 'vitabench', 'clawval_mm', 'skillsbench',
                 // 2026-06-02 S48 — Microsoft MAI Instruction Following + Frontier reasoning benches
                 'if_bench_precise', 'advanced_if_rubric', 'robust_if_diverse', 'frontier_math_t1_3',
+                // 2026-06-04 S52 — K-BrowseComp Korean web browsing agent
+                'k_browsecomp_verified', 'k_browsecomp_synthetic', 'k_browsecomp_calibration_error',
                 'graphwalks_bfs_256k', 'graphwalks_parents_256k', 'graphwalks_bfs_1m', 'graphwalks_parents_1m',
                 // 2026-05-29 Session 34 — SubQ long-context (RULER@128K)
                 'ruler_128k'

@@ -2050,3 +2050,13 @@ sources:
     type: vendor_model_card
     format: hf_card
     notes: "Jun 3 2026 — NEW architecture: NO multimodal encoders. Vision/audio inputs flow directly into LLM backbone via lightweight embedding (single matrix multiply + positional + norm). Raw audio waveform projected to same dim as text tokens. 11.95B params, 48 layers, 256k ctx, 262k vocab, hybrid sliding-window+global attention with p-RoPE. Jan 2025 cutoff, 140+ langs. Scores: MMLU Pro 77.2 / AIME 2026 77.5 / LCB v6 72.0 / Codeforces 1659 ELO / GPQA 78.8 / τ²-Bench avg-3 69.0 / BBEH 53.0 / MMMLU 83.4 / MMMU Pro 69.1 / OmniDocBench 1.5 0.164 NED / MATH-Vision 79.7 / MedXPertQA MM 48.7 / CoVoST 38.5 / FLEURS 0.069 WER (excl. Chinese) / MRCR-v2 8-needle 128k 43.4. Multi-Token Prediction (MTP) drafters for latency."
+  - url: "https://arxiv.org/abs/2606.01961"
+    name: "AutoMedBench — Medical Auto-Research Agents (UCSC + NVIDIA)"
+    type: benchmark_dataset
+    format: arxiv_pdf
+    notes: "Workflow-aware medical auto-research agent benchmark. 24 tasks × 5 tracks (Segmentation/Enhancement/VQA/Report-Gen/Lesion Detection) × 2 difficulty tiers (Lite/Standard). Unified S1-S5 stage workflow: Plan/Setup/Validate/Inference/Submit. 33 agent turns avg/run. Overall scoring: 50% agentic (workflow) + 50% task. Leaderboard: Opus 4.6 66.5 (#1, $19.77/run) / GLM-5 61.6 / Gemini 3.1 Pro 59.0 / GPT-5.4 55.3 / MiniMax-M2.5 51.6 / Qwen3.5 51.2. 15.3pt overall spread. Track SOTAs: Opus 4.6 wins seg/enh/rep/det · GLM-5 wins VQA. Per-run cost 1.83-19.77 USD. Errors: 38.1% submission failures, 37.7% verification failures dominate. 48% lower overall score with even 1 error code. GitHub: github.com/AutoMedBench/AutoMedBench, Leaderboard: automedbench.github.io"
+  - url: "https://arxiv.org/abs/2606.02404"
+    name: "K-BrowseComp — Korean Web Browsing Agent Benchmark"
+    type: benchmark_dataset
+    format: arxiv_pdf
+    notes: "Korean web browsing agent benchmark. 400 problems: 300 Verified (manually constructed/validated by native Korean speakers, 9 categories incl. Entertainment/Media 109q, Economy/Public Policy 31q) + 100 Synthetic (hard few-shot exemplars + failure-mode-targeted generation). Pass@1 Verified SOTA: GPT-5.5 45.67% / GPT-5.4-mini 30.67 / GLM-5.1 30.67 / DeepSeek-V4-Pro 30.00 / Gemma-4-31B-it 23.33 / Qwen3.6-35B 12.00. Korea's Proprietary AI Foundation Model program models substantially weaker: K-EXAONE-236B 10.33% / A.X 4.0 (SK Telecom) 5.33% / HCX-SEED-Think-32B (NAVER) 2.33% / Kanana-2-30B (Kakao) 0.00%. Best calibration: DeepSeek-V4-Pro 17.72% error. Synthetic split exposes persistent browsing failures (max 26%). Authors: Chung-Ang U + KAIST + SNU + OnelineAI + NAVER Cloud AI + CMU."

@@ -2113,7 +2113,9 @@ var App = {
             { name: 'Spacer: Towards Engineered Scientific Inspiration', file: 'spacer_2508.17661.pdf', vendor: 'Asteromorph', date: 'Aug 2025', url: 'https://arxiv.org/abs/2508.17661' },
             { name: 'The AI Scientist: End-to-End AI Research (Nature)', file: 'nature_10265_5.pdf', vendor: 'Sakana AI + Oxford + UBC + Vector', date: 'Mar 2026', url: 'https://www.nature.com/articles/s41586-026-10265-5' },
             { name: 'OpenAI GPT-Rosalind: Life Sciences Capabilities Update', file: '', vendor: 'OpenAI', date: 'Jun 2026', url: 'https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/' },
-            { name: 'Google Gemma 4 12B: Encoder-Free Multimodal', file: '', vendor: 'Google', date: 'Jun 2026', url: 'https://huggingface.co/google/gemma-4-12B' }
+            { name: 'Google Gemma 4 12B: Encoder-Free Multimodal', file: '', vendor: 'Google', date: 'Jun 2026', url: 'https://huggingface.co/google/gemma-4-12B' },
+            { name: 'AutoMedBench — Medical Auto-Research Agents', file: 'arxiv_2606_01961.pdf', vendor: 'UCSC + NVIDIA', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.01961' },
+            { name: 'K-BrowseComp — Korean Web Browsing Agent Benchmark', file: 'arxiv_2606_02404.pdf', vendor: 'Chung-Ang + KAIST + SNU + NAVER + CMU', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.02404' }
         ];
 
         pdfDocs.forEach(function(doc) {

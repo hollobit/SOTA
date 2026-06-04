@@ -29,6 +29,8 @@ var Sovereign = {
                 'naver/hyperclova-x',
                 'kakao/kanana-2-30b-a3b-thinking', 'kakao/kanana-1.5-o-9.8b', 'kakao/kanana-1.5-8b',
                 'kakao/kanana-1.5-15.7b-a3b', 'kakao/kanana-flag-32.5b',
+                'sk-telecom/a.x-4.0',  // 2026-06-04 S52 — SK Telecom A.X 4.0 Korean Foundation Model
+                'naver/hcx-seed-think-32b',  // 2026-06-04 S52 — NAVER HCX-SEED-Think-32B
                 'ncsoft/varco-vision-2.0-14b', 'ncsoft/llama-varco-8b',
                 'trillionlabs/tri-21b', 'trillionlabs/tri-7b',
                 'motif/motif-2-12.7b-reasoning', 'motif/motif-2-12.7b-instruct',
