@@ -14,6 +14,7 @@ var MedicalAI = {
             note: 'ChatGPT for Clinicians · Med-Gemini · Med-PaLM · MedGemma · Polaris · Almanac — 임상의 워크플로 전용',
             models: [
                 'openai/chatgpt-clinicians-gpt54',
+                'openai/gpt-rosalind',  // 2026-06-03 S50 — OpenAI life sciences model
                 'google/med-gemini-3-pro',
                 'google/med-gemini-l-2',
                 'google/med-gemini-l-1',
@@ -581,6 +582,11 @@ var MedicalAI = {
             label: '🇰🇷 Korean Medical Sovereign',
             note: 'KMLE 2025 (320Q × 4 sections, SNUH 96.4) · KorMedLawQA · Lunit Dx AUROC (CXR/MMG external)',
             benchmarks: ['kmle_2025', 'kormedlawqa', 'lunit_dx_auc']
+        },
+        {
+            label: '🧬 Life Sciences Research (OpenAI GPT-Rosalind)',
+            note: 'LifeSciBench (externally expert-judged, 6 workflow areas) · MedChemBench (medicinal chemistry SAR/ADME/retrosynthesis) · GeneBench (agentic genomics/quant bio long-horizon) · LabWorkBench (real wet lab protocols, proprietary uncontaminated data)',
+            benchmarks: ['lifesci_bench_overall', 'medchembench', 'genebench', 'labworkbench']
         },
         {
             label: '👁️ Medical VLM Evaluation',
