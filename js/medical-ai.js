@@ -589,6 +589,11 @@ var MedicalAI = {
             benchmarks: ['lifesci_bench_overall', 'medchembench', 'genebench', 'labworkbench']
         },
         {
+            label: '🩻 AutoMedBench (Medical Auto-Research Agents)',
+            note: 'UCSC + NVIDIA workflow-aware medical auto-research benchmark. 24 tasks × 5 tracks (Segmentation/Enhancement/VQA/Report-Gen/Lesion Detection) × 2 difficulty tiers. S1-S5 stage scoring. 33 agent turns avg/run. Opus 4.6 leads overall 66.5%; GLM-5 wins VQA 64.0%.',
+            benchmarks: ['automedbench_overall', 'automedbench_segmentation', 'automedbench_enhancement', 'automedbench_vqa', 'automedbench_report_generation', 'automedbench_detection']
+        },
+        {
             label: '👁️ Medical VLM Evaluation',
             note: 'Med-InternVL Avg (14 imaging tasks) · VQA-Med 2024 · MedXpertQA Multimodal · NEJM Image — vision-language medical eval',
             benchmarks: ['med_internvl_avg', 'vqamed_2024']

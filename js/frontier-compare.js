@@ -62,7 +62,9 @@ var FrontierCompare = {
             // 2026-06-02 S48 — Microsoft MAI Instruction Following suite
             'if_bench_precise', 'advanced_if_rubric', 'robust_if_diverse',
             // 2026-06-04 S50 — Gemma 4 12B tau2 avg
-            'tau2_avg_3'
+            'tau2_avg_3',
+            // 2026-06-04 S52 — K-BrowseComp Korean browsing agent
+            'k_browsecomp_verified', 'k_browsecomp_synthetic'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
