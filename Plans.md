@@ -1,12 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 52 — AutoMedBench + K-BrowseComp (2026-06-04)
-**1,642 models · 1,439 benchmarks · 7,324 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 53 — AA Transcribe SOTA shift (2026-06-04)
+**1,649 models · 1,439 benchmarks · 7,338 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-04 Session 52 — Medical auto-research + Korean web browsing (user 2 arxiv PDFs)
-- **AutoMedBench (arxiv 2606.01961, UCSC+NVIDIA)** — workflow-aware medical auto-research agent benchmark. 24 tasks × 5 tracks × 2 tiers, S1-S5 stage workflow. **Opus 4.6 66.5 #1** (vs Qwen3.5 51.2 = 15.3pt spread). Per-track: Opus 4.6 wins Seg 67.2/Enh 78.3/RepGen 55.8/Det 85.7; **GLM-5 wins VQA 64.0**. Cost $1.83-19.77/run. 38.1% submission + 37.7% verification failures dominate
-- **K-BrowseComp (arxiv 2606.02404)** — Korean web browsing 400Q (300 Verified + 100 Synthetic). Verified SOTA **GPT-5.5 45.67%**. Korea's Proprietary AI Foundation Model program models substantially weaker: K-EXAONE-236B 10.33 / **A.X 4.0 5.33 / HCX-SEED-Think-32B 2.33 / Kanana-2 0.00**. Best calibration: DeepSeek-V4-Pro 17.72%
-- 3 NEW models (sk-telecom/a.x-4.0 / naver/hcx-seed-think-32b / zhipu/glm-5). 9 NEW benches. Propagation: Medical AI NEW '🩻 AutoMedBench' suite · Sovereign Korea +2 · Agent +3 K-BrowseComp benches · FC/Cyber-Coding agent benches · Resources +2. **+3/+9/+64** = 1642/1439/7324. v=20260604c
+### 2026-06-04 Session 53 — Broader leaderboard sweep — AA Transcribe SOTA shift
+- 🌍 **NEW AA Transcribe SOTA**: ElevenLabs Scribe v2 **WER 2.2%** beats prior SOTA MAI-Transcribe-1.5 2.4 (S48). 6 NEW transcription models added: elevenlabs/scribe-v2 + mistral/voxtral-mini-transcribe/-2 + assemblyai/universal-3-pro + assemblyai/universal + smallest-ai/pulse-pro + openai/gpt-4o-transcribe. AA Transcribe leaderboard top-15 fully refreshed: Scribe v2 2.2 / MAI-T-1.5 2.4 / MAI-T-1 2.6 / Gemini 3.1 Pro 2.8 / Voxtral Small 2.8 / Gemini 3 Flash 2.9 / Gemini 2.5 Pro 2.9 / AssemblyAI Univ-3 Pro 3.1 / Pulse Pro 3.3 / Gemini 3.1 Flash-Lite 3.4 / Qwen3.5-Omni-Plus 3.5 / Voxtral Mini Trans 3.5 / GPT-4o Transcribe 4.0
+- Other sources: AA T2I 'recently added' models without Elo (Krea 2 / Recraft V4.1 / Luma UNI 1 / ERNIE Image Turbo). Vellum LLM stale. Aider Polyglot stale (Nov 2025). SWE-Bench/LiveCodeBench JS shells. **+7/+0/+14** = 1649/1439/7338. v=20260604d
+
+### 2026-06-04 Session 52 — AutoMedBench + K-BrowseComp (compressed)
+- AutoMedBench (UCSC+NVIDIA medical auto-research, 24 tasks × 5 tracks × 2 tiers, S1-S5 workflow). Opus 4.6 66.5 SOTA (4/5 tracks); GLM-5 64.0 VQA. K-BrowseComp Korean web browsing 400Q — GPT-5.5 45.67% SOTA; Korean Foundation Model program: K-EXAONE 10.33 / A.X 4.0 5.33 / HCX-SEED 2.33 / Kanana-2 0.00. 3 NEW models. **+3/+9/+64** = 1642/1439/7324.
 
 ### 2026-06-04 Session 51 — Leaderboard sweep + 7-tab audit fix (compressed)
 - AAII NEW: minimax/m3 55, qwen3.7-plus 53. 3 NEW arena.ai models: Reve 2.0 T2I #2 (1280), Wan 2.7 T2V (1385), Grok Imagine Video 1.5 I2V #1 (1473). 2 NEW benches arena_i2v/t2v_elo. Audit fix Cyber-Coding +gemma-4-12b, Sovereign+Physical AI +wan2.7-t2v. **+3/+2/+14** = 1640/1430/7260.

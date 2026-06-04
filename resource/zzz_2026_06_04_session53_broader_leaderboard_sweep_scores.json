@@ -1,0 +1,203 @@
+{
+  "_meta": {
+    "session": "Session 53 — Broader leaderboard sweep (transcribe focus)",
+    "date": "2026-06-04",
+    "sources": [
+      "https://artificialanalysis.ai/speech-to-text (AA Transcribe leaderboard)",
+      "https://artificialanalysis.ai/image/leaderboard/text-to-image (AA T2I)",
+      "https://artificialanalysis.ai/leaderboards/models?sort=date (AAII recent)",
+      "https://aider.chat/docs/leaderboards/ (Aider Polyglot — stale Nov 2025)",
+      "https://www.vellum.ai/llm-leaderboard (Vellum LLM)",
+      "https://arena.ai/leaderboard (arena.ai 12 boards — unchanged vs S51)"
+    ],
+    "notes": "Beyond AA/arena.ai (S47, S51): SWE-Bench/LiveCodeBench/automedbench leaderboards JS-only no data. KEY FINDING: AA Transcribe leaderboard refresh exposes **NEW SOTA — ElevenLabs Scribe v2 WER 2.2% beats MAI-Transcribe-1.5 2.4% (S48 SOTA)**. 6 NEW transcription models surfaced (Scribe v2, Voxtral Mini Transcribe/2, AssemblyAI Universal-3 Pro, AssemblyAI Universal, Smallest AI Pulse Pro). Plus refresh existing transcribe scores.",
+    "collected_at": "2026-06-04"
+  },
+  "models": [
+    {
+      "id": "elevenlabs/scribe-v2",
+      "name": "Scribe v2",
+      "vendor": "ElevenLabs",
+      "type": "proprietary",
+      "release_date": "2026-05-20",
+      "modalities": [
+        "audio-transcription"
+      ]
+    },
+    {
+      "id": "mistral/voxtral-mini-transcribe",
+      "name": "Voxtral Mini Transcribe",
+      "vendor": "Mistral AI",
+      "type": "proprietary",
+      "release_date": "2026-05-15",
+      "modalities": [
+        "audio-transcription"
+      ]
+    },
+    {
+      "id": "mistral/voxtral-mini-transcribe-2",
+      "name": "Voxtral Mini Transcribe 2",
+      "vendor": "Mistral AI",
+      "type": "proprietary",
+      "release_date": "2026-06-01",
+      "modalities": [
+        "audio-transcription"
+      ]
+    },
+    {
+      "id": "assemblyai/universal-3-pro",
+      "name": "Universal-3 Pro",
+      "vendor": "AssemblyAI",
+      "type": "proprietary",
+      "release_date": "2026-05-10",
+      "modalities": [
+        "audio-transcription"
+      ]
+    },
+    {
+      "id": "assemblyai/universal",
+      "name": "Universal",
+      "vendor": "AssemblyAI",
+      "type": "proprietary",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "audio-transcription"
+      ]
+    },
+    {
+      "id": "smallest-ai/pulse-pro",
+      "name": "Pulse Pro",
+      "vendor": "Smallest.ai",
+      "type": "proprietary",
+      "release_date": "2026-05-20",
+      "modalities": [
+        "audio-transcription"
+      ]
+    },
+    {
+      "id": "openai/gpt-4o-transcribe",
+      "name": "GPT-4o Transcribe",
+      "vendor": "OpenAI",
+      "type": "proprietary",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "audio-transcription"
+      ]
+    }
+  ],
+  "benchmarks": [],
+  "scores": [
+    {
+      "model": "elevenlabs/scribe-v2",
+      "benchmark": "aa_transcribe_wer",
+      "score": 2.2,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "🌍 NEW AA Transcribe SOTA — ElevenLabs Scribe v2 2.2% WER, beats prior SOTA MAI-Transcribe-1.5 2.4% by 0.2pp (S48 had MS as leader)"
+    },
+    {
+      "model": "google/gemini-3.1-pro-preview",
+      "benchmark": "aa_transcribe_wer",
+      "score": 2.8,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "Gemini 3.1 Pro Preview (High) — AA Transcribe #4 (2.8% WER)"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "aa_transcribe_wer",
+      "score": 2.9,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "Gemini 3 Flash (High) — AA Transcribe #5 (2.9% WER)"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "aa_transcribe_wer",
+      "score": 2.9,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "Gemini 2.5 Pro — AA Transcribe #6 (2.9% WER)"
+    },
+    {
+      "model": "mistral/voxtral-small-24b",
+      "benchmark": "aa_transcribe_wer",
+      "score": 2.8,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "Voxtral Small (Mistral) — AA Transcribe #7 (2.8% WER) — narrow lead over Gemini 3 Flash"
+    },
+    {
+      "model": "smallest-ai/pulse-pro",
+      "benchmark": "aa_transcribe_wer",
+      "score": 3.3,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "Smallest AI Pulse Pro — AA Transcribe #8 (3.3% WER)"
+    },
+    {
+      "model": "assemblyai/universal-3-pro",
+      "benchmark": "aa_transcribe_wer",
+      "score": 3.1,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "AssemblyAI Universal-3 Pro — AA Transcribe #9 (3.1% WER)"
+    },
+    {
+      "model": "alibaba/qwen3.5-omni-plus",
+      "benchmark": "aa_transcribe_wer",
+      "score": 3.5,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "Qwen3.5 Omni Plus (Alibaba) — AA Transcribe #10 (3.5% WER)"
+    },
+    {
+      "model": "mistral/voxtral-mini-transcribe",
+      "benchmark": "aa_transcribe_wer",
+      "score": 3.5,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "Voxtral Mini Transcribe (Mistral) — AA Transcribe #11 (3.5% WER)"
+    },
+    {
+      "model": "mistral/voxtral-mini-transcribe-2",
+      "benchmark": "aa_transcribe_wer",
+      "score": 3.6,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "Voxtral Mini Transcribe 2 (Mistral) — AA Transcribe #12 (3.6% WER)"
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite-preview",
+      "benchmark": "aa_transcribe_wer",
+      "score": 3.4,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "Gemini 3.1 Flash-Lite Preview (Minimal) — AA Transcribe (3.4% WER)"
+    },
+    {
+      "model": "google/gemini-2.0-flash-lite",
+      "benchmark": "aa_transcribe_wer",
+      "score": 3.8,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "Gemini 2.0 Flash Lite — AA Transcribe (3.8% WER)"
+    },
+    {
+      "model": "assemblyai/universal",
+      "benchmark": "aa_transcribe_wer",
+      "score": 3.8,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "AssemblyAI Universal — AA Transcribe (3.8% WER)"
+    },
+    {
+      "model": "openai/gpt-4o-transcribe",
+      "benchmark": "aa_transcribe_wer",
+      "score": 4.0,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "GPT-4o Transcribe (OpenAI) — AA Transcribe (4.0% WER)"
+    }
+  ]
+}
