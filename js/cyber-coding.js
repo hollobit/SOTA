@@ -430,6 +430,7 @@ var CyberCoding = {
         'alibaba/qwen3.7-plus',  // 2026-06-02 S46 GA
         'microsoft/mai-thinking-1',  // 2026-06-02 S48 — MS MAI Thinking-1 35B/1T MoE
         'microsoft/mai-code-1-flash',  // 2026-06-02 S48 — MS MAI Code-1-Flash 5B
+        'google/gemma-4-12b',  // 2026-06-03 S50 — Gemma 4 12B encoder-free multimodal
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-27b',
         'alibaba/qwen3.6-35b-a3b',

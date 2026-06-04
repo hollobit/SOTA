@@ -27,6 +27,8 @@ var PhysicalAI = {
                 'alibaba/wan-2.2-fun-a14b-control', 'alibaba/wan-2.2-fun-5b-control',
                 // 2026-05-31 S41 — WorldArena Track 1 new frontier baselines
                 'google/veo-3.1', 'alibaba/wan-2.2', 'alibaba/wan-2.6',
+                // 2026-06-04 S51 — arena.ai T2V/I2V Arena new entries
+                'alibaba/wan2.7-t2v', 'xai/grok-imagine-video-1.5-preview-720p',
                 // 2026-05-30 WorldArena named baselines (Tsinghua FIB)
                 'tsinghua/ctrl-world', 'bytedance/irasim',
                 // 2026-05-30 PAI-Bench-G additional video gen entries (S38)
@@ -217,7 +219,9 @@ var PhysicalAI = {
                 'cosmos_hue_i2v_phys_laws', 'cosmos_hue_i2v_vis_integ',
                 'paibench_g_t2v_domain', 'paibench_g_t2v_quality',
                 'paibench_g_i2v_domain', 'paibench_g_i2v_quality',
-                'soundbench_pq'
+                'soundbench_pq',
+                // 2026-06-04 S51 — arena.ai T2V/I2V Arena Elo
+                'arena_i2v_elo', 'arena_t2v_elo'
             ]
         },
         {

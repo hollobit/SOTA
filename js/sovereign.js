@@ -129,6 +129,7 @@ var Sovereign = {
                 'bytedance/seedream-4.5', 'bytedance/seedream-4-2k', 'bytedance/seedream-5.0-lite',
                 'bytedance/seedream-4-fal', 'bytedance/seedream-4-high-res-fal',
                 // 2026-05 Alibaba image/video gen + robotics (sovereign expansion)
+                'alibaba/wan2.7-t2v',  // 2026-06-04 S51 — Wan 2.7 T2V NEW arena.ai T2V Arena #3
                 'alibaba/wan2.6-t2v', 'alibaba/wan2.6-t2i', 'alibaba/wan2.5-t2i-preview',
                 'alibaba/qwen-image-2.0-pro-2026-04-22', 'alibaba/qwen-image-2512', 'alibaba/qwen-image-2.0-2026-03-03',
                 'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav',
