@@ -221,7 +221,9 @@ var PhysicalAI = {
                 'paibench_g_i2v_domain', 'paibench_g_i2v_quality',
                 'soundbench_pq',
                 // 2026-06-04 S51 — arena.ai T2V/I2V Arena Elo
-                'arena_i2v_elo', 'arena_t2v_elo'
+                'arena_i2v_elo', 'arena_t2v_elo',
+                // 2026-06-05 S55 — AA TTS Quality Elo (Fun-Realtime-TTS SOTA)
+                'aa_tts_quality_elo'
             ]
         },
         {
