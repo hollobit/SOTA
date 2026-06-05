@@ -122,6 +122,9 @@ var Sovereign = {
                 'stepfun/step-1o',
                 // Baidu ERNIE
                 'baidu/ernie-5.1', 'baidu/ernie-5.0', 'baidu/ernie-4.5-300b-a47b', 'baidu/ernie-4.5-turbo', 'baidu/ernie-speed', 'baidu/ernie-lite',
+                'baidu/ernie-image',  // 2026-06-05 S55 — Baidu ERNIE Image (AA T2I Arena Elo 1176)
+                'hidream/hidream-o1-image-dev-2604',  // 2026-06-05 S55 — HiDream O1 Image Dev 2604 (AA T2I Elo 1192)
+                'alibaba/fun-realtime-tts',  // 2026-06-05 S55 — Alibaba FunAudioLLM Fun-Realtime-TTS (AA TTS Arena Elo 1227 SOTA)
                 // Tencent Hunyuan
                 'tencent/hunyuan-t1', 'tencent/hunyuan-large', 'tencent/hunyuan-turbo', 'tencent/hunyuan-7b',
                 'tencent/hunyuan-image-3.0',
@@ -776,6 +779,9 @@ var Sovereign = {
         // US Frontier (proprietary) — vendor-fallback group on the timeline
         'openai/gpt-5.5': '2026-04', 'openai/gpt-5.5-pro': '2026-04',
         'openai/gpt-rosalind': '2026-06',  // 2026-06-03 S50 — OpenAI life sciences model
+        'openai/realtime-tts-2': '2026-05', 'openai/realtime-tts-1.5-max': '2026-03',  // 2026-06-05 S55
+        'google/gemini-3.1-flash-tts': '2026-03',  // 2026-06-05 S55 — Google TTS
+        'cartesia/sonic-3.5': '2026-04',  // 2026-06-05 S55 — Cartesia TTS
         'openai/gpt-5.4': '2026-02', 'openai/gpt-5.4-thinking': '2026-02',
         'openai/gpt-5.4-pro': '2026-02', 'openai/gpt-5.4-mini': '2026-02',
         'openai/gpt-5.3-codex': '2026-01',
