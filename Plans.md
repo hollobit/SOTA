@@ -1,21 +1,22 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 55 — Leaderboard sweep T2I+TTS (2026-06-05)
-**1,657 models · 1,441 benchmarks · 7,354 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 56 — SMAC-Talk + ErrorQuake + Opper Roundtable (2026-06-06)
+**1,660 models · 1,446 benchmarks · 7,380 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-05 Session 55 — AA T2I + TTS leaderboard sweep
-- **AA T2I 2 NEW Elo entries**: hidream/hidream-o1-image-dev-2604 (1192) + baidu/ernie-image (1176). 4 existing T2I refreshes (GPT Image 2 1339→1341 / Nano Banana 2 1259→1262 / Cosmos3-Super-T2I 1243→1241 / Nano Banana Pro 1219→1221)
-- **NEW AA TTS Quality Elo bench (aa_tts_quality_elo, 84 models on leaderboard). Top-5**: **Fun-Realtime-TTS (Alibaba FunAudioLLM) 1227 SOTA** / Gemini 3.1 Flash TTS 1217 / Realtime TTS-2 Research Preview 1206 / Sonic 3.5 (Cartesia) 1206 / Realtime TTS 1.5 Max 1199. 5 NEW TTS models added (Alibaba/Google/OpenAI×2/Cartesia)
-- AA T2I 'recently added' still no Elo: Krea 2 Medium/Large, Recraft V4.1×4 variants, Luma UNI 1/Max, ERNIE Image Turbo (defer). HF Open LLM (Docker loading), AAII top sweep no new entries beyond S54. **+7/+1/+7** = 1657/1441/7354. v=20260605c
+### 2026-06-06 Session 56 — 4 arxiv PDFs + Opper AI stats (5 user links)
+- 2606.02800 = Cosmos 3 v2 (NVIDIA) = S46 SKIP. **SMAC-Talk** (arxiv 2606.04202, U Victoria) NL ext of SMACv2, 8 scenarios × Qwen3.5 4B/9B/27B/122B-A10B × 3 agent types. **Non-monotone scaling**: Qwen3.5-27B KDC 43% > 122B-A10B 41%. UDC much harder (Qwen3.5-9B Zero-Shot 35% best). 5v5 no-comm SOTA Qwen3.5-122B 38%
+- **ErrorQuake-10K** (arxiv 2606.05170, Jason Z Wang) — NEW severity bench. 10K queries × 8 domains × 5 difficulty, 0-4 severity scale. Gutenberg-Richter b slope discriminates at matched accuracy. DS-V3.2 b=0.66 vs Ministral-14B b=1.12 at ε=0.586 (Δb=0.47). **85/210 pairs disjoint 95% CI**. Lightest: **Qwen2.5-7B b=1.26**. Heaviest: Seed-OSS-36B b=0.57. Human ICC(2,k=3)=0.85
+- **Eval Blind Spot** (arxiv 2606.05169) — theoretical, deff∈[2.86,4.80] on Open LLM v2/LiveBench/12-bench, 92% half-splits swap top-1. **Opper AI Roundtable** — 29,725 sessions / 337,486 responses agreement eval. **Gemini 3.1 Pro 86.4% SOTA** / Kimi K2.5 86.1 / Opus 4.6 85.6 / GPT-5.5 85.1 / Grok 4.20 82.8
+- 3 NEW models (ministral-14b/seed-oss-36b/perplexity-sonar-pro). 5 NEW benches. Propagation: Agent/FC/Cyber-Coding +benches · Sovereign CN+EU+US +3 models · Resources +4 PDFs. **+3/+5/+26** = 1660/1446/7380. v=20260606a
 
-### 2026-06-05 Session 54 — NVIDIA Nemotron 3 Ultra 550B + ITBench-AA (compressed)
-- NVIDIA Nemotron 3 Ultra 550B/55B MoE GA (262k ctx, OpenMDW, AAII 48 #9/89). ITBench-AA NEW (IBM+AA 6-mo collab, 59 Kubernetes SRE tasks, frontier <50%, Opus 4.7 47% SOTA, Gemma 4 31B 37 top open-weight). **+1/+1/+9** = 1650/1440/7347.
+### 2026-06-05 Session 55 — AA T2I + TTS leaderboard sweep (compressed)
+- AA T2I 2 NEW Elo (HiDream-O1-Dev-2604 1192, Baidu ERNIE Image 1176). NEW aa_tts_quality_elo bench — Alibaba Fun-Realtime-TTS 1227 SOTA. 5 NEW TTS models. **+7/+1/+7** = 1657/1441/7354.
 
-### 2026-06-04 Session 53 — AA Transcribe SOTA shift (compressed)
-- 🌍 NEW AA Transcribe SOTA: ElevenLabs Scribe v2 WER **2.2%** beats MAI-Transcribe-1.5 2.4 (S48). 6 NEW transcription models. AA T2I 'recently added' (Krea 2/Recraft V4.1/Luma UNI 1) defer until Elo. **+7/+0/+14** = 1649/1439/7338.
+### 2026-06-05 Session 54 — Nemotron 3 Ultra + ITBench-AA (compressed)
+- Nemotron 3 Ultra 550B/55B MoE OpenMDW AAII 48. ITBench-AA Kubernetes SRE IBM+AA, Opus 4.7 47% SOTA. **+1/+1/+9** = 1650/1440/7347.
 
-### 2026-06-04 Session 52 — AutoMedBench + K-BrowseComp (compressed)
-- AutoMedBench (Opus 4.6 66.5 SOTA, GLM-5 VQA 64.0). K-BrowseComp Korean GPT-5.5 45.67% SOTA. 3 NEW models. **+3/+9/+64** = 1642/1439/7324.
+### 2026-06-04 Sessions 52-53 (compressed)
+- S53 NEW AA Transcribe SOTA: ElevenLabs Scribe v2 2.2% beats MAI-T-1.5 2.4. 6 NEW transcription models. S52 AutoMedBench (Opus 4.6 66.5 SOTA), K-BrowseComp Korean GPT-5.5 45.67%. **+10/+9/+78** = 1649/1439/7338.
 
 ### 2026-06-04 Session 51 — Leaderboard sweep + 7-tab audit fix (compressed)
 - AAII NEW: minimax/m3 55, qwen3.7-plus 53. 3 NEW arena.ai models: Reve 2.0 T2I #2 (1280), Wan 2.7 T2V (1385), Grok Imagine Video 1.5 I2V #1 (1473). 2 NEW benches arena_i2v/t2v_elo. Audit fix Cyber-Coding +gemma-4-12b, Sovereign+Physical AI +wan2.7-t2v. **+3/+2/+14** = 1640/1430/7260.

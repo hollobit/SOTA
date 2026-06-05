@@ -78,6 +78,7 @@ var Sovereign = {
                 // Mistral — Ministraux (edge)
                 'mistral/ministral-3-14b', 'mistral/ministral-3-8b', 'mistral/ministral-3-3b',
                 'mistral/ministral-8b-v1', 'mistral/ministral-3b-v1',
+                'mistralai/ministral-14b',  // 2026-06-06 S56 — Ministral 14B (ErrorQuake b=1.12 light tail, paired with DS-V3.2)
                 // Mistral — original / regional
                 'mistral/mistral-7b', 'mistral/mixtral-8x7b', 'mistral/mixtral-8x22b',
                 'mistral/mistral-nemo-12b', 'mistral/mistral-saba-24b',
@@ -130,6 +131,7 @@ var Sovereign = {
                 'tencent/hunyuan-image-3.0',
                 // ByteDance Doubao Seed + Seedream image/video family
                 'bytedance/seed-2.0-pro', 'bytedance/seed-1.6', 'bytedance/seed-1.5-pro', 'bytedance/seed-1.5-lite',
+                'bytedance/seed-oss-36b',  // 2026-06-06 S56 — ByteDance Seed-OSS 36B (ErrorQuake b=0.57 heaviest)
                 'bytedance/dreamina-seedance-2.0-720p', 'bytedance/seedance-2.0',
                 'bytedance/seedream-4.5', 'bytedance/seedream-4-2k', 'bytedance/seedream-5.0-lite',
                 'bytedance/seedream-4-fal', 'bytedance/seedream-4-high-res-fal',
@@ -782,6 +784,7 @@ var Sovereign = {
         'openai/realtime-tts-2': '2026-05', 'openai/realtime-tts-1.5-max': '2026-03',  // 2026-06-05 S55
         'google/gemini-3.1-flash-tts': '2026-03',  // 2026-06-05 S55 — Google TTS
         'cartesia/sonic-3.5': '2026-04',  // 2026-06-05 S55 — Cartesia TTS
+        'perplexity/sonar-pro': '2026-03',  // 2026-06-06 S56 — Perplexity Sonar Pro (Opper Roundtable)
         'openai/gpt-5.4': '2026-02', 'openai/gpt-5.4-thinking': '2026-02',
         'openai/gpt-5.4-pro': '2026-02', 'openai/gpt-5.4-mini': '2026-02',
         'openai/gpt-5.3-codex': '2026-01',

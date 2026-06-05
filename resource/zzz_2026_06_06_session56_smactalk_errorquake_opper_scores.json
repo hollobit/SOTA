@@ -1,0 +1,306 @@
+{
+  "_meta": {
+    "session": "Session 56 — SMAC-Talk + ErrorQuake + Opper AI Roundtable",
+    "date": "2026-06-06",
+    "sources": [
+      "https://arxiv.org/pdf/2606.02800 (Cosmos 3 v2 NVIDIA — SAME paper as S46, skip)",
+      "https://arxiv.org/pdf/2606.04202 (SMAC-Talk — U Victoria, Jun 2 2026)",
+      "https://arxiv.org/pdf/2606.05170 (ErrorQuake — Jason Z Wang Independent)",
+      "https://arxiv.org/pdf/2606.05169 (Evaluation Blind Spot — Jason Z Wang Independent — theoretical, skip score ingest)",
+      "https://opper.ai/ai-roundtable/stats (Opper AI Roundtable — 29,725 sessions / 337,486 responses)"
+    ],
+    "pdf_archives": [
+      "resource/arxiv_2606_04202.pdf (1.0MB)",
+      "resource/arxiv_2606_05170.pdf (877KB)",
+      "resource/arxiv_2606_05169.pdf (780KB)"
+    ],
+    "notes": "(1) arxiv 2606.02800 = Cosmos 3 v2, identical to S46-ingested. SKIP. (2) SMAC-Talk: StarCraft II multi-agent benchmark with NL channel + deceptive communicator. Qwen3.5 family eval. (3) ErrorQuake-10K: NEW severity benchmark, 10K queries × 8 domains × 5 difficulty, Gutenberg-Richter b slope as discriminator. 21 open-weight models. (4) Eval Blind Spot: stereological theory, theoretical only. (5) Opper AI Roundtable: NEW agreement-based eval, 9 models. Cosmos 3 v2 in 'sources' for completeness but no NEW scores ingested.",
+    "collected_at": "2026-06-06"
+  },
+  "models": [
+    {
+      "id": "mistralai/ministral-14b",
+      "name": "Ministral 14B",
+      "vendor": "Mistral AI",
+      "type": "open-weight",
+      "release_date": "2025-10-10",
+      "parameters": "14B",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bytedance/seed-oss-36b",
+      "name": "Seed-OSS 36B",
+      "vendor": "ByteDance",
+      "type": "open-weight",
+      "release_date": "2025-08-01",
+      "parameters": "36B",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "perplexity/sonar-pro",
+      "name": "Sonar Pro",
+      "vendor": "Perplexity AI",
+      "type": "proprietary",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "smac_talk_5v5_no_comm_winrate",
+      "name": "SMAC-Talk 5v5 No-Comm Win Rate",
+      "category": "agent",
+      "description": "StarCraft Multi-Agent Challenge natural language extension. 5v5 team size, no communication channel, win rate over 100 episodes.",
+      "introduced_by": "SMAC-Talk (arxiv 2606.04202, U Victoria)",
+      "metric": "accuracy"
+    },
+    {
+      "id": "smac_talk_kdc_winrate",
+      "name": "SMAC-Talk KDC (Known Deceptive Communicator) Win Rate",
+      "category": "agent",
+      "description": "SMAC-Talk 5v5 with known deceptive communicator embedded in team — agents told about the deceiver.",
+      "introduced_by": "SMAC-Talk (arxiv 2606.04202)",
+      "metric": "accuracy"
+    },
+    {
+      "id": "smac_talk_udc_winrate",
+      "name": "SMAC-Talk UDC (Unknown Deceptive Communicator) Win Rate",
+      "category": "agent",
+      "description": "SMAC-Talk 5v5 with unknown deceptive communicator — agents NOT told.",
+      "introduced_by": "SMAC-Talk (arxiv 2606.04202)",
+      "metric": "accuracy"
+    },
+    {
+      "id": "errorquake_b_index",
+      "name": "ErrorQuake b-index (Gutenberg-Richter, higher better = lighter tails)",
+      "category": "reasoning",
+      "description": "Gutenberg-Richter slope b — distribution shape of error severity (0-4 continuous scale). Higher b = many small errors with bounded severity; lower b = few errors but rare ones catastrophic. ErrorQuake-10K benchmark: 10K queries × 8 domains × 5 difficulty tiers. 21 open-weight models evaluated. Headline: 85/210 pairs disjoint 95% CI at matched accuracy.",
+      "introduced_by": "ErrorQuake (arxiv 2606.05170, Jason Z Wang)",
+      "metric": "b_index_higher_better"
+    },
+    {
+      "id": "opper_roundtable_win_rate",
+      "name": "Opper AI Roundtable Win Rate",
+      "category": "general",
+      "description": "Opper AI Roundtable agreement-based eval. Win rate = agreement with the group consensus in Poll + Debate format. NO correct answer on record. 29,725 sessions / 337,486 model responses analyzed. Win rate reflects agreement with final round votes (unanimous/supermajority>2/3/majority>1/2/none).",
+      "introduced_by": "Opper AI (opper.ai/ai-roundtable/stats)",
+      "metric": "win_rate"
+    }
+  ],
+  "scores": [
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "smac_talk_5v5_no_comm_winrate",
+      "score": 22.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "Reasoning Agent (best of 3) — 5v5 no-comm 22%"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "smac_talk_5v5_no_comm_winrate",
+      "score": 30.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "Reasoning Agent — 5v5 no-comm 30%"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "smac_talk_5v5_no_comm_winrate",
+      "score": 30.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "Reasoning Agent — 5v5 no-comm 30%"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "smac_talk_5v5_no_comm_winrate",
+      "score": 38.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "Reasoning Agent (best of 3) — 5v5 no-comm 38% SOTA on this bench"
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "smac_talk_kdc_winrate",
+      "score": 14.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "5v5 KDC — Reasoning Agent best"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "smac_talk_kdc_winrate",
+      "score": 38.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "5v5 KDC — Reasoning Agent best"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "smac_talk_kdc_winrate",
+      "score": 43.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "5v5 KDC — Reasoning Agent best — non-monotone scaling"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "smac_talk_kdc_winrate",
+      "score": 41.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "5v5 KDC — Reasoning Agent (122B does NOT beat 27B at 43)"
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "smac_talk_udc_winrate",
+      "score": 25.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "5v5 UDC — Reasoning Agent. UDC sees performance collapse vs KDC."
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "smac_talk_udc_winrate",
+      "score": 35.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "5v5 UDC — Zero-Shot 35%"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "smac_talk_udc_winrate",
+      "score": 22.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "5v5 UDC — Zero-Shot best — UDC much harder than KDC"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "smac_talk_udc_winrate",
+      "score": 24.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2606.04202",
+      "_note": "5v5 UDC — Zero-Shot. 122B doesn't help under unknown deception."
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "errorquake_b_index",
+      "score": 0.66,
+      "unit": "b_index_higher_better",
+      "_source": "https://arxiv.org/pdf/2606.05170",
+      "_note": "DeepSeek-V3.2 b=0.66, ε=0.586 — frontier-class model with heavy severity tail (rare but catastrophic errors)"
+    },
+    {
+      "model": "mistralai/ministral-14b",
+      "benchmark": "errorquake_b_index",
+      "score": 1.12,
+      "unit": "b_index_higher_better",
+      "_source": "https://arxiv.org/pdf/2606.05170",
+      "_note": "Ministral-14B b=1.12, ε=0.586 — same accuracy as DeepSeek-V3.2 but Δb=0.47 lighter tail. The headline disjoint-CI pair example."
+    },
+    {
+      "model": "bytedance/seed-oss-36b",
+      "benchmark": "errorquake_b_index",
+      "score": 0.57,
+      "unit": "b_index_higher_better",
+      "_source": "https://arxiv.org/pdf/2606.05170",
+      "_note": "Seed-OSS-36B b=0.57 — heaviest-tailed in the catalog"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "errorquake_b_index",
+      "score": 1.0,
+      "unit": "b_index_higher_better",
+      "_source": "https://arxiv.org/pdf/2606.05170",
+      "_note": "Llama-3.1-8B b=1.00 — mid"
+    },
+    {
+      "model": "alibaba/qwen2.5-7b",
+      "benchmark": "errorquake_b_index",
+      "score": 1.26,
+      "unit": "b_index_higher_better",
+      "_source": "https://arxiv.org/pdf/2606.05170",
+      "_note": "Qwen2.5-7B b=1.26 — lightest-tailed in the catalog (most bounded errors)"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "opper_roundtable_win_rate",
+      "score": 86.4,
+      "unit": "win_rate_%",
+      "_source": "https://opper.ai/ai-roundtable/stats",
+      "_note": "🌍 Opper AI Roundtable SOTA — Gemini 3.1 Pro 86.4% win rate (agreement with group consensus)"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "opper_roundtable_win_rate",
+      "score": 86.1,
+      "unit": "win_rate_%",
+      "_source": "https://opper.ai/ai-roundtable/stats",
+      "_note": "Kimi K2.5 — Roundtable #2 86.1%"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "opper_roundtable_win_rate",
+      "score": 85.6,
+      "unit": "win_rate_%",
+      "_source": "https://opper.ai/ai-roundtable/stats",
+      "_note": "Claude Opus 4.6 — #3 85.6%"
+    },
+    {
+      "model": "anthropic/claude-opus-4",
+      "benchmark": "opper_roundtable_win_rate",
+      "score": 85.4,
+      "unit": "win_rate_%",
+      "_source": "https://opper.ai/ai-roundtable/stats",
+      "_note": "Claude Opus 4 — #4 85.4%"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "opper_roundtable_win_rate",
+      "score": 85.1,
+      "unit": "win_rate_%",
+      "_source": "https://opper.ai/ai-roundtable/stats",
+      "_note": "GPT-5.5 — #5 85.1%"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "opper_roundtable_win_rate",
+      "score": 84.8,
+      "unit": "win_rate_%",
+      "_source": "https://opper.ai/ai-roundtable/stats",
+      "_note": "GPT-5.4 — #6 84.8%"
+    },
+    {
+      "model": "xai/grok-4.1-fast",
+      "benchmark": "opper_roundtable_win_rate",
+      "score": 82.8,
+      "unit": "win_rate_%",
+      "_source": "https://opper.ai/ai-roundtable/stats",
+      "_note": "Grok 4.1 Fast — #7 82.8%"
+    },
+    {
+      "model": "xai/grok-4.20",
+      "benchmark": "opper_roundtable_win_rate",
+      "score": 82.8,
+      "unit": "win_rate_%",
+      "_source": "https://opper.ai/ai-roundtable/stats",
+      "_note": "Grok 4.20 — #8 82.8% (ties)"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "opper_roundtable_win_rate",
+      "score": 82.3,
+      "unit": "win_rate_%",
+      "_source": "https://opper.ai/ai-roundtable/stats",
+      "_note": "Gemini 3.5 Flash — #9 82.3%"
+    }
+  ]
+}

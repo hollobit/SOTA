@@ -39,7 +39,9 @@ var CyberCoding = {
         // 2026-06-04 S52 — K-BrowseComp Korean browsing agent benches
         'k_browsecomp_verified', 'k_browsecomp_synthetic',
         // 2026-06-05 S54 — IBM Research + AA ITBench-AA (Kubernetes SRE)
-        'itbench_aa'],
+        'itbench_aa',
+        // 2026-06-06 S56 — SMAC-Talk + Opper Roundtable
+        'smac_talk_5v5_no_comm_winrate', 'opper_roundtable_win_rate'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
         // 2026-05 CAD-coding specialty (3 arxiv benches + SCADBench ELO arena)
         'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',
