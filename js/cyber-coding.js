@@ -37,7 +37,9 @@ var CyberCoding = {
         // 2026-06-02 S48 — Microsoft MAI Instruction Following benches
         'if_bench_precise', 'advanced_if_rubric', 'robust_if_diverse',
         // 2026-06-04 S52 — K-BrowseComp Korean browsing agent benches
-        'k_browsecomp_verified', 'k_browsecomp_synthetic'],
+        'k_browsecomp_verified', 'k_browsecomp_synthetic',
+        // 2026-06-05 S54 — IBM Research + AA ITBench-AA (Kubernetes SRE)
+        'itbench_aa'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
         // 2026-05 CAD-coding specialty (3 arxiv benches + SCADBench ELO arena)
         'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',

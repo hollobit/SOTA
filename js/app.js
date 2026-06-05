@@ -2115,7 +2115,9 @@ var App = {
             { name: 'OpenAI GPT-Rosalind: Life Sciences Capabilities Update', file: '', vendor: 'OpenAI', date: 'Jun 2026', url: 'https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/' },
             { name: 'Google Gemma 4 12B: Encoder-Free Multimodal', file: '', vendor: 'Google', date: 'Jun 2026', url: 'https://huggingface.co/google/gemma-4-12B' },
             { name: 'AutoMedBench — Medical Auto-Research Agents', file: 'arxiv_2606_01961.pdf', vendor: 'UCSC + NVIDIA', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.01961' },
-            { name: 'K-BrowseComp — Korean Web Browsing Agent Benchmark', file: 'arxiv_2606_02404.pdf', vendor: 'Chung-Ang + KAIST + SNU + NAVER + CMU', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.02404' }
+            { name: 'K-BrowseComp — Korean Web Browsing Agent Benchmark', file: 'arxiv_2606_02404.pdf', vendor: 'Chung-Ang + KAIST + SNU + NAVER + CMU', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.02404' },
+            { name: 'NVIDIA Nemotron 3 Ultra 550B-A55B — AA Profile', file: '', vendor: 'NVIDIA', date: 'Jun 2026', url: 'https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b' },
+            { name: 'ITBench-AA — IBM Research + AA Kubernetes SRE Eval', file: '', vendor: 'IBM Research + AA', date: 'Jun 2026', url: 'https://artificialanalysis.ai/evaluations/itbench-aa' }
         ];
 
         pdfDocs.forEach(function(doc) {

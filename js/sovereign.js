@@ -800,6 +800,7 @@ var Sovereign = {
         'google/med-palm-2': '2023-05',
         'meta/muse-spark': '2026-04',
         'nvidia/nemotron-3-super': '2025-09',
+        'nvidia/nemotron-3-ultra-550b-a55b': '2026-06',  // 2026-06-04 S54 — 550B/55B MoE, AAII 48 #9/89, OpenMDW
 
         // Physical AI — vendor-fallback group
         'nvidia/cosmos-predict-2.5': '2025-09', 'nvidia/cosmos-reason-2': '2025-09', 'nvidia/cosmos-policy-robocasa': '2025-10',
@@ -1079,7 +1080,7 @@ var Sovereign = {
         'google/medgemma-27b': 27, 'google/medgemma-4b-pt': 4, 'google/medgemma-1.5-4b': 4,
         'google/med-palm-2': 340,
         'meta/muse-spark': 1500,
-        'nvidia/nemotron-3-super': 70, 'nvidia/cosmos-policy-robocasa': 2,
+        'nvidia/nemotron-3-super': 70, 'nvidia/nemotron-3-ultra-550b-a55b': 550, 'nvidia/cosmos-policy-robocasa': 2,
         'nvidia/cosmos-predict-2.5': 14, 'nvidia/cosmos-reason-2': 7,
         'nvidia/gr00t-n1.6': 7, 'nvidia/gr00t-n1.7': 7,
         'agibot/genie-envisioner': 8,
