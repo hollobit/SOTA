@@ -223,6 +223,7 @@ var FrontierCompare = {
         'reka/reka-edge-2603',
         'google/gemma-4-26b-a4b',
         'google/gemma-4-12b',  // 2026-06-03 S50 — Gemma 4 12B unified encoder-free multimodal (T/I/A)
+        'nvidia/nemotron-3-ultra-550b-a55b',  // 2026-06-04 S54 — Nemotron 3 Ultra 550B/55B MoE AAII 48 #9/89, OpenMDW
 
         // May 7 2026 — NVIDIA Nemotron Labs Elastic (3-in-1 nested 30B/23B/12B, ICML 2026)
         'nvidia/nemotron-labs-3-elastic-30b-a3b',
