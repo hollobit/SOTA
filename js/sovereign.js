@@ -775,6 +775,7 @@ var Sovereign = {
 
         // US Frontier (proprietary) — vendor-fallback group on the timeline
         'openai/gpt-5.5': '2026-04', 'openai/gpt-5.5-pro': '2026-04',
+        'openai/gpt-rosalind': '2026-06',  // 2026-06-03 S50 — OpenAI life sciences model
         'openai/gpt-5.4': '2026-02', 'openai/gpt-5.4-thinking': '2026-02',
         'openai/gpt-5.4-pro': '2026-02', 'openai/gpt-5.4-mini': '2026-02',
         'openai/gpt-5.3-codex': '2026-01',
