@@ -1,11 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 53 — AA Transcribe SOTA shift (2026-06-04)
-**1,649 models · 1,439 benchmarks · 7,338 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 54 — NVIDIA Nemotron 3 Ultra 550B + ITBench-AA (2026-06-05)
+**1,650 models · 1,440 benchmarks · 7,347 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-04 Session 53 — Broader leaderboard sweep — AA Transcribe SOTA shift
-- 🌍 **NEW AA Transcribe SOTA**: ElevenLabs Scribe v2 **WER 2.2%** beats prior SOTA MAI-Transcribe-1.5 2.4 (S48). 6 NEW transcription models added: elevenlabs/scribe-v2 + mistral/voxtral-mini-transcribe/-2 + assemblyai/universal-3-pro + assemblyai/universal + smallest-ai/pulse-pro + openai/gpt-4o-transcribe. AA Transcribe leaderboard top-15 fully refreshed: Scribe v2 2.2 / MAI-T-1.5 2.4 / MAI-T-1 2.6 / Gemini 3.1 Pro 2.8 / Voxtral Small 2.8 / Gemini 3 Flash 2.9 / Gemini 2.5 Pro 2.9 / AssemblyAI Univ-3 Pro 3.1 / Pulse Pro 3.3 / Gemini 3.1 Flash-Lite 3.4 / Qwen3.5-Omni-Plus 3.5 / Voxtral Mini Trans 3.5 / GPT-4o Transcribe 4.0
-- Other sources: AA T2I 'recently added' models without Elo (Krea 2 / Recraft V4.1 / Luma UNI 1 / ERNIE Image Turbo). Vellum LLM stale. Aider Polyglot stale (Nov 2025). SWE-Bench/LiveCodeBench JS shells. **+7/+0/+14** = 1649/1439/7338. v=20260604d
+### 2026-06-05 Session 54 — NVIDIA Nemotron 3 Ultra 550B-A55B + ITBench-AA (IBM Research + AA)
+- **NVIDIA Nemotron 3 Ultra 550B-A55B** GA (Jun 4 2026): 550B/55B MoE, 262k ctx, OpenMDW. **AAII 48 (#9/89)**. $0.675/$2.675 per 1M I/O. 147.5 tokens/sec. $409.46 to AAII-evaluate
+- **ITBench-AA** NEW benchmark (IBM Research + AA, 6-month collab). 59 Kubernetes SRE root-cause analysis tasks (40 public + 19 private held-out). Frontier models <50% — large headroom. **Opus 4.7 Adaptive Reasoning Max 47% SOTA** / GPT-5.5 xhigh 46 / Qwen3.7 Max 42 / GLM-5.1 40 / Gemini 3.5 Flash 40 / DeepSeek V4 Pro 38 / Gemma 4 31B 37 / Gemini 3.1 Pro 30. Future expansion: FinOps + CISO tasks
+- Propagation: Sovereign US Nemotron release-date+size · Agent + FC + Cyber-Coding +itbench_aa · Resources +2 / seed_sources +2. **+1/+1/+9** = 1650/1440/7347. v=20260605a
+
+### 2026-06-04 Session 53 — AA Transcribe SOTA shift (compressed)
+- 🌍 NEW AA Transcribe SOTA: ElevenLabs Scribe v2 WER **2.2%** beats MAI-Transcribe-1.5 2.4 (S48). 6 NEW transcription models. AA T2I 'recently added' (Krea 2/Recraft V4.1/Luma UNI 1) defer until Elo. **+7/+0/+14** = 1649/1439/7338.
 
 ### 2026-06-04 Session 52 — AutoMedBench + K-BrowseComp (compressed)
 - AutoMedBench (UCSC+NVIDIA medical auto-research, 24 tasks × 5 tracks × 2 tiers, S1-S5 workflow). Opus 4.6 66.5 SOTA (4/5 tracks); GLM-5 64.0 VQA. K-BrowseComp Korean web browsing 400Q — GPT-5.5 45.67% SOTA; Korean Foundation Model program: K-EXAONE 10.33 / A.X 4.0 5.33 / HCX-SEED 2.33 / Kanana-2 0.00. 3 NEW models. **+3/+9/+64** = 1642/1439/7324.
@@ -68,10 +72,9 @@
 ### 2026-05-28 Session 30 — DeepRare + AgingBench + SciMuse + Gemini-for-Science
 - DeepRare HPO R@1 57.18% (vs Claude-3.7-thinking 33.39). Multimodal Xinhua 69.1 vs Exomiser 55.9. Physician 163 cases 64.4 vs 54.6. AgingBench (UT Austin) + SciMuse (Max Planck 0.51) + AlphaEvolve + Antigravity NEW. **+13/+18/+33**=1555/1187/6257. v=20260528b
 
-### 2026-05-27 ~ 28 Sessions 26-29 (compressed — see HISTORY.md)
-- **S29** ERA+Robin+AutoSOTA deep-mine (Crow 0% vs o4-mini 44.5%; **+3/+20/+24** v=20260528a). **S28** MDASH+AutoSOTA+3 Nature (Co-Scientist/ERA/FutureHouse NEW; **+3/+9/+9** v=20260527c). **S27** SensorFM 4 sizes (33/35 wins; **+5/+10/+15** v=20260527b). **S26** Image/Video Gen 신규 탭(14→16); **+1/-2/-2** v=20260527a
-**Live Site**: https://hollobit.github.io/SOTA/
-**CI**: workflow `benchmark-update.yml` deploys daily 06:00 UTC + on workflow_dispatch. Auto-rewrites JS `?v=` cache busters with commit SHA per deploy.
+### 2026-05-27~28 Sessions 26-29 (compressed)
+- S29 ERA/Robin/AutoSOTA + S28 MDASH/Co-Sci + S27 SensorFM + S26 Image/Video tabs. **+12/+37/+46**
+**Live**: https://hollobit.github.io/SOTA/ · **CI**: benchmark-update.yml daily 06:00 UTC + workflow_dispatch; cache-bust auto.
 
 ### 2026-05-23 ~ 27 Sessions 21-25 (compressed — see HISTORY.md)
 - **S25-S21** Glasswing/CVD + menu propagation + 7 user refs + arena.ai 12-leaderboard sweep. **+58/+26/+170**
@@ -94,8 +97,8 @@
 - **Session 13** (May 13): Sovereign AI 13-country sweep + PDF deep mining (OneManCompany/Agent-World/AI Co-Math)
 - **Session 12** (May 12): Mythos cyber + DELEGATE-52 + Onyx Open LLM (19 models × 10 benches) + Medical AI timeline + AA per-bench sub-scores
 
-### 2026-05-10 ~ 11 Session 11 — ECI + AAII composite mega-ingest (compressed — see HISTORY.md)
-- ECI ingest 3→178 (canonical CSV + Rosetta Stone paper 2512.00193 + 33 external CSVs). AAII 29→178 (Playwright /leaderboards/models 216 rows + per-bench sub-scores). FC composite_eci/composite_aaii split. AI4S widget W3/W9 + SOTA lower-better fix. GPT-5.5/5.4-Cyber + 6 PDFs + 3 memory files (AA SVG/cyber variants/AA data sources)
+### 2026-05-10~11 Session 11 — ECI + AAII composite mega-ingest (compressed)
+- ECI 3→178 + AAII 29→178. FC composite_eci/aaii split. AI4S widget W3/W9. 6 PDFs.
 
 ## Previous: Agent menu launch (2026-05-08, Session 2)
 **1,114 models · 854 benchmarks · 3,315 scores · 14 active tabs (Overview / Leaderboard / Trends / Timeline / Comparison / Frontier Compare / Cyber & Coding / Sovereign AI / Physical AI / Medical AI / AI4S / **Agent (10 sub-categories)** / Explorer / Resources / Changelog)**
@@ -189,8 +192,7 @@ BMT/                         → Benchmark Library 카탈로그 (2,559 엔트리
 
 | 파일 | 내용 |
 |-----|-----|
-| `resource/benchmark_scores_2026_04.json` | 원천 시드 점수 데이터 (PDF + 웹 수집) |
-| `resource/lmcouncil_scores_2026_04.json` | LM Council 18개 독립 벤치마크 |
+| `resource/benchmark_scores_2026_04.json` / `lmcouncil_scores_2026_04.json` | 원천 시드 + LM Council |
 | `data/export/models.json` | 빌드된 모델 63개 |
 | `data/export/benchmarks.json` | 빌드된 벤치마크 91개 |
 | `data/export/scores/current.json` | 현재 점수 707개 |

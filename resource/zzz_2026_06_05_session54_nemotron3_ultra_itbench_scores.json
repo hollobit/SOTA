@@ -1,0 +1,111 @@
+{
+  "_meta": {
+    "session": "Session 54 — Nemotron 3 Ultra 550B + ITBench-AA",
+    "date": "2026-06-05",
+    "sources": [
+      "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b (NVIDIA Nemotron 3 Ultra 550B-A55B AA profile)",
+      "https://artificialanalysis.ai/evaluations/itbench-aa (ITBench-AA evaluation page)",
+      "https://www.linkedin.com/pulse/artificial-analysis-ibm-research-launching-itbench-aa-20oqc (LinkedIn launch post with 8 model scores)"
+    ],
+    "notes": "(1) NVIDIA Nemotron 3 Ultra 550B-A55B GA (Jun 4 2026) — 550B/55B MoE, 262k ctx, OpenMDW license, AAII 48 (#9/89). (2) ITBench-AA: IBM Research + AA collaboration (6 months). 59 SRE Kubernetes tasks (40 public + 19 private held-out). Average precision at full recall — model scores 0.0 for repeat if any root-cause missed. Future expansion: FinOps + CISO tasks.",
+    "collected_at": "2026-06-05"
+  },
+  "models": [
+    {
+      "id": "nvidia/nemotron-3-ultra-550b-a55b",
+      "name": "Nemotron 3 Ultra 550B-A55B (Reasoning)",
+      "vendor": "NVIDIA",
+      "type": "open-weight",
+      "release_date": "2026-06-04",
+      "parameters": "550B total / 55B active (Mixture of Experts)",
+      "context_window": 262144,
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "itbench_aa",
+      "name": "ITBench-AA (IBM SRE Kubernetes)",
+      "category": "agent",
+      "description": "Site Reliability Engineering agentic benchmark. IBM Research + Artificial Analysis collaboration (6 months). 59 Kubernetes incident tasks: 40 public + 19 private held-out. Agents receive offline snapshots (alerts/events/traces/metrics/topology), produce structured JSON diagnosis identifying root-cause entities (deployments/services/pods/namespaces/network policies). Average precision at full recall — scores 0.0 for any missed root cause. Future expansion: FinOps + CISO tasks.",
+      "introduced_by": "IBM Research + AA (LinkedIn launch 2026-06-05)",
+      "metric": "accuracy"
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "itbench_aa",
+      "score": 47.0,
+      "unit": "%",
+      "_source": "https://www.linkedin.com/pulse/artificial-analysis-ibm-research-launching-itbench-aa-20oqc",
+      "_note": "🌍 ITBench-AA SOTA — Opus 4.7 (Adaptive Reasoning, Max Effort) 47%. AA page exact value 46.7. Frontier models scoring <50% — large headroom"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "itbench_aa",
+      "score": 46.0,
+      "unit": "%",
+      "_source": "https://www.linkedin.com/pulse/artificial-analysis-ibm-research-launching-itbench-aa-20oqc",
+      "_note": "GPT-5.5 (xhigh) 46% (AA exact 45.8)"
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "itbench_aa",
+      "score": 42.0,
+      "unit": "%",
+      "_source": "https://www.linkedin.com/pulse/artificial-analysis-ibm-research-launching-itbench-aa-20oqc",
+      "_note": "Qwen3.7 Max 42% (AA exact 42.5)"
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "itbench_aa",
+      "score": 40.0,
+      "unit": "%",
+      "_source": "https://www.linkedin.com/pulse/artificial-analysis-ibm-research-launching-itbench-aa-20oqc",
+      "_note": "GLM-5.1 (Reasoning) 40% — top open-weight"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "itbench_aa",
+      "score": 40.0,
+      "unit": "%",
+      "_source": "https://www.linkedin.com/pulse/artificial-analysis-ibm-research-launching-itbench-aa-20oqc",
+      "_note": "Gemini 3.5 Flash (high) 40% (LinkedIn marks open-weight category but Gemini is closed)"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "itbench_aa",
+      "score": 38.0,
+      "unit": "%",
+      "_source": "https://www.linkedin.com/pulse/artificial-analysis-ibm-research-launching-itbench-aa-20oqc",
+      "_note": "DeepSeek V4 Pro (Reasoning, Max Effort) 38%"
+    },
+    {
+      "model": "google/gemma-4-31b",
+      "benchmark": "itbench_aa",
+      "score": 37.0,
+      "unit": "%",
+      "_source": "https://www.linkedin.com/pulse/artificial-analysis-ibm-research-launching-itbench-aa-20oqc",
+      "_note": "Gemma 4 31B (Reasoning) 37% — true open-weight"
+    },
+    {
+      "model": "google/gemini-3.1-pro-preview",
+      "benchmark": "itbench_aa",
+      "score": 30.0,
+      "unit": "%",
+      "_source": "https://www.linkedin.com/pulse/artificial-analysis-ibm-research-launching-itbench-aa-20oqc",
+      "_note": "Gemini 3.1 Pro Preview 30%"
+    },
+    {
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "benchmark": "aa_intelligence_index",
+      "score": 48.0,
+      "unit": "score_0_100",
+      "_source": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+      "_note": "AAII 48 (#9/89). 550B/55B MoE, 262k ctx. Released Jun 4 2026. OpenMDW license. $0.675/$2.675 per 1M I/O. 147.5 tokens/sec. $409.46 to evaluate (AAII includes 10 evals: GDPval-AA, τ²-Bench Telecom, Terminal-Bench Hard, SciCode, AA-LCR, AA-Omniscience Accuracy + Non-Hallucination, HLE, GPQA Diamond, IFBench, CritPt)"
+    }
+  ]
+}

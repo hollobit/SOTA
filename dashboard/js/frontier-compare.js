@@ -64,7 +64,9 @@ var FrontierCompare = {
             // 2026-06-04 S50 — Gemma 4 12B tau2 avg
             'tau2_avg_3',
             // 2026-06-04 S52 — K-BrowseComp Korean browsing agent
-            'k_browsecomp_verified', 'k_browsecomp_synthetic'
+            'k_browsecomp_verified', 'k_browsecomp_synthetic',
+            // 2026-06-05 S54 — IBM Research + AA ITBench-AA (Kubernetes SRE)
+            'itbench_aa'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',

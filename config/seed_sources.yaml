@@ -2060,3 +2060,13 @@ sources:
     type: benchmark_dataset
     format: arxiv_pdf
     notes: "Korean web browsing agent benchmark. 400 problems: 300 Verified (manually constructed/validated by native Korean speakers, 9 categories incl. Entertainment/Media 109q, Economy/Public Policy 31q) + 100 Synthetic (hard few-shot exemplars + failure-mode-targeted generation). Pass@1 Verified SOTA: GPT-5.5 45.67% / GPT-5.4-mini 30.67 / GLM-5.1 30.67 / DeepSeek-V4-Pro 30.00 / Gemma-4-31B-it 23.33 / Qwen3.6-35B 12.00. Korea's Proprietary AI Foundation Model program models substantially weaker: K-EXAONE-236B 10.33% / A.X 4.0 (SK Telecom) 5.33% / HCX-SEED-Think-32B (NAVER) 2.33% / Kanana-2-30B (Kakao) 0.00%. Best calibration: DeepSeek-V4-Pro 17.72% error. Synthetic split exposes persistent browsing failures (max 26%). Authors: Chung-Ang U + KAIST + SNU + OnelineAI + NAVER Cloud AI + CMU."
+  - url: "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b"
+    name: "NVIDIA Nemotron 3 Ultra 550B-A55B (AA profile, Jun 4 2026)"
+    type: vendor_model_card
+    format: web_page
+    notes: "550B total / 55B active MoE, 262k ctx, OpenMDW license. AAII 48 (#9/89). 147.5 tokens/sec. Pricing: 0.675 / 2.675 USD per 1M I/O. AAII eval cost 409.46 USD covering GDPval-AA, τ²-Bench Telecom, Terminal-Bench Hard, SciCode, AA-LCR, AA-Omniscience (Accuracy + Non-Hallucination), HLE, GPQA Diamond, IFBench, CritPt."
+  - url: "https://artificialanalysis.ai/evaluations/itbench-aa"
+    name: "ITBench-AA — IBM Research + AA Kubernetes SRE Agent Benchmark"
+    type: leaderboard
+    format: web_page
+    notes: "IBM Research + Artificial Analysis 6-month collaboration. 59 Kubernetes incident root-cause analysis tasks (40 public + 19 private held-out). Agents receive offline snapshots (alerts/events/traces/metrics/logs/topology), produce structured JSON diagnosis. Scoring: average precision at full recall — model scores 0.0 for repeat if any root-cause missed. Frontier models <50%: Opus 4.7 47% / GPT-5.5 46% / Qwen3.7 Max 42% / GLM-5.1 40 / Gemini 3.5 Flash 40 / DeepSeek V4 Pro 38 / Gemma 4 31B 37 / Gemini 3.1 Pro 30. Future expansion: FinOps + CISO tasks. LinkedIn launch announcement 2026-06-05."
