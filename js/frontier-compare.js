@@ -66,7 +66,9 @@ var FrontierCompare = {
             // 2026-06-04 S52 — K-BrowseComp Korean browsing agent
             'k_browsecomp_verified', 'k_browsecomp_synthetic',
             // 2026-06-05 S54 — IBM Research + AA ITBench-AA (Kubernetes SRE)
-            'itbench_aa'
+            'itbench_aa',
+            // 2026-06-06 S56 — Opper AI Roundtable + SMAC-Talk
+            'opper_roundtable_win_rate', 'smac_talk_5v5_no_comm_winrate'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',

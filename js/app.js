@@ -2117,7 +2117,11 @@ var App = {
             { name: 'AutoMedBench — Medical Auto-Research Agents', file: 'arxiv_2606_01961.pdf', vendor: 'UCSC + NVIDIA', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.01961' },
             { name: 'K-BrowseComp — Korean Web Browsing Agent Benchmark', file: 'arxiv_2606_02404.pdf', vendor: 'Chung-Ang + KAIST + SNU + NAVER + CMU', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.02404' },
             { name: 'NVIDIA Nemotron 3 Ultra 550B-A55B — AA Profile', file: '', vendor: 'NVIDIA', date: 'Jun 2026', url: 'https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b' },
-            { name: 'ITBench-AA — IBM Research + AA Kubernetes SRE Eval', file: '', vendor: 'IBM Research + AA', date: 'Jun 2026', url: 'https://artificialanalysis.ai/evaluations/itbench-aa' }
+            { name: 'ITBench-AA — IBM Research + AA Kubernetes SRE Eval', file: '', vendor: 'IBM Research + AA', date: 'Jun 2026', url: 'https://artificialanalysis.ai/evaluations/itbench-aa' },
+            { name: 'SMAC-Talk — StarCraft Multi-Agent NL Extension', file: 'arxiv_2606_04202.pdf', vendor: 'U Victoria (Sol+Najjaran)', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.04202' },
+            { name: 'ErrorQuake-10K — LLM Error Severity Distributions', file: 'arxiv_2606_05170.pdf', vendor: 'Jason Z Wang', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.05170' },
+            { name: 'The Evaluation Blind Spot — Stereological Theory of Benchmark Coverage', file: 'arxiv_2606_05169.pdf', vendor: 'Jason Z Wang', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.05169' },
+            { name: 'Opper AI Roundtable Stats — Agreement-Based Eval', file: '', vendor: 'Opper AI', date: 'Jun 2026', url: 'https://opper.ai/ai-roundtable/stats' }
         ];
 
         pdfDocs.forEach(function(doc) {
