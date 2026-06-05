@@ -1,18 +1,21 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 54 — NVIDIA Nemotron 3 Ultra 550B + ITBench-AA (2026-06-05)
-**1,650 models · 1,440 benchmarks · 7,347 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 55 — Leaderboard sweep T2I+TTS (2026-06-05)
+**1,657 models · 1,441 benchmarks · 7,354 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-05 Session 54 — NVIDIA Nemotron 3 Ultra 550B-A55B + ITBench-AA (IBM Research + AA)
-- **NVIDIA Nemotron 3 Ultra 550B-A55B** GA (Jun 4 2026): 550B/55B MoE, 262k ctx, OpenMDW. **AAII 48 (#9/89)**. $0.675/$2.675 per 1M I/O. 147.5 tokens/sec. $409.46 to AAII-evaluate
-- **ITBench-AA** NEW benchmark (IBM Research + AA, 6-month collab). 59 Kubernetes SRE root-cause analysis tasks (40 public + 19 private held-out). Frontier models <50% — large headroom. **Opus 4.7 Adaptive Reasoning Max 47% SOTA** / GPT-5.5 xhigh 46 / Qwen3.7 Max 42 / GLM-5.1 40 / Gemini 3.5 Flash 40 / DeepSeek V4 Pro 38 / Gemma 4 31B 37 / Gemini 3.1 Pro 30. Future expansion: FinOps + CISO tasks
-- Propagation: Sovereign US Nemotron release-date+size · Agent + FC + Cyber-Coding +itbench_aa · Resources +2 / seed_sources +2. **+1/+1/+9** = 1650/1440/7347. v=20260605a
+### 2026-06-05 Session 55 — AA T2I + TTS leaderboard sweep
+- **AA T2I 2 NEW Elo entries**: hidream/hidream-o1-image-dev-2604 (1192) + baidu/ernie-image (1176). 4 existing T2I refreshes (GPT Image 2 1339→1341 / Nano Banana 2 1259→1262 / Cosmos3-Super-T2I 1243→1241 / Nano Banana Pro 1219→1221)
+- **NEW AA TTS Quality Elo bench (aa_tts_quality_elo, 84 models on leaderboard). Top-5**: **Fun-Realtime-TTS (Alibaba FunAudioLLM) 1227 SOTA** / Gemini 3.1 Flash TTS 1217 / Realtime TTS-2 Research Preview 1206 / Sonic 3.5 (Cartesia) 1206 / Realtime TTS 1.5 Max 1199. 5 NEW TTS models added (Alibaba/Google/OpenAI×2/Cartesia)
+- AA T2I 'recently added' still no Elo: Krea 2 Medium/Large, Recraft V4.1×4 variants, Luma UNI 1/Max, ERNIE Image Turbo (defer). HF Open LLM (Docker loading), AAII top sweep no new entries beyond S54. **+7/+1/+7** = 1657/1441/7354. v=20260605c
+
+### 2026-06-05 Session 54 — NVIDIA Nemotron 3 Ultra 550B + ITBench-AA (compressed)
+- NVIDIA Nemotron 3 Ultra 550B/55B MoE GA (262k ctx, OpenMDW, AAII 48 #9/89). ITBench-AA NEW (IBM+AA 6-mo collab, 59 Kubernetes SRE tasks, frontier <50%, Opus 4.7 47% SOTA, Gemma 4 31B 37 top open-weight). **+1/+1/+9** = 1650/1440/7347.
 
 ### 2026-06-04 Session 53 — AA Transcribe SOTA shift (compressed)
 - 🌍 NEW AA Transcribe SOTA: ElevenLabs Scribe v2 WER **2.2%** beats MAI-Transcribe-1.5 2.4 (S48). 6 NEW transcription models. AA T2I 'recently added' (Krea 2/Recraft V4.1/Luma UNI 1) defer until Elo. **+7/+0/+14** = 1649/1439/7338.
 
 ### 2026-06-04 Session 52 — AutoMedBench + K-BrowseComp (compressed)
-- AutoMedBench (UCSC+NVIDIA medical auto-research, 24 tasks × 5 tracks × 2 tiers, S1-S5 workflow). Opus 4.6 66.5 SOTA (4/5 tracks); GLM-5 64.0 VQA. K-BrowseComp Korean web browsing 400Q — GPT-5.5 45.67% SOTA; Korean Foundation Model program: K-EXAONE 10.33 / A.X 4.0 5.33 / HCX-SEED 2.33 / Kanana-2 0.00. 3 NEW models. **+3/+9/+64** = 1642/1439/7324.
+- AutoMedBench (Opus 4.6 66.5 SOTA, GLM-5 VQA 64.0). K-BrowseComp Korean GPT-5.5 45.67% SOTA. 3 NEW models. **+3/+9/+64** = 1642/1439/7324.
 
 ### 2026-06-04 Session 51 — Leaderboard sweep + 7-tab audit fix (compressed)
 - AAII NEW: minimax/m3 55, qwen3.7-plus 53. 3 NEW arena.ai models: Reve 2.0 T2I #2 (1280), Wan 2.7 T2V (1385), Grok Imagine Video 1.5 I2V #1 (1473). 2 NEW benches arena_i2v/t2v_elo. Audit fix Cyber-Coding +gemma-4-12b, Sovereign+Physical AI +wan2.7-t2v. **+3/+2/+14** = 1640/1430/7260.
@@ -89,12 +92,8 @@
 - **Session 19** (May 20): Gemini 3.5 Flash + Omni Flash launch (14 benches) + TextArena/arena.ai + Qwen 3.7 Max/Plus preview + 35 cross-model triples from Gemini PDF page-4 comparison table (GPT-5.5 MRCR 128k 94.8 top, Opus 4.7 59.3 weakness) + SWE-Bench Pro correction + changelog PDF export
 - **Session 18** (May 19): ExploitBench leaderboard delta + FRONTIER_MODELS hardcoded propagation + deep menu audit pass 2 (Agent/AI4S/Physical AI) + cyber-coding menu surface
 
-### 2026-05-12 ~ 18 Sessions 12-17 (compressed — see HISTORY.md for full details)
-- **Session 17** (May 18): NVIDIA SANA-WM + xAI Grok Build CLI + 10-paper cyber arxiv batch (PACEbench/CTI-REALM/AISI/CyberTeam/Auto Adversary) + 4-paper user refs (Simbian/NYU CTF/HarmfulSkillBench)
-- **Session 16** (May 17): GBA Eval + daily sweep (MDASH CyberGym SOTA + CurveBench + 5 benches)
-- **Session 15** (May 15): arxiv mine + World FM (VBench/V-JEPA 2/Meta Physical/Cosmos Predict 2.5) + Science FM + user refs (SDE/HAL)
-- **Session 14** (May 14): arxiv sweep (11 benches, 12 models, 104 scores) + first deepfake/AIGC media-forensics coverage
-- **Session 13** (May 13): Sovereign AI 13-country sweep + PDF deep mining (OneManCompany/Agent-World/AI Co-Math)
+### 2026-05-12~18 Sessions 12-17 (compressed)
+- S17 SANA-WM/Grok CLI/cyber arxiv; S16 GBA Eval; S15 World FM/V-JEPA 2; S14 deepfake/AIGC; S13 Sovereign 13-country.
 - **Session 12** (May 12): Mythos cyber + DELEGATE-52 + Onyx Open LLM (19 models × 10 benches) + Medical AI timeline + AA per-bench sub-scores
 
 ### 2026-05-10~11 Session 11 — ECI + AAII composite mega-ingest (compressed)

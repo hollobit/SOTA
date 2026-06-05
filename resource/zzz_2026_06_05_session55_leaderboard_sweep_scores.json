@@ -1,0 +1,187 @@
+{
+  "_meta": {
+    "session": "Session 55 — Leaderboard sweep (T2I + TTS)",
+    "date": "2026-06-05",
+    "sources": [
+      "https://artificialanalysis.ai/image/leaderboard/text-to-image (AA T2I Arena - 2 NEW Elo)",
+      "https://artificialanalysis.ai/text-to-speech/leaderboard (AA TTS top-5)",
+      "https://artificialanalysis.ai/evaluations/itbench-aa (table still truncated)",
+      "https://artificialanalysis.ai/leaderboards/models (AAII top sweep — Nemotron 3 Ultra confirmed S54, no other new in 47-50 band)",
+      "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard (Docker loading)"
+    ],
+    "notes": "AA T2I 2 NEW model Elo confirmed (HiDream-O1-Image-Dev-2604 + ERNIE Image). 4 existing models with refresh scores (1-2 Elo drift). NEW AA TTS Quality Elo bench surfaced (84 total models on leaderboard). 5 NEW TTS models added.",
+    "collected_at": "2026-06-05"
+  },
+  "models": [
+    {
+      "id": "hidream/hidream-o1-image-dev-2604",
+      "name": "HiDream O1 Image Dev 2604",
+      "vendor": "HiDream",
+      "type": "open-weight",
+      "release_date": "2026-04-15",
+      "modalities": [
+        "image-generation"
+      ]
+    },
+    {
+      "id": "baidu/ernie-image",
+      "name": "ERNIE Image",
+      "vendor": "Baidu",
+      "type": "proprietary",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "image-generation"
+      ]
+    },
+    {
+      "id": "alibaba/fun-realtime-tts",
+      "name": "Fun-Realtime-TTS",
+      "vendor": "Alibaba (FunAudioLLM)",
+      "type": "open-weight",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "audio-tts"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-flash-tts",
+      "name": "Gemini 3.1 Flash TTS",
+      "vendor": "Google",
+      "type": "proprietary",
+      "release_date": "2026-03-15",
+      "modalities": [
+        "audio-tts"
+      ]
+    },
+    {
+      "id": "openai/realtime-tts-2",
+      "name": "Realtime TTS-2 (Research Preview)",
+      "vendor": "OpenAI",
+      "type": "proprietary",
+      "release_date": "2026-05-15",
+      "modalities": [
+        "audio-tts"
+      ]
+    },
+    {
+      "id": "cartesia/sonic-3.5",
+      "name": "Sonic 3.5",
+      "vendor": "Cartesia",
+      "type": "proprietary",
+      "release_date": "2026-04-20",
+      "modalities": [
+        "audio-tts"
+      ]
+    },
+    {
+      "id": "openai/realtime-tts-1.5-max",
+      "name": "Realtime TTS 1.5 Max",
+      "vendor": "OpenAI",
+      "type": "proprietary",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "audio-tts"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "aa_tts_quality_elo",
+      "name": "AA TTS Arena Quality Elo",
+      "category": "audio-tts",
+      "description": "Artificial Analysis Text-to-Speech Arena Quality Elo (blind preference voting). 84 total models on leaderboard as of Jun 2026.",
+      "introduced_by": "Artificial Analysis",
+      "metric": "elo"
+    }
+  ],
+  "scores": [
+    {
+      "model": "alibaba/fun-realtime-tts",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1227.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "🌍 AA TTS Quality #1 — Fun-Realtime-TTS (Alibaba FunAudioLLM) Elo 1227. Beats all 84 evaluated TTS models."
+    },
+    {
+      "model": "google/gemini-3.1-flash-tts",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1217.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "Gemini 3.1 Flash TTS #2 Elo 1217"
+    },
+    {
+      "model": "openai/realtime-tts-2",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1206.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "Realtime TTS-2 Research Preview #3 Elo 1206"
+    },
+    {
+      "model": "cartesia/sonic-3.5",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1206.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "Sonic 3.5 (Cartesia) #4 Elo 1206 — ties with Realtime TTS-2"
+    },
+    {
+      "model": "openai/realtime-tts-1.5-max",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1199.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "Realtime TTS 1.5 Max #5 Elo 1199"
+    },
+    {
+      "model": "hidream/hidream-o1-image-dev-2604",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1192.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "HiDream O1 Image Dev 2604 NEW — AA T2I Arena Elo 1192. Variant of hidream-o1 main."
+    },
+    {
+      "model": "baidu/ernie-image",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1176.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "ERNIE Image (Baidu) NEW on AA T2I Arena — Elo 1176. Sovereign CN entry."
+    },
+    {
+      "model": "openai/gpt-image-2",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1341.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "GPT Image 2 (high) — refresh DB 1339→1341"
+    },
+    {
+      "model": "google/nano-banana-2",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1262.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "Nano Banana 2 — refresh DB 1259→1262"
+    },
+    {
+      "model": "nvidia/cosmos3-super-text2image",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1241.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "Cosmos3-Super-T2I — refresh DB 1243→1241 (small drift)"
+    },
+    {
+      "model": "google/nano-banana-pro",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1221.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "Nano Banana Pro — refresh DB 1219→1221"
+    }
+  ]
+}
