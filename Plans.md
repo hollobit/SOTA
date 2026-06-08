@@ -1,15 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 57 — Gemma 4 QAT + JT 35B Flash (2026-06-08)
-**1,665 models · 1,446 benchmarks · 7,381 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 58 — Leaderboard sweep R3 (2026-06-08)
+**1,667 models · 1,446 benchmarks · 7,384 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-08 Session 57 — Gemma 4 QAT family + China Mobile JT 35B Flash
-- **Google Gemma 4 QAT** (blog Jun 5 2026) — Quantization-Aware Training integrates quantization into training (not post-hoc PTQ). 4 NEW QAT variants: E2B (mobile <1GB), E4B (edge), 12B (multimodal T/I/A from S50), 26B A4B MoE (4B active). HF collections gemma-4-qat-q4-0 / gemma-4-qat-mobile / litert-community/gemma-family. No specific bench numbers in blog
-- **China Mobile JT 35B Flash** (AA profile, released May 14 2026) — 35B dense, 256k ctx, text-only non-reasoning. **AAII 36 (#1/131 in class)**. Pricing **$0/$0 per 1M tokens (FREE)**. 14/16 quality evals measured (GDPval-AA, Terminal-Bench Hard, τ²-Bench Telecom, AA-LCR, AA-Omniscience, HLE, GPQA Diamond, SciCode, IFBench, CritPt). Sovereign-CN expansion beyond multimodal JT3.5
-- 5 NEW models. Sovereign CN +jt-35b-flash · Sovereign US release date map +4 Gemma 4 QAT variants · Resources +2 · seed_sources +2. **+5/+0/+1** = 1665/1446/7381. v=20260608a
+### 2026-06-08 Session 58 — Leaderboard sweep round 3 (Alibaba FunAudioLLM dominates audio)
+- 🌍 **NEW AA Transcribe SOTA**: alibaba/fun-realtime-asr-preview **1.7% WER** beats Scribe v2 2.2 (S53 SOTA) by 0.5pp. Same FunAudioLLM team that holds Fun-Realtime-TTS SOTA — **Alibaba dominates both ASR + TTS Arena**
+- xAI Text to Speech NEW #3 on AA TTS Arena at Elo **1208** — beats Sonic 3.5 (1204) and OpenAI Realtime TTS-2 (1204). AA TTS Quality refresh: Fun-Realtime-TTS 1227→1231 / Gemini 3.1 Flash TTS 1217→**1229** (+12 big jump) / Sonic 3.5 1206→1204 / Realtime TTS-2 1206→1204
+- **Gemma 4 12B AAII 29** (#15/126) — completes Gemma 4 family AAII (E2B 15 / E4B 19 / 12B 29 / 26B-A4B 31). Other: Epoch ECI no new vs S47, arena.ai no significant change vs S55, AA T2I 'recently added' Krea/Recraft V4.1/Luma UNI 1 still defer until Elo. **+2/+0/+3** = 1667/1446/7384. v=20260608b
 
-### 2026-06-06 Session 56 — SMAC-Talk + ErrorQuake + Opper (compressed)
-- SMAC-Talk (arxiv 2606.04202) non-monotone scaling Qwen3.5-27B KDC 43>122B 41%. ErrorQuake-10K (2606.05170) b-index discriminator, Qwen2.5-7B b=1.26 SOTA, 85/210 pairs disjoint CI. Eval Blind Spot (2606.05169) theoretical. Opper AI Roundtable Gemini 3.1 Pro 86.4 SOTA. 3 NEW models. **+3/+5/+26** = 1660/1446/7380.
+### 2026-06-06~08 Sessions 56-57 (compressed)
+- S57 Gemma 4 QAT 4 variants + China Mobile JT 35B Flash AAII 36 #1/131 FREE. S56 SMAC-Talk non-monotone Qwen3.5-27B KDC 43>122B + ErrorQuake-10K + Opper Roundtable Gemini 3.1 Pro 86.4 SOTA. **+8/+5/+27** = 1665/1446/7381.
 
 ### 2026-06-05 Sessions 54-55 (compressed)
 - S55 AA T2I 2 NEW + TTS Quality Elo Fun-Realtime-TTS 1227 SOTA. S54 Nemotron 3 Ultra 550B/55B MoE AAII 48 + ITBench-AA Opus 4.7 47% SOTA. **+8/+2/+16** = 1657/1441/7354.

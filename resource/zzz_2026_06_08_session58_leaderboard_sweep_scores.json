@@ -1,0 +1,98 @@
+{
+  "_meta": {
+    "session": "Session 58 — Leaderboard sweep round 3",
+    "date": "2026-06-08",
+    "sources": [
+      "https://artificialanalysis.ai/speech-to-text (AA Transcribe — NEW SOTA Fun-Realtime-ASR 1.7%)",
+      "https://artificialanalysis.ai/text-to-speech/leaderboard (AA TTS Quality — refresh + xAI TTS NEW)",
+      "https://artificialanalysis.ai/models/gemma-4-12b (AAII 29)",
+      "https://artificialanalysis.ai/leaderboards/models?sort=newest (S57 entries confirmed)",
+      "https://epoch.ai/data/eci_scores.csv (no new vs S47)",
+      "https://arena.ai/leaderboard (no significant change vs S55)",
+      "https://artificialanalysis.ai/image/leaderboard/text-to-image (Krea/Recraft/Luma still no Elo, defer)"
+    ],
+    "notes": "Round-3 leaderboard sweep. KEY FINDING #1: Fun-Realtime-ASR-preview (Alibaba) WER 1.7% NEW SOTA — beats ElevenLabs Scribe v2 (S53 SOTA at 2.2%). Same Alibaba FunAudioLLM team that holds Fun-Realtime-TTS SOTA. KEY FINDING #2: xAI Text-to-Speech NEW model #3 on AA TTS Arena at 1208 Elo. KEY FINDING #3: Gemma 4 12B AAII 29 (#15/126) — completes Gemma 4 family. AA TTS Quality top-5 refreshed (Fun-Realtime-TTS 1227→1231, Gemini 3.1 Flash TTS 1217→1229, Sonic 3.5 1206→1204, Realtime TTS-2 1206→1204).",
+    "collected_at": "2026-06-08"
+  },
+  "models": [
+    {
+      "id": "alibaba/fun-realtime-asr-preview",
+      "name": "Fun-Realtime-ASR Preview",
+      "vendor": "Alibaba (FunAudioLLM)",
+      "type": "open-weight",
+      "release_date": "2026-05-30",
+      "modalities": [
+        "audio-transcription"
+      ]
+    },
+    {
+      "id": "xai/grok-text-to-speech",
+      "name": "xAI Text to Speech",
+      "vendor": "xAI",
+      "type": "proprietary",
+      "release_date": "2026-06-01",
+      "modalities": [
+        "audio-tts"
+      ]
+    }
+  ],
+  "benchmarks": [],
+  "scores": [
+    {
+      "model": "alibaba/fun-realtime-asr-preview",
+      "benchmark": "aa_transcribe_wer",
+      "score": 1.7,
+      "unit": "wer_lower_better",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "🌍 NEW AA Transcribe SOTA — Fun-Realtime-ASR-preview (Alibaba FunAudioLLM) 1.7% WER beats ElevenLabs Scribe v2 (S53 SOTA at 2.2%) by 0.5pp. FunAudioLLM team dominates both ASR (Fun-Realtime-ASR) and TTS (Fun-Realtime-TTS)."
+    },
+    {
+      "model": "alibaba/fun-realtime-tts",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1231.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "Fun-Realtime-TTS — refresh DB 1227→1231 (+4 since S55)"
+    },
+    {
+      "model": "google/gemini-3.1-flash-tts",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1229.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "Gemini 3.1 Flash TTS — refresh DB 1217→1229 (+12, big jump)"
+    },
+    {
+      "model": "xai/grok-text-to-speech",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1208.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "xAI Text to Speech NEW #3 on AA TTS Arena at Elo 1208 — beats Sonic 3.5/Realtime TTS-2"
+    },
+    {
+      "model": "cartesia/sonic-3.5",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1204.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "Sonic 3.5 — refresh DB 1206→1204 (-2)"
+    },
+    {
+      "model": "openai/realtime-tts-2",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1204.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "Realtime TTS-2 — refresh DB 1206→1204"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "aa_intelligence_index",
+      "score": 29.0,
+      "unit": "score_0_100",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-12b",
+      "_note": "Gemma 4 12B AAII 29 (#15/126) — completes Gemma 4 family (E2B 15, E4B 19, 12B 29, 26B-A4B 31)"
+    }
+  ]
+}
