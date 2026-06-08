@@ -2121,7 +2121,9 @@ var App = {
             { name: 'SMAC-Talk — StarCraft Multi-Agent NL Extension', file: 'arxiv_2606_04202.pdf', vendor: 'U Victoria (Sol+Najjaran)', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.04202' },
             { name: 'ErrorQuake-10K — LLM Error Severity Distributions', file: 'arxiv_2606_05170.pdf', vendor: 'Jason Z Wang', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.05170' },
             { name: 'The Evaluation Blind Spot — Stereological Theory of Benchmark Coverage', file: 'arxiv_2606_05169.pdf', vendor: 'Jason Z Wang', date: 'Jun 2026', url: 'https://arxiv.org/abs/2606.05169' },
-            { name: 'Opper AI Roundtable Stats — Agreement-Based Eval', file: '', vendor: 'Opper AI', date: 'Jun 2026', url: 'https://opper.ai/ai-roundtable/stats' }
+            { name: 'Opper AI Roundtable Stats — Agreement-Based Eval', file: '', vendor: 'Opper AI', date: 'Jun 2026', url: 'https://opper.ai/ai-roundtable/stats' },
+            { name: 'Google Gemma 4 QAT Models — Mobile/Laptop Quantization-Aware Training', file: '', vendor: 'Google', date: 'Jun 2026', url: 'https://blog.google/innovation-and-ai/technology/developers-tools/quantization-aware-training-gemma-4/' },
+            { name: 'China Mobile JT 35B Flash — AA Profile (AAII 36 #1/131)', file: '', vendor: 'China Mobile', date: 'May 2026', url: 'https://artificialanalysis.ai/models/jt-35b-flash' }
         ];
 
         pdfDocs.forEach(function(doc) {

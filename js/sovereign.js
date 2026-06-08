@@ -173,7 +173,7 @@ var Sovereign = {
                 // SenseTime
                 'sensetime/sensenova-v6-5-pro', 'sensetime/sensenova-v6', 'sensetime/sensechat-5', 'sensetime/sensenova',
                 // 2026-05 Sovereign-CN VLM frontier — S37 CompassRank entries
-                'china-mobile/jt3.5',
+                'china-mobile/jt3.5', 'china-mobile/jt-35b-flash',  // 2026-06-08 S57 — JT 35B Flash AAII 36 #1/131 free
                 'china-telecom/telemm-2.0', 'china-telecom/telemm-2.0-thinking',
                 'aidc-ai/ovis2.5-9b',
                 // Skywork (Kunlun)
@@ -806,6 +806,11 @@ var Sovereign = {
         'google/gemini-3-flash': '2025-11',
         'google/gemini-2.5-pro': '2025-05',
         'google/gemma-4-31b': '2026-03', 'google/gemma-4-26b-a4b': '2026-03',
+        // 2026-06-05 S57 — Gemma 4 QAT family (Quantization-Aware Training)
+        'google/gemma-4-e2b-qat': '2026-06', 'google/gemma-4-e4b-qat': '2026-06',
+        'google/gemma-4-12b-qat': '2026-06', 'google/gemma-4-26b-a4b-qat': '2026-06',
+        // 2026-05-14 S57 — China Mobile JT 35B Flash
+        'china-mobile/jt-35b-flash': '2026-05',
         'google/medgemma-27b': '2025-07', 'google/medgemma-4b-pt': '2025-07', 'google/medgemma-1.5-4b': '2026-04',
         'google/med-palm-2': '2023-05',
         'meta/muse-spark': '2026-04',
@@ -1087,6 +1092,8 @@ var Sovereign = {
         'google/gemini-3.1-flash-lite': 8, 'google/gemini-3-pro': 1500,
         'google/gemini-3-pro-preview': 1500, 'google/gemini-3-flash': 30,
         'google/gemini-2.5-pro': 1000, 'google/gemma-4-31b': 31, 'google/gemma-4-26b-a4b': 26,
+        'google/gemma-4-e2b-qat': 2, 'google/gemma-4-e4b-qat': 4, 'google/gemma-4-12b-qat': 12, 'google/gemma-4-26b-a4b-qat': 26,
+        'china-mobile/jt-35b-flash': 35,
         'google/medgemma-27b': 27, 'google/medgemma-4b-pt': 4, 'google/medgemma-1.5-4b': 4,
         'google/med-palm-2': 340,
         'meta/muse-spark': 1500,
