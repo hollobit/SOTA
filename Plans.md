@@ -1,19 +1,18 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 56 — SMAC-Talk + ErrorQuake + Opper Roundtable (2026-06-06)
-**1,660 models · 1,446 benchmarks · 7,380 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
+## Current Status: Session 57 — Gemma 4 QAT + JT 35B Flash (2026-06-08)
+**1,665 models · 1,446 benchmarks · 7,381 scores · 16 active tabs + Frontier Compare composite split (composite_eci 33 cols / composite_aaii 13 cols)**
 
-### 2026-06-06 Session 56 — 4 arxiv PDFs + Opper AI stats (5 user links)
-- 2606.02800 = Cosmos 3 v2 (NVIDIA) = S46 SKIP. **SMAC-Talk** (arxiv 2606.04202, U Victoria) NL ext of SMACv2, 8 scenarios × Qwen3.5 4B/9B/27B/122B-A10B × 3 agent types. **Non-monotone scaling**: Qwen3.5-27B KDC 43% > 122B-A10B 41%. UDC much harder (Qwen3.5-9B Zero-Shot 35% best). 5v5 no-comm SOTA Qwen3.5-122B 38%
-- **ErrorQuake-10K** (arxiv 2606.05170, Jason Z Wang) — NEW severity bench. 10K queries × 8 domains × 5 difficulty, 0-4 severity scale. Gutenberg-Richter b slope discriminates at matched accuracy. DS-V3.2 b=0.66 vs Ministral-14B b=1.12 at ε=0.586 (Δb=0.47). **85/210 pairs disjoint 95% CI**. Lightest: **Qwen2.5-7B b=1.26**. Heaviest: Seed-OSS-36B b=0.57. Human ICC(2,k=3)=0.85
-- **Eval Blind Spot** (arxiv 2606.05169) — theoretical, deff∈[2.86,4.80] on Open LLM v2/LiveBench/12-bench, 92% half-splits swap top-1. **Opper AI Roundtable** — 29,725 sessions / 337,486 responses agreement eval. **Gemini 3.1 Pro 86.4% SOTA** / Kimi K2.5 86.1 / Opus 4.6 85.6 / GPT-5.5 85.1 / Grok 4.20 82.8
-- 3 NEW models (ministral-14b/seed-oss-36b/perplexity-sonar-pro). 5 NEW benches. Propagation: Agent/FC/Cyber-Coding +benches · Sovereign CN+EU+US +3 models · Resources +4 PDFs. **+3/+5/+26** = 1660/1446/7380. v=20260606a
+### 2026-06-08 Session 57 — Gemma 4 QAT family + China Mobile JT 35B Flash
+- **Google Gemma 4 QAT** (blog Jun 5 2026) — Quantization-Aware Training integrates quantization into training (not post-hoc PTQ). 4 NEW QAT variants: E2B (mobile <1GB), E4B (edge), 12B (multimodal T/I/A from S50), 26B A4B MoE (4B active). HF collections gemma-4-qat-q4-0 / gemma-4-qat-mobile / litert-community/gemma-family. No specific bench numbers in blog
+- **China Mobile JT 35B Flash** (AA profile, released May 14 2026) — 35B dense, 256k ctx, text-only non-reasoning. **AAII 36 (#1/131 in class)**. Pricing **$0/$0 per 1M tokens (FREE)**. 14/16 quality evals measured (GDPval-AA, Terminal-Bench Hard, τ²-Bench Telecom, AA-LCR, AA-Omniscience, HLE, GPQA Diamond, SciCode, IFBench, CritPt). Sovereign-CN expansion beyond multimodal JT3.5
+- 5 NEW models. Sovereign CN +jt-35b-flash · Sovereign US release date map +4 Gemma 4 QAT variants · Resources +2 · seed_sources +2. **+5/+0/+1** = 1665/1446/7381. v=20260608a
 
-### 2026-06-05 Session 55 — AA T2I + TTS leaderboard sweep (compressed)
-- AA T2I 2 NEW Elo (HiDream-O1-Dev-2604 1192, Baidu ERNIE Image 1176). NEW aa_tts_quality_elo bench — Alibaba Fun-Realtime-TTS 1227 SOTA. 5 NEW TTS models. **+7/+1/+7** = 1657/1441/7354.
+### 2026-06-06 Session 56 — SMAC-Talk + ErrorQuake + Opper (compressed)
+- SMAC-Talk (arxiv 2606.04202) non-monotone scaling Qwen3.5-27B KDC 43>122B 41%. ErrorQuake-10K (2606.05170) b-index discriminator, Qwen2.5-7B b=1.26 SOTA, 85/210 pairs disjoint CI. Eval Blind Spot (2606.05169) theoretical. Opper AI Roundtable Gemini 3.1 Pro 86.4 SOTA. 3 NEW models. **+3/+5/+26** = 1660/1446/7380.
 
-### 2026-06-05 Session 54 — Nemotron 3 Ultra + ITBench-AA (compressed)
-- Nemotron 3 Ultra 550B/55B MoE OpenMDW AAII 48. ITBench-AA Kubernetes SRE IBM+AA, Opus 4.7 47% SOTA. **+1/+1/+9** = 1650/1440/7347.
+### 2026-06-05 Sessions 54-55 (compressed)
+- S55 AA T2I 2 NEW + TTS Quality Elo Fun-Realtime-TTS 1227 SOTA. S54 Nemotron 3 Ultra 550B/55B MoE AAII 48 + ITBench-AA Opus 4.7 47% SOTA. **+8/+2/+16** = 1657/1441/7354.
 
 ### 2026-06-04 Sessions 52-53 (compressed)
 - S53 NEW AA Transcribe SOTA: ElevenLabs Scribe v2 2.2% beats MAI-T-1.5 2.4. 6 NEW transcription models. S52 AutoMedBench (Opus 4.6 66.5 SOTA), K-BrowseComp Korean GPT-5.5 45.67%. **+10/+9/+78** = 1649/1439/7338.

@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "session": "Session 57 — Gemma 4 QAT + JT 35B Flash",
+    "date": "2026-06-08",
+    "sources": [
+      "https://blog.google/innovation-and-ai/technology/developers-tools/quantization-aware-training-gemma-4/ (Gemma 4 QAT, Jun 5 2026)",
+      "https://artificialanalysis.ai/models/jt-35b-flash (China Mobile JT 35B Flash AA profile)"
+    ],
+    "notes": "(1) Gemma 4 QAT models — Google blog Jun 5 2026. 4 QAT variants (E2B/E4B/12B/26B MoE) — Quantization-Aware Training integrates quantization into training rather than post-hoc PTQ. Gemma 4 E2B mobile <1GB memory. HF collections: gemma-4-qat-q4-0, gemma-4-qat-mobile, litert-community/gemma-family. NO specific benchmark numbers in blog — only qualitative quality claims. (2) China Mobile JT 35B Flash — proprietary 35B dense model, 256k ctx, text-only non-reasoning. AAII 36 (#1/131 in class). Free pricing $0/$0 per 1M tokens. Released May 14 2026. 14/16 quality evaluations measured (GDPval-AA, Terminal-Bench Hard, τ²-Bench Telecom, AA-LCR, AA-Omniscience Accuracy + Non-Hallucination, HLE, GPQA Diamond, SciCode, IFBench, CritPt) but individual scores not exposed in summary view.",
+    "collected_at": "2026-06-08"
+  },
+  "models": [
+    {
+      "id": "china-mobile/jt-35b-flash",
+      "name": "JT 35B Flash",
+      "vendor": "China Mobile",
+      "type": "proprietary",
+      "release_date": "2026-05-14",
+      "parameters": "35B (dense)",
+      "context_window": 262144,
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e2b-qat",
+      "name": "Gemma 4 E2B QAT",
+      "vendor": "Google",
+      "type": "open-weight",
+      "release_date": "2026-06-05",
+      "parameters": "E2B (Effective 2B mobile)",
+      "context_window": 32768,
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e4b-qat",
+      "name": "Gemma 4 E4B QAT",
+      "vendor": "Google",
+      "type": "open-weight",
+      "release_date": "2026-06-05",
+      "parameters": "E4B (Effective 4B edge)",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-12b-qat",
+      "name": "Gemma 4 12B QAT",
+      "vendor": "Google",
+      "type": "open-weight",
+      "release_date": "2026-06-05",
+      "parameters": "11.95B (Q4_0 quantized)",
+      "context_window": 262144,
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-26b-a4b-qat",
+      "name": "Gemma 4 26B A4B QAT",
+      "vendor": "Google",
+      "type": "open-weight",
+      "release_date": "2026-06-05",
+      "parameters": "26B MoE / 4B active (Q4_0 quantized)",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [],
+  "scores": [
+    {
+      "model": "china-mobile/jt-35b-flash",
+      "benchmark": "aa_intelligence_index",
+      "score": 36.0,
+      "unit": "score_0_100",
+      "_source": "https://artificialanalysis.ai/models/jt-35b-flash",
+      "_note": "AAII 36 (#1 / 131 in class). 35B dense, 256k ctx, $0/$0 per 1M tokens (free). Released May 14 2026. 14/16 quality evaluations measured: GDPval-AA, Terminal-Bench Hard, τ²-Bench Telecom, AA-LCR, AA-Omniscience Accuracy + Non-Hallucination, HLE, GPQA Diamond, SciCode, IFBench, CritPt. Sovereign CN — China Mobile entry on AA frontier rankings."
+    }
+  ]
+}
