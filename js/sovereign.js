@@ -126,6 +126,7 @@ var Sovereign = {
                 'baidu/ernie-image',  // 2026-06-05 S55 — Baidu ERNIE Image (AA T2I Arena Elo 1176)
                 'hidream/hidream-o1-image-dev-2604',  // 2026-06-05 S55 — HiDream O1 Image Dev 2604 (AA T2I Elo 1192)
                 'alibaba/fun-realtime-tts',  // 2026-06-05 S55 — Alibaba FunAudioLLM Fun-Realtime-TTS (AA TTS Arena Elo 1227 SOTA)
+                'alibaba/fun-realtime-asr-preview',  // 2026-06-08 S58 — Alibaba FunAudioLLM Fun-Realtime-ASR (AA Transcribe WER 1.7% NEW SOTA, beats Scribe v2 2.2%)
                 // Tencent Hunyuan
                 'tencent/hunyuan-t1', 'tencent/hunyuan-large', 'tencent/hunyuan-turbo', 'tencent/hunyuan-7b',
                 'tencent/hunyuan-image-3.0',
@@ -811,6 +812,8 @@ var Sovereign = {
         'google/gemma-4-12b-qat': '2026-06', 'google/gemma-4-26b-a4b-qat': '2026-06',
         // 2026-05-14 S57 — China Mobile JT 35B Flash
         'china-mobile/jt-35b-flash': '2026-05',
+        'xai/grok-text-to-speech': '2026-06',  // 2026-06-08 S58 — xAI TTS (AA TTS Arena #3 Elo 1208)
+        'alibaba/fun-realtime-asr-preview': '2026-05',  // 2026-06-08 S58 — NEW AA Transcribe SOTA 1.7% WER
         'google/medgemma-27b': '2025-07', 'google/medgemma-4b-pt': '2025-07', 'google/medgemma-1.5-4b': '2026-04',
         'google/med-palm-2': '2023-05',
         'meta/muse-spark': '2026-04',

@@ -76165,7 +76165,7 @@
       "date": "2026-06-04",
       "citation": null
     },
-    "is_sota": true,
+    "is_sota": false,
     "collected_at": "2026-06-04",
     "notes": "🌍 NEW AA Transcribe SOTA — ElevenLabs Scribe v2 2.2% WER, beats prior SOTA MAI-Transcribe-1.5 2.4% by 0.2pp (S48 had MS as leader)"
   },
@@ -76498,66 +76498,6 @@
     "is_sota": false,
     "collected_at": "2026-06-05",
     "notes": "AAII 48 (#9/89). 550B/55B MoE, 262k ctx. Released Jun 4 2026. OpenMDW license. $0.675/$2.675 per 1M I/O. 147.5 tokens/sec. $409.46 to evaluate (AAII includes 10 evals: GDPval-AA, τ²-Bench Telecom, Terminal-Bench Hard, SciCode, AA-LCR, AA-Omniscience Accuracy + Non-Hallucination, HLE, GPQA Diamond, IFBench, CritPt)"
-  },
-  {
-    "model_id": "alibaba/fun-realtime-tts",
-    "benchmark_id": "aa_tts_quality_elo",
-    "value": 1227.0,
-    "unit": "elo",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard",
-      "date": "2026-06-05",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-05",
-    "notes": "🌍 AA TTS Quality #1 — Fun-Realtime-TTS (Alibaba FunAudioLLM) Elo 1227. Beats all 84 evaluated TTS models."
-  },
-  {
-    "model_id": "google/gemini-3.1-flash-tts",
-    "benchmark_id": "aa_tts_quality_elo",
-    "value": 1217.0,
-    "unit": "elo",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard",
-      "date": "2026-06-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-06-05",
-    "notes": "Gemini 3.1 Flash TTS #2 Elo 1217"
-  },
-  {
-    "model_id": "openai/realtime-tts-2",
-    "benchmark_id": "aa_tts_quality_elo",
-    "value": 1206.0,
-    "unit": "elo",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard",
-      "date": "2026-06-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-06-05",
-    "notes": "Realtime TTS-2 Research Preview #3 Elo 1206"
-  },
-  {
-    "model_id": "cartesia/sonic-3.5",
-    "benchmark_id": "aa_tts_quality_elo",
-    "value": 1206.0,
-    "unit": "elo",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard",
-      "date": "2026-06-05",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-06-05",
-    "notes": "Sonic 3.5 (Cartesia) #4 Elo 1206 — ties with Realtime TTS-2"
   },
   {
     "model_id": "openai/realtime-tts-1.5-max",
@@ -77068,6 +77008,111 @@
     "is_sota": false,
     "collected_at": "2026-06-08",
     "notes": "AAII 36 (#1 / 131 in class). 35B dense, 256k ctx, $0/$0 per 1M tokens (free). Released May 14 2026. 14/16 quality evaluations measured: GDPval-AA, Terminal-Bench Hard, τ²-Bench Telecom, AA-LCR, AA-Omniscience Accuracy + Non-Hallucination, HLE, GPQA Diamond, SciCode, IFBench, CritPt. Sovereign CN — China Mobile entry on AA frontier rankings."
+  },
+  {
+    "model_id": "alibaba/fun-realtime-asr-preview",
+    "benchmark_id": "aa_transcribe_wer",
+    "value": 1.7,
+    "unit": "wer_lower_better",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/speech-to-text",
+      "date": "2026-06-08",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-08",
+    "notes": "🌍 NEW AA Transcribe SOTA — Fun-Realtime-ASR-preview (Alibaba FunAudioLLM) 1.7% WER beats ElevenLabs Scribe v2 (S53 SOTA at 2.2%) by 0.5pp. FunAudioLLM team dominates both ASR (Fun-Realtime-ASR) and TTS (Fun-Realtime-TTS)."
+  },
+  {
+    "model_id": "alibaba/fun-realtime-tts",
+    "benchmark_id": "aa_tts_quality_elo",
+    "value": 1231.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "date": "2026-06-08",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-08",
+    "notes": "Fun-Realtime-TTS — refresh DB 1227→1231 (+4 since S55)"
+  },
+  {
+    "model_id": "google/gemini-3.1-flash-tts",
+    "benchmark_id": "aa_tts_quality_elo",
+    "value": 1229.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "date": "2026-06-08",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-06-08",
+    "notes": "Gemini 3.1 Flash TTS — refresh DB 1217→1229 (+12, big jump)"
+  },
+  {
+    "model_id": "xai/grok-text-to-speech",
+    "benchmark_id": "aa_tts_quality_elo",
+    "value": 1208.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "date": "2026-06-08",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-06-08",
+    "notes": "xAI Text to Speech NEW #3 on AA TTS Arena at Elo 1208 — beats Sonic 3.5/Realtime TTS-2"
+  },
+  {
+    "model_id": "cartesia/sonic-3.5",
+    "benchmark_id": "aa_tts_quality_elo",
+    "value": 1204.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "date": "2026-06-08",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-06-08",
+    "notes": "Sonic 3.5 — refresh DB 1206→1204 (-2)"
+  },
+  {
+    "model_id": "openai/realtime-tts-2",
+    "benchmark_id": "aa_tts_quality_elo",
+    "value": 1204.0,
+    "unit": "elo",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "date": "2026-06-08",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-06-08",
+    "notes": "Realtime TTS-2 — refresh DB 1206→1204"
+  },
+  {
+    "model_id": "google/gemma-4-12b",
+    "benchmark_id": "aa_intelligence_index",
+    "value": 29.0,
+    "unit": "score_0_100",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/gemma-4-12b",
+      "date": "2026-06-08",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-06-08",
+    "notes": "Gemma 4 12B AAII 29 (#15/126) — completes Gemma 4 family (E2B 15, E4B 19, 12B 29, 26B-A4B 31)"
   },
   {
     "model_id": "tencent/hy3-preview",
