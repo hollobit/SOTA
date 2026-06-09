@@ -1,18 +1,21 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 60 — Frontier vs Small Gap widget (2026-06-09)
-**1,667 models · 1,446 benchmarks · 7,388 scores · 16 active tabs + Edge LLM 4-widget suite + Frontier-vs-Small Gap 3-widget suite (16 vendors · paired bar / Pareto scatter / catch-up table)**
+## Current Status: Session 61 — MiniMax M3 deep ingest (2026-06-09)
+**1,667 models · 1,449 benchmarks · 7,418 scores · 16 active tabs + Edge LLM + Frontier Gap widgets + 3 NEW AA perf benchmarks**
+
+### 2026-06-09 Session 61 — MiniMax M3 deep ingest (AA detail + official blog)
+- **AA model detail extraction** (Playwright): 12 sub-benchmark scores for minimax/m3 (already had AAII 55 + 6 coding/agentic). Added GDPval-AA 58 / Terminal-Bench Hard 42 / τ²-Telecom 89 / AA-LCR 74 / AA-Omniscience Acc 15 + Non-Hall **84** / HLE 37 / GPQA-D 93 / SciCode 45 / IFBench **83** / CritPt 4 / MMMU-Pro 80. M3 total: 7→22 sub-scores
+- **🌍 2 NEW SOTAs**: minimax/m3 IFBench 83 (#1 instruction following, beats Nemotron 3 Ultra 81) + AA-Omniscience Non-Hall 84 (#1 anti-hallucination — Alibaba/Microsoft/Anthropic 등 모두 추월). Trade-off: lowest AA-Omniscience Accuracy 15% — M3 refuses to guess (honesty over knowledge bluffing)
+- **3 NEW AA perf benchmarks** seeded with top-10 frontier models: aa_output_tps (gpt-oss-120b 351 #1) / aa_ttft_sec (M3 2.45s) / aa_blended_price_usd_per_m (DeepSeek V4 Pro Max $0.2 #1 cheapest, GPT-5.5 $4.3 most expensive). Foundation for future intelligence×price Pareto widget
+- **Architecture**: MiniMax Sparse Attention (MSA), 1M context, native text/image/video input. Verbosity 91M output tokens (4x AAII avg) — "notably slow and very verbose" per AA. **+0/+3/+30** = 1667/1449/7418
 
 ### 2026-06-09 Session 60 — Frontier vs Small Catch-Up Gap widget + audit
 - **AUDIT**: 18 frontier vendors checked. **9 vendors have BOTH tiers scored** w/ AAII; **7 vendors have only frontier-tier scored** (Anthropic, OpenAI, xAI, DeepSeek, Moonshot, Zhipu/THUDM, Tencent — small AAII not yet on AA leaderboard). Ingested: **microsoft/phi-4-mini-instruct AAII 8 · microsoft/phi-4-multimodal AAII 10 (NEW model, 5.6B) · microsoft/phi-4 AAII 10 · amazon/nova-micro AAII 10**. Also backfilled params: phi-4-multimodal 5.6B + nova-micro 1.3B
 - **NEW WIDGET — Frontier vs Small Gap Analysis** (3 sub-widgets): (E1) 벤더별 Frontier-best vs Small-best AAII paired bar chart (gray frontier / colored small + catch-up % label) · (E2) Pareto 산점도 (X=frontier AAII, Y=small AAII, y=x parity 대각선) · (E3) Vendor gap table (Frontier · Small · Gap · Catch-up % color-coded). Files: extended `physical-ai-edge-llm.js` (+340 LOC). v=20260609b
 - **인사이트**: Alibaba winner (56% catch-up, frontier 57 → small 32). Microsoft 100% / IBM 80% catch-up (low absolute). Meta 17% only — Llama 3.2 11B (AAII 9) vs Llama 4 muse-spark (AAII 52) 43pt gap. **+1/+0/+4** = 1667/1446/7388
 
-### 2026-06-09 Session 59 — Physical AI Edge/Mobile Small-LLM widget (compressed)
-- NEW Physical AI subsection: 📱 Edge & Mobile Small-LLM (≤12B) — 4 widgets: Device-class buckets + Pareto chart + Country donut/stack + sortable table. 66 ≤12B models / 12 countries. Top AAII: qwen3.5-9b 32, gemma-4-12b 29. Files: `dashboard/js/physical-ai-edge-llm.js` (725 LOC) + hook. v=20260609a
-
-### 2026-06-08 Session 58 — Leaderboard sweep R3 (compressed)
-- 🌍 **NEW AA Transcribe SOTA**: alibaba/fun-realtime-asr-preview **1.7% WER** beats Scribe v2 2.2 by 0.5pp. xAI TTS NEW #3 Elo 1208. Gemma 4 12B AAII 29 (#15/126). **+2/+0/+3** = 1667/1446/7384.
+### 2026-06-08~09 Sessions 58-59 (compressed)
+- S59 NEW Physical AI Edge & Mobile Small-LLM subsection: 4 widgets (Device-class buckets / Pareto chart / Country donut/stack / sortable table). 66 ≤12B models / 12 countries. Top AAII qwen3.5-9b 32, gemma-4-12b 29. S58 🌍 NEW AA Transcribe SOTA fun-realtime-asr-preview 1.7% WER, xAI TTS Elo 1208, Gemma 4 12B AAII 29. **+2/+0/+3** = 1667/1446/7384.
 
 ### 2026-06-04~05 Sessions 51-55 (compressed)
 - S55 AA T2I 2 NEW + TTS Quality Elo Fun-Realtime-TTS 1227 SOTA. S54 Nemotron 3 Ultra 550B/55B MoE AAII 48 + ITBench-AA Opus 4.7 47% SOTA. S53 NEW AA Transcribe SOTA: Scribe v2 2.2%. S52 AutoMedBench Opus 4.6 66.5 SOTA + K-BrowseComp 45.67%. S51 minimax/m3 AAII 55 + 3 arena.ai NEW (Reve 2.0 #2 1280 / Wan 2.7 1385 / Grok Imagine #1 1473) + 7-tab audit fix. **+21/+13/+108** cumulative.

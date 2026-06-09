@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "session": "Session 61 — MiniMax M3 deep ingest (AA detail + official blog)",
+    "date": "2026-06-09",
+    "sources": [
+      "https://artificialanalysis.ai/models/minimax-m3 (per-evaluation scores + perf metrics)",
+      "https://www.minimax.io/blog/minimax-m3 (architecture/release notes)"
+    ],
+    "notes": "MiniMax M3 already in DB w/ AAII 55 + 6 SWE/coding/agentic scores. This session adds the 12 AAII v4.0 sub-evaluations extracted from the AA detail page + 3 NEW AA perf benchmarks (output_tps / ttft_sec / blended_price) seeded with top-10 reference models so the benchmarks are immediately useful. KEY FINDINGS: M3 #1 SOTA on AA-Omniscience Non-Hall 84% (best anti-hallucination) and IFBench 83% (instruction-following). M3 AAII 55 ranks #1/164 in its class. Verbose model (91M output tokens, 4x avg). Architecture: MiniMax Sparse Attention (MSA), native text/image/video input, 1M context window."
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "aa_output_tps",
+      "name": "AA Output Speed (tokens/sec)",
+      "category": "performance",
+      "metric": "tokens_per_second",
+      "unit": "tps",
+      "description": "Output tokens per second on first-party API (or median across providers). Higher is better.",
+      "source_url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    },
+    {
+      "id": "aa_ttft_sec",
+      "name": "AA Time-To-First-Token (seconds, lower better)",
+      "category": "performance",
+      "metric": "ttft_seconds_lower_better",
+      "unit": "seconds_lower_better",
+      "description": "Latency from request to first output token. Lower is better.",
+      "source_url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    },
+    {
+      "id": "aa_blended_price_usd_per_m",
+      "name": "AA Blended Price (USD/M tokens, 7:2:1 cache:in:out, lower better)",
+      "category": "pricing",
+      "metric": "price_usd_per_m_lower_better",
+      "unit": "usd_per_m_tokens_lower_better",
+      "description": "Blended cost per million tokens at 7:2:1 ratio (cache:input:output). Lower is better.",
+      "source_url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
+    }
+  ],
+  "scores": [
+    {"model": "minimax/m3", "benchmark": "gdpval_aa", "score": 58.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 GDPval-AA 58% — agentic real-world work tasks. #3 (Claude Opus 4.8 69 > GPT-5.5 63 > M3 58)."},
+    {"model": "minimax/m3", "benchmark": "terminal_bench_hard", "score": 42.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 Terminal-Bench Hard 42% — agentic coding/terminal use. #10."},
+    {"model": "minimax/m3", "benchmark": "tau2_telecom", "score": 89.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 τ²-Bench Telecom 89% — agentic tool use. Mid-pack (top is Step 3.7 Flash 99)."},
+    {"model": "minimax/m3", "benchmark": "aa_lcr", "score": 74.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 AA-LCR 74% — long context reasoning. #2 tied (GPT-5.5 74). 1M context model — leverages well."},
+    {"model": "minimax/m3", "benchmark": "aa_omniscience_acc", "score": 15.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 AA-Omniscience Accuracy 15% — knowledge. Lowest of 28 models — refuses to guess (low recall, high precision)."},
+    {"model": "minimax/m3", "benchmark": "aa_omniscience_non_hall", "score": 84.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "🌍 MiniMax M3 AA-Omniscience Non-Hallucination Rate 84% — #1 SOTA. Best anti-hallucination model. Trade-off: lowest accuracy / highest honesty."},
+    {"model": "minimax/m3", "benchmark": "hle", "score": 37.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 Humanity's Last Exam 37% — reasoning & knowledge. #5 of 28."},
+    {"model": "minimax/m3", "benchmark": "gpqa_diamond", "score": 93.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 GPQA Diamond 93% — scientific reasoning. #3 (Gemini 3.1 Pro 94 > GPT-5.5 94 > M3 93)."},
+    {"model": "minimax/m3", "benchmark": "scicode", "score": 45.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 SciCode 45% — coding. Mid-pack."},
+    {"model": "minimax/m3", "benchmark": "ifbench", "score": 83.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "🌍 MiniMax M3 IFBench 83% — #1 SOTA instruction following. Beats Nemotron 3 Ultra 81, Grok 4.3 81, MiMo V2.5 Pro 80."},
+    {"model": "minimax/m3", "benchmark": "critpt", "score": 4.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 CritPt 4% — physics reasoning. Weak (top GPT-5.5 27)."},
+    {"model": "minimax/m3", "benchmark": "mmmu_pro", "score": 80.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 MMMU-Pro 80% — visual reasoning. #3 of 13 (Gemini 3.1 Pro 82, Muse Spark 81, M3 80). Confirms multimodal capability."},
+
+    {"model": "minimax/m3", "benchmark": "aa_output_tps", "score": 44.9, "unit": "tps", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 output speed 44.9 tps — #116/164 (notably slow). Verbosity 91M tokens 4x average."},
+    {"model": "minimax/m3", "benchmark": "aa_ttft_sec", "score": 2.45, "unit": "seconds_lower_better", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 TTFT 2.45 sec — latency to first token."},
+    {"model": "minimax/m3", "benchmark": "aa_blended_price_usd_per_m", "score": 0.22, "unit": "usd_per_m_tokens_lower_better", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiniMax M3 blended price $0.22/M tokens (cache $0.06 / input $0.30 / output $1.20). Cheap-to-mid range, beats Kimi K2.6 ($0.7), Claude Opus 4.8 ($4.1)."},
+
+    {"model": "openai/gpt-oss-120b", "benchmark": "aa_output_tps", "score": 351, "unit": "tps", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "gpt-oss-120b (high) #1 speed 351 tps — fastest among frontier-tier."},
+    {"model": "xai/grok-4.3", "benchmark": "aa_output_tps", "score": 184, "unit": "tps", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "Grok 4.3 (high) 184 tps."},
+    {"model": "nvidia/nemotron-3-ultra-550b-a55b", "benchmark": "aa_output_tps", "score": 155, "unit": "tps", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "Nemotron 3 Ultra 155 tps."},
+    {"model": "google/gemini-3.1-pro", "benchmark": "aa_output_tps", "score": 134, "unit": "tps", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "Gemini 3.1 Pro Preview 134 tps."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "aa_output_tps", "score": 67, "unit": "tps", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "Claude Opus 4.8 (max) 67 tps."},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "aa_output_tps", "score": 66, "unit": "tps", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "GPT-5.5 (xhigh) 66 tps."},
+    {"model": "deepseek/deepseek-v4-pro-max", "benchmark": "aa_output_tps", "score": 63, "unit": "tps", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "DeepSeek V4 Pro (Max) 63 tps."},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "aa_output_tps", "score": 57, "unit": "tps", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "Kimi K2.6 57 tps."},
+    {"model": "xiaomi/mimo-v2.5-pro", "benchmark": "aa_output_tps", "score": 43, "unit": "tps", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiMo V2.5 Pro 43 tps."},
+
+    {"model": "deepseek/deepseek-v4-pro-max", "benchmark": "aa_blended_price_usd_per_m", "score": 0.2, "unit": "usd_per_m_tokens_lower_better", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "DeepSeek V4 Pro (Max) blended $0.2/M — cheapest frontier."},
+    {"model": "xiaomi/mimo-v2.5-pro", "benchmark": "aa_blended_price_usd_per_m", "score": 0.2, "unit": "usd_per_m_tokens_lower_better", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "MiMo V2.5 Pro blended $0.2/M."},
+    {"model": "openai/gpt-oss-120b", "benchmark": "aa_blended_price_usd_per_m", "score": 0.2, "unit": "usd_per_m_tokens_lower_better", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "gpt-oss-120b blended $0.2/M."},
+    {"model": "nvidia/nemotron-3-ultra-550b-a55b", "benchmark": "aa_blended_price_usd_per_m", "score": 0.5, "unit": "usd_per_m_tokens_lower_better", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "Nemotron 3 Ultra blended $0.5/M."},
+    {"model": "xai/grok-4.3", "benchmark": "aa_blended_price_usd_per_m", "score": 0.6, "unit": "usd_per_m_tokens_lower_better", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "Grok 4.3 (high) blended $0.6/M."},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "aa_blended_price_usd_per_m", "score": 0.7, "unit": "usd_per_m_tokens_lower_better", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "Kimi K2.6 blended $0.7/M."},
+    {"model": "google/gemini-3.1-pro", "benchmark": "aa_blended_price_usd_per_m", "score": 1.7, "unit": "usd_per_m_tokens_lower_better", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "Gemini 3.1 Pro Preview blended $1.7/M."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "aa_blended_price_usd_per_m", "score": 4.1, "unit": "usd_per_m_tokens_lower_better", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "Claude Opus 4.8 (max) blended $4.1/M — premium tier."},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "aa_blended_price_usd_per_m", "score": 4.3, "unit": "usd_per_m_tokens_lower_better", "_source": "https://artificialanalysis.ai/models/minimax-m3", "_note": "GPT-5.5 (xhigh) blended $4.3/M — most expensive."}
+  ]
+}
