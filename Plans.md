@@ -1,19 +1,20 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 63 — 7-tab audit propagation (2026-06-09)
-**1,667 models · 1,449 benchmarks · 7,418 scores · 16 active tabs + Edge LLM 4w + Frontier Gap 3w + Intelligence×Price Pareto + 7-tab audit propagation**
+## Current Status: Session 64 — Generalist AI GEN-1 + 1X World Model Lab (2026-06-09)
+**1,669 models · 1,452 benchmarks · 7,425 scores · 16 active tabs + Edge LLM 4w + Frontier Gap 3w + Intelligence×Price Pareto**
 
-### 2026-06-09 Session 63 — 7-tab audit propagation
+### 2026-06-09 Session 64 — Generalist AI GEN-1 + 1X World Model Lab
+- **NEW Physical AI VLA model**: `generalistai/gen-1` (2026-04-02 release) — Generalist AI Inc. multimodal action model with "Harmonic Reasoning" inference. Training: **500K+ hours physical interaction data + low-cost wearable device data** (NOT teleoperation). 🌍 **3 NEW SOTAs** on 3 NEW benches: gen_multitask_success 99% (vs GEN-0 64%, from-scratch 19%) / box_folding_time 12.1 sec (2.8x faster than π0 ~34 sec) / phone_packing_time 15.5 sec. Also added `generalistai/gen-0` (prior version) for comparison
+- **1X World Model Lab announcement** (2026-06-04): Sam Sinha ex-Luma AI heading; no new scores but updated `1x/world-model` release_date 2024-12-16 → 2026-06-04 reflecting lab launch
+- Propagation: Physical AI VLA Policies category +`generalistai/gen-1` +`generalistai/gen-0`; release-date map updated. Cache-bust v=20260609g. **+2/+3/+7** = 1669/1452/7425
+
+### 2026-06-09 Session 63 — 7-tab audit propagation (compressed)
 - Audit S58-S62 누적 ingest 12개 모델 × 7 탭 매트릭스. **누락분 propagation**: Frontier Compare ← china-mobile/jt-35b-flash + microsoft/phi-4 + microsoft/phi-4-multimodal · Cyber-Coding ← same 3 · Agent AGENT_PRODUCTS ← minimax/m3 · Agent EDGE_SLMS ← microsoft/phi-4-multimodal + amazon/nova-micro · Sovereign FRONTIER_VENDOR_REGION ← amazon/ + minimax/ namespace fallback
 - 검증: 12 모델 매트릭스 재실행 — Sovereign 100% / Frontier 6/12 / Cyber 6/12 / Agent 6/12 (TTS/ASR/QAT 변종은 Sovereign-only가 정상). Medical/Physical/AI4S 0% (general LLM 모델이므로 도메인 전파 불요)
 - Cache-bust v=20260609f for frontier-compare.js / cyber-coding.js / sovereign.js / agent.js
 
 ### 2026-06-09 Sessions 60-62 (compressed)
-- S62 NEW Intelligence×Price Pareto widget (10 모델, 4 Pareto-dominant: MiMo V2.5 Pro 270 ratio #1, MiniMax M3 250, Gemini 3.1 Pro 34, Opus 4.8 15). S61 MiniMax M3 deep ingest (22 sub-scores) + 🌍 IFBench 83 #1 + Non-Hall 84 #1 + 3 NEW AA perf benchmarks. S60 Frontier vs Small Gap 3-widget suite (Alibaba 56% catch-up winner / Meta 17% worst) + Phi-4 family + Nova Micro AAII. **+1/+3/+34** = 1667/1449/7418.
-
-### 2026-06-09 Sessions 60-61 (compressed)
-- S61 MiniMax M3 deep ingest (Playwright 12 sub-benches): GDPval-AA 58, τ²-Telecom 89, AA-LCR 74, AA-Omniscience Non-Hall **84** #1🌍, HLE 37, GPQA-D 93, IFBench **83** #1🌍, CritPt 4, MMMU-Pro 80. 3 NEW AA perf benchmarks: aa_output_tps (gpt-oss-120b 351 #1) / aa_ttft_sec / aa_blended_price (DeepSeek V4 Pro Max $0.2 #1). Architecture: MSA + 1M ctx + native video input. **+0/+3/+30** = 1667/1449/7418
-- S60 18 frontier vendor audit + Frontier-vs-Small Gap 3-widget suite (bar/Pareto/table). 7 vendors frontier-only (Anthropic, OpenAI, xAI, DeepSeek, Moonshot, Zhipu, Tencent). Ingested phi-4-mini 8, phi-4-multimodal 10 (NEW 5.6B), phi-4 10, nova-micro 10. Alibaba winner 56% catch-up, Meta worst 17%. **+1/+0/+4** = 1667/1446/7388
+- S62 NEW Intelligence×Price Pareto widget (4 Pareto-dominant: MiMo V2.5 Pro 270 ratio #1, M3 250, Gemini 3.1 Pro 34, Opus 4.8 15). S61 MiniMax M3 deep ingest 22 sub-scores + 🌍 IFBench 83 #1 + Non-Hall 84 #1 + 3 NEW AA perf benchmarks (aa_output_tps gpt-oss-120b 351 #1 / aa_ttft_sec / aa_blended_price DeepSeek V4 Pro Max $0.2 #1). S60 18 vendor audit + Frontier-vs-Small Gap 3-widget suite (Alibaba 56% catch-up winner / Meta 17% worst) + Phi-4 family + Nova Micro AAII. **+1/+3/+34** = 1667/1449/7418
 
 ### 2026-06-08~09 Sessions 58-59 (compressed)
 - S59 NEW Physical AI Edge & Mobile Small-LLM subsection: 4 widgets (Device-class buckets / Pareto chart / Country donut/stack / sortable table). 66 ≤12B models / 12 countries. Top AAII qwen3.5-9b 32, gemma-4-12b 29. S58 🌍 NEW AA Transcribe SOTA fun-realtime-asr-preview 1.7% WER, xAI TTS Elo 1208, Gemma 4 12B AAII 29. **+2/+0/+3** = 1667/1446/7384.
@@ -195,6 +196,5 @@ BMT/                         → Benchmark Library 카탈로그 (2,559 엔트리
 | `resource/benchmark_scores_2026_04.json` / `lmcouncil_scores_2026_04.json` | 원천 시드 + LM Council |
 | `data/export/models.json` | 빌드된 모델 63개 |
 | `data/export/benchmarks.json` | 빌드된 벤치마크 91개 |
-| `data/export/scores/current.json` | 현재 점수 707개 |
-| `data/export/sota.json` / `history/YYYY-MM-DD.json` | SOTA + 일별 스냅샷 |
+| `data/export/scores/current.json` · `sota.json` · `history/YYYY-MM-DD.json` | 점수·SOTA·일별 스냅샷 |
 | `data/bmt_connections.json` / `bmt_catalog.json` | BMT 매핑 + 카탈로그 (2,559개) |

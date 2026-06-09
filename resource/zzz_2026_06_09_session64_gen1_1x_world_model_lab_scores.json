@@ -1,0 +1,118 @@
+{
+  "_meta": {
+    "session": "Session 64 — Generalist AI GEN-1 + 1X World Model Lab",
+    "date": "2026-06-09",
+    "sources": [
+      "https://generalistai.com/blog/gen-1 (Generalist AI GEN-1 announcement, 2026-04-02)",
+      "https://www.1x.tech/discover/1x-world-model-lab (1X World Model Lab launch, 2026-06-04)"
+    ],
+    "notes": "GEN-1 = NEW Generalist AI VLA model. Vendor-claimed scores from blog post (no peer-reviewed paper yet). KEY METRICS: 99% multi-task success vs GEN-0 64% / from-scratch 19%. 3x faster on dexterous tasks. Box folding 12.1 sec (2.8x faster than π0/GEN-0 ~34 sec). Phone packing 15.5 sec. Training: 500K+ hours physical interaction data + low-cost wearable device data on humans (NOT teleoperation). Architecture: Large multimodal action model with 'Harmonic Reasoning' inference. Also added GEN-0 (referenced as prior version) for comparison. 1X World Model Lab is org announcement (Sam Sinha ex-Luma AI heading); no new bench scores but updated 1x/world-model with refreshed lab-launch context."
+  },
+  "models": [
+    {
+      "id": "generalistai/gen-1",
+      "name": "GEN-1",
+      "vendor": "Generalist AI",
+      "type": "proprietary",
+      "release_date": "2026-04-02",
+      "parameters": "undisclosed",
+      "modalities": ["text", "image", "video", "action"]
+    },
+    {
+      "id": "generalistai/gen-0",
+      "name": "GEN-0",
+      "vendor": "Generalist AI",
+      "type": "proprietary",
+      "release_date": "2025-10-01",
+      "parameters": "undisclosed",
+      "modalities": ["text", "image", "video", "action"]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "box_folding_time_sec",
+      "name": "Box Folding Task — Time to Complete (seconds, lower better)",
+      "category": "vla-manipulation",
+      "metric": "seconds_lower_better",
+      "unit": "seconds_lower_better",
+      "description": "Time required to fold a cardboard box. Real-world dexterous manipulation benchmark. Lower is better.",
+      "source_url": "https://generalistai.com/blog/gen-1"
+    },
+    {
+      "id": "phone_packing_time_sec",
+      "name": "Phone Packing Task — Time to Complete (seconds, lower better)",
+      "category": "vla-manipulation",
+      "metric": "seconds_lower_better",
+      "unit": "seconds_lower_better",
+      "description": "Time required to pack a phone into its retail box. Real-world dexterous manipulation benchmark. Lower is better.",
+      "source_url": "https://generalistai.com/blog/gen-1"
+    },
+    {
+      "id": "gen_multitask_success_avg",
+      "name": "Generalist AI Multi-Task Success Rate (avg)",
+      "category": "vla-manipulation",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Mean success rate across multiple real-world manipulation tasks reported by Generalist AI. Higher is better.",
+      "source_url": "https://generalistai.com/blog/gen-1"
+    }
+  ],
+  "scores": [
+    {
+      "model": "generalistai/gen-1",
+      "benchmark": "gen_multitask_success_avg",
+      "score": 99.0,
+      "unit": "score_0_100",
+      "_source": "https://generalistai.com/blog/gen-1",
+      "_note": "🌍 GEN-1 99% multi-task success — vendor-claimed. Massive jump from GEN-0 64% and from-scratch 19% baseline."
+    },
+    {
+      "model": "generalistai/gen-0",
+      "benchmark": "gen_multitask_success_avg",
+      "score": 64.0,
+      "unit": "score_0_100",
+      "_source": "https://generalistai.com/blog/gen-1",
+      "_note": "GEN-0 prior version 64% average — for comparison context."
+    },
+    {
+      "model": "generalistai/gen-1",
+      "benchmark": "box_folding_time_sec",
+      "score": 12.1,
+      "unit": "seconds_lower_better",
+      "_source": "https://generalistai.com/blog/gen-1",
+      "_note": "🌍 GEN-1 box folding 12.1 sec — 2.8x faster than π0/GEN-0 ~34 sec. Vendor-claimed real-world manipulation."
+    },
+    {
+      "model": "generalistai/gen-0",
+      "benchmark": "box_folding_time_sec",
+      "score": 34.0,
+      "unit": "seconds_lower_better",
+      "_source": "https://generalistai.com/blog/gen-1",
+      "_note": "GEN-0 box folding ~34 sec (vendor-reported comparison; same time as π-zero per blog)."
+    },
+    {
+      "model": "physical-intelligence/pi-zero",
+      "benchmark": "box_folding_time_sec",
+      "score": 34.0,
+      "unit": "seconds_lower_better",
+      "_source": "https://generalistai.com/blog/gen-1",
+      "_note": "π-zero (Physical Intelligence) box folding ~34 sec — comparison baseline cited by Generalist AI blog. Treated as 3rd-party reported."
+    },
+    {
+      "model": "generalistai/gen-1",
+      "benchmark": "phone_packing_time_sec",
+      "score": 15.5,
+      "unit": "seconds_lower_better",
+      "_source": "https://generalistai.com/blog/gen-1",
+      "_note": "🌍 GEN-1 phone packing 15.5 sec — 2.8x faster than GEN-0 (vendor-claimed)."
+    },
+    {
+      "model": "generalistai/gen-0",
+      "benchmark": "phone_packing_time_sec",
+      "score": 43.4,
+      "unit": "seconds_lower_better",
+      "_source": "https://generalistai.com/blog/gen-1",
+      "_note": "GEN-0 phone packing ~43.4 sec (2.8x slower than GEN-1's 15.5 sec, blog ratio implies)."
+    }
+  ]
+}
