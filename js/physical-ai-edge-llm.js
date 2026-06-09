@@ -461,20 +461,44 @@
       'high': '#f59e0b',
       'work': '#ef4444'
     };
+    // Short label: strip vendor prefix from id, show "<model> (<size>B)"
+    function _shortLabel(modelId, sizeB) {
+      var tail = (modelId || '').split('/').pop() || modelId || '?';
+      // Truncate very long names so labels don't overflow
+      if (tail.length > 22) tail = tail.slice(0, 21) + '…';
+      return tail + ' (' + sizeB.toFixed(1) + 'B)';
+    }
+
     var series = DEVICE_CLASSES.map(function(cls) {
       var pts = data
         .filter(function(m) { return m.device === cls.code && m.scores.aa_intelligence_index != null; })
         .map(function(m) {
           return {
             value: [m.size, m.scores.aa_intelligence_index, m.id, m.country, m.vendor],
-            symbolSize: Math.max(10, Math.min(28, 10 + (m.scores.aa_intelligence_index / 2.5)))
+            symbolSize: Math.max(10, Math.min(28, 10 + (m.scores.aa_intelligence_index / 2.5))),
+            label: {
+              show: true,
+              position: 'right',
+              distance: 4,
+              formatter: _shortLabel(m.id, m.size),
+              color: '#cbd5e1',
+              fontSize: 9,
+              backgroundColor: 'rgba(15,23,42,0.55)',
+              padding: [1, 3, 1, 3],
+              borderRadius: 2
+            }
           };
         });
       return {
         name: cls.icon + ' ' + cls.label,
         type: 'scatter',
         data: pts,
-        itemStyle: { color: colorMap[cls.code], opacity: 0.85, borderColor: '#0f172a', borderWidth: 1 }
+        itemStyle: { color: colorMap[cls.code], opacity: 0.85, borderColor: '#0f172a', borderWidth: 1 },
+        labelLayout: { hideOverlap: true, moveOverlap: 'shiftY' },
+        emphasis: {
+          focus: 'self',
+          label: { fontSize: 11, color: '#fef3c7', fontWeight: 'bold', backgroundColor: 'rgba(15,23,42,0.95)' }
+        }
       };
     });
 
