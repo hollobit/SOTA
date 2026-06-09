@@ -70,7 +70,9 @@ var PhysicalAI = {
                 // 2026-06-01 S45 — Alibaba Qwen-VLA paper (arxiv 2605.30280): unified VLA across tasks/environments/embodiments
                 'alibaba/qwen-vla-base', 'alibaba/qwen-vla-instruct',
                 'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',
-                'amap-cvlab/abot-m0', 'starvla/starvla-oft'
+                'amap-cvlab/abot-m0', 'starvla/starvla-oft',
+                // 2026-06-09 S64 — Generalist AI GEN-1 (99% multi-task success vs π0 64%, box-folding 2.8x faster)
+                'generalistai/gen-1', 'generalistai/gen-0'
             ]
         },
         {
@@ -286,6 +288,8 @@ var PhysicalAI = {
         'openvla/openvla-7b': '2024-06', 'openvla/openvla-oft': '2025-02',
         'octo/octo-base': '2024-05',
         'agibot/genie-envisioner': '2025-06',
+        // 2026-06-09 S64 — Generalist AI GEN family
+        'generalistai/gen-1': '2026-04', 'generalistai/gen-0': '2025-10',
         'tencent/hy-world-2.0': '2026-04',
         'wonderworld/wonderworld': '2024-08',
         'zhipu/cogvideox-i2v': '2024-09',
