@@ -348,6 +348,35 @@
     gapSection.appendChild(gapTblWrap);
     host.appendChild(gapSection);
 
+    // ── F. Intelligence × Price Pareto ──
+    var pxSection = document.createElement('div');
+    pxSection.className = 'mb-6 bg-gradient-to-br from-gray-900 via-gray-900 to-green-950 border border-green-900 rounded-lg p-4';
+    var pxHeader = document.createElement('div');
+    pxHeader.className = 'flex items-center gap-2 mb-1';
+    var pxIcon = document.createElement('span');
+    pxIcon.textContent = '💰';
+    pxIcon.style.fontSize = '18px';
+    pxHeader.appendChild(pxIcon);
+    var pxTitle = document.createElement('h4');
+    pxTitle.className = 'text-sm font-semibold text-gray-200';
+    pxTitle.textContent = 'Intelligence × Price — Frontier-tier Pareto Frontier';
+    pxHeader.appendChild(pxTitle);
+    pxSection.appendChild(pxHeader);
+    var pxHint = document.createElement('p');
+    pxHint.className = 'text-xs text-gray-400 mb-3';
+    pxHint.textContent = 'X = blended price USD/M tokens (7:2:1 cache:input:output, log scale, 낮을수록 좋음) · Y = AAII (높을수록 좋음). 우상단 = 비싸고 똑똑함, 좌하단 = 싸고 멍청함. 🏆 좌상단 quadrant = 싸면서 똑똑한 dominant 모델. Pareto frontier 선이 commercial 선택지의 합리적 한계.';
+    pxSection.appendChild(pxHint);
+    var pxChart = document.createElement('div');
+    pxChart.id = 'edge-llm-price-pareto';
+    pxChart.className = 'w-full';
+    pxChart.style.height = '460px';
+    pxSection.appendChild(pxChart);
+    var pxTblWrap = document.createElement('div');
+    pxTblWrap.id = 'edge-llm-price-table-wrap';
+    pxTblWrap.className = 'overflow-x-auto bg-gray-900 border border-gray-800 rounded-lg mt-3';
+    pxSection.appendChild(pxTblWrap);
+    host.appendChild(pxSection);
+
     // ── D. Comparison table ──
     var tblSection = document.createElement('div');
     tblSection.className = 'mb-2';
@@ -1062,6 +1091,331 @@
   }
 
   // ──────────────────────────────────────────────────────────────────────
+  // Intelligence × Price Pareto.
+  // ──────────────────────────────────────────────────────────────────────
+  function _vendorOfId(modelId) {
+    if (!modelId) return '';
+    var i = modelId.indexOf('/');
+    return i > 0 ? modelId.slice(0, i) : '';
+  }
+
+  function _countryByVendorNamespace(ns) {
+    // Map model-id namespace prefix to a country tag (re-uses COUNTRY_MAP-like logic
+    // but keyed by namespace because frontier vendor names sometimes differ).
+    switch ((ns || '').toLowerCase()) {
+      case 'openai':
+      case 'anthropic':
+      case 'google':
+      case 'google-deepmind':
+      case 'meta':
+      case 'nvidia':
+      case 'microsoft':
+      case 'amazon':
+      case 'apple':
+      case 'allenai':
+      case 'allen-ai':
+        return '🇺🇸 USA';
+      case 'alibaba':
+      case 'tencent':
+      case 'deepseek':
+      case 'xiaomi':
+      case 'moonshot':
+      case 'minimax':
+      case 'thudm':
+      case 'zhipu':
+      case 'baichuan':
+      case '01-ai':
+      case 'openbmb':
+      case 'shanghai-ai-lab':
+      case 'stepfun':
+      case 'nanbeige':
+      case 'mimo':
+        return '🇨🇳 China';
+      case 'xai':
+        return '🇺🇸 USA';
+      case 'mistral':
+      case 'mistralai':
+      case 'hugging-face':
+        return '🇫🇷 France';
+      case 'cohere':
+        return '🇨🇦 Canada';
+      case 'lg':
+      case 'ncsoft':
+      case 'kakao':
+      case 'konan':
+      case 'motif':
+      case 'upstage':
+        return '🇰🇷 Korea';
+      case 'tii':
+        return '🇦🇪 UAE';
+      case 'ibm':
+        return '🇺🇸 USA';
+      case 'ai21':
+      case 'dicta':
+        return '🇮🇱 Israel';
+      case 'sber':
+        return '🇷🇺 Russia';
+      default:
+        return '🌐 Other';
+    }
+  }
+
+  function _buildPriceParetoData() {
+    if (!root.App || !root.App.data) return [];
+    var scores = root.App.data.scores || [];
+    var aaii = {};
+    var price = {};
+    for (var i = 0; i < scores.length; i++) {
+      var s = scores[i];
+      if (s.benchmark_id === 'aa_intelligence_index') aaii[s.model_id] = s.value;
+      else if (s.benchmark_id === 'aa_blended_price_usd_per_m') price[s.model_id] = s.value;
+    }
+    var out = [];
+    Object.keys(price).forEach(function(mid) {
+      if (aaii[mid] == null) return;
+      var ns = _vendorOfId(mid);
+      out.push({
+        id: mid,
+        aaii: aaii[mid],
+        price: price[mid],
+        country: _countryByVendorNamespace(ns),
+        ratio: aaii[mid] / Math.max(0.01, price[mid])   // intelligence per dollar
+      });
+    });
+    out.sort(function(a, b) { return b.ratio - a.ratio; });
+    return out;
+  }
+
+  function _computeParetoFrontier(data) {
+    // For each model, it is Pareto-dominant if NO other model has both
+    // higher (or equal) AAII AND lower (or equal) price (and at least one strict).
+    var dominated = {};
+    for (var i = 0; i < data.length; i++) {
+      for (var j = 0; j < data.length; j++) {
+        if (i === j) continue;
+        var a = data[i], b = data[j];
+        // b dominates a if b.aaii >= a.aaii && b.price <= a.price && (strict on at least one)
+        if (b.aaii >= a.aaii && b.price <= a.price && (b.aaii > a.aaii || b.price < a.price)) {
+          dominated[a.id] = true;
+          break;
+        }
+      }
+    }
+    // Pareto frontier = sorted by price asc (so plotting as line draws the staircase)
+    return data.filter(function(d) { return !dominated[d.id]; })
+               .sort(function(a, b) { return a.price - b.price; });
+  }
+
+  function _renderPriceParetoChart(data) {
+    var el = document.getElementById('edge-llm-price-pareto');
+    if (!el || typeof echarts === 'undefined') return;
+    var prev = echarts.getInstanceByDom(el);
+    if (prev) prev.dispose();
+
+    var COUNTRY_COLOR = {
+      '🇺🇸 USA': '#3b82f6',
+      '🇨🇳 China': '#ef4444',
+      '🇫🇷 France': '#f97316',
+      '🇰🇷 Korea': '#a855f7',
+      '🇯🇵 Japan': '#ec4899',
+      '🇦🇪 UAE': '#fbbf24',
+      '🇨🇦 Canada': '#22c55e',
+      '🇩🇪 Germany': '#facc15',
+      '🇨🇭 Switzerland': '#14b8a6',
+      '🇷🇺 Russia': '#9333ea',
+      '🇸🇬 Singapore': '#06b6d4',
+      '🇮🇱 Israel': '#84cc16',
+      '🌐 Other': '#9ca3af'
+    };
+
+    // Group by country for legend
+    var grouped = {};
+    data.forEach(function(d) {
+      if (!grouped[d.country]) grouped[d.country] = [];
+      grouped[d.country].push(d);
+    });
+
+    var pareto = _computeParetoFrontier(data);
+    var paretoIds = {};
+    pareto.forEach(function(p) { paretoIds[p.id] = true; });
+
+    function _shortId(mid) {
+      var t = (mid || '').split('/').pop() || mid || '?';
+      if (t.length > 24) t = t.slice(0, 23) + '…';
+      return t;
+    }
+
+    var series = Object.keys(grouped).sort().map(function(country) {
+      var pts = grouped[country].map(function(d) {
+        return {
+          value: [d.price, d.aaii, d.id, d.ratio],
+          symbolSize: Math.max(14, Math.min(32, 10 + d.aaii / 3)),
+          label: {
+            show: true, position: 'top', distance: 6,
+            formatter: _shortId(d.id) + (paretoIds[d.id] ? ' 🏆' : ''),
+            color: paretoIds[d.id] ? '#fef3c7' : '#cbd5e1',
+            fontSize: paretoIds[d.id] ? 10 : 9,
+            fontWeight: paretoIds[d.id] ? 'bold' : 'normal',
+            backgroundColor: 'rgba(15,23,42,0.7)',
+            padding: [2, 4, 2, 4], borderRadius: 3
+          },
+          itemStyle: {
+            color: COUNTRY_COLOR[country] || '#9ca3af',
+            opacity: 0.92,
+            borderColor: paretoIds[d.id] ? '#fbbf24' : '#0f172a',
+            borderWidth: paretoIds[d.id] ? 2.5 : 1
+          }
+        };
+      });
+      return {
+        name: country,
+        type: 'scatter',
+        data: pts,
+        labelLayout: { hideOverlap: true, moveOverlap: 'shiftY' },
+        emphasis: {
+          focus: 'self',
+          label: { fontSize: 12, color: '#fef3c7', fontWeight: 'bold' }
+        }
+      };
+    });
+
+    // Pareto frontier line series
+    var paretoLineSeries = {
+      name: '🏆 Pareto Frontier',
+      type: 'line',
+      data: pareto.map(function(p) { return [p.price, p.aaii]; }),
+      showSymbol: false,
+      step: 'end',
+      lineStyle: { color: '#fbbf24', width: 1.5, type: 'dashed', opacity: 0.8 },
+      tooltip: { show: false },
+      z: 1
+    };
+    series.push(paretoLineSeries);
+
+    var chart = echarts.init(el);
+    chart.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {
+        backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          if (p.seriesName === '🏆 Pareto Frontier') return '';
+          var v = p.value;
+          var isParetoFlag = paretoIds[v[2]] ? '<br/><span style="color:#fbbf24">🏆 Pareto-dominant</span>' : '';
+          return '<b>' + v[2] + '</b><br/>' +
+                 'Country: ' + p.seriesName + '<br/>' +
+                 'AAII: <b>' + v[1] + '</b><br/>' +
+                 'Price: <b>$' + v[0].toFixed(2) + '</b>/M tokens<br/>' +
+                 'Intelligence/$ ratio: <b>' + v[3].toFixed(0) + '</b>' +
+                 isParetoFlag;
+        }
+      },
+      legend: { textStyle: { color: '#9ca3af', fontSize: 11 }, top: 0 },
+      grid: { left: 60, right: 24, top: 36, bottom: 60 },
+      xAxis: {
+        type: 'log', min: 0.1, max: 10,
+        name: 'Price (USD/M tokens, log)', nameLocation: 'middle', nameGap: 32,
+        nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af', formatter: function(v) { return '$' + v; } },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: 'rgba(75,85,99,0.3)' } }
+      },
+      yAxis: {
+        type: 'value', min: 25, max: 65,
+        name: 'AAII (Intelligence)', nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: 'rgba(75,85,99,0.3)' } }
+      },
+      series: series,
+      graphic: [
+        {
+          type: 'text',
+          left: '12%', top: '14%',
+          style: {
+            text: '🏆 Most attractive\n(cheap + smart)',
+            fill: '#86efac', fontSize: 11, fontWeight: 'bold',
+            textAlign: 'left'
+          },
+          z: 0
+        },
+        {
+          type: 'text',
+          right: '4%', bottom: '14%',
+          style: {
+            text: '💸 Expensive +\nlow intelligence',
+            fill: '#fca5a5', fontSize: 10,
+            textAlign: 'right'
+          },
+          z: 0
+        }
+      ]
+    });
+    window.addEventListener('resize', function() { chart.resize(); });
+  }
+
+  function _renderPriceParetoTable(data) {
+    var wrap = document.getElementById('edge-llm-price-table-wrap');
+    if (!wrap) return;
+    wrap.textContent = '';
+    var pareto = _computeParetoFrontier(data);
+    var paretoIds = {};
+    pareto.forEach(function(p) { paretoIds[p.id] = true; });
+    var sorted = data.slice().sort(function(a, b) { return b.ratio - a.ratio; });
+
+    var table = document.createElement('table');
+    table.className = 'w-full text-xs';
+    var thead = document.createElement('thead');
+    thead.className = 'bg-gray-800 text-gray-300';
+    var trh = document.createElement('tr');
+    ['Rank','Model','Country','AAII','Price (USD/M)','AAII / $','Pareto'].forEach(function(c) {
+      var th = document.createElement('th');
+      th.className = 'p-2 text-left';
+      th.textContent = c;
+      trh.appendChild(th);
+    });
+    thead.appendChild(trh);
+    table.appendChild(thead);
+    var tbody = document.createElement('tbody');
+    sorted.forEach(function(d, idx) {
+      var tr = document.createElement('tr');
+      tr.className = (idx % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800') + ' border-t border-gray-800';
+      function td(text, cls) {
+        var c = document.createElement('td');
+        c.className = 'p-2 ' + (cls || '');
+        c.textContent = text;
+        return c;
+      }
+      tr.appendChild(td('#' + (idx + 1), 'text-gray-500'));
+      tr.appendChild(td(d.id, 'font-mono text-gray-200'));
+      tr.appendChild(td(d.country));
+      tr.appendChild(td(String(d.aaii), 'text-green-400 font-semibold'));
+      tr.appendChild(td('$' + d.price.toFixed(2), 'text-blue-300'));
+      tr.appendChild(td(d.ratio.toFixed(0), 'text-yellow-300 font-bold'));
+      var pTd = document.createElement('td');
+      pTd.className = 'p-2 ';
+      if (paretoIds[d.id]) {
+        var badge = document.createElement('span');
+        badge.className = 'px-2 py-0.5 rounded text-xs bg-amber-900 text-amber-300 font-bold';
+        badge.textContent = '🏆 Dominant';
+        pTd.appendChild(badge);
+      } else {
+        pTd.textContent = '—';
+        pTd.classList.add('text-gray-500');
+      }
+      tr.appendChild(pTd);
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    var foot = document.createElement('div');
+    foot.className = 'text-xs text-gray-500 p-2 border-t border-gray-800';
+    foot.textContent = data.length + ' frontier 모델 · Pareto-dominant ' + pareto.length +
+                       ' · "AAII / $" = 1달러당 intelligence — 높을수록 가성비 우수';
+    wrap.appendChild(foot);
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
   // Public API.
   // ──────────────────────────────────────────────────────────────────────
   function render() {
@@ -1086,6 +1440,11 @@
     _renderGapBars(gapData);
     _renderGapScatter(gapData);
     _renderGapTable(gapData);
+    var pxData = _buildPriceParetoData();
+    if (pxData.length > 0) {
+      _renderPriceParetoChart(pxData);
+      _renderPriceParetoTable(pxData);
+    }
     _renderFilters(data);
     _renderTable(data);
   }
