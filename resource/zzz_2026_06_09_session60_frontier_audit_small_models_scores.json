@@ -1,0 +1,59 @@
+{
+  "_meta": {
+    "session": "Session 60 — Frontier vendor small-model AAII audit + gap-widget data",
+    "date": "2026-06-09",
+    "sources": [
+      "https://artificialanalysis.ai/leaderboards/models (AAII leaderboard — small-model row scan)",
+      "https://artificialanalysis.ai/models/phi-4-mini-instruct",
+      "https://artificialanalysis.ai/models/phi-4-multimodal",
+      "https://artificialanalysis.ai/models/nova-micro"
+    ],
+    "notes": "Frontier-vendor audit: identified zero ≤12B AAII coverage for OpenAI/Anthropic/xAI; very thin for Microsoft. Added Microsoft Phi-4-mini-instruct AAII 8, Phi-4-multimodal AAII 10 (both already in DB without AAII), and Amazon Nova Micro (already in DB, AAII 10). gpt-oss-20b (AAII 24) is >12B so deferred from ≤12B widget but tracked in frontier registry."
+  },
+  "models": [
+    {
+      "id": "microsoft/phi-4-multimodal",
+      "name": "Phi-4 Multimodal",
+      "vendor": "Microsoft",
+      "type": "open-weight",
+      "release_date": "2025-02-26",
+      "parameters": "5.6B",
+      "modalities": ["text", "image", "audio"]
+    }
+  ],
+  "benchmarks": [],
+  "scores": [
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "aa_intelligence_index",
+      "score": 8.0,
+      "unit": "score_0_100",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "Microsoft Phi-4 Mini AAII 8 — small-model entry from MSFT frontier vendor. 3.8B params."
+    },
+    {
+      "model": "microsoft/phi-4-multimodal",
+      "benchmark": "aa_intelligence_index",
+      "score": 10.0,
+      "unit": "score_0_100",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "Microsoft Phi-4 Multimodal AAII 10 — text+image+audio 5.6B small model."
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "aa_intelligence_index",
+      "score": 10.0,
+      "unit": "score_0_100",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "Microsoft Phi-4 (14B base) AAII 10 — fills MSFT mid-tier frontier reference. Just over ≤12B cutoff."
+    },
+    {
+      "model": "amazon/nova-micro",
+      "benchmark": "aa_intelligence_index",
+      "score": 10.0,
+      "unit": "score_0_100",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "Amazon Nova Micro AAII 10 — Amazon frontier vendor's smallest tier (~1.3B est). Mobile/edge deployment target."
+    }
+  ]
+}

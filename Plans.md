@@ -1,24 +1,21 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 59 — Physical AI Edge/Mobile Small-LLM widget (2026-06-09)
-**1,667 models · 1,446 benchmarks · 7,384 scores · 16 active tabs + Frontier Compare composite split + Physical AI Edge LLM 4-widget suite (66 ≤12B models · 12 countries)**
+## Current Status: Session 60 — Frontier vs Small Gap widget (2026-06-09)
+**1,667 models · 1,446 benchmarks · 7,388 scores · 16 active tabs + Edge LLM 4-widget suite + Frontier-vs-Small Gap 3-widget suite (16 vendors · paired bar / Pareto scatter / catch-up table)**
 
-### 2026-06-09 Session 59 — Physical AI Edge/Mobile Small-LLM widget
-- **NEW Physical AI subsection**: 📱 Edge & Mobile Small-LLM (≤12B) — 4 widgets: (A) Device-class buckets 5 cards [MCU·Wearable<0.5B / Lightweight Mobile 0.5-2B / Standard Mobile 2-4B / High-end Mobile 4-8B / Laptop·Workstation 8-13B] · (B) Size×AAII Pareto scatter (log-scale X) · (C) Country donut + Country×Device-class stacked · (D) Sortable comparison table (Model·Size·AAII·MMLU-Pro·GPQA-D·Country·Released·Type·Modalities)
-- **66 qualifying ≤12B models** distributed: work 25 / high 22 / mid 9 / lite 7 / mcu 3. **12 countries** mapped: 🇺🇸 33 / 🇨🇳 12 / 🇦🇪 5 / 🇫🇷 4 / 🇰🇷 3 / 🇮🇱 2 / 🇩🇪 2 / 🇨🇭 🇷🇺 🇨🇦 🇸🇬 1 each + 🌐 OSS 1
-- **Pareto top by AAII**: qwen3.5-9b 32 (9B) > **gemma-4-12b 29** (11.9B) > qwen3.5-4b 27 (4B) > gemma-4-e4b 19 (4B). Korean models: motif-2-12.7B (19), kakao/kanana-1.5-8b, konan/konan-llm-ond-4b, exaone-4.0-1.2b 8. Files: `dashboard/js/physical-ai-edge-llm.js` (725 LOC) + 6-line hook in physical-ai.js + 1 container in index.html. v=20260609a
+### 2026-06-09 Session 60 — Frontier vs Small Catch-Up Gap widget + audit
+- **AUDIT**: 18 frontier vendors checked. **9 vendors have BOTH tiers scored** w/ AAII; **7 vendors have only frontier-tier scored** (Anthropic, OpenAI, xAI, DeepSeek, Moonshot, Zhipu/THUDM, Tencent — small AAII not yet on AA leaderboard). Ingested: **microsoft/phi-4-mini-instruct AAII 8 · microsoft/phi-4-multimodal AAII 10 (NEW model, 5.6B) · microsoft/phi-4 AAII 10 · amazon/nova-micro AAII 10**. Also backfilled params: phi-4-multimodal 5.6B + nova-micro 1.3B
+- **NEW WIDGET — Frontier vs Small Gap Analysis** (3 sub-widgets): (E1) 벤더별 Frontier-best vs Small-best AAII paired bar chart (gray frontier / colored small + catch-up % label) · (E2) Pareto 산점도 (X=frontier AAII, Y=small AAII, y=x parity 대각선) · (E3) Vendor gap table (Frontier · Small · Gap · Catch-up % color-coded). Files: extended `physical-ai-edge-llm.js` (+340 LOC). v=20260609b
+- **인사이트**: Alibaba winner (56% catch-up, frontier 57 → small 32). Microsoft 100% / IBM 80% catch-up (low absolute). Meta 17% only — Llama 3.2 11B (AAII 9) vs Llama 4 muse-spark (AAII 52) 43pt gap. **+1/+0/+4** = 1667/1446/7388
+
+### 2026-06-09 Session 59 — Physical AI Edge/Mobile Small-LLM widget (compressed)
+- NEW Physical AI subsection: 📱 Edge & Mobile Small-LLM (≤12B) — 4 widgets: Device-class buckets + Pareto chart + Country donut/stack + sortable table. 66 ≤12B models / 12 countries. Top AAII: qwen3.5-9b 32, gemma-4-12b 29. Files: `dashboard/js/physical-ai-edge-llm.js` (725 LOC) + hook. v=20260609a
 
 ### 2026-06-08 Session 58 — Leaderboard sweep R3 (compressed)
 - 🌍 **NEW AA Transcribe SOTA**: alibaba/fun-realtime-asr-preview **1.7% WER** beats Scribe v2 2.2 by 0.5pp. xAI TTS NEW #3 Elo 1208. Gemma 4 12B AAII 29 (#15/126). **+2/+0/+3** = 1667/1446/7384.
 
-### 2026-06-05 Sessions 54-55 (compressed)
-- S55 AA T2I 2 NEW + TTS Quality Elo Fun-Realtime-TTS 1227 SOTA. S54 Nemotron 3 Ultra 550B/55B MoE AAII 48 + ITBench-AA Opus 4.7 47% SOTA. **+8/+2/+16** = 1657/1441/7354.
-
-### 2026-06-04 Sessions 52-53 (compressed)
-- S53 NEW AA Transcribe SOTA: ElevenLabs Scribe v2 2.2% beats MAI-T-1.5 2.4. 6 NEW transcription models. S52 AutoMedBench (Opus 4.6 66.5 SOTA), K-BrowseComp Korean GPT-5.5 45.67%. **+10/+9/+78** = 1649/1439/7338.
-
-### 2026-06-04 Session 51 — Leaderboard sweep + 7-tab audit fix (compressed)
-- AAII NEW: minimax/m3 55, qwen3.7-plus 53. 3 NEW arena.ai models: Reve 2.0 T2I #2 (1280), Wan 2.7 T2V (1385), Grok Imagine Video 1.5 I2V #1 (1473). 2 NEW benches arena_i2v/t2v_elo. Audit fix Cyber-Coding +gemma-4-12b, Sovereign+Physical AI +wan2.7-t2v. **+3/+2/+14** = 1640/1430/7260.
+### 2026-06-04~05 Sessions 51-55 (compressed)
+- S55 AA T2I 2 NEW + TTS Quality Elo Fun-Realtime-TTS 1227 SOTA. S54 Nemotron 3 Ultra 550B/55B MoE AAII 48 + ITBench-AA Opus 4.7 47% SOTA. S53 NEW AA Transcribe SOTA: Scribe v2 2.2%. S52 AutoMedBench Opus 4.6 66.5 SOTA + K-BrowseComp 45.67%. S51 minimax/m3 AAII 55 + 3 arena.ai NEW (Reve 2.0 #2 1280 / Wan 2.7 1385 / Grok Imagine #1 1473) + 7-tab audit fix. **+21/+13/+108** cumulative.
 
 ### 2026-06-04 Session 50 — GPT-Rosalind + Gemma 4 12B (compressed)
 - GPT-Rosalind 4 life-sci benches (LifeSciBench 63.4 SOTA). Gemma 4 12B encoder-free multimodal (MMLU Pro 77.2). 8 NEW benches. **+2/+8/+25** = 1637/1428/7246.
