@@ -485,7 +485,12 @@ var CyberCoding = {
         'anthropic/claude-sonnet-4.5',
 
         // Cyber/coding-specialist variants from TAC program (already partially listed)
-        'openai/gpt-5.5-cyber'
+        'openai/gpt-5.5-cyber',
+
+        // 2026-06-09 S63 audit propagation — newly ingested cyber/coding-relevant frontier models
+        'china-mobile/jt-35b-flash',    // S57 — AAII 36 #1/131 FREE on AA, MoE 35B/3.7B active
+        'microsoft/phi-4',              // S60 — 14B AAII 10 base coding LLM
+        'microsoft/phi-4-multimodal'    // S60 — 5.6B small frontier with image+audio coding
     ],
 
     _models: [],
