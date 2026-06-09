@@ -129,7 +129,23 @@
     tableSortDir: 'desc'
   };
 
+  // Hard-coded size overrides for models whose `parameters` field is empty in
+  // the upstream DB. Source: vendor model cards / AA model pages.
+  var KNOWN_SIZES_B = {
+    'microsoft/phi-4-multimodal': 5.6,
+    'microsoft/phi-4-mini': 3.8,
+    'microsoft/phi-3.5-mini': 3.8,
+    'microsoft/phi-3-mini': 3.8,
+    'amazon/nova-micro': 1.3,
+    'amazon/nova-lite': 8.0,
+    'apple/foundation-3b': 3.0,
+    'apple/openelm-3b': 3.0,
+    'apple/openelm-1.1b': 1.1,
+    'apple/dclm-7b': 7.0
+  };
+
   function _parseSize(parameters, modelId) {
+    if (modelId && KNOWN_SIZES_B[modelId] != null) return KNOWN_SIZES_B[modelId];
     if (!parameters && !modelId) return null;
     var txt = (parameters || '') + ' ' + (modelId || '');
     // Match "11.9B", "7B", "1.7B", "270M", "350m" (case-insensitive, word boundary)
