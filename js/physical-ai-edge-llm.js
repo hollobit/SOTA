@@ -278,6 +278,60 @@
     distSection.appendChild(classWrap);
     host.appendChild(distSection);
 
+    // ── E. Frontier vs Small Gap Analysis ──
+    var gapSection = document.createElement('div');
+    gapSection.className = 'mb-6 bg-gradient-to-br from-gray-900 via-gray-900 to-blue-950 border border-blue-900 rounded-lg p-4';
+    var gapHeader = document.createElement('div');
+    gapHeader.className = 'flex items-center gap-2 mb-1';
+    var gapIcon = document.createElement('span');
+    gapIcon.textContent = '🏎️';
+    gapIcon.style.fontSize = '18px';
+    gapHeader.appendChild(gapIcon);
+    var gapTitle = document.createElement('h4');
+    gapTitle.className = 'text-sm font-semibold text-gray-200';
+    gapTitle.textContent = 'Frontier vs Small — Catch-Up Gap Analysis';
+    gapHeader.appendChild(gapTitle);
+    gapSection.appendChild(gapHeader);
+    var gapHint = document.createElement('p');
+    gapHint.className = 'text-xs text-gray-400 mb-3';
+    gapHint.textContent = 'Frontier급 모델 개발 벤더들의 frontier-tier vs ≤12B small-tier AAII 격차. 작은 격차 = small이 frontier에 가깝게 따라잡고 있음. 80%+ catch-up = small 모델이 frontier 성능의 80% 이상 달성.';
+    gapSection.appendChild(gapHint);
+
+    var gapGrid = document.createElement('div');
+    gapGrid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4';
+
+    var barWrap = document.createElement('div');
+    var barTitle = document.createElement('div');
+    barTitle.className = 'text-xs text-gray-400 mb-2';
+    barTitle.textContent = '벤더별 Frontier(회색) vs Best Small(컬러) AAII';
+    barWrap.appendChild(barTitle);
+    var barChart = document.createElement('div');
+    barChart.id = 'edge-llm-gap-bars';
+    barChart.className = 'w-full';
+    barChart.style.height = '420px';
+    barWrap.appendChild(barChart);
+    gapGrid.appendChild(barWrap);
+
+    var scWrap = document.createElement('div');
+    var scTitle = document.createElement('div');
+    scTitle.className = 'text-xs text-gray-400 mb-2';
+    scTitle.textContent = 'Pareto 산점도 — Frontier 성능(X) × Small 성능(Y). 대각선에 가까울수록 catch-up 성공';
+    scWrap.appendChild(scTitle);
+    var scChart = document.createElement('div');
+    scChart.id = 'edge-llm-gap-scatter';
+    scChart.className = 'w-full';
+    scChart.style.height = '420px';
+    scWrap.appendChild(scChart);
+    gapGrid.appendChild(scWrap);
+
+    gapSection.appendChild(gapGrid);
+
+    var gapTblWrap = document.createElement('div');
+    gapTblWrap.id = 'edge-llm-gap-table-wrap';
+    gapTblWrap.className = 'overflow-x-auto bg-gray-900 border border-gray-800 rounded-lg';
+    gapSection.appendChild(gapTblWrap);
+    host.appendChild(gapSection);
+
     // ── D. Comparison table ──
     var tblSection = document.createElement('div');
     tblSection.className = 'mb-2';
@@ -692,6 +746,282 @@
   }
 
   // ──────────────────────────────────────────────────────────────────────
+  // Frontier vs Small gap analysis.
+  // ──────────────────────────────────────────────────────────────────────
+  // Vendor namespaces — frontier-class model developers.
+  // Values: string prefix OR array of prefixes.
+  var FRONTIER_VENDORS = [
+    { name: 'OpenAI',      prefixes: ['openai/'],                             color: '#10a37f' },
+    { name: 'Anthropic',   prefixes: ['anthropic/'],                          color: '#d97706' },
+    { name: 'Google',      prefixes: ['google/','google-deepmind/'],          color: '#4285f4' },
+    { name: 'Meta',        prefixes: ['meta/'],                               color: '#1877f2' },
+    { name: 'xAI',         prefixes: ['xai/'],                                color: '#000000' },
+    { name: 'DeepSeek',    prefixes: ['deepseek/'],                           color: '#4f46e5' },
+    { name: 'Alibaba',     prefixes: ['alibaba/'],                            color: '#ff6a00' },
+    { name: 'Mistral',     prefixes: ['mistral/','mistralai/'],               color: '#fa520f' },
+    { name: 'NVIDIA',      prefixes: ['nvidia/'],                             color: '#76b900' },
+    { name: 'Microsoft',   prefixes: ['microsoft/'],                          color: '#00a4ef' },
+    { name: 'Amazon',      prefixes: ['amazon/'],                             color: '#ff9900' },
+    { name: 'Moonshot',    prefixes: ['moonshot/'],                           color: '#dc2626' },
+    { name: 'Apple',       prefixes: ['apple/'],                              color: '#a1a1aa' },
+    { name: 'Cohere',      prefixes: ['cohere/'],                             color: '#9333ea' },
+    { name: 'Tencent',     prefixes: ['tencent/'],                            color: '#0ea5e9' },
+    { name: 'Zhipu/THUDM', prefixes: ['zhipu/','thudm/'],                     color: '#22c55e' },
+    { name: 'Baichuan',    prefixes: ['baichuan/'],                           color: '#ef4444' },
+    { name: 'IBM',         prefixes: ['ibm/'],                                color: '#054ada' }
+  ];
+
+  function _belongsToVendor(modelId, prefixes) {
+    if (!modelId) return false;
+    for (var i = 0; i < prefixes.length; i++) {
+      if (modelId.indexOf(prefixes[i]) === 0) return true;
+    }
+    return false;
+  }
+
+  function _buildGapData() {
+    if (!root.App || !root.App.data) return [];
+    var models = root.App.data.models || [];
+    var scores = root.App.data.scores || [];
+    var aaiiMap = {};
+    var modelsById = {};
+    for (var i = 0; i < models.length; i++) modelsById[models[i].id] = models[i];
+    for (var j = 0; j < scores.length; j++) {
+      if (scores[j].benchmark_id === 'aa_intelligence_index') aaiiMap[scores[j].model_id] = scores[j].value;
+    }
+    var out = [];
+    for (var v = 0; v < FRONTIER_VENDORS.length; v++) {
+      var vend = FRONTIER_VENDORS[v];
+      var bestFr = -1, bestFrModel = null;
+      var bestSm = -1, bestSmModel = null;
+      var totalFr = 0, totalSm = 0;
+      Object.keys(aaiiMap).forEach(function(mid) {
+        if (!_belongsToVendor(mid, vend.prefixes)) return;
+        var val = aaiiMap[mid];
+        var m = modelsById[mid] || {};
+        var sz = _parseSize(m.parameters, mid);
+        var isSmall = (sz != null && sz <= 12.5);
+        if (isSmall) {
+          totalSm += 1;
+          if (val > bestSm) { bestSm = val; bestSmModel = mid; }
+        } else {
+          totalFr += 1;
+          if (val > bestFr) { bestFr = val; bestFrModel = mid; }
+        }
+      });
+      if (bestFr < 0 && bestSm < 0) continue;
+      var gap = (bestFr >= 0 && bestSm >= 0) ? (bestFr - bestSm) : null;
+      var pct = (bestFr > 0 && bestSm >= 0) ? (bestSm / bestFr * 100) : null;
+      out.push({
+        vendor: vend.name,
+        color: vend.color,
+        bestFr: bestFr >= 0 ? bestFr : null,
+        bestFrModel: bestFrModel,
+        bestSm: bestSm >= 0 ? bestSm : null,
+        bestSmModel: bestSmModel,
+        gap: gap,
+        catchupPct: pct,
+        countFr: totalFr,
+        countSm: totalSm
+      });
+    }
+    // Sort by frontier AAII desc — clearest visual story
+    out.sort(function(a, b) { return (b.bestFr || -1) - (a.bestFr || -1); });
+    return out;
+  }
+
+  function _renderGapBars(gapData) {
+    var el = document.getElementById('edge-llm-gap-bars');
+    if (!el || typeof echarts === 'undefined') return;
+    var prev = echarts.getInstanceByDom(el);
+    if (prev) prev.dispose();
+    var vendors = gapData.map(function(d) { return d.vendor; });
+    var frontierSeries = gapData.map(function(d) { return d.bestFr != null ? d.bestFr : null; });
+    var smallSeries = gapData.map(function(d) { return d.bestSm != null ? d.bestSm : null; });
+    var chart = echarts.init(el);
+    chart.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'axis', axisPointer: { type: 'shadow' },
+        backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: function(params) {
+          var idx = params[0].dataIndex;
+          var d = gapData[idx];
+          var s = '<b>' + d.vendor + '</b><br/>';
+          if (d.bestFr != null) s += 'Frontier best: ' + d.bestFr + ' (' + d.bestFrModel + ')<br/>';
+          if (d.bestSm != null) s += 'Small best: ' + d.bestSm + ' (' + d.bestSmModel + ')<br/>';
+          if (d.gap != null) s += 'Gap: <b>' + d.gap.toFixed(0) + '</b> pts<br/>';
+          if (d.catchupPct != null) s += 'Catch-up: <b>' + d.catchupPct.toFixed(0) + '%</b>';
+          if (d.bestSm == null) s += '<span style="color:#fbbf24">⚠ 등록된 small 모델 AAII 없음</span>';
+          return s;
+        }
+      },
+      legend: { textStyle: { color: '#9ca3af', fontSize: 11 }, top: 0 },
+      grid: { left: 90, right: 24, top: 30, bottom: 36 },
+      xAxis: {
+        type: 'value', max: 65,
+        name: 'AAII', nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: 'rgba(75,85,99,0.3)' } }
+      },
+      yAxis: {
+        type: 'category', data: vendors, inverse: true,
+        axisLabel: { color: '#e5e7eb', fontSize: 11, fontWeight: 'bold' },
+        axisLine: { lineStyle: { color: '#4b5563' } }
+      },
+      series: [
+        {
+          name: 'Frontier best', type: 'bar',
+          data: frontierSeries,
+          itemStyle: { color: 'rgba(156,163,175,0.6)', borderColor: '#9ca3af', borderWidth: 1 },
+          barGap: '-100%',
+          z: 1
+        },
+        {
+          name: 'Best Small (≤12B)', type: 'bar',
+          data: smallSeries.map(function(v, i) {
+            return { value: v, itemStyle: { color: gapData[i].color, opacity: 0.95 } };
+          }),
+          label: {
+            show: true, position: 'right',
+            formatter: function(p) {
+              var d = gapData[p.dataIndex];
+              if (d.catchupPct == null) return '';
+              return d.catchupPct.toFixed(0) + '%';
+            },
+            color: '#e5e7eb', fontSize: 10, fontWeight: 'bold'
+          },
+          z: 2
+        }
+      ]
+    });
+    window.addEventListener('resize', function() { chart.resize(); });
+  }
+
+  function _renderGapScatter(gapData) {
+    var el = document.getElementById('edge-llm-gap-scatter');
+    if (!el || typeof echarts === 'undefined') return;
+    var prev = echarts.getInstanceByDom(el);
+    if (prev) prev.dispose();
+    // Only vendors with BOTH tiers
+    var pts = gapData.filter(function(d) { return d.bestFr != null && d.bestSm != null; });
+    var chart = echarts.init(el);
+    chart.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {
+        backgroundColor: 'rgba(17,24,39,0.95)', borderColor: '#374151',
+        textStyle: { color: '#e5e7eb' },
+        formatter: function(p) {
+          if (p.seriesName === 'Parity') return 'y = x (frontier = small parity)';
+          var d = pts[p.dataIndex];
+          return '<b>' + d.vendor + '</b><br/>Frontier: ' + d.bestFr + '<br/>Small: ' + d.bestSm +
+                 '<br/>Catch-up: ' + d.catchupPct.toFixed(0) + '%';
+        }
+      },
+      grid: { left: 50, right: 24, top: 24, bottom: 50 },
+      xAxis: {
+        type: 'value', min: 0, max: 65,
+        name: 'Frontier-best AAII', nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: 'rgba(75,85,99,0.3)' } }
+      },
+      yAxis: {
+        type: 'value', min: 0, max: 65,
+        name: 'Small-best AAII', nameTextStyle: { color: '#9ca3af' },
+        axisLabel: { color: '#9ca3af' },
+        axisLine: { lineStyle: { color: '#4b5563' } },
+        splitLine: { lineStyle: { color: 'rgba(75,85,99,0.3)' } }
+      },
+      series: [
+        {
+          name: 'Parity', type: 'line',
+          data: [[0,0],[65,65]],
+          showSymbol: false,
+          lineStyle: { color: '#fbbf24', type: 'dashed', width: 1, opacity: 0.6 },
+          tooltip: { show: false }
+        },
+        {
+          name: 'Vendor', type: 'scatter',
+          symbolSize: 18,
+          data: pts.map(function(d) {
+            return {
+              value: [d.bestFr, d.bestSm],
+              itemStyle: { color: d.color, borderColor: '#0f172a', borderWidth: 1.5, opacity: 0.9 }
+            };
+          }),
+          label: {
+            show: true, position: 'right',
+            formatter: function(p) { return pts[p.dataIndex].vendor; },
+            color: '#e5e7eb', fontSize: 10
+          }
+        }
+      ]
+    });
+    window.addEventListener('resize', function() { chart.resize(); });
+  }
+
+  function _renderGapTable(gapData) {
+    var wrap = document.getElementById('edge-llm-gap-table-wrap');
+    if (!wrap) return;
+    wrap.textContent = '';
+    var table = document.createElement('table');
+    table.className = 'w-full text-xs';
+    var thead = document.createElement('thead');
+    thead.className = 'bg-gray-800 text-gray-300';
+    var trh = document.createElement('tr');
+    ['Vendor','Frontier AAII','Frontier Model','Small AAII','Small Model','Gap','Catch-up','Small #'].forEach(function(c) {
+      var th = document.createElement('th');
+      th.className = 'p-2 text-left';
+      th.textContent = c;
+      trh.appendChild(th);
+    });
+    thead.appendChild(trh);
+    table.appendChild(thead);
+    var tbody = document.createElement('tbody');
+    gapData.forEach(function(d, idx) {
+      var tr = document.createElement('tr');
+      tr.className = (idx % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800') + ' border-t border-gray-800';
+      function td(text, cls) {
+        var c = document.createElement('td');
+        c.className = 'p-2 ' + (cls || '');
+        c.textContent = text;
+        return c;
+      }
+      var vendCell = td(d.vendor, 'font-semibold');
+      vendCell.style.color = d.color;
+      tr.appendChild(vendCell);
+      tr.appendChild(td(d.bestFr != null ? d.bestFr : '—', 'text-gray-300'));
+      tr.appendChild(td(d.bestFrModel || '—', 'font-mono text-gray-400 text-xs'));
+      tr.appendChild(td(d.bestSm != null ? d.bestSm : '—', d.bestSm != null ? 'text-green-400 font-semibold' : 'text-amber-400'));
+      tr.appendChild(td(d.bestSmModel || '⚠ 등록된 small 모델 AAII 없음', d.bestSmModel ? 'font-mono text-gray-400 text-xs' : 'text-amber-500 text-xs italic'));
+      tr.appendChild(td(d.gap != null ? d.gap.toFixed(0) + ' pts' : '—', d.gap != null && d.gap < 5 ? 'text-green-400 font-bold' : 'text-gray-300'));
+      var pctCell = td(d.catchupPct != null ? d.catchupPct.toFixed(0) + '%' : '—');
+      pctCell.className = 'p-2 ';
+      if (d.catchupPct != null) {
+        if (d.catchupPct >= 70) pctCell.className += 'text-green-400 font-bold';
+        else if (d.catchupPct >= 50) pctCell.className += 'text-blue-400';
+        else if (d.catchupPct >= 30) pctCell.className += 'text-yellow-400';
+        else pctCell.className += 'text-red-400';
+      }
+      tr.appendChild(pctCell);
+      tr.appendChild(td(d.countSm.toString(), 'text-gray-400'));
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    var foot = document.createElement('div');
+    foot.className = 'text-xs text-gray-500 p-2 border-t border-gray-800';
+    var withBoth = gapData.filter(function(d) { return d.bestFr != null && d.bestSm != null; }).length;
+    var onlyFr = gapData.filter(function(d) { return d.bestFr != null && d.bestSm == null; }).length;
+    foot.textContent = gapData.length + ' frontier 벤더 · 양 tier 보유 ' + withBoth + ' · frontier-only ' + onlyFr +
+                       ' (small AAII 미등록: small 모델은 존재하나 AA Intelligence Index 점수가 아직 등록 안 됨)';
+    wrap.appendChild(foot);
+  }
+
+  // ──────────────────────────────────────────────────────────────────────
   // Public API.
   // ──────────────────────────────────────────────────────────────────────
   function render() {
@@ -712,6 +1042,10 @@
     _renderPareto(data);
     _renderCountryDonut(data);
     _renderCountryStack(data);
+    var gapData = _buildGapData();
+    _renderGapBars(gapData);
+    _renderGapScatter(gapData);
+    _renderGapTable(gapData);
     _renderFilters(data);
     _renderTable(data);
   }
