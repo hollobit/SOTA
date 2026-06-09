@@ -1140,6 +1140,8 @@ var Sovereign = {
         'openvla/':             { code: 'physical-ai',      label: 'Physical AI',                flag: '🦾' },
         'physical-intelligence/':{ code: 'physical-ai',     label: 'Physical AI',                flag: '🦾' },
         'xai/':                 { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },
+        'amazon/':              { code: 'frontier-us-prop', label: 'US Frontier (proprietary)', flag: '🌐' },  // 2026-06-09 S63 — Amazon Nova Micro/Lite/Pro
+        'minimax/':             { code: 'cn',               label: 'China',                      flag: '🇨🇳' },  // 2026-06-09 S63 — MiniMax M2/M3 etc.
         'kling/':               { code: 'cn',               label: 'China',                      flag: '🇨🇳' },
         'alibaba-ath/':         { code: 'cn',               label: 'China',                      flag: '🇨🇳' },
         'tencent/':             { code: 'cn',               label: 'China',                      flag: '🇨🇳' },

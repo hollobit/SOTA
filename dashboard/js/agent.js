@@ -269,7 +269,9 @@ var Agent = (function() {
         'mit-mgb/mdagents',
         // 2026-05-29 Session 33 — Harvard AutoScientists (self-organizing science) + Microsoft SkillOpt (skill optimizer)
         'harvard/autoscientists',
-        'microsoft/skillopt'
+        'microsoft/skillopt',
+        // 2026-06-09 S63 — MiniMax M3 (IFBench 83 #1 SOTA, GDPval-AA 58 #3 agentic) + Anti-hallucination Non-Hall 84 #1
+        'minimax/m3'
     ];
 
     // Curated list of 9 on-device / edge SLMs for the compare panel.
@@ -278,11 +280,14 @@ var Agent = (function() {
         'apple/foundation-private-cloud',
         'microsoft/phi-4-mini-instruct',
         'microsoft/phi-4',
+        'microsoft/phi-4-multimodal',         // 2026-06-09 S60 — 5.6B text+image+audio AAII 10
         'google/gemma-3-270m',
         'google/gemma-3n',
         'google/function-gemma',
         'meta/llama-3.2-1b-instruct',
-        'meta/llama-3.2-3b-instruct'
+        'meta/llama-3.2-3b-instruct',
+        // 2026-06-09 S60 — Amazon Nova Micro 1.3B AAII 10 (smallest from AMZN frontier line)
+        'amazon/nova-micro'
     ];
 
     // Utility-vs-cost / latency metrics map. Filled by _loadUtility (Task 17).
