@@ -349,6 +349,12 @@ var PhysicalAI = {
         this._renderRadar();
         this._initialized = true;
 
+        if (typeof EdgeLLM !== 'undefined' && EdgeLLM.render) {
+            try { EdgeLLM.render(); } catch (e) {
+                if (typeof console !== 'undefined') console.warn('[PhysicalAI] EdgeLLM render failed:', e);
+            }
+        }
+
         if (typeof PhysicalAICharts !== 'undefined' && PhysicalAICharts.renderAll) {
             PhysicalAICharts.renderAll();
         }
