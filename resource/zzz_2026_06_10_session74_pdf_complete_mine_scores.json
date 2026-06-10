@@ -1,0 +1,68 @@
+{
+  "_meta": {
+    "session": "Session 74 — PDF complete final mine (AECI + virology + hallucination + bio details)",
+    "date": "2026-06-10",
+    "sources": [
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §2.3.5 AECI capability trajectory",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §2.2.3 Biological risk - long-form virology",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.14.x missing-context hallucination",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.20 organic chemistry detail",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §6.1.2 Key findings on safety/alignment"
+    ],
+    "notes": "Final-pass complete mine of S65/S68/S71/S72/S73 missed sections. 🌍 NEW SOTAs: AECI (Anthropic Effective Capability Index) 161.29 NEW bench - Anthropic's internal capability metric. Long-form virology Task 1 0.77 NEW bench. Unavailable-tool 87 (Opus 4.8 95 leads). Missing-reference 82 (Mythos Preview 94 leads). Confirms 7-pass mine has now captured ~all readily extractable numerical scores from 200+ page PDF. Total Anthropic Fable/Mythos 5 lineage: 80+ NEW SOTAs across 10+ domains in this single release."
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "anthropic_aeci",
+      "name": "Anthropic AECI (Effective Capability Index)",
+      "category": "aggregate-capability",
+      "metric": "score_higher_better",
+      "unit": "score_aggregate_higher_better",
+      "description": "Anthropic-internal aggregate capability metric (cousin to Epoch ECI). Composite of capability evaluations across domains. Mythos 5: 161.29 (95% CI 157.32-?).",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "long_form_virology_task1",
+      "name": "Long-form Virology Task 1 (end-to-end)",
+      "category": "life-sciences",
+      "metric": "score_0_1",
+      "unit": "score_0_1",
+      "description": "Long-form virology evaluation Task 1 end-to-end score. Bio risk capability assessment.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "unavailable_tool_hallucination_acc",
+      "name": "Unavailable-Tool Hallucination Accuracy (500-prompt set)",
+      "category": "agentic",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "% accuracy in correctly identifying unavailable tools (vs. hallucinating). 500-prompt benchmark. Higher is better.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "missing_reference_hallucination_acc",
+      "name": "Missing-Reference Hallucination Accuracy (500-prompt set)",
+      "category": "agentic",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "% accuracy in correctly identifying missing references (vs. hallucinating).",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    }
+  ],
+  "scores": [
+    {"model": "anthropic/claude-mythos-5", "benchmark": "anthropic_aeci", "score": 161.29, "unit": "score_aggregate_higher_better", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 AECI 161.29 (95% CI lower=157.32) NEW SOTA NEW bench. Anthropic internal Effective Capability Index. Point estimate for Mythos 5 advances capability frontier."},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "long_form_virology_task1", "score": 0.77, "unit": "score_0_1", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 Long-form Virology Task 1 end-to-end 0.77 NEW SOTA NEW bench. Bio capability eval — exceeds expert baseline 0.221 (~3.5x)"},
+
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "unavailable_tool_hallucination_acc", "score": 95.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Opus 4.8 unavailable-tool accuracy 95% NEW bench NEW SOTA. Mythos 5 only 87 - regression on this dimension"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "unavailable_tool_hallucination_acc", "score": 87.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 unavailable-tool accuracy 87% — behind Opus 4.8 95"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "missing_reference_hallucination_acc", "score": 94.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos Preview missing-reference 94% NEW bench NEW SOTA. Mythos 5 only 82 - regression on hallucination resistance"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "missing_reference_hallucination_acc", "score": 82.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 missing-reference 82% — regression from Preview 94"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "officeqa_pro", "score": 67.1, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 OfficeQA Pro 67.1% (paired w/ OfficeQA 79). Opus 4.8 66.2 — Mythos 5 marginal lead"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "swe_bench_pro", "score": 80.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 SWE-Bench Pro 80.3% — confirms S65 ingest. PDF explicitly: 'Claude Mythos 5 achieved 80.3% and Claude Fable 5 achieved 80%'"}
+  ]
+}

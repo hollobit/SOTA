@@ -1,13 +1,18 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 73 — DeepSearchQA + adversarial robustness (2026-06-10)
-**1,689 models · 1,489 benchmarks · 7,600 scores · 🌍 7 추가 NEW SOTAs (DeepSearchQA Table B + §5.2 prompt injection)**
+## Current Status: Session 74 — Final PDF complete mine (2026-06-10)
+**1,689 models · 1,493 benchmarks · 7,608 scores · Anthropic Fable/Mythos 5 누적 ~81 NEW SOTAs 단일 출시**
 
-### 2026-06-10 Session 73 — DeepSearchQA F1 Table + §5.2 adversarial robustness
-- **PDF §8.14.3 Table B**: 🌍 DeepSearchQA F1 Mythos Preview **94.4** NEW SOTA (was Kimi K2.6 92.5, +1.9pp) — Mythos 5 94.2 -0.2pp REGRESSION. 🌍 DeepSearchQA Fully Correct Mythos 5 **87.0** NEW SOTA (was Kimi 83, +4pp). 🌍 Fully Incorrect Mythos Preview 3.1% (lower better)
-- **PDF §5.2 robustness** (lower-better): 🌍 Gray Swan ART k=100 Mythos 5 **4.8%** (was Preview 6.1, Opus 4.8 9.6, extended thinking). 🌍 Coding env no-safeguards Mythos Preview 0.0% (Mythos 5 0.45 regression). 🌍 Computer use no-safeguards Mythos Preview 0.43% (Mythos 5 0.82 regression, 4/14 scenarios). 🌍 Browser use no-safeguards **Opus 4.8 0.5%** (Mythos Preview 2.0, ⚠ Mythos 5 29.7% REGRESSION — safeguards drop to 6.5)
-- **결정적 패턴**: Mythos 5 raw capability ↑ but agentic robustness ↓ (browser use specifically). Safeguards add 23pp protection but Mythos 5 still 6.5 vs Opus 4.8 0.5 — *raw capability vs agentic safety trade-off* signal
-- **7 NEW benches**: deepsearchqa_fully_correct / deepsearchqa_fully_incorrect_lower_better / gray_swan_art_k100_lower_better / coding_env_prompt_injection_no_safeguards / computer_use_prompt_injection_no_safeguards / browser_use_prompt_injection_no_safeguards + with_safeguards. **+0/+7/+24** = 1689/1489/7600
+### 2026-06-10 Session 74 — Final PDF complete mine (AECI + virology + hallucination)
+- **PDF §2.3.5 AECI**: 🌍 Mythos 5 **161.29** NEW SOTA NEW bench (Anthropic Effective Capability Index, 95% CI 157.32+). Anthropic의 자체 capability composite (Epoch ECI cousin)
+- **PDF §2.2.3 Bio (long-form virology)**: 🌍 Mythos 5 Task 1 end-to-end **0.77** NEW SOTA NEW bench (exceeds expert baseline 0.221 ~3.5x)
+- **PDF hallucination evals**: 🌍 Opus 4.8 unavailable-tool **95%** NEW SOTA NEW bench (Mythos 5 87 regression). 🌍 Mythos Preview missing-reference **94%** NEW SOTA NEW bench (Mythos 5 82 regression). 500-prompt sets each
+- **PDF §8.17.1 OfficeQA Pro**: Mythos 5 67.1% (paired with OfficeQA 79). Opus 4.8 66.2 — marginal lead
+- **결정적 발견**: Mythos 5는 raw capability 최강이지만 *hallucination resistance + tool-validity 정확도*에서 Opus 4.8/Preview 대비 후퇴. *capability ↑ 곰 hallucination ↑* trade-off
+- **8-pass 누적**: S65+S66+S68+S70+S71+S72+S73+S74 = **~81 NEW SOTAs 단일 모델군 단일 출시** (단일 모델 단일 출시로 전례 없는 sweep). **+0/+4/+8** = 1689/1493/7608
+
+### 2026-06-10 Session 73 — DeepSearchQA F1 Table + §5.2 adversarial robustness (compressed)
+- 🌍 **7 NEW SOTAs**: DeepSearchQA F1 Mythos Preview 94.4 (was Kimi K2.6 92.5) — Mythos 5 94.2 -0.2 regression. Fully Correct Mythos 5 87.0 (+4pp). Gray Swan ART k=100 Mythos 5 4.8% (Preview 6.1, Opus 4.8 9.6). Coding env no-safeguards Preview 0% (Mythos 5 0.45). Computer use Preview 0.43 (Mythos 5 0.82). ⚠ **Browser use Opus 4.8 0.5%, Mythos 5 29.7% (60x REGRESSION)**, safeguards drop to 6.5. *Capability ↑ vs Robustness ↓ trade-off*. 7 NEW benches. **+0/+7/+24** = 1689/1489/7600
 
 ### 2026-06-10 Session 72 — PDF final unmined sections deep re-mine (compressed)
 - 🌍 **8 NEW SOTAs** (8.2 SWE/8.6 ProgramBench/8.14.4 DRACO/8.15.1 Multi-Agent/8.16.4-7): SWE-Verified Mythos 5 95.5 (was Fable 5 95.0) / SWE-Multilingual 92.2 (was Preview 87.3) / ProgramBench 88.5 / DRACO 86.4 (was Opus 4.8 80.4) / Multi-Agent BrowseComp async 93.3 / ChartMuseum 93.2 / LAB-Bench FigQA 90.7 / BenchCAD 1000-file 0.650. 5 NEW benches. **+0/+5/+13** = 1689/1482/7576

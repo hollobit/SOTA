@@ -1830,19 +1830,19 @@
     "notes": "UK AISI eval — exceeds prior models, cannot autonomously attack hardened networks"
   },
   "officeqa_pro": {
-    "model_id": "anthropic/claude-opus-4.8",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "officeqa_pro",
-    "value": 66.2,
-    "unit": "%",
+    "value": 67.1,
+    "unit": "score_0_100",
     "source": {
       "type": "pdf",
-      "url": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
       "date": "2026-06-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-10",
-    "notes": "OfficeQA Pro (133-q harder subset), Anthropic internal harness exact-match. Opus 4.7 65.0. Harness-sensitive — not externally comparable."
+    "notes": "Mythos 5 OfficeQA Pro 67.1% (paired w/ OfficeQA 79). Opus 4.8 66.2 — Mythos 5 marginal lead"
   },
   "expert_swe": {
     "model_id": "openai/gpt-5.5",
@@ -13288,6 +13288,66 @@
     "is_sota": true,
     "collected_at": "2026-06-10",
     "notes": "Mythos 5 Browser use prompt injection (with safeguards) 6.5% — drops from 29.7 with safeguards. Still behind Preview 2.0 and Opus 4.8 0.5"
+  },
+  "anthropic_aeci": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "anthropic_aeci",
+    "value": 161.29,
+    "unit": "score_aggregate_higher_better",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 AECI 161.29 (95% CI lower=157.32) NEW SOTA NEW bench. Anthropic internal Effective Capability Index. Point estimate for Mythos 5 advances capability frontier."
+  },
+  "long_form_virology_task1": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "long_form_virology_task1",
+    "value": 0.77,
+    "unit": "score_0_1",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 Long-form Virology Task 1 end-to-end 0.77 NEW SOTA NEW bench. Bio capability eval — exceeds expert baseline 0.221 (~3.5x)"
+  },
+  "unavailable_tool_hallucination_acc": {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "unavailable_tool_hallucination_acc",
+    "value": 95.0,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Opus 4.8 unavailable-tool accuracy 95% NEW bench NEW SOTA. Mythos 5 only 87 - regression on this dimension"
+  },
+  "missing_reference_hallucination_acc": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "missing_reference_hallucination_acc",
+    "value": 94.0,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos Preview missing-reference 94% NEW bench NEW SOTA. Mythos 5 only 82 - regression on hallucination resistance"
   },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
