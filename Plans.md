@@ -1,21 +1,16 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 72 — Final PDF unmined re-mine (2026-06-10)
-**1,689 models · 1,482 benchmarks · 7,576 scores · 🌍 8 추가 NEW SOTAs (S65/S68/S71 미커버 sections)**
+## Current Status: Session 73 — DeepSearchQA + adversarial robustness (2026-06-10)
+**1,689 models · 1,489 benchmarks · 7,600 scores · 🌍 7 추가 NEW SOTAs (DeepSearchQA Table B + §5.2 prompt injection)**
 
-### 2026-06-10 Session 72 — PDF final unmined sections deep re-mine
-- **S65/S68/S71 미커버 sections**: 8.2 SWE-bench full table / 8.6 ProgramBench / 8.14.4 DRACO / 8.15.1 Multi-Agent BrowseComp / 8.16.4 BenchCAD 1000-file / 8.16.5 ChartQAPro / 8.16.6 ChartMuseum / 8.16.7 LAB-Bench FigQA
-- **🌍 8 NEW SOTAs**:
-  - SWE-bench Verified: Mythos 5 **95.5** NEW (was Fable 5 95.0). Safeguards OFF edge over Fable
-  - SWE-bench Multilingual: Mythos 5 **92.2** NEW (was Mythos Preview 87.3, +4.9pp). 9 prog langs
-  - ProgramBench: Mythos 5 **88.5** mid-range (was Opus 4.8 88, range 84-93)
-  - DRACO: Mythos 5 **86.4** NEW (was Opus 4.8 80.4)
-  - Multi-Agent BrowseComp (async-subagents) NEW bench: Mythos 5 **93.3** (single-agent 89.1 baseline +4.2pp & 2.7x speedup)
-  - ChartMuseum NEW bench: Mythos 5 **93.2** with tools (Preview 92.2)
-  - LAB-Bench FigQA NEW bench: Mythos 5 **90.7** with tools (Preview 89.3)
-  - BenchCAD 1000-file w/ tools NEW bench: Mythos 5 voxel IoU **0.650** (Preview 0.610)
-- **5 NEW benches**: chartmuseum / lab_bench_figqa / multi_agent_browsecomp_async / benchcad_vision2code_1000file_with_tools / swe_bench_multimodal_internal
-- **+0/+5/+13** = 1689/1482/7576
+### 2026-06-10 Session 73 — DeepSearchQA F1 Table + §5.2 adversarial robustness
+- **PDF §8.14.3 Table B**: 🌍 DeepSearchQA F1 Mythos Preview **94.4** NEW SOTA (was Kimi K2.6 92.5, +1.9pp) — Mythos 5 94.2 -0.2pp REGRESSION. 🌍 DeepSearchQA Fully Correct Mythos 5 **87.0** NEW SOTA (was Kimi 83, +4pp). 🌍 Fully Incorrect Mythos Preview 3.1% (lower better)
+- **PDF §5.2 robustness** (lower-better): 🌍 Gray Swan ART k=100 Mythos 5 **4.8%** (was Preview 6.1, Opus 4.8 9.6, extended thinking). 🌍 Coding env no-safeguards Mythos Preview 0.0% (Mythos 5 0.45 regression). 🌍 Computer use no-safeguards Mythos Preview 0.43% (Mythos 5 0.82 regression, 4/14 scenarios). 🌍 Browser use no-safeguards **Opus 4.8 0.5%** (Mythos Preview 2.0, ⚠ Mythos 5 29.7% REGRESSION — safeguards drop to 6.5)
+- **결정적 패턴**: Mythos 5 raw capability ↑ but agentic robustness ↓ (browser use specifically). Safeguards add 23pp protection but Mythos 5 still 6.5 vs Opus 4.8 0.5 — *raw capability vs agentic safety trade-off* signal
+- **7 NEW benches**: deepsearchqa_fully_correct / deepsearchqa_fully_incorrect_lower_better / gray_swan_art_k100_lower_better / coding_env_prompt_injection_no_safeguards / computer_use_prompt_injection_no_safeguards / browser_use_prompt_injection_no_safeguards + with_safeguards. **+0/+7/+24** = 1689/1489/7600
+
+### 2026-06-10 Session 72 — PDF final unmined sections deep re-mine (compressed)
+- 🌍 **8 NEW SOTAs** (8.2 SWE/8.6 ProgramBench/8.14.4 DRACO/8.15.1 Multi-Agent/8.16.4-7): SWE-Verified Mythos 5 95.5 (was Fable 5 95.0) / SWE-Multilingual 92.2 (was Preview 87.3) / ProgramBench 88.5 / DRACO 86.4 (was Opus 4.8 80.4) / Multi-Agent BrowseComp async 93.3 / ChartMuseum 93.2 / LAB-Bench FigQA 90.7 / BenchCAD 1000-file 0.650. 5 NEW benches. **+0/+5/+13** = 1689/1482/7576
 
 ### 2026-06-10 Sessions 70-71 (compressed)
 - S71 PDF §3.2.x cyber deep mine (S65 entirely missed): 🌍 **12 NEW cyber SOTAs**. Firefox 147 Mythos 5 88.4% full exploit (221/250, was Preview 70.8, **Opus 4.8 only 8.8% — 10x gap**). CyberGym targeted_repro 83.8 + any_crash 99.4 EFFECTIVELY SATURATED. OSS-Fuzz progress_rate 80 + write_primitive 32.4 + tier5 13. ExploitBench mean_score 10.44 + autonudge 10.75. UK AISI doing_life 21/23 + last_ones 60% ("Mythos 5 more proficient than any publicly available model"). Fable 5 cyber_classifier_block 99.3% (407/410). 6 NEW benches. **+0/+6/+19** = 1689/1477/7563
