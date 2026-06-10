@@ -1,24 +1,25 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 68 — Fable/Mythos 5 PDF deep re-mine (2026-06-10)
-**1,682 models · 1,467 benchmarks · 7,514 scores · 🌍 14 추가 NEW SOTAs (PDF re-mine, S65 missed sections)**
+## Current Status: Session 69 — Leaderboard sweep R4 (2026-06-10)
+**1,688 models · 1,467 benchmarks · 7,520 scores · 6 NEW audio/T2I vendors + AA Quality Elo refresh**
 
-### 2026-06-10 Session 68 — Anthropic Fable/Mythos 5 PDF deep re-mine
-- PDF sections S65 미커버 (8.5-8.20.7). **🌍 14 NEW SOTAs**: Mythos 5 arxivmath 78.52 (was 71.82) / USAMO 99.8 (was 98.21) / USAMO 2026 99.8 (was 96.7, opus-4.7 69.3) / officeqa 79 / proteingym_hard 44.8 / terminal_bench_2_1 88 (unsafeguarded, was Fable 84.3) / structural_biology 87.2 / gmmlu 93.2 / include 90.5 / labbench2_avg 80.2. Fable 5 cursorbench 72.9 (+8.6 over GPT-5.5) / riemannbench 55 / frontier_swe_mean5 2.12 lower-better / real_world_finance_v2_elo 1374
-- **6 NEW benches**: cursorbench / riemannbench / frontier_swe_mean5_lower_better / structural_biology_openended / labbench2_avg / real_world_finance_v1+v2_elo. 결정적: CritPt PDF authoritative 28.6% (AA page chart bug 4%). GraphWalks 256K/1M BFS+parents. **+0/+6/+33** = 1682/1467/7514
+### 2026-06-10 Session 69 — Leaderboard sweep R4 (AA ASR/TTS/T2I refresh)
+- **6 NEW models**: bytedance/hidream-o1-image-1.5 (T2I #3 Elo 1265) · mistral/voxtral-small-transcribe (ASR WER 2.8%) · cohere/transcribe-03-2026 (4.6%) · xai/grok-speech-to-text (4.0%) · gladia/solaria-1 (4.1%) · amazon/transcribe (4.1%)
+- **AA ASR backfills**: alibaba/qwen3.5-omni-plus 3.5%, assemblyai/universal-3-pro 3.1% (both models existed, scores missing)
+- **AA TTS Quality Arena refresh**: Fun-Realtime-TTS Elo 1231→1228 (-3, holds SOTA #1) / Gemini 3.1 Flash TTS 1229→1225 (-4) / Realtime TTS-2 1204→1205 (+1) / Realtime TTS 1.5 Max NEW score 1203 #4 / Sonic 3.5 1204→1199 (-5)
+- **SOTAs 안정**: aa_transcribe_wer (fun-realtime-asr-preview 1.7%) · aa_t2i_arena_elo (gpt-image-2 1341) · aa_tts_quality_elo (fun-realtime-tts 1228, was 1231)
+- **+6/+0/+6** = 1688/1467/7520
 
-### 2026-06-10 Session 67 — 7-tab audit S65+S66 (compressed)
-- Frontier 2→**15/15** (+9: command-a-plus 37, north-mini-code 28, gemini-3.5-flash 3 variants, grok-4.3 medium/low, grok-code-fast-1, ring-2.6-1t 38, step-3.7-flash 43, minicpm-5-1b 18). Cyber 2→**4/15** (+north-mini-code, grok-code-fast-1). Sovereign 12→**15/15** (+OpenBMB/StepFun/InclusionAI clusters, +Cohere command-a-plus/north-mini-code). Medical/Physical/AI4S/Agent 0 의도된 미적용. v=20260610b
+### 2026-06-10 Sessions 67-68 (compressed)
+- S68 PDF deep re-mine 🌍 **14 NEW SOTAs** (S65 missed 8.5-8.20.7): Mythos 5 arxivmath 78.52 / USAMO 99.8 / USAMO 2026 99.8 / officeqa 79 / proteingym_hard 44.8 / terminal_bench_2_1 88 / structural_biology 87.2 / gmmlu 93.2 / include 90.5 / labbench2_avg 80.2. Fable 5 cursorbench 72.9 (+8.6 over GPT-5.5) / riemannbench 55 / frontier_swe_mean5 2.12 / real_world_finance_v2_elo 1374. 6 NEW benches. **+0/+6/+33** = 1682/1467/7514
+- S67 audit S65+S66 propagation: Frontier 2→15/15 (+9 NEW variant entries), Cyber 2→4/15 (+north-mini-code, grok-code-fast-1), Sovereign 12→15/15 (+OpenBMB/StepFun/InclusionAI/Cohere clusters). v=20260610b
 
 ### 2026-06-09~10 Sessions 65-66 (compressed)
 - S66 🌍 BIGGEST: Claude Fable 5 AAII **65** #1 SOTA (was Opus 4.8 61, +4pp). GDPval-AA Elo 1932 NEW (+42), SWE-Verified 95.0 NEW, Blueprint-Bench 2 38.6. NEW Cohere North Mini Code 30B/3B MoE Apache 2.0 AAII 28. NEW Microsoft MAI Image 2.5 + Voice 2 + Mayo Clinic. 10 AAII backfills. Nemotron 3 Ultra subscores. **+11/+5/+35** = 1682/1461/7481.
 - S65 13 NEW SOTAs from Anthropic flagship Fable/Mythos 5 (2026-06-09, $10/$50 per M, 1M ctx). Fable 5: SWE-Bench Pro 80.3 / FrontierCode Diamond 29.3 + Main 46.3 / GDP.pdf 29.8. Mythos 5 (Glasswing only): ExploitBench 78 / OSWorld 85 / Toolathlon 61.7+Pass³ 58.3 / BioMystery 83.9+46.1 / LatchBio Spatial 69.2 (+15pp)+SingleCell 59.3 / BrowseComp 88. 4 NEW benches. Tab propagation Frontier/Cyber/Medical/Agent. **+2/+4/+21** = 1671/1456/7446
 
-### 2026-06-09 Session 64 — Generalist GEN-1 + 1X World Model Lab (compressed)
-- NEW Physical AI VLA generalistai/gen-1 (2026-04-02): 🌍 3 NEW SOTAs (gen_multitask_success 99%, box_folding 12.1s 2.8x faster than π0, phone_packing 15.5s). Wearable device pretrain (500K+ hr). +gen-0 prior version. 1X World Model Lab launched 2026-06-04. **+2/+3/+7** = 1669/1452/7425
-
-### 2026-06-09 Sessions 60-63 (compressed)
-- S63 7-tab audit propagation (12 모델 × 7 탭): Frontier/Cyber/Agent에 china-mobile/jt-35b-flash + phi-4 family + minimax/m3 + nova-micro 추가, Sovereign NS fallback (amazon/ + minimax/). S62 NEW Intelligence×Price Pareto widget (4 dominant: MiMo V2.5 Pro 270 #1, M3 250, Gemini 3.1 Pro 34, Opus 4.8 15). S61 MiniMax M3 22 sub-scores + 🌍 IFBench 83 #1 + Non-Hall 84 #1 + 3 NEW AA perf benchmarks. S60 18 vendor audit + Frontier-vs-Small Gap 3-widget suite (Alibaba 56% catch-up winner, Meta 17% worst). **+1/+3/+34** = 1667/1449/7418
+### 2026-06-09 Sessions 60-64 (compressed)
+- S64 NEW Physical AI VLA generalistai/gen-1 🌍 3 NEW SOTAs (multitask 99%, box-folding 12.1s 2.8x π0, phone-packing 15.5s). +gen-0. 1X World Model Lab launched. S63 7-tab audit (12 models × 7 tabs) Frontier/Cyber/Agent propagation. S62 NEW Intelligence×Price Pareto widget (4 dominant: MiMo V2.5 Pro 270 #1, M3 250, Gemini 3.1 Pro 34, Opus 4.8 15). S61 MiniMax M3 22 sub-scores + 🌍 IFBench 83 #1 + Non-Hall 84 #1 + 3 NEW AA perf benchmarks. S60 18-vendor audit + Frontier-vs-Small Gap 3-widget suite. **+3/+6/+41** cumulative = 1669/1452/7425.
 
 ### 2026-06-04~09 Sessions 51-59 (compressed)
 - S59 NEW Physical AI Edge & Mobile Small-LLM 4-widget subsection (66 ≤12B / 12 countries). S58 🌍 NEW AA Transcribe SOTA fun-realtime-asr-preview 1.7% WER, xAI TTS Elo 1208. S55 AA T2I 2 NEW + TTS Quality Elo Fun-Realtime-TTS 1227 SOTA. S54 Nemotron 3 Ultra AAII 48 + ITBench-AA Opus 4.7 47% SOTA. S53 NEW AA Transcribe Scribe v2 2.2%. S52 AutoMedBench Opus 4.6 66.5 + K-BrowseComp 45.67%. S51 minimax/m3 AAII 55 + 3 arena.ai NEW. **+23/+13/+111** cumulative.
