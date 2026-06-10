@@ -1,13 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 87 — Offensive Cyber + HarmfulSkillBench (2026-06-10)
-**1,734 models · 1,698 benchmarks · 8,967 scores · 🌍 11 NEW SOTAs (5 Offensive Cyber + 6 HarmfulSkillBench)**
+## Current Status: Session 88 — Agent-World + TeleResilienceBench (2026-06-10)
+**1,737 models · 1,708 benchmarks · 9,049 scores · 🌍 10 NEW SOTAs (3 Agent-World + 7 TeleResilience)**
 
-### 2026-06-10 Session 87 — Offensive Cyber NYU CTF + HarmfulSkillBench (Kimi K2.5 safety eval blocked by policy)
-- 3 agents (1 policy-blocked) 🌍 **11 NEW SOTAs**. NYU CTF Bench (D-CIPHER framework, 10 models, 200 challenges): **Claude Opus 4.5 = 59.0%** overall (2.7x prior SOTA 22% Claude 3.5 Sonnet) + Pwn 41.0% + Web 52.6%; Gemini 3 Pro Crypto 53.8 + Misc 70.8. HarmfulSkillBench (6 LLMs, 3 conditions A/B/D × Score+Refusal): **GPT-5.4-Mini sweeps all 6 metrics** — CondA-Score 0.52 (lower safer), CondA-Refusal 33.0% / CondB 0.23+65.0% / CondD 0.18+66.5% (66.5% peak refusal). **+3/+11/+52** = 1734/1698/8967
+### 2026-06-10 Session 88 — Agent-World + TeleResilienceBench (RecursiveMAS skipped — framework)
+- 3 agents 🌍 **10 NEW SOTAs**. Agent-World (Renmin+ByteDance, MCP-Mark/BFCL-v4/τ²-Bench): split SOTA — **GPT-5.2 High MCP 53.1**, Sonnet 4.5 BFCL 73.2, Gemini 3 Pro τ² 85.4 (3 different vendors lead 3 agentic benches). TeleResilienceBench (8 small open-weight, 7 telecom CFR tasks): **NVIDIA Nemotron-3-nano 4B leads 4** (TeleQnA 34.0, TeleTables 26.3, ORANBench 39.7, srsRANBench 46.8); Gemma4-31B leads 3 (TeleLogs 19.8, 3GPP TSG 16.7 tied with Gemma4-26B, 6G 29.1). Small-domain-specialist consistently beats general frontier on telecom. **+3/+10/+82** = 1737/1708/9049
 
-### 2026-06-10 Session 86 — Cyber Defense + Autonomous Adversary + Gordian Knot
-- 🌍 22 NEW SOTAs. Cyber Defense (Agentic Threat Hunting SecOps): **Claude Opus 4.6 sweeps all 15** (Coverage 0.55, Defense Evasion 0.59). Autonomous Adversary (Red-Teaming): Claude 4.5 family ties GPT-5.1 at S1 Expert 100%; Sonnet 4.5 S1 Fully Autonomous 80%. Gordian Knot KnotBench Opus 4.7 thinking 54.6% — 15/56 cells at-or-below random
+### 2026-06-10 Sessions 86-87 (compressed) — 33 SOTAs
+- S87 NYU CTF (D-CIPHER): Claude Opus 4.5 = 59.0% (2.7x prior SOTA 22%) + Pwn 41.0 + Web 52.6; Gemini 3 Pro Crypto 53.8 + Misc 70.8. HarmfulSkillBench GPT-5.4-Mini sweeps all 6 safety metrics. S86 Cyber Defense Opus 4.6 sweeps all 15 (Defense Evasion 0.59). Autonomous Adversary Claude 4.5 family + GPT-5.1 ties at S1 100%. Gordian Knot Opus 4.7 thinking 54.6%
 
 ### 2026-06-10 Sessions 84-85 (compressed)
 - S85 🌍 23 SOTAs: SciVQR 7 disciplines (o4-mini Math 0.845 / Astronomy 0.808 / Geography 0.765 / Overall 0.793 tied; Gemini-2.5-Flash Physics 0.781 / Chemistry 0.876). GraphInstruct Sonnet 4.6 sweeps 4 quality (peak few-CoT 0.902 #1 of 45) + GPT-4o L2 0.982 / L5 0.794. CommonWhy: o3 Correctness 67.93/68.51, Gemini-2.5-Flash dominates 8 lexical

@@ -1,0 +1,933 @@
+{
+  "_meta": {
+    "session": "Session 88 — Agent-World + TeleResilienceBench",
+    "date": "2026-06-10",
+    "sources": [
+      "arxiv:2604.18292 Agent-World (Renmin+ByteDance)",
+      "arxiv:2605.09929 TeleResilienceBench"
+    ],
+    "notes": "3 agents (RecursiveMAS skipped — research framework, no canonical model triples). Agent-World 3 agentic benchmarks (MCP-Mark/BFCL-v4/τ²-Bench): split SOTA — GPT-5.2 High MCP 53.1, Sonnet 4.5 BFCL 73.2, Gemini 3 Pro τ² 85.4. TeleResilienceBench (7 telecom CFR tasks, 8 small open-weight models): Nemotron-3-nano 4B leads 4 (TeleQnA 34.0/TeleTables 26.3/ORAN 39.7/srsRAN 46.8); Gemma4-31B leads 3 (TeleLogs 19.8/3GPP TSG 16.7 tied/6G 29.1)."
+  },
+  "models": [
+    {
+      "id": "openai/gpt-5.2",
+      "name": "GPT-5.2 (High)",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-sonnet-4.5",
+      "name": "Claude Sonnet 4.5",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro",
+      "name": "Gemini 3 Pro",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v3.2",
+      "name": "DeepSeek-V3.2 685B",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-oss-120b",
+      "name": "GPT-OSS-120B",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-235b-a22b",
+      "name": "Qwen3-235B-A22B",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-32b",
+      "name": "Qwen3-32B",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-14b",
+      "name": "Qwen3-14B",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-8b",
+      "name": "Qwen3-8B",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-4b",
+      "name": "Qwen3.5 4b",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-9b",
+      "name": "Qwen3.5 9b",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-27b",
+      "name": "Qwen3.5 27b",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma4-e2b",
+      "name": "Gemma4 e2b",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma4-e4b",
+      "name": "Gemma4 e4b",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma4-26b",
+      "name": "Gemma4 26b",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma4-31b",
+      "name": "Gemma4 31b",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/nemotron-3-nano-4b",
+      "name": "Nemotron-3-nano 4b",
+      "vendor": "nvidia",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "agentworld_mcp_mark_avg",
+      "name": "MCP-Mark (Avg across File, Github, Notion, Playwright, Postgres)",
+      "category": "agentic",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "id": "agentworld_bfcl_v4_avg",
+      "name": "BFCL V4 (Avg across WebSearch, Memory, Multi-Turn, No-Live, Live, Relevance, Irrelevance)",
+      "category": "agentic",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "id": "agentworld_tau2_bench_avg",
+      "name": "tau^2-Bench (Avg across Retail, Telecom, Airline)",
+      "category": "agentic",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2604.18292"
+    },
+    {
+      "id": "tele_teleqna_cfr",
+      "name": "TeleResilienceBench TeleQnA CFR",
+      "category": "telecom",
+      "metric": "cfr_percent",
+      "unit": "cfr_percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.09929"
+    },
+    {
+      "id": "tele_teletables_cfr",
+      "name": "TeleResilienceBench TeleTables CFR",
+      "category": "telecom",
+      "metric": "cfr_percent",
+      "unit": "cfr_percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.09929"
+    },
+    {
+      "id": "tele_telelogs_cfr",
+      "name": "TeleResilienceBench TeleLogs CFR",
+      "category": "telecom",
+      "metric": "cfr_percent",
+      "unit": "cfr_percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.09929"
+    },
+    {
+      "id": "tele_3gpp_tsg_cfr",
+      "name": "TeleResilienceBench 3GPP_TSG CFR",
+      "category": "telecom",
+      "metric": "cfr_percent",
+      "unit": "cfr_percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.09929"
+    },
+    {
+      "id": "tele_oranbench_cfr",
+      "name": "TeleResilienceBench ORANBench CFR",
+      "category": "telecom",
+      "metric": "cfr_percent",
+      "unit": "cfr_percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.09929"
+    },
+    {
+      "id": "tele_srsranbench_cfr",
+      "name": "TeleResilienceBench srsRANBench CFR",
+      "category": "telecom",
+      "metric": "cfr_percent",
+      "unit": "cfr_percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.09929"
+    },
+    {
+      "id": "tele_sixg_bench_cfr",
+      "name": "TeleResilienceBench SixG_Bench CFR",
+      "category": "telecom",
+      "metric": "cfr_percent",
+      "unit": "cfr_percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.09929"
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "agentworld_mcp_mark_avg",
+      "score": 53.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "agentworld_mcp_mark_avg",
+      "score": 33.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "agentworld_mcp_mark_avg",
+      "score": 50.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "agentworld_mcp_mark_avg",
+      "score": 36.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "agentworld_mcp_mark_avg",
+      "score": 4.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "agentworld_mcp_mark_avg",
+      "score": 5.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "agentworld_mcp_mark_avg",
+      "score": 7.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "agentworld_mcp_mark_avg",
+      "score": 3.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "agentworld_mcp_mark_avg",
+      "score": 2.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "agentworld_bfcl_v4_avg",
+      "score": 62.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "agentworld_bfcl_v4_avg",
+      "score": 73.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "agentworld_bfcl_v4_avg",
+      "score": 72.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "agentworld_bfcl_v4_avg",
+      "score": 54.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "agentworld_bfcl_v4_avg",
+      "score": 47.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "agentworld_bfcl_v4_avg",
+      "score": 46.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "agentworld_bfcl_v4_avg",
+      "score": 41.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "agentworld_bfcl_v4_avg",
+      "score": 40.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "agentworld_tau2_bench_avg",
+      "score": 80.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "agentworld_tau2_bench_avg",
+      "score": 84.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "agentworld_tau2_bench_avg",
+      "score": 85.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "agentworld_tau2_bench_avg",
+      "score": 80.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "agentworld_tau2_bench_avg",
+      "score": 55.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "agentworld_tau2_bench_avg",
+      "score": 58.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "agentworld_tau2_bench_avg",
+      "score": 44.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "agentworld_tau2_bench_avg",
+      "score": 32.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "agentworld_tau2_bench_avg",
+      "score": 26.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.18292",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "tele_teleqna_cfr",
+      "score": 23.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "tele_teleqna_cfr",
+      "score": 21.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "tele_teleqna_cfr",
+      "score": 23.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e2b",
+      "benchmark": "tele_teleqna_cfr",
+      "score": 32.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e4b",
+      "benchmark": "tele_teleqna_cfr",
+      "score": 26.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-26b",
+      "benchmark": "tele_teleqna_cfr",
+      "score": 30.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-31b",
+      "benchmark": "tele_teleqna_cfr",
+      "score": 32.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-4b",
+      "benchmark": "tele_teleqna_cfr",
+      "score": 34.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "tele_teletables_cfr",
+      "score": 13.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "tele_teletables_cfr",
+      "score": 9.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "tele_teletables_cfr",
+      "score": 14.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e2b",
+      "benchmark": "tele_teletables_cfr",
+      "score": 15.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e4b",
+      "benchmark": "tele_teletables_cfr",
+      "score": 21.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-26b",
+      "benchmark": "tele_teletables_cfr",
+      "score": 18.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-31b",
+      "benchmark": "tele_teletables_cfr",
+      "score": 18.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-4b",
+      "benchmark": "tele_teletables_cfr",
+      "score": 26.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "tele_telelogs_cfr",
+      "score": 4.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "tele_telelogs_cfr",
+      "score": 14.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "tele_telelogs_cfr",
+      "score": 17.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e2b",
+      "benchmark": "tele_telelogs_cfr",
+      "score": 10.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e4b",
+      "benchmark": "tele_telelogs_cfr",
+      "score": 14.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-26b",
+      "benchmark": "tele_telelogs_cfr",
+      "score": 15.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-31b",
+      "benchmark": "tele_telelogs_cfr",
+      "score": 19.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-4b",
+      "benchmark": "tele_telelogs_cfr",
+      "score": 5.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "tele_3gpp_tsg_cfr",
+      "score": 3.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "tele_3gpp_tsg_cfr",
+      "score": 5.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "tele_3gpp_tsg_cfr",
+      "score": 4.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e2b",
+      "benchmark": "tele_3gpp_tsg_cfr",
+      "score": 5.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e4b",
+      "benchmark": "tele_3gpp_tsg_cfr",
+      "score": 5.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-26b",
+      "benchmark": "tele_3gpp_tsg_cfr",
+      "score": 16.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-31b",
+      "benchmark": "tele_3gpp_tsg_cfr",
+      "score": 16.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-4b",
+      "benchmark": "tele_3gpp_tsg_cfr",
+      "score": 11.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "tele_oranbench_cfr",
+      "score": 28.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "tele_oranbench_cfr",
+      "score": 23.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "tele_oranbench_cfr",
+      "score": 23.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e2b",
+      "benchmark": "tele_oranbench_cfr",
+      "score": 36.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e4b",
+      "benchmark": "tele_oranbench_cfr",
+      "score": 38.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-26b",
+      "benchmark": "tele_oranbench_cfr",
+      "score": 33.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-31b",
+      "benchmark": "tele_oranbench_cfr",
+      "score": 31.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-4b",
+      "benchmark": "tele_oranbench_cfr",
+      "score": 39.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "tele_srsranbench_cfr",
+      "score": 17.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "tele_srsranbench_cfr",
+      "score": 23.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "tele_srsranbench_cfr",
+      "score": 19.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e2b",
+      "benchmark": "tele_srsranbench_cfr",
+      "score": 36.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e4b",
+      "benchmark": "tele_srsranbench_cfr",
+      "score": 25.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-26b",
+      "benchmark": "tele_srsranbench_cfr",
+      "score": 44.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-31b",
+      "benchmark": "tele_srsranbench_cfr",
+      "score": 44.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-4b",
+      "benchmark": "tele_srsranbench_cfr",
+      "score": 46.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "tele_sixg_bench_cfr",
+      "score": 16.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "tele_sixg_bench_cfr",
+      "score": 17.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "tele_sixg_bench_cfr",
+      "score": 17.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e2b",
+      "benchmark": "tele_sixg_bench_cfr",
+      "score": 24.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-e4b",
+      "benchmark": "tele_sixg_bench_cfr",
+      "score": 23.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-26b",
+      "benchmark": "tele_sixg_bench_cfr",
+      "score": 27.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma4-31b",
+      "benchmark": "tele_sixg_bench_cfr",
+      "score": 29.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-4b",
+      "benchmark": "tele_sixg_bench_cfr",
+      "score": 27.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.09929",
+      "_note": ""
+    }
+  ]
+}
