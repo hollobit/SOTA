@@ -1039,13 +1039,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "officeqa_pro",
-    "name": "OfficeQA Pro",
-    "category": "reasoning",
-    "description": "Professional office-work QA (Word, Excel, PowerPoint formula/slide tasks). GPT-5.5 launch benchmark.",
-    "metric": "accuracy"
-  },
-  {
     "id": "mrcr",
     "name": "MRCR (Long Context)",
     "category": "reasoning",
@@ -2275,13 +2268,6 @@
     "metric": "ons"
   },
   {
-    "id": "programbench",
-    "name": "ProgramBench",
-    "category": "coding",
-    "description": "Full-program rebuild from scratch — can language models rebuild programs? arxiv 2605.03546 (John Yang, Diyi Yang, Ofir Press et al). Metric = % Resolved. All frontier models score 0% Resolved currently.",
-    "metric": "resolved_percent"
-  },
-  {
     "id": "programbench_almost",
     "name": "ProgramBench Almost",
     "category": "coding",
@@ -3360,13 +3346,6 @@
     "metric": "elo"
   },
   {
-    "id": "arena_text_to_image_elo",
-    "name": "arena.ai Text-to-Image Arena Elo",
-    "category": "media-forensics",
-    "description": "arena.ai Text-to-Image arena Elo. Top: GPT-Image-2 (medium) 1389 / nano-banana-2 1271 / nano-banana-pro-2k 1243.",
-    "metric": "elo"
-  },
-  {
     "id": "arena_text_to_video_elo",
     "name": "arena.ai Text-to-Video Arena Elo",
     "category": "world-model",
@@ -3941,41 +3920,6 @@
     "metric": "accuracy_pct"
   },
   {
-    "id": "graphwalks_bfs_256k",
-    "name": "GraphWalks BFS 256K",
-    "category": "agent",
-    "description": "Multi-hop long-context reasoning — context filled with directed graph of hex-hash nodes, model performs breadth-first search. 256K subset, F1, avg 5 trials.",
-    "metric": "f1_pct"
-  },
-  {
-    "id": "graphwalks_parents_256k",
-    "name": "GraphWalks Parents 256K",
-    "category": "agent",
-    "description": "GraphWalks parent-node identification, 256K subset, F1, avg 5 trials.",
-    "metric": "f1_pct"
-  },
-  {
-    "id": "graphwalks_bfs_1m",
-    "name": "GraphWalks BFS 1M",
-    "category": "agent",
-    "description": "GraphWalks BFS, 1M-token subset (exceeds public API limit — not reproducible via API). F1, avg 5 trials.",
-    "metric": "f1_pct"
-  },
-  {
-    "id": "graphwalks_parents_1m",
-    "name": "GraphWalks Parents 1M",
-    "category": "agent",
-    "description": "GraphWalks parent-node identification, 1M-token subset. F1, avg 5 trials.",
-    "metric": "f1_pct"
-  },
-  {
-    "id": "officeqa",
-    "name": "OfficeQA (full set)",
-    "category": "agent",
-    "description": "Databricks benchmark — end-to-end grounded reasoning over US Treasury Bulletin documents; locate tables across corpus + precise numerical reasoning. Anthropic internal agentic harness (extracted text + code-execution tools), exact-match. Harness-sensitive — not externally comparable.",
-    "metric": "accuracy_pct"
-  },
-  {
     "id": "gmmlu",
     "name": "Global MMLU (GMMLU)",
     "category": "sovereign",
@@ -3988,13 +3932,6 @@
     "category": "sovereign",
     "description": "AI4Bharat Multi-task Indic Language Understanding (Verma et al, arxiv 2411.02538) — 10 Indic languages + English, culturally-grounded comprehension. Average accuracy.",
     "metric": "accuracy_pct"
-  },
-  {
-    "id": "draco",
-    "name": "DRACO (Perplexity)",
-    "category": "agent",
-    "description": "Deep Research Accuracy/Completeness/Objectivity (Zhong et al, arxiv 2602.11685) — 100 curated deep-research tasks from real user queries, 4 rubric categories. Opus 4.6 judge, 5 grading runs, normalized score.",
-    "metric": "score_pct"
   },
   {
     "id": "cybergym_targeted_repro",
@@ -4016,20 +3953,6 @@
     "category": "cyber",
     "description": "ExploitBench: write end-to-end exploits for 41 patched V8 JS/WASM vulns. Mean capability flags (max 16) across 3 trials, 'plain' variant (no AutoNudge), 300-turn budget. Tier-3 safeguards drop Opus 4.8 to 0.46 (-91%).",
     "metric": "flags_count"
-  },
-  {
-    "id": "biomysterybench_solvable",
-    "name": "BioMysteryBench Verified (Human Solvable)",
-    "category": "ai4s",
-    "description": "Difficult analytical challenges interleaving computational analysis + biological reasoning (identify knocked-out gene from transcriptomics, determine infecting virus). Human Solvable subset.",
-    "metric": "accuracy_pct"
-  },
-  {
-    "id": "biomysterybench_difficult",
-    "name": "BioMysteryBench Verified (Human Difficult)",
-    "category": "ai4s",
-    "description": "BioMysteryBench Human Difficult subset — unsolved by humans but with objective ground-truth.",
-    "metric": "accuracy_pct"
   },
   {
     "id": "organic_chemistry_eval",
@@ -4079,27 +4002,6 @@
     "category": "agent",
     "description": "Average no-skill-baseline uplift (points) SkillOpt gives GPT-5.5 inside Claude Code.",
     "metric": "uplift_points"
-  },
-  {
-    "id": "chartmuseum_no_tools",
-    "name": "ChartMuseum (no tools)",
-    "category": "agent",
-    "description": "Chart QA requiring genuine visual reasoning that cannot be solved from extracted chart text (Tang et al, arxiv 2505.13444). 1,162 expert-annotated questions over real-world charts from 184 sources. No-tools config, Sonnet 4.6 grader, 5-run avg.",
-    "metric": "accuracy_pct"
-  },
-  {
-    "id": "chartmuseum_tools",
-    "name": "ChartMuseum (Python tools)",
-    "category": "agent",
-    "description": "ChartMuseum with adaptive thinking + max effort + Python tools.",
-    "metric": "accuracy_pct"
-  },
-  {
-    "id": "lab_bench_figqa_tools",
-    "name": "LAB-Bench FigQA (Python tools)",
-    "category": "ai4s",
-    "description": "LAB-Bench FigQA with adaptive thinking + max effort + Python tools. Expert human baseline 77.0%.",
-    "metric": "accuracy_pct"
   },
   {
     "id": "browsecomp_multiagent",
@@ -4795,34 +4697,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "unigenbench_all_1170",
-    "name": "UniGenBench (All 1170)",
-    "category": "image-generation",
-    "description": "Text-to-image evaluation. 1170 prompts (600 Orig + 570 Physical AI). Fraction of criteria satisfied (higher better).",
-    "metric": "accuracy"
-  },
-  {
-    "id": "cvtg_500l_pned",
-    "name": "CVTG-500L PNED",
-    "category": "image-generation",
-    "description": "Long-prompt English character-level text rendering (higher better, character-level accuracy).",
-    "metric": "accuracy"
-  },
-  {
-    "id": "cvtg_102ch_pned",
-    "name": "CVTG-102ch PNED",
-    "category": "image-generation",
-    "description": "Chinese-character text rendering accuracy (102 prompts).",
-    "metric": "accuracy"
-  },
-  {
-    "id": "hpsv3",
-    "name": "HPSv3",
-    "category": "image-generation",
-    "description": "Learned human-preference reward (VLM-based, uncertainty-aware ranking, prompt-aware).",
-    "metric": "accuracy"
-  },
-  {
     "id": "aesthetic_v2",
     "name": "Aesthetic v2 (LAION)",
     "category": "image-generation",
@@ -4841,41 +4715,6 @@
     "name": "PAIBench-G I2V Overall",
     "category": "video-generation",
     "description": "Physical AI video generation Image-to-Video overall.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "rbench_i2v",
-    "name": "RBench Image2Video Score",
-    "category": "video-generation",
-    "description": "Embodied task scenarios — task correctness and physical plausibility (650 cases, 2 splits).",
-    "metric": "accuracy"
-  },
-  {
-    "id": "physics_iq_i2v",
-    "name": "Physics-IQ I2V",
-    "category": "video-generation",
-    "description": "Physics-grounded video evaluation, image-to-video mode (396 scenes, 5 physics categories). 0-100 score.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "physics_iq_v2v",
-    "name": "Physics-IQ V2V",
-    "category": "video-generation",
-    "description": "Physics-IQ video-to-video continuation mode (3s in, 5s out).",
-    "metric": "accuracy"
-  },
-  {
-    "id": "cosmos_hue_t2v",
-    "name": "Cosmos HUE T2V",
-    "category": "video-generation",
-    "description": "NVIDIA Cosmos Human EUval — 100 prompts, atomic binary fact-verification across 4 dimensions (Semantic Align / Physical Laws / Geometric Reasoning / Visual Integrity).",
-    "metric": "accuracy"
-  },
-  {
-    "id": "cosmos_hue_i2v",
-    "name": "Cosmos HUE I2V",
-    "category": "video-generation",
-    "description": "Cosmos HUE Image-to-Video track.",
     "metric": "accuracy"
   },
   {
@@ -5205,20 +5044,6 @@
     "name": "Cosmos HUE I2V Visual Integrity",
     "category": "video-generation",
     "description": "Cosmos HUE I2V dimension — Visual Integrity.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "paibench_g_t2v_domain",
-    "name": "PAIBench-G T2V Domain",
-    "category": "video-generation",
-    "description": "PAIBench-G T2V Domain sub-score (VLM-as-Judge physical/semantic accuracy).",
-    "metric": "accuracy"
-  },
-  {
-    "id": "paibench_g_t2v_quality",
-    "name": "PAIBench-G T2V Quality",
-    "category": "video-generation",
-    "description": "PAIBench-G T2V Quality sub-score (frame consistency + motion smoothness + aesthetics + text alignment).",
     "metric": "accuracy"
   },
   {
@@ -5727,13 +5552,6 @@
     "metric": "score_0_100"
   },
   {
-    "id": "automation_bench",
-    "name": "AutomationBench",
-    "category": "agentic",
-    "description": "AutomationBench — workflow automation evaluation.",
-    "metric": "score_0_100"
-  },
-  {
     "id": "legal_agent_benchmark",
     "name": "Legal Agent Benchmark",
     "category": "agentic",
@@ -5762,24 +5580,10 @@
     "metric": "rank_lower_better"
   },
   {
-    "id": "structural_biology_openended",
-    "name": "Structural Biology Open-Ended (Anthropic)",
-    "category": "life-sciences",
-    "description": "Open-ended questions about biomolecule function. Anthropic internal benchmark.",
-    "metric": "score_0_100"
-  },
-  {
     "id": "labbench2_avg",
     "name": "LABBench2 (average across subcategories)",
     "category": "life-sciences",
     "description": "LABBench2 — broad biology/life-sciences research questions. Categories: patents, clinical trials, database, literature, table reading, supplementary, source-reliability, FigQA.",
-    "metric": "score_0_100"
-  },
-  {
-    "id": "real_world_finance_v1",
-    "name": "Real-World Finance v1",
-    "category": "agentic",
-    "description": "Real-World Finance v1 — Andon Labs financial agentic benchmark.",
     "metric": "score_0_100"
   },
   {
@@ -5823,13 +5627,6 @@
     "category": "cybersecurity",
     "description": "Mean capability flags captured per trial in AutoNudge arm (harness re-prompts if model stops early). 16 flags across 5 tiers. 41 V8 environments.",
     "metric": "score_higher_better"
-  },
-  {
-    "id": "cybergym_any_crash",
-    "name": "CyberGym Any Crash Rate (1507 tasks)",
-    "category": "cybersecurity",
-    "description": "% of CyberGym tasks where model produced any crash in target (regardless of reaching targeted vuln). 1507 tasks, pass@1.",
-    "metric": "score_0_100"
   },
   {
     "id": "oss_fuzz_write_primitive",
@@ -5892,13 +5689,6 @@
     "name": "SWE-bench Multimodal (Anthropic internal harness)",
     "category": "coding",
     "description": "SWE-bench Multimodal evaluated on Anthropic internal harness. Distinct from public 59% Mythos Preview score (different harness).",
-    "metric": "score_0_100"
-  },
-  {
-    "id": "deepsearchqa_fully_correct",
-    "name": "DeepSearchQA Fully Correct Rate",
-    "category": "agentic",
-    "description": "DeepSearchQA fully-correct answers rate. 900 prompts, 17 fields, exhaustive multi-step search.",
     "metric": "score_0_100"
   },
   {
@@ -8154,13 +7944,6 @@
     "metric": "score"
   },
   {
-    "id": "arena_image_edit_elo",
-    "name": "arena_image_edit_elo",
-    "category": "image-edit-human-preference",
-    "description": "",
-    "metric": "score"
-  },
-  {
     "id": "cybergym_level1_success_rate",
     "name": "cybergym_level1_success_rate",
     "category": "cybersecurity-vuln-reproduction",
@@ -8187,13 +7970,6 @@
     "category": "cybersecurity-zero-day-discovery",
     "description": "",
     "metric": "score"
-  },
-  {
-    "id": "usamo_2026",
-    "name": "USAMO 2026",
-    "category": "math",
-    "description": "USA Math Olympiad 2026 (proof-based, 6-problem, 2-day). Scored via MathArena rubric: rewrite by neutral model, judged by panel (Gemini 3.1 Pro, Opus 4.6, Mythos Preview); final score = min of any judge.",
-    "metric": "accuracy"
   },
   {
     "id": "arxivmath_2026",
@@ -8238,31 +8014,10 @@
     "metric": "accuracy"
   },
   {
-    "id": "latchbio_singlecellbench",
-    "name": "LatchBio SingleCellBench",
-    "category": "life-sciences",
-    "description": "Single-cell RNA-seq analysis benchmark: cell-type labeling, DE genes, batch correction.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "proteingym_hard",
-    "name": "ProteinGym Hard",
-    "category": "life-sciences",
-    "description": "Protein mutation effect prediction; ranks mutants vs. wild-type. Scored by rank correlation against published ProteinGym lab measurements.",
-    "metric": "rank-correlation"
-  },
-  {
     "id": "organic_chemistry_anthropic",
     "name": "Organic Chemistry (Anthropic)",
     "category": "life-sciences",
     "description": "Anthropic-internal organic-chemistry: spectroscopy-to-structure, multi-step synthesis design, reaction prediction, IUPAC/SMILES/structure conversion.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "protocol_troubleshooting",
-    "name": "Protocol Troubleshooting",
-    "category": "life-sciences",
-    "description": "Detect/fix errors in molecular biology protocols (with web search tool).",
     "metric": "accuracy"
   },
   {
@@ -8287,13 +8042,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "labbench2_supplementary",
-    "name": "LAB-Bench 2 — Supplementary materials",
-    "category": "life-sciences",
-    "description": "",
-    "metric": "accuracy"
-  },
-  {
     "id": "toolathlon_pass3",
     "name": "Toolathlon Pass@3",
     "category": "agent",
@@ -8301,25 +8049,11 @@
     "metric": "pass@3"
   },
   {
-    "id": "toolathlon_pass_cube",
-    "name": "Toolathlon Pass^3 (consistency)",
-    "category": "agent",
-    "description": "Toolathlon Pass^3 (all 3 trials pass) consistency metric.",
-    "metric": "pass_cube"
-  },
-  {
     "id": "draco_perplexity",
     "name": "DRACO (Perplexity Deep Research)",
     "category": "agent",
     "description": "Deep Research Accuracy, Completeness, Objectivity. 100 expert-rubric tasks. Opus 4.6 used as LLM judge.",
     "metric": "normalized-score"
-  },
-  {
-    "id": "lab_bench_figqa_no_tools",
-    "name": "LAB-Bench FigQA (no tools)",
-    "category": "multimodal",
-    "description": "FutureHouse LAB-Bench FigQA biology-figures benchmark, no Python tools.",
-    "metric": "accuracy"
   },
   {
     "id": "lab_bench_figqa_with_tools",
@@ -9059,23 +8793,6 @@
     "metric": "avg_similarity@256K"
   },
   {
-    "id": "mmlu_pro",
-    "name": "Mmlu Pro",
-    "category": "general",
-    "description": "",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2406.01574",
-    "github": "https://github.com/TIGER-Lab/MMLU-Pro",
-    "year": "2024",
-    "reliability": {
-      "contamination_risk": "medium",
-      "saturation": "approaching",
-      "citation_count": 380,
-      "last_updated": "2025-04",
-      "notes": "Mostly cleaner than MMLU, but reasoning subset overlaps"
-    }
-  },
-  {
     "id": "simpleqa_verified",
     "name": "Simpleqa Verified",
     "category": "general",
@@ -9195,24 +8912,6 @@
     "category": "general",
     "description": "",
     "metric": "pass@1"
-  },
-  {
-    "id": "gpqa_diamond",
-    "name": "Gpqa Diamond",
-    "category": "general",
-    "description": "",
-    "metric": "pass@1",
-    "paper": "https://arxiv.org/abs/2311.12022",
-    "github": "https://github.com/idavidrein/gpqa",
-    "year": "2023",
-    "item_count": "198 questions",
-    "reliability": {
-      "contamination_risk": "low",
-      "saturation": "not_saturated",
-      "citation_count": 850,
-      "last_updated": "2025-12",
-      "notes": "Domain-expert questions, low contamination risk"
-    }
   },
   {
     "id": "livecodebench_v6",
@@ -9426,21 +9125,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "mcp_atlas",
-    "name": "MCP Atlas",
-    "category": "agent_tool",
-    "description": "Multi-step workflows using MCP",
-    "metric": "accuracy",
-    "year": "2026",
-    "reliability": {
-      "contamination_risk": "low",
-      "saturation": "not_saturated",
-      "citation_count": 60,
-      "last_updated": "2026-01",
-      "notes": "MCP tool use evaluation, recent"
-    }
-  },
-  {
     "id": "vending_bench_2_networth_usd",
     "name": "Vending-Bench 2",
     "category": "agent",
@@ -9488,13 +9172,6 @@
     "category": "multilingual",
     "description": "Commonsense reasoning across 100 languages and cultures",
     "metric": "accuracy"
-  },
-  {
-    "id": "blueprint_bench_2",
-    "name": "Blueprint-Bench 2",
-    "category": "multimodal",
-    "description": "Agentic spatial reasoning, normalized 0-100",
-    "metric": "normalized_score"
   },
   {
     "id": "livecodebench_codegen_ui",
@@ -9637,13 +9314,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "organic_chemistry_internal",
-    "name": "Organic Chemistry (Anthropic internal)",
-    "category": "life-sciences",
-    "description": "Predicting molecular structure from spectroscopy, multi-step synthesis design, predicting reaction products, IUPAC<->SMILES conversion.",
-    "metric": "accuracy"
-  },
-  {
     "id": "phylogenetics_internal",
     "name": "Phylogenetics (Anthropic internal)",
     "category": "life-sciences",
@@ -9655,20 +9325,6 @@
     "name": "MedCalc-Bench Verified (code-augmented)",
     "category": "medical",
     "description": "NeurIPS 2024 medical-calculations from clinical notes; multi-turn agentic loop w/ Python REPL.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "bbq_disambiguated_accuracy",
-    "name": "BBQ Disambiguated Accuracy",
-    "category": "bias",
-    "description": "Bias Benchmark for Question Answering — disambiguated split. Higher is better.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "bbq_ambiguous_accuracy",
-    "name": "BBQ Ambiguous Accuracy",
-    "category": "bias",
-    "description": "Ambiguous split — answer should be 'unknown'. Higher is better.",
     "metric": "accuracy"
   },
   {
@@ -9950,6 +9606,1204 @@
     "category": "ai-rd",
     "description": "",
     "metric": "fraction-of-respondents"
+  },
+  {
+    "id": "fleurs_wer_avg_lower_better",
+    "name": "Fleurs Wer Avg Lower Better",
+    "category": "audio",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "artificial_analysis_wer_lower_better",
+    "name": "Artificial Analysis Wer Lower Better",
+    "category": "audio",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "price_per_hour_audio_usd_lower_better",
+    "name": "Price Per Hour Audio Usd Lower Better",
+    "category": "audio",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "frontiercode_diamond_pass_rate",
+    "name": "Frontiercode Diamond Pass Rate",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "frontiercode_main_pass_rate",
+    "name": "Frontiercode Main Pass Rate",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "terminal_bench_2_1_mini_swe",
+    "name": "Terminal Bench 2 1 Mini Swe",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "terminal_bench_2_1_codex_harness",
+    "name": "Terminal Bench 2 1 Codex Harness",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "programbench",
+    "name": "Programbench",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "programbench_multi_agent_5",
+    "name": "Programbench Multi Agent 5",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "browsecomp_multi_agent_async",
+    "name": "Browsecomp Multi Agent Async",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "exploitbench_v8_mean_flags",
+    "name": "Exploitbench V8 Mean Flags",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "exploitbench_v8_cap_pct",
+    "name": "Exploitbench V8 Cap Pct",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "oss_fuzz_any_crash_pct",
+    "name": "Oss Fuzz Any Crash Pct",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "oss_fuzz_write_primitive_pct",
+    "name": "Oss Fuzz Write Primitive Pct",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cybergym_pass_at_1",
+    "name": "Cybergym Pass At 1",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cybergym_any_crash",
+    "name": "Cybergym Any Crash",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "firefox_147_exploit",
+    "name": "Firefox 147 Exploit",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "uk_aisi_the_last_ones_solve_rate",
+    "name": "Uk Aisi The Last Ones Solve Rate",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "uk_aisi_cooling_tower_solve_rate",
+    "name": "Uk Aisi Cooling Tower Solve Rate",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "ransomware_internal_red_team_completion",
+    "name": "Ransomware Internal Red Team Completion",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "art_indirect_prompt_injection_k100_asr_lower_better",
+    "name": "Art Indirect Prompt Injection K100 Asr Lower Better",
+    "category": "general",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "shade_coding_asr_lower_better",
+    "name": "Shade Coding Asr Lower Better",
+    "category": "general",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "shade_computer_use_asr_lower_better",
+    "name": "Shade Computer Use Asr Lower Better",
+    "category": "general",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "browser_use_prompt_injection_asr_no_safeguards_lower_better",
+    "name": "Browser Use Prompt Injection Asr No Safeguards Lower Better",
+    "category": "general",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "browser_use_prompt_injection_asr_updated_safeguards_lower_better",
+    "name": "Browser Use Prompt Injection Asr Updated Safeguards Lower Better",
+    "category": "general",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "kernel_task_speedup",
+    "name": "Kernel Task Speedup",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "time_series_forecasting_mse_lower_better",
+    "name": "Time Series Forecasting Mse Lower Better",
+    "category": "general",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "llm_training_speedup_rerun",
+    "name": "Llm Training Speedup Rerun",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "quadruped_rl_highest_score",
+    "name": "Quadruped Rl Highest Score",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "novel_compiler_pass_rate",
+    "name": "Novel Compiler Pass Rate",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "aeci",
+    "name": "Aeci",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "bbq_disambiguated_accuracy",
+    "name": "Bbq Disambiguated Accuracy",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "bbq_ambiguous_accuracy",
+    "name": "Bbq Ambiguous Accuracy",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "claude_code_malicious_refusal",
+    "name": "Claude Code Malicious Refusal",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "claude_code_dual_use_success",
+    "name": "Claude Code Dual Use Success",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "malicious_computer_use_refusal",
+    "name": "Malicious Computer Use Refusal",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "influence_ops_voter_suppression",
+    "name": "Influence Ops Voter Suppression",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "influence_ops_polarization",
+    "name": "Influence Ops Polarization",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "shade_arena_stealth_visible_cot_lower_better",
+    "name": "Shade Arena Stealth Visible Cot Lower Better",
+    "category": "general",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "shade_arena_stealth_hidden_scratchpad_lower_better",
+    "name": "Shade Arena Stealth Hidden Scratchpad Lower Better",
+    "category": "general",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "shade_arena_stealth_elicited_prompt_lower_better",
+    "name": "Shade Arena Stealth Elicited Prompt Lower Better",
+    "category": "general",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "uk_aisi_cot_controllability_lower_better",
+    "name": "Uk Aisi Cot Controllability Lower Better",
+    "category": "general",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "officeqa",
+    "name": "Officeqa",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "officeqa_pro",
+    "name": "Officeqa Pro",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "officeqa_pro_databricks_vision",
+    "name": "Officeqa Pro Databricks Vision",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "real_world_finance_v2_win_rate_vs_opus_4_8",
+    "name": "Real World Finance V2 Win Rate Vs Opus 4 8",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "real_world_finance_v2_win_rate_vs_sonnet_4_6",
+    "name": "Real World Finance V2 Win Rate Vs Sonnet 4 6",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "real_world_finance_v2_win_rate_vs_mythos_preview",
+    "name": "Real World Finance V2 Win Rate Vs Mythos Preview",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "real_world_finance_v1",
+    "name": "Real World Finance V1",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "legal_agent_benchmark_all_pass",
+    "name": "Legal Agent Benchmark All Pass",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "legal_agent_benchmark_mean_criterion_pass",
+    "name": "Legal Agent Benchmark Mean Criterion Pass",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mcp_atlas",
+    "name": "Mcp Atlas",
+    "category": "general",
+    "description": "",
+    "metric": "score",
+    "year": "2026",
+    "reliability": {
+      "contamination_risk": "low",
+      "saturation": "not_saturated",
+      "citation_count": 60,
+      "last_updated": "2026-01",
+      "notes": "MCP tool use evaluation, recent"
+    }
+  },
+  {
+    "id": "vending_bench_2_final_balance_usd",
+    "name": "Vending Bench 2 Final Balance Usd",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "gdpval_aa_elo_lead_vs_opus_4_8",
+    "name": "Gdpval Aa Elo Lead Vs Opus 4 8",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "gdpval_aa_pairwise_win_rate_vs_opus_4_8",
+    "name": "Gdpval Aa Pairwise Win Rate Vs Opus 4 8",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "toolathlon_pass_at_1",
+    "name": "Toolathlon Pass At 1",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "toolathlon_pass_at_3",
+    "name": "Toolathlon Pass At 3",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "toolathlon_pass_cube",
+    "name": "Toolathlon Pass Cube",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "automation_bench",
+    "name": "Automation Bench",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "blueprint_bench_2",
+    "name": "Blueprint Bench 2",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "gdp_pdf_internal_no_tools",
+    "name": "Gdp Pdf Internal No Tools",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "gdp_pdf_internal_tools",
+    "name": "Gdp Pdf Internal Tools",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "benchcad_vision2code_voxel_iou",
+    "name": "Benchcad Vision2Code Voxel Iou",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "benchcad_vision2code_voxel_iou_with_tools_1000subset",
+    "name": "Benchcad Vision2Code Voxel Iou With Tools 1000Subset",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "chartqapro_no_tools",
+    "name": "Chartqapro No Tools",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "chartqapro_tools",
+    "name": "Chartqapro Tools",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "chartmuseum_no_tools",
+    "name": "Chartmuseum No Tools",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "chartmuseum_tools",
+    "name": "Chartmuseum Tools",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "lab_bench_figqa_no_tools",
+    "name": "Lab Bench Figqa No Tools",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "lab_bench_figqa_tools",
+    "name": "Lab Bench Figqa Tools",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "screenspot_pro_no_tools",
+    "name": "Screenspot Pro No Tools",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "screenspot_pro_tools",
+    "name": "Screenspot Pro Tools",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "usamo_2026",
+    "name": "Usamo 2026",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "graphwalks_bfs_256k",
+    "name": "Graphwalks Bfs 256K",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "graphwalks_bfs_1m",
+    "name": "Graphwalks Bfs 1M",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "graphwalks_parents_256k",
+    "name": "Graphwalks Parents 256K",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "graphwalks_parents_1m",
+    "name": "Graphwalks Parents 1M",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "deepsearchqa_fully_correct",
+    "name": "Deepsearchqa Fully Correct",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "draco",
+    "name": "Draco",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "biomysterybench_difficult",
+    "name": "Biomysterybench Difficult",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "biomysterybench_solvable",
+    "name": "Biomysterybench Solvable",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "latchbio_spatialbench_verified",
+    "name": "Latchbio Spatialbench Verified",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "latchbio_singlecellbench",
+    "name": "Latchbio Singlecellbench",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "structural_biology_openended",
+    "name": "Structural Biology Openended",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "proteingym_hard",
+    "name": "Proteingym Hard",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "organic_chemistry_internal",
+    "name": "Organic Chemistry Internal",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "protocol_troubleshooting",
+    "name": "Protocol Troubleshooting",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "labbench2_patents",
+    "name": "Labbench2 Patents",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "labbench2_clinical_trials",
+    "name": "Labbench2 Clinical Trials",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "labbench2_database",
+    "name": "Labbench2 Database",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "labbench2_literature",
+    "name": "Labbench2 Literature",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "labbench2_table_reading",
+    "name": "Labbench2 Table Reading",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "labbench2_supplementary",
+    "name": "Labbench2 Supplementary",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "labbench2_source_reliability",
+    "name": "Labbench2 Source Reliability",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "labbench2_figqa_sub",
+    "name": "Labbench2 Figqa Sub",
+    "category": "general",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cybergym_success_rate",
+    "name": "Cybergym Success Rate",
+    "category": "cyber",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cybergym_success_rate_anthropic_agent",
+    "name": "Cybergym Success Rate Anthropic Agent",
+    "category": "cyber",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cybergym_success_rate_codex",
+    "name": "Cybergym Success Rate Codex",
+    "category": "cyber",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cybergym_success_rate_sageagent",
+    "name": "Cybergym Success Rate Sageagent",
+    "category": "cyber",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cybergym_success_rate_openhands",
+    "name": "Cybergym Success Rate Openhands",
+    "category": "cyber",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "exploitgym_total",
+    "name": "Exploitgym Total",
+    "category": "cyber",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "arena_image_edit_elo",
+    "name": "Arena Image Edit Elo",
+    "category": "image-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "arena_text_to_image_elo",
+    "name": "Arena Text To Image Elo",
+    "category": "image-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "unigenbench_all_1170",
+    "name": "Unigenbench All 1170",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "unigenbench_orig",
+    "name": "Unigenbench Orig",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "unigenbench_phys",
+    "name": "Unigenbench Phys",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cvtg_500l_gned",
+    "name": "Cvtg 500L Gned",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cvtg_500l_pned",
+    "name": "Cvtg 500L Pned",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cvtg_102ch_gned",
+    "name": "Cvtg 102Ch Gned",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cvtg_102ch_pned",
+    "name": "Cvtg 102Ch Pned",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "laion_aesthetic_v2",
+    "name": "Laion Aesthetic V2",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "hpsv3",
+    "name": "Hpsv3",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "unigenbench",
+    "name": "Unigenbench",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "paibench_g_t2v",
+    "name": "Paibench G T2V",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "paibench_g_t2v_domain",
+    "name": "Paibench G T2V Domain",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "paibench_g_t2v_quality",
+    "name": "Paibench G T2V Quality",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "paibench_g_i2v",
+    "name": "Paibench G I2V",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "rbench_i2v",
+    "name": "Rbench I2V",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "physics_iq_i2v",
+    "name": "Physics Iq I2V",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "physics_iq_i2v_wmreward_bon",
+    "name": "Physics Iq I2V Wmreward Bon",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "physics_iq_v2v",
+    "name": "Physics Iq V2V",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "physics_iq_v2v_wmreward_bon",
+    "name": "Physics Iq V2V Wmreward Bon",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_hue_t2v",
+    "name": "Cosmos Hue T2V",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_hue_i2v",
+    "name": "Cosmos Hue I2V",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "human_world_bench",
+    "name": "Human World Bench",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_soundbench_avq",
+    "name": "Cosmos Soundbench Avq",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_soundbench_sav",
+    "name": "Cosmos Soundbench Sav",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_soundbench_pq",
+    "name": "Cosmos Soundbench Pq",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "paibench_c_dover",
+    "name": "Paibench C Dover",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "paibench_c_seg_miou",
+    "name": "Paibench C Seg Miou",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "paibench_c_blur_ssim",
+    "name": "Paibench C Blur Ssim",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "paibench_c_edge_f1",
+    "name": "Paibench C Edge F1",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "paibench_c_depth_si_rmse_lower_better",
+    "name": "Paibench C Depth Si Rmse Lower Better",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "avbench_c_ego_drift_lower_better",
+    "name": "Avbench C Ego Drift Lower Better",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "avbench_c_dyn_obj",
+    "name": "Avbench C Dyn Obj",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "avbench_c_environment",
+    "name": "Avbench C Environment",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "avbench_c_human_video_quality",
+    "name": "Avbench C Human Video Quality",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "avbench_c_human_lane_line",
+    "name": "Avbench C Human Lane Line",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "camera_motion_fd_rre_lower_better",
+    "name": "Camera Motion Fd Rre Lower Better",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "camera_motion_fd_rte_lower_better",
+    "name": "Camera Motion Fd Rte Lower Better",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "camera_motion_fd_ate_lower_better",
+    "name": "Camera Motion Fd Ate Lower Better",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "egocentric_fd_psnr",
+    "name": "Egocentric Fd Psnr",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "robotics_droid_fd_psnr",
+    "name": "Robotics Droid Fd Psnr",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "av_id_rre_lower_better",
+    "name": "Av Id Rre Lower Better",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "av_id_ate_lower_better",
+    "name": "Av Id Ate Lower Better",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "robolab_overall_specific",
+    "name": "Robolab Overall Specific",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "robolab_overall_default",
+    "name": "Robolab Overall Default",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "robolab_overall_vague",
+    "name": "Robolab Overall Vague",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "robolab_complex_specific",
+    "name": "Robolab Complex Specific",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "libero_10_success_2k_iter",
+    "name": "Libero 10 Success 2K Iter",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "libero_10_success_500_iter",
+    "name": "Libero 10 Success 500 Iter",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "hmmt_2025_feb",
+    "name": "Hmmt 2025 Feb",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "gpqa_diamond",
+    "name": "Gpqa Diamond",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2311.12022",
+    "github": "https://github.com/idavidrein/gpqa",
+    "year": "2023",
+    "item_count": "198 questions",
+    "reliability": {
+      "contamination_risk": "low",
+      "saturation": "not_saturated",
+      "citation_count": 850,
+      "last_updated": "2025-12",
+      "notes": "Domain-expert questions, low contamination risk"
+    }
+  },
+  {
+    "id": "mmlu_pro",
+    "name": "Mmlu Pro",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2406.01574",
+    "github": "https://github.com/TIGER-Lab/MMLU-Pro",
+    "year": "2024",
+    "reliability": {
+      "contamination_risk": "medium",
+      "saturation": "approaching",
+      "citation_count": 380,
+      "last_updated": "2025-04",
+      "notes": "Mostly cleaner than MMLU, but reasoning subset overlaps"
+    }
+  },
+  {
+    "id": "ifbench_prompt",
+    "name": "Ifbench Prompt",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "scale_multi_challenge",
+    "name": "Scale Multi Challenge",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_hue_t2v_semantic_alignment",
+    "name": "Cosmos Hue T2V Semantic Alignment",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_hue_t2v_physical_laws",
+    "name": "Cosmos Hue T2V Physical Laws",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_hue_t2v_geometric_reasoning",
+    "name": "Cosmos Hue T2V Geometric Reasoning",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_hue_t2v_visual_integrity",
+    "name": "Cosmos Hue T2V Visual Integrity",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_hue_t2v_av_domain",
+    "name": "Cosmos Hue T2V Av Domain",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_hue_t2v_physics_domain",
+    "name": "Cosmos Hue T2V Physics Domain",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_hue_i2v_visual_integrity",
+    "name": "Cosmos Hue I2V Visual Integrity",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cosmos_hue_i2v_robotics_domain",
+    "name": "Cosmos Hue I2V Robotics Domain",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "aa_image_to_video_arena_rank_global",
+    "name": "Aa Image To Video Arena Rank Global",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "aa_image_to_video_arena_rank_open_weight",
+    "name": "Aa Image To Video Arena Rank Open Weight",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "roboarena_rank",
+    "name": "Roboarena Rank",
+    "category": "physical-ai",
+    "description": "",
+    "metric": "score"
   },
   {
     "id": "arc_agi_3",
