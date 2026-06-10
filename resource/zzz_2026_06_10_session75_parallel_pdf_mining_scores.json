@@ -1,0 +1,98 @@
+{
+  "_meta": {
+    "session": "Session 75 — Parallel PDF mining (Goedel-Prover-V2 + MedGemma 1.5 + GPT-5.5 + Step-Audio-R1.5)",
+    "date": "2026-06-10",
+    "sources": [
+      "/Users/user/git/cyber/resource/Goedel-Prover-V2_arxiv_2508.03613.pdf (MiniF2F extended + PutnamBench detail)",
+      "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf (Tables 3+4)",
+      "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf (UK AISI Cyber + Biochem + HealthBench)",
+      "/Users/user/git/cyber/resource/step_audio_r1.5_tech_report_2604.25719.pdf (Table 1 - 9 audio benches)"
+    ],
+    "notes": "Parallel 4-agent mining of 4 PDFs. KEY FINDINGS: Goedel-Prover-V2-32B extended 92.7% MiniF2F NEW SOTA (was 90.4, +2.3pp). Gemini 3.0 Pro MedQA 95.1 NEW SOTA + MedMCQA 86.1 + MMLU Med 88.1 - new med dominance. GPT-5.5 UK AISI Cyber pass@5 90.5% + pass@1 66.7% + Biochem 32.32% reward@4 + Bio Tacit Knowledge GPT-5.5 Pro 81.67%. Step-Audio-R1.5 Avg 77.97 + Audio MC 41.15 + Step-DU 82.76 NEW SOTAs. MedGemma 1.5 4B EHRQA 89.6 + Chest ImaGenome 38 + WSI Histopath 49.4."
+  },
+  "models": [],
+  "benchmarks": [
+    {"id": "ehr_note_qa", "name": "EHRNoteQA (Text Only)", "category": "medical-text", "metric": "score_0_100", "unit": "score_0_100", "description": "Electronic Health Record Note Question Answering — text-only accuracy.", "source_url": "https://arxiv.org/abs/2402.16040"},
+    {"id": "chest_imagenome_iou", "name": "Chest ImaGenome — Anatomical Localization Mean IoU", "category": "medical-imaging", "metric": "iou", "unit": "iou", "description": "Mean IoU for anatomical localization on chest X-rays.", "source_url": "https://arxiv.org/abs/2603.09945"},
+    {"id": "ms_cxr_t_macro_acc", "name": "MS-CXR-T (Temporal) Macro Accuracy", "category": "medical-imaging", "metric": "score_0_100", "unit": "score_0_100", "description": "Multi-timepoint chest X-ray temporal analysis macro accuracy.", "source_url": "https://arxiv.org/abs/2306.01066"},
+    {"id": "ct_3d_classification_acc", "name": "3D CT Condition Classification Accuracy", "category": "medical-imaging", "metric": "score_0_100", "unit": "score_0_100", "description": "3D Computed Tomography condition classification accuracy.", "source_url": "https://arxiv.org/abs/2604.05081"},
+    {"id": "mri_3d_classification_acc", "name": "3D MRI Condition Classification Accuracy", "category": "medical-imaging", "metric": "score_0_100", "unit": "score_0_100", "description": "3D MRI condition classification accuracy.", "source_url": "https://arxiv.org/abs/2604.05081"},
+    {"id": "wsi_histopath_rouge_l", "name": "Whole Slide Pathology Imaging (ROUGE-L)", "category": "medical-imaging", "metric": "rouge_l", "unit": "rouge_l", "description": "Whole slide pathology imaging report generation ROUGE-L score.", "source_url": "https://arxiv.org/abs/2604.05081"},
+    {"id": "minif2f_pass1024_self_correction", "name": "MiniF2F pass@1024 (self-correction)", "category": "math-formal", "metric": "score_0_100", "unit": "score_0_100", "description": "MiniF2F pass@1024 with verifier-guided self-correction framework.", "source_url": "https://arxiv.org/abs/2508.03613"},
+    {"id": "minif2f_pass32_extended_self_correction", "name": "MiniF2F pass@32 (128k ctx + 5 iters self-correction extended)", "category": "math-formal", "metric": "score_0_100", "unit": "score_0_100", "description": "MiniF2F pass@32 with extended self-correction (128k context, 5 iterations).", "source_url": "https://arxiv.org/abs/2508.03613"},
+    {"id": "putnambench_solved_count", "name": "PutnamBench Solved Count (out of 644)", "category": "math-formal", "metric": "count_higher_better", "unit": "count_higher_better", "description": "Number of PutnamBench problems solved (out of 644).", "source_url": "https://arxiv.org/abs/2508.03613"},
+    {"id": "uk_aisi_cyber_pass5_higher_better", "name": "UK AISI Cyber pass@5 (higher better)", "category": "cybersecurity", "metric": "score_0_100", "unit": "score_0_100", "description": "UK AI Security Institute expert-level cyber tasks pass@5 success rate.", "source_url": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf"},
+    {"id": "uk_aisi_cyber_pass1_higher_better", "name": "UK AISI Cyber pass@1", "category": "cybersecurity", "metric": "score_0_100", "unit": "score_0_100", "description": "UK AISI expert-level cyber pass@1.", "source_url": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf"},
+    {"id": "gpt55_biochem_reward4", "name": "Biochemistry Knowledge reward@4 (GPT-5.5 System Card)", "category": "life-sciences", "metric": "score_0_100", "unit": "score_0_100", "description": "Biochemistry knowledge improvement evaluated at reward@4.", "source_url": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf"},
+    {"id": "gpt55_tacit_knowledge_bio", "name": "Tacit Knowledge & Troubleshooting (Bio) — expert baseline 80%", "category": "life-sciences", "metric": "score_0_100", "unit": "score_0_100", "description": "Bio tacit knowledge benchmark — expert consensus baseline 80%.", "source_url": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf"},
+    {"id": "destructive_action_avoidance", "name": "Destructive Action Avoidance (GPT-5.5 System Card)", "category": "safety", "metric": "score_0_1", "unit": "score_0_1", "description": "Destructive action avoidance during coding/computer use.", "source_url": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf"},
+    {"id": "prompt_injection_connectors", "name": "Prompt Injection Attacks in Connectors (GPT-5.5 SC, higher better = more resistant)", "category": "cybersecurity-safety", "metric": "score_0_1", "unit": "score_0_1", "description": "Resistance to prompt injection attacks through connectors. Higher = more resistant.", "source_url": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf"},
+    {"id": "step_du_audio", "name": "Step-DU (Audio Understanding)", "category": "audio", "metric": "score_0_100", "unit": "score_0_100", "description": "Step-DU audio understanding benchmark from StepFun.", "source_url": "https://arxiv.org/abs/2604.25719"},
+    {"id": "step_caption_audio", "name": "Step-Caption (Audio Captioning)", "category": "audio", "metric": "score_0_100", "unit": "score_0_100", "description": "Step-Caption audio captioning benchmark.", "source_url": "https://arxiv.org/abs/2604.25719"},
+    {"id": "step_spqa_audio", "name": "Step-SPQA (Audio Speech Q&A)", "category": "audio", "metric": "score_0_100", "unit": "score_0_100", "description": "Step-SPQA speech Q&A benchmark.", "source_url": "https://arxiv.org/abs/2604.25719"},
+    {"id": "spoken_mqa_audio", "name": "Spoken MQA", "category": "audio", "metric": "score_0_100", "unit": "score_0_100", "description": "Spoken Multi-task Question Answering benchmark.", "source_url": "https://arxiv.org/abs/2604.25719"},
+    {"id": "mmsu_audio", "name": "MMSU (Multi-modal Spoken Understanding)", "category": "audio", "metric": "score_0_100", "unit": "score_0_100", "description": "Multi-modal Spoken Understanding benchmark.", "source_url": "https://arxiv.org/abs/2604.25719"},
+    {"id": "audio_average_8benches", "name": "Audio Reasoning Average (across 8 benches)", "category": "audio", "metric": "score_0_100", "unit": "score_0_100", "description": "Average over 8 audio benchmarks: Audio MC + Big Bench + MMSU + MMAU + Spoken MQA + Step-Caption + Step-DU + Step-SPQA.", "source_url": "https://arxiv.org/abs/2604.25719"}
+  ],
+  "scores": [
+    {"model": "goedel-lm/goedel-prover-v2-32b", "benchmark": "minif2f_pass32_extended_self_correction", "score": 92.7, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2508.03613", "_note": "🌍 Goedel-Prover-V2-32B extended (128k ctx, 5 iters self-correction) MiniF2F pass@32 92.7% NEW SOTA NEW bench. Beats standard 90.4 + 2.3pp"},
+    {"model": "goedel-lm/goedel-prover-v2-32b", "benchmark": "minif2f_pass1024_self_correction", "score": 92.6, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2508.03613", "_note": "🌍 Goedel-Prover-V2-32B self-correction MiniF2F pass@1024 92.6% NEW SOTA NEW bench"},
+    {"model": "goedel-lm/goedel-prover-v2-32b", "benchmark": "putnambench_solved_count", "score": 86, "unit": "count_higher_better", "_source": "https://arxiv.org/abs/2508.03613", "_note": "🌍 Goedel-Prover-V2-32B self-correction PutnamBench 86 solved (out of 644) pass@184 NEW SOTA NEW bench. Beats DeepSeek-Prover-V2 47 (pass@1024) and concurrent Seed-Prover (closed)"},
+
+    {"model": "google/gemini-3-pro", "benchmark": "medqa", "score": 95.1, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "🌍 Gemini 3 Pro MedQA 95.1 NEW SOTA (was MedGemma 27B 87.7, +7.4pp). Per MedGemma 1.5 Table 3"},
+    {"model": "google/gemini-3-flash", "benchmark": "medqa", "score": 94.3, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "Gemini 3 Flash MedQA 94.3"},
+
+    {"model": "google/gemini-3-pro", "benchmark": "medmcqa", "score": 86.1, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "🌍 Gemini 3 Pro MedMCQA 86.1 NEW SOTA (was OpenBioLLM-Llama3-70B 74.3, +11.8pp)"},
+    {"model": "google/gemini-3-flash", "benchmark": "medmcqa", "score": 85.2, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "Gemini 3 Flash MedMCQA 85.2"},
+
+    {"model": "google/gemini-3-pro", "benchmark": "pubmedqa", "score": 82.2, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "🌍 Gemini 3 Pro PubMedQA 82.2 NEW SOTA (was Med-PaLM 2 81.8)"},
+
+    {"model": "google/gemini-3-pro", "benchmark": "mmlu_med", "score": 88.1, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "🌍 Gemini 3 Pro MMLU Med 88.1 NEW SOTA (was MedGemma 27B 87.0)"},
+    {"model": "google/gemini-3-flash", "benchmark": "mmlu_med", "score": 87.5, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "Gemini 3 Flash MMLU Med 87.5"},
+
+    {"model": "google/medgemma-1.5-4b", "benchmark": "medqa", "score": 69.1, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "MedGemma 1.5 4B MedQA 69.1 (refresh DB)"},
+    {"model": "google/medgemma-1.5-4b", "benchmark": "ehr_note_qa", "score": 80.4, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "🌍 MedGemma 1.5 4B EHRNoteQA 80.4 NEW SOTA NEW bench (External SOTA GPT-4 95.15-97.16). Among small models"},
+    {"model": "google/medgemma-1.5-4b", "benchmark": "chest_imagenome_iou", "score": 38.0, "unit": "iou", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "MedGemma 1.5 4B Chest ImaGenome Mean IoU 38.0 (External SOTA CoCa-CXR 30.7-34.4 — MedGemma 1.5 beats)"},
+    {"model": "google/medgemma-1.5-4b", "benchmark": "ms_cxr_t_macro_acc", "score": 65.7, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "MedGemma 1.5 4B MS-CXR-T temporal 65.7 (External BioViL-T SOTA 68.5)"},
+    {"model": "google/medgemma-1.5-4b", "benchmark": "ct_3d_classification_acc", "score": 61.1, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "🌍 MedGemma 1.5 4B 3D CT Classification 61.1 NEW bench (Gemma 3 4B 62.9 — Gemma 3 4B actually leads narrowly)"},
+    {"model": "google/medgemma-1.5-4b", "benchmark": "mri_3d_classification_acc", "score": 64.7, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "🌍 MedGemma 1.5 4B 3D MRI Classification 64.7 NEW SOTA NEW bench (Gemma 3 4B 60.3, MedGemma 1.5 leads)"},
+    {"model": "google/medgemma-1.5-4b", "benchmark": "wsi_histopath_rouge_l", "score": 49.4, "unit": "rouge_l", "_source": "/Users/user/git/cyber/resource/MedGemma-1.5-Technical-Report-2604.05081.pdf", "_note": "🌍 MedGemma 1.5 4B WSI Histopath ROUGE-L 49.4 NEW bench (External PolyPath 49.8 - close)"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "uk_aisi_cyber_pass5_higher_better", "score": 90.5, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf", "_note": "🌍 GPT-5.5 UK AISI Cyber pass@5 90.5% ± 12.9% NEW SOTA NEW bench. GPT-5.4: 71.4% (+19.1pp jump)"},
+    {"model": "openai/gpt-5.5", "benchmark": "uk_aisi_cyber_pass1_higher_better", "score": 66.7, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf", "_note": "🌍 GPT-5.5 UK AISI Cyber pass@1 66.7% ± 15.9% NEW bench. GPT-5.4: 52.4% (+14.3pp)"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "gpt55_biochem_reward4", "score": 32.32, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf", "_note": "GPT-5.5 Biochemistry reward@4 32.32% (+1.35pp vs GPT-5.4 30.97)"},
+    {"model": "openai/gpt-5.5-pro", "benchmark": "gpt55_biochem_reward4", "score": 39.26, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf", "_note": "🌍 GPT-5.5 Pro Biochemistry reward@4 39.26% NEW SOTA NEW bench (+8.29pp vs GPT-5.4)"},
+
+    {"model": "openai/gpt-5.5-pro", "benchmark": "gpt55_tacit_knowledge_bio", "score": 81.67, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf", "_note": "🌍 GPT-5.5 Pro Tacit Knowledge Bio 81.67 NEW SOTA NEW bench. Exceeds expert consensus baseline 80%"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "destructive_action_avoidance", "score": 0.90, "unit": "score_0_1", "_source": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf", "_note": "🌍 GPT-5.5 Destructive Action Avoidance 0.90 NEW SOTA NEW bench (GPT-5.4 0.86)"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "prompt_injection_connectors", "score": 0.963, "unit": "score_0_1", "_source": "/Users/user/git/cyber/resource/GPT-5-5-System-Card.pdf", "_note": "GPT-5.5 Prompt Injection Resistance 0.963 (GPT-5.4 0.998 leads narrowly)"},
+
+    {"model": "stepfun/step-audio-r1.5", "benchmark": "audio_average_8benches", "score": 77.97, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "Step-Audio-R1.5 Avg over 8 benches 77.97 NEW bench. 2nd among all models (Gemini 3 Pro 79.67 #1, Gemini 3 Flash 77.56 #3). Only 32B parameters"},
+    {"model": "google/gemini-3-pro", "benchmark": "audio_average_8benches", "score": 79.67, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "🌍 Gemini 3 Pro Audio Avg 79.67 NEW SOTA NEW bench"},
+    {"model": "google/gemini-3-flash", "benchmark": "audio_average_8benches", "score": 77.56, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "Gemini 3 Flash Audio Avg 77.56"},
+    {"model": "alibaba/qwen3.5-omni-plus", "benchmark": "audio_average_8benches", "score": 75.77, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "Qwen3.5-Omni-Plus Audio Avg 75.77"},
+    {"model": "stepfun/step-audio-r1", "benchmark": "audio_average_8benches", "score": 72.50, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "Step-Audio-R1 Audio Avg 72.50 (predecessor)"},
+
+    {"model": "stepfun/step-audio-r1.5", "benchmark": "audio_multichallenge", "score": 41.15, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "Step-Audio-R1.5 Audio MultiChallenge 41.15 (Gemini 3 Pro 66.37 leads, Step-R1 24.61 was)"},
+    {"model": "google/gemini-3-pro", "benchmark": "audio_multichallenge", "score": 66.37, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "🌍 Gemini 3 Pro Audio MultiChallenge 66.37 NEW SOTA"},
+    {"model": "google/gemini-3-flash", "benchmark": "audio_multichallenge", "score": 56.42, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "Gemini 3 Flash Audio MultiChallenge 56.42"},
+
+    {"model": "stepfun/step-audio-r1.5", "benchmark": "step_du_audio", "score": 82.76, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "🌍 Step-Audio-R1.5 Step-DU 82.76 NEW bench (was Step-R1 64.37, +18.39pp big jump)"},
+    {"model": "alibaba/qwen3.5-omni-plus", "benchmark": "step_du_audio", "score": 85.63, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "🌍 Qwen3.5-Omni-Plus Step-DU 85.63 NEW SOTA NEW bench"},
+
+    {"model": "stepfun/step-audio-r1.5", "benchmark": "step_spqa_audio", "score": 79.40, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "Step-Audio-R1.5 Step-SPQA 79.40 (was Step-R1 74.36, +5.04pp)"},
+    {"model": "alibaba/qwen3.5-omni-flash", "benchmark": "step_spqa_audio", "score": 78.80, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "Qwen3.5-Omni-Flash Step-SPQA 78.80"},
+
+    {"model": "google/gemini-3-pro", "benchmark": "mmsu_audio", "score": 83.70, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "🌍 Gemini 3 Pro MMSU 83.70 NEW SOTA NEW bench"},
+    {"model": "stepfun/step-audio-r1.5", "benchmark": "mmsu_audio", "score": 75.68, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "Step-Audio-R1.5 MMSU (assumed same as R1)"},
+
+    {"model": "google/gemini-3-pro", "benchmark": "spoken_mqa_audio", "score": 96.56, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "🌍 Gemini 3 Pro Spoken MQA 96.56 NEW SOTA NEW bench"},
+    {"model": "alibaba/qwen3.5-omni-plus", "benchmark": "spoken_mqa_audio", "score": 96.03, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "Qwen3.5-Omni-Plus Spoken MQA 96.03 (close to Gemini 3 Pro)"},
+
+    {"model": "google/gemini-3-pro", "benchmark": "step_caption_audio", "score": 75.55, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "🌍 Gemini 3 Pro Step-Caption 75.55 NEW SOTA NEW bench"},
+    {"model": "alibaba/qwen3.5-omni-plus", "benchmark": "step_caption_audio", "score": 74.93, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2604.25719", "_note": "Qwen3.5-Omni-Plus Step-Caption 74.93"}
+  ]
+}

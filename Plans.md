@@ -1,25 +1,26 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 74 — Final PDF complete mine (2026-06-10)
-**1,689 models · 1,493 benchmarks · 7,608 scores · Anthropic Fable/Mythos 5 누적 ~81 NEW SOTAs 단일 출시**
+## Current Status: Session 75 — Parallel 4-PDF mining (2026-06-10)
+**1,689 models · 1,514 benchmarks · 7,650 scores · 🌍 20 NEW SOTAs (Goedel-Prover-V2 extended + Gemini 3 Pro Med + GPT-5.5 + Step-Audio-R1.5)**
 
-### 2026-06-10 Session 74 — Final PDF complete mine (AECI + virology + hallucination)
-- **PDF §2.3.5 AECI**: 🌍 Mythos 5 **161.29** NEW SOTA NEW bench (Anthropic Effective Capability Index, 95% CI 157.32+). Anthropic의 자체 capability composite (Epoch ECI cousin)
-- **PDF §2.2.3 Bio (long-form virology)**: 🌍 Mythos 5 Task 1 end-to-end **0.77** NEW SOTA NEW bench (exceeds expert baseline 0.221 ~3.5x)
-- **PDF hallucination evals**: 🌍 Opus 4.8 unavailable-tool **95%** NEW SOTA NEW bench (Mythos 5 87 regression). 🌍 Mythos Preview missing-reference **94%** NEW SOTA NEW bench (Mythos 5 82 regression). 500-prompt sets each
-- **PDF §8.17.1 OfficeQA Pro**: Mythos 5 67.1% (paired with OfficeQA 79). Opus 4.8 66.2 — marginal lead
-- **결정적 발견**: Mythos 5는 raw capability 최강이지만 *hallucination resistance + tool-validity 정확도*에서 Opus 4.8/Preview 대비 후퇴. *capability ↑ 곰 hallucination ↑* trade-off
-- **8-pass 누적**: S65+S66+S68+S70+S71+S72+S73+S74 = **~81 NEW SOTAs 단일 모델군 단일 출시** (단일 모델 단일 출시로 전례 없는 sweep). **+0/+4/+8** = 1689/1493/7608
+### 2026-06-10 Session 75 — Parallel 4-PDF mining (Goedel-Prover + MedGemma 1.5 + GPT-5.5 + Step-Audio)
+- 4 parallel agents extracted from MedGemma-1.5 Tables 3+4, GPT-5.5 System Card, Goedel-Prover-V2 paper, Step-Audio-R1.5 tech report. 🌍 **20 NEW SOTAs**:
+  - **Goedel-Prover-V2-32B**: MiniF2F pass@32 extended self-correction **92.7** NEW (was 90.4). pass@1024 92.6. PutnamBench solved **86/644** pass@184 NEW bench (beats DeepSeek-Prover-V2 47)
+  - **Gemini 3 Pro 의료 도메인 4 SOTAs**: MedQA **95.1** (was MedGemma 27B 87.7) / MedMCQA **86.1** (was OpenBioLLM 74.3) / MMLU Med **88.1** (was MedGemma 27B 87.0) / PubMedQA **82.2** (was Med-PaLM 2 81.8)
+  - **Gemini 3 Pro Audio 5 SOTAs**: 8-bench Avg **79.67** / Audio MultiChallenge **66.37** / MMSU **83.70** / Spoken MQA **96.56** / Step-Caption **75.55**. Step-Audio-R1.5 32B Avg 77.97 #2
+  - **GPT-5.5 Cyber + Bio 5 SOTAs**: UK AISI Cyber pass@5 **90.5%** (+19.1pp vs GPT-5.4) / pass@1 66.7% / Biochem reward@4 **39.26%** (GPT-5.5 Pro) / Bio Tacit Knowledge **81.67%** (exceeds expert baseline 80%) / Destructive Action Avoidance **0.90**
+  - **MedGemma 1.5 4B**: EHRNoteQA **80.4** NEW bench / 3D MRI **64.7** NEW bench
+- **25 NEW benchmarks** (medical 6 / math 3 / cyber 2 / bio 2 / audio 6 / safety 2 / etc)
+- **+0/+25/+50** = 1689/1514/7650
 
-### 2026-06-10 Session 73 — DeepSearchQA F1 Table + §5.2 adversarial robustness (compressed)
-- 🌍 **7 NEW SOTAs**: DeepSearchQA F1 Mythos Preview 94.4 (was Kimi K2.6 92.5) — Mythos 5 94.2 -0.2 regression. Fully Correct Mythos 5 87.0 (+4pp). Gray Swan ART k=100 Mythos 5 4.8% (Preview 6.1, Opus 4.8 9.6). Coding env no-safeguards Preview 0% (Mythos 5 0.45). Computer use Preview 0.43 (Mythos 5 0.82). ⚠ **Browser use Opus 4.8 0.5%, Mythos 5 29.7% (60x REGRESSION)**, safeguards drop to 6.5. *Capability ↑ vs Robustness ↓ trade-off*. 7 NEW benches. **+0/+7/+24** = 1689/1489/7600
+### 2026-06-10 Session 74 — Final PDF complete mine (compressed)
+- 🌍 4 NEW SOTAs: Mythos 5 AECI **161.29** (Anthropic Effective Capability Index). Long-form virology Task 1 **0.77** (3.5x expert). Opus 4.8 unavailable-tool **95** (Mythos 5 87 regression). Mythos Preview missing-reference **94** (Mythos 5 82 regression). *Capability ↑ but hallucination resistance ↓*. 8-pass S65-S74 누적 **~81 NEW SOTAs 단일 Anthropic 출시**. **+0/+4/+8** = 1689/1493/7608
 
-### 2026-06-10 Session 72 — PDF final unmined sections deep re-mine (compressed)
-- 🌍 **8 NEW SOTAs** (8.2 SWE/8.6 ProgramBench/8.14.4 DRACO/8.15.1 Multi-Agent/8.16.4-7): SWE-Verified Mythos 5 95.5 (was Fable 5 95.0) / SWE-Multilingual 92.2 (was Preview 87.3) / ProgramBench 88.5 / DRACO 86.4 (was Opus 4.8 80.4) / Multi-Agent BrowseComp async 93.3 / ChartMuseum 93.2 / LAB-Bench FigQA 90.7 / BenchCAD 1000-file 0.650. 5 NEW benches. **+0/+5/+13** = 1689/1482/7576
-
-### 2026-06-10 Sessions 70-71 (compressed)
-- S71 PDF §3.2.x cyber deep mine (S65 entirely missed): 🌍 **12 NEW cyber SOTAs**. Firefox 147 Mythos 5 88.4% full exploit (221/250, was Preview 70.8, **Opus 4.8 only 8.8% — 10x gap**). CyberGym targeted_repro 83.8 + any_crash 99.4 EFFECTIVELY SATURATED. OSS-Fuzz progress_rate 80 + write_primitive 32.4 + tier5 13. ExploitBench mean_score 10.44 + autonudge 10.75. UK AISI doing_life 21/23 + last_ones 60% ("Mythos 5 more proficient than any publicly available model"). Fable 5 cyber_classifier_block 99.3% (407/410). 6 NEW benches. **+0/+6/+19** = 1689/1477/7563
-- S70 🌍 HLE no-tools 59 + NEW gemini-3.5-audio + gemini-cli + 🌍 4 cyber benches (SecurityWeek): firefox_148_149 PoC 14 + exploit 8, windows BSOD 18 + priv-esc 8 ($15.7K). HealthBench Pro/Legal Agent backfill. **+2/+4/+24** = 1689/1471/7544
+### 2026-06-10 Sessions 70-73 (compressed)
+- S73 🌍 7 NEW SOTAs: DeepSearchQA F1 Preview 94.4 / Mythos 5 87 (was Kimi 92.5/83). Gray Swan ART k=100 Mythos 5 4.8. ⚠ Browser injection Mythos 5 29.7% (60x worse Opus 4.8 0.5). *Capability ↑ Robustness ↓ trade-off*
+- S72 🌍 8 NEW SOTAs: SWE-Verified Mythos 5 95.5 / SWE-Multilingual 92.2 / ProgramBench 88.5 / DRACO 86.4 / Multi-Agent BrowseComp async 93.3 / ChartMuseum 93.2 / LAB-Bench FigQA 90.7 / BenchCAD 1000-file 0.650. 5 NEW benches
+- S71 PDF §3.2.x 🌍 **12 NEW cyber SOTAs**: Firefox 147 Mythos 5 88.4% (Opus 4.8 8.8 = 10x gap). CyberGym 99.4 EFFECTIVELY SATURATED. OSS-Fuzz + ExploitBench autonudge 10.75. UK AISI doing_life 21/23. Fable 5 cyber_classifier 99.3%
+- S70 🌍 HLE no-tools 59 + gemini-3.5-audio + 4 cyber benches (firefox_148_149 PoC 14, windows BSOD 18 + priv-esc 8). **+2/+25/+80** cumulative S70-73 = 1689/1489/7600
 
 ### 2026-06-09~10 Sessions 65-69 (compressed)
 - S69 6 NEW audio/T2I vendors (bytedance/hidream-o1-image-1.5 T2I #3 1265, mistral voxtral-small-transcribe 2.8%, cohere/xai/gladia/amazon ASR). AA TTS refresh Fun-Realtime-TTS 1231→1228 #1
@@ -169,8 +170,6 @@
 - [ ] HarmBench / StrongREJECT / AIR-Bench — **STILL BLOCKED** (rechecked 2026-05-29): Opus 4.8/GPT-5.5/Gemini 3.5 cards dropped these public benches for internal evals; HELM AIR-Bench frozen v1.1.0 (2024)
 - [ ] Gemini Omni Flash — **STILL BLOCKED** (rechecked 2026-05-29): generative-media model, benches still deferred to API rollout; AA model page 404
 - [ ] AutoPatchBench / CyberSOCEval — **STILL BLOCKED** (rechecked 2026-05-29): per-model scores image-only (PNG figures); paper lineups predate current frontier
-
----
 
 ## Architecture
 
