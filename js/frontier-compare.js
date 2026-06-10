@@ -133,9 +133,21 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
-        // 2026-06-09 S65 Anthropic Claude Fable 5 + Mythos 5 — 13 NEW SOTAs (SWE-Bench Pro 80.3, ExploitBench 78, GDP.pdf 29.8, OSWorld 85, Toolathlon 61.7, BioMystery 46.1/83.9, LatchBio 69.2/59.3, FrontierCode 29.3/46.3)
+        // 2026-06-09 S65 Anthropic Claude Fable 5 + Mythos 5 — 13 NEW SOTAs (SWE-Bench Pro 80.3, ExploitBench 78, GDP.pdf 29.8, OSWorld 85, Toolathlon 61.7, BioMystery 46.1/83.9, LatchBio 69.2/59.3, FrontierCode 29.3/46.3) + S66 Fable 5 AAII 65 #1 NEW SOTA
         'anthropic/claude-fable-5',
         'anthropic/claude-mythos-5',
+        // 2026-06-10 S67 — S66 batch new frontier entries
+        'cohere/command-a-plus',                  // AAII 37
+        'cohere/north-mini-code',                 // Apache 2.0 MoE 30B/3B coding-specialist AAII 28
+        'google/gemini-3.5-flash-high',           // AAII 55 reasoning variant
+        'google/gemini-3.5-flash-medium',         // AAII 55
+        'google/gemini-3.5-flash-minimal',        // AAII 43
+        'xai/grok-4.3-medium',                    // AAII 49
+        'xai/grok-4.3-low',                       // AAII 44
+        'xai/grok-code-fast-1',                   // AAII 29 coding edge
+        'inclusionai/ring-2.6-1t',                // AAII 38 China 1T MoE
+        'stepfun/step-3.7-flash',                 // AAII 43
+        'openbmb/minicpm-5-1b',                   // AAII 18 leading 1B open
         // 2026-05-28 Anthropic Claude Opus 4.8 — new flagship (SWE-Verified 88.6, USAMO 2026 96.7, GDPval-AA 1890 ELO)
         'anthropic/claude-opus-4.8',
         // 2026-05-05 Subquadratic SubQ 1M-Preview — first sub-quadratic frontier LLM, 12M ctx (RULER@128K 95.0, SWE-Verified 81.8, vendor-reported)

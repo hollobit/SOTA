@@ -415,6 +415,9 @@ var CyberCoding = {
         // 2026-06-09 S65 — Claude Fable 5 (SWE-Bench Pro 80.3 NEW SOTA, FrontierCode Diamond 29.3 NEW SOTA) + Mythos 5 (ExploitBench 78 NEW SOTA)
         'anthropic/claude-fable-5',
         'anthropic/claude-mythos-5',
+        // 2026-06-10 S67 — S66 coding-specialist additions
+        'cohere/north-mini-code',                 // Apache 2.0 MoE 30B/3B AAII 28 Coding Index 33.4
+        'xai/grok-code-fast-1',                   // AAII 29 coding-focused edge variant
         'anthropic/claude-opus-4.7',
         'anthropic/claude-mythos-preview',
         'anthropic/claude-opus-4.6',
