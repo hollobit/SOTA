@@ -7082,6 +7082,125 @@
     "metric": "hrr_at_5_lower_better"
   },
   {
+    "id": "creativity_dat",
+    "name": "Divergent Association Task (DAT)",
+    "category": "reasoning",
+    "description": "Generate 10 maximally dissimilar nouns; score is mean pairwise GloVe cosine distance times 100. Higher = more divergent. Mean over T in {1.0, 1.5, 2.0}, 120 trials/model.",
+    "metric": "mean pairwise semantic distance (GloVe, x100)"
+  },
+  {
+    "id": "creativity_cdat",
+    "name": "Conditional DAT (CDAT) — gated novelty",
+    "category": "reasoning",
+    "description": "Novelty restricted to temperatures passing the false discovery rate alpha=.001 appropriateness gate; SBERT all-mpnet-base-v2 embeddings.",
+    "metric": "novelty score under SBERT (gated by FDR appropriateness)"
+  },
+  {
+    "id": "creativity_cdat_n",
+    "name": "Conditional DAT — novelty (ungated)",
+    "category": "reasoning",
+    "description": "Ungated novelty across all 50 cues at 3 temperatures.",
+    "metric": "novelty score under SBERT"
+  },
+  {
+    "id": "creativity_cdat_a",
+    "name": "Conditional DAT — appropriateness",
+    "category": "reasoning",
+    "description": "Ungated appropriateness across all 50 cues at 3 temperatures. Higher = more appropriate.",
+    "metric": "appropriateness score under SBERT"
+  },
+  {
+    "id": "creativity_pace",
+    "name": "Parallel Association Chain Evaluation (PACE)",
+    "category": "reasoning",
+    "description": "Forward-flow free associations from 50 seeds x 3 chains = 150 chains/model.",
+    "metric": "sequential semantic distance under FastText"
+  },
+  {
+    "id": "creativity_rat",
+    "name": "Remote Associates Test (RAT)",
+    "category": "reasoning",
+    "description": "Convergent-thinking test on 30-item normed bank; zero-shot strict accuracy.",
+    "metric": "zero-shot strict accuracy"
+  },
+  {
+    "id": "creativity_drat",
+    "name": "Divergent Remote Association Test (DRAT)",
+    "category": "reasoning",
+    "description": "Novel hybrid of DAT + RAT introduced by Schapiro et al. 2026; bridges convergent and divergent thinking in a single vocabulary-space test. First test to significantly predict scientific ideation (r=+0.57).",
+    "metric": "score (k=4 expert config, SBERT, 30 anchor groups)"
+  },
+  {
+    "id": "creativity_arena_cw",
+    "name": "Chatbot Arena Creative Writing (Arena CW)",
+    "category": "reasoning",
+    "description": "LMSYS Chatbot Arena Creative Writing category Elo.",
+    "metric": "Elo"
+  },
+  {
+    "id": "creativity_eqbench_cw_v3",
+    "name": "EQ-Bench Creative Writing v3",
+    "category": "reasoning",
+    "description": "EQ-Bench Creative Writing v3 (Paech 2023).",
+    "metric": "Elo"
+  },
+  {
+    "id": "creativity_mazur_cw",
+    "name": "Mazur Creative Writing",
+    "category": "reasoning",
+    "description": "Mazur 2025 absolute 0-10 mean-rubric leaderboard snapshot at commit 80b7f17 (50 graded models).",
+    "metric": "absolute 0-10 rubric mean"
+  },
+  {
+    "id": "creativity_hivemind_diversity",
+    "name": "Hivemind Diversity",
+    "category": "reasoning",
+    "description": "Bin-midpoint-weighted estimate from Jiang et al. 2025 Table 6 (79 models); higher = more diverse outputs.",
+    "metric": "1 - intra-model cosine similarity (estimated)"
+  },
+  {
+    "id": "creativity_noveltybench_utility",
+    "name": "NoveltyBench Utility",
+    "category": "reasoning",
+    "description": "NoveltyBench cumulative-utility score (Zhang et al. 2025).",
+    "metric": "cumulative utility score"
+  },
+  {
+    "id": "creativity_liveideabench",
+    "name": "LiveIdeaBench (5-dim average)",
+    "category": "reasoning",
+    "description": "Mean across originality, flexibility, feasibility, clarity, fluency (Ruan et al. 2026).",
+    "metric": "idea-score 5-dimension mean"
+  },
+  {
+    "id": "geobuild_success_rate",
+    "name": "GeoBuildBench Success Rate",
+    "category": "multimodal-cad",
+    "description": "Fraction of 489 plane-geometry problems where the agent constructs a diagram that (1) executes, (2) covers all required objects, and (3) satisfies all verification conditions, within a 5-step interaction budget.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "geobuild_avg_steps_lower_better",
+    "name": "GeoBuildBench Avg Steps to Success",
+    "category": "multimodal-cad",
+    "description": "Average number of DSL-construction iterations the agent uses on successful trajectories (lower is better; budget = 5).",
+    "metric": "avg_steps_lower_better"
+  },
+  {
+    "id": "geobuild_hallucinations_per_problem_lower_better",
+    "name": "GeoBuildBench Structural Hallucinations per Problem",
+    "category": "multimodal-cad",
+    "description": "Average count per problem of structural hallucinations — undefined references, invalid DSL, or declared/produced object mismatches (lower is better).",
+    "metric": "hallucinations_per_problem_lower_better"
+  },
+  {
+    "id": "geobuild_recovery_steps_lower_better",
+    "name": "GeoBuildBench Recovery Steps per Hallucination",
+    "category": "multimodal-cad",
+    "description": "Average DSL-construction steps required to resolve a structural hallucination after it occurs (lower is better).",
+    "metric": "recovery_steps_lower_better"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",

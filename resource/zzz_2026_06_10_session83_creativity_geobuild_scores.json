@@ -1,0 +1,4581 @@
+{
+  "_meta": {
+    "session": "Session 83 — LLM Creativity Assessment + GeoBuildBench",
+    "date": "2026-06-10",
+    "sources": [
+      "arxiv:2605.13450 Creativity (Heng Ji group)",
+      "arxiv:2605.13167 GeoBuildBench (Peking U)"
+    ],
+    "notes": "2 parallel agents (retry). Creativity 13 benchmarks (DAT/CDAT/RAT/Arena-CW/EQ-Bench/Mazur/Hivemind/NoveltyBench/LiveIdeaBench). GeoBuildBench 4 metrics on 489 Chinese plane-geometry problems, 5-step budget."
+  },
+  "models": [
+    {
+      "id": "mistral/mistral-7b-instruct-v0.1",
+      "name": "Mistral 7B Instruct v0.1",
+      "vendor": "Mistral",
+      "type": "language",
+      "release_date": "2023-09-27",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/mistral-large-2407",
+      "name": "Mistral Large 2407",
+      "vendor": "Mistral",
+      "type": "language",
+      "release_date": "2024-07-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/mistral-large-2411",
+      "name": "Mistral Large 2411",
+      "vendor": "Mistral",
+      "type": "language",
+      "release_date": "2024-11-18",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/mistral-small-24b-instruct-2501",
+      "name": "Mistral Small 24B Instruct 2501",
+      "vendor": "Mistral",
+      "type": "language",
+      "release_date": "2025-01-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/llama-3.2-90b-vision-instruct",
+      "name": "Llama 3.2 90B Vision Instruct",
+      "vendor": "meta",
+      "type": "language",
+      "release_date": "2024-09-25",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "creativity_dat",
+      "name": "Divergent Association Task (DAT)",
+      "category": "reasoning",
+      "metric": "mean pairwise semantic distance (GloVe, x100)",
+      "unit": "score",
+      "description": "Generate 10 maximally dissimilar nouns; score is mean pairwise GloVe cosine distance times 100. Higher = more divergent. Mean over T in {1.0, 1.5, 2.0}, 120 trials/model.",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_cdat",
+      "name": "Conditional DAT (CDAT) — gated novelty",
+      "category": "reasoning",
+      "metric": "novelty score under SBERT (gated by FDR appropriateness)",
+      "unit": "score",
+      "description": "Novelty restricted to temperatures passing the false discovery rate alpha=.001 appropriateness gate; SBERT all-mpnet-base-v2 embeddings.",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_cdat_n",
+      "name": "Conditional DAT — novelty (ungated)",
+      "category": "reasoning",
+      "metric": "novelty score under SBERT",
+      "unit": "score",
+      "description": "Ungated novelty across all 50 cues at 3 temperatures.",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_cdat_a",
+      "name": "Conditional DAT — appropriateness",
+      "category": "reasoning",
+      "metric": "appropriateness score under SBERT",
+      "unit": "score",
+      "description": "Ungated appropriateness across all 50 cues at 3 temperatures. Higher = more appropriate.",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_pace",
+      "name": "Parallel Association Chain Evaluation (PACE)",
+      "category": "reasoning",
+      "metric": "sequential semantic distance under FastText",
+      "unit": "score",
+      "description": "Forward-flow free associations from 50 seeds x 3 chains = 150 chains/model.",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_rat",
+      "name": "Remote Associates Test (RAT)",
+      "category": "reasoning",
+      "metric": "zero-shot strict accuracy",
+      "unit": "%",
+      "description": "Convergent-thinking test on 30-item normed bank; zero-shot strict accuracy.",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_drat",
+      "name": "Divergent Remote Association Test (DRAT)",
+      "category": "reasoning",
+      "metric": "score (k=4 expert config, SBERT, 30 anchor groups)",
+      "unit": "score",
+      "description": "Novel hybrid of DAT + RAT introduced by Schapiro et al. 2026; bridges convergent and divergent thinking in a single vocabulary-space test. First test to significantly predict scientific ideation (r=+0.57).",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_arena_cw",
+      "name": "Chatbot Arena Creative Writing (Arena CW)",
+      "category": "reasoning",
+      "metric": "Elo",
+      "unit": "Elo",
+      "description": "LMSYS Chatbot Arena Creative Writing category Elo.",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_eqbench_cw_v3",
+      "name": "EQ-Bench Creative Writing v3",
+      "category": "reasoning",
+      "metric": "Elo",
+      "unit": "Elo",
+      "description": "EQ-Bench Creative Writing v3 (Paech 2023).",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_mazur_cw",
+      "name": "Mazur Creative Writing",
+      "category": "reasoning",
+      "metric": "absolute 0-10 rubric mean",
+      "unit": "score",
+      "description": "Mazur 2025 absolute 0-10 mean-rubric leaderboard snapshot at commit 80b7f17 (50 graded models).",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_hivemind_diversity",
+      "name": "Hivemind Diversity",
+      "category": "reasoning",
+      "metric": "1 - intra-model cosine similarity (estimated)",
+      "unit": "score",
+      "description": "Bin-midpoint-weighted estimate from Jiang et al. 2025 Table 6 (79 models); higher = more diverse outputs.",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_noveltybench_utility",
+      "name": "NoveltyBench Utility",
+      "category": "reasoning",
+      "metric": "cumulative utility score",
+      "unit": "score",
+      "description": "NoveltyBench cumulative-utility score (Zhang et al. 2025).",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "creativity_liveideabench",
+      "name": "LiveIdeaBench (5-dim average)",
+      "category": "reasoning",
+      "metric": "idea-score 5-dimension mean",
+      "unit": "score",
+      "description": "Mean across originality, flexibility, feasibility, clarity, fluency (Ruan et al. 2026).",
+      "source_url": "https://arxiv.org/abs/2605.13450"
+    },
+    {
+      "id": "geobuild_success_rate",
+      "name": "GeoBuildBench Success Rate",
+      "category": "multimodal-cad",
+      "metric": "success_rate",
+      "unit": "%",
+      "description": "Fraction of 489 plane-geometry problems where the agent constructs a diagram that (1) executes, (2) covers all required objects, and (3) satisfies all verification conditions, within a 5-step interaction budget.",
+      "source_url": "https://arxiv.org/abs/2605.13167"
+    },
+    {
+      "id": "geobuild_avg_steps_lower_better",
+      "name": "GeoBuildBench Avg Steps to Success",
+      "category": "multimodal-cad",
+      "metric": "avg_steps_lower_better",
+      "unit": "steps",
+      "description": "Average number of DSL-construction iterations the agent uses on successful trajectories (lower is better; budget = 5).",
+      "source_url": "https://arxiv.org/abs/2605.13167"
+    },
+    {
+      "id": "geobuild_hallucinations_per_problem_lower_better",
+      "name": "GeoBuildBench Structural Hallucinations per Problem",
+      "category": "multimodal-cad",
+      "metric": "hallucinations_per_problem_lower_better",
+      "unit": "count",
+      "description": "Average count per problem of structural hallucinations — undefined references, invalid DSL, or declared/produced object mismatches (lower is better).",
+      "source_url": "https://arxiv.org/abs/2605.13167"
+    },
+    {
+      "id": "geobuild_recovery_steps_lower_better",
+      "name": "GeoBuildBench Recovery Steps per Hallucination",
+      "category": "multimodal-cad",
+      "metric": "recovery_steps_lower_better",
+      "unit": "steps",
+      "description": "Average DSL-construction steps required to resolve a structural hallucination after it occurs (lower is better).",
+      "source_url": "https://arxiv.org/abs/2605.13167"
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "creativity_dat",
+      "score": 86.29,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, OpenAI block"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "creativity_cdat",
+      "score": 69.23,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "creativity_cdat_n",
+      "score": 70.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "creativity_cdat_a",
+      "score": 140.86,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "creativity_pace",
+      "score": 0.744,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "creativity_rat",
+      "score": 97,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "creativity_drat",
+      "score": 46.11,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "creativity_arena_cw",
+      "score": 1402,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1419,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "creativity_dat",
+      "score": 81.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "creativity_cdat",
+      "score": 66.88,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "creativity_cdat_n",
+      "score": 67.75,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "creativity_cdat_a",
+      "score": 143.78,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "creativity_pace",
+      "score": 0.73,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "creativity_rat",
+      "score": 80,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "creativity_drat",
+      "score": 51.27,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "creativity_arena_cw",
+      "score": 1349,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1231,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4.1-nano",
+      "benchmark": "creativity_dat",
+      "score": 81.93,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-nano",
+      "benchmark": "creativity_cdat",
+      "score": 72.54,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-nano",
+      "benchmark": "creativity_cdat_n",
+      "score": 71.28,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-nano",
+      "benchmark": "creativity_cdat_a",
+      "score": 137.84,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-nano",
+      "benchmark": "creativity_pace",
+      "score": 0.707,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-nano",
+      "benchmark": "creativity_rat",
+      "score": 47,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-nano",
+      "benchmark": "creativity_drat",
+      "score": 23.54,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4.1-nano",
+      "benchmark": "creativity_arena_cw",
+      "score": 1306,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4.1-nano",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1034,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4-turbo-2024-04-09",
+      "benchmark": "creativity_dat",
+      "score": 84.84,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id gpt-4-turbo"
+    },
+    {
+      "model": "openai/gpt-4-turbo-2024-04-09",
+      "benchmark": "creativity_cdat",
+      "score": 66.49,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4-turbo-2024-04-09",
+      "benchmark": "creativity_cdat_n",
+      "score": 66.92,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4-turbo-2024-04-09",
+      "benchmark": "creativity_cdat_a",
+      "score": 144.02,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4-turbo-2024-04-09",
+      "benchmark": "creativity_pace",
+      "score": 0.732,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4-turbo-2024-04-09",
+      "benchmark": "creativity_rat",
+      "score": 93,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4-turbo-2024-04-09",
+      "benchmark": "creativity_drat",
+      "score": 29.65,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4-turbo-2024-04-09",
+      "benchmark": "creativity_arena_cw",
+      "score": 1322,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4-turbo-2024-04-09",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.14,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4-turbo-2024-04-09",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.56,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_dat",
+      "score": 82.94,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_cdat",
+      "score": 65.14,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_cdat_n",
+      "score": 66.26,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_cdat_a",
+      "score": 144.54,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_pace",
+      "score": 0.729,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_rat",
+      "score": 93,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_drat",
+      "score": 36.41,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_arena_cw",
+      "score": 1423,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1484,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_mazur_cw",
+      "score": 8.18,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.12,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 3.27,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.69,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_dat",
+      "score": 78.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_cdat",
+      "score": 70.53,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_cdat_n",
+      "score": 71.52,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_cdat_a",
+      "score": 138.41,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_pace",
+      "score": 0.707,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_rat",
+      "score": 50,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_drat",
+      "score": 19.19,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_arena_cw",
+      "score": 1295,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 950,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_mazur_cw",
+      "score": 6.72,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.11,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 3.11,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.25,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "creativity_dat",
+      "score": 89.33,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "creativity_cdat",
+      "score": 69.85,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "creativity_cdat_n",
+      "score": 69.77,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "creativity_cdat_a",
+      "score": 141.96,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "creativity_pace",
+      "score": 0.747,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "creativity_rat",
+      "score": 93,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "creativity_drat",
+      "score": 16.68,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "creativity_arena_cw",
+      "score": 1376,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1301,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "creativity_mazur_cw",
+      "score": 8.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "creativity_dat",
+      "score": 91.72,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id gpt-5-4"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "creativity_cdat",
+      "score": 68.28,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "creativity_cdat_n",
+      "score": 68.63,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "creativity_cdat_a",
+      "score": 143.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "creativity_pace",
+      "score": 0.727,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "creativity_rat",
+      "score": 93,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "creativity_drat",
+      "score": 51.99,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "creativity_arena_cw",
+      "score": 1429,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 2019,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "creativity_dat",
+      "score": 84.06,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id gpt-5-4-mini"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "creativity_cdat",
+      "score": 65.21,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "creativity_cdat_n",
+      "score": 65.47,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "creativity_cdat_a",
+      "score": 145.88,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "creativity_pace",
+      "score": 0.734,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "creativity_rat",
+      "score": 73,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "creativity_drat",
+      "score": 33.37,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "creativity_arena_cw",
+      "score": 1417,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1726,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "creativity_dat",
+      "score": 83.77,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id gpt-5-4-nano"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "creativity_cdat",
+      "score": 63.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "creativity_cdat_n",
+      "score": 63.15,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "creativity_cdat_a",
+      "score": 147.61,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "creativity_pace",
+      "score": 0.678,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "creativity_rat",
+      "score": 33,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "creativity_drat",
+      "score": 69.11,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "creativity_dat",
+      "score": 82.92,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "creativity_cdat",
+      "score": 67.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "creativity_cdat_n",
+      "score": 68.02,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "creativity_cdat_a",
+      "score": 143.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "creativity_pace",
+      "score": 0.741,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "creativity_rat",
+      "score": 97,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "creativity_drat",
+      "score": 42.27,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "creativity_arena_cw",
+      "score": 1326,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1301,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "creativity_mazur_cw",
+      "score": 8.31,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5-nano",
+      "benchmark": "creativity_dat",
+      "score": 80.66,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-nano",
+      "benchmark": "creativity_cdat",
+      "score": 62.39,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-nano",
+      "benchmark": "creativity_cdat_n",
+      "score": 63.11,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-nano",
+      "benchmark": "creativity_cdat_a",
+      "score": 147.95,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-nano",
+      "benchmark": "creativity_pace",
+      "score": 0.712,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-nano",
+      "benchmark": "creativity_rat",
+      "score": 93,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-nano",
+      "benchmark": "creativity_drat",
+      "score": 49.27,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/gpt-5-nano",
+      "benchmark": "creativity_arena_cw",
+      "score": 1250,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5-nano",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 866,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "creativity_dat",
+      "score": 89.46,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "creativity_cdat",
+      "score": 70.09,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "creativity_cdat_n",
+      "score": 70.06,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "creativity_cdat_a",
+      "score": 142.25,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "creativity_pace",
+      "score": 0.748,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "creativity_rat",
+      "score": 93,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "creativity_drat",
+      "score": 33.28,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "creativity_arena_cw",
+      "score": 1384,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "creativity_mazur_cw",
+      "score": 8.39,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/o3-mini",
+      "benchmark": "creativity_dat",
+      "score": 76.37,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3-mini",
+      "benchmark": "creativity_cdat",
+      "score": 65.32,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3-mini",
+      "benchmark": "creativity_cdat_n",
+      "score": 65.67,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3-mini",
+      "benchmark": "creativity_cdat_a",
+      "score": 144.17,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3-mini",
+      "benchmark": "creativity_pace",
+      "score": 0.715,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3-mini",
+      "benchmark": "creativity_rat",
+      "score": 70,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3-mini",
+      "benchmark": "creativity_drat",
+      "score": 24.69,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o3-mini",
+      "benchmark": "creativity_arena_cw",
+      "score": 1301,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/o3-mini",
+      "benchmark": "creativity_mazur_cw",
+      "score": 6.15,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/o3-mini",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.17,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/o3-mini",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.51,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "creativity_dat",
+      "score": 84.44,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "creativity_cdat",
+      "score": 68.32,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "creativity_cdat_n",
+      "score": 68.77,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "creativity_cdat_a",
+      "score": 142.61,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "creativity_pace",
+      "score": 0.732,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "creativity_rat",
+      "score": 93,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "creativity_drat",
+      "score": 44.32,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "creativity_arena_cw",
+      "score": 1338,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "creativity_mazur_cw",
+      "score": 7.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_dat",
+      "score": 87.36,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_cdat",
+      "score": 66.62,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_cdat_n",
+      "score": 67.95,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_cdat_a",
+      "score": 141.52,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_pace",
+      "score": 0.726,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_rat",
+      "score": 63,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_drat",
+      "score": 38.35,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_arena_cw",
+      "score": 1303,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1241,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_mazur_cw",
+      "score": 7.35,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.11,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 2.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-3.5-haiku",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.37,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-3.5-sonnet",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 2.36,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "anthropic/claude-3.5-sonnet",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.92,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "anthropic/claude-3.7-sonnet",
+      "benchmark": "creativity_liveideabench",
+      "score": 7.12,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "anthropic/claude-3.7-sonnet-thinking",
+      "benchmark": "creativity_liveideabench",
+      "score": 7.22,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "anthropic/claude-3-haiku",
+      "benchmark": "creativity_dat",
+      "score": 78.87,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3-haiku",
+      "benchmark": "creativity_cdat",
+      "score": 62.85,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3-haiku",
+      "benchmark": "creativity_cdat_n",
+      "score": 62.53,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3-haiku",
+      "benchmark": "creativity_cdat_a",
+      "score": 146.22,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3-haiku",
+      "benchmark": "creativity_pace",
+      "score": 0.697,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3-haiku",
+      "benchmark": "creativity_rat",
+      "score": 70,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3-haiku",
+      "benchmark": "creativity_drat",
+      "score": 28.77,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-3-haiku",
+      "benchmark": "creativity_arena_cw",
+      "score": 1214,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-3-haiku",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 848,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-3-haiku",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.13,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-3-opus",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 2.67,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "anthropic/claude-3-opus",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.36,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "creativity_dat",
+      "score": 85.74,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id claude-haiku-4-5"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "creativity_cdat",
+      "score": 67.61,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "creativity_cdat_n",
+      "score": 67.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "creativity_cdat_a",
+      "score": 143.71,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "creativity_pace",
+      "score": 0.667,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "creativity_rat",
+      "score": 83,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "creativity_drat",
+      "score": 59.98,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "creativity_arena_cw",
+      "score": 1384,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "creativity_dat",
+      "score": 89.26,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "creativity_cdat",
+      "score": 69.71,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "creativity_cdat_n",
+      "score": 69.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "creativity_cdat_a",
+      "score": 143.03,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "creativity_pace",
+      "score": 0.742,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "creativity_rat",
+      "score": 87,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "creativity_drat",
+      "score": 47.45,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "creativity_arena_cw",
+      "score": 1462,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1769,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "creativity_dat",
+      "score": 89.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id claude-opus-4-6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "creativity_cdat_n",
+      "score": 67.22,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "creativity_cdat_a",
+      "score": 148.68,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "creativity_pace",
+      "score": 0.75,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "creativity_rat",
+      "score": 87,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "creativity_drat",
+      "score": 54.44,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "creativity_arena_cw",
+      "score": 1467,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1965,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "creativity_dat",
+      "score": 86.69,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "creativity_cdat",
+      "score": 70.04,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "creativity_cdat_n",
+      "score": 69.78,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "creativity_cdat_a",
+      "score": 141.69,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "creativity_pace",
+      "score": 0.739,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "creativity_rat",
+      "score": 97,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "creativity_drat",
+      "score": 28.77,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "creativity_arena_cw",
+      "score": 1384,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1516,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "creativity_mazur_cw",
+      "score": 8.09,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "creativity_dat",
+      "score": 86.67,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "creativity_cdat",
+      "score": 66.93,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "creativity_cdat_n",
+      "score": 66.43,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "creativity_cdat_a",
+      "score": 146.01,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "creativity_pace",
+      "score": 0.756,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "creativity_rat",
+      "score": 90,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "creativity_drat",
+      "score": 54.22,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "creativity_arena_cw",
+      "score": 1450,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1777,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "creativity_dat",
+      "score": 88.97,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id claude-sonnet-4-6"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "creativity_pace",
+      "score": 0.755,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "creativity_rat",
+      "score": 87,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "creativity_drat",
+      "score": 53.94,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "creativity_arena_cw",
+      "score": 1444,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1991,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-1.5-pro",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 2.73,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "google/gemini-1.5-pro",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.85,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_dat",
+      "score": 82.32,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id gemini-2-0-flash-001"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_cdat",
+      "score": 70.72,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_cdat_n",
+      "score": 70.32,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_cdat_a",
+      "score": 139.44,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_pace",
+      "score": 0.73,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_rat",
+      "score": 87,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_drat",
+      "score": 38.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_arena_cw",
+      "score": 1346,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1252,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_mazur_cw",
+      "score": 7.15,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.15,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 3.17,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "creativity_liveideabench",
+      "score": 7.07,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-2.0-flash-lite",
+      "benchmark": "creativity_arena_cw",
+      "score": 1345,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only, PDF id gemini-2-0-flash-lite-001"
+    },
+    {
+      "model": "google/gemini-2.0-flash-lite",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 3.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "google/gemini-2.0-flash-lite",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "google/gemini-2.0-pro",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 2.64,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "google/gemini-2.0-pro",
+      "benchmark": "creativity_liveideabench",
+      "score": 7.03,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "creativity_dat",
+      "score": 76.68,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "creativity_cdat",
+      "score": 68.54,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "creativity_cdat_n",
+      "score": 68.54,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "creativity_cdat_a",
+      "score": 143.39,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "creativity_pace",
+      "score": 0.742,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "creativity_rat",
+      "score": 77,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "creativity_drat",
+      "score": 39.76,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "creativity_arena_cw",
+      "score": 1399,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1255,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "creativity_mazur_cw",
+      "score": 7.65,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "creativity_dat",
+      "score": 89.69,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "creativity_cdat",
+      "score": 71.18,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "creativity_cdat_n",
+      "score": 71.13,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "creativity_cdat_a",
+      "score": 139.02,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "creativity_pace",
+      "score": 0.761,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "creativity_rat",
+      "score": 93,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "creativity_drat",
+      "score": 0.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, zero score recorded"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "creativity_arena_cw",
+      "score": 1448,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1415,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "creativity_mazur_cw",
+      "score": 8.38,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "creativity_dat",
+      "score": 81.87,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id gemma-2-27b-it"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "creativity_cdat",
+      "score": 70.46,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "creativity_cdat_n",
+      "score": 70.92,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "creativity_cdat_a",
+      "score": 138.29,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "creativity_pace",
+      "score": 0.694,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "creativity_rat",
+      "score": 50,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "creativity_drat",
+      "score": 26.38,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "creativity_arena_cw",
+      "score": 1291,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.16,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 3.77,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.65,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemma-2-9b",
+      "benchmark": "creativity_dat",
+      "score": 77.89,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id gemma-2-9b-it"
+    },
+    {
+      "model": "google/gemma-2-9b",
+      "benchmark": "creativity_cdat",
+      "score": 74.09,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-2-9b",
+      "benchmark": "creativity_cdat_n",
+      "score": 72.77,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-2-9b",
+      "benchmark": "creativity_cdat_a",
+      "score": 133.71,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-2-9b",
+      "benchmark": "creativity_pace",
+      "score": 0.728,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-2-9b",
+      "benchmark": "creativity_arena_cw",
+      "score": 1257,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemma-2-9b",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 920,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemma-2-9b",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.17,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemma-2-9b",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 3.93,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "creativity_dat",
+      "score": 86.49,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id gemma-3-27b-it"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "creativity_cdat",
+      "score": 71.75,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "creativity_cdat_n",
+      "score": 72.05,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "creativity_cdat_a",
+      "score": 137.58,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "creativity_pace",
+      "score": 0.728,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "creativity_rat",
+      "score": 73,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "creativity_drat",
+      "score": 19.58,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "creativity_arena_cw",
+      "score": 1348,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1256,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "creativity_mazur_cw",
+      "score": 7.99,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.1-405b",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 3.39,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "meta/llama-3.1-405b",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.62,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "meta/llama-3.1-70b",
+      "benchmark": "creativity_dat",
+      "score": 84.78,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id llama-3-1-70b-instruct"
+    },
+    {
+      "model": "meta/llama-3.1-70b",
+      "benchmark": "creativity_cdat",
+      "score": 71.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.1-70b",
+      "benchmark": "creativity_cdat_n",
+      "score": 68.19,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.1-70b",
+      "benchmark": "creativity_cdat_a",
+      "score": 141.56,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.1-70b",
+      "benchmark": "creativity_pace",
+      "score": 0.713,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.1-70b",
+      "benchmark": "creativity_rat",
+      "score": 83,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.1-70b",
+      "benchmark": "creativity_drat",
+      "score": 12.46,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.1-70b",
+      "benchmark": "creativity_arena_cw",
+      "score": 1257,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.1-70b",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 851,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.1-70b",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.18,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.1-70b",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.62,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "creativity_dat",
+      "score": 79.88,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id llama-3-1-8b-instruct"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "creativity_cdat_n",
+      "score": 72.99,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "creativity_cdat_a",
+      "score": 134.84,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "creativity_pace",
+      "score": 0.701,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "creativity_rat",
+      "score": 50,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "creativity_drat",
+      "score": 24.72,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "creativity_arena_cw",
+      "score": 1178,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 840,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.19,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 3.76,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "creativity_dat",
+      "score": 81.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "creativity_cdat",
+      "score": 52.46,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "creativity_cdat_n",
+      "score": 58.92,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "creativity_cdat_a",
+      "score": 146.46,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "creativity_pace",
+      "score": 0.586,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "creativity_rat",
+      "score": 0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "creativity_drat",
+      "score": 6.56,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 2.81,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "creativity_dat",
+      "score": 84.11,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "creativity_cdat",
+      "score": 64.42,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "creativity_cdat_n",
+      "score": 68.31,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "creativity_cdat_a",
+      "score": 139.37,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "creativity_pace",
+      "score": 0.711,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "creativity_rat",
+      "score": 33,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "creativity_drat",
+      "score": 2.13,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "creativity_arena_cw",
+      "score": 1144,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 3.24,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "creativity_dat",
+      "score": 82.47,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id llama-3-3-70b-instruct"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "creativity_cdat",
+      "score": 68.36,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "creativity_cdat_n",
+      "score": 69.81,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "creativity_cdat_a",
+      "score": 139.24,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "creativity_pace",
+      "score": 0.718,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "creativity_rat",
+      "score": 80,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "creativity_drat",
+      "score": 9.78,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "creativity_arena_cw",
+      "score": 1286,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.13,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 2.87,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.06,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "creativity_dat",
+      "score": 85.28,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "creativity_cdat",
+      "score": 67.34,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "creativity_cdat_n",
+      "score": 67.45,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "creativity_cdat_a",
+      "score": 141.98,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "creativity_pace",
+      "score": 0.707,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "creativity_rat",
+      "score": 77,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "creativity_drat",
+      "score": 35.43,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "creativity_arena_cw",
+      "score": 1307,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 944,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "creativity_mazur_cw",
+      "score": 6.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-4-scout",
+      "benchmark": "creativity_dat",
+      "score": 84.48,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-scout",
+      "benchmark": "creativity_cdat",
+      "score": 66.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-scout",
+      "benchmark": "creativity_cdat_n",
+      "score": 67.39,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-scout",
+      "benchmark": "creativity_cdat_a",
+      "score": 141.42,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-scout",
+      "benchmark": "creativity_pace",
+      "score": 0.696,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-scout",
+      "benchmark": "creativity_rat",
+      "score": 73,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-scout",
+      "benchmark": "creativity_drat",
+      "score": 18.52,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "meta/llama-4-scout",
+      "benchmark": "creativity_arena_cw",
+      "score": 1290,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "meta/llama-4-scout",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 899,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-7b-instruct-v0.1",
+      "benchmark": "creativity_dat",
+      "score": 81.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-7b-instruct-v0.1",
+      "benchmark": "creativity_cdat",
+      "score": 69.13,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-7b-instruct-v0.1",
+      "benchmark": "creativity_cdat_n",
+      "score": 69.16,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-7b-instruct-v0.1",
+      "benchmark": "creativity_cdat_a",
+      "score": 135.43,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-7b-instruct-v0.1",
+      "benchmark": "creativity_pace",
+      "score": 0.613,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-7b-instruct-v0.1",
+      "benchmark": "creativity_rat",
+      "score": 17,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-7b-instruct-v0.1",
+      "benchmark": "creativity_drat",
+      "score": 10.11,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-7b-instruct-v0.1",
+      "benchmark": "creativity_arena_cw",
+      "score": 1104,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-7b-instruct-v0.1",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.19,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-large-2407",
+      "benchmark": "creativity_dat",
+      "score": 88.15,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2407",
+      "benchmark": "creativity_cdat",
+      "score": 70.71,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2407",
+      "benchmark": "creativity_cdat_n",
+      "score": 70.36,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2407",
+      "benchmark": "creativity_cdat_a",
+      "score": 138.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2407",
+      "benchmark": "creativity_pace",
+      "score": 0.737,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2407",
+      "benchmark": "creativity_rat",
+      "score": 97,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2407",
+      "benchmark": "creativity_drat",
+      "score": 23.76,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2407",
+      "benchmark": "creativity_arena_cw",
+      "score": 1287,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-large-2407",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1400,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-large-2407",
+      "benchmark": "creativity_mazur_cw",
+      "score": 6.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_dat",
+      "score": 81.91,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_cdat",
+      "score": 64.87,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_cdat_n",
+      "score": 64.54,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_cdat_a",
+      "score": 146.01,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_pace",
+      "score": 0.722,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_rat",
+      "score": 73,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_drat",
+      "score": 31.04,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_arena_cw",
+      "score": 1276,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1082,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_mazur_cw",
+      "score": 6.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.14,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-large-2411",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.79,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-nemo",
+      "benchmark": "creativity_dat",
+      "score": 78.17,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-nemo",
+      "benchmark": "creativity_cdat_n",
+      "score": 71.09,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-nemo",
+      "benchmark": "creativity_cdat_a",
+      "score": 137.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-nemo",
+      "benchmark": "creativity_pace",
+      "score": 0.709,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-nemo",
+      "benchmark": "creativity_rat",
+      "score": 43,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-nemo",
+      "benchmark": "creativity_drat",
+      "score": 19.57,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-nemo",
+      "benchmark": "creativity_arena_cw",
+      "score": 1090,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-nemo",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 966,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-nemo",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-small-24b-instruct-2501",
+      "benchmark": "creativity_dat",
+      "score": 82.39,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-small-24b-instruct-2501",
+      "benchmark": "creativity_cdat_n",
+      "score": 73.56,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-small-24b-instruct-2501",
+      "benchmark": "creativity_cdat_a",
+      "score": 132.24,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-small-24b-instruct-2501",
+      "benchmark": "creativity_pace",
+      "score": 0.717,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-small-24b-instruct-2501",
+      "benchmark": "creativity_rat",
+      "score": 70,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-small-24b-instruct-2501",
+      "benchmark": "creativity_drat",
+      "score": 4.61,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "mistral/mistral-small-24b-instruct-2501",
+      "benchmark": "creativity_arena_cw",
+      "score": 1227,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-small-24b-instruct-2501",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.18,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "mistral/mistral-small-24b-instruct-2501",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.41,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwen2.5-72b",
+      "benchmark": "creativity_dat",
+      "score": 72.28,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id qwen-2-5-72b-instruct"
+    },
+    {
+      "model": "alibaba/qwen2.5-72b",
+      "benchmark": "creativity_cdat",
+      "score": 68.89,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen2.5-72b",
+      "benchmark": "creativity_cdat_n",
+      "score": 68.98,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen2.5-72b",
+      "benchmark": "creativity_cdat_a",
+      "score": 138.68,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen2.5-72b",
+      "benchmark": "creativity_pace",
+      "score": 0.703,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen2.5-72b",
+      "benchmark": "creativity_rat",
+      "score": 67,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen2.5-72b",
+      "benchmark": "creativity_drat",
+      "score": 23.81,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen2.5-72b",
+      "benchmark": "creativity_arena_cw",
+      "score": 1254,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwen2.5-72b",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.14,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwen2.5-72b",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.62,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "creativity_dat",
+      "score": 81.36,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "creativity_cdat_n",
+      "score": 73.89,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "creativity_cdat_a",
+      "score": 131.84,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "creativity_pace",
+      "score": 0.606,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "creativity_rat",
+      "score": 47,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "creativity_drat",
+      "score": 12.62,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-14b",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.13,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "creativity_dat",
+      "score": 84.95,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "creativity_cdat",
+      "score": 68.65,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "creativity_cdat_n",
+      "score": 68.63,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "creativity_cdat_a",
+      "score": 142.18,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "creativity_pace",
+      "score": 0.725,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "creativity_rat",
+      "score": 90,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "creativity_drat",
+      "score": 68.43,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "creativity_arena_cw",
+      "score": 1324,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1379,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "creativity_mazur_cw",
+      "score": 8.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "creativity_dat",
+      "score": 85.18,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "creativity_cdat_n",
+      "score": 74.54,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "creativity_cdat_a",
+      "score": 135.62,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "creativity_pace",
+      "score": 0.658,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "creativity_rat",
+      "score": 70,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "creativity_drat",
+      "score": 23.39,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "creativity_arena_cw",
+      "score": 1306,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.15,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "creativity_dat",
+      "score": 83.31,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "creativity_cdat",
+      "score": 67.53,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "creativity_cdat_n",
+      "score": 68.53,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "creativity_cdat_a",
+      "score": 141.87,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "creativity_pace",
+      "score": 0.694,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "creativity_rat",
+      "score": 40,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "creativity_drat",
+      "score": 34.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwen3-8b",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.12,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwq-32b",
+      "benchmark": "creativity_dat",
+      "score": 82.63,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "alibaba/qwq-32b",
+      "benchmark": "creativity_arena_cw",
+      "score": 1296,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwq-32b",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1262,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwq-32b",
+      "benchmark": "creativity_mazur_cw",
+      "score": 8.02,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "alibaba/qwq-32b",
+      "benchmark": "creativity_liveideabench",
+      "score": 7.06,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "creativity_dat",
+      "score": 81.12,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id deepseek-chat (= V3)"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "creativity_cdat",
+      "score": 68.33,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "creativity_cdat_n",
+      "score": 67.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "creativity_cdat_a",
+      "score": 143.11,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "creativity_pace",
+      "score": 0.729,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "creativity_rat",
+      "score": 80,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "creativity_drat",
+      "score": 32.51,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "creativity_arena_cw",
+      "score": 1349,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.14,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.72,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "creativity_dat",
+      "score": 80.14,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id deepseek-chat-v3-0324 mapped to v3.1"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "creativity_cdat",
+      "score": 68.36,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "creativity_cdat_n",
+      "score": 68.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "creativity_cdat_a",
+      "score": 143.13,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "creativity_pace",
+      "score": 0.73,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "creativity_rat",
+      "score": 73,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "creativity_drat",
+      "score": 0.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, zero recorded"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "creativity_arena_cw",
+      "score": 1390,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1473,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "creativity_mazur_cw",
+      "score": 7.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.14,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "creativity_dat",
+      "score": 83.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "creativity_cdat",
+      "score": 68.75,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "creativity_cdat_n",
+      "score": 69.28,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "creativity_cdat_a",
+      "score": 141.38,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "creativity_pace",
+      "score": 0.72,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "creativity_rat",
+      "score": 60,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "creativity_drat",
+      "score": 21.24,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "creativity_arena_cw",
+      "score": 1374,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1500,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "creativity_mazur_cw",
+      "score": 8.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "creativity_liveideabench",
+      "score": 7.18,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "deepseek/deepseek-r1-distill-llama-70b",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.71,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4 only"
+    },
+    {
+      "model": "cohere/command-a",
+      "benchmark": "creativity_dat",
+      "score": 82.28,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "cohere/command-a",
+      "benchmark": "creativity_cdat",
+      "score": 62.99,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "cohere/command-a",
+      "benchmark": "creativity_cdat_n",
+      "score": 63.22,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "cohere/command-a",
+      "benchmark": "creativity_cdat_a",
+      "score": 147.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "cohere/command-a",
+      "benchmark": "creativity_pace",
+      "score": 0.714,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "cohere/command-a",
+      "benchmark": "creativity_rat",
+      "score": 73,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "cohere/command-a",
+      "benchmark": "creativity_arena_cw",
+      "score": 1337,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "cohere/command-a",
+      "benchmark": "creativity_eqbench_cw_v3",
+      "score": 1184,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "cohere/command-r-plus",
+      "benchmark": "creativity_dat",
+      "score": 87.69,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id command-r-plus-08-2024"
+    },
+    {
+      "model": "cohere/command-r-plus",
+      "benchmark": "creativity_cdat",
+      "score": 69.61,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "cohere/command-r-plus",
+      "benchmark": "creativity_cdat_n",
+      "score": 69.44,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "cohere/command-r-plus",
+      "benchmark": "creativity_cdat_a",
+      "score": 138.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "cohere/command-r-plus",
+      "benchmark": "creativity_pace",
+      "score": 0.722,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "cohere/command-r-plus",
+      "benchmark": "creativity_rat",
+      "score": 83,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "cohere/command-r-plus",
+      "benchmark": "creativity_arena_cw",
+      "score": 1263,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "cohere/command-r-plus",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.23,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "cohere/command-r-plus",
+      "benchmark": "creativity_noveltybench_utility",
+      "score": 3.08,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "nvidia/llama-3.1-nemotron-70b",
+      "benchmark": "creativity_dat",
+      "score": 84.38,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3, PDF id llama-3-1-nemotron-70b-instruct"
+    },
+    {
+      "model": "nvidia/llama-3.1-nemotron-70b",
+      "benchmark": "creativity_cdat",
+      "score": 70.27,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "nvidia/llama-3.1-nemotron-70b",
+      "benchmark": "creativity_cdat_n",
+      "score": 69.62,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "nvidia/llama-3.1-nemotron-70b",
+      "benchmark": "creativity_cdat_a",
+      "score": 140.32,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "nvidia/llama-3.1-nemotron-70b",
+      "benchmark": "creativity_pace",
+      "score": 0.638,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "nvidia/llama-3.1-nemotron-70b",
+      "benchmark": "creativity_arena_cw",
+      "score": 1277,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "creativity_dat",
+      "score": 74.29,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "creativity_cdat_n",
+      "score": 72.71,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "creativity_cdat_a",
+      "score": 134.34,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "creativity_pace",
+      "score": 0.68,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "creativity_rat",
+      "score": 63,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "creativity_drat",
+      "score": 19.28,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 3"
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "creativity_arena_cw",
+      "score": 1210,
+      "unit": "Elo",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "creativity_mazur_cw",
+      "score": 6.26,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "creativity_hivemind_diversity",
+      "score": 0.15,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "creativity_liveideabench",
+      "score": 6.72,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.13450",
+      "_note": "Table 4"
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "geobuild_success_rate",
+      "score": 78.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1, SOTA, 5-step budget"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "geobuild_success_rate",
+      "score": 75.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "geobuild_success_rate",
+      "score": 42.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1, with vision"
+    },
+    {
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "benchmark": "geobuild_success_rate",
+      "score": 21.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1, with vision"
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "geobuild_avg_steps_lower_better",
+      "score": 1.87,
+      "unit": "steps",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "geobuild_avg_steps_lower_better",
+      "score": 1.55,
+      "unit": "steps",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1, SOTA"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "geobuild_avg_steps_lower_better",
+      "score": 2.3,
+      "unit": "steps",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1, with vision"
+    },
+    {
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "benchmark": "geobuild_avg_steps_lower_better",
+      "score": 2.23,
+      "unit": "steps",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1, with vision"
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "geobuild_hallucinations_per_problem_lower_better",
+      "score": 0.4,
+      "unit": "count",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1/2"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "geobuild_hallucinations_per_problem_lower_better",
+      "score": 0.34,
+      "unit": "count",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1/2, SOTA"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "geobuild_hallucinations_per_problem_lower_better",
+      "score": 2.3,
+      "unit": "count",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1/2"
+    },
+    {
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "benchmark": "geobuild_hallucinations_per_problem_lower_better",
+      "score": 2.38,
+      "unit": "count",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 1/2"
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "geobuild_recovery_steps_lower_better",
+      "score": 1.29,
+      "unit": "steps",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 2"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "geobuild_recovery_steps_lower_better",
+      "score": 1.17,
+      "unit": "steps",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 2, SOTA"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "geobuild_recovery_steps_lower_better",
+      "score": 1.74,
+      "unit": "steps",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 2"
+    },
+    {
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "benchmark": "geobuild_recovery_steps_lower_better",
+      "score": 1.79,
+      "unit": "steps",
+      "_source": "https://arxiv.org/abs/2605.13167",
+      "_note": "Table 2"
+    }
+  ]
+}

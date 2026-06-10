@@ -1,10 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 82 — ExploitBench + VectraYX-Nano + RealICU (2026-06-10)
-**1,705 models · 1,598 benchmarks · 7,931 scores · 🌍 26 NEW SOTAs (8 ExploitBench cyber + 8 VectraYX Spanish cyber SLM + 10 RealICU medical)**
+## Current Status: Session 83 — Creativity + GeoBuildBench (2026-06-10)
+**1,710 models · 1,615 benchmarks · 8,476 scores · 🌍 17 NEW SOTAs (13 Creativity + 4 GeoBuildBench)**
+
+### 2026-06-10 Session 83 — LLM Creativity Assessment + GeoBuildBench
+- 2 parallel agents 🌍 **17 NEW SOTAs**. Creativity (Heng Ji, ~45 models): GPT-5.4 DAT 91.72 + EQ-Bench CW v3 Elo 2019, Claude Opus 4.6 Arena-CW Elo 1467 + CDAT-A 148.68, Gemma-2-9B CDAT 74.09 + NoveltyBench 3.93, Qwen3-32B CDAT-N 74.54, GPT-5.4-nano DRAT 69.11, Claude 3.7 Sonnet thinking LiveIdeaBench 7.22, Cohere Cmd-R+ Hivemind 0.23, Gemini 2.5 Pro PACE 0.761. GeoBuildBench (Peking U, 489 Chinese plane-geometry, 5-step budget): GPT-5.1 success 78.9% leads; Gemini-3-Flash 1.55 avg steps + 0.34 hallucinations/prob + 1.17 recovery. **+5/+17/+545** = 1710/1615/8476
 
 ### 2026-06-10 Session 82 — ExploitBench + VectraYX-Nano + RealICU
-- 3 parallel agents 🌍 **26 NEW SOTAs**. ExploitBench (CMU/Bugcrowd, 41 V8 N-day bugs): Mythos Preview T1 ACE 0.439 + T3 engine 0.854 + T5 coverage 1.0; **GPT-5.5 Codex CLI 0.0244** sole *public* model reaching ACE; cost MiniMax M2.7 $0.77/ep. VectraYX (Globant Spanish cyber SLM): Pro-7B B4 MCP 0.880 + B2 threat 0.815; Nano 42M Q4 8 tok/s RPi 4. RealICU (TUM MIMIC-IV): GPT-5.4 + ICU-Evo Acute Hit@5 0.867 Gold + 0.852 Scale; Gemini 3.1 Pro Patient Status 0.519. **+7/+24/+121** = 1705/1598/7931
+- 3 parallel agents 🌍 **26 NEW SOTAs**. ExploitBench (CMU/Bugcrowd, 41 V8 N-day bugs): Mythos Preview T1 ACE 0.439 + T3 engine 0.854 + T5 coverage 1.0; **GPT-5.5 Codex CLI 0.0244** sole *public* model reaching ACE; cost MiniMax M2.7 $0.77/ep. VectraYX (Globant Spanish cyber SLM): Pro-7B B4 MCP 0.880 + B2 threat 0.815; Nano 42M Q4 8 tok/s RPi 4. RealICU (TUM MIMIC-IV): GPT-5.4 + ICU-Evo Acute Hit@5 0.867 Gold + 0.852 Scale; Gemini 3.1 Pro Patient Status 0.519
 
 ### 2026-06-10 Sessions 79-81 (compressed)
 - S81 🌍 10 NEW SOTAs: SMAC-Talk 8 Qwen3.5 scenarios (5v5/10v10 × no_comm/comm/KDC/UDC); striking 122B KDC 41% → UDC 10% adversarial-comm gap. ERRORQUAKE-10K 21 LLMs: Mistral-Small-24B b=1.250 (lightest tail) vs DeepSeek-V3.2 b=0.595; Qwen2.5-7B ε=0.496 best raw rate
@@ -15,12 +18,10 @@
 - S78 🌍 9 SOTAs: DSPV2-671B FormalMATH-All 28.31/Lite 61.88/ProverBench 59.1/MiniF2F 88.9. BenchCAD Qwen3-VL-2B V2C 0.768. GPT-5.3 CodeEdit 0.865, o3 MedQA TTS 93.3
 - S77 🌍 14 SOTAs: Qwen3.5-Omni-Plus (LibriSpeech 1.11/KeSpeech 3.46 6.8x/VoiceBench 93.1/MathVista 86.9/SuperGPQA 67.4). CosyVoice 3 SEED-TTS-zh 0.71. GPT-5 Pro ECI 2.65. SensorFM-B Age 0.920+CV 0.712+Insulin 0.761
 
-### 2026-06-10 Sessions 75-76 (compressed)
-- S76 🌍 15 NEW SOTAs: Cosmos 3 Reasoner 4 categories (Super General 73.7, Robotics 57.8, Smart-Infra 62.6, Driving 79.3). Opus 4.8 bio/safety 11 SOTAs: Mythos Preview Virology Task 2 e2e 0.94 (Opus 4.8 0.89) / VCT 0.574 / Black-box RNA 11.22 / BioPipelineBench 88.1 / Sonnet 4.6 BBQ Disambiguated 88.1 (Opus 4.8 72.1) / Mythos BBQ Ambiguous 100.0 / SHADE-Arena 21% (Opus 4.8 93%, 4.4x gap) / Opus 4.7 ART k=100 4.8 / Sonnet 4.6 Single-Turn Harmful 98.18 / Child Safety 95%. *Capability ≠ Safety tier*
-- S75 🌍 20 NEW SOTAs: Goedel-Prover-V2-32B extended MiniF2F 92.7. Gemini 3 Pro Med 4 SOTAs (MedQA 95.1 / MedMCQA 86.1 / MMLU Med 88.1 / PubMedQA 82.2). Gemini 3 Pro Audio 5 SOTAs. GPT-5.5 UK AISI Cyber pass@5 90.5 + Biochem 39.26 Pro + Bio Tacit 81.67 Pro. MedGemma 1.5 EHRNoteQA 80.4. **+0/+40/+82** cumulative = 1689/1528/7682
-
-### 2026-06-10 Session 74 — Final PDF complete mine (compressed)
-- 🌍 4 NEW SOTAs: Mythos 5 AECI **161.29** (Anthropic Effective Capability Index). Long-form virology Task 1 **0.77** (3.5x expert). Opus 4.8 unavailable-tool **95** (Mythos 5 87 regression). Mythos Preview missing-reference **94** (Mythos 5 82 regression). *Capability ↑ but hallucination resistance ↓*. 8-pass S65-S74 누적 **~81 NEW SOTAs 단일 Anthropic 출시**. **+0/+4/+8** = 1689/1493/7608
+### 2026-06-10 Sessions 74-76 (compressed)
+- S76 🌍 15 SOTAs: Cosmos 3 Reasoner 4 cats (Super 73.7/Robotics 57.8/Smart-Infra 62.6/Driving 79.3). Opus 4.8 bio/safety 11 (Mythos Preview Virology Task 2 e2e 0.94/VCT 0.574/Black-box RNA 11.22/BioPipeline 88.1/SHADE-Arena Opus 4.8 93% 4.4x Mythos 21%/Child Safety 95%). *Capability ≠ Safety tier*
+- S75 🌍 20 SOTAs: Goedel-V2-32B MiniF2F 92.7. Gemini 3 Pro Med 4 SOTAs (MedQA 95.1/MedMCQA 86.1/MMLU Med 88.1/PubMed 82.2). GPT-5.5 UK AISI Cyber pass@5 90.5. MedGemma 1.5 EHRNoteQA 80.4
+- S74 🌍 4 SOTAs: Mythos 5 AECI **161.29**. Long-form virology Task 1 **0.77** (3.5x expert). Opus 4.8 unavailable-tool 95 (Mythos 5 87 regression). 8-pass S65-74 누적 ~81 NEW SOTAs 단일 Anthropic 출시. *Capability ↑ hallucination resistance ↓*
 
 ### 2026-06-10 Sessions 70-73 (compressed)
 - S73 🌍 7 NEW SOTAs: DeepSearchQA F1 Preview 94.4 / Mythos 5 87 (was Kimi 92.5/83). Gray Swan ART k=100 Mythos 5 4.8. ⚠ Browser injection Mythos 5 29.7% (60x worse Opus 4.8 0.5). *Capability ↑ Robustness ↓ trade-off*
