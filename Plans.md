@@ -1,19 +1,20 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 90 — GPT-5.5 Safety + Gemini suite + MAI suite + Anthropic gap + web sources (2026-06-10)
-**1,777 models · 1,849 benchmarks · 9,482 scores · 🌍 ~110 NEW SOTAs (14 PDFs + 3 web batched across 4 waves)**
+## Current Status: Session 91 — Deep re-mine for missed tables (2026-06-10)
+**1,780 models · 2,008 benchmarks · 10,025 scores · 🌍 ~150 NEW SOTAs (S91 deep re-mine 5 agents)**
 
-### 2026-06-10 Session 90 — Mega batch: GPT-5.5 + Gemini suite + MAI + Anthropic gap + web
-- 12 parallel agents 🌍 **~110 NEW SOTAs**. Gemini 3 Pro: HLE 45.8/GPQA-D 91.9/AIME-25 100%/ScreenSpot-Pro 72.7/Vending-Bench 2 $5478/Video-MMMU 87.6 (~17 SOTAs). Gemini 3 Flash multimodal lead. Gemini 3.1 Flash-Lite GPQA-D 86.9/SimpleQA-V 43.3. GPT-5.5 Safety: **Cyber Range 93.33% + UK AISI pass@5 90.5% + Irregular Net-Attack 98% + Vuln-Research 92% + CyScenarioBench 26% + HealthBench Pro 51.8** (146 scores!). MAI Thinking 1: AIME-25 97.0/CyberSecEval-4 63/63 (22 scores). MAI Image 2 + Gemini 3.1 Flash Image Pro: GenAI-Bench 1079 T2I + 1140 Visual + 1465 arena. CyberGym: GPT-5 22% Level-1 + 22 zero-days. ExploitGym: Mythos Preview **226 exploits**. Anthropic gap: USAMO 2026 Opus 4.8 96.7%/FrontierSWE #1/GDPval-AA +121 ELO/BioMystery 40%/Organic Chem 86.2/Cybench 96/Firefox 22.8% (43 NEW benches). **+18/+132/+332** = 1777/1849/9482
+### 2026-06-10 Session 91 — Deep re-mine (5 agents): Gemini 3 Pro + GPT-5.5 + MAI Thinking + Google evals-methodology + Sonnet/Mythos gap
+- 5 deep agents 🌍 **~150 NEW SOTAs**. GPT-5.5 safety appendix (109 NEW): **CTF Pro pass@12 96.3% / CVE-Bench 93.1% / UK AISI 32-step 10% / Tacit Knowledge 81.67 / MLE-Bench-30 36.67 / Virology Troubleshooting 55.34**. Gemini 3 Pro embedded image (16 NEW): HLE w/search+code 45.8, AIME-25 w/code 100, FSF Cyber v1 11/12 alert. MAI Thinking 1 deep (71 NEW): GLM-5.1 + DeepSeek V4 first appearance, Sonnet 4.6 7 comparator cells, LongBench V2 + CorpusQA + jailbreak ASR. Google evals-methodology scrape (5 of 10 PDFs ~370 NEW): **Gemini 3.1 Pro LCB Pro 2887 Elo / ARC-AGI-2 77.1 / GPQA-D 94.3 / BrowseComp 85.9 w/Deep Research / GPT-5.5 ARC-AGI-2 85.0 / MRCR-v2 128k 94.8 / Opus 4.7 HLE no-tools 46.9 / GDPval-AA Elo 1773**. Sonnet 4.6 + Mythos gap (50 NEW): Mythos **Kernel 399.42x speedup / LLM training 51.91x / Quadruped 30.87 / Novel Compiler 77.2 / SHADE-Arena stealth 4.5%** (highest covert ever). Sonnet 4.6 OpenRCA 27.9, multi-agent BrowseComp 82.07. **+3/+159/+543** = 1780/2008/10025
+
+### 2026-06-10 Session 90 — Mega batch (14 PDFs + 3 web, 12 agents)
+- 🌍 ~110 SOTAs. Gemini 3 Pro 17 (HLE 45.8/GPQA-D 91.9/Vending-Bench 2 $5478). GPT-5.5 146-score Safety doc (Cyber Range 93.33/UK AISI 90.5). MAI Thinking 1 AIME-25 97.0/CyberSecEval-4 63. Arena GPT-Image-2 1465 Elo #1. CyberGym GPT-5 22 zero-days. ExploitGym Mythos 226 exploits. Anthropic gap 43 NEW benches (USAMO 2026 Opus 4.8 96.7/FrontierSWE/GDPval-AA/BioMystery)
 
 ### 2026-06-10 Sessions 86-89 (compressed) — 53 SOTAs
-- S89 CTI-REALM-50 Opus 4.6 High 0.637 (Opus 4.5 C0/C3 sweep). UK AISI MSCyber Last Ones: Opus 4.6 9.8@10M / 15.6@100M / max 22/32. Cooling Tower 1.4 avg. S88 Agent-World 3-way split (GPT-5.2 MCP 53.1/Sonnet 4.5 BFCL 73.2/Gemini 3 Pro τ² 85.4). TeleResilience Nemotron-3-nano 4/7
-- S87 NYU CTF (D-CIPHER): Opus 4.5 = 59.0% (2.7x prior 22%). HarmfulSkillBench GPT-5.4-Mini sweeps. S86 Cyber Defense Opus 4.6 sweeps all 15. Autonomous Adversary Claude 4.5+GPT-5.1 S1 100%. Gordian Knot Opus 4.7 thinking 54.6%
+- S89 CTI-REALM-50 Opus 4.6 0.637. UK AISI MSCyber Opus 4.6 22/32 max. S88 Agent-World 3-way split. TeleResilience Nemotron-3-nano 4/7. S87 NYU CTF Opus 4.5 = 59.0% (2.7x prior 22%). HarmfulSkillBench GPT-5.4-Mini sweeps. S86 Cyber Defense Opus 4.6 sweeps 15. Autonomous Adversary Claude 4.5+GPT-5.1 S1 100%. Gordian Knot Opus 4.7 thinking 54.6%
 
 ### 2026-06-10 Sessions 82-85 (compressed) — 76 SOTAs
-- S85 SciVQR 7 disciplines (o4-mini Math 0.845, Gemini-2.5-Flash Chemistry 0.876, tied Overall 0.793). GraphInstruct Sonnet 4.6 sweeps quality (few-CoT 0.902 #1 of 45) + GPT-4o L2 0.982. CommonWhy o3 Correctness 67.93/68.51, Gemini-2.5-Flash 8 lexical
-- S84 gwBenchmarks 8 (Sonnet 4.6 Waveform 0.1422 / Opus 4.7 Analytic 0.04161+Ringdown 1.306e-12+New Physics 4.647e-6 / Kimi K2.6 Validity 0.1967+Template Bank 0.4286). AgentRx MedPatch 0.877/0.844
-- S83 Creativity 13 metrics (GPT-5.4 DAT 91.72+EQ-Bench CW 2019, Opus 4.6 Arena-CW 1467+CDAT-A 148.68, Gemma-2-9B CDAT 74.09). GeoBuild GPT-5.1 78.9% / Gemini-3-Flash 3 efficiency
+- S85 SciVQR (o4-mini Math 0.845, Gemini-2.5-Flash Chemistry 0.876). GraphInstruct Sonnet 4.6 sweeps. CommonWhy o3 + Gemini-2.5-Flash 8 lexical. S84 gwBenchmarks 8 (Sonnet 4.6 Waveform 0.1422 / Opus 4.7 New Physics 4.647e-6 / Kimi K2.6 Validity+Template Bank). AgentRx MedPatch 0.877/0.844
+- S83 Creativity 13 metrics (GPT-5.4 DAT 91.72, Opus 4.6 Arena-CW 1467). GeoBuild GPT-5.1 78.9% / Gemini-3-Flash 3 efficiency
 - S82 ExploitBench (V8): Mythos Preview T1 ACE 0.439/T3 0.854/T5 1.0; **GPT-5.5 Codex CLI 0.0244** sole *public* ACE; MiniMax M2.7 $0.77/ep. VectraYX Spanish cyber Pro-7B B4 MCP 0.880. RealICU GPT-5.4+ICU-Evo Acute 0.867
 
 ### 2026-06-10 Sessions 77-81 (compressed) — 55 SOTAs
