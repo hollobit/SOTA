@@ -1,13 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 77 — Qwen3.5-Omni + SensorFM + Rosetta Stone (2026-06-10)
-**1,690 models · 1,539 benchmarks · 7,701 scores · 🌍 14 NEW SOTAs (Qwen3.5-Omni 9 + SensorFM Google 3 + Epoch ECI + CosyVoice 3)**
+## Current Status: Session 78 — 4-PDF batch parallel (2026-06-10)
+**1,691 models · 1,549 benchmarks · 7,712 scores · 🌍 9 NEW SOTAs (DSPV2 FormalMATH/ProverBench 4 + BenchCAD 4 + MedQA TTS 1)**
 
-### 2026-06-10 Session 77 — Parallel mining Qwen3.5-Omni + SensorFM + Epoch Rosetta Stone
-- 3 parallel agents 🌍 **14 NEW SOTAs**:
-  - **Qwen3.5-Omni-Plus Audio**: LibriSpeech clean WER **1.11** (Gemini 3.36, 3x worse), FLEURS avg 6.6 (Gemini 7.3), KeSpeech **3.46** (Gemini 23.67, 6.8x), VoiceBench **93.1**, RUL-MuchoMusic **72.4** (+12.8pp), DailyOmni 84.6. Plus MathVista mini **86.9** (Exaone 4.5 85). Flash SuperGPQA **67.4**. CosyVoice 3 SEED-TTS test-zh WER **0.71** NEW model
-  - **Epoch ECI top**: GPT-5 Pro high **2.65** NEW bench, o3+Grok 4 tied 2.51. Frontier 0.55 cap units/yr
-  - **🆕 Google SensorFM-B wearable health 3 SOTAs**: Age Pearson r 0.920 / Cardiovascular ROC-AUC 0.712 / Insulin Resistance 0.761. 5M subjects × 2B hours pretrain (50x prior). **+1/+11/+19** = 1690/1539/7701
+### 2026-06-10 Session 78 — 4-PDF batch (MedGemma 27B + AILuminate + DSPV2 + BenchCAD)
+- 4 parallel agents 🌍 **9 NEW SOTAs**: DSPV2-671B FormalMATH-All 28.31 / Lite 61.88 / ProverBench-All 59.1 / MiniF2F p@8192 88.9. BenchCAD Qwen3-VL-2B RL-IID Vision2Code 0.7682 (CAD specialist > Gemini 3.1 Pro 0.397 general) / GPT-5.3 thinking CodeEdit 0.865 / Gemini 3.1 Pro VisionQA 0.587 + CodeQA 0.838. o3 MedQA TTS 93.3. AILuminate methodology only. **+1/+10/+11** = 1691/1549/7712
+
+### 2026-06-10 Session 77 — Parallel mining Qwen3.5-Omni + SensorFM + Epoch Rosetta Stone (compressed)
+- 🌍 14 NEW SOTAs: Qwen3.5-Omni-Plus Audio dominance (LibriSpeech 1.11 Gemini 3.36 3x, KeSpeech 3.46 Gemini 23.67 6.8x, VoiceBench 93.1, RUL-MuchoMusic 72.4 +12.8pp). MathVista 86.9, SuperGPQA 67.4. CosyVoice 3 SEED-TTS-zh 0.71 NEW. GPT-5 Pro Epoch ECI 2.65. SensorFM-B Age 0.920 + Cardiovascular 0.712 + Insulin 0.761. **+1/+11/+19** = 1690/1539/7701
 
 ### 2026-06-10 Sessions 75-76 (compressed)
 - S76 🌍 15 NEW SOTAs: Cosmos 3 Reasoner 4 categories (Super General 73.7, Robotics 57.8, Smart-Infra 62.6, Driving 79.3). Opus 4.8 bio/safety 11 SOTAs: Mythos Preview Virology Task 2 e2e 0.94 (Opus 4.8 0.89) / VCT 0.574 / Black-box RNA 11.22 / BioPipelineBench 88.1 / Sonnet 4.6 BBQ Disambiguated 88.1 (Opus 4.8 72.1) / Mythos BBQ Ambiguous 100.0 / SHADE-Arena 21% (Opus 4.8 93%, 4.4x gap) / Opus 4.7 ART k=100 4.8 / Sonnet 4.6 Single-Turn Harmful 98.18 / Child Safety 95%. *Capability ≠ Safety tier*

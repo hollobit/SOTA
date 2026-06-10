@@ -1,0 +1,63 @@
+{
+  "_meta": {
+    "session": "Session 78 — 4-PDF batch parallel mining (MedGemma 27B + AILuminate + DSPV2 + BenchCAD)",
+    "date": "2026-06-10",
+    "sources": [
+      "/Users/user/git/cyber/resource/MedGemma-Technical-Report-2507.05201.pdf (Tables 3-16)",
+      "/Users/user/git/cyber/resource/AILuminate_v1_arxiv_2503.05731.pdf (methodology only)",
+      "/Users/user/git/cyber/resource/DeepSeek-Prover-V2_arxiv_2504.21801.pdf (Tables 1-7)",
+      "/Users/user/git/cyber/resource/benchcad_2605.10865.pdf (Tables 2-10)"
+    ],
+    "notes": "Parallel agents mined 4 PDFs. AILuminate has no per-model scores (live on mlcommons.org). DSPV2-671B FormalMATH + ProverBench NEW. BenchCAD has Vision2Code + CodeEdit + VisionQA + CodeQA with frontier comparisons including Opus 4.7/Sonnet 4.6/Gemini 3.1 Pro. MedGemma 27B test-time-scaling MedQA 87.7."
+  },
+  "models": [
+    {
+      "id": "alibaba/qwen3-vl-2b",
+      "name": "Qwen3-VL 2B (BenchCAD specialist baseline)",
+      "vendor": "Alibaba (Qwen)",
+      "type": "open-weight",
+      "release_date": "2025-12",
+      "parameters": "2B",
+      "modalities": ["text", "image"]
+    }
+  ],
+  "benchmarks": [
+    {"id": "formalmath_all_pass32", "name": "FormalMATH-All (pass@32)", "category": "math-formal", "metric": "score_0_100", "unit": "score_0_100", "description": "FormalMATH All benchmark pass@32. Lean theorem proving.", "source_url": "https://arxiv.org/abs/2504.21801"},
+    {"id": "formalmath_lite_pass3200", "name": "FormalMATH-Lite (pass@3200)", "category": "math-formal", "metric": "score_0_100", "unit": "score_0_100", "description": "FormalMATH-Lite at pass@3200 budget.", "source_url": "https://arxiv.org/abs/2504.21801"},
+    {"id": "proverbench_all_pass512", "name": "ProverBench-All (pass@512)", "category": "math-formal", "metric": "score_0_100", "unit": "score_0_100", "description": "DeepSeek ProverBench 325 problems pass@512.", "source_url": "https://arxiv.org/abs/2504.21801"},
+    {"id": "minif2f_pass8192", "name": "MiniF2F pass@8192", "category": "math-formal", "metric": "score_0_100", "unit": "score_0_100", "description": "MiniF2F at pass@8192.", "source_url": "https://arxiv.org/abs/2504.21801"},
+    {"id": "benchcad_vision2code_total", "name": "BenchCAD Vision2Code Total Score", "category": "multimodal-cad", "metric": "score_0_1", "unit": "score_0_1", "description": "BenchCAD Vision2Code aggregate score (4 views → CadQuery).", "source_url": "https://arxiv.org/abs/2605.10865"},
+    {"id": "benchcad_codeedit_acc_norm", "name": "BenchCAD CodeEdit (Headroom-normalized Accuracy)", "category": "multimodal-cad", "metric": "score_0_1", "unit": "score_0_1", "description": "BenchCAD CodeEdit headroom-normalized accuracy across 5 edit types.", "source_url": "https://arxiv.org/abs/2605.10865"},
+    {"id": "benchcad_visionqa_total", "name": "BenchCAD VisionQA Total Accuracy", "category": "multimodal-cad", "metric": "score_0_1", "unit": "score_0_1", "description": "BenchCAD VisionQA total across 4 capability axes (L1-L4).", "source_url": "https://arxiv.org/abs/2605.10865"},
+    {"id": "benchcad_codeqa_total", "name": "BenchCAD CodeQA Total Accuracy", "category": "multimodal-cad", "metric": "score_0_1", "unit": "score_0_1", "description": "BenchCAD CodeQA total across 4 capability axes.", "source_url": "https://arxiv.org/abs/2605.10865"},
+    {"id": "medqa_test_time_scaling", "name": "MedQA (test-time scaling)", "category": "medical-text", "metric": "score_0_100", "unit": "score_0_100", "description": "MedQA accuracy with test-time scaling techniques applied.", "source_url": "https://arxiv.org/abs/2507.05201"},
+    {"id": "ailuminate_grade_methodology", "name": "AILuminate v1 Safety Grade (per MLCommons)", "category": "safety", "metric": "grade", "unit": "grade_a_to_f", "description": "MLCommons AILuminate v1 safety grade Excellent/Very-Good/Good/Fair/Poor. Per-model results at mlcommons.org/ailuminate (not in PDF).", "source_url": "https://arxiv.org/abs/2503.05731"}
+  ],
+  "scores": [
+    {"model": "deepseek/deepseek-prover-v2-671b", "benchmark": "formalmath_all_pass32", "score": 28.31, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2504.21801", "_note": "🌍 DeepSeek-Prover-V2-671B FormalMATH-All pass@32 28.31% NEW SOTA NEW bench (beats DeepSeek-Prover-V2-7B 22.41, Kimina-Prover Distill 16.46)"},
+    {"model": "deepseek/deepseek-prover-v2-7b", "benchmark": "formalmath_all_pass32", "score": 22.41, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2504.21801", "_note": "DeepSeek-Prover-V2-7B FormalMATH-All 22.41%"},
+
+    {"model": "deepseek/deepseek-prover-v2-671b", "benchmark": "formalmath_lite_pass3200", "score": 61.88, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2504.21801", "_note": "🌍 DeepSeek-Prover-V2-671B FormalMATH-Lite pass@3200 61.88% NEW SOTA NEW bench. STP 53.17, Goedel-Prover-SFT 49.41"},
+
+    {"model": "deepseek/deepseek-prover-v2-671b", "benchmark": "proverbench_all_pass512", "score": 59.1, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2504.21801", "_note": "🌍 DeepSeek-Prover-V2-671B (CoT) ProverBench-All pass@512 59.1% NEW SOTA NEW bench (325 problems). STP 36.3% best baseline"},
+
+    {"model": "deepseek/deepseek-prover-v2-671b", "benchmark": "minif2f_pass8192", "score": 88.9, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2504.21801", "_note": "DeepSeek-Prover-V2-671B (CoT) MiniF2F pass@8192 88.9% NEW bench (note: Goedel-Prover-V2-32B at pass@32 self-correction is 92.7 from S75)"},
+
+    {"model": "alibaba/qwen3-vl-2b", "benchmark": "benchcad_vision2code_total", "score": 0.7682, "unit": "score_0_1", "_source": "https://arxiv.org/abs/2605.10865", "_note": "🌍 Qwen3-VL-2B RL-IID (CAD-specialist fine-tuned) BenchCAD Vision2Code Total 0.7682 NEW SOTA NEW bench (frontier ceiling Gemini 3.1 Pro thinking 0.397)"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "benchcad_vision2code_total", "score": 0.3970, "unit": "score_0_1", "_source": "https://arxiv.org/abs/2605.10865", "_note": "Gemini 3.1 Pro thinking Vision2Code 0.397 (frontier general-purpose ceiling)"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "benchcad_vision2code_total", "score": 0.3830, "unit": "score_0_1", "_source": "https://arxiv.org/abs/2605.10865", "_note": "Claude Opus 4.7 Vision2Code 0.383"},
+
+    {"model": "openai/gpt-5.3", "benchmark": "benchcad_codeedit_acc_norm", "score": 0.865, "unit": "score_0_1", "_source": "https://arxiv.org/abs/2605.10865", "_note": "🌍 GPT-5.3 thinking BenchCAD CodeEdit acc_norm 0.865 NEW SOTA NEW bench (Claude Opus 4.7 thinking 0.853, Gemini 3.1 Pro thinking 0.837)"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "benchcad_codeedit_acc_norm", "score": 0.853, "unit": "score_0_1", "_source": "https://arxiv.org/abs/2605.10865", "_note": "Claude Opus 4.7 thinking CodeEdit 0.853"},
+
+    {"model": "google/gemini-3.1-pro", "benchmark": "benchcad_visionqa_total", "score": 0.587, "unit": "score_0_1", "_source": "https://arxiv.org/abs/2605.10865", "_note": "🌍 Gemini 3.1 Pro BenchCAD VisionQA Total 0.587 NEW SOTA NEW bench (Opus 4.7 thinking 0.530, GPT-5.3 thinking 0.514)"},
+
+    {"model": "google/gemini-3.1-pro", "benchmark": "benchcad_codeqa_total", "score": 0.838, "unit": "score_0_1", "_source": "https://arxiv.org/abs/2605.10865", "_note": "🌍 Gemini 3.1 Pro thinking BenchCAD CodeQA Total 0.838 NEW SOTA NEW bench (Opus 4.7 thinking 0.829)"},
+
+    {"model": "google/medgemma-27b", "benchmark": "medqa_test_time_scaling", "score": 87.7, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2507.05201", "_note": "🌍 MedGemma 27B test-time scaling MedQA 87.7 NEW SOTA NEW bench (without TTS 74.2). DeepSeek R1 90.1, Gemini 2.5 Pro 92.6, o3 93.3 lead but require larger inference"},
+
+    {"model": "openai/o3", "benchmark": "medqa_test_time_scaling", "score": 93.3, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2507.05201", "_note": "🌍 o3 MedQA (test-time scaling) 93.3 NEW SOTA NEW bench (without TTS effectively saturates)"},
+
+    {"model": "google/medgemma-27b", "benchmark": "mmlu_med", "score": 84.0, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2507.05201", "_note": "MedGemma 27B MMLU Virology 84.0 — strongest at small scale (Gemma 3 27B 72.0)"}
+  ]
+}
