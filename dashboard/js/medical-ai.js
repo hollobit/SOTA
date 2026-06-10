@@ -518,6 +518,9 @@ var MedicalAI = {
             icon: '🌐',
             note: '범용 frontier 모델 — medical 벤치 비교 baseline (Claude Opus 4.8 HealthBench Pro 55.8 SOTA · GPT-5.5 · Claude Opus 4.7/4.6)',
             models: [
+                // 2026-06-09 S65 — Claude Mythos 5 (BioMysteryBench 46.1/83.9 NEW SOTAs, LatchBio Spatial 69.2 + SingleCell 59.3 NEW SOTAs)
+                'anthropic/claude-mythos-5',
+                'anthropic/claude-fable-5',
                 'anthropic/claude-opus-4.8',
                 'openai/gpt-5.5',
                 'anthropic/claude-opus-4.7',

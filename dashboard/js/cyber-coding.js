@@ -412,6 +412,9 @@ var CyberCoding = {
 
     // frontier models to highlight
     FRONTIER_MODELS: [
+        // 2026-06-09 S65 — Claude Fable 5 (SWE-Bench Pro 80.3 NEW SOTA, FrontierCode Diamond 29.3 NEW SOTA) + Mythos 5 (ExploitBench 78 NEW SOTA)
+        'anthropic/claude-fable-5',
+        'anthropic/claude-mythos-5',
         'anthropic/claude-opus-4.7',
         'anthropic/claude-mythos-preview',
         'anthropic/claude-opus-4.6',

@@ -133,6 +133,9 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        // 2026-06-09 S65 Anthropic Claude Fable 5 + Mythos 5 — 13 NEW SOTAs (SWE-Bench Pro 80.3, ExploitBench 78, GDP.pdf 29.8, OSWorld 85, Toolathlon 61.7, BioMystery 46.1/83.9, LatchBio 69.2/59.3, FrontierCode 29.3/46.3)
+        'anthropic/claude-fable-5',
+        'anthropic/claude-mythos-5',
         // 2026-05-28 Anthropic Claude Opus 4.8 — new flagship (SWE-Verified 88.6, USAMO 2026 96.7, GDPval-AA 1890 ELO)
         'anthropic/claude-opus-4.8',
         // 2026-05-05 Subquadratic SubQ 1M-Preview — first sub-quadratic frontier LLM, 12M ctx (RULER@128K 95.0, SWE-Verified 81.8, vendor-reported)

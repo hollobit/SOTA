@@ -1,26 +1,25 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 64 — Generalist AI GEN-1 + 1X World Model Lab (2026-06-09)
-**1,669 models · 1,452 benchmarks · 7,425 scores · 16 active tabs + Edge LLM 4w + Frontier Gap 3w + Intelligence×Price Pareto**
+## Current Status: Session 65 — Claude Fable 5 + Mythos 5 (2026-06-10)
+**1,671 models · 1,456 benchmarks · 7,446 scores · 16 active tabs · 13 NEW SOTAs from Anthropic's most capable model ever**
 
-### 2026-06-09 Session 64 — Generalist AI GEN-1 + 1X World Model Lab
-- **NEW Physical AI VLA model**: `generalistai/gen-1` (2026-04-02 release) — Generalist AI Inc. multimodal action model with "Harmonic Reasoning" inference. Training: **500K+ hours physical interaction data + low-cost wearable device data** (NOT teleoperation). 🌍 **3 NEW SOTAs** on 3 NEW benches: gen_multitask_success 99% (vs GEN-0 64%, from-scratch 19%) / box_folding_time 12.1 sec (2.8x faster than π0 ~34 sec) / phone_packing_time 15.5 sec. Also added `generalistai/gen-0` (prior version) for comparison
-- **1X World Model Lab announcement** (2026-06-04): Sam Sinha ex-Luma AI heading; no new scores but updated `1x/world-model` release_date 2024-12-16 → 2026-06-04 reflecting lab launch
-- Propagation: Physical AI VLA Policies category +`generalistai/gen-1` +`generalistai/gen-0`; release-date map updated. Cache-bust v=20260609g. **+2/+3/+7** = 1669/1452/7425
+### 2026-06-10 Session 65 — Claude Fable 5 + Mythos 5 (Anthropic flagship)
+- **NEW Anthropic models** (2026-06-09 release): `anthropic/claude-fable-5` (safeguards ON, general API, `claude-fable-5` identifier) + `anthropic/claude-mythos-5` (safeguards lifted, Project Glasswing partners only). Both = same underlying model. Pricing $10/M input + $50/M output (~half Mythos Preview). 1M ctx, text+vision modalities
+- **🌍 13 NEW SOTAs across coding/cyber/bio/agent/multimodal**:
+  - Fable 5: SWE-Bench Pro **80.3** (was 77.8 Mythos Preview) / FrontierCode Diamond **29.3** (2.2x Opus 4.8) / FrontierCode Main **46.3** / GDP.pdf **29.8** (Surge AI strict, no tools)
+  - Mythos 5: ExploitBench-pct **78.0** (was 68.9, 2x Opus 4.8) / OSWorld-Verified **85.0** / Toolathlon **61.7** + Pass³ **58.3** / BioMystery Solvable **83.9** + Difficult **46.1** / Human-Solvable **83.9** / LatchBio Spatial **69.2** (was 53.8, +15.4pp!) + SingleCell **59.3**
+  - Mythos 5 BrowseComp 88.0 (just below GPT-5.5 Pro SOTA 90.1)
+- **4 NEW benchmarks**: FrontierCode (Cognition Diamond/Main), GDP.pdf (Surge AI multimodal expert), Toolathlon Pass³ (reliability metric)
+- Tab propagation: +Frontier Compare +Cyber-Coding +Medical AI frontier-baseline +Agent AGENT_PRODUCTS. Sovereign auto-routes via anthropic/ NS. Physical/AI4S 의도된 미적용. v=20260610a. **+2/+4/+21** = 1671/1456/7446
 
-### 2026-06-09 Session 63 — 7-tab audit propagation (compressed)
-- Audit S58-S62 누적 ingest 12개 모델 × 7 탭 매트릭스. **누락분 propagation**: Frontier Compare ← china-mobile/jt-35b-flash + microsoft/phi-4 + microsoft/phi-4-multimodal · Cyber-Coding ← same 3 · Agent AGENT_PRODUCTS ← minimax/m3 · Agent EDGE_SLMS ← microsoft/phi-4-multimodal + amazon/nova-micro · Sovereign FRONTIER_VENDOR_REGION ← amazon/ + minimax/ namespace fallback
-- 검증: 12 모델 매트릭스 재실행 — Sovereign 100% / Frontier 6/12 / Cyber 6/12 / Agent 6/12 (TTS/ASR/QAT 변종은 Sovereign-only가 정상). Medical/Physical/AI4S 0% (general LLM 모델이므로 도메인 전파 불요)
-- Cache-bust v=20260609f for frontier-compare.js / cyber-coding.js / sovereign.js / agent.js
+### 2026-06-09 Session 64 — Generalist GEN-1 + 1X World Model Lab (compressed)
+- NEW Physical AI VLA generalistai/gen-1 (2026-04-02): 🌍 3 NEW SOTAs (gen_multitask_success 99%, box_folding 12.1s 2.8x faster than π0, phone_packing 15.5s). Wearable device pretrain (500K+ hr). +gen-0 prior version. 1X World Model Lab launched 2026-06-04. **+2/+3/+7** = 1669/1452/7425
 
-### 2026-06-09 Sessions 60-62 (compressed)
-- S62 NEW Intelligence×Price Pareto widget (4 Pareto-dominant: MiMo V2.5 Pro 270 ratio #1, M3 250, Gemini 3.1 Pro 34, Opus 4.8 15). S61 MiniMax M3 deep ingest 22 sub-scores + 🌍 IFBench 83 #1 + Non-Hall 84 #1 + 3 NEW AA perf benchmarks (aa_output_tps gpt-oss-120b 351 #1 / aa_ttft_sec / aa_blended_price DeepSeek V4 Pro Max $0.2 #1). S60 18 vendor audit + Frontier-vs-Small Gap 3-widget suite (Alibaba 56% catch-up winner / Meta 17% worst) + Phi-4 family + Nova Micro AAII. **+1/+3/+34** = 1667/1449/7418
+### 2026-06-09 Sessions 60-63 (compressed)
+- S63 7-tab audit propagation (12 모델 × 7 탭): Frontier/Cyber/Agent에 china-mobile/jt-35b-flash + phi-4 family + minimax/m3 + nova-micro 추가, Sovereign NS fallback (amazon/ + minimax/). S62 NEW Intelligence×Price Pareto widget (4 dominant: MiMo V2.5 Pro 270 #1, M3 250, Gemini 3.1 Pro 34, Opus 4.8 15). S61 MiniMax M3 22 sub-scores + 🌍 IFBench 83 #1 + Non-Hall 84 #1 + 3 NEW AA perf benchmarks. S60 18 vendor audit + Frontier-vs-Small Gap 3-widget suite (Alibaba 56% catch-up winner, Meta 17% worst). **+1/+3/+34** = 1667/1449/7418
 
-### 2026-06-08~09 Sessions 58-59 (compressed)
-- S59 NEW Physical AI Edge & Mobile Small-LLM subsection: 4 widgets (Device-class buckets / Pareto chart / Country donut/stack / sortable table). 66 ≤12B models / 12 countries. Top AAII qwen3.5-9b 32, gemma-4-12b 29. S58 🌍 NEW AA Transcribe SOTA fun-realtime-asr-preview 1.7% WER, xAI TTS Elo 1208, Gemma 4 12B AAII 29. **+2/+0/+3** = 1667/1446/7384.
-
-### 2026-06-04~05 Sessions 51-55 (compressed)
-- S55 AA T2I 2 NEW + TTS Quality Elo Fun-Realtime-TTS 1227 SOTA. S54 Nemotron 3 Ultra 550B/55B MoE AAII 48 + ITBench-AA Opus 4.7 47% SOTA. S53 NEW AA Transcribe SOTA: Scribe v2 2.2%. S52 AutoMedBench Opus 4.6 66.5 SOTA + K-BrowseComp 45.67%. S51 minimax/m3 AAII 55 + 3 arena.ai NEW (Reve 2.0 #2 1280 / Wan 2.7 1385 / Grok Imagine #1 1473) + 7-tab audit fix. **+21/+13/+108** cumulative.
+### 2026-06-04~09 Sessions 51-59 (compressed)
+- S59 NEW Physical AI Edge & Mobile Small-LLM 4-widget subsection (66 ≤12B / 12 countries). S58 🌍 NEW AA Transcribe SOTA fun-realtime-asr-preview 1.7% WER, xAI TTS Elo 1208. S55 AA T2I 2 NEW + TTS Quality Elo Fun-Realtime-TTS 1227 SOTA. S54 Nemotron 3 Ultra AAII 48 + ITBench-AA Opus 4.7 47% SOTA. S53 NEW AA Transcribe Scribe v2 2.2%. S52 AutoMedBench Opus 4.6 66.5 + K-BrowseComp 45.67%. S51 minimax/m3 AAII 55 + 3 arena.ai NEW. **+23/+13/+111** cumulative.
 
 ### 2026-06-04 Session 50 — GPT-Rosalind + Gemma 4 12B (compressed)
 - GPT-Rosalind 4 life-sci benches (LifeSciBench 63.4 SOTA). Gemma 4 12B encoder-free multimodal (MMLU Pro 77.2). 8 NEW benches. **+2/+8/+25** = 1637/1428/7246.

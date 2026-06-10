@@ -1,0 +1,101 @@
+{
+  "_meta": {
+    "session": "Session 65 — Claude Fable 5 + Mythos 5 (Anthropic flagship)",
+    "date": "2026-06-09",
+    "sources": [
+      "https://www.anthropic.com/news/claude-fable-5-mythos-5 (Anthropic announcement)",
+      "https://www.vellum.ai/blog/claude-fable-5-and-mythos-5-benchmarks-explained (Vellum bench summary)",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf (System Card PDF, 26MB / sections 8.2-8.20)"
+    ],
+    "notes": "Fable 5 + Mythos 5 are TWO CONFIGURATIONS of the same underlying model from Anthropic (2026-06-09). Fable 5 = safeguards ON (general API), Mythos 5 = safeguards LIFTED (Project Glasswing partners only). Pricing: $10/M input, $50/M output (~half of Mythos Preview). 9 NEW SOTAs across SWE/cyber/bio/agent/OS domains. NEW benchmarks: FrontierCode (Cognition Diamond/Main subsets), GDP.pdf (Surge AI multimodal expert reasoning). Fable 5 also wins GDPval-AA leaderboard (top score, +42 Elo over Opus 4.8). Mythos 5 BrowseComp 88.0% (impressive but GPT-5.5 Pro 90.1 still leads)."
+  },
+  "models": [
+    {
+      "id": "anthropic/claude-fable-5",
+      "name": "Claude Fable 5",
+      "vendor": "Anthropic",
+      "type": "proprietary",
+      "release_date": "2026-06-09",
+      "modalities": ["text", "image"],
+      "context_window": 1000000,
+      "parameters": "undisclosed"
+    },
+    {
+      "id": "anthropic/claude-mythos-5",
+      "name": "Claude Mythos 5",
+      "vendor": "Anthropic",
+      "type": "proprietary",
+      "release_date": "2026-06-09",
+      "modalities": ["text", "image"],
+      "context_window": 1000000,
+      "parameters": "undisclosed"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "frontiercode_diamond",
+      "name": "FrontierCode (Diamond subset, Cognition)",
+      "category": "coding",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Agentic coding benchmark of 150 SE tasks derived from open-source PRs. Diamond = harder subset. Patch correctness rate (mean@5).",
+      "source_url": "https://cognition.ai/blog/frontier-code"
+    },
+    {
+      "id": "frontiercode_main",
+      "name": "FrontierCode (Main subset, Cognition)",
+      "category": "coding",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Agentic coding benchmark Main subset. Patch correctness rate (mean@5).",
+      "source_url": "https://cognition.ai/blog/frontier-code"
+    },
+    {
+      "id": "gdp_pdf",
+      "name": "GDP.pdf (Surge AI multimodal expert PDF reasoning)",
+      "category": "multimodal",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "100 real-world prompts and PDFs from professional workflows across 10 domains (finance, healthcare, legal, engineering, insurance). Strict pass rate, no tools.",
+      "source_url": "https://surgehq.ai/blog/gdp-pdf-can-100b-ai-models-master-the-documents-that-run-the-world"
+    },
+    {
+      "id": "toolathlon_pass3",
+      "name": "Toolathlon Pass³ (3-trial consistency)",
+      "category": "agentic",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Toolathlon reliability metric — fraction of tasks solved in ALL 3 trials. Tests consistency of tool-use success.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    }
+  ],
+  "scores": [
+    {"model": "anthropic/claude-fable-5", "benchmark": "swe_bench_pro", "score": 80.3, "unit": "score_0_100", "_source": "https://www.vellum.ai/blog/claude-fable-5-and-mythos-5-benchmarks-explained", "_note": "🌍 Claude Fable 5 SWE-Bench Pro 80.3% — NEW SOTA, beats Mythos Preview (S55 SOTA 77.8) by 2.5pp"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "frontiercode_diamond", "score": 29.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Fable 5 FrontierCode Diamond 29.3% — NEW SOTA, 2.2x Opus 4.8 (13.4%), 5.1x GPT-5.5 (5.7%)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "frontiercode_diamond", "score": 13.4, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 FrontierCode Diamond 13.4% (PDF Fig 8.4.A)"},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "frontiercode_diamond", "score": 5.7, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "GPT-5.5 (xhigh) FrontierCode Diamond 5.7%"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "frontiercode_main", "score": 46.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Fable 5 FrontierCode Main 46.3% NEW SOTA, ahead of Opus 4.8 (34.3%) and GPT-5.5 (25.5%)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "frontiercode_main", "score": 34.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 FrontierCode Main 34.3%"},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "frontiercode_main", "score": 25.5, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "GPT-5.5 (xhigh) FrontierCode Main 25.5%"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "gdp_pdf", "score": 29.8, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Fable 5 GDP.pdf 29.8% NEW SOTA. Surge AI strict pass rate, no tools, max effort. Outperforms GPT-5.5 (24.9), Opus 4.8 (22.5), Gemini 3.1 Pro (16.7)"},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "gdp_pdf", "score": 24.9, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "GPT-5.5 (xhigh) GDP.pdf 24.9% (Surge AI, no tools, max effort)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "gdp_pdf", "score": 22.5, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 GDP.pdf 22.5% strict pass rate"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "gdp_pdf", "score": 16.7, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Gemini 3.1 Pro GDP.pdf 16.7%"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "exploitbench_pct", "score": 78.0, "unit": "score_0_100", "_source": "https://www.vellum.ai/blog/claude-fable-5-and-mythos-5-benchmarks-explained", "_note": "🌍 Claude Mythos 5 ExploitBench capture rate 78.0% — NEW SOTA, beats Mythos Preview (S55 SOTA 69.0) by 9pp, 2x Opus 4.8 (40%), 2.3x GPT-5.5 (34%). PDF §3.2.1 mean 10.44 capability flags across 41 V8 environments."},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "biomystery_human_solvable", "score": 83.9, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 BioMysteryBench Human-Solvable 83.9% NEW SOTA (Opus 4.8 80.4 → +3.5pp). PDF §8.20.1"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "biomysterybench_solvable", "score": 83.9, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 BioMysteryBench Solvable 83.9% NEW SOTA (Mythos Preview 82.6 → +1.3pp)"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "biomysterybench_difficult", "score": 46.1, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 BioMysteryBench Human-Difficult 46.1% NEW SOTA (Opus 4.8 40.0 → +6.1pp). 'Human Difficult' = unsolved by experts but has ground truth"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "biomysterybench_difficult", "score": 30.9, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Sonnet 4.6 BioMysteryBench Human-Difficult 30.9%"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "osworld_verified", "score": 85.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 OSWorld-Verified 85.0% NEW SOTA (Opus 4.8 83.4 → +1.6pp). First-attempt pass@1 avg 5 runs, 100 steps, 128K token limit"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "toolathlon", "score": 61.7, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 Toolathlon Pass@1 61.7% NEW SOTA (Opus 4.8 59.9 → +1.8pp). 108 real-world tool-use tasks, ±0.5 across trials"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "toolathlon_pass3", "score": 58.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 Toolathlon Pass³ 58.3% NEW SOTA on NEW reliability metric. Pass³ = solved in ALL 3 trials. Exceeds best prior Claude by 5+ points"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "latchbio_spatialbench", "score": 69.2, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 LatchBio SpatialBench Verified 69.2% NEW SOTA (Mythos Preview 53.8 → +15.4pp big jump). 115 externally validated spatial transcriptomics problems"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "latchbio_singlecellbench", "score": 59.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 LatchBio SingleCellBench 59.3% NEW SOTA (Opus 4.8 58.2 → +1.1pp). 195 single-cell RNA seq problems"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "browsecomp", "score": 88.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 BrowseComp 88.0% — adaptive thinking max effort, 10M token limit (context compaction at 200k). Below GPT-5.5 Pro SOTA 90.1"}
+  ]
+}
