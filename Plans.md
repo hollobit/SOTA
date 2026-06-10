@@ -1,16 +1,17 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 76 — Cosmos 3 + Opus 4.8 deep mine (2026-06-10)
-**1,689 models · 1,528 benchmarks · 7,682 scores · 🌍 15 NEW SOTAs (Cosmos 3 4 reasoner avgs + Mythos Preview bio/safety 11 SOTAs)**
+## Current Status: Session 77 — Qwen3.5-Omni + SensorFM + Rosetta Stone (2026-06-10)
+**1,690 models · 1,539 benchmarks · 7,701 scores · 🌍 14 NEW SOTAs (Qwen3.5-Omni 9 + SensorFM Google 3 + Epoch ECI + CosyVoice 3)**
 
-### 2026-06-10 Session 76 — Parallel mining (Cosmos 3 + Opus 4.8 system card detail)
-- **Cosmos 3 Reasoner Category Averages (4 NEW SOTAs)**: Cosmos 3 Super NEW SOTA on all 4 — General Avg 73.7 (19 benches) / Robotics 57.8 (17) / Smart-Infra 62.6 (9) / Driving 79.3 (3). Nano scores 69.6/55.1/61.0/76.0
-- **Opus 4.8 bio/safety deep mine 11 NEW SOTAs**: Virology Task 2 e2e Mythos Preview **0.94** (Opus 4.8 0.89) / VCT 0.574 (Opus 4.8 0.470) / Black-box RNA Design top 11.22 / BioPipelineBench 88.1 / **Sonnet 4.6 BBQ Disambiguated 88.1** (Opus 4.8 72.1 worst) / Mythos Preview BBQ Ambiguous **100.0** perfect / SHADE-Arena Side-Task **21%** (Opus 4.8 93% — 4.4x manipulation gap) / Opus 4.7 ART k=100 no-thinking **4.8%** best / Sonnet 4.6 Single-Turn Harmful **98.18** / Child Safety Multi-Turn 95% / AAV SwissProt 0.834
-- **결정적 발견**: Sonnet 4.6 + Mythos Preview가 *safety + bias 영역에서 Opus 4.8 능가* — capability tier ≠ safety tier. Mythos Preview *SHADE-Arena 21% vs Opus 4.8 93%* = 4.4x 덜 manipulation 노출
-- **+0/+15/+32** = 1689/1528/7682
+### 2026-06-10 Session 77 — Parallel mining Qwen3.5-Omni + SensorFM + Epoch Rosetta Stone
+- 3 parallel agents 🌍 **14 NEW SOTAs**:
+  - **Qwen3.5-Omni-Plus Audio**: LibriSpeech clean WER **1.11** (Gemini 3.36, 3x worse), FLEURS avg 6.6 (Gemini 7.3), KeSpeech **3.46** (Gemini 23.67, 6.8x), VoiceBench **93.1**, RUL-MuchoMusic **72.4** (+12.8pp), DailyOmni 84.6. Plus MathVista mini **86.9** (Exaone 4.5 85). Flash SuperGPQA **67.4**. CosyVoice 3 SEED-TTS test-zh WER **0.71** NEW model
+  - **Epoch ECI top**: GPT-5 Pro high **2.65** NEW bench, o3+Grok 4 tied 2.51. Frontier 0.55 cap units/yr
+  - **🆕 Google SensorFM-B wearable health 3 SOTAs**: Age Pearson r 0.920 / Cardiovascular ROC-AUC 0.712 / Insulin Resistance 0.761. 5M subjects × 2B hours pretrain (50x prior). **+1/+11/+19** = 1690/1539/7701
 
-### 2026-06-10 Session 75 — Parallel 4-PDF mining (compressed)
-- 🌍 20 NEW SOTAs: Goedel-Prover-V2-32B extended MiniF2F 92.7 (was 90.4). Gemini 3 Pro Med 4 SOTAs (MedQA 95.1 / MedMCQA 86.1 / MMLU Med 88.1 / PubMedQA 82.2). Gemini 3 Pro Audio 5 SOTAs. GPT-5.5 UK AISI Cyber pass@5 90.5 (+19.1pp) + Biochem 39.26 + Bio Tacit 81.67 (Pro). MedGemma 1.5 4B EHRNoteQA 80.4. 25 NEW benches. **+0/+25/+50** = 1689/1514/7650
+### 2026-06-10 Sessions 75-76 (compressed)
+- S76 🌍 15 NEW SOTAs: Cosmos 3 Reasoner 4 categories (Super General 73.7, Robotics 57.8, Smart-Infra 62.6, Driving 79.3). Opus 4.8 bio/safety 11 SOTAs: Mythos Preview Virology Task 2 e2e 0.94 (Opus 4.8 0.89) / VCT 0.574 / Black-box RNA 11.22 / BioPipelineBench 88.1 / Sonnet 4.6 BBQ Disambiguated 88.1 (Opus 4.8 72.1) / Mythos BBQ Ambiguous 100.0 / SHADE-Arena 21% (Opus 4.8 93%, 4.4x gap) / Opus 4.7 ART k=100 4.8 / Sonnet 4.6 Single-Turn Harmful 98.18 / Child Safety 95%. *Capability ≠ Safety tier*
+- S75 🌍 20 NEW SOTAs: Goedel-Prover-V2-32B extended MiniF2F 92.7. Gemini 3 Pro Med 4 SOTAs (MedQA 95.1 / MedMCQA 86.1 / MMLU Med 88.1 / PubMedQA 82.2). Gemini 3 Pro Audio 5 SOTAs. GPT-5.5 UK AISI Cyber pass@5 90.5 + Biochem 39.26 Pro + Bio Tacit 81.67 Pro. MedGemma 1.5 EHRNoteQA 80.4. **+0/+40/+82** cumulative = 1689/1528/7682
 
 ### 2026-06-10 Session 74 — Final PDF complete mine (compressed)
 - 🌍 4 NEW SOTAs: Mythos 5 AECI **161.29** (Anthropic Effective Capability Index). Long-form virology Task 1 **0.77** (3.5x expert). Opus 4.8 unavailable-tool **95** (Mythos 5 87 regression). Mythos Preview missing-reference **94** (Mythos 5 82 regression). *Capability ↑ but hallucination resistance ↓*. 8-pass S65-S74 누적 **~81 NEW SOTAs 단일 Anthropic 출시**. **+0/+4/+8** = 1689/1493/7608
