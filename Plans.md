@@ -1,22 +1,30 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 71 — Mythos 5 cyber PDF deep mine (2026-06-10)
-**1,689 models · 1,477 benchmarks · 7,563 scores · 🌍 12 NEW cyber SOTAs (PDF §3.x deep mine)**
+## Current Status: Session 72 — Final PDF unmined re-mine (2026-06-10)
+**1,689 models · 1,482 benchmarks · 7,576 scores · 🌍 8 추가 NEW SOTAs (S65/S68/S71 미커버 sections)**
+
+### 2026-06-10 Session 72 — PDF final unmined sections deep re-mine
+- **S65/S68/S71 미커버 sections**: 8.2 SWE-bench full table / 8.6 ProgramBench / 8.14.4 DRACO / 8.15.1 Multi-Agent BrowseComp / 8.16.4 BenchCAD 1000-file / 8.16.5 ChartQAPro / 8.16.6 ChartMuseum / 8.16.7 LAB-Bench FigQA
+- **🌍 8 NEW SOTAs**:
+  - SWE-bench Verified: Mythos 5 **95.5** NEW (was Fable 5 95.0). Safeguards OFF edge over Fable
+  - SWE-bench Multilingual: Mythos 5 **92.2** NEW (was Mythos Preview 87.3, +4.9pp). 9 prog langs
+  - ProgramBench: Mythos 5 **88.5** mid-range (was Opus 4.8 88, range 84-93)
+  - DRACO: Mythos 5 **86.4** NEW (was Opus 4.8 80.4)
+  - Multi-Agent BrowseComp (async-subagents) NEW bench: Mythos 5 **93.3** (single-agent 89.1 baseline +4.2pp & 2.7x speedup)
+  - ChartMuseum NEW bench: Mythos 5 **93.2** with tools (Preview 92.2)
+  - LAB-Bench FigQA NEW bench: Mythos 5 **90.7** with tools (Preview 89.3)
+  - BenchCAD 1000-file w/ tools NEW bench: Mythos 5 voxel IoU **0.650** (Preview 0.610)
+- **5 NEW benches**: chartmuseum / lab_bench_figqa / multi_agent_browsecomp_async / benchcad_vision2code_1000file_with_tools / swe_bench_multimodal_internal
+- **+0/+5/+13** = 1689/1482/7576
 
 ### 2026-06-10 Sessions 70-71 (compressed)
 - S71 PDF §3.2.x cyber deep mine (S65 entirely missed): 🌍 **12 NEW cyber SOTAs**. Firefox 147 Mythos 5 88.4% full exploit (221/250, was Preview 70.8, **Opus 4.8 only 8.8% — 10x gap**). CyberGym targeted_repro 83.8 + any_crash 99.4 EFFECTIVELY SATURATED. OSS-Fuzz progress_rate 80 + write_primitive 32.4 + tier5 13. ExploitBench mean_score 10.44 + autonudge 10.75. UK AISI doing_life 21/23 + last_ones 60% ("Mythos 5 more proficient than any publicly available model"). Fable 5 cyber_classifier_block 99.3% (407/410). 6 NEW benches. **+0/+6/+19** = 1689/1477/7563
 - S70 🌍 HLE no-tools 59 + NEW gemini-3.5-audio + gemini-cli + 🌍 4 cyber benches (SecurityWeek): firefox_148_149 PoC 14 + exploit 8, windows BSOD 18 + priv-esc 8 ($15.7K). HealthBench Pro/Legal Agent backfill. **+2/+4/+24** = 1689/1471/7544
 
-### 2026-06-10 Session 69 — Leaderboard sweep R4 (compressed)
-- 6 NEW audio/T2I vendors: bytedance/hidream-o1-image-1.5 (T2I #3 Elo 1265) · mistral/voxtral-small-transcribe ASR 2.8% / cohere/transcribe-03-2026 4.6% / xai/grok-speech-to-text 4.0% / gladia/solaria-1 4.1% / amazon/transcribe 4.1%. AA TTS Arena refresh: Fun-Realtime-TTS 1231→1228 holds #1. ASR backfills qwen3.5-omni-plus 3.5% + universal-3-pro 3.1%. **+6/+0/+6** = 1688/1467/7520
-
-### 2026-06-10 Sessions 67-68 (compressed)
-- S68 PDF deep re-mine 🌍 **14 NEW SOTAs** (S65 missed 8.5-8.20.7): Mythos 5 arxivmath 78.52 / USAMO 99.8 / USAMO 2026 99.8 / officeqa 79 / proteingym_hard 44.8 / terminal_bench_2_1 88 / structural_biology 87.2 / gmmlu 93.2 / include 90.5 / labbench2_avg 80.2. Fable 5 cursorbench 72.9 (+8.6 over GPT-5.5) / riemannbench 55 / frontier_swe_mean5 2.12 / real_world_finance_v2_elo 1374. 6 NEW benches. **+0/+6/+33** = 1682/1467/7514
-- S67 audit S65+S66 propagation: Frontier 2→15/15 (+9 NEW variant entries), Cyber 2→4/15 (+north-mini-code, grok-code-fast-1), Sovereign 12→15/15 (+OpenBMB/StepFun/InclusionAI/Cohere clusters). v=20260610b
-
-### 2026-06-09~10 Sessions 65-66 (compressed)
-- S66 🌍 BIGGEST: Claude Fable 5 AAII **65** #1 SOTA (was Opus 4.8 61, +4pp). GDPval-AA Elo 1932 NEW (+42), SWE-Verified 95.0 NEW, Blueprint-Bench 2 38.6. NEW Cohere North Mini Code 30B/3B MoE Apache 2.0 AAII 28. NEW Microsoft MAI Image 2.5 + Voice 2 + Mayo Clinic. 10 AAII backfills. Nemotron 3 Ultra subscores. **+11/+5/+35** = 1682/1461/7481.
-- S65 13 NEW SOTAs from Anthropic flagship Fable/Mythos 5 (2026-06-09, $10/$50 per M, 1M ctx). Fable 5: SWE-Bench Pro 80.3 / FrontierCode Diamond 29.3 + Main 46.3 / GDP.pdf 29.8. Mythos 5 (Glasswing only): ExploitBench 78 / OSWorld 85 / Toolathlon 61.7+Pass³ 58.3 / BioMystery 83.9+46.1 / LatchBio Spatial 69.2 (+15pp)+SingleCell 59.3 / BrowseComp 88. 4 NEW benches. Tab propagation Frontier/Cyber/Medical/Agent. **+2/+4/+21** = 1671/1456/7446
+### 2026-06-09~10 Sessions 65-69 (compressed)
+- S69 6 NEW audio/T2I vendors (bytedance/hidream-o1-image-1.5 T2I #3 1265, mistral voxtral-small-transcribe 2.8%, cohere/xai/gladia/amazon ASR). AA TTS refresh Fun-Realtime-TTS 1231→1228 #1
+- S68 PDF deep re-mine 🌍 **14 NEW SOTAs** (8.5-8.20.7): Mythos 5 arxivmath 78.52 / USAMO 99.8 / USAMO 2026 99.8 / officeqa 79 / proteingym_hard 44.8 / terminal_bench_2_1 88 / structural_biology 87.2 / gmmlu 93.2 / include 90.5 / labbench2_avg 80.2. Fable 5 cursorbench 72.9 / riemannbench 55 / frontier_swe_mean5 2.12 / real_world_finance_v2_elo 1374. S67 audit propagation Frontier/Cyber/Sovereign
+- S66 🌍 Fable 5 AAII **65** #1 (was Opus 4.8 61). GDPval-AA Elo 1932, SWE-Verified 95.0, Blueprint-Bench 2 38.6. NEW Cohere North Mini Code + MS MAI. S65 🌍 13 NEW SOTAs Fable/Mythos 5: Fable 5 SWE-Pro 80.3 / FrontierCode 29.3+46.3 / GDP.pdf 29.8. Mythos 5 ExploitBench 78 / OSWorld 85 / Toolathlon 61.7+58.3 / BioMystery 83.9+46.1 / LatchBio 69.2+59.3 / BrowseComp 88. **+19/+15/+95** = 1688/1467/7520
 
 ### 2026-06-09 Sessions 60-64 (compressed)
 - S64 NEW Physical AI VLA generalistai/gen-1 🌍 3 NEW SOTAs (multitask 99%, box-folding 12.1s 2.8x π0, phone-packing 15.5s). +gen-0. 1X World Model Lab launched. S63 7-tab audit (12 models × 7 tabs) Frontier/Cyber/Agent propagation. S62 NEW Intelligence×Price Pareto widget (4 dominant: MiMo V2.5 Pro 270 #1, M3 250, Gemini 3.1 Pro 34, Opus 4.8 15). S61 MiniMax M3 22 sub-scores + 🌍 IFBench 83 #1 + Non-Hall 84 #1 + 3 NEW AA perf benchmarks. S60 18-vendor audit + Frontier-vs-Small Gap 3-widget suite. **+3/+6/+41** cumulative = 1669/1452/7425.
@@ -24,14 +32,8 @@
 ### 2026-06-04~09 Sessions 51-59 (compressed)
 - S59 NEW Physical AI Edge & Mobile Small-LLM 4-widget subsection (66 ≤12B / 12 countries). S58 🌍 NEW AA Transcribe SOTA fun-realtime-asr-preview 1.7% WER, xAI TTS Elo 1208. S55 AA T2I 2 NEW + TTS Quality Elo Fun-Realtime-TTS 1227 SOTA. S54 Nemotron 3 Ultra AAII 48 + ITBench-AA Opus 4.7 47% SOTA. S53 NEW AA Transcribe Scribe v2 2.2%. S52 AutoMedBench Opus 4.6 66.5 + K-BrowseComp 45.67%. S51 minimax/m3 AAII 55 + 3 arena.ai NEW. **+23/+13/+111** cumulative.
 
-### 2026-06-03~04 Sessions 49-50 (compressed)
-- S50 GPT-Rosalind 4 life-sci (LifeSciBench 63.4 SOTA) + Gemma 4 12B encoder-free multimodal (MMLU Pro 77.2). S49 Spacer (Nuri AUROC 0.737) + The AI Scientist 🌍 **WORLD FIRST: AI paper passed ICLR 2025 ICBINB blind peer review** (avg 6.33/10), Automated Reviewer F1 0.67 vs Human 0.49. **+7/+20/+40** = 1637/1428/7246.
-
-### 2026-06-03 Session 48 — MS MAI 7-model launch (compressed)
-- 7 NEW MAI: MAI-Thinking-1 35B/~1T MoE (SWE-Bench Pro 52.8 ~ Opus 4.6), MAI-Code-1-Flash 5B (beats Haiku 4.5 across 11 benches), MAI-Image-2.5+Flash, MAI-Transcribe-1.5 (AA WER 2.4%, 43 lang), MAI-Voice-2+Flash. 11 NEW benches. **🔧 BUG FIX**: exporter lower-better SOTA. **+7/+11/+49** = 1630/1408/7206.
-
-### 2026-06-03 Session 47 — Leaderboard sweep (compressed)
-- Opus 4.8 AAII 61 (#1 ever) / Gemini 3.5 Flash ECI 156.31 / Cosmos3-Super-T2I 1243 / DeepSeek V4 Flash High AAII 45→46. text_arena_elo NEW. **+0/+1/+12** = 1621/1397/7157.
+### 2026-06-03~04 Sessions 47-50 (compressed)
+- S50 GPT-Rosalind 4 life-sci (LifeSciBench 63.4) + Gemma 4 12B (MMLU Pro 77.2). S49 The AI Scientist 🌍 **WORLD FIRST: AI paper passed ICLR 2025 ICBINB blind peer review** (avg 6.33/10), Automated Reviewer F1 0.67. S48 MS 7 NEW MAI (MAI-Thinking-1 SWE-Pro 52.8, MAI-Code-1-Flash 5B, MAI-Transcribe-1.5 2.4% / 43 lang, MAI-Voice-2). 🔧 exporter bug fix. S47 Opus 4.8 AAII 61 #1 + Gemini 3.5 Flash ECI 156.31. **+14/+32/+101** cumulative = 1637/1428/7246
 
 ### 2026-06-02 Session 46b — Cosmos 3 + Qwen3.7-Plus deep re-mine (compressed)
 - Cosmos3-Edge HMMT25 76.3 vs Qwen3.5-2B 22.9. Cosmos HUE per-dim — **Cosmos3-Super AV 87.7 / Physics 91.5 SOTA**. Qwen3.7-Plus complete 69-bench + 6 comparison cols. 18 NEW benches. **+0/+18/+98** = 1621/1396/7145.
@@ -192,8 +194,7 @@ BMT/                         → Benchmark Library 카탈로그 (2,559 엔트리
 
 | 파일 | 내용 |
 |-----|-----|
-| `resource/benchmark_scores_2026_04.json` / `lmcouncil_scores_2026_04.json` | 원천 시드 + LM Council |
-| `data/export/models.json` | 빌드된 모델 63개 |
-| `data/export/benchmarks.json` | 빌드된 벤치마크 91개 |
+| `resource/*scores_2026_*.json` | 원천 시드 + LM Council |
+| `data/export/{models,benchmarks}.json` | 빌드된 모델/벤치마크 카탈로그 |
 | `data/export/scores/current.json` · `sota.json` · `history/YYYY-MM-DD.json` | 점수·SOTA·일별 스냅샷 |
 | `data/bmt_connections.json` / `bmt_catalog.json` | BMT 매핑 + 카탈로그 (2,559개) |

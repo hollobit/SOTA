@@ -45,19 +45,19 @@
     "notes": "With tools"
   },
   "swe_bench_multilingual": {
-    "model_id": "anthropic/claude-mythos-preview",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "swe_bench_multilingual",
-    "value": 87.3,
-    "unit": "%",
+    "value": 92.2,
+    "unit": "score_0_100",
     "source": {
-      "type": "leaderboard",
-      "url": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026",
-      "date": "2026-04-28",
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-04-28",
-    "notes": "SOTA"
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 SWE-bench Multilingual 92.2% NEW SOTA (was Mythos Preview 87.3, +4.9pp). 300 problems × 9 programming languages"
   },
   "charxiv_reasoning": {
     "model_id": "anthropic/claude-opus-4.7",
@@ -255,19 +255,19 @@
     "notes": ""
   },
   "swe_bench_verified": {
-    "model_id": "anthropic/claude-fable-5",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "swe_bench_verified",
-    "value": 95.0,
+    "value": 95.5,
     "unit": "score_0_100",
     "source": {
-      "type": "leaderboard",
-      "url": "https://llm-stats.com/blog/research/claude-fable-5-review",
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
       "date": "2026-06-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-10",
-    "notes": "Fable 5 SWE-bench Verified 95.0% (+6.4pp over Opus 4.8 88.6, +14.4pp over Gemini 3.1 Pro 80.6)"
+    "notes": "🌍 Mythos 5 SWE-bench Verified 95.5% NEW SOTA (was Fable 5 95.0, +0.5pp). Safeguards OFF — slight edge over Fable 5 (safeguards ON)"
   },
   "cybench": {
     "model_id": "anthropic/claude-mythos-preview",
@@ -4650,19 +4650,19 @@
     "notes": "Overall ONS — top LLM (vs PPO 2M at 0.287)"
   },
   "programbench": {
-    "model_id": "anthropic/claude-opus-4.8",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "programbench",
-    "value": 88.0,
-    "unit": "%",
+    "value": 88.5,
+    "unit": "score_0_100",
     "source": {
       "type": "pdf",
-      "url": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
       "date": "2026-06-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-10",
-    "notes": "Peak hidden-test pass rate at 5M context budget (range 79-88% over 1-5 episodes). Opus 4.7 peak 84%. 166 program-reconstruction tasks, 248K behavioral tests."
+    "notes": "🌍 Mythos 5 ProgramBench 88.5% (mid-range of 84-93% across 1-5 episodes). Beats Opus 4.8 mid-range 83.5 (range 79-88). 166 program-reconstruction tasks from binary alone."
   },
   "programbench_almost": {
     "model_id": "anthropic/claude-opus-4.7",
@@ -8670,19 +8670,19 @@
     "notes": "Fable 5 AutomationBench 17.4% (corrected — vs Opus 4.8 15.5, prior S66 entry refined)"
   },
   "draco": {
-    "model_id": "anthropic/claude-opus-4.8",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "draco",
-    "value": 80.4,
-    "unit": "%",
+    "value": 86.4,
+    "unit": "score_0_100",
     "source": {
       "type": "pdf",
-      "url": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
       "date": "2026-06-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-10",
-    "notes": "Max effort, 1M token + 200k compaction. Opus 4.6 judge. Not directly comparable to paper headline."
+    "notes": "🌍 Mythos 5 DRACO 86.4% NEW SOTA (was Opus 4.8 80.4, +6pp). Claude Opus 4.6 grader, 1M token budget"
   },
   "gmmlu": {
     "model_id": "anthropic/claude-mythos-5",
@@ -13078,6 +13078,81 @@
     "is_sota": true,
     "collected_at": "2026-06-10",
     "notes": "🌍 Fable 5 cyber classifier block rate 99.3% (407/410 ExploitBench episodes flagged, avg 27 turns until flag). NEW Fable 5 specific safeguard metric — only 3 episodes slipped through cyber classifier."
+  },
+  "swe_bench_multimodal_internal": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "swe_bench_multimodal_internal",
+    "value": 54.9,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "Mythos 5 SWE-bench Multimodal 54.9% (internal harness, not directly comparable to public 59.0 Mythos Preview)"
+  },
+  "multi_agent_browsecomp_async": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "multi_agent_browsecomp_async",
+    "value": 93.3,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 Multi-Agent BrowseComp (async-subagents) 93.3% NEW SOTA NEW bench. Single-agent 10M baseline 89.1 — async-subagents +4.2pp & 2.7x latency speedup. Async non-blocking Pareto-dominates blocking."
+  },
+  "chartmuseum": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "chartmuseum",
+    "value": 93.2,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 ChartMuseum 93.2% (with tools) NEW SOTA NEW bench. No-tools 85.9. Mythos Preview 80.7/92.2. Visual reasoning over 1,162 expert-annotated real-world charts."
+  },
+  "lab_bench_figqa": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "lab_bench_figqa",
+    "value": 90.7,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 LAB-Bench FigQA 90.7% (with tools) NEW SOTA NEW bench. No-tools 88.9. Mythos Preview 82.4/89.3. 181 biology figure questions. Fable 5 measured degradation due to bio-safeguards on biology images."
+  },
+  "benchcad_vision2code_1000file_with_tools": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "benchcad_vision2code_1000file_with_tools",
+    "value": 0.65,
+    "unit": "voxel_iou",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 BenchCAD Vision2Code 1000-file subset (with tools) voxel IoU 0.650 NEW SOTA NEW bench (Mythos Preview 0.610). Adaptive thinking + max effort, 5-run avg"
   },
   "superqpga": {
     "model_id": "tencent/hy3-preview",

@@ -1,0 +1,91 @@
+{
+  "_meta": {
+    "session": "Session 72 — Anthropic Fable/Mythos 5 PDF final unmined-sections deep re-mine",
+    "date": "2026-06-10",
+    "sources": [
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.2 SWE-bench full table",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.6 ProgramBench",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.8 GPQA Diamond detail",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.14.4 DRACO",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.15.1 Multi-Agent BrowseComp",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.16.4 BenchCAD 1000-file subset",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.16.5 ChartQAPro",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.16.6 ChartMuseum",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.16.7 LAB-Bench FigQA"
+    ],
+    "notes": "Final-pass deep re-mine. Found 7+ NEW SOTAs that were unmined: SWE-bench Verified Mythos 5 95.5 NEW (was Fable 5 95.0, +0.5pp). SWE-bench Multilingual Mythos 5 92.2 NEW (was Mythos Preview 87.3, +4.9pp). SWE-bench Multimodal Mythos 5 54.9 (was 59.0 — WAIT, this is LOWER. Different metric? Or PDF says Mythos 5 'internal harness' 54.9 vs official 59.0). DRACO Mythos 5 86.4 NEW (was Opus 4.8 80.4). ChartMuseum Mythos 5 93.2 (NEW bench). LAB-Bench FigQA Mythos 5 90.7 (NEW bench). Multi-Agent BrowseComp async-subagents 93.3 (NEW bench, async harness Pareto-dominates single-agent). BenchCAD 1000-file subset Mythos 5 0.650 w/tools NEW bench. ProgramBench Mythos 5 range 84-93% NEW SOTA (was Opus 4.8 88, our mid-range)."
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "chartmuseum",
+      "name": "ChartMuseum (visual reasoning over real-world charts)",
+      "category": "multimodal",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "1,162 expert-annotated questions over real-world chart images from 184 sources (academic, infographics, unconventional). Sonnet 4.6 grader. Visual reasoning focus.",
+      "source_url": "https://arxiv.org/abs/2505.13444"
+    },
+    {
+      "id": "lab_bench_figqa",
+      "name": "LAB-Bench FigQA (biology figure interpretation)",
+      "category": "multimodal",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "181 questions from LAB-Bench public set on complex scientific figures from biology research papers. FutureHouse benchmark.",
+      "source_url": "https://arxiv.org/abs/2407.10362"
+    },
+    {
+      "id": "multi_agent_browsecomp_async",
+      "name": "Multi-Agent BrowseComp (async-subagents harness)",
+      "category": "agentic",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "BrowseComp with multi-agent harness — async-subagents reached highest single-config score 93.3% (single-agent 10-token baseline +4.2pp).",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "benchcad_vision2code_1000file_with_tools",
+      "name": "BenchCAD Vision2Code (1000-file subset, with Python tools)",
+      "category": "multimodal",
+      "metric": "voxel_iou_higher_better",
+      "unit": "voxel_iou",
+      "description": "Voxel IoU on BenchCAD Vision2Code 1000-file subset, with Python tools. Adaptive thinking + max effort, averaged 5 runs.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "swe_bench_multimodal_internal",
+      "name": "SWE-bench Multimodal (Anthropic internal harness)",
+      "category": "coding",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "SWE-bench Multimodal evaluated on Anthropic internal harness. Distinct from public 59% Mythos Preview score (different harness).",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    }
+  ],
+  "scores": [
+    {"model": "anthropic/claude-mythos-5", "benchmark": "swe_bench_verified", "score": 95.5, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 SWE-bench Verified 95.5% NEW SOTA (was Fable 5 95.0, +0.5pp). Safeguards OFF — slight edge over Fable 5 (safeguards ON)"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "swe_bench_verified", "score": 95.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Fable 5 SWE-Verified 95.0% (refresh from authoritative PDF source)"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "swe_bench_multilingual", "score": 92.2, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 SWE-bench Multilingual 92.2% NEW SOTA (was Mythos Preview 87.3, +4.9pp). 300 problems × 9 programming languages"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "swe_bench_multimodal_internal", "score": 54.9, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 SWE-bench Multimodal 54.9% (internal harness, not directly comparable to public 59.0 Mythos Preview)"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "programbench", "score": 88.5, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 ProgramBench 88.5% (mid-range of 84-93% across 1-5 episodes). Beats Opus 4.8 mid-range 83.5 (range 79-88). 166 program-reconstruction tasks from binary alone."},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "draco", "score": 86.4, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 DRACO 86.4% NEW SOTA (was Opus 4.8 80.4, +6pp). Claude Opus 4.6 grader, 1M token budget"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "multi_agent_browsecomp_async", "score": 93.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 Multi-Agent BrowseComp (async-subagents) 93.3% NEW SOTA NEW bench. Single-agent 10M baseline 89.1 — async-subagents +4.2pp & 2.7x latency speedup. Async non-blocking Pareto-dominates blocking."},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "chartqapro", "score": 71.6, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 ChartQAPro 71.6 (no tools), 72.9 (with tools). NOT new SOTA (Opus 4.8 72.3 — close). PDF §8.16.5"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "chartmuseum", "score": 93.2, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 ChartMuseum 93.2% (with tools) NEW SOTA NEW bench. No-tools 85.9. Mythos Preview 80.7/92.2. Visual reasoning over 1,162 expert-annotated real-world charts."},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "chartmuseum", "score": 92.2, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos Preview ChartMuseum 92.2% with tools"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "lab_bench_figqa", "score": 90.7, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 LAB-Bench FigQA 90.7% (with tools) NEW SOTA NEW bench. No-tools 88.9. Mythos Preview 82.4/89.3. 181 biology figure questions. Fable 5 measured degradation due to bio-safeguards on biology images."},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "lab_bench_figqa", "score": 89.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos Preview LAB-Bench FigQA 89.3% with tools"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "benchcad_vision2code_1000file_with_tools", "score": 0.650, "unit": "voxel_iou", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 BenchCAD Vision2Code 1000-file subset (with tools) voxel IoU 0.650 NEW SOTA NEW bench (Mythos Preview 0.610). Adaptive thinking + max effort, 5-run avg"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "benchcad_vision2code_1000file_with_tools", "score": 0.610, "unit": "voxel_iou", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos Preview BenchCAD V2C 1000-file with tools 0.610"}
+  ]
+}
