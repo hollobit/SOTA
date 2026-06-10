@@ -1,0 +1,1177 @@
+{
+  "_meta": {
+    "session": "Session 89 — CTI-REALM + UK AISI Multi-Step Cyber (Teach AI to Hack skipped — position paper)",
+    "date": "2026-06-10",
+    "sources": [
+      "arxiv:2603.13517 CTI-REALM (Detection Rule Generation)",
+      "arxiv:2603.11214 UK AISI/Pattern Labs Multi-Step Cyber Attack"
+    ],
+    "notes": "3 agents (Teach AI to Hack is a position paper, properly skipped per strict-attribution). CTI-REALM-50: Claude Opus 4.6 High Total 0.637 SOTA; Opus 4.5 C0+C3 wins; GPT-5.1 Med C1 0.62; GPT-5.2 Low C2 0.88. UK AISI MSCyber 'The Last Ones' (32-step corp network): **Opus 4.6 = 9.8 @10M / 15.6 @100M / max 22/32** dominates GPT-5.x Codex by 60%+. Cooling Tower (ICS): Opus 4.6 avg 1.4, but 5.3 Codex max 3/7."
+  },
+  "models": [
+    {
+      "id": "anthropic/claude-opus-4.6-high",
+      "name": "Claude Opus 4.6 (High)",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.5",
+      "name": "Claude Opus 4.5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-11-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-sonnet-4-5",
+      "name": "Claude Sonnet 4.5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-09-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-medium",
+      "name": "GPT-5 (Med)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-08-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-2-medium",
+      "name": "GPT-5.2 (Med)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-high",
+      "name": "GPT-5 (High)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-08-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-2-high",
+      "name": "GPT-5.2 (High)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-low",
+      "name": "GPT-5 (Low)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-08-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.1-medium",
+      "name": "GPT-5.1 (Med)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-11-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-1-high",
+      "name": "GPT-5.1 (High)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-11-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.2-low",
+      "name": "GPT-5.2 (Low)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/o3",
+      "name": "OpenAI o3",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-04-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-mini",
+      "name": "GPT-5-Mini",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-08-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-4-1",
+      "name": "GPT-4.1",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-04-14",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-1-low",
+      "name": "GPT-5.1 (Low)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-11-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/o4-mini",
+      "name": "OpenAI o4-mini",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-04-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gpt-4o",
+      "name": "GPT-4o",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2024-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "claude-sonnet-3-7",
+      "name": "Claude Sonnet 3.7",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2025-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "claude-sonnet-4-5",
+      "name": "Claude Sonnet 4.5",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2025-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gpt-5-1-codex",
+      "name": "GPT-5.1 Codex",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2025-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "claude-opus-4-5",
+      "name": "Claude Opus 4.5",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2025-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.3-codex",
+      "name": "GPT-5.3 Codex",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.6",
+      "name": "Claude Opus 4.6",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-02",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "cti_realm_50",
+      "name": "CTI-REALM-50 (Total Normalized Reward)",
+      "category": "cyber",
+      "metric": "normalized_reward",
+      "unit": "score_0_1",
+      "description": "End-to-end detection engineering benchmark. Agents interpret CTI reports, explore telemetry, construct queries, and produce Sigma+KQL detection rules across Linux/AKS/Azure cloud. Total reward combines checkpoint rewards (C0-C3) and ground-truth detection quality (C4, weight 0.65).",
+      "source_url": "https://arxiv.org/abs/2603.13517"
+    },
+    {
+      "id": "cti_realm_c0_report_analysis",
+      "name": "CTI-REALM C0 — CTI Report Analysis",
+      "category": "cyber",
+      "metric": "normalized_reward",
+      "unit": "score_0_1",
+      "description": "LLM-as-judge reward for correctly identifying key elements (attack technique, indicators, intent) in the CTI report. Weight wC0 = 0.125.",
+      "source_url": "https://arxiv.org/abs/2603.13517"
+    },
+    {
+      "id": "cti_realm_c1_mitre_mapping",
+      "name": "CTI-REALM C1 — Threat Context / MITRE Mapping",
+      "category": "cyber",
+      "metric": "jaccard_similarity",
+      "unit": "score_0_1",
+      "description": "Jaccard similarity reward for accurate extraction of MITRE ATT&CK technique IDs from CTI. Weight wC1 = 0.075.",
+      "source_url": "https://arxiv.org/abs/2603.13517"
+    },
+    {
+      "id": "cti_realm_c2_data_exploration",
+      "name": "CTI-REALM C2 — Data Exploration",
+      "category": "cyber",
+      "metric": "jaccard_similarity",
+      "unit": "score_0_1",
+      "description": "Jaccard similarity reward for identifying relevant telemetry tables/data sources. Weight wC2 = 0.10.",
+      "source_url": "https://arxiv.org/abs/2603.13517"
+    },
+    {
+      "id": "cti_realm_c3_query_execution",
+      "name": "CTI-REALM C3 — Query Execution",
+      "category": "cyber",
+      "metric": "binary_reward",
+      "unit": "score_0_1",
+      "description": "Binary reward for iterative query refinement behavior during detection rule construction. Weight wC3 = 0.05.",
+      "source_url": "https://arxiv.org/abs/2603.13517"
+    },
+    {
+      "id": "mscyber_the_last_ones_10m",
+      "name": "MSCyber: The Last Ones (avg steps, 10M tokens)",
+      "category": "cyber",
+      "metric": "avg_steps",
+      "unit": "steps_avg",
+      "description": "Average attack steps completed end-to-end at 10M token budget",
+      "source_url": "https://arxiv.org/abs/2603.11214"
+    },
+    {
+      "id": "mscyber_the_last_ones_100m",
+      "name": "MSCyber: The Last Ones (avg steps, 100M tokens)",
+      "category": "cyber",
+      "metric": "avg_steps",
+      "unit": "steps_avg",
+      "description": "Average attack steps completed end-to-end at 100M token budget",
+      "source_url": "https://arxiv.org/abs/2603.11214"
+    },
+    {
+      "id": "mscyber_the_last_ones_max_100m",
+      "name": "MSCyber: The Last Ones (max steps, 100M tokens)",
+      "category": "cyber",
+      "metric": "max_steps",
+      "unit": "steps_avg",
+      "description": "Best single-run step count at 100M token budget",
+      "source_url": "https://arxiv.org/abs/2603.11214"
+    },
+    {
+      "id": "mscyber_cooling_tower_100m",
+      "name": "MSCyber: Cooling Tower (avg steps, 100M tokens)",
+      "category": "cyber",
+      "metric": "avg_steps",
+      "unit": "steps_avg",
+      "description": "Average attack steps completed on ICS range at 100M token budget",
+      "source_url": "https://arxiv.org/abs/2603.11214"
+    },
+    {
+      "id": "mscyber_cooling_tower_max_100m",
+      "name": "MSCyber: Cooling Tower (max steps, 100M tokens)",
+      "category": "cyber",
+      "metric": "max_steps",
+      "unit": "steps_avg",
+      "description": "Best single-run step count on ICS range at 100M token budget",
+      "source_url": "https://arxiv.org/abs/2603.11214"
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-opus-4.6-high",
+      "benchmark": "cti_realm_50",
+      "score": 0.6373,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1, SOTA. 95% CI [0.562, 0.712]; StdErr 0.0374"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "cti_realm_50",
+      "score": 0.6244,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. 95% CI [0.556, 0.692]"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "cti_realm_50",
+      "score": 0.5872,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. 95% CI [0.521, 0.653]"
+    },
+    {
+      "model": "openai/gpt-5-medium",
+      "benchmark": "cti_realm_50",
+      "score": 0.572,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. Best OpenAI result. 95% CI [0.504, 0.640]"
+    },
+    {
+      "model": "openai/gpt-5-2-medium",
+      "benchmark": "cti_realm_50",
+      "score": 0.5716,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. 95% CI [0.506, 0.637]"
+    },
+    {
+      "model": "openai/gpt-5-high",
+      "benchmark": "cti_realm_50",
+      "score": 0.5633,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. 95% CI [0.497, 0.629]"
+    },
+    {
+      "model": "openai/gpt-5-2-high",
+      "benchmark": "cti_realm_50",
+      "score": 0.5513,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. 95% CI [0.478, 0.625]"
+    },
+    {
+      "model": "openai/gpt-5-low",
+      "benchmark": "cti_realm_50",
+      "score": 0.5413,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. Best Pareto cost-efficiency point. 95% CI [0.478, 0.605]"
+    },
+    {
+      "model": "openai/gpt-5.1-medium",
+      "benchmark": "cti_realm_50",
+      "score": 0.5133,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. 95% CI [0.453, 0.574]"
+    },
+    {
+      "model": "openai/gpt-5-1-high",
+      "benchmark": "cti_realm_50",
+      "score": 0.4946,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. 95% CI [0.420, 0.570]"
+    },
+    {
+      "model": "openai/gpt-5.2-low",
+      "benchmark": "cti_realm_50",
+      "score": 0.4898,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. 95% CI [0.440, 0.540]"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "cti_realm_50",
+      "score": 0.4707,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. 95% CI [0.414, 0.527]"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "cti_realm_50",
+      "score": 0.4506,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. 95% CI [0.392, 0.509]"
+    },
+    {
+      "model": "openai/gpt-4-1",
+      "benchmark": "cti_realm_50",
+      "score": 0.4186,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. Most token-efficient at ~120K tokens. 95% CI [0.371, 0.466]"
+    },
+    {
+      "model": "openai/gpt-5-1-low",
+      "benchmark": "cti_realm_50",
+      "score": 0.3731,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. 95% CI [0.331, 0.415]"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "cti_realm_50",
+      "score": 0.3602,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1. Lowest scorer. 95% CI [0.312, 0.408]"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6-high",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.83,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.91,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column — SOTA on C0"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.85,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/gpt-5-medium",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.72,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/gpt-5-2-medium",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.6,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/gpt-5-high",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.66,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/gpt-5-2-high",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.6,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/gpt-5-low",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.61,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/gpt-5.1-medium",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.72,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/gpt-5-1-high",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.71,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/gpt-5.2-low",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.57,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.51,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.62,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/gpt-4-1",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.68,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/gpt-5-1-low",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.61,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "cti_realm_c0_report_analysis",
+      "score": 0.48,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C0 column"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6-high",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.5,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.56,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column — paper notes Opus 4.5 leads C1"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.54,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/gpt-5-medium",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.54,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/gpt-5-2-medium",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.37,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/gpt-5-high",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.55,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/gpt-5-2-high",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.4,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/gpt-5-low",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.45,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/gpt-5.1-medium",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.62,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column — SOTA on C1"
+    },
+    {
+      "model": "openai/gpt-5-1-high",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.55,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/gpt-5.2-low",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.49,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.38,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.21,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/gpt-4-1",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.29,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/gpt-5-1-low",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.37,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "cti_realm_c1_mitre_mapping",
+      "score": 0.23,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C1 column"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6-high",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.82,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.85,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.87,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/gpt-5-medium",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.86,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/gpt-5-2-medium",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.86,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/gpt-5-high",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.86,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/gpt-5-2-high",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.85,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/gpt-5-low",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.84,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/gpt-5.1-medium",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.87,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/gpt-5-1-high",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.8,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/gpt-5.2-low",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.88,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column — SOTA on C2"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.78,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.84,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/gpt-4-1",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.85,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/gpt-5-1-low",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.87,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "cti_realm_c2_data_exploration",
+      "score": 0.8,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C2 column"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6-high",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.86,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.92,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column — SOTA on C3 (most discriminating checkpoint)"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.88,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/gpt-5-medium",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.38,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/gpt-5-2-medium",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.72,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/gpt-5-high",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.4,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/gpt-5-2-high",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.84,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/gpt-5-low",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.22,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/gpt-5.1-medium",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.42,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/gpt-5-1-high",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.56,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/gpt-5.2-low",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.5,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.68,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.2,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/gpt-4-1",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.02,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/gpt-5-1-low",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.06,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "cti_realm_c3_query_execution",
+      "score": 0.2,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2603.13517",
+      "_note": "Table 1 C3 column"
+    },
+    {
+      "model": "gpt-4o",
+      "benchmark": "mscyber_the_last_ones_10m",
+      "score": 1.7,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "claude-sonnet-3-7",
+      "benchmark": "mscyber_the_last_ones_10m",
+      "score": 5.8,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "claude-sonnet-4-5",
+      "benchmark": "mscyber_the_last_ones_10m",
+      "score": 6.1,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5-1-codex",
+      "benchmark": "mscyber_the_last_ones_10m",
+      "score": 8.0,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "claude-opus-4-5",
+      "benchmark": "mscyber_the_last_ones_10m",
+      "score": 7.6,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "mscyber_the_last_ones_10m",
+      "score": 7.2,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mscyber_the_last_ones_10m",
+      "score": 9.8,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "claude-sonnet-4-5",
+      "benchmark": "mscyber_the_last_ones_100m",
+      "score": 9.4,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5-1-codex",
+      "benchmark": "mscyber_the_last_ones_100m",
+      "score": 9.8,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "claude-opus-4-5",
+      "benchmark": "mscyber_the_last_ones_100m",
+      "score": 11.0,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "mscyber_the_last_ones_100m",
+      "score": 11.0,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mscyber_the_last_ones_100m",
+      "score": 15.6,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "claude-sonnet-4-5",
+      "benchmark": "mscyber_the_last_ones_max_100m",
+      "score": 11,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5-1-codex",
+      "benchmark": "mscyber_the_last_ones_max_100m",
+      "score": 11,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "claude-opus-4-5",
+      "benchmark": "mscyber_the_last_ones_max_100m",
+      "score": 11,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "mscyber_the_last_ones_max_100m",
+      "score": 11,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mscyber_the_last_ones_max_100m",
+      "score": 22,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "claude-sonnet-4-5",
+      "benchmark": "mscyber_cooling_tower_100m",
+      "score": 0.0,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5-1-codex",
+      "benchmark": "mscyber_cooling_tower_100m",
+      "score": 0.0,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "claude-opus-4-5",
+      "benchmark": "mscyber_cooling_tower_100m",
+      "score": 0.6,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "mscyber_cooling_tower_100m",
+      "score": 1.2,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mscyber_cooling_tower_100m",
+      "score": 1.4,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "claude-opus-4-5",
+      "benchmark": "mscyber_cooling_tower_max_100m",
+      "score": 1,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "mscyber_cooling_tower_max_100m",
+      "score": 3,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mscyber_cooling_tower_max_100m",
+      "score": 2,
+      "unit": "steps_avg",
+      "_source": "https://arxiv.org/abs/2603.11214",
+      "_note": ""
+    }
+  ]
+}

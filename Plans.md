@@ -1,24 +1,23 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 88 — Agent-World + TeleResilienceBench (2026-06-10)
-**1,737 models · 1,708 benchmarks · 9,049 scores · 🌍 10 NEW SOTAs (3 Agent-World + 7 TeleResilience)**
+## Current Status: Session 89 — CTI-REALM + UK AISI Multi-Step Cyber (2026-06-10)
+**1,759 models · 1,717 benchmarks · 9,150 scores · 🌍 10 NEW SOTAs (5 CTI-REALM + 5 UK AISI MSCyber)**
 
-### 2026-06-10 Session 88 — Agent-World + TeleResilienceBench (RecursiveMAS skipped — framework)
-- 3 agents 🌍 **10 NEW SOTAs**. Agent-World (Renmin+ByteDance, MCP-Mark/BFCL-v4/τ²-Bench): split SOTA — **GPT-5.2 High MCP 53.1**, Sonnet 4.5 BFCL 73.2, Gemini 3 Pro τ² 85.4 (3 different vendors lead 3 agentic benches). TeleResilienceBench (8 small open-weight, 7 telecom CFR tasks): **NVIDIA Nemotron-3-nano 4B leads 4** (TeleQnA 34.0, TeleTables 26.3, ORANBench 39.7, srsRANBench 46.8); Gemma4-31B leads 3 (TeleLogs 19.8, 3GPP TSG 16.7 tied with Gemma4-26B, 6G 29.1). Small-domain-specialist consistently beats general frontier on telecom. **+3/+10/+82** = 1737/1708/9049
+### 2026-06-10 Session 89 — CTI-REALM + UK AISI Multi-Step Cyber (Teach AI to Hack — position paper, skipped)
+- 3 agents 🌍 **10 NEW SOTAs**. CTI-REALM-50 (Security Detection Rule Generation, 16 model configs): **Claude Opus 4.6 High Total = 0.637** SOTA; sub-tasks Opus 4.5 C0 0.91 + C3 0.92 / GPT-5.1 Med C1 0.62 / GPT-5.2 Low C2 0.88. UK AISI Multi-Step Cyber (32-step corp network + 7-step ICS, 7 frontier models): **Claude Opus 4.6** dominates The Last Ones — 9.8 @10M / 15.6 @100M / max **22/32** (60%+ over GPT-5.x Codex). Cooling Tower (ICS): Opus 4.6 avg 1.4, but GPT-5.3 Codex max 3/7. **+22/+10/+101** = 1759/1717/9150
 
-### 2026-06-10 Sessions 86-87 (compressed) — 33 SOTAs
+### 2026-06-10 Sessions 86-88 (compressed) — 43 SOTAs
+- S88 Agent-World 3 agentic (GPT-5.2 MCP 53.1 / Sonnet 4.5 BFCL 73.2 / Gemini 3 Pro τ² 85.4 — 3-way vendor split). TeleResilienceBench: Nemotron-3-nano 4B leads 4/7 telecom, Gemma4-31B 3. Small specialist beats frontier
 - S87 NYU CTF (D-CIPHER): Claude Opus 4.5 = 59.0% (2.7x prior SOTA 22%) + Pwn 41.0 + Web 52.6; Gemini 3 Pro Crypto 53.8 + Misc 70.8. HarmfulSkillBench GPT-5.4-Mini sweeps all 6 safety metrics. S86 Cyber Defense Opus 4.6 sweeps all 15 (Defense Evasion 0.59). Autonomous Adversary Claude 4.5 family + GPT-5.1 ties at S1 100%. Gordian Knot Opus 4.7 thinking 54.6%
 
-### 2026-06-10 Sessions 84-85 (compressed)
-- S85 🌍 23 SOTAs: SciVQR 7 disciplines (o4-mini Math 0.845 / Astronomy 0.808 / Geography 0.765 / Overall 0.793 tied; Gemini-2.5-Flash Physics 0.781 / Chemistry 0.876). GraphInstruct Sonnet 4.6 sweeps 4 quality (peak few-CoT 0.902 #1 of 45) + GPT-4o L2 0.982 / L5 0.794. CommonWhy: o3 Correctness 67.93/68.51, Gemini-2.5-Flash dominates 8 lexical
-- S84 🌍 10 SOTAs: gwBenchmarks 8 GW tasks (Sonnet 4.6 Waveform 0.1422+Dynamics 0.00671 / Opus 4.7 Analytic 0.04161+Ringdown 1.306e-12+New Physics 4.647e-6 / GPT-5.2 Remnant 3.85e-4 / **Kimi K2.6** Validity 0.1967+Template Bank 0.4286). AgentRx MedPatch supervised 0.877/0.844
-
-### 2026-06-10 Sessions 82-83 (compressed)
-- S83 🌍 17 SOTAs: Creativity (Heng Ji, 13 metrics): GPT-5.4 DAT 91.72 + EQ-Bench CW 2019, Opus 4.6 Arena-CW 1467+CDAT-A 148.68, Gemma-2-9B CDAT 74.09+NoveltyBench 3.93, Qwen3-32B CDAT-N 74.54, Claude 3.7-Sonnet-thinking LiveIdeaBench 7.22, Gemini 2.5 Pro PACE 0.761. GeoBuild GPT-5.1 78.9% + Gemini-3-Flash dominates 3 efficiency. S82 🌍 26 SOTAs: ExploitBench (V8 N-day): Mythos Preview T1 ACE 0.439+T3 0.854+T5 1.0; **GPT-5.5 Codex CLI 0.0244** sole *public* ACE; MiniMax M2.7 $0.77/ep. VectraYX Spanish cyber Pro-7B B4 MCP 0.880 + Nano 42M Q4 8 tok/s RPi 4. RealICU: GPT-5.4+ICU-Evo Acute 0.867 / Gemini 3.1 Pro Patient 0.519
+### 2026-06-10 Sessions 82-85 (compressed) — 76 SOTAs
+- S85 SciVQR 7 disciplines (o4-mini Math 0.845, Gemini-2.5-Flash Chemistry 0.876, tied Overall 0.793). GraphInstruct Sonnet 4.6 sweeps quality (few-CoT 0.902 #1 of 45) + GPT-4o L2 0.982. CommonWhy o3 Correctness 67.93/68.51, Gemini-2.5-Flash 8 lexical
+- S84 gwBenchmarks 8 (Sonnet 4.6 Waveform 0.1422 / Opus 4.7 Analytic 0.04161+Ringdown 1.306e-12+New Physics 4.647e-6 / Kimi K2.6 Validity 0.1967+Template Bank 0.4286). AgentRx MedPatch 0.877/0.844
+- S83 Creativity 13 metrics (GPT-5.4 DAT 91.72+EQ-Bench CW 2019, Opus 4.6 Arena-CW 1467+CDAT-A 148.68, Gemma-2-9B CDAT 74.09). GeoBuild GPT-5.1 78.9% / Gemini-3-Flash 3 efficiency
+- S82 ExploitBench (V8): Mythos Preview T1 ACE 0.439/T3 0.854/T5 1.0; **GPT-5.5 Codex CLI 0.0244** sole *public* ACE; MiniMax M2.7 $0.77/ep. VectraYX Spanish cyber Pro-7B B4 MCP 0.880. RealICU GPT-5.4+ICU-Evo Acute 0.867
 
 ### 2026-06-10 Sessions 77-81 (compressed) — 55 SOTAs
-- S81 SMAC-Talk Qwen3.5 (122B KDC 41%→UDC 10%); ERRORQUAKE Mistral-Small-24B b=1.250 vs DeepSeek-V3.2 b=0.595. S79-80 DELEGATE-52 Gemini 3.1 Pro RS@20 80.9. Text2CAD DeepSeek-V3.2 L4 8.26. Sakana Auto Reviewer 0.62. Qwen-VLA LIBERO 97.9+RoboTwin-Hard 87.2+ALOHA 1.85x π0.5. AgentDog 1.5-4B-U 78.4. R-Judge 97.3
-- S77-78 DSPV2-671B FormalMATH 28.31+MiniF2F 88.9. BenchCAD Qwen3-VL-2B V2C 0.768. o3 MedQA TTS 93.3. Qwen3.5-Omni-Plus Audio dominance (KeSpeech 3.46 6.8x). CosyVoice 3 SEED-TTS-zh 0.71. GPT-5 Pro ECI 2.65. SensorFM-B Age 0.920+CV 0.712
+- S77-81: SMAC-Talk Qwen3.5 (122B KDC 41→UDC 10%). ERRORQUAKE Mistral-Small-24B b=1.250. DELEGATE-52 Gemini 3.1 Pro RS@20 80.9. Text2CAD DeepSeek-V3.2 L4 8.26. Sakana Auto Reviewer 0.62. Qwen-VLA LIBERO 97.9+RoboTwin-Hard 87.2+ALOHA 1.85x π0.5. AgentDog 1.5-4B-U 78.4. R-Judge 97.3. DSPV2-671B FormalMATH 28.31+MiniF2F 88.9. BenchCAD Qwen3-VL-2B V2C 0.768. o3 MedQA TTS 93.3. Qwen3.5-Omni-Plus (KeSpeech 3.46 6.8x). GPT-5 Pro ECI 2.65. SensorFM-B Age 0.920
 
 ### 2026-06-10 Sessions 74-76 (compressed) — 39 SOTAs
 - S74-76: Mythos 5 AECI **161.29** + Long-form virology Task 1 **0.77** (3.5x expert). Cosmos 3 Reasoner 4 cats (Super 73.7/Robotics 57.8/Smart-Infra 62.6/Driving 79.3). Opus 4.8 bio/safety 11 (Mythos Preview Virology 0.94/SHADE-Arena Opus 4.8 93% 4.4x Mythos 21%/Child Safety 95%). Goedel-V2-32B MiniF2F 92.7. Gemini 3 Pro Med 4 SOTAs (MedQA 95.1). GPT-5.5 UK AISI Cyber 90.5. MedGemma 1.5 EHRNoteQA 80.4. 8-pass S65-74 누적 ~81 NEW SOTAs 단일 Anthropic 출시. *Capability ↑ Safety/hallucination ↓*

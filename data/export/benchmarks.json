@@ -7852,6 +7852,69 @@
     "metric": "cfr_percent"
   },
   {
+    "id": "cti_realm_c0_report_analysis",
+    "name": "CTI-REALM C0 — CTI Report Analysis",
+    "category": "cyber",
+    "description": "LLM-as-judge reward for correctly identifying key elements (attack technique, indicators, intent) in the CTI report. Weight wC0 = 0.125.",
+    "metric": "normalized_reward"
+  },
+  {
+    "id": "cti_realm_c1_mitre_mapping",
+    "name": "CTI-REALM C1 — Threat Context / MITRE Mapping",
+    "category": "cyber",
+    "description": "Jaccard similarity reward for accurate extraction of MITRE ATT&CK technique IDs from CTI. Weight wC1 = 0.075.",
+    "metric": "jaccard_similarity"
+  },
+  {
+    "id": "cti_realm_c2_data_exploration",
+    "name": "CTI-REALM C2 — Data Exploration",
+    "category": "cyber",
+    "description": "Jaccard similarity reward for identifying relevant telemetry tables/data sources. Weight wC2 = 0.10.",
+    "metric": "jaccard_similarity"
+  },
+  {
+    "id": "cti_realm_c3_query_execution",
+    "name": "CTI-REALM C3 — Query Execution",
+    "category": "cyber",
+    "description": "Binary reward for iterative query refinement behavior during detection rule construction. Weight wC3 = 0.05.",
+    "metric": "binary_reward"
+  },
+  {
+    "id": "mscyber_the_last_ones_10m",
+    "name": "MSCyber: The Last Ones (avg steps, 10M tokens)",
+    "category": "cyber",
+    "description": "Average attack steps completed end-to-end at 10M token budget",
+    "metric": "avg_steps"
+  },
+  {
+    "id": "mscyber_the_last_ones_100m",
+    "name": "MSCyber: The Last Ones (avg steps, 100M tokens)",
+    "category": "cyber",
+    "description": "Average attack steps completed end-to-end at 100M token budget",
+    "metric": "avg_steps"
+  },
+  {
+    "id": "mscyber_the_last_ones_max_100m",
+    "name": "MSCyber: The Last Ones (max steps, 100M tokens)",
+    "category": "cyber",
+    "description": "Best single-run step count at 100M token budget",
+    "metric": "max_steps"
+  },
+  {
+    "id": "mscyber_cooling_tower_100m",
+    "name": "MSCyber: Cooling Tower (avg steps, 100M tokens)",
+    "category": "cyber",
+    "description": "Average attack steps completed on ICS range at 100M token budget",
+    "metric": "avg_steps"
+  },
+  {
+    "id": "mscyber_cooling_tower_max_100m",
+    "name": "MSCyber: Cooling Tower (max steps, 100M tokens)",
+    "category": "cyber",
+    "description": "Best single-run step count on ICS range at 100M token budget",
+    "metric": "max_steps"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",
