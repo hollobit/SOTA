@@ -1,19 +1,19 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 66 — 9-source mega ingest (2026-06-10)
-**1,682 models · 1,461 benchmarks · 7,481 scores · 🌍 Claude Fable 5 AAII 65 NEW #1 SOTA (was Opus 4.8 61)**
+## Current Status: Session 67 — 7-tab audit propagation S65+S66 (2026-06-10)
+**1,682 models · 1,461 benchmarks · 7,481 scores · S65+S66 15 모델 × 7 탭 audit: Frontier 15/15 ✓, Sovereign 15/15 (cluster + NS fallback), Cyber 4/15 (coding-relevant), Medical/Physical/AI4S/Agent 의도된 미적용**
 
-### 2026-06-10 Session 66 — 9-source mega ingest batch
-- **🌍 Claude Fable 5 AAII 65 NEW #1 SOTA** (was Opus 4.8 61, +4pp over Opus 4.8, +5pp over GPT-5.5 xhigh 60). #1/152 on AA. Fable 5 GDPval-AA Elo **1932 NEW SOTA** (+42 over Opus 4.8 1890, +163 over GPT-5.5 1769). Fable 5 SWE-bench Verified **95.0 NEW SOTA**. Perf: 60.3 tps / TTFT 81.68s (high latency) / blended $8.20/M (input $12.50 / output $50). Anthropic now holds 3 of top 4 GDPval-AA spots
-- **NEW Cohere North Mini Code** (2026-06-09) Apache 2.0 30B/3B MoE coding-specialist: AAII 28, Coding Index 33.4, Agentic 21.7, GDPval-AA 14, τ²-Telecom 37, 199 tps. Above gpt-oss-20B (24.5), below Mistral Small (27.8)
-- **NEW Microsoft MAI models** (2026-06-02 announcement): MAI-Image-2.5 + Flash, MAI-Voice-2 + Flash, Mayo Clinic Frontier (registry-only, no scores yet)
-- **AA Changelog backfill (9 AAII scores)**: MiniCPM5-1B 18 (1B leader) / Step 3.7 Flash 43 / Gemini 3.5 Flash medium 55 / minimal 43 / high 55 / Grok Code Fast 1 29 / Grok 4.3 medium 49 / low 44 / Command A+ 37 / Ring-2.6-1T 38
-- **Nemotron 3 Ultra extra subscores**: GDPval-AA Elo 1378, Non-Hall 71%, CritPt 3%, ~420 tps
-- **FrontierCode Extended**: Opus 4.8 51.8 / Kimi K2.6 37 (best open-source)
-- **+11/+5/+35** = 1682/1461/7481
+### 2026-06-10 Session 67 — 7-tab audit propagation for S65+S66
+- **Frontier Compare** (+9): cohere/command-a-plus 37 + cohere/north-mini-code 28 + gemini-3.5-flash-medium/minimal/high 55/43/55 + grok-4.3-medium/low 49/44 + grok-code-fast-1 29 + inclusionai/ring-2.6-1t 38 + stepfun/step-3.7-flash 43 + openbmb/minicpm-5-1b 18
+- **Cyber-Coding** (+2): cohere/north-mini-code (Apache 2.0 MoE 30B/3B coding-specialist) + xai/grok-code-fast-1
+- **Sovereign CN clusters** (+3): openbmb/minicpm-5-1b → OpenBMB cluster + release_date map · stepfun/step-3.7-flash → StepFun cluster + map · inclusionai/ring-2.6-1t → InclusionAI cluster + map
+- **Sovereign US-open** (+2): cohere/command-a-plus + cohere/north-mini-code → Cohere cluster
+- Medical/Physical/AI4S/Agent 0 추가 (S66 모델들은 모두 general-purpose LLM, 도메인 특화 부적합). Cache-bust v=20260610b
+- 매트릭스: Frontier 2/15 → **15/15** · Cyber 2/15 → **4/15** · Sovereign 12/15 → **15/15**
 
-### 2026-06-09 Session 65 — Claude Fable 5 + Mythos 5 (compressed)
-- 🌍 13 NEW SOTAs from Anthropic flagship (2026-06-09 release, $10/$50 per M, 1M ctx). Fable 5: SWE-Bench Pro 80.3 / FrontierCode Diamond 29.3 / FrontierCode Main 46.3 / GDP.pdf 29.8. Mythos 5 (Glasswing only): ExploitBench 78 / OSWorld 85 / Toolathlon 61.7 + Pass³ 58.3 / BioMystery 83.9 + 46.1 / LatchBio Spatial 69.2 (+15pp) + SingleCell 59.3 / BrowseComp 88. 4 NEW benchmarks. Tab propagation Frontier/Cyber/Medical/Agent. **+2/+4/+21** = 1671/1456/7446
+### 2026-06-09~10 Sessions 65-66 (compressed)
+- S66 🌍 BIGGEST: Claude Fable 5 AAII **65** #1 SOTA (was Opus 4.8 61, +4pp). GDPval-AA Elo 1932 NEW (+42), SWE-Verified 95.0 NEW, Blueprint-Bench 2 38.6. NEW Cohere North Mini Code 30B/3B MoE Apache 2.0 AAII 28. NEW Microsoft MAI Image 2.5 + Voice 2 + Mayo Clinic. 10 AAII backfills. Nemotron 3 Ultra subscores. **+11/+5/+35** = 1682/1461/7481.
+- S65 13 NEW SOTAs from Anthropic flagship Fable/Mythos 5 (2026-06-09, $10/$50 per M, 1M ctx). Fable 5: SWE-Bench Pro 80.3 / FrontierCode Diamond 29.3 + Main 46.3 / GDP.pdf 29.8. Mythos 5 (Glasswing only): ExploitBench 78 / OSWorld 85 / Toolathlon 61.7+Pass³ 58.3 / BioMystery 83.9+46.1 / LatchBio Spatial 69.2 (+15pp)+SingleCell 59.3 / BrowseComp 88. 4 NEW benches. Tab propagation Frontier/Cyber/Medical/Agent. **+2/+4/+21** = 1671/1456/7446
 
 ### 2026-06-09 Session 64 — Generalist GEN-1 + 1X World Model Lab (compressed)
 - NEW Physical AI VLA generalistai/gen-1 (2026-04-02): 🌍 3 NEW SOTAs (gen_multitask_success 99%, box_folding 12.1s 2.8x faster than π0, phone_packing 15.5s). Wearable device pretrain (500K+ hr). +gen-0 prior version. 1X World Model Lab launched 2026-06-04. **+2/+3/+7** = 1669/1452/7425

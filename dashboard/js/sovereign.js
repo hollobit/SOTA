@@ -119,7 +119,7 @@ var Sovereign = {
                 // MiniMax / MiMo / StepFun
                 'minimax/m3', 'minimax/m2.7', 'minimax/m2.5', 'minimax/minimax-m2.7',
                 'mimo/mimo-v2-pro', 'mimo/mimo-v2-flash',
-                'stepfun/step-3.5-flash', 'stepfun/step-2-pro', 'stepfun/step-2-mini',
+                'stepfun/step-3.7-flash', 'stepfun/step-3.5-flash', 'stepfun/step-2-pro', 'stepfun/step-2-mini', // 2026-06-10 S67 — step-3.7-flash AAII 43
                 'stepfun/step-1o',
                 // Baidu ERNIE
                 'baidu/ernie-5.1', 'baidu/ernie-5.0', 'baidu/ernie-4.5-300b-a47b', 'baidu/ernie-4.5-turbo', 'baidu/ernie-speed', 'baidu/ernie-lite',
@@ -157,7 +157,7 @@ var Sovereign = {
                 // Apr 2026 sweep — new Chinese flagships
                 'tencent/hy3-preview', 'tencent/hy-world-2.0',
                 'xiaomi/mimo-v2.5-pro', 'xiaomi/mimo-v2.5',
-                'inclusionai/ling-2.6-1t', 'inclusionai/ling-2.6-flash', 'inclusionai/llada2-uni',
+                'inclusionai/ling-2.6-1t', 'inclusionai/ling-2.6-flash', 'inclusionai/llada2-uni', 'inclusionai/ring-2.6-1t', // 2026-06-10 S67 — AAII 38
                 // iFlytek Spark (state-backed)
                 'iflytek/spark-x1', 'iflytek/spark-4-ultra', 'iflytek/spark-4', 'iflytek/antelope-3.0',
                 // 01.AI (Lee Kai-Fu)
@@ -180,7 +180,7 @@ var Sovereign = {
                 // Skywork (Kunlun)
                 'skywork/skywork-moe', 'skywork/skywork-13b', 'skywork/skywork-r1v-3', 'skywork/skywork-o1',
                 // OpenBMB MiniCPM (Tsinghua)
-                'openbmb/minicpm-4.1-8b', 'openbmb/minicpm-4-8b', 'openbmb/minicpm-3-4b',
+                'openbmb/minicpm-4.1-8b', 'openbmb/minicpm-4-8b', 'openbmb/minicpm-3-4b', 'openbmb/minicpm-5-1b', // 2026-06-10 S67 — AAII 18 leading 1B open-weights
                 'openbmb/minicpm-v-2.6', 'openbmb/minicpm-o-2.6', 'openbmb/minicpm-o-4.5',
                 // Huawei PanGu
                 'huawei/pangu-ultra-moe', 'huawei/pangu-5', 'huawei/pangu-embedding',
@@ -331,7 +331,7 @@ var Sovereign = {
             note: 'Cohere Labs (Toronto, 구 Cohere For AI) — Command A 풀라인업 + Aya 시리즈 + Cohere Transcribe',
             models: [
                 // Cohere Labs flagships
-                'cohere/command-a', 'cohere/command-a-vision', 'cohere/command-a-reasoning',
+                'cohere/command-a', 'cohere/command-a-plus', 'cohere/command-a-vision', 'cohere/command-a-reasoning', 'cohere/north-mini-code', // 2026-06-10 S67 — command-a-plus AAII 37, north-mini-code Apache 2.0 MoE 30B/3B coding-specialist
                 'cohere/command-r7b-arabic',
                 'cohere/cohere-transcribe',
                 // Aya multilingual series
@@ -590,7 +590,7 @@ var Sovereign = {
         // China — MiniMax / MiMo / StepFun
         'minimax/m2.7': '2026-03', 'minimax/m2.5': '2025-09',
         'mimo/mimo-v2-pro': '2025-12', 'mimo/mimo-v2-flash': '2025-12',
-        'stepfun/step-3.5-flash': '2025-12', 'stepfun/step-2-pro': '2024-12', 'stepfun/step-2-mini': '2024-08',
+        'stepfun/step-3.7-flash': '2026-06', 'stepfun/step-3.5-flash': '2025-12', 'stepfun/step-2-pro': '2024-12', 'stepfun/step-2-mini': '2024-08',
         // China — Baidu ERNIE
         'baidu/ernie-5.0': '2025-11', 'baidu/ernie-4.5-300b-a47b': '2025-06', 'baidu/ernie-4.5-turbo': '2025-04',
         'baidu/ernie-speed': '2024-03', 'baidu/ernie-lite': '2024-03',
@@ -618,7 +618,7 @@ var Sovereign = {
         'skywork/skywork-moe': '2024-06', 'skywork/skywork-13b': '2023-10',
         'skywork/skywork-r1v-3': '2025-04', 'skywork/skywork-o1': '2024-11',
         // China — OpenBMB MiniCPM
-        'openbmb/minicpm-4.1-8b': '2025-09', 'openbmb/minicpm-4-8b': '2025-06', 'openbmb/minicpm-3-4b': '2024-09',
+        'openbmb/minicpm-5-1b': '2026-05', 'openbmb/minicpm-4.1-8b': '2025-09', 'openbmb/minicpm-4-8b': '2025-06', 'openbmb/minicpm-3-4b': '2024-09',
         'openbmb/minicpm-v-2.6': '2024-08', 'openbmb/minicpm-o-2.6': '2025-01',
         // China — Huawei PanGu
         'huawei/pangu-ultra-moe': '2025-05', 'huawei/pangu-5': '2025-04', 'huawei/pangu-embedding': '2025-06',
@@ -637,7 +637,7 @@ var Sovereign = {
         // China — Apr 2026 sweep
         'tencent/hy3-preview': '2026-04', 'tencent/hy-world-2.0': '2026-04',
         'xiaomi/mimo-v2.5-pro': '2026-04', 'xiaomi/mimo-v2.5': '2026-04',
-        'inclusionai/ling-2.6-1t': '2026-04', 'inclusionai/ling-2.6-flash': '2026-04',
+        'inclusionai/ling-2.6-1t': '2026-04', 'inclusionai/ling-2.6-flash': '2026-04', 'inclusionai/ring-2.6-1t': '2026-05',
         'inclusionai/llada2-uni': '2026-04',
         // China — medical
         'freedomintelligence/huatuogpt-ii': '2024-05',
