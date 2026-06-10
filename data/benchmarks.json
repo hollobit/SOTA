@@ -3308,13 +3308,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "blueprint_bench_2",
-    "name": "Blueprint-Bench 2",
-    "category": "multimodal",
-    "description": "Blueprint-Bench v2 — image-to-floor-plan reasoning benchmark, version 2. Normalized score 0-100. Introduced as eval target in Gemini 3.5 Flash model card.",
-    "metric": "normalized_score"
-  },
-  {
     "id": "factorybench_l1_state",
     "name": "FactoryBench L1 — State",
     "category": "world-model",
@@ -4201,13 +4194,6 @@
     "name": "OfficeQA (full set)",
     "category": "agent",
     "description": "Databricks benchmark — end-to-end grounded reasoning over US Treasury Bulletin documents; locate tables across corpus + precise numerical reasoning. Anthropic internal agentic harness (extracted text + code-execution tools), exact-match. Harness-sensitive — not externally comparable.",
-    "metric": "accuracy_pct"
-  },
-  {
-    "id": "automation_bench",
-    "name": "AutomationBench (Zapier)",
-    "category": "agent",
-    "description": "Zapier benchmark (Shepard & Salimans, arxiv 2604.18934) — end-to-end business workflow across 47 apps. Agent discovers REST endpoints via search, makes dozens of interdependent API calls, obeys policy docs, sidesteps distractors. Private held-out leaderboard, pass/fail.",
     "metric": "accuracy_pct"
   },
   {
@@ -6071,6 +6057,55 @@
     "name": "Toolathlon Pass³ (3-trial consistency)",
     "category": "agentic",
     "description": "Toolathlon reliability metric — fraction of tasks solved in ALL 3 trials. Tests consistency of tool-use success.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "frontiercode_extended",
+    "name": "FrontierCode (Extended, full 150 tasks)",
+    "category": "coding",
+    "description": "Cognition FrontierCode Extended = full 150 SE tasks. Patch correctness rate (mean@5).",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "aa_coding_index",
+    "name": "AA Coding Index (weighted Terminal-Bench Hard + SciCode)",
+    "category": "coding",
+    "description": "Artificial Analysis Coding Index — weighted avg of Terminal-Bench Hard and SciCode.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "aa_agentic_index",
+    "name": "AA Agentic Index",
+    "category": "agentic",
+    "description": "Artificial Analysis Agentic Index — aggregate of agentic evaluations.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "gdpval_aa_elo",
+    "name": "GDPval-AA (Elo rating)",
+    "category": "agentic",
+    "description": "GDPval-AA Elo rating from pairwise comparisons of model outputs on 220 GDPval gold tasks across 44 occupations / 9 industries.",
+    "metric": "elo"
+  },
+  {
+    "id": "blueprint_bench_2",
+    "name": "Blueprint-Bench 2",
+    "category": "multimodal",
+    "description": "Blueprint-Bench 2 — multimodal blueprint reasoning evaluation.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "automation_bench",
+    "name": "AutomationBench",
+    "category": "agentic",
+    "description": "AutomationBench — workflow automation evaluation.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "legal_agent_benchmark",
+    "name": "Legal Agent Benchmark",
+    "category": "agentic",
+    "description": "Legal Agent Benchmark — legal-domain agentic tasks.",
     "metric": "score_0_100"
   },
   {
