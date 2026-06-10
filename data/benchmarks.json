@@ -6830,6 +6830,76 @@
     "metric": "score_0_1"
   },
   {
+    "id": "smac_talk_5v5_no_comm",
+    "name": "SMAC-Talk 5v5 no_comm",
+    "category": "agentic",
+    "description": "SMAC-Talk 5v5 cooperative StarCraft II scenario, no inter-agent communication; 100 episodes vs Game AI level 1. Win rate reported for the Reasoning agent (Qwen3.5 internal thinking, 1024-token budget).",
+    "metric": "win_rate_0_1"
+  },
+  {
+    "id": "smac_talk_5v5_comm",
+    "name": "SMAC-Talk 5v5 comm",
+    "category": "agentic",
+    "description": "SMAC-Talk 5v5 cooperative scenario with free natural-language inter-agent communication; 100 episodes. Reasoning agent win rate.",
+    "metric": "win_rate_0_1"
+  },
+  {
+    "id": "smac_talk_5v5_kdc",
+    "name": "SMAC-Talk 5v5 KDC",
+    "category": "agentic",
+    "description": "SMAC-Talk 5v5 with Known Deceptive Communicator: an additional allied agent broadcasts deceptive messages and team is informed. Tests robustness to known unreliable communication. Reasoning agent win rate over 100 episodes.",
+    "metric": "win_rate_0_1"
+  },
+  {
+    "id": "smac_talk_5v5_udc",
+    "name": "SMAC-Talk 5v5 UDC",
+    "category": "agentic",
+    "description": "SMAC-Talk 5v5 with Unknown Deceptive Communicator: deceptive ally present but team is NOT informed. Tests vulnerability to deceptive but plausible messages. Reasoning agent win rate over 100 episodes.",
+    "metric": "win_rate_0_1"
+  },
+  {
+    "id": "smac_talk_10v10_no_comm",
+    "name": "SMAC-Talk 10v10 no_comm",
+    "category": "agentic",
+    "description": "SMAC-Talk 10v10 cooperative scenario, no communication. Tests coordination at larger team scale. Reasoning agent win rate over 100 episodes.",
+    "metric": "win_rate_0_1"
+  },
+  {
+    "id": "smac_talk_10v10_comm",
+    "name": "SMAC-Talk 10v10 comm",
+    "category": "agentic",
+    "description": "SMAC-Talk 10v10 with free communication. Reasoning agent win rate over 100 episodes.",
+    "metric": "win_rate_0_1"
+  },
+  {
+    "id": "smac_talk_10v10_kdc",
+    "name": "SMAC-Talk 10v10 KDC",
+    "category": "agentic",
+    "description": "SMAC-Talk 10v10 Known Deceptive Communicator scenario. Reasoning agent win rate over 100 episodes.",
+    "metric": "win_rate_0_1"
+  },
+  {
+    "id": "smac_talk_10v10_udc",
+    "name": "SMAC-Talk 10v10 UDC",
+    "category": "agentic",
+    "description": "SMAC-Talk 10v10 Unknown Deceptive Communicator scenario. Reasoning agent win rate over 100 episodes.",
+    "metric": "win_rate_0_1"
+  },
+  {
+    "id": "errorquake_b_slope",
+    "name": "ERRORQUAKE-10K (severity tail-slope b)",
+    "category": "robustness",
+    "description": "Per-model fit of log10 N(M>=m) = a - b*m on a 0.0-4.0 severity scale across 10,000 queries (8 domains x 5 difficulty tiers). Higher b = lighter tail (fewer catastrophic fabrications); lower b = heavier tail (more order-of-magnitude failures). Dual-judge 8-model round-robin scoring validated against 519-item 3-rater human study (ICC=0.85, judge-vs-human rank rho=0.89). 95% CIs from n=2000 bootstrap resamples.",
+    "metric": "Gutenberg-Richter upper-tail slope b of error-severity distribution"
+  },
+  {
+    "id": "errorquake_error_rate_lower_better",
+    "name": "ERRORQUAKE-10K error rate (ε)",
+    "category": "robustness",
+    "description": "Scalar error rate epsilon on the 10K-query benchmark. Lower is better. Reported alongside b to demonstrate the matched-accuracy discriminator: 85/210 model pairs have disjoint 95% b CIs at |Δε| < 0.05.",
+    "metric": "error_rate_lower_better"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",
