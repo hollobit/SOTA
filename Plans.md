@@ -1,12 +1,11 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 70 — Gemini 3.5 Audio + Mythos cyber (2026-06-10)
-**1,689 models · 1,471 benchmarks · 7,544 scores · 🌍 5 NEW SOTAs (HLE no-tools + 4 cyber benches)**
+## Current Status: Session 71 — Mythos 5 cyber PDF deep mine (2026-06-10)
+**1,689 models · 1,477 benchmarks · 7,563 scores · 🌍 12 NEW cyber SOTAs (PDF §3.x deep mine)**
 
-### 2026-06-10 Session 70 — Gemini 3.5 Audio + Mythos cyber + HLE/HealthBench Pro
-- **🌍 HLE no-tools NEW SOTA**: Mythos 5 **59.0** (was Mythos Preview 56.8, +2.2pp). Beats Opus 4.8 49.8, Gemini 3.1 Pro 44.4, GPT-5.5 41.4. HLE with-tools 64.5 RETROGRADE vs Preview 64.7. NEW google/gemini-3.5-audio (Live Translate, 2026-06-09): Gemini 3 Pro base, 70+ langs, 128K audio / 64K text
-- **🌍 4 NEW cyber benches + SOTAs** (SecurityWeek Mythos Preview): firefox_148_149_poc 14/18 (Opus 4.8 11, first 12min) / firefox_148_149_full_exploit 8/18 (1hr→12hr, 3M tokens) / windows_kernel_jan_feb_2026_bsod 18/21 (Opus 4.8 15, Sonnet 4.6/Opus 4.7 13) / windows_kernel_privesc 8/21 ($15.7K, $2K each, FULL CHAIN). **"N-days→N-hours"** threat model
-- **Backfill**: HealthBench Pro Mythos 5 66 (nexgene 80.2 still #1), AutomationBench GPT-5.5 12.9 / Gemini 3.1 Pro 9.6, Legal Agent Opus 4.8 10.4 / GPT-5.5 2.1 / Gemini 3.1 Pro 0.0, Blueprint-Bench 2 GPT-5.5 36.2 / Gemini 3.1 Pro 26.5, GDPval-AA Elo Gemini 3.1 Pro 1314. **+2/+4/+24** = 1689/1471/7544
+### 2026-06-10 Sessions 70-71 (compressed)
+- S71 PDF §3.2.x cyber deep mine (S65 entirely missed): 🌍 **12 NEW cyber SOTAs**. Firefox 147 Mythos 5 88.4% full exploit (221/250, was Preview 70.8, **Opus 4.8 only 8.8% — 10x gap**). CyberGym targeted_repro 83.8 + any_crash 99.4 EFFECTIVELY SATURATED. OSS-Fuzz progress_rate 80 + write_primitive 32.4 + tier5 13. ExploitBench mean_score 10.44 + autonudge 10.75. UK AISI doing_life 21/23 + last_ones 60% ("Mythos 5 more proficient than any publicly available model"). Fable 5 cyber_classifier_block 99.3% (407/410). 6 NEW benches. **+0/+6/+19** = 1689/1477/7563
+- S70 🌍 HLE no-tools 59 + NEW gemini-3.5-audio + gemini-cli + 🌍 4 cyber benches (SecurityWeek): firefox_148_149 PoC 14 + exploit 8, windows BSOD 18 + priv-esc 8 ($15.7K). HealthBench Pro/Legal Agent backfill. **+2/+4/+24** = 1689/1471/7544
 
 ### 2026-06-10 Session 69 — Leaderboard sweep R4 (compressed)
 - 6 NEW audio/T2I vendors: bytedance/hidream-o1-image-1.5 (T2I #3 Elo 1265) · mistral/voxtral-small-transcribe ASR 2.8% / cohere/transcribe-03-2026 4.6% / xai/grok-speech-to-text 4.0% / gladia/solaria-1 4.1% / amazon/transcribe 4.1%. AA TTS Arena refresh: Fun-Realtime-TTS 1231→1228 holds #1. ASR backfills qwen3.5-omni-plus 3.5% + universal-3-pro 3.1%. **+6/+0/+6** = 1688/1467/7520

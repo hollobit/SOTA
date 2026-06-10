@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "session": "Session 71 — Mythos 5 cyber benchmarks deep re-mine (PDF section 3.x)",
+    "date": "2026-06-10",
+    "sources": [
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §3.2.1 ExploitBench (41 V8 vulns)",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §3.2.2 OSS-Fuzz",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §3.2.3 CyberGym (1507 tasks)",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §3.2.4 Firefox 147 (50 categories × 5 trials)",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §3.2.5 UK AISI Cyber Ranges",
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf §8.16.4 BenchCAD Vision2Code"
+    ],
+    "notes": "Deep mine of PDF section 3.x cyber capability evaluations (S65 missed entirely). 🌍 6 NEW SOTAs on existing cyber benchmarks (firefox_147_full_exploit 88.4 vs Preview 70.8 → +17.6pp / firefox_147_exploits 221 vs 181 / cybergym_targeted_repro 83.8 vs 83.1 / oss_fuzz_progress_rate 80 vs 76.7 / oss_fuzz_tier5 13 vs 10 / exploitbench_mean_score 10.44 vs 9.9). 🌍 6 NEW cyber benchmarks (exploitbench_mean_flags_autonudge / cybergym_any_crash / oss_fuzz_write_primitive / uk_aisi_doing_life_max_step / uk_aisi_last_ones_success_rate / fable_5_cyber_classifier_block_rate). KEY THREAT FINDINGS: Mythos 5 Firefox exploit gen 10x Opus 4.8 (88.4% vs 8.8%). CyberGym 99.4% any crash (effectively saturated). UK AISI: Mythos 5 'more proficient than any publicly available model' at small enterprise network attack. Fable 5 cyber classifier 407/410 episodes flagged (99.3% block rate, avg 27 turns)."
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "exploitbench_mean_flags_autonudge",
+      "name": "ExploitBench Mean Capability Flags (AutoNudge arm)",
+      "category": "cybersecurity",
+      "metric": "score_higher_better",
+      "unit": "mean_flags_higher_better",
+      "description": "Mean capability flags captured per trial in AutoNudge arm (harness re-prompts if model stops early). 16 flags across 5 tiers. 41 V8 environments.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "cybergym_any_crash",
+      "name": "CyberGym Any Crash Rate (1507 tasks)",
+      "category": "cybersecurity",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "% of CyberGym tasks where model produced any crash in target (regardless of reaching targeted vuln). 1507 tasks, pass@1.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "oss_fuzz_write_primitive",
+      "name": "OSS-Fuzz ≥0.4 (Write Primitive or better)",
+      "category": "cybersecurity",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "% of OSS-Fuzz targets where model achieved at least 0.4 grade (write primitive or better, beyond just memory-safety crash).",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "uk_aisi_doing_life_max_step",
+      "name": "UK AISI 'Doing Life' Cyber Range Max Step Reached (out of 23)",
+      "category": "cybersecurity",
+      "metric": "score_higher_better",
+      "unit": "step_count_max_23",
+      "description": "UK AI Security Institute 'Doing Life' cyber range (hardened small enterprise: AV, signed traffic, no legacy protocols). Max step reached out of 23. No model has fully solved; current max is step 21.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "uk_aisi_last_ones_success_rate",
+      "name": "UK AISI 'The Last Ones' Cyber Range Success Rate (out of 10)",
+      "category": "cybersecurity",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "UK AISI 'The Last Ones' enterprise network attack simulation. End-to-end completion success rate over 10 attempts. Baseline small enterprise security.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "fable_5_cyber_classifier_block_rate",
+      "name": "Fable 5 Cyber Classifier Block Rate (ExploitBench)",
+      "category": "cybersecurity-safety",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Anthropic Fable 5 cyber-safeguard classifier — % of ExploitBench episodes flagged (causing fallback to Opus 4.8). Higher is better for safety. Avg turns until flag: 27.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    }
+  ],
+  "scores": [
+    {"model": "anthropic/claude-mythos-5", "benchmark": "firefox_147_full_exploit", "score": 88.4, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 Firefox 147 Full Working Exploit 88.4% (221/250) NEW SOTA (was Mythos Preview 70.8%, +17.6pp). Opus 4.8 only 8.8%. 10x improvement over Opus 4.8."},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "firefox_147_exploits", "score": 221, "unit": "count_higher_better", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 Firefox 147 Full Exploits 221/250 NEW SOTA (was Mythos Preview 181/250). +40 absolute"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "firefox_147_full_exploit", "score": 8.8, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 Firefox 147 Full Exploit 8.8% — frequently achieves register control but rarely full RCE"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "cybergym_targeted_repro", "score": 83.8, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 CyberGym Targeted Vuln Reproduction 83.8% NEW SOTA (was Mythos Preview 83.1%). 1507 tasks pass@1."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "cybergym_targeted_repro", "score": 78.1, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 CyberGym Targeted 78.1%"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "cybergym_any_crash", "score": 99.4, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 CyberGym Any Crash 99.4% NEW SOTA NEW bench (Mythos Preview 97.1, Opus 4.8 95.7). EFFECTIVELY SATURATED — can produce crash on ~all 1507 targets."},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "cybergym_any_crash", "score": 97.1, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos Preview CyberGym Any Crash 97.1%"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "cybergym_any_crash", "score": 95.7, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 CyberGym Any Crash 95.7%"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "oss_fuzz_progress_rate", "score": 80.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 OSS-Fuzz ≥0 (any crash) 80.0% NEW SOTA (was Mythos Preview 76.7, Opus 4.8 61.5)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "oss_fuzz_progress_rate", "score": 61.5, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 OSS-Fuzz any crash 61.5%"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "oss_fuzz_write_primitive", "score": 32.4, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 OSS-Fuzz ≥0.4 (write primitive+) 32.4% NEW SOTA NEW bench (Mythos Preview 31.1, Opus 4.8 18.2)"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "oss_fuzz_write_primitive", "score": 31.1, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos Preview OSS-Fuzz write primitive 31.1%"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "oss_fuzz_write_primitive", "score": 18.2, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 OSS-Fuzz write primitive 18.2%"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "oss_fuzz_tier5", "score": 13, "unit": "count_higher_better", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 OSS-Fuzz Tier 5 (top 1.0 score) 13 targets NEW SOTA (was Mythos Preview 12)"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "exploitbench_mean_score", "score": 10.44, "unit": "mean_flags_higher_better", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 ExploitBench Mean Flags (plain arm) 10.44 NEW SOTA (was Mythos Preview 9.9, Opus 4.8 5.56). Out of 16 total flags, 5 trials × 41 V8 envs."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "exploitbench_mean_score", "score": 5.56, "unit": "mean_flags_higher_better", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 ExploitBench Mean Flags 5.56"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "exploitbench_mean_flags_autonudge", "score": 10.75, "unit": "mean_flags_higher_better", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 ExploitBench Mean Flags AutoNudge arm 10.75 NEW SOTA NEW bench. Harness re-prompts if model stops before reaching full code execution."},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "uk_aisi_doing_life_max_step", "score": 21, "unit": "step_count_max_23", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 UK AISI Doing Life max step 21 of 23 NEW SOTA NEW bench. Hardened enterprise (AV, signed traffic). No model has fully solved. 'Reached step 21 more consistently than any other model tested' — UK AISI."},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "uk_aisi_last_ones_success_rate", "score": 60.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 UK AISI The Last Ones 6/10 = 60% NEW bench (tied with Mythos Preview). Small enterprise end-to-end network attack."},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "uk_aisi_last_ones_success_rate", "score": 60.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos Preview UK AISI The Last Ones 6/10 = 60%"},
+
+    {"model": "anthropic/claude-fable-5", "benchmark": "fable_5_cyber_classifier_block_rate", "score": 99.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Fable 5 cyber classifier block rate 99.3% (407/410 ExploitBench episodes flagged, avg 27 turns until flag). NEW Fable 5 specific safeguard metric — only 3 episodes slipped through cyber classifier."},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "benchcad_vision2code", "score": 0.384, "unit": "voxel_iou", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 BenchCAD Vision2Code voxel IoU 0.384 — NOT new SOTA (Gemini 3.1 Pro 0.397 leads). Above Mythos Preview 0.355, Opus 4.8 0.273"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "exploitbench_pct", "score": 78, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 ExploitBench Cap% 78 (AutoNudge, 5 trials/env, 41 V8 envs) — confirms S65 ingest. Mythos Preview 69, Opus 4.8 40."}
+  ]
+}

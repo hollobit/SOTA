@@ -6435,19 +6435,19 @@
     "notes": "Perfect Tier-1 refusal without any skill context."
   },
   "exploitbench_mean_score": {
-    "model_id": "anthropic/claude-mythos-preview",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "exploitbench_mean_score",
-    "value": 9.9,
-    "unit": "mean_0_16",
+    "value": 10.44,
+    "unit": "mean_flags_higher_better",
     "source": {
-      "type": "leaderboard",
-      "url": "https://exploitbench.ai",
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
       "date": "2026-06-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-10",
-    "notes": "Mythos AutoNudge #1 — 69% of max."
+    "notes": "🌍 Mythos 5 ExploitBench Mean Flags (plain arm) 10.44 NEW SOTA (was Mythos Preview 9.9, Opus 4.8 5.56). Out of 16 total flags, 5 trials × 41 V8 envs."
   },
   "exploitbench_pct": {
     "model_id": "anthropic/claude-mythos-5",
@@ -6455,14 +6455,14 @@
     "value": 78.0,
     "unit": "score_0_100",
     "source": {
-      "type": "leaderboard",
-      "url": "https://www.vellum.ai/blog/claude-fable-5-and-mythos-5-benchmarks-explained",
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
       "date": "2026-06-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-10",
-    "notes": "🌍 Claude Mythos 5 ExploitBench capture rate 78.0% — NEW SOTA, beats Mythos Preview (S55 SOTA 69.0) by 9pp, 2x Opus 4.8 (40%), 2.3x GPT-5.5 (34%). PDF §3.2.1 mean 10.44 capability flags across 41 V8 environments."
+    "notes": "Mythos 5 ExploitBench Cap% 78 (AutoNudge, 5 trials/env, 41 V8 envs) — confirms S65 ingest. Mythos Preview 69, Opus 4.8 40."
   },
   "textarena_trueskill_balanced": {
     "model_id": "anthropic/claude-3.5-sonnet",
@@ -8715,34 +8715,34 @@
     "notes": ""
   },
   "cybergym_targeted_repro": {
-    "model_id": "anthropic/claude-mythos-preview",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "cybergym_targeted_repro",
-    "value": 83.1,
-    "unit": "%",
+    "value": 83.8,
+    "unit": "score_0_100",
     "source": {
       "type": "pdf",
-      "url": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
       "date": "2026-06-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-10",
-    "notes": "Any-crash 97.1%. Highest in panel."
+    "notes": "🌍 Mythos 5 CyberGym Targeted Vuln Reproduction 83.8% NEW SOTA (was Mythos Preview 83.1%). 1507 tasks pass@1."
   },
   "firefox_147_full_exploit": {
-    "model_id": "anthropic/claude-mythos-preview",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "firefox_147_full_exploit",
-    "value": 70.8,
-    "unit": "%",
+    "value": 88.4,
+    "unit": "score_0_100",
     "source": {
       "type": "pdf",
-      "url": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
       "date": "2026-06-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-10",
-    "notes": ">=0.5 on 86.8%. Far ahead of all 4.x models."
+    "notes": "🌍 Mythos 5 Firefox 147 Full Working Exploit 88.4% (221/250) NEW SOTA (was Mythos Preview 70.8%, +17.6pp). Opus 4.8 only 8.8%. 10x improvement over Opus 4.8."
   },
   "exploitbench_v2_flags": {
     "model_id": "anthropic/claude-mythos-preview",
@@ -9090,19 +9090,19 @@
     "notes": "Orchestrator-with-blocking-subagents harness — highest BrowseComp config (single-agent 84.3, 5-agent team 85.4). Multi-agent productively absorbs extra token budget."
   },
   "oss_fuzz_progress_rate": {
-    "model_id": "anthropic/claude-mythos-preview",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "oss_fuzz_progress_rate",
-    "value": 76.7,
-    "unit": "%",
+    "value": 80.0,
+    "unit": "score_0_100",
     "source": {
       "type": "pdf",
-      "url": "https://cdn.sanity.io/files/4zrzovbb/website/c886650a2e96fc0925c805a1a7ca77314ccbf4a6.pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
       "date": "2026-06-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-10",
-    "notes": "Failed on only 23.3% of targets. Scored 1.0 on 12 targets, 0.8 on 4, 0.6 on 7, 0.4 on 28.3%, 0.2 on 45.6%. Far ahead of both Opus 4.x."
+    "notes": "🌍 Mythos 5 OSS-Fuzz ≥0 (any crash) 80.0% NEW SOTA (was Mythos Preview 76.7, Opus 4.8 61.5)"
   },
   "ruler_128k": {
     "model_id": "subquadratic/subq-1m-preview",
@@ -12958,6 +12958,126 @@
     "is_sota": true,
     "collected_at": "2026-06-10",
     "notes": "🌍 Mythos Preview Windows kernel: 8 of 21 FULL CHAIN priv-esc exploits in 18 hours. $15,700 API ($2K each). NEW SOTA NEW bench — first model to complete priv-esc chains on undisclosed Windows kernel vulns."
+  },
+  "firefox_147_exploits": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "firefox_147_exploits",
+    "value": 221.0,
+    "unit": "count_higher_better",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 Firefox 147 Full Exploits 221/250 NEW SOTA (was Mythos Preview 181/250). +40 absolute"
+  },
+  "cybergym_any_crash": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "cybergym_any_crash",
+    "value": 99.4,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 CyberGym Any Crash 99.4% NEW SOTA NEW bench (Mythos Preview 97.1, Opus 4.8 95.7). EFFECTIVELY SATURATED — can produce crash on ~all 1507 targets."
+  },
+  "oss_fuzz_write_primitive": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "oss_fuzz_write_primitive",
+    "value": 32.4,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 OSS-Fuzz ≥0.4 (write primitive+) 32.4% NEW SOTA NEW bench (Mythos Preview 31.1, Opus 4.8 18.2)"
+  },
+  "oss_fuzz_tier5": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "oss_fuzz_tier5",
+    "value": 13.0,
+    "unit": "count_higher_better",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 OSS-Fuzz Tier 5 (top 1.0 score) 13 targets NEW SOTA (was Mythos Preview 12)"
+  },
+  "exploitbench_mean_flags_autonudge": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "exploitbench_mean_flags_autonudge",
+    "value": 10.75,
+    "unit": "mean_flags_higher_better",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 ExploitBench Mean Flags AutoNudge arm 10.75 NEW SOTA NEW bench. Harness re-prompts if model stops before reaching full code execution."
+  },
+  "uk_aisi_doing_life_max_step": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "uk_aisi_doing_life_max_step",
+    "value": 21.0,
+    "unit": "step_count_max_23",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 UK AISI Doing Life max step 21 of 23 NEW SOTA NEW bench. Hardened enterprise (AV, signed traffic). No model has fully solved. 'Reached step 21 more consistently than any other model tested' — UK AISI."
+  },
+  "uk_aisi_last_ones_success_rate": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "uk_aisi_last_ones_success_rate",
+    "value": 60.0,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Mythos 5 UK AISI The Last Ones 6/10 = 60% NEW bench (tied with Mythos Preview). Small enterprise end-to-end network attack."
+  },
+  "fable_5_cyber_classifier_block_rate": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "fable_5_cyber_classifier_block_rate",
+    "value": 99.3,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Fable 5 cyber classifier block rate 99.3% (407/410 ExploitBench episodes flagged, avg 27 turns until flag). NEW Fable 5 specific safeguard metric — only 3 episodes slipped through cyber classifier."
   },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
@@ -16933,36 +17053,6 @@
     "is_sota": true,
     "collected_at": "2026-04-28",
     "notes": "Long-context 256K-1M — Opus 4.6 38.7, GPT-5.4 21.4"
-  },
-  "oss_fuzz_tier5": {
-    "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "oss_fuzz_tier5",
-    "value": 10.0,
-    "unit": "count",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://red.anthropic.com/2026/mythos-preview/",
-      "date": "2026-04-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-28",
-    "notes": "Full control flow hijack on 10 separate fully-patched targets (count)"
-  },
-  "firefox_147_exploits": {
-    "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "firefox_147_exploits",
-    "value": 181.0,
-    "unit": "count",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://red.anthropic.com/2026/mythos-preview/",
-      "date": "2026-04-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-28",
-    "notes": "181 working exploits + 29 register control (count)"
   },
   "vuln_severity_match": {
     "model_id": "anthropic/claude-mythos-preview",
