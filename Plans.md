@@ -1,10 +1,11 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 79 — AgentDog + FACTS + Qwen-VLA (2026-06-10)
-**1,696 models · 1,558 benchmarks · 7,728 scores · 🌍 15 NEW SOTAs (FACTS Gemini 3 Pro 5 + Qwen-VLA 7 + AgentDog 2 + R-Judge Gemini 3.1 Pro)**
+## Current Status: Session 80 — Nature + Text2CAD + DELEGATE-52 (2026-06-10)
+**1,696 models · 1,565 benchmarks · 7,738 scores · 🌍 7 NEW SOTAs (DELEGATE-52 Gemini 3.1 Pro 2 + Text2CAD 4 + Automated Reviewer F1)**
 
-### 2026-06-10 Session 79 — AgentDog 1.5 + FACTS Leaderboard + Qwen-VLA
-- 3 agents 🌍 **15 NEW SOTAs**: FACTS Gemini 3 Pro Score 68.8 / Parametric 76.4 / Search 83.8 + Gemini 2.5 Pro Grounding v2 74.2 + Multimodal 46.9. Qwen-VLA-Instruct LIBERO 97.9 (ABot-M0 98.6 leads), Simpler-WidowX 73.7, RoboTwin-Hard 87.2, R2R Navigation 57.5, DOMINO SR 26.6. ALOHA pretrain in-domain 83.6 + OOD 76.9 (π0.5 41.5 = 1.85x lift). AgentDog 1.5-4B-U ATBench 78.4 (beats GPT-5.4 73.7) + 4B Fine-Grained 55.2. Gemini 3.1 Pro R-Judge 97.3. **+5/+15/+18** = 1696/1558/7728
+### 2026-06-10 Sessions 79-80 (compressed)
+- S80 🌍 7 NEW SOTAs: DELEGATE-52 (Microsoft 19 models) Gemini 3.1 Pro RS@20 80.9 + RS@2 96.8 (top frontier 'ready' only 11/52 domains). Text2CAD-Bench: DeepSeek-V3.2 L4 Overall 8.26 / GPT-5.2 L1 Geo CD 44.31 + IoU 0.59 / Gemini 3 Flash L4 IR 17%. Sakana Automated Reviewer Pre-cutoff F1 0.62 (Human 0.49)
+- S79 🌍 15 NEW SOTAs: FACTS Google dominance (Gemini 3 Pro Score 68.8 / Parametric 76.4 / Search 83.8 + Gemini 2.5 Pro Grounding 74.2 + Multimodal 46.9). Qwen-VLA-Instruct LIBERO 97.9 (ABot-M0 98.6), Simpler-WidowX 73.7, RoboTwin-Hard 87.2, R2R 57.5, DOMINO 26.6, ALOHA pretrain 83.6+76.9 (1.85x π0.5 lift). AgentDog 1.5-4B-U ATBench 78.4 + Fine-Grained 55.2. Gemini 3.1 Pro R-Judge 97.3. **+5/+22/+28** cumulative = 1696/1565/7738
 
 ### 2026-06-10 Sessions 77-78 (compressed)
 - S78 🌍 9 NEW SOTAs: DSPV2-671B FormalMATH-All 28.31 / Lite 61.88 / ProverBench 59.1 / MiniF2F p@8192 88.9. BenchCAD Qwen3-VL-2B RL-IID Vision2Code 0.7682 (CAD specialist > Gemini 3.1 Pro 0.397 general) / GPT-5.3 CodeEdit 0.865 / Gemini 3.1 Pro VisionQA 0.587 + CodeQA 0.838. o3 MedQA TTS 93.3
@@ -195,6 +196,5 @@ BMT/                         → Benchmark Library 카탈로그 (2,559 엔트리
 | 파일 | 내용 |
 |-----|-----|
 | `resource/*scores_2026_*.json` | 원천 시드 + LM Council |
-| `data/export/{models,benchmarks}.json` | 빌드된 모델/벤치마크 카탈로그 |
-| `data/export/scores/current.json` · `sota.json` · `history/YYYY-MM-DD.json` | 점수·SOTA·일별 스냅샷 |
+| `data/export/{models,benchmarks,scores/current,sota}.json` · `history/*.json` | 모델/벤치/점수/SOTA + 일별 스냅샷 |
 | `data/bmt_connections.json` / `bmt_catalog.json` | BMT 매핑 + 카탈로그 (2,559개) |
