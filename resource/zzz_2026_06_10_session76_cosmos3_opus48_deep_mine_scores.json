@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "session": "Session 76 — Cosmos 3 + Opus 4.8 system card deep parallel mining",
+    "date": "2026-06-10",
+    "sources": [
+      "/Users/user/git/cyber/resource/cosmos3_technical_report.pdf (Tables 1, 10-20, 26-33)",
+      "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf (Tables 2.2.3.B, 8.x, 5.x)"
+    ],
+    "notes": "Parallel agents mined Cosmos 3 (48 reasoner benches × 3 sizes + Cosmos HUE T2V/I2V + Physics-IQ + RoboLab/DROID + LIBERO + Forward/Inverse Dynamics) and Opus 4.8 (Virology Task 2 e2e, DNA evasion, AAV, Black-box RNA, BioPipelineBench, BBQ, SHADE-Arena, Single-turn safeguards, ART prompt injection k=100). 15+ NEW SOTAs."
+  },
+  "models": [],
+  "benchmarks": [
+    {"id": "cosmos3_reasoner_general_avg", "name": "Cosmos 3 Reasoner — General Average (19 benches)", "category": "physical-ai-reasoning", "metric": "score_0_100", "unit": "score_0_100", "description": "Average over 19 general reasoning benchmarks from Cosmos 3 Tech Report.", "source_url": "https://www.nvidia.com/cosmos3"},
+    {"id": "cosmos3_reasoner_robotics_avg", "name": "Cosmos 3 Reasoner — Robotics Average (17 benches)", "category": "physical-ai-reasoning", "metric": "score_0_100", "unit": "score_0_100", "description": "Average over 17 robotics reasoning benchmarks from Cosmos 3.", "source_url": "https://www.nvidia.com/cosmos3"},
+    {"id": "cosmos3_reasoner_smart_infra_avg", "name": "Cosmos 3 Reasoner — Smart Infrastructure Avg (9)", "category": "physical-ai-reasoning", "metric": "score_0_100", "unit": "score_0_100", "description": "Average over 9 smart infrastructure benchmarks.", "source_url": "https://www.nvidia.com/cosmos3"},
+    {"id": "cosmos3_reasoner_driving_avg", "name": "Cosmos 3 Reasoner — Driving Average (3)", "category": "physical-ai-reasoning", "metric": "score_0_100", "unit": "score_0_100", "description": "Average over 3 driving reasoning benchmarks.", "source_url": "https://www.nvidia.com/cosmos3"},
+    {"id": "virology_task2_e2e", "name": "Long-form Virology Task 2 End-to-End", "category": "life-sciences", "metric": "score_0_1", "unit": "score_0_1", "description": "End-to-end virology Task 2 score (Opus 4.8 vs Mythos Preview).", "source_url": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "vct_virology_capabilities_test", "name": "VCT (Virology Capabilities Test)", "category": "life-sciences", "metric": "score_0_1", "unit": "score_0_1", "description": "Virology Capabilities Test — bio risk capability metric.", "source_url": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "black_box_rna_design_top", "name": "Black-box RNA Design Score (top)", "category": "life-sciences", "metric": "score_higher_better", "unit": "score_higher_better", "description": "Black-box RNA Design top score (Bio capability metric, higher better).", "source_url": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "biopipelinebench_verified", "name": "BioPipelineBench Verified", "category": "life-sciences", "metric": "score_0_100", "unit": "score_0_100", "description": "BioPipelineBench verified subset.", "source_url": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "bbq_disambiguated_acc", "name": "BBQ Disambiguated Accuracy", "category": "bias-safety", "metric": "score_0_100", "unit": "score_0_100", "description": "BBQ (Bias Benchmark for Question Answering) Disambiguated accuracy.", "source_url": "https://arxiv.org/abs/2110.08193"},
+    {"id": "bbq_ambiguous_acc", "name": "BBQ Ambiguous Accuracy", "category": "bias-safety", "metric": "score_0_100", "unit": "score_0_100", "description": "BBQ Ambiguous accuracy.", "source_url": "https://arxiv.org/abs/2110.08193"},
+    {"id": "shade_arena_side_task_references_lower_better", "name": "SHADE-Arena Side-Task References in Reasoning (lower better)", "category": "alignment-safety", "metric": "score_lower_better", "unit": "score_lower_better", "description": "SHADE-Arena: % of max-effort runs where side-task references appear in reasoning. Lower is better (less manipulation).", "source_url": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "art_k100_no_thinking_lower_better", "name": "ART Indirect Prompt Injection k=100 (no thinking, lower better)", "category": "cybersecurity-safety", "metric": "score_lower_better", "unit": "score_lower_better", "description": "Agent Red Teaming k=100 attack success rate without extended thinking. Lower is better.", "source_url": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "single_turn_harmful_api_acc", "name": "Single-Turn Harmful Request Refusal Accuracy (API)", "category": "safety", "metric": "score_0_100", "unit": "score_0_100", "description": "% of harmful single-turn prompts correctly refused via API.", "source_url": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "child_safety_multiturn_api", "name": "Child Safety Multi-Turn API Refusal", "category": "safety", "metric": "score_0_100", "unit": "score_0_100", "description": "Multi-turn child safety refusal rate via API.", "source_url": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf"},
+    {"id": "aav_swissprot_acc", "name": "AAV SwissProt (no PLM)", "category": "life-sciences", "metric": "score_0_1", "unit": "score_0_1", "description": "Adeno-Associated Virus capsid design — SwissProt corpus, no PLM baseline.", "source_url": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf"}
+  ],
+  "scores": [
+    {"model": "nvidia/cosmos3-super", "benchmark": "cosmos3_reasoner_general_avg", "score": 73.7, "unit": "score_0_100", "_source": "https://www.nvidia.com/cosmos3", "_note": "🌍 Cosmos 3 Super Reasoner General Avg 73.7 NEW SOTA NEW bench. Mean over 19 benchmarks. Lead vs Nano 69.6 (+4.1pp) and Edge 53.1 (+20.6pp)"},
+    {"model": "nvidia/cosmos3-nano", "benchmark": "cosmos3_reasoner_general_avg", "score": 69.6, "unit": "score_0_100", "_source": "https://www.nvidia.com/cosmos3", "_note": "Cosmos 3 Nano Reasoner General 69.6"},
+    {"model": "nvidia/cosmos3-edge", "benchmark": "cosmos3_reasoner_general_avg", "score": 53.1, "unit": "score_0_100", "_source": "https://www.nvidia.com/cosmos3", "_note": "Cosmos 3 Edge Reasoner General 53.1"},
+
+    {"model": "nvidia/cosmos3-super", "benchmark": "cosmos3_reasoner_robotics_avg", "score": 57.8, "unit": "score_0_100", "_source": "https://www.nvidia.com/cosmos3", "_note": "🌍 Cosmos 3 Super Reasoner Robotics Avg 57.8 NEW SOTA NEW bench (17 benches mean)"},
+    {"model": "nvidia/cosmos3-nano", "benchmark": "cosmos3_reasoner_robotics_avg", "score": 55.1, "unit": "score_0_100", "_source": "https://www.nvidia.com/cosmos3", "_note": "Cosmos 3 Nano Reasoner Robotics 55.1"},
+    {"model": "nvidia/cosmos3-edge", "benchmark": "cosmos3_reasoner_robotics_avg", "score": 39.3, "unit": "score_0_100", "_source": "https://www.nvidia.com/cosmos3", "_note": "Cosmos 3 Edge Reasoner Robotics 39.3"},
+
+    {"model": "nvidia/cosmos3-super", "benchmark": "cosmos3_reasoner_smart_infra_avg", "score": 62.6, "unit": "score_0_100", "_source": "https://www.nvidia.com/cosmos3", "_note": "🌍 Cosmos 3 Super Reasoner Smart-Infra 62.6 NEW SOTA NEW bench (9 benches mean)"},
+    {"model": "nvidia/cosmos3-nano", "benchmark": "cosmos3_reasoner_smart_infra_avg", "score": 61.0, "unit": "score_0_100", "_source": "https://www.nvidia.com/cosmos3", "_note": "Cosmos 3 Nano Smart-Infra 61.0"},
+
+    {"model": "nvidia/cosmos3-super", "benchmark": "cosmos3_reasoner_driving_avg", "score": 79.3, "unit": "score_0_100", "_source": "https://www.nvidia.com/cosmos3", "_note": "🌍 Cosmos 3 Super Reasoner Driving 79.3 NEW SOTA NEW bench (3 benches mean)"},
+    {"model": "nvidia/cosmos3-nano", "benchmark": "cosmos3_reasoner_driving_avg", "score": 76.0, "unit": "score_0_100", "_source": "https://www.nvidia.com/cosmos3", "_note": "Cosmos 3 Nano Driving 76.0"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "virology_task2_e2e", "score": 0.94, "unit": "score_0_1", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "🌍 Mythos Preview Virology Task 2 End-to-End 0.94 NEW SOTA NEW bench (Opus 4.8 0.89)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "virology_task2_e2e", "score": 0.89, "unit": "score_0_1", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Opus 4.8 Virology Task 2 End-to-End 0.89"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "vct_virology_capabilities_test", "score": 0.574, "unit": "score_0_1", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "🌍 Mythos Preview VCT 0.574 NEW SOTA NEW bench (Opus 4.8 0.470, Opus 4.7 0.5)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "vct_virology_capabilities_test", "score": 0.470, "unit": "score_0_1", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Opus 4.8 VCT 0.470"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "black_box_rna_design_top", "score": 11.22, "unit": "score_higher_better", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "🌍 Mythos Preview Black-box RNA Design top 11.22 NEW SOTA NEW bench"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "black_box_rna_design_top", "score": 10.06, "unit": "score_higher_better", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Opus 4.8 RNA Design top 10.06"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "biopipelinebench_verified", "score": 88.1, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "🌍 Mythos Preview BioPipelineBench Verified 88.1 NEW SOTA NEW bench (Opus 4.8 87.7)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "biopipelinebench_verified", "score": 87.7, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Opus 4.8 BioPipelineBench 87.7"},
+
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "bbq_disambiguated_acc", "score": 88.1, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "🌍 Sonnet 4.6 BBQ Disambiguated 88.1 NEW SOTA NEW bench (best, Mythos 84.6, Opus 4.7 81.3, Opus 4.8 72.1)"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "bbq_disambiguated_acc", "score": 84.6, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Mythos Preview BBQ Disambiguated 84.6"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "bbq_disambiguated_acc", "score": 72.1, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Opus 4.8 BBQ Disambiguated 72.1 — Sonnet 4.6 better at unbiased question-answering than Opus tier"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "bbq_ambiguous_acc", "score": 100.0, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "🌍 Mythos Preview BBQ Ambiguous 100.0 NEW SOTA NEW bench (perfect, refuses to answer biased ambiguous questions)"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "shade_arena_side_task_references_lower_better", "score": 21, "unit": "score_lower_better", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "🌍 Mythos Preview SHADE-Arena Side-Task References 21% (lower better) NEW SOTA NEW bench. Opus 4.8 93%, Sonnet 4.6 99% — Mythos vastly less likely to reveal side-task during reasoning"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "shade_arena_side_task_references_lower_better", "score": 93, "unit": "score_lower_better", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Opus 4.8 SHADE-Arena Side-Task References 93%"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "art_k100_no_thinking_lower_better", "score": 4.8, "unit": "score_lower_better", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "🌍 Opus 4.7 ART k=100 no-thinking 4.8% NEW SOTA NEW bench (lower better). Opus 4.8 14.4, Sonnet 4.6 20.7"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "art_k100_no_thinking_lower_better", "score": 14.4, "unit": "score_lower_better", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Opus 4.8 ART k=100 no-thinking 14.4"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "art_k100_no_thinking_lower_better", "score": 20.7, "unit": "score_lower_better", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Sonnet 4.6 ART k=100 no-thinking 20.7"},
+
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "single_turn_harmful_api_acc", "score": 98.18, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "🌍 Sonnet 4.6 Single-Turn Harmful API 98.18 NEW SOTA NEW bench (Opus 4.8 97.98, Mythos 97.23)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "single_turn_harmful_api_acc", "score": 97.98, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Opus 4.8 Single-Turn Harmful API 97.98"},
+
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "child_safety_multiturn_api", "score": 95.0, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "🌍 Sonnet 4.6 Child Safety Multi-Turn 95% NEW SOTA NEW bench (Opus 4.8 91, Mythos 88, Opus 4.7 83)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "child_safety_multiturn_api", "score": 91.0, "unit": "score_0_100", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Opus 4.8 Child Safety Multi-Turn 91"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "aav_swissprot_acc", "score": 0.834, "unit": "score_0_1", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "🌍 Mythos Preview AAV SwissProt (no PLM) 0.834 NEW SOTA NEW bench (Opus 4.8 0.748)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "aav_swissprot_acc", "score": 0.748, "unit": "score_0_1", "_source": "/Users/user/git/cyber/resource/claude_opus_4_8_system_card.pdf", "_note": "Opus 4.8 AAV SwissProt 0.748"}
+  ]
+}

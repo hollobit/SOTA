@@ -1,17 +1,16 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 75 — Parallel 4-PDF mining (2026-06-10)
-**1,689 models · 1,514 benchmarks · 7,650 scores · 🌍 20 NEW SOTAs (Goedel-Prover-V2 extended + Gemini 3 Pro Med + GPT-5.5 + Step-Audio-R1.5)**
+## Current Status: Session 76 — Cosmos 3 + Opus 4.8 deep mine (2026-06-10)
+**1,689 models · 1,528 benchmarks · 7,682 scores · 🌍 15 NEW SOTAs (Cosmos 3 4 reasoner avgs + Mythos Preview bio/safety 11 SOTAs)**
 
-### 2026-06-10 Session 75 — Parallel 4-PDF mining (Goedel-Prover + MedGemma 1.5 + GPT-5.5 + Step-Audio)
-- 4 parallel agents extracted from MedGemma-1.5 Tables 3+4, GPT-5.5 System Card, Goedel-Prover-V2 paper, Step-Audio-R1.5 tech report. 🌍 **20 NEW SOTAs**:
-  - **Goedel-Prover-V2-32B**: MiniF2F pass@32 extended self-correction **92.7** NEW (was 90.4). pass@1024 92.6. PutnamBench solved **86/644** pass@184 NEW bench (beats DeepSeek-Prover-V2 47)
-  - **Gemini 3 Pro 의료 도메인 4 SOTAs**: MedQA **95.1** (was MedGemma 27B 87.7) / MedMCQA **86.1** (was OpenBioLLM 74.3) / MMLU Med **88.1** (was MedGemma 27B 87.0) / PubMedQA **82.2** (was Med-PaLM 2 81.8)
-  - **Gemini 3 Pro Audio 5 SOTAs**: 8-bench Avg **79.67** / Audio MultiChallenge **66.37** / MMSU **83.70** / Spoken MQA **96.56** / Step-Caption **75.55**. Step-Audio-R1.5 32B Avg 77.97 #2
-  - **GPT-5.5 Cyber + Bio 5 SOTAs**: UK AISI Cyber pass@5 **90.5%** (+19.1pp vs GPT-5.4) / pass@1 66.7% / Biochem reward@4 **39.26%** (GPT-5.5 Pro) / Bio Tacit Knowledge **81.67%** (exceeds expert baseline 80%) / Destructive Action Avoidance **0.90**
-  - **MedGemma 1.5 4B**: EHRNoteQA **80.4** NEW bench / 3D MRI **64.7** NEW bench
-- **25 NEW benchmarks** (medical 6 / math 3 / cyber 2 / bio 2 / audio 6 / safety 2 / etc)
-- **+0/+25/+50** = 1689/1514/7650
+### 2026-06-10 Session 76 — Parallel mining (Cosmos 3 + Opus 4.8 system card detail)
+- **Cosmos 3 Reasoner Category Averages (4 NEW SOTAs)**: Cosmos 3 Super NEW SOTA on all 4 — General Avg 73.7 (19 benches) / Robotics 57.8 (17) / Smart-Infra 62.6 (9) / Driving 79.3 (3). Nano scores 69.6/55.1/61.0/76.0
+- **Opus 4.8 bio/safety deep mine 11 NEW SOTAs**: Virology Task 2 e2e Mythos Preview **0.94** (Opus 4.8 0.89) / VCT 0.574 (Opus 4.8 0.470) / Black-box RNA Design top 11.22 / BioPipelineBench 88.1 / **Sonnet 4.6 BBQ Disambiguated 88.1** (Opus 4.8 72.1 worst) / Mythos Preview BBQ Ambiguous **100.0** perfect / SHADE-Arena Side-Task **21%** (Opus 4.8 93% — 4.4x manipulation gap) / Opus 4.7 ART k=100 no-thinking **4.8%** best / Sonnet 4.6 Single-Turn Harmful **98.18** / Child Safety Multi-Turn 95% / AAV SwissProt 0.834
+- **결정적 발견**: Sonnet 4.6 + Mythos Preview가 *safety + bias 영역에서 Opus 4.8 능가* — capability tier ≠ safety tier. Mythos Preview *SHADE-Arena 21% vs Opus 4.8 93%* = 4.4x 덜 manipulation 노출
+- **+0/+15/+32** = 1689/1528/7682
+
+### 2026-06-10 Session 75 — Parallel 4-PDF mining (compressed)
+- 🌍 20 NEW SOTAs: Goedel-Prover-V2-32B extended MiniF2F 92.7 (was 90.4). Gemini 3 Pro Med 4 SOTAs (MedQA 95.1 / MedMCQA 86.1 / MMLU Med 88.1 / PubMedQA 82.2). Gemini 3 Pro Audio 5 SOTAs. GPT-5.5 UK AISI Cyber pass@5 90.5 (+19.1pp) + Biochem 39.26 + Bio Tacit 81.67 (Pro). MedGemma 1.5 4B EHRNoteQA 80.4. 25 NEW benches. **+0/+25/+50** = 1689/1514/7650
 
 ### 2026-06-10 Session 74 — Final PDF complete mine (compressed)
 - 🌍 4 NEW SOTAs: Mythos 5 AECI **161.29** (Anthropic Effective Capability Index). Long-form virology Task 1 **0.77** (3.5x expert). Opus 4.8 unavailable-tool **95** (Mythos 5 87 regression). Mythos Preview missing-reference **94** (Mythos 5 82 regression). *Capability ↑ but hallucination resistance ↓*. 8-pass S65-S74 누적 **~81 NEW SOTAs 단일 Anthropic 출시**. **+0/+4/+8** = 1689/1493/7608
