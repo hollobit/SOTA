@@ -1,13 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 78 — 4-PDF batch parallel (2026-06-10)
-**1,691 models · 1,549 benchmarks · 7,712 scores · 🌍 9 NEW SOTAs (DSPV2 FormalMATH/ProverBench 4 + BenchCAD 4 + MedQA TTS 1)**
+## Current Status: Session 79 — AgentDog + FACTS + Qwen-VLA (2026-06-10)
+**1,696 models · 1,558 benchmarks · 7,728 scores · 🌍 15 NEW SOTAs (FACTS Gemini 3 Pro 5 + Qwen-VLA 7 + AgentDog 2 + R-Judge Gemini 3.1 Pro)**
 
-### 2026-06-10 Session 78 — 4-PDF batch (MedGemma 27B + AILuminate + DSPV2 + BenchCAD)
-- 4 parallel agents 🌍 **9 NEW SOTAs**: DSPV2-671B FormalMATH-All 28.31 / Lite 61.88 / ProverBench-All 59.1 / MiniF2F p@8192 88.9. BenchCAD Qwen3-VL-2B RL-IID Vision2Code 0.7682 (CAD specialist > Gemini 3.1 Pro 0.397 general) / GPT-5.3 thinking CodeEdit 0.865 / Gemini 3.1 Pro VisionQA 0.587 + CodeQA 0.838. o3 MedQA TTS 93.3. AILuminate methodology only. **+1/+10/+11** = 1691/1549/7712
+### 2026-06-10 Session 79 — AgentDog 1.5 + FACTS Leaderboard + Qwen-VLA
+- 3 agents 🌍 **15 NEW SOTAs**: FACTS Gemini 3 Pro Score 68.8 / Parametric 76.4 / Search 83.8 + Gemini 2.5 Pro Grounding v2 74.2 + Multimodal 46.9. Qwen-VLA-Instruct LIBERO 97.9 (ABot-M0 98.6 leads), Simpler-WidowX 73.7, RoboTwin-Hard 87.2, R2R Navigation 57.5, DOMINO SR 26.6. ALOHA pretrain in-domain 83.6 + OOD 76.9 (π0.5 41.5 = 1.85x lift). AgentDog 1.5-4B-U ATBench 78.4 (beats GPT-5.4 73.7) + 4B Fine-Grained 55.2. Gemini 3.1 Pro R-Judge 97.3. **+5/+15/+18** = 1696/1558/7728
 
-### 2026-06-10 Session 77 — Parallel mining Qwen3.5-Omni + SensorFM + Epoch Rosetta Stone (compressed)
-- 🌍 14 NEW SOTAs: Qwen3.5-Omni-Plus Audio dominance (LibriSpeech 1.11 Gemini 3.36 3x, KeSpeech 3.46 Gemini 23.67 6.8x, VoiceBench 93.1, RUL-MuchoMusic 72.4 +12.8pp). MathVista 86.9, SuperGPQA 67.4. CosyVoice 3 SEED-TTS-zh 0.71 NEW. GPT-5 Pro Epoch ECI 2.65. SensorFM-B Age 0.920 + Cardiovascular 0.712 + Insulin 0.761. **+1/+11/+19** = 1690/1539/7701
+### 2026-06-10 Sessions 77-78 (compressed)
+- S78 🌍 9 NEW SOTAs: DSPV2-671B FormalMATH-All 28.31 / Lite 61.88 / ProverBench 59.1 / MiniF2F p@8192 88.9. BenchCAD Qwen3-VL-2B RL-IID Vision2Code 0.7682 (CAD specialist > Gemini 3.1 Pro 0.397 general) / GPT-5.3 CodeEdit 0.865 / Gemini 3.1 Pro VisionQA 0.587 + CodeQA 0.838. o3 MedQA TTS 93.3
+- S77 🌍 14 NEW SOTAs: Qwen3.5-Omni-Plus Audio dominance (LibriSpeech 1.11 3x, KeSpeech 3.46 6.8x, VoiceBench 93.1, RUL-MuchoMusic 72.4). MathVista 86.9, SuperGPQA 67.4. CosyVoice 3 SEED-TTS-zh 0.71. GPT-5 Pro Epoch ECI 2.65. SensorFM-B Age 0.920 + Cardiovascular 0.712 + Insulin 0.761
 
 ### 2026-06-10 Sessions 75-76 (compressed)
 - S76 🌍 15 NEW SOTAs: Cosmos 3 Reasoner 4 categories (Super General 73.7, Robotics 57.8, Smart-Infra 62.6, Driving 79.3). Opus 4.8 bio/safety 11 SOTAs: Mythos Preview Virology Task 2 e2e 0.94 (Opus 4.8 0.89) / VCT 0.574 / Black-box RNA 11.22 / BioPipelineBench 88.1 / Sonnet 4.6 BBQ Disambiguated 88.1 (Opus 4.8 72.1) / Mythos BBQ Ambiguous 100.0 / SHADE-Arena 21% (Opus 4.8 93%, 4.4x gap) / Opus 4.7 ART k=100 4.8 / Sonnet 4.6 Single-Turn Harmful 98.18 / Child Safety 95%. *Capability ≠ Safety tier*

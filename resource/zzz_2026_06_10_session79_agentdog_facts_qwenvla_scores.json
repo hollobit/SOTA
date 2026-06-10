@@ -1,0 +1,70 @@
+{
+  "_meta": {
+    "session": "Session 79 — AgentDog 1.5 + FACTS Leaderboard + Qwen-VLA parallel mining",
+    "date": "2026-06-10",
+    "sources": [
+      "/Users/user/git/cyber/resource/agentdog_1.5_2605.29801.pdf (Shanghai AI Lab safety judge)",
+      "/Users/user/git/cyber/resource/facts_leaderboard_2512.10791.pdf (FACTS factual grounding)",
+      "/Users/user/git/cyber/resource/qwen_vla_2605.30280.pdf (Qwen-VLA robotics)"
+    ],
+    "notes": "Parallel agents extracted 3 PDFs. FACTS: Gemini 3 Pro overall dominance (Score 68.8, Search 83.8, Parametric 76.4). Qwen-VLA-Instruct robotics 8+ NEW SOTAs (LIBERO 97.9, ALOHA in-domain 83.6 + OOD 76.9, R2R navigation OS 69.0, DOMINO SR 26.6). AgentDog 1.5-4B-U ATBench 78.4 + R-Judge Gemini 3.1 Pro 97.3 NEW SOTAs."
+  },
+  "models": [
+    {"id": "shanghai-ai-lab/agentdog-1.5-4b", "name": "AgentDog 1.5-4B", "vendor": "Shanghai AI Lab", "type": "open-weight", "release_date": "2026-05", "parameters": "4B", "modalities": ["text"]},
+    {"id": "shanghai-ai-lab/agentdog-1.5-4b-u", "name": "AgentDog 1.5-4B-U (Unified)", "vendor": "Shanghai AI Lab", "type": "open-weight", "release_date": "2026-05", "parameters": "4B", "modalities": ["text"]},
+    {"id": "alibaba/qwen-vla-base", "name": "Qwen-VLA Base", "vendor": "Alibaba", "type": "open-weight", "release_date": "2026-05", "modalities": ["text", "image", "action"]},
+    {"id": "alibaba/qwen-vla-instruct", "name": "Qwen-VLA Instruct", "vendor": "Alibaba", "type": "open-weight", "release_date": "2026-05", "modalities": ["text", "image", "action"]},
+    {"id": "alibaba/qwen-vla-aloha-pretrain", "name": "Qwen-VLA-ALOHA w/ pretrain", "vendor": "Alibaba", "type": "open-weight", "release_date": "2026-05", "modalities": ["text", "image", "action"]}
+  ],
+  "benchmarks": [
+    {"id": "facts_score_aggregate", "name": "FACTS Score (aggregate)", "category": "agentic", "metric": "score_0_100", "unit": "score_0_100", "description": "Mean of 4 FACTS sub-benchmarks (Grounding v2 + Multimodal + Parametric + Search).", "source_url": "https://arxiv.org/abs/2512.10791"},
+    {"id": "facts_grounding_v2", "name": "FACTS Grounding v2", "category": "agentic", "metric": "score_0_100", "unit": "score_0_100", "description": "FACTS Grounding factuality benchmark v2.", "source_url": "https://arxiv.org/abs/2512.10791"},
+    {"id": "facts_multimodal", "name": "FACTS Multimodal", "category": "multimodal", "metric": "score_0_100", "unit": "score_0_100", "description": "FACTS multimodal factual reasoning.", "source_url": "https://arxiv.org/abs/2512.10791"},
+    {"id": "facts_parametric", "name": "FACTS Parametric Memory", "category": "agentic", "metric": "score_0_100", "unit": "score_0_100", "description": "FACTS parametric memory accuracy.", "source_url": "https://arxiv.org/abs/2512.10791"},
+    {"id": "facts_search", "name": "FACTS Search", "category": "agentic", "metric": "score_0_100", "unit": "score_0_100", "description": "FACTS search-based factuality.", "source_url": "https://arxiv.org/abs/2512.10791"},
+    {"id": "r_judge_safety", "name": "R-Judge Safety Trajectory Accuracy", "category": "agentic-safety", "metric": "score_0_100", "unit": "score_0_100", "description": "R-Judge trajectory-level safety judgment accuracy.", "source_url": "https://arxiv.org/abs/2605.29801"},
+    {"id": "atbench_safety", "name": "ATBench Safety Trajectory Accuracy", "category": "agentic-safety", "metric": "score_0_100", "unit": "score_0_100", "description": "ATBench trajectory-level safety accuracy.", "source_url": "https://arxiv.org/abs/2605.29801"},
+    {"id": "atbench_finegrained_avg", "name": "ATBench Fine-Grained Risk Diagnosis (Avg)", "category": "agentic-safety", "metric": "score_0_100", "unit": "score_0_100", "description": "ATBench fine-grained risk diagnosis average across RS/FM/RWH.", "source_url": "https://arxiv.org/abs/2605.29801"},
+    {"id": "libero_robotics", "name": "LIBERO Robotics Manipulation", "category": "vla-manipulation", "metric": "score_0_100", "unit": "score_0_100", "description": "LIBERO simulation manipulation success rate.", "source_url": "https://arxiv.org/abs/2605.30280"},
+    {"id": "simpler_widowx", "name": "Simpler-WidowX (Robotics)", "category": "vla-manipulation", "metric": "score_0_100", "unit": "score_0_100", "description": "Simpler-WidowX simulation manipulation success rate.", "source_url": "https://arxiv.org/abs/2605.30280"},
+    {"id": "robotwin_hard", "name": "RoboTwin-Hard", "category": "vla-manipulation", "metric": "score_0_100", "unit": "score_0_100", "description": "RoboTwin Hard difficulty manipulation success.", "source_url": "https://arxiv.org/abs/2605.30280"},
+    {"id": "aloha_in_domain_avg", "name": "ALOHA Real-World In-Domain Avg", "category": "vla-manipulation", "metric": "score_0_100", "unit": "score_0_100", "description": "ALOHA real-world bimanual manipulation in-domain average.", "source_url": "https://arxiv.org/abs/2605.30280"},
+    {"id": "aloha_ood_avg", "name": "ALOHA Real-World OOD Avg", "category": "vla-manipulation", "metric": "score_0_100", "unit": "score_0_100", "description": "ALOHA real-world bimanual OOD generalization average.", "source_url": "https://arxiv.org/abs/2605.30280"},
+    {"id": "r2r_navigation_sr", "name": "R2R Navigation Success Rate (VLN-CE Val-Unseen)", "category": "vla-navigation", "metric": "score_0_100", "unit": "score_0_100", "description": "Room-to-Room navigation success rate val-unseen.", "source_url": "https://arxiv.org/abs/2605.30280"},
+    {"id": "domino_dynamic_sr", "name": "DOMINO Dynamic Manipulation SR", "category": "vla-manipulation", "metric": "score_0_100", "unit": "score_0_100", "description": "DOMINO dynamic manipulation success rate.", "source_url": "https://arxiv.org/abs/2605.30280"}
+  ],
+  "scores": [
+    {"model": "google/gemini-3-pro", "benchmark": "facts_score_aggregate", "score": 68.8, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2512.10791", "_note": "🌍 Gemini 3 Pro FACTS Score 68.8 NEW SOTA NEW bench (Gemini 2.5 Pro 62.1, GPT-5 61.8)"},
+    {"model": "openai/gpt-5", "benchmark": "facts_score_aggregate", "score": 61.8, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2512.10791", "_note": "GPT-5 FACTS Score 61.8"},
+
+    {"model": "google/gemini-2.5-pro", "benchmark": "facts_grounding_v2", "score": 74.2, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2512.10791", "_note": "🌍 Gemini 2.5 Pro FACTS Grounding v2 74.2 NEW SOTA NEW bench"},
+
+    {"model": "google/gemini-2.5-pro", "benchmark": "facts_multimodal", "score": 46.9, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2512.10791", "_note": "🌍 Gemini 2.5 Pro FACTS Multimodal 46.9 NEW SOTA NEW bench (Gemini 3 Pro 46.1 close 2nd)"},
+
+    {"model": "google/gemini-3-pro", "benchmark": "facts_parametric", "score": 76.4, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2512.10791", "_note": "🌍 Gemini 3 Pro FACTS Parametric 76.4 NEW SOTA NEW bench (Gemini 2.5 Pro 63.2)"},
+
+    {"model": "google/gemini-3-pro", "benchmark": "facts_search", "score": 83.8, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2512.10791", "_note": "🌍 Gemini 3 Pro FACTS Search 83.8 NEW SOTA NEW bench (GPT-5 77.7, Grok 4 75.3)"},
+
+    {"model": "google/gemini-3.1-pro", "benchmark": "r_judge_safety", "score": 97.3, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.29801", "_note": "🌍 Gemini 3.1 Pro R-Judge 97.3 NEW SOTA NEW bench (Gemini 3 Flash 95.2, GPT-5.4 93.3, AgentDog 1.5-4B 92.2)"},
+
+    {"model": "shanghai-ai-lab/agentdog-1.5-4b-u", "benchmark": "atbench_safety", "score": 78.4, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.29801", "_note": "🌍 AgentDog 1.5-4B-U ATBench 78.4 NEW SOTA NEW bench (beats closed Gemini 3 Flash 76.4, Gemini 3.1 Pro 75.5, GPT-5.4 73.7)"},
+
+    {"model": "shanghai-ai-lab/agentdog-1.5-4b", "benchmark": "atbench_finegrained_avg", "score": 55.2, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.29801", "_note": "🌍 AgentDog 1.5-4B ATBench Fine-Grained 55.2 NEW SOTA NEW bench (GPT-5.4 25.8, others ≤16)"},
+
+    {"model": "physical-intelligence/pi-0.5", "benchmark": "libero_robotics", "score": 97.6, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.30280", "_note": "🌍 π-0.5 LIBERO 97.6 (Qwen-VLA-Instruct 97.9 ties+, ABot-M0 98.6 leads)"},
+    {"model": "alibaba/qwen-vla-instruct", "benchmark": "libero_robotics", "score": 97.9, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.30280", "_note": "Qwen-VLA-Instruct LIBERO 97.9"},
+    {"model": "amap-cvlab/abot-m0", "benchmark": "libero_robotics", "score": 98.6, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.30280", "_note": "🌍 ABot-M0 LIBERO 98.6 NEW SOTA NEW bench (highest among reported)"},
+
+    {"model": "alibaba/qwen-vla-instruct", "benchmark": "simpler_widowx", "score": 73.7, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.30280", "_note": "🌍 Qwen-VLA-Instruct Simpler-WidowX 73.7 NEW SOTA NEW bench (StarVLA-OFT 64.6, GR00T N1.6 63.2)"},
+
+    {"model": "alibaba/qwen-vla-instruct", "benchmark": "robotwin_hard", "score": 87.2, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.30280", "_note": "🌍 Qwen-VLA-Instruct RoboTwin-Hard 87.2 NEW SOTA NEW bench (ABot-M0 85.0, π0.5 76.8)"},
+
+    {"model": "alibaba/qwen-vla-aloha-pretrain", "benchmark": "aloha_in_domain_avg", "score": 83.6, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.30280", "_note": "🌍 Qwen-VLA-aloha w/ pretrain ALOHA in-domain 83.6 NEW SOTA NEW bench (π0.5 71.6, GR00T N1.6 28.6)"},
+
+    {"model": "alibaba/qwen-vla-aloha-pretrain", "benchmark": "aloha_ood_avg", "score": 76.9, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.30280", "_note": "🌍 Qwen-VLA-aloha w/ pretrain ALOHA OOD 76.9 NEW SOTA NEW bench (π0.5 41.5 = 1.85x lift)"},
+
+    {"model": "alibaba/qwen-vla-instruct", "benchmark": "r2r_navigation_sr", "score": 57.5, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.30280", "_note": "🌍 Qwen-VLA-Instruct R2R Navigation SR 57.5 NEW SOTA NEW bench (StreamVLN 56.9, NaVILA 54.0)"},
+
+    {"model": "alibaba/qwen-vla-instruct", "benchmark": "domino_dynamic_sr", "score": 26.6, "unit": "score_0_100", "_source": "https://arxiv.org/abs/2605.30280", "_note": "🌍 Qwen-VLA-Instruct DOMINO Dynamic SR 26.6 NEW SOTA NEW bench (LingBot-VA 24.1, PUMA 17.2)"}
+  ]
+}
