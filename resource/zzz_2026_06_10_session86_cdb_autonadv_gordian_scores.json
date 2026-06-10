@@ -1,0 +1,1936 @@
+{
+  "_meta": {
+    "session": "Session 86 — Cyber Defense + Autonomous Adversary + Gordian Knot",
+    "date": "2026-06-10",
+    "sources": [
+      "arxiv:2604.19533 Cyber Defense Benchmark (Agentic Threat Hunting SecOps)",
+      "arxiv:2605.06486 Autonomous Adversary (Red-Teaming)",
+      "arxiv:2605.09900 Gordian Knot for VLMs"
+    ],
+    "notes": "3 parallel cyber/VLM agents. Cyber Defense: Opus 4.6 dominates ALL 15 metrics (Coverage 0.55, Flags 4.48%, 13 MITRE tactics). Autonomous Adversary: Claude 4.5 family ties GPT-5.1 at S1 Expert 100%; Opus 4.5 wins S1 Self-Scaffolded 100% objective-level; Sonnet 4.5 S1 Fully Autonomous 80%. Gordian Knot: Opus 4.7 thinking 54.60% (GPT-5 thinking 52.25%) — 15/56 cells at-or-below random."
+  },
+  "models": [
+    {
+      "id": "anthropic/claude-opus-4.6",
+      "name": "Claude Opus 4.6",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-sonnet-4.6",
+      "name": "Claude Sonnet 4.6",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.7",
+      "name": "Claude Opus 4.7",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-pro",
+      "name": "Gemini 3.1 Pro Preview",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2026-02-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5",
+      "name": "GPT-5",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-08-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k2.6",
+      "name": "Kimi K2.6",
+      "vendor": "Moonshot AI",
+      "type": "language",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-plus",
+      "name": "Qwen3.6 Plus",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-flash",
+      "name": "Gemini 3 Flash Preview",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "minimax/minimax-m2.7",
+      "name": "MiniMax M2.7",
+      "vendor": "MiniMax",
+      "type": "language",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k2.5",
+      "name": "Kimi K2.5",
+      "vendor": "Moonshot AI",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v3.2",
+      "name": "DeepSeek V3.2",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-sonnet-4.5",
+      "name": "Claude Sonnet 4.5",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.5",
+      "name": "Claude Opus 4.5",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.1",
+      "name": "GPT-5.1",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro-preview",
+      "name": "Gemini 3 Pro Preview",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v3.2-speciale",
+      "name": "DeepSeek V3.2 Speciale",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "cdb_coverage_score",
+      "name": "CDB Coverage Score",
+      "category": "cyber",
+      "metric": "coverage_score",
+      "unit": "fraction",
+      "description": "Cyber Defense Benchmark Coverage Score: instance-weighted fraction of coverable narrative steps detected per run, averaged across 26 campaigns (Table 5).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_flags_found_pct",
+      "name": "CDB Flags Found %",
+      "category": "cyber",
+      "metric": "flags_found_pct",
+      "unit": "percent",
+      "description": "Per-run fraction of correctly submitted malicious-event timestamps (n_flags_in_submitted / total_flags) at final step (Table 5).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_defense_evasion",
+      "name": "CDB MITRE Defense Evasion Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Defense Evasion tactic, high-severity flags only (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_execution",
+      "name": "CDB MITRE Execution Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Execution tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_persistence",
+      "name": "CDB MITRE Persistence Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Persistence tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_resource_development",
+      "name": "CDB MITRE Resource Development Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Resource Development tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_command_and_control",
+      "name": "CDB MITRE Command and Control Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Command and Control tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_discovery",
+      "name": "CDB MITRE Discovery Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Discovery tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_privilege_escalation",
+      "name": "CDB MITRE Privilege Escalation Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Privilege Escalation tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_initial_access",
+      "name": "CDB MITRE Initial Access Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Initial Access tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_impact",
+      "name": "CDB MITRE Impact Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Impact tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_credential_access",
+      "name": "CDB MITRE Credential Access Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Credential Access tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_lateral_movement",
+      "name": "CDB MITRE Lateral Movement Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Lateral Movement tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_collection",
+      "name": "CDB MITRE Collection Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Collection tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "cdb_recall_exfiltration",
+      "name": "CDB MITRE Exfiltration Recall",
+      "category": "cyber",
+      "metric": "normalized_recall",
+      "unit": "fraction",
+      "description": "Normalized recall on MITRE ATT&CK Exfiltration tactic (Table 6).",
+      "source_url": "https://arxiv.org/abs/2604.19533"
+    },
+    {
+      "id": "autonadv_scenario1_expert",
+      "name": "AutonAdv Scenario-1 Expert-defined",
+      "category": "cyber",
+      "metric": "success_rate_pct",
+      "unit": "success_rate_pct",
+      "description": "Lateral movement 9-task chain, expert-defined operating mode. Per-run success rate (%) = 100 x C/T (Table 4).",
+      "source_url": "https://arxiv.org/abs/2605.06486"
+    },
+    {
+      "id": "autonadv_scenario1_selfscaffolded",
+      "name": "AutonAdv Scenario-1 Self-Scaffolded",
+      "category": "cyber",
+      "metric": "success_rate_pct",
+      "unit": "success_rate_pct",
+      "description": "Lateral movement, self-scaffolded mode. Per-run success rate (%) (Table 4).",
+      "source_url": "https://arxiv.org/abs/2605.06486"
+    },
+    {
+      "id": "autonadv_scenario1_autonomous",
+      "name": "AutonAdv Scenario-1 Fully Autonomous",
+      "category": "cyber",
+      "metric": "success_rate_pct",
+      "unit": "success_rate_pct",
+      "description": "Lateral movement, fully autonomous mode. Per-run success rate (%) (Table 4).",
+      "source_url": "https://arxiv.org/abs/2605.06486"
+    },
+    {
+      "id": "autonadv_scenario2_expert",
+      "name": "AutonAdv Scenario-2 Expert-defined",
+      "category": "cyber",
+      "metric": "success_rate_pct",
+      "unit": "success_rate_pct",
+      "description": "Cross-domain lateral-movement 10-task chain, expert-defined mode. Per-run success rate (%) (Table 6).",
+      "source_url": "https://arxiv.org/abs/2605.06486"
+    },
+    {
+      "id": "autonadv_scenario2_selfscaffolded",
+      "name": "AutonAdv Scenario-2 Self-Scaffolded",
+      "category": "cyber",
+      "metric": "success_rate_pct",
+      "unit": "success_rate_pct",
+      "description": "Cross-domain lateral-movement, self-scaffolded mode. Per-run success rate (%) (Table 6).",
+      "source_url": "https://arxiv.org/abs/2605.06486"
+    },
+    {
+      "id": "autonadv_scenario2_autonomous",
+      "name": "AutonAdv Scenario-2 Fully Autonomous",
+      "category": "cyber",
+      "metric": "success_rate_pct",
+      "unit": "success_rate_pct",
+      "description": "Cross-domain lateral-movement, fully autonomous mode. Per-run success rate (%) (Table 6).",
+      "source_url": "https://arxiv.org/abs/2605.06486"
+    },
+    {
+      "id": "knotbench",
+      "name": "KnotBench",
+      "category": "multimodal",
+      "metric": "accuracy_pct",
+      "unit": "accuracy_pct",
+      "description": "2,000-item evaluation set; 14 diagrammatic knot reasoning tasks (perception + symbolic) scored against Regina canonical signature. Accuracy %, higher is better.",
+      "source_url": "https://arxiv.org/abs/2605.09900"
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_coverage_score",
+      "score": 0.55,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5 mean±σ = 0.55±0.05. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_coverage_score",
+      "score": 0.44,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.44±0.08"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_coverage_score",
+      "score": 0.36,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.36±0.13"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_coverage_score",
+      "score": 0.22,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.22±0.13"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_coverage_score",
+      "score": 0.21,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.21±0.08"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_coverage_score",
+      "score": 0.2,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.20±0.14"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_coverage_score",
+      "score": 0.19,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.19±0.11"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_coverage_score",
+      "score": 0.18,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.18±0.08"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_coverage_score",
+      "score": 0.15,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.15±0.10"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_coverage_score",
+      "score": 0.11,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.11±0.13"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_coverage_score",
+      "score": 0.1,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.10±0.07"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_flags_found_pct",
+      "score": 4.48,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 4.48%±1.40%. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_flags_found_pct",
+      "score": 3.43,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 3.43%±1.12%"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_flags_found_pct",
+      "score": 0.91,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.91%±1.59%"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_flags_found_pct",
+      "score": 2.01,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 2.01%±1.70%"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_flags_found_pct",
+      "score": 2.24,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 2.24%±1.13%"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_flags_found_pct",
+      "score": 1.15,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 1.15%±1.06%"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_flags_found_pct",
+      "score": 2.24,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 2.24%±2.59%"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_flags_found_pct",
+      "score": 1.44,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 1.44%±0.83%"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_flags_found_pct",
+      "score": 0.98,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.98%±0.64%"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_flags_found_pct",
+      "score": 0.86,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.86%±1.09%"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_flags_found_pct",
+      "score": 0.82,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 5: 0.82%±0.79%"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_defense_evasion",
+      "score": 0.59,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_defense_evasion",
+      "score": 0.49,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_defense_evasion",
+      "score": 0.38,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_defense_evasion",
+      "score": 0.25,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_defense_evasion",
+      "score": 0.25,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_defense_evasion",
+      "score": 0.23,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_defense_evasion",
+      "score": 0.2,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_defense_evasion",
+      "score": 0.21,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_defense_evasion",
+      "score": 0.18,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_defense_evasion",
+      "score": 0.13,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_defense_evasion",
+      "score": 0.11,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_execution",
+      "score": 0.56,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_execution",
+      "score": 0.45,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_execution",
+      "score": 0.36,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_execution",
+      "score": 0.23,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_execution",
+      "score": 0.21,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_execution",
+      "score": 0.2,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_execution",
+      "score": 0.19,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_execution",
+      "score": 0.19,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_execution",
+      "score": 0.15,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_execution",
+      "score": 0.11,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_execution",
+      "score": 0.1,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_persistence",
+      "score": 0.56,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_persistence",
+      "score": 0.43,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_persistence",
+      "score": 0.34,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_persistence",
+      "score": 0.25,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_persistence",
+      "score": 0.27,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_persistence",
+      "score": 0.19,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_persistence",
+      "score": 0.21,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_persistence",
+      "score": 0.19,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_persistence",
+      "score": 0.16,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_persistence",
+      "score": 0.13,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_persistence",
+      "score": 0.14,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_resource_development",
+      "score": 0.56,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_resource_development",
+      "score": 0.44,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_resource_development",
+      "score": 0.34,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_resource_development",
+      "score": 0.26,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_resource_development",
+      "score": 0.2,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_resource_development",
+      "score": 0.2,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_resource_development",
+      "score": 0.17,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_resource_development",
+      "score": 0.21,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_resource_development",
+      "score": 0.12,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_resource_development",
+      "score": 0.14,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_resource_development",
+      "score": 0.14,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_command_and_control",
+      "score": 0.55,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_command_and_control",
+      "score": 0.45,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_command_and_control",
+      "score": 0.41,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_command_and_control",
+      "score": 0.23,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_command_and_control",
+      "score": 0.23,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_command_and_control",
+      "score": 0.21,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_command_and_control",
+      "score": 0.22,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_command_and_control",
+      "score": 0.2,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_command_and_control",
+      "score": 0.16,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_command_and_control",
+      "score": 0.12,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_command_and_control",
+      "score": 0.11,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_discovery",
+      "score": 0.54,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_discovery",
+      "score": 0.37,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_discovery",
+      "score": 0.37,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_discovery",
+      "score": 0.2,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_discovery",
+      "score": 0.24,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_discovery",
+      "score": 0.18,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_discovery",
+      "score": 0.18,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_discovery",
+      "score": 0.16,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_discovery",
+      "score": 0.15,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_discovery",
+      "score": 0.11,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_discovery",
+      "score": 0.1,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_privilege_escalation",
+      "score": 0.52,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_privilege_escalation",
+      "score": 0.41,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_privilege_escalation",
+      "score": 0.31,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_privilege_escalation",
+      "score": 0.22,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_privilege_escalation",
+      "score": 0.26,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_privilege_escalation",
+      "score": 0.2,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_privilege_escalation",
+      "score": 0.14,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_privilege_escalation",
+      "score": 0.18,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_privilege_escalation",
+      "score": 0.15,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_privilege_escalation",
+      "score": 0.11,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_privilege_escalation",
+      "score": 0.12,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_initial_access",
+      "score": 0.37,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_initial_access",
+      "score": 0.24,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_initial_access",
+      "score": 0.19,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_initial_access",
+      "score": 0.13,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_initial_access",
+      "score": 0.02,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. GPT-5 tactic blind spot."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_initial_access",
+      "score": 0.1,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_initial_access",
+      "score": 0.12,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_initial_access",
+      "score": 0.12,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_initial_access",
+      "score": 0.04,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_initial_access",
+      "score": 0.06,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_initial_access",
+      "score": 0.04,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_impact",
+      "score": 0.33,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_impact",
+      "score": 0.28,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_impact",
+      "score": 0.24,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_impact",
+      "score": 0.1,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_impact",
+      "score": 0.22,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_impact",
+      "score": 0.13,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_impact",
+      "score": 0.15,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_impact",
+      "score": 0.1,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_impact",
+      "score": 0.11,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_impact",
+      "score": 0.06,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_impact",
+      "score": 0.07,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_credential_access",
+      "score": 0.27,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_credential_access",
+      "score": 0.2,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_credential_access",
+      "score": 0.14,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_credential_access",
+      "score": 0.09,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_credential_access",
+      "score": 0.07,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_credential_access",
+      "score": 0.12,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_credential_access",
+      "score": 0.03,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_credential_access",
+      "score": 0.06,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_credential_access",
+      "score": 0.05,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_credential_access",
+      "score": 0.06,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_credential_access",
+      "score": 0.04,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_lateral_movement",
+      "score": 0.25,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_lateral_movement",
+      "score": 0.18,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_lateral_movement",
+      "score": 0.16,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_lateral_movement",
+      "score": 0.08,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_lateral_movement",
+      "score": 0.04,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. GPT-5 tactic blind spot."
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_lateral_movement",
+      "score": 0.09,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_lateral_movement",
+      "score": 0.09,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_lateral_movement",
+      "score": 0.06,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_lateral_movement",
+      "score": 0.03,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_lateral_movement",
+      "score": 0.05,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_lateral_movement",
+      "score": 0.04,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_collection",
+      "score": 0.24,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_collection",
+      "score": 0.16,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_collection",
+      "score": 0.04,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_collection",
+      "score": 0.09,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_collection",
+      "score": 0.05,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_collection",
+      "score": 0.07,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_collection",
+      "score": 0.17,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_collection",
+      "score": 0.06,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_collection",
+      "score": 0.02,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_collection",
+      "score": 0.04,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_collection",
+      "score": 0.03,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "cdb_recall_exfiltration",
+      "score": 0.24,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6. SOTA."
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "cdb_recall_exfiltration",
+      "score": 0.17,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cdb_recall_exfiltration",
+      "score": 0.15,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "cdb_recall_exfiltration",
+      "score": 0.05,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cdb_recall_exfiltration",
+      "score": 0.02,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "cdb_recall_exfiltration",
+      "score": 0.02,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "cdb_recall_exfiltration",
+      "score": 0.05,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "cdb_recall_exfiltration",
+      "score": 0.04,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "minimax/minimax-m2.7",
+      "benchmark": "cdb_recall_exfiltration",
+      "score": 0.0,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "cdb_recall_exfiltration",
+      "score": 0.02,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cdb_recall_exfiltration",
+      "score": 0.01,
+      "unit": "fraction",
+      "_source": "https://arxiv.org/abs/2604.19533",
+      "_note": "Table 6"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "autonadv_scenario1_expert",
+      "score": 100.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "autonadv_scenario1_expert",
+      "score": 100.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "autonadv_scenario1_expert",
+      "score": 100.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-preview",
+      "benchmark": "autonadv_scenario1_expert",
+      "score": 33.33,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2-speciale",
+      "benchmark": "autonadv_scenario1_expert",
+      "score": 11.11,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "autonadv_scenario1_selfscaffolded",
+      "score": 50.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "autonadv_scenario1_selfscaffolded",
+      "score": 100.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": "atypical objective-level success"
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "autonadv_scenario1_selfscaffolded",
+      "score": 46.15,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-preview",
+      "benchmark": "autonadv_scenario1_selfscaffolded",
+      "score": 55.55,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2-speciale",
+      "benchmark": "autonadv_scenario1_selfscaffolded",
+      "score": 20.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "autonadv_scenario1_autonomous",
+      "score": 80.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "autonadv_scenario1_autonomous",
+      "score": 25.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "autonadv_scenario1_autonomous",
+      "score": 20.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-preview",
+      "benchmark": "autonadv_scenario1_autonomous",
+      "score": 36.36,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "autonadv_scenario2_expert",
+      "score": 60.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "autonadv_scenario2_expert",
+      "score": 60.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "autonadv_scenario2_expert",
+      "score": 50.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-preview",
+      "benchmark": "autonadv_scenario2_expert",
+      "score": 40.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "autonadv_scenario2_selfscaffolded",
+      "score": 20.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "autonadv_scenario2_selfscaffolded",
+      "score": 40.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "autonadv_scenario2_selfscaffolded",
+      "score": 13.33,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-preview",
+      "benchmark": "autonadv_scenario2_selfscaffolded",
+      "score": 18.18,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "autonadv_scenario2_autonomous",
+      "score": 50.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "autonadv_scenario2_autonomous",
+      "score": 35.0,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "autonadv_scenario2_autonomous",
+      "score": 18.75,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-preview",
+      "benchmark": "autonadv_scenario2_autonomous",
+      "score": 27.27,
+      "unit": "success_rate_pct",
+      "_source": "https://arxiv.org/abs/2605.06486",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "knotbench",
+      "score": 51.65,
+      "unit": "accuracy_pct",
+      "_source": "https://arxiv.org/abs/2605.09900",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7-thinking",
+      "benchmark": "knotbench",
+      "score": 54.6,
+      "unit": "accuracy_pct",
+      "_source": "https://arxiv.org/abs/2605.09900",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "knotbench",
+      "score": 43.0,
+      "unit": "accuracy_pct",
+      "_source": "https://arxiv.org/abs/2605.09900",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5-thinking",
+      "benchmark": "knotbench",
+      "score": 52.25,
+      "unit": "accuracy_pct",
+      "_source": "https://arxiv.org/abs/2605.09900",
+      "_note": ""
+    }
+  ]
+}
