@@ -943,13 +943,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "facts_parametric",
-    "name": "FACTS Parametric",
-    "category": "reasoning",
-    "description": "Parametric knowledge variant of FACTS benchmark suite; 25-shot EM.",
-    "metric": "accuracy"
-  },
-  {
     "id": "triviaqa",
     "name": "TriviaQA",
     "category": "reasoning",
@@ -4561,20 +4554,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "facts_grounding_v2",
-    "name": "FACTS Grounding v2",
-    "category": "knowledge",
-    "description": "Long-form document grounding factuality (judge-ensemble score). Higher=better. FACTS sub-bench.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "facts_search",
-    "name": "FACTS Search",
-    "category": "knowledge",
-    "description": "Info-seeking factuality with search API access. Accuracy %. Higher=better. FACTS sub-bench.",
-    "metric": "accuracy"
-  },
-  {
     "id": "compass_multimodal_avg",
     "name": "CompassRank Multimodal (8-bench Avg)",
     "category": "multimodal",
@@ -4685,13 +4664,6 @@
     "category": "coding",
     "description": "BenchCAD Image→CadQuery code generation. Total score combining IoU/CD/ess_score/exec_pct. Higher=better. arxiv 2605.10865 Table 10.",
     "metric": "score"
-  },
-  {
-    "id": "facts_multimodal",
-    "name": "FACTS Multimodal",
-    "category": "knowledge",
-    "description": "Image-question factuality (Coverage × No-Contradiction). 1,522 items. Accuracy %. Higher=better. FACTS sub-bench, arxiv 2512.10791.",
-    "metric": "accuracy"
   },
   {
     "id": "pai_bench_c_quality",
@@ -5055,20 +5027,6 @@
     "name": "RoboTwin (Easy split)",
     "category": "ai4s",
     "description": "RoboTwin Easy difficulty split — robot manipulation simulation. Accuracy %. Higher=better. Used in Qwen-VLA paper Table.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "robotwin_hard",
-    "name": "RoboTwin (Hard split)",
-    "category": "ai4s",
-    "description": "RoboTwin Hard difficulty split. Accuracy %. Higher=better.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "simpler_widowx",
-    "name": "SimplerEnv (WidowX)",
-    "category": "ai4s",
-    "description": "SimplerEnv WidowX-specific evaluation subset (distinct from aggregate simpler_env_avg). Accuracy %. Higher=better.",
     "metric": "accuracy"
   },
   {
@@ -6723,6 +6681,111 @@
     "category": "safety",
     "description": "MLCommons AILuminate v1 safety grade Excellent/Very-Good/Good/Fair/Poor. Per-model results at mlcommons.org/ailuminate (not in PDF).",
     "metric": "grade"
+  },
+  {
+    "id": "facts_score_aggregate",
+    "name": "FACTS Score (aggregate)",
+    "category": "agentic",
+    "description": "Mean of 4 FACTS sub-benchmarks (Grounding v2 + Multimodal + Parametric + Search).",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "facts_grounding_v2",
+    "name": "FACTS Grounding v2",
+    "category": "agentic",
+    "description": "FACTS Grounding factuality benchmark v2.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "facts_multimodal",
+    "name": "FACTS Multimodal",
+    "category": "multimodal",
+    "description": "FACTS multimodal factual reasoning.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "facts_parametric",
+    "name": "FACTS Parametric Memory",
+    "category": "agentic",
+    "description": "FACTS parametric memory accuracy.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "facts_search",
+    "name": "FACTS Search",
+    "category": "agentic",
+    "description": "FACTS search-based factuality.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "r_judge_safety",
+    "name": "R-Judge Safety Trajectory Accuracy",
+    "category": "agentic-safety",
+    "description": "R-Judge trajectory-level safety judgment accuracy.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "atbench_safety",
+    "name": "ATBench Safety Trajectory Accuracy",
+    "category": "agentic-safety",
+    "description": "ATBench trajectory-level safety accuracy.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "atbench_finegrained_avg",
+    "name": "ATBench Fine-Grained Risk Diagnosis (Avg)",
+    "category": "agentic-safety",
+    "description": "ATBench fine-grained risk diagnosis average across RS/FM/RWH.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "libero_robotics",
+    "name": "LIBERO Robotics Manipulation",
+    "category": "vla-manipulation",
+    "description": "LIBERO simulation manipulation success rate.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "simpler_widowx",
+    "name": "Simpler-WidowX (Robotics)",
+    "category": "vla-manipulation",
+    "description": "Simpler-WidowX simulation manipulation success rate.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "robotwin_hard",
+    "name": "RoboTwin-Hard",
+    "category": "vla-manipulation",
+    "description": "RoboTwin Hard difficulty manipulation success.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "aloha_in_domain_avg",
+    "name": "ALOHA Real-World In-Domain Avg",
+    "category": "vla-manipulation",
+    "description": "ALOHA real-world bimanual manipulation in-domain average.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "aloha_ood_avg",
+    "name": "ALOHA Real-World OOD Avg",
+    "category": "vla-manipulation",
+    "description": "ALOHA real-world bimanual OOD generalization average.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "r2r_navigation_sr",
+    "name": "R2R Navigation Success Rate (VLN-CE Val-Unseen)",
+    "category": "vla-navigation",
+    "description": "Room-to-Room navigation success rate val-unseen.",
+    "metric": "score_0_100"
+  },
+  {
+    "id": "domino_dynamic_sr",
+    "name": "DOMINO Dynamic Manipulation SR",
+    "category": "vla-manipulation",
+    "description": "DOMINO dynamic manipulation success rate.",
+    "metric": "score_0_100"
   },
   {
     "id": "arc_agi_3",
