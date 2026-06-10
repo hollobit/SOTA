@@ -1,0 +1,112 @@
+{
+  "_meta": {
+    "session": "Session 70 — Gemini 3.5 Audio + Mythos cyber stats + HLE/HealthBench Pro backfill",
+    "date": "2026-06-10",
+    "sources": [
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-live-3-5-translate/",
+      "https://deepmind.google/models/model-cards/gemini-3-5-audio/ (model card, 128K in / 64K out)",
+      "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/",
+      "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026 (5-model comparison table)",
+      "https://lushbinary.com/blog/claude-fable-5-developer-guide/"
+    ],
+    "notes": "🌍 KEY FINDING: HLE no-tools — Mythos 5 59 NEW SOTA (was Mythos Preview 56.8, +2.2pp). HLE with-tools Mythos 5 64.5 RETROGRADE (Mythos Preview 64.7 was higher!). Gemini 3.5 Audio (Live Translate) NEW model built on Gemini 3 Pro, 70+ languages, 2000+ pairs, 128K audio context / 64K output. SecurityWeek details Mythos Preview offensive cyber performance on Firefox 148-149 (14/18 PoCs, 8 exploits in 12 hrs) and Windows kernel Jan-Feb 2026 vulns (18/21 BSOD, 8/21 priv-esc, $15,700 / $2K each). 4 NEW cyber benchmarks. HealthBench Professional + AutomationBench + Legal Agent + Blueprint-Bench 2 + GDPval-AA Elo + Terminal-Bench 2.1 5-model comparison data backfilled."
+  },
+  "models": [
+    {
+      "id": "google/gemini-3.5-audio",
+      "name": "Gemini 3.5 Audio (Live Translate)",
+      "vendor": "Google DeepMind",
+      "type": "proprietary",
+      "release_date": "2026-06-09",
+      "context_window": 128000,
+      "modalities": ["audio", "text"]
+    },
+    {
+      "id": "google/gemini-cli",
+      "name": "Gemini CLI",
+      "vendor": "Google",
+      "type": "proprietary",
+      "release_date": "2026-05",
+      "modalities": ["text"]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "firefox_148_149_poc_count",
+      "name": "Firefox 148-149 PoC Creation (out of 18)",
+      "category": "cybersecurity",
+      "metric": "score_0_18",
+      "unit": "count_higher_better_max_18",
+      "description": "Number of proof-of-concept exploits created for the 18 security patches across Firefox 148-149. Higher is better (for offensive capability). Tested under controlled red-team conditions.",
+      "source_url": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/"
+    },
+    {
+      "id": "firefox_148_149_full_exploit_count",
+      "name": "Firefox 148-149 Crash→Exploit Conversion (out of 18)",
+      "category": "cybersecurity",
+      "metric": "score_0_18",
+      "unit": "count_higher_better_max_18",
+      "description": "Number of working exploits (crash to RCE/code execution) created from PoCs for Firefox 148-149.",
+      "source_url": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/"
+    },
+    {
+      "id": "windows_kernel_jan_feb_2026_bsod",
+      "name": "Windows Kernel (Jan-Feb 2026) BSOD-trigger PoCs (out of 21)",
+      "category": "cybersecurity",
+      "metric": "score_0_21",
+      "unit": "count_higher_better_max_21",
+      "description": "Number of PoCs triggering BSOD on Windows kernel vulnerabilities disclosed Jan-Feb 2026. Closed-source binary analysis.",
+      "source_url": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/"
+    },
+    {
+      "id": "windows_kernel_jan_feb_2026_privesc",
+      "name": "Windows Kernel (Jan-Feb 2026) Privilege Escalation (out of 21)",
+      "category": "cybersecurity",
+      "metric": "score_0_21",
+      "unit": "count_higher_better_max_21",
+      "description": "Number of full-chain privilege-escalation exploits created from PoCs (Windows kernel Jan-Feb 2026 vulns).",
+      "source_url": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/"
+    }
+  ],
+  "scores": [
+    {"model": "anthropic/claude-mythos-5", "benchmark": "hle_no_tools", "score": 59.0, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "🌍 Mythos 5 HLE no-tools 59.0% NEW SOTA (was Mythos Preview 56.8, +2.2pp). Beats Opus 4.8 49.8, Gemini 3.1 Pro 44.4, GPT-5.5 41.4"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "hle_no_tools", "score": 49.8, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Opus 4.8 HLE no-tools 49.8%"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "hle_no_tools", "score": 44.4, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Gemini 3.1 Pro HLE no-tools 44.4%"},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "hle_no_tools", "score": 41.4, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "GPT-5.5 HLE no-tools 41.4%"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "hle_with_tools", "score": 64.5, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Mythos 5 HLE with-tools 64.5% — NOT new SOTA, Mythos Preview 64.7 still leads (small regression)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "hle_with_tools", "score": 57.9, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Opus 4.8 HLE with-tools 57.9%"},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "hle_with_tools", "score": 52.2, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "GPT-5.5 HLE with-tools 52.2%"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "hle_with_tools", "score": 51.4, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Gemini 3.1 Pro HLE with-tools 51.4%"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "healthbench_professional", "score": 66.0, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Mythos 5 HealthBench Pro 66.0% — top frontier non-specialist (specialist nexgene-ai/asa-w1 still leads at 80.2)"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "healthbench_professional", "score": 64.7, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Mythos Preview HealthBench Pro 64.7%"},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "healthbench_professional", "score": 51.8, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "GPT-5.5 HealthBench Pro 51.8%"},
+
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "automation_bench", "score": 12.9, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "GPT-5.5 AutomationBench 12.9% (Fable 5 17.4 is SOTA, Opus 4.8 15.5)"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "automation_bench", "score": 9.6, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Gemini 3.1 Pro AutomationBench 9.6%"},
+
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "legal_agent_benchmark", "score": 10.4, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Opus 4.8 Legal Agent 10.4% (vs Fable 5 13.3 SOTA)"},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "legal_agent_benchmark", "score": 2.1, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "GPT-5.5 Legal Agent 2.1%"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "legal_agent_benchmark", "score": 0.0, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Gemini 3.1 Pro Legal Agent 0.0% — complete failure"},
+
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "blueprint_bench_2", "score": 36.2, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "GPT-5.5 Blueprint-Bench 2 36.2%"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "blueprint_bench_2", "score": 26.5, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Gemini 3.1 Pro Blueprint-Bench 2 26.5%"},
+
+    {"model": "google/gemini-3.1-pro", "benchmark": "gdpval_aa_elo", "score": 1314, "unit": "elo", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Gemini 3.1 Pro GDPval-AA Elo 1314 (vs Fable 5 1932 SOTA, Opus 4.8 1890, GPT-5.5 1769)"},
+
+    {"model": "google/gemini-cli", "benchmark": "terminal_bench_2_1", "score": 70.7, "unit": "score_0_100", "_source": "https://www.digitalapplied.com/blog/claude-fable-5-mythos-5-release-benchmarks-2026", "_note": "Gemini CLI Terminal-Bench 2.1 70.7% (vs Codex CLI 83.4, Mythos 5 88 SOTA)"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "firefox_148_149_poc_count", "score": 14, "unit": "count_higher_better_max_18", "_source": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/", "_note": "🌍 Mythos Preview Firefox 148-149: 14 of 18 PoCs created, first PoC in 12 min. Beats Opus 4.8 (11 of 18). NEW SOTA on NEW bench."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "firefox_148_149_poc_count", "score": 11, "unit": "count_higher_better_max_18", "_source": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/", "_note": "Opus 4.8 Firefox 148-149: 11 of 18 PoCs, first in 8 min"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "firefox_148_149_full_exploit_count", "score": 8, "unit": "count_higher_better_max_18", "_source": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/", "_note": "🌍 Mythos Preview Firefox 148-149: 8 working exploits (crash→RCE), first ~1 hr, all in 12 hrs. Cost: 3M token budget. NEW SOTA NEW bench."},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "windows_kernel_jan_feb_2026_bsod", "score": 18, "unit": "count_higher_better_max_21", "_source": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/", "_note": "🌍 Mythos Preview Windows kernel Jan-Feb 2026: 18 of 21 PoCs trigger BSOD, first in 31 min. Beats Opus 4.8 (15), Sonnet 4.6 (13), Opus 4.7 (13). Closed-source binary analysis."},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "windows_kernel_jan_feb_2026_bsod", "score": 15, "unit": "count_higher_better_max_21", "_source": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/", "_note": "Opus 4.8 Windows kernel BSOD: 15 of 21"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "windows_kernel_jan_feb_2026_bsod", "score": 13, "unit": "count_higher_better_max_21", "_source": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/", "_note": "Sonnet 4.6 Windows kernel BSOD: 13 of 21"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "windows_kernel_jan_feb_2026_bsod", "score": 13, "unit": "count_higher_better_max_21", "_source": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/", "_note": "Opus 4.7 Windows kernel BSOD: 13 of 21"},
+
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "windows_kernel_jan_feb_2026_privesc", "score": 8, "unit": "count_higher_better_max_21", "_source": "https://www.securityweek.com/claude-mythos-turns-n-days-into-n-hours-with-rapid-exploit-creation/", "_note": "🌍 Mythos Preview Windows kernel: 8 of 21 FULL CHAIN priv-esc exploits in 18 hours. $15,700 API ($2K each). NEW SOTA NEW bench — first model to complete priv-esc chains on undisclosed Windows kernel vulns."}
+  ]
+}

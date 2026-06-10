@@ -1,14 +1,15 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 69 — Leaderboard sweep R4 (2026-06-10)
-**1,688 models · 1,467 benchmarks · 7,520 scores · 6 NEW audio/T2I vendors + AA Quality Elo refresh**
+## Current Status: Session 70 — Gemini 3.5 Audio + Mythos cyber (2026-06-10)
+**1,689 models · 1,471 benchmarks · 7,544 scores · 🌍 5 NEW SOTAs (HLE no-tools + 4 cyber benches)**
 
-### 2026-06-10 Session 69 — Leaderboard sweep R4 (AA ASR/TTS/T2I refresh)
-- **6 NEW models**: bytedance/hidream-o1-image-1.5 (T2I #3 Elo 1265) · mistral/voxtral-small-transcribe (ASR WER 2.8%) · cohere/transcribe-03-2026 (4.6%) · xai/grok-speech-to-text (4.0%) · gladia/solaria-1 (4.1%) · amazon/transcribe (4.1%)
-- **AA ASR backfills**: alibaba/qwen3.5-omni-plus 3.5%, assemblyai/universal-3-pro 3.1% (both models existed, scores missing)
-- **AA TTS Quality Arena refresh**: Fun-Realtime-TTS Elo 1231→1228 (-3, holds SOTA #1) / Gemini 3.1 Flash TTS 1229→1225 (-4) / Realtime TTS-2 1204→1205 (+1) / Realtime TTS 1.5 Max NEW score 1203 #4 / Sonic 3.5 1204→1199 (-5)
-- **SOTAs 안정**: aa_transcribe_wer (fun-realtime-asr-preview 1.7%) · aa_t2i_arena_elo (gpt-image-2 1341) · aa_tts_quality_elo (fun-realtime-tts 1228, was 1231)
-- **+6/+0/+6** = 1688/1467/7520
+### 2026-06-10 Session 70 — Gemini 3.5 Audio + Mythos cyber + HLE/HealthBench Pro
+- **🌍 HLE no-tools NEW SOTA**: Mythos 5 **59.0** (was Mythos Preview 56.8, +2.2pp). Beats Opus 4.8 49.8, Gemini 3.1 Pro 44.4, GPT-5.5 41.4. HLE with-tools 64.5 RETROGRADE vs Preview 64.7. NEW google/gemini-3.5-audio (Live Translate, 2026-06-09): Gemini 3 Pro base, 70+ langs, 128K audio / 64K text
+- **🌍 4 NEW cyber benches + SOTAs** (SecurityWeek Mythos Preview): firefox_148_149_poc 14/18 (Opus 4.8 11, first 12min) / firefox_148_149_full_exploit 8/18 (1hr→12hr, 3M tokens) / windows_kernel_jan_feb_2026_bsod 18/21 (Opus 4.8 15, Sonnet 4.6/Opus 4.7 13) / windows_kernel_privesc 8/21 ($15.7K, $2K each, FULL CHAIN). **"N-days→N-hours"** threat model
+- **Backfill**: HealthBench Pro Mythos 5 66 (nexgene 80.2 still #1), AutomationBench GPT-5.5 12.9 / Gemini 3.1 Pro 9.6, Legal Agent Opus 4.8 10.4 / GPT-5.5 2.1 / Gemini 3.1 Pro 0.0, Blueprint-Bench 2 GPT-5.5 36.2 / Gemini 3.1 Pro 26.5, GDPval-AA Elo Gemini 3.1 Pro 1314. **+2/+4/+24** = 1689/1471/7544
+
+### 2026-06-10 Session 69 — Leaderboard sweep R4 (compressed)
+- 6 NEW audio/T2I vendors: bytedance/hidream-o1-image-1.5 (T2I #3 Elo 1265) · mistral/voxtral-small-transcribe ASR 2.8% / cohere/transcribe-03-2026 4.6% / xai/grok-speech-to-text 4.0% / gladia/solaria-1 4.1% / amazon/transcribe 4.1%. AA TTS Arena refresh: Fun-Realtime-TTS 1231→1228 holds #1. ASR backfills qwen3.5-omni-plus 3.5% + universal-3-pro 3.1%. **+6/+0/+6** = 1688/1467/7520
 
 ### 2026-06-10 Sessions 67-68 (compressed)
 - S68 PDF deep re-mine 🌍 **14 NEW SOTAs** (S65 missed 8.5-8.20.7): Mythos 5 arxivmath 78.52 / USAMO 99.8 / USAMO 2026 99.8 / officeqa 79 / proteingym_hard 44.8 / terminal_bench_2_1 88 / structural_biology 87.2 / gmmlu 93.2 / include 90.5 / labbench2_avg 80.2. Fable 5 cursorbench 72.9 (+8.6 over GPT-5.5) / riemannbench 55 / frontier_swe_mean5 2.12 / real_world_finance_v2_elo 1374. 6 NEW benches. **+0/+6/+33** = 1682/1467/7514
