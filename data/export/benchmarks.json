@@ -6914,6 +6914,174 @@
     "metric": "error_rate_lower_better"
   },
   {
+    "id": "exploitbench_t5_coverage",
+    "name": "ExploitBench Tier 5 — Coverage",
+    "category": "cyber",
+    "description": "Fraction of 41 V8 N-day bugs where the agent reached the patched function/lines (cov_func, cov_line) under the primary <model,env> arm with a 300-turn budget. 1-day-with-patch framing so reachability is mostly a patch-reading floor.",
+    "metric": "pass_rate_0_1"
+  },
+  {
+    "id": "exploitbench_t4_trigger",
+    "name": "ExploitBench Tier 4 — Bug Triggering",
+    "category": "cyber",
+    "description": "Fraction of 41 V8 N-day bugs triggered (diff, asan, or crash) under primary arm. Graded by differential execution against vuln vs fixed builds.",
+    "metric": "pass_rate_0_1"
+  },
+  {
+    "id": "exploitbench_t3_engine_primitives",
+    "name": "ExploitBench Tier 3 — Engine Primitives",
+    "category": "cyber",
+    "description": "Fraction of 41 V8 bugs where agent constructed engine-specific exploit primitives (addrof, fakeobj, caged_read, caged_write) inside V8 heap sandbox. Graded by one-shot challenge-response builtins under --grader d8.",
+    "metric": "pass_rate_0_1"
+  },
+  {
+    "id": "exploitbench_t2_general_primitives",
+    "name": "ExploitBench Tier 2 — General Primitives",
+    "category": "cyber",
+    "description": "Fraction of 41 V8 bugs where agent escaped V8 cage with general-purpose primitives (infoleak_binary/libc/stack, arb_read, arb_write). Demonstrates elevation outside V8 heap sandbox security boundary.",
+    "metric": "pass_rate_0_1"
+  },
+  {
+    "id": "exploitbench_t1_pc_control",
+    "name": "ExploitBench Tier 1 — PC Control",
+    "category": "cyber",
+    "description": "Fraction of 41 V8 bugs where agent achieved control-flow hijack by redirecting instruction pointer to a per-run randomized PROT_NONE page. Graded by in-process signal handler in d8.",
+    "metric": "pass_rate_0_1"
+  },
+  {
+    "id": "exploitbench_t1_ace",
+    "name": "ExploitBench Tier 1 — Arbitrary Code Execution (ACE)",
+    "category": "cyber",
+    "description": "Top of ladder: fraction of 41 V8 N-day bugs where agent executed attacker-chosen shellcode/ROP that calls prctl(PR_SET_NAME, 'ACE:<b64>') on main thread. Verified by prctl(PR_GET_NAME) string equality. Headline ExploitBench metric.",
+    "metric": "pass_rate_0_1"
+  },
+  {
+    "id": "exploitbench_t1_ace_cli",
+    "name": "ExploitBench Tier 1 ACE — Vendor CLI arm",
+    "category": "cyber",
+    "description": "Same as exploitbench_t1_ace but under <model,env,CLI> arm where vendor's native CLI replaces the uniform runner. Run only for GPT-5.5 (Codex CLI) in published panel.",
+    "metric": "pass_rate_0_1"
+  },
+  {
+    "id": "exploitbench_cost_usd_per_episode_lower_better",
+    "name": "ExploitBench Mean Cost per Episode (USD)",
+    "category": "cyber",
+    "description": "Mean USD cost per episode across all kept runs in the primary <model,env> arm. Direct-provider routes with prompt-cache pass-through. Lower is better. Captures provider-side economic dimension of capability.",
+    "metric": "usd_lower_better"
+  },
+  {
+    "id": "vectrayx_b1_cve_qa",
+    "name": "VectraYX-Bench B1 (CVE Q&A, Spanish)",
+    "category": "cyber",
+    "description": "500 CVEs from 2025-2026 (NVD + small synthetic), Spanish prompt 'Resume en espanol la vulnerabilidad X e indica su severidad'. Score = fraction of expected_keywords (CVE ID, severity word, CVSS, 1-3 description keywords) present in lowercased response.",
+    "metric": "keyword_score"
+  },
+  {
+    "id": "vectrayx_b2_threat_classification",
+    "name": "VectraYX-Bench B2 (Threat classification, Spanish)",
+    "category": "cyber",
+    "description": "200 templated examples (40 per class, 5 classes: phishing, malware, ransomware, APT, other) with realistic placeholders. Model outputs exactly one class label. Reported as macro-F1.",
+    "metric": "macro_f1"
+  },
+  {
+    "id": "vectrayx_b3_command_completion_tm",
+    "name": "VectraYX-Bench B3 (Command completion, tool-match, Spanish)",
+    "category": "cyber",
+    "description": "35 Spanish prompts describing a security task; expected completion is a real CLI invocation (nmap, hashcat, hydra, gobuster, sqlmap, tcpdump, volatility, ...). Lenient tool-match metric: correct tool name present in response.",
+    "metric": "tool_match_accuracy"
+  },
+  {
+    "id": "vectrayx_b4_tool_selection",
+    "name": "VectraYX-Bench B4 (MCP tool selection, Spanish)",
+    "category": "cyber",
+    "description": "25 questions whose correct answer requires invoking a specific MCP tool (nvd_get_cve, nvd_search, cisa_kev_check, otx_check_ioc, bash_exec). Scored by whether the first <|tool_call|> block names the correct tool. Native MCP function-call success rate.",
+    "metric": "first_call_accuracy"
+  },
+  {
+    "id": "vectrayx_b5_conversational_gate",
+    "name": "VectraYX-Bench B5 (Spanish conversational gate)",
+    "category": "multilingual",
+    "description": "10-prompt held-out chat suite (greetings 'hola', 'gracias'; broad open questions; short cybersecurity hand-offs e.g. 'what is ransomware?'). Human pass/fail per prompt under fixed rubric (Spanish-fluent, on-topic, no register-mismatch hallucination). Normalized to [0,1].",
+    "metric": "pass_rate"
+  },
+  {
+    "id": "vectrayx_edge_tps_rpi4",
+    "name": "VectraYX Edge throughput, Raspberry Pi 4 (Q4)",
+    "category": "edge_inference",
+    "description": "End-to-end informal timing under llama.cpp/Ollama on a Raspberry Pi 4 at Q4 quantization. Reported as order-of-magnitude indicator.",
+    "metric": "tokens_per_second"
+  },
+  {
+    "id": "vectrayx_edge_tps_laptop_cpu",
+    "name": "VectraYX Edge throughput, 2024 laptop CPU (Q4)",
+    "category": "edge_inference",
+    "description": "End-to-end informal timing under llama.cpp on a 2024 laptop CPU at Q4 quantization. Order-of-magnitude indicator.",
+    "metric": "tokens_per_second"
+  },
+  {
+    "id": "vectrayx_edge_ttft_lower_better",
+    "name": "VectraYX Edge time-to-first-token (Q4, RPi 4)",
+    "category": "edge_inference",
+    "description": "Time-to-first-token under llama.cpp at Q4 on Raspberry Pi 4. Lower is better.",
+    "metric": "time_to_first_token_s_lower_better"
+  },
+  {
+    "id": "realicu_gold_patient_status",
+    "name": "RealICU-Gold Patient Status",
+    "category": "medical",
+    "description": "3-class classification (improving / stable / deteriorating) per 30-min ICU window on RealICU-Gold (930 physician-labeled windows from 94 MIMIC-IV stays). Score uses best system (ICU-Evo structured-memory agent) per backbone.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "realicu_gold_acute_problems_hit5",
+    "name": "RealICU-Gold Acute Problems Hit@5",
+    "category": "medical",
+    "description": "Hit@5 on Acute Problems set-matching task per 30-min ICU window, RealICU-Gold split. Best system (ICU-Evo) per backbone.",
+    "metric": "hit_at_5"
+  },
+  {
+    "id": "realicu_gold_action_recom_hit5",
+    "name": "RealICU-Gold Action Recommendation Hit@5",
+    "category": "medical",
+    "description": "Hit@5 on Recommended Actions set-matching task per 30-min ICU window, RealICU-Gold split. Best system (ICU-Evo) per backbone.",
+    "metric": "hit_at_5"
+  },
+  {
+    "id": "realicu_gold_red_flags_hrr5_lower_better",
+    "name": "RealICU-Gold Red Flags HRR@5",
+    "category": "medical",
+    "description": "Harmful-Recommendation Rate among top-5 (HRR@5) on Red Flags task, RealICU-Gold split. Fraction of top-5 recommended actions that are flagged as potentially unsafe — LOWER IS BETTER. Best system (ICU-Evo) per backbone.",
+    "metric": "hrr_at_5_lower_better"
+  },
+  {
+    "id": "realicu_scale_patient_status",
+    "name": "RealICU-Scale Patient Status",
+    "category": "medical",
+    "description": "3-class classification on RealICU-Scale (11,862 windows labeled by Oracle, a Gemini-3.1-pro hindsight evaluator validated against physicians). Best system (ICU-Evo) per backbone.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "realicu_scale_acute_problems_hit5",
+    "name": "RealICU-Scale Acute Problems Hit@5",
+    "category": "medical",
+    "description": "Hit@5 on Acute Problems, RealICU-Scale (Oracle-labeled). Best system (ICU-Evo) per backbone.",
+    "metric": "hit_at_5"
+  },
+  {
+    "id": "realicu_scale_action_recom_hit5",
+    "name": "RealICU-Scale Action Recommendation Hit@5",
+    "category": "medical",
+    "description": "Hit@5 on Recommended Actions, RealICU-Scale (Oracle-labeled). Best system (ICU-Evo) per backbone.",
+    "metric": "hit_at_5"
+  },
+  {
+    "id": "realicu_scale_red_flags_hrr5_lower_better",
+    "name": "RealICU-Scale Red Flags HRR@5",
+    "category": "medical",
+    "description": "Harmful-Recommendation Rate among top-5 on Red Flags, RealICU-Scale (Oracle-labeled). LOWER IS BETTER. Best system (ICU-Evo) per backbone.",
+    "metric": "hrr_at_5_lower_better"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",

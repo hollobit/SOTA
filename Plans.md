@@ -1,16 +1,19 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 81 — SMAC-Talk + ERRORQUAKE-10K + Eval Blind Spot (2026-06-10)
-**1,698 models · 1,574 benchmarks · 7,810 scores · 🌍 10 NEW SOTAs (8 SMAC-Talk + ERRORQUAKE b-slope + error-rate)**
+## Current Status: Session 82 — ExploitBench + VectraYX-Nano + RealICU (2026-06-10)
+**1,705 models · 1,598 benchmarks · 7,931 scores · 🌍 26 NEW SOTAs (8 ExploitBench cyber + 8 VectraYX Spanish cyber SLM + 10 RealICU medical)**
+
+### 2026-06-10 Session 82 — ExploitBench + VectraYX-Nano + RealICU
+- 3 parallel agents 🌍 **26 NEW SOTAs**. ExploitBench (CMU/Bugcrowd, 41 V8 N-day bugs): Mythos Preview T1 ACE 0.439 + T3 engine 0.854 + T5 coverage 1.0; **GPT-5.5 Codex CLI 0.0244** sole *public* model reaching ACE; cost MiniMax M2.7 $0.77/ep. VectraYX (Globant Spanish cyber SLM): Pro-7B B4 MCP 0.880 + B2 threat 0.815; Nano 42M Q4 8 tok/s RPi 4. RealICU (TUM MIMIC-IV): GPT-5.4 + ICU-Evo Acute Hit@5 0.867 Gold + 0.852 Scale; Gemini 3.1 Pro Patient Status 0.519. **+7/+24/+121** = 1705/1598/7931
 
 ### 2026-06-10 Sessions 79-81 (compressed)
-- S81 🌍 10 NEW SOTAs: SMAC-Talk 8 scenarios (5v5/10v10 × no_comm/comm/KDC/UDC), Qwen3.5-122B-A10B leads no_comm (38%/31%) + Qwen3.5-27B leads comm/KDC (32-43%). Adversarial-comm gap 122B KDC 41% → UDC 10%. ERRORQUAKE-10K 21 LLMs: Mistral-Small-24B b=1.250 (lightest tail) vs DeepSeek-V3.2 b=0.595 (heaviest); Qwen2.5-7B ε=0.496 best raw rate. Blind Spot theoretical (d_eff 2.86/4.80/4.74)
+- S81 🌍 10 NEW SOTAs: SMAC-Talk 8 Qwen3.5 scenarios (5v5/10v10 × no_comm/comm/KDC/UDC); striking 122B KDC 41% → UDC 10% adversarial-comm gap. ERRORQUAKE-10K 21 LLMs: Mistral-Small-24B b=1.250 (lightest tail) vs DeepSeek-V3.2 b=0.595; Qwen2.5-7B ε=0.496 best raw rate
 - S80 🌍 7 NEW SOTAs: DELEGATE-52 Gemini 3.1 Pro RS@20 80.9 + RS@2 96.8 ('ready' only 11/52 domains). Text2CAD: DeepSeek-V3.2 L4 8.26 / GPT-5.2 L1 CD 44.31 + IoU 0.59 / Gemini 3 Flash L4 IR 17%. Sakana Automated Reviewer F1 0.62 (Human 0.49)
 - S79 🌍 15 NEW SOTAs: FACTS Google dominance. Qwen-VLA-Instruct LIBERO 97.9 + Simpler 73.7 + RoboTwin-Hard 87.2 + ALOHA pretrain 76.9 (1.85x π0.5 lift). AgentDog 1.5-4B-U ATBench 78.4 + Gemini 3.1 Pro R-Judge 97.3
 
 ### 2026-06-10 Sessions 77-78 (compressed)
-- S78 🌍 9 NEW SOTAs: DSPV2-671B FormalMATH-All 28.31 / Lite 61.88 / ProverBench 59.1 / MiniF2F 88.9. BenchCAD Qwen3-VL-2B Vision2Code 0.768 (CAD specialist > Gemini 3.1 Pro 0.397). GPT-5.3 CodeEdit 0.865, o3 MedQA TTS 93.3
-- S77 🌍 14 NEW SOTAs: Qwen3.5-Omni-Plus Audio (LibriSpeech 1.11 3x, KeSpeech 3.46 6.8x, VoiceBench 93.1). MathVista 86.9, SuperGPQA 67.4. CosyVoice 3 SEED-TTS-zh 0.71. GPT-5 Pro ECI 2.65. SensorFM-B Age 0.920 + CV 0.712 + Insulin 0.761
+- S78 🌍 9 SOTAs: DSPV2-671B FormalMATH-All 28.31/Lite 61.88/ProverBench 59.1/MiniF2F 88.9. BenchCAD Qwen3-VL-2B V2C 0.768. GPT-5.3 CodeEdit 0.865, o3 MedQA TTS 93.3
+- S77 🌍 14 SOTAs: Qwen3.5-Omni-Plus (LibriSpeech 1.11/KeSpeech 3.46 6.8x/VoiceBench 93.1/MathVista 86.9/SuperGPQA 67.4). CosyVoice 3 SEED-TTS-zh 0.71. GPT-5 Pro ECI 2.65. SensorFM-B Age 0.920+CV 0.712+Insulin 0.761
 
 ### 2026-06-10 Sessions 75-76 (compressed)
 - S76 🌍 15 NEW SOTAs: Cosmos 3 Reasoner 4 categories (Super General 73.7, Robotics 57.8, Smart-Infra 62.6, Driving 79.3). Opus 4.8 bio/safety 11 SOTAs: Mythos Preview Virology Task 2 e2e 0.94 (Opus 4.8 0.89) / VCT 0.574 / Black-box RNA 11.22 / BioPipelineBench 88.1 / Sonnet 4.6 BBQ Disambiguated 88.1 (Opus 4.8 72.1) / Mythos BBQ Ambiguous 100.0 / SHADE-Arena 21% (Opus 4.8 93%, 4.4x gap) / Opus 4.7 ART k=100 4.8 / Sonnet 4.6 Single-Turn Harmful 98.18 / Child Safety 95%. *Capability ≠ Safety tier*
