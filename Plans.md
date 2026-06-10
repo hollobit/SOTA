@@ -1,16 +1,19 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 65 — Claude Fable 5 + Mythos 5 (2026-06-10)
-**1,671 models · 1,456 benchmarks · 7,446 scores · 16 active tabs · 13 NEW SOTAs from Anthropic's most capable model ever**
+## Current Status: Session 66 — 9-source mega ingest (2026-06-10)
+**1,682 models · 1,461 benchmarks · 7,481 scores · 🌍 Claude Fable 5 AAII 65 NEW #1 SOTA (was Opus 4.8 61)**
 
-### 2026-06-10 Session 65 — Claude Fable 5 + Mythos 5 (Anthropic flagship)
-- **NEW Anthropic models** (2026-06-09 release): `anthropic/claude-fable-5` (safeguards ON, general API, `claude-fable-5` identifier) + `anthropic/claude-mythos-5` (safeguards lifted, Project Glasswing partners only). Both = same underlying model. Pricing $10/M input + $50/M output (~half Mythos Preview). 1M ctx, text+vision modalities
-- **🌍 13 NEW SOTAs across coding/cyber/bio/agent/multimodal**:
-  - Fable 5: SWE-Bench Pro **80.3** (was 77.8 Mythos Preview) / FrontierCode Diamond **29.3** (2.2x Opus 4.8) / FrontierCode Main **46.3** / GDP.pdf **29.8** (Surge AI strict, no tools)
-  - Mythos 5: ExploitBench-pct **78.0** (was 68.9, 2x Opus 4.8) / OSWorld-Verified **85.0** / Toolathlon **61.7** + Pass³ **58.3** / BioMystery Solvable **83.9** + Difficult **46.1** / Human-Solvable **83.9** / LatchBio Spatial **69.2** (was 53.8, +15.4pp!) + SingleCell **59.3**
-  - Mythos 5 BrowseComp 88.0 (just below GPT-5.5 Pro SOTA 90.1)
-- **4 NEW benchmarks**: FrontierCode (Cognition Diamond/Main), GDP.pdf (Surge AI multimodal expert), Toolathlon Pass³ (reliability metric)
-- Tab propagation: +Frontier Compare +Cyber-Coding +Medical AI frontier-baseline +Agent AGENT_PRODUCTS. Sovereign auto-routes via anthropic/ NS. Physical/AI4S 의도된 미적용. v=20260610a. **+2/+4/+21** = 1671/1456/7446
+### 2026-06-10 Session 66 — 9-source mega ingest batch
+- **🌍 Claude Fable 5 AAII 65 NEW #1 SOTA** (was Opus 4.8 61, +4pp over Opus 4.8, +5pp over GPT-5.5 xhigh 60). #1/152 on AA. Fable 5 GDPval-AA Elo **1932 NEW SOTA** (+42 over Opus 4.8 1890, +163 over GPT-5.5 1769). Fable 5 SWE-bench Verified **95.0 NEW SOTA**. Perf: 60.3 tps / TTFT 81.68s (high latency) / blended $8.20/M (input $12.50 / output $50). Anthropic now holds 3 of top 4 GDPval-AA spots
+- **NEW Cohere North Mini Code** (2026-06-09) Apache 2.0 30B/3B MoE coding-specialist: AAII 28, Coding Index 33.4, Agentic 21.7, GDPval-AA 14, τ²-Telecom 37, 199 tps. Above gpt-oss-20B (24.5), below Mistral Small (27.8)
+- **NEW Microsoft MAI models** (2026-06-02 announcement): MAI-Image-2.5 + Flash, MAI-Voice-2 + Flash, Mayo Clinic Frontier (registry-only, no scores yet)
+- **AA Changelog backfill (9 AAII scores)**: MiniCPM5-1B 18 (1B leader) / Step 3.7 Flash 43 / Gemini 3.5 Flash medium 55 / minimal 43 / high 55 / Grok Code Fast 1 29 / Grok 4.3 medium 49 / low 44 / Command A+ 37 / Ring-2.6-1T 38
+- **Nemotron 3 Ultra extra subscores**: GDPval-AA Elo 1378, Non-Hall 71%, CritPt 3%, ~420 tps
+- **FrontierCode Extended**: Opus 4.8 51.8 / Kimi K2.6 37 (best open-source)
+- **+11/+5/+35** = 1682/1461/7481
+
+### 2026-06-09 Session 65 — Claude Fable 5 + Mythos 5 (compressed)
+- 🌍 13 NEW SOTAs from Anthropic flagship (2026-06-09 release, $10/$50 per M, 1M ctx). Fable 5: SWE-Bench Pro 80.3 / FrontierCode Diamond 29.3 / FrontierCode Main 46.3 / GDP.pdf 29.8. Mythos 5 (Glasswing only): ExploitBench 78 / OSWorld 85 / Toolathlon 61.7 + Pass³ 58.3 / BioMystery 83.9 + 46.1 / LatchBio Spatial 69.2 (+15pp) + SingleCell 59.3 / BrowseComp 88. 4 NEW benchmarks. Tab propagation Frontier/Cyber/Medical/Agent. **+2/+4/+21** = 1671/1456/7446
 
 ### 2026-06-09 Session 64 — Generalist GEN-1 + 1X World Model Lab (compressed)
 - NEW Physical AI VLA generalistai/gen-1 (2026-04-02): 🌍 3 NEW SOTAs (gen_multitask_success 99%, box_folding 12.1s 2.8x faster than π0, phone_packing 15.5s). Wearable device pretrain (500K+ hr). +gen-0 prior version. 1X World Model Lab launched 2026-06-04. **+2/+3/+7** = 1669/1452/7425
@@ -21,11 +24,8 @@
 ### 2026-06-04~09 Sessions 51-59 (compressed)
 - S59 NEW Physical AI Edge & Mobile Small-LLM 4-widget subsection (66 ≤12B / 12 countries). S58 🌍 NEW AA Transcribe SOTA fun-realtime-asr-preview 1.7% WER, xAI TTS Elo 1208. S55 AA T2I 2 NEW + TTS Quality Elo Fun-Realtime-TTS 1227 SOTA. S54 Nemotron 3 Ultra AAII 48 + ITBench-AA Opus 4.7 47% SOTA. S53 NEW AA Transcribe Scribe v2 2.2%. S52 AutoMedBench Opus 4.6 66.5 + K-BrowseComp 45.67%. S51 minimax/m3 AAII 55 + 3 arena.ai NEW. **+23/+13/+111** cumulative.
 
-### 2026-06-04 Session 50 — GPT-Rosalind + Gemma 4 12B (compressed)
-- GPT-Rosalind 4 life-sci benches (LifeSciBench 63.4 SOTA). Gemma 4 12B encoder-free multimodal (MMLU Pro 77.2). 8 NEW benches. **+2/+8/+25** = 1637/1428/7246.
-
-### 2026-06-03 Session 49 — Spacer + The AI Scientist (compressed)
-- Spacer (Asteromorph, arxiv 2508.17661) — Nuri AUROC 0.737 / Weaver Overall 85.44 (158 papers). The AI Scientist (Sakana AI, Nature) — **🌍 WORLD FIRST: AI paper passed ICLR 2025 ICBINB blind peer review** (avg 6.33/10). Automated Reviewer F1 0.67 post-cutoff vs Human 0.49. **+5/+12/+15** = 1635/1420/7221.
+### 2026-06-03~04 Sessions 49-50 (compressed)
+- S50 GPT-Rosalind 4 life-sci (LifeSciBench 63.4 SOTA) + Gemma 4 12B encoder-free multimodal (MMLU Pro 77.2). S49 Spacer (Nuri AUROC 0.737) + The AI Scientist 🌍 **WORLD FIRST: AI paper passed ICLR 2025 ICBINB blind peer review** (avg 6.33/10), Automated Reviewer F1 0.67 vs Human 0.49. **+7/+20/+40** = 1637/1428/7246.
 
 ### 2026-06-03 Session 48 — MS MAI 7-model launch (compressed)
 - 7 NEW MAI: MAI-Thinking-1 35B/~1T MoE (SWE-Bench Pro 52.8 ~ Opus 4.6), MAI-Code-1-Flash 5B (beats Haiku 4.5 across 11 benches), MAI-Image-2.5+Flash, MAI-Transcribe-1.5 (AA WER 2.4%, 43 lang), MAI-Voice-2+Flash. 11 NEW benches. **🔧 BUG FIX**: exporter lower-better SOTA. **+7/+11/+49** = 1630/1408/7206.

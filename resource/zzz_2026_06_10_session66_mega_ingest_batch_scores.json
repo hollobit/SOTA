@@ -1,0 +1,252 @@
+{
+  "_meta": {
+    "session": "Session 66 — 9-source mega ingest batch",
+    "date": "2026-06-10",
+    "sources": [
+      "https://llm-stats.com/blog/research/claude-fable-5-review",
+      "https://cognition.ai/blog/frontier-code",
+      "https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/",
+      "https://mistral.ai/",
+      "https://artificialanalysis.ai/articles/claude-fable-5-mythos",
+      "https://artificialanalysis.ai/models/claude-fable-5",
+      "https://artificialanalysis.ai/articles/north-mini-code-cohere-s-small-coding-focused-moe-model",
+      "https://artificialanalysis.ai/articles/nvidia-nemotron-3-ultra-released",
+      "https://artificialanalysis.ai/changelog"
+    ],
+    "notes": "🌍 BIGGEST SOTA SHIFT: Claude Fable 5 AAII 65 (#1/152) — NEW #1 AAII SOTA beating Opus 4.8 (61) by +4pp and GPT-5.5 xhigh (60) by +5pp. Plus NEW Cohere North Mini Code 30B/3B MoE Apache 2.0 (AAII 28). NEW Microsoft MAI-Image-2.5 + MAI-Voice-2 (no scores yet, registry-only). Backfilled AA changelog AAII scores. Added Fable 5 perf metrics (60.3 tps / TTFT 81.68s / $8.20 blended). Nemotron 3 Ultra extra sub-scores (GDPval-AA Elo 1378, Non-Hall 71, CritPt 3). Fable 5 GDPval-AA Elo 1932 (#1, +42 over Opus 4.8). FrontierCode Extended subset scores."
+  },
+  "models": [
+    {
+      "id": "cohere/north-mini-code",
+      "name": "North Mini Code",
+      "vendor": "Cohere",
+      "type": "open-weight",
+      "release_date": "2026-06-09",
+      "parameters": "30B (3B active MoE)",
+      "modalities": ["text"]
+    },
+    {
+      "id": "microsoft/mai-image-2.5",
+      "name": "MAI-Image-2.5",
+      "vendor": "Microsoft",
+      "type": "proprietary",
+      "release_date": "2026-06-02",
+      "modalities": ["text", "image"]
+    },
+    {
+      "id": "microsoft/mai-image-2.5-flash",
+      "name": "MAI-Image-2.5 Flash",
+      "vendor": "Microsoft",
+      "type": "proprietary",
+      "release_date": "2026-06-02",
+      "modalities": ["text", "image"]
+    },
+    {
+      "id": "microsoft/mai-voice-2",
+      "name": "MAI-Voice-2",
+      "vendor": "Microsoft",
+      "type": "proprietary",
+      "release_date": "2026-06-02",
+      "modalities": ["text", "audio-tts"]
+    },
+    {
+      "id": "microsoft/mai-frontier-mayo",
+      "name": "Microsoft × Mayo Clinic Frontier Model",
+      "vendor": "Microsoft + Mayo Clinic",
+      "type": "proprietary",
+      "release_date": "2026-06-02",
+      "modalities": ["text"]
+    },
+    {
+      "id": "openbmb/minicpm-5-1b",
+      "name": "MiniCPM5-1B",
+      "vendor": "OpenBMB (Tsinghua)",
+      "type": "open-weight",
+      "release_date": "2026-05-26",
+      "parameters": "1B",
+      "modalities": ["text"]
+    },
+    {
+      "id": "stepfun/step-3.7-flash",
+      "name": "Step 3.7 Flash",
+      "vendor": "StepFun",
+      "type": "open-weight",
+      "release_date": "2026-06-01",
+      "modalities": ["text"]
+    },
+    {
+      "id": "google/gemini-3.5-flash-medium",
+      "name": "Gemini 3.5 Flash (medium)",
+      "vendor": "Google",
+      "type": "proprietary",
+      "release_date": "2026-05-27",
+      "modalities": ["text", "image"]
+    },
+    {
+      "id": "google/gemini-3.5-flash-minimal",
+      "name": "Gemini 3.5 Flash (minimal)",
+      "vendor": "Google",
+      "type": "proprietary",
+      "release_date": "2026-05-21",
+      "modalities": ["text", "image"]
+    },
+    {
+      "id": "google/gemini-3.5-flash-high",
+      "name": "Gemini 3.5 Flash (high)",
+      "vendor": "Google",
+      "type": "proprietary",
+      "release_date": "2026-05-19",
+      "modalities": ["text", "image"]
+    },
+    {
+      "id": "xai/grok-code-fast-1",
+      "name": "Grok Code Fast 1",
+      "vendor": "xAI",
+      "type": "proprietary",
+      "release_date": "2026-05-25",
+      "modalities": ["text"]
+    },
+    {
+      "id": "xai/grok-4.3-medium",
+      "name": "Grok 4.3 (medium)",
+      "vendor": "xAI",
+      "type": "proprietary",
+      "release_date": "2026-05-22",
+      "modalities": ["text"]
+    },
+    {
+      "id": "xai/grok-4.3-low",
+      "name": "Grok 4.3 (low)",
+      "vendor": "xAI",
+      "type": "proprietary",
+      "release_date": "2026-05-21",
+      "modalities": ["text"]
+    },
+    {
+      "id": "cohere/command-a-plus",
+      "name": "Command A+",
+      "vendor": "Cohere",
+      "type": "proprietary",
+      "release_date": "2026-05-20",
+      "modalities": ["text"]
+    },
+    {
+      "id": "inclusionai/ring-2.6-1t",
+      "name": "Ring-2.6-1T",
+      "vendor": "InclusionAI",
+      "type": "open-weight",
+      "release_date": "2026-05-19",
+      "parameters": "1T",
+      "modalities": ["text"]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "frontiercode_extended",
+      "name": "FrontierCode (Extended, full 150 tasks)",
+      "category": "coding",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Cognition FrontierCode Extended = full 150 SE tasks. Patch correctness rate (mean@5).",
+      "source_url": "https://cognition.ai/blog/frontier-code"
+    },
+    {
+      "id": "aa_coding_index",
+      "name": "AA Coding Index (weighted Terminal-Bench Hard + SciCode)",
+      "category": "coding",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Artificial Analysis Coding Index — weighted avg of Terminal-Bench Hard and SciCode.",
+      "source_url": "https://artificialanalysis.ai/methodology"
+    },
+    {
+      "id": "aa_agentic_index",
+      "name": "AA Agentic Index",
+      "category": "agentic",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Artificial Analysis Agentic Index — aggregate of agentic evaluations.",
+      "source_url": "https://artificialanalysis.ai/methodology"
+    },
+    {
+      "id": "gdpval_aa_elo",
+      "name": "GDPval-AA (Elo rating)",
+      "category": "agentic",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "GDPval-AA Elo rating from pairwise comparisons of model outputs on 220 GDPval gold tasks across 44 occupations / 9 industries.",
+      "source_url": "https://artificialanalysis.ai/methodology"
+    },
+    {
+      "id": "blueprint_bench_2",
+      "name": "Blueprint-Bench 2",
+      "category": "multimodal",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Blueprint-Bench 2 — multimodal blueprint reasoning evaluation.",
+      "source_url": "https://llm-stats.com/blog/research/claude-fable-5-review"
+    },
+    {
+      "id": "automation_bench",
+      "name": "AutomationBench",
+      "category": "agentic",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "AutomationBench — workflow automation evaluation.",
+      "source_url": "https://llm-stats.com/blog/research/claude-fable-5-review"
+    },
+    {
+      "id": "legal_agent_benchmark",
+      "name": "Legal Agent Benchmark",
+      "category": "agentic",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Legal Agent Benchmark — legal-domain agentic tasks.",
+      "source_url": "https://llm-stats.com/blog/research/claude-fable-5-review"
+    }
+  ],
+  "scores": [
+    {"model": "anthropic/claude-fable-5", "benchmark": "aa_intelligence_index", "score": 65.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/models/claude-fable-5", "_note": "🌍 Claude Fable 5 AAII 65 — NEW #1 SOTA (was Opus 4.8 61). Beats GPT-5.5 xhigh 60 by +5pp. Ranks #1/152 on AA."},
+    {"model": "anthropic/claude-fable-5", "benchmark": "aa_output_tps", "score": 60.3, "unit": "tps", "_source": "https://artificialanalysis.ai/models/claude-fable-5", "_note": "Fable 5 output speed 60.3 tokens/sec — moderate"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "aa_ttft_sec", "score": 81.68, "unit": "seconds_lower_better", "_source": "https://artificialanalysis.ai/models/claude-fable-5", "_note": "Fable 5 TTFT 81.68 sec — high latency due to adaptive reasoning"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "aa_blended_price_usd_per_m", "score": 8.20, "unit": "usd_per_m_tokens_lower_better", "_source": "https://artificialanalysis.ai/models/claude-fable-5", "_note": "Fable 5 blended $8.20/M (input $12.50, output $50.00) — premium tier, ~2x Opus 4.8"},
+
+    {"model": "anthropic/claude-fable-5", "benchmark": "swe_bench_verified", "score": 95.0, "unit": "score_0_100", "_source": "https://llm-stats.com/blog/research/claude-fable-5-review", "_note": "Fable 5 SWE-bench Verified 95.0% (+6.4pp over Opus 4.8 88.6, +14.4pp over Gemini 3.1 Pro 80.6)"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "gdpval_aa_elo", "score": 1932, "unit": "elo", "_source": "https://artificialanalysis.ai/articles/claude-fable-5-mythos", "_note": "🌍 Fable 5 GDPval-AA Elo 1932 NEW #1 SOTA. Anthropic now holds 3 of top 4 GDPval-AA spots. +42 Elo over Opus 4.8 (1890), +163 over GPT-5.5 (1769)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "gdpval_aa_elo", "score": 1890, "unit": "elo", "_source": "https://llm-stats.com/blog/research/claude-fable-5-review", "_note": "Opus 4.8 GDPval-AA Elo 1890 (prior #1)"},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "gdpval_aa_elo", "score": 1769, "unit": "elo", "_source": "https://llm-stats.com/blog/research/claude-fable-5-review", "_note": "GPT-5.5 xhigh GDPval-AA Elo 1769"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "blueprint_bench_2", "score": 38.6, "unit": "score_0_100", "_source": "https://llm-stats.com/blog/research/claude-fable-5-review", "_note": "🌍 Fable 5 Blueprint-Bench 2 38.6% (+24.1pp over Opus 4.8 14.5)"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "automation_bench", "score": 17.4, "unit": "score_0_100", "_source": "https://llm-stats.com/blog/research/claude-fable-5-review", "_note": "Fable 5 AutomationBench 17.4%"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "legal_agent_benchmark", "score": 13.3, "unit": "score_0_100", "_source": "https://llm-stats.com/blog/research/claude-fable-5-review", "_note": "Fable 5 Legal Agent Benchmark 13.3%"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "terminal_bench_2_1", "score": 84.3, "unit": "score_0_100", "_source": "https://llm-stats.com/blog/research/claude-fable-5-review", "_note": "Fable 5 Terminal-Bench 2.1 84.3% (with 20.9% Opus 4.8 fallback rate on safeguarded queries)"},
+
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "frontiercode_extended", "score": 51.8, "unit": "score_0_100", "_source": "https://cognition.ai/blog/frontier-code", "_note": "Opus 4.8 FrontierCode Extended (full 150 tasks) 51.8%"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "frontiercode_extended", "score": 37.0, "unit": "score_0_100", "_source": "https://cognition.ai/blog/frontier-code", "_note": "Kimi K2.6 FrontierCode Extended 37% (best open-source)"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "frontiercode_main", "score": 16.0, "unit": "score_0_100", "_source": "https://cognition.ai/blog/frontier-code", "_note": "Kimi K2.6 FrontierCode Main 16%"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "frontiercode_diamond", "score": 3.8, "unit": "score_0_100", "_source": "https://cognition.ai/blog/frontier-code", "_note": "Kimi K2.6 FrontierCode Diamond 3.8% (best open-source)"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "frontiercode_diamond", "score": 4.7, "unit": "score_0_100", "_source": "https://cognition.ai/blog/frontier-code", "_note": "Gemini 3.1 Pro FrontierCode Diamond 4.7%"},
+
+    {"model": "cohere/north-mini-code", "benchmark": "aa_intelligence_index", "score": 28.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/articles/north-mini-code-cohere-s-small-coding-focused-moe-model", "_note": "🌟 Cohere North Mini Code AAII 28 — NEW Apache 2.0 30B/3B MoE coding-specialist. Above gpt-oss-20B (high) 24.5, below Mistral Small 27.8"},
+    {"model": "cohere/north-mini-code", "benchmark": "aa_coding_index", "score": 33.4, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/articles/north-mini-code-cohere-s-small-coding-focused-moe-model", "_note": "North Mini Code AA Coding Index 33.4 (weighted Terminal-Bench Hard + SciCode)"},
+    {"model": "cohere/north-mini-code", "benchmark": "aa_agentic_index", "score": 21.7, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/articles/north-mini-code-cohere-s-small-coding-focused-moe-model", "_note": "North Mini Code AA Agentic Index 21.7"},
+    {"model": "cohere/north-mini-code", "benchmark": "gdpval_aa", "score": 14.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/articles/north-mini-code-cohere-s-small-coding-focused-moe-model", "_note": "North Mini Code GDPval-AA 14% — limited agentic capability"},
+    {"model": "cohere/north-mini-code", "benchmark": "tau2_telecom", "score": 37.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/articles/north-mini-code-cohere-s-small-coding-focused-moe-model", "_note": "North Mini Code τ²-Telecom 37%"},
+    {"model": "cohere/north-mini-code", "benchmark": "aa_output_tps", "score": 199.0, "unit": "tps", "_source": "https://artificialanalysis.ai/articles/north-mini-code-cohere-s-small-coding-focused-moe-model", "_note": "North Mini Code ~199 tps throughput on Cohere API"},
+
+    {"model": "nvidia/nemotron-3-ultra-550b-a55b", "benchmark": "gdpval_aa_elo", "score": 1378, "unit": "elo", "_source": "https://artificialanalysis.ai/articles/nvidia-nemotron-3-ultra-released", "_note": "Nemotron 3 Ultra GDPval-AA Elo 1378"},
+    {"model": "nvidia/nemotron-3-ultra-550b-a55b", "benchmark": "aa_omniscience_non_hall", "score": 71.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/articles/nvidia-nemotron-3-ultra-released", "_note": "Nemotron 3 Ultra AA-Omniscience Non-Hall 71%"},
+    {"model": "nvidia/nemotron-3-ultra-550b-a55b", "benchmark": "critpt", "score": 3.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/articles/nvidia-nemotron-3-ultra-released", "_note": "Nemotron 3 Ultra CritPt 3% — weak physics reasoning"},
+    {"model": "nvidia/nemotron-3-ultra-550b-a55b", "benchmark": "aa_output_tps", "score": 420.0, "unit": "tps", "_source": "https://artificialanalysis.ai/articles/nvidia-nemotron-3-ultra-released", "_note": "Nemotron 3 Ultra >400 tps (NVFP4 inference)"},
+
+    {"model": "openbmb/minicpm-5-1b", "benchmark": "aa_intelligence_index", "score": 18.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/changelog", "_note": "MiniCPM5-1B (Reasoning) AAII 18 — leading 1B open-weights model. AA changelog 04 Jun 2026"},
+    {"model": "stepfun/step-3.7-flash", "benchmark": "aa_intelligence_index", "score": 43.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/changelog", "_note": "Step 3.7 Flash AAII 43 — AA changelog 01 Jun 2026"},
+    {"model": "google/gemini-3.5-flash-medium", "benchmark": "aa_intelligence_index", "score": 55.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/changelog", "_note": "Gemini 3.5 Flash (medium) AAII 55 — AA changelog 27 May 2026"},
+    {"model": "google/gemini-3.5-flash-minimal", "benchmark": "aa_intelligence_index", "score": 43.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/changelog", "_note": "Gemini 3.5 Flash (minimal) AAII 43"},
+    {"model": "google/gemini-3.5-flash-high", "benchmark": "aa_intelligence_index", "score": 55.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/changelog", "_note": "Gemini 3.5 Flash (high) AAII 55"},
+    {"model": "xai/grok-code-fast-1", "benchmark": "aa_intelligence_index", "score": 29.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/changelog", "_note": "Grok Code Fast 1 AAII 29 — coding-specialist edge model"},
+    {"model": "xai/grok-4.3-medium", "benchmark": "aa_intelligence_index", "score": 49.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/changelog", "_note": "Grok 4.3 (medium reasoning) AAII 49"},
+    {"model": "xai/grok-4.3-low", "benchmark": "aa_intelligence_index", "score": 44.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/changelog", "_note": "Grok 4.3 (low reasoning) AAII 44"},
+    {"model": "cohere/command-a-plus", "benchmark": "aa_intelligence_index", "score": 37.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/changelog", "_note": "Cohere Command A+ AAII 37 — 20 May 2026"},
+    {"model": "inclusionai/ring-2.6-1t", "benchmark": "aa_intelligence_index", "score": 38.0, "unit": "score_0_100", "_source": "https://artificialanalysis.ai/changelog", "_note": "InclusionAI Ring-2.6-1T AAII 38"}
+  ]
+}
