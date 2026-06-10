@@ -1,0 +1,383 @@
+{
+  "_meta": {
+    "session": "Session 84 — gwBenchmarks + AgentRx",
+    "date": "2026-06-10",
+    "sources": [
+      "arxiv:2605.11269 gwBenchmarks (Kavli ITP)",
+      "arxiv:2605.10286 AgentRx (CHIL 2026)"
+    ],
+    "notes": "WAM survey skipped (no leaderboard). gwBenchmarks 8 GW tasks: Kimi K2.6 Validity/Template Bank SOTA; rest Claude Opus 4.7 / Sonnet 4.6 / GPT-5.2. AgentRx: supervised MedPatch dominates (mortality 0.877, LoS 0.844); LLM agents trail by 8-14 AUROC."
+  },
+  "models": [
+    {
+      "id": "moonshot/kimi-k2.6",
+      "name": "Kimi K2.6",
+      "vendor": "moonshot",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nyuad-cai/medpatch",
+      "name": "MedPatch",
+      "vendor": "nyuad-cai",
+      "type": "language",
+      "release_date": "2026-05-13",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "dmis-lab/biobert",
+      "name": "BioBERT",
+      "vendor": "dmis-lab",
+      "type": "language",
+      "release_date": "2026-05-13",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-vl-7b-instruct",
+      "name": "Qwen2.5-VL 7B Instruct",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-05-13",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "freedomai/huatuogpt-vision-7b",
+      "name": "HuatuoGPT-Vision 7B",
+      "vendor": "freedomai",
+      "type": "language",
+      "release_date": "2026-05-13",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "microsoft/llava-med-v1.5-mistral-7b",
+      "name": "LLaVA-Med v1.5 Mistral 7B",
+      "vendor": "microsoft",
+      "type": "language",
+      "release_date": "2026-05-13",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl-2.5-8b-mpo",
+      "name": "InternVL 2.5 8B MPO",
+      "vendor": "opengvlab",
+      "type": "language",
+      "release_date": "2026-05-13",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "gwbench_waveform_lower_better",
+      "name": "gwBenchmarks Waveform mismatch (lower better)",
+      "category": "ai4s",
+      "metric": "median_mismatch_lower_better",
+      "unit": "median_mismatch_lower_better",
+      "description": "gwBenchmarks gravitational-wave astronomy task. gwBenchmarks Waveform mismatch (lower better).",
+      "source_url": "https://arxiv.org/abs/2605.11269"
+    },
+    {
+      "id": "gwbench_remnant_lower_better",
+      "name": "gwBenchmarks Remnant regression error (lower better)",
+      "category": "ai4s",
+      "metric": "regression_error_lower_better",
+      "unit": "regression_error_lower_better",
+      "description": "gwBenchmarks gravitational-wave astronomy task. gwBenchmarks Remnant regression error (lower better).",
+      "source_url": "https://arxiv.org/abs/2605.11269"
+    },
+    {
+      "id": "gwbench_dynamics_lower_better",
+      "name": "gwBenchmarks Dynamics relative error (lower better)",
+      "category": "ai4s",
+      "metric": "relative_error_lower_better",
+      "unit": "relative_error_lower_better",
+      "description": "gwBenchmarks gravitational-wave astronomy task. gwBenchmarks Dynamics relative error (lower better).",
+      "source_url": "https://arxiv.org/abs/2605.11269"
+    },
+    {
+      "id": "gwbench_ringdown_lower_better",
+      "name": "gwBenchmarks Ringdown relative error (lower better)",
+      "category": "ai4s",
+      "metric": "relative_error_lower_better",
+      "unit": "relative_error_lower_better",
+      "description": "gwBenchmarks gravitational-wave astronomy task. gwBenchmarks Ringdown relative error (lower better).",
+      "source_url": "https://arxiv.org/abs/2605.11269"
+    },
+    {
+      "id": "gwbench_validity_lower_better",
+      "name": "gwBenchmarks Validity log-space error (lower better)",
+      "category": "ai4s",
+      "metric": "log_error_lower_better",
+      "unit": "log_error_lower_better",
+      "description": "gwBenchmarks gravitational-wave astronomy task. gwBenchmarks Validity log-space error (lower better).",
+      "source_url": "https://arxiv.org/abs/2605.11269"
+    },
+    {
+      "id": "gwbench_analytic_lower_better",
+      "name": "gwBenchmarks Analytic waveform mismatch (lower better)",
+      "category": "ai4s",
+      "metric": "mismatch_lower_better",
+      "unit": "mismatch_lower_better",
+      "description": "gwBenchmarks gravitational-wave astronomy task. gwBenchmarks Analytic waveform mismatch (lower better).",
+      "source_url": "https://arxiv.org/abs/2605.11269"
+    },
+    {
+      "id": "gwbench_template_bank",
+      "name": "gwBenchmarks Template Bank relative efficiency",
+      "category": "ai4s",
+      "metric": "relative_efficiency",
+      "unit": "relative_efficiency",
+      "description": "gwBenchmarks gravitational-wave astronomy task. gwBenchmarks Template Bank relative efficiency.",
+      "source_url": "https://arxiv.org/abs/2605.11269"
+    },
+    {
+      "id": "gwbench_new_physics_lower_better",
+      "name": "gwBenchmarks New Physics mismatch (lower better)",
+      "category": "ai4s",
+      "metric": "mismatch_lower_better",
+      "unit": "mismatch_lower_better",
+      "description": "gwBenchmarks gravitational-wave astronomy task. gwBenchmarks New Physics mismatch (lower better).",
+      "source_url": "https://arxiv.org/abs/2605.11269"
+    },
+    {
+      "id": "agentrx_mortality_auroc",
+      "name": "AgentRx Multimodal In-Hospital Mortality (AUROC)",
+      "category": "medical",
+      "metric": "auroc",
+      "unit": "auroc",
+      "description": "MIMIC-IV+CXR+Note 4 modalities (PS+EHR+CXR+RR) mortality binary AUROC.",
+      "source_url": "https://arxiv.org/abs/2605.10286"
+    },
+    {
+      "id": "agentrx_los7d_auroc",
+      "name": "AgentRx Multimodal LoS>7d (AUROC)",
+      "category": "medical",
+      "metric": "auroc",
+      "unit": "auroc",
+      "description": "MIMIC-IV+CXR+Note ICU length-of-stay>7d binary AUROC.",
+      "source_url": "https://arxiv.org/abs/2605.10286"
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "gwbench_waveform_lower_better",
+      "score": 0.1422,
+      "unit": "median_mismatch_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "🌍 NEW SOTA"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "gwbench_remnant_lower_better",
+      "score": 0.000385,
+      "unit": "regression_error_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "🌍 NEW SOTA"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "gwbench_dynamics_lower_better",
+      "score": 0.00671,
+      "unit": "relative_error_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "🌍 NEW SOTA"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gwbench_ringdown_lower_better",
+      "score": 1.306e-12,
+      "unit": "relative_error_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "🌍 NEW SOTA"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "gwbench_validity_lower_better",
+      "score": 0.1967,
+      "unit": "log_error_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "🌍 NEW SOTA — Kimi K2.6 only non-DB model"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gwbench_analytic_lower_better",
+      "score": 0.04161,
+      "unit": "mismatch_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "🌍 NEW SOTA"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "gwbench_template_bank",
+      "score": 0.4286,
+      "unit": "relative_efficiency",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "🌍 NEW SOTA — Kimi K2.6 only non-DB model"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gwbench_new_physics_lower_better",
+      "score": 4.647e-06,
+      "unit": "mismatch_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "🌍 NEW SOTA"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "gwbench_waveform_lower_better",
+      "score": 0.3912,
+      "unit": "median_mismatch_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "Kimi K2.6 gwBenchmarks score"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "gwbench_remnant_lower_better",
+      "score": 0.0007796,
+      "unit": "regression_error_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "Kimi K2.6 gwBenchmarks score"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "gwbench_dynamics_lower_better",
+      "score": 0.4447,
+      "unit": "relative_error_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "Kimi K2.6 gwBenchmarks score"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "gwbench_ringdown_lower_better",
+      "score": 9.318e-06,
+      "unit": "relative_error_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "Kimi K2.6 gwBenchmarks score"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "gwbench_analytic_lower_better",
+      "score": 1.0,
+      "unit": "mismatch_lower_better",
+      "_source": "https://arxiv.org/abs/2605.11269",
+      "_note": "Kimi K2.6 gwBenchmarks score"
+    },
+    {
+      "model": "nyuad-cai/medpatch",
+      "benchmark": "agentrx_mortality_auroc",
+      "score": 0.877,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "SOTA / supervised baseline (Jorf and Shamout, 2025); Table 4"
+    },
+    {
+      "model": "dmis-lab/biobert",
+      "benchmark": "agentrx_mortality_auroc",
+      "score": 0.68,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "Supervised, unimodal (PS only) baseline; Table 3"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-7b-instruct",
+      "benchmark": "agentrx_mortality_auroc",
+      "score": 0.763,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "Single Agent, Multimodal (PS+EHR+CXR+RR), Few-shot; Table 4"
+    },
+    {
+      "model": "freedomai/huatuogpt-vision-7b",
+      "benchmark": "agentrx_mortality_auroc",
+      "score": 0.763,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "Single Agent, Multimodal (PS+EHR+CXR+RR), Few-shot; Table 4"
+    },
+    {
+      "model": "microsoft/llava-med-v1.5-mistral-7b",
+      "benchmark": "agentrx_mortality_auroc",
+      "score": 0.741,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "Single Agent, Multimodal (PS+EHR+CXR+RR), Zero-shot; Table 4"
+    },
+    {
+      "model": "opengvlab/internvl-2.5-8b-mpo",
+      "benchmark": "agentrx_mortality_auroc",
+      "score": 0.745,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "Single Agent, Multimodal 3-modality (PS+CXR+RR; no EHR), Few-shot; Table B1"
+    },
+    {
+      "model": "nyuad-cai/medpatch",
+      "benchmark": "agentrx_los7d_auroc",
+      "score": 0.844,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "SOTA / supervised baseline; Table 4"
+    },
+    {
+      "model": "dmis-lab/biobert",
+      "benchmark": "agentrx_los7d_auroc",
+      "score": 0.641,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "Supervised, unimodal (PS only) baseline; Table 3"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-7b-instruct",
+      "benchmark": "agentrx_los7d_auroc",
+      "score": 0.714,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "Single Agent, Multimodal (PS+EHR+CXR+RR), Zero-shot; Table 4"
+    },
+    {
+      "model": "freedomai/huatuogpt-vision-7b",
+      "benchmark": "agentrx_los7d_auroc",
+      "score": 0.704,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "Single Agent, Multimodal (PS+EHR+CXR+RR), Zero-shot; Table 4"
+    },
+    {
+      "model": "microsoft/llava-med-v1.5-mistral-7b",
+      "benchmark": "agentrx_los7d_auroc",
+      "score": 0.613,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "Single Agent, Multimodal (PS+EHR+CXR+RR), Zero-shot; Table 4"
+    },
+    {
+      "model": "opengvlab/internvl-2.5-8b-mpo",
+      "benchmark": "agentrx_los7d_auroc",
+      "score": 0.721,
+      "unit": "auroc",
+      "_source": "https://arxiv.org/abs/2605.10286",
+      "_note": "Single Agent, Multimodal 3-modality (PS+CXR+RR; no EHR), Zero-shot; Table B1"
+    }
+  ]
+}
