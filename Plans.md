@@ -1,10 +1,13 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 86 — Cyber Defense + Autonomous Adversary + Gordian Knot (2026-06-10)
-**1,731 models · 1,669 benchmarks · 8,915 scores · 🌍 22 NEW SOTAs (15 Cyber Defense + 6 Autonomous Adversary + 1 Gordian Knot)**
+## Current Status: Session 87 — Offensive Cyber + HarmfulSkillBench (2026-06-10)
+**1,734 models · 1,698 benchmarks · 8,967 scores · 🌍 11 NEW SOTAs (5 Offensive Cyber + 6 HarmfulSkillBench)**
 
-### 2026-06-10 Session 86 — Cyber Defense Bench + Autonomous Adversary + Gordian Knot
-- 3 parallel agents 🌍 **22 NEW SOTAs**. Cyber Defense (Agentic Threat Hunting SecOps, 11 models, 13 MITRE tactics + 2 composite): **Claude Opus 4.6 sweeps all 15** (Coverage 0.55, Flags 4.48%, top tactic Defense Evasion 0.59). Autonomous Adversary (Red-Teaming lateral movement, 5 models): Claude 4.5 family ties GPT-5.1 at S1 Expert 100%; Opus 4.5 S1 Self-Scaffolded 100% + S2 Self-Scaffolded 40%; Sonnet 4.5 S1 Fully Autonomous 80% + S2 Expert 60% + S2 Autonomous 50%. Gordian Knot VLM (KnotBench 2k items): Opus 4.7 thinking 54.6% (GPT-5 thinking 52.25%) — 15/56 cells at-or-below random. **+4/+22/+231** = 1731/1669/8915
+### 2026-06-10 Session 87 — Offensive Cyber NYU CTF + HarmfulSkillBench (Kimi K2.5 safety eval blocked by policy)
+- 3 agents (1 policy-blocked) 🌍 **11 NEW SOTAs**. NYU CTF Bench (D-CIPHER framework, 10 models, 200 challenges): **Claude Opus 4.5 = 59.0%** overall (2.7x prior SOTA 22% Claude 3.5 Sonnet) + Pwn 41.0% + Web 52.6%; Gemini 3 Pro Crypto 53.8 + Misc 70.8. HarmfulSkillBench (6 LLMs, 3 conditions A/B/D × Score+Refusal): **GPT-5.4-Mini sweeps all 6 metrics** — CondA-Score 0.52 (lower safer), CondA-Refusal 33.0% / CondB 0.23+65.0% / CondD 0.18+66.5% (66.5% peak refusal). **+3/+11/+52** = 1734/1698/8967
+
+### 2026-06-10 Session 86 — Cyber Defense + Autonomous Adversary + Gordian Knot
+- 🌍 22 NEW SOTAs. Cyber Defense (Agentic Threat Hunting SecOps): **Claude Opus 4.6 sweeps all 15** (Coverage 0.55, Defense Evasion 0.59). Autonomous Adversary (Red-Teaming): Claude 4.5 family ties GPT-5.1 at S1 Expert 100%; Sonnet 4.5 S1 Fully Autonomous 80%. Gordian Knot KnotBench Opus 4.7 thinking 54.6% — 15/56 cells at-or-below random
 
 ### 2026-06-10 Sessions 84-85 (compressed)
 - S85 🌍 23 SOTAs: SciVQR 7 disciplines (o4-mini Math 0.845 / Astronomy 0.808 / Geography 0.765 / Overall 0.793 tied; Gemini-2.5-Flash Physics 0.781 / Chemistry 0.876). GraphInstruct Sonnet 4.6 sweeps 4 quality (peak few-CoT 0.902 #1 of 45) + GPT-4o L2 0.982 / L5 0.794. CommonWhy: o3 Correctness 67.93/68.51, Gemini-2.5-Flash dominates 8 lexical
@@ -13,15 +16,12 @@
 ### 2026-06-10 Sessions 82-83 (compressed)
 - S83 🌍 17 SOTAs: Creativity (Heng Ji, 13 metrics): GPT-5.4 DAT 91.72 + EQ-Bench CW 2019, Opus 4.6 Arena-CW 1467+CDAT-A 148.68, Gemma-2-9B CDAT 74.09+NoveltyBench 3.93, Qwen3-32B CDAT-N 74.54, Claude 3.7-Sonnet-thinking LiveIdeaBench 7.22, Gemini 2.5 Pro PACE 0.761. GeoBuild GPT-5.1 78.9% + Gemini-3-Flash dominates 3 efficiency. S82 🌍 26 SOTAs: ExploitBench (V8 N-day): Mythos Preview T1 ACE 0.439+T3 0.854+T5 1.0; **GPT-5.5 Codex CLI 0.0244** sole *public* ACE; MiniMax M2.7 $0.77/ep. VectraYX Spanish cyber Pro-7B B4 MCP 0.880 + Nano 42M Q4 8 tok/s RPi 4. RealICU: GPT-5.4+ICU-Evo Acute 0.867 / Gemini 3.1 Pro Patient 0.519
 
-### 2026-06-10 Sessions 77-81 (compressed)
-- S81 🌍 10 SOTAs: SMAC-Talk 8 Qwen3.5 (122B KDC 41%→UDC 10%); ERRORQUAKE Mistral-Small-24B b=1.250 vs DeepSeek-V3.2 b=0.595; Qwen2.5-7B ε=0.496
-- S79-80 🌍 22 SOTAs: DELEGATE-52 Gemini 3.1 Pro RS@20 80.9 / RS@2 96.8. Text2CAD DeepSeek-V3.2 L4 8.26. Sakana Auto Reviewer F1 0.62. FACTS Google. Qwen-VLA LIBERO 97.9 + RoboTwin-Hard 87.2 + ALOHA pretrain 1.85x π0.5. AgentDog 1.5-4B-U 78.4. R-Judge 97.3
-- S77-78 🌍 23 SOTAs: DSPV2-671B FormalMATH 28.31 + MiniF2F 88.9. BenchCAD Qwen3-VL-2B V2C 0.768. o3 MedQA TTS 93.3. Qwen3.5-Omni-Plus (LibriSpeech 1.11/KeSpeech 3.46 6.8x/VoiceBench 93.1). CosyVoice 3 SEED-TTS-zh 0.71. GPT-5 Pro ECI 2.65. SensorFM-B Age 0.920+CV 0.712+Insulin 0.761
+### 2026-06-10 Sessions 77-81 (compressed) — 55 SOTAs
+- S81 SMAC-Talk Qwen3.5 (122B KDC 41%→UDC 10%); ERRORQUAKE Mistral-Small-24B b=1.250 vs DeepSeek-V3.2 b=0.595. S79-80 DELEGATE-52 Gemini 3.1 Pro RS@20 80.9. Text2CAD DeepSeek-V3.2 L4 8.26. Sakana Auto Reviewer 0.62. Qwen-VLA LIBERO 97.9+RoboTwin-Hard 87.2+ALOHA 1.85x π0.5. AgentDog 1.5-4B-U 78.4. R-Judge 97.3
+- S77-78 DSPV2-671B FormalMATH 28.31+MiniF2F 88.9. BenchCAD Qwen3-VL-2B V2C 0.768. o3 MedQA TTS 93.3. Qwen3.5-Omni-Plus Audio dominance (KeSpeech 3.46 6.8x). CosyVoice 3 SEED-TTS-zh 0.71. GPT-5 Pro ECI 2.65. SensorFM-B Age 0.920+CV 0.712
 
-### 2026-06-10 Sessions 74-76 (compressed)
-- S76 🌍 15 SOTAs: Cosmos 3 Reasoner 4 cats (Super 73.7/Robotics 57.8/Smart-Infra 62.6/Driving 79.3). Opus 4.8 bio/safety 11 (Mythos Preview Virology Task 2 e2e 0.94/VCT 0.574/Black-box RNA 11.22/BioPipeline 88.1/SHADE-Arena Opus 4.8 93% 4.4x Mythos 21%/Child Safety 95%). *Capability ≠ Safety tier*
-- S75 🌍 20 SOTAs: Goedel-V2-32B MiniF2F 92.7. Gemini 3 Pro Med 4 SOTAs (MedQA 95.1/MedMCQA 86.1/MMLU Med 88.1/PubMed 82.2). GPT-5.5 UK AISI Cyber pass@5 90.5. MedGemma 1.5 EHRNoteQA 80.4
-- S74 🌍 4 SOTAs: Mythos 5 AECI **161.29**. Long-form virology Task 1 **0.77** (3.5x expert). Opus 4.8 unavailable-tool 95 (Mythos 5 87 regression). 8-pass S65-74 누적 ~81 NEW SOTAs 단일 Anthropic 출시. *Capability ↑ hallucination resistance ↓*
+### 2026-06-10 Sessions 74-76 (compressed) — 39 SOTAs
+- S74-76: Mythos 5 AECI **161.29** + Long-form virology Task 1 **0.77** (3.5x expert). Cosmos 3 Reasoner 4 cats (Super 73.7/Robotics 57.8/Smart-Infra 62.6/Driving 79.3). Opus 4.8 bio/safety 11 (Mythos Preview Virology 0.94/SHADE-Arena Opus 4.8 93% 4.4x Mythos 21%/Child Safety 95%). Goedel-V2-32B MiniF2F 92.7. Gemini 3 Pro Med 4 SOTAs (MedQA 95.1). GPT-5.5 UK AISI Cyber 90.5. MedGemma 1.5 EHRNoteQA 80.4. 8-pass S65-74 누적 ~81 NEW SOTAs 단일 Anthropic 출시. *Capability ↑ Safety/hallucination ↓*
 
 ### 2026-06-10 Sessions 70-73 (compressed)
 - S73 🌍 7 NEW SOTAs: DeepSearchQA F1 Preview 94.4 / Mythos 5 87 (was Kimi 92.5/83). Gray Swan ART k=100 Mythos 5 4.8. ⚠ Browser injection Mythos 5 29.7% (60x worse Opus 4.8 0.5). *Capability ↑ Robustness ↓ trade-off*

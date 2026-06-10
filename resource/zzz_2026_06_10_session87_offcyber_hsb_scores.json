@@ -1,0 +1,632 @@
+{
+  "_meta": {
+    "session": "Session 87 — Offensive Cyber + HarmfulSkillBench",
+    "date": "2026-06-10",
+    "sources": [
+      "arxiv:2604.17159 Offensive Cyber Bench (NYU CTF + D-CIPHER)",
+      "arxiv:2604.15415 HarmfulSkillBench"
+    ],
+    "notes": "3 agents (Kimi K2.5 safety blocked by policy filter). Offensive Cyber: Claude 4.5 Opus 59% NYU CTF (2.7x prior SOTA 22% Claude 3.5 Sonnet). HarmfulSkillBench: GPT-5.4-Mini sweeps all 6 metrics — lightest score + highest refusal across conditions A/B/D."
+  },
+  "models": [
+    {
+      "id": "anthropic/claude-opus-4.5",
+      "name": "Claude 4.5 Opus",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro",
+      "name": "Gemini 3 Pro",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-11-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-flash",
+      "name": "Gemini 3 Flash",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-11-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zai/glm-5",
+      "name": "GLM-5",
+      "vendor": "Z-AI",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.2-codex",
+      "name": "GPT-5.2-Codex",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.2",
+      "name": "GPT-5.2",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v3",
+      "name": "DeepSeek-V3",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2024-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-r1",
+      "name": "DeepSeek-R1",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen-3.5-397b-a17b",
+      "name": "Qwen 3.5 397B-A17B",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/llama-3.3-70b",
+      "name": "Llama 3.3 70B",
+      "vendor": "Meta",
+      "type": "language",
+      "release_date": "2024-12-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "offcyber_nyu_ctf_bench",
+      "name": "NYU CTF Bench (Offensive Cyber, D-CIPHER Kali+Generic)",
+      "category": "cyber",
+      "metric": "solve_rate",
+      "unit": "percent",
+      "description": "Solve rate on 200 NYU CTF Bench challenges (CSAW 2016-2024) under best D-CIPHER configuration: Kali Linux env (100+ tools) + Generic prompts, no AutoPrompt. Six categories: crypto, rev, pwn, misc, web, forensics.",
+      "source_url": "https://arxiv.org/abs/2604.17159"
+    },
+    {
+      "id": "offcyber_nyu_ctf_pwn",
+      "name": "NYU CTF Bench — Pwn (Binary Exploitation)",
+      "category": "cyber",
+      "metric": "solve_rate",
+      "unit": "percent",
+      "description": "Solve rate on 39 binary exploitation challenges from NYU CTF Bench under D-CIPHER Kali+Generic config.",
+      "source_url": "https://arxiv.org/abs/2604.17159"
+    },
+    {
+      "id": "offcyber_nyu_ctf_web",
+      "name": "NYU CTF Bench — Web",
+      "category": "cyber",
+      "metric": "solve_rate",
+      "unit": "percent",
+      "description": "Solve rate on 19 web challenges from NYU CTF Bench under D-CIPHER Kali+Generic config.",
+      "source_url": "https://arxiv.org/abs/2604.17159"
+    },
+    {
+      "id": "offcyber_nyu_ctf_crypto",
+      "name": "NYU CTF Bench — Cryptography",
+      "category": "cyber",
+      "metric": "solve_rate",
+      "unit": "percent",
+      "description": "Solve rate on 52 cryptography challenges from NYU CTF Bench under D-CIPHER Kali+Generic config.",
+      "source_url": "https://arxiv.org/abs/2604.17159"
+    },
+    {
+      "id": "offcyber_nyu_ctf_misc",
+      "name": "NYU CTF Bench — Miscellaneous",
+      "category": "cyber",
+      "metric": "solve_rate",
+      "unit": "percent",
+      "description": "Solve rate on 24 miscellaneous challenges from NYU CTF Bench under D-CIPHER Kali+Generic config.",
+      "source_url": "https://arxiv.org/abs/2604.17159"
+    },
+    {
+      "id": "hsb_conda_score_lower_better",
+      "name": "HarmfulSkillBench-CondA-Score_lower_better",
+      "category": "safety",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "Composite harm score (All, Tier 1+2) under Condition A (Passive Exposure). Lower is safer.",
+      "source_url": "https://arxiv.org/abs/2604.15415"
+    },
+    {
+      "id": "hsb_conda_refusal",
+      "name": "HarmfulSkillBench-CondA-Refusal",
+      "category": "safety",
+      "metric": "refusal_pct",
+      "unit": "refusal_pct",
+      "description": "Refusal rate (%) under Condition A (Passive Exposure). Higher is safer.",
+      "source_url": "https://arxiv.org/abs/2604.15415"
+    },
+    {
+      "id": "hsb_condb_score_lower_better",
+      "name": "HarmfulSkillBench-CondB-Score_lower_better",
+      "category": "safety",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "Composite harm score under Condition B (Active Invocation). Lower is safer.",
+      "source_url": "https://arxiv.org/abs/2604.15415"
+    },
+    {
+      "id": "hsb_condb_refusal",
+      "name": "HarmfulSkillBench-CondB-Refusal",
+      "category": "safety",
+      "metric": "refusal_pct",
+      "unit": "refusal_pct",
+      "description": "Refusal rate (%) under Condition B (Active Invocation). Higher is safer.",
+      "source_url": "https://arxiv.org/abs/2604.15415"
+    },
+    {
+      "id": "hsb_condd_score_lower_better",
+      "name": "HarmfulSkillBench-CondD-Score_lower_better",
+      "category": "safety",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "Composite harm score under Condition D (No-Skill Baseline). Lower is safer.",
+      "source_url": "https://arxiv.org/abs/2604.15415"
+    },
+    {
+      "id": "hsb_condd_refusal",
+      "name": "HarmfulSkillBench-CondD-Refusal",
+      "category": "safety",
+      "metric": "refusal_pct",
+      "unit": "refusal_pct",
+      "description": "Refusal rate (%) under Condition D (No-Skill Baseline). Higher is safer.",
+      "source_url": "https://arxiv.org/abs/2604.15415"
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "offcyber_nyu_ctf_bench",
+      "score": 59.0,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "118/200 solved — SOTA. Table I."
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "offcyber_nyu_ctf_bench",
+      "score": 52.0,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "104/200 solved. Table I."
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "offcyber_nyu_ctf_bench",
+      "score": 27.0,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "54/200 solved; best cost-efficiency at $0.05/solve. Table I."
+    },
+    {
+      "model": "zai/glm-5",
+      "benchmark": "offcyber_nyu_ctf_bench",
+      "score": 19.5,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "39/200 solved. Table I."
+    },
+    {
+      "model": "openai/gpt-5.2-codex",
+      "benchmark": "offcyber_nyu_ctf_bench",
+      "score": 18.0,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "36/200 solved. Table I."
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "offcyber_nyu_ctf_bench",
+      "score": 13.5,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "27/200 solved. Table I."
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "offcyber_nyu_ctf_bench",
+      "score": 6.5,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "13/200 solved. Table I."
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "offcyber_nyu_ctf_bench",
+      "score": 4.0,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "8/200 solved. Table I."
+    },
+    {
+      "model": "alibaba/qwen-3.5-397b-a17b",
+      "benchmark": "offcyber_nyu_ctf_bench",
+      "score": 3.5,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "7/200 solved. Table I."
+    },
+    {
+      "model": "meta/llama-3.3-70b",
+      "benchmark": "offcyber_nyu_ctf_bench",
+      "score": 2.5,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "5/200 solved. Table I."
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "offcyber_nyu_ctf_pwn",
+      "score": 41.0,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "Pwn category SOTA. Section IV-B."
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "offcyber_nyu_ctf_pwn",
+      "score": 33.3,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "Section IV-B."
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "offcyber_nyu_ctf_web",
+      "score": 52.6,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "Web category SOTA. Section IV-B."
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "offcyber_nyu_ctf_web",
+      "score": 47.4,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "Section IV-B."
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "offcyber_nyu_ctf_crypto",
+      "score": 53.8,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "Crypto category — homogeneous Pro config. Section IV-C (RQ4)."
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "offcyber_nyu_ctf_misc",
+      "score": 70.8,
+      "unit": "percent",
+      "_source": "https://arxiv.org/abs/2604.17159",
+      "_note": "Misc category — homogeneous Pro config (easiest category). Section IV-C (RQ4)."
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "hsb_conda_score_lower_better",
+      "score": 0.85,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "hsb_conda_score_lower_better",
+      "score": 0.52,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "hsb_conda_score_lower_better",
+      "score": 0.84,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "hsb_conda_score_lower_better",
+      "score": 0.64,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "hsb_conda_score_lower_better",
+      "score": 0.81,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "hsb_conda_score_lower_better",
+      "score": 0.88,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "hsb_conda_refusal",
+      "score": 0.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "hsb_conda_refusal",
+      "score": 33.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "hsb_conda_refusal",
+      "score": 5.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "hsb_conda_refusal",
+      "score": 12.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "hsb_conda_refusal",
+      "score": 8.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "hsb_conda_refusal",
+      "score": 0.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "hsb_condb_score_lower_better",
+      "score": 0.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "hsb_condb_score_lower_better",
+      "score": 0.23,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "hsb_condb_score_lower_better",
+      "score": 0.46,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "hsb_condb_score_lower_better",
+      "score": 0.43,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "hsb_condb_score_lower_better",
+      "score": 0.38,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "hsb_condb_score_lower_better",
+      "score": 0.61,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "hsb_condb_refusal",
+      "score": 17.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "hsb_condb_refusal",
+      "score": 65.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "hsb_condb_refusal",
+      "score": 43.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "hsb_condb_refusal",
+      "score": 47.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "hsb_condb_refusal",
+      "score": 52.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "hsb_condb_refusal",
+      "score": 29.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "hsb_condd_score_lower_better",
+      "score": 0.29,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "hsb_condd_score_lower_better",
+      "score": 0.18,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "hsb_condd_score_lower_better",
+      "score": 0.27,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "hsb_condd_score_lower_better",
+      "score": 0.22,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "hsb_condd_score_lower_better",
+      "score": 0.25,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "hsb_condd_score_lower_better",
+      "score": 0.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "hsb_condd_refusal",
+      "score": 54.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "hsb_condd_refusal",
+      "score": 66.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "hsb_condd_refusal",
+      "score": 61.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "hsb_condd_refusal",
+      "score": 64.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "hsb_condd_refusal",
+      "score": 63.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "hsb_condd_refusal",
+      "score": 48.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2604.15415",
+      "_note": ""
+    }
+  ]
+}
