@@ -9513,16 +9513,16 @@
     "model_id": "deepseek/deepseek-v3.2",
     "benchmark_id": "text2cad_l4_overall",
     "value": 8.26,
-    "unit": "score",
+    "unit": "score_0_10",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/html/2605.18430v1",
+      "url": "https://arxiv.org/abs/2605.18430",
       "date": "2026-06-10",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-10",
-    "notes": "First-party (Text2CAD-Bench Table 2). L4 SOTA — narrowly beats Sonnet 4.5 / GPT-5.2."
+    "notes": "🌍 DeepSeek-V3.2 Text2CAD-Bench L4 Overall 8.26 NEW SOTA NEW bench (geometric similarity, VLM-as-judge GLM 4.6V). Claude-4.5-Sonnet 8.23, Gemini3-Flash 8.20, GPT-5.2 8.17"
   },
   "scadbench_elo": {
     "model_id": "google/gemini-3.1-pro-preview",
@@ -14383,6 +14383,96 @@
     "is_sota": true,
     "collected_at": "2026-06-10",
     "notes": "🌍 Qwen-VLA-Instruct DOMINO Dynamic SR 26.6 NEW SOTA NEW bench (LingBot-VA 24.1, PUMA 17.2)"
+  },
+  "delegate_52_rs20": {
+    "model_id": "google/gemini-3.1-pro",
+    "benchmark_id": "delegate_52_rs20",
+    "value": 80.9,
+    "unit": "score_0_100",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2604.15597",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Gemini 3.1 Pro DELEGATE-52 RS@20 80.9 NEW SOTA NEW bench. Claude 4.6 Opus 73.1, GPT-5.4 71.5 distant 2nd/3rd. Top model 'ready' (≥98%) in only 11/52 domains"
+  },
+  "delegate_52_rs2": {
+    "model_id": "google/gemini-3.1-pro",
+    "benchmark_id": "delegate_52_rs2",
+    "value": 96.8,
+    "unit": "score_0_100",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2604.15597",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Gemini 3.1 Pro DELEGATE-52 RS@2 96.8 NEW SOTA NEW bench. Short-horizon not predictive of long: GPT 5 91.5→48.3 vs Kimi K2.5 91.1→64.1"
+  },
+  "text2cad_l1_geo_cd_lower_better": {
+    "model_id": "openai/gpt-5.2",
+    "benchmark_id": "text2cad_l1_geo_cd_lower_better",
+    "value": 44.31,
+    "unit": "chamfer_distance_lower_better",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2605.18430",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 GPT-5.2 Text2CAD-Bench L1 Geo CD 44.31 NEW SOTA NEW bench (lower better; ×10³). Claude-4.5-Sonnet 52.62, DeepSeek-V3.2 53.15"
+  },
+  "text2cad_l1_geo_iou": {
+    "model_id": "openai/gpt-5.2",
+    "benchmark_id": "text2cad_l1_geo_iou",
+    "value": 0.59,
+    "unit": "iou_0_1",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2605.18430",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 GPT-5.2 Text2CAD-Bench L1 Geo IoU 0.59 NEW SOTA NEW bench (Claude 4.5 Sonnet 0.54, DeepSeek-V3.2 0.54)"
+  },
+  "text2cad_l4_invalidity_rate_lower_better": {
+    "model_id": "google/gemini-3-flash",
+    "benchmark_id": "text2cad_l4_invalidity_rate_lower_better",
+    "value": 17.0,
+    "unit": "score_lower_better",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2605.18430",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Gemini 3 Flash Text2CAD-Bench L4 Invalidity Rate 17% NEW SOTA NEW bench (lower better, executable code generation). GPT-5.2 61%, Claude 4.5 Sonnet 54%"
+  },
+  "automated_reviewer_pre_cutoff_f1": {
+    "model_id": "sakana-ai/automated-reviewer",
+    "benchmark_id": "automated_reviewer_pre_cutoff_f1",
+    "value": 0.62,
+    "unit": "f1_0_1",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://doi.org/10.1038/s41586-026-10265-5",
+      "date": "2026-06-10",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-10",
+    "notes": "🌍 Sakana Automated Reviewer Pre-cutoff F1 0.62 NEW SOTA NEW bench (Human NeurIPS 2021 0.49 — automated 27% higher F1). Balanced Acc 0.69"
   },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
