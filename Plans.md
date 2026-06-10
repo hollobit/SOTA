@@ -1,14 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 89 — CTI-REALM + UK AISI Multi-Step Cyber (2026-06-10)
-**1,759 models · 1,717 benchmarks · 9,150 scores · 🌍 10 NEW SOTAs (5 CTI-REALM + 5 UK AISI MSCyber)**
+## Current Status: Session 90 — GPT-5.5 Safety + Gemini suite + MAI suite + Anthropic gap + web sources (2026-06-10)
+**1,777 models · 1,849 benchmarks · 9,482 scores · 🌍 ~110 NEW SOTAs (14 PDFs + 3 web batched across 4 waves)**
 
-### 2026-06-10 Session 89 — CTI-REALM + UK AISI Multi-Step Cyber (Teach AI to Hack — position paper, skipped)
-- 3 agents 🌍 **10 NEW SOTAs**. CTI-REALM-50 (Security Detection Rule Generation, 16 model configs): **Claude Opus 4.6 High Total = 0.637** SOTA; sub-tasks Opus 4.5 C0 0.91 + C3 0.92 / GPT-5.1 Med C1 0.62 / GPT-5.2 Low C2 0.88. UK AISI Multi-Step Cyber (32-step corp network + 7-step ICS, 7 frontier models): **Claude Opus 4.6** dominates The Last Ones — 9.8 @10M / 15.6 @100M / max **22/32** (60%+ over GPT-5.x Codex). Cooling Tower (ICS): Opus 4.6 avg 1.4, but GPT-5.3 Codex max 3/7. **+22/+10/+101** = 1759/1717/9150
+### 2026-06-10 Session 90 — Mega batch: GPT-5.5 + Gemini suite + MAI + Anthropic gap + web
+- 12 parallel agents 🌍 **~110 NEW SOTAs**. Gemini 3 Pro: HLE 45.8/GPQA-D 91.9/AIME-25 100%/ScreenSpot-Pro 72.7/Vending-Bench 2 $5478/Video-MMMU 87.6 (~17 SOTAs). Gemini 3 Flash multimodal lead. Gemini 3.1 Flash-Lite GPQA-D 86.9/SimpleQA-V 43.3. GPT-5.5 Safety: **Cyber Range 93.33% + UK AISI pass@5 90.5% + Irregular Net-Attack 98% + Vuln-Research 92% + CyScenarioBench 26% + HealthBench Pro 51.8** (146 scores!). MAI Thinking 1: AIME-25 97.0/CyberSecEval-4 63/63 (22 scores). MAI Image 2 + Gemini 3.1 Flash Image Pro: GenAI-Bench 1079 T2I + 1140 Visual + 1465 arena. CyberGym: GPT-5 22% Level-1 + 22 zero-days. ExploitGym: Mythos Preview **226 exploits**. Anthropic gap: USAMO 2026 Opus 4.8 96.7%/FrontierSWE #1/GDPval-AA +121 ELO/BioMystery 40%/Organic Chem 86.2/Cybench 96/Firefox 22.8% (43 NEW benches). **+18/+132/+332** = 1777/1849/9482
 
-### 2026-06-10 Sessions 86-88 (compressed) — 43 SOTAs
-- S88 Agent-World 3 agentic (GPT-5.2 MCP 53.1 / Sonnet 4.5 BFCL 73.2 / Gemini 3 Pro τ² 85.4 — 3-way vendor split). TeleResilienceBench: Nemotron-3-nano 4B leads 4/7 telecom, Gemma4-31B 3. Small specialist beats frontier
-- S87 NYU CTF (D-CIPHER): Claude Opus 4.5 = 59.0% (2.7x prior SOTA 22%) + Pwn 41.0 + Web 52.6; Gemini 3 Pro Crypto 53.8 + Misc 70.8. HarmfulSkillBench GPT-5.4-Mini sweeps all 6 safety metrics. S86 Cyber Defense Opus 4.6 sweeps all 15 (Defense Evasion 0.59). Autonomous Adversary Claude 4.5 family + GPT-5.1 ties at S1 100%. Gordian Knot Opus 4.7 thinking 54.6%
+### 2026-06-10 Sessions 86-89 (compressed) — 53 SOTAs
+- S89 CTI-REALM-50 Opus 4.6 High 0.637 (Opus 4.5 C0/C3 sweep). UK AISI MSCyber Last Ones: Opus 4.6 9.8@10M / 15.6@100M / max 22/32. Cooling Tower 1.4 avg. S88 Agent-World 3-way split (GPT-5.2 MCP 53.1/Sonnet 4.5 BFCL 73.2/Gemini 3 Pro τ² 85.4). TeleResilience Nemotron-3-nano 4/7
+- S87 NYU CTF (D-CIPHER): Opus 4.5 = 59.0% (2.7x prior 22%). HarmfulSkillBench GPT-5.4-Mini sweeps. S86 Cyber Defense Opus 4.6 sweeps all 15. Autonomous Adversary Claude 4.5+GPT-5.1 S1 100%. Gordian Knot Opus 4.7 thinking 54.6%
 
 ### 2026-06-10 Sessions 82-85 (compressed) — 76 SOTAs
 - S85 SciVQR 7 disciplines (o4-mini Math 0.845, Gemini-2.5-Flash Chemistry 0.876, tied Overall 0.793). GraphInstruct Sonnet 4.6 sweeps quality (few-CoT 0.902 #1 of 45) + GPT-4o L2 0.982. CommonWhy o3 Correctness 67.93/68.51, Gemini-2.5-Flash 8 lexical

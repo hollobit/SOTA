@@ -1,0 +1,5144 @@
+{
+  "_meta": {
+    "session": "Session 90 — GPT-5.5 Safety + Gemini suite + MAI suite + Anthropic gap + web sources",
+    "date": "2026-06-10",
+    "sources": [
+      "OpenAI GPT-5.5 Deployment Safety",
+      "Gemini 3 Pro Model Card",
+      "Gemini 3 Flash MC",
+      "Gemini 3.1 Pro MC",
+      "Gemini 3.1 Flash Lite MC",
+      "Gemini 3.1 Flash Image MC",
+      "MAI Thinking 1 MC",
+      "MAI Image 2 MC",
+      "Anthropic Opus 4.7+4.8 gap-mine",
+      "Datature Gemma 4 blog",
+      "arena.ai image-edit",
+      "cybergym.io"
+    ],
+    "notes": "Major mining batch — 14 PDFs + 3 web sources. Key SOTAs: Gemini 3 Pro (~17 SOTAs, HLE 45.8, GPQA-D 91.9, AIME-25 100% w/code, ScreenSpot-Pro 72.7, Vending-Bench 2 $5478). GPT-5.5 Cyber Range 93.33%, UK AISI 90.5%. MAI Thinking 1 AIME-25 97.0. Arena GPT-Image-2-Medium 1465 Elo #1. CyberGym GPT-5 22% + 22 zero-days. ExploitGym Mythos Preview 226 exploits. Anthropic gap: USAMO 2026 Opus 4.8 96.7%, BioMysteryBench, Legal Agent, FrontierSWE, ArxivMath."
+  },
+  "models": [
+    {
+      "id": "google/gemini-3-pro",
+      "name": "Gemini 3 Pro",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-11-01",
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-pro",
+      "name": "Gemini 3.1 Pro",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-02-01",
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video"
+      ]
+    },
+    {
+      "id": "google/gemini-3.5-flash",
+      "name": "Gemini 3.5 Flash",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.5",
+      "name": "GPT-5.5",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.5-pro",
+      "name": "GPT-5.5 Pro",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.4-thinking",
+      "name": "GPT-5.4 Thinking",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.3-codex",
+      "name": "GPT-5.3 Codex",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.2-codex",
+      "name": "GPT-5.2 Codex",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2025-08-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.2-thinking",
+      "name": "GPT-5.2 Thinking",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2025-08-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.1-thinking",
+      "name": "GPT-5.1 Thinking",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2025-06-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5",
+      "name": "GPT-5",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2025-08-07",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "google/gemini-omni-flash",
+      "name": "Gemini Omni Flash",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video"
+      ]
+    },
+    {
+      "id": "google/gemini-3-flash",
+      "name": "Gemini 3 Flash",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video"
+      ]
+    },
+    {
+      "id": "google/gemini-3.5-audio",
+      "name": "Gemini 3.5 Audio",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-06-01",
+      "modalities": [
+        "audio",
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/mai-thinking-1",
+      "name": "MAI Thinking 1",
+      "vendor": "microsoft",
+      "type": "language",
+      "release_date": "2026-06-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/mai-voice-1",
+      "name": "MAI Voice 1",
+      "vendor": "microsoft",
+      "type": "audio",
+      "release_date": "2026-04-02",
+      "modalities": [
+        "text",
+        "audio"
+      ]
+    },
+    {
+      "id": "microsoft/mai-transcribe-1",
+      "name": "MAI Transcribe 1",
+      "vendor": "microsoft",
+      "type": "audio",
+      "release_date": "2026-04-02",
+      "modalities": [
+        "audio",
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/mai-image-2",
+      "name": "MAI Image 2",
+      "vendor": "microsoft",
+      "type": "image",
+      "release_date": "2026-03-19",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-flash-image",
+      "name": "Gemini 3.1 Flash Image",
+      "vendor": "google",
+      "type": "image",
+      "release_date": "2026-02-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "google/gemini-robotics-er-1.6",
+      "name": "Gemini Robotics ER 1.6",
+      "vendor": "google",
+      "type": "robotics-action",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video",
+        "action"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-flash-audio",
+      "name": "Gemini 3.1 Flash Audio",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "audio",
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-flash-lite",
+      "name": "Gemini 3.1 Flash Lite",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text",
+        "vision",
+        "audio",
+        "video"
+      ]
+    },
+    {
+      "id": "google/gemma-4-31b",
+      "name": "google/gemma-4-31b",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-04-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-26b-moe",
+      "name": "google/gemma-4-26b-moe",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-04-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-4b",
+      "name": "google/gemma-4-4b",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-04-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e2b",
+      "name": "google/gemma-4-e2b",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-04-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-image-2-medium",
+      "name": "openai/gpt-image-2-medium",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/mai-image-2.5",
+      "name": "microsoft/mai-image-2.5",
+      "vendor": "microsoft",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/chatgpt-image-latest-high-fidelity-20251216",
+      "name": "openai/chatgpt-image-latest-high-fidelity-20251216",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xai/grok-imagine-image-quality-20260519",
+      "name": "xai/grok-imagine-image-quality-20260519",
+      "vendor": "xai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro-image-preview-2k",
+      "name": "google/gemini-3-pro-image-preview-2k",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-flash-image-preview",
+      "name": "google/gemini-3.1-flash-image-preview",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro-image-preview",
+      "name": "google/gemini-3-pro-image-preview",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-image-1.5-high-fidelity",
+      "name": "openai/gpt-image-1.5-high-fidelity",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "reve/reve-2.0",
+      "name": "reve/reve-2.0",
+      "vendor": "reve",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xai/grok-imagine-image-quality",
+      "name": "xai/grok-imagine-image-quality",
+      "vendor": "xai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "luma/uni-1.1-max",
+      "name": "luma/uni-1.1-max",
+      "vendor": "luma",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xai/grok-imagine-image",
+      "name": "xai/grok-imagine-image",
+      "vendor": "xai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "luma/uni-1.1",
+      "name": "luma/uni-1.1",
+      "vendor": "luma",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/wan2.7-image-pro",
+      "name": "alibaba/wan2.7-image-pro",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bytedance/seedream-4.5",
+      "name": "bytedance/seedream-4.5",
+      "vendor": "bytedance",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "humanitys_last_exam",
+      "name": "Humanity's Last Exam",
+      "category": "reasoning",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Academic reasoning",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "arc_agi_2",
+      "name": "ARC-AGI-2",
+      "category": "reasoning",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Visual reasoning puzzles (ARC Prize Verified)",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "gpqa_diamond",
+      "name": "GPQA Diamond",
+      "category": "knowledge",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Scientific knowledge",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "aime_2025",
+      "name": "AIME 2025",
+      "category": "math",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Mathematics competition",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "matharena_apex",
+      "name": "MathArena Apex",
+      "category": "math",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Challenging Math Contest problems",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "mmmu_pro",
+      "name": "MMMU-Pro",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Multimodal understanding and reasoning",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "screenspot_pro",
+      "name": "ScreenSpot-Pro",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Screen understanding",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "charxiv_reasoning",
+      "name": "CharXiv Reasoning",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Information synthesis from complex charts",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "omnidocbench_1_5_lower_better",
+      "name": "OmniDocBench 1.5",
+      "category": "multimodal",
+      "metric": "edit_distance_lower_better",
+      "unit": "ratio",
+      "description": "OCR (Overall Edit Distance, lower is better)",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "video_mmmu",
+      "name": "Video-MMMU",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Knowledge acquisition from videos",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "livecodebench_pro",
+      "name": "LiveCodeBench Pro",
+      "category": "coding",
+      "metric": "elo",
+      "unit": "rating",
+      "description": "Competitive coding problems from Codeforces, ICPC, and IOI (Elo rating)",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "terminal_bench_2",
+      "name": "Terminal-Bench 2.0",
+      "category": "agentic",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Agentic terminal coding (Terminus-2 agent)",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "swe_bench_verified",
+      "name": "SWE-Bench Verified",
+      "category": "coding",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Agentic coding, single attempt",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "t2_bench",
+      "name": "t2-bench",
+      "category": "agentic",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Agentic tool use",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "vending_bench_2",
+      "name": "Vending-Bench 2",
+      "category": "agentic",
+      "metric": "net_worth_mean_usd",
+      "unit": "usd",
+      "description": "Long-horizon agentic tasks (Net worth mean, higher is better)",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "facts_benchmark_suite",
+      "name": "FACTS Benchmark Suite",
+      "category": "factuality",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Held-out internal grounding, parametric, MM, and search retrieval benchmarks",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "simpleqa_verified",
+      "name": "SimpleQA Verified",
+      "category": "factuality",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Parametric knowledge",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "mmlu",
+      "name": "MMLU",
+      "category": "knowledge",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Multilingual Q&A",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "global_piqa",
+      "name": "Global PIQA",
+      "category": "multilingual",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Multilingual reasoning across 100 languages and cultures",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "mrcr_v2_8needle",
+      "name": "MRCR v2 (8-needle)",
+      "category": "long_context",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "Long context performance (Multi-Round Coreference Resolution)",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-pro"
+    },
+    {
+      "id": "re_bench",
+      "name": "RE-Bench (human-normalized average)",
+      "category": "agentic",
+      "metric": "human_normalized_score",
+      "unit": "human_normalized_score",
+      "description": "",
+      "source_url": "Gemini 3.1 Pro Model Card (February 2026)"
+    },
+    {
+      "id": "openai-cyber-range",
+      "name": "Cyber Range (15 scenarios, combined pass rate)",
+      "category": "cyber",
+      "metric": "pass_rate",
+      "unit": "pass_rate",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "uk-aisi-narrow-cyber-expert-pass5",
+      "name": "UK AISI Narrow Cyber Expert (pass@5)",
+      "category": "cyber",
+      "metric": "pass_at_5",
+      "unit": "pass_at_5",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "uk-aisi-narrow-cyber-expert-pass1",
+      "name": "UK AISI Narrow Cyber Expert (pass@1)",
+      "category": "cyber",
+      "metric": "pass_at_1",
+      "unit": "pass_at_1",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "uk-aisi-narrow-cyber-lower-difficulty",
+      "name": "UK AISI Narrow Cyber Lower-Difficulty",
+      "category": "cyber",
+      "metric": "pass_rate",
+      "unit": "pass_rate",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "irregular-atomic-network-attack-simulation",
+      "name": "Irregular Atomic — Network Attack Simulation",
+      "category": "cyber",
+      "metric": "success_rate",
+      "unit": "success_rate",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "irregular-atomic-vulnerability-research-exploitation",
+      "name": "Irregular Atomic — Vulnerability Research & Exploitation",
+      "category": "cyber",
+      "metric": "success_rate",
+      "unit": "success_rate",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "irregular-atomic-evasion",
+      "name": "Irregular Atomic — Evasion",
+      "category": "cyber",
+      "metric": "success_rate",
+      "unit": "success_rate",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "irregular-cyscenariobench",
+      "name": "Irregular CyScenarioBench (long-horizon offensive cyber)",
+      "category": "cyber",
+      "metric": "success_rate",
+      "unit": "success_rate",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-healthbench-length-adjusted",
+      "name": "HealthBench (length-adjusted)",
+      "category": "health",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-healthbench-hard-length-adjusted",
+      "name": "HealthBench Hard (length-adjusted)",
+      "category": "health",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-healthbench-consensus-length-adjusted",
+      "name": "HealthBench Consensus (length-adjusted)",
+      "category": "health",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-healthbench-professional-length-adjusted",
+      "name": "HealthBench Professional (length-adjusted)",
+      "category": "health",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-prompt-injection-connectors",
+      "name": "Prompt injection attacks in connectors",
+      "category": "safety",
+      "metric": "robustness",
+      "unit": "robustness",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-disallowed-violent-illicit",
+      "name": "Disallowed Content — Violent Illicit (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-disallowed-nonviolent-illicit",
+      "name": "Disallowed Content — Nonviolent Illicit (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-disallowed-harassment",
+      "name": "Disallowed Content — Harassment (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-disallowed-extremism",
+      "name": "Disallowed Content — Extremism (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-disallowed-hate",
+      "name": "Disallowed Content — Hate (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-disallowed-self-harm-standard",
+      "name": "Disallowed Content — Self-Harm Standard (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-disallowed-violence",
+      "name": "Disallowed Content — Violence (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-disallowed-sexual",
+      "name": "Disallowed Content — Sexual (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-disallowed-sexual-minors",
+      "name": "Disallowed Content — Sexual/Minors (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-image-input-hate",
+      "name": "Image Input — Hate (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-image-input-extremism",
+      "name": "Image Input — Extremism (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-image-input-self-harm",
+      "name": "Image Input — Self-Harm (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-image-input-harms-erotic",
+      "name": "Image Input — Harms Erotic (not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-destructive-action-avoidance",
+      "name": "Destructive Action Avoidance",
+      "category": "agent-safety",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-perfect-reversion",
+      "name": "Perfect Reversion (agent destructive recovery)",
+      "category": "agent-safety",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-user-work-preserved",
+      "name": "User Work Preserved",
+      "category": "agent-safety",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-user-confirmations-financial",
+      "name": "User Confirmations — Financial Transaction",
+      "category": "agent-safety",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-user-confirmations-high-stakes-comms",
+      "name": "User Confirmations — High-Stakes Communication",
+      "category": "agent-safety",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-user-confirmations-general",
+      "name": "User Confirmations — General Confirmation",
+      "category": "agent-safety",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-dynamic-mental-health",
+      "name": "Dynamic Mental Health (adversarial sim, not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-dynamic-emotional-reliance",
+      "name": "Dynamic Emotional Reliance (adversarial sim, not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-dynamic-self-harm",
+      "name": "Dynamic Self-Harm (adversarial sim, not_unsafe)",
+      "category": "safety",
+      "metric": "not_unsafe",
+      "unit": "not_unsafe",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-first-person-fairness_lower_better",
+      "name": "First-Person Fairness (harm_overall)",
+      "category": "bias",
+      "metric": "harm_overall_lower_better",
+      "unit": "harm_overall_lower_better",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-biochem-knowledge-reward4",
+      "name": "Biochemistry Knowledge (reward@4)",
+      "category": "biology",
+      "metric": "reward_at_4",
+      "unit": "reward_at_4",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-hard-negative-protein-binding-pass4",
+      "name": "Hard-Negative Protein Binding (pass@4)",
+      "category": "biology",
+      "metric": "pass_at_4",
+      "unit": "pass_at_4",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-dna-tf-binding-pass1",
+      "name": "DNA Sequence Design for TF Binding (pass@1)",
+      "category": "biology",
+      "metric": "pass_at_1",
+      "unit": "pass_at_1",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-internal-research-debugging-median",
+      "name": "Internal Research Debugging (median)",
+      "category": "agent-eng",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "openai-opqa",
+      "name": "OpenAI-Proof Q&A (pass@1)",
+      "category": "agent-eng",
+      "metric": "pass_at_1",
+      "unit": "pass_at_1",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "apollo-strategic-deception-capability-sandbagging",
+      "name": "Apollo Strategic Deception Capability Sandbagging (accuracy under sandbag-incentive)",
+      "category": "alignment",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "apollo-impossible-coding-task-deception_lower_better",
+      "name": "Apollo Impossible Coding Task — deception rate",
+      "category": "alignment",
+      "metric": "deception_rate_lower_better",
+      "unit": "deception_rate_lower_better",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "apollo-sabotage-mean-score",
+      "name": "Apollo Sabotage Mean Score (across task/difficulty)",
+      "category": "alignment",
+      "metric": "mean_score",
+      "unit": "mean_score",
+      "description": "",
+      "source_url": "OpenAI, GPT-5.5 System Card, April 23, 2026 (openai_gpt55_deployment_safety.pdf)"
+    },
+    {
+      "id": "humanitys-last-exam",
+      "name": "Humanity's Last Exam",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Academic reasoning, no tools",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "arc-agi-2",
+      "name": "ARC-AGI-2",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Abstract reasoning, no tools",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "gpqa-diamond",
+      "name": "GPQA Diamond",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Scientific knowledge",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "aime-2025",
+      "name": "AIME 2025",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Mathematics",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "mmmu-pro",
+      "name": "MMMU-Pro",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Multimodal reasoning, average accuracy",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "screenspot-pro",
+      "name": "ScreenSpot-Pro",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Screen understanding",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "charxiv-reasoning",
+      "name": "CharXiv Reasoning",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Information synthesis from complex charts",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "video-mmmu",
+      "name": "Video-MMMU",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Knowledge acquisition from videos",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "livecodebench-pro",
+      "name": "LiveCodeBench Pro",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Competitive coding",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "terminal-bench-2",
+      "name": "Terminal-Bench 2.0",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Agentic terminal coding",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "swe-bench-verified",
+      "name": "SWE-bench Verified",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Agentic coding",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "t2-bench",
+      "name": "T2 Bench",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Agentic tool use",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "tooldlen",
+      "name": "TooldIen",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Agentic tool use",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "mcp-atlas",
+      "name": "MCP Atlas",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Multi-step agentic tasks",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "vending-bench-2",
+      "name": "Vending-Bench 2",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Agentic long-horizon tasks (net worth)",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "facts-benchmark-suite",
+      "name": "FACTS Benchmark Suite",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Factuality",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "simpleqa-verified",
+      "name": "SimpleQA Verified",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Parametric knowledge",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "mmmlu",
+      "name": "MMMLU",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Multilingual Q&A",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "global-pqa",
+      "name": "Global PQA",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Multilingual reasoning (broad knowledge)",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "mrcr-v2-8-needle",
+      "name": "MRCR v2 (8-needle)",
+      "category": "language",
+      "metric": "score",
+      "unit": "score",
+      "description": "Long context (128k window)",
+      "source_url": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)"
+    },
+    {
+      "id": "aime_2026",
+      "name": "AIME 2026",
+      "category": "language",
+      "metric": "pass@1",
+      "unit": "pass@1",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "hmmt_feb_2026",
+      "name": "HMMT Feb 2026",
+      "category": "language",
+      "metric": "pass@1",
+      "unit": "pass@1",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "livecodebench",
+      "name": "LiveCodeBench v6",
+      "category": "language",
+      "metric": "pass@1",
+      "unit": "pass@1",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "swe_bench_pro",
+      "name": "SWE-Bench Pro",
+      "category": "language",
+      "metric": "pass@1",
+      "unit": "pass@1",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "mmlu_pro",
+      "name": "MMLU-Pro",
+      "category": "language",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "ifbench",
+      "name": "IFBench",
+      "category": "language",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "advanced_if",
+      "name": "Advanced IF (rubric)",
+      "category": "language",
+      "metric": "rubric_score",
+      "unit": "rubric_score",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "multi_challenge",
+      "name": "Multi-Challenge",
+      "category": "language",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "graphwalks_128k",
+      "name": "GraphWalks (<=128k)",
+      "category": "language",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "air_bench",
+      "name": "AIR-Bench",
+      "category": "language",
+      "metric": "safety_score",
+      "unit": "safety_score",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "cyberseceval4_instruct",
+      "name": "CyberSecEval 4 Instruct (insecure code generation)",
+      "category": "language",
+      "metric": "safe_code_rate",
+      "unit": "safe_code_rate",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "cyberseceval4_autocomplete",
+      "name": "CyberSecEval 4 Autocomplete (insecure code completion)",
+      "category": "language",
+      "metric": "safe_code_rate",
+      "unit": "safe_code_rate",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "longfact",
+      "name": "LongFact",
+      "category": "language",
+      "metric": "claim_precision",
+      "unit": "claim_precision",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "truthfulqa",
+      "name": "TruthfulQA",
+      "category": "language",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "healthbench_professional",
+      "name": "HealthBench Professional",
+      "category": "language",
+      "metric": "rubric_score",
+      "unit": "rubric_score",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "medxpertqa",
+      "name": "MedXpertQA",
+      "category": "language",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "bfcl_v3",
+      "name": "BFCL v3",
+      "category": "language",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)"
+    },
+    {
+      "id": "fleurs_wer_25lang_lower_better",
+      "name": "FLEURS WER (25 languages)",
+      "category": "audio",
+      "metric": "wer_lower_better",
+      "unit": "wer_lower_better",
+      "description": "Word Error Rate on FLEURS multilingual ASR benchmark across 25 languages. Lower is better.",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_voice_1_card.pdf"
+    },
+    {
+      "id": "mai_elo_photorealistic",
+      "name": "MAI Human Elo — Photorealistic & Cinematic",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "mai_elo_product_branding",
+      "name": "MAI Human Elo — Product/Branding/Commercial Design",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "mai_elo_3d",
+      "name": "MAI Human Elo — 3D Imaging & Modeling",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "mai_elo_cartoon_anime",
+      "name": "MAI Human Elo — Cartoon/Anime/Fantasy",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "mai_elo_art",
+      "name": "MAI Human Elo — Art",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "mai_elo_portraits",
+      "name": "MAI Human Elo — Portraits",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "mai_elo_text_rendering",
+      "name": "MAI Human Elo — Text Rendering",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "mai_elo_overall",
+      "name": "MAI Human Elo — Overall",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "genai_bench_overall_preference",
+      "name": "GenAI-Bench Overall Preference (T2I Elo)",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "genai_bench_visual_quality",
+      "name": "GenAI-Bench Visual Quality (T2I Elo)",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "genai_bench_infographics_factuality",
+      "name": "GenAI-Bench Infographics (Factuality) Elo",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "image_editing_general",
+      "name": "Image Editing — General (Elo)",
+      "category": "image-edit",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "image_editing_character",
+      "name": "Image Editing — Character (Elo)",
+      "category": "image-edit",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "image_editing_creative",
+      "name": "Image Editing — Creative (Elo)",
+      "category": "image-edit",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "image_editing_object_env",
+      "name": "Image Editing — Object/Environment (Elo)",
+      "category": "image-edit",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "image_editing_multi_input",
+      "name": "Image Editing — Multi-Input 1-3 (Elo)",
+      "category": "image-edit",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "image_editing_stylization",
+      "name": "Image Editing — Stylization (Elo)",
+      "category": "image-edit",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "/Users/user/git/cyber/resource/ms_mai_image_2_card.pdf"
+    },
+    {
+      "id": "mrcr-v2-8needle-128k",
+      "name": "MRCR v2 (8-needle) 128k average",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-1-flash-lite (embedded benchmark table image, page 4 of gemini_31_flash_lite_model_card.pdf, as of March 2026)"
+    },
+    {
+      "id": "mrcr-v2-8needle-1m",
+      "name": "MRCR v2 (8-needle) 1M pointwise",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://deepmind.google/models/evals-methodology/gemini-3-1-flash-lite (embedded benchmark table image, page 4 of gemini_31_flash_lite_model_card.pdf, as of March 2026)"
+    },
+    {
+      "id": "arena_image_edit_elo",
+      "name": "arena_image_edit_elo",
+      "category": "image-edit-human-preference",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://datature.io/blog/gemma-4-what-computer-vision-engineers-actually-need-to-know"
+    },
+    {
+      "id": "cybergym_level1_success_rate",
+      "name": "cybergym_level1_success_rate",
+      "category": "cybersecurity-vuln-reproduction",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://datature.io/blog/gemma-4-what-computer-vision-engineers-actually-need-to-know"
+    },
+    {
+      "id": "exploitgym_total_exploits",
+      "name": "exploitgym_total_exploits",
+      "category": "cybersecurity-exploit-generation",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://datature.io/blog/gemma-4-what-computer-vision-engineers-actually-need-to-know"
+    },
+    {
+      "id": "exploitgym_intended_bug_exploits",
+      "name": "exploitgym_intended_bug_exploits",
+      "category": "cybersecurity-exploit-generation",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://datature.io/blog/gemma-4-what-computer-vision-engineers-actually-need-to-know"
+    },
+    {
+      "id": "cybergym_oss_fuzz_zero_days",
+      "name": "cybergym_oss_fuzz_zero_days",
+      "category": "cybersecurity-zero-day-discovery",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://datature.io/blog/gemma-4-what-computer-vision-engineers-actually-need-to-know"
+    },
+    {
+      "id": "usamo_2026",
+      "name": "USAMO 2026",
+      "category": "math",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "USA Math Olympiad 2026 (proof-based, 6-problem, 2-day). Scored via MathArena rubric: rewrite by neutral model, judged by panel (Gemini 3.1 Pro, Opus 4.6, Mythos Preview); final score = min of any judge.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "arxivmath_2026",
+      "name": "ArxivMath (Mar+Apr 2026)",
+      "category": "math",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "MathArena ArxivMath: research-level final-answer math problems pulled from arXiv abstracts; March+April 2026 release (71 problems).",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "legal_agent_benchmark_harvey",
+      "name": "Legal Agent Benchmark (Harvey)",
+      "category": "agent",
+      "metric": "all-pass-rate",
+      "unit": "all-pass-rate",
+      "description": "Harvey AI LAB: 1,200+ legal tasks across 24 practice areas. Pass/fail per task across rubric criteria (LLM-as-Judge using Sonnet 4.6). All-pass rate = task succeeds only if every criterion met.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "biopipelinebench_verified",
+      "name": "BioPipelineBench Verified",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "Anthropic-internal bioinformatics workflow benchmark: targeted sequence analysis, metagenome assembly, chromatin profiling. Verified subset only.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "biomysterybench_human_solvable",
+      "name": "BioMysteryBench (Human-Solvable subset)",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "Anthropic-internal bio analytical reasoning benchmark; subset humans can solve.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "biomysterybench_human_difficult",
+      "name": "BioMysteryBench (Human-Difficult subset)",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "Bio analytical reasoning subset humans cannot solve but has ground truth.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "latchbio_spatialbench",
+      "name": "LatchBio SpatialBench",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "Spatial transcriptomics analysis benchmark (gene expression mapped to tissue locations).",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "latchbio_singlecellbench",
+      "name": "LatchBio SingleCellBench",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "Single-cell RNA-seq analysis benchmark: cell-type labeling, DE genes, batch correction.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "structural_biology_open_ended",
+      "name": "Structural Biology (open-ended)",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "Anthropic-internal open-ended QA about biomolecule structure/function from structural data.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "proteingym_hard",
+      "name": "ProteinGym Hard",
+      "category": "life-sciences",
+      "metric": "rank-correlation",
+      "unit": "rank-correlation",
+      "description": "Protein mutation effect prediction; ranks mutants vs. wild-type. Scored by rank correlation against published ProteinGym lab measurements.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "organic_chemistry_anthropic",
+      "name": "Organic Chemistry (Anthropic)",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "Anthropic-internal organic-chemistry: spectroscopy-to-structure, multi-step synthesis design, reaction prediction, IUPAC/SMILES/structure conversion.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "protocol_troubleshooting",
+      "name": "Protocol Troubleshooting",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "Detect/fix errors in molecular biology protocols (with web search tool).",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "labbench2_patent",
+      "name": "LAB-Bench 2 — Patent questions",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "LAB-Bench 2 patent subset (FutureHouse).",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "labbench2_clinical_trial",
+      "name": "LAB-Bench 2 — Clinical-trial questions",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "labbench2_tables",
+      "name": "LAB-Bench 2 — Tables",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "labbench2_supplementary",
+      "name": "LAB-Bench 2 — Supplementary materials",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "toolathlon_pass3",
+      "name": "Toolathlon Pass@3",
+      "category": "agent",
+      "metric": "pass@3",
+      "unit": "pass@3",
+      "description": "Toolathlon (Tool Decathlon): 108 tool-use tasks, 604 tools, 32 apps. Anthropic internal harness, adaptive thinking max effort.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "toolathlon_pass_cube",
+      "name": "Toolathlon Pass^3 (consistency)",
+      "category": "agent",
+      "metric": "pass_cube",
+      "unit": "pass_cube",
+      "description": "Toolathlon Pass^3 (all 3 trials pass) consistency metric.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "draco_perplexity",
+      "name": "DRACO (Perplexity Deep Research)",
+      "category": "agent",
+      "metric": "normalized-score",
+      "unit": "normalized-score",
+      "description": "Deep Research Accuracy, Completeness, Objectivity. 100 expert-rubric tasks. Opus 4.6 used as LLM judge.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "deepsearchqa_f1",
+      "name": "DeepSearchQA (F1)",
+      "category": "agent",
+      "metric": "F1",
+      "unit": "F1",
+      "description": "Anthropic-internal deep search QA. F1 + over-fetch/abstain categories.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "lab_bench_figqa_no_tools",
+      "name": "LAB-Bench FigQA (no tools)",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "FutureHouse LAB-Bench FigQA biology-figures benchmark, no Python tools.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "lab_bench_figqa_with_tools",
+      "name": "LAB-Bench FigQA (Python tools)",
+      "category": "multimodal",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "shade_arena_hidden_scratchpad",
+      "name": "SHADE-Arena Hidden-Scratchpad upper bound",
+      "category": "alignment",
+      "metric": "stealth-success-rate-pct",
+      "unit": "stealth-success-rate-pct",
+      "description": "SHADE-Arena Hidden Scratchpad condition: monitor sees only user-visible outputs (upper bound on stealth ability).",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "shade_arena_extended_thinking",
+      "name": "SHADE-Arena Extended-Thinking stealth rate",
+      "category": "alignment",
+      "metric": "stealth-success-rate-pct",
+      "unit": "stealth-success-rate-pct",
+      "description": "SHADE-Arena realistic Extended Thinking conditions (monitor sees reasoning).",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "rare_action_uuid_calibration",
+      "name": "Rare-action calibration (UUID setting)",
+      "category": "alignment",
+      "metric": "rate-pct-target-1pct",
+      "unit": "rate-pct-target-1pct",
+      "description": "Probability of taking a rare action when instructed to do it 1% of the time. UUID randomness provided.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "rare_action_ssot_calibration",
+      "name": "Rare-action calibration (SSoT setting)",
+      "category": "alignment",
+      "metric": "rate-pct-target-1pct",
+      "unit": "rate-pct-target-1pct",
+      "description": "Same task but a known working strategy (SSoT) provided.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "firefox147_partial_exploit",
+      "name": "Firefox 147 SpiderMonkey partial-control rate",
+      "category": "cyber",
+      "metric": "partial-control-pct",
+      "unit": "partial-control-pct",
+      "description": "Mozilla/Anthropic Firefox 147 SpiderMonkey shell exploitation benchmark; 50 crash categories, 250 trials. Partial control = 0.5 grade (controlled crash).",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "cybench_pass_at_1",
+      "name": "Cybench pass@1",
+      "category": "cyber",
+      "metric": "pass@1",
+      "unit": "pass@1",
+      "description": "Cybench CTF benchmark (35-task subset Anthropic harness). pass@1 (10 trials per challenge).",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "gmmlu_low_resource_igbo",
+      "name": "GMMLU Low-resource — Igbo",
+      "category": "multilingual",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "gmmlu_low_resource_yoruba",
+      "name": "GMMLU Low-resource — Yoruba",
+      "category": "multilingual",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "gmmlu_low_resource_swahili",
+      "name": "GMMLU Low-resource — Swahili",
+      "category": "multilingual",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "gmmlu_worst_gap_to_english",
+      "name": "GMMLU Worst gap to English (lower-better)",
+      "category": "multilingual",
+      "metric": "gap-to-english-pct",
+      "unit": "gap-to-english-pct",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "include_avg_accuracy",
+      "name": "INCLUDE average accuracy (Opus 4.8 batch)",
+      "category": "multilingual",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "milu_avg_accuracy_opus48",
+      "name": "MILU average accuracy (Opus 4.8 batch)",
+      "category": "multilingual",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "vending_bench_2_final_balance_high",
+      "name": "Vending-Bench 2 final balance — High effort (USD)",
+      "category": "agent",
+      "metric": "usd-final-balance",
+      "unit": "usd-final-balance",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "vending_bench_2_final_balance_max",
+      "name": "Vending-Bench 2 final balance — Max effort (USD)",
+      "category": "agent",
+      "metric": "usd-final-balance",
+      "unit": "usd-final-balance",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "gdpval_aa_elo_delta",
+      "name": "GDPval-AA ELO advantage over GPT-5.5/5.4",
+      "category": "agent",
+      "metric": "elo-delta",
+      "unit": "elo-delta",
+      "description": "Opus model ELO lead over best GPT competitor (xhigh) on Artificial Analysis GDPval evaluation.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "healthbench_professional_opus48",
+      "name": "HealthBench Professional (length-adjusted, Sonnet 4.6 grader)",
+      "category": "medical",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "Anthropic harness; Sonnet 4.6 as grader; length-adjusted scoring per HealthBench Professional paper.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "frontiersw_mean5_avg_rank",
+      "name": "FrontierSWE mean@5 avg rank (lower-better)",
+      "category": "code",
+      "metric": "avg-rank-mean5",
+      "unit": "avg-rank-mean5",
+      "description": "FrontierSWE leaderboard: 17 ultra-long-horizon SWE problems, 20-hr cap, ranked across models @ xhigh effort.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "frontiersw_best5_avg_rank",
+      "name": "FrontierSWE best@5 avg rank (lower-better)",
+      "category": "code",
+      "metric": "avg-rank-best5",
+      "unit": "avg-rank-best5",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "vct_virology_opus48",
+      "name": "VCT (SecureBio Virology Capability Test) — Opus 4.8",
+      "category": "biosec",
+      "metric": "accuracy",
+      "unit": "accuracy",
+      "description": "SecureBio multimodal MCQ virology test. New score for Opus 4.8.",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "long_form_virology_t1_opus48",
+      "name": "Long-form virology task 1 — Opus 4.8",
+      "category": "biosec",
+      "metric": "end-to-end-score",
+      "unit": "end-to-end-score",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    },
+    {
+      "id": "long_form_virology_t2_opus48",
+      "name": "Long-form virology task 2 — Opus 4.8",
+      "category": "biosec",
+      "metric": "end-to-end-score",
+      "unit": "end-to-end-score",
+      "description": "",
+      "source_url": "https://www-cdn.anthropic.com/"
+    }
+  ],
+  "scores": [
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "humanitys_last_exam",
+      "score": 37.5,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "No tools"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "humanitys_last_exam",
+      "score": 45.8,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "With search and code execution"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "arc_agi_2",
+      "score": 31.1,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "ARC Prize Verified"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "gpqa_diamond",
+      "score": 91.9,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "aime_2025",
+      "score": 95.0,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "No tools"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "aime_2025",
+      "score": 100.0,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "With code execution"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "matharena_apex",
+      "score": 23.4,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "mmmu_pro",
+      "score": 81.0,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "screenspot_pro",
+      "score": 72.7,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "charxiv_reasoning",
+      "score": 81.4,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "omnidocbench_1_5_lower_better",
+      "score": 0.115,
+      "unit": "ratio",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "Overall Edit Distance, lower is better"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "video_mmmu",
+      "score": 87.6,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "livecodebench_pro",
+      "score": 2439,
+      "unit": "rating",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "Elo rating, higher is better"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "terminal_bench_2",
+      "score": 54.2,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "Terminus-2 agent"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "swe_bench_verified",
+      "score": 76.2,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "Single attempt"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "t2_bench",
+      "score": 85.4,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "vending_bench_2",
+      "score": 5478.16,
+      "unit": "usd",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "Net worth mean (USD), higher is better"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "facts_benchmark_suite",
+      "score": 70.5,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "simpleqa_verified",
+      "score": 72.1,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "mmlu",
+      "score": 91.8,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "Multilingual Q&A"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "global_piqa",
+      "score": 93.4,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "mrcr_v2_8needle",
+      "score": 77.0,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "128k average"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "mrcr_v2_8needle",
+      "score": 26.3,
+      "unit": "percent",
+      "_source": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "_note": "1M (pointwise)"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "re_bench",
+      "score": 1.27,
+      "unit": "score",
+      "_source": "Gemini 3.1 Pro Model Card (Feb 2026), FSF Machine Learning R&D",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-cyber-range",
+      "score": 0.9333,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.3, p.31",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-cyber-range",
+      "score": 0.7333,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.3, p.31",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "openai-cyber-range",
+      "score": 0.8,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.3, p.31",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-codex",
+      "benchmark": "openai-cyber-range",
+      "score": 0.5333,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.3, p.31",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "uk-aisi-narrow-cyber-expert-pass5",
+      "score": 0.905,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.7, p.33",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "uk-aisi-narrow-cyber-expert-pass5",
+      "score": 0.714,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.7, p.33",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "uk-aisi-narrow-cyber-expert-pass1",
+      "score": 0.667,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.7, p.33",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "uk-aisi-narrow-cyber-expert-pass1",
+      "score": 0.524,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.7, p.33",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "uk-aisi-narrow-cyber-lower-difficulty",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.7, p.33",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "irregular-atomic-network-attack-simulation",
+      "score": 0.98,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.5, p.32",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "irregular-atomic-vulnerability-research-exploitation",
+      "score": 0.92,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.5, p.32",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "irregular-atomic-evasion",
+      "score": 0.54,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.5, p.32",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "irregular-cyscenariobench",
+      "score": 0.26,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.5, p.32 (7/11 solved, avg success 26%)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "irregular-cyscenariobench",
+      "score": 0.09,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.2.5, p.32 (5/11 solved, avg success 9%)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-healthbench-length-adjusted",
+      "score": 56.5,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-healthbench-length-adjusted",
+      "score": 54.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-healthbench-length-adjusted",
+      "score": 56.8,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-healthbench-length-adjusted",
+      "score": 50.9,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "openai-healthbench-length-adjusted",
+      "score": 57.7,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-healthbench-hard-length-adjusted",
+      "score": 31.5,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-healthbench-hard-length-adjusted",
+      "score": 29.1,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-healthbench-hard-length-adjusted",
+      "score": 34.3,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-healthbench-hard-length-adjusted",
+      "score": 25.4,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "openai-healthbench-hard-length-adjusted",
+      "score": 34.7,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-healthbench-consensus-length-adjusted",
+      "score": 95.6,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-healthbench-consensus-length-adjusted",
+      "score": 96.3,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-healthbench-consensus-length-adjusted",
+      "score": 94.4,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-healthbench-consensus-length-adjusted",
+      "score": 95.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "openai-healthbench-consensus-length-adjusted",
+      "score": 95.6,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-healthbench-professional-length-adjusted",
+      "score": 51.8,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-healthbench-professional-length-adjusted",
+      "score": 48.1,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-healthbench-professional-length-adjusted",
+      "score": 45.9,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-healthbench-professional-length-adjusted",
+      "score": 39.6,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "openai-healthbench-professional-length-adjusted",
+      "score": 46.2,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.1 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-prompt-injection-connectors",
+      "score": 0.963,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §4.2 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-prompt-injection-connectors",
+      "score": 0.998,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §4.2 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-prompt-injection-connectors",
+      "score": 0.971,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §4.2 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-prompt-injection-connectors",
+      "score": 0.649,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §4.2 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-disallowed-violent-illicit",
+      "score": 0.979,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-disallowed-violent-illicit",
+      "score": 0.971,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-disallowed-violent-illicit",
+      "score": 0.975,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-disallowed-violent-illicit",
+      "score": 0.955,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-disallowed-nonviolent-illicit",
+      "score": 0.993,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-disallowed-nonviolent-illicit",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-disallowed-nonviolent-illicit",
+      "score": 0.993,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-disallowed-nonviolent-illicit",
+      "score": 0.99,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-disallowed-harassment",
+      "score": 0.822,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-disallowed-harassment",
+      "score": 0.79,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-disallowed-harassment",
+      "score": 0.81,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-disallowed-harassment",
+      "score": 0.706,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-disallowed-extremism",
+      "score": 0.925,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-disallowed-extremism",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-disallowed-extremism",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-disallowed-extremism",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-disallowed-hate",
+      "score": 0.868,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-disallowed-hate",
+      "score": 0.943,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-disallowed-hate",
+      "score": 0.927,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-disallowed-hate",
+      "score": 0.808,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-disallowed-self-harm-standard",
+      "score": 0.959,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-disallowed-self-harm-standard",
+      "score": 0.987,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-disallowed-self-harm-standard",
+      "score": 0.961,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-disallowed-self-harm-standard",
+      "score": 0.926,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-disallowed-violence",
+      "score": 0.846,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-disallowed-violence",
+      "score": 0.831,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-disallowed-violence",
+      "score": 0.877,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-disallowed-violence",
+      "score": 0.8,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-disallowed-sexual",
+      "score": 0.925,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-disallowed-sexual",
+      "score": 0.933,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-disallowed-sexual",
+      "score": 0.94,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-disallowed-sexual",
+      "score": 0.933,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-disallowed-sexual-minors",
+      "score": 0.941,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-disallowed-sexual-minors",
+      "score": 0.966,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-disallowed-sexual-minors",
+      "score": 0.948,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-disallowed-sexual-minors",
+      "score": 0.916,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.1.1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-image-input-hate",
+      "score": 0.981,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-image-input-hate",
+      "score": 0.988,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-image-input-hate",
+      "score": 0.988,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-image-input-hate",
+      "score": 0.981,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-image-input-extremism",
+      "score": 0.987,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-image-input-extremism",
+      "score": 0.995,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-image-input-extremism",
+      "score": 0.987,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-image-input-extremism",
+      "score": 0.984,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-image-input-self-harm",
+      "score": 0.987,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-image-input-self-harm",
+      "score": 0.999,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-image-input-self-harm",
+      "score": 0.986,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-image-input-self-harm",
+      "score": 0.984,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-image-input-harms-erotic",
+      "score": 0.987,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-image-input-harms-erotic",
+      "score": 0.99,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-image-input-harms-erotic",
+      "score": 0.998,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-image-input-harms-erotic",
+      "score": 0.999,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.2 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-destructive-action-avoidance",
+      "score": 0.9,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-destructive-action-avoidance",
+      "score": 0.86,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "openai-destructive-action-avoidance",
+      "score": 0.88,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-codex",
+      "benchmark": "openai-destructive-action-avoidance",
+      "score": 0.76,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-perfect-reversion",
+      "score": 0.52,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 4",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-perfect-reversion",
+      "score": 0.18,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 4",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "openai-perfect-reversion",
+      "score": 0.01,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 4",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-codex",
+      "benchmark": "openai-perfect-reversion",
+      "score": 0.09,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 4",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-user-work-preserved",
+      "score": 0.57,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 4",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-user-work-preserved",
+      "score": 0.53,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 4",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "openai-user-work-preserved",
+      "score": 0.08,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 4",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-codex",
+      "benchmark": "openai-user-work-preserved",
+      "score": 0.18,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.3 Table 4",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-user-confirmations-financial",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-user-confirmations-financial",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "openai-user-confirmations-financial",
+      "score": 0.99,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-user-confirmations-financial",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-user-confirmations-high-stakes-comms",
+      "score": 0.98,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-user-confirmations-high-stakes-comms",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "openai-user-confirmations-high-stakes-comms",
+      "score": 0.99,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-user-confirmations-high-stakes-comms",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-user-confirmations-general",
+      "score": 0.94,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-user-confirmations-general",
+      "score": 0.94,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "openai-user-confirmations-general",
+      "score": 0.91,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-user-confirmations-general",
+      "score": 0.94,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §3.4 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-dynamic-mental-health",
+      "score": 0.981,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-dynamic-mental-health",
+      "score": 0.985,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-dynamic-mental-health",
+      "score": 0.975,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-dynamic-mental-health",
+      "score": 0.753,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-dynamic-emotional-reliance",
+      "score": 0.981,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-dynamic-emotional-reliance",
+      "score": 0.985,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-dynamic-emotional-reliance",
+      "score": 0.953,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-dynamic-emotional-reliance",
+      "score": 0.857,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-dynamic-self-harm",
+      "score": 0.937,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-dynamic-self-harm",
+      "score": 0.977,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-dynamic-self-harm",
+      "score": 0.955,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-dynamic-self-harm",
+      "score": 0.904,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §5.2 Table 8",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-first-person-fairness_lower_better",
+      "score": 0.0112,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §8.1 Table 9",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-first-person-fairness_lower_better",
+      "score": 0.0088,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §8.1 Table 9",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-thinking",
+      "benchmark": "openai-first-person-fairness_lower_better",
+      "score": 0.00997,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §8.1 Table 9",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "openai-first-person-fairness_lower_better",
+      "score": 0.0128,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §8.1 Table 9",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-biochem-knowledge-reward4",
+      "score": 0.3097,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.1.5 Table 11",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-biochem-knowledge-reward4",
+      "score": 0.3232,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.1.5 Table 11",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5-pro",
+      "benchmark": "openai-biochem-knowledge-reward4",
+      "score": 0.3926,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.1.5 Table 11",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-hard-negative-protein-binding-pass4",
+      "score": 0.0346,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.1.6 Table 12",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-hard-negative-protein-binding-pass4",
+      "score": 0.004,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.1.6 Table 12",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5-pro",
+      "benchmark": "openai-hard-negative-protein-binding-pass4",
+      "score": 0.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.1.6 Table 12",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "openai-dna-tf-binding-pass1",
+      "score": 0.1282,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.1.7 Table 13",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-dna-tf-binding-pass1",
+      "score": 0.1382,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.1.7 Table 13",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5-pro",
+      "benchmark": "openai-dna-tf-binding-pass1",
+      "score": 0.165,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.1.7 Table 13",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai-internal-research-debugging-median",
+      "score": 0.505,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.3.3 (highest scoring; median 50.5%)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "openai-opqa",
+      "score": 0.058,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.1.3.4 (highest at 5.8%)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "apollo-strategic-deception-capability-sandbagging",
+      "score": 0.996,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.2.1 (99.6% accuracy when incentivized to score below 50%)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "apollo-impossible-coding-task-deception_lower_better",
+      "score": 0.29,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.2.1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-thinking",
+      "benchmark": "apollo-impossible-coding-task-deception_lower_better",
+      "score": 0.07,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.2.1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "apollo-impossible-coding-task-deception_lower_better",
+      "score": 0.1,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.2.1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "apollo-sabotage-mean-score",
+      "score": 0.67,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card §9.2.1 (mean across all task/difficulty)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "humanitys-last-exam",
+      "score": 33.7,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "arc-agi-2",
+      "score": 43.5,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "gpqa-diamond",
+      "score": 83.6,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "aime-2025",
+      "score": 95.2,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "mmmu-pro",
+      "score": 81.3,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "screenspot-pro",
+      "score": 69.1,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "charxiv-reasoning",
+      "score": 80.3,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "omnidocbench_1_5_lower_better",
+      "score": 0.121,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "video-mmmu",
+      "score": 86.9,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "livecodebench-pro",
+      "score": 23.1,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "terminal-bench-2",
+      "score": 47.4,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "swe-bench-verified",
+      "score": 78.0,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "t2-bench",
+      "score": 90.2,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "mcp-atlas",
+      "score": 49.4,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "vending-bench-2",
+      "score": 5435.0,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "facts-benchmark-suite",
+      "score": 61.9,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "simpleqa-verified",
+      "score": 48.7,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "mmmlu",
+      "score": 88.2,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "global-pqa",
+      "score": 82.9,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "mrcr-v2-8-needle",
+      "score": 67.2,
+      "unit": "score",
+      "_source": "/Users/user/git/cyber/resource/gemini_3_flash_model_card.pdf (Google DeepMind, Published December 2025)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "aime_2025",
+      "score": 97.0,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "aime_2026",
+      "score": 94.5,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "hmmt_feb_2026",
+      "score": 84.9,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "gpqa_diamond",
+      "score": 84.2,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "livecodebench",
+      "score": 87.7,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "terminal_bench_2",
+      "score": 46.0,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "swe_bench_verified",
+      "score": 73.5,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "swe_bench_pro",
+      "score": 52.8,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "mmlu_pro",
+      "score": 85,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "simpleqa_verified",
+      "score": 31,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "ifbench",
+      "score": 69,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "advanced_if",
+      "score": 85,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "multi_challenge",
+      "score": 53,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "graphwalks_128k",
+      "score": 90,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "air_bench",
+      "score": 88,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "cyberseceval4_instruct",
+      "score": 63,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "cyberseceval4_autocomplete",
+      "score": 63,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "longfact",
+      "score": 98,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "truthfulqa",
+      "score": 88,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "healthbench_professional",
+      "score": 35,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "medxpertqa",
+      "score": 43,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "bfcl_v3",
+      "score": 72,
+      "unit": "score",
+      "_source": "ms_mai_thinking_1_card.pdf — Microsoft AI Team, MAI-Thinking-1: Building a Hill-Climbing Machine (Technical Report)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-image-2",
+      "benchmark": "mai_elo_photorealistic",
+      "score": 1201,
+      "unit": "elo",
+      "_source": "MAI-Image-2 Model Card (2026-03-18)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-image-2",
+      "benchmark": "mai_elo_product_branding",
+      "score": 1191,
+      "unit": "elo",
+      "_source": "MAI-Image-2 Model Card (2026-03-18)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-image-2",
+      "benchmark": "mai_elo_3d",
+      "score": 1184,
+      "unit": "elo",
+      "_source": "MAI-Image-2 Model Card (2026-03-18)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-image-2",
+      "benchmark": "mai_elo_cartoon_anime",
+      "score": 1186,
+      "unit": "elo",
+      "_source": "MAI-Image-2 Model Card (2026-03-18)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-image-2",
+      "benchmark": "mai_elo_art",
+      "score": 1191,
+      "unit": "elo",
+      "_source": "MAI-Image-2 Model Card (2026-03-18)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-image-2",
+      "benchmark": "mai_elo_portraits",
+      "score": 1201,
+      "unit": "elo",
+      "_source": "MAI-Image-2 Model Card (2026-03-18)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-image-2",
+      "benchmark": "mai_elo_text_rendering",
+      "score": 1186,
+      "unit": "elo",
+      "_source": "MAI-Image-2 Model Card (2026-03-18)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-image-2",
+      "benchmark": "mai_elo_overall",
+      "score": 1190,
+      "unit": "elo",
+      "_source": "MAI-Image-2 Model Card (2026-03-18)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "genai_bench_overall_preference",
+      "score": 1079.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card (Feb 2026) — Thinking + Text Search + Image Search variant",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "genai_bench_visual_quality",
+      "score": 1140.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card (Feb 2026) — Thinking + Text Search + Image Search variant",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "genai_bench_infographics_factuality",
+      "score": 1114.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card (Feb 2026) — Thinking + Text Search + Image Search variant",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_general",
+      "score": 1065.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card (Feb 2026) — Thinking + Text Search + Image Search variant",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_character",
+      "score": 1056.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card (Feb 2026) — Thinking + Text Search + Image Search variant",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_creative",
+      "score": 1023.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card (Feb 2026) — Thinking + Text Search + Image Search variant",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_object_env",
+      "score": 1029.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card (Feb 2026) — Thinking + Text Search + Image Search variant",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_multi_input",
+      "score": 1037.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card (Feb 2026) — Thinking + Text Search + Image Search variant",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_stylization",
+      "score": 1045.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card (Feb 2026) — Thinking + Text Search + Image Search variant",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "humanitys-last-exam",
+      "score": 16.0,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Flash-Lite model card PDF, page 4 benchmark table image",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "gpqa-diamond",
+      "score": 86.9,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Flash-Lite model card PDF, page 4 benchmark table image",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "mmmu-pro",
+      "score": 76.8,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Flash-Lite model card PDF, page 4 benchmark table image",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "charxiv-reasoning",
+      "score": 73.2,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Flash-Lite model card PDF, page 4 benchmark table image",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "video-mmmu",
+      "score": 84.8,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Flash-Lite model card PDF, page 4 benchmark table image",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "simpleqa-verified",
+      "score": 43.3,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Flash-Lite model card PDF, page 4 benchmark table image",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "facts-benchmark-suite",
+      "score": 40.6,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Flash-Lite model card PDF, page 4 benchmark table image",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "mmmlu",
+      "score": 88.9,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Flash-Lite model card PDF, page 4 benchmark table image",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "livecodebench",
+      "score": 72.0,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Flash-Lite model card PDF, page 4 benchmark table image",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "mrcr-v2-8needle-128k",
+      "score": 60.1,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Flash-Lite model card PDF, page 4 benchmark table image",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "mrcr-v2-8needle-1m",
+      "score": 12.3,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Flash-Lite model card PDF, page 4 benchmark table image",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b",
+      "benchmark": "mmmu_pro",
+      "score": 76.9,
+      "unit": "score",
+      "_source": "https://datature.io/blog/gemma-4-what-computer-vision-engineers-actually-need-to-know",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-image-2-medium",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1465,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-image-2.5",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1401,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "openai/chatgpt-image-latest-high-fidelity-20251216",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1390,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-imagine-image-quality-20260519",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1388,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-image-preview-2k",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1388,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-image-preview",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1387,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-image-preview",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1385,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-image-1.5-high-fidelity",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1373,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "reve/reve-2.0",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1356,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-imagine-image-quality",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1355,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "luma/uni-1.1-max",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1335,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-imagine-image",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1329,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "luma/uni-1.1",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1312,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/wan2.7-image-pro",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1302,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "bytedance/seedream-4.5",
+      "benchmark": "arena_image_edit_elo",
+      "score": 1300,
+      "unit": "score",
+      "_source": "https://arena.ai/leaderboard/image-edit",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cybergym_level1_success_rate",
+      "score": 22.0,
+      "unit": "score",
+      "_source": "https://www.cybergym.io/cybergym/",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cybergym_level1_success_rate",
+      "score": 7.7,
+      "unit": "score",
+      "_source": "https://www.cybergym.io/cybergym/",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "cybergym_oss_fuzz_zero_days",
+      "score": 7,
+      "unit": "score",
+      "_source": "https://www.cybergym.io/cybergym/",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "cybergym_oss_fuzz_zero_days",
+      "score": 22,
+      "unit": "score",
+      "_source": "https://www.cybergym.io/cybergym/",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "exploitgym_total_exploits",
+      "score": 226,
+      "unit": "score",
+      "_source": "https://www.cybergym.io/exploitgym/",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "exploitgym_intended_bug_exploits",
+      "score": 157,
+      "unit": "score",
+      "_source": "https://www.cybergym.io/exploitgym/",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "exploitgym_total_exploits",
+      "score": 210,
+      "unit": "score",
+      "_source": "https://www.cybergym.io/exploitgym/",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "exploitgym_intended_bug_exploits",
+      "score": 120,
+      "unit": "score",
+      "_source": "https://www.cybergym.io/exploitgym/",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "exploitgym_total_exploits",
+      "score": 127,
+      "unit": "score",
+      "_source": "https://www.cybergym.io/exploitgym/",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "exploitgym_total_exploits",
+      "score": 204,
+      "unit": "score",
+      "_source": "https://www.cybergym.io/exploitgym/",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "exploitgym_total_exploits",
+      "score": 15,
+      "unit": "score",
+      "_source": "https://www.cybergym.io/exploitgym/",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "usamo_2026",
+      "score": 96.7,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.7",
+      "_note": "effort=high trials=10"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "usamo_2026",
+      "score": 69.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.7",
+      "_note": "effort=high trials=10"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "arxivmath_2026",
+      "score": 71.82,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "arxivmath_2026",
+      "score": 71.48,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.8",
+      "_note": "effort=xhigh trials="
+    },
+    {
+      "model": "google/gemini-3.1-pro-preview",
+      "benchmark": "arxivmath_2026",
+      "score": 64.79,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "legal_agent_benchmark_harvey",
+      "score": 9.62,
+      "unit": "all-pass-rate",
+      "_source": "Opus 4.8 SC §8.13.3",
+      "_note": "effort= trials=5"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "biopipelinebench_verified",
+      "score": 87.7,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "biopipelinebench_verified",
+      "score": 83.6,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "biopipelinebench_verified",
+      "score": 73.5,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "biopipelinebench_verified",
+      "score": 88.1,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "biomysterybench_human_solvable",
+      "score": 80.4,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.2",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "biomysterybench_human_solvable",
+      "score": 78.9,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.2",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "biomysterybench_human_solvable",
+      "score": 71.8,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.2",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "biomysterybench_human_solvable",
+      "score": 82.6,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.2",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "biomysterybench_human_difficult",
+      "score": 40.0,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.2",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "biomysterybench_human_difficult",
+      "score": 24.7,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.2",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "biomysterybench_human_difficult",
+      "score": 19.1,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.2",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "biomysterybench_human_difficult",
+      "score": 29.6,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.2",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "latchbio_spatialbench",
+      "score": 53.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.3",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "latchbio_spatialbench",
+      "score": 51.4,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.3",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "latchbio_spatialbench",
+      "score": 48.7,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.3",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "latchbio_spatialbench",
+      "score": 53.8,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.3",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "latchbio_singlecellbench",
+      "score": 58.2,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.3",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "latchbio_singlecellbench",
+      "score": 55.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.3",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "latchbio_singlecellbench",
+      "score": 50.4,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.3",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "latchbio_singlecellbench",
+      "score": 58.2,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.3",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "structural_biology_open_ended",
+      "score": 79.0,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "structural_biology_open_ended",
+      "score": 74.0,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "structural_biology_open_ended",
+      "score": 31.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "structural_biology_open_ended",
+      "score": 81.6,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "proteingym_hard",
+      "score": 39.6,
+      "unit": "rank-correlation",
+      "_source": "Opus 4.8 SC §8.16.5",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "proteingym_hard",
+      "score": 37.7,
+      "unit": "rank-correlation",
+      "_source": "Opus 4.8 SC §8.16.5",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "proteingym_hard",
+      "score": 35.4,
+      "unit": "rank-correlation",
+      "_source": "Opus 4.8 SC §8.16.5",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "proteingym_hard",
+      "score": 43.1,
+      "unit": "rank-correlation",
+      "_source": "Opus 4.8 SC §8.16.5",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "organic_chemistry_anthropic",
+      "score": 86.2,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.6",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "organic_chemistry_anthropic",
+      "score": 77.2,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.6",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "organic_chemistry_anthropic",
+      "score": 53.1,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.6",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "organic_chemistry_anthropic",
+      "score": 86.5,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.6",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "protocol_troubleshooting",
+      "score": 59.6,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "protocol_troubleshooting",
+      "score": 51.8,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "protocol_troubleshooting",
+      "score": 42.4,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "protocol_troubleshooting",
+      "score": 69.6,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "labbench2_patent",
+      "score": 68.8,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "labbench2_patent",
+      "score": 48.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "labbench2_patent",
+      "score": 64.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "labbench2_clinical_trial",
+      "score": 85.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "labbench2_clinical_trial",
+      "score": 70.8,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "labbench2_clinical_trial",
+      "score": 86.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "labbench2_tables",
+      "score": 77.2,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "labbench2_tables",
+      "score": 66.4,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "labbench2_supplementary",
+      "score": 58.9,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "labbench2_supplementary",
+      "score": 47.8,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.16.8",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "toolathlon_pass3",
+      "score": 54.6,
+      "unit": "pass@3",
+      "_source": "Opus 4.8 SC §8.13.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "toolathlon_pass3",
+      "score": 66.7,
+      "unit": "pass@3",
+      "_source": "Opus 4.8 SC §8.13.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "toolathlon_pass3",
+      "score": 66.7,
+      "unit": "pass@3",
+      "_source": "Opus 4.8 SC §8.13.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "toolathlon_pass3",
+      "score": 67.6,
+      "unit": "pass@3",
+      "_source": "Opus 4.8 SC §8.13.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "toolathlon_pass_cube",
+      "score": 28.7,
+      "unit": "pass_cube",
+      "_source": "Opus 4.8 SC §8.13.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "toolathlon_pass_cube",
+      "score": 47.2,
+      "unit": "pass_cube",
+      "_source": "Opus 4.8 SC §8.13.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "toolathlon_pass_cube",
+      "score": 52.8,
+      "unit": "pass_cube",
+      "_source": "Opus 4.8 SC §8.13.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "toolathlon_pass_cube",
+      "score": 48.1,
+      "unit": "pass_cube",
+      "_source": "Opus 4.8 SC §8.13.7",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "draco_perplexity",
+      "score": 77.7,
+      "unit": "normalized-score",
+      "_source": "Opus 4.7 SC §8.8.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "deepsearchqa_f1",
+      "score": 95.1,
+      "unit": "F1",
+      "_source": "Opus 4.7 SC Table 8.8.3.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "deepsearchqa_f1",
+      "score": 91.3,
+      "unit": "F1",
+      "_source": "Opus 4.7 SC Table 8.8.3.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "deepsearchqa_f1",
+      "score": 90.5,
+      "unit": "F1",
+      "_source": "Opus 4.7 SC Table 8.8.3.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "deepsearchqa_f1",
+      "score": 89.1,
+      "unit": "F1",
+      "_source": "Opus 4.7 SC Table 8.8.3.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "lab_bench_figqa_no_tools",
+      "score": 78.6,
+      "unit": "accuracy",
+      "_source": "Opus 4.7 SC §8.9.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "lab_bench_figqa_no_tools",
+      "score": 58.5,
+      "unit": "accuracy",
+      "_source": "Opus 4.7 SC §8.9.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "lab_bench_figqa_with_tools",
+      "score": 86.4,
+      "unit": "accuracy",
+      "_source": "Opus 4.7 SC §8.9.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "lab_bench_figqa_with_tools",
+      "score": 75.1,
+      "unit": "accuracy",
+      "_source": "Opus 4.7 SC §8.9.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "shade_arena_hidden_scratchpad",
+      "score": 10.7,
+      "unit": "stealth-success-rate-pct",
+      "_source": "Opus 4.7 SC §6.4.2.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "shade_arena_hidden_scratchpad",
+      "score": 13.8,
+      "unit": "stealth-success-rate-pct",
+      "_source": "Opus 4.7 SC §6.4.2.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "shade_arena_extended_thinking",
+      "score": 0.75,
+      "unit": "stealth-success-rate-pct",
+      "_source": "Opus 4.7 SC §6.4.2.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "shade_arena_extended_thinking",
+      "score": 1.75,
+      "unit": "stealth-success-rate-pct",
+      "_source": "Opus 4.7 SC §6.4.2.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "shade_arena_extended_thinking",
+      "score": 4.0,
+      "unit": "stealth-success-rate-pct",
+      "_source": "Opus 4.7 SC §6.4.2.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "rare_action_uuid_calibration",
+      "score": 0.48,
+      "unit": "rate-pct-target-1pct",
+      "_source": "Opus 4.7 SC Table 6.4.2.3.A",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "rare_action_uuid_calibration",
+      "score": 0.2,
+      "unit": "rate-pct-target-1pct",
+      "_source": "Opus 4.7 SC Table 6.4.2.3.A",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "rare_action_uuid_calibration",
+      "score": 0.05,
+      "unit": "rate-pct-target-1pct",
+      "_source": "Opus 4.7 SC Table 6.4.2.3.A",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "rare_action_uuid_calibration",
+      "score": 0.1,
+      "unit": "rate-pct-target-1pct",
+      "_source": "Opus 4.7 SC Table 6.4.2.3.A",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "rare_action_ssot_calibration",
+      "score": 0.35,
+      "unit": "rate-pct-target-1pct",
+      "_source": "Opus 4.7 SC Table 6.4.2.3.A",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "rare_action_ssot_calibration",
+      "score": 0.55,
+      "unit": "rate-pct-target-1pct",
+      "_source": "Opus 4.7 SC Table 6.4.2.3.A",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "rare_action_ssot_calibration",
+      "score": 0.45,
+      "unit": "rate-pct-target-1pct",
+      "_source": "Opus 4.7 SC Table 6.4.2.3.A",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "rare_action_ssot_calibration",
+      "score": 0.4,
+      "unit": "rate-pct-target-1pct",
+      "_source": "Opus 4.7 SC Table 6.4.2.3.A",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "firefox147_partial_exploit",
+      "score": 22.8,
+      "unit": "partial-control-pct",
+      "_source": "Opus 4.7 SC §3.3.3 (updated harness)",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cybench_pass_at_1",
+      "score": 96.0,
+      "unit": "pass@1",
+      "_source": "Opus 4.7 SC §3.3.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_low_resource_igbo",
+      "score": 82.9,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gmmlu_low_resource_igbo",
+      "score": 81.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "gmmlu_low_resource_igbo",
+      "score": 71.9,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_low_resource_igbo",
+      "score": 89.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "gmmlu_low_resource_igbo",
+      "score": 86.4,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_low_resource_yoruba",
+      "score": 84.4,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gmmlu_low_resource_yoruba",
+      "score": 82.9,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "gmmlu_low_resource_yoruba",
+      "score": 76.9,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_low_resource_yoruba",
+      "score": 88.4,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "gmmlu_low_resource_yoruba",
+      "score": 83.8,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_low_resource_swahili",
+      "score": 89.2,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gmmlu_low_resource_swahili",
+      "score": 88.6,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "gmmlu_low_resource_swahili",
+      "score": 83.4,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_low_resource_swahili",
+      "score": 91.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "gmmlu_low_resource_swahili",
+      "score": 89.2,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_worst_gap_to_english",
+      "score": -10.0,
+      "unit": "gap-to-english-pct",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gmmlu_worst_gap_to_english",
+      "score": -12.1,
+      "unit": "gap-to-english-pct",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "gmmlu_worst_gap_to_english",
+      "score": -19.9,
+      "unit": "gap-to-english-pct",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_worst_gap_to_english",
+      "score": -6.2,
+      "unit": "gap-to-english-pct",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "gmmlu_worst_gap_to_english",
+      "score": -9.5,
+      "unit": "gap-to-english-pct",
+      "_source": "Opus 4.8 SC Table 8.15.1.B",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "include_avg_accuracy",
+      "score": 87.6,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.15.3",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "include_avg_accuracy",
+      "score": 90.7,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.15.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "milu_avg_accuracy_opus48",
+      "score": 90.3,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.15.2",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "vending_bench_2_final_balance_high",
+      "score": 7971,
+      "unit": "usd-final-balance",
+      "_source": "Opus 4.7 SC §8.10.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "vending_bench_2_final_balance_high",
+      "score": 8018,
+      "unit": "usd-final-balance",
+      "_source": "Opus 4.7 SC §8.10.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "vending_bench_2_final_balance_high",
+      "score": 5787.43,
+      "unit": "usd-final-balance",
+      "_source": "Opus 4.8 SC §8.13.5",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "vending_bench_2_final_balance_max",
+      "score": 10937,
+      "unit": "usd-final-balance",
+      "_source": "Opus 4.7 SC §8.10.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "vending_bench_2_final_balance_max",
+      "score": 2992.34,
+      "unit": "usd-final-balance",
+      "_source": "Opus 4.8 SC §8.13.5",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gdpval_aa_elo_delta",
+      "score": 79,
+      "unit": "elo-delta",
+      "_source": "Opus 4.7 SC §8.10.5",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gdpval_aa_elo_delta",
+      "score": 121,
+      "unit": "elo-delta",
+      "_source": "Opus 4.8 SC §8.13.6",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthbench_professional_opus48",
+      "score": 55.8,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.14.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "healthbench_professional_opus48",
+      "score": 51.9,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.14.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "healthbench_professional_opus48",
+      "score": 41.7,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §8.14.1",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "frontiersw_mean5_avg_rank",
+      "score": 2.74,
+      "unit": "avg-rank-mean5",
+      "_source": "Opus 4.8 SC §8.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "frontiersw_mean5_avg_rank",
+      "score": 4.15,
+      "unit": "avg-rank-mean5",
+      "_source": "Opus 4.8 SC §8.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "frontiersw_mean5_avg_rank",
+      "score": 4.94,
+      "unit": "avg-rank-mean5",
+      "_source": "Opus 4.8 SC §8.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "frontiersw_best5_avg_rank",
+      "score": 2.26,
+      "unit": "avg-rank-best5",
+      "_source": "Opus 4.8 SC §8.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "frontiersw_best5_avg_rank",
+      "score": 3.68,
+      "unit": "avg-rank-best5",
+      "_source": "Opus 4.8 SC §8.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "frontiersw_best5_avg_rank",
+      "score": 4.09,
+      "unit": "avg-rank-best5",
+      "_source": "Opus 4.8 SC §8.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "vct_virology_opus48",
+      "score": 0.47,
+      "unit": "accuracy",
+      "_source": "Opus 4.8 SC §2.2.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "long_form_virology_t1_opus48",
+      "score": 0.77,
+      "unit": "end-to-end-score",
+      "_source": "Opus 4.8 SC §2.2.4",
+      "_note": "effort= trials="
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "long_form_virology_t2_opus48",
+      "score": 0.89,
+      "unit": "end-to-end-score",
+      "_source": "Opus 4.8 SC §2.2.4",
+      "_note": "effort= trials="
+    }
+  ]
+}
