@@ -1,15 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 67 — 7-tab audit propagation S65+S66 (2026-06-10)
-**1,682 models · 1,461 benchmarks · 7,481 scores · S65+S66 15 모델 × 7 탭 audit: Frontier 15/15 ✓, Sovereign 15/15 (cluster + NS fallback), Cyber 4/15 (coding-relevant), Medical/Physical/AI4S/Agent 의도된 미적용**
+## Current Status: Session 68 — Fable/Mythos 5 PDF deep re-mine (2026-06-10)
+**1,682 models · 1,467 benchmarks · 7,514 scores · 🌍 14 추가 NEW SOTAs (PDF re-mine, S65 missed sections)**
 
-### 2026-06-10 Session 67 — 7-tab audit propagation for S65+S66
-- **Frontier Compare** (+9): cohere/command-a-plus 37 + cohere/north-mini-code 28 + gemini-3.5-flash-medium/minimal/high 55/43/55 + grok-4.3-medium/low 49/44 + grok-code-fast-1 29 + inclusionai/ring-2.6-1t 38 + stepfun/step-3.7-flash 43 + openbmb/minicpm-5-1b 18
-- **Cyber-Coding** (+2): cohere/north-mini-code (Apache 2.0 MoE 30B/3B coding-specialist) + xai/grok-code-fast-1
-- **Sovereign CN clusters** (+3): openbmb/minicpm-5-1b → OpenBMB cluster + release_date map · stepfun/step-3.7-flash → StepFun cluster + map · inclusionai/ring-2.6-1t → InclusionAI cluster + map
-- **Sovereign US-open** (+2): cohere/command-a-plus + cohere/north-mini-code → Cohere cluster
-- Medical/Physical/AI4S/Agent 0 추가 (S66 모델들은 모두 general-purpose LLM, 도메인 특화 부적합). Cache-bust v=20260610b
-- 매트릭스: Frontier 2/15 → **15/15** · Cyber 2/15 → **4/15** · Sovereign 12/15 → **15/15**
+### 2026-06-10 Session 68 — Anthropic Fable/Mythos 5 PDF deep re-mine
+- PDF sections S65 미커버 (8.5-8.20.7). **🌍 14 NEW SOTAs**: Mythos 5 arxivmath 78.52 (was 71.82) / USAMO 99.8 (was 98.21) / USAMO 2026 99.8 (was 96.7, opus-4.7 69.3) / officeqa 79 / proteingym_hard 44.8 / terminal_bench_2_1 88 (unsafeguarded, was Fable 84.3) / structural_biology 87.2 / gmmlu 93.2 / include 90.5 / labbench2_avg 80.2. Fable 5 cursorbench 72.9 (+8.6 over GPT-5.5) / riemannbench 55 / frontier_swe_mean5 2.12 lower-better / real_world_finance_v2_elo 1374
+- **6 NEW benches**: cursorbench / riemannbench / frontier_swe_mean5_lower_better / structural_biology_openended / labbench2_avg / real_world_finance_v1+v2_elo. 결정적: CritPt PDF authoritative 28.6% (AA page chart bug 4%). GraphWalks 256K/1M BFS+parents. **+0/+6/+33** = 1682/1467/7514
+
+### 2026-06-10 Session 67 — 7-tab audit S65+S66 (compressed)
+- Frontier 2→**15/15** (+9: command-a-plus 37, north-mini-code 28, gemini-3.5-flash 3 variants, grok-4.3 medium/low, grok-code-fast-1, ring-2.6-1t 38, step-3.7-flash 43, minicpm-5-1b 18). Cyber 2→**4/15** (+north-mini-code, grok-code-fast-1). Sovereign 12→**15/15** (+OpenBMB/StepFun/InclusionAI clusters, +Cohere command-a-plus/north-mini-code). Medical/Physical/AI4S/Agent 0 의도된 미적용. v=20260610b
 
 ### 2026-06-09~10 Sessions 65-66 (compressed)
 - S66 🌍 BIGGEST: Claude Fable 5 AAII **65** #1 SOTA (was Opus 4.8 61, +4pp). GDPval-AA Elo 1932 NEW (+42), SWE-Verified 95.0 NEW, Blueprint-Bench 2 38.6. NEW Cohere North Mini Code 30B/3B MoE Apache 2.0 AAII 28. NEW Microsoft MAI Image 2.5 + Voice 2 + Mayo Clinic. 10 AAII backfills. Nemotron 3 Ultra subscores. **+11/+5/+35** = 1682/1461/7481.

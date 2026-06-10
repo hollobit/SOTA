@@ -1,0 +1,138 @@
+{
+  "_meta": {
+    "session": "Session 68 — Anthropic Fable/Mythos 5 PDF deep re-mine",
+    "date": "2026-06-10",
+    "sources": [
+      "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf (deeper section 8.5-8.20.7)",
+      "https://www.vellum.ai/blog/claude-fable-5-and-mythos-5-benchmarks-explained",
+      "https://www.anthropic.com/news/claude-fable-5-mythos-5"
+    ],
+    "notes": "Second-pass deep re-mine of 26MB system card PDF. S65 covered sections 8.2/8.4/8.20.1-2 only. This session extracts sections 8.5 (Frontier SWE), 8.7 (CursorBench), 8.8 (GPQA Diamond extended), 8.9 (RiemannBench), 8.10 (USAMO 2026), 8.11 (ArxivMath), 8.12 (CritPt), 8.13 (GraphWalks), 8.16.4-9 (multimodal), 8.17 (real-world tasks), 8.18 (HealthBench), 8.19 (multilingual GMMLU/MILU/INCLUDE), 8.20.3-7 (life sciences). 10+ NEW SOTAs identified. 5 NEW benchmarks: cursorbench, riemannbench, frontier_swe (lower-better, ranking score), structural_biology_openended, labbench2. Discrepancy resolved: AA page showed Mythos 5 CritPt 4% (chart bug?), PDF authoritative 28.6%."
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "cursorbench",
+      "name": "CursorBench (Cursor AI)",
+      "category": "coding",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Cursor AI coding benchmark. Run + scored independently by Cursor. Real-world IDE workflows.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "riemannbench",
+      "name": "RiemannBench (math reasoning)",
+      "category": "math",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "RiemannBench — advanced mathematics reasoning, judged by panel of 3 frontier models (Gemini 3.1 Pro, Opus 4.6, Mythos Preview).",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "frontier_swe_mean5_lower_better",
+      "name": "Frontier SWE — mean@5 rank (lower better)",
+      "category": "coding",
+      "metric": "rank_lower_better",
+      "unit": "rank_lower_better",
+      "description": "Frontier SWE benchmark — scored continuously on metrics like speedup or functional coverage. mean@5 ranking across 5 trials. Lower is better.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "structural_biology_openended",
+      "name": "Structural Biology Open-Ended (Anthropic)",
+      "category": "life-sciences",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Open-ended questions about biomolecule function. Anthropic internal benchmark.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "labbench2_avg",
+      "name": "LABBench2 (average across subcategories)",
+      "category": "life-sciences",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "LABBench2 — broad biology/life-sciences research questions. Categories: patents, clinical trials, database, literature, table reading, supplementary, source-reliability, FigQA.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "real_world_finance_v1",
+      "name": "Real-World Finance v1",
+      "category": "agentic",
+      "metric": "score_0_100",
+      "unit": "score_0_100",
+      "description": "Real-World Finance v1 — Andon Labs financial agentic benchmark.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    },
+    {
+      "id": "real_world_finance_v2_elo",
+      "name": "Real-World Finance v2 (Elo rating)",
+      "category": "agentic",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "Real-World Finance v2 — pairwise Elo from blind grader comparisons.",
+      "source_url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf"
+    }
+  ],
+  "scores": [
+    {"model": "anthropic/claude-mythos-5", "benchmark": "arxivmath", "score": 78.52, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 ArxivMath 78.52% NEW SOTA (was Opus 4.8 71.82, +6.7pp). Beats GPT-5.5 xhigh 71.48, Gemini 3.1 Pro Preview 64.79. PDF §8.11"},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "arxivmath", "score": 71.48, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "GPT-5.5 xhigh ArxivMath 71.48% per MathArena leaderboard"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "arxivmath", "score": 64.79, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Gemini 3.1 Pro Preview ArxivMath 64.79%"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "usamo", "score": 99.8, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 USAMO 99.8% NEW SOTA (was GPT-5.5 98.21). PDF §8.10 — medium/high/xhigh reasoning effort, 98.3% low effort. PRACTICALLY SATURATED."},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "usamo_2026", "score": 99.8, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 USAMO 2026 99.8% NEW SOTA (was Opus 4.8 96.7, Opus 4.7 69.3 — +30pp jump in 2 generations!)"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "usamo_2026", "score": 69.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.7 USAMO 2026 69.3% — pre-Mythos baseline"},
+
+    {"model": "anthropic/claude-fable-5", "benchmark": "cursorbench", "score": 72.9, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Fable 5 CursorBench 72.9% — NEW SOTA, +8.6 over GPT-5.5 (64.3). Measured + reported independently by Cursor. PDF §8.7"},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "cursorbench", "score": 64.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "GPT-5.5 xhigh CursorBench 64.3% (highest published effort)"},
+
+    {"model": "anthropic/claude-fable-5", "benchmark": "riemannbench", "score": 55.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Fable 5 RiemannBench 55% NEW SOTA. Ahead of Mythos Preview (43%) and Opus 4.8 (34%). Math reasoning judged by Gemini 3.1 Pro + Opus 4.6 + Mythos Preview panel. PDF §8.9"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "riemannbench", "score": 43.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos Preview RiemannBench 43%"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "riemannbench", "score": 34.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 RiemannBench 34%"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "officeqa", "score": 79.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 OfficeQA 79% NEW SOTA (was Opus 4.8 77.6, +1.4pp). Internal agentic harness w/ safeguards classifiers. PDF §8.17.1"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "proteingym_hard", "score": 44.8, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 ProteinGym Hard 44.8% NEW SOTA (was Mythos Preview 43.1, +1.7pp). Ahead of Opus 4.8 39.6, Sonnet 4.6 35.4. PDF §8.20.4"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "terminal_bench_2_1", "score": 88.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 Terminal-Bench 2.1 88% mean reward NEW SOTA (Fable 5 84.3 was prior, Opus 4.8 82.7, GPT-5.5 Codex 83.4). No safety fallback (Mythos has safeguards lifted). PDF §8.3"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "terminal_bench_2_1", "score": 82.7, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 Terminal-Bench 2.1 82.7% mean reward"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "graphwalks_bfs_256k", "score": 91.1, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 GraphWalks BFS 256K 91.1% (averaged 5 trials). PDF §8.13"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "graphwalks_bfs_256k", "score": 85.9, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 GraphWalks BFS 256K 85.9%"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "graphwalks_parents_256k", "score": 99.96, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 GraphWalks parents 256K 99.96% (4 runs at 99.95%, 1 at 100.0%)"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "graphwalks_parents_256k", "score": 99.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 GraphWalks parents 256K 99.3%"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "graphwalks_bfs_1m", "score": 79.4, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 GraphWalks BFS 1M 79.4%"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "graphwalks_parents_1m", "score": 97.5, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 GraphWalks parents 1M 97.5%"},
+
+    {"model": "anthropic/claude-fable-5", "benchmark": "frontier_swe_mean5_lower_better", "score": 2.12, "unit": "rank_lower_better", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Fable 5 Frontier SWE mean@5 2.12 NEW SOTA (Opus 4.8 3.26, GPT-5.5 3.94, lower better). PDF §8.5"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "frontier_swe_mean5_lower_better", "score": 3.26, "unit": "rank_lower_better", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 Frontier SWE mean@5 3.26"},
+    {"model": "openai/gpt-5.5-xhigh", "benchmark": "frontier_swe_mean5_lower_better", "score": 3.94, "unit": "rank_lower_better", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "GPT-5.5 xhigh Frontier SWE mean@5 3.94"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "structural_biology_openended", "score": 87.2, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 Structural Biology Open-Ended 87.2% NEW SOTA (>Mythos Preview 81.6, Opus 4.8 79.0, Sonnet 4.6 31.6 — >2x Sonnet). PDF §8.20.3"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "structural_biology_openended", "score": 81.6, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos Preview Structural Biology 81.6%"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "structural_biology_openended", "score": 79.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 Structural Biology 79.0%"},
+
+    {"model": "anthropic/claude-fable-5", "benchmark": "real_world_finance_v1", "score": 70.0, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Fable 5 Real-World Finance v1 70.0% — comparable to Mythos Preview 70.9. Pre-Mythos: Opus 4.7 64.9, Opus 4.6 64.6. PDF §8.17.3.2"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "real_world_finance_v1", "score": 70.9, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos Preview Real-World Finance v1 70.9%"},
+
+    {"model": "anthropic/claude-fable-5", "benchmark": "real_world_finance_v2_elo", "score": 1374, "unit": "elo", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Fable 5 Real-World Finance v2 Elo 1374 NEW SOTA. Mythos Preview 1307, Opus 4.8 1222. Pairwise win rate 74% vs Opus 4.8, 90% vs Sonnet 4.6"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "real_world_finance_v2_elo", "score": 1307, "unit": "elo", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos Preview Real-World Finance v2 Elo 1307"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "real_world_finance_v2_elo", "score": 1222, "unit": "elo", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Opus 4.8 Real-World Finance v2 Elo 1222"},
+
+    {"model": "anthropic/claude-fable-5", "benchmark": "finance_agent_v2", "score": 57.9, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Fable 5 Finance Agent v2 (image-mode) 57.9% — TIES current SOTA (Gemini 3.5 Flash 57.9). Ahead of GPT-5.5 52.6, Opus 4.8 48.1. Image-mode = PDFs read as images via vision"},
+
+    {"model": "anthropic/claude-fable-5", "benchmark": "mcp_atlas", "score": 83.3, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Fable 5 MCP Atlas 83.3% (up from Opus 4.8 82.2)"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "gmmlu", "score": 93.2, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 GMMLU 93.2% NEW SOTA (was Gemini 3.1 Pro 92.2). 42 languages incl high-resource + low-resource"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "milu", "score": 92.9, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 MILU 92.9% — below Gemini 3.1 Pro 93.6 (10 Indic languages)"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "include", "score": 90.5, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 INCLUDE 90.5% — below Opus 4.8 SOTA 87.6? Actually wait — 90.5 > 87.6 NEW SOTA. 44 languages"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "charxiv_reasoning_no_tools", "score": 88.9, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 CharXiv Reasoning 88.9% (no tools). PDF §8.16.8"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "charxiv_reasoning_tools", "score": 93.5, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Mythos 5 CharXiv Reasoning 93.5% (with tools)"},
+
+    {"model": "anthropic/claude-fable-5", "benchmark": "automation_bench", "score": 17.4, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "Fable 5 AutomationBench 17.4% (corrected — vs Opus 4.8 15.5, prior S66 entry refined)"},
+
+    {"model": "anthropic/claude-mythos-5", "benchmark": "labbench2_avg", "score": 80.2, "unit": "score_0_100", "_source": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf", "_note": "🌍 Mythos 5 LABBench2 (avg 8 categories: patents 79.8, clinical-trials 91.2, database 74.2, literature 86.5, table 82.4, supplementary 65.9, source-reliability 97.6, FigQA 48.3 → mean ≈80.2) NEW SOTA. PDF §8.20.7"}
+  ]
+}
