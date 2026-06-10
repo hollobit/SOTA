@@ -1,0 +1,1947 @@
+{
+  "_meta": {
+    "session": "Session 85 — SciVQR + GraphInstruct + CommonWhy",
+    "date": "2026-06-10",
+    "sources": [
+      "arxiv:2605.10187 SciVQR",
+      "arxiv:2605.09997 GraphInstruct",
+      "arxiv:2605.12918 CommonWhy"
+    ],
+    "notes": "3 parallel agents. SciVQR 7 disciplines (o4-mini/Gemini-2.5-Flash dual leaders, ~tied 0.793 overall). GraphInstruct (Sonnet 4.6 zero-CoT 0.902 = overall #1 of 45 cells, manually added). CommonWhy: OpenAI-o3 leads correctness % (Long-Tail 67.93 / Head 68.51); Gemini-2.5-Flash dominates lexical metrics (BERTScore/ROUGE-L/METEOR/BLEU)."
+  },
+  "models": [
+    {
+      "id": "liuhaotian/llava-next-7b",
+      "name": "LLaVA-NeXT-7B",
+      "vendor": "LMMs-Lab",
+      "type": "language",
+      "release_date": "2024-01-30",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "lmms-lab/llava-onevision-7b",
+      "name": "LLaVA-OneVision-7B",
+      "vendor": "LMMs-Lab",
+      "type": "language",
+      "release_date": "2024-08-05",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openbmb/minicpm-o-2.6-8b",
+      "name": "MiniCPM-o-2.6-8B",
+      "vendor": "OpenBMB",
+      "type": "language",
+      "release_date": "2025-01-13",
+      "modalities": [
+        "text",
+        "vision",
+        "audio"
+      ]
+    },
+    {
+      "id": "allenai/molmo-7b-d-0924",
+      "name": "Molmo-7B-D-0924",
+      "vendor": "AllenAI",
+      "type": "language",
+      "release_date": "2024-09-25",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl3-8b-instruct",
+      "name": "InternVL3-8B-Instruct",
+      "vendor": "OpenGVLab",
+      "type": "language",
+      "release_date": "2025-04-11",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl3-14b-instruct",
+      "name": "InternVL3-14B-Instruct",
+      "vendor": "OpenGVLab",
+      "type": "language",
+      "release_date": "2025-04-11",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl3-78b-instruct",
+      "name": "InternVL3-78B-Instruct",
+      "vendor": "OpenGVLab",
+      "type": "language",
+      "release_date": "2025-04-11",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-vl-7b-instruct",
+      "name": "Qwen2.5-VL-7B-Instruct",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-01-26",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-vl-72b-instruct",
+      "name": "Qwen2.5-VL-72B-Instruct",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-01-26",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "kuaishou/keye-vl-1.5-8b",
+      "name": "Keye-VL-1.5-8B",
+      "vendor": "Kuaishou",
+      "type": "language",
+      "release_date": "2025-09-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "xiaomi/mimo-vl-7b-rl-2508",
+      "name": "MiMo-VL-7B-RL-2508",
+      "vendor": "Xiaomi",
+      "type": "language",
+      "release_date": "2025-08-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openai/gpt-4o",
+      "name": "GPT-4o",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2024-05-13",
+      "modalities": [
+        "text",
+        "vision",
+        "audio"
+      ]
+    },
+    {
+      "id": "openai/o1",
+      "name": "o1",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2024-12-05",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openai/o4-mini",
+      "name": "o4-mini",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-04-16",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "google/gemini-2.5-flash",
+      "name": "Gemini-2.5-Flash",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-04-17",
+      "modalities": [
+        "text",
+        "vision",
+        "audio"
+      ]
+    },
+    {
+      "id": "openai/gpt-4o",
+      "name": "GPT-4o",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2024-05-13",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-4.1",
+      "name": "GPT-4.1",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-04-14",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-4o-mini",
+      "name": "GPT-4o mini",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2024-07-18",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-3.5-turbo",
+      "name": "GPT-3.5 Turbo",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2023-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gpt-5.1",
+      "name": "GPT-5.1",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemini-2.5-flash",
+      "name": "Gemini 2.5 Flash",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "llama-3.3-70b",
+      "name": "Llama 3.3 70B Instruct",
+      "vendor": "meta",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek-v3.2",
+      "name": "DeepSeek-V3.2",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai-o3",
+      "name": "OpenAI o3",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "scivqr_math",
+      "name": "SciVQR — Mathematics",
+      "category": "ai4s",
+      "metric": "accuracy",
+      "unit": "accuracy_0_1",
+      "description": "Mathematics subject accuracy on SciVQR multimodal scientific reasoning benchmark (CoT setting).",
+      "source_url": "https://arxiv.org/abs/2605.10187"
+    },
+    {
+      "id": "scivqr_physics",
+      "name": "SciVQR — Physics",
+      "category": "ai4s",
+      "metric": "accuracy",
+      "unit": "accuracy_0_1",
+      "description": "Physics subject accuracy on SciVQR multimodal scientific reasoning benchmark (CoT setting).",
+      "source_url": "https://arxiv.org/abs/2605.10187"
+    },
+    {
+      "id": "scivqr_chemistry",
+      "name": "SciVQR — Chemistry",
+      "category": "ai4s",
+      "metric": "accuracy",
+      "unit": "accuracy_0_1",
+      "description": "Chemistry subject accuracy on SciVQR multimodal scientific reasoning benchmark (CoT setting).",
+      "source_url": "https://arxiv.org/abs/2605.10187"
+    },
+    {
+      "id": "scivqr_astronomy",
+      "name": "SciVQR — Astronomy",
+      "category": "ai4s",
+      "metric": "accuracy",
+      "unit": "accuracy_0_1",
+      "description": "Astronomy subject accuracy on SciVQR multimodal scientific reasoning benchmark (CoT setting).",
+      "source_url": "https://arxiv.org/abs/2605.10187"
+    },
+    {
+      "id": "scivqr_geography",
+      "name": "SciVQR — Geography",
+      "category": "ai4s",
+      "metric": "accuracy",
+      "unit": "accuracy_0_1",
+      "description": "Geography subject accuracy on SciVQR multimodal scientific reasoning benchmark (CoT setting).",
+      "source_url": "https://arxiv.org/abs/2605.10187"
+    },
+    {
+      "id": "scivqr_biology",
+      "name": "SciVQR — Biology",
+      "category": "ai4s",
+      "metric": "accuracy",
+      "unit": "accuracy_0_1",
+      "description": "Biology subject accuracy on SciVQR multimodal scientific reasoning benchmark (CoT setting).",
+      "source_url": "https://arxiv.org/abs/2605.10187"
+    },
+    {
+      "id": "scivqr_overall",
+      "name": "SciVQR — Overall",
+      "category": "ai4s",
+      "metric": "accuracy",
+      "unit": "accuracy_0_1",
+      "description": "Overall accuracy on SciVQR (54 subfields across 6 subjects: math, physics, chemistry, astronomy, geography, biology) under CoT setting.",
+      "source_url": "https://arxiv.org/abs/2605.10187"
+    },
+    {
+      "id": "graphinstruct_quality_zero_shot",
+      "name": "GraphInstruct — Quality Stotal (zero-shot)",
+      "category": "reasoning",
+      "metric": "score_0_1",
+      "unit": "score_0_1",
+      "description": "Aggregate Quality Stotal under homogeneous zero-shot prompting. Weighted sum of per-level mean Quality across L0-L5 with weights (0.05, 0.10, 0.15, 0.20, 0.25, 0.25). Each level scored on five complementary dimensions (validity, structural correctness, attribute consistency, semantic fidelity, edit-distance accuracy); active subset varies by level. Averaged over 5 generations per instruction. Primary capability headline.",
+      "source_url": "https://arxiv.org/abs/2605.09997"
+    },
+    {
+      "id": "graphinstruct_quality_few_shot",
+      "name": "GraphInstruct — Quality Stotal (few-shot)",
+      "category": "reasoning",
+      "metric": "score_0_1",
+      "unit": "score_0_1",
+      "description": "Aggregate Quality Stotal under few-shot prompting (3 in-context exemplars per level).",
+      "source_url": "https://arxiv.org/abs/2605.09997"
+    },
+    {
+      "id": "graphinstruct_quality_zero_cot",
+      "name": "GraphInstruct — Quality Stotal (zero-CoT)",
+      "category": "reasoning",
+      "metric": "score_0_1",
+      "unit": "score_0_1",
+      "description": "Aggregate Quality Stotal under zero-shot chain-of-thought prompting.",
+      "source_url": "https://arxiv.org/abs/2605.09997"
+    },
+    {
+      "id": "graphinstruct_quality_few_cot",
+      "name": "GraphInstruct — Quality Stotal (few-CoT)",
+      "category": "reasoning",
+      "metric": "score_0_1",
+      "unit": "score_0_1",
+      "description": "Aggregate Quality Stotal under few-shot chain-of-thought prompting. Uniformly beneficial for Qwen3.5 across scales, uniformly detrimental for GPT family.",
+      "source_url": "https://arxiv.org/abs/2605.09997"
+    },
+    {
+      "id": "graphinstruct_l2_constraint_composition",
+      "name": "GraphInstruct L2 — Multi-Constraint Composition (zero-shot)",
+      "category": "reasoning",
+      "metric": "score_0_1",
+      "unit": "score_0_1",
+      "description": "Per-level Quality at L2: simultaneous satisfaction of 4+ structural constraints under zero-shot prompting. L2 produces the largest T1-T3 tier gap (0.219), 3x the next-widest reasoning-heavy gap. Localizes benchmark discriminative power at compositional constraint satisfaction rather than reasoning depth.",
+      "source_url": "https://arxiv.org/abs/2605.09997"
+    },
+    {
+      "id": "graphinstruct_l5_graph_editing",
+      "name": "GraphInstruct L5 — Graph Editing (zero-shot)",
+      "category": "reasoning",
+      "metric": "score_0_1",
+      "unit": "score_0_1",
+      "description": "Per-level Quality at L5: graph editing under bounded scope (highest-weight level alongside L4). Locally-reducible task that saturates at smaller model scales.",
+      "source_url": "https://arxiv.org/abs/2605.09997"
+    },
+    {
+      "id": "commonwhy_long_tail_correctness",
+      "name": "CommonWhy (Long-Tail, Correctness)",
+      "category": "reasoning",
+      "metric": "correctness_pct",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.12918"
+    },
+    {
+      "id": "commonwhy_head_correctness",
+      "name": "CommonWhy (Head, Correctness)",
+      "category": "reasoning",
+      "metric": "correctness_pct",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.12918"
+    },
+    {
+      "id": "commonwhy_long_tail_bs_f1",
+      "name": "CommonWhy (Long-Tail, BERTScore-F1)",
+      "category": "reasoning",
+      "metric": "bertscore_f1",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.12918"
+    },
+    {
+      "id": "commonwhy_head_bs_f1",
+      "name": "CommonWhy (Head, BERTScore-F1)",
+      "category": "reasoning",
+      "metric": "bertscore_f1",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.12918"
+    },
+    {
+      "id": "commonwhy_long_tail_rouge_l",
+      "name": "CommonWhy (Long-Tail, ROUGE-L)",
+      "category": "reasoning",
+      "metric": "rouge_l",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.12918"
+    },
+    {
+      "id": "commonwhy_head_rouge_l",
+      "name": "CommonWhy (Head, ROUGE-L)",
+      "category": "reasoning",
+      "metric": "rouge_l",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.12918"
+    },
+    {
+      "id": "commonwhy_long_tail_meteor",
+      "name": "CommonWhy (Long-Tail, METEOR)",
+      "category": "reasoning",
+      "metric": "meteor",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.12918"
+    },
+    {
+      "id": "commonwhy_head_meteor",
+      "name": "CommonWhy (Head, METEOR)",
+      "category": "reasoning",
+      "metric": "meteor",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.12918"
+    },
+    {
+      "id": "commonwhy_long_tail_bleu",
+      "name": "CommonWhy (Long-Tail, BLEU)",
+      "category": "reasoning",
+      "metric": "bleu_pct",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.12918"
+    },
+    {
+      "id": "commonwhy_head_bleu",
+      "name": "CommonWhy (Head, BLEU)",
+      "category": "reasoning",
+      "metric": "bleu_pct",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2605.12918"
+    }
+  ],
+  "scores": [
+    {
+      "model": "liuhaotian/llava-next-7b",
+      "benchmark": "scivqr_math",
+      "score": 0.08,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "liuhaotian/llava-next-7b",
+      "benchmark": "scivqr_physics",
+      "score": 0.126,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "liuhaotian/llava-next-7b",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.141,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "liuhaotian/llava-next-7b",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.289,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "liuhaotian/llava-next-7b",
+      "benchmark": "scivqr_geography",
+      "score": 0.242,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "liuhaotian/llava-next-7b",
+      "benchmark": "scivqr_biology",
+      "score": 0.29,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "liuhaotian/llava-next-7b",
+      "benchmark": "scivqr_overall",
+      "score": 0.195,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "lmms-lab/llava-onevision-7b",
+      "benchmark": "scivqr_math",
+      "score": 0.219,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "lmms-lab/llava-onevision-7b",
+      "benchmark": "scivqr_physics",
+      "score": 0.21,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "lmms-lab/llava-onevision-7b",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.246,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "lmms-lab/llava-onevision-7b",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.406,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "lmms-lab/llava-onevision-7b",
+      "benchmark": "scivqr_geography",
+      "score": 0.492,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "lmms-lab/llava-onevision-7b",
+      "benchmark": "scivqr_biology",
+      "score": 0.375,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "lmms-lab/llava-onevision-7b",
+      "benchmark": "scivqr_overall",
+      "score": 0.325,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openbmb/minicpm-o-2.6-8b",
+      "benchmark": "scivqr_math",
+      "score": 0.268,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openbmb/minicpm-o-2.6-8b",
+      "benchmark": "scivqr_physics",
+      "score": 0.23,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openbmb/minicpm-o-2.6-8b",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.227,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openbmb/minicpm-o-2.6-8b",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.353,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openbmb/minicpm-o-2.6-8b",
+      "benchmark": "scivqr_geography",
+      "score": 0.381,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openbmb/minicpm-o-2.6-8b",
+      "benchmark": "scivqr_biology",
+      "score": 0.27,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openbmb/minicpm-o-2.6-8b",
+      "benchmark": "scivqr_overall",
+      "score": 0.288,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "allenai/molmo-7b-d-0924",
+      "benchmark": "scivqr_math",
+      "score": 0.203,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "allenai/molmo-7b-d-0924",
+      "benchmark": "scivqr_physics",
+      "score": 0.199,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "allenai/molmo-7b-d-0924",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.234,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "allenai/molmo-7b-d-0924",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.381,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "allenai/molmo-7b-d-0924",
+      "benchmark": "scivqr_geography",
+      "score": 0.418,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "allenai/molmo-7b-d-0924",
+      "benchmark": "scivqr_biology",
+      "score": 0.35,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "allenai/molmo-7b-d-0924",
+      "benchmark": "scivqr_overall",
+      "score": 0.298,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-8b-instruct",
+      "benchmark": "scivqr_math",
+      "score": 0.364,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-8b-instruct",
+      "benchmark": "scivqr_physics",
+      "score": 0.309,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-8b-instruct",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.384,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-8b-instruct",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.503,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-8b-instruct",
+      "benchmark": "scivqr_geography",
+      "score": 0.529,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-8b-instruct",
+      "benchmark": "scivqr_biology",
+      "score": 0.525,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-8b-instruct",
+      "benchmark": "scivqr_overall",
+      "score": 0.436,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-14b-instruct",
+      "benchmark": "scivqr_math",
+      "score": 0.369,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-14b-instruct",
+      "benchmark": "scivqr_physics",
+      "score": 0.392,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-14b-instruct",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.496,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-14b-instruct",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.572,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-14b-instruct",
+      "benchmark": "scivqr_geography",
+      "score": 0.607,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-14b-instruct",
+      "benchmark": "scivqr_biology",
+      "score": 0.555,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-14b-instruct",
+      "benchmark": "scivqr_overall",
+      "score": 0.499,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-78b-instruct",
+      "benchmark": "scivqr_math",
+      "score": 0.477,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-78b-instruct",
+      "benchmark": "scivqr_physics",
+      "score": 0.467,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-78b-instruct",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.52,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-78b-instruct",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.606,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-78b-instruct",
+      "benchmark": "scivqr_geography",
+      "score": 0.57,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-78b-instruct",
+      "benchmark": "scivqr_biology",
+      "score": 0.575,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "opengvlab/internvl3-78b-instruct",
+      "benchmark": "scivqr_overall",
+      "score": 0.536,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-7b-instruct",
+      "benchmark": "scivqr_math",
+      "score": 0.354,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-7b-instruct",
+      "benchmark": "scivqr_physics",
+      "score": 0.324,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-7b-instruct",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.432,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-7b-instruct",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.558,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-7b-instruct",
+      "benchmark": "scivqr_geography",
+      "score": 0.551,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-7b-instruct",
+      "benchmark": "scivqr_biology",
+      "score": 0.48,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-7b-instruct",
+      "benchmark": "scivqr_overall",
+      "score": 0.45,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "scivqr_math",
+      "score": 0.543,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "scivqr_physics",
+      "score": 0.518,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.666,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.653,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "scivqr_geography",
+      "score": 0.703,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "scivqr_biology",
+      "score": 0.625,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "scivqr_overall",
+      "score": 0.618,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "kuaishou/keye-vl-1.5-8b",
+      "benchmark": "scivqr_math",
+      "score": 0.611,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "kuaishou/keye-vl-1.5-8b",
+      "benchmark": "scivqr_physics",
+      "score": 0.552,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "kuaishou/keye-vl-1.5-8b",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.539,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "kuaishou/keye-vl-1.5-8b",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.622,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "kuaishou/keye-vl-1.5-8b",
+      "benchmark": "scivqr_geography",
+      "score": 0.644,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "kuaishou/keye-vl-1.5-8b",
+      "benchmark": "scivqr_biology",
+      "score": 0.615,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "kuaishou/keye-vl-1.5-8b",
+      "benchmark": "scivqr_overall",
+      "score": 0.597,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "xiaomi/mimo-vl-7b-rl-2508",
+      "benchmark": "scivqr_math",
+      "score": 0.655,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "xiaomi/mimo-vl-7b-rl-2508",
+      "benchmark": "scivqr_physics",
+      "score": 0.675,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "xiaomi/mimo-vl-7b-rl-2508",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.747,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "xiaomi/mimo-vl-7b-rl-2508",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.711,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "xiaomi/mimo-vl-7b-rl-2508",
+      "benchmark": "scivqr_geography",
+      "score": 0.706,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "xiaomi/mimo-vl-7b-rl-2508",
+      "benchmark": "scivqr_biology",
+      "score": 0.66,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "xiaomi/mimo-vl-7b-rl-2508",
+      "benchmark": "scivqr_overall",
+      "score": 0.692,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "scivqr_math",
+      "score": 0.474,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "scivqr_physics",
+      "score": 0.503,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.601,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.722,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "scivqr_geography",
+      "score": 0.678,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "scivqr_biology",
+      "score": 0.665,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "scivqr_overall",
+      "score": 0.607,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/o1",
+      "benchmark": "scivqr_math",
+      "score": 0.792,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/o1",
+      "benchmark": "scivqr_physics",
+      "score": 0.73,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/o1",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.795,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/o1",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.806,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/o1",
+      "benchmark": "scivqr_geography",
+      "score": 0.762,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/o1",
+      "benchmark": "scivqr_biology",
+      "score": 0.745,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/o1",
+      "benchmark": "scivqr_overall",
+      "score": 0.772,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "scivqr_math",
+      "score": 0.845,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT — SOTA math"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "scivqr_physics",
+      "score": 0.777,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.854,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.808,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT — SOTA astronomy"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "scivqr_geography",
+      "score": 0.765,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT — SOTA geography"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "scivqr_biology",
+      "score": 0.71,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "scivqr_overall",
+      "score": 0.793,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT — SOTA overall (tied)"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "scivqr_math",
+      "score": 0.832,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "scivqr_physics",
+      "score": 0.781,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT — SOTA physics"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "scivqr_chemistry",
+      "score": 0.876,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT — SOTA chemistry"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "scivqr_astronomy",
+      "score": 0.786,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "scivqr_geography",
+      "score": 0.762,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "scivqr_biology",
+      "score": 0.72,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT — SOTA biology"
+    },
+    {
+      "model": "google/gemini-2.5-flash",
+      "benchmark": "scivqr_overall",
+      "score": 0.793,
+      "unit": "accuracy_0_1",
+      "_source": "https://arxiv.org/abs/2605.10187",
+      "_note": "Table 3 CoT — SOTA overall (tied)"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "graphinstruct_quality_zero_shot",
+      "score": 0.827,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 zero-shot leaderboard #5"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "graphinstruct_quality_few_shot",
+      "score": 0.844,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 26 few-shot leaderboard #5; Top-20 overall #14"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "graphinstruct_quality_zero_cot",
+      "score": 0.808,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 27 zero-CoT leaderboard #7"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "graphinstruct_quality_few_cot",
+      "score": 0.823,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 28 few-CoT leaderboard #7"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "graphinstruct_l2_constraint_composition",
+      "score": 0.982,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 L2 column zero-shot"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "graphinstruct_l5_graph_editing",
+      "score": 0.794,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 L5 column zero-shot"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "graphinstruct_quality_zero_shot",
+      "score": 0.813,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 zero-shot leaderboard #8"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "graphinstruct_quality_few_shot",
+      "score": 0.85,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 26 few-shot leaderboard #3; Top-20 overall #11"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "graphinstruct_quality_zero_cot",
+      "score": 0.802,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 27 zero-CoT leaderboard #8"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "graphinstruct_quality_few_cot",
+      "score": 0.811,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 28 few-CoT leaderboard #8"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "graphinstruct_l2_constraint_composition",
+      "score": 0.968,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 L2 column zero-shot"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "graphinstruct_l5_graph_editing",
+      "score": 0.779,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 L5 column zero-shot"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "graphinstruct_quality_zero_shot",
+      "score": 0.752,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 zero-shot leaderboard #11 (T3)"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "graphinstruct_quality_few_shot",
+      "score": 0.742,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 26 few-shot leaderboard #9"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "graphinstruct_quality_zero_cot",
+      "score": 0.784,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 27 zero-CoT leaderboard #10"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "graphinstruct_quality_few_cot",
+      "score": 0.715,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 28 few-CoT leaderboard #9"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "graphinstruct_l2_constraint_composition",
+      "score": 0.898,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 L2 column zero-shot"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "graphinstruct_l5_graph_editing",
+      "score": 0.75,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 L5 column zero-shot"
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "graphinstruct_quality_zero_shot",
+      "score": 0.754,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 zero-shot leaderboard #10 (T3)"
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "graphinstruct_quality_few_shot",
+      "score": 0.738,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 26 few-shot leaderboard #10"
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "graphinstruct_quality_zero_cot",
+      "score": 0.786,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 27 zero-CoT leaderboard #9"
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "graphinstruct_quality_few_cot",
+      "score": 0.713,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 28 few-CoT leaderboard #10"
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "graphinstruct_l2_constraint_composition",
+      "score": 0.905,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 L2 column zero-shot"
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "graphinstruct_l5_graph_editing",
+      "score": 0.752,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "App. G Tab. 25 L5 column zero-shot"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "graphinstruct_quality_zero_shot",
+      "score": 0.859,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "🌍 NEW SOTA Sonnet 4.6 zero-shot"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "graphinstruct_quality_few_shot",
+      "score": 0.884,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "🌍 NEW SOTA Sonnet 4.6 few-shot"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "graphinstruct_quality_zero_cot",
+      "score": 0.878,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "🌍 NEW SOTA Sonnet 4.6 zero-CoT"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "graphinstruct_quality_few_cot",
+      "score": 0.902,
+      "unit": "score_0_1",
+      "_source": "https://arxiv.org/abs/2605.09997",
+      "_note": "🌍 NEW SOTA Sonnet 4.6 few-CoT — overall #1 of 45 cells"
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "commonwhy_long_tail_correctness",
+      "score": 57.09,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "commonwhy_head_correctness",
+      "score": 60.49,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "commonwhy_long_tail_bs_f1",
+      "score": 0.242,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "commonwhy_head_bs_f1",
+      "score": 0.239,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "commonwhy_long_tail_rouge_l",
+      "score": 0.223,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "commonwhy_head_rouge_l",
+      "score": 0.219,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "commonwhy_long_tail_meteor",
+      "score": 0.327,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "commonwhy_head_meteor",
+      "score": 0.319,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "commonwhy_long_tail_bleu",
+      "score": 4.92,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "commonwhy_head_bleu",
+      "score": 4.56,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "benchmark": "commonwhy_long_tail_correctness",
+      "score": 43.83,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "benchmark": "commonwhy_head_correctness",
+      "score": 46.21,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "benchmark": "commonwhy_long_tail_bs_f1",
+      "score": 0.375,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "benchmark": "commonwhy_head_bs_f1",
+      "score": 0.371,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "benchmark": "commonwhy_long_tail_rouge_l",
+      "score": 0.318,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "benchmark": "commonwhy_head_rouge_l",
+      "score": 0.315,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "benchmark": "commonwhy_long_tail_meteor",
+      "score": 0.359,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "benchmark": "commonwhy_head_meteor",
+      "score": 0.358,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "benchmark": "commonwhy_long_tail_bleu",
+      "score": 9.23,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "benchmark": "commonwhy_head_bleu",
+      "score": 9.13,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "llama-3.3-70b",
+      "benchmark": "commonwhy_long_tail_correctness",
+      "score": 39.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "llama-3.3-70b",
+      "benchmark": "commonwhy_head_correctness",
+      "score": 43.43,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "llama-3.3-70b",
+      "benchmark": "commonwhy_long_tail_bs_f1",
+      "score": 0.323,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "llama-3.3-70b",
+      "benchmark": "commonwhy_head_bs_f1",
+      "score": 0.328,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "llama-3.3-70b",
+      "benchmark": "commonwhy_long_tail_rouge_l",
+      "score": 0.257,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "llama-3.3-70b",
+      "benchmark": "commonwhy_head_rouge_l",
+      "score": 0.258,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "llama-3.3-70b",
+      "benchmark": "commonwhy_long_tail_meteor",
+      "score": 0.327,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "llama-3.3-70b",
+      "benchmark": "commonwhy_head_meteor",
+      "score": 0.324,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "llama-3.3-70b",
+      "benchmark": "commonwhy_long_tail_bleu",
+      "score": 7.26,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "llama-3.3-70b",
+      "benchmark": "commonwhy_head_bleu",
+      "score": 7.03,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v3.2",
+      "benchmark": "commonwhy_long_tail_correctness",
+      "score": 40.89,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v3.2",
+      "benchmark": "commonwhy_head_correctness",
+      "score": 41.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v3.2",
+      "benchmark": "commonwhy_long_tail_bs_f1",
+      "score": 0.207,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v3.2",
+      "benchmark": "commonwhy_head_bs_f1",
+      "score": 0.205,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v3.2",
+      "benchmark": "commonwhy_long_tail_rouge_l",
+      "score": 0.188,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v3.2",
+      "benchmark": "commonwhy_head_rouge_l",
+      "score": 0.185,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v3.2",
+      "benchmark": "commonwhy_long_tail_meteor",
+      "score": 0.274,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v3.2",
+      "benchmark": "commonwhy_head_meteor",
+      "score": 0.273,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v3.2",
+      "benchmark": "commonwhy_long_tail_bleu",
+      "score": 3.72,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v3.2",
+      "benchmark": "commonwhy_head_bleu",
+      "score": 3.62,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "openai-o3",
+      "benchmark": "commonwhy_long_tail_correctness",
+      "score": 67.93,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "openai-o3",
+      "benchmark": "commonwhy_head_correctness",
+      "score": 68.51,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "openai-o3",
+      "benchmark": "commonwhy_long_tail_bs_f1",
+      "score": 0.289,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "openai-o3",
+      "benchmark": "commonwhy_head_bs_f1",
+      "score": 0.286,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "openai-o3",
+      "benchmark": "commonwhy_long_tail_rouge_l",
+      "score": 0.258,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "openai-o3",
+      "benchmark": "commonwhy_head_rouge_l",
+      "score": 0.254,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "openai-o3",
+      "benchmark": "commonwhy_long_tail_meteor",
+      "score": 0.309,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "openai-o3",
+      "benchmark": "commonwhy_head_meteor",
+      "score": 0.309,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "openai-o3",
+      "benchmark": "commonwhy_long_tail_bleu",
+      "score": 6.11,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    },
+    {
+      "model": "openai-o3",
+      "benchmark": "commonwhy_head_bleu",
+      "score": 5.78,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.12918",
+      "_note": ""
+    }
+  ]
+}

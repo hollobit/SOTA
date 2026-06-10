@@ -1,22 +1,22 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 84 — gwBenchmarks + AgentRx (2026-06-10)
-**1,716 models · 1,625 benchmarks · 8,501 scores · 🌍 10 NEW SOTAs (8 gwBenchmarks + 2 AgentRx)**
+## Current Status: Session 85 — SciVQR + GraphInstruct + CommonWhy (2026-06-10)
+**1,727 models · 1,648 benchmarks · 8,684 scores · 🌍 23 NEW SOTAs (7 SciVQR + 6 GraphInstruct + 10 CommonWhy)**
+
+### 2026-06-10 Session 85 — SciVQR + GraphInstruct + CommonWhy
+- 3 parallel agents 🌍 **23 NEW SOTAs**. SciVQR (multidisciplinary multimodal, 15 VLMs): o4-mini leads Math 0.845 / Astronomy 0.808 / Geography 0.765 / Overall 0.793; Gemini-2.5-Flash leads Physics 0.781 / Chemistry 0.876 / Overall 0.793 (tied). GraphInstruct: Sonnet 4.6 CoT zero/few/few-CoT 0.859/0.884/0.878/**0.902** (overall #1 of 45 cells); GPT-4o L2 multi-constraint 0.982 + L5 graph-editing 0.794. CommonWhy: OpenAI-o3 leads Correctness % (LongTail 67.93 / Head 68.51); Gemini-2.5-Flash dominates ALL 8 lexical metrics (BLEU/BERTScore-F1/ROUGE-L/METEOR × Head+LongTail). **+11/+23/+183** = 1727/1648/8684
 
 ### 2026-06-10 Session 84 — gwBenchmarks (Kavli ITP) + AgentRx (CHIL 2026)
-- 3 agents (1 survey skip) 🌍 **10 NEW SOTAs**. gwBenchmarks (gravitational-wave astronomy, 12 LLM coding agents): Claude Sonnet 4.6 Waveform 0.1422 + Dynamics 0.00671. Opus 4.7 Analytic 0.04161 + Ringdown 1.306e-12 + New Physics 4.647e-6. GPT-5.2 Remnant 3.85e-4. **Kimi K2.6** Validity 0.1967 + Template Bank 0.4286 (only non-Claude/GPT SOTAs). AgentRx multimodal clinical: MedPatch supervised dominates (mortality 0.877, LoS 0.844); LLM agents trail by 8-14 AUROC. **+6/+10/+25** = 1716/1625/8501
+- 🌍 **10 NEW SOTAs**. gwBenchmarks 8 GW tasks: Sonnet 4.6 Waveform 0.1422 + Dynamics 0.00671; Opus 4.7 Analytic 0.04161 + Ringdown 1.306e-12 + New Physics 4.647e-6; GPT-5.2 Remnant 3.85e-4; **Kimi K2.6** Validity 0.1967 + Template Bank 0.4286. AgentRx: MedPatch supervised dominates (mortality 0.877, LoS 0.844)
 
 ### 2026-06-10 Sessions 82-83 (compressed)
 - S83 🌍 17 SOTAs: Creativity (Heng Ji, ~45 LLMs, 13 metrics): GPT-5.4 DAT 91.72 + EQ-Bench CW Elo 2019, Opus 4.6 Arena-CW Elo 1467 + CDAT-A 148.68, Gemma-2-9B CDAT 74.09 + NoveltyBench 3.93, Qwen3-32B CDAT-N 74.54, Claude 3.7 Sonnet thinking LiveIdeaBench 7.22, Gemini 2.5 Pro PACE 0.761. GeoBuildBench: GPT-5.1 success 78.9% + Gemini-3-Flash dominates 3 efficiency metrics
 - S82 🌍 26 SOTAs: ExploitBench (V8 N-day, CMU): Mythos Preview T1 ACE 0.439 + T3 0.854 + T5 1.0; **GPT-5.5 Codex CLI 0.0244** sole *public* ACE; MiniMax M2.7 $0.77/ep cost. VectraYX Globant Spanish cyber: Pro-7B B4 MCP 0.880 + Nano 42M Q4 8 tok/s RPi 4. RealICU: GPT-5.4+ICU-Evo Acute 0.867 / Gemini 3.1 Pro Patient 0.519
 
-### 2026-06-10 Sessions 79-81 (compressed)
-- S81 🌍 10 SOTAs: SMAC-Talk 8 Qwen3.5 (5v5/10v10 × no_comm/comm/KDC/UDC); 122B KDC 41%→UDC 10%. ERRORQUAKE-10K Mistral-Small-24B b=1.250 vs DeepSeek-V3.2 b=0.595; Qwen2.5-7B ε=0.496
-- S79-80 🌍 22 SOTAs: DELEGATE-52 Gemini 3.1 Pro RS@20 80.9 + RS@2 96.8. Text2CAD: DeepSeek-V3.2 L4 8.26 / GPT-5.2 L1 CD 44.31 / Gemini 3 Flash IR 17%. Sakana Auto Reviewer F1 0.62. FACTS Google. Qwen-VLA LIBERO 97.9 + RoboTwin-Hard 87.2 + ALOHA pretrain 76.9 (1.85x π0.5). AgentDog 1.5-4B-U ATBench 78.4. R-Judge 97.3
-
-### 2026-06-10 Sessions 77-78 (compressed)
-- S78 🌍 9 SOTAs: DSPV2-671B FormalMATH-All 28.31/Lite 61.88/ProverBench 59.1/MiniF2F 88.9. BenchCAD Qwen3-VL-2B V2C 0.768. GPT-5.3 CodeEdit 0.865, o3 MedQA TTS 93.3
-- S77 🌍 14 SOTAs: Qwen3.5-Omni-Plus (LibriSpeech 1.11/KeSpeech 3.46 6.8x/VoiceBench 93.1/MathVista 86.9/SuperGPQA 67.4). CosyVoice 3 SEED-TTS-zh 0.71. GPT-5 Pro ECI 2.65. SensorFM-B Age 0.920+CV 0.712+Insulin 0.761
+### 2026-06-10 Sessions 77-81 (compressed)
+- S81 🌍 10 SOTAs: SMAC-Talk 8 Qwen3.5 (122B KDC 41%→UDC 10%); ERRORQUAKE Mistral-Small-24B b=1.250 vs DeepSeek-V3.2 b=0.595; Qwen2.5-7B ε=0.496
+- S79-80 🌍 22 SOTAs: DELEGATE-52 Gemini 3.1 Pro RS@20 80.9 / RS@2 96.8. Text2CAD DeepSeek-V3.2 L4 8.26. Sakana Auto Reviewer F1 0.62. FACTS Google. Qwen-VLA LIBERO 97.9 + RoboTwin-Hard 87.2 + ALOHA pretrain 1.85x π0.5. AgentDog 1.5-4B-U 78.4. R-Judge 97.3
+- S77-78 🌍 23 SOTAs: DSPV2-671B FormalMATH 28.31 + MiniF2F 88.9. BenchCAD Qwen3-VL-2B V2C 0.768. o3 MedQA TTS 93.3. Qwen3.5-Omni-Plus (LibriSpeech 1.11/KeSpeech 3.46 6.8x/VoiceBench 93.1). CosyVoice 3 SEED-TTS-zh 0.71. GPT-5 Pro ECI 2.65. SensorFM-B Age 0.920+CV 0.712+Insulin 0.761
 
 ### 2026-06-10 Sessions 74-76 (compressed)
 - S76 🌍 15 SOTAs: Cosmos 3 Reasoner 4 cats (Super 73.7/Robotics 57.8/Smart-Infra 62.6/Driving 79.3). Opus 4.8 bio/safety 11 (Mythos Preview Virology Task 2 e2e 0.94/VCT 0.574/Black-box RNA 11.22/BioPipeline 88.1/SHADE-Arena Opus 4.8 93% 4.4x Mythos 21%/Child Safety 95%). *Capability ≠ Safety tier*
