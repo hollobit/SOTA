@@ -1,0 +1,910 @@
+{
+  "_meta": {
+    "session": "Session 81 — SMAC-Talk + ERRORQUAKE-10K + Eval Blind Spot",
+    "date": "2026-06-10",
+    "sources": [
+      "arxiv:2606.04202 SMAC-Talk",
+      "arxiv:2606.05170 ERRORQUAKE-10K",
+      "arxiv:2606.05169 Evaluation Blind Spot"
+    ],
+    "notes": "3 parallel agents. SMAC-Talk: 8 Qwen3.5 cooperative MARL scenarios. ERRORQUAKE-10K: Gutenberg-Richter b-slope tail-shape metric (Mistral-Small-24B b=1.250 lightest, DeepSeek-V3.2 b=0.595 heaviest). Blind Spot: theoretical, scores skipped."
+  },
+  "models": [
+    {
+      "id": "deepseek/deepseek-v3.2",
+      "name": "DeepSeek-V3.2",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-09-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-2-27b",
+      "name": "Gemma-2-27B",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2024-06-27",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-oss-20b",
+      "name": "gpt-oss-20B",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-08-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/mistral-small-4-119b",
+      "name": "Mistral-Small-4 119B",
+      "vendor": "Mistral AI",
+      "type": "language",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bytedance/seed-oss-36b",
+      "name": "Seed-OSS-36B",
+      "vendor": "ByteDance",
+      "type": "language",
+      "release_date": "2025-08-20",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-3-12b",
+      "name": "Gemma-3-12B",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-03-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "upstage/solar-10.7b",
+      "name": "SOLAR-10.7B",
+      "vendor": "Upstage",
+      "type": "language",
+      "release_date": "2023-12-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v3.1",
+      "name": "DeepSeek-V3.1",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-08-21",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen/qwen3-next-80b",
+      "name": "Qwen3-Next-80B",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-09-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/llama-3.1-8b",
+      "name": "Llama-3.1-8B",
+      "vendor": "Meta",
+      "type": "language",
+      "release_date": "2024-07-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/mistral-medium-3",
+      "name": "Mistral-Medium-3",
+      "vendor": "Mistral AI",
+      "type": "language",
+      "release_date": "2025-05-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-3-27b",
+      "name": "Gemma-3-27B",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-03-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/ministral-14b",
+      "name": "Ministral-14B",
+      "vendor": "Mistral AI",
+      "type": "language",
+      "release_date": "2024-10-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k2",
+      "name": "Kimi-K2",
+      "vendor": "Moonshot AI",
+      "type": "language",
+      "release_date": "2025-07-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-3-4b",
+      "name": "Gemma-3-4B",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-03-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "unbabel/eurollm-9b",
+      "name": "EuroLLM-9B",
+      "vendor": "Unbabel",
+      "type": "language",
+      "release_date": "2024-12-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/phi-3.5-mini",
+      "name": "Phi-3.5-mini",
+      "vendor": "Microsoft",
+      "type": "language",
+      "release_date": "2024-08-20",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/llama-3.2-3b",
+      "name": "Llama-3.2-3B",
+      "vendor": "Meta",
+      "type": "language",
+      "release_date": "2024-09-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen/qwen2.5-7b",
+      "name": "Qwen2.5-7B",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2024-09-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/llama-4-maverick",
+      "name": "Llama-4-Maverick",
+      "vendor": "Meta",
+      "type": "language",
+      "release_date": "2025-04-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/mistral-small-24b",
+      "name": "Mistral-Small-24B",
+      "vendor": "Mistral AI",
+      "type": "language",
+      "release_date": "2025-01-30",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "smac_talk_5v5_no_comm",
+      "name": "SMAC-Talk 5v5 no_comm",
+      "category": "agentic",
+      "metric": "win_rate_0_1",
+      "unit": "win_rate_0_1",
+      "description": "SMAC-Talk 5v5 cooperative StarCraft II scenario, no inter-agent communication; 100 episodes vs Game AI level 1. Win rate reported for the Reasoning agent (Qwen3.5 internal thinking, 1024-token budget).",
+      "source_url": "https://arxiv.org/abs/2606.04202"
+    },
+    {
+      "id": "smac_talk_5v5_comm",
+      "name": "SMAC-Talk 5v5 comm",
+      "category": "agentic",
+      "metric": "win_rate_0_1",
+      "unit": "win_rate_0_1",
+      "description": "SMAC-Talk 5v5 cooperative scenario with free natural-language inter-agent communication; 100 episodes. Reasoning agent win rate.",
+      "source_url": "https://arxiv.org/abs/2606.04202"
+    },
+    {
+      "id": "smac_talk_5v5_kdc",
+      "name": "SMAC-Talk 5v5 KDC",
+      "category": "agentic",
+      "metric": "win_rate_0_1",
+      "unit": "win_rate_0_1",
+      "description": "SMAC-Talk 5v5 with Known Deceptive Communicator: an additional allied agent broadcasts deceptive messages and team is informed. Tests robustness to known unreliable communication. Reasoning agent win rate over 100 episodes.",
+      "source_url": "https://arxiv.org/abs/2606.04202"
+    },
+    {
+      "id": "smac_talk_5v5_udc",
+      "name": "SMAC-Talk 5v5 UDC",
+      "category": "agentic",
+      "metric": "win_rate_0_1",
+      "unit": "win_rate_0_1",
+      "description": "SMAC-Talk 5v5 with Unknown Deceptive Communicator: deceptive ally present but team is NOT informed. Tests vulnerability to deceptive but plausible messages. Reasoning agent win rate over 100 episodes.",
+      "source_url": "https://arxiv.org/abs/2606.04202"
+    },
+    {
+      "id": "smac_talk_10v10_no_comm",
+      "name": "SMAC-Talk 10v10 no_comm",
+      "category": "agentic",
+      "metric": "win_rate_0_1",
+      "unit": "win_rate_0_1",
+      "description": "SMAC-Talk 10v10 cooperative scenario, no communication. Tests coordination at larger team scale. Reasoning agent win rate over 100 episodes.",
+      "source_url": "https://arxiv.org/abs/2606.04202"
+    },
+    {
+      "id": "smac_talk_10v10_comm",
+      "name": "SMAC-Talk 10v10 comm",
+      "category": "agentic",
+      "metric": "win_rate_0_1",
+      "unit": "win_rate_0_1",
+      "description": "SMAC-Talk 10v10 with free communication. Reasoning agent win rate over 100 episodes.",
+      "source_url": "https://arxiv.org/abs/2606.04202"
+    },
+    {
+      "id": "smac_talk_10v10_kdc",
+      "name": "SMAC-Talk 10v10 KDC",
+      "category": "agentic",
+      "metric": "win_rate_0_1",
+      "unit": "win_rate_0_1",
+      "description": "SMAC-Talk 10v10 Known Deceptive Communicator scenario. Reasoning agent win rate over 100 episodes.",
+      "source_url": "https://arxiv.org/abs/2606.04202"
+    },
+    {
+      "id": "smac_talk_10v10_udc",
+      "name": "SMAC-Talk 10v10 UDC",
+      "category": "agentic",
+      "metric": "win_rate_0_1",
+      "unit": "win_rate_0_1",
+      "description": "SMAC-Talk 10v10 Unknown Deceptive Communicator scenario. Reasoning agent win rate over 100 episodes.",
+      "source_url": "https://arxiv.org/abs/2606.04202"
+    },
+    {
+      "id": "errorquake_b_slope",
+      "name": "ERRORQUAKE-10K (severity tail-slope b)",
+      "category": "robustness",
+      "metric": "Gutenberg-Richter upper-tail slope b of error-severity distribution",
+      "unit": "dimensionless slope",
+      "description": "Per-model fit of log10 N(M>=m) = a - b*m on a 0.0-4.0 severity scale across 10,000 queries (8 domains x 5 difficulty tiers). Higher b = lighter tail (fewer catastrophic fabrications); lower b = heavier tail (more order-of-magnitude failures). Dual-judge 8-model round-robin scoring validated against 519-item 3-rater human study (ICC=0.85, judge-vs-human rank rho=0.89). 95% CIs from n=2000 bootstrap resamples.",
+      "source_url": "https://arxiv.org/abs/2606.05170"
+    },
+    {
+      "id": "errorquake_error_rate_lower_better",
+      "name": "ERRORQUAKE-10K error rate (ε)",
+      "category": "robustness",
+      "metric": "error_rate_lower_better",
+      "unit": "rate (0-1)",
+      "description": "Scalar error rate epsilon on the 10K-query benchmark. Lower is better. Reported alongside b to demonstrate the matched-accuracy discriminator: 85/210 model pairs have disjoint 95% b CIs at |Δε| < 0.05.",
+      "source_url": "https://arxiv.org/abs/2606.05170"
+    }
+  ],
+  "scores": [
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "smac_talk_5v5_no_comm",
+      "score": 0.22,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "smac_talk_5v5_comm",
+      "score": 0.17,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "smac_talk_10v10_no_comm",
+      "score": 0.22,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "smac_talk_10v10_comm",
+      "score": 0.09,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "smac_talk_5v5_kdc",
+      "score": 0.14,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "smac_talk_5v5_udc",
+      "score": 0.25,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "smac_talk_10v10_kdc",
+      "score": 0.21,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "smac_talk_10v10_udc",
+      "score": 0.1,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "smac_talk_5v5_no_comm",
+      "score": 0.3,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "smac_talk_5v5_comm",
+      "score": 0.3,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "smac_talk_10v10_no_comm",
+      "score": 0.25,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "smac_talk_10v10_comm",
+      "score": 0.22,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "smac_talk_5v5_kdc",
+      "score": 0.38,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "smac_talk_5v5_udc",
+      "score": 0.29,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "smac_talk_10v10_kdc",
+      "score": 0.26,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-9b",
+      "benchmark": "smac_talk_10v10_udc",
+      "score": 0.18,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "smac_talk_5v5_no_comm",
+      "score": 0.3,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "smac_talk_5v5_comm",
+      "score": 0.32,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "smac_talk_10v10_no_comm",
+      "score": 0.3,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "smac_talk_10v10_comm",
+      "score": 0.21,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "smac_talk_5v5_kdc",
+      "score": 0.43,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "smac_talk_5v5_udc",
+      "score": 0.2,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "smac_talk_10v10_kdc",
+      "score": 0.3,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "smac_talk_10v10_udc",
+      "score": 0.16,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "smac_talk_5v5_no_comm",
+      "score": 0.38,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "smac_talk_5v5_comm",
+      "score": 0.25,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "smac_talk_10v10_no_comm",
+      "score": 0.31,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "smac_talk_10v10_comm",
+      "score": 0.2,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "smac_talk_5v5_kdc",
+      "score": 0.41,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes; paper highlights 41% KDC vs 10% UDC as key adversarial-resilience example"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "smac_talk_5v5_udc",
+      "score": 0.1,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "smac_talk_10v10_kdc",
+      "score": 0.26,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "smac_talk_10v10_udc",
+      "score": 0.13,
+      "unit": "win_rate_0_1",
+      "_source": "https://arxiv.org/abs/2606.04202",
+      "_note": "Table 2, Reasoning Agent, 100 episodes"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.595,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 1; 95% CI [0.582, 0.609]; heaviest tail (worst); stretched exp best fit"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.631,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 2; 95% CI [0.617, 0.644]; stretched exp"
+    },
+    {
+      "model": "openai/gpt-oss-20b",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.887,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 3; 95% CI [0.796, 1.000]; truncated power law"
+    },
+    {
+      "model": "mistral/mistral-small-4-119b",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.9,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 4; 95% CI [0.796, 1.019]; exponential"
+    },
+    {
+      "model": "bytedance/seed-oss-36b",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.904,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 5; 95% CI [0.811, 1.023]; stretched exp"
+    },
+    {
+      "model": "google/gemma-3-12b",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.917,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 6; 95% CI [0.843, 1.005]; stretched exp"
+    },
+    {
+      "model": "upstage/solar-10.7b",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.923,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 7; 95% CI [0.857, 1.004]; stretched exp"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.937,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 8; 95% CI [0.834, 1.058]; exponential; v3.1->v3.2 bump not significant (p=0.87)"
+    },
+    {
+      "model": "qwen/qwen3-next-80b",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.939,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 9; 95% CI [0.822, 1.083]; truncated power law"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.952,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 10; 95% CI [0.905, 1.003]; stretched exp"
+    },
+    {
+      "model": "mistral/mistral-medium-3",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.965,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 11; 95% CI [0.859, 1.091]; stretched exp"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.989,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 12; 95% CI [0.935, 1.049]; exponential"
+    },
+    {
+      "model": "mistral/ministral-14b",
+      "benchmark": "errorquake_b_slope",
+      "score": 0.991,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 13; 95% CI [0.906, 1.093]; stretched exp; headline pair with DeepSeek-V3.2 (Δb=0.47 at matched ε=0.586)"
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "errorquake_b_slope",
+      "score": 1.016,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 14; 95% CI [0.951, 1.084]; truncated power law"
+    },
+    {
+      "model": "google/gemma-3-4b",
+      "benchmark": "errorquake_b_slope",
+      "score": 1.038,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 15; 95% CI [0.972, 1.113]; stretched exp"
+    },
+    {
+      "model": "unbabel/eurollm-9b",
+      "benchmark": "errorquake_b_slope",
+      "score": 1.115,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 16; 95% CI [0.996, 1.252]; stretched exp"
+    },
+    {
+      "model": "microsoft/phi-3.5-mini",
+      "benchmark": "errorquake_b_slope",
+      "score": 1.119,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 17; 95% CI [0.985, 1.279]; stretched exp"
+    },
+    {
+      "model": "meta/llama-3.2-3b",
+      "benchmark": "errorquake_b_slope",
+      "score": 1.149,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 18; 95% CI [1.061, 1.248]; stretched exp"
+    },
+    {
+      "model": "qwen/qwen2.5-7b",
+      "benchmark": "errorquake_b_slope",
+      "score": 1.197,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 19; 95% CI [1.066, 1.363]; stretched exp"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "errorquake_b_slope",
+      "score": 1.199,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 20; 95% CI [1.062, 1.337]; truncated power law"
+    },
+    {
+      "model": "mistral/mistral-small-24b",
+      "benchmark": "errorquake_b_slope",
+      "score": 1.25,
+      "unit": "dimensionless",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 row 21; 95% CI [1.063, 1.454]; exponential; lightest tail (BEST, SOTA)"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.58,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "google/gemma-2-27b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.655,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "openai/gpt-oss-20b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.607,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "mistral/mistral-small-4-119b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.603,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "bytedance/seed-oss-36b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.602,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "google/gemma-3-12b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.65,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "upstage/solar-10.7b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.65,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.586,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "qwen/qwen3-next-80b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.612,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "meta/llama-3.1-8b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.615,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "mistral/mistral-medium-3",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.585,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "google/gemma-3-27b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.633,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "mistral/ministral-14b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.593,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column; matched with DeepSeek-V3.2 at ε=0.586 (Δb=0.47 headline pair)"
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.601,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "google/gemma-3-4b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.558,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "unbabel/eurollm-9b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.505,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "microsoft/phi-3.5-mini",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.497,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column; second-lowest error rate"
+    },
+    {
+      "model": "meta/llama-3.2-3b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.575,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "qwen/qwen2.5-7b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.496,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column; LOWEST error rate (best ε)"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.554,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    },
+    {
+      "model": "mistral/mistral-small-24b",
+      "benchmark": "errorquake_error_rate_lower_better",
+      "score": 0.564,
+      "unit": "rate",
+      "_source": "https://arxiv.org/abs/2606.05170",
+      "_note": "Table 3 ε column"
+    }
+  ]
+}
