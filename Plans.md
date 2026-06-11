@@ -1,24 +1,24 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 94 — Qwen 3.6 + Gemma 4 per-quant benchmark deep dive (2026-06-11)
-**1,968 models · 2,197 benchmarks · 10,821 scores · 🌍 +44 models / +51 benchmarks / +196 scores**
+## Current Status: Session 95 — Chinese flagship deep dive (DeepSeek V4 + GLM-5.1 + Kimi K2.6) (2026-06-11)
+**1,971 models · 2,227 benchmarks · 10,893 scores · 🌍 +3 models / +30 benchmarks / +72 scores**
 
-### 2026-06-11 Session 94 — Per-quant benchmark deep dive + hardware throughput
-- 3 agents 🌍 **NEW: per-quant deep tables**. **Qwen 3.6 deep (74 scores, 23 models)**: 35B-A3B-FP8 vendor table = "nearly identical to BF16" — QwenWebBench ELO **1397**, AIME26 92.7, SWE-V 73.4. UD-Q6_K_XL HumanEval+ **90.24%** (Unsloth-measured GGUF SOTA, 31.8GB). UD-Q8_K_XL SWE-Verified 53/100. Hardware: cyankiwi AWQ 2×RTX4060 83 tok/s; UD-Q4_K_XL RTX5090 200+ tok/s. **Gemma 4 deep (109 scores, 22 models)**: 31B QAT Q4_0 **17.7 GB / MMLU-Pro 85.2 / AIME-26 89.2 / CF ELO 2150 / LCB v6 80.0** (best capability/GB in 4-bit class). RedHatAI FP8-block 31B **100.1% avg recovery vs BF16** (lossless 8-bit). RedHatAI NVFP4 31B **99.5% recovery at 16 GB** (best 4-bit GPU footprint). Unsloth Dynamic E2B KLD vs BF16 = **0.00173 vs naive 0.05109** (29× reduction + 22% smaller). 26B-A4B Q4_0 14.4 GB AIME-26 88.3 (sparse-MoE edge SOTA). **Hardware throughput (30 scores)**: Edge ladder Gemma E4B Pixel 9 Pro 17 tok/s → E2B Snapdragon 8 Gen 4 16 → Qwen 27B RTX 4090 Q4_K_M 43 (16.8GB VRAM) → 35B-A3B M4 Max MLX 4bit 62 → E4B RTX 5090 Q4_K_M **178**
+### 2026-06-11 Session 95 — Chinese flagship deep dive
+- 3 agents 🌍 **DeepSeek V4 / GLM-5.1 / Kimi K2.6**. **DeepSeek V4** (1.6T/49B Pro + 284B/13B Flash, hybrid CSA+HCA attention -90% KV cache, Engram memory, FP4/FP8 mixed precision, MIT, 2026-05-28): 9 vendor-claimed SOTAs — **HMMT-Feb-26 95.2** + **LCB-v6 93.5** + **CF Rating 3206** + IMO 89.8 + MCP-Atlas 73.6 + SWE-V 80.6. **GLM-5.1** (Z.ai, 754B/40B BF16+FP8, MIT, Huawei Ascend 910B trained, 2026-03-27): SWE-Pro **58.4** (first non-NVIDIA-silicon SWE-Pro lead), CyberGym **68.7**, BrowseComp 79.3, AIME-26 95.3, HMMT-Nov-25 94.0, IMO 83.8, Vending-Bench 2 $5634, AAII 51. **Kimi K2.6** (Moonshot, 1T/32B MoE 384e/8 selected, MoonViT 400M vision, 256K ctx, Modified MIT, 2026-04-20): DeepSearchQA F1 92.5, BrowseComp Agent-Swarm **86.3** (open-source SOTA), HLE-Full w/tools 54.0, WideSearch **80.8** sole SOTA, SWE-Pro 58.6, AAII 54
+
+### 2026-06-11 Session 94 — Qwen 3.6 + Gemma 4 per-quant benchmark deep dive
+- 🌍 +44/+51/+196. Qwen 3.6: 35B-A3B-FP8 1397 QwenWebBench ELO, UD-Q6_K_XL HumanEval+ 90.24, UD-Q8_K_XL SWE-V 53/100. Gemma 4: 31B QAT Q4_0 17.7GB MMLU-Pro 85.2 + CF ELO 2150 + AIME-26 89.2 (best 4-bit). RedHatAI FP8-block 100.1% / NVFP4 99.5% recovery. Unsloth Dynamic E2B KLD 0.00173 vs naive 0.05109 (29x). HW: Pixel 17 / Snapdragon 16 / RTX 4090 43 / M4 Max 62 / RTX 5090 178 tok/s
 
 ### 2026-06-11 Session 93 — Qwen 3.6 + Gemma 4 quantized variants catalog
 - 🌍 +40 models. Qwen 3.6: 24 quant variants (27B dense + 35B-A3B MoE, FP8/AWQ/NVFP4/GGUF/MLX/OpenVINO, 459 HF derivatives). Gemma 4: 11 official QAT (Q4_0 GGUF + W4A16 + wNa8o8 mobile, E2B 3.35GB→31B 17.7GB Pareto). Qwen3.6-27B-FP8 MMLU-Pro 86.2. Gemma 4 26B-A4B Unsloth Dynamic Q4_0 85.6% BF16 agreement (+15.6pp vs naive)
 
-### 2026-06-10 Sessions 86-92 (compressed) — 513 SOTAs (waveA+B + cyber + Cosmos 3)
-- S92 wave B (~200, +104 models): Mythos 5 (Organic Chem 90.1/Kernel 430.93×/Firefox 147 88.4%/CyberGym 83.8). Fable 5 Blueprint-Bench 2 38.6. Cosmos 3 Super-T2I UniGenBench 91.36 + HWB 71.9 + RoboLab 39.7. Playwright CyberGym Crystalline/Opus 4.6 **90.2**. arena.ai 49+70 lineups
-- S91 deep (~150): GPT-5.5 109 (CTF Pro 96.3/CVE-Bench 93.1/MLE-Bench 36.67). Gemini 3 Pro 16. MAI Thinking 71 (GLM-5.1+DeepSeek V4). Google evals ~370 (Gemini 3.1 Pro LCB Pro 2887/GPQA-D 94.3). S90 mega (~110): Gemini 3 Pro 17. GPT-5.5 146. Arena GPT-Image-2 1465 #1. Anthropic gap 43
-- S86-89 (53): CTI-REALM-50 Opus 4.6 0.637. UK AISI MSCyber 22/32. NYU CTF Opus 4.5 59.0% (2.7x prior). Cyber Defense Opus 4.6 sweeps 15. Gordian Knot Opus 4.7 thinking 54.6%
+### 2026-06-10 Sessions 86-92 (compressed) — 513 SOTAs (mega+deep+cyber+Cosmos 3)
+- S92 wave B (~200, +104 models): Mythos 5 (Organic Chem 90.1/Kernel 430.93×/Firefox 147 88.4/CyberGym 83.8). Fable 5 Blueprint-Bench 2 38.6. Cosmos 3 Super-T2I UniGenBench 91.36/HWB 71.9/RoboLab 39.7. Playwright CyberGym Crystalline/Opus 4.6 **90.2**. S91 deep (~150): GPT-5.5 109 (CTF Pro 96.3/CVE-Bench 93.1). Gemini 3 Pro 16. MAI Thinking 71. Google evals ~370 (Gemini 3.1 Pro LCB Pro 2887). S90 mega (~110): GPT-5.5 146 + Anthropic gap 43 (USAMO 96.7). Arena GPT-Image-2 1465
+- S86-89 (53): CTI-REALM-50 Opus 4.6 0.637. UK AISI MSCyber 22/32. NYU CTF Opus 4.5 59.0%. Cyber Defense Opus 4.6 sweeps 15. Gordian Knot Opus 4.7 thinking 54.6%
 
-### 2026-06-10 Sessions 82-85 (compressed) — 76 SOTAs
-- S85 SciVQR/GraphInstruct/CommonWhy 23. S84 gwBenchmarks 8. AgentRx MedPatch 0.877. S83 Creativity 13. GeoBuild GPT-5.1 78.9. S82 ExploitBench (V8): Mythos Preview T1 ACE 0.439/T3 0.854/T5 1.0. **GPT-5.5 Codex CLI 0.0244** sole *public* ACE. VectraYX Spanish cyber Pro-7B B4 MCP 0.880. RealICU GPT-5.4+ICU-Evo Acute 0.867
-
-### 2026-06-10 Sessions 77-81 (compressed) — 55 SOTAs
-- S77-81: SMAC-Talk Qwen3.5 (122B KDC 41→UDC 10%). ERRORQUAKE Mistral-Small-24B b=1.250. DELEGATE-52 Gemini 3.1 Pro RS@20 80.9. Text2CAD DeepSeek-V3.2 L4 8.26. Sakana Auto Reviewer 0.62. Qwen-VLA LIBERO 97.9+RoboTwin-Hard 87.2+ALOHA 1.85x π0.5. AgentDog 1.5-4B-U 78.4. R-Judge 97.3. DSPV2-671B FormalMATH 28.31+MiniF2F 88.9. BenchCAD Qwen3-VL-2B V2C 0.768. o3 MedQA TTS 93.3. Qwen3.5-Omni-Plus (KeSpeech 3.46 6.8x). GPT-5 Pro ECI 2.65. SensorFM-B Age 0.920
+### 2026-06-10 Sessions 77-85 (compressed) — 131 SOTAs
+- S82-85: SciVQR/GraphInstruct/CommonWhy 23. gwBench 8 (Sonnet 4.6/Opus 4.7/Kimi K2.6). AgentRx MedPatch 0.877. Creativity 13. GeoBuild GPT-5.1 78.9. ExploitBench V8 Mythos Preview T1 ACE 0.439/T3 0.854/T5 1.0. **GPT-5.5 Codex CLI 0.0244** sole public ACE. VectraYX Spanish cyber 0.880. RealICU GPT-5.4+ICU-Evo Acute 0.867
+- S77-81: SMAC-Talk Qwen3.5 122B KDC 41→UDC 10. ERRORQUAKE Mistral-Small-24B b=1.250. DELEGATE-52 Gemini 3.1 Pro RS@20 80.9. Text2CAD DeepSeek-V3.2 L4 8.26. Sakana 0.62. Qwen-VLA LIBERO 97.9. R-Judge 97.3. DSPV2-671B MiniF2F 88.9. BenchCAD Qwen3-VL-2B V2C 0.768. o3 MedQA TTS 93.3. Qwen3.5-Omni-Plus KeSpeech 3.46 6.8x. GPT-5 Pro ECI 2.65
 
 ### 2026-06-10 Sessions 74-76 (compressed) — 39 SOTAs
 - S74-76: Mythos 5 AECI **161.29** + Long-form virology Task 1 **0.77** (3.5x expert). Cosmos 3 Reasoner 4 cats (Super 73.7/Robotics 57.8/Smart-Infra 62.6/Driving 79.3). Opus 4.8 bio/safety 11 (Mythos Preview Virology 0.94/SHADE-Arena Opus 4.8 93% 4.4x Mythos 21%/Child Safety 95%). Goedel-V2-32B MiniF2F 92.7. Gemini 3 Pro Med 4 SOTAs (MedQA 95.1). GPT-5.5 UK AISI Cyber 90.5. MedGemma 1.5 EHRNoteQA 80.4. 8-pass S65-74 누적 ~81 NEW SOTAs 단일 Anthropic 출시. *Capability ↑ Safety/hallucination ↓*
