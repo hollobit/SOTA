@@ -1,21 +1,21 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 92 — Wave B re-mine (MAI web + Mythos5/Fable5 + leaderboards + Cosmos 3) (2026-06-10)
-**1,884 models · 2,130 benchmarks · 10,482 scores · 🌍 ~200 NEW SOTAs (S92 wave B re-mine 4 agents)**
+## Current Status: Session 93 — Qwen 3.6 + Gemma 4 quantized variants (2026-06-11)
+**1,924 models · 2,146 benchmarks · 10,625 scores · 🌍 +40 models / +16 benchmarks / +143 scores**
 
-### 2026-06-10 Session 92 — Wave B (4 agents): MAI web + Mythos5/Fable5 + Cyber leaderboards (playwright) + Cosmos 3 deep
-- 4 agents 🌍 **~200 NEW SOTAs / +104 models**. **Mythos 5 + Fable 5 deep (231 NEW)**: Mythos 5 Organic Chem **90.1%** + Kernel **430.93×** speedup + Novel Compiler **85.3%** + Firefox 147 exploit **88.4% (vs Opus 4.8 8.8%, ~10x cyber gap)** + CyberGym **83.8** + OSS-Fuzz write-primitive 32.4. Fable 5 Blueprint-Bench 2 **38.6** (SOTA over GPT-5.5 36.2). Multi-agent BrowseComp async **93.3%**. **Cosmos 3 deep (153 NEW)**: Cosmos3-Super-T2I UniGenBench **91.36** (beats Gemini 3 Pro Image 90.69 + FLUX.2-dev). PAIBench-G T2V **80.0** + Physics-IQ V2V **63.4** + Human World Bench **71.9** SOTA. Camera-FD RRE **0.142** + Cosmos3-Nano-Policy-DROID RoboLab specific **39.7** (vs π0.5 28.1). **Playwright scrape (161 NEW)**: CyberGym **Crystalline/Opus 4.6 = 90.2% new SOTA** (vs MDASH 88.4). Arena image-edit gpt-image-2 1465 / t2i 1385 (full leaderboards w/49+70 entries). **New models**: Reve 2.0, MAI-Image-2.5, Cosmos3-T2I-Agentic, Wan 2.7 Image Pro, Seedream 4.5/5.0, HiDream-O1, Krea-2, Recraft-v4.1, Qwen Image 2.0. **MAI web (3 NEW)**: MAI-Transcribe-1.5 FLEURS WER **4.9** + AA WER **2.4**. **+104/+122/+457** = 1884/2130/10482
+### 2026-06-11 Session 93 — Qwen 3.6 + Gemma 4 quantized variants
+- 3 agents 🌍 **40 NEW MODELS**. **Qwen 3.6 (24 quant variants)**: 27B dense + 35B-A3B MoE bases. FP8 official, AWQ-INT4 (QuantTrio/mattbucci), NVFP4 (Nvidia/RedHatAI/Unsloth), GGUF ladder (Q8/Q6/Q5/Q4/Q3/Q2 + IQ4_XS), MLX (4/8-bit), OpenVINO INT4. Qwen3.6-27B-FP8 MMLU-Pro 86.2/GPQA-D 87.8/AIME26 94.1/SWE-V 77.2/LCB-v6 83.9. 459 HF derivatives total. **Gemma 4 (11 official QAT)**: Q4_0 GGUF (E2B/E4B/12B/26B-A4B/31B), W4A16 vLLM, mobile wNa8o8. 31B Q4_0 17.7 GB MMLU-Pro 85.2/GPQA-D 84.3/MathVis 85.6/AIME-26 89.2/CF ELO 2150. 12B Q4_0 6.98 GB MMLU-Pro 77.2. E2B Q4_0 3.35 GB MMLU-Pro 60.0 (ultra-edge tier). **Quant hub**: Unsloth Dynamic Q4_0 Gemma 4 26B-A4B 85.6% BF16 agreement vs naive 70.2% (+15.6pp). Qwen3.6-35B-A3B UD-Q6_K_XL HumanEval 93.29
 
-### 2026-06-10 Sessions 90-91 (compressed) — 260 SOTAs (mega + deep re-mine)
-- S91 deep (5 agents, ~150 SOTAs): GPT-5.5 109 new (CTF Pro 96.3 / CVE-Bench 93.1 / UK AISI 32-step 10 / MLE-Bench-30 36.67). Gemini 3 Pro 16 new (HLE w/search+code 45.8, AIME-25 w/code 100). MAI Thinking 71 (GLM-5.1 + DeepSeek V4 first). Google evals ~370 (Gemini 3.1 Pro LCB Pro 2887 / ARC-AGI-2 77.1 / GPQA-D 94.3 / GPT-5.5 ARC-AGI-2 85.0). Mythos Kernel 399.42x
-- S90 mega (12 agents, 14 PDFs + 3 web, ~110 SOTAs): Gemini 3 Pro 17 (HLE 45.8/Vending-Bench 2 $5478). GPT-5.5 Safety 146 scores (Cyber Range 93.33/UK AISI 90.5). MAI Thinking AIME-25 97.0/CyberSecEval-4 63. Arena GPT-Image-2 1465 #1. CyberGym GPT-5 22 zero-days. ExploitGym Mythos 226. Anthropic gap 43 NEW (USAMO 2026 96.7/FrontierSWE/GDPval-AA)
+### 2026-06-10 Session 92 — Wave B (MAI web + Mythos5/Fable5 + leaderboards + Cosmos 3)
+- 🌍 ~200 SOTAs / +104 models. Mythos 5: Organic Chem 90.1, Kernel 430.93×, Novel Compiler 85.3, Firefox 147 **88.4% (vs Opus 4.8 8.8%)**, CyberGym 83.8. Fable 5 Blueprint-Bench 2 38.6. Cosmos 3: Super-T2I UniGenBench 91.36, PAIBench-G T2V 80.0, HWB 71.9, RoboLab 39.7. Playwright: CyberGym Crystalline/Opus 4.6 **90.2 new SOTA**. arena.ai full lineups (49+70). MAI-Transcribe-1.5 FLEURS WER 4.9
 
-### 2026-06-10 Sessions 86-89 (compressed) — 53 SOTAs
-- S89 CTI-REALM-50 Opus 4.6 0.637. UK AISI MSCyber Opus 4.6 22/32 max. S88 Agent-World 3-way split. TeleResilience Nemotron-3-nano 4/7. S87 NYU CTF Opus 4.5 = 59.0% (2.7x prior 22%). HarmfulSkillBench GPT-5.4-Mini sweeps. S86 Cyber Defense Opus 4.6 sweeps 15. Autonomous Adversary Claude 4.5+GPT-5.1 S1 100%. Gordian Knot Opus 4.7 thinking 54.6%
+### 2026-06-10 Sessions 86-91 (compressed) — 313 SOTAs (mega + deep re-mine + cyber)
+- S91 deep (~150 SOTAs): GPT-5.5 109 new (CTF Pro 96.3/CVE-Bench 93.1/UK AISI 32-step 10/MLE-Bench-30 36.67). Gemini 3 Pro 16 (HLE+search+code 45.8, AIME-25+code 100). MAI Thinking 71 (GLM-5.1+DeepSeek V4 first). Google evals ~370 (Gemini 3.1 Pro LCB Pro 2887/GPQA-D 94.3/GPT-5.5 ARC-AGI-2 85.0). Mythos Kernel 399.42x
+- S90 mega (12 agents, 14 PDFs+3 web, ~110 SOTAs): Gemini 3 Pro 17. GPT-5.5 Safety 146 scores. MAI Thinking AIME-25 97.0. Arena GPT-Image-2 1465 #1. CyberGym GPT-5 22 zero-days. ExploitGym Mythos 226. Anthropic gap 43 NEW (USAMO 2026 96.7/FrontierSWE/GDPval-AA)
+- S86-89 (53 SOTAs): S89 CTI-REALM-50 Opus 4.6 0.637 / UK AISI MSCyber Opus 4.6 22/32. S88 Agent-World 3-way split. TeleResilience Nemotron-3-nano 4/7. S87 NYU CTF Opus 4.5 = 59.0%. HarmfulSkillBench GPT-5.4-Mini sweeps. S86 Cyber Defense Opus 4.6 sweeps 15. Autonomous Adversary Claude 4.5+GPT-5.1 S1 100%. Gordian Knot Opus 4.7 thinking 54.6%
 
 ### 2026-06-10 Sessions 82-85 (compressed) — 76 SOTAs
-- S85 SciVQR/GraphInstruct/CommonWhy 23. S84 gwBenchmarks 8 (Sonnet 4.6/Opus 4.7/Kimi K2.6). AgentRx MedPatch 0.877. S83 Creativity 13 (GPT-5.4 DAT 91.72) + GeoBuild GPT-5.1 78.9%
-- S82 ExploitBench (V8): Mythos Preview T1 ACE 0.439/T3 0.854/T5 1.0; **GPT-5.5 Codex CLI 0.0244** sole *public* ACE; MiniMax M2.7 $0.77/ep. VectraYX Spanish cyber Pro-7B B4 MCP 0.880. RealICU GPT-5.4+ICU-Evo Acute 0.867
+- S85 SciVQR/GraphInstruct/CommonWhy 23. S84 gwBenchmarks 8. AgentRx MedPatch 0.877. S83 Creativity 13. GeoBuild GPT-5.1 78.9. S82 ExploitBench (V8): Mythos Preview T1 ACE 0.439/T3 0.854/T5 1.0. **GPT-5.5 Codex CLI 0.0244** sole *public* ACE. VectraYX Spanish cyber Pro-7B B4 MCP 0.880. RealICU GPT-5.4+ICU-Evo Acute 0.867
 
 ### 2026-06-10 Sessions 77-81 (compressed) — 55 SOTAs
 - S77-81: SMAC-Talk Qwen3.5 (122B KDC 41→UDC 10%). ERRORQUAKE Mistral-Small-24B b=1.250. DELEGATE-52 Gemini 3.1 Pro RS@20 80.9. Text2CAD DeepSeek-V3.2 L4 8.26. Sakana Auto Reviewer 0.62. Qwen-VLA LIBERO 97.9+RoboTwin-Hard 87.2+ALOHA 1.85x π0.5. AgentDog 1.5-4B-U 78.4. R-Judge 97.3. DSPV2-671B FormalMATH 28.31+MiniF2F 88.9. BenchCAD Qwen3-VL-2B V2C 0.768. o3 MedQA TTS 93.3. Qwen3.5-Omni-Plus (KeSpeech 3.46 6.8x). GPT-5 Pro ECI 2.65. SensorFM-B Age 0.920

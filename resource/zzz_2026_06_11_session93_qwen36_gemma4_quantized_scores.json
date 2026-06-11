@@ -1,0 +1,1491 @@
+{
+  "_meta": {
+    "session": "Session 93 — Qwen 3.6 + Gemma 4 quantized variants + benchmark hub",
+    "date": "2026-06-11",
+    "sources": [
+      "Qwen 3.6 quant catalog (24 variants: FP8/AWQ/NVFP4/GGUF/MLX/OpenVINO)",
+      "Gemma 4 quant catalog (11 Google official QAT variants: Q4_0 GGUF + W4A16 + wNa8o8)",
+      "Quantization benchmark hub (Unsloth perplexity/MMLU/HumanEval/QAT top-1)"
+    ],
+    "notes": "Qwen 3.6: 27B dense + 35B-A3B MoE bases; 459 HF derivatives. Gemma 4: E2B/E4B/12B/26B-A4B MoE/31B with official Google QAT. Gemma 4 26B-A4B Unsloth Dynamic Q4_0 = 85.6% BF16 agreement vs naive 70.2% (+15.6pp)."
+  },
+  "models": [
+    {
+      "id": "alibaba/qwen3.6-27b-fp8",
+      "name": "Qwen 3.6 27B FP8",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-04-22",
+      "modalities": [
+        "text",
+        "image",
+        "video"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-fp8",
+      "name": "Qwen 3.6 35B-A3B FP8 (MoE)",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-04-16",
+      "modalities": [
+        "text",
+        "image",
+        "video"
+      ]
+    },
+    {
+      "id": "quanttrio/qwen3.6-35b-a3b-awq",
+      "name": "Qwen 3.6 35B-A3B AWQ 4-bit",
+      "vendor": "quanttrio",
+      "type": "language",
+      "release_date": "2026-04-16",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "mattbucci/qwen3.6-27b-awq",
+      "name": "Qwen 3.6 27B AWQ 4-bit",
+      "vendor": "mattbucci",
+      "type": "language",
+      "release_date": "2026-04-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cyankiwi/qwen3.6-35b-a3b-awq-4bit",
+      "name": "Qwen 3.6 35B-A3B AWQ 4-bit (cyankiwi)",
+      "vendor": "cyankiwi",
+      "type": "language",
+      "release_date": "2026-04-18",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/qwen3.6-35b-a3b-nvfp4",
+      "name": "Qwen 3.6 35B-A3B NVFP4",
+      "vendor": "nvidia",
+      "type": "language",
+      "release_date": "2026-04-20",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "redhatai/qwen3.6-35b-a3b-nvfp4",
+      "name": "Qwen 3.6 35B-A3B NVFP4 (RedHatAI)",
+      "vendor": "redhatai",
+      "type": "language",
+      "release_date": "2026-04-21",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bartowski/qwen3.6-27b-gguf-q8_0",
+      "name": "Qwen 3.6 27B GGUF Q8_0",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bartowski/qwen3.6-27b-gguf-q6_k",
+      "name": "Qwen 3.6 27B GGUF Q6_K",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bartowski/qwen3.6-27b-gguf-q5_k_m",
+      "name": "Qwen 3.6 27B GGUF Q5_K_M",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bartowski/qwen3.6-27b-gguf-q4_k_m",
+      "name": "Qwen 3.6 27B GGUF Q4_K_M",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bartowski/qwen3.6-27b-gguf-q4_k_s",
+      "name": "Qwen 3.6 27B GGUF Q4_K_S",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bartowski/qwen3.6-27b-gguf-iq4_xs",
+      "name": "Qwen 3.6 27B GGUF IQ4_XS",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bartowski/qwen3.6-27b-gguf-q3_k_m",
+      "name": "Qwen 3.6 27B GGUF Q3_K_M",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bartowski/qwen3.6-27b-gguf-q2_k",
+      "name": "Qwen 3.6 27B GGUF Q2_K",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bartowski/qwen3.6-27b-gguf-iq2_m",
+      "name": "Qwen 3.6 27B GGUF IQ2_M",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "unsloth/qwen3.6-35b-a3b-gguf",
+      "name": "Qwen 3.6 35B-A3B GGUF (Unsloth)",
+      "vendor": "unsloth",
+      "type": "language",
+      "release_date": "2026-04-17",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "unsloth/qwen3.6-35b-a3b-mtp-gguf",
+      "name": "Qwen 3.6 35B-A3B MTP GGUF (Unsloth)",
+      "vendor": "unsloth",
+      "type": "language",
+      "release_date": "2026-04-18",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mudler/qwen3.6-35b-a3b-apex-gguf",
+      "name": "Qwen 3.6 35B-A3B APEX GGUF",
+      "vendor": "mudler",
+      "type": "language",
+      "release_date": "2026-04-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mlx-community/qwen3.6-35b-a3b-4bit",
+      "name": "Qwen 3.6 35B-A3B MLX 4-bit",
+      "vendor": "mlx-community",
+      "type": "language",
+      "release_date": "2026-04-17",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mlx-community/qwen3.6-35b-a3b-8bit",
+      "name": "Qwen 3.6 35B-A3B MLX 8-bit",
+      "vendor": "mlx-community",
+      "type": "language",
+      "release_date": "2026-04-17",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mlx-community/qwen3.6-35b-a3b-optiq-4bit",
+      "name": "Qwen 3.6 35B-A3B MLX OptIQ-4bit",
+      "vendor": "mlx-community",
+      "type": "language",
+      "release_date": "2026-04-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lmstudio-community/qwen3.6-35b-a3b-mlx-4bit",
+      "name": "Qwen 3.6 35B-A3B MLX 4-bit (LM Studio)",
+      "vendor": "lmstudio-community",
+      "type": "language",
+      "release_date": "2026-04-18",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openvino/qwen3.6-35b-a3b-int4-ov",
+      "name": "Qwen 3.6 35B-A3B INT4 (OpenVINO)",
+      "vendor": "openvino",
+      "type": "language",
+      "release_date": "2026-04-22",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e2b-it-qat-q4-0-gguf",
+      "name": "Gemma 4 E2B Q4_0 GGUF",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e4b-it-qat-q4-0-gguf",
+      "name": "Gemma 4 E4B Q4_0 GGUF",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-12b-it-qat-q4-0-gguf",
+      "name": "Gemma 4 12B Q4_0 GGUF",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-26b-a4b-it-qat-q4-0-gguf",
+      "name": "Gemma 4 26B A4B MoE Q4_0 GGUF",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "google/gemma-4-31b-it-qat-q4-0-gguf",
+      "name": "Gemma 4 31B Q4_0 GGUF",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image",
+        "video"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e2b-it-qat-w4a16-ct",
+      "name": "Gemma 4 E2B W4A16 CT",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e4b-it-qat-w4a16-ct",
+      "name": "Gemma 4 E4B W4A16 CT",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "name": "Gemma 4 12B W4A16 CT",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "name": "Gemma 4 31B W4A16 CT",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e2b-it-qat-mobile",
+      "name": "Gemma 4 E2B Mobile (wNa8o8)",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e4b-it-qat-mobile",
+      "name": "Gemma 4 E4B Mobile (wNa8o8)",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "qwen3_6_27b_dense",
+      "name": "Qwen3.6 27B Dense",
+      "vendor": "Alibaba / Unsloth (GGUF)",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen3_6_35b_a3b_moe",
+      "name": "Qwen3.6 35B-A3B MoE",
+      "vendor": "Alibaba / Unsloth (GGUF)",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemma_4_26b_a4b_qat",
+      "name": "Gemma 4 26B-A4B QAT (instruct)",
+      "vendor": "Google / Unsloth",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemma_3_12b_qat",
+      "name": "Gemma 3 12B QAT (baseline, not Gemma 4)",
+      "vendor": "Google / Unsloth",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen3_5_30b_a3b_moe_baseline",
+      "name": "Qwen3.5 30B-A3B (Unsloth K_XL PPL baseline)",
+      "vendor": "Alibaba / Unsloth",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "mmlu_pro",
+      "name": "MMLU-Pro",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "MMLU-Pro multi-task accuracy",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8"
+    },
+    {
+      "id": "gpqa_diamond",
+      "name": "GPQA Diamond",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Graduate-level Q&A diamond subset",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8"
+    },
+    {
+      "id": "aime26",
+      "name": "AIME 2026",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "American Invitational Math Examination 2026",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8"
+    },
+    {
+      "id": "swe_bench_verified",
+      "name": "SWE-bench Verified",
+      "category": "capability",
+      "metric": "resolved-rate",
+      "unit": "%",
+      "description": "SWE-bench Verified resolution rate",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8"
+    },
+    {
+      "id": "swe_bench_pro",
+      "name": "SWE-bench Pro",
+      "category": "capability",
+      "metric": "resolved-rate",
+      "unit": "%",
+      "description": "SWE-bench Pro tier",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8"
+    },
+    {
+      "id": "livecodebench_v6",
+      "name": "LiveCodeBench v6",
+      "category": "capability",
+      "metric": "pass-rate",
+      "unit": "%",
+      "description": "LiveCodeBench v6 leak-free coding",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8"
+    },
+    {
+      "id": "mmmu",
+      "name": "MMMU",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Multi-discipline multimodal understanding",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8"
+    },
+    {
+      "id": "memory_gb_inverse_better",
+      "name": "Memory Footprint",
+      "category": "memory",
+      "metric": "vram-gb",
+      "unit": "GB",
+      "description": "Estimated VRAM/RAM footprint for inference (smaller is better)",
+      "source_url": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF"
+    },
+    {
+      "id": "edge_tps_amd_r9700_27b_awq_lower_better",
+      "name": "TPOT 8K ctx on 2x AMD R9700 (27B AWQ)",
+      "category": "edge",
+      "metric": "latency-ms-per-token",
+      "unit": "ms",
+      "description": "Time per output token at 8192-context on dual AMD Radeon AI PRO R9700 with TP=2 and FP8 KV cache; lower is better",
+      "source_url": "https://huggingface.co/mattbucci/Qwen3.6-27B-AWQ"
+    },
+    {
+      "id": "edge_tps_amd_r9700_27b_awq",
+      "name": "Throughput 8K ctx on 2x AMD R9700 (27B AWQ)",
+      "category": "edge",
+      "metric": "tokens-per-second",
+      "unit": "tok/s",
+      "description": "Decode throughput at 8192-context on dual AMD R9700 with TP=2 and FP8 KV cache",
+      "source_url": "https://huggingface.co/mattbucci/Qwen3.6-27B-AWQ"
+    },
+    {
+      "id": "mmlu-pro",
+      "name": "MMLU-Pro",
+      "category": "knowledge",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gpqa-diamond",
+      "name": "GPQA Diamond",
+      "category": "reasoning",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math-vision",
+      "name": "MATH-Vision",
+      "category": "math",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu-pro",
+      "name": "MMMU Pro",
+      "category": "multimodal",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench-v6",
+      "name": "LiveCodeBench v6",
+      "category": "code",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "codeforces-elo",
+      "name": "Codeforces ELO",
+      "category": "code",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime-2026",
+      "name": "AIME 2026 (no tools)",
+      "category": "math",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr-v2",
+      "name": "MRCR v2 (Long Context)",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "memory-gb_lower_better",
+      "name": "Memory Footprint (GB)",
+      "category": "efficiency",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "perplexity_wikitext_lower_better",
+      "name": "WikiText Perplexity (llama.cpp wikitext-2-raw)",
+      "category": "quantization",
+      "metric": "perplexity",
+      "unit": "perplexity",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_5shot",
+      "name": "MMLU 5-shot accuracy",
+      "category": "quantization",
+      "metric": "percent_correct",
+      "unit": "percent_correct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval_pass_at_1",
+      "name": "HumanEval pass@1",
+      "category": "quantization",
+      "metric": "percent",
+      "unit": "percent",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "qat_top1_agreement_vs_bf16",
+      "name": "QAT Q4_0 top-1 token agreement vs BF16 QAT reference",
+      "category": "quantization",
+      "metric": "percent_agreement",
+      "unit": "percent_agreement",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "perplexity_delta_vs_bf16_lower_better",
+      "name": "Perplexity delta vs BF16 (Q8_0 floor)",
+      "category": "quantization",
+      "metric": "absolute_ppl_delta",
+      "unit": "absolute_ppl_delta",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "alibaba/qwen3.6-27b-fp8",
+      "benchmark": "mmlu_pro",
+      "score": 86.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8",
+      "_note": "Official Qwen FP8 model card"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-fp8",
+      "benchmark": "gpqa_diamond",
+      "score": 87.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8",
+      "_note": "Official Qwen FP8 model card"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-fp8",
+      "benchmark": "aime26",
+      "score": 94.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8",
+      "_note": "Official Qwen FP8 model card"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-fp8",
+      "benchmark": "swe_bench_verified",
+      "score": 77.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8",
+      "_note": "Official Qwen FP8 model card"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-fp8",
+      "benchmark": "swe_bench_pro",
+      "score": 53.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8",
+      "_note": "Official Qwen FP8 model card"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-fp8",
+      "benchmark": "livecodebench_v6",
+      "score": 83.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8",
+      "_note": "Official Qwen FP8 model card"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-fp8",
+      "benchmark": "mmmu",
+      "score": 82.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B-FP8",
+      "_note": "Official Qwen FP8 model card"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-fp8",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 27.3,
+      "unit": "GB",
+      "_source": "derived from BF16 27B / 2",
+      "_note": "FP8 ~ half of BF16 (54.66GB / 2 = 27.3GB)"
+    },
+    {
+      "model": "quanttrio/qwen3.6-35b-a3b-awq",
+      "benchmark": "mmlu_pro",
+      "score": 85.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "QuantTrio AWQ model card"
+    },
+    {
+      "model": "quanttrio/qwen3.6-35b-a3b-awq",
+      "benchmark": "gpqa_diamond",
+      "score": 86.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "QuantTrio AWQ model card; reported as 'GPQA' on card"
+    },
+    {
+      "model": "quanttrio/qwen3.6-35b-a3b-awq",
+      "benchmark": "aime26",
+      "score": 92.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "QuantTrio AWQ model card"
+    },
+    {
+      "model": "quanttrio/qwen3.6-35b-a3b-awq",
+      "benchmark": "swe_bench_verified",
+      "score": 73.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "QuantTrio AWQ model card"
+    },
+    {
+      "model": "quanttrio/qwen3.6-35b-a3b-awq",
+      "benchmark": "swe_bench_pro",
+      "score": 49.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "QuantTrio AWQ model card"
+    },
+    {
+      "model": "quanttrio/qwen3.6-35b-a3b-awq",
+      "benchmark": "mmmu",
+      "score": 81.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "QuantTrio AWQ model card"
+    },
+    {
+      "model": "quanttrio/qwen3.6-35b-a3b-awq",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 24.0,
+      "unit": "GB",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "Reported memory footprint on AWQ card"
+    },
+    {
+      "model": "mattbucci/qwen3.6-27b-awq",
+      "benchmark": "edge_tps_amd_r9700_27b_awq_lower_better",
+      "score": 42.2,
+      "unit": "ms",
+      "_source": "https://huggingface.co/mattbucci/Qwen3.6-27B-AWQ",
+      "_note": "TPOT at 8192 context, 2x AMD R9700 TP=2 with FP8 KV cache; lower is better"
+    },
+    {
+      "model": "mattbucci/qwen3.6-27b-awq",
+      "benchmark": "edge_tps_amd_r9700_27b_awq",
+      "score": 23.7,
+      "unit": "tok/s",
+      "_source": "https://huggingface.co/mattbucci/Qwen3.6-27B-AWQ",
+      "_note": "Throughput at 8192 context, 2x AMD R9700 TP=2 with FP8 KV cache"
+    },
+    {
+      "model": "bartowski/qwen3.6-27b-gguf-q8_0",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 29.12,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "File size from bartowski GGUF table"
+    },
+    {
+      "model": "bartowski/qwen3.6-27b-gguf-q6_k",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 23.68,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "File size from bartowski GGUF table"
+    },
+    {
+      "model": "bartowski/qwen3.6-27b-gguf-q5_k_m",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 20.97,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "File size from bartowski GGUF table"
+    },
+    {
+      "model": "bartowski/qwen3.6-27b-gguf-q4_k_m",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 17.98,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "File size from bartowski GGUF table"
+    },
+    {
+      "model": "bartowski/qwen3.6-27b-gguf-q4_k_s",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 16.93,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "File size from bartowski GGUF table"
+    },
+    {
+      "model": "bartowski/qwen3.6-27b-gguf-iq4_xs",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 15.78,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "File size from bartowski GGUF table"
+    },
+    {
+      "model": "bartowski/qwen3.6-27b-gguf-q3_k_m",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 14.82,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "File size from bartowski GGUF table"
+    },
+    {
+      "model": "bartowski/qwen3.6-27b-gguf-q2_k",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 12.05,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "File size from bartowski GGUF table"
+    },
+    {
+      "model": "bartowski/qwen3.6-27b-gguf-iq2_m",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 11.09,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "File size from bartowski GGUF table"
+    },
+    {
+      "model": "nvidia/qwen3.6-35b-a3b-nvfp4",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 19.0,
+      "unit": "GB",
+      "_source": "https://huggingface.co/models?other=base_model:quantized:Qwen/Qwen3.6-35B-A3B",
+      "_note": "HF listing reports 19B size"
+    },
+    {
+      "model": "mlx-community/qwen3.6-35b-a3b-4bit",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 20.0,
+      "unit": "GB",
+      "_source": "https://mlx-optiq.com/docs/qwen3.6",
+      "_note": "Standard MLX 4-bit footprint (~0.5GB per B param)"
+    },
+    {
+      "model": "mlx-community/qwen3.6-35b-a3b-8bit",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 36.0,
+      "unit": "GB",
+      "_source": "https://mlx-optiq.com/docs/qwen3.6",
+      "_note": "Standard MLX 8-bit footprint (~1GB per B param)"
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4-0-gguf",
+      "benchmark": "mmlu-pro",
+      "score": 60.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4-0-gguf",
+      "benchmark": "gpqa-diamond",
+      "score": 43.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4-0-gguf",
+      "benchmark": "livecodebench-v6",
+      "score": 44.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4-0-gguf",
+      "benchmark": "aime-2026",
+      "score": 37.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4-0-gguf",
+      "benchmark": "codeforces-elo",
+      "score": 633,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4-0-gguf",
+      "benchmark": "memory-gb_lower_better",
+      "score": 3.35,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4-0-gguf",
+      "benchmark": "mmlu-pro",
+      "score": 69.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4-0-gguf",
+      "benchmark": "gpqa-diamond",
+      "score": 58.6,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4-0-gguf",
+      "benchmark": "math-vision",
+      "score": 59.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4-0-gguf",
+      "benchmark": "mmmu-pro",
+      "score": 52.6,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4-0-gguf",
+      "benchmark": "livecodebench-v6",
+      "score": 52.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4-0-gguf",
+      "benchmark": "aime-2026",
+      "score": 42.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4-0-gguf",
+      "benchmark": "codeforces-elo",
+      "score": 940,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4-0-gguf",
+      "benchmark": "memory-gb_lower_better",
+      "score": 5.15,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4-0-gguf",
+      "benchmark": "mmlu-pro",
+      "score": 77.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4-0-gguf",
+      "benchmark": "gpqa-diamond",
+      "score": 78.8,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4-0-gguf",
+      "benchmark": "math-vision",
+      "score": 79.7,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4-0-gguf",
+      "benchmark": "mmmu-pro",
+      "score": 69.1,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4-0-gguf",
+      "benchmark": "livecodebench-v6",
+      "score": 72.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4-0-gguf",
+      "benchmark": "memory-gb_lower_better",
+      "score": 6.98,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4-0-gguf",
+      "benchmark": "mmlu-pro",
+      "score": 82.6,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4-0-gguf",
+      "benchmark": "gpqa-diamond",
+      "score": 82.3,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4-0-gguf",
+      "benchmark": "math-vision",
+      "score": 82.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4-0-gguf",
+      "benchmark": "mmmu-pro",
+      "score": 73.8,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4-0-gguf",
+      "benchmark": "livecodebench-v6",
+      "score": 77.1,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4-0-gguf",
+      "benchmark": "memory-gb_lower_better",
+      "score": 14.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4-0-gguf",
+      "benchmark": "mmlu-pro",
+      "score": 85.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4-0-gguf",
+      "benchmark": "gpqa-diamond",
+      "score": 84.3,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4-0-gguf",
+      "benchmark": "math-vision",
+      "score": 85.6,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4-0-gguf",
+      "benchmark": "mmmu-pro",
+      "score": 76.9,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4-0-gguf",
+      "benchmark": "livecodebench-v6",
+      "score": 80.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4-0-gguf",
+      "benchmark": "codeforces-elo",
+      "score": 2150,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4-0-gguf",
+      "benchmark": "memory-gb_lower_better",
+      "score": 17.7,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-w4a16-ct",
+      "benchmark": "mmlu-pro",
+      "score": 60.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-w4a16-ct",
+      "benchmark": "gpqa-diamond",
+      "score": 43.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-w4a16-ct",
+      "benchmark": "math-vision",
+      "score": 52.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-w4a16-ct",
+      "benchmark": "mmmu-pro",
+      "score": 44.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-w4a16-ct",
+      "benchmark": "livecodebench-v6",
+      "score": 44.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-w4a16-ct",
+      "benchmark": "mmlu-pro",
+      "score": 69.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-w4a16-ct",
+      "benchmark": "gpqa-diamond",
+      "score": 58.6,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-w4a16-ct",
+      "benchmark": "math-vision",
+      "score": 59.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-w4a16-ct",
+      "benchmark": "mmmu-pro",
+      "score": 52.6,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-w4a16-ct",
+      "benchmark": "livecodebench-v6",
+      "score": 52.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-w4a16-ct",
+      "benchmark": "aime-2026",
+      "score": 42.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E4B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "mmlu-pro",
+      "score": 77.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "gpqa-diamond",
+      "score": 78.8,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "math-vision",
+      "score": 79.7,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "mmmu-pro",
+      "score": 69.1,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "livecodebench-v6",
+      "score": 72.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "codeforces-elo",
+      "score": 1659,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "aime-2026",
+      "score": 77.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "mrcr-v2",
+      "score": 43.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "mmlu-pro",
+      "score": 85.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "gpqa-diamond",
+      "score": 84.3,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "math-vision",
+      "score": 85.6,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "mmmu-pro",
+      "score": 76.9,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "livecodebench-v6",
+      "score": 80.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "codeforces-elo",
+      "score": 2150,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "aime-2026",
+      "score": 89.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-mobile",
+      "benchmark": "mmlu-pro",
+      "score": 60.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-mobile-transformers",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-mobile",
+      "benchmark": "gpqa-diamond",
+      "score": 43.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-mobile-transformers",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-mobile",
+      "benchmark": "livecodebench-v6",
+      "score": 44.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-mobile-transformers",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-mobile",
+      "benchmark": "aime-2026",
+      "score": 37.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-E2B-it-qat-mobile-transformers",
+      "_note": ""
+    },
+    {
+      "model": "qwen3_5_30b_a3b_moe_baseline",
+      "benchmark": "perplexity_wikitext_lower_better",
+      "score": 6.6097,
+      "unit": "score",
+      "_source": "https://unsloth.ai/docs/models/qwen3.5/gguf-benchmarks",
+      "_note": "Qwen3.5 baseline — keep separate from Qwen3.6 rows."
+    },
+    {
+      "model": "qwen3_5_30b_a3b_moe_baseline",
+      "benchmark": "perplexity_wikitext_lower_better",
+      "score": 6.5918,
+      "unit": "score",
+      "_source": "https://unsloth.ai/docs/models/qwen3.5/gguf-benchmarks",
+      "_note": ""
+    },
+    {
+      "model": "qwen3_5_30b_a3b_moe_baseline",
+      "benchmark": "perplexity_wikitext_lower_better",
+      "score": 6.5828,
+      "unit": "score",
+      "_source": "https://unsloth.ai/docs/models/qwen3.5/gguf-benchmarks",
+      "_note": ""
+    },
+    {
+      "model": "qwen3_5_30b_a3b_moe_baseline",
+      "benchmark": "perplexity_wikitext_lower_better",
+      "score": 6.5489,
+      "unit": "score",
+      "_source": "https://unsloth.ai/docs/models/qwen3.5/gguf-benchmarks",
+      "_note": ""
+    },
+    {
+      "model": "qwen3_5_30b_a3b_moe_baseline",
+      "benchmark": "perplexity_wikitext_lower_better",
+      "score": 6.5392,
+      "unit": "score",
+      "_source": "https://unsloth.ai/docs/models/qwen3.5/gguf-benchmarks",
+      "_note": ""
+    },
+    {
+      "model": "qwen3_5_30b_a3b_moe_baseline",
+      "benchmark": "perplexity_wikitext_lower_better",
+      "score": 6.5352,
+      "unit": "score",
+      "_source": "https://unsloth.ai/docs/models/qwen3.5/gguf-benchmarks",
+      "_note": ""
+    },
+    {
+      "model": "qwen3_6_35b_a3b_moe",
+      "benchmark": "humaneval_pass_at_1",
+      "score": 93.29,
+      "unit": "score",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/discussions/10",
+      "_note": ""
+    },
+    {
+      "model": "qwen3_6_35b_a3b_moe",
+      "benchmark": "humaneval_pass_at_1",
+      "score": 90.24,
+      "unit": "score",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/discussions/10",
+      "_note": ""
+    },
+    {
+      "model": "gemma_4_26b_a4b_qat",
+      "benchmark": "qat_top1_agreement_vs_bf16",
+      "score": 70.2,
+      "unit": "score",
+      "_source": "https://unsloth.ai/docs/models/gemma-4/qat",
+      "_note": ""
+    },
+    {
+      "model": "gemma_4_26b_a4b_qat",
+      "benchmark": "qat_top1_agreement_vs_bf16",
+      "score": 85.6,
+      "unit": "score",
+      "_source": "https://unsloth.ai/docs/models/gemma-4/qat",
+      "_note": ""
+    },
+    {
+      "model": "gemma_3_12b_qat",
+      "benchmark": "mmlu_5shot",
+      "score": 67.15,
+      "unit": "score",
+      "_source": "https://unsloth.ai/docs/models/gemma-4/qat",
+      "_note": ""
+    },
+    {
+      "model": "gemma_3_12b_qat",
+      "benchmark": "mmlu_5shot",
+      "score": 67.07,
+      "unit": "score",
+      "_source": "https://unsloth.ai/docs/models/gemma-4/qat",
+      "_note": ""
+    }
+  ]
+}
