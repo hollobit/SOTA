@@ -1,0 +1,2946 @@
+{
+  "_meta": {
+    "session": "Session 94 — Qwen 3.6 + Gemma 4 per-quant benchmark deep dive",
+    "date": "2026-06-11",
+    "sources": [
+      "Qwen 3.6 27B + 35B-A3B model cards + FP8 + GGUF discussions (HF)",
+      "Gemma 4 Google official QAT cards (E2B/E4B/12B/26B-A4B/31B) + RedHatAI FP8/NVFP4 + Unsloth GGUF",
+      "Hardware throughput hub: InferenceBench/Ollama/llama.cpp/markaicode/willitrunai/mychen76"
+    ],
+    "notes": "Per-quant benchmark deep dive. Gemma 4 31B QAT Q4_0 17.7GB MMLU-Pro 85.2/AIME-26 89.2/CF ELO 2150. Gemma 4 26B-A4B Q4_0 14.4GB MoE. RedHatAI NVFP4 31B 99.5% BF16 recovery. Unsloth Dynamic E2B KLD 0.00173 vs naive 0.05109 (29x reduction). Qwen 3.6 35B-A3B-FP8 1397 QwenWebBench ELO. UD-Q6_K_XL HumanEval+ 90.24."
+  },
+  "models": [
+    {
+      "id": "alibaba/qwen3.6-27b",
+      "name": "Qwen 3.6",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b",
+      "name": "Qwen 3.6",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-fp8",
+      "name": "Qwen 3.6",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-awq-int4",
+      "name": "Qwen 3.6",
+      "vendor": "Alibaba/QuantTrio",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-q8-0",
+      "name": "Qwen 3.6",
+      "vendor": "Unsloth/Qwen",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-q8-k-xl",
+      "name": "Qwen 3.6",
+      "vendor": "Unsloth",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-q6-k-xl",
+      "name": "Qwen 3.6",
+      "vendor": "Unsloth",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-q5-k-m",
+      "name": "Qwen 3.6",
+      "vendor": "Unsloth/bartowski",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-q4-k-m",
+      "name": "Qwen 3.6",
+      "vendor": "Unsloth",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-q4-k-xl",
+      "name": "Qwen 3.6",
+      "vendor": "Unsloth",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-iq4-xs",
+      "name": "Qwen 3.6",
+      "vendor": "Unsloth",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-q3-k-m",
+      "name": "Qwen 3.6",
+      "vendor": "Unsloth",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-35b-a3b-q2-k-xl",
+      "name": "Qwen 3.6",
+      "vendor": "Unsloth",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-27b-q8-0",
+      "name": "Qwen 3.6",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-27b-q6-k",
+      "name": "Qwen 3.6",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-27b-q5-k-m",
+      "name": "Qwen 3.6",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-27b-q4-k-m",
+      "name": "Qwen 3.6",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-27b-q4-k-s",
+      "name": "Qwen 3.6",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-27b-iq4-xs",
+      "name": "Qwen 3.6",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-27b-q3-k-m",
+      "name": "Qwen 3.6",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-27b-q2-k-l",
+      "name": "Qwen 3.6",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-27b-iq2-m",
+      "name": "Qwen 3.6",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-27b-bf16",
+      "name": "Qwen 3.6",
+      "vendor": "bartowski",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-31b-it-bf16",
+      "name": "Gemma 4 31B IT BF16",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "name": "Gemma 4 31B QAT Q4_0 GGUF",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "name": "Gemma 4 31B QAT W4A16 CT",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "redhatai/gemma-4-31b-it-fp8-block",
+      "name": "Gemma 4 31B FP8-block",
+      "vendor": "redhatai",
+      "type": "language",
+      "release_date": "2026-05-05",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "redhatai/gemma-4-31b-it-nvfp4",
+      "name": "Gemma 4 31B NVFP4",
+      "vendor": "redhatai",
+      "type": "language",
+      "release_date": "2026-05-05",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "unsloth/gemma-4-31b-it-gguf-ud-q4_k_xl",
+      "name": "Gemma 4 31B Unsloth Dynamic Q4_K_XL",
+      "vendor": "unsloth",
+      "type": "language",
+      "release_date": "2026-05-03",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "unsloth/gemma-4-31b-it-gguf-q8_0",
+      "name": "Gemma 4 31B Unsloth Q8_0 GGUF",
+      "vendor": "unsloth",
+      "type": "language",
+      "release_date": "2026-05-03",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "google/gemma-4-26b-a4b-it-bf16",
+      "name": "Gemma 4 26B-A4B IT BF16 (MoE)",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "name": "Gemma 4 26B-A4B QAT Q4_0 GGUF",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "unsloth/gemma-4-26b-a4b-it-gguf-ud-q4_k_m",
+      "name": "Gemma 4 26B-A4B Unsloth UD-Q4_K_M",
+      "vendor": "unsloth",
+      "type": "language",
+      "release_date": "2026-05-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "unsloth/gemma-4-26b-a4b-it-gguf-mxfp4-moe",
+      "name": "Gemma 4 26B-A4B Unsloth MXFP4-MoE",
+      "vendor": "unsloth",
+      "type": "language",
+      "release_date": "2026-05-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "unsloth/gemma-4-26b-a4b-it-gguf-ud-iq2_xxs",
+      "name": "Gemma 4 26B-A4B Unsloth UD-IQ2_XXS",
+      "vendor": "unsloth",
+      "type": "language",
+      "release_date": "2026-05-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-12b-it-bf16",
+      "name": "Gemma 4 12B IT BF16",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "name": "Gemma 4 12B QAT Q4_0 GGUF",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "name": "Gemma 4 12B QAT W4A16 CT",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e4b-it-bf16",
+      "name": "Gemma 4 E4B IT BF16 (mobile)",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "name": "Gemma 4 E4B QAT Q4_0 GGUF",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e4b-it-qat-w4a16-ct",
+      "name": "Gemma 4 E4B QAT W4A16 CT",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e2b-it-bf16",
+      "name": "Gemma 4 E2B IT BF16 (mobile)",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "name": "Gemma 4 E2B QAT Q4_0 GGUF",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e2b-it-qat-w4a16-ct",
+      "name": "Gemma 4 E2B QAT W4A16 CT",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemma-4-it-mobile-wna8o8",
+      "name": "Gemma 4 IT mobile wNa8o8 (Tensor G4)",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "qwen-3.6-27b",
+      "name": "qwen-3.6-27b",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2026-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen-3.6-35b-a3b",
+      "name": "qwen-3.6-35b-a3b",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2026-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemma-4-31b",
+      "name": "gemma-4-31b",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2026-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemma-4-26b-a4b",
+      "name": "gemma-4-26b-a4b",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2026-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemma-4-e4b",
+      "name": "gemma-4-e4b",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2026-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemma-4-e2b",
+      "name": "gemma-4-e2b",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2026-04",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "mmlu_pro",
+      "name": "mmlu_pro",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gpqa_diamond",
+      "name": "gpqa_diamond",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime26",
+      "name": "aime26",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_verified",
+      "name": "swe_bench_verified",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_pro",
+      "name": "swe_bench_pro",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench_v6",
+      "name": "livecodebench_v6",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu",
+      "name": "mmmu",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu_pro",
+      "name": "mmmu_pro",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mathvista_mini",
+      "name": "mathvista_mini",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hmmt_feb_25",
+      "name": "hmmt_feb_25",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "imoanswerbench",
+      "name": "imoanswerbench",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_multilingual",
+      "name": "swe_bench_multilingual",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "terminal_bench_v2",
+      "name": "terminal_bench_v2",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_redux",
+      "name": "mmlu_redux",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "c_eval",
+      "name": "c_eval",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "dynamath",
+      "name": "dynamath",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "refcoco_avg",
+      "name": "refcoco_avg",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "video_mme_with_sub",
+      "name": "video_mme_with_sub",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "video_mmmu",
+      "name": "video_mmmu",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "realworldqa",
+      "name": "realworldqa",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmbench_en_dev_v11",
+      "name": "mmbench_en_dev_v11",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "omnidocbench_v15",
+      "name": "omnidocbench_v15",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "charxiv",
+      "name": "charxiv",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "cc_ocr",
+      "name": "cc_ocr",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "video_mme",
+      "name": "video_mme",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "video_mmmu_alt",
+      "name": "video_mmmu_alt",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mlvu",
+      "name": "mlvu",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "qwen_web_bench",
+      "name": "qwen_web_bench",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "elo",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval_plus_pass1",
+      "name": "humaneval_plus_pass1",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "pct",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_verified_n100_resolved",
+      "name": "swe_bench_verified_n100_resolved",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "count_of_100",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_rtx4090d_48gb",
+      "name": "tokens_per_sec_rtx4090d_48gb",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "tokens_per_sec",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_rtx5090",
+      "name": "tokens_per_sec_rtx5090",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "tokens_per_sec",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_2x_rtx4060",
+      "name": "tokens_per_sec_2x_rtx4060",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "tokens_per_sec",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "memory_gb_lower_better",
+      "name": "memory_gb_lower_better",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "GB",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "file_size_gb_lower_better",
+      "name": "file_size_gb_lower_better",
+      "category": "quantization",
+      "metric": "score",
+      "unit": "GB",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "codeforces_elo",
+      "name": "Codeforces ELO",
+      "category": "capability",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "Estimated Codeforces ELO rating",
+      "source_url": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf"
+    },
+    {
+      "id": "math_vision",
+      "name": "MATH-Vision",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Math vision benchmark",
+      "source_url": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf"
+    },
+    {
+      "id": "bigbench_extra_hard",
+      "name": "BigBench Extra Hard",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "BBEH reasoning",
+      "source_url": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf"
+    },
+    {
+      "id": "mmmlu",
+      "name": "MMMLU (multilingual)",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Multilingual MMLU",
+      "source_url": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf"
+    },
+    {
+      "id": "tau2",
+      "name": "Tau2 (avg 3)",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Tau2 agentic benchmark average over 3 runs",
+      "source_url": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf"
+    },
+    {
+      "id": "hle_no_tools",
+      "name": "HLE (no tools)",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Humanity's Last Exam, no-tools setting",
+      "source_url": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf"
+    },
+    {
+      "id": "mrcr_v2_128k",
+      "name": "MRCR v2 8-needle 128k",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Long-context multi-round coreference recall at 128k",
+      "source_url": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf"
+    },
+    {
+      "id": "mmlu_cot",
+      "name": "MMLU-CoT",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "MMLU chain-of-thought 5-shot",
+      "source_url": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4"
+    },
+    {
+      "id": "gsm8k_platinum",
+      "name": "GSM8k-Platinum",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "GSM8k Platinum (cleaned) 5-shot",
+      "source_url": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4"
+    },
+    {
+      "id": "ifeval_prompt",
+      "name": "IFEval (prompt-level)",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "IFEval prompt-level strict",
+      "source_url": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4"
+    },
+    {
+      "id": "ifeval_inst",
+      "name": "IFEval (instruction-level)",
+      "category": "capability",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "IFEval instruction-level strict",
+      "source_url": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4"
+    },
+    {
+      "id": "recovery_vs_bf16",
+      "name": "BF16 recovery",
+      "category": "quantization",
+      "metric": "ratio",
+      "unit": "%",
+      "description": "Aggregate accuracy retention vs BF16 baseline across MMLU-Pro/MMLU-CoT/IFEval/GSM8k-Platinum (RedHatAI methodology)",
+      "source_url": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4"
+    },
+    {
+      "id": "kld_vs_bf16_lower_better",
+      "name": "Mean KL divergence vs BF16",
+      "category": "quantization",
+      "metric": "kld-nats",
+      "unit": "nats",
+      "description": "Mean KL divergence between quantized Q4_0 output distribution and BF16 reference; lower is better (Unsloth methodology)",
+      "source_url": "https://docs.unsloth.ai/docs/models/gemma-4/qat"
+    },
+    {
+      "id": "memory_gb_inverse_better",
+      "name": "Memory Footprint",
+      "category": "memory",
+      "metric": "vram-gb",
+      "unit": "GB",
+      "description": "Disk file size / VRAM footprint for inference (smaller is better)",
+      "source_url": "https://blog.google/technology/developers/google-gemma-4-quantization/"
+    },
+    {
+      "id": "disk_size_gb_inverse_better",
+      "name": "On-disk file size",
+      "category": "memory",
+      "metric": "gb",
+      "unit": "GB",
+      "description": "On-disk size of quantized checkpoint",
+      "source_url": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf"
+    },
+    {
+      "id": "tokens_per_sec_rtx4090_q4km_8k_ctx",
+      "name": "Tokens Per Sec Rtx4090 Q4Km 8K Ctx",
+      "category": "throughput",
+      "metric": "tokens_per_sec_rtx4090_q4km_8k_ctx",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_rtx4090_q4km_speculative_peak",
+      "name": "Tokens Per Sec Rtx4090 Q4Km Speculative Peak",
+      "category": "throughput",
+      "metric": "tokens_per_sec_rtx4090_q4km_speculative_peak",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vram_gb_q4km_lower_better",
+      "name": "Vram Gb Q4Km Lower Better",
+      "category": "throughput",
+      "metric": "vram_gb_q4km_lower_better",
+      "unit": "GB",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vram_gb_q5km_lower_better",
+      "name": "Vram Gb Q5Km Lower Better",
+      "category": "throughput",
+      "metric": "vram_gb_q5km_lower_better",
+      "unit": "GB",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vram_gb_q6k_lower_better",
+      "name": "Vram Gb Q6K Lower Better",
+      "category": "throughput",
+      "metric": "vram_gb_q6k_lower_better",
+      "unit": "GB",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vram_gb_q8_lower_better",
+      "name": "Vram Gb Q8 Lower Better",
+      "category": "throughput",
+      "metric": "vram_gb_q8_lower_better",
+      "unit": "GB",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vram_gb_bf16_lower_better",
+      "name": "Vram Gb Bf16 Lower Better",
+      "category": "throughput",
+      "metric": "vram_gb_bf16_lower_better",
+      "unit": "GB",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_provider_avg_aa",
+      "name": "Tokens Per Sec Provider Avg Aa",
+      "category": "throughput",
+      "metric": "tokens_per_sec_provider_avg_aa",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ttft_s_provider_avg_aa_lower_better",
+      "name": "Ttft S Provider Avg Aa Lower Better",
+      "category": "throughput",
+      "metric": "ttft_s_provider_avg_aa_lower_better",
+      "unit": "s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_rtx4090_q4km_peak",
+      "name": "Tokens Per Sec Rtx4090 Q4Km Peak",
+      "category": "throughput",
+      "metric": "tokens_per_sec_rtx4090_q4km_peak",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_6gb_vram_q4_llamacpp",
+      "name": "Tokens Per Sec 6Gb Vram Q4 Llamacpp",
+      "category": "throughput",
+      "metric": "tokens_per_sec_6gb_vram_q4_llamacpp",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_m3_ultra_mlx_8bit",
+      "name": "Tokens Per Sec M3 Ultra Mlx 8Bit",
+      "category": "throughput",
+      "metric": "tokens_per_sec_m3_ultra_mlx_8bit",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_m4_max_64gb_mlx",
+      "name": "Tokens Per Sec M4 Max 64Gb Mlx",
+      "category": "throughput",
+      "metric": "tokens_per_sec_m4_max_64gb_mlx",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ttft_ms_gb10_mtp_lower_better",
+      "name": "Ttft Ms Gb10 Mtp Lower Better",
+      "category": "throughput",
+      "metric": "ttft_ms_gb10_mtp_lower_better",
+      "unit": "ms",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "throughput_pct_gain_gb10_mtp",
+      "name": "Throughput Pct Gain Gb10 Mtp",
+      "category": "throughput",
+      "metric": "throughput_pct_gain_gb10_mtp",
+      "unit": "% gain",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_h100_concurrency128",
+      "name": "Tokens Per Sec H100 Concurrency128",
+      "category": "throughput",
+      "metric": "tokens_per_sec_h100_concurrency128",
+      "unit": "tok/s aggregate",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_h100_throughput_sweep_peak",
+      "name": "Tokens Per Sec H100 Throughput Sweep Peak",
+      "category": "throughput",
+      "metric": "tokens_per_sec_h100_throughput_sweep_peak",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_12gb_vram_128k_ctx",
+      "name": "Tokens Per Sec 12Gb Vram 128K Ctx",
+      "category": "throughput",
+      "metric": "tokens_per_sec_12gb_vram_128k_ctx",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_12gb_vram_64k_vision",
+      "name": "Tokens Per Sec 12Gb Vram 64K Vision",
+      "category": "throughput",
+      "metric": "tokens_per_sec_12gb_vram_64k_vision",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "turboquant_kv_cache_speedup_pct_128k_256k",
+      "name": "Turboquant Kv Cache Speedup Pct 128K 256K",
+      "category": "throughput",
+      "metric": "turboquant_kv_cache_speedup_pct_128k_256k",
+      "unit": "% gain",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_rtx5090_q4km_batch1",
+      "name": "Tokens Per Sec Rtx5090 Q4Km Batch1",
+      "category": "throughput",
+      "metric": "tokens_per_sec_rtx5090_q4km_batch1",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_pixel9_pro_tensor_g4",
+      "name": "Tokens Per Sec Pixel9 Pro Tensor G4",
+      "category": "throughput",
+      "metric": "tokens_per_sec_pixel9_pro_tensor_g4",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_snapdragon8gen3",
+      "name": "Tokens Per Sec Snapdragon8Gen3",
+      "category": "throughput",
+      "metric": "tokens_per_sec_snapdragon8gen3",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_macbook_m5",
+      "name": "Tokens Per Sec Macbook M5",
+      "category": "throughput",
+      "metric": "tokens_per_sec_macbook_m5",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_snapdragon8_recent",
+      "name": "Tokens Per Sec Snapdragon8 Recent",
+      "category": "throughput",
+      "metric": "tokens_per_sec_snapdragon8_recent",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_rog_phone_9_pro",
+      "name": "Tokens Per Sec Rog Phone 9 Pro",
+      "category": "throughput",
+      "metric": "tokens_per_sec_rog_phone_9_pro",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tokens_per_sec_tensor_g4_3_5b_class",
+      "name": "Tokens Per Sec Tensor G4 3 5B Class",
+      "category": "throughput",
+      "metric": "tokens_per_sec_tensor_g4_3_5b_class",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmlu_pro",
+      "score": 86.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official Qwen3.6-27B model-card benchmark (BF16 baseline)."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "gpqa_diamond",
+      "score": 87.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "aime26",
+      "score": 94.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "swe_bench_verified",
+      "score": 77.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "swe_bench_pro",
+      "score": 53.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card; also referenced in GitHub issue #179."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "livecodebench_v6",
+      "score": 83.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "hmmt_feb_25",
+      "score": 93.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "imoanswerbench",
+      "score": 80.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmmu",
+      "score": 82.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmmu_pro",
+      "score": 75.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mathvista_mini",
+      "score": 87.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "dynamath",
+      "score": 85.6,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "refcoco_avg",
+      "score": 92.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "video_mme_with_sub",
+      "score": 87.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "video_mmmu",
+      "score": 84.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "mmlu_pro",
+      "score": 85.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official Qwen3.6-35B-A3B BF16 baseline."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "gpqa_diamond",
+      "score": 86.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card (GPQA Diamond)."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "aime26",
+      "score": 92.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "swe_bench_verified",
+      "score": 73.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "swe_bench_pro",
+      "score": 49.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "swe_bench_multilingual",
+      "score": 67.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "terminal_bench_v2",
+      "score": 51.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "livecodebench_v6",
+      "score": 80.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "mmmu",
+      "score": 81.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "mmmu_pro",
+      "score": 75.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "mathvista_mini",
+      "score": 86.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "realworldqa",
+      "score": 85.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "mmbench_en_dev_v11",
+      "score": 92.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "omnidocbench_v15",
+      "score": 89.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "_note": "Official model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "mmlu_redux",
+      "score": 93.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "Base-model benchmark reproduced in QuantTrio AWQ card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "c_eval",
+      "score": 90.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "Base-model benchmark reproduced in QuantTrio AWQ card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "charxiv",
+      "score": 78.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "Vision benchmark reproduced from base model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "cc_ocr",
+      "score": 81.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "Vision benchmark reproduced from base model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "video_mme",
+      "score": 86.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "Video benchmark reproduced from base model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "video_mmmu_alt",
+      "score": 83.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "Reproduced from base model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "mlvu",
+      "score": 86.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "Reproduced from base model card."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "mmlu_pro",
+      "score": 85.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
+      "_note": "Explicit FP8 card score — vendor states FP8 metrics nearly identical to BF16."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "gpqa_diamond",
+      "score": 86.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
+      "_note": "FP8 card explicitly publishes this value."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "aime26",
+      "score": 92.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
+      "_note": "FP8 card explicitly publishes this value."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "swe_bench_verified",
+      "score": 73.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
+      "_note": "FP8 card explicitly publishes this value."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "terminal_bench_v2",
+      "score": 51.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
+      "_note": "FP8 card explicitly publishes this value."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "qwen_web_bench",
+      "score": 1397,
+      "unit": "elo",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
+      "_note": "FP8 card explicit value."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "livecodebench_v6",
+      "score": 80.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8/blob/main/README.md",
+      "_note": "Card asserts FP8 is identical to BF16; value taken from the FP8-card-published table."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "mmmu",
+      "score": 81.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8/blob/main/README.md",
+      "_note": "FP8 card score."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "mathvista_mini",
+      "score": 86.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8/blob/main/README.md",
+      "_note": "FP8 card score."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "realworldqa",
+      "score": 85.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
+      "_note": "FP8 card explicit value."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "mmbench_en_dev_v11",
+      "score": 92.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
+      "_note": "FP8 card explicit value."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "omnidocbench_v15",
+      "score": 89.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
+      "_note": "FP8 card explicit value."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-fp8",
+      "benchmark": "c_eval",
+      "score": 90.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B-FP8",
+      "_note": "FP8 card explicit value."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-awq-int4",
+      "benchmark": "memory_gb_lower_better",
+      "score": 24.0,
+      "unit": "GB",
+      "_source": "https://huggingface.co/QuantTrio/Qwen3.6-35B-A3B-AWQ",
+      "_note": "Model card states 24GB AWQ-4bit footprint."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-awq-int4",
+      "benchmark": "tokens_per_sec_2x_rtx4060",
+      "score": 83.0,
+      "unit": "tokens_per_sec",
+      "_source": "https://huggingface.co/cyankiwi/Qwen3.6-35B-A3B-AWQ-4bit/discussions",
+      "_note": "Discussion #4 community throughput report on 2x RTX 4060."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q8-k-xl",
+      "benchmark": "swe_bench_verified_n100_resolved",
+      "score": 53,
+      "unit": "count_of_100",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/discussions/10",
+      "_note": "Unsloth 100-sample single-pass SWE-bench Verified, 250-turn limit; UD-Q8_K_XL resolved 53/100."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q5-k-m",
+      "benchmark": "swe_bench_verified_n100_resolved",
+      "score": 51,
+      "unit": "count_of_100",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/discussions/10",
+      "_note": "Unsloth 100-sample SWE-bench Verified; Q5_K_M resolved 51/100."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q6-k-xl",
+      "benchmark": "humaneval_plus_pass1",
+      "score": 90.24,
+      "unit": "pct",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/discussions/10",
+      "_note": "HumanEval+ 164 tests pass@1 at UD-Q6_K_XL."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q4-k-xl",
+      "benchmark": "tokens_per_sec_rtx4090d_48gb",
+      "score": 30.0,
+      "unit": "tokens_per_sec",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-27B-GGUF/discussions",
+      "_note": "Discussion #7 user report: 30 t/s on RTX 4090D 48GB with UD-Q6_K_XL/Q4_K_XL class quants; reported for 27B model — see model id note."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q4-k-xl",
+      "benchmark": "tokens_per_sec_rtx5090",
+      "score": 200.0,
+      "unit": "tokens_per_sec",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/discussions/8",
+      "_note": "Community report (cryptkat) — 200+ tokens/sec on RTX 5090 with UD-Q4_K_XL."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q8-0",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 36.9,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF",
+      "_note": "Unsloth file-size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q6-k-xl",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 31.8,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF",
+      "_note": "Unsloth file-size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q5-k-m",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 26.5,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF",
+      "_note": "Unsloth file-size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q4-k-m",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 22.1,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF",
+      "_note": "Unsloth file-size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q4-k-xl",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 22.4,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF",
+      "_note": "Unsloth file-size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-iq4-xs",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 17.7,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF",
+      "_note": "Unsloth file-size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q3-k-m",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 16.6,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF",
+      "_note": "Unsloth file-size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b-q2-k-xl",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 12.3,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF",
+      "_note": "Unsloth file-size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-bf16",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 54.66,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "bartowski size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-q8-0",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 29.12,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "bartowski size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-q6-k",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 23.68,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "bartowski size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-q5-k-m",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 20.97,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "bartowski size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-q4-k-m",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 17.98,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "bartowski size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-q4-k-s",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 16.93,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "bartowski size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-iq4-xs",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 15.78,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "bartowski size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-q3-k-m",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 14.82,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "bartowski size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-q2-k-l",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 13.29,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "bartowski size table."
+    },
+    {
+      "model": "alibaba/qwen3.6-27b-iq2-m",
+      "benchmark": "file_size_gb_lower_better",
+      "score": 11.09,
+      "unit": "GB",
+      "_source": "https://huggingface.co/bartowski/Qwen_Qwen3.6-27B-GGUF",
+      "_note": "bartowski size table."
+    },
+    {
+      "model": "google/gemma-4-31b-it-bf16",
+      "benchmark": "mmlu_pro",
+      "score": 85.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": "RedHatAI reports BF16 baseline MMLU-Pro 5-shot 85.03"
+    },
+    {
+      "model": "google/gemma-4-31b-it-bf16",
+      "benchmark": "mmlu_cot",
+      "score": 90.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": "BF16 baseline 90.53"
+    },
+    {
+      "model": "google/gemma-4-31b-it-bf16",
+      "benchmark": "gsm8k_platinum",
+      "score": 97.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": "BF16 baseline"
+    },
+    {
+      "model": "google/gemma-4-31b-it-bf16",
+      "benchmark": "ifeval_prompt",
+      "score": 91.07,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-bf16",
+      "benchmark": "ifeval_inst",
+      "score": 93.76,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-bf16",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 61.4,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/gemma-4-31B-it-GGUF",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "mmlu_pro",
+      "score": 85.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "aime26",
+      "score": 89.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "livecodebench_v6",
+      "score": 80.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "codeforces_elo",
+      "score": 2150,
+      "unit": "elo",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "gpqa_diamond",
+      "score": 84.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "tau2",
+      "score": 76.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "hle_no_tools",
+      "score": 19.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "bigbench_extra_hard",
+      "score": 74.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "mmmlu",
+      "score": 88.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "mmmu_pro",
+      "score": 76.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "math_vision",
+      "score": 85.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "mrcr_v2_128k",
+      "score": 66.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 17.7,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-q4_0-gguf",
+      "benchmark": "disk_size_gb_inverse_better",
+      "score": 17.7,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "mmlu_pro",
+      "score": 85.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": "Card reuses BF16 row; QAT-W4A16 claimed BF16-equivalent"
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "aime26",
+      "score": 89.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "gpqa_diamond",
+      "score": 84.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "livecodebench_v6",
+      "score": 80.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "mmmu_pro",
+      "score": 76.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it-qat-w4a16-ct",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 18.0,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-31B-it-qat-w4a16-ct",
+      "_note": "W4A16 footprint slightly larger than Q4_0 because activations stay 16-bit"
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-fp8-block",
+      "benchmark": "mmlu_pro",
+      "score": 84.92,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": "FP8-block; recovery 99.9%"
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-fp8-block",
+      "benchmark": "mmlu_cot",
+      "score": 90.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": "recovery 100.2%"
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-fp8-block",
+      "benchmark": "gsm8k_platinum",
+      "score": 97.82,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": ""
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-fp8-block",
+      "benchmark": "ifeval_prompt",
+      "score": 91.31,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": ""
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-fp8-block",
+      "benchmark": "ifeval_inst",
+      "score": 93.84,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": ""
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-fp8-block",
+      "benchmark": "recovery_vs_bf16",
+      "score": 100.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": "Avg of 99.9/100.2/100.2/100.3/100.1"
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-fp8-block",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 31.0,
+      "unit": "GB",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-block",
+      "_note": ""
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-nvfp4",
+      "benchmark": "mmlu_pro",
+      "score": 84.07,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4",
+      "_note": "Recovery 98.9% — worst MMLU-Pro recovery in the set"
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-nvfp4",
+      "benchmark": "mmlu_cot",
+      "score": 90.06,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4",
+      "_note": "Recovery 99.5%"
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-nvfp4",
+      "benchmark": "gsm8k_platinum",
+      "score": 97.71,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4",
+      "_note": "Recovery 100.1%"
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-nvfp4",
+      "benchmark": "ifeval_prompt",
+      "score": 90.45,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4",
+      "_note": ""
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-nvfp4",
+      "benchmark": "ifeval_inst",
+      "score": 93.45,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4",
+      "_note": ""
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-nvfp4",
+      "benchmark": "recovery_vs_bf16",
+      "score": 99.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4",
+      "_note": "Avg across 5 benchmarks"
+    },
+    {
+      "model": "redhatai/gemma-4-31b-it-nvfp4",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 16.0,
+      "unit": "GB",
+      "_source": "https://huggingface.co/RedHatAI/gemma-4-31B-it-NVFP4",
+      "_note": "~75% reduction from BF16 61GB"
+    },
+    {
+      "model": "unsloth/gemma-4-31b-it-gguf-ud-q4_k_xl",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 18.8,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/gemma-4-31B-it-GGUF",
+      "_note": ""
+    },
+    {
+      "model": "unsloth/gemma-4-31b-it-gguf-q8_0",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 32.6,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/gemma-4-31B-it-GGUF",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-bf16",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 50.5,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "mmlu_pro",
+      "score": 82.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "aime26",
+      "score": 88.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "livecodebench_v6",
+      "score": 77.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "codeforces_elo",
+      "score": 1718,
+      "unit": "elo",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "gpqa_diamond",
+      "score": 82.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "tau2",
+      "score": 68.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "hle_no_tools",
+      "score": 8.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "bigbench_extra_hard",
+      "score": 64.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "mmmlu",
+      "score": 86.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "mmmu_pro",
+      "score": 73.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "math_vision",
+      "score": 82.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "mrcr_v2_128k",
+      "score": 44.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 14.4,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "benchmark": "disk_size_gb_inverse_better",
+      "score": 14.4,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "unsloth/gemma-4-26b-a4b-it-gguf-ud-q4_k_m",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 16.9,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF",
+      "_note": ""
+    },
+    {
+      "model": "unsloth/gemma-4-26b-a4b-it-gguf-mxfp4-moe",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 16.6,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF",
+      "_note": ""
+    },
+    {
+      "model": "unsloth/gemma-4-26b-a4b-it-gguf-ud-iq2_xxs",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 9.92,
+      "unit": "GB",
+      "_source": "https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "mmlu_pro",
+      "score": 77.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "aime26",
+      "score": 77.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "livecodebench_v6",
+      "score": 72.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "codeforces_elo",
+      "score": 1659,
+      "unit": "elo",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "gpqa_diamond",
+      "score": 78.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "tau2",
+      "score": 69.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "bigbench_extra_hard",
+      "score": 53.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "mmmlu",
+      "score": 83.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "mmmu_pro",
+      "score": 69.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "math_vision",
+      "score": 79.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "mrcr_v2_128k",
+      "score": 43.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 6.98,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-q4_0-gguf",
+      "benchmark": "disk_size_gb_inverse_better",
+      "score": 6.98,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "mmlu_pro",
+      "score": 77.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": "QAT card reuses BF16-equivalent row"
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "gpqa_diamond",
+      "score": 78.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "aime26",
+      "score": 77.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it-qat-w4a16-ct",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 7.2,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-12B-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "mmlu_pro",
+      "score": 69.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "aime26",
+      "score": 42.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "livecodebench_v6",
+      "score": 52.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "codeforces_elo",
+      "score": 940,
+      "unit": "elo",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "gpqa_diamond",
+      "score": 58.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "tau2",
+      "score": 42.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "bigbench_extra_hard",
+      "score": 33.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "mmmlu",
+      "score": 76.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "mmmu_pro",
+      "score": 52.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "math_vision",
+      "score": 59.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "mrcr_v2_128k",
+      "score": 25.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 5.15,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "benchmark": "disk_size_gb_inverse_better",
+      "score": 5.15,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-w4a16-ct",
+      "benchmark": "mmlu_pro",
+      "score": 69.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it-qat-w4a16-ct",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 5.5,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "mmlu_pro",
+      "score": 60.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "aime26",
+      "score": 37.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "livecodebench_v6",
+      "score": 44.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "codeforces_elo",
+      "score": 633,
+      "unit": "elo",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "gpqa_diamond",
+      "score": 43.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "tau2",
+      "score": 24.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "bigbench_extra_hard",
+      "score": 21.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "mmmlu",
+      "score": 67.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "mmmu_pro",
+      "score": 44.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "math_vision",
+      "score": 52.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "mrcr_v2_128k",
+      "score": 19.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 3.35,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "disk_size_gb_inverse_better",
+      "score": 3.35,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-q4_0-gguf",
+      "benchmark": "kld_vs_bf16_lower_better",
+      "score": 0.05109,
+      "unit": "nats",
+      "_source": "https://docs.unsloth.ai/docs/models/gemma-4/qat",
+      "_note": "Mean KLD vs BF16 for naive Q4_0 conversion of E2B QAT checkpoint; Unsloth Dynamic Q4_0 achieves 0.00173 (29x reduction). Lower better."
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-w4a16-ct",
+      "benchmark": "mmlu_pro",
+      "score": 60.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it-qat-w4a16-ct",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 3.6,
+      "unit": "GB",
+      "_source": "https://huggingface.co/google/gemma-4-e2b-it-qat-w4a16-ct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-it-mobile-wna8o8",
+      "benchmark": "memory_gb_inverse_better",
+      "score": 1.0,
+      "unit": "GB",
+      "_source": "https://blog.google/innovation-and-ai/technology/developers-tools/quantization-aware-training-gemma-4/",
+      "_note": "Google reports Gemma 4 E2B mobile reduced to ~1GB footprint via wNa8o8 mobile format on Tensor G4"
+    },
+    {
+      "model": "qwen-3.6-27b",
+      "benchmark": "tokens_per_sec_rtx4090_q4km_8k_ctx",
+      "score": 43,
+      "unit": "tok/s",
+      "_source": "https://github.com/outsourc-e/qwen36-4090-recipes",
+      "_note": "Q4_K_M"
+    },
+    {
+      "model": "qwen-3.6-27b",
+      "benchmark": "tokens_per_sec_rtx4090_q4km_speculative_peak",
+      "score": 67,
+      "unit": "tok/s",
+      "_source": "https://github.com/outsourc-e/qwen36-4090-recipes",
+      "_note": "Q4_K_M + Qwen3.5-4B draft"
+    },
+    {
+      "model": "qwen-3.6-27b",
+      "benchmark": "vram_gb_q4km_lower_better",
+      "score": 16.8,
+      "unit": "GB",
+      "_source": "https://willitrunai.com/blog/qwen-3-6-27b-vram-requirements",
+      "_note": "Q4_K_M"
+    },
+    {
+      "model": "qwen-3.6-27b",
+      "benchmark": "vram_gb_q5km_lower_better",
+      "score": 19.5,
+      "unit": "GB",
+      "_source": "https://willitrunai.com/blog/qwen-3-6-27b-vram-requirements",
+      "_note": "Q5_K_M"
+    },
+    {
+      "model": "qwen-3.6-27b",
+      "benchmark": "vram_gb_q6k_lower_better",
+      "score": 22.5,
+      "unit": "GB",
+      "_source": "https://willitrunai.com/blog/qwen-3-6-27b-vram-requirements",
+      "_note": "Q6_K"
+    },
+    {
+      "model": "qwen-3.6-27b",
+      "benchmark": "vram_gb_q8_lower_better",
+      "score": 28.6,
+      "unit": "GB",
+      "_source": "https://willitrunai.com/blog/qwen-3-6-27b-vram-requirements",
+      "_note": "Q8_0"
+    },
+    {
+      "model": "qwen-3.6-27b",
+      "benchmark": "vram_gb_bf16_lower_better",
+      "score": 53.8,
+      "unit": "GB",
+      "_source": "https://willitrunai.com/blog/qwen-3-6-27b-vram-requirements",
+      "_note": "BF16"
+    },
+    {
+      "model": "qwen-3.6-27b",
+      "benchmark": "tokens_per_sec_provider_avg_aa",
+      "score": 58.6,
+      "unit": "tok/s",
+      "_source": "https://artificialanalysis.ai/models/qwen3-6-27b",
+      "_note": ""
+    },
+    {
+      "model": "qwen-3.6-27b",
+      "benchmark": "ttft_s_provider_avg_aa_lower_better",
+      "score": 3.82,
+      "unit": "s",
+      "_source": "https://artificialanalysis.ai/models/qwen3-6-27b",
+      "_note": ""
+    },
+    {
+      "model": "qwen-3.6-35b-a3b",
+      "benchmark": "tokens_per_sec_rtx4090_q4km_peak",
+      "score": 101,
+      "unit": "tok/s",
+      "_source": "https://github.com/outsourc-e/qwen36-4090-recipes",
+      "_note": "Q4_K_M"
+    },
+    {
+      "model": "qwen-3.6-35b-a3b",
+      "benchmark": "tokens_per_sec_6gb_vram_q4_llamacpp",
+      "score": 30,
+      "unit": "tok/s",
+      "_source": "https://mychen76.medium.com/run-qwen3-6-35b-a3b-on-6gb-vram-using-llama-cpp-30-tps-a89032e5a60c",
+      "_note": "Q4 partial offload"
+    },
+    {
+      "model": "qwen-3.6-35b-a3b",
+      "benchmark": "tokens_per_sec_m3_ultra_mlx_8bit",
+      "score": 80,
+      "unit": "tok/s",
+      "_source": "https://willitrunai.com/blog/qwen-3-5-mlx-apple-silicon-guide",
+      "_note": "MLX 8-bit"
+    },
+    {
+      "model": "qwen-3.6-35b-a3b",
+      "benchmark": "tokens_per_sec_m4_max_64gb_mlx",
+      "score": 62,
+      "unit": "tok/s",
+      "_source": "https://willitrunai.com/blog/qwen-3-5-mlx-apple-silicon-guide",
+      "_note": "MLX 4-bit"
+    },
+    {
+      "model": "qwen-3.6-35b-a3b",
+      "benchmark": "ttft_ms_gb10_mtp_lower_better",
+      "score": 433,
+      "unit": "ms",
+      "_source": "https://docai.hu/en/blog/qwen36-mtp-gb10",
+      "_note": ""
+    },
+    {
+      "model": "qwen-3.6-35b-a3b",
+      "benchmark": "throughput_pct_gain_gb10_mtp",
+      "score": 24.2,
+      "unit": "% gain",
+      "_source": "https://docai.hu/en/blog/qwen36-mtp-gb10",
+      "_note": ""
+    },
+    {
+      "model": "gemma-4-31b",
+      "benchmark": "tokens_per_sec_h100_concurrency128",
+      "score": 1260,
+      "unit": "tok/s aggregate",
+      "_source": "https://inferencebench.io/blog/gemma-4-31b-h100-complete-inference-benchmark/",
+      "_note": "BF16"
+    },
+    {
+      "model": "gemma-4-31b",
+      "benchmark": "tokens_per_sec_h100_throughput_sweep_peak",
+      "score": 855,
+      "unit": "tok/s",
+      "_source": "https://inferencebench.io/blog/gemma-4-31b-h100-complete-inference-benchmark/",
+      "_note": "BF16"
+    },
+    {
+      "model": "gemma-4-31b",
+      "benchmark": "tokens_per_sec_provider_avg_aa",
+      "score": 35.2,
+      "unit": "tok/s",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-31b",
+      "_note": ""
+    },
+    {
+      "model": "gemma-4-31b",
+      "benchmark": "ttft_s_provider_avg_aa_lower_better",
+      "score": 1.08,
+      "unit": "s",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-31b",
+      "_note": ""
+    },
+    {
+      "model": "gemma-4-26b-a4b",
+      "benchmark": "tokens_per_sec_12gb_vram_128k_ctx",
+      "score": 44.2,
+      "unit": "tok/s",
+      "_source": "https://lushbinary.com/blog/gemma-4-developer-guide-benchmarks-architecture-local-deployment-2026/",
+      "_note": "Q4_K_M"
+    },
+    {
+      "model": "gemma-4-26b-a4b",
+      "benchmark": "tokens_per_sec_12gb_vram_64k_vision",
+      "score": 42.1,
+      "unit": "tok/s",
+      "_source": "https://lushbinary.com/blog/gemma-4-developer-guide-benchmarks-architecture-local-deployment-2026/",
+      "_note": "Q4_K_M"
+    },
+    {
+      "model": "gemma-4-26b-a4b",
+      "benchmark": "turboquant_kv_cache_speedup_pct_128k_256k",
+      "score": 17,
+      "unit": "% gain",
+      "_source": "https://github.com/Incept5/gemma4-benchmark",
+      "_note": ""
+    },
+    {
+      "model": "gemma-4-e4b",
+      "benchmark": "tokens_per_sec_rtx5090_q4km_batch1",
+      "score": 178,
+      "unit": "tok/s",
+      "_source": "https://markaicode.com/benchmarks/ollama-gemma-4-rtx-5090-batch-inference-benchmark/",
+      "_note": "Q4_K_M"
+    },
+    {
+      "model": "gemma-4-e4b",
+      "benchmark": "tokens_per_sec_pixel9_pro_tensor_g4",
+      "score": 17,
+      "unit": "tok/s",
+      "_source": "https://www.mindstudio.ai/blog/gemma-4-edge-deployment-e2b-e4b-models",
+      "_note": ""
+    },
+    {
+      "model": "gemma-4-e4b",
+      "benchmark": "tokens_per_sec_snapdragon8gen3",
+      "score": 11,
+      "unit": "tok/s",
+      "_source": "https://www.mindstudio.ai/blog/gemma-4-e2b-e4b-edge-models-phone-local",
+      "_note": ""
+    },
+    {
+      "model": "gemma-4-e4b",
+      "benchmark": "tokens_per_sec_macbook_m5",
+      "score": 400,
+      "unit": "tok/s",
+      "_source": "https://www.facebook.com/0xSojalSec/posts/googles-new-gemma-4-e4b-is-running-at-400-tokens-per-second-on-macbook-m5-while-/1484114793242919/",
+      "_note": ""
+    },
+    {
+      "model": "gemma-4-e2b",
+      "benchmark": "tokens_per_sec_snapdragon8_recent",
+      "score": 16,
+      "unit": "tok/s",
+      "_source": "https://www.mindstudio.ai/blog/gemma-4-edge-deployment-e2b-e4b-models",
+      "_note": ""
+    },
+    {
+      "model": "gemma-4-e2b",
+      "benchmark": "tokens_per_sec_rog_phone_9_pro",
+      "score": 48,
+      "unit": "tok/s",
+      "_source": "https://gemma4-ai.com/blog/gemma4-e2b-vs-e4b",
+      "_note": ""
+    },
+    {
+      "model": "gemma-4-e2b",
+      "benchmark": "tokens_per_sec_tensor_g4_3_5b_class",
+      "score": 45,
+      "unit": "tok/s",
+      "_source": "https://www.smbom.com/news/14019",
+      "_note": ""
+    }
+  ]
+}

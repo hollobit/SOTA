@@ -786,13 +786,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "c_eval",
-    "name": "C-Eval",
-    "category": "multilingual",
-    "description": "Chinese multi-discipline evaluation; 5-shot EM.",
-    "metric": "accuracy"
-  },
-  {
     "id": "cmmlu",
     "name": "CMMLU",
     "category": "multilingual",
@@ -882,13 +875,6 @@
     "name": "VLMs-Are-Blind",
     "category": "multimodal",
     "description": "Low-level visual perception stress test; exposes VLM blind spots on tasks humans solve trivially.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "realworldqa",
-    "name": "RealWorldQA",
-    "category": "multimodal",
-    "description": "xAI real-world spatial understanding benchmark; 700+ images × 1,000+ QA pairs from driving dashcam footage.",
     "metric": "accuracy"
   },
   {
@@ -1514,13 +1500,6 @@
     "name": "AIME 2024",
     "category": "math",
     "description": "American Invitational Mathematics Examination 2024.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "mathvista_mini",
-    "name": "MathVista (mini)",
-    "category": "multimodal",
-    "description": "Mathematical reasoning with visual context — testmini split (1,000 samples).",
     "metric": "accuracy"
   },
   {
@@ -8965,13 +8944,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "mmmu_pro",
-    "name": "MMMU-Pro",
-    "category": "multimodal",
-    "description": "Multimodal understanding and reasoning, avg of Standard (10 options) and Vision",
-    "metric": "accuracy"
-  },
-  {
     "id": "charxiv_reasoning",
     "name": "CharXiv Reasoning",
     "category": "multimodal",
@@ -8984,13 +8956,6 @@
     "category": "multimodal",
     "description": "OCR overall edit distance (Text/Formula/Table/ReadingOrder), lower is better",
     "metric": "edit_distance_lower_better"
-  },
-  {
-    "id": "video_mmmu",
-    "name": "Video-MMMU",
-    "category": "video",
-    "description": "Knowledge acquisition from videos, media_resolution=HIGH, temp=0",
-    "metric": "accuracy"
   },
   {
     "id": "livecodebench_pro_elo",
@@ -9112,13 +9077,6 @@
     "name": "FACTS Benchmark Suite",
     "category": "factuality",
     "description": "Factuality benchmark across grounding, parametric, search, MM",
-    "metric": "accuracy"
-  },
-  {
-    "id": "mmmlu",
-    "name": "MMMLU",
-    "category": "multilingual",
-    "description": "Multilingual MMLU Q&A",
     "metric": "accuracy"
   },
   {
@@ -10726,86 +10684,6 @@
     "metric": "score"
   },
   {
-    "id": "mmlu_pro",
-    "name": "MMLU-Pro",
-    "category": "capability",
-    "description": "MMLU-Pro multi-task accuracy",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2406.01574",
-    "github": "https://github.com/TIGER-Lab/MMLU-Pro",
-    "year": "2024",
-    "reliability": {
-      "contamination_risk": "medium",
-      "saturation": "approaching",
-      "citation_count": 380,
-      "last_updated": "2025-04",
-      "notes": "Mostly cleaner than MMLU, but reasoning subset overlaps"
-    }
-  },
-  {
-    "id": "gpqa_diamond",
-    "name": "GPQA Diamond",
-    "category": "capability",
-    "description": "Graduate-level Q&A diamond subset",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2311.12022",
-    "github": "https://github.com/idavidrein/gpqa",
-    "year": "2023",
-    "item_count": "198 questions",
-    "reliability": {
-      "contamination_risk": "low",
-      "saturation": "not_saturated",
-      "citation_count": 850,
-      "last_updated": "2025-12",
-      "notes": "Domain-expert questions, low contamination risk"
-    }
-  },
-  {
-    "id": "aime26",
-    "name": "AIME 2026",
-    "category": "capability",
-    "description": "American Invitational Math Examination 2026",
-    "metric": "accuracy"
-  },
-  {
-    "id": "livecodebench_v6",
-    "name": "LiveCodeBench v6",
-    "category": "capability",
-    "description": "LiveCodeBench v6 leak-free coding",
-    "metric": "pass-rate",
-    "paper": "https://arxiv.org/abs/2403.07974",
-    "year": "2025",
-    "reliability": {
-      "contamination_risk": "low",
-      "saturation": "not_saturated",
-      "citation_count": 95,
-      "last_updated": "2026-03",
-      "notes": "Latest LCB drop, recent problems"
-    }
-  },
-  {
-    "id": "mmmu",
-    "name": "MMMU",
-    "category": "capability",
-    "description": "Multi-discipline multimodal understanding",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2311.16502",
-    "github": "https://github.com/MMMU-Benchmark/MMMU",
-    "year": "2024",
-    "item_count": "3,460 questions (1,730 standard + 1,730 vision-only)",
-    "bmt": {
-      "bmt_id": "saved-1769608044992-gfavi",
-      "bmt_title": "MMMU-Pro"
-    }
-  },
-  {
-    "id": "memory_gb_inverse_better",
-    "name": "Memory Footprint",
-    "category": "memory",
-    "description": "Estimated VRAM/RAM footprint for inference (smaller is better)",
-    "metric": "vram-gb"
-  },
-  {
     "id": "edge_tps_amd_r9700_27b_awq_lower_better",
     "name": "TPOT 8K ctx on 2x AMD R9700 (27B AWQ)",
     "category": "edge",
@@ -10916,6 +10794,485 @@
     "category": "quantization",
     "description": "",
     "metric": "absolute_ppl_delta"
+  },
+  {
+    "id": "mmlu_pro",
+    "name": "mmlu_pro",
+    "category": "quantization",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2406.01574",
+    "github": "https://github.com/TIGER-Lab/MMLU-Pro",
+    "year": "2024",
+    "reliability": {
+      "contamination_risk": "medium",
+      "saturation": "approaching",
+      "citation_count": 380,
+      "last_updated": "2025-04",
+      "notes": "Mostly cleaner than MMLU, but reasoning subset overlaps"
+    }
+  },
+  {
+    "id": "gpqa_diamond",
+    "name": "gpqa_diamond",
+    "category": "quantization",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2311.12022",
+    "github": "https://github.com/idavidrein/gpqa",
+    "year": "2023",
+    "item_count": "198 questions",
+    "reliability": {
+      "contamination_risk": "low",
+      "saturation": "not_saturated",
+      "citation_count": 850,
+      "last_updated": "2025-12",
+      "notes": "Domain-expert questions, low contamination risk"
+    }
+  },
+  {
+    "id": "aime26",
+    "name": "aime26",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "livecodebench_v6",
+    "name": "livecodebench_v6",
+    "category": "quantization",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2403.07974",
+    "year": "2025",
+    "reliability": {
+      "contamination_risk": "low",
+      "saturation": "not_saturated",
+      "citation_count": 95,
+      "last_updated": "2026-03",
+      "notes": "Latest LCB drop, recent problems"
+    }
+  },
+  {
+    "id": "mmmu",
+    "name": "mmmu",
+    "category": "quantization",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2311.16502",
+    "github": "https://github.com/MMMU-Benchmark/MMMU",
+    "year": "2024",
+    "item_count": "3,460 questions (1,730 standard + 1,730 vision-only)",
+    "bmt": {
+      "bmt_id": "saved-1769608044992-gfavi",
+      "bmt_title": "MMMU-Pro"
+    }
+  },
+  {
+    "id": "mmmu_pro",
+    "name": "mmmu_pro",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mathvista_mini",
+    "name": "mathvista_mini",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "hmmt_feb_25",
+    "name": "hmmt_feb_25",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "terminal_bench_v2",
+    "name": "terminal_bench_v2",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "c_eval",
+    "name": "c_eval",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "dynamath",
+    "name": "dynamath",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "refcoco_avg",
+    "name": "refcoco_avg",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "video_mme_with_sub",
+    "name": "video_mme_with_sub",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "video_mmmu",
+    "name": "video_mmmu",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "realworldqa",
+    "name": "realworldqa",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mmbench_en_dev_v11",
+    "name": "mmbench_en_dev_v11",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "charxiv",
+    "name": "charxiv",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cc_ocr",
+    "name": "cc_ocr",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "video_mmmu_alt",
+    "name": "video_mmmu_alt",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "humaneval_plus_pass1",
+    "name": "humaneval_plus_pass1",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "swe_bench_verified_n100_resolved",
+    "name": "swe_bench_verified_n100_resolved",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "tokens_per_sec_rtx4090d_48gb",
+    "name": "tokens_per_sec_rtx4090d_48gb",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "tokens_per_sec_rtx5090",
+    "name": "tokens_per_sec_rtx5090",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "tokens_per_sec_2x_rtx4060",
+    "name": "tokens_per_sec_2x_rtx4060",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "memory_gb_lower_better",
+    "name": "memory_gb_lower_better",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "file_size_gb_lower_better",
+    "name": "file_size_gb_lower_better",
+    "category": "quantization",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mmmlu",
+    "name": "MMMLU (multilingual)",
+    "category": "capability",
+    "description": "Multilingual MMLU",
+    "metric": "accuracy"
+  },
+  {
+    "id": "tau2",
+    "name": "Tau2 (avg 3)",
+    "category": "capability",
+    "description": "Tau2 agentic benchmark average over 3 runs",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mmlu_cot",
+    "name": "MMLU-CoT",
+    "category": "capability",
+    "description": "MMLU chain-of-thought 5-shot",
+    "metric": "accuracy"
+  },
+  {
+    "id": "gsm8k_platinum",
+    "name": "GSM8k-Platinum",
+    "category": "capability",
+    "description": "GSM8k Platinum (cleaned) 5-shot",
+    "metric": "accuracy"
+  },
+  {
+    "id": "ifeval_prompt",
+    "name": "IFEval (prompt-level)",
+    "category": "capability",
+    "description": "IFEval prompt-level strict",
+    "metric": "accuracy"
+  },
+  {
+    "id": "ifeval_inst",
+    "name": "IFEval (instruction-level)",
+    "category": "capability",
+    "description": "IFEval instruction-level strict",
+    "metric": "accuracy"
+  },
+  {
+    "id": "recovery_vs_bf16",
+    "name": "BF16 recovery",
+    "category": "quantization",
+    "description": "Aggregate accuracy retention vs BF16 baseline across MMLU-Pro/MMLU-CoT/IFEval/GSM8k-Platinum (RedHatAI methodology)",
+    "metric": "ratio"
+  },
+  {
+    "id": "kld_vs_bf16_lower_better",
+    "name": "Mean KL divergence vs BF16",
+    "category": "quantization",
+    "description": "Mean KL divergence between quantized Q4_0 output distribution and BF16 reference; lower is better (Unsloth methodology)",
+    "metric": "kld-nats"
+  },
+  {
+    "id": "memory_gb_inverse_better",
+    "name": "Memory Footprint",
+    "category": "memory",
+    "description": "Disk file size / VRAM footprint for inference (smaller is better)",
+    "metric": "vram-gb"
+  },
+  {
+    "id": "disk_size_gb_inverse_better",
+    "name": "On-disk file size",
+    "category": "memory",
+    "description": "On-disk size of quantized checkpoint",
+    "metric": "gb"
+  },
+  {
+    "id": "tokens_per_sec_rtx4090_q4km_8k_ctx",
+    "name": "Tokens Per Sec Rtx4090 Q4Km 8K Ctx",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_rtx4090_q4km_8k_ctx"
+  },
+  {
+    "id": "tokens_per_sec_rtx4090_q4km_speculative_peak",
+    "name": "Tokens Per Sec Rtx4090 Q4Km Speculative Peak",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_rtx4090_q4km_speculative_peak"
+  },
+  {
+    "id": "vram_gb_q4km_lower_better",
+    "name": "Vram Gb Q4Km Lower Better",
+    "category": "throughput",
+    "description": "",
+    "metric": "vram_gb_q4km_lower_better"
+  },
+  {
+    "id": "vram_gb_q5km_lower_better",
+    "name": "Vram Gb Q5Km Lower Better",
+    "category": "throughput",
+    "description": "",
+    "metric": "vram_gb_q5km_lower_better"
+  },
+  {
+    "id": "vram_gb_q6k_lower_better",
+    "name": "Vram Gb Q6K Lower Better",
+    "category": "throughput",
+    "description": "",
+    "metric": "vram_gb_q6k_lower_better"
+  },
+  {
+    "id": "vram_gb_q8_lower_better",
+    "name": "Vram Gb Q8 Lower Better",
+    "category": "throughput",
+    "description": "",
+    "metric": "vram_gb_q8_lower_better"
+  },
+  {
+    "id": "vram_gb_bf16_lower_better",
+    "name": "Vram Gb Bf16 Lower Better",
+    "category": "throughput",
+    "description": "",
+    "metric": "vram_gb_bf16_lower_better"
+  },
+  {
+    "id": "tokens_per_sec_provider_avg_aa",
+    "name": "Tokens Per Sec Provider Avg Aa",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_provider_avg_aa"
+  },
+  {
+    "id": "ttft_s_provider_avg_aa_lower_better",
+    "name": "Ttft S Provider Avg Aa Lower Better",
+    "category": "throughput",
+    "description": "",
+    "metric": "ttft_s_provider_avg_aa_lower_better"
+  },
+  {
+    "id": "tokens_per_sec_rtx4090_q4km_peak",
+    "name": "Tokens Per Sec Rtx4090 Q4Km Peak",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_rtx4090_q4km_peak"
+  },
+  {
+    "id": "tokens_per_sec_6gb_vram_q4_llamacpp",
+    "name": "Tokens Per Sec 6Gb Vram Q4 Llamacpp",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_6gb_vram_q4_llamacpp"
+  },
+  {
+    "id": "tokens_per_sec_m3_ultra_mlx_8bit",
+    "name": "Tokens Per Sec M3 Ultra Mlx 8Bit",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_m3_ultra_mlx_8bit"
+  },
+  {
+    "id": "tokens_per_sec_m4_max_64gb_mlx",
+    "name": "Tokens Per Sec M4 Max 64Gb Mlx",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_m4_max_64gb_mlx"
+  },
+  {
+    "id": "ttft_ms_gb10_mtp_lower_better",
+    "name": "Ttft Ms Gb10 Mtp Lower Better",
+    "category": "throughput",
+    "description": "",
+    "metric": "ttft_ms_gb10_mtp_lower_better"
+  },
+  {
+    "id": "throughput_pct_gain_gb10_mtp",
+    "name": "Throughput Pct Gain Gb10 Mtp",
+    "category": "throughput",
+    "description": "",
+    "metric": "throughput_pct_gain_gb10_mtp"
+  },
+  {
+    "id": "tokens_per_sec_h100_concurrency128",
+    "name": "Tokens Per Sec H100 Concurrency128",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_h100_concurrency128"
+  },
+  {
+    "id": "tokens_per_sec_h100_throughput_sweep_peak",
+    "name": "Tokens Per Sec H100 Throughput Sweep Peak",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_h100_throughput_sweep_peak"
+  },
+  {
+    "id": "tokens_per_sec_12gb_vram_128k_ctx",
+    "name": "Tokens Per Sec 12Gb Vram 128K Ctx",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_12gb_vram_128k_ctx"
+  },
+  {
+    "id": "tokens_per_sec_12gb_vram_64k_vision",
+    "name": "Tokens Per Sec 12Gb Vram 64K Vision",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_12gb_vram_64k_vision"
+  },
+  {
+    "id": "turboquant_kv_cache_speedup_pct_128k_256k",
+    "name": "Turboquant Kv Cache Speedup Pct 128K 256K",
+    "category": "throughput",
+    "description": "",
+    "metric": "turboquant_kv_cache_speedup_pct_128k_256k"
+  },
+  {
+    "id": "tokens_per_sec_rtx5090_q4km_batch1",
+    "name": "Tokens Per Sec Rtx5090 Q4Km Batch1",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_rtx5090_q4km_batch1"
+  },
+  {
+    "id": "tokens_per_sec_pixel9_pro_tensor_g4",
+    "name": "Tokens Per Sec Pixel9 Pro Tensor G4",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_pixel9_pro_tensor_g4"
+  },
+  {
+    "id": "tokens_per_sec_snapdragon8gen3",
+    "name": "Tokens Per Sec Snapdragon8Gen3",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_snapdragon8gen3"
+  },
+  {
+    "id": "tokens_per_sec_macbook_m5",
+    "name": "Tokens Per Sec Macbook M5",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_macbook_m5"
+  },
+  {
+    "id": "tokens_per_sec_snapdragon8_recent",
+    "name": "Tokens Per Sec Snapdragon8 Recent",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_snapdragon8_recent"
+  },
+  {
+    "id": "tokens_per_sec_rog_phone_9_pro",
+    "name": "Tokens Per Sec Rog Phone 9 Pro",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_rog_phone_9_pro"
+  },
+  {
+    "id": "tokens_per_sec_tensor_g4_3_5b_class",
+    "name": "Tokens Per Sec Tensor G4 3 5B Class",
+    "category": "throughput",
+    "description": "",
+    "metric": "tokens_per_sec_tensor_g4_3_5b_class"
   },
   {
     "id": "arc_agi_3",

@@ -2,6 +2,13 @@
   {
     "type": "SOTA",
     "date": "2026-06-11",
+    "benchmark_id": "Session 94 — Qwen 3.6 + Gemma 4 per-quant deep dive — 196 scores",
+    "new_model": "3 deep agents on per-quant benchmark tables. Qwen 3.6: 35B-A3B-FP8 QwenWebBench ELO 1397 + AIME26 92.7 (near-lossless FP8). UD-Q6_K_XL HumanEval+ 90.24 (GGUF SOTA). UD-Q8_K_XL SWE-V 53/100. Gemma 4: 31B QAT Q4_0 17.7GB / MMLU-Pro 85.2 / GPQA-D 84.3 / MathVision 85.6 / AIME-26 89.2 / CF ELO 2150 (best capability/GB 4-bit class). 26B-A4B Q4_0 14.4GB AIME-26 88.3 (MoE edge SOTA). RedHatAI FP8-block 31B 100.1% BF16 recovery (lossless). NVFP4 31B 99.5% recovery at 16GB. Unsloth Dynamic E2B KLD 0.00173 vs naive 0.05109 (29x reduction). Mobile wNa8o8 E2B 1.0GB on Tensor G4. Hardware ladder: Pixel 9 Pro 17 → Snapdragon 8G4 16 → RTX 4090 43 → M4 Max 62 → RTX 5090 178 → H100 1260 tok/s.",
+    "new_value": "+44 models / +51 benchmarks / +196 scores → 1968/2197/10821"
+  },
+  {
+    "type": "SOTA",
+    "date": "2026-06-11",
     "benchmark_id": "Session 93 — Qwen 3.6 + Gemma 4 quantized variants — 40 NEW models",
     "new_model": "Qwen 3.6 quant catalog (24 variants on 27B dense + 35B-A3B MoE bases): FP8 official, AWQ-INT4 (QuantTrio/mattbucci), NVFP4 (Nvidia/RedHatAI/Unsloth), GGUF Q2-Q8 ladder, MLX 4/8-bit, OpenVINO INT4. 459 HF derivatives total. Qwen3.6-27B-FP8 MMLU-Pro 86.2/GPQA-D 87.8/AIME26 94.1/SWE-V 77.2. Gemma 4 (11 Google official QAT): Q4_0 GGUF + W4A16 vLLM + wNa8o8 mobile across E2B/E4B/12B/26B-A4B/31B. Pareto: 31B Q4_0 17.7GB MMLU-Pro 85.2, 12B Q4_0 6.98GB 77.2, E2B Q4_0 3.35GB 60.0. Unsloth Dynamic Q4_0 Gemma 4 26B-A4B 85.6% BF16 agreement vs naive 70.2% (+15.6pp). Qwen3.6-35B-A3B UD-Q6_K_XL HumanEval 93.29.",
     "new_value": "+40 models / +16 benchmarks / +143 scores → 1924/2146/10625"
