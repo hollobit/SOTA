@@ -443,24 +443,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "arena_hard_v2",
-    "name": "Arena Hard v2",
-    "category": "reasoning",
-    "description": "500 curated prompts from Chatbot Arena and WildChat. LMSYS automated benchmark.",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2406.11939",
-    "github": "https://github.com/lmarena/arena-hard-auto",
-    "year": "2024",
-    "item_count": "500 prompts",
-    "reliability": {
-      "contamination_risk": "medium",
-      "saturation": "not_saturated",
-      "citation_count": 290,
-      "last_updated": "2025-06",
-      "notes": "Crowdsourced prompts, hard to fully contaminate"
-    }
-  },
-  {
     "id": "hmmt_2026",
     "name": "HMMT 2026 (Feb)",
     "category": "math",
@@ -1074,20 +1056,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "kmmlu",
-    "name": "KMMLU",
-    "category": "multilingual",
-    "description": "Korean MMLU — 35K Korean expert-level questions across 45 subjects. De-facto standard for Korean LLM general knowledge.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "haerae",
-    "name": "HAE-RAE Bench",
-    "category": "multilingual",
-    "description": "Korean cultural & language reasoning benchmark by KAIST/Naver — 6 categories tied to Korean history, culture, idioms, etc.",
-    "metric": "accuracy"
-  },
-  {
     "id": "komt_bench",
     "name": "KoMT-Bench",
     "category": "reasoning",
@@ -1102,13 +1070,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "logickor",
-    "name": "LogicKor",
-    "category": "reasoning",
-    "description": "Korean logical reasoning benchmark — common-sense + math + writing in Korean. Single-turn 0-10.",
-    "metric": "score"
-  },
-  {
     "id": "kobalt_700",
     "name": "KoBALT-700",
     "category": "reasoning",
@@ -1120,13 +1081,6 @@
     "name": "Ko-IFEval",
     "category": "reasoning",
     "description": "Korean Instruction Following Eval — strict format-following evaluation in Korean.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "hrm8k",
-    "name": "HRM8K",
-    "category": "math",
-    "description": "Korean math reasoning benchmark — 8K problems translated/curated for Korean.",
     "metric": "accuracy"
   },
   {
@@ -1312,60 +1266,6 @@
     "category": "reasoning",
     "description": "Commonsense reasoning via sentence completion. 70K examples; humans 95.6%.",
     "metric": "accuracy"
-  },
-  {
-    "id": "gsm8k",
-    "name": "GSM8K",
-    "category": "math",
-    "description": "Grade school math word problems. 8.5K problems requiring multi-step arithmetic.",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2110.14168",
-    "github": "https://github.com/openai/grade-school-math",
-    "year": "2021",
-    "item_count": "~8.5k problems",
-    "bmt": {
-      "bmt_id": "saved-1769608044998-02wv1",
-      "bmt_title": "GSM8K (Grade School Math 8K)"
-    },
-    "reliability": {
-      "contamination_risk": "high",
-      "saturation": "saturated",
-      "citation_count": 4500,
-      "last_updated": "2021-11",
-      "notes": "Saturated for frontier models, contamination heavily discussed"
-    }
-  },
-  {
-    "id": "mbpp",
-    "name": "MBPP",
-    "category": "coding",
-    "description": "Mostly Basic Python Programs — 974 entry-level programming problems. pass@1.",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2108.07732",
-    "year": "2021",
-    "reliability": {
-      "contamination_risk": "high",
-      "saturation": "saturated",
-      "citation_count": 2400,
-      "last_updated": "2021-08",
-      "notes": "Saturated; HumanEval+ / MBPP+ are stricter alternatives"
-    }
-  },
-  {
-    "id": "mbpp_plus",
-    "name": "MBPP+",
-    "category": "coding",
-    "description": "MBPP with additional rigorous test cases (5x more tests). Better discriminator than vanilla MBPP.",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2305.01210",
-    "year": "2024",
-    "reliability": {
-      "contamination_risk": "medium",
-      "saturation": "approaching",
-      "citation_count": 380,
-      "last_updated": "2024-05",
-      "notes": "Stricter MBPP variant with extended test cases"
-    }
   },
   {
     "id": "cruxeval",
@@ -1599,28 +1499,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "math",
-    "name": "MATH",
-    "category": "math",
-    "description": "Hendrycks MATH — 12.5K competition math problems across 7 subjects (algebra, calculus, geometry, etc.). Full split, not subset.",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2103.03874",
-    "github": "https://github.com/CoinCheung/Math-Shepherd",
-    "year": "2023",
-    "item_count": "Derived from GSM8K and MATH training sets",
-    "bmt": {
-      "bmt_id": "saved-1769669555277-9poyg",
-      "bmt_title": "Math-Shepherd"
-    },
-    "reliability": {
-      "contamination_risk": "high",
-      "saturation": "approaching",
-      "citation_count": 1800,
-      "last_updated": "2024-06",
-      "notes": "Hendrycks MATH, contamination concerns growing"
-    }
-  },
-  {
     "id": "cap_bench",
     "name": "CaP-Bench (Coding Agents for Robot Manipulation)",
     "category": "robotics-coding",
@@ -1752,13 +1630,6 @@
     "category": "physics-materials",
     "description": "Stable+Unique+Novel (SUN) yield rate for generative materials models. % of generated structures that are simultaneously thermodynamically stable, structurally unique, and not in MP20 training set. Per MatterGen Nature 2025 paper Table 1.",
     "metric": "percent"
-  },
-  {
-    "id": "livecodebench_v5",
-    "name": "LiveCodeBench v5",
-    "category": "code",
-    "description": "LiveCodeBench v5 — competitive programming/code-generation benchmark (specific v5 release used by NVIDIA Nemotron Labs Elastic evaluation framework).",
-    "metric": "pass@1"
   },
   {
     "id": "big_bench_audio",
@@ -1962,13 +1833,6 @@
     "category": "multilingual",
     "description": "OpenGPT-X EU21 benchmark — average across ARC, HellaSwag, TruthfulQA, MMLU evaluated across 21 EU languages. Headline metric for European sovereign LLMs.",
     "metric": "accuracy"
-  },
-  {
-    "id": "japanese_mt_bench",
-    "name": "Japanese MT-Bench",
-    "category": "multilingual",
-    "description": "Japanese MT-Bench — multi-turn LLM judge evaluation translated to Japanese (LMSYS adaptation). 0-10 scale, GPT-4-judged. Higher = better.",
-    "metric": "score"
   },
   {
     "id": "llm_jp_eval",
@@ -4855,28 +4719,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "ifeval",
-    "name": "IFEval",
-    "category": "general",
-    "description": "Instruction Following Evaluation.",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2311.07911",
-    "github": "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
-    "year": "2023",
-    "item_count": "approx. 500 prompts",
-    "bmt": {
-      "bmt_id": "imported-json-1771222123771-2225-2zvmn",
-      "bmt_title": "IFEval (Instruction-Following Evaluation)"
-    },
-    "reliability": {
-      "contamination_risk": "medium",
-      "saturation": "approaching",
-      "citation_count": 480,
-      "last_updated": "2024-11",
-      "notes": "Constraint-following — patterns memorizable"
-    }
-  },
-  {
     "id": "wmt24_plus_plus",
     "name": "WMT24++",
     "category": "multilingual",
@@ -7474,23 +7316,6 @@
     "metric": "score"
   },
   {
-    "id": "livecodebench",
-    "name": "LiveCodeBench v6",
-    "category": "language",
-    "description": "",
-    "metric": "pass@1",
-    "paper": "https://arxiv.org/abs/2403.07974",
-    "github": "https://github.com/LiveCodeBench/LiveCodeBench",
-    "year": "2024",
-    "reliability": {
-      "contamination_risk": "low",
-      "saturation": "approaching",
-      "citation_count": 420,
-      "last_updated": "2025-12",
-      "notes": "Time-stamped problems prevent leakage"
-    }
-  },
-  {
     "id": "multi_challenge",
     "name": "Multi-Challenge",
     "category": "language",
@@ -8519,13 +8344,6 @@
     "category": "general",
     "description": "",
     "metric": "f1"
-  },
-  {
-    "id": "bfcl_v3",
-    "name": "Bfcl V3",
-    "category": "general",
-    "description": "",
-    "metric": "accuracy"
   },
   {
     "id": "air_bench",
@@ -10400,21 +10218,6 @@
     "metric": "score"
   },
   {
-    "id": "mmmu",
-    "name": "mmmu",
-    "category": "quantization",
-    "description": "",
-    "metric": "score",
-    "paper": "https://arxiv.org/abs/2311.16502",
-    "github": "https://github.com/MMMU-Benchmark/MMMU",
-    "year": "2024",
-    "item_count": "3,460 questions (1,730 standard + 1,730 vision-only)",
-    "bmt": {
-      "bmt_id": "saved-1769608044992-gfavi",
-      "bmt_title": "MMMU-Pro"
-    }
-  },
-  {
     "id": "hmmt_feb_25",
     "name": "hmmt_feb_25",
     "category": "quantization",
@@ -10546,13 +10349,6 @@
     "category": "quantization",
     "description": "",
     "metric": "score"
-  },
-  {
-    "id": "mmmlu",
-    "name": "MMMLU (multilingual)",
-    "category": "capability",
-    "description": "Multilingual MMLU",
-    "metric": "accuracy"
   },
   {
     "id": "tau2",
@@ -10807,22 +10603,6 @@
     "metric": "tokens_per_sec_tensor_g4_3_5b_class"
   },
   {
-    "id": "livecodebench_v6",
-    "name": "LiveCodeBench v6",
-    "category": "general",
-    "description": "",
-    "metric": "score",
-    "paper": "https://arxiv.org/abs/2403.07974",
-    "year": "2025",
-    "reliability": {
-      "contamination_risk": "low",
-      "saturation": "not_saturated",
-      "citation_count": 95,
-      "last_updated": "2026-03",
-      "notes": "Latest LCB drop, recent problems"
-    }
-  },
-  {
     "id": "codeforces_rating",
     "name": "Codeforces Rating",
     "category": "general",
@@ -10845,23 +10625,6 @@
     }
   },
   {
-    "id": "aime_2026",
-    "name": "AIME 2026",
-    "category": "general",
-    "description": "",
-    "metric": "score",
-    "paper": "https://matharena.ai",
-    "year": "2026",
-    "item_count": "30 problems",
-    "reliability": {
-      "contamination_risk": "low",
-      "saturation": "not_saturated",
-      "citation_count": 80,
-      "last_updated": "2026-04",
-      "notes": "Recent release, low contamination"
-    }
-  },
-  {
     "id": "hmmt_feb_2026",
     "name": "HMMT-Feb-2026",
     "category": "general",
@@ -10874,41 +10637,6 @@
     "category": "general",
     "description": "",
     "metric": "score"
-  },
-  {
-    "id": "mmlu_pro",
-    "name": "MMLU-Pro",
-    "category": "general",
-    "description": "",
-    "metric": "score",
-    "paper": "https://arxiv.org/abs/2406.01574",
-    "github": "https://github.com/TIGER-Lab/MMLU-Pro",
-    "year": "2024",
-    "reliability": {
-      "contamination_risk": "medium",
-      "saturation": "approaching",
-      "citation_count": 380,
-      "last_updated": "2025-04",
-      "notes": "Mostly cleaner than MMLU, but reasoning subset overlaps"
-    }
-  },
-  {
-    "id": "gpqa_diamond",
-    "name": "GPQA Diamond",
-    "category": "general",
-    "description": "",
-    "metric": "score",
-    "paper": "https://arxiv.org/abs/2311.12022",
-    "github": "https://github.com/idavidrein/gpqa",
-    "year": "2023",
-    "item_count": "198 questions",
-    "reliability": {
-      "contamination_risk": "low",
-      "saturation": "not_saturated",
-      "citation_count": 850,
-      "last_updated": "2025-12",
-      "notes": "Domain-expert questions, low contamination risk"
-    }
   },
   {
     "id": "humanitys_last_exam",
@@ -10969,50 +10697,6 @@
       "citation_count": 180,
       "last_updated": "2025-03",
       "notes": "Visual reasoning, hard for LLMs"
-    }
-  },
-  {
-    "id": "humaneval",
-    "name": "HumanEval",
-    "category": "general",
-    "description": "",
-    "metric": "score",
-    "paper": "https://arxiv.org/abs/2107.03374",
-    "github": "https://github.com/openai/human-eval",
-    "year": "2021",
-    "item_count": "164 problems",
-    "bmt": {
-      "bmt_id": "saved-1769608044998-38qeu",
-      "bmt_title": "HumanEval"
-    },
-    "reliability": {
-      "contamination_risk": "high",
-      "saturation": "saturated",
-      "citation_count": 3200,
-      "last_updated": "2021-07",
-      "notes": "Saturated; widely-circulated for years"
-    }
-  },
-  {
-    "id": "mmlu",
-    "name": "MMLU (base eval)",
-    "category": "general",
-    "description": "",
-    "metric": "score",
-    "paper": "https://arxiv.org/abs/2009.03300",
-    "github": "https://github.com/MMLU-Reason/MMLU-Reason",
-    "year": "2025",
-    "item_count": "1,083 questions",
-    "bmt": {
-      "bmt_id": "saved-1769608044991-8duyr",
-      "bmt_title": "MMLU-Reason"
-    },
-    "reliability": {
-      "contamination_risk": "high",
-      "saturation": "saturated",
-      "citation_count": 2500,
-      "last_updated": "2024-09",
-      "notes": "Saturated at 90%+ for frontier models; contamination risk widely discussed"
     }
   },
   {
@@ -11097,24 +10781,6 @@
     "metric": "score"
   },
   {
-    "id": "hle",
-    "name": "Hle",
-    "category": "general",
-    "description": "",
-    "metric": "score",
-    "paper": "https://arxiv.org/abs/2501.14249",
-    "github": "https://github.com/centerforaisafety/hle",
-    "year": "2025",
-    "item_count": "2500 questions",
-    "reliability": {
-      "contamination_risk": "low",
-      "saturation": "not_saturated",
-      "citation_count": 420,
-      "last_updated": "2026-02",
-      "notes": "Brand-new (2026), uncontaminated"
-    }
-  },
-  {
     "id": "hle_with_tools",
     "name": "Hle With Tools",
     "category": "general",
@@ -11138,13 +10804,6 @@
   {
     "id": "hmmt_2026_feb",
     "name": "Hmmt 2026 Feb",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "imo_answerbench",
-    "name": "Imo Answerbench",
     "category": "general",
     "description": "",
     "metric": "score"
@@ -11220,22 +10879,8 @@
     "metric": "score"
   },
   {
-    "id": "scicode",
-    "name": "Scicode",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
     "id": "ojbench_(python)",
     "name": "Ojbench (Python)",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "mmmu_pro",
-    "name": "Mmmu Pro",
     "category": "general",
     "description": "",
     "metric": "score"
@@ -11309,24 +10954,6 @@
     "category": "general",
     "description": "",
     "metric": "score"
-  },
-  {
-    "id": "aime_2025",
-    "name": "Aime 2025",
-    "category": "general",
-    "description": "",
-    "metric": "score",
-    "paper": "https://arxiv.org/abs/2503.04235",
-    "github": "https://matharena.ai",
-    "year": "2025",
-    "item_count": "30 problems",
-    "reliability": {
-      "contamination_risk": "medium",
-      "saturation": "approaching",
-      "citation_count": 250,
-      "last_updated": "2025-04",
-      "notes": "Math olympiad — contamination risk grows over time"
-    }
   },
   {
     "id": "hmmt_2025_feb",
@@ -12358,6 +11985,694 @@
     "id": "casp16_affinity_(140_complexes)",
     "name": "Casp16 Affinity (140 Complexes)",
     "category": "medical",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mmlu_pro",
+    "name": "Mmlu Pro",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2406.01574",
+    "github": "https://github.com/TIGER-Lab/MMLU-Pro",
+    "year": "2024",
+    "reliability": {
+      "contamination_risk": "medium",
+      "saturation": "approaching",
+      "citation_count": 380,
+      "last_updated": "2025-04",
+      "notes": "Mostly cleaner than MMLU, but reasoning subset overlaps"
+    }
+  },
+  {
+    "id": "kmmlu",
+    "name": "Kmmlu",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "click",
+    "name": "Click",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "gpqa_diamond",
+    "name": "Gpqa Diamond",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2311.12022",
+    "github": "https://github.com/idavidrein/gpqa",
+    "year": "2023",
+    "item_count": "198 questions",
+    "reliability": {
+      "contamination_risk": "low",
+      "saturation": "not_saturated",
+      "citation_count": 850,
+      "last_updated": "2025-12",
+      "notes": "Domain-expert questions, low contamination risk"
+    }
+  },
+  {
+    "id": "aime_2025",
+    "name": "Aime 2025",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2503.04235",
+    "github": "https://matharena.ai",
+    "year": "2025",
+    "item_count": "30 problems",
+    "reliability": {
+      "contamination_risk": "medium",
+      "saturation": "approaching",
+      "citation_count": 250,
+      "last_updated": "2025-04",
+      "notes": "Math olympiad — contamination risk grows over time"
+    }
+  },
+  {
+    "id": "humaneval+",
+    "name": "Humaneval+",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "humaneval+_(korean)",
+    "name": "Humaneval+ (Korean)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mbpp+",
+    "name": "Mbpp+",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "livecodebench",
+    "name": "Livecodebench",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2403.07974",
+    "github": "https://github.com/LiveCodeBench/LiveCodeBench",
+    "year": "2024",
+    "reliability": {
+      "contamination_risk": "low",
+      "saturation": "approaching",
+      "citation_count": 420,
+      "last_updated": "2025-12",
+      "notes": "Time-stamped problems prevent leakage"
+    }
+  },
+  {
+    "id": "livecodebench_korean",
+    "name": "Livecodebench Korean",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mmlu",
+    "name": "Mmlu",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2009.03300",
+    "github": "https://github.com/MMLU-Reason/MMLU-Reason",
+    "year": "2025",
+    "item_count": "1,083 questions",
+    "bmt": {
+      "bmt_id": "saved-1769608044991-8duyr",
+      "bmt_title": "MMLU-Reason"
+    },
+    "reliability": {
+      "contamination_risk": "high",
+      "saturation": "saturated",
+      "citation_count": 2500,
+      "last_updated": "2024-09",
+      "notes": "Saturated at 90%+ for frontier models; contamination risk widely discussed"
+    }
+  },
+  {
+    "id": "math",
+    "name": "Math",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2103.03874",
+    "github": "https://github.com/CoinCheung/Math-Shepherd",
+    "year": "2023",
+    "item_count": "Derived from GSM8K and MATH training sets",
+    "bmt": {
+      "bmt_id": "saved-1769669555277-9poyg",
+      "bmt_title": "Math-Shepherd"
+    },
+    "reliability": {
+      "contamination_risk": "high",
+      "saturation": "approaching",
+      "citation_count": 1800,
+      "last_updated": "2024-06",
+      "notes": "Hendrycks MATH, contamination concerns growing"
+    }
+  },
+  {
+    "id": "livecodebench_v6",
+    "name": "Livecodebench V6",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2403.07974",
+    "year": "2025",
+    "reliability": {
+      "contamination_risk": "low",
+      "saturation": "not_saturated",
+      "citation_count": 95,
+      "last_updated": "2026-03",
+      "notes": "Latest LCB drop, recent problems"
+    }
+  },
+  {
+    "id": "hrm8k",
+    "name": "Hrm8K",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mmmlu",
+    "name": "Mmmlu",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "humanity's_last_exam",
+    "name": "Humanity'S Last Exam",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "imo_answerbench",
+    "name": "Imo Answerbench",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "aime_2026",
+    "name": "Aime 2026",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://matharena.ai",
+    "year": "2026",
+    "item_count": "30 problems",
+    "reliability": {
+      "contamination_risk": "low",
+      "saturation": "not_saturated",
+      "citation_count": 80,
+      "last_updated": "2026-04",
+      "notes": "Recent release, low contamination"
+    }
+  },
+  {
+    "id": "mmmu",
+    "name": "Mmmu",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2311.16502",
+    "github": "https://github.com/MMMU-Benchmark/MMMU",
+    "year": "2024",
+    "item_count": "3,460 questions (1,730 standard + 1,730 vision-only)",
+    "bmt": {
+      "bmt_id": "saved-1769608044992-gfavi",
+      "bmt_title": "MMMU-Pro"
+    }
+  },
+  {
+    "id": "mmmu_pro",
+    "name": "Mmmu Pro",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "livecodebench_v5",
+    "name": "Livecodebench V5",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "ksm",
+    "name": "Ksm",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "ifeval",
+    "name": "Ifeval",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2311.07911",
+    "github": "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+    "year": "2023",
+    "item_count": "approx. 500 prompts",
+    "bmt": {
+      "bmt_id": "imported-json-1771222123771-2225-2zvmn",
+      "bmt_title": "IFEval (Instruction-Following Evaluation)"
+    },
+    "reliability": {
+      "contamination_risk": "medium",
+      "saturation": "approaching",
+      "citation_count": 480,
+      "last_updated": "2024-11",
+      "notes": "Constraint-following — patterns memorizable"
+    }
+  },
+  {
+    "id": "csat_ko_2025",
+    "name": "Csat Ko 2025",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "haerae",
+    "name": "Haerae",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "kobigbench",
+    "name": "Kobigbench",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "logickor",
+    "name": "Logickor",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "gsm8k",
+    "name": "Gsm8K",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2110.14168",
+    "github": "https://github.com/openai/grade-school-math",
+    "year": "2021",
+    "item_count": "~8.5k problems",
+    "bmt": {
+      "bmt_id": "saved-1769608044998-02wv1",
+      "bmt_title": "GSM8K (Grade School Math 8K)"
+    },
+    "reliability": {
+      "contamination_risk": "high",
+      "saturation": "saturated",
+      "citation_count": 4500,
+      "last_updated": "2021-11",
+      "notes": "Saturated for frontier models, contamination heavily discussed"
+    }
+  },
+  {
+    "id": "humaneval",
+    "name": "Humaneval",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2107.03374",
+    "github": "https://github.com/openai/human-eval",
+    "year": "2021",
+    "item_count": "164 problems",
+    "bmt": {
+      "bmt_id": "saved-1769608044998-38qeu",
+      "bmt_title": "HumanEval"
+    },
+    "reliability": {
+      "contamination_risk": "high",
+      "saturation": "saturated",
+      "citation_count": 3200,
+      "last_updated": "2021-07",
+      "notes": "Saturated; widely-circulated for years"
+    }
+  },
+  {
+    "id": "mbpp",
+    "name": "Mbpp",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2108.07732",
+    "year": "2021",
+    "reliability": {
+      "contamination_risk": "high",
+      "saturation": "saturated",
+      "citation_count": 2400,
+      "last_updated": "2021-08",
+      "notes": "Saturated; HumanEval+ / MBPP+ are stricter alternatives"
+    }
+  },
+  {
+    "id": "big_bench_hard",
+    "name": "Big Bench Hard",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "arena_hard_v2",
+    "name": "Arena Hard V2",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2406.11939",
+    "github": "https://github.com/lmarena/arena-hard-auto",
+    "year": "2024",
+    "item_count": "500 prompts",
+    "reliability": {
+      "contamination_risk": "medium",
+      "saturation": "not_saturated",
+      "citation_count": 290,
+      "last_updated": "2025-06",
+      "notes": "Crowdsourced prompts, hard to fully contaminate"
+    }
+  },
+  {
+    "id": "jmmlu",
+    "name": "Jmmlu",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "japanese_mt_bench",
+    "name": "Japanese Mt Bench",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "japanese_mt_bench_coding",
+    "name": "Japanese Mt Bench Coding",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "japanese_mt_bench_extraction",
+    "name": "Japanese Mt Bench Extraction",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "japanese_mt_bench_humanities",
+    "name": "Japanese Mt Bench Humanities",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "japanese_mt_bench_math",
+    "name": "Japanese Mt Bench Math",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "japanese_mt_bench_reasoning",
+    "name": "Japanese Mt Bench Reasoning",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "japanese_mt_bench_roleplay",
+    "name": "Japanese Mt Bench Roleplay",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "japanese_mt_bench_stem",
+    "name": "Japanese Mt Bench Stem",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "businessslidevqa_(llm_judge)",
+    "name": "Businessslidevqa (Llm Judge)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "jchartqa",
+    "name": "Jchartqa",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "jdocqa_(llm_judge)",
+    "name": "Jdocqa (Llm Judge)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "heron_bench_(llm_judge)",
+    "name": "Heron Bench (Llm Judge)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "ja_vlm_bench_in_the_wild_(llm_judge)",
+    "name": "Ja Vlm Bench In The Wild (Llm Judge)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "ja_vg_vqa500_(llm_judge)",
+    "name": "Ja Vg Vqa500 (Llm Judge)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "jhumaneval",
+    "name": "Jhumaneval",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "wmt20_(ja→en)",
+    "name": "Wmt20 (Ja→En)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "pfgen_bench",
+    "name": "Pfgen Bench",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "jglue_semantic_understanding",
+    "name": "Jglue Semantic Understanding",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "jglue_syntactic_analysis",
+    "name": "Jglue Syntactic Analysis",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "japanese_mt_bench_(low_reasoning_effort)",
+    "name": "Japanese Mt Bench (Low Reasoning Effort)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "japanese_mt_bench_(medium_reasoning_effort)",
+    "name": "Japanese Mt Bench (Medium Reasoning Effort)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mt_bench_en_(low)",
+    "name": "Mt Bench En (Low)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mt_bench_en_(medium)",
+    "name": "Mt Bench En (Medium)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "answercarefully_(low)",
+    "name": "Answercarefully (Low)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "answercarefully_(medium)",
+    "name": "Answercarefully (Medium)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "llm_jp_instructions_(low)",
+    "name": "Llm Jp Instructions (Low)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "llm_jp_instructions_(medium)",
+    "name": "Llm Jp Instructions (Medium)",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "aime_2025_ko",
+    "name": "Aime 2025 Ko",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "kmo25",
+    "name": "Kmo25",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mbpp_plus",
+    "name": "Mbpp Plus",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2305.01210",
+    "year": "2024",
+    "reliability": {
+      "contamination_risk": "medium",
+      "saturation": "approaching",
+      "citation_count": 380,
+      "last_updated": "2024-05",
+      "notes": "Stricter MBPP variant with extended test cases"
+    }
+  },
+  {
+    "id": "scicode",
+    "name": "Scicode",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "hle",
+    "name": "Hle",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score",
+    "paper": "https://arxiv.org/abs/2501.14249",
+    "github": "https://github.com/centerforaisafety/hle",
+    "year": "2025",
+    "item_count": "2500 questions",
+    "reliability": {
+      "contamination_risk": "low",
+      "saturation": "not_saturated",
+      "citation_count": 420,
+      "last_updated": "2026-02",
+      "notes": "Brand-new (2026), uncontaminated"
+    }
+  },
+  {
+    "id": "ko_longbench",
+    "name": "Ko Longbench",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mmmlu_ko",
+    "name": "Mmmlu Ko",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mmmlu_ja",
+    "name": "Mmmlu Ja",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "wildjailbreak",
+    "name": "Wildjailbreak",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "hrm8k_ksm",
+    "name": "Hrm8K Ksm",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "bfcl_v3",
+    "name": "Bfcl V3",
+    "category": "sovereign-ai",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "kmmlu_avg_korean",
+    "name": "Kmmlu Avg Korean",
+    "category": "sovereign-ai",
     "description": "",
     "metric": "score"
   },

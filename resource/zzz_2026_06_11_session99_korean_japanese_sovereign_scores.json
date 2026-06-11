@@ -1,0 +1,3506 @@
+{
+  "_meta": {
+    "session": "Session 99 — Korean + Japanese sovereign AI sweep",
+    "date": "2026-06-11",
+    "sources": [
+      "Korean: SKT A.X K1, LG K-EXAONE + EXAONE 4.0/4.5, Upstage Solar Open 100B + Solar Pro 2, Naver HyperCLOVA-X 4 SEED Think, NCSoft VARCO",
+      "Japanese: Sakana, Stockmark-2, NTT Tsuzumi 2, ELYZA, CyberAgent, Karakuri, Tanuki, PFN PLaMo 3, Rakuten AI 3.0, Fujitsu Takane, LLM-JP-4",
+      "Cross-vendor: A.X K1 tech report Table 4, K-EXAONE Tech Report Table 3, EXAONE 4.0 paper 2507.11407"
+    ],
+    "notes": "Sovereign AI tab refresh. SKT A.X K1 (519B/33B MoE 2026-02) KMMLU 80.2 + AIME25-ko 86.9 + HumanEval+ ko 90.2. K-EXAONE (236B/23B MoE) HRM8K 90.9 + KoBALT 61.8 huge gap. EXAONE 4.5 33B dense AIME-26 92.6. Stockmark-2-100B JMT-Bench 7.87 (highest open JP). RakutenAI-3.0 671B/37B MoE — Japan's largest open MoE (Mar 2026 GENIAC). LLM-JP-4-32B-A3B-Thinking JMT-Bench 7.82 at 3.8B active. GLM-4.6 surprise Korean SOTAs (CLIcK 84.9 tied, KMO25 96.6)."
+  },
+  "models": [
+    {
+      "id": "skt/ax-k1",
+      "name": "SKT A.X K1",
+      "vendor": "skt",
+      "type": "language",
+      "release_date": "2026-02-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "skt/ax-4-0",
+      "name": "SKT A.X 4.0",
+      "vendor": "skt",
+      "type": "language",
+      "release_date": "2025-07-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "skt/ax-4-0-light",
+      "name": "SKT A.X 4.0 Light",
+      "vendor": "skt",
+      "type": "language",
+      "release_date": "2025-07-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lg/k-exaone-236b-a23b",
+      "name": "K-EXAONE 236B-A23B",
+      "vendor": "lg ai research",
+      "type": "language",
+      "release_date": "2026-01-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lg/exaone-4-5-33b",
+      "name": "EXAONE 4.5 33B",
+      "vendor": "lg ai research",
+      "type": "language",
+      "release_date": "2026-04-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lg/exaone-4-0-32b",
+      "name": "EXAONE 4.0 32B",
+      "vendor": "lg ai research",
+      "type": "language",
+      "release_date": "2025-07-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "naver/hyperclova-x-seed-think-32b",
+      "name": "HyperCLOVA-X SEED Think 32B",
+      "vendor": "naver",
+      "type": "language",
+      "release_date": "2026-01-06",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "naver/hyperclova-x-seed-think-14b",
+      "name": "HyperCLOVA-X SEED Think 14B",
+      "vendor": "naver",
+      "type": "language",
+      "release_date": "2026-05-27",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "upstage/solar-open-100b",
+      "name": "Upstage Solar Open 100B (Solar 3 Pro)",
+      "vendor": "upstage",
+      "type": "language",
+      "release_date": "2026-01-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "upstage/solar-pro-2-31b",
+      "name": "Upstage Solar Pro 2",
+      "vendor": "upstage",
+      "type": "language",
+      "release_date": "2025-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ncsoft/varco-vision-2-14b",
+      "name": "NCSoft VARCO-VISION 2.0 14B",
+      "vendor": "ncsoft",
+      "type": "language",
+      "release_date": "2025-09-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ncsoft/llama-varco-8b-instruct",
+      "name": "Llama-VARCO 8B Instruct",
+      "vendor": "ncsoft",
+      "type": "language",
+      "release_date": "2024-12-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "42dot/42dot-llm-sft-1-3b",
+      "name": "42dot LLM SFT 1.3B",
+      "vendor": "42dot",
+      "type": "language",
+      "release_date": "2024-02-13",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "kaist/janus-7b",
+      "name": "KAIST Janus 7B",
+      "vendor": "kaist",
+      "type": "language",
+      "release_date": "2024-05-31",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "sakana/tinyswallow-1.5b-instruct",
+      "name": "Tinyswallow-1.5B-Instruct",
+      "vendor": "sakana ai",
+      "type": "language",
+      "release_date": "2025-01-28",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "sakana/kame-8b",
+      "name": "Kame-8B",
+      "vendor": "sakana ai",
+      "type": "language",
+      "release_date": "2025-04-27",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "sakana/gpt-oss-120b-sft-aimo3-fishmath",
+      "name": "Gpt-Oss-120B-Sft-Aimo3-Fishmath",
+      "vendor": "sakana ai",
+      "type": "language",
+      "release_date": "2025-05-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "sakana/sparselm-2b",
+      "name": "Sparselm-2B",
+      "vendor": "sakana ai",
+      "type": "language",
+      "release_date": "2025-03-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "sakana/sparselm-1b",
+      "name": "Sparselm-1B",
+      "vendor": "sakana ai",
+      "type": "language",
+      "release_date": "2025-03-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "stockmark/stockmark-2-100b-instruct",
+      "name": "Stockmark-2-100B-Instruct",
+      "vendor": "stockmark",
+      "type": "language",
+      "release_date": "2025-09-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "stockmark/stockmark-2-100b-instruct-beta",
+      "name": "Stockmark-2-100B-Instruct-Beta",
+      "vendor": "stockmark",
+      "type": "language",
+      "release_date": "2025-03-06",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "stockmark/stockmark-2-vl-100b-beta",
+      "name": "Stockmark-2-Vl-100B-Beta",
+      "vendor": "stockmark",
+      "type": "language",
+      "release_date": "2025-06-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "stockmark/stockmark-100b",
+      "name": "Stockmark-100B",
+      "vendor": "stockmark",
+      "type": "language",
+      "release_date": "2024-05-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "stockmark/docreasoner-qwen2.5-vl-32b",
+      "name": "Docreasoner-Qwen2.5-Vl-32B",
+      "vendor": "stockmark",
+      "type": "language",
+      "release_date": "2025-04-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ntt/tsuzumi-2",
+      "name": "Tsuzumi-2",
+      "vendor": "ntt",
+      "type": "language",
+      "release_date": "2025-10-20",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "elyza/elyza-thinking-1.0-qwen-32b",
+      "name": "Elyza-Thinking-1.0-Qwen-32B",
+      "vendor": "elyza",
+      "type": "language",
+      "release_date": "2025-04-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "elyza/elyza-shortcut-1.0-qwen-32b",
+      "name": "Elyza-Shortcut-1.0-Qwen-32B",
+      "vendor": "elyza",
+      "type": "language",
+      "release_date": "2025-04-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "elyza/elyza-shortcut-1.0-qwen-7b",
+      "name": "Elyza-Shortcut-1.0-Qwen-7B",
+      "vendor": "elyza",
+      "type": "language",
+      "release_date": "2025-04-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "elyza/elyza-diffusion-instruct-1.0-dream-7b",
+      "name": "Elyza-Diffusion-Instruct-1.0-Dream-7B",
+      "vendor": "elyza",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "elyza/llama-3-elyza-jp-8b",
+      "name": "Llama-3-Elyza-Jp-8B",
+      "vendor": "elyza",
+      "type": "language",
+      "release_date": "2024-06-26",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cyberagent/cat-thinking-8b",
+      "name": "Cat-Thinking-8B",
+      "vendor": "cyberagent",
+      "type": "language",
+      "release_date": "2026-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cyberagent/calm3-22b-chat",
+      "name": "Calm3-22B-Chat",
+      "vendor": "cyberagent",
+      "type": "language",
+      "release_date": "2024-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "karakuri/karakuri-vl-2-8b-thinking-2603",
+      "name": "Karakuri-Vl-2-8B-Thinking-2603",
+      "vendor": "karakuri",
+      "type": "language",
+      "release_date": "2026-03-27",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "karakuri/karakuri-vl-32b-thinking-2507-exp",
+      "name": "Karakuri-Vl-32B-Thinking-2507-Exp",
+      "vendor": "karakuri",
+      "type": "language",
+      "release_date": "2025-07-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "karakuri/karakuri-vl-32b-instruct-2507",
+      "name": "Karakuri-Vl-32B-Instruct-2507",
+      "vendor": "karakuri",
+      "type": "language",
+      "release_date": "2025-07-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "karakuri/karakuri-lm-32b-thinking-2501-exp",
+      "name": "Karakuri-Lm-32B-Thinking-2501-Exp",
+      "vendor": "karakuri",
+      "type": "language",
+      "release_date": "2025-01-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "karakuri/karakuri-lm-8x7b-instruct-v0.1",
+      "name": "Karakuri-Lm-8X7B-Instruct-V0.1",
+      "vendor": "karakuri",
+      "type": "language",
+      "release_date": "2024-06-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "weblab-geniac/tanuki-8x8b-dpo-v1.0",
+      "name": "Tanuki-8X8B-Dpo-V1.0",
+      "vendor": "matsuo lab / geniac",
+      "type": "language",
+      "release_date": "2024-10-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "weblab-geniac/tanuki-8b-dpo-v1.0",
+      "name": "Tanuki-8B-Dpo-V1.0",
+      "vendor": "matsuo lab / geniac",
+      "type": "language",
+      "release_date": "2024-10-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "pfn/plamo-3-nict-31b-base",
+      "name": "Plamo-3-Nict-31B-Base",
+      "vendor": "preferred networks",
+      "type": "language",
+      "release_date": "2025-11-13",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "pfn/plamo-3-nict-8b-base",
+      "name": "Plamo-3-Nict-8B-Base",
+      "vendor": "preferred networks",
+      "type": "language",
+      "release_date": "2025-11-14",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "pfn/plamo-3-nict-2b-base",
+      "name": "Plamo-3-Nict-2B-Base",
+      "vendor": "preferred networks",
+      "type": "language",
+      "release_date": "2025-11-13",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "pfn/plamo-2-31b",
+      "name": "Plamo-2-31B",
+      "vendor": "preferred networks",
+      "type": "language",
+      "release_date": "2025-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "pfn/plamo-2.1-8b",
+      "name": "Plamo-2.1-8B",
+      "vendor": "preferred networks",
+      "type": "language",
+      "release_date": "2025-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "pfn/plamo-2-8b",
+      "name": "Plamo-2-8B",
+      "vendor": "preferred networks",
+      "type": "language",
+      "release_date": "2025-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "pfn/plamo-2-translate",
+      "name": "Plamo-2-Translate",
+      "vendor": "preferred networks",
+      "type": "language",
+      "release_date": "2025-05-27",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "pfn/plamo-2.1-8b-vl",
+      "name": "Plamo-2.1-8B-Vl",
+      "vendor": "preferred networks",
+      "type": "language",
+      "release_date": "2026-04-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "pfn/plamo-2-1b",
+      "name": "Plamo-2-1B",
+      "vendor": "preferred networks",
+      "type": "language",
+      "release_date": "2025-11-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "rakuten/rakutenai-3.0",
+      "name": "Rakutenai-3.0",
+      "vendor": "rakuten",
+      "type": "language",
+      "release_date": "2026-03-17",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "rakuten/rakutenai-2.0-8x7b-instruct",
+      "name": "Rakutenai-2.0-8X7B-Instruct",
+      "vendor": "rakuten",
+      "type": "language",
+      "release_date": "2025-02-26",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "rakuten/rakutenai-2.0-mini-instruct",
+      "name": "Rakutenai-2.0-Mini-Instruct",
+      "vendor": "rakuten",
+      "type": "language",
+      "release_date": "2025-02-26",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "rakuten/rakutenai-2.0-8x7b",
+      "name": "Rakutenai-2.0-8X7B",
+      "vendor": "rakuten",
+      "type": "language",
+      "release_date": "2025-02-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "fujitsu/takane",
+      "name": "Takane",
+      "vendor": "fujitsu",
+      "type": "language",
+      "release_date": "2024-09-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "llm-jp/llm-jp-4-32b-a3b-thinking",
+      "name": "Llm-Jp-4-32B-A3B-Thinking",
+      "vendor": "llm-jp (nii)",
+      "type": "language",
+      "release_date": "2026-04-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "llm-jp/llm-jp-4-8b-thinking",
+      "name": "Llm-Jp-4-8B-Thinking",
+      "vendor": "llm-jp (nii)",
+      "type": "language",
+      "release_date": "2026-04-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "llm-jp/llm-jp-4-8b-instruct",
+      "name": "Llm-Jp-4-8B-Instruct",
+      "vendor": "llm-jp (nii)",
+      "type": "language",
+      "release_date": "2026-04-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "llm-jp/llm-jp-4-8b-base",
+      "name": "Llm-Jp-4-8B-Base",
+      "vendor": "llm-jp (nii)",
+      "type": "language",
+      "release_date": "2026-04-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "llm-jp/llm-jp-4-32b-a3b-base",
+      "name": "Llm-Jp-4-32B-A3B-Base",
+      "vendor": "llm-jp (nii)",
+      "type": "language",
+      "release_date": "2026-04-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "llm-jp/llm-jp-3-13b-instruct",
+      "name": "Llm-Jp-3-13B-Instruct",
+      "vendor": "llm-jp (nii)",
+      "type": "language",
+      "release_date": "2024",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lg/k-exaone",
+      "name": "K-EXAONE 236B-A23B",
+      "vendor": "lg",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lg/exaone-3.0-7.8b-instruct",
+      "name": "EXAONE 3.0 7.8B Instruct",
+      "vendor": "lg",
+      "type": "language",
+      "release_date": "2024-08-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "naver/hyperclova-x-original",
+      "name": "HyperCLOVA-X Original",
+      "vendor": "naver",
+      "type": "language",
+      "release_date": "2024-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-4-original",
+      "name": "GPT-4 Original",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2023-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "skt/ax",
+      "name": "SKT A.X (composite)",
+      "vendor": "skt",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "upstage/solar",
+      "name": "Solar (composite)",
+      "vendor": "upstage",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zai/glm-4.6",
+      "name": "GLM-4.6",
+      "vendor": "zai",
+      "type": "language",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-32b-instruct",
+      "name": "Qwen 2.5 32B Instruct",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2024-09-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-72b-instruct",
+      "name": "Qwen 2.5 72B Instruct",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2024-09-19",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "mmlu_pro",
+      "name": "Mmlu Pro",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kmmlu",
+      "name": "Kmmlu",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kmmlu_redux",
+      "name": "Kmmlu Redux",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kmmlu_pro",
+      "name": "Kmmlu Pro",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "click",
+      "name": "Click",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gpqa_diamond",
+      "name": "Gpqa Diamond",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2025",
+      "name": "Aime 2025",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval+",
+      "name": "Humaneval+",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval+_(korean)",
+      "name": "Humaneval+ (Korean)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mbpp+",
+      "name": "Mbpp+",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench",
+      "name": "Livecodebench",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench_korean",
+      "name": "Livecodebench Korean",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu",
+      "name": "Mmlu",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math",
+      "name": "Math",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench_v6",
+      "name": "Livecodebench V6",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_verified",
+      "name": "Swe Bench Verified",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hrm8k",
+      "name": "Hrm8K",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmlu",
+      "name": "Mmmlu",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humanity's_last_exam",
+      "name": "Humanity'S Last Exam",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "imo_answerbench",
+      "name": "Imo Answerbench",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2026",
+      "name": "Aime 2026",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu",
+      "name": "Mmmu",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu_pro",
+      "name": "Mmmu Pro",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench_v5",
+      "name": "Livecodebench V5",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ksm",
+      "name": "Ksm",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ifeval",
+      "name": "Ifeval",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "csat_ko_2025",
+      "name": "Csat Ko 2025",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kormedmcqa",
+      "name": "Kormedmcqa",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kobalt",
+      "name": "Kobalt",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "haerae",
+      "name": "Haerae",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kobigbench",
+      "name": "Kobigbench",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "logickor",
+      "name": "Logickor",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gsm8k",
+      "name": "Gsm8K",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math_500",
+      "name": "Math 500",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval",
+      "name": "Humaneval",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mbpp",
+      "name": "Mbpp",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "big_bench_hard",
+      "name": "Big Bench Hard",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2024",
+      "name": "Aime 2024",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arena_hard_v2",
+      "name": "Arena Hard V2",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "jmmlu",
+      "name": "Jmmlu",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "japanese_mt_bench",
+      "name": "Japanese Mt Bench",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "japanese_mt_bench_coding",
+      "name": "Japanese Mt Bench Coding",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "japanese_mt_bench_extraction",
+      "name": "Japanese Mt Bench Extraction",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "japanese_mt_bench_humanities",
+      "name": "Japanese Mt Bench Humanities",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "japanese_mt_bench_math",
+      "name": "Japanese Mt Bench Math",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "japanese_mt_bench_reasoning",
+      "name": "Japanese Mt Bench Reasoning",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "japanese_mt_bench_roleplay",
+      "name": "Japanese Mt Bench Roleplay",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "japanese_mt_bench_stem",
+      "name": "Japanese Mt Bench Stem",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "businessslidevqa_(llm_judge)",
+      "name": "Businessslidevqa (Llm Judge)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "jchartqa",
+      "name": "Jchartqa",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "jdocqa_(llm_judge)",
+      "name": "Jdocqa (Llm Judge)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "heron_bench_(llm_judge)",
+      "name": "Heron Bench (Llm Judge)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ja_vlm_bench_in_the_wild_(llm_judge)",
+      "name": "Ja Vlm Bench In The Wild (Llm Judge)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ja_vg_vqa500_(llm_judge)",
+      "name": "Ja Vg Vqa500 (Llm Judge)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "jhumaneval",
+      "name": "Jhumaneval",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "wmt20_(ja→en)",
+      "name": "Wmt20 (Ja→En)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "pfgen_bench",
+      "name": "Pfgen Bench",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "jglue_semantic_understanding",
+      "name": "Jglue Semantic Understanding",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "jglue_syntactic_analysis",
+      "name": "Jglue Syntactic Analysis",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "japanese_mt_bench_(low_reasoning_effort)",
+      "name": "Japanese Mt Bench (Low Reasoning Effort)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "japanese_mt_bench_(medium_reasoning_effort)",
+      "name": "Japanese Mt Bench (Medium Reasoning Effort)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mt_bench_en_(low)",
+      "name": "Mt Bench En (Low)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mt_bench_en_(medium)",
+      "name": "Mt Bench En (Medium)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "answercarefully_(low)",
+      "name": "Answercarefully (Low)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "answercarefully_(medium)",
+      "name": "Answercarefully (Medium)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "llm_jp_instructions_(low)",
+      "name": "Llm Jp Instructions (Low)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "llm_jp_instructions_(medium)",
+      "name": "Llm Jp Instructions (Medium)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ifbench",
+      "name": "Ifbench",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ifeval_ko",
+      "name": "Ifeval Ko",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2025_ko",
+      "name": "Aime 2025 Ko",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kmo25",
+      "name": "Kmo25",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench_ko",
+      "name": "Livecodebench Ko",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval_plus",
+      "name": "Humaneval Plus",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval_plus_ko",
+      "name": "Humaneval Plus Ko",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mbpp_plus",
+      "name": "Mbpp Plus",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "scicode",
+      "name": "Scicode",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aa_lcr",
+      "name": "Aa Lcr",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hle",
+      "name": "Hle",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tau2_telecom",
+      "name": "Tau2 Telecom",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ko_longbench",
+      "name": "Ko Longbench",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hmmt_nov_2025",
+      "name": "Hmmt Nov 2025",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmlu_ko",
+      "name": "Mmmlu Ko",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmlu_ja",
+      "name": "Mmmlu Ja",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "wildjailbreak",
+      "name": "Wildjailbreak",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hrm8k_ksm",
+      "name": "Hrm8K Ksm",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_redux",
+      "name": "Mmlu Redux",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bfcl_v3",
+      "name": "Bfcl V3",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kmmlu_avg_korean",
+      "name": "Kmmlu Avg Korean",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "mmlu_pro",
+      "score": 81.5,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "kmmlu",
+      "score": 80.2,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "kmmlu_redux",
+      "score": 77.9,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "kmmlu_pro",
+      "score": 68.1,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "click",
+      "score": 84.9,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "gpqa_diamond",
+      "score": 74.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "aime_2025",
+      "score": 89.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "humaneval+",
+      "score": 87.2,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "humaneval+_(korean)",
+      "score": 90.2,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "mbpp+",
+      "score": 93.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "livecodebench",
+      "score": 75.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "livecodebench_korean",
+      "score": 73.1,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-4-0",
+      "benchmark": "mmlu",
+      "score": 86.62,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-4-0",
+      "benchmark": "kmmlu",
+      "score": 78.32,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-4-0",
+      "benchmark": "kmmlu_pro",
+      "score": 72.43,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-4-0",
+      "benchmark": "click",
+      "score": 83.51,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-4-0",
+      "benchmark": "humaneval+",
+      "score": 79.27,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-4-0",
+      "benchmark": "math",
+      "score": 74.28,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/k-exaone-236b-a23b",
+      "benchmark": "mmlu_pro",
+      "score": 83.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/k-exaone-236b-a23b",
+      "benchmark": "gpqa_diamond",
+      "score": 79.1,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/k-exaone-236b-a23b",
+      "benchmark": "aime_2025",
+      "score": 92.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/k-exaone-236b-a23b",
+      "benchmark": "livecodebench_v6",
+      "score": 80.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/k-exaone-236b-a23b",
+      "benchmark": "swe_bench_verified",
+      "score": 49.4,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/k-exaone-236b-a23b",
+      "benchmark": "kmmlu_pro",
+      "score": 67.3,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/k-exaone-236b-a23b",
+      "benchmark": "hrm8k",
+      "score": 90.9,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/k-exaone-236b-a23b",
+      "benchmark": "mmmlu",
+      "score": 85.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/k-exaone-236b-a23b",
+      "benchmark": "humanity's_last_exam",
+      "score": 13.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/k-exaone-236b-a23b",
+      "benchmark": "imo_answerbench",
+      "score": 76.3,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-5-33b",
+      "benchmark": "mmlu_pro",
+      "score": 83.3,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-5-33b",
+      "benchmark": "gpqa_diamond",
+      "score": 80.5,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-5-33b",
+      "benchmark": "aime_2025",
+      "score": 92.9,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-5-33b",
+      "benchmark": "aime_2026",
+      "score": 92.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-5-33b",
+      "benchmark": "livecodebench_v6",
+      "score": 81.4,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-5-33b",
+      "benchmark": "kmmlu_pro",
+      "score": 67.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-5-33b",
+      "benchmark": "mmmu",
+      "score": 78.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-5-33b",
+      "benchmark": "mmmu_pro",
+      "score": 68.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-0-32b",
+      "benchmark": "mmlu_pro",
+      "score": 81.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-0-32b",
+      "benchmark": "gpqa_diamond",
+      "score": 75.4,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-0-32b",
+      "benchmark": "aime_2025",
+      "score": 85.3,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-0-32b",
+      "benchmark": "livecodebench_v5",
+      "score": 72.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-0-32b",
+      "benchmark": "livecodebench_v6",
+      "score": 66.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-0-32b",
+      "benchmark": "kmmlu_pro",
+      "score": 67.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-0-32b",
+      "benchmark": "kmmlu_redux",
+      "score": 72.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-0-32b",
+      "benchmark": "ksm",
+      "score": 87.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4-0-32b",
+      "benchmark": "ifeval",
+      "score": 83.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "kmmlu",
+      "score": 66.49,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "csat_ko_2025",
+      "score": 75.16,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "kormedmcqa",
+      "score": 69.33,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "kobalt",
+      "score": 45.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "haerae",
+      "score": 85.37,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "click",
+      "score": 72.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "kobigbench",
+      "score": 79.74,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "logickor",
+      "score": 8.74,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "gsm8k",
+      "score": 95.53,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "math_500",
+      "score": 93.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "humaneval",
+      "score": 94.51,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "mbpp",
+      "score": 87.59,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "mmlu",
+      "score": 71.21,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-seed-think-14b",
+      "benchmark": "big_bench_hard",
+      "score": 62.16,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "upstage/solar-open-100b",
+      "benchmark": "mmlu",
+      "score": 88.2,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "upstage/solar-open-100b",
+      "benchmark": "mmlu_pro",
+      "score": 80.4,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "upstage/solar-open-100b",
+      "benchmark": "gpqa_diamond",
+      "score": 68.1,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "upstage/solar-open-100b",
+      "benchmark": "aime_2024",
+      "score": 91.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "upstage/solar-open-100b",
+      "benchmark": "aime_2025",
+      "score": 84.3,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "upstage/solar-open-100b",
+      "benchmark": "livecodebench",
+      "score": 74.2,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "upstage/solar-open-100b",
+      "benchmark": "ifeval",
+      "score": 88.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "upstage/solar-open-100b",
+      "benchmark": "arena_hard_v2",
+      "score": 74.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "upstage/solar-open-100b",
+      "benchmark": "kmmlu",
+      "score": 73.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "upstage/solar-open-100b",
+      "benchmark": "kmmlu_pro",
+      "score": 64.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "sakana/tinyswallow-1.5b-instruct",
+      "benchmark": "jmmlu",
+      "score": 37.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2505.16661",
+      "_note": "from comparative Japanese LLM evaluation paper"
+    },
+    {
+      "model": "stockmark/stockmark-2-100b-instruct",
+      "benchmark": "japanese_mt_bench",
+      "score": 7.87,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-100B-Instruct",
+      "_note": "average across 8 categories"
+    },
+    {
+      "model": "stockmark/stockmark-2-100b-instruct",
+      "benchmark": "japanese_mt_bench_coding",
+      "score": 7.07,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-100B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-100b-instruct",
+      "benchmark": "japanese_mt_bench_extraction",
+      "score": 8.35,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-100B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-100b-instruct",
+      "benchmark": "japanese_mt_bench_humanities",
+      "score": 8.73,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-100B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-100b-instruct",
+      "benchmark": "japanese_mt_bench_math",
+      "score": 7.57,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-100B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-100b-instruct",
+      "benchmark": "japanese_mt_bench_reasoning",
+      "score": 5.45,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-100B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-100b-instruct",
+      "benchmark": "japanese_mt_bench_roleplay",
+      "score": 8.65,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-100B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-100b-instruct",
+      "benchmark": "japanese_mt_bench_stem",
+      "score": 8.33,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-100B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-100b-instruct-beta",
+      "benchmark": "japanese_mt_bench",
+      "score": 7.71,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-100B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-vl-100b-beta",
+      "benchmark": "businessslidevqa_(llm_judge)",
+      "score": 4.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-VL-100B-beta",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-vl-100b-beta",
+      "benchmark": "jchartqa",
+      "score": 0.88,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-VL-100B-beta",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-vl-100b-beta",
+      "benchmark": "jdocqa_(llm_judge)",
+      "score": 3.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-VL-100B-beta",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-vl-100b-beta",
+      "benchmark": "heron_bench_(llm_judge)",
+      "score": 78.8,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-VL-100B-beta",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-vl-100b-beta",
+      "benchmark": "ja_vlm_bench_in_the_wild_(llm_judge)",
+      "score": 4.1,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-VL-100B-beta",
+      "_note": ""
+    },
+    {
+      "model": "stockmark/stockmark-2-vl-100b-beta",
+      "benchmark": "ja_vg_vqa500_(llm_judge)",
+      "score": 4.1,
+      "unit": "score",
+      "_source": "https://huggingface.co/stockmark/Stockmark-2-VL-100B-beta",
+      "_note": ""
+    },
+    {
+      "model": "elyza/llama-3-elyza-jp-8b",
+      "benchmark": "japanese_mt_bench",
+      "score": 7.775,
+      "unit": "score",
+      "_source": "https://note.com/elyza/n/n360b6084fdbd",
+      "_note": ""
+    },
+    {
+      "model": "cyberagent/calm3-22b-chat",
+      "benchmark": "japanese_mt_bench",
+      "score": 6.93,
+      "unit": "score",
+      "_source": "https://huggingface.co/Rakuten/RakutenAI-2.0-8x7B-instruct",
+      "_note": "Nejumi Leaderboard 3 / cited in Rakuten benchmark table"
+    },
+    {
+      "model": "karakuri/karakuri-lm-8x7b-instruct-v0.1",
+      "benchmark": "japanese_mt_bench",
+      "score": 5.92,
+      "unit": "score",
+      "_source": "https://huggingface.co/Rakuten/RakutenAI-2.0-8x7B-instruct",
+      "_note": ""
+    },
+    {
+      "model": "weblab-geniac/tanuki-8x8b-dpo-v1.0",
+      "benchmark": "japanese_mt_bench",
+      "score": 6.96,
+      "unit": "score",
+      "_source": "https://huggingface.co/Rakuten/RakutenAI-2.0-8x7B-instruct",
+      "_note": "Rakuten benchmark comparison table; Tanuki team self-reported 7.96 but disputed in HF discussions"
+    },
+    {
+      "model": "pfn/plamo-2-31b",
+      "benchmark": "mmlu",
+      "score": 0.681,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2-31b",
+      "benchmark": "jmmlu",
+      "score": 0.672,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2-31b",
+      "benchmark": "humaneval+",
+      "score": 0.555,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2-31b",
+      "benchmark": "jhumaneval",
+      "score": 0.488,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2-31b",
+      "benchmark": "wmt20_(ja→en)",
+      "score": 0.826,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2-31b",
+      "benchmark": "pfgen_bench",
+      "score": 0.817,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2.1-8b",
+      "benchmark": "mmlu",
+      "score": 0.635,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2.1-8b",
+      "benchmark": "jmmlu",
+      "score": 0.635,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2.1-8b",
+      "benchmark": "humaneval+",
+      "score": 0.463,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2.1-8b",
+      "benchmark": "jhumaneval",
+      "score": 0.372,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2.1-8b",
+      "benchmark": "wmt20_(ja→en)",
+      "score": 0.821,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2.1-8b",
+      "benchmark": "pfgen_bench",
+      "score": 0.725,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2-8b",
+      "benchmark": "mmlu",
+      "score": 0.573,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2-8b",
+      "benchmark": "jmmlu",
+      "score": 0.572,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2-8b",
+      "benchmark": "humaneval+",
+      "score": 0.463,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2-8b",
+      "benchmark": "jhumaneval",
+      "score": 0.463,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2-8b",
+      "benchmark": "wmt20_(ja→en)",
+      "score": 0.814,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "pfn/plamo-2-8b",
+      "benchmark": "pfgen_bench",
+      "score": 0.753,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.04897",
+      "_note": ""
+    },
+    {
+      "model": "rakuten/rakutenai-2.0-8x7b-instruct",
+      "benchmark": "japanese_mt_bench",
+      "score": 7.08,
+      "unit": "score",
+      "_source": "https://huggingface.co/Rakuten/RakutenAI-2.0-8x7B-instruct",
+      "_note": ""
+    },
+    {
+      "model": "fujitsu/takane",
+      "benchmark": "jglue_semantic_understanding",
+      "score": 0.862,
+      "unit": "score",
+      "_source": "https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2024/0930-01.html",
+      "_note": ""
+    },
+    {
+      "model": "fujitsu/takane",
+      "benchmark": "jglue_syntactic_analysis",
+      "score": 0.773,
+      "unit": "score",
+      "_source": "https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2024/0930-01.html",
+      "_note": ""
+    },
+    {
+      "model": "llm-jp/llm-jp-4-32b-a3b-thinking",
+      "benchmark": "japanese_mt_bench_(low_reasoning_effort)",
+      "score": 7.57,
+      "unit": "score",
+      "_source": "https://huggingface.co/llm-jp/llm-jp-4-32b-a3b-thinking",
+      "_note": ""
+    },
+    {
+      "model": "llm-jp/llm-jp-4-32b-a3b-thinking",
+      "benchmark": "japanese_mt_bench_(medium_reasoning_effort)",
+      "score": 7.82,
+      "unit": "score",
+      "_source": "https://huggingface.co/llm-jp/llm-jp-4-32b-a3b-thinking",
+      "_note": ""
+    },
+    {
+      "model": "llm-jp/llm-jp-4-32b-a3b-thinking",
+      "benchmark": "mt_bench_en_(low)",
+      "score": 7.7,
+      "unit": "score",
+      "_source": "https://huggingface.co/llm-jp/llm-jp-4-32b-a3b-thinking",
+      "_note": ""
+    },
+    {
+      "model": "llm-jp/llm-jp-4-32b-a3b-thinking",
+      "benchmark": "mt_bench_en_(medium)",
+      "score": 7.86,
+      "unit": "score",
+      "_source": "https://huggingface.co/llm-jp/llm-jp-4-32b-a3b-thinking",
+      "_note": ""
+    },
+    {
+      "model": "llm-jp/llm-jp-4-32b-a3b-thinking",
+      "benchmark": "answercarefully_(low)",
+      "score": 3.61,
+      "unit": "score",
+      "_source": "https://huggingface.co/llm-jp/llm-jp-4-32b-a3b-thinking",
+      "_note": ""
+    },
+    {
+      "model": "llm-jp/llm-jp-4-32b-a3b-thinking",
+      "benchmark": "answercarefully_(medium)",
+      "score": 3.7,
+      "unit": "score",
+      "_source": "https://huggingface.co/llm-jp/llm-jp-4-32b-a3b-thinking",
+      "_note": ""
+    },
+    {
+      "model": "llm-jp/llm-jp-4-32b-a3b-thinking",
+      "benchmark": "llm_jp_instructions_(low)",
+      "score": 3.61,
+      "unit": "score",
+      "_source": "https://huggingface.co/llm-jp/llm-jp-4-32b-a3b-thinking",
+      "_note": ""
+    },
+    {
+      "model": "llm-jp/llm-jp-4-32b-a3b-thinking",
+      "benchmark": "llm_jp_instructions_(medium)",
+      "score": 3.61,
+      "unit": "score",
+      "_source": "https://huggingface.co/llm-jp/llm-jp-4-32b-a3b-thinking",
+      "_note": ""
+    },
+    {
+      "model": "llm-jp/llm-jp-3-13b-instruct",
+      "benchmark": "japanese_mt_bench",
+      "score": 5.68,
+      "unit": "score",
+      "_source": "https://huggingface.co/Rakuten/RakutenAI-2.0-8x7B-instruct",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "kmmlu",
+      "score": 80.2,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "kmmlu_redux",
+      "score": 77.9,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "kmmlu_pro",
+      "score": 68.1,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "click",
+      "score": 84.9,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "kobalt",
+      "score": 48.8,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "mmlu_pro",
+      "score": 81.5,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "gpqa_diamond",
+      "score": 74.0,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "ifbench",
+      "score": 64.7,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "ifeval",
+      "score": 80.4,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "ifeval_ko",
+      "score": 81.0,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "aime_2025",
+      "score": 89.8,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "aime_2025_ko",
+      "score": 86.9,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "hrm8k",
+      "score": 89.4,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "kmo25",
+      "score": 93.0,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "livecodebench_v6",
+      "score": 75.8,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "livecodebench_ko",
+      "score": 73.1,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "humaneval_plus",
+      "score": 87.2,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "humaneval_plus_ko",
+      "score": 90.2,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "mbpp_plus",
+      "score": 93.0,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "scicode",
+      "score": 32.4,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "aa_lcr",
+      "score": 36.0,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "hle",
+      "score": 8.6,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "tau2_telecom",
+      "score": 58.1,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "kmmlu",
+      "score": 73.0,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 5",
+      "_note": "non_thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "kmmlu_redux",
+      "score": 68.3,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 5",
+      "_note": "non_thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "kmmlu_pro",
+      "score": 60.3,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 5",
+      "_note": "non_thinking"
+    },
+    {
+      "model": "skt/ax-k1",
+      "benchmark": "click",
+      "score": 77.2,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 5",
+      "_note": "non_thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "kmmlu",
+      "score": 76.5,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "kmmlu_redux",
+      "score": 75.9,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "kmmlu_pro",
+      "score": 71.4,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "click",
+      "score": 84.5,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "kobalt",
+      "score": 59.7,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "aime_2025",
+      "score": 88.4,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "aime_2025_ko",
+      "score": 78.1,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "hrm8k",
+      "score": 84.3,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "kmo25",
+      "score": 86.4,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "livecodebench_v6",
+      "score": 69.5,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "livecodebench_ko",
+      "score": 66.2,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "mmlu_pro",
+      "score": 85.1,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "gpqa_diamond",
+      "score": 77.9,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "kmmlu",
+      "score": 79.9,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "kmmlu_redux",
+      "score": 78.2,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "kmmlu_pro",
+      "score": 71.8,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "click",
+      "score": 84.9,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "kobalt",
+      "score": 59.2,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "aime_2025",
+      "score": 86.0,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "aime_2025_ko",
+      "score": 75.9,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "hrm8k",
+      "score": 83.9,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "kmo25",
+      "score": 96.6,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "livecodebench_v6",
+      "score": 76.0,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "mmlu_pro",
+      "score": 82.9,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "zai/glm-4.6",
+      "benchmark": "gpqa_diamond",
+      "score": 78.0,
+      "unit": "score",
+      "_source": "arxiv 2601.09200 Table 4",
+      "_note": "thinking"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "kmmlu_pro",
+      "score": 67.3,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "kobalt",
+      "score": 61.8,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "click",
+      "score": 83.9,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "hrm8k",
+      "score": 90.9,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "ko_longbench",
+      "score": 86.8,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "mmlu_pro",
+      "score": 83.8,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "gpqa_diamond",
+      "score": 79.1,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "hle",
+      "score": 13.6,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "aime_2025",
+      "score": 92.8,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "hmmt_nov_2025",
+      "score": 86.8,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "imo_answerbench",
+      "score": 76.3,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "livecodebench_v6",
+      "score": 80.7,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "swe_bench_verified",
+      "score": 49.4,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "ifbench",
+      "score": 67.3,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "ifeval",
+      "score": 89.7,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "aa_lcr",
+      "score": 53.5,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "mmmlu_ko",
+      "score": 85.6,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 5",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "mmmlu_ja",
+      "score": 85.5,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 5",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "wildjailbreak",
+      "score": 89.9,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "kmmlu_pro",
+      "score": 67.7,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3 / 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "kmmlu_redux",
+      "score": 72.7,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "kobalt",
+      "score": 25.4,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "click",
+      "score": 78.8,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "hrm8k",
+      "score": 89.4,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "hrm8k_ksm",
+      "score": 87.6,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "ko_longbench",
+      "score": 68.0,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "mmlu_pro",
+      "score": 81.8,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "mmlu_redux",
+      "score": 92.3,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "gpqa_diamond",
+      "score": 75.4,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "aime_2025",
+      "score": 85.3,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "livecodebench_v5",
+      "score": 72.6,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "livecodebench_v6",
+      "score": 66.7,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "bfcl_v3",
+      "score": 63.9,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "mmmlu_ko",
+      "score": 83.7,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 5",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "mmmlu_ja",
+      "score": 82.8,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 5",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-1.2b",
+      "benchmark": "mmlu_redux",
+      "score": 71.5,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-1.2b",
+      "benchmark": "mmlu_pro",
+      "score": 59.3,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-1.2b",
+      "benchmark": "gpqa_diamond",
+      "score": 52.0,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-1.2b",
+      "benchmark": "aime_2025",
+      "score": 45.2,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-1.2b",
+      "benchmark": "livecodebench_v5",
+      "score": 44.6,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "lg/exaone-4.0-1.2b",
+      "benchmark": "hrm8k_ksm",
+      "score": 60.6,
+      "unit": "score",
+      "_source": "arxiv 2507.11407",
+      "_note": "reasoning"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "kmmlu_pro",
+      "score": 62.4,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning_high"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "kobalt",
+      "score": 54.3,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning_high"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "click",
+      "score": 74.6,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning_high"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "hrm8k",
+      "score": 91.6,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning_high"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "ko_longbench",
+      "score": 82.2,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning_high"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "mmlu_pro",
+      "score": 80.7,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning_high"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "gpqa_diamond",
+      "score": 80.1,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning_high"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "aime_2025",
+      "score": 92.5,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning_high"
+    },
+    {
+      "model": "openai/gpt-oss-120b",
+      "benchmark": "livecodebench_v6",
+      "score": 81.9,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning_high"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "benchmark": "kmmlu_pro",
+      "score": 71.6,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "thinking"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "benchmark": "kobalt",
+      "score": 56.1,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "thinking"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "benchmark": "click",
+      "score": 81.3,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "thinking"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "benchmark": "hrm8k",
+      "score": 92.0,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "thinking"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "benchmark": "ko_longbench",
+      "score": 83.2,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "thinking"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "benchmark": "mmlu_pro",
+      "score": 84.4,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "thinking"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "benchmark": "aime_2025",
+      "score": 92.3,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "thinking"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "benchmark": "livecodebench_v6",
+      "score": 74.1,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "thinking"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "kmmlu_pro",
+      "score": 72.1,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "kobalt",
+      "score": 62.7,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "click",
+      "score": 86.3,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "hrm8k",
+      "score": 90.6,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "ko_longbench",
+      "score": 87.9,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "mmlu_pro",
+      "score": 85.0,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "gpqa_diamond",
+      "score": 82.4,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "hle",
+      "score": 25.1,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "aime_2025",
+      "score": 93.1,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "livecodebench_v6",
+      "score": 79.4,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "swe_bench_verified",
+      "score": 73.1,
+      "unit": "score",
+      "_source": "arxiv 2601.01739 Table 3",
+      "_note": "reasoning"
+    },
+    {
+      "model": "upstage/solar",
+      "benchmark": "kmmlu_avg_korean",
+      "score": 80.1,
+      "unit": "score",
+      "_source": "benchlm.ai/leaderboards/korean-llm 2026",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x",
+      "benchmark": "kmmlu_avg_korean",
+      "score": 78.4,
+      "unit": "score",
+      "_source": "benchlm.ai/leaderboards/korean-llm 2026",
+      "_note": ""
+    },
+    {
+      "model": "skt/ax",
+      "benchmark": "kmmlu_avg_korean",
+      "score": 78.0,
+      "unit": "score",
+      "_source": "benchlm.ai/leaderboards/korean-llm 2026",
+      "_note": ""
+    },
+    {
+      "model": "lg/k-exaone",
+      "benchmark": "kmmlu_avg_korean",
+      "score": 76.0,
+      "unit": "score",
+      "_source": "benchlm.ai/leaderboards/korean-llm 2026",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4.0-32b",
+      "benchmark": "kmmlu_avg_korean",
+      "score": 75.2,
+      "unit": "score",
+      "_source": "benchlm.ai/leaderboards/korean-llm 2026",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "hrm8k",
+      "score": 57.59,
+      "unit": "score",
+      "_source": "github.com/guijinSON/HRM8K leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-72b-instruct",
+      "benchmark": "hrm8k",
+      "score": 56.63,
+      "unit": "score",
+      "_source": "github.com/guijinSON/HRM8K leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "hrm8k",
+      "score": 53.5,
+      "unit": "score",
+      "_source": "github.com/guijinSON/HRM8K leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-32b-instruct",
+      "benchmark": "hrm8k",
+      "score": 49.89,
+      "unit": "score",
+      "_source": "github.com/guijinSON/HRM8K leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-3.0-7.8b-instruct",
+      "benchmark": "hrm8k",
+      "score": 36.02,
+      "unit": "score",
+      "_source": "github.com/guijinSON/HRM8K leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4-original",
+      "benchmark": "kmmlu",
+      "score": 59.95,
+      "unit": "score",
+      "_source": "HAERAE-HUB/KMMLU paper arxiv 2402.11548",
+      "_note": ""
+    },
+    {
+      "model": "naver/hyperclova-x-original",
+      "benchmark": "kmmlu",
+      "score": 53.4,
+      "unit": "score",
+      "_source": "HAERAE-HUB/KMMLU paper arxiv 2402.11548",
+      "_note": ""
+    }
+  ]
+}
