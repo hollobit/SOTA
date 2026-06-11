@@ -1,0 +1,1025 @@
+{
+  "_meta": {
+    "session": "Session 98 — Medical AI 2026 deep refresh",
+    "date": "2026-06-11",
+    "sources": [
+      "MedGemma 1 baselines (MedGemma 2 not yet released)",
+      "AMIE Co-Clinician + HealthBench Pro + AutoMedBench + MedXpertQA + MedAgentBench v2",
+      "Medical specialty: RAD-DINO/MAIRA-2/MedSAM-3/PRISM2/PathChat2/HuatuoGPT-3/Lingshu/OpenFold3/IsoDDE/Boltz-2"
+    ],
+    "notes": "AMIE Co-Clinician RxQA open-ended 95.0 beats GPT-5.4 90.9. Claude Fable 5 HealthBench Pro 0.660 SOTA. Opus 4.6 AutoMedBench 66.5 SOTA. GPT-4.1+memory MedAgentBench v2 98%. Kimi K2-Thinking-0905 HealthBench 0.580. MedSAM-3 1.57M pairs 10 modalities. PRISM2 2.3M WSI. Lingshu-7B open <10B SOTA on 5/7 med VQA. OpenFold3 = open AF3 alt. IsoDDE = Isomorphic AF4-scale drug engine."
+  },
+  "models": [
+    {
+      "id": "google/medgemma-27b-text",
+      "name": "Medgemma-27B-Text",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-07-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/medgemma-27b-multimodal",
+      "name": "Medgemma-27B-Multimodal",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-07-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/medgemma-4b",
+      "name": "Medgemma-4B",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-07-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/amie-disease-management",
+      "name": "Amie-Disease-Management",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2025-03-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/amie-oncology",
+      "name": "Amie-Oncology",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2024-11-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/amie-multimodal",
+      "name": "AMIE (multimodal, Gemini 2.0 Flash base)",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2025-05-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/amie-co-clinician",
+      "name": "AMIE Co-Clinician (2026)",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2026-04-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/rad-dino",
+      "name": "RAD-DINO",
+      "vendor": "microsoft research + mayo clinic",
+      "type": "language",
+      "release_date": "2025-01-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/rad-dino-maira-2",
+      "name": "RAD-DINO-MAIRA-2",
+      "vendor": "microsoft research",
+      "type": "language",
+      "release_date": "2024-06-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/maira-2",
+      "name": "MAIRA-2",
+      "vendor": "microsoft research",
+      "type": "language",
+      "release_date": "2024-06-06",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "chaoyi-wu/radfm",
+      "name": "RadFM",
+      "vendor": "chaoyi wu et al.",
+      "type": "language",
+      "release_date": "2025-08-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "wanglab/medsam-2",
+      "name": "MedSAM-2",
+      "vendor": "wang lab",
+      "type": "language",
+      "release_date": "2024-08-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "wanglab/medsam-3",
+      "name": "MedSAM-3",
+      "vendor": "wang lab",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "paige-ai/virchow",
+      "name": "Virchow",
+      "vendor": "paige ai + microsoft research",
+      "type": "language",
+      "release_date": "2024-07-28",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "paige-ai/virchow2",
+      "name": "Virchow2",
+      "vendor": "paige ai + microsoft research",
+      "type": "language",
+      "release_date": "2024-09-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "paige-ai/virchow2g",
+      "name": "Virchow2G",
+      "vendor": "paige ai + microsoft research",
+      "type": "language",
+      "release_date": "2024-09-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "paige-ai/prism",
+      "name": "PRISM",
+      "vendor": "paige ai",
+      "type": "language",
+      "release_date": "2024-08-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "paige-ai/prism2",
+      "name": "PRISM2",
+      "vendor": "paige ai",
+      "type": "language",
+      "release_date": "2025-07-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mahmoodlab/pathchat",
+      "name": "PathChat",
+      "vendor": "mahmood lab (bwh/harvard)",
+      "type": "language",
+      "release_date": "2024-06-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mahmoodlab/pathchat-2",
+      "name": "PathChat 2",
+      "vendor": "mahmood lab (bwh/harvard)",
+      "type": "language",
+      "release_date": "2024-10-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "freedomintelligence/huatuogpt-vision-7b",
+      "name": "HuatuoGPT-Vision-7B",
+      "vendor": "freedomintelligence (cuhk-shenzhen)",
+      "type": "language",
+      "release_date": "2024-06-27",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "freedomintelligence/huatuogpt-vision-34b",
+      "name": "HuatuoGPT-Vision-34B",
+      "vendor": "freedomintelligence",
+      "type": "language",
+      "release_date": "2024-06-27",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "freedomintelligence/huatuogpt-o1-8b",
+      "name": "HuatuoGPT-o1-8B",
+      "vendor": "freedomintelligence",
+      "type": "language",
+      "release_date": "2024-12-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "freedomintelligence/huatuogpt-o1-70b",
+      "name": "HuatuoGPT-o1-70B",
+      "vendor": "freedomintelligence",
+      "type": "language",
+      "release_date": "2024-12-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "freedomintelligence/huatuogpt-o1-72b",
+      "name": "HuatuoGPT-o1-72B",
+      "vendor": "freedomintelligence",
+      "type": "language",
+      "release_date": "2025-01-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "freedomintelligence/huatuogpt-3-32b",
+      "name": "HuatuoGPT-3-32B",
+      "vendor": "freedomintelligence",
+      "type": "language",
+      "release_date": "2026-03-21",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "freedomintelligence/huatuogpt-3-8b",
+      "name": "HuatuoGPT-3-8B",
+      "vendor": "freedomintelligence",
+      "type": "language",
+      "release_date": "2026-03-21",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "scutcyr/bianque-2",
+      "name": "BianQue-2",
+      "vendor": "scut (south china univ of tech)",
+      "type": "language",
+      "release_date": "2023-06-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba-cloud/lingshu-7b",
+      "name": "Lingshu-7B",
+      "vendor": "alibaba cloud damo academy",
+      "type": "language",
+      "release_date": "2025-06-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba-cloud/lingshu-32b",
+      "name": "Lingshu-32B",
+      "vendor": "alibaba cloud damo academy",
+      "type": "language",
+      "release_date": "2025-06-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openfold/openfold3",
+      "name": "OpenFold3",
+      "vendor": "openfold consortium",
+      "type": "language",
+      "release_date": "2025-10-28",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "isomorphic-labs/isodde",
+      "name": "IsoDDE",
+      "vendor": "isomorphic labs (alphabet)",
+      "type": "language",
+      "release_date": "2026-02-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "jwohlwend/boltz-2",
+      "name": "Boltz-2",
+      "vendor": "mit + recursion",
+      "type": "language",
+      "release_date": "2025-06-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "facebook/esmfold-v1",
+      "name": "ESMFold (ESM-2 3B)",
+      "vendor": "meta ai",
+      "type": "language",
+      "release_date": "2022-11-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "evolutionaryscale/esm3",
+      "name": "ESM3",
+      "vendor": "evolutionaryscale (meta spinout)",
+      "type": "language",
+      "release_date": "2024-06-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "recursion/phenom-beta",
+      "name": "Phenom-Beta",
+      "vendor": "recursion + nvidia bionemo",
+      "type": "language",
+      "release_date": "2024-01-17",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "recursion/phenom-1",
+      "name": "Phenom-1",
+      "vendor": "recursion",
+      "type": "language",
+      "release_date": "2024-08-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/bionemo-megamolbart",
+      "name": "BioNeMo MegaMolBART",
+      "vendor": "nvidia",
+      "type": "language",
+      "release_date": "2023-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-14b-rubrichub",
+      "name": "Qwen3 14B RubricHub",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/med-palm",
+      "name": "Med-PaLM",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2022-12-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "medqa_4op_best_of_5",
+      "name": "Medqa 4Op Best Of 5",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "medqa_4op_0shot",
+      "name": "Medqa 4Op 0Shot",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "medmcqa",
+      "name": "Medmcqa",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_med",
+      "name": "Mmlu Med",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "pubmedqa",
+      "name": "Pubmedqa",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "medxpertqa_text",
+      "name": "Medxpertqa Text",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "medqa_4op",
+      "name": "Medqa 4Op",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mimic_cxr_macrof1_top5",
+      "name": "Mimic Cxr Macrof1 Top5",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vqa_rad_tokenized_f1",
+      "name": "Vqa Rad Tokenized F1",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mimic_cxr_radgraph_f1_pretrained",
+      "name": "Mimic Cxr Radgraph F1 Pretrained",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mimic_cxr_radgraph_f1_cxr_tuned",
+      "name": "Mimic Cxr Radgraph F1 Cxr Tuned",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "healthbench",
+      "name": "Healthbench",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "medqa",
+      "name": "Medqa",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "amie_pc_critical_errors",
+      "name": "AMIE Primary-Care Critical-Errors (98 queries)",
+      "category": "Medical / Conversational Diagnosis",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "amie_physician_preference",
+      "name": "AMIE Physician Preference vs Existing Tools",
+      "category": "Medical / Human Eval",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "amie_vs_gpt54_preference",
+      "name": "AMIE Co-Clinician Head-to-Head vs GPT-5.4 (thinking+search)",
+      "category": "Medical / Human Eval",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "amie_consultation_140dims",
+      "name": "AMIE Consultation 140-Dimension Eval (dims ≥ PCP)",
+      "category": "Medical / OSCE",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "rxqa_mcq",
+      "name": "RxQA Multiple-Choice (drug interaction)",
+      "category": "Medical / Drug Safety",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "rxqa_open_ended",
+      "name": "RxQA Open-Ended (answer quality)",
+      "category": "Medical / Drug Safety",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "amie_feasibility_topk",
+      "name": "AMIE Real-World Feasibility Top-K Diagnostic Accuracy",
+      "category": "Medical / Real-World",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "pathology_qa_(vs_gpt_4_image_only)",
+      "name": "Pathology Qa (Vs Gpt 4 Image Only)",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "slake",
+      "name": "Slake",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "pathvqa",
+      "name": "Pathvqa",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vqa_rad",
+      "name": "Vqa Rad",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "pmc_vqa",
+      "name": "Pmc Vqa",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu_medical",
+      "name": "Mmmu Medical",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "medical_vqa_average",
+      "name": "Medical Vqa Average",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "meddg_proactivequestioning",
+      "name": "Meddg Proactivequestioning",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "omnimedvqa",
+      "name": "Omnimedvqa",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "medxpertqa",
+      "name": "Medxpertqa",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "casp16_affinity_(140_complexes)",
+      "name": "Casp16 Affinity (140 Complexes)",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "google/medgemma-27b-text",
+      "benchmark": "medqa_4op_best_of_5",
+      "score": 89.8,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": "test-time scaling"
+    },
+    {
+      "model": "google/medgemma-27b-text",
+      "benchmark": "medqa_4op_0shot",
+      "score": 87.7,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-27b-text",
+      "benchmark": "medmcqa",
+      "score": 74.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-27b-text",
+      "benchmark": "mmlu_med",
+      "score": 87.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-27b-text",
+      "benchmark": "pubmedqa",
+      "score": 76.8,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-27b-text",
+      "benchmark": "medxpertqa_text",
+      "score": 25.7,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-27b-multimodal",
+      "benchmark": "medqa_4op_best_of_5",
+      "score": 87.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-27b-multimodal",
+      "benchmark": "medqa_4op_0shot",
+      "score": 85.3,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-27b-multimodal",
+      "benchmark": "medmcqa",
+      "score": 70.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-27b-multimodal",
+      "benchmark": "mmlu_med",
+      "score": 86.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-27b-multimodal",
+      "benchmark": "pubmedqa",
+      "score": 77.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-27b-multimodal",
+      "benchmark": "medxpertqa_text",
+      "score": 23.7,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-27b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "medqa_4op",
+      "score": 64.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "medmcqa",
+      "score": 55.7,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "pubmedqa",
+      "score": 73.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mmlu_med",
+      "score": 70.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_macrof1_top5",
+      "score": 88.9,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "vqa_rad_tokenized_f1",
+      "score": 49.9,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_radgraph_f1_pretrained",
+      "score": 29.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_radgraph_f1_cxr_tuned",
+      "score": 30.3,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/medgemma-4b-it",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "healthbench",
+      "score": 16.0,
+      "unit": "score",
+      "_source": "HealthBench paper (HuggingFace papers index)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "healthbench",
+      "score": 32.0,
+      "unit": "score",
+      "_source": "HealthBench paper",
+      "_note": ""
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "healthbench",
+      "score": 60.0,
+      "unit": "score",
+      "_source": "HealthBench paper",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-14b-rubrichub",
+      "benchmark": "healthbench",
+      "score": 69.3,
+      "unit": "score",
+      "_source": "HealthBench paper (RubricHub variant)",
+      "_note": ""
+    },
+    {
+      "model": "google/med-palm-2",
+      "benchmark": "medqa",
+      "score": 86.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/papers/2305.09617",
+      "_note": ""
+    },
+    {
+      "model": "google/med-palm",
+      "benchmark": "medqa",
+      "score": 67.6,
+      "unit": "score",
+      "_source": "https://huggingface.co/papers/2212.13138",
+      "_note": ""
+    },
+    {
+      "model": "mahmoodlab/pathchat",
+      "benchmark": "pathology_qa_(vs_gpt_4_image_only)",
+      "score": 53.0,
+      "unit": "score",
+      "_source": "",
+      "_note": "relative gain"
+    },
+    {
+      "model": "freedomintelligence/huatuogpt-vision-7b",
+      "benchmark": "slake",
+      "score": 75.0,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "freedomintelligence/huatuogpt-vision-7b",
+      "benchmark": "pathvqa",
+      "score": 63.53,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "freedomintelligence/huatuogpt-vision-7b",
+      "benchmark": "vqa_rad",
+      "score": 63.6,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "freedomintelligence/huatuogpt-vision-7b",
+      "benchmark": "pmc_vqa",
+      "score": 53.39,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "freedomintelligence/huatuogpt-vision-7b",
+      "benchmark": "mmmu_medical",
+      "score": 50.59,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "freedomintelligence/huatuogpt-vision-7b",
+      "benchmark": "medical_vqa_average",
+      "score": 54.69,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "scutcyr/bianque-2",
+      "benchmark": "meddg_proactivequestioning",
+      "score": 0.81,
+      "unit": "score",
+      "_source": "",
+      "_note": "PQA"
+    },
+    {
+      "model": "alibaba-cloud/lingshu-7b",
+      "benchmark": "slake",
+      "score": 83.1,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "alibaba-cloud/lingshu-7b",
+      "benchmark": "pathvqa",
+      "score": 61.9,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "alibaba-cloud/lingshu-7b",
+      "benchmark": "pmc_vqa",
+      "score": 56.3,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "alibaba-cloud/lingshu-7b",
+      "benchmark": "omnimedvqa",
+      "score": 82.9,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "alibaba-cloud/lingshu-7b",
+      "benchmark": "medxpertqa",
+      "score": 26.7,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "alibaba-cloud/lingshu-7b",
+      "benchmark": "medical_vqa_average",
+      "score": 61.8,
+      "unit": "score",
+      "_source": "",
+      "_note": "accuracy"
+    },
+    {
+      "model": "jwohlwend/boltz-2",
+      "benchmark": "casp16_affinity_(140_complexes)",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "",
+      "_note": "rank"
+    }
+  ]
+}
