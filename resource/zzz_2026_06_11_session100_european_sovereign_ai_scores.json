@@ -1,0 +1,2762 @@
+{
+  "_meta": {
+    "session": "Session 100 — European sovereign AI sweep",
+    "date": "2026-06-11",
+    "sources": [
+      "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+      "Cohere (Command A Plus, Aya, North Mini Code, Cohere Transcribe) + Aleph Alpha (Pharia, T-Free HAT) + LumiOpen (Poro 2, Viking)",
+      "EU specialty (EuroLLM, ALIA, Bielik, Velvet, Minerva, SmolLM3, Idefics3, PleIAs, CroissantLLM, h2o)"
+    ],
+    "notes": "Mistral Large 3 = largest Apache-2.0 MoE (675B/41B). Medium 3.5 SWE-V 77.6% European agentic coder SOTA. Cohere Command A Plus 05-2026 (218B/25B MoE Apache 48 langs). Llama-Poro-2-8B Finnish AlpacaEval2 14x lift over Llama 3.1 8B. ALIA-40B largest open Iberian. EuroLLM-22B FLORES-COMET 88.9. SmolLM3-3B IFEval 76.7."
+  },
+  "models": [
+    {
+      "id": "mistral/mistral-large-3-2512",
+      "name": "Mistral Large 3 (2512)",
+      "vendor": "mistral",
+      "type": "language",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "mistral/mistral-medium-3-5-128b",
+      "name": "Mistral Medium 3.5",
+      "vendor": "mistral",
+      "type": "language",
+      "release_date": "2026-05-22",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "mistral/mistral-small-4-119b-2603",
+      "name": "Mistral Small 4 (119B-A6B)",
+      "vendor": "mistral",
+      "type": "language",
+      "release_date": "2026-03-16",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "mistral/voxtral-small-24b-2507",
+      "name": "Voxtral Small (24B)",
+      "vendor": "mistral",
+      "type": "language",
+      "release_date": "2025-07",
+      "modalities": [
+        "audio",
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/voxtral-mini-3b-2507",
+      "name": "Voxtral Mini (3B)",
+      "vendor": "mistral",
+      "type": "language",
+      "release_date": "2025-07",
+      "modalities": [
+        "audio",
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/voxtral-4b-tts-2603",
+      "name": "Voxtral TTS (4B)",
+      "vendor": "mistral",
+      "type": "language",
+      "release_date": "2026-03-23",
+      "modalities": [
+        "text-to-speech"
+      ]
+    },
+    {
+      "id": "mistral/ministral-3-3b-base-2512",
+      "name": "Ministral 3 (3B + vision)",
+      "vendor": "mistral",
+      "type": "language",
+      "release_date": "2026-01-13",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "mistral/devstral-small-2507",
+      "name": "Devstral Small 1.1",
+      "vendor": "mistral",
+      "type": "language",
+      "release_date": "2025-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/magistral-medium-2510",
+      "name": "Magistral Medium (reasoning)",
+      "vendor": "mistral",
+      "type": "language",
+      "release_date": "2025-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/command-a-plus-05-2026",
+      "name": "command-a-plus-05-2026",
+      "vendor": "cohere",
+      "type": "language",
+      "release_date": "2026-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/command-a-03-2025",
+      "name": "command-a-03-2025",
+      "vendor": "cohere",
+      "type": "language",
+      "release_date": "2025-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/command-r-plus-08-2024",
+      "name": "command-r-plus-08-2024",
+      "vendor": "cohere",
+      "type": "language",
+      "release_date": "2024-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/aya-expanse-32b",
+      "name": "aya-expanse-32b",
+      "vendor": "cohere labs",
+      "type": "language",
+      "release_date": "2024-12-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/aya-vision-32b",
+      "name": "aya-vision-32b",
+      "vendor": "cohere labs",
+      "type": "language",
+      "release_date": "2024-12-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/aya-23-35b",
+      "name": "aya-23-35b",
+      "vendor": "cohere labs",
+      "type": "language",
+      "release_date": "2024-05-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/tiny-aya-base-3b",
+      "name": "tiny-aya-base-3b",
+      "vendor": "cohere labs",
+      "type": "language",
+      "release_date": "2026-03-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/north-mini-code-1.0",
+      "name": "north-mini-code-1.0",
+      "vendor": "cohere",
+      "type": "language",
+      "release_date": "2026-06",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/cohere-transcribe-03-2026",
+      "name": "cohere-transcribe-03-2026",
+      "vendor": "cohere labs",
+      "type": "language",
+      "release_date": "2026-03-26",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "name": "tfree-hat-pretrained-7b-base",
+      "vendor": "aleph alpha",
+      "type": "language",
+      "release_date": "2025-01-17",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "aleph-alpha/llama-3.1-70b-tfree-hat-sft",
+      "name": "llama-3.1-70b-tfree-hat-sft",
+      "vendor": "aleph alpha",
+      "type": "language",
+      "release_date": "2025-09-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "aleph-alpha/llama-3.1-8b-tfree-hat-dpo",
+      "name": "llama-3.1-8b-tfree-hat-dpo",
+      "vendor": "aleph alpha",
+      "type": "language",
+      "release_date": "2025-10-22",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "aleph-alpha/pharia-1-llm-7b-control",
+      "name": "pharia-1-llm-7b-control",
+      "vendor": "aleph alpha",
+      "type": "language",
+      "release_date": "2024-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lumi-open/llama-poro-2-70b-instruct",
+      "name": "llama-poro-2-70b-instruct",
+      "vendor": "lumiopen/silo ai (amd)",
+      "type": "language",
+      "release_date": "2025-03-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lumi-open/llama-poro-2-8b-instruct",
+      "name": "llama-poro-2-8b-instruct",
+      "vendor": "lumiopen/silo ai (amd)",
+      "type": "language",
+      "release_date": "2025",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lumi-open/viking-33b",
+      "name": "viking-33b",
+      "vendor": "lumiopen/silo ai",
+      "type": "language",
+      "release_date": "2025",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lumi-open/poro-34b",
+      "name": "poro-34b",
+      "vendor": "lumiopen/silo ai",
+      "type": "language",
+      "release_date": "2024-04-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "utter-project/EuroLLM-22B-Instruct-2512",
+      "name": "EuroLLM-22B-Instruct (2512)",
+      "vendor": "utter project (eu consortium, unbabel/ist lisbon-led)",
+      "type": "language",
+      "release_date": "2026-02-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "utter-project/EuroLLM-22B-2512",
+      "name": "EuroLLM-22B (base, 2512)",
+      "vendor": "utter project",
+      "type": "language",
+      "release_date": "2026-02-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "utter-project/EuroLLM-9B-Instruct-2512",
+      "name": "EuroLLM-9B-Instruct (2512)",
+      "vendor": "utter project",
+      "type": "language",
+      "release_date": "2026-02-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "utter-project/EuroMoE-2.6B-A0.6B-Instruct-2512",
+      "name": "EuroMoE-2.6B-A0.6B-Instruct",
+      "vendor": "utter project",
+      "type": "language",
+      "release_date": "2025-02-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "utter-project/TowerVision-9B",
+      "name": "TowerVision-9B",
+      "vendor": "utter project",
+      "type": "language",
+      "release_date": "2025-11-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "speakleash/Bielik-11B-v3.0-Instruct",
+      "name": "Bielik-11B-v3.0-Instruct",
+      "vendor": "speakleash",
+      "type": "language",
+      "release_date": "2025-07-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "Almawave/Velvet-14B",
+      "name": "Velvet-14B",
+      "vendor": "almawave",
+      "type": "language",
+      "release_date": "2025-01-31",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "Almawave/Velvet-2B",
+      "name": "Velvet-2B",
+      "vendor": "almawave",
+      "type": "language",
+      "release_date": "2025-02-20",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "sapienzanlp/Minerva-7B-instruct-v1.0",
+      "name": "Minerva-7B-instruct-v1.0",
+      "vendor": "sapienza nlp",
+      "type": "language",
+      "release_date": "2024-12-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "sapienzanlp/Minerva-7B-base-v1.0",
+      "name": "Minerva-7B-base-v1.0",
+      "vendor": "sapienza nlp",
+      "type": "language",
+      "release_date": "2024-12-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "BSC-LT/ALIA-40b-instruct-2601",
+      "name": "ALIA-40b-instruct (2601)",
+      "vendor": "bsc-lt (barcelona supercomputing center)",
+      "type": "language",
+      "release_date": "2025-02-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "LumiOpen/Llama-Poro-2-70B-Instruct",
+      "name": "Llama-Poro-2-70B-Instruct",
+      "vendor": "lumiopen (silo ai / turkunlp / university of helsinki)",
+      "type": "language",
+      "release_date": "2025-03-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "LumiOpen/Llama-Poro-2-8B-Instruct",
+      "name": "Llama-Poro-2-8B-Instruct",
+      "vendor": "lumiopen",
+      "type": "language",
+      "release_date": "2025-03-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "HuggingFaceTB/SmolLM3-3B",
+      "name": "SmolLM3-3B",
+      "vendor": "hugging face (french-led)",
+      "type": "language",
+      "release_date": "2025-09-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "name": "SmolLM2-1.7B-Instruct",
+      "vendor": "hugging face",
+      "type": "language",
+      "release_date": "2025-09-22",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "PleIAs/Baguettotron",
+      "name": "Baguettotron",
+      "vendor": "pleias (public library ai)",
+      "type": "language",
+      "release_date": "2026-04-27",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "PleIAs/Monad",
+      "name": "Monad",
+      "vendor": "pleias",
+      "type": "language",
+      "release_date": "2025-12-14",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "PleIAs/Pleias-RAG-1B",
+      "name": "Pleias-RAG-1B",
+      "vendor": "pleias",
+      "type": "language",
+      "release_date": "2025-04-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "PleIAs/Pleias-RAG-350M",
+      "name": "Pleias-RAG-350M",
+      "vendor": "pleias",
+      "type": "language",
+      "release_date": "2025-05-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "PleIAs/OCRerrcr",
+      "name": "OCRerrcr",
+      "vendor": "pleias",
+      "type": "language",
+      "release_date": "2025-06-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "sapienzanlp/Minerva-3B-base-v1.0",
+      "name": "Minerva-3B-base-v1.0",
+      "vendor": "sapienza nlp",
+      "type": "language",
+      "release_date": "2024-12-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "croissantllm/CroissantLLMBase",
+      "name": "CroissantLLMBase",
+      "vendor": "croissantllm (centralesupélec/illuin/inria)",
+      "type": "language",
+      "release_date": "2024-08-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "HuggingFaceM4/Idefics3-8B-Llama3",
+      "name": "Idefics3-8B-Llama3",
+      "vendor": "hugging face m4",
+      "type": "language",
+      "release_date": "2024-12-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "h2oai/h2o-danube3.1-4b-chat",
+      "name": "H2O-Danube3.1-4B-Chat",
+      "vendor": "h2o.ai",
+      "type": "language",
+      "release_date": "2024-11-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "h2oai/h2ovl-mississippi-2b",
+      "name": "H2OVL-Mississippi-2B",
+      "vendor": "h2o.ai",
+      "type": "language",
+      "release_date": "2025-09-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "BSC-LT/salamandra-TAV-7b",
+      "name": "Salamandra-TAV-7B",
+      "vendor": "bsc-lt",
+      "type": "language",
+      "release_date": "2026-06-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "projecte-aina/FLOR-6.3B",
+      "name": "FLOR-6.3B",
+      "vendor": "projecte aina / bsc",
+      "type": "language",
+      "release_date": "2025-02-27",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "aaii",
+      "name": "Aaii",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_pro",
+      "name": "Mmlu Pro",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_verified",
+      "name": "Swe Bench Verified",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tau2_bench_telecom",
+      "name": "Tau2 Bench Telecom",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gpqa_diamond",
+      "name": "Gpqa Diamond",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "librispeech_clean_wer_lower_better",
+      "name": "Librispeech Clean Wer Lower Better",
+      "category": "sovereign-ai",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "librispeech_other_wer_lower_better",
+      "name": "Librispeech Other Wer Lower Better",
+      "category": "sovereign-ai",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gigaspeech_wer_lower_better",
+      "name": "Gigaspeech Wer Lower Better",
+      "category": "sovereign-ai",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "spgispeech_wer_lower_better",
+      "name": "Spgispeech Wer Lower Better",
+      "category": "sovereign-ai",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "earnings22_wer_lower_better",
+      "name": "Earnings22 Wer Lower Better",
+      "category": "sovereign-ai",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ami_wer_lower_better",
+      "name": "Ami Wer Lower Better",
+      "category": "sovereign-ai",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "asr_mean_wer_lower_better",
+      "name": "Asr Mean Wer Lower Better",
+      "category": "sovereign-ai",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "rtfx",
+      "name": "Rtfx",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tts_rtf_c1_lower_better",
+      "name": "Tts Rtf C1 Lower Better",
+      "category": "sovereign-ai",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tts_latency_c1_ms_lower_better",
+      "name": "Tts Latency C1 Ms Lower Better",
+      "category": "sovereign-ai",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tts_throughput_c32_char_s",
+      "name": "Tts Throughput C32 Char S",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_5shot",
+      "name": "Mmlu 5Shot",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "multilingual_mmlu",
+      "name": "Multilingual Mmlu",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math_cot_2shot",
+      "name": "Math Cot 2Shot",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "agieval_5shot",
+      "name": "Agieval 5Shot",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "triviaqa_5shot",
+      "name": "Triviaqa 5Shot",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arena_hard",
+      "name": "Arena Hard",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "wildbench",
+      "name": "Wildbench",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math_maj1",
+      "name": "Math Maj1",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2025",
+      "name": "Aime 2025",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2024",
+      "name": "Aime 2024",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench",
+      "name": "Livecodebench",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_pro",
+      "name": "Swe Bench Pro",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "terminal_bench_v2",
+      "name": "Terminal Bench V2",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "openasr_avg_wer",
+      "name": "Openasr Avg Wer",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "librispeech_clean_wer",
+      "name": "Librispeech Clean Wer",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "librispeech_other_wer",
+      "name": "Librispeech Other Wer",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ami_wer",
+      "name": "Ami Wer",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "earnings22_wer",
+      "name": "Earnings22 Wer",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gigaspeech_wer",
+      "name": "Gigaspeech Wer",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "spgispeech_wer",
+      "name": "Spgispeech Wer",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tedlium_wer",
+      "name": "Tedlium Wer",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "voxpopuli_wer",
+      "name": "Voxpopuli Wer",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu",
+      "name": "Mmlu",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc_challenge",
+      "name": "Arc Challenge",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "winogrande",
+      "name": "Winogrande",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "truthfulqa",
+      "name": "Truthfulqa",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gsm8k",
+      "name": "Gsm8K",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "triviaqa",
+      "name": "Triviaqa",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "winogender",
+      "name": "Winogender",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_de",
+      "name": "Mmlu De",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "wmt16_de_bleu",
+      "name": "Wmt16 De Bleu",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "wmt20_de_bleu",
+      "name": "Wmt20 De Bleu",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "longbench_v2_en",
+      "name": "Longbench V2 En",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "longbench_v2_de",
+      "name": "Longbench V2 De",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hellaswag",
+      "name": "Hellaswag",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "alpacaeval2_de_vs_mistral7b",
+      "name": "Alpacaeval2 De Vs Mistral7B",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "alpacaeval2_fr_vs_mistral7b",
+      "name": "Alpacaeval2 Fr Vs Mistral7B",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "alpacaeval2_es_vs_mistral7b",
+      "name": "Alpacaeval2 Es Vs Mistral7B",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "alpacaeval2_en_vs_mistral7b",
+      "name": "Alpacaeval2 En Vs Mistral7B",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ifeval_fi",
+      "name": "Ifeval Fi",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ifeval_en",
+      "name": "Ifeval En",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mtbench_fi",
+      "name": "Mtbench Fi",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mtbench_en",
+      "name": "Mtbench En",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "alpacaeval2_fi",
+      "name": "Alpacaeval2 Fi",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "alpacaeval2_en",
+      "name": "Alpacaeval2 En",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ifeval",
+      "name": "Ifeval",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bbh",
+      "name": "Bbh",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math_500",
+      "name": "Math 500",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval",
+      "name": "Humaneval",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmlu_(eu_langs_avg)",
+      "name": "Mmmlu (Eu Langs Avg)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_prox_(eu_langs_avg)",
+      "name": "Mmlu Prox (Eu Langs Avg)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mgsm_(eu_langs_avg)",
+      "name": "Mgsm (Eu Langs Avg)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "flores_(eu_langs,_comet_22)",
+      "name": "Flores (Eu Langs, Comet 22)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "wmt24++_(eu_langs)",
+      "name": "Wmt24++ (Eu Langs)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hellaswag_(eu_langs)",
+      "name": "Hellaswag (Eu Langs)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc_challenge_(eu_langs)",
+      "name": "Arc Challenge (Eu Langs)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_(5_shot,_italian)",
+      "name": "Mmlu (5 Shot, Italian)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hellaswag_(0_shot,_italian)",
+      "name": "Hellaswag (0 Shot, Italian)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "winogrande_(ita_bench)",
+      "name": "Winogrande (Ita Bench)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "piqa_(ita_bench)",
+      "name": "Piqa (Ita Bench)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "sciq_(ita_bench)",
+      "name": "Sciq (Ita Bench)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc_challenge_(0_shot,_italian)",
+      "name": "Arc Challenge (0 Shot, Italian)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_(mmmlu_es,_spanish)",
+      "name": "Mmlu (Mmmlu Es, Spanish)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_(english)",
+      "name": "Mmlu (English)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc_challenge_(english)",
+      "name": "Arc Challenge (English)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hellaswag_(english)",
+      "name": "Hellaswag (English)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "flores_spanish_(bleu)",
+      "name": "Flores Spanish (Bleu)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "flores_catalan_(bleu)",
+      "name": "Flores Catalan (Bleu)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "flores_basque_(bleu)",
+      "name": "Flores Basque (Bleu)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "flores_galician_(bleu)",
+      "name": "Flores Galician (Bleu)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "copa_spanish",
+      "name": "Copa Spanish",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "copa_catalan",
+      "name": "Copa Catalan",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "xnli_spanish",
+      "name": "Xnli Spanish",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "xnli_basque",
+      "name": "Xnli Basque",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "xcopa_basque",
+      "name": "Xcopa Basque",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "phrases_ca_va_(bleu)",
+      "name": "Phrases Ca Va (Bleu)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ifeval_(finnish)",
+      "name": "Ifeval (Finnish)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mtbench_(finnish)",
+      "name": "Mtbench (Finnish)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "alpacaeval_2_(finnish)",
+      "name": "Alpacaeval 2 (Finnish)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ifeval_(english)",
+      "name": "Ifeval (English)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mtbench_(english)",
+      "name": "Mtbench (English)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "alpacaeval_2_(english)",
+      "name": "Alpacaeval 2 (English)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_cf_(avg)",
+      "name": "Mmlu Cf (Avg)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_pro_cf",
+      "name": "Mmlu Pro Cf",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_pro_mcf",
+      "name": "Mmlu Pro Mcf",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc_cf_(avg)",
+      "name": "Arc Cf (Avg)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gsm8k_(5_shot)",
+      "name": "Gsm8K (5 Shot)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gsm_plus",
+      "name": "Gsm Plus",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2025_(extended_thinking)",
+      "name": "Aime 2025 (Extended Thinking)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gsm_plus_(extended_thinking)",
+      "name": "Gsm Plus (Extended Thinking)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "belebele_(french)",
+      "name": "Belebele (French)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "global_mmlu_cf_(french)",
+      "name": "Global Mmlu Cf (French)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mlmm_hellaswag_(french)",
+      "name": "Mlmm Hellaswag (French)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "belebele_(spanish)",
+      "name": "Belebele (Spanish)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "global_mmlu_cf_(spanish)",
+      "name": "Global Mmlu Cf (Spanish)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mlmm_hellaswag_(spanish)",
+      "name": "Mlmm Hellaswag (Spanish)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "mistral/mistral-large-3-2512",
+      "benchmark": "aaii",
+      "score": 23.0,
+      "unit": "score",
+      "_source": "artificialanalysis.ai/models/mistral-large-3",
+      "_note": ""
+    },
+    {
+      "model": "mistral/mistral-large-3-2512",
+      "benchmark": "mmlu_pro",
+      "score": 73.11,
+      "unit": "score",
+      "_source": "LayerLens/Atlas independent eval",
+      "_note": "independent eval"
+    },
+    {
+      "model": "mistral/mistral-medium-3-5-128b",
+      "benchmark": "aaii",
+      "score": 39.0,
+      "unit": "score",
+      "_source": "artificialanalysis.ai",
+      "_note": ""
+    },
+    {
+      "model": "mistral/mistral-medium-3-5-128b",
+      "benchmark": "swe_bench_verified",
+      "score": 77.6,
+      "unit": "score",
+      "_source": "mistralai/Mistral-Medium-3.5-128B model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/mistral-medium-3-5-128b",
+      "benchmark": "tau2_bench_telecom",
+      "score": 91.4,
+      "unit": "score",
+      "_source": "mistralai/Mistral-Medium-3.5-128B model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/mistral-small-4-119b-2603",
+      "benchmark": "aaii",
+      "score": 28.0,
+      "unit": "score",
+      "_source": "artificialanalysis.ai/models/mistral-small-4",
+      "_note": ""
+    },
+    {
+      "model": "mistral/mistral-small-4-119b-2603",
+      "benchmark": "gpqa_diamond",
+      "score": 71.2,
+      "unit": "score",
+      "_source": "mistralai/Mistral-Small-4-119B-2603 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/mistral-small-4-119b-2603",
+      "benchmark": "mmlu_pro",
+      "score": 78.0,
+      "unit": "score",
+      "_source": "Mistral Small 4 announcement (mistral.ai/news/mistral-small-4)",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b-2507",
+      "benchmark": "librispeech_clean_wer_lower_better",
+      "score": 1.59,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Small-24B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b-2507",
+      "benchmark": "librispeech_other_wer_lower_better",
+      "score": 3.26,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Small-24B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b-2507",
+      "benchmark": "gigaspeech_wer_lower_better",
+      "score": 9.81,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Small-24B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b-2507",
+      "benchmark": "spgispeech_wer_lower_better",
+      "score": 2.02,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Small-24B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b-2507",
+      "benchmark": "earnings22_wer_lower_better",
+      "score": 10.5,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Small-24B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b-2507",
+      "benchmark": "ami_wer_lower_better",
+      "score": 15.27,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Small-24B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b-2507",
+      "benchmark": "asr_mean_wer_lower_better",
+      "score": 6.62,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Small-24B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b-2507",
+      "benchmark": "rtfx",
+      "score": 54.09,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Small-24B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-mini-3b-2507",
+      "benchmark": "librispeech_clean_wer_lower_better",
+      "score": 1.88,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Mini-3B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-mini-3b-2507",
+      "benchmark": "librispeech_other_wer_lower_better",
+      "score": 4.1,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Mini-3B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-mini-3b-2507",
+      "benchmark": "gigaspeech_wer_lower_better",
+      "score": 10.24,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Mini-3B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-mini-3b-2507",
+      "benchmark": "spgispeech_wer_lower_better",
+      "score": 2.37,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Mini-3B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-mini-3b-2507",
+      "benchmark": "earnings22_wer_lower_better",
+      "score": 10.69,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Mini-3B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-mini-3b-2507",
+      "benchmark": "ami_wer_lower_better",
+      "score": 16.3,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Mini-3B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-mini-3b-2507",
+      "benchmark": "asr_mean_wer_lower_better",
+      "score": 7.05,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-Mini-3B-2507 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-4b-tts-2603",
+      "benchmark": "tts_rtf_c1_lower_better",
+      "score": 0.103,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-4B-TTS-2603 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-4b-tts-2603",
+      "benchmark": "tts_latency_c1_ms_lower_better",
+      "score": 70.0,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-4B-TTS-2603 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-4b-tts-2603",
+      "benchmark": "tts_throughput_c32_char_s",
+      "score": 1430.78,
+      "unit": "score",
+      "_source": "mistralai/Voxtral-4B-TTS-2603 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "mmlu_5shot",
+      "score": 70.7,
+      "unit": "score",
+      "_source": "Ministral-3 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "multilingual_mmlu",
+      "score": 65.2,
+      "unit": "score",
+      "_source": "Ministral-3 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "math_cot_2shot",
+      "score": 60.1,
+      "unit": "score",
+      "_source": "Ministral-3 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "agieval_5shot",
+      "score": 51.1,
+      "unit": "score",
+      "_source": "Ministral-3 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "triviaqa_5shot",
+      "score": 59.2,
+      "unit": "score",
+      "_source": "Ministral-3 model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "arena_hard",
+      "score": 30.5,
+      "unit": "score",
+      "_source": "Ministral-3 instruct model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "wildbench",
+      "score": 56.8,
+      "unit": "score",
+      "_source": "Ministral-3 instruct model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "math_maj1",
+      "score": 83.0,
+      "unit": "score",
+      "_source": "Ministral-3 instruct model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "aime_2025",
+      "score": 72.1,
+      "unit": "score",
+      "_source": "Ministral-3 reasoning model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "aime_2024",
+      "score": 77.5,
+      "unit": "score",
+      "_source": "Ministral-3 reasoning model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "gpqa_diamond",
+      "score": 53.4,
+      "unit": "score",
+      "_source": "Ministral-3 reasoning model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-3-3b-base-2512",
+      "benchmark": "livecodebench",
+      "score": 54.8,
+      "unit": "score",
+      "_source": "Ministral-3 reasoning model card",
+      "_note": ""
+    },
+    {
+      "model": "mistral/devstral-small-2507",
+      "benchmark": "swe_bench_verified",
+      "score": 53.6,
+      "unit": "score",
+      "_source": "mistralai/Devstral-Small-2507 model card (OpenHands scaffold)",
+      "_note": ""
+    },
+    {
+      "model": "mistral/magistral-medium-2510",
+      "benchmark": "gpqa_diamond",
+      "score": 72.9,
+      "unit": "score",
+      "_source": "Magistral paper arxiv 2506.10910 (pre-RL SFT)",
+      "_note": "pre-RL; post-RL drops to 71.0"
+    },
+    {
+      "model": "mistral/magistral-medium-2510",
+      "benchmark": "gpqa_diamond",
+      "score": 71.0,
+      "unit": "score",
+      "_source": "Magistral paper arxiv 2506.10910 (post-RL)",
+      "_note": ""
+    },
+    {
+      "model": "cohere/command-a-03-2025",
+      "benchmark": "gpqa_diamond",
+      "score": 50.51,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/command-r-plus-08-2024",
+      "benchmark": "gpqa_diamond",
+      "score": 34.34,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/aya-expanse-32b",
+      "benchmark": "mmlu_pro",
+      "score": 45.41,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/north-mini-code-1.0",
+      "benchmark": "swe_bench_verified",
+      "score": 67.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/north-mini-code-1.0",
+      "benchmark": "swe_bench_pro",
+      "score": 40.2,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/north-mini-code-1.0",
+      "benchmark": "terminal_bench_v2",
+      "score": 36.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "openasr_avg_wer",
+      "score": 5.42,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "librispeech_clean_wer",
+      "score": 1.25,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "librispeech_other_wer",
+      "score": 2.37,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "ami_wer",
+      "score": 8.15,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "earnings22_wer",
+      "score": 10.84,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "gigaspeech_wer",
+      "score": 9.33,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "spgispeech_wer",
+      "score": 3.08,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "tedlium_wer",
+      "score": 2.49,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "voxpopuli_wer",
+      "score": 5.87,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "mmlu",
+      "score": 0.664,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "mmlu_pro",
+      "score": 0.386,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "arc_challenge",
+      "score": 0.587,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "winogrande",
+      "score": 0.754,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "truthfulqa",
+      "score": 0.306,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "gsm8k",
+      "score": 0.528,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "triviaqa",
+      "score": 0.658,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "winogender",
+      "score": 0.671,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "mmlu_de",
+      "score": 0.618,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "wmt16_de_bleu",
+      "score": 34.405,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "wmt20_de_bleu",
+      "score": 33.24,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "longbench_v2_en",
+      "score": 0.336,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+      "benchmark": "longbench_v2_de",
+      "score": 0.233,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/pharia-1-llm-7b-control",
+      "benchmark": "mmlu",
+      "score": 0.484,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/pharia-1-llm-7b-control",
+      "benchmark": "mmlu_de",
+      "score": 0.428,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/pharia-1-llm-7b-control",
+      "benchmark": "arc_challenge",
+      "score": 0.546,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/pharia-1-llm-7b-control",
+      "benchmark": "hellaswag",
+      "score": 0.646,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/pharia-1-llm-7b-control",
+      "benchmark": "gsm8k",
+      "score": 0.014,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/pharia-1-llm-7b-control",
+      "benchmark": "alpacaeval2_de_vs_mistral7b",
+      "score": 55.52,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/pharia-1-llm-7b-control",
+      "benchmark": "alpacaeval2_fr_vs_mistral7b",
+      "score": 52.43,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/pharia-1-llm-7b-control",
+      "benchmark": "alpacaeval2_es_vs_mistral7b",
+      "score": 51.96,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aleph-alpha/pharia-1-llm-7b-control",
+      "benchmark": "alpacaeval2_en_vs_mistral7b",
+      "score": 26.92,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-70b-instruct",
+      "benchmark": "ifeval_fi",
+      "score": 70.79,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-70b-instruct",
+      "benchmark": "ifeval_en",
+      "score": 90.38,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-70b-instruct",
+      "benchmark": "mtbench_fi",
+      "score": 7.77,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-70b-instruct",
+      "benchmark": "mtbench_en",
+      "score": 8.41,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-70b-instruct",
+      "benchmark": "alpacaeval2_fi",
+      "score": 41.96,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-70b-instruct",
+      "benchmark": "alpacaeval2_en",
+      "score": 49.77,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-8b-instruct",
+      "benchmark": "ifeval_fi",
+      "score": 66.54,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-8b-instruct",
+      "benchmark": "ifeval_en",
+      "score": 79.29,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-8b-instruct",
+      "benchmark": "mtbench_fi",
+      "score": 6.75,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-8b-instruct",
+      "benchmark": "mtbench_en",
+      "score": 7.33,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-8b-instruct",
+      "benchmark": "alpacaeval2_fi",
+      "score": 28.89,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "lumi-open/llama-poro-2-8b-instruct",
+      "benchmark": "alpacaeval2_en",
+      "score": 35.3,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "ifeval",
+      "score": 67.2,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "hellaswag",
+      "score": 69.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "mmlu",
+      "score": 69.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "mmlu_pro",
+      "score": 50.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "bbh",
+      "score": 55.3,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "arc_challenge",
+      "score": 89.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "gpqa_diamond",
+      "score": 26.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "gsm8k",
+      "score": 85.5,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "math_500",
+      "score": 54.5,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "humaneval",
+      "score": 53.9,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "mmmlu_(eu_langs_avg)",
+      "score": 65.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "mmlu_prox_(eu_langs_avg)",
+      "score": 46.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "mgsm_(eu_langs_avg)",
+      "score": 77.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "flores_(eu_langs,_comet_22)",
+      "score": 88.9,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "wmt24++_(eu_langs)",
+      "score": 83.9,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "hellaswag_(eu_langs)",
+      "score": 62.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "utter-project/EuroLLM-22B-Instruct-2512",
+      "benchmark": "arc_challenge_(eu_langs)",
+      "score": 84.1,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "Almawave/Velvet-14B",
+      "benchmark": "mmlu_(5_shot,_italian)",
+      "score": 58.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "Almawave/Velvet-14B",
+      "benchmark": "hellaswag_(0_shot,_italian)",
+      "score": 72.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "Almawave/Velvet-14B",
+      "benchmark": "winogrande_(ita_bench)",
+      "score": 73.2,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "Almawave/Velvet-14B",
+      "benchmark": "piqa_(ita_bench)",
+      "score": 71.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "Almawave/Velvet-14B",
+      "benchmark": "sciq_(ita_bench)",
+      "score": 91.9,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "Almawave/Velvet-14B",
+      "benchmark": "arc_challenge_(0_shot,_italian)",
+      "score": 55.2,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "mmlu_(mmmlu_es,_spanish)",
+      "score": 41.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "mmlu_(english)",
+      "score": 45.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "arc_challenge_(english)",
+      "score": 40.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "hellaswag_(english)",
+      "score": 54.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "flores_spanish_(bleu)",
+      "score": 25.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "flores_catalan_(bleu)",
+      "score": 31.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "flores_basque_(bleu)",
+      "score": 19.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "flores_galician_(bleu)",
+      "score": 29.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "copa_spanish",
+      "score": 75.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "copa_catalan",
+      "score": 74.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "xnli_spanish",
+      "score": 28.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "xnli_basque",
+      "score": 30.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "xcopa_basque",
+      "score": 51.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "BSC-LT/ALIA-40b-instruct-2601",
+      "benchmark": "phrases_ca_va_(bleu)",
+      "score": 75.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "LumiOpen/Llama-Poro-2-70B-Instruct",
+      "benchmark": "ifeval_(finnish)",
+      "score": 70.79,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "LumiOpen/Llama-Poro-2-70B-Instruct",
+      "benchmark": "mtbench_(finnish)",
+      "score": 7.77,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "LumiOpen/Llama-Poro-2-70B-Instruct",
+      "benchmark": "alpacaeval_2_(finnish)",
+      "score": 41.96,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "LumiOpen/Llama-Poro-2-70B-Instruct",
+      "benchmark": "ifeval_(english)",
+      "score": 90.38,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "LumiOpen/Llama-Poro-2-70B-Instruct",
+      "benchmark": "mtbench_(english)",
+      "score": 8.41,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "LumiOpen/Llama-Poro-2-70B-Instruct",
+      "benchmark": "alpacaeval_2_(english)",
+      "score": 49.77,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "mmlu_cf_(avg)",
+      "score": 44.13,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "mmlu_pro_cf",
+      "score": 19.61,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "mmlu_pro_mcf",
+      "score": 32.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "hellaswag",
+      "score": 76.15,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "arc_cf_(avg)",
+      "score": 65.61,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "gsm8k_(5_shot)",
+      "score": 67.63,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "ifeval",
+      "score": 76.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "aime_2025",
+      "score": 9.3,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "gsm_plus",
+      "score": 72.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "aime_2025_(extended_thinking)",
+      "score": 36.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "gsm_plus_(extended_thinking)",
+      "score": 83.4,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "belebele_(french)",
+      "score": 51.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "global_mmlu_cf_(french)",
+      "score": 38.37,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "mlmm_hellaswag_(french)",
+      "score": 63.94,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "belebele_(spanish)",
+      "score": 47.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "global_mmlu_cf_(spanish)",
+      "score": 38.51,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM3-3B",
+      "benchmark": "mlmm_hellaswag_(spanish)",
+      "score": 65.85,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    }
+  ]
+}
