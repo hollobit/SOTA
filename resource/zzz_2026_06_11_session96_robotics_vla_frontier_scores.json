@@ -1,0 +1,2204 @@
+{
+  "_meta": {
+    "session": "Session 96 — Robotics/Embodied AI frontier deep dive",
+    "date": "2026-06-11",
+    "sources": [
+      "π/Helix family (Physical Intelligence + Figure AI)",
+      "GR00T N1-N1.7 + RT-X + ALOHA + Gemini Robotics",
+      "OpenVLA + Octo + RDT + Qwen-VLA + LingBot + RoboBrain"
+    ],
+    "notes": "Physical AI frontier sweep. NEW: π0.7 (5B w/MEM), Helix 02 (S0 1000Hz + S1 200Hz + S2 7-10Hz), Spirit v1.6 RoboArena 1924 #1 (first non-NVIDIA top), LingBot-VA LIBERO 98.5% (new SOTA), GR00T N1.7 first dexterity scaling law (1k→20k hrs doubles task completion), Gemini Robotics 1.5 70% OOD vs 0% baseline, OpenVLA-OFT 26x throughput speedup 109.7Hz, RoboBrain 2.5 CV-Bench 94.58."
+  },
+  "models": [
+    {
+      "id": "physical-intelligence/pi-0",
+      "name": "π0",
+      "vendor": "physical-intelligence",
+      "type": "robotics-action",
+      "release_date": "2024-10-31",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "physical-intelligence/pi-0.5",
+      "name": "π0.5",
+      "vendor": "physical-intelligence",
+      "type": "robotics-action",
+      "release_date": "2025-04-22",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "physical-intelligence/pi-star-0.6",
+      "name": "π*0.6",
+      "vendor": "physical-intelligence",
+      "type": "robotics-action",
+      "release_date": "2025-11-17",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "physical-intelligence/pi-0.7",
+      "name": "π0.7",
+      "vendor": "physical-intelligence",
+      "type": "robotics-action",
+      "release_date": "2026-04-16",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "figure/helix",
+      "name": "Helix",
+      "vendor": "figure",
+      "type": "robotics-action",
+      "release_date": "2025-02-20",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "figure/helix-02",
+      "name": "Helix 02",
+      "vendor": "figure",
+      "type": "robotics-action",
+      "release_date": "2026-01-27",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "openvla/openvla-7b",
+      "name": "OpenVLA-7B",
+      "vendor": "openvla",
+      "type": "robotics-action",
+      "release_date": "2024-06-13",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "openvla/openvla-oft-7b",
+      "name": "OpenVLA-OFT",
+      "vendor": "openvla",
+      "type": "robotics-action",
+      "release_date": "2025",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "rail-berkeley/octo-base",
+      "name": "Octo-Base",
+      "vendor": "rail-berkeley",
+      "type": "robotics-action",
+      "release_date": "2024-05-20",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "rail-berkeley/octo-small",
+      "name": "Octo-Small",
+      "vendor": "rail-berkeley",
+      "type": "robotics-action",
+      "release_date": "2024-05-20",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "google-deepmind/rt-2-x",
+      "name": "RT-2-X",
+      "vendor": "google-deepmind",
+      "type": "robotics-action",
+      "release_date": "2023-10-03",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "google-deepmind/gemini-robotics-1.5",
+      "name": "Gemini Robotics 1.5",
+      "vendor": "google-deepmind",
+      "type": "robotics-action",
+      "release_date": "2025-09",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "google-deepmind/gemini-robotics-er-1.6",
+      "name": "Gemini Robotics-ER 1.6",
+      "vendor": "google-deepmind",
+      "type": "robotics-action",
+      "release_date": "2026-04-14",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "nvidia/gr00t-n1",
+      "name": "GR00T N1",
+      "vendor": "nvidia",
+      "type": "robotics-action",
+      "release_date": "2025-03-18",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "nvidia/gr00t-n1.5",
+      "name": "GR00T N1.5",
+      "vendor": "nvidia",
+      "type": "robotics-action",
+      "release_date": "2025-06",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "1x/neo-world-model",
+      "name": "1X NEO World Model",
+      "vendor": "1x",
+      "type": "robotics-action",
+      "release_date": "2026-03",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "skild/skild-brain",
+      "name": "Skild Brain",
+      "vendor": "skild",
+      "type": "robotics-action",
+      "release_date": "2026",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "nvidia/gr00t-n1.6",
+      "name": "NVIDIA Isaac GR00T N1.6",
+      "vendor": "nvidia",
+      "type": "robotics-action",
+      "release_date": "2026-01-08",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "nvidia/gr00t-n1.7",
+      "name": "NVIDIA Isaac GR00T N1.7",
+      "vendor": "nvidia",
+      "type": "robotics-action",
+      "release_date": "2026-04-17",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "google/rt-1",
+      "name": "Robotics Transformer 1 (RT-1)",
+      "vendor": "google deepmind",
+      "type": "robotics-action",
+      "release_date": "2022-12-13",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "google/rt-2",
+      "name": "Robotics Transformer 2 (RT-2)",
+      "vendor": "google deepmind",
+      "type": "robotics-action",
+      "release_date": "2023-07-28",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "google/rt-2-x",
+      "name": "RT-2-X (Open X-Embodiment)",
+      "vendor": "google deepmind + 33 collaborators",
+      "type": "robotics-action",
+      "release_date": "2023-10-03",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "google/gemini-robotics-1.5",
+      "name": "Gemini Robotics 1.5 (VLA)",
+      "vendor": "google deepmind",
+      "type": "robotics-action",
+      "release_date": "2025-09-25",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "google/gemini-robotics-er-1.5",
+      "name": "Gemini Robotics-ER 1.5",
+      "vendor": "google deepmind",
+      "type": "robotics-action",
+      "release_date": "2025-09-25",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "google/gemini-robotics-er-1.6",
+      "name": "Gemini Robotics-ER 1.6",
+      "vendor": "google deepmind",
+      "type": "robotics-action",
+      "release_date": "2026-04-14",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "google-deepmind/aloha-unleashed",
+      "name": "ALOHA Unleashed",
+      "vendor": "google deepmind",
+      "type": "robotics-action",
+      "release_date": "2024-10-17",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "nvidia/cosmos3-nano-policy",
+      "name": "NVIDIA Cosmos3-Nano-Policy",
+      "vendor": "nvidia",
+      "type": "robotics-action",
+      "release_date": "2026-05-29",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "nvidia/dreamzero",
+      "name": "NVIDIA DreamZero",
+      "vendor": "nvidia research",
+      "type": "robotics-action",
+      "release_date": "2026-05",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "spirit-ai/spirit-v1.6",
+      "name": "Spirit v1.6",
+      "vendor": "spirit ai (china)",
+      "type": "robotics-action",
+      "release_date": "2026-05-30",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "rlwrld/rldx-1",
+      "name": "RLWRLD RLDX-1",
+      "vendor": "rlwrld (korea)",
+      "type": "robotics-action",
+      "release_date": "2026-06",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "stanford/openvla-oft",
+      "name": "OpenVLA-OFT+",
+      "vendor": "stanford",
+      "type": "robotics-action",
+      "release_date": "2025-02-26",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10",
+      "name": "OpenVLA-OFT (7B)",
+      "vendor": "stanford (kim, finn, liang)",
+      "type": "robotics-action",
+      "release_date": "2025-02-27",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "openvla/openvla-7b-finetuned-libero-spatial",
+      "name": "OpenVLA-7B-LIBERO-Spatial (base finetune)",
+      "vendor": "stanford ",
+      "type": "robotics-action",
+      "release_date": "2024-10-09",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "openvla/openvla-7b-finetuned-libero-object",
+      "name": "OpenVLA-7B-LIBERO-Object",
+      "vendor": "openvla",
+      "type": "robotics-action",
+      "release_date": "2024-10-09",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "openvla/openvla-7b-finetuned-libero-goal",
+      "name": "OpenVLA-7B-LIBERO-Goal",
+      "vendor": "openvla",
+      "type": "robotics-action",
+      "release_date": "2024-10-09",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "openvla/openvla-7b-finetuned-libero-10",
+      "name": "OpenVLA-7B-LIBERO-Long",
+      "vendor": "openvla",
+      "type": "robotics-action",
+      "release_date": "2024-10-09",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "rail-berkeley/octo-base-1.5",
+      "name": "Octo-Base-1.5",
+      "vendor": "rail-berkeley",
+      "type": "robotics-action",
+      "release_date": "2024-08",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "robotics-diffusion-transformer/rdt-1b",
+      "name": "RDT-1B",
+      "vendor": "tsinghua (tsail)",
+      "type": "robotics-action",
+      "release_date": "2024-10-10",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "robotics-diffusion-transformer/rdt-170m",
+      "name": "RDT-170M (small)",
+      "vendor": "robotics-diffusion-transformer",
+      "type": "robotics-action",
+      "release_date": "2024-12",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "QwenLM/Qwen-VLA-Instruct",
+      "name": "Qwen-VLA-Instruct",
+      "vendor": "alibaba qwen",
+      "type": "robotics-action",
+      "release_date": "2026-05-28",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "robbyant/lingbot-vla-4b",
+      "name": "LingBot-VLA-4B",
+      "vendor": "robby ant",
+      "type": "robotics-action",
+      "release_date": "2026-01-27",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "robbyant/lingbot-vla-4b-depth",
+      "name": "LingBot-VLA-4B-Depth",
+      "vendor": "robby ant",
+      "type": "robotics-action",
+      "release_date": "2026-01-27",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "lerobot/lingbot_va_base",
+      "name": "LingBot-VA (LeRobot)",
+      "vendor": "huggingface lerobot + robby ant",
+      "type": "robotics-action",
+      "release_date": "2026-06",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "BAAI/RoboBrain2.5-8B-NV",
+      "name": "RoboBrain 2.5 8B (NVIDIA train)",
+      "vendor": "baai",
+      "type": "robotics-action",
+      "release_date": "2026-01-09",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "BAAI/RoboBrain2.5-8B-MT",
+      "name": "RoboBrain 2.5 8B (Moore-Threads)",
+      "vendor": "baai",
+      "type": "robotics-action",
+      "release_date": "2026-01-09",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "BAAI/RoboBrain2.5-4B",
+      "name": "RoboBrain 2.5 4B",
+      "vendor": "baai",
+      "type": "robotics-action",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "lerobot/pi0_base",
+      "name": "pi0-base (LeRobot)",
+      "vendor": "physical intelligence ",
+      "type": "robotics-action",
+      "release_date": "2026-06",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "lerobot/pi05_base",
+      "name": "pi0.5-base (LeRobot)",
+      "vendor": "physical intelligence ",
+      "type": "robotics-action",
+      "release_date": "2026-06",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "lerobot/pi0fast-base",
+      "name": "pi0-FAST-base (LeRobot)",
+      "vendor": "physical intelligence ",
+      "type": "robotics-action",
+      "release_date": "2026-06",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "columbia/diffusion-policy",
+      "name": "Diffusion Policy",
+      "vendor": "columbia",
+      "type": "robotics-action",
+      "release_date": "2023-03-01",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "google/rt-1-x",
+      "name": "RT-1-X",
+      "vendor": "google",
+      "type": "robotics-action",
+      "release_date": "2023-10-01",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "stanford/act",
+      "name": "ACT (Action Chunking Transformer)",
+      "vendor": "stanford",
+      "type": "robotics-action",
+      "release_date": "2023-04-01",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "libero_spatial",
+      "name": "Libero Spatial",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "libero_object",
+      "name": "Libero Object",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "libero_goal",
+      "name": "Libero Goal",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "libero_long",
+      "name": "Libero Long",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "libero_average",
+      "name": "Libero Average",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tshirt_folding_realworld",
+      "name": "Tshirt Folding Realworld",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "box_assembly_realworld",
+      "name": "Box Assembly Realworld",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "instrument_reading_agentic_vision",
+      "name": "Instrument Reading Agentic Vision",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gr1_language_following_realworld",
+      "name": "Gr1 Language Following Realworld",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "dishwasher_loco_manipulation_61actions_lower_better",
+      "name": "Dishwasher Loco Manipulation 61Actions Lower Better",
+      "category": "embodied",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robocasa_kitchen_24task_100demo",
+      "name": "Robocasa Kitchen 24Task 100Demo",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "dexmimicgen_cross_embodiment_9task",
+      "name": "Dexmimicgen Cross Embodiment 9Task",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gr1_tabletop_24task_100demo",
+      "name": "Gr1 Tabletop 24Task 100Demo",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "real_world_humanoid_full",
+      "name": "Real World Humanoid Full",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "libero_avg",
+      "name": "Libero Avg",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robocasa_pick_place",
+      "name": "Robocasa Pick Place",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robocasa_doors_drawers",
+      "name": "Robocasa Doors Drawers",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robocasa_others",
+      "name": "Robocasa Others",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robocasa_avg",
+      "name": "Robocasa Avg",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "language_table",
+      "name": "Language Table",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robocasa_30demo",
+      "name": "Robocasa 30Demo",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gr1_real_language_following",
+      "name": "Gr1 Real Language Following",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "unitree_g1_1k_demos",
+      "name": "Unitree G1 1K Demos",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "grounding_iou_gr1",
+      "name": "Grounding Iou Gr1",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "refcocog_val_iou",
+      "name": "Refcocog Val Iou",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "rt2_emergent_skills_eval",
+      "name": "Rt2 Emergent Skills Eval",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "rt2_generalization_eval",
+      "name": "Rt2 Generalization Eval",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "oxe_avg_vs_baseline_uplift",
+      "name": "Oxe Avg Vs Baseline Uplift",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "instrument_reading",
+      "name": "Instrument Reading",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "pointing_counting",
+      "name": "Pointing Counting",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "multi_view_success_detection",
+      "name": "Multi View Success Detection",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ood_target_success",
+      "name": "Ood Target Success",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "generalization_benchmark_uplift_vs_sota_vla",
+      "name": "Generalization Benchmark Uplift Vs Sota Vla",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "shirt_hanging_easy",
+      "name": "Shirt Hanging Easy",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "shirt_hanging_messy",
+      "name": "Shirt Hanging Messy",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "shoelace_tying_easy",
+      "name": "Shoelace Tying Easy",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "shoelace_tying_messy",
+      "name": "Shoelace Tying Messy",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robot_finger_replacement",
+      "name": "Robot Finger Replacement",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gear_insertion_single",
+      "name": "Gear Insertion Single",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gear_insertion_triple",
+      "name": "Gear Insertion Triple",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kitchen_stacking_bowl",
+      "name": "Kitchen Stacking Bowl",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kitchen_stacking_full",
+      "name": "Kitchen Stacking Full",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "inference_latency_ms_rtx4090_lower_better",
+      "name": "Inference Latency Ms Rtx4090 Lower Better",
+      "category": "embodied",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "roboarena_elo",
+      "name": "Roboarena Elo",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "libero_avg_4suite",
+      "name": "Libero Avg 4Suite",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aloha_bimanual_avg_4task",
+      "name": "Aloha Bimanual Avg 4Task",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "inference_throughput_libero_lower_better",
+      "name": "Inference Throughput Libero Lower Better",
+      "category": "embodied",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "inference_throughput_aloha_lower_better",
+      "name": "Inference Throughput Aloha Lower Better",
+      "category": "embodied",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robotwin_easy",
+      "name": "Robotwin Easy",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robotwin_hard",
+      "name": "Robotwin Hard",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "simpler_widowx",
+      "name": "Simpler Widowx",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robocasa_gr1",
+      "name": "Robocasa Gr1",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "r2r_osr",
+      "name": "R2R Osr",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "rxr_sr",
+      "name": "Rxr Sr",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "domino_mobile",
+      "name": "Domino Mobile",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "simplerenv_ood",
+      "name": "Simplerenv Ood",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aloha_realworld_indomain",
+      "name": "Aloha Realworld Indomain",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aloha_realworld_ood",
+      "name": "Aloha Realworld Ood",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gm_100_dualarm",
+      "name": "Gm 100 Dualarm",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gm_100_progressscore",
+      "name": "Gm 100 Progressscore",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robotwin_2.0_clean",
+      "name": "Robotwin 2.0 Clean",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robotwin_2.0_randomized",
+      "name": "Robotwin 2.0 Randomized",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "libero_plus_easy",
+      "name": "Libero Plus Easy",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "libero_plus_hard",
+      "name": "Libero Plus Hard",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robotwin_2.0_plus",
+      "name": "Robotwin 2.0 Plus",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "maniskill_pickcube",
+      "name": "Maniskill Pickcube",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "maniskill_stackcube",
+      "name": "Maniskill Stackcube",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "maniskill_pushcube",
+      "name": "Maniskill Pushcube",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "maniskill_peginsertionside",
+      "name": "Maniskill Peginsertionside",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "maniskill_plugcharger",
+      "name": "Maniskill Plugcharger",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "cv_bench",
+      "name": "Cv Bench",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "crosspoint",
+      "name": "Crosspoint",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "robospatial",
+      "name": "Robospatial",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "spatial2d_avg",
+      "name": "Spatial2D Avg",
+      "category": "embodied",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "openvla/openvla-7b",
+      "benchmark": "libero_spatial",
+      "score": 84.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2406.09246",
+      "_note": "Approximate from paper Table; HF cards confirm finetuned-libero-spatial checkpoint"
+    },
+    {
+      "model": "openvla/openvla-oft-7b",
+      "benchmark": "libero_spatial",
+      "score": 97.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2507.17520",
+      "_note": ""
+    },
+    {
+      "model": "openvla/openvla-oft-7b",
+      "benchmark": "libero_object",
+      "score": 98.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2507.17520",
+      "_note": ""
+    },
+    {
+      "model": "openvla/openvla-oft-7b",
+      "benchmark": "libero_goal",
+      "score": 97.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2507.17520",
+      "_note": ""
+    },
+    {
+      "model": "openvla/openvla-oft-7b",
+      "benchmark": "libero_long",
+      "score": 94.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2507.17520",
+      "_note": ""
+    },
+    {
+      "model": "openvla/openvla-oft-7b",
+      "benchmark": "libero_average",
+      "score": 97.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2507.17520",
+      "_note": ""
+    },
+    {
+      "model": "physical-intelligence/pi-0",
+      "benchmark": "libero_spatial",
+      "score": 96.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2410.24164",
+      "_note": ""
+    },
+    {
+      "model": "physical-intelligence/pi-0",
+      "benchmark": "libero_object",
+      "score": 98.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2410.24164",
+      "_note": ""
+    },
+    {
+      "model": "physical-intelligence/pi-0",
+      "benchmark": "libero_goal",
+      "score": 95.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2410.24164",
+      "_note": ""
+    },
+    {
+      "model": "physical-intelligence/pi-0",
+      "benchmark": "libero_long",
+      "score": 85.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2410.24164",
+      "_note": ""
+    },
+    {
+      "model": "physical-intelligence/pi-0",
+      "benchmark": "libero_average",
+      "score": 94.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2410.24164",
+      "_note": ""
+    },
+    {
+      "model": "physical-intelligence/pi-star-0.6",
+      "benchmark": "tshirt_folding_realworld",
+      "score": 97.0,
+      "unit": "score",
+      "_source": "https://website.pi-asset.com/pi06star/PI06_model_card.pdf",
+      "_note": ""
+    },
+    {
+      "model": "physical-intelligence/pi-star-0.6",
+      "benchmark": "box_assembly_realworld",
+      "score": 90.0,
+      "unit": "score",
+      "_source": "https://website.pi-asset.com/pi06star/PI06_model_card.pdf",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/gemini-robotics-er-1.6",
+      "benchmark": "instrument_reading_agentic_vision",
+      "score": 93.0,
+      "unit": "score",
+      "_source": "https://www.marktechpost.com/2026/04/15/google-deepmind-releases-gemini-robotics-er-1-6-bringing-enhanced-embodied-reasoning-and-instrument-reading-to-physical-ai/",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/gemini-robotics-er-1.5",
+      "benchmark": "instrument_reading_agentic_vision",
+      "score": 23.0,
+      "unit": "score",
+      "_source": "https://www.marktechpost.com/2026/04/15/google-deepmind-releases-gemini-robotics-er-1-6-bringing-enhanced-embodied-reasoning-and-instrument-reading-to-physical-ai/",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1.5",
+      "benchmark": "gr1_language_following_realworld",
+      "score": 93.3,
+      "unit": "score",
+      "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/",
+      "_note": ""
+    },
+    {
+      "model": "figure/helix-02",
+      "benchmark": "dishwasher_loco_manipulation_61actions_lower_better",
+      "score": 4.0,
+      "unit": "score",
+      "_source": "https://www.techloy.com/figure-ais-helix-02-completes-4-minute-autonomous-kitchen-task-setting-new-humanoid-robotics-benchmark/",
+      "_note": "Longest-horizon humanoid loco-manipulation task at announcement; 61 actions, zero intervention"
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "robocasa_kitchen_24task_100demo",
+      "score": 32.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2503.14734v1",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "dexmimicgen_cross_embodiment_9task",
+      "score": 58.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2503.14734v1",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "gr1_tabletop_24task_100demo",
+      "score": 50.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2503.14734v1",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "real_world_humanoid_full",
+      "score": 76.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2503.14734v1",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "libero_spatial",
+      "score": 94.4,
+      "unit": "score",
+      "_source": "search-secondary",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "libero_object",
+      "score": 97.6,
+      "unit": "score",
+      "_source": "search-secondary",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "libero_goal",
+      "score": 93.0,
+      "unit": "score",
+      "_source": "search-secondary",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "libero_long",
+      "score": 90.6,
+      "unit": "score",
+      "_source": "search-secondary",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "libero_avg",
+      "score": 93.9,
+      "unit": "score",
+      "_source": "search-secondary",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "robocasa_pick_place",
+      "score": 18.6,
+      "unit": "score",
+      "_source": "search-secondary",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "robocasa_doors_drawers",
+      "score": 50.2,
+      "unit": "score",
+      "_source": "search-secondary",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "robocasa_others",
+      "score": 39.1,
+      "unit": "score",
+      "_source": "search-secondary",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1",
+      "benchmark": "robocasa_avg",
+      "score": 36.0,
+      "unit": "score",
+      "_source": "search-secondary",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1.5",
+      "benchmark": "language_table",
+      "score": 93.2,
+      "unit": "score",
+      "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1.5",
+      "benchmark": "robocasa_30demo",
+      "score": 47.5,
+      "unit": "score",
+      "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1.5",
+      "benchmark": "gr1_real_language_following",
+      "score": 93.3,
+      "unit": "score",
+      "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1.5",
+      "benchmark": "unitree_g1_1k_demos",
+      "score": 98.8,
+      "unit": "score",
+      "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1.5",
+      "benchmark": "grounding_iou_gr1",
+      "score": 40.4,
+      "unit": "score",
+      "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/gr00t-n1.5",
+      "benchmark": "refcocog_val_iou",
+      "score": 89.6,
+      "unit": "score",
+      "_source": "https://research.nvidia.com/labs/gear/gr00t-n1_5/",
+      "_note": ""
+    },
+    {
+      "model": "google/rt-2",
+      "benchmark": "rt2_emergent_skills_eval",
+      "score": 25.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2310.08864",
+      "_note": "approximate baseline; RT-2-X = 3x = ~75.8"
+    },
+    {
+      "model": "google/rt-2-x",
+      "benchmark": "rt2_emergent_skills_eval",
+      "score": 75.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2310.08864",
+      "_note": ""
+    },
+    {
+      "model": "google/rt-2-x",
+      "benchmark": "rt2_generalization_eval",
+      "score": 61.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2310.08864",
+      "_note": ""
+    },
+    {
+      "model": "google/rt-1-x",
+      "benchmark": "oxe_avg_vs_baseline_uplift",
+      "score": 50.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2310.08864",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-robotics-er-1.5",
+      "benchmark": "instrument_reading",
+      "score": 23.0,
+      "unit": "score",
+      "_source": "https://deepmind.google/blog/gemini-robotics-er-1-6/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-robotics-er-1.5",
+      "benchmark": "pointing_counting",
+      "score": 61.0,
+      "unit": "score",
+      "_source": "https://deepmind.google/blog/gemini-robotics-er-1-6/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-robotics-er-1.6",
+      "benchmark": "pointing_counting",
+      "score": 80.0,
+      "unit": "score",
+      "_source": "https://deepmind.google/blog/gemini-robotics-er-1-6/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-robotics-er-1.6",
+      "benchmark": "multi_view_success_detection",
+      "score": 84.0,
+      "unit": "score",
+      "_source": "https://deepmind.google/blog/gemini-robotics-er-1-6/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-robotics-er-1.6",
+      "benchmark": "instrument_reading",
+      "score": 86.0,
+      "unit": "score",
+      "_source": "https://deepmind.google/blog/gemini-robotics-er-1-6/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-robotics-er-1.6",
+      "benchmark": "instrument_reading_agentic_vision",
+      "score": 98.0,
+      "unit": "score",
+      "_source": "https://www.resultsense.com/news/2026-04-16-gemini-robotics-er-instrument-reading",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "instrument_reading",
+      "score": 67.0,
+      "unit": "score",
+      "_source": "https://deepmind.google/blog/gemini-robotics-er-1-6/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-robotics-1.5",
+      "benchmark": "ood_target_success",
+      "score": 70.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.03342",
+      "_note": "baseline VLA 0%"
+    },
+    {
+      "model": "google/gemini-robotics-1.5",
+      "benchmark": "generalization_benchmark_uplift_vs_sota_vla",
+      "score": 200.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.03342",
+      "_note": "more than doubles SOTA VLA performance"
+    },
+    {
+      "model": "google-deepmind/aloha-unleashed",
+      "benchmark": "shirt_hanging_easy",
+      "score": 75.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2410.13126",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/aloha-unleashed",
+      "benchmark": "shirt_hanging_messy",
+      "score": 70.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2410.13126",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/aloha-unleashed",
+      "benchmark": "shoelace_tying_easy",
+      "score": 70.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2410.13126",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/aloha-unleashed",
+      "benchmark": "shoelace_tying_messy",
+      "score": 40.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2410.13126",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/aloha-unleashed",
+      "benchmark": "robot_finger_replacement",
+      "score": 75.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2410.13126",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/aloha-unleashed",
+      "benchmark": "gear_insertion_single",
+      "score": 95.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2410.13126",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/aloha-unleashed",
+      "benchmark": "gear_insertion_triple",
+      "score": 40.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2410.13126",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/aloha-unleashed",
+      "benchmark": "kitchen_stacking_bowl",
+      "score": 95.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2410.13126",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/aloha-unleashed",
+      "benchmark": "kitchen_stacking_full",
+      "score": 25.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2410.13126",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/aloha-unleashed",
+      "benchmark": "inference_latency_ms_rtx4090_lower_better",
+      "score": 43.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2410.13126",
+      "_note": ""
+    },
+    {
+      "model": "spirit-ai/spirit-v1.6",
+      "benchmark": "roboarena_elo",
+      "score": 1924,
+      "unit": "score",
+      "_source": "https://thenextweb.com/news/spirit-ai-beats-nvidia-roboarena-physical-ai",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/cosmos3-nano-policy",
+      "benchmark": "roboarena_elo",
+      "score": 1881,
+      "unit": "score",
+      "_source": "https://thenextweb.com/news/spirit-ai-beats-nvidia-roboarena-physical-ai",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/dreamzero",
+      "benchmark": "roboarena_elo",
+      "score": 1763,
+      "unit": "score",
+      "_source": "https://thenextweb.com/news/spirit-ai-beats-nvidia-roboarena-physical-ai",
+      "_note": ""
+    },
+    {
+      "model": "stanford/openvla-oft",
+      "benchmark": "libero_avg_4suite",
+      "score": 97.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2502.19645",
+      "_note": ""
+    },
+    {
+      "model": "stanford/openvla-oft",
+      "benchmark": "aloha_bimanual_avg_4task",
+      "score": 87.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2502.19645",
+      "_note": ""
+    },
+    {
+      "model": "physical-intelligence/pi-0",
+      "benchmark": "aloha_bimanual_avg_4task",
+      "score": 77.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2502.19645",
+      "_note": ""
+    },
+    {
+      "model": "robotics-diffusion-transformer/rdt-1b",
+      "benchmark": "aloha_bimanual_avg_4task",
+      "score": 78.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2502.19645",
+      "_note": ""
+    },
+    {
+      "model": "stanford/act",
+      "benchmark": "aloha_bimanual_avg_4task",
+      "score": 72.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2502.19645",
+      "_note": ""
+    },
+    {
+      "model": "columbia/diffusion-policy",
+      "benchmark": "aloha_bimanual_avg_4task",
+      "score": 77.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2502.19645",
+      "_note": ""
+    },
+    {
+      "model": "openvla/openvla-7b",
+      "benchmark": "libero_spatial",
+      "score": 84.7,
+      "unit": "score",
+      "_source": "OpenVLA README (3 seeds x 500 rollouts)",
+      "_note": ""
+    },
+    {
+      "model": "openvla/openvla-7b",
+      "benchmark": "libero_object",
+      "score": 88.4,
+      "unit": "score",
+      "_source": "OpenVLA README",
+      "_note": ""
+    },
+    {
+      "model": "openvla/openvla-7b",
+      "benchmark": "libero_goal",
+      "score": 79.2,
+      "unit": "score",
+      "_source": "OpenVLA README",
+      "_note": ""
+    },
+    {
+      "model": "openvla/openvla-7b",
+      "benchmark": "libero_long",
+      "score": 53.7,
+      "unit": "score",
+      "_source": "OpenVLA README",
+      "_note": ""
+    },
+    {
+      "model": "openvla/openvla-7b",
+      "benchmark": "libero_avg",
+      "score": 76.5,
+      "unit": "score",
+      "_source": "OpenVLA README",
+      "_note": ""
+    },
+    {
+      "model": "moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10",
+      "benchmark": "libero_spatial",
+      "score": 97.6,
+      "unit": "score",
+      "_source": "arxiv 2502.19645",
+      "_note": ""
+    },
+    {
+      "model": "moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10",
+      "benchmark": "libero_object",
+      "score": 98.4,
+      "unit": "score",
+      "_source": "arxiv 2502.19645",
+      "_note": ""
+    },
+    {
+      "model": "moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10",
+      "benchmark": "libero_goal",
+      "score": 97.9,
+      "unit": "score",
+      "_source": "arxiv 2502.19645",
+      "_note": ""
+    },
+    {
+      "model": "moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10",
+      "benchmark": "libero_long",
+      "score": 94.5,
+      "unit": "score",
+      "_source": "arxiv 2502.19645",
+      "_note": ""
+    },
+    {
+      "model": "moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10",
+      "benchmark": "libero_avg",
+      "score": 97.1,
+      "unit": "score",
+      "_source": "arxiv 2502.19645",
+      "_note": ""
+    },
+    {
+      "model": "moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10",
+      "benchmark": "inference_throughput_libero_lower_better",
+      "score": 9.12,
+      "unit": "score",
+      "_source": "arxiv 2502.19645 (109.7 Hz single-image)",
+      "_note": ""
+    },
+    {
+      "model": "moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10",
+      "benchmark": "inference_throughput_aloha_lower_better",
+      "score": 12.84,
+      "unit": "score",
+      "_source": "arxiv 2502.19645 (3 images + proprio)",
+      "_note": ""
+    },
+    {
+      "model": "QwenLM/Qwen-VLA-Instruct",
+      "benchmark": "libero_avg",
+      "score": 97.9,
+      "unit": "score",
+      "_source": "arxiv 2605.30280",
+      "_note": ""
+    },
+    {
+      "model": "QwenLM/Qwen-VLA-Instruct",
+      "benchmark": "robotwin_easy",
+      "score": 86.1,
+      "unit": "score",
+      "_source": "arxiv 2605.30280",
+      "_note": ""
+    },
+    {
+      "model": "QwenLM/Qwen-VLA-Instruct",
+      "benchmark": "robotwin_hard",
+      "score": 87.2,
+      "unit": "score",
+      "_source": "arxiv 2605.30280",
+      "_note": ""
+    },
+    {
+      "model": "QwenLM/Qwen-VLA-Instruct",
+      "benchmark": "simpler_widowx",
+      "score": 73.7,
+      "unit": "score",
+      "_source": "arxiv 2605.30280",
+      "_note": ""
+    },
+    {
+      "model": "QwenLM/Qwen-VLA-Instruct",
+      "benchmark": "robocasa_gr1",
+      "score": 56.7,
+      "unit": "score",
+      "_source": "arxiv 2605.30280",
+      "_note": ""
+    },
+    {
+      "model": "QwenLM/Qwen-VLA-Instruct",
+      "benchmark": "r2r_osr",
+      "score": 69.0,
+      "unit": "score",
+      "_source": "arxiv 2605.30280",
+      "_note": ""
+    },
+    {
+      "model": "QwenLM/Qwen-VLA-Instruct",
+      "benchmark": "rxr_sr",
+      "score": 59.6,
+      "unit": "score",
+      "_source": "arxiv 2605.30280",
+      "_note": ""
+    },
+    {
+      "model": "QwenLM/Qwen-VLA-Instruct",
+      "benchmark": "domino_mobile",
+      "score": 26.6,
+      "unit": "score",
+      "_source": "arxiv 2605.30280",
+      "_note": ""
+    },
+    {
+      "model": "QwenLM/Qwen-VLA-Instruct",
+      "benchmark": "simplerenv_ood",
+      "score": 32.0,
+      "unit": "score",
+      "_source": "arxiv 2605.30280",
+      "_note": ""
+    },
+    {
+      "model": "QwenLM/Qwen-VLA-Instruct",
+      "benchmark": "aloha_realworld_indomain",
+      "score": 83.6,
+      "unit": "score",
+      "_source": "arxiv 2605.30280",
+      "_note": ""
+    },
+    {
+      "model": "QwenLM/Qwen-VLA-Instruct",
+      "benchmark": "aloha_realworld_ood",
+      "score": 76.9,
+      "unit": "score",
+      "_source": "arxiv 2605.30280",
+      "_note": ""
+    },
+    {
+      "model": "robbyant/lingbot-vla-4b-depth",
+      "benchmark": "gm_100_dualarm",
+      "score": 17.3,
+      "unit": "score",
+      "_source": "arxiv 2601.18692 (3 platforms avg, 100 tasks, depth-distilled)",
+      "_note": ""
+    },
+    {
+      "model": "robbyant/lingbot-vla-4b-depth",
+      "benchmark": "gm_100_progressscore",
+      "score": 35.41,
+      "unit": "score",
+      "_source": "arxiv 2601.18692",
+      "_note": ""
+    },
+    {
+      "model": "robbyant/lingbot-vla-4b",
+      "benchmark": "gm_100_dualarm",
+      "score": 15.74,
+      "unit": "score",
+      "_source": "arxiv 2601.18692 (no depth)",
+      "_note": ""
+    },
+    {
+      "model": "robbyant/lingbot-vla-4b-depth",
+      "benchmark": "robotwin_2.0_clean",
+      "score": 88.56,
+      "unit": "score",
+      "_source": "arxiv 2601.18692 (post-trained, depth)",
+      "_note": ""
+    },
+    {
+      "model": "robbyant/lingbot-vla-4b-depth",
+      "benchmark": "robotwin_2.0_randomized",
+      "score": 86.68,
+      "unit": "score",
+      "_source": "arxiv 2601.18692",
+      "_note": ""
+    },
+    {
+      "model": "lerobot/lingbot_va_base",
+      "benchmark": "libero_avg",
+      "score": 98.5,
+      "unit": "score",
+      "_source": "LingBot-VA technical page (technology.robbyant.com/lingbot-va) - new SOTA",
+      "_note": ""
+    },
+    {
+      "model": "lerobot/lingbot_va_base",
+      "benchmark": "libero_plus_easy",
+      "score": 92.9,
+      "unit": "score",
+      "_source": "LingBot-VA tech page",
+      "_note": ""
+    },
+    {
+      "model": "lerobot/lingbot_va_base",
+      "benchmark": "libero_plus_hard",
+      "score": 91.6,
+      "unit": "score",
+      "_source": "LingBot-VA tech page",
+      "_note": ""
+    },
+    {
+      "model": "lerobot/lingbot_va_base",
+      "benchmark": "robotwin_2.0_plus",
+      "score": 74.2,
+      "unit": "score",
+      "_source": "LingBot-VA tech page",
+      "_note": ""
+    },
+    {
+      "model": "robotics-diffusion-transformer/rdt-1b",
+      "benchmark": "maniskill_pickcube",
+      "score": 77.2,
+      "unit": "score",
+      "_source": "RDT GitHub",
+      "_note": ""
+    },
+    {
+      "model": "robotics-diffusion-transformer/rdt-1b",
+      "benchmark": "maniskill_stackcube",
+      "score": 74.0,
+      "unit": "score",
+      "_source": "RDT GitHub",
+      "_note": ""
+    },
+    {
+      "model": "robotics-diffusion-transformer/rdt-1b",
+      "benchmark": "maniskill_pushcube",
+      "score": 100.0,
+      "unit": "score",
+      "_source": "RDT GitHub",
+      "_note": ""
+    },
+    {
+      "model": "robotics-diffusion-transformer/rdt-1b",
+      "benchmark": "maniskill_peginsertionside",
+      "score": 13.2,
+      "unit": "score",
+      "_source": "RDT GitHub",
+      "_note": ""
+    },
+    {
+      "model": "robotics-diffusion-transformer/rdt-1b",
+      "benchmark": "maniskill_plugcharger",
+      "score": 1.2,
+      "unit": "score",
+      "_source": "RDT GitHub",
+      "_note": ""
+    },
+    {
+      "model": "BAAI/RoboBrain2.5-8B-NV",
+      "benchmark": "cv_bench",
+      "score": 94.58,
+      "unit": "score",
+      "_source": "RoboBrain 2.5 tech report (arxiv 2601.14352)",
+      "_note": ""
+    },
+    {
+      "model": "BAAI/RoboBrain2.5-8B-NV",
+      "benchmark": "crosspoint",
+      "score": 75.4,
+      "unit": "score",
+      "_source": "RoboBrain 2.5 tech report",
+      "_note": ""
+    },
+    {
+      "model": "BAAI/RoboBrain2.5-8B-NV",
+      "benchmark": "robospatial",
+      "score": 73.03,
+      "unit": "score",
+      "_source": "RoboBrain 2.5 tech report",
+      "_note": ""
+    },
+    {
+      "model": "BAAI/RoboBrain2.5-8B-NV",
+      "benchmark": "spatial2d_avg",
+      "score": 75.82,
+      "unit": "score",
+      "_source": "RoboBrain 2.5 tech report",
+      "_note": ""
+    },
+    {
+      "model": "BAAI/RoboBrain2.5-8B-MT",
+      "benchmark": "cv_bench",
+      "score": 93.9,
+      "unit": "score",
+      "_source": "RoboBrain 2.5 tech report",
+      "_note": ""
+    },
+    {
+      "model": "BAAI/RoboBrain2.5-8B-MT",
+      "benchmark": "crosspoint",
+      "score": 76.3,
+      "unit": "score",
+      "_source": "RoboBrain 2.5 tech report",
+      "_note": ""
+    },
+    {
+      "model": "BAAI/RoboBrain2.5-8B-MT",
+      "benchmark": "robospatial",
+      "score": 73.0,
+      "unit": "score",
+      "_source": "RoboBrain 2.5 tech report",
+      "_note": ""
+    }
+  ]
+}
