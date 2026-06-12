@@ -845,14 +845,14 @@
     "value": 95.5,
     "unit": "score",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
+      "type": "leaderboard",
+      "url": "https://benchlm.ai/benchmarks/sweVerified",
       "date": "2026-06-12",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-12",
-    "notes": "Section 8.2; adaptive thinking max effort; avg of 5 trials"
+    "notes": "scaffold=vendor date=2026-06-09"
   },
   "cybench": {
     "model_id": "anthropic/claude-mythos-preview",
@@ -1605,19 +1605,19 @@
     "notes": "MathArena Feb 2026 — Rank 1/25, cost $0.26/problem"
   },
   "aider_polyglot": {
-    "model_id": "openai/gpt-5",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "aider_polyglot",
-    "value": 88.0,
-    "unit": "%",
+    "value": 95.5,
+    "unit": "score",
     "source": {
       "type": "leaderboard",
-      "url": "https://llm-stats.com/benchmarks/gpqa",
-      "date": "2026-04-17",
+      "url": "aider.chat / vendor leaderboards",
+      "date": "2026-06-12",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-04-17",
-    "notes": ""
+    "collected_at": "2026-06-12",
+    "notes": "rank=1 as_of=2026-06"
   },
   "secrepobench": {
     "model_id": "openai/gpt-5",
@@ -6060,19 +6060,19 @@
     "notes": "Sonnet 4.5 High scaffold, SWE-Agent."
   },
   "tau_bench_airline": {
-    "model_id": "openai/o4-mini",
+    "model_id": "anthropic/claude-sonnet-4.5",
     "benchmark_id": "tau_bench_airline",
-    "value": 56.0,
-    "unit": "%",
+    "value": 70.0,
+    "unit": "score",
     "source": {
       "type": "leaderboard",
-      "url": "https://hal.cs.princeton.edu/taubench_airline",
+      "url": "https://llm-stats.com/benchmarks/tau-bench-airline",
       "date": "2026-06-12",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-12",
-    "notes": "o4-mini High, TAU Tool Calling."
+    "notes": "scaffold= date=2025-10-01"
   },
   "usaco": {
     "model_id": "openai/gpt-5-medium",
@@ -29248,6 +29248,141 @@
     "is_sota": true,
     "collected_at": "2026-06-12",
     "notes": "+10-20% delta (midpoint 15%) on SWE-Bench Pro at ~4-5x token cost. Max Mode = N=5 parallel sampling + judge."
+  },
+  "swe_bench_verified_legacy": {
+    "model_id": "cognition/devin",
+    "benchmark_id": "swe_bench_verified_legacy",
+    "value": 13.86,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cognition.ai/blog/swe-bench-technical-report",
+      "date": "2026-06-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-12",
+    "notes": "Original 2024 Devin technical report (Devin 1)"
+  },
+  "aider_polyglot_pass1": {
+    "model_id": "openai/gpt-5-high",
+    "benchmark_id": "aider_polyglot_pass1",
+    "value": 88.0,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://aider.chat/docs/leaderboards/",
+      "date": "2026-06-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-12",
+    "notes": "scaffold=diff date=2025-08-23"
+  },
+  "aider_polyglot_cost_usd": {
+    "model_id": "openai/o3-pro-high",
+    "benchmark_id": "aider_polyglot_cost_usd",
+    "value": 146.32,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://aider.chat/docs/leaderboards/",
+      "date": "2026-06-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-12",
+    "notes": "scaffold= date=2025-06-28"
+  },
+  "swe_bench_pro_vendor": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "swe_bench_pro_vendor",
+    "value": 80.3,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.morphllm.com/swe-bench-pro",
+      "date": "2026-06-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-12",
+    "notes": "scaffold=anthropic-internal date=2026-06-09"
+  },
+  "swe_bench_pro_scale_public": {
+    "model_id": "openai/gpt-5.4-xhigh",
+    "benchmark_id": "swe_bench_pro_scale_public",
+    "value": 59.1,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "date": "2026-06-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-12",
+    "notes": "scaffold=scale-seal date=2026-06-09"
+  },
+  "swe_lancer": {
+    "model_id": "openai/gpt-5.1-codex",
+    "benchmark_id": "swe_lancer",
+    "value": 66.3,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://llm-stats.com/benchmarks/swe-lancer",
+      "date": "2026-06-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-12",
+    "notes": "scaffold= date=2026-03-01"
+  },
+  "livecodebench_v6_pass1": {
+    "model_id": "deepseek/deepseek-v4-pro-max",
+    "benchmark_id": "livecodebench_v6_pass1",
+    "value": 93.5,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://llm-stats.com/benchmarks/livecodebench-v6",
+      "date": "2026-06-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-12",
+    "notes": "scaffold= date=2026-06-09"
+  },
+  "bigcodebench_hard_instruct": {
+    "model_id": "alibaba/qwen2.5-coder-32b-instruct",
+    "benchmark_id": "bigcodebench_hard_instruct",
+    "value": 27.0,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://bigcode-bench.github.io/",
+      "date": "2026-06-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-12",
+    "notes": "scaffold= date=2024-11-15"
+  },
+  "bfcl_v4_overall": {
+    "model_id": "anthropic/claude-opus-4.5",
+    "benchmark_id": "bfcl_v4_overall",
+    "value": 77.47,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
+      "date": "2026-06-12",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-12",
+    "notes": "scaffold= date=2025-12-16"
   },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
