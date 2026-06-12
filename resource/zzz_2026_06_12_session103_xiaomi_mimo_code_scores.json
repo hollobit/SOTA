@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "session": "Session 103 — Xiaomi MiMo Code",
+    "date": "2026-06-12",
+    "sources": [
+      "https://github.com/XiaomiMiMo/MiMo-Code",
+      "https://mimo.xiaomi.com/mimocode/start",
+      "https://mimo.xiaomi.com/blog/mimo-code-long-horizon"
+    ],
+    "notes": "MiMoCode is an open-source CLI coding agent (OpenCode fork, MIT, v0.1.0 released 2026-06-10, ~4.4M cumulative downloads through 2026-01-11). NOT a standalone model. Backends: xiaomi/mimo-v2.5 (free 1M ctx) + xiaomi/mimo-v2.5-pro (paid). Per-benchmark scores in figure images only — strict-attribution forced empty scores[]. System-level claims: Max Mode (N=5+judge) +10-20% SWE-Bench Pro; human double-blind A/B (576 devs / 474 repos / 1213 pairs vs Claude Code same target model) 65% win-rate at >200 steps long-horizon."
+  },
+  "models": [
+    {
+      "id": "xiaomi/mimo-v2.5",
+      "name": "Xiaomi MiMo V2.5",
+      "vendor": "xiaomi",
+      "type": "language",
+      "release_date": "2026-06-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xiaomi/mimo-v2.5-pro",
+      "name": "Xiaomi MiMo V2.5 Pro",
+      "vendor": "xiaomi",
+      "type": "language",
+      "release_date": "2026-06-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xiaomi/mimocode-cli-v0.1",
+      "name": "Xiaomi MiMoCode CLI v0.1.0",
+      "vendor": "xiaomi",
+      "type": "coding-agent",
+      "release_date": "2026-06-10",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "mimocode_human_ab_long_horizon_winrate_over_200_steps",
+      "name": "MiMoCode Human Double-Blind A/B Win-Rate vs Claude Code (>200 steps long-horizon)",
+      "category": "agentic",
+      "metric": "win_rate_0_100",
+      "unit": "win_rate_pct",
+      "description": "Human double-blind A/B preference study: 576 developers, 474 repos, 1,213 pairs. MiMoCode CLI + MiMo-V2.5-Pro vs Claude Code + Claude Sonnet 4.6 on coding tasks exceeding 200 agent steps (long-horizon).",
+      "source_url": "https://mimo.xiaomi.com/blog/mimo-code-long-horizon"
+    },
+    {
+      "id": "mimocode_max_mode_swe_pro_delta_pct",
+      "name": "MiMoCode Max Mode SWE-Bench Pro delta (N=5 + judge vs single sampling)",
+      "category": "coding",
+      "metric": "delta_pct",
+      "unit": "delta_pct",
+      "description": "MiMoCode Max Mode (N=5 parallel sampling + judge selection) improvement over single sampling on SWE-Bench Pro. Cost ~4-5x token budget.",
+      "source_url": "https://mimo.xiaomi.com/blog/mimo-code-long-horizon"
+    }
+  ],
+  "scores": [
+    {
+      "model": "xiaomi/mimocode-cli-v0.1",
+      "benchmark": "mimocode_human_ab_long_horizon_winrate_over_200_steps",
+      "score": 65.0,
+      "unit": "win_rate_pct",
+      "_source": "https://mimo.xiaomi.com/blog/mimo-code-long-horizon",
+      "_note": "Win-rate >65% at >200 agent steps in 1213-pair A/B vs Claude Code + Sonnet 4.6 (same target model). ~50% at <=200 steps. Long-horizon advantage."
+    },
+    {
+      "model": "xiaomi/mimocode-cli-v0.1",
+      "benchmark": "mimocode_max_mode_swe_pro_delta_pct",
+      "score": 15.0,
+      "unit": "delta_pct",
+      "_source": "https://mimo.xiaomi.com/blog/mimo-code-long-horizon",
+      "_note": "+10-20% delta (midpoint 15%) on SWE-Bench Pro at ~4-5x token cost. Max Mode = N=5 parallel sampling + judge."
+    }
+  ]
+}

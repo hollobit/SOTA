@@ -1,13 +1,14 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 102 — Global South sovereign AI sweep (2026-06-11)
-**2,288 models · 2,575 benchmarks · 11,641 scores · 🌍 +67 models / +70 benchmarks / +119 scores (global sovereign tour complete)**
+## Current Status: Session 103 — Xiaomi MiMo Code (2026-06-12)
+**2,289 models · 2,577 benchmarks · 11,643 scores · 🌍 +1 model / +2 benchmarks / +2 scores**
 
-### 2026-06-11 Session 102 — Global South sovereign AI sweep
-- 3 agents 🌍 **+67/+70/+119**. **India/Pakistan (22 models)**: **Sarvam-105B** (Mar 2026, MoE 106B/10.3B Apache-2.0) = India's first frontier MoE. **Math500 98.6** + **AIME25 88.3 (96.7 w/tools)** + **JEE-Main-2026 Math 100/100 perfect** + MMLU 90.6. **Sarvam-30B** Tau2 long-horizon agentic 68.3. **Qalb-1.0-8B Pakistani Urdu SOTA 90.34** (beats Alif 87.1 by 3.24). BharatGen Param2-17B-A2.4B-Thinking India's first sovereign-Summit MoE. Krutrim-2 BharatBench Grammar 0.98. **SEA (33 models)**: **SEA-LION v4.5** (May 2026, MIT) 8 SEA langs. **Typhoon-S Thai sovereign** + Typhoon 2.5 Qwen3-30B-A3B MoE 256K ctx. SEA-LION v3.5 70B SEA-HELM 68.27. Llama-Sahabat-AI 70B Indonesia. Mesolitica Malaysian. **LatAm/African/ME (17 models)**: Maritaca **Sabia-7B Brazilian PT** ENEM 55.07/BLUEX 47.71/OAB 41.41/FAQUAD 58.34. Lelapa InkubaLM-0.4B 5 African langs. **TII Falcon-H1-34B (UAE sovereign frontier)** MMLU 84.05/HumanEval 87.2/IFEval 89.37/MATH-500 83.8. **ALLaM-7B Saudi Arabic MMLU 67.78** (7B class leader). Jais-adapted-70B Arabic MMLU 66.8
+### 2026-06-12 Session 103 — Xiaomi MiMo Code (CLI agent + 2 backends)
+- 1 agent 🌍 strict-attribution catch: **MiMoCode is a CLI coding agent (OpenCode fork MIT v0.1.0 2026-06-10, 4.4M cumulative dl), NOT a model**. Backends: xiaomi/mimo-v2.5 (free 1M ctx) + xiaomi/mimo-v2.5-pro (paid). Per-benchmark scores all in figure images — strict-attribution kept scores[] tight. System-level claims: **Max Mode (N=5+judge) +10-20% SWE-Bench Pro** at ~4-5x token cost. **Human double-blind A/B (576 devs / 474 repos / 1213 pairs) 65% win-rate at >200 steps long-horizon** vs Claude Code + Sonnet 4.6 (same target model)
 
-### 2026-06-11 Session 101 — Audio frontier (+55/+23/+75)
-- STT: **Cohere Transcribe sweeps** LibriSpeech-Clean WER 1.25 + Open ASR avg 5.42. MAI-Transcribe-1.5 FLEURS 25-lang 3.7%. Parakeet TDT v3 **RTFx 3332x** fastest open ASR. TTS: **Fun-Realtime-TTS AA Elo 1226 #1** dethrones ElevenLabs. ElevenLabs v3 70-lang. Spark-TTS-0.5B near-#1 16x smaller. Music+Audio: **Stable Audio 3 Large FAD 0.101 SOTA**. **Qwen3.5-Omni-Plus sweeps all 4 audio benches** (MMAU 82.2/VoiceBench 93.1/RUL-MuchoMusic 72.4/MMSU 82.8 beats Gemini 3.1 Pro)
+### 2026-06-11 Sessions 101-102 — Audio frontier + Global South sovereign (+122/+93/+194)
+- S102 Global South: **Sarvam-105B India Apache MoE** Math500 98.6 + JEE-Main-2026 Math 100/100 + AIME25 96.7 w/tools + MMLU 90.6. Sarvam-30B Tau2 68.3. **Qalb-1.0 Pakistani Urdu SOTA 90.34**. SEA-LION v4.5 8 langs MIT. Typhoon-S Thai sovereign. Maritaca Sabia-7B PT ENEM 55.07. **TII Falcon-H1-34B UAE sovereign** MMLU 84.05/HumanEval 87.2. **ALLaM-7B Saudi Arabic MMLU 67.78**
+- S101 Audio: **Cohere Transcribe sweeps** ASR (LibriSpeech 1.25, RTFx 524). Parakeet TDT v3 **RTFx 3332x** fastest. **Fun-Realtime-TTS AA Elo 1226 #1** dethrones ElevenLabs. **Stable Audio 3 Large FAD 0.101 SOTA**. **Qwen3.5-Omni-Plus sweeps all 4 audio benches** (MMAU 82.2/VoiceBench 93.1/RUL-MuchoMusic 72.4/MMSU 82.8 beats Gemini 3.1 Pro)
 
 ### 2026-06-11 Sessions 99-100 — Korean+Japanese + European sovereign AI (+108/+132/+344)
 - S100 EU: Mistral **Large 3 675B/41B Apache MoE largest worldwide**. Medium 3.5 SWE-V 77.6 European agentic coder. Cohere Command A Plus 218B/25B Apache 48 langs. T-Free HAT 7B MMLU-DE 0.618. **Llama-Poro-2-8B Finnish AlpacaEval2 14x lift**. EuroLLM-22B FLORES-COMET 88.9. ALIA-40B Iberian. SmolLM3-3B IFEval 76.7
