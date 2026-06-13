@@ -1,0 +1,3370 @@
+{
+  "_meta": {
+    "session": "Session 110 — VLM frontier (multimodal understanding)",
+    "date": "2026-06-14",
+    "sources": [
+      "Open-source VLM (25): Qwen3-VL family + Qwen2.5-VL + InternVL3.5/3 + Pixtral Large 2411 + Phi-4-multimodal + MiniCPM-V 4.5 + DeepSeek-VL2 + LLaVA-OneVision 1.5",
+      "Commercial VLM (14): GPT-5.5/5.4, Mythos 5 + Fable 5 + Opus 4.8, Gemini 3 Pro/Deep Think/3.1 Pro/3.5 Flash/Pro, Grok-4.1/4, Cohere Aya Vision",
+      "Leaderboards (12): MMMU/MMMU-Pro/CharXiv-R/MathVista/Video-MMMU/ScreenSpot-Pro/OCRBench v1/v2/OmniDocBench/MMStar/MMBench/BLINK"
+    ],
+    "notes": "**Mythos 5 MMMU-Pro 92.7 (AA 0.927)**. GPT-5.4-Pro 0.940 #1 AA. GPT-5.5 MMMU-Pro Vision 83.2. **Mythos Preview CharXiv-R 0.932**. **Opus 4.8 ScreenSpot-Pro 87.9**. **Gemini 3 Pro Video-MMMU 87.6** (above human 80.5). **Qwen3-VL-235B-A22B-Instruct MMMU-Pro Vision 69.3** first open. **Qwen3-VL-32B-Thinking BLINK 80.3** +16.5pp. MiniCPM-V 4.5 8B OmniDocBench beats Gemini-3 Flash + GPT-5. **InternVL3.5-241B OCRBench 907**. Qwen3-VL-235B CharXiv RQ +17.9pp + ScreenSpot-Pro 4x lift. **Kimi K2.5 OCRBench v1 0.923**. MiniMax-M3 OmniDocBench 0.916. Strict-attribution: Qwen3.5-VL, Pixtral Large 2, Phi-5-vision, CogVLM3, Florence-3, Yi-VL 2, Idefics4 do NOT exist."
+  },
+  "models": [
+    {
+      "id": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "name": "Qwen3-VL-235B-A22B-Instruct",
+      "vendor": "alibaba (qwen)",
+      "type": "language",
+      "release_date": "2025-09-23",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "name": "Qwen3-VL-235B-A22B-Thinking",
+      "vendor": "alibaba (qwen)",
+      "type": "language",
+      "release_date": "2025-09-23",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-32b-instruct",
+      "name": "Qwen3-VL-32B-Instruct",
+      "vendor": "alibaba (qwen)",
+      "type": "language",
+      "release_date": "2025-10-21",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-32b-thinking",
+      "name": "Qwen3-VL-32B-Thinking",
+      "vendor": "alibaba (qwen)",
+      "type": "language",
+      "release_date": "2025-10-21",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-30b-a3b-instruct",
+      "name": "Qwen3-VL-30B-A3B-Instruct",
+      "vendor": "alibaba (qwen)",
+      "type": "language",
+      "release_date": "2025-10-04",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-8b-instruct",
+      "name": "Qwen3-VL-8B-Instruct",
+      "vendor": "alibaba (qwen)",
+      "type": "language",
+      "release_date": "2025-10-15",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-4b-instruct",
+      "name": "Qwen3-VL-4B-Instruct",
+      "vendor": "alibaba (qwen)",
+      "type": "language",
+      "release_date": "2025-10-15",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-2b-instruct",
+      "name": "Qwen3-VL-2B-Instruct",
+      "vendor": "alibaba (qwen)",
+      "type": "language",
+      "release_date": "2025-10-21",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-vl-72b-instruct",
+      "name": "Qwen2.5-VL-72B-Instruct",
+      "vendor": "alibaba (qwen)",
+      "type": "language",
+      "release_date": "2025-01-26",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-vl-32b-instruct",
+      "name": "Qwen2.5-VL-32B-Instruct",
+      "vendor": "alibaba (qwen)",
+      "type": "language",
+      "release_date": "2025-03-24",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-vl-7b-instruct",
+      "name": "Qwen2.5-VL-7B-Instruct",
+      "vendor": "alibaba (qwen)",
+      "type": "language",
+      "release_date": "2025-01-26",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl3.5-241b-a28b",
+      "name": "InternVL3.5-241B-A28B",
+      "vendor": "opengvlab (shanghai ai lab)",
+      "type": "language",
+      "release_date": "2025-08-25",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl3.5-38b",
+      "name": "InternVL3.5-38B",
+      "vendor": "opengvlab",
+      "type": "language",
+      "release_date": "2025-08-25",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl3.5-30b-a3b",
+      "name": "InternVL3.5-30B-A3B",
+      "vendor": "opengvlab",
+      "type": "language",
+      "release_date": "2025-08-25",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl3.5-8b",
+      "name": "InternVL3.5-8B",
+      "vendor": "opengvlab",
+      "type": "language",
+      "release_date": "2025-08-25",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl3-78b",
+      "name": "InternVL3-78B",
+      "vendor": "opengvlab",
+      "type": "language",
+      "release_date": "2025-04-11",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl3-38b",
+      "name": "InternVL3-38B",
+      "vendor": "opengvlab",
+      "type": "language",
+      "release_date": "2025-04-11",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl3-8b",
+      "name": "InternVL3-8B",
+      "vendor": "opengvlab",
+      "type": "language",
+      "release_date": "2025-04-11",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "opengvlab/internvl2.5-78b",
+      "name": "InternVL2.5-78B",
+      "vendor": "opengvlab",
+      "type": "language",
+      "release_date": "2024-12-05",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openbmb/minicpm-v-4.5",
+      "name": "MiniCPM-V 4.5",
+      "vendor": "openbmb (thu)",
+      "type": "language",
+      "release_date": "2025-08-26",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openbmb/minicpm-v-2.6",
+      "name": "MiniCPM-V 2.6",
+      "vendor": "openbmb",
+      "type": "language",
+      "release_date": "2024-08",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "mistral/pixtral-large-instruct-2411",
+      "name": "Pixtral Large (2411)",
+      "vendor": "mistral ai",
+      "type": "language",
+      "release_date": "2024-11-18",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "microsoft/phi-4-multimodal-instruct",
+      "name": "Phi-4-multimodal-instruct",
+      "vendor": "microsoft",
+      "type": "language",
+      "release_date": "2025-02",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-vl2",
+      "name": "DeepSeek-VL2",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2024-12",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "llava-hf/llava-onevision-1.5-8b",
+      "name": "LLaVA-OneVision-1.5-8B",
+      "vendor": "llava-vl (community / bytedance)",
+      "type": "language",
+      "release_date": "2025-09",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.5",
+      "name": "gpt-5.5",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-04-23",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.4",
+      "name": "gpt-5.4",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-02-15",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "anthropic/claude-mythos-5",
+      "name": "claude-mythos-5",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-06-09",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "anthropic/claude-fable-5",
+      "name": "claude-fable-5",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-06-09",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.8",
+      "name": "claude-opus-4.8",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-04-29",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro",
+      "name": "gemini-3-pro",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2025-11-18",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro-deep-think",
+      "name": "gemini-3-pro-deep-think",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2025-12-09",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-pro",
+      "name": "gemini-3.1-pro",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2026-03-12",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "google/gemini-3.5-flash",
+      "name": "gemini-3.5-flash",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2026-05-19",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "google/gemini-3.5-pro",
+      "name": "gemini-3.5-pro",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2026-06-15",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "xai/grok-4.1",
+      "name": "grok-4.1",
+      "vendor": "xai",
+      "type": "language",
+      "release_date": "2025-11-17",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "xai/grok-4",
+      "name": "grok-4",
+      "vendor": "xai",
+      "type": "language",
+      "release_date": "2025-07-10",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "cohere/aya-vision-32b",
+      "name": "aya-vision-32b",
+      "vendor": "cohere labs",
+      "type": "language",
+      "release_date": "2024-12-05",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "cohere/aya-vision-8b",
+      "name": "aya-vision-8b",
+      "vendor": "cohere labs",
+      "type": "language",
+      "release_date": "2024-12-05",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.1-instant",
+      "name": "GPT-5.1 Instant",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "stepfun/step3-vl-10b",
+      "name": "Step3-VL 10B",
+      "vendor": "stepfun",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "xiaomi/mimo-v2.5",
+      "name": "MiMo V2.5",
+      "vendor": "xiaomi",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k1.5",
+      "name": "Kimi K1.5",
+      "vendor": "moonshot",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "xai/grok-2",
+      "name": "Grok 2",
+      "vendor": "xai",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "xai/grok-2-mini",
+      "name": "Grok 2 Mini",
+      "vendor": "xai",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "mistral/mistral-small-3.2-24b-instruct",
+      "name": "Mistral Small 3.2 24B Instruct",
+      "vendor": "mistralai",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-vl2-small",
+      "name": "DeepSeek VL2 Small",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-vl2-tiny",
+      "name": "DeepSeek VL2 Tiny",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "mistral/pixtral-12b",
+      "name": "Pixtral 12B",
+      "vendor": "mistralai",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "google/gemini-1.5-flash-8b",
+      "name": "Gemini 1.5 Flash 8B",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "google/diffusiongemma-26b-a4b",
+      "name": "DiffusionGemma 26B-A4B",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2-vl-72b-instruct",
+      "name": "Qwen2-VL 72B Instruct",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-30b-a3b-thinking",
+      "name": "Qwen3-VL 30B-A3B Thinking",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-4b-thinking",
+      "name": "Qwen3-VL 4B Thinking",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-vl-8b-thinking",
+      "name": "Qwen3-VL 8B Thinking",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "mmmu_pro_vision",
+      "name": "Mmmu Pro Vision",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu_pro_overall",
+      "name": "Mmmu Pro Overall",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mathvista_mini",
+      "name": "Mathvista Mini",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ocrbench",
+      "name": "Ocrbench",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "screenspot_pro",
+      "name": "Screenspot Pro",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "charxiv_reasoning_rq",
+      "name": "Charxiv Reasoning Rq",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "charxiv_descriptive_dq",
+      "name": "Charxiv Descriptive Dq",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu_val",
+      "name": "Mmmu Val",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "blink_val",
+      "name": "Blink Val",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmbench_v1_1_en,_test",
+      "name": "Mmbench V1 1 En, Test",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "video_mme_w_sub",
+      "name": "Video Mme W Sub",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmvet",
+      "name": "Mmvet",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmstar",
+      "name": "Mmstar",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu_pro",
+      "name": "Mmmu Pro",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "charxiv_reasoning",
+      "name": "Charxiv Reasoning",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "multimodal_weighted_composite",
+      "name": "Multimodal Weighted Composite",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gdp_pdf_vision,_no_tools",
+      "name": "Gdp Pdf Vision, No Tools",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "video_mmmu",
+      "name": "Video Mmmu",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc_agi_2",
+      "name": "Arc Agi 2",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mcp_atlas",
+      "name": "Mcp Atlas",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "osworld_verified",
+      "name": "Osworld Verified",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mathvista",
+      "name": "MathVista (testmini)",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ocrbench_v1",
+      "name": "OCRBench (v1)",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ocrbench_v2_en",
+      "name": "OCRBench v2 (English)",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "omnidocbench_v1_5",
+      "name": "OmniDocBench v1.5",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmbench_v1_1",
+      "name": "MMBench v1.1 (EN+CN fused)",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "blink",
+      "name": "BLINK",
+      "category": "vision-language",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "mmmu_pro_vision",
+      "score": 69.3,
+      "unit": "score",
+      "_source": "the-decoder.com (Qwen3-VL coverage citing TR), 2025-12; cross-ref Qwen3-VL arxiv 2511.21631",
+      "_note": "Instruct, val"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "mmmu_pro_overall",
+      "score": 68.1,
+      "unit": "score",
+      "_source": "Qwen3-VL TR (arxiv 2511.21631)",
+      "_note": "Instruct"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "mathvista_mini",
+      "score": 84.9,
+      "unit": "score",
+      "_source": "Qwen3-VL TR",
+      "_note": "Instruct, testmini"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "ocrbench",
+      "score": 875.0,
+      "unit": "score",
+      "_source": "Qwen3-VL TR / the-decoder coverage",
+      "_note": "Instruct"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "screenspot_pro",
+      "score": 61.8,
+      "unit": "score",
+      "_source": "Qwen3-VL TR / the-decoder coverage",
+      "_note": "Instruct"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "charxiv_reasoning_rq",
+      "score": 66.2,
+      "unit": "score",
+      "_source": "Qwen3-VL TR / the-decoder coverage",
+      "_note": "Instruct"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "charxiv_descriptive_dq",
+      "score": 90.5,
+      "unit": "score",
+      "_source": "Qwen3-VL TR / the-decoder coverage",
+      "_note": "Instruct"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "mmmu_val",
+      "score": 78.1,
+      "unit": "score",
+      "_source": "Qwen3-VL TR (cited in emergentmind summary)",
+      "_note": "Thinking, val"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "mathvista_mini",
+      "score": 85.9,
+      "unit": "score",
+      "_source": "Qwen3-VL TR",
+      "_note": "Thinking, testmini"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "blink_val",
+      "score": 80.3,
+      "unit": "score",
+      "_source": "Qwen3-VL TR (cited in emergentmind)",
+      "_note": "Thinking, val"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "charxiv_descriptive_dq",
+      "score": 90.2,
+      "unit": "score",
+      "_source": "Qwen3-VL TR / emergentmind",
+      "_note": "Thinking"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-instruct",
+      "benchmark": "mmmu_val",
+      "score": 76.0,
+      "unit": "score",
+      "_source": "Qwen3-VL TR / emergentmind",
+      "_note": "Instruct, val"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "mmmu_val",
+      "score": 70.2,
+      "unit": "score",
+      "_source": "Qwen2.5-VL TR (arxiv 2502.13923) / qwenlm.github.io blog",
+      "_note": "Instruct, val"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "mmmu_pro_overall",
+      "score": 51.1,
+      "unit": "score",
+      "_source": "Qwen2.5-VL TR",
+      "_note": "Instruct"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "mathvista_mini",
+      "score": 74.8,
+      "unit": "score",
+      "_source": "Qwen2.5-VL TR",
+      "_note": "Instruct, testmini"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "blink_val",
+      "score": 63.8,
+      "unit": "score",
+      "_source": "Qwen2.5-VL TR",
+      "_note": "Instruct, val"
+    },
+    {
+      "model": "opengvlab/internvl3-78b",
+      "benchmark": "mmmu_val",
+      "score": 72.2,
+      "unit": "score",
+      "_source": "InternVL3 paper (arxiv 2504.10479)",
+      "_note": "Default test-time recipe"
+    },
+    {
+      "model": "opengvlab/internvl3-78b",
+      "benchmark": "ocrbench",
+      "score": 906.0,
+      "unit": "score",
+      "_source": "InternVL3 paper",
+      "_note": "Default"
+    },
+    {
+      "model": "opengvlab/internvl3-78b",
+      "benchmark": "mathvista_mini",
+      "score": 79.0,
+      "unit": "score",
+      "_source": "InternVL3 paper",
+      "_note": "Default"
+    },
+    {
+      "model": "opengvlab/internvl3-78b",
+      "benchmark": "mmbench_v1_1_en,_test",
+      "score": 87.7,
+      "unit": "score",
+      "_source": "InternVL3 paper",
+      "_note": "Default"
+    },
+    {
+      "model": "opengvlab/internvl3-78b",
+      "benchmark": "video_mme_w_sub",
+      "score": 75.7,
+      "unit": "score",
+      "_source": "InternVL3 paper",
+      "_note": "With subtitles"
+    },
+    {
+      "model": "opengvlab/internvl3.5-241b-a28b",
+      "benchmark": "mmmu_val",
+      "score": 77.7,
+      "unit": "score",
+      "_source": "InternVL3.5 paper (arxiv 2508.18265)",
+      "_note": "Default w/ Cascade RL"
+    },
+    {
+      "model": "opengvlab/internvl3.5-241b-a28b",
+      "benchmark": "mathvista_mini",
+      "score": 82.7,
+      "unit": "score",
+      "_source": "InternVL3.5 paper",
+      "_note": "Default"
+    },
+    {
+      "model": "opengvlab/internvl3.5-241b-a28b",
+      "benchmark": "mmbench_v1_1_en,_test",
+      "score": 87.4,
+      "unit": "score",
+      "_source": "InternVL3.5 paper",
+      "_note": "Default"
+    },
+    {
+      "model": "opengvlab/internvl3.5-241b-a28b",
+      "benchmark": "mmvet",
+      "score": 81.2,
+      "unit": "score",
+      "_source": "InternVL3.5 paper",
+      "_note": "Default"
+    },
+    {
+      "model": "opengvlab/internvl3.5-241b-a28b",
+      "benchmark": "mmstar",
+      "score": 77.9,
+      "unit": "score",
+      "_source": "InternVL3.5 paper",
+      "_note": "Default"
+    },
+    {
+      "model": "opengvlab/internvl3.5-241b-a28b",
+      "benchmark": "ocrbench",
+      "score": 907.0,
+      "unit": "score",
+      "_source": "InternVL3.5 paper",
+      "_note": "Default (reported as 90.7 on 0-100 scale = 907/1000)"
+    },
+    {
+      "model": "opengvlab/internvl3.5-241b-a28b",
+      "benchmark": "charxiv_reasoning_rq",
+      "score": 48.3,
+      "unit": "score",
+      "_source": "InternVL3.5 paper",
+      "_note": "Default"
+    },
+    {
+      "model": "opengvlab/internvl3.5-241b-a28b",
+      "benchmark": "charxiv_descriptive_dq",
+      "score": 83.9,
+      "unit": "score",
+      "_source": "InternVL3.5 paper",
+      "_note": "Default"
+    },
+    {
+      "model": "mistral/pixtral-large-instruct-2411",
+      "benchmark": "mmmu_val",
+      "score": 64.0,
+      "unit": "score",
+      "_source": "Mistral Pixtral Large model card / mistral.ai/news/pixtral-large",
+      "_note": "CoT"
+    },
+    {
+      "model": "mistral/pixtral-large-instruct-2411",
+      "benchmark": "mathvista_mini",
+      "score": 69.4,
+      "unit": "score",
+      "_source": "Mistral Pixtral Large model card",
+      "_note": "CoT, testmini"
+    },
+    {
+      "model": "microsoft/phi-4-multimodal-instruct",
+      "benchmark": "mmmu_val",
+      "score": 55.1,
+      "unit": "score",
+      "_source": "Phi-4-multimodal model card (HuggingFace)",
+      "_note": "Default"
+    },
+    {
+      "model": "microsoft/phi-4-multimodal-instruct",
+      "benchmark": "mmmu_pro_overall",
+      "score": 38.5,
+      "unit": "score",
+      "_source": "Phi-4-multimodal model card",
+      "_note": "std/vision avg"
+    },
+    {
+      "model": "microsoft/phi-4-multimodal-instruct",
+      "benchmark": "mathvista_mini",
+      "score": 62.4,
+      "unit": "score",
+      "_source": "Phi-4-multimodal model card",
+      "_note": "testmini"
+    },
+    {
+      "model": "microsoft/phi-4-multimodal-instruct",
+      "benchmark": "mmbench_v1_1_en,_test",
+      "score": 86.7,
+      "unit": "score",
+      "_source": "Phi-4-multimodal model card",
+      "_note": "dev-en"
+    },
+    {
+      "model": "microsoft/phi-4-multimodal-instruct",
+      "benchmark": "ocrbench",
+      "score": 844.0,
+      "unit": "score",
+      "_source": "Phi-4-multimodal model card",
+      "_note": "Default (84.4 / 100 = 844 / 1000)"
+    },
+    {
+      "model": "openbmb/minicpm-v-4.5",
+      "benchmark": "video_mme_w_sub",
+      "score": 73.5,
+      "unit": "score",
+      "_source": "MiniCPM-V 4.5 HF model card (openbmb/MiniCPM-V-4_5)",
+      "_note": "Default"
+    },
+    {
+      "model": "deepseek/deepseek-vl2",
+      "benchmark": "ocrbench",
+      "score": 811.0,
+      "unit": "score",
+      "_source": "DeepSeek-VL2 paper (arxiv 2412.10302)",
+      "_note": "Default"
+    },
+    {
+      "model": "deepseek/deepseek-vl2",
+      "benchmark": "mmstar",
+      "score": 61.3,
+      "unit": "score",
+      "_source": "DeepSeek-VL2 paper",
+      "_note": "Default"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mmmu_pro",
+      "score": 88.27,
+      "unit": "score",
+      "_source": "https://benchlm.ai/models/gpt-5-5",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mmmu_pro_vision",
+      "score": 83.2,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mmmu-pro",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "charxiv_reasoning",
+      "score": 88.7,
+      "unit": "score",
+      "_source": "https://www.vellum.ai/blog/gpt-5-2-benchmarks",
+      "_note": "GPT-5.2 figure; GPT-5.5 expected similar tier"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "screenspot_pro",
+      "score": 86.3,
+      "unit": "score",
+      "_source": "https://vertu.com/lifestyle/gpt-5-2-review-benchmark-results-real-world-testing-and-competitive-analysis/",
+      "_note": "GPT-5.2 reference; GPT-5.5 likely equal-or-higher"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "mmmu_pro",
+      "score": 81.2,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mmmu-pro",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "mmmu_pro",
+      "score": 92.7,
+      "unit": "score",
+      "_source": "https://benchlm.ai/multimodal-grounded",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "multimodal_weighted_composite",
+      "score": 98.9,
+      "unit": "score",
+      "_source": "https://benchlm.ai/multimodal-grounded",
+      "_note": "blend of MMMU-Pro + OfficeQA Pro + CharXiv"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "multimodal_weighted_composite",
+      "score": 79.0,
+      "unit": "score",
+      "_source": "https://benchlm.ai/models/claude-fable-5",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "gdp_pdf_vision,_no_tools",
+      "score": 29.8,
+      "unit": "score",
+      "_source": "https://www.vellum.ai/blog/claude-fable-5-and-mythos-5-benchmarks-explained",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "screenspot_pro",
+      "score": 87.9,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/screenspot-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "mmmu_pro",
+      "score": 81.0,
+      "unit": "score",
+      "_source": "https://www.vellum.ai/blog/google-gemini-3-benchmarks",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "video_mmmu",
+      "score": 87.6,
+      "unit": "score",
+      "_source": "https://www.vellum.ai/blog/google-gemini-3-benchmarks",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "charxiv_reasoning",
+      "score": 81.4,
+      "unit": "score",
+      "_source": "https://www.vellum.ai/blog/google-gemini-3-benchmarks",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "screenspot_pro",
+      "score": 72.7,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/screenspot-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-deep-think",
+      "benchmark": "multimodal_weighted_composite",
+      "score": 100.0,
+      "unit": "score",
+      "_source": "https://benchlm.ai/multimodal-grounded",
+      "_note": "leaderboard top of June 2026"
+    },
+    {
+      "model": "google/gemini-3-pro-deep-think",
+      "benchmark": "arc_agi_2",
+      "score": 45.1,
+      "unit": "score",
+      "_source": "https://medium.com/according-to-context/gemini-3-first-impressions-benchmarks-including-deep-think-40a00a622e8d",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mmmu_pro",
+      "score": 80.5,
+      "unit": "score",
+      "_source": "https://llm-stats.com/models/compare/gemini-3.1-pro-preview-vs-gemini-3.5-flash",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "multimodal_weighted_composite",
+      "score": 84.0,
+      "unit": "score",
+      "_source": "https://benchlm.ai/multimodal-grounded",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "mmmu_pro",
+      "score": 83.6,
+      "unit": "score",
+      "_source": "https://www.nxcode.io/resources/news/gemini-3-5-flash-complete-guide-benchmarks-pricing-api-2026",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "charxiv_reasoning",
+      "score": 84.2,
+      "unit": "score",
+      "_source": "https://www.nxcode.io/resources/news/gemini-3-5-flash-complete-guide-benchmarks-pricing-api-2026",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "mcp_atlas",
+      "score": 83.6,
+      "unit": "score",
+      "_source": "https://www.nxcode.io/resources/news/gemini-3-5-flash-complete-guide-benchmarks-pricing-api-2026",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "osworld_verified",
+      "score": 78.4,
+      "unit": "score",
+      "_source": "https://www.nxcode.io/resources/news/gemini-3-5-flash-complete-guide-benchmarks-pricing-api-2026",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-4.1",
+      "benchmark": "multimodal_weighted_composite",
+      "score": 97.8,
+      "unit": "score",
+      "_source": "https://benchlm.ai/multimodal-grounded",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "mmmu_val",
+      "score": 0.86,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=1 org=Alibaba/Qwen"
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "mmmu_val",
+      "score": 0.854,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=2 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-5.1-instant",
+      "benchmark": "mmmu_val",
+      "score": 0.854,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=2 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-5.1-thinking",
+      "benchmark": "mmmu_val",
+      "score": 0.854,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=2 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "mmmu_val",
+      "score": 0.842,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=5 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "mmmu_val",
+      "score": 0.839,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=6 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmmu_val",
+      "score": 0.829,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=7 org=Alibaba/Qwen"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "mmmu_val",
+      "score": 0.829,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=7 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "mmmu_val",
+      "score": 0.823,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=9 org=Alibaba/Qwen"
+    },
+    {
+      "model": "google/gemini-2.5-pro-preview-06-05-default-think",
+      "benchmark": "mmmu_val",
+      "score": 0.82,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=10 org=Google"
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "mmmu_val",
+      "score": 0.817,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=11 org=Alibaba/Qwen"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "mmmu_val",
+      "score": 0.816,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=12 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "mmmu_val",
+      "score": 0.814,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=13 org=Alibaba/Qwen"
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "benchmark": "mmmu_val",
+      "score": 0.797,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=14 org=Google"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "mmmu_val",
+      "score": 0.796,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=15 org=Google"
+    },
+    {
+      "model": "stepfun/step3-vl-10b",
+      "benchmark": "mmmu_val",
+      "score": 0.781,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=16 org=StepFun"
+    },
+    {
+      "model": "xai/grok-3",
+      "benchmark": "mmmu_val",
+      "score": 0.78,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=17 org=xAI"
+    },
+    {
+      "model": "openai/o1",
+      "benchmark": "mmmu_val",
+      "score": 0.776,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=18 org=OpenAI"
+    },
+    {
+      "model": "google/gemini-2.0-flash-thinking",
+      "benchmark": "mmmu_val",
+      "score": 0.754,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=19 org=Google"
+    },
+    {
+      "model": "openai/gpt-4.5",
+      "benchmark": "mmmu_val",
+      "score": 0.752,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=20 org=OpenAI"
+    },
+    {
+      "model": "anthropic/claude-3.7-sonnet",
+      "benchmark": "mmmu_val",
+      "score": 0.75,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=21 org=Anthropic"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "mmmu_val",
+      "score": 0.748,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=22 org=OpenAI"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "mmmu_val",
+      "score": 0.744,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=23 org=Anthropic"
+    },
+    {
+      "model": "llama-4-maverick",
+      "benchmark": "mmmu_val",
+      "score": 0.734,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=24 org=Meta"
+    },
+    {
+      "model": "google/gemini-2.5-flash-lite",
+      "benchmark": "mmmu_val",
+      "score": 0.729,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=25 org=Google"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "mmmu_val",
+      "score": 0.727,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=26 org=OpenAI"
+    },
+    {
+      "model": "gpt-4o",
+      "benchmark": "mmmu_val",
+      "score": 0.722,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=27 org=OpenAI"
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "mmmu_val",
+      "score": 0.707,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=28 org=Google"
+    },
+    {
+      "model": "alibaba/qvq-72b-preview",
+      "benchmark": "mmmu_val",
+      "score": 0.703,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=29 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "mmmu_val",
+      "score": 0.702,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu",
+      "_note": "rank=30 org=Alibaba/Qwen"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "mmmu_pro",
+      "score": 0.836,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=1 org=Google"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mmmu_pro",
+      "score": 0.832,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=2 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "mmmu_pro",
+      "score": 0.812,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=3 org=OpenAI"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "mmmu_pro",
+      "score": 0.812,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=3 org=Google"
+    },
+    {
+      "model": "gemini-3-pro",
+      "benchmark": "mmmu_pro",
+      "score": 0.81,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=5 org=Google"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mmmu_pro",
+      "score": 0.805,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=6 org=Google"
+    },
+    {
+      "model": "meta/muse-spark",
+      "benchmark": "mmmu_pro",
+      "score": 0.804,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=7 org=Meta"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "mmmu_pro",
+      "score": 0.801,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=8 org=Moonshot AI"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "mmmu_pro",
+      "score": 0.795,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=9 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "mmmu_pro",
+      "score": 0.788,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=10 org=Alibaba/Qwen"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "mmmu_pro",
+      "score": 0.785,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=11 org=Moonshot AI"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "mmmu_pro",
+      "score": 0.784,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=12 org=OpenAI"
+    },
+    {
+      "model": "minimax/minimax-m3",
+      "benchmark": "mmmu_pro",
+      "score": 0.781,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=13 org=MiniMax"
+    },
+    {
+      "model": "xiaomi/mimo-v2.5",
+      "benchmark": "mmmu_pro",
+      "score": 0.779,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=14 org=Xiaomi"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mmmu_pro",
+      "score": 0.773,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=15 org=Anthropic"
+    },
+    {
+      "model": "gemma-4-31b",
+      "benchmark": "mmmu_pro",
+      "score": 0.769,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=16 org=Google"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "mmmu_pro",
+      "score": 0.769,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=16 org=Alibaba/Qwen"
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "mmmu_pro",
+      "score": 0.768,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=18 org=Google"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "mmmu_pro",
+      "score": 0.766,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=19 org=OpenAI"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "mmmu_pro",
+      "score": 0.764,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=20 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-5.5-instant",
+      "benchmark": "mmmu_pro",
+      "score": 0.76,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=21 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmmu_pro",
+      "score": 0.758,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=22 org=Alibaba/Qwen"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "mmmu_pro",
+      "score": 0.756,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=23 org=Anthropic"
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "mmmu_pro",
+      "score": 0.753,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=24 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "mmmu_pro",
+      "score": 0.751,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=25 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "mmmu_pro",
+      "score": 0.75,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=26 org=Alibaba/Qwen"
+    },
+    {
+      "model": "gemma-4-26b-a4b",
+      "benchmark": "mmmu_pro",
+      "score": 0.738,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=27 org=Google"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "mmmu_pro",
+      "score": 0.693,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=28 org=Alibaba/Qwen"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "mmmu_pro",
+      "score": 0.691,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=29 org=Google"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "mmmu_pro",
+      "score": 0.681,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=30 org=Alibaba/Qwen"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.932,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=1 org=Anthropic"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.91,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=2 org=Anthropic"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.899,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=3 org=Anthropic"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.867,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=4 org=Moonshot AI"
+    },
+    {
+      "model": "meta/muse-spark",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.864,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=5 org=Meta"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.842,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=6 org=Google"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.821,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=7 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-5.5-instant",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.816,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=8 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.815,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=9 org=Alibaba/Qwen"
+    },
+    {
+      "model": "gemini-3-pro",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.814,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=10 org=Google"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.811,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=11 org=OpenAI"
+    },
+    {
+      "model": "xiaomi/mimo-v2.5",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.81,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=12 org=Xiaomi"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.803,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=13 org=Google"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.795,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=14 org=Alibaba/Qwen"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.786,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=15 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.784,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=16 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.78,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=17 org=Alibaba/Qwen"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.775,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=18 org=Moonshot AI"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.775,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=18 org=Alibaba/Qwen"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.774,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=20 org=Anthropic"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.772,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=21 org=Alibaba/Qwen"
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.732,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=22 org=Google"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.72,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=23 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.661,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=24 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.652,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=25 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-instruct",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.628,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=26 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.621,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=27 org=Alibaba/Qwen"
+    },
+    {
+      "model": "gpt-4o",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.588,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=28 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.568,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=29 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "charxiv_reasoning",
+      "score": 0.567,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/charxiv-r",
+      "_note": "rank=30 org=OpenAI"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "mathvista",
+      "score": 0.868,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=1 org=OpenAI"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "mathvista",
+      "score": 0.843,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=2 org=OpenAI"
+    },
+    {
+      "model": "stepfun/step3-vl-10b",
+      "benchmark": "mathvista",
+      "score": 0.84,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=3 org=StepFun"
+    },
+    {
+      "model": "moonshot/kimi-k1.5",
+      "benchmark": "mathvista",
+      "score": 0.749,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=4 org=Moonshot AI"
+    },
+    {
+      "model": "llama-4-maverick",
+      "benchmark": "mathvista",
+      "score": 0.737,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=5 org=Meta"
+    },
+    {
+      "model": "openai/gpt-4.1-mini",
+      "benchmark": "mathvista",
+      "score": 0.731,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=6 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-4.5",
+      "benchmark": "mathvista",
+      "score": 0.723,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=7 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "mathvista",
+      "score": 0.722,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=8 org=OpenAI"
+    },
+    {
+      "model": "openai/o1",
+      "benchmark": "mathvista",
+      "score": 0.718,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=9 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qvq-72b-preview",
+      "benchmark": "mathvista",
+      "score": 0.714,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=10 org=Alibaba/Qwen"
+    },
+    {
+      "model": "llama-4-scout",
+      "benchmark": "mathvista",
+      "score": 0.707,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=11 org=Meta"
+    },
+    {
+      "model": "mistral/pixtral-large-instruct-2411",
+      "benchmark": "mathvista",
+      "score": 0.694,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=12 org=Mistral AI"
+    },
+    {
+      "model": "xai/grok-2",
+      "benchmark": "mathvista",
+      "score": 0.69,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=13 org=xAI"
+    },
+    {
+      "model": "google/gemini-1.5-pro",
+      "benchmark": "mathvista",
+      "score": 0.681,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=14 org=Google"
+    },
+    {
+      "model": "xai/grok-2-mini",
+      "benchmark": "mathvista",
+      "score": 0.681,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=14 org=xAI"
+    },
+    {
+      "model": "alibaba/qwen2.5-omni-7b",
+      "benchmark": "mathvista",
+      "score": 0.679,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=16 org=Alibaba/Qwen"
+    },
+    {
+      "model": "anthropic/claude-3.5-sonnet",
+      "benchmark": "mathvista",
+      "score": 0.677,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=17 org=Anthropic"
+    },
+    {
+      "model": "mistralai/mistral-small-3.2-24b-instruct",
+      "benchmark": "mathvista",
+      "score": 0.671,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=18 org=Mistral AI"
+    },
+    {
+      "model": "google/gemini-1.5-flash",
+      "benchmark": "mathvista",
+      "score": 0.658,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=19 org=Google"
+    },
+    {
+      "model": "gpt-4o",
+      "benchmark": "mathvista",
+      "score": 0.638,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=20 org=OpenAI"
+    },
+    {
+      "model": "deepseek/deepseek-vl2",
+      "benchmark": "mathvista",
+      "score": 0.628,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=21 org=DeepSeek"
+    },
+    {
+      "model": "microsoft/phi-4-multimodal-instruct",
+      "benchmark": "mathvista",
+      "score": 0.624,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=22 org=Microsoft"
+    },
+    {
+      "model": "deepseek/deepseek-vl2-small",
+      "benchmark": "mathvista",
+      "score": 0.607,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=24 org=DeepSeek"
+    },
+    {
+      "model": "mistralai/pixtral-12b",
+      "benchmark": "mathvista",
+      "score": 0.58,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=25 org=Mistral AI"
+    },
+    {
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "benchmark": "mathvista",
+      "score": 0.573,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=26 org=Meta"
+    },
+    {
+      "model": "openai/gpt-4o-mini",
+      "benchmark": "mathvista",
+      "score": 0.567,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=27 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-4.1-nano",
+      "benchmark": "mathvista",
+      "score": 0.562,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=28 org=OpenAI"
+    },
+    {
+      "model": "google/gemini-1.5-flash-8b",
+      "benchmark": "mathvista",
+      "score": 0.547,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=29 org=Google"
+    },
+    {
+      "model": "deepseek/deepseek-vl2-tiny",
+      "benchmark": "mathvista",
+      "score": 0.536,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista",
+      "_note": "rank=30 org=DeepSeek"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "mathvista",
+      "score": 0.901,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mathvista-mini",
+      "_note": "rank=mini-leader org=Moonshot AI"
+    },
+    {
+      "model": "gemini-3-pro",
+      "benchmark": "video_mmmu",
+      "score": 0.876,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=1 org=Google"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "video_mmmu",
+      "score": 0.869,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=2 org=Google"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "video_mmmu",
+      "score": 0.866,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=3 org=Moonshot AI"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "video_mmmu",
+      "score": 0.859,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=4 org=OpenAI"
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "video_mmmu",
+      "score": 0.848,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=5 org=Google"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "video_mmmu",
+      "score": 0.846,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=6 org=OpenAI"
+    },
+    {
+      "model": "minimax/minimax-m3",
+      "benchmark": "video_mmmu",
+      "score": 0.846,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=6 org=MiniMax"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "video_mmmu",
+      "score": 0.844,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=8 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "video_mmmu",
+      "score": 0.84,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=9 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "video_mmmu",
+      "score": 0.837,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=10 org=Alibaba/Qwen"
+    },
+    {
+      "model": "google/gemini-2.5-pro-preview-06-05-default-think",
+      "benchmark": "video_mmmu",
+      "score": 0.836,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=11 org=Google"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "video_mmmu",
+      "score": 0.833,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=12 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "video_mmmu",
+      "score": 0.823,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=13 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "video_mmmu",
+      "score": 0.82,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=14 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "video_mmmu",
+      "score": 0.804,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=15 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "video_mmmu",
+      "score": 0.8,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=16 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "video_mmmu",
+      "score": 0.79,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=17 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-thinking",
+      "benchmark": "video_mmmu",
+      "score": 0.75,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=18 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "video_mmmu",
+      "score": 0.747,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=19 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-thinking",
+      "benchmark": "video_mmmu",
+      "score": 0.728,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=20 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-thinking",
+      "benchmark": "video_mmmu",
+      "score": 0.694,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=21 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-instruct",
+      "benchmark": "video_mmmu",
+      "score": 0.687,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=22 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-instruct",
+      "benchmark": "video_mmmu",
+      "score": 0.653,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=23 org=Alibaba/Qwen"
+    },
+    {
+      "model": "gpt-4o",
+      "benchmark": "video_mmmu",
+      "score": 0.612,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=24 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-instruct",
+      "benchmark": "video_mmmu",
+      "score": 0.562,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/videommmu",
+      "_note": "rank=25 org=Alibaba/Qwen"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "screenspot_pro",
+      "score": 0.879,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/screenspot-pro",
+      "_note": "rank=1 org=Anthropic"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "screenspot_pro",
+      "score": 0.863,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/screenspot-pro",
+      "_note": "rank=2 org=OpenAI"
+    },
+    {
+      "model": "meta/muse-spark",
+      "benchmark": "screenspot_pro",
+      "score": 0.841,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/screenspot-pro",
+      "_note": "rank=3 org=Meta"
+    },
+    {
+      "model": "gemini-3-pro",
+      "benchmark": "screenspot_pro",
+      "score": 0.727,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/screenspot-pro",
+      "_note": "rank=4 org=Google"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "screenspot_pro",
+      "score": 0.704,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/screenspot-pro",
+      "_note": "rank=5 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "screenspot_pro",
+      "score": 0.703,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/screenspot-pro",
+      "_note": "rank=6 org=Alibaba/Qwen"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "screenspot_pro",
+      "score": 0.691,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/screenspot-pro",
+      "_note": "rank=7 org=Google"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "screenspot_pro",
+      "score": 0.686,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/screenspot-pro",
+      "_note": "rank=8 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "screenspot_pro",
+      "score": 0.682,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/screenspot-pro",
+      "_note": "rank=9 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "screenspot_pro",
+      "score": 0.62,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/screenspot-pro",
+      "_note": "rank=10 org=Alibaba/Qwen"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "screenspot_pro",
+      "score": 0.844,
+      "unit": "score",
+      "_source": "codersera AI-agent-benchmarks-may-2026 + cited public snapshot",
+      "_note": "rank= org=Google"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "screenspot_pro",
+      "score": 0.854,
+      "unit": "score",
+      "_source": "codersera AI-agent-benchmarks-may-2026 + cited public snapshot",
+      "_note": "rank= org=OpenAI"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "ocrbench_v1",
+      "score": 0.923,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=1 org=Moonshot AI"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "ocrbench_v1",
+      "score": 0.921,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=2 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "ocrbench_v1",
+      "score": 0.92,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=3 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "ocrbench_v1",
+      "score": 0.91,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=4 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-instruct",
+      "benchmark": "ocrbench_v1",
+      "score": 0.903,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=5 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-instruct",
+      "benchmark": "ocrbench_v1",
+      "score": 0.896,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=6 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-instruct",
+      "benchmark": "ocrbench_v1",
+      "score": 0.895,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=7 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "ocrbench_v1",
+      "score": 0.894,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=8 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "ocrbench_v1",
+      "score": 0.894,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=8 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "ocrbench_v1",
+      "score": 0.885,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=10 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-instruct",
+      "benchmark": "ocrbench_v1",
+      "score": 0.881,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=11 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen2-vl-72b-instruct",
+      "benchmark": "ocrbench_v1",
+      "score": 0.877,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=12 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "ocrbench_v1",
+      "score": 0.875,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=13 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-7b-instruct",
+      "benchmark": "ocrbench_v1",
+      "score": 0.864,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=14 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "ocrbench_v1",
+      "score": 0.855,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=15 org=Alibaba/Qwen"
+    },
+    {
+      "model": "microsoft/phi-4-multimodal-instruct",
+      "benchmark": "ocrbench_v1",
+      "score": 0.844,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=16 org=Microsoft"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-thinking",
+      "benchmark": "ocrbench_v1",
+      "score": 0.839,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=17 org=Alibaba/Qwen"
+    },
+    {
+      "model": "deepseek/deepseek-vl2-small",
+      "benchmark": "ocrbench_v1",
+      "score": 0.834,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=18 org=DeepSeek"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-thinking",
+      "benchmark": "ocrbench_v1",
+      "score": 0.819,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=19 org=Alibaba/Qwen"
+    },
+    {
+      "model": "deepseek/deepseek-vl2",
+      "benchmark": "ocrbench_v1",
+      "score": 0.811,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=20 org=DeepSeek"
+    },
+    {
+      "model": "deepseek/deepseek-vl2-tiny",
+      "benchmark": "ocrbench_v1",
+      "score": 0.809,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=21 org=DeepSeek"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-thinking",
+      "benchmark": "ocrbench_v1",
+      "score": 0.808,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench",
+      "_note": "rank=22 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.684,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en) / HF spaces ling99/OCRBench-v2-leaderboard",
+      "_note": "rank=1 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-instruct",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.674,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en)",
+      "_note": "rank=2 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.671,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en)",
+      "_note": "rank=3 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.668,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en)",
+      "_note": "rank=4 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-instruct",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.654,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en)",
+      "_note": "rank=5 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-thinking",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.639,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en)",
+      "_note": "rank=6 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-instruct",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.637,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en)",
+      "_note": "rank=7 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-instruct",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.632,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en)",
+      "_note": "rank=8 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-thinking",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.626,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en)",
+      "_note": "rank=9 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-thinking",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.618,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en)",
+      "_note": "rank=10 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.615,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en)",
+      "_note": "rank=11 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-32b-instruct",
+      "benchmark": "ocrbench_v2_en",
+      "score": 0.572,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/ocrbench-v2-(en)",
+      "_note": "rank=12 org=Alibaba/Qwen"
+    },
+    {
+      "model": "minimax/minimax-m3",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.916,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=1 org=MiniMax"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.912,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=2 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.899,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=3 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.898,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=4 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.893,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=5 org=Alibaba/Qwen"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.891,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=6 org=OpenAI"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.889,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=7 org=Alibaba/Qwen"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.888,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=8 org=Moonshot AI"
+    },
+    {
+      "model": "openai/gpt-5.5-instant",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.875,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=9 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.874,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=10 org=OpenAI"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.758,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=11 org=OpenAI"
+    },
+    {
+      "model": "google/diffusiongemma-26b-a4b",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.319,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=12 org=Google"
+    },
+    {
+      "model": "google/gemma-4-12b",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.164,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=13 org=Google"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.121,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=14 org=Google"
+    },
+    {
+      "model": "gemini-3-pro",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.115,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/omnidocbench-1.5",
+      "_note": "rank=15 org=Google"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "omnidocbench_v1_5",
+      "score": 0.901,
+      "unit": "score",
+      "_source": "llamaindex.ai/blog/omnidocbench-is-saturated + idp-leaderboard.org/benchmarks/omnidocbench v1.5 alt snapshot",
+      "_note": "rank= org=Google"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "mmstar",
+      "score": 0.833,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=1 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "mmstar",
+      "score": 0.829,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=2 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "mmstar",
+      "score": 0.819,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=3 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmstar",
+      "score": 0.814,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=4 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "mmstar",
+      "score": 0.81,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=5 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "mmstar",
+      "score": 0.794,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=6 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "mmstar",
+      "score": 0.787,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=7 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "mmstar",
+      "score": 0.784,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=8 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-instruct",
+      "benchmark": "mmstar",
+      "score": 0.777,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=9 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-thinking",
+      "benchmark": "mmstar",
+      "score": 0.755,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=10 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-thinking",
+      "benchmark": "mmstar",
+      "score": 0.753,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=11 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-thinking",
+      "benchmark": "mmstar",
+      "score": 0.732,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=12 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-instruct",
+      "benchmark": "mmstar",
+      "score": 0.721,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=13 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-instruct",
+      "benchmark": "mmstar",
+      "score": 0.709,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=14 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b-instruct",
+      "benchmark": "mmstar",
+      "score": 0.708,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=15 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-instruct",
+      "benchmark": "mmstar",
+      "score": 0.698,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=16 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-32b-instruct",
+      "benchmark": "mmstar",
+      "score": 0.695,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=17 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen2.5-omni-7b",
+      "benchmark": "mmstar",
+      "score": 0.64,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=18 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-7b-instruct",
+      "benchmark": "mmstar",
+      "score": 0.639,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=19 org=Alibaba/Qwen"
+    },
+    {
+      "model": "deepseek/deepseek-vl2",
+      "benchmark": "mmstar",
+      "score": 0.613,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=20 org=DeepSeek"
+    },
+    {
+      "model": "deepseek/deepseek-vl2-small",
+      "benchmark": "mmstar",
+      "score": 0.57,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=21 org=DeepSeek"
+    },
+    {
+      "model": "deepseek/deepseek-vl2-tiny",
+      "benchmark": "mmstar",
+      "score": 0.459,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmstar",
+      "_note": "rank=22 org=DeepSeek"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "mmbench_v1_1",
+      "score": 0.928,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmbench-v1.1",
+      "_note": "rank=1 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "mmbench_v1_1",
+      "score": 0.928,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmbench-v1.1",
+      "_note": "rank=1 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "mmbench_v1_1",
+      "score": 0.926,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmbench-v1.1",
+      "_note": "rank=3 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmbench_v1_1",
+      "score": 0.923,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmbench-v1.1",
+      "_note": "rank=4 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "mmbench_v1_1",
+      "score": 0.915,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmbench-v1.1",
+      "_note": "rank=5 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "mmbench_v1_1",
+      "score": 0.908,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmbench-v1.1",
+      "_note": "rank=6 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "mmbench_v1_1",
+      "score": 0.906,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmbench-v1.1",
+      "_note": "rank=7 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "mmbench_v1_1",
+      "score": 0.899,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmbench-v1.1",
+      "_note": "rank=8 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-thinking",
+      "benchmark": "mmbench_v1_1",
+      "score": 0.889,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmbench-v1.1",
+      "_note": "rank=9 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-thinking",
+      "benchmark": "mmbench_v1_1",
+      "score": 0.875,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmbench-v1.1",
+      "_note": "rank=10 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen2.5-omni-7b",
+      "benchmark": "mmbench_v1_1",
+      "score": 0.818,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/mmbench-v1.1",
+      "_note": "rank=15 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "blink",
+      "score": 0.707,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/blink",
+      "_note": "rank=1 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-instruct",
+      "benchmark": "blink",
+      "score": 0.691,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/blink",
+      "_note": "rank=2 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-thinking",
+      "benchmark": "blink",
+      "score": 0.687,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/blink",
+      "_note": "rank=3 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "blink",
+      "score": 0.685,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/blink",
+      "_note": "rank=4 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-instruct",
+      "benchmark": "blink",
+      "score": 0.677,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/blink",
+      "_note": "rank=5 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-instruct",
+      "benchmark": "blink",
+      "score": 0.673,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/blink",
+      "_note": "rank=6 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "blink",
+      "score": 0.671,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/blink",
+      "_note": "rank=7 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-instruct",
+      "benchmark": "blink",
+      "score": 0.658,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/blink",
+      "_note": "rank=8 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-thinking",
+      "benchmark": "blink",
+      "score": 0.654,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/blink",
+      "_note": "rank=9 org=Alibaba/Qwen"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-thinking",
+      "benchmark": "blink",
+      "score": 0.634,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/blink",
+      "_note": "rank=10 org=Alibaba/Qwen"
+    },
+    {
+      "model": "microsoft/phi-4-multimodal-instruct",
+      "benchmark": "blink",
+      "score": 0.613,
+      "unit": "score",
+      "_source": "llm-stats.com/benchmarks/blink",
+      "_note": "rank=11 org=Microsoft"
+    }
+  ]
+}
