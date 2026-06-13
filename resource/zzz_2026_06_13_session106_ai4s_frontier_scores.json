@@ -1,0 +1,1735 @@
+{
+  "_meta": {
+    "session": "Session 106 — AI4S deep dive (Protein/Structural Bio + Materials Science + AI4S Benchmarks)",
+    "date": "2026-06-13",
+    "sources": [
+      "Protein/Structural Bio (13): AlphaFold 3 + IsoDDE + OpenFold3 + Boltz-2 + Chai-1/2 + ESM3 + RFdiffusion3 + LigandMPNN + BioEmu",
+      "Materials science (27): EquiformerV3+DeNS-OAM + PET-OAM-XL + TACE-OAM-L + UMA-S 1.2 + OrbMol-v2 + MatterGen + GNoME + MACE-MP + CHGNet + Allegro + NequIP + ORB v3",
+      "AI4S benchmarks (14 + 16 + 33): Sakana AI Scientist + Darwin Godel Machine + Cosmos-Reason 2 + AstroSage + Biomni + PhysicsMinions + P1/P1-VL"
+    ],
+    "notes": "Protein: IsoDDE 50% Runs-N-Poses hardest bin vs AF3 23.3%. RFdiffusion3 41/41 enzyme sites. Chai-2 ~20% zero-shot antibody hit rate (100x prior). BioEmu <1 kcal/mol error 100kx faster than MD. Materials: EquiformerV3+DeNS-OAM MatBench Discovery F1 0.931 + MAE 0.018 eV/atom. UMA-S 1.2 50% faster + 40% more accurate. OrbMol-v2 3.7x error reduction. AI4S benches: GPT-5 USNCO 93.2% + MatSciBench multimodal 53.02. DeepSeek-R1 MatSciBench text 75.22. Biomni Lab BixBench 52.2. Gemini 3 Flash AstroBench 90.3 + ChemCensor 1.82. PhysicsMinions IPhO-2025 26.8/30 (first open IPhO gold). Cosmos-Reason 2-8B PAI-Bench 80.18. Grok-4.1 Thinking VCT 61.0."
+  },
+  "models": [
+    {
+      "id": "google/alphafold-3",
+      "name": "AlphaFold 3",
+      "vendor": "google deepmind",
+      "type": "ai4s",
+      "release_date": "2024-05-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "isomorphic/isodde",
+      "name": "Isomorphic Drug Design Engine (IsoDDE)",
+      "vendor": "isomorphic labs",
+      "type": "ai4s",
+      "release_date": "2026-02-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "evolutionaryscale/esm-3",
+      "name": "ESM3",
+      "vendor": "evolutionaryscale",
+      "type": "ai4s",
+      "release_date": "2024-06-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "evolutionaryscale/esmc",
+      "name": "ESM Cambrian (ESMC)",
+      "vendor": "evolutionaryscale",
+      "type": "ai4s",
+      "release_date": "2024-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openfold/openfold-3",
+      "name": "OpenFold3 (preview)",
+      "vendor": "aq laboratory / openfold consortium",
+      "type": "ai4s",
+      "release_date": "2025",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "jwohlwend/boltz-2",
+      "name": "Boltz-2",
+      "vendor": "mit (wohlwend) / recursion",
+      "type": "ai4s",
+      "release_date": "2025-06-14",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "chai-discovery/chai-1",
+      "name": "Chai-1",
+      "vendor": "chai discovery",
+      "type": "ai4s",
+      "release_date": "2024-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "chai-discovery/chai-2",
+      "name": "Chai-2",
+      "vendor": "chai discovery",
+      "type": "ai4s",
+      "release_date": "2025-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/bioemu",
+      "name": "BioEmu",
+      "vendor": "microsoft research ai for science",
+      "type": "ai4s",
+      "release_date": "2025-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "rosettacommons/rfdiffusion-3",
+      "name": "RFdiffusion3",
+      "vendor": "baker lab / institute for protein design (uw)",
+      "type": "ai4s",
+      "release_date": "2025-12-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "rosettacommons/rfdiffusion-2",
+      "name": "RFdiffusion2",
+      "vendor": "baker lab / ipd (uw)",
+      "type": "ai4s",
+      "release_date": "2025-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "rosettacommons/ligandmpnn",
+      "name": "LigandMPNN",
+      "vendor": "baker lab / ipd (uw)",
+      "type": "ai4s",
+      "release_date": "2025-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "exscientia/abodybuilder-3",
+      "name": "ABodyBuilder3",
+      "vendor": "exscientia",
+      "type": "ai4s",
+      "release_date": "2024-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "fair/equiformerv3-dens-oam",
+      "name": "EquiformerV3+DeNS-OAM",
+      "vendor": "fair (meta)",
+      "type": "ai4s",
+      "release_date": "2026-04-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lab-cosmo/pet-oam-xl",
+      "name": "PET-OAM-XL",
+      "vendor": "lab-cosmo (epfl)",
+      "type": "ai4s",
+      "release_date": "2026-01-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "acesuit/tace-oam-l",
+      "name": "TACE-OAM-L",
+      "vendor": "acesuit",
+      "type": "ai4s",
+      "release_date": "2026-04-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "fair/esen-30m-oam",
+      "name": "eSEN-30M-OAM",
+      "vendor": "fair (meta)",
+      "type": "ai4s",
+      "release_date": "2025-03-17",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "lab-cosmo/equflash",
+      "name": "EquFlash",
+      "vendor": "lab-cosmo",
+      "type": "ai4s",
+      "release_date": "2025-06-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mir-group/nequip-oam-xl",
+      "name": "NequIP-OAM-XL",
+      "vendor": "mir group (harvard)",
+      "type": "ai4s",
+      "release_date": "2025-11-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "matris/matris-10m-oam",
+      "name": "MatRIS-10M-OAM",
+      "vendor": "matris",
+      "type": "ai4s",
+      "release_date": "2025-10-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mdil-snu/sevennet-omni-i12",
+      "name": "SevenNet-Omni-i12",
+      "vendor": "mdil-snu (seoul nat'l univ)",
+      "type": "ai4s",
+      "release_date": "2026-01-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mir-group/nequip-oam-l",
+      "name": "NequIP-OAM-L",
+      "vendor": "mir group",
+      "type": "ai4s",
+      "release_date": "2025-09-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "grace/grace-2l-oam-l",
+      "name": "GRACE-2L-OAM-L",
+      "vendor": "grace",
+      "type": "ai4s",
+      "release_date": "2025-09-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "orbital-materials/orb-v3",
+      "name": "ORB v3",
+      "vendor": "orbital materials",
+      "type": "ai4s",
+      "release_date": "2025-04-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google-deepmind/gnome",
+      "name": "GNoME",
+      "vendor": "google deepmind",
+      "type": "ai4s",
+      "release_date": "2023-11-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "acesuit/mace-mp-0",
+      "name": "MACE-MP-0",
+      "vendor": "acesuit",
+      "type": "ai4s",
+      "release_date": "2023-07-14",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cedergrouphub/chgnet",
+      "name": "CHGNet",
+      "vendor": "ceder group (uc berkeley / lbnl)",
+      "type": "ai4s",
+      "release_date": "2023-03-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "materialsvirtuallab/m3gnet",
+      "name": "M3GNet",
+      "vendor": "materials virtual lab (ucsd)",
+      "type": "ai4s",
+      "release_date": "2022-09-20",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/mattergen",
+      "name": "MatterGen v1.0.3",
+      "vendor": "microsoft research",
+      "type": "ai4s",
+      "release_date": "2025-07-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/mattersim-v1-5m",
+      "name": "MatterSim v1.0.0-5M",
+      "vendor": "microsoft research",
+      "type": "ai4s",
+      "release_date": "2024-05-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "fair/uma-s-1p2",
+      "name": "UMA-S 1.2",
+      "vendor": "fair chemistry (meta)",
+      "type": "ai4s",
+      "release_date": "2026-03-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "fair/uma-m-1p1",
+      "name": "UMA-M 1.1",
+      "vendor": "fair chemistry (meta)",
+      "type": "ai4s",
+      "release_date": "2025-11-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "fair/omat24",
+      "name": "OMat24 (EquiformerV2-153M)",
+      "vendor": "fair chemistry (meta)",
+      "type": "ai4s",
+      "release_date": "2024-10-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mir-group/nequip",
+      "name": "NequIP (base)",
+      "vendor": "mir group (harvard)",
+      "type": "ai4s",
+      "release_date": "2022-05-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mir-group/allegro",
+      "name": "Allegro",
+      "vendor": "mir group (harvard)",
+      "type": "ai4s",
+      "release_date": "2023-02-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "orbital-materials/orb-v2",
+      "name": "ORB v2",
+      "vendor": "orbital materials",
+      "type": "ai4s",
+      "release_date": "2024-10-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "orbital-materials/orbmol-v2",
+      "name": "OrbMol-v2",
+      "vendor": "orbital materials",
+      "type": "ai4s",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "acesuit/mace-mp-0b3",
+      "name": "MACE-MP-0b3",
+      "vendor": "acesuit",
+      "type": "ai4s",
+      "release_date": "2025-06-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "acesuit/mace-mpa-0",
+      "name": "MACE-MPA-0",
+      "vendor": "acesuit",
+      "type": "ai4s",
+      "release_date": "2025-08-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "acesuit/mace-omat-0",
+      "name": "MACE-OMAT-0",
+      "vendor": "acesuit",
+      "type": "ai4s",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ai-scientist-v2",
+      "name": "AI Scientist-v2",
+      "vendor": "sakana ai + ubc + vector + oxford",
+      "type": "ai4s",
+      "release_date": "2025-04-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ai-scientist-nature-2026",
+      "name": "AI Scientist (Nature 2026)",
+      "vendor": "sakana ai",
+      "type": "ai4s",
+      "release_date": "2026-03-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "darwin-godel-machine",
+      "name": "Darwin Godel Machine",
+      "vendor": "sakana ai rsi lab",
+      "type": "ai4s",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cosmos-reason-1",
+      "name": "Cosmos-Reason 1",
+      "vendor": "nvidia",
+      "type": "ai4s",
+      "release_date": "2025",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cosmos-reason-2-2b",
+      "name": "Cosmos-Reason 2-2B",
+      "vendor": "nvidia",
+      "type": "ai4s",
+      "release_date": "2026-01-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cosmos-reason-2-8b",
+      "name": "Cosmos-Reason 2-8B",
+      "vendor": "nvidia",
+      "type": "ai4s",
+      "release_date": "2026-01-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cosmos-3",
+      "name": "NVIDIA Cosmos 3",
+      "vendor": "nvidia",
+      "type": "ai4s",
+      "release_date": "2026-05-31",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cosmos-3-nano",
+      "name": "Cosmos 3 Nano",
+      "vendor": "nvidia",
+      "type": "ai4s",
+      "release_date": "2026-05-31",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "astrosage-llama-3-1-70b",
+      "name": "AstroSage-Llama-3.1-70B",
+      "vendor": "astromlab",
+      "type": "ai4s",
+      "release_date": "2025-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "physicsminions",
+      "name": "PhysicsMinions",
+      "vendor": "academic (arxiv 2509.24855)",
+      "type": "ai4s",
+      "release_date": "2025-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "p1-physics-rl",
+      "name": "P1",
+      "vendor": "academic (arxiv 2511.13612)",
+      "type": "ai4s",
+      "release_date": "2025-11-18",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "p1-vl",
+      "name": "P1-VL",
+      "vendor": "academic (arxiv 2602.09443)",
+      "type": "ai4s",
+      "release_date": "2026-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "biomni-lab",
+      "name": "Biomni Lab",
+      "vendor": "biomni",
+      "type": "ai4s",
+      "release_date": "2026-02-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "insilico-science-mmai-gym",
+      "name": "Insilico Science MMAI Gym",
+      "vendor": "insilico medicine",
+      "type": "ai4s",
+      "release_date": "2026-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "edison/edison-analysis",
+      "name": "Edison Analysis",
+      "vendor": "edison",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ovis/ovis2-34b",
+      "name": "Ovis2 34B",
+      "vendor": "ovis",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "anthropic/claude-3.7-sonnet",
+      "name": "Claude 3.7 Sonnet",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2025-02-24",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "google/gemini-2.5-pro-reasoning",
+      "name": "Gemini 2.5 Pro (Reasoning)",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-05-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-pro-preview",
+      "name": "Gemini 3.1 Pro Preview",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2026-02-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "xai/grok-4.1-thinking",
+      "name": "Grok 4.1 Thinking",
+      "vendor": "xai",
+      "type": "language",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "casp16_tm_score_official_top1",
+      "name": "Casp16 Tm Score Official Top1",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "runsnposes_hardest_bin_success_rate",
+      "name": "Runsnposes Hardest Bin Success Rate",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "casp16_affinity_rank",
+      "name": "Casp16 Affinity Rank",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "fep_plus_openfe_affinity_pearson",
+      "name": "Fep Plus Openfe Affinity Pearson",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "fep_4target_subset_affinity_pearson",
+      "name": "Fep 4Target Subset Affinity Pearson",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "antibody_zero_shot_design_hit_rate",
+      "name": "Antibody Zero Shot Design Hit Rate",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "free_energy_difference_error_lower_better",
+      "name": "Free Energy Difference Error Lower Better",
+      "category": "ai4s",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "conformational_change_success_rate",
+      "name": "Conformational Change Success Rate",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "enzyme_design_41site_success",
+      "name": "Enzyme Design 41Site Success",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "small_molecule_sidechain_sequence_recovery",
+      "name": "Small Molecule Sidechain Sequence Recovery",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "nucleotide_sidechain_sequence_recovery",
+      "name": "Nucleotide Sidechain Sequence Recovery",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "metal_sidechain_sequence_recovery",
+      "name": "Metal Sidechain Sequence Recovery",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "matbench_discovery_f1",
+      "name": "Matbench Discovery F1",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "matbench_discovery_mae_lower_better",
+      "name": "Matbench Discovery Mae Lower Better",
+      "category": "ai4s",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "matbench_discovery_daf",
+      "name": "Matbench Discovery Daf",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "matbench_discovery_precision",
+      "name": "Matbench Discovery Precision",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "matbench_discovery_recall",
+      "name": "Matbench Discovery Recall",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "matbench_discovery_r2",
+      "name": "Matbench Discovery R2",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gnome_stable_structures_count",
+      "name": "Gnome Stable Structures Count",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mattergen_stability_rate",
+      "name": "Mattergen Stability Rate",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mattergen_novelty_rate",
+      "name": "Mattergen Novelty Rate",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mattergen_uniqueness_rate",
+      "name": "Mattergen Uniqueness Rate",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mattergen_sun_score",
+      "name": "Mattergen Sun Score",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mattergen_rmsd_lower_better",
+      "name": "Mattergen Rmsd Lower Better",
+      "category": "ai4s",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gscdb138_normalized_error_ratio_lower_better",
+      "name": "Gscdb138 Normalized Error Ratio Lower Better",
+      "category": "ai4s",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gpqa_diamond",
+      "name": "GPQA-Diamond",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "chembench_correct_frac",
+      "name": "ChemBench (fraction fully correct)",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "usnco_v",
+      "name": "USNCO-V (Multimodal Chemistry Olympiad)",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "matscibench_text",
+      "name": "MatSciBench (text-only)",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "matscibench_multimodal",
+      "name": "MatSciBench (with images)",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ursa_expert_2026_chemcensor",
+      "name": "URSA-expert-2026 ChemCensor (avg per-target max)",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bixbench_open_answer",
+      "name": "BixBench (open-answer)",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vct",
+      "name": "Virology Capabilities Test (VCT)",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "astrobench_mlab1",
+      "name": "AstroMLab-1 AstroBench (3846-subset)",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "astrommbench",
+      "name": "AstroMMBench",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "phybench_acc",
+      "name": "PHYBench accuracy",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "abench_physics",
+      "name": "ABench-Physics",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hipho_avg",
+      "name": "HiPhO (avg-score, /30 normalized)",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ipho_2025_points",
+      "name": "IPhO-2025 points (/30)",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "pai_bench",
+      "name": "PAI-Bench (Physical AI Bench)",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "iclr_icbinb_2025_reviewer_score",
+      "name": "ICLR ICBINB 2025 Reviewer Score",
+      "category": "ai4s",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "google/alphafold-3",
+      "benchmark": "casp16_tm_score_official_top1",
+      "score": 0.85,
+      "unit": "score",
+      "_source": "https://www.biorxiv.org/content/10.1101/2025.04.10.648174v1",
+      "_note": ""
+    },
+    {
+      "model": "isomorphic/isodde",
+      "benchmark": "runsnposes_hardest_bin_success_rate",
+      "score": 50.0,
+      "unit": "score",
+      "_source": "https://storage.googleapis.com/isomorphiclabs-website-public-artifacts/isodde_technical_report.pdf",
+      "_note": ""
+    },
+    {
+      "model": "jwohlwend/boltz-2",
+      "benchmark": "casp16_affinity_rank",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "https://www.biorxiv.org/content/10.1101/2025.06.14.659707v1",
+      "_note": ""
+    },
+    {
+      "model": "jwohlwend/boltz-2",
+      "benchmark": "fep_plus_openfe_affinity_pearson",
+      "score": 0.62,
+      "unit": "score",
+      "_source": "https://www.biorxiv.org/content/10.1101/2025.06.14.659707v1",
+      "_note": ""
+    },
+    {
+      "model": "jwohlwend/boltz-2",
+      "benchmark": "fep_4target_subset_affinity_pearson",
+      "score": 0.66,
+      "unit": "score",
+      "_source": "https://www.biorxiv.org/content/10.1101/2025.06.14.659707v1",
+      "_note": ""
+    },
+    {
+      "model": "chai-discovery/chai-2",
+      "benchmark": "antibody_zero_shot_design_hit_rate",
+      "score": 20.0,
+      "unit": "score",
+      "_source": "https://www.biorxiv.org/content/10.1101/2025.07.05.663018",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bioemu",
+      "benchmark": "free_energy_difference_error_lower_better",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "https://www.science.org/doi/10.1126/science.adv9817",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bioemu",
+      "benchmark": "conformational_change_success_rate",
+      "score": 72.5,
+      "unit": "score",
+      "_source": "https://www.science.org/doi/10.1126/science.adv9817",
+      "_note": ""
+    },
+    {
+      "model": "rosettacommons/rfdiffusion-3",
+      "benchmark": "enzyme_design_41site_success",
+      "score": 41.0,
+      "unit": "score",
+      "_source": "https://www.ipd.uw.edu/2025/12/rfdiffusion3-now-available/",
+      "_note": ""
+    },
+    {
+      "model": "rosettacommons/rfdiffusion-2",
+      "benchmark": "enzyme_design_41site_success",
+      "score": 41.0,
+      "unit": "score",
+      "_source": "https://www.nature.com/articles/s41592-025-02975-x",
+      "_note": ""
+    },
+    {
+      "model": "rosettacommons/ligandmpnn",
+      "benchmark": "small_molecule_sidechain_sequence_recovery",
+      "score": 63.3,
+      "unit": "score",
+      "_source": "https://www.nature.com/articles/s41592-025-02626-1",
+      "_note": ""
+    },
+    {
+      "model": "rosettacommons/ligandmpnn",
+      "benchmark": "nucleotide_sidechain_sequence_recovery",
+      "score": 50.5,
+      "unit": "score",
+      "_source": "https://www.nature.com/articles/s41592-025-02626-1",
+      "_note": ""
+    },
+    {
+      "model": "rosettacommons/ligandmpnn",
+      "benchmark": "metal_sidechain_sequence_recovery",
+      "score": 77.5,
+      "unit": "score",
+      "_source": "https://www.nature.com/articles/s41592-025-02626-1",
+      "_note": ""
+    },
+    {
+      "model": "fair/equiformerv3-dens-oam",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.931,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "fair/equiformerv3-dens-oam",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.018,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "fair/equiformerv3-dens-oam",
+      "benchmark": "matbench_discovery_daf",
+      "score": 6.074,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "fair/equiformerv3-dens-oam",
+      "benchmark": "matbench_discovery_precision",
+      "score": 0.928,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "fair/equiformerv3-dens-oam",
+      "benchmark": "matbench_discovery_recall",
+      "score": 0.978,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "fair/equiformerv3-dens-oam",
+      "benchmark": "matbench_discovery_r2",
+      "score": 0.868,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "lab-cosmo/pet-oam-xl",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.924,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "lab-cosmo/pet-oam-xl",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.019,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "lab-cosmo/pet-oam-xl",
+      "benchmark": "matbench_discovery_daf",
+      "score": 6.075,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "acesuit/tace-oam-l",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.91,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "acesuit/tace-oam-l",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.02,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "fair/esen-30m-oam",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.925,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "fair/esen-30m-oam",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.018,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "fair/esen-30m-oam",
+      "benchmark": "matbench_discovery_daf",
+      "score": 6.069,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "lab-cosmo/equflash",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.919,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "lab-cosmo/equflash",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.019,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "mir-group/nequip-oam-xl",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.906,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "mir-group/nequip-oam-xl",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.02,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "matris/matris-10m-oam",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.921,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "matris/matris-10m-oam",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.019,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "mdil-snu/sevennet-omni-i12",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.906,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "mdil-snu/sevennet-omni-i12",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.021,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "mir-group/nequip-oam-l",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.893,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "mir-group/nequip-oam-l",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.022,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "grace/grace-2l-oam-l",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.883,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "grace/grace-2l-oam-l",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.022,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "orbital-materials/orb-v3",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.905,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "orbital-materials/orb-v3",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.024,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "orbital-materials/orb-v3",
+      "benchmark": "matbench_discovery_daf",
+      "score": 5.912,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/gnome",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.829,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/gnome",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.035,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/gnome",
+      "benchmark": "matbench_discovery_daf",
+      "score": 5.523,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "google-deepmind/gnome",
+      "benchmark": "gnome_stable_structures_count",
+      "score": 381000.0,
+      "unit": "score",
+      "_source": "https://deepmind.google/discover/blog/millions-of-new-materials-discovered-with-deep-learning/",
+      "_note": ""
+    },
+    {
+      "model": "acesuit/mace-mp-0",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.669,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "acesuit/mace-mp-0",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.057,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "acesuit/mace-mp-0",
+      "benchmark": "matbench_discovery_daf",
+      "score": 3.777,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "cedergrouphub/chgnet",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.613,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "cedergrouphub/chgnet",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.063,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "cedergrouphub/chgnet",
+      "benchmark": "matbench_discovery_daf",
+      "score": 3.361,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "materialsvirtuallab/m3gnet",
+      "benchmark": "matbench_discovery_f1",
+      "score": 0.569,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "materialsvirtuallab/m3gnet",
+      "benchmark": "matbench_discovery_mae_lower_better",
+      "score": 0.075,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "materialsvirtuallab/m3gnet",
+      "benchmark": "matbench_discovery_daf",
+      "score": 2.882,
+      "unit": "score",
+      "_source": "https://matbench-discovery.materialsproject.org/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mattergen",
+      "benchmark": "mattergen_stability_rate",
+      "score": 0.7441,
+      "unit": "score",
+      "_source": "https://github.com/microsoft/mattergen",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mattergen",
+      "benchmark": "mattergen_novelty_rate",
+      "score": 0.6196,
+      "unit": "score",
+      "_source": "https://github.com/microsoft/mattergen",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mattergen",
+      "benchmark": "mattergen_uniqueness_rate",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "https://github.com/microsoft/mattergen",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mattergen",
+      "benchmark": "mattergen_sun_score",
+      "score": 0.3857,
+      "unit": "score",
+      "_source": "https://github.com/microsoft/mattergen",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mattergen",
+      "benchmark": "mattergen_rmsd_lower_better",
+      "score": 0.021,
+      "unit": "score",
+      "_source": "https://github.com/microsoft/mattergen",
+      "_note": ""
+    },
+    {
+      "model": "orbital-materials/orbmol-v2",
+      "benchmark": "gscdb138_normalized_error_ratio_lower_better",
+      "score": 1.62,
+      "unit": "score",
+      "_source": "https://github.com/orbital-materials/orb-models",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "gpqa_diamond",
+      "score": 94.6,
+      "unit": "score",
+      "_source": "https://intuitionlabs.ai/articles/gpqa-diamond-ai-benchmark",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro-preview",
+      "benchmark": "gpqa_diamond",
+      "score": 95.45,
+      "unit": "score",
+      "_source": "https://intuitionlabs.ai/articles/gpqa-diamond-ai-benchmark",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gpqa_diamond",
+      "score": 94.2,
+      "unit": "score",
+      "_source": "https://intuitionlabs.ai/articles/gpqa-diamond-ai-benchmark",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "gpqa_diamond",
+      "score": 97.0,
+      "unit": "score",
+      "_source": "https://intuitionlabs.ai/articles/gpqa-diamond-ai-benchmark",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "usnco_v",
+      "score": 93.2,
+      "unit": "score",
+      "_source": "https://www.nature.com/articles/s42004-025-01782-x",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "usnco_v",
+      "score": 91.0,
+      "unit": "score",
+      "_source": "https://www.nature.com/articles/s42004-025-01782-x",
+      "_note": ""
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "usnco_v",
+      "score": 90.2,
+      "unit": "score",
+      "_source": "https://www.nature.com/articles/s42004-025-01782-x",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "matscibench_text",
+      "score": 75.22,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.12171",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "matscibench_multimodal",
+      "score": 53.02,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.12171",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "matscibench_text",
+      "score": 80.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.12171",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "ursa_expert_2026_chemcensor",
+      "score": 1.82,
+      "unit": "score",
+      "_source": "https://insilico.com/news/2bxz1tluo1-insilico-medicine-to-present-groundbreak",
+      "_note": ""
+    },
+    {
+      "model": "biomni-lab",
+      "benchmark": "bixbench_open_answer",
+      "score": 52.2,
+      "unit": "score",
+      "_source": "https://www.futurehouse.org/research/bixbench",
+      "_note": ""
+    },
+    {
+      "model": "claude-opus-4-6",
+      "benchmark": "bixbench_open_answer",
+      "score": 39.5,
+      "unit": "score",
+      "_source": "https://www.futurehouse.org/research/bixbench",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "bixbench_open_answer",
+      "score": 38.5,
+      "unit": "score",
+      "_source": "https://www.futurehouse.org/research/bixbench",
+      "_note": ""
+    },
+    {
+      "model": "edison/edison-analysis",
+      "benchmark": "bixbench_open_answer",
+      "score": 42.4,
+      "unit": "score",
+      "_source": "https://www.futurehouse.org/research/bixbench",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-4.1-thinking",
+      "benchmark": "vct",
+      "score": 61.0,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/vct",
+      "_note": ""
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "vct",
+      "score": 43.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2504.16137",
+      "_note": ""
+    },
+    {
+      "model": "astrosage-llama-3-1-70b",
+      "benchmark": "astrobench_mlab1",
+      "score": 89.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2505.17592",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "astrobench_mlab1",
+      "score": 89.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2505.17592",
+      "_note": ""
+    },
+    {
+      "model": "claude-opus-4-5",
+      "benchmark": "astrobench_mlab1",
+      "score": 89.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2505.17592",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "astrobench_mlab1",
+      "score": 88.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2505.17592",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "astrobench_mlab1",
+      "score": 90.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2505.17592",
+      "_note": ""
+    },
+    {
+      "model": "ovis/ovis2-34b",
+      "benchmark": "astrommbench",
+      "score": 70.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.00063",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "phybench_acc",
+      "score": 36.9,
+      "unit": "score",
+      "_source": "https://phybench-official.github.io/phybench-demo/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro-reasoning",
+      "benchmark": "abench_physics",
+      "score": 43.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2507.04766",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-3.7-sonnet",
+      "benchmark": "abench_physics",
+      "score": 17.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2507.04766",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "hipho_avg",
+      "score": 37.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.07894",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "hipho_avg",
+      "score": 37.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.07894",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "ipho_2025_points",
+      "score": 22.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.07894",
+      "_note": ""
+    },
+    {
+      "model": "physicsminions",
+      "benchmark": "ipho_2025_points",
+      "score": 26.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2509.24855",
+      "_note": ""
+    },
+    {
+      "model": "cosmos-reason-2-8b",
+      "benchmark": "pai_bench",
+      "score": 80.18,
+      "unit": "score",
+      "_source": "https://huggingface.co/blog/nvidia/nvidia-cosmos-reason-2-brings-advanced-reasoning",
+      "_note": ""
+    },
+    {
+      "model": "ai-scientist-v2",
+      "benchmark": "iclr_icbinb_2025_reviewer_score",
+      "score": 6.33,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2504.08066",
+      "_note": ""
+    }
+  ]
+}
