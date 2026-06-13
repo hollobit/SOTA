@@ -212,13 +212,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "cybersoceval",
-    "name": "CyberSOCEval",
-    "category": "cyber_defense",
-    "description": "Malware analysis and threat intelligence reasoning for SOC operations",
-    "metric": "accuracy"
-  },
-  {
     "id": "zerodaybench",
     "name": "ZeroDayBench",
     "category": "cyber_defense",
@@ -503,13 +496,6 @@
     "name": "CyberMetric",
     "category": "cybersecurity",
     "description": "TII Falcon team: 10,000 cybersecurity knowledge MCQs drawn from NIST/ISO standards and certifications. IEEE CSR 2024.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "secrepobench",
-    "name": "SecRepoBench",
-    "category": "cyber_defense",
-    "description": "318 repo-level secure code completion tasks; secure-pass@1 metric.",
     "metric": "accuracy"
   },
   {
@@ -15195,6 +15181,328 @@
     "category": "vision-language",
     "description": "",
     "metric": "score"
+  },
+  {
+    "id": "exploitbench_v8",
+    "name": "ExploitBench (V8, 41 CVEs)",
+    "category": "cyber",
+    "description": "NEW 2026 benchmark. Mythos 5 reaches arbitrary code execution on >50% of 41 V8 environments. Static uniform harness — not directly comparable to vendor-deployed harnesses.",
+    "metric": "Cap% (% of capability flags captured per env, averaged) + Mean flags/trial"
+  },
+  {
+    "id": "oss_fuzz_anthropic",
+    "name": "OSS-Fuzz (Anthropic internal, ~830 entrypoints / 228 projects)",
+    "category": "cyber",
+    "description": "Internal Anthropic eval; safeguards off.",
+    "metric": "% targets ≥0 (any crash) and ≥0.4 (write primitive+)"
+  },
+  {
+    "id": "cybergym_v1",
+    "name": "CyberGym (UC Berkeley, 1,507 targeted vuln reproduction tasks / 188 projects)",
+    "category": "cyber",
+    "description": "Refresh 2026-06-13. Mythos 5 = new SOTA at 83.8% (+0.7 over Mythos Preview).",
+    "metric": "pass@1 targeted vulnerability reproduction (%)"
+  },
+  {
+    "id": "firefox_147_anthropic",
+    "name": "Firefox 147 exploit dev (Anthropic + Mozilla, 50 crash categories × 5 trials)",
+    "category": "cyber",
+    "description": "SpiderMonkey shell harness without browser sandbox. Mythos 5 new SOTA.",
+    "metric": "% trials with full working exploit (grade 1.0)"
+  },
+  {
+    "id": "uk_aisi_narrow_cyber_expert",
+    "name": "UK AISI narrow cyber tasks — expert-level",
+    "category": "cyber",
+    "description": "AISI judges GPT-5.5 strongest model on narrow cyber tasks (within margin of error). 50M-token/attempt budget. Mythos 5 reported comparable to Mythos Preview and ahead of GPT-5.5 (Anthropic Mythos 5 SC §3.2.5) but Anthropic SC does not disclose numeric pass@5 for Mythos 5.",
+    "metric": "pass@5 and pass@1"
+  },
+  {
+    "id": "uk_aisi_cyber_range_last_ones",
+    "name": "UK AISI Cyber Range — 'The Last Ones' (32-step enterprise attack, ~20-hr expert task)",
+    "category": "cyber",
+    "description": "AISI blog autonomous-cyber post reports GPT-5.5 at 3/10 in subsequent assessment; Anthropic SC reports Mythos 5 6/10. Wide value spread reflects different checkpoint windows.",
+    "metric": "successes / 10 attempts (100M-token budget)"
+  },
+  {
+    "id": "uk_aisi_cyber_range_doing_life",
+    "name": "UK AISI Cyber Range — 'Doing Life' (Last Ones + EDR/legacy-disabled/signed-traffic hardening, 23 steps)",
+    "category": "cyber",
+    "description": "No model has solved end-to-end. Mythos 5 reached step 21/23 most consistently of all tested models.",
+    "metric": "% steps reached (best run)"
+  },
+  {
+    "id": "uk_aisi_cyber_range_cooling_tower",
+    "name": "UK AISI Cyber Range — 'Cooling Tower' (industrial control system, 7-step)",
+    "category": "cyber",
+    "description": "Only Mythos Preview has completed this range to date.",
+    "metric": "successes / 10 attempts"
+  },
+  {
+    "id": "openai_cyber_range_internal",
+    "name": "OpenAI Cyber Range (internal, 15 scenarios, end-to-end ops)",
+    "category": "cyber",
+    "description": "Distinct from AISI ranges. Pass = at least one successful trial of 16.",
+    "metric": "Combined pass rate (% scenarios passed, pass/fail over 16 trials per scenario)"
+  },
+  {
+    "id": "cve_bench_v1_openai",
+    "name": "CVE-Bench v1.0 (web vuln, zero-day prompt, no source code)",
+    "category": "cyber",
+    "description": "Refresh for GPT-5.5; exact numbers in Fig 17 (image-only). Reference CVE-Bench paper baseline: 13% on one-day, 10% on zero-day for prior frontier.",
+    "metric": "pass@1 over 3 rollouts, 34/40 challenges"
+  },
+  {
+    "id": "ctf_professional_openai",
+    "name": "Professional-level CTF (OpenAI curated, public)",
+    "category": "cyber",
+    "description": "OpenAI dropped HS/Collegiate tiers due to saturation; professional-only.",
+    "metric": "pass@12 over 16 rollouts"
+  },
+  {
+    "id": "irregular_cyscenariobench",
+    "name": "Irregular CyScenarioBench (long-horizon offensive cyber tasks, 11 challenges)",
+    "category": "cyber",
+    "description": "Cost per success on CyScenarioBench dropped 2.7× from GPT-5.4 to GPT-5.5.",
+    "metric": "% challenges solved / avg success rate"
+  },
+  {
+    "id": "irregular_atomic_challenges",
+    "name": "Irregular atomic challenge suite (network attack, vuln research, evasion)",
+    "category": "cyber",
+    "description": "",
+    "metric": "Avg success rate per category (%)"
+  },
+  {
+    "id": "gemini_key_skills_v1_hard",
+    "name": "Gemini key-skills cybersecurity benchmark v1 — hard tier (12 hard CTF, FSF cyber CCL eval)",
+    "category": "cyber",
+    "description": "Reaches alert threshold (not CCL).",
+    "metric": "challenges solved (best of 10-200 attempts)"
+  },
+  {
+    "id": "gemini_key_skills_v2_e2e",
+    "name": "Gemini key-skills v2 — full end-to-end cyber kill chains (13 challenges, all 7 kill chains)",
+    "category": "cyber",
+    "description": "Confirms Gemini 3 Pro still below cyber CCL. Gemini 3.1 Pro card states it reaches alert threshold but remains below CCL — no v2 numeric disclosed.",
+    "metric": "challenges solved end-to-end"
+  },
+  {
+    "id": "nyu_ctf_bench",
+    "name": "NYU CTF Bench (200 CTF challenges)",
+    "category": "cyber",
+    "description": "Claude 4.5 Opus = NYU CTF SOTA in this 2026 multi-vendor eval. GPT-5.5, Mythos 5, Opus 4.8 not yet in this study.",
+    "metric": "solve rate (%)"
+  },
+  {
+    "id": "cyber_defense_benchmark_simbian",
+    "name": "Cyber Defense Benchmark (Simbian, agentic threat hunting, 106 ATT&CK procedures / 86 sub-techniques)",
+    "category": "cyber",
+    "description": "NEW defensive cyber benchmark. All frontier models fail. Defensive (threat-hunting) complement to offensive benchmarks.",
+    "metric": "% correct flags on malicious events / ATT&CK tactics passing 50% recall"
+  },
+  {
+    "id": "exploitgym_v0",
+    "name": "ExploitGym (UC Berkeley / MPI-SP / UCSB / ASU, 898 patched vulns: OSS-Fuzz + V8 + Linux kernel)",
+    "category": "cyber",
+    "description": "NEW 2026 exploitation benchmark. Distinct from CyberGym (which is targeted vuln reproduction).",
+    "metric": "Successful exploitations (intended path) / Total flag captures"
+  },
+  {
+    "id": "cti-realm",
+    "name": "CTI-REALM",
+    "category": "cyber",
+    "description": "Agents read CTI reports, explore telemetry schemas, iteratively refine KQL queries, produce Sigma rules + KQL detections. 50 emulated attacks across Linux, AKS, cloud. Trajectory-based + final-detection rewards. CTI-REALM-50 task set.",
+    "metric": "Normalized overall reward [0-1]"
+  },
+  {
+    "id": "sandbox-escape-bench",
+    "name": "SandboxEscapeBench",
+    "category": "cyber",
+    "description": "Inspect AI CTF using nested sandbox architecture. 18 scenarios (Orchestration 4 / Runtime 8 / Kernel 6) covering misconfigurations, privilege escalation, kernel flaws, runtime/orchestration weaknesses. Difficulty 1-5.",
+    "metric": "Overall escape success rate [0-1] with 95% CI"
+  },
+  {
+    "id": "crackme-bench",
+    "name": "CrackMeBench",
+    "category": "cyber",
+    "description": "8 public calibration CrackMes + 12 generated tasks from seeded C/Rust/Go templates. No-network Linux Docker sandbox. Standard RE tools. 5-min budget, 3 scored submissions.",
+    "metric": "pass@3 on generated split [N/12]"
+  },
+  {
+    "id": "crebench",
+    "name": "CREBench",
+    "category": "cyber",
+    "description": "Specialized binary RE for cryptographic implementations.",
+    "metric": "score"
+  },
+  {
+    "id": "zero-day-bench",
+    "name": "ZeroDayBench",
+    "category": "cyber",
+    "description": "22 novel critical vulnerabilities ported from real CVEs into functionally similar codebases (to avoid memorization). LLM agent must find AND patch. Difficulty levels: zero-day, zero-day+CWE, more-info.",
+    "metric": "Patch success rate"
+  },
+  {
+    "id": "fuzzingbrain-v2-aixcc",
+    "name": "FuzzingBrain V2 / AIxCC 2025 Final",
+    "category": "cyber",
+    "description": "40 vulnerabilities in AIxCC 2025 Final C/C++ dataset. Multi-agent system on OSS-Fuzz, Suspicious Point abstraction, dual-layer fuzzing, MCP static+dynamic analysis tools.",
+    "metric": "Vulnerability detection rate [N/40]"
+  },
+  {
+    "id": "sec-bench-pro",
+    "name": "SEC-bench Pro",
+    "category": "cyber",
+    "description": "V8 (Node.js V8 engine) and SpiderMonkey (Mozilla JS engine) PoC generation tasks. Agents must craft proof-of-concept artifacts triggering specified real vulnerabilities. Coding-agent scaffolds: Codex, ClaudeCode, OpenCode.",
+    "metric": "Pass rate (%)"
+  },
+  {
+    "id": "cybersoceval",
+    "name": "CyberSOCEval",
+    "category": "cyber",
+    "description": "Two open benchmarks: Malware Analysis (precision/recall on identifying malicious activity, MCQ multi-correct) + Threat Intelligence Reasoning. Built on PurpleLlama CyberSecEval framework + CrowdStrike frontline threat intel.",
+    "metric": "Precision/Recall + Reasoning accuracy"
+  },
+  {
+    "id": "simbian-ai-soc",
+    "name": "Simbian AI SOC LLM Leaderboard",
+    "category": "cyber",
+    "description": "100 full-kill-chain scenarios mirroring human SOC analyst workflow. Known ground-truth malicious activity. Alert ingestion -> disposition + reporting.",
+    "metric": "Investigation completion rate (%)"
+  },
+  {
+    "id": "simbian-cyber-defense",
+    "name": "Simbian Cyber Defense Benchmark",
+    "category": "cyber",
+    "description": "105 attack procedures across MITRE tactics. 11 frontier LLMs (Anthropic, OpenAI, Google + Alibaba, Minimax, DeepSeek, Moonshot open-weight).",
+    "metric": "Average procedure success (%)"
+  },
+  {
+    "id": "securewebarena",
+    "name": "SecureWebArena",
+    "category": "cyber",
+    "description": "6 realistic web environments (adapted from WebArena). Diverse attack vectors (DP injection, jailbreak). Multi-layered eval: internal reasoning, behavioral trajectory, task outcome. 9 LVLMs across general / agent-specialized / GUI-grounded.",
+    "metric": "Prompt Denial Rate (PDR) / Unsafe Action Rate"
+  },
+  {
+    "id": "secureagentbench",
+    "name": "SecureAgentBench",
+    "category": "cyber",
+    "description": "105 coding tasks requiring multi-file edits in large repos. Aligned with real-world OSS vulnerabilities. Functionality test + PoC vulnerability check + static analysis for new vulns. Agents: SWE-agent, OpenHands, Aider.",
+    "metric": "Correct-and-secure rate (%)"
+  },
+  {
+    "id": "smartcontract-benchmark-2026",
+    "name": "Smart Contract LLM Static Analysis Benchmark (COMPSAC 2026)",
+    "category": "cyber",
+    "description": "Large-scale benchmarking of 15 LLMs for AI-enhanced smart contract auditing. Examines lexical bias, prompting, external integration.",
+    "metric": "score"
+  },
+  {
+    "id": "llm-bscvm",
+    "name": "LLM-BSCVM",
+    "category": "cyber",
+    "description": "Decompose-Retrieve-Generate three-stage framework. Achieves 91% accuracy + F1 on benchmark; FPR reduced from 7.2% to 5.1%.",
+    "metric": "score"
+  },
+  {
+    "id": "ailuminate-continuous-stewardship",
+    "name": "AILuminate Continuous Prompt Stewardship",
+    "category": "cyber",
+    "description": "Rolling refresh of AILuminate v1.1 benchmark prompts to keep evaluation fresh as frontier models evolve. Frontier safety includes CBRN + offensive cyber.",
+    "metric": "score"
+  },
+  {
+    "id": "ctibench",
+    "name": "CTIBench",
+    "category": "cyber",
+    "description": "4 sub-tracks: CTI-MCQ (knowledge), CTI-RCM (root-cause mapping), CTI-VSP (severity), CTI-TAA (threat actor attribution). 4,610 examples.",
+    "metric": "score"
+  },
+  {
+    "id": "owasp-llm-top10-2026",
+    "name": "OWASP LLM Top 10 (2026) / Agents 2026",
+    "category": "cyber",
+    "description": "Community classification of top 10 critical risks in deployed LLM/agentic applications. Coverage framework, not numerical benchmark.",
+    "metric": "score"
+  },
+  {
+    "id": "secrepobench",
+    "name": "SecRepoBench",
+    "category": "cyber",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "seclens",
+    "name": "Seclens",
+    "category": "cyber",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "ctfusion",
+    "name": "CTFusion",
+    "category": "cyber",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "exploitbench_cmu_bugcrowd_2026",
+    "name": "ExploitBench (CMU/Bugcrowd 2026-05)",
+    "category": "cyber",
+    "description": "Capability ladder benchmark — 16 flags from coverage/crash through arbitrary code execution on 41 hardened V8 bugs",
+    "metric": "Mean ACE flag rate"
+  },
+  {
+    "id": "aixcc_final",
+    "name": "AIxCC Final 2025 (DEF CON 33)",
+    "category": "cyber",
+    "description": "DARPA AI Cyber Challenge Final 2025, 7 finalist teams, $11M prize pool",
+    "metric": "placement"
+  },
+  {
+    "id": "autopenbench___ai_pentest_benchmark",
+    "name": "AutoPenBench — AI Pentest Benchmark",
+    "category": "cyber",
+    "description": "AutoPenBench autonomous pentesting benchmark",
+    "metric": "completion%"
+  },
+  {
+    "id": "ctf_task_completion",
+    "name": "CTF Task Completion (D-CIPHER aggregated)",
+    "category": "cyber",
+    "description": "D-CIPHER paper aggregated CTF task completion",
+    "metric": "pass@5"
+  },
+  {
+    "id": "goad_active_directory",
+    "name": "GOAD Active Directory Pentest",
+    "category": "cyber",
+    "description": "Game of Active Directory pentest benchmark",
+    "metric": "completion%"
+  },
+  {
+    "id": "hackerone_us",
+    "name": "HackerOne US Bug Bounty Leaderboard",
+    "category": "cyber",
+    "description": "HackerOne United States researcher leaderboard",
+    "metric": "rank"
+  },
+  {
+    "id": "hackthebox",
+    "name": "HackTheBox Challenge Completion",
+    "category": "cyber",
+    "description": "HackTheBox subset for D-CIPHER / autonomous-agent benchmarking",
+    "metric": "completion%"
+  },
+  {
+    "id": "nyu_ctf_bench_2026",
+    "name": "NYU CTF Bench 2026 refresh (200 CTF challenges, arXiv:2604.17159)",
+    "category": "cyber",
+    "description": "NYU CTF Bench 2026 refresh, multi-vendor leader Claude 4.5 Opus 59.0% (118/200)",
+    "metric": "completion%"
   },
   {
     "id": "arc_agi_3",
