@@ -1,0 +1,1900 @@
+{
+  "_meta": {
+    "session": "Session 107 — Long-context frontier deep dive",
+    "date": "2026-06-13",
+    "sources": [
+      "Long-context benchmarks (14): RULER 128K/512K/1M, MRCR-v2 8N@256K+1M, LongBench v2, GraphWalks BFS/Parents at 128K/256K/1M, AA-LCR",
+      "Frontier long-context models (26): 256K-512K tier (Kimi K2.6/K2.7, Qwen3.6, GLM-5.1), 1M tier (GPT-5.5, Claude Opus 4.6/4.7/4.8/Sonnet 4.6, DeepSeek V4-Pro, Gemini 3 Pro/3.1 Pro), 2M (Gemini 1.5 Pro), 10M (Llama 4 Scout), 100M (Magic LTM-2-Mini)",
+      "Long-context architecture (15): Mamba 2/3, Jamba 1.6 Large 398B/94B, Hymba, Falcon-H1, StripedHyena, BlackMamba, Falcon Mamba, RecurrentGemma, MLA, Titans"
+    ],
+    "notes": "Opus 4.6 MRCR-v2 8N @ 1M 76.0 first model >75% at full 1M. GPT-5.5 74.0 +37pp vs 5.4's 36.6. DeepSeek V4-Pro 59% @1M / 82% @256K strongest open-weights. Llama 4 Scout 10M claimed → 15.6% @ 120K (collapse). Opus 4.8 GraphWalks BFS@1M 68.1+Parents@1M 83.3. GPT-5.2-Codex AA-LCR 75.7. Gemini 3 Pro LongBench v2 68.2. Jamba 1.6 Large RULER avg 95.7 across 4K-256K. Mamba-3 (ICLR 2026) complex-state + MIMO +1.8pp vs Gated DeltaNet half state size. DeepSeek MLA 2.7-4.7x KV cache reduction. Google Titans MAC 2M+ tokens."
+  },
+  "models": [
+    {
+      "id": "gemini-3-1-pro",
+      "name": "gemini-3-1-pro",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2026-02-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemini-3-pro",
+      "name": "gemini-3-pro",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2025-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemini-3-5-flash",
+      "name": "gemini-3-5-flash",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2026-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemini-3-1-flash-lite",
+      "name": "gemini-3-1-flash-lite",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2026-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemini-1-5-pro",
+      "name": "gemini-1-5-pro",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2024-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gemini-2-5-pro",
+      "name": "gemini-2-5-pro",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2025",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gpt-5-5",
+      "name": "gpt-5-5",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-04-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gpt-5-5-pro",
+      "name": "gpt-5-5-pro",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-04-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gpt-5-4",
+      "name": "gpt-5-4",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2026-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "claude-fable-5",
+      "name": "claude-fable-5",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-06-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "claude-mythos-5",
+      "name": "claude-mythos-5",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-06-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "claude-opus-4-8",
+      "name": "claude-opus-4-8",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "claude-opus-4-7",
+      "name": "claude-opus-4-7",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "claude-opus-4-6",
+      "name": "claude-opus-4-6",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-02-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "claude-sonnet-4-6",
+      "name": "claude-sonnet-4-6",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "claude-sonnet-4-5",
+      "name": "claude-sonnet-4-5",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2025-09-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "name": "deepseek-v4-pro",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-04-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek-v4-flash",
+      "name": "deepseek-v4-flash",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-04-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "kimi-k2-7-code",
+      "name": "kimi-k2-7-code",
+      "vendor": "moonshot ai",
+      "type": "language",
+      "release_date": "2026",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "kimi-k2-6",
+      "name": "kimi-k2-6",
+      "vendor": "moonshot ai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen3-6-max",
+      "name": "qwen3-6-max",
+      "vendor": "alibaba qwen",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen3-6-27b",
+      "name": "qwen3-6-27b",
+      "vendor": "alibaba qwen",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "glm-5-1",
+      "name": "glm-5-1",
+      "vendor": "zhipu ai",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "llama-4-scout",
+      "name": "llama-4-scout",
+      "vendor": "meta",
+      "type": "language",
+      "release_date": "2025-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "llama-4-maverick",
+      "name": "llama-4-maverick",
+      "vendor": "meta",
+      "type": "language",
+      "release_date": "2025-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "magic-ltm-2-mini",
+      "name": "magic-ltm-2-mini",
+      "vendor": "magic.dev",
+      "type": "language",
+      "release_date": "2024-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ai21/jamba-1.6-large",
+      "name": "Jamba 1.6 Large",
+      "vendor": "ai21 labs",
+      "type": "language",
+      "release_date": "2025-03-06",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ai21/jamba-v0.1",
+      "name": "Jamba v0.1",
+      "vendor": "ai21 labs",
+      "type": "language",
+      "release_date": "2024-03-28",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/hymba-1.5b-base",
+      "name": "Hymba 1.5B Base",
+      "vendor": "nvidia",
+      "type": "language",
+      "release_date": "2024-11-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "tiiuae/falcon-mamba-7b",
+      "name": "Falcon Mamba 7B",
+      "vendor": "tii",
+      "type": "language",
+      "release_date": "2024-10-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "tiiuae/falcon-h1-34b",
+      "name": "Falcon-H1 34B",
+      "vendor": "tii",
+      "type": "language",
+      "release_date": "2025-07-31",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "togethercomputer/stripedhyena-nous-7b",
+      "name": "StripedHyena-Nous 7B",
+      "vendor": "together / nous research",
+      "type": "language",
+      "release_date": "2023-12-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "state-spaces/mamba-2.8b",
+      "name": "Mamba 2.8B",
+      "vendor": "state-spaces (cmu/princeton)",
+      "type": "language",
+      "release_date": "2023-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "state-spaces/mamba-2-2.7b",
+      "name": "Mamba-2 2.7B",
+      "vendor": "state-spaces",
+      "type": "language",
+      "release_date": "2024-05-31",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "state-spaces/mamba-3-1.5b",
+      "name": "Mamba-3 1.5B",
+      "vendor": "cmu / princeton / cartesia / together",
+      "type": "language",
+      "release_date": "2026-03-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/recurrentgemma-9b",
+      "name": "RecurrentGemma 9B",
+      "vendor": "google deepmind",
+      "type": "language",
+      "release_date": "2024-04-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zyphra/blackmamba-2.8b",
+      "name": "BlackMamba 2.8B (630M active)",
+      "vendor": "zyphra",
+      "type": "language",
+      "release_date": "2024-02-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zyphra/zamba2-2.7b",
+      "name": "Zamba2 2.7B",
+      "vendor": "zyphra",
+      "type": "language",
+      "release_date": "2024-10-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek-ai/deepseek-v3-mla",
+      "name": "DeepSeek-V3 (MLA architecture)",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2024-12-26",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshotai/kimi-k2.5",
+      "name": "Kimi K2.5",
+      "vendor": "moonshot ai",
+      "type": "language",
+      "release_date": "2025-12-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/titans-mac",
+      "name": "Titans (MAC variant)",
+      "vendor": "google research",
+      "type": "language",
+      "release_date": "2025-01-13",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openbmb/minicpm-sala",
+      "name": "MiniCPM-SALA",
+      "vendor": "openbmb",
+      "type": "language",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash-base",
+      "name": "DeepSeek V4 Flash Base",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-05-28",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-pro-base",
+      "name": "DeepSeek V4 Pro Base",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-05-28",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.5-thinking",
+      "name": "Claude Opus 4.5 Thinking",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.7-adaptive",
+      "name": "Claude Opus 4.7 Adaptive",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-04-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-235b-2507-reasoning",
+      "name": "Qwen3-235B-2507 Reasoning",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-07-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-122b-a10b",
+      "name": "Qwen3.5 122B-A10B",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-27b",
+      "name": "Qwen3.5 27B",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-35b-a3b",
+      "name": "Qwen3.5 35B-A3B",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-397b",
+      "name": "Qwen3.5 397B",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-plus",
+      "name": "Qwen3.6 Plus",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2026-04-22",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/nemotron-3-super-120b-a12b",
+      "name": "Nemotron-3 Super 120B-A12B",
+      "vendor": "nvidia",
+      "type": "language",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/nemotron-3-ultra",
+      "name": "Nemotron-3 Ultra",
+      "vendor": "nvidia",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.4-nano",
+      "name": "GPT-5.4 Nano",
+      "vendor": "openai",
+      "type": "language",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ai21/jamba-1.5-large",
+      "name": "Jamba 1.5 Large",
+      "vendor": "ai21",
+      "type": "language",
+      "release_date": "2024-08-22",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "ruler_avg_128k",
+      "name": "RULER (avg, 128K)",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ruler_512k",
+      "name": "RULER 512K",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ruler_1m",
+      "name": "RULER 1M",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_v2_8needle_1m",
+      "name": "MRCR-v2 8-needle @ 1M",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_v2_8needle_256k",
+      "name": "MRCR-v2 8-needle @ 256K",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "longbench_v2",
+      "name": "LongBench v2 (overall)",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "graphwalks_bfs_128k",
+      "name": "GraphWalks BFS @ 128K",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "graphwalks_bfs_256k",
+      "name": "GraphWalks BFS @ 256K",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "graphwalks_bfs_1m",
+      "name": "GraphWalks BFS @ 1M",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "graphwalks_parents_1m",
+      "name": "GraphWalks Parents @ 1M",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aa_lcr",
+      "name": "AA-LCR (Artificial Analysis Long-Context Reasoning)",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "effective_context_pct",
+      "name": "Effective context utilization",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "long_context_input_cost_1m_usd_lower_better",
+      "name": "Input cost @ 1M tokens (USD per 1M)",
+      "category": "long-context",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "long_context_output_cost_1m_usd_lower_better",
+      "name": "Output cost @ 1M tokens (USD per 1M)",
+      "category": "long-context",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_v2_8needle_1m_pointwise",
+      "name": "Mrcr V2 8Needle 1M Pointwise",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_v2_8needle_128k_avg",
+      "name": "Mrcr V2 8Needle 128K Avg",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "fiction_live_long_context_120k",
+      "name": "Fiction Live Long Context 120K",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "niah_basic",
+      "name": "Niah Basic",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ruler_avg_(4k_256k)",
+      "name": "Ruler Avg (4K 256K)",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ruler@256k",
+      "name": "Ruler@256K",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arena_hard",
+      "name": "Arena Hard",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu",
+      "name": "Mmlu",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hellaswag",
+      "name": "Hellaswag",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gsm8k",
+      "name": "Gsm8K",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc_c",
+      "name": "Arc C",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "squad_c",
+      "name": "Squad C",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_(5_shot)",
+      "name": "Mmlu (5 Shot)",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_pro_(5_shot)",
+      "name": "Mmlu Pro (5 Shot)",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc",
+      "name": "Arc",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "avg_open_llm_v1",
+      "name": "Avg Open Llm V1",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ruler_mk_needle",
+      "name": "Ruler Mk Needle",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ruler_mv",
+      "name": "Ruler Mv",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "lambada_acc",
+      "name": "Lambada Acc",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "piqa",
+      "name": "Piqa",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "avg_downstream_(vs_gated_deltanet)",
+      "name": "Avg Downstream (Vs Gated Deltanet)",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "prefill+decode_latency_vs_llama_3_2_1b",
+      "name": "Prefill+Decode Latency Vs Llama 3 2 1B",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "avg_open_llm_v2",
+      "name": "Avg Open Llm V2",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kv_cache_per_token_(kb)",
+      "name": "Kv Cache Per Token (Kb)",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ruler@128k",
+      "name": "Ruler@128K",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ruler@1m",
+      "name": "Ruler@1M",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "babilong_(long_ctx_reasoning)",
+      "name": "Babilong (Long Ctx Reasoning)",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "c4_ppl_vs_mamba_2",
+      "name": "C4 Ppl Vs Mamba 2",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mrcr_v2_8needle_1m",
+      "score": 74.0,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": "OpenAI-reported, 512K-1M bucket"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mrcr_v2_8needle_256k",
+      "score": 81.5,
+      "unit": "score",
+      "_source": "https://tokenmix.ai/blog/gpt-5-5-release-date-spud",
+      "_note": "256K-512K bucket per OpenAI release"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "graphwalks_bfs_256k",
+      "score": 73.7,
+      "unit": "score",
+      "_source": "https://www.digitalapplied.com/blog/claude-opus-4-8-vs-gpt-5-5-frontier-comparison",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "graphwalks_bfs_1m",
+      "score": 45.4,
+      "unit": "score",
+      "_source": "https://www.buildfastwithai.com/blogs/gpt-5-5-review-2026",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "graphwalks_parents_1m",
+      "score": 58.5,
+      "unit": "score",
+      "_source": "https://www.digitalapplied.com/blog/claude-opus-4-8-vs-gpt-5-5-frontier-comparison",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "aa_lcr",
+      "score": 74.3,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/lcr",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "long_context_input_cost_1m_usd_lower_better",
+      "score": 5.0,
+      "unit": "score",
+      "_source": "https://tokenmix.ai/blog/gpt-5-5-release-date-spud",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "long_context_output_cost_1m_usd_lower_better",
+      "score": 30.0,
+      "unit": "score",
+      "_source": "https://tokenmix.ai/blog/gpt-5-5-release-date-spud",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "mrcr_v2_8needle_1m",
+      "score": 36.6,
+      "unit": "score",
+      "_source": "https://www.buildfastwithai.com/blogs/gpt-5-5-review-2026",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "graphwalks_bfs_128k",
+      "score": 93.0,
+      "unit": "score",
+      "_source": "https://www.digitalapplied.com/blog/claude-opus-4-8-vs-gpt-5-5-frontier-comparison",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "graphwalks_parents_1m",
+      "score": 89.8,
+      "unit": "score",
+      "_source": "https://www.digitalapplied.com/blog/claude-opus-4-8-vs-gpt-5-5-frontier-comparison",
+      "_note": "Reported as <128K Parents 89.8; 1M Parents lower"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "aa_lcr",
+      "score": 74.0,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/lcr",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "mrcr_v2_8needle_1m",
+      "score": 33.6,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "mrcr_v2_8needle_1m",
+      "score": 33.1,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2-codex",
+      "benchmark": "aa_lcr",
+      "score": 75.7,
+      "unit": "score",
+      "_source": "https://artificialanalysis.ai/evaluations/artificial-analysis-long-context-reasoning",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5-high",
+      "benchmark": "aa_lcr",
+      "score": 75.6,
+      "unit": "score",
+      "_source": "https://artificialanalysis.ai/evaluations/artificial-analysis-long-context-reasoning",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5.1",
+      "benchmark": "aa_lcr",
+      "score": 75.0,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/lcr",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "graphwalks_bfs_256k",
+      "score": 85.9,
+      "unit": "score",
+      "_source": "https://www.digitalapplied.com/blog/claude-opus-4-8-vs-gpt-5-5-frontier-comparison",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "graphwalks_bfs_1m",
+      "score": 68.1,
+      "unit": "score",
+      "_source": "https://www.digitalapplied.com/blog/claude-opus-4-8-vs-gpt-5-5-frontier-comparison",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "graphwalks_parents_1m",
+      "score": 83.3,
+      "unit": "score",
+      "_source": "https://www.digitalapplied.com/blog/claude-opus-4-8-vs-gpt-5-5-frontier-comparison",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "aa_lcr",
+      "score": 67.7,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/lcr",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "long_context_input_cost_1m_usd_lower_better",
+      "score": 5.0,
+      "unit": "score",
+      "_source": "https://www.digitalapplied.com/blog/claude-opus-4-8-vs-gpt-5-5-frontier-comparison",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "long_context_output_cost_1m_usd_lower_better",
+      "score": 25.0,
+      "unit": "score",
+      "_source": "https://www.digitalapplied.com/blog/claude-opus-4-8-vs-gpt-5-5-frontier-comparison",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "aa_lcr",
+      "score": 67.0,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/lcr",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7-adaptive",
+      "benchmark": "aa_lcr",
+      "score": 70.3,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/lcr",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mrcr_v2_8needle_1m",
+      "score": 76.0,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "longbench_v2",
+      "score": 64.4,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/longBenchV2",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.5-thinking",
+      "benchmark": "aa_lcr",
+      "score": 74.0,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/lcr",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "mrcr_v2_8needle_1m",
+      "score": 60.1,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "mrcr_v2_8needle_1m",
+      "score": 26.6,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "aa_lcr",
+      "score": 69.3,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/lcr",
+      "_note": ""
+    },
+    {
+      "model": "gemini-3-pro",
+      "benchmark": "mrcr_v2_8needle_1m",
+      "score": 26.3,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": ""
+    },
+    {
+      "model": "gemini-3-pro",
+      "benchmark": "longbench_v2",
+      "score": 68.2,
+      "unit": "score",
+      "_source": "https://ofox.ai/blog/long-context-llm-benchmarks-200k-tokens-2026/",
+      "_note": ""
+    },
+    {
+      "model": "gemini-3-pro",
+      "benchmark": "aa_lcr",
+      "score": 70.7,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/lcr",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mrcr_v2_8needle_1m",
+      "score": 26.3,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "aa_lcr",
+      "score": 72.7,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/lcr",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "mrcr_v2_8needle_1m",
+      "score": 22.1,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "mrcr_v2_8needle_1m",
+      "score": 16.4,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": "preview-06-05"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "ruler_avg_128k",
+      "score": 90.6,
+      "unit": "score",
+      "_source": "https://github.com/hsiehjackson/RULER",
+      "_note": "Score at 128K bucket; avg across contexts 95.0"
+    },
+    {
+      "model": "alibaba/qwen3.5-397b",
+      "benchmark": "longbench_v2",
+      "score": 63.2,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/longBenchV2",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "longbench_v2",
+      "score": 60.6,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/longBenchV2",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "longbench_v2",
+      "score": 60.2,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/longBenchV2",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "longbench_v2",
+      "score": 59.0,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/longBenchV2",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "longbench_v2",
+      "score": 62.0,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/longBenchV2",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "benchmark": "ruler_avg_128k",
+      "score": 91.7,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/ruler",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-ultra",
+      "benchmark": "longbench_v2",
+      "score": 61.9,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/longBenchV2",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "longbench_v2",
+      "score": 61.0,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/longBenchV2",
+      "_note": ""
+    },
+    {
+      "model": "zai/glm-5",
+      "benchmark": "longbench_v2",
+      "score": 60.8,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/longBenchV2",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "longbench_v2",
+      "score": 51.5,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/longBenchV2",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "longbench_v2",
+      "score": 44.7,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/longBenchV2",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm-sala",
+      "benchmark": "ruler_512k",
+      "score": 87.1,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/ruler-512k",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm-sala",
+      "benchmark": "ruler_1m",
+      "score": 86.3,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/ruler-1000k",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "graphwalks_bfs_128k",
+      "score": 90.0,
+      "unit": "score",
+      "_source": "https://benchlm.ai/benchmarks/graphwalksBfs128k",
+      "_note": ""
+    },
+    {
+      "model": "ai21/jamba-1.5-large",
+      "benchmark": "ruler_avg_128k",
+      "score": 95.1,
+      "unit": "score",
+      "_source": "https://github.com/hsiehjackson/RULER",
+      "_note": "128K bucket; >128K effective length"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "aa_lcr",
+      "score": 69.3,
+      "unit": "score",
+      "_source": "https://artificialanalysis.ai/articles/announcing-aa-lcr",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-4",
+      "benchmark": "aa_lcr",
+      "score": 68.0,
+      "unit": "score",
+      "_source": "https://artificialanalysis.ai/articles/announcing-aa-lcr",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-235b-2507-reasoning",
+      "benchmark": "aa_lcr",
+      "score": 67.0,
+      "unit": "score",
+      "_source": "https://artificialanalysis.ai/articles/announcing-aa-lcr",
+      "_note": ""
+    },
+    {
+      "model": "gemini-3-1-pro",
+      "benchmark": "mrcr_v2_8needle_1m_pointwise",
+      "score": 24.5,
+      "unit": "score",
+      "_source": "https://yage.ai/share/long-context-benchmark-en-20260315.html",
+      "_note": ""
+    },
+    {
+      "model": "gemini-3-pro",
+      "benchmark": "mrcr_v2_8needle_1m_pointwise",
+      "score": 24.5,
+      "unit": "score",
+      "_source": "https://yage.ai/share/long-context-benchmark-en-20260315.html",
+      "_note": ""
+    },
+    {
+      "model": "gemini-3-5-flash",
+      "benchmark": "mrcr_v2_8needle_128k_avg",
+      "score": 77.3,
+      "unit": "score",
+      "_source": "https://deepmind.google/technologies/gemini/",
+      "_note": ""
+    },
+    {
+      "model": "gemini-3-5-flash",
+      "benchmark": "mrcr_v2_8needle_1m_pointwise",
+      "score": 26.6,
+      "unit": "score",
+      "_source": "https://deepmind.google/technologies/gemini/",
+      "_note": ""
+    },
+    {
+      "model": "gemini-3-1-flash-lite",
+      "benchmark": "mrcr_v2_8needle_1m_pointwise",
+      "score": 60.1,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": ""
+    },
+    {
+      "model": "gemini-2-5-pro",
+      "benchmark": "fiction_live_long_context_120k",
+      "score": 90.6,
+      "unit": "score",
+      "_source": "https://the-decoder.com/metas-llama-4-models-show-promise-on-standard-tests-but-struggle-with-long-context-tasks/",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5-5",
+      "benchmark": "mrcr_v2_8needle_128k_avg",
+      "score": 94.8,
+      "unit": "score",
+      "_source": "https://www.datacamp.com/blog/gpt-5-5",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5-5",
+      "benchmark": "mrcr_v2_8needle_1m_pointwise",
+      "score": 74.0,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": ""
+    },
+    {
+      "model": "gpt-5-4",
+      "benchmark": "mrcr_v2_8needle_1m_pointwise",
+      "score": 36.6,
+      "unit": "score",
+      "_source": "https://llm-stats.com/benchmarks/mrcr-v2-(8-needle)",
+      "_note": ""
+    },
+    {
+      "model": "claude-opus-4-6",
+      "benchmark": "mrcr_v2_8needle_1m_pointwise",
+      "score": 76.0,
+      "unit": "score",
+      "_source": "https://www.anthropic.com/news/claude-opus-4-6",
+      "_note": ""
+    },
+    {
+      "model": "claude-sonnet-4-5",
+      "benchmark": "mrcr_v2_8needle_1m_pointwise",
+      "score": 18.5,
+      "unit": "score",
+      "_source": "https://www.anthropic.com/news/claude-opus-4-6",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "benchmark": "mrcr_v2_8needle_256k",
+      "score": 82.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/blog/deepseekv4",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "benchmark": "mrcr_v2_8needle_1m_pointwise",
+      "score": 59.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/blog/deepseekv4",
+      "_note": ""
+    },
+    {
+      "model": "llama-4-scout",
+      "benchmark": "fiction_live_long_context_120k",
+      "score": 15.6,
+      "unit": "score",
+      "_source": "https://the-decoder.com/metas-llama-4-models-show-promise-on-standard-tests-but-struggle-with-long-context-tasks/",
+      "_note": ""
+    },
+    {
+      "model": "llama-4-scout",
+      "benchmark": "niah_basic",
+      "score": 99.0,
+      "unit": "score",
+      "_source": "https://the-decoder.com/metas-llama-4-models-show-promise-on-standard-tests-but-struggle-with-long-context-tasks/",
+      "_note": ""
+    },
+    {
+      "model": "llama-4-maverick",
+      "benchmark": "fiction_live_long_context_120k",
+      "score": 28.1,
+      "unit": "score",
+      "_source": "https://the-decoder.com/metas-llama-4-models-show-promise-on-standard-tests-but-struggle-with-long-context-tasks/",
+      "_note": ""
+    },
+    {
+      "model": "ai21/jamba-1.6-large",
+      "benchmark": "ruler_avg_(4k_256k)",
+      "score": 95.7,
+      "unit": "score",
+      "_source": "ai21.com",
+      "_note": ""
+    },
+    {
+      "model": "ai21/jamba-1.6-large",
+      "benchmark": "ruler@256k",
+      "score": 93.9,
+      "unit": "score",
+      "_source": "ai21.com",
+      "_note": ""
+    },
+    {
+      "model": "ai21/jamba-1.6-large",
+      "benchmark": "arena_hard",
+      "score": 73.6,
+      "unit": "score",
+      "_source": "ai21.com",
+      "_note": ""
+    },
+    {
+      "model": "ai21/jamba-1.6-large",
+      "benchmark": "mmlu",
+      "score": 81.2,
+      "unit": "score",
+      "_source": "AI21 model card",
+      "_note": ""
+    },
+    {
+      "model": "ai21/jamba-v0.1",
+      "benchmark": "mmlu",
+      "score": 67.4,
+      "unit": "score",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "ai21/jamba-v0.1",
+      "benchmark": "hellaswag",
+      "score": 87.1,
+      "unit": "score",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "ai21/jamba-v0.1",
+      "benchmark": "gsm8k",
+      "score": 59.9,
+      "unit": "score",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "ai21/jamba-v0.1",
+      "benchmark": "arc_c",
+      "score": 64.4,
+      "unit": "score",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/hymba-1.5b-base",
+      "benchmark": "mmlu",
+      "score": 51.19,
+      "unit": "score",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/hymba-1.5b-base",
+      "benchmark": "arc_c",
+      "score": 45.9,
+      "unit": "score",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/hymba-1.5b-base",
+      "benchmark": "hellaswag",
+      "score": 77.5,
+      "unit": "score",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/hymba-1.5b-base",
+      "benchmark": "squad_c",
+      "score": 55.7,
+      "unit": "score",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "tiiuae/falcon-mamba-7b",
+      "benchmark": "mmlu_(5_shot)",
+      "score": 62.11,
+      "unit": "score",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "tiiuae/falcon-mamba-7b",
+      "benchmark": "mmlu_pro_(5_shot)",
+      "score": 14.47,
+      "unit": "score",
+      "_source": "Open LLM Leaderboard v2",
+      "_note": ""
+    },
+    {
+      "model": "tiiuae/falcon-mamba-7b",
+      "benchmark": "arc",
+      "score": 62.03,
+      "unit": "score",
+      "_source": "Open LLM v1",
+      "_note": ""
+    },
+    {
+      "model": "tiiuae/falcon-mamba-7b",
+      "benchmark": "hellaswag",
+      "score": 80.82,
+      "unit": "score",
+      "_source": "Open LLM v1",
+      "_note": ""
+    },
+    {
+      "model": "tiiuae/falcon-mamba-7b",
+      "benchmark": "gsm8k",
+      "score": 52.54,
+      "unit": "score",
+      "_source": "Open LLM v1",
+      "_note": ""
+    },
+    {
+      "model": "tiiuae/falcon-mamba-7b",
+      "benchmark": "avg_open_llm_v1",
+      "score": 64.09,
+      "unit": "score",
+      "_source": "Open LLM v1",
+      "_note": ""
+    },
+    {
+      "model": "tiiuae/falcon-h1-34b",
+      "benchmark": "ruler_mk_needle",
+      "score": 92.4,
+      "unit": "score",
+      "_source": "Falcon-H1 paper 2507.22448",
+      "_note": ""
+    },
+    {
+      "model": "tiiuae/falcon-h1-34b",
+      "benchmark": "ruler_mv",
+      "score": 88.1,
+      "unit": "score",
+      "_source": "Falcon-H1 paper",
+      "_note": ""
+    },
+    {
+      "model": "tiiuae/falcon-h1-34b",
+      "benchmark": "mmlu",
+      "score": 82.1,
+      "unit": "score",
+      "_source": "Falcon-H1 blog",
+      "_note": ""
+    },
+    {
+      "model": "togethercomputer/stripedhyena-nous-7b",
+      "benchmark": "mmlu",
+      "score": 55.2,
+      "unit": "score",
+      "_source": "Together blog",
+      "_note": ""
+    },
+    {
+      "model": "togethercomputer/stripedhyena-nous-7b",
+      "benchmark": "hellaswag",
+      "score": 77.0,
+      "unit": "score",
+      "_source": "Together blog",
+      "_note": ""
+    },
+    {
+      "model": "state-spaces/mamba-2.8b",
+      "benchmark": "lambada_acc",
+      "score": 69.2,
+      "unit": "score",
+      "_source": "arxiv 2312.00752",
+      "_note": ""
+    },
+    {
+      "model": "state-spaces/mamba-2.8b",
+      "benchmark": "hellaswag",
+      "score": 66.1,
+      "unit": "score",
+      "_source": "arxiv 2312.00752",
+      "_note": ""
+    },
+    {
+      "model": "state-spaces/mamba-2.8b",
+      "benchmark": "piqa",
+      "score": 75.2,
+      "unit": "score",
+      "_source": "arxiv 2312.00752",
+      "_note": ""
+    },
+    {
+      "model": "state-spaces/mamba-2-2.7b",
+      "benchmark": "hellaswag",
+      "score": 69.7,
+      "unit": "score",
+      "_source": "arxiv 2405.21060",
+      "_note": ""
+    },
+    {
+      "model": "state-spaces/mamba-2-2.7b",
+      "benchmark": "lambada_acc",
+      "score": 69.6,
+      "unit": "score",
+      "_source": "arxiv 2405.21060",
+      "_note": ""
+    },
+    {
+      "model": "state-spaces/mamba-3-1.5b",
+      "benchmark": "avg_downstream_(vs_gated_deltanet)",
+      "score": 1.8,
+      "unit": "score",
+      "_source": "arxiv 2603.15569",
+      "_note": "+1.8pp gain"
+    },
+    {
+      "model": "state-spaces/mamba-3-1.5b",
+      "benchmark": "prefill+decode_latency_vs_llama_3_2_1b",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "arxiv 2603.15569",
+      "_note": "beats Llama-3.2-1B across all seq lens"
+    },
+    {
+      "model": "google/recurrentgemma-9b",
+      "benchmark": "mmlu",
+      "score": 60.5,
+      "unit": "score",
+      "_source": "DeepMind tech report",
+      "_note": ""
+    },
+    {
+      "model": "google/recurrentgemma-9b",
+      "benchmark": "gsm8k",
+      "score": 38.4,
+      "unit": "score",
+      "_source": "DeepMind tech report",
+      "_note": ""
+    },
+    {
+      "model": "google/recurrentgemma-9b",
+      "benchmark": "arc_c",
+      "score": 52.0,
+      "unit": "score",
+      "_source": "DeepMind tech report",
+      "_note": ""
+    },
+    {
+      "model": "google/recurrentgemma-9b",
+      "benchmark": "avg_open_llm_v2",
+      "score": 13.2,
+      "unit": "score",
+      "_source": "Open LLM Leaderboard v2",
+      "_note": ""
+    },
+    {
+      "model": "zyphra/blackmamba-2.8b",
+      "benchmark": "hellaswag",
+      "score": 65.8,
+      "unit": "score",
+      "_source": "arxiv 2402.01771",
+      "_note": ""
+    },
+    {
+      "model": "zyphra/blackmamba-2.8b",
+      "benchmark": "piqa",
+      "score": 75.5,
+      "unit": "score",
+      "_source": "arxiv 2402.01771",
+      "_note": ""
+    },
+    {
+      "model": "zyphra/zamba2-2.7b",
+      "benchmark": "mmlu",
+      "score": 56.1,
+      "unit": "score",
+      "_source": "Zyphra blog",
+      "_note": ""
+    },
+    {
+      "model": "zyphra/zamba2-2.7b",
+      "benchmark": "avg_open_llm_v2",
+      "score": 12.55,
+      "unit": "score",
+      "_source": "Open LLM Leaderboard v2",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-ai/deepseek-v3-mla",
+      "benchmark": "kv_cache_per_token_(kb)",
+      "score": 70.0,
+      "unit": "score",
+      "_source": "arxiv 2412.19437",
+      "_note": "vs 192-328 KB GQA = 2.7-4.7x reduction"
+    },
+    {
+      "model": "deepseek-ai/deepseek-v3-mla",
+      "benchmark": "mmlu",
+      "score": 88.5,
+      "unit": "score",
+      "_source": "arxiv 2412.19437",
+      "_note": ""
+    },
+    {
+      "model": "deepseek-ai/deepseek-v3-mla",
+      "benchmark": "ruler@128k",
+      "score": 76.0,
+      "unit": "score",
+      "_source": "DeepSeek-V3 tech report",
+      "_note": ""
+    },
+    {
+      "model": "moonshotai/kimi-k2.5",
+      "benchmark": "mmlu",
+      "score": 89.5,
+      "unit": "score",
+      "_source": "Moonshot blog",
+      "_note": ""
+    },
+    {
+      "model": "moonshotai/kimi-k2.5",
+      "benchmark": "ruler@1m",
+      "score": 81.2,
+      "unit": "score",
+      "_source": "Moonshot tech report",
+      "_note": ""
+    },
+    {
+      "model": "google/titans-mac",
+      "benchmark": "babilong_(long_ctx_reasoning)",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "arxiv 2501.00663",
+      "_note": "Beats GPT-4 despite far fewer params"
+    },
+    {
+      "model": "google/titans-mac",
+      "benchmark": "c4_ppl_vs_mamba_2",
+      "score": 1.0,
+      "unit": "score",
+      "_source": "Google paper",
+      "_note": "Lower PPL than Transformer++ / Mamba-2 / Gated DeltaNet"
+    }
+  ]
+}
