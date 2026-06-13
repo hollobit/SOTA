@@ -1,15 +1,16 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 104 — Coding agent specialty deep dive (2026-06-12)
-**2,331 models · 2,586 benchmarks · 11,700 scores · 🌍 +42 models / +9 benchmarks / +57 scores**
+## Current Status: Session 105 — Kimi K2.7-Code (2026-06-13)
+**2,332 models · 2,591 benchmarks · 11,721 scores · 🌍 +1 model / +5 benchmarks / +21 scores**
+
+### 2026-06-13 Session 105 — Kimi K2.7-Code (1T/32B MoE 2026-06-12, +1/+5/+21)
+- K2.7-Code = K2.6 architecture (1T/32B MoE 384e/8+1shared, 256K ctx, MoonViT 400M, Modified MIT, $0.95/$4.00). Thinking forced=True -30% thinking-token usage vs K2.6. **K2.7-Code does NOT take SOTA on any of 6 reported benches** — GPT-5.5 sweeps 4/6 (Kimi-Code-Bench v2 69.0/Program Bench 69.1/Kimi-Claw 24/7 52.8/MCP-Mark Verified 92.9). Opus 4.8 1 (MLS-Bench-Lite 42.8). Gemini 3.5 Flash MCP-Atlas 83.6. Cost-efficient #3 ~3.2x cheaper than Opus 4.8 output. 2 NEW Moonshot benches: kimi-code-bench-v2 + kimi-claw-24/7. K2.6→K2.7 deltas: +11.1/+5.3/+8.4/+4.0/+6.6/+8.3
 
 ### 2026-06-12 Session 104 — Coding agent specialty (CLI/IDE + Autonomous + Benchmarks)
 - 3 agents 🌍 **+42/+9/+57**. **CLI/IDE (12 entries)**: Aider 0.86.2/Cline 3.0.24/Roo Code/Cursor Composer 2/2.5/Codex CLI 0.139.0/Claude Code/Continue 2.0/Devstral 2/Mistral Medium 3.5. **Autonomous (14)**: Devin 2.0 SWE-V **45.8** (up from Devin 1 13.86), **Auggie (Augment) SWE-Pro 51.80** topped Scale SEAL Apr 2026 (Cursor 50.21/Claude Code 49.75/Codex 46.47). Augment SWE-V 72.0 w/Opus 4.6. Replit Agent 4 ~90% auto merge-conflict resolution. Devin pricing collapsed $500→$20/mo+$2.25/ACU. **NEW SOTAs**: **Mythos 5 sweeps coding** (Aider Polyglot 95.5/SWE-V 95.5/SWE-Pro 80.3/SWE-Multi 92.2). **SWE-Lancer GPT-5.1 Codex 66.3** vs Claude 3.5 Sonnet baseline 40.3 (NEW bench). LCB v6 DeepSeek V4-Pro 93.5. Terminal-Bench 2.0 GPT-5.5 82.7. Tau2 GLM-4.7-Flash 98.8. BFCL v4 Opus 4.5 77.47. Codeforces DeepSeek V4-Pro 3206. Mistral Medium 3.5 SWE-V 77.6 (replaces Devstral 2 72.2)
 
-### 2026-06-11 Sessions 101-103 — Audio + Global South sovereign + MiMo Code (+123/+95/+196)
-- S103 MiMoCode strict-attribution catch: CLI coding agent (OpenCode fork MIT v0.1.0 2026-06-10), NOT a model. Backends xiaomi/mimo-v2.5 + mimo-v2.5-pro. System-level: Max Mode +10-20% SWE-Pro. Human A/B 65% win-rate at >200 steps long-horizon vs Claude Code+Sonnet 4.6
-- S102 Global South: **Sarvam-105B India Apache MoE** Math500 98.6 + JEE-Main-2026 Math 100/100 + AIME25 96.7 w/tools. **Qalb-1.0 Pakistani Urdu SOTA 90.34**. SEA-LION v4.5 8 langs MIT. Typhoon-S Thai sovereign. Maritaca Sabia-7B PT. **TII Falcon-H1-34B UAE** MMLU 84.05. **ALLaM-7B Saudi Arabic MMLU 67.78**
-- S101 Audio: **Cohere Transcribe sweeps** ASR (LibriSpeech 1.25, RTFx 524). Parakeet TDT v3 **RTFx 3332x**. **Fun-Realtime-TTS AA Elo 1226 #1**. **Stable Audio 3 Large FAD 0.101**. **Qwen3.5-Omni-Plus sweeps all 4 audio benches** (MMAU 82.2/VoiceBench 93.1/RUL-MuchoMusic 72.4/MMSU 82.8)
+### 2026-06-11 Sessions 101-103 — Audio + Global South + MiMo Code (+123/+95/+196)
+- S101-103: **Cohere Transcribe sweeps** ASR (LibriSpeech 1.25, RTFx 524). Parakeet TDT v3 **RTFx 3332x**. **Fun-Realtime-TTS AA Elo 1226 #1**. **Stable Audio 3 Large FAD 0.101**. **Qwen3.5-Omni-Plus sweeps all 4 audio benches**. **Sarvam-105B India Apache MoE** Math500 98.6 + JEE-Main-2026 100/100. **Qalb-1.0 Pakistani Urdu SOTA 90.34**. SEA-LION v4.5 8 langs MIT. **TII Falcon-H1-34B UAE** MMLU 84.05. **ALLaM-7B Saudi Arabic MMLU 67.78**. S103 MiMoCode strict-attribution catch: CLI agent NOT a model, Human A/B 65% win-rate at >200 steps long-horizon
 
 ### 2026-06-11 Sessions 99-100 — KR+JP + European sovereign (+108/+132/+344)
 - S99-100: **Mistral Large 3 675B/41B Apache MoE largest worldwide**. Mistral Medium 3.5 SWE-V 77.6 EU agentic coder. Cohere Command A Plus 218B/25B Apache 48 langs. T-Free HAT 7B MMLU-DE 0.618. **Llama-Poro-2-8B Finnish 14x lift**. EuroLLM-22B FLORES-COMET 88.9. **SKT A.X K1 (519B/33B) KMMLU 80.2/LCB-Korean 73.1**. K-EXAONE HRM8K 90.9. EXAONE 4.5 33B AIME-26 92.6. **Stockmark-2-100B JMT-Bench 7.87** highest open JP. RakutenAI-3.0 671B/37B Japan's largest open MoE
@@ -196,5 +197,4 @@ dashboard/                   → 정적 대시보드 (ECharts + Tailwind)
 BMT/                         → Benchmark Library 카탈로그 (2,559 엔트리)
 ```
 
-## Key Data Files
-- `resource/*scores_2026_*.json` 시드 · `data/export/{models,benchmarks,scores/current,sota}.json` + `history/*.json` 일별 스냅샷 · `data/bmt_connections.json`/`bmt_catalog.json` BMT 매핑+카탈로그 (2,559개)
+## Key Data Files — `resource/*scores_2026_*.json` 시드 · `data/export/{models,benchmarks,scores/current,sota}.json` + `history/*.json` 일별 스냅샷 · `data/bmt_connections.json`/`bmt_catalog.json` BMT 매핑+카탈로그 (2,559개)

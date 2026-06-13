@@ -1,0 +1,281 @@
+{
+  "_meta": {
+    "session": "Session 105 — Kimi K2.7-Code",
+    "date": "2026-06-13",
+    "sources": [
+      "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "https://platform.kimi.ai/docs/guide/kimi-k2-7-code-quickstart",
+      "https://medium.com/data-science-in-your-pocket/kimi-k2-7-code-released-0ff90c917644",
+      "https://openrouter.ai/moonshotai/kimi-k2.7-code",
+      "https://platform.kimi.ai/docs/pricing/chat-k27-code"
+    ],
+    "notes": "1T/32B MoE 384e/8+1shared, MoonViT 400M vision, 256K ctx, Modified MIT, $0.95/$4.00, released 2026-06-12. Thinking forced=True with ~30% reduction in thinking-token usage vs K2.6. K2.7-Code does NOT take SOTA on any of 6 reported benchmarks — GPT-5.5 leads 4/6, Opus 4.8 leads 2/6. Positioned as cost-efficient #3."
+  },
+  "models": [
+    {
+      "id": "moonshot/kimi-k2.7-code",
+      "name": "Kimi K2.7 Code",
+      "vendor": "moonshot",
+      "type": "language",
+      "release_date": "2026-06-12",
+      "modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "context_window": 262144,
+      "params_total_b": 1000,
+      "params_active_b": 32,
+      "architecture": "MoE",
+      "license": "Modified MIT",
+      "pricing_input_per_mtok_usd": 0.95,
+      "pricing_output_per_mtok_usd": 4.0
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "kimi_code_bench_v2",
+      "name": "Kimi-Code-Bench v2",
+      "category": "coding",
+      "description": "Moonshot in-house coding agent benchmark, 10+ programming languages, production tech stack",
+      "metric": "accuracy",
+      "unit": "percent",
+      "higher_is_better": true
+    },
+    {
+      "id": "program_bench",
+      "name": "Program Bench",
+      "category": "coding",
+      "metric": "accuracy",
+      "unit": "percent",
+      "higher_is_better": true
+    },
+    {
+      "id": "mls_bench_lite",
+      "name": "MLS-Bench-Lite",
+      "category": "coding",
+      "metric": "accuracy",
+      "unit": "percent",
+      "higher_is_better": true
+    },
+    {
+      "id": "kimi_claw_24_7_bench",
+      "name": "Kimi-Claw 24/7 Bench",
+      "category": "agent",
+      "description": "Moonshot in-house long-horizon agentic benchmark, 17 professional scenarios, 610 evaluation points, multi-day persistent tasks",
+      "metric": "accuracy",
+      "unit": "percent",
+      "higher_is_better": true
+    },
+    {
+      "id": "mcp_atlas",
+      "name": "MCP-Atlas",
+      "category": "agent",
+      "metric": "accuracy",
+      "unit": "percent",
+      "higher_is_better": true
+    },
+    {
+      "id": "mcp_mark_verified",
+      "name": "MCP-Mark Verified",
+      "category": "agent",
+      "metric": "accuracy",
+      "unit": "percent",
+      "higher_is_better": true
+    }
+  ],
+  "scores": [
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "kimi_code_bench_v2",
+      "score": 62.0,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "kimi_code_bench_v2",
+      "score": 50.9,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "kimi_code_bench_v2",
+      "score": 69.0,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "kimi_code_bench_v2",
+      "score": 67.4,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "program_bench",
+      "score": 53.6,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "program_bench",
+      "score": 48.3,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "program_bench",
+      "score": 69.1,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "program_bench",
+      "score": 63.8,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "mls_bench_lite",
+      "score": 35.1,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "mls_bench_lite",
+      "score": 26.7,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mls_bench_lite",
+      "score": 35.5,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "mls_bench_lite",
+      "score": 42.8,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "kimi_claw_24_7_bench",
+      "score": 46.9,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "kimi_claw_24_7_bench",
+      "score": 42.9,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "kimi_claw_24_7_bench",
+      "score": 52.8,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "kimi_claw_24_7_bench",
+      "score": 50.4,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "mcp_atlas",
+      "score": 76.0,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "mcp_atlas",
+      "score": 69.4,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mcp_atlas",
+      "score": 79.4,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "mcp_atlas",
+      "score": 81.3,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "mcp_mark_verified",
+      "score": 81.1,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "mcp_mark_verified",
+      "score": 72.8,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mcp_mark_verified",
+      "score": 92.9,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "mcp_mark_verified",
+      "score": 76.4,
+      "source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+      "unit": "score",
+      "_source": "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    }
+  ]
+}
