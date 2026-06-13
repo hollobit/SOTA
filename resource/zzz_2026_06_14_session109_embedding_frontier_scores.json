@@ -1,0 +1,1846 @@
+{
+  "_meta": {
+    "session": "Session 109 — Embedding model frontier",
+    "date": "2026-06-14",
+    "sources": [
+      "Commercial (15): OpenAI text-embed-3-large/small + Cohere Embed v4 + Voyage 3.5/3-large + Mistral Embed/Codestral + Gemini Embedding 001/002",
+      "Open-source (25): Qwen3-Embedding 0.6B/4B/8B + EmbeddingGemma 300M + jina-v4 4B + NV-Embed-v2 + BGE-en-icl + gte-Qwen2 + SFR-Embedding-2_R + Stella + Snowflake Arctic + Jina v3 + E5",
+      "Leaderboards (11): MTEB-en v2, MMTEB Multilingual, CMTEB Chinese, MTEB Code v1, MIRACL, MTEB FR/JA/KO"
+    ],
+    "notes": "Qwen3-Embedding-8B sweeps MTEB-en v2 75.22 + MMTEB 70.58 #1 (displaces Gemini) + CMTEB Chinese 73.84 + MTEB Code v1 80.68. gemini-embedding-002 MTEB Multilingual v2 69.9 + MTEB Code 84.0 + MIRACL Code 84.0. EmbeddingGemma 300M on-device SOTA. jina-v4 4B multimodal MMTEB 66.49 (+14% over v3). MILCO MIRACL 72.30 ~14x smaller than E5-Mistral-7B (ICLR 2026). Mistral codestral-embed 85% code retrieval. Voyage 3.5 $0.06/M. text-embedding-3.5 does NOT exist. NV-Embed-v3 weights / bge-en-icl-v3 / snowflake-v3 / SFR-3 / gte-Qwen3 do NOT exist."
+  },
+  "models": [
+    {
+      "id": "openai/text-embedding-3-large",
+      "name": "OpenAI text-embedding-3-large",
+      "vendor": "openai",
+      "type": "embedding",
+      "release_date": "2024-01-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/text-embedding-3-small",
+      "name": "OpenAI text-embedding-3-small",
+      "vendor": "openai",
+      "type": "embedding",
+      "release_date": "2024-01-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/embed-v4",
+      "name": "Cohere Embed v4 (multimodal multilingual)",
+      "vendor": "cohere",
+      "type": "embedding",
+      "release_date": "2025-04-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/embed-multilingual-v3",
+      "name": "Cohere Embed v3 Multilingual",
+      "vendor": "cohere",
+      "type": "embedding",
+      "release_date": "2023-11-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/embed-english-v3",
+      "name": "Cohere Embed v3 English",
+      "vendor": "cohere",
+      "type": "embedding",
+      "release_date": "2023-11-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "voyageai/voyage-3-large",
+      "name": "Voyage 3 Large",
+      "vendor": "voyage ai (acquired by mongodb)",
+      "type": "embedding",
+      "release_date": "2025-01-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "voyageai/voyage-3.5",
+      "name": "Voyage 3.5",
+      "vendor": "voyage ai (acquired by mongodb)",
+      "type": "embedding",
+      "release_date": "2025-05-20",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "voyageai/voyage-3.5-lite",
+      "name": "Voyage 3.5 Lite",
+      "vendor": "voyage ai (acquired by mongodb)",
+      "type": "embedding",
+      "release_date": "2025-05-20",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "voyageai/voyage-code-3",
+      "name": "Voyage Code 3",
+      "vendor": "voyage ai (acquired by mongodb)",
+      "type": "embedding",
+      "release_date": "2024-12-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "voyageai/voyage-multimodal-3.5",
+      "name": "Voyage Multimodal 3.5",
+      "vendor": "voyage ai (acquired by mongodb)",
+      "type": "embedding",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/mistral-embed",
+      "name": "Mistral Embed",
+      "vendor": "mistral ai",
+      "type": "embedding",
+      "release_date": "2023-12-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/codestral-embed",
+      "name": "Codestral Embed",
+      "vendor": "mistral ai",
+      "type": "embedding",
+      "release_date": "2025-05-28",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-embedding-001",
+      "name": "Google Gemini Embedding 001",
+      "vendor": "google deepmind",
+      "type": "embedding",
+      "release_date": "2025-05-20",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-embedding-002",
+      "name": "Google Gemini Embedding 2",
+      "vendor": "google deepmind",
+      "type": "embedding",
+      "release_date": "2026-03-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/embeddings-via-voyage",
+      "name": "Anthropic Embeddings (recommends Voyage AI)",
+      "vendor": "anthropic",
+      "type": "embedding",
+      "release_date": null,
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen/qwen3-embedding-8b",
+      "name": "qwen3-embedding-8b",
+      "vendor": "alibaba qwen",
+      "type": "embedding",
+      "release_date": "2025-06-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen/qwen3-embedding-4b",
+      "name": "qwen3-embedding-4b",
+      "vendor": "alibaba qwen",
+      "type": "embedding",
+      "release_date": "2025-06-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen/qwen3-embedding-0.6b",
+      "name": "qwen3-embedding-0.6b",
+      "vendor": "alibaba qwen",
+      "type": "embedding",
+      "release_date": "2025-06-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/embeddinggemma-300m",
+      "name": "embeddinggemma-300m",
+      "vendor": "google",
+      "type": "embedding",
+      "release_date": "2025-09-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "jinaai/jina-embeddings-v4",
+      "name": "jina-embeddings-v4",
+      "vendor": "jina ai",
+      "type": "embedding",
+      "release_date": "2025-06-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "jinaai/jina-embeddings-v3",
+      "name": "jina-embeddings-v3",
+      "vendor": "jina ai",
+      "type": "embedding",
+      "release_date": "2024-09-18",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/nv-embed-v2",
+      "name": "nv-embed-v2",
+      "vendor": "nvidia",
+      "type": "embedding",
+      "release_date": "2024-08-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "baai/bge-en-icl",
+      "name": "bge-en-icl",
+      "vendor": "baai",
+      "type": "embedding",
+      "release_date": "2024-09-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "baai/bge-multilingual-gemma2",
+      "name": "bge-multilingual-gemma2",
+      "vendor": "baai",
+      "type": "embedding",
+      "release_date": "2024-07-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "baai/bge-m3",
+      "name": "bge-m3",
+      "vendor": "baai",
+      "type": "embedding",
+      "release_date": "2024-02-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba-nlp/gte-qwen2-7b-instruct",
+      "name": "gte-qwen2-7b-instruct",
+      "vendor": "alibaba nlp",
+      "type": "embedding",
+      "release_date": "2024-06-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba-nlp/gte-qwen2-1.5b-instruct",
+      "name": "gte-qwen2-1.5b-instruct",
+      "vendor": "alibaba nlp",
+      "type": "embedding",
+      "release_date": "2024-07-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "salesforce/sfr-embedding-2_r",
+      "name": "sfr-embedding-2_r",
+      "vendor": "salesforce",
+      "type": "embedding",
+      "release_date": "2024-06-14",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "salesforce/sfr-embedding-code-2b_r",
+      "name": "sfr-embedding-code-2b_r",
+      "vendor": "salesforce",
+      "type": "embedding",
+      "release_date": "2024-11-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "salesforce/sfr-embedding-code-400m_r",
+      "name": "sfr-embedding-code-400m_r",
+      "vendor": "salesforce",
+      "type": "embedding",
+      "release_date": "2024-11-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "novasearch/stella_en_1.5b_v5",
+      "name": "stella_en_1.5b_v5",
+      "vendor": "novasearch (stella/jasper team)",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "novasearch/stella_en_400m_v5",
+      "name": "stella_en_400m_v5",
+      "vendor": "novasearch",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "infgrad/jasper_en_vision_language_v1",
+      "name": "jasper_en_vision_language_v1",
+      "vendor": "novasearch (jasper)",
+      "type": "embedding",
+      "release_date": "2024-12-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "snowflake/snowflake-arctic-embed-l-v2.0",
+      "name": "snowflake-arctic-embed-l-v2.0",
+      "vendor": "snowflake",
+      "type": "embedding",
+      "release_date": "2024-12-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "snowflake/snowflake-arctic-embed-m-v2.0",
+      "name": "snowflake-arctic-embed-m-v2.0",
+      "vendor": "snowflake",
+      "type": "embedding",
+      "release_date": "2024-12-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "intfloat/e5-mistral-7b-instruct",
+      "name": "e5-mistral-7b-instruct",
+      "vendor": "microsoft / intfloat",
+      "type": "embedding",
+      "release_date": "2023-12-31",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "intfloat/multilingual-e5-large-instruct",
+      "name": "multilingual-e5-large-instruct",
+      "vendor": "microsoft / intfloat",
+      "type": "embedding",
+      "release_date": "2024-02-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mixedbread-ai/mxbai-embed-large-v1",
+      "name": "mxbai-embed-large-v1",
+      "vendor": "mixedbread",
+      "type": "embedding",
+      "release_date": "2024-03-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "linq-ai-research/linq-embed-mistral",
+      "name": "linq-embed-mistral",
+      "vendor": "linq ai research",
+      "type": "embedding",
+      "release_date": "2024-06-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "gritlm/gritlm-7b",
+      "name": "gritlm-7b",
+      "vendor": "contextualai / gritlm",
+      "type": "embedding",
+      "release_date": "2024-02-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/gte-qwen2-1.5b-instruct",
+      "name": "gte-Qwen2 1.5B Instruct",
+      "vendor": "alibaba",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/gte-qwen2-7b-instruct",
+      "name": "gte-Qwen2 7B Instruct",
+      "vendor": "alibaba",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "linq-ai/linq-embed-mistral",
+      "name": "Linq-Embed-Mistral",
+      "vendor": "linq-ai",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qzhou/qzhou-embedding",
+      "name": "QZhou Embedding",
+      "vendor": "qzhou",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-embedding-0.6b",
+      "name": "Qwen3 Embedding 0.6B",
+      "vendor": "alibaba",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-embedding-4b",
+      "name": "Qwen3 Embedding 4B",
+      "vendor": "alibaba",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-embedding-8b",
+      "name": "Qwen3 Embedding 8B",
+      "vendor": "alibaba",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "salesforce/sfr-embedding-mistral",
+      "name": "SFR-Embedding Mistral",
+      "vendor": "salesforce",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "infly/inf-retriever-v1-1.5b",
+      "name": "Inf-Retriever v1 1.5B",
+      "vendor": "infly",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/harrier-oss-v1-27b",
+      "name": "Harrier OSS v1 27B",
+      "vendor": "microsoft",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "novasearch/stella-en-1.5b-v5",
+      "name": "Stella en 1.5B v5",
+      "vendor": "novasearch",
+      "type": "embedding",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "mteb_en_v1",
+      "name": "Mteb En V1",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "miracl",
+      "name": "Miracl",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_v2_english",
+      "name": "Mteb V2 English",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_retrieval",
+      "name": "Mteb Retrieval",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_v1",
+      "name": "Mteb V1",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "voyage_internal_100_datasets",
+      "name": "Voyage Internal 100 Datasets",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "voyage_internal_retrieval",
+      "name": "Voyage Internal Retrieval",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "voyage_internal_vs_openai_v3_large",
+      "name": "Voyage Internal Vs Openai V3 Large",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "voyage_internal_vs_cohere_v4",
+      "name": "Voyage Internal Vs Cohere V4",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "voyage_internal_code_238_datasets",
+      "name": "Voyage Internal Code 238 Datasets",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mistral_internal_code_retrieval",
+      "name": "Mistral Internal Code Retrieval",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_multilingual_v2",
+      "name": "Mteb Multilingual V2",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_en_v2",
+      "name": "Mteb En V2",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_code",
+      "name": "Mteb Code",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mscoco_r@1",
+      "name": "Mscoco R@1",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vatex_ndcg@10",
+      "name": "Vatex Ndcg@10",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_multilingual_v2_overall",
+      "name": "Mteb Multilingual V2 Overall",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_english_v2_overall",
+      "name": "Mteb English V2 Overall",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "c_mteb_overall",
+      "name": "C Mteb Overall",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_multilingual_retrieval",
+      "name": "Mteb Multilingual Retrieval",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_multilingual_sts",
+      "name": "Mteb Multilingual Sts",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_multilingual_classification",
+      "name": "Mteb Multilingual Classification",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_multilingual_clustering",
+      "name": "Mteb Multilingual Clustering",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_multilingual_reranking",
+      "name": "Mteb Multilingual Reranking",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_multilingual_bitext_mining",
+      "name": "Mteb Multilingual Bitext Mining",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_multilingual_pair_classification",
+      "name": "Mteb Multilingual Pair Classification",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_english_retrieval_mteb_r",
+      "name": "Mteb English Retrieval Mteb R",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_english_v1_overall,_56_tasks",
+      "name": "Mteb English V1 Overall, 56 Tasks",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_english_retrieval_15_tasks",
+      "name": "Mteb English Retrieval 15 Tasks",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "air_bench_qa_few_shot,_8_tasks_ndcg@10",
+      "name": "Air Bench Qa Few Shot, 8 Tasks Ndcg@10",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "air_bench_long_doc_few_shot,_15_tasks_recall@10",
+      "name": "Air Bench Long Doc Few Shot, 15 Tasks Recall@10",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "c_mteb_overall,_35_tasks",
+      "name": "C Mteb Overall, 35 Tasks",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_fr_overall,_26_tasks",
+      "name": "Mteb Fr Overall, 26 Tasks",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_pl_overall,_26_tasks",
+      "name": "Mteb Pl Overall, 26 Tasks",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_classification_12_tasks",
+      "name": "Mteb Classification 12 Tasks",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_clustering_11_tasks",
+      "name": "Mteb Clustering 11 Tasks",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_pair_classification_3_tasks",
+      "name": "Mteb Pair Classification 3 Tasks",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_reranking_4_tasks",
+      "name": "Mteb Reranking 4 Tasks",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_sts_10_tasks",
+      "name": "Mteb Sts 10 Tasks",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_summarization_1_task",
+      "name": "Mteb Summarization 1 Task",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "miracl_ndcg@10",
+      "name": "Miracl Ndcg@10",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "coir_ndcg@10_avg",
+      "name": "Coir Ndcg@10 Avg",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmteb_overall",
+      "name": "Mmteb Overall",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_english_v1_overall",
+      "name": "Mteb English V1 Overall",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_eng_v2",
+      "name": "MTEB English v2",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_multilingual_mmteb",
+      "name": "MTEB Multilingual (MMTEB)",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_chinese_cmteb_v1",
+      "name": "CMTEB (MTEB Chinese v1)",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_code_v1",
+      "name": "MTEB Code v1 (CoIR-aligned)",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_french",
+      "name": "MTEB French",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_japanese",
+      "name": "MTEB Japanese",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mteb_korean",
+      "name": "MTEB Korean",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "beir",
+      "name": "BEIR Heterogeneous IR Benchmark",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "longembed",
+      "name": "LongEmbed Long-Context Retrieval",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "nv_retriever_bench",
+      "name": "NV-RetrieverBench",
+      "category": "embedding",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/text-embedding-3-large",
+      "benchmark": "mteb_en_v1",
+      "score": 64.6,
+      "unit": "score",
+      "_source": "https://openai.com/index/new-embedding-models-and-api-updates/",
+      "_note": ""
+    },
+    {
+      "model": "openai/text-embedding-3-large",
+      "benchmark": "miracl",
+      "score": 54.9,
+      "unit": "score",
+      "_source": "https://openai.com/index/new-embedding-models-and-api-updates/",
+      "_note": ""
+    },
+    {
+      "model": "openai/text-embedding-3-small",
+      "benchmark": "mteb_en_v1",
+      "score": 62.3,
+      "unit": "score",
+      "_source": "https://openai.com/index/new-embedding-models-and-api-updates/",
+      "_note": ""
+    },
+    {
+      "model": "openai/text-embedding-3-small",
+      "benchmark": "miracl",
+      "score": 44.0,
+      "unit": "score",
+      "_source": "https://openai.com/index/new-embedding-models-and-api-updates/",
+      "_note": ""
+    },
+    {
+      "model": "cohere/embed-v4",
+      "benchmark": "mteb_v2_english",
+      "score": 65.2,
+      "unit": "score",
+      "_source": "https://cohere.com/blog/embed-4",
+      "_note": ""
+    },
+    {
+      "model": "cohere/embed-v4",
+      "benchmark": "mteb_retrieval",
+      "score": 67.71,
+      "unit": "score",
+      "_source": "https://cohere.com/blog/embed-4",
+      "_note": ""
+    },
+    {
+      "model": "cohere/embed-multilingual-v3",
+      "benchmark": "miracl",
+      "score": 66.3,
+      "unit": "score",
+      "_source": "https://cohere.com/blog/introducing-embed-v3",
+      "_note": ""
+    },
+    {
+      "model": "cohere/embed-english-v3",
+      "benchmark": "mteb_en_v1",
+      "score": 64.5,
+      "unit": "score",
+      "_source": "https://cohere.com/blog/introducing-embed-v3",
+      "_note": ""
+    },
+    {
+      "model": "voyageai/voyage-3-large",
+      "benchmark": "mteb_v1",
+      "score": 65.1,
+      "unit": "score",
+      "_source": "https://blog.voyageai.com/2025/01/07/voyage-3-large/",
+      "_note": ""
+    },
+    {
+      "model": "voyageai/voyage-3-large",
+      "benchmark": "voyage_internal_100_datasets",
+      "score": 9.74,
+      "unit": "score",
+      "_source": "https://blog.voyageai.com/2025/01/07/voyage-3-large/",
+      "_note": ""
+    },
+    {
+      "model": "voyageai/voyage-3.5",
+      "benchmark": "voyage_internal_retrieval",
+      "score": 2.66,
+      "unit": "score",
+      "_source": "https://blog.voyageai.com/2025/05/20/voyage-3-5/",
+      "_note": ""
+    },
+    {
+      "model": "voyageai/voyage-3.5",
+      "benchmark": "voyage_internal_vs_openai_v3_large",
+      "score": 8.26,
+      "unit": "score",
+      "_source": "https://blog.voyageai.com/2025/05/20/voyage-3-5/",
+      "_note": ""
+    },
+    {
+      "model": "voyageai/voyage-3.5",
+      "benchmark": "voyage_internal_vs_cohere_v4",
+      "score": 1.63,
+      "unit": "score",
+      "_source": "https://blog.voyageai.com/2025/05/20/voyage-3-5/",
+      "_note": ""
+    },
+    {
+      "model": "voyageai/voyage-code-3",
+      "benchmark": "voyage_internal_code_238_datasets",
+      "score": 13.8,
+      "unit": "score",
+      "_source": "https://blog.voyageai.com/2024/12/04/voyage-code-3/",
+      "_note": ""
+    },
+    {
+      "model": "mistral/mistral-embed",
+      "benchmark": "mteb_en_v1",
+      "score": 55.26,
+      "unit": "score",
+      "_source": "https://docs.mistral.ai/capabilities/embeddings/",
+      "_note": ""
+    },
+    {
+      "model": "mistral/codestral-embed",
+      "benchmark": "mistral_internal_code_retrieval",
+      "score": 85.0,
+      "unit": "score",
+      "_source": "https://mistral.ai/news/codestral-embed",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-embedding-001",
+      "benchmark": "mteb_multilingual_v2",
+      "score": 68.32,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.07891",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-embedding-001",
+      "benchmark": "mteb_en_v2",
+      "score": 73.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.07891",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-embedding-001",
+      "benchmark": "mteb_code",
+      "score": 74.66,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.07891",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-embedding-002",
+      "benchmark": "mteb_multilingual_v2",
+      "score": 69.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.27295",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-embedding-002",
+      "benchmark": "mteb_code",
+      "score": 84.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.27295",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-embedding-002",
+      "benchmark": "mscoco_r@1",
+      "score": 62.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.27295",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-embedding-002",
+      "benchmark": "vatex_ndcg@10",
+      "score": 68.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.27295",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-8b",
+      "benchmark": "mteb_multilingual_v2_overall",
+      "score": 70.58,
+      "unit": "score",
+      "_source": "https://qwenlm.github.io/blog/qwen3-embedding/",
+      "_note": "2025-06-05"
+    },
+    {
+      "model": "qwen/qwen3-embedding-8b",
+      "benchmark": "mteb_english_v2_overall",
+      "score": 75.22,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+      "_note": "2025-06-05"
+    },
+    {
+      "model": "qwen/qwen3-embedding-8b",
+      "benchmark": "c_mteb_overall",
+      "score": 73.84,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-8b",
+      "benchmark": "mteb_multilingual_retrieval",
+      "score": 70.88,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-8b",
+      "benchmark": "mteb_multilingual_sts",
+      "score": 81.08,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-8b",
+      "benchmark": "mteb_multilingual_classification",
+      "score": 74.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-8b",
+      "benchmark": "mteb_multilingual_clustering",
+      "score": 57.65,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-8b",
+      "benchmark": "mteb_multilingual_reranking",
+      "score": 65.63,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-8b",
+      "benchmark": "mteb_multilingual_bitext_mining",
+      "score": 80.89,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-8b",
+      "benchmark": "mteb_multilingual_pair_classification",
+      "score": 86.4,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-4b",
+      "benchmark": "mteb_multilingual_v2_overall",
+      "score": 69.45,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-4B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-4b",
+      "benchmark": "mteb_english_v2_overall",
+      "score": 74.6,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-4B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-4b",
+      "benchmark": "mteb_multilingual_retrieval",
+      "score": 85.05,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-4B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-0.6b",
+      "benchmark": "mteb_multilingual_v2_overall",
+      "score": 64.33,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-0.6b",
+      "benchmark": "mteb_english_v2_overall",
+      "score": 70.7,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-0.6b",
+      "benchmark": "c_mteb_overall",
+      "score": 66.33,
+      "unit": "score",
+      "_source": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-0.6b",
+      "benchmark": "mteb_english_retrieval_mteb_r",
+      "score": 61.82,
+      "unit": "score",
+      "_source": "https://qwenlm.github.io/blog/qwen3-embedding/",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3-embedding-0.6b",
+      "benchmark": "mteb_code",
+      "score": 75.41,
+      "unit": "score",
+      "_source": "https://qwenlm.github.io/blog/qwen3-embedding/",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nv-embed-v2",
+      "benchmark": "mteb_english_v1_overall,_56_tasks",
+      "score": 72.31,
+      "unit": "score",
+      "_source": "https://huggingface.co/nvidia/NV-Embed-v2",
+      "_note": "2024-08-30"
+    },
+    {
+      "model": "nvidia/nv-embed-v2",
+      "benchmark": "mteb_english_retrieval_15_tasks",
+      "score": 62.65,
+      "unit": "score",
+      "_source": "https://huggingface.co/nvidia/NV-Embed-v2",
+      "_note": ""
+    },
+    {
+      "model": "baai/bge-en-icl",
+      "benchmark": "air_bench_qa_few_shot,_8_tasks_ndcg@10",
+      "score": 54.36,
+      "unit": "score",
+      "_source": "https://huggingface.co/BAAI/bge-en-icl",
+      "_note": ""
+    },
+    {
+      "model": "baai/bge-en-icl",
+      "benchmark": "air_bench_long_doc_few_shot,_15_tasks_recall@10",
+      "score": 74.83,
+      "unit": "score",
+      "_source": "https://huggingface.co/BAAI/bge-en-icl",
+      "_note": ""
+    },
+    {
+      "model": "alibaba-nlp/gte-qwen2-7b-instruct",
+      "benchmark": "mteb_english_v1_overall,_56_tasks",
+      "score": 70.24,
+      "unit": "score",
+      "_source": "https://huggingface.co/Alibaba-NLP/gte-Qwen2-7B-instruct",
+      "_note": "2024-06-16"
+    },
+    {
+      "model": "alibaba-nlp/gte-qwen2-7b-instruct",
+      "benchmark": "c_mteb_overall,_35_tasks",
+      "score": 72.05,
+      "unit": "score",
+      "_source": "https://huggingface.co/Alibaba-NLP/gte-Qwen2-7B-instruct",
+      "_note": ""
+    },
+    {
+      "model": "alibaba-nlp/gte-qwen2-7b-instruct",
+      "benchmark": "mteb_fr_overall,_26_tasks",
+      "score": 68.25,
+      "unit": "score",
+      "_source": "https://huggingface.co/Alibaba-NLP/gte-Qwen2-7B-instruct",
+      "_note": ""
+    },
+    {
+      "model": "alibaba-nlp/gte-qwen2-7b-instruct",
+      "benchmark": "mteb_pl_overall,_26_tasks",
+      "score": 67.86,
+      "unit": "score",
+      "_source": "https://huggingface.co/Alibaba-NLP/gte-Qwen2-7B-instruct",
+      "_note": ""
+    },
+    {
+      "model": "alibaba-nlp/gte-qwen2-1.5b-instruct",
+      "benchmark": "mteb_english_v1_overall,_56_tasks",
+      "score": 67.16,
+      "unit": "score",
+      "_source": "https://huggingface.co/Alibaba-NLP/gte-Qwen2-1.5B-instruct",
+      "_note": ""
+    },
+    {
+      "model": "alibaba-nlp/gte-qwen2-1.5b-instruct",
+      "benchmark": "c_mteb_overall",
+      "score": 67.65,
+      "unit": "score",
+      "_source": "https://huggingface.co/Alibaba-NLP/gte-Qwen2-1.5B-instruct",
+      "_note": ""
+    },
+    {
+      "model": "linq-ai-research/linq-embed-mistral",
+      "benchmark": "mteb_english_v1_overall,_56_tasks",
+      "score": 68.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/Linq-AI-Research/Linq-Embed-Mistral",
+      "_note": "2024-05-29"
+    },
+    {
+      "model": "linq-ai-research/linq-embed-mistral",
+      "benchmark": "mteb_english_retrieval_15_tasks",
+      "score": 60.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/Linq-AI-Research/Linq-Embed-Mistral",
+      "_note": ""
+    },
+    {
+      "model": "infgrad/jasper_en_vision_language_v1",
+      "benchmark": "mteb_english_v1_overall,_56_tasks",
+      "score": 71.54,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2412.19048",
+      "_note": "2024-12-24"
+    },
+    {
+      "model": "mixedbread-ai/mxbai-embed-large-v1",
+      "benchmark": "mteb_english_v1_overall,_56_tasks",
+      "score": 64.68,
+      "unit": "score",
+      "_source": "https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1",
+      "_note": ""
+    },
+    {
+      "model": "mixedbread-ai/mxbai-embed-large-v1",
+      "benchmark": "mteb_classification_12_tasks",
+      "score": 75.64,
+      "unit": "score",
+      "_source": "https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1",
+      "_note": ""
+    },
+    {
+      "model": "mixedbread-ai/mxbai-embed-large-v1",
+      "benchmark": "mteb_clustering_11_tasks",
+      "score": 46.71,
+      "unit": "score",
+      "_source": "https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1",
+      "_note": ""
+    },
+    {
+      "model": "mixedbread-ai/mxbai-embed-large-v1",
+      "benchmark": "mteb_pair_classification_3_tasks",
+      "score": 87.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1",
+      "_note": ""
+    },
+    {
+      "model": "mixedbread-ai/mxbai-embed-large-v1",
+      "benchmark": "mteb_reranking_4_tasks",
+      "score": 60.11,
+      "unit": "score",
+      "_source": "https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1",
+      "_note": ""
+    },
+    {
+      "model": "mixedbread-ai/mxbai-embed-large-v1",
+      "benchmark": "mteb_english_retrieval_15_tasks",
+      "score": 54.39,
+      "unit": "score",
+      "_source": "https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1",
+      "_note": ""
+    },
+    {
+      "model": "mixedbread-ai/mxbai-embed-large-v1",
+      "benchmark": "mteb_sts_10_tasks",
+      "score": 85.0,
+      "unit": "score",
+      "_source": "https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1",
+      "_note": ""
+    },
+    {
+      "model": "mixedbread-ai/mxbai-embed-large-v1",
+      "benchmark": "mteb_summarization_1_task",
+      "score": 32.71,
+      "unit": "score",
+      "_source": "https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1",
+      "_note": ""
+    },
+    {
+      "model": "snowflake/snowflake-arctic-embed-l-v2.0",
+      "benchmark": "miracl_ndcg@10",
+      "score": 55.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2412.04506",
+      "_note": ""
+    },
+    {
+      "model": "salesforce/sfr-embedding-code-2b_r",
+      "benchmark": "coir_ndcg@10_avg",
+      "score": 67.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2411.12644",
+      "_note": "2024-11-19"
+    },
+    {
+      "model": "salesforce/sfr-embedding-code-400m_r",
+      "benchmark": "coir_ndcg@10_avg",
+      "score": 61.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2411.12644",
+      "_note": ""
+    },
+    {
+      "model": "jinaai/jina-embeddings-v4",
+      "benchmark": "mmteb_overall",
+      "score": 66.49,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2506.18902",
+      "_note": ""
+    },
+    {
+      "model": "jinaai/jina-embeddings-v4",
+      "benchmark": "mteb_english_v1_overall",
+      "score": 55.97,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2506.18902",
+      "_note": ""
+    },
+    {
+      "model": "jinaai/jina-embeddings-v3",
+      "benchmark": "mmteb_overall",
+      "score": 58.58,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2506.18902",
+      "_note": ""
+    },
+    {
+      "model": "jinaai/jina-embeddings-v3",
+      "benchmark": "mteb_english_v1_overall",
+      "score": 54.33,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2506.18902",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-embedding-8b",
+      "benchmark": "mteb_eng_v2",
+      "score": 75.22,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/qwen3-embedding-4b",
+      "benchmark": "mteb_eng_v2",
+      "score": 74.6,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "google/gemini-embedding-001",
+      "benchmark": "mteb_eng_v2",
+      "score": 73.3,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/gte-qwen2-7b-instruct",
+      "benchmark": "mteb_eng_v2",
+      "score": 70.72,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "nvidia/nv-embed-v2",
+      "benchmark": "mteb_eng_v2",
+      "score": 69.81,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "infly/inf-retriever-v1-1.5b",
+      "benchmark": "mteb_eng_v2",
+      "score": 69.8,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "linq-ai/linq-embed-mistral",
+      "benchmark": "mteb_eng_v2",
+      "score": 69.8,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "novasearch/stella-en-1.5b-v5",
+      "benchmark": "mteb_eng_v2",
+      "score": 69.43,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "salesforce/sfr-embedding-mistral",
+      "benchmark": "mteb_eng_v2",
+      "score": 69.3,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/qwen3-embedding-0.6b",
+      "benchmark": "mteb_eng_v2",
+      "score": 70.7,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "gritlm/gritlm-7b",
+      "benchmark": "mteb_eng_v2",
+      "score": 67.07,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/gte-qwen2-1.5b-instruct",
+      "benchmark": "mteb_eng_v2",
+      "score": 67.2,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "intfloat/multilingual-e5-large-instruct",
+      "benchmark": "mteb_eng_v2",
+      "score": 65.53,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "openai/text-embedding-3-large",
+      "benchmark": "mteb_eng_v2",
+      "score": 66.43,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "cohere/embed-multilingual-v3",
+      "benchmark": "mteb_eng_v2",
+      "score": 66.01,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "qzhou/qzhou-embedding",
+      "benchmark": "mteb_eng_v2",
+      "score": 75.97,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "microsoft/harrier-oss-v1-27b",
+      "benchmark": "mteb_eng_v2",
+      "score": 74.3,
+      "unit": "score",
+      "_source": "Muennighoff et al. 2023 + MMTEB Enevoldsen et al. 2025; live: huggingface.co/spaces/mteb/leaderboard",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "google/gemini-embedding-001",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 68.32,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/qwen3-embedding-8b",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 70.58,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/qwen3-embedding-4b",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 69.45,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/gte-qwen2-7b-instruct",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 62.51,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "linq-ai/linq-embed-mistral",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 61.5,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/gte-qwen2-1.5b-instruct",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 59.45,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "gritlm/gritlm-7b",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 60.92,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "intfloat/multilingual-e5-large-instruct",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 63.22,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "openai/text-embedding-3-large",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 58.93,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "cohere/embed-multilingual-v3",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 61.12,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "nvidia/nv-embed-v2",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 56.29,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "baai/bge-m3",
+      "benchmark": "mteb_multilingual_mmteb",
+      "score": 59.56,
+      "unit": "score",
+      "_source": "Enevoldsen et al. 2025 (arxiv 2502.13595)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/qwen3-embedding-8b",
+      "benchmark": "mteb_chinese_cmteb_v1",
+      "score": 73.84,
+      "unit": "score",
+      "_source": "Xiao et al. 2024 (C-Pack SIGIR 2024)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/qwen3-embedding-4b",
+      "benchmark": "mteb_chinese_cmteb_v1",
+      "score": 72.26,
+      "unit": "score",
+      "_source": "Xiao et al. 2024 (C-Pack SIGIR 2024)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/gte-qwen2-7b-instruct",
+      "benchmark": "mteb_chinese_cmteb_v1",
+      "score": 71.62,
+      "unit": "score",
+      "_source": "Xiao et al. 2024 (C-Pack SIGIR 2024)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/gte-qwen2-1.5b-instruct",
+      "benchmark": "mteb_chinese_cmteb_v1",
+      "score": 67.12,
+      "unit": "score",
+      "_source": "Xiao et al. 2024 (C-Pack SIGIR 2024)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "alibaba/qwen3-embedding-0.6b",
+      "benchmark": "mteb_chinese_cmteb_v1",
+      "score": 66.33,
+      "unit": "score",
+      "_source": "Xiao et al. 2024 (C-Pack SIGIR 2024)",
+      "_note": "rank= as_of="
+    },
+    {
+      "model": "intfloat/multilingual-e5-large-instruct",
+      "benchmark": "mteb_chinese_cmteb_v1",
+      "score": 58.08,
+      "unit": "score",
+      "_source": "Xiao et al. 2024 (C-Pack SIGIR 2024)",
+      "_note": "rank= as_of="
+    }
+  ]
+}
