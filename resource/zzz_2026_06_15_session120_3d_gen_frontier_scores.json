@@ -1,0 +1,3191 @@
+{
+  "_meta": {
+    "session": "120",
+    "date": "2026-06-15",
+    "topic": "3D / Scene Generation frontier (commercial + open-source + benchmarks)",
+    "notes": "3 parallel agents. First broad 3D sweep \u2014 dashboard had zero 3D coverage.",
+    "sources": [
+      "Hunyuan3D 2.0 paper (arxiv 2501.12202)",
+      "Hunyuan3D 2.1 paper (arxiv 2506.15442)",
+      "Hunyuan3D 2.5 paper (arxiv 2506.16504)",
+      "TRELLIS paper (arxiv 2412.01506)",
+      "TRELLIS.2 paper (arxiv 2512.14692)",
+      "TripoSR paper (arxiv 2403.02151)",
+      "InstantMesh paper (arxiv 2404.07191)",
+      "SF3D paper (arxiv 2408.00653)",
+      "SPAR3D paper (arxiv 2501.04689)",
+      "Hi3DEval paper (arxiv 2508.05609)",
+      "T3Bench paper (arxiv 2310.02977)",
+      "3D Arena ELO paper (arxiv 2506.18787, snapshot 2025-05-30)",
+      "LGM paper (arxiv 2402.05054)",
+      "CRM paper (arxiv 2403.05034)",
+      "Wonder3D paper (arxiv 2310.15008)",
+      "3DTopia-XL paper (arxiv 2409.12957)"
+    ]
+  },
+  "models": [
+    {
+      "id": "meshy/meshy-5",
+      "name": "Meshy 5",
+      "vendor": "Meshy",
+      "type": "3d",
+      "release_date": "2025-08-26",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "meshy/meshy-4",
+      "name": "Meshy 4",
+      "vendor": "Meshy",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "meshy/meshy-3",
+      "name": "Meshy 3",
+      "vendor": "Meshy",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "tripo/tripo-v3",
+      "name": "Tripo 3.0 Ultra",
+      "vendor": "VAST (Tripo AI)",
+      "type": "3d",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "tripo/tripo-v2.5",
+      "name": "Tripo 2.5",
+      "vendor": "VAST (Tripo AI)",
+      "type": "3d",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "tripo/triposr",
+      "name": "TripoSR",
+      "vendor": "Stability AI / Tripo",
+      "type": "3d",
+      "release_date": "2024-03-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "csm/cube",
+      "name": "CSM Cube",
+      "vendor": "Common Sense Machines",
+      "type": "3d",
+      "release_date": "2024-12-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "luma/genie",
+      "name": "Luma Genie 1.5",
+      "vendor": "Luma Labs",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "nvidia/edify-3d",
+      "name": "NVIDIA Edify 3D",
+      "vendor": "NVIDIA",
+      "type": "3d",
+      "release_date": "2024-11-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "stability/stablemesh",
+      "name": "Stability StableMesh / TripoSR",
+      "vendor": "Stability AI",
+      "type": "3d",
+      "release_date": "2024-03-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "stability/spar3d",
+      "name": "SPAR3D",
+      "vendor": "Stability AI",
+      "type": "3d",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "adobe/firefly-3d",
+      "name": "Adobe Firefly 3D / Substance 3D AI",
+      "vendor": "Adobe",
+      "type": "3d",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "kaedim/kaedim",
+      "name": "Kaedim",
+      "vendor": "Kaedim",
+      "type": "3d",
+      "release_date": "2022-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "sloyd/sloyd",
+      "name": "Sloyd AI",
+      "vendor": "Sloyd",
+      "type": "3d",
+      "release_date": "2023-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "openai/shap-e",
+      "name": "Shap-E",
+      "vendor": "OpenAI",
+      "type": "3d",
+      "release_date": "2023-05-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "tencent/hunyuan3d-2.5",
+      "name": "Hunyuan3D 2.5",
+      "vendor": "Tencent",
+      "type": "3d",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "tencent/hunyuan3d-2",
+      "name": "Hunyuan3D 2.0",
+      "vendor": "Tencent",
+      "type": "3d",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "microsoft/trellis",
+      "name": "TRELLIS",
+      "vendor": "Microsoft Research",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "deemos/rodin",
+      "name": "Hyper3D Rodin",
+      "vendor": "Hyper3D / DeemosTech",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "tencent/hunyuan3d-2.1",
+      "name": "Hunyuan3D 2.1",
+      "vendor": "Tencent",
+      "type": "3d",
+      "release_date": "2025-06-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "microsoft/trellis-image-large",
+      "name": "TRELLIS-Image-Large (1.1B)",
+      "vendor": "Microsoft",
+      "type": "3d",
+      "release_date": "2024-12-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "microsoft/trellis-xl",
+      "name": "TRELLIS-XL (2B)",
+      "vendor": "Microsoft",
+      "type": "3d",
+      "release_date": "2024-12-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "microsoft/trellis-2-4b",
+      "name": "TRELLIS.2 (4B)",
+      "vendor": "Microsoft",
+      "type": "3d",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "stability/triposr",
+      "name": "TripoSR",
+      "vendor": "Stability AI / Tripo AI",
+      "type": "3d",
+      "release_date": "2024-03-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "stability/stable-zero123",
+      "name": "Stable Zero123",
+      "vendor": "Stability AI",
+      "type": "3d",
+      "release_date": "2023-12-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "stability/sf3d",
+      "name": "SF3D / Stable Fast 3D",
+      "vendor": "Stability AI",
+      "type": "3d",
+      "release_date": "2024-08-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "sudo-ai-3d/zero123plus",
+      "name": "Zero123++",
+      "vendor": "SUDO AI 3D",
+      "type": "3d",
+      "release_date": "2023-10-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "tencent-arc/instantmesh",
+      "name": "InstantMesh",
+      "vendor": "TencentARC",
+      "type": "3d",
+      "release_date": "2024-04-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "alibaba/lgm",
+      "name": "LGM (Large Multi-view Gaussian Model)",
+      "vendor": "Peking U / Shanghai AI Lab",
+      "type": "3d",
+      "release_date": "2024-02-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "tsinghua/crm",
+      "name": "CRM (Convolutional Reconstruction Model)",
+      "vendor": "Tsinghua University",
+      "type": "3d",
+      "release_date": "2024-03-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "xxlong0/wonder3d",
+      "name": "Wonder3D",
+      "vendor": "HKU / TencentXR",
+      "type": "3d",
+      "release_date": "2023-10-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "dreamgaussian/dreamgaussian",
+      "name": "DreamGaussian",
+      "vendor": "Tsinghua / NTU",
+      "type": "3d",
+      "release_date": "2023-09-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "3dtopia/3dtopia-xl",
+      "name": "3DTopia-XL",
+      "vendor": "S-Lab NTU / Shanghai AI Lab",
+      "type": "3d",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "tencent/hunyuan3d-dit",
+      "name": "Hunyuan3D-DiT (shape)",
+      "vendor": "Tencent",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "tencent/hunyuan3d-paint",
+      "name": "Hunyuan3D-Paint (texture)",
+      "vendor": "Tencent",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "tencent/hunyuan3d-shapevae",
+      "name": "Hunyuan3D-ShapeVAE",
+      "vendor": "Tencent",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "neuralcarver/michelangelo",
+      "name": "Michelangelo",
+      "vendor": "NeuralCarver",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "craftsman/craftsman-1.5",
+      "name": "Craftsman 1.5",
+      "vendor": "Craftsman",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "instant3d/instantmesh",
+      "name": "InstantMesh",
+      "vendor": "Tencent ARC",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "thudm/crm",
+      "name": "CRM",
+      "vendor": "THUDM",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "lgm/lgm-large",
+      "name": "LGM",
+      "vendor": "Tencent ARC",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "wonder3d/wonder3d",
+      "name": "Wonder3D",
+      "vendor": "HKU",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "openlrm/openlrm",
+      "name": "OpenLRM",
+      "vendor": "Adobe/3DTopia",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "direct3d/direct3d",
+      "name": "Direct3D",
+      "vendor": "Direct3D",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "3dshape2vecset/3dshape2vecset",
+      "name": "3DShape2VecSet",
+      "vendor": "TUM",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "ln3diff/ln3diff",
+      "name": "LN3Diff",
+      "vendor": "NTU",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "gaussiancube/gaussiancube",
+      "name": "GaussianCube",
+      "vendor": "PKU",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "magic3d/magic3d",
+      "name": "Magic3D",
+      "vendor": "NVIDIA",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "dreamfusion/dreamfusion",
+      "name": "DreamFusion",
+      "vendor": "Google",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "prolific/prolificdreamer",
+      "name": "ProlificDreamer",
+      "vendor": "Tsinghua",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "latentnerf/latentnerf",
+      "name": "Latent-NeRF",
+      "vendor": "Tel Aviv U.",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "fantasia3d/fantasia3d",
+      "name": "Fantasia3D",
+      "vendor": "CUHK-SZ",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "sjc/sjc",
+      "name": "SJC (Score Jacobian Chaining)",
+      "vendor": "CMU",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "paint3d/paint3d",
+      "name": "Paint3D",
+      "vendor": "ByteDance",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "texgen/texgen",
+      "name": "TexGen",
+      "vendor": "HKUST",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "text2tex/text2tex",
+      "name": "Text2Tex",
+      "vendor": "TUM",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "syncmvd/syncmvd",
+      "name": "SyncMVD",
+      "vendor": "CityU HK",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "texpainter/texpainter",
+      "name": "TexPainter",
+      "vendor": "VAST",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "paint-it/paint-it",
+      "name": "Paint-it",
+      "vendor": "MPI/POSTECH",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "texture/texture",
+      "name": "TEXTure",
+      "vendor": "Tel Aviv U.",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "mvdream/mvdream",
+      "name": "MVDream",
+      "vendor": "ByteDance",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "luciddreamer/luciddreamer",
+      "name": "LucidDreamer",
+      "vendor": "SNU",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    },
+    {
+      "id": "grm/grm",
+      "name": "GRM",
+      "vendor": "Oxford",
+      "type": "3d",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text",
+        "image",
+        "3d"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "3d-arena-elo",
+      "name": "3D Arena ELO",
+      "category": "3d",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2506.18787"
+    },
+    {
+      "id": "hi3deval-object-overall",
+      "name": "Hi3DEval Object-Level Overall",
+      "category": "3d",
+      "metric": "composite",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2508.05609"
+    },
+    {
+      "id": "hi3deval-gp",
+      "name": "Hi3DEval Geometry Plausibility",
+      "category": "3d",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2508.05609"
+    },
+    {
+      "id": "hi3deval-gd",
+      "name": "Hi3DEval Geometry Detail",
+      "category": "3d",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2508.05609"
+    },
+    {
+      "id": "hi3deval-tq",
+      "name": "Hi3DEval Texture Quality",
+      "category": "3d",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2508.05609"
+    },
+    {
+      "id": "hi3deval-gtc",
+      "name": "Hi3DEval Geometry-Texture Consistency",
+      "category": "3d",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2508.05609"
+    },
+    {
+      "id": "hi3deval-pa",
+      "name": "Hi3DEval Part Accuracy",
+      "category": "3d",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2508.05609"
+    },
+    {
+      "id": "gso-cd",
+      "name": "GSO Chamfer Distance",
+      "category": "3d",
+      "metric": "chamfer_distance",
+      "unit": "distance",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2403.02151"
+    },
+    {
+      "id": "gso-fs01",
+      "name": "GSO F-Score@0.1",
+      "category": "3d",
+      "metric": "f_score",
+      "unit": "ratio",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2403.02151"
+    },
+    {
+      "id": "gso-fs02",
+      "name": "GSO F-Score@0.2",
+      "category": "3d",
+      "metric": "f_score",
+      "unit": "ratio",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2403.02151"
+    },
+    {
+      "id": "gso-fs05",
+      "name": "GSO F-Score@0.5",
+      "category": "3d",
+      "metric": "f_score",
+      "unit": "ratio",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2403.02151"
+    },
+    {
+      "id": "edify3d-albedo-lpips",
+      "name": "Edify 3D Albedo LPIPS (internal validation)",
+      "category": "3d",
+      "metric": "lpips",
+      "unit": "error",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2411.07135"
+    },
+    {
+      "id": "gso-psnr",
+      "name": "GSO PSNR (novel view)",
+      "category": "3d",
+      "metric": "psnr",
+      "unit": "dB",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.04689"
+    },
+    {
+      "id": "gso-lpips",
+      "name": "GSO LPIPS",
+      "category": "3d",
+      "metric": "lpips",
+      "unit": "0-1",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.04689"
+    },
+    {
+      "id": "omni3d-cd",
+      "name": "OmniObject3D Chamfer Distance",
+      "category": "3d",
+      "metric": "chamfer_distance",
+      "unit": "raw",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2404.07191v1"
+    },
+    {
+      "id": "omni3d-fs01",
+      "name": "OmniObject3D F-Score@0.1",
+      "category": "3d",
+      "metric": "f_score",
+      "unit": "0-1",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.04689"
+    },
+    {
+      "id": "omni3d-fs02",
+      "name": "OmniObject3D F-Score@0.2",
+      "category": "3d",
+      "metric": "f_score",
+      "unit": "0-1",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2404.07191v1"
+    },
+    {
+      "id": "omni3d-bench-cd",
+      "name": "OmniObject3D Benchmark Views CD",
+      "category": "3d",
+      "metric": "chamfer_distance",
+      "unit": "raw",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2404.07191v1"
+    },
+    {
+      "id": "omni3d-bench-fs",
+      "name": "OmniObject3D Benchmark Views F-Score",
+      "category": "3d",
+      "metric": "f_score",
+      "unit": "0-1",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2404.07191v1"
+    },
+    {
+      "id": "ulip-t",
+      "name": "ULIP-T (text-shape similarity)",
+      "category": "3d",
+      "metric": "ulip_t",
+      "unit": "0-1",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.12202v1"
+    },
+    {
+      "id": "ulip-i",
+      "name": "ULIP-I (image-shape similarity)",
+      "category": "3d",
+      "metric": "ulip_i",
+      "unit": "0-1",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.12202v1"
+    },
+    {
+      "id": "uni3d-t",
+      "name": "Uni3D-T (text-shape similarity)",
+      "category": "3d",
+      "metric": "uni3d_t",
+      "unit": "0-1",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.12202v1"
+    },
+    {
+      "id": "uni3d-i",
+      "name": "Uni3D-I (image-shape similarity)",
+      "category": "3d",
+      "metric": "uni3d_i",
+      "unit": "0-1",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.12202v1"
+    },
+    {
+      "id": "v-iou",
+      "name": "Volume IoU",
+      "category": "3d",
+      "metric": "v_iou",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.12202v1"
+    },
+    {
+      "id": "s-iou",
+      "name": "Surface IoU",
+      "category": "3d",
+      "metric": "s_iou",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.12202v1"
+    },
+    {
+      "id": "toys4k-clip",
+      "name": "Toys4k CLIP Score (Image-to-3D)",
+      "category": "3d",
+      "metric": "clip_score",
+      "unit": "0-100",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2412.01506"
+    },
+    {
+      "id": "toys4k-fd-dinov2",
+      "name": "Toys4k FD_dinov2",
+      "category": "3d",
+      "metric": "fd_dinov2",
+      "unit": "raw",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2412.01506"
+    },
+    {
+      "id": "toys4k-fd-inception",
+      "name": "Toys4k FD_inception",
+      "category": "3d",
+      "metric": "fd_inception",
+      "unit": "raw",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2412.01506"
+    },
+    {
+      "id": "toys4k-fd-point",
+      "name": "Toys4k FD_point",
+      "category": "3d",
+      "metric": "fd_point",
+      "unit": "raw",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2412.01506"
+    },
+    {
+      "id": "trellis2-clip",
+      "name": "TRELLIS.2 CLIP alignment",
+      "category": "3d",
+      "metric": "clip_alignment",
+      "unit": "0-1",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2512.14692v1"
+    },
+    {
+      "id": "trellis2-ulip2",
+      "name": "TRELLIS.2 eval ULIP-2 score",
+      "category": "3d",
+      "metric": "ulip2",
+      "unit": "0-1",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2512.14692v1"
+    },
+    {
+      "id": "t3bench-single-avg",
+      "name": "T3Bench Single Object Average",
+      "category": "3d",
+      "metric": "quality_alignment_avg",
+      "unit": "0-100",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2310.02977v1"
+    },
+    {
+      "id": "t3bench-surround-avg",
+      "name": "T3Bench Single Object + Surroundings Average",
+      "category": "3d",
+      "metric": "quality_alignment_avg",
+      "unit": "0-100",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2310.02977v1"
+    },
+    {
+      "id": "t3bench-multi-avg",
+      "name": "T3Bench Multiple Objects Average",
+      "category": "3d",
+      "metric": "quality_alignment_avg",
+      "unit": "0-100",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2310.02977v1"
+    },
+    {
+      "id": "topia-cd",
+      "name": "3DTopia-XL Chamfer Distance (rep eval)",
+      "category": "3d",
+      "metric": "chamfer_distance",
+      "unit": "x1e-4",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2409.12957v1"
+    },
+    {
+      "id": "ulip_t",
+      "name": "ULIP-T (text-shape similarity)",
+      "category": "3d",
+      "metric": "similarity",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2501.12202"
+    },
+    {
+      "id": "ulip_i",
+      "name": "ULIP-I (image-shape similarity)",
+      "category": "3d",
+      "metric": "similarity",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2501.12202"
+    },
+    {
+      "id": "uni3d_t",
+      "name": "Uni3D-T (text-shape similarity)",
+      "category": "3d",
+      "metric": "similarity",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2501.12202"
+    },
+    {
+      "id": "uni3d_i",
+      "name": "Uni3D-I (image-shape similarity)",
+      "category": "3d",
+      "metric": "similarity",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2501.12202"
+    },
+    {
+      "id": "v_iou_shape",
+      "name": "Shape VAE V-IoU",
+      "category": "3d",
+      "metric": "iou",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.12202v2"
+    },
+    {
+      "id": "s_iou_shape",
+      "name": "Shape VAE S-IoU",
+      "category": "3d",
+      "metric": "iou",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.12202v2"
+    },
+    {
+      "id": "texture_cmmd",
+      "name": "Texture CMMD (CLIP-MMD)",
+      "category": "3d-texture",
+      "metric": "distance",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.12202v2"
+    },
+    {
+      "id": "texture_fid_clip",
+      "name": "Texture FID-CLIP",
+      "category": "3d-texture",
+      "metric": "fid",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2506.16504"
+    },
+    {
+      "id": "texture_fid",
+      "name": "Texture FID",
+      "category": "3d-texture",
+      "metric": "fid",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2506.16504"
+    },
+    {
+      "id": "texture_clip_i",
+      "name": "Texture CLIP-I (image similarity)",
+      "category": "3d-texture",
+      "metric": "similarity",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2506.16504"
+    },
+    {
+      "id": "texture_lpips",
+      "name": "Texture LPIPS",
+      "category": "3d-texture",
+      "metric": "perceptual",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2506.16504"
+    },
+    {
+      "id": "texture_clip_score",
+      "name": "Texture CLIP-score",
+      "category": "3d-texture",
+      "metric": "similarity",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2501.12202v2"
+    },
+    {
+      "id": "toys4k_t23d_clip",
+      "name": "Toys4k Text-to-3D CLIP",
+      "category": "3d",
+      "metric": "clip",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2412.01506"
+    },
+    {
+      "id": "toys4k_t23d_fd_dinov2",
+      "name": "Toys4k Text-to-3D FD-DINOv2",
+      "category": "3d",
+      "metric": "feature-distance",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2412.01506"
+    },
+    {
+      "id": "toys4k_i23d_clip",
+      "name": "Toys4k Image-to-3D CLIP",
+      "category": "3d",
+      "metric": "clip",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2412.01506"
+    },
+    {
+      "id": "toys4k_i23d_fd_dinov2",
+      "name": "Toys4k Image-to-3D FD-DINOv2",
+      "category": "3d",
+      "metric": "feature-distance",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2412.01506"
+    },
+    {
+      "id": "recon_psnr",
+      "name": "TRELLIS Recon PSNR",
+      "category": "3d-recon",
+      "metric": "psnr",
+      "unit": "dB",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2412.01506"
+    },
+    {
+      "id": "recon_f_score",
+      "name": "TRELLIS Recon F-Score",
+      "category": "3d-recon",
+      "metric": "f-score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2412.01506"
+    },
+    {
+      "id": "recon_cd",
+      "name": "TRELLIS Recon Chamfer Distance",
+      "category": "3d-recon",
+      "metric": "chamfer",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2412.01506"
+    },
+    {
+      "id": "t3bench_single",
+      "name": "T3Bench Single Object (avg)",
+      "category": "3d",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2310.02977"
+    },
+    {
+      "id": "t3bench_surroundings",
+      "name": "T3Bench Single Object w/ Surroundings (avg)",
+      "category": "3d",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2310.02977"
+    },
+    {
+      "id": "t3bench_multi",
+      "name": "T3Bench Multiple Objects (avg)",
+      "category": "3d",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2310.02977"
+    },
+    {
+      "id": "hi3deval_obj_overall",
+      "name": "Hi3DEval Object-Level Overall",
+      "category": "3d",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2508.05609"
+    },
+    {
+      "id": "hi3deval_mat_overall",
+      "name": "Hi3DEval Material-Level Overall",
+      "category": "3d",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2508.05609"
+    }
+  ],
+  "scores": [
+    {
+      "model": "csm/cube",
+      "benchmark": "3d-arena-elo",
+      "score": 1405.0,
+      "unit": "elo",
+      "_source": "https://arxiv.org/abs/2506.18787",
+      "_note": "3D Arena leaderboard snapshot (paper 2025-05-30); CSM/Cube top-ranked"
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "3d-arena-elo",
+      "score": 1298.0,
+      "unit": "elo",
+      "_source": "https://arxiv.org/abs/2506.18787",
+      "_note": "3D Arena leaderboard snapshot"
+    },
+    {
+      "model": "meshy/meshy-4",
+      "benchmark": "3d-arena-elo",
+      "score": 1243.0,
+      "unit": "elo",
+      "_source": "https://arxiv.org/abs/2506.18787",
+      "_note": "3D Arena leaderboard snapshot \u2014 'Meshy' (version not specified in paper, assumed v4 era given 2025-05-30 cutoff)"
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "hi3deval-object-overall",
+      "score": 16.561,
+      "unit": "score",
+      "_source": "https://zyh482.github.io/Hi3DEval/",
+      "_note": "Image-to-3D variant; top of Hi3DEval object-level leaderboard"
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "hi3deval-gp",
+      "score": 6.46,
+      "unit": "score",
+      "_source": "https://zyh482.github.io/Hi3DEval/",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "hi3deval-object-overall",
+      "score": 16.1988,
+      "unit": "score",
+      "_source": "https://zyh482.github.io/Hi3DEval/",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "hi3deval-gp",
+      "score": 6.29,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "hi3deval-gd",
+      "score": 2.72,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "hi3deval-tq",
+      "score": 2.76,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "hi3deval-gtc",
+      "score": 0.99,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "hi3deval-pa",
+      "score": 3.43,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis",
+      "benchmark": "hi3deval-object-overall",
+      "score": 15.1989,
+      "unit": "score",
+      "_source": "https://zyh482.github.io/Hi3DEval/",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis",
+      "benchmark": "hi3deval-gp",
+      "score": 5.86,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis",
+      "benchmark": "hi3deval-gd",
+      "score": 2.39,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis",
+      "benchmark": "hi3deval-tq",
+      "score": 2.47,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis",
+      "benchmark": "hi3deval-gtc",
+      "score": 0.97,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis",
+      "benchmark": "hi3deval-pa",
+      "score": 3.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "hi3deval-object-overall",
+      "score": 15.0014,
+      "unit": "score",
+      "_source": "https://zyh482.github.io/Hi3DEval/",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "hi3deval-gp",
+      "score": 5.78,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "hi3deval-gd",
+      "score": 2.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "hi3deval-tq",
+      "score": 2.47,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "hi3deval-gtc",
+      "score": 0.96,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "hi3deval-pa",
+      "score": 3.48,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "hi3deval-object-overall",
+      "score": 14.3404,
+      "unit": "score",
+      "_source": "https://zyh482.github.io/Hi3DEval/",
+      "_note": ""
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "hi3deval-gp",
+      "score": 5.22,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "hi3deval-gd",
+      "score": 2.42,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "hi3deval-tq",
+      "score": 2.38,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "hi3deval-gtc",
+      "score": 0.96,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "hi3deval-pa",
+      "score": 3.36,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2508.05609",
+      "_note": ""
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "gso-cd",
+      "score": 0.111,
+      "unit": "distance",
+      "_source": "https://arxiv.org/abs/2403.02151",
+      "_note": "Lower is better. GSO validation set"
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "gso-fs01",
+      "score": 0.651,
+      "unit": "ratio",
+      "_source": "https://arxiv.org/abs/2403.02151",
+      "_note": ""
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "gso-fs02",
+      "score": 0.871,
+      "unit": "ratio",
+      "_source": "https://arxiv.org/abs/2403.02151",
+      "_note": ""
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "gso-fs05",
+      "score": 0.98,
+      "unit": "ratio",
+      "_source": "https://arxiv.org/abs/2403.02151",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "gso-cd",
+      "score": 0.12,
+      "unit": "distance",
+      "_source": "https://arxiv.org/abs/2501.04689",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "gso-fs01",
+      "score": 0.584,
+      "unit": "ratio",
+      "_source": "https://arxiv.org/abs/2501.04689",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "gso-fs02",
+      "score": 0.85,
+      "unit": "ratio",
+      "_source": "https://arxiv.org/abs/2501.04689",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "gso-fs05",
+      "score": 0.983,
+      "unit": "ratio",
+      "_source": "https://arxiv.org/abs/2501.04689",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "ulip-t",
+      "score": 0.0771,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.12202v1 Table 2",
+      "_note": "Hunyuan3D-DiT, shape generation"
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "ulip-i",
+      "score": 0.1303,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.12202v1 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "uni3d-t",
+      "score": 0.2519,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.12202v1 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "uni3d-i",
+      "score": 0.3151,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.12202v1 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "v-iou",
+      "score": 93.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2501.12202v1 Table 1",
+      "_note": "Hunyuan3D-ShapeVAE reconstruction"
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "s-iou",
+      "score": 89.16,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2501.12202v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.1",
+      "benchmark": "ulip-t",
+      "score": 0.0774,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2506.15442 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.1",
+      "benchmark": "ulip-i",
+      "score": 0.1395,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2506.15442 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.1",
+      "benchmark": "uni3d-t",
+      "score": 0.2556,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2506.15442 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.1",
+      "benchmark": "uni3d-i",
+      "score": 0.3213,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2506.15442 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "ulip-t",
+      "score": 0.07853,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/abs/2506.16504",
+      "_note": "Shape generation Table"
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "toys4k-clip",
+      "score": 85.77,
+      "unit": "0-100",
+      "_source": "https://arxiv.org/abs/2412.01506 Table 2",
+      "_note": "Image-to-3D Toys4k"
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "toys4k-fd-inception",
+      "score": 9.35,
+      "unit": "raw",
+      "_source": "https://arxiv.org/abs/2412.01506 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "toys4k-fd-dinov2",
+      "score": 67.21,
+      "unit": "raw",
+      "_source": "https://arxiv.org/abs/2412.01506 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "toys4k-fd-point",
+      "score": 2.03,
+      "unit": "raw",
+      "_source": "https://arxiv.org/abs/2412.01506 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-xl",
+      "benchmark": "toys4k-clip",
+      "score": 26.7,
+      "unit": "0-100",
+      "_source": "https://arxiv.org/abs/2412.01506 Table 2",
+      "_note": "Text-to-3D Toys4k"
+    },
+    {
+      "model": "microsoft/trellis-xl",
+      "benchmark": "toys4k-fd-inception",
+      "score": 20.48,
+      "unit": "raw",
+      "_source": "https://arxiv.org/abs/2412.01506 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-xl",
+      "benchmark": "toys4k-fd-dinov2",
+      "score": 237.48,
+      "unit": "raw",
+      "_source": "https://arxiv.org/abs/2412.01506 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-xl",
+      "benchmark": "toys4k-fd-point",
+      "score": 5.21,
+      "unit": "raw",
+      "_source": "https://arxiv.org/abs/2412.01506 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-2-4b",
+      "benchmark": "trellis2-clip",
+      "score": 0.894,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2512.14692v1 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-2-4b",
+      "benchmark": "trellis2-ulip2",
+      "score": 0.477,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2512.14692v1 Table 2",
+      "_note": ""
+    },
+    {
+      "model": "stability/triposr",
+      "benchmark": "gso-cd",
+      "score": 0.217,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": "GSO orbiting views per InstantMesh paper"
+    },
+    {
+      "model": "stability/triposr",
+      "benchmark": "gso-fs02",
+      "score": 0.843,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/triposr",
+      "benchmark": "omni3d-cd",
+      "score": 0.245,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": "OmniObject3D orbiting views"
+    },
+    {
+      "model": "stability/triposr",
+      "benchmark": "omni3d-fs02",
+      "score": 0.811,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/triposr",
+      "benchmark": "omni3d-bench-cd",
+      "score": 0.221,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/triposr",
+      "benchmark": "omni3d-bench-fs",
+      "score": 0.847,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/sf3d",
+      "benchmark": "gso-cd",
+      "score": 0.137,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": "SPAR3D paper re-eval"
+    },
+    {
+      "model": "stability/sf3d",
+      "benchmark": "gso-fs01",
+      "score": 0.54,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/sf3d",
+      "benchmark": "gso-fs02",
+      "score": 0.806,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/sf3d",
+      "benchmark": "gso-psnr",
+      "score": 18.0,
+      "unit": "dB",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/sf3d",
+      "benchmark": "gso-lpips",
+      "score": 0.145,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/sf3d",
+      "benchmark": "omni3d-cd",
+      "score": 0.138,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/sf3d",
+      "benchmark": "omni3d-fs01",
+      "score": 0.554,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/sf3d",
+      "benchmark": "omni3d-fs02",
+      "score": 0.8,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "gso-psnr",
+      "score": 18.6,
+      "unit": "dB",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "gso-lpips",
+      "score": 0.139,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "omni3d-cd",
+      "score": 0.122,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "omni3d-fs01",
+      "score": 0.587,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "omni3d-fs02",
+      "score": 0.845,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2501.04689 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent-arc/instantmesh",
+      "benchmark": "gso-cd",
+      "score": 0.177,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": "InstantMesh (NeRF) GSO orbiting views"
+    },
+    {
+      "model": "tencent-arc/instantmesh",
+      "benchmark": "gso-fs02",
+      "score": 0.882,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent-arc/instantmesh",
+      "benchmark": "omni3d-cd",
+      "score": 0.199,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent-arc/instantmesh",
+      "benchmark": "omni3d-fs02",
+      "score": 0.869,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent-arc/instantmesh",
+      "benchmark": "omni3d-bench-cd",
+      "score": 0.206,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent-arc/instantmesh",
+      "benchmark": "omni3d-bench-fs",
+      "score": 0.863,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/lgm",
+      "benchmark": "gso-cd",
+      "score": 0.345,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": "LGM as baseline in InstantMesh paper"
+    },
+    {
+      "model": "alibaba/lgm",
+      "benchmark": "gso-fs02",
+      "score": 0.671,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/lgm",
+      "benchmark": "omni3d-cd",
+      "score": 0.382,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/lgm",
+      "benchmark": "omni3d-fs02",
+      "score": 0.635,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/lgm",
+      "benchmark": "omni3d-bench-cd",
+      "score": 0.356,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/lgm",
+      "benchmark": "omni3d-bench-fs",
+      "score": 0.653,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tsinghua/crm",
+      "benchmark": "gso-cd",
+      "score": 0.252,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tsinghua/crm",
+      "benchmark": "gso-fs02",
+      "score": 0.787,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tsinghua/crm",
+      "benchmark": "omni3d-cd",
+      "score": 0.246,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tsinghua/crm",
+      "benchmark": "omni3d-fs02",
+      "score": 0.802,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tsinghua/crm",
+      "benchmark": "omni3d-bench-cd",
+      "score": 0.274,
+      "unit": "raw",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tsinghua/crm",
+      "benchmark": "omni3d-bench-fs",
+      "score": 0.778,
+      "unit": "0-1",
+      "_source": "https://arxiv.org/html/2404.07191v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "3dtopia/3dtopia-xl",
+      "benchmark": "topia-cd",
+      "score": 1.31,
+      "unit": "x1e-4",
+      "_source": "https://arxiv.org/html/2409.12957v1 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "3dtopia/3dtopia-xl",
+      "benchmark": "toys4k-clip",
+      "score": 24.33,
+      "unit": "0-100",
+      "_source": "https://arxiv.org/html/2409.12957v1 Table 5",
+      "_note": "Text-to-3D CLIP score"
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "ulip_t",
+      "score": 0.0771,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "ulip_i",
+      "score": 0.1303,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "uni3d_t",
+      "score": 0.2519,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "uni3d_i",
+      "score": 0.3151,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "ulip_t",
+      "score": 0.07853,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "ulip_i",
+      "score": 0.1306,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "uni3d_t",
+      "score": 0.2542,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "uni3d_i",
+      "score": 0.3151,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "ulip_t",
+      "score": 0.0769,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "ulip_i",
+      "score": 0.1267,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "uni3d_t",
+      "score": 0.2496,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "uni3d_i",
+      "score": 0.3116,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "neuralcarver/michelangelo",
+      "benchmark": "ulip_t",
+      "score": 0.0752,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "neuralcarver/michelangelo",
+      "benchmark": "ulip_i",
+      "score": 0.1152,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "neuralcarver/michelangelo",
+      "benchmark": "uni3d_t",
+      "score": 0.2133,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "neuralcarver/michelangelo",
+      "benchmark": "uni3d_i",
+      "score": 0.2611,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "craftsman/craftsman-1.5",
+      "benchmark": "ulip_t",
+      "score": 0.0745,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "craftsman/craftsman-1.5",
+      "benchmark": "ulip_i",
+      "score": 0.1296,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "craftsman/craftsman-1.5",
+      "benchmark": "uni3d_t",
+      "score": 0.2375,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "craftsman/craftsman-1.5",
+      "benchmark": "uni3d_i",
+      "score": 0.2987,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "texture_fid_clip",
+      "score": 23.97,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "texture_fid",
+      "score": 165.8,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "texture_cmmd",
+      "score": 2.064,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "texture_clip_i",
+      "score": 0.9281,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "texture_lpips",
+      "score": 0.1231,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "text2tex/text2tex",
+      "benchmark": "texture_fid_clip",
+      "score": 31.83,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "text2tex/text2tex",
+      "benchmark": "texture_fid",
+      "score": 187.7,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "text2tex/text2tex",
+      "benchmark": "texture_cmmd",
+      "score": 2.738,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "text2tex/text2tex",
+      "benchmark": "texture_lpips",
+      "score": 0.1448,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "syncmvd/syncmvd",
+      "benchmark": "texture_fid_clip",
+      "score": 29.93,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "syncmvd/syncmvd",
+      "benchmark": "texture_fid",
+      "score": 189.2,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "syncmvd/syncmvd",
+      "benchmark": "texture_cmmd",
+      "score": 2.584,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "syncmvd/syncmvd",
+      "benchmark": "texture_lpips",
+      "score": 0.1411,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "paint-it/paint-it",
+      "benchmark": "texture_fid_clip",
+      "score": 33.54,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "paint-it/paint-it",
+      "benchmark": "texture_fid",
+      "score": 179.1,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "paint-it/paint-it",
+      "benchmark": "texture_cmmd",
+      "score": 2.629,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "paint-it/paint-it",
+      "benchmark": "texture_lpips",
+      "score": 0.1538,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "paint3d/paint3d",
+      "benchmark": "texture_fid_clip",
+      "score": 26.86,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "paint3d/paint3d",
+      "benchmark": "texture_fid",
+      "score": 176.9,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "paint3d/paint3d",
+      "benchmark": "texture_cmmd",
+      "score": 2.4,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "paint3d/paint3d",
+      "benchmark": "texture_clip_i",
+      "score": 0.8871,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "paint3d/paint3d",
+      "benchmark": "texture_lpips",
+      "score": 0.1261,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "texgen/texgen",
+      "benchmark": "texture_fid_clip",
+      "score": 28.23,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "texgen/texgen",
+      "benchmark": "texture_fid",
+      "score": 178.6,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "texgen/texgen",
+      "benchmark": "texture_cmmd",
+      "score": 2.447,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "texgen/texgen",
+      "benchmark": "texture_clip_i",
+      "score": 0.8818,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "texgen/texgen",
+      "benchmark": "texture_lpips",
+      "score": 0.1331,
+      "unit": "%",
+      "_source": "hunyuan3d_25_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-shapevae",
+      "benchmark": "v_iou_shape",
+      "score": 93.6,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-shapevae",
+      "benchmark": "s_iou_shape",
+      "score": 89.16,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "3dshape2vecset/3dshape2vecset",
+      "benchmark": "v_iou_shape",
+      "score": 87.88,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "3dshape2vecset/3dshape2vecset",
+      "benchmark": "s_iou_shape",
+      "score": 80.66,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "neuralcarver/michelangelo",
+      "benchmark": "v_iou_shape",
+      "score": 84.93,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "neuralcarver/michelangelo",
+      "benchmark": "s_iou_shape",
+      "score": 76.27,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "direct3d/direct3d",
+      "benchmark": "v_iou_shape",
+      "score": 88.43,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "direct3d/direct3d",
+      "benchmark": "s_iou_shape",
+      "score": 81.55,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-paint",
+      "benchmark": "texture_cmmd",
+      "score": 2.318,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-paint",
+      "benchmark": "texture_fid_clip",
+      "score": 26.44,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-paint",
+      "benchmark": "texture_clip_score",
+      "score": 0.8893,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-paint",
+      "benchmark": "texture_lpips",
+      "score": 0.0059,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "texture/texture",
+      "benchmark": "texture_cmmd",
+      "score": 3.047,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "texture/texture",
+      "benchmark": "texture_fid_clip",
+      "score": 35.75,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "texture/texture",
+      "benchmark": "texture_clip_score",
+      "score": 0.8499,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "texture/texture",
+      "benchmark": "texture_lpips",
+      "score": 0.0076,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "text2tex/text2tex",
+      "benchmark": "texture_clip_score",
+      "score": 0.868,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "syncmvd/syncmvd",
+      "benchmark": "texture_clip_score",
+      "score": 0.8751,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "paint3d/paint3d",
+      "benchmark": "texture_clip_score",
+      "score": 0.8724,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "texpainter/texpainter",
+      "benchmark": "texture_cmmd",
+      "score": 2.483,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "texpainter/texpainter",
+      "benchmark": "texture_fid_clip",
+      "score": 28.83,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "texpainter/texpainter",
+      "benchmark": "texture_clip_score",
+      "score": 0.8789,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "texpainter/texpainter",
+      "benchmark": "texture_lpips",
+      "score": 0.0062,
+      "unit": "%",
+      "_source": "hunyuan3d_20_paper Texture Table",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "toys4k_t23d_clip",
+      "score": 26.6,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (Ours L)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "toys4k_t23d_fd_dinov2",
+      "score": 238.6,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (Ours L)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-xl",
+      "benchmark": "toys4k_t23d_clip",
+      "score": 26.7,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (Ours XL)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-xl",
+      "benchmark": "toys4k_t23d_fd_dinov2",
+      "score": 237.48,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (Ours XL)",
+      "_note": ""
+    },
+    {
+      "model": "openai/shap-e",
+      "benchmark": "toys4k_t23d_clip",
+      "score": 25.04,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "openai/shap-e",
+      "benchmark": "toys4k_t23d_fd_dinov2",
+      "score": 497.17,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "lgm/lgm-large",
+      "benchmark": "toys4k_t23d_clip",
+      "score": 24.83,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "lgm/lgm-large",
+      "benchmark": "toys4k_t23d_fd_dinov2",
+      "score": 507.47,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "instant3d/instantmesh",
+      "benchmark": "toys4k_t23d_clip",
+      "score": 25.56,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "instant3d/instantmesh",
+      "benchmark": "toys4k_t23d_fd_dinov2",
+      "score": 478.92,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "3dtopia/3dtopia-xl",
+      "benchmark": "toys4k_t23d_clip",
+      "score": 22.48,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "3dtopia/3dtopia-xl",
+      "benchmark": "toys4k_t23d_fd_dinov2",
+      "score": 756.37,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "ln3diff/ln3diff",
+      "benchmark": "toys4k_t23d_clip",
+      "score": 18.69,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "ln3diff/ln3diff",
+      "benchmark": "toys4k_t23d_fd_dinov2",
+      "score": 976.4,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "gaussiancube/gaussiancube",
+      "benchmark": "toys4k_t23d_clip",
+      "score": 24.91,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "gaussiancube/gaussiancube",
+      "benchmark": "toys4k_t23d_fd_dinov2",
+      "score": 460.07,
+      "unit": "%",
+      "_source": "trellis_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "toys4k_i23d_clip",
+      "score": 85.77,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (Ours L image)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "toys4k_i23d_fd_dinov2",
+      "score": 67.21,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (Ours L image)",
+      "_note": ""
+    },
+    {
+      "model": "openai/shap-e",
+      "benchmark": "toys4k_i23d_clip",
+      "score": 82.11,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (image)",
+      "_note": ""
+    },
+    {
+      "model": "openai/shap-e",
+      "benchmark": "toys4k_i23d_fd_dinov2",
+      "score": 465.74,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (image)",
+      "_note": ""
+    },
+    {
+      "model": "lgm/lgm-large",
+      "benchmark": "toys4k_i23d_clip",
+      "score": 83.97,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (image)",
+      "_note": ""
+    },
+    {
+      "model": "lgm/lgm-large",
+      "benchmark": "toys4k_i23d_fd_dinov2",
+      "score": 322.71,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (image)",
+      "_note": ""
+    },
+    {
+      "model": "instant3d/instantmesh",
+      "benchmark": "toys4k_i23d_clip",
+      "score": 84.43,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (image)",
+      "_note": ""
+    },
+    {
+      "model": "instant3d/instantmesh",
+      "benchmark": "toys4k_i23d_fd_dinov2",
+      "score": 264.36,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (image)",
+      "_note": ""
+    },
+    {
+      "model": "3dtopia/3dtopia-xl",
+      "benchmark": "toys4k_i23d_clip",
+      "score": 78.45,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (image)",
+      "_note": ""
+    },
+    {
+      "model": "3dtopia/3dtopia-xl",
+      "benchmark": "toys4k_i23d_fd_dinov2",
+      "score": 437.37,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (image)",
+      "_note": ""
+    },
+    {
+      "model": "ln3diff/ln3diff",
+      "benchmark": "toys4k_i23d_clip",
+      "score": 82.74,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (image)",
+      "_note": ""
+    },
+    {
+      "model": "ln3diff/ln3diff",
+      "benchmark": "toys4k_i23d_fd_dinov2",
+      "score": 357.93,
+      "unit": "%",
+      "_source": "trellis_paper Table 2 (image)",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "recon_psnr",
+      "score": 32.74,
+      "unit": "%",
+      "_source": "trellis_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "recon_f_score",
+      "score": 0.9999,
+      "unit": "%",
+      "_source": "trellis_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "recon_cd",
+      "score": 0.0083,
+      "unit": "%",
+      "_source": "trellis_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "ln3diff/ln3diff",
+      "benchmark": "recon_psnr",
+      "score": 26.44,
+      "unit": "%",
+      "_source": "trellis_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "ln3diff/ln3diff",
+      "benchmark": "recon_f_score",
+      "score": 0.9649,
+      "unit": "%",
+      "_source": "trellis_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "ln3diff/ln3diff",
+      "benchmark": "recon_cd",
+      "score": 0.0299,
+      "unit": "%",
+      "_source": "trellis_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "3dtopia/3dtopia-xl",
+      "benchmark": "recon_psnr",
+      "score": 25.34,
+      "unit": "%",
+      "_source": "trellis_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "3dtopia/3dtopia-xl",
+      "benchmark": "recon_f_score",
+      "score": 0.9939,
+      "unit": "%",
+      "_source": "trellis_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "3dtopia/3dtopia-xl",
+      "benchmark": "recon_cd",
+      "score": 0.0128,
+      "unit": "%",
+      "_source": "trellis_paper Table 1",
+      "_note": ""
+    },
+    {
+      "model": "dreamfusion/dreamfusion",
+      "benchmark": "t3bench_single",
+      "score": 24.4,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "dreamfusion/dreamfusion",
+      "benchmark": "t3bench_surroundings",
+      "score": 24.6,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "dreamfusion/dreamfusion",
+      "benchmark": "t3bench_multi",
+      "score": 16.1,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "magic3d/magic3d",
+      "benchmark": "t3bench_single",
+      "score": 37.0,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "magic3d/magic3d",
+      "benchmark": "t3bench_surroundings",
+      "score": 35.4,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "magic3d/magic3d",
+      "benchmark": "t3bench_multi",
+      "score": 25.7,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "latentnerf/latentnerf",
+      "benchmark": "t3bench_single",
+      "score": 33.1,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "latentnerf/latentnerf",
+      "benchmark": "t3bench_surroundings",
+      "score": 30.6,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "latentnerf/latentnerf",
+      "benchmark": "t3bench_multi",
+      "score": 20.6,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "fantasia3d/fantasia3d",
+      "benchmark": "t3bench_single",
+      "score": 26.4,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "fantasia3d/fantasia3d",
+      "benchmark": "t3bench_surroundings",
+      "score": 27.0,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "fantasia3d/fantasia3d",
+      "benchmark": "t3bench_multi",
+      "score": 18.5,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "sjc/sjc",
+      "benchmark": "t3bench_single",
+      "score": 24.7,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "sjc/sjc",
+      "benchmark": "t3bench_surroundings",
+      "score": 19.8,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "sjc/sjc",
+      "benchmark": "t3bench_multi",
+      "score": 11.7,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "prolific/prolificdreamer",
+      "benchmark": "t3bench_single",
+      "score": 49.4,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "prolific/prolificdreamer",
+      "benchmark": "t3bench_surroundings",
+      "score": 44.8,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "prolific/prolificdreamer",
+      "benchmark": "t3bench_multi",
+      "score": 35.8,
+      "unit": "%",
+      "_source": "t3bench_paper Table 2",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "hi3deval_obj_overall",
+      "score": 16.2,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R6",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "hi3deval_obj_overall",
+      "score": 15.2,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R6",
+      "_note": ""
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "hi3deval_obj_overall",
+      "score": 14.34,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R6",
+      "_note": ""
+    },
+    {
+      "model": "instant3d/instantmesh",
+      "benchmark": "hi3deval_obj_overall",
+      "score": 14.28,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R6",
+      "_note": ""
+    },
+    {
+      "model": "thudm/crm",
+      "benchmark": "hi3deval_obj_overall",
+      "score": 13.56,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R6",
+      "_note": ""
+    },
+    {
+      "model": "lgm/lgm-large",
+      "benchmark": "hi3deval_obj_overall",
+      "score": 9.62,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R6",
+      "_note": ""
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "hi3deval_mat_overall",
+      "score": 11.55,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R7",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/trellis-image-large",
+      "benchmark": "hi3deval_mat_overall",
+      "score": 11.4,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R7",
+      "_note": ""
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "hi3deval_mat_overall",
+      "score": 10.49,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R7",
+      "_note": ""
+    },
+    {
+      "model": "instant3d/instantmesh",
+      "benchmark": "hi3deval_mat_overall",
+      "score": 10.14,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R7",
+      "_note": ""
+    },
+    {
+      "model": "thudm/crm",
+      "benchmark": "hi3deval_mat_overall",
+      "score": 9.39,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R7",
+      "_note": ""
+    },
+    {
+      "model": "lgm/lgm-large",
+      "benchmark": "hi3deval_mat_overall",
+      "score": 8.56,
+      "unit": "%",
+      "_source": "hi3deval_paper Table R7",
+      "_note": ""
+    }
+  ]
+}
