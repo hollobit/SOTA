@@ -1,0 +1,6144 @@
+{
+  "_meta": {
+    "session": "119",
+    "date": "2026-06-15",
+    "topic": "Edge LLM / SLM frontier refresh (sub-3B + 3-12B + leaderboards)",
+    "notes": "3 parallel agents on Edge LLM. First broad sweep since S59 EdgeLLM module (~59 sessions ago).",
+    "sources": [
+      "HF model cards: Phi-4-mini family, Gemma 3/4 family, Llama 3.2, Qwen 2.5/3/3.5/3.6, Granite 4.0/4.1, SmolLM2/3, MobileLLM, Falcon3, OLMo 2",
+      "Artificial Analysis Intelligence Index v4.0",
+      "Nemotron Nano 9B v2 model card",
+      "BitNet b1.58 2B4T paper",
+      "DeepSeek-R1-Distill-Qwen-7B + Llama-8B",
+      "Light-R1 7B-DS",
+      "Salesforce xLAM-2-8b-fc-r",
+      "Stanford Marin 8B"
+    ]
+  },
+  "models": [
+    {
+      "id": "microsoft/phi-4-mini-instruct",
+      "name": "Phi-4-mini-instruct",
+      "vendor": "Microsoft",
+      "type": "language",
+      "release_date": "2025-02-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/phi-4-mini-reasoning",
+      "name": "Phi-4-mini-reasoning",
+      "vendor": "Microsoft",
+      "type": "language",
+      "release_date": "2025-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/phi-4-mini-flash-reasoning",
+      "name": "Phi-4-mini-flash-reasoning",
+      "vendor": "Microsoft",
+      "type": "language",
+      "release_date": "2025-07-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/bitnet-b1.58-2b-4t",
+      "name": "BitNet b1.58 2B4T",
+      "vendor": "Microsoft",
+      "type": "language",
+      "release_date": "2025-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "huggingface/smollm3-3b",
+      "name": "SmolLM3-3B",
+      "vendor": "HuggingFace",
+      "type": "language",
+      "release_date": "2025-07-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "huggingface/smollm2-1.7b",
+      "name": "SmolLM2-1.7B",
+      "vendor": "HuggingFace",
+      "type": "language",
+      "release_date": "2024-11-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "huggingface/smollm2-1.7b-instruct",
+      "name": "SmolLM2-1.7B-Instruct",
+      "vendor": "HuggingFace",
+      "type": "language",
+      "release_date": "2024-11-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-3-270m",
+      "name": "Gemma 3 270M",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-08-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-3-1b-it",
+      "name": "Gemma 3 1B-IT",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/llama-3.2-1b-instruct",
+      "name": "Llama 3.2 1B Instruct",
+      "vendor": "Meta",
+      "type": "language",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/llama-3.2-3b-instruct",
+      "name": "Llama 3.2 3B Instruct",
+      "vendor": "Meta",
+      "type": "language",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/mobilellm-pro",
+      "name": "MobileLLM-Pro",
+      "vendor": "Meta",
+      "type": "language",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/mobilellm-r1-950m",
+      "name": "MobileLLM-R1-950M",
+      "vendor": "Meta",
+      "type": "language",
+      "release_date": "2025-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ibm/granite-4.0-h-tiny",
+      "name": "Granite 4.0 H-Tiny",
+      "vendor": "IBM",
+      "type": "language",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ibm/granite-3.3-2b-instruct",
+      "name": "Granite 3.3 2B Instruct",
+      "vendor": "IBM",
+      "type": "language",
+      "release_date": "2025-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-0.5b",
+      "name": "Qwen2.5-0.5B",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-1.5b",
+      "name": "Qwen2.5-1.5B",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-0.5b-instruct",
+      "name": "Qwen2.5-0.5B-Instruct",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2.5-1.5b-instruct",
+      "name": "Qwen2.5-1.5B-Instruct",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-0.6b",
+      "name": "Qwen3-0.6B",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-1.7b",
+      "name": "Qwen3-1.7B",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "tii/falcon3-1b-instruct",
+      "name": "Falcon3-1B-Instruct",
+      "vendor": "TII",
+      "type": "language",
+      "release_date": "2024-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "tii/falcon3-3b-instruct",
+      "name": "Falcon3-3B-Instruct",
+      "vendor": "TII",
+      "type": "language",
+      "release_date": "2024-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "allenai/olmo-2-0425-1b-instruct",
+      "name": "OLMo 2 1B Instruct (0425)",
+      "vendor": "AllenAI",
+      "type": "language",
+      "release_date": "2025-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openbmb/minicpm3-4b",
+      "name": "MiniCPM3-4B",
+      "vendor": "OpenBMB",
+      "type": "language",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-r1-distill-llama-8b",
+      "name": "DeepSeek-R1-Distill-Llama-8B",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-r1-distill-qwen-7b",
+      "name": "DeepSeek-R1-Distill-Qwen-7B",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "tii/falcon3-7b-instruct",
+      "name": "Falcon3-7B-Instruct",
+      "vendor": "TII",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "tii/falcon3-10b-instruct",
+      "name": "Falcon3-10B-Instruct",
+      "vendor": "TII",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ibm/granite-4.1-3b-instruct",
+      "name": "Granite 4.1 3B Instruct",
+      "vendor": "IBM",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ibm/granite-4.1-8b-instruct",
+      "name": "Granite 4.1 8B Instruct",
+      "vendor": "IBM",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/nemotron-nano-9b-v2",
+      "name": "NVIDIA Nemotron Nano 9B V2",
+      "vendor": "NVIDIA",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "allenai/olmo-2-1124-7b-instruct",
+      "name": "OLMo 2 7B Instruct (1124)",
+      "vendor": "AllenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "allenai/olmo-2-1124-13b-instruct",
+      "name": "OLMo 2 13B Instruct (1124)",
+      "vendor": "AllenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "allenai/olmoe-1b-7b-instruct",
+      "name": "OLMoE 1B-7B Instruct (DPO)",
+      "vendor": "AllenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-8b-base",
+      "name": "Qwen3-8B (base)",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-4b-base",
+      "name": "Qwen3-4B (base)",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistralai/ministral-8b-instruct-2410",
+      "name": "Ministral 8B Instruct 2410",
+      "vendor": "Mistral AI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "marin-community/marin-8b-base",
+      "name": "Marin 8B Base (Deeper-Starling)",
+      "vendor": "Marin (Stanford CRFM)",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/codegemma-7b",
+      "name": "CodeGemma 7B",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/codegemma-7b-it",
+      "name": "CodeGemma 7B IT",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "salesforce/llama-xlam-2-8b-fc-r",
+      "name": "Llama-xLAM-2-8b-fc-r",
+      "vendor": "Salesforce",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qihoo360/light-r1-7b-ds",
+      "name": "Light-R1-7B-DS",
+      "vendor": "Qihoo 360",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e2b-it",
+      "name": "gemma-4-e2b-it",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e4b-it",
+      "name": "gemma-4-e4b-it",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-12b-it",
+      "name": "gemma-4-12b-it",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-26b-a4b-it",
+      "name": "gemma-4-26b-a4b-it",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-31b-it",
+      "name": "gemma-4-31b-it",
+      "vendor": "google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-4b",
+      "name": "qwen3.5-4b",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-27b",
+      "name": "qwen3.5-27b",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-27b",
+      "name": "qwen3.6-27b",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/phi-4",
+      "name": "phi-4",
+      "vendor": "microsoft",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/ministral-8b-instruct-2410",
+      "name": "ministral-8b-instruct-2410",
+      "vendor": "mistral",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ibm/granite-4.0-micro",
+      "name": "granite-4.0-micro",
+      "vendor": "ibm",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ibm/granite-4.0-h-micro",
+      "name": "granite-4.0-h-micro",
+      "vendor": "ibm",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ibm/granite-4.0-h-small",
+      "name": "granite-4.0-h-small",
+      "vendor": "ibm",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/llama-3.3-70b-instruct",
+      "name": "llama-3.3-70b-instruct",
+      "vendor": "meta",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "mmlu",
+      "name": "MMLU (5-shot)",
+      "category": "general",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu-pro",
+      "name": "MMLU-Pro",
+      "category": "general",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gsm8k",
+      "name": "GSM8K",
+      "category": "math",
+      "metric": "exact-match",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math",
+      "name": "MATH",
+      "category": "math",
+      "metric": "exact-match",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math-500",
+      "name": "MATH-500",
+      "category": "math",
+      "metric": "exact-match",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime-2024",
+      "name": "AIME 2024",
+      "category": "math-competition",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime-2025",
+      "name": "AIME 2025",
+      "category": "math-competition",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval",
+      "name": "HumanEval",
+      "category": "code",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval-plus",
+      "name": "HumanEval+",
+      "category": "code",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mbpp",
+      "name": "MBPP",
+      "category": "code",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mbpp-plus",
+      "name": "MBPP+",
+      "category": "code",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench-v4",
+      "name": "LiveCodeBench v4",
+      "category": "code",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench-v6",
+      "name": "LiveCodeBench v6",
+      "category": "code",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ifeval",
+      "name": "IFEval",
+      "category": "instruction-following",
+      "metric": "average",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bbh",
+      "name": "BIG-Bench Hard (BBH)",
+      "category": "reasoning",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc-challenge",
+      "name": "ARC-Challenge",
+      "category": "reasoning",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc-easy",
+      "name": "ARC-Easy",
+      "category": "reasoning",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hellaswag",
+      "name": "HellaSwag",
+      "category": "reasoning",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "winogrande",
+      "name": "WinoGrande",
+      "category": "reasoning",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "piqa",
+      "name": "PIQA",
+      "category": "reasoning",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "openbookqa",
+      "name": "OpenBookQA",
+      "category": "reasoning",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "boolq",
+      "name": "BoolQ",
+      "category": "reasoning",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "truthfulqa",
+      "name": "TruthfulQA",
+      "category": "factuality",
+      "metric": "MC2",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gpqa-diamond",
+      "name": "GPQA Diamond",
+      "category": "reasoning",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arena-hard",
+      "name": "Arena-Hard",
+      "category": "preference",
+      "metric": "win-rate",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mt-bench",
+      "name": "MT-Bench",
+      "category": "preference",
+      "metric": "rating-1-10",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bfcl-v2",
+      "name": "BFCL v2",
+      "category": "tool-use",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bfcl-v3",
+      "name": "BFCL v3",
+      "category": "tool-use",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mgsm",
+      "name": "MGSM",
+      "category": "math-multilingual",
+      "metric": "exact-match",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "global-mmlu",
+      "name": "Global MMLU",
+      "category": "general-multilingual",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_redux",
+      "name": "MMLU-Redux",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math_500",
+      "name": "MATH-500",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math_lvl_5",
+      "name": "MATH Lvl-5",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2024",
+      "name": "AIME 2024",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gpqa_diamond",
+      "name": "GPQA Diamond",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gpqa",
+      "name": "GPQA",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench",
+      "name": "LiveCodeBench",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "codeforces",
+      "name": "CodeForces (rating)",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arena_hard",
+      "name": "Arena-Hard",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "wildbench",
+      "name": "WildBench",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bfcl",
+      "name": "BFCL",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mtbench",
+      "name": "MT-Bench",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "alpaca_eval_v2",
+      "name": "AlpacaEval 2",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "drop",
+      "name": "DROP",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc_challenge",
+      "name": "ARC Challenge",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "musr",
+      "name": "MuSR",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hle",
+      "name": "HLE",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval_single_line",
+      "name": "HumanEval Single-Line (infilling)",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval_multi_line",
+      "name": "HumanEval Multi-Line (infilling)",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_pro",
+      "name": "MMLU-Pro",
+      "category": "knowledge-hard",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmlu",
+      "name": "MMMLU (Multilingual MMLU)",
+      "category": "multilingual",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2025",
+      "name": "AIME 2025",
+      "category": "math-competition",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2026",
+      "name": "AIME 2026",
+      "category": "math-competition",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hmmt_feb_2026",
+      "name": "HMMT Feb 2026",
+      "category": "math-competition",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "minerva_math",
+      "name": "Minerva Math",
+      "category": "math",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "deepmind_math",
+      "name": "DeepMind Math",
+      "category": "math",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gsm8k_symbolic",
+      "name": "GSM8K Symbolic",
+      "category": "math",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gsm_plus",
+      "name": "GSM-Plus",
+      "category": "math",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval_plus",
+      "name": "HumanEval+",
+      "category": "code",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mbpp_plus",
+      "name": "MBPP+",
+      "category": "code",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bigcodebench",
+      "name": "BigCodeBench",
+      "category": "code",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench_v4",
+      "name": "LiveCodeBench v4",
+      "category": "code",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "livecodebench_v6",
+      "name": "LiveCodeBench v6",
+      "category": "code",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "codeforces_elo",
+      "name": "Codeforces ELO",
+      "category": "code-rating",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ifeval_instruct_strict",
+      "name": "IFEval Instruct Strict",
+      "category": "instruction-following",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ifeval_prompt_strict",
+      "name": "IFEval Prompt Strict",
+      "category": "instruction-following",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bbeh",
+      "name": "BigBench Extra Hard (BBEH)",
+      "category": "reasoning-hard",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc_c",
+      "name": "ARC-Challenge",
+      "category": "reasoning",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arc_cf",
+      "name": "ARC-CF",
+      "category": "reasoning",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "siqa",
+      "name": "Social IQA",
+      "category": "commonsense",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "commonsenseqa",
+      "name": "CommonsenseQA",
+      "category": "commonsense",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "truthfulqa_mc2",
+      "name": "TruthfulQA MC2",
+      "category": "truth",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "agieval",
+      "name": "AGIEval",
+      "category": "academic",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "global_mmlu",
+      "name": "Global MMLU",
+      "category": "multilingual",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "alpacaeval_2",
+      "name": "AlpacaEval 2.0",
+      "category": "preference",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mixeval_hard",
+      "name": "MixEval Hard",
+      "category": "preference",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bfcl_v3",
+      "name": "BFCL v3 (Tool Calling)",
+      "category": "tool-calling",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tau2_avg",
+      "name": "Tau2-Bench (avg)",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "simpleqa",
+      "name": "SimpleQA",
+      "category": "knowledge",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hle_no_tools",
+      "name": "Humanity's Last Exam (no tools)",
+      "category": "frontier",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hle_search",
+      "name": "Humanity's Last Exam (with search)",
+      "category": "frontier",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_v2_128k",
+      "name": "MRCR v2 8-needle 128k",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ruler_32k",
+      "name": "RULER 32K",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ruler_64k",
+      "name": "RULER 64K",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ruler_128k",
+      "name": "RULER 128K",
+      "category": "long-context",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu",
+      "name": "MMMU",
+      "category": "vision",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu_pro",
+      "name": "MMMU-Pro",
+      "category": "vision",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math_vision",
+      "name": "MATH-Vision",
+      "category": "vision-math",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mathvista_mini",
+      "name": "MathVista (mini)",
+      "category": "vision-math",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmstar",
+      "name": "MMStar",
+      "category": "vision",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmbench_en_dev_v11",
+      "name": "MMBench-EN-Dev v1.1",
+      "category": "vision",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "omnidocbench_v15",
+      "name": "OmniDocBench 1.5 (lower better)",
+      "category": "doc-vqa",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "cc_ocr",
+      "name": "CC-OCR",
+      "category": "ocr",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "realworldqa",
+      "name": "RealWorldQA",
+      "category": "vision",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "videomme_with_sub",
+      "name": "VideoMME (w sub)",
+      "category": "video",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "video_mmmu",
+      "name": "VideoMMMU",
+      "category": "video",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "medxpertqa_mm",
+      "name": "MedXPertQA MM",
+      "category": "medical-vision",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "refcoco_avg",
+      "name": "RefCOCO (avg)",
+      "category": "vision-grounding",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_verified",
+      "name": "SWE-bench Verified",
+      "category": "swe-agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_pro",
+      "name": "SWE-bench Pro",
+      "category": "swe-agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "terminal_bench_2",
+      "name": "Terminal-Bench 2.0",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aa_intelligence_index_v4",
+      "name": "Artificial Analysis Intelligence Index v4.0",
+      "category": "composite",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aa_output_speed_tps",
+      "name": "AA Output Speed (tokens/sec)",
+      "category": "speed",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aa_input_price_per_mtok",
+      "name": "AA Input Price ($/M tokens)",
+      "category": "price",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aa_output_price_per_mtok",
+      "name": "AA Output Price ($/M tokens)",
+      "category": "price",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "covost",
+      "name": "CoVoST",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "fleurs",
+      "name": "FLEURS (WER, lower better)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ojbench",
+      "name": "OJBench",
+      "category": "code",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "supergpqa",
+      "name": "SuperGPQA",
+      "category": "science",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "c_eval",
+      "name": "C-Eval",
+      "category": "knowledge-cn",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "mmlu",
+      "score": 67.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "5-shot"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "mmlu-pro",
+      "score": 52.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "0-shot CoT"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "gsm8k",
+      "score": 88.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "8-shot CoT"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "math",
+      "score": 64.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "0-shot CoT"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "bbh",
+      "score": 70.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "0-shot CoT"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "arc-challenge",
+      "score": 83.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "10-shot"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "hellaswag",
+      "score": 69.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "5-shot"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "winogrande",
+      "score": 67.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "5-shot"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "piqa",
+      "score": 77.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "5-shot"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "boolq",
+      "score": 81.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "2-shot"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "openbookqa",
+      "score": 79.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "10-shot"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "truthfulqa",
+      "score": 66.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "MC2, 10-shot"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "gpqa-diamond",
+      "score": 25.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "0-shot CoT"
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "arena-hard",
+      "score": 32.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "mgsm",
+      "score": 63.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": "0-shot CoT"
+    },
+    {
+      "model": "microsoft/phi-4-mini-reasoning",
+      "benchmark": "aime-2024",
+      "score": 57.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-reasoning",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-reasoning",
+      "benchmark": "math-500",
+      "score": 94.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-reasoning",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-reasoning",
+      "benchmark": "gpqa-diamond",
+      "score": 52.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-reasoning",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-flash-reasoning",
+      "benchmark": "aime-2024",
+      "score": 52.29,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-flash-reasoning",
+      "_note": "pass@1 avg over 64 samples"
+    },
+    {
+      "model": "microsoft/phi-4-mini-flash-reasoning",
+      "benchmark": "aime-2025",
+      "score": 33.59,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-flash-reasoning",
+      "_note": "pass@1 avg over 64 samples"
+    },
+    {
+      "model": "microsoft/phi-4-mini-flash-reasoning",
+      "benchmark": "math-500",
+      "score": 92.45,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-flash-reasoning",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-flash-reasoning",
+      "benchmark": "gpqa-diamond",
+      "score": 45.08,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-flash-reasoning",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "mmlu",
+      "score": 53.17,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "gsm8k",
+      "score": 58.38,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "math-500",
+      "score": 43.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "humaneval-plus",
+      "score": 38.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "ifeval",
+      "score": 53.48,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "arc-challenge",
+      "score": 49.91,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "arc-easy",
+      "score": 74.79,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "openbookqa",
+      "score": 41.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "boolq",
+      "score": 80.18,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "hellaswag",
+      "score": 68.44,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "piqa",
+      "score": 77.09,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "winogrande",
+      "score": 71.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "truthfulqa",
+      "score": 45.31,
+      "unit": "%",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "mt-bench",
+      "score": 5.85,
+      "unit": "score",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "global-mmlu",
+      "score": 53.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "instruct, no-extended-thinking"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "ifeval",
+      "score": 76.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "instruct, no-extended-thinking"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "aime-2025",
+      "score": 9.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "instruct, no-extended-thinking"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "livecodebench-v4",
+      "score": 15.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "instruct, no-extended-thinking"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "gpqa-diamond",
+      "score": 35.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "instruct, no-extended-thinking"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "bfcl-v2",
+      "score": 92.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "instruct, no-extended-thinking"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "gsm8k",
+      "score": 67.63,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base, 5-shot"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "math",
+      "score": 46.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base, 4-shot"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "humaneval-plus",
+      "score": 30.48,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "mbpp-plus",
+      "score": 52.91,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "hellaswag",
+      "score": 76.15,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "winogrande",
+      "score": 58.88,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "piqa",
+      "score": 78.89,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "boolq",
+      "score": 78.99,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "openbookqa",
+      "score": 40.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base"
+    },
+    {
+      "model": "huggingface/smollm2-1.7b",
+      "benchmark": "gsm8k",
+      "score": 31.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B",
+      "_note": "5-shot"
+    },
+    {
+      "model": "huggingface/smollm2-1.7b",
+      "benchmark": "mmlu-pro",
+      "score": 19.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B",
+      "_note": "MCF"
+    },
+    {
+      "model": "huggingface/smollm2-1.7b",
+      "benchmark": "hellaswag",
+      "score": 68.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smollm2-1.7b",
+      "benchmark": "piqa",
+      "score": 77.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smollm2-1.7b",
+      "benchmark": "winogrande",
+      "score": 59.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smollm2-1.7b",
+      "benchmark": "openbookqa",
+      "score": 42.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smollm2-1.7b-instruct",
+      "benchmark": "ifeval",
+      "score": 56.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "_note": "average prompt/inst"
+    },
+    {
+      "model": "huggingface/smollm2-1.7b-instruct",
+      "benchmark": "gsm8k",
+      "score": 48.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "_note": "5-shot"
+    },
+    {
+      "model": "huggingface/smollm2-1.7b-instruct",
+      "benchmark": "mt-bench",
+      "score": 6.13,
+      "unit": "score",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smollm2-1.7b-instruct",
+      "benchmark": "mmlu-pro",
+      "score": 19.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "_note": "MCF"
+    },
+    {
+      "model": "huggingface/smollm2-1.7b-instruct",
+      "benchmark": "bbh",
+      "score": 32.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "_note": "3-shot"
+    },
+    {
+      "model": "huggingface/smollm2-1.7b-instruct",
+      "benchmark": "hellaswag",
+      "score": 66.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-3-270m",
+      "benchmark": "ifeval",
+      "score": 51.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-270m",
+      "_note": "IT, 0-shot"
+    },
+    {
+      "model": "google/gemma-3-270m",
+      "benchmark": "bbh",
+      "score": 26.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-270m",
+      "_note": "IT, few-shot"
+    },
+    {
+      "model": "google/gemma-3-270m",
+      "benchmark": "hellaswag",
+      "score": 40.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-270m",
+      "_note": "PT, 10-shot"
+    },
+    {
+      "model": "google/gemma-3-270m",
+      "benchmark": "arc-challenge",
+      "score": 29.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-270m",
+      "_note": "PT, 25-shot"
+    },
+    {
+      "model": "google/gemma-3-270m",
+      "benchmark": "arc-easy",
+      "score": 57.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-270m",
+      "_note": "PT, 0-shot"
+    },
+    {
+      "model": "google/gemma-3-270m",
+      "benchmark": "winogrande",
+      "score": 52.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-270m",
+      "_note": "PT, 5-shot"
+    },
+    {
+      "model": "google/gemma-3-270m",
+      "benchmark": "boolq",
+      "score": 61.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-270m",
+      "_note": "PT, 0-shot"
+    },
+    {
+      "model": "google/gemma-3-270m",
+      "benchmark": "piqa",
+      "score": 67.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-270m",
+      "_note": "PT, 0-shot"
+    },
+    {
+      "model": "google/gemma-3-1b-it",
+      "benchmark": "hellaswag",
+      "score": 62.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-1b-it",
+      "_note": "10-shot"
+    },
+    {
+      "model": "google/gemma-3-1b-it",
+      "benchmark": "boolq",
+      "score": 63.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-1b-it",
+      "_note": "0-shot"
+    },
+    {
+      "model": "google/gemma-3-1b-it",
+      "benchmark": "piqa",
+      "score": 73.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-1b-it",
+      "_note": "0-shot"
+    },
+    {
+      "model": "google/gemma-3-1b-it",
+      "benchmark": "arc-challenge",
+      "score": 38.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-1b-it",
+      "_note": "25-shot"
+    },
+    {
+      "model": "google/gemma-3-1b-it",
+      "benchmark": "arc-easy",
+      "score": 73.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-1b-it",
+      "_note": "0-shot"
+    },
+    {
+      "model": "google/gemma-3-1b-it",
+      "benchmark": "winogrande",
+      "score": 58.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-1b-it",
+      "_note": "5-shot"
+    },
+    {
+      "model": "google/gemma-3-1b-it",
+      "benchmark": "bbh",
+      "score": 28.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-1b-it",
+      "_note": "few-shot"
+    },
+    {
+      "model": "google/gemma-3-1b-it",
+      "benchmark": "mgsm",
+      "score": 2.04,
+      "unit": "%",
+      "_source": "https://huggingface.co/google/gemma-3-1b-it",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "mmlu",
+      "score": 49.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "_note": "macro_avg/acc"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "ifeval",
+      "score": 59.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "_note": "avg prompt/inst loose/strict"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "gsm8k",
+      "score": 44.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "_note": "CoT, em_maj1@1"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "math",
+      "score": 30.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "_note": "CoT, final_em"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "arc-challenge",
+      "score": 59.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "gpqa-diamond",
+      "score": 27.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "_note": "GPQA acc"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "hellaswag",
+      "score": 41.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "bfcl-v2",
+      "score": 25.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "mgsm",
+      "score": 24.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "_note": "CoT"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "mmlu",
+      "score": 63.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "_note": "macro_avg/acc"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "ifeval",
+      "score": 77.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "gsm8k",
+      "score": 77.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "_note": "CoT"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "math",
+      "score": 48.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "_note": "CoT"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "arc-challenge",
+      "score": 78.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "gpqa-diamond",
+      "score": 32.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "_note": "GPQA acc"
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "hellaswag",
+      "score": 69.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "bfcl-v2",
+      "score": 67.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "mgsm",
+      "score": 58.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "_note": "CoT"
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "mmlu",
+      "score": 44.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": "instruct"
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "ifeval",
+      "score": 62.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": ""
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "humaneval",
+      "score": 59.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": ""
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "mbpp",
+      "score": 46.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": ""
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "arc-challenge",
+      "score": 62.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": ""
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "hellaswag",
+      "score": 67.11,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": "base FP"
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "winogrande",
+      "score": 62.83,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": "base FP"
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "piqa",
+      "score": 76.55,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": "base FP"
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "arc-easy",
+      "score": 76.28,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": "base FP"
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "boolq",
+      "score": 76.24,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": "base FP"
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "openbookqa",
+      "score": 43.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": "base FP"
+    },
+    {
+      "model": "meta/mobilellm-pro",
+      "benchmark": "bfcl-v2",
+      "score": 29.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-Pro",
+      "_note": ""
+    },
+    {
+      "model": "meta/mobilellm-r1-950m",
+      "benchmark": "mmlu",
+      "score": 47.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-R1-950M",
+      "_note": "base, 5-shot"
+    },
+    {
+      "model": "meta/mobilellm-r1-950m",
+      "benchmark": "gsm8k",
+      "score": 61.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-R1-950M",
+      "_note": "base, 8-shot em"
+    },
+    {
+      "model": "meta/mobilellm-r1-950m",
+      "benchmark": "math-500",
+      "score": 26.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-R1-950M",
+      "_note": "base, 4-shot em"
+    },
+    {
+      "model": "meta/mobilellm-r1-950m",
+      "benchmark": "humaneval",
+      "score": 46.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-R1-950M",
+      "_note": "base, 0-shot pass@1"
+    },
+    {
+      "model": "meta/mobilellm-r1-950m",
+      "benchmark": "mbpp",
+      "score": 39.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-R1-950M",
+      "_note": "base, 3-shot pass@1"
+    },
+    {
+      "model": "meta/mobilellm-r1-950m",
+      "benchmark": "aime-2024",
+      "score": 15.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-R1-950M",
+      "_note": "post-trained, n=64"
+    },
+    {
+      "model": "meta/mobilellm-r1-950m",
+      "benchmark": "aime-2025",
+      "score": 16.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-R1-950M",
+      "_note": "post-trained, n=64"
+    },
+    {
+      "model": "meta/mobilellm-r1-950m",
+      "benchmark": "livecodebench-v6",
+      "score": 19.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/facebook/MobileLLM-R1-950M",
+      "_note": "post-trained, n=16"
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "mmlu",
+      "score": 68.65,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": "5-shot; 7B total / 1B active MoE"
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "mmlu-pro",
+      "score": 44.94,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": "5-shot CoT"
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "bbh",
+      "score": 66.34,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": "3-shot CoT"
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "gpqa-diamond",
+      "score": 32.59,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": "0-shot CoT"
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "ifeval",
+      "score": 81.44,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": "average of instruct/prompt strict"
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "arena-hard",
+      "score": 35.75,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "gsm8k",
+      "score": 84.69,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": "8-shot"
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "humaneval",
+      "score": 83.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": "pass@1"
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "humaneval-plus",
+      "score": 76.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": "pass@1"
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "mbpp",
+      "score": 80.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": "pass@1"
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "mbpp-plus",
+      "score": 69.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": "pass@1"
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "bfcl-v3",
+      "score": 57.65,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "mgsm",
+      "score": 45.36,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": "8-shot"
+    },
+    {
+      "model": "ibm/granite-3.3-2b-instruct",
+      "benchmark": "mmlu",
+      "score": 55.88,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-3.3-2b-instruct",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-3.3-2b-instruct",
+      "benchmark": "bbh",
+      "score": 63.91,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-3.3-2b-instruct",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-3.3-2b-instruct",
+      "benchmark": "gsm8k",
+      "score": 72.48,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-3.3-2b-instruct",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-3.3-2b-instruct",
+      "benchmark": "humaneval",
+      "score": 80.51,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-3.3-2b-instruct",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-3.3-2b-instruct",
+      "benchmark": "humaneval-plus",
+      "score": 75.68,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-3.3-2b-instruct",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-3.3-2b-instruct",
+      "benchmark": "ifeval",
+      "score": 65.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-3.3-2b-instruct",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-3.3-2b-instruct",
+      "benchmark": "arena-hard",
+      "score": 28.86,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-3.3-2b-instruct",
+      "_note": "thinking=True"
+    },
+    {
+      "model": "ibm/granite-3.3-2b-instruct",
+      "benchmark": "math-500",
+      "score": 58.09,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-3.3-2b-instruct",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-3.3-2b-instruct",
+      "benchmark": "truthfulqa",
+      "score": 58.97,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-3.3-2b-instruct",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b",
+      "benchmark": "mmlu",
+      "score": 47.5,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b",
+      "benchmark": "mmlu-pro",
+      "score": 15.7,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b",
+      "benchmark": "gsm8k",
+      "score": 41.6,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b",
+      "benchmark": "math",
+      "score": 19.5,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b",
+      "benchmark": "humaneval",
+      "score": 30.5,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b",
+      "benchmark": "mbpp",
+      "score": 39.3,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b",
+      "benchmark": "bbh",
+      "score": 20.3,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b",
+      "benchmark": "mmlu",
+      "score": 60.9,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b",
+      "benchmark": "mmlu-pro",
+      "score": 28.5,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b",
+      "benchmark": "gsm8k",
+      "score": 68.5,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b",
+      "benchmark": "math",
+      "score": 35.0,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b",
+      "benchmark": "humaneval",
+      "score": 37.2,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b",
+      "benchmark": "mbpp",
+      "score": 60.2,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b",
+      "benchmark": "bbh",
+      "score": 45.1,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "base"
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b-instruct",
+      "benchmark": "mmlu-pro",
+      "score": 15.0,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b-instruct",
+      "benchmark": "gsm8k",
+      "score": 49.6,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b-instruct",
+      "benchmark": "math",
+      "score": 34.4,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b-instruct",
+      "benchmark": "humaneval",
+      "score": 35.4,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b-instruct",
+      "benchmark": "mbpp",
+      "score": 49.6,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-0.5b-instruct",
+      "benchmark": "ifeval",
+      "score": 27.9,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "strict-prompt"
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b-instruct",
+      "benchmark": "mmlu-pro",
+      "score": 32.4,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b-instruct",
+      "benchmark": "gsm8k",
+      "score": 73.2,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b-instruct",
+      "benchmark": "math",
+      "score": 55.2,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b-instruct",
+      "benchmark": "humaneval",
+      "score": 61.6,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b-instruct",
+      "benchmark": "mbpp",
+      "score": 63.2,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2.5-1.5b-instruct",
+      "benchmark": "ifeval",
+      "score": 42.5,
+      "unit": "%",
+      "_source": "https://qwenlm.github.io/blog/qwen2.5-llm/",
+      "_note": "strict-prompt"
+    },
+    {
+      "model": "alibaba/qwen3-0.6b",
+      "benchmark": "mmlu",
+      "score": 52.81,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2505.09388",
+      "_note": "Qwen3 Technical Report base; secondary source confirmation"
+    },
+    {
+      "model": "alibaba/qwen3-0.6b",
+      "benchmark": "gsm8k",
+      "score": 59.59,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2505.09388",
+      "_note": "Qwen3 Technical Report base"
+    },
+    {
+      "model": "alibaba/qwen3-1.7b",
+      "benchmark": "mmlu",
+      "score": 62.63,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2505.09388",
+      "_note": "Qwen3 Technical Report base"
+    },
+    {
+      "model": "alibaba/qwen3-1.7b",
+      "benchmark": "gsm8k",
+      "score": 75.44,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2505.09388",
+      "_note": "Qwen3 Technical Report base"
+    },
+    {
+      "model": "tii/falcon3-1b-instruct",
+      "benchmark": "mmlu",
+      "score": 46.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
+      "_note": "5-shot"
+    },
+    {
+      "model": "tii/falcon3-1b-instruct",
+      "benchmark": "mmlu-pro",
+      "score": 18.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
+      "_note": "5-shot"
+    },
+    {
+      "model": "tii/falcon3-1b-instruct",
+      "benchmark": "ifeval",
+      "score": 54.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-1b-instruct",
+      "benchmark": "gsm8k",
+      "score": 43.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
+      "_note": "5-shot"
+    },
+    {
+      "model": "tii/falcon3-1b-instruct",
+      "benchmark": "arc-challenge",
+      "score": 47.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
+      "_note": "25-shot"
+    },
+    {
+      "model": "tii/falcon3-1b-instruct",
+      "benchmark": "bbh",
+      "score": 35.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
+      "_note": "3-shot"
+    },
+    {
+      "model": "tii/falcon3-1b-instruct",
+      "benchmark": "winogrande",
+      "score": 60.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
+      "_note": "0-shot"
+    },
+    {
+      "model": "tii/falcon3-1b-instruct",
+      "benchmark": "piqa",
+      "score": 72.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
+      "_note": "0-shot"
+    },
+    {
+      "model": "tii/falcon3-1b-instruct",
+      "benchmark": "mt-bench",
+      "score": 5.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-3b-instruct",
+      "benchmark": "mmlu",
+      "score": 56.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+      "_note": "5-shot"
+    },
+    {
+      "model": "tii/falcon3-3b-instruct",
+      "benchmark": "mmlu-pro",
+      "score": 29.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+      "_note": "5-shot"
+    },
+    {
+      "model": "tii/falcon3-3b-instruct",
+      "benchmark": "ifeval",
+      "score": 68.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-3b-instruct",
+      "benchmark": "gsm8k",
+      "score": 74.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+      "_note": "5-shot"
+    },
+    {
+      "model": "tii/falcon3-3b-instruct",
+      "benchmark": "math",
+      "score": 19.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+      "_note": "Lvl-5 4-shot"
+    },
+    {
+      "model": "tii/falcon3-3b-instruct",
+      "benchmark": "arc-challenge",
+      "score": 55.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+      "_note": "25-shot"
+    },
+    {
+      "model": "tii/falcon3-3b-instruct",
+      "benchmark": "bbh",
+      "score": 45.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+      "_note": "3-shot"
+    },
+    {
+      "model": "tii/falcon3-3b-instruct",
+      "benchmark": "winogrande",
+      "score": 65.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+      "_note": "0-shot"
+    },
+    {
+      "model": "tii/falcon3-3b-instruct",
+      "benchmark": "piqa",
+      "score": 75.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+      "_note": "0-shot"
+    },
+    {
+      "model": "tii/falcon3-3b-instruct",
+      "benchmark": "mt-bench",
+      "score": 7.2,
+      "unit": "score",
+      "_source": "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-0425-1b-instruct",
+      "benchmark": "mmlu",
+      "score": 40.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/allenai/OLMo-2-0425-1B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-0425-1b-instruct",
+      "benchmark": "gsm8k",
+      "score": 68.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/allenai/OLMo-2-0425-1B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-0425-1b-instruct",
+      "benchmark": "ifeval",
+      "score": 70.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/allenai/OLMo-2-0425-1B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-0425-1b-instruct",
+      "benchmark": "bbh",
+      "score": 35.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/allenai/OLMo-2-0425-1B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-0425-1b-instruct",
+      "benchmark": "math",
+      "score": 20.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/allenai/OLMo-2-0425-1B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-0425-1b-instruct",
+      "benchmark": "truthfulqa",
+      "score": 48.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/allenai/OLMo-2-0425-1B-Instruct",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm3-4b",
+      "benchmark": "mmlu",
+      "score": 67.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/openbmb/MiniCPM3-4B",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm3-4b",
+      "benchmark": "bbh",
+      "score": 70.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/openbmb/MiniCPM3-4B",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm3-4b",
+      "benchmark": "ifeval",
+      "score": 68.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/openbmb/MiniCPM3-4B",
+      "_note": "prompt strict-acc"
+    },
+    {
+      "model": "openbmb/minicpm3-4b",
+      "benchmark": "math",
+      "score": 46.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/openbmb/MiniCPM3-4B",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm3-4b",
+      "benchmark": "gsm8k",
+      "score": 81.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/openbmb/MiniCPM3-4B",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm3-4b",
+      "benchmark": "humaneval-plus",
+      "score": 68.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/openbmb/MiniCPM3-4B",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm3-4b",
+      "benchmark": "mbpp-plus",
+      "score": 63.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/openbmb/MiniCPM3-4B",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm3-4b",
+      "benchmark": "bfcl-v2",
+      "score": 76.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/openbmb/MiniCPM3-4B",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm3-4b",
+      "benchmark": "mt-bench",
+      "score": 8.41,
+      "unit": "score",
+      "_source": "https://huggingface.co/openbmb/MiniCPM3-4B",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-r1-distill-llama-8b",
+      "benchmark": "aime_2024",
+      "score": 50.4,
+      "unit": "pass@1",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-r1-distill-llama-8b",
+      "benchmark": "math_500",
+      "score": 89.1,
+      "unit": "pass@1",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-r1-distill-llama-8b",
+      "benchmark": "gpqa_diamond",
+      "score": 49.0,
+      "unit": "pass@1",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-r1-distill-llama-8b",
+      "benchmark": "livecodebench",
+      "score": 39.6,
+      "unit": "pass@1",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-r1-distill-llama-8b",
+      "benchmark": "codeforces",
+      "score": 1205.0,
+      "unit": "rating",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-r1-distill-qwen-7b",
+      "benchmark": "aime_2024",
+      "score": 55.5,
+      "unit": "pass@1",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-r1-distill-qwen-7b",
+      "benchmark": "math_500",
+      "score": 92.8,
+      "unit": "pass@1",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-r1-distill-qwen-7b",
+      "benchmark": "gpqa_diamond",
+      "score": 49.1,
+      "unit": "pass@1",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-r1-distill-qwen-7b",
+      "benchmark": "livecodebench",
+      "score": 37.6,
+      "unit": "pass@1",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-r1-distill-qwen-7b",
+      "benchmark": "codeforces",
+      "score": 1189.0,
+      "unit": "rating",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-flash-reasoning",
+      "benchmark": "aime_2024",
+      "score": 52.29,
+      "unit": "pass@1 avg of 64",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-flash-reasoning",
+      "benchmark": "math_500",
+      "score": 92.45,
+      "unit": "pass@1 avg of 8",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-flash-reasoning",
+      "benchmark": "gpqa_diamond",
+      "score": 45.08,
+      "unit": "pass@1 avg of 8",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-7b-instruct",
+      "benchmark": "ifeval",
+      "score": 76.5,
+      "unit": "%",
+      "_source": "HF model card (internal pipeline)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-7b-instruct",
+      "benchmark": "bbh",
+      "score": 52.4,
+      "unit": "%",
+      "_source": "HF model card (internal 3-shot)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-7b-instruct",
+      "benchmark": "math_lvl_5",
+      "score": 29.4,
+      "unit": "%",
+      "_source": "HF model card (internal 4-shot)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-7b-instruct",
+      "benchmark": "mmlu",
+      "score": 70.5,
+      "unit": "%",
+      "_source": "HF model card (internal 5-shot)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-7b-instruct",
+      "benchmark": "mmlu-pro",
+      "score": 40.7,
+      "unit": "%",
+      "_source": "HF model card (internal 5-shot)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-7b-instruct",
+      "benchmark": "gsm8k",
+      "score": 81.4,
+      "unit": "%",
+      "_source": "HF model card (internal 5-shot)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-7b-instruct",
+      "benchmark": "arc_challenge",
+      "score": 62.6,
+      "unit": "%",
+      "_source": "HF model card (25-shot)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-7b-instruct",
+      "benchmark": "musr",
+      "score": 46.4,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-7b-instruct",
+      "benchmark": "mtbench",
+      "score": 8.4,
+      "unit": "avg",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-7b-instruct",
+      "benchmark": "bfcl",
+      "score": 89.5,
+      "unit": "AST avg",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-10b-instruct",
+      "benchmark": "ifeval",
+      "score": 78.17,
+      "unit": "%",
+      "_source": "HF model card (Open LLM LB)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-10b-instruct",
+      "benchmark": "bbh",
+      "score": 58.4,
+      "unit": "%",
+      "_source": "HF model card (internal 3-shot)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-10b-instruct",
+      "benchmark": "math_lvl_5",
+      "score": 25.91,
+      "unit": "%",
+      "_source": "HF model card (Open LLM LB)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-10b-instruct",
+      "benchmark": "mmlu",
+      "score": 73.9,
+      "unit": "%",
+      "_source": "HF model card (internal 5-shot)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-10b-instruct",
+      "benchmark": "mmlu-pro",
+      "score": 44.0,
+      "unit": "%",
+      "_source": "HF model card (internal 5-shot)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-10b-instruct",
+      "benchmark": "gsm8k",
+      "score": 84.9,
+      "unit": "%",
+      "_source": "HF model card (internal 5-shot)",
+      "_note": ""
+    },
+    {
+      "model": "tii/falcon3-10b-instruct",
+      "benchmark": "mtbench",
+      "score": 8.2,
+      "unit": "avg",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-3b-instruct",
+      "benchmark": "mmlu",
+      "score": 67.02,
+      "unit": "%",
+      "_source": "HF blog (Granite 4.1)",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-3b-instruct",
+      "benchmark": "mmlu-pro",
+      "score": 49.83,
+      "unit": "%",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-3b-instruct",
+      "benchmark": "ifeval",
+      "score": 82.3,
+      "unit": "avg",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-3b-instruct",
+      "benchmark": "gsm8k",
+      "score": 86.88,
+      "unit": "%",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-3b-instruct",
+      "benchmark": "humaneval",
+      "score": 79.27,
+      "unit": "pass@1",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-3b-instruct",
+      "benchmark": "mbpp",
+      "score": 61.64,
+      "unit": "pass@1",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-3b-instruct",
+      "benchmark": "bbh",
+      "score": 75.83,
+      "unit": "%",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-3b-instruct",
+      "benchmark": "arena_hard",
+      "score": 37.8,
+      "unit": "%",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-3b-instruct",
+      "benchmark": "alpaca_eval_v2",
+      "score": 38.57,
+      "unit": "%",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-3b-instruct",
+      "benchmark": "bfcl",
+      "score": 60.8,
+      "unit": "v3",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-8b-instruct",
+      "benchmark": "mmlu",
+      "score": 73.84,
+      "unit": "%",
+      "_source": "HF blog (Granite 4.1)",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-8b-instruct",
+      "benchmark": "mmlu-pro",
+      "score": 55.99,
+      "unit": "%",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-8b-instruct",
+      "benchmark": "ifeval",
+      "score": 87.06,
+      "unit": "avg",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-8b-instruct",
+      "benchmark": "gsm8k",
+      "score": 92.49,
+      "unit": "%",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-8b-instruct",
+      "benchmark": "humaneval",
+      "score": 87.2,
+      "unit": "pass@1",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-8b-instruct",
+      "benchmark": "mbpp",
+      "score": 82.54,
+      "unit": "pass@1",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-8b-instruct",
+      "benchmark": "bbh",
+      "score": 80.51,
+      "unit": "%",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-8b-instruct",
+      "benchmark": "arena_hard",
+      "score": 68.98,
+      "unit": "%",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-8b-instruct",
+      "benchmark": "alpaca_eval_v2",
+      "score": 50.08,
+      "unit": "%",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.1-8b-instruct",
+      "benchmark": "bfcl",
+      "score": 68.27,
+      "unit": "v3",
+      "_source": "HF blog",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "aime-2025",
+      "score": 72.1,
+      "unit": "%",
+      "_source": "HF model card (reasoning-on)",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "math_500",
+      "score": 97.8,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "gpqa_diamond",
+      "score": 64.0,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "livecodebench",
+      "score": 71.1,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "bfcl",
+      "score": 66.9,
+      "unit": "v3",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "ifeval",
+      "score": 90.3,
+      "unit": "instruction strict",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "hle",
+      "score": 6.5,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-7b-instruct",
+      "benchmark": "mmlu",
+      "score": 61.3,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-7b-instruct",
+      "benchmark": "gsm8k",
+      "score": 85.1,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-7b-instruct",
+      "benchmark": "math",
+      "score": 32.5,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-7b-instruct",
+      "benchmark": "ifeval",
+      "score": 72.3,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-7b-instruct",
+      "benchmark": "bbh",
+      "score": 46.6,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-7b-instruct",
+      "benchmark": "alpaca_eval_v2",
+      "score": 29.1,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-7b-instruct",
+      "benchmark": "drop",
+      "score": 60.5,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-7b-instruct",
+      "benchmark": "truthfulqa",
+      "score": 56.5,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-13b-instruct",
+      "benchmark": "mmlu",
+      "score": 68.5,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-13b-instruct",
+      "benchmark": "gsm8k",
+      "score": 87.4,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-13b-instruct",
+      "benchmark": "math",
+      "score": 39.2,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-13b-instruct",
+      "benchmark": "ifeval",
+      "score": 82.6,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-13b-instruct",
+      "benchmark": "bbh",
+      "score": 58.8,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-13b-instruct",
+      "benchmark": "alpaca_eval_v2",
+      "score": 39.5,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-13b-instruct",
+      "benchmark": "drop",
+      "score": 71.5,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmo-2-1124-13b-instruct",
+      "benchmark": "truthfulqa",
+      "score": 64.3,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmoe-1b-7b-instruct",
+      "benchmark": "mmlu",
+      "score": 51.9,
+      "unit": "%",
+      "_source": "OLMoE paper (DPO)",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmoe-1b-7b-instruct",
+      "benchmark": "gsm8k",
+      "score": 45.5,
+      "unit": "%",
+      "_source": "OLMoE paper (DPO 8-shot CoT)",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmoe-1b-7b-instruct",
+      "benchmark": "humaneval",
+      "score": 54.8,
+      "unit": "pass@10",
+      "_source": "OLMoE paper (DPO)",
+      "_note": ""
+    },
+    {
+      "model": "allenai/olmoe-1b-7b-instruct",
+      "benchmark": "bbh",
+      "score": 37.0,
+      "unit": "%",
+      "_source": "OLMoE paper (DPO)",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-8b-base",
+      "benchmark": "mmlu",
+      "score": 76.89,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report Table 6",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-8b-base",
+      "benchmark": "mmlu-pro",
+      "score": 56.73,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-8b-base",
+      "benchmark": "mmlu_redux",
+      "score": 76.17,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-8b-base",
+      "benchmark": "gsm8k",
+      "score": 89.84,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-8b-base",
+      "benchmark": "math",
+      "score": 60.8,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-8b-base",
+      "benchmark": "gpqa",
+      "score": 44.44,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-4b-base",
+      "benchmark": "mmlu",
+      "score": 72.99,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-4b-base",
+      "benchmark": "mmlu-pro",
+      "score": 50.58,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-4b-base",
+      "benchmark": "mmlu_redux",
+      "score": 72.79,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-4b-base",
+      "benchmark": "gsm8k",
+      "score": 87.79,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-4b-base",
+      "benchmark": "math",
+      "score": 54.1,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-4b-base",
+      "benchmark": "gpqa",
+      "score": 36.87,
+      "unit": "%",
+      "_source": "Qwen3 Tech Report",
+      "_note": ""
+    },
+    {
+      "model": "mistralai/ministral-8b-instruct-2410",
+      "benchmark": "mmlu-pro",
+      "score": 37.93,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "mistralai/ministral-8b-instruct-2410",
+      "benchmark": "arena_hard",
+      "score": 70.9,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "mistralai/ministral-8b-instruct-2410",
+      "benchmark": "wildbench",
+      "score": 41.3,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "mistralai/ministral-8b-instruct-2410",
+      "benchmark": "humaneval",
+      "score": 76.8,
+      "unit": "pass@1",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "mistralai/ministral-8b-instruct-2410",
+      "benchmark": "math",
+      "score": 54.5,
+      "unit": "maj@1",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "mistralai/ministral-8b-instruct-2410",
+      "benchmark": "mbpp",
+      "score": 70.0,
+      "unit": "pass@1",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "mistralai/ministral-8b-instruct-2410",
+      "benchmark": "mtbench",
+      "score": 8.3,
+      "unit": "avg",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "marin-community/marin-8b-base",
+      "benchmark": "mmlu",
+      "score": 67.6,
+      "unit": "% 5-shot",
+      "_source": "HF model card (Deeper-Starling)",
+      "_note": ""
+    },
+    {
+      "model": "marin-community/marin-8b-base",
+      "benchmark": "hellaswag",
+      "score": 82.3,
+      "unit": "% 0-shot",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "marin-community/marin-8b-base",
+      "benchmark": "arc_challenge",
+      "score": 63.1,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "marin-community/marin-8b-base",
+      "benchmark": "gpqa",
+      "score": 30.3,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "marin-community/marin-8b-base",
+      "benchmark": "bbh",
+      "score": 50.6,
+      "unit": "%",
+      "_source": "HF model card",
+      "_note": ""
+    },
+    {
+      "model": "google/codegemma-7b",
+      "benchmark": "humaneval",
+      "score": 44.5,
+      "unit": "pass@1",
+      "_source": "Google model card",
+      "_note": ""
+    },
+    {
+      "model": "google/codegemma-7b",
+      "benchmark": "mbpp",
+      "score": 56.2,
+      "unit": "pass@1",
+      "_source": "Google model card",
+      "_note": ""
+    },
+    {
+      "model": "google/codegemma-7b",
+      "benchmark": "humaneval_single_line",
+      "score": 76.1,
+      "unit": "%",
+      "_source": "Google model card",
+      "_note": ""
+    },
+    {
+      "model": "google/codegemma-7b",
+      "benchmark": "humaneval_multi_line",
+      "score": 58.4,
+      "unit": "%",
+      "_source": "Google model card",
+      "_note": ""
+    },
+    {
+      "model": "google/codegemma-7b-it",
+      "benchmark": "humaneval",
+      "score": 56.1,
+      "unit": "pass@1",
+      "_source": "Google model card",
+      "_note": ""
+    },
+    {
+      "model": "google/codegemma-7b-it",
+      "benchmark": "mbpp",
+      "score": 54.2,
+      "unit": "pass@1",
+      "_source": "Google model card",
+      "_note": ""
+    },
+    {
+      "model": "google/codegemma-7b-it",
+      "benchmark": "humaneval_single_line",
+      "score": 68.3,
+      "unit": "%",
+      "_source": "Google model card",
+      "_note": ""
+    },
+    {
+      "model": "google/codegemma-7b-it",
+      "benchmark": "humaneval_multi_line",
+      "score": 20.1,
+      "unit": "%",
+      "_source": "Google model card",
+      "_note": ""
+    },
+    {
+      "model": "salesforce/llama-xlam-2-8b-fc-r",
+      "benchmark": "bfcl",
+      "score": 72.04,
+      "unit": "v3 overall",
+      "_source": "HF model card / BFCL v3 LB",
+      "_note": ""
+    },
+    {
+      "model": "qihoo360/light-r1-7b-ds",
+      "benchmark": "aime_2024",
+      "score": 59.1,
+      "unit": "%",
+      "_source": "Light-R1 paper (arxiv 2503.10460)",
+      "_note": ""
+    },
+    {
+      "model": "qihoo360/light-r1-7b-ds",
+      "benchmark": "aime-2025",
+      "score": 44.3,
+      "unit": "%",
+      "_source": "Light-R1 paper",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "mmlu_pro",
+      "score": 60.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "gpqa_diamond",
+      "score": 43.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "aime_2026",
+      "score": 37.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "livecodebench_v6",
+      "score": 44.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "codeforces_elo",
+      "score": 633.0,
+      "unit": "elo",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "tau2_avg",
+      "score": 24.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "bbeh",
+      "score": 21.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "mmmlu",
+      "score": 67.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "mmmu_pro",
+      "score": 44.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "math_vision",
+      "score": 52.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "medxpertqa_mm",
+      "score": 23.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "omnidocbench_v15",
+      "score": 0.29,
+      "unit": "score-lower-better",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "mrcr_v2_128k",
+      "score": 19.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "covost",
+      "score": 33.47,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "fleurs",
+      "score": 0.09,
+      "unit": "wer-lower-better",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e2b-it",
+      "benchmark": "aa_intelligence_index_v4",
+      "score": 15.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-e2b",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "mmlu_pro",
+      "score": 69.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "gpqa_diamond",
+      "score": 58.6,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "aime_2026",
+      "score": 42.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "livecodebench_v6",
+      "score": 52.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "codeforces_elo",
+      "score": 940.0,
+      "unit": "elo",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "tau2_avg",
+      "score": 42.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "bbeh",
+      "score": 33.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "mmmlu",
+      "score": 76.6,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "mmmu_pro",
+      "score": 52.6,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "math_vision",
+      "score": 59.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "medxpertqa_mm",
+      "score": 28.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "omnidocbench_v15",
+      "score": 0.181,
+      "unit": "score-lower-better",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "mrcr_v2_128k",
+      "score": 25.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "covost",
+      "score": 35.54,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "fleurs",
+      "score": 0.08,
+      "unit": "wer-lower-better",
+      "_source": "https://huggingface.co/google/gemma-4-e4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-e4b-it",
+      "benchmark": "aa_intelligence_index_v4",
+      "score": 19.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-e4b",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "mmlu_pro",
+      "score": 77.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "gpqa_diamond",
+      "score": 78.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "aime_2026",
+      "score": 77.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "livecodebench_v6",
+      "score": 72.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "codeforces_elo",
+      "score": 1659.0,
+      "unit": "elo",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "tau2_avg",
+      "score": 69.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "bbeh",
+      "score": 53.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "hle_no_tools",
+      "score": 5.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "mmmlu",
+      "score": 83.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "mmmu_pro",
+      "score": 69.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "math_vision",
+      "score": 79.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "medxpertqa_mm",
+      "score": 48.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "omnidocbench_v15",
+      "score": 0.164,
+      "unit": "score-lower-better",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "mrcr_v2_128k",
+      "score": 43.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "covost",
+      "score": 38.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "fleurs",
+      "score": 0.069,
+      "unit": "wer-lower-better",
+      "_source": "https://huggingface.co/google/gemma-4-12b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "aa_intelligence_index_v4",
+      "score": 29.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-12b",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "aa_output_speed_tps",
+      "score": 124.5,
+      "unit": "tok/s",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-12b",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "aa_input_price_per_mtok",
+      "score": 0.1,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-12b",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-12b-it",
+      "benchmark": "aa_output_price_per_mtok",
+      "score": 0.3,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-12b",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "mmlu_pro",
+      "score": 82.6,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "gpqa_diamond",
+      "score": 82.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "aime_2026",
+      "score": 88.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "livecodebench_v6",
+      "score": 77.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "codeforces_elo",
+      "score": 1718.0,
+      "unit": "elo",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "bbeh",
+      "score": 64.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "tau2_avg",
+      "score": 68.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "hle_no_tools",
+      "score": 8.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "hle_search",
+      "score": 17.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "mmmlu",
+      "score": 86.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "mmmu_pro",
+      "score": 73.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "math_vision",
+      "score": 82.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "medxpertqa_mm",
+      "score": 58.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "omnidocbench_v15",
+      "score": 0.149,
+      "unit": "score-lower-better",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "mrcr_v2_128k",
+      "score": 44.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "aa_intelligence_index_v4",
+      "score": 31.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "aa_input_price_per_mtok",
+      "score": 0.13,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-26b-a4b-it",
+      "benchmark": "aa_output_price_per_mtok",
+      "score": 0.4,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "mmlu_pro",
+      "score": 85.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "gpqa_diamond",
+      "score": 84.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "aime_2026",
+      "score": 89.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "livecodebench_v6",
+      "score": 80.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "codeforces_elo",
+      "score": 2150.0,
+      "unit": "elo",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "bbeh",
+      "score": 74.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "tau2_avg",
+      "score": 76.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "mmmlu",
+      "score": 88.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "hle_no_tools",
+      "score": 19.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "hle_search",
+      "score": 26.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "mmmu_pro",
+      "score": 76.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "math_vision",
+      "score": 85.6,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "medxpertqa_mm",
+      "score": 61.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "omnidocbench_v15",
+      "score": 0.131,
+      "unit": "score-lower-better",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "mrcr_v2_128k",
+      "score": 66.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/google/gemma-4-31b-it",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "aa_intelligence_index_v4",
+      "score": 39.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-31b",
+      "_note": ""
+    },
+    {
+      "model": "google/gemma-4-31b-it",
+      "benchmark": "aa_output_speed_tps",
+      "score": 35.2,
+      "unit": "tok/s",
+      "_source": "https://artificialanalysis.ai/models/gemma-4-31b",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "mmlu_pro",
+      "score": 79.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "mmlu_redux",
+      "score": 88.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "c_eval",
+      "score": 85.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "gpqa_diamond",
+      "score": 76.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "supergpqa",
+      "score": 52.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "ifeval",
+      "score": 89.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "livecodebench_v6",
+      "score": 55.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "ojbench",
+      "score": 24.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "mmmu",
+      "score": 77.6,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "mmmu_pro",
+      "score": 66.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "math_vision",
+      "score": 74.6,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "mathvista_mini",
+      "score": 85.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "realworldqa",
+      "score": 79.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "mmstar",
+      "score": 78.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "mmbench_en_dev_v11",
+      "score": 89.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "omnidocbench_v15",
+      "score": 86.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "cc_ocr",
+      "score": 76.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "videomme_with_sub",
+      "score": 83.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "video_mmmu",
+      "score": 74.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "aa_intelligence_index_v4",
+      "score": 27.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/models/qwen3-5-4b",
+      "_note": "reasoning mode"
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "aa_output_speed_tps",
+      "score": 21.6,
+      "unit": "tok/s",
+      "_source": "https://artificialanalysis.ai/models/qwen3-5-4b",
+      "_note": "reasoning mode"
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "aa_input_price_per_mtok",
+      "score": 0.03,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/qwen3-5-4b",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-4b",
+      "benchmark": "aa_output_price_per_mtok",
+      "score": 0.15,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/qwen3-5-4b",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "mmlu_pro",
+      "score": 86.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "gpqa_diamond",
+      "score": 85.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "aime_2026",
+      "score": 90.83,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "hmmt_feb_2026",
+      "score": 92.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "ifeval",
+      "score": 95.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "livecodebench_v6",
+      "score": 80.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "mmmu_pro",
+      "score": 75.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "math_vision",
+      "score": 86.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "mathvista_mini",
+      "score": 87.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmlu_pro",
+      "score": 86.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "aime_2026",
+      "score": 94.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "hmmt_feb_2026",
+      "score": 84.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "swe_bench_verified",
+      "score": 77.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "swe_bench_pro",
+      "score": 53.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "terminal_bench_2",
+      "score": 59.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmmu_pro",
+      "score": 75.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "mmmu",
+      "score": 82.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "refcoco_avg",
+      "score": 92.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "videomme_with_sub",
+      "score": 87.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/Qwen/Qwen3.6-27B",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "mmlu_pro",
+      "score": 52.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "arc_c",
+      "score": 83.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "gpqa",
+      "score": 25.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "arena_hard",
+      "score": 32.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "siqa",
+      "score": 72.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-mini-instruct",
+      "benchmark": "truthfulqa_mc2",
+      "score": 66.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "mmlu",
+      "score": 84.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/phi-4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "mmlu_pro",
+      "score": 70.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/phi-4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "gpqa",
+      "score": 56.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/phi-4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "mgsm",
+      "score": 80.6,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/phi-4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "math",
+      "score": 80.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/phi-4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "humaneval",
+      "score": 82.6,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/phi-4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "simpleqa",
+      "score": 3.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/phi-4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "drop",
+      "score": 75.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/phi-4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "humaneval_plus",
+      "score": 38.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "math_500",
+      "score": 43.4,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/bitnet-b1.58-2b-4t",
+      "benchmark": "arc_c",
+      "score": 49.91,
+      "unit": "pct",
+      "_source": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "_note": ""
+    },
+    {
+      "model": "mistral/ministral-8b-instruct-2410",
+      "benchmark": "mmlu",
+      "score": 65.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+      "_note": "base"
+    },
+    {
+      "model": "mistral/ministral-8b-instruct-2410",
+      "benchmark": "arc_c",
+      "score": 71.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+      "_note": "base"
+    },
+    {
+      "model": "mistral/ministral-8b-instruct-2410",
+      "benchmark": "agieval",
+      "score": 48.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+      "_note": "base"
+    },
+    {
+      "model": "mistral/ministral-8b-instruct-2410",
+      "benchmark": "winogrande",
+      "score": 75.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+      "_note": "base"
+    },
+    {
+      "model": "mistral/ministral-8b-instruct-2410",
+      "benchmark": "humaneval",
+      "score": 76.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+      "_note": "instruct"
+    },
+    {
+      "model": "mistral/ministral-8b-instruct-2410",
+      "benchmark": "gsm8k",
+      "score": 64.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+      "_note": "base maj@8"
+    },
+    {
+      "model": "mistral/ministral-8b-instruct-2410",
+      "benchmark": "mbpp",
+      "score": 70.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+      "_note": "instruct"
+    },
+    {
+      "model": "mistral/ministral-8b-instruct-2410",
+      "benchmark": "math",
+      "score": 54.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+      "_note": "instruct"
+    },
+    {
+      "model": "mistral/ministral-8b-instruct-2410",
+      "benchmark": "mmlu_pro",
+      "score": 37.93,
+      "unit": "pct",
+      "_source": "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "aime_2025",
+      "score": 9.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "no-think"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "gsm_plus",
+      "score": 72.8,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "no-think"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "livecodebench_v4",
+      "score": 15.2,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "no-think"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "gpqa_diamond",
+      "score": 35.7,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "no-think"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "mixeval_hard",
+      "score": 26.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "no-think"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "bfcl_v3",
+      "score": 92.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "no-think"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "global_mmlu",
+      "score": 53.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "no-think"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "humaneval_plus",
+      "score": 30.48,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "mbpp_plus",
+      "score": 52.91,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "arc_cf",
+      "score": 65.61,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "commonsenseqa",
+      "score": 55.28,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": "base"
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "ruler_32k",
+      "score": 76.35,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "ruler_64k",
+      "score": 67.85,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smollm3-3b",
+      "benchmark": "ruler_128k",
+      "score": 61.03,
+      "unit": "pct",
+      "_source": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "mmlu",
+      "score": 65.98,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "mmlu_pro",
+      "score": 44.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "bbh",
+      "score": 72.48,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "agieval",
+      "score": 64.29,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "gpqa",
+      "score": 30.14,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "gsm8k",
+      "score": 85.45,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "gsm8k_symbolic",
+      "score": 79.82,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "minerva_math",
+      "score": 62.06,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "deepmind_math",
+      "score": 44.56,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "humaneval",
+      "score": 80.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "humaneval_plus",
+      "score": 72.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "mbpp",
+      "score": 72.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "mbpp_plus",
+      "score": 64.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "ifeval",
+      "score": 82.31,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "ifeval_instruct_strict",
+      "score": 85.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "ifeval_prompt_strict",
+      "score": 79.12,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "alpacaeval_2",
+      "score": 29.49,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "arena_hard",
+      "score": 25.84,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-micro",
+      "benchmark": "bfcl_v3",
+      "score": 59.98,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "mmlu",
+      "score": 67.43,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "mmlu_pro",
+      "score": 43.48,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "bbh",
+      "score": 69.36,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "agieval",
+      "score": 59.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "gpqa",
+      "score": 32.15,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "gsm8k",
+      "score": 81.35,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "gsm8k_symbolic",
+      "score": 77.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "minerva_math",
+      "score": 66.44,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "deepmind_math",
+      "score": 43.83,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "humaneval",
+      "score": 81.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "humaneval_plus",
+      "score": 75.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "mbpp",
+      "score": 73.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "mbpp_plus",
+      "score": 64.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "ifeval",
+      "score": 84.32,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "ifeval_instruct_strict",
+      "score": 86.94,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "ifeval_prompt_strict",
+      "score": 81.71,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "alpacaeval_2",
+      "score": 31.49,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "arena_hard",
+      "score": 36.15,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-micro",
+      "benchmark": "bfcl_v3",
+      "score": 57.56,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-micro",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "mmlu_pro",
+      "score": 44.94,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "gpqa",
+      "score": 32.59,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "gsm8k_symbolic",
+      "score": 81.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "minerva_math",
+      "score": 69.64,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "deepmind_math",
+      "score": 49.92,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "humaneval_plus",
+      "score": 76.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "mbpp_plus",
+      "score": 69.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "ifeval_instruct_strict",
+      "score": 84.78,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "ifeval_prompt_strict",
+      "score": 78.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "alpacaeval_2",
+      "score": 30.61,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "arena_hard",
+      "score": 35.75,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-tiny",
+      "benchmark": "bfcl_v3",
+      "score": 57.65,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-tiny",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "mmlu",
+      "score": 78.44,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "mmlu_pro",
+      "score": 55.47,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "bbh",
+      "score": 81.62,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "agieval",
+      "score": 70.63,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "gpqa",
+      "score": 40.63,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "gsm8k",
+      "score": 87.27,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "gsm8k_symbolic",
+      "score": 87.38,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "minerva_math",
+      "score": 74.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "deepmind_math",
+      "score": 59.33,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "humaneval",
+      "score": 88.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "humaneval_plus",
+      "score": 83.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "mbpp",
+      "score": 84.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "mbpp_plus",
+      "score": 71.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "bigcodebench",
+      "score": 46.23,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "ifeval",
+      "score": 87.55,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "alpacaeval_2",
+      "score": 42.48,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "arena_hard",
+      "score": 46.48,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-4.0-h-small",
+      "benchmark": "bfcl_v3",
+      "score": 64.69,
+      "unit": "pct",
+      "_source": "https://huggingface.co/ibm-granite/granite-4.0-h-small",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "aime_2025",
+      "score": 72.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2",
+      "_note": "reasoning-on"
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "gpqa",
+      "score": 64.0,
+      "unit": "pct",
+      "_source": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2",
+      "_note": "reasoning-on"
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "livecodebench_v6",
+      "score": 71.1,
+      "unit": "pct",
+      "_source": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2",
+      "_note": "reasoning-on"
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "bfcl_v3",
+      "score": 66.9,
+      "unit": "pct",
+      "_source": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2",
+      "_note": "reasoning-on"
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "ifeval_instruct_strict",
+      "score": 90.3,
+      "unit": "pct",
+      "_source": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2",
+      "_note": "reasoning-on"
+    },
+    {
+      "model": "nvidia/nemotron-nano-9b-v2",
+      "benchmark": "hle_no_tools",
+      "score": 6.5,
+      "unit": "pct",
+      "_source": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2",
+      "_note": "reasoning-on"
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "aa_intelligence_index_v4",
+      "score": 6.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/models/llama-3-2-instruct-1b",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "aa_output_speed_tps",
+      "score": 85.3,
+      "unit": "tok/s",
+      "_source": "https://artificialanalysis.ai/models/llama-3-2-instruct-1b",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "aa_input_price_per_mtok",
+      "score": 0.05,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/llama-3-2-instruct-1b",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-1b-instruct",
+      "benchmark": "aa_output_price_per_mtok",
+      "score": 0.05,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/llama-3-2-instruct-1b",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "aa_intelligence_index_v4",
+      "score": 10.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/models/llama-3-2-instruct-3b",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "aa_output_speed_tps",
+      "score": 50.9,
+      "unit": "tok/s",
+      "_source": "https://artificialanalysis.ai/models/llama-3-2-instruct-3b",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "aa_input_price_per_mtok",
+      "score": 0.15,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/llama-3-2-instruct-3b",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.2-3b-instruct",
+      "benchmark": "aa_output_price_per_mtok",
+      "score": 0.15,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/llama-3-2-instruct-3b",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.3-70b-instruct",
+      "benchmark": "aa_intelligence_index_v4",
+      "score": 14.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/models/llama-3-3-instruct-70b",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.3-70b-instruct",
+      "benchmark": "aa_output_speed_tps",
+      "score": 88.6,
+      "unit": "tok/s",
+      "_source": "https://artificialanalysis.ai/models/llama-3-3-instruct-70b",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.3-70b-instruct",
+      "benchmark": "aa_input_price_per_mtok",
+      "score": 0.58,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/llama-3-3-instruct-70b",
+      "_note": ""
+    },
+    {
+      "model": "meta/llama-3.3-70b-instruct",
+      "benchmark": "aa_output_price_per_mtok",
+      "score": 0.71,
+      "unit": "usd",
+      "_source": "https://artificialanalysis.ai/models/llama-3-3-instruct-70b",
+      "_note": ""
+    }
+  ]
+}
