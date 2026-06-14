@@ -1,0 +1,2526 @@
+{
+  "_meta": {
+    "session": "114",
+    "date": "2026-06-14",
+    "topic": "Image & Video Generation frontier refresh",
+    "notes": "3 parallel agents on commercial T2I/T2V + open-source T2I/T2V + arena leaderboard snapshots",
+    "sources": [
+      "Artificial Analysis Text-to-Image Arena",
+      "Artificial Analysis Text-to-Video Arena (with-audio + no-audio splits)",
+      "Artificial Analysis Image-to-Video Arena",
+      "Artificial Analysis Image Edit Arena",
+      "arena.ai (ex-lmarena) Image/Image-Edit/T2V/I2V",
+      "llm-stats video generation leaderboard",
+      "Black Forest Labs blog (FLUX.2-dev + FLUX.2-klein-4B)",
+      "Wan family (Alibaba ModelScope + HF)",
+      "Tencent HunyuanVideo 1.5 model card",
+      "Lightricks LTX-2 release notes",
+      "OpenAI GPT-Image-2 model card",
+      "Google Imagen Hub / DeepMind Imagen 4 family",
+      "Midjourney V8.1 default 2026-06-10",
+      "DeepMind Veo 3.1 family"
+    ]
+  },
+  "models": [
+    {
+      "id": "openai/sora-2-pro",
+      "name": "Sora 2 Pro",
+      "vendor": "OpenAI",
+      "type": "video",
+      "release_date": "2025-12",
+      "modalities": [
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "openai/sora-2-december",
+      "name": "Sora 2 (December refresh)",
+      "vendor": "OpenAI",
+      "type": "video",
+      "release_date": "2025-12",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "openai/gpt-image-2",
+      "name": "GPT Image 2 (high)",
+      "vendor": "OpenAI",
+      "type": "image",
+      "release_date": "2026-04",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "google/veo-3.1",
+      "name": "Veo 3.1",
+      "vendor": "Google DeepMind",
+      "type": "video",
+      "release_date": "2025-10-15",
+      "modalities": [
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/veo-3.1-fast",
+      "name": "Veo 3.1 Fast",
+      "vendor": "Google DeepMind",
+      "type": "video",
+      "release_date": "2025-10-15",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "google/veo-3.1-lite",
+      "name": "Veo 3.1 Lite",
+      "vendor": "Google DeepMind",
+      "type": "video",
+      "release_date": "2026-01",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "google/nano-banana-2",
+      "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+      "vendor": "Google DeepMind",
+      "type": "image",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "google/nano-banana-pro",
+      "name": "Nano Banana Pro (Gemini 3 Pro Image)",
+      "vendor": "Google DeepMind",
+      "type": "image",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "kuaishou/kling-3.0-1080p",
+      "name": "Kling 3.0 1080p (Pro)",
+      "vendor": "Kuaishou",
+      "type": "video",
+      "release_date": "2026-02-04",
+      "modalities": [
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "kuaishou/kling-3.0-720p",
+      "name": "Kling 3.0 720p (Standard)",
+      "vendor": "Kuaishou",
+      "type": "video",
+      "release_date": "2026-02-04",
+      "modalities": [
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "kuaishou/kling-3.0-omni-1080p",
+      "name": "Kling 3.0 Omni 1080p (Pro)",
+      "vendor": "Kuaishou",
+      "type": "video",
+      "release_date": "2026-02-04",
+      "modalities": [
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "kuaishou/kling-3.0-omni-720p",
+      "name": "Kling 3.0 Omni 720p (Standard)",
+      "vendor": "Kuaishou",
+      "type": "video",
+      "release_date": "2026-02-04",
+      "modalities": [
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "bytedance/dreamina-seedance-2.0-720p",
+      "name": "Dreamina Seedance 2.0 720p",
+      "vendor": "ByteDance Seed",
+      "type": "video",
+      "release_date": "2026-Q2",
+      "modalities": [
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "alibaba-ath/happyhorse-1.0",
+      "name": "HappyHorse-1.0",
+      "vendor": "Alibaba ATH",
+      "type": "video",
+      "release_date": "2026-Q2",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "skywork/skyreels-v4",
+      "name": "SkyReels V4",
+      "vendor": "Skywork AI",
+      "type": "video",
+      "release_date": "2026-Q2",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "vidu/q3-pro",
+      "name": "Vidu Q3 Pro",
+      "vendor": "Vidu",
+      "type": "video",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "pixverse/pixverse-v6",
+      "name": "PixVerse V6",
+      "vendor": "PixVerse",
+      "type": "video",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "alibaba/wan-2.6",
+      "name": "Wan 2.6",
+      "vendor": "Alibaba",
+      "type": "video",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "xai/grok-imagine-video",
+      "name": "grok-imagine-video",
+      "vendor": "xAI",
+      "type": "video",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "xai/grok-imagine-video-1.5-preview",
+      "name": "grok-imagine-video-1.5-preview",
+      "vendor": "xAI",
+      "type": "video",
+      "release_date": "2026-Q2",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "lightricks/ltx-2.3-pro",
+      "name": "LTX-2.3 Pro",
+      "vendor": "Lightricks",
+      "type": "video",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "lightricks/ltx-2.3-fast",
+      "name": "LTX-2.3 Fast",
+      "vendor": "Lightricks",
+      "type": "video",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "sapiens-ai/agnes-video-v2.0",
+      "name": "Agnes-Video-V2.0",
+      "vendor": "Sapiens AI",
+      "type": "video",
+      "release_date": "2026-Q2",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "luma/ray-3",
+      "name": "Luma Ray 3",
+      "vendor": "Luma Labs",
+      "type": "video",
+      "release_date": "2026-03",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "luma/ray-3.14",
+      "name": "Luma Ray 3.14",
+      "vendor": "Luma Labs",
+      "type": "video",
+      "release_date": "2026-01-26",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "minimax/hailuo-2.3",
+      "name": "MiniMax Hailuo 2.3",
+      "vendor": "MiniMax",
+      "type": "video",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "runway/gen-4.5",
+      "name": "Runway Gen-4.5",
+      "vendor": "Runway",
+      "type": "video",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "runway/gen-4-aleph",
+      "name": "Runway Gen-4 Aleph",
+      "vendor": "Runway",
+      "type": "video",
+      "release_date": "2026-05",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "pika/pika-2.5",
+      "name": "Pika 2.5",
+      "vendor": "Pika Labs",
+      "type": "video",
+      "release_date": "2026-spring",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "midjourney/v8-alpha",
+      "name": "Midjourney V8 Alpha",
+      "vendor": "Midjourney",
+      "type": "image",
+      "release_date": "2026-03-17",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "midjourney/v8.1",
+      "name": "Midjourney V8.1",
+      "vendor": "Midjourney",
+      "type": "image",
+      "release_date": "2026-04-30",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "ideogram/ideogram-4.0",
+      "name": "Ideogram 4.0",
+      "vendor": "Ideogram",
+      "type": "image",
+      "release_date": "2026-06-03",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "reve/reve-2.0",
+      "name": "Reve 2.0",
+      "vendor": "Reve",
+      "type": "image",
+      "release_date": "2026-06-03",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "black-forest-labs/flux.2-dev",
+      "name": "FLUX.2 [dev]",
+      "vendor": "Black Forest Labs",
+      "type": "image",
+      "release_date": "2025-11-25",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "black-forest-labs/flux.2-dev-turbo",
+      "name": "FLUX.2 [dev] Turbo",
+      "vendor": "Black Forest Labs",
+      "type": "image",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "black-forest-labs/flux.2-klein-9b",
+      "name": "FLUX.2 [klein] 9B",
+      "vendor": "Black Forest Labs",
+      "type": "image",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "adobe/firefly-image-5",
+      "name": "Adobe Firefly Image Model 5",
+      "vendor": "Adobe",
+      "type": "image",
+      "release_date": "2025-10",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "microsoft/mai-image-2.5",
+      "name": "MAI-Image-2.5 (Foundry)",
+      "vendor": "Microsoft",
+      "type": "image",
+      "release_date": "2026-05-28",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "openai/gpt-image-1.5",
+      "name": "GPT Image 1.5 (high)",
+      "vendor": "OpenAI",
+      "type": "image",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "hidream/hidream-o1-image-1.5",
+      "name": "HiDream-O1-Image-1.5",
+      "vendor": "HiDream",
+      "type": "image",
+      "release_date": "2026-Q2",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "nvidia/cosmos3-super-text2image",
+      "name": "Cosmos3-Super-Text2Image (agentic)",
+      "vendor": "NVIDIA",
+      "type": "image",
+      "release_date": "2026-Q2",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "tencent/hunyuan-image-3.0",
+      "name": "HunyuanImage 3.0 Instruct",
+      "vendor": "Tencent",
+      "type": "image",
+      "release_date": "2026-Q1",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "blackforestlabs/flux-2-dev",
+      "name": "FLUX.2 [dev]",
+      "vendor": "black forest labs",
+      "type": "image",
+      "release_date": "2025-11-25",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "blackforestlabs/flux-2-klein-4b",
+      "name": "FLUX.2 [klein] 4B",
+      "vendor": "black forest labs",
+      "type": "image",
+      "release_date": "2026-05-29",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "blackforestlabs/flux-1-schnell",
+      "name": "FLUX.1 [schnell]",
+      "vendor": "black forest labs",
+      "type": "image",
+      "release_date": "2024-08-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "stabilityai/stable-diffusion-3.5-large",
+      "name": "Stable Diffusion 3.5 Large",
+      "vendor": "stability ai",
+      "type": "image",
+      "release_date": "2024-10-22",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "nvidia/sana-1.6b",
+      "name": "Sana 1.6B",
+      "vendor": "nvidia mit hanlab",
+      "type": "image",
+      "release_date": "2024-10-15",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "nvidia/sana-0.6b",
+      "name": "Sana 0.6B",
+      "vendor": "nvidia mit hanlab",
+      "type": "image",
+      "release_date": "2024-10-15",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "nvidia/sana-1.5-4.8b",
+      "name": "Sana 1.5 4.8B",
+      "vendor": "nvidia mit hanlab",
+      "type": "image",
+      "release_date": "2025-03-16",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "zhipu/cogview4-6b",
+      "name": "CogView4 6B",
+      "vendor": "zhipu ai",
+      "type": "image",
+      "release_date": "2025-03-04",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "hidream/hidream-i1-full",
+      "name": "HiDream-I1 Full",
+      "vendor": "hidream",
+      "type": "image",
+      "release_date": "2025-04-07",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "fal/auraflow-v0.3",
+      "name": "AuraFlow v0.3",
+      "vendor": "fal",
+      "type": "image",
+      "release_date": "2024-08-08",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "pixart/pixart-sigma",
+      "name": "PixArt-Sigma",
+      "vendor": "huawei noah pixart-alpha",
+      "type": "image",
+      "release_date": "2024-04-03",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "kwai/kolors-1.0",
+      "name": "Kolors 1.0",
+      "vendor": "kwai-kolors",
+      "type": "image",
+      "release_date": "2024-07-06",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "alphavllm/lumina-image-2.0",
+      "name": "Lumina-Image 2.0",
+      "vendor": "alpha-vllm shanghai ai lab",
+      "type": "image",
+      "release_date": "2025-01-28",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "tencent/hunyuandit-v1.2",
+      "name": "HunyuanDiT v1.2",
+      "vendor": "tencent hunyuan",
+      "type": "image",
+      "release_date": "2024-07-08",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "alibaba/wan-2.2-t2v-a14b",
+      "name": "Wan 2.2 T2V A14B",
+      "vendor": "alibaba tongyi lab",
+      "type": "video",
+      "release_date": "2025-07-28",
+      "modalities": [
+        "text",
+        "video"
+      ]
+    },
+    {
+      "id": "alibaba/wan-2.2-i2v-a14b",
+      "name": "Wan 2.2 I2V A14B",
+      "vendor": "alibaba tongyi lab",
+      "type": "image",
+      "release_date": "2025-07-28",
+      "modalities": [
+        "image",
+        "video"
+      ]
+    },
+    {
+      "id": "alibaba/wan-2.2-animate-14b",
+      "name": "Wan 2.2 Animate 14B",
+      "vendor": "alibaba tongyi lab",
+      "type": "image",
+      "release_date": "2025-09-19",
+      "modalities": [
+        "image",
+        "video"
+      ]
+    },
+    {
+      "id": "lightricks/ltx-2",
+      "name": "LTX-2",
+      "vendor": "lightricks",
+      "type": "video",
+      "release_date": "2025-10-22",
+      "modalities": [
+        "text",
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "genmo/mochi-1-preview",
+      "name": "Mochi 1 (preview)",
+      "vendor": "genmo",
+      "type": "video",
+      "release_date": "2024-10-22",
+      "modalities": [
+        "text",
+        "video"
+      ]
+    },
+    {
+      "id": "hpcai/open-sora-v2",
+      "name": "Open-Sora 2.0",
+      "vendor": "hpc-ai mit",
+      "type": "image",
+      "release_date": "2025-03-12",
+      "modalities": [
+        "text",
+        "video",
+        "image"
+      ]
+    },
+    {
+      "id": "zhipu/cogvideox-5b",
+      "name": "CogVideoX 5B",
+      "vendor": "zhipu ai thu",
+      "type": "video",
+      "release_date": "2024-09-15",
+      "modalities": [
+        "text",
+        "video"
+      ]
+    },
+    {
+      "id": "zhipu/cogvideox-1.5-5b",
+      "name": "CogVideoX 1.5 5B",
+      "vendor": "zhipu ai thu",
+      "type": "video",
+      "release_date": "2024-11-08",
+      "modalities": [
+        "text",
+        "video"
+      ]
+    },
+    {
+      "id": "rhymes/allegro-t2v-720p",
+      "name": "Allegro T2V 720P",
+      "vendor": "rhymes ai",
+      "type": "video",
+      "release_date": "2024-10-21",
+      "modalities": [
+        "text",
+        "video"
+      ]
+    },
+    {
+      "id": "jy0205/pyramid-flow",
+      "name": "Pyramid Flow",
+      "vendor": "kuaishou pku",
+      "type": "image",
+      "release_date": "2024-10-08",
+      "modalities": [
+        "text",
+        "video",
+        "image"
+      ]
+    },
+    {
+      "id": "openai/gpt-image-2-medium",
+      "name": "gpt-image-2 (medium)",
+      "vendor": "OpenAI",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "openai/gpt-image-1.5-high-fidelity",
+      "name": "gpt-image-1.5-high-fidelity",
+      "vendor": "OpenAI",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "openai/chatgpt-image-latest-high-fidelity-20251216",
+      "name": "chatgpt-image-latest-high-fidelity (20251216)",
+      "vendor": "OpenAI",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "bytedance/hidream-o1-image-1.5",
+      "name": "HiDream-O1-Image-1.5",
+      "vendor": "HiDream/ByteDance",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "hidream/hidream-o1-image-dev-2604",
+      "name": "HiDream-O1-Image-Dev-2604",
+      "vendor": "HiDream",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-flash-image-preview",
+      "name": "gemini-3.1-flash-image-preview (nano-banana-2) [web-search]",
+      "vendor": "Google",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "google/gemini-omni-flash",
+      "name": "gemini-omni-flash",
+      "vendor": "Google",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video",
+        "image",
+        "audio"
+      ]
+    },
+    {
+      "id": "nvidia/cosmos-3-super-text2image",
+      "name": "Cosmos3-Super-Text2Image (agentic)",
+      "vendor": "NVIDIA",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "baidu/ernie-image",
+      "name": "ERNIE Image",
+      "vendor": "Baidu",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "xai/grok-imagine-image-quality",
+      "name": "grok-imagine-image-quality",
+      "vendor": "xAI",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "xai/grok-imagine-image-quality-20260519",
+      "name": "grok-imagine-image-quality (20260519)",
+      "vendor": "xAI",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "ideogram/ideogram-4-0-quality",
+      "name": "ideogram-4.0-quality",
+      "vendor": "Ideogram",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "unknown/uni-1.1-max",
+      "name": "uni-1.1-max",
+      "vendor": "Unknown",
+      "type": "image",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "image"
+      ]
+    },
+    {
+      "id": "google/veo-3.1-audio",
+      "name": "veo-3.1-audio",
+      "vendor": "Google",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/veo-3.1-audio-1080p",
+      "name": "veo-3.1-audio-1080p",
+      "vendor": "Google",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/veo-3.1-fast-audio",
+      "name": "veo-3.1-fast-audio",
+      "vendor": "Google",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "google/veo-3.1-fast-audio-1080p",
+      "name": "veo-3.1-fast-audio-1080p",
+      "vendor": "Google",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video",
+        "audio"
+      ]
+    },
+    {
+      "id": "xai/grok-imagine-video-720p",
+      "name": "grok-imagine-video-720p",
+      "vendor": "xAI",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "xai/grok-imagine-video-480p",
+      "name": "grok-imagine-video-480p",
+      "vendor": "xAI",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "xai/grok-imagine-video-1.5-preview-720p",
+      "name": "grok-imagine-video-1.5-preview-720p",
+      "vendor": "xAI",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "pixverse/pixverse-v5.6",
+      "name": "PixVerse V5.6",
+      "vendor": "PixVerse",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "alibaba/wan2.7-t2v",
+      "name": "wan2.7-t2v",
+      "vendor": "Alibaba",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "bytedance/seedance-1.5-pro",
+      "name": "Seedance 1.5 pro",
+      "vendor": "ByteDance Seed",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "kuaishou/kling-2.6-pro",
+      "name": "Kling 2.6 Pro (January)",
+      "vendor": "KlingAI",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "ltx-studio/ltx-2.3-pro",
+      "name": "LTX-2.3 Pro",
+      "vendor": "Lightricks",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "lightricks/ltx-2-fast",
+      "name": "LTX-2 Fast",
+      "vendor": "Lightricks",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video"
+      ]
+    },
+    {
+      "id": "lightricks/ltx-2-pro",
+      "name": "LTX-2 Pro",
+      "vendor": "Lightricks",
+      "type": "video",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "video"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "aa_t2i_arena_elo",
+      "name": "Artificial Analysis Text-to-Image Arena Elo",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/image/leaderboard/text-to-image"
+    },
+    {
+      "id": "aa_t2v_arena_elo_with_audio",
+      "name": "AA Text-to-Video Arena Elo (with audio)",
+      "category": "video-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/video/leaderboard/text-to-video"
+    },
+    {
+      "id": "aa_t2v_arena_elo_no_audio",
+      "name": "AA Text-to-Video Arena Elo (no audio)",
+      "category": "video-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/video/leaderboard/text-to-video"
+    },
+    {
+      "id": "aa_i2v_arena_elo_with_audio",
+      "name": "AA Image-to-Video Arena Elo (with audio)",
+      "category": "video-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/video/leaderboard/image-to-video"
+    },
+    {
+      "id": "aa_image_edit_arena_elo",
+      "name": "AA Image Editing Arena Elo",
+      "category": "image-edit",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/image/leaderboard/editing"
+    },
+    {
+      "id": "arena_t2i_elo_arenaai",
+      "name": "Arena.ai Text-to-Image Arena Elo",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://arena.ai/leaderboard/text-to-image"
+    },
+    {
+      "id": "geneval_overall",
+      "name": "GenEval Overall",
+      "category": "image-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://github.com/djghosh13/geneval"
+    },
+    {
+      "id": "dpg_bench_overall",
+      "name": "DPG-Bench Overall",
+      "category": "image-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://github.com/TencentQQGYLab/ELLA"
+    },
+    {
+      "id": "t2i_compbench_numeracy",
+      "name": "T2I-CompBench Numeracy",
+      "category": "image-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://karine-h.github.io/T2I-CompBench/"
+    },
+    {
+      "id": "aa_image_arena_elo",
+      "name": "Artificial Analysis Image Arena Elo",
+      "category": "image-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/image"
+    },
+    {
+      "id": "lm_arena_image_elo",
+      "name": "LM Arena Image Generation Elo",
+      "category": "image-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://lmarena.ai/leaderboard/image"
+    },
+    {
+      "id": "image_reward",
+      "name": "ImageReward",
+      "category": "image-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2304.05977"
+    },
+    {
+      "id": "fid_1024",
+      "name": "FID @ 1024px (lower=better)",
+      "category": "image-gen",
+      "metric": "score_lower_better",
+      "unit": "score_lower_better",
+      "description": "",
+      "source_url": "https://github.com/mseitzer/pytorch-fid"
+    },
+    {
+      "id": "clip_score",
+      "name": "CLIP Score",
+      "category": "image-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://github.com/openai/CLIP"
+    },
+    {
+      "id": "vbench_total",
+      "name": "VBench Total Score",
+      "category": "video-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://vchitect.github.io/VBench-project/"
+    },
+    {
+      "id": "vbench_quality",
+      "name": "VBench Quality Score",
+      "category": "video-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://vchitect.github.io/VBench-project/"
+    },
+    {
+      "id": "aa_t2v_arena_elo",
+      "name": "Artificial Analysis Text-to-Video Arena Elo (with audio)",
+      "category": "video-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/text-to-video/arena"
+    },
+    {
+      "id": "aa_i2v_arena_elo",
+      "name": "Artificial Analysis Image-to-Video Arena Elo (with audio)",
+      "category": "video-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/image-to-video/arena"
+    },
+    {
+      "id": "lmarena_t2i_arena_elo",
+      "name": "lmarena/arena.ai Text-to-Image Arena Elo",
+      "category": "image-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://arena.ai/leaderboard?category=text-to-image"
+    },
+    {
+      "id": "lmarena_image_edit_arena_elo",
+      "name": "lmarena/arena.ai Image Edit Arena Elo",
+      "category": "image-edit",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://arena.ai/leaderboard?category=image-edit"
+    },
+    {
+      "id": "lmarena_t2v_arena_elo",
+      "name": "lmarena/arena.ai Text-to-Video Arena Elo",
+      "category": "video-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://arena.ai/leaderboard?category=text-to-video"
+    },
+    {
+      "id": "lmarena_i2v_arena_elo",
+      "name": "lmarena/arena.ai Image-to-Video Arena Elo",
+      "category": "video-gen",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "https://arena.ai/leaderboard?category=image-to-video"
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-image-2",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1339.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "rank #1 (high tier) \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "openai/gpt-image-1.5",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1267.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "rank #2 (high tier) \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "bytedance/hidream-o1-image-1.5",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1264.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "rank #3 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/nano-banana-2",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1257.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "rank #4 (Gemini 3.1 Flash Image Preview) \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "nvidia/cosmos-3-super-text2image",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1235.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "rank #5 \u2014 Best Open Weights model \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "hidream/hidream-o1-image-dev-2604",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1190.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "2nd open-weights \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "baidu/ernie-image",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1172.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "snapshot 2026-06-14"
+    },
+    {
+      "model": "bytedance/dreamina-seedance-2.0-720p",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1216.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #1 \u2014 with-audio table \u2014 cost $9.07/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "alibaba-ath/happyhorse-1.0",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1122.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #2 \u2014 cost $13.20/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "skywork/skyreels-v4",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1106.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #3 \u2014 cost $21.00/min \u2014 NEW entrant since S97 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "kuaishou/kling-3.0-1080p",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1103.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #4 \u2014 cost $20.16/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "kuaishou/kling-3.0-omni-1080p",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1099.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #5 \u2014 cost $16.80/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "kuaishou/kling-3.0-omni-720p",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1094.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #6 \u2014 cost $13.44/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "kuaishou/kling-3.0-720p",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1094.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #7 \u2014 cost $15.12/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1093.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #8 \u2014 cost $24.00/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-fast",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1085.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #9 \u2014 cost $9.00/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-lite",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1083.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #10 \u2014 cost $4.80/min \u2014 NEW since S97 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "vidu/q3-pro",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1081.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #11 \u2014 cost $9.60/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "xai/grok-imagine-video",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1069.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #12 \u2014 cost $4.20/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "pixverse/pixverse-v6",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1068.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #13 \u2014 cost $6.90/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "alibaba/wan-2.6",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1020.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #14 \u2014 cost $9.00/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "bytedance/seedance-1.5-pro",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 1000.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #15 \u2014 cost $11.86/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "kuaishou/kling-2.6-pro",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 989.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #16 \u2014 cost $8.40/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "lightricks/ltx-2.3-fast",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 973.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #17 \u2014 Open Weights \u2014 cost $2.40/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "ltx-studio/ltx-2.3-pro",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 954.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #18 \u2014 Open Weights \u2014 cost $3.60/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "lightricks/ltx-2-fast",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 944.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #19 \u2014 Open Weights \u2014 cost $2.40/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "pixverse/pixverse-v5.6",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 943.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #20 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "lightricks/ltx-2-pro",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 914.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #21 \u2014 Open Weights \u2014 cost $3.60/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "sapiens-ai/agnes-video-v2.0",
+      "benchmark": "aa_t2v_arena_elo",
+      "score": 904.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "rank #22 \u2014 cost $0.30/min \u2014 NEW since S97 (cheapest) \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "bytedance/dreamina-seedance-2.0-720p",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1194.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #1 \u2014 cost $9.07/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "xai/grok-imagine-video-1.5-preview",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1113.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #2 \u2014 cost $8.40/min \u2014 NEW since S97 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "alibaba-ath/happyhorse-1.0",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1093.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #3 \u2014 cost $13.20/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1088.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #4 \u2014 cost $24.00/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "xai/grok-imagine-video",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1081.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #5 \u2014 cost $4.20/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "skywork/skyreels-v4",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1081.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #6 \u2014 cost $21.00/min \u2014 NEW since S97 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-fast",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1078.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #7 \u2014 cost $9.00/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "pixverse/pixverse-v6",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1076.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #8 \u2014 cost $6.90/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "kuaishou/kling-3.0-1080p",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1076.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #9 \u2014 cost $20.16/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "kuaishou/kling-3.0-720p",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1070.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #10 \u2014 cost $15.60/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "vidu/q3-pro",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1064.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #11 \u2014 cost $9.60/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-lite",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1061.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #12 \u2014 cost $4.80/min \u2014 NEW since S97 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "kuaishou/kling-3.0-omni-1080p",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1061.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #13 \u2014 cost $16.80/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "kuaishou/kling-3.0-omni-720p",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1053.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #14 \u2014 cost $13.44/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "kuaishou/kling-2.6-pro",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1010.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #15 \u2014 cost $8.40/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "bytedance/seedance-1.5-pro",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 1000.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #16 \u2014 cost $11.86/min \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "lightricks/ltx-2.3-fast",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 955.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #17 \u2014 Open Weights \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "pixverse/pixverse-v5.6",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 954.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #18 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "ltx-studio/ltx-2.3-pro",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 953.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #19 \u2014 Open Weights \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "lightricks/ltx-2-fast",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 939.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #20 \u2014 Open Weights \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "sapiens-ai/agnes-video-v2.0",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 925.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #21 \u2014 NEW since S97 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "alibaba/wan-2.6",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 899.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #22 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "lightricks/ltx-2-pro",
+      "benchmark": "aa_i2v_arena_elo",
+      "score": 882.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "rank #23 \u2014 Open Weights \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "openai/gpt-image-2-medium",
+      "benchmark": "lmarena_t2i_arena_elo",
+      "score": 1385.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-image",
+      "_note": "rank #1 \u2014 \u00b16 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "reve/reve-2.0",
+      "benchmark": "lmarena_t2i_arena_elo",
+      "score": 1273.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-image",
+      "_note": "rank #2 \u2014 \u00b19 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/gemini-3.1-flash-image-preview",
+      "benchmark": "lmarena_t2i_arena_elo",
+      "score": 1269.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-image",
+      "_note": "rank #3 \u2014 nano-banana-2 [web-search] \u2014 \u00b14 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "microsoft/mai-image-2.5",
+      "benchmark": "lmarena_t2i_arena_elo",
+      "score": 1253.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-image",
+      "_note": "rank #4 \u2014 \u00b16 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/nano-banana-pro",
+      "benchmark": "lmarena_t2i_arena_elo",
+      "score": 1245.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-image",
+      "_note": "rank #5 \u2014 gemini-3-pro-image-preview-2k variant \u2014 \u00b14 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "openai/gpt-image-1.5-high-fidelity",
+      "benchmark": "lmarena_t2i_arena_elo",
+      "score": 1241.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-image",
+      "_note": "rank #6 \u2014 \u00b14 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "xai/grok-imagine-image-quality",
+      "benchmark": "lmarena_t2i_arena_elo",
+      "score": 1234.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-image",
+      "_note": "rank #7 \u2014 \u00b16 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "ideogram/ideogram-4-0-quality",
+      "benchmark": "lmarena_t2i_arena_elo",
+      "score": 1204.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-image",
+      "_note": "rank #9 \u2014 \u00b110 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "unknown/uni-1.1-max",
+      "benchmark": "lmarena_t2i_arena_elo",
+      "score": 1191.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-image",
+      "_note": "rank #10 \u2014 \u00b17 \u2014 unknown vendor \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "openai/gpt-image-2-medium",
+      "benchmark": "lmarena_image_edit_arena_elo",
+      "score": 1465.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-edit",
+      "_note": "rank #1 \u2014 \u00b15 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "microsoft/mai-image-2.5",
+      "benchmark": "lmarena_image_edit_arena_elo",
+      "score": 1401.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-edit",
+      "_note": "rank #2 \u2014 \u00b18 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "openai/chatgpt-image-latest-high-fidelity-20251216",
+      "benchmark": "lmarena_image_edit_arena_elo",
+      "score": 1390.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-edit",
+      "_note": "rank #3 \u2014 \u00b14 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "xai/grok-imagine-image-quality-20260519",
+      "benchmark": "lmarena_image_edit_arena_elo",
+      "score": 1388.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-edit",
+      "_note": "rank #4 \u2014 \u00b17 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/nano-banana-pro",
+      "benchmark": "lmarena_image_edit_arena_elo",
+      "score": 1388.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-edit",
+      "_note": "rank #5 \u2014 gemini-3-pro-image-preview-2k \u2014 \u00b13 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/gemini-3.1-flash-image-preview",
+      "benchmark": "lmarena_image_edit_arena_elo",
+      "score": 1387.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-edit",
+      "_note": "rank #6 \u2014 nano-banana-2 [web-search] \u2014 \u00b14 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "openai/gpt-image-1.5-high-fidelity",
+      "benchmark": "lmarena_image_edit_arena_elo",
+      "score": 1373.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-edit",
+      "_note": "rank #8 \u2014 \u00b13 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "reve/reve-2.0",
+      "benchmark": "lmarena_image_edit_arena_elo",
+      "score": 1356.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-edit",
+      "_note": "rank #9 \u2014 \u00b111 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "xai/grok-imagine-image-quality",
+      "benchmark": "lmarena_image_edit_arena_elo",
+      "score": 1355.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-edit",
+      "_note": "rank #10 \u2014 \u00b15 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/gemini-omni-flash",
+      "benchmark": "lmarena_t2v_arena_elo",
+      "score": 1527.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-video",
+      "_note": "rank #1 \u2014 \u00b114 \u2014 NEW TOP since S97 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "bytedance/dreamina-seedance-2.0-720p",
+      "benchmark": "lmarena_t2v_arena_elo",
+      "score": 1466.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-video",
+      "_note": "rank #2 \u2014 \u00b18 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "alibaba-ath/happyhorse-1.0",
+      "benchmark": "lmarena_t2v_arena_elo",
+      "score": 1437.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-video",
+      "_note": "rank #3 \u2014 \u00b17 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-audio-1080p",
+      "benchmark": "lmarena_t2v_arena_elo",
+      "score": 1369.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-video",
+      "_note": "rank #4 \u2014 \u00b111 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "alibaba/wan2.7-t2v",
+      "benchmark": "lmarena_t2v_arena_elo",
+      "score": 1368.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-video",
+      "_note": "rank #5 \u2014 \u00b113 \u2014 NEW since S97 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-audio",
+      "benchmark": "lmarena_t2v_arena_elo",
+      "score": 1365.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-video",
+      "_note": "rank #6 \u2014 \u00b114 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "openai/sora-2-pro",
+      "benchmark": "lmarena_t2v_arena_elo",
+      "score": 1365.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-video",
+      "_note": "rank #7 \u2014 \u00b18 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-fast-audio",
+      "benchmark": "lmarena_t2v_arena_elo",
+      "score": 1364.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-video",
+      "_note": "rank #8 \u2014 \u00b111 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-fast-audio-1080p",
+      "benchmark": "lmarena_t2v_arena_elo",
+      "score": 1362.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-video",
+      "_note": "rank #9 \u2014 \u00b111 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "xai/grok-imagine-video-720p",
+      "benchmark": "lmarena_t2v_arena_elo",
+      "score": 1358.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=text-to-video",
+      "_note": "rank #10 \u2014 \u00b16 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/gemini-omni-flash",
+      "benchmark": "lmarena_i2v_arena_elo",
+      "score": 1475.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-to-video",
+      "_note": "rank #1 tied \u2014 \u00b114 \u2014 NEW TOP since S97 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "bytedance/dreamina-seedance-2.0-720p",
+      "benchmark": "lmarena_i2v_arena_elo",
+      "score": 1475.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-to-video",
+      "_note": "rank #1 tied \u2014 \u00b110 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "xai/grok-imagine-video-1.5-preview-720p",
+      "benchmark": "lmarena_i2v_arena_elo",
+      "score": 1467.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-to-video",
+      "_note": "rank #3 \u2014 \u00b16 \u2014 NEW since S97 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "alibaba-ath/happyhorse-1.0",
+      "benchmark": "lmarena_i2v_arena_elo",
+      "score": 1446.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-to-video",
+      "_note": "rank #4 \u2014 \u00b111 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "xai/grok-imagine-video-720p",
+      "benchmark": "lmarena_i2v_arena_elo",
+      "score": 1422.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-to-video",
+      "_note": "rank #5 \u2014 \u00b15 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-audio",
+      "benchmark": "lmarena_i2v_arena_elo",
+      "score": 1398.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-to-video",
+      "_note": "rank #6 \u2014 \u00b111 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-audio-1080p",
+      "benchmark": "lmarena_i2v_arena_elo",
+      "score": 1393.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-to-video",
+      "_note": "rank #7 \u2014 \u00b19 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-fast-audio",
+      "benchmark": "lmarena_i2v_arena_elo",
+      "score": 1385.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-to-video",
+      "_note": "rank #8 \u2014 \u00b19 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "xai/grok-imagine-video-480p",
+      "benchmark": "lmarena_i2v_arena_elo",
+      "score": 1384.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-to-video",
+      "_note": "rank #9 \u2014 \u00b19 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "google/veo-3.1-fast-audio-1080p",
+      "benchmark": "lmarena_i2v_arena_elo",
+      "score": 1375.0,
+      "unit": "elo",
+      "_source": "https://arena.ai/leaderboard?category=image-to-video",
+      "_note": "rank #10 \u2014 \u00b110 \u2014 snapshot 2026-06-14"
+    },
+    {
+      "model": "hidream/hidream-o1-image-1.5",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1265.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "Rank 3"
+    },
+    {
+      "model": "nvidia/cosmos3-super-text2image",
+      "benchmark": "aa_t2i_arena_elo",
+      "score": 1235.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "_note": "Rank 5 (agentic)"
+    },
+    {
+      "model": "openai/gpt-image-1.5",
+      "benchmark": "aa_image_edit_arena_elo",
+      "score": 1263.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/editing",
+      "_note": "Rank 1 Image Editing"
+    },
+    {
+      "model": "openai/gpt-image-2",
+      "benchmark": "aa_image_edit_arena_elo",
+      "score": 1259.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/editing",
+      "_note": "Rank 2 Image Editing"
+    },
+    {
+      "model": "google/nano-banana-pro",
+      "benchmark": "aa_image_edit_arena_elo",
+      "score": 1250.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/editing",
+      "_note": "Rank 3 Image Editing"
+    },
+    {
+      "model": "microsoft/mai-image-2.5",
+      "benchmark": "aa_image_edit_arena_elo",
+      "score": 1248.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/editing",
+      "_note": "Rank 4 Image Editing (Foundry)"
+    },
+    {
+      "model": "google/nano-banana-2",
+      "benchmark": "aa_image_edit_arena_elo",
+      "score": 1247.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/editing",
+      "_note": "Rank 5 Image Editing"
+    },
+    {
+      "model": "tencent/hunyuan-image-3.0",
+      "benchmark": "aa_image_edit_arena_elo",
+      "score": 1230.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/editing",
+      "_note": "Top open-weights"
+    },
+    {
+      "model": "hidream/hidream-o1-image-1.5",
+      "benchmark": "aa_image_edit_arena_elo",
+      "score": 1211.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/editing",
+      "_note": ""
+    },
+    {
+      "model": "black-forest-labs/flux.2-klein-9b",
+      "benchmark": "aa_image_edit_arena_elo",
+      "score": 1167.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/image/leaderboard/editing",
+      "_note": ""
+    },
+    {
+      "model": "bytedance/dreamina-seedance-2.0-720p",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1216.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 1, 9,011 samples"
+    },
+    {
+      "model": "alibaba-ath/happyhorse-1.0",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1122.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 2, 5,540 samples"
+    },
+    {
+      "model": "skywork/skyreels-v4",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1106.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 3"
+    },
+    {
+      "model": "kuaishou/kling-3.0-1080p",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1103.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 4"
+    },
+    {
+      "model": "kuaishou/kling-3.0-omni-1080p",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1099.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 5"
+    },
+    {
+      "model": "kuaishou/kling-3.0-omni-720p",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1094.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 6"
+    },
+    {
+      "model": "kuaishou/kling-3.0-720p",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1094.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 7"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1093.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 8"
+    },
+    {
+      "model": "google/veo-3.1-fast",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1085.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 9"
+    },
+    {
+      "model": "google/veo-3.1-lite",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1083.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 10"
+    },
+    {
+      "model": "vidu/q3-pro",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1081.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 11"
+    },
+    {
+      "model": "xai/grok-imagine-video",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1069.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 12"
+    },
+    {
+      "model": "pixverse/pixverse-v6",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1068.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 13"
+    },
+    {
+      "model": "alibaba/wan-2.6",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1020.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 14"
+    },
+    {
+      "model": "lightricks/ltx-2.3-fast",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 973.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 17"
+    },
+    {
+      "model": "lightricks/ltx-2.3-pro",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 954.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 18"
+    },
+    {
+      "model": "sapiens-ai/agnes-video-v2.0",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 904.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 22"
+    },
+    {
+      "model": "alibaba-ath/happyhorse-1.0",
+      "benchmark": "aa_t2v_arena_elo_no_audio",
+      "score": 1292.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 1 no-audio"
+    },
+    {
+      "model": "bytedance/dreamina-seedance-2.0-720p",
+      "benchmark": "aa_t2v_arena_elo_no_audio",
+      "score": 1273.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 2 no-audio"
+    },
+    {
+      "model": "kuaishou/kling-3.0-1080p",
+      "benchmark": "aa_t2v_arena_elo_no_audio",
+      "score": 1251.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 3 no-audio"
+    },
+    {
+      "model": "kuaishou/kling-3.0-omni-1080p",
+      "benchmark": "aa_t2v_arena_elo_no_audio",
+      "score": 1237.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 4 no-audio"
+    },
+    {
+      "model": "xai/grok-imagine-video",
+      "benchmark": "aa_t2v_arena_elo_no_audio",
+      "score": 1233.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "_note": "Rank 5 no-audio"
+    },
+    {
+      "model": "bytedance/dreamina-seedance-2.0-720p",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1194.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 1 I2V"
+    },
+    {
+      "model": "xai/grok-imagine-video-1.5-preview",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1113.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 2 I2V"
+    },
+    {
+      "model": "alibaba-ath/happyhorse-1.0",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1093.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 3 I2V"
+    },
+    {
+      "model": "google/veo-3.1",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1088.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 4 I2V"
+    },
+    {
+      "model": "xai/grok-imagine-video",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1081.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 5 I2V"
+    },
+    {
+      "model": "skywork/skyreels-v4",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1081.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 6 I2V"
+    },
+    {
+      "model": "google/veo-3.1-fast",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1078.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 7 I2V"
+    },
+    {
+      "model": "pixverse/pixverse-v6",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1076.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 8 I2V"
+    },
+    {
+      "model": "kuaishou/kling-3.0-1080p",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1076.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 9 I2V"
+    },
+    {
+      "model": "kuaishou/kling-3.0-720p",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1070.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 10 I2V"
+    },
+    {
+      "model": "vidu/q3-pro",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1064.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 11 I2V"
+    },
+    {
+      "model": "google/veo-3.1-lite",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1061.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 12 I2V"
+    },
+    {
+      "model": "kuaishou/kling-3.0-omni-1080p",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1061.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 13 I2V"
+    },
+    {
+      "model": "kuaishou/kling-3.0-omni-720p",
+      "benchmark": "aa_i2v_arena_elo_with_audio",
+      "score": 1053.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard/image-to-video",
+      "_note": "Rank 14 I2V"
+    },
+    {
+      "model": "openai/sora-2-pro",
+      "benchmark": "aa_t2v_arena_elo_with_audio",
+      "score": 1191.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/models/sora-2-pro",
+      "_note": "Sora 2 Pro detail page Elo 1191.17"
+    },
+    {
+      "model": "openai/sora-2-december",
+      "benchmark": "aa_t2v_arena_elo_no_audio",
+      "score": 1180.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/models/sora-2-december-no-audio",
+      "_note": "Sora 2 December refresh Elo 1179.62"
+    },
+    {
+      "model": "openai/gpt-image-2",
+      "benchmark": "arena_t2i_elo_arenaai",
+      "score": 1512.0,
+      "unit": "elo",
+      "_source": "https://x.com/arena/status/2046690103515648061",
+      "_note": "Arena.ai T2I Elo per Arena official post (April 2026)"
+    },
+    {
+      "model": "google/nano-banana-2",
+      "benchmark": "arena_t2i_elo_arenaai",
+      "score": 1360.0,
+      "unit": "elo",
+      "_source": "https://x.com/arena/status/2046690103515648061",
+      "_note": "Arena.ai T2I Elo (April 2026)"
+    },
+    {
+      "model": "reve/reve-2.0",
+      "benchmark": "arena_t2i_elo_arenaai",
+      "score": 1280.0,
+      "unit": "elo",
+      "_source": "https://x.com/arena/status/2062261716831142025",
+      "_note": "Arena.ai T2I #2 post-launch (June 2026)"
+    },
+    {
+      "model": "blackforestlabs/flux-2-dev",
+      "benchmark": "lm_arena_image_elo",
+      "score": 1149.0,
+      "unit": "score",
+      "_source": "https://bfl.ai/blog/flux-2 + wavespeed LM Arena Text-to-Image Rankings 2026",
+      "_note": "LM Arena image generation #9; highest open-weight model on the leaderboard"
+    },
+    {
+      "model": "blackforestlabs/flux-2-dev",
+      "benchmark": "aa_image_arena_elo",
+      "score": 1159.43,
+      "unit": "score",
+      "_source": "https://artificialanalysis.ai/image/models/flux_flux-2--dev (snapshot 2026-06-14)",
+      "_note": "AA Image Arena Elo for FLUX.2 [dev]"
+    },
+    {
+      "model": "nvidia/sana-0.6b",
+      "benchmark": "geneval_overall",
+      "score": 0.64,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2410.10629v2 Sana paper Table \u2014 1024px",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/sana-0.6b",
+      "benchmark": "dpg_bench_overall",
+      "score": 83.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2410.10629v2 Sana paper Table \u2014 1024px",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/sana-0.6b",
+      "benchmark": "image_reward",
+      "score": 0.97,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2410.10629v2 Sana paper Table \u2014 1024px",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/sana-0.6b",
+      "benchmark": "fid_1024",
+      "score": 5.81,
+      "unit": "score_lower_better",
+      "_source": "https://arxiv.org/html/2410.10629v2",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/sana-0.6b",
+      "benchmark": "clip_score",
+      "score": 28.36,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2410.10629v2",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/sana-1.6b",
+      "benchmark": "geneval_overall",
+      "score": 0.66,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2410.10629v2 Sana paper Table \u2014 1024px",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/sana-1.6b",
+      "benchmark": "dpg_bench_overall",
+      "score": 84.8,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2410.10629v2 Sana paper Table \u2014 1024px",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/sana-1.6b",
+      "benchmark": "image_reward",
+      "score": 0.99,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2410.10629v2 Sana paper Table \u2014 1024px",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/sana-1.6b",
+      "benchmark": "fid_1024",
+      "score": 5.76,
+      "unit": "score_lower_better",
+      "_source": "https://arxiv.org/html/2410.10629v2",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/sana-1.6b",
+      "benchmark": "clip_score",
+      "score": 28.67,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2410.10629v2",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/sana-1.5-4.8b",
+      "benchmark": "geneval_overall",
+      "score": 0.72,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2501.18427 SANA 1.5 paper \u2014 4.8B base",
+      "_note": "Reaches 0.81 base + 0.96 with VILA-Judge inference scaling per paper"
+    },
+    {
+      "model": "nvidia/sana-1.5-4.8b",
+      "benchmark": "dpg_bench_overall",
+      "score": 85.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2501.18427 SANA 1.5 paper",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/sana-1.5-4.8b",
+      "benchmark": "fid_1024",
+      "score": 5.42,
+      "unit": "score_lower_better",
+      "_source": "https://arxiv.org/abs/2501.18427",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/cogview4-6b",
+      "benchmark": "dpg_bench_overall",
+      "score": 85.13,
+      "unit": "score",
+      "_source": "https://github.com/zai-org/CogView4 README",
+      "_note": "Highest DPG-Bench among compared models at release per CogView4 README"
+    },
+    {
+      "model": "zhipu/cogview4-6b",
+      "benchmark": "geneval_overall",
+      "score": 0.73,
+      "unit": "score",
+      "_source": "https://github.com/zai-org/CogView4 README",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/cogview4-6b",
+      "benchmark": "t2i_compbench_numeracy",
+      "score": 0.6626,
+      "unit": "score",
+      "_source": "https://github.com/zai-org/CogView4 README",
+      "_note": "Strongest T2I-CompBench Numeracy metric per CogView4 README"
+    },
+    {
+      "model": "hidream/hidream-i1-full",
+      "benchmark": "geneval_overall",
+      "score": 0.83,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2505.22705 HiDream-I1 paper + wavespeed.ai HiDream-I1 Full blog",
+      "_note": "Highest GenEval Overall among models evaluated in HiDream-I1 paper at release"
+    },
+    {
+      "model": "hidream/hidream-i1-full",
+      "benchmark": "dpg_bench_overall",
+      "score": 85.89,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2505.22705 HiDream-I1 paper",
+      "_note": ""
+    },
+    {
+      "model": "fal/auraflow-v0.3",
+      "benchmark": "geneval_overall",
+      "score": 0.703,
+      "unit": "score",
+      "_source": "https://huggingface.co/fal/AuraFlow-v0.3 model card",
+      "_note": "Final release w/ enhanced prompt pipeline; pretraining was 0.63-0.67"
+    },
+    {
+      "model": "hpcai/open-sora-v2",
+      "benchmark": "vbench_total",
+      "score": 83.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.09642 Open-Sora 2.0 paper \u2014 VBench gap with Sora reduced from 4.52% to 0.69% (Sora ~84.4 -> OS2.0 ~83.7)",
+      "_note": "Approx derived from explicit 0.69% gap-with-Sora statement; HPC-AI report"
+    },
+    {
+      "model": "jy0205/pyramid-flow",
+      "benchmark": "vbench_quality",
+      "score": 84.74,
+      "unit": "score",
+      "_source": "https://pyramid-flow.github.io/ + arxiv 2410.05954 \u2014 VBench Quality 84.74 vs Gen-3 84.11",
+      "_note": "Pyramid Flow paper explicit Quality Score number"
+    },
+    {
+      "model": "alibaba/wan-2.2-i2v-a14b",
+      "benchmark": "vbench_total",
+      "score": 95.82,
+      "unit": "score",
+      "_source": "https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B + Wan2.2 GitHub README (VBench-I2V Overall I2V Score 0.9582 \u2192 reported as 95.82)",
+      "_note": "VBench-I2V Overall I2V Score, scaled to 100"
+    },
+    {
+      "model": "alibaba/wan-2.2-i2v-a14b",
+      "benchmark": "vbench_quality",
+      "score": 80.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B (VBench-I2V Quality Score 0.8050 \u2192 80.50)",
+      "_note": ""
+    }
+  ]
+}

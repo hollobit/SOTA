@@ -2087,27 +2087,6 @@
     "metric": "percent_identity"
   },
   {
-    "id": "aa_t2i_arena_elo",
-    "name": "Artificial Analysis Text-to-Image Arena Elo",
-    "category": "multimodal",
-    "description": "AA T2I head-to-head arena Elo ranking. Higher=better. ~9,576 paired comparisons at top of leaderboard.",
-    "metric": "elo"
-  },
-  {
-    "id": "aa_t2v_arena_elo",
-    "name": "Artificial Analysis Text-to-Video Arena Elo",
-    "category": "multimodal",
-    "description": "AA T2V head-to-head arena Elo (with audio). Higher=better.",
-    "metric": "elo"
-  },
-  {
-    "id": "aa_i2v_arena_elo",
-    "name": "Artificial Analysis Image-to-Video Arena Elo",
-    "category": "multimodal",
-    "description": "AA I2V head-to-head arena Elo (with audio).",
-    "metric": "elo"
-  },
-  {
     "id": "suno_elo",
     "name": "Suno music side-by-side Elo",
     "category": "multimodal",
@@ -2218,20 +2197,6 @@
     "category": "agent",
     "description": "Code-Replication on Research Eval (Hard split) — agent benchmark for reproducing published-paper computational experiments end-to-end. HAL is the official leaderboard. arxiv ref: Siegel et al.",
     "metric": "accuracy"
-  },
-  {
-    "id": "vbench_total",
-    "name": "VBench Total Score",
-    "category": "multimodal",
-    "description": "VBench composite total score across 16 dimensions (Quality+Semantic weighted average). Higher=better. Vchitect Shanghai AI Lab.",
-    "metric": "percent"
-  },
-  {
-    "id": "vbench_quality",
-    "name": "VBench Quality Score",
-    "category": "multimodal",
-    "description": "VBench Quality sub-score: subject consistency, motion smoothness, aesthetic, imaging quality, etc.",
-    "metric": "percent"
   },
   {
     "id": "vbench_semantic",
@@ -12300,20 +12265,6 @@
     "metric": "score"
   },
   {
-    "id": "aa_image_arena_elo",
-    "name": "Artificial Analysis Image Arena Elo",
-    "category": "image-gen",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "geneval_overall",
-    "name": "GenEval Overall",
-    "category": "image-gen",
-    "description": "",
-    "metric": "score"
-  },
-  {
     "id": "geneval_single_obj",
     "name": "GenEval Single Object",
     "category": "image-gen",
@@ -12351,13 +12302,6 @@
   {
     "id": "geneval_attr",
     "name": "GenEval Attribute Binding",
-    "category": "image-gen",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "dpg_bench_overall",
-    "name": "DPG-Bench Overall",
     "category": "image-gen",
     "description": "",
     "metric": "score"
@@ -16196,6 +16140,160 @@
     "category": "long-context",
     "description": "MRCR 1M Pass@1 as reported in DeepSeek V4-Pro Technical Report Table 6",
     "metric": "pass_at_1"
+  },
+  {
+    "id": "aa_t2i_arena_elo",
+    "name": "Artificial Analysis Text-to-Image Arena Elo",
+    "category": "image-gen",
+    "description": "",
+    "metric": "elo"
+  },
+  {
+    "id": "aa_t2v_arena_elo_with_audio",
+    "name": "AA Text-to-Video Arena Elo (with audio)",
+    "category": "video-gen",
+    "description": "",
+    "metric": "elo"
+  },
+  {
+    "id": "aa_t2v_arena_elo_no_audio",
+    "name": "AA Text-to-Video Arena Elo (no audio)",
+    "category": "video-gen",
+    "description": "",
+    "metric": "elo"
+  },
+  {
+    "id": "aa_i2v_arena_elo_with_audio",
+    "name": "AA Image-to-Video Arena Elo (with audio)",
+    "category": "video-gen",
+    "description": "",
+    "metric": "elo"
+  },
+  {
+    "id": "aa_image_edit_arena_elo",
+    "name": "AA Image Editing Arena Elo",
+    "category": "image-edit",
+    "description": "",
+    "metric": "elo"
+  },
+  {
+    "id": "arena_t2i_elo_arenaai",
+    "name": "Arena.ai Text-to-Image Arena Elo",
+    "category": "image-gen",
+    "description": "",
+    "metric": "elo"
+  },
+  {
+    "id": "geneval_overall",
+    "name": "GenEval Overall",
+    "category": "image-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "dpg_bench_overall",
+    "name": "DPG-Bench Overall",
+    "category": "image-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "t2i_compbench_numeracy",
+    "name": "T2I-CompBench Numeracy",
+    "category": "image-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "aa_image_arena_elo",
+    "name": "Artificial Analysis Image Arena Elo",
+    "category": "image-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "lm_arena_image_elo",
+    "name": "LM Arena Image Generation Elo",
+    "category": "image-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "image_reward",
+    "name": "ImageReward",
+    "category": "image-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "fid_1024",
+    "name": "FID @ 1024px (lower=better)",
+    "category": "image-gen",
+    "description": "",
+    "metric": "score_lower_better"
+  },
+  {
+    "id": "clip_score",
+    "name": "CLIP Score",
+    "category": "image-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "vbench_total",
+    "name": "VBench Total Score",
+    "category": "video-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "vbench_quality",
+    "name": "VBench Quality Score",
+    "category": "video-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "aa_t2v_arena_elo",
+    "name": "Artificial Analysis Text-to-Video Arena Elo (with audio)",
+    "category": "video-gen",
+    "description": "",
+    "metric": "elo"
+  },
+  {
+    "id": "aa_i2v_arena_elo",
+    "name": "Artificial Analysis Image-to-Video Arena Elo (with audio)",
+    "category": "video-gen",
+    "description": "",
+    "metric": "elo"
+  },
+  {
+    "id": "lmarena_t2i_arena_elo",
+    "name": "lmarena/arena.ai Text-to-Image Arena Elo",
+    "category": "image-gen",
+    "description": "",
+    "metric": "elo"
+  },
+  {
+    "id": "lmarena_image_edit_arena_elo",
+    "name": "lmarena/arena.ai Image Edit Arena Elo",
+    "category": "image-edit",
+    "description": "",
+    "metric": "elo"
+  },
+  {
+    "id": "lmarena_t2v_arena_elo",
+    "name": "lmarena/arena.ai Text-to-Video Arena Elo",
+    "category": "video-gen",
+    "description": "",
+    "metric": "elo"
+  },
+  {
+    "id": "lmarena_i2v_arena_elo",
+    "name": "lmarena/arena.ai Image-to-Video Arena Elo",
+    "category": "video-gen",
+    "description": "",
+    "metric": "elo"
   },
   {
     "id": "arc_agi_3",
