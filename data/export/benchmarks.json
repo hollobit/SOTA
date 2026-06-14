@@ -492,20 +492,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "healthbench_hard",
-    "name": "HealthBench Hard",
-    "category": "reasoning",
-    "description": "1,000 difficult HealthBench examples selected via low average scores across frontier models (o3, Grok 3, Gemini 2.5 Pro, Claude 3.7, Llama 4 Maverick).",
-    "metric": "accuracy"
-  },
-  {
-    "id": "healthbench_consensus",
-    "name": "HealthBench Consensus",
-    "category": "reasoning",
-    "description": "34 physician-consensus criteria on 3,671 HealthBench examples measuring critical behaviors (e.g., emergency referral).",
-    "metric": "accuracy"
-  },
-  {
     "id": "helmet",
     "name": "HELMET",
     "category": "reasoning",
@@ -1160,21 +1146,6 @@
     "category": "reasoning",
     "description": "African medical QA benchmark. Covers diseases, treatments, and conditions specific to African medical contexts.",
     "metric": "accuracy"
-  },
-  {
-    "id": "ehrqa",
-    "name": "EHRQA",
-    "category": "reasoning",
-    "description": "Electronic Health Record question answering — multi-turn QA over real (de-identified) patient records. Tests retrieval and clinical synthesis.",
-    "metric": "accuracy",
-    "paper": "https://arxiv.org/abs/2206.06636",
-    "github": "https://github.com/jayetri/DrugEHRQA",
-    "year": "2022",
-    "item_count": "70,000+ QA pairs",
-    "bmt": {
-      "bmt_id": "saved-1769608044997-fr9dl",
-      "bmt_title": "DrugEHRQA"
-    }
   },
   {
     "id": "cruxeval",
@@ -12609,20 +12580,6 @@
     "metric": "score"
   },
   {
-    "id": "rxqa_mcq",
-    "name": "RxQA Multiple-Choice (drug interaction)",
-    "category": "Medical / Drug Safety",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "rxqa_open_ended",
-    "name": "RxQA Open-Ended (answer quality)",
-    "category": "Medical / Drug Safety",
-    "description": "",
-    "metric": "score"
-  },
-  {
     "id": "amie_feasibility_topk",
     "name": "AMIE Real-World Feasibility Top-K Diagnostic Accuracy",
     "category": "Medical / Real-World",
@@ -16385,6 +16342,133 @@
     "category": "physical-hw",
     "description": "Vendor-stated robot mass",
     "metric": "mass"
+  },
+  {
+    "id": "ehrqa",
+    "name": "EHRQA (Electronic Health Record QA)",
+    "category": "medical",
+    "description": "",
+    "metric": "accuracy",
+    "paper": "https://arxiv.org/abs/2206.06636",
+    "github": "https://github.com/jayetri/DrugEHRQA",
+    "year": "2022",
+    "item_count": "70,000+ QA pairs",
+    "bmt": {
+      "bmt_id": "saved-1769608044997-fr9dl",
+      "bmt_title": "DrugEHRQA"
+    }
+  },
+  {
+    "id": "healthbench_professional_la",
+    "name": "HealthBench Professional (length-adjusted)",
+    "category": "medical",
+    "description": "525 physician-rubric tasks across care consult, documentation, medical research. Length-adjusted scoring per arxiv 2604.27470.",
+    "metric": "score"
+  },
+  {
+    "id": "healthbench_hard",
+    "name": "HealthBench Hard",
+    "category": "medical",
+    "description": "HealthBench Hard slice — unsaturated subset of HealthBench.",
+    "metric": "score"
+  },
+  {
+    "id": "healthbench_consensus",
+    "name": "HealthBench Consensus",
+    "category": "medical",
+    "description": "3,671 examples with multiply validated physician consensus criteria.",
+    "metric": "score"
+  },
+  {
+    "id": "rxqa_mcq",
+    "name": "RxQA (multiple choice)",
+    "category": "medical",
+    "description": "Drug knowledge benchmark, multiple-choice questions.",
+    "metric": "score"
+  },
+  {
+    "id": "rxqa_open_ended",
+    "name": "RxQA (open-ended)",
+    "category": "medical",
+    "description": "Drug knowledge benchmark, open-ended answer quality (dosing, interactions, patient-specific).",
+    "metric": "score"
+  },
+  {
+    "id": "healthbench_good_faith_3_7",
+    "name": "HealthBench Good-Faith 3-7 slice",
+    "category": "medical",
+    "description": "HealthBench 'Good Faith' slice (turns 3-7) per HealthBench Professional paper.",
+    "metric": "score"
+  },
+  {
+    "id": "rcq_clinician_preference",
+    "name": "RCQ (Real Clinical Queries)",
+    "category": "medical",
+    "description": "100 de-identified physician queries with blinded review, Nature Medicine 2026 study.",
+    "metric": "score"
+  },
+  {
+    "id": "radfact_logical_precision",
+    "name": "RadFact Logical Precision",
+    "category": "medical",
+    "description": "LLM-based metric suite for radiology report generation - logical precision sub-metric",
+    "metric": "score"
+  },
+  {
+    "id": "radfact_grounding_recall",
+    "name": "RadFact Grounding Recall",
+    "category": "medical",
+    "description": "RadFact grounding recall sub-metric",
+    "metric": "score"
+  },
+  {
+    "id": "chexbench_perception",
+    "name": "CheXbench (image perception)",
+    "category": "medical",
+    "description": "Stanford CheXbench: 8 clinically-relevant CXR tasks",
+    "metric": "score"
+  },
+  {
+    "id": "kaggle_aptos2019_dr",
+    "name": "APTOS-2019 Diabetic Retinopathy",
+    "category": "medical",
+    "description": "AUROC for DR classification on APTOS-2019 fundus images",
+    "metric": "score"
+  },
+  {
+    "id": "idrid_dr",
+    "name": "IDRiD Diabetic Retinopathy",
+    "category": "medical",
+    "description": "AUROC for DR classification on IDRiD fundus images",
+    "metric": "score"
+  },
+  {
+    "id": "messidor2_dr",
+    "name": "MESSIDOR-2 Diabetic Retinopathy",
+    "category": "medical",
+    "description": "AUROC for DR classification on MESSIDOR-2",
+    "metric": "score"
+  },
+  {
+    "id": "cxr_tube_pathology_mauc",
+    "name": "Chest Radiograph Tube/Pathology mAUC",
+    "category": "medical",
+    "description": "Multi-class CXR tube/pathology classification - mean AUC across 7 categories",
+    "metric": "score"
+  },
+  {
+    "id": "abdomen_ct_dice",
+    "name": "Abdominal CT Multi-Organ Dice",
+    "category": "medical",
+    "description": "Dice score on multi-organ abdominal CT segmentation",
+    "metric": "score"
+  },
+  {
+    "id": "patho_bench",
+    "name": "PathoBench (pathology benchmark)",
+    "category": "medical",
+    "description": "Multi-task pathology evaluation benchmark",
+    "metric": "score"
   },
   {
     "id": "arc_agi_3",
