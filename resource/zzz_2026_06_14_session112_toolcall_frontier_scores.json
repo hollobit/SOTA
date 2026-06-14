@@ -1,0 +1,3438 @@
+{
+  "_meta": {
+    "session": "112",
+    "date": "2026-06-14",
+    "topic": "Function calling / tool-use frontier",
+    "notes": "3 parallel agents on BFCL/tau2 leaderboards + real-world agent boards (GAIA/WebArena/OSWorld/BrowseComp/HAL) + frontier card tool-use figures",
+    "sources": [
+      "BFCL v4 Gorilla (HuanzhiMao/BFCL-Result 2025-12-16)",
+      "Sierra tau2-bench airline/retail/telecom + banking submissions",
+      "Artificial Analysis tau2-telecom",
+      "llm-stats ACEBench / tau2-telecom",
+      "BenchLM mirrors (OSWorld-V, BrowseComp, WebArena, GAIA)",
+      "Princeton HAL Holistic Agent Leaderboard",
+      "Anthropic Mythos 5 + Fable 5 system card (2026-06-09, 312-pg PDF)",
+      "Anthropic Opus 4.5/4.6/4.7/4.8 model cards",
+      "DeepSeek V4-Pro tech report \u00a75.3.2",
+      "Qwen 3.5 Omni tech report Tables 4+7",
+      "MAI-Thinking-1 model card Table 12"
+    ]
+  },
+  "models": [
+    {
+      "id": "anthropic/claude-opus-4-5",
+      "name": "Claude Opus 4.5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-11-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-sonnet-4-5",
+      "name": "Claude Sonnet 4.5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-09-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-haiku-4.5",
+      "name": "Claude Haiku 4.5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.6",
+      "name": "Claude Opus 4.6",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2026-02-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.7",
+      "name": "Claude Opus 4.7",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2026-04-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4-1",
+      "name": "Claude Opus 4.1",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-08-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro",
+      "name": "Gemini 3 Pro",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-11-18",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro-preview",
+      "name": "Gemini 3 Pro Preview",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-11-18",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-flash",
+      "name": "Gemini 3 Flash",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-12-17",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-1-pro-preview",
+      "name": "Gemini 3.1 Pro Preview",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2026-02-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-2-5-flash",
+      "name": "Gemini 2.5 Flash",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-06-17",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5",
+      "name": "GPT-5",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-08-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-mini",
+      "name": "GPT-5 mini",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-08-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-nano",
+      "name": "GPT-5 nano",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-08-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.2",
+      "name": "GPT-5.2",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-12-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.4",
+      "name": "GPT-5.4",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-03-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.5",
+      "name": "GPT-5.5",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-04-22",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/o3",
+      "name": "o3",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-04-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/o4-mini",
+      "name": "o4-mini",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-04-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-4-1",
+      "name": "GPT-4.1",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-04-14",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-4-1-mini",
+      "name": "GPT-4.1 mini",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-04-14",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xai/grok-4",
+      "name": "Grok 4",
+      "vendor": "xAI",
+      "type": "language",
+      "release_date": "2025-07-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xai/grok-4-1-fast",
+      "name": "Grok 4.1 fast",
+      "vendor": "xAI",
+      "type": "language",
+      "release_date": "2025-11-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xai/grok-4-2",
+      "name": "Grok 4.2",
+      "vendor": "xAI",
+      "type": "language",
+      "release_date": "2026-03-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zhipu/glm-4-6",
+      "name": "GLM-4.6",
+      "vendor": "Zhipu AI",
+      "type": "language",
+      "release_date": "2025-09-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zhipu/glm-5",
+      "name": "GLM-5",
+      "vendor": "Zhipu AI",
+      "type": "language",
+      "release_date": "2026-02-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k2",
+      "name": "Kimi K2",
+      "vendor": "Moonshot AI",
+      "type": "language",
+      "release_date": "2025-07-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k2-0905",
+      "name": "Kimi K2-Instruct-0905",
+      "vendor": "Moonshot AI",
+      "type": "language",
+      "release_date": "2025-09-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v3.2",
+      "name": "DeepSeek V3.2",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-12-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-max",
+      "name": "Qwen3-Max",
+      "vendor": "Alibaba Cloud",
+      "type": "language",
+      "release_date": "2025-09-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-max-thinking",
+      "name": "Qwen3-Max-Thinking",
+      "vendor": "Alibaba Cloud",
+      "type": "language",
+      "release_date": "2026-01-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "qwen/qwen3.5-397b-a17b",
+      "name": "Qwen3.5-397B-A17B",
+      "vendor": "Alibaba Cloud",
+      "type": "language",
+      "release_date": "2026-02-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-235b-a22b-instruct-2507",
+      "name": "Qwen3-235B-A22B-Instruct-2507",
+      "vendor": "Alibaba Cloud",
+      "type": "language",
+      "release_date": "2025-07-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-32b",
+      "name": "Qwen3-32B",
+      "vendor": "Alibaba Cloud",
+      "type": "language",
+      "release_date": "2025-04-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/command-a-reasoning",
+      "name": "Command A Reasoning",
+      "vendor": "Cohere",
+      "type": "language",
+      "release_date": "2025-08-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/command-a",
+      "name": "Command A",
+      "vendor": "Cohere",
+      "type": "language",
+      "release_date": "2025-03-13",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "salesforce/xlam-2-70b-fc-r",
+      "name": "xLAM-2-70B-FC-R",
+      "vendor": "Salesforce",
+      "type": "language",
+      "release_date": "2025-04-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "salesforce/xlam-2-32b-fc-r",
+      "name": "xLAM-2-32B-FC-R",
+      "vendor": "Salesforce",
+      "type": "language",
+      "release_date": "2025-04-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "salesforce/xlam-2-8b-fc-r",
+      "name": "xLAM-2-8B-FC-R",
+      "vendor": "Salesforce",
+      "type": "language",
+      "release_date": "2025-04-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "amazon/nova-pro-v1",
+      "name": "Nova Pro v1",
+      "vendor": "Amazon",
+      "type": "language",
+      "release_date": "2024-12-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "amazon/nova-2-pro",
+      "name": "Nova 2 Pro",
+      "vendor": "Amazon",
+      "type": "language",
+      "release_date": "2026-02-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "amazon/nova-2-lite",
+      "name": "Nova 2 Lite",
+      "vendor": "Amazon",
+      "type": "language",
+      "release_date": "2026-02-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/nemotron-orchestrator-8b",
+      "name": "Nemotron-Orchestrator-8B (ToolOrchestra)",
+      "vendor": "NVIDIA",
+      "type": "language",
+      "release_date": "2025-11-26",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meituan/longcat-flash-thinking-2601",
+      "name": "LongCat-Flash-Thinking-2601",
+      "vendor": "Meituan",
+      "type": "language",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-mythos-5",
+      "name": "Claude Mythos 5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-fable-5",
+      "name": "Claude Fable 5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.8",
+      "name": "Claude Opus 4.8",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.7-adaptive",
+      "name": "Claude Opus 4.7 (Adaptive)",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.5",
+      "name": "Claude Opus 4.5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-sonnet-4.6",
+      "name": "Claude Sonnet 4.6",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-sonnet-4.5",
+      "name": "Claude Sonnet 4.5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-3.7-sonnet",
+      "name": "Claude 3.7 Sonnet",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.5-pro",
+      "name": "GPT-5.5 Pro",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.4-pro",
+      "name": "GPT-5.4 Pro",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.4-mini",
+      "name": "GPT-5.4 mini",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.4-nano",
+      "name": "GPT-5.4 nano",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.3-codex",
+      "name": "GPT-5.3 Codex",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-high",
+      "name": "GPT-5 (high)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5-medium",
+      "name": "GPT-5 (Medium)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/o4-mini-high",
+      "name": "o4-mini (high)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.5-flash",
+      "name": "Gemini 3.5 Flash",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-pro",
+      "name": "Gemini 3.1 Pro",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "h-company/holo3-35b-a3b",
+      "name": "Holo3-35B-A3B",
+      "vendor": "H Company",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "h-company/holo3-122b-a10b",
+      "name": "Holo3-122B-A10B",
+      "vendor": "H Company",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.7-plus",
+      "name": "Qwen3.7 Plus",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.6-plus",
+      "name": "Qwen3.6 Plus",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-397b",
+      "name": "Qwen3.5 397B",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-397b-reasoning",
+      "name": "Qwen3.5 397B (Reasoning)",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-122b-a10b",
+      "name": "Qwen3.5-122B-A10B",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-27b",
+      "name": "Qwen3.5-27B",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-35b-a3b",
+      "name": "Qwen3.5-35B-A3B",
+      "vendor": "Alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k2.6",
+      "name": "Kimi K2.6",
+      "vendor": "Moonshot AI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k2.5",
+      "name": "Kimi K2.5",
+      "vendor": "Moonshot AI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k2.5-reasoning",
+      "name": "Kimi K2.5 (Reasoning)",
+      "vendor": "Moonshot AI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/v4-pro-max",
+      "name": "DeepSeek V4 Pro (Max)",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/v4-pro-high",
+      "name": "DeepSeek V4 Pro (High)",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/v4-flash-max",
+      "name": "DeepSeek V4 Flash (Max)",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/v4-flash-high",
+      "name": "DeepSeek V4 Flash (High)",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/v3.2-thinking",
+      "name": "DeepSeek V3.2 (Thinking)",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/v3.2",
+      "name": "DeepSeek V3.2",
+      "vendor": "DeepSeek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "minimax/m3",
+      "name": "MiniMax M3",
+      "vendor": "MiniMax",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "stepfun/step-3.7-flash",
+      "name": "Step 3.7 Flash",
+      "vendor": "StepFun",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "stepfun/step-3.5-flash",
+      "name": "Step 3.5 Flash",
+      "vendor": "StepFun",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zai/glm-5.1",
+      "name": "GLM-5.1",
+      "vendor": "Z.AI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zai/glm-5-reasoning",
+      "name": "GLM-5 (Reasoning)",
+      "vendor": "Z.AI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zai/glm-4.7",
+      "name": "GLM-4.7",
+      "vendor": "Z.AI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xai/grok-4.1",
+      "name": "Grok 4.1",
+      "vendor": "xAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/llama-4-behemoth",
+      "name": "Llama 4 Behemoth",
+      "vendor": "Meta",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "meta/llama-4-maverick",
+      "name": "Llama 4 Maverick",
+      "vendor": "Meta",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/mistral-large-3",
+      "name": "Mistral Large 3",
+      "vendor": "Mistral",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/nemotron-3-ultra",
+      "name": "Nemotron 3 Ultra",
+      "vendor": "NVIDIA",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-mythos-preview",
+      "name": "claude-mythos-preview",
+      "vendor": "anthropic",
+      "type": "language",
+      "release_date": "2026-05-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-pro-max",
+      "name": "deepseek-v4-pro-max",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-04-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-pro-high",
+      "name": "deepseek-v4-pro-high",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash-max",
+      "name": "deepseek-v4-flash-max",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash-high",
+      "name": "deepseek-v4-flash-high",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen-3.5-omni-plus",
+      "name": "qwen-3.5-omni-plus",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen-3.5-omni-flash",
+      "name": "qwen-3.5-omni-flash",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen-3.5-plus-instruct",
+      "name": "qwen-3.5-plus-instruct",
+      "vendor": "alibaba",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/mai-thinking-1",
+      "name": "mai-thinking-1",
+      "vendor": "microsoft",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "bfcl_v4_overall",
+      "name": "BFCL v4 Overall",
+      "category": "tool-use",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://gorilla.cs.berkeley.edu/leaderboard.html"
+    },
+    {
+      "id": "bfcl_v4_non_live_ast",
+      "name": "BFCL v4 Non-Live AST",
+      "category": "tool-use",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv"
+    },
+    {
+      "id": "bfcl_v4_live",
+      "name": "BFCL v4 Live",
+      "category": "tool-use",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv"
+    },
+    {
+      "id": "bfcl_v4_multi_turn",
+      "name": "BFCL v4 Multi-Turn",
+      "category": "tool-use",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv"
+    },
+    {
+      "id": "bfcl_v4_web_search",
+      "name": "BFCL v4 Web Search (Agentic)",
+      "category": "agent",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv"
+    },
+    {
+      "id": "bfcl_v4_memory",
+      "name": "BFCL v4 Memory (Agentic)",
+      "category": "agent",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv"
+    },
+    {
+      "id": "bfcl_v4_irrelevance_detection",
+      "name": "BFCL v4 Irrelevance Detection",
+      "category": "tool-use",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv"
+    },
+    {
+      "id": "tau2_bench_airline_pass1",
+      "name": "tau2-bench Airline pass^1",
+      "category": "agent",
+      "metric": "pass^1",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/sierra-research/tau2-bench/tree/main/web/leaderboard/public/submissions"
+    },
+    {
+      "id": "tau2_bench_retail_pass1",
+      "name": "tau2-bench Retail pass^1",
+      "category": "agent",
+      "metric": "pass^1",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/sierra-research/tau2-bench/tree/main/web/leaderboard/public/submissions"
+    },
+    {
+      "id": "tau2_bench_telecom_pass1",
+      "name": "tau2-bench Telecom pass^1",
+      "category": "agent",
+      "metric": "pass^1",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/sierra-research/tau2-bench/tree/main/web/leaderboard/public/submissions"
+    },
+    {
+      "id": "tau2_bench_airline_pass4",
+      "name": "tau2-bench Airline pass^4",
+      "category": "agent",
+      "metric": "pass^4",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/sierra-research/tau2-bench/tree/main/web/leaderboard/public/submissions"
+    },
+    {
+      "id": "tau2_bench_retail_pass4",
+      "name": "tau2-bench Retail pass^4",
+      "category": "agent",
+      "metric": "pass^4",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/sierra-research/tau2-bench/tree/main/web/leaderboard/public/submissions"
+    },
+    {
+      "id": "tau2_bench_telecom_pass4",
+      "name": "tau2-bench Telecom pass^4",
+      "category": "agent",
+      "metric": "pass^4",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/sierra-research/tau2-bench/tree/main/web/leaderboard/public/submissions"
+    },
+    {
+      "id": "tau2_bench_banking_knowledge_pass1",
+      "name": "tau2-bench Banking Knowledge pass^1 (AllTools)",
+      "category": "agent",
+      "metric": "pass^1",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://github.com/sierra-research/tau2-bench/tree/main/web/leaderboard/public/submissions"
+    },
+    {
+      "id": "acebench_overall",
+      "name": "ACEBench Overall",
+      "category": "tool-use",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://llm-stats.com/benchmarks/acebench"
+    },
+    {
+      "id": "osworld_verified",
+      "name": "OSWorld-Verified",
+      "category": "agent",
+      "metric": "success_rate",
+      "unit": "%",
+      "description": "Computer-use tasks across web and desktop applications (Ubuntu/Windows/macOS), 369 tasks",
+      "source_url": "https://benchlm.ai/benchmarks/osWorldVerified"
+    },
+    {
+      "id": "browsecomp",
+      "name": "BrowseComp",
+      "category": "agent",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Real web research behavior: plan searches, inspect multiple pages, verify",
+      "source_url": "https://benchlm.ai/benchmarks/browseComp"
+    },
+    {
+      "id": "webarena",
+      "name": "WebArena",
+      "category": "agent",
+      "metric": "success_rate",
+      "unit": "%",
+      "description": "Realistic web environment with self-hosted sites (e-commerce, forums, dev tools)",
+      "source_url": "https://benchlm.ai/benchmarks/webArena"
+    },
+    {
+      "id": "gaia",
+      "name": "GAIA",
+      "category": "agent",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "General AI Assistants: 466 multi-step tasks across 3 difficulty levels, requiring reasoning + tool use + web browsing + multimodality",
+      "source_url": "https://benchlm.ai/benchmarks/gaia"
+    },
+    {
+      "id": "hal_swe_bench_verified_mini",
+      "name": "HAL SWE-bench Verified Mini",
+      "category": "agent",
+      "metric": "resolved_rate",
+      "unit": "%",
+      "description": "Princeton HAL harness: SWE-bench Verified mini subset with cost tracking",
+      "source_url": "https://hal.cs.princeton.edu/"
+    },
+    {
+      "id": "hal_usaco",
+      "name": "HAL USACO",
+      "category": "agent",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Princeton HAL: competitive-programming agent eval (USACO)",
+      "source_url": "https://hal.cs.princeton.edu/"
+    },
+    {
+      "id": "hal_core_bench_hard",
+      "name": "HAL CORE-Bench Hard",
+      "category": "agent",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Princeton HAL: computational reproducibility (CORE-Bench Hard split)",
+      "source_url": "https://hal.cs.princeton.edu/"
+    },
+    {
+      "id": "hal_tau_bench_airline",
+      "name": "HAL TAU-bench Airline",
+      "category": "agent",
+      "metric": "pass_rate",
+      "unit": "%",
+      "description": "Princeton HAL: TAU-bench airline-domain tool-use eval",
+      "source_url": "https://hal.cs.princeton.edu/"
+    },
+    {
+      "id": "browsecomp_multi_agent",
+      "name": "browsecomp_multi_agent",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "toolathlon_pass_at_1",
+      "name": "toolathlon_pass_at_1",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "toolathlon_pass_at_3",
+      "name": "toolathlon_pass_at_3",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "toolathlon_pass_cube",
+      "name": "toolathlon_pass_cube",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "deepsearchqa_f1",
+      "name": "deepsearchqa_f1",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "draco",
+      "name": "draco",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mcp_atlas_public",
+      "name": "mcp_atlas_public",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hle_with_tools",
+      "name": "hle_with_tools",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bfcl_v3",
+      "name": "bfcl_v3",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bfcl_v4",
+      "name": "bfcl_v4",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tau2_bench",
+      "name": "tau2_bench",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "omnigaia",
+      "name": "omnigaia",
+      "category": "agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "bfcl_v4_overall",
+      "score": 77.47,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #1 of 109; FC variant; snapshot 2025-12-16"
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "bfcl_v4_non_live_ast",
+      "score": 88.58,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "bfcl_v4_live",
+      "score": 79.79,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "bfcl_v4_multi_turn",
+      "score": 68.38,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "bfcl_v4_web_search",
+      "score": 84.5,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "bfcl_v4_memory",
+      "score": 73.76,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "bfcl_v4_irrelevance_detection",
+      "score": 84.72,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "bfcl_v4_overall",
+      "score": 73.24,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #2; FC variant"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "bfcl_v4_non_live_ast",
+      "score": 88.65,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "bfcl_v4_live",
+      "score": 81.13,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "bfcl_v4_multi_turn",
+      "score": 61.37,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "bfcl_v4_web_search",
+      "score": 81.0,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "bfcl_v4_overall",
+      "score": 68.7,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #6; FC variant"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "bfcl_v4_multi_turn",
+      "score": 53.62,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-preview",
+      "benchmark": "bfcl_v4_overall",
+      "score": 72.51,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #3; Prompt mode"
+    },
+    {
+      "model": "google/gemini-3-pro-preview",
+      "benchmark": "bfcl_v4_non_live_ast",
+      "score": 90.65,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "highest non-live AST in top tier"
+    },
+    {
+      "model": "google/gemini-3-pro-preview",
+      "benchmark": "bfcl_v4_live",
+      "score": 83.12,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "highest Live score among tested frontier models"
+    },
+    {
+      "model": "google/gemini-3-pro-preview",
+      "benchmark": "bfcl_v4_multi_turn",
+      "score": 60.75,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "Prompt mode"
+    },
+    {
+      "model": "zhipu/glm-4-6",
+      "benchmark": "bfcl_v4_overall",
+      "score": 72.38,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #4; FC thinking variant"
+    },
+    {
+      "model": "zhipu/glm-4-6",
+      "benchmark": "bfcl_v4_multi_turn",
+      "score": 68.0,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-4-1-fast",
+      "benchmark": "bfcl_v4_overall",
+      "score": 69.57,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #5; reasoning FC"
+    },
+    {
+      "model": "xai/grok-4-1-fast",
+      "benchmark": "bfcl_v4_web_search",
+      "score": 82.5,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-4",
+      "benchmark": "bfcl_v4_overall",
+      "score": 62.97,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "Prompt mode rank #9"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "bfcl_v4_overall",
+      "score": 63.05,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #8; Prompt mode"
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "bfcl_v4_overall",
+      "score": 59.06,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #11; FC; Moonshot Kimi-K2-Instruct"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "bfcl_v4_overall",
+      "score": 55.87,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #16; FC mode"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "bfcl_v4_multi_turn",
+      "score": 28.12,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "FC mode; surprising low multi-turn"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "bfcl_v4_overall",
+      "score": 55.46,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #17; FC mode"
+    },
+    {
+      "model": "openai/gpt-5-nano",
+      "benchmark": "bfcl_v4_overall",
+      "score": 51.45,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #24; FC mode"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "bfcl_v4_overall",
+      "score": 56.73,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #14; Prompt+Thinking"
+    },
+    {
+      "model": "google/gemini-2-5-flash",
+      "benchmark": "bfcl_v4_overall",
+      "score": 56.24,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #15; FC mode"
+    },
+    {
+      "model": "salesforce/xlam-2-32b-fc-r",
+      "benchmark": "bfcl_v4_overall",
+      "score": 54.66,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #18"
+    },
+    {
+      "model": "salesforce/xlam-2-32b-fc-r",
+      "benchmark": "bfcl_v4_multi_turn",
+      "score": 69.5,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "highest multi-turn in BFCL v4"
+    },
+    {
+      "model": "salesforce/xlam-2-70b-fc-r",
+      "benchmark": "bfcl_v4_multi_turn",
+      "score": 77.38,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "SOTA multi-turn among all BFCL v4 entries"
+    },
+    {
+      "model": "salesforce/xlam-2-70b-fc-r",
+      "benchmark": "bfcl_v4_overall",
+      "score": 53.07,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "salesforce/xlam-2-8b-fc-r",
+      "benchmark": "bfcl_v4_overall",
+      "score": 46.68,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "salesforce/xlam-2-8b-fc-r",
+      "benchmark": "bfcl_v4_multi_turn",
+      "score": 70.0,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4-1",
+      "benchmark": "bfcl_v4_overall",
+      "score": 53.96,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #20; FC mode"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "bfcl_v4_overall",
+      "score": 53.24,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #21; FC mode"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-instruct-2507",
+      "benchmark": "bfcl_v4_overall",
+      "score": 52.15,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #23; Prompt mode"
+    },
+    {
+      "model": "alibaba/qwen3-32b",
+      "benchmark": "bfcl_v4_overall",
+      "score": 48.71,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "FC mode"
+    },
+    {
+      "model": "cohere/command-a-reasoning",
+      "benchmark": "bfcl_v4_overall",
+      "score": 57.06,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": "rank #13; FC"
+    },
+    {
+      "model": "cohere/command-a",
+      "benchmark": "bfcl_v4_overall",
+      "score": 46.49,
+      "unit": "%",
+      "_source": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 84.0,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-opus-4-5_sierra_2026-02-26/submission.json",
+      "_note": "Sierra-run eval, 2026-02-26"
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "tau2_bench_airline_pass4",
+      "score": 70.0,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-opus-4-5_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 79.61,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-opus-4-5_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "tau2_bench_retail_pass4",
+      "score": 51.75,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-opus-4-5_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 92.32,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-opus-4-5_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "tau2_bench_telecom_pass4",
+      "score": 78.07,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-opus-4-5_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-5",
+      "benchmark": "tau2_bench_banking_knowledge_pass1",
+      "score": 21.39,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-opus-4-5_sierra_2026-02-26/submission.json",
+      "_note": "AllTools retrieval"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 72.0,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-sonnet-4-5_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "tau2_bench_airline_pass4",
+      "score": 48.0,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-sonnet-4-5_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 72.37,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-sonnet-4-5_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 84.87,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-sonnet-4-5_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 83.0,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5-2_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "tau2_bench_airline_pass4",
+      "score": 72.0,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5-2_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 81.58,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5-2_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "tau2_bench_retail_pass4",
+      "score": 51.75,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5-2_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 89.69,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5-2_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "tau2_bench_telecom_pass4",
+      "score": 71.93,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5-2_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "tau2_bench_banking_knowledge_pass1",
+      "score": 24.74,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5-2_sierra_2026-02-26/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 80.5,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gemini-3-pro_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "tau2_bench_airline_pass4",
+      "score": 66.0,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gemini-3-pro_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 75.88,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gemini-3-pro_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 91.01,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gemini-3-pro_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "tau2_bench_telecom_pass4",
+      "score": 74.56,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gemini-3-pro_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 82.5,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gemini-3-flash_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 76.75,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gemini-3-flash_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 91.23,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gemini-3-flash_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 82.5,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/glm-5-think_sierra_2026-03-02/submission.json",
+      "_note": "GLM-5 thinking"
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 73.68,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/glm-5-think_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 86.84,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/glm-5-think_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3.5-397b-a17b",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 81.5,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/qwen3.5-397b-a17b-think_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3.5-397b-a17b",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 84.43,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/qwen3.5-397b-a17b-think_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3.5-397b-a17b",
+      "benchmark": "tau2_bench_retail_pass4",
+      "score": 59.65,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/qwen3.5-397b-a17b-think_sierra_2026-03-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "qwen/qwen3.5-397b-a17b",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 97.81,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/qwen3.5-397b-a17b-think_sierra_2026-03-02/submission.json",
+      "_note": "SOTA telecom pass^1 from Sierra-hosted leaderboard"
+    },
+    {
+      "model": "qwen/qwen3.5-397b-a17b",
+      "benchmark": "tau2_bench_telecom_pass4",
+      "score": 92.11,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/qwen3.5-397b-a17b-think_sierra_2026-03-02/submission.json",
+      "_note": "SOTA telecom pass^4"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "tau2_bench_banking_knowledge_pass1",
+      "score": 30.67,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5-4_sierra_2026-03-25/submission.json",
+      "_note": "SOTA banking_knowledge under AllTools"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "tau2_bench_banking_knowledge_pass1",
+      "score": 37.37,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5-5_sierra_2026-05-05/submission.json",
+      "_note": "NEW SOTA banking_knowledge pass^1 under AllTools; xhigh reasoning"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "tau2_bench_banking_knowledge_pass1",
+      "score": 25.26,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-opus-4-7_sierra_2026-05-05/submission.json",
+      "_note": "max reasoning effort"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "tau2_bench_banking_knowledge_pass1",
+      "score": 24.48,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-opus-4-6_sierra_2026-05-05/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-preview",
+      "benchmark": "tau2_bench_banking_knowledge_pass1",
+      "score": 22.54,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gemini-3-1-pro-preview_sierra_2026-05-05/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-4-2",
+      "benchmark": "tau2_bench_banking_knowledge_pass1",
+      "score": 17.57,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/grok-4-2_sierra_2026-05-05/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-4-1-fast",
+      "benchmark": "tau2_bench_banking_knowledge_pass1",
+      "score": 12.4,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/grok-4-1-fast_sierra_2026-05-05/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-1",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 82.4,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-opus-4-1_anthropic_2025-01-15/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4-1",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 56.0,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/claude-opus-4-1_anthropic_2025-01-15/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 62.5,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5_sierra_2025-08-09/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 81.58,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5_sierra_2025-08-09/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 95.83,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/gpt-5_sierra_2025-08-09/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 70.6,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/kimi-k2_moonshot-ai_2025-07-11/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 56.5,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/kimi-k2_moonshot-ai_2025-07-11/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 65.8,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/kimi-k2_moonshot-ai_2025-07-11/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-max-thinking",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 79.39,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/qwen3-max_qwen_2026-01-23/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-max-thinking",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 69.0,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/qwen3-max_qwen_2026-01-23/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-max-thinking",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 98.25,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/qwen3-max_qwen_2026-01-23/submission.json",
+      "_note": "Top tau2 telecom from Qwen self-report"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 81.1,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/deepseek-v3.2_deepseek_2025-12-01/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 63.8,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/deepseek-v3.2_deepseek_2025-12-01/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 96.2,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/deepseek-v3.2_deepseek_2025-12-01/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 73.9,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/o3_openai_2025-01-15/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 52.0,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/o3_openai_2025-01-15/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 68.3,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/o4-mini_openai_2024-06-20/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 52.1,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/o4-mini_openai_2024-06-20/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 50.2,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/o4-mini_openai_2024-06-20/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-orchestrator-8b",
+      "benchmark": "tau2_bench_retail_pass1",
+      "score": 84.2,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/toolorchestra_nvidia_2025-12-02/submission.json",
+      "_note": "Orchestrator routes between strong/weak models; not a pure 8B"
+    },
+    {
+      "model": "nvidia/nemotron-orchestrator-8b",
+      "benchmark": "tau2_bench_airline_pass1",
+      "score": 56.0,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/toolorchestra_nvidia_2025-12-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-orchestrator-8b",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 88.6,
+      "unit": "%",
+      "_source": "https://github.com/sierra-research/tau2-bench/blob/main/web/leaderboard/public/submissions/toolorchestra_nvidia_2025-12-02/submission.json",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 98.0,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/tau2-telecom",
+      "_note": "Aggregated from llm-stats tau2-telecom leaderboard (snapshot 2026-06-14); also referenced in artificialanalysis.ai/evaluations/tau2-bench"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 98.9,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/tau2-telecom",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 99.3,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/tau2-telecom",
+      "_note": "Tied SOTA tau2 telecom; tied with LongCat-Flash-Thinking-2601 99.3%"
+    },
+    {
+      "model": "meituan/longcat-flash-thinking-2601",
+      "benchmark": "tau2_bench_telecom_pass1",
+      "score": 99.3,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/tau2-telecom",
+      "_note": "Tied SOTA tau2 telecom"
+    },
+    {
+      "model": "moonshot/kimi-k2-0905",
+      "benchmark": "acebench_overall",
+      "score": 76.5,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/acebench",
+      "_note": "Top of ACEBench listing on llm-stats (only 2 models indexed; both Kimi K2 variants)"
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "acebench_overall",
+      "score": 76.5,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/acebench",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "osworld_verified",
+      "score": 85.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "Rank 1, snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "osworld_verified",
+      "score": 85.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "Rank 2 tied at top, snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "osworld_verified",
+      "score": 83.4,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "Rank 3, snapshot 2026-06-13"
+    },
+    {
+      "model": "h-company/holo3-35b-a3b",
+      "benchmark": "osworld_verified",
+      "score": 82.6,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "Rank 4 \u2014 top open model, snapshot 2026-06-13"
+    },
+    {
+      "model": "h-company/holo3-122b-a10b",
+      "benchmark": "osworld_verified",
+      "score": 78.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "osworld_verified",
+      "score": 78.7,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "osworld_verified",
+      "score": 78.4,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7-adaptive",
+      "benchmark": "osworld_verified",
+      "score": 78.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "osworld_verified",
+      "score": 75.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "osworld_verified",
+      "score": 73.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "osworld_verified",
+      "score": 73.1,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "osworld_verified",
+      "score": 72.7,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "osworld_verified",
+      "score": 72.1,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "osworld_verified",
+      "score": 72.1,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "minimax/m3",
+      "benchmark": "osworld_verified",
+      "score": 70.1,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "osworld_verified",
+      "score": 66.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.3-codex",
+      "benchmark": "osworld_verified",
+      "score": 64.7,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "osworld_verified",
+      "score": 61.4,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "osworld_verified",
+      "score": 58.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "osworld_verified",
+      "score": 56.2,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "osworld_verified",
+      "score": 54.5,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "osworld_verified",
+      "score": 47.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "osworld_verified",
+      "score": 39.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.5-pro",
+      "benchmark": "browsecomp",
+      "score": 90.1,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "Rank 1 \u2014 NEW SOTA, snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.4-pro",
+      "benchmark": "browsecomp",
+      "score": 89.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "Rank 2, snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "browsecomp",
+      "score": 88.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "Rank 3, snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "browsecomp",
+      "score": 86.9,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "browsecomp",
+      "score": 84.4,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "browsecomp",
+      "score": 84.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "browsecomp",
+      "score": 83.7,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "minimax/m3",
+      "benchmark": "browsecomp",
+      "score": 83.5,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "deepseek/v4-pro-max",
+      "benchmark": "browsecomp",
+      "score": 83.4,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "browsecomp",
+      "score": 83.2,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "browsecomp",
+      "score": 82.7,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "deepseek/v4-pro-high",
+      "benchmark": "browsecomp",
+      "score": 80.4,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7-adaptive",
+      "benchmark": "browsecomp",
+      "score": 79.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "stepfun/step-3.7-flash",
+      "benchmark": "browsecomp",
+      "score": 75.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "deepseek/v4-flash-max",
+      "benchmark": "browsecomp",
+      "score": 73.2,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "zai/glm-5.1",
+      "benchmark": "browsecomp",
+      "score": 68.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "browsecomp",
+      "score": 65.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.5-122b-a10b",
+      "benchmark": "browsecomp",
+      "score": 63.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.5-397b",
+      "benchmark": "browsecomp",
+      "score": 62.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.5-27b",
+      "benchmark": "browsecomp",
+      "score": 61.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "browsecomp",
+      "score": 61.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "moonshot/kimi-k2.5-reasoning",
+      "benchmark": "browsecomp",
+      "score": 60.6,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "browsecomp",
+      "score": 60.6,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "deepseek/v4-flash-high",
+      "benchmark": "browsecomp",
+      "score": 53.5,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "zai/glm-4.7",
+      "benchmark": "browsecomp",
+      "score": 52.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "nvidia/nemotron-3-ultra",
+      "benchmark": "browsecomp",
+      "score": 44.4,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/browseComp",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "webarena",
+      "score": 68.7,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "Rank 1 tied \u2014 NEW SOTA, snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "webarena",
+      "score": 68.7,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "Rank 1 tied, snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.4-pro",
+      "benchmark": "webarena",
+      "score": 65.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "Rank 3, snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "webarena",
+      "score": 64.5,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "webarena",
+      "score": 62.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "webarena",
+      "score": 59.2,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "webarena",
+      "score": 58.4,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "webarena",
+      "score": 57.2,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.5-397b",
+      "benchmark": "webarena",
+      "score": 55.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "xai/grok-4.1",
+      "benchmark": "webarena",
+      "score": 53.7,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "webarena",
+      "score": 52.1,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "webarena",
+      "score": 51.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "zai/glm-5-reasoning",
+      "benchmark": "webarena",
+      "score": 49.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "deepseek/v3.2-thinking",
+      "benchmark": "webarena",
+      "score": 48.6,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "meta/llama-4-behemoth",
+      "benchmark": "webarena",
+      "score": 46.2,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/o4-mini-high",
+      "benchmark": "webarena",
+      "score": 44.5,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/webArena",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "gaia",
+      "score": 52.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "Rank 1 \u2014 NEW SOTA (base-model column), snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "gaia",
+      "score": 52.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "Rank 2 tied, snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.4-pro",
+      "benchmark": "gaia",
+      "score": 50.5,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "Rank 3, snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "gaia",
+      "score": 48.2,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "gaia",
+      "score": 47.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gaia",
+      "score": 46.1,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "gaia",
+      "score": 45.5,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5-mini",
+      "benchmark": "gaia",
+      "score": 44.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5-high",
+      "benchmark": "gaia",
+      "score": 42.1,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "gaia",
+      "score": 40.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "xai/grok-4.1",
+      "benchmark": "gaia",
+      "score": 39.7,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "gaia",
+      "score": 38.5,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "moonshot/kimi-k2.5-reasoning",
+      "benchmark": "gaia",
+      "score": 38.1,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "gaia",
+      "score": 37.4,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "openai/o4-mini-high",
+      "benchmark": "gaia",
+      "score": 36.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "gaia",
+      "score": 36.5,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.5-397b-reasoning",
+      "benchmark": "gaia",
+      "score": 35.6,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "gaia",
+      "score": 35.2,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "deepseek/v3.2-thinking",
+      "benchmark": "gaia",
+      "score": 34.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "meta/llama-4-behemoth",
+      "benchmark": "gaia",
+      "score": 34.2,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "zai/glm-5-reasoning",
+      "benchmark": "gaia",
+      "score": 33.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "alibaba/qwen3.5-397b",
+      "benchmark": "gaia",
+      "score": 33.2,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "deepseek/v3.2",
+      "benchmark": "gaia",
+      "score": 32.4,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "mistral/mistral-large-3",
+      "benchmark": "gaia",
+      "score": 30.8,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "stepfun/step-3.5-flash",
+      "benchmark": "gaia",
+      "score": 29.4,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "meta/llama-4-maverick",
+      "benchmark": "gaia",
+      "score": 28.6,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/gaia",
+      "_note": "snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "hal_swe_bench_verified_mini",
+      "score": 72.0,
+      "unit": "%",
+      "_source": "https://hal.cs.princeton.edu/",
+      "_note": "SWE-Agent harness, $463.90 run cost, dated 2025-09; included as the only 2025 entry HAL still surfaces \u2014 within 12mo window"
+    },
+    {
+      "model": "openai/gpt-5-medium",
+      "benchmark": "hal_usaco",
+      "score": 69.1,
+      "unit": "%",
+      "_source": "https://hal.cs.princeton.edu/",
+      "_note": "USACO Episodic+Semantic harness, $116.63 run cost, dated 2025-08 (within 12mo window)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "hal_core_bench_hard",
+      "score": 77.8,
+      "unit": "%",
+      "_source": "https://hal.cs.princeton.edu/",
+      "_note": "Claude Code harness; 95.5% with manual scoring also reported"
+    },
+    {
+      "model": "anthropic/claude-3.7-sonnet",
+      "benchmark": "hal_tau_bench_airline",
+      "score": 56.0,
+      "unit": "%",
+      "_source": "https://hal.cs.princeton.edu/",
+      "_note": "HAL Generalist Agent, $42.11 run cost, dated 2025-02 (within 12mo window)"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "browsecomp_multi_agent",
+      "score": 93.3,
+      "unit": "%",
+      "_source": "Mythos 5 SC Table 8.1.A (multi-agent row)",
+      "_note": "Section 8.15.1"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "toolathlon_pass_at_1",
+      "score": 61.7,
+      "unit": "%",
+      "_source": "Mythos 5 SC \u00a78.17.8 Table 8.17.8.A",
+      "_note": "Internal harness; pinned-data offset ~+3 vs upstream"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "toolathlon_pass_at_3",
+      "score": 66.7,
+      "unit": "%",
+      "_source": "Mythos 5 SC \u00a78.17.8 Table 8.17.8.A",
+      "_note": "At least 1 of 3 trials correct"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "toolathlon_pass_cube",
+      "score": 58.3,
+      "unit": "%",
+      "_source": "Mythos 5 SC \u00a78.17.8 Table 8.17.8.A",
+      "_note": "All 3 trials correct (Pass^3) \u2014 new Anthropic SOTA"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "deepsearchqa_f1",
+      "score": 94.2,
+      "unit": "%",
+      "_source": "Mythos 5 SC \u00a78.14.3 Table 8.14.3.B",
+      "_note": "\u00b11.3% CI, 87.0% fully correct"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "draco",
+      "score": 86.4,
+      "unit": "%",
+      "_source": "Mythos 5 SC \u00a78.14.4",
+      "_note": "Max reasoning effort, 1M-token limit, Opus 4.6 as LLM judge (replacing Gemini-3-Pro from the paper)"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "toolathlon_pass_at_1",
+      "score": 61.7,
+      "unit": "%",
+      "_source": "Mythos 5 SC \u00a78.17.8 Table 8.17.8.A",
+      "_note": "Fable 5 row in Table 8.17.8.A"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "toolathlon_pass_at_3",
+      "score": 68.5,
+      "unit": "%",
+      "_source": "Mythos 5 SC \u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "toolathlon_pass_cube",
+      "score": 55.6,
+      "unit": "%",
+      "_source": "Mythos 5 SC \u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "browsecomp",
+      "score": 87.9,
+      "unit": "%",
+      "_source": "Mythos 5 / Fable 5 SC Table 8.1.A (Mythos Preview column)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "osworld_verified",
+      "score": 85.4,
+      "unit": "%",
+      "_source": "Mythos 5 SC Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "toolathlon_pass_at_1",
+      "score": 61.1,
+      "unit": "%",
+      "_source": "Mythos 5 SC Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "toolathlon_pass_at_3",
+      "score": 66.7,
+      "unit": "%",
+      "_source": "Mythos 5 SC Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "toolathlon_pass_cube",
+      "score": 55.6,
+      "unit": "%",
+      "_source": "Mythos 5 SC Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "deepsearchqa_f1",
+      "score": 94.4,
+      "unit": "%",
+      "_source": "Mythos 5 SC \u00a78.14.3 Table 8.14.3.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "browsecomp_multi_agent",
+      "score": 88.5,
+      "unit": "%",
+      "_source": "Opus 4.8 SC Table 8.1.A + \u00a78.11.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "toolathlon_pass_at_1",
+      "score": 59.9,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "toolathlon_pass_at_3",
+      "score": 67.6,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "toolathlon_pass_cube",
+      "score": 48.1,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "browsecomp",
+      "score": 79.3,
+      "unit": "%",
+      "_source": "Opus 4.7 SC \u00a78.8.2",
+      "_note": "Original methodology; subsequently re-scored to 79.8 in Opus 4.8 SC Table 8.1.A with new blocklist"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "osworld_verified",
+      "score": 78.0,
+      "unit": "%",
+      "_source": "Opus 4.7 SC \u00a78.9.4",
+      "_note": "Pre zoom-tool bug fix; later restated as 82.8 in Opus 4.8 SC"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "toolathlon_pass_at_1",
+      "score": 59.3,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": "Opus 4.7 retrospective row; max-effort config"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "toolathlon_pass_at_3",
+      "score": 66.7,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "toolathlon_pass_cube",
+      "score": 52.8,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "toolathlon_pass_at_1",
+      "score": 56.8,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": "Retrospective row in Opus 4.8 SC Table"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "toolathlon_pass_at_3",
+      "score": 66.7,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "toolathlon_pass_cube",
+      "score": 47.2,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "toolathlon_pass_at_1",
+      "score": 41.0,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "toolathlon_pass_at_3",
+      "score": 54.6,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "toolathlon_pass_cube",
+      "score": 28.7,
+      "unit": "%",
+      "_source": "Opus 4.8 SC \u00a78.13.7 Table",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "browsecomp",
+      "score": 83.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report \u00a75.3.2 Table 6",
+      "_note": "In-house harness, websearch+Python tool, 500 steps, 512K context, discard-all compaction"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "hle_with_tools",
+      "score": 48.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 6",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mcp_atlas_public",
+      "score": 73.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 6",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "toolathlon_pass_at_1",
+      "score": 51.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 6",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "browsecomp",
+      "score": 80.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "hle_with_tools",
+      "score": 44.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "mcp_atlas_public",
+      "score": 74.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "toolathlon_pass_at_1",
+      "score": 49.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "browsecomp",
+      "score": 73.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "hle_with_tools",
+      "score": 45.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mcp_atlas_public",
+      "score": 69.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "toolathlon_pass_at_1",
+      "score": 47.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "browsecomp",
+      "score": 53.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "hle_with_tools",
+      "score": 40.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "mcp_atlas_public",
+      "score": 67.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "toolathlon_pass_at_1",
+      "score": 43.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen-3.5-omni-plus",
+      "benchmark": "bfcl_v4",
+      "score": 63.3,
+      "unit": "score",
+      "_source": "Qwen3.5-Omni Tech Report Table 4 (\u00a75.1.1)",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen-3.5-omni-plus",
+      "benchmark": "tau2_bench",
+      "score": 81.0,
+      "unit": "%",
+      "_source": "Qwen3.5-Omni Tech Report Table 4 (\u00a75.1.1)",
+      "_note": "Reported as TAU2Bench general-agent ability"
+    },
+    {
+      "model": "alibaba/qwen-3.5-omni-plus",
+      "benchmark": "omnigaia",
+      "score": 57.2,
+      "unit": "%",
+      "_source": "Qwen3.5-Omni Tech Report Table 7 (Agent Tool Use row)",
+      "_note": "Audio-visual tool-use; judged by DeepSeek-V3.2-Thinking"
+    },
+    {
+      "model": "alibaba/qwen-3.5-omni-flash",
+      "benchmark": "bfcl_v4",
+      "score": 55.3,
+      "unit": "score",
+      "_source": "Qwen3.5-Omni Tech Report Table 4",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen-3.5-omni-flash",
+      "benchmark": "tau2_bench",
+      "score": 78.0,
+      "unit": "%",
+      "_source": "Qwen3.5-Omni Tech Report Table 4",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen-3.5-omni-flash",
+      "benchmark": "omnigaia",
+      "score": 33.9,
+      "unit": "%",
+      "_source": "Qwen3.5-Omni Tech Report Table 7",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen-3.5-plus-instruct",
+      "benchmark": "bfcl_v4",
+      "score": 66.1,
+      "unit": "score",
+      "_source": "Qwen3.5-Omni Tech Report Table 4 (baseline column)",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen-3.5-plus-instruct",
+      "benchmark": "tau2_bench",
+      "score": 82.7,
+      "unit": "%",
+      "_source": "Qwen3.5-Omni Tech Report Table 4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-thinking-1",
+      "benchmark": "bfcl_v3",
+      "score": 72.0,
+      "unit": "score",
+      "_source": "MAI-Thinking-1 model card Table 12 (Tool Calling column)",
+      "_note": ""
+    }
+  ]
+}
