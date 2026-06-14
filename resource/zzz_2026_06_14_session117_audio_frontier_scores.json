@@ -1,0 +1,3357 @@
+{
+  "_meta": {
+    "session": "117",
+    "date": "2026-06-14",
+    "topic": "Audio / Speech frontier refresh (ASR + TTS + Voice/S2S foundation)",
+    "notes": "3 parallel agents on ASR leaderboards + TTS arenas + voice/S2S foundation models. First broad audio sweep since S101.",
+    "sources": [
+      "Artificial Analysis Speech-to-Text Arena (AA-WER v2)",
+      "AA Text-to-Speech Arena (Quality Elo + Quality)",
+      "HF Open ASR Leaderboard (arxiv 2510.06961v4)",
+      "TTS Arena V2 (HF Space, April 2026 snapshot)",
+      "VoiceBench (TACL 2026)",
+      "MMAU, MMSU, AudioBench, AIR-Bench Audio",
+      "Qwen3.5-Omni-Plus tech report (arxiv 2604.15804)",
+      "Step-Audio-R1.5 paper (arxiv 2604.25719)",
+      "StepAudio 2.5 Realtime announcement (2026-05-24)",
+      "GPT-Realtime-2 release (2026-05-08)",
+      "Gemini Omni Flash launch (2026-05-19)",
+      "Hibiki-Zero (Kyutai, 2026-02-13)",
+      "NVIDIA PersonaPlex (Jan 2026)"
+    ]
+  },
+  "models": [
+    {
+      "id": "cohere/cohere-transcribe-03-2026",
+      "name": "Cohere Transcribe (03-2026)",
+      "vendor": "Cohere",
+      "type": "audio",
+      "release_date": "2026-03-26",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "elevenlabs/scribe-v2",
+      "name": "ElevenLabs Scribe v2",
+      "vendor": "ElevenLabs",
+      "type": "audio",
+      "release_date": "2026-01-06",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "elevenlabs/scribe-v1",
+      "name": "ElevenLabs Scribe v1",
+      "vendor": "ElevenLabs",
+      "type": "audio",
+      "release_date": "2025-02-25",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "microsoft/mai-transcribe-1.5",
+      "name": "Microsoft MAI-Transcribe 1.5",
+      "vendor": "Microsoft Azure",
+      "type": "audio",
+      "release_date": "2026-05-15",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "microsoft/mai-transcribe-1",
+      "name": "Microsoft MAI-Transcribe 1",
+      "vendor": "Microsoft Azure",
+      "type": "audio",
+      "release_date": "2025-11-20",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-pro-stt",
+      "name": "Gemini 3.1 Pro (STT)",
+      "vendor": "Google",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro-stt",
+      "name": "Gemini 3 Pro (STT)",
+      "vendor": "Google",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-3-flash-stt",
+      "name": "Gemini 3 Flash (STT)",
+      "vendor": "Google",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-flash-lite-stt",
+      "name": "Gemini 3.1 Flash-Lite (STT)",
+      "vendor": "Google",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-2.5-pro-stt",
+      "name": "Gemini 2.5 Pro (STT)",
+      "vendor": "Google",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-2.5-flash-stt",
+      "name": "Gemini 2.5 Flash (STT)",
+      "vendor": "Google",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-2.5-flash-lite-stt",
+      "name": "Gemini 2.5 Flash-Lite (STT)",
+      "vendor": "Google",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "mistral/voxtral-small-24b",
+      "name": "Voxtral Small 24B",
+      "vendor": "Mistral AI",
+      "type": "audio",
+      "release_date": "2025-07-15",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "mistral/voxtral-mini-transcribe",
+      "name": "Voxtral Mini Transcribe",
+      "vendor": "Mistral AI",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "mistral/voxtral-mini-transcribe-2",
+      "name": "Voxtral Mini Transcribe 2",
+      "vendor": "Mistral AI",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "assemblyai/universal-3-pro",
+      "name": "AssemblyAI Universal-3 Pro",
+      "vendor": "AssemblyAI",
+      "type": "audio",
+      "release_date": "2026-04-30",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "assemblyai/universal",
+      "name": "AssemblyAI Universal",
+      "vendor": "AssemblyAI",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "gladia/solaria-3",
+      "name": "Gladia Solaria-3",
+      "vendor": "Gladia",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "gladia/solaria-1",
+      "name": "Gladia Solaria-1",
+      "vendor": "Gladia",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-omni-plus-stt",
+      "name": "Qwen3.5 Omni Plus (STT)",
+      "vendor": "Alibaba Cloud",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-omni-flash-stt",
+      "name": "Qwen3.5 Omni Flash (STT)",
+      "vendor": "Alibaba Cloud",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-asr-1.7b",
+      "name": "Qwen3-ASR 1.7B",
+      "vendor": "Alibaba Cloud",
+      "type": "audio",
+      "release_date": "2026-01-30",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "alibaba/fun-realtime-asr-preview",
+      "name": "Fun-Realtime-ASR (preview)",
+      "vendor": "Alibaba (Tongyi)",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "nvidia/parakeet-tdt-0.6b-v3",
+      "name": "NVIDIA Parakeet TDT 0.6B v3",
+      "vendor": "NVIDIA",
+      "type": "audio",
+      "release_date": "2025-08-14",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "nvidia/parakeet-tdt-0.6b-v2",
+      "name": "NVIDIA Parakeet TDT 0.6B v2",
+      "vendor": "NVIDIA",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "nvidia/canary-qwen-2.5b",
+      "name": "NVIDIA Canary-Qwen 2.5B",
+      "vendor": "NVIDIA",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "nvidia/canary-1b-v2",
+      "name": "NVIDIA Canary 1B v2",
+      "vendor": "NVIDIA",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "ibm/granite-speech-4.1-2b",
+      "name": "IBM Granite Speech 4.1 2B",
+      "vendor": "IBM",
+      "type": "audio",
+      "release_date": "2026-04-30",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "ibm/granite-speech-4.0-1b",
+      "name": "IBM Granite Speech 4.0 1B",
+      "vendor": "IBM",
+      "type": "audio",
+      "release_date": "2026-03-06",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "ibm/granite-speech-3.3-8b",
+      "name": "IBM Granite Speech 3.3 8B",
+      "vendor": "IBM",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "ibm/granite-speech-3.3-2b",
+      "name": "IBM Granite Speech 3.3 2B",
+      "vendor": "IBM",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "microsoft/phi-4-multimodal",
+      "name": "Microsoft Phi-4 Multimodal",
+      "vendor": "Microsoft",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "openai/whisper-large-v3",
+      "name": "OpenAI Whisper Large v3",
+      "vendor": "OpenAI",
+      "type": "audio",
+      "release_date": "2023-11-06",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "openai/whisper-large-v3-turbo",
+      "name": "OpenAI Whisper Large v3 Turbo",
+      "vendor": "OpenAI",
+      "type": "audio",
+      "release_date": "2024-09-30",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "meta/omnilingual-asr-llm-7b-v2",
+      "name": "Meta Omnilingual ASR LLM 7B v2",
+      "vendor": "Meta",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "meta/omnilingual-asr-llm-7b",
+      "name": "Meta Omnilingual ASR LLM 7B",
+      "vendor": "Meta",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "meta/omnilingual-asr-ctc-7b-v2",
+      "name": "Meta Omnilingual ASR CTC 7B v2",
+      "vendor": "Meta",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "speechmatics/enhanced",
+      "name": "Speechmatics Enhanced",
+      "vendor": "Speechmatics",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "revai/fusion",
+      "name": "RevAI Fusion",
+      "vendor": "RevAI",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "zoom/scribe-v1",
+      "name": "Zoom Scribe v1",
+      "vendor": "Zoom",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/chirp",
+      "name": "Google Chirp",
+      "vendor": "Google",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/chirp-v2",
+      "name": "Google Chirp v2",
+      "vendor": "Google",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "distil-whisper/distil-large-v3.5",
+      "name": "Distil-Whisper Large v3.5",
+      "vendor": "HuggingFace",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "nvidia/parakeet-ctc-1.1b",
+      "name": "NVIDIA Parakeet CTC 1.1B",
+      "vendor": "NVIDIA",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "nvidia/parakeet-ctc-0.6b",
+      "name": "NVIDIA Parakeet CTC 0.6B",
+      "vendor": "NVIDIA",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "amazon/transcribe",
+      "name": "Amazon Transcribe",
+      "vendor": "Amazon AWS",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "amazon/nova-2-pro-stt",
+      "name": "Amazon Nova 2 Pro (STT)",
+      "vendor": "Amazon Bedrock",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "deepgram/nova-3",
+      "name": "Deepgram Nova-3",
+      "vendor": "Deepgram",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "deepgram/nova-2",
+      "name": "Deepgram Nova-2",
+      "vendor": "Deepgram",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "xai/grok-stt",
+      "name": "xAI Grok Speech-to-Text",
+      "vendor": "xAI",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "alibaba/fun-realtime-tts",
+      "name": "Fun-Realtime-TTS",
+      "vendor": "Alibaba (Tongyi / CosyVoice)",
+      "type": "audio",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-flash-tts",
+      "name": "Gemini 3.1 Flash TTS",
+      "vendor": "Google DeepMind",
+      "type": "audio",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "inworld/realtime-tts-2-rp",
+      "name": "Realtime TTS-2 (Research Preview)",
+      "vendor": "Inworld AI",
+      "type": "audio",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "inworld/realtime-tts-1.5-max",
+      "name": "Inworld Realtime TTS 1.5 Max",
+      "vendor": "Inworld AI",
+      "type": "audio",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "inworld/realtime-tts-1.5-mini",
+      "name": "Inworld Realtime TTS 1.5 Mini",
+      "vendor": "Inworld AI",
+      "type": "audio",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "cartesia/sonic-3.5",
+      "name": "Cartesia Sonic 3.5",
+      "vendor": "Cartesia",
+      "type": "audio",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "cartesia/sonic-3",
+      "name": "Cartesia Sonic 3",
+      "vendor": "Cartesia",
+      "type": "audio",
+      "release_date": "2025-Q4-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "xai/xai-tts",
+      "name": "xAI Text-to-Speech (Grok TTS)",
+      "vendor": "xAI",
+      "type": "audio",
+      "release_date": "2026-Q1-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "elevenlabs/eleven-v3",
+      "name": "ElevenLabs Eleven v3",
+      "vendor": "ElevenLabs",
+      "type": "audio",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "openai/gpt-realtime-2",
+      "name": "OpenAI GPT-Realtime-2 (TTS branch)",
+      "vendor": "OpenAI",
+      "type": "audio",
+      "release_date": "2026-Q1-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "speechify/simba-3.0",
+      "name": "Speechify SIMBA 3.0",
+      "vendor": "Speechify",
+      "type": "audio",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "hume/octave-2",
+      "name": "Hume Octave 2",
+      "vendor": "Hume AI",
+      "type": "audio",
+      "release_date": "2026-Q1-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "fish-audio/s2-pro",
+      "name": "Fish Audio S2 Pro",
+      "vendor": "Fish Audio",
+      "type": "audio",
+      "release_date": "2026-Q1-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "stepfun/step-audio-editx",
+      "name": "Step-Audio EditX (Mar 2026)",
+      "vendor": "StepFun",
+      "type": "audio",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "mistral/voxtral-tts",
+      "name": "Voxtral TTS",
+      "vendor": "Mistral",
+      "type": "audio",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "nvidia/magpie-multilingual-357m",
+      "name": "NVIDIA Magpie-Multilingual 357M (Feb 2026)",
+      "vendor": "NVIDIA",
+      "type": "audio",
+      "release_date": "2026-02-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "vocu/vocu-v3.0",
+      "name": "Vocu V3.0",
+      "vendor": "Vocu",
+      "type": "audio",
+      "release_date": "2026-Q1-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "inworld/tts-max",
+      "name": "Inworld TTS MAX",
+      "vendor": "Inworld AI",
+      "type": "audio",
+      "release_date": "2026-Q1-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "castleflow/v1.0",
+      "name": "CastleFlow v1.0",
+      "vendor": "CastleFlow",
+      "type": "audio",
+      "release_date": "2026-Q1-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "inworld/tts",
+      "name": "Inworld TTS (base)",
+      "vendor": "Inworld AI",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "papla/p1",
+      "name": "Papla P1",
+      "vendor": "Papla",
+      "type": "audio",
+      "release_date": "2026-Q1-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "minimax/speech-02-turbo",
+      "name": "MiniMax Speech-02-Turbo",
+      "vendor": "MiniMax",
+      "type": "audio",
+      "release_date": "2026-Q1-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "minimax/speech-02-hd",
+      "name": "MiniMax Speech-02-HD",
+      "vendor": "MiniMax",
+      "type": "audio",
+      "release_date": "2026-Q1-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "nvidia/nemotron-3-nano-omni-30b-a3b",
+      "name": "NVIDIA Nemotron 3 Nano Omni 30B A3B",
+      "vendor": "NVIDIA",
+      "type": "audio",
+      "release_date": "2026-Q2-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "openai/gpt-realtime-translate",
+      "name": "gpt-realtime-translate",
+      "vendor": "OpenAI",
+      "type": "audio",
+      "release_date": "2026-05-08",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "openai/gpt-realtime-whisper",
+      "name": "gpt-realtime-whisper",
+      "vendor": "OpenAI",
+      "type": "audio",
+      "release_date": "2026-05-08",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "openai/gpt-4o-audio",
+      "name": "gpt-4o-audio",
+      "vendor": "OpenAI",
+      "type": "audio",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "openai/gpt-4o-mini-audio",
+      "name": "gpt-4o-mini-audio",
+      "vendor": "OpenAI",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-3-1-flash-live",
+      "name": "gemini-3-1-flash-live",
+      "vendor": "Google DeepMind",
+      "type": "audio",
+      "release_date": "2026-03-26",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-2-5-flash-live",
+      "name": "gemini-2-5-flash-live",
+      "vendor": "Google DeepMind",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro-audio",
+      "name": "gemini-3-pro-audio",
+      "vendor": "Google DeepMind",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-3-1-pro-audio",
+      "name": "gemini-3-1-pro-audio",
+      "vendor": "Google DeepMind",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "google/gemini-omni-flash",
+      "name": "gemini-omni-flash",
+      "vendor": "Google DeepMind",
+      "type": "audio",
+      "release_date": "2026-05-19",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-5-omni-plus",
+      "name": "qwen3-5-omni-plus",
+      "vendor": "Alibaba (Qwen Team)",
+      "type": "audio",
+      "release_date": "2026-04-22 (arXiv)",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-5-omni-flash",
+      "name": "qwen3-5-omni-flash",
+      "vendor": "Alibaba (Qwen Team)",
+      "type": "audio",
+      "release_date": "2026-04-22",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-omni-30b-a3b",
+      "name": "qwen3-omni-30b-a3b",
+      "vendor": "Alibaba (Qwen Team)",
+      "type": "audio",
+      "release_date": "2025-09 (Qwen3-Omni)",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2-5-omni",
+      "name": "qwen2-5-omni",
+      "vendor": "Alibaba (Qwen Team)",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2-audio",
+      "name": "qwen2-audio",
+      "vendor": "Alibaba (Qwen Team)",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "stepfun/step-audio-r1",
+      "name": "step-audio-r1",
+      "vendor": "StepFun",
+      "type": "audio",
+      "release_date": "2025-11-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "stepfun/step-audio-r1.5",
+      "name": "step-audio-r1-5",
+      "vendor": "StepFun",
+      "type": "audio",
+      "release_date": "2026-04-29",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "stepfun/stepaudio-2.5-realtime",
+      "name": "stepaudio-2-5-realtime",
+      "vendor": "StepFun",
+      "type": "audio",
+      "release_date": "2026-05-24",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "stepfun/step-audio",
+      "name": "step-audio",
+      "vendor": "StepFun",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-audio",
+      "name": "kimi-audio",
+      "vendor": "Moonshot AI",
+      "type": "audio",
+      "release_date": "2025-04 (arXiv 2504.18425)",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "kyutai/moshi",
+      "name": "moshi",
+      "vendor": "Kyutai",
+      "type": "audio",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "kyutai/hibiki-zero",
+      "name": "hibiki-zero",
+      "vendor": "Kyutai",
+      "type": "audio",
+      "release_date": "2026-02-13",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "kyutai/hibiki",
+      "name": "hibiki",
+      "vendor": "Kyutai",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "nvidia/personaplex",
+      "name": "personaplex",
+      "vendor": "NVIDIA",
+      "type": "audio",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "nvidia/nemotron-3-voicechat-v1",
+      "name": "nemotron-3-voicechat-v1",
+      "vendor": "NVIDIA",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "fixie/ultravox-glm-4p7",
+      "name": "ultravox-glm-4p7",
+      "vendor": "Fixie (Ultravox)",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "fixie/ultravox-glm-4p7-thinking",
+      "name": "ultravox-glm-4p7-thinking",
+      "vendor": "Fixie (Ultravox)",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "minimax/speech-02",
+      "name": "speech-02",
+      "vendor": "MiniMax",
+      "type": "audio",
+      "release_date": "2025-2026",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "hume/evi-3",
+      "name": "evi-3",
+      "vendor": "Hume AI",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "assemblyai/universal-2",
+      "name": "universal-2",
+      "vendor": "AssemblyAI",
+      "type": "audio",
+      "release_date": "2024-2026",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "assemblyai/slam-1",
+      "name": "slam-1",
+      "vendor": "AssemblyAI",
+      "type": "audio",
+      "release_date": "2025-late",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "bytedance/seed-asr",
+      "name": "seed-asr",
+      "vendor": "ByteDance (Seed)",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "bytedance/seed-tts",
+      "name": "seed-tts",
+      "vendor": "ByteDance (Seed)",
+      "type": "audio",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio"
+      ]
+    },
+    {
+      "id": "bytedance/doubao-realtime-voice",
+      "name": "doubao-realtime-voice",
+      "vendor": "ByteDance (Volcano Engine)",
+      "type": "audio",
+      "release_date": "2025/2026",
+      "modalities": [
+        "audio"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "aa_wer_v2_lower_better",
+      "name": "AA-WER v2 (Artificial Analysis)",
+      "category": "audio",
+      "metric": "wer",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/articles/aa-wer-v2"
+    },
+    {
+      "id": "aa_agenttalk_wer_lower_better",
+      "name": "AA-AgentTalk WER",
+      "category": "audio",
+      "metric": "wer",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/articles/aa-wer-v2"
+    },
+    {
+      "id": "aa_voxpopuli_clean_wer_lower_better",
+      "name": "VoxPopuli-Cleaned-AA WER",
+      "category": "audio",
+      "metric": "wer",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/articles/aa-wer-v2"
+    },
+    {
+      "id": "aa_earnings22_clean_wer_lower_better",
+      "name": "Earnings22-Cleaned-AA WER",
+      "category": "audio",
+      "metric": "wer",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/articles/aa-wer-v2"
+    },
+    {
+      "id": "aa_stt_rtfx",
+      "name": "AA STT Speed Factor (RTFx)",
+      "category": "audio",
+      "metric": "rtfx",
+      "unit": "x",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/speech-to-text"
+    },
+    {
+      "id": "open_asr_english_avg_wer_lower_better",
+      "name": "Open ASR Leaderboard English Avg WER",
+      "category": "audio",
+      "metric": "wer",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2510.06961v4"
+    },
+    {
+      "id": "open_asr_multilingual_avg_wer_lower_better",
+      "name": "Open ASR Multilingual Avg WER",
+      "category": "audio",
+      "metric": "wer",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2510.06961v4"
+    },
+    {
+      "id": "open_asr_longform_avg_wer_lower_better",
+      "name": "Open ASR Long-Form English Avg WER",
+      "category": "audio",
+      "metric": "wer",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2510.06961v4"
+    },
+    {
+      "id": "open_asr_rtfx",
+      "name": "Open ASR Leaderboard RTFx",
+      "category": "audio",
+      "metric": "rtfx",
+      "unit": "x",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2510.06961v4"
+    },
+    {
+      "id": "librispeech_clean_wer_lower_better",
+      "name": "LibriSpeech test-clean WER",
+      "category": "audio",
+      "metric": "wer",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2510.06961v4"
+    },
+    {
+      "id": "librispeech_other_wer_lower_better",
+      "name": "LibriSpeech test-other WER",
+      "category": "audio",
+      "metric": "wer",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://arxiv.org/html/2510.06961v4"
+    },
+    {
+      "id": "aa_tts_quality_elo",
+      "name": "AA TTS Arena Quality Elo",
+      "category": "TTS",
+      "metric": "Elo",
+      "unit": "%",
+      "description": "Blind pairwise human preference, Elo",
+      "source_url": "https://artificialanalysis.ai/text-to-speech/leaderboard/selected-voice"
+    },
+    {
+      "id": "tts_arena_elo",
+      "name": "TTS Arena V2 Elo (HuggingFace TTS-AGI)",
+      "category": "TTS",
+      "metric": "Elo",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://huggingface.co/spaces/TTS-AGI/TTS-Arena-V2"
+    },
+    {
+      "id": "voicebench",
+      "name": "VoiceBench overall (LLM voice assistant)",
+      "category": "Speech-LLM",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://matthewcym.github.io/VoiceBench/"
+    },
+    {
+      "id": "voicebench_overall",
+      "name": "VoiceBench (Overall)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "TACL'26 multi-task LLM voice assistant eval \u2014 overall aggregate across AlpacaEval/CommonEval/WildVoice/SD-QA/MMSU/OBQA/BBH/IFEval/AdvBench.",
+      "source_url": "https://matthewcym.github.io/VoiceBench/"
+    },
+    {
+      "id": "voicebench_alpacaeval",
+      "name": "VoiceBench / AlpacaEval",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://matthewcym.github.io/VoiceBench/"
+    },
+    {
+      "id": "voicebench_commoneval",
+      "name": "VoiceBench / CommonEval",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://matthewcym.github.io/VoiceBench/"
+    },
+    {
+      "id": "voicebench_mmsu",
+      "name": "VoiceBench / MMSU",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://matthewcym.github.io/VoiceBench/"
+    },
+    {
+      "id": "voicebench_advbench",
+      "name": "VoiceBench / AdvBench",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://matthewcym.github.io/VoiceBench/"
+    },
+    {
+      "id": "mmau",
+      "name": "MMAU (Massive Multi-task Audio Understanding)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "Audio reasoning over speech/music/env-sound, MCQ",
+      "source_url": ""
+    },
+    {
+      "id": "mmsu",
+      "name": "MMSU (Massive Multi-task Speech Understanding)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmar",
+      "name": "MMAR (Audio Reasoning)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "big_bench_audio",
+      "name": "Big Bench Audio",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "Reasoning eval in audio modality",
+      "source_url": ""
+    },
+    {
+      "id": "audio_multichallenge",
+      "name": "Audio MultiChallenge",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "Scale AI \u2014 instruction-following in multi-turn spoken dialogue",
+      "source_url": ""
+    },
+    {
+      "id": "spoken_mqa",
+      "name": "Spoken MQA",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "wild_speech",
+      "name": "Wild Speech",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "rul_muchomusic",
+      "name": "RUL-MuchoMusic",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "librispeech_clean_wer",
+      "name": "LibriSpeech clean \u2014 WER%",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "Lower is better",
+      "source_url": ""
+    },
+    {
+      "id": "librispeech_other_wer",
+      "name": "LibriSpeech other \u2014 WER%",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "Lower is better",
+      "source_url": ""
+    },
+    {
+      "id": "fleurs_wer_top60",
+      "name": "FLEURS top-60 WER%",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "Multilingual ASR; lower better",
+      "source_url": ""
+    },
+    {
+      "id": "fleurs_s2tt_xx_en",
+      "name": "FLEURS S2TT xx->en BLEU (top59)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "fleurs_s2tt_xx_zh",
+      "name": "FLEURS S2TT xx->zh BLEU (top59)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "opencpop_wer",
+      "name": "Opencpop WER%",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "europarl_st_asr_bleu",
+      "name": "Europarl-ST ASR-BLEU (short-form S2S translation)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "full_duplex_bench_v3_latency",
+      "name": "Full-Duplex-Bench v3 \u2014 end-to-end latency (s)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "full_duplex_bench_ttfa",
+      "name": "Full-Duplex-Bench \u2014 Time to First Audio (s)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "complexfuncbench_audio",
+      "name": "ComplexFuncBench Audio",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "paralinguistic_comprehension",
+      "name": "Paralinguistic Comprehension (StepFun-reported)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "general_dialogue",
+      "name": "General Dialogue Benchmark (StepFun-reported)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "spoken_qa_stepfun",
+      "name": "Spoken QA Benchmark (StepFun-reported)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "human_evaluation_stepfun",
+      "name": "Human Evaluation (StepFun-reported)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "step_caption",
+      "name": "step_caption (StepFun internal, open-sourced 2026-04)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "step_du",
+      "name": "step_dialogue_understanding (StepFun)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "step_spqa",
+      "name": "step_spqa (StepFun)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "audio_mc_stepfun",
+      "name": "Audio MC (StepFun bench)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "s2s_perf_stepfun",
+      "name": "Step-Audio Realtime Speech-to-Speech Performance Score",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "s2s_latency_stepfun",
+      "name": "Step-Audio Realtime S2S Latency (s)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "dialog_naturalness_mos",
+      "name": "Dialog Naturalness MOS (PersonaPlex eval)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "speaker_similarity",
+      "name": "Speaker Similarity (voice cloning)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "librispeech_clean_assemblyai",
+      "name": "LibriSpeech clean WER% (AssemblyAI-reported)",
+      "category": "audio",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "alibaba/fun-realtime-asr-preview",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 1.7,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": "AA STT leaderboard top-1"
+    },
+    {
+      "model": "elevenlabs/scribe-v2",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 2.2,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "elevenlabs/scribe-v2",
+      "benchmark": "aa_agenttalk_wer_lower_better",
+      "score": 1.6,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/articles/aa-wer-v2",
+      "_note": ""
+    },
+    {
+      "model": "elevenlabs/scribe-v2",
+      "benchmark": "aa_voxpopuli_clean_wer_lower_better",
+      "score": 1.8,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/articles/aa-wer-v2",
+      "_note": ""
+    },
+    {
+      "model": "elevenlabs/scribe-v2",
+      "benchmark": "aa_earnings22_clean_wer_lower_better",
+      "score": 4.1,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/articles/aa-wer-v2",
+      "_note": ""
+    },
+    {
+      "model": "elevenlabs/scribe-v2",
+      "benchmark": "aa_stt_rtfx",
+      "score": 32.2,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-transcribe-1.5",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 2.4,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-transcribe-1.5",
+      "benchmark": "aa_stt_rtfx",
+      "score": 119.9,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-transcribe-1",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 2.6,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/mai-transcribe-1",
+      "benchmark": "aa_stt_rtfx",
+      "score": 55.2,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro-stt",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 2.8,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro-stt",
+      "benchmark": "aa_voxpopuli_clean_wer_lower_better",
+      "score": 1.7,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/articles/aa-wer-v2",
+      "_note": "Article attributes 1.7% VoxPopuli WER to 'Gemini 3 Pro'; AA leaderboard now labels 'Gemini 3.1 Pro (High)'"
+    },
+    {
+      "model": "mistral/voxtral-small-24b",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 2.8,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b",
+      "benchmark": "aa_voxpopuli_clean_wer_lower_better",
+      "score": 1.8,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/articles/aa-wer-v2",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash-stt",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 2.9,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash-stt",
+      "benchmark": "aa_agenttalk_wer_lower_better",
+      "score": 2.5,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/articles/aa-wer-v2",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro-stt",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 2.9,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro-stt",
+      "benchmark": "aa_earnings22_clean_wer_lower_better",
+      "score": 4.4,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/articles/aa-wer-v2",
+      "_note": ""
+    },
+    {
+      "model": "elevenlabs/scribe-v1",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 3.0,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "elevenlabs/scribe-v1",
+      "benchmark": "aa_stt_rtfx",
+      "score": 38.1,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "assemblyai/universal-3-pro",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 3.1,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "assemblyai/universal-3-pro",
+      "benchmark": "aa_agenttalk_wer_lower_better",
+      "score": 2.3,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/articles/aa-wer-v2",
+      "_note": ""
+    },
+    {
+      "model": "assemblyai/universal-3-pro",
+      "benchmark": "aa_stt_rtfx",
+      "score": 87.0,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "gladia/solaria-3",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 3.2,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "gladia/solaria-3",
+      "benchmark": "aa_stt_rtfx",
+      "score": 60.1,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite-stt",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 3.4,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite-stt",
+      "benchmark": "aa_stt_rtfx",
+      "score": 75.7,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-mini-transcribe",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 3.5,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-omni-plus-stt",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 3.5,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-omni-plus-stt",
+      "benchmark": "aa_stt_rtfx",
+      "score": 104.9,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-mini-transcribe-2",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 3.6,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro-stt",
+      "benchmark": "aa_stt_rtfx",
+      "score": 6.2,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "assemblyai/universal",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 3.8,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-stt",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 4.0,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-stt",
+      "benchmark": "aa_stt_rtfx",
+      "score": 98.6,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "amazon/transcribe",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 4.1,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "gladia/solaria-1",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 4.1,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 4.6,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "aa_stt_rtfx",
+      "score": 64.2,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "amazon/nova-2-pro-stt",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 4.9,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "deepgram/nova-3",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 5.2,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "deepgram/nova-3",
+      "benchmark": "aa_stt_rtfx",
+      "score": 510.5,
+      "unit": "x",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "deepgram/nova-2",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 5.3,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-flash-stt",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 5.1,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-flash-lite-stt",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 5.2,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-omni-flash-stt",
+      "benchmark": "aa_wer_v2_lower_better",
+      "score": 13.5,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/speech-to-text",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 5.42,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": "Rank 1 short-form English"
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "open_asr_rtfx",
+      "score": 525.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "librispeech_clean_wer_lower_better",
+      "score": 1.25,
+      "unit": "%",
+      "_source": "https://huggingface.co/CohereLabs/cohere-transcribe-03-2026",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "librispeech_other_wer_lower_better",
+      "score": 2.37,
+      "unit": "%",
+      "_source": "https://huggingface.co/CohereLabs/cohere-transcribe-03-2026",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 3.83,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "cohere/cohere-transcribe-03-2026",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 9.73,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "zoom/scribe-v1",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 5.47,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-speech-4.0-1b",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 5.52,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-speech-4.0-1b",
+      "benchmark": "open_asr_rtfx",
+      "score": 280.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/canary-qwen-2.5b",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 5.63,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/canary-qwen-2.5b",
+      "benchmark": "open_asr_rtfx",
+      "score": 418.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/canary-qwen-2.5b",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 11.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-speech-3.3-8b",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 5.76,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-speech-3.3-8b",
+      "benchmark": "open_asr_rtfx",
+      "score": 145.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-asr-1.7b",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 5.76,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-asr-1.7b",
+      "benchmark": "open_asr_rtfx",
+      "score": 148.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-asr-1.7b",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 5.11,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "elevenlabs/scribe-v2",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 5.83,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "elevenlabs/scribe-v2",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 2.67,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": "Rank 1 multilingual"
+    },
+    {
+      "model": "elevenlabs/scribe-v2",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 7.32,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": "Rank 1 long-form"
+    },
+    {
+      "model": "ibm/granite-speech-3.3-2b",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 6.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-speech-3.3-2b",
+      "benchmark": "open_asr_rtfx",
+      "score": 271.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-multimodal",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 6.02,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-multimodal",
+      "benchmark": "open_asr_rtfx",
+      "score": 151.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-multimodal",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 4.41,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/parakeet-tdt-0.6b-v2",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 6.05,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/parakeet-tdt-0.6b-v2",
+      "benchmark": "open_asr_rtfx",
+      "score": 3390.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "assemblyai/universal-3-pro",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 6.21,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "assemblyai/universal-3-pro",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 3.23,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "assemblyai/universal-3-pro",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 8.34,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/parakeet-tdt-0.6b-v3",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 6.34,
+      "unit": "%",
+      "_source": "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3",
+      "_note": "Model card lists 6.34%; arxiv table shows 6.32%"
+    },
+    {
+      "model": "nvidia/parakeet-tdt-0.6b-v3",
+      "benchmark": "open_asr_rtfx",
+      "score": 3330.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/parakeet-tdt-0.6b-v3",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 4.81,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/parakeet-tdt-0.6b-v3",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 10.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/parakeet-tdt-0.6b-v3",
+      "benchmark": "librispeech_clean_wer_lower_better",
+      "score": 1.93,
+      "unit": "%",
+      "_source": "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/parakeet-tdt-0.6b-v3",
+      "benchmark": "librispeech_other_wer_lower_better",
+      "score": 3.59,
+      "unit": "%",
+      "_source": "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3",
+      "_note": ""
+    },
+    {
+      "model": "google/chirp-v2",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 6.42,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/canary-1b-v2",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 6.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/canary-1b-v2",
+      "benchmark": "open_asr_rtfx",
+      "score": 235.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/canary-1b-v2",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 4.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 6.62,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b",
+      "benchmark": "open_asr_rtfx",
+      "score": 54.1,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "mistral/voxtral-small-24b",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 3.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "speechmatics/enhanced",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 4.29,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "speechmatics/enhanced",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 8.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "meta/omnilingual-asr-llm-7b-v2",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 4.39,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "meta/omnilingual-asr-llm-7b-v2",
+      "benchmark": "open_asr_rtfx",
+      "score": 21.2,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "meta/omnilingual-asr-llm-7b",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 4.68,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "meta/omnilingual-asr-ctc-7b-v2",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 5.84,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "openai/whisper-large-v3",
+      "benchmark": "open_asr_multilingual_avg_wer_lower_better",
+      "score": 4.81,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "openai/whisper-large-v3",
+      "benchmark": "open_asr_rtfx",
+      "score": 111.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "openai/whisper-large-v3",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 11.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "openai/whisper-large-v3-turbo",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 11.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "openai/whisper-large-v3-turbo",
+      "benchmark": "open_asr_rtfx",
+      "score": 148.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "distil-whisper/distil-large-v3.5",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 11.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "distil-whisper/distil-large-v3.5",
+      "benchmark": "open_asr_rtfx",
+      "score": 156.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/parakeet-ctc-1.1b",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 12.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/parakeet-ctc-1.1b",
+      "benchmark": "open_asr_rtfx",
+      "score": 2790.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "google/chirp",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 13.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/parakeet-ctc-0.6b",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 13.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/parakeet-ctc-0.6b",
+      "benchmark": "open_asr_rtfx",
+      "score": 4383.0,
+      "unit": "x",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "revai/fusion",
+      "benchmark": "open_asr_longform_avg_wer_lower_better",
+      "score": 9.54,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.06961v4",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-speech-4.1-2b",
+      "benchmark": "open_asr_english_avg_wer_lower_better",
+      "score": 5.33,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-speech-4.1-2b",
+      "_note": "Vendor card claim; not yet on arxiv leaderboard table"
+    },
+    {
+      "model": "ibm/granite-speech-4.1-2b",
+      "benchmark": "librispeech_clean_wer_lower_better",
+      "score": 1.33,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-speech-4.1-2b",
+      "_note": ""
+    },
+    {
+      "model": "ibm/granite-speech-4.1-2b",
+      "benchmark": "librispeech_other_wer_lower_better",
+      "score": 2.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/ibm-granite/granite-speech-4.1-2b",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/fun-realtime-tts",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1226.47,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/fun-realtime-tts",
+      "_note": "AA model detail page: 'Elo 1226.47', family CosyVoice TTS, provider Alibaba."
+    },
+    {
+      "model": "google/gemini-3.1-flash-tts",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1214.99,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/gemini-3-1-tts",
+      "_note": "AA model detail page: 'Quality Elo rating is 1214.99' for Gemini 3.1 Flash TTS."
+    },
+    {
+      "model": "inworld/realtime-tts-2-rp",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1208.11,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/realtime-tts-2-research-preview",
+      "_note": "AA model detail page: 'Quality Elo rating ... is 1208.11' for Inworld Realtime TTS-2 Research Preview."
+    },
+    {
+      "model": "cartesia/sonic-3.5",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1197.19,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/sonic-3-5",
+      "_note": "AA model detail page: 'Quality Elo: 1197.19' for Cartesia Sonic 3.5."
+    },
+    {
+      "model": "xai/xai-tts",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1196.31,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/xai-text-to-speech",
+      "_note": "AA model detail page: 'Elo 1196.31' for xAI Text to Speech."
+    },
+    {
+      "model": "inworld/realtime-tts-1.5-max",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1194.55,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/realtime-tts-1-5-max",
+      "_note": "AA model detail page: 'Quality Elo Score: 1194.55' for Inworld Realtime TTS 1.5 Max."
+    },
+    {
+      "model": "elevenlabs/eleven-v3",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1175.62,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/eleven-v3",
+      "_note": "AA model detail page: 'Elo 1175.62' for ElevenLabs Eleven v3."
+    },
+    {
+      "model": "inworld/realtime-tts-1.5-mini",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1151.06,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/realtime-tts-1-5-mini",
+      "_note": "AA model detail page: 'Elo 1151.06' for Inworld Realtime TTS 1.5 Mini."
+    },
+    {
+      "model": "speechify/simba-3.0",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1128.52,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/simba-3-0",
+      "_note": "AA model detail page: 'Elo 1128.52' for Speechify SIMBA 3.0."
+    },
+    {
+      "model": "fish-audio/s2-pro",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1117.42,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/fish-audio-s2-pro",
+      "_note": "AA model detail page: 'Quality Elo rating ... is 1117.42' for Fish Audio S2 Pro. (Top open-weights model.)"
+    },
+    {
+      "model": "stepfun/step-audio-editx",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1107.0,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "AA Speech leaderboard FAQ: 'Top 5 Open Weights: 2. Step Audio EditX (Mar 2026) - Elo 1107'."
+    },
+    {
+      "model": "cartesia/sonic-3",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1083.42,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/sonic3",
+      "_note": "AA model detail page: 'Quality Elo rating for Cartesia's Sonic 3 model is 1083.42'."
+    },
+    {
+      "model": "mistral/voxtral-tts",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1077.42,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/voxtral-tts",
+      "_note": "AA model detail page: 'Quality Elo score for Voxtral TTS is 1077.42' (family: Mistral)."
+    },
+    {
+      "model": "openai/gpt-realtime-2",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1066.84,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/gpt-realtime-2",
+      "_note": "AA model detail page: 'Elo 1066.84' for OpenAI GPT-Realtime-2 TTS."
+    },
+    {
+      "model": "kokoro/kokoro-82m-v1",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1061.0,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "_note": "AA leaderboard FAQ: 'Top 5 Open Weights: 4. Kokoro 82M v1.0 - Elo 1061'."
+    },
+    {
+      "model": "nvidia/magpie-multilingual-357m",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1007.56,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/magpie-multilingual-357m",
+      "_note": "AA model detail page: 'Quality Elo for Magpie-Multilingual 357M is 1007.56', family NVIDIA."
+    },
+    {
+      "model": "hume/octave-2",
+      "benchmark": "aa_tts_quality_elo",
+      "score": 1059.9,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/text-to-speech/models/ocateve-2",
+      "_note": "AA model detail page: 'Hume AI's Octave 2 has a Quality Elo rating of 1059.9'."
+    },
+    {
+      "model": "vocu/vocu-v3.0",
+      "benchmark": "tts_arena_elo",
+      "score": 1581.0,
+      "unit": "%",
+      "_source": "https://tts-agi-tts-arena-v2.hf.space/leaderboard",
+      "_note": "TTS Arena V2 (HF) April-2026 snapshot: '#1 Vocu V3.0 (Proprietary) \u2014 56% win rate, 1235 votes, 1581 ELO'."
+    },
+    {
+      "model": "inworld/tts-max",
+      "benchmark": "tts_arena_elo",
+      "score": 1579.0,
+      "unit": "%",
+      "_source": "https://tts-agi-tts-arena-v2.hf.space/leaderboard",
+      "_note": "TTS Arena V2 April-2026 snapshot: '#2 Inworld TTS MAX \u2014 62% win rate, 1328 votes, 1579 ELO'."
+    },
+    {
+      "model": "castleflow/v1.0",
+      "benchmark": "tts_arena_elo",
+      "score": 1574.0,
+      "unit": "%",
+      "_source": "https://tts-agi-tts-arena-v2.hf.space/leaderboard",
+      "_note": "TTS Arena V2 April-2026 snapshot: '#3 CastleFlow v1.0 \u2014 60% win rate, 1643 votes, 1574 ELO'."
+    },
+    {
+      "model": "inworld/tts",
+      "benchmark": "tts_arena_elo",
+      "score": 1571.0,
+      "unit": "%",
+      "_source": "https://tts-agi-tts-arena-v2.hf.space/leaderboard",
+      "_note": "TTS Arena V2 April-2026 snapshot: '#4 Inworld TTS \u2014 1571 ELO'."
+    },
+    {
+      "model": "papla/p1",
+      "benchmark": "tts_arena_elo",
+      "score": 1562.0,
+      "unit": "%",
+      "_source": "https://tts-agi-tts-arena-v2.hf.space/leaderboard",
+      "_note": "TTS Arena V2 April-2026 snapshot: '#5 Papla P1 \u2014 1562 ELO'."
+    },
+    {
+      "model": "hume/octave-2",
+      "benchmark": "tts_arena_elo",
+      "score": 1561.0,
+      "unit": "%",
+      "_source": "https://tts-agi-tts-arena-v2.hf.space/leaderboard",
+      "_note": "TTS Arena V2 April-2026 snapshot: '#6 Hume Octave \u2014 1561 ELO'."
+    },
+    {
+      "model": "minimax/speech-02-turbo",
+      "benchmark": "tts_arena_elo",
+      "score": 1542.0,
+      "unit": "%",
+      "_source": "https://tts-agi-tts-arena-v2.hf.space/leaderboard",
+      "_note": "TTS Arena V2 April-2026 snapshot: '#7 MiniMax Speech-02-Turbo \u2014 1542 ELO'."
+    },
+    {
+      "model": "minimax/speech-02-hd",
+      "benchmark": "tts_arena_elo",
+      "score": 1540.0,
+      "unit": "%",
+      "_source": "https://tts-agi-tts-arena-v2.hf.space/leaderboard",
+      "_note": "TTS Arena V2 April-2026 snapshot: '#8 MiniMax Speech-02-HD \u2014 1540 ELO'."
+    },
+    {
+      "model": "elevenlabs/turbo-v2.5",
+      "benchmark": "tts_arena_elo",
+      "score": 1539.0,
+      "unit": "%",
+      "_source": "https://tts-agi-tts-arena-v2.hf.space/leaderboard",
+      "_note": "TTS Arena V2 April-2026 snapshot: '#9 Eleven Turbo v2.5 \u2014 1539 ELO'."
+    },
+    {
+      "model": "elevenlabs/flash-v2.5",
+      "benchmark": "tts_arena_elo",
+      "score": 1535.0,
+      "unit": "%",
+      "_source": "https://tts-agi-tts-arena-v2.hf.space/leaderboard",
+      "_note": "TTS Arena V2 April-2026 snapshot: '#10 Eleven Flash v2.5 \u2014 1535 ELO'."
+    },
+    {
+      "model": "elevenlabs/multilingual-v2",
+      "benchmark": "tts_arena_elo",
+      "score": 1528.0,
+      "unit": "%",
+      "_source": "https://tts-agi-tts-arena-v2.hf.space/leaderboard",
+      "_note": "TTS Arena V2 April-2026 snapshot: '#11 Eleven Multilingual v2 \u2014 1528 ELO'."
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b",
+      "benchmark": "voicebench",
+      "score": 89.4,
+      "unit": "%",
+      "_source": "https://matthewcym.github.io/VoiceBench/",
+      "_note": "VoiceBench Omni category: NVIDIA Nemotron 3 Nano Omni 30B A3B = 89.4 overall."
+    },
+    {
+      "model": "openai/gpt-4o-audio",
+      "benchmark": "voicebench",
+      "score": 86.8,
+      "unit": "%",
+      "_source": "https://matthewcym.github.io/VoiceBench/",
+      "_note": "VoiceBench: 'GPT-4o-Audio scores 86.8' (top of S2S/Full-Duplex category)."
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b",
+      "benchmark": "voicebench_overall",
+      "score": 89.39,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "fixie/ultravox-glm-4p7",
+      "benchmark": "voicebench_overall",
+      "score": 88.86,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "fixie/ultravox-glm-4p7-thinking",
+      "benchmark": "voicebench_overall",
+      "score": 88.79,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o-audio",
+      "benchmark": "voicebench_overall",
+      "score": 86.75,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o-mini-audio",
+      "benchmark": "voicebench_overall",
+      "score": 82.84,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-audio",
+      "benchmark": "voicebench_overall",
+      "score": 76.91,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2-audio",
+      "benchmark": "voicebench_overall",
+      "score": 55.8,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio",
+      "benchmark": "voicebench_overall",
+      "score": 50.84,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "kyutai/moshi",
+      "benchmark": "voicebench_overall",
+      "score": 29.51,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-voicechat-v1",
+      "benchmark": "voicebench_overall",
+      "score": 58.1,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b",
+      "benchmark": "voicebench_alpacaeval",
+      "score": 4.75,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o-audio",
+      "benchmark": "voicebench_alpacaeval",
+      "score": 4.78,
+      "unit": "%",
+      "_source": "voicebench_lb",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-audio",
+      "benchmark": "voicebench_alpacaeval",
+      "score": 61.1,
+      "unit": "%",
+      "_source": "kimi_audio_paper",
+      "_note": "Kimi-Audio paper reports 61.10 on AlpacaEval-style scale used in their eval (different scoring convention from VoiceBench leaderboard's 4.x scale)."
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "voicebench_overall",
+      "score": 93.1,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "voicebench_overall",
+      "score": 87.8,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-audio",
+      "benchmark": "voicebench_overall",
+      "score": 88.9,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "mmau",
+      "score": 82.2,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "mmau",
+      "score": 80.4,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-audio",
+      "benchmark": "mmau",
+      "score": 81.1,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "mmsu",
+      "score": 82.8,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "mmsu",
+      "score": 72.2,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-audio",
+      "benchmark": "mmsu",
+      "score": 81.3,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "mmar",
+      "score": 80.0,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "mmar",
+      "score": 74.0,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-audio",
+      "benchmark": "mmar",
+      "score": 83.7,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "rul_muchomusic",
+      "score": 72.4,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "rul_muchomusic",
+      "score": 60.5,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-audio",
+      "benchmark": "rul_muchomusic",
+      "score": 59.6,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "librispeech_clean_wer",
+      "score": 1.11,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "librispeech_clean_wer",
+      "score": 1.3,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-audio",
+      "benchmark": "librispeech_clean_wer",
+      "score": 3.36,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "librispeech_other_wer",
+      "score": 2.23,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "librispeech_other_wer",
+      "score": 2.43,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-audio",
+      "benchmark": "librispeech_other_wer",
+      "score": 4.41,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "fleurs_wer_top60",
+      "score": 6.55,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "fleurs_wer_top60",
+      "score": 10.75,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-audio",
+      "benchmark": "fleurs_wer_top60",
+      "score": 7.32,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "fleurs_s2tt_xx_en",
+      "score": 35.4,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "fleurs_s2tt_xx_en",
+      "score": 32.0,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-audio",
+      "benchmark": "fleurs_s2tt_xx_en",
+      "score": 34.6,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "fleurs_s2tt_xx_zh",
+      "score": 30.2,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "fleurs_s2tt_xx_zh",
+      "score": 26.9,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-audio",
+      "benchmark": "fleurs_s2tt_xx_zh",
+      "score": 29.5,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "opencpop_wer",
+      "score": 1.49,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "opencpop_wer",
+      "score": 1.11,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-1-pro-audio",
+      "benchmark": "opencpop_wer",
+      "score": 6.83,
+      "unit": "%",
+      "_source": "qwen35_omni_html",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-realtime-2",
+      "benchmark": "big_bench_audio",
+      "score": 96.6,
+      "unit": "%",
+      "_source": "openai_realtime_decoder",
+      "_note": "'high' reasoning effort"
+    },
+    {
+      "model": "openai/gpt-realtime-2",
+      "benchmark": "audio_multichallenge",
+      "score": 48.5,
+      "unit": "%",
+      "_source": "openai_realtime_decoder",
+      "_note": "'xhigh' reasoning effort"
+    },
+    {
+      "model": "stepfun/step-audio-r1",
+      "benchmark": "big_bench_audio",
+      "score": 98.7,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1",
+      "benchmark": "spoken_mqa",
+      "score": 95.2,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1",
+      "benchmark": "mmsu",
+      "score": 75.9,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1",
+      "benchmark": "mmau",
+      "score": 77.7,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1",
+      "benchmark": "wild_speech",
+      "score": 70.6,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-audio",
+      "benchmark": "big_bench_audio",
+      "score": 92.1,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-audio",
+      "benchmark": "spoken_mqa",
+      "score": 95.3,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-audio",
+      "benchmark": "mmsu",
+      "score": 82.9,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-audio",
+      "benchmark": "mmau",
+      "score": 78.9,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-audio",
+      "benchmark": "wild_speech",
+      "score": 76.4,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1",
+      "benchmark": "s2s_perf_stepfun",
+      "score": 96.1,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1",
+      "benchmark": "s2s_latency_stepfun",
+      "score": 0.92,
+      "unit": "%",
+      "_source": "step_audio_r1",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1.5",
+      "benchmark": "audio_mc_stepfun",
+      "score": 41.15,
+      "unit": "%",
+      "_source": "step_audio_r15",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1.5",
+      "benchmark": "big_bench_audio",
+      "score": 98.3,
+      "unit": "%",
+      "_source": "step_audio_r15",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1.5",
+      "benchmark": "mmsu",
+      "score": 79.03,
+      "unit": "%",
+      "_source": "step_audio_r15",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1.5",
+      "benchmark": "mmau",
+      "score": 77.9,
+      "unit": "%",
+      "_source": "step_audio_r15",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1.5",
+      "benchmark": "spoken_mqa",
+      "score": 93.74,
+      "unit": "%",
+      "_source": "step_audio_r15",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1.5",
+      "benchmark": "step_caption",
+      "score": 71.48,
+      "unit": "%",
+      "_source": "step_audio_r15",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1.5",
+      "benchmark": "step_du",
+      "score": 82.76,
+      "unit": "%",
+      "_source": "step_audio_r15",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-audio-r1.5",
+      "benchmark": "step_spqa",
+      "score": 79.4,
+      "unit": "%",
+      "_source": "step_audio_r15",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro-audio",
+      "benchmark": "audio_mc_stepfun",
+      "score": 66.37,
+      "unit": "%",
+      "_source": "step_audio_r15",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-plus",
+      "benchmark": "audio_mc_stepfun",
+      "score": 39.38,
+      "unit": "%",
+      "_source": "step_audio_r15",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-5-omni-flash",
+      "benchmark": "audio_mc_stepfun",
+      "score": 25.44,
+      "unit": "%",
+      "_source": "step_audio_r15",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/stepaudio-2.5-realtime",
+      "benchmark": "paralinguistic_comprehension",
+      "score": 82.18,
+      "unit": "%",
+      "_source": "decrypt_stepfun",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-realtime-2",
+      "benchmark": "paralinguistic_comprehension",
+      "score": 80.46,
+      "unit": "%",
+      "_source": "decrypt_stepfun",
+      "_note": "Decrypt labels this 'GPT Realtime 1.5' \u2014 captured under canonical realtime-2 family per StepFun's testing era. Confirm vendor mapping."
+    },
+    {
+      "model": "google/gemini-2-5-flash-live",
+      "benchmark": "paralinguistic_comprehension",
+      "score": 58.05,
+      "unit": "%",
+      "_source": "decrypt_stepfun",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/stepaudio-2.5-realtime",
+      "benchmark": "human_evaluation_stepfun",
+      "score": 80.41,
+      "unit": "%",
+      "_source": "marktechpost_stepaudio25",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/stepaudio-2.5-realtime",
+      "benchmark": "general_dialogue",
+      "score": 86.36,
+      "unit": "%",
+      "_source": "marktechpost_stepaudio25",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/stepaudio-2.5-realtime",
+      "benchmark": "spoken_qa_stepfun",
+      "score": 79.8,
+      "unit": "%",
+      "_source": "marktechpost_stepaudio25",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-audio",
+      "benchmark": "mmau",
+      "score": 60.66,
+      "unit": "%",
+      "_source": "kimi_audio_paper",
+      "_note": "Sound category"
+    },
+    {
+      "model": "kyutai/hibiki-zero",
+      "benchmark": "europarl_st_asr_bleu",
+      "score": 34.6,
+      "unit": "%",
+      "_source": "marktechpost_hibikizero",
+      "_note": "Lag 2.8s; short-form"
+    },
+    {
+      "model": "nvidia/personaplex",
+      "benchmark": "dialog_naturalness_mos",
+      "score": 3.9,
+      "unit": "%",
+      "_source": "personaplex_decoder",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2-5-flash-live",
+      "benchmark": "dialog_naturalness_mos",
+      "score": 3.72,
+      "unit": "%",
+      "_source": "personaplex_decoder",
+      "_note": "Cited as 'Gemini Live'"
+    },
+    {
+      "model": "alibaba/qwen2-5-omni",
+      "benchmark": "dialog_naturalness_mos",
+      "score": 3.7,
+      "unit": "%",
+      "_source": "personaplex_decoder",
+      "_note": ""
+    },
+    {
+      "model": "kyutai/moshi",
+      "benchmark": "dialog_naturalness_mos",
+      "score": 3.11,
+      "unit": "%",
+      "_source": "personaplex_decoder",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/personaplex",
+      "benchmark": "speaker_similarity",
+      "score": 0.57,
+      "unit": "%",
+      "_source": "personaplex_decoder",
+      "_note": "Voice cloning; Gemini/Qwen/Moshi reported 'close to zero'"
+    },
+    {
+      "model": "assemblyai/universal-2",
+      "benchmark": "librispeech_clean_assemblyai",
+      "score": 2.1,
+      "unit": "%",
+      "_source": "assemblyai_blog",
+      "_note": "AssemblyAI-reported approx."
+    }
+  ]
+}
