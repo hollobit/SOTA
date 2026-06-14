@@ -1,0 +1,5809 @@
+{
+  "_meta": {
+    "session": "113",
+    "date": "2026-06-14",
+    "topic": "Deep re-mine sweep (Anthropic + OpenAI/Google + Chinese frontier + Putnam provers)",
+    "notes": "3 parallel agents on table/appendix deep mining of previously-collected PDFs.",
+    "sources": [
+      "Claude Fable 5 & Mythos 5 System Card (Anthropic 2026-06-09, 312-page PDF) \u00a73-8.20",
+      "Claude Opus 4.5/4.6/4.7/4.8 cards",
+      "Gemini 3 Pro Model Evaluation PDF (DeepMind methodology)",
+      "Gemini 3 Pro launch blog (LMArena/WebDev Elo, Deep Think)",
+      "Gemini 3.1 Pro/Flash/Flash-Lite Model Cards",
+      "Gemini 3.5 Flash Model Card",
+      "DeepMind Deep Think product page",
+      "DeepSeek V4-Pro Technical Report (2026-05-19) Tables 1+6+7, Figs 8+9"
+    ]
+  },
+  "models": [
+    {
+      "id": "anthropic/claude-mythos-5",
+      "name": "Claude Mythos 5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-fable-5",
+      "name": "Claude Fable 5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-mythos-preview",
+      "name": "Claude Mythos Preview",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.8",
+      "name": "Claude Opus 4.8",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.7",
+      "name": "Claude Opus 4.7",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.6",
+      "name": "Claude Opus 4.6",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-sonnet-4-5",
+      "name": "Claude Sonnet 4.5",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-sonnet-4.6",
+      "name": "Claude Sonnet 4.6",
+      "vendor": "Anthropic",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.5",
+      "name": "GPT-5.5",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro",
+      "name": "Gemini 3 Pro",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-pro",
+      "name": "Gemini 3.1 Pro",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.5-pro",
+      "name": "GPT-5.5 Pro",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.4-thinking",
+      "name": "GPT-5.4 Thinking",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro-deep-think",
+      "name": "Gemini 3 Pro Deep Think",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-pro-deep-think",
+      "name": "Gemini 3.1 Pro Deep Think",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-flash",
+      "name": "Gemini 3 Flash",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.5-flash",
+      "name": "Gemini 3.5 Flash",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-flash-lite",
+      "name": "Gemini 3.1 Flash-Lite",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-flash-image",
+      "name": "Gemini 3.1 Flash Image (baseline)",
+      "vendor": "Google",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-pro-base",
+      "name": "DeepSeek-V4-Pro-Base",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-05-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash-base",
+      "name": "DeepSeek-V4-Flash-Base",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-05-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v3.2",
+      "name": "DeepSeek-V3.2-Base",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2025-09-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash-max",
+      "name": "DeepSeek-V4-Flash-Max",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-05-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-pro-high",
+      "name": "DeepSeek-V4-Pro-High",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-05-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash-high",
+      "name": "DeepSeek-V4-Flash-High",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-05-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-flash-nonthink",
+      "name": "DeepSeek-V4-Flash-NonThink",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-05-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v4-pro-nonthink",
+      "name": "DeepSeek-V4-Pro-NonThink",
+      "vendor": "deepseek",
+      "type": "language",
+      "release_date": "2026-05-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bytedance/seed-1.5-prover",
+      "name": "Seed-1.5-Prover",
+      "vendor": "bytedance",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "bytedance/seed-2.0-pro",
+      "name": "Seed-2.0-Pro",
+      "vendor": "bytedance",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "aristotle/aristotle",
+      "name": "Aristotle",
+      "vendor": "aristotle",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "axiom/axiom",
+      "name": "Axiom",
+      "vendor": "axiom",
+      "type": "language",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "bbq_disambiguated_bias",
+      "name": "BBQ Disambiguated Bias",
+      "category": "safety",
+      "metric": "bias_score",
+      "unit": "%",
+      "description": "Bias Benchmark for Question Answering \u2014 disambiguated bias score (closer to 0 better)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "bbq_ambiguous_bias",
+      "name": "BBQ Ambiguous Bias",
+      "category": "safety",
+      "metric": "bias_score",
+      "unit": "%",
+      "description": "BBQ ambiguous bias score (closer to 0 better)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "election_integrity_harmful_api",
+      "name": "Election Integrity (Harmful, API)",
+      "category": "safety",
+      "metric": "harmless_rate",
+      "unit": "%",
+      "description": "Single-turn harmful election prompts; harmless rate, API without system prompt",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "election_integrity_benign_api",
+      "name": "Election Integrity (Benign, API)",
+      "category": "safety",
+      "metric": "refusal_rate",
+      "unit": "%",
+      "description": "Single-turn benign election prompts; over-refusal rate (lower better)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "identity_honesty_hard",
+      "name": "Identity Honesty (Hard Set)",
+      "category": "safety",
+      "metric": "truthful_rate",
+      "unit": "%",
+      "description": "Harder evaluation: strong operator instruction + indirect user probe",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "identity_honesty_easy",
+      "name": "Identity Honesty (Original Set)",
+      "category": "safety",
+      "metric": "truthful_rate",
+      "unit": "%",
+      "description": "Standard scenario set for AI-identity disclosure",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "unavailable_tool_hallucination_acc_v2",
+      "name": "Unavailable Tool Hallucination (500-prompt set)",
+      "category": "safety",
+      "metric": "non_hallucination_rate",
+      "unit": "%",
+      "description": "Non-hallucination rate when prompts request a tool not provided",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "missing_reference_hallucination_acc_v2",
+      "name": "Missing Reference Hallucination (500-prompt set)",
+      "category": "safety",
+      "metric": "non_hallucination_rate",
+      "unit": "%",
+      "description": "Non-hallucination rate for prompts referencing nonexistent content",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "art_indirect_prompt_injection_k100",
+      "name": "Agent Red Teaming Indirect Injection @ k=100",
+      "category": "safety",
+      "metric": "attack_success_rate",
+      "unit": "%",
+      "description": "Gray Swan ART indirect prompt injection, 100 attempts (lower better)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "shade_coding_with_safeguards_attempts",
+      "name": "Shade Coding ASR (with safeguards, attempts)",
+      "category": "safety",
+      "metric": "attack_success_rate",
+      "unit": "%",
+      "description": "Shade adaptive ASR in coding env, with safeguards, attempt-level",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "shade_coding_no_safeguards_attempts",
+      "name": "Shade Coding ASR (no safeguards, attempts)",
+      "category": "safety",
+      "metric": "attack_success_rate",
+      "unit": "%",
+      "description": "Shade adaptive ASR in coding env, no safeguards, attempt-level",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "shade_computer_use_with_safeguards_attempts",
+      "name": "Shade Computer Use ASR (with safeguards, attempts)",
+      "category": "safety",
+      "metric": "attack_success_rate",
+      "unit": "%",
+      "description": "Shade computer-use ASR, with safeguards",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "shade_computer_use_no_safeguards_attempts",
+      "name": "Shade Computer Use ASR (no safeguards, attempts)",
+      "category": "safety",
+      "metric": "attack_success_rate",
+      "unit": "%",
+      "description": "Shade computer-use ASR, no safeguards",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "browser_use_attack_no_safeguards",
+      "name": "Browser-use Prompt Injection (no safeguards)",
+      "category": "safety",
+      "metric": "attack_success_rate",
+      "unit": "%",
+      "description": "Internal browser-use 129-environment adaptive PI test (no safeguards)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "browser_use_attack_with_current_safeguards",
+      "name": "Browser-use PI (current safeguards)",
+      "category": "safety",
+      "metric": "attack_success_rate",
+      "unit": "%",
+      "description": "Browser-use PI with currently-deployed safeguards",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "browser_use_attack_updated_safeguards",
+      "name": "Browser-use PI (updated safeguards)",
+      "category": "safety",
+      "metric": "attack_success_rate",
+      "unit": "%",
+      "description": "Browser-use PI with updated safeguards",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "shade_arena_stealth_visible_thinking",
+      "name": "SHADE-Arena Stealth (visible thinking)",
+      "category": "agentic-safety",
+      "metric": "stealth_success_rate",
+      "unit": "%",
+      "description": "SHADE-Arena stealth success with monitor seeing extended thinking",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "shade_arena_stealth_hidden_scratchpad_v2",
+      "name": "SHADE-Arena Stealth (hidden scratchpad)",
+      "category": "agentic-safety",
+      "metric": "stealth_success_rate",
+      "unit": "%",
+      "description": "SHADE-Arena stealth where monitor sees only user-visible outputs",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "shade_arena_stealth_prompt_optimized",
+      "name": "SHADE-Arena Stealth (prompt suffix elicited)",
+      "category": "agentic-safety",
+      "metric": "stealth_success_rate",
+      "unit": "%",
+      "description": "SHADE-Arena stealth under optimized prompt suffix elicitation",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "shade_arena_stealth_finetuned",
+      "name": "SHADE-Arena Stealth (fine-tuned)",
+      "category": "agentic-safety",
+      "metric": "stealth_success_rate",
+      "unit": "%",
+      "description": "SHADE-Arena stealth after fine-tuning on Minimal-LinuxBench stealth trajectories",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "exploitbench_v8_mean_plain",
+      "name": "ExploitBench V8 Mean Flags (plain)",
+      "category": "cyber",
+      "metric": "flags",
+      "unit": "count",
+      "description": "ExploitBench V8 plain-arm mean capability flags per trial",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "exploitbench_v8_mean_autonudge",
+      "name": "ExploitBench V8 Mean Flags (AutoNudge)",
+      "category": "cyber",
+      "metric": "flags",
+      "unit": "count",
+      "description": "ExploitBench V8 AutoNudge arm mean capability flags per trial",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "exploitbench_v8_cap_pct",
+      "name": "ExploitBench V8 Cap%",
+      "category": "cyber",
+      "metric": "cap_percent",
+      "unit": "%",
+      "description": "Percentage of total flags captured (3-trial subset avg over all envs)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "oss_fuzz_above_0",
+      "name": "OSS-Fuzz score>0 (any crash)",
+      "category": "cyber",
+      "metric": "rate",
+      "unit": "%",
+      "description": "OSS-Fuzz any memory-safety crash rate (score above 0)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "oss_fuzz_above_04",
+      "name": "OSS-Fuzz score>=0.4 (write primitive)",
+      "category": "cyber",
+      "metric": "rate",
+      "unit": "%",
+      "description": "OSS-Fuzz rate of write primitive or better",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "cybergym_targeted_vuln_pass1",
+      "name": "CyberGym Targeted Vuln Reproduction Pass@1",
+      "category": "cyber",
+      "metric": "pass1",
+      "unit": "%",
+      "description": "CyberGym 1507-task pass@1 on targeted vulnerability reproduction",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "firefox_147_pass_rate",
+      "name": "Firefox 147 Full Exploit Rate",
+      "category": "cyber",
+      "metric": "rate",
+      "unit": "%",
+      "description": "Firefox 147 exploit grading: fraction of trials with full working exploit (score 1.0)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "uk_aisi_doing_life_pass_at_10",
+      "name": "UK AISI 'Doing Life' Cyber Range pass@10",
+      "category": "cyber",
+      "metric": "pass_at_10",
+      "unit": "%",
+      "description": "UK AISI 'Doing Life' enterprise simulation with security defences, success rate",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "multi_agent_browsecomp_async_v2",
+      "name": "Multi-Agent BrowseComp (async subagents)",
+      "category": "agentic-research",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "BrowseComp under async-subagents multi-agent harness",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "multi_agent_programbench_5agent",
+      "name": "Multi-Agent ProgramBench (5-agent team)",
+      "category": "coding",
+      "metric": "score",
+      "unit": "%",
+      "description": "ProgramBench 5-agent team final score on 166 golden tasks",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "finance_agent_benchmark_v2",
+      "name": "Finance Agent Benchmark v2",
+      "category": "agentic",
+      "metric": "score",
+      "unit": "%",
+      "description": "Vals AI Finance Agent Benchmark v2",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "legal_agent_benchmark_held_out",
+      "name": "Legal Agent Benchmark (Harvey held-out)",
+      "category": "agentic",
+      "metric": "all_pass",
+      "unit": "%",
+      "description": "Harvey-evaluated held-out LAB all-pass rate",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "officeqa_v2",
+      "name": "OfficeQA",
+      "category": "agentic",
+      "metric": "score",
+      "unit": "%",
+      "description": "OfficeQA full benchmark (vs Pro 133-q subset) exact-match",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "frontier_swe_mean5",
+      "name": "FrontierSWE mean@5",
+      "category": "coding",
+      "metric": "mean",
+      "unit": "score",
+      "description": "FrontierSWE 17-task ultra-long-horizon engineering, mean@5 ranking (lower better)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "frontiercode_diamond_pass_rate",
+      "name": "FrontierCode Diamond Pass Rate",
+      "category": "coding",
+      "metric": "pass_rate",
+      "unit": "%",
+      "description": "FrontierCode Diamond subset: fraction of tasks with patch satisfying all blocking criteria",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "frontiercode_main_pass_rate",
+      "name": "FrontierCode Main Pass Rate",
+      "category": "coding",
+      "metric": "pass_rate",
+      "unit": "%",
+      "description": "FrontierCode Main subset: pass rate",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "frontiercode_main_score",
+      "name": "FrontierCode Main Score",
+      "category": "coding",
+      "metric": "score",
+      "unit": "%",
+      "description": "FrontierCode Main subset score (rubric+blocking)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "healthbench_length_adjusted",
+      "name": "HealthBench (length-adjusted)",
+      "category": "medical",
+      "metric": "score",
+      "unit": "%",
+      "description": "HealthBench length-adjusted score, Opus 4.8 grader",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "healthbench_professional_length_adjusted",
+      "name": "HealthBench Professional (length-adjusted)",
+      "category": "medical",
+      "metric": "score",
+      "unit": "%",
+      "description": "HealthBench Professional length-adjusted score",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "labbench2_clinical_trial",
+      "name": "LABBench2 Clinical Trial",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "LABBench2 clinical-trial questions sub-category",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "labbench2_figqa",
+      "name": "LABBench2 FigQA",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "LABBench2 figure-QA sub-category",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "long_form_virology_task2",
+      "name": "Long-form Virology Task 2",
+      "category": "bio-risk",
+      "metric": "e2e_score",
+      "unit": "score",
+      "description": "SecureBio/Deloitte/Signature Science long-form virology task 2 end-to-end",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "vct_multimodal_virology",
+      "name": "VCT Multimodal Virology",
+      "category": "bio-risk",
+      "metric": "score",
+      "unit": "score",
+      "description": "Virology Capabilities Test multimodal MCQ (expert baseline 0.221)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "toolathlon_pass1_official",
+      "name": "Toolathlon Pass@1",
+      "category": "agentic",
+      "metric": "pass1",
+      "unit": "%",
+      "description": "Toolathlon: Pass@1 averaged over 3 trials (per paper protocol)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "toolathlon_pass_cubed",
+      "name": "Toolathlon Pass^3",
+      "category": "agentic",
+      "metric": "pass_cubed",
+      "unit": "%",
+      "description": "Toolathlon: fraction of tasks solved in ALL 3 trials",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "single_turn_harmful_harmless_api",
+      "name": "Single-turn Harmful (API harmless rate)",
+      "category": "safety",
+      "metric": "harmless_rate",
+      "unit": "%",
+      "description": "Single-turn harmful request: harmless response rate, API without system prompt",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "single_turn_benign_refusal_api",
+      "name": "Single-turn Benign (API refusal rate)",
+      "category": "safety",
+      "metric": "refusal_rate",
+      "unit": "%",
+      "description": "Single-turn benign request: over-refusal rate, API without system prompt (lower better)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "multi_agent_browsecomp_blocking",
+      "name": "Multi-Agent BrowseComp (blocking)",
+      "category": "agentic-research",
+      "metric": "speedup",
+      "unit": "x",
+      "description": "BrowseComp blocking-subagents harness vs single-agent baseline",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "deepsearchqa_fully_correct",
+      "name": "DeepSearchQA Fully Correct",
+      "category": "agentic-research",
+      "metric": "rate",
+      "unit": "%",
+      "description": "Fraction of queries fully correct",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "deepsearchqa_fully_incorrect_v2",
+      "name": "DeepSearchQA Fully Incorrect",
+      "category": "agentic-research",
+      "metric": "rate",
+      "unit": "%",
+      "description": "Fraction fully incorrect (lower better)",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "deepsearchqa_excessive_answers",
+      "name": "DeepSearchQA Correct w/ Excessive Answers",
+      "category": "agentic-research",
+      "metric": "rate",
+      "unit": "%",
+      "description": "Correct but with excess answers",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "draco_max_effort",
+      "name": "DRACO Max Effort",
+      "category": "agentic-research",
+      "metric": "score",
+      "unit": "%",
+      "description": "Perplexity DRACO 100-task deep research; Opus 4.6 judge",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "biomysterybench_human_solvable_full",
+      "name": "BioMysteryBench Human-Solvable subset",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Solvable-by-human subset accuracy",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "biomysterybench_human_difficult_full",
+      "name": "BioMysteryBench Human-Difficult subset",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Unsolved-by-human subset accuracy",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "latchbio_spatialbench_verified",
+      "name": "LatchBio SpatialBench Verified",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "115 externally validated spatial transcriptomics problems",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "latchbio_singlecellbench",
+      "name": "LatchBio SingleCellBench",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "195 single-cell RNA-seq problems",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "structural_biology_openended_v2",
+      "name": "Structural Biology Open-Ended",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Open-ended questions about biomolecular structure-function relationships",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "organic_chemistry",
+      "name": "Organic Chemistry",
+      "category": "life-sciences",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "Anthropic internal organic chemistry skill suite",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "vending_bench_2_balance",
+      "name": "Vending-Bench 2 final balance",
+      "category": "agentic",
+      "metric": "USD",
+      "unit": "USD",
+      "description": "Final bank-account balance after simulated year",
+      "source_url": "https://www-cdn.anthropic.com/2f9323abbcc4abe219577539efe19a623c9ca2bd/Claude%20Fable%205%20&%20Claude%20Mythos%205%20System%20Card.pdf"
+    },
+    {
+      "id": "tau2_bench_airline",
+      "name": "tau2-bench Airline",
+      "category": "agent_tool_use",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "tau2-bench Sierra framework Airline subset, single-attempt pass@1, model card methodology",
+      "source_url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3_pro_model_evaluation.pdf"
+    },
+    {
+      "id": "lmarena_text_elo",
+      "name": "LMArena Text Elo",
+      "category": "leaderboard_elo",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "LMArena chatbot arena leaderboard Elo (text)",
+      "source_url": "https://blog.google/products/gemini/gemini-3/"
+    },
+    {
+      "id": "webdev_arena_elo",
+      "name": "WebDev Arena Elo",
+      "category": "leaderboard_elo",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "WebDev Arena Elo for web development tasks",
+      "source_url": "https://blog.google/products/gemini/gemini-3/"
+    },
+    {
+      "id": "humanitys_last_exam_no_tools",
+      "name": "Humanity's Last Exam (no tools)",
+      "category": "reasoning",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "HLE without tools",
+      "source_url": "https://blog.google/products/gemini/gemini-3-deep-think/"
+    },
+    {
+      "id": "arc_agi_2_code_execution",
+      "name": "ARC-AGI-2 (with code execution)",
+      "category": "reasoning",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "ARC-AGI-2 semi-private set with code execution tool",
+      "source_url": "https://blog.google/products/gemini/gemini-3-deep-think/"
+    },
+    {
+      "id": "gpqa_diamond",
+      "name": "GPQA Diamond",
+      "category": "reasoning",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "GPQA Diamond pass@1",
+      "source_url": "https://blog.google/products/gemini/gemini-3/"
+    },
+    {
+      "id": "imo_2025",
+      "name": "International Mathematical Olympiad 2025",
+      "category": "math_olympiad",
+      "metric": "score",
+      "unit": "%",
+      "description": "IMO 2025 problem-solving performance, self-reported by Google DeepMind",
+      "source_url": "https://deepmind.google/models/gemini/deep-think/"
+    },
+    {
+      "id": "ipho_2025",
+      "name": "International Physics Olympiad 2025",
+      "category": "science_olympiad",
+      "metric": "score",
+      "unit": "%",
+      "description": "IPhO 2025 physics olympiad score, Gemini 3.1 Deep Think",
+      "source_url": "https://deepmind.google/models/gemini/deep-think/"
+    },
+    {
+      "id": "icho_2025",
+      "name": "International Chemistry Olympiad 2025",
+      "category": "science_olympiad",
+      "metric": "score",
+      "unit": "%",
+      "description": "IChO 2025 chemistry olympiad score, Gemini 3.1 Deep Think",
+      "source_url": "https://deepmind.google/models/gemini/deep-think/"
+    },
+    {
+      "id": "codeforces_elo",
+      "name": "Codeforces Elo",
+      "category": "competitive_programming",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "Codeforces competitive programming Elo rating",
+      "source_url": "https://deepmind.google/models/gemini/deep-think/"
+    },
+    {
+      "id": "re_bench_optimise_llm_foundry_runtime_seconds_lower_better",
+      "name": "RE-Bench Optimise LLM Foundry (runtime sec, lower better)",
+      "category": "ml_research_engineering",
+      "metric": "runtime_seconds",
+      "unit": "seconds",
+      "description": "RE-Bench Optimise LLM Foundry challenge runtime after model optimisation (lower is better; human reference 94s, baseline 300s)",
+      "source_url": "resource/gemini_31_pro_model_card.pdf"
+    },
+    {
+      "id": "re_bench_human_normalized_average",
+      "name": "RE-Bench Human-normalized Average Score",
+      "category": "ml_research_engineering",
+      "metric": "ratio_to_human",
+      "unit": "ratio",
+      "description": "RE-Bench (Wijk et al. 2024) average score normalized to human reference; 1.0 = human-equivalent",
+      "source_url": "resource/gemini_31_pro_model_card.pdf"
+    },
+    {
+      "id": "harmful_manipulation_max_odds_ratio",
+      "name": "FSF Harmful Manipulation - Max Odds Ratio (belief change)",
+      "category": "safety_fsf",
+      "metric": "odds_ratio",
+      "unit": "odds_ratio",
+      "description": "Maximum belief-change odds ratio vs non-AI baseline, FSF Harmful Manipulation Level 1 exploratory eval",
+      "source_url": "resource/gemini_31_pro_model_card.pdf"
+    },
+    {
+      "id": "safety_text_to_text_delta_vs_prior",
+      "name": "Text-to-Text Safety delta vs prior model",
+      "category": "safety_automated",
+      "metric": "abs_delta_pct",
+      "unit": "pp",
+      "description": "Absolute percentage delta in Text-to-Text content safety auto-eval vs the predecessor model (negative = regression)",
+      "source_url": "Gemini model cards Training+Development Evaluation tables"
+    },
+    {
+      "id": "safety_multilingual_delta_vs_prior",
+      "name": "Multilingual Safety delta vs prior",
+      "category": "safety_automated",
+      "metric": "abs_delta_pct",
+      "unit": "pp",
+      "description": "Absolute percentage delta in Multilingual safety vs predecessor (non-egregious)",
+      "source_url": "Gemini model cards Training+Development Evaluation tables"
+    },
+    {
+      "id": "safety_image_to_text_delta_vs_prior",
+      "name": "Image-to-Text Safety delta vs prior",
+      "category": "safety_automated",
+      "metric": "abs_delta_pct",
+      "unit": "pp",
+      "description": "Absolute pp delta in Image-to-Text safety vs predecessor model",
+      "source_url": "Gemini model cards"
+    },
+    {
+      "id": "safety_tone_delta_vs_prior",
+      "name": "Tone delta vs prior",
+      "category": "safety_automated",
+      "metric": "abs_delta_pct",
+      "unit": "pp",
+      "description": "Tone of model refusal eval delta vs predecessor",
+      "source_url": "Gemini model cards"
+    },
+    {
+      "id": "safety_unjustified_refusals_delta_vs_prior",
+      "name": "Unjustified Refusals delta vs prior",
+      "category": "safety_automated",
+      "metric": "abs_delta_pct",
+      "unit": "pp",
+      "description": "Unjustified refusals on borderline prompts delta vs predecessor",
+      "source_url": "Gemini model cards"
+    },
+    {
+      "id": "swe_bench_pro_public",
+      "name": "SWE-Bench Pro (Public)",
+      "category": "code_agent",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "SWE-Bench Pro public split, agent harness",
+      "source_url": "https://deepmind.google/models/gemini/flash/"
+    },
+    {
+      "id": "genai_bench_overall_preference",
+      "name": "GenAI-Bench Overall Preference (Elo)",
+      "category": "image_generation",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "GenAI-Bench arena Elo for overall preference",
+      "source_url": "resource/gemini_31_flash_image_model_card.pdf"
+    },
+    {
+      "id": "genai_bench_visual_quality",
+      "name": "GenAI-Bench Visual Quality (Elo)",
+      "category": "image_generation",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "GenAI-Bench Elo for visual quality",
+      "source_url": "resource/gemini_31_flash_image_model_card.pdf"
+    },
+    {
+      "id": "genai_bench_infographics_factuality",
+      "name": "GenAI-Bench Infographics Factuality (Elo)",
+      "category": "image_generation",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "GenAI-Bench Elo for infographics factuality",
+      "source_url": "resource/gemini_31_flash_image_model_card.pdf"
+    },
+    {
+      "id": "image_editing_general",
+      "name": "Image Editing General (Elo)",
+      "category": "image_editing",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "resource/gemini_31_flash_image_model_card.pdf"
+    },
+    {
+      "id": "image_editing_character",
+      "name": "Image Editing Character (Elo)",
+      "category": "image_editing",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "resource/gemini_31_flash_image_model_card.pdf"
+    },
+    {
+      "id": "image_editing_creative",
+      "name": "Image Editing Creative (Elo)",
+      "category": "image_editing",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "resource/gemini_31_flash_image_model_card.pdf"
+    },
+    {
+      "id": "image_editing_object_env",
+      "name": "Image Editing Object/Environment (Elo)",
+      "category": "image_editing",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "resource/gemini_31_flash_image_model_card.pdf"
+    },
+    {
+      "id": "image_editing_multi_input",
+      "name": "Image Editing Multi-Input (1-3) (Elo)",
+      "category": "image_editing",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "resource/gemini_31_flash_image_model_card.pdf"
+    },
+    {
+      "id": "image_editing_stylization",
+      "name": "Image Editing Stylization (Elo)",
+      "category": "image_editing",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "",
+      "source_url": "resource/gemini_31_flash_image_model_card.pdf"
+    },
+    {
+      "id": "fsf_misalignment_situational_awareness_max_tokens_success_rate",
+      "name": "FSF Misalignment Situational Awareness - max_tokens challenge success rate",
+      "category": "safety_fsf",
+      "metric": "success_rate",
+      "unit": "%",
+      "description": "Situational-awareness 'max tokens' sub-challenge success rate, FSF (Gemini 3.1 Pro)",
+      "source_url": "resource/gemini_31_pro_model_card.pdf"
+    },
+    {
+      "id": "openai_secure_bio_evaluation_passed",
+      "name": "SecureBio Bio Evaluation - High-Performing",
+      "category": "safety_bio",
+      "metric": "categorical",
+      "unit": "bool",
+      "description": "SecureBio static evals: GPT-5.5 'highest-performing or among small handful' (qualitative; we don't emit a numeric score)",
+      "source_url": "resource/GPT-5-5-System-Card.pdf"
+    },
+    {
+      "id": "openai_ctf_pass_at_12_high_school",
+      "name": "OpenAI CTF Professional Pass@12",
+      "category": "cybersecurity",
+      "metric": "pass@12",
+      "unit": "%",
+      "description": "",
+      "source_url": "resource/GPT-5-5-System-Card.pdf"
+    },
+    {
+      "id": "agieval",
+      "name": "AGIEval",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu",
+      "name": "MMLU",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_redux",
+      "name": "MMLU-Redux",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmlu",
+      "name": "MMMLU",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "c_eval",
+      "name": "C-Eval",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "cmmlu",
+      "name": "CMMLU",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "multiloko",
+      "name": "MultiLoKo",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "supergpqa",
+      "name": "SuperGPQA",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "facts_parametric",
+      "name": "FACTS Parametric",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "triviaqa",
+      "name": "TriviaQA",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bbh",
+      "name": "BIG-Bench Hard",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "drop",
+      "name": "DROP",
+      "category": "general",
+      "metric": "F1",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hellaswag",
+      "name": "HellaSwag",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "winogrande",
+      "name": "WinoGrande",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "cluewsc",
+      "name": "CLUEWSC",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bigcodebench",
+      "name": "BigCodeBench",
+      "category": "general",
+      "metric": "Pass@1",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval",
+      "name": "HumanEval",
+      "category": "general",
+      "metric": "Pass@1",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gsm8k",
+      "name": "GSM8K",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math",
+      "name": "MATH",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mgsm",
+      "name": "MGSM",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "cmath",
+      "name": "CMath",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "longbench_v2",
+      "name": "LongBench-V2",
+      "category": "general",
+      "metric": "EM",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "putnam_200_pass8",
+      "name": "PutnamBench-200 Pass@8 (Seed-Prover protocol w/ LeanExplore)",
+      "category": "general",
+      "metric": "Pass@8",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "putnam_2025_proof",
+      "name": "Putnam-2025 (hybrid formal-informal, proof-perfect /120)",
+      "category": "general",
+      "metric": "Proofs solved / 120",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_8needle_8k",
+      "name": "MRCR 8-needle @ 8K",
+      "category": "general",
+      "metric": "Avg MMR",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_8needle_16k",
+      "name": "MRCR 8-needle @ 16K",
+      "category": "general",
+      "metric": "Avg MMR",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_8needle_32k",
+      "name": "MRCR 8-needle @ 32K",
+      "category": "general",
+      "metric": "Avg MMR",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_8needle_64k",
+      "name": "MRCR 8-needle @ 64K",
+      "category": "general",
+      "metric": "Avg MMR",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_8needle_128k",
+      "name": "MRCR 8-needle @ 128K",
+      "category": "general",
+      "metric": "Avg MMR",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_8needle_256k",
+      "name": "MRCR 8-needle @ 256K",
+      "category": "general",
+      "metric": "Avg MMR",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_8needle_512k",
+      "name": "MRCR 8-needle @ 512K",
+      "category": "general",
+      "metric": "Avg MMR",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_8needle_1024k",
+      "name": "MRCR 8-needle @ 1024K",
+      "category": "general",
+      "metric": "Avg MMR",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mrcr_1m",
+      "name": "MRCR 1M (DeepSeek V4-Pro report variant)",
+      "category": "long-context",
+      "metric": "pass_at_1",
+      "unit": "%",
+      "description": "MRCR 1M Pass@1 as reported in DeepSeek V4-Pro Technical Report Table 6",
+      "source_url": "DeepSeek-V4-Pro-Technical-Report.pdf"
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "bbq_disambiguated_bias",
+      "score": -1.8,
+      "unit": "%",
+      "_source": "\u00a74.4.2 Table 4.4.2.A & 4.4.2.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "bbq_disambiguated_bias",
+      "score": -1.37,
+      "unit": "%",
+      "_source": "\u00a74.4.2 Table 4.4.2.A & 4.4.2.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "bbq_disambiguated_bias",
+      "score": -1.68,
+      "unit": "%",
+      "_source": "\u00a74.4.2 Table 4.4.2.A & 4.4.2.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "bbq_disambiguated_bias",
+      "score": -1.61,
+      "unit": "%",
+      "_source": "\u00a74.4.2 Table 4.4.2.A & 4.4.2.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "bbq_disambiguated_bias",
+      "score": -0.67,
+      "unit": "%",
+      "_source": "\u00a74.4.2 Table 4.4.2.A & 4.4.2.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "bbq_ambiguous_bias",
+      "score": 0.1,
+      "unit": "%",
+      "_source": "\u00a74.4.2 Table 4.4.2.A & 4.4.2.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "bbq_ambiguous_bias",
+      "score": 0.07,
+      "unit": "%",
+      "_source": "\u00a74.4.2 Table 4.4.2.A & 4.4.2.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "bbq_ambiguous_bias",
+      "score": 0.04,
+      "unit": "%",
+      "_source": "\u00a74.4.2 Table 4.4.2.A & 4.4.2.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "bbq_ambiguous_bias",
+      "score": 0.01,
+      "unit": "%",
+      "_source": "\u00a74.4.2 Table 4.4.2.A & 4.4.2.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "bbq_ambiguous_bias",
+      "score": 1.41,
+      "unit": "%",
+      "_source": "\u00a74.4.2 Table 4.4.2.A & 4.4.2.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "election_integrity_harmful_api",
+      "score": 99.33,
+      "unit": "%",
+      "_source": "\u00a74.4.3 Table 4.4.3.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "election_integrity_harmful_api",
+      "score": 100.0,
+      "unit": "%",
+      "_source": "\u00a74.4.3 Table 4.4.3.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "election_integrity_harmful_api",
+      "score": 100.0,
+      "unit": "%",
+      "_source": "\u00a74.4.3 Table 4.4.3.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "election_integrity_harmful_api",
+      "score": 100.0,
+      "unit": "%",
+      "_source": "\u00a74.4.3 Table 4.4.3.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "election_integrity_harmful_api",
+      "score": 100.0,
+      "unit": "%",
+      "_source": "\u00a74.4.3 Table 4.4.3.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "election_integrity_benign_api",
+      "score": 0.33,
+      "unit": "%",
+      "_source": "\u00a74.4.3 Table 4.4.3.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "identity_honesty_hard",
+      "score": 71.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.5 Figure 6.3.3.5.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "identity_honesty_hard",
+      "score": 62.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.5 Figure 6.3.3.5.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "identity_honesty_hard",
+      "score": 59.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.5 Figure 6.3.3.5.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "identity_honesty_hard",
+      "score": 59.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.5 Figure 6.3.3.5.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "identity_honesty_hard",
+      "score": 58.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.5 Figure 6.3.3.5.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "identity_honesty_hard",
+      "score": 48.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.5 Figure 6.3.3.5.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "identity_honesty_easy",
+      "score": 99.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.5 Figure 6.3.3.5.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "identity_honesty_easy",
+      "score": 100.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.5 Figure 6.3.3.5.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "identity_honesty_easy",
+      "score": 99.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.5 Figure 6.3.3.5.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "unavailable_tool_hallucination_acc_v2",
+      "score": 87.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "unavailable_tool_hallucination_acc_v2",
+      "score": 95.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "unavailable_tool_hallucination_acc_v2",
+      "score": 89.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "unavailable_tool_hallucination_acc_v2",
+      "score": 85.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "missing_reference_hallucination_acc_v2",
+      "score": 82.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "missing_reference_hallucination_acc_v2",
+      "score": 94.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "missing_reference_hallucination_acc_v2",
+      "score": 92.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "missing_reference_hallucination_acc_v2",
+      "score": 91.0,
+      "unit": "%",
+      "_source": "\u00a76.3.3.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "art_indirect_prompt_injection_k100",
+      "score": 4.8,
+      "unit": "%",
+      "_source": "\u00a75.2.1 Figure 5.2.1.A",
+      "_note": "with extended thinking"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "art_indirect_prompt_injection_k100",
+      "score": 6.1,
+      "unit": "%",
+      "_source": "\u00a75.2.1 Figure 5.2.1.A",
+      "_note": "with extended thinking"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "art_indirect_prompt_injection_k100",
+      "score": 9.6,
+      "unit": "%",
+      "_source": "\u00a75.2.1 Figure 5.2.1.A",
+      "_note": "with extended thinking"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "shade_coding_no_safeguards_attempts",
+      "score": 0.45,
+      "unit": "%",
+      "_source": "\u00a75.2.2.1 Table 5.2.2.1.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "shade_coding_with_safeguards_attempts",
+      "score": 0.41,
+      "unit": "%",
+      "_source": "\u00a75.2.2.1 Table 5.2.2.1.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "shade_coding_no_safeguards_attempts",
+      "score": 7.03,
+      "unit": "%",
+      "_source": "\u00a75.2.2.1 Table 5.2.2.1.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "shade_coding_with_safeguards_attempts",
+      "score": 2.09,
+      "unit": "%",
+      "_source": "\u00a75.2.2.1 Table 5.2.2.1.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "shade_coding_no_safeguards_attempts",
+      "score": 12.71,
+      "unit": "%",
+      "_source": "\u00a75.2.2.1 Table 5.2.2.1.A",
+      "_note": "with thinking; included in attacker training set"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "shade_coding_with_safeguards_attempts",
+      "score": 2.99,
+      "unit": "%",
+      "_source": "\u00a75.2.2.1 Table 5.2.2.1.A",
+      "_note": "with thinking; included in attacker training set"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "shade_computer_use_no_safeguards_attempts",
+      "score": 0.82,
+      "unit": "%",
+      "_source": "\u00a75.2.2.2 Table 5.2.2.2.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "shade_computer_use_with_safeguards_attempts",
+      "score": 0.46,
+      "unit": "%",
+      "_source": "\u00a75.2.2.2 Table 5.2.2.2.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "shade_computer_use_no_safeguards_attempts",
+      "score": 0.43,
+      "unit": "%",
+      "_source": "\u00a75.2.2.2 Table 5.2.2.2.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "shade_computer_use_with_safeguards_attempts",
+      "score": 0.32,
+      "unit": "%",
+      "_source": "\u00a75.2.2.2 Table 5.2.2.2.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "shade_computer_use_no_safeguards_attempts",
+      "score": 7.14,
+      "unit": "%",
+      "_source": "\u00a75.2.2.2 Table 5.2.2.2.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "shade_computer_use_with_safeguards_attempts",
+      "score": 5.11,
+      "unit": "%",
+      "_source": "\u00a75.2.2.2 Table 5.2.2.2.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "shade_computer_use_no_safeguards_attempts",
+      "score": 12.0,
+      "unit": "%",
+      "_source": "\u00a75.2.2.2 Table 5.2.2.2.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "shade_computer_use_with_safeguards_attempts",
+      "score": 6.21,
+      "unit": "%",
+      "_source": "\u00a75.2.2.2 Table 5.2.2.2.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "browser_use_attack_no_safeguards",
+      "score": 29.7,
+      "unit": "%",
+      "_source": "\u00a75.2.2.3 Table 5.2.2.3.A",
+      "_note": "with thinking, 129 envs"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "browser_use_attack_with_current_safeguards",
+      "score": 6.5,
+      "unit": "%",
+      "_source": "\u00a75.2.2.3 Table 5.2.2.3.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "browser_use_attack_no_safeguards",
+      "score": 5.9,
+      "unit": "%",
+      "_source": "\u00a75.2.2.3 Table 5.2.2.3.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "browser_use_attack_with_current_safeguards",
+      "score": 2.0,
+      "unit": "%",
+      "_source": "\u00a75.2.2.3 Table 5.2.2.3.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "browser_use_attack_no_safeguards",
+      "score": 31.5,
+      "unit": "%",
+      "_source": "\u00a75.2.2.3 Table 5.2.2.3.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "browser_use_attack_with_current_safeguards",
+      "score": 0.5,
+      "unit": "%",
+      "_source": "\u00a75.2.2.3 Table 5.2.2.3.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "browser_use_attack_updated_safeguards",
+      "score": 0.08,
+      "unit": "%",
+      "_source": "\u00a75.2.2.3 Table 5.2.2.3.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "browser_use_attack_no_safeguards",
+      "score": 50.7,
+      "unit": "%",
+      "_source": "\u00a75.2.2.3 Table 5.2.2.3.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "browser_use_attack_with_current_safeguards",
+      "score": 24.7,
+      "unit": "%",
+      "_source": "\u00a75.2.2.3 Table 5.2.2.3.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "browser_use_attack_updated_safeguards",
+      "score": 1.16,
+      "unit": "%",
+      "_source": "\u00a75.2.2.3 Table 5.2.2.3.A",
+      "_note": "with thinking"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "shade_arena_stealth_hidden_scratchpad_v2",
+      "score": 14.4,
+      "unit": "%",
+      "_source": "\u00a76.5.4.1 Figure 6.5.4.1.A",
+      "_note": "hidden scratchpad condition"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "shade_arena_stealth_hidden_scratchpad_v2",
+      "score": 15.5,
+      "unit": "%",
+      "_source": "\u00a76.5.4.1 Figure 6.5.4.1.A",
+      "_note": "hidden scratchpad condition"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "shade_arena_stealth_prompt_optimized",
+      "score": 9.2,
+      "unit": "%",
+      "_source": "\u00a76.5.4.3 Figure 6.5.4.3.A",
+      "_note": "optimized prompt suffix"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "exploitbench_v8_mean_plain",
+      "score": 10.44,
+      "unit": "count",
+      "_source": "\u00a73.2.1 Figure 3.2.1.A",
+      "_note": "V8, 41 envs, plain arm"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "exploitbench_v8_mean_autonudge",
+      "score": 10.75,
+      "unit": "count",
+      "_source": "\u00a73.2.1 Figure 3.2.1.A",
+      "_note": "V8 AutoNudge arm"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "exploitbench_v8_mean_autonudge",
+      "score": 9.9,
+      "unit": "count",
+      "_source": "\u00a73.2.1 Figure 3.2.1.A",
+      "_note": "V8 AutoNudge arm (3 trials)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "exploitbench_v8_mean_autonudge",
+      "score": 5.56,
+      "unit": "count",
+      "_source": "\u00a73.2.1 Figure 3.2.1.A",
+      "_note": "V8 AutoNudge arm"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "exploitbench_v8_mean_autonudge",
+      "score": 4.44,
+      "unit": "count",
+      "_source": "\u00a73.2.1 Figure 3.2.1.A",
+      "_note": "V8 AutoNudge arm (3 trials)"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "exploitbench_v8_cap_pct",
+      "score": 78.0,
+      "unit": "%",
+      "_source": "\u00a73.2.1 Figure 3.2.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "exploitbench_v8_cap_pct",
+      "score": 69.0,
+      "unit": "%",
+      "_source": "\u00a73.2.1 Figure 3.2.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "exploitbench_v8_cap_pct",
+      "score": 40.0,
+      "unit": "%",
+      "_source": "\u00a73.2.1 Figure 3.2.1.A",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "exploitbench_v8_cap_pct",
+      "score": 34.0,
+      "unit": "%",
+      "_source": "\u00a73.2.1 Figure 3.2.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "oss_fuzz_above_0",
+      "score": 80.0,
+      "unit": "%",
+      "_source": "\u00a73.2.2 Figure 3.2.2.A",
+      "_note": "~830 OSS-Fuzz entry points, 228 projects"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "oss_fuzz_above_0",
+      "score": 76.7,
+      "unit": "%",
+      "_source": "\u00a73.2.2 Figure 3.2.2.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "oss_fuzz_above_0",
+      "score": 61.5,
+      "unit": "%",
+      "_source": "\u00a73.2.2 Figure 3.2.2.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "oss_fuzz_above_04",
+      "score": 32.4,
+      "unit": "%",
+      "_source": "\u00a73.2.2 Figure 3.2.2.A",
+      "_note": "write primitive or better"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "oss_fuzz_above_04",
+      "score": 31.1,
+      "unit": "%",
+      "_source": "\u00a73.2.2 Figure 3.2.2.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "oss_fuzz_above_04",
+      "score": 18.2,
+      "unit": "%",
+      "_source": "\u00a73.2.2 Figure 3.2.2.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "cybergym_targeted_vuln_pass1",
+      "score": 83.8,
+      "unit": "%",
+      "_source": "\u00a73.2.3 Figure 3.2.3.A",
+      "_note": "1507 tasks pass@1"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "cybergym_targeted_vuln_pass1",
+      "score": 83.1,
+      "unit": "%",
+      "_source": "\u00a73.2.3 Figure 3.2.3.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "cybergym_targeted_vuln_pass1",
+      "score": 78.1,
+      "unit": "%",
+      "_source": "\u00a73.2.3 Figure 3.2.3.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "firefox_147_pass_rate",
+      "score": 88.4,
+      "unit": "%",
+      "_source": "\u00a73.2.4 Figure 3.2.4.A",
+      "_note": "5 trials x 50 categories = 250 trials; score=1.0 fraction"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "firefox_147_pass_rate",
+      "score": 70.8,
+      "unit": "%",
+      "_source": "\u00a73.2.4 Figure 3.2.4.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "firefox_147_pass_rate",
+      "score": 8.8,
+      "unit": "%",
+      "_source": "\u00a73.2.4 Figure 3.2.4.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "multi_agent_browsecomp_async_v2",
+      "score": 93.3,
+      "unit": "%",
+      "_source": "\u00a78.15.1 Figure 8.15.1.A/B",
+      "_note": "async subagents harness; max"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "finance_agent_benchmark_v2",
+      "score": 56.31,
+      "unit": "%",
+      "_source": "\u00a78.17.2",
+      "_note": "Vals AI; adaptive thinking max"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "finance_agent_benchmark_v2",
+      "score": 53.92,
+      "unit": "%",
+      "_source": "\u00a78.17.2",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "finance_agent_benchmark_v2",
+      "score": 51.76,
+      "unit": "%",
+      "_source": "\u00a78.17.2",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "legal_agent_benchmark_held_out",
+      "score": 13.3,
+      "unit": "%",
+      "_source": "\u00a78.17.4 (Harvey held-out leaderboard, June 2026)",
+      "_note": "Harvey held-out all-pass rate; Fable 5 ranked #1"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "officeqa_v2",
+      "score": 79.0,
+      "unit": "%",
+      "_source": "\u00a78.17.1",
+      "_note": "internal harness exact-match mean of 5"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "officeqa_v2",
+      "score": 77.6,
+      "unit": "%",
+      "_source": "\u00a78.17.1",
+      "_note": "same harness"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "frontier_swe_mean5",
+      "score": 2.12,
+      "unit": "score",
+      "_source": "\u00a78.5",
+      "_note": "#1 ranking, lower better, 17 tasks, mean@5 over 5 trials"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "frontier_swe_mean5",
+      "score": 3.26,
+      "unit": "score",
+      "_source": "\u00a78.5",
+      "_note": "#2 ranking"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "frontier_swe_mean5",
+      "score": 3.94,
+      "unit": "score",
+      "_source": "\u00a78.5",
+      "_note": "#3 ranking"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "frontiercode_diamond_pass_rate",
+      "score": 30.2,
+      "unit": "%",
+      "_source": "\u00a78.4",
+      "_note": "all models xhigh; FrontierCode Diamond pass rate"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "frontiercode_diamond_pass_rate",
+      "score": 14.5,
+      "unit": "%",
+      "_source": "\u00a78.4",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "frontiercode_diamond_pass_rate",
+      "score": 6.4,
+      "unit": "%",
+      "_source": "\u00a78.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "frontiercode_main_pass_rate",
+      "score": 48.8,
+      "unit": "%",
+      "_source": "\u00a78.4",
+      "_note": "FrontierCode Main pass rate"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "frontiercode_main_pass_rate",
+      "score": 37.3,
+      "unit": "%",
+      "_source": "\u00a78.4",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "frontiercode_main_pass_rate",
+      "score": 28.2,
+      "unit": "%",
+      "_source": "\u00a78.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "frontiercode_main_score",
+      "score": 46.3,
+      "unit": "%",
+      "_source": "\u00a78.4",
+      "_note": "FrontierCode Main score"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "frontiercode_main_score",
+      "score": 34.3,
+      "unit": "%",
+      "_source": "\u00a78.4",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "frontiercode_main_score",
+      "score": 25.5,
+      "unit": "%",
+      "_source": "\u00a78.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "healthbench_length_adjusted",
+      "score": 62.7,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A / \u00a78.18.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "healthbench_length_adjusted",
+      "score": 61.1,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A / \u00a78.18.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthbench_length_adjusted",
+      "score": 59.3,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A / \u00a78.18.1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthbench_length_adjusted",
+      "score": 56.5,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A / \u00a78.18.1",
+      "_note": "as publicly reported by OpenAI [their grader/length adjustment]"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "healthbench_professional_length_adjusted",
+      "score": 66.0,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A / \u00a78.18.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "healthbench_professional_length_adjusted",
+      "score": 64.7,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A / \u00a78.18.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthbench_professional_length_adjusted",
+      "score": 56.9,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A / \u00a78.18.1",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthbench_professional_length_adjusted",
+      "score": 51.8,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A / \u00a78.18.1",
+      "_note": "as publicly reported by OpenAI"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "labbench2_clinical_trial",
+      "score": 91.2,
+      "unit": "%",
+      "_source": "\u00a78.20.7 Figure 8.20.7.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "labbench2_clinical_trial",
+      "score": 86.3,
+      "unit": "%",
+      "_source": "\u00a78.20.7 Figure 8.20.7.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "labbench2_clinical_trial",
+      "score": 85.3,
+      "unit": "%",
+      "_source": "\u00a78.20.7 Figure 8.20.7.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "labbench2_figqa",
+      "score": 48.3,
+      "unit": "%",
+      "_source": "\u00a78.20.7 Figure 8.20.7.A",
+      "_note": "hardest category for every model"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "long_form_virology_task2",
+      "score": 0.91,
+      "unit": "score",
+      "_source": "\u00a72.2.4.1",
+      "_note": "end-to-end; task 2 exceeds 0.80"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "vct_multimodal_virology",
+      "score": 0.56,
+      "unit": "score",
+      "_source": "\u00a72.2.4.1",
+      "_note": "expert baseline 0.221"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "vct_multimodal_virology",
+      "score": 0.57,
+      "unit": "score",
+      "_source": "\u00a72.2.4.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "vct_multimodal_virology",
+      "score": 0.5,
+      "unit": "score",
+      "_source": "\u00a72.2.4.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "vct_multimodal_virology",
+      "score": 0.47,
+      "unit": "score",
+      "_source": "\u00a72.2.4.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "toolathlon_pass1_official",
+      "score": 61.7,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "toolathlon_pass1_official",
+      "score": 61.7,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "toolathlon_pass1_official",
+      "score": 59.9,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "toolathlon_pass1_official",
+      "score": 59.3,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "toolathlon_pass1_official",
+      "score": 61.1,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "toolathlon_pass1_official",
+      "score": 56.8,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "toolathlon_pass1_official",
+      "score": 41.0,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "toolathlon_pass_cubed",
+      "score": 55.6,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "toolathlon_pass_cubed",
+      "score": 58.3,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "toolathlon_pass_cubed",
+      "score": 48.1,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "toolathlon_pass_cubed",
+      "score": 52.8,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "toolathlon_pass_cubed",
+      "score": 55.6,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "toolathlon_pass_cubed",
+      "score": 47.2,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4-5",
+      "benchmark": "toolathlon_pass_cubed",
+      "score": 28.7,
+      "unit": "%",
+      "_source": "\u00a78.17.8 Table 8.17.8.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "single_turn_harmful_harmless_api",
+      "score": 96.94,
+      "unit": "%",
+      "_source": "\u00a74.1.1 Table 4.1.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "single_turn_harmful_harmless_api",
+      "score": 97.09,
+      "unit": "%",
+      "_source": "\u00a74.1.1 Table 4.1.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "single_turn_harmful_harmless_api",
+      "score": 97.46,
+      "unit": "%",
+      "_source": "\u00a74.1.1 Table 4.1.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "single_turn_harmful_harmless_api",
+      "score": 95.86,
+      "unit": "%",
+      "_source": "\u00a74.1.1 Table 4.1.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "single_turn_harmful_harmless_api",
+      "score": 97.71,
+      "unit": "%",
+      "_source": "\u00a74.1.1 Table 4.1.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "single_turn_benign_refusal_api",
+      "score": 0.01,
+      "unit": "%",
+      "_source": "\u00a74.1.2 Table 4.1.2.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "single_turn_benign_refusal_api",
+      "score": 0.03,
+      "unit": "%",
+      "_source": "\u00a74.1.2 Table 4.1.2.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "single_turn_benign_refusal_api",
+      "score": 0.35,
+      "unit": "%",
+      "_source": "\u00a74.1.2 Table 4.1.2.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "single_turn_benign_refusal_api",
+      "score": 0.01,
+      "unit": "%",
+      "_source": "\u00a74.1.2 Table 4.1.2.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "single_turn_benign_refusal_api",
+      "score": 0.4,
+      "unit": "%",
+      "_source": "\u00a74.1.2 Table 4.1.2.A",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "terminal_bench_2_1",
+      "score": 83.4,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": "GPT-5.5 Codex CLI"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "terminal_bench_2_1",
+      "score": 70.7,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": "Gemini 3.1 Pro Gemini CLI"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "terminal_bench_2_1",
+      "score": 84.3,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "terminal_bench_2_1",
+      "score": 88.0,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "terminal_bench_2_1",
+      "score": 82.7,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "swe_bench_pro",
+      "score": 58.6,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": "from OpenAI system card"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "swe_bench_pro",
+      "score": 54.2,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": "from Google system card"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "swe_bench_pro",
+      "score": 77.8,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "swe_bench_verified",
+      "score": 80.6,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": "from Google"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "swe_bench_verified",
+      "score": 93.9,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "browsecomp",
+      "score": 88.0,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": "single-agent, headline value"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "browsecomp",
+      "score": 87.9,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "browsecomp",
+      "score": 84.4,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "browsecomp",
+      "score": 85.9,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "browsecomp",
+      "score": 84.3,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": "single-agent baseline"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "hle_no_tools",
+      "score": 41.4,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "hle_no_tools",
+      "score": 44.4,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "hle_with_tools",
+      "score": 52.2,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "hle_with_tools",
+      "score": 51.4,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "hle_no_tools",
+      "score": 59.0,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "hle_no_tools",
+      "score": 56.8,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "hle_no_tools",
+      "score": 49.8,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "hle_with_tools",
+      "score": 64.5,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "hle_with_tools",
+      "score": 64.7,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "hle_with_tools",
+      "score": 57.9,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "riemannbench",
+      "score": 55.0,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "riemannbench",
+      "score": 43.0,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "riemannbench",
+      "score": 34.0,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "graphwalks_bfs_256k",
+      "score": 85.7,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "graphwalks_parents_256k",
+      "score": 99.9,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "graphwalks_bfs_1m",
+      "score": 74.3,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "graphwalks_parents_1m",
+      "score": 95.5,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "real_world_finance_v2_elo",
+      "score": 1374.0,
+      "unit": "elo",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": "Fable/Mythos 5 share same model"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "osworld_verified",
+      "score": 85.0,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "osworld_verified",
+      "score": 85.4,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "arxivmath",
+      "score": 64.79,
+      "unit": "%",
+      "_source": "\u00a78.11 footnote 43 (MathArena leaderboard)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "arxivmath",
+      "score": 68.7,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "gmmlu_average",
+      "score": 93.2,
+      "unit": "%",
+      "_source": "\u00a78.19.1 Figure 8.19.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "milu_average",
+      "score": 92.9,
+      "unit": "%",
+      "_source": "\u00a78.19.2 Figure 8.19.2.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "include_average",
+      "score": 90.5,
+      "unit": "%",
+      "_source": "\u00a78.19.3 Figure 8.19.3.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "deepsearchqa_fully_correct",
+      "score": 87.0,
+      "unit": "%",
+      "_source": "\u00a78.14.3 Table 8.14.3.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "deepsearchqa_fully_correct",
+      "score": 86.9,
+      "unit": "%",
+      "_source": "\u00a78.14.3 Table 8.14.3.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "deepsearchqa_fully_correct",
+      "score": 84.8,
+      "unit": "%",
+      "_source": "\u00a78.14.3 Table 8.14.3.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "deepsearchqa_fully_incorrect_v2",
+      "score": 3.2,
+      "unit": "%",
+      "_source": "\u00a78.14.3 Table 8.14.3.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "deepsearchqa_fully_incorrect_v2",
+      "score": 3.1,
+      "unit": "%",
+      "_source": "\u00a78.14.3 Table 8.14.3.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "deepsearchqa_fully_incorrect_v2",
+      "score": 3.9,
+      "unit": "%",
+      "_source": "\u00a78.14.3 Table 8.14.3.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "deepsearchqa_excessive_answers",
+      "score": 3.8,
+      "unit": "%",
+      "_source": "\u00a78.14.3 Table 8.14.3.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "deepsearchqa_excessive_answers",
+      "score": 4.7,
+      "unit": "%",
+      "_source": "\u00a78.14.3 Table 8.14.3.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "deepsearchqa_excessive_answers",
+      "score": 4.3,
+      "unit": "%",
+      "_source": "\u00a78.14.3 Table 8.14.3.B",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "draco_max_effort",
+      "score": 86.4,
+      "unit": "%",
+      "_source": "\u00a78.14.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "biomysterybench_human_solvable_full",
+      "score": 83.9,
+      "unit": "%",
+      "_source": "\u00a78.20.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "biomysterybench_human_solvable_full",
+      "score": 82.6,
+      "unit": "%",
+      "_source": "\u00a78.20.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "biomysterybench_human_solvable_full",
+      "score": 80.4,
+      "unit": "%",
+      "_source": "\u00a78.20.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "biomysterybench_human_solvable_full",
+      "score": 78.4,
+      "unit": "%",
+      "_source": "\u00a78.20.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "biomysterybench_human_difficult_full",
+      "score": 46.1,
+      "unit": "%",
+      "_source": "\u00a78.20.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "biomysterybench_human_difficult_full",
+      "score": 40.0,
+      "unit": "%",
+      "_source": "\u00a78.20.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "biomysterybench_human_difficult_full",
+      "score": 29.6,
+      "unit": "%",
+      "_source": "\u00a78.20.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "biomysterybench_human_difficult_full",
+      "score": 30.9,
+      "unit": "%",
+      "_source": "\u00a78.20.1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "latchbio_spatialbench_verified",
+      "score": 69.2,
+      "unit": "%",
+      "_source": "\u00a78.20.2",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "latchbio_spatialbench_verified",
+      "score": 66.6,
+      "unit": "%",
+      "_source": "\u00a78.20.2",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "latchbio_spatialbench_verified",
+      "score": 63.5,
+      "unit": "%",
+      "_source": "\u00a78.20.2",
+      "_note": "from one-episode-variant run"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "latchbio_spatialbench_verified",
+      "score": 60.0,
+      "unit": "%",
+      "_source": "\u00a78.20.2",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "latchbio_singlecellbench",
+      "score": 59.3,
+      "unit": "%",
+      "_source": "\u00a78.20.2",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "latchbio_singlecellbench",
+      "score": 58.2,
+      "unit": "%",
+      "_source": "\u00a78.20.2",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "latchbio_singlecellbench",
+      "score": 58.2,
+      "unit": "%",
+      "_source": "\u00a78.20.2",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "latchbio_singlecellbench",
+      "score": 50.4,
+      "unit": "%",
+      "_source": "\u00a78.20.2",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "structural_biology_openended_v2",
+      "score": 87.2,
+      "unit": "%",
+      "_source": "\u00a78.20.3",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "structural_biology_openended_v2",
+      "score": 81.6,
+      "unit": "%",
+      "_source": "\u00a78.20.3",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "structural_biology_openended_v2",
+      "score": 79.0,
+      "unit": "%",
+      "_source": "\u00a78.20.3",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "structural_biology_openended_v2",
+      "score": 31.6,
+      "unit": "%",
+      "_source": "\u00a78.20.3",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "proteingym_hard",
+      "score": 44.8,
+      "unit": "%",
+      "_source": "\u00a78.20.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "proteingym_hard",
+      "score": 43.1,
+      "unit": "%",
+      "_source": "\u00a78.20.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "proteingym_hard",
+      "score": 39.6,
+      "unit": "%",
+      "_source": "\u00a78.20.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "proteingym_hard",
+      "score": 35.4,
+      "unit": "%",
+      "_source": "\u00a78.20.4",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "organic_chemistry",
+      "score": 90.1,
+      "unit": "%",
+      "_source": "\u00a78.20.5",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "organic_chemistry",
+      "score": 86.5,
+      "unit": "%",
+      "_source": "\u00a78.20.5",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "organic_chemistry",
+      "score": 86.2,
+      "unit": "%",
+      "_source": "\u00a78.20.5",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "organic_chemistry",
+      "score": 56.2,
+      "unit": "%",
+      "_source": "\u00a78.20.5",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "protocol_troubleshooting",
+      "score": 66.7,
+      "unit": "%",
+      "_source": "\u00a78.20.6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "protocol_troubleshooting",
+      "score": 69.6,
+      "unit": "%",
+      "_source": "\u00a78.20.6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "protocol_troubleshooting",
+      "score": 59.6,
+      "unit": "%",
+      "_source": "\u00a78.20.6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "protocol_troubleshooting",
+      "score": 42.4,
+      "unit": "%",
+      "_source": "\u00a78.20.6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "vending_bench_2_balance",
+      "score": 5680.26,
+      "unit": "USD",
+      "_source": "\u00a78.17.6 (max effort)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "vending_bench_2_balance",
+      "score": 5787.43,
+      "unit": "USD",
+      "_source": "\u00a78.17.6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "automationbench",
+      "score": 17.4,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "automationbench",
+      "score": 15.5,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "automationbench",
+      "score": 12.9,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "automationbench",
+      "score": 9.6,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "officeqa_pro",
+      "score": 57.9,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": "Databricks evaluation with vision rather than extracted text"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "officeqa_pro",
+      "score": 48.1,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "officeqa_pro",
+      "score": 52.6,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "officeqa_pro",
+      "score": 18.1,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "legal_agent_benchmark_all_pass",
+      "score": 16.9,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "legal_agent_benchmark_all_pass",
+      "score": 13.4,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "legal_agent_benchmark_all_pass",
+      "score": 9.6,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "blueprint_bench_2",
+      "score": 36.2,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "blueprint_bench_2",
+      "score": 26.5,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "critpt",
+      "score": 28.6,
+      "unit": "%",
+      "_source": "\u00a78.12",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "critpt",
+      "score": 27.1,
+      "unit": "%",
+      "_source": "\u00a78.12 (Artificial Analysis)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "critpt",
+      "score": 20.9,
+      "unit": "%",
+      "_source": "\u00a78.12",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "critpt",
+      "score": 17.7,
+      "unit": "%",
+      "_source": "\u00a78.1 Table 8.1.A",
+      "_note": "From summary table"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "usamo_2026",
+      "score": 99.8,
+      "unit": "%",
+      "_source": "\u00a78.10 (medium/high/xhigh effort)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "usamo_2026",
+      "score": 96.7,
+      "unit": "%",
+      "_source": "\u00a78.10",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "usamo_2026",
+      "score": 69.3,
+      "unit": "%",
+      "_source": "\u00a78.10",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "tau2_bench_airline",
+      "score": 73.0,
+      "unit": "%",
+      "_source": "Gemini 3 Pro Model Evaluation PDF, Tool Use section: 'Gemini 3.0 Pro scores 85.3%, 73.0% and 98.0% on these categories respectively' (Retail, Airline, Telecom)",
+      "_note": "NEW: airline subset only previously HAL pass1=80.5 captured; DeepMind self-reported value differs and is the canonical card value"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "lmarena_text_elo",
+      "score": 1501.0,
+      "unit": "elo",
+      "_source": "blog.google/products/gemini/gemini-3/ LMArena leaderboard Elo for Gemini 3 Pro",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "webdev_arena_elo",
+      "score": 1487.0,
+      "unit": "elo",
+      "_source": "blog.google/products/gemini/gemini-3/ WebDev Arena Elo for Gemini 3 Pro",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3-pro-deep-think",
+      "benchmark": "humanitys_last_exam_no_tools",
+      "score": 41.0,
+      "unit": "%",
+      "_source": "blog.google/products/gemini/gemini-3-deep-think/: 'Humanity's Last Exam (41.0% without the use of tools)'",
+      "_note": "NEW for deep-think variant"
+    },
+    {
+      "model": "google/gemini-3-pro-deep-think",
+      "benchmark": "arc_agi_2_code_execution",
+      "score": 45.1,
+      "unit": "%",
+      "_source": "blog.google/products/gemini/gemini-3-deep-think/: 'ARC-AGI-2 (an unprecedented 45.1% with code execution)'",
+      "_note": "NEW SOTA; was 31.1% for Gemini 3 Pro no-tools"
+    },
+    {
+      "model": "google/gemini-3-pro-deep-think",
+      "benchmark": "gpqa_diamond",
+      "score": 93.8,
+      "unit": "%",
+      "_source": "blog.google/products/gemini/gemini-3/ comparison table Gemini 3 Deep Think GPQA Diamond 93.8%",
+      "_note": "NEW for deep-think variant; was 91.9% for Gemini 3 Pro"
+    },
+    {
+      "model": "google/gemini-3.1-pro-deep-think",
+      "benchmark": "imo_2025",
+      "score": 81.5,
+      "unit": "%",
+      "_source": "deepmind.google/models/gemini/deep-think/: 'International Math Olympiad 2025: 81.5%'",
+      "_note": "NEW SOTA for IMO 2025; per Google DeepMind self-report for Gemini 3.1 Deep Think"
+    },
+    {
+      "model": "google/gemini-3.1-pro-deep-think",
+      "benchmark": "ipho_2025",
+      "score": 87.7,
+      "unit": "%",
+      "_source": "deepmind.google/models/gemini/deep-think/: 'International Physics Olympiad 2025: 87.7%'",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3.1-pro-deep-think",
+      "benchmark": "icho_2025",
+      "score": 82.8,
+      "unit": "%",
+      "_source": "deepmind.google/models/gemini/deep-think/: 'International Chemistry Olympiad 2025: 82.8%'",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3.1-pro-deep-think",
+      "benchmark": "codeforces_elo",
+      "score": 3455.0,
+      "unit": "elo",
+      "_source": "deepmind.google/models/gemini/deep-think/: 'Codeforces (programming): 3455 Elo rating'",
+      "_note": "NEW SOTA"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "re_bench_human_normalized_average",
+      "score": 1.27,
+      "unit": "ratio",
+      "_source": "Gemini 3.1 Pro Model Card, ML R&D row: 'human-normalised average score of 1.27 compared to Gemini 3 Pro's score of 1.04'",
+      "_note": "Already partial capture noted; using new benchmark id"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "re_bench_human_normalized_average",
+      "score": 1.04,
+      "unit": "ratio",
+      "_source": "Gemini 3.1 Pro Model Card explicit comparison vs Gemini 3 Pro 1.04 human-normalized avg",
+      "_note": "NEW: Gemini 3 Pro RE-Bench baseline now stated"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "re_bench_optimise_llm_foundry_runtime_seconds_lower_better",
+      "score": 47.0,
+      "unit": "seconds",
+      "_source": "Gemini 3.1 Pro Model Card: 'reducing the runtime of a fine-tuning script from 300 seconds to 47 seconds, compared to the human reference solution of 94 seconds'",
+      "_note": "NEW: lower-is-better; vs human reference 94s, vs baseline 300s"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "harmful_manipulation_max_odds_ratio",
+      "score": 3.6,
+      "unit": "odds_ratio",
+      "_source": "Gemini 3.1 Pro Model Card FSF table: 'maximum odds ratio of 3.6x, which is the same as Gemini 3 Pro'",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "harmful_manipulation_max_odds_ratio",
+      "score": 3.6,
+      "unit": "odds_ratio",
+      "_source": "Gemini 3.1 Pro Model Card FSF table",
+      "_note": "NEW: same as Gemini 3 Pro"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "safety_text_to_text_delta_vs_prior",
+      "score": 0.1,
+      "unit": "pp",
+      "_source": "Gemini 3.1 Pro Model Card Training/Development Eval table: Text to Text Safety +0.10% (non-egregious) vs Gemini 3.0 Pro",
+      "_note": "NEW: delta vs Gemini 3 Pro"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "safety_multilingual_delta_vs_prior",
+      "score": 0.11,
+      "unit": "pp",
+      "_source": "Gemini 3.1 Pro Model Card: Multilingual Safety +0.11% (non-egregious) vs Gemini 3.0 Pro",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "safety_image_to_text_delta_vs_prior",
+      "score": -0.33,
+      "unit": "pp",
+      "_source": "Gemini 3.1 Pro Model Card: Image to Text Safety -0.33% vs Gemini 3.0 Pro",
+      "_note": "NEW: minor regression"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "safety_tone_delta_vs_prior",
+      "score": 0.02,
+      "unit": "pp",
+      "_source": "Gemini 3.1 Pro Model Card Tone +0.02% vs Gemini 3.0 Pro",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "safety_unjustified_refusals_delta_vs_prior",
+      "score": -0.08,
+      "unit": "pp",
+      "_source": "Gemini 3.1 Pro Model Card Unjustified-refusals -0.08% vs Gemini 3.0 Pro",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "safety_text_to_text_delta_vs_prior",
+      "score": -3.1,
+      "unit": "pp",
+      "_source": "Gemini 3 Flash Model Card Training/Development table: Text to Text Safety -3.1% vs Gemini 2.5 Flash",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "safety_multilingual_delta_vs_prior",
+      "score": 0.1,
+      "unit": "pp",
+      "_source": "Gemini 3 Flash Model Card: Multilingual Safety +0.1% non-egregious vs Gemini 2.5 Flash",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "safety_image_to_text_delta_vs_prior",
+      "score": -2.3,
+      "unit": "pp",
+      "_source": "Gemini 3 Flash Model Card: Image to Text Safety -2.3% vs Gemini 2.5 Flash",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "safety_tone_delta_vs_prior",
+      "score": 3.8,
+      "unit": "pp",
+      "_source": "Gemini 3 Flash Model Card: Tone +3.8% vs Gemini 2.5 Flash",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "safety_unjustified_refusals_delta_vs_prior",
+      "score": -10.4,
+      "unit": "pp",
+      "_source": "Gemini 3 Flash Model Card: Unjustified-refusals -10.4% vs Gemini 2.5 Flash",
+      "_note": "NEW (large regression)"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "safety_text_to_text_delta_vs_prior",
+      "score": -3.9,
+      "unit": "pp",
+      "_source": "Gemini 3.5 Flash Model Card: Text to Text Safety -3.9% vs Gemini 3 Flash",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "safety_multilingual_delta_vs_prior",
+      "score": -2.6,
+      "unit": "pp",
+      "_source": "Gemini 3.5 Flash Model Card: Multilingual Safety -2.6% vs Gemini 3 Flash",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "safety_tone_delta_vs_prior",
+      "score": 8.9,
+      "unit": "pp",
+      "_source": "Gemini 3.5 Flash Model Card: Tone +8.9% vs Gemini 3 Flash",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "safety_unjustified_refusals_delta_vs_prior",
+      "score": 0.8,
+      "unit": "pp",
+      "_source": "Gemini 3.5 Flash Model Card: Unjustified-refusals +0.8% non-egregious vs Gemini 3 Flash",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "safety_text_to_text_delta_vs_prior",
+      "score": -1.18,
+      "unit": "pp",
+      "_source": "Gemini 3.1 Flash-Lite Model Card: Text to Text Safety -1.18% vs Gemini 2.5 Flash-Lite",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "safety_multilingual_delta_vs_prior",
+      "score": -1.84,
+      "unit": "pp",
+      "_source": "Gemini 3.1 Flash-Lite Model Card: Multilingual Safety -1.84% vs Gemini 2.5 Flash-Lite",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "safety_image_to_text_delta_vs_prior",
+      "score": -21.7,
+      "unit": "pp",
+      "_source": "Gemini 3.1 Flash-Lite Model Card: Image to Text Safety -21.7% vs Gemini 2.5 Flash-Lite",
+      "_note": "NEW: large regression"
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "safety_tone_delta_vs_prior",
+      "score": 14.59,
+      "unit": "pp",
+      "_source": "Gemini 3.1 Flash-Lite Model Card: Tone +14.59% vs Gemini 2.5 Flash-Lite",
+      "_note": "NEW: large improvement"
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "benchmark": "safety_unjustified_refusals_delta_vs_prior",
+      "score": -14.41,
+      "unit": "pp",
+      "_source": "Gemini 3.1 Flash-Lite Model Card: Unjustified-refusals -14.41% vs Gemini 2.5 Flash-Lite",
+      "_note": "NEW"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "safety_text_to_text_delta_vs_prior",
+      "score": -10.4,
+      "unit": "pp",
+      "_source": "Gemini 3 Pro Model Card Training+Dev table vs Gemini 2.5 Pro",
+      "_note": "Existing capture as text_to_text_safety_delta_vs_g25pro; cross-listed in canonical form"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "safety_multilingual_delta_vs_prior",
+      "score": 0.2,
+      "unit": "pp",
+      "_source": "Gemini 3 Pro Model Card vs Gemini 2.5 Pro (non-egregious)",
+      "_note": "Existing capture in canonical form"
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "genai_bench_overall_preference",
+      "score": 1073.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card 'Editing' table baseline column (not Thinking+Search variant)",
+      "_note": "NEW: baseline (non-thinking) variant; existing capture is +Thinking variant 1079"
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "genai_bench_visual_quality",
+      "score": 1129.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card baseline column",
+      "_note": "NEW baseline variant"
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "genai_bench_infographics_factuality",
+      "score": 1074.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card baseline column",
+      "_note": "NEW baseline variant"
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_general",
+      "score": 1047.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card baseline column",
+      "_note": "NEW baseline variant"
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_character",
+      "score": 1049.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card baseline column",
+      "_note": "NEW baseline variant"
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_creative",
+      "score": 1031.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card baseline column",
+      "_note": "NEW baseline variant"
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_object_env",
+      "score": 1018.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card baseline column",
+      "_note": "NEW baseline variant"
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_multi_input",
+      "score": 1016.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card baseline column",
+      "_note": "NEW baseline variant"
+    },
+    {
+      "model": "google/gemini-3.1-flash-image",
+      "benchmark": "image_editing_stylization",
+      "score": 1031.0,
+      "unit": "elo",
+      "_source": "Gemini 3.1 Flash Image Model Card baseline column",
+      "_note": "NEW baseline variant"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "openai_ctf_pass_at_12_high_school",
+      "score": 96.3,
+      "unit": "%",
+      "_source": "GPT-5.5 System Card Section 9.1.2.1: 'pass@12 metric... GPT-5.5' Professional CTF",
+      "_note": "Existing capture as ctf_professional_pass_at_12; cross-listed"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "swe_bench_pro_public",
+      "score": 55.1,
+      "unit": "%",
+      "_source": "deepmind.google/models/gemini/flash/ Gemini 3.5 Flash table SWE-Bench Pro 55.1%",
+      "_note": "REVISION: updates earlier 53.9% capture from session91 to the canonical updated number; OR co-existing data point if methodology differs. Worth dashboard reconciliation."
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "swe_bench_pro_public",
+      "score": 49.6,
+      "unit": "%",
+      "_source": "deepmind.google/models/gemini/flash/ Gemini 3 Flash column SWE-Bench Pro 49.6%",
+      "_note": "REVISION: updates earlier 48.4% capture; or coexists with different methodology"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "agieval",
+      "score": 83.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": "0-shot EM"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "agieval",
+      "score": 82.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "agieval",
+      "score": 80.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "mmlu",
+      "score": 90.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": "5-shot EM"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "mmlu",
+      "score": 87.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "mmlu_redux",
+      "score": 90.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "mmlu_redux",
+      "score": 89.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "mmlu_redux",
+      "score": 87.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "mmlu_pro",
+      "score": 73.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "mmlu_pro",
+      "score": 68.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "mmlu_pro",
+      "score": 65.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "mmmlu",
+      "score": 90.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "mmmlu",
+      "score": 88.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "mmmlu",
+      "score": 87.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "c_eval",
+      "score": 93.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "c_eval",
+      "score": 92.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "c_eval",
+      "score": 90.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "cmmlu",
+      "score": 90.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "cmmlu",
+      "score": 90.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cmmlu",
+      "score": 88.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "multiloko",
+      "score": 51.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "multiloko",
+      "score": 42.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "multiloko",
+      "score": 38.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "simpleqa_verified",
+      "score": 55.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": "25-shot EM"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "simpleqa_verified",
+      "score": 30.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "simpleqa_verified",
+      "score": 28.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "supergpqa",
+      "score": 53.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "supergpqa",
+      "score": 46.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "supergpqa",
+      "score": 45.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "facts_parametric",
+      "score": 62.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": "25-shot EM"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "facts_parametric",
+      "score": 33.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "facts_parametric",
+      "score": 27.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "triviaqa",
+      "score": 85.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "triviaqa",
+      "score": 82.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "triviaqa",
+      "score": 83.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "bbh",
+      "score": 87.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "bbh",
+      "score": 86.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "bbh",
+      "score": 87.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "drop",
+      "score": 88.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": "F1"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "drop",
+      "score": 88.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "drop",
+      "score": 88.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "hellaswag",
+      "score": 88.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "hellaswag",
+      "score": 85.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "hellaswag",
+      "score": 86.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "winogrande",
+      "score": 81.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "winogrande",
+      "score": 79.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "winogrande",
+      "score": 78.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "cluewsc",
+      "score": 85.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "cluewsc",
+      "score": 82.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cluewsc",
+      "score": 83.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "bigcodebench",
+      "score": 59.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": "Pass@1, 3-shot"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "bigcodebench",
+      "score": 56.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "bigcodebench",
+      "score": 63.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "humaneval",
+      "score": 76.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": "Pass@1, 0-shot"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "humaneval",
+      "score": 69.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "humaneval",
+      "score": 62.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "gsm8k",
+      "score": 92.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": "EM, 8-shot"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "gsm8k",
+      "score": 90.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "gsm8k",
+      "score": 91.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "math",
+      "score": 64.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": "EM, 4-shot"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "math",
+      "score": 57.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "math",
+      "score": 60.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "mgsm",
+      "score": 84.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "mgsm",
+      "score": 85.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "mgsm",
+      "score": 81.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "cmath",
+      "score": 90.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "cmath",
+      "score": 93.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "cmath",
+      "score": 92.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-base",
+      "benchmark": "longbench_v2",
+      "score": 51.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-base",
+      "benchmark": "longbench_v2",
+      "score": 44.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "longbench_v2",
+      "score": 40.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.28 Table 1",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mmlu_pro",
+      "score": 89.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": "Opus-4.6-Max as reported in DeepSeek-V4 Table 6"
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "mmlu_pro",
+      "score": 87.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": "vendor-reported via competitor table"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mmlu_pro",
+      "score": 91.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": "Gemini-3.1-Pro-High"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "simpleqa_verified",
+      "score": 46.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "simpleqa_verified",
+      "score": 45.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "simpleqa_verified",
+      "score": 75.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "chinese_simpleqa",
+      "score": 76.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "chinese_simpleqa",
+      "score": 76.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "chinese_simpleqa",
+      "score": 85.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "gpqa_diamond",
+      "score": 91.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "gpqa_diamond",
+      "score": 93.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gpqa_diamond",
+      "score": 94.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "hle",
+      "score": 40.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": "Pass@1, no tools"
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "hle",
+      "score": 39.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "hle",
+      "score": 44.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "livecodebench_v6",
+      "score": 88.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "livecodebench_v6",
+      "score": 91.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "codeforces_rating",
+      "score": 3168.0,
+      "unit": "rating",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "codeforces_rating",
+      "score": 3052.0,
+      "unit": "rating",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "hmmt_feb_2026",
+      "score": 96.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "hmmt_feb_2026",
+      "score": 97.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "hmmt_feb_2026",
+      "score": 94.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "imo_answer_bench",
+      "score": 75.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "imo_answer_bench",
+      "score": 91.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "imo_answer_bench",
+      "score": 81.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "apex_agents",
+      "score": 34.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "apex_agents",
+      "score": 54.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "apex_agents",
+      "score": 60.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "apex_shortlist",
+      "score": 85.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "apex_shortlist",
+      "score": 78.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "apex_shortlist",
+      "score": 89.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mrcr_1m",
+      "score": 92.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mrcr_1m",
+      "score": 76.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "corpusqa_1m",
+      "score": 71.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "corpusqa_1m",
+      "score": 53.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "terminal_bench_2",
+      "score": 65.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "terminal_bench_2",
+      "score": 75.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "terminal_bench_2",
+      "score": 68.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "swe_bench_verified",
+      "score": 80.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "swe_bench_pro",
+      "score": 57.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "swe_bench_pro",
+      "score": 57.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "swe_bench_multilingual",
+      "score": 77.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "browsecomp",
+      "score": 83.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "browsecomp",
+      "score": 82.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "hle_with_tools",
+      "score": 53.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "hle_with_tools",
+      "score": 52.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "gdpval_aa",
+      "score": 1619.0,
+      "unit": "elo",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "gdpval_aa",
+      "score": 1674.0,
+      "unit": "elo",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gdpval_aa",
+      "score": 1314.0,
+      "unit": "elo",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "mcp_atlas_public",
+      "score": 73.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "mcp_atlas_public",
+      "score": 67.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mcp_atlas_public",
+      "score": 69.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "toolathlon",
+      "score": 47.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "toolathlon",
+      "score": 54.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "toolathlon",
+      "score": 48.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.38 Table 6",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "mmlu_pro",
+      "score": 83.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "mmlu_pro",
+      "score": 86.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mmlu_pro",
+      "score": 86.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "mmlu_pro",
+      "score": 82.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "mmlu_pro",
+      "score": 87.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "simpleqa_verified",
+      "score": 23.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "simpleqa_verified",
+      "score": 28.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "simpleqa_verified",
+      "score": 34.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "simpleqa_verified",
+      "score": 45.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "simpleqa_verified",
+      "score": 46.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "chinese_simpleqa",
+      "score": 71.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "chinese_simpleqa",
+      "score": 73.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "chinese_simpleqa",
+      "score": 78.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "chinese_simpleqa",
+      "score": 75.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "chinese_simpleqa",
+      "score": 77.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "chinese_simpleqa",
+      "score": 84.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "gpqa_diamond",
+      "score": 71.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "gpqa_diamond",
+      "score": 87.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "gpqa_diamond",
+      "score": 88.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "gpqa_diamond",
+      "score": 72.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "gpqa_diamond",
+      "score": 89.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "hle",
+      "score": 8.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "hle",
+      "score": 29.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "hle",
+      "score": 34.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "hle",
+      "score": 7.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "hle",
+      "score": 34.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "livecodebench_v6",
+      "score": 55.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "livecodebench_v6",
+      "score": 88.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "livecodebench_v6",
+      "score": 91.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "livecodebench_v6",
+      "score": 56.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "livecodebench_v6",
+      "score": 89.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "codeforces_rating",
+      "score": 2816.0,
+      "unit": "rating",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "codeforces_rating",
+      "score": 3052.0,
+      "unit": "rating",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "codeforces_rating",
+      "score": 2919.0,
+      "unit": "rating",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "hmmt_feb_2026",
+      "score": 40.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "hmmt_feb_2026",
+      "score": 91.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "hmmt_feb_2026",
+      "score": 94.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "hmmt_feb_2026",
+      "score": 31.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "hmmt_feb_2026",
+      "score": 94.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "imo_answer_bench",
+      "score": 41.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "imo_answer_bench",
+      "score": 85.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "imo_answer_bench",
+      "score": 88.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "imo_answer_bench",
+      "score": 35.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "imo_answer_bench",
+      "score": 88.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "apex_agents",
+      "score": 1.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "apex_agents",
+      "score": 19.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "apex_agents",
+      "score": 33.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "apex_agents",
+      "score": 0.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "apex_agents",
+      "score": 27.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "apex_shortlist",
+      "score": 9.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "apex_shortlist",
+      "score": 72.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "apex_shortlist",
+      "score": 85.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "apex_shortlist",
+      "score": 9.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "apex_shortlist",
+      "score": 85.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "mrcr_1m",
+      "score": 37.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "mrcr_1m",
+      "score": 76.9,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mrcr_1m",
+      "score": 78.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "mrcr_1m",
+      "score": 44.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "mrcr_1m",
+      "score": 83.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "corpusqa_1m",
+      "score": 15.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "corpusqa_1m",
+      "score": 59.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "corpusqa_1m",
+      "score": 60.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "corpusqa_1m",
+      "score": 35.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "corpusqa_1m",
+      "score": 56.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "terminal_bench_2",
+      "score": 49.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "terminal_bench_2",
+      "score": 56.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "terminal_bench_2",
+      "score": 59.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "terminal_bench_2",
+      "score": 63.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "swe_bench_verified",
+      "score": 73.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "swe_bench_verified",
+      "score": 78.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "swe_bench_verified",
+      "score": 73.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "swe_bench_verified",
+      "score": 79.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "swe_bench_pro",
+      "score": 49.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "swe_bench_pro",
+      "score": 52.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "swe_bench_pro",
+      "score": 52.6,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "swe_bench_pro",
+      "score": 52.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "swe_bench_pro",
+      "score": 54.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "swe_bench_multilingual",
+      "score": 69.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "swe_bench_multilingual",
+      "score": 70.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "swe_bench_multilingual",
+      "score": 73.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "swe_bench_multilingual",
+      "score": 69.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "swe_bench_multilingual",
+      "score": 74.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "browsecomp",
+      "score": 53.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "browsecomp",
+      "score": 73.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "browsecomp",
+      "score": 80.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "hle_with_tools",
+      "score": 40.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "hle_with_tools",
+      "score": 45.1,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "hle_with_tools",
+      "score": 44.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "hle_with_tools",
+      "score": 48.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "mcp_atlas_public",
+      "score": 64.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "mcp_atlas_public",
+      "score": 67.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mcp_atlas_public",
+      "score": 69.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "mcp_atlas_public",
+      "score": 69.4,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "mcp_atlas_public",
+      "score": 74.2,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "gdpval_aa",
+      "score": 1395.0,
+      "unit": "elo",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-nonthink",
+      "benchmark": "toolathlon",
+      "score": 40.7,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-high",
+      "benchmark": "toolathlon",
+      "score": 43.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "toolathlon",
+      "score": 47.8,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-nonthink",
+      "benchmark": "toolathlon",
+      "score": 46.3,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-high",
+      "benchmark": "toolathlon",
+      "score": 49.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "_note": ""
+    },
+    {
+      "model": "bytedance/seed-1.5-prover",
+      "benchmark": "putnam_200_pass8",
+      "score": 26.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 8 (Practical regime)",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "putnam_200_pass8",
+      "score": 26.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 8 (Practical regime)",
+      "_note": ""
+    },
+    {
+      "model": "bytedance/seed-2.0-pro",
+      "benchmark": "putnam_200_pass8",
+      "score": 35.5,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 8 (Practical regime)",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "putnam_200_pass8",
+      "score": 81.0,
+      "unit": "%",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 8 (Practical regime)",
+      "_note": ""
+    },
+    {
+      "model": "aristotle/aristotle",
+      "benchmark": "putnam_2025_proof",
+      "score": 100.0,
+      "unit": "/120",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 8 (Frontier regime)",
+      "_note": ""
+    },
+    {
+      "model": "bytedance/seed-1.5-prover",
+      "benchmark": "putnam_2025_proof",
+      "score": 110.0,
+      "unit": "/120",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 8 (Frontier regime)",
+      "_note": ""
+    },
+    {
+      "model": "axiom/axiom",
+      "benchmark": "putnam_2025_proof",
+      "score": 120.0,
+      "unit": "/120",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 8 (Frontier regime)",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "putnam_2025_proof",
+      "score": 120.0,
+      "unit": "/120",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 8 (Frontier regime)",
+      "_note": "proof-perfect 120/120 - SOTA tied with Axiom"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mrcr_8needle_8k",
+      "score": 0.9,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mrcr_8needle_16k",
+      "score": 0.85,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mrcr_8needle_32k",
+      "score": 0.94,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mrcr_8needle_64k",
+      "score": 0.9,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mrcr_8needle_128k",
+      "score": 0.92,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mrcr_8needle_256k",
+      "score": 0.82,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mrcr_8needle_512k",
+      "score": 0.66,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "mrcr_8needle_1024k",
+      "score": 0.59,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mrcr_8needle_8k",
+      "score": 0.91,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mrcr_8needle_16k",
+      "score": 0.84,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mrcr_8needle_32k",
+      "score": 0.87,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mrcr_8needle_64k",
+      "score": 0.85,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mrcr_8needle_128k",
+      "score": 0.87,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mrcr_8needle_256k",
+      "score": 0.76,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mrcr_8needle_512k",
+      "score": 0.6,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "mrcr_8needle_1024k",
+      "score": 0.49,
+      "unit": "MMR",
+      "_source": "DeepSeek-V4-Pro-Technical-Report.pdf p.40 Fig 9",
+      "_note": ""
+    }
+  ]
+}
