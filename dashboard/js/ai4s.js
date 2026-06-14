@@ -82,7 +82,7 @@ var AI4S = {
                 || id.indexOf('asteromorph/') === 0;
         }},
         { key: 'math', icon: '📐', label: 'Math / Formal Proof', match: function(id) {
-            return /(prover|alphaproof|alphageometry|alphaevolve|funsearch|llemma|openmath|mathfusion|reprover|lean-?star|stepprover|internlm.*math|gemini-deepthink-imo|imo-experimental|gemini-3-deep-think|goedel-prover-v2)/i.test(id);
+            return /(prover|alphaproof|alphageometry|alphaevolve|funsearch|llemma|openmath|mathfusion|reprover|lean-?star|stepprover|internlm.*math|gemini-deepthink-imo|imo-experimental|gemini-3-deep-think|goedel-prover-v2|axiom\/axiom|aristotle\/aristotle|bytedance\/seed-[12]\.[05]-prover)/i.test(id);
         }},
         { key: 'chemistry', icon: '⚗️', label: 'Chemistry', match: function(id) {
             return /(chemdfm|chemberta|chemgpt|chemformer|robochem|molgen|uni-mol|mole$|recursion\/mole)/i.test(id);

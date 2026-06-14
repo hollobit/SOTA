@@ -72,7 +72,15 @@ var PhysicalAI = {
                 'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',
                 'amap-cvlab/abot-m0', 'starvla/starvla-oft',
                 // 2026-06-09 S64 — Generalist AI GEN-1 (99% multi-task success vs π0 64%, box-folding 2.8x faster)
-                'generalistai/gen-1', 'generalistai/gen-0'
+                'generalistai/gen-1', 'generalistai/gen-0',
+                // 2026-06-14 S115 — Robotics / VLA frontier refresh
+                'xiaomi/xiaomi-robotics-0',    // 4.7B Feb 2026, LIBERO avg 98.7 SOTA (beats LingBot-VA 98.5)
+                'futurevla/futurevla-gt',      // Mar 2026, LIBERO Object 99.8 SOTA
+                'lerobot/xvla-base',           // 0.9B ICLR 2026, LIBERO 93% with 1% trainable params
+                'huggingface/smolvla-450m',    // Compact baseline, LIBERO avg 87.3
+                'intuitive-robots/flower-vla', // 1B CoRL 2025, CALVIN ABC chain length 4.53 SOTA
+                'nvidia/gr00t-n2',             // GR00T N2 (GTC 2026 preview, ships end-2026)
+                '1x/1xwm'                      // 1X World Model 14B Mar 2026
             ]
         },
         {
@@ -90,7 +98,16 @@ var PhysicalAI = {
                 'sanctuary/carbon',
                 'tesla/optimus-vlm',
                 // May 6 2026 — Genesis AI robotic FM with dexterous hand + tactile glove
-                'genesis-ai/gene-26.5'
+                'genesis-ai/gene-26.5',
+                // 2026-06-14 S115 — Humanoid hardware platforms (1st-party specs)
+                'figure-ai/figure-02',           // 1.2 m/s walk / 20 kg payload / 5h battery
+                'figure-ai/figure-03',           // 20 kg payload / 5h battery / 61 kg mass
+                'tesla/optimus-gen-2',           // 57 kg mass + 11 DoF/hand (1st-party only; 8 km/h rejected)
+                'apptronik/apollo',              // 25 kg payload / 4h battery / 72.6 kg mass
+                '1x/neo',                        // 25 kg payload + 22-DoF hands + $20K
+                'unitree/g1',                    // 23 DoF / $16K cheapest / 35 kg
+                'unitree/h1-plus',               // 3.3 m/s walk SOTA + 30 kg payload + 19 DoF
+                'bostondynamics/atlas-electric'  // 56 DoF SOTA / 50 kg payload / 90 kg mass
             ]
         },
         {

@@ -21,12 +21,21 @@ var MedicalAI = {
                 'google/med-palm-2',
                 'google/med-palm-1',
                 'google/medgemma-27b',
+                'google/medgemma-27b-text',  // 2026-06-14 S116 — MedQA 87.7 / MMLU-Med 85.3
                 'google/medgemma-9b',
                 'google/medgemma-1.5-4b',
+                'google/medgemma-1.5-4b-multimodal',  // 2026-06-14 S116 — Jan 2026, 3D CT/MRI + EHRQA 89.6
+                'google/medsiglip-448',  // 2026-06-14 S116 — Jul 2025 medical SigLIP
+                'google/amie-co-clinician-2026',  // 2026-06-14 S116 — RxQA MCQ 73.3 beats GPT-5.4
+                'openai/chatgpt-for-clinicians',  // 2026-06-14 S116 — May 2026 GPT-5.4 medical-tuned, HB Pro LA 59.0
+                'openai/gpt-5.4-chatgpt-for-clinicians',
                 'hippocratic-ai/polaris-3',
                 'hippocratic-ai/polaris-2',
                 'hippocratic-ai/polaris-1',
-                'stanford/almanac-rag'
+                'hippocratic/polaris-5',  // 2026-06-14 S116 — Apr 2026 (skipped Polaris 4)
+                'stanford/almanac-rag',
+                'meta/muse-spark',  // 2026-06-14 S116 — MedXpertQA 0.784 + HealthBench Hard 0.428 SOTA
+                'ucsc-vlaa/medreason-8b'  // 2026-06-14 S116 — UCSC-VLAA Apr 2025 (was MILA misattribution)
             ]
         },
         {
@@ -184,6 +193,18 @@ var MedicalAI = {
             models: [
                 'harvard/medversa-8b',
                 'rad-onc/maira-2',
+                'microsoft/maira-2',  // 2026-06-14 S116 — RadFact Grounding Recall 90% / Logical Precision 55.6%
+                'microsoft/medimageinsight',  // 2026-06-14 S116 — 93.8% mAUC CXR (beats Rad-DINO/BiomedCLIP)
+                'microsoft/rad-dino',  // 2026-06-14 S116 — 91.1% mAUC CXR
+                'microsoft/biomedclip',  // 2026-06-14 S116 — 83.0% mAUC CXR
+                'microsoft/prov-gigapath',  // 2026-06-14 S116 — Pathology SOTA 25/26 tasks (Nature 2024)
+                'monai/vista3d',  // 2026-06-14 S116 — 3D CT/MRI Dice 0.91 across 127 anatomical classes
+                'wanglab/medsam-2',  // 2026-06-14 S116 — Dice 0.699 multi-organ abdominal CT
+                'moorfields/retfound',  // 2026-06-14 S116 — Ophthalmology AUROC 0.943 APTOS-2019
+                'visionfm/visionfm',  // 2026-06-14 S116 — Ophthalmology AUROC 0.974 DR
+                'stanford-aimi/chexagent-8b',  // 2026-06-14 S116 — CheXbench foundation
+                'hamamci/ct-clip',  // 2026-06-14 S116 — CT-CLIP cross-modal
+                'freedomintelligence/huatuogpt-vision-34b',  // 2026-06-14 S116 — VQA-RAD 68.1 / SLAKE 76.9 / PathVQA 63.5
                 'rad-onc/maira-1',
                 'rad-onc/cheXagent-8b',
                 'rad-onc/cxr-pro',
