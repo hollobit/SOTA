@@ -1,0 +1,678 @@
+{
+  "_meta": {
+    "session": "115",
+    "date": "2026-06-14",
+    "topic": "Robotics / Physical AI / VLA frontier refresh",
+    "notes": "2 agents successful (VLA + humanoid); robotics-bench retry crashed twice on socket. VLA agent captured LIBERO/CALVIN/SimplerEnv SOTAs already.",
+    "sources": [
+      "Xiaomi-Robotics-0 paper (arXiv:2602.12684)",
+      "xVLA-base ICLR 2026",
+      "FutureVLA-GT (Mar 2026)",
+      "Flower-VLA CoRL 2025",
+      "SmolVLA HF model card",
+      "NVIDIA GR00T N2 GTC 2026 preview",
+      "1X World Model v1xwm",
+      "DexBench announcement (RLWRLD+NVIDIA 2026-06-09)",
+      "Figure AI Figure 02 + 03 spec pages",
+      "Apptronik Apollo specs",
+      "1X NEO consumer humanoid",
+      "Unitree G1 / H1 spec sheets",
+      "Boston Dynamics Atlas Electric"
+    ]
+  },
+  "models": [
+    {
+      "id": "xiaomi/xiaomi-robotics-0",
+      "name": "Xiaomi-Robotics-0",
+      "vendor": "Xiaomi",
+      "type": "robotics",
+      "release_date": "2026-02-12",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "lerobot/xvla-base",
+      "name": "X-VLA (Soft-Prompted)",
+      "vendor": "ICLR 2026 / LeRobot",
+      "type": "robotics",
+      "release_date": "2025-10-13",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "huggingface/smolvla-450m",
+      "name": "SmolVLA-450M",
+      "vendor": "Hugging Face / LeRobot",
+      "type": "robotics",
+      "release_date": "2025-06-03",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "futurevla/futurevla-gt",
+      "name": "FutureVLA-GT (Joint Visuomotor)",
+      "vendor": "FutureVLA authors",
+      "type": "robotics",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "intuitive-robots/flower-vla",
+      "name": "FLOWER VLA",
+      "vendor": "Intuitive Robots (KIT)",
+      "type": "robotics",
+      "release_date": "2025-09-05",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "nvidia/gr00t-n2",
+      "name": "NVIDIA Isaac GR00T N2 (preview)",
+      "vendor": "NVIDIA",
+      "type": "robotics",
+      "release_date": "2026-03-18",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "1x/1xwm",
+      "name": "1X World Model (1XWM)",
+      "vendor": "1X Technologies",
+      "type": "robotics",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text",
+        "vision",
+        "action"
+      ]
+    },
+    {
+      "id": "figure-ai/figure-02",
+      "name": "Figure 02",
+      "vendor": "Figure AI",
+      "type": "robotics",
+      "release_date": "2024-08-01",
+      "modalities": [
+        "vision",
+        "language",
+        "action"
+      ]
+    },
+    {
+      "id": "figure-ai/figure-03",
+      "name": "Figure 03",
+      "vendor": "Figure AI",
+      "type": "robotics",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "vision",
+        "language",
+        "action"
+      ]
+    },
+    {
+      "id": "tesla/optimus-gen-2",
+      "name": "Tesla Optimus Gen 2",
+      "vendor": "Tesla",
+      "type": "robotics",
+      "release_date": "2023-12-01",
+      "modalities": [
+        "vision",
+        "language",
+        "action"
+      ]
+    },
+    {
+      "id": "apptronik/apollo",
+      "name": "Apptronik Apollo",
+      "vendor": "Apptronik",
+      "type": "robotics",
+      "release_date": "2023-08-01",
+      "modalities": [
+        "vision",
+        "language",
+        "action"
+      ]
+    },
+    {
+      "id": "1x/neo",
+      "name": "1X NEO",
+      "vendor": "1X Technologies",
+      "type": "robotics",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "vision",
+        "language",
+        "action"
+      ]
+    },
+    {
+      "id": "unitree/g1",
+      "name": "Unitree G1",
+      "vendor": "Unitree Robotics",
+      "type": "robotics",
+      "release_date": "2024-05-01",
+      "modalities": [
+        "vision",
+        "language",
+        "action"
+      ]
+    },
+    {
+      "id": "unitree/h1-plus",
+      "name": "Unitree H1",
+      "vendor": "Unitree Robotics",
+      "type": "robotics",
+      "release_date": "2023-08-01",
+      "modalities": [
+        "vision",
+        "language",
+        "action"
+      ]
+    },
+    {
+      "id": "bostondynamics/atlas-electric",
+      "name": "Atlas (Electric)",
+      "vendor": "Boston Dynamics",
+      "type": "robotics",
+      "release_date": "2024-04-01",
+      "modalities": [
+        "vision",
+        "language",
+        "action"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "calvin_abc_avg_length",
+      "name": "CALVIN ABC Average Length",
+      "category": "embodied",
+      "metric": "avg_chain_length",
+      "unit": "chain_length",
+      "description": "CALVIN ABC long-horizon evaluation: average length of successful instruction chain (max 5)",
+      "source_url": "https://arxiv.org/pdf/2509.04996"
+    },
+    {
+      "id": "calvin_abcd_avg_length",
+      "name": "CALVIN ABCD Average Length",
+      "category": "embodied",
+      "metric": "avg_chain_length",
+      "unit": "chain_length",
+      "description": "CALVIN ABCD train/test split \u2014 avg successful instruction chain length",
+      "source_url": "https://arxiv.org/abs/2602.12684"
+    },
+    {
+      "id": "simplerenv_visual_matching",
+      "name": "SimplerEnv Visual Matching",
+      "category": "embodied",
+      "metric": "success_rate",
+      "unit": "%",
+      "description": "SimplerEnv visual matching across embodiments",
+      "source_url": "https://arxiv.org/abs/2602.12684"
+    },
+    {
+      "id": "simplerenv_visual_aggregation",
+      "name": "SimplerEnv Visual Aggregation",
+      "category": "embodied",
+      "metric": "success_rate",
+      "unit": "%",
+      "description": "SimplerEnv aggregation domain",
+      "source_url": "https://arxiv.org/abs/2602.12684"
+    },
+    {
+      "id": "simplerenv_widowx",
+      "name": "SimplerEnv WidowX",
+      "category": "embodied",
+      "metric": "success_rate",
+      "unit": "%",
+      "description": "SimplerEnv WidowX (BridgeData) split",
+      "source_url": "https://arxiv.org/abs/2602.12684"
+    },
+    {
+      "id": "dexbench",
+      "name": "DexBench (RLWRLD + NVIDIA)",
+      "category": "embodied",
+      "metric": "composite",
+      "unit": "%",
+      "description": "Universal dexterity benchmark across 5 pillars (Grasp Diversity, Spatial Precision, Temporal Precision, Contact Precision, Context Awareness) \u00d7 18 atomic tasks; integrated into NVIDIA Isaac Lab-Arena. Announced 2026-06-09; no published scores yet.",
+      "source_url": "https://www.prnewswire.com/news-releases/rlwrld-launches-dexbench-initiative-..."
+    },
+    {
+      "id": "molmospaces",
+      "name": "MolmoSpaces",
+      "category": "embodied",
+      "metric": "rank",
+      "unit": "rank",
+      "description": "Embodied spatial reasoning leaderboard (no public scores extracted for GR00T N2 / SOTA models in primary sources)",
+      "source_url": "https://the-decoder.com/gtc-2026-nvidia-wants-to-swap-robotics-data-problem-for-a-compute-problem/"
+    },
+    {
+      "id": "humanoid_walk_speed",
+      "name": "Humanoid Max Walk Speed",
+      "category": "physical-hw",
+      "metric": "speed",
+      "unit": "m/s",
+      "description": "Maximum sustained walking speed as published by vendor",
+      "source_url": "https://en.wikipedia.org/wiki/Humanoid_robot"
+    },
+    {
+      "id": "humanoid_payload",
+      "name": "Humanoid Carry Payload",
+      "category": "physical-hw",
+      "metric": "mass",
+      "unit": "kg",
+      "description": "Vendor-stated continuous-carry payload (not peak lift)",
+      "source_url": "https://en.wikipedia.org/wiki/Humanoid_robot"
+    },
+    {
+      "id": "humanoid_dof",
+      "name": "Humanoid Degrees of Freedom",
+      "category": "physical-hw",
+      "metric": "count",
+      "unit": "dof",
+      "description": "Total actuated joints / degrees of freedom",
+      "source_url": "https://en.wikipedia.org/wiki/Humanoid_robot"
+    },
+    {
+      "id": "humanoid_battery_life",
+      "name": "Humanoid Battery Runtime",
+      "category": "physical-hw",
+      "metric": "duration",
+      "unit": "hours",
+      "description": "Continuous operating time on a single charge / battery swap",
+      "source_url": "https://en.wikipedia.org/wiki/Humanoid_robot"
+    },
+    {
+      "id": "humanoid_price",
+      "name": "Humanoid Unit Price",
+      "category": "physical-hw",
+      "metric": "cost",
+      "unit": "USD",
+      "description": "Published vendor list / early-access price",
+      "source_url": "https://en.wikipedia.org/wiki/Humanoid_robot"
+    },
+    {
+      "id": "humanoid_mass",
+      "name": "Humanoid Mass",
+      "category": "physical-hw",
+      "metric": "mass",
+      "unit": "kg",
+      "description": "Vendor-stated robot mass",
+      "source_url": "https://en.wikipedia.org/wiki/Humanoid_robot"
+    }
+  ],
+  "scores": [
+    {
+      "model": "xiaomi/xiaomi-robotics-0",
+      "benchmark": "libero_average",
+      "score": 98.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.12684",
+      "_note": "LIBERO 4-suite average; new SOTA at Feb 2026 \u2014 beats LingBot-VA 98.5"
+    },
+    {
+      "model": "xiaomi/xiaomi-robotics-0",
+      "benchmark": "simplerenv_visual_matching",
+      "score": 85.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.12684",
+      "_note": ""
+    },
+    {
+      "model": "xiaomi/xiaomi-robotics-0",
+      "benchmark": "simplerenv_visual_aggregation",
+      "score": 74.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.12684",
+      "_note": ""
+    },
+    {
+      "model": "xiaomi/xiaomi-robotics-0",
+      "benchmark": "simplerenv_widowx",
+      "score": 79.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.12684",
+      "_note": ""
+    },
+    {
+      "model": "lerobot/xvla-base",
+      "benchmark": "libero_average",
+      "score": 93.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/docs/lerobot/xvla",
+      "_note": "X-VLA-0.9B, 1% of params (9M) tuned, near-\u03c00 perf"
+    },
+    {
+      "model": "lerobot/xvla-base",
+      "benchmark": "simpler_widowx",
+      "score": 54.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2510.10274v1",
+      "_note": "1% params tuned"
+    },
+    {
+      "model": "huggingface/smolvla-450m",
+      "benchmark": "libero_spatial",
+      "score": 90.0,
+      "unit": "%",
+      "_source": "https://www.marktechpost.com/2025/06/03/hugging-face-releases-smolvla-a-compact-vision-language-action-model-for-affordable-and-efficient-robotics/",
+      "_note": "SmolVLA 0.45B"
+    },
+    {
+      "model": "huggingface/smolvla-450m",
+      "benchmark": "libero_object",
+      "score": 96.0,
+      "unit": "%",
+      "_source": "https://www.marktechpost.com/2025/06/03/hugging-face-releases-smolvla-a-compact-vision-language-action-model-for-affordable-and-efficient-robotics/",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smolvla-450m",
+      "benchmark": "libero_goal",
+      "score": 92.0,
+      "unit": "%",
+      "_source": "https://www.marktechpost.com/2025/06/03/hugging-face-releases-smolvla-a-compact-vision-language-action-model-for-affordable-and-efficient-robotics/",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smolvla-450m",
+      "benchmark": "libero_long",
+      "score": 71.0,
+      "unit": "%",
+      "_source": "https://www.marktechpost.com/2025/06/03/hugging-face-releases-smolvla-a-compact-vision-language-action-model-for-affordable-and-efficient-robotics/",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smolvla-450m",
+      "benchmark": "libero_average",
+      "score": 87.3,
+      "unit": "%",
+      "_source": "https://www.marktechpost.com/2025/06/03/hugging-face-releases-smolvla-a-compact-vision-language-action-model-for-affordable-and-efficient-robotics/",
+      "_note": "0.45B params"
+    },
+    {
+      "model": "futurevla/futurevla-gt",
+      "benchmark": "libero_object",
+      "score": 99.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2603.10712",
+      "_note": "Joint visuomotor prediction"
+    },
+    {
+      "model": "futurevla/futurevla-gt",
+      "benchmark": "libero_spatial",
+      "score": 98.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2603.10712",
+      "_note": ""
+    },
+    {
+      "model": "futurevla/futurevla-gt",
+      "benchmark": "libero_goal",
+      "score": 98.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2603.10712",
+      "_note": ""
+    },
+    {
+      "model": "futurevla/futurevla-gt",
+      "benchmark": "libero_long",
+      "score": 96.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2603.10712",
+      "_note": ""
+    },
+    {
+      "model": "intuitive-robots/flower-vla",
+      "benchmark": "libero_long",
+      "score": 93.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2509.04996",
+      "_note": "FLOWER 1B; CoRL 2025"
+    },
+    {
+      "model": "intuitive-robots/flower-vla",
+      "benchmark": "calvin_abc_avg_length",
+      "score": 4.53,
+      "unit": "chain_length",
+      "_source": "https://arxiv.org/pdf/2509.04996",
+      "_note": "New SOTA CALVIN ABC at Sep 2025"
+    },
+    {
+      "model": "figure-ai/figure-02",
+      "benchmark": "humanoid_walk_speed",
+      "score": 1.2,
+      "unit": "m/s",
+      "_source": "https://www.figure.ai/news/figure-02",
+      "_note": "Figure AI Figure 02 spec sheet: 1.2 m/s walking speed"
+    },
+    {
+      "model": "figure-ai/figure-02",
+      "benchmark": "humanoid_payload",
+      "score": 20.0,
+      "unit": "kg",
+      "_source": "https://www.figure.ai/news/figure-02",
+      "_note": "Figure 02 payload up to 20 kg per Figure AI spec page"
+    },
+    {
+      "model": "figure-ai/figure-02",
+      "benchmark": "humanoid_battery_life",
+      "score": 5.0,
+      "unit": "hours",
+      "_source": "https://www.figure.ai/news/figure-02",
+      "_note": "Figure 02 ~5 h runtime (2.25 kWh battery), Figure AI announce"
+    },
+    {
+      "model": "figure-ai/figure-03",
+      "benchmark": "humanoid_payload",
+      "score": 20.0,
+      "unit": "kg",
+      "_source": "https://www.figure.ai/news/introducing-figure-03",
+      "_note": "Figure 03 carries 20 kg per Figure AI Oct-2025 launch post"
+    },
+    {
+      "model": "figure-ai/figure-03",
+      "benchmark": "humanoid_battery_life",
+      "score": 5.0,
+      "unit": "hours",
+      "_source": "https://www.figure.ai/news/introducing-figure-03",
+      "_note": "5 h runtime + wireless 2 kW inductive foot-charging"
+    },
+    {
+      "model": "figure-ai/figure-03",
+      "benchmark": "humanoid_mass",
+      "score": 61.0,
+      "unit": "kg",
+      "_source": "https://www.figure.ai/news/introducing-figure-03",
+      "_note": "Figure 03 mass 61 kg per Figure AI launch"
+    },
+    {
+      "model": "tesla/optimus-gen-2",
+      "benchmark": "humanoid_mass",
+      "score": 57.0,
+      "unit": "kg",
+      "_source": "https://x.com/Tesla_Optimus/status/1734756270142468459",
+      "_note": "Tesla Optimus Gen 2 reveal Dec 2023: 10 kg lighter than Gen 1; mass 57 kg"
+    },
+    {
+      "model": "tesla/optimus-gen-2",
+      "benchmark": "humanoid_dof",
+      "score": 11.0,
+      "unit": "dof",
+      "_source": "https://x.com/Tesla_Optimus/status/1734756270142468459",
+      "_note": "Tesla Gen 2 reveal: 11 DoF per hand (per-hand spec only; total DoF not vendor-published)"
+    },
+    {
+      "model": "apptronik/apollo",
+      "benchmark": "humanoid_payload",
+      "score": 25.0,
+      "unit": "kg",
+      "_source": "https://apptronik.com/apollo",
+      "_note": "Apptronik Apollo product page: 25 kg payload"
+    },
+    {
+      "model": "apptronik/apollo",
+      "benchmark": "humanoid_battery_life",
+      "score": 4.0,
+      "unit": "hours",
+      "_source": "https://apptronik.com/apollo",
+      "_note": "Apollo hot-swap battery, ~4 h runtime per swap; vendor spec"
+    },
+    {
+      "model": "apptronik/apollo",
+      "benchmark": "humanoid_mass",
+      "score": 72.6,
+      "unit": "kg",
+      "_source": "https://apptronik.com/apollo",
+      "_note": "Apollo mass 72.6 kg per Apptronik product page"
+    },
+    {
+      "model": "1x/neo",
+      "benchmark": "humanoid_payload",
+      "score": 25.0,
+      "unit": "kg",
+      "_source": "https://www.1x.tech/discover/neo-home-robot",
+      "_note": "1X NEO: carry 55 lbs (24.95 kg) per 1X.tech product page"
+    },
+    {
+      "model": "1x/neo",
+      "benchmark": "humanoid_mass",
+      "score": 29.94,
+      "unit": "kg",
+      "_source": "https://www.1x.tech/discover/neo-home-robot",
+      "_note": "1X NEO mass 66 lb / 29.94 kg per 1X product page"
+    },
+    {
+      "model": "1x/neo",
+      "benchmark": "humanoid_price",
+      "score": 20000.0,
+      "unit": "USD",
+      "_source": "https://www.1x.tech/discover/neo-home-robot",
+      "_note": "1X NEO Early Access price $20,000 (or $499/mo subscription)"
+    },
+    {
+      "model": "1x/neo",
+      "benchmark": "humanoid_dof",
+      "score": 22.0,
+      "unit": "dof",
+      "_source": "https://www.1x.tech/discover/neo-home-robot",
+      "_note": "22 DoF hands (per-hand spec; total-body DoF not on product page)"
+    },
+    {
+      "model": "unitree/g1",
+      "benchmark": "humanoid_dof",
+      "score": 23.0,
+      "unit": "dof",
+      "_source": "https://www.unitree.com/g1/",
+      "_note": "Unitree G1 base config 23 DoF (up to 43 DoF with EDU upgrades)"
+    },
+    {
+      "model": "unitree/g1",
+      "benchmark": "humanoid_battery_life",
+      "score": 2.0,
+      "unit": "hours",
+      "_source": "https://www.unitree.com/g1/",
+      "_note": "Unitree G1 product page: ~2 h runtime"
+    },
+    {
+      "model": "unitree/g1",
+      "benchmark": "humanoid_price",
+      "score": 16000.0,
+      "unit": "USD",
+      "_source": "https://shop.unitree.com/products/unitree-g1",
+      "_note": "Unitree G1 list price $16,000 on Unitree shop"
+    },
+    {
+      "model": "unitree/g1",
+      "benchmark": "humanoid_mass",
+      "score": 35.0,
+      "unit": "kg",
+      "_source": "https://www.unitree.com/g1/",
+      "_note": "Unitree G1 ~35 kg per Unitree product page"
+    },
+    {
+      "model": "unitree/h1-plus",
+      "benchmark": "humanoid_walk_speed",
+      "score": 3.3,
+      "unit": "m/s",
+      "_source": "https://www.unitree.com/h1/",
+      "_note": "Unitree H1 product page: 3.3 m/s achieved walking speed (potential >5 m/s)"
+    },
+    {
+      "model": "unitree/h1-plus",
+      "benchmark": "humanoid_dof",
+      "score": 19.0,
+      "unit": "dof",
+      "_source": "https://www.unitree.com/h1/",
+      "_note": "Original H1 19 DoF (H1-2 upgraded to 27 DoF); vendor product page"
+    },
+    {
+      "model": "unitree/h1-plus",
+      "benchmark": "humanoid_payload",
+      "score": 30.0,
+      "unit": "kg",
+      "_source": "https://www.unitree.com/h1/",
+      "_note": "H1 payload 30 kg per Unitree product page"
+    },
+    {
+      "model": "unitree/h1-plus",
+      "benchmark": "humanoid_mass",
+      "score": 47.0,
+      "unit": "kg",
+      "_source": "https://www.unitree.com/h1/",
+      "_note": "Unitree H1 mass ~47 kg per Unitree product page"
+    },
+    {
+      "model": "bostondynamics/atlas-electric",
+      "benchmark": "humanoid_dof",
+      "score": 56.0,
+      "unit": "dof",
+      "_source": "https://bostondynamics.com/atlas/",
+      "_note": "Atlas electric product page: 56 DoF, 360-deg rotation at key joints"
+    },
+    {
+      "model": "bostondynamics/atlas-electric",
+      "benchmark": "humanoid_payload",
+      "score": 50.0,
+      "unit": "kg",
+      "_source": "https://bostondynamics.com/atlas/",
+      "_note": "Atlas electric: 50 kg payload (~110 lb lift) per BD product page"
+    },
+    {
+      "model": "bostondynamics/atlas-electric",
+      "benchmark": "humanoid_battery_life",
+      "score": 4.0,
+      "unit": "hours",
+      "_source": "https://bostondynamics.com/atlas/",
+      "_note": "Atlas electric: 4 h swappable battery per BD product page"
+    },
+    {
+      "model": "bostondynamics/atlas-electric",
+      "benchmark": "humanoid_mass",
+      "score": 90.0,
+      "unit": "kg",
+      "_source": "https://bostondynamics.com/atlas/",
+      "_note": "Atlas electric mass 90 kg per BD product page"
+    }
+  ]
+}
