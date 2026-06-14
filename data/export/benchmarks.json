@@ -1064,20 +1064,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "docvqa",
-    "name": "DocVQA",
-    "category": "multimodal",
-    "description": "Document Visual Question Answering — 50K questions on 12K documents. ANLS metric.",
-    "metric": "anls"
-  },
-  {
-    "id": "chartqa",
-    "name": "ChartQA",
-    "category": "multimodal",
-    "description": "Question answering over charts and plots. Tests visual + numerical reasoning. CoT prompting.",
-    "metric": "accuracy"
-  },
-  {
     "id": "vqav2",
     "name": "VQAv2",
     "category": "multimodal",
@@ -1173,13 +1159,6 @@
     "name": "MMBench EN",
     "category": "multimodal",
     "description": "Comprehensive multimodal benchmark — DEV-v1.1 English split.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "ai2d",
-    "name": "AI2D",
-    "category": "multimodal",
-    "description": "AI2 Diagram understanding — 4,564 grade-school science diagrams + multiple-choice QA.",
     "metric": "accuracy"
   },
   {
@@ -3707,20 +3686,6 @@
     "name": "VisDrone",
     "category": "multimodal",
     "description": "Drone-imagery object detection. Mean F1. Higher=better. LocateAnything paper Table 2.",
-    "metric": "mean_f1"
-  },
-  {
-    "id": "doclaynet",
-    "name": "DocLayNet",
-    "category": "multimodal",
-    "description": "Document layout detection. Mean F1. Higher=better. LocateAnything paper Table 4.",
-    "metric": "mean_f1"
-  },
-  {
-    "id": "m6doc",
-    "name": "M6Doc",
-    "category": "multimodal",
-    "description": "Multi-modal document detection (text + image). Mean F1. Higher=better. LocateAnything Table 4.",
     "metric": "mean_f1"
   },
   {
@@ -11012,13 +10977,6 @@
     "metric": "score"
   },
   {
-    "id": "cc_ocr",
-    "name": "cc_ocr",
-    "category": "quantization",
-    "description": "",
-    "metric": "score"
-  },
-  {
     "id": "video_mmmu_alt",
     "name": "video_mmmu_alt",
     "category": "quantization",
@@ -14532,20 +14490,6 @@
     "metric": "score"
   },
   {
-    "id": "ocrbench_v2_en",
-    "name": "OCRBench v2 (English)",
-    "category": "vision-language",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "omnidocbench_v1_5",
-    "name": "OmniDocBench v1.5",
-    "category": "vision-language",
-    "description": "",
-    "metric": "score"
-  },
-  {
     "id": "mmbench_v1_1",
     "name": "MMBench v1.1 (EN+CN fused)",
     "category": "vision-language",
@@ -16726,6 +16670,405 @@
     "id": "librispeech_clean_assemblyai",
     "name": "LibriSpeech clean WER% (AssemblyAI-reported)",
     "category": "audio",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "omnidocbench_v1_6",
+    "name": "OmniDocBench v1.6",
+    "category": "ocr",
+    "description": "",
+    "metric": "overall"
+  },
+  {
+    "id": "omnidocbench_v1_6_textedit",
+    "name": "OmniDocBench v1.6 TextEdit",
+    "category": "ocr",
+    "description": "",
+    "metric": "edit_distance"
+  },
+  {
+    "id": "omnidocbench_v1_6_tableteds",
+    "name": "OmniDocBench v1.6 Table TEDS",
+    "category": "ocr",
+    "description": "",
+    "metric": "teds"
+  },
+  {
+    "id": "omnidocbench_v1_6_readorder",
+    "name": "OmniDocBench v1.6 ReadOrderEdit",
+    "category": "ocr",
+    "description": "",
+    "metric": "edit_distance"
+  },
+  {
+    "id": "omnidocbench_overall_edit_en",
+    "name": "OmniDocBench Overall Edit (EN)",
+    "category": "ocr",
+    "description": "",
+    "metric": "edit_distance"
+  },
+  {
+    "id": "omnidocbench_overall_edit_zh",
+    "name": "OmniDocBench Overall Edit (ZH)",
+    "category": "ocr",
+    "description": "",
+    "metric": "edit_distance"
+  },
+  {
+    "id": "omnidocbench_text_edit_en",
+    "name": "OmniDocBench TextEdit (EN)",
+    "category": "ocr",
+    "description": "",
+    "metric": "edit_distance"
+  },
+  {
+    "id": "omnidocbench_text_edit_zh",
+    "name": "OmniDocBench TextEdit (ZH)",
+    "category": "ocr",
+    "description": "",
+    "metric": "edit_distance"
+  },
+  {
+    "id": "omnidocbench_table_teds_en",
+    "name": "OmniDocBench Table TEDS (EN)",
+    "category": "ocr",
+    "description": "",
+    "metric": "teds"
+  },
+  {
+    "id": "omnidocbench_table_teds_zh",
+    "name": "OmniDocBench Table TEDS (ZH)",
+    "category": "ocr",
+    "description": "",
+    "metric": "teds"
+  },
+  {
+    "id": "omnidocbench_read_order_en",
+    "name": "OmniDocBench ReadingOrder (EN)",
+    "category": "ocr",
+    "description": "",
+    "metric": "edit_distance"
+  },
+  {
+    "id": "omnidocbench_read_order_zh",
+    "name": "OmniDocBench ReadingOrder (ZH)",
+    "category": "ocr",
+    "description": "",
+    "metric": "edit_distance"
+  },
+  {
+    "id": "omnidocbench_v1_5",
+    "name": "OmniDocBench v1.5 Overall",
+    "category": "ocr",
+    "description": "",
+    "metric": "overall"
+  },
+  {
+    "id": "olmocr_bench",
+    "name": "olmOCR-Bench",
+    "category": "ocr",
+    "description": "",
+    "metric": "unit_test_pass_rate"
+  },
+  {
+    "id": "olmocr_bench_arxiv",
+    "name": "olmOCR-Bench ArXiv",
+    "category": "ocr",
+    "description": "",
+    "metric": "unit_test_pass_rate"
+  },
+  {
+    "id": "olmocr_bench_tables",
+    "name": "olmOCR-Bench Tables",
+    "category": "ocr",
+    "description": "",
+    "metric": "unit_test_pass_rate"
+  },
+  {
+    "id": "olmocr_bench_math",
+    "name": "olmOCR-Bench Old Scans Math",
+    "category": "ocr",
+    "description": "",
+    "metric": "unit_test_pass_rate"
+  },
+  {
+    "id": "olmocr_bench_multicol",
+    "name": "olmOCR-Bench Multi-Column",
+    "category": "ocr",
+    "description": "",
+    "metric": "unit_test_pass_rate"
+  },
+  {
+    "id": "olmocr_bench_old_scans",
+    "name": "olmOCR-Bench Old Scans",
+    "category": "ocr",
+    "description": "",
+    "metric": "unit_test_pass_rate"
+  },
+  {
+    "id": "fox_bench_compression",
+    "name": "Fox-Bench precision (7.5× compression)",
+    "category": "ocr",
+    "description": "",
+    "metric": "precision"
+  },
+  {
+    "id": "datalab_multilingual_90lang",
+    "name": "Datalab 90-language multilingual eval",
+    "category": "ocr",
+    "description": "",
+    "metric": "pass_rate"
+  },
+  {
+    "id": "dots_ocr_bench_multilingual",
+    "name": "dots.ocr-bench (1493 imgs, 100 langs)",
+    "category": "ocr",
+    "description": "",
+    "metric": "overall_edit"
+  },
+  {
+    "id": "nougat_arxiv_edit",
+    "name": "Nougat arXiv test edit distance",
+    "category": "ocr",
+    "description": "",
+    "metric": "edit_distance"
+  },
+  {
+    "id": "nougat_arxiv_f1",
+    "name": "Nougat arXiv test F1",
+    "category": "ocr",
+    "description": "",
+    "metric": "f1"
+  },
+  {
+    "id": "omnidocbench_v1_5_composite",
+    "name": "OmniDocBench v1.5 (Overall Composite, paper-attribution)",
+    "category": "document-parsing",
+    "description": "((1-Text Edit)*100 + Table TEDS + Formula CDM) / 3. Composite scores from PaddleOCR-VL/GLM-OCR/Qianfan papers (higher=better, max 100). Distinct from LLM-Stats version that reports inverse-direction edit-distance.",
+    "metric": "score"
+  },
+  {
+    "id": "olmocr_bench_long_tiny",
+    "name": "olmOCR-Bench Long Tiny Text sub-category",
+    "category": "document-parsing",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "docvqa",
+    "name": "DocVQA (val)",
+    "category": "document-vqa",
+    "description": "ANLS on 50K questions over 12K+ document images (UCSF Industry Documents). Updated 2026-06-14 (26 models).",
+    "metric": "score"
+  },
+  {
+    "id": "docvqa_test",
+    "name": "DocVQA-test",
+    "category": "document-vqa",
+    "description": "DocVQA private test set ANLS. Updated 2026-05 (11 models).",
+    "metric": "score"
+  },
+  {
+    "id": "chartqa",
+    "name": "ChartQA",
+    "category": "chart-vqa",
+    "description": "9.6K human + 23.1K generated questions over charts. Relaxed accuracy. Updated 2026-06-14 (24 models).",
+    "metric": "score"
+  },
+  {
+    "id": "infovqa_test",
+    "name": "InfographicVQA-test",
+    "category": "infographic-vqa",
+    "description": "ANLS on infographic VQA. Updated 2026-06-14 (12 models).",
+    "metric": "score"
+  },
+  {
+    "id": "cc_ocr",
+    "name": "CC-OCR",
+    "category": "ocr-multilingual",
+    "description": "Comprehensive OCR: multi-scene text reading, multilingual reading, doc parsing, KIE. Updated 2026-06-14 (18 models, all Qwen).",
+    "metric": "score"
+  },
+  {
+    "id": "textvqa",
+    "name": "TextVQA",
+    "category": "scene-text-vqa",
+    "description": "VQA on scene-text images. Updated 2026-06-14 (15 models).",
+    "metric": "score"
+  },
+  {
+    "id": "ai2d",
+    "name": "AI2D",
+    "category": "diagram-vqa",
+    "description": "Science diagram QA. Updated 2026-06-14 (32 models).",
+    "metric": "score"
+  },
+  {
+    "id": "hallusion_bench",
+    "name": "HallusionBench",
+    "category": "multimodal-hallucination",
+    "description": "Vision-language hallucination benchmark. Updated 2026-06-14 (16 models).",
+    "metric": "score"
+  },
+  {
+    "id": "ocrbench_v2_en",
+    "name": "OCRBench v2 (English)",
+    "category": "ocr-bilingual",
+    "description": "NeurIPS 2025. 10K human-verified QA pairs over 31 scenarios. Updated 2026-06-14 (4 models on LLM-Stats; Nova-2 family).",
+    "metric": "score"
+  },
+  {
+    "id": "countbench",
+    "name": "CountBench",
+    "category": "visual-counting",
+    "description": "Object counting. Updated 2026-06-14.",
+    "metric": "score"
+  },
+  {
+    "id": "omnidocbench-v1.6",
+    "name": "OmniDocBench v1.6",
+    "category": "Document parsing (text+tables+formulas+reading order)",
+    "description": "Multi-Granularity Adaptive Matching (MGAM)",
+    "metric": "score"
+  },
+  {
+    "id": "omnidocbench-v1.7",
+    "name": "OmniDocBench v1.7",
+    "category": "Document parsing",
+    "description": "Adds Qianfan-OCR leaderboard, skills-based evaluation",
+    "metric": "score"
+  },
+  {
+    "id": "omnidocbench-v1.5",
+    "name": "OmniDocBench v1.5",
+    "category": "Document parsing",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "real5-omnidocbench",
+    "name": "Real5-OmniDocBench",
+    "category": "Physically reconstructed (warp/skew/photography) doc parsing",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "olmocr-bench",
+    "name": "olmOCR-Bench",
+    "category": "PDF -> markdown unit-test pass-rate (7010 tests, 1403 PDFs)",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mmlongbench-doc",
+    "name": "MMLongBench-Doc",
+    "category": "Long-context multi-page VLM doc QA (1062 expert-annotated)",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "doclaynet",
+    "name": "DocLayNet",
+    "category": "Document layout",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "d4la",
+    "name": "D4LA",
+    "category": "Document layout",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "m6doc",
+    "name": "M6Doc",
+    "category": "Multi-element document layout (74 types, 9080 imgs)",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "docstructbench",
+    "name": "DocStructBench",
+    "category": "Document layout (intro'd by DocLayout-YOLO 2024)",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "pubtables-1m",
+    "name": "PubTables-1M",
+    "category": "Table extraction",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "tablebench",
+    "name": "TableBench (AAAI 2025)",
+    "category": "Table QA — 18 fields x 4 categories (Fact-Check/Num/Analysis/Viz)",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "funsd",
+    "name": "FUNSD",
+    "category": "Form understanding",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "cord",
+    "name": "CORD",
+    "category": "Receipt",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "xdocparse",
+    "name": "XDocParse",
+    "category": "126-language multilingual document parsing",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "ocrbench-text",
+    "name": "OCRBench (Text)",
+    "category": "OCR text only",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "unimernet",
+    "name": "UniMERNet",
+    "category": "Formula / math OCR",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "teds_test",
+    "name": "TEDS_TEST",
+    "category": "Table structure (tree-edit distance)",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "pubtabnet",
+    "name": "PubTabNet",
+    "category": "Table structure",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "nanonets-kie",
+    "name": "Nanonets-KIE",
+    "category": "Key information extraction",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "handwritten-kie",
+    "name": "Handwritten-KIE",
+    "category": "KIE on handwriting",
     "description": "",
     "metric": "score"
   },
