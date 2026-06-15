@@ -44,15 +44,19 @@ var Agent = (function() {
             benchmarks: [
                 'browsecomp',
                 'browsecomp_multiagent',
+                'browsecomp_multi_agent',  // 2026-06-14 S112 Mythos 5 = 93.3 SOTA
                 'browsecomp_plus',
                 'browsecomp_agent_swarm',
                 'gaia',
                 'gaia2',
                 'webarena',
+                'osworld_verified',  // 2026-06-14 S112 Mythos/Fable 5 tied 85.0 SOTA
                 'appworld',
                 'visualwebarena',
                 'online_mind2web',
-                'webshop'
+                'webshop',
+                // 2026-06-14 S112 — HAL Princeton CITP per-sub-benchmark
+                'hal_swe_bench_verified_mini', 'hal_usaco', 'hal_core_bench_hard', 'hal_tau_bench_airline'
             ]
         },
         {
@@ -81,7 +85,13 @@ var Agent = (function() {
                 'bfcl_v4',
                 'bfcl_v4_web_search',
                 // 2026-05-31 S40 SkillOpt SearchQA (extractive search-augmented QA)
-                'search_qa'
+                'search_qa',
+                // 2026-06-14 S112 — Function calling / tool-use frontier
+                'bfcl_v4_overall', 'bfcl_v4_non_live_ast', 'bfcl_v4_live', 'bfcl_v4_multi_turn',
+                'bfcl_v4_memory', 'bfcl_v4_irrelevance_detection',
+                'tau2_bench_airline_pass1', 'tau2_bench_retail_pass1', 'tau2_bench_telecom_pass1',
+                'tau2_bench_airline_pass4', 'tau2_bench_retail_pass4', 'tau2_bench_telecom_pass4',
+                'tau2_bench_banking_knowledge_pass1', 'acebench_overall'
             ]
         },
         {

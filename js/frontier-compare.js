@@ -247,6 +247,33 @@ var FrontierCompare = {
         'microsoft/phi-4',                    // 14B base AAII 10
         'microsoft/phi-4-multimodal',         // 5.6B text+image+audio AAII 10
 
+        // 2026-06-15 S119 — Edge LLM / SLM frontier (sub-12B leaders)
+        'microsoft/phi-4-mini-instruct',           // 3.8B GSM8K 88.6 / MATH 64.0 / MMLU-Pro 52.8 (sub-3B multi-bench leader)
+        'microsoft/phi-4-mini-reasoning',          // MATH-500 94.6 / AIME-2024 57.5 (specialty)
+        'microsoft/phi-4-mini-flash-reasoning',    // MATH-500 92.45 / AIME-2024 52.29
+        'microsoft/bitnet-b1.58-2b-4t',            // 1.58-bit native (no FP16 weights)
+        'huggingface/smollm3-3b',                  // BFCL v3 92.3 — sub-3B tool-use SOTA OUTRANKS ALL FRONTIER
+        'huggingface/smollm2-1.7b-instruct',
+        'google/gemma-3-270m',                     // True sub-3B
+        'google/gemma-3-1b-it',
+        'google/gemma-4-e2b',                      // AAII 15
+        'google/gemma-4-e4b',                      // AAII 19
+        'google/gemma-4-26b-a4b',                  // AAII 31 Pareto leader (3.8B active MoE)
+        'ibm/granite-4.0-h-tiny',                  // 7B/1B-active MoE MMLU 68.65 / HumanEval 83
+        'ibm/granite-4.0-h-micro',
+        'ibm/granite-4.0-h-small',                 // HumanEval 88 / IFEval 87.6 (enterprise edge leader)
+        'ibm/granite-4.1-8b-instruct',             // MMLU 73.84 / HumanEval 87.20 / IFEval 87.06
+        'nvidia/nemotron-nano-9b-v2',              // MATH-500 97.8 / AIME-25 72.1 (hybrid Mamba sub-10B SOTA)
+        'meta/mobilellm-pro',                      // 1.08B mobile R&D
+        'meta/mobilellm-r1-950m',
+        'allenai/olmo-2-1124-7b-instruct',         // OLMo 2 7B
+        'allenai/olmo-2-1124-13b-instruct',        // OLMo 2 13B
+        'marin-community/marin-8b-base',           // Stanford Marin 8B (Deeper-Starling)
+        'mistralai/ministral-8b-instruct-2410',
+        'deepseek/deepseek-r1-distill-qwen-7b',    // MATH-500 92.8 + AIME24 55.5
+        'deepseek/deepseek-r1-distill-llama-8b',
+        'salesforce/llama-xlam-2-8b-fc-r',         // BFCL v3 72.04 tool-use
+
         // May 7 2026 — NVIDIA Nemotron Labs Elastic (3-in-1 nested 30B/23B/12B, ICML 2026)
         'nvidia/nemotron-labs-3-elastic-30b-a3b',
 

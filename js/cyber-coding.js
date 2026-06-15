@@ -22,7 +22,17 @@ var CyberCoding = {
         // 2026-05-27 Lyptus Research — offensive-cyber time horizons (METR-style, 316 tasks × 7 benches); GPT-5.5 saturates
         'offensive_cyber_time_horizon_p50', 'offensive_cyber_success_rate',
         // 2026-05-28 S33 Claude Opus 4.8 System Card — harness-conflict cyber bench IDs (Section 3.3)
-        'cybergym_targeted_repro', 'firefox_147_full_exploit', 'exploitbench_v2_flags', 'oss_fuzz_progress_rate'
+        'cybergym_targeted_repro', 'firefox_147_full_exploit', 'exploitbench_v2_flags', 'oss_fuzz_progress_rate',
+        // 2026-06-14 S111 — Cybersecurity benchmark refresh (frontier + agents + 2026 boards)
+        'cybergym_v1', 'exploitbench_v8', 'firefox_147_anthropic', 'oss_fuzz_anthropic', 'cybergym_v1',
+        'uk_aisi_narrow_cyber_expert', 'uk_aisi_cyber_range_last_ones', 'uk_aisi_cyber_range_doing_life',
+        'uk_aisi_cyber_range_cooling_tower', 'openai_cyber_range_internal', 'cve_bench_v1_openai',
+        'ctf_professional_openai', 'irregular_cyscenariobench', 'gemini_key_skills_v1_hard',
+        'gemini_key_skills_v2_e2e', 'nyu_ctf_bench', 'cti-realm', 'sandbox-escape-bench', 'crackme-bench',
+        'zero-day-bench', 'fuzzingbrain-v2-aixcc', 'sec-bench-pro', 'simbian-cyber-defense',
+        'simbian-ai-soc', 'securewebarena', 'secureagentbench', 'ailuminate-continuous-stewardship',
+        'aixcc_final', 'autopenbench___ai_pentest_benchmark', 'goad_active_directory', 'hackerone_us',
+        'hackthebox', 'nyu_ctf_bench_2026', 'msrc_tcpip_recall', 'mdash_clfs_sys_recall'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
         // 2026-05-28 AgentDoG 1.5 (arxiv 2605.29801, Shanghai AI Lab) — agentic-trajectory safety judging
@@ -461,6 +471,23 @@ var CyberCoding = {
         'xiaomi/mimo-v2.5-pro',
         'inclusionai/ling-2.6-1t',
         'anthropic/claude-mythos-preview',
+
+        // 2026-06-14 S111 — Cybersecurity benchmark refresh (autonomous cyber agents / pentesting)
+        'microsoft/mdash',                  // MDASH CyberGym 96.55 SOTA (Build 2026)
+        'team-atlanta/atlantis',            // AIxCC 2025 Final 1st place ($4M, DEF CON 33)
+        'trailofbits/buttercup',            // AIxCC 2025 Final 2nd ($3M)
+        'theori/roboduck',                  // AIxCC 2025 Final 3rd ($1.5M)
+        'xbow/xbow',                        // HackerOne US #1 (first AI 1000+ reports)
+        'dcipher/d-cipher',                 // NYU CTF 22.0 / Cybench 22.5 / HackTheBox 44.0
+        'xoffense/xoffense',                // AutoPenBench 79.17 (Qwen3-32B, Apr 2026 v2)
+        'excalibur/excalibur',              // Pentest agent ($28.50/engagement, Feb 2026)
+        'pentestgpt/pentestgpt-v2',         // Pentest agent (v1.0.0 Dec 2025)
+        // 2026-06-15 S119 — Edge LLM frontiers (sub-12B coding/reasoning)
+        'nvidia/nemotron-nano-9b-v2',       // MATH-500 97.8 / AIME-25 72.1 / LCB 71.1 (hybrid Mamba)
+        'ibm/granite-4.1-8b-instruct',      // HumanEval 87.20 / MBPP 82.54 / IFEval 87.06 (enterprise dense leader)
+        'microsoft/phi-4-mini-instruct',    // GSM8K 88.6 / MATH 64.0 / MMLU-Pro 52.8 (sub-3B multi-bench)
+        'huggingface/smollm3-3b',           // BFCL v3 92.3 — sub-3B tool-use SOTA beats all frontier
+        'deepseek/deepseek-r1-distill-qwen-7b',  // MATH-500 92.8 / AIME-24 55.5
 
         // May 2026 sovereign batch — coding-relevant
         'mistral/mistral-medium-3.5',
