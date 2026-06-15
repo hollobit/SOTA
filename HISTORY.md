@@ -1,5 +1,106 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-06-15~16 (Sessions 126-129): CI repairs + post-sync mining
+
+### 76. Sessions 126-129 — Sync repairs + Kimi K2.7 Code + GLM-5.2 BridgeBench
+
+Post-S125 sync work and targeted URL/Playwright mining.
+
+**S126 — Main branch HISTORY sync** (`e265a36`):
+User requested github push verification. ops already in sync. Per memory
+rule (HISTORY.md/README.md/LICENSE only on main), synced HISTORY
+Section 75 covering Sessions 111-125 marathon. Worktree-based approach
+used to bypass `.remember/tmp/save-session.pid` index conflict.
+
+**S127 — gh-pages deploy trigger** (succeeded after 2 failures):
+Triggered `benchmark-update.yml` workflow_dispatch.
+- Run 1 (`27553111928`): Analyst FK constraint at S110 ingest.
+  Reproduced locally — S110/S111/S122 had prefix mismatches between
+  `models[]` definitions and `scores[]` references:
+    - `mistralai/mistral-small-3.2-24b-instruct` → `mistral/...`
+    - `mistralai/pixtral-12b` → `mistral/pixtral-12b`
+    - `anthropic/claude-opus-4-6-high` (dash) → `4.6-high` (dot)
+    - `gpt-5-3-codex` (dash) → `openai/gpt-5.3-codex` (dot)
+    - `healthbench-professional` (dash) → `_professional` (underscore)
+  Fixed via 7 score remaps (`4b8d2cb`).
+- Run 2 (`27553476378`): `python -m cyber analyze` TypeError at
+  validator.py:40 — `if value < 0` failed because S91 deep re-mine
+  contained 15 qualitative text values
+  ('highest among Claude models (figure only)', etc.). Stripped all
+  15 from ingest file (`bf718ae`).
+- Run 3 (`27553718780`) succeeded: all 3 jobs (Scout/Analyst/Publish)
+  passed. gh-pages deployed (`43cabc7`) with cache-bust `?v=bf718ae0`.
+
+**S128 — 11-URL targeted Kimi K2.7 Code + GLM-5.2** (`241e4eb`):
+Single agent on 11 URLs. **8/11 URLs blocked WebFetch**, only 3 mined
+(kimi.com, OpenRouter, LushBinary).
+
+K2.7 Code architecture (Moonshot launch page 2026-06-15):
+- 1T total / 32B active MoE + MLA attention + MoonViT 400M vision
+- 262K context, text + image + video
+- Pricing: Kimi API $0.19/$0.95 in + $4.00 out per 1M; OpenRouter $0.75/$3.50
+- Modified MIT open weights
+
+K2.7 Code per-bench (Moonshot self-report, 6 NEW benches):
+- Kimi Code Bench v2: 62.0
+- Program Bench: 53.6
+- MLS Bench Lite: 35.1
+- Kimi Claw 24/7 Bench: 46.9
+- MCP Atlas: 76.0
+- MCP Mark Verified: 81.1
+
+K2.7 Code positions between Opus 4.8 and GPT-5.5 on all 6 benches —
+Moonshot pitches price/performance + open-weight leader, not capability
+SOTA. GLM-5.2 had ZERO attributable scores from this pass — deferred
+to Playwright retry (S129).
+
+**S129 — GLM-5.2 BridgeBench Playwright retry** (`7a7f678`):
+Playwright MCP successfully rendered BridgeBench JS-only pages.
+Captured 7 boards with full leaderboard tables (+3 models / +13
+benchmarks / +148 scores).
+
+NEW benches: 7 BridgeBench boards (Reasoning v2, SpeedBench Throughput
++ TTFT, Debugging v2, Refactoring, Hallucination, Security) + 6
+Reasoning sub-clusters (Stateful Execution / Constraint Reconciliation
+/ Root Cause / Multi-Artifact / Counterexample / Uncertainty).
+
+🏆 NEW SOTA: **GLM 5.2 = 42.8 on BridgeBench Reasoning v2 (z.ai #1)** —
+beating Nemotron 3 Ultra 41.7, Fable 5 41.5, GPT-5.4 40.6, K2.7 Code
+40.1 (#11).
+
+Other BridgeBench board SOTAs:
+- SpeedBench Throughput: Gemini 3.5 Flash 581.1 t/s
+- SpeedBench TTFT: Elephant Alpha 508ms (lower=better)
+- Debugging v2: Kimi K2.6 87.4 (GLM 5.2 86.6 #5)
+- Refactoring: Claude Opus 4.7 75.2 (GLM 5.2 72.9 #4)
+- Hallucination: Grok 4.3 79.8 (GLM 5.2 77.4 #6)
+- Security: GPT-5.4 87.6 (K2.7 Code 84.4 #4; GLM 5.2 not entered)
+
+GLM 5.2 per-cluster Reasoning detail (from model detail page):
+- Stateful Execution: 71.1
+- Constraint Reconciliation: 49.6
+- Root Cause: 37.2
+- Multi-Artifact: 32.2
+- Counterexample: 30.6
+- Uncertainty: 36.0
+
+NEW models (3): cursor/composer-2.5-fast, openrouter/owl-alpha,
+openrouter/elephant-alpha (frontier preview).
+
+Canonical ID corrections during ingest:
+- `qwen/qwen3.7-max` → `alibaba/qwen3.7-max`
+- `qwen/qwen3.6-max-preview` → `alibaba/qwen3.6-max-preview`
+- `qwen/qwen3.6-plus` → `alibaba/qwen3.6-plus`
+- `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning` → suffix dropped
+
+UI + BS BridgeBench leaderboard pages 404 (not yet published).
+
+**Insights**:
+- **GLM 5.2 = reasoning specialist** (Reasoning SOTA + Refactoring #4)
+- **K2.7 Code = cyber + code specialist** (Security #4 + Kimi-branded
+  code benches)
+- Two models targeting different niches in the open-weight tier
+
 ## 2026-06-15 (Sessions 111-125): June 2026 frontier sweep
 
 ### 75. Sessions 111-125 — 15-session marathon (+664 models / +662 benchmarks / +3,138 scores)
