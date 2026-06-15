@@ -1,0 +1,2128 @@
+{
+  "_meta": {
+    "session": "125",
+    "date": "2026-06-15",
+    "topic": "Music Generation frontier (first broad sweep)",
+    "notes": "3 parallel agents \u2014 commercial + open-source + benchmarks. First music sweep \u2014 dashboard had zero music gen coverage.",
+    "sources": [
+      "Suno V5/V5.5 (Sep 2025 / Mar 2026)",
+      "Udio V1/V1.5/Allegro",
+      "ElevenLabs Music V1/V2",
+      "Stable Audio 2.5 + Stable Audio Open + Open 2 + Stable Audio 3 Small/Medium/Large",
+      "Google Lyria 2/3/3 Pro + Lyria-Realtime",
+      "Mureka V8 (Kunlun)",
+      "MiniMax Music 2.5/2.6",
+      "Riffusion FUZZ family",
+      "Meta MusicGen Small/Med/Large/Melody/Stereo + AudioCraft",
+      "AudioLDM-2/2-Large (CVSSP-Surrey)",
+      "M-A-P YuE-7B / ChatMusician-Base",
+      "ASLP-lab DiffRhythm / DiffRhythm+ / DiffRhythm 2",
+      "ACE-Step v1-3.5B / 1.5-XL-4B",
+      "Tencent LeVo + SongGeneration + HunyuanVideo-Foley",
+      "UIUC-Sony MMAudio S/M/L",
+      "MMAR NeurIPS 2025",
+      "Interspeech 2026 Audio Reasoning Challenge",
+      "AA Music Arena Instrumental/Vocals Elo",
+      "Music Arena CMU/Sony AI (arxiv 2507.20900)",
+      "SongBench (arxiv 2604.25937)",
+      "MUSDB18-HQ source separation"
+    ]
+  },
+  "models": [
+    {
+      "id": "suno/v3",
+      "name": "Suno v3",
+      "vendor": "Suno",
+      "type": "music",
+      "release_date": "2024-03-21",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "suno/v3.5",
+      "name": "Suno v3.5",
+      "vendor": "Suno",
+      "type": "music",
+      "release_date": "2024-05-30",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "suno/v4",
+      "name": "Suno v4",
+      "vendor": "Suno",
+      "type": "music",
+      "release_date": "2024-11-19",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "suno/v4.5",
+      "name": "Suno v4.5",
+      "vendor": "Suno",
+      "type": "music",
+      "release_date": "2025-05-01",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "suno/v5",
+      "name": "Suno v5",
+      "vendor": "Suno",
+      "type": "music",
+      "release_date": "2025-09-23",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "suno/v5.5",
+      "name": "Suno v5.5",
+      "vendor": "Suno",
+      "type": "music",
+      "release_date": "2026-03-26",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals",
+        "voice-clone"
+      ]
+    },
+    {
+      "id": "udio/v1",
+      "name": "Udio v1",
+      "vendor": "Udio (Uncharted Labs)",
+      "type": "music",
+      "release_date": "2024-04-10",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "udio/v1.5",
+      "name": "Udio v1.5",
+      "vendor": "Udio (Uncharted Labs)",
+      "type": "music",
+      "release_date": "2024-07-30",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "udio/v1.5-allegro",
+      "name": "Udio v1.5 Allegro",
+      "vendor": "Udio (Uncharted Labs)",
+      "type": "music",
+      "release_date": "2025-03-18",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "elevenlabs/music-v1",
+      "name": "ElevenLabs Music",
+      "vendor": "ElevenLabs",
+      "type": "music",
+      "release_date": "2025-08-05",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "elevenlabs/music-v2",
+      "name": "ElevenLabs Music v2",
+      "vendor": "ElevenLabs",
+      "type": "music",
+      "release_date": "2026-05-27",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals",
+        "sfx"
+      ]
+    },
+    {
+      "id": "stabilityai/stable-audio-2.5",
+      "name": "Stable Audio 2.5",
+      "vendor": "Stability AI",
+      "type": "music",
+      "release_date": "2025-09-10",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "sfx"
+      ]
+    },
+    {
+      "id": "google/lyria-2",
+      "name": "Lyria 2",
+      "vendor": "Google DeepMind",
+      "type": "music",
+      "release_date": "2025-05-21",
+      "modalities": [
+        "text",
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "google/lyria-realtime",
+      "name": "Lyria RealTime",
+      "vendor": "Google DeepMind",
+      "type": "music",
+      "release_date": "2025-05-20",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "real-time"
+      ]
+    },
+    {
+      "id": "google/lyria-3",
+      "name": "Lyria 3",
+      "vendor": "Google DeepMind",
+      "type": "music",
+      "release_date": "2026-02-25",
+      "modalities": [
+        "text",
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "google/lyria-3-pro",
+      "name": "Lyria 3 Pro",
+      "vendor": "Google DeepMind",
+      "type": "music",
+      "release_date": "2026-03-25",
+      "modalities": [
+        "text",
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "nvidia/fugatto-1",
+      "name": "Fugatto 1",
+      "vendor": "NVIDIA",
+      "type": "music",
+      "release_date": "2024-11-25",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "sfx",
+        "voice"
+      ]
+    },
+    {
+      "id": "riffusion/fuzz-1.0",
+      "name": "Riffusion FUZZ-1.0",
+      "vendor": "Riffusion / Producer.ai",
+      "type": "music",
+      "release_date": "2025-04-24",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "riffusion/fuzz-1.1-pro",
+      "name": "Riffusion FUZZ-1.1 Pro",
+      "vendor": "Riffusion / Producer.ai",
+      "type": "music",
+      "release_date": "2025-06-15",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "riffusion/fuzz-2.0",
+      "name": "Riffusion FUZZ-2.0",
+      "vendor": "Riffusion / Producer.ai",
+      "type": "music",
+      "release_date": "2025-08-15",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals",
+        "conversational"
+      ]
+    },
+    {
+      "id": "mureka/v8",
+      "name": "Mureka V8",
+      "vendor": "Kunlun Tech / Skywork AI",
+      "type": "music",
+      "release_date": "2026-01-28",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "minimax/music-2.5",
+      "name": "MiniMax Music 2.5",
+      "vendor": "MiniMax",
+      "type": "music",
+      "release_date": "2026-01-28",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "minimax/music-2.6",
+      "name": "MiniMax Music 2.6",
+      "vendor": "MiniMax",
+      "type": "music",
+      "release_date": "2026-04-10",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals",
+        "cover"
+      ]
+    },
+    {
+      "id": "aiva/aiva",
+      "name": "AIVA",
+      "vendor": "AIVA Technologies",
+      "type": "music",
+      "release_date": "2016-02-01",
+      "modalities": [
+        "text",
+        "midi",
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "mubert/v3",
+      "name": "Mubert",
+      "vendor": "Mubert",
+      "type": "music",
+      "release_date": "2022-12-01",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "real-time"
+      ]
+    },
+    {
+      "id": "beatoven/beatoven",
+      "name": "Beatoven.ai",
+      "vendor": "Beatoven",
+      "type": "music",
+      "release_date": "2022-08-01",
+      "modalities": [
+        "text",
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "soundraw/soundraw",
+      "name": "Soundraw",
+      "vendor": "Soundraw",
+      "type": "music",
+      "release_date": "2020-09-01",
+      "modalities": [
+        "text",
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "boomy/boomy",
+      "name": "Boomy",
+      "vendor": "Boomy",
+      "type": "music",
+      "release_date": "2018-06-01",
+      "modalities": [
+        "text",
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "topmediai/topmediai",
+      "name": "TopMediai Music",
+      "vendor": "TopMediai",
+      "type": "music",
+      "release_date": "2023-06-01",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals"
+      ]
+    },
+    {
+      "id": "soundverse/soundverse",
+      "name": "Soundverse",
+      "vendor": "Soundverse AI",
+      "type": "music",
+      "release_date": "2023-12-01",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "vocals",
+        "multilingual"
+      ]
+    },
+    {
+      "id": "splash/pro",
+      "name": "Splash Pro",
+      "vendor": "Splash",
+      "type": "music",
+      "release_date": "2022-10-01",
+      "modalities": [
+        "text",
+        "audio",
+        "music",
+        "beats"
+      ]
+    },
+    {
+      "id": "meta/musicgen-small",
+      "name": "musicgen-small",
+      "vendor": "Meta",
+      "type": "music",
+      "release_date": "2023-06-08",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "meta/musicgen-medium",
+      "name": "musicgen-medium",
+      "vendor": "Meta",
+      "type": "music",
+      "release_date": "2023-06-08",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "meta/musicgen-large",
+      "name": "musicgen-large",
+      "vendor": "Meta",
+      "type": "music",
+      "release_date": "2023-06-08",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "meta/musicgen-melody",
+      "name": "musicgen-melody",
+      "vendor": "Meta",
+      "type": "music",
+      "release_date": "2023-06-08",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "meta/musicgen-stereo-large",
+      "name": "musicgen-stereo-large",
+      "vendor": "Meta",
+      "type": "music",
+      "release_date": "2023-08-21",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "stabilityai/stable-audio-open",
+      "name": "stable-audio-open-1.0",
+      "vendor": "Stability AI",
+      "type": "music",
+      "release_date": "2024-06-05",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "stabilityai/stable-audio-open-small",
+      "name": "stable-audio-open-small",
+      "vendor": "Stability AI",
+      "type": "music",
+      "release_date": "2025-05-14",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "stabilityai/stable-audio-3-medium",
+      "name": "stable-audio-3-medium",
+      "vendor": "Stability AI",
+      "type": "music",
+      "release_date": "2026-05-20",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "stabilityai/stable-audio-3-large",
+      "name": "stable-audio-3-large",
+      "vendor": "Stability AI",
+      "type": "music",
+      "release_date": "2026-05-20",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "stabilityai/stable-audio-3-small",
+      "name": "stable-audio-3-small",
+      "vendor": "Stability AI",
+      "type": "music",
+      "release_date": "2026-05-20",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "cvssp/audioldm2",
+      "name": "audioldm2",
+      "vendor": "University of Surrey CVSSP",
+      "type": "music",
+      "release_date": "2023-08-10",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "cvssp/audioldm2-large",
+      "name": "audioldm2-large",
+      "vendor": "University of Surrey CVSSP",
+      "type": "music",
+      "release_date": "2023-08-10",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "hkust/musicldm",
+      "name": "musicldm",
+      "vendor": "HKUST + UCSD",
+      "type": "music",
+      "release_date": "2023-08-03",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "amaai-lab/mustango",
+      "name": "mustango",
+      "vendor": "SUTD AMAAI Lab",
+      "type": "music",
+      "release_date": "2023-11-14",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "map/yue-s1-7b",
+      "name": "yue-s1-7b",
+      "vendor": "M-A-P (multimodal-art-projection)",
+      "type": "music",
+      "release_date": "2025-01-28",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "aslp-lab/diffrhythm",
+      "name": "diffrhythm",
+      "vendor": "NWPU ASLP Lab",
+      "type": "music",
+      "release_date": "2025-03-04",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "aslp-lab/diffrhythm-plus",
+      "name": "diffrhythm-plus",
+      "vendor": "NWPU ASLP Lab",
+      "type": "music",
+      "release_date": "2025-07-17",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "aslp-lab/diffrhythm-2",
+      "name": "diffrhythm-2",
+      "vendor": "NWPU ASLP Lab",
+      "type": "music",
+      "release_date": "2025-10-27",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "ace-step/ace-step-v1-3.5b",
+      "name": "ace-step-v1-3.5b",
+      "vendor": "ACE-Step (StepFun + ACE Studio)",
+      "type": "music",
+      "release_date": "2025-05-08",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "ace-step/ace-step-1.5-xl",
+      "name": "ace-step-1.5-xl",
+      "vendor": "ACE-Step",
+      "type": "music",
+      "release_date": "2026-04-02",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "tencent-ailab/levo",
+      "name": "levo",
+      "vendor": "Tencent AI Lab",
+      "type": "music",
+      "release_date": "2025-06-09",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "tencent/hunyuanvideo-foley",
+      "name": "hunyuanvideo-foley",
+      "vendor": "Tencent Hunyuan",
+      "type": "music",
+      "release_date": "2025-08-28",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "hkchengrex/mmaudio-large-44k",
+      "name": "mmaudio-large-44k",
+      "vendor": "UIUC + Sony AI",
+      "type": "music",
+      "release_date": "2024-12-16",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "hkchengrex/mmaudio-medium-44k",
+      "name": "mmaudio-medium-44k",
+      "vendor": "UIUC + Sony AI",
+      "type": "music",
+      "release_date": "2024-12-16",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "hkchengrex/mmaudio-small-44k",
+      "name": "mmaudio-small-44k",
+      "vendor": "UIUC + Sony AI",
+      "type": "music",
+      "release_date": "2024-12-16",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "openvpi/diffsinger",
+      "name": "diffsinger",
+      "vendor": "OpenVPI (community)",
+      "type": "music",
+      "release_date": "2022-08-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "ivcylc/openmusic-qa-mdt",
+      "name": "openmusic-qa-mdt",
+      "vendor": "USTC",
+      "type": "music",
+      "release_date": "2024-09-25",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "hf-lin/chatmusician-base",
+      "name": "chatmusician-base",
+      "vendor": "Skywork + M-A-P",
+      "type": "music",
+      "release_date": "2024-02-25",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "openai/jukebox",
+      "name": "jukebox",
+      "vendor": "OpenAI",
+      "type": "music",
+      "release_date": "2020-04-30",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "google/gemini-2-5-pro-mmar",
+      "name": "Gemini 2.5 Pro",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3-omni-thinking",
+      "name": "Qwen3-Omni-Thinking",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "google/gemini-2-5-flash",
+      "name": "Gemini 2.5 Flash",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "google/gemini-2-0-flash",
+      "name": "Gemini 2.0 Flash",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "openai/gpt-4o-audio-mmar",
+      "name": "GPT-4o Audio",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "academia/omni-r1",
+      "name": "Omni-R1",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2-5-omni-10b",
+      "name": "Qwen2.5-Omni (10.7B)",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "deepseek/caption-deepseek-r1",
+      "name": "Caption + DeepSeek-R1",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "openai/caption-o3",
+      "name": "Caption + OpenAI o3",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "alibaba/qwen2-5-omni-5b",
+      "name": "Qwen2.5-Omni (5.5B)",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "academia/visa",
+      "name": "VISA",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "stabilityai/bs-roformer",
+      "name": "BS-RoFormer",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "bytedance/mel-roformer",
+      "name": "Mel-RoFormer",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "meta/htdemucs",
+      "name": "Hybrid Transformer Demucs (htdemucs)",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "meta/htdemucs-ft",
+      "name": "Hybrid Transformer Demucs Fine-tuned (htdemucs_ft)",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "google/musiclm",
+      "name": "MusicLM",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "haoheliu/audioldm-2-full",
+      "name": "AudioLDM 2-Full",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "futureverse/jen-1",
+      "name": "Jen-1",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "meta/musicflow",
+      "name": "MusicFlow",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "stabilityai/stable-audio-2-0",
+      "name": "Stable Audio 2.0",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "declare-lab/tangoflux",
+      "name": "TangoFlux",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    },
+    {
+      "id": "xiaomi/dasheng-audiogen",
+      "name": "Dasheng AudioGen",
+      "vendor": "unknown",
+      "type": "music",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "audio",
+        "music"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "aa_music_arena_instrumental_elo",
+      "name": "Artificial Analysis Music Arena (Instrumental)",
+      "category": "music-gen",
+      "metric": "Elo",
+      "unit": "elo",
+      "description": "Blind crowdsourced pairwise preference ratings for instrumental music generation; Elo rating system.",
+      "source_url": "https://artificialanalysis.ai/music/leaderboard/instrumental"
+    },
+    {
+      "id": "aa_music_arena_vocals_elo",
+      "name": "Artificial Analysis Music Arena (Vocals)",
+      "category": "music-gen",
+      "metric": "Elo",
+      "unit": "elo",
+      "description": "Blind crowdsourced pairwise preference ratings for music-with-vocals generation; Elo rating system.",
+      "source_url": "https://artificialanalysis.ai/music/leaderboard/vocals"
+    },
+    {
+      "id": "music_arena_cmu_sony_elo",
+      "name": "Music Arena (CMU/Sony AI)",
+      "category": "music-gen",
+      "metric": "Elo",
+      "unit": "elo",
+      "description": "Open live evaluation platform for text-to-music (arXiv 2507.20900). Music Arena project at music-arena.org.",
+      "source_url": "https://arxiv.org/abs/2507.20900"
+    },
+    {
+      "id": "musiccaps_fad_clap",
+      "name": "MusicCaps FAD-CLAP",
+      "category": "music-gen",
+      "metric": "FAD",
+      "unit": "score",
+      "description": "Frechet Audio Distance over MusicCaps reference using CLAP music-trained embeddings (MA checkpoint).",
+      "source_url": "https://arxiv.org/html/2506.19085v1"
+    },
+    {
+      "id": "musiccaps_clap_score",
+      "name": "MusicCaps CLAP Score",
+      "category": "music-gen",
+      "metric": "CLAP",
+      "unit": "score",
+      "description": "Text-audio alignment score using LAION-CLAP music checkpoint.",
+      "source_url": "https://arxiv.org/html/2506.19085v1"
+    },
+    {
+      "id": "songbench",
+      "name": "SongBench",
+      "category": "music-gen",
+      "metric": "mean-aspect-score",
+      "unit": "score",
+      "description": "Fine-grained 7-aspect song quality benchmark (Vocal, Instrument, Melody, Structure, Arrangement, Mixing, Musicality) over 11,717 expert-annotated samples.",
+      "source_url": "https://arxiv.org/abs/2604.25937"
+    },
+    {
+      "id": "musiccaps_fad",
+      "name": "MusicCaps FAD (VGGish)",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "musiccaps_kl",
+      "name": "MusicCaps KL divergence",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "musiccaps_clap",
+      "name": "MusicCaps CLAP score",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "audiocaps_fad",
+      "name": "AudioCaps FAD",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "audiocaps_kl",
+      "name": "AudioCaps KL",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "audiocaps_clap",
+      "name": "AudioCaps CLAP",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "songdescriber_fdopenl3",
+      "name": "Song Describer FD_openl3",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "audiocaps_fdopenl3",
+      "name": "AudioCaps FD_openl3",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vggsound_fad",
+      "name": "VGGSound FAD (44.1kHz)",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bbc_sfx_fad",
+      "name": "BBC SFX 5s FAD-LAION-CLAP",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bbc_sfx_clap",
+      "name": "BBC SFX 5s CLAP",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "song_eval_kl",
+      "name": "YuE-protocol song KL",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "song_eval_fad",
+      "name": "YuE-protocol song FAD",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "song_eval_clap",
+      "name": "YuE-protocol song CLAP",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "song_eval_clamp3",
+      "name": "YuE-protocol song CLaMP3",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "songgen_per",
+      "name": "Song generation PER",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "songgen_mulan_t",
+      "name": "Mulan-T (text similarity)",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "songgen_mulan_a",
+      "name": "Mulan-A (audio similarity)",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "songgen_muq_mulan",
+      "name": "MuQ-MuLan (vocal music sim)",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "audiobox_ce",
+      "name": "Audiobox-Aesthetics CE",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "audiobox_cu",
+      "name": "Audiobox-Aesthetics CU",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "audiobox_pq",
+      "name": "Audiobox-Aesthetics PQ",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "audiobox_pc",
+      "name": "Audiobox-Aesthetics PC",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "musictheorybench",
+      "name": "MusicTheoryBench accuracy",
+      "category": "music-gen",
+      "metric": "score",
+      "unit": "score",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmar_overall_accuracy",
+      "name": "MMAR (Multi-disciplinary Audio Reasoning) \u2014 Overall",
+      "category": "audio-reasoning",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "1,000-item deep audio reasoning benchmark across speech, sound, music, and mixed modalities. NeurIPS 2025.",
+      "source_url": "https://github.com/ddlBoJack/MMAR"
+    },
+    {
+      "id": "arc_interspeech_2026_rubrics",
+      "name": "Interspeech 2026 Audio Reasoning Challenge \u2014 MMAR-Rubrics",
+      "category": "audio-reasoning",
+      "metric": "MMAR-Rubrics",
+      "unit": "percent",
+      "description": "First shared task on Chain-of-Thought quality in audio domain. 156 teams. Single Model + Agent tracks.",
+      "source_url": "https://audio-reasoning-challenge.github.io/"
+    },
+    {
+      "id": "musdb18hq_sdr_avg",
+      "name": "MUSDB18-HQ \u2014 Average SDR",
+      "category": "music-source-separation",
+      "metric": "average SDR (dB)",
+      "unit": "dB",
+      "description": "Average SDR across vocals/drums/bass/other on MUSDB18-HQ test set. Higher is better.",
+      "source_url": "https://arxiv.org/pdf/2309.02612"
+    },
+    {
+      "id": "musdb18hq_sdr_vocals",
+      "name": "MUSDB18-HQ \u2014 Vocals SDR",
+      "category": "music-source-separation",
+      "metric": "SDR vocals (dB)",
+      "unit": "dB",
+      "description": "",
+      "source_url": "https://arxiv.org/pdf/2310.01809"
+    },
+    {
+      "id": "musdb18hq_sdr_bass",
+      "name": "MUSDB18-HQ \u2014 Bass SDR",
+      "category": "music-source-separation",
+      "metric": "SDR bass (dB)",
+      "unit": "dB",
+      "description": "",
+      "source_url": "https://arxiv.org/pdf/2309.02612"
+    },
+    {
+      "id": "icassp2026_songeval_track1",
+      "name": "ICASSP 2026 SongEval Challenge \u2014 Track 1 (Overall Musicality)",
+      "category": "song-aesthetics",
+      "metric": "musicality prediction",
+      "unit": "score",
+      "description": "2,399 full-length songs, 5 aesthetic dimensions. Track 1 = overall musicality.",
+      "source_url": "https://aslp-lab.github.io/Automatic-Song-Aesthetics-Evaluation-Challenge/"
+    },
+    {
+      "id": "songbench_overall",
+      "name": "SongBench (Tencent) \u2014 Overall Quality",
+      "category": "song-quality-assessment",
+      "metric": "expert correlation",
+      "unit": "score",
+      "description": "Fine-grained 7-dimension song assessment (Vocal/Instrument/Melody/Structure/Arrangement/Mixing/Musicality). 11,717 expert-annotated samples.",
+      "source_url": "https://github.com/Tencent/SongBench"
+    },
+    {
+      "id": "gtzan_accuracy",
+      "name": "GTZAN \u2014 Music Genre Classification Accuracy",
+      "category": "music-info-retrieval",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "10-genre classification, 1000 30s clips.",
+      "source_url": "https://paperswithcode.com/sota/music-genre-classification-on-gtzan"
+    },
+    {
+      "id": "music_arena_cmu_elo",
+      "name": "CMU Music Arena \u2014 Arena Score",
+      "category": "music-arena-cmu",
+      "metric": "Arena Score (Bradley-Terry)",
+      "unit": "elo",
+      "description": "CMU G-CLef Music Arena. Live TTM crowdsourced eval. Launched July 28 2025. SEPARATE FROM AA Music Arena.",
+      "source_url": "https://music-arena.org/"
+    }
+  ],
+  "scores": [
+    {
+      "model": "suno/v5.5",
+      "benchmark": "aa_music_arena_instrumental_elo",
+      "score": 1186.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/music/leaderboard/instrumental",
+      "_note": "Rank #1 instrumental as of 2026-06"
+    },
+    {
+      "model": "mureka/v8",
+      "benchmark": "aa_music_arena_instrumental_elo",
+      "score": 1161.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/music/leaderboard/instrumental",
+      "_note": "Rank #2 instrumental"
+    },
+    {
+      "model": "suno/v5",
+      "benchmark": "aa_music_arena_instrumental_elo",
+      "score": 1153.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/music/leaderboard/instrumental",
+      "_note": "Rank #3 instrumental"
+    },
+    {
+      "model": "google/lyria-3-pro",
+      "benchmark": "aa_music_arena_instrumental_elo",
+      "score": 1118.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/music/leaderboard/instrumental",
+      "_note": "Rank #4 instrumental"
+    },
+    {
+      "model": "suno/v4.5",
+      "benchmark": "aa_music_arena_instrumental_elo",
+      "score": 1082.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/music/leaderboard/instrumental",
+      "_note": "Rank #5 instrumental (was 1086 earlier snapshot)"
+    },
+    {
+      "model": "suno/v5.5",
+      "benchmark": "aa_music_arena_vocals_elo",
+      "score": 1163.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/music/leaderboard/vocals",
+      "_note": "Rank #1 vocals"
+    },
+    {
+      "model": "mureka/v8",
+      "benchmark": "aa_music_arena_vocals_elo",
+      "score": 1141.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/music/leaderboard/vocals",
+      "_note": "Rank #2 vocals"
+    },
+    {
+      "model": "suno/v5",
+      "benchmark": "aa_music_arena_vocals_elo",
+      "score": 1089.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/music/leaderboard/vocals",
+      "_note": "Rank #3 vocals"
+    },
+    {
+      "model": "minimax/music-2.6",
+      "benchmark": "aa_music_arena_vocals_elo",
+      "score": 1086.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/music/leaderboard/vocals",
+      "_note": "Rank #4 vocals (labeled 'Music 2.6')"
+    },
+    {
+      "model": "minimax/music-2.5",
+      "benchmark": "aa_music_arena_vocals_elo",
+      "score": 1086.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/music/leaderboard/vocals",
+      "_note": "Rank #5 vocals (labeled 'MiniMax Music 2.5+')"
+    },
+    {
+      "model": "suno/v4.5",
+      "benchmark": "aa_music_arena_vocals_elo",
+      "score": 1077.0,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/music/leaderboard/vocals",
+      "_note": "Vocals rank #5 in earlier snapshot"
+    },
+    {
+      "model": "meta/musicgen-large",
+      "benchmark": "musiccaps_fad",
+      "score": 176.54,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2407.14358",
+      "_note": "Reported in Stable Audio Open paper Table for MusicCaps"
+    },
+    {
+      "model": "cvssp/audioldm2",
+      "benchmark": "audiocaps_fad",
+      "score": 1.78,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "AudioLDM 2-Full, 10s outputs"
+    },
+    {
+      "model": "cvssp/audioldm2",
+      "benchmark": "audiocaps_kl",
+      "score": 1.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "AudioLDM 2-Full"
+    },
+    {
+      "model": "cvssp/audioldm2",
+      "benchmark": "audiocaps_clap",
+      "score": 0.191,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "AudioLDM 2-Full"
+    },
+    {
+      "model": "cvssp/audioldm2",
+      "benchmark": "musiccaps_fad",
+      "score": 3.13,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "AudioLDM 2-Full"
+    },
+    {
+      "model": "cvssp/audioldm2",
+      "benchmark": "musiccaps_kl",
+      "score": 1.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "AudioLDM 2-Full"
+    },
+    {
+      "model": "cvssp/audioldm2",
+      "benchmark": "musiccaps_clap",
+      "score": 0.301,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "AudioLDM 2-Full"
+    },
+    {
+      "model": "cvssp/audioldm2-large",
+      "benchmark": "audiocaps_fad",
+      "score": 1.86,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "AudioLDM 2-Full-Large"
+    },
+    {
+      "model": "cvssp/audioldm2-large",
+      "benchmark": "audiocaps_kl",
+      "score": 1.64,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "AudioLDM 2-Full-Large"
+    },
+    {
+      "model": "cvssp/audioldm2-large",
+      "benchmark": "audiocaps_clap",
+      "score": 0.182,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "AudioLDM 2-Full-Large"
+    },
+    {
+      "model": "meta/musicgen-medium",
+      "benchmark": "musiccaps_fad",
+      "score": 4.89,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "From AudioLDM 2 reproduction table"
+    },
+    {
+      "model": "meta/musicgen-medium",
+      "benchmark": "musiccaps_kl",
+      "score": 1.35,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "From AudioLDM 2 reproduction table"
+    },
+    {
+      "model": "meta/musicgen-medium",
+      "benchmark": "musiccaps_clap",
+      "score": 0.291,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2308.05734",
+      "_note": "From AudioLDM 2 reproduction table"
+    },
+    {
+      "model": "stabilityai/stable-audio-open",
+      "benchmark": "audiocaps_fdopenl3",
+      "score": 78.24,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2407.14358",
+      "_note": "AudioCaps FD_openl3 (Stable Audio Open paper)"
+    },
+    {
+      "model": "stabilityai/stable-audio-open",
+      "benchmark": "audiocaps_kl",
+      "score": 2.14,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2407.14358",
+      "_note": "From Stable Audio Open paper"
+    },
+    {
+      "model": "stabilityai/stable-audio-open",
+      "benchmark": "audiocaps_clap",
+      "score": 0.29,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2407.14358",
+      "_note": "From Stable Audio Open paper"
+    },
+    {
+      "model": "stabilityai/stable-audio-open",
+      "benchmark": "songdescriber_fdopenl3",
+      "score": 96.51,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2407.14358",
+      "_note": "Song Describer FD_openl3 (Stable Audio Open paper)"
+    },
+    {
+      "model": "stabilityai/stable-audio-open",
+      "benchmark": "musiccaps_clap",
+      "score": 0.41,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2407.14358",
+      "_note": "Song Describer CLAP score = 0.41 from Stable Audio Open paper"
+    },
+    {
+      "model": "stabilityai/stable-audio-open",
+      "benchmark": "bbc_sfx_fad",
+      "score": 0.501,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.17991",
+      "_note": "Stable Audio 3 technical report comparison"
+    },
+    {
+      "model": "stabilityai/stable-audio-open",
+      "benchmark": "bbc_sfx_clap",
+      "score": 0.263,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.17991",
+      "_note": "Stable Audio 3 technical report comparison"
+    },
+    {
+      "model": "stabilityai/stable-audio-open-small",
+      "benchmark": "bbc_sfx_fad",
+      "score": 0.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.17991",
+      "_note": "Stable Audio 3 technical report"
+    },
+    {
+      "model": "stabilityai/stable-audio-open-small",
+      "benchmark": "bbc_sfx_clap",
+      "score": 0.277,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.17991",
+      "_note": "Stable Audio 3 technical report"
+    },
+    {
+      "model": "stabilityai/stable-audio-open-small",
+      "benchmark": "songdescriber_fdopenl3",
+      "score": 0.41,
+      "unit": "score",
+      "_source": "https://stability.ai/news-updates",
+      "_note": "Stable Audio Open Small announcement: CLAP conditional diversity 0.41"
+    },
+    {
+      "model": "stabilityai/stable-audio-3-medium",
+      "benchmark": "bbc_sfx_fad",
+      "score": 0.369,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.17991",
+      "_note": "Stable Audio 3 technical report (SFX, 5s)"
+    },
+    {
+      "model": "stabilityai/stable-audio-3-medium",
+      "benchmark": "bbc_sfx_clap",
+      "score": 0.369,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2605.17991",
+      "_note": "Stable Audio 3 technical report"
+    },
+    {
+      "model": "map/yue-s1-7b",
+      "benchmark": "song_eval_kl",
+      "score": 0.372,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.08638",
+      "_note": "YuE paper Table 3, KL divergence"
+    },
+    {
+      "model": "map/yue-s1-7b",
+      "benchmark": "song_eval_fad",
+      "score": 1.624,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.08638",
+      "_note": "YuE paper Table 3, FAD"
+    },
+    {
+      "model": "map/yue-s1-7b",
+      "benchmark": "song_eval_clap",
+      "score": 0.118,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.08638",
+      "_note": "YuE paper Table 3"
+    },
+    {
+      "model": "map/yue-s1-7b",
+      "benchmark": "song_eval_clamp3",
+      "score": 0.24,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.08638",
+      "_note": "YuE paper Table 3"
+    },
+    {
+      "model": "map/yue-s1-7b",
+      "benchmark": "audiobox_ce",
+      "score": 7.115,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.08638",
+      "_note": "YuE Table 3 Content Enjoyment"
+    },
+    {
+      "model": "map/yue-s1-7b",
+      "benchmark": "audiobox_cu",
+      "score": 7.543,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.08638",
+      "_note": "YuE Table 3 Content Usefulness"
+    },
+    {
+      "model": "map/yue-s1-7b",
+      "benchmark": "audiobox_pc",
+      "score": 6.28,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.08638",
+      "_note": "YuE Table 3 Production Complexity"
+    },
+    {
+      "model": "map/yue-s1-7b",
+      "benchmark": "audiobox_pq",
+      "score": 7.894,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2503.08638",
+      "_note": "YuE Table 3 Production Quality"
+    },
+    {
+      "model": "aslp-lab/diffrhythm-plus",
+      "benchmark": "songgen_per",
+      "score": 0.1485,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2507.12890",
+      "_note": "DiffRhythm+ base achieves PER 14.85%"
+    },
+    {
+      "model": "aslp-lab/diffrhythm-plus",
+      "benchmark": "song_eval_kl",
+      "score": 0.488,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2507.12890",
+      "_note": "DiffRhythm+ base 0.488 KL"
+    },
+    {
+      "model": "aslp-lab/diffrhythm-plus",
+      "benchmark": "song_eval_fad",
+      "score": 1.835,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2507.12890",
+      "_note": "DiffRhythm+ base FAD"
+    },
+    {
+      "model": "aslp-lab/diffrhythm-2",
+      "benchmark": "songgen_per",
+      "score": 0.13,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.22950",
+      "_note": "DiffRhythm 2 paper Table"
+    },
+    {
+      "model": "aslp-lab/diffrhythm-2",
+      "benchmark": "songgen_mulan_t",
+      "score": 0.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.22950",
+      "_note": "DiffRhythm 2 paper Table"
+    },
+    {
+      "model": "aslp-lab/diffrhythm-2",
+      "benchmark": "songgen_mulan_a",
+      "score": 0.75,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.22950",
+      "_note": "DiffRhythm 2 paper Table"
+    },
+    {
+      "model": "aslp-lab/diffrhythm-2",
+      "benchmark": "audiobox_ce",
+      "score": 7.48,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.22950",
+      "_note": "DiffRhythm 2 paper"
+    },
+    {
+      "model": "aslp-lab/diffrhythm-2",
+      "benchmark": "audiobox_cu",
+      "score": 7.59,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.22950",
+      "_note": "DiffRhythm 2 paper"
+    },
+    {
+      "model": "aslp-lab/diffrhythm-2",
+      "benchmark": "audiobox_pc",
+      "score": 6.12,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.22950",
+      "_note": "DiffRhythm 2 paper"
+    },
+    {
+      "model": "aslp-lab/diffrhythm-2",
+      "benchmark": "audiobox_pq",
+      "score": 7.91,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2510.22950",
+      "_note": "DiffRhythm 2 paper"
+    },
+    {
+      "model": "tencent-ailab/levo",
+      "benchmark": "song_eval_fad",
+      "score": 2.68,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2506.07520",
+      "_note": "LeVo paper Table 1"
+    },
+    {
+      "model": "tencent-ailab/levo",
+      "benchmark": "songgen_muq_mulan",
+      "score": 0.83,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2506.07520",
+      "_note": "LeVo paper Table 1 \u2014 audio similarity"
+    },
+    {
+      "model": "tencent-ailab/levo",
+      "benchmark": "songgen_mulan_t",
+      "score": 0.34,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2506.07520",
+      "_note": "LeVo paper Table 1 \u2014 text similarity"
+    },
+    {
+      "model": "tencent-ailab/levo",
+      "benchmark": "songgen_per",
+      "score": 0.072,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2506.07520",
+      "_note": "LeVo paper Table 1 \u2014 PER 7.2%"
+    },
+    {
+      "model": "tencent-ailab/levo",
+      "benchmark": "audiobox_ce",
+      "score": 7.78,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2506.07520",
+      "_note": "LeVo paper Table 1"
+    },
+    {
+      "model": "tencent-ailab/levo",
+      "benchmark": "audiobox_cu",
+      "score": 7.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2506.07520",
+      "_note": "LeVo paper Table 1"
+    },
+    {
+      "model": "tencent-ailab/levo",
+      "benchmark": "audiobox_pq",
+      "score": 8.46,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2506.07520",
+      "_note": "LeVo paper Table 1"
+    },
+    {
+      "model": "hkchengrex/mmaudio-small-44k",
+      "benchmark": "vggsound_fad",
+      "score": 5.55,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2412.15322",
+      "_note": "MMAudio paper, VGGSound test, 44.1 kHz"
+    },
+    {
+      "model": "hkchengrex/mmaudio-medium-44k",
+      "benchmark": "vggsound_fad",
+      "score": 4.74,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2412.15322",
+      "_note": "MMAudio paper, VGGSound 44.1 kHz"
+    },
+    {
+      "model": "hkchengrex/mmaudio-large-44k",
+      "benchmark": "vggsound_fad",
+      "score": 4.72,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2412.15322",
+      "_note": "MMAudio paper, VGGSound 44.1 kHz"
+    },
+    {
+      "model": "hf-lin/chatmusician-base",
+      "benchmark": "musictheorybench",
+      "score": 0.395,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2402.16153",
+      "_note": "ChatMusician paper: 39.5% music knowledge"
+    },
+    {
+      "model": "google/gemini-2-5-pro-mmar",
+      "benchmark": "mmar_overall_accuracy",
+      "score": 74.7,
+      "unit": "score",
+      "_source": "",
+      "_note": "Top of MMAR leaderboard, Omni Language Models category"
+    },
+    {
+      "model": "google/gemini-2-5-flash",
+      "benchmark": "mmar_overall_accuracy",
+      "score": 68.4,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-omni-thinking",
+      "benchmark": "mmar_overall_accuracy",
+      "score": 66.4,
+      "unit": "score",
+      "_source": "",
+      "_note": "Large Audio Reasoning Models category top"
+    },
+    {
+      "model": "google/gemini-2-0-flash",
+      "benchmark": "mmar_overall_accuracy",
+      "score": 65.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o-audio-mmar",
+      "benchmark": "mmar_overall_accuracy",
+      "score": 63.5,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "academia/omni-r1",
+      "benchmark": "mmar_overall_accuracy",
+      "score": 63.4,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2-5-omni-10b",
+      "benchmark": "mmar_overall_accuracy",
+      "score": 56.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/caption-deepseek-r1",
+      "benchmark": "mmar_overall_accuracy",
+      "score": 55.5,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "openai/caption-o3",
+      "benchmark": "mmar_overall_accuracy",
+      "score": 54.7,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen2-5-omni-5b",
+      "benchmark": "mmar_overall_accuracy",
+      "score": 53.8,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "academia/visa",
+      "benchmark": "arc_interspeech_2026_rubrics",
+      "score": 66.23,
+      "unit": "score",
+      "_source": "",
+      "_note": "VISA system, rank #2 on official Agent Track leaderboard"
+    },
+    {
+      "model": "stabilityai/bs-roformer",
+      "benchmark": "musdb18hq_sdr_avg",
+      "score": 11.99,
+      "unit": "score",
+      "_source": "",
+      "_note": "BS-RoFormer trained on MUSDB18HQ + 500 extra songs, average SDR"
+    },
+    {
+      "model": "stabilityai/bs-roformer",
+      "benchmark": "musdb18hq_sdr_bass",
+      "score": 11.28,
+      "unit": "score",
+      "_source": "",
+      "_note": "Bass SDR on MUSDB18HQ"
+    },
+    {
+      "model": "meta/htdemucs",
+      "benchmark": "musdb18hq_sdr_avg",
+      "score": 9.0,
+      "unit": "score",
+      "_source": "",
+      "_note": "Hybrid Transformer Demucs average SDR on MUSDB-HQ test set"
+    },
+    {
+      "model": "meta/htdemucs-ft",
+      "benchmark": "musdb18hq_sdr_avg",
+      "score": 9.2,
+      "unit": "score",
+      "_source": "",
+      "_note": "htdemucs_ft with sparse attention + per-source fine-tuning, SOTA at release"
+    },
+    {
+      "model": "meta/htdemucs",
+      "benchmark": "musdb18hq_sdr_bass",
+      "score": 8.6,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "google/musiclm",
+      "benchmark": "musiccaps_fad",
+      "score": 4.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "meta/musicgen-large",
+      "benchmark": "musiccaps_clap",
+      "score": 0.31,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "haoheliu/audioldm-2-full",
+      "benchmark": "musiccaps_fad",
+      "score": 3.13,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "haoheliu/audioldm-2-full",
+      "benchmark": "musiccaps_clap",
+      "score": 0.301,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "haoheliu/audioldm-2-full",
+      "benchmark": "musiccaps_kl",
+      "score": 1.2,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "futureverse/jen-1",
+      "benchmark": "musiccaps_fad",
+      "score": 2.0,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "futureverse/jen-1",
+      "benchmark": "musiccaps_clap",
+      "score": 0.33,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "meta/musicflow",
+      "benchmark": "musiccaps_fad",
+      "score": 2.82,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "xiaomi/dasheng-audiogen",
+      "benchmark": "musiccaps_fad",
+      "score": 1.37,
+      "unit": "score",
+      "_source": "",
+      "_note": "Dasheng AudioGen on MusicCaps, substantially outperforming AudioLDM2 (3.13) and MusicGen (3.80)"
+    },
+    {
+      "model": "xiaomi/dasheng-audiogen",
+      "benchmark": "audiocaps_fad",
+      "score": 3.19,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "haoheliu/audioldm-2-full",
+      "benchmark": "audiocaps_fad",
+      "score": 2.29,
+      "unit": "score",
+      "_source": "",
+      "_note": "AudioLDM2 on AudioCaps"
+    },
+    {
+      "model": "declare-lab/tangoflux",
+      "benchmark": "audiocaps_fad",
+      "score": 2.26,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "declare-lab/tangoflux",
+      "benchmark": "audiocaps_clap",
+      "score": 0.465,
+      "unit": "score",
+      "_source": "",
+      "_note": "TangoFlux CLAP at 10 steps, 1.1s inference"
+    },
+    {
+      "model": "haoheliu/audioldm-2-full",
+      "benchmark": "audiocaps_clap",
+      "score": 0.357,
+      "unit": "score",
+      "_source": "",
+      "_note": "AudioLDM2 at same step count"
+    },
+    {
+      "model": "stabilityai/stable-audio-2-0",
+      "benchmark": "musiccaps_clap",
+      "score": 0.42,
+      "unit": "score",
+      "_source": "",
+      "_note": "Stable Audio 2.0 at 190s output on MusicCaps-style eval"
+    },
+    {
+      "model": "stabilityai/stable-audio-2-0",
+      "benchmark": "musiccaps_kl",
+      "score": 0.37,
+      "unit": "score",
+      "_source": "",
+      "_note": ""
+    }
+  ]
+}

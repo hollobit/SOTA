@@ -18362,6 +18362,13 @@
     "metric": "FuncPass (functional correctness pass@1) + SecPass (functional+secure pass@1)"
   },
   {
+    "id": "aa-omniscience",
+    "name": "AA-Omniscience",
+    "category": "knowledge / hallucination",
+    "description": "Artificial Analysis benchmark. Scores typically negative for small models; -1 considered class-leading for 1B class. MiniCPM5-1B abstains rather than hallucinates.",
+    "metric": "calibration-aware knowledge score (rewards abstention over hallucination, negative = high hallucination)"
+  },
+  {
     "id": "susvibes-funcpass-swe-agent",
     "name": "Susvibes Funcpass Swe Agent",
     "category": "coding",
@@ -18423,6 +18430,279 @@
     "category": "general",
     "description": "SUSVIBES sub-metric (arxiv 2512.03262)",
     "metric": "score"
+  },
+  {
+    "id": "aa_music_arena_instrumental_elo",
+    "name": "Artificial Analysis Music Arena (Instrumental)",
+    "category": "music-gen",
+    "description": "Blind crowdsourced pairwise preference ratings for instrumental music generation; Elo rating system.",
+    "metric": "Elo"
+  },
+  {
+    "id": "aa_music_arena_vocals_elo",
+    "name": "Artificial Analysis Music Arena (Vocals)",
+    "category": "music-gen",
+    "description": "Blind crowdsourced pairwise preference ratings for music-with-vocals generation; Elo rating system.",
+    "metric": "Elo"
+  },
+  {
+    "id": "music_arena_cmu_sony_elo",
+    "name": "Music Arena (CMU/Sony AI)",
+    "category": "music-gen",
+    "description": "Open live evaluation platform for text-to-music (arXiv 2507.20900). Music Arena project at music-arena.org.",
+    "metric": "Elo"
+  },
+  {
+    "id": "musiccaps_fad_clap",
+    "name": "MusicCaps FAD-CLAP",
+    "category": "music-gen",
+    "description": "Frechet Audio Distance over MusicCaps reference using CLAP music-trained embeddings (MA checkpoint).",
+    "metric": "FAD"
+  },
+  {
+    "id": "musiccaps_clap_score",
+    "name": "MusicCaps CLAP Score",
+    "category": "music-gen",
+    "description": "Text-audio alignment score using LAION-CLAP music checkpoint.",
+    "metric": "CLAP"
+  },
+  {
+    "id": "songbench",
+    "name": "SongBench",
+    "category": "music-gen",
+    "description": "Fine-grained 7-aspect song quality benchmark (Vocal, Instrument, Melody, Structure, Arrangement, Mixing, Musicality) over 11,717 expert-annotated samples.",
+    "metric": "mean-aspect-score"
+  },
+  {
+    "id": "musiccaps_fad",
+    "name": "MusicCaps FAD (VGGish)",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "musiccaps_kl",
+    "name": "MusicCaps KL divergence",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "musiccaps_clap",
+    "name": "MusicCaps CLAP score",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "audiocaps_fad",
+    "name": "AudioCaps FAD",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "audiocaps_kl",
+    "name": "AudioCaps KL",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "audiocaps_clap",
+    "name": "AudioCaps CLAP",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "songdescriber_fdopenl3",
+    "name": "Song Describer FD_openl3",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "audiocaps_fdopenl3",
+    "name": "AudioCaps FD_openl3",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "vggsound_fad",
+    "name": "VGGSound FAD (44.1kHz)",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "bbc_sfx_fad",
+    "name": "BBC SFX 5s FAD-LAION-CLAP",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "bbc_sfx_clap",
+    "name": "BBC SFX 5s CLAP",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "song_eval_kl",
+    "name": "YuE-protocol song KL",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "song_eval_fad",
+    "name": "YuE-protocol song FAD",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "song_eval_clap",
+    "name": "YuE-protocol song CLAP",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "song_eval_clamp3",
+    "name": "YuE-protocol song CLaMP3",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "songgen_per",
+    "name": "Song generation PER",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "songgen_mulan_t",
+    "name": "Mulan-T (text similarity)",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "songgen_mulan_a",
+    "name": "Mulan-A (audio similarity)",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "songgen_muq_mulan",
+    "name": "MuQ-MuLan (vocal music sim)",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "audiobox_ce",
+    "name": "Audiobox-Aesthetics CE",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "audiobox_cu",
+    "name": "Audiobox-Aesthetics CU",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "audiobox_pq",
+    "name": "Audiobox-Aesthetics PQ",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "audiobox_pc",
+    "name": "Audiobox-Aesthetics PC",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "musictheorybench",
+    "name": "MusicTheoryBench accuracy",
+    "category": "music-gen",
+    "description": "",
+    "metric": "score"
+  },
+  {
+    "id": "mmar_overall_accuracy",
+    "name": "MMAR (Multi-disciplinary Audio Reasoning) — Overall",
+    "category": "audio-reasoning",
+    "description": "1,000-item deep audio reasoning benchmark across speech, sound, music, and mixed modalities. NeurIPS 2025.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "arc_interspeech_2026_rubrics",
+    "name": "Interspeech 2026 Audio Reasoning Challenge — MMAR-Rubrics",
+    "category": "audio-reasoning",
+    "description": "First shared task on Chain-of-Thought quality in audio domain. 156 teams. Single Model + Agent tracks.",
+    "metric": "MMAR-Rubrics"
+  },
+  {
+    "id": "musdb18hq_sdr_avg",
+    "name": "MUSDB18-HQ — Average SDR",
+    "category": "music-source-separation",
+    "description": "Average SDR across vocals/drums/bass/other on MUSDB18-HQ test set. Higher is better.",
+    "metric": "average SDR (dB)"
+  },
+  {
+    "id": "musdb18hq_sdr_vocals",
+    "name": "MUSDB18-HQ — Vocals SDR",
+    "category": "music-source-separation",
+    "description": "",
+    "metric": "SDR vocals (dB)"
+  },
+  {
+    "id": "musdb18hq_sdr_bass",
+    "name": "MUSDB18-HQ — Bass SDR",
+    "category": "music-source-separation",
+    "description": "",
+    "metric": "SDR bass (dB)"
+  },
+  {
+    "id": "icassp2026_songeval_track1",
+    "name": "ICASSP 2026 SongEval Challenge — Track 1 (Overall Musicality)",
+    "category": "song-aesthetics",
+    "description": "2,399 full-length songs, 5 aesthetic dimensions. Track 1 = overall musicality.",
+    "metric": "musicality prediction"
+  },
+  {
+    "id": "songbench_overall",
+    "name": "SongBench (Tencent) — Overall Quality",
+    "category": "song-quality-assessment",
+    "description": "Fine-grained 7-dimension song assessment (Vocal/Instrument/Melody/Structure/Arrangement/Mixing/Musicality). 11,717 expert-annotated samples.",
+    "metric": "expert correlation"
+  },
+  {
+    "id": "gtzan_accuracy",
+    "name": "GTZAN — Music Genre Classification Accuracy",
+    "category": "music-info-retrieval",
+    "description": "10-genre classification, 1000 30s clips.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "music_arena_cmu_elo",
+    "name": "CMU Music Arena — Arena Score",
+    "category": "music-arena-cmu",
+    "description": "CMU G-CLef Music Arena. Live TTM crowdsourced eval. Launched July 28 2025. SEPARATE FROM AA Music Arena.",
+    "metric": "Arena Score (Bradley-Terry)"
   },
   {
     "id": "arc_agi_3",
