@@ -1,0 +1,2179 @@
+{
+  "_meta": {
+    "session": "131",
+    "date": "2026-06-16",
+    "topic": "RAG / Knowledge Retrieval frontier (first broad sweep)",
+    "notes": "3 parallel agents \u2014 multi-vector retrievers + RAG systems + RAG benchmarks. First broad RAG sweep \u2014 dashboard had limited coverage prior.",
+    "sources": [
+      "ViDoRe leaderboard (HF Space)",
+      "BEIR / MIRACL / MTEB Retrieval v2",
+      "Microsoft GraphRAG + LazyGraphRAG papers",
+      "Anthropic Contextual Retrieval (Sep 2024)",
+      "HippoRAG 2 (OSU-NLP) attribution corrected from Princeton",
+      "LongRAG (Waterloo+TIGER) attribution corrected",
+      "RAPTOR (Stanford) recursive abstractive processing",
+      "Cohere Rerank v3.5 + Embed v4",
+      "Voyage Rerank 2.5 + 2.5-lite + Voyage 93-dataset NDCG@10",
+      "Vectara HHEM v2 refreshed (2026-04-11)",
+      "RAGTruth EMNLP 2025",
+      "ColPali v1.0/1.2/1.3 + ColQwen2.5 family",
+      "Nemotron ColEmbed VL 4B/8B v2",
+      "BGE-reranker-v2.5-gemma2-lightweight"
+    ]
+  },
+  "models": [
+    {
+      "id": "vidore/colpali",
+      "name": "ColPali (v1.0)",
+      "vendor": "Illuin / Manuel Faysse",
+      "type": "retrieval",
+      "release_date": "2024-06-27",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "vidore/colpali-v1.2",
+      "name": "ColPali v1.2",
+      "vendor": "Illuin / Manuel Faysse",
+      "type": "retrieval",
+      "release_date": "2024-08-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "vidore/colpali-v1.3",
+      "name": "ColPali v1.3",
+      "vendor": "Illuin / Manuel Faysse",
+      "type": "retrieval",
+      "release_date": "2024-11-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "vidore/colqwen2-v1.0",
+      "name": "ColQwen2 v1.0",
+      "vendor": "Illuin / Manuel Faysse",
+      "type": "retrieval",
+      "release_date": "2024-10-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "vidore/colqwen2.5-v0.1",
+      "name": "ColQwen2.5 v0.1",
+      "vendor": "Illuin / Manuel Faysse",
+      "type": "retrieval",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "vidore/colqwen2.5-v0.2",
+      "name": "ColQwen2.5 v0.2",
+      "vendor": "Illuin / Manuel Faysse",
+      "type": "retrieval",
+      "release_date": "2025-02-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "vidore/colsmolvlm-v0.1",
+      "name": "ColSmolVLM v0.1",
+      "vendor": "Illuin / HuggingFace",
+      "type": "retrieval",
+      "release_date": "2025-02-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "vidore/colSmol-256M",
+      "name": "ColSmol-256M",
+      "vendor": "Illuin",
+      "type": "retrieval",
+      "release_date": "2025-02-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "vidore/colSmol-500M",
+      "name": "ColSmol-500M",
+      "vendor": "Illuin",
+      "type": "retrieval",
+      "release_date": "2025-02-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "stanford/colbertv2",
+      "name": "ColBERTv2 / PLAID",
+      "vendor": "Stanford",
+      "type": "retrieval",
+      "release_date": "2022-05-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "jinaai/jina-colbert-v2",
+      "name": "Jina ColBERT v2",
+      "vendor": "Jina AI",
+      "type": "retrieval",
+      "release_date": "2024-08-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mixedbread-ai/mxbai-colbert-large-v1",
+      "name": "mxbai-colbert-large-v1",
+      "vendor": "Mixedbread",
+      "type": "retrieval",
+      "release_date": "2024-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mixedbread-ai/mxbai-edge-colbert-v0-17m",
+      "name": "mxbai-edge-colbert-v0-17m",
+      "vendor": "Mixedbread",
+      "type": "retrieval",
+      "release_date": "2025-10-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mixedbread-ai/mxbai-edge-colbert-v0-32m",
+      "name": "mxbai-edge-colbert-v0-32m",
+      "vendor": "Mixedbread",
+      "type": "retrieval",
+      "release_date": "2025-10-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mixedbread-ai/mxbai-rerank-large-v2",
+      "name": "mxbai-rerank-large-v2",
+      "vendor": "Mixedbread",
+      "type": "retrieval",
+      "release_date": "2025-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mixedbread-ai/mxbai-rerank-base-v2",
+      "name": "mxbai-rerank-base-v2",
+      "vendor": "Mixedbread",
+      "type": "retrieval",
+      "release_date": "2025-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "answerdotai/jacolbertv2.5",
+      "name": "JaColBERTv2.5",
+      "vendor": "Answer.AI / Benjamin Clavi\u00e9",
+      "type": "retrieval",
+      "release_date": "2024-07-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/rerank-v3.5",
+      "name": "Cohere Rerank v3.5",
+      "vendor": "Cohere",
+      "type": "retrieval",
+      "release_date": "2024-12-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "voyageai/voyage-rerank-2",
+      "name": "Voyage rerank-2",
+      "vendor": "Voyage AI",
+      "type": "retrieval",
+      "release_date": "2024-09-30",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "voyageai/voyage-rerank-2.5",
+      "name": "Voyage rerank-2.5",
+      "vendor": "Voyage AI",
+      "type": "retrieval",
+      "release_date": "2025-08-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "voyageai/voyage-rerank-2.5-lite",
+      "name": "Voyage rerank-2.5-lite",
+      "vendor": "Voyage AI",
+      "type": "retrieval",
+      "release_date": "2025-08-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/embed-v4",
+      "name": "Cohere Embed v4",
+      "vendor": "Cohere",
+      "type": "retrieval",
+      "release_date": "2025-04-15",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "snowflake/snowflake-arctic-embed-l-v2.0",
+      "name": "Snowflake Arctic-Embed L v2.0",
+      "vendor": "Snowflake",
+      "type": "retrieval",
+      "release_date": "2024-12-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "snowflake/snowflake-arctic-embed-m-v2.0",
+      "name": "Snowflake Arctic-Embed M v2.0",
+      "vendor": "Snowflake",
+      "type": "retrieval",
+      "release_date": "2024-12-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "BAAI/bge-reranker-v2.5-gemma2-lightweight",
+      "name": "BGE Reranker v2.5 Gemma2 Lightweight",
+      "vendor": "BAAI",
+      "type": "retrieval",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/graphrag",
+      "name": "Microsoft GraphRAG",
+      "vendor": "Microsoft Research",
+      "type": "retrieval",
+      "release_date": "2024-07-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/lazygraphrag",
+      "name": "LazyGraphRAG",
+      "vendor": "Microsoft Research",
+      "type": "retrieval",
+      "release_date": "2024-11-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "hku/lightrag",
+      "name": "LightRAG",
+      "vendor": "HKU Data Science Lab",
+      "type": "retrieval",
+      "release_date": "2024-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "hku/rag-anything",
+      "name": "RAG-Anything",
+      "vendor": "HKU Data Science Lab",
+      "type": "retrieval",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text",
+        "image",
+        "table"
+      ]
+    },
+    {
+      "id": "osu/hipporag",
+      "name": "HippoRAG",
+      "vendor": "OSU-NLP Group",
+      "type": "retrieval",
+      "release_date": "2024-05-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "osu/hipporag-2",
+      "name": "HippoRAG 2",
+      "vendor": "OSU-NLP Group",
+      "type": "retrieval",
+      "release_date": "2025-02-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "medgraphrag/medgraphrag",
+      "name": "MedGraphRAG",
+      "vendor": "University of Oxford / Generative-AI-Health",
+      "type": "retrieval",
+      "release_date": "2024-08-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "waterloo/longrag",
+      "name": "LongRAG (Waterloo)",
+      "vendor": "University of Waterloo / TIGER Lab",
+      "type": "retrieval",
+      "release_date": "2024-06-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "thu/longrag-dual",
+      "name": "LongRAG (Dual-perspective)",
+      "vendor": "Tsinghua / PKU",
+      "type": "retrieval",
+      "release_date": "2024-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "stanford/raptor",
+      "name": "RAPTOR",
+      "vendor": "Stanford NLP",
+      "type": "retrieval",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/contextual-retrieval",
+      "name": "Anthropic Contextual Retrieval",
+      "vendor": "Anthropic",
+      "type": "retrieval",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "asai/self-rag",
+      "name": "Self-RAG",
+      "vendor": "UW (Akari Asai et al.)",
+      "type": "retrieval",
+      "release_date": "2023-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "yan/crag-method",
+      "name": "CRAG (Corrective RAG)",
+      "vendor": "Yan et al. (Vector Institute / Squirrel AI)",
+      "type": "retrieval",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "jeong/adaptive-rag",
+      "name": "Adaptive-RAG",
+      "vendor": "KAIST (Jeong et al.)",
+      "type": "retrieval",
+      "release_date": "2024-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cmu/flare",
+      "name": "FLARE (Active RAG)",
+      "vendor": "CMU (Jiang et al.)",
+      "type": "retrieval",
+      "release_date": "2023-05-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "thu/visrag",
+      "name": "VisRAG",
+      "vendor": "Tsinghua THUNLP",
+      "type": "retrieval",
+      "release_date": "2024-10-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "thu/longcite",
+      "name": "LongCite",
+      "vendor": "Tsinghua THUDM",
+      "type": "retrieval",
+      "release_date": "2024-09-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "ragflow/ragflow",
+      "name": "RAGFlow",
+      "vendor": "InfiniFlow",
+      "type": "retrieval",
+      "release_date": "2024-04-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "sciphi/r2r",
+      "name": "R2R",
+      "vendor": "SciPhi AI",
+      "type": "retrieval",
+      "release_date": "2024-05-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "weaviate/verba",
+      "name": "Verba",
+      "vendor": "Weaviate",
+      "type": "retrieval",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepset/haystack-2",
+      "name": "Haystack 2.0",
+      "vendor": "deepset",
+      "type": "retrieval",
+      "release_date": "2024-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "neuml/txtai",
+      "name": "txtai",
+      "vendor": "NeuML",
+      "type": "retrieval",
+      "release_date": "2024-06-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "llamaindex/agentic-rag",
+      "name": "LlamaIndex Agentic RAG",
+      "vendor": "LlamaIndex",
+      "type": "retrieval",
+      "release_date": "2024-06-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "langchain/langgraph-rag",
+      "name": "LangGraph RAG",
+      "vendor": "LangChain",
+      "type": "retrieval",
+      "release_date": "2024-08-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/file-search-v2",
+      "name": "OpenAI File Search (Responses API)",
+      "vendor": "OpenAI",
+      "type": "retrieval",
+      "release_date": "2025-03-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cohere/compass",
+      "name": "Cohere Compass",
+      "vendor": "Cohere",
+      "type": "retrieval",
+      "release_date": "2024-12-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "pinecone/assistant",
+      "name": "Pinecone Assistant",
+      "vendor": "Pinecone",
+      "type": "retrieval",
+      "release_date": "2024-11-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "voyage/agentic-rag",
+      "name": "Voyage AI Agentic RAG",
+      "vendor": "Voyage AI (acq. by MongoDB)",
+      "type": "retrieval",
+      "release_date": "2025-02-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/nemotron-colembed-vl-8b-v2",
+      "name": "Nemotron-ColEmbed VL 8B v2",
+      "vendor": "nvidia",
+      "type": "retrieval",
+      "release_date": "2026-02-03",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "nvidia/nemotron-colembed-vl-4b-v2",
+      "name": "Nemotron-ColEmbed VL 4B v2",
+      "vendor": "nvidia",
+      "type": "retrieval",
+      "release_date": "2026-02-03",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "nvidia/llama-nemotron-colembed-vl-3b-v2",
+      "name": "Llama-Nemotron-ColEmbed VL 3B v2",
+      "vendor": "nvidia",
+      "type": "retrieval",
+      "release_date": "2026-02-03",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "tomoro/ops-colqwen3-4b",
+      "name": "Ops-ColQwen3-4B",
+      "vendor": "tomoro",
+      "type": "retrieval",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "tomoro/colqwen3-embed-8b",
+      "name": "Tomoro-ColQwen3-Embed-8B",
+      "vendor": "tomoro",
+      "type": "retrieval",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "evolution/evoqwen2.5-vl-retriever-7b-v1",
+      "name": "EvoQwen2.5-VL-Retriever-7B v1",
+      "vendor": "evolution",
+      "type": "retrieval",
+      "release_date": "2026-01-10",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "argus/argus-9b",
+      "name": "Argus-Retriever 9B",
+      "vendor": "academic",
+      "type": "retrieval",
+      "release_date": "2026-06-04",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "voyageai/rerank-2.5",
+      "name": "Voyage Rerank 2.5 (instruction-following)",
+      "vendor": "voyage ai (mongodb)",
+      "type": "retrieval",
+      "release_date": "2025-08-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "voyageai/rerank-2.5-lite",
+      "name": "Voyage Rerank 2.5 Lite",
+      "vendor": "voyage ai (mongodb)",
+      "type": "retrieval",
+      "release_date": "2025-08-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mixedbread/mxbai-rerank-large-v2",
+      "name": "mxbai-rerank-large-v2 (1.5B)",
+      "vendor": "mixedbread",
+      "type": "retrieval",
+      "release_date": "2025-03-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/llama3-chatqa-1.5-70b",
+      "name": "Llama3-ChatQA-1.5 70B",
+      "vendor": "nvidia",
+      "type": "retrieval",
+      "release_date": "2024-05-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/chatqa-1.0-70b",
+      "name": "ChatQA 1.0 70B (Llama2-based)",
+      "vendor": "nvidia",
+      "type": "retrieval",
+      "release_date": "2024-01-22",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-haiku-4.5",
+      "name": "Claude Haiku 4.5",
+      "vendor": "anthropic",
+      "type": "retrieval",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-2.5-flash-lite",
+      "name": "Gemini 2.5 Flash Lite",
+      "vendor": "google",
+      "type": "retrieval",
+      "release_date": "2025-09-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-2.0-flash",
+      "name": "Gemini 2.0 Flash",
+      "vendor": "google",
+      "type": "retrieval",
+      "release_date": "2025-02-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.4-nano",
+      "name": "GPT-5.4-nano",
+      "vendor": "openai",
+      "type": "retrieval",
+      "release_date": "2026-03-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-4.1",
+      "name": "GPT-4.1",
+      "vendor": "openai",
+      "type": "retrieval",
+      "release_date": "2025-04-14",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/phi-4",
+      "name": "Phi-4",
+      "vendor": "microsoft",
+      "type": "retrieval",
+      "release_date": "2024-12-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "antgroup/finix-s1-32b",
+      "name": "Ant Group Finix-S1 32B",
+      "vendor": "ant group",
+      "type": "retrieval",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xai/grok-3",
+      "name": "Grok 3",
+      "vendor": "xai",
+      "type": "retrieval",
+      "release_date": "2025-02-17",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.6",
+      "name": "Claude Opus 4.6",
+      "vendor": "anthropic",
+      "type": "retrieval",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro",
+      "name": "Gemini 3 Pro",
+      "vendor": "google",
+      "type": "retrieval",
+      "release_date": "2026-04-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-4o",
+      "name": "GPT-4o (NoLiMa eval)",
+      "vendor": "openai",
+      "type": "retrieval",
+      "release_date": "2024-05-13",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "thudm/longcite-glm4-9b",
+      "name": "LongCite-GLM4-9B",
+      "vendor": "thudm",
+      "type": "retrieval",
+      "release_date": "2024-09-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "thudm/longcite-llama3.1-8b",
+      "name": "LongCite-Llama3.1-8B",
+      "vendor": "thudm",
+      "type": "retrieval",
+      "release_date": "2024-09-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/gte-modernbert-base",
+      "name": "GTE ModernBERT Base",
+      "vendor": "alibaba",
+      "type": "retrieval",
+      "release_date": "2025-01-30",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "vidore_v1_avg_ndcg5",
+      "name": "ViDoRe v1 Average NDCG@5",
+      "category": "retrieval",
+      "metric": "ndcg5",
+      "unit": "score",
+      "description": "10 visual document retrieval tasks across domains (medical, business, scientific), modalities (text, figures, infographics, tables), languages (EN, FR)",
+      "source_url": "https://arxiv.org/html/2407.01449v6"
+    },
+    {
+      "id": "vidore_v2_avg_ndcg5",
+      "name": "ViDoRe v2 Average NDCG@5",
+      "category": "retrieval",
+      "metric": "ndcg5",
+      "unit": "score",
+      "description": "Harder visual retrieval benchmark: ESG Reports, Insurance, Economics, Biomedical (manual + multilingual variants)",
+      "source_url": "https://arxiv.org/pdf/2505.17166"
+    },
+    {
+      "id": "beir_avg_ndcg10",
+      "name": "BEIR Average NDCG@10",
+      "category": "retrieval",
+      "metric": "ndcg10",
+      "unit": "score",
+      "description": "Heterogeneous zero-shot IR benchmark (13-18 datasets depending on configuration)",
+      "source_url": "https://arxiv.org/abs/2104.08663"
+    },
+    {
+      "id": "miracl_avg_ndcg10",
+      "name": "MIRACL Multilingual Average NDCG@10",
+      "category": "retrieval",
+      "metric": "ndcg10",
+      "unit": "score",
+      "description": "Multilingual retrieval, 17 languages",
+      "source_url": "https://project-miracl.github.io/"
+    },
+    {
+      "id": "clef_avg_ndcg10",
+      "name": "CLEF Average NDCG@10",
+      "category": "retrieval",
+      "metric": "ndcg10",
+      "unit": "score",
+      "description": "Cross-Language Evaluation Forum multilingual retrieval",
+      "source_url": "https://arxiv.org/html/2412.04506v2"
+    },
+    {
+      "id": "mteb_retrieval_avg",
+      "name": "MTEB Retrieval Average",
+      "category": "retrieval",
+      "metric": "score",
+      "unit": "score",
+      "description": "MTEB Retrieval subset (BEIR-derived)",
+      "source_url": "https://huggingface.co/spaces/mteb/leaderboard"
+    },
+    {
+      "id": "jmteb_avg",
+      "name": "JMTEB Average",
+      "category": "retrieval",
+      "metric": "score",
+      "unit": "score",
+      "description": "Japanese Massive Text Embedding Benchmark (5 tasks, 28 datasets)",
+      "source_url": "https://github.com/sbintuitions/JMTEB"
+    },
+    {
+      "id": "ragas",
+      "name": "RAGAS",
+      "category": "rag_evaluation",
+      "metric": "score",
+      "unit": "score",
+      "description": "Automated RAG evaluation: Faithfulness, Answer Relevancy, Context Precision/Recall. Es et al. 2023.",
+      "source_url": ""
+    },
+    {
+      "id": "rgb",
+      "name": "RGB (Retrieval-Augmented Generation Benchmark)",
+      "category": "rag_evaluation",
+      "metric": "score",
+      "unit": "score",
+      "description": "Tests noise robustness, negative rejection, info integration, counterfactual robustness.",
+      "source_url": ""
+    },
+    {
+      "id": "crag-benchmark",
+      "name": "CRAG (Comprehensive RAG Benchmark)",
+      "category": "rag_evaluation",
+      "metric": "score",
+      "unit": "score",
+      "description": "Meta KDD Cup 2024; 4,409 QA pairs across Finance/Sports/Music/Movies/Open.",
+      "source_url": ""
+    },
+    {
+      "id": "nolima",
+      "name": "NoLiMa",
+      "category": "long_context",
+      "metric": "score",
+      "unit": "score",
+      "description": "Long-context eval beyond literal matching (ICML 2025); removes lexical overlap cues.",
+      "source_url": ""
+    },
+    {
+      "id": "longbench-cite",
+      "name": "LongBench-Cite",
+      "category": "citation",
+      "metric": "score",
+      "unit": "score",
+      "description": "Long-context QA with sentence-level citations; correctness + citation F1.",
+      "source_url": ""
+    },
+    {
+      "id": "alce",
+      "name": "ALCE",
+      "category": "citation",
+      "metric": "score",
+      "unit": "score",
+      "description": "Auto-evaluation of LLM citation; ASQA, QAMPARI, ELI5.",
+      "source_url": ""
+    },
+    {
+      "id": "multihop-rag",
+      "name": "MultiHop-RAG",
+      "category": "multi_hop",
+      "metric": "score",
+      "unit": "score",
+      "description": "Tang & Yang COLM 2024; 2,556 multi-hop queries on news corpus.",
+      "source_url": ""
+    },
+    {
+      "id": "ms-marco-rag",
+      "name": "MS MARCO RAG subset",
+      "category": "retrieval",
+      "metric": "score",
+      "unit": "score",
+      "description": "Passage ranking + QA subset commonly used in RAG eval.",
+      "source_url": ""
+    },
+    {
+      "id": "freshqa",
+      "name": "FreshQA",
+      "category": "timeliness",
+      "metric": "score",
+      "unit": "score",
+      "description": "Tests timeliness; questions with answers that change over time.",
+      "source_url": ""
+    },
+    {
+      "id": "popqa",
+      "name": "PopQA",
+      "category": "open_domain_qa",
+      "metric": "score",
+      "unit": "score",
+      "description": "Long-tail entity QA; 14k questions.",
+      "source_url": ""
+    },
+    {
+      "id": "triviaqa",
+      "name": "TriviaQA",
+      "category": "open_domain_qa",
+      "metric": "score",
+      "unit": "score",
+      "description": "Trivia questions with web evidence.",
+      "source_url": ""
+    },
+    {
+      "id": "naturalquestions",
+      "name": "Natural Questions",
+      "category": "open_domain_qa",
+      "metric": "score",
+      "unit": "score",
+      "description": "Real Google queries with Wikipedia answers.",
+      "source_url": ""
+    },
+    {
+      "id": "hotpotqa",
+      "name": "HotpotQA",
+      "category": "multi_hop",
+      "metric": "score",
+      "unit": "score",
+      "description": "Multi-hop QA over Wikipedia.",
+      "source_url": ""
+    },
+    {
+      "id": "musique",
+      "name": "MuSiQue",
+      "category": "multi_hop",
+      "metric": "score",
+      "unit": "score",
+      "description": "Multi-hop questions via single-hop composition.",
+      "source_url": ""
+    },
+    {
+      "id": "2wikimultihop",
+      "name": "2WikiMultiHopQA",
+      "category": "multi_hop",
+      "metric": "score",
+      "unit": "score",
+      "description": "2-hop questions over Wikipedia.",
+      "source_url": ""
+    },
+    {
+      "id": "narrativeqa",
+      "name": "NarrativeQA",
+      "category": "long_document",
+      "metric": "score",
+      "unit": "score",
+      "description": "Books/movie scripts QA; ROUGE-L metric.",
+      "source_url": ""
+    },
+    {
+      "id": "qasper",
+      "name": "QASPER",
+      "category": "long_document",
+      "metric": "score",
+      "unit": "score",
+      "description": "Full NLP paper QA; F1-Match.",
+      "source_url": ""
+    },
+    {
+      "id": "quality",
+      "name": "QuALITY",
+      "category": "long_document",
+      "metric": "score",
+      "unit": "score",
+      "description": "Multi-choice QA on medium-length passages.",
+      "source_url": ""
+    },
+    {
+      "id": "arc-challenge",
+      "name": "ARC-Challenge",
+      "category": "reasoning",
+      "metric": "score",
+      "unit": "score",
+      "description": "AI2 Reasoning Challenge.",
+      "source_url": ""
+    },
+    {
+      "id": "pubhealth",
+      "name": "PubHealth",
+      "category": "fact_checking",
+      "metric": "score",
+      "unit": "score",
+      "description": "True/false health claims.",
+      "source_url": ""
+    },
+    {
+      "id": "biography-factscore",
+      "name": "Biography (FactScore)",
+      "category": "long_form_generation",
+      "metric": "score",
+      "unit": "score",
+      "description": "Long-form biography generation with FactScore.",
+      "source_url": ""
+    },
+    {
+      "id": "pubmedqa",
+      "name": "PubMedQA",
+      "category": "medical_qa",
+      "metric": "score",
+      "unit": "score",
+      "description": "Biomedical research QA from PubMed abstracts.",
+      "source_url": ""
+    },
+    {
+      "id": "medmcqa",
+      "name": "MedMCQA",
+      "category": "medical_qa",
+      "metric": "score",
+      "unit": "score",
+      "description": "Indian medical entrance exam MCQs.",
+      "source_url": ""
+    },
+    {
+      "id": "usmle-medqa",
+      "name": "USMLE (MedQA)",
+      "category": "medical_qa",
+      "metric": "score",
+      "unit": "score",
+      "description": "US Medical Licensing Exam QA.",
+      "source_url": ""
+    },
+    {
+      "id": "graphrag-podcast-winrate",
+      "name": "GraphRAG Podcast (Comprehensiveness + Diversity Win-Rate)",
+      "category": "rag_evaluation",
+      "metric": "score",
+      "unit": "score",
+      "description": "LLM-as-judge pairwise win-rate on Podcast transcript corpus.",
+      "source_url": ""
+    },
+    {
+      "id": "graphrag-news-winrate",
+      "name": "GraphRAG News (Comprehensiveness + Diversity Win-Rate)",
+      "category": "rag_evaluation",
+      "metric": "score",
+      "unit": "score",
+      "description": "LLM-as-judge pairwise win-rate on News corpus.",
+      "source_url": ""
+    },
+    {
+      "id": "anthropic-retrieval-failure",
+      "name": "Anthropic Contextual Retrieval Failure Rate",
+      "category": "retrieval",
+      "metric": "score",
+      "unit": "score",
+      "description": "Top-20-chunk retrieval failure rate; tested on codebases/fiction/arxiv/science papers.",
+      "source_url": ""
+    },
+    {
+      "id": "uar-active-retrieval",
+      "name": "UAR Active-Retrieval Decision Accuracy",
+      "category": "active_retrieval",
+      "metric": "score",
+      "unit": "score",
+      "description": "Unified Active Retrieval benchmark (arxiv 2406.12534).",
+      "source_url": ""
+    },
+    {
+      "id": "vidore_v1v2_avg_ndcg5",
+      "name": "ViDoRe V1+V2 Average NDCG@5",
+      "category": "visual-retrieval",
+      "metric": "ndcg5",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://huggingface.co/spaces/vidore/vidore-leaderboard"
+    },
+    {
+      "id": "vidore_v3_avg_ndcg10",
+      "name": "ViDoRe V3 Average NDCG@10",
+      "category": "visual-retrieval",
+      "metric": "ndcg10",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://huggingface.co/blog/nvidia/nemotron-colembed-v2"
+    },
+    {
+      "id": "ragtruth_summary_f1",
+      "name": "RAGTruth Summary F1-Macro (FaithJudge)",
+      "category": "rag-faithfulness",
+      "metric": "f1_macro",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://aclanthology.org/2025.emnlp-industry.54/"
+    },
+    {
+      "id": "ragtruth_summary_bacc",
+      "name": "RAGTruth Summary Balanced Accuracy (FaithJudge)",
+      "category": "rag-faithfulness",
+      "metric": "balanced_accuracy",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://aclanthology.org/2025.emnlp-industry.54/"
+    },
+    {
+      "id": "ragtruth_qa_f1",
+      "name": "RAGTruth QA F1-Macro (FaithJudge)",
+      "category": "rag-faithfulness",
+      "metric": "f1_macro",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://aclanthology.org/2025.emnlp-industry.54/"
+    },
+    {
+      "id": "ragtruth_qa_bacc",
+      "name": "RAGTruth QA Balanced Accuracy (FaithJudge)",
+      "category": "rag-faithfulness",
+      "metric": "balanced_accuracy",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://aclanthology.org/2025.emnlp-industry.54/"
+    },
+    {
+      "id": "ragtruth_d2t_f1",
+      "name": "RAGTruth Data2Txt F1-Macro (FaithJudge)",
+      "category": "rag-faithfulness",
+      "metric": "f1_macro",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://aclanthology.org/2025.emnlp-industry.54/"
+    },
+    {
+      "id": "ragtruth_d2t_bacc",
+      "name": "RAGTruth Data2Txt Balanced Accuracy (FaithJudge)",
+      "category": "rag-faithfulness",
+      "metric": "balanced_accuracy",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://aclanthology.org/2025.emnlp-industry.54/"
+    },
+    {
+      "id": "vectara_hhem_v2_rate",
+      "name": "Vectara HHEM v2 Hallucination Rate (32K refreshed dataset)",
+      "category": "rag-faithfulness",
+      "metric": "hallucination_rate",
+      "unit": "percent_lower_better",
+      "description": "",
+      "source_url": "https://www.vectara.com/blog/introducing-the-next-generation-of-vectaras-hallucination-leaderboard"
+    },
+    {
+      "id": "voyage_rerank_93datasets_ndcg10",
+      "name": "Voyage Rerank 93-dataset avg NDCG@10",
+      "category": "rerank",
+      "metric": "ndcg10",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://blog.voyageai.com/2025/08/11/rerank-2-5/"
+    },
+    {
+      "id": "mxbai_beir_avg_ndcg10",
+      "name": "Mixedbread BEIR Avg NDCG@10 (rerank-large-v2)",
+      "category": "rerank",
+      "metric": "ndcg10",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://www.mixedbread.com/blog/mxbai-rerank-v2"
+    },
+    {
+      "id": "mxbai_mrtydi_multilingual",
+      "name": "Mixedbread Mr.TyDi multilingual avg",
+      "category": "rerank-multilingual",
+      "metric": "ndcg10",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://www.mixedbread.com/blog/mxbai-rerank-v2"
+    },
+    {
+      "id": "mteb_v2_retrieval_ndcg10",
+      "name": "MTEB v2 English Retrieval Sub-score NDCG@10",
+      "category": "retrieval",
+      "metric": "ndcg10",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://modal.com/blog/mteb-leaderboard-article"
+    },
+    {
+      "id": "beir_hotpotqa_ndcg10",
+      "name": "BEIR HotpotQA NDCG@10",
+      "category": "retrieval-task",
+      "metric": "ndcg10",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://app.ailog.fr/en/blog/news/beir-benchmark-update"
+    },
+    {
+      "id": "beir_msmarco_ndcg10",
+      "name": "BEIR MS-MARCO NDCG@10",
+      "category": "retrieval-task",
+      "metric": "ndcg10",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://app.ailog.fr/en/blog/news/beir-benchmark-update"
+    },
+    {
+      "id": "chatrag_bench_avg",
+      "name": "ChatRAG-Bench Average (10 datasets)",
+      "category": "rag-llm",
+      "metric": "average",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://chatqa-project.github.io/"
+    },
+    {
+      "id": "multihop_rag_gpt4_retrieved",
+      "name": "MultiHop-RAG accuracy (retrieved chunks)",
+      "category": "rag-multihop",
+      "metric": "accuracy",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2401.15391"
+    },
+    {
+      "id": "multihop_rag_gpt4_oracle",
+      "name": "MultiHop-RAG accuracy (ground-truth evidence)",
+      "category": "rag-multihop",
+      "metric": "accuracy",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2401.15391"
+    },
+    {
+      "id": "longbench_cite_f1",
+      "name": "LongBench-Cite Citation F1 (vs GPT-4o)",
+      "category": "rag-citation",
+      "metric": "f1_delta",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2409.02897"
+    },
+    {
+      "id": "alce_asqa_citation_f1",
+      "name": "ALCE ASQA Citation F1",
+      "category": "rag-citation",
+      "metric": "citation_f1",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2305.14627"
+    },
+    {
+      "id": "alce_asqa_em_recall",
+      "name": "ALCE ASQA EM Recall",
+      "category": "rag-citation",
+      "metric": "em_recall",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2305.14627"
+    },
+    {
+      "id": "alce_asqa_mauve",
+      "name": "ALCE ASQA Fluency MAUVE",
+      "category": "rag-citation",
+      "metric": "mauve",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2305.14627"
+    },
+    {
+      "id": "alce_eli5_citation_f1",
+      "name": "ALCE ELI5 Citation F1",
+      "category": "rag-citation",
+      "metric": "citation_f1",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2305.14627"
+    },
+    {
+      "id": "alce_eli5_em_recall",
+      "name": "ALCE ELI5 EM Recall",
+      "category": "rag-citation",
+      "metric": "em_recall",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2305.14627"
+    },
+    {
+      "id": "nolima_short_acc",
+      "name": "NoLiMa Short Context (<1K) Accuracy",
+      "category": "long-context-rag",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2502.05167"
+    },
+    {
+      "id": "nolima_32k_acc",
+      "name": "NoLiMa 32K Context Accuracy",
+      "category": "long-context-rag",
+      "metric": "accuracy",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2502.05167"
+    },
+    {
+      "id": "freshqa_strict_acc_range",
+      "name": "FreshQA Strict Accuracy (no search aug)",
+      "category": "fresh-knowledge-rag",
+      "metric": "accuracy_range",
+      "unit": "percent",
+      "description": "",
+      "source_url": "https://arxiv.org/abs/2310.03214"
+    }
+  ],
+  "scores": [
+    {
+      "model": "vidore/colpali",
+      "benchmark": "vidore_v1_avg_ndcg5",
+      "score": 0.813,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2407.01449v6",
+      "_note": "ColPali (+Late Inter.) achieves 81.3 average NDCG@5 on ViDoRe (Table 2)"
+    },
+    {
+      "model": "vidore/colqwen2-v1.0",
+      "benchmark": "vidore_v2_avg_ndcg5",
+      "score": 0.583,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2505.17166",
+      "_note": "ViDoRe v2 Benchmark paper Table results"
+    },
+    {
+      "model": "vidore/colqwen2.5-v0.2",
+      "benchmark": "vidore_v2_avg_ndcg5",
+      "score": 0.597,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2505.17166",
+      "_note": "ViDoRe v2 Benchmark paper Table results"
+    },
+    {
+      "model": "vidore/colsmolvlm-v0.1",
+      "benchmark": "vidore_v2_avg_ndcg5",
+      "score": 0.564,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2505.17166",
+      "_note": "ViDoRe v2 Benchmark paper - metrics-AI/colqwen2.5-3B baseline reported at 0.564 avg NDCG@5"
+    },
+    {
+      "model": "vidore/colSmol-256M",
+      "benchmark": "vidore_v2_avg_ndcg5",
+      "score": 0.397,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2505.17166",
+      "_note": "ViDoRe v2 colSmol-256M average NDCG@5"
+    },
+    {
+      "model": "vidore/colSmol-500M",
+      "benchmark": "vidore_v2_avg_ndcg5",
+      "score": 0.455,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2505.17166",
+      "_note": "ViDoRe v2 colSmol-500M average NDCG@5"
+    },
+    {
+      "model": "stanford/colbertv2",
+      "benchmark": "beir_avg_ndcg10",
+      "score": 0.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2112.01488",
+      "_note": "ColBERTv2 achieves 50.0 mean NDCG@10 on BEIR (original Santhanam/Khattab 2022 paper)"
+    },
+    {
+      "model": "jinaai/jina-colbert-v2",
+      "benchmark": "beir_avg_ndcg10",
+      "score": 0.531,
+      "unit": "score",
+      "_source": "https://jina.ai/news/jina-colbert-v2-multilingual-late-interaction-retriever-for-embedding-and-reranking/",
+      "_note": "Jina-ColBERT-v2 achieves average nDCG@10 of 53.1 on BEIR (14 datasets, per Jina blog + ACL paper)"
+    },
+    {
+      "model": "jinaai/jina-colbert-v2",
+      "benchmark": "miracl_avg_ndcg10",
+      "score": 0.623,
+      "unit": "score",
+      "_source": "https://aclanthology.org/2024.mrl-1.11.pdf",
+      "_note": "Jina-ColBERT-v2 average nDCG@10 of 62.3 on MIRACL (17 languages)"
+    },
+    {
+      "model": "mixedbread-ai/mxbai-colbert-large-v1",
+      "benchmark": "beir_avg_ndcg10",
+      "score": 0.5037,
+      "unit": "score",
+      "_source": "https://www.mixedbread.com/blog/mxbai-colbert-large-v1",
+      "_note": "mxbai-colbert-large-v1 average NDCG@10 of 50.37 on BEIR"
+    },
+    {
+      "model": "mixedbread-ai/mxbai-edge-colbert-v0-17m",
+      "benchmark": "beir_avg_ndcg10",
+      "score": 0.49,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2510.14880",
+      "_note": "mxbai-edge-colbert-v0-17m achieves 0.490 avg NDCG@10 on BEIR short-text benchmarks (Tech Report)"
+    },
+    {
+      "model": "mixedbread-ai/mxbai-edge-colbert-v0-32m",
+      "benchmark": "beir_avg_ndcg10",
+      "score": 0.521,
+      "unit": "score",
+      "_source": "https://arxiv.org/pdf/2510.14880",
+      "_note": "mxbai-edge-colbert-v0-32m achieves 0.521 avg NDCG@10 on BEIR short-text benchmarks (Tech Report)"
+    },
+    {
+      "model": "mixedbread-ai/mxbai-rerank-large-v2",
+      "benchmark": "beir_avg_ndcg10",
+      "score": 0.5749,
+      "unit": "score",
+      "_source": "https://www.mixedbread.com/blog/mxbai-rerank-v2",
+      "_note": "mxbai-rerank-large-v2 achieves 57.49 NDCG@10 BEIR avg with BM25 first-stage retrieval"
+    },
+    {
+      "model": "mixedbread-ai/mxbai-rerank-base-v2",
+      "benchmark": "beir_avg_ndcg10",
+      "score": 0.5557,
+      "unit": "score",
+      "_source": "https://www.mixedbread.com/blog/mxbai-rerank-v2",
+      "_note": "mxbai-rerank-base-v2 achieves 55.57 NDCG@10 BEIR avg with BM25 first-stage retrieval"
+    },
+    {
+      "model": "answerdotai/jacolbertv2.5",
+      "benchmark": "jmteb_avg",
+      "score": 0.754,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2407.20750",
+      "_note": "JaColBERTv2.5 average score 0.754 across common Japanese benchmarks (paper abstract)"
+    },
+    {
+      "model": "snowflake/snowflake-arctic-embed-l-v2.0",
+      "benchmark": "beir_avg_ndcg10",
+      "score": 0.556,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2412.04506v2",
+      "_note": "Arctic-Embed 2.0-L achieves 0.556 on MTEB-R / BEIR avg NDCG@10"
+    },
+    {
+      "model": "snowflake/snowflake-arctic-embed-l-v2.0",
+      "benchmark": "miracl_avg_ndcg10",
+      "score": 0.649,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2412.04506v2",
+      "_note": "Arctic-Embed 2.0-L achieves 0.649 on MIRACL"
+    },
+    {
+      "model": "snowflake/snowflake-arctic-embed-l-v2.0",
+      "benchmark": "clef_avg_ndcg10",
+      "score": 0.541,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2412.04506v2",
+      "_note": "Arctic-Embed 2.0-L achieves 0.541 on CLEF"
+    },
+    {
+      "model": "BAAI/bge-reranker-v2.5-gemma2-lightweight",
+      "benchmark": "beir_avg_ndcg10",
+      "score": 0.6404,
+      "unit": "score",
+      "_source": "https://huggingface.co/BAAI/bge-reranker-v2.5-gemma2-lightweight",
+      "_note": "bge-reranker-v2.5-gemma2-lightweight 64.04 mean NDCG@10 on BEIR when reranking E5-Mistral-7b-Instruct candidates (model card)"
+    },
+    {
+      "model": "cohere/embed-v4",
+      "benchmark": "mteb_retrieval_avg",
+      "score": 0.652,
+      "unit": "score",
+      "_source": "https://docs.cohere.com/changelog/embed-multimodal-v4",
+      "_note": "Cohere Embed v4 reaches 65.2 MTEB score (April 15, 2025 launch)"
+    },
+    {
+      "model": "microsoft/graphrag",
+      "benchmark": "graphrag-podcast-winrate",
+      "score": 83.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2404.16130",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/graphrag",
+      "benchmark": "graphrag-news-winrate",
+      "score": 80.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2404.16130",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/lazygraphrag",
+      "benchmark": "ragas",
+      "score": 0.1,
+      "unit": "% of full GraphRAG cost",
+      "_source": "https://www.microsoft.com/en-us/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/contextual-retrieval",
+      "benchmark": "anthropic-retrieval-failure",
+      "score": 67.0,
+      "unit": "%",
+      "_source": "https://www.anthropic.com/news/contextual-retrieval",
+      "_note": ""
+    },
+    {
+      "model": "osu/hipporag-2",
+      "benchmark": "naturalquestions",
+      "score": 63.3,
+      "unit": "F1",
+      "_source": "https://arxiv.org/html/2502.14802v1",
+      "_note": ""
+    },
+    {
+      "model": "osu/hipporag-2",
+      "benchmark": "musique",
+      "score": 48.6,
+      "unit": "F1",
+      "_source": "https://arxiv.org/html/2502.14802v1",
+      "_note": ""
+    },
+    {
+      "model": "osu/hipporag-2",
+      "benchmark": "hotpotqa",
+      "score": 96.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/html/2502.14802v1",
+      "_note": ""
+    },
+    {
+      "model": "asai/self-rag",
+      "benchmark": "popqa",
+      "score": 55.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2310.11511",
+      "_note": ""
+    },
+    {
+      "model": "asai/self-rag",
+      "benchmark": "triviaqa",
+      "score": 69.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2310.11511",
+      "_note": ""
+    },
+    {
+      "model": "asai/self-rag",
+      "benchmark": "arc-challenge",
+      "score": 73.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2310.11511",
+      "_note": ""
+    },
+    {
+      "model": "yan/crag-method",
+      "benchmark": "popqa",
+      "score": 19.0,
+      "unit": "% absolute",
+      "_source": "https://arxiv.org/pdf/2401.15884",
+      "_note": ""
+    },
+    {
+      "model": "yan/crag-method",
+      "benchmark": "biography-factscore",
+      "score": 14.9,
+      "unit": "% absolute",
+      "_source": "https://arxiv.org/pdf/2401.15884",
+      "_note": ""
+    },
+    {
+      "model": "yan/crag-method",
+      "benchmark": "pubhealth",
+      "score": 36.6,
+      "unit": "% absolute",
+      "_source": "https://arxiv.org/pdf/2401.15884",
+      "_note": ""
+    },
+    {
+      "model": "yan/crag-method",
+      "benchmark": "arc-challenge",
+      "score": 8.1,
+      "unit": "% absolute",
+      "_source": "https://arxiv.org/pdf/2401.15884",
+      "_note": ""
+    },
+    {
+      "model": "stanford/raptor",
+      "benchmark": "narrativeqa",
+      "score": 30.87,
+      "unit": "ROUGE-L",
+      "_source": "https://arxiv.org/pdf/2401.18059",
+      "_note": ""
+    },
+    {
+      "model": "stanford/raptor",
+      "benchmark": "qasper",
+      "score": 55.7,
+      "unit": "F1-Match",
+      "_source": "https://arxiv.org/pdf/2401.18059",
+      "_note": ""
+    },
+    {
+      "model": "stanford/raptor",
+      "benchmark": "quality",
+      "score": 20.0,
+      "unit": "% absolute",
+      "_source": "https://arxiv.org/pdf/2401.18059",
+      "_note": ""
+    },
+    {
+      "model": "waterloo/longrag",
+      "benchmark": "naturalquestions",
+      "score": 62.7,
+      "unit": "EM",
+      "_source": "https://arxiv.org/pdf/2406.15319",
+      "_note": ""
+    },
+    {
+      "model": "waterloo/longrag",
+      "benchmark": "hotpotqa",
+      "score": 64.3,
+      "unit": "EM",
+      "_source": "https://arxiv.org/pdf/2406.15319",
+      "_note": ""
+    },
+    {
+      "model": "thu/visrag",
+      "benchmark": "ragas",
+      "score": 30.0,
+      "unit": "% relative (avg of 20-40 range)",
+      "_source": "https://arxiv.org/abs/2410.10594",
+      "_note": ""
+    },
+    {
+      "model": "medgraphrag/medgraphrag",
+      "benchmark": "pubmedqa",
+      "score": 8.0,
+      "unit": "% absolute",
+      "_source": "https://arxiv.org/html/2408.04187",
+      "_note": ""
+    },
+    {
+      "model": "cmu/flare",
+      "benchmark": "uar-active-retrieval",
+      "score": 56.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2406.12534",
+      "_note": ""
+    },
+    {
+      "model": "pinecone/assistant",
+      "benchmark": "ragas",
+      "score": 12.0,
+      "unit": "% relative",
+      "_source": "https://www.pinecone.io/blog/pinecone-assistant-for-all/",
+      "_note": ""
+    },
+    {
+      "model": "tomoro/ops-colqwen3-4b",
+      "benchmark": "vidore_v1v2_avg_ndcg5",
+      "score": 84.87,
+      "unit": "score",
+      "_source": "https://huggingface.co/spaces/vidore/vidore-leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-colembed-vl-8b-v2",
+      "benchmark": "vidore_v1v2_avg_ndcg5",
+      "score": 84.8,
+      "unit": "score",
+      "_source": "https://huggingface.co/spaces/vidore/vidore-leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-colembed-vl-4b-v2",
+      "benchmark": "vidore_v1v2_avg_ndcg5",
+      "score": 83.87,
+      "unit": "score",
+      "_source": "https://huggingface.co/spaces/vidore/vidore-leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/llama-nemotron-colembed-vl-3b-v2",
+      "benchmark": "vidore_v1v2_avg_ndcg5",
+      "score": 83.64,
+      "unit": "score",
+      "_source": "https://huggingface.co/spaces/vidore/vidore-leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "tomoro/colqwen3-embed-8b",
+      "benchmark": "vidore_v1v2_avg_ndcg5",
+      "score": 83.52,
+      "unit": "score",
+      "_source": "https://huggingface.co/spaces/vidore/vidore-leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "evolution/evoqwen2.5-vl-retriever-7b-v1",
+      "benchmark": "vidore_v1v2_avg_ndcg5",
+      "score": 83.41,
+      "unit": "score",
+      "_source": "https://huggingface.co/spaces/vidore/vidore-leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "argus/argus-9b",
+      "benchmark": "vidore_v1v2_avg_ndcg5",
+      "score": 86.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/html/2606.04300",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-colembed-vl-8b-v2",
+      "benchmark": "vidore_v3_avg_ndcg10",
+      "score": 63.42,
+      "unit": "score",
+      "_source": "https://huggingface.co/blog/nvidia/nemotron-colembed-v2",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-colembed-vl-4b-v2",
+      "benchmark": "vidore_v3_avg_ndcg10",
+      "score": 61.54,
+      "unit": "score",
+      "_source": "https://huggingface.co/blog/nvidia/nemotron-colembed-v2",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/llama-nemotron-colembed-vl-3b-v2",
+      "benchmark": "vidore_v3_avg_ndcg10",
+      "score": 59.79,
+      "unit": "score",
+      "_source": "https://huggingface.co/blog/nvidia/nemotron-colembed-v2",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "ragtruth_summary_f1",
+      "score": 83.6,
+      "unit": "score",
+      "_source": "https://aclanthology.org/2025.emnlp-industry.54/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "ragtruth_summary_bacc",
+      "score": 82.7,
+      "unit": "score",
+      "_source": "https://aclanthology.org/2025.emnlp-industry.54/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "ragtruth_qa_f1",
+      "score": 83.4,
+      "unit": "score",
+      "_source": "https://aclanthology.org/2025.emnlp-industry.54/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "ragtruth_qa_bacc",
+      "score": 85.4,
+      "unit": "score",
+      "_source": "https://aclanthology.org/2025.emnlp-industry.54/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "ragtruth_d2t_f1",
+      "score": 86.3,
+      "unit": "score",
+      "_source": "https://aclanthology.org/2025.emnlp-industry.54/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.0-flash",
+      "benchmark": "ragtruth_d2t_bacc",
+      "score": 85.1,
+      "unit": "score",
+      "_source": "https://aclanthology.org/2025.emnlp-industry.54/",
+      "_note": ""
+    },
+    {
+      "model": "antgroup/finix-s1-32b",
+      "benchmark": "vectara_hhem_v2_rate",
+      "score": 1.8,
+      "unit": "score",
+      "_source": "https://www.vectara.com/blog/introducing-the-next-generation-of-vectaras-hallucination-leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "vectara_hhem_v2_rate",
+      "score": 3.1,
+      "unit": "score",
+      "_source": "https://awesomeagents.ai/leaderboards/hallucination-benchmarks-leaderboard/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-flash-lite",
+      "benchmark": "vectara_hhem_v2_rate",
+      "score": 3.3,
+      "unit": "score",
+      "_source": "https://awesomeagents.ai/leaderboards/hallucination-benchmarks-leaderboard/",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4",
+      "benchmark": "vectara_hhem_v2_rate",
+      "score": 3.7,
+      "unit": "score",
+      "_source": "https://awesomeagents.ai/leaderboards/hallucination-benchmarks-leaderboard/",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-3",
+      "benchmark": "vectara_hhem_v2_rate",
+      "score": 5.8,
+      "unit": "score",
+      "_source": "https://awesomeagents.ai/leaderboards/hallucination-benchmarks-leaderboard/",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "vectara_hhem_v2_rate",
+      "score": 9.8,
+      "unit": "score",
+      "_source": "https://awesomeagents.ai/leaderboards/hallucination-benchmarks-leaderboard/",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "vectara_hhem_v2_rate",
+      "score": 12.2,
+      "unit": "score",
+      "_source": "https://awesomeagents.ai/leaderboards/hallucination-benchmarks-leaderboard/",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "vectara_hhem_v2_rate",
+      "score": 13.6,
+      "unit": "score",
+      "_source": "https://awesomeagents.ai/leaderboards/hallucination-benchmarks-leaderboard/",
+      "_note": ""
+    },
+    {
+      "model": "voyageai/rerank-2.5",
+      "benchmark": "voyage_rerank_93datasets_ndcg10",
+      "score": 84.32,
+      "unit": "score",
+      "_source": "https://blog.voyageai.com/2025/08/11/rerank-2-5/",
+      "_note": ""
+    },
+    {
+      "model": "voyageai/rerank-2.5-lite",
+      "benchmark": "voyage_rerank_93datasets_ndcg10",
+      "score": 83.12,
+      "unit": "score",
+      "_source": "https://blog.voyageai.com/2025/08/11/rerank-2-5/",
+      "_note": ""
+    },
+    {
+      "model": "mixedbread/mxbai-rerank-large-v2",
+      "benchmark": "mxbai_beir_avg_ndcg10",
+      "score": 57.49,
+      "unit": "score",
+      "_source": "https://www.mixedbread.com/blog/mxbai-rerank-v2",
+      "_note": ""
+    },
+    {
+      "model": "mixedbread/mxbai-rerank-large-v2",
+      "benchmark": "mxbai_mrtydi_multilingual",
+      "score": 29.79,
+      "unit": "score",
+      "_source": "https://www.mixedbread.com/blog/mxbai-rerank-v2",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-embedding-8b",
+      "benchmark": "mteb_v2_retrieval_ndcg10",
+      "score": 69.44,
+      "unit": "score",
+      "_source": "https://modal.com/blog/mteb-leaderboard-article",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-embedding-4b",
+      "benchmark": "mteb_v2_retrieval_ndcg10",
+      "score": 68.46,
+      "unit": "score",
+      "_source": "https://modal.com/blog/mteb-leaderboard-article",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nv-embed-v2",
+      "benchmark": "mteb_v2_retrieval_ndcg10",
+      "score": 62.84,
+      "unit": "score",
+      "_source": "https://modal.com/blog/mteb-leaderboard-article",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-embedding-002",
+      "benchmark": "mteb_v2_retrieval_ndcg10",
+      "score": 67.71,
+      "unit": "score",
+      "_source": "https://modal.com/blog/mteb-leaderboard-article",
+      "_note": ""
+    },
+    {
+      "model": "intfloat/e5-mistral-7b-instruct",
+      "benchmark": "beir_hotpotqa_ndcg10",
+      "score": 75.7,
+      "unit": "score",
+      "_source": "https://app.ailog.fr/en/blog/news/beir-benchmark-update",
+      "_note": ""
+    },
+    {
+      "model": "snowflake/snowflake-arctic-embed-m-v2.0",
+      "benchmark": "beir_hotpotqa_ndcg10",
+      "score": 72.4,
+      "unit": "score",
+      "_source": "https://app.ailog.fr/en/blog/news/beir-benchmark-update",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/gte-modernbert-base",
+      "benchmark": "beir_hotpotqa_ndcg10",
+      "score": 70.4,
+      "unit": "score",
+      "_source": "https://app.ailog.fr/en/blog/news/beir-benchmark-update",
+      "_note": ""
+    },
+    {
+      "model": "snowflake/snowflake-arctic-embed-m-v2.0",
+      "benchmark": "beir_msmarco_ndcg10",
+      "score": 44.0,
+      "unit": "score",
+      "_source": "https://app.ailog.fr/en/blog/news/beir-benchmark-update",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/llama3-chatqa-1.5-70b",
+      "benchmark": "chatrag_bench_avg",
+      "score": 58.25,
+      "unit": "score",
+      "_source": "https://chatqa-project.github.io/",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/chatqa-1.0-70b",
+      "benchmark": "chatrag_bench_avg",
+      "score": 54.14,
+      "unit": "score",
+      "_source": "https://chatqa-project.github.io/",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4",
+      "benchmark": "multihop_rag_gpt4_retrieved",
+      "score": 0.56,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2401.15391",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4",
+      "benchmark": "multihop_rag_gpt4_oracle",
+      "score": 0.89,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2401.15391",
+      "_note": ""
+    },
+    {
+      "model": "thudm/longcite-llama3.1-8b",
+      "benchmark": "longbench_cite_f1",
+      "score": 6.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2409.02897",
+      "_note": ""
+    },
+    {
+      "model": "thudm/longcite-glm4-9b",
+      "benchmark": "longbench_cite_f1",
+      "score": 3.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2409.02897",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4",
+      "benchmark": "alce_asqa_citation_f1",
+      "score": 71.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2305.14627",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4",
+      "benchmark": "alce_asqa_em_recall",
+      "score": 41.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2305.14627",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4",
+      "benchmark": "alce_asqa_mauve",
+      "score": 67.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2305.14627",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "alce_asqa_citation_f1",
+      "score": 73.1,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2305.14627",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "alce_asqa_em_recall",
+      "score": 40.4,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2305.14627",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "alce_asqa_mauve",
+      "score": 66.6,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2305.14627",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4",
+      "benchmark": "alce_eli5_citation_f1",
+      "score": 46.9,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2305.14627",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4",
+      "benchmark": "alce_eli5_em_recall",
+      "score": 14.2,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2305.14627",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "alce_eli5_citation_f1",
+      "score": 50.5,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2305.14627",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-3.5-turbo",
+      "benchmark": "alce_eli5_em_recall",
+      "score": 12.0,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2305.14627",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "nolima_short_acc",
+      "score": 99.3,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2502.05167",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "nolima_32k_acc",
+      "score": 69.7,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2502.05167",
+      "_note": ""
+    }
+  ]
+}

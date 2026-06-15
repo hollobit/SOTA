@@ -15131,13 +15131,6 @@
     "metric": "EM"
   },
   {
-    "id": "triviaqa",
-    "name": "TriviaQA",
-    "category": "general",
-    "description": "",
-    "metric": "EM"
-  },
-  {
     "id": "cluewsc",
     "name": "CLUEWSC",
     "category": "general",
@@ -16518,13 +16511,6 @@
       "last_updated": "2024-11",
       "notes": "Constraint-following — patterns memorizable"
     }
-  },
-  {
-    "id": "arc-challenge",
-    "name": "ARC-Challenge",
-    "category": "reasoning",
-    "description": "",
-    "metric": "accuracy"
   },
   {
     "id": "arc-easy",
@@ -18662,6 +18648,412 @@
     "category": "reasoning",
     "description": "5-task cluster",
     "metric": "score"
+  },
+  {
+    "id": "vidore_v1_avg_ndcg5",
+    "name": "ViDoRe v1 Average NDCG@5",
+    "category": "retrieval",
+    "description": "10 visual document retrieval tasks across domains (medical, business, scientific), modalities (text, figures, infographics, tables), languages (EN, FR)",
+    "metric": "ndcg5"
+  },
+  {
+    "id": "vidore_v2_avg_ndcg5",
+    "name": "ViDoRe v2 Average NDCG@5",
+    "category": "retrieval",
+    "description": "Harder visual retrieval benchmark: ESG Reports, Insurance, Economics, Biomedical (manual + multilingual variants)",
+    "metric": "ndcg5"
+  },
+  {
+    "id": "beir_avg_ndcg10",
+    "name": "BEIR Average NDCG@10",
+    "category": "retrieval",
+    "description": "Heterogeneous zero-shot IR benchmark (13-18 datasets depending on configuration)",
+    "metric": "ndcg10"
+  },
+  {
+    "id": "miracl_avg_ndcg10",
+    "name": "MIRACL Multilingual Average NDCG@10",
+    "category": "retrieval",
+    "description": "Multilingual retrieval, 17 languages",
+    "metric": "ndcg10"
+  },
+  {
+    "id": "clef_avg_ndcg10",
+    "name": "CLEF Average NDCG@10",
+    "category": "retrieval",
+    "description": "Cross-Language Evaluation Forum multilingual retrieval",
+    "metric": "ndcg10"
+  },
+  {
+    "id": "mteb_retrieval_avg",
+    "name": "MTEB Retrieval Average",
+    "category": "retrieval",
+    "description": "MTEB Retrieval subset (BEIR-derived)",
+    "metric": "score"
+  },
+  {
+    "id": "jmteb_avg",
+    "name": "JMTEB Average",
+    "category": "retrieval",
+    "description": "Japanese Massive Text Embedding Benchmark (5 tasks, 28 datasets)",
+    "metric": "score"
+  },
+  {
+    "id": "ragas",
+    "name": "RAGAS",
+    "category": "rag_evaluation",
+    "description": "Automated RAG evaluation: Faithfulness, Answer Relevancy, Context Precision/Recall. Es et al. 2023.",
+    "metric": "score"
+  },
+  {
+    "id": "rgb",
+    "name": "RGB (Retrieval-Augmented Generation Benchmark)",
+    "category": "rag_evaluation",
+    "description": "Tests noise robustness, negative rejection, info integration, counterfactual robustness.",
+    "metric": "score"
+  },
+  {
+    "id": "crag-benchmark",
+    "name": "CRAG (Comprehensive RAG Benchmark)",
+    "category": "rag_evaluation",
+    "description": "Meta KDD Cup 2024; 4,409 QA pairs across Finance/Sports/Music/Movies/Open.",
+    "metric": "score"
+  },
+  {
+    "id": "nolima",
+    "name": "NoLiMa",
+    "category": "long_context",
+    "description": "Long-context eval beyond literal matching (ICML 2025); removes lexical overlap cues.",
+    "metric": "score"
+  },
+  {
+    "id": "longbench-cite",
+    "name": "LongBench-Cite",
+    "category": "citation",
+    "description": "Long-context QA with sentence-level citations; correctness + citation F1.",
+    "metric": "score"
+  },
+  {
+    "id": "alce",
+    "name": "ALCE",
+    "category": "citation",
+    "description": "Auto-evaluation of LLM citation; ASQA, QAMPARI, ELI5.",
+    "metric": "score"
+  },
+  {
+    "id": "multihop-rag",
+    "name": "MultiHop-RAG",
+    "category": "multi_hop",
+    "description": "Tang & Yang COLM 2024; 2,556 multi-hop queries on news corpus.",
+    "metric": "score"
+  },
+  {
+    "id": "ms-marco-rag",
+    "name": "MS MARCO RAG subset",
+    "category": "retrieval",
+    "description": "Passage ranking + QA subset commonly used in RAG eval.",
+    "metric": "score"
+  },
+  {
+    "id": "freshqa",
+    "name": "FreshQA",
+    "category": "timeliness",
+    "description": "Tests timeliness; questions with answers that change over time.",
+    "metric": "score"
+  },
+  {
+    "id": "triviaqa",
+    "name": "TriviaQA",
+    "category": "open_domain_qa",
+    "description": "Trivia questions with web evidence.",
+    "metric": "score"
+  },
+  {
+    "id": "naturalquestions",
+    "name": "Natural Questions",
+    "category": "open_domain_qa",
+    "description": "Real Google queries with Wikipedia answers.",
+    "metric": "score"
+  },
+  {
+    "id": "hotpotqa",
+    "name": "HotpotQA",
+    "category": "multi_hop",
+    "description": "Multi-hop QA over Wikipedia.",
+    "metric": "score"
+  },
+  {
+    "id": "musique",
+    "name": "MuSiQue",
+    "category": "multi_hop",
+    "description": "Multi-hop questions via single-hop composition.",
+    "metric": "score"
+  },
+  {
+    "id": "2wikimultihop",
+    "name": "2WikiMultiHopQA",
+    "category": "multi_hop",
+    "description": "2-hop questions over Wikipedia.",
+    "metric": "score"
+  },
+  {
+    "id": "narrativeqa",
+    "name": "NarrativeQA",
+    "category": "long_document",
+    "description": "Books/movie scripts QA; ROUGE-L metric.",
+    "metric": "score"
+  },
+  {
+    "id": "qasper",
+    "name": "QASPER",
+    "category": "long_document",
+    "description": "Full NLP paper QA; F1-Match.",
+    "metric": "score"
+  },
+  {
+    "id": "quality",
+    "name": "QuALITY",
+    "category": "long_document",
+    "description": "Multi-choice QA on medium-length passages.",
+    "metric": "score"
+  },
+  {
+    "id": "arc-challenge",
+    "name": "ARC-Challenge",
+    "category": "reasoning",
+    "description": "AI2 Reasoning Challenge.",
+    "metric": "score"
+  },
+  {
+    "id": "biography-factscore",
+    "name": "Biography (FactScore)",
+    "category": "long_form_generation",
+    "description": "Long-form biography generation with FactScore.",
+    "metric": "score"
+  },
+  {
+    "id": "usmle-medqa",
+    "name": "USMLE (MedQA)",
+    "category": "medical_qa",
+    "description": "US Medical Licensing Exam QA.",
+    "metric": "score"
+  },
+  {
+    "id": "graphrag-podcast-winrate",
+    "name": "GraphRAG Podcast (Comprehensiveness + Diversity Win-Rate)",
+    "category": "rag_evaluation",
+    "description": "LLM-as-judge pairwise win-rate on Podcast transcript corpus.",
+    "metric": "score"
+  },
+  {
+    "id": "graphrag-news-winrate",
+    "name": "GraphRAG News (Comprehensiveness + Diversity Win-Rate)",
+    "category": "rag_evaluation",
+    "description": "LLM-as-judge pairwise win-rate on News corpus.",
+    "metric": "score"
+  },
+  {
+    "id": "anthropic-retrieval-failure",
+    "name": "Anthropic Contextual Retrieval Failure Rate",
+    "category": "retrieval",
+    "description": "Top-20-chunk retrieval failure rate; tested on codebases/fiction/arxiv/science papers.",
+    "metric": "score"
+  },
+  {
+    "id": "uar-active-retrieval",
+    "name": "UAR Active-Retrieval Decision Accuracy",
+    "category": "active_retrieval",
+    "description": "Unified Active Retrieval benchmark (arxiv 2406.12534).",
+    "metric": "score"
+  },
+  {
+    "id": "vidore_v1v2_avg_ndcg5",
+    "name": "ViDoRe V1+V2 Average NDCG@5",
+    "category": "visual-retrieval",
+    "description": "",
+    "metric": "ndcg5"
+  },
+  {
+    "id": "vidore_v3_avg_ndcg10",
+    "name": "ViDoRe V3 Average NDCG@10",
+    "category": "visual-retrieval",
+    "description": "",
+    "metric": "ndcg10"
+  },
+  {
+    "id": "ragtruth_summary_f1",
+    "name": "RAGTruth Summary F1-Macro (FaithJudge)",
+    "category": "rag-faithfulness",
+    "description": "",
+    "metric": "f1_macro"
+  },
+  {
+    "id": "ragtruth_summary_bacc",
+    "name": "RAGTruth Summary Balanced Accuracy (FaithJudge)",
+    "category": "rag-faithfulness",
+    "description": "",
+    "metric": "balanced_accuracy"
+  },
+  {
+    "id": "ragtruth_qa_f1",
+    "name": "RAGTruth QA F1-Macro (FaithJudge)",
+    "category": "rag-faithfulness",
+    "description": "",
+    "metric": "f1_macro"
+  },
+  {
+    "id": "ragtruth_qa_bacc",
+    "name": "RAGTruth QA Balanced Accuracy (FaithJudge)",
+    "category": "rag-faithfulness",
+    "description": "",
+    "metric": "balanced_accuracy"
+  },
+  {
+    "id": "ragtruth_d2t_f1",
+    "name": "RAGTruth Data2Txt F1-Macro (FaithJudge)",
+    "category": "rag-faithfulness",
+    "description": "",
+    "metric": "f1_macro"
+  },
+  {
+    "id": "ragtruth_d2t_bacc",
+    "name": "RAGTruth Data2Txt Balanced Accuracy (FaithJudge)",
+    "category": "rag-faithfulness",
+    "description": "",
+    "metric": "balanced_accuracy"
+  },
+  {
+    "id": "vectara_hhem_v2_rate",
+    "name": "Vectara HHEM v2 Hallucination Rate (32K refreshed dataset)",
+    "category": "rag-faithfulness",
+    "description": "",
+    "metric": "hallucination_rate"
+  },
+  {
+    "id": "voyage_rerank_93datasets_ndcg10",
+    "name": "Voyage Rerank 93-dataset avg NDCG@10",
+    "category": "rerank",
+    "description": "",
+    "metric": "ndcg10"
+  },
+  {
+    "id": "mxbai_beir_avg_ndcg10",
+    "name": "Mixedbread BEIR Avg NDCG@10 (rerank-large-v2)",
+    "category": "rerank",
+    "description": "",
+    "metric": "ndcg10"
+  },
+  {
+    "id": "mxbai_mrtydi_multilingual",
+    "name": "Mixedbread Mr.TyDi multilingual avg",
+    "category": "rerank-multilingual",
+    "description": "",
+    "metric": "ndcg10"
+  },
+  {
+    "id": "mteb_v2_retrieval_ndcg10",
+    "name": "MTEB v2 English Retrieval Sub-score NDCG@10",
+    "category": "retrieval",
+    "description": "",
+    "metric": "ndcg10"
+  },
+  {
+    "id": "beir_hotpotqa_ndcg10",
+    "name": "BEIR HotpotQA NDCG@10",
+    "category": "retrieval-task",
+    "description": "",
+    "metric": "ndcg10"
+  },
+  {
+    "id": "beir_msmarco_ndcg10",
+    "name": "BEIR MS-MARCO NDCG@10",
+    "category": "retrieval-task",
+    "description": "",
+    "metric": "ndcg10"
+  },
+  {
+    "id": "chatrag_bench_avg",
+    "name": "ChatRAG-Bench Average (10 datasets)",
+    "category": "rag-llm",
+    "description": "",
+    "metric": "average"
+  },
+  {
+    "id": "multihop_rag_gpt4_retrieved",
+    "name": "MultiHop-RAG accuracy (retrieved chunks)",
+    "category": "rag-multihop",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "multihop_rag_gpt4_oracle",
+    "name": "MultiHop-RAG accuracy (ground-truth evidence)",
+    "category": "rag-multihop",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "longbench_cite_f1",
+    "name": "LongBench-Cite Citation F1 (vs GPT-4o)",
+    "category": "rag-citation",
+    "description": "",
+    "metric": "f1_delta"
+  },
+  {
+    "id": "alce_asqa_citation_f1",
+    "name": "ALCE ASQA Citation F1",
+    "category": "rag-citation",
+    "description": "",
+    "metric": "citation_f1"
+  },
+  {
+    "id": "alce_asqa_em_recall",
+    "name": "ALCE ASQA EM Recall",
+    "category": "rag-citation",
+    "description": "",
+    "metric": "em_recall"
+  },
+  {
+    "id": "alce_asqa_mauve",
+    "name": "ALCE ASQA Fluency MAUVE",
+    "category": "rag-citation",
+    "description": "",
+    "metric": "mauve"
+  },
+  {
+    "id": "alce_eli5_citation_f1",
+    "name": "ALCE ELI5 Citation F1",
+    "category": "rag-citation",
+    "description": "",
+    "metric": "citation_f1"
+  },
+  {
+    "id": "alce_eli5_em_recall",
+    "name": "ALCE ELI5 EM Recall",
+    "category": "rag-citation",
+    "description": "",
+    "metric": "em_recall"
+  },
+  {
+    "id": "nolima_short_acc",
+    "name": "NoLiMa Short Context (<1K) Accuracy",
+    "category": "long-context-rag",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "nolima_32k_acc",
+    "name": "NoLiMa 32K Context Accuracy",
+    "category": "long-context-rag",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "freshqa_strict_acc_range",
+    "name": "FreshQA Strict Accuracy (no search aug)",
+    "category": "fresh-knowledge-rag",
+    "description": "",
+    "metric": "accuracy_range"
   },
   {
     "id": "arc_agi_3",
