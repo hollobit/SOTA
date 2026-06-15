@@ -1,0 +1,159 @@
+{
+  "_meta": {
+    "topic": "Kimi K2.7 Code + GLM-5.2 11-URL mining",
+    "date": "2026-06-16",
+    "strict_attribution": true,
+    "sources_mined": [
+      "https://www.kimi.com/resources/kimi-k2-7-code",
+      "https://openrouter.ai/moonshotai/kimi-k2.7-code",
+      "https://lushbinary.com/blog/kimi-k2-7-code-vs-claude-fable-5-gpt-5-5-coding-comparison/"
+    ],
+    "sources_denied_or_failed": [
+      "https://www.bridgebench.ai/speedbench/glm-5-2 — WebFetch permission denied (JS-rendered)",
+      "https://www.bridgebench.ai/reasoning/glm-5-2 — WebFetch permission denied (JS-rendered)",
+      "https://www.reddit.com/r/ZaiGLM/... — WebFetch permission denied",
+      "https://www.digitalapplied.com/blog/glm-5-2-zai-flagship-coding-plan-release — WebFetch permission denied",
+      "https://codersera.com/blog/glm-5-2-vs-claude-opus-4-8-coding-2026/ — WebFetch permission denied",
+      "https://flowtivity.ai/blog/kimi-k2-7-complete-review/ — WebFetch permission denied",
+      "https://codersera.com/blog/kimi-k2-7-vs-gpt-5-5-vs-claude-opus-4-8-2026/ — WebFetch permission denied",
+      "https://llm-stats.com/models/kimi-k2.7-code — timeout after 60s, retried 2x"
+    ]
+  },
+  "models": [
+    {
+      "id": "moonshot/kimi-k2.7-code",
+      "name": "Kimi K2.7 Code",
+      "vendor": "Moonshot AI",
+      "release_date": "2026-06-15",
+      "modalities": ["text", "image", "video"],
+      "total_params": "1T",
+      "active_params": "32B",
+      "architecture": "MoE with MLA (Multi-head Latent Attention); MoonViT 400M vision encoder",
+      "context_window": 262144,
+      "license": "Open weights, Modified MIT",
+      "pricing": {
+        "kimi_api_input_cache_hit_per_M": 0.19,
+        "kimi_api_input_cache_miss_per_M": 0.95,
+        "kimi_api_output_per_M": 4.00,
+        "openrouter_input_per_M": 0.75,
+        "openrouter_output_per_M": 3.50
+      },
+      "_source": "https://www.kimi.com/resources/kimi-k2-7-code + openrouter",
+      "_note": "OpenRouter shows release_date 2026-06-12; Moonshot's own page shows 2026-06-15. Use 2026-06-15 as canonical."
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "kimi_code_bench_v2",
+      "name": "Kimi Code Bench v2",
+      "category": "coding",
+      "metric": "score",
+      "unit": "%",
+      "source_url": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "Vendor-internal benchmark; new in K2.7 launch"
+    },
+    {
+      "id": "program_bench",
+      "name": "Program Bench",
+      "category": "coding",
+      "metric": "score",
+      "unit": "%",
+      "source_url": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "Programming evaluation benchmark used in Kimi K2.7 Code launch"
+    },
+    {
+      "id": "mls_bench_lite",
+      "name": "MLS Bench Lite",
+      "category": "coding",
+      "metric": "score",
+      "unit": "%",
+      "source_url": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "Machine learning systems benchmark (lite version)"
+    },
+    {
+      "id": "kimi_claw_247_bench",
+      "name": "Kimi Claw 24/7 Bench",
+      "category": "agentic",
+      "metric": "score",
+      "unit": "%",
+      "source_url": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "Long-horizon agentic coding benchmark from Moonshot"
+    },
+    {
+      "id": "mcp_atlas",
+      "name": "MCP Atlas",
+      "category": "agentic",
+      "metric": "score",
+      "unit": "%",
+      "source_url": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "MCP (Model Context Protocol) tool-use evaluation"
+    },
+    {
+      "id": "mcp_mark_verified",
+      "name": "MCP Mark Verified",
+      "category": "agentic",
+      "metric": "score",
+      "unit": "%",
+      "source_url": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "Verified subset of MCP Mark agentic benchmark"
+    }
+  ],
+  "scores": [
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "kimi_code_bench_v2",
+      "score": 62.0,
+      "unit": "%",
+      "_source": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "Vendor self-report; +21.8pp vs K2.6 per LushBinary corroboration"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "program_bench",
+      "score": 53.6,
+      "unit": "%",
+      "_source": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "Vendor self-report; +11.0pp vs K2.6"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "mls_bench_lite",
+      "score": 35.1,
+      "unit": "%",
+      "_source": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "Vendor self-report; +31.5pp vs K2.6"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "kimi_claw_247_bench",
+      "score": 46.9,
+      "unit": "%",
+      "_source": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "Vendor agentic benchmark, self-report"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "mcp_atlas",
+      "score": 76.0,
+      "unit": "%",
+      "_source": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "Vendor self-report on MCP tool-use evaluation"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "mcp_mark_verified",
+      "score": 81.1,
+      "unit": "%",
+      "_source": "https://www.kimi.com/resources/kimi-k2-7-code",
+      "_note": "Vendor self-report; strongest agentic result"
+    }
+  ],
+  "qualitative_notes": [
+    "Kimi.com page mentions 'GPT-5.5 leading on some coding tasks (69.0-69.1)' but does not attribute to a specific named benchmark — NOT emitted as a strict-attribution score.",
+    "LushBinary explicitly avoids quoting cross-vendor scores between Kimi K2.7 Code, Claude Fable 5, and GPT-5.5, providing only qualitative comparisons.",
+    "K2.7 Code claims ~30% reduction in thinking-token usage vs K2.6.",
+    "BridgeBench (SpeedBench + Reasoning) for GLM-5.2 could NOT be mined — WebFetch blocked on both bridgebench.ai URLs. Suspected JS-rendered SPA. Recommend Playwright fallback.",
+    "GLM-5.2 sources (Reddit ZaiGLM thread, DigitalApplied blog, CoderSera comparison) all blocked by WebFetch — no GLM-5.2 benchmark data captured in this pass.",
+    "llm-stats.com/models/kimi-k2.7-code timed out repeatedly — known JS-render issue. Recommend Playwright."
+  ]
+}
