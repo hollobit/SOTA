@@ -1,0 +1,1364 @@
+{
+  "_meta": {
+    "session": "133",
+    "date": "2026-06-16",
+    "topic": "Coding Agent Harnesses comprehensive sweep",
+    "notes": "3 parallel agents \u2014 commercial agents + open-source agents + eval leaderboards.",
+    "sources": [
+      "Cognition Devin 2.2 (Feb 24 2026)",
+      "Cognition SWE-1-5 + SWE-1-6 + Devin Desktop (Jun 2 2026)",
+      "Cursor Composer 1.5 + 2.5",
+      "Augment Auggie CLI SWE-Bench Pro public 51.80",
+      "Cursor Composer 2.5 AA Coding Agent Index 62",
+      "OpenHands SDK arxiv 2511.03690",
+      "Live-SWE-Agent (OpenAutoCoder) SWE-V 79.2 SOTA",
+      "Vexp + Opus 4.5 SWE-V 73.0",
+      "DeepSWE-Preview (agentica-org)",
+      "MetaGPT ICLR 2024",
+      "AgentCoder arxiv 2312.13010",
+      "L2MAC arxiv 2310.02003",
+      "Magentic-One MSR",
+      "LMArena CodeArena (2026-06-16)",
+      "AA LiveCodeBench (Gemini 3 Pro 91.7)",
+      "Vellum Best LLM for Coding",
+      "Vals.ai SWE-Bench Verified independent harness",
+      "METR HCAST/RE-Bench Time Horizon 1.1",
+      "Endor Agent Security League (SusVibes extension)",
+      "SWE-Bench Pro Public (Scale AI 731-task)"
+    ]
+  },
+  "models": [
+    {
+      "id": "cognition/devin-2",
+      "name": "Devin 2",
+      "vendor": "Cognition AI (USA)",
+      "type": "coding-agent",
+      "release_date": "2025-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cognition/devin-2.2",
+      "name": "Devin 2.2",
+      "vendor": "Cognition AI (USA)",
+      "type": "coding-agent",
+      "release_date": "2026-02-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cognition/swe-1-5",
+      "name": "SWE-1.5 (Cognition Fast Agent Model)",
+      "vendor": "Cognition AI (USA)",
+      "type": "coding-agent",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cognition/swe-1-6",
+      "name": "SWE-1.6 (Cognition Fast Agent Model)",
+      "vendor": "Cognition AI (USA)",
+      "type": "coding-agent",
+      "release_date": "2026-04-07",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cognition/devin-desktop",
+      "name": "Devin Desktop (Devin Local + Cascade replacement)",
+      "vendor": "Cognition AI (USA)",
+      "type": "coding-agent",
+      "release_date": "2026-06-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cursor/composer-1.5",
+      "name": "Cursor Composer 1.5",
+      "vendor": "Cursor (USA)",
+      "type": "coding-agent",
+      "release_date": "2026-02-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "jetbrains/junie",
+      "name": "JetBrains Junie",
+      "vendor": "JetBrains",
+      "type": "coding-agent",
+      "release_date": "2025-01-29",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "amazon/q-developer-agent",
+      "name": "Amazon Q Developer Agent (feature dev)",
+      "vendor": "Amazon (AWS)",
+      "type": "coding-agent",
+      "release_date": "2025-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "github/copilot-coding-agent",
+      "name": "GitHub Copilot Coding Agent (agent mode)",
+      "vendor": "GitHub (Microsoft)",
+      "type": "coding-agent",
+      "release_date": "2025-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "paul-gauthier/aider",
+      "name": "Aider",
+      "vendor": "Paul Gauthier",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "all-hands-ai/openhands",
+      "name": "OpenHands (was OpenDevin)",
+      "vendor": "All Hands AI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "all-hands-ai/openhands-codeact-v2.1",
+      "name": "OpenHands + CodeAct v2.1",
+      "vendor": "All Hands AI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "all-hands-ai/openhands-codeact-v3",
+      "name": "OpenHands + CodeAct v3",
+      "vendor": "All Hands AI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "all-hands-ai/openhands-sdk",
+      "name": "OpenHands Software Agent SDK",
+      "vendor": "All Hands AI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "all-hands-ai/openhands-critic-32b",
+      "name": "OpenHands + Critic-32B (inference-time scaling)",
+      "vendor": "All Hands AI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "princeton/swe-agent",
+      "name": "SWE-Agent",
+      "vendor": "Princeton NLP",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "princeton/mini-swe-agent",
+      "name": "Mini-SWE-Agent",
+      "vendor": "Princeton/Stanford",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openautocoder/live-swe-agent",
+      "name": "Live-SWE-Agent",
+      "vendor": "OpenAutoCoder",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "agentica/deepswe-preview",
+      "name": "DeepSWE-Preview",
+      "vendor": "Agentica + Together AI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/magentic-one",
+      "name": "Magentic-One",
+      "vendor": "Microsoft Research",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "geekan/metagpt",
+      "name": "MetaGPT",
+      "vendor": "Geekan/DeepWisdom",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openbmb/chatdev",
+      "name": "ChatDev",
+      "vendor": "Tsinghua/OpenBMB",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "huangd1999/agentcoder",
+      "name": "AgentCoder",
+      "vendor": "Huang et al.",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "samholt/l2mac",
+      "name": "L2MAC (Code-L2MAC)",
+      "vendor": "Holt et al.",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "vexp-ai/vexp",
+      "name": "Vexp + Claude Code",
+      "vendor": "Vexp AI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "cline/cline",
+      "name": "Cline (was Claude Dev)",
+      "vendor": "Cline",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "rooveterinaryinc/roo-code",
+      "name": "Roo Code (Cline fork)",
+      "vendor": "Roo Vet",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "continuedev/continue",
+      "name": "Continue.dev",
+      "vendor": "Continue",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "block/goose",
+      "name": "Goose",
+      "vendor": "Block (Linux Foundation)",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/autogen",
+      "name": "AutoGen",
+      "vendor": "Microsoft",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/swarm",
+      "name": "OpenAI Swarm",
+      "vendor": "OpenAI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "joaomdmoura/crewai",
+      "name": "CrewAI",
+      "vendor": "Jo\u00e3o Moura",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "langchain/langgraph",
+      "name": "LangGraph",
+      "vendor": "LangChain",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openinterpreter/interpreter",
+      "name": "Open Interpreter",
+      "vendor": "Open Interpreter",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "antonosika/gpt-engineer",
+      "name": "GPT-Engineer",
+      "vendor": "Anton Osika",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "smol-ai/developer",
+      "name": "Smol Developer",
+      "vendor": "Smol AI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "yoheinakajima/babyagi",
+      "name": "BabyAGI",
+      "vendor": "Yohei Nakajima",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "transformeroptimus/superagi",
+      "name": "SuperAGI",
+      "vendor": "TransformerOptimus",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-mythos-5",
+      "name": "Claude Mythos 5",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-fable-5",
+      "name": "Claude Fable 5",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-mythos-preview",
+      "name": "Claude Mythos Preview",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.8",
+      "name": "Claude Opus 4.8",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.7",
+      "name": "Claude Opus 4.7",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.6",
+      "name": "Claude Opus 4.6",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.5",
+      "name": "Claude Opus 4.5",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4",
+      "name": "Claude Opus 4",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-sonnet-3.7",
+      "name": "Claude Sonnet 3.7",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.5",
+      "name": "GPT-5.5",
+      "vendor": "OpenAI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.1-codex-max",
+      "name": "GPT-5.1-Codex-Max",
+      "vendor": "OpenAI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5",
+      "name": "GPT-5",
+      "vendor": "OpenAI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.4-high",
+      "name": "GPT-5.4 (high)",
+      "vendor": "OpenAI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/o3",
+      "name": "o3",
+      "vendor": "OpenAI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-pro",
+      "name": "Gemini 3.1 Pro",
+      "vendor": "Google",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-pro",
+      "name": "Gemini 3 Pro",
+      "vendor": "Google",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3-flash",
+      "name": "Gemini 3 Flash",
+      "vendor": "Google",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.5-flash",
+      "name": "Gemini 3.5 Flash",
+      "vendor": "Google",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "deepseek/deepseek-v3.2-speciale",
+      "name": "DeepSeek V3.2 Speciale",
+      "vendor": "DeepSeek",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k2-thinking",
+      "name": "Kimi K2 Thinking",
+      "vendor": "Moonshot AI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xai/grok-3-beta",
+      "name": "Grok 3 Beta",
+      "vendor": "xAI",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zhipu/glm-5.1",
+      "name": "GLM-5.1",
+      "vendor": "Zhipu",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.7-max-preview",
+      "name": "Qwen 3.7 Max Preview",
+      "vendor": "Alibaba",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xiaomi/mimo-v2.5-pro",
+      "name": "MiMo v2.5 Pro",
+      "vendor": "Xiaomi",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.6-thinking",
+      "name": "Claude Opus 4.6 (Thinking)",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.7-thinking",
+      "name": "Claude Opus 4.7 (Thinking)",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.8-thinking",
+      "name": "Claude Opus 4.8 (Thinking)",
+      "vendor": "Anthropic",
+      "type": "coding-agent",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "aa_coding_agent_index",
+      "name": "Artificial Analysis Coding Agent Index",
+      "category": "code-agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "AA composite index ranking coding agents end-to-end (released May 2026).",
+      "source_url": "https://artificialanalysis.ai/articles/cursor-composer-2-5-coding-agent-index"
+    },
+    {
+      "id": "swe_bench_pro_hard_aa",
+      "name": "SWE-Bench Pro Hard (AA)",
+      "category": "code-agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "Hard split of SWE-Bench Pro evaluated by Artificial Analysis.",
+      "source_url": "https://artificialanalysis.ai/articles/cursor-composer-2-5-coding-agent-index"
+    },
+    {
+      "id": "swe_atlas_qna",
+      "name": "SWE-Atlas-QnA",
+      "category": "code-agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/articles/cursor-composer-2-5-coding-agent-index"
+    },
+    {
+      "id": "cursorbench_v3_1",
+      "name": "CursorBench v3.1",
+      "category": "code-agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "Cursor's internal coding benchmark.",
+      "source_url": "https://cursor.com/blog/composer-2"
+    },
+    {
+      "id": "swe_bench_verified_resolved",
+      "name": "SWE-Bench Verified \u2014 % Resolved (pass@1)",
+      "category": "coding",
+      "metric": "percent_resolved",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_pro_public_pass1",
+      "name": "SWE-Bench Pro (Public, 731 tasks) \u2014 Pass@1",
+      "category": "coding",
+      "metric": "percent",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aider_polyglot_pass1",
+      "name": "Aider Polyglot \u2014 % Correct (pass@1)",
+      "category": "coding",
+      "metric": "percent_correct",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval_pass1",
+      "name": "HumanEval \u2014 pass@1",
+      "category": "coding",
+      "metric": "percent",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mbpp_pass1",
+      "name": "MBPP \u2014 pass@1",
+      "category": "coding",
+      "metric": "percent",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gaia_task_completion",
+      "name": "GAIA \u2014 task completion",
+      "category": "coding",
+      "metric": "percent",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "webarena_completion",
+      "name": "WebArena \u2014 task completion",
+      "category": "coding",
+      "metric": "percent",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "assistantbench_accuracy",
+      "name": "AssistantBench \u2014 accuracy",
+      "category": "coding",
+      "metric": "percent",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_verified_cost_usd",
+      "name": "SWE-Bench Verified \u2014 cost per task (USD)",
+      "category": "coding",
+      "metric": "usd",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "lmarena_codearena_coding_rank",
+      "name": "LMArena CodeArena \u2014 Coding Category Rank",
+      "category": "coding",
+      "metric": "rank",
+      "unit": "ordinal",
+      "description": "",
+      "source_url": "https://arena.ai/leaderboard"
+    },
+    {
+      "id": "livecodebench_aa",
+      "name": "LiveCodeBench (Artificial Analysis)",
+      "category": "coding",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://artificialanalysis.ai/evaluations/livecodebench"
+    },
+    {
+      "id": "livecodebench_pro_elo",
+      "name": "LiveCodeBench Pro \u2014 Elo",
+      "category": "coding",
+      "metric": "elo",
+      "unit": "rating",
+      "description": "",
+      "source_url": "https://llm-stats.com/benchmarks/livecodebench-pro"
+    },
+    {
+      "id": "vellum_swe_bench_coding_rank",
+      "name": "Vellum Best LLM for Coding (SWE-Bench composite)",
+      "category": "coding",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://www.vellum.ai/best-llm-for-coding"
+    },
+    {
+      "id": "vals_ai_swe_bench_verified",
+      "name": "Vals.ai SWE-Bench Verified",
+      "category": "coding",
+      "metric": "resolved",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://www.vals.ai/benchmarks/swebench"
+    },
+    {
+      "id": "metr_time_horizon_1_1_50pct",
+      "name": "METR Time Horizon 1.1 \u2014 50% success",
+      "category": "agentic_coding",
+      "metric": "time_horizon",
+      "unit": "minutes",
+      "description": "",
+      "source_url": "https://metr.org/blog/2026-1-29-time-horizon-1-1/"
+    },
+    {
+      "id": "metr_time_horizon_1_1_80pct",
+      "name": "METR Time Horizon 1.1 \u2014 80% success",
+      "category": "agentic_coding",
+      "metric": "time_horizon",
+      "unit": "minutes",
+      "description": "",
+      "source_url": "https://metr.org/blog/2026-1-29-time-horizon-1-1/"
+    },
+    {
+      "id": "endor_agent_security_league_funcpass",
+      "name": "Endor Agent Security League \u2014 Functional Pass (FuncPass)",
+      "category": "coding_security",
+      "metric": "pass_rate",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://www.endorlabs.com/research/ai-code-security-benchmark"
+    },
+    {
+      "id": "endor_agent_security_league_secpass",
+      "name": "Endor Agent Security League \u2014 Security Pass (SecPass)",
+      "category": "coding_security",
+      "metric": "pass_rate",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://www.endorlabs.com/research/ai-code-security-benchmark"
+    }
+  ],
+  "scores": [
+    {
+      "model": "cursor/composer-2.5-fast",
+      "benchmark": "aa_coding_agent_index",
+      "score": 62.0,
+      "unit": "index_points",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cursor/composer-2.5-fast",
+      "benchmark": "swe_bench_pro_hard_aa",
+      "score": 47.0,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cursor/composer-2.5-fast",
+      "benchmark": "swe_bench_multilingual",
+      "score": 79.8,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cursor/composer-2.5-fast",
+      "benchmark": "terminal_bench_2",
+      "score": 69.3,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cursor/composer-2.5-fast",
+      "benchmark": "swe_atlas_qna",
+      "score": 72.0,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cursor/composer-2.5-fast",
+      "benchmark": "cursorbench_v3_1",
+      "score": 63.2,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cursor/cursor-composer-2",
+      "benchmark": "aa_coding_agent_index",
+      "score": 48.0,
+      "unit": "index_points",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cursor/cursor-composer-2",
+      "benchmark": "cursorbench_v3_1",
+      "score": 52.2,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "augment/auggie",
+      "benchmark": "swe_bench_pro_scale_public",
+      "score": 51.8,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cursor/composer",
+      "benchmark": "swe_bench_pro_scale_public",
+      "score": 50.21,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-code",
+      "benchmark": "swe_bench_pro_scale_public",
+      "score": 49.75,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "openai/codex-cli",
+      "benchmark": "swe_bench_pro_scale_public",
+      "score": 46.47,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cognition/devin-2",
+      "benchmark": "swe_bench_verified",
+      "score": 45.8,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "cognition/swe-1-5",
+      "benchmark": "swe_bench_pro",
+      "score": 40.08,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "jetbrains/junie",
+      "benchmark": "swe_bench_verified",
+      "score": 53.6,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "amazon/q-developer-agent",
+      "benchmark": "swe_bench_verified",
+      "score": 38.8,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "amazon/q-developer-agent",
+      "benchmark": "swe_bench",
+      "score": 19.75,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "github/copilot-coding-agent",
+      "benchmark": "swe_bench_verified",
+      "score": 56.0,
+      "unit": "percent",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 1.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "CodeArena coding category #1 (snapshot 2026-06-16)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6-thinking",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 2.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7-thinking",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 4.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8-thinking",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 5.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 6.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 7.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": "GPT-5.5-high; CodeArena rank #7"
+    },
+    {
+      "model": "openai/gpt-5.4-high",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 8.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 9.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 10.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-max-preview",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 11.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 13.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 14.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "xiaomi/mimo-v2.5-pro",
+      "benchmark": "lmarena_codearena_coding_rank",
+      "score": 15.0,
+      "unit": "ordinal",
+      "_source": "https://arena.ai/leaderboard",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "livecodebench_aa",
+      "score": 91.7,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/evaluations/livecodebench",
+      "_note": "Gemini 3 Pro Preview (high) #1 on AA LiveCodeBench leaderboard"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "livecodebench_aa",
+      "score": 90.8,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/evaluations/livecodebench",
+      "_note": "Gemini 3 Flash Preview (Reasoning)"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2-speciale",
+      "benchmark": "livecodebench_aa",
+      "score": 89.6,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/evaluations/livecodebench",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "livecodebench_pro_elo",
+      "score": 2887.0,
+      "unit": "elo",
+      "_source": "https://llm-stats.com/benchmarks/livecodebench-pro",
+      "_note": "Gemini 3.1 Pro #1 on LCB-Pro Elo (Codeforces-scale). Snapshot 2026-06"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "livecodebench_pro_elo",
+      "score": 2439.0,
+      "unit": "elo",
+      "_source": "https://llm-stats.com/benchmarks/livecodebench-pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "livecodebench_pro_elo",
+      "score": 2316.0,
+      "unit": "elo",
+      "_source": "https://llm-stats.com/benchmarks/livecodebench-pro",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "vellum_swe_bench_coding_rank",
+      "score": 95.5,
+      "unit": "%",
+      "_source": "https://www.vellum.ai/best-llm-for-coding",
+      "_note": "Vellum SWE-Bench composite #1, snapshot 2026-03-23"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "vellum_swe_bench_coding_rank",
+      "score": 95.0,
+      "unit": "%",
+      "_source": "https://www.vellum.ai/best-llm-for-coding",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "vellum_swe_bench_coding_rank",
+      "score": 88.6,
+      "unit": "%",
+      "_source": "https://www.vellum.ai/best-llm-for-coding",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "vellum_swe_bench_coding_rank",
+      "score": 87.6,
+      "unit": "%",
+      "_source": "https://www.vellum.ai/best-llm-for-coding",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "vellum_swe_bench_coding_rank",
+      "score": 76.2,
+      "unit": "%",
+      "_source": "https://www.vellum.ai/best-llm-for-coding",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "vals_ai_swe_bench_verified",
+      "score": 95.0,
+      "unit": "%",
+      "_source": "https://www.vals.ai/benchmarks/swebench",
+      "_note": "Vals.ai independent reproduction #1; snapshot 2026-06-13"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "vals_ai_swe_bench_verified",
+      "score": 88.6,
+      "unit": "%",
+      "_source": "https://www.vals.ai/benchmarks/swebench",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "vals_ai_swe_bench_verified",
+      "score": 82.6,
+      "unit": "%",
+      "_source": "https://www.vals.ai/benchmarks/swebench",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "vals_ai_swe_bench_verified",
+      "score": 82.0,
+      "unit": "%",
+      "_source": "https://www.vals.ai/benchmarks/swebench",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "vals_ai_swe_bench_verified",
+      "score": 78.8,
+      "unit": "%",
+      "_source": "https://www.vals.ai/benchmarks/swebench",
+      "_note": "Gemini 3.5 Flash on Vals.ai bash-only harness reproduction"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "metr_time_horizon_1_1_50pct",
+      "score": 320.0,
+      "unit": "minutes",
+      "_source": "https://metr.org/blog/2026-1-29-time-horizon-1-1/",
+      "_note": "Opus 4.5 TH1.1 = 320 min (~5h20m). +11% vs TH1. Snapshot 2026-01-29."
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "metr_time_horizon_1_1_50pct",
+      "score": 214.0,
+      "unit": "minutes",
+      "_source": "https://metr.org/blog/2026-1-29-time-horizon-1-1/",
+      "_note": "GPT-5 TH1.1 = 214 min (~3h34m). +55% vs TH1"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "metr_time_horizon_1_1_50pct",
+      "score": 121.0,
+      "unit": "minutes",
+      "_source": "https://metr.org/blog/2026-1-29-time-horizon-1-1/",
+      "_note": "o3 TH1.1 = 121 min. +29% vs TH1"
+    },
+    {
+      "model": "anthropic/claude-opus-4",
+      "benchmark": "metr_time_horizon_1_1_50pct",
+      "score": 101.0,
+      "unit": "minutes",
+      "_source": "https://metr.org/blog/2026-1-29-time-horizon-1-1/",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-3.7",
+      "benchmark": "metr_time_horizon_1_1_50pct",
+      "score": 60.0,
+      "unit": "minutes",
+      "_source": "https://metr.org/blog/2026-1-29-time-horizon-1-1/",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.1-codex-max",
+      "benchmark": "metr_time_horizon_1_1_50pct",
+      "score": 160.0,
+      "unit": "minutes",
+      "_source": "https://metr.org/evaluations/gpt-5-1-codex-max-report/",
+      "_note": "GPT-5.1-Codex-Max TH 2h40m (95% CI 75min-5h50m). On 7-month doubling trend"
+    },
+    {
+      "model": "openai/gpt-5.1-codex-max",
+      "benchmark": "metr_time_horizon_1_1_80pct",
+      "score": 30.0,
+      "unit": "minutes",
+      "_source": "https://metr.org/evaluations/gpt-5-1-codex-max-report/",
+      "_note": "80% horizon ~30 min"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "metr_time_horizon_1_1_80pct",
+      "score": 26.0,
+      "unit": "minutes",
+      "_source": "https://metr.org/evaluations/gpt-5-1-codex-max-report/",
+      "_note": "GPT-5 80% horizon ~26 min (comparison row in Codex-Max report)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "metr_time_horizon_1_1_80pct",
+      "score": 27.0,
+      "unit": "minutes",
+      "_source": "https://www.lesswrong.com/posts/q5ejXr4CRuPxkgzJD/claude-opus-4-5-achieves-50-time-horizon-of-around-4-hrs-49",
+      "_note": "Opus 4.5 80% horizon stagnant at 27 min while 50% climbed to 4h49m"
+    },
+    {
+      "model": "anthropic/claude-mythos-preview",
+      "benchmark": "metr_time_horizon_1_1_50pct",
+      "score": 960.0,
+      "unit": "minutes",
+      "_source": "https://officechai.com/ai/claude-mythos-shows-50-time-horizon-of-16-hours-on-metr-benchmark/",
+      "_note": "Mythos Preview 50% horizon \u226516h (960 min). 95% CI 8.5h-55h (510-3300 min). Only 5 of 228 tasks \u226516h \u2014 measurement unreliable above 16h. March 2026 snapshot"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "metr_time_horizon_1_1_50pct",
+      "score": 870.0,
+      "unit": "minutes",
+      "_source": "https://www.lesswrong.com/posts/WacuyurbABwNv8ziq/estimating-metr-time-horizons-for-claude-opus-4-6-and-gpt-5",
+      "_note": "Opus 4.6 50% horizon = 14.5h (870 min). Official METR result per comments. Snapshot 2026-02"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "endor_agent_security_league_funcpass",
+      "score": 20.7,
+      "unit": "%",
+      "_source": "https://www.endorlabs.com/research/ai-code-security-benchmark",
+      "_note": "SWE-Agent harness \u00d7 Gemini 2.5 Pro. Snapshot 2026-02-19. Endor Labs Agent Security League extension of CMU SusVibes. 200 tasks \u00d7 108 Python projects \u00d7 77 CWE classes"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "endor_agent_security_league_secpass",
+      "score": 4.5,
+      "unit": "%",
+      "_source": "https://www.endorlabs.com/research/ai-code-security-benchmark",
+      "_note": "SWE-Agent \u00d7 Gemini 2.5 Pro security pass \u2014 4.5%. Funcpass 20.7% but security 4.5% = pass functional tests but fail security audit"
+    }
+  ]
+}
