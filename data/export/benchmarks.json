@@ -18152,6 +18152,209 @@
     "metric": "score"
   },
   {
+    "id": "gift_eval_mase",
+    "name": "GIFT-Eval (MASE, geomean)",
+    "category": "time-series",
+    "description": "Salesforce GIFT-Eval: 28 datasets, 97 task configurations, 144k series, 177M obs. Aggregated normalized MASE (geomean vs seasonal-naive baseline).",
+    "metric": "MASE"
+  },
+  {
+    "id": "gift_eval_crps",
+    "name": "GIFT-Eval (CRPS, geomean)",
+    "category": "time-series",
+    "description": "Salesforce GIFT-Eval probabilistic forecasting metric, aggregated normalized CRPS (geomean vs seasonal-naive baseline).",
+    "metric": "CRPS"
+  },
+  {
+    "id": "gift_eval_rank",
+    "name": "GIFT-Eval Overall Rank",
+    "category": "time-series",
+    "description": "Position on Salesforce GIFT-Eval public leaderboard (overall pretrained TSFM track).",
+    "metric": "rank"
+  },
+  {
+    "id": "fev_bench_skill_mase",
+    "name": "fev-bench Skill Score (MASE)",
+    "category": "time-series",
+    "description": "fev-bench (AutoGluon team): realistic forecasting benchmark; skill score = % improvement over seasonal-naive on MASE.",
+    "metric": "skill_score"
+  },
+  {
+    "id": "fev_bench_skill_wql",
+    "name": "fev-bench Skill Score (WQL)",
+    "category": "time-series",
+    "description": "fev-bench probabilistic skill score on weighted quantile loss.",
+    "metric": "skill_score"
+  },
+  {
+    "id": "fev_bench_win_rate_mase",
+    "name": "fev-bench Win Rate (MASE)",
+    "category": "time-series",
+    "description": "Pairwise win rate vs other models on MASE in fev-bench.",
+    "metric": "win_rate"
+  },
+  {
+    "id": "boom_crps_rank",
+    "name": "BOOM (CRPS Rank)",
+    "category": "time-series",
+    "description": "Datadog BOOM: 350M observations, 2807 production observability series; avg CRPS rank.",
+    "metric": "rank"
+  },
+  {
+    "id": "chronos_zs_benchmark",
+    "name": "Chronos-ZS Benchmark",
+    "category": "time-series",
+    "description": "Amazon Chronos zero-shot benchmark suite, aggregated over 27 unseen datasets.",
+    "metric": "rank"
+  },
+  {
+    "id": "monash_forecasting",
+    "name": "Monash Forecasting Repository (MASE)",
+    "category": "time-series",
+    "description": "Monash Time Series Forecasting Archive — 30 datasets aggregated MASE.",
+    "metric": "MASE"
+  },
+  {
+    "id": "ltsf_mse",
+    "name": "Long-Term Time-Series Forecasting (MSE)",
+    "category": "time-series",
+    "description": "LTSF benchmark: ETT (h1/h2/m1/m2), Electricity, Traffic, Weather, ILI, Exchange.",
+    "metric": "MSE"
+  },
+  {
+    "id": "weatherbench_2_crps_targets",
+    "name": "WeatherBench-2 — % of CRPS targets outperforming ENS",
+    "category": "geo-climate",
+    "description": "Percent of 1,320 variable x lead-time x pressure-level combinations where the model's CRPS is significantly better than ECMWF ENS. Headline probabilistic skill metric for ML ensemble weather forecasts.",
+    "metric": "percent_higher_better"
+  },
+  {
+    "id": "weatherbench_2_rmse_targets",
+    "name": "WeatherBench-2 — % of RMSE targets outperforming HRES",
+    "category": "geo-climate",
+    "description": "Percent of 1,380 variable x lead-time x pressure-level combinations where the model RMSE is lower than ECMWF HRES. Headline deterministic skill metric (GraphCast Science 2023 protocol).",
+    "metric": "percent_higher_better"
+  },
+  {
+    "id": "tropical_cyclone_track_error_3day_km",
+    "name": "Tropical cyclone track position error @ 3-day (km)",
+    "category": "geo-climate",
+    "description": "Mean direct position error of cyclone-eye track at 3-day (72h) lead time, in kilometers. Lower is better. Baseline = IFS HRES 162.28 km per Pangu-Weather Nature 2023.",
+    "metric": "km_lower_better"
+  },
+  {
+    "id": "tropical_cyclone_track_error_5day_km",
+    "name": "Tropical cyclone track position error @ 5-day (km)",
+    "category": "geo-climate",
+    "description": "Mean direct position error of cyclone-eye track at 5-day (120h) lead time, in kilometers. Lower is better. Baseline = IFS HRES 272.10 km per Pangu-Weather Nature 2023.",
+    "metric": "km_lower_better"
+  },
+  {
+    "id": "skillful_z500_lead_days_acc06",
+    "name": "Skillful Z500 forecast lead (days, ACC>0.6)",
+    "category": "geo-climate",
+    "description": "Maximum forecast lead time (in days) for which 500 hPa geopotential anomaly correlation coefficient (ACC) exceeds the operational skill threshold of 0.6. Higher is better. Operational IFS HRES baseline ~9.25 days (FuXi paper, npj CAS 2023).",
+    "metric": "days_higher_better"
+  },
+  {
+    "id": "gift-eval",
+    "name": "GIFT-Eval",
+    "category": "time-series-forecasting",
+    "description": "24 datasets / 97 task configs; normalized by Seasonal Naive",
+    "metric": "MASE"
+  },
+  {
+    "id": "chronos-bench-2",
+    "name": "Chronos Benchmark II",
+    "category": "time-series-forecasting",
+    "description": "27 held-out datasets",
+    "metric": "WQL"
+  },
+  {
+    "id": "fev-bench",
+    "name": "fev-bench",
+    "category": "time-series-forecasting",
+    "description": "",
+    "metric": "SQL"
+  },
+  {
+    "id": "boom",
+    "name": "BOOM (Benchmark of Observability Metrics)",
+    "category": "observability-ts",
+    "description": "350M observations / 2807 multivariate series",
+    "metric": "MASE"
+  },
+  {
+    "id": "fintsb",
+    "name": "FinTSB",
+    "category": "financial-ts-forecasting",
+    "description": "",
+    "metric": "MSE"
+  },
+  {
+    "id": "fincast-zeroshot",
+    "name": "FinCast zero-shot multi-asset",
+    "category": "financial-ts-forecasting",
+    "description": "crypto_1min, forex_1day, stock_1day, futures_1wk",
+    "metric": "MSE"
+  },
+  {
+    "id": "powerpm-demand-side",
+    "name": "PowerPM Demand-side Forecasting",
+    "category": "energy-load-forecasting",
+    "description": "",
+    "metric": "MSE"
+  },
+  {
+    "id": "mira-ood",
+    "name": "MIRA Out-of-distribution medical TS",
+    "category": "medical-ts",
+    "description": "",
+    "metric": "RMSE"
+  },
+  {
+    "id": "mira-id",
+    "name": "MIRA In-distribution medical TS",
+    "category": "medical-ts",
+    "description": "",
+    "metric": "RMSE"
+  },
+  {
+    "id": "ptb-xl",
+    "name": "PTB-XL ECG",
+    "category": "ecg-classification",
+    "description": "",
+    "metric": "AUROC"
+  },
+  {
+    "id": "cpsc2018",
+    "name": "CPSC 2018 ECG",
+    "category": "ecg-classification",
+    "description": "",
+    "metric": "AUROC"
+  },
+  {
+    "id": "uhn-ecg",
+    "name": "UHN-ECG interpretation",
+    "category": "ecg-classification",
+    "description": "",
+    "metric": "AUROC"
+  },
+  {
+    "id": "yahoo-anomaly",
+    "name": "Yahoo time-series anomaly",
+    "category": "anomaly-detection",
+    "description": "",
+    "metric": "F1"
+  },
+  {
+    "id": "gft-icing-24h",
+    "name": "GFT-HQ wind-farm 24h icing detection",
+    "category": "power-grid-weather",
+    "description": "",
+    "metric": "AP"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",

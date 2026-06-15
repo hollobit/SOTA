@@ -37679,6 +37679,381 @@
     "collected_at": "2026-06-15",
     "notes": "0/140 multi-step attack success (Clopper-Pearson 95% UB 2.60%) — frontier-safety domain-conditioned"
   },
+  "gift_eval_rank": {
+    "model_id": "ibm/granite-ttm-r2",
+    "benchmark_id": "gift_eval_rank",
+    "value": 10.0,
+    "unit": "rank",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/ibm-research/ttm-research-r2",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "TTM-R2 zero-shot 1M-param tiny model; appears in GIFT-Eval lineup but ranks behind newer FMs. Paper at NeurIPS 2024 shows TTM outperforms TimesFM, Moirai, Chronos at zero/few-shot vs param size."
+  },
+  "fev_bench_skill_mase": {
+    "model_id": "amazon/chronos-2",
+    "benchmark_id": "fev_bench_skill_mase",
+    "value": 35.5,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://tsfm.ai/benchmarks/fev-bench",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "fev-bench leaderboard: Chronos-2 Skill Score 35.50 (MASE), the top entry."
+  },
+  "fev_bench_skill_wql": {
+    "model_id": "amazon/chronos-2",
+    "benchmark_id": "fev_bench_skill_wql",
+    "value": 51.5,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://tsfm.ai/benchmarks/fev-bench",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "fev-bench WQL skill score 51.5%, top entry."
+  },
+  "fev_bench_win_rate_mase": {
+    "model_id": "amazon/chronos-2",
+    "benchmark_id": "fev_bench_win_rate_mase",
+    "value": 87.9,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://tsfm.ai/benchmarks/fev-bench",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "fev-bench MASE win rate 87.9%. WQL win rate 88.5%."
+  },
+  "boom_crps_rank": {
+    "model_id": "datadog/toto-open-base-1.0",
+    "benchmark_id": "boom_crps_rank",
+    "value": 1.0,
+    "unit": "rank",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.datadoghq.com/blog/ai/toto-boom-unleashed/",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "On BOOM, Toto achieves 12% CRPS improvement vs next best method. CRPS 0.437 reported."
+  },
+  "gift_eval_mase": {
+    "model_id": "cisco/tsm",
+    "benchmark_id": "gift_eval_mase",
+    "value": 0.698,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2511.19841",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "Cisco TSM: non-leaking GIFT-Eval MAE 0.6980 (windows >512). Tracks TimesFM-2.5 (0.6635) but exceeds on long-context subsets and observability. Note: paper reports MAE not MASE here; same dataset and convention."
+  },
+  "chronos_zs_benchmark": {
+    "model_id": "amazon/chronos-bolt-base",
+    "benchmark_id": "chronos_zs_benchmark",
+    "value": 2.0,
+    "unit": "rank",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://github.com/amazon-science/chronos-forecasting",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "Chronos-Bolt: 250x faster, 20x more memory-efficient than original Chronos; outperforms statistical and DL baselines on Chronos zero-shot benchmark (WQL, MASE) across 27 datasets."
+  },
+  "weatherbench_2_crps_targets": {
+    "model_id": "deepmind/gencast",
+    "benchmark_id": "weatherbench_2_crps_targets",
+    "value": 97.2,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-024-08252-9",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "Nature 2024 paper text: 'GenCast's forecasts are significantly more skilful than ENS on 97.2% of 1,320 variable, lead time and vertical level combinations (and 99.6% of targets at lead times greater than 36 hours).' CRPS metric vs ECMWF ENS."
+  },
+  "weatherbench_2_rmse_targets": {
+    "model_id": "microsoft/aurora",
+    "benchmark_id": "weatherbench_2_rmse_targets",
+    "value": 92.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-025-09005-y",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "Nature 2025 paper headline: 'Aurora outperforms IFS on 92 percent of the operational targets, particularly well in comparison at forecasting times longer than 12 hours while being approximately 5,000 times faster.' Resolution = 0.1 degree (~11 km)."
+  },
+  "tropical_cyclone_track_error_3day_km": {
+    "model_id": "huawei/pangu-weather",
+    "benchmark_id": "tropical_cyclone_track_error_3day_km",
+    "value": 120.29,
+    "unit": "km",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-023-06185-3",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "Pangu-Weather Nature 2023 paper text: '3-day and 5-day mean direct position errors for cyclone eyes of Pangu-Weather are 120.29km and 195.65km, respectively, which are significantly smaller than 162.28km and 272.10km reported by ECMWF-HRES.'"
+  },
+  "tropical_cyclone_track_error_5day_km": {
+    "model_id": "huawei/pangu-weather",
+    "benchmark_id": "tropical_cyclone_track_error_5day_km",
+    "value": 195.65,
+    "unit": "km",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nature.com/articles/s41586-023-06185-3",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "Pangu-Weather Nature 2023 paper text: '3-day and 5-day mean direct position errors for cyclone eyes of Pangu-Weather are 120.29km and 195.65km, respectively, which are significantly smaller than 162.28km and 272.10km reported by ECMWF-HRES.'"
+  },
+  "skillful_z500_lead_days_acc06": {
+    "model_id": "shanghai-ai-lab/fengwu",
+    "benchmark_id": "skillful_z500_lead_days_acc06",
+    "value": 10.75,
+    "unit": "days",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2304.02948",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": "FengWu paper title and abstract: 'pushing the skillful global medium-range weather forecast beyond 10 days lead'; 10.75 days lead with ACC of Z500 > 0.6, vs IFS HRES baseline ~9.25 days."
+  },
+  "gift-eval": {
+    "model_id": "foundation-model-research/kairos-small",
+    "benchmark_id": "gift-eval",
+    "value": 0.748,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "kairos_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "fev-bench": {
+    "model_id": "amazon/chronos-2",
+    "benchmark_id": "fev-bench",
+    "value": 0.473,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "chronos2_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "chronos-bench-2": {
+    "model_id": "amazon/chronos-2",
+    "benchmark_id": "chronos-bench-2",
+    "value": 0.466,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "chronos2_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "fincast-zeroshot": {
+    "model_id": "google/timesfm-500m",
+    "benchmark_id": "fincast-zeroshot",
+    "value": 0.0127,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "fincast_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "fintsb": {
+    "model_id": "tongji/fintsb-chronos-t5-large",
+    "benchmark_id": "fintsb",
+    "value": 0.017,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "fintsb_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "powerpm-demand-side": {
+    "model_id": "zhejiang/powerpm",
+    "benchmark_id": "powerpm-demand-side",
+    "value": 0.4452,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "powerpm_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "mira-ood": {
+    "model_id": "hkust/mira-large",
+    "benchmark_id": "mira-ood",
+    "value": 0.122,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "mira_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "mira-id": {
+    "model_id": "hkust/mira-large",
+    "benchmark_id": "mira-id",
+    "value": 0.121,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "mira_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "uhn-ecg": {
+    "model_id": "toronto/ecg-fm",
+    "benchmark_id": "uhn-ecg",
+    "value": 0.996,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "ecgfm_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "ptb-xl": {
+    "model_id": "st-mem/st-mem",
+    "benchmark_id": "ptb-xl",
+    "value": 0.93,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "benchecg_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "cpsc2018": {
+    "model_id": "benchecg/xecg",
+    "benchmark_id": "cpsc2018",
+    "value": 0.968,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "benchecg_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "gft-icing-24h": {
+    "model_id": "sgcc/gft-hq",
+    "benchmark_id": "gft-icing-24h",
+    "value": 0.73,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "gft_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
+  "yahoo-anomaly": {
+    "model_id": "microsoft/sr-cnn",
+    "benchmark_id": "yahoo-anomaly",
+    "value": 0.655,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "srcnn_paper",
+      "date": "2026-06-15",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-15",
+    "notes": ""
+  },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
     "benchmark_id": "superqpga",

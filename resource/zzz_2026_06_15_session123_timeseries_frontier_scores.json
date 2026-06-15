@@ -1,0 +1,1459 @@
+{
+  "_meta": {
+    "session": "123",
+    "date": "2026-06-15",
+    "topic": "Time-series / Forecasting frontier (first broad sweep)",
+    "notes": "3 parallel agents \u2014 TS foundation, climate/weather, specialized forecasting. First TSFM sweep \u2014 dashboard had zero TSFM coverage prior.",
+    "sources": [
+      "Amazon Chronos-2 (Oct 2025)",
+      "Google TimesFM 2.5 paper",
+      "Datadog Toto-Open-Base-1.0 + Toto-2.0-313M",
+      "Salesforce Moirai-2.0 / GIFT-Eval / fev-bench",
+      "NXAI TiRex (May 2025)",
+      "THUML Sundial (ICML 2025 Oral)",
+      "IBM Granite-FlowState-R1",
+      "Prior Labs TabPFN-TS",
+      "Alibaba YingLong-300M",
+      "CMU MOMENT-Large",
+      "Cisco TSM (Dec 2025)",
+      "Datadog BOOM observability benchmark",
+      "GenCast Nature 2024",
+      "GraphCast Science 2023",
+      "Aurora Nature 2025",
+      "Pangu-Weather Nature 2023",
+      "FourCastNet 3 arxiv 2507.12144",
+      "AIFS-Single-1.1 arxiv 2509.18994",
+      "MetNet-3 arxiv 2306.06079",
+      "CorrDiff Nature CEE 2025",
+      "FinCast CIKM 2025",
+      "FinTSB ICAIFW 2025",
+      "PowerPM NeurIPS 2024",
+      "MIRA HKUST/MS NeurIPS 2025",
+      "ECG-FM Toronto/UHN JAMIA 2025"
+    ]
+  },
+  "models": [
+    {
+      "id": "amazon/chronos-2",
+      "name": "Chronos-2",
+      "vendor": "Amazon",
+      "type": "time-series",
+      "release_date": "2025-10-20",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "amazon/chronos-bolt-tiny",
+      "name": "Chronos-Bolt (Tiny)",
+      "vendor": "Amazon",
+      "type": "time-series",
+      "release_date": "2024-11-26",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "amazon/chronos-bolt-mini",
+      "name": "Chronos-Bolt (Mini)",
+      "vendor": "Amazon",
+      "type": "time-series",
+      "release_date": "2024-11-26",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "amazon/chronos-bolt-small",
+      "name": "Chronos-Bolt (Small)",
+      "vendor": "Amazon",
+      "type": "time-series",
+      "release_date": "2024-11-26",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "amazon/chronos-bolt-base",
+      "name": "Chronos-Bolt (Base)",
+      "vendor": "Amazon",
+      "type": "time-series",
+      "release_date": "2024-11-26",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "amazon/chronos-t5-large",
+      "name": "Chronos-T5 Large",
+      "vendor": "Amazon",
+      "type": "time-series",
+      "release_date": "2024-03-15",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "google/timesfm-2.5",
+      "name": "TimesFM 2.5",
+      "vendor": "Google",
+      "type": "time-series",
+      "release_date": "2025-09-16",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "google/timesfm-2.0",
+      "name": "TimesFM 2.0",
+      "vendor": "Google",
+      "type": "time-series",
+      "release_date": "2025-01-14",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "google/timesfm-1.0",
+      "name": "TimesFM 1.0",
+      "vendor": "Google",
+      "type": "time-series",
+      "release_date": "2024-02-02",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "salesforce/moirai-2-0-R-small",
+      "name": "Moirai 2.0 (R-small)",
+      "vendor": "Salesforce",
+      "type": "time-series",
+      "release_date": "2025-08-15",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "salesforce/moirai-moe-base",
+      "name": "Moirai-MoE (Base)",
+      "vendor": "Salesforce",
+      "type": "time-series",
+      "release_date": "2024-10-15",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "salesforce/moirai-1-0-R-large",
+      "name": "Moirai 1.0 (R-large)",
+      "vendor": "Salesforce",
+      "type": "time-series",
+      "release_date": "2024-03-04",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "datadog/toto-open-base-1.0",
+      "name": "Toto Open Base 1.0",
+      "vendor": "Datadog",
+      "type": "time-series",
+      "release_date": "2025-05-19",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "datadog/toto-2.0-313m",
+      "name": "Toto 2.0 (313M)",
+      "vendor": "Datadog",
+      "type": "time-series",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "nxai/tirex",
+      "name": "TiRex",
+      "vendor": "NXAI",
+      "type": "time-series",
+      "release_date": "2025-05-29",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "ibm/granite-ttm-r2",
+      "name": "Granite TinyTimeMixer R2 (TTM)",
+      "vendor": "IBM",
+      "type": "time-series",
+      "release_date": "2024-12-05",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "ibm/granite-flowstate-r1",
+      "name": "Granite FlowState R1",
+      "vendor": "IBM",
+      "type": "time-series",
+      "release_date": "2025-08-07",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "priorlabs/tabpfn-ts",
+      "name": "TabPFN-TS",
+      "vendor": "Prior Labs",
+      "type": "time-series",
+      "release_date": "2025-01-06",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "thuml/sundial",
+      "name": "Sundial",
+      "vendor": "THUML (Tsinghua)",
+      "type": "time-series",
+      "release_date": "2025-02-04",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "fmr/kairos",
+      "name": "Kairos",
+      "vendor": "Foundation Model Research",
+      "type": "time-series",
+      "release_date": "2025-09-30",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "alibaba/yinglong-300m",
+      "name": "YingLong 300M",
+      "vendor": "Alibaba",
+      "type": "time-series",
+      "release_date": "2025-06-14",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "time-moe/time-moe-ultra",
+      "name": "Time-MoE Ultra",
+      "vendor": "Time-MoE",
+      "type": "time-series",
+      "release_date": "2024-09-24",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "time-moe/time-moe-large",
+      "name": "Time-MoE Large",
+      "vendor": "Time-MoE",
+      "type": "time-series",
+      "release_date": "2024-09-24",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "cmu/moment-large",
+      "name": "MOMENT Large",
+      "vendor": "CMU",
+      "type": "time-series",
+      "release_date": "2024-02-06",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "servicenow/lag-llama",
+      "name": "Lag-Llama",
+      "vendor": "ServiceNow + McGill",
+      "type": "time-series",
+      "release_date": "2024-02-08",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "nixtla/timegpt-1",
+      "name": "TimeGPT-1",
+      "vendor": "Nixtla",
+      "type": "time-series",
+      "release_date": "2023-10-05",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "nixtla/timegpt-2",
+      "name": "TimeGPT-2",
+      "vendor": "Nixtla",
+      "type": "time-series",
+      "release_date": "2025-09-08",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "cisco/tsm",
+      "name": "Cisco Time Series Model (TSM)",
+      "vendor": "Cisco / Splunk",
+      "type": "time-series",
+      "release_date": "2025-12-07",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "nvidia/fourcastnet",
+      "name": "FourCastNet (AFNO, 2022)",
+      "vendor": "NVIDIA (US)",
+      "type": "time-series",
+      "release_date": "2022-02-22",
+      "modalities": [
+        "weather-fields"
+      ]
+    },
+    {
+      "id": "nvidia/fourcastnet-3",
+      "name": "FourCastNet 3 (probabilistic, 60-day)",
+      "vendor": "NVIDIA / UC Berkeley (US)",
+      "type": "time-series",
+      "release_date": "2025-07-16",
+      "modalities": [
+        "weather-fields"
+      ]
+    },
+    {
+      "id": "microsoft/stormer",
+      "name": "Stormer (NeurIPS 2024)",
+      "vendor": "Microsoft (US)",
+      "type": "time-series",
+      "release_date": "2024-12-10",
+      "modalities": [
+        "weather-fields"
+      ]
+    },
+    {
+      "id": "google/metnet-3",
+      "name": "MetNet-3 (sparse-observation)",
+      "vendor": "Google Research (US)",
+      "type": "time-series",
+      "release_date": "2023-06-09",
+      "modalities": [
+        "weather-fields",
+        "precipitation",
+        "radar"
+      ]
+    },
+    {
+      "id": "nvidia/corrdiff",
+      "name": "CorrDiff (km-scale downscaling)",
+      "vendor": "NVIDIA / Central Weather Administration Taiwan",
+      "type": "time-series",
+      "release_date": "2024-03-18",
+      "modalities": [
+        "weather-fields",
+        "downscaling"
+      ]
+    },
+    {
+      "id": "ecmwf/aifs-single-1.1",
+      "name": "AIFS Single 1.1 (Sep 2025 update)",
+      "vendor": "ECMWF (EU)",
+      "type": "time-series",
+      "release_date": "2025-09-23",
+      "modalities": [
+        "weather-fields"
+      ]
+    },
+    {
+      "id": "salesforce/moirai-2-small",
+      "name": "moirai-2-small",
+      "vendor": "Salesforce",
+      "type": "time-series",
+      "release_date": "2025-11-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "salesforce/moirai-2-base",
+      "name": "moirai-2-base",
+      "vendor": "Salesforce",
+      "type": "time-series",
+      "release_date": "2025-11-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "salesforce/moirai-2-large",
+      "name": "moirai-2-large",
+      "vendor": "Salesforce",
+      "type": "time-series",
+      "release_date": "2025-11-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "nx-ai/tirex",
+      "name": "tirex",
+      "vendor": "NXAI/JKU",
+      "type": "time-series",
+      "release_date": "2025-05-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "foundation-model-research/kairos-small",
+      "name": "kairos-small",
+      "vendor": "FoundationModelResearch",
+      "type": "time-series",
+      "release_date": "2025-09-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "foundation-model-research/kairos-base",
+      "name": "kairos-base",
+      "vendor": "FoundationModelResearch",
+      "type": "time-series",
+      "release_date": "2025-09-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "automl/tempopfn",
+      "name": "tempopfn",
+      "vendor": "AutoML",
+      "type": "time-series",
+      "release_date": "2025-10-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "datadog/toto",
+      "name": "toto",
+      "vendor": "Datadog",
+      "type": "time-series",
+      "release_date": "2025-05-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "datadog/toto-1-0",
+      "name": "toto-1-0",
+      "vendor": "Datadog",
+      "type": "time-series",
+      "release_date": "2025-08-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "sydney/fincast",
+      "name": "fincast",
+      "vendor": "University of Sydney",
+      "type": "time-series",
+      "release_date": "2025-08-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "tongji/fintsb-chronos-t5-large",
+      "name": "fintsb-chronos-t5-large",
+      "vendor": "FinTSB-eval",
+      "type": "time-series",
+      "release_date": "2025-02-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "tongji/fintsb-chronos-bolt-base",
+      "name": "fintsb-chronos-bolt-base",
+      "vendor": "FinTSB-eval",
+      "type": "time-series",
+      "release_date": "2025-02-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "zhejiang/powerpm",
+      "name": "powerpm",
+      "vendor": "Zhejiang University",
+      "type": "time-series",
+      "release_date": "2024-08-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "sgcc/gft-hq",
+      "name": "gft-hq",
+      "vendor": "SGCC/State-Grid",
+      "type": "time-series",
+      "release_date": "2025-09-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "hkust/mira-large",
+      "name": "mira-large",
+      "vendor": "HKUST/Microsoft",
+      "type": "time-series",
+      "release_date": "2025-06-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "toronto/ecg-fm",
+      "name": "ecg-fm",
+      "vendor": "University of Toronto/UHN",
+      "type": "time-series",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "benchecg/xecg",
+      "name": "xecg",
+      "vendor": "BenchECG",
+      "type": "time-series",
+      "release_date": "2025-09-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "st-mem/st-mem",
+      "name": "st-mem",
+      "vendor": "ST-MEM (BenchECG-eval)",
+      "type": "time-series",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "ecgfounder/ecgfounder",
+      "name": "ecgfounder",
+      "vendor": "ECGFounder (BenchECG-eval)",
+      "type": "time-series",
+      "release_date": "2025-01-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "microsoft/sr-cnn",
+      "name": "sr-cnn",
+      "vendor": "Microsoft",
+      "type": "time-series",
+      "release_date": "2019-01-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "amazon/chronos-large",
+      "name": "Chronos Large",
+      "vendor": "Amazon",
+      "type": "time-series",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "amazon/chronos-largest",
+      "name": "Chronos Largest",
+      "vendor": "Amazon",
+      "type": "time-series",
+      "release_date": "2024-01-01",
+      "modalities": [
+        "time-series"
+      ]
+    },
+    {
+      "id": "google/timesfm-500m",
+      "name": "TimesFM 500M",
+      "vendor": "Google",
+      "type": "time-series",
+      "release_date": "2024-12-01",
+      "modalities": [
+        "time-series"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "gift_eval_mase",
+      "name": "GIFT-Eval (MASE, geomean)",
+      "category": "time-series",
+      "metric": "MASE",
+      "unit": "score",
+      "description": "Salesforce GIFT-Eval: 28 datasets, 97 task configurations, 144k series, 177M obs. Aggregated normalized MASE (geomean vs seasonal-naive baseline).",
+      "source_url": "https://huggingface.co/spaces/Salesforce/GIFT-Eval"
+    },
+    {
+      "id": "gift_eval_crps",
+      "name": "GIFT-Eval (CRPS, geomean)",
+      "category": "time-series",
+      "metric": "CRPS",
+      "unit": "score",
+      "description": "Salesforce GIFT-Eval probabilistic forecasting metric, aggregated normalized CRPS (geomean vs seasonal-naive baseline).",
+      "source_url": "https://huggingface.co/spaces/Salesforce/GIFT-Eval"
+    },
+    {
+      "id": "gift_eval_rank",
+      "name": "GIFT-Eval Overall Rank",
+      "category": "time-series",
+      "metric": "rank",
+      "unit": "rank",
+      "description": "Position on Salesforce GIFT-Eval public leaderboard (overall pretrained TSFM track).",
+      "source_url": "https://huggingface.co/spaces/Salesforce/GIFT-Eval"
+    },
+    {
+      "id": "fev_bench_skill_mase",
+      "name": "fev-bench Skill Score (MASE)",
+      "category": "time-series",
+      "metric": "skill_score",
+      "unit": "percent",
+      "description": "fev-bench (AutoGluon team): realistic forecasting benchmark; skill score = % improvement over seasonal-naive on MASE.",
+      "source_url": "https://arxiv.org/abs/2509.26468"
+    },
+    {
+      "id": "fev_bench_skill_wql",
+      "name": "fev-bench Skill Score (WQL)",
+      "category": "time-series",
+      "metric": "skill_score",
+      "unit": "percent",
+      "description": "fev-bench probabilistic skill score on weighted quantile loss.",
+      "source_url": "https://arxiv.org/abs/2509.26468"
+    },
+    {
+      "id": "fev_bench_win_rate_mase",
+      "name": "fev-bench Win Rate (MASE)",
+      "category": "time-series",
+      "metric": "win_rate",
+      "unit": "percent",
+      "description": "Pairwise win rate vs other models on MASE in fev-bench.",
+      "source_url": "https://arxiv.org/abs/2509.26468"
+    },
+    {
+      "id": "boom_crps_rank",
+      "name": "BOOM (CRPS Rank)",
+      "category": "time-series",
+      "metric": "rank",
+      "unit": "rank",
+      "description": "Datadog BOOM: 350M observations, 2807 production observability series; avg CRPS rank.",
+      "source_url": "https://arxiv.org/abs/2505.14766"
+    },
+    {
+      "id": "chronos_zs_benchmark",
+      "name": "Chronos-ZS Benchmark",
+      "category": "time-series",
+      "metric": "rank",
+      "unit": "rank",
+      "description": "Amazon Chronos zero-shot benchmark suite, aggregated over 27 unseen datasets.",
+      "source_url": "https://github.com/amazon-science/chronos-forecasting"
+    },
+    {
+      "id": "monash_forecasting",
+      "name": "Monash Forecasting Repository (MASE)",
+      "category": "time-series",
+      "metric": "MASE",
+      "unit": "score",
+      "description": "Monash Time Series Forecasting Archive \u2014 30 datasets aggregated MASE.",
+      "source_url": "https://forecastingdata.org/"
+    },
+    {
+      "id": "ltsf_mse",
+      "name": "Long-Term Time-Series Forecasting (MSE)",
+      "category": "time-series",
+      "metric": "MSE",
+      "unit": "score",
+      "description": "LTSF benchmark: ETT (h1/h2/m1/m2), Electricity, Traffic, Weather, ILI, Exchange.",
+      "source_url": "https://github.com/thuml/Time-Series-Library"
+    },
+    {
+      "id": "weatherbench_2_crps_targets",
+      "name": "WeatherBench-2 \u2014 % of CRPS targets outperforming ENS",
+      "category": "geo-climate",
+      "metric": "percent_higher_better",
+      "unit": "score",
+      "description": "Percent of 1,320 variable x lead-time x pressure-level combinations where the model's CRPS is significantly better than ECMWF ENS. Headline probabilistic skill metric for ML ensemble weather forecasts.",
+      "source_url": ""
+    },
+    {
+      "id": "weatherbench_2_rmse_targets",
+      "name": "WeatherBench-2 \u2014 % of RMSE targets outperforming HRES",
+      "category": "geo-climate",
+      "metric": "percent_higher_better",
+      "unit": "score",
+      "description": "Percent of 1,380 variable x lead-time x pressure-level combinations where the model RMSE is lower than ECMWF HRES. Headline deterministic skill metric (GraphCast Science 2023 protocol).",
+      "source_url": ""
+    },
+    {
+      "id": "tropical_cyclone_track_error_3day_km",
+      "name": "Tropical cyclone track position error @ 3-day (km)",
+      "category": "geo-climate",
+      "metric": "km_lower_better",
+      "unit": "score",
+      "description": "Mean direct position error of cyclone-eye track at 3-day (72h) lead time, in kilometers. Lower is better. Baseline = IFS HRES 162.28 km per Pangu-Weather Nature 2023.",
+      "source_url": ""
+    },
+    {
+      "id": "tropical_cyclone_track_error_5day_km",
+      "name": "Tropical cyclone track position error @ 5-day (km)",
+      "category": "geo-climate",
+      "metric": "km_lower_better",
+      "unit": "score",
+      "description": "Mean direct position error of cyclone-eye track at 5-day (120h) lead time, in kilometers. Lower is better. Baseline = IFS HRES 272.10 km per Pangu-Weather Nature 2023.",
+      "source_url": ""
+    },
+    {
+      "id": "skillful_z500_lead_days_acc06",
+      "name": "Skillful Z500 forecast lead (days, ACC>0.6)",
+      "category": "geo-climate",
+      "metric": "days_higher_better",
+      "unit": "score",
+      "description": "Maximum forecast lead time (in days) for which 500 hPa geopotential anomaly correlation coefficient (ACC) exceeds the operational skill threshold of 0.6. Higher is better. Operational IFS HRES baseline ~9.25 days (FuXi paper, npj CAS 2023).",
+      "source_url": ""
+    },
+    {
+      "id": "gift-eval",
+      "name": "GIFT-Eval",
+      "category": "time-series-forecasting",
+      "metric": "MASE",
+      "unit": "score",
+      "description": "24 datasets / 97 task configs; normalized by Seasonal Naive",
+      "source_url": "chronos2_paper"
+    },
+    {
+      "id": "chronos-bench-2",
+      "name": "Chronos Benchmark II",
+      "category": "time-series-forecasting",
+      "metric": "WQL",
+      "unit": "score",
+      "description": "27 held-out datasets",
+      "source_url": "chronos2_paper"
+    },
+    {
+      "id": "fev-bench",
+      "name": "fev-bench",
+      "category": "time-series-forecasting",
+      "metric": "SQL",
+      "unit": "score",
+      "description": "",
+      "source_url": "chronos2_paper"
+    },
+    {
+      "id": "boom",
+      "name": "BOOM (Benchmark of Observability Metrics)",
+      "category": "observability-ts",
+      "metric": "MASE",
+      "unit": "score",
+      "description": "350M observations / 2807 multivariate series",
+      "source_url": "toto_blog"
+    },
+    {
+      "id": "fintsb",
+      "name": "FinTSB",
+      "category": "financial-ts-forecasting",
+      "metric": "MSE",
+      "unit": "score",
+      "description": "",
+      "source_url": "fintsb_paper"
+    },
+    {
+      "id": "fincast-zeroshot",
+      "name": "FinCast zero-shot multi-asset",
+      "category": "financial-ts-forecasting",
+      "metric": "MSE",
+      "unit": "score",
+      "description": "crypto_1min, forex_1day, stock_1day, futures_1wk",
+      "source_url": "fincast_paper"
+    },
+    {
+      "id": "powerpm-demand-side",
+      "name": "PowerPM Demand-side Forecasting",
+      "category": "energy-load-forecasting",
+      "metric": "MSE",
+      "unit": "score",
+      "description": "",
+      "source_url": "powerpm_paper"
+    },
+    {
+      "id": "mira-ood",
+      "name": "MIRA Out-of-distribution medical TS",
+      "category": "medical-ts",
+      "metric": "RMSE",
+      "unit": "score",
+      "description": "",
+      "source_url": "mira_paper"
+    },
+    {
+      "id": "mira-id",
+      "name": "MIRA In-distribution medical TS",
+      "category": "medical-ts",
+      "metric": "RMSE",
+      "unit": "score",
+      "description": "",
+      "source_url": "mira_paper"
+    },
+    {
+      "id": "ptb-xl",
+      "name": "PTB-XL ECG",
+      "category": "ecg-classification",
+      "metric": "AUROC",
+      "unit": "score",
+      "description": "",
+      "source_url": "benchecg_paper"
+    },
+    {
+      "id": "cpsc2018",
+      "name": "CPSC 2018 ECG",
+      "category": "ecg-classification",
+      "metric": "AUROC",
+      "unit": "score",
+      "description": "",
+      "source_url": "benchecg_paper"
+    },
+    {
+      "id": "uhn-ecg",
+      "name": "UHN-ECG interpretation",
+      "category": "ecg-classification",
+      "metric": "AUROC",
+      "unit": "score",
+      "description": "",
+      "source_url": "ecgfm_paper"
+    },
+    {
+      "id": "yahoo-anomaly",
+      "name": "Yahoo time-series anomaly",
+      "category": "anomaly-detection",
+      "metric": "F1",
+      "unit": "score",
+      "description": "",
+      "source_url": "srcnn_paper"
+    },
+    {
+      "id": "gft-icing-24h",
+      "name": "GFT-HQ wind-farm 24h icing detection",
+      "category": "power-grid-weather",
+      "metric": "AP",
+      "unit": "score",
+      "description": "",
+      "source_url": "gft_paper"
+    }
+  ],
+  "scores": [
+    {
+      "model": "amazon/chronos-2",
+      "benchmark": "gift_eval_rank",
+      "score": 1.0,
+      "unit": "rank",
+      "_source": "https://www.amazon.science/blog/introducing-chronos-2-from-univariate-to-universal-forecasting",
+      "_note": "Amazon Science blog (2025-10-20): Chronos-2 ranks first among pretrained models on GIFT-Eval at launch. Also #1 on fev-bench and Chronos Benchmark II."
+    },
+    {
+      "model": "amazon/chronos-2",
+      "benchmark": "fev_bench_skill_mase",
+      "score": 35.5,
+      "unit": "percent",
+      "_source": "https://tsfm.ai/benchmarks/fev-bench",
+      "_note": "fev-bench leaderboard: Chronos-2 Skill Score 35.50 (MASE), the top entry."
+    },
+    {
+      "model": "amazon/chronos-2",
+      "benchmark": "fev_bench_skill_wql",
+      "score": 51.5,
+      "unit": "percent",
+      "_source": "https://tsfm.ai/benchmarks/fev-bench",
+      "_note": "fev-bench WQL skill score 51.5%, top entry."
+    },
+    {
+      "model": "amazon/chronos-2",
+      "benchmark": "fev_bench_win_rate_mase",
+      "score": 87.9,
+      "unit": "percent",
+      "_source": "https://tsfm.ai/benchmarks/fev-bench",
+      "_note": "fev-bench MASE win rate 87.9%. WQL win rate 88.5%."
+    },
+    {
+      "model": "google/timesfm-2.5",
+      "benchmark": "gift_eval_rank",
+      "score": 1.0,
+      "unit": "rank",
+      "_source": "https://www.marktechpost.com/2025/09/16/google-ai-ships-timesfm-2-5-smaller-longer-context-foundation-model-that-now-leads-gift-eval-zero-shot-forecasting/",
+      "_note": "MarkTechPost (2025-09-16): TimesFM-2.5 leads GIFT-Eval among zero-shot foundation models on both MASE and CRPS. Held #1 from Sept 2025 until Chronos-2 (Oct 2025)."
+    },
+    {
+      "model": "google/timesfm-2.5",
+      "benchmark": "fev_bench_skill_mase",
+      "score": 30.3,
+      "unit": "percent",
+      "_source": "https://tsfm.ai/benchmarks/fev-bench",
+      "_note": "fev-bench Skill Score (MASE) 30.3%."
+    },
+    {
+      "model": "google/timesfm-2.5",
+      "benchmark": "fev_bench_skill_wql",
+      "score": 46.8,
+      "unit": "percent",
+      "_source": "https://tsfm.ai/benchmarks/fev-bench",
+      "_note": "fev-bench WQL skill score 46.8%."
+    },
+    {
+      "model": "google/timesfm-2.5",
+      "benchmark": "fev_bench_win_rate_mase",
+      "score": 74.4,
+      "unit": "percent",
+      "_source": "https://tsfm.ai/benchmarks/fev-bench",
+      "_note": "fev-bench MASE win rate 74.4%. WQL win rate 76.8%."
+    },
+    {
+      "model": "google/timesfm-2.0",
+      "benchmark": "gift_eval_rank",
+      "score": 1.0,
+      "unit": "rank",
+      "_source": "https://medium.com/@theivision/timesfm-google-researchs-pretrained-time-series-foundation-model-138ff2759984",
+      "_note": "TimesFM 2.0 reached #1 GIFT-Eval at release Jan 2025 with 6% better aggregated MASE than next-best model."
+    },
+    {
+      "model": "nxai/tirex",
+      "benchmark": "gift_eval_rank",
+      "score": 1.0,
+      "unit": "rank",
+      "_source": "https://aihorizonforecast.substack.com/p/tirex-lstms-take-the-lead-again-in",
+      "_note": "TiRex reached #1 on GIFT-Eval mid-2025 (between TimesFM-2.0 and TimesFM-2.5 cycles). HF model card confirms top scores on GIFT-Eval and Chronos-ZS."
+    },
+    {
+      "model": "nxai/tirex",
+      "benchmark": "fev_bench_skill_mase",
+      "score": 30.0,
+      "unit": "percent",
+      "_source": "https://tsfm.ai/benchmarks/fev-bench",
+      "_note": "fev-bench Skill Score MASE 30.0%, Win rate 75.1%."
+    },
+    {
+      "model": "nxai/tirex",
+      "benchmark": "fev_bench_skill_wql",
+      "score": 46.7,
+      "unit": "percent",
+      "_source": "https://tsfm.ai/benchmarks/fev-bench",
+      "_note": "fev-bench WQL skill score 46.7%, win rate 79.0%."
+    },
+    {
+      "model": "datadog/toto-open-base-1.0",
+      "benchmark": "gift_eval_rank",
+      "score": 1.0,
+      "unit": "rank",
+      "_source": "https://www.datadoghq.com/blog/ai/toto-boom-unleashed/",
+      "_note": "Datadog blog: 'On GIFT-Eval leaderboard, Toto ranks first overall\u2014best in both avg Rank and MASE, second-best in CRPS' (May 2025). Average ranking score 5.495."
+    },
+    {
+      "model": "datadog/toto-open-base-1.0",
+      "benchmark": "boom_crps_rank",
+      "score": 1.0,
+      "unit": "rank",
+      "_source": "https://www.datadoghq.com/blog/ai/toto-boom-unleashed/",
+      "_note": "On BOOM, Toto achieves 12% CRPS improvement vs next best method. CRPS 0.437 reported."
+    },
+    {
+      "model": "datadog/toto-2.0-313m",
+      "benchmark": "gift_eval_rank",
+      "score": 1.0,
+      "unit": "rank",
+      "_source": "https://www.datadoghq.com/blog/ai/toto-2/",
+      "_note": "Toto 2.0 (313M): #1 among foundation models on GIFT-Eval; CRPS rank 21.4 vs next-best PatchTST-FM r1 at 23.1. On BOOM: CRPS rank 4.25."
+    },
+    {
+      "model": "salesforce/moirai-2-0-R-small",
+      "benchmark": "gift_eval_rank",
+      "score": 5.0,
+      "unit": "rank",
+      "_source": "https://arxiv.org/abs/2511.11698",
+      "_note": "Moirai 2.0 paper: 'attains the 5th and 6th positions on MASE and CRPS' on GIFT-Eval. 2x faster than Moirai 1.0-Large, 30x smaller."
+    },
+    {
+      "model": "salesforce/moirai-moe-base",
+      "benchmark": "gift_eval_rank",
+      "score": 2.0,
+      "unit": "rank",
+      "_source": "https://www.salesforce.com/blog/time-series-morai-moe/",
+      "_note": "Moirai-MoE delivers 17% CRPS/MASE perf boost vs Moirai 1.0; 3-14% CRPS, 8-16% MASE improvement vs prior models. Outperforms Chronos and TimesFM with 65x fewer activated params (at Oct 2024 launch)."
+    },
+    {
+      "model": "priorlabs/tabpfn-ts",
+      "benchmark": "gift_eval_rank",
+      "score": 1.0,
+      "unit": "rank",
+      "_source": "https://github.com/PriorLabs/tabpfn-time-series",
+      "_note": "TabPFN-TS ranked #1 GIFT-Eval as of 2025-01-27 (until TiRex/Toto). 11M params. SOTA on fev-bench (covariate-informed track)."
+    },
+    {
+      "model": "priorlabs/tabpfn-ts",
+      "benchmark": "fev_bench_skill_mase",
+      "score": 27.6,
+      "unit": "percent",
+      "_source": "https://tsfm.ai/benchmarks/fev-bench",
+      "_note": "TabPFN-TS fev-bench Skill Score MASE 27.6%, win rate 55.7%."
+    },
+    {
+      "model": "priorlabs/tabpfn-ts",
+      "benchmark": "fev_bench_skill_wql",
+      "score": 45.8,
+      "unit": "percent",
+      "_source": "https://tsfm.ai/benchmarks/fev-bench",
+      "_note": "TabPFN-TS fev-bench WQL skill 45.8%, win rate 64.8%."
+    },
+    {
+      "model": "ibm/granite-flowstate-r1",
+      "benchmark": "gift_eval_rank",
+      "score": 2.0,
+      "unit": "rank",
+      "_source": "https://research.ibm.com/blog/SSM-time-series-model",
+      "_note": "IBM Research blog (Aug 2025): FlowState 'second place for zero-shot forecasting models on GIFT-Eval' \u2014 smallest in top-10 at 9.1M params."
+    },
+    {
+      "model": "ibm/granite-ttm-r2",
+      "benchmark": "gift_eval_rank",
+      "score": 10.0,
+      "unit": "rank",
+      "_source": "https://huggingface.co/ibm-research/ttm-research-r2",
+      "_note": "TTM-R2 zero-shot 1M-param tiny model; appears in GIFT-Eval lineup but ranks behind newer FMs. Paper at NeurIPS 2024 shows TTM outperforms TimesFM, Moirai, Chronos at zero/few-shot vs param size."
+    },
+    {
+      "model": "thuml/sundial",
+      "benchmark": "gift_eval_rank",
+      "score": 1.0,
+      "unit": "rank",
+      "_source": "https://github.com/thuml/Sundial",
+      "_note": "Sundial achieved 1st MASE on GIFT-Eval in May 2025. ICML 2025 Oral. Pre-trained on TimeBench 10^12 time points."
+    },
+    {
+      "model": "alibaba/yinglong-300m",
+      "benchmark": "gift_eval_rank",
+      "score": 3.0,
+      "unit": "rank",
+      "_source": "https://arxiv.org/abs/2506.11029",
+      "_note": "YingLong: >60% best performance on GIFT-Eval \u2014 non-causal bidirectional encoder, 78B pre-training points."
+    },
+    {
+      "model": "cisco/tsm",
+      "benchmark": "gift_eval_mase",
+      "score": 0.698,
+      "unit": "score",
+      "_source": "https://arxiv.org/abs/2511.19841",
+      "_note": "Cisco TSM: non-leaking GIFT-Eval MAE 0.6980 (windows >512). Tracks TimesFM-2.5 (0.6635) but exceeds on long-context subsets and observability. Note: paper reports MAE not MASE here; same dataset and convention."
+    },
+    {
+      "model": "amazon/chronos-2",
+      "benchmark": "chronos_zs_benchmark",
+      "score": 1.0,
+      "unit": "rank",
+      "_source": "https://arxiv.org/abs/2510.15821",
+      "_note": "Chronos-2: SOTA on Chronos Benchmark II among public models. 90%+ win rate vs Chronos-Bolt head-to-head."
+    },
+    {
+      "model": "amazon/chronos-bolt-base",
+      "benchmark": "chronos_zs_benchmark",
+      "score": 2.0,
+      "unit": "rank",
+      "_source": "https://github.com/amazon-science/chronos-forecasting",
+      "_note": "Chronos-Bolt: 250x faster, 20x more memory-efficient than original Chronos; outperforms statistical and DL baselines on Chronos zero-shot benchmark (WQL, MASE) across 27 datasets."
+    },
+    {
+      "model": "deepmind/gencast",
+      "benchmark": "weatherbench_2_crps_targets",
+      "score": 97.2,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41586-024-08252-9",
+      "_note": "Nature 2024 paper text: 'GenCast's forecasts are significantly more skilful than ENS on 97.2% of 1,320 variable, lead time and vertical level combinations (and 99.6% of targets at lead times greater than 36 hours).' CRPS metric vs ECMWF ENS."
+    },
+    {
+      "model": "deepmind/graphcast",
+      "benchmark": "weatherbench_2_rmse_targets",
+      "score": 90.3,
+      "unit": "%",
+      "_source": "https://www.science.org/doi/10.1126/science.adi2336",
+      "_note": "Science 2023 paper text: 'GraphCast outperformed HRES on 90.3% of the 1380 targets.' RMSE metric vs ECMWF HRES at 0.25 degree, 10-day lead."
+    },
+    {
+      "model": "microsoft/aurora",
+      "benchmark": "weatherbench_2_rmse_targets",
+      "score": 92.0,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41586-025-09005-y",
+      "_note": "Nature 2025 paper headline: 'Aurora outperforms IFS on 92 percent of the operational targets, particularly well in comparison at forecasting times longer than 12 hours while being approximately 5,000 times faster.' Resolution = 0.1 degree (~11 km)."
+    },
+    {
+      "model": "huawei/pangu-weather",
+      "benchmark": "tropical_cyclone_track_error_3day_km",
+      "score": 120.29,
+      "unit": "km",
+      "_source": "https://www.nature.com/articles/s41586-023-06185-3",
+      "_note": "Pangu-Weather Nature 2023 paper text: '3-day and 5-day mean direct position errors for cyclone eyes of Pangu-Weather are 120.29km and 195.65km, respectively, which are significantly smaller than 162.28km and 272.10km reported by ECMWF-HRES.'"
+    },
+    {
+      "model": "huawei/pangu-weather",
+      "benchmark": "tropical_cyclone_track_error_5day_km",
+      "score": 195.65,
+      "unit": "km",
+      "_source": "https://www.nature.com/articles/s41586-023-06185-3",
+      "_note": "Pangu-Weather Nature 2023 paper text: '3-day and 5-day mean direct position errors for cyclone eyes of Pangu-Weather are 120.29km and 195.65km, respectively, which are significantly smaller than 162.28km and 272.10km reported by ECMWF-HRES.'"
+    },
+    {
+      "model": "ecmwf/ifs",
+      "benchmark": "tropical_cyclone_track_error_3day_km",
+      "score": 162.28,
+      "unit": "km",
+      "_source": "https://www.nature.com/articles/s41586-023-06185-3",
+      "_note": "ECMWF-HRES 3-day cyclone-eye position error co-cited in Pangu-Weather Nature 2023 paper text: '...significantly smaller than 162.28km and 272.10km reported by ECMWF-HRES.'"
+    },
+    {
+      "model": "ecmwf/ifs",
+      "benchmark": "tropical_cyclone_track_error_5day_km",
+      "score": 272.1,
+      "unit": "km",
+      "_source": "https://www.nature.com/articles/s41586-023-06185-3",
+      "_note": "ECMWF-HRES 5-day cyclone-eye position error co-cited in Pangu-Weather Nature 2023 paper."
+    },
+    {
+      "model": "shanghai-ai-lab/fengwu",
+      "benchmark": "skillful_z500_lead_days_acc06",
+      "score": 10.75,
+      "unit": "days",
+      "_source": "https://arxiv.org/abs/2304.02948",
+      "_note": "FengWu paper title and abstract: 'pushing the skillful global medium-range weather forecast beyond 10 days lead'; 10.75 days lead with ACC of Z500 > 0.6, vs IFS HRES baseline ~9.25 days."
+    },
+    {
+      "model": "fudan/fuxi",
+      "benchmark": "skillful_z500_lead_days_acc06",
+      "score": 10.5,
+      "unit": "days",
+      "_source": "https://www.nature.com/articles/s41612-023-00512-1",
+      "_note": "FuXi npj CAS 2023 paper: 'extends the lead time of Z500 from 9.25 days to 10.5 days when using an ACC value of 0.6 as the threshold' (vs ECMWF HRES)."
+    },
+    {
+      "model": "ecmwf/ifs",
+      "benchmark": "skillful_z500_lead_days_acc06",
+      "score": 9.25,
+      "unit": "days",
+      "_source": "https://www.nature.com/articles/s41612-023-00512-1",
+      "_note": "ECMWF HRES baseline for skillful Z500 lead at ACC>0.6 threshold, co-cited in FuXi paper npj CAS 2023: 'lead time of Z500 from 9.25 days to 10.5 days'."
+    },
+    {
+      "model": "amazon/chronos-2",
+      "benchmark": "gift-eval",
+      "score": 0.514,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "google/timesfm-2.5",
+      "benchmark": "gift-eval",
+      "score": 0.51,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "nx-ai/tirex",
+      "benchmark": "gift-eval",
+      "score": 0.502,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "salesforce/moirai-2-base",
+      "benchmark": "gift-eval",
+      "score": 0.484,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "amazon/chronos-2",
+      "benchmark": "fev-bench",
+      "score": 0.473,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "nx-ai/tirex",
+      "benchmark": "fev-bench",
+      "score": 0.426,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "google/timesfm-2.5",
+      "benchmark": "fev-bench",
+      "score": 0.423,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "datadog/toto-1-0",
+      "benchmark": "fev-bench",
+      "score": 0.407,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "amazon/chronos-2",
+      "benchmark": "chronos-bench-2",
+      "score": 0.466,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "nx-ai/tirex",
+      "benchmark": "chronos-bench-2",
+      "score": 0.417,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "google/timesfm-2.5",
+      "benchmark": "chronos-bench-2",
+      "score": 0.424,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "salesforce/moirai-2-base",
+      "benchmark": "chronos-bench-2",
+      "score": 0.409,
+      "unit": "score",
+      "_source": "chronos2_paper",
+      "_note": ""
+    },
+    {
+      "model": "salesforce/moirai-2-small",
+      "benchmark": "gift-eval",
+      "score": 0.728,
+      "unit": "score",
+      "_source": "moirai2_paper",
+      "_note": ""
+    },
+    {
+      "model": "salesforce/moirai-2-large",
+      "benchmark": "gift-eval",
+      "score": 0.743,
+      "unit": "score",
+      "_source": "moirai2_paper",
+      "_note": ""
+    },
+    {
+      "model": "amazon/chronos-bolt-base",
+      "benchmark": "gift-eval",
+      "score": 0.481,
+      "unit": "score",
+      "_source": "tirex_paper",
+      "_note": ""
+    },
+    {
+      "model": "foundation-model-research/kairos-small",
+      "benchmark": "gift-eval",
+      "score": 0.748,
+      "unit": "score",
+      "_source": "kairos_paper",
+      "_note": ""
+    },
+    {
+      "model": "foundation-model-research/kairos-base",
+      "benchmark": "gift-eval",
+      "score": 0.742,
+      "unit": "score",
+      "_source": "kairos_paper",
+      "_note": ""
+    },
+    {
+      "model": "automl/tempopfn",
+      "benchmark": "gift-eval",
+      "score": 0.537,
+      "unit": "score",
+      "_source": "tempopfn_paper",
+      "_note": ""
+    },
+    {
+      "model": "sydney/fincast",
+      "benchmark": "fincast-zeroshot",
+      "score": 0.0114,
+      "unit": "score",
+      "_source": "fincast_paper",
+      "_note": ""
+    },
+    {
+      "model": "google/timesfm-500m",
+      "benchmark": "fincast-zeroshot",
+      "score": 0.0127,
+      "unit": "score",
+      "_source": "fincast_paper",
+      "_note": ""
+    },
+    {
+      "model": "amazon/chronos-large",
+      "benchmark": "fincast-zeroshot",
+      "score": 0.0123,
+      "unit": "score",
+      "_source": "fincast_paper",
+      "_note": ""
+    },
+    {
+      "model": "tongji/fintsb-chronos-t5-large",
+      "benchmark": "fintsb",
+      "score": 0.017,
+      "unit": "score",
+      "_source": "fintsb_paper",
+      "_note": ""
+    },
+    {
+      "model": "tongji/fintsb-chronos-bolt-base",
+      "benchmark": "fintsb",
+      "score": 0.017,
+      "unit": "score",
+      "_source": "fintsb_paper",
+      "_note": ""
+    },
+    {
+      "model": "zhejiang/powerpm",
+      "benchmark": "powerpm-demand-side",
+      "score": 0.4452,
+      "unit": "score",
+      "_source": "powerpm_paper",
+      "_note": ""
+    },
+    {
+      "model": "hkust/mira-large",
+      "benchmark": "mira-ood",
+      "score": 0.122,
+      "unit": "score",
+      "_source": "mira_paper",
+      "_note": ""
+    },
+    {
+      "model": "hkust/mira-large",
+      "benchmark": "mira-id",
+      "score": 0.121,
+      "unit": "score",
+      "_source": "mira_paper",
+      "_note": ""
+    },
+    {
+      "model": "amazon/chronos-largest",
+      "benchmark": "mira-ood",
+      "score": 0.35,
+      "unit": "score",
+      "_source": "mira_paper",
+      "_note": ""
+    },
+    {
+      "model": "toronto/ecg-fm",
+      "benchmark": "uhn-ecg",
+      "score": 0.996,
+      "unit": "score",
+      "_source": "ecgfm_paper",
+      "_note": ""
+    },
+    {
+      "model": "benchecg/xecg",
+      "benchmark": "ptb-xl",
+      "score": 0.915,
+      "unit": "score",
+      "_source": "benchecg_paper",
+      "_note": ""
+    },
+    {
+      "model": "st-mem/st-mem",
+      "benchmark": "ptb-xl",
+      "score": 0.93,
+      "unit": "score",
+      "_source": "benchecg_paper",
+      "_note": ""
+    },
+    {
+      "model": "ecgfounder/ecgfounder",
+      "benchmark": "ptb-xl",
+      "score": 0.917,
+      "unit": "score",
+      "_source": "benchecg_paper",
+      "_note": ""
+    },
+    {
+      "model": "benchecg/xecg",
+      "benchmark": "cpsc2018",
+      "score": 0.968,
+      "unit": "score",
+      "_source": "benchecg_paper",
+      "_note": ""
+    },
+    {
+      "model": "ecgfounder/ecgfounder",
+      "benchmark": "cpsc2018",
+      "score": 0.962,
+      "unit": "score",
+      "_source": "benchecg_paper",
+      "_note": ""
+    },
+    {
+      "model": "st-mem/st-mem",
+      "benchmark": "cpsc2018",
+      "score": 0.958,
+      "unit": "score",
+      "_source": "benchecg_paper",
+      "_note": ""
+    },
+    {
+      "model": "sgcc/gft-hq",
+      "benchmark": "gft-icing-24h",
+      "score": 0.73,
+      "unit": "score",
+      "_source": "gft_paper",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/sr-cnn",
+      "benchmark": "yahoo-anomaly",
+      "score": 0.655,
+      "unit": "score",
+      "_source": "srcnn_paper",
+      "_note": ""
+    }
+  ]
+}
