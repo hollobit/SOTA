@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-06-15",
+    "session": "124",
+    "type": "ingest",
+    "title": "5-URL targeted mining (DiffusionGemma + MiniCPM5-1B + SUSVIBES)",
+    "summary": "+1 model / +9 benchmarks / +34 scores. google/diffusion-gemma (Google DeepMind 2026-06-10): 26B MoE/3.8B active, text-to-text diffusion built on Gemma 4, bi-directional attention, 256 tok/forward pass, >1000 tok/s H100, >700 tok/s RTX 5090, 18GB VRAM quantized \u2014 experimental, NO accuracy benchmarks published. openbmb/minicpm-5-1b: 1B + 128K ctx reasoning model, AAII 17.9 sub-2B Pareto frontier (vs Qwen3.5-2B reasoning 16.3, MiniCPM-V 4.6 1.3B 12.7). SUSVIBES (arxiv 2512.03262, CMU/Columbia/JHU/HydroX AI Feb 2026): 200 repo-level feature-request tasks + 77 CWEs + 172 lines/patch avg, dual FuncPass + SecPass metrics, 7x largest CWE coverage. SUSVIBES SOTAs: Gemini 3 Pro + OpenHands FuncPass 53.5% (top). Claude Sonnet 4 + OpenHands SecPass 12.5% (top). All agents <13% SecPass = massive headroom. NEW benches: susvibes + 6 sub-metrics (funcpass/secpass \u00d7 swe-agent/openhands/claude-code), aa-omniscience (AA hallucination calibration), throughput-h100-tokens-per-sec + throughput-rtx5090-tokens-per-sec. Hygiene: aa-intelligence-index dash variant merged with aa_intelligence_index underscore. Caveats: arxiv 2512.03262 is SUSVIBES NOT DiffusionGemma (URL mismatch in user input). X.com Roundtable post HTTP 402 paywall. MiniCPM5-1B per-eval table image-only \u2014 Phi-4-mini/SmolLM3/Llama 3.2 1B comparison NOT extractable.",
+    "counts": {
+      "models": 3021,
+      "benchmarks": 3215,
+      "scores": 15046
+    }
+  },
+  {
+    "date": "2026-06-15",
     "session": "123",
     "type": "ingest",
     "title": "Time-series / Forecasting frontier (first broad sweep)",

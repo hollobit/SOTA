@@ -1,0 +1,411 @@
+{
+  "_meta": {
+    "session": "124",
+    "date": "2026-06-15",
+    "topic": "5-URL targeted mining (DiffusionGemma + MiniCPM5-1B + SUSVIBES)",
+    "notes": "Single agent on 5 URLs. arxiv 2512.03262 is SUSVIBES (NOT DiffusionGemma) \u2014 URL mismatch in input. X.com paywall blocked Roundtable post.",
+    "sources": [
+      "Google DeepMind DiffusionGemma model card (2026-06-10)",
+      "Google blog DiffusionGemma announce",
+      "arxiv 2512.03262 SUSVIBES (CMU/Columbia/JHU/HydroX AI, Feb 2026)",
+      "Artificial Analysis MiniCPM5-1B article"
+    ]
+  },
+  "models": [
+    {
+      "id": "google/diffusion-gemma",
+      "name": "DiffusionGemma",
+      "vendor": "Google DeepMind",
+      "type": "language",
+      "release_date": "2026-06-10",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openbmb/minicpm-5-1b",
+      "name": "MiniCPM5-1B",
+      "vendor": "OpenBMB",
+      "type": "language",
+      "release_date": "2026-06",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "susvibes",
+      "name": "SUSVIBES",
+      "category": "cyber-coding / agent code security",
+      "metric": "FuncPass (functional correctness pass@1) + SecPass (functional+secure pass@1)",
+      "unit": "%",
+      "description": "200 repo-level feature-request tasks covering 77 CWEs, average 172 lines per target patch, 162K context lines/repo. Dual unit tests: functional + security. New benchmark from Zhao et al. (CMU/Columbia/JHU/HydroX AI), Feb 2026.",
+      "source_url": "https://arxiv.org/abs/2512.03262"
+    },
+    {
+      "id": "aa-omniscience",
+      "name": "AA-Omniscience",
+      "category": "knowledge / hallucination",
+      "metric": "calibration-aware knowledge score (rewards abstention over hallucination, negative = high hallucination)",
+      "unit": "index",
+      "description": "Artificial Analysis benchmark. Scores typically negative for small models; -1 considered class-leading for 1B class. MiniCPM5-1B abstains rather than hallucinates.",
+      "source_url": "https://artificialanalysis.ai/articles/minicpm5-1b-the-leading-1b-open-weights-model"
+    },
+    {
+      "id": "susvibes-funcpass-swe-agent",
+      "name": "Susvibes Funcpass Swe Agent",
+      "category": "coding",
+      "metric": "score",
+      "unit": "%",
+      "description": "SUSVIBES sub-metric (arxiv 2512.03262)",
+      "source_url": "https://arxiv.org/abs/2512.03262"
+    },
+    {
+      "id": "susvibes-secpass-swe-agent",
+      "name": "Susvibes Secpass Swe Agent",
+      "category": "cyber",
+      "metric": "score",
+      "unit": "%",
+      "description": "SUSVIBES sub-metric (arxiv 2512.03262)",
+      "source_url": "https://arxiv.org/abs/2512.03262"
+    },
+    {
+      "id": "susvibes-funcpass-openhands",
+      "name": "Susvibes Funcpass Openhands",
+      "category": "coding",
+      "metric": "score",
+      "unit": "%",
+      "description": "SUSVIBES sub-metric (arxiv 2512.03262)",
+      "source_url": "https://arxiv.org/abs/2512.03262"
+    },
+    {
+      "id": "susvibes-secpass-openhands",
+      "name": "Susvibes Secpass Openhands",
+      "category": "cyber",
+      "metric": "score",
+      "unit": "%",
+      "description": "SUSVIBES sub-metric (arxiv 2512.03262)",
+      "source_url": "https://arxiv.org/abs/2512.03262"
+    },
+    {
+      "id": "susvibes-funcpass-claude-code",
+      "name": "Susvibes Funcpass Claude Code",
+      "category": "coding",
+      "metric": "score",
+      "unit": "%",
+      "description": "SUSVIBES sub-metric (arxiv 2512.03262)",
+      "source_url": "https://arxiv.org/abs/2512.03262"
+    },
+    {
+      "id": "susvibes-secpass-claude-code",
+      "name": "Susvibes Secpass Claude Code",
+      "category": "cyber",
+      "metric": "score",
+      "unit": "%",
+      "description": "SUSVIBES sub-metric (arxiv 2512.03262)",
+      "source_url": "https://arxiv.org/abs/2512.03262"
+    },
+    {
+      "id": "aa-intelligence-index",
+      "name": "Aa Intelligence Index",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "SUSVIBES sub-metric (arxiv 2512.03262)",
+      "source_url": "https://arxiv.org/abs/2512.03262"
+    },
+    {
+      "id": "throughput-h100-tokens-per-sec",
+      "name": "Throughput H100 Tokens Per Sec",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "SUSVIBES sub-metric (arxiv 2512.03262)",
+      "source_url": "https://arxiv.org/abs/2512.03262"
+    },
+    {
+      "id": "throughput-rtx5090-tokens-per-sec",
+      "name": "Throughput Rtx5090 Tokens Per Sec",
+      "category": "general",
+      "metric": "score",
+      "unit": "%",
+      "description": "SUSVIBES sub-metric (arxiv 2512.03262)",
+      "source_url": "https://arxiv.org/abs/2512.03262"
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "susvibes-funcpass-swe-agent",
+      "score": 61.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": "SWE-Agent backbone, FuncPass@1"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "susvibes-secpass-swe-agent",
+      "score": 10.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": "SWE-Agent backbone, SecPass@1 (functional+secure)"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "susvibes-funcpass-openhands",
+      "score": 49.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": "OpenHands backbone"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "susvibes-secpass-openhands",
+      "score": 12.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": "OpenHands backbone - highest SecPass in evaluation"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "susvibes-funcpass-claude-code",
+      "score": 44.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": "Claude Code framework"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "susvibes-secpass-claude-code",
+      "score": 6.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": "Claude Code framework"
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "susvibes-funcpass-swe-agent",
+      "score": 22.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "susvibes-secpass-swe-agent",
+      "score": 6.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "susvibes-funcpass-openhands",
+      "score": 37.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "susvibes-secpass-openhands",
+      "score": 9.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "susvibes-funcpass-claude-code",
+      "score": 43.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "susvibes-secpass-claude-code",
+      "score": 8.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "susvibes-funcpass-swe-agent",
+      "score": 19.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "susvibes-secpass-swe-agent",
+      "score": 7.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "susvibes-funcpass-openhands",
+      "score": 21.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "susvibes-secpass-openhands",
+      "score": 8.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "susvibes-funcpass-claude-code",
+      "score": 15.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "susvibes-secpass-claude-code",
+      "score": 4.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 3",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "susvibes-funcpass-swe-agent",
+      "score": 38.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 5",
+      "_note": "Gemini 3 Pro vs Gemini 2.5 Pro within-family comparison"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "susvibes-secpass-swe-agent",
+      "score": 11.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "susvibes-funcpass-openhands",
+      "score": 53.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "susvibes-secpass-openhands",
+      "score": 9.0,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "susvibes-funcpass-claude-code",
+      "score": 34.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "susvibes-secpass-claude-code",
+      "score": 4.5,
+      "unit": "%",
+      "_source": "arxiv 2512.03262 Table 5",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm-5-1b",
+      "benchmark": "aa-intelligence-index",
+      "score": 17.9,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/articles/minicpm5-1b-the-leading-1b-open-weights-model",
+      "_note": "Article also rounds to 18 on /models page. Reasoning-mode score."
+    },
+    {
+      "model": "openbmb/minicpm-5-1b",
+      "benchmark": "aa-omniscience",
+      "score": -1.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/articles/minicpm5-1b-the-leading-1b-open-weights-model",
+      "_note": "Claimed highest in 1B size class; earned by abstaining rather than hallucinating."
+    },
+    {
+      "model": "alibaba/qwen3.5-2b",
+      "benchmark": "aa-intelligence-index",
+      "score": 16.3,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/articles/minicpm5-1b-the-leading-1b-open-weights-model",
+      "_note": "Reasoning mode"
+    },
+    {
+      "model": "alibaba/qwen3.5-0.8b",
+      "benchmark": "aa-intelligence-index",
+      "score": 10.5,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/articles/minicpm5-1b-the-leading-1b-open-weights-model",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-0.8b",
+      "benchmark": "aa-omniscience",
+      "score": -89.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/articles/minicpm5-1b-the-leading-1b-open-weights-model",
+      "_note": "Non-reasoning mode"
+    },
+    {
+      "model": "openbmb/minicpm-v-4.5",
+      "benchmark": "aa-intelligence-index",
+      "score": 12.7,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/articles/minicpm5-1b-the-leading-1b-open-weights-model",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm-v-4.5",
+      "benchmark": "aa-omniscience",
+      "score": -85.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/articles/minicpm5-1b-the-leading-1b-open-weights-model",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4.0-1.2b",
+      "benchmark": "aa-omniscience",
+      "score": -83.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/articles/minicpm5-1b-the-leading-1b-open-weights-model",
+      "_note": "Non-reasoning mode"
+    },
+    {
+      "model": "google/diffusion-gemma",
+      "benchmark": "throughput-h100-tokens-per-sec",
+      "score": 1000.0,
+      "unit": "tokens/sec",
+      "_source": "https://blog.google/innovation-and-ai/technology/developers-tools/diffusion-gemma-faster-text-generation/",
+      "_note": "Single NVIDIA H100, >1000 tok/s claim. Throughput metric, not accuracy."
+    },
+    {
+      "model": "google/diffusion-gemma",
+      "benchmark": "throughput-rtx5090-tokens-per-sec",
+      "score": 700.0,
+      "unit": "tokens/sec",
+      "_source": "https://blog.google/innovation-and-ai/technology/developers-tools/diffusion-gemma-faster-text-generation/",
+      "_note": "NVIDIA GeForce RTX 5090, >700 tok/s claim."
+    }
+  ]
+}
