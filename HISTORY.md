@@ -1,5 +1,53 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-06-15 (Sessions 111-125): June 2026 frontier sweep
+
+### 75. Sessions 111-125 — 15-session marathon (+664 models / +662 benchmarks / +3,138 scores)
+
+A 4-day intensive sweep covering 13 frontier topics + 2 propagation/re-mine
+sessions. Database grew from 2,555 → 3,097 models, 2,738 → 3,254 benchmarks,
+12,435 → 15,148 scores.
+
+**Session-by-session highlights**:
+
+| S | Topic | Δ Models | Δ Benches | Δ Scores | Headline SOTA |
+|---|---|---:|---:|---:|---|
+| 111 | Cybersecurity refresh | +17 | +61 | +94 | MDASH CyberGym 96.55 + Atlantis AIxCC 1st $4M |
+| 112 | Function calling / tool use | +28 | +18 | +216 | Opus 4.5 BFCL v4 77.47 + Mythos 5 BrowseComp multi-agent 93.3 |
+| 113 | Deep re-mine (Anthropic+Google+DeepSeek cards) | +6 | +81 | +410 | Mythos 5 USAMO 2026 99.8 + V4-Pro-Max Putnam-2025 120/120 |
+| 114 | Image & Video gen | +41 | +14 | +146 | GPT-Image-2 AA T2I 1339 + Dreamina Seedance 2.0 AA T2V/I2V SOTA |
+| 115 | Robotics / VLA / Humanoid | +15 | +13 | +44 | Xiaomi-Robotics-0 LIBERO 98.7 + Atlas Electric 56 DoF |
+| 116 | Medical AI | +16 | +12 | +106 | Gemini 3.1 Pro MedQA-USMLE 97.4 (Nature Med) + Fable 5 HealthBench Pro 0.660 |
+| 117 | Audio / Speech | +72 | +37 | +214 | Qwen3.5-Omni-Plus VoiceBench 93.1 + Fun-Realtime-ASR 1.7% |
+| 118 | OCR / Doc Understanding | +85 | +49 | +321 | PaddleOCR-VL 1.6 OmniDocBench v1.6 = 96.33 |
+| 119 | Edge LLM / SLM | +40 | +41 | +545 | SmolLM3-3B BFCL v3 92.3 BEATS ALL FRONTIER + Nemotron Nano 9B v2 MATH-500 97.8 |
+| 120 | 3D / Scene generation | +59 | +59 | +234 | Hunyuan3D 2.5 Hi3DEval 16.561 + SPAR3D GSO F-Score@0.2 0.850 |
+| 121 | 8-tab propagation | — | — | — | 6 JS files patched, 70 model IDs across 8 hardcoded tabs |
+| 122 | Deep re-mine post-S113 | +35 | +52 | +174 | Claude Fable 5 AAII 64.9 #1 + Gemini 3.5 Flash MCP-Atlas 83.6 |
+| 123 | Time-series / Forecasting | +51 | +29 | +73 | Chronos-2 #1 GIFT-Eval + GenCast 97.2 CRPS WB-2 |
+| 124 | 5-URL targeted (DiffusionGemma + MiniCPM5 + SUSVIBES) | +1 | +9 | +34 | DiffusionGemma >1000 tok/s H100 + Gemini 3 Pro SUSVIBES FuncPass 53.5 |
+| 125 | Music generation | +76 | +39 | +102 | Suno V5.5 AA Arena Instrumental 1186 + Vocals 1163 SOTA |
+
+**Cross-cutting findings**:
+- **AAII v4.0 snapshot 2026-06-15**: Claude Fable 5 = 64.9 #1, displaces Opus 4.8 (61.0). GPT-5.5-xhigh + GPT-5.5 = 60.0 overtake Opus 4.7 tier.
+- **Strict-attribution catches**: 100+ NOT-EXIST claims documented across sessions (GPT-5.6/6, Gemini 4, Grok 4.5/5, Llama 5.5, DeepSeek V5/R2, Qwen 3.8/4, Phi-5, Marker 2, Nougat 2, TableTransformer v3, Donut V2/V3, Hunyuan3D 3.0, Luma Genie 2, Wonder3D-XL, NVIDIA Acoustica (=PersonaPlex), Anthropic music/voice — all confirmed null).
+- **Open vs commercial gaps**: music ~25% behind (YuE-7B FAD 1.624 vs Suno V4 1.544 / Udio 1.222), 3D ~similar headroom; edge LLM closing fast (SmolLM3-3B tool-use beats all frontier).
+- **Data-hygiene fixes**: openai/realtime-tts-2 misattributed (actual Inworld); aa-intelligence-index dash/underscore variants merged.
+- **8-tab propagation (S121)**: 70 S111-S120 model IDs propagated across hardcoded dashboard tabs with canonical-ID corrections (gigapath, vista-3d, medsam, unitree-h1, bitnet variants).
+- **Playwright gaps**: swebench/livebench/llm-stats/HF Open LLM v3 leaderboards remain client-rendered; deferred for future tooling sweep.
+
+**New benchmark categories debuted**:
+- **3D gen** (S120): GSO, Hi3DEval, T3Bench, Toys4k img-to-3D, ULIP-T/Uni3D-I, V-IoU/S-IoU
+- **Time-series** (S123): GIFT-Eval, fev-bench, BOOM observability, WeatherBench-2 CRPS/RMSE targets, MIRA OOD/ID
+- **Music gen** (S125): AA Music Arena Instrumental/Vocals Elo, MMAR, MUSDB18-HQ SDR, MusicCaps FAD, SongBench
+- **OCR/Doc** (S118): OmniDocBench v1.5/1.6/1.7, olmOCR-Bench 5-category, Fox-Bench, XDocParse, CC-OCR, MMLongBench-Doc
+- **Cyber** (S111): CTI-REALM, SandboxEscape, CrackMe/RE/CRE Bench, FuzzingBrain V2, ExploitBench V8, Cyber Defense
+
+**Process notes**:
+- 3 parallel agents per session (run_in_background) became standard pattern; ~2-3 sessions/hour throughput.
+- Some agents socket-crashed (S115 robotics-bench, S120 initial 3D agents) — VLA agent's overlapping coverage prevented critical loss.
+- Plans.md compression dance kept file at ≤200 lines via per-session merger of older 4-session compressed blocks.
+
 ## 2026-05-20 (Session 19 cont'd 3): Reference leaderboard mining for new Session 19 models
 
 ### 59. Cross-leaderboard mining for Gemini 3.5 Flash + Omni Flash + Qwen 3.7 Max/Plus preview
