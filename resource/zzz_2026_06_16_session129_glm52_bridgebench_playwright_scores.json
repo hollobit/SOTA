@@ -1,0 +1,1405 @@
+{
+  "_meta": {
+    "session": "129",
+    "date": "2026-06-16",
+    "topic": "GLM-5.2 BridgeBench Playwright retry (after S128 WebFetch blocked)",
+    "notes": "Playwright MCP successfully rendered BridgeBench JS-only pages. Captured 5 boards: Reasoning (GLM 5.2 #1 SOTA), Speed, Debugging, Refactoring, Hallucination. GLM-5.2 Speed/Reasoning per-task breakdown captured.",
+    "sources": [
+      "https://www.bridgebench.ai/reasoning",
+      "https://www.bridgebench.ai/reasoning/glm-5-2",
+      "https://www.bridgebench.ai/speedbench",
+      "https://www.bridgebench.ai/speedbench/glm-5-2",
+      "https://www.bridgebench.ai/debugging",
+      "https://www.bridgebench.ai/refactoring",
+      "https://www.bridgebench.ai/hallucination"
+    ]
+  },
+  "models": [
+    {
+      "id": "zhipu/glm-5.2",
+      "name": "GLM 5.2",
+      "vendor": "z.ai",
+      "type": "language",
+      "release_date": "2026-06-13",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zhipu/glm-5.1",
+      "name": "GLM 5.1",
+      "vendor": "z.ai",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zhipu/glm-5",
+      "name": "GLM 5",
+      "vendor": "z.ai",
+      "type": "language",
+      "release_date": "2026-02-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zhipu/glm-5-turbo",
+      "name": "GLM 5 Turbo",
+      "vendor": "z.ai",
+      "type": "language",
+      "release_date": "2026-02-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "zhipu/glm-5v-turbo",
+      "name": "GLM 5V Turbo",
+      "vendor": "z.ai",
+      "type": "language",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "cursor/composer-2.5-fast",
+      "name": "Composer 2.5 Fast",
+      "vendor": "Cursor",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openrouter/owl-alpha",
+      "name": "Owl Alpha",
+      "vendor": "OpenRouter",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openrouter/elephant-alpha",
+      "name": "Elephant Alpha",
+      "vendor": "OpenRouter",
+      "type": "language",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "bridgebench_reasoning",
+      "name": "BridgeBench Reasoning v2",
+      "category": "reasoning",
+      "metric": "score",
+      "unit": "score",
+      "description": "30-task multi-step reasoning over code/logs/configs/specs/conflicting artifacts",
+      "source_url": "https://www.bridgebench.ai/reasoning"
+    },
+    {
+      "id": "bridgebench_speedbench_throughput",
+      "name": "BridgeBench SpeedBench Throughput",
+      "category": "performance",
+      "metric": "tokens_per_sec",
+      "unit": "tok/s",
+      "description": "Median throughput for code generation",
+      "source_url": "https://www.bridgebench.ai/speedbench"
+    },
+    {
+      "id": "bridgebench_speedbench_ttft",
+      "name": "BridgeBench SpeedBench TTFT",
+      "category": "performance",
+      "metric": "ttft_ms",
+      "unit": "ms",
+      "description": "Median time to first token (lower=better)",
+      "source_url": "https://www.bridgebench.ai/speedbench"
+    },
+    {
+      "id": "bridgebench_debugging",
+      "name": "BridgeBench Debugging v2",
+      "category": "coding",
+      "metric": "score",
+      "unit": "score",
+      "description": "TypeScript bug-fixing 10 tasks",
+      "source_url": "https://www.bridgebench.ai/debugging"
+    },
+    {
+      "id": "bridgebench_refactoring",
+      "name": "BridgeBench Refactoring",
+      "category": "coding",
+      "metric": "score",
+      "unit": "score",
+      "description": "Behavior-preserving code transformations 15 tasks",
+      "source_url": "https://www.bridgebench.ai/refactoring"
+    },
+    {
+      "id": "bridgebench_hallucination",
+      "name": "BridgeBench Hallucination",
+      "category": "coding",
+      "metric": "score",
+      "unit": "score",
+      "description": "Coding fabrication 30 tasks 175 questions",
+      "source_url": "https://www.bridgebench.ai/hallucination"
+    },
+    {
+      "id": "bridgebench_security",
+      "name": "BridgeBench Security",
+      "category": "cyber",
+      "metric": "score",
+      "unit": "score",
+      "description": "Code security vulnerability detection",
+      "source_url": "https://www.bridgebench.ai/security"
+    },
+    {
+      "id": "bridgebench_reasoning_stateful_execution",
+      "name": "BridgeBench Reasoning \u2014 Stateful Execution",
+      "category": "reasoning",
+      "metric": "score",
+      "unit": "score",
+      "description": "5-task cluster",
+      "source_url": "https://www.bridgebench.ai/reasoning"
+    },
+    {
+      "id": "bridgebench_reasoning_constraint_reconciliation",
+      "name": "BridgeBench Reasoning \u2014 Constraint Reconciliation",
+      "category": "reasoning",
+      "metric": "score",
+      "unit": "score",
+      "description": "5-task cluster",
+      "source_url": "https://www.bridgebench.ai/reasoning"
+    },
+    {
+      "id": "bridgebench_reasoning_root_cause",
+      "name": "BridgeBench Reasoning \u2014 Root Cause",
+      "category": "reasoning",
+      "metric": "score",
+      "unit": "score",
+      "description": "5-task cluster",
+      "source_url": "https://www.bridgebench.ai/reasoning"
+    },
+    {
+      "id": "bridgebench_reasoning_multi_artifact",
+      "name": "BridgeBench Reasoning \u2014 Multi-Artifact",
+      "category": "reasoning",
+      "metric": "score",
+      "unit": "score",
+      "description": "5-task cluster",
+      "source_url": "https://www.bridgebench.ai/reasoning"
+    },
+    {
+      "id": "bridgebench_reasoning_counterexample",
+      "name": "BridgeBench Reasoning \u2014 Counterexample",
+      "category": "reasoning",
+      "metric": "score",
+      "unit": "score",
+      "description": "5-task cluster",
+      "source_url": "https://www.bridgebench.ai/reasoning"
+    },
+    {
+      "id": "bridgebench_reasoning_uncertainty",
+      "name": "BridgeBench Reasoning \u2014 Uncertainty",
+      "category": "reasoning",
+      "metric": "score",
+      "unit": "score",
+      "description": "5-task cluster",
+      "source_url": "https://www.bridgebench.ai/reasoning"
+    }
+  ],
+  "scores": [
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_reasoning",
+      "score": 42.8,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#1 SOTA, snapshot 2026-06-13"
+    },
+    {
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "benchmark": "bridgebench_reasoning",
+      "score": 41.7,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#2"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "bridgebench_reasoning",
+      "score": 41.5,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#3"
+    },
+    {
+      "model": "xai/grok-4.3",
+      "benchmark": "bridgebench_reasoning",
+      "score": 40.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#5"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "bridgebench_reasoning",
+      "score": 40.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#6"
+    },
+    {
+      "model": "alibaba/qwen3.6-max-preview",
+      "benchmark": "bridgebench_reasoning",
+      "score": 40.5,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#7"
+    },
+    {
+      "model": "minimax/m3",
+      "benchmark": "bridgebench_reasoning",
+      "score": 40.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#8"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "bridgebench_reasoning",
+      "score": 40.3,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#9"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "bridgebench_reasoning",
+      "score": 40.3,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#10"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "bridgebench_reasoning",
+      "score": 40.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#11"
+    },
+    {
+      "model": "xai/grok-4.20",
+      "benchmark": "bridgebench_reasoning",
+      "score": 40.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#12 non-reasoning"
+    },
+    {
+      "model": "xiaomi/mimo-v2.5-pro",
+      "benchmark": "bridgebench_reasoning",
+      "score": 39.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#13"
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "bridgebench_reasoning",
+      "score": 39.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#14"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "bridgebench_reasoning",
+      "score": 37.8,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#17"
+    },
+    {
+      "model": "openrouter/owl-alpha",
+      "benchmark": "bridgebench_reasoning",
+      "score": 37.8,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#18"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "benchmark": "bridgebench_reasoning",
+      "score": 37.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#19"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "bridgebench_reasoning",
+      "score": 37.2,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#20"
+    },
+    {
+      "model": "zhipu/glm-5v-turbo",
+      "benchmark": "bridgebench_reasoning",
+      "score": 37.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#21"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "bridgebench_reasoning",
+      "score": 36.2,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#22"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "bridgebench_reasoning",
+      "score": 35.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#23"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "bridgebench_reasoning",
+      "score": 34.8,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#24"
+    },
+    {
+      "model": "openrouter/elephant-alpha",
+      "benchmark": "bridgebench_reasoning",
+      "score": 25.8,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning",
+      "_note": "#26"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 581.1,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#1 SOTA"
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 376.2,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#2"
+    },
+    {
+      "model": "xai/grok-4.3",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 302.1,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#3"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 296.7,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#4"
+    },
+    {
+      "model": "zhipu/glm-5v-turbo",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 221.2,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#5"
+    },
+    {
+      "model": "openrouter/elephant-alpha",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 221.1,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#6"
+    },
+    {
+      "model": "cursor/composer-2.5-fast",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 207.3,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#7"
+    },
+    {
+      "model": "xiaomi/mimo-v2.5",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 167.0,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#8"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 164.7,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#9"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 122.5,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#11"
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 120.6,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#12"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 119.9,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#13"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 116.4,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#14"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 105.1,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#15"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 95.0,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#17"
+    },
+    {
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 90.0,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#19 free tier"
+    },
+    {
+      "model": "xiaomi/mimo-v2.5-pro",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 88.5,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#20"
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 83.9,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#21"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 72.9,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#22"
+    },
+    {
+      "model": "minimax/m3",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 58.8,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#23"
+    },
+    {
+      "model": "openrouter/owl-alpha",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 42.9,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#25"
+    },
+    {
+      "model": "google/gemma-4-31b",
+      "benchmark": "bridgebench_speedbench_throughput",
+      "score": 26.9,
+      "unit": "tok/s",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "#26"
+    },
+    {
+      "model": "openrouter/elephant-alpha",
+      "benchmark": "bridgebench_speedbench_ttft",
+      "score": 508.0,
+      "unit": "ms",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "lower better"
+    },
+    {
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b",
+      "benchmark": "bridgebench_speedbench_ttft",
+      "score": 670.0,
+      "unit": "ms",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "lower better"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "bridgebench_speedbench_ttft",
+      "score": 852.0,
+      "unit": "ms",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "lower better"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_speedbench_ttft",
+      "score": 2450.0,
+      "unit": "ms",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "lower better"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "bridgebench_speedbench_ttft",
+      "score": 2386.0,
+      "unit": "ms",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "lower better"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "bridgebench_speedbench_ttft",
+      "score": 2227.0,
+      "unit": "ms",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "lower better"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "bridgebench_speedbench_ttft",
+      "score": 3161.0,
+      "unit": "ms",
+      "_source": "https://www.bridgebench.ai/speedbench",
+      "_note": "lower better"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "bridgebench_debugging",
+      "score": 87.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#1 SOTA"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "bridgebench_debugging",
+      "score": 87.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#2 Apr 12 variant"
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "bridgebench_debugging",
+      "score": 86.7,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#3"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "bridgebench_debugging",
+      "score": 86.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#4"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_debugging",
+      "score": 86.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#5"
+    },
+    {
+      "model": "xai/grok-4.20",
+      "benchmark": "bridgebench_debugging",
+      "score": 86.3,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#7 non-reasoning"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "bridgebench_debugging",
+      "score": 86.2,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#8"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "bridgebench_debugging",
+      "score": 86.2,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#9"
+    },
+    {
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "benchmark": "bridgebench_debugging",
+      "score": 86.2,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#10"
+    },
+    {
+      "model": "xai/grok-4.3",
+      "benchmark": "bridgebench_debugging",
+      "score": 86.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#11"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "bridgebench_debugging",
+      "score": 85.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#12"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "bridgebench_debugging",
+      "score": 85.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#15"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "bridgebench_debugging",
+      "score": 85.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#16"
+    },
+    {
+      "model": "minimax/m3",
+      "benchmark": "bridgebench_debugging",
+      "score": 85.3,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#18"
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "bridgebench_debugging",
+      "score": 84.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#21"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "bridgebench_debugging",
+      "score": 82.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#22"
+    },
+    {
+      "model": "zhipu/glm-5v-turbo",
+      "benchmark": "bridgebench_debugging",
+      "score": 78.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#23"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "benchmark": "bridgebench_debugging",
+      "score": 78.2,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#25"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "bridgebench_debugging",
+      "score": 77.5,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#26"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "bridgebench_debugging",
+      "score": 76.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#28"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "bridgebench_debugging",
+      "score": 69.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#31"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "bridgebench_debugging",
+      "score": 66.8,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#33"
+    },
+    {
+      "model": "xiaomi/mimo-v2.5-pro",
+      "benchmark": "bridgebench_debugging",
+      "score": 60.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#34"
+    },
+    {
+      "model": "openrouter/elephant-alpha",
+      "benchmark": "bridgebench_debugging",
+      "score": 58.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/debugging",
+      "_note": "#35"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "bridgebench_refactoring",
+      "score": 75.2,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#1 SOTA"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "bridgebench_refactoring",
+      "score": 74.8,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#2"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "bridgebench_refactoring",
+      "score": 73.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#3"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_refactoring",
+      "score": 72.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#4"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "bridgebench_refactoring",
+      "score": 69.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#5"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "bridgebench_refactoring",
+      "score": 69.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#6"
+    },
+    {
+      "model": "xai/grok-4.3",
+      "benchmark": "bridgebench_refactoring",
+      "score": 69.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#7"
+    },
+    {
+      "model": "xiaomi/mimo-v2.5-pro",
+      "benchmark": "bridgebench_refactoring",
+      "score": 67.5,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#10"
+    },
+    {
+      "model": "alibaba/qwen3.6-max-preview",
+      "benchmark": "bridgebench_refactoring",
+      "score": 66.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#11"
+    },
+    {
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "benchmark": "bridgebench_refactoring",
+      "score": 66.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#12"
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "bridgebench_refactoring",
+      "score": 65.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#13"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "bridgebench_refactoring",
+      "score": 63.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#14"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "bridgebench_refactoring",
+      "score": 62.3,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#15"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "benchmark": "bridgebench_refactoring",
+      "score": 61.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#16"
+    },
+    {
+      "model": "zhipu/glm-5v-turbo",
+      "benchmark": "bridgebench_refactoring",
+      "score": 61.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#17"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "bridgebench_refactoring",
+      "score": 56.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#18"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "bridgebench_refactoring",
+      "score": 53.7,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#20"
+    },
+    {
+      "model": "minimax/m3",
+      "benchmark": "bridgebench_refactoring",
+      "score": 52.3,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#21"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "bridgebench_refactoring",
+      "score": 50.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#23"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "bridgebench_refactoring",
+      "score": 46.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/refactoring",
+      "_note": "#25"
+    },
+    {
+      "model": "xai/grok-4.3",
+      "benchmark": "bridgebench_hallucination",
+      "score": 79.8,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#1 SOTA"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "bridgebench_hallucination",
+      "score": 79.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#3"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "bridgebench_hallucination",
+      "score": 79.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#4"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "bridgebench_hallucination",
+      "score": 78.3,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#5"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_hallucination",
+      "score": 77.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#6"
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "bridgebench_hallucination",
+      "score": 76.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#8"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "bridgebench_hallucination",
+      "score": 76.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#9"
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "bridgebench_hallucination",
+      "score": 76.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#10"
+    },
+    {
+      "model": "xai/grok-4.20",
+      "benchmark": "bridgebench_hallucination",
+      "score": 76.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#11 non-reasoning"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "bridgebench_hallucination",
+      "score": 75.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#13"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "bridgebench_hallucination",
+      "score": 75.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#14"
+    },
+    {
+      "model": "alibaba/qwen3.6-max-preview",
+      "benchmark": "bridgebench_hallucination",
+      "score": 75.8,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#15"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "bridgebench_hallucination",
+      "score": 75.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#16"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "bridgebench_hallucination",
+      "score": 74.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#18"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "bridgebench_hallucination",
+      "score": 74.2,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#19"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "bridgebench_hallucination",
+      "score": 73.8,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#20"
+    },
+    {
+      "model": "minimax/m3",
+      "benchmark": "bridgebench_hallucination",
+      "score": 73.7,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#21"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "bridgebench_hallucination",
+      "score": 73.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#23"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "bridgebench_hallucination",
+      "score": 72.8,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#24"
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "bridgebench_hallucination",
+      "score": 72.7,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#25"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "bridgebench_hallucination",
+      "score": 71.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#26"
+    },
+    {
+      "model": "zhipu/glm-5v-turbo",
+      "benchmark": "bridgebench_hallucination",
+      "score": 71.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#27"
+    },
+    {
+      "model": "google/gemma-4-31b",
+      "benchmark": "bridgebench_hallucination",
+      "score": 71.3,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#29"
+    },
+    {
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "benchmark": "bridgebench_hallucination",
+      "score": 71.3,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#30"
+    },
+    {
+      "model": "zhipu/glm-5-turbo",
+      "benchmark": "bridgebench_hallucination",
+      "score": 71.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#32"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "bridgebench_hallucination",
+      "score": 69.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#34"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "benchmark": "bridgebench_hallucination",
+      "score": 69.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#35"
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "bridgebench_hallucination",
+      "score": 68.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#36"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "bridgebench_hallucination",
+      "score": 67.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/hallucination",
+      "_note": "#37"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "bridgebench_security",
+      "score": 87.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#1 SOTA"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "bridgebench_security",
+      "score": 85.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#2"
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "bridgebench_security",
+      "score": 85.3,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#3"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "bridgebench_security",
+      "score": 84.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#4"
+    },
+    {
+      "model": "xai/grok-4.3",
+      "benchmark": "bridgebench_security",
+      "score": 81.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#6"
+    },
+    {
+      "model": "alibaba/qwen3.6-max-preview",
+      "benchmark": "bridgebench_security",
+      "score": 81.4,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#7"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "bridgebench_security",
+      "score": 80.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#8"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "bridgebench_security",
+      "score": 79.7,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#10"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "bridgebench_security",
+      "score": 79.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#11"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "bridgebench_security",
+      "score": 76.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#12"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash",
+      "benchmark": "bridgebench_security",
+      "score": 67.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#15"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "bridgebench_security",
+      "score": 51.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#17"
+    },
+    {
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "benchmark": "bridgebench_security",
+      "score": 41.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#20"
+    },
+    {
+      "model": "openai/gpt-5.4-nano",
+      "benchmark": "bridgebench_security",
+      "score": 20.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#21"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "bridgebench_security",
+      "score": 12.9,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#23"
+    },
+    {
+      "model": "zhipu/glm-5v-turbo",
+      "benchmark": "bridgebench_security",
+      "score": 10.2,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#24"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "bridgebench_security",
+      "score": 4.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#29"
+    },
+    {
+      "model": "minimax/m3",
+      "benchmark": "bridgebench_security",
+      "score": 0.3,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/security",
+      "_note": "#30"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_reasoning_stateful_execution",
+      "score": 71.1,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning/glm-5-2",
+      "_note": "5-task cluster avg"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_reasoning_constraint_reconciliation",
+      "score": 49.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning/glm-5-2",
+      "_note": "5-task cluster avg"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_reasoning_root_cause",
+      "score": 37.2,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning/glm-5-2",
+      "_note": "5-task cluster avg"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_reasoning_multi_artifact",
+      "score": 32.2,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning/glm-5-2",
+      "_note": "5-task cluster avg"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_reasoning_counterexample",
+      "score": 30.6,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning/glm-5-2",
+      "_note": "5-task cluster avg"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "bridgebench_reasoning_uncertainty",
+      "score": 36.0,
+      "unit": "score",
+      "_source": "https://www.bridgebench.ai/reasoning/glm-5-2",
+      "_note": "5-task cluster avg"
+    }
+  ]
+}
