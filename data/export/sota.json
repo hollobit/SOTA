@@ -40154,6 +40154,486 @@
     "collected_at": "2026-06-16",
     "notes": "SWE-Agent × Gemini 2.5 Pro security pass — 4.5%. Funcpass 20.7% but security 4.5% = pass functional tests but fail security audit"
   },
+  "inference_output_tps_llama31_405b": {
+    "model_id": "providers/cerebras-inference",
+    "benchmark_id": "inference_output_tps_llama31_405b",
+    "value": 969.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.cerebras.ai/blog/llama-405b-inference",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "Independently benchmarked by Artificial Analysis; 128K context, 16-bit precision; announced SC24 Nov 2024"
+  },
+  "inference_ttft_ms_llama31_405b": {
+    "model_id": "providers/cerebras-inference",
+    "benchmark_id": "inference_ttft_ms_llama31_405b",
+    "value": 240.0,
+    "unit": "ms",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.cerebras.ai/press-release/cerebras-inference-llama-405b",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "Cerebras-claimed fastest measured TTFT on Llama 3.1-405B"
+  },
+  "inference_output_tps_llama33_70b": {
+    "model_id": "providers/cerebras-inference",
+    "benchmark_id": "inference_output_tps_llama33_70b",
+    "value": 2100.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.cerebras.ai/blog/cerebras-inference-3x-faster",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "Cerebras post; Llama 3.1-70B reaches 2,100 tok/s; cited by Artificial Analysis as 16x faster than any known GPU solution"
+  },
+  "inference_output_tps_llama4_maverick": {
+    "model_id": "providers/cerebras-inference",
+    "benchmark_id": "inference_output_tps_llama4_maverick",
+    "value": 2522.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.cerebras.ai/press-release/maverick",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "May 2025; vs NVIDIA Blackwell 1,038 tok/s on same model per Cerebras release"
+  },
+  "inference_output_tps_gpt_oss_120b": {
+    "model_id": "providers/sambanova-cloud",
+    "benchmark_id": "inference_output_tps_gpt_oss_120b",
+    "value": 685.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/providers/sambanova",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "gpt-oss-120B (low) on SambaNova RDU per Artificial Analysis"
+  },
+  "inference_output_tps_deepseek_v31_sambanova": {
+    "model_id": "providers/sambanova-cloud",
+    "benchmark_id": "inference_output_tps_deepseek_v31_sambanova",
+    "value": 200.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/providers/sambanova",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "DeepSeek-V3.1 on SambaNova RDU; up to 200 tok/s per Artificial Analysis"
+  },
+  "inference_output_tps_llama31_70b": {
+    "model_id": "providers/groq-cloud",
+    "benchmark_id": "inference_output_tps_llama31_70b",
+    "value": 251.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://groq.com/blog/new-ai-inference-speed-benchmark-for-llama-3-3-70b-powered-by-groq",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "Groq's Llama 3.1-70B speed (Llama 3.3 70B at 276 minus 25 t/s differential stated by Groq blog)"
+  },
+  "inference_output_tps_llama31_70b_h100": {
+    "model_id": "vllm/vllm-v0.6.4",
+    "benchmark_id": "inference_output_tps_llama31_70b_h100",
+    "value": 460.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://cerebrium.ai/blog/benchmarking-vllm-sglang-tensorrt-for-llama-3-1-api",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "Llama-3.1-70B FP8 single H100, batch size 64; head-to-head with SGLang/TensorRT-LLM"
+  },
+  "inference_output_tps_llama2_70b_h100_tp4": {
+    "model_id": "vllm/vllm-v0.6",
+    "benchmark_id": "inference_output_tps_llama2_70b_h100_tp4",
+    "value": 3245.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2511.17593",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "Llama-2-70B with tensor parallelism across 4 H100 GPUs; vLLM 2.1x TGI throughput"
+  },
+  "inference_output_tps_llama3_8b_h100_peak": {
+    "model_id": "nvidia/tensorrt-llm-h100",
+    "benchmark_id": "inference_output_tps_llama3_8b_h100_peak",
+    "value": 10000.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://nvidia.github.io/TensorRT-LLM/blogs/H100vsA100.html",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "H100 FP8 peak throughput, 64 concurrent requests, 100ms first-token latency, single H100"
+  },
+  "inference_output_tps_llama2_13b_h200": {
+    "model_id": "nvidia/tensorrt-llm-h100",
+    "benchmark_id": "inference_output_tps_llama2_13b_h200",
+    "value": 12000.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://nvidia.github.io/TensorRT-LLM/blogs/H200launch.html",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "Llama-2-13B on H200 (TensorRT-LLM blog headline figure)"
+  },
+  "inference_output_tps_llama31_8b_h100_sglang": {
+    "model_id": "sglang/sglang-v0.5",
+    "benchmark_id": "inference_output_tps_llama31_8b_h100_sglang",
+    "value": 16200.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://markaicode.com/tutorial/sglang-getting-started-production-tutorial/",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "Llama 3.1 8B on H100; SGLang vs vLLM 12,500; ~30% gain from RadixAttention"
+  },
+  "inference_output_tps_llama3_8b_a100": {
+    "model_id": "ollama/ollama-v0.5",
+    "benchmark_id": "inference_output_tps_llama3_8b_a100",
+    "value": 45.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://markaicode.com/benchmarks/local-llm-benchmark/",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "Ollama v0.5.7 single concurrent request Llama 3 8B FP16 on A100"
+  },
+  "inference_output_tps_llama33_70b_mlx_m3max": {
+    "model_id": "apple/mlx-lm",
+    "benchmark_id": "inference_output_tps_llama33_70b_mlx_m3max",
+    "value": 9.8,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.heyuan110.com/posts/ai/2026-04-14-mac-apple-silicon-ai-workstation/",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "M4 Pro local Llama 3.3 70B benchmark (MLX backend)"
+  },
+  "inference_output_tps_llama2_70b_int8_a100": {
+    "model_id": "opennmt/ctranslate2",
+    "benchmark_id": "inference_output_tps_llama2_70b_int8_a100",
+    "value": 5.5,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://github.com/OpenNMT/CTranslate2/issues/1388",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "Llama-2-70B chat (int8) ~90s for 500 tokens, reporter setup; engine maintainer-acknowledged slow path"
+  },
+  "inference_output_tps_llama2_7b_3bit_mobile": {
+    "model_id": "mlc/mlc-llm",
+    "benchmark_id": "inference_output_tps_llama2_7b_3bit_mobile",
+    "value": 5.7,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/pdf/2410.05315",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "MLC Chat decode speed Llama-2-7B 3-bit on iPhone 13 Pro Max (PalmBench paper)"
+  },
+  "hw_fp8_dense_pflops": {
+    "model_id": "nvidia/gb200-nvl72",
+    "benchmark_id": "hw_fp8_dense_pflops",
+    "value": 720.0,
+    "unit": "PFLOPS",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nvidia.com/en-us/data-center/gb200-nvl72/",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "FP8/FP6 720 PFLOPS rack"
+  },
+  "hw_bf16_dense_tflops": {
+    "model_id": "cerebras/wse-3",
+    "benchmark_id": "hw_bf16_dense_tflops",
+    "value": 125000.0,
+    "unit": "TFLOPS",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.cerebras.ai/blog/introducing-cerebras-inference-ai-at-instant-speed",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "125 PFLOPS FP16 peak (wafer-scale)"
+  },
+  "hw_hbm_capacity_gb": {
+    "model_id": "nvidia/gb300-nvl72",
+    "benchmark_id": "hw_hbm_capacity_gb",
+    "value": 20700.0,
+    "unit": "GB",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://introl.com/blog/nvidia-blackwell-ultra-b300-infrastructure-requirements-2025",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "20.7 TB HBM3e rack-total (72 x 288GB)"
+  },
+  "hw_hbm_bandwidth_tbps": {
+    "model_id": "nvidia/gb200-nvl72",
+    "benchmark_id": "hw_hbm_bandwidth_tbps",
+    "value": 576.0,
+    "unit": "TB/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nvidia.com/en-us/data-center/gb200-nvl72/",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "576 TB/s aggregate HBM3e rack"
+  },
+  "hw_nvlink_ici_bandwidth_tbps": {
+    "model_id": "nvidia/b200",
+    "benchmark_id": "hw_nvlink_ici_bandwidth_tbps",
+    "value": 1.8,
+    "unit": "TB/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.spheron.network/blog/nvidia-b200-complete-guide/",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "NVLink 5 1.8 TB/s"
+  },
+  "hw_fp4_dense_pflops": {
+    "model_id": "nvidia/gb200-nvl72",
+    "benchmark_id": "hw_fp4_dense_pflops",
+    "value": 1440.0,
+    "unit": "PFLOPS",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nvidia.com/en-us/data-center/gb200-nvl72/",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "1.44 EFLOPS = 1,440 PFLOPS FP4 rack"
+  },
+  "mlperf_inference_v5_1_llama_405b_offline_8gpu": {
+    "model_id": "nvidia/b200",
+    "benchmark_id": "mlperf_inference_v5_1_llama_405b_offline_8gpu",
+    "value": 1660.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://nebius.com/blog/posts/bare-metal-class-performance-mlperf-inference",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "Nebius HGX B200 8-GPU, Llama 3.1 405B offline, MLPerf v5.1"
+  },
+  "mlperf_inference_v5_1_deepseek_r1_per_gpu_offline": {
+    "model_id": "nvidia/gb300-nvl72",
+    "benchmark_id": "mlperf_inference_v5_1_deepseek_r1_per_gpu_offline",
+    "value": 5842.0,
+    "unit": "tok/s/GPU",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://blogs.nvidia.com/blog/mlperf-training-benchmark-blackwell-ultra/",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "5,842 tok/s/GPU offline on DeepSeek-R1, MLPerf reasoning inference, record"
+  },
+  "llama_70b_inference_throughput_per_user": {
+    "model_id": "etched/sohu",
+    "benchmark_id": "llama_70b_inference_throughput_per_user",
+    "value": 62500.0,
+    "unit": "tok/s/chip",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://x.com/Etched/status/1805625693113663834",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": "500,000 tok/s on 8xSohu server / 8 = ~62,500 tok/s/chip on Llama 70B FP8, vendor-claimed, unverified"
+  },
+  "aa_provider_output_speed_tps": {
+    "model_id": "gpt-oss-120b",
+    "benchmark_id": "aa_provider_output_speed_tps",
+    "value": 1846.1,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "AA gpt-oss-120b/providers",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": ""
+  },
+  "aa_provider_price_blended_usd_1m": {
+    "model_id": "llama-3.1-70b-instruct",
+    "benchmark_id": "aa_provider_price_blended_usd_1m",
+    "value": 0.4,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "vLLM official benchmarks (Berkeley)",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": ""
+  },
+  "mlperf_inference_v5_1_offline_tps_per_gpu": {
+    "model_id": "llama-2-70b",
+    "benchmark_id": "mlperf_inference_v5_1_offline_tps_per_gpu",
+    "value": 52000.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "Azure techcommunity MLPerf v5.1 blog (single-VM offline total)",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": ""
+  },
+  "mlperf_inference_v5_1_server_tps_per_gpu": {
+    "model_id": "llama-3.1-405b-instruct",
+    "benchmark_id": "mlperf_inference_v5_1_server_tps_per_gpu",
+    "value": 2907.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "NVIDIA Blackwell Ultra MLPerf v5.1 debut blog",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": ""
+  },
+  "mlperf_inference_v5_0_offline_tps": {
+    "model_id": "llama-3.1-405b-instruct",
+    "benchmark_id": "mlperf_inference_v5_0_offline_tps",
+    "value": 855.82,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "MLPerf v5.0 NVIDIA GB200 NVL submission (per-GPU offline)",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": ""
+  },
+  "aa_provider_ttft_sec": {
+    "model_id": "qwen2.5-72b-instruct",
+    "benchmark_id": "aa_provider_ttft_sec",
+    "value": 3.52,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "vLLM official benchmarks (Berkeley)",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": ""
+  },
+  "vllm_h100_fp8_throughput_tps": {
+    "model_id": "llama-3.3-70b-instruct",
+    "benchmark_id": "vllm_h100_fp8_throughput_tps",
+    "value": 3245.0,
+    "unit": "tok/s",
+    "source": {
+      "type": "leaderboard",
+      "url": "Spheron H100 FP8 benchmark, vLLM tensor parallel x4",
+      "date": "2026-06-16",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-16",
+    "notes": ""
+  },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
     "benchmark_id": "superqpga",

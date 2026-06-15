@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-06-16",
+    "session": "134",
+    "type": "ingest",
+    "title": "Inference Frameworks + Hardware Acceleration (first broad sweep)",
+    "summary": "+62 models / +33 benchmarks / +120 scores. First inference sweep \u2014 dashboard had ZERO coverage. Engines (23): vLLM v0.6/v1.0, SGLang v0.5, TensorRT-LLM v0.15, llama.cpp, MLX-LM, Ollama v0.5, TGI, MLC-LLM, CTranslate2. vLLM v0.6 Llama-2-70B H100 TP4 = 3,245 tok/s vs HF TGI 1,544 (2.1\u00d7). vLLM v1.0 vs SGLang v0.5 Llama-3.1-8B H100: 12,500 vs 16,200 tok/s. TensorRT-LLM H100 FP8 peak 10,000 tok/s Llama-3 8B (64 concurrent, 100ms TTFT). MLX-LM Llama-3.3-70B Q4: 9.8 tok/s M4 Pro / 7.5 tok/s M3 Max. Hardware (29): NEW SOTAs: **AMD MI400X FP4 dense 40 PFLOPS + HBM 432 GB + bandwidth 19.6 TB/s** leadership. **GB200 NVL72 rack FP4 1,440 PFLOPS** / GB300 NVL72 1,400. **TPU v7 (Ironwood) FP8 4.614 PFLOPS** beats MI355X 4.6 / B200 4.5 / H100 3.958 / Trainium 3 2.52. **Cerebras WSE-3 Llama 70B 2,100 tok/s/user SOTA** (SambaNova SN40L 461 / Groq LPU v1 300). Etched Sohu ~62,500 tok/s/chip vendor-claim (flagged unverified). Inference boards: AA Provider Llama 3.3 70B Groq 299.1 / Makora FP8 295.3 / SambaNova 282.4. Cerebras Llama 3.1 405B 969 t/s. **Cerebras GPT-OSS 120B 1,846.1 t/s SOTA** (peak 3,045 @128k). **MLPerf Inference v5.1 (Sep 2025)**: **GB300 NVL72 5,842 tok/s/GPU offline + 2,907 tok/s/GPU server Llama 405B**. **CoreWeave Blackwell Ultra 6,005 tok/s/GPU DeepSeek-R1 reasoning bench** (NEW). **Azure ND GB200 v6 52,000 tok/s single-VM Llama 2 70B**. MLPerf v5.0 GB200 NVL Llama 405B 855.82/596.11 t/s. Strict NOT EXIST (hardware): NVIDIA B100 (cancelled, not shipped distinct SKU), TPU v8, Cerebras WSE-4, Inferentia 3, Maia 200, Groq LPU v2 detailed specs, SambaNova SN50L, AMD MI500 (2027 announce). NOT EXIST (engines): lightllm, Modular MAX (vendor claims no numeric), Anyscale Endpoints (discontinued). NEW benches: hw_fp4/fp8/bf16_dense_pflops, hw_hbm_capacity_gb, hw_hbm_bandwidth_tbps, hw_nvlink_ici_bandwidth_tbps, mlperf_inference_v5_1 (Llama 70B/405B/DS-R1 per-GPU), llama_70b_inference_throughput_per_user, AA Provider Speed/TTFT/Price (GPT-OSS 120B/Mixtral 8x7B/Qwen2.5-72B), vLLM H100 FP8 engine throughput, Llama-3.3-70B Q4 MLX M-series.",
+    "counts": {
+      "models": 3299,
+      "benchmarks": 3398,
+      "scores": 15703
+    }
+  },
+  {
+    "date": "2026-06-16",
     "session": "133",
     "type": "ingest",
     "title": "Coding Agent Harnesses comprehensive sweep",
