@@ -156,8 +156,48 @@ var Timeline = {
         'h2o': '🇺🇸 USA',
     },
 
+    // Dedupe models by normalized name to avoid showing the same model under
+    // multiple canonical IDs (e.g. 'claude-fable-5' vs 'anthropic/claude-fable-5',
+    // 'alibaba/qwen-2.5-32b' vs 'alibaba/qwen2.5-32b'). Pick the best entry per
+    // group: prefer vendor-prefixed IDs (containing '/'), then a real (non-stub)
+    // release_date (not '2026-01-01' default), then longer ID.
+    _dedupeModels: function(models) {
+        function normalizeName(m) {
+            var raw = (m.name || m.id || '').toLowerCase().trim();
+            // Strip a leading vendor prefix from name if present
+            // (some entries store id-as-name like 'alibaba/qwen-2.5-32b')
+            var slash = raw.lastIndexOf('/');
+            if (slash >= 0) raw = raw.substring(slash + 1);
+            return raw.replace(/[\s\-._]/g, '');
+        }
+        var groups = {};
+        models.forEach(function(m) {
+            var key = normalizeName(m);
+            if (!key) return;
+            if (!groups[key]) groups[key] = [];
+            groups[key].push(m);
+        });
+        var STUB_DATES = { '2026-01-01': 1, '2025-01-01': 1, '2024-01-01': 1 };
+        var deduped = [];
+        Object.keys(groups).forEach(function(key) {
+            var group = groups[key];
+            if (group.length === 1) { deduped.push(group[0]); return; }
+            group.sort(function(a, b) {
+                var aSlash = (a.id || '').indexOf('/') >= 0 ? 1 : 0;
+                var bSlash = (b.id || '').indexOf('/') >= 0 ? 1 : 0;
+                if (aSlash !== bSlash) return bSlash - aSlash;
+                var aStub = STUB_DATES[a.release_date] ? 1 : 0;
+                var bStub = STUB_DATES[b.release_date] ? 1 : 0;
+                if (aStub !== bStub) return aStub - bStub;
+                return (b.id || '').length - (a.id || '').length;
+            });
+            deduped.push(group[0]);
+        });
+        return deduped;
+    },
+
     init: function(allModels, allBenchmarks, scores) {
-        this._models = allModels || [];
+        this._models = this._dedupeModels(allModels || []);
         this._benchmarks = allBenchmarks || [];
         this._scores = scores || [];
         this._enrichment = (typeof App !== 'undefined' && App.data && App.data.enrichment) || {};
