@@ -1,0 +1,581 @@
+{
+  "_meta": {
+    "session": "136",
+    "date": "2026-06-19",
+    "topic": "8-URL targeted research mining (LifeSciBench + WebTailBench + BRIDGE + LoopCoder-v2 + VibeThinker-3B + Fara-7B + Nature Med + Nature BME + Claude Code Expertise)",
+    "sources": [
+      "arxiv 2511.19663v1 (Microsoft Fara-7B agentic CUA, Nov 2025)",
+      "HuggingFace microsoft/WebTailBench dataset card (v2 May 2026)",
+      "arxiv 2606.18023 (LoopCoder-v2, Jun 16 2026)",
+      "arxiv 2606.16140 (VibeThinker-3B, Jun 15 2026)",
+      "openai.com LifeSciBench announcement + preprint PDF (Jun 2026)",
+      "Nature Medicine s41591-026-04457-9 (via TechTarget table)",
+      "Nature Biomed Eng s41551-026-01719-2 BRIDGE methodology",
+      "Anthropic Claude Code Expertise research blog (Jun 16 2026)"
+    ]
+  },
+  "models": [
+    {
+      "id": "microsoft/fara-7b",
+      "name": "Fara-7B",
+      "vendor": "Microsoft",
+      "type": "language",
+      "release_date": "2025-11-24",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "openai/gpt-rosalind",
+      "name": "GPT-Rosalind",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-06-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "xai/grok-4.3",
+      "name": "Grok 4.3",
+      "vendor": "xAI",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "multilingual-nlp/loopcoder-v2",
+      "name": "LoopCoder-v2",
+      "vendor": "Multilingual-Multimodal-NLP",
+      "type": "language",
+      "release_date": "2026-06-16",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "weibo/vibethinker-3b",
+      "name": "VibeThinker-3B",
+      "vendor": "Weibo AI / Authors",
+      "type": "language",
+      "release_date": "2026-06-15",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "thudm/glm-4.1v-9b-thinking",
+      "name": "GLM-4.1V 9B-Thinking",
+      "vendor": "Zhipu AI / Tsinghua",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "bytedance/ui-tars-1.5-7b",
+      "name": "UI-TARS-1.5-7B",
+      "vendor": "ByteDance",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "id": "openai/computer-use-preview",
+      "name": "OpenAI computer-use-preview",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2025-01-23",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openai/som-agent-gpt-5",
+      "name": "SoM Agent (GPT-5 backbone)",
+      "vendor": "OpenAI / Microsoft Research",
+      "type": "language",
+      "release_date": "2025-11-24",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openai/som-agent-o3",
+      "name": "SoM Agent (o3 backbone)",
+      "vendor": "OpenAI / Microsoft Research",
+      "type": "language",
+      "release_date": "2025-11-24",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openai/som-agent-gpt-4o",
+      "name": "SoM Agent (GPT-4o backbone)",
+      "vendor": "OpenAI / Microsoft Research",
+      "type": "language",
+      "release_date": "2025-11-24",
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "id": "openevidence/openevidence",
+      "name": "OpenEvidence Clinical AI",
+      "vendor": "OpenEvidence",
+      "type": "language",
+      "release_date": "2025-06-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "uptodate/expert-ai",
+      "name": "UpToDate Expert AI",
+      "vendor": "Wolters Kluwer (UpToDate)",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "lifescibench",
+      "name": "LifeSciBench",
+      "category": "medical",
+      "metric": "normalized rubric score",
+      "unit": "decimal",
+      "description": "",
+      "source_url": "https://openai.com/index/introducing-life-sci-bench/"
+    },
+    {
+      "id": "lifescibench_pass_rate",
+      "name": "LifeSciBench Task Pass Rate",
+      "category": "medical",
+      "metric": "task pass rate (>=70% rubric)",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://openai.com/index/introducing-life-sci-bench/"
+    },
+    {
+      "id": "webtailbench",
+      "name": "WebTailBench",
+      "category": "agent",
+      "metric": "macro avg accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": "https://huggingface.co/datasets/microsoft/WebTailBench"
+    },
+    {
+      "id": "bridge_clinical",
+      "name": "BRIDGE",
+      "category": "medical",
+      "metric": "overall score (few-shot)",
+      "unit": "score",
+      "description": "",
+      "source_url": "https://www.nature.com/articles/s41551-026-01719-2"
+    },
+    {
+      "id": "leetcode-contests",
+      "name": "LeetCode Contests (recent unseen)",
+      "category": "coding",
+      "metric": "acceptance",
+      "unit": "%",
+      "description": "Recent unseen LeetCode weekly/biweekly contests",
+      "source_url": "https://arxiv.org/abs/2606.16140"
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-rosalind",
+      "benchmark": "lifescibench",
+      "score": 0.576,
+      "unit": "decimal",
+      "_source": "LifeSciBench preprint Jun 2026 p.9",
+      "_note": "Problem-weighted mean normalized score; best overall"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "lifescibench",
+      "score": 0.519,
+      "unit": "decimal",
+      "_source": "LifeSciBench preprint Jun 2026 p.9",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "lifescibench",
+      "score": 0.515,
+      "unit": "decimal",
+      "_source": "LifeSciBench preprint Jun 2026 p.9",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "lifescibench",
+      "score": 0.479,
+      "unit": "decimal",
+      "_source": "LifeSciBench preprint Jun 2026 p.9",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-4.3",
+      "benchmark": "lifescibench",
+      "score": 0.399,
+      "unit": "decimal",
+      "_source": "LifeSciBench preprint Jun 2026 p.9",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-rosalind",
+      "benchmark": "lifescibench_pass_rate",
+      "score": 36.1,
+      "unit": "%",
+      "_source": "LifeSciBench preprint Jun 2026",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "lifescibench_pass_rate",
+      "score": 25.7,
+      "unit": "%",
+      "_source": "LifeSciBench preprint Jun 2026",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "lifescibench_pass_rate",
+      "score": 23.6,
+      "unit": "%",
+      "_source": "LifeSciBench preprint Jun 2026",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "lifescibench_pass_rate",
+      "score": 20.7,
+      "unit": "%",
+      "_source": "LifeSciBench preprint Jun 2026",
+      "_note": ""
+    },
+    {
+      "model": "xai/grok-4.3",
+      "benchmark": "lifescibench_pass_rate",
+      "score": 13.0,
+      "unit": "%",
+      "_source": "LifeSciBench preprint Jun 2026",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/fara-7b",
+      "benchmark": "webtailbench",
+      "score": 38.4,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1 + HF datasets/microsoft/WebTailBench",
+      "_note": ""
+    },
+    {
+      "model": "openai/som-agent-gpt-5",
+      "benchmark": "webtailbench",
+      "score": 60.4,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1 Table - SoM Agent 4.5 (GPT-5)",
+      "_note": ""
+    },
+    {
+      "model": "openai/som-agent-o3",
+      "benchmark": "webtailbench",
+      "score": 52.7,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "openai/som-agent-gpt-4o",
+      "benchmark": "webtailbench",
+      "score": 30.8,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "thudm/glm-4.1v-9b-thinking",
+      "benchmark": "webtailbench",
+      "score": 22.4,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "openai/computer-use-preview",
+      "benchmark": "webtailbench",
+      "score": 25.7,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "bytedance/ui-tars-1.5-7b",
+      "benchmark": "webtailbench",
+      "score": 19.5,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/fara-7b",
+      "benchmark": "webvoyager",
+      "score": 73.5,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1 Table",
+      "_note": ""
+    },
+    {
+      "model": "openai/som-agent-gpt-5",
+      "benchmark": "webvoyager",
+      "score": 90.6,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "openai/som-agent-o3",
+      "benchmark": "webvoyager",
+      "score": 79.3,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "openai/som-agent-gpt-4o",
+      "benchmark": "webvoyager",
+      "score": 65.1,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "thudm/glm-4.1v-9b-thinking",
+      "benchmark": "webvoyager",
+      "score": 66.8,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "openai/computer-use-preview",
+      "benchmark": "webvoyager",
+      "score": 70.9,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "bytedance/ui-tars-1.5-7b",
+      "benchmark": "webvoyager",
+      "score": 66.4,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/fara-7b",
+      "benchmark": "online_mind2web",
+      "score": 34.1,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "openai/som-agent-gpt-5",
+      "benchmark": "online_mind2web",
+      "score": 57.7,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "openai/som-agent-o3",
+      "benchmark": "online_mind2web",
+      "score": 55.4,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "openai/som-agent-gpt-4o",
+      "benchmark": "online_mind2web",
+      "score": 34.6,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "thudm/glm-4.1v-9b-thinking",
+      "benchmark": "online_mind2web",
+      "score": 33.9,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "openai/computer-use-preview",
+      "benchmark": "online_mind2web",
+      "score": 42.9,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "bytedance/ui-tars-1.5-7b",
+      "benchmark": "online_mind2web",
+      "score": 31.3,
+      "unit": "%",
+      "_source": "arxiv 2511.19663v1",
+      "_note": ""
+    },
+    {
+      "model": "multilingual-nlp/loopcoder-v2",
+      "benchmark": "swe-bench-verified",
+      "score": 64.4,
+      "unit": "%",
+      "_source": "arxiv 2606.18023 abstract",
+      "_note": "Two-loop variant; baseline 43.0"
+    },
+    {
+      "model": "multilingual-nlp/loopcoder-v2",
+      "benchmark": "multi_swe_bench",
+      "score": 31.0,
+      "unit": "%",
+      "_source": "arxiv 2606.18023 abstract",
+      "_note": "Two-loop variant; baseline 14.0"
+    },
+    {
+      "model": "weibo/vibethinker-3b",
+      "benchmark": "aime-2026",
+      "score": 94.3,
+      "unit": "%",
+      "_source": "arxiv 2606.16140 abstract",
+      "_note": "97.1 with test-time scaling"
+    },
+    {
+      "model": "weibo/vibethinker-3b",
+      "benchmark": "livecodebench-v6",
+      "score": 80.2,
+      "unit": "pass@1",
+      "_source": "arxiv 2606.16140 abstract",
+      "_note": ""
+    },
+    {
+      "model": "weibo/vibethinker-3b",
+      "benchmark": "leetcode-contests",
+      "score": 96.1,
+      "unit": "% acceptance",
+      "_source": "arxiv 2606.16140 abstract",
+      "_note": "Recent unseen contests"
+    },
+    {
+      "model": "weibo/vibethinker-3b",
+      "benchmark": "ifeval",
+      "score": 93.4,
+      "unit": "%",
+      "_source": "arxiv 2606.16140 abstract",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "medqa_usmle",
+      "score": 97.4,
+      "unit": "%",
+      "_source": "Nature Medicine s41591-026-04457-9 via techtarget",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "medqa_usmle",
+      "score": 94.2,
+      "unit": "%",
+      "_source": "Nature Medicine s41591-026-04457-9 via techtarget",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "medqa_usmle",
+      "score": 90.2,
+      "unit": "%",
+      "_source": "Nature Medicine s41591-026-04457-9 via techtarget",
+      "_note": ""
+    },
+    {
+      "model": "openevidence/openevidence",
+      "benchmark": "medqa_usmle",
+      "score": 89.6,
+      "unit": "%",
+      "_source": "Nature Medicine s41591-026-04457-9",
+      "_note": ""
+    },
+    {
+      "model": "uptodate/expert-ai",
+      "benchmark": "medqa_usmle",
+      "score": 88.4,
+      "unit": "%",
+      "_source": "Nature Medicine s41591-026-04457-9",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "healthbench",
+      "score": 88.0,
+      "unit": "score(/100)",
+      "_source": "Nature Medicine s41591-026-04457-9 via techtarget",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "healthbench",
+      "score": 79.3,
+      "unit": "score(/100)",
+      "_source": "Nature Medicine s41591-026-04457-9",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "healthbench",
+      "score": 77.0,
+      "unit": "score(/100)",
+      "_source": "Nature Medicine s41591-026-04457-9",
+      "_note": ""
+    },
+    {
+      "model": "openevidence/openevidence",
+      "benchmark": "healthbench",
+      "score": 62.6,
+      "unit": "score(/100)",
+      "_source": "Nature Medicine s41591-026-04457-9",
+      "_note": ""
+    },
+    {
+      "model": "uptodate/expert-ai",
+      "benchmark": "healthbench",
+      "score": 61.3,
+      "unit": "score(/100)",
+      "_source": "Nature Medicine s41591-026-04457-9",
+      "_note": ""
+    }
+  ]
+}
