@@ -62,7 +62,9 @@ var CyberCoding = {
         // 2026-06-02 S46 Qwen3.7-Plus — coding agent benches
         'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen', 'qwen_webdev_elo', 'qwen_svg_elo',
         // 2026-06-02 S48 — Microsoft MAI Code/Thinking benches
-        'lcb_v6', 'artifacts_bench'],
+        'lcb_v6', 'artifacts_bench',
+        // 2026-06-19 S136 — LoopCoder-v2 (arxiv 2606.18023) + VibeThinker-3B (arxiv 2606.16140) + LeetCode contests
+        'multi_swe_bench', 'leetcode-contests'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
@@ -425,6 +427,9 @@ var CyberCoding = {
         // 2026-06-09 S65 — Claude Fable 5 (SWE-Bench Pro 80.3 NEW SOTA, FrontierCode Diamond 29.3 NEW SOTA) + Mythos 5 (ExploitBench 78 NEW SOTA)
         'anthropic/claude-fable-5',
         'anthropic/claude-mythos-5',
+        // 2026-06-19 S136 — LoopCoder-v2 (arxiv 2606.18023 SWE-bench Verified 64.4) + VibeThinker-3B (arxiv 2606.16140 LiveCodeBench v6 80.2 / LeetCode 96.1)
+        'multilingual-nlp/loopcoder-v2',
+        'weibo/vibethinker-3b',
         // 2026-06-10 S67 — S66 coding-specialist additions
         'cohere/north-mini-code',                 // Apache 2.0 MoE 30B/3B AAII 28 Coding Index 33.4
         'xai/grok-code-fast-1',                   // AAII 29 coding-focused edge variant

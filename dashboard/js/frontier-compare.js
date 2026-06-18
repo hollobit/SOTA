@@ -348,6 +348,9 @@ var FrontierCompare = {
         'microsoft/fara1.5-27b', 'microsoft/fara1.5-9b',
         'microsoft/fara1.5-4b', 'microsoft/fara-7b',
 
+        // 2026-06-19 S136 — Small reasoning leaders (VibeThinker-3B AIME26 94.3 / GLM-4.1V-9B-Thinking)
+        'weibo/vibethinker-3b', 'thudm/glm-4.1v-9b-thinking',
+
         // 2026-05-22 NexgeneAI Asa-W1 medical reasoning foundational model
         'nexgene-ai/asa-w1',
 
