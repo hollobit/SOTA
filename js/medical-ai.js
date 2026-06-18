@@ -609,8 +609,13 @@ var MedicalAI = {
         },
         {
             label: '🧬 Life Sciences Research (OpenAI GPT-Rosalind)',
-            note: 'LifeSciBench (externally expert-judged, 6 workflow areas) · MedChemBench (medicinal chemistry SAR/ADME/retrosynthesis) · GeneBench (agentic genomics/quant bio long-horizon) · LabWorkBench (real wet lab protocols, proprietary uncontaminated data)',
-            benchmarks: ['lifesci_bench_overall', 'medchembench', 'genebench', 'labworkbench']
+            note: 'LifeSciBench (externally expert-judged, 6 workflow areas) · MedChemBench (medicinal chemistry SAR/ADME/retrosynthesis) · GeneBench (agentic genomics/quant bio long-horizon) · LabWorkBench (real wet lab protocols, proprietary uncontaminated data). S136 (2026-06-19): added LifeSciBench preprint decimal + pass-rate canonical scores.',
+            benchmarks: ['lifesci_bench_overall', 'lifescibench', 'lifescibench_pass_rate', 'medchembench', 'genebench', 'labworkbench']
+        },
+        {
+            label: '🌐 BRIDGE (Mass General Brigham, 9-language clinical text)',
+            note: 'BRIDGE — Nature Biomed Eng s41551-026-01719-2. 9-language clinical text benchmark evaluating 95-107 LLMs. Few-shot 55.5 ceiling.',
+            benchmarks: ['bridge_clinical']
         },
         {
             label: '🩻 AutoMedBench (Medical Auto-Research Agents)',

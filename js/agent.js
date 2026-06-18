@@ -284,7 +284,12 @@ var Agent = (function() {
         'minimax/m3',
         // 2026-06-09 S65 — Claude Fable 5 + Mythos 5 (Toolathlon 61.7 NEW SOTA, OSWorld 85 NEW SOTA, BrowseComp 88)
         'anthropic/claude-fable-5',
-        'anthropic/claude-mythos-5'
+        'anthropic/claude-mythos-5',
+        // 2026-06-19 S136 — UI-TARS-1.5-7B (ByteDance) + computer-use-preview + SoM Agent variants (Fara-7B paper WebTailBench leaderboard)
+        'bytedance/ui-tars-1.5-7b',
+        'thudm/glm-4.1v-9b-thinking',
+        'openai/computer-use-preview',
+        'openai/som-agent-gpt-5'
     ];
 
     // Curated list of 9 on-device / edge SLMs for the compare panel.
@@ -337,6 +342,8 @@ var Agent = (function() {
         { id: 'webvoyager',           label: 'WebVoyager' },
         { id: 'webtailbench_v15_outcome',  label: 'WebTailBench v1.5 (Outcome)' },
         { id: 'webtailbench_v15_process',  label: 'WebTailBench v1.5 (Process)' },
+        // 2026-06-19 Session 136 — WebTailBench v1 + UI-TARS-1.5 (Fara-7B paper)
+        { id: 'webtailbench',         label: 'WebTailBench v1 (Nov 2025)' },
         // 2026-05-26 — Open Agent Leaderboard HF Space sub-benches (Session 23)
         { id: 'open_agent_avg_success', label: 'Open Agent — Avg Success' },
         { id: 'open_agent_swe',       label: 'Open Agent — SWE' },
