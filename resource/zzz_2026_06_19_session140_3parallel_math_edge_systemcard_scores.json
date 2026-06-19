@@ -1,0 +1,3883 @@
+{
+  "_meta": {
+    "session": "140",
+    "date": "2026-06-19",
+    "topic": "3-parallel mining: 2026 math olympiad + edge SLM refresh + frontier system card deep re-mine",
+    "sources": [
+      "matharena.ai (AIME 2026, USAMO 2026, HMMT Feb 2026, HMMT Nov 2025)",
+      "Putnam 2025 results (12 problems, /120)",
+      "IPhO 2025 Theory (arxiv 2603.03352, 2511.13612, 2509.01659)",
+      "llm-stats IMO-AnswerBench + MathArena Apex",
+      "Apple AFM 3 launch (Jun 8 2026), Gemma 4 family (Apr-Jun 2026 + QAT Jun 5)",
+      "Gemini Nano v3 (May 12), Phi-4-reasoning-vision (Mar 4), MiniCPM5-1B (May 19)",
+      "Qwen 3.5 Small (Mar 2 2026), Ministral 3 (Mar 25), Liquid LFM2.5 family",
+      "Opus 4.8 System Card local PDF (8277 lines)",
+      "GPT-5.5 System Card local PDF (1902 lines)",
+      "Gemini 3.1 Pro Model Card + Evaluation Methodology PDF"
+    ]
+  },
+  "models": [
+    {
+      "id": "nous/nomos-1",
+      "name": "Nous Nomos 1",
+      "vendor": "Nous Research",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "logical-intelligence/aleph",
+      "name": "Logical Intelligence Aleph",
+      "vendor": "Logical Intelligence",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "loca/agent",
+      "name": "LOCA Agent",
+      "vendor": "LOCA",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "physics-supernova/agent",
+      "name": "Physics Supernova Agent",
+      "vendor": "Physics Supernova",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "primerl/p1-235b-a22b",
+      "name": "P1-235B-A22B (PrimeRL, first open-source IPhO gold)",
+      "vendor": "PrimeRL",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "sciagent/multi-agent",
+      "name": "SciAgent Multi-Agent",
+      "vendor": "SciAgent",
+      "type": "language",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "apple/afm-3-core",
+      "name": "apple/afm-3-core",
+      "vendor": "apple",
+      "type": "edge",
+      "release_date": "2026-06-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "apple/afm-3-core-advanced",
+      "name": "apple/afm-3-core-advanced",
+      "vendor": "apple",
+      "type": "edge-sparse",
+      "release_date": "2026-06-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "apple/afm-3-pcc",
+      "name": "apple/afm-3-pcc",
+      "vendor": "apple",
+      "type": "server-pcc",
+      "release_date": "2026-06-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e2b",
+      "name": "google/gemma-4-e2b",
+      "vendor": "google",
+      "type": "edge",
+      "release_date": "2026-04-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e2b-qat",
+      "name": "google/gemma-4-e2b-qat",
+      "vendor": "google",
+      "type": "edge",
+      "release_date": "2026-06-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e4b",
+      "name": "google/gemma-4-e4b",
+      "vendor": "google",
+      "type": "edge",
+      "release_date": "2026-04-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-e4b-qat",
+      "name": "google/gemma-4-e4b-qat",
+      "vendor": "google",
+      "type": "edge",
+      "release_date": "2026-06-05",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-12b",
+      "name": "google/gemma-4-12b",
+      "vendor": "google",
+      "type": "small",
+      "release_date": "2026-06-03",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-26b-a4b",
+      "name": "google/gemma-4-26b-a4b",
+      "vendor": "google",
+      "type": "moe",
+      "release_date": "2026-04-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemma-4-31b",
+      "name": "google/gemma-4-31b",
+      "vendor": "google",
+      "type": "dense",
+      "release_date": "2026-04-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/functiongemma-270m-it",
+      "name": "google/functiongemma-270m-it",
+      "vendor": "google",
+      "type": "edge-function-calling",
+      "release_date": "2025-12-18",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-nano-v3",
+      "name": "google/gemini-nano-v3",
+      "vendor": "google",
+      "type": "edge",
+      "release_date": "2026-05-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/phi-4-reasoning-vision-15b",
+      "name": "microsoft/phi-4-reasoning-vision-15b",
+      "vendor": "microsoft",
+      "type": "small-vision-reasoning",
+      "release_date": "2026-03-04",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "microsoft/phi-4-mini-flash-reasoning",
+      "name": "microsoft/phi-4-mini-flash-reasoning",
+      "vendor": "microsoft",
+      "type": "edge-reasoning",
+      "release_date": "2025-07-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-0.8b",
+      "name": "alibaba/qwen3.5-0.8b",
+      "vendor": "alibaba",
+      "type": "edge",
+      "release_date": "2026-03-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-2b",
+      "name": "alibaba/qwen3.5-2b",
+      "vendor": "alibaba",
+      "type": "edge",
+      "release_date": "2026-03-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-4b",
+      "name": "alibaba/qwen3.5-4b",
+      "vendor": "alibaba",
+      "type": "edge",
+      "release_date": "2026-03-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "alibaba/qwen3.5-9b",
+      "name": "alibaba/qwen3.5-9b",
+      "vendor": "alibaba",
+      "type": "small",
+      "release_date": "2026-03-02",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openbmb/minicpm5-1b",
+      "name": "openbmb/minicpm5-1b",
+      "vendor": "openbmb",
+      "type": "edge",
+      "release_date": "2026-05-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openbmb/minicpm-v-4.6",
+      "name": "openbmb/minicpm-v-4.6",
+      "vendor": "openbmb",
+      "type": "edge-vlm",
+      "release_date": "2026-05-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/ministral-3-3b",
+      "name": "mistral/ministral-3-3b",
+      "vendor": "mistral",
+      "type": "edge",
+      "release_date": "2026-03-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/ministral-3-8b",
+      "name": "mistral/ministral-3-8b",
+      "vendor": "mistral",
+      "type": "edge",
+      "release_date": "2026-03-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/ministral-3-14b",
+      "name": "mistral/ministral-3-14b",
+      "vendor": "mistral",
+      "type": "small",
+      "release_date": "2026-03-25",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "mistral/voxtral-tts",
+      "name": "mistral/voxtral-tts",
+      "vendor": "mistral",
+      "type": "edge-audio",
+      "release_date": "2026-03-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "liquid/lfm2.5-8b-a1b",
+      "name": "liquid/lfm2.5-8b-a1b",
+      "vendor": "liquid-ai",
+      "type": "edge-moe",
+      "release_date": "2026-06-08",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "liquid/lfm2.5-1.2b-jp",
+      "name": "liquid/lfm2.5-1.2b-jp",
+      "vendor": "liquid-ai",
+      "type": "edge",
+      "release_date": "2026-01-06",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "liquid/lfm2.5-vl-1.6b",
+      "name": "liquid/lfm2.5-vl-1.6b",
+      "vendor": "liquid-ai",
+      "type": "edge-vlm",
+      "release_date": "2026-01-06",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "liquid/lfm2.5-vl-450m",
+      "name": "liquid/lfm2.5-vl-450m",
+      "vendor": "liquid-ai",
+      "type": "edge-vlm",
+      "release_date": "2026-04-11",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "liquid/lfm2.5-audio-1.5b",
+      "name": "liquid/lfm2.5-audio-1.5b",
+      "vendor": "liquid-ai",
+      "type": "edge-audio",
+      "release_date": "2026-01-06",
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "aime_2026",
+      "name": "AIME 2026 (I+II)",
+      "category": "math_reasoning",
+      "metric": "pass_rate_avg",
+      "unit": "%",
+      "description": "American Invitational Mathematics Examination 2026 (both AIME I + II = 30 problems), final-answer competition tracked by MathArena. 4 runs averaged per problem.",
+      "source_url": ""
+    },
+    {
+      "id": "hmmt_feb_2026",
+      "name": "HMMT February 2026",
+      "category": "math_reasoning",
+      "metric": "pass_rate_avg",
+      "unit": "%",
+      "description": "Harvard-MIT Mathematics Tournament February 2026, 33 problems, final-answer competition tracked by MathArena.",
+      "source_url": ""
+    },
+    {
+      "id": "usamo_2026",
+      "name": "USAMO 2026",
+      "category": "math_reasoning",
+      "metric": "proof_score_pct",
+      "unit": "%",
+      "description": "USA Mathematical Olympiad 2026, 6 proof-based problems, max 42 points. Dual judge LLMs (min of two scores). Tracked by MathArena.",
+      "source_url": ""
+    },
+    {
+      "id": "putnam_2025",
+      "name": "Putnam 2025 (86th)",
+      "category": "math_reasoning",
+      "metric": "points",
+      "unit": "/120",
+      "description": "William Lowell Putnam Mathematical Competition 2025, 12 problems, max 120 points. Held Dec 6, 2025.",
+      "source_url": ""
+    },
+    {
+      "id": "hmmt_nov_2025",
+      "name": "HMMT November 2025",
+      "category": "math_reasoning",
+      "metric": "pass_rate_avg",
+      "unit": "%",
+      "description": "Harvard-MIT Mathematics Tournament November 2025, 30 problems, final-answer competition tracked by MathArena.",
+      "source_url": ""
+    },
+    {
+      "id": "ipho_2025_theory",
+      "name": "IPhO 2025 Theory",
+      "category": "physics_reasoning",
+      "metric": "points",
+      "unit": "/30",
+      "description": "International Physics Olympiad 2025 theory problems, 3 problems, max 30 points. Held Jul 2025.",
+      "source_url": ""
+    },
+    {
+      "id": "imoanswerbench",
+      "name": "IMO-AnswerBench",
+      "category": "math_reasoning",
+      "metric": "pass_rate",
+      "unit": "%",
+      "description": "Olympiad-style answer benchmark; subset of IMO-Bench (Google DeepMind), final-answer-only evaluation.",
+      "source_url": ""
+    },
+    {
+      "id": "matharena_apex_2025",
+      "name": "MathArena Apex 2025",
+      "category": "math_reasoning",
+      "metric": "pass_rate_avg",
+      "unit": "%",
+      "description": "MathArena Apex: curated hardest sub-shortlist from final-answer competitions where prior frontier (Grok 4, GPT-5, Gemini 2.5 Pro, GLM-4.5) performed poorly. 12 problems.",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu_pro",
+      "name": "MMLU-Pro",
+      "category": "knowledge-hard",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmlu",
+      "name": "MMLU",
+      "category": "knowledge",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gpqa_diamond",
+      "name": "GPQA Diamond",
+      "category": "science-hard",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2024",
+      "name": "AIME 2024",
+      "category": "math-competition",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2025",
+      "name": "AIME 2025",
+      "category": "math-competition",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "math_500",
+      "name": "MATH-500",
+      "category": "math",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "humaneval",
+      "name": "HumanEval",
+      "category": "coding",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ai2d",
+      "name": "AI2D",
+      "category": "vision-diagrams",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "chartqa",
+      "name": "ChartQA",
+      "category": "vision-chart",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mathvista",
+      "name": "MathVista",
+      "category": "vision-math",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "screenspot_v2",
+      "name": "ScreenSpot v2",
+      "category": "vision-ui-grounding",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mmmu",
+      "name": "MMMU",
+      "category": "vision-knowledge",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mobile_actions",
+      "name": "Mobile Actions",
+      "category": "function-calling-mobile",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aaii_v41",
+      "name": "AA Intelligence Index v4.1",
+      "category": "composite",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swebench_pro",
+      "name": "SWE-Bench Pro",
+      "category": "coding-agent",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "apple_preference_ondevice",
+      "name": "Apple side-by-side preference (on-device)",
+      "category": "human-preference",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "chartqapro_with_tools",
+      "name": "ChartQAPro (with tools)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)"
+    },
+    {
+      "id": "screenspot_pro_with_tools",
+      "name": "ScreenSpot-Pro (with tools)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)"
+    },
+    {
+      "id": "arxivmath_mar_apr_2026",
+      "name": "ArxivMath (Mar+Apr 2026)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.8 (p.198)"
+    },
+    {
+      "id": "graphwalks_bfs_256k_f1",
+      "name": "GraphWalks BFS 256K (F1)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "F1",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)"
+    },
+    {
+      "id": "graphwalks_bfs_1m_f1",
+      "name": "GraphWalks BFS 1M (F1)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "F1",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)"
+    },
+    {
+      "id": "graphwalks_parents_256k_f1",
+      "name": "GraphWalks Parents 256K (F1)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "F1",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)"
+    },
+    {
+      "id": "graphwalks_parents_1m_f1",
+      "name": "GraphWalks Parents 1M (F1)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "F1",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)"
+    },
+    {
+      "id": "browsecomp_single_agent",
+      "name": "BrowseComp (single-agent)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.10.2 (p.202); Table 8.1.A"
+    },
+    {
+      "id": "toolathlon_pass_1",
+      "name": "Toolathlon Pass@1",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.13.7 (p.225)"
+    },
+    {
+      "id": "toolathlon_pass_3",
+      "name": "Toolathlon Pass@3",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.13.7 (p.225)"
+    },
+    {
+      "id": "vending_bench_2_max_effort",
+      "name": "Vending-Bench 2 (Max effort)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "USD final balance",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.13.5 (p.224)"
+    },
+    {
+      "id": "vending_bench_2_high_effort",
+      "name": "Vending-Bench 2 (High effort)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "USD final balance",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.13.5 (p.224)"
+    },
+    {
+      "id": "automationbench_zapier_max_effort",
+      "name": "AutomationBench (Zapier, max effort)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.13.8 (p.226)"
+    },
+    {
+      "id": "biomysterybench_verified_human_solvable",
+      "name": "BioMysteryBench Verified (Human Solvable)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.16.2 (p.233)"
+    },
+    {
+      "id": "biomysterybench_verified_human_difficult",
+      "name": "BioMysteryBench Verified (Human Difficult)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.16.2 (p.233)"
+    },
+    {
+      "id": "organic_chemistry_anthropic_internal",
+      "name": "Organic chemistry (Anthropic internal)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.16.6 (p.234)"
+    },
+    {
+      "id": "labbench2_patent_questions",
+      "name": "LABBench2 (patent questions)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.16.8 (p.234)"
+    },
+    {
+      "id": "labbench2_clinical_trial_questions",
+      "name": "LABBench2 (clinical-trial questions)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.16.8 (p.234)"
+    },
+    {
+      "id": "labbench2_supplementary_materials",
+      "name": "LABBench2 (supplementary materials)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.16.8 (p.234)"
+    },
+    {
+      "id": "cybergym_targeted_reproduction_no_safeguards",
+      "name": "CyberGym targeted reproduction (no safeguards)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent pass@1",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 3.3.2 (p.50)"
+    },
+    {
+      "id": "cybergym_targeted_reproduction_tier_3_safeguards",
+      "name": "CyberGym targeted reproduction (Tier-3 safeguards)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent pass@1",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 3.3.2 (p.50)"
+    },
+    {
+      "id": "firefox_147_exploits_0_5",
+      "name": "Firefox-147 exploits (>=0.5)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent of targets",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 3.3.3 (p.52)"
+    },
+    {
+      "id": "firefox_147_exploits_full_working",
+      "name": "Firefox-147 exploits (full working)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent of targets",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 3.3.3 (p.52)"
+    },
+    {
+      "id": "gmmlu_average_42_languages",
+      "name": "GMMLU average (42 languages)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_english",
+      "name": "GMMLU English",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_high_resource_average_15_langs",
+      "name": "GMMLU High-resource average (15 langs)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_mid_resource_average_14_langs",
+      "name": "GMMLU Mid-resource average (14 langs)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_low_resource_average",
+      "name": "GMMLU Low-resource average",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_igbo",
+      "name": "GMMLU Igbo",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_yoruba",
+      "name": "GMMLU Yoruba",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_chichewa",
+      "name": "GMMLU Chichewa",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_somali",
+      "name": "GMMLU Somali",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_malagasy",
+      "name": "GMMLU Malagasy",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_shona",
+      "name": "GMMLU Shona",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_hausa",
+      "name": "GMMLU Hausa",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_kyrgyz",
+      "name": "GMMLU Kyrgyz",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_swahili",
+      "name": "GMMLU Swahili",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_amharic",
+      "name": "GMMLU Amharic",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_sinhala",
+      "name": "GMMLU Sinhala",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "gmmlu_nepali",
+      "name": "GMMLU Nepali",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "multi_language_harmless_response_api",
+      "name": "Multi-language harmless response (API)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 4.1.1.A (p.55)"
+    },
+    {
+      "id": "multi_language_harmless_response_claude_ai",
+      "name": "Multi-language harmless response (claude.ai)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 4.1.1.A (p.55)"
+    },
+    {
+      "id": "multi_language_over_refusal_api",
+      "name": "Multi-language over-refusal (API)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 4.1.2.A (p.56)"
+    },
+    {
+      "id": "election_integrity_harmless_rate_api",
+      "name": "Election integrity harmless rate (API)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 4.4.3.A (p.69)"
+    },
+    {
+      "id": "claude_code_malicious_refusal_rate",
+      "name": "Claude Code malicious refusal rate",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 5.1.1.A (p.72)"
+    },
+    {
+      "id": "claude_code_dual_use_success_rate",
+      "name": "Claude Code dual-use success rate",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 5.1.1.A (p.72)"
+    },
+    {
+      "id": "malicious_computer_use_refusal_rate",
+      "name": "Malicious computer use refusal rate",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 5.1.2.A (p.72)"
+    },
+    {
+      "id": "shade_coding_prompt_injection_asr_1_attempt_with_thinking_no_safeguards",
+      "name": "Shade coding prompt injection ASR (1 attempt, with thinking, no safeguards)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 5.2.2.2.A (p.79)"
+    },
+    {
+      "id": "shade_coding_prompt_injection_asr_200_attempts_with_thinking_no_safeguards",
+      "name": "Shade coding prompt injection ASR (200 attempts, with thinking, no safeguards)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 5.2.2.2.A (p.79)"
+    },
+    {
+      "id": "shade_computer_use_prompt_injection_asr_1_attempt_with_thinking_safeguards",
+      "name": "Shade computer-use prompt injection ASR (1 attempt, with thinking, safeguards)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 5.2.2.3.A (p.80)"
+    },
+    {
+      "id": "browser_use_prompt_injection_asr_with_thinking_with_safeguards",
+      "name": "Browser-use prompt injection ASR (with thinking, with safeguards)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent of attempts",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 5.2.2.4.A (p.81)"
+    },
+    {
+      "id": "child_safety_multi_turn_appropriate_response_api",
+      "name": "Child safety multi-turn appropriate response (API)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.8 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 4.2.B (p.60)"
+    },
+    {
+      "id": "cybergym_no_safeguards",
+      "name": "CyberGym (no safeguards)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent pass@1",
+      "description": "Sub-benchmark from anthropic/claude-opus-4.7 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 3.3.2 (p.50)"
+    },
+    {
+      "id": "arxivmath_mar_apr_2026_xhigh",
+      "name": "ArxivMath (Mar+Apr 2026, xhigh)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Section 8.8 (p.198), via MathArena leaderboard"
+    },
+    {
+      "id": "healthbench_hard_length_adjusted",
+      "name": "HealthBench Hard (length-adjusted)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "score",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 7 (p.10)"
+    },
+    {
+      "id": "healthbench_consensus_length_adjusted",
+      "name": "HealthBench Consensus (length-adjusted)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "score",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 7 (p.10)"
+    },
+    {
+      "id": "production_benchmark_violent_illicit_behavior_not_unsafe",
+      "name": "Production Benchmark - Violent illicit behavior (not_unsafe)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 1 (p.5)"
+    },
+    {
+      "id": "production_benchmark_nonviolent_illicit_behavior",
+      "name": "Production Benchmark - Nonviolent illicit behavior",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 1 (p.5)"
+    },
+    {
+      "id": "production_benchmark_harassment",
+      "name": "Production Benchmark - Harassment",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 1 (p.5)"
+    },
+    {
+      "id": "production_benchmark_extremism",
+      "name": "Production Benchmark - Extremism",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 1 (p.5)"
+    },
+    {
+      "id": "production_benchmark_hate",
+      "name": "Production Benchmark - Hate",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 1 (p.5)"
+    },
+    {
+      "id": "production_benchmark_self_harm_standard",
+      "name": "Production Benchmark - Self-harm (standard)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 1 (p.5)"
+    },
+    {
+      "id": "production_benchmark_violence",
+      "name": "Production Benchmark - Violence",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 1 (p.5)"
+    },
+    {
+      "id": "production_benchmark_sexual",
+      "name": "Production Benchmark - Sexual",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 1 (p.5)"
+    },
+    {
+      "id": "production_benchmark_sexual_minors",
+      "name": "Production Benchmark - Sexual/minors",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 1 (p.5)"
+    },
+    {
+      "id": "image_input_not_unsafe_hate",
+      "name": "Image input not_unsafe - Hate",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 2 (p.7)"
+    },
+    {
+      "id": "image_input_not_unsafe_extremism",
+      "name": "Image input not_unsafe - Extremism",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 2 (p.7)"
+    },
+    {
+      "id": "image_input_not_unsafe_self_harm",
+      "name": "Image input not_unsafe - Self-harm",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 2 (p.7)"
+    },
+    {
+      "id": "image_input_not_unsafe_harms_erotic",
+      "name": "Image input not_unsafe - Harms-erotic",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 2 (p.7)"
+    },
+    {
+      "id": "perfect_reversion_workspace",
+      "name": "Perfect reversion (workspace)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 4 (p.8)"
+    },
+    {
+      "id": "user_work_preserved_workspace",
+      "name": "User work preserved (workspace)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 4 (p.8)"
+    },
+    {
+      "id": "user_confirmation_financial_transaction",
+      "name": "User confirmation - Financial transaction",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 5 (p.9)"
+    },
+    {
+      "id": "user_confirmation_high_stakes_communication",
+      "name": "User confirmation - High-stakes communication",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 5 (p.9)"
+    },
+    {
+      "id": "user_confirmation_general_confirmation",
+      "name": "User confirmation - General confirmation",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 5 (p.9)"
+    },
+    {
+      "id": "prompt_injection_attacks_in_connectors",
+      "name": "Prompt injection attacks in connectors",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 6 (p.9)"
+    },
+    {
+      "id": "dynamic_bench_mental_health_not_unsafe",
+      "name": "Dynamic Bench - Mental health (not_unsafe)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 8 (p.11)"
+    },
+    {
+      "id": "dynamic_bench_emotional_reliance",
+      "name": "Dynamic Bench - Emotional reliance",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 8 (p.11)"
+    },
+    {
+      "id": "dynamic_bench_self_harm",
+      "name": "Dynamic Bench - Self-harm",
+      "category": "subench",
+      "metric": "score",
+      "unit": "rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 8 (p.11)"
+    },
+    {
+      "id": "biochemistry_knowledge_improvement_reward_4",
+      "name": "Biochemistry knowledge improvement reward@4",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 11 (p.25)"
+    },
+    {
+      "id": "hard_negative_protein_binding_pass_4",
+      "name": "Hard-negative protein binding pass@4",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Table 12 (p.25)"
+    },
+    {
+      "id": "dna_tf_binding_design_pass_1",
+      "name": "DNA TF binding design pass@1",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, p.26"
+    },
+    {
+      "id": "tacit_knowledge_troubleshooting_with_refusals_as_success",
+      "name": "Tacit knowledge & troubleshooting (with refusals as success)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.1.1.3 (p.23)"
+    },
+    {
+      "id": "cyber_range_scenarios_combined_pass_rate",
+      "name": "Cyber range scenarios combined pass rate",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.1.2.3 (p.31)"
+    },
+    {
+      "id": "irregular_atomic_network_attack_simulation",
+      "name": "Irregular atomic - Network Attack Simulation",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent success rate",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.1.2.5 (p.32)"
+    },
+    {
+      "id": "irregular_atomic_vulnerability_research_exploitation",
+      "name": "Irregular atomic - Vulnerability Research & Exploitation",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.1.2.5 (p.32)"
+    },
+    {
+      "id": "uk_aisi_narrow_cyber_expert_pass_5",
+      "name": "UK AISI Narrow Cyber expert pass@5",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.1.2.7 (p.33)"
+    },
+    {
+      "id": "uk_aisi_narrow_cyber_expert_pass_1",
+      "name": "UK AISI Narrow Cyber expert pass@1",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.1.2.7 (p.33)"
+    },
+    {
+      "id": "uk_aisi_narrow_cyber_low_difficulty",
+      "name": "UK AISI Narrow Cyber low-difficulty",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.1.2.7 (p.33)"
+    },
+    {
+      "id": "internal_research_debugging_eval_median",
+      "name": "Internal Research Debugging Eval median",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.1.3.3 (p.36)"
+    },
+    {
+      "id": "opqa_openai_proof_q_a_pass_1",
+      "name": "OPQA (OpenAI-Proof Q&A) pass@1",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.1.3.4 (p.37)"
+    },
+    {
+      "id": "apollo_sandbagging_qa_accuracy",
+      "name": "Apollo Sandbagging QA accuracy",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.2.1 (p.39)"
+    },
+    {
+      "id": "apollo_strategic_deception_capability_sandbagging_accuracy",
+      "name": "Apollo Strategic Deception Capability Sandbagging accuracy",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.2.1 (p.39)"
+    },
+    {
+      "id": "apollo_impossible_coding_task_deception_rate",
+      "name": "Apollo Impossible Coding Task deception rate",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent of samples",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.2.1 (p.39)"
+    },
+    {
+      "id": "apollo_verbalized_eval_awareness_rate",
+      "name": "Apollo verbalized eval awareness rate",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent of samples (moderate or higher)",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 9.2.1 (p.39)"
+    },
+    {
+      "id": "cot_controllability_50k_char_cot",
+      "name": "CoT controllability (50k-char CoT)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from openai/gpt-5.5 system card / model card",
+      "source_url": "GPT-5.5 System Card, Section 7.3 area (p.16)"
+    },
+    {
+      "id": "hle_search_code",
+      "name": "HLE (Search + Code)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Gemini 3.1 Pro Model Card"
+    },
+    {
+      "id": "mmmlu_multilingual_mmlu",
+      "name": "MMMLU (multilingual MMLU)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Gemini 3.1 Pro Model Card"
+    },
+    {
+      "id": "mrcr_v2_128k_cumulative",
+      "name": "MRCR v2 (128k cumulative)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Gemini 3.1 Pro Model Card"
+    },
+    {
+      "id": "mrcr_v2_1m_pointwise",
+      "name": "MRCR v2 (1M pointwise)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Gemini 3.1 Pro Model Card"
+    },
+    {
+      "id": "gmmlu_average_anthropic_re_eval",
+      "name": "GMMLU average (Anthropic re-eval)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)"
+    },
+    {
+      "id": "swe_bench_verified_opus_card_cross_ref",
+      "name": "SWE-bench Verified (Opus card cross-ref)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)"
+    },
+    {
+      "id": "browsecomp_opus_card_cross_ref",
+      "name": "BrowseComp (Opus card cross-ref)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)"
+    },
+    {
+      "id": "terminal_bench_2_1_opus_card_cross_ref",
+      "name": "Terminal-Bench 2.1 (Opus card cross-ref)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)"
+    },
+    {
+      "id": "osworld_verified_opus_card_cross_ref",
+      "name": "OSWorld-Verified (Opus card cross-ref)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)"
+    },
+    {
+      "id": "mcp_atlas_opus_card_cross_ref",
+      "name": "MCP-Atlas (Opus card cross-ref)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)"
+    },
+    {
+      "id": "finance_agent_v2_opus_card_cross_ref",
+      "name": "Finance Agent v2 (Opus card cross-ref)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)"
+    },
+    {
+      "id": "gdpval_aa_opus_card_cross_ref",
+      "name": "GDPval-AA (Opus card cross-ref)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "ELO",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)"
+    },
+    {
+      "id": "automationbench_opus_card_cross_ref",
+      "name": "AutomationBench (Opus card cross-ref)",
+      "category": "subench",
+      "metric": "score",
+      "unit": "percent",
+      "description": "Sub-benchmark from google/gemini-3.1-pro system card / model card",
+      "source_url": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)"
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "aime_2026",
+      "score": 100.0,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/openai_gpt_55",
+      "_note": "GPT-5.5 (xhigh) reasoning variant on MathArena"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "hmmt_feb_2026",
+      "score": 98.48,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/openai_gpt_55",
+      "_note": "GPT-5.5 (xhigh) reasoning variant"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "usamo_2026",
+      "score": 98.21,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/openai_gpt_55",
+      "_note": "GPT-5.5 (xhigh) proof-based \u2014 surpasses GPT-5.4 (95.24%)"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "aime_2026",
+      "score": 99.17,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/openai_gpt_54",
+      "_note": "GPT-5.4 (xhigh) reasoning variant"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "hmmt_feb_2026",
+      "score": 97.73,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/openai_gpt_54",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "usamo_2026",
+      "score": 95.24,
+      "unit": "%",
+      "_source": "https://matharena.ai/usamo/",
+      "_note": "MathArena USAMO 2026 blog: 'top model, GPT-5.4, essentially saturates the benchmark with a top score of 95%'"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "aime_2026",
+      "score": 100.0,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/anthropic_opus_48_max",
+      "_note": "Claude Opus 4.8 (max) \u2014 Rank 1/29 tied with GPT-5.5"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "hmmt_feb_2026",
+      "score": 95.45,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/anthropic_opus_48_max",
+      "_note": "Claude Opus 4.8 (max) \u2014 Rank 5/29"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "aime_2026",
+      "score": 95.83,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/anthropic_opus_47",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "hmmt_feb_2026",
+      "score": 93.94,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/anthropic_opus_47",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "usamo_2026",
+      "score": 69.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.7 (p.198)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "usamo_2026",
+      "score": 47.0,
+      "unit": "%",
+      "_source": "https://matharena.ai/usamo/",
+      "_note": "MathArena USAMO 2026 blog explicit: 'Opus-4.6 scores 47%'"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "aime_2026",
+      "score": 98.33,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/gemini_gemini_31_pro",
+      "_note": "Gemini 3.1 Pro Preview (high)"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "hmmt_feb_2026",
+      "score": 94.7,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/gemini_gemini_31_pro",
+      "_note": ""
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "usamo_2026",
+      "score": 74.4,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/gemini_gemini_31_pro",
+      "_note": "Gemini-3.1-Pro USAMO 2026; also matches MathArena blog '74.4%'"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "aime_2026",
+      "score": 95.0,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/gemini_gemini_35_flash",
+      "_note": "Rank 16/29"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "hmmt_feb_2026",
+      "score": 95.45,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/gemini_gemini_35_flash",
+      "_note": "Rank 5/29"
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "aime_2026",
+      "score": 95.83,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/glm_glm_5",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "hmmt_feb_2026",
+      "score": 86.36,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/glm_glm_5",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "usamo_2026",
+      "score": 35.12,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/glm_glm_5",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "aime_2026",
+      "score": 95.83,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/glm_glm_51",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "hmmt_feb_2026",
+      "score": 89.39,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/glm_glm_51",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "aime_2026",
+      "score": 96.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+      "_note": "MathArena HF leaderboard top entry, slot 2"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "hmmt_feb_2026",
+      "score": 92.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+      "_note": "MathArena HF leaderboard slot 1 (highest open model)"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "aime_2026",
+      "score": 95.83,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "hmmt_feb_2026",
+      "score": 87.12,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-3.5-flash",
+      "benchmark": "aime_2026",
+      "score": 96.67,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+      "_note": "Slot 1 on MathArena HF leaderboard for AIME 2026"
+    },
+    {
+      "model": "stepfun/step-3.5-flash",
+      "benchmark": "hmmt_feb_2026",
+      "score": 86.36,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-3.5-flash",
+      "benchmark": "usamo_2026",
+      "score": 44.6,
+      "unit": "%",
+      "_source": "https://matharena.ai/usamo/",
+      "_note": "MathArena USAMO 2026 blog: 'strongest open model, Step-3.5-Flash, reaches just 45%' \u2192 44.6% on table"
+    },
+    {
+      "model": "alibaba/qwen3.5-397b-a17b",
+      "benchmark": "aime_2026",
+      "score": 93.33,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-397b-a17b",
+      "benchmark": "hmmt_feb_2026",
+      "score": 87.88,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-397b-a17b",
+      "benchmark": "usamo_2026",
+      "score": 36.3,
+      "unit": "%",
+      "_source": "https://matharena.ai/usamo/",
+      "_note": "MathArena USAMO 2026 table"
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "aime_2026",
+      "score": 94.1,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-27b",
+      "benchmark": "hmmt_feb_2026",
+      "score": 84.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "aime_2026",
+      "score": 92.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "benchmark": "hmmt_feb_2026",
+      "score": 83.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+      "_note": ""
+    },
+    {
+      "model": "internlm/intern-s2-preview",
+      "benchmark": "hmmt_feb_2026",
+      "score": 87.31,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+      "_note": ""
+    },
+    {
+      "model": "inclusionai/ring-2.6-1t",
+      "benchmark": "aime_2026",
+      "score": 95.83,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "benchmark": "hmmt_feb_2026",
+      "score": 84.85,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/hmmt_feb_2026",
+      "_note": ""
+    },
+    {
+      "model": "lg/exaone-4.5-33b",
+      "benchmark": "aime_2026",
+      "score": 92.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/datasets/MathArena/aime_2026",
+      "_note": ""
+    },
+    {
+      "model": "minimax/m3",
+      "benchmark": "usamo_2026",
+      "score": 85.7,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/usamo-2026",
+      "_note": "Self-reported on llm-stats, single model evaluated (last updated 2026-06-19)"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "hmmt_nov_2025",
+      "score": 99.17,
+      "unit": "%",
+      "_source": "https://matharena.ai/models/openai_gpt_52",
+      "_note": "Rank 1/23 on HMMT Nov 2025"
+    },
+    {
+      "model": "openai/gpt-5.2-pro",
+      "benchmark": "hmmt_nov_2025",
+      "score": 100.0,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/hmmt-2025",
+      "_note": "LLM-stats HMMT 2025 leaderboard, rank 1"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2-speciale",
+      "benchmark": "hmmt_nov_2025",
+      "score": 99.2,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/hmmt-2025",
+      "_note": "Top-ranked open-source model"
+    },
+    {
+      "model": "moonshot/kimi-k2-thinking",
+      "benchmark": "hmmt_nov_2025",
+      "score": 97.5,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/hmmt-2025",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "hmmt_nov_2025",
+      "score": 96.7,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/hmmt-2025",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-397b-a17b",
+      "benchmark": "hmmt_nov_2025",
+      "score": 94.8,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/hmmt-2025",
+      "_note": ""
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "benchmark": "hmmt_nov_2025",
+      "score": 94.7,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/hmmt-2025",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "hmmt_nov_2025",
+      "score": 95.4,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/hmmt-2025",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v3.2-speciale",
+      "benchmark": "putnam_2025",
+      "score": 103.0,
+      "unit": "/120",
+      "_source": "https://matharena.ai/putnam/",
+      "_note": "Agentic mode. Best agent overall. Top 3 of 4329 human participants, above Putnam Fellow threshold."
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "putnam_2025",
+      "score": 91.0,
+      "unit": "/120",
+      "_source": "https://matharena.ai/putnam/",
+      "_note": "Closed Base Model"
+    },
+    {
+      "model": "nous/nomos-1",
+      "benchmark": "putnam_2025",
+      "score": 87.0,
+      "unit": "/120",
+      "_source": "https://venturebeat.com/ai/nous-research-just-released-nomos-1-an-open-source-ai-that-ranks-second-on",
+      "_note": "Nomos 1 \u2014 Putnam #2 ranking equivalent to second-place out of 3,988 in 2024 competition"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "ipho_2025_theory",
+      "score": 30.0,
+      "unit": "/30",
+      "_source": "https://arxiv.org/abs/2603.03352",
+      "_note": "Perfect score on IPhO 2025 theory by Gemini agent (5/5 runs). Contamination caveat: model released after competition."
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "ipho_2025_theory",
+      "score": 22.3,
+      "unit": "/30",
+      "_source": "https://arxiv.org/abs/2511.13612",
+      "_note": "Reported in P1 technical report Table comparison"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "ipho_2025_theory",
+      "score": 22.7,
+      "unit": "/30",
+      "_source": "https://arxiv.org/abs/2511.13612",
+      "_note": "Pre-3.1 era top model on IPhO 2025"
+    },
+    {
+      "model": "primerl/p1-235b-a22b",
+      "benchmark": "ipho_2025_theory",
+      "score": 21.2,
+      "unit": "/30",
+      "_source": "https://arxiv.org/abs/2511.13612",
+      "_note": "First open-source model with Gold-medal performance at IPhO 2025; Top 3 globally"
+    },
+    {
+      "model": "physics-supernova/agent",
+      "benchmark": "ipho_2025_theory",
+      "score": 23.5,
+      "unit": "/30",
+      "_source": "https://arxiv.org/abs/2509.01659",
+      "_note": "Agent system; ranks 14th of 406 contestants; surpasses median gold medalist"
+    },
+    {
+      "model": "loca/agent",
+      "benchmark": "ipho_2025_theory",
+      "score": 28.6,
+      "unit": "/30",
+      "_source": "https://arxiv.org/pdf/2511.10515",
+      "_note": "Near-perfect score on IPhO 2025 examination"
+    },
+    {
+      "model": "sciagent/multi-agent",
+      "benchmark": "ipho_2025_theory",
+      "score": 25.0,
+      "unit": "/30",
+      "_source": "https://arxiv.org/pdf/2511.08151",
+      "_note": "Exceeds average gold-medalist score (23.4)"
+    },
+    {
+      "model": "nvidia/nemotron-3-ultra",
+      "benchmark": "imoanswerbench",
+      "score": 92.3,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/imo-answerbench",
+      "_note": "550B A55B \u2014 Rank 1 on IMO-AnswerBench"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "imoanswerbench",
+      "score": 91.0,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/imo-answerbench",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "imoanswerbench",
+      "score": 90.0,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/imo-answerbench",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "imoanswerbench",
+      "score": 89.8,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/imo-answerbench",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "imoanswerbench",
+      "score": 88.4,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/imo-answerbench",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "imoanswerbench",
+      "score": 86.0,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/imo-answerbench",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-3.5-flash",
+      "benchmark": "imoanswerbench",
+      "score": 85.4,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/imo-answerbench",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "imoanswerbench",
+      "score": 83.8,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/imo-answerbench",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "imoanswerbench",
+      "score": 83.8,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/imo-answerbench",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "matharena_apex_2025",
+      "score": 90.2,
+      "unit": "%",
+      "_source": "https://matharena.ai/?comp=apex--apex_2025",
+      "_note": "Apex leader (per search summary, primary source matharena.ai)"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-max",
+      "benchmark": "matharena_apex_2025",
+      "score": 85.7,
+      "unit": "%",
+      "_source": "https://matharena.ai/?comp=apex--apex_2025",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "matharena_apex_2025",
+      "score": 44.5,
+      "unit": "%",
+      "_source": "https://matharena.ai/?comp=apex--apex_2025",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-reasoning-vision-15b",
+      "benchmark": "ai2d",
+      "score": 84.8,
+      "unit": "%",
+      "_source": "https://www.microsoft.com/en-us/research/blog/phi-4-reasoning-vision-and-the-lessons-of-training-a-multimodal-reasoning-model/",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-reasoning-vision-15b",
+      "benchmark": "chartqa",
+      "score": 83.3,
+      "unit": "%",
+      "_source": "https://www.microsoft.com/en-us/research/blog/phi-4-reasoning-vision-and-the-lessons-of-training-a-multimodal-reasoning-model/",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-reasoning-vision-15b",
+      "benchmark": "mathvista",
+      "score": 75.2,
+      "unit": "%",
+      "_source": "https://www.microsoft.com/en-us/research/blog/phi-4-reasoning-vision-and-the-lessons-of-training-a-multimodal-reasoning-model/",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-reasoning-vision-15b",
+      "benchmark": "screenspot_v2",
+      "score": 88.2,
+      "unit": "%",
+      "_source": "https://www.microsoft.com/en-us/research/blog/phi-4-reasoning-vision-and-the-lessons-of-training-a-multimodal-reasoning-model/",
+      "_note": ""
+    },
+    {
+      "model": "microsoft/phi-4-reasoning-vision-15b",
+      "benchmark": "mmmu",
+      "score": 54.3,
+      "unit": "%",
+      "_source": "https://www.microsoft.com/en-us/research/blog/phi-4-reasoning-vision-and-the-lessons-of-training-a-multimodal-reasoning-model/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-0.8b",
+      "benchmark": "mmlu_pro",
+      "score": 66.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-0.8B",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.5-0.8b",
+      "benchmark": "gpqa_diamond",
+      "score": 51.6,
+      "unit": "%",
+      "_source": "https://huggingface.co/Qwen/Qwen3.5-0.8B",
+      "_note": ""
+    },
+    {
+      "model": "openbmb/minicpm5-1b",
+      "benchmark": "aaii_v41",
+      "score": 17.9,
+      "unit": "%",
+      "_source": "https://artificialanalysis.ai/articles/minicpm5-1b-the-leading-1b-open-weights-model",
+      "_note": ""
+    },
+    {
+      "model": "google/functiongemma-270m-it",
+      "benchmark": "mobile_actions",
+      "score": 85.0,
+      "unit": "%",
+      "_source": "https://blog.google/innovation-and-ai/technology/developers-tools/functiongemma/",
+      "_note": ""
+    },
+    {
+      "model": "apple/afm-3-core",
+      "benchmark": "apple_preference_ondevice",
+      "score": 45.6,
+      "unit": "%",
+      "_source": "https://machinelearning.apple.com/research/introducing-third-generation-of-apple-foundation-models",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "swe_bench_verified",
+      "score": 88.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " adaptive thinking, max effort, 5 trials"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "swe_bench_pro",
+      "score": 69.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "swe_bench_multilingual",
+      "score": 84.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "swe_bench_multimodal",
+      "score": 38.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "terminal_bench_2_1",
+      "score": 74.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A; Section 8.3 (p.195)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "hle_no_tools",
+      "score": 49.8,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.10.1 (p.201)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "hle_with_tools",
+      "score": 57.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.10.1 (p.201)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "chartqapro_no_tools",
+      "score": 69.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "chartqapro_with_tools",
+      "score": 72.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "osworld_verified",
+      "score": 83.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.12.6 (p.220)",
+      "_note": " first-attempt success, averaged over 5 runs"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gpqa_diamond",
+      "score": 93.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.6 (p.197)",
+      "_note": " averaged over 25 trials"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "screenspot_pro_no_tools",
+      "score": 82.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "screenspot_pro_with_tools",
+      "score": 87.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "usamo_2026",
+      "score": 96.7,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.7 (p.198)",
+      "_note": " MathArena methodology, 10 attempts per problem, high effort, batch API 300k token limit"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "arxivmath_mar_apr_2026",
+      "score": 71.82,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.8 (p.198)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "graphwalks_bfs_256k_f1",
+      "score": 85.9,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "graphwalks_bfs_1m_f1",
+      "score": 68.1,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "graphwalks_parents_256k_f1",
+      "score": 99.3,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "graphwalks_parents_1m_f1",
+      "score": 83.3,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "browsecomp_single_agent",
+      "score": 84.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.10.2 (p.202); Table 8.1.A",
+      "_note": " adaptive thinking, max effort, 10M token limit, context compaction at 200k"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "browsecomp_multi_agent",
+      "score": 88.5,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "toolathlon_pass_1",
+      "score": 59.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.7 (p.225)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "toolathlon_pass_3",
+      "score": 48.1,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.7 (p.225)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "officeqa",
+      "score": 77.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.1 (p.222)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "officeqa_pro",
+      "score": 66.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.1 (p.222)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "finance_agent_benchmark_v2",
+      "score": 53.92,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.2 (p.222), independently evaluated by Vals AI",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "legal_agent_benchmark_all_pass",
+      "score": 9.62,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.3 (p.223)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "legal_agent_benchmark_mean_criterion_pass",
+      "score": 89.01,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.3 (p.223)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "mcp_atlas",
+      "score": 82.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.4 (p.224)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "vending_bench_2_max_effort",
+      "score": 2992.34,
+      "unit": "USD final balance",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.5 (p.224)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "vending_bench_2_high_effort",
+      "score": 5787.43,
+      "unit": "USD final balance",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.5 (p.224)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "automationbench_zapier_max_effort",
+      "score": 15.5,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.8 (p.226)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gdpval_aa_elo",
+      "score": 1890.0,
+      "unit": "ELO",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthbench_professional_length_adjusted",
+      "score": 55.8,
+      "unit": "score (0-100)",
+      "_source": "Claude Opus 4.8 System Card, Section 8.14.1 (p.227)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "biopipelinebench_verified",
+      "score": 87.7,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.1 (p.232)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "biomysterybench_verified_human_solvable",
+      "score": 80.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.2 (p.233)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "biomysterybench_verified_human_difficult",
+      "score": 40.0,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.2 (p.233)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "latchbio_spatialbench",
+      "score": 53.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.3 (p.233)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "latchbio_singlecellbench",
+      "score": 58.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.3 (p.233)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "structural_biology_open_ended",
+      "score": 79.0,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.4 (p.233)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "proteingym_hard",
+      "score": 39.6,
+      "unit": "rank-correlation",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.5 (p.234)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "organic_chemistry_anthropic_internal",
+      "score": 86.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.6 (p.234)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "protocol_troubleshooting",
+      "score": 59.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.7 (p.234)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "labbench2_patent_questions",
+      "score": 68.8,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.8 (p.234)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "labbench2_clinical_trial_questions",
+      "score": 85.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.8 (p.234)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "labbench2_tables",
+      "score": 77.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.8 (p.234)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "labbench2_supplementary_materials",
+      "score": 58.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.16.8 (p.234)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "cybergym_targeted_reproduction_no_safeguards",
+      "score": 78.8,
+      "unit": "percent pass@1",
+      "_source": "Claude Opus 4.8 System Card, Section 3.3.2 (p.50)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "cybergym_targeted_reproduction_tier_3_safeguards",
+      "score": 1.0,
+      "unit": "percent pass@1",
+      "_source": "Claude Opus 4.8 System Card, Section 3.3.2 (p.50)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "firefox_147_exploits_0_5",
+      "score": 68.8,
+      "unit": "percent of targets",
+      "_source": "Claude Opus 4.8 System Card, Section 3.3.3 (p.52)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "firefox_147_exploits_full_working",
+      "score": 8.8,
+      "unit": "percent of targets",
+      "_source": "Claude Opus 4.8 System Card, Section 3.3.3 (p.52)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_average_42_languages",
+      "score": 90.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_english",
+      "score": 92.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_high_resource_average_15_langs",
+      "score": 91.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_mid_resource_average_14_langs",
+      "score": 91.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_low_resource_average",
+      "score": 87.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_igbo",
+      "score": 82.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_yoruba",
+      "score": 84.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_chichewa",
+      "score": 85.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_somali",
+      "score": 86.7,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_malagasy",
+      "score": 86.7,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_shona",
+      "score": 86.7,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_hausa",
+      "score": 86.8,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_kyrgyz",
+      "score": 88.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_swahili",
+      "score": 89.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_amharic",
+      "score": 89.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_sinhala",
+      "score": 90.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "gmmlu_nepali",
+      "score": 90.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "milu_average",
+      "score": 90.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.15.2 (p.230)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "include_average",
+      "score": 87.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.15.3 (p.231)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "multi_language_harmless_response_api",
+      "score": 97.98,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 4.1.1.A (p.55)",
+      "_note": " 7 languages: Arabic, English, French, Hindi, Korean, Mandarin, Russian"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "multi_language_harmless_response_claude_ai",
+      "score": 99.17,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 4.1.1.A (p.55)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "multi_language_over_refusal_api",
+      "score": 0.36,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 4.1.2.A (p.56)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "bbq_disambiguated_accuracy",
+      "score": 72.1,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 4.4.2.A (p.68)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "bbq_ambiguous_accuracy",
+      "score": 99.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 4.4.2.A (p.68)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "bbq_disambiguated_bias",
+      "score": -1.37,
+      "unit": "score (closer to 0 better)",
+      "_source": "Claude Opus 4.8 System Card, Table 4.4.2.B (p.68)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "bbq_ambiguous_bias",
+      "score": 0.07,
+      "unit": "score",
+      "_source": "Claude Opus 4.8 System Card, Table 4.4.2.B (p.68)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "election_integrity_harmless_rate_api",
+      "score": 100.0,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 4.4.3.A (p.69)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "claude_code_malicious_refusal_rate",
+      "score": 95.08,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 5.1.1.A (p.72)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "claude_code_dual_use_success_rate",
+      "score": 92.12,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 5.1.1.A (p.72)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "malicious_computer_use_refusal_rate",
+      "score": 81.7,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 5.1.2.A (p.72)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "shade_coding_prompt_injection_asr_1_attempt_with_thinking_no_safeguards",
+      "score": 7.03,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 5.2.2.2.A (p.79)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "shade_coding_prompt_injection_asr_200_attempts_with_thinking_no_safeguards",
+      "score": 57.5,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 5.2.2.2.A (p.79)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "shade_computer_use_prompt_injection_asr_1_attempt_with_thinking_safeguards",
+      "score": 5.11,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 5.2.2.3.A (p.80)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "browser_use_prompt_injection_asr_with_thinking_with_safeguards",
+      "score": 0.5,
+      "unit": "percent of attempts",
+      "_source": "Claude Opus 4.8 System Card, Table 5.2.2.4.A (p.81)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "child_safety_multi_turn_appropriate_response_api",
+      "score": 91.0,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 4.2.B (p.60)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "swe_bench_verified",
+      "score": 87.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "swe_bench_pro",
+      "score": 64.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "terminal_bench_2_1",
+      "score": 66.1,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "graphwalks_bfs_256k_f1",
+      "score": 76.9,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "graphwalks_bfs_1m_f1",
+      "score": 40.3,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "graphwalks_parents_256k_f1",
+      "score": 93.6,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "graphwalks_parents_1m_f1",
+      "score": 56.6,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gmmlu_average",
+      "score": 89.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "gmmlu_english",
+      "score": 93.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "cybergym_no_safeguards",
+      "score": 73.1,
+      "unit": "percent pass@1",
+      "_source": "Claude Opus 4.8 System Card, Section 3.3.2 (p.50)",
+      "_note": " "
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "bbq_disambiguated_accuracy",
+      "score": 81.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 4.4.2.A (p.68)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "swe_bench_pro",
+      "score": 58.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193) \u2014 listed in competitor column drawn from openai.com/index/introducing-gpt-5-5",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "terminal_bench_2_1",
+      "score": 78.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "hle_no_tools",
+      "score": 41.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "hle_with_tools",
+      "score": 52.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "osworld_verified",
+      "score": 78.7,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "graphwalks_bfs_256k_f1",
+      "score": 73.7,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "graphwalks_bfs_1m_f1",
+      "score": 45.4,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "graphwalks_parents_256k_f1",
+      "score": 90.1,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "graphwalks_parents_1m_f1",
+      "score": 58.5,
+      "unit": "F1",
+      "_source": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "browsecomp",
+      "score": 84.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "finance_agent_v2",
+      "score": 51.76,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.13.2 (p.222) \u2014 Vals AI",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "arxivmath_mar_apr_2026_xhigh",
+      "score": 71.48,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.8 (p.198), via MathArena leaderboard",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "gdpval_aa_elo",
+      "score": 1769.0,
+      "unit": "ELO",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mcp_atlas",
+      "score": 75.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "automationbench",
+      "score": 12.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthbench_length_adjusted",
+      "score": 56.5,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card, Table 7 (p.10)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthbench_hard_length_adjusted",
+      "score": 31.5,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card, Table 7 (p.10)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthbench_consensus_length_adjusted",
+      "score": 95.6,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card, Table 7 (p.10)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthbench_professional_length_adjusted",
+      "score": 51.8,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card, Table 7 (p.10)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "production_benchmark_violent_illicit_behavior_not_unsafe",
+      "score": 0.979,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 1 (p.5)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "production_benchmark_nonviolent_illicit_behavior",
+      "score": 0.993,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 1 (p.5)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "production_benchmark_harassment",
+      "score": 0.822,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 1 (p.5)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "production_benchmark_extremism",
+      "score": 0.925,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 1 (p.5)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "production_benchmark_hate",
+      "score": 0.868,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 1 (p.5)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "production_benchmark_self_harm_standard",
+      "score": 0.959,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 1 (p.5)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "production_benchmark_violence",
+      "score": 0.846,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 1 (p.5)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "production_benchmark_sexual",
+      "score": 0.925,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 1 (p.5)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "production_benchmark_sexual_minors",
+      "score": 0.941,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 1 (p.5)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "image_input_not_unsafe_hate",
+      "score": 0.981,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 2 (p.7)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "image_input_not_unsafe_extremism",
+      "score": 0.987,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 2 (p.7)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "image_input_not_unsafe_self_harm",
+      "score": 0.987,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 2 (p.7)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "image_input_not_unsafe_harms_erotic",
+      "score": 0.987,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 2 (p.7)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "destructive_action_avoidance",
+      "score": 0.9,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 3 (p.8)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "perfect_reversion_workspace",
+      "score": 0.52,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 4 (p.8)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "user_work_preserved_workspace",
+      "score": 0.57,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 4 (p.8)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "user_confirmation_financial_transaction",
+      "score": 1.0,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 5 (p.9)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "user_confirmation_high_stakes_communication",
+      "score": 0.98,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 5 (p.9)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "user_confirmation_general_confirmation",
+      "score": 0.94,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 5 (p.9)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "prompt_injection_attacks_in_connectors",
+      "score": 0.963,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 6 (p.9)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "dynamic_bench_mental_health_not_unsafe",
+      "score": 0.981,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 8 (p.11)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "dynamic_bench_emotional_reliance",
+      "score": 0.981,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 8 (p.11)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "dynamic_bench_self_harm",
+      "score": 0.937,
+      "unit": "rate",
+      "_source": "GPT-5.5 System Card, Table 8 (p.11)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "biochemistry_knowledge_improvement_reward_4",
+      "score": 32.32,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Table 11 (p.25)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "hard_negative_protein_binding_pass_4",
+      "score": 0.4,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Table 12 (p.25)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "dna_tf_binding_design_pass_1",
+      "score": 16.5,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, p.26",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "tacit_knowledge_troubleshooting_with_refusals_as_success",
+      "score": 81.67,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.1.1.3 (p.23)",
+      "_note": " GPT-5.5 Pro figure; GPT-5.5 underperforms 80% consensus expert baseline"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "cyber_range_scenarios_combined_pass_rate",
+      "score": 93.33,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.1.2.3 (p.31)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "irregular_atomic_network_attack_simulation",
+      "score": 98.0,
+      "unit": "percent success rate",
+      "_source": "GPT-5.5 System Card, Section 9.1.2.5 (p.32)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "irregular_atomic_vulnerability_research_exploitation",
+      "score": 92.0,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.1.2.5 (p.32)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "irregular_atomic_evasion",
+      "score": 54.0,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.1.2.5 (p.32)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "irregular_cyscenariobench",
+      "score": 26.0,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.1.2.5 (p.32)",
+      "_note": " 7/11 challenges solved"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "uk_aisi_narrow_cyber_expert_pass_5",
+      "score": 90.5,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.1.2.7 (p.33)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "uk_aisi_narrow_cyber_expert_pass_1",
+      "score": 66.7,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.1.2.7 (p.33)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "uk_aisi_narrow_cyber_low_difficulty",
+      "score": 100.0,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.1.2.7 (p.33)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "internal_research_debugging_eval_median",
+      "score": 50.5,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.1.3.3 (p.36)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "opqa_openai_proof_q_a_pass_1",
+      "score": 5.8,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.1.3.4 (p.37)",
+      "_note": " Note: gpt-5.3-Codex is the highest of three tested at 5.8% in the table; GPT-5.5 specific number not separately disclosed numerically in the same row"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "apollo_sandbagging_qa_accuracy",
+      "score": 100.0,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.2.1 (p.39)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "apollo_strategic_deception_capability_sandbagging_accuracy",
+      "score": 99.6,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.2.1 (p.39)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "apollo_impossible_coding_task_deception_rate",
+      "score": 29.0,
+      "unit": "percent of samples",
+      "_source": "GPT-5.5 System Card, Section 9.2.1 (p.39)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "apollo_sabotage_mean_score",
+      "score": 0.67,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card, Section 9.2.1 (p.39)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "apollo_verbalized_eval_awareness_rate",
+      "score": 22.1,
+      "unit": "percent of samples (moderate or higher)",
+      "_source": "GPT-5.5 System Card, Section 9.2.1 (p.39)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "cot_controllability_50k_char_cot",
+      "score": 0.2,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 7.3 area (p.16)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthbench_length_adjusted",
+      "score": 54.0,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card, Table 7 (p.10)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthbench_hard_length_adjusted",
+      "score": 29.1,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card, Table 7 (p.10)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthbench_consensus_length_adjusted",
+      "score": 96.3,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card, Table 7 (p.10)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthbench_professional_length_adjusted",
+      "score": 48.1,
+      "unit": "score",
+      "_source": "GPT-5.5 System Card, Table 7 (p.10)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "gmmlu_average",
+      "score": 90.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "gmmlu_english",
+      "score": 93.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "uk_aisi_narrow_cyber_expert_pass_5",
+      "score": 71.4,
+      "unit": "percent",
+      "_source": "GPT-5.5 System Card, Section 9.1.2.7 (p.33)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "hle_no_tools",
+      "score": 44.4,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card / model evaluation methodology PDF",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "hle_search_code",
+      "score": 51.4,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "arc_agi_2_semi_private",
+      "score": 77.1,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card; ARC Prize Verified",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gpqa_diamond",
+      "score": 94.3,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "terminal_bench_2_0",
+      "score": 68.5,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " Terminus 2 default agent harness"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "swe_bench_verified",
+      "score": 80.6,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card / methodology PDF",
+      "_note": " 10 runs avg, single-attempt scaffolding (+0.6 bug-fix adjustment)"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "swe_bench_pro_public",
+      "score": 54.2,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " 5 runs avg"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "livecodebench_pro",
+      "score": 2887.0,
+      "unit": "ELO",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "scicode",
+      "score": 59.0,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card (via Artificial Analysis)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "apex_agents",
+      "score": 33.5,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gdpval_aa",
+      "score": 1317.0,
+      "unit": "ELO",
+      "_source": "Gemini 3.1 Pro Model Card (via Artificial Analysis leaderboard)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "tau2_bench_retail",
+      "score": 90.8,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "tau2_bench_telecom",
+      "score": 99.3,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mcp_atlas",
+      "score": 69.2,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " public set; sourced from Turing"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "browsecomp",
+      "score": 85.9,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " Deep Research with search/python/browsing"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mmmu_pro",
+      "score": 80.5,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " averaged across Standard (10 options) and Vision settings"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mmmlu_multilingual_mmlu",
+      "score": 92.6,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mrcr_v2_128k_cumulative",
+      "score": 84.9,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mrcr_v2_1m_pointwise",
+      "score": 26.3,
+      "unit": "percent",
+      "_source": "Gemini 3.1 Pro Model Card",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_average_anthropic_re_eval",
+      "score": 92.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " Anthropic eval w/ dynamic thinking high"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_english",
+      "score": 94.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_low_resource_average",
+      "score": 90.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_igbo",
+      "score": 89.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_yoruba",
+      "score": 88.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_chichewa",
+      "score": 89.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_somali",
+      "score": 90.5,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_malagasy",
+      "score": 90.7,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_shona",
+      "score": 90.4,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_hausa",
+      "score": 89.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_swahili",
+      "score": 91.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_amharic",
+      "score": 91.0,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_sinhala",
+      "score": 92.5,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gmmlu_nepali",
+      "score": 92.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.15.1.B (p.229)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "swe_bench_verified_opus_card_cross_ref",
+      "score": 80.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "swe_bench_pro",
+      "score": 54.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "browsecomp_opus_card_cross_ref",
+      "score": 85.9,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "terminal_bench_2_1_opus_card_cross_ref",
+      "score": 70.3,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "osworld_verified_opus_card_cross_ref",
+      "score": 76.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "mcp_atlas_opus_card_cross_ref",
+      "score": 78.2,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "finance_agent_v2_opus_card_cross_ref",
+      "score": 43.0,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "gdpval_aa_opus_card_cross_ref",
+      "score": 1314.0,
+      "unit": "ELO",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "automationbench_opus_card_cross_ref",
+      "score": 9.6,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)",
+      "_note": " "
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "arxivmath_mar_apr_2026",
+      "score": 64.79,
+      "unit": "percent",
+      "_source": "Claude Opus 4.8 System Card, Section 8.8 (p.198), via MathArena leaderboard",
+      "_note": " "
+    }
+  ]
+}
