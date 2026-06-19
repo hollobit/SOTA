@@ -131,6 +131,11 @@ var Sovereign = {
                 'hidream/hidream-o1-image-dev-2604',  // 2026-06-05 S55 — HiDream O1 Image Dev 2604 (AA T2I Elo 1192)
                 'alibaba/fun-realtime-tts',  // 2026-06-05 S55 — Alibaba FunAudioLLM Fun-Realtime-TTS (AA TTS Arena Elo 1227 SOTA)
                 'alibaba/fun-realtime-asr-preview',  // 2026-06-08 S58 — Alibaba FunAudioLLM Fun-Realtime-ASR (AA Transcribe WER 1.7% NEW SOTA, beats Scribe v2 2.2%)
+                // 2026-06-19 S139 — Audio AI frontier + China Embedding refresh
+                'alibaba/fun-realtime-audiochat', 'alibaba/fun-audio-chat-8b',
+                'moonshot/kimi-audio-7b',
+                'qwen/qwen3-vl-embedding-8b', 'qwen/qwen3-vl-reranker-8b', 'qwen/qwen3-vl-reranker-2b',
+                'tencent/conan-embedding-v2', 'kingsoft/qzhou-embedding',
                 // Tencent Hunyuan
                 'tencent/hunyuan-t1', 'tencent/hunyuan-large', 'tencent/hunyuan-turbo', 'tencent/hunyuan-7b',
                 'tencent/hunyuan-image-3.0',
