@@ -6197,17 +6197,17 @@
   "simbian_cyber_defense_coverage": {
     "model_id": "anthropic/claude-opus-4.6",
     "benchmark_id": "simbian_cyber_defense_coverage",
-    "value": 0.55,
-    "unit": "coverage",
+    "value": 44.5,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2604.19533",
+      "url": "https://simbian.ai/blog/claude-for-cybersecurity-opus-4-7-worst-claude",
       "date": "2026-06-19",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-19",
-    "notes": "Best frontier. Clears 7/13 ATT&CK tactics at ≥50% recall. Paper finds NO model crosses ≥50% all-tactics bar."
+    "notes": "Simbian: Opus 4.6 = 44.5% coverage, 7/13 MITRE tactics passing (leader). Best-of-11 frontier models on Simbian CDB."
   },
   "nyu_ctf": {
     "model_id": "anthropic/claude-opus-4.5",
@@ -20534,21 +20534,6 @@
     "collected_at": "2026-06-19",
     "notes": "Section 3.2.2; >=0.4 write primitive or better"
   },
-  "cybergym_pass_at_1": {
-    "model_id": "anthropic/claude-mythos-5",
-    "benchmark_id": "cybergym_pass_at_1",
-    "value": 83.8,
-    "unit": "score",
-    "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
-      "date": "2026-06-19",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-19",
-    "notes": "Section 3.2.3; 1507 tasks targeted vuln reproduction"
-  },
   "cybergym_any_crash": {
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "cybergym_any_crash",
@@ -20563,6 +20548,21 @@
     "is_sota": true,
     "collected_at": "2026-06-19",
     "notes": "Section 3.2.3"
+  },
+  "cybergym_pass_at_1": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "cybergym_pass_at_1",
+    "value": 83.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.vellum.ai/blog/claude-fable-5-and-mythos-5-benchmarks-explained",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "Anthropic Claude Fable 5 / Mythos 5 system card; reported 83.8 on CyberGym pass@1. Mythos 5 GA score (Mythos Preview = 83.1)."
   },
   "firefox_147_exploit": {
     "model_id": "anthropic/claude-mythos-5",
@@ -40709,51 +40709,6 @@
     "collected_at": "2026-06-19",
     "notes": ""
   },
-  "aa_intelligence_index_v4_1": {
-    "model_id": "zhipu/glm-5.2",
-    "benchmark_id": "aa_intelligence_index_v4_1",
-    "value": 51.0,
-    "unit": "index",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://artificialanalysis.ai/articles/glm-5-2-is-the-new-leading-open-weights-model-on-the-artificial-analysis-intelligence-index",
-      "date": "2026-06-19",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-19",
-    "notes": "AAII v4.1 — leading open-weights model"
-  },
-  "tau3_banking": {
-    "model_id": "zhipu/glm-5.2",
-    "benchmark_id": "tau3_banking",
-    "value": 27.0,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://artificialanalysis.ai/articles/glm-5-2-is-the-new-leading-open-weights-model-on-the-artificial-analysis-intelligence-index",
-      "date": "2026-06-19",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-19",
-    "notes": ""
-  },
-  "gdpval_aa_v2": {
-    "model_id": "zhipu/glm-5.2",
-    "benchmark_id": "gdpval_aa_v2",
-    "value": 1524.0,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://artificialanalysis.ai/articles/glm-5-2-is-the-new-leading-open-weights-model-on-the-artificial-analysis-intelligence-index",
-      "date": "2026-06-19",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-19",
-    "notes": ""
-  },
   "deepswe": {
     "model_id": "zhipu/glm-5.2",
     "benchmark_id": "deepswe",
@@ -40813,6 +40768,21 @@
     "is_sota": true,
     "collected_at": "2026-06-19",
     "notes": ""
+  },
+  "aa_intelligence_index_v4_1": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "aa_intelligence_index_v4_1",
+    "value": 60.0,
+    "unit": "index",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "AAII v4.1, with Opus 4.8 fallback; #1 ranking but currently unavailable"
   },
   "libero_plus": {
     "model_id": "alibaba/qwen-robotmanip",
@@ -41008,6 +40978,246 @@
     "is_sota": true,
     "collected_at": "2026-06-19",
     "notes": ""
+  },
+  "gdpval_aa_v2": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "gdpval_aa_v2",
+    "value": 64.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "GDPval-AA v2 (Elo-500)/2000 normalized, AAII v4.1 component"
+  },
+  "tau3_banking": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "tau3_banking",
+    "value": 31.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "xhigh"
+  },
+  "terminal_bench_v2_1": {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "terminal_bench_v2_1",
+    "value": 85.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": ""
+  },
+  "scicode_v41": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "scicode_v41",
+    "value": 60.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": ""
+  },
+  "hle_v41": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "hle_v41",
+    "value": 53.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": ""
+  },
+  "gpqa_diamond_v41": {
+    "model_id": "google/gemini-3.1-pro",
+    "benchmark_id": "gpqa_diamond_v41",
+    "value": 94.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": ""
+  },
+  "aa_omniscience_accuracy": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "aa_omniscience_accuracy",
+    "value": 61.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": ""
+  },
+  "aa_omniscience_non_hallucination": {
+    "model_id": "minimax/m3",
+    "benchmark_id": "aa_omniscience_non_hallucination",
+    "value": 84.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": ""
+  },
+  "aisi_advanced_suite_expert_pass_rate": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "aisi_advanced_suite_expert_pass_rate",
+    "value": 78.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.datacamp.com/blog/claude-mythos-5",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "DataCamp Claude Mythos 5 brief: unblocked Mythos 5 scores 78.0% on the AISI cyber suite; Opus 4.8 = 40.0%. Unblocked (no safeguards) AISI Expert pass rate."
+  },
+  "aisi_tlo_32step_solves_at_10": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "aisi_tlo_32step_solves_at_10",
+    "value": 6.0,
+    "unit": "solves_of_10",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "AISI newer Mythos checkpoint: 6/10 on The Last Ones. Newer Mythos checkpoint; initial Mythos Preview reported 3/10."
+  },
+  "aisi_cooling_tower_solves_at_10": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "aisi_cooling_tower_solves_at_10",
+    "value": 3.0,
+    "unit": "solves_of_10",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "AISI: Mythos first model to solve Cooling Tower (3/10). First model ever to complete this range."
+  },
+  "aisi_cyber_time_horizon_80pct_minutes": {
+    "model_id": "anthropic/claude-sonnet-4.5",
+    "benchmark_id": "aisi_cyber_time_horizon_80pct_minutes",
+    "value": 16.0,
+    "unit": "minutes",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "AISI: Sonnet 4.5 80%-reliability cyber time horizon = 16 minutes under 2.5M token cap. 2.5M token budget."
+  },
+  "glasswing_critical_vulns_found_per_month": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "glasswing_critical_vulns_found_per_month",
+    "value": 6202.0,
+    "unit": "high_or_critical_vulns",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.anthropic.com/research/glasswing-initial-update",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "Anthropic Project Glasswing initial update: Mythos scanned >1,000 OSS projects, identified 23,019 issues of which 6,202 high/critical-severity. First-month deployment cumulative."
+  },
+  "simbian_cdb_cost_per_investigation_usd": {
+    "model_id": "anthropic/claude-opus-4.7",
+    "benchmark_id": "simbian_cdb_cost_per_investigation_usd",
+    "value": 1.65,
+    "unit": "USD/run",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://simbian.ai/blog/claude-for-cybersecurity-opus-4-7-worst-claude",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "Simbian: Opus 4.7 wins on cost at $1.65 per investigation. Lower-better; cheapest flagship in Simbian SOC eval."
+  },
+  "exploitbench_t3_bugs_breadth": {
+    "model_id": "google/gemini-3.1-pro",
+    "benchmark_id": "exploitbench_t3_bugs_breadth",
+    "value": 16.0,
+    "unit": "bugs_of_16",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://arxiv.org/abs/2605.14153",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "ExploitBench paper (arxiv 2605.14153): Gemini 3.1 Pro = 16 bugs Tier-3 breadth. Tier-3 breadth leader."
+  },
+  "cyberseceval4_overall": {
+    "model_id": "microsoft/mai-thinking-1",
+    "benchmark_id": "cyberseceval4_overall",
+    "value": 0.63,
+    "unit": "score_0_1",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://llm-stats.com/benchmarks/cyberseceval-4",
+      "date": "2026-06-19",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-19",
+    "notes": "llm-stats CyberSecEval 4 leaderboard: MAI-Thinking-1 leads at 0.630 (updated June 2026). Currently only listed model on llm-stats CyberSecEval 4 leaderboard."
   },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
