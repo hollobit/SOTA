@@ -188,6 +188,7 @@ var FrontierCompare = {
         'moonshot/kimi-k2.5',
         'zhipu/glm-5',
         'zhipu/glm-5.1',
+        'zhipu/glm-5.2',  // 2026-06-17 S137 — AAII v4.1 51 open-weights leader (744B/40B MoE MIT)
         'alibaba/qwen3.7-max',
         'alibaba/qwen3.7-max-preview',
         'alibaba/qwen3.7-plus-preview',
