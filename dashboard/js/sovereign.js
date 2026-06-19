@@ -112,6 +112,7 @@ var Sovereign = {
                 'deepseek/deepseek-r1-0528', 'deepseek/deepseek-r1',
                 // Zhipu GLM
                 'zhipu/glm-5.2', // 2026-06-17 S137 — AAII v4.1 51 open-weights leader
+                'zhipu/scail-2', // 2026-06-19 S138 — unified character animation (arxiv 2606.10804)
                 'zhipu/glm-5.1', 'zhipu/glm-5', 'zhipu/glm-4.7', 'zhipu/glm-4.6', 'zhipu/glm-4.5', 'zhipu/glm-4.5-air',
                 // Moonshot Kimi
                 'moonshot/kimi-k2.6', 'moonshot/kimi-k2.5', 'moonshot/kimi-k2.5-thinking', 'moonshot/kimi-k2.5-instant',
@@ -125,6 +126,8 @@ var Sovereign = {
                 // Baidu ERNIE
                 'baidu/ernie-5.1', 'baidu/ernie-5.0', 'baidu/ernie-4.5-300b-a47b', 'baidu/ernie-4.5-turbo', 'baidu/ernie-speed', 'baidu/ernie-lite',
                 'baidu/ernie-image',  // 2026-06-05 S55 — Baidu ERNIE Image (AA T2I Arena Elo 1176)
+                'baidu/paddleocr-vl-1.6',  // 2026-06 S138 — OmniDocBench v1.6 96.33 SOTA (arxiv 2606.03264)
+                'jd/joyai-vl-interaction',  // 2026-06 S138 — JD.com 8B real-time VLM (arxiv 2606.14777)
                 'hidream/hidream-o1-image-dev-2604',  // 2026-06-05 S55 — HiDream O1 Image Dev 2604 (AA T2I Elo 1192)
                 'alibaba/fun-realtime-tts',  // 2026-06-05 S55 — Alibaba FunAudioLLM Fun-Realtime-TTS (AA TTS Arena Elo 1227 SOTA)
                 'alibaba/fun-realtime-asr-preview',  // 2026-06-08 S58 — Alibaba FunAudioLLM Fun-Realtime-ASR (AA Transcribe WER 1.7% NEW SOTA, beats Scribe v2 2.2%)

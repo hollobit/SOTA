@@ -113,18 +113,24 @@ var FrontierCompare = {
             'arc_agi_3', 'bbh', 'cybench', 'gsm8k', 'hellaswag', 'mmlu',
             'osworld_verified', 'triviaqa', 'video_mme'
         ],
-        // AAII composite (Artificial Analysis Intelligence Index v4.0.4): 10 contributing
-        // benchmarks across 4 categories per
+        // AAII composite — Artificial Analysis Intelligence Index v4.0.4 (legacy) + v4.1 (current).
+        // v4.0→v4.1 (June 2026): IFBench REMOVED (saturation), T-Bench Hard→v2.1,
+        // τ²-Telecom→τ³-Banking, GDPval v1→v2. Weights re-shuffled: Agents 34% / Coding 24%
+        // / Sci-Reasoning 24% / General 18%. See methodology:
         // https://artificialanalysis.ai/methodology/intelligence-benchmarking
         composite_aaii: [
-            'aa_intelligence_index',
-            // Agents (25%): GDPval-AA + τ²-Bench Telecom
+            'aa_intelligence_index_v4_1', 'aa_intelligence_index',
+            // Agents: GDPval-AA v2 + τ³-Banking (v4.1) / GDPval-AA v1 + τ²-Telecom (legacy)
+            'gdpval_aa_v2', 'tau3_banking',
             'gdpval_aa', 'tau2_telecom',
-            // Coding (25%): Terminal-Bench Hard + SciCode
-            'terminal_bench_hard', 'scicode',
-            // General (25%): AA-LCR + AA-Omniscience + IFBench
-            'aa_lcr', 'aa_omniscience_acc', 'aa_omniscience_non_hall', 'ifbench',
-            // Scientific Reasoning (25%): HLE + GPQA Diamond + CritPt
+            // Coding: Terminal-Bench v2.1 (v4.1) / Terminal-Bench Hard (legacy) + SciCode
+            'terminal_bench_v2_1', 'terminal_bench_hard',
+            'scicode_v41', 'scicode',
+            // General: AA-LCR + AA-Omniscience (v4.1 keeps both, IFBench removed)
+            'aa_lcr', 'aa_omniscience_accuracy', 'aa_omniscience_non_hallucination',
+            'aa_omniscience_acc', 'aa_omniscience_non_hall', 'ifbench',
+            // Sci-Reasoning: HLE + GPQA Diamond + CritPt (v4.1 keeps; v4.1 metric vars)
+            'hle_v41', 'gpqa_diamond_v41',
             'hle', 'gpqa_diamond', 'critpt'
         ]
     },
