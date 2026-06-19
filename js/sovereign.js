@@ -82,6 +82,10 @@ var Sovereign = {
                 // Mistral — original / regional
                 'mistral/mistral-7b', 'mistral/mixtral-8x7b', 'mistral/mixtral-8x22b',
                 'mistral/mistral-nemo-12b', 'mistral/mistral-saba-24b',
+                // 2026-06-19 S140 — Ministral 3 family + Liquid AI (US/MIT-derived)
+                'mistral/ministral-3-3b', 'mistral/ministral-3-8b', 'mistral/ministral-3-14b',
+                'liquid/lfm2.5-8b-a1b', 'liquid/lfm2.5-vl-1.6b', 'liquid/lfm2.5-vl-450m',
+                'liquid/lfm2.5-audio-1.5b', 'liquid/lfm2.5-1.2b-jp',
                 // PleIAs (Common Corpus)
                 'pleias/pleias-1.0-pico-3.5b', 'pleias/pleias-1.0-olmo-1b',
                 'pleias/pleias-rag-1b', 'pleias/pleias-rag-350m',
@@ -193,6 +197,9 @@ var Sovereign = {
                 // OpenBMB MiniCPM (Tsinghua)
                 'openbmb/minicpm-4.1-8b', 'openbmb/minicpm-4-8b', 'openbmb/minicpm-3-4b', 'openbmb/minicpm-5-1b', // 2026-06-10 S67 — AAII 18 leading 1B open-weights
                 'openbmb/minicpm-v-2.6', 'openbmb/minicpm-o-2.6', 'openbmb/minicpm-o-4.5',
+                'openbmb/minicpm5-1b',                // 2026-05-19 S140 — AAII v4.1 = 17.9 (1B open SOTA, +7.4 vs next)
+                'openbmb/minicpm-v-4.6',              // 2026-05-11 S140 — iOS/Android/HarmonyOS VLM
+                'alibaba/qwen-3.5-0.8b','alibaba/qwen-3.5-2b','alibaba/qwen-3.5-4b','alibaba/qwen-3.5-9b', // 2026-03 S140 — Qwen 3.5 Small family
                 // Huawei PanGu
                 'huawei/pangu-ultra-moe', 'huawei/pangu-5', 'huawei/pangu-embedding',
                 // BAAI Aquila / Wudao

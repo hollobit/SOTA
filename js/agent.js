@@ -308,7 +308,22 @@ var Agent = (function() {
         'meta/llama-3.2-1b-instruct',
         'meta/llama-3.2-3b-instruct',
         // 2026-06-09 S60 — Amazon Nova Micro 1.3B AAII 10 (smallest from AMZN frontier line)
-        'amazon/nova-micro'
+        'amazon/nova-micro',
+        // 2026-06-19 S140 — Edge/Mobile SLM frontier refresh
+        'apple/afm-3-core-3b',                // 2026-06-08 — 3B Apple Foundation Model 3 Core
+        'apple/afm-3-core-advanced-20b',      // 2026-06-08 — 20B sparse (1-4B active)
+        'apple/afm-3-pcc',                    // 2026-06-08 — Private Cloud Compute server-side
+        'google/gemma-4-e2b-qat',             // 2026-06-05 — QAT mobile ~1GB
+        'google/gemma-4-e4b-qat',             // 2026-06-05 — QAT edge
+        'google/gemini-nano-v3',              // 2026-05-12 — Nano v3
+        'microsoft/phi-4-reasoning-vision-15b', // 2026-03-04 — 15B reasoning VLM
+        'openbmb/minicpm5-1b',                // 2026-05-19 — 1B AAII v4.1 = 17.9 SOTA
+        'openbmb/minicpm-v-4.6',              // 2026-05-11 — iOS/Android/HarmonyOS VLM
+        'alibaba/qwen-3.5-0.8b', 'alibaba/qwen-3.5-2b', 'alibaba/qwen-3.5-4b', 'alibaba/qwen-3.5-9b',
+        'mistral/ministral-3-3b', 'mistral/ministral-3-8b', 'mistral/ministral-3-14b',
+        'liquid/lfm2.5-8b-a1b',
+        'liquid/lfm2.5-vl-1.6b', 'liquid/lfm2.5-vl-450m',
+        'liquid/lfm2.5-audio-1.5b', 'liquid/lfm2.5-1.2b-jp'
     ];
 
     // Utility-vs-cost / latency metrics map. Filled by _loadUtility (Task 17).

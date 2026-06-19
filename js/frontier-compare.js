@@ -43,7 +43,10 @@ var FrontierCompare = {
             'hmmt_feb_2026', 'amo_bench_olympiad', 'frontier_math_t1_3',
             // 2026-06-04 S50 — Gemma 4 12B BBEH
             'bbeh',
-            'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024'],
+            'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024',
+            // 2026-06-19 S140 — 2026 official olympiad results + new sub-benches
+            'usamo_2026', 'putnam_2025', 'ipho_2025_theory', 'matharena_apex_2025',
+            'arxivmath_mar_apr_2026'],
         agent: [
             'browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench',
             'mcp_atlas', 'mcpatlas_public', 'mcpmark', 'webarena',
