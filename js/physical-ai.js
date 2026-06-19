@@ -22,6 +22,10 @@ var PhysicalAI = {
                 'nvidia/cosmos3-edge',
                 'nvidia/cosmos3-super-text2image', 'nvidia/cosmos3-super-image2video',
                 'nvidia/cosmos3-nano-policy-droid',
+                // 2026-06-19 S138 — arxiv June 2026 sweep
+                'nvidia/cosmos-3',                  // omnimodal world-model OpenMDW-1.1 (2606.02800)
+                'academic/kairos-physical-ai',      // Hybrid Linear Temporal Attention + MoT (2606.16533)
+                'allenai/molmomotion',              // language-instructed 3D point trajectories (2606.18558)
                 // 2026-05-30 Session 39 — Conditional video generation (PAI-Bench-C)
                 'nvidia/cosmos-transfer2.5-2b',
                 'alibaba/wan-2.2-fun-a14b-control', 'alibaba/wan-2.2-fun-5b-control',

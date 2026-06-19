@@ -32,9 +32,12 @@ var Agent = (function() {
                 'aider_polyglot',
                 'swe_lancer',
                 'mle_bench',
+                'mle_bench_lite',  // 2026-06-19 S138 — Arbor RUC-NLPIR (arxiv 2606.11926)
                 'usaco',
                 // 2026-05-28 Session 31 — Datacurve DeepSWE (contamination-free SWE bench)
-                'deepswe_pass_at_1'
+                'deepswe_pass_at_1',
+                // 2026-06-19 S138 — CEO-Bench 500-day startup simulation (arxiv 2606.18543)
+                'ceo_bench'
             ]
         },
         {

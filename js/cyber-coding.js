@@ -23,6 +23,12 @@ var CyberCoding = {
         'offensive_cyber_time_horizon_p50', 'offensive_cyber_success_rate',
         // 2026-05-28 S33 Claude Opus 4.8 System Card — harness-conflict cyber bench IDs (Section 3.3)
         'cybergym_targeted_repro', 'firefox_147_full_exploit', 'exploitbench_v2_flags', 'oss_fuzz_progress_rate',
+        // 2026-06-19 S138 — Cyber refresh (AISI Advanced Suite + Meta CyberSecEval4 + Glasswing + Simbian CDB + ExploitBench tier)
+        'aisi_advanced_suite_expert_pass_rate', 'aisi_tlo_32step_solves_at_10',
+        'aisi_cooling_tower_solves_at_10', 'aisi_cyber_time_horizon_80pct_minutes',
+        'cyberseceval4_overall', 'glasswing_critical_vulns_found_per_month',
+        'simbian_cdb_cost_per_investigation_usd',
+        'exploitbench_tier_reached_max', 'exploitbench_t3_bugs_breadth',
         // 2026-06-14 S111 — Cybersecurity benchmark refresh (frontier + agents + 2026 boards)
         'cybergym_v1', 'exploitbench_v8', 'firefox_147_anthropic', 'oss_fuzz_anthropic', 'cybergym_v1',
         'uk_aisi_narrow_cyber_expert', 'uk_aisi_cyber_range_last_ones', 'uk_aisi_cyber_range_doing_life',

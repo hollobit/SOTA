@@ -19741,29 +19741,8 @@
     "metric": "accuracy"
   },
   {
-    "id": "aa_intelligence_index_v4_1",
-    "name": "AAII v4.1",
-    "category": "other",
-    "description": "",
-    "metric": "accuracy"
-  },
-  {
-    "id": "tau3_banking",
-    "name": "tau3 banking",
-    "category": "other",
-    "description": "",
-    "metric": "accuracy"
-  },
-  {
     "id": "scicode",
     "name": "SciCode",
-    "category": "other",
-    "description": "",
-    "metric": "accuracy"
-  },
-  {
-    "id": "gdpval_aa_v2",
-    "name": "GDPval-AA v2",
     "category": "other",
     "description": "",
     "metric": "accuracy"
@@ -19865,6 +19844,160 @@
     "category": "other",
     "description": "",
     "metric": "accuracy"
+  },
+  {
+    "id": "aa_intelligence_index_v4_1",
+    "name": "Artificial Analysis Intelligence Index v4.1",
+    "category": "composite",
+    "description": "Weighted composite of 9 evaluations across Agents (34%), Coding (24%), Scientific Reasoning (24%), General (18%)",
+    "metric": "index"
+  },
+  {
+    "id": "gdpval_aa_v2",
+    "name": "GDPval-AA v2",
+    "category": "agents",
+    "description": "Agentic real-world economically valuable tasks; (Elo-500)/2000 normalization; v2 introduces 3-judge panel and 250-turn limit",
+    "metric": "pct"
+  },
+  {
+    "id": "tau3_banking",
+    "name": "tau3-Bench Banking",
+    "category": "agents",
+    "description": "Dual control agent-user simulation with knowledge retrieval, pass@1",
+    "metric": "pass@1"
+  },
+  {
+    "id": "terminal_bench_v2_1",
+    "name": "Terminal-Bench v2.1",
+    "category": "coding",
+    "description": "Terminal-based task execution, test suite pass/fail, pass@1",
+    "metric": "pass@1"
+  },
+  {
+    "id": "scicode_v41",
+    "name": "SciCode (AAII v4.1)",
+    "category": "coding",
+    "description": "Code execution, pass@1, sub-problem scoring (288 subproblems test set)",
+    "metric": "pass@1"
+  },
+  {
+    "id": "hle_v41",
+    "name": "Humanity's Last Exam (AAII v4.1)",
+    "category": "scientific_reasoning",
+    "description": "2,158 questions, Equality Checker LLM, pass@1",
+    "metric": "pass@1"
+  },
+  {
+    "id": "gpqa_diamond_v41",
+    "name": "GPQA Diamond (AAII v4.1)",
+    "category": "scientific_reasoning",
+    "description": "198 MCQ-4, regex extraction, pass@1, 5 repeats",
+    "metric": "pass@1"
+  },
+  {
+    "id": "aa_omniscience_accuracy",
+    "name": "AA-Omniscience Accuracy",
+    "category": "general",
+    "description": "6,000 open-answer questions, accuracy component (8% weight)",
+    "metric": "pass@1"
+  },
+  {
+    "id": "aa_omniscience_non_hallucination",
+    "name": "AA-Omniscience Non-Hallucination Rate",
+    "category": "general",
+    "description": "1 - hallucination rate (4% weight)",
+    "metric": "rate"
+  },
+  {
+    "id": "ceo_bench",
+    "name": "CEO-Bench (500-day startup sim)",
+    "category": "agent",
+    "description": "500-day startup simulation; metric = end-balance > $1M",
+    "metric": "$1M balance survive"
+  },
+  {
+    "id": "rng_bench",
+    "name": "RNG-Bench",
+    "category": "language",
+    "description": "Matching Pairs + 3D Maze for MLLM partial-observability",
+    "metric": "score"
+  },
+  {
+    "id": "pointmotionbench",
+    "name": "PointMotionBench",
+    "category": "physical",
+    "description": "111 categories × 61 motion types human-verified",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mapf_frozenlake",
+    "name": "MAPF-FrozenLake",
+    "category": "agent",
+    "description": "Controllable RL env-redesign testbed (LARK Lab)",
+    "metric": "score"
+  },
+  {
+    "id": "aisi_advanced_suite_expert_pass_rate",
+    "name": "AISI Advanced Cyber Suite — Expert pass rate",
+    "category": "cyber",
+    "description": "21 Expert-level cyber tasks (CTF format: reverse engineering, web exploitation, cryptography, vuln research). Pass rate reported by UK AISI in its frontier model evaluations.",
+    "metric": "score"
+  },
+  {
+    "id": "aisi_tlo_32step_solves_at_10",
+    "name": "AISI \"The Last Ones\" — 32-step cyber-range end-to-end solves (out of 10)",
+    "category": "cyber",
+    "description": "Solve count of UK AISI's 32-step corporate-network attack range (TLO) over 10 attempts at a 100M-token budget. Human expert reference ~20 hours.",
+    "metric": "score"
+  },
+  {
+    "id": "aisi_cooling_tower_solves_at_10",
+    "name": "AISI Cooling Tower (OT cyber range) — solves (out of 10)",
+    "category": "cyber",
+    "description": "End-to-end solves of UK AISI's operational-technology Cooling Tower cyber range (7-step ICS attack), out of 10 attempts. First public scoring May 2026.",
+    "metric": "score"
+  },
+  {
+    "id": "aisi_cyber_time_horizon_80pct_minutes",
+    "name": "AISI Cyber Time Horizon @80% reliability (minutes)",
+    "category": "cyber",
+    "description": "Length of human-baseline cyber task (in minutes) that the agent completes with 80% reliability within a 2.5M-token budget. Used by UK AISI to track autonomous-cyber doubling rate.",
+    "metric": "score"
+  },
+  {
+    "id": "cyberseceval4_overall",
+    "name": "CyberSecEval 4 — overall",
+    "category": "cyber",
+    "description": "Meta Purple Llama CyberSecEval 4 composite (CyberSOCEval Malware Analysis + Threat Intel Reasoning + AutoPatchBench + offensive sub-suites). Updated 2026-06.",
+    "metric": "score"
+  },
+  {
+    "id": "glasswing_critical_vulns_found_per_month",
+    "name": "Project Glasswing — high/critical-severity vulns discovered (cumulative)",
+    "category": "cyber",
+    "description": "Cumulative high/critical-severity software vulnerabilities discovered by Anthropic's Project Glasswing scan corpus (>1,000 OSS projects) over the first ~1 month of Mythos deployment.",
+    "metric": "score"
+  },
+  {
+    "id": "simbian_cdb_cost_per_investigation_usd",
+    "name": "Simbian Cyber Defense Benchmark — cost per investigation (USD, lower-better)",
+    "category": "cyber",
+    "description": "Average USD agent-cost to run a single 134K-event SOC threat-hunting investigation on the Simbian Cyber Defense Benchmark. Lower is better.",
+    "metric": "score"
+  },
+  {
+    "id": "exploitbench_tier_reached_max",
+    "name": "ExploitBench — highest tier reached (1-5)",
+    "category": "cyber",
+    "description": "Highest capability-ladder tier reached on ExploitBench (Tier 5 reach-code → Tier 1 arbitrary code exec). Aggregated across CVE corpus per arxiv 2605.14153 / exploitbench.ai.",
+    "metric": "score"
+  },
+  {
+    "id": "exploitbench_t3_bugs_breadth",
+    "name": "ExploitBench — Tier-3 (general primitives) bugs solved breadth",
+    "category": "cyber",
+    "description": "Number of CVEs at which the model reaches ExploitBench Tier 3 (general exploitation primitives) on the public 16-bug exploit ladder.",
+    "metric": "score"
   },
   {
     "id": "arc_agi_3",
