@@ -111,6 +111,7 @@ var Sovereign = {
                 'deepseek/deepseek-v3.1-terminus', 'deepseek/deepseek-v3',
                 'deepseek/deepseek-r1-0528', 'deepseek/deepseek-r1',
                 // Zhipu GLM
+                'zhipu/glm-5.2', // 2026-06-17 S137 — AAII v4.1 51 open-weights leader
                 'zhipu/glm-5.1', 'zhipu/glm-5', 'zhipu/glm-4.7', 'zhipu/glm-4.6', 'zhipu/glm-4.5', 'zhipu/glm-4.5-air',
                 // Moonshot Kimi
                 'moonshot/kimi-k2.6', 'moonshot/kimi-k2.5', 'moonshot/kimi-k2.5-thinking', 'moonshot/kimi-k2.5-instant',
@@ -141,6 +142,8 @@ var Sovereign = {
                 'alibaba/wan2.6-t2v', 'alibaba/wan2.6-t2i', 'alibaba/wan2.5-t2i-preview',
                 'alibaba/qwen-image-2.0-pro-2026-04-22', 'alibaba/qwen-image-2512', 'alibaba/qwen-image-2.0-2026-03-03',
                 'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav',
+                // 2026-06-16 S137 — Qwen RobotSuite trio (RobotManip LIBERO-Plus 91.4 SOTA, RobotWorld 20B MMDiT WorldModelBench 8.99 open-source SOTA)
+                'alibaba/qwen-robotmanip', 'alibaba/qwen-robotworld',
                 // 2026-06-01 S45 — Qwen-VLA family (arxiv 2605.30280, Alibaba Qwen Team)
                 'alibaba/qwen-vla-base', 'alibaba/qwen-vla-instruct',
                 'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',

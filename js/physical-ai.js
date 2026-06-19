@@ -67,6 +67,8 @@ var PhysicalAI = {
                 'allenai/molmoact-2',  // canonical id used in newer ingest (Section 38)
                 // 2026-05-20 Alibaba Qwen robotics — quadruped robot dog control + navigation FM
                 'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav',
+                // 2026-06-16 S137 — Qwen RobotSuite (RobotManip Qwen3.5-4B VLM+DiT: LIBERO-Plus 91.4 / RoboTwin-C2R Hard 69.4 / RoboCasa365 35.9 SOTA; RobotWorld 20B MMDiT WorldModelBench 8.99 / EWMBench 4.60 open-source SOTA)
+                'alibaba/qwen-robotmanip', 'alibaba/qwen-robotworld',
                 // 2026-06-01 S45 — Alibaba Qwen-VLA paper (arxiv 2605.30280): unified VLA across tasks/environments/embodiments
                 'alibaba/qwen-vla-base', 'alibaba/qwen-vla-instruct',
                 'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',

@@ -454,6 +454,7 @@ var CyberCoding = {
         'meta/muse-spark',
         'zhipu/glm-5',
         'zhipu/glm-5.1',
+        'zhipu/glm-5.2',          // 2026-06-19 S137 — AAII v4.1 51 open-weights SOTA; FrontierSWE 74.4 / Terminal-Bench 2.1 82.7 / SWE-Pro 62.1 / DeepSWE 46.2
         'alibaba/qwen3.7-plus',  // 2026-06-02 S46 GA
         'microsoft/mai-thinking-1',  // 2026-06-02 S48 — MS MAI Thinking-1 35B/1T MoE
         'microsoft/mai-code-1-flash',  // 2026-06-02 S48 — MS MAI Code-1-Flash 5B
