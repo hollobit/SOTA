@@ -32,6 +32,54 @@
             'per':1,'also':1,'not':1,'no':1,'new':1,'used':1,'based':1,'both':1
         },
 
+        // Hangul → English alias lexicon. Almost all benchmark descriptions in
+        // the corpus are English, so a Korean query like "한국어 의료 시험"
+        // would never match. We expand each Hangul token to one or more English
+        // tokens before BM25 lookup. A token can map to multiple English aliases
+        // (joined by space) — all are added to the token list so any of them
+        // can fire on the inverted index.
+        _hangulAliases: {
+            // Languages / locales
+            '한국어':'korean','한국':'korean','한글':'korean','국어':'korean',
+            '영어':'english','중국어':'chinese','일본어':'japanese',
+            '다국어':'multilingual','다중언어':'multilingual',
+            // Domains
+            '의료':'medical clinical','의학':'medical','임상':'clinical',
+            '간호':'nursing','약학':'pharmacology',
+            '시험':'exam qa','문제':'problems','평가':'benchmark eval',
+            '벤치마크':'benchmark','데이터셋':'dataset',
+            // Math / science
+            '수학':'math','산수':'math','수리':'math',
+            '올림피아드':'olympiad','올림픽':'olympiad',
+            '과학':'science','물리':'physics','화학':'chemistry','생물':'biology',
+            // Robotics / physical AI
+            '로봇':'robot robotics','로봇공학':'robotics',
+            '조작':'manipulation','매니퓰레이션':'manipulation',
+            '주행':'navigation driving','자율주행':'driving','내비게이션':'navigation',
+            '비전':'vision','vla':'vla',
+            // ML
+            '모델':'model','오픈소스':'open source','오픈웨이트':'open weights',
+            '추론':'reasoning inference','사고':'thinking',
+            '코딩':'coding code','코드':'code',
+            '에이전트':'agent','에이전트형':'agent','도구':'tool',
+            '검색':'search retrieval','리트리벌':'retrieval',
+            '임베딩':'embedding','리랭커':'reranker','재정렬':'reranker',
+            '컨텍스트':'context','문맥':'context','롱컨텍스트':'long context',
+            // Modalities
+            '이미지':'image','영상':'video','비디오':'video','음성':'speech audio',
+            '오디오':'audio','음악':'music','음원':'audio',
+            '챗봇':'chat','대화':'chat',
+            // Cyber / safety
+            '사이버':'cyber security','보안':'security cyber','해킹':'cyber exploit',
+            '취약점':'vulnerability cve','공격':'attack',
+            '안전':'safety','정렬':'alignment',
+            // Hardware / inference
+            '엣지':'edge','온디바이스':'on-device edge','모바일':'mobile edge',
+            '양자화':'quantization','추론속도':'inference throughput',
+            '토큰':'tokens','속도':'throughput speed',
+            '비용':'cost price','가격':'cost price'
+        },
+
         _tokenize: function(q) {
             if (!q) return [];
             var s = q.toLowerCase().replace(/[^a-z0-9가-힣\s\-/.]/g, ' ');
@@ -40,7 +88,18 @@
             for (var i = 0; i < parts.length; i++) {
                 var t = parts[i].replace(/^[\-/.]+|[\-/.]+$/g, '');
                 if (!t || t.length < 2 || this._stopwords[t]) continue;
-                out.push(t);
+                // Hangul alias expansion: replace Hangul token with its
+                // English aliases (still keeping the original for any future
+                // direct Hangul match).
+                if (/[가-힣]/.test(t) && this._hangulAliases[t]) {
+                    out.push(t);
+                    var aliases = this._hangulAliases[t].split(/\s+/);
+                    for (var j = 0; j < aliases.length; j++) {
+                        if (aliases[j]) out.push(aliases[j]);
+                    }
+                } else {
+                    out.push(t);
+                }
             }
             return out;
         },
