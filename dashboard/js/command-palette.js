@@ -9,25 +9,42 @@
         _index: null,
         _isOpen: false,
 
-        _fuzzyMatch: function(query, target) {
+        _fuzzyMatch: function(query, entry) {
             // Returns score 0 if no match, higher = better match.
-            // Token-based: each query word must appear in target. Bonus for prefix match.
+            // For backward compat, second arg may be a string (legacy haystack)
+            // or an entry object with separate name/search/description fields.
             if (!query) return 1;
             var qLower = query.toLowerCase().trim();
-            var tLower = target.toLowerCase();
             if (!qLower) return 1;
-            // Quick exact substring
-            var subIdx = tLower.indexOf(qLower);
-            if (subIdx === 0) return 100; // prefix
-            if (subIdx > 0) return 50; // substring
-            // Token mode: split on space + slash + dash + dot
+
+            var nameHay, fullHay;
+            if (typeof entry === 'string') {
+                nameHay = entry.toLowerCase();
+                fullHay = nameHay;
+            } else {
+                nameHay = (entry.search || '').toLowerCase();      // id + name + vendor/category
+                fullHay = (entry.searchExtended || nameHay).toLowerCase(); // + description + metric
+            }
+
+            // Tier 1: exact substring in name → highest score
+            var nameSubIdx = nameHay.indexOf(qLower);
+            if (nameSubIdx === 0) return 100;   // prefix match in name
+            if (nameSubIdx > 0) return 60;      // substring in name
+
+            // Tier 2: substring in description/extended haystack only
+            var fullSubIdx = fullHay.indexOf(qLower);
+            if (fullSubIdx >= 0) return 25;     // semantic hit (description-only)
+
+            // Tier 3: token-mode — split on space + slash + dash + dot
             var tokens = qLower.split(/[\s\/\-\._]+/).filter(function(t) { return t.length > 0; });
-            if (tokens.length < 2) return 0; // didn't match above and no tokens to split
-            // All tokens must appear (in any order)
-            var allMatch = tokens.every(function(t) { return tLower.indexOf(t) !== -1; });
-            if (!allMatch) return 0;
-            // Score = number of tokens × 10 (higher for more matched tokens)
-            return tokens.length * 10;
+            if (tokens.length < 2) return 0;
+            // All tokens must appear in extended haystack (any order)
+            var allInName = tokens.every(function(t) { return nameHay.indexOf(t) !== -1; });
+            if (allInName) return tokens.length * 10 + 5; // bonus for name-only hit
+            var allInFull = tokens.every(function(t) { return fullHay.indexOf(t) !== -1; });
+            if (!allInFull) return 0;
+            // Score = #tokens × 8 (lower than name-only multi-token, higher than empty)
+            return tokens.length * 8;
         },
 
         init: function() {
@@ -56,34 +73,46 @@
 
             // Models
             models.forEach(function(m) {
+                var nameHay = ((m.name || '') + ' ' + m.id + ' ' + (m.vendor || '')).toLowerCase();
                 entries.push({
                     type: 'model',
                     id: m.id,
                     name: m.name || m.id,
                     detail: (m.vendor || '') + ' · ' + (m.type || ''),
-                    search: ((m.name || '') + ' ' + m.id + ' ' + (m.vendor || '')).toLowerCase(),
+                    search: nameHay,
+                    searchExtended: nameHay + ' ' + ((m.type || '') + ' ' + (m.description || '')).toLowerCase(),
                 });
                 if (m.vendor && !seen[m.vendor]) {
                     seen[m.vendor] = true;
                     var vendorModels = models.filter(function(mm) { return mm.vendor === m.vendor; });
+                    var vh = m.vendor.toLowerCase();
                     entries.push({
                         type: 'vendor',
                         id: m.vendor,
                         name: m.vendor,
                         detail: vendorModels.length + ' models',
-                        search: m.vendor.toLowerCase(),
+                        search: vh,
+                        searchExtended: vh,
                     });
                 }
             });
 
-            // Benchmarks
+            // Benchmarks — extend index with description, metric, category so a
+            // query like "long context" or "korean medical" hits benchmarks whose
+            // names don't contain those words but whose descriptions do.
             benchmarks.forEach(function(b) {
+                var nameHay = ((b.name || '') + ' ' + b.id + ' ' + (b.category || '')).toLowerCase();
+                var desc = (b.description || '').toLowerCase();
+                var hasDesc = desc.length > 0;
                 entries.push({
                     type: 'benchmark',
                     id: b.id,
                     name: b.name || b.id,
-                    detail: (b.category || '') + ' benchmark',
-                    search: ((b.name || '') + ' ' + b.id + ' ' + (b.category || '')).toLowerCase(),
+                    detail: (b.category || '') + ' benchmark' +
+                            (hasDesc ? ' — ' + b.description.slice(0, 80) : ''),
+                    description: b.description || '',
+                    search: nameHay,
+                    searchExtended: nameHay + ' ' + (b.metric || '').toLowerCase() + ' ' + desc,
                 });
             });
 
@@ -108,7 +137,7 @@
 
             var input = document.createElement('input');
             input.type = 'text';
-            input.placeholder = 'Search models, vendors, benchmarks…';
+            input.placeholder = 'Search models, vendors, benchmarks (incl. descriptions)…';
             input.className = 'w-full bg-transparent text-gray-100 px-4 py-3 border-b border-gray-700 focus:outline-none text-sm';
             panel.appendChild(input);
 
@@ -156,7 +185,24 @@
                 nameEl.appendChild(nm);
                 var dt = document.createElement('div');
                 dt.className = 'text-xs text-gray-500 truncate';
-                dt.textContent = r.detail;
+                // If the active query matches only the description (not the name),
+                // surface a snippet centered on the first match so the user sees
+                // why this row was returned. Otherwise keep the default detail.
+                var qActive = (self._lastQuery || '').toLowerCase();
+                var descLower = (r.description || '').toLowerCase();
+                if (r.type === 'benchmark' && qActive && descLower && descLower.indexOf(qActive) !== -1 &&
+                    (r.name || '').toLowerCase().indexOf(qActive) === -1) {
+                    var pos = descLower.indexOf(qActive);
+                    var start = Math.max(0, pos - 30);
+                    var end = Math.min(r.description.length, pos + qActive.length + 60);
+                    var snippet = (start > 0 ? '…' : '') + r.description.slice(start, end) +
+                                  (end < r.description.length ? '…' : '');
+                    dt.textContent = snippet;
+                    dt.className = 'text-xs text-yellow-300/80 truncate';
+                    dt.title = r.description;
+                } else {
+                    dt.textContent = r.detail;
+                }
                 nameEl.appendChild(dt);
                 item.appendChild(nameEl);
 
@@ -181,6 +227,7 @@
             function render(query) {
                 resultsList.textContent = '';
                 var q = (query || '').toLowerCase().trim();
+                self._lastQuery = q;
                 var allResults;
                 if (!q) {
                     // Show recent / popular suggestions when empty — models only
@@ -193,7 +240,7 @@
                 }
 
                 allResults = self._index.map(function(e) {
-                    return { entry: e, score: self._fuzzyMatch(q, e.search) };
+                    return { entry: e, score: self._fuzzyMatch(q, e) };
                 }).filter(function(x) {
                     return x.score > 0;
                 }).sort(function(a, b) {

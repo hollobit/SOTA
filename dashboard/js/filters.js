@@ -34,18 +34,37 @@ var Filters = {
         }
 
         if (opts.search) {
-            var q = opts.search.toLowerCase();
-            // Build benchmark name lookup
-            var benchNames = {};
-            (window._benchmarks || []).forEach(function(b) {
-                benchNames[b.id] = b.name.toLowerCase();
-            });
-            filtered = filtered.filter(function(s) {
-                var matchModel = s.model_id.toLowerCase().indexOf(q) !== -1;
-                var benchName = benchNames[s.benchmark_id] || s.benchmark_id.toLowerCase();
-                var matchBench = benchName.indexOf(q) !== -1 || s.benchmark_id.toLowerCase().indexOf(q) !== -1;
-                return matchModel || matchBench;
-            });
+            // Semantic-extended search: matches across model id+name+vendor and
+            // benchmark id+name+description+category+metric. Multi-token
+            // (whitespace-separated): every token must appear somewhere in the
+            // combined haystack (any order). Empty input matches everything.
+            var rawQ = opts.search.toLowerCase().trim();
+            var tokens = rawQ.split(/\s+/).filter(function(t) { return t.length > 0; });
+            if (tokens.length > 0) {
+                var benchHay = {};
+                (window._benchmarks || []).forEach(function(b) {
+                    benchHay[b.id] = (
+                        (b.name || '') + ' ' + b.id + ' ' +
+                        (b.category || '') + ' ' + (b.metric || '') + ' ' +
+                        (b.description || '')
+                    ).toLowerCase();
+                });
+                var modelHay = {};
+                models.forEach(function(m) {
+                    modelHay[m.id] = (
+                        (m.name || '') + ' ' + m.id + ' ' + (m.vendor || '')
+                    ).toLowerCase();
+                });
+                filtered = filtered.filter(function(s) {
+                    var combined = (modelHay[s.model_id] || s.model_id.toLowerCase()) +
+                                   ' ' +
+                                   (benchHay[s.benchmark_id] || s.benchmark_id.toLowerCase());
+                    for (var i = 0; i < tokens.length; i++) {
+                        if (combined.indexOf(tokens[i]) === -1) return false;
+                    }
+                    return true;
+                });
+            }
         }
 
         return filtered;
