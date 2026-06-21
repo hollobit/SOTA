@@ -37,8 +37,26 @@
         </div>
     </header>
 
+    <!-- Global GraphRAG search bar — semantic query across models, benchmarks, vendors, categories, descriptions -->
+    <div class="px-6 py-3 border-b border-gray-800 bg-gray-950">
+        <form id="global-search-form" class="flex gap-2" autocomplete="off">
+            <input type="text" id="global-search" name="q"
+                   placeholder="🔎 Ask anything — e.g. korean medical, long context, opus 4.8 cyber, edge slm under 4b, usamo 2026 saturation"
+                   class="flex-1 bg-gray-900 border border-gray-700 rounded px-3 py-2 text-sm text-gray-100 focus:outline-none focus:border-blue-600"
+                   aria-label="GraphRAG semantic search">
+            <button type="submit" id="global-search-btn"
+                    class="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium">
+                Search
+            </button>
+        </form>
+        <p class="text-[11px] text-gray-500 mt-1">
+            Powered by GraphRAG — entity graph (models · benchmarks · vendors · categories) + BM25 over names &amp; descriptions. Results land in the GraphRAG tab with 1-hop neighbors.
+        </p>
+    </div>
+
     <nav class="flex border-b border-gray-800 px-3 overflow-x-auto flex-nowrap" id="tabs" role="tablist" aria-label="Dashboard sections">
         <button class="tab-btn active" data-tab="overview" role="tab" aria-selected="true" aria-controls="tab-overview" id="tabbtn-overview">Overview</button>
+        <button class="tab-btn" data-tab="graphrag" role="tab" aria-selected="false" aria-controls="tab-graphrag" id="tabbtn-graphrag" tabindex="-1">GraphRAG</button>
         <button class="tab-btn" data-tab="leaderboard" role="tab" aria-selected="false" aria-controls="tab-leaderboard" id="tabbtn-leaderboard" tabindex="-1">Leaderboard</button>
         <button class="tab-btn" data-tab="trends" role="tab" aria-selected="false" aria-controls="tab-trends" id="tabbtn-trends" tabindex="-1">Trends</button>
         <button class="tab-btn" data-tab="timeline" role="tab" aria-selected="false" aria-controls="tab-timeline" id="tabbtn-timeline" tabindex="-1">Timeline</button>
@@ -78,6 +96,18 @@
                     <div id="recent-data-feed" class="mt-6"></div>
                 </div>
             </div>
+        </section>
+
+        <section id="tab-graphrag" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-graphrag">
+            <div class="mb-4">
+                <h2 class="text-section mb-1">GraphRAG — Semantic Search &amp; Relationship Tracing</h2>
+                <p class="text-sm text-gray-400 mb-3">
+                    Knowledge graph over the dashboard's entire entity set — every model, benchmark, vendor, and category — with relationships
+                    (<code>SCORED_ON</code>, <code>TOP_RANKED_ON</code>, <code>MAKES</code>, <code>IN_CATEGORY</code>, <code>BENCH_RELATED</code>, <code>SAME_VENDOR_FAMILY</code>).
+                    Search is BM25 over the union of name / vendor / category / description / metric text, then each result expands its 1-hop neighborhood so you can trace context without leaving the page.
+                </p>
+            </div>
+            <div id="graphrag-results"></div>
         </section>
 
         <section id="tab-leaderboard" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-leaderboard">
@@ -863,6 +893,7 @@
     <script src="js/peer-matcher.js?v=20260503a"></script>
     <script src="js/modal.js?v=20260509a"></script>
     <script src="js/command-palette.js?v=20260503c"></script>
+    <script src="js/graphrag.js?v=20260621"></script>
     <script src="js/frontier-compare.js?v=20260610b"></script>
     <script src="js/cyber-coding.js?v=20260610b"></script>
     <script src="js/sovereign.js?v=20260610b"></script>

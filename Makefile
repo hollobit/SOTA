@@ -30,6 +30,7 @@ load:
 
 export:
 	PYTHONPATH=. python3 -m cyber export
+	python3 scripts/build_graphrag.py
 
 badge:
 	python3 scripts/update_coverage_badge.py

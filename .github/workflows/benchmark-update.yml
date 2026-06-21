@@ -107,8 +107,10 @@ jobs:
           name: benchmark-db-analyzed
           path: data/
 
-      - name: Export JSON
-        run: python -m cyber export
+      - name: Export JSON + GraphRAG index
+        run: |
+          python -m cyber export
+          python scripts/build_graphrag.py
 
       - name: Stage dashboard + data for gh-pages
         env:

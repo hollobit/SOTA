@@ -39,6 +39,33 @@ var App = {
                 AI4S.init(self.data.models);
             }
             Modal.init();
+
+            // Global GraphRAG search form (top bar).
+            var gsForm = document.getElementById('global-search-form');
+            var gsInput = document.getElementById('global-search');
+            if (gsForm && gsInput) {
+                gsForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var q = gsInput.value.trim();
+                    if (!q) return;
+                    if (typeof GraphRAG !== 'undefined' && GraphRAG.runQuery) {
+                        GraphRAG.runQuery(q);
+                    } else {
+                        self.setTab('graphrag');
+                    }
+                });
+                // Debounced live search after 400ms of stop-typing for queries ≥3 chars.
+                var deb = null;
+                gsInput.addEventListener('input', function() {
+                    if (deb) clearTimeout(deb);
+                    var q = gsInput.value.trim();
+                    if (q.length < 3) return;
+                    deb = setTimeout(function() {
+                        if (typeof GraphRAG !== 'undefined' && GraphRAG.runQuery) GraphRAG.runQuery(q);
+                    }, 400);
+                });
+            }
+
             // Frontier Compare category filter
             var fcCat = document.getElementById('fc-category');
             var fcBtn = document.getElementById('fc-render');
@@ -455,6 +482,7 @@ var App = {
                     if (btn.dataset.tab === 'timeline' && typeof Timeline !== 'undefined') Timeline.render();
                     if (btn.dataset.tab === 'resources') self.renderResources();
                     if (btn.dataset.tab === 'changelog') self.renderChangelog();
+                    if (btn.dataset.tab === 'graphrag' && typeof GraphRAG !== 'undefined') GraphRAG.render();
                     // resize after renders, then again on next frame to catch
                     // any chart whose container width finalised mid-render.
                     if (typeof Charts !== 'undefined' && Charts.resizeAll) {
@@ -479,6 +507,20 @@ var App = {
                 }
             });
         });
+
+        // Expose activator so other modules can programmatically switch tabs.
+        // Used by GraphRAG.runQuery() (global search) and could be used by
+        // command-palette _activate fallbacks.
+        this._activateTabFn = function(tabId) {
+            var btn = document.getElementById('tabbtn-' + tabId);
+            if (btn) activate(btn, false);
+        };
+    },
+
+    // Public — programmatically switch to a tab. Safe to call any time
+    // after setupTabs() has run. If the tab isn't registered yet, no-op.
+    setTab: function(tabId) {
+        if (this._activateTabFn) this._activateTabFn(tabId);
     },
 
     _LEADERBOARD_FILTER_IDS: ['filter-category', 'filter-type', 'filter-source', 'filter-benchmark', 'filter-search'],
