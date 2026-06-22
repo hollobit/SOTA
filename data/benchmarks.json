@@ -3976,13 +3976,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "mcp_mark",
-    "name": "MCP-Mark",
-    "category": "agent",
-    "description": "GitHub MCP v0.30.3 evaluation; Playwright responses truncated at 32K tokens.",
-    "metric": "accuracy"
-  },
-  {
     "id": "deep_planning",
     "name": "Deep-Planning",
     "category": "agent",
@@ -10985,13 +10978,6 @@
     }
   },
   {
-    "id": "toolathlon",
-    "name": "Toolathlon",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
     "id": "niah_1m",
     "name": "Needle-in-Haystack @ 1M",
     "category": "general",
@@ -14161,13 +14147,6 @@
     "metric": "completion%"
   },
   {
-    "id": "bfcl_v4_overall",
-    "name": "BFCL v4 Overall",
-    "category": "tool-use",
-    "description": "",
-    "metric": "accuracy"
-  },
-  {
     "id": "bfcl_v4_non_live_ast",
     "name": "BFCL v4 Non-Live AST",
     "category": "tool-use",
@@ -14345,13 +14324,6 @@
   {
     "id": "draco",
     "name": "draco",
-    "category": "agent",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "mcp_atlas_public",
-    "name": "mcp_atlas_public",
     "category": "agent",
     "description": "",
     "metric": "score"
@@ -19458,21 +19430,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "mcp_atlas",
-    "name": "MCP-Atlas (Public Set)",
-    "category": "other",
-    "description": "",
-    "metric": "accuracy",
-    "year": "2026",
-    "reliability": {
-      "contamination_risk": "low",
-      "saturation": "not_saturated",
-      "citation_count": 60,
-      "last_updated": "2026-01",
-      "notes": "MCP tool use evaluation, recent"
-    }
-  },
-  {
     "id": "hle",
     "name": "Humanity's Last Exam",
     "category": "other",
@@ -19622,13 +19579,6 @@
     "category": "agents",
     "description": "Agentic real-world economically valuable tasks; (Elo-500)/2000 normalization; v2 introduces 3-judge panel and 250-turn limit",
     "metric": "pct"
-  },
-  {
-    "id": "tau3_banking",
-    "name": "tau3-Bench Banking",
-    "category": "agents",
-    "description": "Dual control agent-user simulation with knowledge retrieval, pass@1",
-    "metric": "pass@1"
   },
   {
     "id": "terminal_bench_v2_1",
@@ -20915,6 +20865,91 @@
     "category": "medical",
     "description": "MeditronFO 5-benchmark average: MedQA + MedMCQA + PubMedQA + MedXpertQA + HealthBench. Used as primary metric in EPFL paper.",
     "metric": "average"
+  },
+  {
+    "id": "bfcl_v4_overall",
+    "name": "BFCL v4 Overall",
+    "category": "tool_use",
+    "description": "Berkeley Function Calling Leaderboard v4: agentic evaluation with Web Search and Memory Management categories",
+    "metric": "accuracy"
+  },
+  {
+    "id": "mcp_atlas",
+    "name": "MCP-Atlas (All 1000)",
+    "category": "tool_use",
+    "description": "1000 NL tasks across 36 real MCP servers + 220 tools; 3-6 tool calls per task; claim-level rubric. April 2026 update: 100 tool-call budget replaces 20-turn limit",
+    "metric": "pass_rate",
+    "year": "2026",
+    "reliability": {
+      "contamination_risk": "low",
+      "saturation": "not_saturated",
+      "citation_count": 60,
+      "last_updated": "2026-01",
+      "notes": "MCP tool use evaluation, recent"
+    }
+  },
+  {
+    "id": "mcp_atlas_public",
+    "name": "MCP-Atlas Public (500)",
+    "category": "tool_use",
+    "description": "Public 500-task split of MCP-Atlas",
+    "metric": "pass_rate"
+  },
+  {
+    "id": "tau3_banking",
+    "name": "tau3-Bench Banking",
+    "category": "agents",
+    "description": "97 tasks x 3 repeats, pass@1 averaged across repeats. Multi-turn tool-using customer-support in simulated retail banking. Component of AAII v4.1 (14% weight)",
+    "metric": "pass@1"
+  },
+  {
+    "id": "tau3_airline",
+    "name": "tau3-Bench Airline",
+    "category": "agents",
+    "description": "Multi-turn tool-using agent on airline booking; tau3 fixes annotated June 2026 by Sierra",
+    "metric": "pass@1"
+  },
+  {
+    "id": "tau3_retail",
+    "name": "tau3-Bench Retail",
+    "category": "agents",
+    "description": "Multi-turn tool-using agent on online retail; tau3 fixes annotated June 2026 by Sierra",
+    "metric": "pass@1"
+  },
+  {
+    "id": "toolathlon",
+    "name": "Toolathlon (Tool-Decathlon)",
+    "category": "agents",
+    "description": "ICLR 2026: 32 apps, 604 tools, 108 tasks; ~20 turns/task. Long-horizon multi-app execution.",
+    "metric": "pass@1"
+  },
+  {
+    "id": "mcp_mark",
+    "name": "MCPMark",
+    "category": "tool_use",
+    "description": "Stress-testing MCP benchmark for realistic / comprehensive MCP use",
+    "metric": "pass_rate"
+  },
+  {
+    "id": "finmcp_bench",
+    "name": "FinMCP-Bench",
+    "category": "tool_use",
+    "description": "613 samples spanning 10 main scenarios + 33 sub-scenarios, 65 real financial MCPs; single-tool / multi-tool / multi-turn",
+    "metric": "exact_match"
+  },
+  {
+    "id": "fintoolbench",
+    "name": "FinToolBench",
+    "category": "tool_use",
+    "description": "760 executable financial tools + 295 tool-required queries",
+    "metric": "task_success"
+  },
+  {
+    "id": "fintrace",
+    "name": "FinTrace",
+    "category": "tool_use",
+    "description": "800 expert-annotated trajectories across 34 financial categories; 9 metrics x 4 axes (action correctness, execution efficiency, process quality, output quality)",
+    "metric": "trajectory_score"
   },
   {
     "id": "arc_agi_3",

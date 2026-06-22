@@ -539,21 +539,6 @@
     "collected_at": "2026-06-22",
     "notes": ""
   },
-  "mcp_atlas": {
-    "model_id": "google/gemini-3.5-flash",
-    "benchmark_id": "mcp_atlas",
-    "value": 83.6,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://www.nxcode.io/resources/news/gemini-3-5-flash-complete-guide-benchmarks-pricing-api-2026",
-      "date": "2026-06-22",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-22",
-    "notes": ""
-  },
   "truthfulqa": {
     "model_id": "microsoft/mai-thinking-1",
     "benchmark_id": "truthfulqa",
@@ -613,6 +598,21 @@
     "is_sota": true,
     "collected_at": "2026-06-22",
     "notes": ""
+  },
+  "mcp_atlas": {
+    "model_id": "gemini-3.5-flash",
+    "benchmark_id": "mcp_atlas",
+    "value": 83.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://labs.scale.com/leaderboard/mcp_atlas",
+      "date": "2026-06-22",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-22",
+    "notes": "NEW SOTA MCP-Atlas pass rate, displaces DeepSeek V4-Pro-High 74.2 captured S112 (+9.4 pts)"
   },
   "ifeval": {
     "model_id": "kt/midm-k2.5-pro",
@@ -2113,21 +2113,6 @@
     "is_sota": true,
     "collected_at": "2026-06-22",
     "notes": "Sys card p.194 Table 8.1.A. mcp_atlas-public variant complement to existing mcp_atlas=82.2."
-  },
-  "toolathlon": {
-    "model_id": "anthropic/claude-mythos-5",
-    "benchmark_id": "toolathlon",
-    "value": 61.7,
-    "unit": "score_0_100",
-    "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
-      "date": "2026-06-22",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-22",
-    "notes": "🌍 Mythos 5 Toolathlon Pass@1 61.7% NEW SOTA (Opus 4.8 59.9 → +1.8pp). 108 real-world tool-use tasks, ±0.5 across trials"
   },
   "facts_parametric": {
     "model_id": "google/gemini-3-pro",
@@ -3855,19 +3840,19 @@
     "notes": "AAII v4.0.4 sub-score (from artificialanalysis.ai/models/gpt-5-5 chart) — GPT-5.5 (xhigh) = 61% on terminal_bench_hard"
   },
   "tau2_telecom": {
-    "model_id": "zhipu/glm-5",
+    "model_id": "stepfun/step-3.5-flash",
     "benchmark_id": "tau2_telecom",
-    "value": 98.0,
+    "value": 99.1,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://artificialanalysis.ai/models/gpt-5-5",
-      "date": "2026-05-10",
+      "url": "https://artificialanalysis.ai/evaluations/tau2-bench",
+      "date": "2026-06-22",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-05-10",
-    "notes": "AAII v4.0.4 sub-score (from artificialanalysis.ai/models/gpt-5-5 chart) — GLM-5 = 98% on tau2_telecom"
+    "collected_at": "2026-06-22",
+    "notes": "JT-35B-Flash labeled by AA; saturating benchmark"
   },
   "aa_omniscience_acc": {
     "model_id": "openai/gpt-5.5",
@@ -11070,19 +11055,19 @@
     "notes": "Qwen blog Text — QwenSVG"
   },
   "mcp_mark": {
-    "model_id": "alibaba/qwen3.7-plus",
+    "model_id": "alibaba/qwen3.7-max",
     "benchmark_id": "mcp_mark",
-    "value": 58.7,
+    "value": 60.8,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "url": "https://llm-stats.com/benchmarks/mcp-mark",
       "date": "2026-06-22",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-22",
-    "notes": "Qwen blog Text — MCP-Mark"
+    "notes": "Top of MCP-Mark June 2026; 6 models"
   },
   "deep_planning": {
     "model_id": "alibaba/qwen3.7-plus",
@@ -12718,6 +12703,21 @@
     "is_sota": true,
     "collected_at": "2026-06-22",
     "notes": "🌍 Fable 5 GDP.pdf 29.8% NEW SOTA. Surge AI strict pass rate, no tools, max effort. Outperforms GPT-5.5 (24.9), Opus 4.8 (22.5), Gemini 3.1 Pro (16.7)"
+  },
+  "toolathlon": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "toolathlon",
+    "value": 61.7,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-22",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-22",
+    "notes": "🌍 Mythos 5 Toolathlon Pass@1 61.7% NEW SOTA (Opus 4.8 59.9 → +1.8pp). 108 real-world tool-use tasks, ±0.5 across trials"
   },
   "toolathlon_pass3": {
     "model_id": "anthropic/claude-opus-4.8",
@@ -25965,13 +25965,13 @@
     "notes": ""
   },
   "mcp_atlas_public": {
-    "model_id": "deepseek/deepseek-v4-pro-high",
+    "model_id": "meta/muse-spark",
     "benchmark_id": "mcp_atlas_public",
-    "value": 74.2,
+    "value": 82.4,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "DeepSeek-V4-Pro-Technical-Report.pdf p.39 Table 7",
+      "url": "https://labs.scale.com/leaderboard/mcp_atlas",
       "date": "2026-06-22",
       "citation": null
     },
@@ -40980,19 +40980,19 @@
     "notes": "GDPval-AA v2 (Elo-500)/2000 normalized, AAII v4.1 component"
   },
   "tau3_banking": {
-    "model_id": "anthropic/claude-sonnet-4.6",
+    "model_id": "openai/gpt-5.5",
     "benchmark_id": "tau3_banking",
-    "value": 31.0,
+    "value": 31.3,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+      "url": "https://artificialanalysis.ai/evaluations/tau3-banking",
       "date": "2026-06-22",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-22",
-    "notes": ""
+    "notes": "gpt-5.5 (xhigh); top of AA tau3-Banking June 2026"
   },
   "terminal_bench_v2_1": {
     "model_id": "anthropic/claude-opus-4.8",
@@ -43168,6 +43168,21 @@
     "is_sota": true,
     "collected_at": "2026-06-22",
     "notes": ""
+  },
+  "tau3_airline": {
+    "model_id": "anthropic/claude-sonnet-4.5",
+    "benchmark_id": "tau3_airline",
+    "value": 70.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://llm-stats.com/benchmarks/tau-bench-airline",
+      "date": "2026-06-22",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-22",
+    "notes": "Top of TAU-bench Airline leaderboard; 23 models tracked"
   },
   "superqpga": {
     "model_id": "tencent/hy3-preview",

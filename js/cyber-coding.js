@@ -179,7 +179,10 @@ var CyberCoding = {
                 'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'qwen_world_bench',
                 'cowork_bench', 'vitabench', 'clawval_mm', 'skillsbench',
                 // 2026-06-01 S44 MiniMax M3 PostTrainBench
-                'posttrainbench'
+                'posttrainbench',
+                // 2026-06-23 S142 — tau3 full family (Banking + Airline + Retail) + finance tool benches
+                'tau3_banking', 'tau3_airline', 'tau3_retail',
+                'fintrace', 'finmcp_bench', 'fintoolbench'
             ]
         },
         {
