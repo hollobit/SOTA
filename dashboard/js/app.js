@@ -24,20 +24,15 @@ var App = {
             self.setupTabs();
             self.setupFilters();
             self.setupExplorer();
+            // Modules that depend on scores are initialized once scores arrive
+            // via _ensureScores(). At first paint we initialize with empty
+            // scores so the modules exist; they'll be re-init'd on demand.
             Comparison.init(self.data.models, self.data.benchmarks, self.data.scores);
             CyberCoding.init(self.data.models, self.data.benchmarks, self.data.scores);
-            if (typeof Sovereign !== 'undefined') {
-                Sovereign.init(self.data.models, self.data.benchmarks, self.data.scores);
-            }
-            if (typeof PhysicalAI !== 'undefined') {
-                PhysicalAI.init(self.data.models, self.data.benchmarks, self.data.scores);
-            }
-            if (typeof Timeline !== 'undefined') {
-                Timeline.init(self.data.models, self.data.benchmarks, self.data.scores);
-            }
-            if (typeof AI4S !== 'undefined') {
-                AI4S.init(self.data.models);
-            }
+            if (typeof Sovereign !== 'undefined') Sovereign.init(self.data.models, self.data.benchmarks, self.data.scores);
+            if (typeof PhysicalAI !== 'undefined') PhysicalAI.init(self.data.models, self.data.benchmarks, self.data.scores);
+            if (typeof Timeline !== 'undefined') Timeline.init(self.data.models, self.data.benchmarks, self.data.scores);
+            if (typeof AI4S !== 'undefined') AI4S.init(self.data.models);
             Modal.init();
 
             // Global GraphRAG search form (top bar).
@@ -355,17 +350,25 @@ var App = {
     loadData: function() {
         var self = this;
         var base = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
+        self._dataBase = base;
+        // Initialize empty so any consumer running before lazy-load completes
+        // sees an empty array (not undefined).
+        self.data.scores = [];
+        self.data.history = self.data.history || {};
 
+        // First-paint critical path: models + benchmarks + sota only.
+        // scores/current.json (6.2 MB) and history snapshots are deferred to
+        // _ensureScores() / _ensureHistory(), triggered when a tab actually
+        // needs them. This cuts the initial blocking download from ~10 MB
+        // raw to ~3.3 MB.
         return Promise.all([
             this._fetch(base + '/models.json'),
             this._fetch(base + '/benchmarks.json'),
-            this._fetch(base + '/scores/current.json'),
             this._fetch(base + '/sota.json')
         ]).then(function(results) {
             self.data.models = results[0] || [];
             self.data.benchmarks = results[1] || [];
-            self.data.scores = results[2] || [];
-            self.data.sota = results[3] || {};
+            self.data.sota = results[2] || {};
             window._benchmarks = self.data.benchmarks;
 
             document.getElementById('model-count').textContent = self.data.models.length;
@@ -375,49 +378,45 @@ var App = {
             if (footerModelCount) footerModelCount.textContent = self.data.models.length;
             if (footerBenchCount) footerBenchCount.textContent = self.data.benchmarks.length;
 
-            if (self.data.scores.length > 0) {
-                var latest = self.data.scores.reduce(function(max, s) {
-                    return s.collected_at > max ? s.collected_at : max;
-                }, '');
-                document.getElementById('last-updated').textContent = latest;
-            }
-
-            // Load every historical snapshot listed in the index.
-            return self._fetch(base + '/scores/history/index.json').then(function(idx) {
-                var dates = (idx && idx.dates) || [];
-                return Promise.all(dates.map(function(d) {
-                    return self._fetch(base + '/scores/history/' + d + '.json').then(function(snap) {
-                        if (snap) self.data.history[d] = snap;
-                    });
-                }));
-            }).then(function() {
-                var historyCountEl = document.getElementById('history-count');
-                if (historyCountEl) {
-                    historyCountEl.textContent = Object.keys(self.data.history || {}).length;
-                }
-                return self._fetch(base + '/aa_pricing.json').then(function(pricing) {
-                    if (pricing && pricing.models) {
-                        // Convert array → map keyed by model_id for O(1) lookup
-                        var pmap = {};
-                        if (Array.isArray(pricing.models)) {
-                            pricing.models.forEach(function (m) {
-                                if (m && m.model_id) {
-                                    pmap[m.model_id] = {
-                                        input: m.price_per_1m_input,
-                                        output: m.price_per_1m_output,
-                                        cached_input: m.price_per_1m_cached_input,
-                                        tokens_per_second: m.tokens_per_second,
-                                        intelligence_index: m.intelligence_index
-                                    };
-                                }
-                            });
-                        } else {
-                            pmap = pricing.models;
-                        }
-                        self.data.pricing = pmap;
+            // last-updated is derived from sota.collected_at if available,
+            // otherwise from the first sota entry. scores lazy-load will
+            // refresh this once the full set arrives.
+            try {
+                var latestFromSota = '';
+                Object.keys(self.data.sota || {}).forEach(function(k) {
+                    var v = self.data.sota[k];
+                    if (v && v.collected_at && v.collected_at > latestFromSota) {
+                        latestFromSota = v.collected_at;
                     }
-                    return self._fetch(base + '/reports/changelog.json');
                 });
+                if (latestFromSota) document.getElementById('last-updated').textContent = latestFromSota;
+            } catch (e) { /* sota shape variant — skip */ }
+
+            // Background fetches — these don't block first paint. aa_pricing,
+            // changelog, and per-leaderboard files are read lazily by their
+            // consumer widgets; we just kick the network so they're cached by
+            // the time the user navigates to those tabs.
+            return self._fetch(base + '/aa_pricing.json').then(function(pricing) {
+                if (pricing && pricing.models) {
+                    var pmap = {};
+                    if (Array.isArray(pricing.models)) {
+                        pricing.models.forEach(function (m) {
+                            if (m && m.model_id) {
+                                pmap[m.model_id] = {
+                                    input: m.price_per_1m_input,
+                                    output: m.price_per_1m_output,
+                                    cached_input: m.price_per_1m_cached_input,
+                                    tokens_per_second: m.tokens_per_second,
+                                    intelligence_index: m.intelligence_index
+                                };
+                            }
+                        });
+                    } else {
+                        pmap = pricing.models;
+                    }
+                    self.data.pricing = pmap;
+                }
+                return self._fetch(base + '/reports/changelog.json');
             });
         }).then(function(changelog) {
             self.data.changelog = changelog || [];
@@ -432,11 +431,117 @@ var App = {
         });
     },
 
+    // Lazy fetch of scores/current.json. Returns a cached Promise so callers
+    // can `App._ensureScores().then(...)` without worrying about racing.
+    // Tabs that need scores (Leaderboard / Trends / Comparison / FrontierCompare
+    // / CyberCoding / Sovereign / PhysicalAI / Timeline / MedicalAI / AI4S /
+    // Agent / Explorer / Resources/Changelog widgets) call this on demand.
+    _ensureScores: function() {
+        if (this._scoresPromise) return this._scoresPromise;
+        var self = this;
+        var base = this._dataBase || 'data';
+        this._scoresPromise = this._fetch(base + '/scores/current.json').then(function(scores) {
+            self.data.scores = scores || [];
+            // Re-init modules that captured scores from loadData() (they ran
+            // with [] at init time). Idempotent re-init is safe per module.
+            try { if (typeof Comparison !== 'undefined') Comparison.init(self.data.models, self.data.benchmarks, self.data.scores); } catch (e) {}
+            try { if (typeof CyberCoding !== 'undefined') CyberCoding.init(self.data.models, self.data.benchmarks, self.data.scores); } catch (e) {}
+            try { if (typeof Sovereign !== 'undefined') Sovereign.init(self.data.models, self.data.benchmarks, self.data.scores); } catch (e) {}
+            try { if (typeof PhysicalAI !== 'undefined') PhysicalAI.init(self.data.models, self.data.benchmarks, self.data.scores); } catch (e) {}
+            try { if (typeof Timeline !== 'undefined') Timeline.init(self.data.models, self.data.benchmarks, self.data.scores); } catch (e) {}
+            // Refresh filter dropdowns whose options are derived from scores
+            // (the source-type filter in particular starts empty until scores
+            // arrive). setupFilters is idempotent — it appends only.
+            try { self._refreshSourceFilter(); } catch (e) {}
+            // Refresh last-updated to the actual latest collected_at.
+            if (self.data.scores.length > 0) {
+                var latest = self.data.scores.reduce(function(max, s) {
+                    return s.collected_at > max ? s.collected_at : max;
+                }, '');
+                var el = document.getElementById('last-updated');
+                if (el && latest) el.textContent = latest;
+            }
+            return self.data.scores;
+        });
+        return this._scoresPromise;
+    },
+
+    // Re-populate the source-type filter dropdown once scores arrive. Called
+    // by _ensureScores. Replaces existing options (other than the leading
+    // "All sources" placeholder) idempotently.
+    _refreshSourceFilter: function() {
+        var sel = document.getElementById('filter-source');
+        if (!sel) return;
+        // Keep only the first <option> (placeholder) and rebuild the rest.
+        while (sel.options.length > 1) sel.remove(1);
+        var seen = {};
+        (this.data.scores || []).forEach(function(s) {
+            if (s.source && s.source.type) seen[s.source.type] = true;
+        });
+        Object.keys(seen).sort().forEach(function(s) {
+            var opt = document.createElement('option');
+            opt.value = s; opt.textContent = s;
+            sel.appendChild(opt);
+        });
+    },
+
+    // Lazy fetch of historical score snapshots. Only Trends / Timeline tabs
+    // really need this; Overview and the static category tabs do not.
+    _ensureHistory: function() {
+        if (this._historyPromise) return this._historyPromise;
+        var self = this;
+        var base = this._dataBase || 'data';
+        this._historyPromise = this._fetch(base + '/scores/history/index.json').then(function(idx) {
+            var dates = (idx && idx.dates) || [];
+            return Promise.all(dates.map(function(d) {
+                return self._fetch(base + '/scores/history/' + d + '.json').then(function(snap) {
+                    if (snap) self.data.history[d] = snap;
+                });
+            }));
+        }).then(function() {
+            var el = document.getElementById('history-count');
+            if (el) el.textContent = Object.keys(self.data.history || {}).length;
+            return self.data.history;
+        });
+        return this._historyPromise;
+    },
+
     _fetch: function(url) {
         return fetch(url).then(function(resp) {
             if (!resp.ok) return null;
             return resp.json();
         }).catch(function() { return null; });
+    },
+
+    // Single dispatch table for tab render — used both from the click
+    // handler (immediate render with possibly empty scores) and from
+    // _ensureScores().then (re-render with full data).
+    _renderTab: function(tabId) {
+        var self = this;
+        if (tabId === 'overview') self.renderOverview();
+        else if (tabId === 'trends') self.renderTrends();
+        else if (tabId === 'leaderboard') self.renderLeaderboard();
+        else if (tabId === 'comparison' && typeof Comparison !== 'undefined') Comparison.render();
+        else if (tabId === 'frontier-compare' && typeof FrontierCompare !== 'undefined') {
+            var fc = document.getElementById('fc-category');
+            FrontierCompare.render(fc ? fc.value : '');
+        }
+        else if (tabId === 'cyber-coding' && typeof CyberCoding !== 'undefined') CyberCoding.render();
+        else if (tabId === 'sovereign' && typeof Sovereign !== 'undefined') Sovereign.render();
+        else if (tabId === 'physical-ai' && typeof PhysicalAI !== 'undefined') PhysicalAI.render();
+        else if (tabId === 'medical-ai' && typeof MedicalAI !== 'undefined') MedicalAI.render();
+        else if (tabId === 'ai4s' && typeof AI4S !== 'undefined') AI4S.render();
+        else if (tabId === 'agent' && typeof Agent !== 'undefined') Agent.render();
+        else if (tabId === 'image-gen' && typeof ImageGen !== 'undefined') ImageGen.render();
+        else if (tabId === 'video-gen' && typeof VideoGen !== 'undefined') VideoGen.render();
+        else if (tabId === 'timeline' && typeof Timeline !== 'undefined') Timeline.render();
+        else if (tabId === 'resources') self.renderResources();
+        else if (tabId === 'changelog') self.renderChangelog();
+        else if (tabId === 'graphrag' && typeof GraphRAG !== 'undefined') GraphRAG.render();
+        if (typeof Charts !== 'undefined' && Charts.resizeAll) {
+            Charts.resizeAll();
+            requestAnimationFrame(function() { Charts.resizeAll(); });
+        }
     },
 
     setupTabs: function() {
@@ -466,29 +571,30 @@ var App = {
             // with correct dimensions on first try.
             requestAnimationFrame(function() {
                 requestAnimationFrame(function() {
-                    if (btn.dataset.tab === 'overview') self.renderOverview();
-                    if (btn.dataset.tab === 'trends') self.renderTrends();
-                    if (btn.dataset.tab === 'leaderboard') self.renderLeaderboard();
-                    if (btn.dataset.tab === 'comparison') Comparison.render();
-                    if (btn.dataset.tab === 'frontier-compare') FrontierCompare.render(document.getElementById('fc-category').value);
-                    if (btn.dataset.tab === 'cyber-coding') CyberCoding.render();
-                    if (btn.dataset.tab === 'sovereign' && typeof Sovereign !== 'undefined') Sovereign.render();
-                    if (btn.dataset.tab === 'physical-ai' && typeof PhysicalAI !== 'undefined') PhysicalAI.render();
-                    if (btn.dataset.tab === 'medical-ai' && typeof MedicalAI !== 'undefined') MedicalAI.render();
-                    if (btn.dataset.tab === 'ai4s' && typeof AI4S !== 'undefined') AI4S.render();
-                    if (btn.dataset.tab === 'agent' && typeof Agent !== 'undefined') Agent.render();
-                    if (btn.dataset.tab === 'image-gen' && typeof ImageGen !== 'undefined') ImageGen.render();
-                    if (btn.dataset.tab === 'video-gen' && typeof VideoGen !== 'undefined') VideoGen.render();
-                    if (btn.dataset.tab === 'timeline' && typeof Timeline !== 'undefined') Timeline.render();
-                    if (btn.dataset.tab === 'resources') self.renderResources();
-                    if (btn.dataset.tab === 'changelog') self.renderChangelog();
-                    if (btn.dataset.tab === 'graphrag' && typeof GraphRAG !== 'undefined') GraphRAG.render();
-                    // resize after renders, then again on next frame to catch
-                    // any chart whose container width finalised mid-render.
-                    if (typeof Charts !== 'undefined' && Charts.resizeAll) {
-                        Charts.resizeAll();
-                        requestAnimationFrame(function() { Charts.resizeAll(); });
+                    var tabId = btn.dataset.tab;
+                    // Score-dependent tabs trigger lazy fetch; render runs
+                    // once on the empty cache (showing skeleton/placeholder
+                    // for chart widgets) and again when scores arrive. The
+                    // SCORE_DEPENDENT set is conservative — every tab that
+                    // reads App.data.scores at render time.
+                    var SCORE_DEPENDENT = {
+                        leaderboard:1, comparison:1, 'frontier-compare':1,
+                        'cyber-coding':1, sovereign:1, 'physical-ai':1,
+                        'medical-ai':1, ai4s:1, agent:1, 'image-gen':1,
+                        'video-gen':1, timeline:1, trends:1
+                    };
+                    if (SCORE_DEPENDENT[tabId]) {
+                        self._ensureScores().then(function() {
+                            // Re-render with full data once available. Cheap:
+                            // each module's render() is idempotent.
+                            self._renderTab(tabId);
+                        });
                     }
+                    // History only matters for trends + timeline.
+                    if (tabId === 'trends' || tabId === 'timeline') {
+                        self._ensureHistory();
+                    }
+                    self._renderTab(tabId);
                 });
             });
         }
