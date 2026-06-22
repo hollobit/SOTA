@@ -1,7 +1,9 @@
 /**
  * GraphRAG — client-side semantic + graph-relationship search.
  *
- * Data: data/export/graphrag.json
+ * Data: fetched as `<base>/graphrag.json` where <base> is `../data` for
+ *       local dashboard/ dev (`dashboard/data` symlinks to `../data/export/`)
+ *       and `data` for the deployed `public/` directory.
  *   - nodes: model / benchmark / vendor / category
  *   - edges: SCORED_ON / TOP_RANKED_ON / MAKES / IN_CATEGORY /
  *            BENCH_RELATED / SAME_VENDOR_FAMILY
@@ -108,8 +110,17 @@
             if (this._loaded) return Promise.resolve();
             if (this._loading) return this._loading;
             var self = this;
-            this._loading = fetch('data/export/graphrag.json')
-                .then(function(r) { return r.json(); })
+            // Resolve the dashboard's data base path the same way app.js does.
+            // - Local dev:  dashboard/index.html, with `data/` symlinked to
+            //               `../data/export/`, so `data/graphrag.json` works.
+            // - Deployed:   public/index.html with `public/data/` containing
+            //               the rsynced export — also `data/graphrag.json`.
+            var base = window.location.pathname.indexOf('/dashboard/') !== -1 ? '../data' : 'data';
+            this._loading = fetch(base + '/graphrag.json')
+                .then(function(r) {
+                    if (!r.ok) throw new Error('graphrag.json HTTP ' + r.status);
+                    return r.json();
+                })
                 .then(function(g) {
                     self._graph = g;
                     self._byId = {};
