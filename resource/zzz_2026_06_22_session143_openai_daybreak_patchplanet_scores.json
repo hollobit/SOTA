@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "session": "143",
+    "date": "2026-06-22",
+    "topic": "OpenAI Daybreak + Patch the Planet (cyber initiative + GPT-5.5-Cyber full release)",
+    "sources": [
+      "https://openai.com/index/daybreak-securing-the-world/",
+      "https://openai.com/index/patch-the-planet/"
+    ],
+    "notes": "Both pages mined via Playwright MCP (Cloudflare bot gate blocked WebFetch/curl). Daybreak (Jun 22 2026) releases full GPT-5.5-Cyber with new SOTA CyberGym 85.6% (vs preview 81.9% / GPT-5.5 81.8%). Codex Security stats: 30M+ commits scanned, 30K+ codebases, 70K+ findings fixed by human reviewers, 500K+ auto-fixed. Patch the Planet initiative with Trail of Bits + HackerOne + Calif covers 19 OSS projects; initial public participants: cURL, NATS Server, pyca/cryptography, Sigstore, aiohttp, Go, freenginx, Python, python.org. Real-world findings: Linux Kernel 8 info-leak + 24 LPE PoCs / OpenBSD 23-year UAF / FreeBSD 34 vulns + 7 LPE / dnsmasq 4 CVEs / HTTP/2 Bomb (880K+ sites) / Chrome V8 5 vulns / Safari 10+ vulns / Firefox CVE-2026-8390."
+  },
+  "models": [
+    {
+      "id": "openai/gpt-5.5-cyber",
+      "name": "GPT-5.5-Cyber (full release)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-06-22",
+      "modalities": ["text"]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "exploitgym",
+      "name": "ExploitGym",
+      "category": "cyber",
+      "metric": "exploit success rate",
+      "unit": "%",
+      "description": "ExploitGym: agent must turn known vulnerabilities into working exploits that achieve unauthorized code execution. Introduced by OpenAI in Daybreak announcement Jun 22 2026.",
+      "source_url": "https://openai.com/index/daybreak-securing-the-world/"
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-5.5-cyber",
+      "benchmark": "cybergym",
+      "score": 85.6,
+      "unit": "%",
+      "_source": "https://openai.com/index/daybreak-securing-the-world/",
+      "_note": "Daybreak (Jun 22 2026) full GPT-5.5-Cyber release. NEW SOTA — highest CyberGym from a single-model evaluation. Replaces preview 81.9%."
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "cybergym",
+      "score": 81.8,
+      "unit": "%",
+      "_source": "https://openai.com/index/daybreak-securing-the-world/",
+      "_note": "Baseline GPT-5.5 score for CyberGym, reported in Daybreak announcement."
+    },
+    {
+      "model": "openai/gpt-5.5-cyber",
+      "benchmark": "exploitgym",
+      "score": 39.5,
+      "unit": "%",
+      "_source": "https://openai.com/index/daybreak-securing-the-world/",
+      "_note": "Daybreak: GPT-5.5-Cyber on ExploitGym 'real-world security benchmark' that tests turning known vulnerabilities into working exploits."
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "exploitgym",
+      "score": 25.95,
+      "unit": "%",
+      "_source": "https://openai.com/index/daybreak-securing-the-world/",
+      "_note": "Baseline GPT-5.5 ExploitGym."
+    },
+    {
+      "model": "openai/gpt-5.5-cyber",
+      "benchmark": "sec-bench-pro",
+      "score": 69.8,
+      "unit": "%",
+      "_source": "https://openai.com/index/daybreak-securing-the-world/",
+      "_note": "Daybreak: SEC-bench Pro long-horizon vulnerability discovery + proof-of-concept generation across complex software targets."
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "sec-bench-pro",
+      "score": 63.1,
+      "unit": "%",
+      "_source": "https://openai.com/index/daybreak-securing-the-world/",
+      "_note": "Baseline GPT-5.5 SEC-bench Pro."
+    }
+  ]
+}
