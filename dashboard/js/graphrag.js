@@ -205,6 +205,9 @@
             var self = this;
             var container = document.getElementById('graphrag-results');
             if (!container) return;
+            // Dispose previous ECharts instance to free WebGL contexts and
+            // avoid leaks on re-render with new query.
+            if (this._chart) { try { this._chart.dispose(); } catch (e) {} this._chart = null; }
             container.textContent = '';
             if (!this._loaded) {
                 container.appendChild(this._loadingNote());
@@ -243,9 +246,166 @@
             resHeader.appendChild(document.createTextNode(' — ' + results.length + ' entities (BM25-ranked):'));
             container.appendChild(resHeader);
 
+            // Knowledge-graph visualization for the top results + 1-hop
+            // neighborhood. Placed above the result cards. Falls back to a
+            // text hint if ECharts isn't available.
+            container.appendChild(self._buildGraphPanel(results));
+
             results.forEach(function(r, idx) {
                 container.appendChild(self._buildResultCard(r, idx));
             });
+        },
+
+        // ─── Knowledge-graph visualization (ECharts force layout) ─────────
+        _buildGraphPanel: function(results) {
+            var self = this;
+            var wrap = document.createElement('div');
+            wrap.className = 'bg-gray-900 border border-gray-800 rounded p-3 mb-4';
+
+            var head = document.createElement('div');
+            head.className = 'flex items-center justify-between mb-2';
+            var title = document.createElement('div');
+            title.className = 'text-xs text-gray-400';
+            title.textContent = 'Knowledge graph — top results + 1-hop neighbors. Drag nodes to rearrange. Click a node to focus.';
+            head.appendChild(title);
+            wrap.appendChild(head);
+
+            var div = document.createElement('div');
+            div.id = 'graphrag-graph';
+            div.style.height = '440px';
+            div.style.width = '100%';
+            wrap.appendChild(div);
+
+            // Defer init until the container is in the DOM and ECharts has
+            // parsed; render once on next animation frame.
+            requestAnimationFrame(function() {
+                if (typeof echarts === 'undefined') {
+                    div.textContent = '(graph view requires ECharts; falling back to result list)';
+                    div.style.cssText = 'color:#9ca3af;font-size:11px;padding:8px';
+                    return;
+                }
+                self._renderGraphInto(div, results);
+            });
+            return wrap;
+        },
+
+        // Build the (nodes, edges) payload for the top results + neighbors
+        // and instantiate the ECharts force-directed graph.
+        _renderGraphInto: function(el, results) {
+            var self = this;
+            // Pick top N results to seed (don't overwhelm the canvas).
+            var seeds = results.slice(0, 5).map(function(r) { return r.id; });
+            // Collect nodes — seeds first, then 1-hop neighbors (≤4 per type).
+            var nodeMap = {}; // id -> node spec
+            seeds.forEach(function(id) { self._addGraphNode(nodeMap, id, true); });
+            seeds.forEach(function(id) {
+                var nbrs = self.neighbors(id, 4);
+                Object.keys(nbrs).forEach(function(t) {
+                    nbrs[t].forEach(function(x) { self._addGraphNode(nodeMap, x.otherId, false); });
+                });
+            });
+            // Build edge list. Only emit each undirected edge once.
+            var seenEdges = {};
+            var edges = [];
+            Object.keys(nodeMap).forEach(function(nid) {
+                (self._edgesOut[nid] || []).forEach(function(e) {
+                    if (!nodeMap[e.to]) return;
+                    var k = e.from + '|' + e.to + '|' + e.type;
+                    if (seenEdges[k]) return;
+                    seenEdges[k] = true;
+                    edges.push({
+                        source: e.from, target: e.to,
+                        value: e.type,
+                        lineStyle: { color: self._edgeColor(e.type), width: e.type === 'TOP_RANKED_ON' ? 2 : 1 },
+                        label: { show: false, formatter: e.type }
+                    });
+                });
+            });
+            var nodes = Object.values(nodeMap);
+
+            // Init ECharts instance (dark theme matches dashboard).
+            try {
+                var chart = echarts.init(el, 'dark');
+                chart.setOption({
+                    backgroundColor: 'transparent',
+                    tooltip: {
+                        formatter: function(p) {
+                            if (p.dataType === 'edge') return p.data.value;
+                            return p.data.label + '<br/><span style="opacity:.7">' + p.data.type + '</span>';
+                        }
+                    },
+                    legend: [{
+                        data: ['model','benchmark','vendor','category'],
+                        textStyle: { color: '#9ca3af', fontSize: 10 },
+                        top: 4, right: 8, orient: 'horizontal'
+                    }],
+                    series: [{
+                        type: 'graph', layout: 'force',
+                        roam: true, draggable: true,
+                        symbolSize: function(v, p) { return p.data.symbolSize || 18; },
+                        label: {
+                            show: true, position: 'right', formatter: '{b}',
+                            color: '#e5e7eb', fontSize: 10
+                        },
+                        force: {
+                            repulsion: 220, edgeLength: [50, 130],
+                            gravity: 0.05, friction: 0.25, layoutAnimation: true
+                        },
+                        emphasis: { focus: 'adjacency', lineStyle: { width: 2 } },
+                        edgeSymbol: ['none','arrow'], edgeSymbolSize: [4, 6],
+                        categories: [
+                            { name: 'model',     itemStyle: { color: '#60a5fa' } },
+                            { name: 'benchmark', itemStyle: { color: '#34d399' } },
+                            { name: 'vendor',    itemStyle: { color: '#c084fc' } },
+                            { name: 'category',  itemStyle: { color: '#fbbf24' } }
+                        ],
+                        data: nodes, links: edges
+                    }]
+                });
+                chart.on('click', function(p) {
+                    if (p.dataType === 'node' && p.data && p.data.id) {
+                        self._openNode(p.data.id);
+                    }
+                });
+                // Keep a reference for resize / disposal.
+                self._chart = chart;
+                // Resize on window resize.
+                window.addEventListener('resize', function() { try { chart.resize(); } catch(e){} });
+            } catch (e) {
+                console.warn('graph render failed', e);
+                el.textContent = 'Graph render failed: ' + e.message;
+            }
+        },
+
+        _addGraphNode: function(map, id, isSeed) {
+            if (map[id]) {
+                if (isSeed) map[id].symbolSize = 28; // promote seed-rank size
+                return;
+            }
+            var n = this._byId[id];
+            if (!n) return;
+            var catIdx = ({model:0,benchmark:1,vendor:2,category:3})[n.type];
+            map[id] = {
+                id: id, name: this._labelize(n), label: n.name || n.label || id,
+                type: n.type, category: catIdx == null ? 0 : catIdx,
+                symbolSize: isSeed ? 28 : 14
+            };
+        },
+
+        _labelize: function(n) {
+            var s = n.name || n.label || n.id || '';
+            return s.length > 28 ? (s.slice(0, 25) + '…') : s;
+        },
+
+        _edgeColor: function(type) {
+            return ({
+                TOP_RANKED_ON: '#fbbf24',
+                SCORED_ON: '#60a5fa',
+                MAKES: '#c084fc',
+                IN_CATEGORY: '#f59e0b',
+                BENCH_RELATED: '#34d399',
+                SAME_VENDOR_FAMILY: '#6b7280'
+            })[type] || '#4b5563';
         },
 
         _helpCard: function() {
