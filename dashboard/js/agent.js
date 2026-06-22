@@ -120,7 +120,21 @@ var Agent = (function() {
                 'tau2_retail',
                 'tau2_telecom',
                 'tau3_bench',
-                'tau3_telecom'
+                'tau3_telecom',
+                // 2026-06-23 S142 — tau3 full family (Banking replaces Telecom in AAII v4.1)
+                'tau3_banking', 'tau3_airline', 'tau3_retail'
+            ]
+        },
+        {
+            key: 'finance',
+            icon: '💰',
+            label: 'Finance Agent / Tool-use (S142)',
+            benchmarks: [
+                'fintrace',
+                'finmcp_bench',
+                'fintoolbench',
+                'finance_agent_benchmark',
+                'vals_financial_agent_1_1'
             ]
         },
         {
