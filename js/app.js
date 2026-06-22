@@ -24,15 +24,13 @@ var App = {
             self.setupTabs();
             self.setupFilters();
             self.setupExplorer();
-            // Modules that depend on scores are initialized once scores arrive
-            // via _ensureScores(). At first paint we initialize with empty
-            // scores so the modules exist; they'll be re-init'd on demand.
-            Comparison.init(self.data.models, self.data.benchmarks, self.data.scores);
-            CyberCoding.init(self.data.models, self.data.benchmarks, self.data.scores);
-            if (typeof Sovereign !== 'undefined') Sovereign.init(self.data.models, self.data.benchmarks, self.data.scores);
-            if (typeof PhysicalAI !== 'undefined') PhysicalAI.init(self.data.models, self.data.benchmarks, self.data.scores);
-            if (typeof Timeline !== 'undefined') Timeline.init(self.data.models, self.data.benchmarks, self.data.scores);
-            if (typeof AI4S !== 'undefined') AI4S.init(self.data.models);
+            // Tab-specific modules (Comparison, CyberCoding, Sovereign,
+            // PhysicalAI, Timeline, AI4S, MedicalAI, Agent, ImageGen,
+            // VideoGen, FrontierCompare) are no longer eagerly initialized
+            // here. They're code-split: App._loadTabModule(tabId) injects
+            // <script> tags on the first activation of that tab, then calls
+            // the module's init() (with current scores, which may be empty
+            // until _ensureScores resolves; re-init runs once scores arrive).
             Modal.init();
 
             // Global GraphRAG search form (top bar).
@@ -513,6 +511,93 @@ var App = {
         }).catch(function() { return null; });
     },
 
+    // Tab → required JS modules. Each entry lists the <script src> paths
+    // that need to load before the tab can render. Cache-bust query strings
+    // are appended by the deploy pipeline (peaceiris commit SHA rewrite), so
+    // we list only the bare path here.
+    _TAB_MODULES: {
+        comparison:        ['js/comparison.js'],
+        'frontier-compare':['js/frontier-compare.js'],
+        'cyber-coding':    ['js/cyber-coding.js'],
+        sovereign:         ['js/sovereign.js', 'js/sovereign-charts.js'],
+        'physical-ai':     ['js/physical-ai.js', 'js/physical-ai-charts.js', 'js/physical-ai-edge-llm.js'],
+        'medical-ai':      ['js/medical-ai.js', 'js/medical-ai-charts.js'],
+        ai4s:              ['js/ai4s.js', 'js/ai4s-charts.js'],
+        agent:             ['js/agent.js', 'js/agent-charts.js'],
+        'image-gen':       ['js/image-gen.js'],
+        'video-gen':       ['js/video-gen.js'],
+        timeline:          ['js/timeline.js']
+    },
+
+    // Per-tab init runner — called once the module's scripts are loaded
+    // and (optionally) scores are present. Tabs whose module just exposes
+    // a render() (e.g. FrontierCompare) don't need an init entry; they
+    // simply read App.data.* at render time.
+    _TAB_INIT: {
+        comparison:    function(self) { Comparison.init(self.data.models, self.data.benchmarks, self.data.scores); },
+        'cyber-coding':function(self) { CyberCoding.init(self.data.models, self.data.benchmarks, self.data.scores); },
+        sovereign:     function(self) { if (typeof Sovereign !== 'undefined') Sovereign.init(self.data.models, self.data.benchmarks, self.data.scores); },
+        'physical-ai': function(self) { if (typeof PhysicalAI !== 'undefined') PhysicalAI.init(self.data.models, self.data.benchmarks, self.data.scores); },
+        'medical-ai':  function(self) { if (typeof MedicalAI !== 'undefined' && MedicalAI.init) MedicalAI.init(self.data.models, self.data.benchmarks, self.data.scores); },
+        ai4s:          function(self) { if (typeof AI4S !== 'undefined') AI4S.init(self.data.models); },
+        agent:         function(self) { if (typeof Agent !== 'undefined' && Agent.init) Agent.init(self.data.models, self.data.benchmarks, self.data.scores); },
+        'image-gen':   function(self) { if (typeof ImageGen !== 'undefined' && ImageGen.init) ImageGen.init(self.data.models, self.data.benchmarks, self.data.scores); },
+        'video-gen':   function(self) { if (typeof VideoGen !== 'undefined' && VideoGen.init) VideoGen.init(self.data.models, self.data.benchmarks, self.data.scores); },
+        timeline:      function(self) { if (typeof Timeline !== 'undefined') Timeline.init(self.data.models, self.data.benchmarks, self.data.scores); }
+    },
+
+    _scriptCache: {}, // src -> Promise<void>
+
+    // Read the cache-busting build tag from app.js's own <script> tag.
+    // The deploy workflow rewrites `?v=YYYYMMDDx` → `?v=<SHA-first-8>`, so
+    // we mirror that on dynamically-injected lazy modules to stay in sync.
+    _getBuildTag: function() {
+        if (this._buildTag !== undefined) return this._buildTag;
+        this._buildTag = '';
+        var scripts = document.getElementsByTagName('script');
+        for (var i = 0; i < scripts.length; i++) {
+            var s = scripts[i].src || '';
+            if (s.indexOf('js/app.js') >= 0) {
+                var m = s.match(/[?&]v=([^&]+)/);
+                if (m) { this._buildTag = m[1]; break; }
+            }
+        }
+        return this._buildTag;
+    },
+
+    // Inject a <script src> and resolve when it has loaded (or fail-resolve
+    // so a single 404 doesn't deadlock subsequent tabs). Memoized.
+    _loadScript: function(src) {
+        if (this._scriptCache[src]) return this._scriptCache[src];
+        var tag = this._getBuildTag();
+        var full = tag ? (src + '?v=' + tag) : src;
+        this._scriptCache[src] = new Promise(function(resolve) {
+            var el = document.createElement('script');
+            el.src = full;
+            el.async = false;
+            el.onload = function() { resolve(); };
+            el.onerror = function() { console.warn('Failed to load', full); resolve(); };
+            document.head.appendChild(el);
+        });
+        return this._scriptCache[src];
+    },
+
+    // Ensure the module(s) for `tabId` are loaded + initialized. Returns a
+    // Promise resolved when the tab can be rendered. Called from the tab
+    // activate handler before _renderTab. No-op for tabs without lazy modules.
+    _ensureTabModule: function(tabId) {
+        var srcs = this._TAB_MODULES[tabId];
+        if (!srcs || srcs.length === 0) return Promise.resolve();
+        var self = this;
+        return Promise.all(srcs.map(function(s) { return self._loadScript(s); }))
+            .then(function() {
+                var initFn = self._TAB_INIT[tabId];
+                if (initFn) {
+                    try { initFn(self); } catch (e) { console.warn('init error for', tabId, e); }
+                }
+            });
+    },
+
     // Single dispatch table for tab render — used both from the click
     // handler (immediate render with possibly empty scores) and from
     // _ensureScores().then (re-render with full data).
@@ -572,29 +657,37 @@ var App = {
             requestAnimationFrame(function() {
                 requestAnimationFrame(function() {
                     var tabId = btn.dataset.tab;
-                    // Score-dependent tabs trigger lazy fetch; render runs
-                    // once on the empty cache (showing skeleton/placeholder
-                    // for chart widgets) and again when scores arrive. The
-                    // SCORE_DEPENDENT set is conservative — every tab that
-                    // reads App.data.scores at render time.
                     var SCORE_DEPENDENT = {
                         leaderboard:1, comparison:1, 'frontier-compare':1,
                         'cyber-coding':1, sovereign:1, 'physical-ai':1,
                         'medical-ai':1, ai4s:1, agent:1, 'image-gen':1,
                         'video-gen':1, timeline:1, trends:1
                     };
+
+                    // Load the tab's JS module(s) first (no-op for tabs
+                    // without lazy modules), then render. Module load + score
+                    // fetch run in parallel.
+                    var modPromise = self._ensureTabModule(tabId);
                     if (SCORE_DEPENDENT[tabId]) {
-                        self._ensureScores().then(function() {
-                            // Re-render with full data once available. Cheap:
-                            // each module's render() is idempotent.
+                        Promise.all([modPromise, self._ensureScores()]).then(function() {
+                            // _ensureScores will have re-run the tab's init()
+                            // through its own try-block — but that fires before
+                            // the script even exists for lazy modules. So we
+                            // explicitly re-init here once both are ready.
+                            var initFn = self._TAB_INIT[tabId];
+                            if (initFn) { try { initFn(self); } catch (e) {} }
                             self._renderTab(tabId);
                         });
+                    } else {
+                        modPromise.then(function() { self._renderTab(tabId); });
                     }
-                    // History only matters for trends + timeline.
                     if (tabId === 'trends' || tabId === 'timeline') {
                         self._ensureHistory();
                     }
-                    self._renderTab(tabId);
+                    // Best-effort immediate render — for non-lazy tabs (overview,
+                    // graphrag, resources, changelog, explorer) this paints right
+                    // away. Lazy tabs will paint via the Promise.then above.
+                    if (!self._TAB_MODULES[tabId]) self._renderTab(tabId);
                 });
             });
         }
