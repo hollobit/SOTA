@@ -252,7 +252,8 @@ var Sovereign = {
                 'abeja/abeja-qwen2.5-32b-japanese',
                 // Sakana (existing + new)
                 'sakana/tinyswallow-1.5b',
-                'sakana/fugu-ultra', 'sakana/fugu-mini', 'sakana/namazu',
+                'sakana/fugu-ultra', 'sakana/fugu', 'sakana/fugu-mini', 'sakana/namazu',
+                'sakana/trinity',   // 2025-12 S141 — ICLR 2026 0.6B coordinator + 10K head (Fugu predecessor)
                 // 2026-05-28 Session 30 — RIKEN PubCaseFinder (phenotype-driven rare disease HPO tool)
                 'riken/pubcasefinder'
             ]
@@ -340,6 +341,10 @@ var Sovereign = {
                 // Swiss AI Initiative — Apertus flagship (ETH + EPFL + CSCS, Sep 2025)
                 'swiss-ai/apertus-70b', 'swiss-ai/apertus-70b-instruct',
                 'swiss-ai/apertus-8b', 'swiss-ai/apertus-8b-instruct',
+                // 2026-05-29 S141 — EPFL MeditronFO fully-open medical pipeline (arxiv 2605.16215)
+                'swiss-ai/apertus-70b-meditronfo', 'swiss-ai/apertus-8b-meditronfo',
+                'epfl/olmo-2-32b-meditronfo', 'epfl/eurollm-22b-meditronfo',
+                'epfl/eurollm-9b-meditronfo', 'epfl/gemma-3-27b-meditronfo',
                 // EPFL medical
                 'epfl/meditron-70b', 'epfl/meditron-7b', 'epfl/llama-3-meditron-70b'
             ]

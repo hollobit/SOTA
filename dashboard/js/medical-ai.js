@@ -55,6 +55,12 @@ var MedicalAI = {
                 'epfl/meditron-7b',
                 'openmeditron/meditron3-70b',
                 'openmeditron/meditron3-8b',
+                // 2026-05-29 S141 — EPFL MeditronFO pipeline (arxiv 2605.16215, world's first fully-open medical FM family)
+                'swiss-ai/apertus-70b-meditronfo',     // 53.77% 5-bench avg (fully-open SOTA)
+                'swiss-ai/apertus-8b-meditronfo',
+                'epfl/olmo-2-32b-meditronfo',
+                'epfl/eurollm-22b-meditronfo', 'epfl/eurollm-9b-meditronfo',
+                'epfl/gemma-3-27b-meditronfo',         // HealthBench 58.02 beats MedGemma-27B 55.92
                 'microsoft/biogpt-large',
                 'stanford/clinical-camel',
                 'ucl/medalpaca-13b',
