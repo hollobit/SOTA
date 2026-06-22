@@ -144,6 +144,8 @@ var FrontierCompare = {
     FRONTIER_MODELS: [
         // 2026-06-09 S65 Anthropic Claude Fable 5 + Mythos 5 — 13 NEW SOTAs (SWE-Bench Pro 80.3, ExploitBench 78, GDP.pdf 29.8, OSWorld 85, Toolathlon 61.7, BioMystery 46.1/83.9, LatchBio 69.2/59.3, FrontierCode 29.3/46.3) + S66 Fable 5 AAII 65 #1 NEW SOTA
         'anthropic/claude-fable-5',
+        // 2026-06-22 S141 — Sakana AI Fugu / Fugu-Ultra (0.6B coordinator + 10K head orchestrator)
+        'sakana/fugu-ultra', 'sakana/fugu',
         'anthropic/claude-mythos-5',
         // 2026-06-10 S67 — S66 batch new frontier entries
         'cohere/command-a-plus',                  // AAII 37
