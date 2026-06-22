@@ -916,6 +916,7 @@ var App = {
     },
 
     _sotaCategoryFilter: null,
+    _sotaCategoryGroup: 'top',   // 'top' | 'all' | 'A-D' | 'E-H' | 'I-L' | 'M-P' | 'Q-T' | 'U-Z' | '#'
 
     _renderSOTACategoryFilter: function() {
         var self = this;
@@ -923,14 +924,58 @@ var App = {
         if (!filterEl) return;
         filterEl.textContent = '';
 
+        // Count SOTAs per category.
         var cats = {};
         Object.keys(this.data.sota).forEach(function(bid) {
             var b = self.data.benchmarks.find(function(x) { return x.id === bid; });
             var cat = b ? b.category : 'other';
             cats[cat] = (cats[cat] || 0) + 1;
         });
-        var catNames = Object.keys(cats).sort(function(a, b) { return cats[b] - cats[a]; });
+        var allNames = Object.keys(cats);
 
+        // Group definitions. Each group's letters are inclusive of both ends.
+        var GROUPS = [
+            { id: 'top', label: 'Top 10', test: null },
+            { id: 'all', label: 'All',    test: function() { return true; } },
+            { id: 'A-D', label: 'A–D', test: function(c) { var f = c[0].toUpperCase(); return f >= 'A' && f <= 'D'; } },
+            { id: 'E-H', label: 'E–H', test: function(c) { var f = c[0].toUpperCase(); return f >= 'E' && f <= 'H'; } },
+            { id: 'I-L', label: 'I–L', test: function(c) { var f = c[0].toUpperCase(); return f >= 'I' && f <= 'L'; } },
+            { id: 'M-P', label: 'M–P', test: function(c) { var f = c[0].toUpperCase(); return f >= 'M' && f <= 'P'; } },
+            { id: 'Q-T', label: 'Q–T', test: function(c) { var f = c[0].toUpperCase(); return f >= 'Q' && f <= 'T'; } },
+            { id: 'U-Z', label: 'U–Z', test: function(c) { var f = c[0].toUpperCase(); return f >= 'U' && f <= 'Z'; } },
+            { id: '#',   label: '#',   test: function(c) { return !/^[a-z]/i.test(c); } }
+        ];
+        // Pre-count each group so empty ones can be hidden / shown as faded.
+        var groupCounts = {};
+        GROUPS.forEach(function(g) {
+            if (g.id === 'top') groupCounts[g.id] = Math.min(10, allNames.length);
+            else if (g.id === 'all') groupCounts[g.id] = allNames.length;
+            else groupCounts[g.id] = allNames.filter(g.test).length;
+        });
+
+        // Row 1: group picker.
+        var groupRow = document.createElement('div');
+        groupRow.className = 'flex flex-wrap gap-1.5 mb-2';
+        GROUPS.forEach(function(g) {
+            if (groupCounts[g.id] === 0) return;
+            var btn = document.createElement('button');
+            var active = (self._sotaCategoryGroup === g.id);
+            btn.className = 'text-[11px] px-2 py-0.5 rounded border transition ' + (active
+                ? 'bg-gray-200 border-gray-200 text-gray-900 font-semibold'
+                : 'bg-gray-900 border-gray-700 text-gray-400 hover:border-gray-500');
+            btn.textContent = g.label + ' (' + groupCounts[g.id] + ')';
+            btn.title = 'Show ' + g.label + ' categories';
+            btn.onclick = function() {
+                self._sotaCategoryGroup = g.id;
+                self._renderSOTACategoryFilter();
+            };
+            groupRow.appendChild(btn);
+        });
+        filterEl.appendChild(groupRow);
+
+        // Row 2: pills for the active group only.
+        var pillRow = document.createElement('div');
+        pillRow.className = 'flex flex-wrap gap-2';
         function mkPill(label, key, count) {
             var btn = document.createElement('button');
             var isActive = (self._sotaCategoryFilter === key) || (key === null && self._sotaCategoryFilter === null);
@@ -946,10 +991,17 @@ var App = {
             };
             return btn;
         }
-
         var total = Object.keys(this.data.sota).length;
-        filterEl.appendChild(mkPill('All', null, total));
-        catNames.forEach(function(cat) { filterEl.appendChild(mkPill(cat, cat, cats[cat])); });
+        pillRow.appendChild(mkPill('All', null, total));
+        var visible;
+        var grp = GROUPS.find(function(g) { return g.id === self._sotaCategoryGroup; }) || GROUPS[0];
+        if (grp.id === 'top') {
+            visible = allNames.slice().sort(function(a, b) { return cats[b] - cats[a]; }).slice(0, 10);
+        } else {
+            visible = allNames.filter(grp.test).sort();
+        }
+        visible.forEach(function(cat) { pillRow.appendChild(mkPill(cat, cat, cats[cat])); });
+        filterEl.appendChild(pillRow);
     },
 
     _renderSOTATable: function() {
