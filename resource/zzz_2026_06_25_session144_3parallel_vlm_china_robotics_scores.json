@@ -1,0 +1,929 @@
+{
+  "_meta": {
+    "session": "144",
+    "date": "2026-06-25",
+    "topic": "3-parallel: Multimodal VLM + Chinese frontier May-Jun 2026 + Embodied AI/robotics deep refresh",
+    "sources": [
+      "OpenCompass VLM leaderboard + ArtificialAnalysis (VLM agent)",
+      "Qwen/Zhipu/Moonshot/Baidu/StepFun/MiniMax/ByteDance/DeepSeek vendor pages (China agent)",
+      "Physical Intelligence/NVIDIA GR00T/Unitree/Figure/Spirit AI/Boston Dynamics+TRI/Agility (Robotics agent)"
+    ]
+  },
+  "models": [
+    {
+      "id": "bytedance/doubao-2.1-pro",
+      "name": "Doubao 2.1 Pro (Doubao-Seed-2.1 Pro)",
+      "vendor": "ByteDance (Doubao/Seed)",
+      "type": "reasoning + agent + multimodal",
+      "release_date": "2026-06-23",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "physical-intelligence/pi-physical-layer",
+      "name": "Physical Intelligence Layer",
+      "vendor": "Physical Intelligence",
+      "type": "partner deployment framework",
+      "release_date": "2026-02-24",
+      "modalities": [
+        "action",
+        "vision",
+        "text"
+      ]
+    },
+    {
+      "id": "google-deepmind/gemini-robotics-on-device",
+      "name": "Gemini Robotics On-Device",
+      "vendor": "Google DeepMind",
+      "type": "VLA on-device",
+      "release_date": "2025-06-24",
+      "modalities": [
+        "action",
+        "vision",
+        "text"
+      ]
+    },
+    {
+      "id": "figure/figure-03",
+      "name": "Figure 03",
+      "vendor": "Figure AI",
+      "type": "humanoid hardware (runs Helix 02)",
+      "release_date": "2025-10 (announce); production ramp 2026",
+      "modalities": [
+        "action",
+        "vision",
+        "text"
+      ]
+    },
+    {
+      "id": "unitree/unifolm-vla-0",
+      "name": "UnifoLM-VLA-0",
+      "vendor": "Unitree Robotics",
+      "type": "open-source VLA foundation model for humanoid manipulation",
+      "release_date": "2026-01-29",
+      "modalities": [
+        "action",
+        "vision",
+        "text"
+      ]
+    },
+    {
+      "id": "unitree/h2-plus",
+      "name": "H2 Plus (NVIDIA-powered humanoid reference platform)",
+      "vendor": "Unitree Robotics",
+      "type": "humanoid hardware with onboard Isaac GR00T",
+      "release_date": "2026-06-01 (announce)",
+      "modalities": [
+        "action",
+        "vision",
+        "text"
+      ]
+    },
+    {
+      "id": "spirit-ai/spirit-v1.5",
+      "name": "Spirit v1.5",
+      "vendor": "Spirit AI",
+      "type": "embodied intelligence foundation model (predecessor)",
+      "release_date": "earlier 2026",
+      "modalities": [
+        "action",
+        "vision",
+        "text"
+      ]
+    },
+    {
+      "id": "agility/digit-foundation-model",
+      "name": "Agility Whole-Body Control Foundation Model",
+      "vendor": "Agility Robotics (rebrand \u2192 Agility, 2026-03-05)",
+      "type": "RL-trained whole-body controller",
+      "release_date": "2026 (early)",
+      "modalities": [
+        "action",
+        "vision",
+        "text"
+      ]
+    },
+    {
+      "id": "bostondynamics/atlas-tri-lbm",
+      "name": "Atlas Large Behavior Model (BD \u00d7 TRI)",
+      "vendor": "Boston Dynamics / Toyota Research Institute",
+      "type": "single LBM controlling whole body (hands+feet unified)",
+      "release_date": "2026 (joint demo)",
+      "modalities": [
+        "action",
+        "vision",
+        "text"
+      ]
+    },
+    {
+      "id": "tesla/optimus-gen-3",
+      "name": "Optimus Gen 3",
+      "vendor": "Tesla",
+      "type": "humanoid + onboard LLM",
+      "release_date": "2026 (Q1/Q2 2026 \u2014 full unveil pending; production ramp Jan 2026)",
+      "modalities": [
+        "action",
+        "vision",
+        "text"
+      ]
+    },
+    {
+      "id": "bytedance/seed-vla",
+      "name": "ByteDance Seed VLA (exploratory)",
+      "vendor": "ByteDance Seed",
+      "type": "VLA / robot foundation",
+      "release_date": "2026 (in development)",
+      "modalities": [
+        "action",
+        "vision",
+        "text"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "roboarena",
+      "name": "RoboArena",
+      "category": "physical",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vla_arena",
+      "name": "VLA Arena (tektonian)",
+      "category": "physical",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "evo_sota_vla",
+      "name": "Evo-SOTA VLA Leaderboard",
+      "category": "physical",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aime_2026_with_tools",
+      "name": "Aime 2026 With Tools",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "arena_search",
+      "name": "Arena Search",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "artificial_analysis_intelligence_index_v4_1",
+      "name": "Artificial Analysis Intelligence Index V4 1",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bussing_easy_ur5e",
+      "name": "Bussing Easy Ur5E",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "bussing_hard_ur5e",
+      "name": "Bussing Hard Ur5E",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "claweval_1_1",
+      "name": "Claweval 1 1",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "frontierswe",
+      "name": "Frontierswe",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "grocery_bagging_ur5e",
+      "name": "Grocery Bagging Ur5E",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "kimi_code_bench_v2_delta",
+      "name": "Kimi Code Bench V2 Delta",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "libero_avg_success",
+      "name": "Libero Avg Success",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "lm_arena_text",
+      "name": "Lm Arena Text",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mls_bench_lite_delta_vs_k2_6",
+      "name": "Mls Bench Lite Delta Vs K2 6",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "shirt_folding_bi_arx",
+      "name": "Shirt Folding Bi Arx",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "so100_real_no_pretraining",
+      "name": "So100 Real No Pretraining",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "so100_real_with_lerobot_community_pretraining",
+      "name": "So100 Real With Lerobot Community Pretraining",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "terminal_bench_2_0_terminus",
+      "name": "Terminal Bench 2 0 Terminus",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "toast_out_of_toaster_bi_trossen",
+      "name": "Toast Out Of Toaster Bi Trossen",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vision_arena_rank",
+      "name": "Vision Arena Rank",
+      "category": "language",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "mmmu_pro",
+      "score": 69.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3-vl",
+      "_note": "Thinking variant. Confirmed via vendor docs + arxiv tech report."
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "mmmu",
+      "score": 76.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3-vl",
+      "_note": "MMMU validation, Thinking variant"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "mathvision",
+      "score": 65.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3-vl",
+      "_note": "Thinking variant"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "mathvista_mini",
+      "score": 85.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3-vl",
+      "_note": "Thinking variant, mini split"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-thinking",
+      "benchmark": "docvqa_test",
+      "score": 96.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3-vl",
+      "_note": "Thinking variant"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "mmmu",
+      "score": 74.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3-vl",
+      "_note": "Instruct variant, MMMU validation"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "mathvision",
+      "score": 66.5,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mathvision",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b-a22b-instruct",
+      "benchmark": "chartqa",
+      "score": 90.3,
+      "unit": "%",
+      "_source": "https://llm-stats.com/models/qwen3-vl-235b-a22b-instruct",
+      "_note": "Instruct variant ChartQA test split"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-instruct",
+      "benchmark": "chartqa",
+      "score": 83.3,
+      "unit": "%",
+      "_source": "https://llm-stats.com/models/qwen3-vl-4b-instruct",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-instruct",
+      "benchmark": "ocrbench_v1",
+      "score": 87.3,
+      "unit": "%",
+      "_source": "https://llm-stats.com/models/qwen3-vl-4b-instruct",
+      "_note": "Reported as 873/1000 raw score"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "mmmu_pro",
+      "score": 83.6,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=1 on llm-stats MMMU-Pro 2026-06-25 snapshot"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mmmu_pro",
+      "score": 62.0,
+      "unit": "%",
+      "_source": "https://automatio.ai/models/gpt-5-5",
+      "_note": "Possible alternate test setting; differs from llm-stats leaderboard 83.2 - flag for review"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "mmmu_pro",
+      "score": 81.2,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=3"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "mmmu_pro",
+      "score": 81.2,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=4"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "mmmu_pro",
+      "score": 81.0,
+      "unit": "%",
+      "_source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-3-pro-vision/",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "mmmu_pro",
+      "score": 80.1,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=8"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "mmmu_pro",
+      "score": 79.5,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=9"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus-preview",
+      "benchmark": "mmmu_pro",
+      "score": 79.0,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=10"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "mmmu_pro",
+      "score": 78.5,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mmmu-pro",
+      "_note": "rank=12"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "mathvision",
+      "score": 93.2,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mathvision",
+      "_note": "rank=1, MathVision leader"
+    },
+    {
+      "model": "alibaba/qwen3.7-plus-preview",
+      "benchmark": "mathvision",
+      "score": 90.3,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mathvision",
+      "_note": "rank=2"
+    },
+    {
+      "model": "alibaba/qwen3.6-plus",
+      "benchmark": "mathvision",
+      "score": 88.0,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mathvision",
+      "_note": "rank=3"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "mathvision",
+      "score": 86.6,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/mathVision",
+      "_note": "Gemini 3 Pro MathVision"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "mathvision",
+      "score": 83.0,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/mathVision",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.5",
+      "benchmark": "mathvision",
+      "score": 74.3,
+      "unit": "%",
+      "_source": "https://benchlm.ai/benchmarks/mathVision",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3-vl-32b-thinking",
+      "benchmark": "mathvision",
+      "score": 70.2,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mathvision",
+      "_note": "rank=14"
+    },
+    {
+      "model": "alibaba/qwen3-vl-30b-a3b-thinking",
+      "benchmark": "mathvision",
+      "score": 65.7,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mathvision",
+      "_note": "rank=16"
+    },
+    {
+      "model": "alibaba/qwen3-vl-8b-thinking",
+      "benchmark": "mathvision",
+      "score": 62.7,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mathvision",
+      "_note": "rank=18"
+    },
+    {
+      "model": "alibaba/qwen3-vl-4b-thinking",
+      "benchmark": "mathvision",
+      "score": 60.0,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/mathvision",
+      "_note": "rank=20"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "mathvista_mini",
+      "score": 76.0,
+      "unit": "%",
+      "_source": "https://automatio.ai/models/gpt-5-5",
+      "_note": "MathVista reported as 76%"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "chartqa",
+      "score": 94.0,
+      "unit": "%",
+      "_source": "https://automatio.ai/models/gpt-5-5",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "swe_bench_pro",
+      "score": 60.6,
+      "unit": "percent",
+      "_source": "https://amitray.com/qwen3-7-max-benchmark/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "swe_bench_verified",
+      "score": 80.4,
+      "unit": "percent",
+      "_source": "https://amitray.com/qwen3-7-max-benchmark/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "swe_bench_multilingual",
+      "score": 78.3,
+      "unit": "percent",
+      "_source": "https://amitray.com/qwen3-7-max-benchmark/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "livecodebench",
+      "score": 91.6,
+      "unit": "percent",
+      "_source": "https://amitray.com/qwen3-7-max-benchmark/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "terminal_bench_2_0_terminus",
+      "score": 69.7,
+      "unit": "score",
+      "_source": "https://amitray.com/qwen3-7-max-benchmark/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "scicode",
+      "score": 53.5,
+      "unit": "percent",
+      "_source": "https://amitray.com/qwen3-7-max-benchmark/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-max",
+      "benchmark": "mcp_atlas",
+      "score": 76.4,
+      "unit": "score",
+      "_source": "https://www.digitalapplied.com/blog/qwen-3-7-max-alibaba-flagship-ai-model-2026",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "screenspot_pro",
+      "score": 79.0,
+      "unit": "score",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "terminal_bench_2_0",
+      "score": 70.3,
+      "unit": "score",
+      "_source": "https://ofox.ai/blog/qwen-3-7-plus-vs-qwen-3-7-max-real-benchmark-2026/",
+      "_note": ""
+    },
+    {
+      "model": "alibaba/qwen3.7-plus",
+      "benchmark": "vision_arena_rank",
+      "score": 16.0,
+      "unit": "rank_position",
+      "_source": "https://qwen.ai/blog?id=qwen3.7-plus",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-3.7-flash",
+      "benchmark": "swe_bench_pro",
+      "score": 56.26,
+      "unit": "percent",
+      "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-3.7-flash",
+      "benchmark": "hle_with_tools",
+      "score": 47.2,
+      "unit": "percent",
+      "_source": "https://static.stepfun.com/blog/step-3.7-flash/",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-3.7-flash",
+      "benchmark": "browsecomp",
+      "score": 75.82,
+      "unit": "percent",
+      "_source": "https://flowtivity.ai/blog/step-3-7-flash-review-dgx-spark/",
+      "_note": ""
+    },
+    {
+      "model": "stepfun/step-3.7-flash",
+      "benchmark": "claweval_1_1",
+      "score": 67.1,
+      "unit": "score",
+      "_source": "https://www.marktechpost.com/2026/05/29/stepfun-releases-step-3-7-flash-a-198b-moe-vision-language-model-for-coding-agents-and-search-workflows/",
+      "_note": ""
+    },
+    {
+      "model": "minimax/m3",
+      "benchmark": "swe_bench_pro",
+      "score": 59.0,
+      "unit": "percent",
+      "_source": "https://www.marktechpost.com/2026/06/01/minimax-releases-minimax-m3-with-msa-architecture-supporting-1m-token-context-native-multimodality-and-agentic-coding/",
+      "_note": ""
+    },
+    {
+      "model": "minimax/m3",
+      "benchmark": "artificial_analysis_intelligence_index_v4_1",
+      "score": 44.0,
+      "unit": "score",
+      "_source": "https://artificialanalysis.ai/models/minimax-m3",
+      "_note": ""
+    },
+    {
+      "model": "baidu/ernie-5.1",
+      "benchmark": "aime_2026_with_tools",
+      "score": 99.6,
+      "unit": "percent",
+      "_source": "https://ernie.baidu.com/blog/posts/ernie-5.1-0508-release/",
+      "_note": ""
+    },
+    {
+      "model": "baidu/ernie-5.1",
+      "benchmark": "lm_arena_text",
+      "score": 14.0,
+      "unit": "rank_position",
+      "_source": "https://ernie.baidu.com/blog/posts/ernie-5.1-0508-release/",
+      "_note": ""
+    },
+    {
+      "model": "baidu/ernie-5.1",
+      "benchmark": "arena_search",
+      "score": 1223.0,
+      "unit": "elo",
+      "_source": "https://ernie.baidu.com/blog/posts/ernie-5.1-0508-release/",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "kimi_code_bench_v2_delta",
+      "score": 21.8,
+      "unit": "percent_delta",
+      "_source": "https://www.marktechpost.com/2026/06/12/moonshot-ai-releases-kimi-k2-7-code-a-coding-model-reporting-21-8-on-kimi-code-bench-v2-over-k2-6/",
+      "_note": ""
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code",
+      "benchmark": "mls_bench_lite_delta_vs_k2_6",
+      "score": 31.5,
+      "unit": "percent_delta",
+      "_source": "https://www.marktechpost.com/2026/06/12/moonshot-ai-releases-kimi-k2-7-code-a-coding-model-reporting-21-8-on-kimi-code-bench-v2-over-k2-6/",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "swe_bench_pro",
+      "score": 62.1,
+      "unit": "percent",
+      "_source": "https://venturebeat.com/technology/z-ais-open-weights-glm-5-2-beats-gpt-5-5-on-multiple-long-horizon-coding-benchmarks-for-1-6th-the-cost",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "frontierswe",
+      "score": 74.4,
+      "unit": "percent",
+      "_source": "https://www.danilchenko.dev/posts/glm-5-2-review/",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "gpqa_diamond",
+      "score": 91.2,
+      "unit": "percent",
+      "_source": "https://www.danilchenko.dev/posts/glm-5-2-review/",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "aime_2026",
+      "score": 99.2,
+      "unit": "percent",
+      "_source": "https://www.danilchenko.dev/posts/glm-5-2-review/",
+      "_note": ""
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "artificial_analysis_intelligence_index_v4_1",
+      "score": 51.0,
+      "unit": "score",
+      "_source": "https://artificialanalysis.ai/articles/glm-5-2-is-the-new-leading-open-weights-model-on-the-artificial-analysis-intelligence-index",
+      "_note": ""
+    },
+    {
+      "model": "bytedance/doubao-2.1-pro",
+      "benchmark": "scicode",
+      "score": 59.8,
+      "unit": "percent",
+      "_source": "https://news.aibase.com/news/29089",
+      "_note": ""
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "swe_bench_verified",
+      "score": 80.6,
+      "unit": "percent",
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+      "_note": "May 22 2026 pricing milestone"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "swe_bench_pro",
+      "score": 55.4,
+      "unit": "percent",
+      "_source": "https://llm-stats.com/models/deepseek-v4-pro-max",
+      "_note": "May 22 2026 pricing milestone"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "gpqa_diamond",
+      "score": 90.1,
+      "unit": "percent",
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+      "_note": "May 22 2026 pricing milestone"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "livecodebench",
+      "score": 93.5,
+      "unit": "score",
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+      "_note": "May 22 2026 pricing milestone"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "codeforces_elo",
+      "score": 3206.0,
+      "unit": "elo",
+      "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+      "_note": "May 22 2026 pricing milestone"
+    },
+    {
+      "model": "unitree/unifolm-vla-0",
+      "benchmark": "libero",
+      "score": 98.7,
+      "unit": "%",
+      "_source": "https://pandaily.com/unitree-robotics-open-sources-multimodal-vision-language-action-model-unifo-lm-vla-0-1",
+      "_note": "Vendor claim \u2014 highest published in VLA category at release (ahead of OpenVLA / InternVLA / \u03c00)."
+    },
+    {
+      "model": "huggingface/smolvla",
+      "benchmark": "so100_real_no_pretraining",
+      "score": 51.7,
+      "unit": "%",
+      "_source": "https://huggingface.co/blog/smolvla",
+      "_note": ""
+    },
+    {
+      "model": "huggingface/smolvla",
+      "benchmark": "so100_real_with_lerobot_community_pretraining",
+      "score": 78.3,
+      "unit": "%",
+      "_source": "https://huggingface.co/blog/smolvla",
+      "_note": ""
+    },
+    {
+      "model": "spirit-ai/spirit-v1.6",
+      "benchmark": "roboarena_elo",
+      "score": 1924.0,
+      "unit": "%",
+      "_source": "https://thenextweb.com/news/spirit-ai-beats-nvidia-roboarena-physical-ai",
+      "_note": "2026-06-02"
+    },
+    {
+      "model": "nvidia/cosmos3-nano-policy",
+      "benchmark": "roboarena_elo",
+      "score": 1881.0,
+      "unit": "%",
+      "_source": "https://thenextweb.com/news/spirit-ai-beats-nvidia-roboarena-physical-ai",
+      "_note": "2026-06"
+    },
+    {
+      "model": "nvidia/dreamzero",
+      "benchmark": "roboarena_elo",
+      "score": 1763.0,
+      "unit": "%",
+      "_source": "https://thenextweb.com/news/spirit-ai-beats-nvidia-roboarena-physical-ai",
+      "_note": "2026-06"
+    },
+    {
+      "model": "physical-intelligence/pi-0",
+      "benchmark": "bussing_easy_ur5e",
+      "score": 0.971,
+      "unit": "%",
+      "_source": "https://www.pi.website/blog/pi0",
+      "_note": "2024-10-31"
+    },
+    {
+      "model": "physical-intelligence/pi-0",
+      "benchmark": "bussing_hard_ur5e",
+      "score": 0.875,
+      "unit": "%",
+      "_source": "https://www.pi.website/blog/pi0",
+      "_note": ""
+    },
+    {
+      "model": "physical-intelligence/pi-0",
+      "benchmark": "shirt_folding_bi_arx",
+      "score": 1.0,
+      "unit": "%",
+      "_source": "https://www.pi.website/blog/pi0",
+      "_note": ""
+    },
+    {
+      "model": "physical-intelligence/pi-0",
+      "benchmark": "grocery_bagging_ur5e",
+      "score": 0.786,
+      "unit": "%",
+      "_source": "https://www.pi.website/blog/pi0",
+      "_note": ""
+    },
+    {
+      "model": "physical-intelligence/pi-0",
+      "benchmark": "toast_out_of_toaster_bi_trossen",
+      "score": 0.75,
+      "unit": "%",
+      "_source": "https://www.pi.website/blog/pi0",
+      "_note": ""
+    }
+  ]
+}
