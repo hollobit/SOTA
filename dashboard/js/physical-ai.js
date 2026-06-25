@@ -73,6 +73,17 @@ var PhysicalAI = {
                 'alibaba/qwen-robotclaw', 'alibaba/qwen-robotnav',
                 // 2026-06-16 S137 — Qwen RobotSuite (RobotManip Qwen3.5-4B VLM+DiT: LIBERO-Plus 91.4 / RoboTwin-C2R Hard 69.4 / RoboCasa365 35.9 SOTA; RobotWorld 20B MMDiT WorldModelBench 8.99 / EWMBench 4.60 open-source SOTA)
                 'alibaba/qwen-robotmanip', 'alibaba/qwen-robotworld',
+                // 2026 S144 — Embodied AI / robotics deep refresh
+                'physical-intelligence/pi-physical-layer',     // PI compositional generalization layer
+                'google-deepmind/gemini-robotics-on-device',   // Gemini Robotics on-device variant
+                'figure/figure-03',                            // Figure 03 humanoid + Helix 02 (S0/S1/S2)
+                'unitree/unifolm-vla-0',                       // 2026-01-29 OSS HF, LIBERO 98.7 SOTA tie
+                'unitree/h2-plus',                             // 2026-06-01 NVIDIA Isaac GR00T reference platform
+                'spirit-ai/spirit-v1.5',                       // Spirit AI Hangzhou — first Chinese RoboArena #1
+                'agility/digit-foundation-model',              // sub-1M-param motor cortex
+                'bostondynamics/atlas-tri-lbm',                // BD x Toyota Research Institute LBM
+                'tesla/optimus-gen-3',                         // Tesla Optimus Gen 3 component MP Jan 2026
+                'bytedance/seed-vla',                          // ByteDance robot foundation
                 // 2026-06-01 S45 — Alibaba Qwen-VLA paper (arxiv 2605.30280): unified VLA across tasks/environments/embodiments
                 'alibaba/qwen-vla-base', 'alibaba/qwen-vla-instruct',
                 'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',
