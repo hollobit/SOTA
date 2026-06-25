@@ -116,6 +116,7 @@ var Sovereign = {
                 'deepseek/deepseek-r1-0528', 'deepseek/deepseek-r1',
                 // Zhipu GLM
                 'zhipu/glm-5.2', // 2026-06-17 S137 — AAII v4.1 51 open-weights leader
+                'zhipu/glm-4.6v', 'zhipu/glm-4.6v-flash', // 2026-04 S144 — VLM family (106B + 9B)
                 'zhipu/scail-2', // 2026-06-19 S138 — unified character animation (arxiv 2606.10804)
                 'zhipu/glm-5.1', 'zhipu/glm-5', 'zhipu/glm-4.7', 'zhipu/glm-4.6', 'zhipu/glm-4.5', 'zhipu/glm-4.5-air',
                 // Moonshot Kimi
@@ -144,6 +145,8 @@ var Sovereign = {
                 'tencent/hunyuan-t1', 'tencent/hunyuan-large', 'tencent/hunyuan-turbo', 'tencent/hunyuan-7b',
                 'tencent/hunyuan-image-3.0',
                 // ByteDance Doubao Seed + Seedream image/video family
+                'bytedance/doubao-2.1-pro',  // 2026-06-23 S144 — Doubao-Seed-2.1 Pro multimodal+agent
+                'bytedance/seed-vla',        // 2026 S144 — ByteDance VLA robot foundation
                 'bytedance/seed-2.0-pro', 'bytedance/seed-1.6', 'bytedance/seed-1.5-pro', 'bytedance/seed-1.5-lite',
                 'bytedance/seed-oss-36b',  // 2026-06-06 S56 — ByteDance Seed-OSS 36B (ErrorQuake b=0.57 heaviest)
                 'bytedance/dreamina-seedance-2.0-720p', 'bytedance/seedance-2.0',
