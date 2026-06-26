@@ -465,6 +465,7 @@ var CyberCoding = {
         'openai/gpt-5.4',
         'openai/gpt-5.4-thinking',
         'openai/gpt-5.3-codex',
+        'openai/gpt-5.3-codex-spark',  // 2026-02-24 S146 — >1000 tok/s on Cerebras, $1.75/$14 per Mtok
         'openai/gpt-5.2',
         'openai/gpt-5',
         'xai/grok-4-heavy',
