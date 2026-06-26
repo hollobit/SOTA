@@ -482,7 +482,23 @@ var MedicalAI = {
                 'harvard/medversa-8b',
                 'rad-onc/cheXagent-8b',
                 'hippocratic-ai/polaris-3',
-                'stanford/almanac-rag'
+                'stanford/almanac-rag',
+                // 2026 S147 — Specialty FMs (radiology/path/onco/derm/ophth/surgery/cardio)
+                'aidoc/care-fm',                       // FIRST FDA-cleared comprehensive FM (14 CT indications)
+                'aidoc/first-read',                    // CXR Report Drafting Breakthrough Device
+                'nvidia/clara-nv-reason-cxr-3b',
+                'stanford-aimi/chexficient',
+                'medsam/medical-sam3',                 // 73.9% zero-shot Dice
+                'paige/virchow-pancancer-detect',      // 16 cancers, AUC 0.95 common / 0.93 rare
+                'pathai/pluto',
+                'musk/musk-oncology',                  // Nature Cancer 2025, 0.77 AUC immunotherapy
+                'tempus/multimodal-fm',                // ASCO 2026, EGFR-NSCLC C-index 0.802
+                'moorfields/global-retfound-beta',     // 203 partners / 74 countries
+                'panderm/dermfm-zero',                 // 73.2% zero-shot
+                'jhu/srt-h',                           // Autonomous surgery
+                'tum/orqa',                            // OR cognition
+                'heartflow/plaque-analysis-v2',        // FDA + Aetna nationwide
+                'apple-stanford/ecg-fyler'             // AUROC 0.83
             ]
         },
         {
