@@ -33,6 +33,11 @@ var CyberCoding = {
         'cybergym_targeted_reproduction_no_safeguards',
         'cybergym_targeted_reproduction_tier_3_safeguards',
         'firefox_147_exploits_0_5', 'firefox_147_exploits_full_working',
+        // 2026-06-26 S145 — AI safety / preparedness new benches
+        'aisi_realitytest_text_disclosure_rate',
+        'aisi_last_ones_multistep_attack_pass_rate',
+        'aisi_cooling_tower_ics_pass_rate',
+        'openai_cyber_range_pass_rate', 'openai_vulnlmp_full_chain_exploit',
         // 2026-06-14 S111 — Cybersecurity benchmark refresh (frontier + agents + 2026 boards)
         'cybergym_v1', 'exploitbench_v8', 'firefox_147_anthropic', 'oss_fuzz_anthropic', 'cybergym_v1',
         'uk_aisi_narrow_cyber_expert', 'uk_aisi_cyber_range_last_ones', 'uk_aisi_cyber_range_doing_life',
