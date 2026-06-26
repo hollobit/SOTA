@@ -1,0 +1,564 @@
+{
+  "_meta": {
+    "session": "146",
+    "date": "2026-06-26",
+    "topic": "3-parallel: AI4S deep + Coding agents + Inference Hardware",
+    "sources": [
+      "AI4S: BioHub ESMFold2/ESM-C + Chai-2 + Boltz-2.1 + Meta-FAIR UMA + MatterSim-MT + AIFS-ENS 2.0 + GenCast + AlphaGenome + Evo-2 + OMol25",
+      "Coding: GPT-5.3-Codex-Spark + Codex CLI 0.130-0.132 + Devstral 2 + Mistral Vibe + Cursor Composer 2.5 + Continue acquired by Cursor + Windsurf rebranded Devin Desktop",
+      "HW: NVIDIA Vera Rubin + Groq 3 LPX + AMD MI4xxX series + SambaNova SN50 + TPU 8t/8i preview + AWS Trainium 4 + Apple M5/Pro/Max + MLPerf v6.0"
+    ]
+  },
+  "models": [
+    {
+      "id": "biohub/esmfold2",
+      "name": "ESMFold2",
+      "vendor": "Biohub (formerly EvolutionaryScale team)",
+      "type": "protein-structure",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "biology"
+      ]
+    },
+    {
+      "id": "biohub/esm-c",
+      "name": "ESM-C (Cambrian) \u2014 Biohub release",
+      "vendor": "Biohub",
+      "type": "protein-language-model",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "biology"
+      ]
+    },
+    {
+      "id": "boltz/boltz-2.1",
+      "name": "Boltz-2.1",
+      "vendor": "MIT (Barzilay lab)",
+      "type": "protein-structure + binding-affinity",
+      "release_date": "2026-06-01",
+      "modalities": [
+        "text",
+        "biology"
+      ]
+    },
+    {
+      "id": "meta-fair/uma",
+      "name": "UMA \u2014 Universal Model for Atoms",
+      "vendor": "Meta FAIR Chemistry",
+      "type": "chemistry-foundation (interatomic potential)",
+      "release_date": "2025-06 arXiv; revised 2026-03; UMA family in active use through 2026",
+      "modalities": [
+        "text",
+        "biology"
+      ]
+    },
+    {
+      "id": "microsoft/mattersim-mt",
+      "name": "MatterSim-MT",
+      "vendor": "Microsoft Research AI for Science",
+      "type": "materials-foundation (multi-task)",
+      "release_date": "2026-05 (announced); arXiv 2605.07927",
+      "modalities": [
+        "text",
+        "biology"
+      ]
+    },
+    {
+      "id": "ecmwf/aifs-ens-2.0",
+      "name": "AIFS ENS v2.0",
+      "vendor": "ECMWF",
+      "type": "weather-foundation (probabilistic ensemble)",
+      "release_date": "2026-05-12 (operational)",
+      "modalities": [
+        "text",
+        "biology"
+      ]
+    },
+    {
+      "id": "google-deepmind/gencast",
+      "name": "GenCast (operationalized 2026)",
+      "vendor": "Google DeepMind",
+      "type": "weather-foundation (diffusion ensemble)",
+      "release_date": "Operationalized in 2026 from 2024 Nature paper",
+      "modalities": [
+        "text",
+        "biology"
+      ]
+    },
+    {
+      "id": "google-deepmind/alphagenome",
+      "name": "AlphaGenome",
+      "vendor": "Google DeepMind",
+      "type": "genomics-foundation (regulatory variant effect)",
+      "release_date": "2025-06 announced; open-source 2026-01; Nature 2026-01-28",
+      "modalities": [
+        "text",
+        "biology"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.3-codex-spark",
+      "name": "GPT-5.3 Codex Spark",
+      "vendor": "OpenAI",
+      "type": "coding-agent",
+      "release_date": "2026-02-24",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "nvidia/vera-rubin",
+      "name": "NVIDIA Vera Rubin (Rubin R100 + Vera CPU)",
+      "vendor": "NVIDIA",
+      "type": "hardware",
+      "release_date": "2026-03 GTC + full production GTC Taipei 2026-06-01",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "nvidia/rubin-cpx",
+      "name": "NVIDIA Rubin CPX (status: CANCELLED at GTC 2026)",
+      "vendor": "NVIDIA",
+      "type": "hardware",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "nvidia/groq-3-lpx",
+      "name": "NVIDIA Groq 3 LPX (LPU v3, formerly Groq LPU)",
+      "vendor": "NVIDIA (licensed from Groq; $20B deal Dec 2025)",
+      "type": "hardware",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "amd/mi455x",
+      "name": "AMD Instinct MI455X (MI400 series flagship)",
+      "vendor": "AMD",
+      "type": "hardware",
+      "release_date": "CES 2026-01",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "amd/mi500x",
+      "name": "AMD Instinct MI500X",
+      "vendor": "AMD",
+      "type": "hardware",
+      "release_date": "CES 2026-01",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "sambanova/sn50",
+      "name": "SambaNova SN50 RDU (5th gen)",
+      "vendor": "SambaNova",
+      "type": "hardware",
+      "release_date": "2026-02-25 (with $350M+ raise, Intel partnership)",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "google/tpu-v7-ironwood",
+      "name": "Google TPU v7 Ironwood",
+      "vendor": "Google",
+      "type": "hardware",
+      "release_date": "Cloud Next 2026 (GA)",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "google/tpu-v8t-sunfish",
+      "name": "Google TPU 8t (Sunfish, training)",
+      "vendor": "Google",
+      "type": "hardware",
+      "release_date": "Cloud Next 2026 (preview)",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "google/tpu-v8i-zebrafish",
+      "name": "Google TPU 8i (Zebrafish, inference)",
+      "vendor": "Google",
+      "type": "hardware",
+      "release_date": "Cloud Next 2026 (preview)",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "aws/trainium-4",
+      "name": "AWS Trainium 4",
+      "vendor": "AWS / Annapurna Labs",
+      "type": "hardware",
+      "release_date": "AWS re:Invent 2025-12",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "apple/m5-pro",
+      "name": "Apple M5 Pro",
+      "vendor": "Apple",
+      "type": "hardware",
+      "release_date": "2026-03-03",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "apple/m5-max",
+      "name": "Apple M5 Max",
+      "vendor": "Apple",
+      "type": "hardware",
+      "release_date": "2026-03-03",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "cerebras/wse-4",
+      "name": "Cerebras WSE-4 (NOT YET ANNOUNCED)",
+      "vendor": "Cerebras",
+      "type": "hardware",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "vllm/v0.23.0",
+      "name": "vLLM v0.23.0",
+      "vendor": "unknown",
+      "type": "inference-engine",
+      "release_date": "2026-06-13",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "sglang/v0.5.8",
+      "name": "SGLang v0.5.8",
+      "vendor": "unknown",
+      "type": "inference-engine",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "inference"
+      ]
+    },
+    {
+      "id": "tensorrt-llm/v1.2",
+      "name": "TensorRT-LLM v1.2.0rc4+",
+      "vendor": "unknown",
+      "type": "inference-engine",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "inference"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "omol25_open_molecules_2025",
+      "name": "OMol25 \u2014 Open Molecules 2025",
+      "category": "chemistry-DFT",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "matbench_discovery_live_leaderboard",
+      "name": "Matbench Discovery (live leaderboard)",
+      "category": "materials-MLIP",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "casp16",
+      "name": "CASP16",
+      "category": "protein-structure",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "weatherbench_2",
+      "name": "WeatherBench 2",
+      "category": "weather-forecasting",
+      "metric": "score",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "de_novo_antibody_design_vs_52_pdb_novel_targets",
+      "name": "de novo antibody design vs 52 PDB-novel targets",
+      "category": "ai4s",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "miniprotein_binder_design",
+      "name": "miniprotein binder design",
+      "category": "ai4s",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "pdb_2024_2025_holdout_complex_prediction",
+      "name": "PDB 2024-2025 holdout (complex prediction)",
+      "category": "ai4s",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "admet",
+      "name": "ADMET",
+      "category": "ai4s",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "genome_track_prediction_24_tasks",
+      "name": "genome-track prediction (24 tasks)",
+      "category": "ai4s",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "variant_effect_prediction_26_tasks",
+      "name": "variant-effect prediction (26 tasks)",
+      "category": "ai4s",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gtex_eqtl_sign_direction",
+      "name": "GTEx eQTL sign direction",
+      "category": "ai4s",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "evo2_deployment_benchmark_biorxiv_2025_09",
+      "name": "Evo2 deployment benchmark (bioRxiv 2025-09)",
+      "category": "ai4s",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vs_ifs_ens_medium_range_upper_air",
+      "name": "vs IFS ENS (medium-range, upper-air)",
+      "category": "ai4s",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vs_ecmwf_ens_verification_targets",
+      "name": "vs ECMWF ENS (verification targets)",
+      "category": "ai4s",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "vs_operational_nwp_air_quality_ocean_waves_tc_tracks_hi_res_weather",
+      "name": "vs operational NWP (air quality, ocean waves, TC tracks, hi-res weather)",
+      "category": "ai4s",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "mlperf_inference_v6_0",
+      "name": "MLPerf Inference v6.0",
+      "category": "inference",
+      "metric": "tok/s",
+      "unit": "tok/s",
+      "description": "",
+      "source_url": "https://mlcommons.org/2026/04/mlperf-inference-v6-0-results/"
+    }
+  ],
+  "scores": [
+    {
+      "model": "chai/chai-2",
+      "benchmark": "de_novo_antibody_design_vs_52_pdb_novel_targets",
+      "score": 16.0,
+      "unit": "%",
+      "_source": "https://proteiniq.io/guides/what-is-chai-2",
+      "_note": "binding hit rate"
+    },
+    {
+      "model": "chai/chai-2",
+      "benchmark": "miniprotein_binder_design",
+      "score": 68.0,
+      "unit": "%",
+      "_source": "https://newsletter.kiin.bio/p/introducing-chai-2-a-breakthrough",
+      "_note": "hit rate"
+    },
+    {
+      "model": "google-deepmind/alphagenome",
+      "benchmark": "genome_track_prediction_24_tasks",
+      "score": 22.0,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41586-025-10014-0",
+      "_note": "SOTA tasks"
+    },
+    {
+      "model": "google-deepmind/alphagenome",
+      "benchmark": "variant_effect_prediction_26_tasks",
+      "score": 25.0,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41586-025-10014-0",
+      "_note": "SOTA tasks"
+    },
+    {
+      "model": "google-deepmind/alphagenome",
+      "benchmark": "gtex_eqtl_sign_direction",
+      "score": 25.5,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41586-025-10014-0",
+      "_note": "relative improvement vs Borzoi"
+    },
+    {
+      "model": "ecmwf/aifs-ens-2.0",
+      "benchmark": "vs_ifs_ens_medium_range_upper_air",
+      "score": 25.0,
+      "unit": "%",
+      "_source": "https://www.ecmwf.int/en/newsletter/185/earth-system-science/aifs-ens-becomes-operational",
+      "_note": "improvement"
+    },
+    {
+      "model": "google-deepmind/gencast",
+      "benchmark": "vs_ecmwf_ens_verification_targets",
+      "score": 97.2,
+      "unit": "%",
+      "_source": "https://deepmind.google/blog/gencast-predicts-weather-and-the-risks-of-extreme-conditions-with-sota-accuracy/",
+      "_note": "% targets where GenCast more accurate"
+    },
+    {
+      "model": "microsoft/aurora",
+      "benchmark": "vs_operational_nwp_air_quality_ocean_waves_tc_tracks_hi_res_weather",
+      "score": 5000.0,
+      "unit": "%",
+      "_source": "https://www.microsoft.com/en-us/research/project/aurora-forecasting/",
+      "_note": "qualitative + speed"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "swe_bench_verified",
+      "score": 95.5,
+      "unit": "%",
+      "_source": "https://presenc.ai/research/swe-bench-verified-leaderboard-june-2026 + Anthropic blog",
+      "_note": "Jun 2026 leaderboard update"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "swe_bench_verified",
+      "score": 95.0,
+      "unit": "%",
+      "_source": "same",
+      "_note": "Jun 2026 leaderboard update"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "swe_bench_verified",
+      "score": 88.6,
+      "unit": "%",
+      "_source": "https://www.anthropic.com/news/claude-opus-4-8",
+      "_note": "Jun 2026 leaderboard update"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "swe_bench_verified",
+      "score": 82.6,
+      "unit": "%",
+      "_source": "https://www.marc0.dev/en/leaderboard",
+      "_note": "Jun 2026 leaderboard update"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "swe_bench_verified",
+      "score": 82.0,
+      "unit": "%",
+      "_source": "https://llm-stats.com/benchmarks/swe-bench-verified",
+      "_note": "Jun 2026 leaderboard update"
+    },
+    {
+      "model": "anthropic/claude-mythos-5",
+      "benchmark": "swe_bench_pro",
+      "score": 80.3,
+      "unit": "%",
+      "_source": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+      "_note": "Jun 2026 leaderboard update"
+    },
+    {
+      "model": "anthropic/claude-fable-5",
+      "benchmark": "swe_bench_pro",
+      "score": 80.0,
+      "unit": "%",
+      "_source": "same",
+      "_note": "Jun 2026 leaderboard update"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "swe_bench_pro",
+      "score": 69.2,
+      "unit": "%",
+      "_source": "https://www.morphllm.com/swe-bench-pro",
+      "_note": "Jun 2026 leaderboard update"
+    },
+    {
+      "model": "zhipu/glm-5.2",
+      "benchmark": "swe_bench_pro",
+      "score": 62.1,
+      "unit": "%",
+      "_source": "https://www.morphllm.com/swe-bench-pro (top open-source)",
+      "_note": "Jun 2026 leaderboard update"
+    },
+    {
+      "model": "openai/gpt-5.4-xhigh",
+      "benchmark": "swe_bench_pro",
+      "score": 59.1,
+      "unit": "%",
+      "_source": "https://labs.scale.com/leaderboard/swe_bench_pro_public (SEAL standardized)",
+      "_note": "Jun 2026 leaderboard update"
+    }
+  ]
+}
