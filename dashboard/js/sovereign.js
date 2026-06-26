@@ -27,6 +27,8 @@ var Sovereign = {
                 'naver/hyperclova-x-think-32b', 'naver/hyperclova-x-think-14b',
                 'naver/hyperclova-x-seed-omni-8b', 'naver/hyperclova-x-seed-vision-3b',
                 'naver/hyperclova-x',
+                'kakao/kanana-2.5',   // 2026-05 S145 — 150B (May 2026 announcement)
+                'naver/hyperclova-x-think-nemotron', // S145 — Naver collab with NVIDIA Nemotron
                 'kakao/kanana-2-30b-a3b-thinking', 'kakao/kanana-1.5-o-9.8b', 'kakao/kanana-1.5-8b',
                 'kakao/kanana-1.5-15.7b-a3b', 'kakao/kanana-flag-32.5b',
                 'sk-telecom/a.x-4.0',  // 2026-06-04 S52 — SK Telecom A.X 4.0 Korean Foundation Model
@@ -228,6 +230,10 @@ var Sovereign = {
             note: 'Major sovereign players — PFN PLaMo · NTT tsuzumi · NEC cotomi · Fujitsu Takane · Rakuten AI · ELYZA · Swallow (Tokyo Tech) · Stockmark · NII llm-jp · SoftBank Sarashina · CyberAgent · Karakuri · ABEJA · Sakana',
             models: [
                 // Preferred Networks (PFN) — flagship JP sovereign
+                'pfn/plamo-3.0-prime',  // 2026-06-22 S145 — 256K ctx
+                'softbank/sarashina-cloud-pf', // 2026-06-01 S145 — Sarashina enterprise on Cloud PF Type A
+                'tokyo-tech/qwen3-swallow-32b-rl',  // S145 — Tokyo Tech Qwen3-Swallow RL
+                'nii/llm-jp-4-32b-a3b', // 2026-04-03 S145 — National Institute of Informatics LLM-jp-4
                 'pfn/plamo-100b', 'pfn/plamo-2-prime', 'pfn/plamo-2.1-prime', 'pfn/plamo-2-8b',
                 // NTT
                 'ntt/tsuzumi-1', 'ntt/tsuzumi-2',
@@ -329,6 +335,11 @@ var Sovereign = {
                 // SEA-LION encoder / embedding suite (Mar-Apr 2026)
                 'ai-singapore/sea-lion-modernbert-600m', 'ai-singapore/sea-lion-modernbert-300m',
                 'ai-singapore/sea-lion-e5-embedding-600m',
+                'ai-singapore/sea-lion-v4.5',       // 2026-05-26 S145 — v4.5 suite (agentic + speed)
+                'ai-singapore/sea-guard',           // 2026-02-04 S145 — safety layer
+                'ai-singapore/sea-lion-embedding',  // 2026-03 S145 — multilingual embed
+                'sarvam/sarvam-vision-3b',         // 2026-02-05 S145 — Sarvam SSM-VLM India
+                'sber/gigachat-ultra',             // 2026-03 S145 — Russia reasoning
                 // SEA-LION v4 (text generation)
                 'ai-singapore/apertus-sea-lion-v4-8b', 'ai-singapore/gemma-sea-lion-v4-4b-vl',
                 'ai-singapore/llama-sea-lion-v3.5-70b', 'ai-singapore/llama-sea-lion-v3.5-8b',
