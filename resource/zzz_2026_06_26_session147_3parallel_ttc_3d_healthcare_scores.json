@@ -1,0 +1,1161 @@
+{
+  "_meta": {
+    "session": "147",
+    "date": "2026-06-26",
+    "topic": "3-parallel: Test-time compute reasoning-effort tiers + 3D generation frontier + Healthcare specialty AI",
+    "sources": [
+      "AAII v4.1 per-effort tier table (TTC)",
+      "TRELLIS.2 / Hunyuan3D 3.0 / Meshy 6 / Rodin / CSM Cube + 3D Arena / HY3D-Bench / Hi3DEval (3D)",
+      "Aidoc CARE FDA 510(k) / MedSAM 3 / Virchow PanCancer / Tempus / Heartflow / RETFound Beta / SRT-H autonomous surgery (Healthcare)"
+    ]
+  },
+  "models": [
+    {
+      "id": "openai/gpt-5.4-nano-medium",
+      "name": " (medium)",
+      "vendor": "openai",
+      "type": "reasoning",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "openai/gpt-5.4-nano-xhigh",
+      "name": " (xhigh)",
+      "vendor": "openai",
+      "type": "reasoning",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-opus-4.8-max",
+      "name": " (max)",
+      "vendor": "anthropic",
+      "type": "reasoning",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "anthropic/claude-fable-5-with_fallback (adaptive default)",
+      "name": " (with_fallback (adaptive default))",
+      "vendor": "anthropic",
+      "type": "reasoning",
+      "release_date": "2026-06-09",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-pro-high (default)",
+      "name": " (high (default))",
+      "vendor": "google",
+      "type": "reasoning",
+      "release_date": "2026-02-19",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "google/gemini-3.1-deep-think",
+      "name": "google/gemini-3.1-deep-think",
+      "vendor": "google",
+      "type": "reasoning",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k2.6-thinking_default",
+      "name": " (thinking_default)",
+      "vendor": "moonshot",
+      "type": "reasoning",
+      "release_date": "2026-04-20",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "moonshot/kimi-k2.7-code-thinking_default",
+      "name": " (thinking_default)",
+      "vendor": "moonshot",
+      "type": "reasoning",
+      "release_date": "2026-06-12",
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "id": "tencent/hunyuan3d-3.0",
+      "name": "tencent/hunyuan3d-3.0",
+      "vendor": "Tencent",
+      "type": "3d-gen",
+      "release_date": "2025-09-01",
+      "modalities": [
+        "text",
+        "3d"
+      ]
+    },
+    {
+      "id": "meshy/meshy-6",
+      "name": "meshy/meshy-6",
+      "vendor": "Meshy",
+      "type": "3d-gen",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "text",
+        "3d"
+      ]
+    },
+    {
+      "id": "hyper3d/rodin-gen-2.5",
+      "name": "hyper3d/rodin-gen-2.5",
+      "vendor": "Deemos (Hyper3D)",
+      "type": "3d-gen",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "text",
+        "3d"
+      ]
+    },
+    {
+      "id": "tripo/tripo-h3.1",
+      "name": "tripo/tripo-h3.1",
+      "vendor": "VAST AI (Tripo)",
+      "type": "3d-gen",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text",
+        "3d"
+      ]
+    },
+    {
+      "id": "tripo/tripo-p1.0-smart-mesh",
+      "name": "tripo/tripo-p1.0-smart-mesh",
+      "vendor": "VAST AI (Tripo)",
+      "type": "3d-gen",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "text",
+        "3d"
+      ]
+    },
+    {
+      "id": "autodesk/wonder-3d",
+      "name": "autodesk/wonder-3d",
+      "vendor": "Autodesk (Flow Studio, ex-Wonder Dynamics)",
+      "type": "3d-gen",
+      "release_date": "2026-03-04",
+      "modalities": [
+        "text",
+        "3d"
+      ]
+    },
+    {
+      "id": "luma/genie-3d",
+      "name": "luma/genie-3d",
+      "vendor": "Luma AI",
+      "type": "3d-gen",
+      "release_date": "2024 (continuously updated through 2026)",
+      "modalities": [
+        "text",
+        "3d"
+      ]
+    },
+    {
+      "id": "sloyd/sloyd-2.0",
+      "name": "sloyd/sloyd-2.0",
+      "vendor": "Sloyd",
+      "type": "3d-gen",
+      "release_date": "2026-04-18",
+      "modalities": [
+        "text",
+        "3d"
+      ]
+    },
+    {
+      "id": "kiri/3dgs-to-mesh-3.0",
+      "name": "kiri/3dgs-to-mesh-3.0",
+      "vendor": "KIRI Engine",
+      "type": "3d-gen",
+      "release_date": "2026-04-01",
+      "modalities": [
+        "text",
+        "3d"
+      ]
+    },
+    {
+      "id": "alibaba/wan-3d-tokenhub",
+      "name": "alibaba/wan-3d-tokenhub",
+      "vendor": "Alibaba (Token Hub unit)",
+      "type": "3d-gen",
+      "release_date": "2026-04-16 (limited early access)",
+      "modalities": [
+        "text",
+        "3d"
+      ]
+    },
+    {
+      "id": "aidoc/care-fm",
+      "name": "Aidoc CARE (Comprehensive AI Triage)",
+      "vendor": "Aidoc",
+      "type": "medical",
+      "release_date": "2026-01-21",
+      "modalities": [
+        "CT (abdominal)"
+      ]
+    },
+    {
+      "id": "aidoc/first-read",
+      "name": "Aidoc First Read (CXR Report Drafting)",
+      "vendor": "Aidoc",
+      "type": "medical",
+      "release_date": "2026-06-01",
+      "modalities": [
+        "Chest X-Ray"
+      ]
+    },
+    {
+      "id": "nvidia/clara-nv-reason-cxr-3b",
+      "name": "NVIDIA Clara NV-Reason-CXR-3B",
+      "vendor": "NVIDIA",
+      "type": "medical",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "Chest X-Ray"
+      ]
+    },
+    {
+      "id": "stanford-aimi/chexficient",
+      "name": "CheXficient",
+      "vendor": "Stanford AIMI",
+      "type": "medical",
+      "release_date": "2026-02-26",
+      "modalities": [
+        "Chest X-Ray"
+      ]
+    },
+    {
+      "id": "medsam/medical-sam3",
+      "name": "Medical SAM 3",
+      "vendor": "Academic (multi-institution)",
+      "type": "medical",
+      "release_date": "2026-01-15",
+      "modalities": [
+        "10 imaging modalities, 2D and 3D"
+      ]
+    },
+    {
+      "id": "paige/virchow-pancancer-detect",
+      "name": "Paige Virchow PanCancer Detect",
+      "vendor": "Paige.AI / Microsoft",
+      "type": "medical",
+      "release_date": "2025-2026",
+      "modalities": [
+        "Whole-slide H&E pathology"
+      ]
+    },
+    {
+      "id": "pathai/pluto",
+      "name": "PathAI PLUTO + PathExplore",
+      "vendor": "PathAI",
+      "type": "medical",
+      "release_date": "2025-11 (AISight integration); ongoing 2026 commercial",
+      "modalities": [
+        "Whole-slide H&E"
+      ]
+    },
+    {
+      "id": "musk/musk-oncology",
+      "name": "MUSK (Multimodal Unified Self-supervised for Oncology)",
+      "vendor": "Academic (Nature Cancer 2025)",
+      "type": "medical",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "Pathology WSI + clinical text"
+      ]
+    },
+    {
+      "id": "tempus/multimodal-fm",
+      "name": "Tempus Multimodal Foundation Model (ASCO 2026)",
+      "vendor": "Tempus AI",
+      "type": "medical",
+      "release_date": "2026-05-29 (ASCO 2026 results)",
+      "modalities": [
+        "Clinical text + medical imaging + genomic"
+      ]
+    },
+    {
+      "id": "moorfields/global-retfound-beta",
+      "name": "Global RETFound Beta",
+      "vendor": "Moorfields Eye Hospital / UCL / 203-partner consortium",
+      "type": "medical",
+      "release_date": "2026 (ARVO 2026 presentation)",
+      "modalities": [
+        "Retinal fundus images + OCT"
+      ]
+    },
+    {
+      "id": "panderm/dermfm-zero",
+      "name": "DermFM-Zero (PanDerm-2)",
+      "vendor": "Monash University (Yan et al.)",
+      "type": "medical",
+      "release_date": "2026-02-13",
+      "modalities": [
+        "Clinical/dermoscopy images + text"
+      ]
+    },
+    {
+      "id": "jhu/srt-h",
+      "name": "SRT-H (Hierarchical Surgical Robot Transformer)",
+      "vendor": "Johns Hopkins (Krieger lab)",
+      "type": "medical",
+      "release_date": "2025-07 (Science Robotics)",
+      "modalities": [
+        "Endoscopic video + language commands"
+      ]
+    },
+    {
+      "id": "orqa/orqa-or",
+      "name": "ORQA \u2014 Specialized FM for Intelligent Operating Rooms",
+      "vendor": "Academic (npj Digital Medicine 2026)",
+      "type": "medical",
+      "release_date": "2026-01-01",
+      "modalities": [
+        "Video (RGB-D, egocentric), point clouds, audio, metadata"
+      ]
+    },
+    {
+      "id": "nvidia-jhu/cosmos-surg-dvrk",
+      "name": "Cosmos-Surg-dVRK / Cosmos-H-Surgical",
+      "vendor": "NVIDIA + Johns Hopkins",
+      "type": "medical",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "Video world model for da Vinci Research Kit"
+      ]
+    },
+    {
+      "id": "nus-cuhk-sjtu-nvidia/surg-sigma",
+      "name": "Surg\u03a3 (Surg-Sigma) \u2014 Spectrum FM for Surgical Intelligence",
+      "vendor": "NUS / CUHK / SJTU / NVIDIA",
+      "type": "medical",
+      "release_date": "2026-03-01",
+      "modalities": [
+        "Multimodal surgical video + text + reasoning"
+      ]
+    },
+    {
+      "id": "bch/ecg-fyler",
+      "name": "ECG-Fyler",
+      "vendor": "Boston Children's Hospital",
+      "type": "medical",
+      "release_date": "2026-05-26 (medRxiv)",
+      "modalities": [
+        "12-lead ECG"
+      ]
+    },
+    {
+      "id": "wearable-echo-fm",
+      "name": "Wearable-Echo-FM",
+      "vendor": "Academic (European Heart Journal Digital Health 2026)",
+      "type": "medical",
+      "release_date": "2026-05-01",
+      "modalities": [
+        "Single-lead ECG (wearable) + echocardiographic text"
+      ]
+    },
+    {
+      "id": "heartflow/plaque-analysis-v2",
+      "name": "Heartflow Plaque Analysis (Next Gen)",
+      "vendor": "Heartflow",
+      "type": "medical",
+      "release_date": "2025-09 (FDA), 2026 commercial",
+      "modalities": [
+        "Coronary CT angiography"
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "hle_no_tools_pct",
+      "name": "hle_no_tools_pct",
+      "category": "composite",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "gpqa_diamond_pct",
+      "name": "gpqa_diamond_pct",
+      "category": "composite",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_pro_pct",
+      "name": "swe_bench_pro_pct",
+      "category": "composite",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "swe_bench_verified_pct",
+      "name": "swe_bench_verified_pct",
+      "category": "composite",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "hi3deval_overall",
+      "name": "Hi3DEval (overall)",
+      "category": "physical",
+      "metric": "score",
+      "unit": "score",
+      "description": "Object-level hierarchical 3D eval (NeurIPS 2025 arxiv 2508.05609)",
+      "source_url": "https://arxiv.org/abs/2508.05609"
+    },
+    {
+      "id": "hy3d_bench_uni3d_i",
+      "name": "HY3D-Bench Uni3D-I",
+      "category": "physical",
+      "metric": "similarity",
+      "unit": "cosine",
+      "description": "Uni3D-I image-mesh consistency (arxiv 2602.03907)",
+      "source_url": "https://arxiv.org/abs/2602.03907"
+    },
+    {
+      "id": "three_d_arena_elo",
+      "name": "3D Arena Elo (human preference)",
+      "category": "physical",
+      "metric": "elo",
+      "unit": "elo",
+      "description": "Human-preference Elo arena for 3D gen (arxiv 2506.18787)",
+      "source_url": "https://arxiv.org/abs/2506.18787"
+    },
+    {
+      "id": "medsam3_zero_shot_dice",
+      "name": "Medical SAM 3 zero-shot Dice",
+      "category": "medical",
+      "metric": "dice",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "musk_immunotherapy_response_auc",
+      "name": "MUSK immunotherapy response AUC",
+      "category": "medical",
+      "metric": "auc",
+      "unit": "auc",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "tempus_egfr_nsclc_c_index",
+      "name": "Tempus EGFR-NSCLC C-index",
+      "category": "medical",
+      "metric": "c-index",
+      "unit": "c-index",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "dermfm_zero_shot_accuracy",
+      "name": "DermFM-Zero accuracy",
+      "category": "medical",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aidoc_care_ct_sensitivity",
+      "name": "Aidoc CARE CT triage sensitivity",
+      "category": "medical",
+      "metric": "sensitivity",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "aidoc_care_ct_specificity",
+      "name": "Aidoc CARE CT triage specificity",
+      "category": "medical",
+      "metric": "specificity",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "paige_virchow_pancancer_common_auc",
+      "name": "Paige Virchow PanCancer common AUC",
+      "category": "medical",
+      "metric": "auc",
+      "unit": "auc",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "paige_virchow_pancancer_rare_auc",
+      "name": "Paige Virchow PanCancer rare AUC",
+      "category": "medical",
+      "metric": "auc",
+      "unit": "auc",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "ecg_fyler_auroc",
+      "name": "ECG-Fyler AUROC",
+      "category": "medical",
+      "metric": "auroc",
+      "unit": "auroc",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "fda_pivotal_study_mean_sensitivity",
+      "name": "FDA pivotal study \u2014 mean sensitivity",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "fda_pivotal_study_mean_specificity",
+      "name": "FDA pivotal study \u2014 mean specificity",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "benchmarks_evaluated",
+      "name": "Benchmarks evaluated",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "zero_shot_dice_7_unseen_external_datasets_medical_sam3",
+      "name": "Zero-shot Dice (7 unseen external datasets) \u2014 Medical SAM3",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "zero_shot_dice_7_unseen_external_datasets_sam3_baseline",
+      "name": "Zero-shot Dice (7 unseen external datasets) \u2014 SAM3 baseline",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "specimen_level_auc_common_cancers_9_types",
+      "name": "Specimen-level AUC \u2014 common cancers (9 types)",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "specimen_level_auc_rare_cancers_7_types_40k_yr_us",
+      "name": "Specimen-level AUC \u2014 rare cancers (7 types, <40k/yr US)",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "patch_and_slide_level_benchmarks_evaluated",
+      "name": "Patch- and slide-level benchmarks evaluated",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "immunotherapy_response_prediction_auc_musk",
+      "name": "Immunotherapy response prediction AUC \u2014 MUSK",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "immunotherapy_response_prediction_auc_pd_l1_classifier_baseline",
+      "name": "Immunotherapy response prediction AUC \u2014 PD-L1 classifier baseline",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "melanoma_recurrence_risk_prediction_accuracy",
+      "name": "Melanoma recurrence risk prediction accuracy",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "egfr_mutant_nsclc_on_osimertinib_overall_survival_c_index",
+      "name": "EGFR-mutant NSCLC on osimertinib \u2014 overall survival C-index",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "zero_shot_classification_7_benchmarks_avg_accuracy",
+      "name": "Zero-shot classification (7 benchmarks) \u2014 avg accuracy",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "improvement_over_panderm_10_labeled_data",
+      "name": "Improvement over PanDerm (10% labeled data)",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "diagnostic_accuracy_vs_1090_clinicians",
+      "name": "Diagnostic accuracy vs 1090 clinicians",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "benchmarks_evaluated_total",
+      "name": "Benchmarks evaluated total",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "external_validation_auroc_lvef_40",
+      "name": "External validation AUROC \u2014 LVEF\u226440%",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "fine_tuned_auroc_lvef_45_10_external_data",
+      "name": "Fine-tuned AUROC \u2014 LVEF\u226445% (10% external data)",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "site_specific_prior_model_auroc_lvef_45",
+      "name": "Site-specific prior model AUROC \u2014 LVEF\u226445%",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "plaque_detection_improvement_vs_prior_version",
+      "name": "Plaque detection improvement vs prior version",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    },
+    {
+      "id": "agreement_to_ivus_gold_standard_blinded_core_lab",
+      "name": "Agreement to IVUS gold standard (blinded core lab)",
+      "category": "medical",
+      "metric": "",
+      "unit": "%",
+      "description": "",
+      "source_url": ""
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "hle_no_tools_pct",
+      "score": 52.2,
+      "unit": "%",
+      "_source": "AA per-effort table",
+      "_note": "openai/gpt-5.5 at xhigh"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "gpqa_diamond_pct",
+      "score": 93.6,
+      "unit": "%",
+      "_source": "AA per-effort table",
+      "_note": "openai/gpt-5.5 at xhigh"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "terminal_bench_2",
+      "score": 82.7,
+      "unit": "%",
+      "_source": "AA per-effort table",
+      "_note": "openai/gpt-5.5 at xhigh"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "swe_bench_pro_pct",
+      "score": 58.6,
+      "unit": "%",
+      "_source": "AA per-effort table",
+      "_note": "openai/gpt-5.5 at xhigh"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "swe_bench_verified_pct",
+      "score": 88.7,
+      "unit": "%",
+      "_source": "AA per-effort table",
+      "_note": "openai/gpt-5.5 at xhigh"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 35.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=non-reasoning"
+    },
+    {
+      "model": "openai/gpt-5.5-low",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 43.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=low"
+    },
+    {
+      "model": "openai/gpt-5.5-medium",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 50.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=medium"
+    },
+    {
+      "model": "openai/gpt-5.5-high",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 53.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=high"
+    },
+    {
+      "model": "openai/gpt-5.5-xhigh",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 55.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=xhigh"
+    },
+    {
+      "model": "openai/gpt-5.4-mini-medium",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 30.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=medium"
+    },
+    {
+      "model": "openai/gpt-5.4-mini-xhigh",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 40.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=xhigh"
+    },
+    {
+      "model": "openai/gpt-5.4-nano-medium",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 30.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=medium"
+    },
+    {
+      "model": "openai/gpt-5.4-nano-xhigh",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 38.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=xhigh"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8-max",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 56.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=max"
+    },
+    {
+      "model": "anthropic/claude-fable-5-with_fallback (adaptive default)",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 60.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models + https://artificialanalysis.ai/models/claude-fable-5",
+      "_note": "tier=with_fallback (adaptive default)"
+    },
+    {
+      "model": "google/gemini-3.1-pro-high (default)",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 46.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=high (default)"
+    },
+    {
+      "model": "moonshot/kimi-k2.6-thinking_default",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 43.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=thinking_default"
+    },
+    {
+      "model": "moonshot/kimi-k2.7-code-thinking_default",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 42.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=thinking_default"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro-max",
+      "benchmark": "aa_intelligence_index_v4_1",
+      "score": 44.0,
+      "unit": "index",
+      "_source": "https://artificialanalysis.ai/leaderboards/models",
+      "_note": "tier=max"
+    },
+    {
+      "model": "csm/cube",
+      "benchmark": "three_d_arena_elo",
+      "score": 1405.0,
+      "unit": "",
+      "_source": "https://arxiv.org/abs/2508.05609 / 2602.03907 / 2506.18787",
+      "_note": "arena bench"
+    },
+    {
+      "model": "microsoft/trellis",
+      "benchmark": "three_d_arena_elo",
+      "score": 1306.0,
+      "unit": "",
+      "_source": "https://arxiv.org/abs/2508.05609 / 2602.03907 / 2506.18787",
+      "_note": "arena bench"
+    },
+    {
+      "model": "tencent/hunyuan3d-2",
+      "benchmark": "three_d_arena_elo",
+      "score": 1298.0,
+      "unit": "",
+      "_source": "https://arxiv.org/abs/2508.05609 / 2602.03907 / 2506.18787",
+      "_note": "arena bench"
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "three_d_arena_elo",
+      "score": 1144.0,
+      "unit": "",
+      "_source": "https://arxiv.org/abs/2508.05609 / 2602.03907 / 2506.18787",
+      "_note": "arena bench"
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "three_d_arena_elo",
+      "score": 1089.0,
+      "unit": "",
+      "_source": "https://arxiv.org/abs/2508.05609 / 2602.03907 / 2506.18787",
+      "_note": "arena bench"
+    },
+    {
+      "model": "microsoft/trellis",
+      "benchmark": "hy3d_bench_uni3d_i",
+      "score": 0.3641,
+      "unit": "",
+      "_source": "https://arxiv.org/abs/2508.05609 / 2602.03907 / 2506.18787",
+      "_note": "arena bench"
+    },
+    {
+      "model": "tencent/hunyuan3d-2.1",
+      "benchmark": "hy3d_bench_uni3d_i",
+      "score": 0.3636,
+      "unit": "",
+      "_source": "https://arxiv.org/abs/2508.05609 / 2602.03907 / 2506.18787",
+      "_note": "arena bench"
+    },
+    {
+      "model": "tencent/hunyuan3d-2.5",
+      "benchmark": "hi3deval_overall",
+      "score": 16.561,
+      "unit": "",
+      "_source": "https://arxiv.org/abs/2508.05609 / 2602.03907 / 2506.18787",
+      "_note": "arena bench"
+    },
+    {
+      "model": "microsoft/trellis",
+      "benchmark": "hi3deval_overall",
+      "score": 15.199,
+      "unit": "",
+      "_source": "https://arxiv.org/abs/2508.05609 / 2602.03907 / 2506.18787",
+      "_note": "arena bench"
+    },
+    {
+      "model": "stability/spar3d",
+      "benchmark": "hi3deval_overall",
+      "score": 15.001,
+      "unit": "",
+      "_source": "https://arxiv.org/abs/2508.05609 / 2602.03907 / 2506.18787",
+      "_note": "arena bench"
+    },
+    {
+      "model": "tripo/triposr",
+      "benchmark": "hi3deval_overall",
+      "score": 14.34,
+      "unit": "",
+      "_source": "https://arxiv.org/abs/2508.05609 / 2602.03907 / 2506.18787",
+      "_note": "arena bench"
+    },
+    {
+      "model": "aidoc/care-fm",
+      "benchmark": "fda_pivotal_study_mean_sensitivity",
+      "score": 0.97,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aidoc/care-fm",
+      "benchmark": "fda_pivotal_study_mean_specificity",
+      "score": 0.98,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "stanford-aimi/chexficient",
+      "benchmark": "benchmarks_evaluated",
+      "score": 20.0,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "medsam/medical-sam3",
+      "benchmark": "zero_shot_dice_7_unseen_external_datasets_medical_sam3",
+      "score": 73.9,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "medsam/medical-sam3",
+      "benchmark": "zero_shot_dice_7_unseen_external_datasets_sam3_baseline",
+      "score": 11.9,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "paige/virchow-pancancer-detect",
+      "benchmark": "specimen_level_auc_common_cancers_9_types",
+      "score": 0.95,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "paige/virchow-pancancer-detect",
+      "benchmark": "specimen_level_auc_rare_cancers_7_types_40k_yr_us",
+      "score": 0.93,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "musk/musk-oncology",
+      "benchmark": "patch_and_slide_level_benchmarks_evaluated",
+      "score": 21.0,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "musk/musk-oncology",
+      "benchmark": "immunotherapy_response_prediction_auc_musk",
+      "score": 0.77,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "musk/musk-oncology",
+      "benchmark": "immunotherapy_response_prediction_auc_pd_l1_classifier_baseline",
+      "score": 0.61,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "musk/musk-oncology",
+      "benchmark": "melanoma_recurrence_risk_prediction_accuracy",
+      "score": 0.83,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "tempus/multimodal-fm",
+      "benchmark": "egfr_mutant_nsclc_on_osimertinib_overall_survival_c_index",
+      "score": 0.802,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "panderm/dermfm-zero",
+      "benchmark": "zero_shot_classification_7_benchmarks_avg_accuracy",
+      "score": 73.2,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "panderm/dermfm-zero",
+      "benchmark": "improvement_over_panderm_10_labeled_data",
+      "score": 9.6,
+      "unit": "pp",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "panderm/dermfm-zero",
+      "benchmark": "diagnostic_accuracy_vs_1090_clinicians",
+      "score": 0.717,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "panderm/dermfm-zero",
+      "benchmark": "benchmarks_evaluated_total",
+      "score": 20.0,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "bch/ecg-fyler",
+      "benchmark": "external_validation_auroc_lvef_40",
+      "score": 0.83,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "bch/ecg-fyler",
+      "benchmark": "fine_tuned_auroc_lvef_45_10_external_data",
+      "score": 0.87,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "bch/ecg-fyler",
+      "benchmark": "site_specific_prior_model_auroc_lvef_45",
+      "score": 0.85,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "heartflow/plaque-analysis-v2",
+      "benchmark": "plaque_detection_improvement_vs_prior_version",
+      "score": 21.0,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "heartflow/plaque-analysis-v2",
+      "benchmark": "agreement_to_ivus_gold_standard_blinded_core_lab",
+      "score": 0.95,
+      "unit": "%",
+      "_source": "",
+      "_note": ""
+    },
+    {
+      "model": "aidoc/care-fm",
+      "benchmark": "aidoc_care_ct_sensitivity",
+      "score": 97.0,
+      "unit": "%",
+      "_source": "FDA 510(k) Jan 2026",
+      "_note": "14 indications"
+    },
+    {
+      "model": "aidoc/care-fm",
+      "benchmark": "aidoc_care_ct_specificity",
+      "score": 98.0,
+      "unit": "%",
+      "_source": "FDA 510(k) Jan 2026",
+      "_note": "14 indications"
+    },
+    {
+      "model": "tempus/multimodal-fm",
+      "benchmark": "tempus_egfr_nsclc_c_index",
+      "score": 0.802,
+      "unit": "c-index",
+      "_source": "ASCO 2026-05-29",
+      "_note": "EGFR-NSCLC survival"
+    }
+  ]
+}
