@@ -282,6 +282,14 @@ var Agent = (function() {
         'microsoft/fara1.5-9b',
         'microsoft/fara1.5-4b',
         'microsoft/fara-7b',
+        // 2026-06-27 S149 — Browser/CUA agent refresh
+        'google/gemini-3.5-flash-computer-use',  // 2026-06-24 native CU preview, OSWorld 78.4
+        'openai/chatgpt-atlas-agent',            // Operator deprecated 2025-08-31 → Atlas
+        'hcompany/holo3.1-35b-a3b',              // H Company Holo3.1
+        'hcompany/holo3.1-4b',
+        'hcompany/holo3-122b-a10b',              // Holo3 flagship 78.85 OSWorld
+        'alibaba/gui-owl-1.5-32b-thinking',      // Qwen GUI agent thinking variant
+        'bytedance/ui-tars-2',                   // Online-Mind2Web 88.2 SOTA
         // 2026 computer-use agents from various vendors
         'google/gemini-2.5-cu',
         'alibaba/gui-owl-1.5-32b',
