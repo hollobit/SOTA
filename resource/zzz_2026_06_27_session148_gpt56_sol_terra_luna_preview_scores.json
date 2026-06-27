@@ -1,0 +1,184 @@
+{
+  "_meta": {
+    "session": "148",
+    "date": "2026-06-27",
+    "topic": "OpenAI GPT-5.6 Preview — Sol/Terra/Luna family launch (Jun 25 2026)",
+    "sources": [
+      "https://openai.com/index/previewing-gpt-5-6-sol/",
+      "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf (System Card 75 pages)",
+      "https://help.openai.com/en/articles/20001325-a-preview-of-gpt-56-sol-terra-and-luna",
+      "VentureBeat coverage (US gov limited-preview access)"
+    ],
+    "notes": "OpenAI introduces GPT-5.6 family: Sol (flagship $5/$30 per M), Terra (balanced $2.50/$15, 2x cheaper than GPT-5.5), Luna (fast $1/$6). Preparedness Framework: Sol/Terra/Luna all High on Cybersecurity AND Bio/Chem (first OpenAI family with all 3 tiers at High in both). Below Critical on all. AI Self-Improvement below High threshold. NEW max reasoning effort + NEW ultra mode (subagent orchestration). NEW naming system — number = generation, Sol/Terra/Luna = durable capability tiers. Limited preview to trusted partners per US Gov coordination (cyber Executive Order framework). Cerebras at 750 tok/s starting July 2026. 700K A100e GPU hours invested in automated red-teaming. Mined via Playwright MCP + pdftotext (Cloudflare bot gate blocks WebFetch)."
+  },
+  "models": [
+    {
+      "id": "openai/gpt-5.6-sol",
+      "name": "GPT-5.6 Sol (flagship)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-06-25",
+      "modalities": ["text", "vision"]
+    },
+    {
+      "id": "openai/gpt-5.6-sol-ultra",
+      "name": "GPT-5.6 Sol Ultra (subagent orchestration mode)",
+      "vendor": "OpenAI",
+      "type": "agent",
+      "release_date": "2026-06-25",
+      "modalities": ["text", "vision"]
+    },
+    {
+      "id": "openai/gpt-5.6-terra",
+      "name": "GPT-5.6 Terra (balanced, 2x cheaper than GPT-5.5)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-06-25",
+      "modalities": ["text", "vision"]
+    },
+    {
+      "id": "openai/gpt-5.6-luna",
+      "name": "GPT-5.6 Luna (fast & cost-efficient)",
+      "vendor": "OpenAI",
+      "type": "language",
+      "release_date": "2026-06-25",
+      "modalities": ["text", "vision"]
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "genebench_v1",
+      "name": "GeneBench v1",
+      "category": "ai4s",
+      "metric": "accuracy",
+      "unit": "%",
+      "description": "OpenAI long-horizon genomics + quantitative-biology analyses (S148 — already in DB via medical-ai tab references).",
+      "source_url": "https://openai.com/index/previewing-gpt-5-6-sol/"
+    },
+    {
+      "id": "openai_ctf_internal_curated",
+      "name": "OpenAI Curated CTF (63 challenges, low solve-rate on GPT-5.3-Codex)",
+      "category": "cyber",
+      "metric": "solve rate",
+      "unit": "%",
+      "description": "OpenAI internal CTF set — 63 challenges curated from publicly available web/rev/pwn/crypto/misc categories. Most older OpenAI CTF curated set is saturated; this is the harder filtered subset.",
+      "source_url": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf"
+    },
+    {
+      "id": "cve_bench_v1_zero_day",
+      "name": "CVE-Bench v1.0 (zero-day config, 34/40 challenges, remote no-source-access)",
+      "category": "cyber",
+      "metric": "pass@1",
+      "unit": "%",
+      "description": "OpenAI ran CVE-Bench v1.0 zero-day prompt configuration. 34 of 40 challenges (6 dropped to porting issues). Pass@1 over 3 rollouts.",
+      "source_url": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf"
+    },
+    {
+      "id": "healthbench_professional_length_adjusted",
+      "name": "HealthBench Professional (length-adjusted)",
+      "category": "medical",
+      "metric": "score",
+      "unit": "score(/100)",
+      "description": "Length-adjusted scoring: 1.47 points penalty per 500 characters over 2000-char baseline.",
+      "source_url": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf"
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-5.6-sol",
+      "benchmark": "openai_ctf_internal_curated",
+      "score": 96.7,
+      "unit": "%",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §9.1.2.1.1",
+      "_note": "Sol saturates curated CTF at 96.7%. Terra exceeds 5.5 but below Sol. Luna exceeds 5.4 but not 5.5 nor Terra."
+    },
+    {
+      "model": "openai/gpt-5.6-sol",
+      "benchmark": "healthbench_professional_length_adjusted",
+      "score": 60.5,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1",
+      "_note": "+8.7 vs GPT-5.5. Shorter answers (3228 chars vs GPT-5.5 3813), higher unadjusted + length-adjusted."
+    },
+    {
+      "model": "openai/gpt-5.6-terra",
+      "benchmark": "healthbench_professional_length_adjusted",
+      "score": 57.7,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "benchmark": "healthbench_professional_length_adjusted",
+      "score": 55.7,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1"
+    },
+    {
+      "model": "openai/gpt-5.6-sol",
+      "benchmark": "healthbench",
+      "score": 57.0,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1",
+      "_note": "Length-adjusted. +0.4 vs GPT-5.5 (approaching noise ceiling per OpenAI)."
+    },
+    {
+      "model": "openai/gpt-5.6-terra",
+      "benchmark": "healthbench",
+      "score": 57.0,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "benchmark": "healthbench",
+      "score": 55.8,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1"
+    },
+    {
+      "model": "openai/gpt-5.6-sol",
+      "benchmark": "healthbench_hard",
+      "score": 33.1,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1",
+      "_note": "+1.6 vs GPT-5.5."
+    },
+    {
+      "model": "openai/gpt-5.6-terra",
+      "benchmark": "healthbench_hard",
+      "score": 32.7,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "benchmark": "healthbench_hard",
+      "score": 32.0,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1"
+    },
+    {
+      "model": "openai/gpt-5.6-sol",
+      "benchmark": "healthbench_consensus",
+      "score": 95.5,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1",
+      "_note": "-0.1 vs GPT-5.5 (saturated)."
+    },
+    {
+      "model": "openai/gpt-5.6-terra",
+      "benchmark": "healthbench_consensus",
+      "score": 95.1,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "benchmark": "healthbench_consensus",
+      "score": 95.1,
+      "unit": "score(/100)",
+      "_source": "https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf §5.1"
+    }
+  ]
+}

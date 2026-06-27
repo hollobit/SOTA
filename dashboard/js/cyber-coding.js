@@ -459,6 +459,8 @@ var CyberCoding = {
         'google/gemini-3.5-flash',
         'google/gemini-3.1-pro',
         'google/gemini-3-pro',
+        // 2026-06-25 S148 — GPT-5.6 family (Sol/Terra/Luna)
+        'openai/gpt-5.6-sol-ultra', 'openai/gpt-5.6-sol', 'openai/gpt-5.6-terra', 'openai/gpt-5.6-luna',
         'openai/gpt-5.5-instant',
         'openai/gpt-5.5',
         'openai/gpt-5.5-pro',

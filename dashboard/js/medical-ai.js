@@ -565,6 +565,7 @@ var MedicalAI = {
                 'anthropic/claude-mythos-5',
                 'anthropic/claude-fable-5',
                 'anthropic/claude-opus-4.8',
+                'openai/gpt-5.6-sol', 'openai/gpt-5.6-terra', 'openai/gpt-5.6-luna', // 2026-06-25 S148 — HealthBench Pro Sol 60.5 (+8.7)
                 'openai/gpt-5.5',
                 'anthropic/claude-opus-4.7',
                 'anthropic/claude-opus-4.6'
