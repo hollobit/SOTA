@@ -571,20 +571,6 @@
     "metric": "rate"
   },
   {
-    "id": "protocolqa_openended",
-    "name": "ProtocolQA Open-Ended",
-    "category": "reasoning",
-    "description": "FutureHouse ProtocolQA modified to open-ended short-answer form. 108 lab-protocol questions with egregious errors. Consensus PhD expert baseline 54%. System Card §9.1.1.2.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "troubleshootingbench",
-    "name": "TroubleshootingBench",
-    "category": "reasoning",
-    "description": "Expert-written wet-lab protocol troubleshooting dataset. 52 protocols × 3 questions. 80th-percentile expert score 36.4% used as threshold. System Card §9.1.1.4.",
-    "metric": "accuracy"
-  },
-  {
     "id": "internal_research_debugging",
     "name": "Internal Research Debugging",
     "category": "reasoning",
@@ -652,13 +638,6 @@
     "name": "Irregular Atomic — Vuln Research",
     "category": "cybersecurity",
     "description": "Irregular atomic-challenge Vulnerability Research & Exploitation category — individual primitives of bug discovery and exploit crafting.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "irregular_atomic_evasion",
-    "name": "Irregular Atomic — Evasion",
-    "category": "cybersecurity",
-    "description": "Irregular atomic-challenge Evasion category — bypassing detection and defensive tooling in isolated sub-tasks.",
     "metric": "accuracy"
   },
   {
@@ -21825,6 +21804,118 @@
     "category": "medical",
     "description": "Length-adjusted scoring: 1.47 points penalty per 500 characters over 2000-char baseline.",
     "metric": "score"
+  },
+  {
+    "id": "multimodal_troubleshooting_virology",
+    "name": "Multimodal Troubleshooting Virology (SecureBio 350Q)",
+    "category": "medical",
+    "description": "350 virology troubleshooting questions, PhD-virologist baseline 22.1% mean / 30.8% 78th percentile (~31% indicative threshold). Strict scoring: must select complete set of true statements with no incorrect.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "protocolqa_openended",
+    "name": "ProtocolQA Open-Ended (108Q)",
+    "category": "medical",
+    "description": "FutureHouse ProtocolQA converted to short-answer. 80th percentile PhD expert baseline 54% (indicative threshold).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "tacit_knowledge_gryphon",
+    "name": "Tacit Knowledge + Troubleshooting (Gryphon 60Q MC)",
+    "category": "medical",
+    "description": "Gryphon Scientific 60 multi-choice Qs across 5 biothreat creation stages. Reported with refusals counted as success. Consensus expert baseline 80% (indicative threshold).",
+    "metric": "accuracy refusal-adjusted"
+  },
+  {
+    "id": "troubleshootingbench",
+    "name": "TroubleshootingBench (156Q expert-written wet-lab)",
+    "category": "medical",
+    "description": "52 protocols × 3 questions transcribed by PhD experts (virology/genetics/microbiology/protein engineering). 80th percentile PhD expert baseline 36.4% (indicative threshold).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "aav_capsid_packaging_spearman",
+    "name": "AAV Capsid Packaging Prediction (Spearman, Dyno Therapeutics)",
+    "category": "medical",
+    "description": "Predict packaging score for 1000 held-out AAV sequences. ESM-2 baseline 0.288. Indicative threshold 0.600.",
+    "metric": "spearman"
+  },
+  {
+    "id": "hard_negative_protein_binding_pass4",
+    "name": "Hard-Negative Protein Binding Prediction (pass@4)",
+    "category": "medical",
+    "description": "43 unique protein targets × 492 hotspots. Choose 1 true binder from 5 ipTM≥0.8 candidates with 0.85+ sequence similarity. Indicative threshold 30%.",
+    "metric": "pass@4"
+  },
+  {
+    "id": "dna_tf_binding_design_pass1",
+    "name": "DNA Sequence Design for TF Binding (pass@1, Nucleobench)",
+    "category": "medical",
+    "description": "550 tasks (50 prompts × 11 transcription factors). Win-rate vs Ledidi baseline. Indicative threshold: 90% win rate.",
+    "metric": "pass@1"
+  },
+  {
+    "id": "irregular_frontiercyber_easy",
+    "name": "Irregular FrontierCyber — Easy (zero-day discovery+exploit)",
+    "category": "cyber",
+    "description": "Off-the-shelf software/hardware zero-day eval.",
+    "metric": "solve rate"
+  },
+  {
+    "id": "irregular_frontiercyber_medium",
+    "name": "Irregular FrontierCyber — Medium",
+    "category": "cyber",
+    "description": "Off-the-shelf software/hardware zero-day eval.",
+    "metric": "solve rate"
+  },
+  {
+    "id": "irregular_frontiercyber_hard",
+    "name": "Irregular FrontierCyber — Hard",
+    "category": "cyber",
+    "description": "Off-the-shelf software/hardware zero-day eval.",
+    "metric": "solve rate"
+  },
+  {
+    "id": "irregular_frontiercyber_elite",
+    "name": "Irregular FrontierCyber — Elite",
+    "category": "cyber",
+    "description": "Off-the-shelf software/hardware zero-day eval.",
+    "metric": "solve rate"
+  },
+  {
+    "id": "cyscenariobench_long_horizon_solve",
+    "name": "CyScenarioBench long-horizon (Irregular)",
+    "category": "cyber",
+    "description": "11 long-horizon cyber scenarios.",
+    "metric": "solve rate"
+  },
+  {
+    "id": "irregular_atomic_network_attack_sim",
+    "name": "Irregular Atomic — Network Attack Simulation",
+    "category": "cyber",
+    "description": "22 medium+hard atomic challenges across categories.",
+    "metric": "avg success"
+  },
+  {
+    "id": "irregular_atomic_vuln_research_exploit",
+    "name": "Irregular Atomic — Vulnerability Research + Exploitation",
+    "category": "cyber",
+    "description": "22 medium+hard atomic challenges across categories.",
+    "metric": "avg success"
+  },
+  {
+    "id": "irregular_atomic_evasion",
+    "name": "Irregular Atomic — Evasion",
+    "category": "cyber",
+    "description": "22 medium+hard atomic challenges across categories.",
+    "metric": "avg success"
+  },
+  {
+    "id": "metr_time_horizon_1_1",
+    "name": "METR Time Horizon 1.1 software-task suite",
+    "category": "agent",
+    "description": "Likelihood model autonomously completes software tasks taking humans a given amount of time. NOTE: GPT-5.6 Sol disqualified due to unusually high detected rate of cheating — not robust measurement per METR.",
+    "metric": "horizon"
   },
   {
     "id": "arc_agi_3",
