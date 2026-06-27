@@ -600,20 +600,6 @@
     "metric": "accuracy"
   },
   {
-    "id": "dynamic_mental_health",
-    "name": "Dynamic Mental Health (Adv)",
-    "category": "cyber_defense",
-    "description": "OpenAI Table 8 — dynamic mental-health benchmark with adversarial user simulations. Compliance rate on realistic multi-turn pressure. Higher is safer.",
-    "metric": "accuracy"
-  },
-  {
-    "id": "dynamic_emotional_reliance",
-    "name": "Dynamic Emotional Reliance",
-    "category": "cyber_defense",
-    "description": "OpenAI Table 8 — models' resistance to fostering unhealthy emotional dependence under adversarial user simulation. Higher is safer.",
-    "metric": "accuracy"
-  },
-  {
     "id": "dynamic_self_harm_adversarial",
     "name": "Dynamic Self-Harm (Adv)",
     "category": "cyber_defense",
@@ -4961,13 +4947,6 @@
     "name": "Destructive Action Avoidance (GPT-5.5 System Card)",
     "category": "safety",
     "description": "Destructive action avoidance during coding/computer use.",
-    "metric": "score_0_1"
-  },
-  {
-    "id": "prompt_injection_connectors",
-    "name": "Prompt Injection Attacks in Connectors (GPT-5.5 SC, higher better = more resistant)",
-    "category": "cybersecurity-safety",
-    "description": "Resistance to prompt injection attacks through connectors. Higher = more resistant.",
     "metric": "score_0_1"
   },
   {
@@ -21931,6 +21910,230 @@
     "category": "agent",
     "description": "Likelihood model autonomously completes software tasks taking humans a given amount of time. NOTE: GPT-5.6 Sol disqualified due to unusually high detected rate of cheating — not robust measurement per METR.",
     "metric": "horizon"
+  },
+  {
+    "id": "prod_disallowed_violent_illicit",
+    "name": "Production Benchmarks — Violent Illicit (not_unsafe)",
+    "category": "safety",
+    "description": "Challenging production examples. Higher is better.",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "prod_disallowed_nonviolent_illicit",
+    "name": "Production Benchmarks — Nonviolent Illicit",
+    "category": "safety",
+    "description": "",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "prod_disallowed_extremism",
+    "name": "Production Benchmarks — Extremism",
+    "category": "safety",
+    "description": "",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "prod_disallowed_hate",
+    "name": "Production Benchmarks — Hate (merged with harassment)",
+    "category": "safety",
+    "description": "S148c — Now merged with prior 'harassment' category.",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "prod_disallowed_self_harm",
+    "name": "Production Benchmarks — Self-harm (standard)",
+    "category": "safety",
+    "description": "",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "prod_disallowed_gore",
+    "name": "Production Benchmarks — Gore (renamed from 'violence')",
+    "category": "safety",
+    "description": "Renamed from violence to gore in S148c. Graphic/gratuitous content. NOT violent roleplay/ideation.",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "prod_disallowed_sexual",
+    "name": "Production Benchmarks — Sexual",
+    "category": "safety",
+    "description": "",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "prod_disallowed_sexual_minors",
+    "name": "Production Benchmarks — Sexual/minors",
+    "category": "safety",
+    "description": "",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "vision_safety_hate",
+    "name": "Vision Safety — Hate (combined image+text)",
+    "category": "safety",
+    "description": "Image input + text disallowed combinations.",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "vision_safety_extremism",
+    "name": "Vision Safety — Extremism",
+    "category": "safety",
+    "description": "",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "vision_safety_self_harm",
+    "name": "Vision Safety — Self-harm",
+    "category": "safety",
+    "description": "",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "vision_safety_harms_erotic",
+    "name": "Vision Safety — Harms-erotic",
+    "category": "safety",
+    "description": "",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "destructive_actions_avoidance_only",
+    "name": "Destructive Actions — Avoidance only",
+    "category": "safety",
+    "description": "Did not overwrite injected user data.",
+    "metric": "avoidance"
+  },
+  {
+    "id": "destructive_actions_avoidance_correctness",
+    "name": "Destructive Actions — Avoidance + Correctness",
+    "category": "safety",
+    "description": "Avoided overwrite AND completed task correctly.",
+    "metric": "combined"
+  },
+  {
+    "id": "user_confirmation_financial",
+    "name": "User Confirmation — Financial Transaction",
+    "category": "safety",
+    "description": "Computer-use confirmation policy.",
+    "metric": "compliance"
+  },
+  {
+    "id": "user_confirmation_high_stakes",
+    "name": "User Confirmation — High-stakes Communication",
+    "category": "safety",
+    "description": "",
+    "metric": "compliance"
+  },
+  {
+    "id": "user_confirmation_general",
+    "name": "User Confirmation — General",
+    "category": "safety",
+    "description": "",
+    "metric": "compliance"
+  },
+  {
+    "id": "prompt_injection_connectors",
+    "name": "Prompt Injection — Connectors",
+    "category": "safety",
+    "description": "Tool-output injection robustness.",
+    "metric": "defender success"
+  },
+  {
+    "id": "prompt_injection_search_function_calling",
+    "name": "Prompt Injection — Search + Function-Calling",
+    "category": "safety",
+    "description": "Stronger attacks against search and function-calling.",
+    "metric": "defender success"
+  },
+  {
+    "id": "dynamic_mental_health",
+    "name": "Dynamic Mental Health Adversarial User Sim",
+    "category": "safety",
+    "description": "Multi-turn adversarial sim. Any assistant response violates policy.",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "dynamic_emotional_reliance",
+    "name": "Dynamic Emotional Reliance",
+    "category": "safety",
+    "description": "",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "dynamic_self_harm",
+    "name": "Dynamic Self-harm",
+    "category": "safety",
+    "description": "",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "securebio_vct",
+    "name": "SecureBio Virology Capabilities Test (VCT)",
+    "category": "medical",
+    "description": "Virology benchmark. Sol railfree configuration.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "securebio_mbct",
+    "name": "SecureBio Molecular Biology Capabilities Test (MBCT)",
+    "category": "medical",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "securebio_hpct",
+    "name": "SecureBio Human Pathogen Capabilities Test (HPCT)",
+    "category": "medical",
+    "description": "",
+    "metric": "accuracy"
+  },
+  {
+    "id": "securebio_world_class_bio",
+    "name": "SecureBio World-Class Bio",
+    "category": "medical",
+    "description": "Expert-level biology benchmark.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "securebio_reprobait",
+    "name": "SecureBio ReproBAIT (BAIM reproduction)",
+    "category": "medical",
+    "description": "Independently reproduce biological AI models from published papers.",
+    "metric": "success rate"
+  },
+  {
+    "id": "apollo_eval_awareness_verbalization_rate",
+    "name": "Apollo Eval-Awareness Verbalization Rate",
+    "category": "safety",
+    "description": "Lower is not unambiguous improvement: could mean less awareness OR less visibility to evaluators.",
+    "metric": "verbalization"
+  },
+  {
+    "id": "apollo_sandbagging_misreading_rate",
+    "name": "Apollo Sandbagging Misreading Rate",
+    "category": "safety",
+    "description": "When Sol appeared aware of eval, fully incorrect about purpose 70% of samples ('metagaming' draws wrong conclusion).",
+    "metric": "misreading"
+  },
+  {
+    "id": "bio_refusal_severe_not_unsafe",
+    "name": "Bio Refusal Eval — Severe",
+    "category": "safety",
+    "description": "Held-out synthetic + red-team + production for severe biology prompts.",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "bio_refusal_dual_use_not_unsafe",
+    "name": "Bio Refusal Eval — Dual Use",
+    "category": "safety",
+    "description": "",
+    "metric": "not_unsafe"
+  },
+  {
+    "id": "bio_refusal_benign_not_overrefuse",
+    "name": "Bio Refusal Eval — Benign (not_overrefuse)",
+    "category": "safety",
+    "description": "Higher = fewer false refusals on legitimate advanced biology workflows.",
+    "metric": "not_overrefuse"
   },
   {
     "id": "arc_agi_3",
