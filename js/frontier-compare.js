@@ -164,6 +164,11 @@ var FrontierCompare = {
         // 2026-05-05 Subquadratic SubQ 1M-Preview — first sub-quadratic frontier LLM, 12M ctx (RULER@128K 95.0, SWE-Verified 81.8, vendor-reported)
         'subquadratic/subq-1m-preview',
         // 2026-05 default ChatGPT model (replaces GPT-5.3 Instant)
+        // 2026-06-25 S148 — GPT-5.6 family preview (Sol flagship + Terra balanced + Luna fast)
+        'openai/gpt-5.6-sol-ultra',  // subagent orchestration mode
+        'openai/gpt-5.6-sol',        // flagship — Preparedness High on Cyber + Bio/Chem
+        'openai/gpt-5.6-terra',      // balanced, 2x cheaper than GPT-5.5
+        'openai/gpt-5.6-luna',       // fast + cost-efficient
         'openai/gpt-5.5-instant',
         // 2026-05-06 Zyphra ZAYA1-8B — small MoE frontier on AMD hardware
         'zyphra/zaya1-8b',
