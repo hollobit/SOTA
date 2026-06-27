@@ -141,6 +141,10 @@ var Sovereign = {
                 // 2026-06-19 S139 — Audio AI frontier + China Embedding refresh
                 'alibaba/fun-realtime-audiochat', 'alibaba/fun-audio-chat-8b',
                 'moonshot/kimi-audio-7b',
+                'alibaba/qwen3.5-omni',     // 2026-03-30 S149 — 113 languages, 99% Big Bench Audio (NEW S2S SOTA)
+                'stepfun/step-audio-r1.1-realtime',  // 2026-01-14 S149 — open-weight realtime S2S
+                'stepfun/step-audio-2.5-realtime',   // 2026-05-24 S149
+                'stepfun/step-audio-editx',          // 2026 S149 — open-weight TTS Arena 1113 #1 open
                 'qwen/qwen3-vl-embedding-8b', 'qwen/qwen3-vl-reranker-8b', 'qwen/qwen3-vl-reranker-2b',
                 'tencent/conan-embedding-v2', 'kingsoft/qzhou-embedding',
                 // Tencent Hunyuan
