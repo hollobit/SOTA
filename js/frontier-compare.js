@@ -169,6 +169,10 @@ var FrontierCompare = {
         'openai/gpt-5.6-sol',        // flagship — Preparedness High on Cyber + Bio/Chem
         'openai/gpt-5.6-terra',      // balanced, 2x cheaper than GPT-5.5
         'openai/gpt-5.6-luna',       // fast + cost-efficient
+        // 2026-06-28 S150 — TTC reasoning-effort tier variants (per AA per-effort table)
+        'anthropic/claude-opus-4.8-max',          // S147 — Opus 4.8 max effort (AAII v4.1 56)
+        'google/gemini-3.1-deep-think',           // S147 — Gemini deep think
+        'google/gemini-3.1-pro-high',             // S147 — Gemini 3.1 Pro high reasoning
         'openai/gpt-5.5-instant',
         // 2026-05-06 Zyphra ZAYA1-8B — small MoE frontier on AMD hardware
         'zyphra/zaya1-8b',

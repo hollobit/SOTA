@@ -91,7 +91,7 @@ var AI4S = {
             return /(astrollama|astropt|astrom3|aion-1|astroclip|astronn|multimodal-universe|polymathic\/aion)/i.test(id);
         }},
         { key: 'physics-materials', icon: '⚛️', label: 'Physics / Materials', match: function(id) {
-            return /(mace-mp|orb-v|dpa-2|equiformer|uma-omat|uma-omol25|mattergen|mattersim|gnome|chgnet|m3gnet|nequip|alphaqubit|multiple-physics|the-well|polymathic\/(multiple|the-well|walrus)|alchemi-torchsim|alphachip-2026|cosmos-transfer-2\.5|isaac-gr00t-n1)/i.test(id);
+            return /(mace-mp|orb-v|dpa-2|equiformer|uma-omat|uma-omol25|mattergen|mattersim|gnome|chgnet|m3gnet|nequip|alphaqubit|multiple-physics|the-well|polymathic\/(multiple|the-well|walrus)|alchemi-torchsim|alphachip-2026|cosmos-transfer-2\.5|isaac-gr00t-n1|meta-fair\/uma|omol25)/i.test(id);
         }},
         { key: 'geo-climate', icon: '🌍', label: 'Earth · Climate', match: function(id) {
             return /(aurora|pangu-weather|graphcast|gencast|aifs|fuxi|fengwu|climax|prithvi|climategpt|orbit|orbit-2|hclimrep|weathernext-2)/i.test(id)
