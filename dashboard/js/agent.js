@@ -283,6 +283,7 @@ var Agent = (function() {
         'microsoft/fara1.5-4b',
         'microsoft/fara-7b',
         // 2026-06-27 S149 — Browser/CUA agent refresh
+        'google/gemini-2.5-computer-use',        // earlier Gemini 2.5 CU baseline
         'google/gemini-3.5-flash-computer-use',  // 2026-06-24 native CU preview, OSWorld 78.4
         'openai/chatgpt-atlas-agent',            // Operator deprecated 2025-08-31 → Atlas
         'hcompany/holo3.1-35b-a3b',              // H Company Holo3.1

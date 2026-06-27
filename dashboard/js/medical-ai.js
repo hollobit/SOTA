@@ -498,7 +498,13 @@ var MedicalAI = {
                 'jhu/srt-h',                           // Autonomous surgery
                 'tum/orqa',                            // OR cognition
                 'heartflow/plaque-analysis-v2',        // FDA + Aetna nationwide
-                'apple-stanford/ecg-fyler'             // AUROC 0.83
+                'apple-stanford/ecg-fyler',            // AUROC 0.83
+                // 2026-06-28 S150 — additional specialty FMs (surgery + cardio + OR cognition)
+                'bch/ecg-fyler',                       // S147 alt — Boston Children's Hospital ECG-Fyler
+                'wearable-echo-fm',                    // 2026-05 wearable echocardiography
+                'nus-cuhk-sjtu-nvidia/surg-sigma',     // SurgΣ multi-institution surgical FM
+                'nvidia-jhu/cosmos-surg-dvrk',         // Cosmos-Surg dVRK robotic surgery
+                'orqa/orqa-or'                         // ORQA — OR cognition (operating room)
             ]
         },
         {
@@ -652,8 +658,14 @@ var MedicalAI = {
         },
         {
             label: '⚠️ Bio Dual-Use & Safety',
-            note: 'WMDP-Bio/Chem (CAIS hazardous knowledge proxy) · VCT (Virology Capabilities Test, beats 94% expert virologists) · BioLP-bench (lab protocol error correction)',
-            benchmarks: ['wmdp_bio', 'wmdp_chem', 'vct_virology', 'biolp_bench']
+            note: 'WMDP-Bio/Chem (CAIS hazardous knowledge proxy) · VCT (Virology Capabilities Test, beats 94% expert virologists) · BioLP-bench (lab protocol error correction). S148b: Multimodal Virology (SecureBio 350Q PhD baseline 31%, Sol 55.5), ProtocolQA Open-Ended (108Q, PhD 54%), Tacit Knowledge (Gryphon 60Q, expert 80% — Terra 84.1), TroubleshootingBench (156Q expert wet-lab, PhD 36.4% — Sol 48.0). S148c: SecureBio World-Class Bio (Sol 68.3 +9pp vs 5.5 59.7), VCT 53.5, MBCT 60.0, HPCT 68.4, ReproBAIT 85.',
+            benchmarks: ['wmdp_bio', 'wmdp_chem', 'vct_virology', 'biolp_bench',
+                'multimodal_troubleshooting_virology', 'protocolqa_openended',
+                'tacit_knowledge_gryphon', 'troubleshootingbench',
+                'securebio_world_class_bio', 'securebio_vct', 'securebio_mbct',
+                'securebio_hpct', 'securebio_reprobait',
+                'aav_capsid_packaging_spearman', 'hard_negative_protein_binding_pass4',
+                'dna_tf_binding_design_pass1']
         },
         {
             label: '🧪 Protein Structure & Design',
