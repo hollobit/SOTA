@@ -317,7 +317,17 @@ var Agent = (function() {
         'bytedance/ui-tars-1.5-7b',
         'thudm/glm-4.1v-9b-thinking',
         'openai/computer-use-preview',
-        'openai/som-agent-gpt-5'
+        'openai/som-agent-gpt-5',
+        // 2026-06-28 S154 — Search/RAG frontier products
+        'you-com/research-api',              // DeepSearchQA #1 83.67
+        'openai/gpt-5.5-pro',                // BrowseComp #1 0.901
+        'anthropic/web-search-tool',         // Opus 4.8 DeepSearchQA 0.931
+        'parallel/ultra',                    // \$2B valuation
+        'google/ai-mode',                    // Feb 19 2026
+        'brave/leo-ai',                      // May 2026 agentic
+        'perplexity/sonar-deep-research',
+        'leni/leni',                         // DRACO #1 0.716
+        'internlm/mindsearch'                // OSS search agent
     ];
 
     // Curated list of 9 on-device / edge SLMs for the compare panel.
