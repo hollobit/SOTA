@@ -486,9 +486,14 @@ var Agent = (function() {
     }
 
     // Defensive lookup: returns all score rows for the given benchmark_id.
-    // Returns [] if App data is not yet loaded.
+    // Returns [] if App data is not yet loaded. Uses App's pre-built byBench
+    // index (O(1)) when available; falls back to full scan only at startup.
     function _scoresFor(benchmarkId) {
         if (!(window.App && App.data && App.data.scores)) return [];
+        if (App.getScoreIndex) {
+            var idx = App.getScoreIndex();
+            if (idx && idx.byBench) return idx.byBench[benchmarkId] || [];
+        }
         var scores = App.data.scores;
         if (!scores || !scores.length) return [];
         var out = [];

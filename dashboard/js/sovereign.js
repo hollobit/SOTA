@@ -1472,11 +1472,20 @@ var Sovereign = {
 
     _bestScoreFor: function(modelId) {
         var best = 0;
-        this._scores.forEach(function(s) {
-            if (s.model_id === modelId && typeof s.value === 'number' && s.value > best) {
-                best = s.value;
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byModel) {
+            var rows = idx.byModel[modelId] || [];
+            for (var i = 0; i < rows.length; i++) {
+                var v = rows[i].value;
+                if (typeof v === 'number' && v > best) best = v;
             }
-        });
+        } else {
+            this._scores.forEach(function(s) {
+                if (s.model_id === modelId && typeof s.value === 'number' && s.value > best) {
+                    best = s.value;
+                }
+            });
+        }
         return best > 0 ? best : null;
     },
 
@@ -2112,10 +2121,15 @@ var Sovereign = {
 
         // Pick representative benchmarks: top-3 per dimension by score coverage
         var unionBids = [];
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
         this.DIMENSIONS.forEach(function(dim) {
             var picked = dim.benchmarks.map(function(bid) {
                 var cnt = 0;
-                self._scores.forEach(function(s) { if (s.benchmark_id === bid) cnt++; });
+                if (idx && idx.byBench) {
+                    cnt = (idx.byBench[bid] || []).length;
+                } else {
+                    self._scores.forEach(function(s) { if (s.benchmark_id === bid) cnt++; });
+                }
                 return { bid: bid, cnt: cnt };
             }).filter(function(x) { return x.cnt > 0; })
               .sort(function(a, b) { return b.cnt - a.cnt; })
@@ -2714,14 +2728,28 @@ var Sovereign = {
         var totalScores = 0;
         var benchHits = {};
         var allBenchIds = this.PERF_SUITES.reduce(function(acc, s) { return acc.concat(s.benchmarks); }, []);
-        var allBenchSet = {};
-        allBenchIds.forEach(function(b) { allBenchSet[b] = true; });
-        this._scores.forEach(function(s) {
-            if (allBenchSet[s.benchmark_id] && seenSov[s.model_id]) {
-                totalScores++;
-                benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
-            }
-        });
+        var idxSov = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idxSov && idxSov.byBench) {
+            allBenchIds.forEach(function(bid) {
+                var rows = idxSov.byBench[bid];
+                if (!rows) return;
+                for (var i = 0; i < rows.length; i++) {
+                    if (seenSov[rows[i].model_id]) {
+                        totalScores++;
+                        benchHits[bid] = (benchHits[bid] || 0) + 1;
+                    }
+                }
+            });
+        } else {
+            var allBenchSet = {};
+            allBenchIds.forEach(function(b) { allBenchSet[b] = true; });
+            this._scores.forEach(function(s) {
+                if (allBenchSet[s.benchmark_id] && seenSov[s.model_id]) {
+                    totalScores++;
+                    benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
+                }
+            });
+        }
         var activeBenchCount = Object.keys(benchHits).length;
         var summary = document.createElement('p');
         summary.className = 'text-xs text-gray-500 mb-3';

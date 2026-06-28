@@ -654,6 +654,7 @@ var CyberCoding = {
         this._models = models;
         this._benchmarks = benchmarks;
         this._scores = scores;
+        this._invalidateScoreCache();
     },
 
     render: function() {
@@ -676,15 +677,38 @@ var CyberCoding = {
     },
 
     _getScoresForBenchmarks: function(benchmarkIds) {
-        var self = this;
+        // Memoize per sorted-bench-list key — same tab re-renders hit cache.
+        var key = benchmarkIds.slice().sort().join(',');
+        this._scoreCache = this._scoreCache || {};
+        if (this._scoreCache[key]) return this._scoreCache[key];
         var result = {};
-        this._scores.forEach(function(s) {
-            if (benchmarkIds.indexOf(s.benchmark_id) === -1) return;
-            if (!result[s.model_id]) result[s.model_id] = {};
-            result[s.model_id][s.benchmark_id] = s.value;
-        });
+        // Prefer shared index from App if available — turns O(N×M) into
+        // O(matched scores only). Falls back to legacy forEach scan if the
+        // index hasn't been built yet (scores still loading).
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byBench) {
+            benchmarkIds.forEach(function(bid) {
+                var rows = idx.byBench[bid];
+                if (!rows) return;
+                for (var i = 0; i < rows.length; i++) {
+                    var s = rows[i];
+                    if (!result[s.model_id]) result[s.model_id] = {};
+                    result[s.model_id][bid] = s.value;
+                }
+            });
+        } else {
+            this._scores.forEach(function(s) {
+                if (benchmarkIds.indexOf(s.benchmark_id) === -1) return;
+                if (!result[s.model_id]) result[s.model_id] = {};
+                result[s.model_id][s.benchmark_id] = s.value;
+            });
+        }
+        this._scoreCache[key] = result;
         return result;
     },
+
+    // Drop the lookup cache whenever init runs (new scores arrived).
+    _invalidateScoreCache: function() { this._scoreCache = null; },
 
     _getModelName: function(modelId) {
         var m = this._models.find(function(m) { return m.id === modelId; });

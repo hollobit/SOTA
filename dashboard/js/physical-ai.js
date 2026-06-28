@@ -92,7 +92,7 @@ var PhysicalAI = {
                 'openvla/openvla-oft-7b', 'stanford/openvla-oft',
                 'lerobot/lingbot_va_base', 'robbyant/lingbot-vla-4b', 'robbyant/lingbot-vla-4b-depth',
                 'huggingface/smolvla', 'robotics-diffusion-transformer/rdt-1b',
-                'QwenLM/Qwen-VLA-Instruct'
+                'QwenLM/Qwen-VLA-Instruct',
                 // 2026-06-01 S45 — Alibaba Qwen-VLA paper (arxiv 2605.30280): unified VLA across tasks/environments/embodiments
                 'alibaba/qwen-vla-base', 'alibaba/qwen-vla-instruct',
                 'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',
@@ -565,21 +565,42 @@ var PhysicalAI = {
         var allBenchIds = this.BENCHMARK_SUITES.reduce(function(acc, s) {
             return acc.concat(s.benchmarks);
         }, []);
-        this._scores.forEach(function(s) {
-            if (allBenchIds.indexOf(s.benchmark_id) !== -1 && allModelIds.indexOf(s.model_id) === -1) {
-                if (self._getModel(s.model_id)) allModelIds.push(s.model_id);
-            }
-        });
+        var idxPhys = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idxPhys && idxPhys.byBench) {
+            allBenchIds.forEach(function(bid) {
+                var rows = idxPhys.byBench[bid];
+                if (!rows) return;
+                for (var i = 0; i < rows.length; i++) {
+                    var mid = rows[i].model_id;
+                    if (allModelIds.indexOf(mid) === -1 && self._getModel(mid)) allModelIds.push(mid);
+                }
+            });
+        } else {
+            this._scores.forEach(function(s) {
+                if (allBenchIds.indexOf(s.benchmark_id) !== -1 && allModelIds.indexOf(s.model_id) === -1) {
+                    if (self._getModel(s.model_id)) allModelIds.push(s.model_id);
+                }
+            });
+        }
 
         // Summary banner
         var totalScores = 0;
         var benchHits = {};
-        this._scores.forEach(function(s) {
-            if (allBenchIds.indexOf(s.benchmark_id) !== -1) {
-                totalScores++;
-                benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
-            }
-        });
+        if (idxPhys && idxPhys.byBench) {
+            allBenchIds.forEach(function(bid) {
+                var rows = idxPhys.byBench[bid];
+                if (!rows) return;
+                totalScores += rows.length;
+                benchHits[bid] = rows.length;
+            });
+        } else {
+            this._scores.forEach(function(s) {
+                if (allBenchIds.indexOf(s.benchmark_id) !== -1) {
+                    totalScores++;
+                    benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
+                }
+            });
+        }
         var activeBenchCount = Object.keys(benchHits).length;
         var summary = document.createElement('p');
         summary.className = 'text-xs text-gray-500 mb-3';
