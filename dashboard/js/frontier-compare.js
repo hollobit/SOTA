@@ -78,7 +78,9 @@ var FrontierCompare = {
             // 2026-06-05 S54 — IBM Research + AA ITBench-AA (Kubernetes SRE)
             'itbench_aa',
             // 2026-06-06 S56 — Opper AI Roundtable + SMAC-Talk
-            'opper_roundtable_win_rate', 'smac_talk_5v5_no_comm_winrate'
+            'opper_roundtable_win_rate', 'smac_talk_5v5_no_comm_winrate',
+            // 2026-06-29 S155 — OSWorld 2.0 (xlang.ai 108 long-horizon real-world workflows)
+            'osworld_v2', 'osworld_v2_partial'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',

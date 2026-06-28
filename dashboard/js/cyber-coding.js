@@ -171,7 +171,9 @@ var CyberCoding = {
                 // 2026-06-28 S154b Mythos 5 system card §3.2.2–3.2.4 deep-mine
                 'firefox_147_full_working_exploit',
                 'oss_fuzz_any_crash_rate', 'oss_fuzz_write_primitive_rate',
-                'cybergym_any_crash_rate'
+                'cybergym_any_crash_rate',
+                // 2026-06-29 S155 Qihoo 360 Yitian Tulong (ISC.AI 2026, news_article-attribution)
+                'cyber_vulnerabilities_disclosed_count', 'cyber_vulnerabilities_confirmed_count'
             ]
         },
         {

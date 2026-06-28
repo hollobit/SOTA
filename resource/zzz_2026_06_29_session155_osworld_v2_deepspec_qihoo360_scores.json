@@ -1,0 +1,70 @@
+{
+  "_meta": {
+    "session": "155",
+    "date": "2026-06-29",
+    "topic": "3-parallel: OSWorld V2 + DeepSeek DeepSpec + Qihoo 360 Yitian Tulong",
+    "sources": [
+      "https://osworld-v2.xlang.ai/ (leaderboard)",
+      "https://raw.githubusercontent.com/xlang-ai/OSWorld-V2/main/OSWorld2.0.pdf (paper)",
+      "https://github.com/deepseek-ai/DeepSpec (MIT, released 2026-06-26)",
+      "https://qz.com/china-360-security-ai-vulnerability-tool-anthropic-mythos-062426 (Quartz news)"
+    ],
+    "notes": "OSWorld 2.0 = 108 long-horizon real-world workflows (median 1.6h human, ~318 tool calls/task for Opus 4.7). 500-step is canonical; 150/300 are step-budget variants. Opus 4.8 binary 20.6% / partial 54.8% (rank 1) on OSWorld 2.0 vs 83.5% on OSWorld-Verified — frontier 4x harder. DSpark = semi-autoregressive parallel drafter inside DeepSeek-V4 serving, beats Eagle3 +26.7-30.9% macro across 4 target backbones (Qwen3-4/8/14B, Gemma4-12B). Qihoo 360 Yitian Tulong = ISC.AI 2026 launch — Tulongfeng (offensive auto-vuln-discovery) + Yitianzhen (defensive SOC). 3,432 vulns claimed, 105 confirmed by CN authorities. Reuters could not independently verify — flagged news_article source."
+  },
+  "models": [
+    {"id": "deepseek/dspark", "name": "DSpark (speculative-decoding drafter)", "vendor": "DeepSeek-AI", "type": "speculative_decoding_draft", "release_date": "2026-06-26", "modalities": ["text"]},
+    {"id": "qihoo360/tulongfeng", "name": "Tulongfeng 屠龙峰 (Yitian Tulong offensive)", "vendor": "Qihoo 360 Security", "type": "cyber-agent", "release_date": "2026-06-24", "modalities": ["text"]},
+    {"id": "qihoo360/yitianzhen", "name": "Yitianzhen 倚天阵 (Yitian Tulong defensive)", "vendor": "Qihoo 360 Security", "type": "cyber-agent", "release_date": "2026-06-24", "modalities": ["text"]}
+  ],
+  "benchmarks": [
+    {"id": "osworld_v2", "name": "OSWorld 2.0 (binary, 500 steps)", "category": "agent", "metric": "success_rate", "unit": "%", "description": "108 verified long-horizon real-world computer-use workflows. Binary completion at 500-step budget. Median 1.6h human time per task, ~318 tool calls per task for Opus 4.7 (max thinking). Headline metric.", "source_url": "https://osworld-v2.xlang.ai/"},
+    {"id": "osworld_v2_partial", "name": "OSWorld 2.0 partial reward (500 steps)", "category": "agent", "metric": "partial_completion", "unit": "%", "description": "Avg 27.25 checkpoints/task. 11.53% checkpoints are model-graded.", "source_url": "https://osworld-v2.xlang.ai/"},
+    {"id": "osworld_v2_150step", "name": "OSWorld 2.0 binary (150 steps)", "category": "agent", "metric": "success_rate", "unit": "%", "description": "Tighter step budget — surfaces sample efficiency.", "source_url": "https://osworld-v2.xlang.ai/"},
+    {"id": "osworld_v2_300step", "name": "OSWorld 2.0 binary (300 steps)", "category": "agent", "metric": "success_rate", "unit": "%", "description": "Mid-budget step setting.", "source_url": "https://osworld-v2.xlang.ai/"},
+    {"id": "dspark_accepted_length_qwen3_4b_macro", "name": "DSpark accepted length (Qwen3-4B target, macro avg)", "category": "inference", "metric": "tokens_per_round", "unit": "tokens", "description": "Avg accepted draft tokens per verification round, macro-averaged across 9 tasks (GSM8K/MATH500/AIME25/MBPP/HumanEval/LiveCodeBench/MT-Bench/Alpaca/Arena-Hard).", "source_url": "https://github.com/deepseek-ai/DeepSpec DSpark_paper.pdf Table 1"},
+    {"id": "dspark_accepted_length_qwen3_8b_macro", "name": "DSpark accepted length (Qwen3-8B target, macro avg)", "category": "inference", "metric": "tokens_per_round", "unit": "tokens", "description": "", "source_url": "https://github.com/deepseek-ai/DeepSpec DSpark_paper.pdf Table 1"},
+    {"id": "dspark_accepted_length_qwen3_14b_macro", "name": "DSpark accepted length (Qwen3-14B target, macro avg)", "category": "inference", "metric": "tokens_per_round", "unit": "tokens", "description": "", "source_url": "https://github.com/deepseek-ai/DeepSpec DSpark_paper.pdf Table 1"},
+    {"id": "dspark_accepted_length_gemma4_12b_macro", "name": "DSpark accepted length (Gemma4-12B target, macro avg)", "category": "inference", "metric": "tokens_per_round", "unit": "tokens", "description": "", "source_url": "https://github.com/deepseek-ai/DeepSpec DSpark_paper.pdf Table 1"},
+    {"id": "dspark_production_speedup_v4_flash_pct", "name": "DSpark production speedup over MTP-1 (DeepSeek-V4-Flash)", "category": "inference", "metric": "speedup_percent", "unit": "%", "description": "Per-user generation acceleration vs MTP-1 production baseline under live serving traffic at matched aggregate throughput. Range 60-85% reported; midpoint 72.5%.", "source_url": "https://github.com/deepseek-ai/DeepSpec DSpark_paper.pdf §5"},
+    {"id": "dspark_production_speedup_v4_pro_pct", "name": "DSpark production speedup over MTP-1 (DeepSeek-V4-Pro)", "category": "inference", "metric": "speedup_percent", "unit": "%", "description": "Range 57-78% reported; midpoint 67.5%.", "source_url": "https://github.com/deepseek-ai/DeepSpec DSpark_paper.pdf §5"},
+    {"id": "cyber_vulnerabilities_disclosed_count", "name": "AI cyber agent — vulnerabilities discovered (cumulative)", "category": "cyber", "metric": "cumulative_vuln_count", "unit": "count", "description": "Self-reported cumulative count of software vulnerabilities discovered by a vendor's AI cyber agent. NEEDS independent verification (CVE / CNVD / CNNVD / GitHub Security Advisory). News-article-only sources are low confidence.", "source_url": "various"},
+    {"id": "cyber_vulnerabilities_confirmed_count", "name": "AI cyber agent — vulnerabilities confirmed by authorities", "category": "cyber", "metric": "confirmed_vuln_count", "unit": "count", "description": "Subset of discovered vulns that have been independently confirmed by a national cybersecurity authority (CVE Numbering Authority, CNVD/CNNVD, JPCERT, etc.).", "source_url": "various"}
+  ],
+  "scores": [
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "osworld_v2", "score": 20.6, "unit": "%", "_source": "https://osworld-v2.xlang.ai/ + PDF Table 3", "_note": "max thinking, batched tool, 500 steps — rank 1"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "osworld_v2_partial", "score": 54.8, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "max thinking, batched, 500 steps"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "osworld_v2", "score": 18.2, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "max thinking, batched, 500 steps"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "osworld_v2_partial", "score": 52.5, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "max thinking, batched"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "osworld_v2_150step", "score": 11.1, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "max thinking, batched"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "osworld_v2_300step", "score": 16.2, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "max thinking, batched"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "osworld_v2", "score": 15.7, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "high thinking, batched, 500 steps"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "osworld_v2_partial", "score": 50.4, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "high thinking, batched"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "osworld_v2_150step", "score": 9.3, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "osworld_v2_300step", "score": 13.0, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+    {"model": "openai/gpt-5.5", "benchmark": "osworld_v2", "score": 13.0, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "xhigh, batched, 500 steps"},
+    {"model": "openai/gpt-5.5", "benchmark": "osworld_v2_partial", "score": 49.5, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "xhigh, batched"},
+    {"model": "openai/gpt-5.5", "benchmark": "osworld_v2_150step", "score": 7.4, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+    {"model": "openai/gpt-5.5", "benchmark": "osworld_v2_300step", "score": 10.2, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+    {"model": "minimax/m3", "benchmark": "osworld_v2", "score": 8.3, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "500 steps"},
+    {"model": "minimax/m3", "benchmark": "osworld_v2_partial", "score": 39.6, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+    {"model": "minimax/m3", "benchmark": "osworld_v2_150step", "score": 4.6, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+    {"model": "minimax/m3", "benchmark": "osworld_v2_300step", "score": 6.5, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "osworld_v2", "score": 6.5, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "500 steps"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "osworld_v2_partial", "score": 36.8, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "osworld_v2_150step", "score": 3.7, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "osworld_v2_300step", "score": 4.6, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+    {"model": "alibaba/qwen3.7-plus", "benchmark": "osworld_v2", "score": 5.6, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": "500 steps"},
+    {"model": "alibaba/qwen3.7-plus", "benchmark": "osworld_v2_partial", "score": 34.2, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+    {"model": "alibaba/qwen3.7-plus", "benchmark": "osworld_v2_300step", "score": 3.7, "unit": "%", "_source": "https://osworld-v2.xlang.ai/", "_note": ""},
+
+    {"model": "deepseek/dspark", "benchmark": "dspark_accepted_length_qwen3_4b_macro", "score": 4.73, "unit": "tokens", "_source": "DSpark_paper.pdf Table 1", "_note": "Macro avg across GSM8K(6.11)/MATH500(5.70)/AIME25(4.89)/MBPP(5.13)/HumanEval(5.38)/LiveCodeBench(4.86)/MT-Bench(3.64)/Alpaca(3.54)/Arena-Hard(3.29)"},
+    {"model": "deepseek/dspark", "benchmark": "dspark_accepted_length_qwen3_8b_macro", "score": 4.81, "unit": "tokens", "_source": "DSpark_paper.pdf Table 1", "_note": "Macro avg across 9 tasks; AIME25 5.01 / LiveCodeBench 5.17"},
+    {"model": "deepseek/dspark", "benchmark": "dspark_accepted_length_qwen3_14b_macro", "score": 4.78, "unit": "tokens", "_source": "DSpark_paper.pdf Table 1", "_note": "Macro avg across 9 tasks; GSM8K 6.21"},
+    {"model": "deepseek/dspark", "benchmark": "dspark_accepted_length_gemma4_12b_macro", "score": 4.66, "unit": "tokens", "_source": "DSpark_paper.pdf Table 1", "_note": "Macro avg across 9 tasks; AIME25 5.12"},
+    {"model": "deepseek/dspark", "benchmark": "dspark_production_speedup_v4_flash_pct", "score": 72.5, "unit": "%", "_source": "DSpark_paper.pdf §5 (abstract)", "_note": "Midpoint of 60-85% range vs MTP-1 production baseline at matched throughput"},
+    {"model": "deepseek/dspark", "benchmark": "dspark_production_speedup_v4_pro_pct", "score": 67.5, "unit": "%", "_source": "DSpark_paper.pdf §5 (abstract)", "_note": "Midpoint of 57-78% range vs MTP-1 production baseline"},
+
+    {"model": "qihoo360/tulongfeng", "benchmark": "cyber_vulnerabilities_disclosed_count", "score": 3432, "unit": "count", "_source": "Quartz https://qz.com/china-360-security-ai-vulnerability-tool-anthropic-mythos-062426 (ISC.AI 2026 vendor self-report, low confidence)", "_note": "Reuters could not independently verify. Yitian Tulong umbrella product."},
+    {"model": "qihoo360/tulongfeng", "benchmark": "cyber_vulnerabilities_confirmed_count", "score": 105, "unit": "count", "_source": "Quartz Reuters (CNVD/CNNVD attribution implied but not named)", "_note": "Subset of 3,432; 3.06% authority confirmation rate"}
+  ]
+}

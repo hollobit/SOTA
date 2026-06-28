@@ -22780,6 +22780,90 @@
     "metric": "full_exploit"
   },
   {
+    "id": "osworld_v2",
+    "name": "OSWorld 2.0 (binary, 500 steps)",
+    "category": "agent",
+    "description": "108 verified long-horizon real-world computer-use workflows. Binary completion at 500-step budget. Median 1.6h human time per task, ~318 tool calls per task for Opus 4.7 (max thinking). Headline metric.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_partial",
+    "name": "OSWorld 2.0 partial reward (500 steps)",
+    "category": "agent",
+    "description": "Avg 27.25 checkpoints/task. 11.53% checkpoints are model-graded.",
+    "metric": "partial_completion"
+  },
+  {
+    "id": "osworld_v2_150step",
+    "name": "OSWorld 2.0 binary (150 steps)",
+    "category": "agent",
+    "description": "Tighter step budget — surfaces sample efficiency.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_300step",
+    "name": "OSWorld 2.0 binary (300 steps)",
+    "category": "agent",
+    "description": "Mid-budget step setting.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "dspark_accepted_length_qwen3_4b_macro",
+    "name": "DSpark accepted length (Qwen3-4B target, macro avg)",
+    "category": "inference",
+    "description": "Avg accepted draft tokens per verification round, macro-averaged across 9 tasks (GSM8K/MATH500/AIME25/MBPP/HumanEval/LiveCodeBench/MT-Bench/Alpaca/Arena-Hard).",
+    "metric": "tokens_per_round"
+  },
+  {
+    "id": "dspark_accepted_length_qwen3_8b_macro",
+    "name": "DSpark accepted length (Qwen3-8B target, macro avg)",
+    "category": "inference",
+    "description": "",
+    "metric": "tokens_per_round"
+  },
+  {
+    "id": "dspark_accepted_length_qwen3_14b_macro",
+    "name": "DSpark accepted length (Qwen3-14B target, macro avg)",
+    "category": "inference",
+    "description": "",
+    "metric": "tokens_per_round"
+  },
+  {
+    "id": "dspark_accepted_length_gemma4_12b_macro",
+    "name": "DSpark accepted length (Gemma4-12B target, macro avg)",
+    "category": "inference",
+    "description": "",
+    "metric": "tokens_per_round"
+  },
+  {
+    "id": "dspark_production_speedup_v4_flash_pct",
+    "name": "DSpark production speedup over MTP-1 (DeepSeek-V4-Flash)",
+    "category": "inference",
+    "description": "Per-user generation acceleration vs MTP-1 production baseline under live serving traffic at matched aggregate throughput. Range 60-85% reported; midpoint 72.5%.",
+    "metric": "speedup_percent"
+  },
+  {
+    "id": "dspark_production_speedup_v4_pro_pct",
+    "name": "DSpark production speedup over MTP-1 (DeepSeek-V4-Pro)",
+    "category": "inference",
+    "description": "Range 57-78% reported; midpoint 67.5%.",
+    "metric": "speedup_percent"
+  },
+  {
+    "id": "cyber_vulnerabilities_disclosed_count",
+    "name": "AI cyber agent — vulnerabilities discovered (cumulative)",
+    "category": "cyber",
+    "description": "Self-reported cumulative count of software vulnerabilities discovered by a vendor's AI cyber agent. NEEDS independent verification (CVE / CNVD / CNNVD / GitHub Security Advisory). News-article-only sources are low confidence.",
+    "metric": "cumulative_vuln_count"
+  },
+  {
+    "id": "cyber_vulnerabilities_confirmed_count",
+    "name": "AI cyber agent — vulnerabilities confirmed by authorities",
+    "category": "cyber",
+    "description": "Subset of discovered vulns that have been independently confirmed by a national cybersecurity authority (CVE Numbering Authority, CNVD/CNNVD, JPCERT, etc.).",
+    "metric": "confirmed_vuln_count"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",
