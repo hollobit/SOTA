@@ -163,7 +163,11 @@ var CyberCoding = {
                 'exploitgym',
                 'anthropic_firefox_zero_day_exploit_rate',
                 // 2026-06-27 S148 OpenAI Daybreak / Patch the Planet
-                'glasswing_critical_vulns_found_per_month'
+                'glasswing_critical_vulns_found_per_month',
+                // 2026-06-28 S154 Mythos 5 + Fable 5 system card cyber benches
+                'firefox_147_exploits', 'firefox_147_exploits_full_working',
+                'exploitbench_cap_pct', 'exploitbench_t3',
+                'cybergym_pass_at_1', 'cybergym_targeted_repro'
             ]
         },
         {
