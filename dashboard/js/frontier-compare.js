@@ -13,6 +13,13 @@ var FrontierCompare = {
             'simpleqa_verified', 'chinese_simpleqa', 'facts_parametric', 'facts_score', 'facts_grounding_v2', 'facts_search', 'facts_multimodal', 'triviaqa',
             'longbench_v2', 'mrcr', 'corpusqa_1m', 'superqpga',
             'healthbench', 'healthbench_hard', 'healthbench_consensus', 'healthbench_professional',
+            'healthbench_professional_length_adjusted',
+            // 2026-06-28 S152 — GPT-5.6 SecureBio bio capability evals (surface on reasoning axis)
+            'securebio_world_class_bio', 'securebio_vct', 'securebio_mbct', 'securebio_hpct', 'securebio_reprobait',
+            'multimodal_troubleshooting_virology', 'protocolqa_openended',
+            'tacit_knowledge_gryphon', 'troubleshootingbench',
+            'aav_capsid_packaging_spearman', 'hard_negative_protein_binding_pass4',
+            'dna_tf_binding_design_pass1',
             'virology_mcq', 'biochem_reward4', 'c_eval', 'cmmlu', 'agieval',
             // 2026-05-30 IPhO 2025 physics olympiad (llm-stats)
             'ipho_2025',
@@ -78,9 +85,29 @@ var FrontierCompare = {
             'evmbench_exploit', 'evmbench_detect', 'cvebench',
             'firefox_147', 'cyber_range', 'cyscenariobench', 'tlo_cyber_range',
             'irregular_atomic_network', 'irregular_atomic_vuln_research', 'irregular_atomic_evasion',
-            'uk_aisi_narrow_cyber', 'offensive_cyber_time_horizon_p50', 'offensive_cyber_success_rate'
+            'uk_aisi_narrow_cyber', 'offensive_cyber_time_horizon_p50', 'offensive_cyber_success_rate',
+            // 2026-06-28 S152 — GPT-5.6 system card cyber sub-benches (heatmap surface)
+            'openai_ctf_internal_curated',
+            'irregular_frontiercyber_easy', 'irregular_frontiercyber_medium',
+            'irregular_frontiercyber_hard', 'irregular_frontiercyber_elite',
+            'cyscenariobench_long_horizon_solve',
+            'irregular_atomic_network_attack_sim', 'irregular_atomic_vuln_research_exploit',
+            'irregular_atomic_evasion',
+            'exploitgym', 'sec-bench-pro'
         ],
-        cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench', 'r_judge', 'atbench'],
+        cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench', 'r_judge', 'atbench',
+            // 2026-06-28 S152 — GPT-5.6 safety/defense sub-benches (Production Bench + Vision + Robustness)
+            'prompt_injection_connectors', 'prompt_injection_search_function_calling',
+            'destructive_actions_avoidance_only', 'destructive_actions_avoidance_correctness',
+            'prod_disallowed_violent_illicit', 'prod_disallowed_nonviolent_illicit',
+            'prod_disallowed_extremism', 'prod_disallowed_hate', 'prod_disallowed_self_harm',
+            'prod_disallowed_gore', 'prod_disallowed_sexual', 'prod_disallowed_sexual_minors',
+            'vision_safety_hate', 'vision_safety_extremism', 'vision_safety_self_harm', 'vision_safety_harms_erotic',
+            'dynamic_mental_health', 'dynamic_emotional_reliance', 'dynamic_self_harm',
+            'bio_refusal_severe_not_unsafe', 'bio_refusal_dual_use_not_unsafe', 'bio_refusal_benign_not_overrefuse',
+            'apollo_eval_awareness_verbalization_rate', 'apollo_sandbagging_misreading_rate',
+            'user_confirmation_financial', 'user_confirmation_high_stakes'
+        ],
         multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'compass_multimodal_avg', 'mmbench_v1_1', 'mmstar', 'mmmu', 'mathvista', 'hallusionbench', 'mmvet', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en',
             // 2026-06-01 S43 Nemotron RAG visual document retrieval + Parse document understanding
             'vidore_v1', 'vidore_v2', 'vidore_v3', 'omnidocbench_en', 'omnidocbench_zh',
