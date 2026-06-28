@@ -88,6 +88,8 @@ var CyberCoding = {
         'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen', 'qwen_webdev_elo', 'qwen_svg_elo',
         // 2026-06-02 S48 — Microsoft MAI Code/Thinking benches
         'lcb_v6', 'artifacts_bench',
+        // 2026-06-29 S156 — Epoch + METR MirrorCode (reimplement-from-black-box CLI)
+        'mirrorcode', 'mirrorcode_solve_at_99',
         // 2026-06-19 S136 — LoopCoder-v2 (arxiv 2606.18023) + VibeThinker-3B (arxiv 2606.16140) + LeetCode contests
         'multi_swe_bench', 'leetcode-contests',
         // 2026-06-25 S153 — DeepReinforce ORNITH 1.0 benchmark suite
