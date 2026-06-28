@@ -1,0 +1,56 @@
+{
+  "_meta": {
+    "session": "157",
+    "date": "2026-06-29",
+    "topic": "Deep re-mine of DSpark PDF (Eagle3 + DFlash drafter comparison) and MirrorCode PDF (per-size + failure modes + production-SLA speedup)",
+    "sources": [
+      "https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf (33pp, lead Xin Cheng @ PKU + DeepSeek-AI, stamped 2026-06-27)",
+      "https://epoch.ai/files/MirrorCode_8ae911f.pdf"
+    ],
+    "notes": "Second pass on both PDFs after S155/S156 captured only headline tables. DSpark paper Table 1 grid yields full 4-backbone × 9-task × 3-drafter cube (108 cells + 12 macros), of which we adopt the 8 NEW (Eagle3+DFlash × 4 backbones) macro averages. KEY BURIED FACT: Eagle3 actually BEATS DFlash on Gemma4-12B target (4.376 vs 4.018) — DSpark's gain over Eagle3 is only +6.6% on Gemma vs +26-31% on the Qwen3 family. Production: V4-Flash +51% throughput at 80 tok/s SLA / V4-Pro +52% at 35 tok/s SLA (DIFFERENT from matched-throughput speedup already in DB). Confidence-scheduled verification shrinks chat acceptance ECE from 5.7-8.2% raw to ~1% calibrated. MirrorCode: per-size derived from Fig 2 heatmap — Opus 4.7 is ONLY model to solve any L target (cprepro 100%, large=25%). GPT-5.5 + Gemini both L=0%. Failure-mode cheating rate (Fig 6) is HONESTY signal: Opus 4.7 0% / GPT-5.5 14.2% / Gemini 3.1 Pro 18.9% — cheating defined as 'modifies test files or uses non-functional shortcuts'. Cost: Opus 4.7 mean $106 max $2,846; Gemini mean $162 max $2,698. SKIPPED per Latest-Models-Focus: Opus 4.1, GPT-5 (Figure 10 subset-only, not comparable to overall scores)."
+  },
+  "models": [
+    {"id": "safeai-lab/eagle3", "name": "Eagle3 (SafeAI Lab, reimpl in DeepSpec)", "vendor": "SafeAI Lab (Wuhan University)", "type": "speculative_decoding_draft", "release_date": "2025-03", "modalities": ["text"]},
+    {"id": "deepseek/dflash", "name": "DFlash (reimpl in DeepSpec)", "vendor": "DeepSeek (reimpl of arxiv 2602.06)", "type": "speculative_decoding_draft", "release_date": "2026-02", "modalities": ["text"]}
+  ],
+  "benchmarks": [
+    {"id": "dspark_production_speedup_v4_flash_sla_pct", "name": "DSpark V4-Flash production throughput speedup at 80 tok/s SLA", "category": "inference", "metric": "speedup_percent", "unit": "%", "description": "Per-user throughput acceleration vs MTP-1 baseline holding 80 tok/s/user as SLA. Distinct from matched-throughput speedup (range form).", "source_url": "DSpark paper §5"},
+    {"id": "dspark_production_speedup_v4_pro_sla_pct", "name": "DSpark V4-Pro production throughput speedup at 35 tok/s SLA", "category": "inference", "metric": "speedup_percent", "unit": "%", "description": "Per-user throughput acceleration vs MTP-1 baseline holding 35 tok/s/user as SLA.", "source_url": "DSpark paper §5"},
+    {"id": "dspark_calibrated_ece_chat_pct", "name": "DSpark calibrated ECE (chat acceptance)", "category": "inference", "metric": "expected_calibration_error", "unit": "%", "description": "Expected Calibration Error of acceptance-confidence head on chat tasks after STS confidence-scheduled training. Lower is better.", "source_url": "DSpark paper Fig 6/7"},
+    {"id": "mirrorcode_small", "name": "MirrorCode Small subset (10 S targets, solve@100%)", "category": "coding", "metric": "solve_at_100_pct", "unit": "%", "description": "Derived from PDF Figure 2 per-target heatmap. 10 small targets including hexyl, choose, private_S.", "source_url": "MirrorCode PDF Fig 2"},
+    {"id": "mirrorcode_medium", "name": "MirrorCode Medium subset (11 M targets, solve@100%)", "category": "coding", "metric": "solve_at_100_pct", "unit": "%", "description": "11 medium targets per-target heatmap derivation.", "source_url": "MirrorCode PDF Fig 2"},
+    {"id": "mirrorcode_large", "name": "MirrorCode Large subset (4 L targets, solve@100%)", "category": "coding", "metric": "solve_at_100_pct", "unit": "%", "description": "4 large targets — Opus 4.7 ONLY model to solve any L target (cprepro 100%). GPT-5.5 + Gemini both 0/4 L solves.", "source_url": "MirrorCode PDF Fig 2"},
+    {"id": "mirrorcode_cheating_rate", "name": "MirrorCode cheating rate (test-file modification / non-functional shortcut)", "category": "honesty", "metric": "cheating_rate", "unit": "%", "description": "Per Fig 6 failure-mode analysis: share of attempts where the model modified test files or used non-functional shortcuts instead of solving the task. Lower is better. Strong honesty signal.", "source_url": "MirrorCode PDF Fig 6"},
+    {"id": "mirrorcode_cost_mean_usd", "name": "MirrorCode mean per-task cost", "category": "coding", "metric": "cost_usd", "unit": "USD", "description": "Mean USD spent per task instance across the 132-task benchmark. Total run cost ~$2,600 per leaderboard entry.", "source_url": "MirrorCode PDF Table 6"},
+    {"id": "mirrorcode_cost_max_usd", "name": "MirrorCode max per-task cost", "category": "coding", "metric": "cost_usd", "unit": "USD", "description": "Maximum USD spent on a single task instance.", "source_url": "MirrorCode PDF Table 6"}
+  ],
+  "scores": [
+    {"model": "safeai-lab/eagle3", "benchmark": "dspark_accepted_length_qwen3_4b_macro", "score": 3.61, "unit": "tokens", "_source": "DSpark paper Table 1 Eagle3 row Qwen3-4B", "_note": "Macro across 9 tasks. DSpark beats Eagle3 by +30.9% on this backbone."},
+    {"model": "safeai-lab/eagle3", "benchmark": "dspark_accepted_length_qwen3_8b_macro", "score": 3.80, "unit": "tokens", "_source": "DSpark paper Table 1 Eagle3 row Qwen3-8B", "_note": "DSpark beats Eagle3 +26.7%."},
+    {"model": "safeai-lab/eagle3", "benchmark": "dspark_accepted_length_qwen3_14b_macro", "score": 3.68, "unit": "tokens", "_source": "DSpark paper Table 1 Eagle3 row Qwen3-14B", "_note": "DSpark beats Eagle3 +30.0%."},
+    {"model": "safeai-lab/eagle3", "benchmark": "dspark_accepted_length_gemma4_12b_macro", "score": 4.38, "unit": "tokens", "_source": "DSpark paper Table 1 Eagle3 row Gemma4-12B", "_note": "BURIED ASYMMETRY: Eagle3 beats DFlash here (4.376 vs 4.018). DSpark gain only +6.6% on Gemma — much smaller than +26-31% on Qwen3 family."},
+
+    {"model": "deepseek/dflash", "benchmark": "dspark_accepted_length_qwen3_4b_macro", "score": 4.06, "unit": "tokens", "_source": "DSpark paper Table 1 DFlash row Qwen3-4B", "_note": "DSpark beats DFlash +16.3%."},
+    {"model": "deepseek/dflash", "benchmark": "dspark_accepted_length_qwen3_8b_macro", "score": 4.07, "unit": "tokens", "_source": "DSpark paper Table 1 DFlash row Qwen3-8B", "_note": "DSpark beats DFlash +18.4%."},
+    {"model": "deepseek/dflash", "benchmark": "dspark_accepted_length_qwen3_14b_macro", "score": 4.04, "unit": "tokens", "_source": "DSpark paper Table 1 DFlash row Qwen3-14B", "_note": "DSpark beats DFlash +18.3%."},
+    {"model": "deepseek/dflash", "benchmark": "dspark_accepted_length_gemma4_12b_macro", "score": 4.02, "unit": "tokens", "_source": "DSpark paper Table 1 DFlash row Gemma4-12B", "_note": "Eagle3 beats DFlash here — DFlash is target-architecture-sensitive."},
+
+    {"model": "deepseek/dspark", "benchmark": "dspark_production_speedup_v4_flash_sla_pct", "score": 51, "unit": "%", "_source": "DSpark paper §5", "_note": "At 80 tok/s/user SLA. Distinct from matched-throughput range (60-85%)."},
+    {"model": "deepseek/dspark", "benchmark": "dspark_production_speedup_v4_pro_sla_pct", "score": 52, "unit": "%", "_source": "DSpark paper §5", "_note": "At 35 tok/s/user SLA."},
+    {"model": "deepseek/dspark", "benchmark": "dspark_calibrated_ece_chat_pct", "score": 1.0, "unit": "%", "_source": "DSpark paper Fig 6/7", "_note": "Calibrated via STS scheduling; raw ECE 5.7-8.2% pre-calibration. Acceptance rate improves from 45.7% to 95.7% on chat."},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "mirrorcode_small", "score": 92, "unit": "%", "_source": "MirrorCode PDF Fig 2 heatmap (10 S-block targets, derived mean)", "_note": "Headline-quality S subset performance"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "mirrorcode_large", "score": 25, "unit": "%", "_source": "MirrorCode PDF Fig 2", "_note": "ONLY model to solve ANY L target (cprepro 100%). 1/4 = 25%."},
+    {"model": "openai/gpt-5.5", "benchmark": "mirrorcode_large", "score": 0, "unit": "%", "_source": "MirrorCode PDF Fig 2", "_note": "0/4 L solves"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "mirrorcode_large", "score": 0, "unit": "%", "_source": "MirrorCode PDF Fig 2", "_note": "0/4 L solves; Python-only run"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "mirrorcode_cheating_rate", "score": 0.0, "unit": "%", "_source": "MirrorCode PDF Fig 6 failure-mode analysis", "_note": "Zero cheating attempts — strongest honesty signal"},
+    {"model": "openai/gpt-5.5", "benchmark": "mirrorcode_cheating_rate", "score": 14.2, "unit": "%", "_source": "MirrorCode PDF Fig 6", "_note": "Modified test files or used non-functional shortcuts on 14.2% of attempts"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "mirrorcode_cheating_rate", "score": 18.9, "unit": "%", "_source": "MirrorCode PDF Fig 6", "_note": "Highest cheating rate of the 3"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "mirrorcode_cost_mean_usd", "score": 106, "unit": "USD", "_source": "MirrorCode PDF Table 6", "_note": "Per task instance"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "mirrorcode_cost_max_usd", "score": 2846, "unit": "USD", "_source": "MirrorCode PDF Table 6", "_note": "Most expensive single task instance"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "mirrorcode_cost_mean_usd", "score": 162, "unit": "USD", "_source": "MirrorCode PDF Table 6", "_note": "More expensive on average than Opus 4.7"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "mirrorcode_cost_max_usd", "score": 2698, "unit": "USD", "_source": "MirrorCode PDF Table 6", "_note": ""}
+  ]
+}

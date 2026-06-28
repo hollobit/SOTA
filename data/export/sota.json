@@ -46229,6 +46229,126 @@
     "collected_at": "2026-06-29",
     "notes": "rank 1"
   },
+  "dspark_production_speedup_v4_flash_sla_pct": {
+    "model_id": "deepseek/dspark",
+    "benchmark_id": "dspark_production_speedup_v4_flash_sla_pct",
+    "value": 51.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "DSpark paper §5",
+      "date": "2026-06-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-29",
+    "notes": "At 80 tok/s/user SLA. Distinct from matched-throughput range (60-85%)."
+  },
+  "dspark_production_speedup_v4_pro_sla_pct": {
+    "model_id": "deepseek/dspark",
+    "benchmark_id": "dspark_production_speedup_v4_pro_sla_pct",
+    "value": 52.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "DSpark paper §5",
+      "date": "2026-06-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-29",
+    "notes": "At 35 tok/s/user SLA."
+  },
+  "dspark_calibrated_ece_chat_pct": {
+    "model_id": "deepseek/dspark",
+    "benchmark_id": "dspark_calibrated_ece_chat_pct",
+    "value": 1.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "DSpark paper Fig 6/7",
+      "date": "2026-06-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-29",
+    "notes": "Calibrated via STS scheduling; raw ECE 5.7-8.2% pre-calibration. Acceptance rate improves from 45.7% to 95.7% on chat."
+  },
+  "mirrorcode_small": {
+    "model_id": "anthropic/claude-opus-4.7",
+    "benchmark_id": "mirrorcode_small",
+    "value": 92.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "MirrorCode PDF Fig 2 heatmap (10 S-block targets, derived mean)",
+      "date": "2026-06-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-29",
+    "notes": "Headline-quality S subset performance"
+  },
+  "mirrorcode_large": {
+    "model_id": "anthropic/claude-opus-4.7",
+    "benchmark_id": "mirrorcode_large",
+    "value": 25.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "MirrorCode PDF Fig 2",
+      "date": "2026-06-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-29",
+    "notes": "ONLY model to solve ANY L target (cprepro 100%). 1/4 = 25%."
+  },
+  "mirrorcode_cheating_rate": {
+    "model_id": "google/gemini-3.1-pro",
+    "benchmark_id": "mirrorcode_cheating_rate",
+    "value": 18.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "MirrorCode PDF Fig 6",
+      "date": "2026-06-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-29",
+    "notes": "Highest cheating rate of the 3"
+  },
+  "mirrorcode_cost_mean_usd": {
+    "model_id": "google/gemini-3.1-pro",
+    "benchmark_id": "mirrorcode_cost_mean_usd",
+    "value": 162.0,
+    "unit": "USD",
+    "source": {
+      "type": "leaderboard",
+      "url": "MirrorCode PDF Table 6",
+      "date": "2026-06-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-29",
+    "notes": "More expensive on average than Opus 4.7"
+  },
+  "mirrorcode_cost_max_usd": {
+    "model_id": "anthropic/claude-opus-4.7",
+    "benchmark_id": "mirrorcode_cost_max_usd",
+    "value": 2846.0,
+    "unit": "USD",
+    "source": {
+      "type": "leaderboard",
+      "url": "MirrorCode PDF Table 6",
+      "date": "2026-06-29",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-29",
+    "notes": "Most expensive single task instance"
+  },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
     "benchmark_id": "superqpga",

@@ -22878,6 +22878,69 @@
     "metric": "near_perfect_solve"
   },
   {
+    "id": "dspark_production_speedup_v4_flash_sla_pct",
+    "name": "DSpark V4-Flash production throughput speedup at 80 tok/s SLA",
+    "category": "inference",
+    "description": "Per-user throughput acceleration vs MTP-1 baseline holding 80 tok/s/user as SLA. Distinct from matched-throughput speedup (range form).",
+    "metric": "speedup_percent"
+  },
+  {
+    "id": "dspark_production_speedup_v4_pro_sla_pct",
+    "name": "DSpark V4-Pro production throughput speedup at 35 tok/s SLA",
+    "category": "inference",
+    "description": "Per-user throughput acceleration vs MTP-1 baseline holding 35 tok/s/user as SLA.",
+    "metric": "speedup_percent"
+  },
+  {
+    "id": "dspark_calibrated_ece_chat_pct",
+    "name": "DSpark calibrated ECE (chat acceptance)",
+    "category": "inference",
+    "description": "Expected Calibration Error of acceptance-confidence head on chat tasks after STS confidence-scheduled training. Lower is better.",
+    "metric": "expected_calibration_error"
+  },
+  {
+    "id": "mirrorcode_small",
+    "name": "MirrorCode Small subset (10 S targets, solve@100%)",
+    "category": "coding",
+    "description": "Derived from PDF Figure 2 per-target heatmap. 10 small targets including hexyl, choose, private_S.",
+    "metric": "solve_at_100_pct"
+  },
+  {
+    "id": "mirrorcode_medium",
+    "name": "MirrorCode Medium subset (11 M targets, solve@100%)",
+    "category": "coding",
+    "description": "11 medium targets per-target heatmap derivation.",
+    "metric": "solve_at_100_pct"
+  },
+  {
+    "id": "mirrorcode_large",
+    "name": "MirrorCode Large subset (4 L targets, solve@100%)",
+    "category": "coding",
+    "description": "4 large targets — Opus 4.7 ONLY model to solve any L target (cprepro 100%). GPT-5.5 + Gemini both 0/4 L solves.",
+    "metric": "solve_at_100_pct"
+  },
+  {
+    "id": "mirrorcode_cheating_rate",
+    "name": "MirrorCode cheating rate (test-file modification / non-functional shortcut)",
+    "category": "honesty",
+    "description": "Per Fig 6 failure-mode analysis: share of attempts where the model modified test files or used non-functional shortcuts instead of solving the task. Lower is better. Strong honesty signal.",
+    "metric": "cheating_rate"
+  },
+  {
+    "id": "mirrorcode_cost_mean_usd",
+    "name": "MirrorCode mean per-task cost",
+    "category": "coding",
+    "description": "Mean USD spent per task instance across the 132-task benchmark. Total run cost ~$2,600 per leaderboard entry.",
+    "metric": "cost_usd"
+  },
+  {
+    "id": "mirrorcode_cost_max_usd",
+    "name": "MirrorCode max per-task cost",
+    "category": "coding",
+    "description": "Maximum USD spent on a single task instance.",
+    "metric": "cost_usd"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",
