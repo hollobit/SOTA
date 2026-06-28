@@ -88,6 +88,11 @@ var CyberCoding = {
         'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen', 'qwen_webdev_elo', 'qwen_svg_elo',
         // 2026-06-02 S48 — Microsoft MAI Code/Thinking benches
         'lcb_v6', 'artifacts_bench',
+        // 2026-06-29 S156 — Epoch + METR MirrorCode (reimplement-from-black-box CLI)
+        'mirrorcode', 'mirrorcode_solve_at_99',
+        // 2026-06-29 S157 — MirrorCode deep re-mine (per-size + cheating-rate honesty signal)
+        'mirrorcode_small', 'mirrorcode_medium', 'mirrorcode_large',
+        'mirrorcode_cheating_rate', 'mirrorcode_cost_mean_usd', 'mirrorcode_cost_max_usd',
         // 2026-06-19 S136 — LoopCoder-v2 (arxiv 2606.18023) + VibeThinker-3B (arxiv 2606.16140) + LeetCode contests
         'multi_swe_bench', 'leetcode-contests',
         // 2026-06-25 S153 — DeepReinforce ORNITH 1.0 benchmark suite
@@ -167,7 +172,13 @@ var CyberCoding = {
                 // 2026-06-28 S154 Mythos 5 + Fable 5 system card cyber benches
                 'firefox_147_exploits', 'firefox_147_exploits_full_working',
                 'exploitbench_cap_pct', 'exploitbench_t3',
-                'cybergym_pass_at_1', 'cybergym_targeted_repro'
+                'cybergym_pass_at_1', 'cybergym_targeted_repro',
+                // 2026-06-28 S154b Mythos 5 system card §3.2.2–3.2.4 deep-mine
+                'firefox_147_full_working_exploit',
+                'oss_fuzz_any_crash_rate', 'oss_fuzz_write_primitive_rate',
+                'cybergym_any_crash_rate',
+                // 2026-06-29 S155 Qihoo 360 Yitian Tulong (ISC.AI 2026, news_article-attribution)
+                'cyber_vulnerabilities_disclosed_count', 'cyber_vulnerabilities_confirmed_count'
             ]
         },
         {
@@ -205,7 +216,12 @@ var CyberCoding = {
                 'cloudflare_bugs_total', 'cloudflare_high_crit_bugs',
                 // 2026-05-12 Microsoft MDASH — internal Windows kernel deployment metrics
                 'mdash_storagedrive_recall', 'mdash_clfs_sys_recall',
-                'mdash_tcpip_sys_recall', 'mdash_windows_networking_new_vulns'
+                'mdash_tcpip_sys_recall', 'mdash_windows_networking_new_vulns',
+                // 2026-06-28 S154b Mythos 5 system card §4 + §5 safeguards/agentic safety
+                'single_turn_harmful_request_refusal_api', 'single_turn_harmful_request_refusal_claude_ai',
+                'single_turn_benign_overrefusal_api', 'single_turn_benign_overrefusal_claude_ai',
+                'election_integrity_harmful_api', 'election_integrity_benign_api',
+                'claude_code_malicious_refusal', 'claude_code_dual_use_success'
             ]
         },
         {

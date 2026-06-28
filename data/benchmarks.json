@@ -8288,13 +8288,6 @@
     "metric": "score"
   },
   {
-    "id": "cybergym_pass_at_1",
-    "name": "Cybergym Pass At 1",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
     "id": "cybergym_any_crash",
     "name": "Cybergym Any Crash",
     "category": "general",
@@ -8416,27 +8409,6 @@
   {
     "id": "bbq_ambiguous_accuracy",
     "name": "Bbq Ambiguous Accuracy",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "claude_code_malicious_refusal",
-    "name": "Claude Code Malicious Refusal",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "claude_code_dual_use_success",
-    "name": "Claude Code Dual Use Success",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "malicious_computer_use_refusal",
-    "name": "Malicious Computer Use Refusal",
     "category": "general",
     "description": "",
     "metric": "score"
@@ -14330,20 +14302,6 @@
     "category": "safety",
     "description": "BBQ ambiguous bias score (closer to 0 better)",
     "metric": "bias_score"
-  },
-  {
-    "id": "election_integrity_harmful_api",
-    "name": "Election Integrity (Harmful, API)",
-    "category": "safety",
-    "description": "Single-turn harmful election prompts; harmless rate, API without system prompt",
-    "metric": "harmless_rate"
-  },
-  {
-    "id": "election_integrity_benign_api",
-    "name": "Election Integrity (Benign, API)",
-    "category": "safety",
-    "description": "Single-turn benign election prompts; over-refusal rate (lower better)",
-    "metric": "refusal_rate"
   },
   {
     "id": "identity_honesty_hard",
@@ -22548,13 +22506,6 @@
     "metric": ""
   },
   {
-    "id": "cybergym_any_crash_rate",
-    "name": "CyberGym (any crash rate)",
-    "category": "reasoning",
-    "description": "",
-    "metric": ""
-  },
-  {
     "id": "firefox_147_zero_day_exploit_full_working_exploit_rate",
     "name": "Firefox 147 zero-day exploit (full working exploit rate)",
     "category": "reasoning",
@@ -22693,6 +22644,286 @@
     "category": "agent",
     "description": "",
     "metric": "accuracy"
+  },
+  {
+    "id": "single_turn_harmful_request_refusal_api",
+    "name": "Single-turn harmful request — API harmless rate",
+    "category": "safety",
+    "description": "7 languages: Arabic, English, French, Hindi, Korean, Mandarin, Russian. 16 policy areas. Updated violence prompt bank focuses on operational uplift.",
+    "metric": "harmless"
+  },
+  {
+    "id": "single_turn_harmful_request_refusal_claude_ai",
+    "name": "Single-turn harmful request — claude.ai harmless rate",
+    "category": "safety",
+    "description": "",
+    "metric": "harmless"
+  },
+  {
+    "id": "single_turn_benign_overrefusal_api",
+    "name": "Single-turn benign — API overrefusal",
+    "category": "safety",
+    "description": "Lower is better. Refusal rate on benign-but-sensitive prompts.",
+    "metric": "overrefusal"
+  },
+  {
+    "id": "single_turn_benign_overrefusal_claude_ai",
+    "name": "Single-turn benign — claude.ai overrefusal",
+    "category": "safety",
+    "description": "",
+    "metric": "overrefusal"
+  },
+  {
+    "id": "election_integrity_harmful_api",
+    "name": "Election integrity — harmful API harmless",
+    "category": "safety",
+    "description": "300 violative + 300 benign election-related prompts (Opus 4.7 SC).",
+    "metric": "harmless"
+  },
+  {
+    "id": "election_integrity_benign_api",
+    "name": "Election integrity — benign API overrefusal",
+    "category": "safety",
+    "description": "",
+    "metric": "overrefusal"
+  },
+  {
+    "id": "claude_code_malicious_refusal",
+    "name": "Claude Code malicious-use refusal",
+    "category": "safety",
+    "description": "61 malicious + 61 dual-use prompts × 10 runs.",
+    "metric": "refusal"
+  },
+  {
+    "id": "claude_code_dual_use_success",
+    "name": "Claude Code dual-use & benign success",
+    "category": "safety",
+    "description": "",
+    "metric": "success"
+  },
+  {
+    "id": "malicious_computer_use_refusal",
+    "name": "Malicious computer-use refusal",
+    "category": "safety",
+    "description": "112 unique tasks across surveillance, harmful content, scaled abuse.",
+    "metric": "refusal"
+  },
+  {
+    "id": "agentic_influence_voter_suppression",
+    "name": "Agentic Influence — Voter Suppression (helpful-only)",
+    "category": "safety",
+    "description": "70 success criteria, 9 simulations per scenario, helpful-only variant.",
+    "metric": "task completion"
+  },
+  {
+    "id": "agentic_influence_domestic_polarization",
+    "name": "Agentic Influence — Domestic Polarization (helpful-only)",
+    "category": "safety",
+    "description": "",
+    "metric": "task completion"
+  },
+  {
+    "id": "exploitbench_cap_pct",
+    "name": "ExploitBench Cap% (3-trial subset)",
+    "category": "cyber",
+    "description": "Percentage of total capability flags captured. Static uniform harness from authors.",
+    "metric": "cap_percentage"
+  },
+  {
+    "id": "oss_fuzz_any_crash_rate",
+    "name": "OSS-Fuzz any-crash rate (Anthropic internal)",
+    "category": "cyber",
+    "description": "~830 fuzzing entry points / 228 open-source projects. Score above 0 = memory-safety crash or better.",
+    "metric": "any_crash"
+  },
+  {
+    "id": "oss_fuzz_write_primitive_rate",
+    "name": "OSS-Fuzz write-primitive rate (score ≥0.4)",
+    "category": "cyber",
+    "description": "Indicates more serious risk.",
+    "metric": "write_primitive"
+  },
+  {
+    "id": "cybergym_pass_at_1",
+    "name": "CyberGym pass@1 (targeted vulnerability reproduction)",
+    "category": "cyber",
+    "description": "1507 tasks. Single attempt per task.",
+    "metric": "pass@1"
+  },
+  {
+    "id": "cybergym_any_crash_rate",
+    "name": "CyberGym any-crash rate",
+    "category": "cyber",
+    "description": "",
+    "metric": "any_crash"
+  },
+  {
+    "id": "firefox_147_full_working_exploit",
+    "name": "Firefox 147 full working exploit (50 crash cats × 5 trials = 250)",
+    "category": "cyber",
+    "description": "Score 1.0 = full working exploit. Score 0.5 = register control only. SpiderMonkey shell harness mimicking F147 content process.",
+    "metric": "full_exploit"
+  },
+  {
+    "id": "osworld_v2",
+    "name": "OSWorld 2.0 (binary, 500 steps)",
+    "category": "agent",
+    "description": "108 verified long-horizon real-world computer-use workflows. Binary completion at 500-step budget. Median 1.6h human time per task, ~318 tool calls per task for Opus 4.7 (max thinking). Headline metric.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_partial",
+    "name": "OSWorld 2.0 partial reward (500 steps)",
+    "category": "agent",
+    "description": "Avg 27.25 checkpoints/task. 11.53% checkpoints are model-graded.",
+    "metric": "partial_completion"
+  },
+  {
+    "id": "osworld_v2_150step",
+    "name": "OSWorld 2.0 binary (150 steps)",
+    "category": "agent",
+    "description": "Tighter step budget — surfaces sample efficiency.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "osworld_v2_300step",
+    "name": "OSWorld 2.0 binary (300 steps)",
+    "category": "agent",
+    "description": "Mid-budget step setting.",
+    "metric": "success_rate"
+  },
+  {
+    "id": "dspark_accepted_length_qwen3_4b_macro",
+    "name": "DSpark accepted length (Qwen3-4B target, macro avg)",
+    "category": "inference",
+    "description": "Avg accepted draft tokens per verification round, macro-averaged across 9 tasks (GSM8K/MATH500/AIME25/MBPP/HumanEval/LiveCodeBench/MT-Bench/Alpaca/Arena-Hard).",
+    "metric": "tokens_per_round"
+  },
+  {
+    "id": "dspark_accepted_length_qwen3_8b_macro",
+    "name": "DSpark accepted length (Qwen3-8B target, macro avg)",
+    "category": "inference",
+    "description": "",
+    "metric": "tokens_per_round"
+  },
+  {
+    "id": "dspark_accepted_length_qwen3_14b_macro",
+    "name": "DSpark accepted length (Qwen3-14B target, macro avg)",
+    "category": "inference",
+    "description": "",
+    "metric": "tokens_per_round"
+  },
+  {
+    "id": "dspark_accepted_length_gemma4_12b_macro",
+    "name": "DSpark accepted length (Gemma4-12B target, macro avg)",
+    "category": "inference",
+    "description": "",
+    "metric": "tokens_per_round"
+  },
+  {
+    "id": "dspark_production_speedup_v4_flash_pct",
+    "name": "DSpark production speedup over MTP-1 (DeepSeek-V4-Flash)",
+    "category": "inference",
+    "description": "Per-user generation acceleration vs MTP-1 production baseline under live serving traffic at matched aggregate throughput. Range 60-85% reported; midpoint 72.5%.",
+    "metric": "speedup_percent"
+  },
+  {
+    "id": "dspark_production_speedup_v4_pro_pct",
+    "name": "DSpark production speedup over MTP-1 (DeepSeek-V4-Pro)",
+    "category": "inference",
+    "description": "Range 57-78% reported; midpoint 67.5%.",
+    "metric": "speedup_percent"
+  },
+  {
+    "id": "cyber_vulnerabilities_disclosed_count",
+    "name": "AI cyber agent — vulnerabilities discovered (cumulative)",
+    "category": "cyber",
+    "description": "Self-reported cumulative count of software vulnerabilities discovered by a vendor's AI cyber agent. NEEDS independent verification (CVE / CNVD / CNNVD / GitHub Security Advisory). News-article-only sources are low confidence.",
+    "metric": "cumulative_vuln_count"
+  },
+  {
+    "id": "cyber_vulnerabilities_confirmed_count",
+    "name": "AI cyber agent — vulnerabilities confirmed by authorities",
+    "category": "cyber",
+    "description": "Subset of discovered vulns that have been independently confirmed by a national cybersecurity authority (CVE Numbering Authority, CNVD/CNNVD, JPCERT, etc.).",
+    "metric": "confirmed_vuln_count"
+  },
+  {
+    "id": "mirrorcode",
+    "name": "MirrorCode solve@100%",
+    "category": "coding",
+    "description": "Reimplement entire CLI program end-to-end from black-box behavior alone — no source-code access, no internet, byte-exact stdout/stderr match against visible + held-out tests. 25 targets (10 Small + 11 Medium + 4 Large incl 3 private S/M/L) × 6 languages (Python/C/Rust/Go/OCaml/Ada) = 132 instances. Up to 10B tokens per Large task (~$5k). Hidden tests ~34% + separate-sandbox scoring + memorization screen. Per-target mean of share-of-attempts passing 100% of tests.",
+    "metric": "solve_at_100_pct"
+  },
+  {
+    "id": "mirrorcode_solve_at_99",
+    "name": "MirrorCode solve@≥99%",
+    "category": "coding",
+    "description": "Relaxed threshold — per-target mean of share-of-attempts passing ≥99% of tests. Secondary metric.",
+    "metric": "near_perfect_solve"
+  },
+  {
+    "id": "dspark_production_speedup_v4_flash_sla_pct",
+    "name": "DSpark V4-Flash production throughput speedup at 80 tok/s SLA",
+    "category": "inference",
+    "description": "Per-user throughput acceleration vs MTP-1 baseline holding 80 tok/s/user as SLA. Distinct from matched-throughput speedup (range form).",
+    "metric": "speedup_percent"
+  },
+  {
+    "id": "dspark_production_speedup_v4_pro_sla_pct",
+    "name": "DSpark V4-Pro production throughput speedup at 35 tok/s SLA",
+    "category": "inference",
+    "description": "Per-user throughput acceleration vs MTP-1 baseline holding 35 tok/s/user as SLA.",
+    "metric": "speedup_percent"
+  },
+  {
+    "id": "dspark_calibrated_ece_chat_pct",
+    "name": "DSpark calibrated ECE (chat acceptance)",
+    "category": "inference",
+    "description": "Expected Calibration Error of acceptance-confidence head on chat tasks after STS confidence-scheduled training. Lower is better.",
+    "metric": "expected_calibration_error"
+  },
+  {
+    "id": "mirrorcode_small",
+    "name": "MirrorCode Small subset (10 S targets, solve@100%)",
+    "category": "coding",
+    "description": "Derived from PDF Figure 2 per-target heatmap. 10 small targets including hexyl, choose, private_S.",
+    "metric": "solve_at_100_pct"
+  },
+  {
+    "id": "mirrorcode_medium",
+    "name": "MirrorCode Medium subset (11 M targets, solve@100%)",
+    "category": "coding",
+    "description": "11 medium targets per-target heatmap derivation.",
+    "metric": "solve_at_100_pct"
+  },
+  {
+    "id": "mirrorcode_large",
+    "name": "MirrorCode Large subset (4 L targets, solve@100%)",
+    "category": "coding",
+    "description": "4 large targets — Opus 4.7 ONLY model to solve any L target (cprepro 100%). GPT-5.5 + Gemini both 0/4 L solves.",
+    "metric": "solve_at_100_pct"
+  },
+  {
+    "id": "mirrorcode_cheating_rate",
+    "name": "MirrorCode cheating rate (test-file modification / non-functional shortcut)",
+    "category": "honesty",
+    "description": "Per Fig 6 failure-mode analysis: share of attempts where the model modified test files or used non-functional shortcuts instead of solving the task. Lower is better. Strong honesty signal.",
+    "metric": "cheating_rate"
+  },
+  {
+    "id": "mirrorcode_cost_mean_usd",
+    "name": "MirrorCode mean per-task cost",
+    "category": "coding",
+    "description": "Mean USD spent per task instance across the 132-task benchmark. Total run cost ~$2,600 per leaderboard entry.",
+    "metric": "cost_usd"
+  },
+  {
+    "id": "mirrorcode_cost_max_usd",
+    "name": "MirrorCode max per-task cost",
+    "category": "coding",
+    "description": "Maximum USD spent on a single task instance.",
+    "metric": "cost_usd"
   },
   {
     "id": "arc_agi_3",

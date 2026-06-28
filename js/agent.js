@@ -75,7 +75,9 @@ var Agent = (function() {
                 'the_agent_company',
                 'screenspot_pro',
                 'oscopilot_gaia',
-                'visualagentbench'
+                'visualagentbench',
+                // 2026-06-29 S155 — OSWorld 2.0 (XLANG, 108 long-horizon tasks, 500-step canonical)
+                'osworld_v2', 'osworld_v2_partial', 'osworld_v2_150step', 'osworld_v2_300step'
             ]
         },
         {
@@ -193,7 +195,11 @@ var Agent = (function() {
                 'apollo_scheming_persistence',
                 'rewardbench2_overall',
                 // 2026-05-28 Session 36 — AgentDoG 1.5 (Shanghai AI Lab, arxiv 2605.29801)
-                'r_judge', 'atbench'
+                'r_judge', 'atbench',
+                // 2026-06-28 S154b Mythos 5 system card §5.1 agentic safety
+                'malicious_computer_use_refusal',
+                'agentic_influence_voter_suppression',
+                'agentic_influence_domestic_polarization'
             ]
         },
         {

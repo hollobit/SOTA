@@ -41,7 +41,11 @@ var FrontierCompare = {
             // 2026-06-02 S46 Qwen3.7-Plus + Cosmos 3 — coding agent benches
             'terminal_bench_2_0', 'swe_multilingual', 'nl2repo_qwen',
             // 2026-06-02 S48 — Microsoft MAI Thinking/Code benches
-            'lcb_v6', 'artifacts_bench'
+            'lcb_v6', 'artifacts_bench',
+            // 2026-06-29 S156 — Epoch AI + METR MirrorCode (reimplement-from-black-box, 132 instances, up to 10B tok/L-task)
+            'mirrorcode', 'mirrorcode_solve_at_99',
+            // 2026-06-29 S157 — MirrorCode per-size (L = headline frontier-gap: Opus 4.7 25%, all others 0%)
+            'mirrorcode_large'
         ],
         math: ['aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026',
             // 2026-06-02 S46 — Qwen3.7-Plus HMMT 2026 Feb + IMOAnswerBench (existing id) + PolyMATH
@@ -78,7 +82,9 @@ var FrontierCompare = {
             // 2026-06-05 S54 — IBM Research + AA ITBench-AA (Kubernetes SRE)
             'itbench_aa',
             // 2026-06-06 S56 — Opper AI Roundtable + SMAC-Talk
-            'opper_roundtable_win_rate', 'smac_talk_5v5_no_comm_winrate'
+            'opper_roundtable_win_rate', 'smac_talk_5v5_no_comm_winrate',
+            // 2026-06-29 S155 — OSWorld 2.0 (xlang.ai 108 long-horizon real-world workflows)
+            'osworld_v2', 'osworld_v2_partial'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
@@ -93,7 +99,12 @@ var FrontierCompare = {
             'cyscenariobench_long_horizon_solve',
             'irregular_atomic_network_attack_sim', 'irregular_atomic_vuln_research_exploit',
             'irregular_atomic_evasion',
-            'exploitgym', 'sec-bench-pro'
+            'exploitgym', 'sec-bench-pro',
+            // 2026-06-28 S154b — Mythos 5 system card §3.2 detailed cyber tables
+            'firefox_147_full_working_exploit',
+            'oss_fuzz_any_crash_rate', 'oss_fuzz_write_primitive_rate',
+            'cybergym_pass_at_1', 'cybergym_any_crash_rate',
+            'exploitbench_cap_pct'
         ],
         cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench', 'r_judge', 'atbench',
             // 2026-06-28 S152 — GPT-5.6 safety/defense sub-benches (Production Bench + Vision + Robustness)
@@ -106,7 +117,12 @@ var FrontierCompare = {
             'dynamic_mental_health', 'dynamic_emotional_reliance', 'dynamic_self_harm',
             'bio_refusal_severe_not_unsafe', 'bio_refusal_dual_use_not_unsafe', 'bio_refusal_benign_not_overrefuse',
             'apollo_eval_awareness_verbalization_rate', 'apollo_sandbagging_misreading_rate',
-            'user_confirmation_financial', 'user_confirmation_high_stakes'
+            'user_confirmation_financial', 'user_confirmation_high_stakes',
+            // 2026-06-28 S154b — Mythos 5 system card §4 + §5 safeguards (helpful-only agentic safety)
+            'single_turn_harmful_request_refusal_api', 'single_turn_benign_overrefusal_api',
+            'election_integrity_harmful_api', 'election_integrity_benign_api',
+            'claude_code_malicious_refusal', 'malicious_computer_use_refusal',
+            'agentic_influence_voter_suppression', 'agentic_influence_domestic_polarization'
         ],
         multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'compass_multimodal_avg', 'mmbench_v1_1', 'mmstar', 'mmmu', 'mathvista', 'hallusionbench', 'mmvet', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en',
             // 2026-06-01 S43 Nemotron RAG visual document retrieval + Parse document understanding
