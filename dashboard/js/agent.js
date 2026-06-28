@@ -37,7 +37,9 @@ var Agent = (function() {
                 // 2026-05-28 Session 31 — Datacurve DeepSWE (contamination-free SWE bench)
                 'deepswe_pass_at_1',
                 // 2026-06-19 S138 — CEO-Bench 500-day startup simulation (arxiv 2606.18543)
-                'ceo_bench'
+                'ceo_bench',
+                // 2026-06-26 S153 — Sakana × KPMG Azusa CoffeeBench (ICML 2026 Workshop)
+                'coffeebench_net_profit_90d_usd'
             ]
         },
         {
