@@ -93,7 +93,12 @@ var FrontierCompare = {
             'cyscenariobench_long_horizon_solve',
             'irregular_atomic_network_attack_sim', 'irregular_atomic_vuln_research_exploit',
             'irregular_atomic_evasion',
-            'exploitgym', 'sec-bench-pro'
+            'exploitgym', 'sec-bench-pro',
+            // 2026-06-28 S154b — Mythos 5 system card §3.2 detailed cyber tables
+            'firefox_147_full_working_exploit',
+            'oss_fuzz_any_crash_rate', 'oss_fuzz_write_primitive_rate',
+            'cybergym_pass_at_1', 'cybergym_any_crash_rate',
+            'exploitbench_cap_pct'
         ],
         cyber_defense: ['first_person_fairness', 'prompt_injection', 'harmbench', 'strongreject', 'airbench', 'r_judge', 'atbench',
             // 2026-06-28 S152 — GPT-5.6 safety/defense sub-benches (Production Bench + Vision + Robustness)
@@ -106,7 +111,12 @@ var FrontierCompare = {
             'dynamic_mental_health', 'dynamic_emotional_reliance', 'dynamic_self_harm',
             'bio_refusal_severe_not_unsafe', 'bio_refusal_dual_use_not_unsafe', 'bio_refusal_benign_not_overrefuse',
             'apollo_eval_awareness_verbalization_rate', 'apollo_sandbagging_misreading_rate',
-            'user_confirmation_financial', 'user_confirmation_high_stakes'
+            'user_confirmation_financial', 'user_confirmation_high_stakes',
+            // 2026-06-28 S154b — Mythos 5 system card §4 + §5 safeguards (helpful-only agentic safety)
+            'single_turn_harmful_request_refusal_api', 'single_turn_benign_overrefusal_api',
+            'election_integrity_harmful_api', 'election_integrity_benign_api',
+            'claude_code_malicious_refusal', 'malicious_computer_use_refusal',
+            'agentic_influence_voter_suppression', 'agentic_influence_domestic_polarization'
         ],
         multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'compass_multimodal_avg', 'mmbench_v1_1', 'mmstar', 'mmmu', 'mathvista', 'hallusionbench', 'mmvet', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en',
             // 2026-06-01 S43 Nemotron RAG visual document retrieval + Parse document understanding

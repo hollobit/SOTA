@@ -8303,13 +8303,6 @@
     "metric": "score"
   },
   {
-    "id": "cybergym_pass_at_1",
-    "name": "Cybergym Pass At 1",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
     "id": "cybergym_any_crash",
     "name": "Cybergym Any Crash",
     "category": "general",
@@ -8431,27 +8424,6 @@
   {
     "id": "bbq_ambiguous_accuracy",
     "name": "Bbq Ambiguous Accuracy",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "claude_code_malicious_refusal",
-    "name": "Claude Code Malicious Refusal",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "claude_code_dual_use_success",
-    "name": "Claude Code Dual Use Success",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "malicious_computer_use_refusal",
-    "name": "Malicious Computer Use Refusal",
     "category": "general",
     "description": "",
     "metric": "score"
@@ -14345,20 +14317,6 @@
     "category": "safety",
     "description": "BBQ ambiguous bias score (closer to 0 better)",
     "metric": "bias_score"
-  },
-  {
-    "id": "election_integrity_harmful_api",
-    "name": "Election Integrity (Harmful, API)",
-    "category": "safety",
-    "description": "Single-turn harmful election prompts; harmless rate, API without system prompt",
-    "metric": "harmless_rate"
-  },
-  {
-    "id": "election_integrity_benign_api",
-    "name": "Election Integrity (Benign, API)",
-    "category": "safety",
-    "description": "Single-turn benign election prompts; over-refusal rate (lower better)",
-    "metric": "refusal_rate"
   },
   {
     "id": "identity_honesty_hard",
@@ -22563,13 +22521,6 @@
     "metric": ""
   },
   {
-    "id": "cybergym_any_crash_rate",
-    "name": "CyberGym (any crash rate)",
-    "category": "reasoning",
-    "description": "",
-    "metric": ""
-  },
-  {
     "id": "firefox_147_zero_day_exploit_full_working_exploit_rate",
     "name": "Firefox 147 zero-day exploit (full working exploit rate)",
     "category": "reasoning",
@@ -22708,6 +22659,125 @@
     "category": "agent",
     "description": "",
     "metric": "accuracy"
+  },
+  {
+    "id": "single_turn_harmful_request_refusal_api",
+    "name": "Single-turn harmful request — API harmless rate",
+    "category": "safety",
+    "description": "7 languages: Arabic, English, French, Hindi, Korean, Mandarin, Russian. 16 policy areas. Updated violence prompt bank focuses on operational uplift.",
+    "metric": "harmless"
+  },
+  {
+    "id": "single_turn_harmful_request_refusal_claude_ai",
+    "name": "Single-turn harmful request — claude.ai harmless rate",
+    "category": "safety",
+    "description": "",
+    "metric": "harmless"
+  },
+  {
+    "id": "single_turn_benign_overrefusal_api",
+    "name": "Single-turn benign — API overrefusal",
+    "category": "safety",
+    "description": "Lower is better. Refusal rate on benign-but-sensitive prompts.",
+    "metric": "overrefusal"
+  },
+  {
+    "id": "single_turn_benign_overrefusal_claude_ai",
+    "name": "Single-turn benign — claude.ai overrefusal",
+    "category": "safety",
+    "description": "",
+    "metric": "overrefusal"
+  },
+  {
+    "id": "election_integrity_harmful_api",
+    "name": "Election integrity — harmful API harmless",
+    "category": "safety",
+    "description": "300 violative + 300 benign election-related prompts (Opus 4.7 SC).",
+    "metric": "harmless"
+  },
+  {
+    "id": "election_integrity_benign_api",
+    "name": "Election integrity — benign API overrefusal",
+    "category": "safety",
+    "description": "",
+    "metric": "overrefusal"
+  },
+  {
+    "id": "claude_code_malicious_refusal",
+    "name": "Claude Code malicious-use refusal",
+    "category": "safety",
+    "description": "61 malicious + 61 dual-use prompts × 10 runs.",
+    "metric": "refusal"
+  },
+  {
+    "id": "claude_code_dual_use_success",
+    "name": "Claude Code dual-use & benign success",
+    "category": "safety",
+    "description": "",
+    "metric": "success"
+  },
+  {
+    "id": "malicious_computer_use_refusal",
+    "name": "Malicious computer-use refusal",
+    "category": "safety",
+    "description": "112 unique tasks across surveillance, harmful content, scaled abuse.",
+    "metric": "refusal"
+  },
+  {
+    "id": "agentic_influence_voter_suppression",
+    "name": "Agentic Influence — Voter Suppression (helpful-only)",
+    "category": "safety",
+    "description": "70 success criteria, 9 simulations per scenario, helpful-only variant.",
+    "metric": "task completion"
+  },
+  {
+    "id": "agentic_influence_domestic_polarization",
+    "name": "Agentic Influence — Domestic Polarization (helpful-only)",
+    "category": "safety",
+    "description": "",
+    "metric": "task completion"
+  },
+  {
+    "id": "exploitbench_cap_pct",
+    "name": "ExploitBench Cap% (3-trial subset)",
+    "category": "cyber",
+    "description": "Percentage of total capability flags captured. Static uniform harness from authors.",
+    "metric": "cap_percentage"
+  },
+  {
+    "id": "oss_fuzz_any_crash_rate",
+    "name": "OSS-Fuzz any-crash rate (Anthropic internal)",
+    "category": "cyber",
+    "description": "~830 fuzzing entry points / 228 open-source projects. Score above 0 = memory-safety crash or better.",
+    "metric": "any_crash"
+  },
+  {
+    "id": "oss_fuzz_write_primitive_rate",
+    "name": "OSS-Fuzz write-primitive rate (score ≥0.4)",
+    "category": "cyber",
+    "description": "Indicates more serious risk.",
+    "metric": "write_primitive"
+  },
+  {
+    "id": "cybergym_pass_at_1",
+    "name": "CyberGym pass@1 (targeted vulnerability reproduction)",
+    "category": "cyber",
+    "description": "1507 tasks. Single attempt per task.",
+    "metric": "pass@1"
+  },
+  {
+    "id": "cybergym_any_crash_rate",
+    "name": "CyberGym any-crash rate",
+    "category": "cyber",
+    "description": "",
+    "metric": "any_crash"
+  },
+  {
+    "id": "firefox_147_full_working_exploit",
+    "name": "Firefox 147 full working exploit (50 crash cats × 5 trials = 250)",
+    "category": "cyber",
+    "description": "Score 1.0 = full working exploit. Score 0.5 = register control only. SpiderMonkey shell harness mimicking F147 content process.",
+    "metric": "full_exploit"
   },
   {
     "id": "arc_agi_3",
