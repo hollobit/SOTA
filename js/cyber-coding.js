@@ -89,7 +89,10 @@ var CyberCoding = {
         // 2026-06-02 S48 — Microsoft MAI Code/Thinking benches
         'lcb_v6', 'artifacts_bench',
         // 2026-06-19 S136 — LoopCoder-v2 (arxiv 2606.18023) + VibeThinker-3B (arxiv 2606.16140) + LeetCode contests
-        'multi_swe_bench', 'leetcode-contests'],
+        'multi_swe_bench', 'leetcode-contests',
+        // 2026-06-25 S153 — DeepReinforce ORNITH 1.0 benchmark suite
+        'terminal_bench_2_1_terminus_2', 'terminal_bench_2_1_claude_code',
+        'swe_atlas_qna', 'swe_atlas_rf', 'swe_atlas_tw', 'claweval_avg'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
@@ -479,6 +482,10 @@ var CyberCoding = {
         // 2026-06-19 S136 — LoopCoder-v2 (arxiv 2606.18023 SWE-bench Verified 64.4) + VibeThinker-3B (arxiv 2606.16140 LiveCodeBench v6 80.2 / LeetCode 96.1)
         'multilingual-nlp/loopcoder-v2',
         'weibo/vibethinker-3b',
+        // 2026-06-25 S153 — DeepReinforce ORNITH 1.0 family (self-scaffolding agentic coding)
+        'deepreinforce-ai/ornith-1.0-397b',  // flagship — TB-2.1 77.5 / SWE-Verified 82.4
+        'deepreinforce-ai/ornith-1.0-35b',   // MoE — beats Qwen 3.5-397B on TB-2.1
+        'deepreinforce-ai/ornith-1.0-9b',    // edge — matches Gemma 4-31B
         // 2026-06-10 S67 — S66 coding-specialist additions
         'cohere/north-mini-code',                 // Apache 2.0 MoE 30B/3B AAII 28 Coding Index 33.4
         'xai/grok-code-fast-1',                   // AAII 29 coding-focused edge variant
