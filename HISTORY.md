@@ -1,5 +1,244 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-06-28~29 (Sessions 154–157): Anthropic Mythos/Fable 5 system card deep-mine + 4-source parallel sweep + double PDF re-mine
+
+### 77. Sessions 154–157 — 4 commits, +9 models / +40 benches / +123 scores
+
+A tightly-focused multi-session arc spanning two days. After S154's broad
+3-parallel sweep (Anthropic Claude 5 system card + Search/RAG frontier +
+Game AI), the user pushed for ever-deeper extraction from PDF tables that
+the first-pass agents had deliberately omitted. Net DB delta:
+3,533 → 3,542 models, 3,818 → 3,858 benchmarks, 16,895 → 17,018 scores.
+
+**S154b — Anthropic Mythos 5 + Fable 5 system card deep re-mine** (`ed16b7e`,
+17 new benches / 57 scores):
+
+S154's broad sweep had captured §8 Capabilities (226 scores). User asked
+whether numeric tables in the 10,609-line system-card PDF were missed.
+Second pass found 7 untouched tables across §3 Cyber, §4 Safeguards,
+and §5 Agentic Safety. Scores across 6 Claude models: Fable 5, Mythos 5,
+Opus 4.8, Opus 4.7, Mythos Preview, Sonnet 4.6.
+
+Headline from §3.2 Cyber:
+
+| Benchmark | Mythos 5 | Mythos Preview | Opus 4.8 |
+|---|---:|---:|---:|
+| Firefox 147 full working exploit | **88.4%** | 70.8% | **8.8%** |
+| OSS-Fuzz any-crash rate | 80.0% | 76.7% | 61.5% |
+| OSS-Fuzz write-primitive (≥0.4) | 32.4% | 31.1% | 18.2% |
+| CyberGym pass@1 | 83.8% | 83.1% | 78.1% |
+| CyberGym any-crash | 99.4% | 97.1% | 95.7% |
+
+The Mythos 5 → Opus 4.8 Firefox 147 jump of **10×** is the single most
+dramatic capability gain we have recorded in the database.
+
+§4 Safeguards (multilingual 7-language × 16-policy-area harmful-request
+benchmark): single-turn harmful refusal API at-parity across recent
+models (Fable 5 96.94, Mythos 5 97.09, Opus 4.8 97.46, Sonnet 4.6 97.71);
+benign over-refusal Fable 5 + Mythos Preview tied lowest at 0.01% vs
+Sonnet 4.6 0.40%. Election integrity (300 violative + 300 benign
+prompts): all post-Opus-4.7 models score 100% harmful refusal.
+
+§5 Agentic Safety — Claude Code malicious refusal: Mythos Preview 95.41
+> Opus 4.8 95.24 > Mythos 5 90.25 > Sonnet 4.6 76.60. Dual-use success:
+Mythos 5 99.64 (strongest among recent models). Computer-use refusal
+Mythos Preview 93.75 > Mythos 5 85.71 > Sonnet 4.6 84.82 > Opus 4.8
+81.70 (Mythos 5 slightly more compliant than the Preview). Agentic
+Influence campaigns (helpful-only variant, 70 success criteria × 9 sims
+each): Voter Suppression Opus 4.8 73.3 highest, Mythos 5 67.1, Opus 4.7
+57.1, Sonnet 4.6 41.8 lowest; Domestic Polarization Opus 4.8 55.1
+highest, Mythos 5 + Opus 4.7 tied at 46.8 — all below Tier 2 threshold.
+
+Propagated to Cyber-Coding (offensive + cyber-defense suites), Frontier
+Compare (cybersecurity + cyber_defense BENCHMARK_GROUPS), and Agent
+(safety category).
+
+**S155 — 3-parallel: OSWorld V2 + DeepSpec/DSpark + Qihoo 360 Yitian
+Tulong** (`817ec80`, 3 models / 12 benches / 33 scores):
+
+*OSWorld 2.0 (XLANG xlang.ai)*: 108 long-horizon real-world computer-use
+workflows. Median 1.6 h human time per task, ~318 tool calls per task for
+Opus 4.7 (max thinking). Primary metric = binary completion at 500-step
+budget; secondary = partial reward over 27.25 avg checkpoints (11.53%
+model-graded). 3 step-budget views (150/300/500). No Office/Web/OS
+sub-suites — instead 10 non-exclusive "challenge phenomena" tags
+(Cross-source Reasoning 42.6%, Visual-spatial 41.7%, Implicit-state
+39.8%). vs OSWorld 1.0: agent steps <30 → >250, human time ~2 min →
+~1.6 h, 0 → 31 self-hosted websites.
+
+Frontier saturation reference: Opus 4.8 scores 83.5% on OSWorld-Verified
+vs only **20.6% on OSWorld 2.0 — 4× harder**.
+
+Leaderboard (500-step canonical):
+
+| Model | binary | partial |
+|---|---:|---:|
+| Claude Opus 4.8 | **20.6** | **54.8** |
+| Claude Opus 4.7 | 18.2 | 52.5 |
+| Claude Sonnet 4.6 | 15.7 | 50.4 |
+| GPT-5.5 (xhigh) | 13.0 | 49.5 |
+| MiniMax M3 | 8.3 | 39.6 |
+| Kimi K2.6 | 6.5 | 36.8 |
+| Qwen3.7-Plus | 5.6 | 34.2 |
+
+XLANG evaluated only 7 API-accessible families — no Gemini, no
+DeepSeek V4-Pro, no Mythos 5, no Fable 5, no GLM 5.2, no Kimi K2.7-Code,
+no GPT-5.5-Pro / 5.6 / 5.4-xhigh.
+
+*DeepSeek DeepSpec / DSpark* (MIT 2026-06-26, 1,896 stars): NOT a model,
+benchmark, or inference engine — a full-stack training+eval codebase for
+speculative-decoding draft models. Ships three drafter algorithms
+(DSpark new, Eagle3 / DFlash reimplementations) plus 12 HuggingFace
+checkpoints across Qwen3-{4B, 8B, 14B} and Gemma4-12B targets.
+
+DSpark = semi-autoregressive parallel drafter with confidence-scheduled
+verification, deployed inside DeepSeek-V4 serving. Accepted-length macro
+average across 9 tasks (GSM8K / MATH500 / AIME25 / MBPP / HumanEval /
+LiveCodeBench / MT-Bench / Alpaca / Arena-Hard):
+
+- Qwen3-4B target: 4.73 tokens/round
+- Qwen3-8B target: 4.81
+- Qwen3-14B target: 4.78
+- Gemma4-12B target: 4.66
+
+Production per-user speedup vs MTP-1 baseline at matched aggregate
+throughput: 60–85% on V4-Flash (midpoint 72.5%), 57–78% on V4-Pro
+(midpoint 67.5%).
+
+*Qihoo 360 Yitian Tulong* (ISC.AI 2026 launch, covered by Quartz/Reuters):
+two named cyber-agent products under the "Yitian Tulong" umbrella:
+**Tulongfeng** (offensive automated vulnerability discovery) and
+**Yitianzhen** (defensive incident response / SOC automation). Vendor-claimed
+3,432 software vulnerabilities discovered cumulatively, 105 confirmed by
+Chinese authorities (CNVD/CNNVD not named). Reuters could not independently
+verify. Article never names Firefox 147 / OSS-Fuzz / CyberGym / ExploitBench
+— so no Mythos 5 cross-check possible. Source flagged as
+`source_type=news_article`, kept out of headline SOTAs. Zhou Hongyi quote:
+"domestic models still have a 20–30% gap in base capability."
+
+**S156 — 2-parallel: Epoch MirrorCode + NVIDIA GLM-5.2-NVFP4** (`0baa65d`,
+1 model / 2 benches / 11 scores):
+
+*Epoch AI + METR MirrorCode* (paper hash `_8ae911f`, 2026-06): NEW
+long-horizon coding benchmark. Reimplement entire CLI program end-to-end
+from black-box behavior alone — NO source-code access, NO internet,
+byte-exact stdout/stderr match against visible + held-out tests. 25
+targets (10 Small + 11 Medium + 4 Large; 22 OSS + 3 private held-out)
+× 6 languages (Python / C / Rust / Go / OCaml / Ada) = 132 instances.
+Up to 10B tokens per Large task (~$5k); one full leaderboard run = $2,600
+over 19 days. Cheat protection: hidden tests (~34%) + separate-sandbox
+scoring + no internet + memorization screen. Closest analog is
+ProgramBench but with ~100× larger inference budget.
+
+| Model | solve@100% | solve@≥99% |
+|---|---:|---:|
+| Claude Opus 4.7 | **56%** | **77%** |
+| GPT-5.5 | 44% | 57% |
+| Gemini 3.1 Pro Preview | 32% (Python-only) | 44% |
+
+GPT-5 27% **excluded** as paper extrapolation (assumes 0 on L), not
+measured. Opus 4.1/4.6 Figure 10 subsets excluded as "not directly
+comparable to overall solve rates." Mythos / Fable / Opus 4.8 /
+DeepSeek / Qwen / Kimi NOT evaluated yet.
+
+*NVIDIA GLM-5.2-NVFP4* (HF card, uploaded 2026-06-25, MIT, 45,762
+downloads/month): post-training quantization via nvidia-modelopt v0.46.0;
+ONLY MoE expert linear ops quantized, shared expert untouched; blocksize
+/ group-scale-type / calibration set undisclosed. **Critical attribution
+caveat**: accuracy table reports vs FP8 baseline (`zai-org/GLM-5.2-FP8`),
+NOT vs BF16/FP16 — so "preservation" framing doesn't match standard
+quantization-vs-FP16 reporting. At-parity on 5 benches (avg ratio
+100.27%): GPQA Diamond 89.39, SciCode 49.04, IFBench 75.81, AA-LCR
+70.13, τ²-Bench Telecom 98.25. Throughput / memory / latency: NOT
+published. 3 composite NVFP4 bench IDs (preservation, throughput,
+memory) initially proposed but rejected — last two unpublished, accuracy
+framing mismatch.
+
+**S157 — Deep PDF re-mine: DSpark Eagle3+DFlash drafter grid +
+MirrorCode per-size/honesty/cost** (`ac7a03e`, 2 models / 9 benches /
+22 scores):
+
+User asked whether the agents had missed PDF content in S155/S156.
+Re-mined both papers for sections the first-pass agents had deliberately
+omitted.
+
+*DSpark paper Table 1 full grid* (33pp, lead Xin Cheng @ PKU +
+DeepSeek-AI, stamped 2026-06-27): 4 target backbones × 9 tasks × 3
+drafters = 108 cells + 12 macros captured. Computed macros validate
+paper claims exactly (+30.9 / +26.7 / +30.0% over Eagle3; +16.3 / +18.4
+/ +18.3% over DFlash on Qwen3 family).
+
+**Buried asymmetry**: Eagle3 (4.376) actually BEATS DFlash (4.018) on
+Gemma4-12B target — and DSpark's gain over Eagle3 there is only +6.6%
+vs +26–31% on the Qwen3 family. DFlash is target-architecture-sensitive
+in a way the headline numbers obscure.
+
+New production data: V4-Flash +51% throughput at 80 tok/s SLA, V4-Pro
++52% at 35 tok/s SLA (distinct from the matched-throughput ranges
+already in DB). Confidence-scheduled verification ablation: chat-task
+acceptance ECE 5.7–8.2% raw → ~1% calibrated; acceptance rate 45.7% →
+95.7%; ROC-AUC 0.81–0.91 per position.
+
+Added safeai-lab/eagle3 + deepseek/dflash as 2 new draft-model entries.
+
+*MirrorCode Figures 2 + 6 and Tables 6–7*:
+
+Per-size derived from Fig 2 per-target heatmap. **Opus 4.7 is the ONLY
+model to solve ANY Large target** (cprepro at 100%) — large_score = 1/4
+= 25%. GPT-5.5 + Gemini 3.1 Pro Preview both 0/4 on Large. Opus 4.7
+Small ≈ 92% (10-cell S-block derivation).
+
+| Model | Small | Large |
+|---|---:|---:|
+| Claude Opus 4.7 | **92%** | **25%** |
+| GPT-5.5 | — | 0% |
+| Gemini 3.1 Pro Preview | — | 0% |
+
+**Honesty signal — Fig 6 failure-mode cheating rate** (defined as
+modifying test files or using non-functional shortcuts):
+
+| Model | Cheating rate |
+|---|---:|
+| Claude Opus 4.7 | **0.0%** |
+| GPT-5.5 | 14.2% |
+| Gemini 3.1 Pro | 18.9% |
+
+Cost table (Table 6): Opus 4.7 mean $106/task max $2,846; Gemini mean
+$162/task max $2,698. Token-usage multipliers per language (Table 5,
+Appendix C.1): Ada uses 1.26–1.34× tokens vs Python's 0.77–0.79×
+baseline. Skipped per Latest-Models-Focus rule: Opus 4.1, GPT-5 Fig 10
+subsets.
+
+**Engineering notes**:
+- All four sessions respected the Plans.md 200-line hard limit by
+  extending the S113 deep-mine bullet inline rather than adding new
+  date headings.
+- 8-tab propagation rule honored: every new bench ID with frontier-model
+  scores was registered in at least one hardcoded tab category
+  (Cyber-Coding for cyber + coding sub-benches, Frontier Compare for
+  cross-cutting heatmap, Agent for agent-eval benches).
+- Strict-attribution rule: GPT-5 MirrorCode 27% extrapolation rejected;
+  Opus 4.1/4.6 Figure 10 subsets rejected as not-comparable; Qihoo 360
+  vendor numbers flagged news_article with verification_status=unverified.
+- Latest-Models-Focus rule honored: Opus 4.1 (>18 months old), GPT-5
+  (>18 months old) Figure 10 subsets dropped.
+
+**Insights**:
+
+- **Mythos 5 is the strongest cyber-offensive model in any system card
+  to date** — 10× Firefox 147 jump from Opus 4.8, 99.4% CyberGym
+  any-crash saturation, balanced against ASL-3 deployment controls.
+- **OSWorld 2.0 successfully resets the OS/computer-use frontier** —
+  Opus 4.8 drops from 83.5% (V1) to 20.6% (V2), giving room for the
+  next 12–18 months of progress.
+- **DSpark caps a 2-generation acceleration of speculative decoding**
+  (Eagle3 → DFlash → DSpark, ~30% gain each step on Qwen3) but reveals
+  drafter performance is target-architecture-sensitive — same algorithm
+  wins on Qwen, loses to Eagle3 on Gemma.
+- **MirrorCode honesty signal is a usable proxy for alignment in coding
+  agents**: Opus 4.7's 0% cheating rate vs Gemini's 18.9% is a >18pt
+  alignment gap that the headline solve-rate column doesn't surface.
+
 ## 2026-06-15~16 (Sessions 126-129): CI repairs + post-sync mining
 
 ### 76. Sessions 126-129 — Sync repairs + Kimi K2.7 Code + GLM-5.2 BridgeBench
