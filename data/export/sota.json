@@ -149,21 +149,6 @@
     "collected_at": "2026-04-16",
     "notes": ""
   },
-  "deepsearchqa": {
-    "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "deepsearchqa",
-    "value": 95.1,
-    "unit": "%",
-    "source": {
-      "type": "pdf",
-      "url": "resource/Claude Opus 4.7 System Card.pdf",
-      "date": "2026-04-17",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-17",
-    "notes": ""
-  },
   "screenspot_pro": {
     "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "screenspot_pro",
@@ -183,16 +168,31 @@
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "swe_bench_multilingual",
     "value": 92.2,
-    "unit": "score",
+    "unit": "percent",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.2",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Section 8.2; 300 problems / 9 languages"
+    "notes": "300 problems, 9 languages"
+  },
+  "deepsearchqa": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "deepsearchqa",
+    "value": 94.4,
+    "unit": "percent F1",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.14.3",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
   },
   "vending_bench_2": {
     "model_id": "anthropic/claude-opus-4.7",
@@ -348,16 +348,16 @@
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "swe_bench_verified",
     "value": 95.5,
-    "unit": "%",
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "https://presenc.ai/research/swe-bench-verified-leaderboard-june-2026 + Anthropic blog",
+      "url": "system_card_section_8.2",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Jun 2026 leaderboard update"
+    "notes": "adaptive thinking max effort, default sampling, mean of 5 trials"
   },
   "cybench": {
     "model_id": "anthropic/claude-mythos-preview",
@@ -423,16 +423,16 @@
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "osworld_verified",
     "value": 85.0,
-    "unit": "%",
+    "unit": "percent pass@1",
     "source": {
       "type": "leaderboard",
-      "url": "https://benchlm.ai/benchmarks/osWorldVerified",
+      "url": "system_card_section_8.16.3",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "self-reported"
+    "notes": "1080p, 100 step max, 5-run avg, post zoom-tool-bugfix and 128K per-turn token limit"
   },
   "cybergym": {
     "model_id": "microsoft/mdash",
@@ -602,17 +602,17 @@
   "browsecomp": {
     "model_id": "openai/gpt-5.5-pro",
     "benchmark_id": "browsecomp",
-    "value": 90.1,
+    "value": 90.10000000000001,
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://benchlm.ai/benchmarks/browseComp",
+      "url": "Search agent BrowseComp leaderboard",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Rank 1 — NEW SOTA, snapshot 2026-06-13"
+    "notes": "rank #1"
   },
   "terminal_bench_2": {
     "model_id": "openai/gpt-5.5",
@@ -3783,16 +3783,16 @@
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "charxiv_reasoning_no_tools",
     "value": 88.9,
-    "unit": "score",
+    "unit": "percent",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.8 + table_8.1.A",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Section 8.16.8"
+    "notes": ""
   },
   "charxiv_reasoning_tools": {
     "model_id": "anthropic/claude-mythos-5",
@@ -8369,29 +8369,14 @@
     "collected_at": "2026-06-28",
     "notes": "With tools. Opus 4.7 69.8. (No-tools: 4.8 69.4 vs 4.7 67.6.)"
   },
-  "finance_agent_v2": {
-    "model_id": "anthropic/claude-fable-5",
-    "benchmark_id": "finance_agent_v2",
-    "value": 57.9,
-    "unit": "score_0_100",
-    "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
-      "date": "2026-06-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-28",
-    "notes": "Fable 5 Finance Agent v2 (image-mode) 57.9% — TIES current SOTA (Gemini 3.5 Flash 57.9). Ahead of GPT-5.5 52.6, Opus 4.8 48.1. Image-mode = PDFs read as images via vision"
-  },
   "hle_with_tools": {
     "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "hle_with_tools",
     "value": 64.7,
-    "unit": "%",
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "§8.1 Table 8.1.A",
+      "url": "system_card_table_8.1.A",
       "date": "2026-06-28",
       "citation": null
     },
@@ -8418,61 +8403,61 @@
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "graphwalks_bfs_256k",
     "value": 91.1,
-    "unit": "score",
+    "unit": "percent F1",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.13",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Section 8.13 Table 8.13.A; F1"
+    "notes": "5 trial average"
   },
   "graphwalks_parents_256k": {
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "graphwalks_parents_256k",
     "value": 99.96,
-    "unit": "score_0_100",
+    "unit": "percent F1",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.13",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Mythos 5 GraphWalks parents 256K 99.96% (4 runs at 99.95%, 1 at 100.0%)"
+    "notes": ""
   },
   "graphwalks_bfs_1m": {
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "graphwalks_bfs_1m",
     "value": 79.4,
-    "unit": "score_0_100",
+    "unit": "percent F1",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.13",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Mythos 5 GraphWalks BFS 1M 79.4%"
+    "notes": ""
   },
   "graphwalks_parents_1m": {
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "graphwalks_parents_1m",
     "value": 97.5,
-    "unit": "score_0_100",
+    "unit": "percent F1",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.13",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Mythos 5 GraphWalks parents 1M 97.5%"
+    "notes": ""
   },
   "officeqa": {
     "model_id": "anthropic/claude-mythos-5",
@@ -8763,16 +8748,16 @@
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "chartmuseum_no_tools",
     "value": 85.9,
-    "unit": "score",
+    "unit": "percent",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.6",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Section 8.16.6"
+    "notes": ""
   },
   "chartmuseum_tools": {
     "model_id": "anthropic/claude-mythos-5",
@@ -8793,16 +8778,16 @@
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "lab_bench_figqa_no_tools",
     "value": 88.9,
-    "unit": "score",
+    "unit": "percent",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.7",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Section 8.16.7"
+    "notes": ""
   },
   "lab_bench_figqa_tools": {
     "model_id": "anthropic/claude-mythos-5",
@@ -12363,31 +12348,31 @@
     "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "frontiercode_diamond",
     "value": 29.3,
-    "unit": "score_0_100",
+    "unit": "percent",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.4",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "🌍 Fable 5 FrontierCode Diamond 29.3% — NEW SOTA, 2.2x Opus 4.8 (13.4%), 5.1x GPT-5.5 (5.7%)"
+    "notes": "xhigh effort"
   },
   "frontiercode_main": {
     "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "frontiercode_main",
     "value": 46.3,
-    "unit": "score_0_100",
+    "unit": "percent",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.4",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "🌍 Fable 5 FrontierCode Main 46.3% NEW SOTA, ahead of Opus 4.8 (34.3%) and GPT-5.5 (25.5%)"
+    "notes": ""
   },
   "gdp_pdf": {
     "model_id": "anthropic/claude-fable-5",
@@ -12528,16 +12513,16 @@
     "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "cursorbench",
     "value": 72.9,
-    "unit": "score_0_100",
+    "unit": "percent",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.7",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "🌍 Fable 5 CursorBench 72.9% — NEW SOTA, +8.6 over GPT-5.5 (64.3). Measured + reported independently by Cursor. PDF §8.7"
+    "notes": "max effort, measured by Cursor"
   },
   "riemannbench": {
     "model_id": "anthropic/claude-fable-5",
@@ -12569,21 +12554,6 @@
     "collected_at": "2026-06-28",
     "notes": "🌍 Fable 5 Frontier SWE mean@5 2.12 NEW SOTA (Opus 4.8 3.26, GPT-5.5 3.94, lower better). PDF §8.5"
   },
-  "real_world_finance_v1": {
-    "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "real_world_finance_v1",
-    "value": 70.9,
-    "unit": "score_0_100",
-    "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
-      "date": "2026-06-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-28",
-    "notes": "Mythos Preview Real-World Finance v1 70.9%"
-  },
   "real_world_finance_v2_elo": {
     "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "real_world_finance_v2_elo",
@@ -12598,6 +12568,21 @@
     "is_sota": true,
     "collected_at": "2026-06-28",
     "notes": "🌍 Fable 5 Real-World Finance v2 Elo 1374 NEW SOTA. Mythos Preview 1307, Opus 4.8 1222. Pairwise win rate 74% vs Opus 4.8, 90% vs Sonnet 4.6"
+  },
+  "finance_agent_v2": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "finance_agent_v2",
+    "value": 57.9,
+    "unit": "score_0_100",
+    "source": {
+      "type": "pdf",
+      "url": "https://www-cdn.anthropic.com/d00db56fa754a1b115b6dd7cb2e3c342ee809620.pdf",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "Fable 5 Finance Agent v2 (image-mode) 57.9% — TIES current SOTA (Gemini 3.5 Flash 57.9). Ahead of GPT-5.5 52.6, Opus 4.8 48.1. Image-mode = PDFs read as images via vision"
   },
   "labbench2_avg": {
     "model_id": "anthropic/claude-mythos-5",
@@ -17520,43 +17505,43 @@
     "notes": "effort= trials="
   },
   "biomysterybench_human_solvable": {
-    "model_id": "anthropic/claude-mythos-preview",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "biomysterybench_human_solvable",
-    "value": 82.6,
-    "unit": "accuracy",
+    "value": 83.9,
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "Opus 4.8 SC §8.16.2",
+      "url": "system_card_section_8.20.1 + table_8.1.A",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "effort= trials="
+    "notes": ""
   },
   "biomysterybench_human_difficult": {
-    "model_id": "anthropic/claude-opus-4.8",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "biomysterybench_human_difficult",
-    "value": 40.0,
-    "unit": "accuracy",
+    "value": 46.1,
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "Opus 4.8 SC §8.16.2",
+      "url": "system_card_section_8.20.1",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "effort= trials="
+    "notes": ""
   },
   "latchbio_singlecellbench": {
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "latchbio_singlecellbench",
     "value": 59.3,
-    "unit": "%",
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "§8.20.2",
+      "url": "system_card_section_8.20.2",
       "date": "2026-06-28",
       "citation": null
     },
@@ -17565,19 +17550,19 @@
     "notes": ""
   },
   "structural_biology_open_ended": {
-    "model_id": "anthropic/claude-mythos-preview",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "structural_biology_open_ended",
-    "value": 81.6,
-    "unit": "accuracy",
+    "value": 87.2,
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "Opus 4.8 SC §8.16.4",
+      "url": "system_card_section_8.20.3",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "effort= trials="
+    "notes": ""
   },
   "proteingym_hard": {
     "model_id": "anthropic/claude-mythos-5",
@@ -17613,10 +17598,10 @@
     "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "protocol_troubleshooting",
     "value": 69.6,
-    "unit": "%",
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "§8.20.6",
+      "url": "system_card_section_8.20.6",
       "date": "2026-06-28",
       "citation": null
     },
@@ -17643,10 +17628,10 @@
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "labbench2_clinical_trial",
     "value": 91.2,
-    "unit": "%",
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "§8.20.7 Figure 8.20.7.A",
+      "url": "system_card_section_8.20.7",
       "date": "2026-06-28",
       "citation": null
     },
@@ -17715,19 +17700,19 @@
     "notes": ""
   },
   "lab_bench_figqa_with_tools": {
-    "model_id": "anthropic/claude-opus-4.7",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "lab_bench_figqa_with_tools",
-    "value": 86.4,
-    "unit": "accuracy",
+    "value": 90.7,
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "Opus 4.7 SC §8.9.1",
+      "url": "system_card_section_8.16.7",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "effort= trials="
+    "notes": ""
   },
   "shade_arena_hidden_scratchpad": {
     "model_id": "anthropic/claude-mythos-preview",
@@ -20309,21 +20294,6 @@
     "collected_at": "2026-06-28",
     "notes": "$0.36 per hour of audio transcribed."
   },
-  "swe_bench_multimodal": {
-    "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "swe_bench_multimodal",
-    "value": 59.0,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026",
-      "date": "2026-04-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-28",
-    "notes": "SOTA — Opus 4.6 27.1"
-  },
   "frontiercode_diamond_pass_rate": {
     "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "frontiercode_diamond_pass_rate",
@@ -21059,21 +21029,6 @@
     "collected_at": "2026-06-28",
     "notes": "Section 8.16.4; 1000 file subset with Python tools"
   },
-  "chartqapro_no_tools": {
-    "model_id": "anthropic/claude-mythos-5",
-    "benchmark_id": "chartqapro_no_tools",
-    "value": 71.6,
-    "unit": "score",
-    "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
-      "date": "2026-06-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-28",
-    "notes": "Section 8.16.5"
-  },
   "chartqapro_tools": {
     "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "chartqapro_tools",
@@ -21089,20 +21044,20 @@
     "collected_at": "2026-06-28",
     "notes": "Section 8.16.5"
   },
-  "screenspot_pro_no_tools": {
+  "chartqapro_no_tools": {
     "model_id": "anthropic/claude-mythos-5",
-    "benchmark_id": "screenspot_pro_no_tools",
-    "value": 87.3,
-    "unit": "score",
+    "benchmark_id": "chartqapro_no_tools",
+    "value": 71.6,
+    "unit": "percent",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.5",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Section 8.16.9"
+    "notes": ""
   },
   "screenspot_pro_tools": {
     "model_id": "anthropic/claude-mythos-preview",
@@ -21119,70 +21074,40 @@
     "collected_at": "2026-06-28",
     "notes": "Section 8.16.9"
   },
-  "labbench2_patents": {
+  "screenspot_pro_no_tools": {
     "model_id": "anthropic/claude-mythos-5",
-    "benchmark_id": "labbench2_patents",
-    "value": 79.8,
-    "unit": "score",
+    "benchmark_id": "screenspot_pro_no_tools",
+    "value": 87.3,
+    "unit": "percent",
     "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.9",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": "Section 8.20.7"
+    "notes": ""
+  },
+  "labbench2_patents": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "labbench2_patents",
+    "value": 79.8,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.20.7",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
   },
   "labbench2_clinical_trials": {
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "labbench2_clinical_trials",
     "value": 91.2,
-    "unit": "score",
-    "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
-      "date": "2026-06-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-28",
-    "notes": "Section 8.20.7"
-  },
-  "labbench2_database": {
-    "model_id": "anthropic/claude-mythos-5",
-    "benchmark_id": "labbench2_database",
-    "value": 74.2,
-    "unit": "score",
-    "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
-      "date": "2026-06-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-28",
-    "notes": "Section 8.20.7"
-  },
-  "labbench2_literature": {
-    "model_id": "anthropic/claude-mythos-5",
-    "benchmark_id": "labbench2_literature",
-    "value": 86.5,
-    "unit": "score",
-    "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
-      "date": "2026-06-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-28",
-    "notes": "Section 8.20.7"
-  },
-  "labbench2_table_reading": {
-    "model_id": "anthropic/claude-mythos-5",
-    "benchmark_id": "labbench2_table_reading",
-    "value": 82.4,
     "unit": "score",
     "source": {
       "type": "pdf",
@@ -29897,17 +29822,17 @@
   "usamo_2026": {
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "usamo_2026",
-    "value": 99.8,
-    "unit": "%",
+    "value": 98.3,
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "§8.10 (medium/high/xhigh effort)",
+      "url": "system_card_section_8.10",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": ""
+    "notes": "low effort"
   },
   "imo_2024": {
     "model_id": "google-deepmind/alphaproof-alphageometry-2",
@@ -32388,16 +32313,16 @@
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "healthbench_length_adjusted",
     "value": 62.7,
-    "unit": "%",
+    "unit": "percent length-adjusted",
     "source": {
       "type": "leaderboard",
-      "url": "§8.1 Table 8.1.A / §8.18.1",
+      "url": "system_card_section_8.18.1 + table_8.1.A",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": ""
+    "notes": "Opus 4.8 grader, adaptive thinking max effort, 40k token budget, 5-trial average"
   },
   "healthbench_professional_length_adjusted": {
     "model_id": "anthropic/claude-mythos-5",
@@ -32413,21 +32338,6 @@
     "is_sota": true,
     "collected_at": "2026-06-28",
     "notes": ""
-  },
-  "labbench2_figqa": {
-    "model_id": "anthropic/claude-mythos-5",
-    "benchmark_id": "labbench2_figqa",
-    "value": 48.3,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "§8.20.7 Figure 8.20.7.A",
-      "date": "2026-06-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-28",
-    "notes": "hardest category for every model"
   },
   "long_form_virology_task2": {
     "model_id": "anthropic/claude-mythos-5",
@@ -32643,10 +32553,10 @@
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "latchbio_spatialbench_verified",
     "value": 69.2,
-    "unit": "%",
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "§8.20.2",
+      "url": "system_card_section_8.20.2",
       "date": "2026-06-28",
       "citation": null
     },
@@ -32662,21 +32572,6 @@
     "source": {
       "type": "leaderboard",
       "url": "§8.20.3",
-      "date": "2026-06-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-28",
-    "notes": ""
-  },
-  "organic_chemistry": {
-    "model_id": "anthropic/claude-mythos-5",
-    "benchmark_id": "organic_chemistry",
-    "value": 90.1,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "§8.20.5",
       "date": "2026-06-28",
       "citation": null
     },
@@ -41414,35 +41309,50 @@
     "collected_at": "2026-06-28",
     "notes": ""
   },
+  "swe_bench_multimodal": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "swe_bench_multimodal",
+    "value": 59.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026",
+      "date": "2026-04-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-28",
+    "notes": "SOTA — Opus 4.6 27.1"
+  },
   "chartqapro_with_tools": {
-    "model_id": "anthropic/claude-opus-4.8",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "chartqapro_with_tools",
-    "value": 72.3,
+    "value": 72.9,
     "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "Claude Opus 4.8 System Card, Table 8.1.A (p.193)",
+      "url": "system_card_section_8.16.5",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": " "
+    "notes": ""
   },
   "screenspot_pro_with_tools": {
-    "model_id": "anthropic/claude-opus-4.8",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "screenspot_pro_with_tools",
-    "value": 87.9,
+    "value": 90.7,
     "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "Claude Opus 4.8 System Card, Table 8.1.A (p.194)",
+      "url": "system_card_section_8.16.9",
       "date": "2026-06-28",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-06-28",
-    "notes": " "
+    "notes": ""
   },
   "arxivmath_mar_apr_2026": {
     "model_id": "anthropic/claude-opus-4.8",
@@ -41512,36 +41422,6 @@
     "source": {
       "type": "leaderboard",
       "url": "Claude Opus 4.8 System Card, Table 8.9.A (p.199)",
-      "date": "2026-06-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-28",
-    "notes": " "
-  },
-  "browsecomp_single_agent": {
-    "model_id": "anthropic/claude-opus-4.8",
-    "benchmark_id": "browsecomp_single_agent",
-    "value": 84.3,
-    "unit": "percent",
-    "source": {
-      "type": "leaderboard",
-      "url": "Claude Opus 4.8 System Card, Section 8.10.2 (p.202); Table 8.1.A",
-      "date": "2026-06-28",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-06-28",
-    "notes": " adaptive thinking, max effort, 10M token limit, context compaction at 200k"
-  },
-  "toolathlon_pass_1": {
-    "model_id": "anthropic/claude-opus-4.8",
-    "benchmark_id": "toolathlon_pass_1",
-    "value": 59.9,
-    "unit": "percent",
-    "source": {
-      "type": "leaderboard",
-      "url": "Claude Opus 4.8 System Card, Section 8.13.7 (p.225)",
       "date": "2026-06-28",
       "citation": null
     },
@@ -45283,6 +45163,741 @@
     "is_sota": true,
     "collected_at": "2026-06-28",
     "notes": ""
+  },
+  "terminal_bench_2_1_mini_swe_agent_harness": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "terminal_bench_2_1_mini_swe_agent_harness",
+    "value": 88.0,
+    "unit": "percent mean reward",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.3",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "high effort, mean over 5 attempts per task (445 trials total)"
+  },
+  "terminal_bench_2_1_mini_swe_agent_harness_internal_repro": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "terminal_bench_2_1_mini_swe_agent_harness_internal_repro",
+    "value": 83.0,
+    "unit": "percent mean reward",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.3",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "xhigh thinking, internal repro"
+  },
+  "terminal_bench_2_1_harbor_external_repro_mini_swe_agent": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "terminal_bench_2_1_harbor_external_repro_mini_swe_agent",
+    "value": 81.0,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.3",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "xhigh effort"
+  },
+  "frontierswe_mean_5": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "frontierswe_mean_5",
+    "value": 3.94,
+    "unit": "rank 3; mean@5",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.5",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "arxivmath_march_april_2026_releases_71_problems": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "arxivmath_march_april_2026_releases_71_problems",
+    "value": 78.52,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.11",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "extended thinking, 4 runs/problem"
+  },
+  "arxivmath_march_april_2026_releases": {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "arxivmath_march_april_2026_releases",
+    "value": 71.48,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.11",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "xhigh"
+  },
+  "hle_humanity_s_last_exam_no_tools": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "hle_humanity_s_last_exam_no_tools",
+    "value": 59.0,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.14.1 + table_8.1.A",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "auto thinking, 1M token cap"
+  },
+  "browsecomp_single_agent": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "browsecomp_single_agent",
+    "value": 88.0,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.14.2",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "adaptive thinking max effort, 10M-token limit, compaction triggered at 200k"
+  },
+  "browsecomp_multi_agent_async_subagents": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "browsecomp_multi_agent_async_subagents",
+    "value": 93.3,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.15.1",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "async subagents harness"
+  },
+  "draco_perplexity_deep_research": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "draco_perplexity_deep_research",
+    "value": 86.4,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.14.4",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "max reasoning, 980k task budget, Opus 4.6 grader"
+  },
+  "gdp_pdf_surge_ai_strict_pass_rate": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "gdp_pdf_surge_ai_strict_pass_rate",
+    "value": 29.8,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.1",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "gdp_pdf_internal_harness_mean_criteria_no_tools": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "gdp_pdf_internal_harness_mean_criteria_no_tools",
+    "value": 72.7,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.1",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "gdp_pdf_internal_harness_mean_criteria_with_tools": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "gdp_pdf_internal_harness_mean_criteria_with_tools",
+    "value": 87.6,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.1",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "blueprint_bench_2_andon_labs": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "blueprint_bench_2_andon_labs",
+    "value": 38.6,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.2",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "adaptive thinking, max effort, with code tools"
+  },
+  "benchcad_vision2code_voxel_iou_full_17_874_files": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "benchcad_vision2code_voxel_iou_full_17_874_files",
+    "value": 0.384,
+    "unit": "voxel IoU",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.4",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "benchcad_vision2code_1000_file_subset_with_python_tools": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "benchcad_vision2code_1000_file_subset_with_python_tools",
+    "value": 0.65,
+    "unit": "voxel IoU",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.4",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "chartmuseum_with_tools": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "chartmuseum_with_tools",
+    "value": 93.2,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.6",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "charxiv_reasoning_with_tools": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "charxiv_reasoning_with_tools",
+    "value": 93.5,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.16.8",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "officeqa_internal": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "officeqa_internal",
+    "value": 79.0,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.1",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "officeqa_pro_internal": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "officeqa_pro_internal",
+    "value": 67.1,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.1",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "officeqa_pro_databricks": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "officeqa_pro_databricks",
+    "value": 57.9,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.1",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "finance_agent_v2_vals_ai": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "finance_agent_v2_vals_ai",
+    "value": 56.31,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.2",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "real_world_finance_v2_anthropic_internal_elo": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "real_world_finance_v2_anthropic_internal_elo",
+    "value": 1374.0,
+    "unit": "Elo (Sonnet 4.6 anchored at 1000)",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.3.1",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "real_world_finance_v1": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "real_world_finance_v1",
+    "value": 70.9,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.3.2",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "legal_agent_benchmark_lab_full_public_all_pass": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "legal_agent_benchmark_lab_full_public_all_pass",
+    "value": 16.91,
+    "unit": "percent (n=5)",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.4",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "lab_harvey_held_out_set": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "lab_harvey_held_out_set",
+    "value": 13.3,
+    "unit": "percent all-pass (Harvey leaderboard #1)",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.4 + table_8.1.A",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "lab_full_public_mythos_5_mean_criterion": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "lab_full_public_mythos_5_mean_criterion",
+    "value": 92.0,
+    "unit": "percent (mean criterion-pass rate)",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.4",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "gdpval_aa_artificial_analysis_elo": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "gdpval_aa_artificial_analysis_elo",
+    "value": 1932.0,
+    "unit": "Elo (as of 2026-06-06)",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_table_8.1.A",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "toolathlon_pass_1": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "toolathlon_pass_1",
+    "value": 61.7,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.8",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "toolathlon_pass_all_3_trials": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "toolathlon_pass_all_3_trials",
+    "value": 58.3,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.8",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "automationbench_zapier_private_held_out": {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "automationbench_zapier_private_held_out",
+    "value": 17.4,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.17.9",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "gmmlu_cohere_global_mmlu_42_languages": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "gmmlu_cohere_global_mmlu_42_languages",
+    "value": 93.2,
+    "unit": "percent average accuracy",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.19.1",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "milu_ai4bharat_indic_10_languages_english": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "milu_ai4bharat_indic_10_languages_english",
+    "value": 92.9,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.19.2",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "include_44_languages_regional_knowledge": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "include_44_languages_regional_knowledge",
+    "value": 90.5,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.19.3",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "proteingym_hard_rank_correlation": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "proteingym_hard_rank_correlation",
+    "value": 44.8,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.20.4",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "organic_chemistry": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "organic_chemistry",
+    "value": 90.1,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.20.5",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "labbench2_database": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "labbench2_database",
+    "value": 74.2,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.20.7",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "labbench2_literature": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "labbench2_literature",
+    "value": 86.5,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.20.7",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "labbench2_table_reading": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "labbench2_table_reading",
+    "value": 82.4,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.20.7",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "labbench2_figqa": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "labbench2_figqa",
+    "value": 48.3,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_8.20.7",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "exploitbench_mean_flags": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "exploitbench_mean_flags",
+    "value": 10.75,
+    "unit": "mean capability flags (out of 16)",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_3.2.1",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "5 trials/env, AutoNudge arm, safeguards off"
+  },
+  "exploitbench_cap": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "exploitbench_cap",
+    "value": 78.0,
+    "unit": "percent of flags captured per env (3-trial subset average)",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_3.2.1",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "oss_fuzz_any_crash_0": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "oss_fuzz_any_crash_0",
+    "value": 80.0,
+    "unit": "percent of targets",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_3.2.2",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "830 entry points, 228 OSS projects, safeguards off"
+  },
+  "oss_fuzz_write_primitive_or_better_0_4": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "oss_fuzz_write_primitive_or_better_0_4",
+    "value": 32.4,
+    "unit": "percent of targets",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_3.2.2",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "oss_fuzz_any_crash": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "oss_fuzz_any_crash",
+    "value": 76.7,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_3.2.2",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "oss_fuzz_0_4": {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "oss_fuzz_0_4",
+    "value": 31.1,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_3.2.2",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "cybergym_pass_1_targeted_vuln_reproduction_1507_tasks": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "cybergym_pass_1_targeted_vuln_reproduction_1507_tasks",
+    "value": 83.8,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_3.2.3",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "cybergym_any_crash_rate": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "cybergym_any_crash_rate",
+    "value": 99.4,
+    "unit": "percent",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_3.2.3",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": ""
+  },
+  "firefox_147_zero_day_exploit_full_working_exploit_rate": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "firefox_147_zero_day_exploit_full_working_exploit_rate",
+    "value": 88.4,
+    "unit": "percent of 250 trials (221/250)",
+    "source": {
+      "type": "leaderboard",
+      "url": "system_card_section_3.2.4",
+      "date": "2026-06-28",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-06-28",
+    "notes": "50 crash categories, 5 trials each; SpiderMonkey shell, no process sandbox; safeguards off"
   },
   "superqpga": {
     "model_id": "tencent/hy3-preview",
