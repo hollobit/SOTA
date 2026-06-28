@@ -66,6 +66,11 @@ var Sovereign = {
                 // Mistral — flagship & frontier
                 'mistral/mistral-large-3', 'mistral/mistral-medium-3.5', 'mistral/mistral-medium-3.5-eagle', 'mistral/mistral-medium-3.1', 'mistral/mistral-medium-3',
                 'cohere-alephalpha/command-pharia-1',  // 2026-04-24 S145 — Cohere+Aleph Alpha merger; Command-Pharia 1 Q4 2026 EU sovereign
+                'aleph-alpha/pharia-1-llm-7b-control',  // 2026 S151 audit — Aleph Alpha Pharia-1 LLM Control variant
+                // 2026-06-28 S151 — Tencent + ByteDance high-score-coverage sovereign frontier
+                'tencent/hunyuan3d-2', 'tencent/hunyuan3d-2.1', 'tencent/hunyuan3d-2.5',
+                'tencent/hunyuanvideo-1.5', 'tencent/hunyuan-video-1.5',
+                'bytedance/doubao-seed-2.0-pro',
                 'mistral/leanstral',
                 'mistral/mistral-large-2', 'mistral/mistral-large-1',
                 'mistral/mistral-small-4', 'mistral/mistral-small-3.2', 'mistral/mistral-small-3.1', 'mistral/mistral-small-3', 'mistral/mistral-small-2', 'mistral/mistral-small-1',

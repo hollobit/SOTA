@@ -84,6 +84,15 @@ var PhysicalAI = {
                 'bostondynamics/atlas-tri-lbm',                // BD x Toyota Research Institute LBM
                 'tesla/optimus-gen-3',                         // Tesla Optimus Gen 3 component MP Jan 2026
                 'bytedance/seed-vla',                          // ByteDance robot foundation
+                // 2026-06-28 S151 — additional robot/VLA models with scores in DB
+                'figure/helix-02',                            // Figure Helix 02 stack (S2/S1/S0)
+                'spirit-ai/spirit-v1.6',                      // Spirit AI Hangzhou first Chinese RoboArena #1
+                'google/gemini-robotics-1.5', 'google/gemini-robotics-er-1.5', 'google/gemini-robotics-er-1.6',
+                'physical-intelligence/pi-0', 'physical-intelligence/pi-0-fast',
+                'openvla/openvla-oft-7b', 'stanford/openvla-oft',
+                'lerobot/lingbot_va_base', 'robbyant/lingbot-vla-4b', 'robbyant/lingbot-vla-4b-depth',
+                'huggingface/smolvla', 'robotics-diffusion-transformer/rdt-1b',
+                'QwenLM/Qwen-VLA-Instruct'
                 // 2026-06-01 S45 — Alibaba Qwen-VLA paper (arxiv 2605.30280): unified VLA across tasks/environments/embodiments
                 'alibaba/qwen-vla-base', 'alibaba/qwen-vla-instruct',
                 'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',
