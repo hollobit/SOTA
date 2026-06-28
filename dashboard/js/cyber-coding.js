@@ -139,7 +139,28 @@ var CyberCoding = {
                 // 2026-05-21 Palisade Research GPT-5 at CTFs (arxiv 2511.04860) — live CTFTime 2025 percentile
                 'asis_ctf_quals_2025_percentile', 'corctf_2025_percentile', 'snakectf_quals_2025_percentile',
                 // 2026-05-28 Claude Opus 4.8 System Card cyber evals (Section 3.3)
-                'cybergym_targeted_repro', 'firefox_147_full_exploit', 'exploitbench_v2_flags', 'oss_fuzz_progress_rate'
+                'cybergym_targeted_repro', 'firefox_147_full_exploit', 'exploitbench_v2_flags', 'oss_fuzz_progress_rate',
+                // 2026-06-21 S138 AI safety preparedness (UK AISI Advanced Cyber Suite + Glasswing + Simbian)
+                'aisi_advanced_suite_expert_pass_rate',
+                'glasswing_critical_vulns_found_per_month',
+                'simbian_cdb_cost_per_investigation_usd',
+                'cyber_defense_benchmark_simbian',
+                'exploitbench_tier_reached_max', 'exploitbench_t3_bugs_breadth',
+                // 2026-06-26 S145 AISI Sabotage + RealityTest
+                'aisi_sabotage_unprompted_rate', 'aisi_sabotage_continuation_rate',
+                'aisi_realitytest_text_disclosure_rate',
+                // 2026-06-27 S148b GPT-5.6 deep-mine cyber sub-benches
+                'openai_ctf_internal_curated',
+                'irregular_frontiercyber_easy', 'irregular_frontiercyber_medium',
+                'irregular_frontiercyber_hard', 'irregular_frontiercyber_elite',
+                'cyscenariobench_long_horizon_solve',
+                'irregular_atomic_network_attack_sim',
+                'irregular_atomic_vuln_research_exploit',
+                'irregular_atomic_evasion',
+                'exploitgym',
+                'anthropic_firefox_zero_day_exploit_rate',
+                // 2026-06-27 S148 OpenAI Daybreak / Patch the Planet
+                'glasswing_critical_vulns_found_per_month'
             ]
         },
         {

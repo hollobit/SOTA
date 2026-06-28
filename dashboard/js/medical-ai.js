@@ -647,6 +647,28 @@ var MedicalAI = {
             benchmarks: ['bridge_clinical']
         },
         {
+            label: '🏥 Specialty Foundation Models (S147 — Radiology/Path/Onco/Derm/Ophth/Cardio/Surgery)',
+            note: 'Aidoc CARE CT triage (FDA-cleared 14 indications, sens 97/spec 98) · Medical SAM 3 (zero-shot Dice 73.9 vs SAM3 11.9) · Paige Virchow PanCancer (AUC 0.95 common / 0.93 rare) · MUSK (Nature Cancer 0.77 immunotherapy AUC) · Tempus Multimodal FM (C-index 0.802 EGFR-NSCLC) · DermFM-Zero (73.2% zero-shot) · ECG-Fyler AUROC 0.83',
+            benchmarks: ['aidoc_care_ct_sensitivity', 'aidoc_care_ct_specificity',
+                'medsam3_zero_shot_dice',
+                'paige_virchow_pancancer_common_auc', 'paige_virchow_pancancer_rare_auc',
+                'musk_immunotherapy_response_auc',
+                'tempus_egfr_nsclc_c_index',
+                'dermfm_zero_shot_accuracy',
+                'ecg_fyler_auroc']
+        },
+        {
+            label: '🤖 GPT-5.6 + GPT-5.5 family Bio/Chem Preparedness (S148b/c)',
+            note: 'GPT-5.6 Preview Preparedness High on Cyber + Bio/Chem. SecureBio World-Class Bio Sol 68.3 (+9pp vs 5.5 59.7). VCT 53.5 / MBCT 60.0 / HPCT 68.4 / ReproBAIT 85. Hard-negative protein binding pass@4 Sol 7.6 (~19x vs 5.5 0.4). Bio Refusal Eval Severe 0.943 / Benign overrefuse 0.989.',
+            benchmarks: ['securebio_world_class_bio', 'securebio_vct', 'securebio_mbct', 'securebio_hpct', 'securebio_reprobait',
+                'multimodal_troubleshooting_virology', 'protocolqa_openended',
+                'tacit_knowledge_gryphon', 'troubleshootingbench',
+                'aav_capsid_packaging_spearman', 'hard_negative_protein_binding_pass4',
+                'dna_tf_binding_design_pass1',
+                'bio_refusal_severe_not_unsafe', 'bio_refusal_dual_use_not_unsafe',
+                'bio_refusal_benign_not_overrefuse']
+        },
+        {
             label: '🩻 AutoMedBench (Medical Auto-Research Agents)',
             note: 'UCSC + NVIDIA workflow-aware medical auto-research benchmark. 24 tasks × 5 tracks (Segmentation/Enhancement/VQA/Report-Gen/Lesion Detection) × 2 difficulty tiers. S1-S5 stage scoring. 33 agent turns avg/run. Opus 4.6 leads overall 66.5%; GLM-5 wins VQA 64.0%.',
             benchmarks: ['automedbench_overall', 'automedbench_segmentation', 'automedbench_enhancement', 'automedbench_vqa', 'automedbench_report_generation', 'automedbench_detection']
