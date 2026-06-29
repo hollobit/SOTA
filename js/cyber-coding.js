@@ -723,10 +723,29 @@ var CyberCoding = {
         var modelScores = this._getScoresForBenchmarks(benchmarkIds);
         var self = this;
 
+        // Exclude count-type benchmarks — a single Glasswing 6,202 row or
+        // Tulongfeng 3,432 row destroys the y-axis for 0-100% benches.
+        // We look at the benchmark's metric/unit fields and drop anything
+        // whose unit is count/USD/seconds, or whose metric name carries a
+        // count suffix. The dropped IDs are surfaced in a footer note so the
+        // user still knows they exist.
+        function isPercentLike(bid) {
+            var b = self._benchmarks && self._benchmarks.find(function(x) { return x.id === bid; });
+            if (!b) return true;  // assume %
+            var unit = (b.unit || '').toLowerCase();
+            if (unit === 'count' || unit === 'usd' || unit === 's' || unit === 'sec' || unit === 'tokens') return false;
+            var metric = (b.metric || '').toLowerCase();
+            if (/_count$/.test(metric) || /count$/.test(metric)) return false;
+            if (/_usd$/.test(metric) || /^cost/.test(metric)) return false;
+            return true;
+        }
+        var droppedBids = benchmarkIds.filter(function(bid) { return !isPercentLike(bid); });
+        var percentBids = benchmarkIds.filter(isPercentLike);
+
         // Benchmark-centric grouping: x-axis = benchmarks, series = top models.
         // Filter benchmarks that have at least one score, ordered by coverage
         // (most-evaluated first) so the densest columns sit on the left.
-        var benchWithCoverage = benchmarkIds.map(function(bid) {
+        var benchWithCoverage = percentBids.map(function(bid) {
             var count = 0;
             Object.keys(modelScores).forEach(function(mid) {
                 if (modelScores[mid] && modelScores[mid][bid]) count++;
