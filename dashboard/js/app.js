@@ -686,16 +686,64 @@ var App = {
                         'video-gen':1, timeline:1, trends:1
                     };
 
+                    // Cold-load placeholder: show a "loading…" hint inside the
+                    // tab pane until scores+module both resolve. Without this,
+                    // first-click of a SCORE_DEPENDENT tab paints a blank white
+                    // area for 6-12 seconds while current.json (6.4 MB raw)
+                    // downloads and parses — looks like the site is broken.
+                    function showTabLoading(tid) {
+                        var pane = document.getElementById('tab-' + tid);
+                        if (!pane) return;
+                        if (pane.dataset._loadingShown === '1') return;
+                        // Only inject the loader when the pane appears empty.
+                        if (pane.children.length > 0) {
+                            var rendered = false;
+                            for (var i = 0; i < pane.children.length; i++) {
+                                if (pane.children[i].offsetHeight > 40) { rendered = true; break; }
+                            }
+                            if (rendered) return;
+                        }
+                        pane.dataset._loadingShown = '1';
+                        var spinner = document.createElement('div');
+                        spinner.className = 'tab-cold-loader';
+                        spinner.setAttribute('role', 'status');
+                        spinner.setAttribute('aria-live', 'polite');
+                        spinner.style.cssText = 'display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:80px 20px;color:#9ca3af;font-size:13px;';
+                        var dot = document.createElement('div');
+                        dot.style.cssText = 'width:32px;height:32px;border:3px solid #1f2937;border-top-color:#3b82f6;border-radius:50%;animation:tabSpin 0.8s linear infinite;';
+                        spinner.appendChild(dot);
+                        var label = document.createElement('div');
+                        label.textContent = 'Loading benchmark data…';
+                        spinner.appendChild(label);
+                        // Inject keyframes once
+                        if (!document.getElementById('tab-cold-loader-style')) {
+                            var st = document.createElement('style');
+                            st.id = 'tab-cold-loader-style';
+                            st.textContent = '@keyframes tabSpin{to{transform:rotate(360deg)}}';
+                            document.head.appendChild(st);
+                        }
+                        pane.appendChild(spinner);
+                    }
+                    function clearTabLoading(tid) {
+                        var pane = document.getElementById('tab-' + tid);
+                        if (!pane) return;
+                        var loader = pane.querySelector('.tab-cold-loader');
+                        if (loader) loader.remove();
+                        delete pane.dataset._loadingShown;
+                    }
+
                     // Load the tab's JS module(s) first (no-op for tabs
                     // without lazy modules), then render. Module load + score
                     // fetch run in parallel.
                     var modPromise = self._ensureTabModule(tabId);
                     if (SCORE_DEPENDENT[tabId]) {
+                        // Show loader only when scores haven't arrived yet.
+                        // Cached cases (return visit) skip the spinner.
+                        if (!self.data.scores || self.data.scores.length === 0) {
+                            showTabLoading(tabId);
+                        }
                         Promise.all([modPromise, self._ensureScores()]).then(function() {
-                            // _ensureScores will have re-run the tab's init()
-                            // through its own try-block — but that fires before
-                            // the script even exists for lazy modules. So we
-                            // explicitly re-init here once both are ready.
+                            clearTabLoading(tabId);
                             var initFn = self._TAB_INIT[tabId];
                             if (initFn) { try { initFn(self); } catch (e) {} }
                             self._renderTab(tabId);
