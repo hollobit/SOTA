@@ -510,15 +510,30 @@ var FrontierCompare = {
         var anchors = this._anchorsFor(category);
         var seen = {};
         var ids = [];
-        this._scores.forEach(function(s) {
-            if (anchors.indexOf(s.benchmark_id) === -1) return;
-            if (seen[s.model_id]) return;
-            seen[s.model_id] = true;
-            // Apply class filter (frontier / agent-product / edge-slm)
-            var k = self._modelClass(s.model_id);
-            if (self._classFilter[k] === false) return;
-            ids.push(s.model_id);
-        });
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byBench) {
+            anchors.forEach(function(bid) {
+                var rows = idx.byBench[bid];
+                if (!rows) return;
+                for (var i = 0; i < rows.length; i++) {
+                    var s = rows[i];
+                    if (seen[s.model_id]) continue;
+                    seen[s.model_id] = true;
+                    var k = self._modelClass(s.model_id);
+                    if (self._classFilter[k] === false) continue;
+                    ids.push(s.model_id);
+                }
+            });
+        } else {
+            this._scores.forEach(function(s) {
+                if (anchors.indexOf(s.benchmark_id) === -1) return;
+                if (seen[s.model_id]) return;
+                seen[s.model_id] = true;
+                var k = self._modelClass(s.model_id);
+                if (self._classFilter[k] === false) return;
+                ids.push(s.model_id);
+            });
+        }
         return ids;
     },
 
@@ -596,11 +611,24 @@ var FrontierCompare = {
             var total = (function() {
                 var seen = {};
                 var n = 0;
-                self._scores.forEach(function(s) {
-                    if (anchors.indexOf(s.benchmark_id) === -1) return;
-                    if (seen[s.model_id]) return;
-                    seen[s.model_id] = true; n++;
-                });
+                var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+                if (idx && idx.byBench) {
+                    anchors.forEach(function(bid) {
+                        var rows = idx.byBench[bid];
+                        if (!rows) return;
+                        for (var i = 0; i < rows.length; i++) {
+                            var mid = rows[i].model_id;
+                            if (seen[mid]) continue;
+                            seen[mid] = true; n++;
+                        }
+                    });
+                } else {
+                    self._scores.forEach(function(s) {
+                        if (anchors.indexOf(s.benchmark_id) === -1) return;
+                        if (seen[s.model_id]) return;
+                        seen[s.model_id] = true; n++;
+                    });
+                }
                 return n;
             })();
             var label = (category === 'composite_aaii') ? 'AAII-scored' : 'ECI-scored';
@@ -734,6 +762,7 @@ var FrontierCompare = {
         this._models = App.data.models;
         this._benchmarks = App.data.benchmarks;
         this._scores = App.data.scores;
+        this._invalidateScoreMap();
 
         // Load persisted class-filter state once per render cycle.
         this._loadClassFilter();
@@ -966,22 +995,46 @@ var FrontierCompare = {
             return self._models.some(function(m) { return m.id === mid; });
         });
 
-        // Build a fast score lookup
-        var scoreMap = {};
-        this._scores.forEach(function(s) { scoreMap[s.model_id + '|' + s.benchmark_id] = s.value; });
+        // Build a fast score lookup. Prefer App's pre-built index if available
+        // (saves a full 17K-row forEach scan); falls back to local map otherwise.
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        var scoreMap;
+        if (idx && idx.byModelBench) {
+            scoreMap = {};
+            // Cheaper to alias than to copy 17K keys; we just project value-only into a fresh map.
+            Object.keys(idx.byModelBench).forEach(function(k) { scoreMap[k] = idx.byModelBench[k].value; });
+        } else {
+            scoreMap = {};
+            this._scores.forEach(function(s) { scoreMap[s.model_id + '|' + s.benchmark_id] = s.value; });
+        }
 
         // Summary banner
         var allBenchIds = this.PERF_SUITES.reduce(function(acc, s) { return acc.concat(s.benchmarks); }, []);
-        var allBenchSet = {};
-        allBenchIds.forEach(function(b) { allBenchSet[b] = true; });
+        var rowSet = {};
+        rowIds.forEach(function(m) { rowSet[m] = true; });
         var totalScores = 0;
         var benchHits = {};
-        this._scores.forEach(function(s) {
-            if (allBenchSet[s.benchmark_id] && rowIds.indexOf(s.model_id) !== -1) {
-                totalScores++;
-                benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
-            }
-        });
+        if (idx && idx.byBench) {
+            allBenchIds.forEach(function(bid) {
+                var rows = idx.byBench[bid];
+                if (!rows) return;
+                for (var i = 0; i < rows.length; i++) {
+                    if (rowSet[rows[i].model_id]) {
+                        totalScores++;
+                        benchHits[bid] = (benchHits[bid] || 0) + 1;
+                    }
+                }
+            });
+        } else {
+            var allBenchSet = {};
+            allBenchIds.forEach(function(b) { allBenchSet[b] = true; });
+            this._scores.forEach(function(s) {
+                if (allBenchSet[s.benchmark_id] && rowSet[s.model_id]) {
+                    totalScores++;
+                    benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
+                }
+            });
+        }
         var activeBenchCount = Object.keys(benchHits).length;
         var summary = document.createElement('p');
         summary.className = 'text-xs text-gray-500 mb-3';
@@ -1170,13 +1223,24 @@ var FrontierCompare = {
     },
 
     _getScoreMap: function() {
+        // Memoize — re-renders of the same tab hit this map repeatedly.
+        if (this._scoreMapCache) return this._scoreMapCache;
         var map = {};
-        this._scores.forEach(function(s) {
-            var key = s.model_id + '|' + s.benchmark_id;
-            map[key] = s.value;
-        });
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byModelBench) {
+            Object.keys(idx.byModelBench).forEach(function(k) {
+                map[k] = idx.byModelBench[k].value;
+            });
+        } else {
+            this._scores.forEach(function(s) {
+                map[s.model_id + '|' + s.benchmark_id] = s.value;
+            });
+        }
+        this._scoreMapCache = map;
         return map;
     },
+
+    _invalidateScoreMap: function() { this._scoreMapCache = null; },
 
     _getModelName: function(modelId) {
         var m = this._models.find(function(m) { return m.id === modelId; });

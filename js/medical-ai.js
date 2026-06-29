@@ -1106,19 +1106,40 @@ var MedicalAI = {
             });
         });
         var allBenchIds = this.BENCHMARK_SUITES.reduce(function(acc, s) { return acc.concat(s.benchmarks); }, []);
-        this._scores.forEach(function(s) {
-            if (allBenchIds.indexOf(s.benchmark_id) !== -1 && allModelIds.indexOf(s.model_id) === -1) {
-                if (self._getModel(s.model_id)) allModelIds.push(s.model_id);
-            }
-        });
+        var idxMed = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idxMed && idxMed.byBench) {
+            allBenchIds.forEach(function(bid) {
+                var rows = idxMed.byBench[bid];
+                if (!rows) return;
+                for (var i = 0; i < rows.length; i++) {
+                    var mid = rows[i].model_id;
+                    if (allModelIds.indexOf(mid) === -1 && self._getModel(mid)) allModelIds.push(mid);
+                }
+            });
+        } else {
+            this._scores.forEach(function(s) {
+                if (allBenchIds.indexOf(s.benchmark_id) !== -1 && allModelIds.indexOf(s.model_id) === -1) {
+                    if (self._getModel(s.model_id)) allModelIds.push(s.model_id);
+                }
+            });
+        }
 
         var totalScores = 0, benchHits = {};
-        this._scores.forEach(function(s) {
-            if (allBenchIds.indexOf(s.benchmark_id) !== -1) {
-                totalScores++;
-                benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
-            }
-        });
+        if (idxMed && idxMed.byBench) {
+            allBenchIds.forEach(function(bid) {
+                var rows = idxMed.byBench[bid];
+                if (!rows) return;
+                totalScores += rows.length;
+                benchHits[bid] = rows.length;
+            });
+        } else {
+            this._scores.forEach(function(s) {
+                if (allBenchIds.indexOf(s.benchmark_id) !== -1) {
+                    totalScores++;
+                    benchHits[s.benchmark_id] = (benchHits[s.benchmark_id] || 0) + 1;
+                }
+            });
+        }
         var summary = document.createElement('p');
         summary.className = 'text-xs text-gray-500 mb-3';
         var sb = document.createElement('strong');
@@ -1570,9 +1591,18 @@ var MedicalAI = {
 
     _bestScoreFor: function(mid) {
         var best = 0;
-        this._scores.forEach(function(s) {
-            if (s.model_id === mid && typeof s.value === 'number' && s.value > best) best = s.value;
-        });
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byModel) {
+            var rows = idx.byModel[mid] || [];
+            for (var i = 0; i < rows.length; i++) {
+                var v = rows[i].value;
+                if (typeof v === 'number' && v > best) best = v;
+            }
+        } else {
+            this._scores.forEach(function(s) {
+                if (s.model_id === mid && typeof s.value === 'number' && s.value > best) best = s.value;
+            });
+        }
         return best > 0 ? best : null;
     },
 

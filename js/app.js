@@ -429,6 +429,11 @@ var App = {
         });
     },
 
+    // Read-side accessor for the shared score index built inside
+    // _ensureScores(). Returns null if scores haven't arrived yet; tabs
+    // should fall back to their existing scan path in that case.
+    getScoreIndex: function() { return this._scoreIndex || null; },
+
     // Lazy fetch of scores/current.json. Returns a cached Promise so callers
     // can `App._ensureScores().then(...)` without worrying about racing.
     // Tabs that need scores (Leaderboard / Trends / Comparison / FrontierCompare
@@ -440,6 +445,23 @@ var App = {
         var base = this._dataBase || 'data';
         this._scoresPromise = this._fetch(base + '/scores/current.json').then(function(scores) {
             self.data.scores = scores || [];
+            // Build shared score index once per fetch. Tabs read from it via
+            // App.getScoreIndex() instead of doing O(N) forEach scans over
+            // self.data.scores. byBench[bid] -> score[]; byModelBench['mid|bid'] -> score.
+            // Each tab activation previously did 3-5 full scans of 17K scores
+            // with O(K) indexOf checks — index turns those into O(1) lookups.
+            try {
+                var idx = { byBench: {}, byModelBench: {}, byModel: {} };
+                self.data.scores.forEach(function(s) {
+                    var bid = s.benchmark_id, mid = s.model_id;
+                    if (!idx.byBench[bid]) idx.byBench[bid] = [];
+                    idx.byBench[bid].push(s);
+                    if (!idx.byModel[mid]) idx.byModel[mid] = [];
+                    idx.byModel[mid].push(s);
+                    idx.byModelBench[mid + '|' + bid] = s;
+                });
+                self._scoreIndex = idx;
+            } catch (e) { self._scoreIndex = null; }
             // Re-init modules that captured scores from loadData() (they ran
             // with [] at init time). Idempotent re-init is safe per module.
             try { if (typeof Comparison !== 'undefined') Comparison.init(self.data.models, self.data.benchmarks, self.data.scores); } catch (e) {}
