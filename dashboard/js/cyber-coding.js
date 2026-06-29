@@ -725,18 +725,30 @@ var CyberCoding = {
 
         // Exclude count-type benchmarks — a single Glasswing 6,202 row or
         // Tulongfeng 3,432 row destroys the y-axis for 0-100% benches.
-        // We look at the benchmark's metric/unit fields and drop anything
-        // whose unit is count/USD/seconds, or whose metric name carries a
-        // count suffix. The dropped IDs are surfaced in a footer note so the
-        // user still knows they exist.
+        // Three-layer filter: (1) metric/unit metadata tags, (2) name keywords
+        // for benches whose metadata is mistagged ('glasswing_critical_vulns_
+        // found_per_month' has metric=score but contains counts), (3) actual
+        // score magnitude as last-resort sanity bound.
+        var COUNT_NAME_PAT = /(count|cumulative|discovered|found|patches|assignments|projects|bugs|cve\/?ghsa)/i;
         function isPercentLike(bid) {
             var b = self._benchmarks && self._benchmarks.find(function(x) { return x.id === bid; });
-            if (!b) return true;  // assume %
+            if (!b) return true;  // assume % if metadata missing
             var unit = (b.unit || '').toLowerCase();
             if (unit === 'count' || unit === 'usd' || unit === 's' || unit === 'sec' || unit === 'tokens') return false;
             var metric = (b.metric || '').toLowerCase();
             if (/_count$/.test(metric) || /count$/.test(metric)) return false;
             if (/_usd$/.test(metric) || /^cost/.test(metric)) return false;
+            // Layer 2: name-pattern fallback for mistagged metric metadata.
+            if (b.name && COUNT_NAME_PAT.test(b.name)) return false;
+            // Layer 3: magnitude check — any score above 200 on a non-Elo
+            // bench is almost certainly a count (Elo ranges live in /elo|arena/).
+            var scores = (modelScores && Object.keys(modelScores)
+                .map(function(mid) { return modelScores[mid] && modelScores[mid][bid]; })
+                .filter(function(v) { return typeof v === 'number'; })) || [];
+            if (scores.length && Math.max.apply(null, scores) > 200) {
+                var nm = (b.name || '').toLowerCase();
+                if (!/elo|arena|rating/.test(nm)) return false;
+            }
             return true;
         }
         var droppedBids = benchmarkIds.filter(function(bid) { return !isPercentLike(bid); });
