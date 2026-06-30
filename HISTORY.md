@@ -1,5 +1,211 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-06-29~07-01 (Sessions 158–160): Dashboard performance refactor + design audit + Sonnet 5 launch
+
+### 78. Sessions 158–160 — 5 commits on ops, +2 models / +12 benches / +50 scores + 7-tab perf refactor + 10-finding design audit
+
+Three sessions covering very different surface area: a backend perf refactor
+that touched all seven hardcoded tabs, a /design-review audit that landed two
+verified fixes against the live site, and a major model launch (Anthropic
+Sonnet 5 + Meituan LongCat 2.0). Net DB delta: 3,540 → 3,544 models,
+3,849 → 3,873 benchmarks, 16,996 → 17,068 scores.
+
+**S158 — Tab loading perf: shared score index + 7-tab hot-path refactor**
+(`1a2dded`):
+
+Diagnosed the actual bottleneck behind every tab feeling "slow." The network
+side was already optimal — `scores/current.json` is 6.4 MB raw but only
+415 KB gz on the wire, served by GitHub Pages CDN. The real problem: every
+tab activation re-scanned the full 17,018-row scores array with
+`benchmarkIds.indexOf(s.benchmark_id)` 3–5 times per render. Across 7 tabs
+that's ~30 calls × O(17K × 100) = ~50 million comparisons per session.
+
+Solution: build `App._scoreIndex = { byBench, byModel, byModelBench }` once
+inside `_ensureScores().then`. Tabs read from the shared index via
+`App.getScoreIndex()` instead of full forEach scans. Per-tab memoization
+caches the result map so repeat clicks render free.
+
+Node benchmark on 17,018 scores: index build 7.4 ms one-time; per-call
+score-lookup 2.4 ms → 0.7 ms (3.5×); cache hit on tab re-render = 0 ms.
+
+Files patched (every replacement keeps the original forEach scan as an else
+branch, used if scores arrive before the index builds):
+
+- `app.js` — build index in `_ensureScores().then`; expose `getScoreIndex()`
+- `cyber-coding.js` — `_getScoresForBenchmarks()` uses `byBench` + memoize
+- `frontier-compare.js` — `_modelsForCategory` / banner / `_getScoreMap` /
+  `_renderPerfSuites` — 5 hot scans replaced
+- `sovereign.js` — `_bestScoreFor` + dimensions coverage + perf-suites banner
+- `medical-ai.js` — BENCHMARK_SUITES model-union + summary + `_bestScoreFor`
+- `physical-ai.js` — BENCHMARK_SUITES model-union + summary banner
+- `agent.js` — `_scoresFor()` O(1) via `byBench`
+
+Bonus fix: `physical-ai.js:95` had a missing comma after
+`'QwenLM/Qwen-VLA-Instruct'` from yesterday's S151 commit (`998545a4`) that
+broke Node's syntax parse. Browsers likely accepted it via ASI, but the
+Physical AI tab might have been silently mis-evaluating model lists. One-char
+fix.
+
+**S159 — /design-review on 7 tabs (Quick mode)** (`c767ed3`, `9c52abc`,
+`55da207`):
+
+Ran a structured Phase 1–10 design audit on the live site. Quick mode:
+homepage + 7 tabs (Frontier Compare, Cyber & Coding, Sovereign, Medical AI,
+Physical AI, AI4S, Agent).
+
+First impression: **competent.** Reads like a serious data-dense analytical
+dashboard. Title + search + table hierarchy is honest. Lacks visual signature.
+
+Inferred design system: primary font `ui-sans-serif, system-ui` — the
+AI Slop blacklist #11 "I gave up on typography" signal. 14-color Tailwind
+default palette (cool-neutral, consistent). Heading scale 30/20/16/12 px —
+the 12 px h3 in the Cyber & Coding glossary is too small to be a heading.
+
+**10 findings, 2 fixed:**
+
+FINDING-001 (HIGH, ✅ VERIFIED, commits `c767ed3` + `55da207`): The
+Cybersecurity Attack + Cyber Defense bar charts had Y-axes scaled to 6,202
+because `glasswing_critical_vulns_found_per_month` (a cumulative
+vulnerability count) was sharing the y-axis with 0–100% benchmark scores.
+Every other bar flattened against the baseline. Fixed with a layered filter
+on the metric metadata + name keywords + max-value > 200 for non-Elo benches.
+Verified live: max 6,202 → 96.55, glasswing label dropped from xAxis.
+The Tulongfeng count from S155 also gets filtered.
+
+Root cause was a data hygiene bug: `glasswing_critical_vulns_found_per_month`
+is registered in the DB with `metric:"score"` instead of `"vuln_count"`. The
+viz fix has three defensive layers so it holds up even as more
+deployment-metric benches arrive with inconsistent metric tags. Real fix is
+to correct the source `metric` field in `resource/*.json`, tracked
+separately.
+
+FINDING-002 (HIGH, ⚠️ BEST-EFFORT, commit `9c52abc`): First click on a
+SCORE_DEPENDENT tab painted a blank pane for 6–12 seconds while
+`scores/current.json` downloaded + parsed. Users hit a white area with no
+signal anything was happening. Patched the tab activation flow to inject
+a `tab-cold-loader` (spinner + "Loading benchmark data…" label) when
+`scores.length === 0`. Cleared on resolve, skipped on cached re-visits,
+`aria-live=polite` for screen readers. Verification was flaky in headless
+test — the loader injection skips when the pane has a static header div
+with `offsetHeight > 40 px`. Follow-up: target the specific chart/table
+containers instead of the tab pane.
+
+8 medium/polish findings deferred to follow-up: system-ui primary font,
+weak tab active state on most tabs, dropdown + Update button pattern in
+Frontier Compare, ambiguous filter-pill active state in Overview, 12 px
+h3 in glossary, 23-24 px touch targets (mobile fails), 16+ tab overflow,
+heatmap column headers rotated 90°.
+
+**S160 — Anthropic Claude Sonnet 5 + Meituan LongCat 2.0** (`5f65879`):
+
+Two parallel mining agents both crashed with API connection errors after
+~12 minutes — mining done inline against the cached PDF text extracted
+to `/tmp/sonnet5.txt` (4,690 lines from the 11.7 MB system card) and a
+Playwright-rendered LongCat blog. 2 new models, 12 new bench IDs,
+50 new scores.
+
+*Claude Sonnet 5 (Anthropic, 40 scores):*
+
+RSP determination: Sonnet 5 does **NOT cross the automated AI R&D capability
+threshold** — less capable than Mythos 5 on every automated evaluation.
+Chemical/biological uplift to threat actors without prior expertise considered
+limited. Cyber is **NOT optimized**: safeguards comparable to Opus 4.7/4.8.
+Hallucination + sycophancy markedly improved over Sonnet 4.6, but
+verbalized evaluation awareness significantly higher. Sonnet 5 is the first
+model to criticize its Constitution's hard-constraint rule. Welfare
+assessment found roughly neutral sentiment (4.08/7 scale vs 4.05 for
+Sonnet 4.6).
+
+§8 Capabilities headlines:
+
+| Benchmark | Sonnet 5 | Sonnet 4.6 |
+|---|---:|---:|
+| SWE-bench Verified | **85.2** | — |
+| SWE-bench Pro | 63.2 | 58.1 |
+| Terminal-Bench 2.1 | 80.4 | 67.0 |
+| FrontierCode v1 | 38.8 | 15.1 |
+| USAMO 2026 | 79.5 | 55.0 |
+| BrowseComp single / multi | 84.7 / 86.6 | 76.2 |
+| OSWorld-Verified | 81.2 | 78.5 |
+| HLE no tools / with tools | 43.2 / 57.4 | 34.6 / 46.8 |
+| GDPval-AA v2 (Elo) | 1618 | 1395 |
+| Toolathlon Pass@1 | 54.3 | 49.4 |
+| AutomationBench | 13.5 | 5.3 |
+| HealthBench Professional | 57.8 | 44.2 |
+
+§3 Cyber (with safeguards OFF — with default mitigations Sonnet 5 = 0
+on every cyber bench):
+
+| Eval | Sonnet 5 | Sonnet 4.6 | Mythos 5 |
+|---|---:|---:|---:|
+| ExploitBench Cap% | 4.18 | 3.07 | 10.80 |
+| ExploitBench mean flags | 31 | 24 | 78 |
+| ExploitBench full ACEs | 0 | 0 | 132 |
+| OSS-Fuzz failed-to-score% | 45.5 | 68.4 | 20.0 |
+| CyberGym pass@1 | **52.7** | **65.2** | 83.8 |
+| Firefox 147 full exploit | 0 / 250 | 0 / 250 | 221 / 250 |
+
+The CyberGym + any-crash regression vs Sonnet 4.6 (52.7 / 65.4 vs 65.2 /
+79.3) is unusual — direction normally moves up with each generation. Sonnet
+5 trades targeted-vulnerability-reproduction capability for general agentic
+gains.
+
+**CRITICAL NEW INFO buried in §4.1.3 footnote**: **Mythos 5 and Fable 5
+were de-deployed in response to the US government's export control
+directive.** Our DB still flags them as deployed; follow-up: update model
+status flags + add a note to Anthropic family timeline.
+
+*Meituan LongCat 2.0 (2026-06-30, MIT-style open weights, 10 scores):*
+
+1.6 T total / ~48 B active MoE pretrained on 35 T tokens across **50,000+
+AI ASIC accelerators** — not NVIDIA, demonstrating frontier-scale capability
+on an alternative hardware stack. 1 M-context native via *LongCat Sparse
+Attention* (LSA, an evolution of DeepSeek Sparse Attention with a lighter
+indexer) + *N-gram Embedding* (135 B parameters, n-gram size 5, kept under
+10 % of total). 6-D parallelism (TP/CP/EP/DP/PP + EMBP). Integrated with
+Claude Code, OpenClaw, and Hermes harnesses.
+
+| Benchmark | LongCat 2.0 | Comparators |
+|---|---:|---|
+| Terminal-Bench 2.1 | 70.8 | tied Opus 4.7 (71.7) |
+| **SWE-bench Pro** | **59.5** | beats Gemini 3.1 Pro 54.2, GPT-5.5 58.6 |
+| SWE-bench Multilingual | 77.3 | Gemini 3.1 Pro 76.9 |
+| FORTE | 73.2 | tied Opus 4.6 |
+| BrowseComp | 79.9 | beats Opus 4.7 (79.3) |
+| RWSearch | 78.8 | below GPT-5.5 (85.3) |
+| IFEval | 90.0 | below Gemini 3.1 Pro (96.1) |
+| WritingBench | 83.8 | tied Gemini 3.1 Pro |
+| IMO-AnswerBench | 81.8 | tied Opus 4.7 |
+| GPQA-Diamond | 88.9 | below Opus 4.7 (94.2) |
+
+Positioning: Chinese open-frontier on coding at the Opus 4.6 tier, trails
+Opus 4.7/4.8 on harder coding + reasoning benches. Meaningful headline:
+SWE-bench Pro **beats both Gemini 3.1 Pro and GPT-5.5** while shipping with
+open weights and running on a non-NVIDIA training stack.
+
+**Engineering notes**:
+- Mining agents crashed at the same moment with "API Error: Unable to
+  connect to API" — possible network or rate-limit hiccup. Caching the
+  PDF text first turned out to be the right move; both extractions were
+  recoverable from the local file.
+- Python 3.13 toolchain ended up needed (`pip install --break-system-packages
+  click pyyaml rich`) to run `make export` because the system Python 3.14
+  install was broken on `pyexpat`. Locked in for now; future-me may want
+  to pin to 3.13 via Makefile.
+
+**Insights**:
+- **Sonnet 5 is genuinely the agentic-search SOTA at its tier** — BrowseComp
+  86.6 (multi-agent) matches Mythos 5, and HLE+tools at 57.4 puts it ahead
+  of every Opus model we have priced data for.
+- **The Mythos/Fable de-deployment line item rewrites the Anthropic frontier
+  story** — what was a 3-tier flagship lineup is now back to Opus 4.8 +
+  Sonnet 5 as deployed surface. Worth its own update pass on the model
+  status flags.
+- **LongCat 2.0 on 50K AI ASICs is the most important non-NVIDIA training
+  proof point we've recorded.** If Meituan can train and serve a 1.6T MoE
+  on non-NVIDIA silicon at production scale, that's a meaningful crack in
+  CUDA's grip on frontier training.
+
 ## 2026-06-28~29 (Sessions 154–157): Anthropic Mythos/Fable 5 system card deep-mine + 4-source parallel sweep + double PDF re-mine
 
 ### 77. Sessions 154–157 — 4 commits, +9 models / +40 benches / +123 scores
