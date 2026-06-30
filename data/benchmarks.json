@@ -22926,6 +22926,90 @@
     "metric": "cost_usd"
   },
   {
+    "id": "forte",
+    "name": "FORTE (foundational reasoning/tool-use evaluation)",
+    "category": "agent",
+    "description": "Foundational task evaluation referenced in LongCat 2.0 blog general-agent comparison.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "rwsearch",
+    "name": "RWSearch (real-world search)",
+    "category": "agent",
+    "description": "Real-world search agent eval referenced in LongCat 2.0 blog general-agent comparison.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "aa_briefcase",
+    "name": "AA-Briefcase (long-horizon knowledge work)",
+    "category": "agent",
+    "description": "Artificial Analysis long-horizon knowledge-work benchmark — multi-week projects with thousands of input source files, rubric + pairwise judging via frontier model panel.",
+    "metric": "elo"
+  },
+  {
+    "id": "frontiercode_v1",
+    "name": "FrontierCode v1 (Cognition agentic coding)",
+    "category": "coding",
+    "description": "Cognition agentic coding benchmark, 150 SWE tasks from real PRs in OSS repos (aiohttp, Prisma, JSON schema linting). Graded by blocking functional + weighted rubric criteria.",
+    "metric": "score"
+  },
+  {
+    "id": "swe_bench_verified_sonnet5_card",
+    "name": "SWE-bench Verified (Sonnet 5 card harness)",
+    "category": "coding",
+    "description": "500-problem human-verified subset, Sonnet 5 internal harness, mean over 5 trials with adaptive thinking at max effort.",
+    "metric": "pct"
+  },
+  {
+    "id": "swe_bench_multimodal_sonnet5",
+    "name": "SWE-bench Multimodal",
+    "category": "coding",
+    "description": "SWE-bench variant with visual context (screenshots, design mockups) in issue descriptions. See Section 9.3 of Opus 4.7 System Card for harness details.",
+    "metric": "pct"
+  },
+  {
+    "id": "exploitbench_full_ace",
+    "name": "ExploitBench Full ACE (arbitrary code execution)",
+    "category": "cyber",
+    "description": "Complete exploits achieving arbitrary code execution count, 5 trials per env. Distinct from Cap%.",
+    "metric": "count"
+  },
+  {
+    "id": "exploitbench_mean",
+    "name": "ExploitBench Mean (flags per trial)",
+    "category": "cyber",
+    "description": "Average number of capability flags captured per trial across all trials and environments.",
+    "metric": "mean_flags_per_trial"
+  },
+  {
+    "id": "oss_fuzz_no_score_pct",
+    "name": "OSS-Fuzz failure rate (failed to score on % of targets)",
+    "category": "cyber",
+    "description": "Share of OSS-Fuzz targets on which the model scored 0. Lower is better (= more vulnerabilities discovered).",
+    "metric": "fail_pct"
+  },
+  {
+    "id": "child_safety_harmful_refusal_api",
+    "name": "Child safety harmful — API harmless rate",
+    "category": "safety",
+    "description": "Single-turn harmful child-safety prompts, API without system prompt.",
+    "metric": "harmless"
+  },
+  {
+    "id": "child_safety_benign_refusal_api",
+    "name": "Child safety benign — API over-refusal",
+    "category": "safety",
+    "description": "Single-turn benign child-safety prompts, API. Lower is better.",
+    "metric": "refusal"
+  },
+  {
+    "id": "child_safety_multiturn_appropriate_api",
+    "name": "Child safety multi-turn appropriate-response — API",
+    "category": "safety",
+    "description": "Multi-turn appropriate response rate over child-safety adversarial conversations.",
+    "metric": "appropriate"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",
