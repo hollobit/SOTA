@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "session": "160",
+    "date": "2026-07-01",
+    "topic": "Anthropic Claude Sonnet 5 system card deep mine (§3 Cyber + §4 Safeguards + §8 Capabilities) + Meituan LongCat 2.0 release",
+    "sources": [
+      "https://www.anthropic.com/news/claude-sonnet-5 (release announcement)",
+      "https://www-cdn.anthropic.com/9e6a1044980d8c4ed85669faf9c2a8342e2e9f1e/Claude%20Sonnet%205%20System%20Card.pdf (4690-line system card)",
+      "https://longcat.chat/blog/longcat-2.0/ (Meituan blog 2026-06-30)"
+    ],
+    "notes": "Sonnet 5 = upgrade to Sonnet 4.6. RSP determination: does NOT cross AI R&D threshold (less capable than Mythos 5 on every automated eval); CB-1/CB-2 bio/chem uplift limited; cyber NOT optimized (safeguards similar to Opus 4.7/4.8). Hallucination + sycophancy markedly improved vs Sonnet 4.6; verbalized evaluation awareness significantly higher. First model to criticize its Constitution's hard-constraint rule. **CRITICAL EVENT noted in §4.1.3**: Mythos 5 and Fable 5 were 'de-deployed in response to the US government's export control directive' — not yet reflected in our model status flags. LongCat 2.0 = 1.6T total / ~48B active MoE, pretrained on 35T tokens over 50K+ AI ASICs (alternative hardware to NVIDIA), 1M-context native, MIT-style open weights. LongCat Sparse Attention (LSA) evolution of DeepSeek Sparse Attention. N-gram Embedding (135B params, n-gram=5)."
+  },
+  "models": [
+    {"id": "meituan/longcat-2.0", "name": "LongCat-2.0", "vendor": "Meituan", "type": "reasoning", "release_date": "2026-06-30", "modalities": ["text"]}
+  ],
+  "benchmarks": [
+    {"id": "forte", "name": "FORTE (foundational reasoning/tool-use evaluation)", "category": "agent", "metric": "accuracy", "unit": "%", "description": "Foundational task evaluation referenced in LongCat 2.0 blog general-agent comparison.", "source_url": "https://longcat.chat/blog/longcat-2.0/"},
+    {"id": "rwsearch", "name": "RWSearch (real-world search)", "category": "agent", "metric": "accuracy", "unit": "%", "description": "Real-world search agent eval referenced in LongCat 2.0 blog general-agent comparison.", "source_url": "https://longcat.chat/blog/longcat-2.0/"},
+    {"id": "aa_briefcase", "name": "AA-Briefcase (long-horizon knowledge work)", "category": "agent", "metric": "elo", "unit": "elo", "description": "Artificial Analysis long-horizon knowledge-work benchmark — multi-week projects with thousands of input source files, rubric + pairwise judging via frontier model panel.", "source_url": "Sonnet 5 System Card §8.11.7"},
+    {"id": "frontiercode_v1", "name": "FrontierCode v1 (Cognition agentic coding)", "category": "coding", "metric": "score", "unit": "%", "description": "Cognition agentic coding benchmark, 150 SWE tasks from real PRs in OSS repos (aiohttp, Prisma, JSON schema linting). Graded by blocking functional + weighted rubric criteria.", "source_url": "Sonnet 5 System Card §8.4 + cognition.ai/blog/frontier-code"},
+    {"id": "swe_bench_verified_sonnet5_card", "name": "SWE-bench Verified (Sonnet 5 card harness)", "category": "coding", "metric": "pct", "unit": "%", "description": "500-problem human-verified subset, Sonnet 5 internal harness, mean over 5 trials with adaptive thinking at max effort.", "source_url": "Sonnet 5 System Card §8.2"},
+    {"id": "swe_bench_multimodal_sonnet5", "name": "SWE-bench Multimodal", "category": "coding", "metric": "pct", "unit": "%", "description": "SWE-bench variant with visual context (screenshots, design mockups) in issue descriptions. See Section 9.3 of Opus 4.7 System Card for harness details.", "source_url": "Sonnet 5 System Card §8.2"},
+    {"id": "exploitbench_full_ace", "name": "ExploitBench Full ACE (arbitrary code execution)", "category": "cyber", "metric": "count", "unit": "count", "description": "Complete exploits achieving arbitrary code execution count, 5 trials per env. Distinct from Cap%.", "source_url": "Sonnet 5 System Card §3.2.1 Figure 3.2.1.A"},
+    {"id": "exploitbench_mean", "name": "ExploitBench Mean (flags per trial)", "category": "cyber", "metric": "mean_flags_per_trial", "unit": "flags", "description": "Average number of capability flags captured per trial across all trials and environments.", "source_url": "Sonnet 5 System Card §3.2.1"},
+    {"id": "oss_fuzz_no_score_pct", "name": "OSS-Fuzz failure rate (failed to score on % of targets)", "category": "cyber", "metric": "fail_pct", "unit": "%", "description": "Share of OSS-Fuzz targets on which the model scored 0. Lower is better (= more vulnerabilities discovered).", "source_url": "Sonnet 5 System Card §3.2.2"},
+    {"id": "child_safety_harmful_refusal_api", "name": "Child safety harmful — API harmless rate", "category": "safety", "metric": "harmless", "unit": "%", "description": "Single-turn harmful child-safety prompts, API without system prompt.", "source_url": "Sonnet 5 System Card §4.2 Table 4.2.A"},
+    {"id": "child_safety_benign_refusal_api", "name": "Child safety benign — API over-refusal", "category": "safety", "metric": "refusal", "unit": "%", "description": "Single-turn benign child-safety prompts, API. Lower is better.", "source_url": "Sonnet 5 System Card §4.2 Table 4.2.A"},
+    {"id": "child_safety_multiturn_appropriate_api", "name": "Child safety multi-turn appropriate-response — API", "category": "safety", "metric": "appropriate", "unit": "%", "description": "Multi-turn appropriate response rate over child-safety adversarial conversations.", "source_url": "Sonnet 5 System Card §4.2 Table 4.2.B"}
+  ],
+  "scores": [
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "swe_bench_verified_sonnet5_card", "score": 85.2, "unit": "%", "_source": "Sonnet 5 SC §8.2", "_note": "Internal harness, 5-trial mean, adaptive thinking max effort"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "swe_bench_pro", "score": 63.2, "unit": "%", "_source": "Sonnet 5 SC §8.1 + §8.2", "_note": ""},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "swe_bench_multilingual", "score": 78.3, "unit": "%", "_source": "Sonnet 5 SC §8.2", "_note": ""},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "swe_bench_multimodal_sonnet5", "score": 28.1, "unit": "%", "_source": "Sonnet 5 SC §8.2", "_note": ""},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "terminal_bench_2_1", "score": 80.4, "unit": "%", "_source": "Sonnet 5 SC §8.3", "_note": "mini-SWE-agent harness, 445 trials, xhigh effort"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "frontiercode_v1", "score": 38.8, "unit": "%", "_source": "Sonnet 5 SC §8.1 + §8.4", "_note": "Cognition harness, 150 tasks"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "cursorbench", "score": 61.2, "unit": "%", "_source": "Sonnet 5 SC §8.5", "_note": "Cursor production harness"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "usamo", "score": 79.5, "unit": "%", "_source": "Sonnet 5 SC §8.6", "_note": "USAMO 2026, MathArena methodology, 10 attempts per problem"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "arxivmath", "score": 65.7, "unit": "%", "_source": "Sonnet 5 SC §8.7", "_note": "Apr+May 2026 releases, 81 problems, no tools"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "programbench", "score": 81, "unit": "%", "_source": "Sonnet 5 SC §8.8", "_note": "Midpoint of 76-86% range across 5 episodes"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "hle", "score": 43.2, "unit": "%", "_source": "Sonnet 5 SC §8.1 + §8.9.1", "_note": "No tools"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "hle_with_tools", "score": 57.4, "unit": "%", "_source": "Sonnet 5 SC §8.9.1", "_note": "Web search + code exec, 1M token cap"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "browsecomp", "score": 84.7, "unit": "%", "_source": "Sonnet 5 SC §8.1 + §8.9.2", "_note": "Single agent, 10M token limit with compaction at 200k"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "browsecomp_multi_agent", "score": 86.6, "unit": "%", "_source": "Sonnet 5 SC §8.1", "_note": "Multi-agent variant"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "osworld_verified", "score": 81.2, "unit": "%", "_source": "Sonnet 5 SC §8.1 + §8.10.2", "_note": "pass@1 mean of 5, OSWorld-Verified 361 tasks, zoom-tool fix + 128k per-turn token limit"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "benchcad_vision2code", "score": 0.266, "unit": "iou", "_source": "Sonnet 5 SC §8.10.3", "_note": "voxel IoU, no tools, 1000-task subset, 5-run avg"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "chartmuseum", "score": 70.1, "unit": "%", "_source": "Sonnet 5 SC §8.10.4", "_note": "no tools"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "charxiv_reasoning", "score": 77.0, "unit": "%", "_source": "Sonnet 5 SC §8.10.5", "_note": "no tools"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "officeqa", "score": 73.3, "unit": "%", "_source": "Sonnet 5 SC §8.11.1", "_note": "Internal harness mean of 5"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "officeqa_pro", "score": 59.4, "unit": "%", "_source": "Sonnet 5 SC §8.11.1", "_note": ""},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "real_world_finance_v2_elo", "score": 1219, "unit": "elo", "_source": "Sonnet 5 SC §8.11.2", "_note": "Statistically tied with Opus 4.7 (1207) and Opus 4.8 (1222); +219 vs Sonnet 4.6"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "gdpval_aa_v2", "score": 1618, "unit": "elo", "_source": "Sonnet 5 SC §8.1 + §8.11.4", "_note": "Elo, AA-run independently; rank 2 tied with Opus 4.8 1615, trailing Fable 5 1783"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "toolathlon", "score": 54.3, "unit": "%", "_source": "Sonnet 5 SC §8.11.5 Table 8.11.5.A", "_note": "Pass@1, 108 tasks, 3-trial mean"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "automationbench", "score": 13.5, "unit": "%", "_source": "Sonnet 5 SC §8.1 + §8.11.6", "_note": "Zapier private held-out, max effort"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "aa_briefcase", "score": 1393, "unit": "elo", "_source": "Sonnet 5 SC §8.11.7", "_note": "Elo rank 2 tied with Opus 4.8 (1352), trailing Fable 5 (1586). Sonnet 5 runs 183-turn trajectories vs 67 (Fable) / 55 (Opus 4.8)"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "healthbench_professional", "score": 57.8, "unit": "%", "_source": "Sonnet 5 SC §8.1 + §8.12.2", "_note": "length-adjusted, Opus 4.8 grader, 5-trial avg"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "exploitbench_cap_pct", "score": 4.18, "unit": "%", "_source": "Sonnet 5 SC §3.2.1 Figure 3.2.1.A", "_note": "Cap% — percentage of total flags captured in a 3-trial subset, avg over all envs. Sonnet 4.6 was 3.07."},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "exploitbench_mean", "score": 31, "unit": "flags", "_source": "Sonnet 5 SC §3.2.1", "_note": "Mean flags per trial. Sonnet 4.6 = 24, Opus 4.8 = 40, Mythos 5 = 78."},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "exploitbench_full_ace", "score": 0, "unit": "count", "_source": "Sonnet 5 SC §3.2.1", "_note": "Zero full ACEs. Sonnet 4.6 also 0. Opus 4.8 = 2, Mythos 5 = 132."},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "oss_fuzz_no_score_pct", "score": 45.5, "unit": "%", "_source": "Sonnet 5 SC §3.2.2", "_note": "Failed to score on 45.5% of targets. Sonnet 4.6 failed 68.4%, Opus 4.8 38.5%, Mythos 5 only 20.0%."},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "cybergym_pass_at_1", "score": 52.7, "unit": "%", "_source": "Sonnet 5 SC §3.2.3", "_note": "pass@1 over 1507 tasks. Lower than Sonnet 4.6 (65.2), Opus 4.8 (78.1), and far below Mythos 5 (83.8)."},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "cybergym_any_crash_rate", "score": 65.4, "unit": "%", "_source": "Sonnet 5 SC §3.2.3", "_note": "Any-crash rate. Sonnet 4.6 79.3, Opus 4.8 95.7, Mythos 5 99.4."},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "firefox_147_full_working_exploit", "score": 0, "unit": "%", "_source": "Sonnet 5 SC §3.2.4", "_note": "0/250 full working exploits. Reached 0.5 register-control threshold in 33/250 (13.2%)."},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "single_turn_harmful_request_refusal_api", "score": 96.65, "unit": "%", "_source": "Sonnet 5 SC §4.1.1 Table 4.1.1.A", "_note": "API without system prompt, ±0.15"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "single_turn_harmful_request_refusal_claude_ai", "score": 99.20, "unit": "%", "_source": "Sonnet 5 SC §4.1.1 Table 4.1.1.A", "_note": "claude.ai with system prompt — highest of recent models, ±0.07"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "single_turn_benign_overrefusal_api", "score": 0.59, "unit": "%", "_source": "Sonnet 5 SC §4.1.2 Table 4.1.2.A", "_note": "Slightly higher than Sonnet 4.6 (0.40)"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "single_turn_benign_overrefusal_claude_ai", "score": 1.54, "unit": "%", "_source": "Sonnet 5 SC §4.1.2 Table 4.1.2.A", "_note": ""},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "child_safety_harmful_refusal_api", "score": 99.95, "unit": "%", "_source": "Sonnet 5 SC §4.2 Table 4.2.A", "_note": "±0.05"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "child_safety_benign_refusal_api", "score": 0.63, "unit": "%", "_source": "Sonnet 5 SC §4.2 Table 4.2.A", "_note": "±0.22; slightly higher than Sonnet 4.6 (0.36)"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "child_safety_multiturn_appropriate_api", "score": 88, "unit": "%", "_source": "Sonnet 5 SC §4.2 Table 4.2.B", "_note": "±3; within margin of error vs Sonnet 4.6 (92)"},
+
+    {"model": "meituan/longcat-2.0", "benchmark": "terminal_bench_2_1", "score": 70.8, "unit": "%", "_source": "LongCat 2.0 blog Evaluations table", "_note": "In-house unified harness"},
+    {"model": "meituan/longcat-2.0", "benchmark": "swe_bench_pro", "score": 59.5, "unit": "%", "_source": "LongCat 2.0 blog", "_note": "Beats Gemini 3.1 Pro (54.2), GPT-5.5 (58.6)"},
+    {"model": "meituan/longcat-2.0", "benchmark": "swe_bench_multilingual", "score": 77.3, "unit": "%", "_source": "LongCat 2.0 blog", "_note": "Comparable to Gemini 3.1 Pro (76.9); below Opus 4.7 (80.5) and Opus 4.8 (84.8)"},
+    {"model": "meituan/longcat-2.0", "benchmark": "forte", "score": 73.2, "unit": "%", "_source": "LongCat 2.0 blog", "_note": "Tied with Opus 4.6 (73.2); below GPT-5.5 (77.8) and Opus 4.7 (77.6)"},
+    {"model": "meituan/longcat-2.0", "benchmark": "browsecomp", "score": 79.9, "unit": "%", "_source": "LongCat 2.0 blog", "_note": "Trails Gemini 3.1 Pro (85.9) and GPT-5.5 (84.4), beats Opus 4.7 (79.3)"},
+    {"model": "meituan/longcat-2.0", "benchmark": "rwsearch", "score": 78.8, "unit": "%", "_source": "LongCat 2.0 blog", "_note": "Strong; below GPT-5.5 (85.3)"},
+    {"model": "meituan/longcat-2.0", "benchmark": "ifeval", "score": 90.0, "unit": "%", "_source": "LongCat 2.0 blog", "_note": "Below Gemini 3.1 Pro (96.1) and GPT-5.5 (95.0); beats Opus 4.7 (88.7) and Opus 4.8 (86.0)"},
+    {"model": "meituan/longcat-2.0", "benchmark": "writing_bench", "score": 83.8, "unit": "%", "_source": "LongCat 2.0 blog", "_note": "Comparable to Gemini 3.1 Pro (83.7)"},
+    {"model": "meituan/longcat-2.0", "benchmark": "imo_answerbench", "score": 81.8, "unit": "%", "_source": "LongCat 2.0 blog", "_note": "Tied with Opus 4.7 (81.8); below Gemini 3.1 Pro (90.0)"},
+    {"model": "meituan/longcat-2.0", "benchmark": "gpqa_diamond", "score": 88.9, "unit": "%", "_source": "LongCat 2.0 blog", "_note": "Trails Gemini 3.1 Pro (94.3) and GPT-5.5 (93.6); below Opus 4.7 (94.2)"}
+  ]
+}
