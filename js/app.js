@@ -276,25 +276,31 @@ var App = {
         if (!hash) { this._activateTab('overview'); this.renderOverview(); return; }
 
         // Check if it's a benchmark or model deep link: #bench/gpqa_diamond or #model/anthropic/claude-opus-4.7
+        // Modal.showBenchmark/showModel/showVendor all read App.data.scores;
+        // wait for _ensureScores() before opening so cold-load deep links
+        // display real data instead of empty benchmark/score lists.
         if (hash.indexOf('bench/') === 0) {
             var benchId = hash.substring(6);
+            var self = this;
             this._activateTab('overview');
             this.renderOverview();
-            setTimeout(function() { Modal.showBenchmark(benchId); }, 300);
+            this._ensureScores().then(function() { Modal.showBenchmark(benchId); });
             return;
         }
         if (hash.indexOf('model/') === 0) {
             var modelId = hash.substring(6);
+            var self = this;
             this._activateTab('overview');
             this.renderOverview();
-            setTimeout(function() { Modal.showModel(modelId); }, 300);
+            this._ensureScores().then(function() { Modal.showModel(modelId); });
             return;
         }
         if (hash.indexOf('vendor/') === 0) {
             var vendorName = decodeURIComponent(hash.substring(7));
+            var self = this;
             this._activateTab('overview');
             this.renderOverview();
-            setTimeout(function() { Modal.showVendor(vendorName); }, 300);
+            this._ensureScores().then(function() { Modal.showVendor(vendorName); });
             return;
         }
 
@@ -429,6 +435,12 @@ var App = {
                     if (data) self.data.leaderboards[name] = data;
                 });
             }));
+        }).then(function() {
+            // Fire-and-forget kick of scores fetch so the Overview widgets +
+            // #model/#bench/#vendor deep-link modals have data by the time
+            // they need it. Explicit SCORE_DEPENDENT-tab clicks still
+            // wait on the same cached Promise (idempotent).
+            self._ensureScores().catch(function() {});
         });
     },
 
@@ -484,6 +496,18 @@ var App = {
                 var el = document.getElementById('last-updated');
                 if (el && latest) el.textContent = latest;
             }
+            // Re-render Overview if it's the active tab. Overview's Recent
+            // Data Feed widget iterates App.data.scores to count new scores
+            // per model in the last 7 days; if the initial render fired with
+            // scores=[] it showed "0 models received new scores" until user
+            // navigated away. Re-render only when Overview is currently
+            // visible so we don't blow away in-progress tab work.
+            try {
+                var overviewPane = document.getElementById('tab-overview');
+                if (overviewPane && !overviewPane.classList.contains('hidden')) {
+                    self.renderOverview();
+                }
+            } catch (e) {}
             return self.data.scores;
         });
         return this._scoresPromise;
