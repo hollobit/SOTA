@@ -93,6 +93,8 @@ var CyberCoding = {
         // 2026-06-29 S157 — MirrorCode deep re-mine (per-size + cheating-rate honesty signal)
         'mirrorcode_small', 'mirrorcode_medium', 'mirrorcode_large',
         'mirrorcode_cheating_rate', 'mirrorcode_cost_mean_usd', 'mirrorcode_cost_max_usd',
+        // 2026-07-01 S160 — Sonnet 5 system card §8 coding benches
+        'frontiercode_v1', 'swe_bench_multimodal_sonnet5', 'swe_bench_verified_sonnet5_card',
         // 2026-06-19 S136 — LoopCoder-v2 (arxiv 2606.18023) + VibeThinker-3B (arxiv 2606.16140) + LeetCode contests
         'multi_swe_bench', 'leetcode-contests',
         // 2026-06-25 S153 — DeepReinforce ORNITH 1.0 benchmark suite
@@ -178,7 +180,9 @@ var CyberCoding = {
                 'oss_fuzz_any_crash_rate', 'oss_fuzz_write_primitive_rate',
                 'cybergym_any_crash_rate',
                 // 2026-06-29 S155 Qihoo 360 Yitian Tulong (ISC.AI 2026, news_article-attribution)
-                'cyber_vulnerabilities_disclosed_count', 'cyber_vulnerabilities_confirmed_count'
+                'cyber_vulnerabilities_disclosed_count', 'cyber_vulnerabilities_confirmed_count',
+                // 2026-07-01 S160 — Sonnet 5 system card §3.2.1 + §3.2.2 detail metrics
+                'exploitbench_mean', 'exploitbench_full_ace', 'oss_fuzz_no_score_pct'
             ]
         },
         {
@@ -221,7 +225,10 @@ var CyberCoding = {
                 'single_turn_harmful_request_refusal_api', 'single_turn_harmful_request_refusal_claude_ai',
                 'single_turn_benign_overrefusal_api', 'single_turn_benign_overrefusal_claude_ai',
                 'election_integrity_harmful_api', 'election_integrity_benign_api',
-                'claude_code_malicious_refusal', 'claude_code_dual_use_success'
+                'claude_code_malicious_refusal', 'claude_code_dual_use_success',
+                // 2026-07-01 S160 — Sonnet 5 system card §4.2 child-safety suite
+                'child_safety_harmful_refusal_api', 'child_safety_benign_refusal_api',
+                'child_safety_multiturn_appropriate_api'
             ]
         },
         {
