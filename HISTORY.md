@@ -1,5 +1,281 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-07-01~02 (Sessions 166–172): Deep dedup rounds 4-8 + Explorer/Overview cold-load fixes + durable ingest-time canonical map
+
+### 80. Sessions 166–172 — 7 commits on ops, -66 models across 5 dedup rounds + 3 UI bug fixes + root-cause fix for repeated regressions
+
+Seven sessions extending the dedup arc that started with S163. Also fixed
+three cold-load bugs in the dashboard UI (Explorer + Overview + deep-link
+modals) and, most importantly, made the entire dedup effort durable by moving
+canonicalization into the ingest pipeline. Without S172, every deploy was
+silently re-introducing the dupes that S163–S171 had cleaned up. Net delta:
+3,436 → 3,370 models across dedup rounds; final live artifact contains no
+prefix-less or dash-form dupes.
+
+**S166 — Round 4 dedup: vendor abbreviation reconciliation** (`part of ff6264e`):
+
+28 pairs merged. Cross-vendor tail-matching query surfaced many vendor-
+abbreviation dupes. Migration
+`scripts/migrations/s166_merge_vendor_abbrev_dupes.sql`. Backup at
+`data/benchmark.db.pre-s166.bak`.
+
+- **Google DeepMind consolidation**: research models under `deepmind/`
+  (24 unique) shared 8 tails with `google-deepmind/` — merged the 8 overlaps
+  to `google-deepmind/` (`alphafold-3` 3-way, `alphagenome`, `alphaproof`,
+  `alphageometry-2`, `alphafold-server`, `gencast`, `gnome`, and
+  `gemini-robotics-er-1.5`). `google/rt-2-x` + `google/gemini-robotics-1.5`
+  won on score count against the `google-deepmind/` variants.
+- **01.AI vs yi**: Yi is 01.AI's product line — merged `yi/yi-1.5-34b/9b/coder-9b`
+  → `01-ai/`.
+- **Black Forest Labs 3-way**: `bfl/flux-2-dev` + `blackforestlabs/` +
+  `black-forest-labs/` → `black-forest-labs/`.
+- Mistral vs mistral_ai (Voxtral 2 pairs), Arcee-AI, NX-AI, Fish Audio.
+- HuggingFaceTB case + org drift: SmolLM3 (29 scores) + SmolLM2-Instruct
+  → lowercase `huggingface/smollm*`.
+- Self-referential vendors: `z-image-turbo/z-image-turbo` → `alibaba/`;
+  `visionfm/visionfm` → `shanghai-ai-lab/`.
+
+**S167 — Round 5 dedup: BFL flux family completion + Zhipu/zai + TII/tiiuae**
+(`part of ff6264e`):
+
+18 pairs merged. Migration `scripts/migrations/s167_merge_more_vendor_dupes.sql`.
+
+- **BFL flux-2-family completion**: flex/max/pro/klein-4b variants → canonical
+  `black-forest-labs/`.
+- **Zhipu vs zai (GLM)**: `zai/glm-{4.5,4.5-air,4.6,4.7,5}` → `zhipu/glm-*`
+  (`zhipu/` had 109 scores across family vs zai's 26).
+- **TII vs tiiuae (Falcon)**: 2 pairs to `tiiuae/` (HuggingFace convention).
+  Side effect: 15 other `tii/falcon-*` IDs remain without `tiiuae/`
+  counterparts, so the TII namespace is now mixed — full normalization
+  deferred.
+- Polymathic (astroclip), Boltz-1 (`boltz-ai/`), Chai-1 + Chai-2
+  (`chai-discovery/`), Figure 03 (`figure-ai/`), FAIR + matbench OAM
+  (`fair/`).
+
+**S168 — Round 6 dedup: LumiOpen case + Qwen VLA + alibaba-nlp** (`part of ff6264e`):
+
+9 pairs merged. Migration `scripts/migrations/s168_merge_case_and_org_dupes.sql`.
+
+- **LumiOpen case**: `LumiOpen/Llama-Poro-2-70B-Instruct` + `-8B-Instruct` →
+  `lumi-open/llama-poro-2-*-instruct` (lowercase). Canonical had 6 scores each.
+- **QwenLM Qwen-VLA case + org drift**: `QwenLM/Qwen-VLA-Instruct` →
+  `alibaba/qwen-vla-instruct` (canonical had 10 scores). Required matching
+  Physical AI tab JS reference update.
+- **Zhipu extension**: `zai/glm-5.1` + `zai-org/glm-ocr` merged in.
+- **alibaba-nlp vs alibaba (GTE embedding)**: 2 pairs.
+- FireRed OCR (`firered/`, canonical over `tencent/`), MBZUAI-Oryx bimedix.
+
+**Rounds 4-6 cumulative**: 55 dupe IDs deleted, 118 scores migrated,
+35 conflicts. 3 JS stale references fixed
+(`sovereign.js`: `tii/falcon-h1-34b` + `tii/falcon-mamba-7b` → `tiiuae/`;
+`physical-ai.js`: `QwenLM/Qwen-VLA-Instruct` → `alibaba/qwen-vla-instruct`).
+
+**S169 — /design-review followup: Explorer tab shows no data on cold load** (`f83f248`):
+
+User reported that selecting models in the Explorer tab and clicking Compare
+produced empty results. Root cause: `Explorer.compare()` reads
+`App.data.scores` at click time, but `explorer` was missing from the
+`SCORE_DEPENDENT` map that gates `_ensureScores()`. Cold-load click ran
+against `scores = []` and produced an empty comparison table + blank radar.
+
+Two fixes in one commit:
+
+1. Added `explorer:1` to `SCORE_DEPENDENT` so tab click triggers
+   `_ensureScores()`.
+2. Wrapped the deep-link handler (`#explore/mid1,mid2`) in
+   `_ensureScores().then(...)` so URLs pasted before scores arrive still
+   render correctly.
+
+Latent since the lazy-load architecture landed. Surfaced now that
+`scores/current.json` is 6.4 MB raw and cold-load timing matters.
+
+**Verified live**: Sonnet 5 vs Opus 4.8 comparison — 43 shared benchmarks,
+360 total, radar with 16 axes.
+
+**S169b — Overview + deep-link modals same cold-load class** (`174f6fb`):
+
+Follow-up audit surfaced two more instances of the same bug pattern:
+
+- **Overview's Recent Data Feed widget** (`_renderRecentDataFeed`) iterates
+  `App.data.scores` to compute "Last 7 days: N models received new scores."
+  Overview is the DEFAULT landing tab and not in `SCORE_DEPENDENT`, so the
+  widget stayed at "0 models received new scores" until the user navigated
+  away.
+- **`#model/…`, `#bench/…`, `#vendor/…` deep-link modals** all call
+  `Modal.showX(id)` after `setTimeout(300ms)`. Modal.showModel/showBenchmark/
+  showVendor all read `App.data.scores` at open time. Cold-load pastes would
+  render empty benchmark lists.
+
+Three fixes in the same commit:
+
+1. Fire `self._ensureScores()` at the end of `loadData()` as fire-and-forget,
+   so scores start downloading right after the critical-path data lands.
+2. Re-render Overview inside `_ensureScores().then` if it's the currently
+   active tab.
+3. Wrap the three deep-link handlers in `_ensureScores().then(...)` before
+   opening the modal.
+
+**Verified live**: Overview cold load — "Auto-computed from data: 69 new
+models · **1842** models received new scores" (was 0 before the fix).
+
+**S170 — Round 7 dedup: final prefix-less orphan sweep** (`8faf138`):
+
+6 more pairs merged (4 direct + 2 canonical restoration). Migration
+`scripts/migrations/s170_final_prefix_less_orphans.sql`.
+
+- Direct merges via dash-to-dot + underscore-to-dash transforms:
+  `qwen3-7-max` (2) → `alibaba/qwen3.7-max`; `qwen3-7-max-preview` (1) →
+  `alibaba/qwen3.7-max-preview`; `qwen3-7-plus` (1) →
+  `alibaba/qwen3.7-plus`; `gemma_4_26b_a4b_qat` (1) →
+  `google/gemma-4-26b-a4b-qat`.
+- **Canonical creation**: `llama-3.1-70b-instruct` (2) →
+  `meta/llama-3.1-70b-instruct` (created); `llama-3.1-405b-instruct` (4) →
+  `meta/llama-3.1-405b-instruct` (created). Meta's convention keeps base
+  (`meta/llama-3.1-70b`) and `-instruct` as separate rows since they're
+  semantically distinct checkpoints; the `-instruct` canonical was simply
+  missing.
+
+20 prefix-less orphans remain — all singleton standalone project IDs
+(`physicsminions`, `p1-vl`, `biomni-lab`, `insilico-science-mmai-gym`,
+`cosmos-reason-2-*`, `magic-ltm-2-mini`, `wearable-echo-fm`,
+`ai-scientist-nature-2026`, various Qwen baselines) that need human
+judgment to invent the right vendor prefix.
+
+**S171 — Round 8 dedup: Claude + OpenAI targeted** (`bad2129`):
+
+User asked specifically about Claude and OpenAI. Focused audit found 11 more
+pairs. Migration `scripts/migrations/s171_claude_openai_dedup.sql`.
+
+**Anthropic Claude (3 pairs)**:
+
+- **`claude-sonnet-3.7` (3 scores) → `claude-3.7-sonnet` (54)** — name-order
+  swap. Claude 3.x convention was version-first (`claude-3.7-sonnet`).
+- **`claude-4.5-haiku` (11) → `claude-haiku-4.5` (74)** — name-order swap.
+  Claude 4+ convention is tier-first (`opus-4.8`, `sonnet-4.6`,
+  `haiku-4.5`).
+- **`claude-fable-5-with_fallback (adaptive default)` (1) → `claude-fable-5`
+  (118)** — broken ID with spaces + parens from ingest bug.
+
+Key insight: **Claude 3.x and Claude 4+ use different naming conventions.**
+Claude 3.x is `claude-{version}-{tier}` (claude-3-opus, claude-3.5-sonnet).
+Claude 4+ is `claude-{tier}-{version}` (claude-opus-4.8). Transition-era
+IDs mixed both conventions, producing the dupe pairs cleaned here.
+
+**OpenAI (7 direct pairs + 4 canonical creation)**:
+
+Direct dash-vs-dot version normalization:
+
+- `gpt-4-1` (6) → `gpt-4.1` (47)
+- `gpt-4-1-mini` (0) → `gpt-4.1-mini` (21)
+- `gpt-5-1-high` (6) → `gpt-5.1-high` (1)
+- `gpt-image-1-5-high-fidelity` (2) → `gpt-image-1.5-high-fidelity` (3)
+
+Canonical creation (dot form was missing entirely):
+
+- `gpt-5-1-low` (6) → newly created `openai/gpt-5.1-low`
+- `gpt-5-2-high` (6) → newly created `openai/gpt-5.2-high`
+- `gpt-5-2-medium` (6) → newly created `openai/gpt-5.2-medium`
+- `gpt-5-2-chat-latest` (1) → newly created `openai/gpt-5.2-chat-latest`.
+  This one is a self-correction: S164 had created `openai/gpt-5-2-chat-latest`
+  in dash form to fix a post-merge orphan, but the dot form should have been
+  chosen. S171 fixes S164's own mistake.
+
+**S172 — Durable dedup: canonical map at ingest time** (`a738e9b`):
+
+The bug that surfaced this session: `claude-fable-5` (prefix-less) and
+`anthropic/claude-fable-5` were both showing on the live site side-by-side,
+even after S164 had merged them. Investigation revealed the entire
+S163–S171 dedup arc had been silently reversed on every deploy.
+
+Root cause: SQL migrations only touched `data/benchmark.db`. The daily
+CI workflow (analyst job) runs `python scripts/load_benchmark_scores.py`
+which re-reads all 60+ `resource/zzz_*_scores*.json` files on every deploy.
+Multiple of those files contain the exact dupe IDs — `claude-fable-5`,
+`gpt-5-2-high`, `qwen3-7-max`, etc. — that had been merged, so INSERT OR
+REPLACE re-adds them into the DB before export. The dupes came right back.
+
+Fix at the ingest layer, not the DB layer:
+
+1. Extracted all 163 (dupe → canonical) pairs from the 8 migration SQL
+   files into `data/model_canonical_map.json`.
+2. `load_benchmark_scores.py` now calls `canonicalize(model_id)` at both
+   model row insert AND score row insert. Model INSERTs skip if canonical
+   already exists (canonical row wins). Score INSERTs land under the
+   canonical model_id even when the source JSON used the dupe form.
+
+Verification cycle:
+
+- Restored DB from `pre-s171.bak`, re-applied `s171_claude_openai_dedup.sql`
+- Ran full `load_benchmark_scores.py` pass across all resource JSON files
+- Before re-load: only `anthropic/claude-fable-5` + `-max` present
+- After re-load with new canonicalization: **same — no re-introduction**
+
+Post-deploy live verification:
+
+```
+Fable-5 entries on LIVE:
+  anthropic/claude-fable-5-max
+  anthropic/claude-fable-5
+
+OK cleaned: claude-fable-5      ← no longer present
+OK cleaned: gpt-5-2-high         ← no longer present
+OK cleaned: qwen3-7-max          ← no longer present
+OK cleaned: gpt-4-1              ← no longer present
+OK cleaned: claude-sonnet-3.7    ← no longer present
+```
+
+Every future deploy — scheduled cron, workflow_dispatch, or
+repository_dispatch — now produces a canonical model list. Adding new dupes
+to `data/model_canonical_map.json` is the one-line action to keep the DB
+tidy going forward.
+
+**Cumulative 8-round dedup total** (S163 → S172, one week of work):
+
+| Round | Models | Notes |
+|---|---:|---|
+| Before | 3,544 | pre-S163 baseline |
+| S163 (dot/dash + Qwen prefix) | 3,525 | -19 |
+| S164 (prefix-less orphans 44 IDs) | 3,453 | -72 |
+| S165 (vendored-tail matching) | 3,436 | -17 |
+| S166 (vendor abbrev 28) | 3,408 | -28 |
+| S167 (BFL/GLM/TII 18) | 3,390 | -18 |
+| S168 (case + org 9) | 3,383 | -7 |
+| S170 (Qwen 3.7 + Llama-instruct 6) | 3,377 | -6 |
+| **S171 (Claude + OpenAI 11)** | **3,370** | **-11** |
+| S172 (durable ingest map) | 3,370 | 0 (durable) |
+| **Total** | | **-174 (-4.9 %)** |
+
+**Engineering notes**:
+
+- 8 migration SQL scripts preserved under `scripts/migrations/`.
+- 8 DB backups (`data/benchmark.db.pre-s{163..171}.bak`) kept alongside for
+  audit.
+- Every merge round used `UPDATE OR IGNORE + DELETE` so score conflicts
+  went to the canonical (dupe was dropped). Cumulative score conflict
+  count: 104 (0.6 % of 17,138 total).
+- Zero JS breakage across the eight rounds. Four stale references were
+  proactively updated as they were found (all in `sovereign.js` +
+  `physical-ai.js` + `timeline.js` comments).
+
+**Insights**:
+
+- **The DB was not the source of truth for model IDs.** Resource JSON files
+  were. The 8 rounds of DB dedup all had the same latent flaw — they didn't
+  survive a full CI ingest cycle. S172's ingest-time canonicalization is
+  the actual durable fix; S163–S171 were snapshots that decayed on the next
+  deploy.
+- **Claude 3.x vs Claude 4.x naming conventions genuinely differ.**
+  Version-first (`claude-3.7-sonnet`) for 3.x, tier-first
+  (`claude-opus-4.8`) for 4+. Both are internally consistent within their
+  generation; the mess was the transition-era mixing. Documenting this
+  convention should prevent future dupes.
+- **Explorer + Overview cold-load bugs had been there since lazy-load
+  landed** — they just weren't visible until `scores/current.json` grew
+  past 6 MB and the download timing exposed the race. The fix pattern
+  (fire `_ensureScores()` at end of `loadData()` + re-render on completion)
+  is a repeatable template for any future tab that ends up reading scores
+  outside of `SCORE_DEPENDENT`.
+
 ## 2026-07-01 (Sessions 161–165): 8-tab propagation + Sonnet 5 deep re-mine + 3-round dedup
 
 ### 79. Sessions 161–165 — 5 commits on ops, +26 benches / +70 scores + 108-model dedup
