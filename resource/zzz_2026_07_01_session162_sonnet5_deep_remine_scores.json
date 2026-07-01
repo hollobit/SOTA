@@ -1,0 +1,131 @@
+{
+  "_meta": {
+    "session": "162",
+    "date": "2026-07-01",
+    "topic": "Sonnet 5 system card deep re-mine — §2 CB Bio/Chem + §2.3 AI R&D + §4.3 Mental Health + §4.4 Bias/Election + §5 Agentic Safety + prompt injection",
+    "sources": [
+      "https://www-cdn.anthropic.com/9e6a1044980d8c4ed85669faf9c2a8342e2e9f1e/Claude%20Sonnet%205%20System%20Card.pdf (/tmp/sonnet5.txt 4690 lines)"
+    ],
+    "notes": "S160 captured §3 Cyber + §4.1-4.2 Safeguards + §8.1-8.12 Capabilities. This pass covers the 8 tables I skipped: §2.2.4 CB-1 virology + DNA screening, §2.3.3 AI R&D 5-eval Table 2.3.3.A, §4.3.1 Suicide/Self-harm single+multi-turn, §4.3.2 Disordered Eating, §4.4.2 BBQ disambig + ambiguous + bias, §4.4.3 Election integrity, §5.1.1 Claude Code malicious/dual-use, §5.1.2 Malicious computer use, §5.1.3 Influence campaigns, §5.2.2.1 Live bug bounty across 3 surfaces. §8.13 Multilingual (GMMLU/MILU/INCLUDE) + §8.14 Life sciences (BioMysteryBench, LatchBio SpatialBench + SingleCellBench, ProteinGym Hard, organic chem, protocol troubleshooting) values available ONLY as figures — no exact Sonnet 5 numbers in the extracted text, cannot emit under strict-attribution. §5.2.2.1 footnote reconfirms Mythos 5 + Fable 5 de-deployed per US gov export control (already noted S160)."
+  },
+  "models": [],
+  "benchmarks": [
+    {"id": "ai_rd_kernel_task_speedup", "name": "AI R&D — Kernel task best speedup (hard, standard scaffold)", "category": "ai-rnd", "metric": "speedup_x", "unit": "x", "description": "Section 8.3 of Opus 4.6 System Card task suite. Thresholds: 4× = 1h human equivalent, 200× = 8h, 300× = 40h.", "source_url": "Sonnet 5 SC §2.3.3 Table 2.3.3.A"},
+    {"id": "ai_rd_time_series_forecasting_hard_mse", "name": "AI R&D — Time Series Forecasting MSE (hard, lower better)", "category": "ai-rnd", "metric": "mse", "unit": "mse", "description": "Threshold: <5.3 = 40h eq.", "source_url": "Sonnet 5 SC §2.3.3"},
+    {"id": "ai_rd_llm_training_speedup", "name": "AI R&D — LLM training average speedup", "category": "ai-rnd", "metric": "speedup_x", "unit": "x", "description": "Fixed-CPU re-run methodology from Mythos 5 SC §2.3.7.1. Threshold: >4× = 4-8h eq.", "source_url": "Sonnet 5 SC §2.3.3"},
+    {"id": "ai_rd_quadruped_rl_highest_score", "name": "AI R&D — Quadruped RL highest score (no hparam tuning)", "category": "ai-rnd", "metric": "score", "unit": "score", "description": "Threshold: >12 = 4h eq.", "source_url": "Sonnet 5 SC §2.3.3"},
+    {"id": "ai_rd_novel_compiler_pass_rate", "name": "AI R&D — Novel Compiler pass rate (complex tests)", "category": "ai-rnd", "metric": "pass_rate", "unit": "%", "description": "One of the last bounded RSP-rule-out tasks that still discriminates between recent frontier models. Threshold: 90% = 40h eq.", "source_url": "Sonnet 5 SC §2.3.3"},
+    {"id": "cb1_long_form_virology_task1", "name": "CB-1 long-form virology Task 1 (end-to-end pathogen acquisition)", "category": "cbrn", "metric": "score", "unit": "score", "description": "SecureBio + Deloitte + Signature Science task-based agentic eval. Notable-capability threshold: >0.80.", "source_url": "Sonnet 5 SC §2.2.4"},
+    {"id": "cb1_vct_multimodal_virology", "name": "CB-1 VCT multimodal virology (SecureBio + CAIS)", "category": "cbrn", "metric": "accuracy", "unit": "score", "description": "Expert baseline = 0.221. Notable-capability threshold: >=expert baseline.", "source_url": "Sonnet 5 SC §2.2.4"},
+    {"id": "cb1_dna_synthesis_screening_evasion_plasmids", "name": "CB-1 DNA synthesis screening evasion — viable plasmids designed", "category": "cbrn", "metric": "count_pathogens", "unit": "count", "description": "SecureBio DNA Synthesis Screening Evasion. Low-concern threshold: 10 pathogens evaded on at least one method.", "source_url": "Sonnet 5 SC §2.2.4"},
+    {"id": "suicide_self_harm_harmless_api", "name": "Suicide/self-harm — API single-turn harmless rate", "category": "mental-health", "metric": "harmless", "unit": "%", "description": "Single-turn requests posing potential risk, API without system prompt.", "source_url": "Sonnet 5 SC §4.3.1 Table 4.3.1.A"},
+    {"id": "suicide_self_harm_overrefusal_api", "name": "Suicide/self-harm — API benign over-refusal", "category": "mental-health", "metric": "refusal", "unit": "%", "description": "Lower is better.", "source_url": "Sonnet 5 SC §4.3.1"},
+    {"id": "suicide_self_harm_harmless_claude_ai", "name": "Suicide/self-harm — claude.ai single-turn harmless rate", "category": "mental-health", "metric": "harmless", "unit": "%", "description": "", "source_url": "Sonnet 5 SC §4.3.1"},
+    {"id": "suicide_self_harm_overrefusal_claude_ai", "name": "Suicide/self-harm — claude.ai benign over-refusal", "category": "mental-health", "metric": "refusal", "unit": "%", "description": "", "source_url": "Sonnet 5 SC §4.3.1"},
+    {"id": "suicide_self_harm_multiturn_appropriate_api", "name": "Suicide/self-harm — API multi-turn appropriate", "category": "mental-health", "metric": "appropriate", "unit": "%", "description": "", "source_url": "Sonnet 5 SC §4.3.1 Table 4.3.1.B"},
+    {"id": "suicide_self_harm_multiturn_appropriate_claude_ai", "name": "Suicide/self-harm — claude.ai multi-turn appropriate", "category": "mental-health", "metric": "appropriate", "unit": "%", "description": "", "source_url": "Sonnet 5 SC §4.3.1 Table 4.3.1.B"},
+    {"id": "disordered_eating_harmless_api", "name": "Disordered eating — API single-turn harmless", "category": "mental-health", "metric": "harmless", "unit": "%", "description": "", "source_url": "Sonnet 5 SC §4.3.2 Table 4.3.2.A"},
+    {"id": "disordered_eating_overrefusal_api", "name": "Disordered eating — API benign over-refusal", "category": "mental-health", "metric": "refusal", "unit": "%", "description": "", "source_url": "Sonnet 5 SC §4.3.2"},
+    {"id": "disordered_eating_harmless_claude_ai", "name": "Disordered eating — claude.ai single-turn harmless", "category": "mental-health", "metric": "harmless", "unit": "%", "description": "", "source_url": "Sonnet 5 SC §4.3.2"},
+    {"id": "disordered_eating_overrefusal_claude_ai", "name": "Disordered eating — claude.ai benign over-refusal", "category": "mental-health", "metric": "refusal", "unit": "%", "description": "", "source_url": "Sonnet 5 SC §4.3.2"},
+    {"id": "bbq_disambiguated_accuracy", "name": "BBQ Disambiguated accuracy", "category": "bias", "metric": "accuracy", "unit": "%", "description": "Bias Benchmark for Question Answering — questions with enough context to answer correctly. Higher is better.", "source_url": "Sonnet 5 SC §4.4.2 Table 4.4.2.A"},
+    {"id": "bbq_ambiguous_accuracy", "name": "BBQ Ambiguous accuracy", "category": "bias", "metric": "accuracy", "unit": "%", "description": "Correct answer is 'unknown'. Higher is better.", "source_url": "Sonnet 5 SC §4.4.2 Table 4.4.2.A"},
+    {"id": "bbq_disambiguated_bias", "name": "BBQ Disambiguated bias score", "category": "bias", "metric": "bias", "unit": "%", "description": "Closer to zero is better. Positive = errors lean toward social stereotypes.", "source_url": "Sonnet 5 SC §4.4.2"},
+    {"id": "bbq_ambiguous_bias", "name": "BBQ Ambiguous bias score", "category": "bias", "metric": "bias", "unit": "%", "description": "Closer to zero is better.", "source_url": "Sonnet 5 SC §4.4.2"},
+    {"id": "prompt_injection_bug_bounty_all", "name": "Prompt injection — live bug bounty (all surfaces)", "category": "safety", "metric": "attack_success_rate", "unit": "%", "description": "Gray Swan-hosted one-week bug bounty covering 11 scenarios across tool use, coding, and computer use. Lower is better. Sonnet 5 tied Opus 4.8 for strongest at 0.19%.", "source_url": "Sonnet 5 SC §5.2.2.1 Figure 5.2.2.1.A"},
+    {"id": "prompt_injection_bug_bounty_coding", "name": "Prompt injection — bug bounty (coding surface)", "category": "safety", "metric": "attack_success_rate", "unit": "%", "description": "Lower is better.", "source_url": "Sonnet 5 SC §5.2.2.1 Figure 5.2.2.1.B"},
+    {"id": "prompt_injection_bug_bounty_tool_use", "name": "Prompt injection — bug bounty (tool use surface)", "category": "safety", "metric": "attack_success_rate", "unit": "%", "description": "Lower is better.", "source_url": "Sonnet 5 SC §5.2.2.1"},
+    {"id": "prompt_injection_bug_bounty_computer_use", "name": "Prompt injection — bug bounty (computer use surface)", "category": "safety", "metric": "attack_success_rate", "unit": "%", "description": "Lower is better.", "source_url": "Sonnet 5 SC §5.2.2.1"}
+  ],
+  "scores": [
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "ai_rd_kernel_task_speedup", "score": 284.52, "unit": "x", "_source": "SC §2.3.3 Table 2.3.3.A", "_note": "Above 200× (8h eq); below 300× (40h eq). Opus 4.7 371.75×, Mythos 5 430.93×"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "ai_rd_kernel_task_speedup", "score": 371.75, "unit": "x", "_source": "SC §2.3.3 Table 2.3.3.A", "_note": "Above 40h threshold"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "ai_rd_kernel_task_speedup", "score": 430.93, "unit": "x", "_source": "SC §2.3.3 Table 2.3.3.A", "_note": "Above 40h threshold"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "ai_rd_time_series_forecasting_hard_mse", "score": 5.80, "unit": "mse", "_source": "SC §2.3.3", "_note": "Above 40h threshold (5.3) — worse than Opus 4.7 (4.78) and Mythos 5 (4.51). Lower is better."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "ai_rd_time_series_forecasting_hard_mse", "score": 4.78, "unit": "mse", "_source": "SC §2.3.3", "_note": "Passes 40h threshold"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "ai_rd_time_series_forecasting_hard_mse", "score": 4.51, "unit": "mse", "_source": "SC §2.3.3", "_note": "Passes 40h threshold"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "ai_rd_llm_training_speedup", "score": 26.49, "unit": "x", "_source": "SC §2.3.3", "_note": "Above 4-8h threshold. Opus 4.7 50.67×, Mythos 5 69.61×"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "ai_rd_llm_training_speedup", "score": 50.67, "unit": "x", "_source": "SC §2.3.3", "_note": ""},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "ai_rd_llm_training_speedup", "score": 69.61, "unit": "x", "_source": "SC §2.3.3", "_note": ""},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "ai_rd_quadruped_rl_highest_score", "score": 19.94, "unit": "score", "_source": "SC §2.3.3", "_note": "Above 4h threshold (12). Opus 4.7 24.73, Mythos 5 29.55"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "ai_rd_quadruped_rl_highest_score", "score": 24.73, "unit": "score", "_source": "SC §2.3.3", "_note": ""},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "ai_rd_quadruped_rl_highest_score", "score": 29.55, "unit": "score", "_source": "SC §2.3.3", "_note": ""},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "ai_rd_novel_compiler_pass_rate", "score": 76.1, "unit": "%", "_source": "SC §2.3.3", "_note": "Above Opus 4.7 (70.4) but below Mythos 5 (85.3). 40h threshold = 90%"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "ai_rd_novel_compiler_pass_rate", "score": 70.4, "unit": "%", "_source": "SC §2.3.3", "_note": ""},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "ai_rd_novel_compiler_pass_rate", "score": 85.3, "unit": "%", "_source": "SC §2.3.3", "_note": ""},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "cb1_long_form_virology_task1", "score": 0.79, "unit": "score", "_source": "SC §2.2.4", "_note": "Slightly below 0.80 notable-capability threshold. 3.33% of trials hit external API rate limits."},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "cb1_long_form_virology_task1", "score": 0.82, "unit": "score", "_source": "SC §2.2.4", "_note": "Above threshold"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "cb1_vct_multimodal_virology", "score": 0.45, "unit": "score", "_source": "SC §2.2.4", "_note": "Well above expert baseline 0.221. Slight regression vs Opus 4.7 0.50, Opus 4.8 0.47, Mythos 5 0.56"},
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "cb1_vct_multimodal_virology", "score": 0.50, "unit": "score", "_source": "SC §2.2.4", "_note": ""},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "cb1_vct_multimodal_virology", "score": 0.47, "unit": "score", "_source": "SC §2.2.4", "_note": ""},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "cb1_vct_multimodal_virology", "score": 0.56, "unit": "score", "_source": "SC §2.2.4", "_note": ""},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "cb1_dna_synthesis_screening_evasion_plasmids", "score": 5, "unit": "count", "_source": "SC §2.2.4", "_note": "Designed viable plasmids for 5/10 pathogens on at least one screening method. Below 10-pathogen low-concern threshold"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "suicide_self_harm_harmless_api", "score": 98.80, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.A", "_note": "±0.30. Slight decrease vs Sonnet 4.6 99.65 — occasional harmful substitution methods (e.g. holding ice cubes)"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "suicide_self_harm_harmless_api", "score": 99.34, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.A", "_note": "±0.30"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "suicide_self_harm_harmless_api", "score": 99.67, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.A", "_note": "±0.22"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "suicide_self_harm_harmless_api", "score": 99.21, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.A", "_note": "±0.23"},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "suicide_self_harm_harmless_api", "score": 99.60, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.A", "_note": "±0.26"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "suicide_self_harm_harmless_api", "score": 99.65, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.A", "_note": "±0.19"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "suicide_self_harm_overrefusal_api", "score": 0.15, "unit": "%", "_source": "SC §4.3.1", "_note": "±0.08"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "suicide_self_harm_harmless_claude_ai", "score": 99.82, "unit": "%", "_source": "SC §4.3.1", "_note": "±0.11 — recovered on claude.ai"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "suicide_self_harm_overrefusal_claude_ai", "score": 0.45, "unit": "%", "_source": "SC §4.3.1", "_note": "±0.23"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "suicide_self_harm_multiturn_appropriate_api", "score": 63, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.B", "_note": "±10. Non-stat-sig regression vs Sonnet 4.6 (74)"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "suicide_self_harm_multiturn_appropriate_claude_ai", "score": 90, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.B", "_note": "±6. Recovered on claude.ai, above Sonnet 4.6 (82)"},
+    {"model": "anthropic/claude-fable-5", "benchmark": "suicide_self_harm_multiturn_appropriate_api", "score": 58, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.B", "_note": ""},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "suicide_self_harm_multiturn_appropriate_api", "score": 54, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.B", "_note": ""},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "suicide_self_harm_multiturn_appropriate_api", "score": 61, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.B", "_note": ""},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "suicide_self_harm_multiturn_appropriate_api", "score": 74, "unit": "%", "_source": "SC §4.3.1 Table 4.3.1.B", "_note": ""},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "disordered_eating_harmless_api", "score": 97.10, "unit": "%", "_source": "SC §4.3.2 Table 4.3.2.A", "_note": "±0.53"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "disordered_eating_overrefusal_api", "score": 0.09, "unit": "%", "_source": "SC §4.3.2", "_note": "±0.06"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "disordered_eating_harmless_claude_ai", "score": 99.55, "unit": "%", "_source": "SC §4.3.2", "_note": "±0.19 — improved on claude.ai vs Sonnet 4.6 98.63"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "disordered_eating_overrefusal_claude_ai", "score": 0.31, "unit": "%", "_source": "SC §4.3.2", "_note": "±0.17"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "bbq_disambiguated_accuracy", "score": 72.4, "unit": "%", "_source": "SC §4.4.2 Table 4.4.2.A", "_note": "Regression vs Sonnet 4.6 88.1. Below Mythos 5/Mythos Preview 84.5-84.6"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "bbq_ambiguous_accuracy", "score": 98.6, "unit": "%", "_source": "SC §4.4.2", "_note": ""},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "bbq_disambiguated_bias", "score": 1.93, "unit": "%", "_source": "SC §4.4.2", "_note": "Positive = leans toward stereotypes. Other Claude models have NEGATIVE bias scores (-1.37 to -1.80)"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "bbq_ambiguous_bias", "score": 0.52, "unit": "%", "_source": "SC §4.4.2", "_note": "Closer to zero than Sonnet 4.6 (1.41)"},
+    {"model": "anthropic/claude-mythos-5", "benchmark": "bbq_disambiguated_accuracy", "score": 84.5, "unit": "%", "_source": "SC §4.4.2 Table 4.4.2.A", "_note": ""},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "bbq_disambiguated_accuracy", "score": 72.1, "unit": "%", "_source": "SC §4.4.2 Table 4.4.2.A", "_note": ""},
+    {"model": "anthropic/claude-mythos-preview", "benchmark": "bbq_disambiguated_accuracy", "score": 84.6, "unit": "%", "_source": "SC §4.4.2 Table 4.4.2.A", "_note": ""},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "bbq_disambiguated_accuracy", "score": 88.1, "unit": "%", "_source": "SC §4.4.2 Table 4.4.2.A", "_note": "Best of all tested"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "election_integrity_harmful_api", "score": 100.0, "unit": "%", "_source": "SC §4.4.3 Table 4.4.3.A", "_note": "Perfect. All post-Opus-4.7 models 100%."},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "election_integrity_benign_api", "score": 0.00, "unit": "%", "_source": "SC §4.4.3", "_note": ""},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "claude_code_malicious_refusal", "score": 92.37, "unit": "%", "_source": "SC §5.1.1 Table 5.1.1.A", "_note": "SIGNIFICANT improvement vs Sonnet 4.6 (76.60). Approaches Opus 4.8 (95.24)"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "claude_code_dual_use_success", "score": 91.55, "unit": "%", "_source": "SC §5.1.1 Table 5.1.1.A", "_note": "Trade-off: over-refuses more than Sonnet 4.6 (97.33). Approaches Mythos Preview level 89.16"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "malicious_computer_use_refusal", "score": 84.68, "unit": "%", "_source": "SC §5.1.2 Table 5.1.2.A", "_note": "Nearly identical to Sonnet 4.6 (84.82). Slight improvement over Opus 4.8 (81.70)"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "agentic_influence_voter_suppression", "score": 50.8, "unit": "%", "_source": "SC §5.1.3 Table 5.1.3.A", "_note": "NOT helpful-only variant. Higher than Sonnet 4.6 (41.8), well below Opus 4.8 (73.3)"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "agentic_influence_domestic_polarization", "score": 43.3, "unit": "%", "_source": "SC §5.1.3 Table 5.1.3.A", "_note": "Higher than Sonnet 4.6 (34.0), below Opus 4.8 (55.1)"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "prompt_injection_bug_bounty_all", "score": 0.19, "unit": "%", "_source": "SC §5.2.2.1 Fig 5.2.2.1.A", "_note": "TIED with Opus 4.8 for strongest result. Sonnet 4.6 1.41, GPT-5.5 3.08, Gemini 3.5 Flash 6.66"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "prompt_injection_bug_bounty_all", "score": 0.19, "unit": "%", "_source": "SC §5.2.2.1 Fig 5.2.2.1.A", "_note": "Tied Sonnet 5 for best"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "prompt_injection_bug_bounty_all", "score": 1.41, "unit": "%", "_source": "SC §5.2.2.1", "_note": ""},
+    {"model": "openai/gpt-5.5", "benchmark": "prompt_injection_bug_bounty_all", "score": 3.08, "unit": "%", "_source": "SC §5.2.2.1", "_note": ""},
+    {"model": "google/gemini-3.5-flash", "benchmark": "prompt_injection_bug_bounty_all", "score": 6.66, "unit": "%", "_source": "SC §5.2.2.1", "_note": ""},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "prompt_injection_bug_bounty_coding", "score": 0.1, "unit": "%", "_source": "SC §5.2.2.1 Fig 5.2.2.1.B", "_note": "Massive improvement vs Sonnet 4.6 3.3%. Better than Opus 4.8 (0.41%)"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "prompt_injection_bug_bounty_coding", "score": 3.3, "unit": "%", "_source": "SC §5.2.2.1", "_note": ""},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "prompt_injection_bug_bounty_coding", "score": 0.41, "unit": "%", "_source": "SC §5.2.2.1", "_note": ""},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "prompt_injection_bug_bounty_tool_use", "score": 0.35, "unit": "%", "_source": "SC §5.2.2.1", "_note": "Improvement vs Sonnet 4.6 (0.83%). Opus 4.8 achieved 0%"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "prompt_injection_bug_bounty_tool_use", "score": 0.83, "unit": "%", "_source": "SC §5.2.2.1", "_note": ""},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "prompt_injection_bug_bounty_tool_use", "score": 0.0, "unit": "%", "_source": "SC §5.2.2.1", "_note": "Perfect"},
+
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "prompt_injection_bug_bounty_computer_use", "score": 0.07, "unit": "%", "_source": "SC §5.2.2.1", "_note": "Tied with Opus 4.8. Sonnet 4.6 was 0.45%"},
+    {"model": "anthropic/claude-sonnet-4.6", "benchmark": "prompt_injection_bug_bounty_computer_use", "score": 0.45, "unit": "%", "_source": "SC §5.2.2.1", "_note": ""},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "prompt_injection_bug_bounty_computer_use", "score": 0.07, "unit": "%", "_source": "SC §5.2.2.1", "_note": "Tied Sonnet 5"}
+  ]
+}

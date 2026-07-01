@@ -126,7 +126,9 @@ var FrontierCompare = {
             'single_turn_harmful_request_refusal_api', 'single_turn_benign_overrefusal_api',
             'election_integrity_harmful_api', 'election_integrity_benign_api',
             'claude_code_malicious_refusal', 'malicious_computer_use_refusal',
-            'agentic_influence_voter_suppression', 'agentic_influence_domestic_polarization'
+            'agentic_influence_voter_suppression', 'agentic_influence_domestic_polarization',
+            // 2026-07-01 S162 — Sonnet 5 SC prompt injection bug bounty (Sonnet 5 + Opus 4.8 = 0.19% tied)
+            'prompt_injection_bug_bounty_all', 'bbq_disambiguated_accuracy'
         ],
         multimodal: ['mmmu_pro', 'mathvision', 'video_mmmu', 'video_mme', 'video_mme_audio', 'mmau', 'longvideobench', 'screenspot_pro', 'compass_multimodal_avg', 'mmbench_v1_1', 'mmstar', 'mmmu', 'mathvista', 'hallusionbench', 'mmvet', 'charxiv_reasoning', 'realworldqa', 'vlms_are_blind', 'docvqa', 'chartqa', 'vqav2', 'ai2d', 'mmbench_en',
             // 2026-06-01 S43 Nemotron RAG visual document retrieval + Parse document understanding

@@ -8079,13 +8079,6 @@
     "metric": "MSE (lower better)"
   },
   {
-    "id": "ai_rd_llm_training_speedup",
-    "name": "AI R&D LLM training (avg speedup)",
-    "category": "ai-rd",
-    "description": ">4× threshold = 4-8h human-equivalent.",
-    "metric": "speedup-x"
-  },
-  {
     "id": "ai_rd_quadruped_rl_score",
     "name": "AI R&D Quadruped RL (highest score, no hparams)",
     "category": "ai-rd",
@@ -8410,20 +8403,6 @@
   {
     "id": "aeci",
     "name": "Aeci",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "bbq_disambiguated_accuracy",
-    "name": "Bbq Disambiguated Accuracy",
-    "category": "general",
-    "description": "",
-    "metric": "score"
-  },
-  {
-    "id": "bbq_ambiguous_accuracy",
-    "name": "Bbq Ambiguous Accuracy",
     "category": "general",
     "description": "",
     "metric": "score"
@@ -14303,20 +14282,6 @@
     "category": "agent",
     "description": "",
     "metric": "score"
-  },
-  {
-    "id": "bbq_disambiguated_bias",
-    "name": "BBQ Disambiguated Bias",
-    "category": "safety",
-    "description": "Bias Benchmark for Question Answering — disambiguated bias score (closer to 0 better)",
-    "metric": "bias_score"
-  },
-  {
-    "id": "bbq_ambiguous_bias",
-    "name": "BBQ Ambiguous Bias",
-    "category": "safety",
-    "description": "BBQ ambiguous bias score (closer to 0 better)",
-    "metric": "bias_score"
   },
   {
     "id": "identity_honesty_hard",
@@ -23023,6 +22988,188 @@
     "category": "safety",
     "description": "Multi-turn appropriate response rate over child-safety adversarial conversations.",
     "metric": "appropriate"
+  },
+  {
+    "id": "ai_rd_kernel_task_speedup",
+    "name": "AI R&D — Kernel task best speedup (hard, standard scaffold)",
+    "category": "ai-rnd",
+    "description": "Section 8.3 of Opus 4.6 System Card task suite. Thresholds: 4× = 1h human equivalent, 200× = 8h, 300× = 40h.",
+    "metric": "speedup_x"
+  },
+  {
+    "id": "ai_rd_time_series_forecasting_hard_mse",
+    "name": "AI R&D — Time Series Forecasting MSE (hard, lower better)",
+    "category": "ai-rnd",
+    "description": "Threshold: <5.3 = 40h eq.",
+    "metric": "mse"
+  },
+  {
+    "id": "ai_rd_llm_training_speedup",
+    "name": "AI R&D — LLM training average speedup",
+    "category": "ai-rnd",
+    "description": "Fixed-CPU re-run methodology from Mythos 5 SC §2.3.7.1. Threshold: >4× = 4-8h eq.",
+    "metric": "speedup_x"
+  },
+  {
+    "id": "ai_rd_quadruped_rl_highest_score",
+    "name": "AI R&D — Quadruped RL highest score (no hparam tuning)",
+    "category": "ai-rnd",
+    "description": "Threshold: >12 = 4h eq.",
+    "metric": "score"
+  },
+  {
+    "id": "ai_rd_novel_compiler_pass_rate",
+    "name": "AI R&D — Novel Compiler pass rate (complex tests)",
+    "category": "ai-rnd",
+    "description": "One of the last bounded RSP-rule-out tasks that still discriminates between recent frontier models. Threshold: 90% = 40h eq.",
+    "metric": "pass_rate"
+  },
+  {
+    "id": "cb1_long_form_virology_task1",
+    "name": "CB-1 long-form virology Task 1 (end-to-end pathogen acquisition)",
+    "category": "cbrn",
+    "description": "SecureBio + Deloitte + Signature Science task-based agentic eval. Notable-capability threshold: >0.80.",
+    "metric": "score"
+  },
+  {
+    "id": "cb1_vct_multimodal_virology",
+    "name": "CB-1 VCT multimodal virology (SecureBio + CAIS)",
+    "category": "cbrn",
+    "description": "Expert baseline = 0.221. Notable-capability threshold: >=expert baseline.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "cb1_dna_synthesis_screening_evasion_plasmids",
+    "name": "CB-1 DNA synthesis screening evasion — viable plasmids designed",
+    "category": "cbrn",
+    "description": "SecureBio DNA Synthesis Screening Evasion. Low-concern threshold: 10 pathogens evaded on at least one method.",
+    "metric": "count_pathogens"
+  },
+  {
+    "id": "suicide_self_harm_harmless_api",
+    "name": "Suicide/self-harm — API single-turn harmless rate",
+    "category": "mental-health",
+    "description": "Single-turn requests posing potential risk, API without system prompt.",
+    "metric": "harmless"
+  },
+  {
+    "id": "suicide_self_harm_overrefusal_api",
+    "name": "Suicide/self-harm — API benign over-refusal",
+    "category": "mental-health",
+    "description": "Lower is better.",
+    "metric": "refusal"
+  },
+  {
+    "id": "suicide_self_harm_harmless_claude_ai",
+    "name": "Suicide/self-harm — claude.ai single-turn harmless rate",
+    "category": "mental-health",
+    "description": "",
+    "metric": "harmless"
+  },
+  {
+    "id": "suicide_self_harm_overrefusal_claude_ai",
+    "name": "Suicide/self-harm — claude.ai benign over-refusal",
+    "category": "mental-health",
+    "description": "",
+    "metric": "refusal"
+  },
+  {
+    "id": "suicide_self_harm_multiturn_appropriate_api",
+    "name": "Suicide/self-harm — API multi-turn appropriate",
+    "category": "mental-health",
+    "description": "",
+    "metric": "appropriate"
+  },
+  {
+    "id": "suicide_self_harm_multiturn_appropriate_claude_ai",
+    "name": "Suicide/self-harm — claude.ai multi-turn appropriate",
+    "category": "mental-health",
+    "description": "",
+    "metric": "appropriate"
+  },
+  {
+    "id": "disordered_eating_harmless_api",
+    "name": "Disordered eating — API single-turn harmless",
+    "category": "mental-health",
+    "description": "",
+    "metric": "harmless"
+  },
+  {
+    "id": "disordered_eating_overrefusal_api",
+    "name": "Disordered eating — API benign over-refusal",
+    "category": "mental-health",
+    "description": "",
+    "metric": "refusal"
+  },
+  {
+    "id": "disordered_eating_harmless_claude_ai",
+    "name": "Disordered eating — claude.ai single-turn harmless",
+    "category": "mental-health",
+    "description": "",
+    "metric": "harmless"
+  },
+  {
+    "id": "disordered_eating_overrefusal_claude_ai",
+    "name": "Disordered eating — claude.ai benign over-refusal",
+    "category": "mental-health",
+    "description": "",
+    "metric": "refusal"
+  },
+  {
+    "id": "bbq_disambiguated_accuracy",
+    "name": "BBQ Disambiguated accuracy",
+    "category": "bias",
+    "description": "Bias Benchmark for Question Answering — questions with enough context to answer correctly. Higher is better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "bbq_ambiguous_accuracy",
+    "name": "BBQ Ambiguous accuracy",
+    "category": "bias",
+    "description": "Correct answer is 'unknown'. Higher is better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "bbq_disambiguated_bias",
+    "name": "BBQ Disambiguated bias score",
+    "category": "bias",
+    "description": "Closer to zero is better. Positive = errors lean toward social stereotypes.",
+    "metric": "bias"
+  },
+  {
+    "id": "bbq_ambiguous_bias",
+    "name": "BBQ Ambiguous bias score",
+    "category": "bias",
+    "description": "Closer to zero is better.",
+    "metric": "bias"
+  },
+  {
+    "id": "prompt_injection_bug_bounty_all",
+    "name": "Prompt injection — live bug bounty (all surfaces)",
+    "category": "safety",
+    "description": "Gray Swan-hosted one-week bug bounty covering 11 scenarios across tool use, coding, and computer use. Lower is better. Sonnet 5 tied Opus 4.8 for strongest at 0.19%.",
+    "metric": "attack_success_rate"
+  },
+  {
+    "id": "prompt_injection_bug_bounty_coding",
+    "name": "Prompt injection — bug bounty (coding surface)",
+    "category": "safety",
+    "description": "Lower is better.",
+    "metric": "attack_success_rate"
+  },
+  {
+    "id": "prompt_injection_bug_bounty_tool_use",
+    "name": "Prompt injection — bug bounty (tool use surface)",
+    "category": "safety",
+    "description": "Lower is better.",
+    "metric": "attack_success_rate"
+  },
+  {
+    "id": "prompt_injection_bug_bounty_computer_use",
+    "name": "Prompt injection — bug bounty (computer use surface)",
+    "category": "safety",
+    "description": "Lower is better.",
+    "metric": "attack_success_rate"
   },
   {
     "id": "arc_agi_3",
