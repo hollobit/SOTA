@@ -1,5 +1,242 @@
 # LLM Benchmark SOTA Dashboard — Work History
 
+## 2026-07-01 (Sessions 161–165): 8-tab propagation + Sonnet 5 deep re-mine + 3-round dedup
+
+### 79. Sessions 161–165 — 5 commits on ops, +26 benches / +70 scores + 108-model dedup
+
+Five sessions in a single day covering three logical arcs: propagating S158–S160
+work to hardcoded tabs, deep re-mining §2–§5 tables the Sonnet 5 first-pass had
+skipped, and a three-round duplicate-model cleanup. Net DB delta:
+3,540 → 3,436 models (**-108, -3.0%**), 3,858 → 3,891 benchmarks (+33 from S162),
+17,018 → 17,073 scores (-65 from dedup conflicts, +130 from S162).
+
+**S161 — 8-tab propagation for S158-S160 (LongCat 2.0 + Sonnet 5 benches)**
+(`bf9c9db`):
+
+Routine post-ingest audit surfaces gaps. Zero LongCat family in `sovereign.js`;
+zero `forte`/`rwsearch`/`aa_briefcase` in `agent.js` or `frontier-compare.js`;
+zero ExploitBench detail metrics in `cyber-coding.js`. Four tab-JS files
+patched:
+
+- `frontier-compare.js` — `FRONTIER_MODELS` gains `meituan/longcat-2.0`
+  (was placeholder-only). Coding `BENCHMARK_GROUPS` gains `frontiercode_v1`,
+  `swe_bench_multimodal_sonnet5`, `swe_bench_verified_sonnet5_card`. Agent
+  group gains `forte`, `rwsearch`, `aa_briefcase`.
+- `cyber-coding.js` — `CODING_BENCHMARKS` +3 SWE/FrontierCode. Cyber offensive
+  suite +`exploitbench_mean`, `exploitbench_full_ace`, `oss_fuzz_no_score_pct`.
+  Defense suite +3 `child_safety_*` (harmful/benign/multiturn).
+- `sovereign.js` — Chinese frontier roster gains Meituan LongCat family
+  (`longcat-2.0`, `longcat-flash-thinking`, `longcat-flash-thinking-2601`,
+  `longcat-video`). Family had **zero** prior entries despite Meituan being a
+  S57-tracked Chinese vendor.
+- `agent.js` — general/composite `CATEGORIES` gains `forte`, `rwsearch`,
+  `aa_briefcase`.
+
+AI4S + physical-ai + medical-ai untouched — Sonnet 5's HealthBench Professional
+57.8 auto-surfaces through existing `healthbench_professional` bench ID.
+Follow-up flagged: Anthropic model status flags need update for Mythos 5 +
+Fable 5 (de-deployed per US gov export control, buried in S160 SC §4.1.3).
+
+**S162 — Sonnet 5 SC deep re-mine (§2 CB + §2.3 AI R&D + §4.3-4.4 + §5 Agentic
++ prompt injection)** (`cf80f80`):
+
+S160 first-pass captured §3 Cyber + §4.1-4.2 Safeguards + §8.1-8.12
+Capabilities but skipped 8 numeric tables across §2, §4.3-4.4, and §5. This
+pass extracts them. 26 new benchmark IDs + 70 new scores (17 unique Sonnet 5 +
+53 comparison rows).
+
+**§2.3.3 AI R&D 5-eval rule-out table** — Sonnet 5 does NOT advance the
+frontier:
+
+| Evaluation | Sonnet 5 | Opus 4.7 | Mythos 5 | Threshold |
+|---|---:|---:|---:|---|
+| Kernel task best speedup | 284.52× | 371.75× | **430.93×** | 200× = 8 h eq., 300× = 40 h |
+| Time Series MSE (lower better) | 5.80 | **4.78** | **4.51** | <5.3 = 40 h; Sonnet 5 FAILS |
+| LLM training avg speedup | 26.49× | 50.67× | **69.61×** | >4× = 4-8 h |
+| Quadruped RL highest score | 19.94 | 24.73 | **29.55** | >12 = 4 h |
+| Novel Compiler pass rate | 76.1 % | 70.4 % | **85.3 %** | 90 % = 40 h |
+
+**§2.2.4 CB-1 biology** — Long-form virology Task 1 = 0.79 (slightly below
+0.80 notable-capability threshold; 3.33 % of trials hit external API rate
+limits mid-run). VCT multimodal = 0.45 (well above 0.221 expert baseline).
+DNA synthesis screening evasion = 5 of 10 target pathogens (below 10-pathogen
+low-concern threshold).
+
+**§4.4.2 BBQ** — Sonnet 5 disambiguated = **72.4 %**, a 15.7-point regression
+from Sonnet 4.6's 88.1 %. Sonnet 5's disambiguated bias score is **+1.93 %**
+— every other Claude model has a NEGATIVE bias score (-1.37 to -1.80),
+meaning Sonnet 5 is the first Claude to lean TOWARD social stereotypes on
+disambiguated questions. Ambiguous bias 0.52 % is an improvement over
+Sonnet 4.6's 1.41 %.
+
+**§4.4.3 Election integrity** — Sonnet 5 = perfect 100 % harmful refusal /
+0 % benign over-refusal on both API and claude.ai.
+
+**§5.1.1 Claude Code malicious refusal** — Sonnet 5 = **92.37 %**, a
+15.77-point improvement over Sonnet 4.6's 76.60 %, approaching Opus 4.8's
+95.24 %. Trade-off: dual-use success drops to 91.55 % vs Sonnet 4.6's 97.33 %
+(more over-refusal on benign cyber requests).
+
+**§5.2.2.1 Live bug bounty** (the headline result):
+
+| Model | Attack success rate |
+|---|---:|
+| Claude Sonnet 5 | **0.19 %** |
+| Claude Opus 4.8 | **0.19 %** (tied) |
+| Claude Sonnet 4.6 | 1.41 % |
+| GPT-5.5 | 3.08 % |
+| Gemini 3.5 Flash | 6.66 % |
+
+Per-surface: coding 0.1 (Sonnet 4.6 was 3.3, Opus 4.8 was 0.41 — Sonnet 5
+BEATS Opus 4.8 on coding), tool use 0.35 (Sonnet 4.6 0.83, Opus 4.8 perfect
+0.0), computer use 0.07 (tied Opus 4.8, Sonnet 4.6 was 0.45).
+
+§8.13 Multilingual (GMMLU/MILU/INCLUDE) and §8.14 Life sciences
+(BioMysteryBench, LatchBio, ProteinGym, organic chemistry, protocol
+troubleshooting) numbers exist only as figures in the PDF text — not
+emittable under strict-attribution rule.
+
+**S163 — Duplicate model audit + merge (round 1)** (`fa623f3`):
+
+Cross-DB scan surfaces 30 duplicate model groups (~60 IDs). 20 unambiguous
+pairs merged; cross-vendor 10 pairs left for manual review (vendor selection
+is subjective).
+
+Backup at `data/benchmark.db.pre-s163.bak`. Migration at
+`scripts/migrations/s163_merge_duplicate_models.sql`.
+
+Patterns merged:
+
+- **DeepSeek redundant prefix** (6 pairs): `deepseek/v3.2`, `v3.2-thinking`,
+  `v4-flash-high/max`, `v4-pro-high/max` → canonical `deepseek/deepseek-vX`.
+  Canonical always had 20-115× more scores than dupe.
+- **Anthropic dash-vs-dot version** (4 pairs): `claude-opus-4-1`↔`4.1`,
+  `opus-4-5`↔`4.5`, `sonnet-4-5`↔`4.5`, `mythos-preview` → `claude-mythos-preview`.
+- **Qwen dash-vs-dot** (6 pairs): `qwen-2.5-72b/32b`, `qwen2-5-omni-*`,
+  `qwen-image-2-0-*` → dot forms.
+- **Qwen vendor-prefix reconciliation** (4 pairs): `alibaba/` ↔ `qwen/`
+  (canonical = higher score count).
+
+Cross-vendor patterns NOT merged (subjective): Flux 2 Dev (bfl /
+black-forest-labs / blackforestlabs), Boltz-2 (jwohlwend / boltz-ai / mit /
+mit-jameel), AlphaFold-3 (google-deepmind / deepmind / google), Figure 03
+(figure-ai / figure), Chai-1 (chai-discovery / chai).
+
+Also flagged 3 ID hygiene bugs: `anthropic/claude-fable-5-with_fallback
+(adaptive default)` (spaces + parens), `anthropic/mythos-preview-cyber`
+(non-standard variant), `alibaba-nlp/gte-qwen2-*` vs `alibaba/gte-qwen2-*`
+(vendor prefix drift).
+
+69 dupe-side scores → 49 migrated to canonical + 20 conflicts (canonical kept
+its value, dupe row deleted). Two orphan scores post-merge on
+`qwen2.5-omni-5b/10b` were fixed by restoring canonical models with proper
+schema.
+
+**S164 — Second-pass dedup: 3 new patterns** (`858134e`):
+
+Re-investigation surfaces patterns S163 missed. -72 models. Migration at
+`scripts/migrations/s164_merge_orphan_prefix_models.sql`.
+
+- **PREFIX-LESS ORPHANS** (44 IDs merged): vendor slash entirely missing,
+  presumed scraping-tool output that stored `claude-fable-5` instead of
+  `anthropic/claude-fable-5`. Anthropic Claude 12, Google Gemini 7, OpenAI
+  GPT 12, DeepSeek 4, Meta Llama 3, NVIDIA Cosmos 2, Moonshot Kimi 2,
+  Various 3. Highest-impact: `claude-fable-5` (17 scores) → canonical (106);
+  `gemini-3-pro` (20) → canonical (178); `gpt-5-5` (15) → canonical (473);
+  `gemini-2.5-flash` (11) → canonical (73); `deepseek-v3.2` (10) → canonical
+  (116); `llama-3.3-70b` (10) → canonical (35).
+- **Grok dash-vs-dot** (4 pairs): `xai/grok-4-3-high` + `grok-4-3-high` →
+  `xai/grok-4.3-high` (11 canonical); `grok-4-20-beta1`, `grok-4-20-beta-reasoning`,
+  `xai/grok-4-20-multi-agent-beta-0309` → dot forms.
+- **Kimi vendor drift** (2 pairs): `moonshot/kimi-k2-5` → `moonshot/kimi-k2.5`
+  (128 canonical); `moonshotai/kimi-k2.5` → `moonshot/kimi-k2.5`.
+- **Case-based dupes** (2 pairs): `PleIAs/Pleias-RAG-1B/350M` →
+  lowercase `pleias/pleias-rag-1b/350m`.
+- **42dot dot-dash** (1 pair): `42dot/42dot-llm-sft-1-3b` → `1.3b`.
+
+Supplemental round (S164b) — 21 more prefix-less orphans caught on second
+scan: `gemma-4-{31b,26b-a4b,e2b,e4b}` → google/, `glm-5-1/5.1` → zhipu/,
+`gpt-5-2` → openai/gpt-5.2, `gpt-5-5-pro/medium/xhigh` variants,
+`gemini-3-1-flash-lite`, `gemini-3.5-flash-medium`, `gemini-3-flash`,
+`deepseek-r1-0528`, `deepseek-r1-distill-llama-70b`, `qwen3-6-27b` →
+`qwen3.6-27b`.
+
+255+ scores migrated to canonical, 33 conflicts. Two canonical models
+restored (`openai/gpt-5-2-chat-latest`, `gpt-5.3-codex-xhigh`) for post-merge
+orphan scores.
+
+**S165 — Round 3 dedup: 17 more pairs via vendored-tail matching** (`b10901c`):
+
+User asked to re-investigate `claude-fable-5` vs `anthropic/claude-fable-5`
+patterns more thoroughly. Query redesigned: for every prefix-less orphan,
+check whether ANY vendored model's tail (substring after `/`) equals the
+orphan_id.
+
+Migration `scripts/migrations/s165_merge_remaining_dupes.sql`.
+
+- **Prefix-less orphans with vendored match** (9): `muse-spark` (4 scores) →
+  `meta/muse-spark` (52); `llama-3.3-70b-instruct` (3) →
+  `meta/llama-3.3-70b-instruct` (4); `llama-2-70b` (1) → `meta/llama-2-70b`
+  (16); `ai-scientist-v2` → `sakana/ai-scientist-v2`; `cosmos-3` →
+  `nvidia/cosmos-3`; `darwin-godel-machine` → `sakana/`; `deepseek-v4-flash`
+  → `deepseek/deepseek-v4-flash` (48); `gemini-3.1-pro-preview` →
+  `google/gemini-3.1-pro-preview` (19); `step-3.5-flash` →
+  `stepfun/step-3.5-flash` (29).
+- **Qwen 3.5 Omni 3-way dupe** (4 pairs): same model stored three ways —
+  `qwen-3.5-omni-flash` + `qwen3-5-omni-flash` + `qwen3.5-omni-flash` (3 + 12
+  + 7 scores) → single canonical `qwen3.5-omni-flash` (dot form). Plus
+  variant same pattern (3 + 13 + 19). Hidden because dash-vs-dot version
+  pattern applied THREE ways simultaneously.
+- **Anthropic name-order swap** (1 pair): `claude-4-opus` (10 scores) →
+  `claude-opus-4` (30 canonical). Claude 3 series uses version-first
+  convention (`claude-3-opus`), Claude 4+ uses tier-first
+  (`claude-opus-4`). `claude-4-opus` was leftover from transition.
+- **Grok extras** (3 pairs): `xai/grok-4-2` → `4.2`;
+  `xai/grok-voice-think-fast-1` → `1.0`;
+  `xai/grok-imagine-image-quality-20260519` → base.
+
+45 scores migrated, 8 conflicts.
+
+**Cumulative dedup total (S163 + S164 + S165)**:
+
+| Round | Models | Scores |
+|---|---:|---:|
+| Before | 3,544 | 17,138 |
+| S163 | 3,525 (-19) | 17,114 (-24) |
+| S164 | 3,453 (-72) | 17,081 (-33) |
+| S165 | 3,436 (-17) | 17,073 (-8) |
+| **Total delta** | **-108 (-3.0 %)** | **-65 (-0.4 %)** |
+
+**Engineering notes**:
+- All three migrations preserved in `scripts/migrations/`. Backups at
+  `data/benchmark.db.pre-{s163,s164,s165}.bak`.
+- **Zero JS breakage across three rounds** — the only stale reference found
+  was in `timeline.js` comments documenting the exact dedup pattern being
+  applied. Comments were left as-is (still accurate).
+- 56 prefix-less orphans remain (mostly singleton project IDs like
+  `physicsminions`, `p1-vl`, `insilico-science-mmai-gym`, `biomni-lab`,
+  `muse-spark` was resolved) where a canonical vendor prefix cannot be
+  inferred without human judgment. These are flagged for future manual
+  cleanup.
+
+**Insights**:
+
+- **Sonnet 5 is the agentic-safety headline of the release** — 0.19 %
+  attack success in the live bug bounty ties Opus 4.8 as the strongest
+  frontier model against real red-teamers, and BEATS Opus 4.8 on the
+  coding surface (0.1 % vs 0.41 %).
+- **The BBQ regression matters** — Sonnet 5 is the first Claude to show
+  POSITIVE (stereotype-leaning) disambiguated bias. Every other Claude
+  scored negative. The 15.7-point disambiguated accuracy drop suggests a
+  specific training-data mix or post-training reward shift.
+- **The 3.0 % dedup gain is entirely composition-level cleanup** — no
+  benchmark data changed, no scores were lost that weren't literal
+  duplicates. The DB is now noticeably tidier for downstream analytics.
+- **The Meituan LongCat family had ZERO sovereign-tab entries despite
+  being tracked since S57** — a good reminder that ingest-side model
+  registration and dashboard-side vendor rosters drift independently and
+  need periodic audit passes like S161.
+
 ## 2026-06-29~07-01 (Sessions 158–160): Dashboard performance refactor + design audit + Sonnet 5 launch
 
 ### 78. Sessions 158–160 — 5 commits on ops, +2 models / +12 benches / +50 scores + 7-tab perf refactor + 10-finding design audit
