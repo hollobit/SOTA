@@ -45,7 +45,9 @@ var FrontierCompare = {
             // 2026-06-29 S156 — Epoch AI + METR MirrorCode (reimplement-from-black-box, 132 instances, up to 10B tok/L-task)
             'mirrorcode', 'mirrorcode_solve_at_99',
             // 2026-06-29 S157 — MirrorCode per-size (L = headline frontier-gap: Opus 4.7 25%, all others 0%)
-            'mirrorcode_large'
+            'mirrorcode_large',
+            // 2026-07-01 S160 — Sonnet 5 system card §8 coding benches (Cognition FrontierCode v1 + SWE-Bench Multimodal)
+            'frontiercode_v1', 'swe_bench_multimodal_sonnet5', 'swe_bench_verified_sonnet5_card'
         ],
         math: ['aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026',
             // 2026-06-02 S46 — Qwen3.7-Plus HMMT 2026 Feb + IMOAnswerBench (existing id) + PolyMATH
@@ -84,7 +86,9 @@ var FrontierCompare = {
             // 2026-06-06 S56 — Opper AI Roundtable + SMAC-Talk
             'opper_roundtable_win_rate', 'smac_talk_5v5_no_comm_winrate',
             // 2026-06-29 S155 — OSWorld 2.0 (xlang.ai 108 long-horizon real-world workflows)
-            'osworld_v2', 'osworld_v2_partial'
+            'osworld_v2', 'osworld_v2_partial',
+            // 2026-07-01 S160 — Sonnet 5 + LongCat 2.0 general-agent benches
+            'forte', 'rwsearch', 'aa_briefcase'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
@@ -187,7 +191,8 @@ var FrontierCompare = {
     FRONTIER_MODELS: [
         // 2026-06-09 S65 Anthropic Claude Fable 5 + Mythos 5 — 13 NEW SOTAs (SWE-Bench Pro 80.3, ExploitBench 78, GDP.pdf 29.8, OSWorld 85, Toolathlon 61.7, BioMystery 46.1/83.9, LatchBio 69.2/59.3, FrontierCode 29.3/46.3) + S66 Fable 5 AAII 65 #1 NEW SOTA
         'anthropic/claude-fable-5',
-        'anthropic/claude-sonnet-5',  // 2026 S154 — Claude Sonnet 5 (placeholder, primary URL pending)
+        'anthropic/claude-sonnet-5',  // 2026-07-01 S160 — 40 scores from system card §3 Cyber + §4 Safeguards + §8 Capabilities
+        'meituan/longcat-2.0',  // 2026-06-30 S160 — 1.6T/48B MoE, SWE-Pro 59.5 beats Gemini 3.1 Pro + GPT-5.5, 50K AI ASICs (non-NVIDIA)
         'openai/gpt-5.5-pro',         // 2026 S154 search agent — BrowseComp #1 0.901
         // 2026-06-22 S141 — Sakana AI Fugu / Fugu-Ultra (0.6B coordinator + 10K head orchestrator)
         'sakana/fugu-ultra', 'sakana/fugu',

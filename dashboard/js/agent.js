@@ -242,7 +242,9 @@ var Agent = (function() {
                 'smac_talk_5v5_no_comm_winrate', 'smac_talk_kdc_winrate', 'smac_talk_udc_winrate', 'opper_roundtable_win_rate',
                 'graphwalks_bfs_256k', 'graphwalks_parents_256k', 'graphwalks_bfs_1m', 'graphwalks_parents_1m',
                 // 2026-05-29 Session 34 — SubQ long-context (RULER@128K)
-                'ruler_128k'
+                'ruler_128k',
+                // 2026-07-01 S160 — Sonnet 5 §8 + LongCat 2.0 blog general-agent benches
+                'forte', 'rwsearch', 'aa_briefcase'
             ]
         },
         {
