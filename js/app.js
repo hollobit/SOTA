@@ -304,8 +304,11 @@ var App = {
             if (ids.length >= 2) {
                 var self = this;
                 this._activateTab('explorer');
-                setTimeout(function() {
-                    // Rebuild selectors to match the deep-linked model count.
+                // Wait for scores to load — on cold-open the deep link fires
+                // before scores/current.json has finished downloading, which
+                // would produce an empty comparison. _ensureScores() returns a
+                // cached Promise so this is cheap on repeat visits.
+                self._ensureScores().then(function() {
                     self._compareCount = ids.length;
                     self._renderCompareSelectors();
                     ids.forEach(function(mid, i) {
@@ -315,7 +318,7 @@ var App = {
                     var rows = Explorer.compare(ids, self.data.scores, self.data.benchmarks);
                     Explorer.renderComparison('comparison-result', ids, self.data.models, rows);
                     Explorer.renderRadar('explorer-radar', ids, self.data.models, self.data.scores, self.data.benchmarks);
-                }, 300);
+                });
                 return;
             }
         }
@@ -683,7 +686,12 @@ var App = {
                         leaderboard:1, comparison:1, 'frontier-compare':1,
                         'cyber-coding':1, sovereign:1, 'physical-ai':1,
                         'medical-ai':1, ai4s:1, agent:1, 'image-gen':1,
-                        'video-gen':1, timeline:1, trends:1
+                        'video-gen':1, timeline:1, trends:1,
+                        // Explorer.compare() reads App.data.scores directly at
+                        // compare-button click time. Without this entry the
+                        // click handler runs against an empty scores array and
+                        // the comparison table + radar chart render blank.
+                        explorer:1
                     };
 
                     // Cold-load placeholder: show a "loading…" hint inside the
