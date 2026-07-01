@@ -328,12 +328,12 @@ var Sovereign = {
                 // TII Falcon-H1 family (May 2025) + Reasoning + Perception
                 'tii/falcon-h1r-7b',  // 2026-01-05 reasoning
                 'tii/falcon-perception',  // 2026-04 vision
-                'tii/falcon-h1-34b', 'tii/falcon-h1-arabic-34b', 'tii/falcon-h1-7b',
+                'tiiuae/falcon-h1-34b', 'tii/falcon-h1-arabic-34b', 'tii/falcon-h1-7b',
                 'tii/falcon-h1-3b', 'tii/falcon-h1-1.5b-deep', 'tii/falcon-h1-1.5b', 'tii/falcon-h1-0.5b',
                 // TII Falcon3 family (Dec 2024)
                 'tii/falcon3-10b', 'tii/falcon3-7b', 'tii/falcon3-3b', 'tii/falcon3-1b',
                 // TII older
-                'tii/falcon-ocr', 'tii/falcon-mamba-7b', 'tii/falcon2-11b', 'tii/falcon-180b',
+                'tii/falcon-ocr', 'tiiuae/falcon-mamba-7b', 'tii/falcon2-11b', 'tii/falcon-180b',
                 // MBZUAI / G42 / Cerebras
                 'mbzuai/k2-think-v2',  // 2026-01-27 73B reasoning SOTA
                 'mbzuai/k2-v2-instruct',
@@ -752,13 +752,13 @@ var Sovereign = {
         'dicta/dictalm-3.0-12b-instruct': '2025-12', 'dicta/dictalm-3.0-1.7b-thinking': '2025-12',
         'dicta/dictalm-3.0-24b': '2025-09', 'dicta/dictalm-2.0-instruct': '2024-07', 'dicta/dictalm-2.0': '2024-04',
         // UAE — TII Falcon-H1 (May 2025)
-        'tii/falcon-h1-34b': '2025-05', 'tii/falcon-h1-arabic-34b': '2025-08', 'tii/falcon-h1r-7b': '2025-11',
+        'tiiuae/falcon-h1-34b': '2025-05', 'tii/falcon-h1-arabic-34b': '2025-08', 'tii/falcon-h1r-7b': '2025-11',
         'tii/falcon-h1-7b': '2025-05', 'tii/falcon-h1-3b': '2025-05',
         'tii/falcon-h1-1.5b-deep': '2025-05', 'tii/falcon-h1-1.5b': '2025-05', 'tii/falcon-h1-0.5b': '2025-05',
         // UAE — Falcon3 (Dec 2024)
         'tii/falcon3-10b': '2024-12', 'tii/falcon3-7b': '2024-12', 'tii/falcon3-3b': '2024-12', 'tii/falcon3-1b': '2024-12',
         // UAE — older Falcon
-        'tii/falcon-ocr': '2026-03', 'tii/falcon-mamba-7b': '2024-08', 'tii/falcon2-11b': '2024-05', 'tii/falcon-180b': '2023-09', 'tii/falcon-perception': '2025-03',
+        'tii/falcon-ocr': '2026-03', 'tiiuae/falcon-mamba-7b': '2024-08', 'tii/falcon2-11b': '2024-05', 'tii/falcon-180b': '2023-09', 'tii/falcon-perception': '2025-03',
         // UAE — MBZUAI
         'mbzuai/llm360-k2-65b': '2024-08', 'mbzuai/atlas-chat-9b': '2024-09', 'mbzuai/bimedix': '2024-02',
         'epfl/meditron-70b': '2023-11', 'epfl/meditron-7b': '2023-11', 'epfl/llama-3-meditron-70b': '2024-09',
