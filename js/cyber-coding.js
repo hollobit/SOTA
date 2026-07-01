@@ -228,7 +228,12 @@ var CyberCoding = {
                 'claude_code_malicious_refusal', 'claude_code_dual_use_success',
                 // 2026-07-01 S160 — Sonnet 5 system card §4.2 child-safety suite
                 'child_safety_harmful_refusal_api', 'child_safety_benign_refusal_api',
-                'child_safety_multiturn_appropriate_api'
+                'child_safety_multiturn_appropriate_api',
+                // 2026-07-01 S162 — Sonnet 5 SC deep re-mine §4.3-4.4 + §5 prompt injection bug bounty
+                'suicide_self_harm_harmless_api', 'suicide_self_harm_multiturn_appropriate_claude_ai',
+                'disordered_eating_harmless_api', 'bbq_disambiguated_accuracy', 'bbq_ambiguous_bias',
+                'prompt_injection_bug_bounty_all', 'prompt_injection_bug_bounty_coding',
+                'prompt_injection_bug_bounty_tool_use', 'prompt_injection_bug_bounty_computer_use'
             ]
         },
         {

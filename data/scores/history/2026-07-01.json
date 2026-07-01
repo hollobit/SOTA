@@ -5710,7 +5710,7 @@
       "date": "2026-07-01",
       "citation": null
     },
-    "is_sota": true,
+    "is_sota": false,
     "collected_at": "2026-07-01",
     "notes": ""
   },
@@ -112450,7 +112450,7 @@
       "date": "2026-07-01",
       "citation": null
     },
-    "is_sota": true,
+    "is_sota": false,
     "collected_at": "2026-07-01",
     "notes": "effort= trials= variant="
   },
@@ -113848,51 +113848,6 @@
     "is_sota": false,
     "collected_at": "2026-07-01",
     "notes": "Section 2.3.5; max measured for any snapshot"
-  },
-  {
-    "model_id": "anthropic/claude-mythos-5",
-    "benchmark_id": "bbq_disambiguated_accuracy",
-    "value": 84.5,
-    "unit": "score",
-    "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-07-01",
-    "notes": "Section 4.4.2 Table 4.4.2.A; no system prompt"
-  },
-  {
-    "model_id": "anthropic/claude-mythos-preview",
-    "benchmark_id": "bbq_disambiguated_accuracy",
-    "value": 84.6,
-    "unit": "score",
-    "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-07-01",
-    "notes": "Section 4.4.2"
-  },
-  {
-    "model_id": "anthropic/claude-sonnet-4.6",
-    "benchmark_id": "bbq_disambiguated_accuracy",
-    "value": 88.1,
-    "unit": "score",
-    "source": {
-      "type": "pdf",
-      "url": "https://www-cdn.anthropic.com/anthropic_claude_fable5_mythos5_system_card.pdf",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-07-01",
-    "notes": "Section 4.4.2"
   },
   {
     "model_id": "anthropic/claude-mythos-5",
@@ -206071,21 +206026,6 @@
   },
   {
     "model_id": "anthropic/claude-opus-4.8",
-    "benchmark_id": "bbq_disambiguated_accuracy",
-    "value": 72.1,
-    "unit": "percent",
-    "source": {
-      "type": "leaderboard",
-      "url": "Claude Opus 4.8 System Card, Table 4.4.2.A (p.68)",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-07-01",
-    "notes": " "
-  },
-  {
-    "model_id": "anthropic/claude-opus-4.8",
     "benchmark_id": "bbq_ambiguous_accuracy",
     "value": 99.9,
     "unit": "percent",
@@ -221533,6 +221473,1056 @@
     "is_sota": false,
     "collected_at": "2026-07-01",
     "notes": "Tied with Opus 4.7 (81.8); below Gemini 3.1 Pro (90.0)"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "ai_rd_kernel_task_speedup",
+    "value": 284.52,
+    "unit": "x",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3 Table 2.3.3.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Above 200× (8h eq); below 300× (40h eq). Opus 4.7 371.75×, Mythos 5 430.93×"
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.7",
+    "benchmark_id": "ai_rd_kernel_task_speedup",
+    "value": 371.75,
+    "unit": "x",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3 Table 2.3.3.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Above 40h threshold"
+  },
+  {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "ai_rd_kernel_task_speedup",
+    "value": 430.93,
+    "unit": "x",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3 Table 2.3.3.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "Above 40h threshold"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "ai_rd_time_series_forecasting_hard_mse",
+    "value": 5.8,
+    "unit": "mse",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "Above 40h threshold (5.3) — worse than Opus 4.7 (4.78) and Mythos 5 (4.51). Lower is better."
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.7",
+    "benchmark_id": "ai_rd_time_series_forecasting_hard_mse",
+    "value": 4.78,
+    "unit": "mse",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Passes 40h threshold"
+  },
+  {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "ai_rd_time_series_forecasting_hard_mse",
+    "value": 4.51,
+    "unit": "mse",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Passes 40h threshold"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "ai_rd_llm_training_speedup",
+    "value": 26.49,
+    "unit": "x",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Above 4-8h threshold. Opus 4.7 50.67×, Mythos 5 69.61×"
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.7",
+    "benchmark_id": "ai_rd_llm_training_speedup",
+    "value": 50.67,
+    "unit": "x",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "ai_rd_llm_training_speedup",
+    "value": 69.61,
+    "unit": "x",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "ai_rd_quadruped_rl_highest_score",
+    "value": 19.94,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Above 4h threshold (12). Opus 4.7 24.73, Mythos 5 29.55"
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.7",
+    "benchmark_id": "ai_rd_quadruped_rl_highest_score",
+    "value": 24.73,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "ai_rd_quadruped_rl_highest_score",
+    "value": 29.55,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "ai_rd_novel_compiler_pass_rate",
+    "value": 76.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Above Opus 4.7 (70.4) but below Mythos 5 (85.3). 40h threshold = 90%"
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.7",
+    "benchmark_id": "ai_rd_novel_compiler_pass_rate",
+    "value": 70.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "ai_rd_novel_compiler_pass_rate",
+    "value": 85.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.3.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "cb1_long_form_virology_task1",
+    "value": 0.79,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.2.4",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Slightly below 0.80 notable-capability threshold. 3.33% of trials hit external API rate limits."
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.7",
+    "benchmark_id": "cb1_long_form_virology_task1",
+    "value": 0.82,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.2.4",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "Above threshold"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "cb1_vct_multimodal_virology",
+    "value": 0.45,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.2.4",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Well above expert baseline 0.221. Slight regression vs Opus 4.7 0.50, Opus 4.8 0.47, Mythos 5 0.56"
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.7",
+    "benchmark_id": "cb1_vct_multimodal_virology",
+    "value": 0.5,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.2.4",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "cb1_vct_multimodal_virology",
+    "value": 0.47,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.2.4",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "cb1_vct_multimodal_virology",
+    "value": 0.56,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.2.4",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "cb1_dna_synthesis_screening_evasion_plasmids",
+    "value": 5.0,
+    "unit": "count",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §2.2.4",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "Designed viable plasmids for 5/10 pathogens on at least one screening method. Below 10-pathogen low-concern threshold"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "suicide_self_harm_harmless_api",
+    "value": 98.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "±0.30. Slight decrease vs Sonnet 4.6 99.65 — occasional harmful substitution methods (e.g. holding ice cubes)"
+  },
+  {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "suicide_self_harm_harmless_api",
+    "value": 99.34,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "±0.30"
+  },
+  {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "suicide_self_harm_harmless_api",
+    "value": 99.67,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "±0.22"
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "suicide_self_harm_harmless_api",
+    "value": 99.21,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "±0.23"
+  },
+  {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "suicide_self_harm_harmless_api",
+    "value": 99.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "±0.26"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-4.6",
+    "benchmark_id": "suicide_self_harm_harmless_api",
+    "value": 99.65,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "±0.19"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "suicide_self_harm_overrefusal_api",
+    "value": 0.15,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "±0.08"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "suicide_self_harm_harmless_claude_ai",
+    "value": 99.82,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "±0.11 — recovered on claude.ai"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "suicide_self_harm_overrefusal_claude_ai",
+    "value": 0.45,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "±0.23"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "suicide_self_harm_multiturn_appropriate_api",
+    "value": 63.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.B",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "±10. Non-stat-sig regression vs Sonnet 4.6 (74)"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "suicide_self_harm_multiturn_appropriate_claude_ai",
+    "value": 90.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.B",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "±6. Recovered on claude.ai, above Sonnet 4.6 (82)"
+  },
+  {
+    "model_id": "anthropic/claude-fable-5",
+    "benchmark_id": "suicide_self_harm_multiturn_appropriate_api",
+    "value": 58.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.B",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "suicide_self_harm_multiturn_appropriate_api",
+    "value": 54.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.B",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "suicide_self_harm_multiturn_appropriate_api",
+    "value": 61.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.B",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-4.6",
+    "benchmark_id": "suicide_self_harm_multiturn_appropriate_api",
+    "value": 74.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.1 Table 4.3.1.B",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "disordered_eating_harmless_api",
+    "value": 97.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.2 Table 4.3.2.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "±0.53"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "disordered_eating_overrefusal_api",
+    "value": 0.09,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.2",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "±0.06"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "disordered_eating_harmless_claude_ai",
+    "value": 99.55,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.2",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "±0.19 — improved on claude.ai vs Sonnet 4.6 98.63"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "disordered_eating_overrefusal_claude_ai",
+    "value": 0.31,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.3.2",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "±0.17"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "bbq_disambiguated_accuracy",
+    "value": 72.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.4.2 Table 4.4.2.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Regression vs Sonnet 4.6 88.1. Below Mythos 5/Mythos Preview 84.5-84.6"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "bbq_ambiguous_accuracy",
+    "value": 98.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.4.2",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "bbq_disambiguated_bias",
+    "value": 1.93,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.4.2",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "Positive = leans toward stereotypes. Other Claude models have NEGATIVE bias scores (-1.37 to -1.80)"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "bbq_ambiguous_bias",
+    "value": 0.52,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.4.2",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Closer to zero than Sonnet 4.6 (1.41)"
+  },
+  {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "bbq_disambiguated_accuracy",
+    "value": 84.5,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.4.2 Table 4.4.2.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "bbq_disambiguated_accuracy",
+    "value": 72.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.4.2 Table 4.4.2.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-mythos-preview",
+    "benchmark_id": "bbq_disambiguated_accuracy",
+    "value": 84.6,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.4.2 Table 4.4.2.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-4.6",
+    "benchmark_id": "bbq_disambiguated_accuracy",
+    "value": 88.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.4.2 Table 4.4.2.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Best of all tested"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "election_integrity_harmful_api",
+    "value": 100.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.4.3 Table 4.4.3.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Perfect. All post-Opus-4.7 models 100%."
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "election_integrity_benign_api",
+    "value": 0.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §4.4.3",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "claude_code_malicious_refusal",
+    "value": 92.37,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.1.1 Table 5.1.1.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "SIGNIFICANT improvement vs Sonnet 4.6 (76.60). Approaches Opus 4.8 (95.24)"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "claude_code_dual_use_success",
+    "value": 91.55,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.1.1 Table 5.1.1.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Trade-off: over-refuses more than Sonnet 4.6 (97.33). Approaches Mythos Preview level 89.16"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "malicious_computer_use_refusal",
+    "value": 84.68,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.1.2 Table 5.1.2.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Nearly identical to Sonnet 4.6 (84.82). Slight improvement over Opus 4.8 (81.70)"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "agentic_influence_voter_suppression",
+    "value": 50.8,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.1.3 Table 5.1.3.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "NOT helpful-only variant. Higher than Sonnet 4.6 (41.8), well below Opus 4.8 (73.3)"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "agentic_influence_domestic_polarization",
+    "value": 43.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.1.3 Table 5.1.3.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Higher than Sonnet 4.6 (34.0), below Opus 4.8 (55.1)"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "prompt_injection_bug_bounty_all",
+    "value": 0.19,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1 Fig 5.2.2.1.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "TIED with Opus 4.8 for strongest result. Sonnet 4.6 1.41, GPT-5.5 3.08, Gemini 3.5 Flash 6.66"
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "prompt_injection_bug_bounty_all",
+    "value": 0.19,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1 Fig 5.2.2.1.A",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Tied Sonnet 5 for best"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-4.6",
+    "benchmark_id": "prompt_injection_bug_bounty_all",
+    "value": 1.41,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "openai/gpt-5.5",
+    "benchmark_id": "prompt_injection_bug_bounty_all",
+    "value": 3.08,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "google/gemini-3.5-flash",
+    "benchmark_id": "prompt_injection_bug_bounty_all",
+    "value": 6.66,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "prompt_injection_bug_bounty_coding",
+    "value": 0.1,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1 Fig 5.2.2.1.B",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Massive improvement vs Sonnet 4.6 3.3%. Better than Opus 4.8 (0.41%)"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-4.6",
+    "benchmark_id": "prompt_injection_bug_bounty_coding",
+    "value": 3.3,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "prompt_injection_bug_bounty_coding",
+    "value": 0.41,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "prompt_injection_bug_bounty_tool_use",
+    "value": 0.35,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Improvement vs Sonnet 4.6 (0.83%). Opus 4.8 achieved 0%"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-4.6",
+    "benchmark_id": "prompt_injection_bug_bounty_tool_use",
+    "value": 0.83,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "prompt_injection_bug_bounty_tool_use",
+    "value": 0.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Perfect"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-5",
+    "benchmark_id": "prompt_injection_bug_bounty_computer_use",
+    "value": 0.07,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Tied with Opus 4.8. Sonnet 4.6 was 0.45%"
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-4.6",
+    "benchmark_id": "prompt_injection_bug_bounty_computer_use",
+    "value": 0.45,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "prompt_injection_bug_bounty_computer_use",
+    "value": 0.07,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "SC §5.2.2.1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-01",
+    "notes": "Tied Sonnet 5"
   },
   {
     "model_id": "tencent/hy3-preview",
