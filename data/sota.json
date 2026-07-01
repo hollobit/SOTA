@@ -14,21 +14,6 @@
     "collected_at": "2026-07-01",
     "notes": ""
   },
-  "aime_2025": {
-    "model_id": "google/gemini-3.1-pro",
-    "benchmark_id": "aime_2025",
-    "value": 100.0,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://llm-stats.com/benchmarks/gpqa",
-      "date": "2026-04-17",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-04-17",
-    "notes": ""
-  },
   "hle": {
     "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "hle",
@@ -58,6 +43,21 @@
     "is_sota": true,
     "collected_at": "2026-04-17",
     "notes": "Telecom, from llm-stats.com"
+  },
+  "aime_2025": {
+    "model_id": "google/gemini-3.1-pro",
+    "benchmark_id": "aime_2025",
+    "value": 100.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://llm-stats.com/benchmarks/gpqa",
+      "date": "2026-04-17",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-04-17",
+    "notes": ""
   },
   "mmlu_pro": {
     "model_id": "google/gemini-3.1-pro",
@@ -375,19 +375,19 @@
     "notes": ""
   },
   "mmlu": {
-    "model_id": "moonshot/kimi-k2.5",
+    "model_id": "google/gemini-3-pro",
     "benchmark_id": "mmlu",
-    "value": 92.0,
-    "unit": "%",
+    "value": 91.8,
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "https://onyx.app/open-llm-leaderboard",
-      "date": "2026-05-12",
+      "url": "https://deepmind.google/models/evals-methodology/gemini-3-pro",
+      "date": "2026-07-01",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-05-12",
-    "notes": "Onyx Open LLM Leaderboard 2026 — Kimi K2.5 (1T) = 92.0 on mmlu. Maintained by Onyx AI (Roshan Desai), scores from official tech reports."
+    "collected_at": "2026-07-01",
+    "notes": "Multilingual Q&A"
   },
   "humaneval": {
     "model_id": "moonshot/kimi-k2.5",
@@ -600,7 +600,7 @@
     "notes": ""
   },
   "mcp_atlas": {
-    "model_id": "gemini-3.5-flash",
+    "model_id": "google/gemini-3.5-flash",
     "benchmark_id": "mcp_atlas",
     "value": 83.6,
     "unit": "%",
@@ -612,7 +612,7 @@
     },
     "is_sota": true,
     "collected_at": "2026-07-01",
-    "notes": "NEW SOTA MCP-Atlas pass rate, displaces DeepSeek V4-Pro-High 74.2 captured S112 (+9.4 pts)"
+    "notes": "MCP-Atlas full 1000; Apr 8 2026 update; gemini-3.5-flash (high)"
   },
   "ifeval": {
     "model_id": "kt/midm-k2.5-pro",
@@ -690,7 +690,7 @@
     "notes": ""
   },
   "math_500": {
-    "model_id": "claude-opus-4-6",
+    "model_id": "anthropic/claude-opus-4.6",
     "benchmark_id": "math_500",
     "value": 99.8,
     "unit": "score",
@@ -963,15 +963,15 @@
     "model_id": "google/gemini-3-pro",
     "benchmark_id": "longbench_v2",
     "value": 68.2,
-    "unit": "%",
+    "unit": "score",
     "source": {
-      "type": "pdf",
-      "url": "resource/2602.02276v1.pdf",
-      "date": "2026-04-17",
+      "type": "leaderboard",
+      "url": "https://ofox.ai/blog/long-context-llm-benchmarks-200k-tokens-2026/",
+      "date": "2026-07-01",
       "citation": null
     },
     "is_sota": true,
-    "collected_at": "2026-04-17",
+    "collected_at": "2026-07-01",
     "notes": ""
   },
   "organic_chemistry": {
@@ -1230,19 +1230,19 @@
     "notes": "1080p, 100 step max, 5-run avg, post zoom-tool-bugfix and 128K per-turn token limit"
   },
   "swe_bench_pro": {
-    "model_id": "claude-fable-5",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "swe_bench_pro",
     "value": 80.3,
-    "unit": "%",
+    "unit": "percent",
     "source": {
       "type": "leaderboard",
-      "url": "https://www.morphllm.com/swe-bench-pro",
+      "url": "system_card_section_8.2",
       "date": "2026-07-01",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-07-01",
-    "notes": "NEW SOTA SWE-bench Pro June 9, 2026 (+11 pts above prior best). Confirms S112 Pro now at 80.3%."
+    "notes": ""
   },
   "smt_2025": {
     "model_id": "openai/gpt-5.5",
@@ -1335,13 +1335,13 @@
     "notes": "rank=1, MathVision leader"
   },
   "video_mmmu": {
-    "model_id": "google/gemini-3-pro",
+    "model_id": "google/gemini-2.5-pro",
     "benchmark_id": "video_mmmu",
-    "value": 87.6,
-    "unit": "score",
+    "value": 83.6,
+    "unit": "percent",
     "source": {
-      "type": "leaderboard",
-      "url": "https://www.vellum.ai/blog/google-gemini-3-benchmarks",
+      "type": "pdf",
+      "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3_pro_model_evaluation.pdf",
       "date": "2026-07-01",
       "citation": null
     },
@@ -2970,7 +2970,7 @@
     "notes": "Epoch benchmark-stitching CSV (winogrande): Llama-3.1-405B = 89.20% per DeepSeek-V3 Technical Report"
   },
   "gemini_instrument_reading": {
-    "model_id": "google-deepmind/gemini-robotics-er-1.6",
+    "model_id": "google/gemini-robotics-er-1.6",
     "benchmark_id": "gemini_instrument_reading",
     "value": 93.0,
     "unit": "%",
@@ -5400,7 +5400,7 @@
     "notes": "Best PACE."
   },
   "posebusters_v2": {
-    "model_id": "deepmind/alphafold-3",
+    "model_id": "google-deepmind/alphafold-3",
     "benchmark_id": "posebusters_v2",
     "value": 76.0,
     "unit": "%",
@@ -5489,11 +5489,11 @@
     "collected_at": "2026-07-01",
     "notes": "Generated ESMGFP only 58% similar to closest natural GFP — major novel-design feat."
   },
-  "matbench_discovery_f1": {
-    "model_id": "matbench-oam/equiformerv3-dens-oam",
-    "benchmark_id": "matbench_discovery_f1",
-    "value": 0.931,
-    "unit": "f1",
+  "matbench_discovery_mae": {
+    "model_id": "fair/equiformerv3-dens-oam",
+    "benchmark_id": "matbench_discovery_mae",
+    "value": 0.018,
+    "unit": "ev/atom",
     "source": {
       "type": "leaderboard",
       "url": "https://matbench-discovery.materialsproject.org/",
@@ -5502,16 +5502,16 @@
     },
     "is_sota": true,
     "collected_at": "2026-07-01",
-    "notes": "Top of leaderboard."
+    "notes": ""
   },
-  "matbench_discovery_mae": {
-    "model_id": "matbench-oam/equiformerv3-dens-oam",
-    "benchmark_id": "matbench_discovery_mae",
-    "value": 0.018,
-    "unit": "ev/atom",
+  "matbench_discovery_f1": {
+    "model_id": "fair/equiformerv3-dens-oam",
+    "benchmark_id": "matbench_discovery_f1",
+    "value": 0.931,
+    "unit": "score",
     "source": {
       "type": "leaderboard",
-      "url": "https://matbench-discovery.materialsproject.org/",
+      "url": "https://matbench-discovery.materialsproject.org/leaderboard",
       "date": "2026-07-01",
       "citation": null
     },
@@ -9186,13 +9186,13 @@
     "unit": "%",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/html/2604.15804v1",
+      "url": "qwen35_omni_html",
       "date": "2026-07-01",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-07-01",
-    "notes": "First-party. Qwen3.5-Omni Technical Report, Table 5 (audio benchmark comparison). SOTA on MMAU. (StepFun's comparison report 2604.25719 lists 79.6 for this model — lower, different protocol; first-party value used.)"
+    "notes": ""
   },
   "video_mme_audio": {
     "model_id": "google/gemini-3.1-pro",
@@ -10593,46 +10593,46 @@
     "model_id": "alibaba/qwen-vla-instruct",
     "benchmark_id": "robotwin_easy",
     "value": 86.1,
-    "unit": "%",
+    "unit": "score",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2605.30280",
+      "url": "arxiv 2605.30280",
       "date": "2026-07-01",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-07-01",
-    "notes": "First-party. SOTA — beats ABot-M0 86.0."
+    "notes": ""
   },
   "robotwin_hard": {
     "model_id": "alibaba/qwen-vla-instruct",
     "benchmark_id": "robotwin_hard",
     "value": 87.2,
-    "unit": "score_0_100",
+    "unit": "score",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2605.30280",
+      "url": "arxiv 2605.30280",
       "date": "2026-07-01",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-07-01",
-    "notes": "🌍 Qwen-VLA-Instruct RoboTwin-Hard 87.2 NEW SOTA NEW bench (ABot-M0 85.0, π0.5 76.8)"
+    "notes": ""
   },
   "simpler_widowx": {
     "model_id": "alibaba/qwen-vla-instruct",
     "benchmark_id": "simpler_widowx",
     "value": 73.7,
-    "unit": "score_0_100",
+    "unit": "score",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2605.30280",
+      "url": "arxiv 2605.30280",
       "date": "2026-07-01",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-07-01",
-    "notes": "🌍 Qwen-VLA-Instruct Simpler-WidowX 73.7 NEW SOTA NEW bench (StarVLA-OFT 64.6, GR00T N1.6 63.2)"
+    "notes": ""
   },
   "robocasa_gr1": {
     "model_id": "amap-cvlab/abot-m0",
@@ -10653,16 +10653,16 @@
     "model_id": "alibaba/qwen-vla-instruct",
     "benchmark_id": "simplerenv_ood",
     "value": 32.0,
-    "unit": "%",
+    "unit": "score",
     "source": {
       "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2605.30280",
+      "url": "arxiv 2605.30280",
       "date": "2026-07-01",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-07-01",
-    "notes": "First-party. SOTA — 2.5x π0.5."
+    "notes": ""
   },
   "domino_sr": {
     "model_id": "alibaba/qwen-vla-instruct",
@@ -13874,51 +13874,6 @@
     "collected_at": "2026-07-01",
     "notes": "🌍 Qwen3.5-Omni-Plus KeSpeech WER 3.46 NEW bench (Gemini 3.1 Pro 23.67 = 6.8x worse — huge Mandarin dialect gap)"
   },
-  "voicebench": {
-    "model_id": "alibaba/qwen3.5-omni-plus",
-    "benchmark_id": "voicebench",
-    "value": 93.1,
-    "unit": "score_0_100",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2604.15804",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-07-01",
-    "notes": "🌍 Qwen3.5-Omni-Plus VoiceBench 93.1 NEW SOTA NEW bench (Gemini 3.1 Pro 88.9)"
-  },
-  "mmsu": {
-    "model_id": "google/gemini-3-pro-audio",
-    "benchmark_id": "mmsu",
-    "value": 82.9,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "step_audio_r1",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-07-01",
-    "notes": ""
-  },
-  "rul_muchomusic": {
-    "model_id": "alibaba/qwen3.5-omni-plus",
-    "benchmark_id": "rul_muchomusic",
-    "value": 72.4,
-    "unit": "score_0_100",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2604.15804",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-07-01",
-    "notes": "🌍 Qwen3.5-Omni-Plus RUL-MuchoMusic 72.4 NEW SOTA NEW bench (Gemini 3.1 Pro 59.6 — +12.8pp music understanding gap)"
-  },
   "dailyomni": {
     "model_id": "alibaba/qwen3.5-omni-plus",
     "benchmark_id": "dailyomni",
@@ -14520,7 +14475,7 @@
     "notes": "Table 3 row 21; 95% CI [1.063, 1.454]; exponential; lightest tail (BEST, SOTA)"
   },
   "errorquake_error_rate_lower_better": {
-    "model_id": "qwen/qwen2.5-7b",
+    "model_id": "alibaba/qwen2.5-7b",
     "benchmark_id": "errorquake_error_rate_lower_better",
     "value": 0.496,
     "unit": "rate",
@@ -14535,7 +14490,7 @@
     "notes": "Table 3 ε column; LOWEST error rate (best ε)"
   },
   "exploitbench_t5_coverage": {
-    "model_id": "anthropic/mythos-preview",
+    "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "exploitbench_t5_coverage",
     "value": 1.0,
     "unit": "pass_rate_0_1",
@@ -14550,7 +14505,7 @@
     "notes": "Table 1 primary arm: 41/41"
   },
   "exploitbench_t4_trigger": {
-    "model_id": "anthropic/mythos-preview",
+    "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "exploitbench_t4_trigger",
     "value": 0.9024,
     "unit": "pass_rate_0_1",
@@ -14565,7 +14520,7 @@
     "notes": "Table 1 primary arm: 37/41"
   },
   "exploitbench_t3_engine_primitives": {
-    "model_id": "anthropic/mythos-preview",
+    "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "exploitbench_t3_engine_primitives",
     "value": 0.8537,
     "unit": "pass_rate_0_1",
@@ -14580,7 +14535,7 @@
     "notes": "Table 1 primary arm: 35/41"
   },
   "exploitbench_t2_general_primitives": {
-    "model_id": "anthropic/mythos-preview",
+    "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "exploitbench_t2_general_primitives",
     "value": 0.5122,
     "unit": "pass_rate_0_1",
@@ -14595,7 +14550,7 @@
     "notes": "Table 1 primary arm: 21/41"
   },
   "exploitbench_t1_pc_control": {
-    "model_id": "anthropic/mythos-preview",
+    "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "exploitbench_t1_pc_control",
     "value": 0.439,
     "unit": "pass_rate_0_1",
@@ -14610,7 +14565,7 @@
     "notes": "Table 1 primary arm: 18/41"
   },
   "exploitbench_t1_ace": {
-    "model_id": "anthropic/mythos-preview",
+    "model_id": "anthropic/claude-mythos-preview",
     "benchmark_id": "exploitbench_t1_ace",
     "value": 0.439,
     "unit": "pass_rate_0_1",
@@ -15495,7 +15450,7 @@
     "notes": "App. G Tab. 25 L5 column zero-shot"
   },
   "commonwhy_long_tail_correctness": {
-    "model_id": "openai-o3",
+    "model_id": "openai/o3",
     "benchmark_id": "commonwhy_long_tail_correctness",
     "value": 67.93,
     "unit": "%",
@@ -15510,7 +15465,7 @@
     "notes": ""
   },
   "commonwhy_head_correctness": {
-    "model_id": "openai-o3",
+    "model_id": "openai/o3",
     "benchmark_id": "commonwhy_head_correctness",
     "value": 68.51,
     "unit": "%",
@@ -15525,7 +15480,7 @@
     "notes": ""
   },
   "commonwhy_long_tail_bs_f1": {
-    "model_id": "gemini-2.5-flash",
+    "model_id": "google/gemini-2.5-flash",
     "benchmark_id": "commonwhy_long_tail_bs_f1",
     "value": 0.375,
     "unit": "score",
@@ -15540,7 +15495,7 @@
     "notes": ""
   },
   "commonwhy_head_bs_f1": {
-    "model_id": "gemini-2.5-flash",
+    "model_id": "google/gemini-2.5-flash",
     "benchmark_id": "commonwhy_head_bs_f1",
     "value": 0.371,
     "unit": "score",
@@ -15555,7 +15510,7 @@
     "notes": ""
   },
   "commonwhy_long_tail_rouge_l": {
-    "model_id": "gemini-2.5-flash",
+    "model_id": "google/gemini-2.5-flash",
     "benchmark_id": "commonwhy_long_tail_rouge_l",
     "value": 0.318,
     "unit": "score",
@@ -15570,7 +15525,7 @@
     "notes": ""
   },
   "commonwhy_head_rouge_l": {
-    "model_id": "gemini-2.5-flash",
+    "model_id": "google/gemini-2.5-flash",
     "benchmark_id": "commonwhy_head_rouge_l",
     "value": 0.315,
     "unit": "score",
@@ -15585,7 +15540,7 @@
     "notes": ""
   },
   "commonwhy_long_tail_meteor": {
-    "model_id": "gemini-2.5-flash",
+    "model_id": "google/gemini-2.5-flash",
     "benchmark_id": "commonwhy_long_tail_meteor",
     "value": 0.359,
     "unit": "score",
@@ -15600,7 +15555,7 @@
     "notes": ""
   },
   "commonwhy_head_meteor": {
-    "model_id": "gemini-2.5-flash",
+    "model_id": "google/gemini-2.5-flash",
     "benchmark_id": "commonwhy_head_meteor",
     "value": 0.358,
     "unit": "score",
@@ -15615,7 +15570,7 @@
     "notes": ""
   },
   "commonwhy_long_tail_bleu": {
-    "model_id": "gemini-2.5-flash",
+    "model_id": "google/gemini-2.5-flash",
     "benchmark_id": "commonwhy_long_tail_bleu",
     "value": 9.23,
     "unit": "%",
@@ -15630,7 +15585,7 @@
     "notes": ""
   },
   "commonwhy_head_bleu": {
-    "model_id": "gemini-2.5-flash",
+    "model_id": "google/gemini-2.5-flash",
     "benchmark_id": "commonwhy_head_bleu",
     "value": 9.13,
     "unit": "%",
@@ -17175,7 +17130,7 @@
     "notes": ""
   },
   "arc-agi-2": {
-    "model_id": "gpt-5-5",
+    "model_id": "openai/gpt-5.5",
     "benchmark_id": "arc-agi-2",
     "value": 85.0,
     "unit": "%",
@@ -17205,7 +17160,7 @@
     "notes": ""
   },
   "aime-2025": {
-    "model_id": "gemini-3-pro",
+    "model_id": "google/gemini-3-pro",
     "benchmark_id": "aime-2025",
     "value": 100.0,
     "unit": "%",
@@ -17310,7 +17265,7 @@
     "notes": ""
   },
   "swe-bench-verified": {
-    "model_id": "claude-mythos-5",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "swe-bench-verified",
     "value": 95.5,
     "unit": "%",
@@ -22200,7 +22155,7 @@
     "notes": ""
   },
   "aaii": {
-    "model_id": "zai/glm-5.1",
+    "model_id": "zhipu/glm-5.1",
     "benchmark_id": "aaii",
     "value": 51.0,
     "unit": "score",
@@ -23250,7 +23205,7 @@
     "notes": ""
   },
   "ifeval_(finnish)": {
-    "model_id": "LumiOpen/Llama-Poro-2-70B-Instruct",
+    "model_id": "lumi-open/llama-poro-2-70b-instruct",
     "benchmark_id": "ifeval_(finnish)",
     "value": 70.79,
     "unit": "score",
@@ -23265,7 +23220,7 @@
     "notes": ""
   },
   "mtbench_(finnish)": {
-    "model_id": "LumiOpen/Llama-Poro-2-70B-Instruct",
+    "model_id": "lumi-open/llama-poro-2-70b-instruct",
     "benchmark_id": "mtbench_(finnish)",
     "value": 7.77,
     "unit": "score",
@@ -23280,7 +23235,7 @@
     "notes": ""
   },
   "alpacaeval_2_(finnish)": {
-    "model_id": "LumiOpen/Llama-Poro-2-70B-Instruct",
+    "model_id": "lumi-open/llama-poro-2-70b-instruct",
     "benchmark_id": "alpacaeval_2_(finnish)",
     "value": 41.96,
     "unit": "score",
@@ -23295,7 +23250,7 @@
     "notes": ""
   },
   "ifeval_(english)": {
-    "model_id": "LumiOpen/Llama-Poro-2-70B-Instruct",
+    "model_id": "lumi-open/llama-poro-2-70b-instruct",
     "benchmark_id": "ifeval_(english)",
     "value": 90.38,
     "unit": "score",
@@ -23310,7 +23265,7 @@
     "notes": ""
   },
   "mtbench_(english)": {
-    "model_id": "LumiOpen/Llama-Poro-2-70B-Instruct",
+    "model_id": "lumi-open/llama-poro-2-70b-instruct",
     "benchmark_id": "mtbench_(english)",
     "value": 8.41,
     "unit": "score",
@@ -23325,7 +23280,7 @@
     "notes": ""
   },
   "alpacaeval_2_(english)": {
-    "model_id": "LumiOpen/Llama-Poro-2-70B-Instruct",
+    "model_id": "lumi-open/llama-poro-2-70b-instruct",
     "benchmark_id": "alpacaeval_2_(english)",
     "value": 49.77,
     "unit": "score",
@@ -23340,7 +23295,7 @@
     "notes": ""
   },
   "mmlu_cf_(avg)": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "mmlu_cf_(avg)",
     "value": 44.13,
     "unit": "score",
@@ -23355,7 +23310,7 @@
     "notes": ""
   },
   "mmlu_pro_cf": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "mmlu_pro_cf",
     "value": 19.61,
     "unit": "score",
@@ -23370,7 +23325,7 @@
     "notes": ""
   },
   "mmlu_pro_mcf": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "mmlu_pro_mcf",
     "value": 32.7,
     "unit": "score",
@@ -23385,7 +23340,7 @@
     "notes": ""
   },
   "arc_cf_(avg)": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "arc_cf_(avg)",
     "value": 65.61,
     "unit": "score",
@@ -23400,7 +23355,7 @@
     "notes": ""
   },
   "gsm8k_(5_shot)": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "gsm8k_(5_shot)",
     "value": 67.63,
     "unit": "score",
@@ -23414,23 +23369,8 @@
     "collected_at": "2026-07-01",
     "notes": ""
   },
-  "gsm_plus": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
-    "benchmark_id": "gsm_plus",
-    "value": 72.8,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-07-01",
-    "notes": ""
-  },
   "aime_2025_(extended_thinking)": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "aime_2025_(extended_thinking)",
     "value": 36.7,
     "unit": "score",
@@ -23445,7 +23385,7 @@
     "notes": ""
   },
   "gsm_plus_(extended_thinking)": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "gsm_plus_(extended_thinking)",
     "value": 83.4,
     "unit": "score",
@@ -23460,7 +23400,7 @@
     "notes": ""
   },
   "belebele_(french)": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "belebele_(french)",
     "value": 51.0,
     "unit": "score",
@@ -23475,7 +23415,7 @@
     "notes": ""
   },
   "global_mmlu_cf_(french)": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "global_mmlu_cf_(french)",
     "value": 38.37,
     "unit": "score",
@@ -23490,7 +23430,7 @@
     "notes": ""
   },
   "mlmm_hellaswag_(french)": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "mlmm_hellaswag_(french)",
     "value": 63.94,
     "unit": "score",
@@ -23505,7 +23445,7 @@
     "notes": ""
   },
   "belebele_(spanish)": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "belebele_(spanish)",
     "value": 47.0,
     "unit": "score",
@@ -23520,7 +23460,7 @@
     "notes": ""
   },
   "global_mmlu_cf_(spanish)": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "global_mmlu_cf_(spanish)",
     "value": 38.51,
     "unit": "score",
@@ -23535,7 +23475,7 @@
     "notes": ""
   },
   "mlmm_hellaswag_(spanish)": {
-    "model_id": "HuggingFaceTB/SmolLM3-3B",
+    "model_id": "huggingface/smollm3-3b",
     "benchmark_id": "mlmm_hellaswag_(spanish)",
     "value": 65.85,
     "unit": "score",
@@ -23819,6 +23759,21 @@
     "collected_at": "2026-07-01",
     "notes": ""
   },
+  "voicebench": {
+    "model_id": "alibaba/qwen3.5-omni-plus",
+    "benchmark_id": "voicebench",
+    "value": 93.1,
+    "unit": "score",
+    "source": {
+      "type": "leaderboard",
+      "url": "qwen.ai/blog?id=qwen3.5-omni",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
   "mmau_v05_15_25": {
     "model_id": "alibaba/qwen3-omni-30b-a3b-instruct",
     "benchmark_id": "mmau_v05_15_25",
@@ -23842,6 +23797,21 @@
     "source": {
       "type": "leaderboard",
       "url": "MMAU-Pro arxiv 2508.13992 — SOTA Multi-Audio",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
+  "rul_muchomusic": {
+    "model_id": "alibaba/qwen3.5-omni-plus",
+    "benchmark_id": "rul_muchomusic",
+    "value": 72.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "qwen35_omni_html",
       "date": "2026-07-01",
       "citation": null
     },
@@ -24870,7 +24840,7 @@
     "notes": "Throughput at 8192 context, 2x AMD R9700 TP=2 with FP8 KV cache"
   },
   "mmlu-pro": {
-    "model_id": "claude-fable-5",
+    "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "mmlu-pro",
     "value": 91.5,
     "unit": "%",
@@ -25005,7 +24975,7 @@
     "notes": ""
   },
   "qat_top1_agreement_vs_bf16": {
-    "model_id": "gemma_4_26b_a4b_qat",
+    "model_id": "google/gemma-4-26b-a4b-qat",
     "benchmark_id": "qat_top1_agreement_vs_bf16",
     "value": 85.6,
     "unit": "score",
@@ -25350,7 +25320,7 @@
     "notes": "Mean KLD vs BF16 for naive Q4_0 conversion of E2B QAT checkpoint; Unsloth Dynamic Q4_0 achieves 0.00173 (29x reduction). Lower better."
   },
   "tokens_per_sec_rtx4090_q4km_8k_ctx": {
-    "model_id": "qwen-3.6-27b",
+    "model_id": "alibaba/qwen3.6-27b",
     "benchmark_id": "tokens_per_sec_rtx4090_q4km_8k_ctx",
     "value": 43.0,
     "unit": "tok/s",
@@ -25365,7 +25335,7 @@
     "notes": "Q4_K_M"
   },
   "tokens_per_sec_rtx4090_q4km_speculative_peak": {
-    "model_id": "qwen-3.6-27b",
+    "model_id": "alibaba/qwen3.6-27b",
     "benchmark_id": "tokens_per_sec_rtx4090_q4km_speculative_peak",
     "value": 67.0,
     "unit": "tok/s",
@@ -25380,7 +25350,7 @@
     "notes": "Q4_K_M + Qwen3.5-4B draft"
   },
   "vram_gb_q4km_lower_better": {
-    "model_id": "qwen-3.6-27b",
+    "model_id": "alibaba/qwen3.6-27b",
     "benchmark_id": "vram_gb_q4km_lower_better",
     "value": 16.8,
     "unit": "GB",
@@ -25395,7 +25365,7 @@
     "notes": "Q4_K_M"
   },
   "vram_gb_q5km_lower_better": {
-    "model_id": "qwen-3.6-27b",
+    "model_id": "alibaba/qwen3.6-27b",
     "benchmark_id": "vram_gb_q5km_lower_better",
     "value": 19.5,
     "unit": "GB",
@@ -25410,7 +25380,7 @@
     "notes": "Q5_K_M"
   },
   "vram_gb_q6k_lower_better": {
-    "model_id": "qwen-3.6-27b",
+    "model_id": "alibaba/qwen3.6-27b",
     "benchmark_id": "vram_gb_q6k_lower_better",
     "value": 22.5,
     "unit": "GB",
@@ -25425,7 +25395,7 @@
     "notes": "Q6_K"
   },
   "vram_gb_q8_lower_better": {
-    "model_id": "qwen-3.6-27b",
+    "model_id": "alibaba/qwen3.6-27b",
     "benchmark_id": "vram_gb_q8_lower_better",
     "value": 28.6,
     "unit": "GB",
@@ -25440,7 +25410,7 @@
     "notes": "Q8_0"
   },
   "vram_gb_bf16_lower_better": {
-    "model_id": "qwen-3.6-27b",
+    "model_id": "alibaba/qwen3.6-27b",
     "benchmark_id": "vram_gb_bf16_lower_better",
     "value": 53.8,
     "unit": "GB",
@@ -25455,7 +25425,7 @@
     "notes": "BF16"
   },
   "tokens_per_sec_provider_avg_aa": {
-    "model_id": "qwen-3.6-27b",
+    "model_id": "alibaba/qwen3.6-27b",
     "benchmark_id": "tokens_per_sec_provider_avg_aa",
     "value": 58.6,
     "unit": "tok/s",
@@ -25800,7 +25770,7 @@
     "notes": "LLM-stats HMMT 2025 leaderboard, rank 1"
   },
   "terminal_bench_2_claude_code": {
-    "model_id": "zai/glm-5.1",
+    "model_id": "zhipu/glm-5.1",
     "benchmark_id": "terminal_bench_2_claude_code",
     "value": 66.5,
     "unit": "score",
@@ -25815,7 +25785,7 @@
     "notes": ""
   },
   "browsecomp_ctx_mgmt": {
-    "model_id": "zai/glm-5.1",
+    "model_id": "zhipu/glm-5.1",
     "benchmark_id": "browsecomp_ctx_mgmt",
     "value": 79.3,
     "unit": "score",
@@ -25829,38 +25799,8 @@
     "collected_at": "2026-07-01",
     "notes": ""
   },
-  "mcp_atlas_public": {
-    "model_id": "meta/muse-spark",
-    "benchmark_id": "mcp_atlas_public",
-    "value": 82.4,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://labs.scale.com/leaderboard/mcp_atlas",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-07-01",
-    "notes": ""
-  },
-  "tool_decathlon": {
-    "model_id": "anthropic/claude-opus-4.8",
-    "benchmark_id": "tool_decathlon",
-    "value": 59.9,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://venturebeat.com/technology/z-ais-open-weights-glm-5-2-beats-gpt-5-5-on-multiple-long-horizon-coding-benchmarks-for-1-6th-the-cost",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-07-01",
-    "notes": ""
-  },
   "claw_eval_general": {
-    "model_id": "zai/glm-5.1",
+    "model_id": "zhipu/glm-5.1",
     "benchmark_id": "claw_eval_general",
     "value": 62.7,
     "unit": "score",
@@ -25875,7 +25815,7 @@
     "notes": ""
   },
   "claw_eval_multiturn": {
-    "model_id": "zai/glm-5.1",
+    "model_id": "zhipu/glm-5.1",
     "benchmark_id": "claw_eval_multiturn",
     "value": 60.5,
     "unit": "score",
@@ -25890,7 +25830,7 @@
     "notes": ""
   },
   "vending_bench_2_usd": {
-    "model_id": "zai/glm-5.1",
+    "model_id": "zhipu/glm-5.1",
     "benchmark_id": "vending_bench_2_usd",
     "value": 5634.0,
     "unit": "score",
@@ -26865,7 +26805,7 @@
     "notes": ""
   },
   "r2r_osr": {
-    "model_id": "QwenLM/Qwen-VLA-Instruct",
+    "model_id": "alibaba/qwen-vla-instruct",
     "benchmark_id": "r2r_osr",
     "value": 69.0,
     "unit": "score",
@@ -26880,7 +26820,7 @@
     "notes": ""
   },
   "rxr_sr": {
-    "model_id": "QwenLM/Qwen-VLA-Instruct",
+    "model_id": "alibaba/qwen-vla-instruct",
     "benchmark_id": "rxr_sr",
     "value": 59.6,
     "unit": "score",
@@ -26895,7 +26835,7 @@
     "notes": ""
   },
   "domino_mobile": {
-    "model_id": "QwenLM/Qwen-VLA-Instruct",
+    "model_id": "alibaba/qwen-vla-instruct",
     "benchmark_id": "domino_mobile",
     "value": 26.6,
     "unit": "score",
@@ -26910,7 +26850,7 @@
     "notes": ""
   },
   "aloha_realworld_indomain": {
-    "model_id": "QwenLM/Qwen-VLA-Instruct",
+    "model_id": "alibaba/qwen-vla-instruct",
     "benchmark_id": "aloha_realworld_indomain",
     "value": 83.6,
     "unit": "score",
@@ -26925,7 +26865,7 @@
     "notes": ""
   },
   "aloha_realworld_ood": {
-    "model_id": "QwenLM/Qwen-VLA-Instruct",
+    "model_id": "alibaba/qwen-vla-instruct",
     "benchmark_id": "aloha_realworld_ood",
     "value": 76.9,
     "unit": "score",
@@ -28035,7 +27975,7 @@
     "notes": ""
   },
   "kmmlu_redux": {
-    "model_id": "zai/glm-4.6",
+    "model_id": "zhipu/glm-4.6",
     "benchmark_id": "kmmlu_redux",
     "value": 78.2,
     "unit": "score",
@@ -28545,7 +28485,7 @@
     "notes": ""
   },
   "kmo25": {
-    "model_id": "zai/glm-4.6",
+    "model_id": "zhipu/glm-4.6",
     "benchmark_id": "kmo25",
     "value": 96.6,
     "unit": "score",
@@ -28829,21 +28769,6 @@
     "collected_at": "2026-07-01",
     "notes": "scaffold= date=2024-11-15"
   },
-  "bfcl_v4_overall": {
-    "model_id": "anthropic/claude-opus-4.5",
-    "benchmark_id": "bfcl_v4_overall",
-    "value": 77.47,
-    "unit": "score",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://gorilla.cs.berkeley.edu/leaderboard.html",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-07-01",
-    "notes": "scaffold= date=2025-12-16"
-  },
   "kimi_code_bench_v2": {
     "model_id": "openai/gpt-5.5",
     "benchmark_id": "kimi_code_bench_v2",
@@ -28920,7 +28845,7 @@
     "notes": ""
   },
   "casp16_tm_score_official_top1": {
-    "model_id": "google/alphafold-3",
+    "model_id": "google-deepmind/alphafold-3",
     "benchmark_id": "casp16_tm_score_official_top1",
     "value": 0.85,
     "unit": "score",
@@ -29475,7 +29400,7 @@
     "notes": ""
   },
   "iclr_icbinb_2025_reviewer_score": {
-    "model_id": "ai-scientist-v2",
+    "model_id": "sakana/ai-scientist-v2",
     "benchmark_id": "iclr_icbinb_2025_reviewer_score",
     "value": 6.33,
     "unit": "score",
@@ -29490,7 +29415,7 @@
     "notes": ""
   },
   "mrcr_v2_8needle_256k": {
-    "model_id": "deepseek-v4-pro",
+    "model_id": "deepseek/deepseek-v4-pro",
     "benchmark_id": "mrcr_v2_8needle_256k",
     "value": 82.0,
     "unit": "score",
@@ -29610,7 +29535,7 @@
     "notes": ""
   },
   "mrcr_v2_8needle_1m_pointwise": {
-    "model_id": "claude-opus-4-6",
+    "model_id": "anthropic/claude-opus-4.6",
     "benchmark_id": "mrcr_v2_8needle_1m_pointwise",
     "value": 76.0,
     "unit": "score",
@@ -29625,7 +29550,7 @@
     "notes": ""
   },
   "mrcr_v2_8needle_128k_avg": {
-    "model_id": "gpt-5-5",
+    "model_id": "openai/gpt-5.5",
     "benchmark_id": "mrcr_v2_8needle_128k_avg",
     "value": 94.8,
     "unit": "score",
@@ -29640,7 +29565,7 @@
     "notes": ""
   },
   "fiction_live_long_context_120k": {
-    "model_id": "gemini-2-5-pro",
+    "model_id": "google/gemini-2.5-pro",
     "benchmark_id": "fiction_live_long_context_120k",
     "value": 90.6,
     "unit": "score",
@@ -29655,7 +29580,7 @@
     "notes": ""
   },
   "niah_basic": {
-    "model_id": "llama-4-scout",
+    "model_id": "meta/llama-4-scout",
     "benchmark_id": "niah_basic",
     "value": 99.0,
     "unit": "score",
@@ -29910,7 +29835,7 @@
     "notes": ""
   },
   "ruler@1m": {
-    "model_id": "moonshotai/kimi-k2.5",
+    "model_id": "moonshot/kimi-k2.5",
     "benchmark_id": "ruler@1m",
     "value": 81.2,
     "unit": "score",
@@ -31215,7 +31140,7 @@
     "notes": "rank=1 org=Alibaba/Qwen"
   },
   "omnidocbench_v1_5": {
-    "model_id": "zai/glm-ocr",
+    "model_id": "zai-org/glm-ocr",
     "benchmark_id": "omnidocbench_v1_5",
     "value": 94.62,
     "unit": "%",
@@ -31244,23 +31169,8 @@
     "collected_at": "2026-05-03",
     "notes": ""
   },
-  "exploitbench_v8": {
-    "model_id": "claude-mythos-5",
-    "benchmark_id": "exploitbench_v8",
-    "value": 78.0,
-    "unit": "%",
-    "source": {
-      "type": "leaderboard",
-      "url": "Anthropic Mythos 5 system card §3.2.1",
-      "date": "2026-07-01",
-      "citation": null
-    },
-    "is_sota": true,
-    "collected_at": "2026-07-01",
-    "notes": ""
-  },
   "oss_fuzz_anthropic": {
-    "model_id": "claude-mythos-5",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "oss_fuzz_anthropic",
     "value": 32.4,
     "unit": "% ≥0.4",
@@ -31275,7 +31185,7 @@
     "notes": ""
   },
   "cybergym_v1": {
-    "model_id": "claude-mythos-5",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "cybergym_v1",
     "value": 83.8,
     "unit": "%",
@@ -31290,7 +31200,7 @@
     "notes": ""
   },
   "firefox_147_anthropic": {
-    "model_id": "claude-mythos-5",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "firefox_147_anthropic",
     "value": 88.4,
     "unit": "%",
@@ -31305,7 +31215,7 @@
     "notes": ""
   },
   "uk_aisi_narrow_cyber_expert": {
-    "model_id": "gpt-5-5",
+    "model_id": "openai/gpt-5.5",
     "benchmark_id": "uk_aisi_narrow_cyber_expert",
     "value": 90.5,
     "unit": "% pass@5",
@@ -31320,7 +31230,7 @@
     "notes": ""
   },
   "uk_aisi_cyber_range_last_ones": {
-    "model_id": "claude-mythos-5",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "uk_aisi_cyber_range_last_ones",
     "value": 60.0,
     "unit": "%",
@@ -31335,7 +31245,7 @@
     "notes": ""
   },
   "uk_aisi_cyber_range_doing_life": {
-    "model_id": "claude-mythos-5",
+    "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "uk_aisi_cyber_range_doing_life",
     "value": 91.3,
     "unit": "% steps best run",
@@ -31365,7 +31275,7 @@
     "notes": ""
   },
   "openai_cyber_range_internal": {
-    "model_id": "gpt-5-5",
+    "model_id": "openai/gpt-5.5",
     "benchmark_id": "openai_cyber_range_internal",
     "value": 93.33,
     "unit": "%",
@@ -31380,9 +31290,9 @@
     "notes": ""
   },
   "irregular_cyscenariobench": {
-    "model_id": "gpt-5-5",
+    "model_id": "openai/gpt-5.4",
     "benchmark_id": "irregular_cyscenariobench",
-    "value": 63.6,
+    "value": 45.5,
     "unit": "% (solved)",
     "source": {
       "type": "leaderboard",
@@ -31395,7 +31305,7 @@
     "notes": ""
   },
   "irregular_atomic_challenges": {
-    "model_id": "gpt-5-5",
+    "model_id": "openai/gpt-5.5",
     "benchmark_id": "irregular_atomic_challenges",
     "value": 54.0,
     "unit": "%",
@@ -31410,7 +31320,7 @@
     "notes": ""
   },
   "gemini_key_skills_v1_hard": {
-    "model_id": "gemini-3-pro",
+    "model_id": "google/gemini-3-pro",
     "benchmark_id": "gemini_key_skills_v1_hard",
     "value": 91.7,
     "unit": "%",
@@ -31425,7 +31335,7 @@
     "notes": ""
   },
   "gemini_key_skills_v2_e2e": {
-    "model_id": "gemini-3-pro",
+    "model_id": "google/gemini-3-pro",
     "benchmark_id": "gemini_key_skills_v2_e2e",
     "value": 0.0,
     "unit": "%",
@@ -31440,7 +31350,7 @@
     "notes": ""
   },
   "nyu_ctf_bench": {
-    "model_id": "claude-opus-4-5",
+    "model_id": "anthropic/claude-opus-4.5",
     "benchmark_id": "nyu_ctf_bench",
     "value": 59.0,
     "unit": "%",
@@ -31455,7 +31365,7 @@
     "notes": ""
   },
   "cyber_defense_benchmark_simbian": {
-    "model_id": "claude-opus-4-6",
+    "model_id": "anthropic/claude-opus-4.6",
     "benchmark_id": "cyber_defense_benchmark_simbian",
     "value": 3.8,
     "unit": "% events",
@@ -31650,7 +31560,7 @@
     "notes": ""
   },
   "crackme-bench": {
-    "model_id": "gpt-5-5",
+    "model_id": "openai/gpt-5.5",
     "benchmark_id": "crackme-bench",
     "value": 0.917,
     "unit": "score",
@@ -31678,6 +31588,21 @@
     "is_sota": true,
     "collected_at": "2026-07-01",
     "notes": ""
+  },
+  "bfcl_v4_overall": {
+    "model_id": "anthropic/claude-opus-4.5",
+    "benchmark_id": "bfcl_v4_overall",
+    "value": 77.47,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://github.com/HuanzhiMao/BFCL-Result/blob/main/2025-12-16/score/data_overall.csv",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "rank #1 of 109; FC variant; snapshot 2025-12-16"
   },
   "bfcl_v4_non_live_ast": {
     "model_id": "google/gemini-3-pro-preview",
@@ -31725,7 +31650,7 @@
     "notes": "SOTA multi-turn among all BFCL v4 entries"
   },
   "bfcl_v4_memory": {
-    "model_id": "anthropic/claude-opus-4-5",
+    "model_id": "anthropic/claude-opus-4.5",
     "benchmark_id": "bfcl_v4_memory",
     "value": 73.76,
     "unit": "%",
@@ -31740,7 +31665,7 @@
     "notes": ""
   },
   "bfcl_v4_irrelevance_detection": {
-    "model_id": "anthropic/claude-opus-4-5",
+    "model_id": "anthropic/claude-opus-4.5",
     "benchmark_id": "bfcl_v4_irrelevance_detection",
     "value": 84.72,
     "unit": "%",
@@ -31755,7 +31680,7 @@
     "notes": ""
   },
   "tau2_bench_airline_pass1": {
-    "model_id": "anthropic/claude-opus-4-5",
+    "model_id": "anthropic/claude-opus-4.5",
     "benchmark_id": "tau2_bench_airline_pass1",
     "value": 84.0,
     "unit": "%",
@@ -31979,8 +31904,23 @@
     "collected_at": "2026-07-01",
     "notes": "All 3 trials correct (Pass^3) — new Anthropic SOTA"
   },
+  "mcp_atlas_public": {
+    "model_id": "meta/muse-spark",
+    "benchmark_id": "mcp_atlas_public",
+    "value": 82.4,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://labs.scale.com/leaderboard/mcp_atlas",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
   "omnigaia": {
-    "model_id": "alibaba/qwen-3.5-omni-plus",
+    "model_id": "alibaba/qwen3.5-omni-plus",
     "benchmark_id": "omnigaia",
     "value": 57.2,
     "unit": "%",
@@ -33420,7 +33360,7 @@
     "notes": "Arena.ai T2I Elo per Arena official post (April 2026)"
   },
   "lm_arena_image_elo": {
-    "model_id": "blackforestlabs/flux-2-dev",
+    "model_id": "black-forest-labs/flux-2-dev",
     "benchmark_id": "lm_arena_image_elo",
     "value": 1149.0,
     "unit": "score",
@@ -33945,7 +33885,7 @@
     "notes": "RadFact Logical Precision reaching 52.5%-55.6%"
   },
   "kaggle_aptos2019_dr": {
-    "model_id": "visionfm/visionfm",
+    "model_id": "shanghai-ai-lab/visionfm",
     "benchmark_id": "kaggle_aptos2019_dr",
     "value": 0.974,
     "unit": "%",
@@ -34155,7 +34095,7 @@
     "notes": ""
   },
   "voicebench_overall": {
-    "model_id": "alibaba/qwen3-5-omni-plus",
+    "model_id": "alibaba/qwen3.5-omni-plus",
     "benchmark_id": "voicebench_overall",
     "value": 93.1,
     "unit": "%",
@@ -34184,6 +34124,21 @@
     "collected_at": "2026-07-01",
     "notes": "Kimi-Audio paper reports 61.10 on AlpacaEval-style scale used in their eval (different scoring convention from VoiceBench leaderboard's 4.x scale)."
   },
+  "mmsu": {
+    "model_id": "google/gemini-3-pro-audio",
+    "benchmark_id": "mmsu",
+    "value": 82.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "step_audio_r1",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
   "mmar": {
     "model_id": "google/gemini-3-1-pro-audio",
     "benchmark_id": "mmar",
@@ -34200,7 +34155,7 @@
     "notes": ""
   },
   "fleurs_wer_top60": {
-    "model_id": "alibaba/qwen3-5-omni-flash",
+    "model_id": "alibaba/qwen3.5-omni-flash",
     "benchmark_id": "fleurs_wer_top60",
     "value": 10.75,
     "unit": "%",
@@ -34215,7 +34170,7 @@
     "notes": ""
   },
   "fleurs_s2tt_xx_en": {
-    "model_id": "alibaba/qwen3-5-omni-plus",
+    "model_id": "alibaba/qwen3.5-omni-plus",
     "benchmark_id": "fleurs_s2tt_xx_en",
     "value": 35.4,
     "unit": "%",
@@ -34230,7 +34185,7 @@
     "notes": ""
   },
   "fleurs_s2tt_xx_zh": {
-    "model_id": "alibaba/qwen3-5-omni-plus",
+    "model_id": "alibaba/qwen3.5-omni-plus",
     "benchmark_id": "fleurs_s2tt_xx_zh",
     "value": 30.2,
     "unit": "%",
@@ -35160,7 +35115,7 @@
     "notes": "Donut on FUNSD F1 87.8"
   },
   "mmlongbench-doc": {
-    "model_id": "gpt-4o",
+    "model_id": "openai/gpt-4o",
     "benchmark_id": "mmlongbench-doc",
     "value": 44.9,
     "unit": "%",
@@ -35668,6 +35623,21 @@
     "is_sota": true,
     "collected_at": "2026-05-03",
     "notes": "Base"
+  },
+  "gsm_plus": {
+    "model_id": "huggingface/smollm3-3b",
+    "benchmark_id": "gsm_plus",
+    "value": 72.8,
+    "unit": "pct",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": "no-think"
   },
   "livecodebench_v4": {
     "model_id": "huggingface/smollm3-3b",
@@ -36719,6 +36689,21 @@
     "collected_at": "2026-07-01",
     "notes": ""
   },
+  "exploitbench_v8": {
+    "model_id": "anthropic/claude-mythos-5",
+    "benchmark_id": "exploitbench_v8",
+    "value": 78.0,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://hokai.io/hub/models/claude-mythos-5",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
   "biomystery_bench_hard": {
     "model_id": "anthropic/claude-mythos-5",
     "benchmark_id": "biomystery_bench_hard",
@@ -37080,7 +37065,7 @@
     "notes": ""
   },
   "aa-intelligence-index-v4": {
-    "model_id": "claude-fable-5",
+    "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "aa-intelligence-index-v4",
     "value": 65.0,
     "unit": "index",
@@ -37095,7 +37080,7 @@
     "notes": "with fallback; snapshot 2026-06-15; #1 top mover"
   },
   "lmarena-text-elo": {
-    "model_id": "claude-fable-5",
+    "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "lmarena-text-elo",
     "value": 1510.0,
     "unit": "elo",
@@ -37110,7 +37095,7 @@
     "notes": "snapshot 2026-06-15; new #1"
   },
   "lmarena-vision-elo": {
-    "model_id": "claude-opus-4-7-thinking",
+    "model_id": "anthropic/claude-opus-4.7-thinking",
     "benchmark_id": "lmarena-vision-elo",
     "value": 1309.0,
     "unit": "elo",
@@ -37125,7 +37110,7 @@
     "notes": ""
   },
   "lmarena-webdev-elo": {
-    "model_id": "claude-fable-5",
+    "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "lmarena-webdev-elo",
     "value": 1665.0,
     "unit": "elo",
@@ -37140,7 +37125,7 @@
     "notes": "+99 over #2; large gap top of board"
   },
   "vals-index": {
-    "model_id": "claude-fable-5",
+    "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "vals-index",
     "value": 75.14,
     "unit": "%",
@@ -37155,7 +37140,7 @@
     "notes": "NEW June 2026"
   },
   "legalbench": {
-    "model_id": "claude-fable-5",
+    "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "legalbench",
     "value": 88.56,
     "unit": "%",
@@ -37170,7 +37155,7 @@
     "notes": "NEW June 2026"
   },
   "medscribe": {
-    "model_id": "claude-fable-5",
+    "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "medscribe",
     "value": 88.52,
     "unit": "%",
@@ -37185,7 +37170,7 @@
     "notes": "NEW June 2026"
   },
   "proofbench": {
-    "model_id": "claude-fable-5",
+    "model_id": "anthropic/claude-fable-5",
     "benchmark_id": "proofbench",
     "value": 77.0,
     "unit": "%",
@@ -37200,7 +37185,7 @@
     "notes": "NEW June 2026"
   },
   "matharena-overall": {
-    "model_id": "gpt-5-5-xhigh",
+    "model_id": "openai/gpt-5.5-xhigh",
     "benchmark_id": "matharena-overall",
     "value": 81.2,
     "unit": "%",
@@ -37215,7 +37200,7 @@
     "notes": "Model analysis across MathArena table"
   },
   "codeforces-elo-normalized": {
-    "model_id": "deepseek-v4-pro-max",
+    "model_id": "deepseek/deepseek-v4-pro-max",
     "benchmark_id": "codeforces-elo-normalized",
     "value": 1.0,
     "unit": "normalized",
@@ -37230,7 +37215,7 @@
     "notes": "snapshot 2026-06 leader; normalized score"
   },
   "livecodebench-llm-stats": {
-    "model_id": "deepseek-v4-pro-max",
+    "model_id": "deepseek/deepseek-v4-pro-max",
     "benchmark_id": "livecodebench-llm-stats",
     "value": 0.935,
     "unit": "normalized",
@@ -37245,7 +37230,7 @@
     "notes": "snapshot 2026-06; top open-source #1"
   },
   "k_browsecomp": {
-    "model_id": "gpt-5.5",
+    "model_id": "openai/gpt-5.5",
     "benchmark_id": "k_browsecomp",
     "value": 45.67,
     "unit": "%",
@@ -37275,7 +37260,7 @@
     "notes": "strongest autonomous agent; SOTA among 7 agents tested"
   },
   "cua_handcrafted": {
-    "model_id": "claude-sonnet-4-6",
+    "model_id": "anthropic/claude-sonnet-4.6",
     "benchmark_id": "cua_handcrafted",
     "value": 0.0,
     "unit": "%",
@@ -37395,7 +37380,7 @@
     "notes": "Chronos-Bolt: 250x faster, 20x more memory-efficient than original Chronos; outperforms statistical and DL baselines on Chronos zero-shot benchmark (WQL, MASE) across 27 datasets."
   },
   "weatherbench_2_crps_targets": {
-    "model_id": "deepmind/gencast",
+    "model_id": "google-deepmind/gencast",
     "benchmark_id": "weatherbench_2_crps_targets",
     "value": 97.2,
     "unit": "%",
@@ -40320,7 +40305,7 @@
     "notes": "500,000 tok/s on 8xSohu server / 8 = ~62,500 tok/s/chip on Llama 70B FP8, vendor-claimed, unverified"
   },
   "aa_provider_output_speed_tps": {
-    "model_id": "gpt-oss-120b",
+    "model_id": "openai/gpt-oss-120b",
     "benchmark_id": "aa_provider_output_speed_tps",
     "value": 1846.1,
     "unit": "tok/s",
@@ -40335,7 +40320,7 @@
     "notes": ""
   },
   "aa_provider_price_blended_usd_1m": {
-    "model_id": "llama-3.1-70b-instruct",
+    "model_id": "meta/llama-3.1-70b-instruct",
     "benchmark_id": "aa_provider_price_blended_usd_1m",
     "value": 0.4,
     "unit": "tok/s",
@@ -40350,7 +40335,7 @@
     "notes": ""
   },
   "mlperf_inference_v5_1_offline_tps_per_gpu": {
-    "model_id": "llama-2-70b",
+    "model_id": "meta/llama-2-70b",
     "benchmark_id": "mlperf_inference_v5_1_offline_tps_per_gpu",
     "value": 52000.0,
     "unit": "tok/s",
@@ -40365,7 +40350,7 @@
     "notes": ""
   },
   "mlperf_inference_v5_1_server_tps_per_gpu": {
-    "model_id": "llama-3.1-405b-instruct",
+    "model_id": "meta/llama-3.1-405b-instruct",
     "benchmark_id": "mlperf_inference_v5_1_server_tps_per_gpu",
     "value": 2907.0,
     "unit": "tok/s",
@@ -40380,7 +40365,7 @@
     "notes": ""
   },
   "mlperf_inference_v5_0_offline_tps": {
-    "model_id": "llama-3.1-405b-instruct",
+    "model_id": "meta/llama-3.1-405b-instruct",
     "benchmark_id": "mlperf_inference_v5_0_offline_tps",
     "value": 855.82,
     "unit": "tok/s",
@@ -40410,7 +40395,7 @@
     "notes": ""
   },
   "vllm_h100_fp8_throughput_tps": {
-    "model_id": "llama-3.3-70b-instruct",
+    "model_id": "meta/llama-3.3-70b-instruct",
     "benchmark_id": "vllm_h100_fp8_throughput_tps",
     "value": 3245.0,
     "unit": "tok/s",
@@ -40529,6 +40514,21 @@
     "collected_at": "2026-07-01",
     "notes": ""
   },
+  "tool_decathlon": {
+    "model_id": "anthropic/claude-opus-4.8",
+    "benchmark_id": "tool_decathlon",
+    "value": 59.9,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://venturebeat.com/technology/z-ais-open-weights-glm-5-2-beats-gpt-5-5-on-multiple-long-horizon-coding-benchmarks-for-1-6th-the-cost",
+      "date": "2026-07-01",
+      "citation": null
+    },
+    "is_sota": true,
+    "collected_at": "2026-07-01",
+    "notes": ""
+  },
   "post_train_bench": {
     "model_id": "anthropic/claude-opus-4.8",
     "benchmark_id": "post_train_bench",
@@ -40566,13 +40566,13 @@
     "unit": "index",
     "source": {
       "type": "leaderboard",
-      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "url": "https://artificialanalysis.ai/leaderboards/models + https://artificialanalysis.ai/models/claude-fable-5",
       "date": "2026-07-01",
       "citation": null
     },
     "is_sota": true,
     "collected_at": "2026-07-01",
-    "notes": "AAII v4.1, with Opus 4.8 fallback; #1 ranking but currently unavailable"
+    "notes": "tier=with_fallback (adaptive default)"
   },
   "libero_plus": {
     "model_id": "alibaba/qwen-robotmanip",
@@ -43800,7 +43800,7 @@
     "notes": "2026-01-29"
   },
   "de_novo_antibody_design_vs_52_pdb_novel_targets": {
-    "model_id": "chai/chai-2",
+    "model_id": "chai-discovery/chai-2",
     "benchmark_id": "de_novo_antibody_design_vs_52_pdb_novel_targets",
     "value": 16.0,
     "unit": "%",
@@ -43815,7 +43815,7 @@
     "notes": "binding hit rate"
   },
   "miniprotein_binder_design": {
-    "model_id": "chai/chai-2",
+    "model_id": "chai-discovery/chai-2",
     "benchmark_id": "miniprotein_binder_design",
     "value": 68.0,
     "unit": "%",
@@ -52110,7 +52110,7 @@
     "notes": "Combined across 6 subtasks. Top frontier"
   },
   "shield_cadets_apt_f1": {
-    "model_id": "alibaba/qwen-2.5-32b",
+    "model_id": "alibaba/qwen2.5-32b",
     "benchmark_id": "shield_cadets_apt_f1",
     "value": 0.389,
     "unit": "%",
@@ -53430,7 +53430,7 @@
     "notes": "+4-6% improvement; up to +20% surface temperature"
   },
   "regulatory_single_seq_eval": {
-    "model_id": "deepmind/alphagenome",
+    "model_id": "google-deepmind/alphagenome",
     "benchmark_id": "regulatory_single_seq_eval",
     "value": 22.0,
     "unit": "/24 SOTA",
@@ -53445,7 +53445,7 @@
     "notes": ""
   },
   "regulatory_variant_eval": {
-    "model_id": "deepmind/alphagenome",
+    "model_id": "google-deepmind/alphagenome",
     "benchmark_id": "regulatory_variant_eval",
     "value": 24.0,
     "unit": "/26 match-or-exceed-SOTA",
