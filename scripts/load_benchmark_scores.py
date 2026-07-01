@@ -47,6 +47,21 @@ def main():
 
     # Pass 1 — register all models and benchmarks across every file first,
     # so any score in pass 2 can resolve its model_id / benchmark_id FK
+    # Load canonical-ID map to rewrite known dupes at ingest time. This is
+    # the durable fix for the recurring problem where resource/*_scores*.json
+    # files contain prefix-less or dash-form model IDs (e.g., 'claude-fable-5'
+    # or 'gpt-5-2-high') that got merged into canonical forms in S163-S171 but
+    # were re-inserted on every load pass because the SQL migrations only
+    # touch the DB, not the source JSON. See data/model_canonical_map.json.
+    canonical_map = {}
+    map_path = Path(__file__).parent.parent / "data" / "model_canonical_map.json"
+    if map_path.exists():
+        canonical_map = json.loads(map_path.read_text())
+        print(f"Loaded canonical map: {len(canonical_map)} dupe→canonical rewrites")
+
+    def canonicalize(mid: str) -> str:
+        return canonical_map.get(mid, mid) if mid else mid
+
     # regardless of which file (or glob ordering) declared it.
     for json_path in json_files:
         print(f"Loading [pass 1: schema] {json_path.name}...")
@@ -58,12 +73,21 @@ def main():
         # caused 90% of sovereign models to flip from open-weight to proprietary
         # over many score-batch loads).
         for m in data.get("models", []):
+            mid = canonicalize(m["id"])
+            # If a dupe would have been introduced, skip inserting the model
+            # entirely — the canonical row already exists (or will be created
+            # by a different file that uses the canonical name).
+            if mid != m["id"]:
+                # Only skip if canonical is already present.
+                row = conn.execute("SELECT id FROM models WHERE id = ?", (mid,)).fetchone()
+                if row:
+                    continue
             mtype = m.get("type")
             if mtype is None:
-                row = conn.execute("SELECT type FROM models WHERE id = ?", (m["id"],)).fetchone()
+                row = conn.execute("SELECT type FROM models WHERE id = ?", (mid,)).fetchone()
                 mtype = (row[0] if row else None) or "proprietary"
             insert_model(conn, Model(
-                id=m["id"],
+                id=mid,
                 vendor=m.get("vendor", "unknown"),
                 name=m.get("name", m["id"]),
                 version="",
@@ -118,7 +142,7 @@ def main():
                 src_url = default_source_url
 
             insert_score(conn, Score(
-                model_id=s["model"],
+                model_id=canonicalize(s["model"]),
                 benchmark_id=s["benchmark"],
                 value=s["score"],
                 unit=s.get("unit", "%"),
