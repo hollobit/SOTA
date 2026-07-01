@@ -92,7 +92,7 @@ var PhysicalAI = {
                 'openvla/openvla-oft-7b', 'stanford/openvla-oft',
                 'lerobot/lingbot_va_base', 'robbyant/lingbot-vla-4b', 'robbyant/lingbot-vla-4b-depth',
                 'huggingface/smolvla', 'robotics-diffusion-transformer/rdt-1b',
-                'QwenLM/Qwen-VLA-Instruct',
+                'alibaba/qwen-vla-instruct',
                 // 2026-06-01 S45 — Alibaba Qwen-VLA paper (arxiv 2605.30280): unified VLA across tasks/environments/embodiments
                 'alibaba/qwen-vla-base', 'alibaba/qwen-vla-instruct',
                 'alibaba/qwen-vla-aloha-pretrain', 'alibaba/qwen-vla-aloha-no-pretrain',
