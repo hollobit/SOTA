@@ -3382,10 +3382,14 @@ var App = {
             });
         });
 
-        // Type order — known types first, then any unknown types alphabetically
-        var typeOrder = ['Deploy', 'Feature', 'Data', 'Fix', 'Bugfix', 'Docs', 'Correction',
+        // Type order — new session-log types (lowercase) first so recent
+        // work surfaces at top of the changelog, then legacy uppercase types.
+        // Any type not listed here gets auto-appended at the end (see below).
+        var typeOrder = ['session', 'ingest', 'Deploy', 'Feature', 'Data', 'Fix', 'Bugfix', 'Docs', 'Correction',
                          'PDF Analysis', 'Web Collection', 'Data Collection', 'Reference', 'SOTA'];
         var typeColors = {
+            'session': 'bg-blue-900 text-blue-300',
+            'ingest': 'bg-cyan-900 text-cyan-300',
             'Deploy': 'bg-green-900 text-green-300',
             'Feature': 'bg-blue-900 text-blue-300',
             'Data': 'bg-cyan-900 text-cyan-300',
@@ -3399,6 +3403,10 @@ var App = {
             'Reference': 'bg-indigo-900 text-indigo-300',
             'SOTA': 'bg-emerald-900 text-emerald-300',
             'Other': 'bg-gray-800 text-gray-400'
+        };
+        var typeLabels = {
+            'session': 'Session',
+            'ingest': 'Ingest'
         };
 
         // Auto-append any types not in typeOrder (e.g. future-added types)
@@ -3415,7 +3423,7 @@ var App = {
 
             var h3 = document.createElement('h3');
             h3.className = 'text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3';
-            h3.textContent = type + ' (' + items.length + ')';
+            h3.textContent = (typeLabels[type] || type) + ' (' + items.length + ')';
             section.appendChild(h3);
 
             items.forEach(function(change) {
