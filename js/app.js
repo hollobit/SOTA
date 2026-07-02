@@ -3436,11 +3436,15 @@ var App = {
                 card.appendChild(badge);
 
                 var content = document.createElement('div');
-                content.className = 'text-sm';
+                content.className = 'text-sm flex-1 min-w-0';
 
+                // Two schemas coexist in changelog.json:
+                // - Session/ingest/Feature/Fix entries: {title, detail}
+                // - Legacy SOTA entries: {benchmark_id, new_model, new_value}
+                var titleText = change.title || change.benchmark_id || '';
                 var title = document.createElement('span');
                 title.className = 'text-gray-200 font-medium';
-                title.textContent = change.benchmark_id;
+                title.textContent = titleText;
                 content.appendChild(title);
 
                 if (change.new_model) {
@@ -3456,6 +3460,15 @@ var App = {
                     val.className = 'ml-2 text-gray-500';
                     val.textContent = '(' + change.new_value + ')';
                     content.appendChild(val);
+                }
+
+                // Render detail as a collapsed second line \u2014 session/ingest
+                // entries carry the full session summary here (200-3000 chars).
+                if (change.detail) {
+                    var det = document.createElement('div');
+                    det.className = 'text-xs text-gray-500 mt-1 leading-relaxed';
+                    det.textContent = change.detail;
+                    content.appendChild(det);
                 }
 
                 card.appendChild(content);
