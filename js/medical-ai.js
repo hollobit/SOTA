@@ -591,6 +591,20 @@ var MedicalAI = {
             ]
         },
         {
+            label: '🤖 Agentic Healthcare Tasks',
+            note: 'Microsoft HealthAgentBench (arxiv 2606.31179, 2026-06-30) — 54 tasks × 3 attempts across 7 executable environments (X-ray Report Correction, CT Abnormality Classification, Pathology Tumor Area, Clinical Trial Matching, EHR Data Quality Audit, EHR Event Modelling, EHR Format Conversion) × 5 modalities (text, EHR, 2D X-ray, 3D CT, gigapixel WSI). Codex+GPT-5.5 = 42% #1. Frontier flagship trade-offs: GPT-5.4 beats GPT-5.5 on X-ray (40 vs 33), Opus 4.6 leads EHR Data Quality Audit (42), Opus 4.7 leads EHR Event Modelling (78 vs GPT-5.5 72). Harness matters: same backbone ±7pt depending on Codex vs Copilot vs Claude Code.',
+            benchmarks: [
+                'healthagentbench',
+                'healthagentbench_xray_report_correction',
+                'healthagentbench_ct_abnormality_classification',
+                'healthagentbench_pathology_tumor_area',
+                'healthagentbench_clinical_trial_matching',
+                'healthagentbench_ehr_data_quality_audit',
+                'healthagentbench_ehr_event_modeling',
+                'healthagentbench_ehr_format_conversion'
+            ]
+        },
+        {
             label: '⌚ Wearable Health Foundation Models',
             note: 'Google SensorFM (arxiv 2605.22759, May 21 2026) — 1T+ minutes pretrained, 5M participants, 35 downstream tasks. SensorFM-B wins 33/35 tasks. Includes Gemini classroom (5 student LLMs find optimal prediction heads) + Personal Health Agent integration.',
             benchmarks: [
