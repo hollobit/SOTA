@@ -1,0 +1,618 @@
+{
+  "_meta": {
+    "session": "174",
+    "date": "2026-07-02",
+    "topic": "Microsoft HealthAgentBench (54-task agentic healthcare, arxiv 2606.31179)",
+    "sources": [
+      "https://microsoft.github.io/HealthAgentBench/",
+      "https://arxiv.org/pdf/2606.31179"
+    ],
+    "notes": "54 tasks \u00d7 3 attempts = 162 trials. 7 categories (X-ray Report Correction, CT Abnormality Classification, Pathology Tumor Area, Clinical Trial Matching, EHR Data Quality Audit, EHR Event Modelling, EHR Format Conversion) \u00d7 5 modalities. Metric = binary task success rate. **Codex GPT-5.5 = 42% overall #1**. Buried findings: GPT-5.4 beats GPT-5.5 on X-ray Report Correction (40 vs 33), Claude Opus 4.6 leads EHR Data Quality Audit (42), Opus 4.7 leads EHR Event Modelling (78 vs GPT-5.5 72), Opus 4.6 uniquely fails MEDS Format Conversion (0% while all others 100), Opus 4.6 fails 3D CT (0%). Harness matters: GPT-5.5 42\u219235 (Codex\u2192Copilot), Opus-4.8 32\u219236 (Claude Code\u2192Copilot). No new models introduced. Dedupe: took MAX per (model, bench) \u2014 66 \u2192 64 scores."
+  },
+  "models": [],
+  "benchmarks": [
+    {
+      "id": "healthagentbench",
+      "name": "HealthAgentBench (overall)",
+      "category": "medical",
+      "subcategory": "agentic_healthcare",
+      "metric": "task_success_rate",
+      "unit": "%",
+      "description": "Pooled binary task success rate across 54 realistic agentic healthcare tasks (3 attempts each = 162 trials), spanning 7 categories with unique executable environments and 5 modalities (text, EHR, 2D X-ray, 3D CT, gigapixel pathology WSI). Microsoft Research, released 2026-06-30.",
+      "source_url": "https://microsoft.github.io/HealthAgentBench/",
+      "paper_url": "https://arxiv.org/abs/2606.31179",
+      "release_date": "2026-06-30"
+    },
+    {
+      "id": "healthagentbench_xray_report_correction",
+      "name": "HealthAgentBench: X-ray Report Correction",
+      "category": "medical",
+      "subcategory": "medical_imaging",
+      "metric": "task_success_rate",
+      "unit": "%",
+      "description": "10 tasks. Review counterfactual chest X-ray Findings draft against target study + longitudinal history; success = 0 significant errors in corrected report. Data: MIMIC-CXR (PhysioNet credentialed).",
+      "source_url": "https://microsoft.github.io/HealthAgentBench/",
+      "paper_url": "https://arxiv.org/abs/2606.31179"
+    },
+    {
+      "id": "healthagentbench_ct_abnormality_classification",
+      "name": "HealthAgentBench: CT Abnormality Classification",
+      "category": "medical",
+      "subcategory": "medical_imaging",
+      "metric": "task_success_rate",
+      "unit": "%",
+      "description": "10 tasks. Interpret chest CT volume, emit per-volume yes/no label vector; success = 1.0 accuracy. Data: CT-RATE (HuggingFace gated).",
+      "source_url": "https://microsoft.github.io/HealthAgentBench/",
+      "paper_url": "https://arxiv.org/abs/2606.31179"
+    },
+    {
+      "id": "healthagentbench_pathology_tumor_area",
+      "name": "HealthAgentBench: Pathology Tumor Area Selection",
+      "category": "medical",
+      "subcategory": "medical_imaging",
+      "metric": "task_success_rate",
+      "unit": "%",
+      "description": "10 tasks. Inspect gigapixel pathology slide, predict tumor tile set on fixed grid; success = tile F1 >= 0.9. Data: CAMELYON16 (public).",
+      "source_url": "https://microsoft.github.io/HealthAgentBench/",
+      "paper_url": "https://arxiv.org/abs/2606.31179"
+    },
+    {
+      "id": "healthagentbench_clinical_trial_matching",
+      "name": "HealthAgentBench: Clinical Trial Matching",
+      "category": "medical",
+      "subcategory": "clinical_reasoning",
+      "metric": "task_success_rate",
+      "unit": "%",
+      "description": "9 tasks. Rank candidate clinical-trial IDs for a patient profile; success = recall@50 = 1.0. Data: TREC-CT 2021 (public).",
+      "source_url": "https://microsoft.github.io/HealthAgentBench/",
+      "paper_url": "https://arxiv.org/abs/2606.31179"
+    },
+    {
+      "id": "healthagentbench_ehr_data_quality_audit",
+      "name": "HealthAgentBench: EHR Data Quality Auditing",
+      "category": "medical",
+      "subcategory": "ehr_workflow",
+      "metric": "task_success_rate",
+      "unit": "%",
+      "description": "8 tasks. Audit corrupted EHR corpus, flag offending rows; success = 1.0 recall and >0.01 precision. Data: MIMIC-IV demo + synthetic errors (public).",
+      "source_url": "https://microsoft.github.io/HealthAgentBench/",
+      "paper_url": "https://arxiv.org/abs/2606.31179"
+    },
+    {
+      "id": "healthagentbench_ehr_event_modeling",
+      "name": "HealthAgentBench: EHR Event Modelling",
+      "category": "medical",
+      "subcategory": "ehr_ml_pipeline",
+      "metric": "task_success_rate",
+      "unit": "%",
+      "description": "6 tasks. Build ML pipeline over longitudinal event log to predict 6 new-onset diagnoses; success = test AUROC >= count+GBM human-engineered baseline within 1 hr budget. Data: Stanford STARR via EHRSHOT (Redivis-gated).",
+      "source_url": "https://microsoft.github.io/HealthAgentBench/",
+      "paper_url": "https://arxiv.org/abs/2606.31179"
+    },
+    {
+      "id": "healthagentbench_ehr_format_conversion",
+      "name": "HealthAgentBench: EHR Format Conversion",
+      "category": "medical",
+      "subcategory": "ehr_workflow",
+      "metric": "task_success_rate",
+      "unit": "%",
+      "description": "1 task. Customize real MEDS ETL repository to emit required transformed cohort from raw demo EHR; success = output exact match. Data: MIMIC-IV demo (public).",
+      "source_url": "https://microsoft.github.io/HealthAgentBench/",
+      "paper_url": "https://arxiv.org/abs/2606.31179"
+    }
+  ],
+  "scores": [
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthagentbench",
+      "score": 42,
+      "unit": "%",
+      "_source": "Figure 4 / landing page leaderboard row 1",
+      "_note": "BEST-HARNESS: Codex harness, xhigh reasoning, best overall; $2.8/task, 15 min/task | (dedup: [42, 35])"
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthagentbench",
+      "score": 36,
+      "unit": "%",
+      "_source": "Figure 4 / landing page leaderboard row 2",
+      "_note": "BEST-HARNESS: Copilot CLI harness; $3.1/task, 18 min/task | (dedup: [36, 32])"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthagentbench",
+      "score": 28,
+      "unit": "%",
+      "_source": "Figure 4 / landing page leaderboard row 5",
+      "_note": "Codex harness; $1.3/task"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "healthagentbench",
+      "score": 27,
+      "unit": "%",
+      "_source": "Figure 4 / landing page leaderboard row 6",
+      "_note": "Claude Code harness; most expensive at $4.8/task"
+    },
+    {
+      "model": "openai/gpt-5.3",
+      "benchmark": "healthagentbench",
+      "score": 22,
+      "unit": "%",
+      "_source": "Figure 4 / landing page leaderboard row 7",
+      "_note": "Codex harness; $1.0/task"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "healthagentbench",
+      "score": 19,
+      "unit": "%",
+      "_source": "Figure 4 / landing page leaderboard row 8",
+      "_note": "Claude Code harness; $4.1/task, slowest of Opus tier at 22 min"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "healthagentbench",
+      "score": 17,
+      "unit": "%",
+      "_source": "Figure 4 / landing page leaderboard row 9",
+      "_note": "Claude Code harness; $2.9/task, slowest overall at 24 min/task"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "healthagentbench",
+      "score": 16,
+      "unit": "%",
+      "_source": "Figure 4 / landing page leaderboard row 10",
+      "_note": "Codex harness; cheapest at $0.6/task"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthagentbench_xray_report_correction",
+      "score": 33,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.5, X-ray)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthagentbench_xray_report_correction",
+      "score": 40,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4, X-ray)",
+      "_note": "5.4 beats 5.5 on X-ray report correction \u2014 surprising regression for the flagship"
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "healthagentbench_xray_report_correction",
+      "score": 10,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4-mini, X-ray)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3",
+      "benchmark": "healthagentbench_xray_report_correction",
+      "score": 20,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.3, X-ray)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthagentbench_xray_report_correction",
+      "score": 17,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.8, X-ray)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "healthagentbench_xray_report_correction",
+      "score": 13,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.7, X-ray)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "healthagentbench_xray_report_correction",
+      "score": 10,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.6, X-ray)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "healthagentbench_xray_report_correction",
+      "score": 10,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Sonnet 4.6, X-ray)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthagentbench_ct_abnormality_classification",
+      "score": 33,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.5, CT)",
+      "_note": "Landing card shows 33% best rate"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthagentbench_ct_abnormality_classification",
+      "score": 30,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4, CT)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "healthagentbench_ct_abnormality_classification",
+      "score": 23,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4-mini, CT)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3",
+      "benchmark": "healthagentbench_ct_abnormality_classification",
+      "score": 10,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.3, CT)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthagentbench_ct_abnormality_classification",
+      "score": 17,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.8, CT)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "healthagentbench_ct_abnormality_classification",
+      "score": 13,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.7, CT)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "healthagentbench_ct_abnormality_classification",
+      "score": 0,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.6, CT)",
+      "_note": "Zero success on 3D CT \u2014 total failure signal"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "healthagentbench_ct_abnormality_classification",
+      "score": 3,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Sonnet 4.6, CT)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthagentbench_pathology_tumor_area",
+      "score": 40,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.5, Tumor)",
+      "_note": "Only agent to reach 40% on pathology; 2x the runner-up"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthagentbench_pathology_tumor_area",
+      "score": 7,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4, Tumor)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "healthagentbench_pathology_tumor_area",
+      "score": 0,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4-mini, Tumor)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3",
+      "benchmark": "healthagentbench_pathology_tumor_area",
+      "score": 17,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.3, Tumor)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthagentbench_pathology_tumor_area",
+      "score": 20,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.8, Tumor)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "healthagentbench_pathology_tumor_area",
+      "score": 10,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.7, Tumor)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "healthagentbench_pathology_tumor_area",
+      "score": 17,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.6, Tumor)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "healthagentbench_pathology_tumor_area",
+      "score": 10,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Sonnet 4.6, Tumor)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthagentbench_clinical_trial_matching",
+      "score": 52,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.5, Trial)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthagentbench_clinical_trial_matching",
+      "score": 18,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4, Trial)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "healthagentbench_clinical_trial_matching",
+      "score": 18,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4-mini, Trial)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3",
+      "benchmark": "healthagentbench_clinical_trial_matching",
+      "score": 18,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.3, Trial)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthagentbench_clinical_trial_matching",
+      "score": 48,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.8, Trial)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "healthagentbench_clinical_trial_matching",
+      "score": 26,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.7, Trial)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "healthagentbench_clinical_trial_matching",
+      "score": 22,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.6, Trial)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "healthagentbench_clinical_trial_matching",
+      "score": 11,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Sonnet 4.6, Trial)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthagentbench_ehr_data_quality_audit",
+      "score": 25,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.5, DQ)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthagentbench_ehr_data_quality_audit",
+      "score": 12,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4, DQ)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "healthagentbench_ehr_data_quality_audit",
+      "score": 4,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4-mini, DQ)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3",
+      "benchmark": "healthagentbench_ehr_data_quality_audit",
+      "score": 12,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.3, DQ)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthagentbench_ehr_data_quality_audit",
+      "score": 33,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.8, DQ)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "healthagentbench_ehr_data_quality_audit",
+      "score": 33,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.7, DQ)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "healthagentbench_ehr_data_quality_audit",
+      "score": 42,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.6, DQ)",
+      "_note": "Older Opus 4.6 leads DQ audit at 42% \u2014 small-model / older-model win over 5.5's 25%"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "healthagentbench_ehr_data_quality_audit",
+      "score": 12,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Sonnet 4.6, DQ)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthagentbench_ehr_event_modeling",
+      "score": 72,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.5, EHR)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthagentbench_ehr_event_modeling",
+      "score": 61,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4, EHR)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "healthagentbench_ehr_event_modeling",
+      "score": 39,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4-mini, EHR)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3",
+      "benchmark": "healthagentbench_ehr_event_modeling",
+      "score": 61,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.3, EHR)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthagentbench_ehr_event_modeling",
+      "score": 67,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.8, EHR)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "healthagentbench_ehr_event_modeling",
+      "score": 78,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.7, EHR)",
+      "_note": "Opus 4.7 leads on EHR event modeling \u2014 beats flagship 5.5 by 6pp"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "healthagentbench_ehr_event_modeling",
+      "score": 33,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.6, EHR)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "healthagentbench_ehr_event_modeling",
+      "score": 61,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Sonnet 4.6, EHR)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "healthagentbench_ehr_format_conversion",
+      "score": 100,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.5, MEDS)",
+      "_note": "9 of 10 agents saturate 100% on this single-task category"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "healthagentbench_ehr_format_conversion",
+      "score": 100,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4, MEDS)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.4-mini",
+      "benchmark": "healthagentbench_ehr_format_conversion",
+      "score": 100,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.4-mini, MEDS)",
+      "_note": ""
+    },
+    {
+      "model": "openai/gpt-5.3",
+      "benchmark": "healthagentbench_ehr_format_conversion",
+      "score": 100,
+      "unit": "%",
+      "_source": "PDF Table 4 (Codex GPT-5.3, MEDS)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "benchmark": "healthagentbench_ehr_format_conversion",
+      "score": 100,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.8, MEDS)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "healthagentbench_ehr_format_conversion",
+      "score": 100,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.7, MEDS)",
+      "_note": ""
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "healthagentbench_ehr_format_conversion",
+      "score": 0,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Opus 4.6, MEDS)",
+      "_note": "Only agent to fail MEDS conversion \u2014 0% while every other agent scores 100%"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "healthagentbench_ehr_format_conversion",
+      "score": 100,
+      "unit": "%",
+      "_source": "PDF Table 4 (Claude Code Sonnet 4.6, MEDS)",
+      "_note": ""
+    }
+  ]
+}

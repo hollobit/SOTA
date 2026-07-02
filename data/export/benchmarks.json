@@ -23172,6 +23172,62 @@
     "metric": "attack_success_rate"
   },
   {
+    "id": "healthagentbench",
+    "name": "HealthAgentBench (overall)",
+    "category": "medical",
+    "description": "Pooled binary task success rate across 54 realistic agentic healthcare tasks (3 attempts each = 162 trials), spanning 7 categories with unique executable environments and 5 modalities (text, EHR, 2D X-ray, 3D CT, gigapixel pathology WSI). Microsoft Research, released 2026-06-30.",
+    "metric": "task_success_rate"
+  },
+  {
+    "id": "healthagentbench_xray_report_correction",
+    "name": "HealthAgentBench: X-ray Report Correction",
+    "category": "medical",
+    "description": "10 tasks. Review counterfactual chest X-ray Findings draft against target study + longitudinal history; success = 0 significant errors in corrected report. Data: MIMIC-CXR (PhysioNet credentialed).",
+    "metric": "task_success_rate"
+  },
+  {
+    "id": "healthagentbench_ct_abnormality_classification",
+    "name": "HealthAgentBench: CT Abnormality Classification",
+    "category": "medical",
+    "description": "10 tasks. Interpret chest CT volume, emit per-volume yes/no label vector; success = 1.0 accuracy. Data: CT-RATE (HuggingFace gated).",
+    "metric": "task_success_rate"
+  },
+  {
+    "id": "healthagentbench_pathology_tumor_area",
+    "name": "HealthAgentBench: Pathology Tumor Area Selection",
+    "category": "medical",
+    "description": "10 tasks. Inspect gigapixel pathology slide, predict tumor tile set on fixed grid; success = tile F1 >= 0.9. Data: CAMELYON16 (public).",
+    "metric": "task_success_rate"
+  },
+  {
+    "id": "healthagentbench_clinical_trial_matching",
+    "name": "HealthAgentBench: Clinical Trial Matching",
+    "category": "medical",
+    "description": "9 tasks. Rank candidate clinical-trial IDs for a patient profile; success = recall@50 = 1.0. Data: TREC-CT 2021 (public).",
+    "metric": "task_success_rate"
+  },
+  {
+    "id": "healthagentbench_ehr_data_quality_audit",
+    "name": "HealthAgentBench: EHR Data Quality Auditing",
+    "category": "medical",
+    "description": "8 tasks. Audit corrupted EHR corpus, flag offending rows; success = 1.0 recall and >0.01 precision. Data: MIMIC-IV demo + synthetic errors (public).",
+    "metric": "task_success_rate"
+  },
+  {
+    "id": "healthagentbench_ehr_event_modeling",
+    "name": "HealthAgentBench: EHR Event Modelling",
+    "category": "medical",
+    "description": "6 tasks. Build ML pipeline over longitudinal event log to predict 6 new-onset diagnoses; success = test AUROC >= count+GBM human-engineered baseline within 1 hr budget. Data: Stanford STARR via EHRSHOT (Redivis-gated).",
+    "metric": "task_success_rate"
+  },
+  {
+    "id": "healthagentbench_ehr_format_conversion",
+    "name": "HealthAgentBench: EHR Format Conversion",
+    "category": "medical",
+    "description": "1 task. Customize real MEDS ETL repository to emit required transformed cohort from raw demo EHR; success = output exact match. Data: MIMIC-IV demo (public).",
+    "metric": "task_success_rate"
+  },
+  {
     "id": "arc_agi_3",
     "name": "ARC-AGI-3",
     "category": "agent",

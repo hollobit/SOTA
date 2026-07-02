@@ -88,7 +88,9 @@ var FrontierCompare = {
             // 2026-06-29 S155 — OSWorld 2.0 (xlang.ai 108 long-horizon real-world workflows)
             'osworld_v2', 'osworld_v2_partial',
             // 2026-07-01 S160 — Sonnet 5 + LongCat 2.0 general-agent benches
-            'forte', 'rwsearch', 'aa_briefcase'
+            'forte', 'rwsearch', 'aa_briefcase',
+            // 2026-07-02 S174 — Microsoft HealthAgentBench (agentic healthcare — 54 tasks × 3 attempts)
+            'healthagentbench'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
