@@ -251,7 +251,9 @@ var Agent = (function() {
                 'forte', 'rwsearch', 'aa_briefcase',
                 // 2026-07-09 S176 — Agents' Last Exam ALE-V1 + GPT-5.6 card general/AI-R&D benches
                 'agents_last_exam', 'agents_last_exam_score', 'toolathlon', 'posttrainbench_lite',
-                'rsi_index', 'internal_research_debugging', 'kernelgen_1p', 'big_finance_bench', 'management_consulting_tasks_internal'
+                'rsi_index', 'internal_research_debugging', 'kernelgen_1p', 'big_finance_bench', 'management_consulting_tasks_internal',
+                // 2026-07-10 S180 — backfilled arxiv agentic benches (CoffeeBench in coding; these two here)
+                'rng_bench', 'mapf_frozenlake'
             ]
         },
         {

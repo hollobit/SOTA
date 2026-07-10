@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-10",
+    "sources": [
+      "https://arxiv.org/abs/2606.16613",
+      "https://arxiv.org/abs/2606.19338",
+      "https://arxiv.org/abs/2606.17682"
+    ],
+    "_note": "S180 backfill of 3 benchmark IDs that were registered (visible in tabs/Explorer) but had ZERO scores loaded. CoffeeBench verified against ar5iv full text (Table 2). RNG-Bench + MAPF-FrozenLake extracted from ar5iv full text. All models pre-existing in DB (current-gen only). IPhO Theory 2511.13612 backfill SKIPPED — its ~19 missing rows are 2025 older-gen models (Qwen3, DeepSeek-R1, Kimi-K2, o3/o4-mini, Claude-4-Sonnet) below Latest-Models-Focus, and the bench already carries current leaders."
+  },
+  "scores": [
+    { "_section": "=== CoffeeBench (arxiv 2606.16613, Sakana × KPMG Azusa) — Table 2 net income USD, 90-day, roaster_A (higher=better) ===",
+      "model": "openai/gpt-5.5", "benchmark": "coffeebench_net_profit_90d_usd", "score": 3109, "unit": "usd", "_source": "https://arxiv.org/abs/2606.16613", "_note": "#1. Mean of 3 runs." },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "coffeebench_net_profit_90d_usd", "score": 2782, "unit": "usd", "_source": "https://arxiv.org/abs/2606.16613" },
+    { "model": "anthropic/claude-sonnet-4.6", "benchmark": "coffeebench_net_profit_90d_usd", "score": 2236, "unit": "usd", "_source": "https://arxiv.org/abs/2606.16613" },
+    { "model": "google/gemini-3.1-pro", "benchmark": "coffeebench_net_profit_90d_usd", "score": 1695, "unit": "usd", "_source": "https://arxiv.org/abs/2606.16613" },
+    { "model": "zhipu/glm-5.1", "benchmark": "coffeebench_net_profit_90d_usd", "score": 1597, "unit": "usd", "_source": "https://arxiv.org/abs/2606.16613" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "coffeebench_net_profit_90d_usd", "score": 454, "unit": "usd", "_source": "https://arxiv.org/abs/2606.16613" },
+    { "model": "anthropic/claude-haiku-4.5", "benchmark": "coffeebench_net_profit_90d_usd", "score": -630, "unit": "usd", "_source": "https://arxiv.org/abs/2606.16613", "_note": "Idle-drift failure mode; only frontier model below baseline-beating threshold but still above passive/heuristic baselines." },
+
+    { "_section": "=== RNG-Bench (arxiv 2606.19338, InternLM) — Matching Pairs (10x10) Score% ===",
+      "model": "openai/gpt-5.4", "benchmark": "rng_bench", "score": 62.3, "_source": "https://arxiv.org/abs/2606.19338", "_note": "Matching Pairs 10x10 Score% (headline metric). #1." },
+    { "model": "google/gemini-3.1-pro", "benchmark": "rng_bench", "score": 50.0, "_source": "https://arxiv.org/abs/2606.19338", "_note": "Matching Pairs 10x10 Score%." },
+    { "model": "bytedance/seed-2.0-lite", "benchmark": "rng_bench", "score": 43.2, "_source": "https://arxiv.org/abs/2606.19338", "_note": "Matching Pairs 10x10 Score%." },
+    { "model": "moonshot/kimi-k2.5", "benchmark": "rng_bench", "score": 38.0, "_source": "https://arxiv.org/abs/2606.19338", "_note": "Matching Pairs 10x10 Score%." },
+    { "model": "alibaba/qwen3.5-397b-a17b", "benchmark": "rng_bench", "score": 25.3, "_source": "https://arxiv.org/abs/2606.19338", "_note": "Matching Pairs 10x10 Score%." },
+
+    { "_section": "=== MAPF-FrozenLake (arxiv 2606.17682, LARK Lab) — 3-agent Valid Rate% ===",
+      "model": "moonshot/kimi-k2.5", "benchmark": "mapf_frozenlake", "score": 46.17, "_source": "https://arxiv.org/abs/2606.17682", "_note": "3-agent Valid Rate% (LLM baseline headline). #1 among untuned LLMs." },
+    { "model": "xai/grok-4.2", "benchmark": "mapf_frozenlake", "score": 33.42, "_source": "https://arxiv.org/abs/2606.17682", "_note": "3-agent Valid Rate%." },
+    { "model": "openai/gpt-5.4", "benchmark": "mapf_frozenlake", "score": 32.50, "_source": "https://arxiv.org/abs/2606.17682", "_note": "3-agent Valid Rate%." },
+    { "model": "google/gemini-3.1-pro", "benchmark": "mapf_frozenlake", "score": 24.50, "_source": "https://arxiv.org/abs/2606.17682", "_note": "3-agent Valid Rate%." }
+  ]
+}
