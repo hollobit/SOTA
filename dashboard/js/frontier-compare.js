@@ -516,7 +516,9 @@ var FrontierCompare = {
     // appear as columns without ballooning the row count).
     _ANCHORS_BY_CATEGORY: {
         composite_eci: ['epoch_capabilities_index', 'epoch_capabilities_index_swe'],
-        composite_aaii: ['aa_intelligence_index']
+        // 2026-07-10 S179 — anchor must include v4.1 or models with only the current
+        // AAII version (grok-4.5, gpt-5.6 family, glm-5.2, kimi-k2.7-code…) drop out of the pool
+        composite_aaii: ['aa_intelligence_index_v4_1', 'aa_intelligence_index']
     },
     _anchorsFor: function(category) {
         return this._ANCHORS_BY_CATEGORY[category] || [];
