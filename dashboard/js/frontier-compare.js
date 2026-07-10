@@ -47,7 +47,9 @@ var FrontierCompare = {
             // 2026-06-29 S157 — MirrorCode per-size (L = headline frontier-gap: Opus 4.7 25%, all others 0%)
             'mirrorcode_large',
             // 2026-07-01 S160 — Sonnet 5 system card §8 coding benches (Cognition FrontierCode v1 + SWE-Bench Multimodal)
-            'frontiercode_v1', 'swe_bench_multimodal_sonnet5', 'swe_bench_verified_sonnet5_card'
+            'frontiercode_v1', 'swe_bench_multimodal_sonnet5', 'swe_bench_verified_sonnet5_card',
+            // 2026-07-08 S175/S176 — Grok 4.5 + GPT-5.6 launch coding benches
+            'deepswe_1_0', 'deepswe_1_1', 'swe_marathon', 'aa_coding_agent_index'
         ],
         math: ['aime_2025', 'aime_2026', 'aime_24', 'aime_2024', 'hmmt_2025', 'hmmt_2026',
             // 2026-06-02 S46 — Qwen3.7-Plus HMMT 2026 Feb + IMOAnswerBench (existing id) + PolyMATH
@@ -59,7 +61,9 @@ var FrontierCompare = {
             'imo_answerbench', 'imo_2025', 'amc_23', 'usamo', 'gsm8k', 'math', 'math_500', 'putnambench', 'frontiermath', 'frontiermath_tier4', 'otis_aime', 'minif2f', 'proofnet', 'imo_proofbench_basic', 'imo_proofbench_advanced', 'cmo_2024',
             // 2026-06-19 S140 — 2026 official olympiad results + new sub-benches
             'usamo_2026', 'putnam_2025', 'ipho_2025_theory', 'matharena_apex_2025',
-            'arxivmath_mar_apr_2026'],
+            'arxivmath_mar_apr_2026',
+            // 2026-07-09 S176 — GPT-5.6 card FrontierMath v2 Tier 1-3 split
+            'frontiermath_tier1_3_v2'],
         agent: [
             'browsecomp', 'osworld_verified', 'tau2_bench', 'tau3_bench',
             'mcp_atlas', 'mcpatlas_public', 'mcpmark', 'webarena',
@@ -90,7 +94,10 @@ var FrontierCompare = {
             // 2026-07-01 S160 — Sonnet 5 + LongCat 2.0 general-agent benches
             'forte', 'rwsearch', 'aa_briefcase',
             // 2026-07-02 S174 — Microsoft HealthAgentBench (agentic healthcare — 54 tasks × 3 attempts)
-            'healthagentbench'
+            'healthagentbench',
+            // 2026-07-08 S175/S176 — Grok 4.5 + GPT-5.6 + ALE-V1 agentic benches
+            'agents_last_exam', 'agents_last_exam_score', 'automationbench_aa', 'harvey_lab_aa',
+            'enterpriseops_gym_aa', 'gdpval_plus_snorkel', 'big_finance_bench', 'rsi_index'
         ],
         cybersecurity: [
             'cybench', 'openai_ctf_professional', 'cybergym',
@@ -193,6 +200,7 @@ var FrontierCompare = {
     // the most recently-announced, most-tracked models appear first so they
     // land at the top of the heatmap by default (before sort).
     FRONTIER_MODELS: [
+        'xai/grok-4.5',  // 2026-07-08 S175 — AAII v4.1 54 (#8/186); SWE-Marathon 29 SOTA, AutomationBench-AA 51 SOTA, GDPval+ 29 SOTA; $2/$6 per Mtok, 500K ctx, GB300-trained
         // 2026-06-09 S65 Anthropic Claude Fable 5 + Mythos 5 — 13 NEW SOTAs (SWE-Bench Pro 80.3, ExploitBench 78, GDP.pdf 29.8, OSWorld 85, Toolathlon 61.7, BioMystery 46.1/83.9, LatchBio 69.2/59.3, FrontierCode 29.3/46.3) + S66 Fable 5 AAII 65 #1 NEW SOTA
         'anthropic/claude-fable-5',
         'anthropic/claude-sonnet-5',  // 2026-07-01 S160 — 40 scores from system card §3 Cyber + §4 Safeguards + §8 Capabilities
@@ -226,7 +234,7 @@ var FrontierCompare = {
         // 2026-06-28 S150 — TTC reasoning-effort tier variants (per AA per-effort table)
         'anthropic/claude-opus-4.8-max',          // S147 — Opus 4.8 max effort (AAII v4.1 56)
         'google/gemini-3.1-deep-think',           // S147 — Gemini deep think
-        'google/gemini-3.1-pro-high',             // S147 — Gemini 3.1 Pro high reasoning
+        'google/gemini-3.1-pro-high (default)',   // S147 — Gemini 3.1 Pro high reasoning (DB id retains " (default)" suffix)
         'openai/gpt-5.5-instant',
         // 2026-05-06 Zyphra ZAYA1-8B — small MoE frontier on AMD hardware
         'zyphra/zaya1-8b',

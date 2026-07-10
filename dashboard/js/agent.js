@@ -36,6 +36,8 @@ var Agent = (function() {
                 'usaco',
                 // 2026-05-28 Session 31 — Datacurve DeepSWE (contamination-free SWE bench)
                 'deepswe_pass_at_1',
+                // 2026-07-08 S175/S176 — Grok 4.5 + GPT-5.6 launch coding benches (Datacurve/AA versioned)
+                'deepswe_1_0', 'deepswe_1_1', 'swe_marathon',
                 // 2026-06-19 S138 — CEO-Bench 500-day startup simulation (arxiv 2606.18543)
                 'ceo_bench',
                 // 2026-06-26 S153 — Sakana × KPMG Azusa CoffeeBench (ICML 2026 Workshop)
@@ -160,7 +162,9 @@ var Agent = (function() {
                 'deeprare_physician_recall_at_5',
                 'deeprare_reasoning_chain_agreement',
                 // 2026-05-31 S40 — Zapier AutomationBench (47-app E2E business workflow)
-                'automationbench'
+                'automationbench',
+                // 2026-07-08 S175 — Grok 4.5 launch: AA agentic SaaS + Harvey legal + business-ops + Snorkel GDPval+
+                'automationbench_aa', 'harvey_lab_aa', 'enterpriseops_gym_aa', 'gdpval_plus_snorkel'
             ]
         },
         {
@@ -244,7 +248,10 @@ var Agent = (function() {
                 // 2026-05-29 Session 34 — SubQ long-context (RULER@128K)
                 'ruler_128k',
                 // 2026-07-01 S160 — Sonnet 5 §8 + LongCat 2.0 blog general-agent benches
-                'forte', 'rwsearch', 'aa_briefcase'
+                'forte', 'rwsearch', 'aa_briefcase',
+                // 2026-07-09 S176 — Agents' Last Exam ALE-V1 + GPT-5.6 card general/AI-R&D benches
+                'agents_last_exam', 'agents_last_exam_score', 'toolathlon', 'posttrainbench_lite',
+                'rsi_index', 'internal_research_debugging', 'kernelgen_1p', 'big_finance_bench', 'management_consulting_tasks_internal'
             ]
         },
         {
@@ -425,7 +432,12 @@ var Agent = (function() {
         { id: 'terminal_bench_2_1',   label: 'Terminal-Bench 2.1' },
         { id: 'hle_with_tools',       label: 'HLE (with tools)' },
         { id: 'usamo_2026',           label: 'USAMO 2026' },
-        { id: 'graphwalks_bfs_1m',    label: 'GraphWalks BFS 1M' }
+        { id: 'graphwalks_bfs_1m',    label: 'GraphWalks BFS 1M' },
+        // 2026-06-27 S149 — Browser/agent benches with real scores in DB
+        { id: 'toolathlon_pass_all_3_trials', label: 'Toolathlon (pass all 3 trials)' },
+        { id: 'navi_bench_v1',        label: 'NaviBench v1' },
+        // 2026-06-28 S154 — DRACO deep-research (Perplexity)
+        { id: 'draco_perplexity_deep_research', label: 'DRACO (Perplexity Deep Research)' }
     ];
 
     // Returns the flat union of every category's benchmark IDs, deduped.

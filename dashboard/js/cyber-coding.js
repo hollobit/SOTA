@@ -57,7 +57,11 @@ var CyberCoding = {
         'zero-day-bench', 'fuzzingbrain-v2-aixcc', 'sec-bench-pro', 'simbian-cyber-defense',
         'simbian-ai-soc', 'securewebarena', 'secureagentbench', 'ailuminate-continuous-stewardship',
         'aixcc_final', 'autopenbench___ai_pentest_benchmark', 'goad_active_directory', 'hackerone_us',
-        'hackthebox', 'nyu_ctf_bench_2026', 'msrc_tcpip_recall', 'mdash_clfs_sys_recall'
+        'hackthebox', 'nyu_ctf_bench_2026', 'msrc_tcpip_recall', 'mdash_clfs_sys_recall',
+        // 2026-07-05 S154 — Anthropic Mythos/Fable/Sonnet 5 system-card offensive cyber sub-benches
+        'exploitbench_cap', 'exploitbench_mean_flags', 'oss_fuzz_any_crash', 'oss_fuzz_0_4',
+        'oss_fuzz_write_primitive_or_better_0_4', 'firefox_147_zero_day_exploit_full_working_exploit_rate',
+        'cybergym_pass_1_targeted_vuln_reproduction_1507_tasks'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
         // 2026-05-28 AgentDoG 1.5 (arxiv 2605.29801, Shanghai AI Lab) — agentic-trajectory safety judging
@@ -78,6 +82,8 @@ var CyberCoding = {
         // 2026-06-06 S56 — SMAC-Talk + Opper Roundtable
         'smac_talk_5v5_no_comm_winrate', 'opper_roundtable_win_rate'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
+        // 2026-07-08 S175 Grok 4.5 launch — SWE-Marathon (Grok #1 29) + DeepSWE 1.0/1.1 versioned splits (Datacurve/AA)
+        'swe_marathon', 'deepswe_1_0', 'deepswe_1_1',
         // 2026-05 CAD-coding specialty (3 arxiv benches + SCADBench ELO arena)
         'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',
         // 2026-05-30 Session 39 BenchCAD sub-tasks (Edit / QA Code / Vision2Code)
@@ -99,7 +105,9 @@ var CyberCoding = {
         'multi_swe_bench', 'leetcode-contests',
         // 2026-06-25 S153 — DeepReinforce ORNITH 1.0 benchmark suite
         'terminal_bench_2_1_terminus_2', 'terminal_bench_2_1_claude_code',
-        'swe_atlas_qna', 'swe_atlas_rf', 'swe_atlas_tw', 'claweval_avg'],
+        'swe_atlas_qna', 'swe_atlas_rf', 'swe_atlas_tw', 'claweval_avg',
+        // 2026-07-05 S154 — Anthropic Mythos/Fable/Sonnet 5 system-card coding benches
+        'frontierswe_mean_5', 'terminal_bench_2_1_mini_swe_agent_harness'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
@@ -540,6 +548,7 @@ var CyberCoding = {
         'openai/gpt-5.3-codex-spark',  // 2026-02-24 S146 — >1000 tok/s on Cerebras, $1.75/$14 per Mtok
         'openai/gpt-5.2',
         'openai/gpt-5',
+        'xai/grok-4.5',  // 2026-07-08 S175 — SWE-Marathon 29 SOTA, Terminal-Bench 2.1 83.3, SWE-Bench Pro 64.7, SWE-Multilingual 78.0, 4.2x token efficiency vs Opus 4.8
         'xai/grok-4-heavy',
         'xai/grok-4.20',
         'meta/muse-spark',

@@ -161,6 +161,7 @@ var Sovereign = {
                 // ByteDance Doubao Seed + Seedream image/video family
                 'bytedance/doubao-2.1-pro',  // 2026-06-23 S144 — Doubao-Seed-2.1 Pro multimodal+agent
                 'bytedance/seed-vla',        // 2026 S144 — ByteDance VLA robot foundation
+                'bytedance/seed-2.1-pro',    // 2026-07 S175 — Agents' Last Exam ALE-V1 19.5% pass rate (Claude Code)
                 'bytedance/seed-2.0-pro', 'bytedance/seed-1.6', 'bytedance/seed-1.5-pro', 'bytedance/seed-1.5-lite',
                 'bytedance/seed-oss-36b',  // 2026-06-06 S56 — ByteDance Seed-OSS 36B (ErrorQuake b=0.57 heaviest)
                 'bytedance/dreamina-seedance-2.0-720p', 'bytedance/seedance-2.0',
@@ -943,18 +944,20 @@ var Sovereign = {
         {
             id: 'multilingual',
             label: '🌐 Multilingual & Multimodal',
-            note: 'MMMLU · C-Eval · CMMLU · Chinese-SimpleQA · KMMMU · TMMLU+ · Global PIQA · Indo-MMLU · QIMMA · MMMU · MMMU-Pro · MathVision · MathVista · CharXiv · OCRBench · Video-MMMU',
+            note: 'MMMLU · C-Eval · CMMLU · Chinese-SimpleQA · KMMMU · TMMLU+ · Global PIQA · Indo-MMLU · QIMMA · MMMU · MMMU-Pro · MathVision · MathVista · CharXiv · OCRBench · Video-MMMU · OALL (Arabic) · Indic pairwise win-rate · 5 STEM visual (avg)',
             benchmarks: [
                 'mmmlu', 'c_eval', 'cmmlu', 'chinese_simpleqa', 'kmmmu',
                 'tmmlu_plus', 'global_piqa', 'indo_mmlu', 'qimma', 'sea_helm',
                 'mmmu', 'mmmu_pro', 'mathvision', 'mathvista', 'mathvista_mini',
-                'charxiv_reasoning', 'ocrbench', 'video_mmmu', 'docvqa', 'chartqa', 'ai2d'
+                'charxiv_reasoning', 'ocrbench', 'video_mmmu', 'docvqa', 'chartqa', 'ai2d',
+                // S145 — sovereign regional/multimodal: Arabic (Falcon-H1-Arabic), Indic (Sarvam-105B), STEM-visual (EXAONE-4.5-33B)
+                'oall_average', 'indian_language_pairwise_comparison_win_rate', '5_stem_visual_benchmarks_avg'
             ]
         },
         {
             id: 'domain',
             label: '🏛️ Domain (Legal · Cyber · Agent · Medical)',
-            note: 'VLAIR (Document Q&A · Summarization · Chronology · Redlining · Data Extract · Transcript) · AIxCC · Cybench · CyberGym · BrowseComp · τ²-bench · τ³-bench · OSWorld · MCP-Atlas · GAIA-2 · MedQA · PubMedQA · MedXpertQA · HealthBench · BFCL',
+            note: 'VLAIR (Document Q&A · Summarization · Chronology · Redlining · Data Extract · Transcript) · AIxCC · Cybench · CyberGym · BrowseComp · τ²-bench · τ³-bench · Tau2-all · τ²-Bench Telecom · OSWorld · MCP-Atlas · GAIA-2 · MedQA · PubMedQA · MedXpertQA · HealthBench · BFCL',
             benchmarks: [
                 'vlair_doc_qa', 'vlair_summarization', 'vlair_chronology',
                 'vlair_redlining', 'vlair_data_extract', 'vlair_transcript',
@@ -964,7 +967,9 @@ var Sovereign = {
                 'medqa', 'medqa_5op', 'pubmedqa', 'medxpertqa', 'medmcqa',
                 'healthbench', 'healthbench_hard', 'healthbench_professional', 'mmlu_med',
                 'fpb', 'convfinqa', 'finqa',
-                'bfcl', 'bfcl_v3'
+                'bfcl', 'bfcl_v3',
+                // S145 — Solar-Pro-3 agent/telecom aggregates
+                'tau2_all', 'bench_telecom'
             ]
         }
     ],

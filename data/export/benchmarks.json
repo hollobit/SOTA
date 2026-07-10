@@ -586,13 +586,6 @@
     "metric": "rate"
   },
   {
-    "id": "internal_research_debugging",
-    "name": "Internal Research Debugging",
-    "category": "reasoning",
-    "description": "OpenAI internal 41 real-research-experiment bugs + 6 alignment-auditing tasks. Pass=provides any assistance that unblocks the user. System Card §9.1.3.3.",
-    "metric": "accuracy"
-  },
-  {
     "id": "opqa",
     "name": "OpenAI-Proof Q&A (OPQA)",
     "category": "reasoning",
@@ -23291,6 +23284,153 @@
     "category": "math",
     "description": "USA Mathematical Olympiad — high-school-level rigorous proof problems. Claude Mythos Preview 97.6.",
     "metric": "accuracy"
+  },
+  {
+    "id": "agents_last_exam_score",
+    "name": "Agents' Last Exam (Score, partial-credit)",
+    "category": "agent",
+    "description": "ALE partial-credit average score across long-horizon professional workflows (55 fields). Distinct from ALE Pass Rate (perfect-score share).",
+    "metric": "avg partial-credit score %"
+  },
+  {
+    "id": "management_consulting_tasks_internal",
+    "name": "Management Consulting Tasks (OpenAI Internal)",
+    "category": "agent",
+    "description": "OpenAI internal management-consulting knowledge-work eval.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "big_finance_bench",
+    "name": "Big Finance Bench",
+    "category": "agent",
+    "description": "Financial knowledge-work benchmark (reported on GPT-5.6 card).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "genebench_pro",
+    "name": "GeneBench Pro",
+    "category": "science",
+    "description": "Genomics/biology reasoning benchmark.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medchembench_internal",
+    "name": "MedChemBench (OpenAI Internal)",
+    "category": "science",
+    "description": "Medicinal-chemistry reasoning eval (OpenAI internal).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "frontiermath_tier1_3_v2",
+    "name": "FrontierMath Tier 1-3 (v2)",
+    "category": "math",
+    "description": "FrontierMath v2, easier Tiers 1-3 split.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "internal_research_debugging",
+    "name": "Internal Research Debugging Evaluation (OpenAI)",
+    "category": "coding",
+    "description": "OpenAI internal AI-R&D research-code debugging eval.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "kernelgen_1p",
+    "name": "KernelGen 1P",
+    "category": "coding",
+    "description": "GPU-kernel generation eval (single-pass), AI-R&D acceleration suite.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "nanogpt_speedrun",
+    "name": "NanoGPT (speedrun)",
+    "category": "coding",
+    "description": "NanoGPT training-speedrun AI-R&D eval.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "posttrainbench_lite",
+    "name": "PostTrainBench Lite",
+    "category": "coding",
+    "description": "Post-training pipeline automation eval (lite).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "rsi_index",
+    "name": "RSI Index (Recursive Self-Improvement)",
+    "category": "agent",
+    "description": "Composite AI-R&D self-improvement index reported on GPT-5.6 card.",
+    "metric": "index"
+  },
+  {
+    "id": "deepswe_1_0",
+    "name": "DeepSWE 1.0",
+    "category": "coding",
+    "description": "Datacurve-created software-engineering eval (pass@1), run with each provider's harness by Artificial Analysis.",
+    "metric": "pass@1"
+  },
+  {
+    "id": "deepswe_1_1",
+    "name": "DeepSWE 1.1",
+    "category": "coding",
+    "description": "DeepSWE 1.1 run on the mini-swe-agent harness by Datacurve.",
+    "metric": "pass@1"
+  },
+  {
+    "id": "automationbench_aa",
+    "name": "AutomationBench-AA",
+    "category": "agent",
+    "description": "Artificial Analysis agentic SaaS-workflow benchmark (NEW, 2026-07).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "harvey_lab_aa",
+    "name": "Harvey LAB-AA",
+    "category": "agent",
+    "description": "Harvey Legal Agent Benchmark, Artificial Analysis run (NEW, 2026-07). Legal agentic work, task all-pass rate.",
+    "metric": "task all-pass rate"
+  },
+  {
+    "id": "enterpriseops_gym_aa",
+    "name": "EnterpriseOps-Gym-AA",
+    "category": "agent",
+    "description": "Artificial Analysis agentic business-operations benchmark (NEW, 2026-07).",
+    "metric": "accuracy"
+  },
+  {
+    "id": "gdpval_plus_snorkel",
+    "name": "GDPval+ (Snorkel AI)",
+    "category": "agent",
+    "description": "Snorkel AI extension of GDPval — ~2,000 professional tasks. Mean pass rate.",
+    "metric": "mean pass rate"
+  },
+  {
+    "id": "swe_bench_pro_avg_output_tokens",
+    "name": "SWE-Bench Pro avg output tokens",
+    "category": "coding",
+    "description": "Average output tokens per SWE-Bench Pro task — token-efficiency proxy (lower is better).",
+    "metric": "tokens (lower is better)"
+  },
+  {
+    "id": "vulcanbench_pass_at_1",
+    "name": "VulcanBench pass@1",
+    "category": "agent",
+    "description": "VulcanBench single-run pass rate on agentic real-world engineering tasks graded by hidden tests. Small sample; task set varies per report.",
+    "metric": "pass@1 (fraction)"
+  },
+  {
+    "id": "vulcanbench_passk_dependability",
+    "name": "VulcanBench pass^k (dependability)",
+    "category": "agent",
+    "description": "VulcanBench dependability: fraction of tasks solved in EVERY repeated attempt (pass^k). Rewards consistency, penalizes flakiness.",
+    "metric": "pass^k all-attempts (fraction)"
+  },
+  {
+    "id": "vulcanbench_cost_per_solved_task_usd",
+    "name": "VulcanBench cost per solved task (USD)",
+    "category": "agent",
+    "description": "VulcanBench cost efficiency: total USD divided by tasks solved. Lower is better.",
+    "metric": "USD per solved task (lower is better)"
   },
   {
     "id": "weatherbench_z500_72h",

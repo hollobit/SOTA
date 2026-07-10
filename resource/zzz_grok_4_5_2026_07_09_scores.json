@@ -1,0 +1,178 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-09",
+    "sources": [
+      "https://x.ai/news/grok-4-5",
+      "https://artificialanalysis.ai/models/grok-4-5",
+      "https://openrouter.ai/x-ai/grok-4.5",
+      "https://benchlm.ai/blog/posts/grok-4-5-cheaper-closed-future",
+      "https://moclaw.ai/blog/grok-4-5-vs-claude"
+    ],
+    "_note": "Grok 4.5 launch (xAI, 2026-07-08). New model + AA v4.1 breakdown + xAI card coding benches. Strict attribution: model+bench+value present in cited primary source."
+  },
+  "models": [
+    {
+      "id": "xai/grok-4.5",
+      "vendor": "xAI",
+      "name": "Grok 4.5",
+      "type": "proprietary",
+      "release_date": "2026-07-08",
+      "context_window": 500000,
+      "modalities": ["text", "image"],
+      "_note": "SpaceXAI smartest model; trained on tens of thousands of NVIDIA GB300 GPUs, co-trained with Cursor. $2/M in, $6/M out, $0.50/M cache-hit. 80 TPS served. AA Intelligence Index v4.1 = 54 (#8/186). Not in EU until mid-July 2026."
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "deepswe_1_0",
+      "name": "DeepSWE 1.0",
+      "category": "coding",
+      "metric": "pass@1",
+      "description": "Datacurve-created software-engineering eval (pass@1), run with each provider's harness by Artificial Analysis."
+    },
+    {
+      "id": "deepswe_1_1",
+      "name": "DeepSWE 1.1",
+      "category": "coding",
+      "metric": "pass@1",
+      "description": "DeepSWE 1.1 run on the mini-swe-agent harness by Datacurve."
+    },
+    {
+      "id": "automationbench_aa",
+      "name": "AutomationBench-AA",
+      "category": "agent",
+      "metric": "accuracy",
+      "description": "Artificial Analysis agentic SaaS-workflow benchmark (NEW, 2026-07)."
+    },
+    {
+      "id": "harvey_lab_aa",
+      "name": "Harvey LAB-AA",
+      "category": "agent",
+      "metric": "task all-pass rate",
+      "description": "Harvey Legal Agent Benchmark, Artificial Analysis run (NEW, 2026-07). Legal agentic work, task all-pass rate."
+    },
+    {
+      "id": "enterpriseops_gym_aa",
+      "name": "EnterpriseOps-Gym-AA",
+      "category": "agent",
+      "metric": "accuracy",
+      "description": "Artificial Analysis agentic business-operations benchmark (NEW, 2026-07)."
+    },
+    {
+      "id": "gdpval_plus_snorkel",
+      "name": "GDPval+ (Snorkel AI)",
+      "category": "agent",
+      "metric": "mean pass rate",
+      "description": "Snorkel AI extension of GDPval — ~2,000 professional tasks. Mean pass rate."
+    },
+    {
+      "id": "swe_bench_pro_avg_output_tokens",
+      "name": "SWE-Bench Pro avg output tokens",
+      "category": "coding",
+      "metric": "tokens (lower is better)",
+      "description": "Average output tokens per SWE-Bench Pro task — token-efficiency proxy (lower is better)."
+    }
+  ],
+  "scores": [
+    { "_section": "=== DeepSWE 1.0 (Datacurve, run by AA) — x.ai card bar chart ===",
+      "model": "anthropic/claude-fable-5", "benchmark": "deepswe_1_0", "score": 66.1, "_source": "https://x.ai/news/grok-4-5", "_note": "Fable (max)." },
+    { "model": "openai/gpt-5.5-xhigh", "benchmark": "deepswe_1_0", "score": 64.31, "_source": "https://x.ai/news/grok-4-5" },
+    { "model": "xai/grok-4.5", "benchmark": "deepswe_1_0", "score": 62.0, "_source": "https://x.ai/news/grok-4-5" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "deepswe_1_0", "score": 55.75, "_source": "https://x.ai/news/grok-4-5", "_note": "Opus 4.8 (max)." },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "deepswe_1_0", "score": 40.12, "_source": "https://x.ai/news/grok-4-5", "_note": "Opus 4.7 (max)." },
+    { "model": "cursor/composer-2.5-fast", "benchmark": "deepswe_1_0", "score": 18.0, "_source": "https://benchlm.ai/blog/posts/grok-4-5-cheaper-closed-future", "_note": "Composer 2.5." },
+
+    { "_section": "=== DeepSWE 1.1 (mini-swe-agent harness, Datacurve) — x.ai card ===",
+      "model": "anthropic/claude-fable-5", "benchmark": "deepswe_1_1", "score": 70.0, "_source": "https://x.ai/news/grok-4-5", "_note": "Fable (max)." },
+    { "model": "openai/gpt-5.5-xhigh", "benchmark": "deepswe_1_1", "score": 67.0, "_source": "https://x.ai/news/grok-4-5" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "deepswe_1_1", "score": 59.0, "_source": "https://x.ai/news/grok-4-5", "_note": "Opus 4.8 (max)." },
+    { "model": "xai/grok-4.5", "benchmark": "deepswe_1_1", "score": 53.0, "_source": "https://x.ai/news/grok-4-5" },
+    { "model": "zhipu/glm-5.2", "benchmark": "deepswe_1_1", "score": 44.0, "_source": "https://x.ai/news/grok-4-5" },
+
+    { "_section": "=== SWE Marathon resolution rate (pass@1) — x.ai card; Grok 4.5 = NEW #1 ===",
+      "model": "xai/grok-4.5", "benchmark": "swe_marathon", "score": 29.0, "_source": "https://x.ai/news/grok-4-5", "_note": "SOTA on this eval per xAI card." },
+    { "model": "anthropic/claude-fable-5", "benchmark": "swe_marathon", "score": 24.0, "_source": "https://x.ai/news/grok-4-5", "_note": "Fable (max)." },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "swe_marathon", "score": 16.0, "_source": "https://x.ai/news/grok-4-5", "_note": "Opus 4.7 (max)." },
+
+    { "_section": "=== Terminal-Bench 2.1 — x.ai card ===",
+      "model": "xai/grok-4.5", "benchmark": "terminal_bench_2_1", "score": 83.3, "_source": "https://x.ai/news/grok-4-5" },
+
+    { "_section": "=== SWE-Bench Pro resolve rate — x.ai card ===",
+      "model": "xai/grok-4.5", "benchmark": "swe_bench_pro", "score": 64.7, "_source": "https://x.ai/news/grok-4-5" },
+
+    { "_section": "=== SWE-Bench Multilingual — benchlm.ai comparison table ===",
+      "model": "xai/grok-4.5", "benchmark": "swe_bench_multilingual", "score": 78.0, "_source": "https://benchlm.ai/blog/posts/grok-4-5-cheaper-closed-future" },
+
+    { "_section": "=== Token efficiency: avg output tokens / SWE-Bench Pro task (lower=better) — x.ai card ===",
+      "model": "xai/grok-4.5", "benchmark": "swe_bench_pro_avg_output_tokens", "score": 15954, "unit": "tokens", "_source": "https://x.ai/news/grok-4-5", "_note": "4.2x fewer tokens than Opus 4.8 (max)." },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "swe_bench_pro_avg_output_tokens", "score": 67020, "unit": "tokens", "_source": "https://x.ai/news/grok-4-5", "_note": "Opus 4.8 (max)." },
+
+    { "_section": "=== AA Intelligence Index v4.1 + breakdown — Grok 4.5 (high), AA model page ===",
+      "model": "xai/grok-4.5", "benchmark": "aa_intelligence_index_v4_1", "score": 54.0, "unit": "index", "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "#8 / 186. AAII v4.1 (9 evals)." },
+    { "model": "xai/grok-4.5", "benchmark": "gdpval_aa_v2", "score": 52.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "xai/grok-4.5", "benchmark": "tau3_banking", "score": 33.0, "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "tied #3 in AA roster." },
+    { "model": "xai/grok-4.5", "benchmark": "scicode", "score": 54.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "xai/grok-4.5", "benchmark": "hle", "score": 40.0, "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "Humanity's Last Exam (AA measured)." },
+    { "model": "xai/grok-4.5", "benchmark": "gpqa_diamond", "score": 93.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "xai/grok-4.5", "benchmark": "critpt", "score": 15.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "xai/grok-4.5", "benchmark": "aa_omniscience_accuracy", "score": 52.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "xai/grok-4.5", "benchmark": "aa_omniscience_non_hallucination", "score": 46.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "xai/grok-4.5", "benchmark": "aa_omniscience_index", "score": 26.0, "unit": "index", "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "#3 in AA roster (behind Fable 40, Opus 4.8 27)." },
+    { "model": "xai/grok-4.5", "benchmark": "aa_lcr", "score": 68.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "xai/grok-4.5", "benchmark": "aa_briefcase", "score": 1328, "unit": "elo", "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "AA-Briefcase Elo, #5 in roster." },
+    { "model": "xai/grok-4.5", "benchmark": "mmmu_pro", "score": 80.0, "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "Visual reasoning." },
+
+    { "_section": "=== AutomationBench-AA (NEW) — full AA roster; Grok 4.5 = #1 ===",
+      "model": "xai/grok-4.5", "benchmark": "automationbench_aa", "score": 51.0, "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "AA #1 (agentic SaaS workflows)." },
+    { "model": "anthropic/claude-fable-5", "benchmark": "automationbench_aa", "score": 49.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "automationbench_aa", "score": 49.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "google/gemini-3.5-flash", "benchmark": "automationbench_aa", "score": 43.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "openai/gpt-5.5-xhigh", "benchmark": "automationbench_aa", "score": 42.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "openai/gpt-5.5-high", "benchmark": "automationbench_aa", "score": 40.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "automationbench_aa", "score": 39.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "openai/gpt-5.5-medium", "benchmark": "automationbench_aa", "score": 38.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "zhipu/glm-5.2", "benchmark": "automationbench_aa", "score": 28.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "anthropic/claude-sonnet-4.6", "benchmark": "automationbench_aa", "score": 24.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "automationbench_aa", "score": 20.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "deepseek/deepseek-v4-pro-max", "benchmark": "automationbench_aa", "score": 19.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "minimax/minimax-m3", "benchmark": "automationbench_aa", "score": 16.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "nvidia/nemotron-3-ultra", "benchmark": "automationbench_aa", "score": 6.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+
+    { "_section": "=== Harvey LAB-AA (NEW) — legal agentic, task all-pass rate ===",
+      "model": "anthropic/claude-fable-5", "benchmark": "harvey_lab_aa", "score": 14.0, "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "AA #1." },
+    { "model": "xai/grok-4.5", "benchmark": "harvey_lab_aa", "score": 13.0, "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "AA #2; xAI card also cites Harvey #1 (value undisclosed there)." },
+    { "model": "zhipu/glm-5.2", "benchmark": "harvey_lab_aa", "score": 8.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "harvey_lab_aa", "score": 8.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "minimax/minimax-m3", "benchmark": "harvey_lab_aa", "score": 7.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "harvey_lab_aa", "score": 5.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "openai/gpt-5.6-luna", "benchmark": "harvey_lab_aa", "score": 5.0, "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "GPT-5.6 Luna (max)." },
+    { "model": "openai/gpt-5.5-xhigh", "benchmark": "harvey_lab_aa", "score": 4.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "anthropic/claude-sonnet-4.6", "benchmark": "harvey_lab_aa", "score": 4.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "deepseek/deepseek-v4-pro-max", "benchmark": "harvey_lab_aa", "score": 3.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "nvidia/nemotron-3-ultra", "benchmark": "harvey_lab_aa", "score": 3.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "openai/gpt-5.6-terra", "benchmark": "harvey_lab_aa", "score": 3.0, "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "GPT-5.6 Terra (max)." },
+    { "model": "google/gemini-3.5-flash", "benchmark": "harvey_lab_aa", "score": 2.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "openai/gpt-oss-120b", "benchmark": "harvey_lab_aa", "score": 0.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "harvey_lab_aa", "score": 0.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+
+    { "_section": "=== EnterpriseOps-Gym-AA (NEW) — agentic business operations ===",
+      "model": "anthropic/claude-fable-5", "benchmark": "enterpriseops_gym_aa", "score": 51.0, "_source": "https://artificialanalysis.ai/models/grok-4-5", "_note": "AA #1." },
+    { "model": "google/gemini-3.5-flash", "benchmark": "enterpriseops_gym_aa", "score": 50.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "openai/gpt-5.5-xhigh", "benchmark": "enterpriseops_gym_aa", "score": 47.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "enterpriseops_gym_aa", "score": 45.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "openai/gpt-5.5-medium", "benchmark": "enterpriseops_gym_aa", "score": 44.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "enterpriseops_gym_aa", "score": 44.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "zhipu/glm-5.2", "benchmark": "enterpriseops_gym_aa", "score": 43.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "xai/grok-4.5", "benchmark": "enterpriseops_gym_aa", "score": 41.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "deepseek/deepseek-v4-pro-max", "benchmark": "enterpriseops_gym_aa", "score": 40.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "enterpriseops_gym_aa", "score": 39.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "minimax/minimax-m3", "benchmark": "enterpriseops_gym_aa", "score": 32.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "nvidia/nemotron-3-ultra", "benchmark": "enterpriseops_gym_aa", "score": 28.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+    { "model": "openai/gpt-oss-120b", "benchmark": "enterpriseops_gym_aa", "score": 25.0, "_source": "https://artificialanalysis.ai/models/grok-4-5" },
+
+    { "_section": "=== GDPval+ (Snorkel AI, NEW) — ~2,000 professional tasks, mean pass rate; Grok 4.5 = #1 ===",
+      "model": "xai/grok-4.5", "benchmark": "gdpval_plus_snorkel", "score": 29.0, "_source": "https://moclaw.ai/blog/grok-4-5-vs-claude", "_note": "Snorkel AI independent eval; beats GPT-5.5 and Opus 4.8." },
+    { "model": "openai/gpt-5.5", "benchmark": "gdpval_plus_snorkel", "score": 22.0, "_source": "https://moclaw.ai/blog/grok-4-5-vs-claude" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "gdpval_plus_snorkel", "score": 21.0, "_source": "https://moclaw.ai/blog/grok-4-5-vs-claude" }
+  ]
+}

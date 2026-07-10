@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-09",
+    "sources": [
+      "https://www.vulcanbench.com/benchmarks.html",
+      "https://www.vulcanbench.com/benchmarks/03-fable-sonnet-glm.html",
+      "https://www.vulcanbench.com/benchmarks/05-effort-matrix.html",
+      "https://www.vulcanbench.com/benchmarks/06-reliability.html",
+      "https://agents-last-exam.org/leaderboard",
+      "https://technology.robbyant.com/lingbot-world-v2"
+    ],
+    "_note": "VulcanBench (independent small-sample agentic-engineering eval, hidden tests) + Agents' Last Exam ALE-V1 Overall leaderboard refresh (Jul 4 2026) + LingBot-World 2.0 catalog model. VulcanBench samples are small (10-15 tasks, 30-135 runs) — treat as directional cost/reliability signal, not saturation-grade capability."
+  },
+  "models": [
+    { "id": "bytedance/seed-2.1-pro", "vendor": "ByteDance", "name": "Seed 2.1 Pro", "type": "proprietary", "release_date": "2026-07", "_note": "ByteDance Seed 2.1 Pro; appears on Agents' Last Exam ALE-V1 leaderboard (Claude Code harness) at 19.5% pass rate." },
+    { "id": "robbyant/lingbot-world-2.0", "vendor": "Robbyant (Ant Group)", "name": "LingBot-World 2.0 (Infinity)", "type": "open", "release_date": "2026-07", "modalities": ["text", "image", "video", "action"], "_note": "Real-time interactive world model (LingBot-World-Infinity): 720p 60fps, sub-second control latency, hours-long visual coherence, collaborative multi-user steering, embodied simulation. Weights to be released. WAIC 2026 Shanghai demo. Tech report not yet mined for benchmark triples — catalog entry only." }
+  ],
+  "benchmarks": [
+    { "id": "vulcanbench_pass_at_1", "name": "VulcanBench pass@1", "category": "agent", "metric": "pass@1 (fraction)", "description": "VulcanBench single-run pass rate on agentic real-world engineering tasks graded by hidden tests. Small sample; task set varies per report." },
+    { "id": "vulcanbench_passk_dependability", "name": "VulcanBench pass^k (dependability)", "category": "agent", "metric": "pass^k all-attempts (fraction)", "description": "VulcanBench dependability: fraction of tasks solved in EVERY repeated attempt (pass^k). Rewards consistency, penalizes flakiness." },
+    { "id": "vulcanbench_cost_per_solved_task_usd", "name": "VulcanBench cost per solved task (USD)", "category": "agent", "metric": "USD per solved task (lower is better)", "description": "VulcanBench cost efficiency: total USD divided by tasks solved. Lower is better." }
+  ],
+  "scores": [
+    { "_section": "=== VulcanBench Report 06 (reliability, 15 evals / 135 runs, Opus 4.8 low vs Haiku 4.5) ===",
+      "model": "anthropic/claude-opus-4.8", "benchmark": "vulcanbench_pass_at_1", "score": 0.600, "unit": "fraction", "_source": "https://www.vulcanbench.com/benchmarks/06-reliability.html", "_note": "Opus 4.8 (low effort)." },
+    { "model": "anthropic/claude-haiku-4.5", "benchmark": "vulcanbench_pass_at_1", "score": 0.667, "unit": "fraction", "_source": "https://www.vulcanbench.com/benchmarks/06-reliability.html" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "vulcanbench_passk_dependability", "score": 0.533, "unit": "fraction", "_source": "https://www.vulcanbench.com/benchmarks/06-reliability.html", "_note": "Opus 4.8 (low); 2 flaky tasks." },
+    { "model": "anthropic/claude-haiku-4.5", "benchmark": "vulcanbench_passk_dependability", "score": 0.667, "unit": "fraction", "_source": "https://www.vulcanbench.com/benchmarks/06-reliability.html", "_note": "Zero variance — cheapest model most dependable (0 flaky tasks)." },
+
+    { "_section": "=== VulcanBench Report 03 (10 tasks / 30 runs, cost per solved task) ===",
+      "model": "anthropic/claude-fable-5", "benchmark": "vulcanbench_cost_per_solved_task_usd", "score": 0.28, "unit": "usd", "_source": "https://www.vulcanbench.com/benchmarks/03-fable-sonnet-glm.html", "_note": "Fable 5 (low) — all three tied 8/10 accuracy; Fable cheapest per solved task." },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "vulcanbench_cost_per_solved_task_usd", "score": 1.05, "unit": "usd", "_source": "https://www.vulcanbench.com/benchmarks/03-fable-sonnet-glm.html", "_note": "Sonnet 5 (high)." },
+    { "model": "zhipu/glm-5.2", "benchmark": "vulcanbench_cost_per_solved_task_usd", "score": 1.98, "unit": "usd", "_source": "https://www.vulcanbench.com/benchmarks/03-fable-sonnet-glm.html", "_note": "GLM-5.2 (high) — consumed 77x Fable's tokens for same 8/10." },
+
+    { "_section": "=== Agents' Last Exam ALE-V1 Overall — Pass Rate refresh (best harness per backbone, Jul 4 2026) ===",
+      "model": "anthropic/claude-opus-4.8", "benchmark": "agents_last_exam", "score": 27.0, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "Claude Code Max — new #1 (partial-credit Score 45.2)." },
+    { "model": "openai/gpt-5.5", "benchmark": "agents_last_exam", "score": 26.3, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "Codex XHigh (Score 47.7)." },
+    { "model": "openai/gpt-5.4", "benchmark": "agents_last_exam", "score": 20.5, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "OpenClaw High." },
+    { "model": "anthropic/claude-fable-5", "benchmark": "agents_last_exam", "score": 22.0, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "Claude Code Adaptive." },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "agents_last_exam", "score": 20.4, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "Cursor CLI High." },
+    { "model": "zhipu/glm-5.2", "benchmark": "agents_last_exam", "score": 20.4, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "Claude Code Max." },
+    { "model": "cursor/composer-2.5-fast", "benchmark": "agents_last_exam", "score": 20.4, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "Cursor CLI Adaptive." },
+    { "model": "bytedance/seed-2.1-pro", "benchmark": "agents_last_exam", "score": 19.5, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "Claude Code." },
+    { "model": "google/gemini-3.1-pro", "benchmark": "agents_last_exam", "score": 15.8, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "Gemini CLI High." },
+    { "model": "deepseek/deepseek-v4-pro", "benchmark": "agents_last_exam", "score": 12.4, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "OpenClaw High." },
+    { "model": "alibaba/qwen3.7-max", "benchmark": "agents_last_exam", "score": 11.8, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "OpenClaw High." },
+    { "model": "zhipu/glm-5.1", "benchmark": "agents_last_exam", "score": 11.5, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "OpenClaw High." },
+    { "model": "moonshot/kimi-k2.6", "benchmark": "agents_last_exam", "score": 9.2, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "OpenClaw High." },
+    { "model": "alibaba/qwen3.6-plus", "benchmark": "agents_last_exam", "score": 8.6, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "OpenClaw High." },
+    { "model": "xiaomi/mimo-v2.5", "benchmark": "agents_last_exam", "score": 8.6, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "OpenClaw High." },
+    { "model": "xai/grok-4.3", "benchmark": "agents_last_exam", "score": 6.6, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "Grok CLI." },
+    { "model": "minimax/m2.7", "benchmark": "agents_last_exam", "score": 5.9, "unit": "% pass rate", "_source": "https://agents-last-exam.org/leaderboard", "_note": "OpenClaw High." }
+  ]
+}

@@ -653,7 +653,9 @@ var MedicalAI = {
         {
             label: '🧬 Life Sciences Research (OpenAI GPT-Rosalind)',
             note: 'LifeSciBench (externally expert-judged, 6 workflow areas) · MedChemBench (medicinal chemistry SAR/ADME/retrosynthesis) · GeneBench (agentic genomics/quant bio long-horizon) · LabWorkBench (real wet lab protocols, proprietary uncontaminated data). S136 (2026-06-19): added LifeSciBench preprint decimal + pass-rate canonical scores.',
-            benchmarks: ['lifesci_bench_overall', 'lifescibench', 'lifescibench_pass_rate', 'medchembench', 'genebench', 'labworkbench']
+            benchmarks: ['lifesci_bench_overall', 'lifescibench', 'lifescibench_pass_rate', 'medchembench', 'genebench', 'labworkbench',
+                // 2026-07-09 S176 — GPT-5.6 card life-science evals (GeneBench Pro Sol 28.7 / MedChemBench Internal Sol 48.3)
+                'genebench_pro', 'medchembench_internal']
         },
         {
             label: '🌐 BRIDGE (Mass General Brigham, 9-language clinical text)',
