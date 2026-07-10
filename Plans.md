@@ -1,7 +1,12 @@
 # LLM Benchmark SOTA Dashboard — Plans
 
-## Current Status: Session 176 — GPT-5.6 GA + VulcanBench + ALE refresh + LingBot-World 2.0 (2026-07-09)
-**3,405 models · 3,919 benchmarks · 17,381 scores · 🌍 +12 models / +25 benches / +301 scores**
+## Current Status: Session 178 — Epoch ECI overall refresh (2026-07-10)
+**3,405 models · 3,919 benchmarks · 17,395 scores · 🌍 ECI 110→124 (33 refreshed, +11 new-to-ECI)**
+
+### 2026-07-10 Session 178 — Epoch ECI overall refresh (canonical CSV)
+- Refreshed `epoch_capabilities_index` from epoch.ai/data/eci_scores.csv (205 models, arxiv 2512.00193). **11 major 2026 models had NO ECI in DB, now added**: Fable 5 **160.75 #2**, Opus 4.8 158.08, GLM-5.2, Kimi K2.7 Code, DeepSeek-V4-Pro, Qwen3.7-Max, Grok 4.3, Qwen 3.6 Plus/Max-Preview, Gemini 3.1 Flash-Lite, MiniMax-M2.7, Qwen 3.5 Plus. + value updates to Epoch's current calibration (GPT-5.5 Pro 161.01 #1, Gemini 3.1 Pro 155.02). 33 models, 95% CI in notes. **SWE-subset ECI NOT populated** (client-computed, no canonical export). GPT-5.6/Grok-4.5 not yet in Epoch CSV (predates Jul release). seed_sources +2 ECI CSV endpoints. Backup pre-eci.bak.
+
+### 2026-07-09 Session 176 — GPT-5.6 family GA + VulcanBench + Agents' Last Exam + LingBot-World 2.0
 
 ### 2026-07-09 Session 176 — GPT-5.6 family GA + VulcanBench + Agents' Last Exam + LingBot-World 2.0
 - **12 new models + 25 new benches + ~301 scores**. Sources: openai.com/index/gpt-5-6, AA Intelligence Index, vulcanbench.com (5 reports), agents-last-exam.org, technology.robbyant.com, arxiv 2607.05174.

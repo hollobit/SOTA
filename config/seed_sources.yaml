@@ -3152,3 +3152,15 @@ sources:
     type: benchmark_dataset
     format: pdf
     notes: "LLM agents in de-idealized real-world environments (35pp). NOT ingested: eval roster is all older-gen models (Qwen3-4B/32B/235B, Nex-N1-7B/32B, DeepSeek-V3.1/V3.2-Exp, GLM-4.6, Claude-4.5-sonnet, GPT-5, Kimi-K2, Gemini-2.5-Pro) + results figure-only (Fig 1 scatter, not text tables) — violates Latest-Models-Focus (no GPT-5.5/5.6, Fable/Opus 4.8, DeepSeek-V4, GLM-5.2, Gemini 3, Qwen 3.5+). Code: github.com/hotdog-zz/Agentgym2. PDF in resource/ (agentgym2_arxiv_2607.05174.pdf). S177 archive."
+
+  # ─── 2026-07-10 Session 178 — Epoch Capabilities Index (ECI) canonical CSV ───
+  - url: "https://epoch.ai/data/eci_scores.csv"
+    name: "Epoch Capabilities Index (ECI) — canonical scores CSV"
+    type: leaderboard
+    format: csv
+    notes: "205 models, columns: Model / Display name / eci / eci_ci_low / eci_ci_high / date / Organization / Country / accessibility. Methodology arxiv 2512.00193. USE THIS not the JS-rendered epoch.ai/eci page. S178 refreshed 33 recent (2026) models incl. 11 new-to-ECI (Fable 5 160.75 #2, Opus 4.8 158.08, GLM-5.2, Kimi K2.7 Code, DeepSeek-V4-Pro). GPT-5.6/Grok-4.5 not yet scored (snapshot predates Jul release)."
+  - url: "https://epoch.ai/data/eci_benchmarks.csv"
+    name: "Epoch ECI — per-benchmark component scores CSV"
+    type: leaderboard
+    format: csv
+    notes: "1931 rows (model x benchmark performance). Component benchmarks incl. SWE-Bench verified, Terminal Bench, GSO-Bench, The Agent Company, GPQA-D, FrontierMath, ARC-AGI-2, WeirdML, SimpleBench, Balrog, GeoBench, VPCT. No domain-tag column, so the on-page Software-engineering SUBSET ECI is client-computed and NOT reproducible as a canonical export (epoch_capabilities_index_swe left empty)."
