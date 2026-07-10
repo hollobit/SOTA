@@ -65,7 +65,7 @@ var PhysicalAI = {
                 'physical-intelligence/pi-zero', 'physical-intelligence/pi-zero-fast', 'physical-intelligence/pi-0.5', 'physical-intelligence/rdt-1b',
                 'openvla/openvla-7b', 'openvla/openvla-oft',
                 'octo/octo-base',
-                'google-deepmind/gemini-robotics-er-1.6', 'google-deepmind/gemini-robotics-er-1.5',
+                'google/gemini-robotics-er-1.6', 'google-deepmind/gemini-robotics-er-1.5',
                 // May 2026 additions — Allen AI MolmoAct2 family + NVIDIA CaP-X coding-agent for manipulation
                 'allenai/molmoact2', 'allenai/molmoer', 'nvidia/cap-agent0',
                 'allenai/molmoact-2',  // canonical id used in newer ingest (Section 38)
@@ -76,7 +76,7 @@ var PhysicalAI = {
                 // 2026 S144 — Embodied AI / robotics deep refresh
                 'physical-intelligence/pi-physical-layer',     // PI compositional generalization layer
                 'google-deepmind/gemini-robotics-on-device',   // Gemini Robotics on-device variant
-                'figure/figure-03',                            // Figure 03 humanoid + Helix 02 (S0/S1/S2)
+                'figure-ai/figure-03',                         // Figure 03 humanoid + Helix 02 (S0/S1/S2)
                 'unitree/unifolm-vla-0',                       // 2026-01-29 OSS HF, LIBERO 98.7 SOTA tie
                 'unitree/h2-plus',                             // 2026-06-01 NVIDIA Isaac GR00T reference platform
                 'spirit-ai/spirit-v1.5',                       // Spirit AI Hangzhou — first Chinese RoboArena #1
@@ -87,7 +87,7 @@ var PhysicalAI = {
                 // 2026-06-28 S151 — additional robot/VLA models with scores in DB
                 'figure/helix-02',                            // Figure Helix 02 stack (S2/S1/S0)
                 'spirit-ai/spirit-v1.6',                      // Spirit AI Hangzhou first Chinese RoboArena #1
-                'google/gemini-robotics-1.5', 'google/gemini-robotics-er-1.5', 'google/gemini-robotics-er-1.6',
+                'google/gemini-robotics-1.5',
                 'physical-intelligence/pi-0', 'physical-intelligence/pi-0-fast',
                 'openvla/openvla-oft-7b', 'stanford/openvla-oft',
                 'lerobot/lingbot_va_base', 'robbyant/lingbot-vla-4b', 'robbyant/lingbot-vla-4b-depth',
