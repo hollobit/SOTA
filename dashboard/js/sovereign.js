@@ -158,6 +158,7 @@ var Sovereign = {
                 'qwen/qwen3-vl-embedding-8b', 'qwen/qwen3-vl-reranker-8b', 'qwen/qwen3-vl-reranker-2b',
                 'tencent/conan-embedding-v2', 'kingsoft/qzhou-embedding',
                 // Tencent Hunyuan
+                'tencent/hunyuan-hy3',  // 2026-07-06 S181 — GA 295B-A21B MoE Apache 2.0; SWE-Verified 78 / GPQA-D 90.4 / HLE 53.2
                 'tencent/hunyuan-t1', 'tencent/hunyuan-large', 'tencent/hunyuan-turbo', 'tencent/hunyuan-7b',
                 'tencent/hunyuan-image-3.0',
                 // ByteDance Doubao Seed + Seedream image/video family

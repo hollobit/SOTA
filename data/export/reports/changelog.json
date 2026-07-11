@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-07-11",
+    "type": "session",
+    "title": "Session 181 — Tencent Hy3 GA + DeepSWE 1.1 leaderboard refresh (1 model, 2 benches, 23 scores)",
+    "detail": "Ingested Tencent Hy3 GA launch (hy.tencent.com/research/hy3 + HF tencent/Hy3, released 2026-07-06) and refreshed the DeepSWE 1.1 leaderboard from the canonical Datacurve board. **NEW MODEL tencent/hunyuan-hy3** — GA of Hy3 (follows Apr-2026 hunyuan-hy3-preview): MoE 295B total / 21B active / 3.8B MTP, 192 experts top-8, 80 layers, GQA 64/8, 256K context, Apache 2.0, API 1/4 RMB per Mtok. 8 HF-card benchmarks: GPQA-Diamond 90.4, SWE-Bench Verified 78 (cross-scaffolding variance <4pt), SWE-Bench Pro 57.9, HLE 53.2, WildClawBench 53.6 (NEW bench), Skillsbench V1.1 55.3, DeepSWE 28, Apex-Agents 25.6. Blind eval by 270 experts on real work tasks = 2.67/4, beating GLM-5.1 2.51 (NEW bench blind_expert_productivity_eval; advantage largest in frontend/data-storage/CI-CD). Internal: hallucination 12.5%->5.4%, token efficiency -47.4% doc / -49% slides vs GLM-5.2. Research-page benchmark comparison is figure-only so values taken from the HF card. **DeepSWE 1.1 leaderboard refresh** (deepswe.datacurve.ai, mini-swe-agent harness, updated 2026-07-09, 113 tasks/91 repos/5 langs): the live board now includes the GPT-5.6 family + 6 models absent from the S176 card-derived snapshot. **GPT-5.6 Sol 73% = new #1**, Fable 5 70, GPT-5.6 Terra 70, GPT-5.6 Luna 67, GPT-5.5 67, Opus 4.8 59, Sonnet 5 54 (NEW), GPT-5.4 52 (NEW), GLM-5.2 44, Gemini 3.5 Flash 37 (NEW), Kimi K2.7 Code 31 (NEW), Sonnet 4.6 30 (NEW), Gemini 3.1 Pro 12 (NEW). Propagated: Sovereign (+hunyuan-hy3 Tencent roster), Cyber & Coding (+hunyuan-hy3 coding roster), Agent (+wildclawbench, +blind_expert_productivity_eval). 3 JS files syntax-clean. Backup pre-s181.bak."
+  },
+  {
     "date": "2026-07-10",
     "type": "session",
     "title": "Session 180 — resource-source gap audit: backfill 3 empty benchmark tables + Simba 3.2 TTS (17 scores)",

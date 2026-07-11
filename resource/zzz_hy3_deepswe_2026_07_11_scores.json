@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-11",
+    "sources": [
+      "https://hy.tencent.com/research/hy3",
+      "https://huggingface.co/tencent/Hy3",
+      "https://deepswe.datacurve.ai/"
+    ],
+    "_note": "Tencent Hy3 GA (2026-07-06, 295B-A21B MoE, Apache 2.0) — new model + 8 benchmarks from HF model card. DeepSWE 1.1 leaderboard (Datacurve, mini-swe-agent harness, updated 2026-07-09) refresh: canonical live board now includes GPT-5.6 family + 6 more models than the S176 card-derived snapshot. Hy3 benchmark comparison chart on the research page is figure-only; values taken from HF card."
+  },
+  "models": [
+    { "id": "tencent/hunyuan-hy3", "vendor": "Tencent", "name": "Hunyuan Hy3", "type": "open", "release_date": "2026-07-06", "context_window": 256000, "parameters": "295B-A21B", "modalities": ["text"], "_note": "GA release of Hy3 (follows hunyuan-hy3-preview Apr 2026). MoE 295B total / 21B active / 3.8B MTP, 192 experts (top-8), 80 layers, GQA 64/8, 256K ctx, Apache 2.0. API 1/4 RMB per Mtok (0.25 cached). Blind eval 270 experts 2.67/4 > GLM-5.1 2.51. Internal: hallucination 12.5%->5.4%, token efficiency -47.4% doc / -49% slides vs GLM-5.2." }
+  ],
+  "benchmarks": [
+    { "id": "wildclawbench", "name": "WildClawBench (Overall)", "category": "agent", "metric": "accuracy", "description": "Agentic coding/claw benchmark, overall score (reported on Tencent Hy3 card)." },
+    { "id": "blind_expert_productivity_eval", "name": "Blind Expert Productivity Eval (Tencent, /4)", "category": "agent", "metric": "score (0-4)", "description": "Tencent blind evaluation by 270 domain experts on real work tasks (coding, office, finance, frontend, game dev). Score out of 4." }
+  ],
+  "scores": [
+    { "_section": "=== Tencent Hy3 GA — HF model card benchmarks ===",
+      "model": "tencent/hunyuan-hy3", "benchmark": "gpqa_diamond", "score": 90.4, "_source": "https://huggingface.co/tencent/Hy3" },
+    { "model": "tencent/hunyuan-hy3", "benchmark": "skillsbench", "score": 55.3, "_source": "https://huggingface.co/tencent/Hy3", "_note": "Skillsbench V1.1." },
+    { "model": "tencent/hunyuan-hy3", "benchmark": "swe_bench_pro", "score": 57.9, "_source": "https://huggingface.co/tencent/Hy3" },
+    { "model": "tencent/hunyuan-hy3", "benchmark": "swe_bench_verified", "score": 78.0, "_source": "https://huggingface.co/tencent/Hy3", "_note": "Cross-scaffolding variance <4pt (CodeBuddy/Cline/KiloCode)." },
+    { "model": "tencent/hunyuan-hy3", "benchmark": "apex_agents", "score": 25.6, "_source": "https://huggingface.co/tencent/Hy3" },
+    { "model": "tencent/hunyuan-hy3", "benchmark": "deepswe_1_1", "score": 28.0, "_source": "https://huggingface.co/tencent/Hy3", "_note": "Card labels 'Deep SWE' (version unspecified; mapped to current 1.1)." },
+    { "model": "tencent/hunyuan-hy3", "benchmark": "hle", "score": 53.2, "_source": "https://huggingface.co/tencent/Hy3" },
+    { "model": "tencent/hunyuan-hy3", "benchmark": "wildclawbench", "score": 53.6, "_source": "https://huggingface.co/tencent/Hy3" },
+
+    { "_section": "=== Tencent blind expert productivity eval (Hy3 vs GLM-5.1) ===",
+      "model": "tencent/hunyuan-hy3", "benchmark": "blind_expert_productivity_eval", "score": 2.67, "unit": "score", "_source": "https://hy.tencent.com/research/hy3", "_note": "270 experts, real work tasks. Advantage largest in frontend dev, data & storage, CI/CD." },
+    { "model": "zhipu/glm-5.1", "benchmark": "blind_expert_productivity_eval", "score": 2.51, "unit": "score", "_source": "https://hy.tencent.com/research/hy3" },
+
+    { "_section": "=== DeepSWE 1.1 leaderboard (Datacurve, mini-swe-agent harness, 2026-07-09) — pass@1 refresh, GPT-5.6 Sol = #1 ===",
+      "model": "openai/gpt-5.6-sol", "benchmark": "deepswe_1_1", "score": 73.0, "_source": "https://deepswe.datacurve.ai/", "_note": "#1. 113 tasks / 91 repos / 5 langs. $8.39/task." },
+    { "model": "anthropic/claude-fable-5", "benchmark": "deepswe_1_1", "score": 70.0, "_source": "https://deepswe.datacurve.ai/" },
+    { "model": "openai/gpt-5.6-terra", "benchmark": "deepswe_1_1", "score": 70.0, "_source": "https://deepswe.datacurve.ai/" },
+    { "model": "openai/gpt-5.6-luna", "benchmark": "deepswe_1_1", "score": 67.0, "_source": "https://deepswe.datacurve.ai/" },
+    { "model": "openai/gpt-5.5", "benchmark": "deepswe_1_1", "score": 67.0, "_source": "https://deepswe.datacurve.ai/" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "deepswe_1_1", "score": 59.0, "_source": "https://deepswe.datacurve.ai/" },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "deepswe_1_1", "score": 54.0, "_source": "https://deepswe.datacurve.ai/" },
+    { "model": "openai/gpt-5.4", "benchmark": "deepswe_1_1", "score": 52.0, "_source": "https://deepswe.datacurve.ai/" },
+    { "model": "zhipu/glm-5.2", "benchmark": "deepswe_1_1", "score": 44.0, "_source": "https://deepswe.datacurve.ai/" },
+    { "model": "google/gemini-3.5-flash", "benchmark": "deepswe_1_1", "score": 37.0, "_source": "https://deepswe.datacurve.ai/" },
+    { "model": "moonshot/kimi-k2.7-code", "benchmark": "deepswe_1_1", "score": 31.0, "_source": "https://deepswe.datacurve.ai/" },
+    { "model": "anthropic/claude-sonnet-4.6", "benchmark": "deepswe_1_1", "score": 30.0, "_source": "https://deepswe.datacurve.ai/" },
+    { "model": "google/gemini-3.1-pro", "benchmark": "deepswe_1_1", "score": 12.0, "_source": "https://deepswe.datacurve.ai/" }
+  ]
+}

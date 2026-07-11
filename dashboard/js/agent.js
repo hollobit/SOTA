@@ -253,7 +253,9 @@ var Agent = (function() {
                 'agents_last_exam', 'agents_last_exam_score', 'toolathlon', 'posttrainbench_lite',
                 'rsi_index', 'internal_research_debugging', 'kernelgen_1p', 'big_finance_bench', 'management_consulting_tasks_internal',
                 // 2026-07-10 S180 — backfilled arxiv agentic benches (CoffeeBench in coding; these two here)
-                'rng_bench', 'mapf_frozenlake'
+                'rng_bench', 'mapf_frozenlake',
+                // 2026-07-11 S181 — Tencent Hy3 card agentic benches
+                'wildclawbench', 'blind_expert_productivity_eval'
             ]
         },
         {
