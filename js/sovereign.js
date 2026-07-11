@@ -110,6 +110,7 @@ var Sovereign = {
                 // Alibaba Qwen — full param lineup
                 'alibaba/qwen3.7-max', 'alibaba/qwen3.7-max-20260517', 'alibaba/qwen3.7-max-preview', 'alibaba/qwen3.7-plus-preview',
                 'alibaba/qwen3.7-plus',  // 2026-06-02 S46 — Qwen3.7-Plus GA (Multimodal Agent Intelligence, qwen.ai blog)
+                'alibaba/qwen3.6-max-preview',  // 2026-04-20 S179 audit — ECI 149.65
                 'alibaba/qwen3.6-plus', 'alibaba/qwen3.6-27b', 'alibaba/qwen3.6-35b-a3b',
                 'alibaba/qwen3.5-max-preview', 'alibaba/qwen3.5-plus',
                 'alibaba/qwen3.5-397b', 'alibaba/qwen3.5-122b', 'alibaba/qwen3.5-27b',
@@ -128,6 +129,7 @@ var Sovereign = {
                 'zhipu/scail-2', // 2026-06-19 S138 — unified character animation (arxiv 2606.10804)
                 'zhipu/glm-5.1', 'zhipu/glm-5', 'zhipu/glm-4.7', 'zhipu/glm-4.6', 'zhipu/glm-4.5', 'zhipu/glm-4.5-air',
                 // Moonshot Kimi
+                'moonshot/kimi-k2.7-code',  // 2026-06-12 S179 audit — ECI 150.02, AAII v4.1 42
                 'moonshot/kimi-k2.6', 'moonshot/kimi-k2.5', 'moonshot/kimi-k2.5-thinking', 'moonshot/kimi-k2.5-instant',
                 'moonshot/kimi-k2-thinking',
                 'moonshot/kimi-k2-instruct', 'moonshot/kimi-k2-base', 'moonshot/kimi-k1.5',
