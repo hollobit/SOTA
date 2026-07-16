@@ -241,6 +241,7 @@ var FrontierCompare = {
         // 2026-04 frontier launches (50+ scores each)
         'openai/gpt-5.5',
         'openai/gpt-5.5-pro',
+        'moonshot/kimi-k3',  // 2026-07-16 S182 — first open 3T-class MoE; AAII v4.1 57 (#4/189), BrowseComp 91.2, GPQA-D 93.5
         'moonshot/kimi-k2.6',
         'alibaba/qwen3.6-27b',
         'deepseek/deepseek-v4-pro-max',

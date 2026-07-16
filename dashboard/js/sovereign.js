@@ -129,6 +129,7 @@ var Sovereign = {
                 'zhipu/scail-2', // 2026-06-19 S138 — unified character animation (arxiv 2606.10804)
                 'zhipu/glm-5.1', 'zhipu/glm-5', 'zhipu/glm-4.7', 'zhipu/glm-4.6', 'zhipu/glm-4.5', 'zhipu/glm-4.5-air',
                 // Moonshot Kimi
+                'moonshot/kimi-k3',  // 2026-07-16 S182 — first open 3T-class MoE, AAII v4.1 57
                 'moonshot/kimi-k2.7-code',  // 2026-06-12 S179 audit — ECI 150.02, AAII v4.1 42
                 'moonshot/kimi-k2.6', 'moonshot/kimi-k2.5', 'moonshot/kimi-k2.5-thinking', 'moonshot/kimi-k2.5-instant',
                 'moonshot/kimi-k2-thinking',
@@ -368,6 +369,8 @@ var Sovereign = {
             code: 'ch', label: 'Switzerland', flag: '🇨🇭',
             note: 'Swiss AI Initiative (ETH Zurich + EPFL + CSCS) — Apertus 8B/70B 풀라인업 (Alps supercomputer, 1,811 languages incl. Swiss German + Romansh, Apache 2.0) + EPFL Meditron 의료',
             models: [
+                // German sovereign — Soofi S (Deutsche Telekom Industrial AI Cloud, Jul 2026)
+                'soofi-project/soofi-s-30b-a3b',  // S182 — hybrid Mamba MoE 31.6B-A3.2B, beats OLMo 3.1 32B + Apertus 70B on En+De
                 // Swiss AI Initiative — Apertus flagship (ETH + EPFL + CSCS, Sep 2025)
                 'swiss-ai/apertus-70b', 'swiss-ai/apertus-70b-instruct',
                 'swiss-ai/apertus-8b', 'swiss-ai/apertus-8b-instruct',

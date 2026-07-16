@@ -1,0 +1,95 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-16",
+    "sources": [
+      "https://www.kimi.com/blog/kimi-k3",
+      "https://artificialanalysis.ai/models/kimi-k3",
+      "https://openrouter.ai/moonshotai/kimi-k3",
+      "https://arxiv.org/pdf/2607.09424",
+      "https://benchlm.ai/models/soofi-s-30b-a3b"
+    ],
+    "_note": "Kimi K3 (Moonshot, 2026-07-16, first open 3T-class MoE) + Soofi S 30B-A3B (German sovereign base model, arxiv 2607.09424). Kimi K3 scores = Moonshot blog self-report; only K3's own values ingested for existing benches (competitor columns held to avoid cross-source conflict with those models' own cards); NEW benches (job_bench/deck_bench/zerobench_main/perceptionbench) get the blog's full roster. AAII v4.1 from AA canonical page."
+  },
+  "models": [
+    { "id": "moonshot/kimi-k3", "vendor": "Moonshot AI", "name": "Kimi K3", "type": "open", "release_date": "2026-07-16", "context_window": 1000000, "parameters": "2.8T-A~50B", "modalities": ["text", "image"], "_note": "World's first open 3T-class MoE: 2.8T total, ~16/896 experts active, Kimi Delta Attention (KDA) + Attention Residuals + Stable LatentMoE, MXFP4 weights/MXFP8 activations, 1M ctx. Weights by 2026-07-27. API $0.30 cache-hit / $3 input / $15 output per Mtok. AAII v4.1 = 57 (#4/189). Reasoning-only at max effort at launch." },
+    { "id": "soofi-project/soofi-s-30b-a3b", "vendor": "Soofi Project", "name": "Soofi S 30B-A3B (Base)", "type": "open", "release_date": "2026-07-10", "context_window": 1000000, "parameters": "31.6B-A3.2B", "modalities": ["text"], "_note": "Sovereign German+English open-source base model: hybrid Mamba-Transformer MoE (~31.6B total / ~3.2B active), Nemotron 3 Nano reference config, pretrained ~26.68T effective tokens (German up-weighted 7.2%). Built on German Industrial AI Cloud (Deutsche Telekom Munich). Beats OLMo 3.1 32B + Apertus 70B on English+German aggregate per paper. Apache-style open release; HF Soofi-Project." }
+  ],
+  "benchmarks": [
+    { "id": "job_bench", "name": "Job Bench", "category": "agent", "metric": "accuracy", "description": "Agentic job/knowledge-work benchmark (reported on Kimi K3 card)." },
+    { "id": "deck_bench", "name": "DECK-Bench", "category": "agent", "metric": "accuracy", "description": "Slide-deck / presentation agentic benchmark (Kimi K3 card)." },
+    { "id": "zerobench_main", "name": "ZeroBench (main, pass@5)", "category": "multimodal", "metric": "pass@5", "description": "Hard visual reasoning benchmark, main split, pass@5 (Kimi K3 card)." },
+    { "id": "perceptionbench", "name": "PerceptionBench", "category": "multimodal", "metric": "accuracy", "description": "Visual perception benchmark (Kimi K3 card)." }
+  ],
+  "scores": [
+    { "_section": "=== Kimi K3 (max) — AAII + coding (Moonshot blog + AA), K3 only on existing benches ===",
+      "model": "moonshot/kimi-k3", "benchmark": "aa_intelligence_index_v4_1", "score": 57.0, "unit": "index", "_source": "https://artificialanalysis.ai/models/kimi-k3", "_note": "#4 / 189." },
+    { "model": "moonshot/kimi-k3", "benchmark": "deepswe_1_1", "score": 67.5, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "programbench", "score": 77.8, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "terminal_bench_2_1", "score": 88.3, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "frontierswe", "score": 81.2, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "swe_marathon", "score": 42.0, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "Moonshot self-report harness (blog competitor set differs from xAI-card swe_marathon values already in DB)." },
+    { "model": "moonshot/kimi-k3", "benchmark": "posttrainbench", "score": 36.6, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "mls_bench_lite", "score": 48.3, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "Card labels 'MLS Bench'." },
+    { "model": "moonshot/kimi-k3", "benchmark": "kimi_code_bench_v2", "score": 72.9, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "Kimi Code Bench 2.0." },
+
+    { "_section": "=== Kimi K3 — agentic ===",
+      "model": "moonshot/kimi-k3", "benchmark": "gdpval_aa_elo", "score": 1668.0, "unit": "elo", "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "browsecomp", "score": 91.2, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "Blog shows above GPT-5.6 Sol 90.4." },
+    { "model": "moonshot/kimi-k3", "benchmark": "deepsearchqa", "score": 95.0, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "F1." },
+    { "model": "moonshot/kimi-k3", "benchmark": "toolathlon", "score": 73.2, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "Toolathlon-Verified." },
+    { "model": "moonshot/kimi-k3", "benchmark": "mcp_atlas", "score": 84.2, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "automationbench", "score": 30.8, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "aa_briefcase", "score": 1548.0, "unit": "elo", "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "apex_agents", "score": 37.6, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "officeqa", "score": 63.3, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "Office QA Pro." },
+
+    { "_section": "=== Kimi K3 — reasoning + vision ===",
+      "model": "moonshot/kimi-k3", "benchmark": "gpqa_diamond", "score": 93.5, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "hle", "score": 43.5, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "HLE-Full (no tools)." },
+    { "model": "moonshot/kimi-k3", "benchmark": "mmmu_pro", "score": 81.6, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "charxiv", "score": 84.8, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "CharXiv RQ." },
+    { "model": "moonshot/kimi-k3", "benchmark": "mathvision", "score": 94.3, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "babyvision", "score": 85.7, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "BabyVision w/ python." },
+    { "model": "moonshot/kimi-k3", "benchmark": "worldvqa_search", "score": 51.0, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "WorldVQA ForceAnswer." },
+    { "model": "moonshot/kimi-k3", "benchmark": "omnidocbench", "score": 91.1, "_source": "https://www.kimi.com/blog/kimi-k3" },
+
+    { "_section": "=== NEW benches (Kimi K3 blog full roster) — Job Bench ===",
+      "model": "moonshot/kimi-k3", "benchmark": "job_bench", "score": 52.9, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "anthropic/claude-fable-5", "benchmark": "job_bench", "score": 57.4, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.6-sol", "benchmark": "job_bench", "score": 46.5, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "job_bench", "score": 48.4, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.5", "benchmark": "job_bench", "score": 38.3, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "zhipu/glm-5.2", "benchmark": "job_bench", "score": 43.4, "_source": "https://www.kimi.com/blog/kimi-k3" },
+
+    { "_section": "=== DECK-Bench ===",
+      "model": "moonshot/kimi-k3", "benchmark": "deck_bench", "score": 73.5, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "anthropic/claude-fable-5", "benchmark": "deck_bench", "score": 73.0, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.6-sol", "benchmark": "deck_bench", "score": 74.7, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "deck_bench", "score": 66.9, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.5", "benchmark": "deck_bench", "score": 68.2, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "zhipu/glm-5.2", "benchmark": "deck_bench", "score": 68.6, "_source": "https://www.kimi.com/blog/kimi-k3" },
+
+    { "_section": "=== ZeroBench (main, pass@5) ===",
+      "model": "moonshot/kimi-k3", "benchmark": "zerobench_main", "score": 23.0, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "anthropic/claude-fable-5", "benchmark": "zerobench_main", "score": 23.0, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.6-sol", "benchmark": "zerobench_main", "score": 17.0, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "zerobench_main", "score": 17.0, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.5", "benchmark": "zerobench_main", "score": 22.0, "_source": "https://www.kimi.com/blog/kimi-k3" },
+
+    { "_section": "=== PerceptionBench ===",
+      "model": "moonshot/kimi-k3", "benchmark": "perceptionbench", "score": 58.5, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "anthropic/claude-fable-5", "benchmark": "perceptionbench", "score": 57.2, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.6-sol", "benchmark": "perceptionbench", "score": 59.7, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "perceptionbench", "score": 47.2, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.5", "benchmark": "perceptionbench", "score": 55.8, "_source": "https://www.kimi.com/blog/kimi-k3" },
+
+    { "_section": "=== Soofi S 30B-A3B (Base) — benchlm.ai / arxiv 2607.09424 ===",
+      "model": "soofi-project/soofi-s-30b-a3b", "benchmark": "humaneval", "score": 73.8, "_source": "https://benchlm.ai/models/soofi-s-30b-a3b" },
+    { "model": "soofi-project/soofi-s-30b-a3b", "benchmark": "bbh", "score": 78.8, "_source": "https://benchlm.ai/models/soofi-s-30b-a3b" },
+    { "model": "soofi-project/soofi-s-30b-a3b", "benchmark": "drop", "score": 66.5, "_source": "https://benchlm.ai/models/soofi-s-30b-a3b" },
+    { "model": "soofi-project/soofi-s-30b-a3b", "benchmark": "mmlu_pro", "score": 51.4, "_source": "https://benchlm.ai/models/soofi-s-30b-a3b" },
+    { "model": "soofi-project/soofi-s-30b-a3b", "benchmark": "gpqa_diamond", "score": 43.4, "_source": "https://benchlm.ai/models/soofi-s-30b-a3b" },
+    { "model": "soofi-project/soofi-s-30b-a3b", "benchmark": "agieval", "score": 66.9, "_source": "https://benchlm.ai/models/soofi-s-30b-a3b" },
+    { "model": "soofi-project/soofi-s-30b-a3b", "benchmark": "gsm8k", "score": 86.1, "_source": "https://benchlm.ai/models/soofi-s-30b-a3b" }
+  ]
+}

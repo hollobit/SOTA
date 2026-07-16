@@ -255,7 +255,9 @@ var Agent = (function() {
                 // 2026-07-10 S180 — backfilled arxiv agentic benches (CoffeeBench in coding; these two here)
                 'rng_bench', 'mapf_frozenlake',
                 // 2026-07-11 S181 — Tencent Hy3 card agentic benches
-                'wildclawbench', 'blind_expert_productivity_eval'
+                'wildclawbench', 'blind_expert_productivity_eval',
+                // 2026-07-16 S182 — Kimi K3 card agentic benches
+                'job_bench', 'deck_bench'
             ]
         },
         {

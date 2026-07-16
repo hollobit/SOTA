@@ -555,6 +555,7 @@ var CyberCoding = {
         'zhipu/glm-5',
         'zhipu/glm-5.1',
         'zhipu/glm-5.2',          // 2026-06-19 S137 — AAII v4.1 51 open-weights SOTA; FrontierSWE 74.4 / Terminal-Bench 2.1 82.7 / SWE-Pro 62.1 / DeepSWE 46.2
+        'moonshot/kimi-k3',       // 2026-07-16 S182 — 2.8T MoE; Terminal-Bench 2.1 88.3 / FrontierSWE 81.2 / DeepSWE 67.5 / SWE-Marathon 42
         'tencent/hunyuan-hy3',    // 2026-07-06 S181 — GA 295B-A21B Apache; SWE-Verified 78 / SWE-Pro 57.9 / DeepSWE 28
         'alibaba/qwen3.7-plus',  // 2026-06-02 S46 GA
         'microsoft/mai-thinking-1',  // 2026-06-02 S48 — MS MAI Thinking-1 35B/1T MoE
