@@ -1,0 +1,1028 @@
+{
+ "_meta": {
+  "collected_at": "2026-07-16",
+  "sources": [
+   "https://arxiv.org/pdf/2607.09424"
+  ],
+  "_note": "S183: Soofi S pretraining report Table 4 — full base-model eval suite (~32 benchmarks) that S182 missed (only 7 benchlm rows ingested). Adds Olmo 3 32B (NEW model), fills Apertus 70B + EuroLLM 22B + Soofi S remaining rows. Alia 40B skipped (paper uses base 'Alia 40B'; DB only has ALIA-40b-instruct — id ambiguity). Table 5 (open-weight vs Qwen3.5/Ministral/Gemma) not ingested this pass."
+ },
+ "models": [
+  {
+   "id": "allenai/olmo-3-32b",
+   "vendor": "Allen Institute for AI (Ai2)",
+   "name": "Olmo 3 32B (Base)",
+   "type": "open",
+   "release_date": "2026",
+   "parameters": "32B",
+   "modalities": [
+    "text"
+   ],
+   "_note": "Ai2 fully-open dense base model; strongest non-Soofi model in the Soofi paper open-source comparison (English aggregate 67.3, leads LBPP/SocialIQA/SQuAD/DROP/NaturalQuestions)."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "english_aggregate",
+   "name": "English aggregate (Soofi paper suite)",
+   "category": "knowledge",
+   "metric": "accuracy",
+   "description": "English aggregate — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "german_aggregate",
+   "name": "German aggregate (Soofi paper suite)",
+   "category": "knowledge",
+   "metric": "accuracy",
+   "description": "German aggregate — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "held_out_en_aggregate",
+   "name": "Held-out (EN) (Soofi paper suite)",
+   "category": "knowledge",
+   "metric": "accuracy",
+   "description": "Held-out (EN) — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "held_out_de_aggregate",
+   "name": "Held-out (DE) (Soofi paper suite)",
+   "category": "knowledge",
+   "metric": "accuracy",
+   "description": "Held-out (DE) — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "lbpp",
+   "name": "LBPP (Soofi paper suite)",
+   "category": "coding",
+   "metric": "accuracy",
+   "description": "LBPP — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "humaneval_de",
+   "name": "HumanEval-DE (Soofi paper suite)",
+   "category": "coding",
+   "metric": "accuracy",
+   "description": "HumanEval-DE — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "mbpp_de",
+   "name": "MBPP-DE (Soofi paper suite)",
+   "category": "coding",
+   "metric": "accuracy",
+   "description": "MBPP-DE — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "gsm8k_platinum_de",
+   "name": "GSM8K-Platinum-DE (Soofi paper suite)",
+   "category": "math",
+   "metric": "accuracy",
+   "description": "GSM8K-Platinum-DE — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "minerva_500",
+   "name": "Minerva 500 (Soofi paper suite)",
+   "category": "math",
+   "metric": "accuracy",
+   "description": "Minerva 500 — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "minerva_math_en",
+   "name": "Minerva Math-EN (Soofi paper suite)",
+   "category": "math",
+   "metric": "accuracy",
+   "description": "Minerva Math-EN — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "minerva_math_de",
+   "name": "Minerva MATH-DE (Soofi paper suite)",
+   "category": "math",
+   "metric": "accuracy",
+   "description": "Minerva MATH-DE — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "mmlu_stem",
+   "name": "MMLU stem (Soofi paper suite)",
+   "category": "knowledge",
+   "metric": "accuracy",
+   "description": "MMLU stem — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "mmlu_pro_de",
+   "name": "MMLU-Pro-DE (Soofi paper suite)",
+   "category": "knowledge",
+   "metric": "accuracy",
+   "description": "MMLU-Pro-DE — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "include_de",
+   "name": "INCLUDE-DE (Soofi paper suite)",
+   "category": "knowledge",
+   "metric": "accuracy",
+   "description": "INCLUDE-DE — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "natural_questions",
+   "name": "NaturalQuestions (acc) (Soofi paper suite)",
+   "category": "knowledge",
+   "metric": "accuracy",
+   "description": "NaturalQuestions (acc) — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "piqa_de",
+   "name": "PIQA-DE (Soofi paper suite)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "PIQA-DE — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "social_iqa",
+   "name": "SocialIQA (Soofi paper suite)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "SocialIQA — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "social_iqa_de",
+   "name": "SocialIQA-DE (Soofi paper suite)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "SocialIQA-DE — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "squad_em",
+   "name": "SQuAD (EM) (Soofi paper suite)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "SQuAD (EM) — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "gpqa_diamond_de",
+   "name": "GPQA-Diamond-DE (Soofi paper suite)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "GPQA-Diamond-DE — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "arc_challenge_de",
+   "name": "ARC-Challenge-DE (Soofi paper suite)",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "ARC-Challenge-DE — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  },
+  {
+   "id": "glp_de",
+   "name": "GLP-DE (Soofi paper suite)",
+   "category": "knowledge",
+   "metric": "accuracy",
+   "description": "GLP-DE — from Soofi S pretraining report Table 4 (arxiv 2607.09424), lm-evaluation-harness, base models. '-DE'=German variant."
+  }
+ ],
+ "scores": [
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "english_aggregate",
+   "score": 70.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (English aggregate)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "english_aggregate",
+   "score": 61.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (English aggregate)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "english_aggregate",
+   "score": 62.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (English aggregate)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "english_aggregate",
+   "score": 67.3,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (English aggregate)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "german_aggregate",
+   "score": 79.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (German aggregate)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "german_aggregate",
+   "score": 70.6,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (German aggregate)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "german_aggregate",
+   "score": 72.8,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (German aggregate)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "german_aggregate",
+   "score": 69.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (German aggregate)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "held_out_en_aggregate",
+   "score": 41.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Held-out (EN))."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "held_out_en_aggregate",
+   "score": 30.8,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Held-out (EN))."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "held_out_en_aggregate",
+   "score": 27.6,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Held-out (EN))."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "held_out_en_aggregate",
+   "score": 33.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Held-out (EN))."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "held_out_de_aggregate",
+   "score": 41.8,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Held-out (DE))."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "held_out_de_aggregate",
+   "score": 33.9,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Held-out (DE))."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "held_out_de_aggregate",
+   "score": 33.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Held-out (DE))."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "held_out_de_aggregate",
+   "score": 36.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Held-out (DE))."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "humaneval",
+   "score": 39.3,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (HumanEval)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "humaneval",
+   "score": 30.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (HumanEval)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "humaneval",
+   "score": 63.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (HumanEval)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "mbpp",
+   "score": 70.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MBPP)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "mbpp",
+   "score": 47.6,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MBPP)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "mbpp",
+   "score": 41.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MBPP)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "mbpp",
+   "score": 62.8,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MBPP)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "lbpp",
+   "score": 31.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (LBPP)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "lbpp",
+   "score": 10.7,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (LBPP)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "lbpp",
+   "score": 6.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (LBPP)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "lbpp",
+   "score": 32.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (LBPP)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "humaneval_de",
+   "score": 65.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (HumanEval-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "humaneval_de",
+   "score": 34.7,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (HumanEval-DE)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "humaneval_de",
+   "score": 29.9,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (HumanEval-DE)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "humaneval_de",
+   "score": 62.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (HumanEval-DE)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "mbpp_de",
+   "score": 84.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MBPP-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "mbpp_de",
+   "score": 59.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MBPP-DE)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "mbpp_de",
+   "score": 50.9,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MBPP-DE)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "mbpp_de",
+   "score": 70.8,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MBPP-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "gsm8k",
+   "score": 25.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GSM8K)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "gsm8k",
+   "score": 65.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GSM8K)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "gsm8k",
+   "score": 80.7,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GSM8K)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "gsm8k_platinum_de",
+   "score": 87.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GSM8K-Platinum-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "gsm8k_platinum_de",
+   "score": 62.6,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GSM8K-Platinum-DE)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "gsm8k_platinum_de",
+   "score": 62.6,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GSM8K-Platinum-DE)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "gsm8k_platinum_de",
+   "score": 77.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GSM8K-Platinum-DE)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "minerva_500",
+   "score": 79.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva 500)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "minerva_500",
+   "score": 28.7,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva 500)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "minerva_500",
+   "score": 33.7,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva 500)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "minerva_500",
+   "score": 55.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva 500)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "minerva_math_en",
+   "score": 81.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva Math-EN)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "minerva_math_en",
+   "score": 26.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva Math-EN)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "minerva_math_en",
+   "score": 34.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva Math-EN)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "minerva_math_en",
+   "score": 54.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva Math-EN)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "minerva_math_de",
+   "score": 56.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva MATH-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "minerva_math_de",
+   "score": 28.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva MATH-DE)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "minerva_math_de",
+   "score": 29.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva MATH-DE)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "minerva_math_de",
+   "score": 48.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (Minerva MATH-DE)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "mmlu_stem",
+   "score": 75.9,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MMLU stem)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "mmlu_stem",
+   "score": 58.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MMLU stem)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "mmlu_stem",
+   "score": 58.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MMLU stem)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "mmlu_stem",
+   "score": 70.9,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MMLU stem)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "mmlu_pro",
+   "score": 34.3,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MMLU-Pro)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "mmlu_pro",
+   "score": 37.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MMLU-Pro)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "mmlu_pro",
+   "score": 47.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MMLU-Pro)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "mmlu_pro_de",
+   "score": 49.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MMLU-Pro-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "mmlu_pro_de",
+   "score": 33.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MMLU-Pro-DE)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "mmlu_pro_de",
+   "score": 34.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MMLU-Pro-DE)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "mmlu_pro_de",
+   "score": 38.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (MMLU-Pro-DE)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "include_de",
+   "score": 61.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (INCLUDE-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "include_de",
+   "score": 51.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (INCLUDE-DE)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "include_de",
+   "score": 50.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (INCLUDE-DE)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "include_de",
+   "score": 48.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (INCLUDE-DE)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "natural_questions",
+   "score": 79.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (NaturalQuestions (acc))."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "natural_questions",
+   "score": 70.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (NaturalQuestions (acc))."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "natural_questions",
+   "score": 73.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (NaturalQuestions (acc))."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "natural_questions",
+   "score": 79.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (NaturalQuestions (acc))."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "piqa",
+   "score": 85.7,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (PIQA)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "piqa",
+   "score": 82.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (PIQA)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "piqa",
+   "score": 85.3,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (PIQA)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "piqa",
+   "score": 83.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (PIQA)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "piqa_de",
+   "score": 91.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (PIQA-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "piqa_de",
+   "score": 80.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (PIQA-DE)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "piqa_de",
+   "score": 86.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (PIQA-DE)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "piqa_de",
+   "score": 67.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (PIQA-DE)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "social_iqa",
+   "score": 60.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SocialIQA)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "social_iqa",
+   "score": 57.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SocialIQA)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "social_iqa",
+   "score": 59.3,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SocialIQA)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "social_iqa",
+   "score": 62.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SocialIQA)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "social_iqa_de",
+   "score": 87.6,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SocialIQA-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "social_iqa_de",
+   "score": 85.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SocialIQA-DE)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "social_iqa_de",
+   "score": 87.6,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SocialIQA-DE)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "social_iqa_de",
+   "score": 75.9,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SocialIQA-DE)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "squad_em",
+   "score": 87.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SQuAD (EM))."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "squad_em",
+   "score": 81.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SQuAD (EM))."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "squad_em",
+   "score": 83.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SQuAD (EM))."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "squad_em",
+   "score": 88.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (SQuAD (EM))."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "drop",
+   "score": 43.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (DROP (EM))."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "drop",
+   "score": 50.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (DROP (EM))."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "drop",
+   "score": 72.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (DROP (EM))."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "bbh",
+   "score": 57.8,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (BBH (CoT))."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "bbh",
+   "score": 60.5,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (BBH (CoT))."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "bbh",
+   "score": 77.4,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (BBH (CoT))."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "agieval",
+   "score": 52.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (AGIEval)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "agieval",
+   "score": 55.7,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (AGIEval)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "agieval",
+   "score": 63.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (AGIEval)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "gpqa_diamond",
+   "score": 30.3,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GPQA-Diamond)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "gpqa_diamond",
+   "score": 27.3,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GPQA-Diamond)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "gpqa_diamond",
+   "score": 33.3,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GPQA-Diamond)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "gpqa_diamond_de",
+   "score": 41.9,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GPQA-Diamond-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "gpqa_diamond_de",
+   "score": 30.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GPQA-Diamond-DE)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "gpqa_diamond_de",
+   "score": 26.3,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GPQA-Diamond-DE)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "gpqa_diamond_de",
+   "score": 34.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GPQA-Diamond-DE)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "arc_challenge",
+   "score": 90.6,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (ARC-Challenge)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "arc_challenge",
+   "score": 81.1,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (ARC-Challenge)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "arc_challenge",
+   "score": 85.8,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (ARC-Challenge)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "arc_challenge",
+   "score": 89.9,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (ARC-Challenge)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "arc_challenge_de",
+   "score": 92.3,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (ARC-Challenge-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "arc_challenge_de",
+   "score": 83.6,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (ARC-Challenge-DE)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "arc_challenge_de",
+   "score": 85.3,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (ARC-Challenge-DE)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "arc_challenge_de",
+   "score": 83.6,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (ARC-Challenge-DE)."
+  },
+  {
+   "model": "soofi-project/soofi-s-30b-a3b",
+   "benchmark": "glp_de",
+   "score": 88.8,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GLP-DE)."
+  },
+  {
+   "model": "utter-project/EuroLLM-22B-2512",
+   "benchmark": "glp_de",
+   "score": 78.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GLP-DE)."
+  },
+  {
+   "model": "swiss-ai/apertus-70b",
+   "benchmark": "glp_de",
+   "score": 81.2,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GLP-DE)."
+  },
+  {
+   "model": "allenai/olmo-3-32b",
+   "benchmark": "glp_de",
+   "score": 73.0,
+   "_source": "https://arxiv.org/pdf/2607.09424",
+   "_note": "Table 4 base-model eval (GLP-DE)."
+  }
+ ]
+}
