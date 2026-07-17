@@ -142,6 +142,12 @@ jobs:
           sed -i "s|?v=2026[0-9a-z]\\+|?v=${BUILD_TAG}|g" public/index.html
           grep -E '\\.js\\?v=' public/index.html | head -10
 
+      - name: Minify dashboard JS (deployed copy only)
+        # Minifies public/js/*.js in place (~42% smaller, faster parse).
+        # Source tree stays readable; esbuild + the script come from the
+        # ops checkout (package.json devDep + scripts/minify-dashboard-js.mjs).
+        run: npm run minify:js
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
