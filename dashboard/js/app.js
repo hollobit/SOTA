@@ -508,9 +508,44 @@ var App = {
                     self.renderOverview();
                 }
             } catch (e) {}
+            // Kick the meta sidecar in the background so source URLs + notes
+            // fill in shortly after the lean scores render (non-blocking).
+            try { setTimeout(function () { self._ensureScoreMeta(); }, 0); } catch (e) {}
             return self.data.scores;
         });
         return this._scoresPromise;
+    },
+
+    // Lazy fetch of scores/current_meta.json — the heavy click-time-only
+    // fields (source.url ~35% + notes ~23% of the old current.json) that were
+    // split out to keep the boot-critical scores load lean. The sidecar is
+    // INDEX-ALIGNED with the lean scores array (meta[i] <-> scores[i], both
+    // exported from the same ordered query), so we merge it back onto the
+    // score objects IN PLACE — every existing consumer keeps reading
+    // s.source.url / s.notes unchanged, just populated ~1s later. Cached.
+    _ensureScoreMeta: function () {
+        if (this._scoreMetaPromise) return this._scoreMetaPromise;
+        var self = this;
+        var base = this._dataBase || 'data';
+        this._scoreMetaPromise = this._ensureScores().then(function (scores) {
+            return self._fetch(base + '/scores/current_meta.json').then(function (meta) {
+                try {
+                    if (Array.isArray(meta) && meta.length === scores.length) {
+                        for (var i = 0; i < scores.length; i++) {
+                            var m = meta[i]; if (!m) continue;
+                            var s = scores[i];
+                            if (!s.source || typeof s.source !== 'object') s.source = {};
+                            if (m.url != null) s.source.url = m.url;
+                            if (m.citation != null) s.source.citation = m.citation;
+                            if (m.notes) s.notes = m.notes;
+                        }
+                    }
+                    self._scoreMetaLoaded = true;
+                } catch (e) { /* best-effort merge */ }
+                return scores;
+            }).catch(function () { return scores; });  // sidecar is optional
+        });
+        return this._scoreMetaPromise;
     },
 
     // Re-populate the source-type filter dropdown once scores arrive. Called

@@ -464,6 +464,7 @@ var Modal = {
     },
 
     showBenchmark: function(benchId) {
+        try { if (App._ensureScoreMeta) App._ensureScoreMeta(); } catch (e) {}
         var bench = App.data.benchmarks.find(function(b) { return b.id === benchId; });
         if (!bench) return;
         history.replaceState(null, '', '#bench/' + benchId);
@@ -802,6 +803,15 @@ var Modal = {
      * notes, and cross-links to the full benchmark / model views.
      */
     showScoreSource: function(modelId, benchmarkId) {
+        // Ensure the lazy source-URL/notes sidecar is loaded before showing a
+        // source modal (index-aligned merge onto App.data.scores). If it's
+        // still loading, re-render once it arrives so the URL/notes appear.
+        try {
+            var self = this;
+            if (App._ensureScoreMeta && !App._scoreMetaLoaded) {
+                App._ensureScoreMeta().then(function () { self.showScoreSource(modelId, benchmarkId); });
+            }
+        } catch (e) {}
         var score = App.data.scores.find(function(s) {
             return s.model_id === modelId && s.benchmark_id === benchmarkId;
         });
@@ -1234,6 +1244,7 @@ var Modal = {
     },
 
     showModel: function(modelId) {
+        try { if (App._ensureScoreMeta) App._ensureScoreMeta(); } catch (e) {}
         var model = App.data.models.find(function(m) { return m.id === modelId; });
         if (!model) return;
         history.replaceState(null, '', '#model/' + modelId);

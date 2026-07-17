@@ -190,8 +190,37 @@ class Exporter:
 
     def _export_scores(self) -> None:
         scores = get_scores(self._conn)
-        data = [self._score_to_dict(s) for s in scores]
-        self._write_json(self._output_dir / "scores" / "current.json", data)
+        full = [self._score_to_dict(s) for s in scores]
+        # Split the payload: the boot-critical shared score index + Explorer
+        # table/filters only need model_id/benchmark_id/value/unit/is_sota +
+        # source.type/date + collected_at. The heavy click-time-only fields
+        # (source.url ~35% + notes ~23% of the raw JSON) move to an
+        # INDEX-ALIGNED sidecar (current_meta.json) that the dashboard fetches
+        # lazily and merges back onto the score objects. lean[i] <-> meta[i].
+        lean: List[Dict[str, Any]] = []
+        meta: List[Dict[str, Any]] = []
+        for d in full:
+            src = d.get("source") or {}
+            meta.append(
+                {
+                    "url": src.get("url"),
+                    "citation": src.get("citation"),
+                    "notes": d.get("notes") or "",
+                }
+            )
+            lean.append(
+                {
+                    "model_id": d.get("model_id"),
+                    "benchmark_id": d.get("benchmark_id"),
+                    "value": d.get("value"),
+                    "unit": d.get("unit"),
+                    "is_sota": d.get("is_sota", False),
+                    "source": {"type": src.get("type"), "date": src.get("date")},
+                    "collected_at": d.get("collected_at"),
+                }
+            )
+        self._write_json(self._output_dir / "scores" / "current.json", lean)
+        self._write_json(self._output_dir / "scores" / "current_meta.json", meta)
 
     def _export_sota(self) -> None:
         scores = get_scores(self._conn)

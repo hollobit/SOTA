@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-07-17",
+    "type": "session",
+    "title": "Session 186 — loading-speed: JS minify at deploy + lean scores/current.json (35% smaller) + scheduled-workflow fixes",
+    "detail": "Two dashboard load-speed improvements + fixed the month-long scheduled-workflow failures. **(1) JS minify at deploy** — added esbuild minify step to the Publish job (benchmark-update.yml) that minifies the STAGED public/js in place (~42% smaller: 1639 KB -> 956 KB across 26 files); source tree stays readable, filenames unchanged so index.html/cache-bust untouched. package.json +esbuild devDep + scripts/minify-dashboard-js.mjs. **(2) Lean scores payload** — split scores/current.json: the boot-critical shared index + Explorer table/filters only need model_id/benchmark_id/value/unit/is_sota + source.type/date + collected_at, so the heavy click-time-only fields (source.url ~35% + notes ~23%) moved to an INDEX-ALIGNED sidecar scores/current_meta.json fetched lazily and merged back onto the score objects in place. current.json 6.6 MB -> 4.47 MB (32% smaller first-scores-tab load); 2.24 MB sidecar now lazy. All existing consumers (modals, Explorer, history) read s.source.url / s.notes unchanged — verified end-to-end via Playwright (17,745 scores load, sidecar merge restores arxiv URLs + notes, source modal renders 'Source URL: https://arxiv.org/abs/...'). App._ensureScoreMeta() (cached, background-kicked after scores + ensured on modal open). **(3) Scheduled-workflow fixes** (Discovery Agent + Librarian Weekly failing every run since ~2026-06-20): three chained root causes fixed + verified passing — Python 3.9->3.11 (pyproject requires >=3.11, pip install failed; main), seed_sources.yaml 27x invalid `\\$`->`$` YAML escapes (yaml.safe_load crashed the agents; ops), and librarian missing permissions:contents:write (git push 403; main). Both workflows now green on manual re-trigger. Note: dashboard already lazy-loads current.json/graphrag.json(8.5MB)/tab-JS/echarts, so these target the remaining hot spots."
+  },
+  {
     "date": "2026-07-16",
     "type": "session",
     "title": "Session 185 — resource-source gap audit: CEO-Bench silent-gap backfill (17 scores) + frontier-freshness confirm",
