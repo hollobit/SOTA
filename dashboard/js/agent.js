@@ -234,7 +234,7 @@ var Agent = (function() {
                 // 2026-06-01 S44 — MiniMax M3 PostTrainBench (autonomous 12h ML training loop)
                 'posttrainbench',
                 // 2026-06-02 S46 — Qwen3.7-Plus agent benches
-                'terminal_bench_2_0', 'mcp_mark', 'deep_planning', 'spreadsheetbench_v1',
+                'terminal_bench_2_0', 'mcp_mark', 'deep_planning', 'spreadsheetbench_v1', 'spreadsheetbench_v2',
                 'qwen_world_bench', 'cowork_bench', 'vitabench', 'clawval_mm', 'skillsbench',
                 // 2026-06-02 S48 — Microsoft MAI Instruction Following + Frontier reasoning benches
                 'if_bench_precise', 'advanced_if_rubric', 'robust_if_diverse', 'frontier_math_t1_3',

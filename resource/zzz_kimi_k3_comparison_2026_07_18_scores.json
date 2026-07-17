@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-18",
+    "sources": [
+      "https://artificialanalysis.ai/models/kimi-k3",
+      "https://www.kimi.com/blog/kimi-k3"
+    ],
+    "_note": "Kimi K3 missing-data + comparison fill. S182 only ingested the K3 composite AAII (57) + main blog rows; this adds (A) K3's 10 AA-measured AAII-contributing sub-benchmark scores (placing K3 directly alongside GPT-5.6 Sol / Fable 5 / Opus 4.8 / Grok 4.5 on the standard AA comparison benches — K3 is #1 on tau3-Banking, AA-LCR, AutomationBench-AA, Harvey LAB-AA) and (B) the blog's tool-augmented 'w/ python / w/ tools' variant rows skipped in S182. NOTE: no Kimi K3 technical report / PDF exists yet (blog says it will ship with the weights ~2026-07-27). NOTE: the K3 comparison tables do NOT include Claude Mythos 5 (de-deployed, absent from AA's current lineup and the blog table), so no K3-vs-Mythos comparison data exists in these sources. Blog competitor values are cited from the Fable-5/Mythos-5 + GPT-5.6 cards (already in DB), so only K3 added to existing benches; full roster added only to the 2 genuinely-new benches."
+  },
+  "benchmarks": [
+    { "id": "spreadsheetbench_v2", "name": "SpreadsheetBench 2", "category": "agent", "metric": "accuracy", "description": "Spreadsheet agentic benchmark v2 (Kimi K3 blog; Claude Code harness for K3/GLM/Opus/Fable, Codex for GPT)." },
+    { "id": "zerobench_main_python", "name": "ZeroBench (main, w/ python)", "category": "multimodal", "metric": "pass@5", "description": "ZeroBench hard visual reasoning, main split, with python tools (Kimi K3 blog)." }
+  ],
+  "scores": [
+    { "_section": "=== (A) Kimi K3 — AA-measured AAII v4.1 sub-benchmarks (source: AA model page). Competitors already in DB; K3 completes the comparison ===",
+      "model": "moonshot/kimi-k3", "benchmark": "gdpval_aa_v2", "score": 59.0, "_source": "https://artificialanalysis.ai/models/kimi-k3", "_note": "#4 (Fable 63 / Sol max 62 / Sol xhigh 60 lead)." },
+    { "model": "moonshot/kimi-k3", "benchmark": "tau3_banking", "score": 33.0, "_source": "https://artificialanalysis.ai/models/kimi-k3", "_note": "#1 (tied with GPT-5.6 Sol max/xhigh, Grok 4.5)." },
+    { "model": "moonshot/kimi-k3", "benchmark": "scicode", "score": 59.0, "_source": "https://artificialanalysis.ai/models/kimi-k3", "_note": "#2 (behind Fable 5 60)." },
+    { "model": "moonshot/kimi-k3", "benchmark": "critpt", "score": 23.0, "_source": "https://artificialanalysis.ai/models/kimi-k3", "_note": "Physics reasoning; mid-pack." },
+    { "model": "moonshot/kimi-k3", "benchmark": "aa_omniscience_accuracy", "score": 46.0, "_source": "https://artificialanalysis.ai/models/kimi-k3" },
+    { "model": "moonshot/kimi-k3", "benchmark": "aa_omniscience_non_hallucination", "score": 49.0, "_source": "https://artificialanalysis.ai/models/kimi-k3", "_note": "#9; higher than GPT-5.6/Fable tiers on non-hallucination." },
+    { "model": "moonshot/kimi-k3", "benchmark": "aa_lcr", "score": 75.0, "_source": "https://artificialanalysis.ai/models/kimi-k3", "_note": "#1 long-context reasoning (ahead of GPT-5.5 xhigh 74)." },
+    { "model": "moonshot/kimi-k3", "benchmark": "automationbench_aa", "score": 53.0, "_source": "https://artificialanalysis.ai/models/kimi-k3", "_note": "#1 (ahead of Grok 4.5 51, GPT-5.6 Sol max 51, Fable 5 49)." },
+    { "model": "moonshot/kimi-k3", "benchmark": "harvey_lab_aa", "score": 27.0, "_source": "https://artificialanalysis.ai/models/kimi-k3", "_note": "#1 legal agentic (2x Fable 5 14)." },
+    { "model": "moonshot/kimi-k3", "benchmark": "enterpriseops_gym_aa", "score": 45.0, "_source": "https://artificialanalysis.ai/models/kimi-k3", "_note": "#4 (Fable 51 / Gemini 3.5 Flash 50 / GPT-5.5 xhigh 47 lead)." },
+
+    { "_section": "=== (B) Kimi K3 — blog tool-augmented (w/ python / w/ tools) variants skipped in S182. K3 only (competitors from cards already in DB) ===",
+      "model": "moonshot/kimi-k3", "benchmark": "hle_with_tools", "score": 56.0, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "HLE-Full w/ tools (Fable 63.0 / GPT-5.6 Sol 58.0 lead)." },
+    { "model": "moonshot/kimi-k3", "benchmark": "mmmu_pro_(w/_python)", "score": 83.4, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "MMMU-Pro w/ python (Fable 86.5 / GPT-5.6 Sol 84.6 lead)." },
+    { "model": "moonshot/kimi-k3", "benchmark": "mathvision_(w/_python)", "score": 97.8, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "MathVision w/ python (Fable 98.6 lead; tied GPT-5.6 Sol 97.8)." },
+    { "model": "moonshot/kimi-k3", "benchmark": "charxiv_rq_(w/_python)", "score": 91.3, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "CharXiv RQ w/ python (Fable 93.5 lead)." },
+
+    { "_section": "=== (C) SpreadsheetBench 2 (NEW bench) — full blog roster ===",
+      "model": "moonshot/kimi-k3", "benchmark": "spreadsheetbench_v2", "score": 34.8, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "#1. Claude Code harness (K3/GLM/Opus/Fable), Codex (GPT)." },
+    { "model": "anthropic/claude-fable-5", "benchmark": "spreadsheetbench_v2", "score": 34.7, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.6-sol", "benchmark": "spreadsheetbench_v2", "score": 32.4, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "spreadsheetbench_v2", "score": 31.6, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.5", "benchmark": "spreadsheetbench_v2", "score": 29.1, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "zhipu/glm-5.2", "benchmark": "spreadsheetbench_v2", "score": 28.1, "_source": "https://www.kimi.com/blog/kimi-k3" },
+
+    { "_section": "=== (C) ZeroBench main w/ python (NEW bench) — full blog roster ===",
+      "model": "moonshot/kimi-k3", "benchmark": "zerobench_main_python", "score": 41.0, "_source": "https://www.kimi.com/blog/kimi-k3", "_note": "Tied GPT-5.5; Fable 5 46 leads." },
+    { "model": "anthropic/claude-fable-5", "benchmark": "zerobench_main_python", "score": 46.0, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.6-sol", "benchmark": "zerobench_main_python", "score": 35.0, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "zerobench_main_python", "score": 34.0, "_source": "https://www.kimi.com/blog/kimi-k3" },
+    { "model": "openai/gpt-5.5", "benchmark": "zerobench_main_python", "score": 41.0, "_source": "https://www.kimi.com/blog/kimi-k3" }
+  ]
+}
