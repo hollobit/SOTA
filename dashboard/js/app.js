@@ -609,7 +609,11 @@ var App = {
         ai4s:              ['js/ai4s.js', 'js/ai4s-charts.js'],
         agent:             ['js/agent.js', 'js/agent-charts.js'],
         'image-gen':       ['js/image-gen.js'],
-        'video-gen':       ['js/video-gen.js'],
+        // Video Gen reuses ImageGen._makeBoardCard, so image-gen.js MUST load
+        // too — otherwise opening Video Gen without first visiting Image Gen
+        // leaves window.ImageGen undefined and VideoGen.render() early-returns
+        // to a blank pane.
+        'video-gen':       ['js/image-gen.js', 'js/video-gen.js'],
         timeline:          ['js/timeline.js']
     },
 
