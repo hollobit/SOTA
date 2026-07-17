@@ -24,6 +24,11 @@ var AgentCharts = (function() {
   // and calls into Agent._helpers. We re-export the small ones we need.
   function _scoresFor(benchmarkId) {
     if (!window.App || !App.data || !App.data.scores) return [];
+    // O(1) via the shared score index instead of scanning all ~18K scores.
+    // This helper is called once per benchmark across every Agent widget; the
+    // linear scan made the Agent tab take ~11s of pure JS.
+    var idx = App.getScoreIndex && App.getScoreIndex();
+    if (idx && idx.byBench) return idx.byBench[benchmarkId] || [];
     var out = [];
     for (var i = 0; i < App.data.scores.length; i++) {
       if (App.data.scores[i].benchmark_id === benchmarkId) out.push(App.data.scores[i]);
@@ -31,20 +36,28 @@ var AgentCharts = (function() {
     return out;
   }
 
-  function _modelDisplayName(modelId) {
-    if (!window.App || !App.data || !App.data.models) return modelId;
-    for (var i = 0; i < App.data.models.length; i++) {
-      if (App.data.models[i].id === modelId) return App.data.models[i].name || modelId;
+  // Lazy id->model map so _modelDisplayName / _vendorOf are O(1) instead of
+  // scanning all ~4.7K models on every call. Rebuilds if the models array grows.
+  var _mmCache = null;
+  function _modelMap() {
+    var n = (window.App && App.data && App.data.models) ? App.data.models.length : 0;
+    if (_mmCache && _mmCache.__n === n) return _mmCache;
+    var m = { __n: n };
+    if (window.App && App.data && App.data.models) {
+      for (var i = 0; i < App.data.models.length; i++) m[App.data.models[i].id] = App.data.models[i];
     }
-    return modelId;
+    _mmCache = m;
+    return m;
+  }
+
+  function _modelDisplayName(modelId) {
+    var m = _modelMap()[modelId];
+    return m ? (m.name || modelId) : modelId;
   }
 
   function _vendorOf(modelId) {
-    if (!window.App || !App.data || !App.data.models) return '';
-    for (var i = 0; i < App.data.models.length; i++) {
-      if (App.data.models[i].id === modelId) return App.data.models[i].vendor || '';
-    }
-    return '';
+    var m = _modelMap()[modelId];
+    return m ? (m.vendor || '') : '';
   }
 
   function _modelClass(modelId) {
