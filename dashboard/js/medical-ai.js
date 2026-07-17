@@ -1032,6 +1032,12 @@ var MedicalAI = {
         return this._benchmarks.find(function(b) { return b.id === bid; });
     },
     _getScore: function(mid, bid) {
+        // O(1) shared-index lookup instead of an O(N) scan of ~18K scores.
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byModelBench) {
+            var hit = idx.byModelBench[mid + '|' + bid];
+            return hit ? hit.value : null;
+        }
         var s = this._scores.find(function(x) { return x.model_id === mid && x.benchmark_id === bid; });
         return s ? s.value : null;
     },

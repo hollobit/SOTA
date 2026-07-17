@@ -415,6 +415,13 @@ var PhysicalAI = {
         return this._benchmarks.find(function(b) { return b.id === bid; });
     },
     _getScore: function(modelId, benchId) {
+        // O(1) shared-index lookup instead of an O(N) scan of ~18K scores
+        // (this helper is called tens of thousands of times per render).
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byModelBench) {
+            var hit = idx.byModelBench[modelId + '|' + benchId];
+            return hit ? hit.value : null;
+        }
         var s = this._scores.find(function(s) {
             return s.model_id === modelId && s.benchmark_id === benchId;
         });

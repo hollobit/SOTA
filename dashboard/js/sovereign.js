@@ -2011,6 +2011,15 @@ var Sovereign = {
     },
 
     _getScore: function(modelId, benchId) {
+        // O(1) via the shared score index (App.getScoreIndex().byModelBench)
+        // instead of an O(N) scan of ~18K scores. This helper is called
+        // ~280K times per Sovereign render; the linear .find made the tab
+        // take ~9s of pure CPU. Index lookup drops that to ~10ms.
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byModelBench) {
+            var hit = idx.byModelBench[modelId + '|' + benchId];
+            return hit ? hit.value : null;
+        }
         var s = this._scores.find(function(s) {
             return s.model_id === modelId && s.benchmark_id === benchId;
         });

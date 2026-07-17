@@ -678,6 +678,9 @@ var CyberCoding = {
         this._benchmarks = benchmarks;
         this._scores = scores;
         this._invalidateScoreCache();
+        // Reset id->object maps so they rebuild against the new arrays.
+        this._benchByIdMap = null;
+        this._modelByIdMap = null;
     },
 
     render: function() {
@@ -734,8 +737,35 @@ var CyberCoding = {
     _invalidateScoreCache: function() { this._scoreCache = null; },
 
     _getModelName: function(modelId) {
-        var m = this._models.find(function(m) { return m.id === modelId; });
+        var m = this._modelById(modelId);
         return m ? m.name : modelId.split('/').pop();
+    },
+
+    // O(1) score lookup via the shared index instead of an O(N) scan of ~18K
+    // scores. The matrix render calls this inside nested benchmark×model loops
+    // (tens of thousands of times); the linear .find made the tab take ~11s.
+    _scoreEntry: function(mid, bid) {
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        if (idx && idx.byModelBench) return idx.byModelBench[mid + '|' + bid] || null;
+        return this._scores.find(function(x) { return x.model_id === mid && x.benchmark_id === bid; }) || null;
+    },
+
+    // O(1) id->object lookups (maps built once per init) instead of O(N) .find
+    // scans over ~3.9K benchmarks / ~4.7K models inside the render loops and
+    // sort comparators — the remaining ~3.6s of the Cyber & Coding render.
+    _benchById: function(bid) {
+        if (!this._benchByIdMap) {
+            var map = {}; (this._benchmarks || []).forEach(function(b) { map[b.id] = b; });
+            this._benchByIdMap = map;
+        }
+        return this._benchByIdMap[bid] || null;
+    },
+    _modelById: function(mid) {
+        if (!this._modelByIdMap) {
+            var map = {}; (this._models || []).forEach(function(m) { map[m.id] = m; });
+            this._modelByIdMap = map;
+        }
+        return this._modelByIdMap[mid] || null;
     },
 
     _renderBarChart: function(containerId, benchmarkIds, title) {
@@ -754,7 +784,7 @@ var CyberCoding = {
         // score magnitude as last-resort sanity bound.
         var COUNT_NAME_PAT = /(count|cumulative|discovered|found|patches|assignments|projects|bugs|cve\/?ghsa)/i;
         function isPercentLike(bid) {
-            var b = self._benchmarks && self._benchmarks.find(function(x) { return x.id === bid; });
+            var b = self._benchmarks && self._benchById(bid);
             if (!b) return true;  // assume % if metadata missing
             var unit = (b.unit || '').toLowerCase();
             if (unit === 'count' || unit === 'usd' || unit === 's' || unit === 'sec' || unit === 'tokens') return false;
@@ -808,7 +838,7 @@ var CyberCoding = {
         modelIds = modelIds.slice(0, 8);
 
         var benchNames = activeBids.map(function(bid) {
-            var b = self._benchmarks.find(function(x) { return x.id === bid; });
+            var b = self._benchById(bid);
             return b ? b.name : bid;
         });
 
@@ -911,7 +941,7 @@ var CyberCoding = {
             self._renderTable(containerId, benchmarkIds);
         }));
         benchmarkIds.forEach(function(bid) {
-            var b = self._benchmarks.find(function(x) { return x.id === bid; });
+            var b = self._benchById(bid);
             var label = b ? b.name : bid;
             var th = self._makeSortableTh(TABLE_ID, bid, label, 'desc', (function(localBid) {
                 return function() {
@@ -1014,7 +1044,7 @@ var CyberCoding = {
 
         // Calculate per-axis max dynamically
         var indicators = allBenchmarks.map(function(bid) {
-            var b = self._benchmarks.find(function(x) { return x.id === bid; });
+            var b = self._benchById(bid);
             var name = b ? b.name : bid;
             name = name.replace('SWE-bench ', 'SWE-').replace('Terminal-Bench ', 'T-Bench ');
             var axisMax = 0;
@@ -1117,27 +1147,31 @@ var CyberCoding = {
         this.PERF_SUITES.forEach(function(suite, suiteIdx) {
             var activeBids = suite.benchmarks.filter(function(bid) {
                 return rowIds.some(function(mid) {
-                    return self._scores.some(function(s) { return s.model_id === mid && s.benchmark_id === bid; });
+                    return (self._scoreEntry(mid, bid) != null);
                 });
             });
             if (activeBids.length === 0) return;
 
             var suiteRowIds = rowIds.filter(function(mid) {
                 return activeBids.some(function(bid) {
-                    return self._scores.some(function(s) { return s.model_id === mid && s.benchmark_id === bid; });
+                    return (self._scoreEntry(mid, bid) != null);
                 });
             });
             if (suiteRowIds.length === 0) return;
 
             var TABLE_ID = 'cyber-suite-' + suiteIdx;
 
-            // Pre-build score lookup for this suite
+            // Pre-build score lookup for this suite via the O(1) index instead
+            // of scanning all ~18K scores (with indexOf checks) once per suite.
             var scoreLookup = {};
-            self._scores.forEach(function(x) {
-                if (activeBids.indexOf(x.benchmark_id) !== -1 && suiteRowIds.indexOf(x.model_id) !== -1) {
-                    if (!scoreLookup[x.model_id]) scoreLookup[x.model_id] = {};
-                    scoreLookup[x.model_id][x.benchmark_id] = x.value;
-                }
+            suiteRowIds.forEach(function(mid) {
+                activeBids.forEach(function(bid) {
+                    var e = self._scoreEntry(mid, bid);
+                    if (e) {
+                        if (!scoreLookup[mid]) scoreLookup[mid] = {};
+                        scoreLookup[mid][bid] = e.value;
+                    }
+                });
             });
 
             // Apply sort: explicit per-column when set, else default sum-of-scores desc
@@ -1147,8 +1181,8 @@ var CyberCoding = {
                     var va, vb;
                     if (sortS.key === 'model') { va = self._getModelName(a); vb = self._getModelName(b); }
                     else if (sortS.key === 'vendor') {
-                        var ma = self._models.find(function(m) { return m.id === a; });
-                        var mb = self._models.find(function(m) { return m.id === b; });
+                        var ma = self._modelById(a);
+                        var mb = self._modelById(b);
                         va = ma && ma.vendor ? ma.vendor : '';
                         vb = mb && mb.vendor ? mb.vendor : '';
                     } else {
@@ -1187,7 +1221,7 @@ var CyberCoding = {
             activeBids.forEach(function(bid) {
                 var max = 0;
                 rowIds.forEach(function(mid) {
-                    var sc = self._scores.find(function(x) { return x.model_id === mid && x.benchmark_id === bid; });
+                    var sc = self._scoreEntry(mid, bid);
                     if (sc && sc.value > max) max = sc.value;
                 });
                 maxes[bid] = max;
@@ -1225,7 +1259,7 @@ var CyberCoding = {
             thV.style.fontSize = '11px';
             hr.appendChild(thV);
             activeBids.forEach(function(bid) {
-                var b = self._benchmarks.find(function(x) { return x.id === bid; });
+                var b = self._benchById(bid);
                 var label = b ? b.name : bid;
                 var th = self._makeSortableTh(TABLE_ID, bid, label, 'desc', (function(localBid) {
                     return function() {
@@ -1242,7 +1276,7 @@ var CyberCoding = {
 
             var tbody = document.createElement('tbody');
             suiteRowIds.forEach(function(mid) {
-                var m = self._models.find(function(x) { return x.id === mid; });
+                var m = self._modelById(mid);
                 var tr = document.createElement('tr');
 
                 var tdName = document.createElement('td');
@@ -1267,10 +1301,10 @@ var CyberCoding = {
                 activeBids.forEach(function(bid) {
                     var td = document.createElement('td');
                     td.style.textAlign = 'center';
-                    var scoreEntry = self._scores.find(function(x) { return x.model_id === mid && x.benchmark_id === bid; });
+                    var scoreEntry = self._scoreEntry(mid, bid);
                     if (scoreEntry) {
                         var v = scoreEntry.value;
-                        var bench = self._benchmarks.find(function(x) { return x.id === bid; });
+                        var bench = self._benchById(bid);
                         var unit = bench && bench.metric ? bench.metric : '';
                         td.textContent = v.toFixed(unit === 'fps' || unit === 'seconds' || unit === 'hours' || unit === 'elo' ? 0 : 1);
                         var ratio = maxes[bid] > 0 ? v / maxes[bid] : 0;
