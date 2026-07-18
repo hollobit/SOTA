@@ -304,9 +304,16 @@ var App = {
             return;
         }
 
-        // Explorer deep link: #explore/model1,model2,...,modelN  (up to 10)
+        // Explorer deep link: #explore/model1,model2,...,modelN[?shared=1]
+        // All comparison conditions are captured in the hash: the selected
+        // model list plus the "공동 비교 사례" filter flag (?shared=1).
         if (hash.indexOf('explore/') === 0) {
-            var ids = hash.substring(8).split(',').filter(function(v) { return v; }).slice(0, 10);
+            var rest = hash.substring(8);
+            var qIdx = rest.indexOf('?');
+            var query = qIdx >= 0 ? rest.substring(qIdx + 1) : '';
+            var idsPart = qIdx >= 0 ? rest.substring(0, qIdx) : rest;
+            var sharedOnly = /(^|&)shared=1(&|$)/.test(query);
+            var ids = idsPart.split(',').filter(function(v) { return v; }).slice(0, 10);
             if (ids.length >= 2) {
                 var self = this;
                 this._activateTab('explorer');
@@ -321,6 +328,8 @@ var App = {
                         var sel = document.getElementById('compare-model-' + i);
                         if (sel) sel.value = mid;
                     });
+                    var cb = document.getElementById('compare-shared-only');
+                    if (cb) cb.checked = sharedOnly;
                     var rows = Explorer.compare(ids, self.data.scores, self.data.benchmarks);
                     self._lastCompare = { modelIds: ids, rows: rows };
                     self._renderCompareTable();
@@ -1133,23 +1142,38 @@ var App = {
                 }
                 if (modelIds.length < 2) return;
 
-                history.replaceState(null, '', '#explore/' + modelIds.join(','));
-
-                var rows = Explorer.compare(modelIds, self.data.scores, self.data.benchmarks);
-                self._lastCompare = { modelIds: modelIds, rows: rows };
+                self._lastCompare = { modelIds: modelIds, rows: Explorer.compare(modelIds, self.data.scores, self.data.benchmarks) };
+                self._updateExplorerHash();
                 self._renderCompareTable();
                 Explorer.renderRadar('explorer-radar', modelIds, self.data.models, self.data.scores, self.data.benchmarks);
             });
         }
 
         // "공동 비교 사례" filter: re-render the side-by-side table from the
-        // cached result (no recompute) when toggled.
+        // cached result (no recompute) when toggled, and reflect the new state
+        // in the URL so every comparison condition is shareable/bookmarkable.
         var sharedCb = document.getElementById('compare-shared-only');
         if (sharedCb) {
             sharedCb.addEventListener('change', function() {
-                if (self._lastCompare) self._renderCompareTable();
+                if (!self._lastCompare) return;
+                self._renderCompareTable();
+                self._updateExplorerHash();
             });
         }
+    },
+
+    // Build the Explorer deep-link hash from the current models + filter state.
+    _explorerHash: function(modelIds, sharedOnly) {
+        return '#explore/' + modelIds.join(',') + (sharedOnly ? '?shared=1' : '');
+    },
+
+    // Sync the URL to the current comparison (models + shared-only checkbox)
+    // via replaceState — this does NOT fire hashchange, so no re-navigation.
+    _updateExplorerHash: function() {
+        if (!this._lastCompare) return;
+        var cb = document.getElementById('compare-shared-only');
+        var hash = this._explorerHash(this._lastCompare.modelIds, !!(cb && cb.checked));
+        if (window.location.hash !== hash) history.replaceState(null, '', hash);
     },
 
     _renderCompareTable: function() {

@@ -2,6 +2,12 @@
   {
     "date": "2026-07-18",
     "type": "Feature",
+    "title": "Explorer 비교 조건을 모두 URL로 인코딩 — 공유·북마크 가능한 딥링크",
+    "detail": "Model Explorer의 모든 비교 조건을 hash URL 하나로 표현: 선택 모델 목록 + \"공동 비교 사례\" 필터 상태. 형식 #explore/m1,m2,m3?shared=1 (기존 ?shared 없는 링크와 하위호환). 체크박스를 토글하면 replaceState로 URL이 즉시 갱신되고(hashchange 미발생 → 재네비게이션 없음), 딥링크로 진입하면 체크박스 상태까지 그대로 복원됨. Compare 버튼·체크박스 토글·딥링크 3경로 모두 동일한 _explorerHash()/_updateExplorerHash() 헬퍼로 URL 동기화. 브라우저 실측: ?shared=1 로드 시 체크+12 공통행 복원, 해제 시 URL에서 플래그 제거+226행, 재체크 복원 모두 확인."
+  },
+  {
+    "date": "2026-07-18",
+    "type": "Feature",
     "title": "Explorer: \"공동 비교 사례\" 필터 추가 — 모든 선택 모델이 채점된 벤치마크만 표시",
     "detail": "Model Explorer 비교 화면에 \"공동 비교 사례\" 체크박스를 추가. 체크 시 side-by-side 표가 선택한 N개 모델 전부가 점수를 보유한 벤치마크 행만 남겨 apples-to-apples 비교를 제공(예: K3+Fable 5+GPT-5.6 Sol 3-모델 비교 시 226행 → 12 공통행). 승수(wins) 요약과 커버리지 카드도 표시 행 기준으로 갱신(\"12 공동 / 226 total\", \"모든 3개 모델 공통\"). 필터는 렌더 시점에만 적용되어 재계산 없음 — 캐시된 Explorer.compare() 결과를 재사용(메뉴 로딩 성능 규칙 준수). deep-link(#explore/...)와 Compare 버튼 경로 모두 반영."
   },
