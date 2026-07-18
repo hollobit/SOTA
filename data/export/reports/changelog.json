@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-18",
+    "type": "Feature",
+    "title": "Explorer: \"공동 비교 사례\" 필터 추가 — 모든 선택 모델이 채점된 벤치마크만 표시",
+    "detail": "Model Explorer 비교 화면에 \"공동 비교 사례\" 체크박스를 추가. 체크 시 side-by-side 표가 선택한 N개 모델 전부가 점수를 보유한 벤치마크 행만 남겨 apples-to-apples 비교를 제공(예: K3+Fable 5+GPT-5.6 Sol 3-모델 비교 시 226행 → 12 공통행). 승수(wins) 요약과 커버리지 카드도 표시 행 기준으로 갱신(\"12 공동 / 226 total\", \"모든 3개 모델 공통\"). 필터는 렌더 시점에만 적용되어 재계산 없음 — 캐시된 Explorer.compare() 결과를 재사용(메뉴 로딩 성능 규칙 준수). deep-link(#explore/...)와 Compare 버튼 경로 모두 반영."
+  },
+  {
+    "date": "2026-07-18",
     "type": "session",
     "title": "Session 188 — Kimi K3 missing-data + comparison fill: 10 AA sub-benchmarks + tool-augmented variants (16 scores)",
     "detail": "Followed up on Kimi K3 gaps (user: add K3 vs GPT-5.6 Sol / Fable 5 / Opus 4.8 comparison data). S182 had only K3's composite AAII (57) + main blog rows. Added: (A) K3's 10 AA-measured AAII-contributing sub-benchmarks from the AA model page, placing K3 directly alongside the frontier on the standard AA comparison benches — GDPval-AA v2 59, tau3-Banking 33 (#1 tied), SciCode 59 (#2), CritPt 23, AA-Omniscience Acc 46 / Non-Hall 49, AA-LCR 75 (#1), AutomationBench-AA 53 (#1 SOTA), Harvey LAB-AA 27 (#1 SOTA), EnterpriseOps-Gym-AA 45. K3's Composite-AAII heatmap row is now complete (all 9 contributing evals). (B) blog tool-augmented 'w/ python / w/ tools' variant rows skipped in S182: HLE w/tools 56.0, MMMU-Pro w/python 83.4, MathVision w/python 97.8, CharXiv-RQ w/python 91.3 (K3 added to existing benches), plus 2 NEW benches with full roster — SpreadsheetBench 2 (K3 34.8 #1 / Fable 34.7 / GPT-5.6 Sol 32.4 / Opus 4.8 31.6 / GPT-5.5 29.1 / GLM-5.2 28.1) and ZeroBench-main w/python (K3 41.0 / Fable 46.0 / GPT-5.6 Sol 35.0 / Opus 4.8 34.0 / GPT-5.5 41.0). K3 now 30->46 scores. NOTES: no K3 technical report/PDF exists yet (ships with weights ~2026-07-27); the K3 comparison tables carry NO Claude Mythos 5 column (Mythos is de-deployed, absent from AA's current lineup + the blog), so no K3-vs-Mythos comparison data exists in these sources. Blog competitor values are card-cited (already in DB) so no cross-source dup. Propagated spreadsheetbench_v2 to Agent tab."

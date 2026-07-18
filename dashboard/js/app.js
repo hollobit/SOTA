@@ -322,7 +322,8 @@ var App = {
                         if (sel) sel.value = mid;
                     });
                     var rows = Explorer.compare(ids, self.data.scores, self.data.benchmarks);
-                    Explorer.renderComparison('comparison-result', ids, self.data.models, rows);
+                    self._lastCompare = { modelIds: ids, rows: rows };
+                    self._renderCompareTable();
                     Explorer.renderRadar('explorer-radar', ids, self.data.models, self.data.scores, self.data.benchmarks);
                 });
                 return;
@@ -1135,10 +1136,33 @@ var App = {
                 history.replaceState(null, '', '#explore/' + modelIds.join(','));
 
                 var rows = Explorer.compare(modelIds, self.data.scores, self.data.benchmarks);
-                Explorer.renderComparison('comparison-result', modelIds, self.data.models, rows);
+                self._lastCompare = { modelIds: modelIds, rows: rows };
+                self._renderCompareTable();
                 Explorer.renderRadar('explorer-radar', modelIds, self.data.models, self.data.scores, self.data.benchmarks);
             });
         }
+
+        // "공동 비교 사례" filter: re-render the side-by-side table from the
+        // cached result (no recompute) when toggled.
+        var sharedCb = document.getElementById('compare-shared-only');
+        if (sharedCb) {
+            sharedCb.addEventListener('change', function() {
+                if (self._lastCompare) self._renderCompareTable();
+            });
+        }
+    },
+
+    _renderCompareTable: function() {
+        var self = this;
+        if (!self._lastCompare) return;
+        var cb = document.getElementById('compare-shared-only');
+        Explorer.renderComparison(
+            'comparison-result',
+            self._lastCompare.modelIds,
+            self.data.models,
+            self._lastCompare.rows,
+            { sharedOnly: !!(cb && cb.checked) }
+        );
     },
 
     renderOverview: function() {

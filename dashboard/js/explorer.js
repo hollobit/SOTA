@@ -72,7 +72,7 @@ var Explorer = {
         return rows;
     },
 
-    renderComparison: function(containerId, modelIds, models, rows) {
+    renderComparison: function(containerId, modelIds, models, rows, opts) {
         var container = document.getElementById(containerId);
         if (!container) return;
         container.textContent = '';
@@ -82,20 +82,30 @@ var Explorer = {
             return m ? m.name : mid.split('/').pop();
         });
 
-        // Summary: wins per model
+        // "공동 비교 사례": benchmarks where every compared model has a value.
+        var nModels = modelIds.length;
+        var commonRows = rows.filter(function(r) {
+            return r.values.filter(function(v) { return v !== null; }).length === nModels;
+        });
+        var sharedOnly = !!(opts && opts.sharedOnly);
+        var displayRows = sharedOnly ? commonRows : rows;
+
+        // Summary: wins per model (over the rows actually shown, so a filtered
+        // view gives an apples-to-apples win count on fully-shared benchmarks)
         var wins = modelIds.map(function() { return 0; });
-        rows.forEach(function(r) {
+        displayRows.forEach(function(r) {
             if (r.winner >= 0 && r.values.filter(function(v) { return v !== null; }).length > 1) {
                 wins[r.winner]++;
             }
         });
 
-        // Count benchmark coverage stats
+        // Count benchmark coverage stats (always over the full result set)
         var sharedCount = 0, totalCount = rows.length;
         rows.forEach(function(r) {
             var filled = r.values.filter(function(v) { return v !== null; }).length;
             if (filled >= 2) sharedCount++;
         });
+        var commonCount = commonRows.length;
 
         var summaryDiv = document.createElement('div');
         summaryDiv.className = 'flex gap-4 mb-4 flex-wrap';
@@ -110,8 +120,16 @@ var Explorer = {
         coverageCard.appendChild(coverTitle);
         var coverVal = document.createElement('div');
         coverVal.className = 'text-lg font-bold text-gray-300';
-        coverVal.textContent = sharedCount + ' shared / ' + totalCount + ' total';
+        coverVal.textContent = sharedOnly
+            ? (commonCount + ' 공동 / ' + totalCount + ' total')
+            : (sharedCount + ' shared / ' + totalCount + ' total');
         coverageCard.appendChild(coverVal);
+        var coverSub = document.createElement('div');
+        coverSub.className = 'text-xs text-gray-500';
+        coverSub.textContent = sharedOnly
+            ? ('모든 ' + nModels + '개 모델 공통')
+            : (commonCount + ' shared by all ' + nModels);
+        coverageCard.appendChild(coverSub);
         summaryDiv.appendChild(coverageCard);
 
         modelIds.forEach(function(mid, i) {
@@ -172,7 +190,16 @@ var Explorer = {
 
         var tbody = document.createElement('tbody');
         var lastCat = '';
-        rows.forEach(function(row) {
+        if (sharedOnly && displayRows.length === 0) {
+            var emptyTr = document.createElement('tr');
+            var emptyTd = document.createElement('td');
+            emptyTd.colSpan = 2 + modelIds.length;
+            emptyTd.className = 'text-center text-gray-500 py-4';
+            emptyTd.textContent = '선택한 ' + nModels + '개 모델이 모두 채점된 공통 벤치마크가 없습니다.';
+            emptyTr.appendChild(emptyTd);
+            tbody.appendChild(emptyTr);
+        }
+        displayRows.forEach(function(row) {
             var tr = document.createElement('tr');
             var filledCount = row.values.filter(function(v) { return v !== null; }).length;
             // Dim rows where only 1 model has data (unique to that model)
