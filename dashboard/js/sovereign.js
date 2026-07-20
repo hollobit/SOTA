@@ -2196,21 +2196,32 @@ var Sovereign = {
 
     // Pure: latest-snapshot gap% matrix, countries × leaderboards.
     _competitivenessHeatmap: function() {
-        var self = this;
+        // "Current snapshot" heatmap: read the CURRENT score index (current.json),
+        // NOT the history time-series. current.json is cache-busted per deploy
+        // (?v=<hash>), so this always reflects the latest corrected scores;
+        // deriving "current" from the 60 aggressively-cached history files made
+        // the heatmap lag behind updates.
         var regions = this._compRegions();
+        var idx = (typeof App !== 'undefined' && App.getScoreIndex) ? App.getScoreIndex() : null;
+        var byMB = (idx && idx.byModelBench) || {};
+        var byB = (idx && idx.byBench) || {};
         var out = [];
         this._LEADERBOARDS.forEach(function(lb) {
-            var ser = self._competitivenessSeries(lb.id, 'gap');
-            // last non-null index overall (latest date any country/frontier has data)
+            // Global frontier top on this benchmark from current scores.
+            var globalTop = null;
+            (byB[lb.id] || []).forEach(function(s) {
+                if (s && s.value != null && (globalTop == null || s.value > globalTop)) globalTop = s.value;
+            });
             regions.forEach(function(r) {
-                var s = ser.series.find(function(x) { return x.code === r.code; });
-                if (!s) return;
-                var gap = null, model = null;
-                for (var i = s.values.length - 1; i >= 0; i--) {
-                    if (s.values[i] != null) { gap = s.values[i]; model = s.seriesModels[i]; break; }
-                }
+                var best = null, bestModel = null;
+                (r.models || []).forEach(function(mid) {
+                    var s = byMB[mid + '|' + lb.id];
+                    var v = s ? s.value : null;
+                    if (v != null && (best == null || v > best)) { best = v; bestModel = mid; }
+                });
+                var gap = (best != null && globalTop) ? Math.round(best / globalTop * 1000) / 10 : null;
                 out.push({ code: r.code, label: r.label, flag: r.flag, benchId: lb.id,
-                           benchLabel: lb.label, gap: gap, model: model });
+                           benchLabel: lb.label, gap: gap, model: bestModel });
             });
         });
         return out;

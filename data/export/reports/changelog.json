@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-21",
+    "type": "Fix",
+    "title": "Sovereign 경쟁력 히트맵 — 현재 스냅샷을 history 대신 current.json에서 계산",
+    "detail": "\"현재 스냅샷 — 국가×리더보드 교차\" 히트맵이 옛 점수를 표시하는 문제. 원인: 히트맵이 라벨과 달리 60개 대용량 history 스냅샷(각 ~7MB)의 마지막 non-null 값을 읽어, 브라우저가 캐시한 구 history(최신 07-21 미포함)를 쓰면 마지막이 07-20(교정 전)으로 잡힘 — current.json은 신선한데 히트맵만 지연. 수정: _competitivenessHeatmap을 App.getScoreIndex()(current.json) 기반으로 재작성 — 국가별 REGIONS 모델 중 벤치 최고값 / 글로벌 프론티어 최고값 x100. 대시보드 나머지와 동일 데이터 소스라 항상 최신 반영. 추이 라인 차트는 시계열이라 history 유지. 검증: 히트맵 독일 MMLU-Pro 42.4%·일본 MMLU 61.5%·한국 AAII 49.3%가 현재 스코어와 일치."
+  },
+  {
+    "date": "2026-07-21",
     "type": "Correction",
     "title": "스케일 오류 교정 — 소버린 모델 MMLU/MMLU-Pro 등 0-1 분수를 0-100 %로 (40건)",
     "detail": "사용자 지적(독일 MMLU-Pro 0.4, 일본 MMLU 0.6 이상 여부 검증)으로 조사한 결과, 과거 소버린 sweep 4개 파일(05-13 sovereign, session99 korean-japanese, session100 european, session102 global-south)이 일부 모델 점수를 0-100 % 대신 0-1 분수로 잘못 수집한 스케일 버그 확인. 영향: Aleph-Alpha Pharia/tfree-hat(독일), PFN Plamo-2/llm-jp/Fujitsu Takane/Stockmark(일본), Krutrim-2(인도) — MMLU/MMLU-Pro/ARC-Challenge/HellaSwag/Winogrande/TruthfulQA/GSM8K/IFEval/jMMLU/jHumanEval/JGLUE 등 40개 (model,bench). 교정: 명백한 0-100 벤치(다른 모델 >10)만 x100(예: tfree-hat MMLU-Pro 0.386->38.6, Plamo-2-8b MMLU 0.573->57.3). 원래 0-1 지표(wmt20 COMET, pfgen_bench, RTF, WER)는 미변경. many-z 교정 파일로 로드 최후순 override. 검증: Sovereign 경쟁력 히트맵에서 독일 MMLU-Pro 42.4%/일본 MMLU 61.5%로 정상화(기존 ~0.4%). 잔여 pharia gsm8k 1.4(=0.014x100)·yalm-100b gsm8k 0.0은 실제 정상값."
