@@ -645,6 +645,16 @@ var Sovereign = {
         'moonshot/kimi-k2-instruct': '2025-07', 'moonshot/kimi-k2-base': '2025-07', 'moonshot/kimi-k1.5': '2025-01',
         // China — MiniMax / MiMo / StepFun
         'minimax/m2.7': '2026-03', 'minimax/m2.5': '2025-09',
+        // 2026-07-20 S191 timeline audit — flagship LLMs invisible/misdated in DB.
+        // Dates anchored to sibling/variant ids (see commit); DB had None or
+        // placeholder 2026-01-01/2025-01-01 → these override so they plot right.
+        'zhipu/glm-5.2': '2026-06',                 // DB None; glm-5.1=2026-04
+        'alibaba/qwen3.7-plus': '2026-05',          // DB 2025-01-01; qwen3.7-max=2026-05
+        'alibaba/qwen3.5-plus': '2025-12',          // DB None; qwen3.5-397b family
+        'moonshot/kimi-k2.7-code': '2026-06',       // DB 2026-01-01; k2.7-code-thinking=2026-06-12
+        'minimax/m3': '2026-06',                    // DB 2026-01-01; M3 GA ~2026-06 (after M2.7)
+        'meituan/longcat-flash-thinking': '2025-09',// DB 2026-01-01; LongCat Flash Thinking Sep-2025
+        'sakana/fugu': '2026-04',                   // DB None; fugu-ultra/mini=2026-04-24
         'mimo/mimo-v2-pro': '2025-12', 'mimo/mimo-v2-flash': '2025-12',
         'stepfun/step-3.7-flash': '2026-06', 'stepfun/step-3.5-flash': '2025-12', 'stepfun/step-2-pro': '2024-12', 'stepfun/step-2-mini': '2024-08',
         // China — Baidu ERNIE

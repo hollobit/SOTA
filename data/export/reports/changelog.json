@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-20",
+    "type": "Fix",
+    "title": "Sovereign 출시 타임라인 — 최신 flagship 모델 날짜 교정 (7건)",
+    "detail": "Sovereign AI 탭 \"출시 타임라인(출시년도×파라미터)\" 검증 중, 최근 flagship LLM들이 DB의 None/placeholder(2026-01-01, 2025-01-01) 날짜 때문에 타임라인에서 누락되거나 잘못된 연도에 배치되던 문제 발견. sovereign.js RELEASE_DATES 오버라이드 맵(DB 날짜가 틀릴 때 쓰는 의도된 메커니즘)에 형제/변형 id 앵커 기반 정확한 날짜 추가: zhipu/glm-5.2=2026-06(DB None; glm-5.1=04-07), alibaba/qwen3.7-plus=2026-05(DB 2025-01-01 오류; qwen3.7-max=05), alibaba/qwen3.5-plus=2025-12(DB None), moonshot/kimi-k2.7-code=2026-06(DB 2026-01-01; -thinking변형=06-12), minimax/m3=2026-06(DB 2026-01-01), meituan/longcat-flash-thinking=2025-09(DB 2026-01-01), sakana/fugu=2026-04(DB None; fugu-ultra=04-24). 검증: 7개 모두 올바른 연도로 타임라인 표시, 최신점 2026-07(kimi-k3/hunyuan-hy3) 확인, 국가 리더보드 best-of-fleet도 최신 반영(중국 MMMLU 90.3 등). 주: 동일 DB placeholder 날짜가 다른 탭(Frontier/모달)에도 영향 — DB 소스 교정은 후속 과제."
+  },
+  {
+    "date": "2026-07-20",
     "type": "Feature",
     "title": "Sovereign AI — 국가별 리더보드 경쟁력 & 추이 섹션 추가",
     "detail": "Sovereign AI 탭에 각 국가의 최고 성적 모델이 주요 리더보드/아레나/지수에서 프론티어(글로벌 1위) 대비 어디까지 왔고 시간에 따라 어떻게 변하는지 보여주는 섹션 추가. 60개 일별 score-history 스냅샷(2026-04~07)으로 국가별 top-model 시계열을 계산. (1) 추이 라인 차트: 리더보드 선택(optgroup 2그룹) + 프론티어대비%/원점수 토글 + 기간(전체/6M/3M), 12개국 라인 + US 프론티어 100% 점선, hover 시 그 시점 국가 top 모델명 표시. (2) 현재 크로스-리더보드 히트맵: 국가×지표 gap%, 셀 클릭 시 검증 소스 모달. 지표 2그룹: 리더보드/아레나/지수(LMArena·AAII·LiveBench·Epoch ECI·arena.ai WebDev)와 표준 역량 벤치마크(GPQA·MMLU-Pro·MMLU·AIME·LiveCodeBench·IFEval). 데이터 실측 결과 소버린 모델은 글로벌 아레나 등재가 적어(리더보드群은 CN/FR/AE 3개국) 표준 벤치마크群(7~10개국 커버)을 병행해 다국가 추이를 실현. OpenRouter(사용량 랭킹)·Stanford AI Index(연간 리포트)·HF Open LLM(아카이브)은 per-model 라이브 점수 부재로 제외(각주 명시). 시리즈 계산은 (bench,mode) 캐시 — 탭 재렌더 331ms, O(N^2) 없음."
