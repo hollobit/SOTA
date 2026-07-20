@@ -534,6 +534,30 @@
             </div>
 
             <div class="mb-10">
+                <h3 class="text-widget text-gray-300 mb-1">국가별 리더보드 경쟁력 & 추이</h3>
+                <p class="text-xs text-gray-500 mb-3">각 국가의 <strong class="text-gray-300">최고 성적 모델</strong>이 프론티어(글로벌 1위) 대비 어디까지 왔고, 시간에 따라 어떻게 변하는지 추적합니다. 지표는 두 그룹: <strong class="text-gray-300">리더보드·아레나·지수</strong>(LMArena·AAII·LiveBench·Epoch ECI·arena.ai WebDev — 글로벌 아레나 등재 모델 중심이라 주로 🇨🇳🇫🇷🇦🇪)와 <strong class="text-gray-300">표준 역량 벤치마크</strong>(GPQA·MMLU-Pro·MMLU·AIME·LiveCodeBench·IFEval — 소버린 랩들이 널리 보고해 7~10개국 커버). <strong class="text-gray-300">프론티어 대비 %</strong> 모드는 스케일이 다른 지표를 통일해 비교하고, <strong class="text-gray-300">원점수</strong> 모드는 네이티브 값을, 라인 hover 시 그 시점의 국가 top 모델명을 보여줍니다. <span class="text-gray-600">(OpenRouter=토큰 사용량 랭킹, Stanford AI Index=연간 리포트, HF Open LLM=아카이브됨 → per-model 라이브 점수가 없어 제외.)</span></p>
+                <div class="flex flex-wrap gap-3 mb-3 items-center text-xs">
+                    <label class="text-gray-400">리더보드
+                        <select id="sov-comp-leaderboard" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 ml-1 text-xs"></select>
+                    </label>
+                    <span class="inline-flex rounded overflow-hidden border border-gray-700">
+                        <button id="sov-comp-mode-gap" class="px-3 py-1 bg-blue-600 text-white" title="각 리더보드 글로벌 1위 대비 %로 통일 비교">프론티어 대비 %</button>
+                        <button id="sov-comp-mode-raw" class="px-3 py-1 bg-gray-800 text-gray-300" title="선택 리더보드의 네이티브 점수">원점수</button>
+                    </span>
+                    <label class="text-gray-400">기간
+                        <select id="sov-comp-period" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 ml-1 text-xs">
+                            <option value="all">전체</option>
+                            <option value="6m">최근 6개월</option>
+                            <option value="3m">최근 3개월</option>
+                        </select>
+                    </label>
+                </div>
+                <div id="sov-comp-trend" class="h-96 mb-4"></div>
+                <p class="text-xs text-gray-500 mb-2">현재 스냅샷 — 국가 × 전체 리더보드 교차 비교(프론티어 대비 %). 셀 클릭 시 해당 국가 최고 모델의 검증 소스.</p>
+                <div id="sov-comp-heatmap" class="h-96"></div>
+            </div>
+
+            <div class="mb-10">
                 <h3 class="text-widget text-gray-300 mb-1">국가별 전체 비교 — 3-axis radar</h3>
                 <p class="text-xs text-gray-500 mb-3">각 국가/region을 3 sovereign axis(언어/의료/공공)로 평균 best-of-fleet 비교 — 한 국가 내 여러 모델의 best-per-benchmark 값을 차원별로 평균.</p>
                 <div id="sov-country-radar" class="h-96"></div>

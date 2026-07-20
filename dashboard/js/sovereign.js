@@ -1338,6 +1338,7 @@ var Sovereign = {
         this._renderRegionMap();
         this._renderTimeline();
         this._renderCumulative();
+        this._renderCompetitiveness();
         this._renderCountryRadar();
         this._renderCountryLeaderboard();
         var self = this;
@@ -1354,6 +1355,40 @@ var Sovereign = {
             var yModeSel = document.getElementById('sov-timeline-y-mode');
             if (periodSel) periodSel.addEventListener('change', function() { self._renderTimeline(); });
             if (yModeSel) yModeSel.addEventListener('change', function() { self._renderTimeline(); });
+
+            // Competitiveness section controls
+            var compLbSel = document.getElementById('sov-comp-leaderboard');
+            var compPeriodSel = document.getElementById('sov-comp-period');
+            var compGapBtn = document.getElementById('sov-comp-mode-gap');
+            var compRawBtn = document.getElementById('sov-comp-mode-raw');
+            if (compLbSel) {
+                // populate options from _LEADERBOARDS, grouped via <optgroup>
+                compLbSel.textContent = '';
+                var groups = {};
+                self._LEADERBOARDS.forEach(function(lb) {
+                    var gName = lb.group || 'Other';
+                    if (!groups[gName]) {
+                        var og = document.createElement('optgroup'); og.label = gName;
+                        groups[gName] = og; compLbSel.appendChild(og);
+                    }
+                    var o = document.createElement('option'); o.value = lb.id; o.textContent = lb.label;
+                    groups[gName].appendChild(o);
+                });
+                compLbSel.value = self._compLeaderboard;
+                compLbSel.addEventListener('change', function() { self._compLeaderboard = compLbSel.value; self._renderCompetitiveness(); });
+            }
+            if (compPeriodSel) compPeriodSel.addEventListener('change', function() { self._compPeriod = compPeriodSel.value; self._renderCompetitiveness(); });
+            function setCompMode(mode) {
+                self._compMode = mode;
+                [[compGapBtn, 'gap'], [compRawBtn, 'raw']].forEach(function(pair) {
+                    if (!pair[0]) return;
+                    var on = pair[1] === mode;
+                    pair[0].className = 'px-3 py-1 ' + (on ? 'bg-blue-600 text-white' : 'bg-gray-800 text-gray-300');
+                });
+                self._renderCompetitiveness();
+            }
+            if (compGapBtn) compGapBtn.addEventListener('click', function() { setCompMode('gap'); });
+            if (compRawBtn) compRawBtn.addEventListener('click', function() { setCompMode('raw'); });
 
             var btnAll = document.getElementById('sov-map-view-all');
             var btnActive = document.getElementById('sov-map-view-active');
@@ -2043,6 +2078,263 @@ var Sovereign = {
             if (this.REGIONS[i].models.indexOf(modelId) !== -1) return this.REGIONS[i];
         }
         return null;
+    },
+
+    // ─────────────── Country leaderboard competitiveness & trend ───────────────
+    // Tracks how each country's TOP model's competitiveness changes over time
+    // across the major leaderboards / arenas / indices, using the dated score
+    // history snapshots. Two metric modes: gap-to-frontier % (comparable across
+    // leaderboards) and raw native score. Excludes OpenRouter (usage ranking,
+    // not a benchmark) and Stanford AI Index (annual report, no per-model live
+    // scores). HF Open LLM omitted — the leaderboard is archived (≤2 models).
+    // Two groups. Global leaderboards/arenas/indices are frontier-focused (few
+    // sovereign models submit → mostly CN/FR/AE), so a second group of standard
+    // capability benchmarks (widely reported by sovereign labs → 7-10 countries)
+    // keeps the per-country trend meaningful across many countries.
+    _LEADERBOARDS: [
+        { id: 'aa_intelligence_index_v4_1', label: 'Artificial Analysis (AAII v4.1)', scale: 'index', group: '리더보드 · 아레나 · 지수' },
+        { id: 'arena_ai_text_elo',          label: 'LMArena / arena.ai Text',        scale: 'elo',   group: '리더보드 · 아레나 · 지수' },
+        { id: 'livebench',                  label: 'LiveBench',                       scale: 'pct',   group: '리더보드 · 아레나 · 지수' },
+        { id: 'epoch_capabilities_index',   label: 'Epoch Capabilities Index (ECI)',  scale: 'index', group: '리더보드 · 아레나 · 지수' },
+        { id: 'arena_webdev_elo',           label: 'arena.ai WebDev (coding)',        scale: 'elo',   group: '리더보드 · 아레나 · 지수' },
+        { id: 'gpqa_diamond',               label: 'GPQA Diamond',                    scale: 'pct',   group: '표준 역량 벤치마크' },
+        { id: 'mmlu_pro',                   label: 'MMLU-Pro',                        scale: 'pct',   group: '표준 역량 벤치마크' },
+        { id: 'mmlu',                       label: 'MMLU',                            scale: 'pct',   group: '표준 역량 벤치마크' },
+        { id: 'aime_2025',                  label: 'AIME 2025',                       scale: 'pct',   group: '표준 역량 벤치마크' },
+        { id: 'livecodebench',              label: 'LiveCodeBench',                   scale: 'pct',   group: '표준 역량 벤치마크' },
+        { id: 'ifeval',                     label: 'IFEval',                          scale: 'pct',   group: '표준 역량 벤치마크' }
+    ],
+    // Major national regions with general-purpose LLMs (domain-only regions like
+    // us-legal / darpa / mfg-* have no general-leaderboard scores → excluded).
+    _COMP_REGION_CODES: ['cn', 'kr', 'fr', 'jp', 'in', 'il', 'ae', 'sg', 'ch', 'ca', 'de', 'uk'],
+    _COMP_PALETTE: ['#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899',
+                    '#14b8a6', '#f97316', '#a3e635', '#06b6d4', '#eab308', '#d946ef'],
+    _compCache: {},
+    _compLeaderboard: 'gpqa_diamond',  // default to a broadly-covered metric so the first view shows many countries
+    _compMode: 'gap',         // 'gap' | 'raw'
+    _compPeriod: 'all',       // 'all' | '6m' | '3m'
+
+    _compRegions: function() {
+        var self = this;
+        return this._COMP_REGION_CODES.map(function(c) {
+            return self.REGIONS.find(function(r) { return r.code === c; });
+        }).filter(Boolean);
+    },
+
+    _compModelName: function(mid) {
+        var m = this._models && this._models.find(function(x) { return x.id === mid; });
+        return m ? m.name : (mid ? mid.split('/').pop() : '—');
+    },
+
+    // Pure: build per-country time series for one leaderboard + mode.
+    // Returns { dates, series:[{code,label,flag,color,values[],models[]}], frontier[] }.
+    _competitivenessSeries: function(bid, mode) {
+        var key = bid + '|' + mode;
+        if (this._compCache[key]) return this._compCache[key];
+        var hist = (typeof App !== 'undefined' && App.data && App.data.history) || {};
+        var dates = Object.keys(hist).sort();
+        var regions = this._compRegions();
+        var pal = this._COMP_PALETTE;
+        var series = regions.map(function(r, i) {
+            return { code: r.code, label: r.label, flag: r.flag, color: pal[i % pal.length],
+                     models: r.models || [], seriesModels: [], values: [] };
+        });
+        var frontier = [];
+        dates.forEach(function(d) {
+            var snap = hist[d];
+            if (!Array.isArray(snap)) snap = (snap && snap.scores) || [];
+            var mv = {}, globalTop = null;
+            for (var i = 0; i < snap.length; i++) {
+                var s = snap[i];
+                if (s.benchmark_id === bid) {
+                    mv[s.model_id] = s.value;
+                    if (globalTop == null || s.value > globalTop) globalTop = s.value;
+                }
+            }
+            frontier.push(mode === 'gap' ? (globalTop != null ? 100 : null) : globalTop);
+            series.forEach(function(ser) {
+                var best = null, bestModel = null;
+                for (var j = 0; j < ser.models.length; j++) {
+                    var v = mv[ser.models[j]];
+                    if (v != null && (best == null || v > best)) { best = v; bestModel = ser.models[j]; }
+                }
+                var val = best == null ? null
+                    : (mode === 'gap' ? (globalTop ? Math.round(best / globalTop * 1000) / 10 : null) : best);
+                ser.values.push(val);
+                ser.seriesModels.push(bestModel);
+            });
+        });
+        var res = { dates: dates, series: series, frontier: frontier };
+        this._compCache[key] = res;
+        return res;
+    },
+
+    // Pure: latest-snapshot gap% matrix, countries × leaderboards.
+    _competitivenessHeatmap: function() {
+        var self = this;
+        var regions = this._compRegions();
+        var out = [];
+        this._LEADERBOARDS.forEach(function(lb) {
+            var ser = self._competitivenessSeries(lb.id, 'gap');
+            // last non-null index overall (latest date any country/frontier has data)
+            regions.forEach(function(r) {
+                var s = ser.series.find(function(x) { return x.code === r.code; });
+                if (!s) return;
+                var gap = null, model = null;
+                for (var i = s.values.length - 1; i >= 0; i--) {
+                    if (s.values[i] != null) { gap = s.values[i]; model = s.seriesModels[i]; break; }
+                }
+                out.push({ code: r.code, label: r.label, flag: r.flag, benchId: lb.id,
+                           benchLabel: lb.label, gap: gap, model: model });
+            });
+        });
+        return out;
+    },
+
+    _filterCompDates: function(dates) {
+        if (this._compPeriod === 'all' || dates.length === 0) return dates;
+        var months = this._compPeriod === '6m' ? 6 : 3;
+        var last = dates[dates.length - 1];
+        // date strings are YYYY-MM-DD; compute cutoff by string math on year/month
+        var parts = last.split('-'); var y = +parts[0], m = +parts[1];
+        m -= months; while (m <= 0) { m += 12; y -= 1; }
+        var cutoff = y + '-' + (m < 10 ? '0' + m : m) + '-' + parts[2];
+        return dates.filter(function(d) { return d >= cutoff; });
+    },
+
+    _renderCompetitiveness: function() {
+        var el = document.getElementById('sov-comp-trend');
+        if (!el || typeof echarts === 'undefined') return;
+        var self = this;
+        // Lazy-load history the first time; re-render when it arrives.
+        var hist = (typeof App !== 'undefined' && App.data && App.data.history) || {};
+        if (Object.keys(hist).length === 0 && App._ensureHistory) {
+            el.textContent = '';
+            var loading = document.createElement('div');
+            loading.className = 'text-gray-500 text-sm p-8 text-center';
+            loading.textContent = '추이 데이터 로딩 중…';
+            el.appendChild(loading);
+            App._ensureHistory().then(function() { self._compCache = {}; self._renderCompetitiveness(); });
+            return;
+        }
+        if (!this._compLeaderboard) this._compLeaderboard = this._LEADERBOARDS[0].id;
+        var lb = this._LEADERBOARDS.find(function(x) { return x.id === self._compLeaderboard; }) || this._LEADERBOARDS[0];
+        var mode = this._compMode;
+        var data = this._competitivenessSeries(lb.id, mode);
+        var dates = this._filterCompDates(data.dates);
+        var offset = data.dates.length - dates.length;
+
+        var unit = mode === 'gap' ? '%' : (lb.scale === 'elo' ? '' : (lb.scale === 'pct' ? '%' : ''));
+        var lineSeries = data.series.map(function(ser) {
+            return {
+                name: ser.flag + ' ' + ser.label,
+                type: 'line', connectNulls: false, symbol: 'circle', symbolSize: 4,
+                lineStyle: { color: ser.color, width: 2 }, itemStyle: { color: ser.color },
+                data: ser.values.slice(offset),
+                _models: ser.seriesModels.slice(offset)
+            };
+        });
+        // Frontier reference line
+        if (mode === 'gap') {
+            lineSeries.push({
+                name: '🌐 US Frontier (100%)', type: 'line', data: data.frontier.slice(offset).map(function(v){return v==null?null:100;}),
+                lineStyle: { color: '#9ca3af', width: 1.5, type: 'dashed' }, itemStyle: { color: '#9ca3af' }, symbol: 'none'
+            });
+        } else {
+            lineSeries.push({
+                name: '🌐 US Frontier (top)', type: 'line', data: data.frontier.slice(offset),
+                lineStyle: { color: '#9ca3af', width: 1.5, type: 'dashed' }, itemStyle: { color: '#9ca3af' }, symbol: 'none'
+            });
+        }
+
+        var chart = echarts.getInstanceByDom(el) || echarts.init(el);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            title: {
+                text: lb.label + (mode === 'gap' ? ' — 프론티어 대비 %' : ' — 원점수'),
+                subtext: '각 국가 최고 성적 모델의 경쟁력 추이 (' + dates.length + ' snapshots)',
+                left: 'center', textStyle: { color: Theme.textPrimary, fontSize: 13 },
+                subtextStyle: { color: Theme.textMuted, fontSize: 10 }
+            },
+            tooltip: {
+                trigger: 'axis',
+                formatter: function(params) {
+                    if (!params.length) return '';
+                    var lines = ['<strong>' + params[0].axisValue + '</strong>'];
+                    params.forEach(function(p) {
+                        if (p.value == null) return;
+                        var s = lineSeries[p.seriesIndex];
+                        var mdl = (s && s._models) ? s._models[p.dataIndex] : null;
+                        var val = mode === 'gap' ? (p.value + '%') : (Math.round(p.value * 10) / 10 + unit);
+                        lines.push(p.marker + p.seriesName + ': <strong>' + val + '</strong>' +
+                            (mdl ? ' <span style="color:' + Theme.textMuted + '">(' + self._compModelName(mdl) + ')</span>' : ''));
+                    });
+                    return lines.join('<br>');
+                }
+            },
+            legend: { type: 'scroll', bottom: 0, textStyle: { color: Theme.textMuted, fontSize: 10 } },
+            grid: { left: 48, right: 24, top: 52, bottom: 56 },
+            xAxis: { type: 'category', data: dates, axisLabel: { color: Theme.textMuted, fontSize: 9, rotate: 40 },
+                     axisLine: { lineStyle: { color: Theme.border } } },
+            yAxis: { type: 'value', name: mode === 'gap' ? '% of frontier' : lb.label,
+                     nameTextStyle: { color: Theme.textMuted, fontSize: 9 },
+                     axisLabel: { color: Theme.textMuted, fontSize: 9 },
+                     splitLine: { lineStyle: { color: Theme.border } },
+                     max: mode === 'gap' ? 110 : null },
+            series: lineSeries
+        }, true);
+        window.addEventListener('resize', function() { chart.resize(); });
+
+        this._renderCompetitivenessHeatmap();
+    },
+
+    _renderCompetitivenessHeatmap: function() {
+        var el = document.getElementById('sov-comp-heatmap');
+        if (!el || typeof echarts === 'undefined') return;
+        var self = this;
+        var regions = this._compRegions();
+        var lbs = this._LEADERBOARDS;
+        var matrix = this._competitivenessHeatmap();
+        var regIndex = {}; regions.forEach(function(r, i) { regIndex[r.code] = i; });
+        var lbIndex = {}; lbs.forEach(function(l, i) { lbIndex[l.id] = i; });
+        var cells = matrix.filter(function(c) { return c.gap != null; }).map(function(c) {
+            return { value: [lbIndex[c.benchId], regIndex[c.code], c.gap], model: c.model, benchId: c.benchId };
+        });
+        var chart = echarts.getInstanceByDom(el) || echarts.init(el);
+        chart.setOption({
+            backgroundColor: 'transparent',
+            title: { text: '현재 스냅샷 — 국가 × 리더보드 (프론티어 대비 %)', left: 'center',
+                     textStyle: { color: Theme.textPrimary, fontSize: 13 } },
+            tooltip: {
+                position: 'top',
+                formatter: function(p) {
+                    return lbs[p.value[0]].label + '<br><strong>' + regions[p.value[1]].flag + ' ' +
+                        regions[p.value[1]].label + '</strong>: ' + p.value[2] + '% of frontier' +
+                        (p.data.model ? '<br><span style="color:' + Theme.textMuted + '">' + self._compModelName(p.data.model) + '</span>' : '');
+                }
+            },
+            grid: { left: 90, right: 16, top: 40, bottom: 70 },
+            xAxis: { type: 'category', data: lbs.map(function(l) { return l.label.replace(' (coding)', '').replace('Artificial Analysis ', 'AA '); }),
+                     axisLabel: { color: Theme.textMuted, fontSize: 9, rotate: 30, interval: 0 },
+                     splitArea: { show: true } },
+            yAxis: { type: 'category', data: regions.map(function(r) { return r.flag + ' ' + r.label; }),
+                     axisLabel: { color: Theme.textMuted, fontSize: 10 }, splitArea: { show: true } },
+            visualMap: { min: 40, max: 100, calculable: true, orient: 'horizontal', left: 'center', bottom: 6,
+                         inRange: { color: ['#7f1d1d', '#f59e0b', '#10b981'] },
+                         textStyle: { color: Theme.textMuted, fontSize: 9 } },
+            series: [{
+                type: 'heatmap', data: cells,
+                label: { show: true, formatter: function(p) { return p.value[2]; }, color: '#fff', fontSize: 9 },
+                emphasis: { itemStyle: { borderColor: '#fff', borderWidth: 1 } }
+            }]
+        }, true);
+        chart.off('click');
+        chart.on('click', function(p) {
+            if (p.data && p.data.model && typeof Modal !== 'undefined' && Modal.showScoreSource) {
+                Modal.showScoreSource(p.data.model, p.data.benchId);
+            }
+        });
+        window.addEventListener('resize', function() { chart.resize(); });
     },
 
     // ─────────────── Country aggregate radar (3-axis per country) ───────────────
