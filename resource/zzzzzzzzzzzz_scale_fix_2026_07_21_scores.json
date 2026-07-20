@@ -1,0 +1,291 @@
+{
+ "_meta": {
+  "collected_at": "2026-07-21",
+  "sources": [
+   "scale correction of prior sovereign sweep ingests"
+  ],
+  "_note": "S194 fraction-to-percent scale correction. Prior sovereign sweeps (05-13 sovereign, session99 korean-japanese, session100 european, session102 global-south) ingested some sovereign models MMLU/MMLU-Pro/ARC/GSM8K/etc. as 0-1 fractions instead of 0-100 percentages (Aleph-Alpha Pharia/tfree-hat [DE], PFN Plamo-2/llm-jp/Fujitsu/Stockmark [JP], Krutrim-2 [IN]). Only unambiguously 0-100 benchmarks (others scored >10) corrected x100; genuine 0-1 metrics (wmt20 COMET, pfgen_bench, RTF, WER) left untouched. Loads last (many-z) to override buggy source rows."
+ },
+ "scores": [
+  {
+   "model": "pfn/plamo-100b",
+   "benchmark": "japanese_jaster",
+   "score": 73.8,
+   "_source": "https://arxiv.org/abs/2410.07563",
+   "_note": "S194 scale fix: 0.738 (0-1) -> x100"
+  },
+  {
+   "model": "llm-jp/llm-jp-3-172b-instruct3",
+   "benchmark": "llm_jp_eval",
+   "score": 54.7,
+   "_source": "https://llmc.nii.ac.jp/en/topics/llm-jp-3-172b-beta2/",
+   "_note": "S194 scale fix: 0.547 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+   "benchmark": "mmlu",
+   "score": 66.4,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.664 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+   "benchmark": "mmlu_pro",
+   "score": 38.6,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.386 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+   "benchmark": "arc_challenge",
+   "score": 58.7,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.587 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+   "benchmark": "winogrande",
+   "score": 75.4,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.754 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+   "benchmark": "truthfulqa",
+   "score": 30.6,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.306 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+   "benchmark": "gsm8k",
+   "score": 52.8,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.528 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+   "benchmark": "triviaqa",
+   "score": 65.8,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.658 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+   "benchmark": "winogender",
+   "score": 67.1,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.671 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+   "benchmark": "mmlu_de",
+   "score": 61.8,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.618 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+   "benchmark": "longbench_v2_en",
+   "score": 33.6,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.336 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/tfree-hat-pretrained-7b-base",
+   "benchmark": "longbench_v2_de",
+   "score": 23.3,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.233 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/pharia-1-llm-7b-control",
+   "benchmark": "mmlu",
+   "score": 48.4,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.484 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/pharia-1-llm-7b-control",
+   "benchmark": "mmlu_de",
+   "score": 42.8,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.428 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/pharia-1-llm-7b-control",
+   "benchmark": "arc_challenge",
+   "score": 54.6,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.546 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/pharia-1-llm-7b-control",
+   "benchmark": "hellaswag",
+   "score": 64.6,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.646 (0-1) -> x100"
+  },
+  {
+   "model": "aleph-alpha/pharia-1-llm-7b-control",
+   "benchmark": "gsm8k",
+   "score": 1.4,
+   "_source": "Mistral family (Large 3, Medium 3.5, Small 4, Codestral 3, Voxtral, Devstral, Magistral, Ministral)",
+   "_note": "S194 scale fix: 0.014 (0-1) -> x100"
+  },
+  {
+   "model": "krutrim/krutrim-2-instruct",
+   "benchmark": "mmlu",
+   "score": 63.0,
+   "_source": "https://huggingface.co/krutrim-ai-labs/Krutrim-2-instruct",
+   "_note": "S194 scale fix: 0.63 (0-1) -> x100"
+  },
+  {
+   "model": "krutrim/krutrim-2-instruct",
+   "benchmark": "gsm8k",
+   "score": 71.0,
+   "_source": "https://huggingface.co/krutrim-ai-labs/Krutrim-2-instruct",
+   "_note": "S194 scale fix: 0.71 (0-1) -> x100"
+  },
+  {
+   "model": "krutrim/krutrim-2-instruct",
+   "benchmark": "hellaswag",
+   "score": 83.0,
+   "_source": "https://huggingface.co/krutrim-ai-labs/Krutrim-2-instruct",
+   "_note": "S194 scale fix: 0.83 (0-1) -> x100"
+  },
+  {
+   "model": "krutrim/krutrim-2-instruct",
+   "benchmark": "winogrande",
+   "score": 77.0,
+   "_source": "https://huggingface.co/krutrim-ai-labs/Krutrim-2-instruct",
+   "_note": "S194 scale fix: 0.77 (0-1) -> x100"
+  },
+  {
+   "model": "krutrim/krutrim-2-instruct",
+   "benchmark": "truthfulqa",
+   "score": 59.0,
+   "_source": "https://huggingface.co/krutrim-ai-labs/Krutrim-2-instruct",
+   "_note": "S194 scale fix: 0.59 (0-1) -> x100"
+  },
+  {
+   "model": "krutrim/krutrim-2-instruct",
+   "benchmark": "arc_challenge",
+   "score": 60.0,
+   "_source": "https://huggingface.co/krutrim-ai-labs/Krutrim-2-instruct",
+   "_note": "S194 scale fix: 0.6 (0-1) -> x100"
+  },
+  {
+   "model": "krutrim/krutrim-2-instruct",
+   "benchmark": "ifeval",
+   "score": 73.0,
+   "_source": "https://huggingface.co/krutrim-ai-labs/Krutrim-2-instruct",
+   "_note": "S194 scale fix: 0.73 (0-1) -> x100"
+  },
+  {
+   "model": "stockmark/stockmark-2-vl-100b-beta",
+   "benchmark": "jchartqa",
+   "score": 88.0,
+   "_source": "https://huggingface.co/stockmark/Stockmark-2-VL-100B-beta",
+   "_note": "S194 scale fix: 0.88 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2-31b",
+   "benchmark": "mmlu",
+   "score": 68.1,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.681 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2-31b",
+   "benchmark": "jmmlu",
+   "score": 67.2,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.672 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2-31b",
+   "benchmark": "humaneval+",
+   "score": 55.5,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.555 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2-31b",
+   "benchmark": "jhumaneval",
+   "score": 48.8,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.488 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2.1-8b",
+   "benchmark": "mmlu",
+   "score": 63.5,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.635 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2.1-8b",
+   "benchmark": "jmmlu",
+   "score": 63.5,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.635 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2.1-8b",
+   "benchmark": "humaneval+",
+   "score": 46.3,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.463 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2.1-8b",
+   "benchmark": "jhumaneval",
+   "score": 37.2,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.372 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2-8b",
+   "benchmark": "mmlu",
+   "score": 57.3,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.573 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2-8b",
+   "benchmark": "jmmlu",
+   "score": 57.2,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.572 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2-8b",
+   "benchmark": "humaneval+",
+   "score": 46.3,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.463 (0-1) -> x100"
+  },
+  {
+   "model": "pfn/plamo-2-8b",
+   "benchmark": "jhumaneval",
+   "score": 46.3,
+   "_source": "https://arxiv.org/abs/2509.04897",
+   "_note": "S194 scale fix: 0.463 (0-1) -> x100"
+  },
+  {
+   "model": "fujitsu/takane",
+   "benchmark": "jglue_semantic_understanding",
+   "score": 86.2,
+   "_source": "https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2024/0930-01.html",
+   "_note": "S194 scale fix: 0.862 (0-1) -> x100"
+  },
+  {
+   "model": "fujitsu/takane",
+   "benchmark": "jglue_syntactic_analysis",
+   "score": 77.3,
+   "_source": "https://info.archives.global.fujitsu/global/about/resources/news/press-releases/2024/0930-01.html",
+   "_note": "S194 scale fix: 0.773 (0-1) -> x100"
+  }
+ ]
+}
