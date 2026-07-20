@@ -219,6 +219,8 @@ var Agent = (function() {
             icon: '🚀',
             label: 'General / Composite',
             benchmarks: [
+                // 2026-07-20 S190 — arena.ai Agent Arena (human-preference Net Improvement %)
+                'arena_agent_net_improvement',
                 'apex_agents',
                 'apex_agents_hard',
                 'terminal_bench_2',

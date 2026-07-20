@@ -1,0 +1,1962 @@
+{
+ "_meta": {
+  "collected_at": "2026-07-20",
+  "sources": [
+   "https://arena.ai/leaderboard/agent",
+   "https://arena.ai/leaderboard/text",
+   "https://arena.ai/leaderboard/code/webdev",
+   "https://arena.ai/leaderboard/code/image-to-webdev",
+   "https://arena.ai/leaderboard/text-to-image",
+   "https://arena.ai/leaderboard/image-edit",
+   "https://arena.ai/leaderboard/text-to-video",
+   "https://arena.ai/leaderboard/image-to-video",
+   "https://arena.ai/leaderboard/video-edit"
+  ],
+  "_note": "arena.ai (formerly LMArena) live leaderboard refresh across all 5 areas the user named — Agent, Chat(Text), Code(WebDev + Image-to-WebDev), Image(Text-to-Image + Image-Edit), Video(Text-to-Video + Image-to-Video + Video-Edit), snapshot 2026-07-20. Agent board is NEW (arena_agent_net_improvement; metric = Net Improvement %, a Bradley-Terry-style preference win metric, higher better). The 8 Elo boards refresh the existing canonical arena.ai benchmark ids (arena_ai_text_elo / arena_webdev_elo / arena_image_to_webdev_elo / arena_text_to_image_elo / arena_image_edit_elo / arena_text_to_video_elo / arena_image_to_video_elo / arena_video_edit_elo) with current top models. Top ~30-40 rows kept per board (Latest-Models-Focus). Model-name->id mapping: 140 auto-matched to existing DB ids; 33 manually mapped (tier/version variants to existing ids where they exist, else new). 21 genuinely-new frontier gen/agent models created (Muse Spark 1.1 / Muse Image / Muse Video, Reve 2.1, Seedream 5.0 Pro, Seed 2.1 Pro, Qwen Image 2.0 Pro 06-22, Gemini 3.1 Flash-Lite Image, Kandinsky 5.0 T2V Pro, Kling 2.5 Turbo/v2.1 Master, Seedance v1 Pro, Veo 3 audio/fast/fast-audio, Vidu Q2 Turbo, Wan 2.5/2.6/2.7 i2v/t2v variants, Inkling)."
+ },
+ "models": [
+  {
+   "id": "alibaba/qwen-image-2.0-pro-2026-06-22",
+   "vendor": "alibaba",
+   "name": "Qwen Image 2.0 Pro (2026-06-22)",
+   "modalities": [
+    "image"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "alibaba/wan2.5-i2v-preview",
+   "vendor": "alibaba",
+   "name": "Wan 2.5 I2V Preview",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "alibaba/wan2.5-t2v-preview",
+   "vendor": "alibaba",
+   "name": "Wan 2.5 T2V Preview",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "alibaba/wan2.6-i2v",
+   "vendor": "alibaba",
+   "name": "Wan 2.6 Image-to-Video",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "alibaba/wan2.7-i2v",
+   "vendor": "alibaba",
+   "name": "Wan 2.7 Image-to-Video",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "bytedance/seed-2.1-pro-preview",
+   "vendor": "bytedance",
+   "name": "Seed 2.1 Pro (preview)",
+   "modalities": [
+    "text"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "bytedance/seedance-v1-pro",
+   "vendor": "bytedance",
+   "name": "Seedance v1 Pro",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "bytedance/seedream-5.0-pro",
+   "vendor": "bytedance",
+   "name": "Seedream 5.0 Pro",
+   "modalities": [
+    "image"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "google/gemini-3.1-flash-lite-image",
+   "vendor": "google",
+   "name": "Gemini 3.1 Flash-Lite Image (Nano Banana 2 Lite)",
+   "modalities": [
+    "image"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "google/veo-3-audio",
+   "vendor": "google",
+   "name": "Veo 3 (audio)",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "google/veo-3-fast",
+   "vendor": "google",
+   "name": "Veo 3 Fast",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "google/veo-3-fast-audio",
+   "vendor": "google",
+   "name": "Veo 3 Fast (audio)",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "kling/kling-2.5-turbo-1080p",
+   "vendor": "kuaishou",
+   "name": "Kling 2.5 Turbo 1080p",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "kling/kling-v2.1-master",
+   "vendor": "kuaishou",
+   "name": "Kling v2.1 Master",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "meta/muse-image",
+   "vendor": "meta",
+   "name": "Meta Muse Image",
+   "modalities": [
+    "image"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "meta/muse-spark-1.1",
+   "vendor": "meta",
+   "name": "Meta Muse Spark 1.1",
+   "modalities": [
+    "text"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "meta/muse-video",
+   "vendor": "meta",
+   "name": "Meta Muse Video",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "reve/reve-2.1",
+   "vendor": "reve",
+   "name": "Reve 2.1",
+   "modalities": [
+    "image"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "sberbank/kandinsky-5.0-t2v-pro",
+   "vendor": "sberbank",
+   "name": "Kandinsky 5.0 T2V Pro",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "shengshu/vidu-q2-turbo",
+   "vendor": "shengshu",
+   "name": "Vidu Q2 Turbo",
+   "modalities": [
+    "video"
+   ],
+   "type": "proprietary"
+  },
+  {
+   "id": "thinky/inkling",
+   "vendor": "thinky",
+   "name": "Inkling",
+   "modalities": [
+    "text"
+   ],
+   "type": "proprietary"
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "arena_agent_net_improvement",
+   "name": "arena.ai Agent Arena (Net Improvement)",
+   "category": "agent",
+   "metric": "net_improvement_pct",
+   "description": "arena.ai (LMArena) Agent Arena — human-preference agentic evaluation. Primary metric \"Net Improvement %\" is a Bradley-Terry-style preference win margin over long agentic coding/tool sessions (with sub-signals: Confirmed Success, Praise vs Complaint, Steerability, Bash Recovery, Tool Hallucination). Higher is better. Snapshot 2026-07-20."
+  }
+ ],
+ "scores": [
+  {
+   "model": "google/gemini-omni-flash",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1527,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/dreamina-seedance-2.0-720p",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1482,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "meta/muse-video",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1459,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/happyhorse-1.0",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1430,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/sora-2-pro",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1366,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3.1-audio-1080p",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1364,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3.1-audio",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1364,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3.1-fast-audio",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1362,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3.1-fast-audio-1080p",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1360,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-imagine-video-720p",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1352,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/wan2.7-t2v",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1348,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3-fast-audio",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1347,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3-audio",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1339,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/sora-2",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1337,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/wan2.6-t2v",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1333,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seedance-1.5-pro",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1257,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/wan2.5-t2v-preview",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1254,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1252,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3-fast",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1248,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "pixverse/pixverse-v5.6",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1241,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "runway/gen-4.5",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1228,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "kling/kling-2.5-turbo-1080p",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1219,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "kuaishou/kling-2.6-pro",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1218,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "kling/kling-o1-pro",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1205,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "luma/ray-3",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1205,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "minimax/hailuo-2.3",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1199,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seedance-v1-pro",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1190,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "sberbank/kandinsky-5.0-t2v-pro",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1172,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "tencent/hunyuan-video-1.5",
+   "benchmark": "arena_text_to_video_elo",
+   "score": 1169,
+   "_source": "https://arena.ai/leaderboard/text-to-video",
+   "_note": "arena.ai text_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "arena_webdev_elo",
+   "score": 1679,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "arena_webdev_elo",
+   "score": 1631,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "arena_webdev_elo",
+   "score": 1618,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "arena_webdev_elo",
+   "score": 1587,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8-thinking",
+   "benchmark": "arena_webdev_elo",
+   "score": 1562,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "arena_webdev_elo",
+   "score": 1558,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7-thinking",
+   "benchmark": "arena_webdev_elo",
+   "score": 1558,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "arena_webdev_elo",
+   "score": 1555,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6-thinking",
+   "benchmark": "arena_webdev_elo",
+   "score": 1542,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "arena_webdev_elo",
+   "score": 1542,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "meta/muse-spark-1.1",
+   "benchmark": "arena_webdev_elo",
+   "score": 1538,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "arena_webdev_elo",
+   "score": 1536,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "arena_webdev_elo",
+   "score": 1534,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seed-2.1-pro-preview",
+   "benchmark": "arena_webdev_elo",
+   "score": 1534,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "glm-5.1",
+   "benchmark": "arena_webdev_elo",
+   "score": 1526,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "arena_webdev_elo",
+   "score": 1522,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen3.7-max-20260517",
+   "benchmark": "arena_webdev_elo",
+   "score": 1516,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "arena_webdev_elo",
+   "score": 1515,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "arena_webdev_elo",
+   "score": 1504,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.5-xhigh",
+   "benchmark": "arena_webdev_elo",
+   "score": 1504,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "arena_webdev_elo",
+   "score": 1493,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.5-flash-medium",
+   "benchmark": "arena_webdev_elo",
+   "score": 1493,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.5-high",
+   "benchmark": "arena_webdev_elo",
+   "score": 1482,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen3.6-max-preview",
+   "benchmark": "arena_webdev_elo",
+   "score": 1480,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "xiaomi/mimo-v2.5-pro",
+   "benchmark": "arena_webdev_elo",
+   "score": 1474,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "arena_webdev_elo",
+   "score": 1470,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen3.6-plus",
+   "benchmark": "arena_webdev_elo",
+   "score": 1459,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-thinking",
+   "benchmark": "arena_webdev_elo",
+   "score": 1459,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "arena_webdev_elo",
+   "score": 1450,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "arena_webdev_elo",
+   "score": 1447,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "arena_webdev_elo",
+   "score": 1444,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "zhipu/glm-4.7",
+   "benchmark": "arena_webdev_elo",
+   "score": 1440,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "arena_webdev_elo",
+   "score": 1439,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "gemini-3-flash",
+   "benchmark": "arena_webdev_elo",
+   "score": 1437,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "thinky/inkling",
+   "benchmark": "arena_webdev_elo",
+   "score": 1434,
+   "_source": "https://arena.ai/leaderboard/code/webdev",
+   "_note": "arena.ai webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-image-2",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1385,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "reve/reve-2.1",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1302,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "meta/muse-image",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1280,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "reve/reve-2.0",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1271,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.1-flash-image",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1261,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "microsoft/mai-image-2.5",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1257,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite-image",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1250,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3-pro-image-preview-2k",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1245,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-image-1.5-high-fidelity",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1240,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3-pro-image-preview",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1232,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seedream-5.0-pro",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1231,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-imagine-image-quality",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1229,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "ideogram/ideogram-4-0-quality",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1207,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen-image-2.0-pro-2026-06-22",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1193,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "luma/uni-1.1-max",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1188,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "microsoft/mai-image-2",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1183,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "luma/uni-1.1",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1177,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-imagine-image",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1173,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "recraft/recraft-v4.1-utility-pro",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1169,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "black-forest-labs/flux-2-max",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1162,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-imagine-image-pro",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1161,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "black-forest-labs/flux-2-flex",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1156,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "black-forest-labs/flux-2-pro",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1155,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "reve/reve-v1.5",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1154,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "tencent/hunyuan-image-3.0",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1151,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/imagen-ultra-4-0-generate-001",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1148,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seedream-4.5",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1147,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/wan2.6-t2i",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1134,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seedream-5.0-lite",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1132,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "krea/krea-2-medium",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1120,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "hidream/hidream-o1-image",
+   "benchmark": "arena_text_to_image_elo",
+   "score": 1118,
+   "_source": "https://arena.ai/leaderboard/text-to-image",
+   "_note": "arena.ai text_to_image leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1627,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7-thinking",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1581,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1567,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6-thinking",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1547,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1544,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1537,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1533,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.5-xhigh",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1525,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1519,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seed-2.1-pro-preview",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1518,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1517,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.5-high",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1510,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1495,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.5-flash-medium",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1487,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1482,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1481,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen3.6-plus",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1473,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "gemini-3-flash",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1457,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1453,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "moonshot/kimi-k2.5-thinking",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1439,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1435,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "zhipu/glm-5v-turbo",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1420,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-4.3",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1371,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "mistral/mistral-large-3",
+   "benchmark": "arena_image_to_webdev_elo",
+   "score": 1307,
+   "_source": "https://arena.ai/leaderboard/code/image-to-webdev",
+   "_note": "arena.ai image_to_webdev leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1507,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6-thinking",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1504,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7-thinking",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1503,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1498,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1494,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "meta/muse-spark-1.1",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1493,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "meta/muse-spark",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1487,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1486,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1486,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.6-sol-xhigh",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1486,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1485,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8-thinking",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1483,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.5-high",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1482,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.4-high",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1478,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.5-flash-high",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1476,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.2-chat-latest",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1476,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1476,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen3.7-max-preview",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1475,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1475,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-4.20-beta1",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1474,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.5-flash-medium",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1474,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "gemini-3-flash",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1473,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.5-instant",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1473,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.5-thinking",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1473,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1471,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "glm-5.1",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1471,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1469,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1468,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "baidu/ernie-5.1",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1468,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1466,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-4.1-thinking",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1466,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1465,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "xiaomi/mimo-v2.5-pro",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1465,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen3.5-max-preview",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1465,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1461,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1461,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1460,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1458,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "zhipu/glm-5",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1457,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-thinking",
+   "benchmark": "arena_ai_text_elo",
+   "score": 1456,
+   "_source": "https://arena.ai/leaderboard/text",
+   "_note": "arena.ai text leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/dreamina-seedance-2.0-720p",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1474,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-omni-flash",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1469,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-imagine-video-1.5-preview-720p",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1466,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/happyhorse-1.0",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1444,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/wan2.7-i2v",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1434,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-imagine-video-720p",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1422,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3.1-audio",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1398,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3.1-audio-1080p",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1391,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3.1-fast-audio",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1385,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-imagine-video-480p",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1384,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3.1-fast-audio-1080p",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1374,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "vidu/q3-pro",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1361,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "kling/kling-v3-pro",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1360,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3-audio",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1330,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3-fast-audio",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1324,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/wan2.5-i2v-preview",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1323,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/wan2.6-i2v",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1316,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seedance-1.5-pro",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1308,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "pixverse/pixverse-v5.6",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1300,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "kuaishou/kling-2.6-pro",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1294,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "kling/kling-2.5-turbo-1080p",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1275,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seedance-v1-pro",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1272,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "minimax/hailuo-2.3",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1260,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/veo-3",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1256,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "shengshu/vidu-q2-turbo",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1243,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "kling/kling-v2.1-master",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1234,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "minimax/hailuo-02",
+   "benchmark": "arena_image_to_video_elo",
+   "score": 1228,
+   "_source": "https://arena.ai/leaderboard/image-to-video",
+   "_note": "arena.ai image_to_video leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/dreamina-seedance-2.0-720p",
+   "benchmark": "arena_video_edit_elo",
+   "score": 1377,
+   "_source": "https://arena.ai/leaderboard/video-edit",
+   "_note": "arena.ai video_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-omni-flash",
+   "benchmark": "arena_video_edit_elo",
+   "score": 1347,
+   "_source": "https://arena.ai/leaderboard/video-edit",
+   "_note": "arena.ai video_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/happyhorse-1.0",
+   "benchmark": "arena_video_edit_elo",
+   "score": 1308,
+   "_source": "https://arena.ai/leaderboard/video-edit",
+   "_note": "arena.ai video_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-imagine-video",
+   "benchmark": "arena_video_edit_elo",
+   "score": 1264,
+   "_source": "https://arena.ai/leaderboard/video-edit",
+   "_note": "arena.ai video_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "kling/kling-o3-pro",
+   "benchmark": "arena_video_edit_elo",
+   "score": 1251,
+   "_source": "https://arena.ai/leaderboard/video-edit",
+   "_note": "arena.ai video_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "kling/kling-o1-pro",
+   "benchmark": "arena_video_edit_elo",
+   "score": 1203,
+   "_source": "https://arena.ai/leaderboard/video-edit",
+   "_note": "arena.ai video_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "runway/gen4-aleph",
+   "benchmark": "arena_video_edit_elo",
+   "score": 1194,
+   "_source": "https://arena.ai/leaderboard/video-edit",
+   "_note": "arena.ai video_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 13.94,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 10.94,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 9.28,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 8.26,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 8.0,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 7.73,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 6.24,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 5.88,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 5.86,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-4.5",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 4.99,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 1.99,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "glm-5.1",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 1.19,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "meta/muse-spark-1.1",
+   "benchmark": "arena_agent_net_improvement",
+   "score": 0.17,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -0.61,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.1-pro-preview",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -0.7,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -0.76,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen3.7-max",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -0.81,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -1.11,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -1.12,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -2.09,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "xiaomi/mimo-v2.5-pro",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -3.17,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -3.23,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -4.64,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-build",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -8.21,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-4.3",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -8.31,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "gemini-3-flash",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -8.54,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "minimax/minimax-m2.7",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -11.46,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "gemma-4-31b",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -13.58,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra",
+   "benchmark": "arena_agent_net_improvement",
+   "score": -13.68,
+   "_source": "https://arena.ai/leaderboard/agent",
+   "_note": "arena.ai agent leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-image-2",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1465,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "meta/muse-image",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1402,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "microsoft/mai-image-2.5",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1401,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seedream-5.0-pro",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1393,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/chatgpt-image-latest-high-fidelity",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1389,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-imagine-image-quality",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1389,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3-pro-image-preview-2k",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1388,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3-pro-image-preview",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1385,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.1-flash-image",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1385,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "reve/reve-2.1",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1383,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "openai/gpt-image-1.5-high-fidelity",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1372,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "reve/reve-2.0",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1358,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "luma/uni-1.1-max",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1334,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "xai/grok-imagine-image",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1329,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen-image-2.0-pro-2026-06-22",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1315,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "google/gemini-3.1-flash-lite-image",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1314,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "luma/uni-1.1",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1311,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/wan2.7-image-pro",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1302,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "tencent/hunyuan-image-3-0-instruct",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1302,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seedream-4.5",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1301,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/wan2-7-image",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1301,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seedream-5.0-lite",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1294,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "bytedance/seedream-4-2k",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1271,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "black-forest-labs/flux-2-max",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1262,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "kling/kling-image-o1",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1251,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "black-forest-labs/flux-2-pro",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1242,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  },
+  {
+   "model": "alibaba/qwen-image-edit-2511",
+   "benchmark": "arena_image_edit_elo",
+   "score": 1233,
+   "_source": "https://arena.ai/leaderboard/image-edit",
+   "_note": "arena.ai image_edit leaderboard 2026-07-20"
+  }
+ ]
+}
