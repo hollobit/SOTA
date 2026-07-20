@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-20",
+    "type": "Feature",
+    "title": "Sovereign AI — 국가별 리더보드 경쟁력 & 추이 섹션 추가",
+    "detail": "Sovereign AI 탭에 각 국가의 최고 성적 모델이 주요 리더보드/아레나/지수에서 프론티어(글로벌 1위) 대비 어디까지 왔고 시간에 따라 어떻게 변하는지 보여주는 섹션 추가. 60개 일별 score-history 스냅샷(2026-04~07)으로 국가별 top-model 시계열을 계산. (1) 추이 라인 차트: 리더보드 선택(optgroup 2그룹) + 프론티어대비%/원점수 토글 + 기간(전체/6M/3M), 12개국 라인 + US 프론티어 100% 점선, hover 시 그 시점 국가 top 모델명 표시. (2) 현재 크로스-리더보드 히트맵: 국가×지표 gap%, 셀 클릭 시 검증 소스 모달. 지표 2그룹: 리더보드/아레나/지수(LMArena·AAII·LiveBench·Epoch ECI·arena.ai WebDev)와 표준 역량 벤치마크(GPQA·MMLU-Pro·MMLU·AIME·LiveCodeBench·IFEval). 데이터 실측 결과 소버린 모델은 글로벌 아레나 등재가 적어(리더보드群은 CN/FR/AE 3개국) 표준 벤치마크群(7~10개국 커버)을 병행해 다국가 추이를 실현. OpenRouter(사용량 랭킹)·Stanford AI Index(연간 리포트)·HF Open LLM(아카이브)은 per-model 라이브 점수 부재로 제외(각주 명시). 시리즈 계산은 (bench,mode) 캐시 — 탭 재렌더 331ms, O(N^2) 없음."
+  },
+  {
+    "date": "2026-07-20",
     "type": "ingest",
     "title": "Session 190 — arena.ai leaderboard full refresh: Agent + Chat + Code + Image + Video (9 boards, 249 scores)",
     "detail": "Fetched all 5 areas of the arena.ai (LMArena) live leaderboard the user requested, snapshot 2026-07-20: Agent (NEW board — arena_agent_net_improvement, human-preference Net Improvement %; Fable 5 #1 13.94%), Chat/Text Elo (Fable 5 1507), Code = WebDev Elo (Kimi K3 #1 1679) + Image-to-WebDev (Fable 5 1627), Image = Text-to-Image (GPT Image 2 #1 1385) + Image-Edit (GPT Image 2 1465), Video = Text-to-Video (Gemini Omni Flash #1 1527) + Image-to-Video (Dreamina Seedance 2.0 1474) + Video-Edit (Dreamina Seedance 2.0 1377). 249 scores across 9 boards refreshed onto the canonical arena.ai benchmark ids (top ~30-40 per board per Latest-Models-Focus). Fixed the Agent board sign bug (Net Improvement is signed; ranks 18-35 are negative — without the fix SOTA logic wrongly flagged the worst model). Created 21 new frontier gen/agent models (Muse Spark 1.1 / Muse Image / Muse Video, Reve 2.1, Seedream 5.0 Pro, Seed 2.1 Pro, Qwen Image 2.0 Pro 06-22, Gemini 3.1 Flash-Lite Image, Kandinsky 5.0 T2V Pro, Kling 2.5 Turbo/v2.1 Master, Seedance v1 Pro, Veo 3 audio/fast variants, Vidu Q2 Turbo, Wan 2.5/2.6/2.7 i2v/t2v, Inkling). Added 16 model_canonical_map entries collapsing dot/dash + bare/vendor id twins (reve-2-0->reve-2.0, mai-image-2-5->mai-image-2.5, uni-1-1->uni-1.1, alibaba-ath/happyhorse->alibaba/happyhorse, glm-5.1->zhipu/glm-5.1, etc.) so arena boards render dup-free. New Agent Arena bench surfaced in the Agent tab (General/Composite)."
