@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-07-21",
+    "type": "ingest",
+    "title": "Session 193 — 한국 모델 벤치마크 재검증: ID 파편화 병합 + 최신 플래그십 수집",
+    "detail": "사용자 요청으로 한국 모델 벤치마크 커버리지 재검증. 발견: Sovereign REGIONS 한국 모델 77개 중 50개가 점수 0, 96개 중 23개만 한국어 벤치 보유. 원인 2가지 해결. (1) ID 파편화 — 같은 모델이 dot/dash·벤더 변형 두 id로 나뉘어 점수 분산(심지어 UI가 참조하는 id가 0점): model_canonical_map.json에 12쌍 병합(lg/exaone-4-5-33b->4.5-33b, skt/ax-4-0->ax-4.0, kt/midm-k-2.5-pro->midm-k2.5-pro, trillion(labs)/tri-70b-preview-sft->trillionlabs/tri-70b, motif base->instruct, upstage solar-pro-2-preview->solar-pro-2 등). 숨은 점수 회복(skt/ax-4.0 0->6, tri-70b 0->9, motif-2-12.7b-instruct 0->9 표시). trillionlabs/tri-70b를 REGIONS+RELEASE_DATES에 추가. (2) 최신 플래그십 미수집 — 공식 HF 카드에서 49개 점수 수집(엄격 출처): EXAONE Deep 32B/7.8B/2.4B(MATH-500·AIME·CSAT Math·GPQA·LiveCodeBench, 각 6점, EXAONE Deep 32B csat_ko 94.5 SOTA), Kanana 2 thinking/instruct(MMLU-Pro·AIME·KMMLU·HAE-RAE·KoMT 등), Motif 2 12.7B(MMLU 86.1·MATH 97·GSM8K 96.1 등), HyperCLOVA-X SEED Think 14B(KMMLU 66.5·HAE-RAE 85.4·KoBALT·CLIcK 등 3->15). 커버리지: REGIONS 0점 50->43, 한국어 벤치 보유 23->27. 성능 회귀 없음(클린 렌더 602ms). 잔여 43개 0점은 구세대·소형 모델(후속)."
+  },
+  {
     "date": "2026-07-20",
     "type": "Fix",
     "title": ">1T 파라미터 모델 타임라인 표시 + DB 메타데이터(날짜·파라미터) 교정",
