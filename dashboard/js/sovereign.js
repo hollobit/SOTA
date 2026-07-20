@@ -1106,6 +1106,12 @@ var Sovereign = {
         'zhipu/glm-5.1': 700, 'zhipu/glm-5': 744, 'zhipu/glm-4.7': 355,
         'moonshot/kimi-k1.5': 1000, 'moonshot/kimi-k2.5': 1000, 'moonshot/kimi-k2.6': 1000,
         'moonshot/kimi-k2-thinking': 1000,
+        // 2026-07-20 S192 — >1T-class flagships (curated totals; DB param string
+        // was ignored by the old name-only parser, so these plotted in the "?" row)
+        'moonshot/kimi-k3': 2800,            // 2.8T total MoE (~50B active)
+        'inclusionai/ring-2.6-1t': 1000, 'inclusionai/ring-2.6-flash': 104,
+        'zhipu/glm-5.2': 700, 'minimax/m3': 600, 'meituan/longcat-2.0': 560,
+        'tencent/hunyuan-hy3': 295, 'baidu/ernie-5.1': 600,
         'deepseek/deepseek-v3.2': 685, 'deepseek/deepseek-v3.2-speciale': 685,
         'deepseek/deepseek-v3.1-terminus': 685,
         'deepseek/deepseek-v4-pro-max': 685, 'deepseek/deepseek-v4-pro': 685, 'deepseek/deepseek-v4-flash': 30,
@@ -1509,23 +1515,32 @@ var Sovereign = {
         return ts >= cutoff;
     },
 
-    // Extract approximate parameter count (in billions). Tries:
+    // Extract approximate parameter count (in billions of params). Tries, in order:
     //   1. KNOWN_PARAMS lookup by model_id (curated, authoritative when present)
-    //   2. Pattern match on model name ("70B", "236B-A21B" → take largest)
-    // Returns null if neither source has data.
-    _extractParamsB: function(modelName, modelId) {
+    //   2. Parse the DB `parameters` string (e.g. "2.8T-A~50B", "1T", "295B-A21B")
+    //   3. Parse the model name ("EXAONE 4.5 33B")
+    // Both B (billions) and T (trillions → ×1000) units are handled; the LARGEST
+    // number wins so MoE totals ("2.8T-A~50B" → 2800) beat the active-param count.
+    // Returns null only when no source encodes a size (→ plotted in the "?" row).
+    _extractParamsB: function(modelName, modelId, paramsStr) {
         if (modelId && this.KNOWN_PARAMS && this.KNOWN_PARAMS[modelId] != null) {
             return this.KNOWN_PARAMS[modelId];
         }
-        if (!modelName) return null;
-        var matches = modelName.match(/(\d+(?:\.\d+)?)\s*B\b/gi);
-        if (!matches || matches.length === 0) return null;
-        var nums = matches.map(function(s) {
-            var n = parseFloat(s.replace(/[Bb]/, '').trim());
-            return isNaN(n) ? null : n;
-        }).filter(function(n) { return n != null; });
-        if (nums.length === 0) return null;
-        return Math.max.apply(null, nums);
+        var sources = [];
+        if (paramsStr) sources.push(String(paramsStr));
+        if (modelName) sources.push(String(modelName));
+        for (var s = 0; s < sources.length; s++) {
+            var matches = sources[s].match(/(\d+(?:\.\d+)?)\s*([TB])\b/gi);
+            if (!matches || matches.length === 0) continue;
+            var nums = matches.map(function(tok) {
+                var mm = tok.match(/(\d+(?:\.\d+)?)\s*([TB])/i);
+                var n = parseFloat(mm[1]);
+                if (isNaN(n)) return null;
+                return /t/i.test(mm[2]) ? n * 1000 : n;   // T (trillions) → billions
+            }).filter(function(n) { return n != null; });
+            if (nums.length) return Math.max.apply(null, nums);
+        }
+        return null;
     },
 
     _bestScoreFor: function(modelId) {
@@ -1647,7 +1662,7 @@ var Sovereign = {
 
             var label = region.flag + ' ' + region.label;
 
-            var paramsB = self._extractParamsB(model.name, mid);
+            var paramsB = self._extractParamsB(model.name, mid, model.parameters || model.params);
             var bestScore = self._bestScoreFor(mid);
             var ts = self._dateToTs(date);
 
