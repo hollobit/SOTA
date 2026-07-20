@@ -2117,7 +2117,7 @@ var Sovereign = {
     // capability benchmarks (widely reported by sovereign labs → 7-10 countries)
     // keeps the per-country trend meaningful across many countries.
     _LEADERBOARDS: [
-        { id: 'aa_intelligence_index_v4_1', label: 'Artificial Analysis (AAII v4.1)', scale: 'index', group: '리더보드 · 아레나 · 지수' },
+        { id: 'aa_intelligence_index', label: 'Artificial Analysis (AAII)', scale: 'index', group: '리더보드 · 아레나 · 지수' },
         { id: 'arena_ai_text_elo',          label: 'LMArena / arena.ai Text',        scale: 'elo',   group: '리더보드 · 아레나 · 지수' },
         { id: 'livebench',                  label: 'LiveBench',                       scale: 'pct',   group: '리더보드 · 아레나 · 지수' },
         { id: 'epoch_capabilities_index',   label: 'Epoch Capabilities Index (ECI)',  scale: 'index', group: '리더보드 · 아레나 · 지수' },
