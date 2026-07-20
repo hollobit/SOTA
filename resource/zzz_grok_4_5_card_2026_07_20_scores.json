@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-20",
+    "sources": [
+      "https://media.x.ai/v1/website/card-7f81d41b.pdf"
+    ],
+    "_note": "Grok 4.5 Model Card (xAI/SpaceXAI, July 14 2026) — gap-fill. The card's core coding suite (DeepSWE 1.0/1.1, SWE-Bench Pro, SWE-Bench Multilingual, SWE-Marathon, Terminal-Bench 2.1) was already ingested in S175 with the full competitor roster, so those are NOT re-added here (and their existing rosters already match the card). This file adds only genuinely-new benchmarks + missing Grok 4.5 rows on standardized fixed-dataset probes. DELIBERATELY EXCLUDED to avoid cross-harness contamination: (a) GDPval-AA Elo — the card's chart (Fable 1760 / Opus 1600 / GPT-5.5 1494 / Grok 4.5 1539) conflicts with the existing gdpval_aa_elo roster (Fable 1932 / Opus 1890 / GPT-5.5 1769), a different Elo anchoring snapshot; (b) ProgramBench — card Opus 4.8=57.1 vs existing programbench Opus 4.8=88.0 (different harness); (c) BixBench (card 93.8 zero-shot MCQ vs existing open-answer 22.8) and ProtocolQA (card 87.0 vs existing 45) — different scoring. New benches carry the full card roster; the standardized probes (WMDP-Bio/Chem MCQ accuracy, VCT) get only the missing Grok 4.5 row. Model-tier mapping: 'Fable 5 (max)'->claude-fable-5, 'Opus 4.8 (max)'->claude-opus-4.8, 'Sonnet 5 (max)'->claude-sonnet-5, 'GPT-5.5 (xhigh)'->gpt-5.5-xhigh, 'GLM 5.2 (max)'->glm-5.2, 'Grok 4.5 (high)'->grok-4.5, 'Grok 4.3 (high)'->grok-4.3 (consistent with the existing DeepSWE/SWE-Bench rows from the same card)."
+  },
+  "benchmarks": [
+    { "id": "apexswe", "name": "APEX-SWE (ApexSWE)", "category": "coding", "metric": "accuracy", "description": "Mercor ApexSWE: AI productivity on realistic software-engineering work spanning integration tasks (multi-service systems, cloud-like primitives) and observability tasks (diagnosing failures from telemetry). Grok 4.5 model card; Mercor leaderboard (arxiv 2601.08806)." },
+    { "id": "relbench", "name": "RelBench", "category": "agent", "metric": "accuracy", "description": "Stanford RelBench: machine learning over multi-table relational databases (forecasting, recommendation, entity/relationship modeling) graded against held-out relational targets; release-tracked aggregate score. Grok 4.5 model card (arxiv 2407.20060)." },
+    { "id": "falseclaimbench", "name": "FalseClaimBench (SpaceXAI)", "category": "agent", "metric": "honesty_reward", "description": "SpaceXAI internal false-claim eval: whether an agent falsely reports having done work (edits, fixes, commands) it never actually performed. The agent's stated claims are compared against the true final workspace state; higher reward = fewer fabricated completion claims. Grok 4.5 model card." },
+    { "id": "deepsearch_qa", "name": "DeepSearch QA", "category": "agent", "metric": "accuracy", "description": "SpaceXAI internal end-to-end answer accuracy on questions that require multi-step search and synthesis of retrieved information; answers graded for correctness against reference answers. Grok 4.5 model card." },
+    { "id": "single_turn_hallucination_xai", "name": "Single-turn Hallucination Rate (xAI)", "category": "other", "metric": "hallucination_rate_lower_better", "description": "SpaceXAI internal single-turn hallucination measure: how often the model asserts unsupported or fabricated claims in a single response to an information-seeking query, flagged by a separate grader against retrieved/known ground truth. Lower is better. Grok 4.5 model card." }
+  ],
+  "scores": [
+    { "_section": "=== (A) ApexSWE (NEW bench) — full card roster ===",
+      "model": "anthropic/claude-fable-5", "benchmark": "apexswe", "score": 65.5, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Fable 5 (max) #1." },
+    { "model": "xai/grok-4.5", "benchmark": "apexswe", "score": 51.2, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Grok 4.5 (high) #2." },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "apexswe", "score": 47.3, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Opus 4.8 (max)." },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "apexswe", "score": 43.7, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Sonnet 5 (max)." },
+    { "model": "openai/gpt-5.5-xhigh", "benchmark": "apexswe", "score": 40.8, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "GPT-5.5 (xhigh)." },
+    { "model": "zhipu/glm-5.2", "benchmark": "apexswe", "score": 37.3, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "GLM 5.2 (max)." },
+
+    { "_section": "=== (B) RelBench (NEW bench) — full card roster ===",
+      "model": "anthropic/claude-opus-4.8", "benchmark": "relbench", "score": 40.7, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Opus 4.8 (max) #1." },
+    { "model": "xai/grok-4.5", "benchmark": "relbench", "score": 38.4, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Grok 4.5 (high) #2." },
+    { "model": "xai/grok-4.3", "benchmark": "relbench", "score": 27.8, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Grok 4.3 (high)." },
+
+    { "_section": "=== (C) FalseClaimBench (NEW internal bench) — higher reward = fewer fabricated claims ===",
+      "model": "xai/grok-4.5", "benchmark": "falseclaimbench", "score": 84.0, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Grok 4.5 (high) #1." },
+    { "model": "openai/gpt-5.5-xhigh", "benchmark": "falseclaimbench", "score": 65.0, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "GPT-5.5 (xhigh)." },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "falseclaimbench", "score": 59.0, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Opus 4.8 (max)." },
+    { "model": "zhipu/glm-5.2", "benchmark": "falseclaimbench", "score": 38.0, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "GLM 5.2 (max)." },
+
+    { "_section": "=== (D) DeepSearch QA (NEW internal bench) ===",
+      "model": "openai/gpt-5.5-xhigh", "benchmark": "deepsearch_qa", "score": 87.8, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "GPT-5.5 (xhigh) #1." },
+    { "model": "xai/grok-4.5", "benchmark": "deepsearch_qa", "score": 85.3, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Grok 4.5 (high) #2." },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "deepsearch_qa", "score": 84.8, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Opus 4.8 (max)." },
+
+    { "_section": "=== (E) Single-turn Hallucination Rate (NEW internal bench, LOWER is better) ===",
+      "model": "anthropic/claude-opus-4.8", "benchmark": "single_turn_hallucination_xai", "score": 3.35, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Opus 4.8 (max) — highest hallucination rate of the three." },
+    { "model": "openai/gpt-5.5-xhigh", "benchmark": "single_turn_hallucination_xai", "score": 1.14, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "GPT-5.5 (xhigh)." },
+    { "model": "xai/grok-4.5", "benchmark": "single_turn_hallucination_xai", "score": 0.98, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Grok 4.5 (high) — lowest (best)." },
+
+    { "_section": "=== (F) Grok 4.5 missing rows on standardized fixed-dataset probes (harness-independent MCQ accuracy) ===",
+      "model": "xai/grok-4.5", "benchmark": "wmdp_bio", "score": 90.9, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "WMDP-Bio dual-use knowledge MCQ accuracy (safety-threshold probe; higher = more dual-use knowledge)." },
+    { "model": "xai/grok-4.5", "benchmark": "wmdp_chem", "score": 87.3, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "WMDP-Chem dual-use knowledge MCQ accuracy (safety-threshold probe)." },
+    { "model": "xai/grok-4.5", "benchmark": "vct", "score": 65.5, "_source": "https://media.x.ai/v1/website/card-7f81d41b.pdf", "_note": "Virology Capabilities Test — multimodal virology dual-use knowledge probe (higher = more dual-use capability, not a better outcome)." }
+  ]
+}

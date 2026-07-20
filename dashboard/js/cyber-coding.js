@@ -84,6 +84,8 @@ var CyberCoding = {
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
         // 2026-07-08 S175 Grok 4.5 launch — SWE-Marathon (Grok #1 29) + DeepSWE 1.0/1.1 versioned splits (Datacurve/AA)
         'swe_marathon', 'deepswe_1_0', 'deepswe_1_1',
+        // 2026-07-20 S189 Grok 4.5 card — Mercor ApexSWE (integration + observability SWE)
+        'apexswe',
         // 2026-05 CAD-coding specialty (3 arxiv benches + SCADBench ELO arena)
         'cadbench_iou', 'benchcad_qa_vision', 'text2cad_l4_overall', 'scadbench_elo',
         // 2026-05-30 Session 39 BenchCAD sub-tasks (Edit / QA Code / Vision2Code)

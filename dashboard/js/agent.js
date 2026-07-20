@@ -38,6 +38,8 @@ var Agent = (function() {
                 'deepswe_pass_at_1',
                 // 2026-07-08 S175/S176 — Grok 4.5 + GPT-5.6 launch coding benches (Datacurve/AA versioned)
                 'deepswe_1_0', 'deepswe_1_1', 'swe_marathon',
+                // 2026-07-20 S189 — Grok 4.5 card: Mercor ApexSWE (integration + observability)
+                'apexswe',
                 // 2026-06-19 S138 — CEO-Bench 500-day startup simulation (arxiv 2606.18543)
                 'ceo_bench',
                 // 2026-06-26 S153 — Sakana × KPMG Azusa CoffeeBench (ICML 2026 Workshop)
@@ -63,7 +65,9 @@ var Agent = (function() {
                 'online_mind2web',
                 'webshop',
                 // 2026-06-14 S112 — HAL Princeton CITP per-sub-benchmark
-                'hal_swe_bench_verified_mini', 'hal_usaco', 'hal_core_bench_hard', 'hal_tau_bench_airline'
+                'hal_swe_bench_verified_mini', 'hal_usaco', 'hal_core_bench_hard', 'hal_tau_bench_airline',
+                // 2026-07-20 S189 — Grok 4.5 card: DeepSearch QA (multi-step search + synthesis)
+                'deepsearch_qa'
             ]
         },
         {
@@ -164,7 +168,9 @@ var Agent = (function() {
                 // 2026-05-31 S40 — Zapier AutomationBench (47-app E2E business workflow)
                 'automationbench',
                 // 2026-07-08 S175 — Grok 4.5 launch: AA agentic SaaS + Harvey legal + business-ops + Snorkel GDPval+
-                'automationbench_aa', 'harvey_lab_aa', 'enterpriseops_gym_aa', 'gdpval_plus_snorkel'
+                'automationbench_aa', 'harvey_lab_aa', 'enterpriseops_gym_aa', 'gdpval_plus_snorkel',
+                // 2026-07-20 S189 — Grok 4.5 card: RelBench (ML over multi-table relational DBs; Stanford)
+                'relbench'
             ]
         },
         {
@@ -203,7 +209,9 @@ var Agent = (function() {
                 // 2026-06-28 S154b Mythos 5 system card §5.1 agentic safety
                 'malicious_computer_use_refusal',
                 'agentic_influence_voter_suppression',
-                'agentic_influence_domestic_polarization'
+                'agentic_influence_domestic_polarization',
+                // 2026-07-20 S189 — Grok 4.5 card: FalseClaimBench (honesty about work actually done; higher = fewer fabricated completion claims)
+                'falseclaimbench'
             ]
         },
         {
