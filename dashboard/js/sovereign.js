@@ -35,7 +35,7 @@ var Sovereign = {
                 'naver/hcx-seed-think-32b',  // 2026-06-04 S52 — NAVER HCX-SEED-Think-32B
                 'ncsoft/varco-vision-2.0-14b', 'ncsoft/llama-varco-8b',
                 'trillionlabs/tri-70b', 'trillionlabs/tri-21b', 'trillionlabs/tri-7b',
-                'motif/motif-2-12.7b-reasoning', 'motif/motif-2-12.7b-instruct',
+                'motif/motif-3-beta', 'motif/motif-2-12.7b-reasoning', 'motif/motif-2-12.7b-instruct',
                 'konan/konan-llm-ond-4b', 'konan/konan-llm-ent-11',
                 'saltlux/luxia-21.4b',
                 'samsung/gauss-2-supreme', 'samsung/gauss-2-balanced', 'samsung/gauss-2-compact',
@@ -599,6 +599,7 @@ var Sovereign = {
         // Korea — others
         'ncsoft/varco-vision-2.0-14b': '2025-07', 'ncsoft/llama-varco-8b': '2024-09',
         'trillionlabs/tri-70b': '2026-06', 'trillionlabs/tri-21b': '2025-02', 'trillionlabs/tri-7b': '2025-04',
+        'motif/motif-3-beta': '2026-07',
         'motif/motif-2-12.7b-reasoning': '2025-11', 'motif/motif-2-12.7b-instruct': '2025-11',
         'konan/konan-llm-ond-4b': '2025-09', 'konan/konan-llm-ent-11': '2025-06',
         'saltlux/luxia-21.4b': '2024-03',
