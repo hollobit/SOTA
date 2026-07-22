@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-22",
+    "sources": [
+      "https://arxiv.org/pdf/2606.21228v1",
+      "https://sakana.ai/fugu/",
+      "https://sakana.ai/fugu-cyber-release/"
+    ],
+    "_note": "S196 Sakana Fugu Technical Report (arxiv 2606.21228v1) + Fugu-Cyber release. NEW model Fugu-Cyber (cybersecurity orchestrator, 2026-07-21): CyberGym 86.9, CTI-REALM 72.1, comparable to GPT-5.5-Cyber/Mythos-Preview. Re-ingests Fugu & Fugu-Ultra Table 1 (Model Card) on CANONICAL benchmark ids with the OFFICIAL report values — fixes a wrong DB value (fugu-ultra SWE-Bench Pro was 54.2 = Gemini 3.1's number; official Fugu-Ultra = 73.7) and moves scores off fragmented dash-form bench ids (charxiv-reasoning->charxiv_reasoning, gpqa-diamond->gpqa_diamond, livecodebench-v6->livecodebench_v6, livecodebench-pro->livecodebench_pro, long-context-reasoning->aa_lcr). NEW benchmarks: Kana-shosoku reading-order NED (Table 3; Fugu-Ultra 0.776, Fugu 0.473 mean NED over 25 expert-annotated classical Japanese kana letters, higher better) and AutoResearch val-BPB (Table 2; Fugu-Ultra 0.9774 mean, lower better; baselines anonymized in report so not attributed). Baseline (Opus 4.8 / Gemini 3.1 / GPT-5.5) columns are provider-reported second-hand → not re-ingested (already in DB from primary sources)."
+  },
+  "models": [
+    { "id": "sakana/fugu-cyber", "vendor": "Sakana AI", "name": "Fugu-Cyber", "type": "proprietary", "modalities": ["text"], "release_date": "2026-07-21", "languages": ["en", "ja"] }
+  ],
+  "benchmarks": [
+    { "id": "kana_shosoku_reading_order_ned", "name": "Kana-shosoku Reading-Order Recovery (NED)", "category": "multimodal", "metric": "ned", "description": "Sakana Fugu tech report Table 3: recovering the reading order of classical Japanese kana letters (kana-shosoku, chirashigaki scattered-writing style). 25 pages hand-annotated by a domain expert; mean normalized edit distance (NED) vs annotated order, higher is better. Model writes+improves a reading-order predictor via test-time beam search. (arxiv 2606.21228)" },
+    { "id": "autoresearch_bpb", "name": "AutoResearch (validation BPB, lower better)", "category": "agent", "metric": "bpb_lower_better", "description": "Sakana Fugu tech report Table 2: autonomous ML research (Karpathy AutoResearch) — an agent iteratively edits a small GPT training pipeline over 123 autonomous experiments (~14h/seed, single H100) to minimize validation bits-per-byte (BPB, lower better). Mean best val BPB over 3 seeds. (arxiv 2606.21228)" }
+  ],
+  "scores": [
+    { "_section": "=== NEW model Fugu-Cyber (sakana.ai/fugu-cyber-release) ===",
+      "model": "sakana/fugu-cyber", "benchmark": "cybergym_success_rate", "score": 86.9, "_source": "https://sakana.ai/fugu-cyber-release/", "_note": "CyberGym success rate; codebase vuln reproduction" },
+    { "model": "sakana/fugu-cyber", "benchmark": "cti-realm", "score": 72.1, "_source": "https://sakana.ai/fugu-cyber-release/", "_note": "CTI-REALM; threat-intel -> detection rules" },
+
+    { "_section": "=== Fugu-Ultra Table 1 (official report, canonical bench ids) ===",
+      "model": "sakana/fugu-ultra", "benchmark": "swe_bench_pro", "score": 73.7, "_source": "https://arxiv.org/pdf/2606.21228v1", "_note": "Table 1; was wrongly 54.2 in DB" },
+    { "model": "sakana/fugu-ultra", "benchmark": "terminal_bench_2_1", "score": 82.1, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu-ultra", "benchmark": "livecodebench_v6", "score": 92.0, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu-ultra", "benchmark": "livecodebench_pro", "score": 90.8, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu-ultra", "benchmark": "hle", "score": 50.0, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu-ultra", "benchmark": "charxiv_reasoning", "score": 86.6, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu-ultra", "benchmark": "gpqa_diamond", "score": 95.5, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu-ultra", "benchmark": "scicode", "score": 58.7, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu-ultra", "benchmark": "tau3_banking", "score": 20.6, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu-ultra", "benchmark": "aa_lcr", "score": 73.3, "_source": "https://arxiv.org/pdf/2606.21228v1", "_note": "Long Context Reasoning (AA-LCR)" },
+    { "model": "sakana/fugu-ultra", "benchmark": "mrcr_v2", "score": 93.6, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu-ultra", "benchmark": "kana_shosoku_reading_order_ned", "score": 0.776, "_source": "https://arxiv.org/pdf/2606.21228v1", "_note": "Table 3, best" },
+    { "model": "sakana/fugu-ultra", "benchmark": "autoresearch_bpb", "score": 0.9774, "_source": "https://arxiv.org/pdf/2606.21228v1", "_note": "Table 2, mean best val BPB" },
+
+    { "_section": "=== Fugu Table 1 ===",
+      "model": "sakana/fugu", "benchmark": "swe_bench_pro", "score": 59.0, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu", "benchmark": "terminal_bench_2_1", "score": 80.2, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu", "benchmark": "livecodebench_v6", "score": 90.3, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu", "benchmark": "livecodebench_pro", "score": 87.8, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu", "benchmark": "hle", "score": 47.2, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu", "benchmark": "charxiv_reasoning", "score": 85.1, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu", "benchmark": "gpqa_diamond", "score": 95.5, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu", "benchmark": "scicode", "score": 60.1, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu", "benchmark": "tau3_banking", "score": 21.7, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu", "benchmark": "aa_lcr", "score": 74.7, "_source": "https://arxiv.org/pdf/2606.21228v1", "_note": "Long Context Reasoning (AA-LCR)" },
+    { "model": "sakana/fugu", "benchmark": "mrcr_v2", "score": 86.6, "_source": "https://arxiv.org/pdf/2606.21228v1" },
+    { "model": "sakana/fugu", "benchmark": "kana_shosoku_reading_order_ned", "score": 0.473, "_source": "https://arxiv.org/pdf/2606.21228v1", "_note": "Table 3" }
+  ]
+}
