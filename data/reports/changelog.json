@@ -2,6 +2,12 @@
   {
     "date": "2026-07-22",
     "type": "ingest",
+    "title": "S201 — AA 플래그십 8종 sub-benchmark 82점 (RSC currentModel 추출)",
+    "detail": "artificialanalysis.ai 8개 모델 페이지(Solar Pro 3·EXAONE 4.5 33B·GLM-5.2·Gemini 3.6 Flash·Qwen3.7 Max·DeepSeek V4 Pro·Claude Fable 5·GPT-5.6 Sol) RSC currentModel 페이로드 추출. AA 합성지표(AAII·Coding/Agentic Index·Omniscience·GDPval-AA ELO·AA-LCR·CritPt)는 AA가 유일 출처라 항상 수집, 표준 벤치(GPQA/HLE/SciCode/IFBench/MMMU-Pro/APEX/Terminal-Bench)는 net-new만 수집해 vendor 1차값 clobber 방지. 총 82점(net-new 63 + AA refresh 19, clobber 방지 28 skip). 예: Claude Fable 5 AAII 59.86/coding 76.49/GDPval ELO 1748, GPT-5.6 Sol 55.87/77.16/1630, GLM-5.2 51.09/68.76/1514, Gemini 3.6 Flash 50.07/69.24/1421. 커버리지 예: Gemini 3.6 Flash 12→22, Solar Pro 3 18→28, GPT-5.6 Sol 91→102."
+  },
+  {
+    "date": "2026-07-22",
+    "type": "ingest",
     "title": "S200 — Motif 3 (Beta) AA 페이지 sub-benchmark 11종 + 메타데이터 보강",
     "detail": "artificialanalysis.ai/models/motif-0714 재분석. 페이지 RSC currentModel 페이로드에서 per-model 평가 객체를 직접 추출(멀티모델 SVG 비교차트와 달리 신뢰 가능). 메타데이터 보강: 314B → 314B-A13B MoE(total 314B/active 13B), context_window 262,144(신규), reasoning 모델. 기존 AAII 44에 더해 AAII v4.1 기여 sub-benchmark + AA 합성지표 11종 신규 수집(모두 AA 자체 측정 = 1차 출처): GPQA-Diamond 86.9, HLE 38.2, SciCode 44.3, Terminal-Bench v2.1 70.8, τ³-Banking 28.9, AA-LCR 61.3, CritPt 6.0, GDPval-AA v2 ELO 1259, AA Coding Index 61.97, AA Agentic Index 34.93, AA-Omniscience -17.28(할루시네이션 페널티, accuracy 21.0%/hallucination 48.5%). Motif 3 점수 2→13개."
   },
