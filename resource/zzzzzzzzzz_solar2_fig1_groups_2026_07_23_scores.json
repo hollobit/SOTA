@@ -1,0 +1,23 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-23",
+    "sources": ["https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf"],
+    "_note": "S203 Solar Open 2 tech report Figure 1 — CAPABILITY-GROUP AGGREGATE benchmarks that are NOT in Tables 3/4 (which list only individual benches). Figure 1 groups results into aggregates: K-Knowledge (Korean language & culture = CLIcK + HAE-RAE avg), K-Domain (Korean professional = KBank-MMLU + KBL + KorMedMCQA avg), MATH (HMMT2602 + AIME2026 avg). K-OfficeAgent group == Ko-GDPval (already ingested as ko_gdpval). GDPval-AA-v2 Figure-1 value is a normalized score (SO2 31.4) vs the Table-3 ELO 1128 (already ingested as gdpval_aa_elo) — same benchmark, different scale, ELO kept as canonical. Only Upstage's own models (Solar Open 2 / Solar Open 1) ingested; baselines (Claude Haiku 4.5, MiMo-V2.5, GPT-5.4 mini, DeepSeek-V4-Flash, Command A+, Mistral Medium 3.5) are Upstage-measured comparisons -> not ingested."
+  },
+  "benchmarks": [
+    { "id": "k_knowledge", "name": "K-Knowledge (Korean Language & Culture)", "category": "multilingual", "metric": "score", "description": "Solar Open 2 tech report Figure 1 Korean capability group: aggregate of Korean language & culture benchmarks CLIcK and HAE-RAE v1.1. Higher is better." },
+    { "id": "k_domain", "name": "K-Domain (Korean Professional)", "category": "domain", "metric": "score", "description": "Solar Open 2 tech report Figure 1 Korean capability group: aggregate of Korean professional-domain benchmarks KBank-MMLU (finance), KBL (law), KorMedMCQA (medical). Higher is better." },
+    { "id": "math_hmmt_aime", "name": "MATH (HMMT'26 + AIME'26 avg)", "category": "math", "metric": "score", "description": "Solar Open 2 tech report Figure 1 knowledge-&-reasoning capability group: aggregate of competition math HMMT2602 and AIME2026. Higher is better." }
+  ],
+  "scores": [
+    { "model": "upstage/solar-open2-250b", "benchmark": "k_knowledge", "score": 82.3, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "Figure 1; CLIcK 90.7 + HAE-RAE 73.8 avg" },
+    { "model": "upstage/solar-open-100b", "benchmark": "k_knowledge", "score": 76.1, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "Figure 1 (Solar Open 1)" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "k_domain", "score": 83.1, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "Figure 1; KBank-MMLU 80.8 + KBL 75.5 + KorMedMCQA 93.0 avg" },
+    { "model": "upstage/solar-open-100b", "benchmark": "k_domain", "score": 71.8, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "Figure 1 (Solar Open 1)" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "math_hmmt_aime", "score": 94.8, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "Figure 1; HMMT2602 93.9 + AIME2026 95.7 avg" },
+    { "model": "upstage/solar-open-100b", "benchmark": "math_hmmt_aime", "score": 78.3, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "Figure 1 (Solar Open 1)" },
+
+    { "model": "upstage/solar-open2-250b", "benchmark": "gdpval_aa", "score": 31.4, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "Figure 1 GDPval-AA-v2 normalized score (0-100 form); ELO form 1128 is in gdpval_aa_elo (Table 3)" },
+    { "model": "upstage/solar-open-100b", "benchmark": "gdpval_aa", "score": 10.6, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "Figure 1 (Solar Open 1) GDPval-AA-v2 normalized" }
+  ]
+}

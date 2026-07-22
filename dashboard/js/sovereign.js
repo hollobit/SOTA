@@ -922,7 +922,7 @@ var Sovereign = {
                 'ifbench', 'ifeval', 'simpleqa_verified',
                 'arc_challenge', 'hellaswag', 'truthfulqa', 'winogrande',
                 'longbench_v2', 'arena_hard_v2', 'supergpqa', 'superqpga',
-                'aa_lcr', 'critpt'
+                'aa_lcr', 'critpt', 'multi_challenge'
             ]
         },
         {
@@ -930,7 +930,7 @@ var Sovereign = {
             label: '🧮 Math & Reasoning',
             note: 'GSM8K · MATH · MATH-500 · AIME 2024 · AIME 2025 · AIME 2026 · HMMT 2025/26 · IMO-AnswerBench · HRM8K · USAMO',
             benchmarks: [
-                'gsm8k', 'math', 'math_500',
+                'gsm8k', 'math', 'math_500', 'math_hmmt_aime',
                 'aime_2024', 'aime_2025', 'aime_2026',
                 'hmmt_2025', 'hmmt_2026', 'imo_answerbench',
                 'hrm8k', 'usamo', 'amc_23', 'matharena_apex'
@@ -945,7 +945,8 @@ var Sovereign = {
                 'mbpp', 'mbpp_plus',
                 'livecodebench', 'livecodebench_v6',
                 'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
-                'terminal_bench_2', 'terminal_bench_2_1', 'gdpval_aa', 'gdpval_aa_elo',
+                'terminal_bench_2', 'terminal_bench_2_1', 'terminal_bench_hard',
+                'gdpval_aa', 'gdpval_aa_elo', 'apex_agents', 'artifacts_bench',
                 'scicode', 'swe_rebench',
                 'codeforces_elo', 'repobench'
             ]
@@ -953,11 +954,13 @@ var Sovereign = {
         {
             id: 'korean',
             label: '🇰🇷 Korean Benchmarks',
-            note: 'KMMLU · HAE-RAE · KoMT-Bench · LogicKor · KoBALT-700 · Ko-IFEval · KOBEST · K-MMBench · HRM8K · KMLE · KMMMU',
+            note: 'KMMLU · KMMLU-Pro · HAE-RAE · CLIcK · KoMT-Bench · LogicKor · KoBALT-700 · Ko-IFEval · KOBEST · K-MMBench · HRM8K · KMLE · KMMMU · Ko-AIME · K-Knowledge · K-Domain · Ko-GDPval (K-OfficeAgent) · KBank-MMLU · KBL · KorMedMCQA',
             benchmarks: [
-                'kmmlu', 'haerae', 'komt_bench', 'logickor',
+                'kmmlu', 'kmmlu_pro', 'haerae', 'click_ko', 'komt_bench', 'logickor',
                 'kobalt_700', 'ko_ifeval', 'kobest', 'k_mmbench',
-                'hrm8k', 'kmle', 'kmmmu'
+                'hrm8k', 'kmle', 'kmmmu', 'ko_aime_2025',
+                'k_knowledge', 'k_domain', 'ko_gdpval',
+                'kbank_mmlu', 'kbl', 'kormedmcqa'
             ]
         },
         {
