@@ -1,0 +1,42 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-22",
+    "sources": ["https://arxiv.org/abs/2607.05174", "https://arxiv.org/html/2607.05174v1"],
+    "_note": "S199 source-audit sweep of config/seed_sources.yaml (627 sources). Result: DB already current vs 8 major live leaderboards (LiveBench/Aider/SWE-rebench/MathArena/ARC-AGI/Epoch-ECI/Vellum/LLM-Stats — 0 net-new frontier models) and 17 of 18 recent arxiv benchmark papers already ingested. The ONE genuine net-new benchmark: AgentGym2 (Fudan NLP, arxiv 2607.05174). AgentGym2 = 437 tasks / 27 domains testing end-to-end agentic execution: tool discovery via exploration, tool composition for unseen tasks, robustness to noisy/underspecified inputs; splits Complex-Tool-Use 182 / Data-Analysis 57 / Deep-Search 198. Metrics Overall Avg@3 (mean over 3 runs) + Pass@3. Scores from the paper's main results table (arxiv HTML v1). NEW models Nex-N1-671B / Nex-N1-32B are the authors'-cited (agiteam2025) open-weight agentic family. Latest-models-focus applied: ingested the 235B+ / flagship rows, skipped the small Qwen3-8B/32B rows."
+  },
+  "models": [
+    { "id": "nex/nex-n1-671b", "vendor": "Nex", "name": "Nex-N1-671B", "type": "open-weight", "modalities": ["text"], "parameters": "671B", "_note": "Agentic model family cited as agiteam2025nexn1 in AgentGym2; open-weight" },
+    { "id": "nex/nex-n1-32b", "vendor": "Nex", "name": "Nex-N1-32B", "type": "open-weight", "modalities": ["text"], "parameters": "32B", "_note": "Agentic model family cited as agiteam2025nexn1 in AgentGym2; open-weight" }
+  ],
+  "benchmarks": [
+    { "id": "agentgym2", "name": "AgentGym2 (Overall Avg@3)", "category": "agent", "metric": "avg_at_3", "description": "AgentGym2 (Fudan NLP, arxiv 2607.05174): 437 tasks across 27 domains evaluating end-to-end agentic procedures — tool discovery via exploration, tool composition for unseen tasks, data analysis, deep search, and robustness to noisy/underspecified inputs. Splits: Complex Tool Use 182, Data Analysis 57, Deep Search 198. Metric = Overall Avg@3 (mean success over 3 runs)." },
+    { "id": "agentgym2_pass3", "name": "AgentGym2 (Overall Pass@3)", "category": "agent", "metric": "pass_at_3", "description": "AgentGym2 (Fudan NLP, arxiv 2607.05174) Overall Pass@3 — task solved in at least one of 3 runs. Same 437-task / 27-domain agentic benchmark as agentgym2." }
+  ],
+  "scores": [
+    { "_section": "=== AgentGym2 Overall Avg@3 (Table, arxiv 2607.05174v1) ===",
+      "model": "openai/gpt-5", "benchmark": "agentgym2", "score": 46.15, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "anthropic/claude-sonnet-4.5", "benchmark": "agentgym2", "score": 37.17, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "nex/nex-n1-671b", "benchmark": "agentgym2", "score": 32.19, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "deepseek/deepseek-v3.1", "benchmark": "agentgym2", "score": 21.66, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "deepseek/deepseek-v3.2-exp", "benchmark": "agentgym2", "score": 20.98, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "moonshot/kimi-k2", "benchmark": "agentgym2", "score": 20.90, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "google/gemini-2.5-pro", "benchmark": "agentgym2", "score": 20.67, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "zhipu/glm-4.6", "benchmark": "agentgym2", "score": 20.52, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "nex/nex-n1-32b", "benchmark": "agentgym2", "score": 15.71, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "alibaba/qwen3-235b-a22b-instruct-2507", "benchmark": "agentgym2", "score": 14.04, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "alibaba/qwen3-235b-a22b-thinking-2507", "benchmark": "agentgym2", "score": 9.76, "_source": "https://arxiv.org/html/2607.05174v1" },
+
+    { "_section": "=== AgentGym2 Overall Pass@3 ===",
+      "model": "openai/gpt-5", "benchmark": "agentgym2_pass3", "score": 65.68, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "anthropic/claude-sonnet-4.5", "benchmark": "agentgym2_pass3", "score": 47.82, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "nex/nex-n1-671b", "benchmark": "agentgym2_pass3", "score": 48.52, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "deepseek/deepseek-v3.1", "benchmark": "agentgym2_pass3", "score": 40.27, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "deepseek/deepseek-v3.2-exp", "benchmark": "agentgym2_pass3", "score": 41.42, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "moonshot/kimi-k2", "benchmark": "agentgym2_pass3", "score": 36.38, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "google/gemini-2.5-pro", "benchmark": "agentgym2_pass3", "score": 35.24, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "zhipu/glm-4.6", "benchmark": "agentgym2_pass3", "score": 36.62, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "nex/nex-n1-32b", "benchmark": "agentgym2_pass3", "score": 29.75, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "alibaba/qwen3-235b-a22b-instruct-2507", "benchmark": "agentgym2_pass3", "score": 25.40, "_source": "https://arxiv.org/html/2607.05174v1" },
+    { "model": "alibaba/qwen3-235b-a22b-thinking-2507", "benchmark": "agentgym2_pass3", "score": 16.25, "_source": "https://arxiv.org/html/2607.05174v1" }
+  ]
+}
