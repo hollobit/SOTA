@@ -916,12 +916,13 @@ var Sovereign = {
         {
             id: 'reasoning',
             label: '🧠 General Reasoning',
-            note: 'MMLU · MMLU-Pro · GPQA Diamond · HLE · IFBench · IFEval · SimpleQA Verified · ARC-Challenge · HellaSwag · TruthfulQA · WinoGrande · LongBench v2 · Arena Hard v2 · SuperGPQA',
+            note: 'MMLU · MMLU-Pro · GPQA Diamond · HLE · IFBench · IFEval · SimpleQA Verified · ARC-Challenge · HellaSwag · TruthfulQA · WinoGrande · LongBench v2 · Arena Hard v2 · SuperGPQA · AA-LCR · CritPt',
             benchmarks: [
                 'mmlu', 'mmlu_pro', 'gpqa_diamond', 'hle',
                 'ifbench', 'ifeval', 'simpleqa_verified',
                 'arc_challenge', 'hellaswag', 'truthfulqa', 'winogrande',
-                'longbench_v2', 'arena_hard_v2', 'supergpqa', 'superqpga'
+                'longbench_v2', 'arena_hard_v2', 'supergpqa', 'superqpga',
+                'aa_lcr', 'critpt'
             ]
         },
         {
@@ -938,13 +939,14 @@ var Sovereign = {
         {
             id: 'coding',
             label: '💻 Coding & Software Engineering',
-            note: 'HumanEval · HumanEval+ · MBPP · MBPP+ · LiveCodeBench · LiveCodeBench v6 · SWE-bench Verified · SWE-bench Pro · SWE-bench Multilingual · Terminal-Bench 2 · GDPval-AA · SciCode · Codeforces ELO',
+            note: 'HumanEval · HumanEval+ · MBPP · MBPP+ · LiveCodeBench · LiveCodeBench v6 · SWE-bench Verified · SWE-bench Pro · SWE-bench Multilingual · Terminal-Bench 2 / v2.1 · GDPval-AA / ELO · SciCode · Codeforces ELO',
             benchmarks: [
                 'humaneval', 'humaneval_plus',
                 'mbpp', 'mbpp_plus',
                 'livecodebench', 'livecodebench_v6',
                 'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
-                'terminal_bench_2', 'gdpval_aa', 'scicode', 'swe_rebench',
+                'terminal_bench_2', 'terminal_bench_2_1', 'gdpval_aa', 'gdpval_aa_elo',
+                'scicode', 'swe_rebench',
                 'codeforces_elo', 'repobench'
             ]
         },
@@ -979,7 +981,7 @@ var Sovereign = {
                 'vlair_doc_qa', 'vlair_summarization', 'vlair_chronology',
                 'vlair_redlining', 'vlair_data_extract', 'vlair_transcript',
                 'aixcc_synth_vuln', 'cybench', 'cybergym',
-                'browsecomp', 'tau2_bench', 'tau3_bench', 'osworld_verified',
+                'browsecomp', 'tau2_bench', 'tau3_bench', 'tau3_banking', 'osworld_verified',
                 'mcp_atlas', 'gaia2', 'mfg_news_rewrite',
                 'medqa', 'medqa_5op', 'pubmedqa', 'medxpertqa', 'medmcqa',
                 'healthbench', 'healthbench_hard', 'healthbench_professional', 'mmlu_med',
