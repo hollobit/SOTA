@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-07-23",
+    "type": "ingest",
+    "title": "S203 — Solar Open 2 Figure 1 그룹 집계 + GDPval-AA 표시 문제 해결",
+    "detail": "사용자 지적: Solar Open 2 tech report Figure 1의 capability-group 집계 벤치가 Table 3/4(개별 벤치만)에 없어 미추출. Figure 1(고해상도 이미지 판독)에서 신규 그룹 집계 추출: K-Knowledge(CLIcK+HAE-RAE avg) SO2 82.3/SO1 76.1, K-Domain(KBank-MMLU+KBL+KorMedMCQA avg) 83.1/71.8, MATH(HMMT2602+AIME2026 avg) 94.8/78.3. K-OfficeAgent=Ko-GDPval(기수집 ko_gdpval 86.8). **GDPval-AA-v2 표시 문제**: coding 테이블에 GDPval 컬럼이 2개(gdpval_aa 정규화 / gdpval_aa_elo ELO)인데 Solar Open 2는 ELO(1128)만 있어 'GDPval-AA' 컬럼이 빈칸이었음 → Figure 1의 정규화 값(SO2 31.4/SO1 10.6)을 gdpval_aa로 추가해 해결. 또 Solar Open 2의 한국어 벤치 다수(kmmlu_pro/click_ko/kbank_mmlu/kbl/kormedmcqa/ko_gdpval/ko_aime_2025/k_knowledge/k_domain)가 korean PERF_SUITE에 없어 미표시였음 → korean 스위트 확장(+math_hmmt_aime→math, apex_agents/terminal_bench_hard/artifacts_bench→coding, multi_challenge→reasoning). Solar Open 2 표시 벤치 14→28(hidden 0). baseline은 미수집(2차)."
+  },
+  {
     "date": "2026-07-22",
     "type": "ingest",
     "title": "S202 — AA 플래그십 6종 메타데이터 안전 병합 (params/context/release/name)",
