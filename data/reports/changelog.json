@@ -2,6 +2,12 @@
   {
     "date": "2026-07-22",
     "type": "ingest",
+    "title": "S200 — Motif 3 (Beta) AA 페이지 sub-benchmark 11종 + 메타데이터 보강",
+    "detail": "artificialanalysis.ai/models/motif-0714 재분석. 페이지 RSC currentModel 페이로드에서 per-model 평가 객체를 직접 추출(멀티모델 SVG 비교차트와 달리 신뢰 가능). 메타데이터 보강: 314B → 314B-A13B MoE(total 314B/active 13B), context_window 262,144(신규), reasoning 모델. 기존 AAII 44에 더해 AAII v4.1 기여 sub-benchmark + AA 합성지표 11종 신규 수집(모두 AA 자체 측정 = 1차 출처): GPQA-Diamond 86.9, HLE 38.2, SciCode 44.3, Terminal-Bench v2.1 70.8, τ³-Banking 28.9, AA-LCR 61.3, CritPt 6.0, GDPval-AA v2 ELO 1259, AA Coding Index 61.97, AA Agentic Index 34.93, AA-Omniscience -17.28(할루시네이션 페널티, accuracy 21.0%/hallucination 48.5%). Motif 3 점수 2→13개."
+  },
+  {
+    "date": "2026-07-22",
+    "type": "ingest",
     "title": "S199 — seed_sources 627개 소스 감사 + AgentGym2 신규 벤치/모델",
     "detail": "config/seed_sources.yaml 627개 소스(리더보드 158·벤치논문/데이터셋 72·모델카드/논문 76 등) 전수 감사. 병렬 리서치 3팀 결과: (1) 8개 주요 라이브 리더보드(LiveBench/Aider/SWE-rebench/MathArena/ARC-AGI/Epoch-ECI/Vellum/LLM-Stats) 대비 DB가 2026 프론티어 모델에 완전 최신 — net-new 모델 0. (2) 최근 arxiv 벤치 18종 중 17종 이미 수집(AutoMedBench/K-BrowseComp/LAB-Bench2/CADBench/BenchCAD/Text2CAD/CEO-Bench/RNG-Bench/SMAC-Talk/ErrorQuake/ProgramBench/DeepSearchQA/DRACO 등 서브태스크까지). (3) 모델카드/논문 76개 커버리지 누락 0. 유일한 net-new: AgentGym2(Fudan NLP, arxiv 2607.05174) — 437 tasks/27 domains 에이전트 벤치(tool discovery/composition, deep search, 노이즈 강건성). Overall Avg@3 + Pass@3 각 11개 모델 수집(GPT-5 46.15/65.68, Claude-4.5-Sonnet 37.17, Nex-N1-671B 32.19, DeepSeek-V3.1/V3.2-Exp, Kimi-K2, GLM-4.6, Gemini-2.5-Pro, Qwen3-235B i/t). 신규 모델 Nex-N1-671B/32B(agiteam open-weight). 부수 발견: 중복 벤치 id(programbench/program_bench, deepsearchqa/deepsearch_qa) — 별도 정리 대상으로 기록."
   },
