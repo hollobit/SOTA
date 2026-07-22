@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-22",
+    "sources": ["https://arxiv.org/pdf/2606.21228v1"],
+    "_note": "S196b Sakana Fugu tech report Appendix B — benchmarks missed in the first pass. Table 4 (Rubik's Cube solver synthesis, 300 held-out scrambles): both Fugu models solve 300/300; mean HTM (half-turn-metric solution length, lower=shorter, optimal=20) differentiates — Fugu-Ultra 19.72, Fugu 21.15. Figure 10 (online sequential stock trading, single 50-week window on one anonymized equity): Fugu-Ultra +19.43% mean return over 5 runs (explicitly illustrative; may not transfer). Baselines Model A/B/C are anonymized in the report so only Fugu / Fugu-Ultra values are attributed."
+  },
+  "benchmarks": [
+    { "id": "rubiks_cube_solver_synthesis_htm", "name": "Rubik's Cube Solver Synthesis (mean HTM, lower better)", "category": "coding", "metric": "mean_htm_lower_better", "description": "Sakana Fugu tech report Table 4: one-shot synthesis of a near-optimal Rubik's cube solver (Python stdlib only, no cube-solving package) evaluated on 300 held-out WCA scrambles with an independent cube engine. Metric = mean half-turn-metric (HTM) solution length over solved cubes; lower is better (God's number / optimal upper bound = 20). Both Fugu models solve 300/300. (arxiv 2606.21228)" },
+    { "id": "online_stock_trading_50wk_return", "name": "Online Sequential Stock Trading (50-week return %)", "category": "agent", "metric": "return_pct", "description": "Sakana Fugu tech report Figure 10: fully online, per-step trading on a single anonymized equity over one historical 50-week window (Apple Inc. Kaggle dataset, anonymized/normalized, web search disabled). Agent starts at $10,000, observes only past prices, commits to buy/hold/sell + sizing each week. Mean return over 5 runs. Explicitly illustrative — may not transfer to other assets/periods/live markets. (arxiv 2606.21228)" }
+  ],
+  "scores": [
+    { "model": "sakana/fugu-ultra", "benchmark": "rubiks_cube_solver_synthesis_htm", "score": 19.72, "_source": "https://arxiv.org/pdf/2606.21228v1", "_note": "Table 4; solve 300/300, mean 72.6s, best HTM" },
+    { "model": "sakana/fugu", "benchmark": "rubiks_cube_solver_synthesis_htm", "score": 21.15, "_source": "https://arxiv.org/pdf/2606.21228v1", "_note": "Table 4; solve 300/300, mean 1.9s (~35x faster)" },
+    { "model": "sakana/fugu-ultra", "benchmark": "online_stock_trading_50wk_return", "score": 19.43, "_source": "https://arxiv.org/pdf/2606.21228v1", "_note": "Figure 10; $11,943 final, +19.43% mean return (illustrative single run)" }
+  ]
+}
