@@ -2,6 +2,12 @@
   {
     "date": "2026-07-22",
     "type": "ingest",
+    "title": "S202 — AA 플래그십 6종 메타데이터 안전 병합 (params/context/release/name)",
+    "detail": "S201 AA currentModel 추출의 메타데이터를 기존 필드 보존하며 병합(전 필드 재선언). 마지막 로드 파일 model_metadata_fix에 직접 반영해 durable. 교정: (1) placeholder name(id 그대로) 6종 중 5종 정식명으로 — Solar Pro 3/GLM-5.2/Qwen3.7 Max/DeepSeek V4 Pro/Claude Fable 5. (2) generic type 'language' → proprietary/open-weight(AA isOpenWeights). (3) parameters 보강: Solar Pro 3 102B-A12B, GLM-5.2 753B-A40B; **DeepSeek V4 Pro 685B→1.6T-A49B 교정**(AA·Solar Open 2 리포트 모두 1.6T 확인; 685B는 V3 크기 carryover 오류). (4) context_window 보강(GLM/Qwen/DeepSeek/Fable/GPT 1M, Solar Pro 3 128k). (5) release_date 교정: GLM 2026-06→2026-06-16, Qwen 2026-05→2026-05-19, **GPT-5.6 Sol 2026-06-25→2026-07-09**(실제 Jul-9 출시), Claude Fable 5 null→2026-06-09. EXAONE 4.5 33B·Gemini 3.6 Flash는 기존 메타 충분해 미변경."
+  },
+  {
+    "date": "2026-07-22",
+    "type": "ingest",
     "title": "S201 — AA 플래그십 8종 sub-benchmark 82점 (RSC currentModel 추출)",
     "detail": "artificialanalysis.ai 8개 모델 페이지(Solar Pro 3·EXAONE 4.5 33B·GLM-5.2·Gemini 3.6 Flash·Qwen3.7 Max·DeepSeek V4 Pro·Claude Fable 5·GPT-5.6 Sol) RSC currentModel 페이로드 추출. AA 합성지표(AAII·Coding/Agentic Index·Omniscience·GDPval-AA ELO·AA-LCR·CritPt)는 AA가 유일 출처라 항상 수집, 표준 벤치(GPQA/HLE/SciCode/IFBench/MMMU-Pro/APEX/Terminal-Bench)는 net-new만 수집해 vendor 1차값 clobber 방지. 총 82점(net-new 63 + AA refresh 19, clobber 방지 28 skip). 예: Claude Fable 5 AAII 59.86/coding 76.49/GDPval ELO 1748, GPT-5.6 Sol 55.87/77.16/1630, GLM-5.2 51.09/68.76/1514, Gemini 3.6 Flash 50.07/69.24/1421. 커버리지 예: Gemini 3.6 Flash 12→22, Solar Pro 3 18→28, GPT-5.6 Sol 91→102."
   },
