@@ -2,6 +2,12 @@
   {
     "date": "2026-07-22",
     "type": "ingest",
+    "title": "S199 — seed_sources 627개 소스 감사 + AgentGym2 신규 벤치/모델",
+    "detail": "config/seed_sources.yaml 627개 소스(리더보드 158·벤치논문/데이터셋 72·모델카드/논문 76 등) 전수 감사. 병렬 리서치 3팀 결과: (1) 8개 주요 라이브 리더보드(LiveBench/Aider/SWE-rebench/MathArena/ARC-AGI/Epoch-ECI/Vellum/LLM-Stats) 대비 DB가 2026 프론티어 모델에 완전 최신 — net-new 모델 0. (2) 최근 arxiv 벤치 18종 중 17종 이미 수집(AutoMedBench/K-BrowseComp/LAB-Bench2/CADBench/BenchCAD/Text2CAD/CEO-Bench/RNG-Bench/SMAC-Talk/ErrorQuake/ProgramBench/DeepSearchQA/DRACO 등 서브태스크까지). (3) 모델카드/논문 76개 커버리지 누락 0. 유일한 net-new: AgentGym2(Fudan NLP, arxiv 2607.05174) — 437 tasks/27 domains 에이전트 벤치(tool discovery/composition, deep search, 노이즈 강건성). Overall Avg@3 + Pass@3 각 11개 모델 수집(GPT-5 46.15/65.68, Claude-4.5-Sonnet 37.17, Nex-N1-671B 32.19, DeepSeek-V3.1/V3.2-Exp, Kimi-K2, GLM-4.6, Gemini-2.5-Pro, Qwen3-235B i/t). 신규 모델 Nex-N1-671B/32B(agiteam open-weight). 부수 발견: 중복 벤치 id(programbench/program_bench, deepsearchqa/deepsearch_qa) — 별도 정리 대상으로 기록."
+  },
+  {
+    "date": "2026-07-22",
+    "type": "ingest",
     "title": "S198 — Upstage Solar Open 2 (250B-A15B) 신규 모델 + Ko-GDPval 벤치",
     "detail": "Upstage Solar Open 2 Technical Report(HF 카드 + PDF) 분석. 신규 모델 Solar Open 2 = 250B-A15B MoE, 1M ctx, hybrid attention(softmax×1 + linear/KDA×3)×12 + NoPE, 한국어 효율 토크나이저(196,608 vocab), 한국 소버린 AI(MSIT/NIPA/NIA 지원, 2026-07-22). 벤치 25종: 영어(Table 3) MMLU-Pro 86.2, GPQA-D 86.3, HLE 28.8, LiveCodeBench v6 92.4, ArtifactsBench 55.9, HMMT2602 93.9, AIME2026 95.7, Multi-Challenge 61.0, IFBench 80.0, AA-LCR 62.3, SWE-Bench Verified 70.4, Terminal-Bench Hard 28.3, APEX-Agents 16.6, MCP-Atlas 58.2, τ³-banking 19.6, GDPval-AA Elo 1128; 한국어(Table 4) KMMLU-Pro 78.4, CLIcK 90.7, HAE-RAE 73.8, Ko-AIME'25 97.7, HRM8K 92.2, KBank-MMLU 80.8, KBL 75.5, KorMedMCQA 93.0, Ko-GDPval 86.8(신규 벤치, 한국어 사무 에이전트, avg 85.4로 한국어 종합 최고). Solar Open 1(solar-open-100b) Table 4 한국어 값도 backfill. Sovereign Korea REGIONS/timeline(250B)/release(2026-07) 반영. baseline(DeepSeek-V4-Flash/MiMo-V2.5/Command A+/Mistral Medium 3.5)은 provider-측정 2차라 미수집."
   },
