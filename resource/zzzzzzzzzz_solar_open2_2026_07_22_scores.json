@@ -1,0 +1,57 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-22",
+    "sources": [
+      "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf",
+      "https://huggingface.co/upstage/Solar-Open2-250B"
+    ],
+    "_note": "S198 Upstage Solar Open 2 Technical Report (Jul 22 2026). NEW model Solar Open 2 = 250B-A15B MoE, 1M context, hybrid attention (softmax x1 + linear/KDA x3)x12 + NoPE, Korean-efficient tokenizer (196,608 vocab, 4.41 B/token Ko-GDPval), selective weight transfer from Solar Open 1. Korean sovereign AI (MSIT/NIPA/NIA funded). Scores from Table 3 (English, 16 benches) + Table 4 (Korean, 9 benches) measured with Upstage's internal harness. On Korean suite Solar Open 2 records the highest average (85.4) of all compared, ahead of DeepSeek-V4-Flash (84.9) and closed APIs; on Ko-GDPval (officework agent) 86.8, near DeepSeek-V4-Pro 1.6T at <1/6 the size. Solar Open 1 (=solar-open-100b) Korean-suite values also backfilled from Table 4. Baselines (MiMo-V2.5 / DeepSeek-V4-Flash / Command A+ / Mistral Medium 3.5) are Upstage-measured comparison -> not ingested (avoid cross-source conflict). NEW benchmark ko_gdpval (in-house Korean officework agentic, 170 tasks, GDPval paradigm)."
+  },
+  "models": [
+    { "id": "upstage/solar-open2-250b", "vendor": "Upstage", "name": "Solar Open 2", "type": "open-weight", "modalities": ["text"], "parameters": "250B-A15B", "context_window": 1048576, "release_date": "2026-07-22", "languages": ["ko", "en"] }
+  ],
+  "benchmarks": [
+    { "id": "ko_gdpval", "name": "Ko-GDPval (Korean officework agent)", "category": "agent", "metric": "score", "description": "Upstage in-house Korean officework agentic benchmark (Solar Open 2 tech report Sec 5.4). Inherits the GDPval paradigm (economically valuable deliverable-producing work) grounded in Korean industry/law/business: 170 tasks across 11 industry domains, 58 occupations, all Korean, graded on deliverable quality (Data/Content/Structure/Quality/Value-Format/Constraint/File-Format dimensions). Source: Solar Open 2 tech report." }
+  ],
+  "scores": [
+    { "_section": "=== Solar Open 2 — English (Table 3) ===",
+      "model": "upstage/solar-open2-250b", "benchmark": "mmlu_pro", "score": 86.2, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "gpqa_diamond", "score": 86.3, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "hle", "score": 28.8, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "HLE w/o tools" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "livecodebench_v6", "score": 92.4, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "artifacts_bench", "score": 55.9, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "hmmt_2026", "score": 93.9, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "HMMT2602" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "aime_2026", "score": 95.7, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "multi_challenge", "score": 61.0, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "ifbench", "score": 80.0, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "aa_lcr", "score": 62.3, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "swe_bench_verified", "score": 70.4, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "terminal_bench_hard", "score": 28.3, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "apex_agents", "score": 16.6, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "mcp_atlas", "score": 58.2, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "tau3_banking", "score": 19.6, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "gdpval_aa_elo", "score": 1128, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "GDPval-AA v2 ELO (measured 30 Jun 2026)" },
+
+    { "_section": "=== Solar Open 2 — Korean (Table 4) ===",
+      "model": "upstage/solar-open2-250b", "benchmark": "kmmlu_pro", "score": 78.4, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "click_ko", "score": 90.7, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "haerae", "score": 73.8, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "HAE-RAE v1.1" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "ko_aime_2025", "score": 97.7, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "hrm8k", "score": 92.2, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "kbank_mmlu", "score": 80.8, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "kbl", "score": 75.5, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "kormedmcqa", "score": 93.0, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open2-250b", "benchmark": "ko_gdpval", "score": 86.8, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf", "_note": "Table 5 overall; Data 83.5/Content 89.1/Structure 96.5/Quality 79.2/ValueFormat 82.0/Constraint 86.7/FileFormat 99.8" },
+
+    { "_section": "=== Solar Open 1 (solar-open-100b) Korean backfill (Table 4) ===",
+      "model": "upstage/solar-open-100b", "benchmark": "kmmlu_pro", "score": 64.0, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open-100b", "benchmark": "click_ko", "score": 78.9, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open-100b", "benchmark": "haerae", "score": 73.3, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open-100b", "benchmark": "ko_aime_2025", "score": 80.0, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open-100b", "benchmark": "hrm8k", "score": 87.6, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open-100b", "benchmark": "kbank_mmlu", "score": 65.5, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open-100b", "benchmark": "kbl", "score": 65.5, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open-100b", "benchmark": "kormedmcqa", "score": 84.4, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" },
+    { "model": "upstage/solar-open-100b", "benchmark": "ko_gdpval", "score": 3.4, "_source": "https://huggingface.co/upstage/Solar-Open2-250B/blob/main/Solar_Open_2_Tech_Report.pdf" }
+  ]
+}

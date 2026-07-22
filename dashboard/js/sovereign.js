@@ -19,7 +19,7 @@ var Sovereign = {
                 'lg/exaone-4.0-32b', 'lg/exaone-4.0.1-32b', 'lg/exaone-4.0-1.2b',
                 'lg/exaone-deep-32b', 'lg/exaone-deep-7.8b', 'lg/exaone-deep-2.4b',
                 'lg/exaone-3.5-32b', 'lg/exaone-3.5-7.8b', 'lg/exaone-3.5-2.4b',
-                'upstage/solar-pro-3', 'upstage/solar-open-100b',
+                'upstage/solar-open2-250b', 'upstage/solar-pro-3', 'upstage/solar-open-100b',
                 'upstage/solar-pro-2', 'upstage/solar-pro-2-preview',
                 'upstage/solar-pro', 'upstage/solar-mini', 'upstage/solar-docvision',
                 'skt/ax-k1', 'skt/ax-4.0', 'skt/ax-4.0-light', 'skt/ax-4.0-vl-light',
@@ -581,7 +581,7 @@ var Sovereign = {
         'lg/exaone-deep-32b': '2025-03', 'lg/exaone-deep-7.8b': '2025-03', 'lg/exaone-deep-2.4b': '2025-03',
         'lg/exaone-3.5-32b': '2024-12', 'lg/exaone-3.5-7.8b': '2024-12', 'lg/exaone-3.5-2.4b': '2024-12',
         // Korea — Upstage
-        'upstage/solar-pro-3': '2026-03', 'upstage/solar-open-100b': '2025-10',
+        'upstage/solar-open2-250b': '2026-07', 'upstage/solar-pro-3': '2026-03', 'upstage/solar-open-100b': '2025-10',
         'upstage/solar-pro-2': '2025-08', 'upstage/solar-pro-2-preview': '2025-06',
         'upstage/solar-pro': '2024-09', 'upstage/solar-mini': '2024-04', 'upstage/solar-docvision': '2025',
         // Korea — SKT
@@ -1084,6 +1084,7 @@ var Sovereign = {
         // Korean — variants without B in name
         'kakao/kanana-flag-32.5b': 32.5,
         'kt/midm-k2.5-pro': 50, 'kt/midm-1.0': 11,
+        'upstage/solar-open2-250b': 250, 'upstage/solar-open-100b': 102,
         'naver/hyperclova-x': 100, 'naver/hyperclova-x-hcx-003': 80,
         'naver/hyperclova-x-dash': 8,
         'skt/ax-k1': 519,
