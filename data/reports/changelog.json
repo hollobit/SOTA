@@ -2,6 +2,12 @@
   {
     "date": "2026-07-22",
     "type": "ingest",
+    "title": "S198 — Upstage Solar Open 2 (250B-A15B) 신규 모델 + Ko-GDPval 벤치",
+    "detail": "Upstage Solar Open 2 Technical Report(HF 카드 + PDF) 분석. 신규 모델 Solar Open 2 = 250B-A15B MoE, 1M ctx, hybrid attention(softmax×1 + linear/KDA×3)×12 + NoPE, 한국어 효율 토크나이저(196,608 vocab), 한국 소버린 AI(MSIT/NIPA/NIA 지원, 2026-07-22). 벤치 25종: 영어(Table 3) MMLU-Pro 86.2, GPQA-D 86.3, HLE 28.8, LiveCodeBench v6 92.4, ArtifactsBench 55.9, HMMT2602 93.9, AIME2026 95.7, Multi-Challenge 61.0, IFBench 80.0, AA-LCR 62.3, SWE-Bench Verified 70.4, Terminal-Bench Hard 28.3, APEX-Agents 16.6, MCP-Atlas 58.2, τ³-banking 19.6, GDPval-AA Elo 1128; 한국어(Table 4) KMMLU-Pro 78.4, CLIcK 90.7, HAE-RAE 73.8, Ko-AIME'25 97.7, HRM8K 92.2, KBank-MMLU 80.8, KBL 75.5, KorMedMCQA 93.0, Ko-GDPval 86.8(신규 벤치, 한국어 사무 에이전트, avg 85.4로 한국어 종합 최고). Solar Open 1(solar-open-100b) Table 4 한국어 값도 backfill. Sovereign Korea REGIONS/timeline(250B)/release(2026-07) 반영. baseline(DeepSeek-V4-Flash/MiMo-V2.5/Command A+/Mistral Medium 3.5)은 provider-측정 2차라 미수집."
+  },
+  {
+    "date": "2026-07-22",
+    "type": "ingest",
     "title": "S196b — Sakana Fugu Appendix B 보강(재점검): Rubik/주식거래 벤치 2종",
     "detail": "사용자 요청으로 PDF 재점검(첫 분석은 24p까지만; 리포트는 31p). Appendix B에서 누락된 2개 벤치 추가: (1) Rubiks Cube Solver Synthesis(Table 4, 300 scrambles) — Fugu-Ultra/Fugu 모두 solve 300/300, mean HTM(lower better, optimal=20) Fugu-Ultra 19.72 vs Fugu 21.15로 차별화. (2) Online Sequential Stock Trading(Figure 10, 50-week single window) — Fugu-Ultra +19.43% return(illustrative). Blindfold Chess는 illustrative 4게임(aggregate 아님)이라 스킵, Appendix A는 방법론만. baseline(Model A/B/C) 익명이라 Fugu/Fugu-Ultra만 귀속. Gemini 3.6 Flash 카드(7p)·EXAONE Deep/Kanana HF 카드는 주요 표 이미 완전 수집 확인."
   },
