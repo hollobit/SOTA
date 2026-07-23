@@ -940,14 +940,14 @@ var Sovereign = {
         {
             id: 'coding',
             label: '💻 Coding & Software Engineering',
-            note: 'HumanEval · HumanEval+ · MBPP · MBPP+ · LiveCodeBench · LiveCodeBench v6 · SWE-bench Verified · SWE-bench Pro · SWE-bench Multilingual · Terminal-Bench 2 / v2.1 · GDPval-AA / ELO · SciCode · Codeforces ELO',
+            note: 'HumanEval · HumanEval+ · MBPP · MBPP+ · LiveCodeBench · LiveCodeBench v6 · SWE-bench Verified · SWE-bench Pro · SWE-bench Multilingual · Terminal-Bench 2 / v2.1 / Hard · GDPval-AA v2 (normalized) · GDPval-AA Elo · APEX-Agents · Artifacts · SciCode · WeirdML v2 · Codeforces ELO',
             benchmarks: [
                 'humaneval', 'humaneval_plus',
                 'mbpp', 'mbpp_plus',
                 'livecodebench', 'livecodebench_v6',
                 'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
                 'terminal_bench_2', 'terminal_bench_2_1', 'terminal_bench_hard',
-                'gdpval_aa', 'gdpval_aa_elo', 'apex_agents', 'artifacts_bench',
+                'gdpval_aa_v2', 'gdpval_aa_elo', 'apex_agents', 'artifacts_bench',
                 'scicode', 'swe_rebench', 'weirdml_v2',
                 'codeforces_elo', 'repobench'
             ]
@@ -994,6 +994,17 @@ var Sovereign = {
                 'bfcl', 'bfcl_v3', 'bfcl_v4',
                 // S145 — Solar-Pro-3 agent/telecom aggregates
                 'tau2_all', 'bench_telecom'
+            ]
+        },
+        {
+            id: 'creativity',
+            label: '🎨 Creativity',
+            note: 'Divergent Association (DAT) · Conditional DAT (novelty/appropriateness/gated) · PACE · Remote Associates (RAT) · Divergent RAT · Arena Creative Writing · EQ-Bench CW v3 · Mazur CW · Hivemind Diversity · LiveIdeaBench · NoveltyBench Utility',
+            benchmarks: [
+                'creativity_dat', 'creativity_cdat', 'creativity_cdat_n', 'creativity_cdat_a',
+                'creativity_pace', 'creativity_rat', 'creativity_drat',
+                'creativity_arena_cw', 'creativity_eqbench_cw_v3', 'creativity_mazur_cw',
+                'creativity_hivemind_diversity', 'creativity_liveideabench', 'creativity_noveltybench_utility'
             ]
         }
     ],
