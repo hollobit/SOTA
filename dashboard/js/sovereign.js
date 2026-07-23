@@ -922,7 +922,8 @@ var Sovereign = {
                 'ifbench', 'ifeval', 'simpleqa_verified',
                 'arc_challenge', 'hellaswag', 'truthfulqa', 'winogrande',
                 'longbench_v2', 'arena_hard_v2', 'supergpqa', 'superqpga',
-                'aa_lcr', 'critpt', 'multi_challenge'
+                'aa_lcr', 'critpt', 'multi_challenge',
+                'bbh', 'mmlu_redux', 'piqa', 'boolq'
             ]
         },
         {
@@ -933,7 +934,7 @@ var Sovereign = {
                 'gsm8k', 'math', 'math_500', 'math_hmmt_aime',
                 'aime_2024', 'aime_2025', 'aime_2026',
                 'hmmt_2025', 'hmmt_2026', 'imo_answerbench',
-                'hrm8k', 'usamo', 'amc_23', 'matharena_apex'
+                'hrm8k', 'usamo', 'amc_23', 'matharena_apex', 'hmmt_feb_2026'
             ]
         },
         {
@@ -947,7 +948,7 @@ var Sovereign = {
                 'swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual',
                 'terminal_bench_2', 'terminal_bench_2_1', 'terminal_bench_hard',
                 'gdpval_aa', 'gdpval_aa_elo', 'apex_agents', 'artifacts_bench',
-                'scicode', 'swe_rebench',
+                'scicode', 'swe_rebench', 'weirdml_v2',
                 'codeforces_elo', 'repobench'
             ]
         },
@@ -972,6 +973,7 @@ var Sovereign = {
                 'tmmlu_plus', 'global_piqa', 'indo_mmlu', 'qimma', 'sea_helm',
                 'mmmu', 'mmmu_pro', 'mathvision', 'mathvista', 'mathvista_mini',
                 'charxiv_reasoning', 'ocrbench', 'video_mmmu', 'docvqa', 'chartqa', 'ai2d',
+                'mmstar', 'mmbench_v1_1',
                 // S145 — sovereign regional/multimodal: Arabic (Falcon-H1-Arabic), Indic (Sarvam-105B), STEM-visual (EXAONE-4.5-33B)
                 'oall_average', 'indian_language_pairwise_comparison_win_rate', '5_stem_visual_benchmarks_avg'
             ]
@@ -984,12 +986,12 @@ var Sovereign = {
                 'vlair_doc_qa', 'vlair_summarization', 'vlair_chronology',
                 'vlair_redlining', 'vlair_data_extract', 'vlair_transcript',
                 'aixcc_synth_vuln', 'cybench', 'cybergym',
-                'browsecomp', 'tau2_bench', 'tau3_bench', 'tau3_banking', 'osworld_verified',
-                'mcp_atlas', 'gaia2', 'mfg_news_rewrite',
+                'browsecomp', 'tau2_bench', 'tau3_bench', 'tau3_banking', 'tau2_telecom', 'osworld_verified',
+                'mcp_atlas', 'mcpmark', 'gaia', 'gaia2', 'balrog', 'mfg_news_rewrite',
                 'medqa', 'medqa_5op', 'pubmedqa', 'medxpertqa', 'medmcqa',
                 'healthbench', 'healthbench_hard', 'healthbench_professional', 'mmlu_med',
                 'fpb', 'convfinqa', 'finqa',
-                'bfcl', 'bfcl_v3',
+                'bfcl', 'bfcl_v3', 'bfcl_v4',
                 // S145 — Solar-Pro-3 agent/telecom aggregates
                 'tau2_all', 'bench_telecom'
             ]
