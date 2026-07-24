@@ -1,0 +1,461 @@
+{
+ "_meta": {
+  "collected_at": "2026-07-25",
+  "sources": [
+   "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "https://artificialanalysis.ai/models/claude-opus-5",
+   "https://www.anthropic.com/news/claude-opus-5"
+  ],
+  "_note": "S206 Claude Opus 5 (2026-07-24). NEW flagship. System card §8 Capabilities (Table 8.1.A summary + §8.2-8.17 detail) + Artificial Analysis page (RSC currentModel). Metadata: 1M context, knowledge cutoff May 2026, $5/$25 (Fast mode 2x price/2.5x speed), text output / multimodal input, proprietary. Two primary sources: Anthropic card (own measurements) + AA (independent). Where both measure a bench, card value used; AA supplies AA-specific composites + benches the card summary omits (GPQA/SciCode/Terminal-Bench v2.1/tau-banking/AA-LCR/MMMU-Pro). Baseline columns (Opus 4.8/Fable 5/GPT-5.6 Sol) are 2nd-hand -> not re-ingested. AAII 60.69 = new SOTA. 8 net-new benchmarks created."
+ },
+ "models": [
+  {
+   "id": "anthropic/claude-opus-5",
+   "vendor": "Anthropic",
+   "name": "Claude Opus 5",
+   "type": "proprietary",
+   "modalities": [
+    "text",
+    "image"
+   ],
+   "parameters": null,
+   "context_window": 1000000,
+   "release_date": "2026-07-24",
+   "knowledge_cutoff": "2026-05",
+   "languages": null
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "frontiercode",
+   "name": "FrontierCode",
+   "category": "coding",
+   "metric": "mean_at_5",
+   "description": "Agentic coding benchmark of 150 software-engineering tasks from real pull requests, created & scored by Cognition. Patches graded on held-out unit tests + weighted code-quality rubric, mean@5. Source: Claude Opus 5 system card §8.4."
+  },
+  {
+   "id": "frontierbench_v0_1",
+   "name": "FrontierBench v0.1",
+   "category": "coding",
+   "metric": "mean_reward",
+   "description": "Successor to Terminal-Bench 2.1 (same team): 74 harder terminal/CLI tasks emphasizing science & engineering (computational biology, physics sim, CAD, formal proofs, GPU). Run via mini-SWE-agent. Source: Claude Opus 5 system card §8.5."
+  },
+  {
+   "id": "imo_2026",
+   "name": "IMO 2026",
+   "category": "math",
+   "metric": "points_out_of_42",
+   "description": "International Mathematical Olympiad 2026 (6 proof problems, 2 days). Proofs graded against IMO rubric by expert panel + human verification. 42/42 = gold (2026 gold cutoff 29). Source: Claude Opus 5 system card §8.6."
+  },
+  {
+   "id": "chartography",
+   "name": "Chartography",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "description": "Chart-understanding benchmark from Surge AI: 100 specialized chart types (Kaplan-Meier, candlestick, contour, wind-rose, Sankey, Bode, 3D surface). Answers graded vs expert-set acceptable ranges. Source: Claude Opus 5 system card §8.12.1."
+  },
+  {
+   "id": "organic_chemistry_v2",
+   "name": "Organic Chemistry V2",
+   "category": "reasoning",
+   "metric": "accuracy",
+   "description": "Anthropic internal organic-chemistry eval V2 (updated with harder expert-recommended problems): predict molecular structures from spectroscopy, design multi-step syntheses, predict reaction products, read chemical-structure images. Source: Claude Opus 5 system card §8.17.5."
+  },
+  {
+   "id": "protein_design",
+   "name": "Protein Design",
+   "category": "reasoning",
+   "metric": "score",
+   "description": "Generate novel protein sequences under design constraints (NL family descriptions, knot-topology, globularity, structural motifs for enzyme sites/binding pockets). Scored on constraint satisfaction, folding confidence, sequence novelty. Source: Claude Opus 5 system card §8.17.4."
+  },
+  {
+   "id": "protocols_troubleshooting",
+   "name": "Protocols (Troubleshooting)",
+   "category": "reasoning",
+   "metric": "score",
+   "description": "Molecular-biology protocol assistance — detect and fix errors in lab protocols (web-search tools available). Source: Claude Opus 5 system card §8.17.6."
+  },
+  {
+   "id": "protocols_understanding",
+   "name": "Protocols (Understanding, Benchling)",
+   "category": "reasoning",
+   "metric": "score",
+   "description": "Molecular-biology protocol assistance (Benchling variant) — take an online protocol and extend it in additional directions. Source: Claude Opus 5 system card §8.17.6."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "swe_bench_verified",
+   "score": 96.0,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.2, avg of 5 trials"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "swe_bench_pro",
+   "score": 79.2,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "swe_bench_multilingual",
+   "score": 89.5,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "swe_bench_multimodal",
+   "score": 59.4,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "deepswe_1_1",
+   "score": 68.8,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "frontiercode",
+   "score": 53.4,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.4 main set, mean@5 (best effort); extended set 63.6"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "frontierbench_v0_1",
+   "score": 43.3,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.5 successor to Terminal-Bench 2.1; 74 tasks, max effort (xhigh 44.4)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "programbench",
+   "score": 93.0,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.9.1 long-context, 5th episode (1st 83)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "imo_2026",
+   "score": 42.0,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.6 42/42 gold medal (cutoff 29); 4 solutions/problem all judged correct",
+   "unit": "points_out_of_42"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "riemannbench",
+   "score": 60.0,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.7 without tools (with tools 79); mean over 4 attempts"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "arxivmath",
+   "score": 90.82,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.8 June 2026 set, max effort no tools (with tools 91.33)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "hle",
+   "score": 56.3,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "Table 8.1.A no tools (with tools 64.7)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "browsecomp",
+   "score": 90.8,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "deepsearchqa",
+   "score": 95.0,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.10.3 mean F1, max effort"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "draco",
+   "score": 88.6,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.10.4 normalized, max effort"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "chartography",
+   "score": 83.0,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.12.1 with tools, max effort (no tools 29.6)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "benchcad_vision2code_voxel_iou_with_tools_1000subset",
+   "score": 0.821,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.12.2 voxel IoU with tools, 1000-file subset (no tools 0.366)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "osworld_v2",
+   "score": 70.57,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.12.3 OSWorld 2.0 first-attempt success, 500-step, avg 5 runs"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "gdp_pdf",
+   "score": 85.5,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.12.4 with tools, mean criteria pass rate (no tools 83.4)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "officeqa",
+   "score": 78.1,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "officeqa_pro",
+   "score": 66.9,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "mcp_atlas",
+   "score": 85.8,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.13.2 pass rate (mean claim coverage 89.1)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "legal_agent_benchmark",
+   "score": 23.58,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.13.3 all-pass rate, internal harness max effort (Harvey official held-out 11.7; mean criterion-pass 93.74)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "gdpval_aa_elo",
+   "score": 1861.0,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.13.4 GDPval-AA v2 ELO, max (xhigh 1827); AA-run"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_briefcase",
+   "score": 1720.0,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.13.5 ELO, max (xhigh 1693, high 1606); AA-run"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "toolathlon",
+   "score": 80.6,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.13.6 Toolathlon-Verified Pass@1 (Pass@3 87.0, Pass^3 73.1)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "automationbench",
+   "score": 26.0,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.13.7 Zapier leaderboard, max effort"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "arc_agi_1",
+   "score": 97.5,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.14.1 ARC Prize semi-private, max"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "arc_agi_2",
+   "score": 90.42,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.14.1 ARC Prize semi-private, max"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "arc_agi_3",
+   "score": 30.16,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.14.2 ARC Prize semi-private RHAE, high effort"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "healthbench",
+   "score": 67.1,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.15.1 raw rubric score (length-adjusted 57.8)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "healthbench_professional",
+   "score": 73.4,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.15.2 raw rubric score (length-adjusted 59.8)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "gmmlu",
+   "score": 92.5,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.16.1 Global MMLU avg, 42 languages"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "milu",
+   "score": 92.1,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.16.2 Indic avg"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "include",
+   "score": 89.8,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.16.3 avg, 44 languages"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "biomysterybench_human_solvable",
+   "score": 90.1,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "biomysterybench_human_difficult",
+   "score": 49.4,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "latchbio_spatialbench_verified",
+   "score": 72.5,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "latchbio_singlecellbench",
+   "score": 60.6,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "proteingym_hard",
+   "score": 47.7,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.17.3 rank correlation"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "protein_design",
+   "score": 42.5,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.17.4 constraint satisfaction + folding confidence + novelty"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "organic_chemistry_v2",
+   "score": 61.6,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.17.5"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "protocols_troubleshooting",
+   "score": 61.1,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.17.6"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "protocols_understanding",
+   "score": 78.4,
+   "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+   "_note": "§8.17.6 Benchling variant"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_intelligence_index",
+   "score": 60.69,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5",
+   "_note": "AAII (max effort)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_coding_index",
+   "score": 77.98,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_agentic_index",
+   "score": 55.26,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_omniscience",
+   "score": 31.27,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "gdpval_aa",
+   "score": 68.03,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5",
+   "_note": "GDPval-AA v2 normalized (ELO form 1861 in gdpval_aa_elo)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "tau3_banking",
+   "score": 30.31,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "terminal_bench_2_1",
+   "score": 89.14,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "scicode",
+   "score": 55.67,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_lcr",
+   "score": 70.0,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "gpqa_diamond",
+   "score": 93.23,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5",
+   "_note": "AA-measured GPQA Diamond"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "critpt",
+   "score": 29.14,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "mmmu_pro",
+   "score": 84.74,
+   "_source": "https://artificialanalysis.ai/models/claude-opus-5"
+  }
+ ]
+}
