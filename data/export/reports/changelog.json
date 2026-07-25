@@ -2,6 +2,12 @@
   {
     "date": "2026-07-25",
     "type": "ingest",
+    "title": "S207 — BBQ accuracy id 파편화 정리 (short→long canonical)",
+    "detail": "BBQ accuracy id 중복 정리. 대시보드(frontier-compare + cyber-coding)는 long-form(bbq_disambiguated_accuracy/bbq_ambiguous_accuracy)만 표시하는데, S206d가 opus-5를 short-form(bbq_disambiguated_acc, 미표시)에 넣어 실제 안 보이던 버그 수정 → canonical long-form으로 이동(81.6 표시됨). short-form에만 있던 orphan(mythos-preview bbq_ambiguous_acc=100)을 canonical bbq_ambiguous_accuracy로 마이그레이션. 결과 canonical: disambiguated_accuracy n=11, ambiguous_accuracy n=10(전 모델 포함). short-form(bbq_disambiguated_acc n=3/bbq_ambiguous_acc n=1)은 값이 long-form과 동일한 잔여 중복이며 미표시라 deprecated 처리(무해). 충돌 0건(공유 모델 값 완전 동일)."
+  },
+  {
+    "date": "2026-07-25",
+    "type": "ingest",
     "title": "S206d — Opus 5 4차 점검: BBQ bias 벤치 4종 추가 (63→67)",
     "detail": "§4.4.2 Bias Benchmark for QA(BBQ, arxiv 2110.08193) Table 4.4.2.A/B 정확값 추가: disambiguated acc 81.6, ambiguous acc 100, disambiguated bias -2.00, ambiguous bias 0.02(no system prompt, thinking off). Opus 4.8이 있는 id variant에 맞춰 배치(bbq_disambiguated_acc opus-4.8=72.1 옆 등). 부수: bbq_disambiguated_acc/bbq_disambiguated_accuracy 중복 id 존재(향후 정리 대상). 이번 패스 스킵: §2.2.5.1 Black-box RNA design(scatter-plot만·정확값 미제공→strict-attribution), §4.4.3 Election integrity·§4.1 harmful·§5 Agentic safety(usage-policy harmless/refusal rate), §2.2.4 CB-1·§6.4 behavioral audit·§7 welfare(safety/alignment/welfare). 4차 점검으로 193p 전 섹션(§1-§9) 커버 완료; 남은 미수집은 전부 safety/policy/welfare 또는 scatter-plot 부정확."
   },
