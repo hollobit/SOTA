@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-26",
+    "sources": [
+      "https://artificialanalysis.ai/text-to-speech/models/qwen-audio-3-0-tts-plus",
+      "https://www.marktechpost.com/2026/07/20/alibabas-tongyi-lab-releases-qwen-audio-3-0-tts-a-hosted-text-to-speech-model-in-flash-and-plus-tiers-across-16-languages/",
+      "https://www.unite.ai/alibaba-launches-qwen-image-3-0-without-benchmarks-or-weights/"
+    ],
+    "_note": "S208b non-LLM Alibaba media models (frontier audit follow-up). (1) alibaba/qwen-audio-3.0-tts-plus (Tongyi Lab, 2026-07-20): hosted TTS, Plus tier, 16 languages; AA Speech Arena #1. Score aa_tts_quality_elo=1234.41 read directly from the AA model page (exact, primary; narrowly ahead of Simba 3.2 1234). SEED-TTS English WER 1.24 reported by secondary news only (no official Qwen benchmark publication) -> NOT ingested (strict attribution). (2) alibaba/qwen-image-3.0 (2026-07-21): text-to-image, 12 languages, 4500-token prompts, 10px text rendering, hosted. Alibaba published NO benchmarks/model-card/weights and it is absent from the AA T2I arena -> registered as catalog entry, no scores. Media models -> not added to Sovereign (LLM-focused)."
+  },
+  "models": [
+    { "id": "alibaba/qwen-audio-3.0-tts-plus", "vendor": "Alibaba", "name": "Qwen-Audio-3.0-TTS-Plus", "type": "proprietary", "modalities": ["text", "audio"], "release_date": "2026-07-20", "languages": ["en", "zh"], "_note": "Tongyi Lab hosted TTS, Plus tier (Flash tier also exists), 16 languages, ~$27.59/M chars" },
+    { "id": "alibaba/qwen-image-3.0", "vendor": "Alibaba", "name": "Qwen-Image 3.0", "type": "proprietary", "modalities": ["text", "image"], "release_date": "2026-07-21", "languages": ["en", "zh"], "_note": "Text-to-image, 12 languages, up to 4500-token prompts, dense-text/document layouts. No benchmarks/weights/model-card published -> no scores" }
+  ],
+  "scores": [
+    { "model": "alibaba/qwen-audio-3.0-tts-plus", "benchmark": "aa_tts_quality_elo", "score": 1234.41, "_source": "https://artificialanalysis.ai/text-to-speech/models/qwen-audio-3-0-tts-plus", "_note": "AA Provider Voice Arena Quality Elo; #1, narrowly ahead of Simba 3.2 (1234)" }
+  ]
+}
