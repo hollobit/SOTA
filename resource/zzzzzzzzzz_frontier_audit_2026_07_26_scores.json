@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-26",
+    "sources": [
+      "https://poolside.ai/blog/introducing-laguna-s-2-1",
+      "https://ai.meta.com/static-resource/muse-spark-1-1-evaluation-report",
+      "https://huggingface.co/inclusionAI",
+      "https://qwenlm.github.io"
+    ],
+    "_note": "S208 frontier-source audit (post-S199, seed_sources leaderboard sweep). 3 net-new frontier models found missing from DB + Muse Spark 1.1 cyber enrichment. (1) poolside/laguna-s-2.1: open-weight agentic-coding MoE, 6 primary-sourced scores from poolside blog. (2) inclusionai/ling-3.0-flash (Ant Group) + (3) alibaba/qwen3.8-max-preview (WAIC): registered as catalog entries — vendors published NO per-benchmark tables yet (claims only), so no scores under strict attribution. (4) meta/muse-spark-1.1 already existed with 3 arena elos; added its distinct cyber-capability scores from the 1.1 eval report Table 1 (1.1 column, distinct from 1.0). Base meta/muse-spark already fully covered (55 scores) -> not touched. Baselines (GPT-5.5/Opus 4.8/Gemini 3.1 Pro) 2nd-hand -> not ingested."
+  },
+  "models": [
+    { "id": "poolside/laguna-s-2.1", "vendor": "Poolside", "name": "Laguna S 2.1", "type": "open-weight", "modalities": ["text"], "parameters": "118B-A8B", "context_window": 1000000, "release_date": "2026-07-21", "languages": ["en"], "_note": "Agentic coding MoE, OpenMDW-1.1 license, thinking/no-thinking modes" },
+    { "id": "inclusionai/ling-3.0-flash", "vendor": "inclusionAI", "name": "Ling 3.0 Flash", "type": "open-weight", "modalities": ["text"], "parameters": "124B-A5.1B", "context_window": 1000000, "release_date": "2026-07-23", "languages": ["en", "zh"], "_note": "Ant Group AGI lab; hybrid thinking/non-thinking MoE, 256K->1M ctx. Vendor claims outperform 1T Ling-2.6 on 11/12 benches; no per-benchmark table published yet -> registered without scores" },
+    { "id": "alibaba/qwen3.8-max-preview", "vendor": "Alibaba", "name": "Qwen3.8-Max-Preview", "type": "proprietary", "modalities": ["text", "image", "video"], "parameters": "2.4T", "context_window": 1000000, "release_date": "2026-07-19", "languages": ["en", "zh"], "_note": "WAIC Shanghai announcement; 2.4T sparse MoE multimodal. No benchmark table/model card/license published yet -> registered without scores" }
+  ],
+  "scores": [
+    { "_section": "=== poolside Laguna S 2.1 (poolside blog) ===",
+      "model": "poolside/laguna-s-2.1", "benchmark": "terminal_bench_2_1", "score": 70.2, "_source": "https://poolside.ai/blog/introducing-laguna-s-2-1", "_note": "thinking mode (no-thinking 60.4); mean pass@1 over 3-4 attempts, internal agent harness" },
+    { "model": "poolside/laguna-s-2.1", "benchmark": "swe_bench_multilingual", "score": 78.5, "_source": "https://poolside.ai/blog/introducing-laguna-s-2-1" },
+    { "model": "poolside/laguna-s-2.1", "benchmark": "swe_bench_pro_public", "score": 59.4, "_source": "https://poolside.ai/blog/introducing-laguna-s-2-1" },
+    { "model": "poolside/laguna-s-2.1", "benchmark": "deepswe_1_1", "score": 40.4, "_source": "https://poolside.ai/blog/introducing-laguna-s-2-1" },
+    { "model": "poolside/laguna-s-2.1", "benchmark": "swe_atlas", "score": 46.2, "_source": "https://poolside.ai/blog/introducing-laguna-s-2-1", "_note": "SWE Atlas (Codebase QnA)" },
+    { "model": "poolside/laguna-s-2.1", "benchmark": "toolathlon", "score": 49.7, "_source": "https://poolside.ai/blog/introducing-laguna-s-2-1", "_note": "Toolathlon Verified" },
+
+    { "_section": "=== Meta Muse Spark 1.1 cyber (eval report Table 1, 1.1 column) ===",
+      "model": "meta/muse-spark-1.1", "benchmark": "cybench", "score": 92.9, "_source": "https://ai.meta.com/static-resource/muse-spark-1-1-evaluation-report", "_note": "Table 1 pass@1 (1.0=65.4)" },
+    { "model": "meta/muse-spark-1.1", "benchmark": "cybergym_success_rate", "score": 59.0, "_source": "https://ai.meta.com/static-resource/muse-spark-1-1-evaluation-report", "_note": "Table 1 CyberGym pass@1 (1.0=43.5)" },
+    { "model": "meta/muse-spark-1.1", "benchmark": "cyscenariobench", "score": 0.5, "_source": "https://ai.meta.com/static-resource/muse-spark-1-1-evaluation-report", "_note": "Table 1 CyScenarioBench pass@1" },
+    { "model": "meta/muse-spark-1.1", "benchmark": "exploitgym", "score": 0.8, "_source": "https://ai.meta.com/static-resource/muse-spark-1-1-evaluation-report", "_note": "Table 1 ExploitGym pass@1" }
+  ]
+}

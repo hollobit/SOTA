@@ -108,7 +108,8 @@ var Sovereign = {
             note: '중국 frontier 전체 — Qwen 풀+specialists (incl. Qwen3-VL-235B/Wan-2.2-I2V) · DeepSeek (V3-V4/R1/Coder/Math/VL) · Kimi · GLM · Hunyuan · ERNIE · Doubao · iFlytek Spark · Yi · Baichuan · InternLM/InternVL3 · SenseNova-V6.5-Pro · Skywork · MiniCPM-o · Ovis2.5 (AIDC-AI) · Step-1o (StepFun) · JT3.5 (China Mobile) · TeleMM-2.0 (China Telecom) · PanGu · Aquila · MOSS · Yuan',
             models: [
                 // Alibaba Qwen — full param lineup
-                'alibaba/qwen3.7-max', 'alibaba/qwen3.7-max-20260517', 'alibaba/qwen3.7-max-preview', 'alibaba/qwen3.7-plus-preview',
+                'alibaba/qwen3.8-max-preview', 'alibaba/qwen3.7-max', 'alibaba/qwen3.7-max-20260517', 'alibaba/qwen3.7-max-preview', 'alibaba/qwen3.7-plus-preview',
+                'inclusionai/ling-3.0-flash',
                 'alibaba/qwen3.7-plus',  // 2026-06-02 S46 — Qwen3.7-Plus GA (Multimodal Agent Intelligence, qwen.ai blog)
                 'alibaba/qwen3.6-max-preview',  // 2026-04-20 S179 audit — ECI 149.65
                 'alibaba/qwen3.6-plus', 'alibaba/qwen3.6-27b', 'alibaba/qwen3.6-35b-a3b',
@@ -1103,6 +1104,7 @@ var Sovereign = {
         'kakao/kanana-flag-32.5b': 32.5,
         'kt/midm-k2.5-pro': 50, 'kt/midm-1.0': 11,
         'upstage/solar-open2-250b': 250, 'upstage/solar-open-100b': 102,
+        'alibaba/qwen3.8-max-preview': 2400, 'inclusionai/ling-3.0-flash': 124, 'poolside/laguna-s-2.1': 118,
         'naver/hyperclova-x': 100, 'naver/hyperclova-x-hcx-003': 80,
         'naver/hyperclova-x-dash': 8,
         'skt/ax-k1': 519,
