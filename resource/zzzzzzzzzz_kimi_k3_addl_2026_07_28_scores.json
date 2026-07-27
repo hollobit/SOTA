@@ -1,0 +1,29 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-28",
+    "sources": [
+      "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf",
+      "https://huggingface.co/moonshotai/Kimi-K3"
+    ],
+    "_note": "S210 Kimi K3 tech report re-analysis. Model already has 48 scores (mostly Artificial-Analysis-sourced). This adds NET-NEW benchmarks from Table 2 (main comparison), Table 5 (3rd-party) that Kimi K3 lacked; existing AA-sourced values (gpqa/hle/aa_lcr/scicode/critpt/gdpval/apex etc.) NOT overwritten to avoid clobbering with the report's own (slightly different) numbers. Skipped: Kimi in-house Table-3 benches (24/7 ClawBench, MIRA, KAET, CLIF, Swarm, Deep Research Bench, KWV, etc. — single-vendor, no cross-model value under strict attribution), cyber exploit suite (in-house, metric-ambiguous), Agent Arena (net-improvement scale conflict). Baselines (Fable 5 / GPT-5.6 Sol / Opus 4.8 / GPT-5.5 / GLM-5.2) are 2nd-hand -> not ingested."
+  },
+  "benchmarks": [
+    { "id": "research_rubrics", "name": "ResearchRubrics", "category": "agent", "metric": "score", "description": "Agentic deep-research benchmark graded against expert-aligned rubrics (Kimi K3 tech report Table 2). Higher is better." },
+    { "id": "saas_bench", "name": "SaaS-Bench", "category": "agent", "metric": "score", "description": "Agentic benchmark of realistic SaaS-application tasks (Kimi K3 tech report Table 2). Higher is better." },
+    { "id": "vals_index", "name": "Vals Index (GDP-weighted)", "category": "domain", "metric": "score", "description": "Vals AI GDP-weighted industry benchmark composite spanning professional/industry work (finance, legal, etc.), reported by Vals AI. Higher is better." }
+  ],
+  "scores": [
+    { "model": "moonshot/kimi-k3", "benchmark": "research_rubrics", "score": 76.2, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 2 (max effort)" },
+    { "model": "moonshot/kimi-k3", "benchmark": "mcpmark", "score": 94.5, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 2 MCPMark-Verified, 500-task public subset, Gemini 3.1 Pro judge" },
+    { "model": "moonshot/kimi-k3", "benchmark": "agents_last_exam", "score": 28.3, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 2; cited from official ALE leaderboard as of 2026-07-23 (Kimi K3 @ Kimi Code harness)" },
+    { "model": "moonshot/kimi-k3", "benchmark": "osworld_verified", "score": 84.8, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 2 (max effort)" },
+    { "model": "moonshot/kimi-k3", "benchmark": "osworld_v2", "score": 58.3, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 2 OSWorld 2.0" },
+    { "model": "moonshot/kimi-k3", "benchmark": "saas_bench", "score": 60.1, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 2 (max effort)" },
+    { "model": "moonshot/kimi-k3", "benchmark": "vals_corpfin_v2", "score": 71.6, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 2 CorpFin v2; cited from Vals AI" },
+    { "model": "moonshot/kimi-k3", "benchmark": "finance_agent_v2", "score": 54.4, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 2 Finance Agent v2; cited from Vals AI" },
+    { "model": "moonshot/kimi-k3", "benchmark": "vals_legal_research_bench", "score": 44.2, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 2 Legal Research Bench; cited from Vals AI" },
+    { "model": "moonshot/kimi-k3", "benchmark": "video_mme_w_sub", "score": 90.0, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 2 Video-MME (with subtitles), avg over 3 runs, no tools" },
+    { "model": "moonshot/kimi-k3", "benchmark": "mmvu", "score": 82.1, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 2, no tools" },
+    { "model": "moonshot/kimi-k3", "benchmark": "vals_index", "score": 74.7, "_source": "https://github.com/MoonshotAI/Kimi-K3/blob/main/k3_tech_report.pdf", "_note": "Table 5; Vals AI GDP-weighted index, ranked #2/39 (behind Fable 5 75.1) as of 2026-07-23" }
+  ]
+}
