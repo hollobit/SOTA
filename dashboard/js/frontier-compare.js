@@ -220,7 +220,6 @@ var FrontierCompare = {
         'xai/grok-code-fast-1',                   // AAII 29 coding edge
         'inclusionai/ring-2.6-1t',                // AAII 38 China 1T MoE
         'stepfun/step-3.7-flash',                 // AAII 43
-        'openbmb/minicpm-5-1b',                   // AAII 18 leading 1B open
         // 2026-05-28 Anthropic Claude Opus 4.8 — new flagship (SWE-Verified 88.6, USAMO 2026 96.7, GDPval-AA 1890 ELO)
         'anthropic/claude-opus-4.8',
         // 2026-05-05 Subquadratic SubQ 1M-Preview — first sub-quadratic frontier LLM, 12M ctx (RULER@128K 95.0, SWE-Verified 81.8, vendor-reported)
@@ -237,13 +236,11 @@ var FrontierCompare = {
         'google/gemini-3.1-pro-high (default)',   // S147 — Gemini 3.1 Pro high reasoning (DB id retains " (default)" suffix)
         'openai/gpt-5.5-instant',
         // 2026-05-06 Zyphra ZAYA1-8B — small MoE frontier on AMD hardware
-        'zyphra/zaya1-8b',
         // 2026-04 frontier launches (50+ scores each)
         'openai/gpt-5.5',
         'openai/gpt-5.5-pro',
         'moonshot/kimi-k3',  // 2026-07-16 S182 — first open 3T-class MoE; AAII v4.1 57 (#4/189), BrowseComp 91.2, GPQA-D 93.5
         'moonshot/kimi-k2.6',
-        'alibaba/qwen3.6-27b',
         'deepseek/deepseek-v4-pro-max',
         'deepseek/deepseek-v4-pro',
         'deepseek/deepseek-v4-flash',
@@ -277,7 +274,6 @@ var FrontierCompare = {
         'alibaba/qwen3.7-plus-preview',
         'alibaba/qwen3.7-plus',  // 2026-06-02 S46 — Qwen3.7-Plus GA (Multimodal Agent)
         'microsoft/mai-thinking-1',  // 2026-06-02 S48 — MAI-Thinking-1 35B/~1T MoE
-        'microsoft/mai-code-1-flash',  // 2026-06-02 S48 — MAI-Code-1-Flash 5B agentic
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-35b-a3b',
         'minimax/m3',  // 2026-06-01 S44 GA — SWE-Bench Pro 59.0% (surpasses GPT-5.5)
@@ -294,6 +290,7 @@ var FrontierCompare = {
         // Regional / secondary
         'lg/exaone-4.5-33b',
         'skt/ax-k1',
+        'upstage/solar-open2-250b',
         'upstage/solar-open-100b',
         'upstage/solar-pro-3',
         'google/gemma-4-31b',
@@ -303,12 +300,8 @@ var FrontierCompare = {
 
         // Korean sovereign foundation models — 독자 AI 파운데이션 모델 경쟁 (2024-2026)
         'naver/hyperclova-x-think-32b',
-        'naver/hyperclova-x-think-14b',
         'kakao/kanana-2-30b-a3b-thinking',
-        'kakao/kanana-1.5-8b',
-        'ncsoft/varco-vision-2.0-14b',
-        'trillionlabs/tri-21b',
-        'motif/motif-2-12.7b-reasoning',
+        'motif/motif-3-beta',
         'lg/exaone-4.0-32b',
         'skt/ax-4.0',
         'upstage/solar-pro-2',
@@ -322,41 +315,22 @@ var FrontierCompare = {
         // Apr 28-30 2026 additions
         'nvidia/nemotron-3-nano-omni',
         'reka/reka-edge-2603',
-        'google/gemma-4-26b-a4b',
-        'google/gemma-4-12b',  // 2026-06-03 S50 — Gemma 4 12B unified encoder-free multimodal (T/I/A)
         'nvidia/nemotron-3-ultra-550b-a55b',  // 2026-06-04 S54 — Nemotron 3 Ultra 550B/55B MoE AAII 48 #9/89, OpenMDW
         // 2026-06-06 S57 — China Mobile JT-35B-Flash AAII 36 #1/131 FREE on AA
         'china-mobile/jt-35b-flash',
         // 2026-06-09 S60 — Microsoft Phi-4 family AA Intelligence Index references
-        'microsoft/phi-4',                    // 14B base AAII 10
         'microsoft/phi-4-multimodal',         // 5.6B text+image+audio AAII 10
 
         // 2026-06-15 S119 — Edge LLM / SLM frontier (sub-12B leaders)
-        'microsoft/phi-4-mini-instruct',           // 3.8B GSM8K 88.6 / MATH 64.0 / MMLU-Pro 52.8 (sub-3B multi-bench leader)
         'microsoft/phi-4-mini-reasoning',          // MATH-500 94.6 / AIME-2024 57.5 (specialty)
         'microsoft/phi-4-mini-flash-reasoning',    // MATH-500 92.45 / AIME-2024 52.29
         'microsoft/bitnet-b1.58-2b-4t',            // 1.58-bit native (no FP16 weights)
-        'huggingface/smollm3-3b',                  // BFCL v3 92.3 — sub-3B tool-use SOTA OUTRANKS ALL FRONTIER
-        'huggingface/smollm2-1.7b-instruct',
         'google/gemma-3-270m',                     // True sub-3B
-        'google/gemma-3-1b-it',
-        'google/gemma-4-e2b',                      // AAII 15
-        'google/gemma-4-e4b',                      // AAII 19
-        'google/gemma-4-26b-a4b',                  // AAII 31 Pareto leader (3.8B active MoE)
         'ibm/granite-4.0-h-tiny',                  // 7B/1B-active MoE MMLU 68.65 / HumanEval 83
         'ibm/granite-4.0-h-micro',
         'ibm/granite-4.0-h-small',                 // HumanEval 88 / IFEval 87.6 (enterprise edge leader)
-        'ibm/granite-4.1-8b-instruct',             // MMLU 73.84 / HumanEval 87.20 / IFEval 87.06
-        'nvidia/nemotron-nano-9b-v2',              // MATH-500 97.8 / AIME-25 72.1 (hybrid Mamba sub-10B SOTA)
         'meta/mobilellm-pro',                      // 1.08B mobile R&D
         'meta/mobilellm-r1-950m',
-        'allenai/olmo-2-1124-7b-instruct',         // OLMo 2 7B
-        'allenai/olmo-2-1124-13b-instruct',        // OLMo 2 13B
-        'marin-community/marin-8b-base',           // Stanford Marin 8B (Deeper-Starling)
-        'mistralai/ministral-8b-instruct-2410',
-        'deepseek/deepseek-r1-distill-qwen-7b',    // MATH-500 92.8 + AIME24 55.5
-        'deepseek/deepseek-r1-distill-llama-8b',
-        'salesforce/llama-xlam-2-8b-fc-r',         // BFCL v3 72.04 tool-use
 
         // May 7 2026 — NVIDIA Nemotron Labs Elastic (3-in-1 nested 30B/23B/12B, ICML 2026)
         'nvidia/nemotron-labs-3-elastic-30b-a3b',
@@ -377,15 +351,7 @@ var FrontierCompare = {
         // May 2026 sovereign batch — global flagships
         'mistral/mistral-medium-3.5',
         'sber/gigachat-3.1-ultra',
-        'sber/gigachat-3.1-lightning',
-        'kakao/kanana-1.5-o-9.8b',
-        'dicta/dictalm-3.0-24b-thinking',
-        'dicta/dictalm-3.0-24b-base',
-        'dicta/dictalm-3.0-12b-instruct',
-        'dicta/dictalm-3.0-1.7b-thinking',
-        'cohere/tiny-aya-3b',
         'tii/falcon-ocr',
-        'ai-singapore/gemma-sea-lion-v4-4b-vl',
 
         // 2026-05-14 — Baidu ERNIE 5.1 (AIME26 99.6 w/ tools, LMArena Search Elo 1223)
         'baidu/ernie-5.1',
@@ -406,13 +372,11 @@ var FrontierCompare = {
         // Science FM frontier (Apr-May 2026 batch)
         'arc-institute/evo-2',
         'deepmind/alphaproteo',
-        'google/txgemma-27b',
 
         // 2026-05 sovereign coverage additions
         'swiss-ai/apertus-70b', 'swiss-ai/apertus-70b-instruct',
         'cohere/command-a', 'cohere/command-a-reasoning',
         'pfn/plamo-2.1-prime', 'ntt/tsuzumi-2',
-        'opengpt-x/teuken-7b-instruct-v0.6',
         'mistral/mistral-medium-3.5-eagle',
 
         // 2026-05-20 Qwen3.7-Max official launch + May 25 dated build
@@ -429,11 +393,8 @@ var FrontierCompare = {
         'google/gemini-3-flash-thinking-minimal',
 
         // 2026-05-21 Microsoft Fara 1.5 computer-use agent family (Qwen3.5-based)
-        'microsoft/fara1.5-27b', 'microsoft/fara1.5-9b',
-        'microsoft/fara1.5-4b', 'microsoft/fara-7b',
 
         // 2026-06-19 S136 — Small reasoning leaders (VibeThinker-3B AIME26 94.3 / GLM-4.1V-9B-Thinking)
-        'weibo/vibethinker-3b', 'thudm/glm-4.1v-9b-thinking',
 
         // 2026-05-22 NexgeneAI Asa-W1 medical reasoning foundational model
         'nexgene-ai/asa-w1',

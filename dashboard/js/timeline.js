@@ -996,10 +996,13 @@ var Timeline = {
             if (s.indexOf('/') >= 0) s = s.split('/').pop();  // placeholder id -> last segment
             var vlow = (vend || '').toLowerCase();
             s = s.replace(/\s*\((max|high|xhigh|medium|low|thinking|reasoning|preview|beta)\)\s*$/i, '');
-            // strip a leading vendor token if the name starts with it
-            var first = s.split(' ')[0].toLowerCase();
-            if (vlow && (vlow.indexOf(first) === 0 || first.indexOf(vlow.split(' ')[0]) === 0)) {
-                s = s.split(' ').slice(1).join(' ') || s;
+            // strip a leading vendor token if the name starts with it — but only
+            // when the remainder is still meaningful (has letters, not just "3").
+            var parts = s.split(' ');
+            var first = parts[0].toLowerCase();
+            if (parts.length > 1 && vlow && (vlow.indexOf(first) === 0 || first.indexOf(vlow.split(' ')[0]) === 0)) {
+                var rest = parts.slice(1).join(' ');
+                if (/[a-z]/i.test(rest)) s = rest;   // keep full name if rest is purely numeric (e.g. "Motif 3")
             }
             return s;
         }

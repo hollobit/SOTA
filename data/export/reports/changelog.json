@@ -2,6 +2,12 @@
   {
     "date": "2026-07-27",
     "type": "feature",
+    "title": "Frontier 정의 정합화: Solar/Motif flagship 추가 + 30B 미만 제거",
+    "detail": "FrontierCompare.FRONTIER_MODELS 큐레이션 정비. (1) Upstage Solar·Motif 최신 flagship 추가: solar-open2-250b(250B), motif-3-beta(314B-A13B). (2) 'frontier=대형 플래그십' 기준 정합화 — 30B 미만(dense/total) 41개 라인 제거(dictalm-3.0, phi-4/mini, tiny-aya, gemma-4 소형, kanana-1.5, motif-2-12.7b, deepseek-r1-distill, olmo-2, nemotron-nano, qwen3.6-27b 등). MoE는 total 기준 유지(motif-3 314B-A13B 등), GPT/Claude/Gemini 등 비공개 파라미터는 유지. FRONTIER_MODELS 201→157. Frontier Version-Up 타임라인·frontier-compare 탭에 자동 반영(Upstage: Solar Pro 3→Solar Open 2, Motif: Motif 3). 라벨 축약 로직 개선(숫자만 남는 과도 축약 방지)."
+  },
+  {
+    "date": "2026-07-27",
+    "type": "feature",
     "title": "Timeline: 프론티어 버전업 타임라인 그래프 신규 추가",
     "detail": "Timeline 탭에 신규 그래프 '🚀 Frontier Version-Up Timeline' 추가. Y축=개발사(벤더), X축=출시일로 프론티어 모델(FrontierCompare.FRONTIER_MODELS 큐레이션)만 대상으로 각 개발사의 version-up 추이를 벤더별 스윔레인+시간순 연결선으로 시각화(점=출시, 선=버전 진행, hover=모델명/날짜). ECharts(time×category축), 벤더는 id-prefix 기준 정규화(openai/OpenAI 등 파편 통합, 36개→canonical). 3/6/12개월 기간 토글(기본 6개월), 벤더 수에 따라 차트 높이 동적 조정. frontier-compare.js를 timeline 모듈 의존성에 추가. 기존 월별 카드 인포그래픽 위에 배치."
   },
