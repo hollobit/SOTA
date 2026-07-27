@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-27",
+    "type": "feature",
+    "title": "Timeline: 프론티어 버전업 타임라인 그래프 신규 추가",
+    "detail": "Timeline 탭에 신규 그래프 '🚀 Frontier Version-Up Timeline' 추가. Y축=개발사(벤더), X축=출시일로 프론티어 모델(FrontierCompare.FRONTIER_MODELS 큐레이션)만 대상으로 각 개발사의 version-up 추이를 벤더별 스윔레인+시간순 연결선으로 시각화(점=출시, 선=버전 진행, hover=모델명/날짜). ECharts(time×category축), 벤더는 id-prefix 기준 정규화(openai/OpenAI 등 파편 통합, 36개→canonical). 3/6/12개월 기간 토글(기본 6개월), 벤더 수에 따라 차트 높이 동적 조정. frontier-compare.js를 timeline 모듈 의존성에 추가. 기존 월별 카드 인포그래픽 위에 배치."
+  },
+  {
+    "date": "2026-07-27",
     "type": "ingest",
     "title": "S209 — Timeline 누락 모델 45종 release_date 교정",
     "detail": "Timeline 메뉴가 canonical release_date 있는 모델만 표시 → 주요 flagship 다수가 release_date=None/stub이라 누락됨(제외 notable 60종). 45종 날짜 교정: 형제/suffix 상속 26종(gpt-5.5-xhigh←gpt-5.5 2026-04-23, opus-4.7-thinking←opus-4.7 등) + AA/WebSearch 소싱 19종(claude-opus-4.8 2026-05-28[AA], mythos-5 2026-06-09, nemotron-3-ultra 2026-06-04, granite-4.0 2025-10-02, mimo-v2-pro 2026-03-18/flash 2026-02-06, qwen3.5-122b 2026-02-23, olmo-2-1124 2024-11, mistral-large 2024-07 등). notable-excluded 60→17. 남은 것은 미디어(3D/video/audio/image, 전용 탭 표시)·임베딩·baseline. model_metadata_fix(마지막 로드)에 전 필드 병합 반영. Timeline 실측: opus-4.8/mythos-5/nemotron/mimo/granite/qwen3.5 전부 포함 확인."
