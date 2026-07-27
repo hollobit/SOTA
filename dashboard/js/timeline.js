@@ -232,6 +232,9 @@ var Timeline = {
         var svgBtn = document.getElementById('timeline-download-svg');
         var csvBtn = document.getElementById('timeline-download-csv');
         if (rangeSel) rangeSel.addEventListener('change', function() { self._renderInfographic(); });
+
+        var frontierRangeSel = document.getElementById('timeline-frontier-range');
+        if (frontierRangeSel) frontierRangeSel.addEventListener('change', function() { self._renderFrontierVersionTimeline(); });
         if (pngBtn) pngBtn.addEventListener('click', function() { self._downloadInfographic('png'); });
         if (svgBtn) svgBtn.addEventListener('click', function() { self._downloadInfographic('svg'); });
         if (csvBtn) csvBtn.addEventListener('click', function() { self._downloadCSV(); });
@@ -938,7 +941,166 @@ var Timeline = {
         document.body.removeChild(a);
     },
 
+    // Frontier Version-Up Timeline — vendor swimlanes (Y=developer, X=release date),
+    // frontier models only, connected chronologically to show version-up progression.
+    // Period toggle: 3 / 6 / 12 months.
+    _renderFrontierVersionTimeline: function() {
+        var host = document.getElementById('timeline-frontier-chart');
+        if (!host) return;
+        var note = document.getElementById('timeline-frontier-note');
+        var self = this;
+
+        // Frontier set = curated FrontierCompare.FRONTIER_MODELS (loaded as a timeline dep).
+        var frontierIds = (typeof FrontierCompare !== 'undefined' && FrontierCompare.FRONTIER_MODELS)
+            ? FrontierCompare.FRONTIER_MODELS : null;
+        if (!frontierIds) {
+            if (note) note.textContent = 'Frontier model list unavailable.';
+            return;
+        }
+        var frontierSet = {};
+        frontierIds.forEach(function(id) { frontierSet[id] = true; });
+
+        var rangeSel = document.getElementById('timeline-frontier-range');
+        var monthsBack = parseInt((rangeSel || {}).value || '6', 10);
+        var now = new Date();
+        var cutoff = new Date(now.getFullYear(), now.getMonth() - monthsBack, now.getDate());
+
+        var byModel = {};
+        this._models.forEach(function(m) { byModel[m.id] = m; });
+
+        // Vendor display name: group by canonical developer via the id prefix
+        // (model.vendor strings are inconsistent — "openai" vs "OpenAI" vs
+        // "Google DeepMind" — which fragments the lanes). Map prefix -> canonical.
+        var VENDOR_ALIAS = {
+            openai: 'OpenAI', anthropic: 'Anthropic', google: 'Google', 'google-deepmind': 'Google',
+            xai: 'xAI', deepseek: 'DeepSeek', alibaba: 'Alibaba', qwen: 'Alibaba',
+            meta: 'Meta', moonshot: 'Moonshot', cohere: 'Cohere', mistral: 'Mistral',
+            meituan: 'Meituan', sakana: 'Sakana', inclusionai: 'inclusionAI', stepfun: 'StepFun',
+            zhipu: 'Zhipu', 'z-ai': 'Zhipu', openbmb: 'OpenBMB', minimax: 'MiniMax',
+            microsoft: 'Microsoft', nvidia: 'NVIDIA', ibm: 'IBM', kakao: 'Kakao',
+            lg: 'LG AI', tii: 'TII', baidu: 'Baidu', tencent: 'Tencent', xiaomi: 'Xiaomi',
+            allenai: 'Allen AI', zyphra: 'Zyphra', subquadratic: 'Subquadratic', weibo: 'Weibo AI',
+            reka: 'Reka', sber: 'Sber AI', kt: 'KT', aisingapore: 'AI Singapore',
+            'ai-singapore': 'AI Singapore', nexgeneai: 'NexgeneAI', 'nexgene-ai': 'NexgeneAI',
+            'china-mobile': 'China Mobile', poolside: 'Poolside'
+        };
+        function vendorName(m) {
+            var pfx = (m.id.split('/')[0] || '').toLowerCase();
+            if (VENDOR_ALIAS[pfx]) return VENDOR_ALIAS[pfx];
+            var s = pfx.replace(/-/g, ' ');
+            return s.charAt(0).toUpperCase() + s.slice(1);
+        }
+        // Compact label: drop the vendor word(s) from the model name.
+        function shortName(name, vend) {
+            var s = name || '';
+            if (s.indexOf('/') >= 0) s = s.split('/').pop();  // placeholder id -> last segment
+            var vlow = (vend || '').toLowerCase();
+            s = s.replace(/\s*\((max|high|xhigh|medium|low|thinking|reasoning|preview|beta)\)\s*$/i, '');
+            // strip a leading vendor token if the name starts with it
+            var first = s.split(' ')[0].toLowerCase();
+            if (vlow && (vlow.indexOf(first) === 0 || first.indexOf(vlow.split(' ')[0]) === 0)) {
+                s = s.split(' ').slice(1).join(' ') || s;
+            }
+            return s;
+        }
+
+        // Collect frontier entries in range, grouped by vendor.
+        var vendorLanes = {};   // vendor -> [{ts, dateMs, model, short}]
+        Object.keys(frontierSet).forEach(function(id) {
+            var m = byModel[id];
+            if (!m) return;
+            var d = self._getReleaseDate(m);   // canonical release_date/released_at only
+            if (!d) return;
+            var dt = new Date(d.length === 7 ? d + '-01' : d);
+            if (isNaN(dt.getTime()) || dt < cutoff) return;
+            var vend = vendorName(m);
+            (vendorLanes[vend] = vendorLanes[vend] || []).push({
+                dateMs: dt.getTime(),
+                model: m,
+                name: m.name || m.id,
+                short: shortName(m.name || m.id, vend)
+            });
+        });
+
+        var vendors = Object.keys(vendorLanes);
+        if (vendors.length === 0) {
+            var chart0 = (typeof Charts !== 'undefined') ? Charts._getOrCreate('timeline-frontier-chart') : null;
+            if (chart0) chart0.clear();
+            if (note) note.textContent = '선택한 기간(' + monthsBack + '개월)에 출시일이 있는 프론티어 모델이 없습니다.';
+            return;
+        }
+
+        // Y-axis order: most-recently-active vendor at TOP (largest max date last in
+        // the category array, since ECharts category axis renders index 0 at bottom).
+        vendors.sort(function(a, b) {
+            var am = Math.max.apply(null, vendorLanes[a].map(function(e) { return e.dateMs; }));
+            var bm = Math.max.apply(null, vendorLanes[b].map(function(e) { return e.dateMs; }));
+            return am - bm;   // ascending -> most recent ends up highest index (top)
+        });
+
+        // One line series per vendor; points sorted chronologically = version-up path.
+        var series = vendors.map(function(vend) {
+            var pts = vendorLanes[vend].slice().sort(function(a, b) { return a.dateMs - b.dateMs; });
+            return {
+                name: vend,
+                type: 'line',
+                lineStyle: { width: 2, opacity: 0.55 },
+                symbol: 'circle',
+                symbolSize: 11,
+                emphasis: { focus: 'series' },
+                label: {
+                    show: true,
+                    position: 'top',
+                    fontSize: 9,
+                    color: '#cbd5e1',
+                    formatter: function(p) { return p.data.short; }
+                },
+                labelLayout: { hideOverlap: true },
+                data: pts.map(function(e) {
+                    return { value: [e.dateMs, vend], short: e.short, fullName: e.name };
+                })
+            };
+        });
+
+        // Dynamic height so all vendor lanes are legible (~24px each).
+        host.style.height = Math.max(520, vendors.length * 24 + 90) + 'px';
+        var chart = (typeof Charts !== 'undefined') ? Charts._getOrCreate('timeline-frontier-chart') : null;
+        if (!chart) return;
+        chart.resize();
+        chart.setOption({
+            backgroundColor: 'transparent',
+            grid: { left: 130, right: 40, top: 30, bottom: 50 },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(p) {
+                    var d = new Date(p.data.value[0]);
+                    var ds = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+                    return '<b>' + p.data.fullName + '</b><br/>' + p.seriesName + ' · ' + ds;
+                }
+            },
+            xAxis: {
+                type: 'time',
+                axisLabel: { color: '#94a3b8', fontSize: 11 },
+                splitLine: { show: true, lineStyle: { color: '#1f2937' } }
+            },
+            yAxis: {
+                type: 'category',
+                data: vendors,
+                axisLabel: { color: '#cbd5e1', fontSize: 11 },
+                splitLine: { show: true, lineStyle: { color: '#1f2937' } }
+            },
+            series: series
+        }, true);
+        chart.resize();
+
+        if (note) {
+            var total = vendors.reduce(function(s, v) { return s + vendorLanes[v].length; }, 0);
+            note.textContent = '최근 ' + monthsBack + '개월 · ' + vendors.length + '개 개발사 · 프론티어 모델 ' + total + '종 (FRONTIER_MODELS 큐레이션 기준). 점=출시, 선=버전업 진행.';
+        }
+    },
+
     render: function() {
+        this._renderFrontierVersionTimeline();
         this._renderInfographic();
         var container = document.getElementById('timeline-container');
         if (!container) return;

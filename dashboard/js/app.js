@@ -624,7 +624,7 @@ var App = {
         // leaves window.ImageGen undefined and VideoGen.render() early-returns
         // to a blank pane.
         'video-gen':       ['js/image-gen.js', 'js/video-gen.js'],
-        timeline:          ['js/timeline.js']
+        timeline:          ['js/frontier-compare.js', 'js/timeline.js']
     },
 
     // Per-tab init runner — called once the module's scripts are loaded
