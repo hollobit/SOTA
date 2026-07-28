@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-28",
+    "type": "feature",
+    "title": "S211 — in-house 벤치 capture-quarantine-audit (스킵 대신 정리·검증)",
+    "detail": "in-house/단일-벤더 벤치를 '스킵'하지 않고 '포착·격리·주기검증'하는 워크플로 도입. (1) 포착: Kimi K3 Table 3 in-house 벤치 13종(ClawBench·MIRA·KAET·CLIF·Agentic Vision·Swarm·Online Exp·Deep Research·Finance·KWV·Agent Behavior·Faithfulness·Chat All-in-One)을 category='in-house' 마커로 수집, Table 3 비교값(5-6모델, Kimi-measured single-source, provenance 명시) 67 scores 보존 — 손실 0. (2) 격리: frontier-compare/sovereign은 벤치 id 화이트리스트라 in-house 마커 벤치가 자동 제외(헤드라인 clutter 0). (3) 감사: scripts/benchmark_watchlist.py 신설 — category='in-house'(13) + single-model(1386) 벤치를 리포트(data/export/reports/benchmark_watchlist.json)로 나열해 매 세션 검증(독립 2차 출처 생기면 promote). ExploitBench(cyber)는 metric 미확정이라 watchlist-only. Kimi K3 표시 점수 60→73."
+  },
+  {
+    "date": "2026-07-28",
     "type": "ingest",
     "title": "S210b — Kimi K3 메타데이터 교정 (params 2.8T-A~50B→2.78T-A104B)",
     "detail": "테크리포트 재점검(전 47p): Tables 1-5가 전부이며 벤치 테이블(2-5)은 S210에서 커버 완료. 누락 발견=메타데이터 오류. Table 1(아키텍처 명세)에 따라 kimi-k3 파라미터 '2.8T-A~50B'→'2.78T-A104B'(total 2.78T/activated 104.2B, 기존 activated ~50B는 오류), type 'open'→'open-weight'(공식 weights 공개), modalities +video(MoonViT-V2 native multimodal, Video-MME/MMVU 보유). 93 layers, Hybrid KDA-MLA(69 KDA+24 MLA), 896 routed experts/16 active, 1M ctx 확인. 나머지 페이지(§7 case studies: GPU kernel/chip design 등)엔 표준 벤치 점수 테이블 없음."
