@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-28",
+    "sources": [
+      "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/"
+    ],
+    "_note": "S212d — Gemini 3.5 Flash Cyber had 0 scores (registered stub at S197 because CyberGym was only qualitative). Re-checking the primary DeepMind blog: the ONE clean primary-source numeric model result is the V8 JavaScript Engine vuln-discovery count: 3.5 Flash Cyber 55 unique confirmed issues vs mainline 3.5 Flash 47 vs Opus 4.6 36 (Google's own eval, all three measured by Google -> baselines are integral to this bench, ingested). NOT ingested: (a) CyberGym — no numeric value in primary text and it is a CodeMender SYSTEM result (CodeMender calls 3.5 Flash Cyber up to 5x for a combined report); the ~83.2% seen in secondary write-ups is a chart/system value, not a clean single-model number (same strict-attribution reasoning as MDASH CyberGym for MAI-Cyber-1-Flash). (b) Big Sleep pass@1 — primary text says only 'significantly surpassed mainline'; numbers exist only in a chart (secondary sources cite 72% vs 36%) -> skipped for strict attribution."
+  },
+  "benchmarks": [
+    { "id": "v8_confirmed_vulns_google", "name": "V8 JavaScript Engine — Unique Confirmed Vulnerabilities (Google eval)", "category": "cyber", "metric": "confirmed_issues", "description": "Number of unique confirmed security issues a model discovers when testing the (highly complex) V8 JavaScript engine across a fixed number of invocations. Google DeepMind Gemini 3.5 Flash Cyber blog. Higher is better." }
+  ],
+  "scores": [
+    { "model": "google/gemini-3.5-flash-cyber", "benchmark": "v8_confirmed_vulns_google", "score": 55, "unit": "issues", "_source": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/", "_note": "55 unique confirmed issues on V8 (fixed invocation budget); found 10 issues the other models missed. Primary DeepMind blog." },
+    { "model": "google/gemini-3.5-flash", "benchmark": "v8_confirmed_vulns_google", "score": 47, "unit": "issues", "_source": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/", "_note": "Mainline 3.5 Flash baseline on Google's V8 eval." },
+    { "model": "anthropic/claude-opus-4.6", "benchmark": "v8_confirmed_vulns_google", "score": 36, "unit": "issues", "_source": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/", "_note": "Opus 4.6 baseline on Google's V8 eval (Google-measured)." }
+  ]
+}

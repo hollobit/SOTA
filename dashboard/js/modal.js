@@ -2610,6 +2610,11 @@ var Modal = {
         var anySafety = safety.aisi_cyber_tier || safety.cbrn_risk || safety.self_reported_safety_card;
         var anyQuant = quants.length > 0;
         var anyProv = providers.length > 0;
+        // Lineage + cost render independently of architecture data — a model may have
+        // a lineage/pricing entry but no architecture block (e.g. cyber fine-tunes).
+        // Render them BEFORE the architecture early-return so they are never skipped.
+        Modal._renderLineage(enrichSlot, modelId, entry);
+        Modal._renderCostCalculator(enrichSlot, modelId, entry);
         if (!(anyArch || anyTrain || anySafety || anyQuant || anyProv)) return;
 
         var archBody = Modal._collapsibleSection(enrichSlot, 'Architecture / Training / Safety', 'architecture', false);
@@ -2703,9 +2708,6 @@ var Modal = {
         }
         if (anyProv) row('API providers', providers);
         archBody.appendChild(card);
-
-        Modal._renderLineage(enrichSlot, modelId, entry);
-        Modal._renderCostCalculator(enrichSlot, modelId, entry);
     },
 
     _renderCostCalculator: function(enrichSlot, modelId, entry) {

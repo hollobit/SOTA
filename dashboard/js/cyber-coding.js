@@ -63,7 +63,9 @@ var CyberCoding = {
         'oss_fuzz_write_primitive_or_better_0_4', 'firefox_147_zero_day_exploit_full_working_exploit_rate',
         'cybergym_pass_1_targeted_vuln_reproduction_1507_tasks',
         // 2026-07-27 S212 — Microsoft MAI-Cyber-1-Flash model card (External Cyber Benchmark Results)
-        'crsbench', 'cyberseceval4_threat_intel', 'cyberseceval4_malware_analysis'
+        'crsbench', 'cyberseceval4_threat_intel', 'cyberseceval4_malware_analysis',
+        // 2026-07-28 S212d — Google Gemini 3.5 Flash Cyber (DeepMind blog) V8 vuln-discovery count
+        'v8_confirmed_vulns_google'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
         // 2026-05-28 AgentDoG 1.5 (arxiv 2605.29801, Shanghai AI Lab) — agentic-trajectory safety judging
@@ -306,6 +308,11 @@ var CyberCoding = {
     ],
 
     BENCH_DESCRIPTIONS: {
+        v8_confirmed_vulns_google: {
+            name: 'V8 Engine — Confirmed Vulns (Google)',
+            desc: 'V8 JavaScript 엔진에서 고정 호출 예산 내 모델이 발견한 고유 확인(confirmed) 취약점 수. Google DeepMind Gemini 3.5 Flash Cyber 평가. 높을수록 우수(개수).',
+            source: 'deepmind.google/blog/introducing-gemini-3-5-flash-cyber'
+        },
         crsbench: {
             name: 'CRSBench',
             desc: 'Full-pipeline Cyber Reasoning System 평가 (discovery→validation→proof-of-vulnerability). MAI-Cyber-1-Flash 모델 카드 Section 3, POV=1200 구성.',
@@ -580,6 +587,7 @@ var CyberCoding = {
         'microsoft/mai-thinking-1',  // 2026-06-02 S48 — MS MAI Thinking-1 35B/1T MoE
         'microsoft/mai-code-1-flash',  // 2026-06-02 S48 — MS MAI Code-1-Flash 5B
         'microsoft/mai-cyber-1-flash',  // 2026-07-27 S212 — MS cyber-specialized fine-tune of MAI-Code-1-Flash (137B-A5B); CVEBench 31.4 / CRSBench 65.1 / ExploitGym 0 (defensive)
+        'google/gemini-3.5-flash-cyber',  // 2026-07 S212d — Google CodeMender-embedded cyber variant of Gemini 3.5 Flash; V8 55 confirmed vulns
         'google/gemma-4-12b',  // 2026-06-03 S50 — Gemma 4 12B encoder-free multimodal
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-27b',
