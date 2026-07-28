@@ -1,0 +1,22 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-28",
+    "sources": ["https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf"],
+    "_note": "S211b capture-quarantine-audit applied to OTHER models' previously-skipped in-house benches. Claude Opus 5 system card §2.3.5 task-based AI-R&D evaluations (Anthropic-internal, cross-model table: Opus 4.7 / Mythos 5 / Opus 5) — skipped in S206c as 'niche RSP, speedup-multiplier units', now CAPTURED with category='in-house' (time_series_forecasting, llm_training_speedup new; kernel_task_speedup already existed). Values are Anthropic-measured single-source. Quarantined from headline whitelists; on the benchmark watchlist. NOTE: most other past 'not-ingested' items were baseline COLUMNS of standard public benchmarks (correctly sourced from each model's own card) or safety-adversarial evals (SHADE-Arena/LinuxArena, bio preparedness) — those are not in-house capability benches and are not captured here."
+  },
+  "benchmarks": [
+    { "id": "time_series_forecasting", "name": "Time Series Forecasting (AI-R&D, hard variant)", "category": "in-house", "metric": "score", "description": "Anthropic-internal AI-R&D task-based eval (Claude Opus 5 system card §2.3.5): MSE-based hard time-series forecasting used as an AI-R&D acceleration rule-out task. PROVENANCE: vendor-internal single-source; quarantined + on benchmark watchlist." },
+    { "id": "llm_training_speedup", "name": "LLM Training Speedup (AI-R&D, easy, avg x)", "category": "in-house", "metric": "speedup_x", "description": "Anthropic-internal AI-R&D task-based eval (Claude Opus 5 system card §2.3.5): average training speedup multiplier on the easy LLM-training task (>4x = 4-8h human-effort equivalent). PROVENANCE: vendor-internal single-source; quarantined + on benchmark watchlist." }
+  ],
+  "scores": [
+    { "model": "anthropic/claude-opus-5", "benchmark": "kernel_task_speedup", "score": 449.46, "unit": "speedup_x", "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf", "_note": "§2.3.5 Kernel task best speedup, standard scaffold; Anthropic-internal (300x=40h eq)" },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "kernel_task_speedup", "score": 371.75, "unit": "speedup_x", "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf", "_note": "§2.3.5 (Anthropic-measured comparison, single-source)" },
+    { "model": "anthropic/claude-mythos-5", "benchmark": "kernel_task_speedup", "score": 430.93, "unit": "speedup_x", "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf", "_note": "§2.3.5 (Anthropic-measured comparison, single-source)" },
+    { "model": "anthropic/claude-opus-5", "benchmark": "time_series_forecasting", "score": 5.68, "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf", "_note": "§2.3.5 hard variant (<5.3 = 40h eq)" },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "time_series_forecasting", "score": 4.78, "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf" },
+    { "model": "anthropic/claude-mythos-5", "benchmark": "time_series_forecasting", "score": 4.51, "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf" },
+    { "model": "anthropic/claude-opus-5", "benchmark": "llm_training_speedup", "score": 68.54, "unit": "speedup_x", "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf", "_note": "§2.3.5 easy variant avg speedup" },
+    { "model": "anthropic/claude-opus-4.7", "benchmark": "llm_training_speedup", "score": 50.67, "unit": "speedup_x", "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf" },
+    { "model": "anthropic/claude-mythos-5", "benchmark": "llm_training_speedup", "score": 69.61, "unit": "speedup_x", "_source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf" }
+  ]
+}
