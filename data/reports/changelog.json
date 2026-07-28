@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-28",
+    "type": "ingest",
+    "title": "S212f — Kakao Kanana 2 SLM (1.3B/3B, base+instruct) 신규 4모델",
+    "detail": "Kakao Kanana 2 소형 LLM 4종 신규 수집(2026-07-27, Kanana License, 32k ctx, Qwen3-backbone 3:1 SWA/full-attention hybrid, Kakao 유저데이터 미사용). base 14벤치 + instruct 16벤치 = 60 scores. HF 카드 5개 링크(tech blog + 4 HF). 신규 벤치 7종: KoSimpleQA(ko_simpleqa)·MATH-Ko(math_ko)·MBPP-Ko(mbpp_ko)·RULER-32K(ruler_32k)·IHEval(iheval)·KMMLU-CoT(kmmlu_cot)·HAERAE-CoT(haerae_cot). CoT 한국어 변종은 plain과 별도 ID(기존 mmlu vs mmlu_cot 관례). Qwen3-1.7B/Qwen3.5-2B baseline 컬럼은 2차 출처라 미수집. Sovereign Korea 리전에 4모델 추가 + korean suite에 신규 한국어 벤치 5종·note 갱신 + KNOWN_PARAMS(1.3/3B)·RELEASE_DATES 반영. <30B라 frontier 제외. tech blog seed_sources·Resources 등록."
+  },
+  {
+    "date": "2026-07-28",
     "type": "feature",
     "title": "Overview 카테고리 분류 URL 상태 인코딩 (공유 가능)",
     "detail": "Overview 메뉴의 SOTA 카테고리 분류 선택을 URL 해시에 인코딩. 카테고리 pill 선택 시 #overview?cat=<category>, 그룹(A–D/E–H 등) 선택 시 &grp=<group> 추가(기본값 top/All은 생략해 bare #overview로 축소). 해당 URL로 재접속 시 카테고리 필터·그룹·테이블 상태가 그대로 복원됨(_syncOverviewHash/_applyOverviewHash, replaceState라 hashchange 미발생). Leaderboard의 #leaderboard?cat=... 해시 패턴과 일관. 공유·북마크 가능."
