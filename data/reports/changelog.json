@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-28",
+    "type": "feature",
+    "title": "Overview 카테고리 분류 URL 상태 인코딩 (공유 가능)",
+    "detail": "Overview 메뉴의 SOTA 카테고리 분류 선택을 URL 해시에 인코딩. 카테고리 pill 선택 시 #overview?cat=<category>, 그룹(A–D/E–H 등) 선택 시 &grp=<group> 추가(기본값 top/All은 생략해 bare #overview로 축소). 해당 URL로 재접속 시 카테고리 필터·그룹·테이블 상태가 그대로 복원됨(_syncOverviewHash/_applyOverviewHash, replaceState라 hashchange 미발생). Leaderboard의 #leaderboard?cat=... 해시 패턴과 일관. 공유·북마크 가능."
+  },
+  {
+    "date": "2026-07-28",
     "type": "ingest",
     "title": "S212e — Timeline 출시일 검증·보정 (frontier 8건)",
     "detail": "Timeline frontier 모델 158개 출시일 검증. 명백한 오류 5건 수정: STUB(2026-01-01/2025-01-01) 3건 — gpt-5.4-high→2026-03-05, gpt-5.5-codex→2026-04-23, gemini-3.1-deep-think→2026-02-19(각 base 모델 출시일 정렬); NULL 2건 — o3-pro→2025-06-10, deepseek-v3.2-exp→2025-09-29. 추가 정밀화 3건(YYYY-MM→일자, effort/thinking 변종은 base와 동시출시): gpt-5.4-medium→2026-03-05, gpt-5.4-mini-high→2026-03-17, claude-3.7-sonnet-thinking→2025-02-24. 일부 이름도 정리(GPT-5.5-Codex, Gemini 3.1 Deep Think, DeepSeek-V3.2-Exp). 나머지 21개 YYYY-MM 부분날짜(preview/beta/research artifact)는 crisp GA일이 없어 월 단위 유지(day 조작 금지). metadata_fix 파일로 durable 반영."
