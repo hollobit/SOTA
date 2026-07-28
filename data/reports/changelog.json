@@ -2,6 +2,12 @@
   {
     "date": "2026-07-28",
     "type": "ingest",
+    "title": "S212 — Microsoft MAI-Cyber-1-Flash 신규 모델 + 외부 사이버 벤치 5종",
+    "detail": "Microsoft MAI-Cyber-1-Flash(2026-07-27) 모델 카드·뉴스·모델 페이지 분석. 신규 모델 등록: MAI-Code-1-Flash의 사이버 특화 fine-tune(137B total/5B active MoE, 256k ctx, MAI-Thinking-1 계보), proprietary·Azure AI Foundry Private Preview(dual-use 접근 제한). Model-Only External Cyber Benchmark(단일 모델, terminal harness) 5종 수집: CVEBench 31.4%, CyberSecEval4 Threat-Intel 55.3% / Malware-Analysis 33.0%, CRSBench 65.1%(POV=1200), ExploitGym 0%(Kernel/Userspace/Browser 전부 0 — security-first 방어형 보정). 카드 fraction은 기존 cvebench/exploitgym %-스케일에 맞춰 x100 저장. CyberGym 88.4→95.95%는 MDASH 시스템(100+ agents + MAI-Cyber-1-Flash + GPT-5.4) 점수라 단일 모델 귀속 불가 → strict-attribution상 제외. CyberSecEval4 Threat-Intel/Malware-Analysis·CRSBench 3종은 신규 벤치로 등록하고 cyber-coding 탭 CYBER_BENCHMARKS에 노출. MAI-Thinking-1(109p 리포트 Table 11/12) 재검증: 기존 38개 점수가 리포트 전 벤치 커버 → net-new 없음. 모델 카드·테크리포트 PDF resource/ 저장 + Resources 탭·seed_sources 등록."
+  },
+  {
+    "date": "2026-07-28",
+    "type": "ingest",
     "title": "S211b — 타 모델 in-house 스킵분 반영: Opus 5 AI-R&D 벤치 포착",
     "detail": "S211 capture-quarantine-audit를 다른 모델의 과거 in-house 스킵분에 적용. 분석 결과 대부분의 과거 '2차 미수집'은 표준 공개 벤치의 baseline 컬럼(각 모델 자체 카드에서 소싱하는 게 맞음, in-house 아님)이거나 safety-adversarial eval(SHADE-Arena/LinuxArena·bio preparedness)이라 capability in-house가 아님. 명확한 in-house capability 스킵=Claude Opus 5 §2.3.5 task-based AI-R&D(Anthropic-internal, Opus 4.7/Mythos 5/Opus 5 비교표) — S206c에서 'niche RSP·speedup 단위'로 스킵했던 것을 category='in-house'로 포착(kernel_task_speedup 기존+Opus값, time_series_forecasting·llm_training_speedup 신규). in-house 벤치 13→15. watchlist 갱신."
   },
