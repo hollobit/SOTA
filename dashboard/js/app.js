@@ -354,6 +354,15 @@ var App = {
             return;
         }
 
+        // Overview with category classification query: #overview?cat=...&grp=...
+        if (hash.indexOf('overview?') === 0) {
+            var query = hash.substring(hash.indexOf('?') + 1);
+            this._applyOverviewHash(query);
+            this._activateTab('overview');
+            this.renderOverview();
+            return;
+        }
+
         // Tab navigation
         var tabBtn = document.querySelector('.tab-btn[data-tab="' + hash + '"]');
         if (tabBtn) {
@@ -1195,10 +1204,45 @@ var App = {
         try { self._renderLeaderboardCards(); } catch(e) { console.warn('Leaderboard cards error:', e); }
         try { self._renderRecentChanges(); } catch(e) { console.warn('Recent changes error:', e); }
         try { self._renderRecentDataFeed(); } catch(e) { console.warn('Recent data feed error:', e); }
+        // Keep the URL in sync with the active category classification so it is
+        // always shareable (replaceState — does not trigger hashchange).
+        try { self._syncOverviewHash(); } catch(e) {}
     },
 
     _sotaCategoryFilter: null,
     _sotaCategoryGroup: 'top',   // 'top' | 'all' | 'A-D' | 'E-H' | 'I-L' | 'M-P' | 'Q-T' | 'U-Z' | '#'
+
+    // Build "#overview?cat=...&grp=..." from the current SOTA category selection so
+    // the classification is shareable/bookmarkable. Defaults (no category, 'top'
+    // group) collapse back to a bare "#overview". Mirrors _syncLeaderboardHash.
+    _syncOverviewHash: function() {
+        var pane = document.getElementById('tab-overview');
+        if (!pane || pane.classList.contains('hidden')) return; // only when Overview is active
+        var params = [];
+        if (this._sotaCategoryFilter) params.push('cat=' + encodeURIComponent(this._sotaCategoryFilter));
+        if (this._sotaCategoryGroup && this._sotaCategoryGroup !== 'top') {
+            params.push('grp=' + encodeURIComponent(this._sotaCategoryGroup));
+        }
+        var hash = '#overview' + (params.length ? '?' + params.join('&') : '');
+        if (window.location.hash !== hash) history.replaceState(null, '', hash);
+    },
+
+    // Read cat/grp from a "#overview?..." query and push them into the SOTA
+    // category state (without rendering — caller renders once). Returns true if
+    // any value was applied.
+    _applyOverviewHash: function(query) {
+        if (!query) return false;
+        var applied = false;
+        query.split('&').forEach(function(p) {
+            var idx = p.indexOf('=');
+            if (idx < 0) return;
+            var key = p.substring(0, idx);
+            var val = decodeURIComponent(p.substring(idx + 1));
+            if (key === 'cat') { App._sotaCategoryFilter = val; applied = true; }
+            else if (key === 'grp') { App._sotaCategoryGroup = val; applied = true; }
+        });
+        return applied;
+    },
 
     _renderSOTACategoryFilter: function() {
         var self = this;
@@ -1250,6 +1294,7 @@ var App = {
             btn.onclick = function() {
                 self._sotaCategoryGroup = g.id;
                 self._renderSOTACategoryFilter();
+                self._syncOverviewHash();
             };
             groupRow.appendChild(btn);
         });
@@ -1270,6 +1315,7 @@ var App = {
                 self._sotaCategoryFilter = key;
                 self._renderSOTACategoryFilter();
                 self._renderSOTATable();
+                self._syncOverviewHash();
             };
             return btn;
         }
