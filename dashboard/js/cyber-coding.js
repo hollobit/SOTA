@@ -61,7 +61,9 @@ var CyberCoding = {
         // 2026-07-05 S154 — Anthropic Mythos/Fable/Sonnet 5 system-card offensive cyber sub-benches
         'exploitbench_cap', 'exploitbench_mean_flags', 'oss_fuzz_any_crash', 'oss_fuzz_0_4',
         'oss_fuzz_write_primitive_or_better_0_4', 'firefox_147_zero_day_exploit_full_working_exploit_rate',
-        'cybergym_pass_1_targeted_vuln_reproduction_1507_tasks'
+        'cybergym_pass_1_targeted_vuln_reproduction_1507_tasks',
+        // 2026-07-27 S212 — Microsoft MAI-Cyber-1-Flash model card (External Cyber Benchmark Results)
+        'crsbench', 'cyberseceval4_threat_intel', 'cyberseceval4_malware_analysis'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
         // 2026-05-28 AgentDoG 1.5 (arxiv 2605.29801, Shanghai AI Lab) — agentic-trajectory safety judging
@@ -304,6 +306,21 @@ var CyberCoding = {
     ],
 
     BENCH_DESCRIPTIONS: {
+        crsbench: {
+            name: 'CRSBench',
+            desc: 'Full-pipeline Cyber Reasoning System 평가 (discovery→validation→proof-of-vulnerability). MAI-Cyber-1-Flash 모델 카드 Section 3, POV=1200 구성.',
+            source: 'microsoft.ai/models/mai-cyber-1-flash'
+        },
+        cyberseceval4_threat_intel: {
+            name: 'CyberSecEval 4 — Threat Intel',
+            desc: 'CyberSecEval 4의 위협 인텔리전스(threat intelligence) 역량 차원. Meta PurpleLlama 기반, 높을수록 우수.',
+            source: 'github.com/meta-llama/PurpleLlama'
+        },
+        cyberseceval4_malware_analysis: {
+            name: 'CyberSecEval 4 — Malware Analysis',
+            desc: 'CyberSecEval 4의 악성코드 분석(malware analysis) 역량 차원. Meta PurpleLlama 기반, 높을수록 우수.',
+            source: 'github.com/meta-llama/PurpleLlama'
+        },
         cybench: {
             name: 'Cybench (CTF)',
             desc: '40개 professional-level CTF 과제 (crypto, web, reversing, forensics, exploitation). 에이전트의 자율 해킹 능력을 pass@1 비율로 측정.',
@@ -562,6 +579,7 @@ var CyberCoding = {
         'alibaba/qwen3.7-plus',  // 2026-06-02 S46 GA
         'microsoft/mai-thinking-1',  // 2026-06-02 S48 — MS MAI Thinking-1 35B/1T MoE
         'microsoft/mai-code-1-flash',  // 2026-06-02 S48 — MS MAI Code-1-Flash 5B
+        'microsoft/mai-cyber-1-flash',  // 2026-07-27 S212 — MS cyber-specialized fine-tune of MAI-Code-1-Flash (137B-A5B); CVEBench 31.4 / CRSBench 65.1 / ExploitGym 0 (defensive)
         'google/gemma-4-12b',  // 2026-06-03 S50 — Gemma 4 12B encoder-free multimodal
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-27b',

@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-28",
+    "sources": [
+      "https://microsoft.ai/news/introducing-mai-cyber-1-flash-inside-mdash/",
+      "https://microsoft.ai/models/mai-cyber-1-flash/",
+      "resource/mai_cyber1_flash_model_card.pdf"
+    ],
+    "_note": "MAI-Cyber-1-Flash (Microsoft, 2026-07-27). NEW model: cybersecurity-specialized fine-tune of MAI-Code-1-Flash (137B total / 5B active MoE, 256k ctx), derived from the MAI-Thinking-1 lineage. Proprietary, Azure AI Foundry Private Preview, access restricted to select MDASH customers (dual-use). Ingested ONLY the Model-Only External Cyber Benchmark Results table (single model, lightweight terminal harness) — a clean primary source. Card fractions (0.314 etc.) x100 to match existing cvebench/exploitgym %-scale on the dashboard. NOT ingested: CyberGym 88.4%->95.95% is an MDASH SYSTEM score (100+ agents, MAI-Cyber-1-Flash + GPT-5.4), not a MAI-Cyber-1-Flash single-model score -> excluded under strict attribution. MAI-Thinking-1 (109p report, Tables 11/12) re-checked: all benches already covered by its existing 38 scores -> no net-new."
+  },
+  "models": [
+    {
+      "id": "microsoft/mai-cyber-1-flash",
+      "vendor": "Microsoft",
+      "name": "MAI-Cyber-1-Flash",
+      "type": "proprietary",
+      "modalities": ["text"],
+      "parameters": "137B-A5B",
+      "release_date": "2026-07-27",
+      "context_window": 256000
+    }
+  ],
+  "benchmarks": [
+    { "id": "crsbench", "name": "CRSBench (Cyber Reasoning System, full-pipeline)", "category": "cyber", "metric": "score", "description": "Evaluates full-pipeline cyber reasoning systems (discovery -> validation -> proof-of-vulnerability). MAI-Cyber-1-Flash model card, Section 3. Higher is better." },
+    { "id": "cyberseceval4_threat_intel", "name": "CyberSecEval 4 — Threat Intelligence", "category": "cyber", "metric": "score", "description": "CyberSecEval 4 threat-intelligence capability dimension (Wan et al. 2024 / Meta PurpleLlama). MAI-Cyber-1-Flash model card, Section 3. Higher is better." },
+    { "id": "cyberseceval4_malware_analysis", "name": "CyberSecEval 4 — Malware Analysis", "category": "cyber", "metric": "score", "description": "CyberSecEval 4 malware-analysis capability dimension (Wan et al. 2024 / Meta PurpleLlama). MAI-Cyber-1-Flash model card, Section 3. Higher is better." }
+  ],
+  "scores": [
+    { "model": "microsoft/mai-cyber-1-flash", "benchmark": "cvebench", "score": 31.4, "unit": "%", "_source": "resource/mai_cyber1_flash_model_card.pdf", "_note": "Model card Sec 3 External Cyber Benchmark Results (model-only, lightweight terminal harness); card raw 0.314 x100" },
+    { "model": "microsoft/mai-cyber-1-flash", "benchmark": "cyberseceval4_threat_intel", "score": 55.3, "unit": "%", "_source": "resource/mai_cyber1_flash_model_card.pdf", "_note": "Model card Sec 3; Threat Intel 0.553 x100" },
+    { "model": "microsoft/mai-cyber-1-flash", "benchmark": "cyberseceval4_malware_analysis", "score": 33.0, "unit": "%", "_source": "resource/mai_cyber1_flash_model_card.pdf", "_note": "Model card Sec 3; Malware Analysis 0.33 x100" },
+    { "model": "microsoft/mai-cyber-1-flash", "benchmark": "crsbench", "score": 65.1, "unit": "%", "_source": "resource/mai_cyber1_flash_model_card.pdf", "_note": "Model card Sec 3; CRSBench 0.651 (POV=1200) x100" },
+    { "model": "microsoft/mai-cyber-1-flash", "benchmark": "exploitgym", "score": 0.0, "unit": "%", "_source": "resource/mai_cyber1_flash_model_card.pdf", "_note": "Model card Sec 3 ExploitGym: Kernel=0, Userspace=0, Browser=0 — offensive exploit generation, reflects security-first defensive calibration" }
+  ]
+}

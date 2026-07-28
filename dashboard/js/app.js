@@ -2594,6 +2594,8 @@ var App = {
             { name: 'Qwen-VLA — Unified Vision-Language-Action Model', file: 'qwen_vla_2605.30280.pdf', vendor: 'Alibaba Qwen Team', date: 'May 2026', url: 'https://arxiv.org/abs/2605.30280' },
             { name: 'Cosmos 3 — Omnimodal World Models for Physical AI', file: 'cosmos3_technical_report.pdf', vendor: 'NVIDIA', date: 'Jun 2026', url: 'https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf' },
             { name: 'Microsoft MAI: Hill-Climbing Machine + 7 New Models', file: '', vendor: 'Microsoft AI', date: 'Jun 2026', url: 'https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/' },
+            { name: 'Microsoft MAI-Cyber-1-Flash — Model Card (inside MDASH)', file: 'mai_cyber1_flash_model_card.pdf', vendor: 'Microsoft AI', date: 'Jul 2026', url: 'https://microsoft.ai/news/introducing-mai-cyber-1-flash-inside-mdash/' },
+            { name: 'Microsoft MAI-Thinking-1 — Technical Report (109p)', file: 'mai_thinking_1_tech_report.pdf', vendor: 'Microsoft AI', date: 'Mar 2026', url: 'https://microsoft.ai/pdf/mai-thinking-1.pdf' },
             { name: 'Spacer: Towards Engineered Scientific Inspiration', file: 'spacer_2508.17661.pdf', vendor: 'Asteromorph', date: 'Aug 2025', url: 'https://arxiv.org/abs/2508.17661' },
             { name: 'The AI Scientist: End-to-End AI Research (Nature)', file: 'nature_10265_5.pdf', vendor: 'Sakana AI + Oxford + UBC + Vector', date: 'Mar 2026', url: 'https://www.nature.com/articles/s41586-026-10265-5' },
             { name: 'OpenAI GPT-Rosalind: Life Sciences Capabilities Update', file: '', vendor: 'OpenAI', date: 'Jun 2026', url: 'https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/' },
