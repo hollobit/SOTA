@@ -2,6 +2,18 @@
   {
     "date": "2026-07-28",
     "type": "ingest",
+    "title": "S212c — 연관성(lineage) 표시 + MDASH CyberGym config note",
+    "detail": "모델 간 연관성을 모달 'Lineage' 섹션에 표시(config/model_enrichment.yaml). MAI-Cyber-1-Flash→base MAI-Code-1-Flash(fine-tune, MAI-Thinking-1 계보, MDASH 구성요소), MAI-Code-1-Flash(MAI-Thinking-1 계보·Frontier Tuning), MDASH(100+ agent 하네스; MAI-Cyber-1-Flash+GPT-5.4 구성). MDASH cybergym 96.55% 값 보존하며 note에 '88.4→95.95%(MAI-Cyber-1+GPT-5.4가 80% 교체 시, 카드 2026-07-27); 96.55% MS Build 2026 Defender' 병기. CyberGym 95.95%는 여전히 시스템 점수로 MDASH에만 귀속(단일 모델 아님)."
+  },
+  {
+    "date": "2026-07-28",
+    "type": "ingest",
+    "title": "S212d — Gemini 3.5 Flash Cyber V8 취약점 발견 결과 수집",
+    "detail": "Gemini 3.5 Flash Cyber(google/gemini-3.5-flash-cyber)는 S197에서 CyberGym 수치 부재로 스코어 0개 stub였음. DeepMind 공식 블로그 1차 재검증 결과 깨끗한 수치 1종 확보: V8 JavaScript 엔진 고유 confirmed 취약점 — 3.5 Flash Cyber 55개(vs mainline 3.5 Flash 47, Opus 4.6 36; 10개는 타 모델 미발견). 신규 벤치 v8_confirmed_vulns_google 등록, cyber-coding 탭 노출, 모델 lineage(base=gemini-3.5-flash) 추가. 미수집: CyberGym(본문 수치 없음+CodeMender 5-call 시스템; 2차 83.2%는 차트/시스템값), Big Sleep pass@1(본문 정성적, 차트만). DeepMind 블로그 seed_sources·Resources 등록."
+  },
+  {
+    "date": "2026-07-28",
+    "type": "ingest",
     "title": "S212b — MAI PDF 재검증: MAI-Code-1-Flash 파라미터/컨텍스트 보강",
     "detail": "사용자 요청으로 두 PDF(MAI-Cyber-1-Flash 카드·MAI-Thinking-1 109p 리포트) 표·내용 전수 재검증. MAI-Thinking-1: Table 11(STEM/coding 8종)·Table 12(knowledge/IF/safety/honesty/health 14종) 완전 대조 — 기존 38개 점수가 전부 커버, net-new 0. Table 14(인간 side-by-side 선호도: vs Sonnet 4.6 승49/무6/패45, vs Opus 4.6 승43/무5/패52)는 pairwise 델타([-1.5,1.5])라 절대 스케일 없음 → 리더보드 오해 방지 위해 미수집(Agent Arena 스킵과 동일 원칙). 경쟁 모델 baseline 컬럼은 각 모델 카드 인용(2차)→미수집. 발견한 보강: MAI-Cyber 카드가 '137B total/5B active/256k, MAI-Code-1-Flash fine-tune' 명시 → fine-tune은 아키텍처 보존이므로 MAI-Code-1-Flash도 137B-A5B/256k. 기존 불완전 params '5B (agentic)'·누락 context를 보정(다른 필드·16 scores 보존)."
   },
