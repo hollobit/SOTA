@@ -1,0 +1,596 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-28",
+    "sources": [
+      "https://tech.kakao.com/posts/826",
+      "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "https://huggingface.co/kakaocorp/kanana-2-3b-instruct"
+    ],
+    "_note": "Kakao Kanana 2 SLMs 1.3B/3B (base+instruct), released 2026-07-27, Kanana License, 32k ctx, Qwen3-backbone with 3:1 SWA/full-attention hybrid; no Kakao user data used. NEW models (DB had only 30B variants). Base 14 benches + Instruct 16 benches per HF card. Qwen3.5-2B/Qwen3-1.7B comparison columns NOT ingested (2nd-hand competitor baselines). 7 new benchmark ids created (ko_simpleqa/math_ko/mbpp_ko/ruler_32k/iheval/kmmlu_cot/haerae_cot). CoT Korean variants kept distinct from plain (mirrors existing mmlu vs mmlu_cot convention)."
+  },
+  "models": [
+    {
+      "id": "kakao/kanana-2-1.3b-base",
+      "vendor": "Kakao",
+      "name": "Kanana 2 1.3B Base",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "parameters": "1.3B",
+      "release_date": "2026-07-27",
+      "context_window": 32768
+    },
+    {
+      "id": "kakao/kanana-2-3b-base",
+      "vendor": "Kakao",
+      "name": "Kanana 2 3B Base",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "parameters": "3B",
+      "release_date": "2026-07-27",
+      "context_window": 32768
+    },
+    {
+      "id": "kakao/kanana-2-1.3b-instruct",
+      "vendor": "Kakao",
+      "name": "Kanana 2 1.3B Instruct",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "parameters": "1.3B",
+      "release_date": "2026-07-27",
+      "context_window": 32768
+    },
+    {
+      "id": "kakao/kanana-2-3b-instruct",
+      "vendor": "Kakao",
+      "name": "Kanana 2 3B Instruct",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "parameters": "3B",
+      "release_date": "2026-07-27",
+      "context_window": 32768
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "ko_simpleqa",
+      "name": "KoSimpleQA (Korean factuality)",
+      "category": "sovereign-ai",
+      "metric": "accuracy",
+      "description": "Korean-language SimpleQA — short factual questions in Korean. Kanana 2 model cards. Higher is better."
+    },
+    {
+      "id": "math_ko",
+      "name": "MATH-Ko (Korean)",
+      "category": "math",
+      "metric": "exact_match",
+      "description": "Korean-translated MATH competition problems. Kanana 2 base card, 4-shot EM. Higher is better."
+    },
+    {
+      "id": "mbpp_ko",
+      "name": "MBPP-Ko (Korean)",
+      "category": "code",
+      "metric": "pass@1",
+      "description": "Korean-translated MBPP code-generation. Kanana 2 base card, 3-shot pass@1. Higher is better."
+    },
+    {
+      "id": "ruler_32k",
+      "name": "RULER-32K (long context)",
+      "category": "long-context",
+      "metric": "accuracy",
+      "description": "RULER long-context retrieval/reasoning at 32K tokens. Kanana 2 base card. Higher is better."
+    },
+    {
+      "id": "iheval",
+      "name": "IHEval (instruction hierarchy)",
+      "category": "instruction-following",
+      "metric": "pass@1",
+      "description": "Instruction-hierarchy evaluation. Kanana 2 instruct card, pass@1. Higher is better."
+    },
+    {
+      "id": "kmmlu_cot",
+      "name": "KMMLU-CoT",
+      "category": "sovereign-ai",
+      "metric": "accuracy",
+      "description": "KMMLU (Korean MMLU) with chain-of-thought prompting. Kanana 2 instruct card. Higher is better."
+    },
+    {
+      "id": "haerae_cot",
+      "name": "HAE-RAE Bench-CoT",
+      "category": "sovereign-ai",
+      "metric": "accuracy",
+      "description": "HAE-RAE Bench (Korean cultural/linguistic) with chain-of-thought prompting. Kanana 2 instruct card. Higher is better."
+    }
+  ],
+  "scores": [
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "mmlu",
+      "score": 56.49,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "mmlu_pro",
+      "score": 29.87,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "bbh",
+      "score": 45.58,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "simpleqa",
+      "score": 23.76,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "math",
+      "score": 30.82,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "gsm8k",
+      "score": 51.93,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "humaneval",
+      "score": 51.33,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "mbpp",
+      "score": 44.86,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "kmmlu",
+      "score": 44.17,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "ko_simpleqa",
+      "score": 28.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "haerae",
+      "score": 75.34,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "math_ko",
+      "score": 24.75,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "mbpp_ko",
+      "score": 39.38,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-base",
+      "benchmark": "ruler_32k",
+      "score": 55.72,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "mmlu",
+      "score": 62.77,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "mmlu_pro",
+      "score": 36.54,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "bbh",
+      "score": 54.23,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "simpleqa",
+      "score": 27.39,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "math",
+      "score": 35.08,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "gsm8k",
+      "score": 61.03,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "humaneval",
+      "score": 55.96,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "mbpp",
+      "score": 50.95,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "kmmlu",
+      "score": 47.92,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "ko_simpleqa",
+      "score": 32.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "haerae",
+      "score": 80.66,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "math_ko",
+      "score": 31.54,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "mbpp_ko",
+      "score": 44.55,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-base",
+      "benchmark": "ruler_32k",
+      "score": 67.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-base",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "mt_bench",
+      "score": 6.83,
+      "unit": "score",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "komt_bench",
+      "score": 6.54,
+      "unit": "score",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "ifbench",
+      "score": 34.69,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "ifeval",
+      "score": 77.63,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "iheval",
+      "score": 27.06,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "bfcl_v3_live",
+      "score": 69.64,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "bfcl_v3_multi_turn",
+      "score": 5.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "mbpp",
+      "score": 69.05,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "mbpp_plus",
+      "score": 60.85,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "gsm_plus",
+      "score": 58.27,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "math_500",
+      "score": 61.4,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "minerva_math",
+      "score": 22.43,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "mmlu_cot",
+      "score": 60.37,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "kmmlu_cot",
+      "score": 42.79,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "haerae_cot",
+      "score": 44.89,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-1.3b-instruct",
+      "benchmark": "ko_simpleqa",
+      "score": 17.81,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-1.3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "mt_bench",
+      "score": 7.15,
+      "unit": "score",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "komt_bench",
+      "score": 6.92,
+      "unit": "score",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "ifbench",
+      "score": 33.33,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "ifeval",
+      "score": 80.96,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "iheval",
+      "score": 35.96,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "bfcl_v3_live",
+      "score": 71.94,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "bfcl_v3_multi_turn",
+      "score": 17.12,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "mbpp",
+      "score": 70.63,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "mbpp_plus",
+      "score": 60.05,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "gsm_plus",
+      "score": 61.17,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "math_500",
+      "score": 61.2,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "minerva_math",
+      "score": 24.44,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "mmlu_cot",
+      "score": 61.09,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "kmmlu_cot",
+      "score": 43.32,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "haerae_cot",
+      "score": 43.75,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    },
+    {
+      "model": "kakao/kanana-2-3b-instruct",
+      "benchmark": "ko_simpleqa",
+      "score": 22.29,
+      "unit": "%",
+      "_source": "https://huggingface.co/kakaocorp/kanana-2-3b-instruct",
+      "_note": "Kanana 2 HF model card benchmark table"
+    }
+  ]
+}

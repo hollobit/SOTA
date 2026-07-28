@@ -31,6 +31,9 @@ var Sovereign = {
                 'naver/hyperclova-x-think-nemotron', // S145 — Naver collab with NVIDIA Nemotron
                 'kakao/kanana-2-30b-a3b-thinking', 'kakao/kanana-1.5-o-9.8b', 'kakao/kanana-1.5-8b',
                 'kakao/kanana-1.5-15.7b-a3b', 'kakao/kanana-flag-32.5b',
+                // 2026-07-27 S212f — Kanana 2 SLM (1.3B/3B, base+instruct)
+                'kakao/kanana-2-3b-instruct', 'kakao/kanana-2-3b-base',
+                'kakao/kanana-2-1.3b-instruct', 'kakao/kanana-2-1.3b-base',
                 'sk-telecom/a.x-4.0',  // 2026-06-04 S52 — SK Telecom A.X 4.0 Korean Foundation Model
                 'naver/hcx-seed-think-32b',  // 2026-06-04 S52 — NAVER HCX-SEED-Think-32B
                 'ncsoft/varco-vision-2.0-14b', 'ncsoft/llama-varco-8b',
@@ -597,6 +600,8 @@ var Sovereign = {
         'kakao/kanana-2-30b-a3b-thinking': '2026-01', 'kakao/kanana-1.5-o-9.8b': '2026-02',
         'kakao/kanana-1.5-15.7b-a3b': '2025-09',
         'kakao/kanana-1.5-8b': '2025-05', 'kakao/kanana-flag-32.5b': '2024-11',
+        'kakao/kanana-2-3b-instruct': '2026-07-27', 'kakao/kanana-2-3b-base': '2026-07-27',
+        'kakao/kanana-2-1.3b-instruct': '2026-07-27', 'kakao/kanana-2-1.3b-base': '2026-07-27',
         // Korea — others
         'ncsoft/varco-vision-2.0-14b': '2025-07', 'ncsoft/llama-varco-8b': '2024-09',
         'trillionlabs/tri-70b': '2026-06', 'trillionlabs/tri-21b': '2025-02', 'trillionlabs/tri-7b': '2025-04',
@@ -956,11 +961,12 @@ var Sovereign = {
         {
             id: 'korean',
             label: '🇰🇷 Korean Benchmarks',
-            note: 'KMMLU · KMMLU-Pro · HAE-RAE · CLIcK · KoMT-Bench · LogicKor · KoBALT-700 · Ko-IFEval · KOBEST · K-MMBench · HRM8K · KMLE · KMMMU · Ko-AIME · K-Knowledge · K-Domain · Ko-GDPval (K-OfficeAgent) · KBank-MMLU · KBL · KorMedMCQA',
+            note: 'KMMLU · KMMLU-Pro · KMMLU-CoT · HAE-RAE · HAE-RAE-CoT · CLIcK · KoMT-Bench · LogicKor · KoBALT-700 · Ko-IFEval · KOBEST · K-MMBench · HRM8K · KMLE · KMMMU · Ko-AIME · KoSimpleQA · MATH-Ko · MBPP-Ko · K-Knowledge · K-Domain · Ko-GDPval (K-OfficeAgent) · KBank-MMLU · KBL · KorMedMCQA',
             benchmarks: [
-                'kmmlu', 'kmmlu_pro', 'haerae', 'click_ko', 'komt_bench', 'logickor',
+                'kmmlu', 'kmmlu_pro', 'kmmlu_cot', 'haerae', 'haerae_cot', 'click_ko', 'komt_bench', 'logickor',
                 'kobalt_700', 'ko_ifeval', 'kobest', 'k_mmbench',
                 'hrm8k', 'kmle', 'kmmmu', 'ko_aime_2025',
+                'ko_simpleqa', 'math_ko', 'mbpp_ko',
                 'k_knowledge', 'k_domain', 'ko_gdpval',
                 'kbank_mmlu', 'kbl', 'kormedmcqa'
             ]
@@ -1083,6 +1089,9 @@ var Sovereign = {
     // Used by the timeline to plot models that would otherwise be dropped.
     // Total params for MoE (followed by active in parens), single number for dense.
     KNOWN_PARAMS: {
+        // Kakao Kanana 2 SLM (2026-07-27)
+        'kakao/kanana-2-3b-instruct': 3, 'kakao/kanana-2-3b-base': 3,
+        'kakao/kanana-2-1.3b-instruct': 1.3, 'kakao/kanana-2-1.3b-base': 1.3,
         // AI21 Jamba family — names don't carry the size suffix
         'ai21/jamba-large-1.5': 398, 'ai21/jamba-large-1.7': 398,
         'ai21/jamba-1.6-large': 398, 'ai21/jamba-1.6-mini': 52,
