@@ -2,6 +2,12 @@
   {
     "date": "2026-07-29",
     "type": "feature",
+    "title": "GraphRAG 그래프 네트워크 화면 aiap3 형태로 개편",
+    "detail": "GraphRAG 그래프 시각화를 aiap3 GraphPanel 형태로 개편. 노드 클릭 시 전체 Modal로 이동하던 것을 → 그래프를 유지한 채 인라인 상세 사이드패널(타입 색상 배지 + 이름 + 속성[model: vendor/type/released, benchmark: category/metric] + description + Relationships[관계 타입별 클릭 가능한 이웃, 클릭 시 해당 노드로 재포커스] + 'Open full page' 버튼)로 표시. 헤더에 Refresh(재레이아웃)·Maximize(78vh 토글) 툴 추가. _showNodeDetail/_edgeColorForType 추가, 클릭 핸들러를 _openNode→_showNodeDetail로 변경. graphrag.js?v bump."
+  },
+  {
+    "date": "2026-07-29",
+    "type": "feature",
     "title": "GraphRAG 복합 다중필드 연계 검색 (aiap3 스타일)",
     "detail": "GraphRAG에 aiap3식 복합 검색 추가: (1) node-type 패싯 칩(Models/Benchmarks/Vendors/Categories 다중선택), (2) 필드 필터 드롭다운(model-type·vendor·benchmark category·metric) — 키워드와 AND 결합, (3) 키워드 없이 필터만으로 브라우즈(connectivity 랭킹, aiap3 get_by_type 유사). search()에 opts.filters(_passesFieldFilters) + _browseByFilters + _renderFilterBar 추가. 예: 'report' 키워드 + benchmark 패싯 + category=medical-imaging → 30개 필터 결과. graphrag.js?v bump."
   },

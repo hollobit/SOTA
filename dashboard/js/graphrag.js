@@ -426,6 +426,8 @@
         },
 
         // ─── Knowledge-graph visualization (ECharts force layout) ─────────
+        // aiap3-style: graph + click-to-select inline detail side-panel with
+        // node properties & relationships, plus refresh/maximize header tools.
         _buildGraphPanel: function(results) {
             var self = this;
             var wrap = document.createElement('div');
@@ -435,27 +437,139 @@
             head.className = 'flex items-center justify-between mb-2';
             var title = document.createElement('div');
             title.className = 'text-xs text-gray-400';
-            title.textContent = 'Knowledge graph — top results + 1-hop neighbors. Drag nodes to rearrange. Click a node to focus.';
+            title.textContent = 'Graph Relationship Visualization — top results + 1-hop neighbors. Drag to rearrange · click a node for details.';
             head.appendChild(title);
+            var tools = document.createElement('div');
+            tools.className = 'flex items-center gap-1';
+            var mkTool = function(label, tip, onclick) {
+                var b = document.createElement('button');
+                b.className = 'text-[11px] px-2 py-0.5 rounded border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500';
+                b.textContent = label; b.title = tip;
+                b.addEventListener('click', onclick);
+                return b;
+            };
+            tools.appendChild(mkTool('↻ Refresh', 'Re-layout the graph', function() { self.render(); }));
+            var maxBtn = mkTool('⛶ Maximize', 'Toggle a taller graph canvas', function() {
+                self._graphMaximized = !self._graphMaximized;
+                gdiv.style.height = self._graphMaximized ? '78vh' : '440px';
+                maxBtn.textContent = self._graphMaximized ? '⛶ Restore' : '⛶ Maximize';
+                if (self._chart) { try { self._chart.resize(); } catch (e) {} }
+            });
+            tools.appendChild(maxBtn);
+            head.appendChild(tools);
             wrap.appendChild(head);
 
-            var div = document.createElement('div');
-            div.id = 'graphrag-graph';
-            div.style.height = '440px';
-            div.style.width = '100%';
-            wrap.appendChild(div);
+            // Relative container holds the canvas + an absolute detail panel.
+            var stage = document.createElement('div');
+            stage.style.cssText = 'position:relative;width:100%';
+            var gdiv = document.createElement('div');
+            gdiv.id = 'graphrag-graph';
+            gdiv.style.height = self._graphMaximized ? '78vh' : '440px';
+            gdiv.style.width = '100%';
+            stage.appendChild(gdiv);
 
-            // Defer init until the container is in the DOM and ECharts has
-            // parsed; render once on next animation frame.
+            var detail = document.createElement('div');
+            detail.id = 'graphrag-detail';
+            detail.style.cssText = 'position:absolute;top:6px;right:6px;width:260px;max-height:calc(100% - 12px);overflow-y:auto;' +
+                'background:rgba(17,24,39,.96);border:1px solid #374151;border-radius:6px;padding:10px;display:none;z-index:5;box-shadow:0 4px 16px rgba(0,0,0,.4)';
+            stage.appendChild(detail);
+            wrap.appendChild(stage);
+
             requestAnimationFrame(function() {
                 if (typeof echarts === 'undefined') {
-                    div.textContent = '(graph view requires ECharts; falling back to result list)';
-                    div.style.cssText = 'color:#9ca3af;font-size:11px;padding:8px';
+                    gdiv.textContent = '(graph view requires ECharts; falling back to result list)';
+                    gdiv.style.cssText = 'color:#9ca3af;font-size:11px;padding:8px';
                     return;
                 }
-                self._renderGraphInto(div, results);
+                self._renderGraphInto(gdiv, results);
             });
             return wrap;
+        },
+
+        // aiap3-style inline detail panel: node type badge + properties +
+        // clickable relationships, without leaving the graph view.
+        _showNodeDetail: function(nodeId) {
+            var self = this;
+            var panel = document.getElementById('graphrag-detail');
+            var n = this._byId[nodeId];
+            if (!panel || !n) return;
+            panel.textContent = '';
+            panel.style.display = 'block';
+
+            var hd = document.createElement('div');
+            hd.className = 'flex items-center justify-between mb-1.5';
+            var badge = document.createElement('span');
+            badge.className = 'text-[10px] px-1.5 py-0.5 rounded text-white';
+            badge.style.background = this._edgeColorForType(n.type);
+            badge.textContent = n.type;
+            hd.appendChild(badge);
+            var close = document.createElement('button');
+            close.className = 'text-gray-500 hover:text-white text-sm leading-none';
+            close.textContent = '×'; close.title = 'Close';
+            close.addEventListener('click', function() { panel.style.display = 'none'; });
+            hd.appendChild(close);
+            panel.appendChild(hd);
+
+            var nm = document.createElement('div');
+            nm.className = 'text-sm font-semibold text-gray-100 mb-1 break-words';
+            nm.textContent = n.name || n.label || n.id;
+            panel.appendChild(nm);
+
+            // Property rows (fields vary by node type).
+            var rowOf = function(k, v) {
+                if (v == null || v === '') return;
+                var r = document.createElement('div');
+                r.className = 'flex gap-2 text-[11px] py-0.5';
+                var kk = document.createElement('span'); kk.className = 'text-gray-500 min-w-[64px]'; kk.textContent = k;
+                var vv = document.createElement('span'); vv.className = 'text-gray-200 break-words flex-1'; vv.textContent = String(v);
+                r.appendChild(kk); r.appendChild(vv); panel.appendChild(r);
+            };
+            if (n.type === 'model') { rowOf('Vendor', n.vendor); rowOf('Type', n.model_type); rowOf('Released', n.release_date); }
+            else if (n.type === 'benchmark') { rowOf('Category', n.category); rowOf('Metric', n.metric); }
+            if (n.description) {
+                var ds = document.createElement('div');
+                ds.className = 'text-[11px] text-gray-400 mt-1.5 mb-1 line-clamp-4';
+                ds.textContent = n.description.length > 260 ? n.description.slice(0, 260) + '…' : n.description;
+                panel.appendChild(ds);
+            }
+
+            // Relationships (1-hop), grouped by relation type, clickable.
+            var nbrs = this.neighbors(nodeId, 6);
+            var relKeys = Object.keys(nbrs);
+            if (relKeys.length) {
+                var rt = document.createElement('div');
+                rt.className = 'text-[10px] uppercase tracking-wide text-gray-500 mt-2 mb-1';
+                rt.textContent = 'Relationships';
+                panel.appendChild(rt);
+                relKeys.forEach(function(rk) {
+                    nbrs[rk].slice(0, 4).forEach(function(x) {
+                        var other = self._byId[x.otherId];
+                        if (!other) return;
+                        var line = document.createElement('div');
+                        line.className = 'text-[11px] py-0.5 flex gap-1 items-baseline';
+                        var rel = document.createElement('span');
+                        rel.className = 'text-[9px] px-1 rounded';
+                        rel.style.cssText = 'background:' + self._edgeColor(x.edge.type) + '22;color:' + self._edgeColor(x.edge.type);
+                        rel.textContent = x.edge.type;
+                        var a = document.createElement('a');
+                        a.href = '#'; a.className = 'text-blue-400 hover:underline truncate';
+                        a.textContent = other.name || other.label || other.id;
+                        a.addEventListener('click', function(e) { e.preventDefault(); self._showNodeDetail(x.otherId); });
+                        line.appendChild(rel); line.appendChild(a);
+                        panel.appendChild(line);
+                    });
+                });
+            }
+
+            var open = document.createElement('button');
+            open.className = 'mt-2 w-full text-[11px] px-2 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white';
+            open.textContent = 'Open full page →';
+            open.addEventListener('click', function() { self._openNode(nodeId); });
+            panel.appendChild(open);
+        },
+
+        _edgeColorForType: function(t) {
+            return { model: '#2563eb', benchmark: '#059669', vendor: '#7c3aed', category: '#d97706' }[t] || '#6b7280';
         },
 
         // Build the (nodes, edges) payload for the top results + neighbors
@@ -533,7 +647,9 @@
                 });
                 chart.on('click', function(p) {
                     if (p.dataType === 'node' && p.data && p.data.id) {
-                        self._openNode(p.data.id);
+                        // aiap3-style: open the inline detail panel (stay in the
+                        // graph) instead of jumping to the full-page modal.
+                        self._showNodeDetail(p.data.id);
                     }
                 });
                 // Keep a reference for resize / disposal.
