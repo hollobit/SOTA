@@ -35,7 +35,12 @@ var MedicalAI = {
                 'hippocratic/polaris-5',  // 2026-06-14 S116 — Apr 2026 (skipped Polaris 4)
                 'stanford/almanac-rag',
                 'meta/muse-spark',  // 2026-06-14 S116 — MedXpertQA 0.784 + HealthBench Hard 0.428 SOTA
-                'ucsc-vlaa/medreason-8b'  // 2026-06-14 S116 — UCSC-VLAA Apr 2025 (was MILA misattribution)
+                'ucsc-vlaa/medreason-8b',  // 2026-06-14 S116 — UCSC-VLAA Apr 2025 (was MILA misattribution)
+                // 2026 S213b re-verify — new clinical LLMs / agents
+                'dresden/mira-ehr-agent',   // Nature Jun 2026 — autonomous EHR agent, beats physicians 87.8 vs 78.1
+                'baichuan/baichuan-m2-32b', // open medical SOTA — HealthBench 60.1 / Hard 34.7 / Consensus 91.5
+                'pingan/pingan-medical-3.5', // Apr 2026 — #1 HealthBench Hard 57.27
+                'beihang/zmt-m1'            // TCM-Eval 96.26 (Traditional Chinese Medicine)
             ]
         },
         {
@@ -143,6 +148,7 @@ var MedicalAI = {
                 'hpai-bsc/aloe-vision-72b',        // 2026-06 S213 — open medical VLM (adversarially robust)
                 'yorku-vector/openmedreason-7b',   // 2026-06 S213 — evidence-grounded reasoning VLM
                 'damo/radsight-8b',                // 2026-07 S213 — radiology perception (Perception-Bench)
+                'meta-uhn/echojepa',               // 2026-02 S213b — echocardiography FM (Meta+UHN)
                 'stanford/med-flamingo-9b',
                 'smartlab/meddr-internvl-40b',
                 'freedomintelligence/huatuogpt-vision-7b',
@@ -203,6 +209,7 @@ var MedicalAI = {
             models: [
                 'aehrc/cxrmate-2',  // 2026-05 S212g — CSIRO AEHRC RRG SOTA (RAD-DINO + GRPO), MIMIC-CXR 9-metric leaderboard
                 'usyd/lepax',       // 2026-07 S213 — lesion-aware high-res CXR RRG (Univ. Sydney)
+                'academic/clear-cxr-fm',  // 2026-07 S213b — auditable CXR FM (Nature Biomed Eng)
                 'harvard/medversa-8b',
                 'rad-onc/maira-2',
                 'microsoft/maira-2',  // 2026-06-14 S116 — RadFact Grounding Recall 90% / Logical Precision 55.6%
@@ -764,6 +771,21 @@ var MedicalAI = {
             label: '🔬 2026 Medical Multimodal / Specialty Benchmarks',
             note: 'X-PCR (ophthalmology progressive reasoning) · SpineBench (level-aware spine) · GI-Bench (endoscopy) · M3CoTBench (MLLM CoT quality) · MentalBench (psychiatry, DSM-5) · Perception-Bench (RadSight: anomaly AUROC / 3D grounding) · MeDxBench (interactive dx) · Head-CT 75-finding (MoLRE) · PulmoFoundation (lung path)',
             benchmarks: ['x_pcr_ophthalmology', 'spinebench', 'gi_bench', 'm3cotbench', 'mentalbench', 'radsight_anomaly_auroc', 'radsight_3d_grounding_miou', 'medxbench', 'headct_75finding_avg_auc', 'pulmo_avg_auc_11task']
+        },
+        {
+            label: '🩺 2026 Clinical Reasoning & Agent Benchmarks (re-verify)',
+            note: 'MedConsultBench (consultation agents) · MedThinkVQA (multi-image dx) · EHR-Complex (MIMIC-IV reasoning) · RCQ (real physician queries, Nature Med) · PsychiatryBench (npj) · OGCaReBench (off-guideline RAG) · MedR-Bench (diagnosis/treatment) · ClinicRealm (mortality AUROC) · DALPHIN / PANDA-PLUS (pathology copilot & robustness)',
+            benchmarks: ['medconsultbench', 'medthinkvqa', 'ehr_complex', 'rcq_physician_rating', 'psychiatrybench', 'ogcarebench', 'medr_bench_diagnosis', 'medr_bench_treatment', 'clinicrealm_mimic3_mortality', 'clinicrealm_mimic4_mortality', 'dalphin_biobert_sim', 'panda_plus_crossslide_acc']
+        },
+        {
+            label: '🌏 2026 Chinese / Multilingual Clinical Benchmarks',
+            note: 'MLB (Ant Group, Chinese scenario) · ClinConsensus (Chinese consensus rubric) · TCM-Eval (Traditional Chinese Medicine) · KorMedMCQA-V (Korean multimodal) · MedAraBench (Arabic)',
+            benchmarks: ['mlb_clinical', 'clinconsensus', 'tcm_eval', 'kormedmcqa_v', 'medarabench_v2']
+        },
+        {
+            label: '🫀 2026 Specialty Imaging / Signal FMs (new models)',
+            note: 'CLEAR (auditable CXR, Nature Biomed) · EchoJEPA (echocardiography LVEF MAE) · ZEN (surgical FM) · MIRA (autonomous EHR agent, Nature) · Biosignal M2AE (ECG-PPG wearable) · Astra (3D CT RRG)',
+            benchmarks: ['clear_padchest_zeroshot_auroc', 'clear_vindr_zeroshot_auroc', 'echonet_lvef_mae', 'echo_view_classification_acc', 'surgical_fm_frozen_avg', 'mira_mimic4_diagnostic_acc', 'wearable_cvd_5class_auroc', 'wearable_hypertension_auroc', 'ct_rate_forte_rrg', 'ct_rate_radbert_rrg']
         },
         {
             label: '🌍 Regional Medical (Arabic · African)',

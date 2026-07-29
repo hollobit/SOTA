@@ -1,0 +1,210 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-29",
+    "sources": [
+      "https://arxiv.org/abs/2605.03544",
+      "https://arxiv.org/abs/2512.14922",
+      "https://arxiv.org/abs/2603.22096",
+      "https://arxiv.org/abs/2605.09579",
+      "https://arxiv.org/abs/2605.31437"
+    ],
+    "_note": "S213b re-verification round-1: S213 findings that had primary scores but were skipped for volume. DALPHIN (pathology copilot: PathChat+/Gemini-2.5-Pro/GPT-5), PANDA-PLUS-Bench (Gleason cross-slide robustness: HistoEncoder/Virchow2), MedR-Bench (DeepSeek-V3.2/Qwen3.5-35B diagnosis+treatment), Biosignal M2AE (wearable ECG-PPG CVD/hypertension AUROC), Astra (3D CT RRG FORTE/RadBERT). SKIPPED due to benchmark-id COLLISION: RadImageNet-VQA (existing radimagenet_vqa is a different bench, radfm 79.5/meddr 84.2) and generic forte bench (different FORTE). x100 applied to 0-1 metrics."
+  },
+  "models": [
+    {
+      "id": "helsinki/histoencoder",
+      "vendor": "University of Helsinki",
+      "name": "HistoEncoder",
+      "type": "open-weight",
+      "modalities": [
+        "image"
+      ],
+      "release_date": "2024-11"
+    },
+    {
+      "id": "academic/biosignal-m2ae",
+      "vendor": "Academic (M2AE)",
+      "name": "Biosignal M2AE (ECG-PPG wearable FM)",
+      "type": "open-weight",
+      "modalities": [
+        "signal"
+      ],
+      "release_date": "2026-05-10"
+    },
+    {
+      "id": "tsinghua/astra-ct",
+      "vendor": "Tsinghua University",
+      "name": "Astra (3D CT report generation)",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "release_date": "2026-05-25"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "dalphin_biobert_sim",
+      "name": "DALPHIN — Diagnosis Semantic Similarity (BioBERT)",
+      "category": "medical-imaging",
+      "metric": "similarity",
+      "description": "Multicentric open pathology-copilot benchmark (1,236 images/300 cases/14 subspecialties). Diagnosis BioBERT semantic similarity vs pathologists (DALPHIN, arXiv 2605.03544). Higher is better."
+    },
+    {
+      "id": "panda_plus_crossslide_acc",
+      "name": "PANDA-PLUS-Bench — Cross-Slide Gleason Accuracy",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "Prostate-Gleason cross-slide robustness of pathology FMs (PANDA-PLUS-Bench, arXiv 2512.14922). Measures generalization without slide-artifact leakage. Higher is better."
+    },
+    {
+      "id": "medr_bench_diagnosis",
+      "name": "MedR-Bench — Diagnosis",
+      "category": "medical",
+      "metric": "score",
+      "description": "Clinical reasoning benchmark, diagnosis sub-score (MedR-Bench, via GSEM arXiv 2603.22096). Higher is better."
+    },
+    {
+      "id": "medr_bench_treatment",
+      "name": "MedR-Bench — Treatment",
+      "category": "medical",
+      "metric": "score",
+      "description": "Clinical reasoning benchmark, treatment planning sub-score (MedR-Bench, via GSEM arXiv 2603.22096). Higher is better."
+    },
+    {
+      "id": "wearable_cvd_5class_auroc",
+      "name": "Wearable CVD 5-Class AUROC (ECG-PPG)",
+      "category": "health-wearable",
+      "metric": "auroc",
+      "description": "5-class cardiovascular disease classification AUROC from paired ECG-PPG signals (Biosignal M2AE, arXiv 2605.09579). Higher is better."
+    },
+    {
+      "id": "wearable_hypertension_auroc",
+      "name": "Wearable Hypertension Detection AUROC (PPG)",
+      "category": "health-wearable",
+      "metric": "auroc",
+      "description": "Hypertension detection AUROC from wearable PPG (Biosignal M2AE, arXiv 2605.09579). Higher is better."
+    },
+    {
+      "id": "ct_rate_forte_rrg",
+      "name": "CT-RATE FORTE (3D CT report gen)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "FORTE fine-grained diagnostic report metric on CT-RATE chest CT report generation (Astra, arXiv 2605.31437). Higher is better."
+    },
+    {
+      "id": "ct_rate_radbert_rrg",
+      "name": "CT-RATE RadBERT (3D CT report gen)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "RadBERT semantic metric on CT-RATE chest CT report generation (Astra, arXiv 2605.31437). Higher is better."
+    }
+  ],
+  "scores": [
+    {
+      "model": "mahmoodlab/pathchat-2",
+      "benchmark": "dalphin_biobert_sim",
+      "score": 86.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03544",
+      "_note": "DALPHIN: PathChat+ diagnosis BioBERT sim 0.86"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "dalphin_biobert_sim",
+      "score": 71.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03544",
+      "_note": "DALPHIN"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "dalphin_biobert_sim",
+      "score": 66.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.03544",
+      "_note": "DALPHIN"
+    },
+    {
+      "model": "helsinki/histoencoder",
+      "benchmark": "panda_plus_crossslide_acc",
+      "score": 59.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2512.14922",
+      "_note": "PANDA-PLUS-Bench best cross-slide"
+    },
+    {
+      "model": "paige-ai/virchow2",
+      "benchmark": "panda_plus_crossslide_acc",
+      "score": 47.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2512.14922",
+      "_note": "PANDA-PLUS-Bench"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "medr_bench_diagnosis",
+      "score": 94.22,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2603.22096",
+      "_note": "MedR-Bench via GSEM"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "medr_bench_treatment",
+      "score": 94.59,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2603.22096",
+      "_note": "MedR-Bench via GSEM"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "medr_bench_diagnosis",
+      "score": 91.49,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2603.22096",
+      "_note": "MedR-Bench via GSEM"
+    },
+    {
+      "model": "alibaba/qwen3.5-35b-a3b",
+      "benchmark": "medr_bench_treatment",
+      "score": 66.89,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2603.22096",
+      "_note": "MedR-Bench via GSEM"
+    },
+    {
+      "model": "academic/biosignal-m2ae",
+      "benchmark": "wearable_cvd_5class_auroc",
+      "score": 97.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09579",
+      "_note": "M2AE CVD 5-class AUROC 0.974"
+    },
+    {
+      "model": "academic/biosignal-m2ae",
+      "benchmark": "wearable_hypertension_auroc",
+      "score": 87.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.09579",
+      "_note": "M2AE hypertension AUROC 0.877"
+    },
+    {
+      "model": "tsinghua/astra-ct",
+      "benchmark": "ct_rate_forte_rrg",
+      "score": 40.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.31437",
+      "_note": "Astra CT-RATE FORTE 0.402"
+    },
+    {
+      "model": "tsinghua/astra-ct",
+      "benchmark": "ct_rate_radbert_rrg",
+      "score": 55.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.31437",
+      "_note": "Astra CT-RATE RadBERT 0.550"
+    }
+  ]
+}

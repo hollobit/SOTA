@@ -1,0 +1,723 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-29",
+    "sources": [
+      "multiple arXiv + Nature/npj — see notes"
+    ],
+    "_note": "S213b re-verification round-2 (4 more agents: deep PDF extract + under-covered subdomains + Nature/npj fresh pass + Chinese/multilingual). NEW frontier medical benchmarks (MedConsultBench/MedThinkVQA/EHR-Complex/RCQ/PsychiatryBench/OGCaReBench/ClinConsensus/MLB/TCM-Eval/KorMedMCQA-V/MedAraBench/ClinicRealm) with scores attached ONLY to DB-existing frontier models. NEW models: MIRA (Nature EHR agent, beats physicians), CLEAR (Nature Biomed auditable CXR FM), EchoJEPA (echo), ZEN (surgical), ZMT-M1 (TCM), Baichuan-M2-32B, Ping An Medical 3.5. Metric direction noted (EchoNet LVEF MAE lower=better, RCQ 1-4 scale). SKIPPED: MedDialogRubrics (figures-only), UNICORN (team-challenge scores not LLMs), RadImageNet-VQA/forte (id collision), qwen-plus (absent). All from primary sources; absent competitor models not stubbed."
+  },
+  "models": [
+    {
+      "id": "dresden/mira-ehr-agent",
+      "vendor": "TU Dresden / EKFZ",
+      "name": "MIRA (autonomous EHR agent)",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2026-06-17"
+    },
+    {
+      "id": "academic/clear-cxr-fm",
+      "vendor": "Academic (CLEAR)",
+      "name": "CLEAR (auditable CXR FM)",
+      "type": "open-weight",
+      "modalities": [
+        "image"
+      ],
+      "release_date": "2026-07-22"
+    },
+    {
+      "id": "meta-uhn/echojepa",
+      "vendor": "Meta AI + UHN Toronto",
+      "name": "EchoJEPA (echocardiography FM)",
+      "type": "open-weight",
+      "modalities": [
+        "image"
+      ],
+      "release_date": "2026-02"
+    },
+    {
+      "id": "academic/zen-surgical-fm",
+      "vendor": "Academic (ZEN)",
+      "name": "ZEN (surgical FM)",
+      "type": "open-weight",
+      "modalities": [
+        "image"
+      ],
+      "release_date": "2026-02-14"
+    },
+    {
+      "id": "beihang/zmt-m1",
+      "vendor": "Beihang / Beijing Zhimingtang",
+      "name": "ZhiMingTang-M1 (TCM)",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2025-12"
+    },
+    {
+      "id": "baichuan/baichuan-m2-32b",
+      "vendor": "Baichuan",
+      "name": "Baichuan-M2-32B",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "parameters": "32B",
+      "release_date": "2025-09"
+    },
+    {
+      "id": "pingan/pingan-medical-3.5",
+      "vendor": "Ping An",
+      "name": "Ping An Medical LLM 3.5",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2026-04"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "medconsultbench",
+      "name": "MedConsultBench (consultation-agent, Norm.Score)",
+      "category": "medical",
+      "metric": "score",
+      "description": "MedConsultBench (consultation-agent, Norm.Score). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "medthinkvqa",
+      "name": "MedThinkVQA (multi-image radiology differential dx)",
+      "category": "vision-language",
+      "metric": "score",
+      "description": "MedThinkVQA (multi-image radiology differential dx). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "ehr_complex",
+      "name": "EHR-Complex (interactive MIMIC-IV reasoning, exact-match)",
+      "category": "clinical-prediction",
+      "metric": "score",
+      "description": "EHR-Complex (interactive MIMIC-IV reasoning, exact-match). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "rcq_physician_rating",
+      "name": "RCQ — Real Clinical Queries (physician rating 1-4)",
+      "category": "medical",
+      "metric": "score",
+      "description": "RCQ — Real Clinical Queries (physician rating 1-4). 2026; primary-source frontier results. Scale 1-4. "
+    },
+    {
+      "id": "psychiatrybench",
+      "name": "PsychiatryBench (psychiatry QA, npj)",
+      "category": "mental-health",
+      "metric": "score",
+      "description": "PsychiatryBench (psychiatry QA, npj). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "ogcarebench",
+      "name": "OGCaReBench (off-guideline clinical QA, no-retrieval)",
+      "category": "medical",
+      "metric": "score",
+      "description": "OGCaReBench (off-guideline clinical QA, no-retrieval). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "clinconsensus",
+      "name": "ClinConsensus (Chinese consensus rubric coverage)",
+      "category": "medical",
+      "metric": "score",
+      "description": "ClinConsensus (Chinese consensus rubric coverage). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "mlb_clinical",
+      "name": "MLB (Ant Group scenario-driven Chinese clinical)",
+      "category": "medical",
+      "metric": "score",
+      "description": "MLB (Ant Group scenario-driven Chinese clinical). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "tcm_eval",
+      "name": "TCM-Eval (Traditional Chinese Medicine licensing)",
+      "category": "medical",
+      "metric": "score",
+      "description": "TCM-Eval (Traditional Chinese Medicine licensing). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "kormedmcqa_v",
+      "name": "KorMedMCQA-V (Korean multimodal medical licensing)",
+      "category": "sovereign-ai",
+      "metric": "score",
+      "description": "KorMedMCQA-V (Korean multimodal medical licensing). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "medarabench_v2",
+      "name": "MedAraBench (Arabic medical QA, NYUAD)",
+      "category": "multilingual",
+      "metric": "score",
+      "description": "MedAraBench (Arabic medical QA, NYUAD). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "clinicrealm_mimic3_mortality",
+      "name": "ClinicRealm — MIMIC-III mortality (notes, AUROC)",
+      "category": "clinical-prediction",
+      "metric": "score",
+      "description": "ClinicRealm — MIMIC-III mortality (notes, AUROC). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "clinicrealm_mimic4_mortality",
+      "name": "ClinicRealm — MIMIC-IV discharge mortality (notes, AUROC)",
+      "category": "clinical-prediction",
+      "metric": "score",
+      "description": "ClinicRealm — MIMIC-IV discharge mortality (notes, AUROC). 2026; primary-source frontier results. "
+    },
+    {
+      "id": "mira_mimic4_diagnostic_acc",
+      "name": "MIRA — MIMIC-IV Diagnostic Accuracy (8 diseases)",
+      "category": "clinical-prediction",
+      "metric": "accuracy",
+      "description": "Autonomous EHR agent diagnostic accuracy across 8 diseases / 574 cases; MIRA beats physicians 87.8 vs 78.1 on matched subset (Nature s41586-026-10675-5). Higher is better. "
+    },
+    {
+      "id": "clear_padchest_zeroshot_auroc",
+      "name": "CLEAR — PadChest Zero-Shot (55 findings, mean AUROC)",
+      "category": "medical-imaging",
+      "metric": "auroc",
+      "description": "Auditable CXR FM zero-shot mean AUROC on PadChest 55 findings (Nature Biomed Eng s41551-026-01741-4). Higher is better. "
+    },
+    {
+      "id": "clear_vindr_zeroshot_auroc",
+      "name": "CLEAR — VinDr-CXR Zero-Shot (21 findings, AUROC)",
+      "category": "medical-imaging",
+      "metric": "auroc",
+      "description": "CLEAR zero-shot AUROC on VinDr-CXR (Nature Biomed Eng). Higher is better. "
+    },
+    {
+      "id": "echonet_lvef_mae",
+      "name": "Echo LVEF MAE (EchoNet-Dynamic, lower=better)",
+      "category": "medical-imaging",
+      "metric": "mae",
+      "description": "Left-ventricular ejection-fraction estimation MAE on EchoNet-Dynamic (EchoJEPA, arXiv 2602.02603). LOWER is better. "
+    },
+    {
+      "id": "echo_view_classification_acc",
+      "name": "Echo View Classification Accuracy",
+      "category": "medical-imaging",
+      "metric": "accuracy",
+      "description": "Echocardiography view-classification accuracy (EchoJEPA, arXiv 2602.02603). Higher is better. "
+    },
+    {
+      "id": "surgical_fm_frozen_avg",
+      "name": "Surgical FM Frozen-Backbone Avg Score (20 tasks)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "Average frozen-backbone score across 20 surgical downstream tasks (ZEN, arXiv 2602.13633). Higher is better. "
+    }
+  ],
+  "scores": [
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "medconsultbench",
+      "score": 80.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.12661",
+      "_note": "MedConsultBench (consultation-agent, Norm.Score)"
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "medconsultbench",
+      "score": 75.77,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.12661",
+      "_note": "MedConsultBench (consultation-agent, Norm.Score)"
+    },
+    {
+      "model": "deepseek/deepseek-r1-0528",
+      "benchmark": "medconsultbench",
+      "score": 74.76,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.12661",
+      "_note": "MedConsultBench (consultation-agent, Norm.Score)"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b-thinking-2507",
+      "benchmark": "medconsultbench",
+      "score": 69.55,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.12661",
+      "_note": "MedConsultBench (consultation-agent, Norm.Score)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "medthinkvqa",
+      "score": 57.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.16506",
+      "_note": "MedThinkVQA (multi-image radiology differential dx)"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "medthinkvqa",
+      "score": 55.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.16506",
+      "_note": "MedThinkVQA (multi-image radiology differential dx)"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "medthinkvqa",
+      "score": 54.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.16506",
+      "_note": "MedThinkVQA (multi-image radiology differential dx)"
+    },
+    {
+      "model": "alibaba/qwen3.5-397b",
+      "benchmark": "medthinkvqa",
+      "score": 52.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.16506",
+      "_note": "MedThinkVQA (multi-image radiology differential dx)"
+    },
+    {
+      "model": "google/medgemma-27b",
+      "benchmark": "medthinkvqa",
+      "score": 31.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.16506",
+      "_note": "MedThinkVQA (multi-image radiology differential dx)"
+    },
+    {
+      "model": "alibaba/qwen3.5-397b",
+      "benchmark": "ehr_complex",
+      "score": 62.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.23301",
+      "_note": "EHR-Complex (interactive MIMIC-IV reasoning, exact-match)"
+    },
+    {
+      "model": "moonshot/kimi-k2.5",
+      "benchmark": "ehr_complex",
+      "score": 62.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.23301",
+      "_note": "EHR-Complex (interactive MIMIC-IV reasoning, exact-match)"
+    },
+    {
+      "model": "deepseek/deepseek-v3.2",
+      "benchmark": "ehr_complex",
+      "score": 59.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.23301",
+      "_note": "EHR-Complex (interactive MIMIC-IV reasoning, exact-match)"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "ehr_complex",
+      "score": 56.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.23301",
+      "_note": "EHR-Complex (interactive MIMIC-IV reasoning, exact-match)"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "ehr_complex",
+      "score": 47.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.23301",
+      "_note": "EHR-Complex (interactive MIMIC-IV reasoning, exact-match)"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "ehr_complex",
+      "score": 31.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.23301",
+      "_note": "EHR-Complex (interactive MIMIC-IV reasoning, exact-match)"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "ehr_complex",
+      "score": 31.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.23301",
+      "_note": "EHR-Complex (interactive MIMIC-IV reasoning, exact-match)"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "rcq_physician_rating",
+      "score": 3.62,
+      "unit": "score",
+      "_source": "https://www.nature.com/articles/s41591-026-04431-5",
+      "_note": "RCQ — Real Clinical Queries (physician rating 1-4)"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "rcq_physician_rating",
+      "score": 3.54,
+      "unit": "score",
+      "_source": "https://www.nature.com/articles/s41591-026-04431-5",
+      "_note": "RCQ — Real Clinical Queries (physician rating 1-4)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "rcq_physician_rating",
+      "score": 3.52,
+      "unit": "score",
+      "_source": "https://www.nature.com/articles/s41591-026-04431-5",
+      "_note": "RCQ — Real Clinical Queries (physician rating 1-4)"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "psychiatrybench",
+      "score": 84.5,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41746-026-02582-w",
+      "_note": "PsychiatryBench (psychiatry QA, npj)"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "psychiatrybench",
+      "score": 83.7,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41746-026-02582-w",
+      "_note": "PsychiatryBench (psychiatry QA, npj)"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "psychiatrybench",
+      "score": 80.4,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41746-026-02582-w",
+      "_note": "PsychiatryBench (psychiatry QA, npj)"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "psychiatrybench",
+      "score": 80.2,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41746-026-02582-w",
+      "_note": "PsychiatryBench (psychiatry QA, npj)"
+    },
+    {
+      "model": "google/medgemma-27b",
+      "benchmark": "psychiatrybench",
+      "score": 78.5,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41746-026-02582-w",
+      "_note": "PsychiatryBench (psychiatry QA, npj)"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "ogcarebench",
+      "score": 56.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.21807",
+      "_note": "OGCaReBench (off-guideline clinical QA, no-retrieval)"
+    },
+    {
+      "model": "openai/o4-mini",
+      "benchmark": "ogcarebench",
+      "score": 51.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.21807",
+      "_note": "OGCaReBench (off-guideline clinical QA, no-retrieval)"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "ogcarebench",
+      "score": 51.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.21807",
+      "_note": "OGCaReBench (off-guideline clinical QA, no-retrieval)"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "ogcarebench",
+      "score": 46.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.21807",
+      "_note": "OGCaReBench (off-guideline clinical QA, no-retrieval)"
+    },
+    {
+      "model": "google/medgemma-27b",
+      "benchmark": "ogcarebench",
+      "score": 37.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.21807",
+      "_note": "OGCaReBench (off-guideline clinical QA, no-retrieval)"
+    },
+    {
+      "model": "baidu/ernie-5.0",
+      "benchmark": "clinconsensus",
+      "score": 38.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2603.02097",
+      "_note": "ClinConsensus (Chinese consensus rubric coverage)"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "clinconsensus",
+      "score": 38.03,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2603.02097",
+      "_note": "ClinConsensus (Chinese consensus rubric coverage)"
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "clinconsensus",
+      "score": 37.91,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2603.02097",
+      "_note": "ClinConsensus (Chinese consensus rubric coverage)"
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "mlb_clinical",
+      "score": 77.29,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.06193",
+      "_note": "MLB (Ant Group scenario-driven Chinese clinical)"
+    },
+    {
+      "model": "deepseek/deepseek-r1-0528",
+      "benchmark": "mlb_clinical",
+      "score": 75.43,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.06193",
+      "_note": "MLB (Ant Group scenario-driven Chinese clinical)"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "mlb_clinical",
+      "score": 74.53,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.06193",
+      "_note": "MLB (Ant Group scenario-driven Chinese clinical)"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "mlb_clinical",
+      "score": 73.87,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.06193",
+      "_note": "MLB (Ant Group scenario-driven Chinese clinical)"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "mlb_clinical",
+      "score": 70.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.06193",
+      "_note": "MLB (Ant Group scenario-driven Chinese clinical)"
+    },
+    {
+      "model": "alibaba/qwen3-235b-a22b",
+      "benchmark": "tcm_eval",
+      "score": 93.52,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2511.07148",
+      "_note": "TCM-Eval (Traditional Chinese Medicine licensing)"
+    },
+    {
+      "model": "moonshot/kimi-k2",
+      "benchmark": "tcm_eval",
+      "score": 93.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2511.07148",
+      "_note": "TCM-Eval (Traditional Chinese Medicine licensing)"
+    },
+    {
+      "model": "tencent/hunyuan-t1",
+      "benchmark": "tcm_eval",
+      "score": 92.47,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2511.07148",
+      "_note": "TCM-Eval (Traditional Chinese Medicine licensing)"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "tcm_eval",
+      "score": 90.54,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2511.07148",
+      "_note": "TCM-Eval (Traditional Chinese Medicine licensing)"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "kormedmcqa_v",
+      "score": 96.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.13650",
+      "_note": "KorMedMCQA-V (Korean multimodal medical licensing)"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "kormedmcqa_v",
+      "score": 93.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.13650",
+      "_note": "KorMedMCQA-V (Korean multimodal medical licensing)"
+    },
+    {
+      "model": "ncsoft/varco-vision-2.0-14b",
+      "benchmark": "kormedmcqa_v",
+      "score": 43.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.13650",
+      "_note": "KorMedMCQA-V (Korean multimodal medical licensing)"
+    },
+    {
+      "model": "openai/o3",
+      "benchmark": "medarabench_v2",
+      "score": 76.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.01714",
+      "_note": "MedAraBench (Arabic medical QA, NYUAD)"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "medarabench_v2",
+      "score": 76.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.01714",
+      "_note": "MedAraBench (Arabic medical QA, NYUAD)"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4",
+      "benchmark": "medarabench_v2",
+      "score": 69.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.01714",
+      "_note": "MedAraBench (Arabic medical QA, NYUAD)"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "medarabench_v2",
+      "score": 67.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.01714",
+      "_note": "MedAraBench (Arabic medical QA, NYUAD)"
+    },
+    {
+      "model": "deepseek/deepseek-v3",
+      "benchmark": "medarabench_v2",
+      "score": 62.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.01714",
+      "_note": "MedAraBench (Arabic medical QA, NYUAD)"
+    },
+    {
+      "model": "deepseek/deepseek-r1",
+      "benchmark": "clinicrealm_mimic3_mortality",
+      "score": 90.75,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41746-026-02539-z",
+      "_note": "ClinicRealm — MIMIC-III mortality (notes, AUROC)"
+    },
+    {
+      "model": "deepseek/deepseek-v3.1",
+      "benchmark": "clinicrealm_mimic4_mortality",
+      "score": 97.89,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41746-026-02539-z",
+      "_note": "ClinicRealm — MIMIC-IV discharge mortality (notes, AUROC)"
+    },
+    {
+      "model": "academic/clear-cxr-fm",
+      "benchmark": "clear_padchest_zeroshot_auroc",
+      "score": 70.0,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41551-026-01741-4",
+      "_note": "CLEAR PadChest zero-shot"
+    },
+    {
+      "model": "microsoft/biomedclip",
+      "benchmark": "clear_padchest_zeroshot_auroc",
+      "score": 59.2,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41551-026-01741-4",
+      "_note": "baseline (CLEAR paper)"
+    },
+    {
+      "model": "academic/clear-cxr-fm",
+      "benchmark": "clear_vindr_zeroshot_auroc",
+      "score": 78.2,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41551-026-01741-4",
+      "_note": "CLEAR VinDr-CXR"
+    },
+    {
+      "model": "meta-uhn/echojepa",
+      "benchmark": "echonet_lvef_mae",
+      "score": 3.97,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.02603",
+      "_note": "EchoJEPA LVEF MAE (lower better)"
+    },
+    {
+      "model": "meta-uhn/echojepa",
+      "benchmark": "echo_view_classification_acc",
+      "score": 87.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.02603",
+      "_note": "EchoJEPA"
+    },
+    {
+      "model": "academic/zen-surgical-fm",
+      "benchmark": "surgical_fm_frozen_avg",
+      "score": 57.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.13633",
+      "_note": "ZEN frozen avg 0.579"
+    },
+    {
+      "model": "dresden/mira-ehr-agent",
+      "benchmark": "mira_mimic4_diagnostic_acc",
+      "score": 88.9,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41586-026-10675-5",
+      "_note": "MIRA MIMIC-IV 8-disease"
+    },
+    {
+      "model": "beihang/zmt-m1",
+      "benchmark": "tcm_eval",
+      "score": 96.26,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2511.07148",
+      "_note": "ZMT-M1 TCM-Eval top"
+    },
+    {
+      "model": "baichuan/baichuan-m2-32b",
+      "benchmark": "healthbench",
+      "score": 60.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2509.02208",
+      "_note": "Baichuan-M2-32B"
+    },
+    {
+      "model": "baichuan/baichuan-m2-32b",
+      "benchmark": "healthbench_hard",
+      "score": 34.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2509.02208",
+      "_note": "Baichuan-M2-32B"
+    },
+    {
+      "model": "baichuan/baichuan-m2-32b",
+      "benchmark": "healthbench_consensus",
+      "score": 91.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2509.02208",
+      "_note": "Baichuan-M2-32B"
+    },
+    {
+      "model": "pingan/pingan-medical-3.5",
+      "benchmark": "healthbench_hard",
+      "score": 57.27,
+      "unit": "%",
+      "_source": "https://group.pingan.com/media/perspectives/2026/pingans-medical-llm-demonstrates-world-class-clinical-reasoning-on-healthbench-hard.html",
+      "_note": "Ping An Medical 3.5 #1 HealthBench Hard"
+    }
+  ]
+}

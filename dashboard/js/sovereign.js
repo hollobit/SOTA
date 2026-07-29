@@ -966,7 +966,7 @@ var Sovereign = {
                 'kmmlu', 'kmmlu_pro', 'kmmlu_cot', 'haerae', 'haerae_cot', 'click_ko', 'komt_bench', 'logickor',
                 'kobalt_700', 'ko_ifeval', 'kobest', 'k_mmbench',
                 'hrm8k', 'kmle', 'kmmmu', 'ko_aime_2025',
-                'ko_simpleqa', 'math_ko', 'mbpp_ko',
+                'ko_simpleqa', 'math_ko', 'mbpp_ko', 'kormedmcqa_v',
                 'k_knowledge', 'k_domain', 'ko_gdpval',
                 'kbank_mmlu', 'kbl', 'kormedmcqa'
             ]

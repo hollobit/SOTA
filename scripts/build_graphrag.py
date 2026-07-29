@@ -44,6 +44,13 @@ def tokenize(text):
         if not t or len(t) < 2 or t in STOPWORDS:
             continue
         out.append(t)
+        # Also emit sub-tokens split on - / . so hyphenated/dotted names
+        # (cxrmate-2, mimic-cxr, cxr-bert, gpt-5.5) are findable by their
+        # parts — a query for "CXRMate" must match the node "CXRMate-2".
+        if re.search(r"[-/.]", t):
+            for sub in re.split(r"[-/.]+", t):
+                if len(sub) >= 2 and sub not in STOPWORDS and sub != t:
+                    out.append(sub)
     return out
 
 

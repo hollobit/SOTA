@@ -102,6 +102,17 @@
                 } else {
                     out.push(t);
                 }
+                // Also emit sub-tokens split on - / . so a query like
+                // "CXRMate" or "MIMIC-CXR" matches nodes tokenized as
+                // "cxrmate-2" / "mimic-cxr" (must mirror build_graphrag.py).
+                if (/[\-/.]/.test(t)) {
+                    var subs = t.split(/[\-/.]+/);
+                    for (var k = 0; k < subs.length; k++) {
+                        if (subs[k] && subs[k].length >= 2 && !this._stopwords[subs[k]] && subs[k] !== t) {
+                            out.push(subs[k]);
+                        }
+                    }
+                }
             }
             return out;
         },
