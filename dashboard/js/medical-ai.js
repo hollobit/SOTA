@@ -731,9 +731,19 @@ var MedicalAI = {
             benchmarks: ['rexrank_radgraph_f1', 'rexrank_bertscore', 'rexrank_radcliq', 'rexrank_green', 'rexrank_finerad', 'rexgrad_acc', 'chexpert_f1']
         },
         {
-            label: '📝 CXR Report Generation — MIMIC-CXR (CXRMate-2 paper)',
+            label: '📝 CXR RRG — MIMIC-CXR (CXRMate-2 paper)',
             note: 'MIMIC-CXR findings (n=1624), uniform protocol from CXRMate-2 (arXiv 2604.18967) — RaTEScore · GREEN · RadEval-BERTScore · RadGraph-XL · CheXbert macro-F1 · CXR-BERT · BERTScore · BLEU-4 · ROUGE-L. Models: CXRMate-2 · MedGemma 1.5/4B · MedVersa · MAIRA-2',
             benchmarks: ['mimic_cxr_ratescore', 'mimic_cxr_green', 'mimic_cxr_radeval_bertscore', 'mimic_cxr_radgraph_xl', 'mimic_cxr_chexbert_f1', 'mimic_cxr_cxrbert', 'mimic_cxr_bertscore', 'mimic_cxr_bleu4', 'mimic_cxr_rougel']
+        },
+        {
+            label: '📝 CXR RRG — CheXpert Plus (CXRMate-2 paper)',
+            note: 'CheXpert Plus findings (n=62), CXRMate-2 paper cross-dataset generalization — same 9 metrics. CXRMate-2 SOTA (GREEN 32.7 / RadGraph-XL 30.4). Models: CXRMate-2 · MedGemma 1.5/4B · MedVersa · MAIRA-2',
+            benchmarks: ['chexpert_plus_ratescore', 'chexpert_plus_green', 'chexpert_plus_radeval_bertscore', 'chexpert_plus_radgraph_xl', 'chexpert_plus_chexbert_f1', 'chexpert_plus_cxrbert', 'chexpert_plus_bertscore', 'chexpert_plus_bleu4', 'chexpert_plus_rougel']
+        },
+        {
+            label: '📝 CXR RRG — ReXgradient (CXRMate-2 paper)',
+            note: 'ReXgradient findings (n=10000), CXRMate-2 paper cross-dataset generalization — same 9 metrics. CXRMate-2 SOTA (GREEN 58.1 / RadGraph-XL 41.7). Models: CXRMate-2 · MedGemma 1.5/4B · MedVersa',
+            benchmarks: ['rexgradient_ratescore', 'rexgradient_green', 'rexgradient_radeval_bertscore', 'rexgradient_radgraph_xl', 'rexgradient_chexbert_f1', 'rexgradient_cxrbert', 'rexgradient_bertscore', 'rexgradient_bleu4', 'rexgradient_rougel']
         },
         {
             label: '🖼️ Medical VQA (radiology · pathology)',

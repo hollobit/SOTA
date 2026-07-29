@@ -2,6 +2,12 @@
   {
     "date": "2026-07-29",
     "type": "ingest",
+    "title": "S212g-b — CXRMate-2 PDF 재검증: CheXpert Plus + ReXgradient 데이터셋 보완",
+    "detail": "CXRMate-2 논문 재검증 결과 초기 수집에서 Table 2의 CheXpert Plus(n=62)·ReXgradient(n=10000) 데이터셋 결과가 누락됐음(cross-dataset 일반화는 논문 핵심 기여). 두 데이터셋 × 9 RRG 메트릭을 CXRMate-2 + DB 기존 baseline(MAIRA-2[CheXpert만]·MedGemma 4B·MedVersa·MedGemma 1.5 4B)에 대해 보완 — 신규 벤치 18종, 81 scores. CXRMate-2가 양 데이터셋 SOTA(ReXgradient GREEN 58.1/RadGraph-XL 41.7, CheXpert Plus GREEN 32.7/RadGraph-XL 30.4). CXRMate-2 총 27 scores(3데이터셋×9). Medical AI 탭에 CheXpert Plus·ReXgradient RRG suite 2종 추가(총 3 RRG suite). graphrag.json 재생성."
+  },
+  {
+    "date": "2026-07-29",
+    "type": "ingest",
     "title": "S212g — CXRMate-2 (CSIRO AEHRC) 흉부 X-ray 리포트생성 SOTA 신규",
     "detail": "CXRMate-2(arXiv 2604.18967v2, CSIRO AEHRC) 신규 수집: GRPO RL + structured multimodal temporal embeddings 기반 CXR 리포트생성(RRG) SOTA. RAD-DINO 인코더, 3B, apache-2.0, open-weight. Table 2 MIMIC-CXR(findings, n=1624) 9메트릭(RaTEScore/GREEN/RadEval-BERTScore/RadGraph-XL/CheXbert-F1/CXR-BERT/BERTScore/BLEU-4/ROUGE-L)을 CXRMate-2 + DB 기존 baseline 4종(MedGemma 1.5/4B, MedVersa, MAIRA-2)에 대해 수집(45 scores, 신규 벤치 9종). RRG-특화 연구 메트릭을 단일 primary source가 균일 프로토콜로 평가한 leaderboard형이라 baseline 포함(표준벤치 competitor 스킵과 구분). CXRMate-2 GREEN 46.6/RadGraph-XL 40.3 SOTA(vs MedGemma 1.5 +11.2%/+24.4%). DB 미존재 baseline(EMNLI/CXRMate-ED/Libra/MLRG/PriorRG/DeepMedix-R1) 및 2차 데이터셋(CheXpert Plus/ReXgradient) 미수집(proliferation 방지). Medical AI 탭 radiology-reporting 카테고리 + 신규 MIMIC-CXR RRG suite 추가. 논문 PDF resource/ 저장 + seed_sources·Resources 등록."
   },
