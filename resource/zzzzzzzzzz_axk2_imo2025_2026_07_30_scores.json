@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-30",
+    "sources": [
+      "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "https://huggingface.co/skt/A.X-K2"
+    ],
+    "_note": "S214c A.X K2 HF card re-verification: card content == tech report (same thinking-mode Table + RULER, all 18 scores already ingested). Only missed item: A.X K2 IMO 2025 = 35/42 (gold-medal threshold) — added at 83.33% to match the existing imo_2025 %-scale entries (gemini-deep-think/openai-experimental also 35/42=83.33). Also normalized two existing imo_2025 rows that were stored as raw 35.0 /42 (deepseek-math-v2, gemini-3-deep-think) to 83.33% so the leaderboard ranks them equal to the 83.33 entries instead of far below. Other card mentions (KMO26 2nd round all-8 proofs, NIAH perfect) are qualitative, not standard benches."
+  },
+  "scores": [
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "imo_2025",
+      "score": 83.33,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 IMO 2025: 35/42 (perfect 7/7 on first 5 problems), gold-medal threshold; 35/42=83.33%"
+    },
+    {
+      "model": "deepseek/deepseek-math-v2",
+      "benchmark": "imo_2025",
+      "score": 83.33,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2",
+      "_note": "scale normalize: 35/42 -> 83.33% (was stored as 35.0 /42, misranked vs %-scale entries)"
+    },
+    {
+      "model": "deepmind/gemini-3-deep-think",
+      "benchmark": "imo_2025",
+      "score": 83.33,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2",
+      "_note": "scale normalize: 35/42 -> 83.33% (was 35.0 /42)"
+    }
+  ]
+}
