@@ -137,8 +137,12 @@ var MedicalAI = {
             code: 'medical-vlm',
             label: 'Medical Vision-Language Models',
             icon: '👁️',
-            note: 'Med-Flamingo (Stanford 9B few-shot) · MedDr (InternVL 40B, derm/endo SOTA) · HuatuoGPT-Vision 7B/34B · BiomedGPT Large/XL · Intern-Medical 25B · Uni-Med · MedImageInsight · HealthGPT',
+            note: 'MedMO-8B (MBZUAI, grounded — MedQA 90.4/SLAKE 81.6) · Aloe-Vision-72B (HPAI-BSC, OmniMedVQA 83.97/PathMMU 70.32) · OpenMedReason-7B (York/Vector, evidence-grounded — SLAKE 85.1) · RadSight-8B (DAMO) · Med-Flamingo (Stanford 9B) · MedDr (InternVL 40B) · HuatuoGPT-Vision 7B/34B · BiomedGPT · Intern-Medical 25B · Uni-Med · MedImageInsight · HealthGPT',
             models: [
+                'mbzuai/medmo-8b',                 // 2026-02 S213 — grounded medical MLLM
+                'hpai-bsc/aloe-vision-72b',        // 2026-06 S213 — open medical VLM (adversarially robust)
+                'yorku-vector/openmedreason-7b',   // 2026-06 S213 — evidence-grounded reasoning VLM
+                'damo/radsight-8b',                // 2026-07 S213 — radiology perception (Perception-Bench)
                 'stanford/med-flamingo-9b',
                 'smartlab/meddr-internvl-40b',
                 'freedomintelligence/huatuogpt-vision-7b',
@@ -198,6 +202,7 @@ var MedicalAI = {
             note: 'CXRMate-2 (CSIRO AEHRC, GRPO RL — MIMIC-CXR GREEN 46.6 / RadGraph-XL 40.3 SOTA vs MedGemma 1.5) · MedVersa (Harvard) · MAIRA-1/2 (Microsoft) · CheXagent · CXR-PRO · LLM-CXR · RGRG — chest X-ray + multi-modality report generation, ReXrank leaderboard',
             models: [
                 'aehrc/cxrmate-2',  // 2026-05 S212g — CSIRO AEHRC RRG SOTA (RAD-DINO + GRPO), MIMIC-CXR 9-metric leaderboard
+                'usyd/lepax',       // 2026-07 S213 — lesion-aware high-res CXR RRG (Univ. Sydney)
                 'harvard/medversa-8b',
                 'rad-onc/maira-2',
                 'microsoft/maira-2',  // 2026-06-14 S116 — RadFact Grounding Recall 90% / Logical Precision 55.6%
@@ -749,6 +754,16 @@ var MedicalAI = {
             label: '🖼️ Medical VQA (radiology · pathology)',
             note: 'VQA-RAD · SLAKE-VQA (EN+CN) · Path-VQA · PMC-VQA — image-grounded medical question answering',
             benchmarks: ['vqa_rad', 'slake_vqa', 'path_vqa', 'pmc_vqa']
+        },
+        {
+            label: '🩺 2026 Frontier Clinical Benchmarks (agentic · process-aware)',
+            note: 'New 2026 clinical benchmarks discriminating frontier LLMs — MedBench v5 (CCR text/multimodal + atomic skills) · Medmarks-V/OE (win-rate) · LiveMedBench (contamination-free) · PhysicianBench (agentic EHR) · Chi-Bench (healthcare ops) · PhysAssistBench (multi-turn) · ER-Reason (emergency acuity)',
+            benchmarks: ['medbench_v5_ccr_llm', 'medbench_v5_ccr_multimodal', 'medbench_v5_mas', 'medmarks_v', 'medmarks_oe', 'livemedbench', 'physicianbench', 'chi_bench', 'physassistbench', 'er_reason_acuity']
+        },
+        {
+            label: '🔬 2026 Medical Multimodal / Specialty Benchmarks',
+            note: 'X-PCR (ophthalmology progressive reasoning) · SpineBench (level-aware spine) · GI-Bench (endoscopy) · M3CoTBench (MLLM CoT quality) · MentalBench (psychiatry, DSM-5) · Perception-Bench (RadSight: anomaly AUROC / 3D grounding) · MeDxBench (interactive dx) · Head-CT 75-finding (MoLRE) · PulmoFoundation (lung path)',
+            benchmarks: ['x_pcr_ophthalmology', 'spinebench', 'gi_bench', 'm3cotbench', 'mentalbench', 'radsight_anomaly_auroc', 'radsight_3d_grounding_miou', 'medxbench', 'headct_75finding_avg_auc', 'pulmo_avg_auc_11task']
         },
         {
             label: '🌍 Regional Medical (Arabic · African)',

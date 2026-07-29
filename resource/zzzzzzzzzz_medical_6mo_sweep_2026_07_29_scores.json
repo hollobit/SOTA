@@ -1,0 +1,821 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-29",
+    "sources": [
+      "https://arxiv.org/abs/2606.24155",
+      "https://arxiv.org/abs/2605.01417",
+      "https://arxiv.org/abs/2602.10367",
+      "https://arxiv.org/abs/2605.02240",
+      "https://arxiv.org/abs/2605.16679",
+      "https://arxiv.org/abs/2606.18613",
+      "https://arxiv.org/abs/2505.22919",
+      "https://arxiv.org/abs/2604.20350",
+      "https://arxiv.org/abs/2510.03160",
+      "https://arxiv.org/abs/2602.12871",
+      "https://arxiv.org/abs/2601.08183",
+      "https://arxiv.org/abs/2601.08758",
+      "https://arxiv.org/abs/2602.06965",
+      "https://arxiv.org/abs/2606.27500",
+      "https://arxiv.org/abs/2606.12169",
+      "https://arxiv.org/abs/2607.06909",
+      "https://arxiv.org/abs/2606.03416",
+      "https://arxiv.org/abs/2607.22293",
+      "https://arxiv.org/abs/2605.25878",
+      "https://arxiv.org/abs/2603.00675"
+    ],
+    "_note": "S213 6-month Medical-AI gap sweep (6 parallel research agents). NEW frontier medical benchmarks (MedBench v5 / Medmarks / LiveMedBench / PhysicianBench / Chi-Bench / PhysAssistBench / ER-Reason / X-PCR / SpineBench / MentalBench / GI-Bench / M3CoTBench) with scores attached ONLY to frontier models already in the DB (absent competitors like Baichuan-M3/Doubao/Seed skipped, no stubs). NEW models: MedMO-8B, Aloe-Vision-72B, OpenMedReason-7B, LePaX, MeDxAgent, RadSight-8B, PulmoFoundation — scores mapped to existing standard benches (slake/vqa_rad/pmc_vqa/pathmmu/omnimedvqa/mmlu_med/mmmu_medical/medxpertqa) + LePaX to mimic_cxr_* RRG. Win-rate benches x100. All numbers from primary arXiv papers. SKIPPED (aggregator-only/unreadable, per strict attribution): MedArena live BT, MedHELM-Q2 task numbers, HealthBench/MedXpertQA aggregator numbers, and items with no primary numeric scores (MedDialogRubrics figures, MMRad-22K, CXR-LT 2026, JEPA-DNA, etc.)."
+  },
+  "models": [
+    {
+      "id": "mbzuai/medmo-8b",
+      "vendor": "MBZUAI",
+      "name": "MedMO-8B",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "parameters": "8B",
+      "release_date": "2026-02"
+    },
+    {
+      "id": "hpai-bsc/aloe-vision-72b",
+      "vendor": "HPAI-BSC",
+      "name": "Aloe-Vision-72B",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "parameters": "72B",
+      "release_date": "2026-06-29"
+    },
+    {
+      "id": "yorku-vector/openmedreason-7b",
+      "vendor": "York University / Vector Institute",
+      "name": "OpenMedReason-7B",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "parameters": "7B",
+      "release_date": "2026-06-10"
+    },
+    {
+      "id": "usyd/lepax",
+      "vendor": "University of Sydney",
+      "name": "LePaX",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "release_date": "2026-07-08"
+    },
+    {
+      "id": "msr-india/medxagent",
+      "vendor": "Microsoft Research India",
+      "name": "MeDxAgent",
+      "type": "proprietary",
+      "modalities": [
+        "text"
+      ],
+      "release_date": "2026-06-02"
+    },
+    {
+      "id": "damo/radsight-8b",
+      "vendor": "Alibaba DAMO Academy",
+      "name": "RadSight-8B",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "parameters": "8B",
+      "release_date": "2026-07-24"
+    },
+    {
+      "id": "multicenter/pulmofoundation",
+      "vendor": "Multi-center (Zhengrui Guo et al.)",
+      "name": "PulmoFoundation",
+      "type": "open-weight",
+      "modalities": [
+        "image"
+      ],
+      "release_date": "2026-05-25"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "medbench_v5_ccr_llm",
+      "name": "MedBench v5 — CCR (text LLM)",
+      "category": "medical",
+      "metric": "score",
+      "description": "MedBench v5 — CCR (text LLM). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "medbench_v5_ccr_multimodal",
+      "name": "MedBench v5 — CCR (multimodal)",
+      "category": "medical",
+      "metric": "score",
+      "description": "MedBench v5 — CCR (multimodal). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "medbench_v5_mas",
+      "name": "MedBench v5 — Medical Atomic Skills",
+      "category": "medical",
+      "metric": "score",
+      "description": "MedBench v5 — Medical Atomic Skills. Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "medmarks_v",
+      "name": "Medmarks-V (verifiable clinical suite, win-rate)",
+      "category": "medical",
+      "metric": "score",
+      "description": "Medmarks-V (verifiable clinical suite, win-rate). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "medmarks_oe",
+      "name": "Medmarks-OE (open-ended clinical, win-rate)",
+      "category": "medical",
+      "metric": "score",
+      "description": "Medmarks-OE (open-ended clinical, win-rate). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "livemedbench",
+      "name": "LiveMedBench (contamination-free clinical reasoning)",
+      "category": "medical",
+      "metric": "score",
+      "description": "LiveMedBench (contamination-free clinical reasoning). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "physicianbench",
+      "name": "PhysicianBench (agentic EHR workflows, pass@1)",
+      "category": "clinical-prediction",
+      "metric": "score",
+      "description": "PhysicianBench (agentic EHR workflows, pass@1). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "chi_bench",
+      "name": "Chi-Bench (long-horizon healthcare operations, pass@11)",
+      "category": "medical",
+      "metric": "score",
+      "description": "Chi-Bench (long-horizon healthcare operations, pass@11). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "physassistbench",
+      "name": "PhysAssistBench (multi-turn clinical assistance, mRS)",
+      "category": "medical",
+      "metric": "score",
+      "description": "PhysAssistBench (multi-turn clinical assistance, mRS). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "er_reason_acuity",
+      "name": "ER-Reason — Acuity Assessment",
+      "category": "clinical-prediction",
+      "metric": "score",
+      "description": "ER-Reason — Acuity Assessment. Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "x_pcr_ophthalmology",
+      "name": "X-PCR (ophthalmology progressive clinical reasoning, stage-avg)",
+      "category": "vision-language",
+      "metric": "score",
+      "description": "X-PCR (ophthalmology progressive clinical reasoning, stage-avg). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "spinebench",
+      "name": "SpineBench (level-aware spinal diagnosis)",
+      "category": "vision-language",
+      "metric": "score",
+      "description": "SpineBench (level-aware spinal diagnosis). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "mentalbench",
+      "name": "MentalBench (psychiatric diagnosis, DSM-5 grounded)",
+      "category": "mental-health",
+      "metric": "score",
+      "description": "MentalBench (psychiatric diagnosis, DSM-5 grounded). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "gi_bench",
+      "name": "GI-Bench (GI endoscopy diagnostic reasoning, Macro-F1)",
+      "category": "vision-language",
+      "metric": "score",
+      "description": "GI-Bench (GI endoscopy diagnostic reasoning, Macro-F1). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "m3cotbench",
+      "name": "M3CoTBench (medical MLLM chain-of-thought quality, F1)",
+      "category": "vision-language",
+      "metric": "score",
+      "description": "M3CoTBench (medical MLLM chain-of-thought quality, F1). Introduced 2026; frontier-model results from the primary paper. Higher is better."
+    },
+    {
+      "id": "medxbench",
+      "name": "MeDxBench (interactive diagnosis, 4421 cases)",
+      "category": "medical",
+      "metric": "accuracy",
+      "description": "Interactive multi-agent diagnosis benchmark, 4,421 cases / 20 specialties (MeDxAgent paper, arXiv 2606.03416). Higher is better."
+    },
+    {
+      "id": "radsight_anomaly_auroc",
+      "name": "Perception-Bench — Anomaly Detection AUROC",
+      "category": "medical-imaging",
+      "metric": "auroc",
+      "description": "Radiology anomaly detection AUROC on Perception-Bench (RadSight paper, arXiv 2607.22293). Higher is better."
+    },
+    {
+      "id": "radsight_3d_grounding_miou",
+      "name": "Perception-Bench — 3D Grounding mIoU",
+      "category": "medical-imaging",
+      "metric": "miou",
+      "description": "3D CT visual grounding mIoU on Perception-Bench (RadSight paper, arXiv 2607.22293). Higher is better."
+    },
+    {
+      "id": "pulmo_avg_auc_11task",
+      "name": "PulmoFoundation — Avg AUC (11 lung-pathology tasks)",
+      "category": "medical-imaging",
+      "metric": "auroc",
+      "description": "Average AUC across 11 diagnostic tasks, prospective validation 1,357 patients (PulmoFoundation, arXiv 2605.25878). Higher is better."
+    },
+    {
+      "id": "headct_75finding_avg_auc",
+      "name": "Head-CT 75-Finding Avg Detection AUC (MoLRE)",
+      "category": "medical-imaging",
+      "metric": "auroc",
+      "description": "Average detection AUC over 75 findings on a 72,756-scan non-contrast head-CT benchmark (MoLRE paper, arXiv 2603.00675). Higher is better."
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "medbench_v5_ccr_llm",
+      "score": 69.16,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.24155",
+      "_note": "MedBench v5 — CCR (text LLM) — primary paper leaderboard"
+    },
+    {
+      "model": "alibaba/qwen3.7-max-preview",
+      "benchmark": "medbench_v5_ccr_llm",
+      "score": 68.72,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.24155",
+      "_note": "MedBench v5 — CCR (text LLM) — primary paper leaderboard"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "medbench_v5_ccr_llm",
+      "score": 68.61,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.24155",
+      "_note": "MedBench v5 — CCR (text LLM) — primary paper leaderboard"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "medbench_v5_ccr_llm",
+      "score": 68.19,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.24155",
+      "_note": "MedBench v5 — CCR (text LLM) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medbench_v5_ccr_llm",
+      "score": 67.37,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.24155",
+      "_note": "MedBench v5 — CCR (text LLM) — primary paper leaderboard"
+    },
+    {
+      "model": "google/gemini-3.5-flash",
+      "benchmark": "medbench_v5_ccr_multimodal",
+      "score": 50.68,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.24155",
+      "_note": "MedBench v5 — CCR (multimodal) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medbench_v5_ccr_multimodal",
+      "score": 50.07,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.24155",
+      "_note": "MedBench v5 — CCR (multimodal) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "medbench_v5_mas",
+      "score": 81.22,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.24155",
+      "_note": "MedBench v5 — Medical Atomic Skills — primary paper leaderboard"
+    },
+    {
+      "model": "alibaba/qwen3.7-max-preview",
+      "benchmark": "medbench_v5_mas",
+      "score": 78.13,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.24155",
+      "_note": "MedBench v5 — Medical Atomic Skills — primary paper leaderboard"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "medmarks_v",
+      "score": 66.28,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01417",
+      "_note": "Medmarks-V (verifiable clinical suite, win-rate) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "medmarks_v",
+      "score": 63.95,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01417",
+      "_note": "Medmarks-V (verifiable clinical suite, win-rate) — primary paper leaderboard"
+    },
+    {
+      "model": "xai/grok-4",
+      "benchmark": "medmarks_v",
+      "score": 63.43,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01417",
+      "_note": "Medmarks-V (verifiable clinical suite, win-rate) — primary paper leaderboard"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "medmarks_v",
+      "score": 62.58,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01417",
+      "_note": "Medmarks-V (verifiable clinical suite, win-rate) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "medmarks_oe",
+      "score": 63.89,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01417",
+      "_note": "Medmarks-OE (open-ended clinical, win-rate) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "medmarks_oe",
+      "score": 62.44,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.01417",
+      "_note": "Medmarks-OE (open-ended clinical, win-rate) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "livemedbench",
+      "score": 39.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.10367",
+      "_note": "LiveMedBench (contamination-free clinical reasoning) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "livemedbench",
+      "score": 38.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.10367",
+      "_note": "LiveMedBench (contamination-free clinical reasoning) — primary paper leaderboard"
+    },
+    {
+      "model": "xai/grok-4.1",
+      "benchmark": "livemedbench",
+      "score": 28.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.10367",
+      "_note": "LiveMedBench (contamination-free clinical reasoning) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "physicianbench",
+      "score": 46.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.02240",
+      "_note": "PhysicianBench (agentic EHR workflows, pass@1) — primary paper leaderboard"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "physicianbench",
+      "score": 31.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.02240",
+      "_note": "PhysicianBench (agentic EHR workflows, pass@1) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "physicianbench",
+      "score": 27.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.02240",
+      "_note": "PhysicianBench (agentic EHR workflows, pass@1) — primary paper leaderboard"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "physicianbench",
+      "score": 18.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.02240",
+      "_note": "PhysicianBench (agentic EHR workflows, pass@1) — primary paper leaderboard"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "physicianbench",
+      "score": 17.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.02240",
+      "_note": "PhysicianBench (agentic EHR workflows, pass@1) — primary paper leaderboard"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "physicianbench",
+      "score": 6.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.02240",
+      "_note": "PhysicianBench (agentic EHR workflows, pass@1) — primary paper leaderboard"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "chi_bench",
+      "score": 28.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.16679",
+      "_note": "Chi-Bench (long-horizon healthcare operations, pass@11) — primary paper leaderboard"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "benchmark": "chi_bench",
+      "score": 26.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.16679",
+      "_note": "Chi-Bench (long-horizon healthcare operations, pass@11) — primary paper leaderboard"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "chi_bench",
+      "score": 24.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.16679",
+      "_note": "Chi-Bench (long-horizon healthcare operations, pass@11) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "chi_bench",
+      "score": 20.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.16679",
+      "_note": "Chi-Bench (long-horizon healthcare operations, pass@11) — primary paper leaderboard"
+    },
+    {
+      "model": "google/gemini-3-flash",
+      "benchmark": "chi_bench",
+      "score": 12.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.16679",
+      "_note": "Chi-Bench (long-horizon healthcare operations, pass@11) — primary paper leaderboard"
+    },
+    {
+      "model": "zhipu/glm-5",
+      "benchmark": "physassistbench",
+      "score": 69.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.18613",
+      "_note": "PhysAssistBench (multi-turn clinical assistance, mRS) — primary paper leaderboard"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "physassistbench",
+      "score": 68.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.18613",
+      "_note": "PhysAssistBench (multi-turn clinical assistance, mRS) — primary paper leaderboard"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "physassistbench",
+      "score": 68.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.18613",
+      "_note": "PhysAssistBench (multi-turn clinical assistance, mRS) — primary paper leaderboard"
+    },
+    {
+      "model": "moonshot/kimi-k2.6",
+      "benchmark": "physassistbench",
+      "score": 68.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.18613",
+      "_note": "PhysAssistBench (multi-turn clinical assistance, mRS) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.2",
+      "benchmark": "er_reason_acuity",
+      "score": 63.15,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2505.22919",
+      "_note": "ER-Reason — Acuity Assessment — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "x_pcr_ophthalmology",
+      "score": 76.24,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.20350",
+      "_note": "X-PCR (ophthalmology progressive clinical reasoning, stage-avg) — primary paper leaderboard"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "x_pcr_ophthalmology",
+      "score": 69.61,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.20350",
+      "_note": "X-PCR (ophthalmology progressive clinical reasoning, stage-avg) — primary paper leaderboard"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b",
+      "benchmark": "x_pcr_ophthalmology",
+      "score": 69.15,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.20350",
+      "_note": "X-PCR (ophthalmology progressive clinical reasoning, stage-avg) — primary paper leaderboard"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "spinebench",
+      "score": 89.23,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2510.03160",
+      "_note": "SpineBench (level-aware spinal diagnosis) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5",
+      "benchmark": "spinebench",
+      "score": 85.54,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2510.03160",
+      "_note": "SpineBench (level-aware spinal diagnosis) — primary paper leaderboard"
+    },
+    {
+      "model": "zhipu/glm-4.5",
+      "benchmark": "spinebench",
+      "score": 83.26,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2510.03160",
+      "_note": "SpineBench (level-aware spinal diagnosis) — primary paper leaderboard"
+    },
+    {
+      "model": "alibaba/qwen2.5-vl-72b",
+      "benchmark": "spinebench",
+      "score": 79.88,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2510.03160",
+      "_note": "SpineBench (level-aware spinal diagnosis) — primary paper leaderboard"
+    },
+    {
+      "model": "anthropic/claude-sonnet-4.5",
+      "benchmark": "mentalbench",
+      "score": 62.69,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.12871",
+      "_note": "MentalBench (psychiatric diagnosis, DSM-5 grounded) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-5.1",
+      "benchmark": "mentalbench",
+      "score": 62.17,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.12871",
+      "_note": "MentalBench (psychiatric diagnosis, DSM-5 grounded) — primary paper leaderboard"
+    },
+    {
+      "model": "anthropic/claude-haiku-4.5",
+      "benchmark": "mentalbench",
+      "score": 60.89,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.12871",
+      "_note": "MentalBench (psychiatric diagnosis, DSM-5 grounded) — primary paper leaderboard"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "mentalbench",
+      "score": 59.65,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.12871",
+      "_note": "MentalBench (psychiatric diagnosis, DSM-5 grounded) — primary paper leaderboard"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "gi_bench",
+      "score": 64.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.08183",
+      "_note": "GI-Bench (GI endoscopy diagnostic reasoning, Macro-F1) — primary paper leaderboard"
+    },
+    {
+      "model": "google/gemini-2.5-pro",
+      "benchmark": "m3cotbench",
+      "score": 66.07,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.08758",
+      "_note": "M3CoTBench (medical MLLM chain-of-thought quality, F1) — primary paper leaderboard"
+    },
+    {
+      "model": "openai/gpt-4.1",
+      "benchmark": "m3cotbench",
+      "score": 60.76,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2601.08758",
+      "_note": "M3CoTBench (medical MLLM chain-of-thought quality, F1) — primary paper leaderboard"
+    },
+    {
+      "model": "mbzuai/medmo-8b",
+      "benchmark": "slake_vqa",
+      "score": 81.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.06965",
+      "_note": "MedMO-8B paper"
+    },
+    {
+      "model": "mbzuai/medmo-8b",
+      "benchmark": "vqa_rad",
+      "score": 64.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.06965",
+      "_note": "MedMO-8B paper"
+    },
+    {
+      "model": "mbzuai/medmo-8b",
+      "benchmark": "mmmu_medical",
+      "score": 64.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.06965",
+      "_note": "MedMO-8B paper"
+    },
+    {
+      "model": "mbzuai/medmo-8b",
+      "benchmark": "mmlu_med",
+      "score": 81.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.06965",
+      "_note": "MedMO-8B paper"
+    },
+    {
+      "model": "hpai-bsc/aloe-vision-72b",
+      "benchmark": "slake_vqa",
+      "score": 68.99,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.27500",
+      "_note": "Aloe-Vision-72B-AR paper"
+    },
+    {
+      "model": "hpai-bsc/aloe-vision-72b",
+      "benchmark": "omnimedvqa",
+      "score": 83.97,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.27500",
+      "_note": "Aloe-Vision-72B-AR paper"
+    },
+    {
+      "model": "hpai-bsc/aloe-vision-72b",
+      "benchmark": "pathmmu",
+      "score": 70.32,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.27500",
+      "_note": "Aloe-Vision-72B-AR paper"
+    },
+    {
+      "model": "yorku-vector/openmedreason-7b",
+      "benchmark": "slake_vqa",
+      "score": 85.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.12169",
+      "_note": "OpenMedReason-7B paper"
+    },
+    {
+      "model": "yorku-vector/openmedreason-7b",
+      "benchmark": "vqa_rad",
+      "score": 72.51,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.12169",
+      "_note": "OpenMedReason-7B paper"
+    },
+    {
+      "model": "yorku-vector/openmedreason-7b",
+      "benchmark": "pmc_vqa",
+      "score": 55.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.12169",
+      "_note": "OpenMedReason-7B paper"
+    },
+    {
+      "model": "yorku-vector/openmedreason-7b",
+      "benchmark": "path_vqa",
+      "score": 64.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.12169",
+      "_note": "OpenMedReason-7B paper"
+    },
+    {
+      "model": "yorku-vector/openmedreason-7b",
+      "benchmark": "medxpertqa",
+      "score": 24.95,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.12169",
+      "_note": "OpenMedReason-7B paper"
+    },
+    {
+      "model": "usyd/lepax",
+      "benchmark": "mimic_cxr_green",
+      "score": 41.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.06909",
+      "_note": "LePaX paper, MIMIC-CXR"
+    },
+    {
+      "model": "usyd/lepax",
+      "benchmark": "mimic_cxr_bleu4",
+      "score": 25.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.06909",
+      "_note": "LePaX paper, MIMIC-CXR"
+    },
+    {
+      "model": "usyd/lepax",
+      "benchmark": "mimic_cxr_rougel",
+      "score": 38.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.06909",
+      "_note": "LePaX paper, MIMIC-CXR"
+    },
+    {
+      "model": "usyd/lepax",
+      "benchmark": "mimic_cxr_bertscore",
+      "score": 52.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.06909",
+      "_note": "LePaX paper, MIMIC-CXR"
+    },
+    {
+      "model": "usyd/lepax",
+      "benchmark": "mimic_cxr_ratescore",
+      "score": 62.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.06909",
+      "_note": "LePaX paper, MIMIC-CXR"
+    },
+    {
+      "model": "msr-india/medxagent",
+      "benchmark": "medxbench",
+      "score": 57.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.03416",
+      "_note": "MeDxAgent (GPT-4o base 47.1 -> 57.4)"
+    },
+    {
+      "model": "openai/gpt-4o",
+      "benchmark": "medxbench",
+      "score": 47.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.03416",
+      "_note": "GPT-4o baseline on MeDxBench"
+    },
+    {
+      "model": "damo/radsight-8b",
+      "benchmark": "radsight_anomaly_auroc",
+      "score": 80.47,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.22293",
+      "_note": "RadSight-8B"
+    },
+    {
+      "model": "damo/radsight-8b",
+      "benchmark": "radsight_3d_grounding_miou",
+      "score": 64.31,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.22293",
+      "_note": "RadSight-8B"
+    },
+    {
+      "model": "multicenter/pulmofoundation",
+      "benchmark": "pulmo_avg_auc_11task",
+      "score": 92.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.25878",
+      "_note": "PulmoFoundation prospective 11-task avg AUC"
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "headct_75finding_avg_auc",
+      "score": 91.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2603.00675",
+      "_note": "MedGemma+MoLRE (parameter-efficient head-CT expert routing) avg detection AUC"
+    }
+  ]
+}
