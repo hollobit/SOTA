@@ -2,6 +2,18 @@
   {
     "date": "2026-07-29",
     "type": "ingest",
+    "title": "S213b — Medical AI 재검증 2라운드: 신규 벤치 27종 + 모델 10종",
+    "detail": "S213 재검증(추가 4개 에이전트: 딥 PDF 추출·미탐색 하위도메인·Nature/npj 광역·중국어/다국어). 신규 벤치: MedConsultBench·MedThinkVQA·EHR-Complex·RCQ(Nature Med)·PsychiatryBench(npj)·OGCaReBench·ClinicRealm·MedR-Bench·DALPHIN·PANDA-PLUS·MLB·ClinConsensus·TCM-Eval·KorMedMCQA-V·MedAraBench·CLEAR/EchoJEPA/ZEN 벤치. 신규 모델: MIRA(Nature EHR 에이전트, 의사 초월)·CLEAR(Nature Biomed auditable CXR)·EchoJEPA(심초음파)·ZEN(수술)·ZMT-M1(TCM)·Baichuan-M2-32B·Ping An Medical 3.5·HistoEncoder·Biosignal M2AE·Astra. 총 76 scores, 프론티어 점수는 DB 존재 모델에만. Medical AI 탭 벤치 suite 4종·모델 카테고리 추가, KorMedMCQA-V는 Sovereign 한국어 suite. 미수집: MedDialogRubrics(figure만)·UNICORN(팀챌린지)·RadImageNet-VQA/forte(ID 충돌)."
+  },
+  {
+    "date": "2026-07-29",
+    "type": "fix",
+    "title": "GraphRAG 하이픈 토큰 검색 수정 (CXRMate 등 미검색 버그)",
+    "detail": "GraphRAG BM25 토크나이저가 'cxrmate-2'/'mimic-cxr'/'cxr-bert'를 하이픈 포함 단일 토큰으로만 인덱싱해, 'CXRMate' 검색 시 매칭 실패했음. build_graphrag.py + graphrag.js 양쪽 토크나이저가 하이픈/슬래시/점 기준 하위 토큰도 함께 emit하도록 수정(compound + parts 둘 다 인덱싱). 이제 'CXRMate'/'MIMIC'/'CXR' 부분 검색 매칭. vocab 5778→6668. graphrag.js?v 태그 bump."
+  },
+  {
+    "date": "2026-07-29",
+    "type": "ingest",
     "title": "S213 — Medical AI 최근 6개월 갭 스윕: 신규 벤치 20종 + 모델 7종 (병렬 리서치)",
     "detail": "6개 병렬 리서치 에이전트로 2026 상반기 medical AI 논문 조사 후 갭 보완(71 scores). 신규 프론티어 임상 벤치마크: MedBench v5(CCR/MAS)·Medmarks-V/OE·LiveMedBench(contamination-free)·PhysicianBench(agentic EHR)·Chi-Bench(healthcare ops)·PhysAssistBench·ER-Reason·X-PCR(안과)·SpineBench·MentalBench(정신과)·GI-Bench(내시경)·M3CoTBench — 점수는 DB 존재 프론티어 모델(Opus 4.7/4.6, GPT-5.5/5.2/5.1, Gemini 3.1 Pro, Kimi K2.6, GLM-5, DeepSeek V4-Pro, Grok 4/4.1, Qwen3.7-Max)에만 부착(부재 경쟁모델 stub 미생성). 신규 모델: MedMO-8B(MBZUAI)·Aloe-Vision-72B(HPAI-BSC)·OpenMedReason-7B(York/Vector)·LePaX(Sydney, CXR RRG)·MeDxAgent(MSR India)·RadSight-8B(DAMO)·PulmoFoundation — 기존 표준벤치(slake/vqa_rad/pmc_vqa/pathmmu/omnimedvqa/mmlu_med/mmmu_medical/medxpertqa) + LePaX는 mimic_cxr_* RRG에 매핑. Medical AI 탭: medical-vlm 카테고리 +4모델, radiology-reporting +LePaX, 2026 프론티어/멀티모달 벤치 suite 2종 추가. 리더보드 조사: MedArena/MedHELM-Q2는 aggregator-verify(신뢰 낮음)·MedArena 라이브 미렌더로 미수집, ReXrank V2.0만 primary-read(특화 RRG 시스템). graphrag 재생성."
   },

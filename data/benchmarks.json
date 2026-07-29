@@ -24068,13 +24068,6 @@
     "metric": "f1"
   },
   {
-    "id": "echonet_lvef_mae",
-    "name": "EchoNet-Dynamic LVEF MAE",
-    "category": "medical-imaging",
-    "description": "Left ventricular ejection fraction prediction MAE on EchoNet-Dynamic dataset — Stanford cardiac ultrasound external test set",
-    "metric": "mae"
-  },
-  {
     "id": "echonet_lvef_auc50",
     "name": "EchoNet LVEF AUC@50%",
     "category": "medical-imaging",
@@ -25766,6 +25759,195 @@
     "description": "Stanford HAI MedArena — head-to-head LLM comparison for medicine in the wild. Clinician vote-based pairwise preference",
     "metric": "elo",
     "paper": "https://hai.stanford.edu/news/medarena-comparing-llms-for-medicine-in-the-wild"
+  },
+  {
+    "id": "dalphin_biobert_sim",
+    "name": "DALPHIN — Diagnosis Semantic Similarity (BioBERT)",
+    "category": "medical-imaging",
+    "description": "Multicentric open pathology-copilot benchmark (1,236 images/300 cases/14 subspecialties). Diagnosis BioBERT semantic similarity vs pathologists (DALPHIN, arXiv 2605.03544). Higher is better.",
+    "metric": "similarity"
+  },
+  {
+    "id": "panda_plus_crossslide_acc",
+    "name": "PANDA-PLUS-Bench — Cross-Slide Gleason Accuracy",
+    "category": "medical-imaging",
+    "description": "Prostate-Gleason cross-slide robustness of pathology FMs (PANDA-PLUS-Bench, arXiv 2512.14922). Measures generalization without slide-artifact leakage. Higher is better.",
+    "metric": "accuracy"
+  },
+  {
+    "id": "medr_bench_diagnosis",
+    "name": "MedR-Bench — Diagnosis",
+    "category": "medical",
+    "description": "Clinical reasoning benchmark, diagnosis sub-score (MedR-Bench, via GSEM arXiv 2603.22096). Higher is better.",
+    "metric": "score"
+  },
+  {
+    "id": "medr_bench_treatment",
+    "name": "MedR-Bench — Treatment",
+    "category": "medical",
+    "description": "Clinical reasoning benchmark, treatment planning sub-score (MedR-Bench, via GSEM arXiv 2603.22096). Higher is better.",
+    "metric": "score"
+  },
+  {
+    "id": "wearable_cvd_5class_auroc",
+    "name": "Wearable CVD 5-Class AUROC (ECG-PPG)",
+    "category": "health-wearable",
+    "description": "5-class cardiovascular disease classification AUROC from paired ECG-PPG signals (Biosignal M2AE, arXiv 2605.09579). Higher is better.",
+    "metric": "auroc"
+  },
+  {
+    "id": "wearable_hypertension_auroc",
+    "name": "Wearable Hypertension Detection AUROC (PPG)",
+    "category": "health-wearable",
+    "description": "Hypertension detection AUROC from wearable PPG (Biosignal M2AE, arXiv 2605.09579). Higher is better.",
+    "metric": "auroc"
+  },
+  {
+    "id": "ct_rate_forte_rrg",
+    "name": "CT-RATE FORTE (3D CT report gen)",
+    "category": "medical-imaging",
+    "description": "FORTE fine-grained diagnostic report metric on CT-RATE chest CT report generation (Astra, arXiv 2605.31437). Higher is better.",
+    "metric": "score"
+  },
+  {
+    "id": "ct_rate_radbert_rrg",
+    "name": "CT-RATE RadBERT (3D CT report gen)",
+    "category": "medical-imaging",
+    "description": "RadBERT semantic metric on CT-RATE chest CT report generation (Astra, arXiv 2605.31437). Higher is better.",
+    "metric": "score"
+  },
+  {
+    "id": "medconsultbench",
+    "name": "MedConsultBench (consultation-agent, Norm.Score)",
+    "category": "medical",
+    "description": "MedConsultBench (consultation-agent, Norm.Score). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "medthinkvqa",
+    "name": "MedThinkVQA (multi-image radiology differential dx)",
+    "category": "vision-language",
+    "description": "MedThinkVQA (multi-image radiology differential dx). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "ehr_complex",
+    "name": "EHR-Complex (interactive MIMIC-IV reasoning, exact-match)",
+    "category": "clinical-prediction",
+    "description": "EHR-Complex (interactive MIMIC-IV reasoning, exact-match). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "rcq_physician_rating",
+    "name": "RCQ — Real Clinical Queries (physician rating 1-4)",
+    "category": "medical",
+    "description": "RCQ — Real Clinical Queries (physician rating 1-4). 2026; primary-source frontier results. Scale 1-4. ",
+    "metric": "score"
+  },
+  {
+    "id": "psychiatrybench",
+    "name": "PsychiatryBench (psychiatry QA, npj)",
+    "category": "mental-health",
+    "description": "PsychiatryBench (psychiatry QA, npj). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "ogcarebench",
+    "name": "OGCaReBench (off-guideline clinical QA, no-retrieval)",
+    "category": "medical",
+    "description": "OGCaReBench (off-guideline clinical QA, no-retrieval). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "clinconsensus",
+    "name": "ClinConsensus (Chinese consensus rubric coverage)",
+    "category": "medical",
+    "description": "ClinConsensus (Chinese consensus rubric coverage). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "mlb_clinical",
+    "name": "MLB (Ant Group scenario-driven Chinese clinical)",
+    "category": "medical",
+    "description": "MLB (Ant Group scenario-driven Chinese clinical). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "tcm_eval",
+    "name": "TCM-Eval (Traditional Chinese Medicine licensing)",
+    "category": "medical",
+    "description": "TCM-Eval (Traditional Chinese Medicine licensing). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "kormedmcqa_v",
+    "name": "KorMedMCQA-V (Korean multimodal medical licensing)",
+    "category": "sovereign-ai",
+    "description": "KorMedMCQA-V (Korean multimodal medical licensing). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "medarabench_v2",
+    "name": "MedAraBench (Arabic medical QA, NYUAD)",
+    "category": "multilingual",
+    "description": "MedAraBench (Arabic medical QA, NYUAD). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "clinicrealm_mimic3_mortality",
+    "name": "ClinicRealm — MIMIC-III mortality (notes, AUROC)",
+    "category": "clinical-prediction",
+    "description": "ClinicRealm — MIMIC-III mortality (notes, AUROC). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "clinicrealm_mimic4_mortality",
+    "name": "ClinicRealm — MIMIC-IV discharge mortality (notes, AUROC)",
+    "category": "clinical-prediction",
+    "description": "ClinicRealm — MIMIC-IV discharge mortality (notes, AUROC). 2026; primary-source frontier results. ",
+    "metric": "score"
+  },
+  {
+    "id": "mira_mimic4_diagnostic_acc",
+    "name": "MIRA — MIMIC-IV Diagnostic Accuracy (8 diseases)",
+    "category": "clinical-prediction",
+    "description": "Autonomous EHR agent diagnostic accuracy across 8 diseases / 574 cases; MIRA beats physicians 87.8 vs 78.1 on matched subset (Nature s41586-026-10675-5). Higher is better. ",
+    "metric": "accuracy"
+  },
+  {
+    "id": "clear_padchest_zeroshot_auroc",
+    "name": "CLEAR — PadChest Zero-Shot (55 findings, mean AUROC)",
+    "category": "medical-imaging",
+    "description": "Auditable CXR FM zero-shot mean AUROC on PadChest 55 findings (Nature Biomed Eng s41551-026-01741-4). Higher is better. ",
+    "metric": "auroc"
+  },
+  {
+    "id": "clear_vindr_zeroshot_auroc",
+    "name": "CLEAR — VinDr-CXR Zero-Shot (21 findings, AUROC)",
+    "category": "medical-imaging",
+    "description": "CLEAR zero-shot AUROC on VinDr-CXR (Nature Biomed Eng). Higher is better. ",
+    "metric": "auroc"
+  },
+  {
+    "id": "echonet_lvef_mae",
+    "name": "Echo LVEF MAE (EchoNet-Dynamic, lower=better)",
+    "category": "medical-imaging",
+    "description": "Left-ventricular ejection-fraction estimation MAE on EchoNet-Dynamic (EchoJEPA, arXiv 2602.02603). LOWER is better. ",
+    "metric": "mae"
+  },
+  {
+    "id": "echo_view_classification_acc",
+    "name": "Echo View Classification Accuracy",
+    "category": "medical-imaging",
+    "description": "Echocardiography view-classification accuracy (EchoJEPA, arXiv 2602.02603). Higher is better. ",
+    "metric": "accuracy"
+  },
+  {
+    "id": "surgical_fm_frozen_avg",
+    "name": "Surgical FM Frozen-Backbone Avg Score (20 tasks)",
+    "category": "medical-imaging",
+    "description": "Average frozen-backbone score across 20 surgical downstream tasks (ZEN, arXiv 2602.13633). Higher is better. ",
+    "metric": "score"
   },
   {
     "id": "frontiercode",
