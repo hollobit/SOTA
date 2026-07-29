@@ -1,0 +1,452 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-29",
+    "sources": [
+      "https://arxiv.org/pdf/2604.18967",
+      "https://huggingface.co/aehrc/cxrmate-2",
+      "https://github.com/aehrc/cxrmate"
+    ],
+    "_note": "CXRMate-2 (CSIRO AEHRC, arXiv 2604.18967v2 May 2026): SOTA chest X-ray radiology report generation (RRG) via GRPO RL + structured multimodal temporal embeddings; RAD-DINO visual encoder; 3B, apache-2.0. NEW model. Ingested Table 2 MIMIC-CXR (findings, n=1624) across 9 RRG metrics for CXRMate-2 + the 4 baselines already in the DB (MAIRA-2, MedGemma-4B, MedGemma-1.5-4B, MedVersa). These are RRG-specific research metrics (GREEN/RadGraph-XL/RaTEScore/CheXbert-F1/CXR-BERT/RadEval-BERTScore/BERTScore/BLEU-4/ROUGE-L) measured under one uniform protocol by the paper -> leaderboard-style, so baselines included (distinct from skipping a competitor's own-card standard benchmarks). Baselines NOT in DB (EMNLI, CXRMate, CXRMate-RRG24, CXRMate-ED, Libra, MLRG, PriorRG, DeepMedix-R1) skipped (no baseline-only stubs). Secondary datasets (CheXpert Plus n=62, ReXgradient n=10000) not ingested to avoid bench proliferation; CXRMate-2 headline there: CheXpert Plus GREEN 32.7 / RadGraph-XL 30.4, ReXgradient GREEN 58.1 / RadGraph-XL 41.7. Blinded radiologist eval: generated reports acceptable in 45% of ratings across 120 studies (qualitative, not ingested)."
+  },
+  "models": [
+    {
+      "id": "aehrc/cxrmate-2",
+      "vendor": "CSIRO AEHRC",
+      "name": "CXRMate-2",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "image"
+      ],
+      "parameters": "3B",
+      "release_date": "2026-05"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "mimic_cxr_ratescore",
+      "name": "RaTEScore (MIMIC-CXR RRG)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "RaTEScore — entity-level semantic alignment for radiology reports (Zhao et al. 2024), MIMIC-CXR test n=1624. Higher is better."
+    },
+    {
+      "id": "mimic_cxr_green",
+      "name": "GREEN (MIMIC-CXR RRG)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "GREEN — LLM-based clinical error assessment for CXR report generation (Ostmeier et al. 2024), MIMIC-CXR n=1624. Higher is better."
+    },
+    {
+      "id": "mimic_cxr_radeval_bertscore",
+      "name": "RadEval BERTScore (MIMIC-CXR RRG)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "RadEval BERTScore — radiology-report semantic similarity (Xu et al. 2025), MIMIC-CXR n=1624. Higher is better."
+    },
+    {
+      "id": "mimic_cxr_radgraph_xl",
+      "name": "RadGraph-XL F1 (MIMIC-CXR RRG)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "RadGraph-XL — graph-level factual correctness of generated CXR reports, MIMIC-CXR n=1624. Higher is better."
+    },
+    {
+      "id": "mimic_cxr_chexbert_f1",
+      "name": "CheXbert macro-F1 (MIMIC-CXR RRG)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "CheXbert macro-averaged F1 over 14 findings between generated and radiologist reports (Smit et al. 2020), MIMIC-CXR n=1624. Higher is better."
+    },
+    {
+      "id": "mimic_cxr_cxrbert",
+      "name": "CXR-BERT (MIMIC-CXR RRG)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "CXR-BERT radiology-report semantic similarity (Boecking et al. 2022), MIMIC-CXR n=1624. Higher is better."
+    },
+    {
+      "id": "mimic_cxr_bertscore",
+      "name": "BERTScore (MIMIC-CXR RRG)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "General-domain BERTScore (Zhang et al. 2019) between generated and radiologist findings, MIMIC-CXR n=1624. Higher is better."
+    },
+    {
+      "id": "mimic_cxr_bleu4",
+      "name": "BLEU-4 (MIMIC-CXR RRG)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "BLEU-4 lexical overlap for CXR report generation, MIMIC-CXR n=1624. Higher is better."
+    },
+    {
+      "id": "mimic_cxr_rougel",
+      "name": "ROUGE-L (MIMIC-CXR RRG)",
+      "category": "medical-imaging",
+      "metric": "score",
+      "description": "ROUGE-L lexical overlap for CXR report generation, MIMIC-CXR n=1624. Higher is better."
+    }
+  ],
+  "scores": [
+    {
+      "model": "aehrc/cxrmate-2",
+      "benchmark": "mimic_cxr_ratescore",
+      "score": 67.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624"
+    },
+    {
+      "model": "aehrc/cxrmate-2",
+      "benchmark": "mimic_cxr_green",
+      "score": 46.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624"
+    },
+    {
+      "model": "aehrc/cxrmate-2",
+      "benchmark": "mimic_cxr_radeval_bertscore",
+      "score": 45.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624"
+    },
+    {
+      "model": "aehrc/cxrmate-2",
+      "benchmark": "mimic_cxr_radgraph_xl",
+      "score": 40.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624"
+    },
+    {
+      "model": "aehrc/cxrmate-2",
+      "benchmark": "mimic_cxr_chexbert_f1",
+      "score": 48.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624"
+    },
+    {
+      "model": "aehrc/cxrmate-2",
+      "benchmark": "mimic_cxr_cxrbert",
+      "score": 81.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624"
+    },
+    {
+      "model": "aehrc/cxrmate-2",
+      "benchmark": "mimic_cxr_bertscore",
+      "score": 45.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624"
+    },
+    {
+      "model": "aehrc/cxrmate-2",
+      "benchmark": "mimic_cxr_bleu4",
+      "score": 24.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624"
+    },
+    {
+      "model": "aehrc/cxrmate-2",
+      "benchmark": "mimic_cxr_rougel",
+      "score": 42.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624"
+    },
+    {
+      "model": "microsoft/maira-2",
+      "benchmark": "mimic_cxr_ratescore",
+      "score": 59.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "microsoft/maira-2",
+      "benchmark": "mimic_cxr_green",
+      "score": 38.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "microsoft/maira-2",
+      "benchmark": "mimic_cxr_radeval_bertscore",
+      "score": 37.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "microsoft/maira-2",
+      "benchmark": "mimic_cxr_radgraph_xl",
+      "score": 31.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "microsoft/maira-2",
+      "benchmark": "mimic_cxr_chexbert_f1",
+      "score": 40.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "microsoft/maira-2",
+      "benchmark": "mimic_cxr_cxrbert",
+      "score": 70.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "microsoft/maira-2",
+      "benchmark": "mimic_cxr_bertscore",
+      "score": 13.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "microsoft/maira-2",
+      "benchmark": "mimic_cxr_bleu4",
+      "score": 17.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "microsoft/maira-2",
+      "benchmark": "mimic_cxr_rougel",
+      "score": 34.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_ratescore",
+      "score": 57.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_green",
+      "score": 33.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_radeval_bertscore",
+      "score": 25.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_radgraph_xl",
+      "score": 21.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_chexbert_f1",
+      "score": 30.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_cxrbert",
+      "score": 62.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_bertscore",
+      "score": 25.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_bleu4",
+      "score": 6.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-4b",
+      "benchmark": "mimic_cxr_rougel",
+      "score": 23.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "mimic_cxr_ratescore",
+      "score": 60.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "mimic_cxr_green",
+      "score": 38.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "mimic_cxr_radeval_bertscore",
+      "score": 30.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "mimic_cxr_radgraph_xl",
+      "score": 31.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "mimic_cxr_chexbert_f1",
+      "score": 36.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "mimic_cxr_cxrbert",
+      "score": 68.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "mimic_cxr_bertscore",
+      "score": 26.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "mimic_cxr_bleu4",
+      "score": 16.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "harvard/medversa-8b",
+      "benchmark": "mimic_cxr_rougel",
+      "score": 34.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-1.5-4b",
+      "benchmark": "mimic_cxr_ratescore",
+      "score": 64.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-1.5-4b",
+      "benchmark": "mimic_cxr_green",
+      "score": 41.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-1.5-4b",
+      "benchmark": "mimic_cxr_radeval_bertscore",
+      "score": 33.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-1.5-4b",
+      "benchmark": "mimic_cxr_radgraph_xl",
+      "score": 32.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-1.5-4b",
+      "benchmark": "mimic_cxr_chexbert_f1",
+      "score": 47.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-1.5-4b",
+      "benchmark": "mimic_cxr_cxrbert",
+      "score": 67.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-1.5-4b",
+      "benchmark": "mimic_cxr_bertscore",
+      "score": 34.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-1.5-4b",
+      "benchmark": "mimic_cxr_bleu4",
+      "score": 15.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    },
+    {
+      "model": "google/medgemma-1.5-4b",
+      "benchmark": "mimic_cxr_rougel",
+      "score": 33.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/pdf/2604.18967",
+      "_note": "CXRMate-2 paper Table 2, MIMIC-CXR findings n=1624 (baseline measured by CXRMate-2 authors, uniform protocol)"
+    }
+  ]
+}

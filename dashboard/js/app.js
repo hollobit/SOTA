@@ -2644,6 +2644,7 @@ var App = {
             { name: 'Microsoft MAI-Thinking-1 — Technical Report (109p)', file: 'mai_thinking_1_tech_report.pdf', vendor: 'Microsoft AI', date: 'Mar 2026', url: 'https://microsoft.ai/pdf/mai-thinking-1.pdf' },
             { name: 'Google DeepMind — Introducing Gemini 3.5 Flash Cyber', file: '', vendor: 'Google DeepMind', date: 'Jul 2026', url: 'https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/' },
             { name: 'Kakao Kanana 2 SLM (1.3B/3B) — Tech Blog', file: '', vendor: 'Kakao', date: 'Jul 2026', url: 'https://tech.kakao.com/posts/826' },
+            { name: 'CXRMate-2 — Chest X-ray Radiology Report Generation', file: 'cxrmate2_arxiv_2604_18967.pdf', vendor: 'CSIRO AEHRC', date: 'May 2026', url: 'https://arxiv.org/abs/2604.18967' },
             { name: 'Spacer: Towards Engineered Scientific Inspiration', file: 'spacer_2508.17661.pdf', vendor: 'Asteromorph', date: 'Aug 2025', url: 'https://arxiv.org/abs/2508.17661' },
             { name: 'The AI Scientist: End-to-End AI Research (Nature)', file: 'nature_10265_5.pdf', vendor: 'Sakana AI + Oxford + UBC + Vector', date: 'Mar 2026', url: 'https://www.nature.com/articles/s41586-026-10265-5' },
             { name: 'OpenAI GPT-Rosalind: Life Sciences Capabilities Update', file: '', vendor: 'OpenAI', date: 'Jun 2026', url: 'https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/' },

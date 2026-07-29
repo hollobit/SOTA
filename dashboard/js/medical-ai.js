@@ -195,8 +195,9 @@ var MedicalAI = {
             code: 'radiology-reporting',
             label: 'Radiology Report Generation',
             icon: '📝',
-            note: 'MedVersa (Harvard) · MAIRA-1/2 (Microsoft) · CheXagent · CXR-PRO · LLM-CXR · RGRG — chest X-ray + multi-modality report generation, ReXrank leaderboard',
+            note: 'CXRMate-2 (CSIRO AEHRC, GRPO RL — MIMIC-CXR GREEN 46.6 / RadGraph-XL 40.3 SOTA vs MedGemma 1.5) · MedVersa (Harvard) · MAIRA-1/2 (Microsoft) · CheXagent · CXR-PRO · LLM-CXR · RGRG — chest X-ray + multi-modality report generation, ReXrank leaderboard',
             models: [
+                'aehrc/cxrmate-2',  // 2026-05 S212g — CSIRO AEHRC RRG SOTA (RAD-DINO + GRPO), MIMIC-CXR 9-metric leaderboard
                 'harvard/medversa-8b',
                 'rad-onc/maira-2',
                 'microsoft/maira-2',  // 2026-06-14 S116 — RadFact Grounding Recall 90% / Logical Precision 55.6%
@@ -728,6 +729,11 @@ var MedicalAI = {
             label: '📝 Radiology Report Generation (ReXrank)',
             note: 'ReXrank 8-metric eval — RadGraph-F1 · BERTScore · RadCliQ (lower=better) · GREEN · FineRadScore · ReXGradient holdout · CheXpert F1 (14 finding)',
             benchmarks: ['rexrank_radgraph_f1', 'rexrank_bertscore', 'rexrank_radcliq', 'rexrank_green', 'rexrank_finerad', 'rexgrad_acc', 'chexpert_f1']
+        },
+        {
+            label: '📝 CXR Report Generation — MIMIC-CXR (CXRMate-2 paper)',
+            note: 'MIMIC-CXR findings (n=1624), uniform protocol from CXRMate-2 (arXiv 2604.18967) — RaTEScore · GREEN · RadEval-BERTScore · RadGraph-XL · CheXbert macro-F1 · CXR-BERT · BERTScore · BLEU-4 · ROUGE-L. Models: CXRMate-2 · MedGemma 1.5/4B · MedVersa · MAIRA-2',
+            benchmarks: ['mimic_cxr_ratescore', 'mimic_cxr_green', 'mimic_cxr_radeval_bertscore', 'mimic_cxr_radgraph_xl', 'mimic_cxr_chexbert_f1', 'mimic_cxr_cxrbert', 'mimic_cxr_bertscore', 'mimic_cxr_bleu4', 'mimic_cxr_rougel']
         },
         {
             label: '🖼️ Medical VQA (radiology · pathology)',
