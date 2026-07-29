@@ -1,0 +1,163 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-29",
+    "sources": [
+      "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "https://huggingface.co/skt/A.X-K2-ALM"
+    ],
+    "_note": "S214b PDF re-verification: items in A.X K2 / A.X K2 ALM reports missed in S214. A.X K2 Table 7 RULER long-context (Overall 94.6 / 128K 92.7 / 256K 86.6). A.X K2 ALM Table 7 Korean ASR (KsponSpeech eval-clean/other CER, lower=better) for A.X K2 ALM + Qwen2.5-Omni/Qwen3-Omni/HyperCLOVA-X-Omni; STOI; KVoiceBench baselines (Qwen2.5-Omni 53.13, HyperCLOVA 49.69) supplemented. Skipped granular Speech-QA 9 subsets + voice-IFEval (over-granular) and quantization/data-composition tables."
+  },
+  "benchmarks": [
+    {
+      "id": "ksponspeech_cer_clean",
+      "name": "KsponSpeech CER — eval-clean (Korean ASR, lower=better)",
+      "category": "audio",
+      "metric": "cer",
+      "description": "Korean speech recognition character error rate on KsponSpeech eval-clean (A.X K2 ALM report Table 7). LOWER is better."
+    },
+    {
+      "id": "ksponspeech_cer_other",
+      "name": "KsponSpeech CER — eval-other (Korean ASR, lower=better)",
+      "category": "audio",
+      "metric": "cer",
+      "description": "Korean speech recognition CER on KsponSpeech eval-other (A.X K2 ALM report Table 7). LOWER is better."
+    },
+    {
+      "id": "tts_stoi",
+      "name": "TTS STOI (speech intelligibility)",
+      "category": "audio",
+      "metric": "stoi",
+      "description": "Short-Time Objective Intelligibility of generated speech (A.X K2 ALM report). Higher is better (0-1)."
+    }
+  ],
+  "scores": [
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "ruler_avg_(4k_256k)",
+      "score": 94.6,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 RULER Overall (Table 7)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "ruler_128k",
+      "score": 92.7,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 RULER 128K"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "ruler@256k",
+      "score": 86.6,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 RULER 256K"
+    },
+    {
+      "model": "skt/ax-k2-alm",
+      "benchmark": "ksponspeech_cer_clean",
+      "score": 9.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "KsponSpeech eval-clean CER (Table 7, lower better)"
+    },
+    {
+      "model": "skt/ax-k2-alm",
+      "benchmark": "ksponspeech_cer_other",
+      "score": 9.12,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "KsponSpeech eval-other CER (Table 7, lower better)"
+    },
+    {
+      "model": "alibaba/qwen2.5-omni-7b",
+      "benchmark": "ksponspeech_cer_clean",
+      "score": 18.96,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "KsponSpeech eval-clean CER (Table 7, lower better)"
+    },
+    {
+      "model": "alibaba/qwen2.5-omni-7b",
+      "benchmark": "ksponspeech_cer_other",
+      "score": 22.72,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "KsponSpeech eval-other CER (Table 7, lower better)"
+    },
+    {
+      "model": "alibaba/qwen3-omni-30b-a3b",
+      "benchmark": "ksponspeech_cer_clean",
+      "score": 8.46,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "KsponSpeech eval-clean CER (Table 7, lower better)"
+    },
+    {
+      "model": "alibaba/qwen3-omni-30b-a3b",
+      "benchmark": "ksponspeech_cer_other",
+      "score": 7.91,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "KsponSpeech eval-other CER (Table 7, lower better)"
+    },
+    {
+      "model": "naver/hyperclova-x-seed-omni-8b",
+      "benchmark": "ksponspeech_cer_clean",
+      "score": 10.22,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "KsponSpeech eval-clean CER (Table 7, lower better)"
+    },
+    {
+      "model": "naver/hyperclova-x-seed-omni-8b",
+      "benchmark": "ksponspeech_cer_other",
+      "score": 10.15,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "KsponSpeech eval-other CER (Table 7, lower better)"
+    },
+    {
+      "model": "skt/ax-k2-alm",
+      "benchmark": "tts_stoi",
+      "score": 0.99,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "A.X K2 ALM STOI"
+    },
+    {
+      "model": "alibaba/qwen3-omni-30b-a3b",
+      "benchmark": "tts_stoi",
+      "score": 0.999,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "baseline"
+    },
+    {
+      "model": "naver/hyperclova-x-seed-omni-8b",
+      "benchmark": "tts_stoi",
+      "score": 0.996,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "baseline"
+    },
+    {
+      "model": "alibaba/qwen2.5-omni-7b",
+      "benchmark": "kvoicebench",
+      "score": 53.13,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "Qwen2.5-Omni KVoiceBench avg"
+    },
+    {
+      "model": "naver/hyperclova-x-seed-omni-8b",
+      "benchmark": "kvoicebench",
+      "score": 49.69,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "HyperCLOVA-X 8B Omni KVoiceBench avg"
+    }
+  ]
+}

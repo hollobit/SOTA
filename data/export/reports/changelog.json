@@ -2,6 +2,12 @@
   {
     "date": "2026-07-29",
     "type": "ingest",
+    "title": "S214b — A.X K2 PDF 재검증: RULER 롱컨텍스트 + 한국어 ASR/STOI 보완",
+    "detail": "A.X K2/ALM 리포트 재검증에서 S214 누락분 보완(16 scores). A.X K2 Table 7 RULER 롱컨텍스트: Overall 94.6 / 128K 92.7 / 256K 86.6. A.X K2 ALM Table 7: 한국어 ASR KsponSpeech CER(eval-clean/other, lower better) — A.X K2 ALM 9.00/9.12 vs Qwen2.5-Omni 18.96/22.72·Qwen3-Omni 8.46/7.91·HyperCLOVA-X-Omni 10.22/10.15; STOI(A.X K2 ALM 0.990); KVoiceBench baseline 보충(Qwen2.5-Omni 53.13·HyperCLOVA 49.69). 신규 벤치 3종(ksponspeech_cer_clean/other·tts_stoi). 스킵: Speech-QA 9서브셋·voice-IFEval(과세분)·양자화/데이터구성 테이블. A.X K2 18 scores, A.X K2 ALM 6 scores."
+  },
+  {
+    "date": "2026-07-29",
+    "type": "ingest",
     "title": "S214 — SKT A.X K2 (688B-A33B MoE) + A.X K2 ALM 신규",
     "detail": "SK Telecom A.X K2 신규 수집(2026-07-28). A.X K2: 688B-A33B MoE, 8.5T tokens, agentic foundation, Sparse Gated Attention. Table 6(thinking) 15벤치 — 자체 모델만 수집(경쟁 컬럼 Qwen3.5/Nemotron3-Ultra/DeepSeek-V4-Flash/GLM-5.1/Kimi-K2.6/MiniMax-M2.7 + A.X K1은 2차/AA출처라 미수집): AIME26 97.1·Apex 45.8·KMO26 92.5·KMMLU-Pro 80.5·CLIcK 91.6·KoBALT 73.0·LiveCodeBench v6 84.0·SciCode 41.0·HLE 27.8·GPQA-Diamond 85.6·IFBench 75.9·AA-LCR 66.0·τ2-Bench Telecom 98.0·BrowseComp 9.3. Math+Korean+tool-use 강점(IMO2025 35/42). A.X K2 ALM(A.X K2 Light 20B-A2.7B 기반 오디오 LM): KVoiceBench 64.27(Qwen3-Omni 67.55)·Korean TTS CER 1.86(vs Qwen3-Omni 26.37)·UTMOS 2.871 — SKT 신규 오디오 벤치라 baseline 포함. 신규 벤치 5종(apex_math·kmo_2026·kvoicebench·tts_cer_ko·tts_utmos). Sovereign Korea 리전+params(688B/20B)+dates, seed_sources·Resources 등록, PDF 2건 저장. graphrag 재생성."
   },
