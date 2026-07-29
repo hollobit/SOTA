@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-29",
+    "type": "feature",
+    "title": "GraphRAG 복합 다중필드 연계 검색 (aiap3 스타일)",
+    "detail": "GraphRAG에 aiap3식 복합 검색 추가: (1) node-type 패싯 칩(Models/Benchmarks/Vendors/Categories 다중선택), (2) 필드 필터 드롭다운(model-type·vendor·benchmark category·metric) — 키워드와 AND 결합, (3) 키워드 없이 필터만으로 브라우즈(connectivity 랭킹, aiap3 get_by_type 유사). search()에 opts.filters(_passesFieldFilters) + _browseByFilters + _renderFilterBar 추가. 예: 'report' 키워드 + benchmark 패싯 + category=medical-imaging → 30개 필터 결과. graphrag.js?v bump."
+  },
+  {
+    "date": "2026-07-29",
     "type": "ingest",
     "title": "S213b — Medical AI 재검증 2라운드: 신규 벤치 27종 + 모델 10종",
     "detail": "S213 재검증(추가 4개 에이전트: 딥 PDF 추출·미탐색 하위도메인·Nature/npj 광역·중국어/다국어). 신규 벤치: MedConsultBench·MedThinkVQA·EHR-Complex·RCQ(Nature Med)·PsychiatryBench(npj)·OGCaReBench·ClinicRealm·MedR-Bench·DALPHIN·PANDA-PLUS·MLB·ClinConsensus·TCM-Eval·KorMedMCQA-V·MedAraBench·CLEAR/EchoJEPA/ZEN 벤치. 신규 모델: MIRA(Nature EHR 에이전트, 의사 초월)·CLEAR(Nature Biomed auditable CXR)·EchoJEPA(심초음파)·ZEN(수술)·ZMT-M1(TCM)·Baichuan-M2-32B·Ping An Medical 3.5·HistoEncoder·Biosignal M2AE·Astra. 총 76 scores, 프론티어 점수는 DB 존재 모델에만. Medical AI 탭 벤치 suite 4종·모델 카테고리 추가, KorMedMCQA-V는 Sovereign 한국어 suite. 미수집: MedDialogRubrics(figure만)·UNICORN(팀챌린지)·RadImageNet-VQA/forte(ID 충돌)."

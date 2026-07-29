@@ -27,6 +27,9 @@
         _byId: null,
         _edgesOut: null,
         _edgesIn: null,
+        _fieldValues: null,
+        // Composite search filter state (aiap3-style multi-field linked search).
+        _filters: { types: [], model_type: '', vendor: '', category: '', metric: '' },
         _stopwords: {
             'the':1,'a':1,'an':1,'and':1,'or':1,'of':1,'in':1,'on':1,'for':1,'to':1,
             'by':1,'with':1,'at':1,'from':1,'is':1,'are':1,'was':1,'were':1,
@@ -187,16 +190,60 @@
                 if (n.type === 'model') scores[nid] *= 1.1;
             });
 
+            var flt = opts.filters || {};
             var ranked = Object.keys(scores)
                 .map(function(nid) { return { id: nid, score: scores[nid] }; })
                 .filter(function(r) {
-                    if (!typeFilter) return true;
                     var n = self._byId[r.id];
-                    return n && typeFilter.indexOf(n.type) >= 0;
+                    if (!n) return false;
+                    if (typeFilter && typeFilter.length && typeFilter.indexOf(n.type) < 0) return false;
+                    return self._passesFieldFilters(n, flt);
                 })
                 .sort(function(a, b) { return b.score - a.score; })
                 .slice(0, limit);
             return ranked;
+        },
+
+        // Composite (AND) field filters, aiap3-style. A model-scoped field
+        // (model_type / vendor) implies model nodes; a benchmark-scoped field
+        // (category / metric) implies benchmark nodes. Empty fields are ignored.
+        _passesFieldFilters: function(n, flt) {
+            if (!flt) return true;
+            if (flt.model_type) { if (n.type !== 'model' || n.model_type !== flt.model_type) return false; }
+            if (flt.vendor)     { if (n.type !== 'model' || n.vendor !== flt.vendor) return false; }
+            if (flt.category)   { if (n.type !== 'benchmark' || n.category !== flt.category) return false; }
+            if (flt.metric)     { if (n.type !== 'benchmark' || n.metric !== flt.metric) return false; }
+            return true;
+        },
+
+        // Distinct field values across the graph, for populating filter dropdowns.
+        _collectFieldValues: function() {
+            if (this._fieldValues) return this._fieldValues;
+            var mt = {}, vn = {}, cat = {}, met = {};
+            (this._graph.nodes || []).forEach(function(n) {
+                if (n.type === 'model') { if (n.model_type) mt[n.model_type] = 1; if (n.vendor) vn[n.vendor] = 1; }
+                else if (n.type === 'benchmark') { if (n.category) cat[n.category] = 1; if (n.metric) met[n.metric] = 1; }
+            });
+            var srt = function(o) { return Object.keys(o).sort(); };
+            this._fieldValues = { model_type: srt(mt), vendor: srt(vn), category: srt(cat), metric: srt(met) };
+            return this._fieldValues;
+        },
+
+        // Browse-by-facet: results driven purely by active filters (no keyword),
+        // ranked by connectivity (neighbor count) — mirrors aiap3 get_by_type.
+        _browseByFilters: function(typeFilter, flt, limit) {
+            var self = this;
+            var out = [];
+            (this._graph.nodes || []).forEach(function(n) {
+                if (typeFilter && typeFilter.length && typeFilter.indexOf(n.type) < 0) return;
+                if (!self._passesFieldFilters(n, flt)) return;
+                var deg = (typeof n.neighbors === 'number')
+                    ? n.neighbors
+                    : ((self._edgesOut[n.id] || []).length + (self._edgesIn[n.id] || []).length);
+                out.push({ id: n.id, score: deg });
+            });
+            out.sort(function(a, b) { return b.score - a.score; });
+            return out.slice(0, limit || 40);
         },
 
         neighbors: function(nodeId, perTypeLimit) {
@@ -210,6 +257,94 @@
             (this._edgesOut[nodeId] || []).forEach(function(e) { push(e.type, e, e.to, 'out'); });
             (this._edgesIn[nodeId] || []).forEach(function(e) { push(e.type, e, e.from, 'in'); });
             return out;
+        },
+
+        // Composite filter bar — node-type facets + field dropdowns (model type,
+        // vendor, category, metric). Mirrors aiap3's multi-field linked search.
+        _renderFilterBar: function() {
+            var self = this;
+            var fv = this._collectFieldValues();
+            var f = this._filters;
+            var wrap = document.createElement('div');
+            wrap.className = 'mb-3 p-2 rounded border border-gray-800 bg-gray-900/40';
+
+            // Row 1 — node-type facet chips
+            var row1 = document.createElement('div');
+            row1.className = 'flex flex-wrap items-center gap-1.5 mb-2';
+            var lbl = document.createElement('span');
+            lbl.className = 'text-[11px] text-gray-500 mr-1';
+            lbl.textContent = 'Type:';
+            row1.appendChild(lbl);
+            var TYPES = [['model', 'Models'], ['benchmark', 'Benchmarks'], ['vendor', 'Vendors'], ['category', 'Categories']];
+            var mkChip = function(label, active, onclick) {
+                var b = document.createElement('button');
+                b.className = 'text-[11px] px-2 py-0.5 rounded-full border transition ' + (active
+                    ? 'bg-blue-500 border-blue-500 text-white'
+                    : 'bg-gray-800 border-gray-700 text-gray-300 hover:border-gray-500');
+                b.textContent = label;
+                b.addEventListener('click', onclick);
+                return b;
+            };
+            row1.appendChild(mkChip('All', !(f.types && f.types.length), function() {
+                f.types = []; self.render();
+            }));
+            TYPES.forEach(function(t) {
+                var active = f.types && f.types.indexOf(t[0]) >= 0;
+                row1.appendChild(mkChip(t[1], active, function() {
+                    f.types = f.types || [];
+                    var i = f.types.indexOf(t[0]);
+                    if (i >= 0) f.types.splice(i, 1); else f.types.push(t[0]);
+                    self.render();
+                }));
+            });
+            wrap.appendChild(row1);
+
+            // Row 2 — field-value dropdowns (composite AND filters)
+            var row2 = document.createElement('div');
+            row2.className = 'flex flex-wrap items-center gap-2';
+            var mkSelect = function(labelText, key, values, curValue) {
+                var span = document.createElement('label');
+                span.className = 'text-[11px] text-gray-500 flex items-center gap-1';
+                span.appendChild(document.createTextNode(labelText));
+                var sel = document.createElement('select');
+                sel.className = 'bg-gray-800 border border-gray-700 rounded text-[11px] text-gray-200 px-1 py-0.5 max-w-[160px]';
+                var optAny = document.createElement('option');
+                optAny.value = ''; optAny.textContent = 'any';
+                sel.appendChild(optAny);
+                values.forEach(function(v) {
+                    var o = document.createElement('option');
+                    o.value = v; o.textContent = v;
+                    if (v === curValue) o.selected = true;
+                    sel.appendChild(o);
+                });
+                sel.value = curValue || '';
+                sel.addEventListener('change', function() { f[key] = sel.value; self.render(); });
+                span.appendChild(sel);
+                return span;
+            };
+            row2.appendChild(mkSelect('Model type', 'model_type', fv.model_type, f.model_type));
+            row2.appendChild(mkSelect('Vendor', 'vendor', fv.vendor, f.vendor));
+            row2.appendChild(mkSelect('Bench category', 'category', fv.category, f.category));
+            row2.appendChild(mkSelect('Bench metric', 'metric', fv.metric, f.metric));
+
+            var active = (f.types && f.types.length) || f.model_type || f.vendor || f.category || f.metric;
+            if (active) {
+                var clr = document.createElement('button');
+                clr.className = 'text-[11px] px-2 py-0.5 rounded border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500';
+                clr.textContent = '✕ Clear filters';
+                clr.addEventListener('click', function() {
+                    self._filters = { types: [], model_type: '', vendor: '', category: '', metric: '' };
+                    self.render();
+                });
+                row2.appendChild(clr);
+            }
+            wrap.appendChild(row2);
+
+            var hint = document.createElement('div');
+            hint.className = 'text-[10px] text-gray-600 mt-1';
+            hint.textContent = 'Combine a keyword with facets (AND). Leave the search empty to browse purely by filters. Model-type/Vendor imply models; Bench category/metric imply benchmarks.';
+            wrap.appendChild(hint);
+            return wrap;
         },
 
         render: function() {
@@ -235,26 +370,49 @@
                 this._graph.edges.length + ' edges.';
             container.appendChild(statsBar);
 
+            // Composite filter bar (type facets + field filters) — aiap3-style.
+            container.appendChild(this._renderFilterBar());
+
             var q = this._lastQuery || '';
-            if (!q) {
+            var flt = this._filters || {};
+            var typeArr = (flt.types && flt.types.length) ? flt.types : null;
+            var hasFieldFilter = !!(flt.model_type || flt.vendor || flt.category || flt.metric || typeArr);
+
+            if (!q && !hasFieldFilter) {
                 container.appendChild(this._helpCard());
                 return;
             }
-            var results = this.search(q, { limit: 20 });
+
+            var results, mode;
+            if (q) {
+                results = this.search(q, { limit: 30, types: typeArr, filters: flt });
+                mode = 'keyword';
+            } else {
+                // Browse-by-facet: filters only, no keyword.
+                results = this._browseByFilters(typeArr, flt, 40);
+                mode = 'browse';
+            }
+
             if (results.length === 0) {
                 var none = document.createElement('div');
                 none.className = 'text-sm text-gray-400 p-4';
-                none.textContent = 'No results for "' + q + '". Try simpler / fewer keywords.';
+                none.textContent = q
+                    ? ('No results for "' + q + '" with the current filters. Try fewer keywords or clear filters.')
+                    : 'No entities match the current filters.';
                 container.appendChild(none);
                 return;
             }
             var resHeader = document.createElement('div');
             resHeader.className = 'text-sm text-gray-300 mb-3';
-            resHeader.appendChild(document.createTextNode('Results for '));
-            var qb = document.createElement('b');
-            qb.textContent = q;
-            resHeader.appendChild(qb);
-            resHeader.appendChild(document.createTextNode(' — ' + results.length + ' entities (BM25-ranked):'));
+            if (mode === 'keyword') {
+                resHeader.appendChild(document.createTextNode('Results for '));
+                var qb = document.createElement('b');
+                qb.textContent = q;
+                resHeader.appendChild(qb);
+                resHeader.appendChild(document.createTextNode(' — ' + results.length + ' entities (BM25-ranked, filtered):'));
+            } else {
+                resHeader.appendChild(document.createTextNode('Browsing ' + results.length + ' entities matching filters (ranked by connectivity):'));
+            }
             container.appendChild(resHeader);
 
             // Knowledge-graph visualization for the top results + 1-hop
@@ -483,7 +641,7 @@
             head.appendChild(title);
             var score = document.createElement('span');
             score.className = 'text-[10px] text-gray-500 tabular-nums';
-            score.textContent = 'BM25 ' + r.score.toFixed(2);
+            score.textContent = (r.score != null) ? r.score.toFixed(2) : '';
             head.appendChild(score);
             card.appendChild(head);
 
