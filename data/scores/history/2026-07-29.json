@@ -41371,21 +41371,6 @@
   },
   {
     "model_id": "deepseek/deepseek-math-v2",
-    "benchmark_id": "imo_2025",
-    "value": 35.0,
-    "unit": "/42",
-    "source": {
-      "type": "leaderboard",
-      "url": "https://arxiv.org/abs/2511.22570",
-      "date": "2026-05-12",
-      "citation": null
-    },
-    "is_sota": false,
-    "collected_at": "2026-05-12",
-    "notes": "DeepSeekMath-V2 Table 1: IMO 2025 P1,P2,P3,P4,P5 fully solved = 83.3% = 35/42 (gold-medal). Same scoring as Gemini Deep Think entry."
-  },
-  {
-    "model_id": "deepseek/deepseek-math-v2",
     "benchmark_id": "cmo_2024",
     "value": 73.8,
     "unit": "%",
@@ -239115,6 +239100,36 @@
     "notes": ""
   },
   {
+    "model_id": "skt/ax-k2",
+    "benchmark_id": "imo_2025",
+    "value": 83.33,
+    "unit": "%",
+    "source": {
+      "type": "pdf",
+      "url": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "date": "2026-07-30",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-30",
+    "notes": "A.X K2 IMO 2025: 35/42 (perfect 7/7 on first 5 problems), gold-medal threshold; 35/42=83.33%"
+  },
+  {
+    "model_id": "deepseek/deepseek-math-v2",
+    "benchmark_id": "imo_2025",
+    "value": 83.33,
+    "unit": "%",
+    "source": {
+      "type": "leaderboard",
+      "url": "https://huggingface.co/skt/A.X-K2",
+      "date": "2026-07-30",
+      "citation": null
+    },
+    "is_sota": false,
+    "collected_at": "2026-07-30",
+    "notes": "scale normalize: 35/42 -> 83.33% (was stored as 35.0 /42, misranked vs %-scale entries)"
+  },
+  {
     "model_id": "aehrc/cxrmate-2",
     "benchmark_id": "chexpert_plus_ratescore",
     "value": 60.8,
@@ -275042,8 +275057,8 @@
   {
     "model_id": "deepmind/gemini-3-deep-think",
     "benchmark_id": "imo_2025",
-    "value": 35.0,
-    "unit": "/42",
+    "value": 83.33,
+    "unit": "%",
     "source": {
       "type": "leaderboard",
       "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/",
@@ -275052,7 +275067,7 @@
     },
     "is_sota": false,
     "collected_at": "2026-05-06",
-    "notes": "gold-medal, 5/6 problems"
+    "notes": "gold-medal, 5/6 problems | S214c scale-normalize 35/42->83.33% (imo_2025 uses %-scale)"
   },
   {
     "model_id": "deepmind/gemini-3-deep-think",

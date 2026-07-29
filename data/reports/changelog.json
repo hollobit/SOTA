@@ -2,6 +2,12 @@
   {
     "date": "2026-07-30",
     "type": "ingest",
+    "title": "S214c — A.X K2 HF 카드 재검증: IMO 2025 추가 + imo_2025 스케일 정규화",
+    "detail": "A.X K2 HF 카드(huggingface.co/skt/A.X-K2) 재검증: 카드 = 테크리포트(thinking-mode Table + RULER), 18개 스코어 이미 전부 수집됨. 유일 누락: A.X K2 IMO 2025 35/42(gold threshold, 첫 5문제 7/7 만점) → 기존 imo_2025 벤치의 %-스케일에 맞춰 83.33% 추가(gemini-deep-think/openai-experimental도 35/42=83.33 동점). 부수 데이터품질 수정: imo_2025에 raw '35 /42'로 저장돼 오랭크되던 항목 2건(deepseek-math-v2, gemini-3-deep-think) → 83.33% 정규화(deepseek는 addendum, gemini-3-deep-think는 소스 ai4s 파일 직접 수정). 이제 IMO 2025 리더보드 5모델 83.33 동점 정합. 카드의 KMO26 2nd round·NIAH는 정성적이라 미수집."
+  },
+  {
+    "date": "2026-07-30",
+    "type": "ingest",
     "title": "S215b — KRAFTON Raon-Speech 재검증: Qwen2.5-Omni aggregate 보완",
     "detail": "KRAFTON A.X K2 Raon-Speech 소스(HF 카드 full README·GitHub·기술블로그) 재검증. 결론: 모든 소스가 aggregate 46벤치 점수만 공개, per-dataset WER/CER 미공개(encoder/codec 표는 baseline 대비 relative %, GitHub은 하드웨어별 streaming TTS latency RTF/TTFT/TBT뿐). 확실한 누락 1건 보완: Qwen2.5-Omni aggregate(KO 55/EN 73) — 첫 페치 발췌에서 빠짐. 이제 aggregate 4모델 비교 완성 — Korean: Raon-Speech 72(#1)>Qwen3-Omni 65>HyperCLOVA 60>Qwen2.5-Omni 55; English: Qwen3-Omni 78>Raon-Speech 75>Qwen2.5-Omni 73>HyperCLOVA 68."
   },
