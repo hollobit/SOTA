@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-07-29",
+    "type": "ingest",
+    "title": "S214 — SKT A.X K2 (688B-A33B MoE) + A.X K2 ALM 신규",
+    "detail": "SK Telecom A.X K2 신규 수집(2026-07-28). A.X K2: 688B-A33B MoE, 8.5T tokens, agentic foundation, Sparse Gated Attention. Table 6(thinking) 15벤치 — 자체 모델만 수집(경쟁 컬럼 Qwen3.5/Nemotron3-Ultra/DeepSeek-V4-Flash/GLM-5.1/Kimi-K2.6/MiniMax-M2.7 + A.X K1은 2차/AA출처라 미수집): AIME26 97.1·Apex 45.8·KMO26 92.5·KMMLU-Pro 80.5·CLIcK 91.6·KoBALT 73.0·LiveCodeBench v6 84.0·SciCode 41.0·HLE 27.8·GPQA-Diamond 85.6·IFBench 75.9·AA-LCR 66.0·τ2-Bench Telecom 98.0·BrowseComp 9.3. Math+Korean+tool-use 강점(IMO2025 35/42). A.X K2 ALM(A.X K2 Light 20B-A2.7B 기반 오디오 LM): KVoiceBench 64.27(Qwen3-Omni 67.55)·Korean TTS CER 1.86(vs Qwen3-Omni 26.37)·UTMOS 2.871 — SKT 신규 오디오 벤치라 baseline 포함. 신규 벤치 5종(apex_math·kmo_2026·kvoicebench·tts_cer_ko·tts_utmos). Sovereign Korea 리전+params(688B/20B)+dates, seed_sources·Resources 등록, PDF 2건 저장. graphrag 재생성."
+  },
+  {
+    "date": "2026-07-29",
     "type": "feature",
     "title": "GraphRAG 그래프 네트워크 화면 aiap3 형태로 개편",
     "detail": "GraphRAG 그래프 시각화를 aiap3 GraphPanel 형태로 개편. 노드 클릭 시 전체 Modal로 이동하던 것을 → 그래프를 유지한 채 인라인 상세 사이드패널(타입 색상 배지 + 이름 + 속성[model: vendor/type/released, benchmark: category/metric] + description + Relationships[관계 타입별 클릭 가능한 이웃, 클릭 시 해당 노드로 재포커스] + 'Open full page' 버튼)로 표시. 헤더에 Refresh(재레이아웃)·Maximize(78vh 토글) 툴 추가. _showNodeDetail/_edgeColorForType 추가, 클릭 핸들러를 _openNode→_showNodeDetail로 변경. graphrag.js?v bump."

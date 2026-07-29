@@ -35,6 +35,7 @@ var Sovereign = {
                 'kakao/kanana-2-3b-instruct', 'kakao/kanana-2-3b-base',
                 'kakao/kanana-2-1.3b-instruct', 'kakao/kanana-2-1.3b-base',
                 'sk-telecom/a.x-4.0',  // 2026-06-04 S52 — SK Telecom A.X 4.0 Korean Foundation Model
+                'skt/ax-k2', 'skt/ax-k2-alm',  // 2026-07-28 S214 — SKT A.X K2 688B-A33B MoE + K2 ALM (audio)
                 'naver/hcx-seed-think-32b',  // 2026-06-04 S52 — NAVER HCX-SEED-Think-32B
                 'ncsoft/varco-vision-2.0-14b', 'ncsoft/llama-varco-8b',
                 'trillionlabs/tri-70b', 'trillionlabs/tri-21b', 'trillionlabs/tri-7b',
@@ -601,6 +602,7 @@ var Sovereign = {
         'kakao/kanana-1.5-15.7b-a3b': '2025-09',
         'kakao/kanana-1.5-8b': '2025-05', 'kakao/kanana-flag-32.5b': '2024-11',
         'kakao/kanana-2-3b-instruct': '2026-07-27', 'kakao/kanana-2-3b-base': '2026-07-27',
+        'skt/ax-k2': '2026-07-28', 'skt/ax-k2-alm': '2026-07-28',
         'kakao/kanana-2-1.3b-instruct': '2026-07-27', 'kakao/kanana-2-1.3b-base': '2026-07-27',
         // Korea — others
         'ncsoft/varco-vision-2.0-14b': '2025-07', 'ncsoft/llama-varco-8b': '2024-09',
@@ -1091,6 +1093,7 @@ var Sovereign = {
     KNOWN_PARAMS: {
         // Kakao Kanana 2 SLM (2026-07-27)
         'kakao/kanana-2-3b-instruct': 3, 'kakao/kanana-2-3b-base': 3,
+        'skt/ax-k2': 688, 'skt/ax-k2-alm': 20,
         'kakao/kanana-2-1.3b-instruct': 1.3, 'kakao/kanana-2-1.3b-base': 1.3,
         // AI21 Jamba family — names don't carry the size suffix
         'ai21/jamba-large-1.5': 398, 'ai21/jamba-large-1.7': 398,

@@ -1,0 +1,261 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-29",
+    "sources": [
+      "https://huggingface.co/skt/A.X-K2",
+      "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "https://github.com/SKT-AI/A.X-K2",
+      "https://huggingface.co/skt/A.X-K2-ALM"
+    ],
+    "_note": "SKT A.X K2 (688B-A33B MoE, 8.5T tokens, agentic foundation, 2026-07-28) + A.X K2 ALM (audio LM on A.X K2 Light 20B-A2.7B). NEW models (DB had A.X K1/A.X 4.0 only). A.X K2 Table 6 (thinking mode) 15 benches — own model only (competitor columns Qwen3.5/Nemotron3-Ultra/DeepSeek-V4-Flash/GLM-5.1/Kimi-K2.6/MiniMax-M2.7 + A.X K1 skipped, 2nd-hand/AA-sourced; A.X K2 strongest on Math[AIME26 97.1/Apex] + Korean[KMMLU-Pro 80.5/CLIcK 91.6] + tool-use[tau2-Telecom 98.0]). A.X K2 ALM: KVoiceBench(Korean speech understanding, SKT new bench) + Korean TTS CER + UTMOS, with Qwen3-Omni/HyperCLOVA-X-Omni baselines (SKT-run comparison on new benches). 2 new math benches (apex_math, kmo_2026), 3 new audio benches. IMO 2025 35/42 noted (not a standard bench, skipped)."
+  },
+  "models": [
+    {
+      "id": "skt/ax-k2",
+      "vendor": "SK Telecom",
+      "name": "A.X K2",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "parameters": "688B-A33B",
+      "release_date": "2026-07-28",
+      "context_window": 256000
+    },
+    {
+      "id": "skt/ax-k2-alm",
+      "vendor": "SK Telecom",
+      "name": "A.X K2 ALM (Audio LM)",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "audio"
+      ],
+      "parameters": "20B-A2.7B (A.X K2 Light)",
+      "release_date": "2026-07-28"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "apex_math",
+      "name": "Apex (MathArena short-form)",
+      "category": "math",
+      "metric": "score",
+      "description": "MathArena Apex — 12 short-form-answer problems from 2025 competitions that then-SOTA models could not solve (A.X K2 report, Dekoninck et al. 2026). Higher is better."
+    },
+    {
+      "id": "kmo_2026",
+      "name": "KMO 2026 (Korean Math Olympiad, 1st round)",
+      "category": "math",
+      "metric": "score",
+      "description": "Korean Mathematical Olympiad 2026 first round (A.X K2 tech report). Higher is better."
+    },
+    {
+      "id": "kvoicebench",
+      "name": "KVoiceBench (Korean speech understanding)",
+      "category": "audio",
+      "metric": "score",
+      "description": "Korean speech-understanding benchmark suite by SK Telecom, localized from VoiceBench with human review (A.X K2 ALM report). Higher is better."
+    },
+    {
+      "id": "tts_cer_ko",
+      "name": "TTS Korean CER (speech generation, lower=better)",
+      "category": "audio",
+      "metric": "cer",
+      "description": "Character error rate of generated speech (text intelligibility of TTS output) on Korean (A.X K2 ALM report). LOWER is better."
+    },
+    {
+      "id": "tts_utmos",
+      "name": "TTS UTMOS (speech naturalness MOS)",
+      "category": "audio",
+      "metric": "mos",
+      "description": "UTMOS predicted mean-opinion-score of generated speech naturalness (A.X K2 ALM report). Higher is better (0-5)."
+    }
+  ],
+  "scores": [
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "aime_2026",
+      "score": 97.1,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "apex_math",
+      "score": 45.8,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "apex_shortlist",
+      "score": 88.6,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "kmo_2026",
+      "score": 92.5,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "kmmlu_pro",
+      "score": 80.5,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "kobalt",
+      "score": 73.0,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "click_ko",
+      "score": 91.6,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "livecodebench_v6",
+      "score": 84.0,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "scicode",
+      "score": 41.0,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "hle",
+      "score": 27.8,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "gpqa_diamond",
+      "score": 85.6,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "ifbench",
+      "score": 75.9,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "aa_lcr",
+      "score": 66.0,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "tau2_telecom",
+      "score": 98.0,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2",
+      "benchmark": "browsecomp",
+      "score": 9.3,
+      "unit": "%",
+      "_source": "https://github.com/SKT-AI/A.X-K2/blob/main/A_X_K2_Tech_Report.pdf",
+      "_note": "A.X K2 Tech Report Table 6 (thinking mode)"
+    },
+    {
+      "model": "skt/ax-k2-alm",
+      "benchmark": "kvoicebench",
+      "score": 64.27,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "A.X K2 ALM report — 95% of Qwen3-Omni avg"
+    },
+    {
+      "model": "alibaba/qwen3-omni-30b-a3b",
+      "benchmark": "kvoicebench",
+      "score": 67.55,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "KVoiceBench baseline (A.X K2 ALM report)"
+    },
+    {
+      "model": "skt/ax-k2-alm",
+      "benchmark": "tts_cer_ko",
+      "score": 1.86,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "A.X K2 ALM TTS CER (lower better)"
+    },
+    {
+      "model": "naver/hyperclova-x-seed-omni-8b",
+      "benchmark": "tts_cer_ko",
+      "score": 4.16,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "baseline (A.X K2 ALM report)"
+    },
+    {
+      "model": "alibaba/qwen3-omni-30b-a3b",
+      "benchmark": "tts_cer_ko",
+      "score": 26.37,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "baseline (A.X K2 ALM report)"
+    },
+    {
+      "model": "skt/ax-k2-alm",
+      "benchmark": "tts_utmos",
+      "score": 2.871,
+      "unit": "score",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "A.X K2 ALM UTMOS"
+    },
+    {
+      "model": "alibaba/qwen3-omni-30b-a3b",
+      "benchmark": "tts_utmos",
+      "score": 3.178,
+      "unit": "score",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "baseline"
+    },
+    {
+      "model": "naver/hyperclova-x-seed-omni-8b",
+      "benchmark": "tts_utmos",
+      "score": 3.171,
+      "unit": "score",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "baseline"
+    }
+  ]
+}
