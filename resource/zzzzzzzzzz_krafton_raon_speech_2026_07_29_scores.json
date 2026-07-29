@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-29",
+    "sources": [
+      "https://huggingface.co/KRAFTON/A.X-K2-Raon-Speech-21B-A3B"
+    ],
+    "_note": "KRAFTON A.X K2 Raon-Speech 21B-A3B: bilingual EN/KO speech LM built on SKT A.X K2 Light 20B-A3B MoE backbone (21.2B total / 3.5B active), AuT (Qwen3-ASR) speech encoder + Mimi-style codec + Qwen3 Talker, 131k ctx, CC BY-NC 4.0. NEW model. Ingested the aggregate normalized Korean/English speech scores (x100): Raon-Speech KO 72 / EN 75 vs Qwen3-Omni KO 65 / EN 78, HyperCLOVA-X 8B Omni KO 60 / EN 68. NOT ingested: encoder/codec tables (reported as % relative to Qwen3-ASR/Mimi baseline = 100%, not absolute benchmark values); Raon-Speech + MOSS-Audio baselines (not in DB, baseline-only, no stub); single-model post-training numbers (tool-use 0.740, emotion/speaker 0.613, TTS error 3.1%) — niche. Card lists 46 benchmarks (LibriSpeech/KsponSpeech/VoiceBench/KVoiceBench) but per-benchmark WER/CER not in the card excerpt."
+  },
+  "models": [
+    {
+      "id": "krafton/ax-k2-raon-speech-21b-a3b",
+      "vendor": "KRAFTON",
+      "name": "A.X K2 Raon-Speech 21B-A3B",
+      "type": "open-weight",
+      "modalities": [
+        "text",
+        "audio"
+      ],
+      "parameters": "21.2B-A3.5B",
+      "release_date": "2026-07",
+      "context_window": 131072
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "raon_speech_agg_korean",
+      "name": "Raon-Speech Aggregate — Korean",
+      "category": "audio",
+      "metric": "score",
+      "description": "Normalized aggregate speech score (Korean) across the A.X K2 Raon-Speech card benchmark suite (~46 benchmarks: STT/TTS/SpeechQA/SpokenQA over LibriSpeech/KsponSpeech/VoiceBench/KVoiceBench). KRAFTON AI. Higher is better."
+    },
+    {
+      "id": "raon_speech_agg_english",
+      "name": "Raon-Speech Aggregate — English",
+      "category": "audio",
+      "metric": "score",
+      "description": "Normalized aggregate speech score (English) across the A.X K2 Raon-Speech card benchmark suite. KRAFTON AI. Higher is better."
+    }
+  ],
+  "scores": [
+    {
+      "model": "krafton/ax-k2-raon-speech-21b-a3b",
+      "benchmark": "raon_speech_agg_korean",
+      "score": 72.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/KRAFTON/A.X-K2-Raon-Speech-21B-A3B",
+      "_note": "Aggregate Korean (card table)"
+    },
+    {
+      "model": "alibaba/qwen3-omni-30b-a3b",
+      "benchmark": "raon_speech_agg_korean",
+      "score": 65.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/KRAFTON/A.X-K2-Raon-Speech-21B-A3B",
+      "_note": "baseline (Raon-Speech card)"
+    },
+    {
+      "model": "naver/hyperclova-x-seed-omni-8b",
+      "benchmark": "raon_speech_agg_korean",
+      "score": 60.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/KRAFTON/A.X-K2-Raon-Speech-21B-A3B",
+      "_note": "baseline (Raon-Speech card)"
+    },
+    {
+      "model": "krafton/ax-k2-raon-speech-21b-a3b",
+      "benchmark": "raon_speech_agg_english",
+      "score": 75.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/KRAFTON/A.X-K2-Raon-Speech-21B-A3B",
+      "_note": "Aggregate English (card table)"
+    },
+    {
+      "model": "alibaba/qwen3-omni-30b-a3b",
+      "benchmark": "raon_speech_agg_english",
+      "score": 78.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/KRAFTON/A.X-K2-Raon-Speech-21B-A3B",
+      "_note": "baseline (Raon-Speech card)"
+    },
+    {
+      "model": "naver/hyperclova-x-seed-omni-8b",
+      "benchmark": "raon_speech_agg_english",
+      "score": 68.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/KRAFTON/A.X-K2-Raon-Speech-21B-A3B",
+      "_note": "baseline (Raon-Speech card)"
+    }
+  ]
+}

@@ -2647,6 +2647,7 @@ var App = {
             { name: 'CXRMate-2 — Chest X-ray Radiology Report Generation', file: 'cxrmate2_arxiv_2604_18967.pdf', vendor: 'CSIRO AEHRC', date: 'May 2026', url: 'https://arxiv.org/abs/2604.18967' },
             { name: 'SKT A.X K2 (688B-A33B MoE) — Technical Report', file: 'axk2_tech_report.pdf', vendor: 'SK Telecom', date: 'Jul 2026', url: 'https://huggingface.co/skt/A.X-K2' },
             { name: 'SKT A.X K2 ALM (Audio Language Model) — Technical Report', file: 'axk2_alm_tech_report.pdf', vendor: 'SK Telecom', date: 'Jul 2026', url: 'https://huggingface.co/skt/A.X-K2-ALM' },
+            { name: 'KRAFTON A.X K2 Raon-Speech 21B-A3B (bilingual speech LM)', file: '', vendor: 'KRAFTON', date: 'Jul 2026', url: 'https://huggingface.co/KRAFTON/A.X-K2-Raon-Speech-21B-A3B' },
             { name: 'Spacer: Towards Engineered Scientific Inspiration', file: 'spacer_2508.17661.pdf', vendor: 'Asteromorph', date: 'Aug 2025', url: 'https://arxiv.org/abs/2508.17661' },
             { name: 'The AI Scientist: End-to-End AI Research (Nature)', file: 'nature_10265_5.pdf', vendor: 'Sakana AI + Oxford + UBC + Vector', date: 'Mar 2026', url: 'https://www.nature.com/articles/s41586-026-10265-5' },
             { name: 'OpenAI GPT-Rosalind: Life Sciences Capabilities Update', file: '', vendor: 'OpenAI', date: 'Jun 2026', url: 'https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/' },
