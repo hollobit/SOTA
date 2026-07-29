@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-30",
+    "sources": [
+      "https://huggingface.co/skt/A.X-K2-ALM"
+    ],
+    "_note": "S214d A.X K2 ALM re-verify: Table 8 (dedicated streaming ASR ENCODER benchmark, chunk-wise) had Zeroth-Korean CER not captured before — added. NOTE: Table 8 measures the 341M streaming speech ENCODER alone (self-supervised + RNN-T); its KsponSpeech CER (6.13/6.35) is LOWER than the full end-to-end ALM model-level KsponSpeech (9.00/9.12 from Table 7) due to the Stage-B dialogue trade-off — kept the model-level KsponSpeech values (Table 7) and did NOT overwrite them; only Zeroth-Korean (absent elsewhere) added."
+  },
+  "benchmarks": [
+    {
+      "id": "zeroth_korean_cer",
+      "name": "Zeroth-Korean CER (streaming ASR, lower=better)",
+      "category": "audio",
+      "metric": "cer",
+      "description": "Korean speech recognition character error rate on the full Zeroth-Korean set, chunk-wise streaming (A.X K2 ALM report Table 8, streaming ASR encoder). LOWER is better."
+    }
+  ],
+  "scores": [
+    {
+      "model": "skt/ax-k2-alm",
+      "benchmark": "zeroth_korean_cer",
+      "score": 1.86,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "A.X K2 ALM streaming ASR encoder, Zeroth-Korean (Table 8, lower better)"
+    },
+    {
+      "model": "alibaba/qwen3-omni-30b-a3b",
+      "benchmark": "zeroth_korean_cer",
+      "score": 3.33,
+      "unit": "%",
+      "_source": "https://huggingface.co/skt/A.X-K2-ALM",
+      "_note": "Qwen3-Omni encoder baseline (Table 8)"
+    }
+  ]
+}

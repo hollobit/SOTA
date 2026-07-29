@@ -2,6 +2,12 @@
   {
     "date": "2026-07-30",
     "type": "ingest",
+    "title": "S214d — A.X K2 ALM Table 8 재검증: Zeroth-Korean ASR 추가",
+    "detail": "A.X K2 ALM 리포트 Table 8(전용 streaming ASR 인코더 표) 재검증. 초록의 'KsponSpeech + full Zeroth-Korean' 중 Zeroth-Korean CER이 미수집이었음 → 추가(A.X K2 ALM 1.86 vs Qwen3-Omni 3.33, lower better, 신규 벤치 zeroth_korean_cer). Table 8은 341M 스트리밍 인코더 단독 측정이라 KsponSpeech CER(6.13/6.35)이 Table 7 모델레벨(9.00/9.12)보다 낮음(Stage-B 대화 학습 trade-off) — 모델레벨 값 유지, 덮어쓰지 않음. Zeroth만 신규(타 표에 없음). 그 외 A.X K2 family PDF(Table 6/7/8/14, RULER, IMO, 양자화/VAD/codec-relative) 전수 검토 완료 — 추가 누락 없음."
+  },
+  {
+    "date": "2026-07-30",
+    "type": "ingest",
     "title": "S214c — A.X K2 HF 카드 재검증: IMO 2025 추가 + imo_2025 스케일 정규화",
     "detail": "A.X K2 HF 카드(huggingface.co/skt/A.X-K2) 재검증: 카드 = 테크리포트(thinking-mode Table + RULER), 18개 스코어 이미 전부 수집됨. 유일 누락: A.X K2 IMO 2025 35/42(gold threshold, 첫 5문제 7/7 만점) → 기존 imo_2025 벤치의 %-스케일에 맞춰 83.33% 추가(gemini-deep-think/openai-experimental도 35/42=83.33 동점). 부수 데이터품질 수정: imo_2025에 raw '35 /42'로 저장돼 오랭크되던 항목 2건(deepseek-math-v2, gemini-3-deep-think) → 83.33% 정규화(deepseek는 addendum, gemini-3-deep-think는 소스 ai4s 파일 직접 수정). 이제 IMO 2025 리더보드 5모델 83.33 동점 정합. 카드의 KMO26 2nd round·NIAH는 정성적이라 미수집."
   },
