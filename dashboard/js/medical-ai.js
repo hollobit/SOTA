@@ -211,6 +211,7 @@ var MedicalAI = {
                 'usyd/lepax',       // 2026-07 S213 — lesion-aware high-res CXR RRG (Univ. Sydney)
                 'academic/clear-cxr-fm',  // 2026-07 S213b — auditable CXR FM (Nature Biomed Eng)
                 'harvard/medversa-8b',
+                'stanford/pathology-o3',  // 2026 S216 — WSI diagnosis CoT agent (Nature Biomed Eng, GI lymph-node recall 100/97.6)
                 'rad-onc/maira-2',
                 'microsoft/maira-2',  // 2026-06-14 S116 — RadFact Grounding Recall 90% / Logical Precision 55.6%
                 'microsoft/medimageinsight',  // 2026-06-14 S116 — 93.8% mAUC CXR (beats Rad-DINO/BiomedCLIP)

@@ -66,6 +66,15 @@ var PhysicalAI = {
                 'openvla/openvla-7b', 'openvla/openvla-oft',
                 'octo/octo-base',
                 'google/gemini-robotics-er-1.6', 'google-deepmind/gemini-robotics-er-1.5',
+                // 2026-07-30 S216 — Gemini Robotics 2 family + recent VLA/world-model papers
+                'google/gemini-robotics-2', 'google/gemini-robotics-er-2', 'google/gemini-robotics-on-device-2',
+                'bagel/worlddit',            // Bagel VLA policy — LIBERO 94.9
+                'cas-sia/leevla-large',      // CAS LEEVLA-7B — LIBERO 98.2
+                'omron/clap-2b',             // OMRON CLAP — LIBERO 90.8
+                'chungang/cotinyvla',        // Chung-Ang 0.9B — LIBERO-Plus 86.35
+                'byd/hyworldvla',            // BYD autonomous-driving VLA — NAVSIM v1 90.59
+                'alibaba/abot-agentos',      // Alibaba AMAP agent OS — EmbodiedWorldBench
+                'mininglamp/mano-p',         // MiningLamp GUI-VLA — ScreenSpot-V2 93.5
                 // May 2026 additions — Allen AI MolmoAct2 family + NVIDIA CaP-X coding-agent for manipulation
                 'allenai/molmoact2', 'allenai/molmoer', 'nvidia/cap-agent0',
                 'allenai/molmoact-2',  // canonical id used in newer ingest (Section 38)
@@ -200,9 +209,10 @@ var PhysicalAI = {
         {
             id: 'vla-manipulation',
             label: '🦾 VLA Manipulation Suites',
-            note: 'LIBERO 4-suite + RoboCasa + RoboTwin + VLABench + ALOHA + Bridge V2 + Open X-Embodiment + DexMimicGen',
+            note: 'LIBERO 4-suite + LIBERO-Plus + RoboCasa + RoboTwin + VLABench + ALOHA + Bridge V2 + Open X-Embodiment + DexMimicGen + CALVIN + NAVSIM (driving) + EmbodiedWorldBench',
             benchmarks: [
                 'libero', 'libero_spatial', 'libero_object', 'libero_goal', 'libero_long',
+                'libero_plus', 'calvin_abcd_avg_length', 'navsim_v1_pdms', 'navsim_v2_epdms', 'embodiedworldbench',
                 'robocasa', 'robocasa365', 'robotwin2', 'vlabench', 'vlabench_track1_primitive',
                 'bridge_v2', 'aloha_4task_avg',
                 'open_x_embodiment', 'dexmimicgen', 'gr1_tabletop',

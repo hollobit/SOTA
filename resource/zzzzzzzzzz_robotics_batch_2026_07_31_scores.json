@@ -1,0 +1,261 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-31",
+    "sources": [
+      "https://deepmind.google/models/gemini-robotics/",
+      "https://huggingface.co/bageldotcom/worlddit",
+      "https://www.nature.com/articles/s41551-026-01739-y",
+      "https://github.com/Mininglamp-AI/Mano-P"
+    ],
+    "_note": "S216 multi-source batch (6 research agents over 24 links). NEW models: Gemini Robotics 2 (VLA), Gemini Robotics-ER 2 (ERQA 78.5 vs ER 1.6 72.5), Gemini Robotics On-Device 2 (metadata only, no scores), WorldDiT (Bagel, LIBERO 94.9 — VLA policy despite name), Pathology-o3 (Stanford WSI diagnosis agent, GI lymph-node recall 100/97.6), Mano-P (MiningLamp GUI-VLA, 13-bench: ScreenSpot-V2 93.5/ScreenSpot-Pro 66.6/MMBench-GUI-L2 87.5/UI-Vision 46.6/OSWorld 58.2 [SOTA among specialized GUI agents, not overall]/Online-Mind2Web 40.0/CL-bench 23.38). SKIPPED: gpt-transcribe family (no primary WER, only blog 2.46%), arXiv 2607.22997 (AMD pipeline, only throughput) + 2607.22545 (Semalith safety classifier, off-topic), JEPA/physical-AI-taxonomy blogs (no scores), Chinese robotics news (T-Rex/Phi/pandaily/csf — no numeric scores, notable models only). Kimi K3/K2.7 Code already in DB. arXiv 2607.20988/25487/10350/08974/08182/02840 pending separate agent. Gemini VLA manipulation numbers are embodiment-specific (Apollo/Franka) — captured a few representative."
+  },
+  "models": [
+    {
+      "id": "google/gemini-robotics-2",
+      "vendor": "Google DeepMind",
+      "name": "Gemini Robotics 2 (VLA)",
+      "type": "proprietary",
+      "modalities": [
+        "text",
+        "image",
+        "action"
+      ],
+      "release_date": "2026-07-30"
+    },
+    {
+      "id": "google/gemini-robotics-er-2",
+      "vendor": "Google DeepMind",
+      "name": "Gemini Robotics-ER 2",
+      "type": "proprietary",
+      "modalities": [
+        "text",
+        "image",
+        "video",
+        "audio"
+      ],
+      "release_date": "2026-07-30"
+    },
+    {
+      "id": "google/gemini-robotics-on-device-2",
+      "vendor": "Google DeepMind",
+      "name": "Gemini Robotics On-Device 2",
+      "type": "proprietary",
+      "modalities": [
+        "text",
+        "image",
+        "action"
+      ],
+      "release_date": "2026-07-30"
+    },
+    {
+      "id": "bagel/worlddit",
+      "vendor": "Bagel Labs",
+      "name": "WorldDiT",
+      "type": "open-weight",
+      "modalities": [
+        "image",
+        "action"
+      ],
+      "parameters": "399M",
+      "release_date": "2026-07"
+    },
+    {
+      "id": "stanford/pathology-o3",
+      "vendor": "Stanford Medicine (academic)",
+      "name": "Pathology-o3 (Pathology-CoT)",
+      "type": "proprietary",
+      "modalities": [
+        "image",
+        "text"
+      ],
+      "release_date": "2026-07"
+    },
+    {
+      "id": "mininglamp/mano-p",
+      "vendor": "MiningLamp Technology",
+      "name": "Mano-P (GUI-VLA)",
+      "type": "open-weight",
+      "modalities": [
+        "image",
+        "text",
+        "action"
+      ],
+      "parameters": "72B (edge 4B)",
+      "release_date": "2026-04-15"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "ui_vision",
+      "name": "UI-Vision (GUI grounding)",
+      "category": "agent",
+      "metric": "score",
+      "description": "GUI visual grounding/understanding benchmark (Mano-P report). Higher is better."
+    },
+    {
+      "id": "gi_lymph_node_recall_internal",
+      "name": "GI Lymph-Node Metastasis Recall — Internal (Stanford)",
+      "category": "medical-imaging",
+      "metric": "recall",
+      "description": "Whole-slide-image gastrointestinal lymph-node metastasis detection recall, internal validation (Pathology-CoT/Pathology-o3, Nature Biomed Eng s41551-026-01739-y). Higher is better."
+    },
+    {
+      "id": "gi_lymph_node_recall_external",
+      "name": "GI Lymph-Node Metastasis Recall — External (Sweden)",
+      "category": "medical-imaging",
+      "metric": "recall",
+      "description": "WSI GI lymph-node metastasis detection recall, external validation cohort (Pathology-o3, Nature Biomed Eng). Higher is better."
+    },
+    {
+      "id": "robot_gripper_precise_insertion",
+      "name": "Robot Gripper — Precise Insertion Success",
+      "category": "embodied",
+      "metric": "success_rate",
+      "description": "Precise insertion task success rate (Gemini Robotics 2 VLA, Franka Duo gripper). Higher is better."
+    },
+    {
+      "id": "robot_wholebody_pick_avg",
+      "name": "Robot Whole-Body Pick (table/floor/shelf avg)",
+      "category": "embodied",
+      "metric": "success_rate",
+      "description": "Whole-body manipulation pick success rate averaged over table/floor/shelf (Gemini Robotics 2 VLA, Apollo humanoid). Higher is better."
+    },
+    {
+      "id": "robot_success_detection_video",
+      "name": "Embodied Success Detection (video)",
+      "category": "embodied",
+      "metric": "accuracy",
+      "description": "Video-based task success-detection accuracy for embodied reasoning (Gemini Robotics-ER 2). Higher is better."
+    }
+  ],
+  "scores": [
+    {
+      "model": "google/gemini-robotics-er-2",
+      "benchmark": "erqa",
+      "score": 78.5,
+      "unit": "%",
+      "_source": "https://deepmind.google/models/gemini-robotics/embodied-reasoning/",
+      "_note": "ER 2 ERQA (vs ER 1.6 72.5)"
+    },
+    {
+      "model": "google/gemini-robotics-er-1.6",
+      "benchmark": "erqa",
+      "score": 72.5,
+      "unit": "%",
+      "_source": "https://deepmind.google/models/gemini-robotics/embodied-reasoning/",
+      "_note": "ER 1.6 ERQA (page comparison)"
+    },
+    {
+      "model": "google/gemini-robotics-er-2",
+      "benchmark": "robot_success_detection_video",
+      "score": 82.4,
+      "unit": "%",
+      "_source": "https://deepmind.google/models/gemini-robotics/embodied-reasoning/",
+      "_note": "ER 2 video success detection"
+    },
+    {
+      "model": "google/gemini-robotics-2",
+      "benchmark": "robot_gripper_precise_insertion",
+      "score": 89.6,
+      "unit": "%",
+      "_source": "https://deepmind.google/models/gemini-robotics/vla/",
+      "_note": "Franka Duo precise insertion"
+    },
+    {
+      "model": "google/gemini-robotics-2",
+      "benchmark": "robot_wholebody_pick_avg",
+      "score": 63.5,
+      "unit": "%",
+      "_source": "https://deepmind.google/models/gemini-robotics/vla/",
+      "_note": "Apollo whole-body pick avg (table 68.4/floor 45.7/shelf 76.3)"
+    },
+    {
+      "model": "bagel/worlddit",
+      "benchmark": "libero",
+      "score": 94.9,
+      "unit": "%",
+      "_source": "https://huggingface.co/bageldotcom/worlddit",
+      "_note": "WorldDiT LIBERO (arXiv 2607.23909)"
+    },
+    {
+      "model": "bagel/worlddit",
+      "benchmark": "libero_10_success_2k_iter",
+      "score": 91.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/bageldotcom/worlddit",
+      "_note": "WorldDiT LIBERO (arXiv 2607.23909)"
+    },
+    {
+      "model": "stanford/pathology-o3",
+      "benchmark": "gi_lymph_node_recall_internal",
+      "score": 100.0,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41551-026-01739-y",
+      "_note": "Pathology-o3 internal recall (Stanford)"
+    },
+    {
+      "model": "stanford/pathology-o3",
+      "benchmark": "gi_lymph_node_recall_external",
+      "score": 97.6,
+      "unit": "%",
+      "_source": "https://www.nature.com/articles/s41551-026-01739-y",
+      "_note": "Pathology-o3 external recall (Sweden)"
+    },
+    {
+      "model": "mininglamp/mano-p",
+      "benchmark": "screenspot_v2",
+      "score": 93.5,
+      "unit": "%",
+      "_source": "https://github.com/Mininglamp-AI/Mano-P",
+      "_note": "Mano-P 1.0-72B (official GitHub benchmark table)"
+    },
+    {
+      "model": "mininglamp/mano-p",
+      "benchmark": "screenspot_pro",
+      "score": 66.6,
+      "unit": "%",
+      "_source": "https://github.com/Mininglamp-AI/Mano-P",
+      "_note": "Mano-P 1.0-72B (official GitHub benchmark table)"
+    },
+    {
+      "model": "mininglamp/mano-p",
+      "benchmark": "mmbench_gui_l2",
+      "score": 87.5,
+      "unit": "%",
+      "_source": "https://github.com/Mininglamp-AI/Mano-P",
+      "_note": "Mano-P 1.0-72B (official GitHub benchmark table)"
+    },
+    {
+      "model": "mininglamp/mano-p",
+      "benchmark": "ui_vision",
+      "score": 46.6,
+      "unit": "%",
+      "_source": "https://github.com/Mininglamp-AI/Mano-P",
+      "_note": "Mano-P 1.0-72B (official GitHub benchmark table)"
+    },
+    {
+      "model": "mininglamp/mano-p",
+      "benchmark": "osworld",
+      "score": 58.2,
+      "unit": "%",
+      "_source": "https://github.com/Mininglamp-AI/Mano-P",
+      "_note": "Mano-P 1.0-72B (official GitHub benchmark table)"
+    },
+    {
+      "model": "mininglamp/mano-p",
+      "benchmark": "online_mind2web",
+      "score": 40.0,
+      "unit": "%",
+      "_source": "https://github.com/Mininglamp-AI/Mano-P",
+      "_note": "Mano-P 1.0-72B (official GitHub benchmark table)"
+    },
+    {
+      "model": "mininglamp/mano-p",
+      "benchmark": "cl_bench",
+      "score": 23.38,
+      "unit": "%",
+      "_source": "https://github.com/Mininglamp-AI/Mano-P",
+      "_note": "Mano-P 1.0-72B (official GitHub benchmark table)"
+    }
+  ]
+}

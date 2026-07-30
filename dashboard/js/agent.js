@@ -83,7 +83,9 @@ var Agent = (function() {
                 'oscopilot_gaia',
                 'visualagentbench',
                 // 2026-06-29 S155 — OSWorld 2.0 (XLANG, 108 long-horizon tasks, 500-step canonical)
-                'osworld_v2', 'osworld_v2_partial', 'osworld_v2_150step', 'osworld_v2_300step'
+                'osworld_v2', 'osworld_v2_partial', 'osworld_v2_150step', 'osworld_v2_300step',
+                // 2026-04 S216 — GUI grounding (MiningLamp Mano-P + others)
+                'screenspot_v2', 'mmbench_gui_l2', 'ui_vision', 'online_mind2web'
             ]
         },
         {
