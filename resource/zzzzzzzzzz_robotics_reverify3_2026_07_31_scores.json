@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-31",
+    "sources": [
+      "https://deepmind.google/models/gemini-robotics/embodied-reasoning/",
+      "https://github.com/Mininglamp-AI/Mano-P",
+      "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/"
+    ],
+    "_note": "S216c final re-verify: remaining comparative items. Mano-P OSWorld-G-Refine 69.5 (Qwen3-VL-32B 69.0 baseline). Gemini Robotics-ER 2 ASIMOV safety metrics (safety instruction-following 97.9, human-proximity-1m 93.0). ASIMOV-Agentic registered as new benchmark dataset (agentic safety orchestration, introduced on the GR2 blog). Remaining ER 2 single-model metrics (instrument reading 65.7, progress classification 57.4, physical-agent-sim 42.9) skipped as niche/single-model."
+  },
+  "benchmarks": [
+    {
+      "id": "osworld_g_refine",
+      "name": "OSWorld-G-Refine (GUI grounding)",
+      "category": "agent",
+      "metric": "score",
+      "description": "OSWorld-G refined GUI grounding benchmark (Mano-P report). Higher is better."
+    },
+    {
+      "id": "asimov_agentic",
+      "name": "ASIMOV-Agentic (agentic safety orchestration)",
+      "category": "embodied",
+      "metric": "score",
+      "description": "Benchmark for agentic safety orchestration and uncertainty resolution — refusal of unsafe tool calls, proactive human-intervention requests. Introduced with Gemini Robotics-ER 2 (DeepMind). Higher is better."
+    },
+    {
+      "id": "robot_safety_instruction_following",
+      "name": "Embodied Safety Instruction-Following",
+      "category": "embodied",
+      "metric": "accuracy",
+      "description": "Accuracy following safety instructions in embodied settings (Gemini Robotics-ER 2 / ASIMOV). Higher is better."
+    },
+    {
+      "id": "robot_human_proximity_1m",
+      "name": "Embodied Human-Proximity Safety (1m)",
+      "category": "embodied",
+      "metric": "accuracy",
+      "description": "Correct behavior when a human is within 1m (Gemini Robotics-ER 2 safety). Higher is better."
+    }
+  ],
+  "scores": [
+    {
+      "model": "mininglamp/mano-p",
+      "benchmark": "osworld_g_refine",
+      "score": 69.5,
+      "unit": "%",
+      "_source": "https://github.com/Mininglamp-AI/Mano-P",
+      "_note": "Mano-P OSWorld-G-Refine (vs Qwen3-VL-32B 69.0)"
+    },
+    {
+      "model": "google/gemini-robotics-er-2",
+      "benchmark": "robot_safety_instruction_following",
+      "score": 97.9,
+      "unit": "%",
+      "_source": "https://deepmind.google/models/gemini-robotics/embodied-reasoning/",
+      "_note": "ER 2 safety instruction-following"
+    },
+    {
+      "model": "google/gemini-robotics-er-2",
+      "benchmark": "robot_human_proximity_1m",
+      "score": 93.0,
+      "unit": "%",
+      "_source": "https://deepmind.google/models/gemini-robotics/embodied-reasoning/",
+      "_note": "ER 2 human-proximity 1m"
+    }
+  ]
+}
