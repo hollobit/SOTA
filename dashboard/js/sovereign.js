@@ -15,7 +15,7 @@ var Sovereign = {
             code: 'kr', label: 'Korea', flag: '🇰🇷',
             note: '독자 AI 파운데이션 모델 5팀 (LG · KT · SKT · Upstage · Naver) + Kakao · NCSoft · Trillion · Motif · Konan · Saltlux · Samsung Gauss',
             models: [
-                'lg/exaone-4.5-33b', 'lg/k-exaone-236b',
+                'lg/exaone-4.5-33b', 'lg/k-exaone-236b', 'lg/k-exaone-2.0-750b-a37b',
                 'lg/exaone-4.0-32b', 'lg/exaone-4.0.1-32b', 'lg/exaone-4.0-1.2b',
                 'lg/exaone-deep-32b', 'lg/exaone-deep-7.8b', 'lg/exaone-deep-2.4b',
                 'lg/exaone-3.5-32b', 'lg/exaone-3.5-7.8b', 'lg/exaone-3.5-2.4b',
@@ -604,6 +604,7 @@ var Sovereign = {
         'kakao/kanana-1.5-8b': '2025-05', 'kakao/kanana-flag-32.5b': '2024-11',
         'kakao/kanana-2-3b-instruct': '2026-07-27', 'kakao/kanana-2-3b-base': '2026-07-27',
         'skt/ax-k2': '2026-07-28', 'skt/ax-k2-alm': '2026-07-28',
+        'lg/k-exaone-2.0-750b-a37b': '2026-07',
         'krafton/ax-k2-raon-speech-21b-a3b': '2026-07',
         'kakao/kanana-2-1.3b-instruct': '2026-07-27', 'kakao/kanana-2-1.3b-base': '2026-07-27',
         // Korea — others
@@ -1096,6 +1097,7 @@ var Sovereign = {
         // Kakao Kanana 2 SLM (2026-07-27)
         'kakao/kanana-2-3b-instruct': 3, 'kakao/kanana-2-3b-base': 3,
         'skt/ax-k2': 688, 'skt/ax-k2-alm': 20,
+        'lg/k-exaone-2.0-750b-a37b': 750,
         'krafton/ax-k2-raon-speech-21b-a3b': 21,
         'kakao/kanana-2-1.3b-instruct': 1.3, 'kakao/kanana-2-1.3b-base': 1.3,
         // AI21 Jamba family — names don't carry the size suffix
