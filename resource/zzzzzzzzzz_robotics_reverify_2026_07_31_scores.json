@@ -1,0 +1,228 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-31",
+    "sources": [
+      "https://huggingface.co/bageldotcom/worlddit",
+      "https://arxiv.org/abs/2607.08182",
+      "https://arxiv.org/abs/2607.08974",
+      "https://arxiv.org/abs/2607.10350",
+      "https://deepmind.google/models/gemini-robotics/embodied-reasoning/"
+    ],
+    "_note": "S216b re-verification: S216 captured only headline/avg benches; adding per-suite + missed models. LIBERO per-suite (Spatial/Object/Goal/Long, existing comparative benches) for WorldDiT / LEEVLA-large / CLAP-2B. NEW model LEEVLA-mini (0.5B, LIBERO 97.5) was omitted in S216. ABot-AgentOS OpenEQA 60.4 + NExT-QA 76.5 (new benches). Gemini Robotics-ER 2 image success detection 87.7 + physical-agent-real-VLA 60.0. Still skipped as embodiment-specific/over-granular: the 8 Gemini VLA dexterity per-task rates (unscrew/screw/tie/dustpan/ziplock on specific hands), Mano-P WebRetriever/real-machine-macOS sub-scores, HyWorldVLA NAVSIM sub-metrics (EP/DAC/NC)."
+  },
+  "models": [
+    {
+      "id": "cas-sia/leevla-mini",
+      "vendor": "CAS Shenyang Institute of Automation",
+      "name": "LEEVLA-mini (0.5B)",
+      "type": "open-weight",
+      "modalities": [
+        "image",
+        "text",
+        "action"
+      ],
+      "parameters": "0.5B",
+      "release_date": "2026-07-10"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "openeqa",
+      "name": "OpenEQA (EM-EQA)",
+      "category": "embodied",
+      "metric": "accuracy",
+      "description": "OpenEQA embodied question-answering (EM-EQA) accuracy (ABot-AgentOS report, arXiv 2607.10350). Higher is better."
+    },
+    {
+      "id": "nextqa",
+      "name": "NExT-QA (Acc@All)",
+      "category": "agent",
+      "metric": "accuracy",
+      "description": "NExT-QA video question-answering accuracy (ABot-AgentOS report). Higher is better."
+    },
+    {
+      "id": "robot_success_detection_image",
+      "name": "Embodied Success Detection (image)",
+      "category": "embodied",
+      "metric": "accuracy",
+      "description": "Image-based task success-detection accuracy for embodied reasoning (Gemini Robotics-ER 2). Higher is better."
+    },
+    {
+      "id": "robot_physical_agent_real_vla",
+      "name": "Physical Agent — controlling real VLA",
+      "category": "embodied",
+      "metric": "success_rate",
+      "description": "Embodied-reasoning model orchestrating a real robot VLA, task success (Gemini Robotics-ER 2). Higher is better."
+    }
+  ],
+  "scores": [
+    {
+      "model": "bagel/worlddit",
+      "benchmark": "libero_spatial",
+      "score": 98.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/bageldotcom/worlddit",
+      "_note": "LIBERO Spatial"
+    },
+    {
+      "model": "bagel/worlddit",
+      "benchmark": "libero_object",
+      "score": 97.0,
+      "unit": "%",
+      "_source": "https://huggingface.co/bageldotcom/worlddit",
+      "_note": "LIBERO Object"
+    },
+    {
+      "model": "bagel/worlddit",
+      "benchmark": "libero_goal",
+      "score": 92.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/bageldotcom/worlddit",
+      "_note": "LIBERO Goal"
+    },
+    {
+      "model": "bagel/worlddit",
+      "benchmark": "libero_long",
+      "score": 91.8,
+      "unit": "%",
+      "_source": "https://huggingface.co/bageldotcom/worlddit",
+      "_note": "LIBERO Long"
+    },
+    {
+      "model": "cas-sia/leevla-large",
+      "benchmark": "libero_spatial",
+      "score": 98.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08182",
+      "_note": "LIBERO Spatial"
+    },
+    {
+      "model": "cas-sia/leevla-large",
+      "benchmark": "libero_object",
+      "score": 99.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08182",
+      "_note": "LIBERO Object"
+    },
+    {
+      "model": "cas-sia/leevla-large",
+      "benchmark": "libero_goal",
+      "score": 98.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08182",
+      "_note": "LIBERO Goal"
+    },
+    {
+      "model": "cas-sia/leevla-large",
+      "benchmark": "libero_long",
+      "score": 96.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08182",
+      "_note": "LIBERO Long"
+    },
+    {
+      "model": "omron/clap-2b",
+      "benchmark": "libero_spatial",
+      "score": 93.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08974",
+      "_note": "LIBERO Spatial"
+    },
+    {
+      "model": "omron/clap-2b",
+      "benchmark": "libero_object",
+      "score": 97.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08974",
+      "_note": "LIBERO Object"
+    },
+    {
+      "model": "omron/clap-2b",
+      "benchmark": "libero_goal",
+      "score": 90.8,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08974",
+      "_note": "LIBERO Goal"
+    },
+    {
+      "model": "omron/clap-2b",
+      "benchmark": "libero_long",
+      "score": 82.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08974",
+      "_note": "LIBERO Long"
+    },
+    {
+      "model": "cas-sia/leevla-mini",
+      "benchmark": "libero",
+      "score": 97.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08182",
+      "_note": "LEEVLA-mini LIBERO avg"
+    },
+    {
+      "model": "cas-sia/leevla-mini",
+      "benchmark": "libero_spatial",
+      "score": 98.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08182",
+      "_note": "LEEVLA-mini"
+    },
+    {
+      "model": "cas-sia/leevla-mini",
+      "benchmark": "libero_object",
+      "score": 99.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08182",
+      "_note": "LEEVLA-mini"
+    },
+    {
+      "model": "cas-sia/leevla-mini",
+      "benchmark": "libero_goal",
+      "score": 97.0,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08182",
+      "_note": "LEEVLA-mini"
+    },
+    {
+      "model": "cas-sia/leevla-mini",
+      "benchmark": "libero_long",
+      "score": 95.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.08182",
+      "_note": "LEEVLA-mini"
+    },
+    {
+      "model": "alibaba/abot-agentos",
+      "benchmark": "openeqa",
+      "score": 60.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.10350",
+      "_note": "ABot-AgentOS OpenEQA (self-evolution)"
+    },
+    {
+      "model": "alibaba/abot-agentos",
+      "benchmark": "nextqa",
+      "score": 76.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.10350",
+      "_note": "ABot-AgentOS NExT-QA"
+    },
+    {
+      "model": "google/gemini-robotics-er-2",
+      "benchmark": "robot_success_detection_image",
+      "score": 87.7,
+      "unit": "%",
+      "_source": "https://deepmind.google/models/gemini-robotics/embodied-reasoning/",
+      "_note": "ER 2 image success detection"
+    },
+    {
+      "model": "google/gemini-robotics-er-2",
+      "benchmark": "robot_physical_agent_real_vla",
+      "score": 60.0,
+      "unit": "%",
+      "_source": "https://deepmind.google/models/gemini-robotics/embodied-reasoning/",
+      "_note": "ER 2 controlling real VLA (human tele-op ref 74.0)"
+    }
+  ]
+}

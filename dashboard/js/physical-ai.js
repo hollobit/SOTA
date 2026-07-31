@@ -70,6 +70,7 @@ var PhysicalAI = {
                 'google/gemini-robotics-2', 'google/gemini-robotics-er-2', 'google/gemini-robotics-on-device-2',
                 'bagel/worlddit',            // Bagel VLA policy — LIBERO 94.9
                 'cas-sia/leevla-large',      // CAS LEEVLA-7B — LIBERO 98.2
+                'cas-sia/leevla-mini',       // CAS LEEVLA-0.5B — LIBERO 97.5
                 'omron/clap-2b',             // OMRON CLAP — LIBERO 90.8
                 'chungang/cotinyvla',        // Chung-Ang 0.9B — LIBERO-Plus 86.35
                 'byd/hyworldvla',            // BYD autonomous-driving VLA — NAVSIM v1 90.59
