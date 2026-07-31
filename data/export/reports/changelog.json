@@ -4512,5 +4512,11 @@
     "type": "ingest",
     "title": "S220 — DeepSeek-V4-Flash-0731 신규 + Solar Open 2 점수 보강 + 3개 신규 벤치마크",
     "detail": "DeepSeek-V4-Flash-0731(공식 0731 릴리스, preview 대체, +DSpark) 신규 모델 18 scores: 공식 agentic(Terminal-Bench 2.1 82.7·Cybergym 76.7·DeepSWE 54.4·NL2Repo 54.2·Toolathlon-Verified 70.3·DSBench-FullStack 68.7·Hard 59.6·AutomationBench 25.1·Agents-Last-Exam 25.2) + AA(Intelligence Index 50[+10]·GDPval-AA v2 1559·GPQA 91·HLE 37·SciCode 50·AA-LCR 66·Tau3 31·CritPt 17·AA-Omni -16). Solar Open 2(Upstage 250B-A15B, 기존 0 scores)에 테크리포트 24 scores 보강: 영어(MMLU-Pro 86.2·LiveCodeBench 92.4·SWE-Verified 70.4·AIME 95.7) + 한국어 Avg 85.4(CLIcK 90.7·KMMLU-Pro 78.4·HRM8K 92.2·Ko-GDPval 86.8). 신규 벤치: toolathlon_verified·dsbench_fullstack/hard(cyber-coding), graphrarebench(medical-ai, 희귀질환 그래프증거 진단; DeepSeek-V4-Flash MRR 0.313 유일 LLM). AgentS4D(2607.27294)·EvoClawBench(2607.09711)는 harness/runtime 종속 점수라 데이터셋 등록만(strict-attribution). 경쟁모델 baseline 열 제외. 4개 arXiv PDF resource/ 저장 + Resources/seed_sources 등록."
+  },
+  {
+    "date": "2026-08-01",
+    "type": "fix",
+    "title": "S220 재검증: GDPval Elo 스케일 오류 수정 (gdpval_aa_v2 → gdpval_aa_elo)",
+    "detail": "S220 재검증에서 스케일 혼입 발견·수정. GDPval-AA v2는 대시보드에서 Elo(gdpval_aa_elo, 492~1890)와 %-승률(gdpval_aa_v2, 10~64) 두 벤치로 분리 관리되는데, DeepSeek-V4-Flash-0731의 Elo 1559를 %-벤치 gdpval_aa_v2에 잘못 넣어 오염. → gdpval_aa_elo 1559로 이동(0731), Solar Open 2 1128도 동일 정정. 부수 확인: Solar Open 2 24/25 점수가 기존 ingest(2026-07-22/23)와 정확히 일치(solar-open2 id를 solar-open-2로 오검색해 신규로 오인했을 뿐 실제 중복). 추가 정정: 이전 V4-Flash aa_intelligence_index 45(구 AAII v4.0.4)→40(AA 0731 기사 기준 현행 지수, 0731 대비 정확히 +10), gdpval_aa_elo 1189·aa_omniscience -23 backfill. gdpval_aa_v2 max 1559→64로 정상화."
   }
 ]
