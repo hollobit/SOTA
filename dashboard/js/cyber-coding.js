@@ -65,7 +65,9 @@ var CyberCoding = {
         // 2026-07-27 S212 — Microsoft MAI-Cyber-1-Flash model card (External Cyber Benchmark Results)
         'crsbench', 'cyberseceval4_threat_intel', 'cyberseceval4_malware_analysis',
         // 2026-07-28 S212d — Google Gemini 3.5 Flash Cyber (DeepMind blog) V8 vuln-discovery count
-        'v8_confirmed_vulns_google'
+        'v8_confirmed_vulns_google',
+        // 2026 S217 audit — AgentCyberRange (Fudan, multi-host enterprise ranges)
+        'agentcyberrange_web', 'agentcyberrange_post'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
         // 2026-05-28 AgentDoG 1.5 (arxiv 2605.29801, Shanghai AI Lab) — agentic-trajectory safety judging
@@ -86,6 +88,7 @@ var CyberCoding = {
         // 2026-06-06 S56 — SMAC-Talk + Opper Roundtable
         'smac_talk_5v5_no_comm_winrate', 'opper_roundtable_win_rate'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
+        'roadmapbench', 'chainswe_sequential', 'perfopt_bench',
         // 2026-07-08 S175 Grok 4.5 launch — SWE-Marathon (Grok #1 29) + DeepSWE 1.0/1.1 versioned splits (Datacurve/AA)
         'swe_marathon', 'deepswe_1_0', 'deepswe_1_1',
         // 2026-07-20 S189 Grok 4.5 card — Mercor ApexSWE (integration + observability SWE)

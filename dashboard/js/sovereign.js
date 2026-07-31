@@ -428,7 +428,7 @@ var Sovereign = {
             note: 'Yandex YandexGPT 5 + Sber GigaChat 1/2/3 (incl. 3 Ultra Preview 702B-A36B MoE) + Vikhr opensource + T-Bank T-Pro 2.0 + MTS AI Cotype Pro 2',
             models: [
                 'yandex/yandexgpt-5-pro', 'yandex/yandexgpt-5-lite-8b', 'yandex/yandexgpt-4-pro', 'yandex/yalm-100b',
-                'sber/gigachat-3.1-ultra', 'sber/gigachat-3.1-lightning',
+                'sber/gigachat-3.1-ultra', 'sber/gigachat-3.5-ultra', 'sber/gigachat-3.1-lightning',
                 'sber/gigachat-3-ultra', 'sber/gigachat-3-lightning', 'sber/gigachat-3-ultra-preview',
                 'sber/gigachat-2-max', 'sber/gigachat-2-pro', 'sber/gigachat-2-lite', 'sber/gigachat-1.5',
                 'sber/rugpt-3.5-13b',

@@ -1,0 +1,381 @@
+{
+  "_meta": {
+    "collected_at": "2026-07-31",
+    "sources": [
+      "multi — see notes"
+    ],
+    "_note": "S217 full-menu 6-month audit (6 agents: Frontier/Cyber-Coding/AI4S/Agent/Image-Video/Sovereign). Most findings already tracked (Sarvam-105B/Fanar/Falcon-H1R/MiMo-V2.5/Mythos5/GLM-5.2/Reve-2.1/Seedream-5/Gemini-Omni/ESMFold2/AION-1/Latam-GPT/toolathlon/wildclaw/ctfusion) confirming coverage is current. NET-NEW: models GigaChat 3.5 Ultra (Russia, standard benches), MiniMax Hailuo 3/H3 (video arena Elo). NEW benchmarks (frontier scores on DB-existing models only): RoadmapBench, ChainSWE-Sequential, PERFOPT-Bench, AgentCyberRange (web/post), PRL-Bench, OmniMatBench, T1-Bench, OSExpert-Eval, VistaHop, AgentVista, + AA video-arena Elo (registered), ChemPro/FIRE-Bench (dataset registration, harness-name baselines not ingestable as model ids). NTT tsuzumi 2 / NEC cotomi v3 / Krutrim-3 = PR win-rates only, no standard-bench table, skipped. GEditBench v2 image-editing arena: covered separately if needed."
+  },
+  "models": [
+    {
+      "id": "sber/gigachat-3.5-ultra",
+      "vendor": "Sber",
+      "name": "GigaChat 3.5 Ultra (432B-A28B)",
+      "type": "open-weight",
+      "modalities": [
+        "text"
+      ],
+      "parameters": "432B-A28B",
+      "release_date": "2026-07"
+    },
+    {
+      "id": "minimax/hailuo-3",
+      "vendor": "MiniMax",
+      "name": "MiniMax Hailuo 3.0 (H3)",
+      "type": "proprietary",
+      "modalities": [
+        "video"
+      ],
+      "release_date": "2026-07-31"
+    }
+  ],
+  "benchmarks": [
+    {
+      "id": "roadmapbench",
+      "name": "RoadmapBench (long-horizon version upgrades)",
+      "category": "coding",
+      "metric": "score",
+      "description": "RoadmapBench (long-horizon version upgrades). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "chainswe_sequential",
+      "name": "ChainSWE (multi-bug maintenance, Sequential)",
+      "category": "coding",
+      "metric": "score",
+      "description": "ChainSWE (multi-bug maintenance, Sequential). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "perfopt_bench",
+      "name": "PERFOPT-Bench (code perf optimization, geomean speedup)",
+      "category": "coding",
+      "metric": "score",
+      "description": "PERFOPT-Bench (code perf optimization, geomean speedup). Introduced 2026 H1; primary-source scores. Geometric-mean speedup (x)."
+    },
+    {
+      "id": "agentcyberrange_web",
+      "name": "AgentCyberRange — web exploitation (no hints)",
+      "category": "cyber",
+      "metric": "score",
+      "description": "AgentCyberRange — web exploitation (no hints). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "agentcyberrange_post",
+      "name": "AgentCyberRange — post-exploitation (no hints)",
+      "category": "cyber",
+      "metric": "score",
+      "description": "AgentCyberRange — post-exploitation (no hints). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "prl_bench",
+      "name": "PRL-Bench (Physical Review Letters research physics)",
+      "category": "ai4s",
+      "metric": "score",
+      "description": "PRL-Bench (Physical Review Letters research physics). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "omnimatbench",
+      "name": "OmniMatBench (materials science, 19 subfields)",
+      "category": "ai4s",
+      "metric": "score",
+      "description": "OmniMatBench (materials science, 19 subfields). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "t1_bench",
+      "name": "T1-Bench (multi-domain customer-service, Pass^K)",
+      "category": "agent",
+      "metric": "score",
+      "description": "T1-Bench (multi-domain customer-service, Pass^K). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "osexpert_eval",
+      "name": "OSExpert-Eval (pro computer-use skills, GIMP long-horizon)",
+      "category": "agent",
+      "metric": "score",
+      "description": "OSExpert-Eval (pro computer-use skills, GIMP long-horizon). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "vistahop",
+      "name": "VistaHop (multi-hop visual DeepSearch, Pass@1)",
+      "category": "agent",
+      "metric": "score",
+      "description": "VistaHop (multi-hop visual DeepSearch, Pass@1). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "agentvista",
+      "name": "AgentVista (ultra-hard multimodal agents, w/ tools)",
+      "category": "agent",
+      "metric": "score",
+      "description": "AgentVista (ultra-hard multimodal agents, w/ tools). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "chempro",
+      "name": "ChemPro (progressive chemistry, hardest tier)",
+      "category": "ai4s",
+      "metric": "score",
+      "description": "ChemPro (progressive chemistry, hardest tier). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "fire_bench",
+      "name": "FIRE-Bench (autonomous scientific rediscovery, F1)",
+      "category": "ai4s",
+      "metric": "score",
+      "description": "FIRE-Bench (autonomous scientific rediscovery, F1). Introduced 2026 H1; primary-source scores."
+    },
+    {
+      "id": "aa_video_t2v_elo",
+      "name": "AA Text-to-Video Arena (Elo)",
+      "category": "video-generation",
+      "metric": "elo",
+      "description": "Artificial Analysis Text-to-Video Arena Elo rating. Higher is better."
+    },
+    {
+      "id": "aa_video_i2v_elo",
+      "name": "AA Image-to-Video Arena (Elo)",
+      "category": "video-generation",
+      "metric": "elo",
+      "description": "Artificial Analysis Image-to-Video Arena Elo rating. Higher is better."
+    }
+  ],
+  "scores": [
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "roadmapbench",
+      "score": 39.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.15846",
+      "_note": "RoadmapBench (long-horizon version upgrades)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "roadmapbench",
+      "score": 32.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.15846",
+      "_note": "RoadmapBench (long-horizon version upgrades)"
+    },
+    {
+      "model": "openai/gpt-5.4",
+      "benchmark": "roadmapbench",
+      "score": 29.6,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.15846",
+      "_note": "RoadmapBench (long-horizon version upgrades)"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "roadmapbench",
+      "score": 20.9,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.15846",
+      "_note": "RoadmapBench (long-horizon version upgrades)"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "roadmapbench",
+      "score": 18.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.15846",
+      "_note": "RoadmapBench (long-horizon version upgrades)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "chainswe_sequential",
+      "score": 40.5,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2607.02606",
+      "_note": "ChainSWE (multi-bug maintenance, Sequential)"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "perfopt_bench",
+      "score": 9.2,
+      "unit": "x",
+      "_source": "https://arxiv.org/abs/2607.07744",
+      "_note": "PERFOPT-Bench (code perf optimization, geomean speedup)"
+    },
+    {
+      "model": "zhipu/glm-5.1",
+      "benchmark": "perfopt_bench",
+      "score": 9.9,
+      "unit": "x",
+      "_source": "https://arxiv.org/abs/2607.07744",
+      "_note": "PERFOPT-Bench (code perf optimization, geomean speedup)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "perfopt_bench",
+      "score": 7.4,
+      "unit": "x",
+      "_source": "https://arxiv.org/abs/2607.07744",
+      "_note": "PERFOPT-Bench (code perf optimization, geomean speedup)"
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "benchmark": "perfopt_bench",
+      "score": 3.1,
+      "unit": "x",
+      "_source": "https://arxiv.org/abs/2607.07744",
+      "_note": "PERFOPT-Bench (code perf optimization, geomean speedup)"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "agentcyberrange_web",
+      "score": 16.1,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.14295",
+      "_note": "AgentCyberRange — web exploitation (no hints)"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "agentcyberrange_post",
+      "score": 31.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.14295",
+      "_note": "AgentCyberRange — post-exploitation (no hints)"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "prl_bench",
+      "score": 44.27,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.15411",
+      "_note": "PRL-Bench (Physical Review Letters research physics)"
+    },
+    {
+      "model": "alibaba/qwen3.5-plus",
+      "benchmark": "prl_bench",
+      "score": 40.05,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2604.15411",
+      "_note": "PRL-Bench (Physical Review Letters research physics)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.7",
+      "benchmark": "omnimatbench",
+      "score": 37.2,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.29833",
+      "_note": "OmniMatBench (materials science, 19 subfields)"
+    },
+    {
+      "model": "google/gemini-3.1-pro",
+      "benchmark": "omnimatbench",
+      "score": 34.7,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.29833",
+      "_note": "OmniMatBench (materials science, 19 subfields)"
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "benchmark": "omnimatbench",
+      "score": 32.4,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2605.29833",
+      "_note": "OmniMatBench (materials science, 19 subfields)"
+    },
+    {
+      "model": "google/gemma-4-31b",
+      "benchmark": "t1_bench",
+      "score": 41.14,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.11070",
+      "_note": "T1-Bench (multi-domain customer-service, Pass^K)"
+    },
+    {
+      "model": "anthropic/claude-opus-4.6",
+      "benchmark": "t1_bench",
+      "score": 34.48,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.11070",
+      "_note": "T1-Bench (multi-domain customer-service, Pass^K)"
+    },
+    {
+      "model": "alibaba/qwen3-vl-235b",
+      "benchmark": "vistahop",
+      "score": 20.79,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2606.03273",
+      "_note": "VistaHop (multi-hop visual DeepSearch, Pass@1)"
+    },
+    {
+      "model": "google/gemini-3-pro",
+      "benchmark": "agentvista",
+      "score": 27.3,
+      "unit": "%",
+      "_source": "https://arxiv.org/abs/2602.23166",
+      "_note": "AgentVista (ultra-hard multimodal agents, w/ tools)"
+    },
+    {
+      "model": "sber/gigachat-3.5-ultra",
+      "benchmark": "mmlu",
+      "score": 85.28,
+      "unit": "%",
+      "_source": "https://huggingface.co/ai-sage/GigaChat3.5-432B-A28B",
+      "_note": "GigaChat 3.5 Ultra card"
+    },
+    {
+      "model": "sber/gigachat-3.5-ultra",
+      "benchmark": "mmlu_pro",
+      "score": 74.54,
+      "unit": "%",
+      "_source": "https://huggingface.co/ai-sage/GigaChat3.5-432B-A28B",
+      "_note": "GigaChat 3.5 Ultra card"
+    },
+    {
+      "model": "sber/gigachat-3.5-ultra",
+      "benchmark": "gpqa_diamond",
+      "score": 30.81,
+      "unit": "%",
+      "_source": "https://huggingface.co/ai-sage/GigaChat3.5-432B-A28B",
+      "_note": "GigaChat 3.5 Ultra card"
+    },
+    {
+      "model": "sber/gigachat-3.5-ultra",
+      "benchmark": "bbh",
+      "score": 87.5,
+      "unit": "%",
+      "_source": "https://huggingface.co/ai-sage/GigaChat3.5-432B-A28B",
+      "_note": "GigaChat 3.5 Ultra card"
+    },
+    {
+      "model": "sber/gigachat-3.5-ultra",
+      "benchmark": "gsm8k",
+      "score": 86.58,
+      "unit": "%",
+      "_source": "https://huggingface.co/ai-sage/GigaChat3.5-432B-A28B",
+      "_note": "GigaChat 3.5 Ultra card"
+    },
+    {
+      "model": "sber/gigachat-3.5-ultra",
+      "benchmark": "humaneval",
+      "score": 80.49,
+      "unit": "%",
+      "_source": "https://huggingface.co/ai-sage/GigaChat3.5-432B-A28B",
+      "_note": "GigaChat 3.5 Ultra card"
+    },
+    {
+      "model": "minimax/hailuo-3",
+      "benchmark": "aa_video_t2v_elo",
+      "score": 1243,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard",
+      "_note": "MiniMax H3 T2V arena #2"
+    },
+    {
+      "model": "minimax/hailuo-3",
+      "benchmark": "aa_video_i2v_elo",
+      "score": 1185,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard",
+      "_note": "MiniMax H3 I2V arena"
+    },
+    {
+      "model": "google/gemini-omni-flash",
+      "benchmark": "aa_video_t2v_elo",
+      "score": 1246,
+      "unit": "elo",
+      "_source": "https://artificialanalysis.ai/video/leaderboard",
+      "_note": "Gemini Omni Flash T2V #1"
+    }
+  ]
+}

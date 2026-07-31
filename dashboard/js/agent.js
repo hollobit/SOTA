@@ -67,7 +67,7 @@ var Agent = (function() {
                 // 2026-06-14 S112 — HAL Princeton CITP per-sub-benchmark
                 'hal_swe_bench_verified_mini', 'hal_usaco', 'hal_core_bench_hard', 'hal_tau_bench_airline',
                 // 2026-07-20 S189 — Grok 4.5 card: DeepSearch QA (multi-step search + synthesis)
-                'deepsearch_qa'
+                'deepsearch_qa', 'vistahop', 'agentvista'
             ]
         },
         {
@@ -85,7 +85,7 @@ var Agent = (function() {
                 // 2026-06-29 S155 — OSWorld 2.0 (XLANG, 108 long-horizon tasks, 500-step canonical)
                 'osworld_v2', 'osworld_v2_partial', 'osworld_v2_150step', 'osworld_v2_300step',
                 // 2026-04 S216 — GUI grounding (MiningLamp Mano-P + others)
-                'screenspot_v2', 'mmbench_gui_l2', 'ui_vision', 'online_mind2web', 'osworld_g_refine'
+                'screenspot_v2', 'mmbench_gui_l2', 'ui_vision', 'online_mind2web', 'osworld_g_refine', 'osexpert_eval'
             ]
         },
         {
@@ -134,7 +134,8 @@ var Agent = (function() {
                 'tau3_bench',
                 'tau3_telecom',
                 // 2026-06-23 S142 — tau3 full family (Banking replaces Telecom in AAII v4.1)
-                'tau3_banking', 'tau3_airline', 'tau3_retail'
+                'tau3_banking', 'tau3_airline', 'tau3_retail',
+                't1_bench'  // 2026 S217 — Capital One multi-domain
             ]
         },
         {
