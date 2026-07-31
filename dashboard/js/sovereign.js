@@ -604,7 +604,7 @@ var Sovereign = {
         'kakao/kanana-1.5-8b': '2025-05', 'kakao/kanana-flag-32.5b': '2024-11',
         'kakao/kanana-2-3b-instruct': '2026-07-27', 'kakao/kanana-2-3b-base': '2026-07-27',
         'skt/ax-k2': '2026-07-28', 'skt/ax-k2-alm': '2026-07-28',
-        'lg/k-exaone-2.0-750b-a37b': '2026-07',
+        'lg/k-exaone-2.0-750b-a37b': '2026-07-31',
         'krafton/ax-k2-raon-speech-21b-a3b': '2026-07',
         'kakao/kanana-2-1.3b-instruct': '2026-07-27', 'kakao/kanana-2-1.3b-base': '2026-07-27',
         // Korea — others

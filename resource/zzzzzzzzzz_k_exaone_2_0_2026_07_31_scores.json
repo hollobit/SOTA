@@ -7,7 +7,7 @@
       "https://www.lgresearch.ai/news/view?seq=678",
       "https://huggingface.co/LGAI-EXAONE/K-EXAONE-2.0-750B-A37B/blob/main/assets/K-EXAONE-2.0-Technical-Report.pdf"
     ],
-    "_note": "K-EXAONE 2.0 (LG AI Research): 750B-A37B MoE upcycled from K-EXAONE 236B (3x capacity), 256K ctx, 10 languages, Apache 2.0. NEW model (DB had K-EXAONE 236B). Table 6 (Reasoning mode) 23 benches, own model only — competitor columns (K-EXAONE 236B, Qwen3.5 397B, GLM-5.1 754B, DeepSeek V4 Pro 1.6T; asterisks = official reports) 2nd-hand, skipped. Strengths: long-context retrieval (OpenAI-MRCR 94.4), Korean safety (KGC-Safety 99.8, ROK-Fortress 89.5 clearly best in table), agentic coding (SWE-Verified 68.2 / Terminal-Bench 2.1 43.8). 5 new benches (global_mmlu_lite, kgc_safety, rok_fortress, openai_mrcr, hmmt_feb_2026). FP8/NVFP4/DSpark are quantization variants of the same 750B model (same tech report) — not separate capability models, base only ingested. Multilingual per-language tables 7/8/9 (POLYMATH/GlobalMMLU-Lite/WMT24++) over-granular, aggregate used."
+    "_note": "K-EXAONE 2.0 (LG AI Research): 750B-A37B MoE upcycled from K-EXAONE 236B (3x capacity), 256K ctx, 10 languages, Apache 2.0. NEW model (DB had K-EXAONE 236B). Table 6 (Reasoning mode) 23 benches, own model only — competitor columns (K-EXAONE 236B, Qwen3.5 397B, GLM-5.1 754B, DeepSeek V4 Pro 1.6T; asterisks = official reports) 2nd-hand, skipped. Strengths: long-context retrieval (OpenAI-MRCR 94.4), Korean safety (KGC-Safety 99.8, ROK-Fortress 89.5 clearly best in table), agentic coding (SWE-Verified 68.2 / Terminal-Bench 2.1 43.8). 5 new benches (global_mmlu_lite, kgc_safety, rok_fortress, openai_mrcr, hmmt_feb_2026). FP8/NVFP4/DSpark are quantization variants of the same 750B model (same tech report) — not separate capability models, base only ingested. Multilingual per-language tables 7/8/9 (POLYMATH/GlobalMMLU-Lite/WMT24++) over-granular, aggregate used. S218b re-verify: release date corrected to 2026-07-31 (LG news); added 24-benchmark composite average (K-EXAONE 2.0 70.1 vs K-EXAONE 63.3, +10%). News confirms no new benchmark datasets + no separate quant-variant scores (FP8/NVFP4/DSpark = deployment/inference variants of base). DSpark speculative-decoding: E2E 1.27-1.77x, acceptance +32-66% vs MTP (inference efficiency, not capability)."
   },
   "models": [
     {
@@ -19,7 +19,7 @@
         "text"
       ],
       "parameters": "750B-A37B",
-      "release_date": "2026-07",
+      "release_date": "2026-07-31",
       "context_window": 256000
     }
   ],
@@ -58,6 +58,13 @@
       "category": "math",
       "metric": "accuracy",
       "description": "Harvard-MIT Math Tournament, February 2026. Higher is better."
+    },
+    {
+      "id": "k_exaone_2_0_avg24",
+      "name": "K-EXAONE 24-Benchmark Average",
+      "category": "composite",
+      "metric": "score",
+      "description": "LG AI Research composite: average across the 24 evaluation benchmarks selected to reflect practical use (K-EXAONE 2.0 news/report). Higher is better."
     }
   ],
   "scores": [
@@ -252,6 +259,22 @@
       "unit": "%",
       "_source": "https://huggingface.co/LGAI-EXAONE/K-EXAONE-2.0-750B-A37B",
       "_note": "K-EXAONE 2.0 Tech Report Table 6 (Reasoning mode)"
+    },
+    {
+      "model": "lg/k-exaone-2.0-750b-a37b",
+      "benchmark": "k_exaone_2_0_avg24",
+      "score": 70.1,
+      "unit": "%",
+      "_source": "https://www.lgresearch.ai/news/view?seq=678",
+      "_note": "24-benchmark average, +10% over K-EXAONE 63.3"
+    },
+    {
+      "model": "lg/k-exaone-236b",
+      "benchmark": "k_exaone_2_0_avg24",
+      "score": 63.3,
+      "unit": "%",
+      "_source": "https://www.lgresearch.ai/news/view?seq=678",
+      "_note": "K-EXAONE (first-phase) 24-benchmark average"
     }
   ]
 }

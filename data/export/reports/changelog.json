@@ -2,6 +2,12 @@
   {
     "date": "2026-07-31",
     "type": "ingest",
+    "title": "S218b — K-EXAONE 2.0 재검증: 출시일 정정 + 24벤치 평균 composite",
+    "detail": "K-EXAONE 2.0 재검증(LG 뉴스 seq=678 + PDF 나머지 표). 실제 누락 2건 보완: (1) 출시일 2026-07→2026-07-31 정정, (2) LG 헤드라인 composite '24개 벤치 평균' 추가 — K-EXAONE 2.0 70.1 vs K-EXAONE 63.3(+10%). 확인 결과 나머지는 추가 능력 벤치 없음: FP8/NVFP4/DSpark=배포/추론 변종(양자화+speculative-decoding drafter, 리포트에 양자화-정확도 표 없음, base와 동일 능력), Table 2 DSpark speedup(E2E 1.27~1.77×/acceptance +32~66% vs MTP, 추론효율·범위값), Figure 5 NIAH(256K 완벽 검색 — OpenAI-MRCR 94.4로 반영), Table 3/4/5 훈련 ablation, Table 7/8/9 multilingual per-language(aggregate로 반영). 신규 벤치 datasets 없음(뉴스 확인)."
+  },
+  {
+    "date": "2026-07-31",
+    "type": "ingest",
     "title": "S218 — LG K-EXAONE 2.0 (750B-A37B MoE) 신규",
     "detail": "LG AI Research K-EXAONE 2.0 신규 수집(2026-07). K-EXAONE 236B에서 upcycle한 750B-A37B MoE(3배 용량), 256K ctx, 10개 언어, Apache 2.0. Table 6(Reasoning) 23벤치 자체 모델만 수집(경쟁 컬럼 K-EXAONE/Qwen3.5/GLM-5.1/DeepSeek-V4-Pro asterisk=공식출처라 미수집): MMLU-Pro 83.5·GPQA-D 82.2·HLE 18.3·AIME26 92.3·HMMT-Feb26 78.4·IMO-AnswerBench 78.6·SciCode 37.4·SWE-Verified 68.2·Terminal-Bench 2.1 43.8·τ3-Banking 14.2·CLAW-Eval 77.7·IFEval 92.4·OpenAI-MRCR 94.4·AA-LCR 56.2·Ko-LongBench 89.6·KMMLU-Pro 69.1·CLIcK 84.2·HRM8K-KSM 91.1·MMMLU 86.6·GlobalMMLU-Lite 86.6·POLYMATH 71.3·KGC-Safety 99.8·ROK-Fortress 89.5. 강점: long-context retrieval·Korean safety·agentic coding. 신규 벤치 5종(global_mmlu_lite/kgc_safety/rok_fortress/openai_mrcr/hmmt_feb_2026). FP8/NVFP4/DSpark은 양자화 변종(동일 리포트)이라 base만. Sovereign Korea 리전+params(750)+dates, seed_sources·Resources 등록, PDF 저장. graphrag 재생성."
   },
