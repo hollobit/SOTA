@@ -67,7 +67,7 @@ var CyberCoding = {
         // 2026-07-28 S212d — Google Gemini 3.5 Flash Cyber (DeepMind blog) V8 vuln-discovery count
         'v8_confirmed_vulns_google',
         // 2026 S217 audit — AgentCyberRange (Fudan, multi-host enterprise ranges)
-        'agentcyberrange_web', 'agentcyberrange_post'
+        'agentcyberrange_web', 'agentcyberrange_post', 'container_sandbox_escape'
     ],
     DEFENSE_BENCHMARKS: ['autopatchbench', 'cybersoceval', 'zerodaybench', 'evmbench_patch', 'dfir_metric',
         // 2026-05-28 AgentDoG 1.5 (arxiv 2605.29801, Shanghai AI Lab) — agentic-trajectory safety judging

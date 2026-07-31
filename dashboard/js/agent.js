@@ -190,9 +190,11 @@ var Agent = (function() {
                 'agent_red_teaming',
                 'agentsmith_inf',
                 'apollo_scheming_oversight_subversion',
-                'apollo_scheming_persistence'
+                'apollo_scheming_persistence',
+                'agentlab_asr'  // 2026 S217b — long-horizon adaptive attack ASR
             ],
             benchmarks: [
+                'agentlab_asr',
                 'agentdojo_targeted_asr',
                 'agentdojo_utility',
                 'injecagent',
