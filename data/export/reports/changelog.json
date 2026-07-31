@@ -4506,5 +4506,11 @@
     "type": "audit",
     "title": "S219 — DeepSeek V4 (Flash/Pro) + SKT A.X-K2 재검증: 데이터 완전성 확인",
     "detail": "사용자 제공 11개 링크(OpenRouter/AA/Ollama/DeepInfra/BenchLM/NVIDIA build/HF V4-Pro·V4-Flash/arXiv 2606.19348/HF·GitHub A.X-K2 tech report) 전수 재검증. arXiv 2606.19348 및 A.X-K2 tech report PDF를 로컬 추출해 Table 6/7 전 항목 대조. 결과: DeepSeek-V4-Flash(154)·V4-Pro(142) 및 A.X-K2(19) 모든 벤치마크 점수가 이미 정확히 수집됨(A.X-K2 19개 값 100% 일치, DeepSeek base/instruct/reasoning-mode 전 변형 확인). net-new 없음. WebFetch가 환각한 \"Claw-Eval\" 벤치는 원문에 부재함을 PDF 추출로 확인. A.X-K2 Table 9(FP8/NVFP4)·경쟁모델 열은 정책상 제외. DeepSeek V4 arXiv 2606.19348 canonical 링크를 Resources에 등록."
+  },
+  {
+    "date": "2026-08-01",
+    "type": "ingest",
+    "title": "S220 — DeepSeek-V4-Flash-0731 신규 + Solar Open 2 점수 보강 + 3개 신규 벤치마크",
+    "detail": "DeepSeek-V4-Flash-0731(공식 0731 릴리스, preview 대체, +DSpark) 신규 모델 18 scores: 공식 agentic(Terminal-Bench 2.1 82.7·Cybergym 76.7·DeepSWE 54.4·NL2Repo 54.2·Toolathlon-Verified 70.3·DSBench-FullStack 68.7·Hard 59.6·AutomationBench 25.1·Agents-Last-Exam 25.2) + AA(Intelligence Index 50[+10]·GDPval-AA v2 1559·GPQA 91·HLE 37·SciCode 50·AA-LCR 66·Tau3 31·CritPt 17·AA-Omni -16). Solar Open 2(Upstage 250B-A15B, 기존 0 scores)에 테크리포트 24 scores 보강: 영어(MMLU-Pro 86.2·LiveCodeBench 92.4·SWE-Verified 70.4·AIME 95.7) + 한국어 Avg 85.4(CLIcK 90.7·KMMLU-Pro 78.4·HRM8K 92.2·Ko-GDPval 86.8). 신규 벤치: toolathlon_verified·dsbench_fullstack/hard(cyber-coding), graphrarebench(medical-ai, 희귀질환 그래프증거 진단; DeepSeek-V4-Flash MRR 0.313 유일 LLM). AgentS4D(2607.27294)·EvoClawBench(2607.09711)는 harness/runtime 종속 점수라 데이터셋 등록만(strict-attribution). 경쟁모델 baseline 열 제외. 4개 arXiv PDF resource/ 저장 + Resources/seed_sources 등록."
   }
 ]

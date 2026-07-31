@@ -619,6 +619,11 @@ var MedicalAI = {
             ]
         },
         {
+            label: '🧬 Rare-Disease & Graph-Evidence Diagnosis',
+            note: 'GraphRareBench (arxiv 2607.24878, Xiamen Univ, Jul 2026) — auditable graph-evidence benchmark for phenotype-driven rare-disease diagnosis. 2,365 ontology-derived cases, 18,093 target–confounder pairs; full candidate-pool ranking (MRR metric). Most rows are domain tools (Exomiser/LIRICAL) or supervised graph rankers (PPP 0.740, LPP 0.730); DeepSeek-V4-Flash is the only frontier LLM evaluated (prompt-only best MRR 0.313, as agent on hard pool 0.718). github.com/GUI0609/GraphRareBench.',
+            benchmarks: ['graphrarebench']
+        },
+        {
             label: '⌚ Wearable Health Foundation Models',
             note: 'Google SensorFM (arxiv 2605.22759, May 21 2026) — 1T+ minutes pretrained, 5M participants, 35 downstream tasks. SensorFM-B wins 33/35 tasks. Includes Gemini classroom (5 student LLMs find optimal prediction heads) + Personal Health Agent integration.',
             benchmarks: [

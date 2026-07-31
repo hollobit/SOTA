@@ -3239,3 +3239,35 @@ sources:
     type: leaderboard
     format: csv
     notes: "1931 rows (model x benchmark performance). Component benchmarks incl. SWE-Bench verified, Terminal Bench, GSO-Bench, The Agent Company, GPQA-D, FrontierMath, ARC-AGI-2, WeirdML, SimpleBench, Balrog, GeoBench, VPCT. No domain-tag column, so the on-page Software-engineering SUBSET ECI is client-computed and NOT reproducible as a canonical export (epoch_capabilities_index_swe left empty)."
+
+  # ─── 2026-08-01 Session 220 — DeepSeek-V4-Flash-0731 + Solar Open 2 + 3 new benchmark datasets ───
+  - url: "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"
+    name: "DeepSeek-V4-Flash-0731 — official release (HF model card)"
+    type: model_card
+    format: web_page
+    notes: "Official 0731 release of V4-Flash (supersedes preview), +DSpark speculative decoding, enhanced agentic. 284B-A13B, 1M ctx (384K rec), MIT, reasoning_effort low/high/max. Official agentic card: Terminal-Bench 2.1 82.7, NL2Repo 54.2, Cybergym 76.7, DeepSWE 54.4, Toolathlon-Verified 70.3, Agents-Last-Exam 25.2, AutomationBench 25.1, DSBench-FullStack 68.7, DSBench-Hard 59.6. AA article: Intelligence Index 50 (+10 vs preview 40), GDPval-AA v2 1559. Competitor cols (GLM-5.2/Opus-4.8) skipped. S220 ingest (18 scores)."
+  - url: "https://artificialanalysis.ai/articles/deepseek-v4-flash-0731-scores-50-on-the-artificial-analysis-intelligence-index-10-points-above-previous-deepseek-v4-flash"
+    name: "Artificial Analysis — DeepSeek-V4-Flash-0731 scores 50 on AA Intelligence Index"
+    type: independent_eval
+    format: web_page
+    notes: "AA independent eval of 0731: Intelligence Index 50 vs previous 40. Sub-scores: GDPval-AA v2 1559, AA-Omniscience -16, Terminal-Bench 2.1 79, Tau3-Banking 31, CritPt 17, SciCode 50, HLE 37, AA-LCR 66, GPQA 91. Same price/params as preview ($0.14/$0.28, 284B-A13B); ~12% fewer output tokens. S220."
+  - url: "https://arxiv.org/abs/2607.20062"
+    name: "Solar Open 2 Technical Report — Upstage (arxiv 2607.20062, Jul 22 2026)"
+    type: technical_report
+    format: pdf
+    notes: "Korean sovereign 250B-A15B MoE, hybrid attention (25% softmax GQA + 75% linear KDA/NoPE), 320 experts, 1M ctx, selective weight transfer (2.3% init from Solar Open 1) + MOPD 12-teacher distillation. Own scores ingested S220 (24): Table 3 English (MMLU-Pro 86.2, GPQA 86.3, LiveCodeBench v6 92.4, SWE-Verified 70.4, AIME 95.7) + Table 4 Korean (Avg 85.4: CLIcK 90.7, KMMLU-Pro 78.4, HRM8K 92.2, Ko-GDPval 86.8). Introduces in-house Ko-GDPval / Ko-AIME'25 / KBank-MMLU. Model existed with 0 scores → gap filled. PDF in resource/."
+  - url: "https://arxiv.org/abs/2607.27294"
+    name: "AgentS4D — runtime-risk benchmark for LLM workspace agents (arxiv 2607.27294)"
+    type: benchmark_dataset
+    format: pdf
+    notes: "Lifecycle-wide agent runtime safety. 328 risk-injected cases (from Workspace-Bench 1.0) x 20 harness-LLM configs = 6,560 runs. ASR/cASR lower=safer, SHR/TCR higher. Overall ASR 68%. Per-config only (no per-model aggregate stated) → registered as dataset, scores NOT ingested (strict-attribution). LLMs: GPT-5.5, Gemini 3.1 Pro, DeepSeek-V4-Pro, MiniMax-M3, Qwen3.7-Plus. No public code/leaderboard. PDF in resource/. S220."
+  - url: "https://arxiv.org/abs/2607.24878"
+    name: "GraphRareBench — rare-disease diagnosis benchmark (arxiv 2607.24878)"
+    type: benchmark_dataset
+    format: pdf
+    notes: "Auditable graph-evidence benchmark, phenotype-driven rare-disease ranking. 2,365 cases, MRR/Hit@k. Only frontier LLM evaluated = DeepSeek-V4-Flash (prompt-only MRR 0.313 ingested; agent hard-pool 0.718); rest are domain tools (Exomiser/LIRICAL) + supervised rankers (PPP 0.740). github.com/GUI0609/GraphRareBench. Medical-AI tab suite added. S220."
+  - url: "https://arxiv.org/abs/2607.09711"
+    name: "EvoClawBench — reusable-skill learning benchmark (arxiv 2607.09711)"
+    type: benchmark_dataset
+    format: pdf
+    notes: "Closed-loop skill learning (SKILL.md reuse). 100 tasks/502 sub-problems, BASELINE/PRESKILL/POSTSKILL x OpenClaw+nanobot. Authors EXPLICITLY state NOT a model-capability leaderboard (runtime-dominated: OpenClaw <20% vs nanobot 56-96%). Registered as dataset, scores NOT ingested. Models: GPT-5.4/mini, Qwen3.6-Plus, DeepSeek-V4-Pro, MiniMax-M2.7. github.com/pzy2000/EvoClawBench. S220."

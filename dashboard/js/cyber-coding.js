@@ -86,7 +86,9 @@ var CyberCoding = {
         // 2026-06-05 S54 — IBM Research + AA ITBench-AA (Kubernetes SRE)
         'itbench_aa',
         // 2026-06-06 S56 — SMAC-Talk + Opper Roundtable
-        'smac_talk_5v5_no_comm_winrate', 'opper_roundtable_win_rate'],
+        'smac_talk_5v5_no_comm_winrate', 'opper_roundtable_win_rate',
+        // 2026-08-01 S220 — DeepSeek-V4-Flash-0731 agentic card (Toolathlon Verified subset)
+        'toolathlon_verified'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
         'roadmapbench', 'chainswe_sequential', 'perfopt_bench',
         // 2026-07-08 S175 Grok 4.5 launch — SWE-Marathon (Grok #1 29) + DeepSWE 1.0/1.1 versioned splits (Datacurve/AA)
@@ -116,7 +118,9 @@ var CyberCoding = {
         'terminal_bench_2_1_terminus_2', 'terminal_bench_2_1_claude_code',
         'swe_atlas_qna', 'swe_atlas_rf', 'swe_atlas_tw', 'claweval_avg',
         // 2026-07-05 S154 — Anthropic Mythos/Fable/Sonnet 5 system-card coding benches
-        'frontierswe_mean_5', 'terminal_bench_2_1_mini_swe_agent_harness'],
+        'frontierswe_mean_5', 'terminal_bench_2_1_mini_swe_agent_harness',
+        // 2026-08-01 S220 — DeepSeek-V4-Flash-0731 agentic card (internal DSBench coding-agent sets)
+        'dsbench_fullstack', 'dsbench_hard'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
@@ -311,6 +315,21 @@ var CyberCoding = {
     ],
 
     BENCH_DESCRIPTIONS: {
+        toolathlon_verified: {
+            name: 'Toolathlon-Verified',
+            desc: 'Toolathlon 에이전트 도구 사용 벤치마크의 검증(Verified) 서브셋 — 다양한 도구 + MCP 서비스에 걸친 통합 도구 사용 능력. 높을수록 우수. DeepSeek-V4-Flash-0731 70.3 / V4-Pro(preview) 55.9.',
+            source: 'huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731'
+        },
+        dsbench_fullstack: {
+            name: 'DSBench-FullStack (in-house)',
+            desc: 'DeepSeek 내부(in-house) 풀스택 개발 코딩 에이전트 테스트셋. DeepSeek-V4-Flash-0731 68.7. 사내 벤치라 교차 비교 제한적.',
+            source: 'huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731'
+        },
+        dsbench_hard: {
+            name: 'DSBench-Hard (in-house)',
+            desc: 'DeepSeek 내부(in-house) 고난도 코딩 에이전트 문제 테스트셋. DeepSeek-V4-Flash-0731 59.6. 사내 벤치라 교차 비교 제한적.',
+            source: 'huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731'
+        },
         v8_confirmed_vulns_google: {
             name: 'V8 Engine — Confirmed Vulns (Google)',
             desc: 'V8 JavaScript 엔진에서 고정 호출 예산 내 모델이 발견한 고유 확인(confirmed) 취약점 수. Google DeepMind Gemini 3.5 Flash Cyber 평가. 높을수록 우수(개수).',
@@ -596,6 +615,7 @@ var CyberCoding = {
         'alibaba/qwen3.6-27b',
         'alibaba/qwen3.6-35b-a3b',
         'deepseek/deepseek-v4-pro-max',
+        'deepseek/deepseek-v4-flash-0731',  // 2026-08-01 S220 — official 0731 release (AA Intelligence Index 50, Cybergym 76.7, DeepSWE 54.4)
         'deepseek/deepseek-v3.2',
         'moonshot/kimi-k2.6',
         'moonshot/kimi-k2.5',

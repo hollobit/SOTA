@@ -1,0 +1,104 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-01",
+    "session": "S220",
+    "note": "DeepSeek-V4-Flash-0731 (official 0731 release, supersedes preview) + Solar Open 2 (Upstage 250B-A15B, model existed with 0 scores) + GraphRareBench (medical, only DeepSeek-V4-Flash has an LLM score). Strict-attribution: only each model's OWN reported column ingested; competitor baseline columns (GLM-5.2/Opus-4.8 in DeepSeek card; Command A+/Mistral/MiMo/Claude Haiku/GPT-5.4-mini in Solar report) skipped. DeepSeek 0731 official agentic scores from HF card; AA-index sub-scores from AA article. Solar Open 2 English Table 3 + Korean Table 4 own column. AgentS4D (2607.27294) + EvoClawBench (2607.09711) registered as datasets only — scores are harness/runtime-conditioned with no clean per-model value (EvoClawBench authors explicitly state it is NOT a model-capability leaderboard).",
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+      "https://artificialanalysis.ai/articles/deepseek-v4-flash-0731-scores-50-on-the-artificial-analysis-intelligence-index-10-points-above-previous-deepseek-v4-flash",
+      "https://openrouter.ai/deepseek/deepseek-v4-flash-0731",
+      "https://arxiv.org/abs/2607.20062",
+      "https://arxiv.org/abs/2607.24878",
+      "https://arxiv.org/abs/2607.27294",
+      "https://arxiv.org/abs/2607.09711"
+    ]
+  },
+  "models": [
+    {
+      "id": "deepseek/deepseek-v4-flash-0731",
+      "name": "DeepSeek V4 Flash (0731)",
+      "developer": "DeepSeek",
+      "release_date": "2026-07-31",
+      "params_total": "284B",
+      "params_active": "13B",
+      "context_length": 1048576,
+      "license": "MIT",
+      "architecture": "MoE (FP4+FP8 mixed) + DSpark speculative decoding",
+      "_note": "Official release of DeepSeek-V4-Flash, supersedes preview; same structure as V4-Flash-DSpark (speculative decoding drafter attached). reasoning_effort: low/high/max; 384K recommended for high/max. Tech report arXiv 2606.19348."
+    },
+    {
+      "id": "upstage/solar-open2-250b",
+      "name": "Solar Open 2",
+      "developer": "Upstage",
+      "release_date": "2026-07-22",
+      "params_total": "250B",
+      "params_active": "15B",
+      "context_length": 1048576,
+      "license": "open-weight",
+      "architecture": "Sparse MoE, hybrid attention (25% softmax GQA + 75% linear KDA/NoPE), 320 routed + 1 shared experts",
+      "_note": "Korean sovereign AI (MSIT/NIPA/NIA Sovereign AI Foundation Model Project). Tech report arXiv 2607.20062, Jul 22 2026."
+    }
+  ],
+  "benchmarks": [
+    {"id": "toolathlon_verified", "name": "Toolathlon-Verified", "category": "agent", "higher_better": true, "_note": "Verified subset of Toolathlon agentic tool-use benchmark (wide range of tools + MCP services)."},
+    {"id": "dsbench_fullstack", "name": "DSBench-FullStack", "category": "in-house", "higher_better": true, "_note": "DeepSeek internal full-stack development coding-agent test set."},
+    {"id": "dsbench_hard", "name": "DSBench-Hard", "category": "in-house", "higher_better": true, "_note": "DeepSeek internal test set of difficult coding-agent problems."},
+    {"id": "graphrarebench", "name": "GraphRareBench (MRR)", "category": "medical", "higher_better": true, "_note": "Auditable graph-evidence benchmark for phenotype-driven rare-disease diagnosis. 2,365 ontology-derived cases; full candidate-pool ranking, MRR metric (×100). arXiv 2607.24878. GitHub github.com/GUI0609/GraphRareBench."}
+  ],
+  "scores": [
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "terminal_bench_2_1", "score": 82.7, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731", "_note": "official; DeepSeek Harness minimal mode, max reasoning effort"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "nl2repo", "score": 54.2, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "cybergym", "score": 76.7, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "deepswe_pass_at_1", "score": 54.4, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "toolathlon_verified", "score": 70.3, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "agents_last_exam", "score": 25.2, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "automationbench", "score": 25.1, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731", "_note": "AutomationBench Public"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "dsbench_fullstack", "score": 68.7, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "dsbench_hard", "score": 59.6, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731"},
+
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "aa_intelligence_index", "score": 50, "unit": "index", "_source": "https://artificialanalysis.ai/articles/deepseek-v4-flash-0731-scores-50-on-the-artificial-analysis-intelligence-index-10-points-above-previous-deepseek-v4-flash", "_note": "AA Intelligence Index v4.x, +10 vs previous V4-Flash (40)"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "gdpval_aa_v2", "score": 1559, "unit": "elo", "_source": "https://artificialanalysis.ai/articles/deepseek-v4-flash-0731-scores-50-on-the-artificial-analysis-intelligence-index-10-points-above-previous-deepseek-v4-flash"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "aa_omniscience", "score": -16, "unit": "index", "_source": "https://artificialanalysis.ai/articles/deepseek-v4-flash-0731-scores-50-on-the-artificial-analysis-intelligence-index-10-points-above-previous-deepseek-v4-flash"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "critpt", "score": 17, "unit": "%", "_source": "https://artificialanalysis.ai/articles/deepseek-v4-flash-0731-scores-50-on-the-artificial-analysis-intelligence-index-10-points-above-previous-deepseek-v4-flash"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "scicode", "score": 50, "unit": "%", "_source": "https://artificialanalysis.ai/articles/deepseek-v4-flash-0731-scores-50-on-the-artificial-analysis-intelligence-index-10-points-above-previous-deepseek-v4-flash"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "hle", "score": 37, "unit": "%", "_source": "https://artificialanalysis.ai/articles/deepseek-v4-flash-0731-scores-50-on-the-artificial-analysis-intelligence-index-10-points-above-previous-deepseek-v4-flash"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "aa_lcr", "score": 66, "unit": "%", "_source": "https://artificialanalysis.ai/articles/deepseek-v4-flash-0731-scores-50-on-the-artificial-analysis-intelligence-index-10-points-above-previous-deepseek-v4-flash"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "gpqa_diamond", "score": 91, "unit": "%", "_source": "https://artificialanalysis.ai/articles/deepseek-v4-flash-0731-scores-50-on-the-artificial-analysis-intelligence-index-10-points-above-previous-deepseek-v4-flash"},
+    {"model": "deepseek/deepseek-v4-flash-0731", "benchmark": "tau3_banking", "score": 31, "unit": "%", "_source": "https://artificialanalysis.ai/articles/deepseek-v4-flash-0731-scores-50-on-the-artificial-analysis-intelligence-index-10-points-above-previous-deepseek-v4-flash"},
+
+    {"model": "deepseek/deepseek-v4-flash", "benchmark": "toolathlon_verified", "score": 49.7, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731", "_note": "V4-Flash Preview column"},
+    {"model": "deepseek/deepseek-v4-flash", "benchmark": "dsbench_fullstack", "score": 37.0, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731", "_note": "V4-Flash Preview column"},
+    {"model": "deepseek/deepseek-v4-flash", "benchmark": "dsbench_hard", "score": 25.8, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731", "_note": "V4-Flash Preview column"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "toolathlon_verified", "score": 55.9, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731", "_note": "V4-Pro Preview column"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "dsbench_fullstack", "score": 41.8, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731", "_note": "V4-Pro Preview column"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "dsbench_hard", "score": 31.1, "unit": "%", "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731", "_note": "V4-Pro Preview column"},
+
+    {"model": "upstage/solar-open2-250b", "benchmark": "mmlu_pro", "score": 86.2, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "gpqa_diamond", "score": 86.3, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "hle", "score": 28.8, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062", "_note": "w/o tools"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "livecodebench_v6", "score": 92.4, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "artifacts_bench", "score": 55.9, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "hmmt_feb_2026", "score": 93.9, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062", "_note": "HMMT2602"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "aime_2026", "score": 95.7, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "multi_challenge", "score": 61.0, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "ifbench", "score": 80.0, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "aa_lcr", "score": 62.3, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "swe_bench_verified", "score": 70.4, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "terminal_bench_hard", "score": 28.3, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "apex_agents", "score": 16.6, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "mcp_atlas", "score": 58.2, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "tau3_banking", "score": 19.6, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "gdpval_aa_v2", "score": 1128, "unit": "elo", "_source": "https://arxiv.org/abs/2607.20062", "_note": "30 Jun 2026"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "kmmlu_pro", "score": 78.4, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "click_ko", "score": 90.7, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "haerae", "score": 73.8, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062", "_note": "HAE-RAE v1.1"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "ko_aime_2025", "score": 97.7, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062", "_note": "in-house Ko-AIME'25"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "hrm8k", "score": 92.2, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "kbank_mmlu", "score": 80.8, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062", "_note": "in-house KBank-MMLU"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "kbl", "score": 75.5, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "kormedmcqa", "score": 93.0, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062"},
+    {"model": "upstage/solar-open2-250b", "benchmark": "ko_gdpval", "score": 86.8, "unit": "%", "_source": "https://arxiv.org/abs/2607.20062", "_note": "in-house Ko-GDPval; 170 tasks, 11 domains, 58 occupations"},
+
+    {"model": "deepseek/deepseek-v4-flash", "benchmark": "graphrarebench", "score": 31.3, "unit": "MRR×100", "_source": "https://arxiv.org/abs/2607.24878", "_note": "prompt-only, source-support HPO + candidates, full candidate-pool ranking; only frontier LLM evaluated in the benchmark (MRR 0.313)"}
+  ]
+}
