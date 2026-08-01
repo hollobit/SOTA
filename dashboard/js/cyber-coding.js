@@ -120,7 +120,9 @@ var CyberCoding = {
         // 2026-07-05 S154 — Anthropic Mythos/Fable/Sonnet 5 system-card coding benches
         'frontierswe_mean_5', 'terminal_bench_2_1_mini_swe_agent_harness',
         // 2026-08-01 S220 — DeepSeek-V4-Flash-0731 agentic card (internal DSBench coding-agent sets)
-        'dsbench_fullstack', 'dsbench_hard'],
+        'dsbench_fullstack', 'dsbench_hard',
+        // 2026-08-02 S224 — LiveSQLBench (text-to-SQL on live databases)
+        'livesqlbench'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the
