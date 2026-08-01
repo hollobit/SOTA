@@ -616,6 +616,12 @@ var CyberCoding = {
         'alibaba/qwen3.6-35b-a3b',
         'deepseek/deepseek-v4-pro-max',
         'deepseek/deepseek-v4-flash-0731',  // 2026-08-01 S220 — official 0731 release (AA Intelligence Index 50, Cybergym 76.7, DeepSWE 54.4)
+        // 2026-08-01 S223 — arxiv 6-mo batch net-new coding/cyber models
+        'kuaishou/kat-coder-v2.5',          // SWE-Bench-Pro 65.2, Terminal-Bench 2.1 60.7 (arxiv 2607.05471)
+        'iquest/iquest-coder-v1-40b',       // SWE-Verified 76.2, LiveCodeBench-v6 81.1 (arxiv 2603.16733)
+        'jetbrains/mellum-2',               // JetBrains 12B-A2.5B code MoE (arxiv 2605.31268)
+        'cisco/foundation-sec-8b-reasoning',// Cisco cyber SLM — CTIBench/SecEval/CyberMetric (arxiv 2601.21051)
+        'ibm/cyberpal-2.0-20b',             // IBM cyber SLM — CyberMetric-2000 89.05, CISSP 86.87 (arxiv 2510.14113)
         'deepseek/deepseek-v3.2',
         'moonshot/kimi-k2.6',
         'moonshot/kimi-k2.5',

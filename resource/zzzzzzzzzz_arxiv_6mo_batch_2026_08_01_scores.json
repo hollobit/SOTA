@@ -1,0 +1,140 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-01",
+    "session": "S223",
+    "note": "144-paper arxiv sweep (2508-2607). Ingested only NET-NEW models (deduped against 3462 existing) with clean self-reported STANDARD-benchmark tables. Strict-attribution: each model's OWN column only; competitor cols skipped. Figure-only/domain-only/win-rate-only papers cataloged in Resources but NOT score-ingested (DINOv3 vision, QuarkMed, IQuest-Coder, Covenant, Jupiter-N, Mellum-2, Phoenix-VL, Nemotron-Audex, Mach-Mind-4, KAT-Coder-V2.5, Olmo-3.1-Think, Foundation-Sec-8B-Reasoning, CyberPal-2.0, Keye-VL-2.0, Llamion, Hebatron). Already-tracked flagships (GLM-4.5/5, DeepSeek-V3.2, Kimi-K2.5, MiniMax-M2, Gemma-4, Sakana-Fugu, Qwen3-VL/Omni, InternVL3.5, Step-3.5-Flash, MiMo-V2-Flash, Mi:dm-K2.5, Laguna, K2-Think, EXAONE-4.5, VARCO-VISION-2, PaddleOCR-VL, DeepSeek-OCR, Solar-Open-2, Nemotron-Nano-2, EuroLLM-22B, Apertus, Meditron-FO, Raon-Speech, etc.) confirmed present, not re-ingested.",
+    "sources": [
+      "arxiv:2508.10104","arxiv:2508.11894","arxiv:2603.16733","arxiv:2603.08163","arxiv:2604.17429",
+      "arxiv:2605.31268","arxiv:2605.10391","arxiv:2607.05196","arxiv:2607.09375","arxiv:2607.05471",
+      "arxiv:2512.13961","arxiv:2601.21051","arxiv:2510.14113","arxiv:2606.10651","arxiv:2605.25676"
+    ]
+  },
+  "models": [
+    {"id": "meta/dinov3", "name": "DINOv3", "developer": "Meta AI Research", "vendor": "Meta", "release_date": "2025-08", "params_total": "6.7B", "license": "DINOv3 License", "architecture": "ViT-7B self-supervised vision", "_note": "arxiv 2508.10104; LVD-1689M training data"},
+    {"id": "alibaba/quarkmed", "name": "QuarkMed", "developer": "Quark Medical Team, Alibaba", "vendor": "Alibaba", "release_date": "2025-08", "params_total": "32B", "architecture": "medical foundation model", "_note": "arxiv 2508.11894"},
+    {"id": "iquest/iquest-coder-v1-40b", "name": "IQuest-Coder-V1 40B", "developer": "IQuest Coder Team", "vendor": "IQuest", "release_date": "2026-03", "params_total": "40B", "architecture": "dense code LLM (Loop variant)", "_note": "arxiv 2603.16733"},
+    {"id": "covenant-ai/covenant-72b", "name": "Covenant-72B", "developer": "Covenant AI / Mila", "vendor": "Covenant AI", "release_date": "2026-03", "params_total": "72B", "_note": "arxiv 2603.08163; trained trustless over-the-internet"},
+    {"id": "locai/jupiter-n-120b", "name": "Jupiter-N 120B", "developer": "Locai Labs (UCL)", "vendor": "Locai", "release_date": "2026-04", "params_total": "120B", "params_active": "12B", "architecture": "post-trained Nemotron 3 Super", "_note": "arxiv 2604.17429"},
+    {"id": "jetbrains/mellum-2", "name": "Mellum 2", "developer": "JetBrains", "vendor": "JetBrains", "release_date": "2026-05", "params_total": "12B", "params_active": "2.5B", "architecture": "MoE code model", "_note": "arxiv 2605.31268"},
+    {"id": "htx-mistral/phoenix-vl-1.5-medium", "name": "Phoenix-VL 1.5 Medium", "developer": "HTX x Mistral AI (Singapore)", "vendor": "HTX", "release_date": "2026-05", "params_total": "123B", "architecture": "dense VLM", "_note": "arxiv 2605.10391; Singapore sovereign"},
+    {"id": "nvidia/nemotron-audex-30b-a3b", "name": "Nemotron Audex 30B-A3B", "developer": "NVIDIA", "vendor": "NVIDIA", "release_date": "2026-07", "params_total": "30B", "params_active": "3B", "architecture": "MoE unified audio+text", "_note": "arxiv 2607.05196; audio intelligence without text regression"},
+    {"id": "li-auto/mach-mind-4-flash", "name": "Mach-Mind-4-Flash", "developer": "Li Auto Inc.", "vendor": "Li Auto", "release_date": "2026-07", "params_total": "35B", "params_active": "3B", "architecture": "MoE agentic", "_note": "arxiv 2607.09375"},
+    {"id": "kuaishou/kat-coder-v2.5", "name": "KAT-Coder-V2.5", "developer": "KwaiKAT Team (Kuaishou)", "vendor": "Kuaishou", "release_date": "2026-07", "architecture": "coding agent", "_note": "arxiv 2607.05471"},
+    {"id": "allenai/olmo-3.1-think-32b", "name": "Olmo 3.1 Think 32B", "developer": "Allen Institute for AI", "vendor": "Ai2", "release_date": "2025-11", "params_total": "32B", "license": "Apache-2.0", "architecture": "dense reasoning LLM", "_note": "arxiv 2512.13961; fully open"},
+    {"id": "cisco/foundation-sec-8b-reasoning", "name": "Foundation-Sec-8B-Reasoning", "developer": "Foundation AI, Cisco", "vendor": "Cisco", "release_date": "2026-01", "params_total": "8B", "architecture": "cybersecurity reasoning LLM", "_note": "arxiv 2601.21051"},
+    {"id": "ibm/cyberpal-2.0-20b", "name": "CyberPal 2.0 20B", "developer": "IBM Research", "vendor": "IBM", "release_date": "2026-07", "params_total": "20B", "architecture": "gpt-oss-20b base, cyber SLM", "_note": "arxiv 2510.14113"},
+    {"id": "kuaishou/keye-vl-2.0-30b-a3b", "name": "Kwai Keye-VL 2.0", "developer": "Kuaishou (Keye Team)", "vendor": "Kuaishou", "release_date": "2026-06", "params_total": "30B", "params_active": "3B", "architecture": "MoE video VLM", "_note": "arxiv 2606.10651"},
+    {"id": "vaiv/llamion-14b", "name": "Llamion 14B", "developer": "VAIV Company / Korea University", "vendor": "VAIV", "release_date": "2026-05", "params_total": "14B", "architecture": "Orion-14B to Llama-arch via KEPT", "_note": "arxiv 2605.25676; Korean"},
+    {"id": "pwc/hebatron-30b", "name": "Hebatron", "developer": "PwC Next", "vendor": "PwC", "release_date": "2026-04", "params_total": "30B", "params_active": "3B", "architecture": "Hebrew MoE (from Nemotron-3-Nano)", "_note": "arxiv 2605.11255"}
+  ],
+  "benchmarks": [
+    {"id": "imagenet_linear", "name": "ImageNet-1k linear probe", "category": "vision", "higher_better": true},
+    {"id": "ade20k_miou", "name": "ADE20k mIoU", "category": "vision", "higher_better": true},
+    {"id": "coco_det_map", "name": "COCO detection mAP", "category": "vision", "higher_better": true},
+    {"id": "cmexam", "name": "CMExam", "category": "medical", "higher_better": true, "_note": "Chinese medical exam"},
+    {"id": "cybermetric_2000", "name": "CyberMetric-2000", "category": "cyber", "higher_better": true},
+    {"id": "seceval", "name": "SecEval", "category": "cyber", "higher_better": true},
+    {"id": "mmlu_security", "name": "MMLU-Security", "category": "cyber", "higher_better": true},
+    {"id": "cissp", "name": "CISSP", "category": "cyber", "higher_better": true},
+    {"id": "ctibench_mcq", "name": "CTIBench-MCQ", "category": "cyber", "higher_better": true},
+    {"id": "browsecomp_zh", "name": "BrowseComp-ZH", "category": "agent", "higher_better": true},
+    {"id": "livecodebench_v3", "name": "LiveCodeBench v3", "category": "coding", "higher_better": true}
+  ],
+  "scores": [
+    {"model": "meta/dinov3", "benchmark": "imagenet_linear", "score": 88.2, "unit": "%", "_source": "arxiv:2508.10104"},
+    {"model": "meta/dinov3", "benchmark": "ade20k_miou", "score": 63.0, "unit": "mIoU", "_source": "arxiv:2508.10104"},
+    {"model": "meta/dinov3", "benchmark": "coco_det_map", "score": 66.1, "unit": "mAP", "_source": "arxiv:2508.10104"},
+
+    {"model": "alibaba/quarkmed", "benchmark": "medqa_usmle", "score": 86.02, "unit": "%", "_source": "arxiv:2508.11894"},
+    {"model": "alibaba/quarkmed", "benchmark": "medmcqa", "score": 75.50, "unit": "%", "_source": "arxiv:2508.11894"},
+    {"model": "alibaba/quarkmed", "benchmark": "pubmedqa", "score": 79.00, "unit": "%", "_source": "arxiv:2508.11894"},
+    {"model": "alibaba/quarkmed", "benchmark": "cmexam", "score": 88.60, "unit": "%", "_source": "arxiv:2508.11894"},
+    {"model": "alibaba/quarkmed", "benchmark": "medxpertqa", "score": 28.68, "unit": "%", "_source": "arxiv:2508.11894"},
+    {"model": "alibaba/quarkmed", "benchmark": "mmlu_med", "score": 88.37, "unit": "%", "_source": "arxiv:2508.11894"},
+    {"model": "alibaba/quarkmed", "benchmark": "medbullets", "score": 77.27, "unit": "%", "_source": "arxiv:2508.11894"},
+
+    {"model": "iquest/iquest-coder-v1-40b", "benchmark": "swe_bench_verified", "score": 76.2, "unit": "%", "_source": "arxiv:2603.16733"},
+    {"model": "iquest/iquest-coder-v1-40b", "benchmark": "livecodebench_v6", "score": 81.1, "unit": "%", "_source": "arxiv:2603.16733"},
+    {"model": "iquest/iquest-coder-v1-40b", "benchmark": "humaneval", "score": 97.6, "unit": "%", "_source": "arxiv:2603.16733"},
+    {"model": "iquest/iquest-coder-v1-40b", "benchmark": "bigcodebench", "score": 54.2, "unit": "%", "_source": "arxiv:2603.16733"},
+    {"model": "iquest/iquest-coder-v1-40b", "benchmark": "bird_sql", "score": 70.5, "unit": "%", "_source": "arxiv:2603.16733"},
+    {"model": "iquest/iquest-coder-v1-40b", "benchmark": "bfcl_v3", "score": 73.9, "unit": "%", "_source": "arxiv:2603.16733"},
+
+    {"model": "covenant-ai/covenant-72b", "benchmark": "mmlu", "score": 67.4, "unit": "%", "_source": "arxiv:2603.08163"},
+    {"model": "covenant-ai/covenant-72b", "benchmark": "gsm8k", "score": 63.9, "unit": "%", "_source": "arxiv:2603.08163"},
+    {"model": "covenant-ai/covenant-72b", "benchmark": "math", "score": 26.3, "unit": "%", "_source": "arxiv:2603.08163"},
+    {"model": "covenant-ai/covenant-72b", "benchmark": "mmlu_pro", "score": 40.9, "unit": "%", "_source": "arxiv:2603.08163"},
+    {"model": "covenant-ai/covenant-72b", "benchmark": "ifeval", "score": 64.7, "unit": "%", "_source": "arxiv:2603.08163"},
+
+    {"model": "locai/jupiter-n-120b", "benchmark": "ifeval", "score": 90.20, "unit": "%", "_source": "arxiv:2604.17429"},
+    {"model": "locai/jupiter-n-120b", "benchmark": "ifbench", "score": 73.8, "unit": "%", "_source": "arxiv:2604.17429"},
+    {"model": "locai/jupiter-n-120b", "benchmark": "gsm8k", "score": 94.01, "unit": "%", "_source": "arxiv:2604.17429"},
+    {"model": "locai/jupiter-n-120b", "benchmark": "terminal_bench_2", "score": 52.7, "unit": "%", "_source": "arxiv:2604.17429"},
+
+    {"model": "jetbrains/mellum-2", "benchmark": "humaneval", "score": 41.5, "unit": "%", "_source": "arxiv:2605.31268"},
+    {"model": "jetbrains/mellum-2", "benchmark": "mbpp", "score": 62.4, "unit": "%", "_source": "arxiv:2605.31268"},
+    {"model": "jetbrains/mellum-2", "benchmark": "mmlu", "score": 70.9, "unit": "%", "_source": "arxiv:2605.31268"},
+    {"model": "jetbrains/mellum-2", "benchmark": "mmlu_pro", "score": 59.3, "unit": "%", "_source": "arxiv:2605.31268"},
+    {"model": "jetbrains/mellum-2", "benchmark": "gsm8k", "score": 81.7, "unit": "%", "_source": "arxiv:2605.31268"},
+    {"model": "jetbrains/mellum-2", "benchmark": "bbh", "score": 74.9, "unit": "%", "_source": "arxiv:2605.31268"},
+    {"model": "jetbrains/mellum-2", "benchmark": "gpqa_diamond", "score": 31.3, "unit": "%", "_source": "arxiv:2605.31268"},
+
+    {"model": "htx-mistral/phoenix-vl-1.5-medium", "benchmark": "mmmu", "score": 60.78, "unit": "%", "_source": "arxiv:2605.10391"},
+    {"model": "htx-mistral/phoenix-vl-1.5-medium", "benchmark": "mmlu", "score": 83.48, "unit": "%", "_source": "arxiv:2605.10391"},
+    {"model": "htx-mistral/phoenix-vl-1.5-medium", "benchmark": "mmlu_pro", "score": 76.81, "unit": "%", "_source": "arxiv:2605.10391"},
+    {"model": "htx-mistral/phoenix-vl-1.5-medium", "benchmark": "gpqa_diamond", "score": 59.09, "unit": "%", "_source": "arxiv:2605.10391"},
+    {"model": "htx-mistral/phoenix-vl-1.5-medium", "benchmark": "ifeval", "score": 76.52, "unit": "%", "_source": "arxiv:2605.10391"},
+    {"model": "htx-mistral/phoenix-vl-1.5-medium", "benchmark": "aime_2025", "score": 49.95, "unit": "%", "_source": "arxiv:2605.10391"},
+    {"model": "htx-mistral/phoenix-vl-1.5-medium", "benchmark": "docvqa", "score": 93.05, "unit": "%", "_source": "arxiv:2605.10391"},
+
+    {"model": "nvidia/nemotron-audex-30b-a3b", "benchmark": "aime_2025", "score": 91.2, "unit": "%", "_source": "arxiv:2607.05196"},
+    {"model": "nvidia/nemotron-audex-30b-a3b", "benchmark": "aime_2026", "score": 89.4, "unit": "%", "_source": "arxiv:2607.05196"},
+    {"model": "nvidia/nemotron-audex-30b-a3b", "benchmark": "livecodebench_v6", "score": 85.3, "unit": "%", "_source": "arxiv:2607.05196"},
+    {"model": "nvidia/nemotron-audex-30b-a3b", "benchmark": "mmlu_pro", "score": 78.9, "unit": "%", "_source": "arxiv:2607.05196"},
+    {"model": "nvidia/nemotron-audex-30b-a3b", "benchmark": "gpqa_diamond", "score": 74.9, "unit": "%", "_source": "arxiv:2607.05196"},
+    {"model": "nvidia/nemotron-audex-30b-a3b", "benchmark": "ifbench", "score": 77.8, "unit": "%", "_source": "arxiv:2607.05196"},
+    {"model": "nvidia/nemotron-audex-30b-a3b", "benchmark": "mmau", "score": 75.6, "unit": "%", "_source": "arxiv:2607.05196"},
+
+    {"model": "li-auto/mach-mind-4-flash", "benchmark": "aime_2026", "score": 92.70, "unit": "%", "_source": "arxiv:2607.09375"},
+    {"model": "li-auto/mach-mind-4-flash", "benchmark": "ifbench", "score": 82.82, "unit": "%", "_source": "arxiv:2607.09375"},
+    {"model": "li-auto/mach-mind-4-flash", "benchmark": "bfcl_v4", "score": 75.80, "unit": "%", "_source": "arxiv:2607.09375"},
+    {"model": "li-auto/mach-mind-4-flash", "benchmark": "browsecomp_zh", "score": 72.31, "unit": "%", "_source": "arxiv:2607.09375"},
+
+    {"model": "kuaishou/kat-coder-v2.5", "benchmark": "swe_bench_pro", "score": 65.2, "unit": "%", "_source": "arxiv:2607.05471"},
+    {"model": "kuaishou/kat-coder-v2.5", "benchmark": "terminal_bench_2_1", "score": 60.7, "unit": "%", "_source": "arxiv:2607.05471"},
+    {"model": "kuaishou/kat-coder-v2.5", "benchmark": "scicode", "score": 50.3, "unit": "%", "_source": "arxiv:2607.05471"},
+
+    {"model": "allenai/olmo-3.1-think-32b", "benchmark": "math", "score": 96.2, "unit": "%", "_source": "arxiv:2512.13961"},
+    {"model": "allenai/olmo-3.1-think-32b", "benchmark": "aime_2025", "score": 78.1, "unit": "%", "_source": "arxiv:2512.13961"},
+    {"model": "allenai/olmo-3.1-think-32b", "benchmark": "bbh", "score": 88.6, "unit": "%", "_source": "arxiv:2512.13961"},
+    {"model": "allenai/olmo-3.1-think-32b", "benchmark": "humaneval_plus", "score": 91.5, "unit": "%", "_source": "arxiv:2512.13961"},
+    {"model": "allenai/olmo-3.1-think-32b", "benchmark": "livecodebench_v3", "score": 83.3, "unit": "%", "_source": "arxiv:2512.13961"},
+    {"model": "allenai/olmo-3.1-think-32b", "benchmark": "ifeval", "score": 93.8, "unit": "%", "_source": "arxiv:2512.13961"},
+    {"model": "allenai/olmo-3.1-think-32b", "benchmark": "mmlu", "score": 86.4, "unit": "%", "_source": "arxiv:2512.13961"},
+    {"model": "allenai/olmo-3.1-think-32b", "benchmark": "gpqa_diamond", "score": 57.5, "unit": "%", "_source": "arxiv:2512.13961"},
+
+    {"model": "cisco/foundation-sec-8b-reasoning", "benchmark": "ctibench_mcq", "score": 69.1, "unit": "%", "_source": "arxiv:2601.21051"},
+    {"model": "cisco/foundation-sec-8b-reasoning", "benchmark": "mmlu_security", "score": 78.2, "unit": "%", "_source": "arxiv:2601.21051"},
+    {"model": "cisco/foundation-sec-8b-reasoning", "benchmark": "cybermetric_2000", "score": 84.3, "unit": "%", "_source": "arxiv:2601.21051"},
+    {"model": "cisco/foundation-sec-8b-reasoning", "benchmark": "seceval", "score": 84.8, "unit": "%", "_source": "arxiv:2601.21051"},
+    {"model": "cisco/foundation-sec-8b-reasoning", "benchmark": "bbh", "score": 69.9, "unit": "%", "_source": "arxiv:2601.21051"},
+
+    {"model": "ibm/cyberpal-2.0-20b", "benchmark": "ctibench_mcq", "score": 75.71, "unit": "%", "_source": "arxiv:2510.14113"},
+    {"model": "ibm/cyberpal-2.0-20b", "benchmark": "seceval", "score": 72.86, "unit": "%", "_source": "arxiv:2510.14113"},
+    {"model": "ibm/cyberpal-2.0-20b", "benchmark": "cybermetric_2000", "score": 89.05, "unit": "%", "_source": "arxiv:2510.14113"},
+    {"model": "ibm/cyberpal-2.0-20b", "benchmark": "cissp", "score": 86.87, "unit": "%", "_source": "arxiv:2510.14113"},
+
+    {"model": "kuaishou/keye-vl-2.0-30b-a3b", "benchmark": "video_mme", "score": 78.3, "unit": "%", "_source": "arxiv:2606.10651"},
+    {"model": "kuaishou/keye-vl-2.0-30b-a3b", "benchmark": "video_mmmu", "score": 80.0, "unit": "%", "_source": "arxiv:2606.10651"},
+    {"model": "kuaishou/keye-vl-2.0-30b-a3b", "benchmark": "longvideobench", "score": 74.1, "unit": "%", "_source": "arxiv:2606.10651"},
+    {"model": "kuaishou/keye-vl-2.0-30b-a3b", "benchmark": "livecodebench_v6", "score": 64.2, "unit": "%", "_source": "arxiv:2606.10651"},
+
+    {"model": "vaiv/llamion-14b", "benchmark": "mmlu", "score": 69.40, "unit": "%", "_source": "arxiv:2605.25676"},
+    {"model": "vaiv/llamion-14b", "benchmark": "hellaswag", "score": 80.40, "unit": "%", "_source": "arxiv:2605.25676"},
+    {"model": "vaiv/llamion-14b", "benchmark": "gsm8k", "score": 44.70, "unit": "%", "_source": "arxiv:2605.25676"},
+    {"model": "vaiv/llamion-14b", "benchmark": "kmmlu", "score": 66.87, "unit": "%", "_source": "arxiv:2605.25676", "_note": "KoMMLU"},
+
+    {"model": "pwc/hebatron-30b", "benchmark": "hellaswag", "score": 82.5, "unit": "%", "_source": "arxiv:2605.11255", "_note": "English"},
+    {"model": "pwc/hebatron-30b", "benchmark": "gsm8k", "score": 83.8, "unit": "%", "_source": "arxiv:2605.11255", "_note": "English"}
+  ]
+}
