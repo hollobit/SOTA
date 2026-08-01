@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-01",
+    "session": "S222",
+    "note": "ZEO-Med-2 (ZeroOne AI + Samsung Medical Center, new Korean medical model) + Artificial Analysis text-to-video (with audio) arena full snapshot refresh (27 models) + new video catalog models (HappyHorse-1.1, Wan2.7 variants, Seedance 2.5). ZEO-Med-2: only its OWN column ingested (competitor cols in Tables 3.1/3.3 skipped per strict-attribution). AA T2V arena = aa_t2v_arena_elo_with_audio (distinct from arena.ai's arena_text_to_video_elo which is a different source/scale — NOT mixed). Seedance 2.5 catalog-only (no benchmark/Elo published yet; not on AA leaderboard). Tencent AI4S page JS-rendered (no extractable data); MiniMax X post 402-blocked.",
+    "sources": [
+      "https://huggingface.co/ZeroOneAI/ZEO-Med-2",
+      "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+      "https://dreamina.capcut.com/ko-kr/seedance/seedance-2-5"
+    ]
+  },
+  "models": [
+    {"id": "ZeroOneAI/zeo-med-2", "name": "ZEO-Med-2", "developer": "ZeroOne AI", "vendor": "ZeroOne AI", "release_date": "2026", "params_total": "31B", "license": "Apache-2.0", "architecture": "LoRA medical post-training on google/gemma-4-31b-it", "_note": "Korean+English medical QA (with Samsung Medical Center). For secure hospital/enterprise deployment. base_model gemma-4-31b-it."},
+    {"id": "alibaba/happyhorse-1.1", "name": "HappyHorse 1.1", "developer": "Alibaba-ATH", "vendor": "Alibaba", "release_date": "2026-06", "_note": "Text-to-video model (Alibaba ATH lab). AA T2V arena."},
+    {"id": "alibaba/wan2.7-260612", "name": "Wan 2.7 (260612 build)", "developer": "Alibaba", "vendor": "Alibaba", "release_date": "2026-06", "_note": "Wan 2.7 dated build 260612, text-to-video. AA T2V arena."},
+    {"id": "alibaba/wan-2.7", "name": "Wan 2.7", "developer": "Alibaba", "vendor": "Alibaba", "release_date": "2026-04", "_note": "Wan 2.7 text-to-video. AA T2V arena."},
+    {"id": "bytedance/seedance-2.5", "name": "Dreamina Seedance 2.5", "developer": "ByteDance Seed", "vendor": "ByteDance", "release_date": "2026", "_note": "Catalog only — up to 30s (180s beta long-video), 50 reference inputs (R2V), 11-language. No public benchmark/Elo yet; not on AA leaderboard."}
+  ],
+  "benchmarks": [],
+  "scores": [
+    {"model": "ZeroOneAI/zeo-med-2", "benchmark": "medqa_usmle", "score": 94.82, "unit": "%", "_source": "https://huggingface.co/ZeroOneAI/ZEO-Med-2", "_note": "1207/1273, majority-vote of 5 samples, 0-shot"},
+    {"model": "ZeroOneAI/zeo-med-2", "benchmark": "kormedmcqa", "score": 93.95, "unit": "%", "_source": "https://huggingface.co/ZeroOneAI/ZEO-Med-2", "_note": "4-exam avg (Doctor 97.70 / Nurse 96.36 / Pharmacist 94.69 / Dentist 87.05)"},
+
+    {"model": "google/gemini-omni-flash", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1245, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video", "_note": "AA T2V with-audio arena, 2026-08-01 snapshot #1"},
+    {"model": "minimax/hailuo-3", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1242, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video", "_note": "AA lists as 'MiniMax H3' #2"},
+    {"model": "bytedance/dreamina-seedance-2.0-720p", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1225, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "alibaba/wan2.7-260612", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1163, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "alibaba/happyhorse-1.1", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1151, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "alibaba/happyhorse-1.0", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1131, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "kuaishou/kling-3.0-1080p", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1113, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "skywork/skyreels-v4", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1109, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "alibaba/wan-2.7", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1108, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "kuaishou/kling-3.0-720p", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1101, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "google/veo-3.1", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1098, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "kuaishou/kling-3.0-omni-1080p", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1096, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "kuaishou/kling-3.0-omni-720p", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1092, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "google/veo-3.1-fast", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1091, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "google/veo-3.1-lite", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1090, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "vidu/q3-pro", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1082, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "pixverse/pixverse-v6", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1077, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "xai/grok-imagine-video", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1069, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "alibaba/wan-2.6", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1029, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "bytedance/seedance-1.5-pro", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 1000, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "kuaishou/kling-2.6-pro", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 988, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video", "_note": "Kling 2.6 Pro (January)"},
+    {"model": "lightricks/ltx-2.3-fast", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 980, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "lightricks/ltx-2.3-pro", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 963, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "pixverse/pixverse-v5.6", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 949, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "lightricks/ltx-2-fast", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 948, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "lightricks/ltx-2-pro", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 926, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"},
+    {"model": "sapiens-ai/agnes-video-v2.0", "benchmark": "aa_t2v_arena_elo_with_audio", "score": 911, "unit": "elo", "_source": "https://artificialanalysis.ai/video/leaderboard/text-to-video"}
+  ]
+}

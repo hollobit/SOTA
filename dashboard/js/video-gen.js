@@ -5,6 +5,7 @@
 var VideoGen = {
     BOARDS: [
         { id: 'arena_text_to_video_elo',  label: 'arena.ai Text-to-Video',  icon: '🎬' },
+        { id: 'aa_t2v_arena_elo_with_audio', label: 'Artificial Analysis Text-to-Video (with audio)', icon: '🎥' },
         { id: 'arena_image_to_video_elo', label: 'arena.ai Image-to-Video', icon: '📽️' },
         { id: 'arena_video_edit_elo',     label: 'arena.ai Video Edit',     icon: '✂️' }
     ],

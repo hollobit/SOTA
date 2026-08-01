@@ -4518,5 +4518,11 @@
     "type": "fix",
     "title": "S220 재검증: GDPval Elo 스케일 오류 수정 (gdpval_aa_v2 → gdpval_aa_elo)",
     "detail": "S220 재검증에서 스케일 혼입 발견·수정. GDPval-AA v2는 대시보드에서 Elo(gdpval_aa_elo, 492~1890)와 %-승률(gdpval_aa_v2, 10~64) 두 벤치로 분리 관리되는데, DeepSeek-V4-Flash-0731의 Elo 1559를 %-벤치 gdpval_aa_v2에 잘못 넣어 오염. → gdpval_aa_elo 1559로 이동(0731), Solar Open 2 1128도 동일 정정. 부수 확인: Solar Open 2 24/25 점수가 기존 ingest(2026-07-22/23)와 정확히 일치(solar-open2 id를 solar-open-2로 오검색해 신규로 오인했을 뿐 실제 중복). 추가 정정: 이전 V4-Flash aa_intelligence_index 45(구 AAII v4.0.4)→40(AA 0731 기사 기준 현행 지수, 0731 대비 정확히 +10), gdpval_aa_elo 1189·aa_omniscience -23 backfill. gdpval_aa_v2 max 1559→64로 정상화."
+  },
+  {
+    "date": "2026-08-01",
+    "type": "ingest",
+    "title": "S222 — ZEO-Med-2 신규 의료모델 + AA Text-to-Video(with audio) 아레나 전면 갱신",
+    "detail": "ZEO-Med-2(ZeroOne AI × 삼성서울병원) 신규: 31B LoRA on Gemma-4-31B, 한/영 의료. KorMedMCQA 4과목 평균 93.95(의사 97.70·간호사 96.36·약사 94.69·치과 87.05), MedQA-USMLE 94.82 — Gemma-4-31B base·Qwen3.6-27B 상회. Medical-AI 한국어 suite에 kormedmcqa 노출 추가. AA Text-to-Video(with audio) 아레나를 2026-08-01 스냅샷 27개 모델로 전면 갱신(aa_t2v_arena_elo_with_audio) + Video Gen 탭에 신규 보드로 노출: Gemini Omni Flash 1245 #1, MiniMax H3(hailuo-3) 1242, Dreamina Seedance 2.0 720p 1225, Wan2.7-260612 1163, HappyHorse-1.1 1151(신규). 신규 비디오 모델: happyhorse-1.1·wan2.7-260612·wan-2.7·seedance-2.5(카탈로그). 참고: AA 아레나(aa_t2v)와 arena.ai 아레나(arena_text_to_video_elo)는 별도 소스/스케일로 분리 유지(혼입 금지). Seedance 2.5는 공개 벤치 없어 카탈로그만. 경쟁열 제외. Tencent AI4S(JS렌더)·MiniMax X(402) 추출 불가."
   }
 ]
