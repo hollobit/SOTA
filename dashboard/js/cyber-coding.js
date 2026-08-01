@@ -88,7 +88,9 @@ var CyberCoding = {
         // 2026-06-06 S56 — SMAC-Talk + Opper Roundtable
         'smac_talk_5v5_no_comm_winrate', 'opper_roundtable_win_rate',
         // 2026-08-01 S220 — DeepSeek-V4-Flash-0731 agentic card (Toolathlon Verified subset)
-        'toolathlon_verified'],
+        'toolathlon_verified',
+        // 2026-08-02 S224b — arxiv benchmark sweep (agent leaderboards)
+        'mcp_bench', 'mcpverse', 'browsecomp_plus', 'agent_planning_benchmark', 'datagovbench'],
     CODING_BENCHMARKS: ['swe_bench_verified', 'swe_bench_pro', 'swe_bench_multilingual', 'terminal_bench_2', 'terminal_bench_2_1', 'livecodebench', 'livecodebench_v5', 'livecodebench_v6', 'nl2repo', 'codeforces_elo', 'deepswe_pass_at_1', 'programbench',
         'roadmapbench', 'chainswe_sequential', 'perfopt_bench',
         // 2026-07-08 S175 Grok 4.5 launch — SWE-Marathon (Grok #1 29) + DeepSWE 1.0/1.1 versioned splits (Datacurve/AA)
@@ -122,7 +124,9 @@ var CyberCoding = {
         // 2026-08-01 S220 — DeepSeek-V4-Flash-0731 agentic card (internal DSBench coding-agent sets)
         'dsbench_fullstack', 'dsbench_hard',
         // 2026-08-02 S224 — LiveSQLBench (text-to-SQL on live databases)
-        'livesqlbench'],
+        'livesqlbench',
+        // 2026-08-02 S224b — arxiv benchmark sweep (coding leaderboards)
+        'swe_compass', 'nl2repo_bench', 'dataclaweval'],
 
     // ─── Performance Suites — multi-table leaderboard ───
     // 7 thematic groupings, each with its own table. Mirrors the

@@ -786,7 +786,7 @@ var MedicalAI = {
         {
             label: '🌏 2026 Chinese / Multilingual Clinical Benchmarks',
             note: 'MLB (Ant Group, Chinese scenario) · ClinConsensus (Chinese consensus rubric) · TCM-Eval (Traditional Chinese Medicine) · KorMedMCQA / KorMedMCQA-V (Korean licensing MCQA — ZEO-Med-2 94.0 4-exam avg, Solar Open 2 93.0) · MedAraBench (Arabic)',
-            benchmarks: ['mlb_clinical', 'clinconsensus', 'tcm_eval', 'kormedmcqa', 'kormedmcqa_v', 'medarabench_v2']
+            benchmarks: ['mlb_clinical', 'clinconsensus', 'tcm_eval', 'kormedmcqa', 'kormedmcqa_v', 'medarabench_v2', 'medbench_v5']
         },
         {
             label: '🫀 2026 Specialty Imaging / Signal FMs (new models)',

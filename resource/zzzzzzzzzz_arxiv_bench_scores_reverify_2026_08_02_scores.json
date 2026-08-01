@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-02",
+    "session": "S224b",
+    "note": "Re-verification of S224: ingest top frontier SOTA scores for the cleanest, dashboard-relevant benchmarks (single-metric leaderboards) where models map to VERIFIED base-ids. Values transcribed from each benchmark paper's own leaderboard (primary source). mcp_bench composite 0-1 stored x100 for %-consistency. Harness-conditioned / figure-only / old-model-only / per-category benchmarks still registration-only.",
+    "sources": ["arxiv:2508.20453","arxiv:2508.16260","arxiv:2508.06600","arxiv:2511.05459","arxiv:2512.12730","arxiv:2510.24932","arxiv:2510.12171","arxiv:2512.21373","arxiv:2607.28033","arxiv:2606.24155","arxiv:2606.04874","arxiv:2512.04416"]
+  },
+  "models": [],
+  "benchmarks": [
+    {"id": "mcpverse", "name": "MCPVerse", "category": "agent", "higher_better": true, "_note": "real-world agentic tool use, Oracle-mode success rate. arxiv 2508.16260"},
+    {"id": "swe_compass", "name": "SWE-Compass", "category": "coding", "higher_better": true, "_note": "unified agentic coding eval, Pass@1 macro-avg. arxiv 2511.05459"},
+    {"id": "nl2repo_bench", "name": "NL2Repo-Bench", "category": "coding", "higher_better": true, "_note": "long-horizon repo generation, test pass rate. arxiv 2512.12730"},
+    {"id": "riddlebench", "name": "RiddleBench", "category": "reasoning", "higher_better": true, "_note": "generative riddle reasoning accuracy. arxiv 2510.24932"},
+    {"id": "matscibench", "name": "MatSciBench", "category": "science", "higher_better": true, "_note": "materials science reasoning accuracy. arxiv 2510.12171"},
+    {"id": "ainsteinbench", "name": "AInsteinBench", "category": "science", "higher_better": true, "_note": "coding agents on scientific repos, % resolved. arxiv 2512.21373"},
+    {"id": "dataclaweval", "name": "DataClawEval", "category": "coding", "higher_better": true, "_note": "data-engineering agents, overall 0-100. arxiv 2607.28033"},
+    {"id": "medbench_v5", "name": "MedBench v5", "category": "medical", "higher_better": true, "_note": "dynamic hallucination-aware clinical, CCR-LLM 0-100. arxiv 2606.24155"},
+    {"id": "agent_planning_benchmark", "name": "Agent Planning Benchmark (APB)", "category": "agent", "higher_better": true, "_note": "planning correctness rate. arxiv 2606.04874"},
+    {"id": "datagovbench", "name": "DataGovBench", "category": "agent", "higher_better": true, "_note": "data governance workflows, ATS operator-level 0-100. arxiv 2512.04416"}
+  ],
+  "scores": [
+    {"model": "openai/gpt-5", "benchmark": "mcp_bench", "score": 74.9, "unit": "%", "_source": "arxiv:2508.20453", "_note": "Overall Score 0.749 x100"},
+    {"model": "openai/o3", "benchmark": "mcp_bench", "score": 71.5, "unit": "%", "_source": "arxiv:2508.20453"},
+    {"model": "openai/gpt-oss-120b", "benchmark": "mcp_bench", "score": 69.2, "unit": "%", "_source": "arxiv:2508.20453"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "mcp_bench", "score": 69.0, "unit": "%", "_source": "arxiv:2508.20453"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "mcp_bench", "score": 68.1, "unit": "%", "_source": "arxiv:2508.20453"},
+    {"model": "zhipu/glm-4.5", "benchmark": "mcp_bench", "score": 66.8, "unit": "%", "_source": "arxiv:2508.20453"},
+    {"model": "moonshot/kimi-k2", "benchmark": "mcp_bench", "score": 62.9, "unit": "%", "_source": "arxiv:2508.20453"},
+
+    {"model": "openai/gpt-5", "benchmark": "mcpverse", "score": 68.1, "unit": "%", "_source": "arxiv:2508.16260"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "mcpverse", "score": 62.3, "unit": "%", "_source": "arxiv:2508.16260"},
+    {"model": "moonshot/kimi-k2", "benchmark": "mcpverse", "score": 59.4, "unit": "%", "_source": "arxiv:2508.16260"},
+    {"model": "deepseek/deepseek-v3.1", "benchmark": "mcpverse", "score": 56.6, "unit": "%", "_source": "arxiv:2508.16260"},
+    {"model": "zhipu/glm-4.5", "benchmark": "mcpverse", "score": 55.0, "unit": "%", "_source": "arxiv:2508.16260"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "mcpverse", "score": 48.7, "unit": "%", "_source": "arxiv:2508.16260"},
+
+    {"model": "openai/gpt-5", "benchmark": "browsecomp_plus", "score": 70.12, "unit": "%", "_source": "arxiv:2508.06600"},
+    {"model": "openai/o3", "benchmark": "browsecomp_plus", "score": 63.49, "unit": "%", "_source": "arxiv:2508.06600"},
+    {"model": "openai/gpt-oss-120b", "benchmark": "browsecomp_plus", "score": 42.89, "unit": "%", "_source": "arxiv:2508.06600"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "browsecomp_plus", "score": 36.75, "unit": "%", "_source": "arxiv:2508.06600"},
+    {"model": "anthropic/claude-opus-4", "benchmark": "browsecomp_plus", "score": 36.14, "unit": "%", "_source": "arxiv:2508.06600"},
+    {"model": "google/gemini-2.5-flash", "benchmark": "browsecomp_plus", "score": 33.01, "unit": "%", "_source": "arxiv:2508.06600"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "browsecomp_plus", "score": 28.67, "unit": "%", "_source": "arxiv:2508.06600"},
+
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "swe_compass", "score": 32.9, "unit": "%", "_source": "arxiv:2511.05459", "_note": "Claude Code harness"},
+    {"model": "moonshot/kimi-k2", "benchmark": "swe_compass", "score": 22.7, "unit": "%", "_source": "arxiv:2511.05459"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "swe_compass", "score": 22.4, "unit": "%", "_source": "arxiv:2511.05459"},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "swe_compass", "score": 18.8, "unit": "%", "_source": "arxiv:2511.05459"},
+    {"model": "deepseek/deepseek-v3", "benchmark": "swe_compass", "score": 16.5, "unit": "%", "_source": "arxiv:2511.05459"},
+
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "nl2repo_bench", "score": 40.2, "unit": "%", "_source": "arxiv:2512.12730"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "nl2repo_bench", "score": 37.0, "unit": "%", "_source": "arxiv:2512.12730"},
+    {"model": "google/gemini-3-pro", "benchmark": "nl2repo_bench", "score": 34.2, "unit": "%", "_source": "arxiv:2512.12730"},
+    {"model": "deepseek/deepseek-v3.2", "benchmark": "nl2repo_bench", "score": 27.6, "unit": "%", "_source": "arxiv:2512.12730"},
+    {"model": "openai/gpt-5", "benchmark": "nl2repo_bench", "score": 21.7, "unit": "%", "_source": "arxiv:2512.12730"},
+    {"model": "zhipu/glm-4.6", "benchmark": "nl2repo_bench", "score": 17.5, "unit": "%", "_source": "arxiv:2512.12730"},
+
+    {"model": "openai/gpt-oss-120b", "benchmark": "riddlebench", "score": 69.26, "unit": "%", "_source": "arxiv:2510.24932"},
+    {"model": "openai/o3", "benchmark": "riddlebench", "score": 63.37, "unit": "%", "_source": "arxiv:2510.24932"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "riddlebench", "score": 63.16, "unit": "%", "_source": "arxiv:2510.24932"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "riddlebench", "score": 60.30, "unit": "%", "_source": "arxiv:2510.24932"},
+    {"model": "deepseek/deepseek-v3", "benchmark": "riddlebench", "score": 58.28, "unit": "%", "_source": "arxiv:2510.24932"},
+
+    {"model": "deepseek/deepseek-r1", "benchmark": "matscibench", "score": 75.22, "unit": "%", "_source": "arxiv:2510.12171"},
+    {"model": "openai/gpt-5", "benchmark": "matscibench", "score": 75.02, "unit": "%", "_source": "arxiv:2510.12171"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "matscibench", "score": 74.44, "unit": "%", "_source": "arxiv:2510.12171"},
+    {"model": "alibaba/qwen3-235b-a22b", "benchmark": "matscibench", "score": 73.37, "unit": "%", "_source": "arxiv:2510.12171"},
+    {"model": "openai/o4-mini", "benchmark": "matscibench", "score": 71.22, "unit": "%", "_source": "arxiv:2510.12171"},
+    {"model": "anthropic/claude-sonnet-4", "benchmark": "matscibench", "score": 68.49, "unit": "%", "_source": "arxiv:2510.12171"},
+
+    {"model": "anthropic/claude-opus-4.5", "benchmark": "ainsteinbench", "score": 44.0, "unit": "%", "_source": "arxiv:2512.21373"},
+    {"model": "google/gemini-3-pro", "benchmark": "ainsteinbench", "score": 42.8, "unit": "%", "_source": "arxiv:2512.21373"},
+    {"model": "deepseek/deepseek-v3.2", "benchmark": "ainsteinbench", "score": 37.0, "unit": "%", "_source": "arxiv:2512.21373"},
+    {"model": "openai/gpt-5", "benchmark": "ainsteinbench", "score": 35.4, "unit": "%", "_source": "arxiv:2512.21373", "_note": "GPT-5 high"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "ainsteinbench", "score": 33.7, "unit": "%", "_source": "arxiv:2512.21373"},
+    {"model": "moonshot/kimi-k2", "benchmark": "ainsteinbench", "score": 29.1, "unit": "%", "_source": "arxiv:2512.21373"},
+    {"model": "zhipu/glm-4.6", "benchmark": "ainsteinbench", "score": 25.9, "unit": "%", "_source": "arxiv:2512.21373"},
+
+    {"model": "openai/gpt-5.5", "benchmark": "dataclaweval", "score": 74.9, "unit": "%", "_source": "arxiv:2607.28033"},
+    {"model": "anthropic/claude-opus-4.8", "benchmark": "dataclaweval", "score": 74.3, "unit": "%", "_source": "arxiv:2607.28033"},
+    {"model": "anthropic/claude-sonnet-5", "benchmark": "dataclaweval", "score": 73.8, "unit": "%", "_source": "arxiv:2607.28033"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "dataclaweval", "score": 73.7, "unit": "%", "_source": "arxiv:2607.28033"},
+    {"model": "deepseek/deepseek-v4-flash", "benchmark": "dataclaweval", "score": 73.0, "unit": "%", "_source": "arxiv:2607.28033"},
+    {"model": "minimax/m3", "benchmark": "dataclaweval", "score": 71.8, "unit": "%", "_source": "arxiv:2607.28033"},
+    {"model": "zhipu/glm-5.1", "benchmark": "dataclaweval", "score": 71.6, "unit": "%", "_source": "arxiv:2607.28033"},
+
+    {"model": "anthropic/claude-opus-4.7", "benchmark": "medbench_v5", "score": 69.16, "unit": "%", "_source": "arxiv:2606.24155"},
+    {"model": "alibaba/qwen3.7-max", "benchmark": "medbench_v5", "score": 68.72, "unit": "%", "_source": "arxiv:2606.24155"},
+    {"model": "google/gemini-3.1-pro", "benchmark": "medbench_v5", "score": 68.61, "unit": "%", "_source": "arxiv:2606.24155"},
+    {"model": "moonshot/kimi-k2.6", "benchmark": "medbench_v5", "score": 68.19, "unit": "%", "_source": "arxiv:2606.24155"},
+    {"model": "zhipu/glm-5.1", "benchmark": "medbench_v5", "score": 67.70, "unit": "%", "_source": "arxiv:2606.24155"},
+    {"model": "openai/gpt-5.5", "benchmark": "medbench_v5", "score": 67.37, "unit": "%", "_source": "arxiv:2606.24155"},
+    {"model": "deepseek/deepseek-v4-pro", "benchmark": "medbench_v5", "score": 65.86, "unit": "%", "_source": "arxiv:2606.24155"},
+
+    {"model": "openai/gpt-5", "benchmark": "agent_planning_benchmark", "score": 74.5, "unit": "%", "_source": "arxiv:2606.04874"},
+    {"model": "google/gemini-3-pro", "benchmark": "agent_planning_benchmark", "score": 71.3, "unit": "%", "_source": "arxiv:2606.04874"},
+    {"model": "anthropic/claude-sonnet-4.5", "benchmark": "agent_planning_benchmark", "score": 64.1, "unit": "%", "_source": "arxiv:2606.04874"},
+    {"model": "google/gemini-2.5-pro", "benchmark": "agent_planning_benchmark", "score": 55.0, "unit": "%", "_source": "arxiv:2606.04874"},
+
+    {"model": "openai/o4-mini", "benchmark": "datagovbench", "score": 41.47, "unit": "%", "_source": "arxiv:2512.04416"},
+    {"model": "openai/gpt-5", "benchmark": "datagovbench", "score": 40.98, "unit": "%", "_source": "arxiv:2512.04416"},
+    {"model": "google/gemini-2.5-flash", "benchmark": "datagovbench", "score": 40.26, "unit": "%", "_source": "arxiv:2512.04416"},
+    {"model": "moonshot/kimi-k2", "benchmark": "datagovbench", "score": 39.52, "unit": "%", "_source": "arxiv:2512.04416"},
+    {"model": "anthropic/claude-opus-4", "benchmark": "datagovbench", "score": 38.30, "unit": "%", "_source": "arxiv:2512.04416"},
+    {"model": "xai/grok-4", "benchmark": "datagovbench", "score": 36.90, "unit": "%", "_source": "arxiv:2512.04416"}
+  ]
+}
