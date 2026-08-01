@@ -4530,5 +4530,11 @@
     "type": "ingest",
     "title": "S223 — arXiv 6개월 스윕(144편) 재검증: net-new 모델 16종 추가",
     "detail": "2508~2607 arXiv 144편을 다운로드·로컬 추출(pdftotext)·12개 병렬 에이전트로 트리아지 후 DB(3462 모델) 대조. 대부분 플래그십은 이미 추적 중(GLM-4.5/5·DeepSeek-V3.2·Kimi-K2.5·MiniMax-M2·Gemma-4·Sakana-Fugu·Qwen3-VL/Omni·InternVL3.5·Step-3.5-Flash·MiMo-V2-Flash·Mi:dm-K2.5·Laguna·K2-Think·EXAONE-4.5·VARCO-VISION-2·PaddleOCR-VL·DeepSeek-OCR·Solar-Open-2·Nemotron-Nano-2·EuroLLM-22B·Apertus·Meditron-FO·Raon-Speech 등) 확인. 표준 벤치 점수가 명확한 net-new 16종 80 scores 수집: DINOv3(vision)·QuarkMed(medical 32B)·Olmo-3.1-Think-32B·Nemotron-Audex(NVIDIA)·Mach-Mind-4-Flash(Li Auto)·KAT-Coder-V2.5·IQuest-Coder-V1-40B·Mellum-2(JetBrains)·Jupiter-N-120B·Covenant-72B·Phoenix-VL-1.5(싱가포르)·Keye-VL-2.0(Kuaishou)·Foundation-Sec-8B-Reasoning(Cisco)·CyberPal-2.0(IBM)·Llamion(한국)·Hebatron(히브리). 신규 벤치 id 11(imagenet_linear·ade20k_miou·coco_det_map·cmexam·cybermetric_2000·seceval·mmlu_security·cissp·ctibench_mcq·browsecomp_zh·livecodebench_v3). 코딩/사이버 5종을 cyber-coding FRONTIER_MODELS에 추가. figure/도메인/win-rate-only 논문은 데이터셋 등록만(경쟁열 제외, strict-attribution). 16 arXiv 소스 seed_sources 등록 + 14 PDF resource/ 저장(DINOv3 15MB·Keye-VL 28MB는 arXiv 링크만)."
+  },
+  {
+    "date": "2026-08-02",
+    "type": "ingest",
+    "title": "S223b — arXiv 스윕 재검증: 누락 net-new 7종 추가",
+    "detail": "S223 재검증에서 초기 dedup 룩업이 S223 이전 스냅샷이라 놓친 net-new 7종 발견·추가(54 scores): Seed1.8(ByteDance VLM: AIME25 94.3·GPQA-D 83.8·SWE-Verified 72.9·VideoMME 87.8), A2FM(OPPO agent 32B), WebResearcher(Alibaba Tongyi agent), ZAYA1-VL-8B(Zyphra VLM), LongCat-Flash-Prover(Meituan 형식추론: MiniF2F 97.1), iFlyBot-VLM-8B(iFlyTek embodied), Tongyi-DeepResearch(Alibaba: FRAMES 90.6). 신규 벤치 id 9(xbench_deepsearch·frames·webwalkerqa·proverbench·where2place·cvbench·embspatial·refspatial_bench·sat). GLM-5V-Turbo는 기존 8 scores 확인(스킵). 스케일 sanity 통과(max 97.1). 7 arXiv seed_sources 등록 + 4 PDF 저장(3개 대용량은 arXiv 링크)."
   }
 ]

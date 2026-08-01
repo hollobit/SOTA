@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-02",
+    "session": "S223b",
+    "note": "Re-verification of the S223 144-paper sweep caught 7 genuinely net-new models missed on first pass (the dedup lookup was a pre-S223 snapshot, and some were mis-classified as existing). All have clean self-reported standard-benchmark tables. Strict-attribution: own column only. GLM-5V-Turbo confirmed already has 8 scores (skipped).",
+    "sources": ["arxiv:2603.20633","arxiv:2510.12838","arxiv:2509.13309","arxiv:2605.08560","arxiv:2603.21065","arxiv:2511.04976","arxiv:2510.24701"]
+  },
+  "models": [
+    {"id": "bytedance/seed1.8", "name": "Seed1.8", "developer": "ByteDance Seed", "vendor": "ByteDance", "release_date": "2026-04", "architecture": "VLM (generalized real-world agency)", "_note": "arxiv 2603.20633"},
+    {"id": "oppo/a2fm-32b", "name": "A2FM", "developer": "OPPO AI Agent Team", "vendor": "OPPO", "release_date": "2025-10", "params_total": "32B", "architecture": "adaptive agent FM (Qwen2.5-32B backbone)", "_note": "arxiv 2510.12838"},
+    {"id": "alibaba/webresearcher-30b-a3b", "name": "WebResearcher", "developer": "Tongyi Lab, Alibaba", "vendor": "Alibaba", "release_date": "2025-09", "params_total": "30B", "params_active": "3B", "architecture": "IterResearch long-horizon agent", "_note": "arxiv 2509.13309"},
+    {"id": "zyphra/zaya1-vl-8b", "name": "ZAYA1-VL-8B", "developer": "Zyphra", "vendor": "Zyphra", "release_date": "2026-05", "params_total": "9.2B", "params_active": "1.4B", "architecture": "MoE VLM (ZAYA1 + Qwen2.5 ViT)", "_note": "arxiv 2605.08560"},
+    {"id": "meituan/longcat-flash-prover", "name": "LongCat-Flash-Prover", "developer": "Meituan LongCat Team", "vendor": "Meituan", "release_date": "2026-03", "params_total": "560B", "params_active": "27B", "architecture": "MoE formal-reasoning (agentic TIR-RL)", "_note": "arxiv 2603.21065"},
+    {"id": "iflytek/iflybot-vlm-8b", "name": "iFlyBot-VLM 8B", "developer": "iFlyTek", "vendor": "iFlyTek", "release_date": "2025-11", "params_total": "8B", "architecture": "embodied VLM (InternVL3-8B init)", "_note": "arxiv 2511.04976"},
+    {"id": "alibaba/tongyi-deepresearch-30b-a3b", "name": "Tongyi DeepResearch", "developer": "Alibaba Tongyi Lab", "vendor": "Alibaba", "release_date": "2026-05", "params_total": "30.5B", "params_active": "3.3B", "architecture": "deep-research agent (Qwen3-30B-A3B base)", "_note": "arxiv 2510.24701"}
+  ],
+  "benchmarks": [
+    {"id": "xbench_deepsearch", "name": "xbench-DeepSearch", "category": "agent", "higher_better": true},
+    {"id": "frames", "name": "FRAMES", "category": "agent", "higher_better": true},
+    {"id": "webwalkerqa", "name": "WebWalkerQA", "category": "agent", "higher_better": true},
+    {"id": "proverbench", "name": "ProverBench", "category": "math", "higher_better": true},
+    {"id": "where2place", "name": "Where2Place", "category": "physical-ai", "higher_better": true},
+    {"id": "cvbench", "name": "CV-Bench", "category": "vision", "higher_better": true},
+    {"id": "embspatial", "name": "EmbSpatial", "category": "physical-ai", "higher_better": true},
+    {"id": "refspatial_bench", "name": "RefSpatial-Bench", "category": "physical-ai", "higher_better": true},
+    {"id": "sat", "name": "SAT (Spatial Aptitude Test)", "category": "physical-ai", "higher_better": true}
+  ],
+  "scores": [
+    {"model": "bytedance/seed1.8", "benchmark": "aime_2025", "score": 94.3, "unit": "%", "_source": "arxiv:2603.20633"},
+    {"model": "bytedance/seed1.8", "benchmark": "livecodebench_v6", "score": 79.5, "unit": "%", "_source": "arxiv:2603.20633"},
+    {"model": "bytedance/seed1.8", "benchmark": "gpqa_diamond", "score": 83.8, "unit": "%", "_source": "arxiv:2603.20633"},
+    {"model": "bytedance/seed1.8", "benchmark": "mmlu", "score": 92.3, "unit": "%", "_source": "arxiv:2603.20633"},
+    {"model": "bytedance/seed1.8", "benchmark": "mmlu_pro", "score": 84.9, "unit": "%", "_source": "arxiv:2603.20633"},
+    {"model": "bytedance/seed1.8", "benchmark": "mmmu", "score": 83.4, "unit": "%", "_source": "arxiv:2603.20633"},
+    {"model": "bytedance/seed1.8", "benchmark": "mathvista", "score": 87.7, "unit": "%", "_source": "arxiv:2603.20633"},
+    {"model": "bytedance/seed1.8", "benchmark": "swe_bench_verified", "score": 72.9, "unit": "%", "_source": "arxiv:2603.20633"},
+    {"model": "bytedance/seed1.8", "benchmark": "gaia", "score": 87.4, "unit": "%", "_source": "arxiv:2603.20633"},
+    {"model": "bytedance/seed1.8", "benchmark": "browsecomp", "score": 67.6, "unit": "%", "_source": "arxiv:2603.20633"},
+    {"model": "bytedance/seed1.8", "benchmark": "tau2_bench", "score": 72.0, "unit": "%", "_source": "arxiv:2603.20633"},
+    {"model": "bytedance/seed1.8", "benchmark": "video_mme", "score": 87.8, "unit": "%", "_source": "arxiv:2603.20633"},
+
+    {"model": "oppo/a2fm-32b", "benchmark": "browsecomp", "score": 13.4, "unit": "%", "_source": "arxiv:2510.12838"},
+    {"model": "oppo/a2fm-32b", "benchmark": "gaia", "score": 57.3, "unit": "%", "_source": "arxiv:2510.12838"},
+    {"model": "oppo/a2fm-32b", "benchmark": "xbench_deepsearch", "score": 56.0, "unit": "%", "_source": "arxiv:2510.12838"},
+    {"model": "oppo/a2fm-32b", "benchmark": "math_500", "score": 95.0, "unit": "%", "_source": "arxiv:2510.12838"},
+    {"model": "oppo/a2fm-32b", "benchmark": "aime_2024", "score": 74.5, "unit": "%", "_source": "arxiv:2510.12838"},
+    {"model": "oppo/a2fm-32b", "benchmark": "aime_2025", "score": 70.4, "unit": "%", "_source": "arxiv:2510.12838"},
+    {"model": "oppo/a2fm-32b", "benchmark": "gpqa_diamond", "score": 63.1, "unit": "%", "_source": "arxiv:2510.12838"},
+    {"model": "oppo/a2fm-32b", "benchmark": "super_gpqa", "score": 54.7, "unit": "%", "_source": "arxiv:2510.12838"},
+    {"model": "oppo/a2fm-32b", "benchmark": "mmlu_pro", "score": 73.8, "unit": "%", "_source": "arxiv:2510.12838"},
+    {"model": "oppo/a2fm-32b", "benchmark": "hle", "score": 16.7, "unit": "%", "_source": "arxiv:2510.12838"},
+
+    {"model": "alibaba/webresearcher-30b-a3b", "benchmark": "hle", "score": 28.8, "unit": "%", "_source": "arxiv:2509.13309"},
+    {"model": "alibaba/webresearcher-30b-a3b", "benchmark": "browsecomp", "score": 37.3, "unit": "%", "_source": "arxiv:2509.13309"},
+    {"model": "alibaba/webresearcher-30b-a3b", "benchmark": "browsecomp_zh", "score": 45.2, "unit": "%", "_source": "arxiv:2509.13309"},
+    {"model": "alibaba/webresearcher-30b-a3b", "benchmark": "gaia", "score": 72.8, "unit": "%", "_source": "arxiv:2509.13309"},
+    {"model": "alibaba/webresearcher-30b-a3b", "benchmark": "xbench_deepsearch", "score": 71.0, "unit": "%", "_source": "arxiv:2509.13309"},
+    {"model": "alibaba/webresearcher-30b-a3b", "benchmark": "frames", "score": 84.8, "unit": "%", "_source": "arxiv:2509.13309"},
+
+    {"model": "zyphra/zaya1-vl-8b", "benchmark": "ai2d", "score": 87.5, "unit": "%", "_source": "arxiv:2605.08560"},
+    {"model": "zyphra/zaya1-vl-8b", "benchmark": "chartqa", "score": 82.2, "unit": "%", "_source": "arxiv:2605.08560"},
+    {"model": "zyphra/zaya1-vl-8b", "benchmark": "docvqa", "score": 92.5, "unit": "%", "_source": "arxiv:2605.08560"},
+    {"model": "zyphra/zaya1-vl-8b", "benchmark": "infovqa", "score": 74.0, "unit": "%", "_source": "arxiv:2605.08560"},
+    {"model": "zyphra/zaya1-vl-8b", "benchmark": "textvqa", "score": 74.4, "unit": "%", "_source": "arxiv:2605.08560"},
+    {"model": "zyphra/zaya1-vl-8b", "benchmark": "ocrbench", "score": 80.0, "unit": "%", "_source": "arxiv:2605.08560"},
+    {"model": "zyphra/zaya1-vl-8b", "benchmark": "mmmu", "score": 64.0, "unit": "%", "_source": "arxiv:2605.08560"},
+    {"model": "zyphra/zaya1-vl-8b", "benchmark": "mathvista", "score": 45.9, "unit": "%", "_source": "arxiv:2605.08560"},
+    {"model": "zyphra/zaya1-vl-8b", "benchmark": "realworldqa", "score": 65.0, "unit": "%", "_source": "arxiv:2605.08560"},
+
+    {"model": "meituan/longcat-flash-prover", "benchmark": "minif2f", "score": 97.1, "unit": "%", "_source": "arxiv:2603.21065", "_note": "MiniF2F-Test Pass@1"},
+    {"model": "meituan/longcat-flash-prover", "benchmark": "proverbench", "score": 70.8, "unit": "%", "_source": "arxiv:2603.21065"},
+    {"model": "meituan/longcat-flash-prover", "benchmark": "putnambench", "score": 41.5, "unit": "%", "_source": "arxiv:2603.21065"},
+
+    {"model": "iflytek/iflybot-vlm-8b", "benchmark": "where2place", "score": 70.23, "unit": "%", "_source": "arxiv:2511.04976"},
+    {"model": "iflytek/iflybot-vlm-8b", "benchmark": "blink", "score": 85.69, "unit": "%", "_source": "arxiv:2511.04976"},
+    {"model": "iflytek/iflybot-vlm-8b", "benchmark": "cvbench", "score": 85.33, "unit": "%", "_source": "arxiv:2511.04976"},
+    {"model": "iflytek/iflybot-vlm-8b", "benchmark": "erqa", "score": 43.5, "unit": "%", "_source": "arxiv:2511.04976"},
+    {"model": "iflytek/iflybot-vlm-8b", "benchmark": "refspatial_bench", "score": 51.5, "unit": "%", "_source": "arxiv:2511.04976"},
+    {"model": "iflytek/iflybot-vlm-8b", "benchmark": "embspatial", "score": 78.92, "unit": "%", "_source": "arxiv:2511.04976"},
+    {"model": "iflytek/iflybot-vlm-8b", "benchmark": "sat", "score": 72.0, "unit": "%", "_source": "arxiv:2511.04976"},
+
+    {"model": "alibaba/tongyi-deepresearch-30b-a3b", "benchmark": "hle", "score": 32.9, "unit": "%", "_source": "arxiv:2510.24701"},
+    {"model": "alibaba/tongyi-deepresearch-30b-a3b", "benchmark": "browsecomp", "score": 43.4, "unit": "%", "_source": "arxiv:2510.24701"},
+    {"model": "alibaba/tongyi-deepresearch-30b-a3b", "benchmark": "browsecomp_zh", "score": 46.7, "unit": "%", "_source": "arxiv:2510.24701"},
+    {"model": "alibaba/tongyi-deepresearch-30b-a3b", "benchmark": "webwalkerqa", "score": 72.2, "unit": "%", "_source": "arxiv:2510.24701"},
+    {"model": "alibaba/tongyi-deepresearch-30b-a3b", "benchmark": "gaia", "score": 70.9, "unit": "%", "_source": "arxiv:2510.24701"},
+    {"model": "alibaba/tongyi-deepresearch-30b-a3b", "benchmark": "xbench_deepsearch", "score": 75.0, "unit": "%", "_source": "arxiv:2510.24701"},
+    {"model": "alibaba/tongyi-deepresearch-30b-a3b", "benchmark": "frames", "score": 90.6, "unit": "%", "_source": "arxiv:2510.24701"}
+  ]
+}
