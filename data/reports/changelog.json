@@ -4542,5 +4542,11 @@
     "type": "ingest",
     "title": "S224 — arXiv 벤치마크 스윕(100개) 등록 + LiveSQLBench 점수",
     "detail": "100편 arXiv 벤치마크 데이터셋을 다운로드·로컬추출·11개 병렬 에이전트로 트리아지. 대부분 프론티어 SOTA 리더보드 보유(에이전트/코딩/사이버/의료/추론/멀티모달/안전). 100개 벤치를 seed_sources.yaml에 정식 등록(카테고리+SOTA 기록): MCP-Bench·MCPVerse·BrowseComp-Plus·LoCoBench·SWE-Compass·NL2Repo-Bench·MatSciBench·AInsteinBench·RiddleBench·DataGovBench·MedBench-v5·ClinHallu·MedCTA·Medmarks·PolyWorkBench·DocOps·SecRespond·HoF-Bench·IssueTrojanBench·MemSecBench·OpenSkillRisk·InfoOps·DARWIN·Copyright-Bench·JigShape·MemeBench·DataClawEval·ORCA-bench·TREK·PAUSE 등. 벤치별 리더보드 점수는 모델 변형-id 매핑 리스크(strict-attribution)로 일괄수집 보류; 저장된 PDF/링크로 향후 타깃 수집 가능. 구체적 점수는 LiveSQLBench(livesqlbench.ai, text-to-SQL, 신규 벤치)만 수집: base-id 검증된 프론티어 12개(MiniMax M3 40.17·Gemini 3.1 Pro 36.5·Claude Opus 4.6 35.5·GPT-5.5 33.5·Kimi K2.6 29.33·GLM-5.1 29.0·GPT-5 25.5·DeepSeek-R1 24.5 등), cyber-coding 탭에 노출. OpenAI GDPval·MITRE aerospace 페이지는 403 차단(GDPval 기존 추적). ACL SKA-Bench·figure/old-model-only 벤치는 등록만."
+  },
+  {
+    "date": "2026-08-02",
+    "type": "ingest",
+    "title": "S224b — arXiv 벤치마크 재검증: 12개 벤치 SOTA 점수 수집(73)",
+    "detail": "S224에서 등록만 하고 보류했던 벤치별 리더보드 점수 중, 단일지표+프론티어 모델+base-id 검증 가능한 12개 벤치를 선별 수집(73 scores). base-id 전수 검증(오귀속 방지): MCP-Bench(GPT-5 74.9)·MCPVerse(GPT-5 68.1)·BrowseComp-Plus(GPT-5 70.12)·SWE-Compass(Sonnet-4 32.9)·NL2Repo-Bench(Sonnet-4.5 40.2)·RiddleBench(GPT-oss-120B 69.26)·MatSciBench(DeepSeek-R1 75.22)·AInsteinBench(Opus-4.5 44.0)·DataClawEval(GPT-5.5 74.9)·MedBench-v5(Opus-4.7 69.16)·Agent-Planning(GPT-5 74.5)·DataGovBench(o4-mini 41.47). 에이전트/코딩 벤치는 cyber-coding 탭, MedBench-v5는 medical-ai 탭 노출. 스케일 sanity 통과(전부 ≤100). harness-종속/figure-only/구모델 벤치는 등록만 유지."
   }
 ]
