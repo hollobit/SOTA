@@ -3442,7 +3442,55 @@ var App = {
             { name: 'PIQA (llm-stats — deprecated for frontier)', url: 'https://llm-stats.com/benchmarks/piqa', desc: 'Physical Interaction QA. Existing 22 scores in DB. Frontier vendors (GPT-5.x/Opus 4.x/Gemini 3.x/Grok 4/Kimi K2.x/DeepSeek V3-V4) no longer report PIQA scores — saturated benchmark. Reference only.' },
             { name: 'CodeSOTA Robotics — VLA Survey', url: 'https://www.codesota.com/robotics', desc: 'Editorial VLA capability-ceiling survey (Apr 22 2026). 6 task families (manipulation/navigation/long-horizon/multi-robot). Qualitative ceilings (95%+ pick-and-place, <50% long-horizon). Not a structured leaderboard — reference for narrative only.' },
             { name: 'llm-stats Physics category', url: 'https://llm-stats.com/benchmarks/category/physics', desc: 'llm-stats physics-benchmarks category page. Lists 13 physics benches: GPQA/SciCode/PIQA/SuperGPQA/Global PIQA/TheoremQA/MMLU-STEM/OpenAI-MMLU/PerceptionTest/PhysicsFinals/GPQA-Physics/IPhO 2025/OlympiadBench. Reference for physics-domain coverage gaps.' },
-            { name: 'SAILResearch awesome-foundation-model-leaderboards', url: 'https://github.com/SAILResearch/awesome-foundation-model-leaderboards', desc: 'Curated list of foundation-model leaderboards. Top 5 callouts (ARC-AGI-2/GDPval/LiveBench/BFCL/LMArena) all ALREADY tracked in this dashboard. Reference for completeness audits.' }
+            { name: 'SAILResearch awesome-foundation-model-leaderboards', url: 'https://github.com/SAILResearch/awesome-foundation-model-leaderboards', desc: 'Curated list of foundation-model leaderboards. Top 5 callouts (ARC-AGI-2/GDPval/LiveBench/BFCL/LMArena) all ALREADY tracked in this dashboard. Reference for completeness audits.' },
+
+            // ─── 2026-08-02 S224 arXiv benchmark sweep — scored leaderboards ───
+            { name: 'LiveSQLBench', url: 'https://livesqlbench.ai/', desc: 'Text-to-SQL on complex real-world live databases; success-rate %. 46-model leaderboard. SOTA MiniMax M3 40.17 / Gemini 3.1 Pro 36.5 / Claude Opus 4.6 35.5 / GPT-5.5 33.5. Ingested S224 (12 verified rows).' },
+            { name: 'MCP-Bench (arXiv 2508.20453)', url: 'https://arxiv.org/abs/2508.20453', desc: 'MCP-server tool-using agents, composite Overall Score. GPT-5 0.749 / o3 0.715 / Gemini-2.5-Pro 0.690 / Claude-Sonnet-4 0.681. S224b scored.' },
+            { name: 'MCPVerse (arXiv 2508.16260)', url: 'https://arxiv.org/abs/2508.16260', desc: 'Expansive real-world agentic tool-use, Oracle-mode SR. GPT-5 68.1 / Claude-4-Sonnet 62.3 / Kimi-K2 59.4. S224b scored.' },
+            { name: 'BrowseComp-Plus (arXiv 2508.06600)', url: 'https://arxiv.org/abs/2508.06600', desc: 'Fair/transparent deep-research agent eval (fixed retriever). GPT-5 70.12 / o3 63.49. S224b scored.' },
+            { name: 'SWE-Compass (arXiv 2511.05459)', url: 'https://arxiv.org/abs/2511.05459', desc: 'Unified agentic-coding eval, Pass@1 macro-avg. Claude-Sonnet-4 32.9 / Kimi-K2 22.7 / Gemini-2.5-Pro 22.4. S224b scored.' },
+            { name: 'NL2Repo-Bench (arXiv 2512.12730)', url: 'https://arxiv.org/abs/2512.12730', desc: 'Long-horizon repository generation, test pass rate. Claude-Sonnet-4.5 40.2 / Gemini-3-Pro 34.2 / DeepSeek-V3.2 27.6. S224b scored.' },
+            { name: 'MatSciBench (arXiv 2510.12171)', url: 'https://arxiv.org/abs/2510.12171', desc: 'Materials-science reasoning accuracy. DeepSeek-R1 75.22 / GPT-5 75.02 / Gemini-2.5-Pro 74.44. S224b scored.' },
+            { name: 'AInsteinBench (arXiv 2512.21373)', url: 'https://arxiv.org/abs/2512.21373', desc: 'Coding agents on scientific repositories, % resolved. Claude-4.5-Opus 44.0 / Gemini-3-Pro 42.8 / DeepSeek-V3.2 37.0. S224b scored.' },
+            { name: 'RiddleBench (arXiv 2510.24932)', url: 'https://arxiv.org/abs/2510.24932', desc: 'Generative riddle reasoning accuracy. GPT-oss-120B 69.26 / o3 63.37 / Claude-4-Sonnet 63.16. S224b scored.' },
+            { name: 'DataClawEval (arXiv 2607.28033)', url: 'https://arxiv.org/abs/2607.28033', desc: 'Data-engineering agents in a real industrial harness, overall 0-100. GPT-5.5 74.9 / Claude-Opus-4.8 74.3 / Sonnet-5 73.8. S224b scored.' },
+            { name: 'MedBench v5 (arXiv 2606.24155)', url: 'https://arxiv.org/abs/2606.24155', desc: 'Dynamic, process-oriented, hallucination-aware clinical benchmark. Claude-Opus-4.7 69.16 / Qwen3.7-Max 68.72 / Gemini-3.1-Pro 68.61. S224b scored.' },
+            { name: 'Agent Planning Benchmark (arXiv 2606.04874)', url: 'https://arxiv.org/abs/2606.04874', desc: 'Diagnostic planning-capability eval, correctness rate. GPT-5 74.5 / Gemini-3-Pro 71.3 / Claude-Sonnet-4.5 64.1. S224b scored.' },
+            { name: 'DataGovBench (arXiv 2512.04416)', url: 'https://arxiv.org/abs/2512.04416', desc: 'LLM agents for real-world data-governance workflows, ATS 0-100. o4-mini 41.47 / GPT-5 40.98. S224b scored.' },
+
+            // ─── 2026-08-02 S224 arXiv benchmark sweep — registered (scores in papers) ───
+            { name: 'MCPToolBench++ (arXiv 2508.07575)', url: 'https://arxiv.org/abs/2508.07575', desc: 'Large-scale AI-agent MCP tool-use benchmark. Per-category AST + Pass@1. S224 registered.' },
+            { name: 'ReportBench (arXiv 2508.15804)', url: 'https://arxiv.org/abs/2508.15804', desc: 'Deep-research agents via academic survey tasks; citation precision/recall. OpenAI Deep Research leads. S224 registered.' },
+            { name: 'LoCoBench (arXiv 2509.09614)', url: 'https://arxiv.org/abs/2509.09614', desc: 'Long-context LLMs in complex software engineering, LCBS 0-5. Gemini-2.5-Pro 2.312. S224 registered.' },
+            { name: 'PolyWorkBench (arXiv 2607.06008)', url: 'https://arxiv.org/abs/2607.06008', desc: 'Multilingual long-horizon LLM agents (67 workplace tasks), Pass@1. Opus 4.8 0.921. S224 registered (harness-conditioned).' },
+            { name: 'DocOps (arXiv 2607.19865)', url: 'https://arxiv.org/abs/2607.19865', desc: 'Autonomous agents in complex document operations, task pass rate. GPT-5.5 0.671. S224 registered.' },
+            { name: 'SecRespond (arXiv 2607.26791)', url: 'https://arxiv.org/abs/2607.26791', desc: 'AI agents for security incident response, CHK detection/planning %. Claude Opus 4.7 79.0/65.7. S224 registered (cyber).' },
+            { name: 'HoF-Bench (arXiv 2607.27030)', url: 'https://arxiv.org/abs/2607.27030', desc: 'Rediscovering real AI-discovered CVEs, strict rediscovery pass@4. GPT-5.6-luna 65/95. S224 registered (cyber).' },
+            { name: 'IssueTrojanBench (arXiv 2607.20759)', url: 'https://arxiv.org/abs/2607.20759', desc: 'AI coding agents against malicious issue requests, EEM vuln rate (lower safer). Sonnet 4.6 41.1. S224 registered (cyber).' },
+            { name: 'MemSecBench (arXiv 2607.27080)', url: 'https://arxiv.org/abs/2607.27080', desc: 'Agent memory poisoning (persistence to consequence), E2E-ASR. S224 registered (cyber).' },
+            { name: 'InfoOps Bench (arXiv 2607.28503)', url: 'https://arxiv.org/abs/2607.28503', desc: 'Live information-operations safety, integrity/refusal %. Claude-Sonnet-5 94.5. S224 registered (safety).' },
+            { name: 'DARWIN (arXiv 2607.19829)', url: 'https://arxiv.org/abs/2607.19829', desc: 'Evolving jailbreak adversary + guardrail, ASR (higher = more vulnerable). DeepSeek-V4-Pro 99.7 / GPT-5.5 92.5. S224 registered (safety).' },
+            { name: 'Copyright-Bench (arXiv 2607.21799)', url: 'https://arxiv.org/abs/2607.21799', desc: 'Agentic copyright-law compliance, violation rate (lower better). Claude-4.5-Opus 27.6. S224 registered (safety).' },
+            { name: 'OpenSkillRisk (arXiv 2607.20121)', url: 'https://arxiv.org/abs/2607.20121', desc: 'Agent safety when using real-world risky third-party skills, Fsafe. Sonnet 4.6 80.97. S224 registered (safety).' },
+            { name: 'TREK (arXiv 2607.26977)', url: 'https://arxiv.org/abs/2607.26977', desc: 'Travel reasoning + evaluation kit for LLM agents, task-perfect rate. GPT-5.6 46.2. S224 registered (agent).' },
+            { name: 'PAUSE (arXiv 2607.27354)', url: 'https://arxiv.org/abs/2607.27354', desc: 'User-centric personal-AI-assistant benchmark, task completion %. GPT-5 95.26 (easy). S224 registered (agent).' },
+            { name: 'ORCA-bench (arXiv 2607.28545)', url: 'https://arxiv.org/abs/2607.28545', desc: 'Oncall root-cause analysis, RCA accuracy. Sonnet-4.6 30.6 / GPT-5.5 25.0. S224 registered (agent).' },
+            { name: 'InferenceBench (arXiv 2607.20468)', url: 'https://arxiv.org/abs/2607.20468', desc: 'Open-ended LLM inference optimization by AI agents, speedup over PyTorch. Sonnet 4.6 8.08x. S224 registered (agent).' },
+            { name: 'Medmarks (arXiv 2605.01417)', url: 'https://arxiv.org/abs/2605.01417', desc: 'Open-source medical LLM benchmark suite (V + OE), win-rate. Gemini 3 Pro 0.6628 / GPT-5.2 0.6389. S224 registered (medical).' },
+            { name: 'ClinHallu (arXiv 2606.14697)', url: 'https://arxiv.org/abs/2606.14697', desc: 'Stage-wise hallucination diagnosis in medical MLLM reasoning. Gemini-3-Flash 80.1. S224 registered (medical).' },
+            { name: 'MemeBench (arXiv 2607.27798)', url: 'https://arxiv.org/abs/2607.27798', desc: 'Culture-dependent meme interpretation for LVLMs, VIKR success. Gemini-3.1-Pro 60.3. S224 registered (multimodal).' },
+            { name: 'ViSTR-Bench (arXiv 2607.20868)', url: 'https://arxiv.org/abs/2607.20868', desc: 'Visual spatial-temporal reasoning, video QA accuracy. GPT-5.4-thinking 62.0. S224 registered (multimodal).' },
+            { name: 'JigShape (arXiv 2607.27670)', url: 'https://arxiv.org/abs/2607.27670', desc: 'Visual-geometric reasoning via jigsaw puzzles, piece accuracy. GPT-5.5 69.65 (4x4). S224 registered (reasoning).' },
+
+            // ─── 2026-08-01/02 S223b net-new model tech reports ───
+            { name: 'Seed1.8 (arXiv 2603.20633)', url: 'https://arxiv.org/abs/2603.20633', desc: 'ByteDance Seed VLM. AIME-25 94.3, GPQA-D 83.8, SWE-Verified 72.9, GAIA 87.4, VideoMME 87.8. S223b net-new.' },
+            { name: 'Tongyi DeepResearch (arXiv 2510.24701)', url: 'https://arxiv.org/abs/2510.24701', desc: 'Alibaba deep-research agent 30B-A3B. HLE 32.9, BrowseComp 43.4, GAIA 70.9, FRAMES 90.6. S223b net-new.' },
+            { name: 'A2FM (arXiv 2510.12838)', url: 'https://arxiv.org/abs/2510.12838', desc: 'OPPO adaptive agent FM 32B. MATH500 95.0, AIME25 70.4, GPQA-d 63.1, GAIA 57.3. S223b net-new.' },
+            { name: 'WebResearcher (arXiv 2509.13309)', url: 'https://arxiv.org/abs/2509.13309', desc: 'Alibaba Tongyi IterResearch agent 30B-A3B. GAIA 72.8, xbench-DeepSearch 71.0, FRAMES 84.8. S223b net-new.' },
+            { name: 'ZAYA1-VL-8B (arXiv 2605.08560)', url: 'https://arxiv.org/abs/2605.08560', desc: 'Zyphra MoE VLM 9.2B-A1.4B. DocVQA 92.5, AI2D 87.5, MMMU 64.0, OCRBench 80.0. S223b net-new.' },
+            { name: 'LongCat-Flash-Prover (arXiv 2603.21065)', url: 'https://arxiv.org/abs/2603.21065', desc: 'Meituan formal-reasoning 560B-A27B. MiniF2F-Test 97.1, ProverBench 70.8, PutnamBench 41.5. S223b net-new.' },
+            { name: 'iFlyBot-VLM 8B (arXiv 2511.04976)', url: 'https://arxiv.org/abs/2511.04976', desc: 'iFlyTek embodied VLM. BLINK 85.69, Where2Place 70.23, CV-Bench 85.33, EmbSpatial 78.92. S223b net-new.' }
         ];
 
         sites.forEach(function(site) {
