@@ -4602,5 +4602,11 @@
     "type": "Feature",
     "title": "S227 — Timeline 그래프별 옵션 URL 상태 인코딩",
     "detail": "Timeline 메뉴의 각 컨트롤(정렬·벤더/국가/타입 필터·검색·인포그래픽 range·frontier version range) 값을 URL 쿼리파라미터(tl_sort·tl_vendor·tl_country·tl_type·tl_q·tl_igrange·tl_fvrange)로 인코딩. 옵션 변경 시 history.replaceState로 URL 갱신(#timeline 해시와 공존), 페이지 로드 시 _applyUrlState로 복원(필터 옵션 존재 확인 후 적용, 빈값/all은 생략해 URL 청결 유지). 이제 Timeline 그래프 옵션 조합을 URL로 공유·북마크 가능. 참고: frontier version-up 그래프에 최근 모델(Opus 5·0731·A.X K2·K-EXAONE 2.0·Seed1.8 등) 정상 렌더 확인(Playwright)—이전 미표시는 브라우저 캐시."
+  },
+  {
+    "date": "2026-08-03",
+    "type": "Feature",
+    "title": "S228 — Frontier Version-Up 그래프 국기 표시 체크박스",
+    "detail": "Frontier Version-Up Timeline 그래프에 \"🏳️ 국기 표시\" 체크박스 추가. 체크 시 Y축 개발사명 앞에 해당 국가 국기(🇺🇸🇨🇳🇰🇷 등)를 표시 — vendor별 대표 모델의 _getCountry→_flagFromCountry로 매핑 후 yAxis.axisLabel.formatter로 접두 표시(series 데이터 category값은 vendor 유지). 체크박스 상태는 URL(tl_fvflags=1)로 인코딩되어 공유/복원 가능(_syncUrlState/_applyUrlState에 checkbox type 처리 추가)."
   }
 ]

@@ -235,6 +235,9 @@ var Timeline = {
 
         var frontierRangeSel = document.getElementById('timeline-frontier-range');
         if (frontierRangeSel) frontierRangeSel.addEventListener('change', function() { self._syncUrlState(); self._renderFrontierVersionTimeline(); });
+
+        var frontierFlagsChk = document.getElementById('timeline-frontier-flags');
+        if (frontierFlagsChk) frontierFlagsChk.addEventListener('change', function() { self._syncUrlState(); self._renderFrontierVersionTimeline(); });
         if (pngBtn) pngBtn.addEventListener('click', function() { self._downloadInfographic('png'); });
         if (svgBtn) svgBtn.addEventListener('click', function() { self._downloadInfographic('svg'); });
         if (csvBtn) csvBtn.addEventListener('click', function() { self._downloadCSV(); });
@@ -254,7 +257,8 @@ var Timeline = {
         'timeline-type-filter': 'tl_type',
         'timeline-search': 'tl_q',
         'timeline-infographic-range': 'tl_igrange',
-        'timeline-frontier-range': 'tl_fvrange'
+        'timeline-frontier-range': 'tl_fvrange',
+        'timeline-frontier-flags': 'tl_fvflags'
     },
 
     _syncUrlState: function() {
@@ -264,7 +268,9 @@ var Timeline = {
             Object.keys(this._URL_KEYS).forEach(function(elId) {
                 var el = document.getElementById(elId);
                 var key = this._URL_KEYS[elId];
-                var v = el ? String(el.value == null ? '' : el.value).trim() : '';
+                var v;
+                if (el && el.type === 'checkbox') { v = el.checked ? '1' : ''; }
+                else { v = el ? String(el.value == null ? '' : el.value).trim() : ''; }
                 // Omit empty / "all" defaults to keep the URL clean.
                 if (!v || v === 'all' || v === 'All' || v === '') params.delete(key);
                 else params.set(key, v);
@@ -286,7 +292,9 @@ var Timeline = {
                 if (!el) return;
                 var val = params.get(key);
                 // For <select>, only apply if the option exists (filters are populated by now).
-                if (el.tagName === 'SELECT') {
+                if (el.type === 'checkbox') {
+                    el.checked = (val === '1' || val === 'true');
+                } else if (el.tagName === 'SELECT') {
                     var ok = Array.prototype.some.call(el.options, function(o) { return o.value === val; });
                     if (ok) el.value = val;
                 } else {
@@ -1087,6 +1095,15 @@ var Timeline = {
             return;
         }
 
+        // Country flag per vendor (for the optional Y-axis flag display).
+        var flagsChk = document.getElementById('timeline-frontier-flags');
+        var showFlags = !!(flagsChk && flagsChk.checked);
+        var vendorFlag = {};
+        vendors.forEach(function(vend) {
+            var m = vendorLanes[vend][0].model;
+            vendorFlag[vend] = self._flagFromCountry(self._getCountry(m.id, m));
+        });
+
         // Y-axis order: most-recently-active vendor at TOP (largest max date last in
         // the category array, since ECharts category axis renders index 0 at bottom).
         vendors.sort(function(a, b) {
@@ -1143,7 +1160,12 @@ var Timeline = {
             yAxis: {
                 type: 'category',
                 data: vendors,
-                axisLabel: { color: '#cbd5e1', fontSize: 11 },
+                axisLabel: {
+                    color: '#cbd5e1', fontSize: 11,
+                    formatter: function(v) {
+                        return (showFlags && vendorFlag[v]) ? vendorFlag[v] + ' ' + v : v;
+                    }
+                },
                 splitLine: { show: true, lineStyle: { color: '#1f2937' } }
             },
             series: series
