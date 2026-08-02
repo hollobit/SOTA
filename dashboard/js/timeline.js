@@ -1131,7 +1131,7 @@ var Timeline = {
                 },
                 labelLayout: { hideOverlap: true },
                 data: pts.map(function(e) {
-                    return { value: [e.dateMs, vend], short: e.short, fullName: e.name };
+                    return { value: [e.dateMs, vend], short: e.short, fullName: e.name, modelId: e.model.id };
                 })
             };
         });
@@ -1172,9 +1172,17 @@ var Timeline = {
         }, true);
         chart.resize();
 
+        // Click a point (or its model-name label) → open the model detail modal.
+        // off() first so re-renders (range / flag toggle) don't stack handlers.
+        chart.off('click');
+        chart.on('click', function(params) {
+            var id = params && params.data && params.data.modelId;
+            if (id && typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(id);
+        });
+
         if (note) {
             var total = vendors.reduce(function(s, v) { return s + vendorLanes[v].length; }, 0);
-            note.textContent = '최근 ' + monthsBack + '개월 · ' + vendors.length + '개 개발사 · 프론티어 모델 ' + total + '종 (FRONTIER_MODELS 큐레이션 기준). 점=출시, 선=버전업 진행.';
+            note.textContent = '최근 ' + monthsBack + '개월 · ' + vendors.length + '개 개발사 · 프론티어 모델 ' + total + '종 (FRONTIER_MODELS 큐레이션 기준). 점=출시, 선=버전업 진행. 점/모델명 클릭 시 상세정보.';
         }
     },
 
