@@ -4590,5 +4590,11 @@
     "type": "Fix",
     "title": "S226b — A.X K2·K-EXAONE 2.0 Timeline frontier 그래프 누락 반영",
     "detail": "사용자 지적대로 A.X K2·K-EXAONE 2.0이 Timeline frontier version 그래프에 누락. 원인: skt/ax-k1·lg/exaone-4.5는 FrontierCompare.FRONTIER_MODELS에 있으나 후속 skt/ax-k2·lg/k-exaone-2.0-750b-a37b는 미등록 → SKT K1→K2 버전업 라인이 끊기고 K-EXAONE 2.0 미표시. 두 모델을 FRONTIER_MODELS regional 섹션에 추가. (인포그래픽은 release_date 기반 데이터-드리븐이라 원래 표시됨; 끊긴 건 frontier version 그래프.) feedback_timeline_frontier_sync 규칙 재적용."
+  },
+  {
+    "date": "2026-08-03",
+    "type": "Fix",
+    "title": "S226c — Timeline frontier 그래프 누락 frontier 모델 전수 재검증·반영",
+    "detail": "사용자 지적(DeepSeek-V4-Flash-0731 누락) 계기로 FRONTIER_MODELS(Timeline frontier version 그래프 소스) 전수 재검증. 2026년 출시·점수 보유 모델을 벤더별 세대(family) 커버리지로 diff: 대부분은 이미 상위/동세대 변형이 등재되어 커버됨(Qwen 3.6/3.7·Kimi K3·StepFun 3.7-flash·Nemotron-3-ultra·Gemma-4-31b·MiniMax m3 등). 진짜 누락 4종 추가: deepseek/deepseek-v4-flash-0731(공식 0731, 사용자 지적), bytedance/seed1.8(ByteDance Seed—벤더 전체 미등재였음), utter-project/EuroLLM-22B(EU 소버린 32점), soofi-project/soofi-s-30b-a3b(독일 소버린 32점). 재검증 후 미커버 frontier family(≥20 scores)=0. feedback_timeline_frontier_sync 규칙 적용."
   }
 ]
