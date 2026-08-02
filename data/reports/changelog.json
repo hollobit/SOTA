@@ -4614,5 +4614,11 @@
     "type": "Fix",
     "title": "S229 — Frontier Version-Up 그래프 점 클릭 시 모델 상세 모달 복원",
     "detail": "Frontier Version-Up Timeline 그래프의 점/모델명 클릭 시 상세정보 모달이 안 뜨던 문제. 확인 결과 이 차트는 애초에 chart.on(click) 핸들러가 없었음(hover 툴팁만 존재). series 데이터 포인트에 modelId 추가 후, chart.off(click)+chart.on(click)로 클릭 시 Modal.showModel(modelId) 호출하도록 구현(재렌더 시 핸들러 중복 방지). note 안내문에 \"점/모델명 클릭 시 상세정보\" 추가."
+  },
+  {
+    "date": "2026-08-03",
+    "type": "Fix",
+    "title": "S230 — 7개 벤더 국가정보 재검증·수정 (Timeline 국기)",
+    "detail": "VENDOR_TO_COUNTRY에 미등록되어 🌐 Other로 표시되던 7개 벤더 국가 매핑 추가: soofi-project→🇩🇪 Germany(독일 소버린, KI Bundesverband/Fraunhofer/DFKI), meituan+longcat→🇨🇳 China(Meituan LongCat), china-mobile→🇨🇳 China(JT/Jiutian), subquadratic→🇺🇸 USA(마이애미 스타트업, 웹확인), harvard→🇺🇸 USA(하버드), utter-project→🇪🇺 Europe(EuroLLM, UTTER EU 컨소시엄: IST Lisbon/Unbabel/Edinburgh), nexgeneai/nexgene-ai→🇹🇷 Türkiye(이스탄불, Asa-W1 의료, 웹확인). 신규 국가 Türkiye를 _COUNTRY_COLORS에 추가. 이제 Frontier 국기 표시 시 정확한 국기 노출."
   }
 ]
