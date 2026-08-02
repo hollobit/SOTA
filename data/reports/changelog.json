@@ -4596,5 +4596,11 @@
     "type": "Fix",
     "title": "S226c — Timeline frontier 그래프 누락 frontier 모델 전수 재검증·반영",
     "detail": "사용자 지적(DeepSeek-V4-Flash-0731 누락) 계기로 FRONTIER_MODELS(Timeline frontier version 그래프 소스) 전수 재검증. 2026년 출시·점수 보유 모델을 벤더별 세대(family) 커버리지로 diff: 대부분은 이미 상위/동세대 변형이 등재되어 커버됨(Qwen 3.6/3.7·Kimi K3·StepFun 3.7-flash·Nemotron-3-ultra·Gemma-4-31b·MiniMax m3 등). 진짜 누락 4종 추가: deepseek/deepseek-v4-flash-0731(공식 0731, 사용자 지적), bytedance/seed1.8(ByteDance Seed—벤더 전체 미등재였음), utter-project/EuroLLM-22B(EU 소버린 32점), soofi-project/soofi-s-30b-a3b(독일 소버린 32점). 재검증 후 미커버 frontier family(≥20 scores)=0. feedback_timeline_frontier_sync 규칙 적용."
+  },
+  {
+    "date": "2026-08-03",
+    "type": "Feature",
+    "title": "S227 — Timeline 그래프별 옵션 URL 상태 인코딩",
+    "detail": "Timeline 메뉴의 각 컨트롤(정렬·벤더/국가/타입 필터·검색·인포그래픽 range·frontier version range) 값을 URL 쿼리파라미터(tl_sort·tl_vendor·tl_country·tl_type·tl_q·tl_igrange·tl_fvrange)로 인코딩. 옵션 변경 시 history.replaceState로 URL 갱신(#timeline 해시와 공존), 페이지 로드 시 _applyUrlState로 복원(필터 옵션 존재 확인 후 적용, 빈값/all은 생략해 URL 청결 유지). 이제 Timeline 그래프 옵션 조합을 URL로 공유·북마크 가능. 참고: frontier version-up 그래프에 최근 모델(Opus 5·0731·A.X K2·K-EXAONE 2.0·Seed1.8 등) 정상 렌더 확인(Playwright)—이전 미표시는 브라우저 캐시."
   }
 ]
