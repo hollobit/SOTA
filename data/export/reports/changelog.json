@@ -4572,5 +4572,11 @@
     "type": "Data",
     "title": "S225 — arena.ai 7개 text-domain 리더보드 갱신(102 scores)",
     "detail": "arena.ai 12개 리더보드 전수 분석. 이미지/비디오 아레나 5개(t2i/image-edit/t2v/i2v/video-edit)는 DB와 동일 스냅샷이라 갱신 불필요 확인. text-domain 7개(agent/text/search/vision/document/webdev/image-to-webdev)에 신규 플래그십 반영(effort 변형은 base-id로 dedup, 최고값 유지, 전 모델 base-id 검증): Text(Fable 5 1509·Opus 4.6 1505·Muse Spark 1.1 1490), WebDev(Opus 5 1705·Kimi K3 1676·Fable 5 1630·GPT-5.6-Sol 1620·GLM-5.2 1586·DeepSeek-V4-Flash 1577), Image-to-WebDev(Opus 5 1669·Fable 5 1626·Grok 4.5 1578·Kimi K3 1571), Document(Opus 5 1520·Fable 5 1504·GPT-5.6-Terra/Sol 1479), Vision(Fable 5 1318·Gemini 3.6 Flash 1301·Opus 5 1299), Search(Opus 4.6 1253·GPT-5.5 1240·ERNIE 5.1 1226), Agent-NetImprovement(Fable 5 12.58%·Opus 5 11.88%·GPT-5.6-Sol 10.02%·Kimi K3 9.91%). 신규모델 다수 각 아레나 진입(Opus 5·Kimi K3·GPT-5.6 Sol/Terra/Luna·Muse Spark 1.1·GLM-5.2·Seed 2.1 Pro·Grok 4.5·gemini-3.6-flash·ERNIE 5.1)."
+  },
+  {
+    "date": "2026-08-02",
+    "type": "Fix",
+    "title": "S225b — Timeline frontier 그래프에 Opus 5·Gemini 3.6 Flash 반영",
+    "detail": "사용자 리마인더(frontier 모델 업데이트 시 Timeline 그래프 동기화)에 따라 확인 결과, claude-opus-5(2026-07-24, arena WebDev #1 1705·Document #1 1520, 77 scores)와 gemini-3.6-flash(2026-07-21, 25 scores)가 이미 DB엔 있으나 FrontierCompare.FRONTIER_MODELS(frontier-compare.js) 큐레이션 리스트에 누락되어 Timeline frontier version 그래프에 안 나타남. 두 모델을 FRONTIER_MODELS에 추가. Timeline frontier 그래프는 데이터-드리븐이 아니라 이 큐레이션 리스트를 읽으므로 frontier 갱신 시 함께 업데이트 필요(메모리 저장)."
   }
 ]

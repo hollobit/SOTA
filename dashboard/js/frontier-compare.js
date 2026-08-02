@@ -202,6 +202,7 @@ var FrontierCompare = {
     FRONTIER_MODELS: [
         'xai/grok-4.5',  // 2026-07-08 S175 — AAII v4.1 54 (#8/186); SWE-Marathon 29 SOTA, AutomationBench-AA 51 SOTA, GDPval+ 29 SOTA; $2/$6 per Mtok, 500K ctx, GB300-trained
         // 2026-06-09 S65 Anthropic Claude Fable 5 + Mythos 5 — 13 NEW SOTAs (SWE-Bench Pro 80.3, ExploitBench 78, GDP.pdf 29.8, OSWorld 85, Toolathlon 61.7, BioMystery 46.1/83.9, LatchBio 69.2/59.3, FrontierCode 29.3/46.3) + S66 Fable 5 AAII 65 #1 NEW SOTA
+        'anthropic/claude-opus-5',    // 2026-07-24 S225 — Claude Opus 5 (arena WebDev #1 1705, Document #1 1520); add so Timeline frontier graph includes it
         'anthropic/claude-fable-5',
         'anthropic/claude-sonnet-5',  // 2026-07-01 S160 — 40 scores from system card §3 Cyber + §4 Safeguards + §8 Capabilities
         'meituan/longcat-2.0',  // 2026-06-30 S160 — 1.6T/48B MoE, SWE-Pro 59.5 beats Gemini 3.1 Pro + GPT-5.5, 50K AI ASICs (non-NVIDIA)
@@ -212,6 +213,7 @@ var FrontierCompare = {
         // 2026-06-10 S67 — S66 batch new frontier entries
         'cohere/command-a-plus',                  // AAII 37
         'cohere/north-mini-code',                 // Apache 2.0 MoE 30B/3B coding-specialist AAII 28
+        'google/gemini-3.6-flash',                // 2026-07-21 S225 — latest Gemini Flash (arena Vision 1301 / WebDev 1533); Timeline frontier currency
         'google/gemini-3.5-flash-high',           // AAII 55 reasoning variant
         'google/gemini-3.5-flash-medium',         // AAII 55
         'google/gemini-3.5-flash-minimal',        // AAII 43
