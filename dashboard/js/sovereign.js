@@ -34,6 +34,10 @@ var Sovereign = {
                 // 2026-07-27 S212f — Kanana 2 SLM (1.3B/3B, base+instruct)
                 'kakao/kanana-2-3b-instruct', 'kakao/kanana-2-3b-base',
                 'kakao/kanana-2-1.3b-instruct', 'kakao/kanana-2-1.3b-base',
+                // 2026-08-02 S226 — recently-added Korean models missing from Sovereign
+                'kakao/kanana-2-30b-a3b-instruct-2601',  // Kanana 2 30B-A3B instruct flagship (13 scores)
+                'naver/hyperclova-x-seed-think-14b',     // Naver HyperCLOVA-X SEED Think 14B, May 2026 (15 scores)
+                'vaiv/llamion-14b',                      // VAIV Llamion 14B (S223 net-new, KoMMLU 66.87)
                 'sk-telecom/a.x-4.0',  // 2026-06-04 S52 — SK Telecom A.X 4.0 Korean Foundation Model
                 'skt/ax-k2', 'skt/ax-k2-alm',  // 2026-07-28 S214 — SKT A.X K2 688B-A33B MoE + K2 ALM (audio)
                 'krafton/ax-k2-raon-speech-21b-a3b',  // 2026-07 S215 — KRAFTON bilingual speech LM on A.X K2 Light
@@ -603,6 +607,7 @@ var Sovereign = {
         'kakao/kanana-1.5-15.7b-a3b': '2025-09',
         'kakao/kanana-1.5-8b': '2025-05', 'kakao/kanana-flag-32.5b': '2024-11',
         'kakao/kanana-2-3b-instruct': '2026-07-27', 'kakao/kanana-2-3b-base': '2026-07-27',
+        'kakao/kanana-2-30b-a3b-instruct-2601': '2026-01', 'naver/hyperclova-x-seed-think-14b': '2026-05-27', 'vaiv/llamion-14b': '2026-05',
         'skt/ax-k2': '2026-07-28', 'skt/ax-k2-alm': '2026-07-28',
         'lg/k-exaone-2.0-750b-a37b': '2026-07-31',
         'krafton/ax-k2-raon-speech-21b-a3b': '2026-07',
