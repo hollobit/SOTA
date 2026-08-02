@@ -292,7 +292,7 @@ var Timeline = {
                 } else {
                     el.value = val;
                 }
-            });
+            }, this);   // pass thisArg so this._URL_KEYS resolves inside the callback
         } catch (e) { /* silently skip */ }
     },
 
