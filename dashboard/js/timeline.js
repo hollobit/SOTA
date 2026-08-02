@@ -220,26 +220,80 @@ var Timeline = {
         var typeSel = document.getElementById('timeline-type-filter');
         var searchInput = document.getElementById('timeline-search');
 
-        if (sortSel) sortSel.addEventListener('change', function() { self.render(); });
-        if (vendorSel) vendorSel.addEventListener('change', function() { self.render(); });
-        if (countrySel) countrySel.addEventListener('change', function() { self.render(); });
-        if (typeSel) typeSel.addEventListener('change', function() { self.render(); });
-        if (searchInput) searchInput.addEventListener('input', function() { self.render(); });
+        if (sortSel) sortSel.addEventListener('change', function() { self._syncUrlState(); self.render(); });
+        if (vendorSel) vendorSel.addEventListener('change', function() { self._syncUrlState(); self.render(); });
+        if (countrySel) countrySel.addEventListener('change', function() { self._syncUrlState(); self.render(); });
+        if (typeSel) typeSel.addEventListener('change', function() { self._syncUrlState(); self.render(); });
+        if (searchInput) searchInput.addEventListener('input', function() { self._syncUrlState(); self.render(); });
 
         // Infographic controls
         var rangeSel = document.getElementById('timeline-infographic-range');
         var pngBtn = document.getElementById('timeline-download-png');
         var svgBtn = document.getElementById('timeline-download-svg');
         var csvBtn = document.getElementById('timeline-download-csv');
-        if (rangeSel) rangeSel.addEventListener('change', function() { self._renderInfographic(); });
+        if (rangeSel) rangeSel.addEventListener('change', function() { self._syncUrlState(); self._renderInfographic(); });
 
         var frontierRangeSel = document.getElementById('timeline-frontier-range');
-        if (frontierRangeSel) frontierRangeSel.addEventListener('change', function() { self._renderFrontierVersionTimeline(); });
+        if (frontierRangeSel) frontierRangeSel.addEventListener('change', function() { self._syncUrlState(); self._renderFrontierVersionTimeline(); });
         if (pngBtn) pngBtn.addEventListener('click', function() { self._downloadInfographic('png'); });
         if (svgBtn) svgBtn.addEventListener('click', function() { self._downloadInfographic('svg'); });
         if (csvBtn) csvBtn.addEventListener('click', function() { self._downloadCSV(); });
 
         this._populateFilters();
+        this._applyUrlState();   // restore per-graph control values from the URL (?tl_*), before first render
+    },
+
+    // ─── URL state for the Timeline controls ───────────────────────────────
+    // Each control's value is mirrored to a `tl_*` query param so a Timeline
+    // view (with its per-graph option changes) is shareable/bookmarkable.
+    // Query params coexist with the `#timeline` tab hash.
+    _URL_KEYS: {
+        'timeline-sort': 'tl_sort',
+        'timeline-vendor-filter': 'tl_vendor',
+        'timeline-country-filter': 'tl_country',
+        'timeline-type-filter': 'tl_type',
+        'timeline-search': 'tl_q',
+        'timeline-infographic-range': 'tl_igrange',
+        'timeline-frontier-range': 'tl_fvrange'
+    },
+
+    _syncUrlState: function() {
+        if (typeof URLSearchParams === 'undefined' || !window.history || !history.replaceState) return;
+        try {
+            var params = new URLSearchParams(window.location.search);
+            Object.keys(this._URL_KEYS).forEach(function(elId) {
+                var el = document.getElementById(elId);
+                var key = this._URL_KEYS[elId];
+                var v = el ? String(el.value == null ? '' : el.value).trim() : '';
+                // Omit empty / "all" defaults to keep the URL clean.
+                if (!v || v === 'all' || v === 'All' || v === '') params.delete(key);
+                else params.set(key, v);
+            }, this);
+            var qs = params.toString();
+            var newUrl = window.location.pathname + (qs ? '?' + qs : '') + (window.location.hash || '');
+            history.replaceState(null, '', newUrl);
+        } catch (e) { /* URL API unavailable — silently skip */ }
+    },
+
+    _applyUrlState: function() {
+        if (typeof URLSearchParams === 'undefined') return;
+        try {
+            var params = new URLSearchParams(window.location.search);
+            Object.keys(this._URL_KEYS).forEach(function(elId) {
+                var key = this._URL_KEYS[elId];
+                if (!params.has(key)) return;
+                var el = document.getElementById(elId);
+                if (!el) return;
+                var val = params.get(key);
+                // For <select>, only apply if the option exists (filters are populated by now).
+                if (el.tagName === 'SELECT') {
+                    var ok = Array.prototype.some.call(el.options, function(o) { return o.value === val; });
+                    if (ok) el.value = val;
+                } else {
+                    el.value = val;
+                }
+            });
+        } catch (e) { /* silently skip */ }
     },
 
     // Color scheme: 12 distinct hues, one per month-of-year
