@@ -41,6 +41,8 @@ var Timeline = {
         'arcee-ai': '🇺🇸 USA',
         'inception': '🇺🇸 USA',
         'inceptionlabs': '🇺🇸 USA',
+        'subquadratic': '🇺🇸 USA',   // 2026-08 S230 — Miami, FL startup (SubQ)
+        'harvard': '🇺🇸 USA',        // Harvard University (AutoScientists, MedVersa)
         // 🇨🇦 Canada
         'cohere': '🇨🇦 Canada',
         'cohereai': '🇨🇦 Canada',
@@ -101,6 +103,9 @@ var Timeline = {
         'scutcyr': '🇨🇳 China',
         'openi-cn': '🇨🇳 China',
         'magic-ai4med': '🇨🇳 China',
+        'meituan': '🇨🇳 China',        // 2026-08 S230 — Meituan (LongCat)
+        'longcat': '🇨🇳 China',        // Meituan LongCat model line
+        'china-mobile': '🇨🇳 China',   // China Mobile (JT / Jiutian)
         // 🇷🇺 Russia
         'sber': '🇷🇺 Russia',
         'ai-sage': '🇷🇺 Russia',
@@ -144,6 +149,7 @@ var Timeline = {
         // 🇩🇪 Germany
         'aleph-alpha': '🇩🇪 Germany',
         'Aleph-Alpha': '🇩🇪 Germany',
+        'soofi-project': '🇩🇪 Germany',   // 2026-08 S230 — German sovereign (KI Bundesverband / Fraunhofer / DFKI)
         // 🇬🇧 UK
         'stabilityai': '🇬🇧 UK',
         'stability': '🇬🇧 UK',
@@ -151,6 +157,9 @@ var Timeline = {
         'swiss-ai': '🇨🇭 Switzerland',
         // Others
         'bigscience': '🇪🇺 Europe',
+        'utter-project': '🇪🇺 Europe',   // 2026-08 S230 — EuroLLM (UTTER EU consortium: IST Lisbon / Unbabel / Edinburgh)
+        'nexgeneai': '🇹🇷 Türkiye',       // 2026-08 S230 — Nexgene AI (Istanbul, Turkey; Asa-W1 medical)
+        'nexgene-ai': '🇹🇷 Türkiye',
         'eleutherai': '🇺🇸 USA',
         'huggingface': '🇫🇷 France',
         'h2o': '🇺🇸 USA',
@@ -325,6 +334,7 @@ var Timeline = {
         '🇮🇳 India': '#f59e0b',
         '🇩🇪 Germany': '#facc15',
         '🇬🇧 UK': '#1d4ed8',
+        '🇹🇷 Türkiye': '#e11d48',
         '🇨🇭 Switzerland': '#dc2626',
         '🇷🇺 Russia': '#ec4899',
         '🇪🇺 Europe': '#6366f1',
