@@ -291,7 +291,9 @@ var FrontierCompare = {
 
         // Regional / secondary
         'lg/exaone-4.5-33b',
+        'lg/k-exaone-2.0-750b-a37b',  // 2026-07-31 S226 — K-EXAONE 2.0 sovereign flagship; Timeline frontier graph currency
         'skt/ax-k1',
+        'skt/ax-k2',                  // 2026-07-28 S226 — A.X K2 (fixes SKT K1→K2 version-up in Timeline frontier graph)
         'upstage/solar-open2-250b',
         'upstage/solar-open-100b',
         'upstage/solar-pro-3',
