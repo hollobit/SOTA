@@ -4584,5 +4584,11 @@
     "type": "Fix",
     "title": "S226 — 최근 추가 한국 모델 3종 Sovereign 탭 누락 반영",
     "detail": "EXAONE·A.X K2 등 최근 추가 모델 점검. 최신 버전(EXAONE 4.5 Apr·K-EXAONE 2.0 Jul 31·A.X K2 Jul 28)은 전부 추적 중이며 더 최신 버전(EXAONE 5.0/4.6·A.X K3)은 미존재 확인(웹 검증). 단, 점수는 있으나 Sovereign 탭 Korea region 리스트에 빠진 3종 발견·추가: Kanana 2 30B-A3B Instruct(kakao/kanana-2-30b-a3b-instruct-2601, 13 scores), HyperCLOVA-X SEED Think 14B(naver/hyperclova-x-seed-think-14b, 15 scores, 2026-05-27), Llamion 14B(vaiv/llamion-14b, S223 net-new). RELEASE_DATES도 함께 추가. 데이터-드리븐 아닌 큐레이션 리스트라 모델 추가 시 sovereign.js 갱신 필요."
+  },
+  {
+    "date": "2026-08-03",
+    "type": "Fix",
+    "title": "S226b — A.X K2·K-EXAONE 2.0 Timeline frontier 그래프 누락 반영",
+    "detail": "사용자 지적대로 A.X K2·K-EXAONE 2.0이 Timeline frontier version 그래프에 누락. 원인: skt/ax-k1·lg/exaone-4.5는 FrontierCompare.FRONTIER_MODELS에 있으나 후속 skt/ax-k2·lg/k-exaone-2.0-750b-a37b는 미등록 → SKT K1→K2 버전업 라인이 끊기고 K-EXAONE 2.0 미표시. 두 모델을 FRONTIER_MODELS regional 섹션에 추가. (인포그래픽은 release_date 기반 데이터-드리븐이라 원래 표시됨; 끊긴 건 frontier version 그래프.) feedback_timeline_frontier_sync 규칙 재적용."
   }
 ]
