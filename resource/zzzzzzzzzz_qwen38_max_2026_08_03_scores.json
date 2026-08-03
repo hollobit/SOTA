@@ -2,44 +2,252 @@
   "_meta": {
     "collected_at": "2026-08-03",
     "session": "S231",
-    "note": "Qwen3.8-Max (alibaba/qwen3.8-max-preview, existed with 0 scores). Scores from the official Qwen3.8 blog (qwen.ai/blog?id=qwen3.8), rendered via Playwright (JS page). Strict-attribution: ONLY the Qwen3.8-Max column ingested; competitor columns (Opus4.8/Fable5/GPT5.6-Sol/Gemini3.1-Pro/Qwen3.7-Max/Qwen3.7-Plus) skipped (each comes from its own card). Qwen-internal benches (QwenSWEBench/QwenReactBench/QwenSVGBench/QwenQoderBench/QwenBlenderBench/QwenVisualOffice/CoWorkBench/WorkSpaceBench/JobBench/SkillsBench/PLawBench/PRBench/$OneMillion-Bench etc.) and niche one-offs skipped — standard public benchmarks only. agents_last_exam uses the Pass value (27.0) to match the DB scale.",
-    "sources": ["https://qwen.ai/blog?id=qwen3.8"]
+    "note": "Qwen3.8-Max — OFFICIAL GA release (blog dated 2026-08-03, 'Today we are officially releasing Qwen 3.8-Max'). Corrected from the preview id: scores belong to the GA entry alibaba/qwen3.8-max, NOT alibaba/qwen3.8-max-preview (2026-07-19, a distinct earlier preview kept separate per preview-vs-GA rule). Own column only from qwen.ai/blog?id=qwen3.8 (Playwright-rendered); competitor + Qwen-internal benches skipped.",
+    "sources": [
+      "https://qwen.ai/blog?id=qwen3.8"
+    ]
   },
-  "models": [],
+  "models": [
+    {
+      "id": "alibaba/qwen3.8-max",
+      "name": "Qwen3.8-Max",
+      "developer": "Alibaba",
+      "vendor": "Alibaba",
+      "release_date": "2026-08-03",
+      "license": "proprietary (API)",
+      "architecture": "Qwen3.8 flagship (MoE)",
+      "_note": "Official GA of Qwen3.8-Max. Distinct from qwen3.8-max-preview (2026-07-19)."
+    }
+  ],
   "benchmarks": [
-    {"id": "mrcr_v2_256k", "name": "MRCR v2 256K (8-needle)", "category": "agent", "higher_better": true, "_note": "long-context multi-round coreference retrieval, 256K/8-needle"},
-    {"id": "mobileworld", "name": "MobileWorld", "category": "agent", "higher_better": true, "_note": "mobile GUI agent benchmark"}
+    {
+      "id": "mrcr_v2_256k",
+      "name": "MRCR v2 256K (8-needle)",
+      "category": "agent",
+      "higher_better": true,
+      "_note": "long-context multi-round coreference retrieval, 256K/8-needle"
+    },
+    {
+      "id": "mobileworld",
+      "name": "MobileWorld",
+      "category": "agent",
+      "higher_better": true,
+      "_note": "mobile GUI agent benchmark"
+    }
   ],
   "scores": [
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "terminal_bench_2_1", "score": 86.6, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "swe_bench_pro", "score": 67.7, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "deepswe_1_1", "score": 56.6, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "nl2repo_bench", "score": 55.9, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "frontierswe", "score": 73.5, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "paperbench", "score": 93.0, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "agents_last_exam", "score": 27.0, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8", "_note": "Pass rate (Score 52.4)"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "automationbench", "score": 27.3, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "toolathlon_verified", "score": 72.5, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "hle_with_tools", "score": 56.2, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "gpqa_diamond", "score": 92.6, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "hle", "score": 43.6, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "ifbench", "score": 82.8, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "healthbench", "score": 60.2, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "longbench_v2", "score": 66.3, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "mrcr_v2_256k", "score": 92.9, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "mmmu_pro", "score": 82.3, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "mathvision", "score": 95.2, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "osworld_verified", "score": 86.1, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "screenspot_pro", "score": 84.5, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "android_world", "score": 85.3, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "mobileworld", "score": 77.8, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "omnidocbench_1_5", "score": 92.1, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "realworldqa", "score": 88.0, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "mmstar", "score": 85.9, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "video_mme", "score": 90.4, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8", "_note": "with subtitles"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "video_mmmu", "score": 88.7, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "mmvu", "score": 82.4, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "charxiv", "score": 88.4, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8", "_note": "RQ"},
-    {"model": "alibaba/qwen3.8-max-preview", "benchmark": "erqa", "score": 77.8, "unit": "%", "_source": "https://qwen.ai/blog?id=qwen3.8"}
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "terminal_bench_2_1",
+      "score": 86.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "swe_bench_pro",
+      "score": 67.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "deepswe_1_1",
+      "score": 56.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "nl2repo_bench",
+      "score": 55.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "frontierswe",
+      "score": 73.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "paperbench",
+      "score": 93.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "agents_last_exam",
+      "score": 27.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8",
+      "_note": "Pass rate (Score 52.4)"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "automationbench",
+      "score": 27.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "toolathlon_verified",
+      "score": 72.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "hle_with_tools",
+      "score": 56.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "gpqa_diamond",
+      "score": 92.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "hle",
+      "score": 43.6,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "ifbench",
+      "score": 82.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "healthbench",
+      "score": 60.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "longbench_v2",
+      "score": 66.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "mrcr_v2_256k",
+      "score": 92.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "mmmu_pro",
+      "score": 82.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "mathvision",
+      "score": 95.2,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "osworld_verified",
+      "score": 86.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "screenspot_pro",
+      "score": 84.5,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "android_world",
+      "score": 85.3,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "mobileworld",
+      "score": 77.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "omnidocbench_1_5",
+      "score": 92.1,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "realworldqa",
+      "score": 88.0,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "mmstar",
+      "score": 85.9,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "video_mme",
+      "score": 90.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8",
+      "_note": "with subtitles"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "video_mmmu",
+      "score": 88.7,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "mmvu",
+      "score": 82.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "charxiv",
+      "score": 88.4,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8",
+      "_note": "RQ"
+    },
+    {
+      "model": "alibaba/qwen3.8-max",
+      "benchmark": "erqa",
+      "score": 77.8,
+      "unit": "%",
+      "_source": "https://qwen.ai/blog?id=qwen3.8"
+    }
   ]
 }

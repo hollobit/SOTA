@@ -612,7 +612,7 @@ var CyberCoding = {
         'moonshot/kimi-k3',       // 2026-07-16 S182 — 2.8T MoE; Terminal-Bench 2.1 88.3 / FrontierSWE 81.2 / DeepSWE 67.5 / SWE-Marathon 42
         'tencent/hunyuan-hy3',    // 2026-07-06 S181 — GA 295B-A21B Apache; SWE-Verified 78 / SWE-Pro 57.9 / DeepSWE 28
         'alibaba/qwen3.7-plus',  // 2026-06-02 S46 GA
-        'alibaba/qwen3.8-max-preview',  // 2026-07-19 S231 — Terminal-Bench 2.1 86.6, SWE-Bench Pro 67.7, DeepSWE 1.1 56.6
+        'alibaba/qwen3.8-max',  // 2026-07-19 S231 — Terminal-Bench 2.1 86.6, SWE-Bench Pro 67.7, DeepSWE 1.1 56.6
         'microsoft/mai-thinking-1',  // 2026-06-02 S48 — MS MAI Thinking-1 35B/1T MoE
         'microsoft/mai-code-1-flash',  // 2026-06-02 S48 — MS MAI Code-1-Flash 5B
         'microsoft/mai-cyber-1-flash',  // 2026-07-27 S212 — MS cyber-specialized fine-tune of MAI-Code-1-Flash (137B-A5B); CVEBench 31.4 / CRSBench 65.1 / ExploitGym 0 (defensive)
