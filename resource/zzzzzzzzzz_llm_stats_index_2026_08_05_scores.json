@@ -1,0 +1,93 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-05",
+    "session": "S232",
+    "note": "llm-stats.com main leaderboard — the site's OWN composite indices (LLM STATS headline + REASONING/CODING/AGENT sub-indices), a 5th cross-cutting aggregator alongside AAII (aa_intelligence_index) and ECI (epoch_capabilities_index). Extracted from the rendered HTML table at llm-stats.com (top-15 frontier tier; table is client-virtualized to ~15 rows). Each row is llm-stats' single default config per model — mapped to the canonical (base) DB id. Values are 0-100 index points, higher better. Strict-attribution: only the llm-stats index columns are ingested here (not underlying standard benchmarks, which are collected separately from llm-stats' per-benchmark pages e.g. IPhO/RULER/LongBench). Claude Mythos Preview kept on its -preview id per preview-vs-GA rule.",
+    "sources": [
+      "https://llm-stats.com/",
+      "https://llm-stats.com/leaderboards/llm-leaderboard"
+    ]
+  },
+  "benchmarks": [
+    { "id": "llm_stats_index", "name": "LLM-Stats Intelligence Index", "category": "composite", "higher_better": true, "unit": "index", "_note": "llm-stats.com headline composite ('LLM STATS' column) — 0-100 cross-benchmark aggregate. Independent of AAII/ECI." },
+    { "id": "llm_stats_reasoning", "name": "LLM-Stats Reasoning Index", "category": "composite", "higher_better": true, "unit": "index", "_note": "llm-stats.com REASONING sub-index (0-100)." },
+    { "id": "llm_stats_coding", "name": "LLM-Stats Coding Index", "category": "coding", "higher_better": true, "unit": "index", "_note": "llm-stats.com CODING sub-index (0-100)." },
+    { "id": "llm_stats_agent", "name": "LLM-Stats Agentic Index", "category": "agentic", "higher_better": true, "unit": "index", "_note": "llm-stats.com AGENT sub-index (0-100)." }
+  ],
+  "scores": [
+    { "model": "anthropic/claude-opus-5", "benchmark": "llm_stats_index", "score": 57.8, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#1" },
+    { "model": "anthropic/claude-opus-5", "benchmark": "llm_stats_reasoning", "score": 57.5, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "anthropic/claude-opus-5", "benchmark": "llm_stats_coding", "score": 42.7, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "anthropic/claude-opus-5", "benchmark": "llm_stats_agent", "score": 43.8, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "openai/gpt-5.6-sol", "benchmark": "llm_stats_index", "score": 57.7, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#2" },
+    { "model": "openai/gpt-5.6-sol", "benchmark": "llm_stats_reasoning", "score": 57.7, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "openai/gpt-5.6-sol", "benchmark": "llm_stats_coding", "score": 49.9, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "openai/gpt-5.6-sol", "benchmark": "llm_stats_agent", "score": 44.3, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "anthropic/claude-fable-5", "benchmark": "llm_stats_index", "score": 57.0, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#3" },
+    { "model": "anthropic/claude-fable-5", "benchmark": "llm_stats_reasoning", "score": 55.0, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "anthropic/claude-fable-5", "benchmark": "llm_stats_coding", "score": 48.3, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "anthropic/claude-fable-5", "benchmark": "llm_stats_agent", "score": 43.8, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "anthropic/claude-mythos-preview", "benchmark": "llm_stats_index", "score": 56.1, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#4 — llm-stats marks UNRELEASED; kept on -preview id." },
+    { "model": "anthropic/claude-mythos-preview", "benchmark": "llm_stats_reasoning", "score": 56.5, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "anthropic/claude-mythos-preview", "benchmark": "llm_stats_coding", "score": 46.8, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "anthropic/claude-mythos-preview", "benchmark": "llm_stats_agent", "score": 38.3, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "moonshot/kimi-k3", "benchmark": "llm_stats_index", "score": 55.7, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#5" },
+    { "model": "moonshot/kimi-k3", "benchmark": "llm_stats_reasoning", "score": 54.9, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "moonshot/kimi-k3", "benchmark": "llm_stats_coding", "score": 45.4, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "moonshot/kimi-k3", "benchmark": "llm_stats_agent", "score": 42.5, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "openai/gpt-5.6-terra", "benchmark": "llm_stats_index", "score": 53.1, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#6" },
+    { "model": "openai/gpt-5.6-terra", "benchmark": "llm_stats_reasoning", "score": 51.8, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "openai/gpt-5.6-terra", "benchmark": "llm_stats_coding", "score": 45.8, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "openai/gpt-5.6-terra", "benchmark": "llm_stats_agent", "score": 40.6, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "alibaba/qwen3.8-max", "benchmark": "llm_stats_index", "score": 52.6, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#7 (GA)" },
+    { "model": "alibaba/qwen3.8-max", "benchmark": "llm_stats_reasoning", "score": 49.2, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "alibaba/qwen3.8-max", "benchmark": "llm_stats_coding", "score": 42.5, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "alibaba/qwen3.8-max", "benchmark": "llm_stats_agent", "score": 39.2, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "llm_stats_index", "score": 52.5, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#8" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "llm_stats_reasoning", "score": 51.9, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "llm_stats_coding", "score": 44.1, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "llm_stats_agent", "score": 37.9, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "meta/muse-spark-1.1", "benchmark": "llm_stats_index", "score": 51.7, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#9 — llm-stats attributes to Meta." },
+    { "model": "meta/muse-spark-1.1", "benchmark": "llm_stats_reasoning", "score": 52.1, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "meta/muse-spark-1.1", "benchmark": "llm_stats_coding", "score": 37.7, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "meta/muse-spark-1.1", "benchmark": "llm_stats_agent", "score": 37.0, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "llm_stats_index", "score": 50.6, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#10" },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "llm_stats_reasoning", "score": 50.1, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "llm_stats_coding", "score": 40.2, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "llm_stats_agent", "score": 35.1, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "xai/grok-4.5", "benchmark": "llm_stats_index", "score": 49.1, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#11" },
+    { "model": "xai/grok-4.5", "benchmark": "llm_stats_reasoning", "score": 47.9, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "xai/grok-4.5", "benchmark": "llm_stats_coding", "score": 39.8, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "xai/grok-4.5", "benchmark": "llm_stats_agent", "score": 35.0, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "openai/gpt-5.5", "benchmark": "llm_stats_index", "score": 49.0, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#12" },
+    { "model": "openai/gpt-5.5", "benchmark": "llm_stats_reasoning", "score": 48.2, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "openai/gpt-5.5", "benchmark": "llm_stats_coding", "score": 41.1, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "openai/gpt-5.5", "benchmark": "llm_stats_agent", "score": 33.9, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "deepseek/deepseek-v4-flash-0731", "benchmark": "llm_stats_index", "score": 48.5, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#13" },
+    { "model": "deepseek/deepseek-v4-flash-0731", "benchmark": "llm_stats_reasoning", "score": 46.1, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "deepseek/deepseek-v4-flash-0731", "benchmark": "llm_stats_coding", "score": 37.9, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "deepseek/deepseek-v4-flash-0731", "benchmark": "llm_stats_agent", "score": 35.4, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "bytedance/seed-2.1-pro", "benchmark": "llm_stats_index", "score": 47.2, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#14" },
+    { "model": "bytedance/seed-2.1-pro", "benchmark": "llm_stats_reasoning", "score": 48.1, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "bytedance/seed-2.1-pro", "benchmark": "llm_stats_coding", "score": 35.7, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "bytedance/seed-2.1-pro", "benchmark": "llm_stats_agent", "score": 32.7, "unit": "index", "_source": "https://llm-stats.com/" },
+
+    { "model": "zhipu/glm-5.2", "benchmark": "llm_stats_index", "score": 46.8, "unit": "index", "_source": "https://llm-stats.com/", "_note": "#15" },
+    { "model": "zhipu/glm-5.2", "benchmark": "llm_stats_reasoning", "score": 46.1, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "zhipu/glm-5.2", "benchmark": "llm_stats_coding", "score": 38.4, "unit": "index", "_source": "https://llm-stats.com/" },
+    { "model": "zhipu/glm-5.2", "benchmark": "llm_stats_agent", "score": 32.5, "unit": "index", "_source": "https://llm-stats.com/" }
+  ]
+}

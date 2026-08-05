@@ -2724,7 +2724,7 @@ var App = {
             { name: 'Kimi Platform (API docs)', url: 'https://platform.kimi.ai/docs/guide/kimi-k2-6-quickstart', desc: 'Kimi K2.6 API — 256K context, OpenAI-compatible' },
             { name: 'Qwen3.6 — HuggingFace', url: 'https://huggingface.co/Qwen/Qwen3.6-27B', desc: 'Qwen3.6-27B dense + Qwen3.6-35B-A3B MoE model cards' },
             { name: 'LLM Stats — Model Updates', url: 'https://llm-stats.com/llm-updates', desc: 'Daily frontier model release feed (newest first)' },
-            { name: 'LLM Stats', url: 'https://llm-stats.com', desc: 'GPQA, SWE-bench, AIME, HLE, ARC-AGI-2, MMLU-Pro' },
+            { name: 'LLM Stats', url: 'https://llm-stats.com', desc: 'GPQA, SWE-bench, AIME, HLE, ARC-AGI-2, MMLU-Pro. Site composite indices (LLM-Stats Intelligence/Reasoning/Coding/Agentic) tracked for top-15 frontier models — 5th cross-cutting aggregator alongside AAII·ECI.' },
             { name: 'LLM-Of-China-Comparison (GitHub)', url: 'https://github.com/happypaul2139-svg/LLM-Of-China-Comparison', desc: '6 frontier 중국 LLM 비교 (Kimi K2.6 / MiniMax M2.7 / MiMo v2.5-Pro / GLM 5.1 / DeepSeek V4-Pro / Qwen3.6-Plus) on 5 practical scenarios — Long Doc / Code / Professional Writing / Data Analysis / Research & Planning. Composite leaderboard 0.8 effect + 0.1 cost + 0.1 speed.' },
             // ---- 2026-06-21 reference audit (S136-S140) — per-benchmark leaderboards on llm-stats ----
             { name: 'llm-stats RULER (long-context)', url: 'https://llm-stats.com/benchmarks/ruler', desc: 'RULER 128K Top 5: Jamba-1.5-large 0.951 / Gemini 1.5 Pro 0.944 / Nemotron 3 Super 0.917 / Opus 4.6 0.911 / GPT-4 0.812.' },
