@@ -32,7 +32,17 @@ window.Price = (function () {
         ['livecodebench',            'LiveCodeBench'],
         ['terminal_bench_2_1',       'Terminal-Bench 2.1'],
         ['hle',                      "Humanity's Last Exam (HLE)"],
-        ['llm_stats_index',          'LLM-Stats Index']
+        ['llm_stats_index',          'LLM-Stats Index'],
+        // Cyber-security capability metrics
+        ['cybench',                  'Cybench (CTF)'],
+        ['nyu_ctf',                  'NYU CTF Bench'],
+        ['cybergym_success_rate',    'CyberGym Success Rate'],
+        ['cvebench',                 'CVE-Bench'],
+        // Agent / tool-use metrics
+        ['gaia',                     'GAIA (general agent)'],
+        ['osworld_verified',         'OSWorld-Verified (computer use)'],
+        ['browsecomp',               'BrowseComp (web agent)'],
+        ['tau2_telecom',             'τ²-Bench Telecom (tool use)']
     ];
 
     var VENDOR_COLORS = {
