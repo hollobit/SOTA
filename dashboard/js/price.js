@@ -91,7 +91,7 @@ window.Price = (function () {
     var _modelsById = {};
     var _urlKeys = {
         'price-metric': 'p_metric', 'price-basis': 'p_basis', 'price-period': 'p_period',
-        'price-vendor': 'p_vendor', 'price-logscale': 'p_log', 'price-connect': 'p_conn',
+        'price-vendor': 'p_vendor', 'price-country': 'p_country', 'price-logscale': 'p_log', 'price-connect': 'p_conn',
         'price-labels': 'p_lbl', 'price-flags': 'p_flag', 'price-hitrate': 'p_hit',
         'price-pareto': 'p_pareto'
     };
@@ -241,12 +241,21 @@ window.Price = (function () {
                 var o = document.createElement('option'); o.value = v; o.textContent = v; vsel.appendChild(o);
             });
         }
+        // Populate country filter (via Timeline's country map).
+        var csel = document.getElementById('price-country');
+        if (csel && csel.options.length <= 1) {
+            var cs = {};
+            Object.keys(priced).forEach(function (id) { var cc = _country(id, _modelsById[id]); if (cc) cs[cc] = 1; });
+            Object.keys(cs).sort().forEach(function (cc) {
+                var o = document.createElement('option'); o.value = cc; o.textContent = cc; csel.appendChild(o);
+            });
+        }
         _applyUrl();
     }
 
     function _wire() {
         if (_wired) return; _wired = true;
-        ['price-metric', 'price-basis', 'price-vendor', 'price-logscale', 'price-connect', 'price-labels', 'price-flags', 'price-pareto'].forEach(function (id) {
+        ['price-metric', 'price-basis', 'price-vendor', 'price-country', 'price-logscale', 'price-connect', 'price-labels', 'price-flags', 'price-pareto'].forEach(function (id) {
             var el = document.getElementById(id);
             if (el) el.addEventListener('change', function () { _syncUrl(); render(); });
         });
@@ -276,6 +285,7 @@ window.Price = (function () {
         var basis  = _val('price-basis', 'output');
         var months = parseInt(_val('price-period', '12'), 10) || 12;
         var vendorF = _val('price-vendor', 'all');
+        var countryF = _val('price-country', 'all');
         var useLog = _chk('price-logscale');
         var connect = _chk('price-connect');
         var showLabels = _chk('price-labels');
@@ -303,6 +313,7 @@ window.Price = (function () {
             var model = _modelsById[id]; if (!model) return;
             var ven = _vendor(id, model);
             if (vendorF !== 'all' && ven !== vendorF) return;
+            if (countryF !== 'all' && _country(id, model) !== countryF) return;
             var price = _price(id, basis, hitRate); if (price == null || price <= 0) return;
             var perf = _scoreIdx[metric] && _scoreIdx[metric][id];
             if (perf == null) { skippedNoPerf++; return; }
@@ -453,6 +464,7 @@ window.Price = (function () {
             var model = _modelsById[id]; if (!model) return;
             var ven = _vendor(id, model);
             if (vendorF !== 'all' && ven !== vendorF) return;
+            if (countryF !== 'all' && _country(id, model) !== countryF) return;
             var rel = _relDate(model);
             if (rel && rel < cutoffStr) return;
             var inp = (inMap[id] != null ? inMap[id] : null);
