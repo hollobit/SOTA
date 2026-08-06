@@ -634,7 +634,7 @@ var App = {
         // to a blank pane.
         'video-gen':       ['js/image-gen.js', 'js/video-gen.js'],
         timeline:          ['js/frontier-compare.js', 'js/timeline.js'],
-        price:             ['js/price.js']
+        price:             ['js/frontier-compare.js', 'js/timeline.js', 'js/price.js']
     },
 
     // Per-tab init runner — called once the module's scripts are loaded

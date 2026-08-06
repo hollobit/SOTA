@@ -42,13 +42,42 @@ window.Price = (function () {
         nvidia: '#76b900', amazon: '#ff9900', cohere: '#39594d', minimax: '#e11d48', baidu: '#2932e1'
     };
 
+    // Plain system UI font for chart text (axes / labels / tooltip).
+    var NORMAL_FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+
     var _scoreIdx = {};   // benchmark_id -> { model_id: value }
     var _modelsById = {};
     var _urlKeys = {
         'price-metric': 'p_metric', 'price-basis': 'p_basis', 'price-period': 'p_period',
-        'price-vendor': 'p_vendor', 'price-logscale': 'p_log', 'price-connect': 'p_conn'
+        'price-vendor': 'p_vendor', 'price-logscale': 'p_log', 'price-connect': 'p_conn',
+        'price-labels': 'p_lbl', 'price-flags': 'p_flag'
     };
     var _wired = false, _chart = null;
+    var _sortKey = 'output', _sortDir = 'desc';   // price-table sort state
+    var _lastRows = [];
+
+    function _esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+        });
+    }
+
+    // Country (with flag) via Timeline's authoritative VENDOR_TO_COUNTRY map
+    // (loaded as a price-tab dependency); graceful fallback if unavailable.
+    function _country(id, model) {
+        // _getCountry returns flag-prefixed strings like "🇺🇸 USA".
+        if (typeof Timeline !== 'undefined' && Timeline._getCountry) {
+            return Timeline._getCountry(id, model) || '';
+        }
+        return '';
+    }
+    // Just the flag emoji for a model (via Timeline's country map).
+    function _flag(id, model) {
+        if (typeof Timeline !== 'undefined' && Timeline._getCountry && Timeline._flagFromCountry) {
+            return Timeline._flagFromCountry(Timeline._getCountry(id, model)) || '';
+        }
+        return '';
+    }
 
     function _idx(scores) {
         var idx = {};
@@ -162,7 +191,7 @@ window.Price = (function () {
 
     function _wire() {
         if (_wired) return; _wired = true;
-        ['price-metric', 'price-basis', 'price-vendor', 'price-logscale', 'price-connect'].forEach(function (id) {
+        ['price-metric', 'price-basis', 'price-vendor', 'price-logscale', 'price-connect', 'price-labels', 'price-flags'].forEach(function (id) {
             var el = document.getElementById(id);
             if (el) el.addEventListener('change', function () { _syncUrl(); render(); });
         });
@@ -189,6 +218,8 @@ window.Price = (function () {
         var vendorF = _val('price-vendor', 'all');
         var useLog = _chk('price-logscale');
         var connect = _chk('price-connect');
+        var showLabels = _chk('price-labels');
+        var showFlags = _chk('price-flags');
 
         var metricLabel = (METRICS.filter(function (m) { return m[0] === metric; })[0] || [metric, metric])[1];
         var basisLabel = basis === 'input' ? 'Input $/1M' : basis === 'blended' ? 'Blended $/1M' : 'Output $/1M';
@@ -213,16 +244,30 @@ window.Price = (function () {
             var name = model.name || id;
             var p = {
                 value: [price, perf], modelId: id, name: name, vendor: ven, rel: rel || '',
-                itemStyle: { color: _vendorColor(ven) }
+                flag: _flag(id, model), itemStyle: { color: _vendorColor(ven) }
             };
             pts.push(p);
             var fk = _family(id);
             (families[fk] || (families[fk] = [])).push(p);
         });
 
+        // Point label per the 모델명/국기 toggles: flag + full name (either alone).
+        function _ptLabel(pp) {
+            var d = pp.data || {}, parts = [];
+            if (showFlags && d.flag) parts.push(d.flag);
+            if (showLabels && d.name) parts.push(d.name);
+            return parts.join(' ');
+        }
         var series = [{
             type: 'scatter', symbolSize: 12, data: pts, z: 3,
-            emphasis: { focus: 'series', label: { show: true, formatter: function (pp) { return pp.data.name; }, position: 'top' } },
+            label: {
+                show: showLabels || showFlags, position: 'right', formatter: _ptLabel,
+                fontFamily: NORMAL_FONT, fontSize: 11, color: '#cbd5e1'
+            },
+            emphasis: { focus: 'series', label: {
+                show: true, formatter: function (pp) { return (pp.data.flag ? pp.data.flag + ' ' : '') + pp.data.name; },
+                position: 'top', fontFamily: NORMAL_FONT
+            } },
             labelLayout: { hideOverlap: true }
         }];
 
@@ -242,9 +287,11 @@ window.Price = (function () {
 
         var option = {
             backgroundColor: 'transparent',
+            textStyle: { fontFamily: NORMAL_FONT },
             grid: { left: 60, right: 30, top: 20, bottom: 60 },
             tooltip: {
                 trigger: 'item',
+                textStyle: { fontFamily: NORMAL_FONT },
                 formatter: function (pp) {
                     if (!pp.data || !pp.data.modelId) return '';
                     var d = pp.data;
@@ -286,6 +333,90 @@ window.Price = (function () {
                 (skippedOld ? skippedOld + '개는 기간 밖, ' : '') +
                 (skippedNoPerf ? skippedNoPerf + '개는 선택 지표 점수 없음.' : '');
         }
+
+        // ---- per-model price table (input/output/blended + release/vendor/country) ----
+        var inMap = _scoreIdx[PRICE_IDS.input] || {}, outMap = _scoreIdx[PRICE_IDS.output] || {};
+        var tableIds = {};
+        Object.keys(inMap).forEach(function (id) { tableIds[id] = 1; });
+        Object.keys(outMap).forEach(function (id) { tableIds[id] = 1; });
+        var rows = [];
+        Object.keys(tableIds).forEach(function (id) {
+            var model = _modelsById[id]; if (!model) return;
+            var ven = _vendor(id, model);
+            if (vendorF !== 'all' && ven !== vendorF) return;
+            var rel = _relDate(model);
+            if (rel && rel < cutoffStr) return;
+            rows.push({
+                id: id, name: model.name || id, vendor: model.vendor || ven,
+                country: _country(id, model),
+                input: (inMap[id] != null ? inMap[id] : null),
+                output: (outMap[id] != null ? outMap[id] : null),
+                blended: _price(id, 'blended'),
+                rel: rel || ''
+            });
+        });
+        _lastRows = rows;
+        _renderTable(rows);
+    }
+
+    function _renderTable(rows) {
+        var wrap = document.getElementById('price-table-wrap');
+        if (!wrap) return;
+        var cols = [
+            { key: 'name',    label: '모델',        num: false },
+            { key: 'vendor',  label: '제조사',      num: false },
+            { key: 'country', label: '국가',        num: false },
+            { key: 'input',   label: 'Input $/1M',  num: true },
+            { key: 'output',  label: 'Output $/1M', num: true },
+            { key: 'blended', label: 'Blended $/1M',num: true },
+            { key: 'rel',     label: '출시일',      num: false }
+        ];
+        var dir = _sortDir === 'asc' ? 1 : -1;
+        rows.sort(function (a, b) {   // null-safe: blanks/nulls always last
+            var av = a[_sortKey], bv = b[_sortKey];
+            var an = (av == null || av === ''), bn = (bv == null || bv === '');
+            if (an && bn) return 0;
+            if (an) return 1;
+            if (bn) return -1;
+            if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * dir;
+            return String(av).localeCompare(String(bv)) * dir;
+        });
+        var h = '<table class="w-full text-sm border-collapse"><thead><tr class="text-gray-400 border-b border-gray-700">';
+        cols.forEach(function (c) {
+            var arrow = _sortKey === c.key ? (_sortDir === 'asc' ? ' ▲' : ' ▼') : '';
+            h += '<th data-key="' + c.key + '" class="px-3 py-2 ' + (c.num ? 'text-right' : 'text-left') +
+                ' cursor-pointer select-none hover:text-gray-200 whitespace-nowrap">' + c.label + arrow + '</th>';
+        });
+        h += '</tr></thead><tbody>';
+        var fmt = function (v) { return v == null ? '—' : '$' + (+v).toFixed(2); };
+        rows.forEach(function (r) {
+            h += '<tr class="border-b border-gray-800 hover:bg-gray-800/40">' +
+                '<td class="px-3 py-1.5 text-left"><button data-model="' + _esc(r.id) + '" class="price-tbl-model text-blue-400 hover:text-blue-300">' + _esc(r.name) + '</button></td>' +
+                '<td class="px-3 py-1.5 text-left text-gray-300 whitespace-nowrap">' + _esc(r.vendor) + '</td>' +
+                '<td class="px-3 py-1.5 text-left text-gray-300 whitespace-nowrap">' + _esc(r.country) + '</td>' +
+                '<td class="px-3 py-1.5 text-right tabular-nums">' + fmt(r.input) + '</td>' +
+                '<td class="px-3 py-1.5 text-right tabular-nums">' + fmt(r.output) + '</td>' +
+                '<td class="px-3 py-1.5 text-right tabular-nums">' + fmt(r.blended) + '</td>' +
+                '<td class="px-3 py-1.5 text-left text-gray-400 whitespace-nowrap">' + _esc(r.rel || '—') + '</td>' +
+                '</tr>';
+        });
+        h += '</tbody></table>';
+        wrap.innerHTML = h;
+
+        wrap.querySelectorAll('th[data-key]').forEach(function (th) {
+            th.addEventListener('click', function () {
+                var k = th.getAttribute('data-key');
+                if (_sortKey === k) _sortDir = (_sortDir === 'asc' ? 'desc' : 'asc');
+                else { _sortKey = k; _sortDir = (k === 'input' || k === 'output' || k === 'blended') ? 'desc' : 'asc'; }
+                _renderTable(_lastRows);   // re-sort table only (chart unchanged)
+            });
+        });
+        wrap.querySelectorAll('.price-tbl-model').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var id = btn.getAttribute('data-model');
+                if (id && typeof Modal !== 'undefined' && Modal.showModel) Modal.showModel(id);
+            });
+        });
     }
 
     return { init: init, render: render };
