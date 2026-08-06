@@ -1,0 +1,29 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-06",
+    "session": "S237",
+    "note": "Sovereign-model token pricing collected DIRECTLY from national vendor API pricing pages (not on OpenRouter/AA/llm-stats — 0/94 unpriced sovereign models are on aggregators). Official vendor prices are authoritative, so they win over aggregator values. Batch 1: France (Mistral, mistral.ai/pricing/api, USD) + Korea (Upstage Solar, upstage.ai/pricing/api, USD). Both vendors publish in USD so no FX conversion needed. Remaining national vendors (Naver HyperCLOVA X / KT / SKT in KRW, Japanese PFN/Stockmark/Rakuten in JPY, Tencent in CNY, Aleph Alpha in EUR) require per-page collection + FX conversion; Sarvam pricing URL 404s. Most other unpriced sovereign models are open-weight (self-hosted, no API $/token) and no major host (DeepInfra/Together/Fireworks — all aggregated by OpenRouter, which covers 0) serves them.",
+    "sources": [
+      "https://mistral.ai/pricing/api/",
+      "https://www.upstage.ai/pricing/api"
+    ]
+  },
+  "scores": [
+    { "model": "mistral/mistral-medium-3.5", "benchmark": "input_price_per_mtok_lower_better",  "score": 1.5, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/", "_note": "France sovereign — Mistral official API" },
+    { "model": "mistral/mistral-medium-3.5", "benchmark": "output_price_per_mtok_lower_better", "score": 7.5, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/" },
+    { "model": "mistral/mistral-large-3",    "benchmark": "input_price_per_mtok_lower_better",  "score": 0.5, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/" },
+    { "model": "mistral/mistral-large-3",    "benchmark": "output_price_per_mtok_lower_better", "score": 1.5, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/" },
+    { "model": "mistral/mistral-small-4",    "benchmark": "input_price_per_mtok_lower_better",  "score": 0.15, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/" },
+    { "model": "mistral/mistral-small-4",    "benchmark": "output_price_per_mtok_lower_better", "score": 0.6, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/" },
+    { "model": "mistral/ministral-3-3b",     "benchmark": "input_price_per_mtok_lower_better",  "score": 0.1, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/" },
+    { "model": "mistral/ministral-3-3b",     "benchmark": "output_price_per_mtok_lower_better", "score": 0.1, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/" },
+    { "model": "mistral/ministral-3-8b",     "benchmark": "input_price_per_mtok_lower_better",  "score": 0.15, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/" },
+    { "model": "mistral/ministral-3-8b",     "benchmark": "output_price_per_mtok_lower_better", "score": 0.15, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/" },
+    { "model": "mistral/ministral-3-14b",    "benchmark": "input_price_per_mtok_lower_better",  "score": 0.2, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/" },
+    { "model": "mistral/ministral-3-14b",    "benchmark": "output_price_per_mtok_lower_better", "score": 0.2, "unit": "usd_per_1m", "_source": "https://mistral.ai/pricing/api/" },
+
+    { "model": "upstage/solar-pro-3", "benchmark": "input_price_per_mtok_lower_better",         "score": 0.15, "unit": "usd_per_1m", "_source": "https://www.upstage.ai/pricing/api", "_note": "Korea sovereign — Upstage official API" },
+    { "model": "upstage/solar-pro-3", "benchmark": "output_price_per_mtok_lower_better",        "score": 0.6, "unit": "usd_per_1m", "_source": "https://www.upstage.ai/pricing/api" },
+    { "model": "upstage/solar-pro-3", "benchmark": "cached_input_price_per_mtok_lower_better",  "score": 0.015, "unit": "usd_per_1m", "_source": "https://www.upstage.ai/pricing/api" }
+  ]
+}
