@@ -278,7 +278,9 @@ window.Price = (function () {
                 show: true, formatter: function (pp) { return (pp.data.flag ? pp.data.flag + ' ' : '') + pp.data.name; },
                 position: 'top', fontFamily: NORMAL_FONT
             } },
-            labelLayout: { hideOverlap: true }
+            // When labels/flags are explicitly on, show ALL of them (no overlap
+            // culling); only hide-on-overlap for the hover-only emphasis labels.
+            labelLayout: { hideOverlap: !(showLabels || showFlags) }
         }];
 
         // Trajectory lines per family (>=2 points), sorted by release date.
@@ -298,7 +300,9 @@ window.Price = (function () {
         var option = {
             backgroundColor: 'transparent',
             textStyle: { fontFamily: NORMAL_FONT },
-            grid: { left: 60, right: 30, top: 20, bottom: 60 },
+            // Extra right room when labels are on so right-edge (priciest) point
+            // labels aren't clipped.
+            grid: { left: 60, right: (showLabels || showFlags) ? 150 : 30, top: 20, bottom: 60 },
             tooltip: {
                 trigger: 'item',
                 textStyle: { fontFamily: NORMAL_FONT },
