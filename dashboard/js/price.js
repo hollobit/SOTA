@@ -283,18 +283,29 @@ window.Price = (function () {
             labelLayout: { hideOverlap: !(showLabels || showFlags) }
         }];
 
-        // Trajectory lines per family (>=2 points), sorted by release date.
+        // Trajectory lines per family (>=2 points), sorted by release date, with
+        // an arrow on each segment pointing old -> new (direction of updates).
         if (connect) {
+            var segs = [];
             Object.keys(families).forEach(function (fk) {
                 var arr = families[fk].filter(function (p) { return p.rel; });
                 if (arr.length < 2) return;
                 arr.sort(function (a, b) { return a.rel < b.rel ? -1 : a.rel > b.rel ? 1 : 0; });
-                series.push({
-                    type: 'line', z: 1, silent: true, symbol: 'none',
-                    lineStyle: { width: 1, color: _vendorColor(arr[0].vendor), opacity: 0.35 },
-                    data: arr.map(function (p) { return p.value; })
-                });
+                for (var i = 0; i < arr.length - 1; i++) {
+                    segs.push({
+                        coords: [arr[i].value, arr[i + 1].value],
+                        lineStyle: { color: _vendorColor(arr[0].vendor) }
+                    });
+                }
             });
+            if (segs.length) {
+                series.push({
+                    type: 'lines', coordinateSystem: 'cartesian2d', z: 1, silent: true,
+                    symbol: ['none', 'arrow'], symbolSize: 7,
+                    lineStyle: { width: 1, opacity: 0.4, curveness: 0 },
+                    data: segs
+                });
+            }
         }
 
         var option = {
