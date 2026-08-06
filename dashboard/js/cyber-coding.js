@@ -606,6 +606,7 @@ var CyberCoding = {
         'xai/grok-4-heavy',
         'xai/grok-4.20',
         'meta/muse-spark',
+        'meta/muse-spark-1.2',    // 2026-08-05 S233 — Meta coding-focused release, 1M ctx; Terminal-Bench 2.1 80.15 (AA) / 82.9 (Meta self-report) / SciCode 56.4 / Agentic 46.77
         'zhipu/glm-5',
         'zhipu/glm-5.1',
         'zhipu/glm-5.2',          // 2026-06-19 S137 — AAII v4.1 51 open-weights SOTA; FrontierSWE 74.4 / Terminal-Bench 2.1 82.7 / SWE-Pro 62.1 / DeepSWE 46.2

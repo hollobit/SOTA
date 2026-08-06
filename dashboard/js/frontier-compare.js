@@ -266,6 +266,7 @@ var FrontierCompare = {
         'xai/grok-4-heavy',
         'xai/grok-4.20',
         'meta/muse-spark',
+        'meta/muse-spark-1.2',   // 2026-08-05 S233 — coding-focused point release, 1M ctx; AAII 54.07 / Agentic 46.77 / Terminal-Bench 2.1 80.15 (AA) / GPQA 90.4
 
         // Open-weight frontier
         'deepseek/deepseek-v3.2',

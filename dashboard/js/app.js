@@ -3605,7 +3605,17 @@ var App = {
             { name: '3D Arena Elo (Jun 2025)', url: 'https://arxiv.org/abs/2506.18787', desc: '[benchmark_paper] Human-preference Elo. Splats beat mesh +16.6, textured beat untextured +144.1.' },
             { name: 'MUSK pathology+text VLM (Nature Cancer 2025)', url: 'https://www.nature.com/articles/musk-immunotherapy', desc: '[peer_reviewed] 0.77 AUC immunotherapy response prediction.' },
             { name: 'CoffeeBench arxiv paper (Sakana AI x KPMG Azusa, Jun 2026)', url: 'https://arxiv.org/abs/2606.16613', desc: '[benchmark_paper] Multi-agent economic environment, 90-day simulation, net profit metric.' },
-            { name: 'SakanaAI/CoffeeBench GitHub', url: 'https://github.com/SakanaAI/CoffeeBench', desc: '[vendor_repo] Open-source. 6-agent ReAct framework, 30-min tool calls, business-day timeline.' }
+            { name: 'SakanaAI/CoffeeBench GitHub', url: 'https://github.com/SakanaAI/CoffeeBench', desc: '[vendor_repo] Open-source. 6-agent ReAct framework, 30-min tool calls, business-day timeline.' },
+            // ---- 2026-08-06 S233 — Muse Spark 1.2 / Alpamayo 2 Super / Shieldstral / CoPE-B ----
+            { name: 'Meta Muse Spark 1.2 (developer.meta.com)', url: 'https://developer.meta.com/ai/models/muse-spark/', desc: '[model_card] Meta coding-focused frontier release, 1M context. Co-shipped with Muse Code agent. Benchmarks published as chart images.' },
+            { name: 'Muse Spark 1.2 — Artificial Analysis', url: 'https://artificialanalysis.ai/models/muse-spark-1-2', desc: '[leaderboard] AA first-party (Meta): AAII 54.07 / Agentic 46.77 / Terminal-Bench 2.1 80.15 / GPQA 90.4 / HLE 43.9 / SciCode 56.4.' },
+            { name: 'NVIDIA Alpamayo 2 Super (HF)', url: 'https://huggingface.co/nvidia/Alpamayo2-Super', desc: '[model_card] 34B AV Vision-Language-Action (32B VLM + 2.3B diffusion) on Cosmos3-Super. LingoQA 79.2 / AlpaSim 1.50 / minADE6@6.4s 0.911m. OpenMDW-1.1.' },
+            { name: 'NVIDIA Alpamayo 2 Super blog', url: 'https://blogs.nvidia.com/blog/alpamayo-2-super-open-model-now-available/', desc: '[vendor_blog] Alpamayo Open Platform announcement.' },
+            { name: 'Mistral Shieldstral 1.0 3B (HF)', url: 'https://huggingface.co/mistralai/Shieldstral-1.0-3B', desc: '[model_card] 3B policy-adaptive multimodal safety classifier on Ministral-3-3B. HarmBench-prompt 99.4 / WildGuard 88.1 / VLGuard 97.7 (F1). Apache-2.0.' },
+            { name: 'Shieldstral technical report (arXiv 2607.25857)', url: 'https://arxiv.org/abs/2607.25857', desc: '[model_paper] Mistral policy-adaptive guardrail. PDF stored in resource/.' },
+            { name: 'Mistral Shieldstral announcement', url: 'https://mistral.ai/news/shieldstral/', desc: '[vendor_blog] Aug 4 2026 launch.' },
+            { name: 'Zentropi CoPE-B-A4B (HF)', url: 'https://huggingface.co/zentropi-ai/cope-b-a4b', desc: '[model_card] Content-policy evaluator, 25.2B/3.8B-active MoE on Gemma-4-26B-A4B-it, 256K ctx. Internal-test F1 0.81. Apache-2.0.' },
+            { name: 'CoPE paper (arXiv 2512.18027)', url: 'https://arxiv.org/abs/2512.18027', desc: '[model_paper] "CoPE: A Small LM for Steerable and Scalable Content Labeling" (Zentropi). PDF stored in resource/.' }
         ];
 
         sites.forEach(function(site) {

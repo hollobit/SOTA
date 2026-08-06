@@ -1,0 +1,95 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-06",
+    "session": "S233",
+    "note": "4 net-new models from user-provided primary sources. STRICT-ATTRIBUTION: each model's OWN column/first-party data only; competitor columns skipped. (1) Muse Spark 1.2 (Meta, coding-focused frontier point-release of 1.1): AA first-party RSC currentModel extraction from artificialanalysis.ai/models/muse-spark-1-2 (performanceDataSource=firstParty/Meta). Meta's self-reported Terminal-Bench 2.1 82.9% (Muse Code harness, unverified on tbench.ai) NOT used — AA's independent 80.15% used instead. 'Muse Code' is a coding-agent PRODUCT, not a model (no entry). (2) Alpamayo 2 Super (NVIDIA, 34B AV VLA): HF card text scores only (multi-task + LingoQA chart values are images, skipped). (3) Shieldstral 1.0 3B (Mistral, multimodal safety classifier): HF card F1 tables, Shieldstral-3B column only; same-benchmark-different-task disambiguated via task-suffixed ids (existing 'harmbench' is jailbreak-ASR/cyber_defense, distinct from these classifier-F1 ids). (4) CoPE-B-A4B (Zentropi content-policy evaluator): eval is on Zentropi's INTERNAL held-out test (vendor-internal), so only one clearly-labeled self-reported metric added. MLX-4bit quant + GraphShieldMistral Space skipped (deployment/demo variants).",
+    "sources": [
+      "https://artificialanalysis.ai/models/muse-spark-1-2",
+      "https://developer.meta.com/ai/models/muse-spark/",
+      "https://kingy.ai/blog/muse-code-muse-spark-1-2-benchmarks-verified/",
+      "https://huggingface.co/nvidia/Alpamayo2-Super",
+      "https://blogs.nvidia.com/blog/alpamayo-2-super-open-model-now-available/",
+      "https://huggingface.co/mistralai/Shieldstral-1.0-3B",
+      "https://mistral.ai/news/shieldstral/",
+      "https://arxiv.org/abs/2607.25857",
+      "https://huggingface.co/zentropi-ai/cope-b-a4b",
+      "https://arxiv.org/abs/2512.18027"
+    ]
+  },
+  "models": [
+    { "id": "meta/muse-spark-1.2", "name": "Muse Spark 1.2", "developer": "Meta", "vendor": "Meta", "release_date": "2026-08-05", "license": "proprietary (API)", "architecture": "reasoning LLM, coding-optimized", "context_window": 1048576, "_note": "Coding-focused point release of Muse Spark 1.1. 1M context. Pricing $1.25/$4.25 per Mtok (input/output). Reasoning model. Co-shipped with 'Muse Code' agent product." },
+    { "id": "nvidia/alpamayo2-super", "name": "Alpamayo 2 Super", "developer": "NVIDIA", "vendor": "NVIDIA", "release_date": "2026-08-04", "license": "OpenMDW-1.1", "architecture": "AV Vision-Language-Action (32B VLM backbone + 2.3B diffusion action expert)", "base_model": "nvidia/cosmos3-super", "_note": "34B autonomous-vehicle foundation model. Tasks: trajectory prediction, VQA, 2D grounding, auto-labeling, Chain-of-Causation reasoning. Datasets: PhysicalAI-Autonomous-Vehicles(-NuRec). Built on Cosmos 3 Super Reasoner." },
+    { "id": "mistral/shieldstral-1.0-3b", "name": "Shieldstral 1.0 3B", "developer": "Mistral AI", "vendor": "Mistral", "release_date": "2026-08-04", "license": "apache-2.0", "architecture": "3B policy-adaptive multimodal safety classifier (Pixtral vision encoder)", "base_model": "mistral/ministral-3-3b-base-2512", "_note": "Policy-adaptive guardrail: evaluates content vs natural-language safety policy, single yes/no forward pass -> continuous score. Text+image, 12 languages, 32k trained (256k max). arXiv:2607.25857." },
+    { "id": "zentropi/cope-b-a4b", "name": "CoPE-B-A4B", "developer": "Zentropi", "vendor": "Zentropi", "release_date": null, "license": "apache-2.0", "architecture": "MoE content-policy evaluator (25.2B total / 3.8B active, 128 experts top-8)", "base_model": "google/gemma-4-26b-a4b-it", "_note": "2nd-gen COntent Policy Evaluator (text-only variant). Policy-adaptive binary content labeling, 256K context. arXiv:2512.18027. Multimodal companion: cope-b-a4b-mm." }
+  ],
+  "benchmarks": [
+    { "id": "alpasim_score", "name": "AlpaSim Score (closed-loop AV)", "category": "physical-ai", "higher_better": true, "unit": "score", "_note": "NVIDIA AlpaSim closed-loop driving simulation score; higher better." },
+    { "id": "minade6_6p4s", "name": "minADE6 @6.4s (open-loop AV)", "category": "physical-ai", "higher_better": false, "unit": "m", "_note": "Minimum Average Displacement Error over 6 trajectory modes at 6.4s horizon, meters; LOWER better." },
+
+    { "id": "wildguardtest_prompt_f1", "name": "WildGuardTest (prompt classification F1)", "category": "safety", "higher_better": true, "unit": "%", "_note": "Safety guardrail prompt-harmfulness classification, F1." },
+    { "id": "wildguardtest_response_f1", "name": "WildGuardTest (response classification F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "wildguardtest_refusal_f1", "name": "WildGuardTest (refusal detection F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "toxicchat_prompt_f1", "name": "ToxicChat (prompt classification F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "aegis_v2_prompt_f1", "name": "Aegis v2 (prompt classification F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "aegis_v2_response_f1", "name": "Aegis v2 (response classification F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "harmbench_prompt_clf_f1", "name": "HarmBench (prompt classification F1)", "category": "safety", "higher_better": true, "unit": "%", "_note": "Safety-classifier F1 (distinct from 'harmbench' jailbreak-ASR)." },
+    { "id": "harmbench_response_clf_f1", "name": "HarmBench (response classification F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "openai_moderation_prompt_f1", "name": "OpenAI Moderation (prompt classification F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "beavertails_response_f1", "name": "BeaverTails (response classification F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "xstest_harm_response_f1", "name": "XSTest Harm (response classification F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "xstest_refusal_f1", "name": "XSTest (refusal detection F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "qwen3guardtest_response_f1", "name": "Qwen3GuardTest (response classification F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "polyguard_prompt_f1", "name": "PolyGuard (multilingual prompt F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "polyguard_response_f1", "name": "PolyGuard (multilingual response F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "polyguard_refusal_f1", "name": "PolyGuard (refusal detection F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "rtplx_prompt_f1", "name": "RTP-LX (multilingual prompt F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "rtplx_completion_f1", "name": "RTP-LX (multilingual completion F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "vlguard_f1", "name": "VLGuard (multimodal safety F1)", "category": "safety", "higher_better": true, "unit": "%", "_note": "Multimodal (image+text) safety classification F1." },
+    { "id": "unsafebench_f1", "name": "UnsafeBench (multimodal safety F1)", "category": "safety", "higher_better": true, "unit": "%" },
+    { "id": "llavaguard_f1", "name": "LlavaGuard (multimodal safety F1)", "category": "safety", "higher_better": true, "unit": "%" },
+
+    { "id": "cope_content_labeling_f1", "name": "CoPE Content Labeling F1 (Zentropi internal test)", "category": "safety", "higher_better": true, "unit": "F1", "_note": "VENDOR-INTERNAL: Zentropi held-out (content,policy) test set, unweighted mean F1 across topics. Not a standard public benchmark; comparability limited." }
+  ],
+  "scores": [
+    { "model": "meta/muse-spark-1.2", "benchmark": "aa_intelligence_index", "score": 54.07, "unit": "index", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2", "_note": "AAII (firstParty/Meta), not estimated." },
+    { "model": "meta/muse-spark-1.2", "benchmark": "aa_agentic_index", "score": 46.77, "unit": "index", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2" },
+    { "model": "meta/muse-spark-1.2", "benchmark": "aa_omniscience", "score": 21.53, "unit": "index", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2" },
+    { "model": "meta/muse-spark-1.2", "benchmark": "aa_lcr", "score": 64.67, "unit": "%", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2" },
+    { "model": "meta/muse-spark-1.2", "benchmark": "gdpval_aa_elo", "score": 1630.89, "unit": "elo", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2" },
+    { "model": "meta/muse-spark-1.2", "benchmark": "gdpval_aa_v2", "score": 56.54, "unit": "%", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2", "_note": "Normalized (Elo-500)/2000." },
+    { "model": "meta/muse-spark-1.2", "benchmark": "tau3_banking", "score": 27.22, "unit": "%", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2" },
+    { "model": "meta/muse-spark-1.2", "benchmark": "terminal_bench_2_1", "score": 80.15, "unit": "%", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2", "_note": "AA independent harness. Meta self-reports 82.9% (Muse Code harness, unverified) — not used." },
+    { "model": "meta/muse-spark-1.2", "benchmark": "scicode", "score": 56.37, "unit": "%", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2" },
+    { "model": "meta/muse-spark-1.2", "benchmark": "hle", "score": 43.93, "unit": "%", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2" },
+    { "model": "meta/muse-spark-1.2", "benchmark": "gpqa_diamond", "score": 90.40, "unit": "%", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2" },
+    { "model": "meta/muse-spark-1.2", "benchmark": "critpt", "score": 17.71, "unit": "%", "_source": "https://artificialanalysis.ai/models/muse-spark-1-2" },
+
+    { "model": "nvidia/alpamayo2-super", "benchmark": "lingoqa", "score": 79.2, "unit": "%", "_source": "https://huggingface.co/nvidia/Alpamayo2-Super", "_note": "LingoQA Lingo-Judge Score." },
+    { "model": "nvidia/alpamayo2-super", "benchmark": "alpasim_score", "score": 1.50, "unit": "score", "_source": "https://huggingface.co/nvidia/Alpamayo2-Super", "_note": "Closed-loop, 910 scenarios (PhysicalAI-AV-NuRec), ±0.13." },
+    { "model": "nvidia/alpamayo2-super", "benchmark": "minade6_6p4s", "score": 0.911, "unit": "m", "_source": "https://huggingface.co/nvidia/Alpamayo2-Super", "_note": "Open-loop, 1434 challenging samples (PhysicalAI-AV). Lower better." },
+
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "wildguardtest_prompt_f1", "score": 88.1, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "toxicchat_prompt_f1", "score": 84.1, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "aegis_v2_prompt_f1", "score": 86.2, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "harmbench_prompt_clf_f1", "score": 99.4, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "openai_moderation_prompt_f1", "score": 81.4, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "wildguardtest_response_f1", "score": 80.4, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "harmbench_response_clf_f1", "score": 87.0, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "beavertails_response_f1", "score": 85.0, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "xstest_harm_response_f1", "score": 93.5, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "aegis_v2_response_f1", "score": 87.2, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "qwen3guardtest_response_f1", "score": 82.9, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "polyguard_prompt_f1", "score": 84.6, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "polyguard_response_f1", "score": 78.3, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "rtplx_prompt_f1", "score": 70.3, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "rtplx_completion_f1", "score": 93.5, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "wildguardtest_refusal_f1", "score": 90.3, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "xstest_refusal_f1", "score": 94.6, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "polyguard_refusal_f1", "score": 89.5, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "vlguard_f1", "score": 97.7, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "unsafebench_f1", "score": 81.8, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+    { "model": "mistral/shieldstral-1.0-3b", "benchmark": "llavaguard_f1", "score": 72.0, "unit": "%", "_source": "https://huggingface.co/mistralai/Shieldstral-1.0-3B" },
+
+    { "model": "zentropi/cope-b-a4b", "benchmark": "cope_content_labeling_f1", "score": 0.81, "unit": "F1", "_source": "https://huggingface.co/zentropi-ai/cope-b-a4b", "_note": "Zentropi internal held-out test, avg-across-topics F1 (vendor-internal). Multimodal companion cope-b-a4b-mm scores 0.82." }
+  ]
+}
