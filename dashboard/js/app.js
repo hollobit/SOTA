@@ -633,7 +633,8 @@ var App = {
         // leaves window.ImageGen undefined and VideoGen.render() early-returns
         // to a blank pane.
         'video-gen':       ['js/image-gen.js', 'js/video-gen.js'],
-        timeline:          ['js/frontier-compare.js', 'js/timeline.js']
+        timeline:          ['js/frontier-compare.js', 'js/timeline.js'],
+        price:             ['js/price.js']
     },
 
     // Per-tab init runner — called once the module's scripts are loaded
@@ -650,7 +651,8 @@ var App = {
         agent:         function(self) { if (typeof Agent !== 'undefined' && Agent.init) Agent.init(self.data.models, self.data.benchmarks, self.data.scores); },
         'image-gen':   function(self) { if (typeof ImageGen !== 'undefined' && ImageGen.init) ImageGen.init(self.data.models, self.data.benchmarks, self.data.scores); },
         'video-gen':   function(self) { if (typeof VideoGen !== 'undefined' && VideoGen.init) VideoGen.init(self.data.models, self.data.benchmarks, self.data.scores); },
-        timeline:      function(self) { if (typeof Timeline !== 'undefined') Timeline.init(self.data.models, self.data.benchmarks, self.data.scores); }
+        timeline:      function(self) { if (typeof Timeline !== 'undefined') Timeline.init(self.data.models, self.data.benchmarks, self.data.scores); },
+        price:         function(self) { if (typeof Price !== 'undefined' && Price.init) Price.init(self.data.models, self.data.benchmarks, self.data.scores); }
     },
 
     _scriptCache: {}, // src -> Promise<void>
@@ -727,6 +729,7 @@ var App = {
         else if (tabId === 'image-gen' && typeof ImageGen !== 'undefined') ImageGen.render();
         else if (tabId === 'video-gen' && typeof VideoGen !== 'undefined') VideoGen.render();
         else if (tabId === 'timeline' && typeof Timeline !== 'undefined') Timeline.render();
+        else if (tabId === 'price' && typeof Price !== 'undefined') Price.render();
         else if (tabId === 'resources') self.renderResources();
         else if (tabId === 'changelog') self.renderChangelog();
         else if (tabId === 'graphrag' && typeof GraphRAG !== 'undefined') GraphRAG.render();
@@ -768,7 +771,7 @@ var App = {
                         leaderboard:1, comparison:1, 'frontier-compare':1,
                         'cyber-coding':1, sovereign:1, 'physical-ai':1,
                         'medical-ai':1, ai4s:1, agent:1, 'image-gen':1,
-                        'video-gen':1, timeline:1, trends:1,
+                        'video-gen':1, timeline:1, trends:1, price:1,
                         // Explorer.compare() reads App.data.scores directly at
                         // compare-button click time. Without this entry the
                         // click handler runs against an empty scores array and
@@ -3615,7 +3618,9 @@ var App = {
             { name: 'Shieldstral technical report (arXiv 2607.25857)', url: 'https://arxiv.org/abs/2607.25857', desc: '[model_paper] Mistral policy-adaptive guardrail. PDF stored in resource/.' },
             { name: 'Mistral Shieldstral announcement', url: 'https://mistral.ai/news/shieldstral/', desc: '[vendor_blog] Aug 4 2026 launch.' },
             { name: 'Zentropi CoPE-B-A4B (HF)', url: 'https://huggingface.co/zentropi-ai/cope-b-a4b', desc: '[model_card] Content-policy evaluator, 25.2B/3.8B-active MoE on Gemma-4-26B-A4B-it, 256K ctx. Internal-test F1 0.81. Apache-2.0.' },
-            { name: 'CoPE paper (arXiv 2512.18027)', url: 'https://arxiv.org/abs/2512.18027', desc: '[model_paper] "CoPE: A Small LM for Steerable and Scalable Content Labeling" (Zentropi). PDF stored in resource/.' }
+            { name: 'CoPE paper (arXiv 2512.18027)', url: 'https://arxiv.org/abs/2512.18027', desc: '[model_paper] "CoPE: A Small LM for Steerable and Scalable Content Labeling" (Zentropi). PDF stored in resource/.' },
+            // ---- 2026-08-06 S234 — Price tab pricing sources ----
+            { name: 'OpenRouter Models API', url: 'https://openrouter.ai/api/v1/models', desc: '[pricing] Per-model prompt/completion token prices (318 priced models). Primary source for the Price tab (input/output $/1M).' }
         ];
 
         sites.forEach(function(site) {
