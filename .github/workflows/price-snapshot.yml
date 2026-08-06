@@ -1,0 +1,56 @@
+name: Price Snapshot
+
+# Records a per-model token-price snapshot after each deploy so a real price
+# time-series accumulates over time. Runs AFTER "Daily Benchmark Update"
+# completes (i.e. on every deploy) and appends only *changed* prices to
+# data/price_history/prices.jsonl on the ops branch (idempotent per day).
+# Fully isolated from the deploy pipeline — a failure here never affects a deploy.
+on:
+  workflow_run:
+    workflows: ["Daily Benchmark Update"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: price-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    name: Record price snapshot
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    # Only after a successful deploy (or manual run). Manual runs have no
+    # workflow_run context, so the event-name check covers them.
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ops
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # snapshot_pricing.py uses only the stdlib + the committed
+      # data/export/models.json, so no dependency install is needed.
+      - name: Fetch prices + append change log
+        run: python scripts/snapshot_pricing.py
+
+      - name: Commit snapshot to ops
+        run: |
+          if git diff --quiet -- data/price_history/; then
+            echo "No pricing changes to record."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/price_history/
+          git commit -m "chore(pricing): price snapshot [skip ci]"
+          # Rebase onto the latest ops in case it moved during the deploy.
+          git pull --rebase --autostash origin ops || true
+          git push origin HEAD:ops
