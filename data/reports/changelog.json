@@ -4656,5 +4656,11 @@
   "type": "Feature",
   "title": "S234 — 신규 Price 탭: 토큰 가격 대비 성능 (다중 리더보드 가격 수집)",
   "detail": "Comparison 메뉴를 맨 끝으로 이동하고 그 자리에 Price 탭 신설. X축=토큰 가격(Input/Output/Blended $/1M, 로그/선형)·Y축=선택 성능지표(AAII·ECI·GPQA·MMLU-Pro·SWE-bench·AIME·LiveCodeBench·Terminal-Bench·HLE·LLM-Stats), 기간 슬라이더(1-36개월, release_date 필터), 개발사 필터, 같은 계열 버전을 출시순으로 잇는 궤적선(업데이트별 가격·성능 변화), 점 클릭 시 모델 상세, URL 상태 유지. 가격은 다양한 리더보드에서 수집: OpenRouter API(input/output 163모델)+Artificial Analysis(aa_pricing add-only)+llm-stats(blended 12). input/output/blended_price_per_mtok_lower_better에 344 scores 저장(167 input+output, 12 blended). 가격 이력 로그는 없어 '시간 변화'는 버전 출시일 궤적으로 표현."
+ },
+ {
+  "date": "2026-08-06",
+  "type": "Feature",
+  "title": "S235 — Price 탭 보강: 캐시 경제학 + Pareto 斬殺線 (AA/DeepSeek 참조 차트 대비)",
+  "detail": "외부 참조 차트(AA Intelligence Index v4.1 cost-per-task 산점도 + DeepSeek V4 Flash disk-KV-cache 50배 경제학 글) 대비 검토 후 4개 보강. (1) 캐시 입력단가: OpenRouter cache-read 111모델 신규 수집(cached_input_price_per_mtok_lower_better). X축에 'Cached input $/1M' + '유효 입력단가(캐시 반영)' 추가, '캐시 히트율' 슬라이더(0-100%)로 유효단가=hit×cacheRead+(1-hit)×input 실시간 계산. (2) 가격표에 'Cached in $/1M'·'캐시 할인율 %' 컬럼 추가(정렬 가능). (3) Pareto 경계선(斬殺線) 체크박스: 효율 경계선(비지배 모델)을 앰버 점선으로 그리고 더 비싸고 약한 dominated 모델을 흐리게 표시. 참조 차트의 kill-zone 개념 재현. (4) 태스크당 비용 X축은 AA per-task 비용이 벌크로 공개되지 않아(참조는 private CSV) 보류 — 프론티어 RSC 추출 시 부분 제공 가능. 캐시가 주석: OpenRouter cache-read는 벤더 native tier보다 보수적(DeepSeek 공식 $0.0028 vs OR $0.018)."
  }
 ]
