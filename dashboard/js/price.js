@@ -21,29 +21,51 @@ window.Price = (function () {
         cached:  'cached_input_price_per_mtok_lower_better'
     };
 
-    // Candidate Y-axis metrics (id -> label). Only those with real coverage
-    // among priced models are shown in the dropdown (computed in init()).
+    // Candidate Y-axis metrics [id, label, 분류명(category)]. Only those with
+    // real coverage among priced models are shown (computed in init()); the
+    // dropdown/axis show the category in parentheses after the name.
     var METRICS = [
-        ['aa_intelligence_index',    'AA Intelligence Index (AAII)'],
-        ['epoch_capabilities_index', 'Epoch Capabilities Index (ECI)'],
-        ['gpqa_diamond',             'GPQA Diamond'],
-        ['mmlu_pro',                 'MMLU-Pro'],
-        ['swe_bench_verified',       'SWE-bench Verified'],
-        ['aime_2025',                'AIME 2025'],
-        ['livecodebench',            'LiveCodeBench'],
-        ['terminal_bench_2_1',       'Terminal-Bench 2.1'],
-        ['hle',                      "Humanity's Last Exam (HLE)"],
-        ['llm_stats_index',          'LLM-Stats Index'],
-        // Cyber-security capability metrics
-        ['cybench',                  'Cybench (CTF)'],
-        ['nyu_ctf',                  'NYU CTF Bench'],
-        ['cybergym_success_rate',    'CyberGym Success Rate'],
-        ['cvebench',                 'CVE-Bench'],
-        // Agent / tool-use metrics
-        ['gaia',                     'GAIA (general agent)'],
-        ['osworld_verified',         'OSWorld-Verified (computer use)'],
-        ['browsecomp',               'BrowseComp (web agent)'],
-        ['tau2_telecom',             'τ²-Bench Telecom (tool use)']
+        // 종합 (composite)
+        ['aa_intelligence_index',    'AA Intelligence Index (AAII)', '종합'],
+        ['epoch_capabilities_index', 'Epoch Capabilities Index (ECI)', '종합'],
+        ['llm_stats_index',          'LLM-Stats Index', '종합'],
+        // 추론 (reasoning)
+        ['gpqa_diamond',             'GPQA Diamond', '추론'],
+        ['mmlu_pro',                 'MMLU-Pro', '추론'],
+        ['aime_2025',                'AIME 2025', '추론'],
+        ['aime_2026',                'AIME 2026', '추론'],
+        ['hle',                      "Humanity's Last Exam", '추론'],
+        ['frontiermath',             'FrontierMath', '추론'],
+        ['livebench',                'LiveBench', '추론'],
+        ['critpt',                   'CritPt', '추론'],
+        ['simplebench',              'SimpleBench', '추론'],
+        // 코딩 (coding)
+        ['swe_bench_verified',       'SWE-bench Verified', '코딩'],
+        ['swe_bench_pro',            'SWE-bench Pro', '코딩'],
+        ['livecodebench',            'LiveCodeBench', '코딩'],
+        ['terminal_bench_2_1',       'Terminal-Bench 2.1', '코딩'],
+        ['aider_polyglot',           'Aider Polyglot', '코딩'],
+        ['deepswe_1_1',              'DeepSWE 1.1', '코딩'],
+        // 에이전트 (agent)
+        ['gaia',                     'GAIA', '에이전트'],
+        ['osworld_verified',         'OSWorld-Verified', '에이전트'],
+        ['browsecomp',               'BrowseComp', '에이전트'],
+        ['tau2_telecom',             'τ²-Bench Telecom', '에이전트'],
+        // 사이버 (cyber)
+        ['cybench',                  'Cybench (CTF)', '사이버'],
+        ['nyu_ctf',                  'NYU CTF Bench', '사이버'],
+        ['cybergym_success_rate',    'CyberGym Success Rate', '사이버'],
+        ['cvebench',                 'CVE-Bench', '사이버'],
+        // 안전 (safety) — note: ASR-style metrics are lower=safer
+        ['strongreject',             'StrongREJECT', '안전'],
+        ['airtbench',                'AIRTBench', '안전'],
+        ['r_judge',                  'R-Judge', '안전'],
+        // AGI
+        ['arc_agi_2',                'ARC-AGI-2', 'AGI'],
+        ['arc_agi_3',                'ARC-AGI-3', 'AGI'],
+        ['agieval',                  'AGIEval', 'AGI'],
+        // 과학 (AI4S)
+        ['scicode',                  'SciCode', '과학']
     ];
 
     var VENDOR_COLORS = {
@@ -55,6 +77,15 @@ window.Price = (function () {
 
     // Plain system UI font for chart text (axes / labels / tooltip).
     var NORMAL_FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+
+    // Per-vendor marker shape (secondary channel to color) — mirrors the AA
+    // reference chart (Google/NVIDIA diamonds, MiniMax triangles, etc.).
+    var VENDOR_SHAPES = {
+        google: 'diamond', 'google-deepmind': 'diamond', nvidia: 'diamond',
+        minimax: 'triangle', meta: 'roundRect', mistral: 'rect', amazon: 'pin',
+        alibaba: 'triangle', zhipu: 'rect', bytedance: 'roundRect'
+    };
+    function _vendorShape(v) { return VENDOR_SHAPES[v] || 'circle'; }
 
     var _scoreIdx = {};   // benchmark_id -> { model_id: value }
     var _modelsById = {};
@@ -195,7 +226,8 @@ window.Price = (function () {
                 Object.keys(priced).forEach(function (id) { if (mp[id] != null) cov++; });
                 if (cov >= 5) {
                     var o = document.createElement('option');
-                    o.value = pair[0]; o.textContent = pair[1] + ' (' + cov + ')';
+                    o.value = pair[0];
+                    o.textContent = pair[1] + ' (' + (pair[2] || '') + ') · ' + cov;
                     sel.appendChild(o);
                 }
             });
@@ -251,7 +283,8 @@ window.Price = (function () {
         var showPareto = _chk('price-pareto');
         var hitRate = parseInt(_val('price-hitrate', '0'), 10) || 0;
 
-        var metricLabel = (METRICS.filter(function (m) { return m[0] === metric; })[0] || [metric, metric])[1];
+        var mDef = METRICS.filter(function (m) { return m[0] === metric; })[0] || [metric, metric, ''];
+        var metricLabel = mDef[1] + (mDef[2] ? ' (' + mDef[2] + ')' : '');
         var BASIS_LABELS = {
             input: 'Input $/1M', output: 'Output $/1M', blended: 'Blended $/1M',
             cached: 'Cached input $/1M', effective: '유효 입력단가 $/1M (hit ' + hitRate + '%)'
@@ -278,7 +311,7 @@ window.Price = (function () {
             var name = model.name || id;
             var p = {
                 value: [price, perf], modelId: id, name: name, vendor: ven, rel: rel || '',
-                flag: _flag(id, model), itemStyle: { color: _vendorColor(ven) }
+                flag: _flag(id, model), symbol: _vendorShape(ven), itemStyle: { color: _vendorColor(ven) }
             };
             pts.push(p);
             var fk = _family(id);
