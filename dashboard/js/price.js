@@ -17,7 +17,8 @@ window.Price = (function () {
     var PRICE_IDS = {
         input:   'input_price_per_mtok_lower_better',
         output:  'output_price_per_mtok_lower_better',
-        blended: 'blended_price_per_mtok_lower_better'
+        blended: 'blended_price_per_mtok_lower_better',
+        cached:  'cached_input_price_per_mtok_lower_better'
     };
 
     // Candidate Y-axis metrics (id -> label). Only those with real coverage
@@ -60,7 +61,8 @@ window.Price = (function () {
     var _urlKeys = {
         'price-metric': 'p_metric', 'price-basis': 'p_basis', 'price-period': 'p_period',
         'price-vendor': 'p_vendor', 'price-logscale': 'p_log', 'price-connect': 'p_conn',
-        'price-labels': 'p_lbl', 'price-flags': 'p_flag'
+        'price-labels': 'p_lbl', 'price-flags': 'p_flag', 'price-hitrate': 'p_hit',
+        'price-pareto': 'p_pareto'
     };
     var _wired = false, _chart = null;
     var _sortKey = 'output', _sortDir = 'desc';   // price-table sort state
@@ -117,11 +119,20 @@ window.Price = (function () {
         return v + '/' + toks.join('-');
     }
 
-    function _price(id, basis) {
+    function _price(id, basis, hitRate) {
         var inp = _scoreIdx[PRICE_IDS.input] && _scoreIdx[PRICE_IDS.input][id];
         var out = _scoreIdx[PRICE_IDS.output] && _scoreIdx[PRICE_IDS.output][id];
+        var cch = _scoreIdx[PRICE_IDS.cached] && _scoreIdx[PRICE_IDS.cached][id];
         if (basis === 'input')  return (inp != null) ? inp : null;
         if (basis === 'output') return (out != null) ? out : null;
+        if (basis === 'cached') return (cch != null) ? cch : null;
+        if (basis === 'effective') {
+            // effective input = hit*cacheRead + (1-hit)*input (article's math)
+            if (inp == null) return null;
+            var h = (hitRate == null ? 0 : hitRate) / 100;
+            var cache = (cch != null) ? cch : inp;   // no cache price → no discount
+            return h * cache + (1 - h) * inp;
+        }
         // blended: prefer a leaderboard-reported blended, else usage-weighted 1:3
         var bl = _scoreIdx[PRICE_IDS.blended] && _scoreIdx[PRICE_IDS.blended][id];
         if (bl != null) return bl;
@@ -162,6 +173,8 @@ window.Price = (function () {
             });
             var pl = document.getElementById('price-period-label'), pr = document.getElementById('price-period');
             if (pl && pr) pl.textContent = pr.value;
+            var hl = document.getElementById('price-hit-label'), hr = document.getElementById('price-hitrate');
+            if (hl && hr) hl.textContent = hr.value;
         } catch (e) {}
     }
 
@@ -201,13 +214,18 @@ window.Price = (function () {
 
     function _wire() {
         if (_wired) return; _wired = true;
-        ['price-metric', 'price-basis', 'price-vendor', 'price-logscale', 'price-connect', 'price-labels', 'price-flags'].forEach(function (id) {
+        ['price-metric', 'price-basis', 'price-vendor', 'price-logscale', 'price-connect', 'price-labels', 'price-flags', 'price-pareto'].forEach(function (id) {
             var el = document.getElementById(id);
             if (el) el.addEventListener('change', function () { _syncUrl(); render(); });
         });
         var pr = document.getElementById('price-period');
         if (pr) pr.addEventListener('input', function () {
             var pl = document.getElementById('price-period-label'); if (pl) pl.textContent = pr.value;
+            _syncUrl(); render();
+        });
+        var hr = document.getElementById('price-hitrate');
+        if (hr) hr.addEventListener('input', function () {
+            var hl = document.getElementById('price-hit-label'); if (hl) hl.textContent = hr.value;
             _syncUrl(); render();
         });
         window.addEventListener('resize', function () { if (_chart) _chart.resize(); });
@@ -230,9 +248,15 @@ window.Price = (function () {
         var connect = _chk('price-connect');
         var showLabels = _chk('price-labels');
         var showFlags = _chk('price-flags');
+        var showPareto = _chk('price-pareto');
+        var hitRate = parseInt(_val('price-hitrate', '0'), 10) || 0;
 
         var metricLabel = (METRICS.filter(function (m) { return m[0] === metric; })[0] || [metric, metric])[1];
-        var basisLabel = basis === 'input' ? 'Input $/1M' : basis === 'blended' ? 'Blended $/1M' : 'Output $/1M';
+        var BASIS_LABELS = {
+            input: 'Input $/1M', output: 'Output $/1M', blended: 'Blended $/1M',
+            cached: 'Cached input $/1M', effective: '유효 입력단가 $/1M (hit ' + hitRate + '%)'
+        };
+        var basisLabel = BASIS_LABELS[basis] || 'Output $/1M';
 
         // period cutoff
         var now = new Date();
@@ -246,7 +270,7 @@ window.Price = (function () {
             var model = _modelsById[id]; if (!model) return;
             var ven = _vendor(id, model);
             if (vendorF !== 'all' && ven !== vendorF) return;
-            var price = _price(id, basis); if (price == null || price <= 0) return;
+            var price = _price(id, basis, hitRate); if (price == null || price <= 0) return;
             var perf = _scoreIdx[metric] && _scoreIdx[metric][id];
             if (perf == null) { skippedNoPerf++; return; }
             var rel = _relDate(model);
@@ -268,6 +292,23 @@ window.Price = (function () {
             if (showLabels && d.name) parts.push(d.name);
             return parts.join(' ');
         }
+        // Pareto frontier (斬殺線): a point is non-dominated if no other point is
+        // both cheaper-or-equal AND better-or-equal. Walk points by price asc,
+        // keep those beating the running best perf. Dominated points are dimmed.
+        var frontierPts = [];
+        if (showPareto && pts.length) {
+            var sortedP = pts.slice().sort(function (a, b) {
+                return a.value[0] - b.value[0] || b.value[1] - a.value[1];
+            });
+            var maxPerf = -Infinity;
+            sortedP.forEach(function (p) {
+                if (p.value[1] > maxPerf) { frontierPts.push(p); maxPerf = p.value[1]; p._frontier = true; }
+            });
+            pts.forEach(function (p) {
+                if (!p._frontier) p.itemStyle = { color: _vendorColor(p.vendor), opacity: 0.25 };
+            });
+        }
+
         var series = [{
             type: 'scatter', symbolSize: 12, data: pts, z: 3,
             label: {
@@ -306,6 +347,15 @@ window.Price = (function () {
                     data: segs
                 });
             }
+        }
+
+        // Efficient-frontier line (amber dashed) through the non-dominated points.
+        if (showPareto && frontierPts.length >= 2) {
+            series.push({
+                type: 'line', z: 2, silent: true, symbol: 'none', smooth: false,
+                lineStyle: { width: 2, color: '#fbbf24', opacity: 0.9, type: 'dashed' },
+                data: frontierPts.map(function (p) { return p.value; })
+            });
         }
 
         var option = {
@@ -364,6 +414,7 @@ window.Price = (function () {
         var tableIds = {};
         Object.keys(inMap).forEach(function (id) { tableIds[id] = 1; });
         Object.keys(outMap).forEach(function (id) { tableIds[id] = 1; });
+        var cchMap = _scoreIdx[PRICE_IDS.cached] || {};
         var rows = [];
         Object.keys(tableIds).forEach(function (id) {
             var model = _modelsById[id]; if (!model) return;
@@ -371,12 +422,16 @@ window.Price = (function () {
             if (vendorF !== 'all' && ven !== vendorF) return;
             var rel = _relDate(model);
             if (rel && rel < cutoffStr) return;
+            var inp = (inMap[id] != null ? inMap[id] : null);
+            var cch = (cchMap[id] != null ? cchMap[id] : null);
+            var disc = (inp != null && inp > 0 && cch != null) ? Math.round((1 - cch / inp) * 100) : null;
             rows.push({
                 id: id, name: model.name || id, vendor: model.vendor || ven,
                 country: _country(id, model),
-                input: (inMap[id] != null ? inMap[id] : null),
+                input: inp,
                 output: (outMap[id] != null ? outMap[id] : null),
                 blended: _price(id, 'blended'),
+                cached: cch, discount: disc,
                 rel: rel || ''
             });
         });
@@ -394,6 +449,8 @@ window.Price = (function () {
             { key: 'input',   label: 'Input $/1M',  num: true },
             { key: 'output',  label: 'Output $/1M', num: true },
             { key: 'blended', label: 'Blended $/1M',num: true },
+            { key: 'cached',  label: 'Cached in $/1M', num: true },
+            { key: 'discount',label: '캐시 할인율 %',  num: true },
             { key: 'rel',     label: '출시일',      num: false }
         ];
         var dir = _sortDir === 'asc' ? 1 : -1;
@@ -413,7 +470,8 @@ window.Price = (function () {
                 ' cursor-pointer select-none hover:text-gray-200 whitespace-nowrap">' + c.label + arrow + '</th>';
         });
         h += '</tr></thead><tbody>';
-        var fmt = function (v) { return v == null ? '—' : '$' + (+v).toFixed(2); };
+        var fmt = function (v) { return v == null ? '—' : '$' + (+v).toFixed(v < 0.1 ? 4 : 2); };
+        var pct = function (v) { return v == null ? '—' : v + '%'; };
         rows.forEach(function (r) {
             h += '<tr class="border-b border-gray-800 hover:bg-gray-800/40">' +
                 '<td class="px-3 py-1.5 text-left"><button data-model="' + _esc(r.id) + '" class="price-tbl-model text-blue-400 hover:text-blue-300">' + _esc(r.name) + '</button></td>' +
@@ -422,6 +480,8 @@ window.Price = (function () {
                 '<td class="px-3 py-1.5 text-right tabular-nums">' + fmt(r.input) + '</td>' +
                 '<td class="px-3 py-1.5 text-right tabular-nums">' + fmt(r.output) + '</td>' +
                 '<td class="px-3 py-1.5 text-right tabular-nums">' + fmt(r.blended) + '</td>' +
+                '<td class="px-3 py-1.5 text-right tabular-nums text-gray-300">' + fmt(r.cached) + '</td>' +
+                '<td class="px-3 py-1.5 text-right tabular-nums text-emerald-400">' + pct(r.discount) + '</td>' +
                 '<td class="px-3 py-1.5 text-left text-gray-400 whitespace-nowrap">' + _esc(r.rel || '—') + '</td>' +
                 '</tr>';
         });
@@ -432,7 +492,7 @@ window.Price = (function () {
             th.addEventListener('click', function () {
                 var k = th.getAttribute('data-key');
                 if (_sortKey === k) _sortDir = (_sortDir === 'asc' ? 'desc' : 'asc');
-                else { _sortKey = k; _sortDir = (k === 'input' || k === 'output' || k === 'blended') ? 'desc' : 'asc'; }
+                else { _sortKey = k; _sortDir = (k === 'input' || k === 'output' || k === 'blended' || k === 'cached' || k === 'discount') ? 'desc' : 'asc'; }
                 _renderTable(_lastRows);   // re-sort table only (chart unchanged)
             });
         });

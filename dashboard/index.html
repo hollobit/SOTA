@@ -249,7 +249,13 @@
                         <option value="output" selected>Output $/1M</option>
                         <option value="input">Input $/1M</option>
                         <option value="blended">Blended $/1M</option>
+                        <option value="cached">Cached input $/1M</option>
+                        <option value="effective">유효 입력단가 (캐시 반영)</option>
                     </select>
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">캐시 히트율: <span id="price-hit-label">0</span>% <span class="text-gray-600">(유효 입력단가용)</span></label>
+                    <input type="range" id="price-hitrate" min="0" max="100" value="0" class="w-40 accent-blue-500 align-middle">
                 </div>
                 <div>
                     <label class="block text-xs text-gray-400 mb-1">기간: 최근 <span id="price-period-label">12</span>개월</label>
@@ -271,6 +277,9 @@
                     </label>
                     <label class="flex items-center gap-1.5 text-sm text-gray-300 cursor-pointer select-none" title="각 점에 개발사 국가의 국기를 표시">
                         <input type="checkbox" id="price-flags" class="accent-blue-500"> 국기 표시
+                    </label>
+                    <label class="flex items-center gap-1.5 text-sm text-gray-300 cursor-pointer select-none" title="효율 경계선(斬殺線)을 그리고, 더 비싸고 약한 dominated 모델을 흐리게 표시">
+                        <input type="checkbox" id="price-pareto" class="accent-blue-500"> Pareto 경계선(斬殺線)
                     </label>
                 </div>
             </div>
