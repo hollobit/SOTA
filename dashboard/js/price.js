@@ -65,7 +65,11 @@ window.Price = (function () {
         ['arc_agi_3',                'ARC-AGI-3', 'AGI'],
         ['agieval',                  'AGIEval', 'AGI'],
         // 과학 (AI4S)
-        ['scicode',                  'SciCode', '과학']
+        ['scicode',                  'SciCode', '과학'],
+        // 아레나 (human-preference / Elo)
+        ['arena_agent_net_improvement', 'Agent Arena (arena.ai)', '아레나'],
+        ['arena_ai_text_elo',           'Text Arena (arena.ai Elo)', '아레나'],
+        ['arena_webdev_elo',            'Code Arena (WebDev Elo)', '아레나']
     ];
 
     var VENDOR_COLORS = {
