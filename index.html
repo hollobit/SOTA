@@ -6,8 +6,8 @@
     <title>LLM/Frontier Model's Benchmark & SOTA Dashboard</title>
     <link rel="stylesheet" href="css/tailwind.css">
     <link rel="stylesheet" href="css/tokens.css">
-    <link rel="stylesheet" href="css/style.css?v=326de869">
-    <link rel="stylesheet" href="css/print.css?v=326de869" media="print">
+    <link rel="stylesheet" href="css/style.css?v=4cf29295">
+    <link rel="stylesheet" href="css/print.css?v=4cf29295" media="print">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js" defer></script>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen">
@@ -60,7 +60,7 @@
         <button class="tab-btn" data-tab="leaderboard" role="tab" aria-selected="false" aria-controls="tab-leaderboard" id="tabbtn-leaderboard" tabindex="-1">Leaderboard</button>
         <button class="tab-btn" data-tab="trends" role="tab" aria-selected="false" aria-controls="tab-trends" id="tabbtn-trends" tabindex="-1">Trends</button>
         <button class="tab-btn" data-tab="timeline" role="tab" aria-selected="false" aria-controls="tab-timeline" id="tabbtn-timeline" tabindex="-1">Timeline</button>
-        <button class="tab-btn" data-tab="comparison" role="tab" aria-selected="false" aria-controls="tab-comparison" id="tabbtn-comparison" tabindex="-1">Comparison</button>
+        <button class="tab-btn" data-tab="price" role="tab" aria-selected="false" aria-controls="tab-price" id="tabbtn-price" tabindex="-1">Price</button>
         <button class="tab-btn" data-tab="frontier-compare" role="tab" aria-selected="false" aria-controls="tab-frontier-compare" id="tabbtn-frontier-compare" tabindex="-1">Frontier Compare</button>
         <button class="tab-btn" data-tab="cyber-coding" role="tab" aria-selected="false" aria-controls="tab-cyber-coding" id="tabbtn-cyber-coding" tabindex="-1">Cyber &amp; Coding</button>
         <button class="tab-btn" data-tab="sovereign" role="tab" aria-selected="false" aria-controls="tab-sovereign" id="tabbtn-sovereign" tabindex="-1">Sovereign AI</button>
@@ -73,6 +73,7 @@
         <button class="tab-btn" data-tab="explorer" role="tab" aria-selected="false" aria-controls="tab-explorer" id="tabbtn-explorer" tabindex="-1">Explorer</button>
         <button class="tab-btn" data-tab="resources" role="tab" aria-selected="false" aria-controls="tab-resources" id="tabbtn-resources" tabindex="-1">Resources</button>
         <button class="tab-btn" data-tab="changelog" role="tab" aria-selected="false" aria-controls="tab-changelog" id="tabbtn-changelog" tabindex="-1">Changelog</button>
+        <button class="tab-btn" data-tab="comparison" role="tab" aria-selected="false" aria-controls="tab-comparison" id="tabbtn-comparison" tabindex="-1">Comparison</button>
     </nav>
 
     <main class="px-6 py-6">
@@ -230,6 +231,45 @@
                 </div>
                 <div id="trend-overview-chart" class="h-96"></div>
             </div>
+        </section>
+
+        <section id="tab-price" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-price">
+            <div class="mb-4">
+                <h2 class="text-section mb-1">💰 Price vs Performance</h2>
+                <p class="text-sm text-gray-400">모델별 <strong class="text-gray-300">토큰 가격(X축) 대비 성능(Y축)</strong>. 점=모델 버전, 선=같은 계열의 출시순 궤적(업데이트별 가격·성능 변화). 기간 슬라이더로 최근 N개월 출시 모델만 필터. 다양한 리더보드(OpenRouter · Artificial Analysis · llm-stats)에서 가격 수집. 점 클릭 시 상세정보.</p>
+            </div>
+            <div class="flex flex-wrap items-end gap-3 mb-4">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">성능 지표 (Y축)</label>
+                    <select id="price-metric" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm"></select>
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">가격 기준 (X축)</label>
+                    <select id="price-basis" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm">
+                        <option value="output" selected>Output $/1M</option>
+                        <option value="input">Input $/1M</option>
+                        <option value="blended">Blended $/1M</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">기간: 최근 <span id="price-period-label">12</span>개월</label>
+                    <input type="range" id="price-period" min="1" max="36" value="12" class="w-40 accent-blue-500 align-middle">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">개발사</label>
+                    <select id="price-vendor" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm"><option value="all">전체</option></select>
+                </div>
+                <div class="flex items-end gap-3 pb-1">
+                    <label class="flex items-center gap-1.5 text-sm text-gray-300 cursor-pointer select-none" title="X축 로그 스케일 (가격 범위가 넓어 권장)">
+                        <input type="checkbox" id="price-logscale" class="accent-blue-500" checked> 로그 스케일
+                    </label>
+                    <label class="flex items-center gap-1.5 text-sm text-gray-300 cursor-pointer select-none" title="같은 계열 모델 버전을 출시순으로 연결">
+                        <input type="checkbox" id="price-connect" class="accent-blue-500" checked> 계열 궤적 연결
+                    </label>
+                </div>
+            </div>
+            <div id="price-chart" style="width:100%;height:560px;"></div>
+            <p id="price-note" class="text-xs text-gray-500 mt-2"></p>
         </section>
 
         <section id="tab-timeline" class="tab-content hidden" role="tabpanel" aria-labelledby="tabbtn-timeline">
@@ -951,14 +991,14 @@
          physical-ai, medical-ai, ai4s, agent, image/video-gen, timeline,
          comparison) are dynamically injected by App._loadTabModule() the
          first time the user activates that tab. See dashboard/js/app.js. -->
-    <script defer src="js/theme.js?v=326de869"></script>
-    <script defer src="js/peer-matcher.js?v=326de869"></script>
-    <script defer src="js/modal.js?v=326de869"></script>
-    <script defer src="js/command-palette.js?v=326de869"></script>
-    <script defer src="js/graphrag.js?v=326de869"></script>
-    <script defer src="js/charts.js?v=326de869"></script>
-    <script defer src="js/filters.js?v=326de869"></script>
-    <script defer src="js/explorer.js?v=326de869"></script>
-    <script defer src="js/app.js?v=326de869"></script>
+    <script defer src="js/theme.js?v=4cf29295"></script>
+    <script defer src="js/peer-matcher.js?v=4cf29295"></script>
+    <script defer src="js/modal.js?v=4cf29295"></script>
+    <script defer src="js/command-palette.js?v=4cf29295"></script>
+    <script defer src="js/graphrag.js?v=4cf29295"></script>
+    <script defer src="js/charts.js?v=4cf29295"></script>
+    <script defer src="js/filters.js?v=4cf29295"></script>
+    <script defer src="js/explorer.js?v=4cf29295"></script>
+    <script defer src="js/app.js?v=4cf29295"></script>
 </body>
 </html>
