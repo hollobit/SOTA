@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-06",
+    "session": "S238",
+    "note": "OpenAI 'GPT-5.6 – August Updates' system card (cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf, 2026-08-06), pdftotext-extracted (WebFetch-hallucination rule). NEW August checkpoints of GPT-5.6 Sol & Luna, explicitly distinguished from the July versions (which remain in Codex/Work). Added as SEPARATE -august entries because their HealthBench differs from the existing (July) gpt-5.6-sol/luna (Sol Aug 55.0 vs existing 57.0) — must not overwrite. Only HealthBench (standard, length-adjusted 0-100) ingested; all other card evals are OpenAI-INTERNAL/non-reproducible and skipped per strict-attribution: internal CTF (Sol 97.06%), CVE-Bench (threshold-only, no number), Cyber range combined pass-rate (Sol 83.3% / Luna 61.5%), disallowed-content, U18, vision, mental-health, jailbreak, prompt-injection, hallucination evals. Both August models rated Preparedness-High in Cybersecurity + Bio/Chem.",
+    "sources": [
+      "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf"
+    ]
+  },
+  "models": [
+    { "id": "openai/gpt-5.6-sol-august", "name": "GPT-5.6 Sol (August)", "developer": "OpenAI", "vendor": "OpenAI", "release_date": "2026-08-06", "license": "proprietary (API)", "base_model": "openai/gpt-5.6-sol", "_note": "August 2026 ChatGPT default checkpoint of GPT-5.6 Sol (Plus/Pro, with effort slider). Distinct from July GPT-5.6 Sol still in Codex/Work. Preparedness-High: Cyber + Bio/Chem." },
+    { "id": "openai/gpt-5.6-luna-august", "name": "GPT-5.6 Luna (August)", "developer": "OpenAI", "vendor": "OpenAI", "release_date": "2026-08-06", "license": "proprietary (API)", "base_model": "openai/gpt-5.6-luna", "_note": "August 2026 ChatGPT default checkpoint of GPT-5.6 Luna (Free/Go). Distinct from July GPT-5.6 Luna still in Codex/Work. Preparedness-High: Cyber + Bio/Chem." }
+  ],
+  "scores": [
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "healthbench",              "score": 55.0, "unit": "%", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "length-adjusted (unadj 52.1)" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "healthbench_hard",         "score": 31.4, "unit": "%", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "length-adjusted (unadj 27.1)" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "healthbench_consensus",    "score": 95.5, "unit": "%", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "length-adjusted (unadj 95.3)" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "healthbench_professional", "score": 54.0, "unit": "%", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "length-adjusted (unadj 56.6)" },
+
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "healthbench",              "score": 53.3, "unit": "%", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "length-adjusted (unadj 50.7)" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "healthbench_hard",         "score": 28.7, "unit": "%", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "length-adjusted (unadj 24.9)" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "healthbench_consensus",    "score": 94.8, "unit": "%", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "length-adjusted (unadj 94.6)" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "healthbench_professional", "score": 44.1, "unit": "%", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "length-adjusted (unadj 46.8)" }
+  ]
+}

@@ -3620,7 +3620,9 @@ var App = {
             { name: 'Zentropi CoPE-B-A4B (HF)', url: 'https://huggingface.co/zentropi-ai/cope-b-a4b', desc: '[model_card] Content-policy evaluator, 25.2B/3.8B-active MoE on Gemma-4-26B-A4B-it, 256K ctx. Internal-test F1 0.81. Apache-2.0.' },
             { name: 'CoPE paper (arXiv 2512.18027)', url: 'https://arxiv.org/abs/2512.18027', desc: '[model_paper] "CoPE: A Small LM for Steerable and Scalable Content Labeling" (Zentropi). PDF stored in resource/.' },
             // ---- 2026-08-06 S234 — Price tab pricing sources ----
-            { name: 'OpenRouter Models API', url: 'https://openrouter.ai/api/v1/models', desc: '[pricing] Per-model prompt/completion token prices (318 priced models). Primary source for the Price tab (input/output $/1M).' }
+            { name: 'OpenRouter Models API', url: 'https://openrouter.ai/api/v1/models', desc: '[pricing] Per-model prompt/completion token prices (318 priced models). Primary source for the Price tab (input/output $/1M).' },
+            // ---- 2026-08-06 S238 — OpenAI GPT-5.6 August Updates system card ----
+            { name: 'OpenAI GPT-5.6 August Updates (system card, PDF)', url: 'https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf', desc: '[system_card] Aug 2026 checkpoints of GPT-5.6 Sol/Luna. HealthBench Sol(Aug) 55.0/Hard 31.4/Consensus 95.5/Professional 54.0. Preparedness-High Cyber+Bio. PDF stored in resource/.' }
         ];
 
         sites.forEach(function(site) {
