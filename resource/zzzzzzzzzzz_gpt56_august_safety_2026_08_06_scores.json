@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-06",
+    "session": "S238c",
+    "note": "SUPPLEMENT 2 to S238 — OpenAI GPT-5.6 August Updates system-card SAFETY/CYBER tables. Corrected an earlier over-conservative skip: the dashboard already tracks OpenAI system-card safety/cyber evals for the July models (July gpt-5.6-sol has prod_disallowed_*, dynamic_*, vision_safety_*, prompt_injection_connectors, openai_ctf_internal_curated), so the August values belong there for consistency. Card columns 'GPT-5.6 Sol/Luna (August)' verified as the August release (differ from July DB values). Scores are OpenAI 'not_unsafe'/defender-success fractions (higher better) matching existing unit convention; CTF is % (July 96.7 -> Aug 97.06). First-time U18 evals get NEW ids (prod_disallowed_u18_*). SKIPPED: jailbreaks (prose only, no numeric table), cyber-range combined pass rate (August scenario set differs from the existing cyber_range metric — values don't match — so mapping would conflate different benchmarks), VCT/TroubleshootingBench (threshold-only).",
+    "sources": [ "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" ]
+  },
+  "benchmarks": [
+    { "id": "prod_disallowed_u18_age_restricted",     "name": "Disallowed Content U18 — Age-restricted goods (not_unsafe)", "category": "safety", "higher_better": true, "unit": "fraction", "_note": "First-time under-18 safety eval, OpenAI GPT-5.6 August card." },
+    { "id": "prod_disallowed_u18_sexual",             "name": "Disallowed Content U18 — Sexual content (not_unsafe)", "category": "safety", "higher_better": true, "unit": "fraction" },
+    { "id": "prod_disallowed_u18_eating_disorders",   "name": "Disallowed Content U18 — Eating disorders (not_unsafe)", "category": "safety", "higher_better": true, "unit": "fraction" },
+    { "id": "prod_disallowed_u18_emotional_reliance", "name": "Disallowed Content U18 — Emotional reliance (not_unsafe)", "category": "safety", "higher_better": true, "unit": "fraction" },
+    { "id": "prod_disallowed_u18_self_harm",          "name": "Disallowed Content U18 — Self-harm (not_unsafe)", "category": "safety", "higher_better": true, "unit": "fraction" },
+    { "id": "prod_disallowed_u18_gore",               "name": "Disallowed Content U18 — Gore (not_unsafe)", "category": "safety", "higher_better": true, "unit": "fraction" }
+  ],
+  "scores": [
+    { "model": "openai/gpt-5.6-sol-august", "benchmark": "prod_disallowed_violent_illicit",    "score": 0.959, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august", "benchmark": "prod_disallowed_nonviolent_illicit", "score": 0.997, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august", "benchmark": "prod_disallowed_extremism",          "score": 0.906, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august", "benchmark": "prod_disallowed_hate",               "score": 0.982, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august", "benchmark": "prod_disallowed_self_harm",          "score": 0.934, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august", "benchmark": "prod_disallowed_gore",               "score": 0.765, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august", "benchmark": "prod_disallowed_sexual",             "score": 0.914, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august", "benchmark": "prod_disallowed_sexual_minors",      "score": 0.922, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_violent_illicit",    "score": 0.957, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_nonviolent_illicit", "score": 0.990, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_extremism",          "score": 0.925, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_hate",               "score": 0.965, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_self_harm",          "score": 0.932, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_gore",               "score": 0.865, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_sexual",             "score": 0.974, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_sexual_minors",      "score": 0.966, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "dynamic_mental_health",      "score": 0.981, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "dynamic_emotional_reliance", "score": 0.961, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "dynamic_self_harm",          "score": 0.901, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "dynamic_mental_health",      "score": 0.977, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "dynamic_emotional_reliance", "score": 0.965, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "dynamic_self_harm",          "score": 0.911, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "vision_safety_hate",         "score": 0.986, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "vision_safety_extremism",    "score": 0.950, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "vision_safety_self_harm",    "score": 0.923, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "vision_safety_harms_erotic", "score": 0.986, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "vision_safety_hate",         "score": 0.984, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "vision_safety_extremism",    "score": 0.930, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "vision_safety_self_harm",    "score": 0.909, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "vision_safety_harms_erotic", "score": 0.994, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "prompt_injection_connectors", "score": 1.0, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "Prompt injection attacks defender rate (August Sol column)." },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "openai_ctf_internal_curated", "score": 97.06, "unit": "%", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "63 curated CTFs; Sol (August) saturates at 97.06% (July 96.7)." },
+
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "prod_disallowed_u18_age_restricted",     "score": 0.865, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "prod_disallowed_u18_sexual",             "score": 0.971, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "prod_disallowed_u18_eating_disorders",   "score": 0.808, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "prod_disallowed_u18_emotional_reliance", "score": 0.921, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "prod_disallowed_u18_self_harm",          "score": 0.987, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "prod_disallowed_u18_gore",               "score": 0.872, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_u18_age_restricted",     "score": 0.857, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_u18_sexual",             "score": 0.984, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_u18_eating_disorders",   "score": 0.810, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_u18_emotional_reliance", "score": 0.927, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_u18_self_harm",          "score": 0.977, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "prod_disallowed_u18_gore",               "score": 0.867, "unit": "fraction", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf" }
+  ]
+}
