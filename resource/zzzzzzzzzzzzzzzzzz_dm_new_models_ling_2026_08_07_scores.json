@@ -1,0 +1,26 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-07",
+    "session": "S239b",
+    "note": "New models from the user-provided links. WeatherNext Cyclones + WeatherNext 2-mini (Google DeepMind, Nature s41586-026-10953-2 + blog): benchmark results are qualitative in the accessible sources ('~1 day lead-time advantage over leading operational models', '≈decade of progress') with numeric track/intensity tables paywalled/in figures — so model entries only, no numeric scores. Lyria 3.5 (Google DeepMind music gen, latent diffusion): card evaluation is a qualitative human/automated framework, no numeric table → model entry only. Ling-3.0-tiny (InclusionAI, OpenRouter free tier): model + free pricing. Ling-3.0-flash pricing refreshed from OpenRouter (dropped to $0.021/$0.063). Gemini Robotics ER 2 / On-Device 2 already in DB; their benchmark scores live in release-post figures (images) so no text-extractable scores added.",
+    "sources": [
+      "https://www.nature.com/articles/s41586-026-10953-2",
+      "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/",
+      "https://storage.googleapis.com/deepmind-media/Model-Cards/Lyria-3-5-Model-Card.pdf",
+      "https://openrouter.ai/inclusionai/ling-3.0-tiny:free",
+      "https://openrouter.ai/api/v1/models"
+    ]
+  },
+  "models": [
+    { "id": "deepmind/weathernext-cyclones", "name": "WeatherNext Cyclones (WN-C)", "developer": "Google DeepMind", "vendor": "Google DeepMind", "release_date": "2026-08-06", "license": "open-source", "architecture": "Functional Generative Networks (FGN); 28×28km res; 1,000-member ensemble; 15-day horizon", "_note": "Operational tropical-cyclone forecasting (track/intensity/size). Trained on ~20TB global analysis + IBTrACS (~5,000 storms). ~1 day lead-time advantage over leading operational models (Nature). Open-sourced." },
+    { "id": "deepmind/weathernext-2-mini", "name": "WeatherNext 2-mini", "developer": "Google DeepMind", "vendor": "Google DeepMind", "release_date": "2026-08-06", "license": "open-source", "architecture": "Compact WeatherNext 2; 111×111km res; runs on a single TPU", "_note": "Compact global weather model; free public Colab. Coarser-resolution variant with strong performance." },
+    { "id": "google/lyria-3.5", "name": "Lyria 3.5", "developer": "Google DeepMind", "vendor": "Google", "release_date": "2026-08-07", "license": "proprietary (API)", "architecture": "Latent diffusion over temporal audio latents", "base_model": "google/lyria-3", "_note": "Music generation (high-quality audio). Eval via qualitative human+automated framework (no numeric table in card)." },
+    { "id": "inclusionai/ling-3.0-tiny", "name": "Ling-3.0-tiny", "developer": "InclusionAI", "vendor": "InclusionAI", "release_date": "2026-08-07", "license": "open (free API tier)", "architecture": "Ling 3.0 family LLM", "context_window": 262144, "_note": "Free tier on OpenRouter (inclusionai/ling-3.0-tiny:free)." }
+  ],
+  "scores": [
+    { "model": "inclusionai/ling-3.0-tiny",  "benchmark": "input_price_per_mtok_lower_better",  "score": 0.0, "unit": "usd_per_1m", "_source": "https://openrouter.ai/inclusionai/ling-3.0-tiny:free", "_note": "Free tier." },
+    { "model": "inclusionai/ling-3.0-tiny",  "benchmark": "output_price_per_mtok_lower_better", "score": 0.0, "unit": "usd_per_1m", "_source": "https://openrouter.ai/inclusionai/ling-3.0-tiny:free", "_note": "Free tier." },
+    { "model": "inclusionai/ling-3.0-flash", "benchmark": "input_price_per_mtok_lower_better",  "score": 0.021, "unit": "usd_per_1m", "_source": "https://openrouter.ai/api/v1/models", "_note": "Refreshed OpenRouter price (was $0.22 output; now $0.021/$0.063)." },
+    { "model": "inclusionai/ling-3.0-flash", "benchmark": "output_price_per_mtok_lower_better", "score": 0.063, "unit": "usd_per_1m", "_source": "https://openrouter.ai/api/v1/models" }
+  ]
+}

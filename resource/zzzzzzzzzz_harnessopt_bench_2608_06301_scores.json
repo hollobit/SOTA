@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-07",
+    "session": "S239",
+    "note": "HarnessOpt-Bench (Scale AI, arXiv 2608.06301v1) — new benchmark for end-to-end LLM harness optimization. 5 frontier LLMs as optimizers over 4 downstream tasks; metric = normalized gain (fraction of headroom above the pinned baseline captured; higher better, can be negative). Ingested the SHARED 'opencode' harness rows (apples-to-apples cross-model comparison) from Table 1. GAIA seed is a non-functional stub (measured-zero baseline) so its gain is the raw held-out score. Paper cautions against fine-grained rankings/composite, so per-task gains kept separate (no derived composite). pdftotext-extracted. PDF stored in resource/.",
+    "sources": [ "https://arxiv.org/pdf/2608.06301v1", "https://scale.com/research" ]
+  },
+  "benchmarks": [
+    { "id": "harnessopt_officeqa",       "name": "HarnessOpt-Bench — OfficeQA (normalized gain)",       "category": "agent", "higher_better": true, "unit": "gain", "_note": "Harness optimization on OfficeQA, opencode shared harness. Resolution band ±0.045." },
+    { "id": "harnessopt_browsecomp_plus", "name": "HarnessOpt-Bench — BrowseComp-Plus (normalized gain)", "category": "agent", "higher_better": true, "unit": "gain", "_note": "Resolution band ±0.066." },
+    { "id": "harnessopt_terminal_bench",  "name": "HarnessOpt-Bench — Terminal-Bench (normalized gain)", "category": "agent", "higher_better": true, "unit": "gain", "_note": "Resolution band ±0.054." },
+    { "id": "harnessopt_gaia",            "name": "HarnessOpt-Bench — GAIA (raw held-out, stub seed)",    "category": "agent", "higher_better": true, "unit": "gain", "_note": "GAIA seed is a non-functional stub (baseline 0); gain = raw held-out score. Band ±0.035." }
+  ],
+  "scores": [
+    { "model": "anthropic/claude-opus-5",   "benchmark": "harnessopt_officeqa",       "score": 0.63, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1", "_note": "opencode harness (best OfficeQA)" },
+    { "model": "anthropic/claude-opus-5",   "benchmark": "harnessopt_browsecomp_plus", "score": 0.48, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "anthropic/claude-opus-5",   "benchmark": "harnessopt_terminal_bench",  "score": 0.29, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "anthropic/claude-opus-5",   "benchmark": "harnessopt_gaia",            "score": 0.47, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "harnessopt_officeqa",       "score": 0.51, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "harnessopt_browsecomp_plus", "score": 0.15, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "harnessopt_terminal_bench",  "score": 0.15, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "anthropic/claude-sonnet-5", "benchmark": "harnessopt_gaia",            "score": 0.25, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+
+    { "model": "openai/gpt-5.6-sol",   "benchmark": "harnessopt_officeqa",       "score": 0.29, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "openai/gpt-5.6-sol",   "benchmark": "harnessopt_browsecomp_plus", "score": 0.09, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "openai/gpt-5.6-sol",   "benchmark": "harnessopt_terminal_bench",  "score": 0.13, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "openai/gpt-5.6-sol",   "benchmark": "harnessopt_gaia",            "score": 0.31, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+
+    { "model": "openai/gpt-5.6-terra", "benchmark": "harnessopt_officeqa",       "score": 0.14, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "openai/gpt-5.6-terra", "benchmark": "harnessopt_browsecomp_plus", "score": 0.02, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "openai/gpt-5.6-terra", "benchmark": "harnessopt_terminal_bench",  "score": 0.04, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "openai/gpt-5.6-terra", "benchmark": "harnessopt_gaia",            "score": 0.17, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+
+    { "model": "moonshot/kimi-k3", "benchmark": "harnessopt_officeqa",       "score": 0.41, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "moonshot/kimi-k3", "benchmark": "harnessopt_browsecomp_plus", "score": 0.16, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "moonshot/kimi-k3", "benchmark": "harnessopt_terminal_bench",  "score": 0.12, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" },
+    { "model": "moonshot/kimi-k3", "benchmark": "harnessopt_gaia",            "score": 0.28, "unit": "gain", "_source": "https://arxiv.org/pdf/2608.06301v1" }
+  ]
+}
