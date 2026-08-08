@@ -4680,5 +4680,11 @@
   "type": "Data",
   "title": "S238b — GPT-5.6 August 카드 재검토: 누락된 Bio/Chem Preparedness 벤치 보강",
   "detail": "S238 재검토(웹/PDF 표 누락 확인 요청)에서 Biological & Chemical Preparedness 섹션(7.1.1)의 명명 벤치 점수를 놓친 것 발견·보강. 신규 7 scores(기존 벤치 id 매핑, 단위 규약 일치): Sol(Aug) ProtocolQA Open-Ended 44.14% · DNA TF-binding(Nucleobench) pass@1 12.55% · Hard-negative protein binding pass@4 5.27%; Luna(Aug) Tacit Knowledge & Troubleshooting 82.97%(refusal-adjusted); 카드 비교표의 net-new도 반영: Sol(July) protein-binding 7.6%, GPT-5.4 protein-binding 3.5% · DNA 12.82%. VCT Virology·TroubleshootingBench는 threshold-only(수치 없음)라 제외. 안전(disallowed/U18/vision/mental-health/jailbreak/hallucination) 표는 OpenAI 내부 not_unsafe 비율(비재현)이라 계속 제외."
+ },
+ {
+  "date": "2026-08-06",
+  "type": "Data",
+  "title": "S238c — GPT-5.6 August 카드 3차 재검토: 누락된 safety/cyber 표 전량 보강",
+  "detail": "3차 재검토에서 초기 판단('내부 지표라 skip')이 기존 인제스트와 불일치함을 발견. 대시보드는 이미 7월 카드의 OpenAI 시스템카드 safety/cyber 평가(prod_disallowed_*·dynamic_*·vision_safety_*·prompt_injection_connectors·openai_ctf_internal_curated)를 추적 중 → August 값도 일관성 있게 반영. 신규 44 scores(Sol/Luna August): Disallowed Content 8종×2, Dynamic Mental Health/Emotional/Self-harm 3×2, Vision safety 4×2, Prompt injection(Sol) 1, Internal CTF(Sol) 97.06%, 그리고 카드 최초 도입 U18 평가 6종×2(신규 벤치 id prod_disallowed_u18_*). 카드 컬럼이 August임을 헤더로 확인(7월 DB값과 상이). 제외: jailbreak(수치표 없음), cyber-range combined(August 시나리오셋이 기존 cyber_range와 상이해 혼동 방지), VCT/TroubleshootingBench(threshold-only). Sol(Aug) 총 30 scores."
  }
 ]
