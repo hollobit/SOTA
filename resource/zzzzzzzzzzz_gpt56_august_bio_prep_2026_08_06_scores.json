@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-06",
+    "session": "S238b",
+    "note": "SUPPLEMENT to S238 — Bio/Chemical Preparedness capability evals from the same OpenAI GPT-5.6 August Updates system card (section 7.1.1), missed in the first pass. Named bio benchmarks with numeric model scores. Mapped to EXISTING benchmark ids (from the July GPT-5.6 card ingest) and matched to their stored unit convention: protein-binding pass@4 stored as fraction (gpt-5.5=0.004); DNA/ProtocolQA/tacit as %. VCT Virology and TroubleshootingBench were threshold-only (no numeric score) so skipped. Tacit-knowledge value is the refusal-adjusted 'accounting for refusals' figure (note). Card distinguishes GPT-5.6 Sol (July) vs (August) in the protein/DNA tables.",
+    "sources": [
+      "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf"
+    ]
+  },
+  "scores": [
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "protocolqa_openended",                         "score": 44.14, "unit": "%",      "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "ProtocolQA Open-Ended (FutureHouse, 108 open-ended); highest among Aug models, below 54% expert threshold." },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "dna_tf_binding_design_pass1",                  "score": 12.55, "unit": "%",      "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "DNA TF-binding design (Nucleobench, 550 tasks), pass@1 win-rate vs Ledidi." },
+    { "model": "openai/gpt-5.6-sol-august",  "benchmark": "openai-hard-negative-protein-binding-pass4",   "score": 0.0527, "unit": "pass@4", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "Hard-negative protein binding (43 targets/492 hotspots), pass@4 = 5.27%." },
+    { "model": "openai/gpt-5.6-luna-august", "benchmark": "tacit_knowledge_troubleshooting_cons_at_32",   "score": 82.97, "unit": "%",      "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "Tacit Knowledge & Troubleshooting (Gryphon Scientific, 60 MCQ); refusal-adjusted, highest among Aug models, above 80% expert threshold." },
+
+    { "model": "openai/gpt-5.6-sol",  "benchmark": "openai-hard-negative-protein-binding-pass4", "score": 0.076, "unit": "pass@4", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "GPT-5.6 Sol (July) column = 7.6%, reported in the August card comparison table." },
+    { "model": "openai/gpt-5.4",      "benchmark": "openai-hard-negative-protein-binding-pass4", "score": 0.035, "unit": "pass@4", "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "GPT-5.4 column = 3.5% (comparison table)." },
+    { "model": "openai/gpt-5.4",      "benchmark": "dna_tf_binding_design_pass1",                "score": 12.82, "unit": "%",      "_source": "https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf", "_note": "GPT-5.4 column = 12.82% (comparison table)." }
+  ]
+}
