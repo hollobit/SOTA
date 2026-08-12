@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-12",
+    "session": "S240",
+    "note": "Grok 4.6 (SpaceXAI, 2026-08-12) + GPT-5.6 Cyber (OpenAI). Grok 4.6 benchmark values from Artificial Analysis's independent article (prose-stated, cross-model-consistent) — x.ai's own page shows grouped bar charts that can't be attributed per-model cleanly, so only AAII (61, matches AA) is cross-checked there. GDPval-AA v2 is reported by AA as an ELO (1753) → maps to gdpval_aa_elo (NOT gdpval_aa_v2, which is the %-winrate scale). Pricing from OpenRouter + AA. arena_webdev_elo 1618 from arena.ai WebDev leaderboard (grok-4.6-high, Preliminary). GPT-5.6 Cyber: model + official API pricing only (developers.openai.com); Daybreak blog describes ExploitGym2/ExploitBench qualitatively with no numeric scores (OpenAI-internal, charts are images) — consistent with cyber-variant policy (refusal-boundary variant, capability scores typically unpublished).",
+    "sources": [
+      "https://x.ai/news/grok-4-6",
+      "https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis",
+      "https://openrouter.ai/x-ai/grok-4.6",
+      "https://arena.ai/leaderboard/code/webdev",
+      "https://developers.openai.com/api/docs/models/gpt-5.6-cyber",
+      "https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/"
+    ]
+  },
+  "models": [
+    { "id": "xai/grok-4.6", "name": "Grok 4.6", "developer": "SpaceXAI", "vendor": "xai", "release_date": "2026-08-12", "license": "proprietary (API)", "context_window": 500000, "base_model": "xai/grok-4.5", "_note": "Focus on long-running agents + interactive/visual work. AAII 61 (frontier, in line with GPT-5.6 Sol). Turn-efficient (~53 turns vs ~103 for Opus 5). Pricing unchanged from 4.5 ($2/$6); cache $0.5." },
+    { "id": "openai/gpt-5.6-cyber", "name": "GPT-5.6 Cyber", "developer": "OpenAI", "vendor": "OpenAI", "release_date": "2026-08-12", "license": "proprietary (API)", "context_window": 400000, "base_model": "openai/gpt-5.6-sol", "_note": "Cybersecurity model for authorized vulnerability research / security testing (Daybreak Red). Trained to improve exploit-development workflows; outperforms GPT-5.6 Sol + GPT-5.5 Cyber on ExploitGym2 (no numeric scores published). $12.50/$75; cache $1.25." }
+  ],
+  "benchmarks": [],
+  "scores": [
+    { "model": "xai/grok-4.6", "benchmark": "aa_intelligence_index",   "score": 61,   "unit": "index", "_source": "https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis", "_note": "AAII (max); +5 over Grok 4.5. Also confirmed on x.ai chart." },
+    { "model": "xai/grok-4.6", "benchmark": "gdpval_aa_elo",           "score": 1753, "unit": "elo",   "_source": "https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis", "_note": "GDPval-AA v2 Elo; behind only Claude Opus 5. NOT the %-scale gdpval_aa_v2." },
+    { "model": "xai/grok-4.6", "benchmark": "tau3_banking",            "score": 50.7, "unit": "%",     "_source": "https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis", "_note": "τ³-Banking; top-two alongside Qwen3.8 Max (51.3)." },
+    { "model": "xai/grok-4.6", "benchmark": "terminal_bench_2_1",      "score": 88.4, "unit": "%",     "_source": "https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis", "_note": "Terminal-Bench v2.1; in line with leaders." },
+    { "model": "xai/grok-4.6", "benchmark": "arena_webdev_elo",        "score": 1618, "unit": "elo",   "_source": "https://arena.ai/leaderboard/code/webdev", "_note": "grok-4.6-high (Preliminary)." },
+
+    { "model": "xai/grok-4.6", "benchmark": "input_price_per_mtok_lower_better",         "score": 2.0, "unit": "usd_per_1m", "_source": "https://openrouter.ai/x-ai/grok-4.6" },
+    { "model": "xai/grok-4.6", "benchmark": "output_price_per_mtok_lower_better",        "score": 6.0, "unit": "usd_per_1m", "_source": "https://openrouter.ai/x-ai/grok-4.6" },
+    { "model": "xai/grok-4.6", "benchmark": "cached_input_price_per_mtok_lower_better",  "score": 0.5, "unit": "usd_per_1m", "_source": "https://openrouter.ai/x-ai/grok-4.6", "_note": "Cache hits; up from Grok 4.5's $0.3." },
+
+    { "model": "openai/gpt-5.6-cyber", "benchmark": "input_price_per_mtok_lower_better",        "score": 12.5, "unit": "usd_per_1m", "_source": "https://developers.openai.com/api/docs/models/gpt-5.6-cyber" },
+    { "model": "openai/gpt-5.6-cyber", "benchmark": "output_price_per_mtok_lower_better",       "score": 75.0, "unit": "usd_per_1m", "_source": "https://developers.openai.com/api/docs/models/gpt-5.6-cyber" },
+    { "model": "openai/gpt-5.6-cyber", "benchmark": "cached_input_price_per_mtok_lower_better", "score": 1.25, "unit": "usd_per_1m", "_source": "https://developers.openai.com/api/docs/models/gpt-5.6-cyber" }
+  ]
+}

@@ -602,6 +602,7 @@ var CyberCoding = {
         'openai/gpt-5.3-codex-spark',  // 2026-02-24 S146 — >1000 tok/s on Cerebras, $1.75/$14 per Mtok
         'openai/gpt-5.2',
         'openai/gpt-5',
+        'xai/grok-4.6',  // 2026-08-12 S240 — AAII 61; Terminal-Bench 2.1 88.4, τ³-Banking 50.7, WebDev Arena 1618
         'xai/grok-4.5',  // 2026-07-08 S175 — SWE-Marathon 29 SOTA, Terminal-Bench 2.1 83.3, SWE-Bench Pro 64.7, SWE-Multilingual 78.0, 4.2x token efficiency vs Opus 4.8
         'xai/grok-4-heavy',
         'xai/grok-4.20',

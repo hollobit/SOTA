@@ -3622,7 +3622,13 @@ var App = {
             // ---- 2026-08-06 S234 — Price tab pricing sources ----
             { name: 'OpenRouter Models API', url: 'https://openrouter.ai/api/v1/models', desc: '[pricing] Per-model prompt/completion token prices (318 priced models). Primary source for the Price tab (input/output $/1M).' },
             // ---- 2026-08-06 S238 — OpenAI GPT-5.6 August Updates system card ----
-            { name: 'OpenAI GPT-5.6 August Updates (system card, PDF)', url: 'https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf', desc: '[system_card] Aug 2026 checkpoints of GPT-5.6 Sol/Luna. HealthBench Sol(Aug) 55.0/Hard 31.4/Consensus 95.5/Professional 54.0. Preparedness-High Cyber+Bio. PDF stored in resource/.' }
+            { name: 'OpenAI GPT-5.6 August Updates (system card, PDF)', url: 'https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf', desc: '[system_card] Aug 2026 checkpoints of GPT-5.6 Sol/Luna. HealthBench Sol(Aug) 55.0/Hard 31.4/Consensus 95.5/Professional 54.0. Preparedness-High Cyber+Bio. PDF stored in resource/.' },
+            // ---- 2026-08-12 S240 — Grok 4.6 / GPT-5.6 Cyber / Nemotron 3.5 Lightning ----
+            { name: 'Grok 4.6 — Artificial Analysis', url: 'https://artificialanalysis.ai/articles/grok-4-6-benchmarks-and-analysis', desc: '[leaderboard] AAII 61 (frontier, in line w/ GPT-5.6 Sol), GDPval-AA Elo 1753, τ³-Banking 50.7, Terminal-Bench 2.1 88.4. $2/$6, 500K ctx.' },
+            { name: 'Introducing Grok 4.6 (SpaceXAI)', url: 'https://x.ai/news/grok-4-6', desc: '[vendor_blog] Grok 4.6 launch (2026-08-12); long-running agents + visual work focus.' },
+            { name: 'GPT-5.6 Cyber (OpenAI API)', url: 'https://developers.openai.com/api/docs/models/gpt-5.6-cyber', desc: '[model_card] Cybersecurity model for authorized vuln research. $12.50/$75, 400K ctx.' },
+            { name: 'Expanding Daybreak (OpenAI cyber)', url: 'https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/', desc: '[vendor_blog] GPT-5.6-Cyber ExploitGym2/ExploitBench (qualitative, no numeric scores).' },
+            { name: 'NVIDIA Nemotron 3.5 Lightning 30B-A3B NVFP4 (HF)', url: 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4', desc: '[model_card] Open MoE 30B/A3B NVFP4. MMLU-Pro 81.6, GPQA 75.6, SWE-bench Verified 52.8, GDPval Elo 865.' }
         ];
 
         sites.forEach(function(site) {
