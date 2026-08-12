@@ -4716,5 +4716,11 @@
   "type": "Data",
   "title": "S241b — Solar Pro 4 재검토: 누락된 AA 서브지표 4종 보강",
   "detail": "S241 재검토(웹/PDF 표 누락 확인). AA 아티클·providers 페이지에서 초기 반영 누락한 4종 보강: AA-Omniscience Accuracy 19%(추상화 기반 개선이라 지식은 불변), 비환각률 76%(환각 24%), 출력속도 59 t/s, TTFT 35.80s. 최근 프론티어(grok-4.5/kimi-k3) 관례에 맞춰 aa_omniscience_accuracy·aa_omniscience_non_hallucination id 사용. Solar Pro 4 총 13 scores. 아티클 전문(4735자) 재확인 결과 그 외 벤치표는 이미지 차트뿐, 추가 없음. context는 아티클 384K vs OR/providers 512K 불일치이나 servable 512K 유지."
+ },
+ {
+  "date": "2026-08-13",
+  "type": "Data",
+  "title": "S242 — DeepSeek V4 Pro 0813 (신규 dated checkpoint)",
+  "detail": "DeepSeek V4 Pro 0813(2026-08-13) 반영. 기존 deepseek/deepseek-v4-pro와 값이 달라(SWE-Verified 73.6 vs 74.0, SWE-Pro 52.1 vs 55.4, Terminal-2 59.1 vs 67.9) 별도 -0813 엔트리 생성(덮어쓰기 방지). benchlm.ai의 'DeepSeek-V4 technical report/provider-exact' 코딩표 반영: SWE-bench Verified 73.6·SWE-Pro 52.1·SWE-Multilingual 69.8·Terminal-Bench 2.0 59.1·LiveCodeBench Pass@1-COT 56.8(신규 id, 기존 livecodebench 93.5과 버전 상이해 분리)·EEBench 10.5(신규 id). kingy 팩트체크는 DeepSeek 컬럼(73.6/56.8) 교차확인용으로만 사용 — 다중컬럼 표가 내부 불일치(Terminal 87.9 vs 72.1)라 추가 미추출. benchlm 카테고리 복합점수(Agentic 50.3 등)는 benchlm 자체 aggregate라 제외. 가격 DeepSeek 공식 $0.435/$0.87/$0.003625(OpenRouter 일치), 1M ctx·384K max output·thinking 지원. FRONTIER_MODELS+cyber-coding 반영."
  }
 ]
