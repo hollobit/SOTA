@@ -623,6 +623,7 @@ var CyberCoding = {
         'alibaba/qwen3.6-plus',
         'alibaba/qwen3.6-27b',
         'alibaba/qwen3.6-35b-a3b',
+        'deepseek/deepseek-v4-pro-0813',  // 2026-08-13 S242 — SWE-Verified 73.6, SWE-Multilingual 69.8, LiveCodeBench-COT 56.8
         'deepseek/deepseek-v4-pro-max',
         'deepseek/deepseek-v4-flash-0731',  // 2026-08-01 S220 — official 0731 release (AA Intelligence Index 50, Cybergym 76.7, DeepSWE 54.4)
         // 2026-08-01 S223 — arxiv 6-mo batch net-new coding/cyber models

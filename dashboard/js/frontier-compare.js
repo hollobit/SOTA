@@ -245,6 +245,7 @@ var FrontierCompare = {
         'moonshot/kimi-k3',  // 2026-07-16 S182 — first open 3T-class MoE; AAII v4.1 57 (#4/189), BrowseComp 91.2, GPQA-D 93.5
         'moonshot/kimi-k2.6',
         'deepseek/deepseek-v4-pro-max',
+        'deepseek/deepseek-v4-pro-0813',  // 2026-08-13 S242 — SWE-Verified 73.6, SWE-Pro 52.1, Terminal-2 59.1; $0.435/$0.87, 1M ctx
         'deepseek/deepseek-v4-pro',
         'deepseek/deepseek-v4-flash',
         'deepseek/deepseek-v4-flash-0731',  // 2026-07-31 S226c — official 0731 flash release; Timeline frontier graph

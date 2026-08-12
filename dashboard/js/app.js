@@ -3630,7 +3630,10 @@ var App = {
             { name: 'Expanding Daybreak (OpenAI cyber)', url: 'https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/', desc: '[vendor_blog] GPT-5.6-Cyber ExploitGym2/ExploitBench (qualitative, no numeric scores).' },
             { name: 'NVIDIA Nemotron 3.5 Lightning 30B-A3B NVFP4 (HF)', url: 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4', desc: '[model_card] Open MoE 30B/A3B NVFP4. MMLU-Pro 81.6, GPQA 75.6, SWE-bench Verified 52.8, GDPval Elo 865.' },
             // ---- 2026-08-12 S241 — Upstage Solar Pro 4 (Korea sovereign) ----
-            { name: 'Upstage Solar Pro 4 — Artificial Analysis', url: 'https://artificialanalysis.ai/articles/upstage-solar-pro-4', desc: '[sovereign] Korea flagship. AAII 42 (+27 vs Solar Pro 3), GDPval-AA Elo 1277, Terminal-Bench 2.1 57, AA-LCR 71, τ³-Banking 23. $0.30/$1.20 first-party, 512K ctx.' }
+            { name: 'Upstage Solar Pro 4 — Artificial Analysis', url: 'https://artificialanalysis.ai/articles/upstage-solar-pro-4', desc: '[sovereign] Korea flagship. AAII 42 (+27 vs Solar Pro 3), GDPval-AA Elo 1277, Terminal-Bench 2.1 57, AA-LCR 71, τ³-Banking 23. $0.30/$1.20 first-party, 512K ctx.' },
+            // ---- 2026-08-13 S242 — DeepSeek V4 Pro 0813 ----
+            { name: 'DeepSeek V4 Pro (BenchLM.ai)', url: 'https://benchlm.ai/models/deepseek-v4-pro', desc: '[coding] V4 Pro 0813 tech-report: SWE-Verified 73.6, SWE-Pro 52.1, SWE-Multilingual 69.8, Terminal-2 59.1, LiveCodeBench-COT 56.8. $0.435/$0.87, 1M ctx.' },
+            { name: 'DeepSeek API pricing', url: 'https://api-docs.deepseek.com/quick_start/pricing/', desc: '[pricing] V4-Pro-0813 $0.435/$0.87 (cache hit $0.003625); V4-Flash-0731 $0.14/$0.28. Price increase announced.' }
         ];
 
         sites.forEach(function(site) {

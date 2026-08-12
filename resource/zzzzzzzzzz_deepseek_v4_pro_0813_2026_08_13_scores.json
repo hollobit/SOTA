@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-13",
+    "session": "S242",
+    "note": "DeepSeek V4 Pro 0813 (dated checkpoint, released 2026-08-13). Created as a SEPARATE entry from the existing deepseek/deepseek-v4-pro because its values differ (SWE-Verified 73.6 vs existing 74.0, SWE-Pro 52.1 vs 55.4, Terminal-2 59.1 vs 67.9) — distinct checkpoint, must not overwrite. Coding benchmarks from benchlm.ai, sourced 'DeepSeek-V4 technical report / Provider exact'; cross-confirmed against the kingy.ai fact-check DeepSeek column (SWE-Verified 73.6, LiveCodeBench 56.8 match). Skipped kingy's other rows (internally inconsistent multi-column comparison — e.g. Terminal-Bench shown as both 87.9 and 72.1) and benchlm's category composites (Agentic 50.3/Coding 43.2/Knowledge 43.7/Math 17.9 = benchlm's own aggregates). LiveCodeBench Pass@1-COT gets a distinct id (existing livecodebench holds a different-version 93.5 for base v4-pro; avoids conflation). Pricing from DeepSeek official (api-docs.deepseek.com) = OpenRouter exactly.",
+    "sources": [
+      "https://benchlm.ai/models/deepseek-v4-pro",
+      "https://api-docs.deepseek.com/quick_start/pricing/",
+      "https://openrouter.ai/deepseek/deepseek-v4-pro-0813",
+      "https://kingy.ai/blog/deepseek-v4-pro-0813-fable-5-price-fact-check/"
+    ]
+  },
+  "models": [
+    { "id": "deepseek/deepseek-v4-pro-0813", "name": "DeepSeek V4 Pro 0813", "developer": "DeepSeek", "vendor": "deepseek", "release_date": "2026-08-13", "license": "MIT", "context_window": 1048576, "base_model": "deepseek/deepseek-v4-pro", "_note": "Dated checkpoint of DeepSeek V4 Pro (2026-08-13). 1M ctx, 384K max output, thinking + non-thinking modes. Pricing $0.435/$0.87 (cache hit $0.003625). DeepSeek notes an upcoming price increase." }
+  ],
+  "benchmarks": [
+    { "id": "livecodebench_cot", "name": "LiveCodeBench Pass@1 (Chain-of-Thought)", "category": "coding", "higher_better": true, "unit": "%", "_note": "LiveCodeBench pass@1 with CoT; distinct from the generic livecodebench id." },
+    { "id": "eebench", "name": "EEBench V1", "category": "coding", "higher_better": true, "unit": "%", "_note": "EEBench V1 core corpus (official leaderboard)." }
+  ],
+  "scores": [
+    { "model": "deepseek/deepseek-v4-pro-0813", "benchmark": "swe_bench_verified",     "score": 73.6, "unit": "%", "_source": "https://benchlm.ai/models/deepseek-v4-pro", "_note": "DeepSeek-V4 technical report (provider exact); cross-confirmed by kingy fact-check." },
+    { "model": "deepseek/deepseek-v4-pro-0813", "benchmark": "swe_bench_pro",          "score": 52.1, "unit": "%", "_source": "https://benchlm.ai/models/deepseek-v4-pro", "_note": "DeepSeek-V4 technical report." },
+    { "model": "deepseek/deepseek-v4-pro-0813", "benchmark": "swe_bench_multilingual", "score": 69.8, "unit": "%", "_source": "https://benchlm.ai/models/deepseek-v4-pro", "_note": "DeepSeek-V4 technical report." },
+    { "model": "deepseek/deepseek-v4-pro-0813", "benchmark": "terminal_bench_2",       "score": 59.1, "unit": "%", "_source": "https://benchlm.ai/models/deepseek-v4-pro", "_note": "Terminal-Bench 2.0; DeepSeek-V4 technical report." },
+    { "model": "deepseek/deepseek-v4-pro-0813", "benchmark": "livecodebench_cot",      "score": 56.8, "unit": "%", "_source": "https://benchlm.ai/models/deepseek-v4-pro", "_note": "LiveCodeBench Pass@1-COT; tech report; cross-confirmed by kingy." },
+    { "model": "deepseek/deepseek-v4-pro-0813", "benchmark": "eebench",                "score": 10.5, "unit": "%", "_source": "https://benchlm.ai/models/deepseek-v4-pro", "_note": "EEBench V1 official leaderboard (benchmark exact)." },
+
+    { "model": "deepseek/deepseek-v4-pro-0813", "benchmark": "input_price_per_mtok_lower_better",        "score": 0.435,    "unit": "usd_per_1m", "_source": "https://api-docs.deepseek.com/quick_start/pricing/", "_note": "Cache miss. Matches OpenRouter." },
+    { "model": "deepseek/deepseek-v4-pro-0813", "benchmark": "output_price_per_mtok_lower_better",       "score": 0.87,     "unit": "usd_per_1m", "_source": "https://api-docs.deepseek.com/quick_start/pricing/" },
+    { "model": "deepseek/deepseek-v4-pro-0813", "benchmark": "cached_input_price_per_mtok_lower_better", "score": 0.003625, "unit": "usd_per_1m", "_source": "https://api-docs.deepseek.com/quick_start/pricing/", "_note": "Cache hit — 99.2% below cache-miss input." }
+  ]
+}
