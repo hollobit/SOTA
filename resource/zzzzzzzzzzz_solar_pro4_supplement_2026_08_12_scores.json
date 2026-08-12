@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-12",
+    "session": "S241b",
+    "note": "SUPPLEMENT to S241 (re-review) — Solar Pro 4 AA sub-metrics missed in the first pass. AA-Omniscience Accuracy (19%) and hallucination (24% → non-hallucination 76%) mapped to the ids recent frontier models use (grok-4.5/kimi-k3 use aa_omniscience_accuracy + aa_omniscience_non_hallucination). Output speed (59 t/s) + latency/TTFT (35.80s) from the AA Upstage providers page. Composite aa_omniscience (-1) already ingested in S241.",
+    "sources": [
+      "https://artificialanalysis.ai/articles/upstage-solar-pro-4",
+      "https://artificialanalysis.ai/providers/upstage"
+    ]
+  },
+  "scores": [
+    { "model": "upstage/solar-pro-4", "benchmark": "aa_omniscience_accuracy",        "score": 19, "unit": "%",   "_source": "https://artificialanalysis.ai/articles/upstage-solar-pro-4", "_note": "AA-Omniscience Accuracy; unchanged vs Solar Pro 3 (gain was via abstention, not knowledge)." },
+    { "model": "upstage/solar-pro-4", "benchmark": "aa_omniscience_non_hallucination","score": 76, "unit": "%",   "_source": "https://artificialanalysis.ai/articles/upstage-solar-pro-4", "_note": "100 − 24% hallucination rate. Solar Pro 3 was ~12% (88% hallucination)." },
+    { "model": "upstage/solar-pro-4", "benchmark": "aa_output_speed_tps",            "score": 59, "unit": "tps", "_source": "https://artificialanalysis.ai/providers/upstage", "_note": "AA Upstage providers page." },
+    { "model": "upstage/solar-pro-4", "benchmark": "aa_ttft_sec",                    "score": 35.80, "unit": "s", "_source": "https://artificialanalysis.ai/providers/upstage", "_note": "Time to first answer token (latency)." }
+  ]
+}
