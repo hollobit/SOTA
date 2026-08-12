@@ -3628,7 +3628,9 @@ var App = {
             { name: 'Introducing Grok 4.6 (SpaceXAI)', url: 'https://x.ai/news/grok-4-6', desc: '[vendor_blog] Grok 4.6 launch (2026-08-12); long-running agents + visual work focus.' },
             { name: 'GPT-5.6 Cyber (OpenAI API)', url: 'https://developers.openai.com/api/docs/models/gpt-5.6-cyber', desc: '[model_card] Cybersecurity model for authorized vuln research. $12.50/$75, 400K ctx.' },
             { name: 'Expanding Daybreak (OpenAI cyber)', url: 'https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/', desc: '[vendor_blog] GPT-5.6-Cyber ExploitGym2/ExploitBench (qualitative, no numeric scores).' },
-            { name: 'NVIDIA Nemotron 3.5 Lightning 30B-A3B NVFP4 (HF)', url: 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4', desc: '[model_card] Open MoE 30B/A3B NVFP4. MMLU-Pro 81.6, GPQA 75.6, SWE-bench Verified 52.8, GDPval Elo 865.' }
+            { name: 'NVIDIA Nemotron 3.5 Lightning 30B-A3B NVFP4 (HF)', url: 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4', desc: '[model_card] Open MoE 30B/A3B NVFP4. MMLU-Pro 81.6, GPQA 75.6, SWE-bench Verified 52.8, GDPval Elo 865.' },
+            // ---- 2026-08-12 S241 — Upstage Solar Pro 4 (Korea sovereign) ----
+            { name: 'Upstage Solar Pro 4 — Artificial Analysis', url: 'https://artificialanalysis.ai/articles/upstage-solar-pro-4', desc: '[sovereign] Korea flagship. AAII 42 (+27 vs Solar Pro 3), GDPval-AA Elo 1277, Terminal-Bench 2.1 57, AA-LCR 71, τ³-Banking 23. $0.30/$1.20 first-party, 512K ctx.' }
         ];
 
         sites.forEach(function(site) {

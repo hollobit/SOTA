@@ -1,0 +1,27 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-12",
+    "session": "S241",
+    "note": "Upstage Solar Pro 4 (Korean sovereign flagship reasoning model, replaces Solar Pro 3). Benchmark values from Artificial Analysis independent article (prose-stated). AAII 42 (+27 over Solar Pro 3's ~14/15). GDPval-AA v2 reported as ELO (1277) → gdpval_aa_elo (not %-scale gdpval_aa_v2). aa_omniscience -1 (composite; improvement via abstention — attempts only 41% of questions, hallucination 24%, accuracy unchanged at 19%). PRICING NOTE: AA article + Upstage first-party pricing page (S237) both state $0.30/$1.20/$0.06 per 1M input/output/cache (internally consistent: cache = 80% discount = 20% of input). OpenRouter lists $0.03/$0.12/$0.006 — a clean 10x lower outlier (likely promo/data-error) — NOT used; vendor-official wins. Context 512K (OpenRouter+AA providers page; article model-detail says 384K). Added to Sovereign REGIONS (Korea).",
+    "sources": [
+      "https://artificialanalysis.ai/articles/upstage-solar-pro-4",
+      "https://artificialanalysis.ai/providers/upstage",
+      "https://openrouter.ai/upstage/solar-pro4"
+    ]
+  },
+  "models": [
+    { "id": "upstage/solar-pro-4", "name": "Solar Pro 4", "developer": "Upstage", "vendor": "Upstage", "release_date": "2026-08-10", "license": "proprietary (API)", "context_window": 524288, "base_model": "upstage/solar-pro-3", "_note": "Korea sovereign — Upstage's proprietary flagship reasoning model, replacing Solar Pro 3 (April 2026). AAII 42 (+27). Text-only. Max output 256K. First-party API + OpenRouter. Largest agentic/long-context gains over Solar Pro 3." }
+  ],
+  "scores": [
+    { "model": "upstage/solar-pro-4", "benchmark": "aa_intelligence_index", "score": 42,   "unit": "index", "_source": "https://artificialanalysis.ai/articles/upstage-solar-pro-4", "_note": "+27 over Solar Pro 3; alongside Inkling (42), just behind MiMo-V2.5-Pro (43)." },
+    { "model": "upstage/solar-pro-4", "benchmark": "terminal_bench_2_1",    "score": 57,   "unit": "%",     "_source": "https://artificialanalysis.ai/articles/upstage-solar-pro-4", "_note": "Terminal-Bench v2.1; up from 12% (Solar Pro 3)." },
+    { "model": "upstage/solar-pro-4", "benchmark": "aa_lcr",                "score": 71,   "unit": "%",     "_source": "https://artificialanalysis.ai/articles/upstage-solar-pro-4", "_note": "AA-LCR long-context; up from 31%." },
+    { "model": "upstage/solar-pro-4", "benchmark": "tau3_banking",          "score": 23,   "unit": "%",     "_source": "https://artificialanalysis.ai/articles/upstage-solar-pro-4", "_note": "τ³-Banking; up from 9%." },
+    { "model": "upstage/solar-pro-4", "benchmark": "gdpval_aa_elo",         "score": 1277, "unit": "elo",   "_source": "https://artificialanalysis.ai/articles/upstage-solar-pro-4", "_note": "GDPval-AA v2 Elo; up from 498, above human baseline 1000. Elo-form (not %-scale)." },
+    { "model": "upstage/solar-pro-4", "benchmark": "aa_omniscience",        "score": -1,   "unit": "index", "_source": "https://artificialanalysis.ai/articles/upstage-solar-pro-4", "_note": "Composite; up from -53 via abstention (attempts 41%, hallucination 24%, accuracy unchanged 19%)." },
+
+    { "model": "upstage/solar-pro-4", "benchmark": "input_price_per_mtok_lower_better",        "score": 0.30, "unit": "usd_per_1m", "_source": "https://artificialanalysis.ai/articles/upstage-solar-pro-4", "_note": "Upstage first-party API (AA article + Upstage pricing page). OpenRouter's $0.03 is a 10x outlier, not used." },
+    { "model": "upstage/solar-pro-4", "benchmark": "output_price_per_mtok_lower_better",       "score": 1.20, "unit": "usd_per_1m", "_source": "https://artificialanalysis.ai/articles/upstage-solar-pro-4" },
+    { "model": "upstage/solar-pro-4", "benchmark": "cached_input_price_per_mtok_lower_better", "score": 0.06, "unit": "usd_per_1m", "_source": "https://artificialanalysis.ai/articles/upstage-solar-pro-4", "_note": "80% discount on input." }
+  ]
+}
