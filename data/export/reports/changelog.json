@@ -4734,5 +4734,11 @@
   "type": "Data",
   "title": "S243 — resource 소스 감사(Epoch ECI) + Timeline Solar Pro 4 누락 수정",
   "detail": "(1) resource 등록 리더보드 감사: Epoch ECI canonical CSV(epoch.ai/data/eci_scores.csv, 222모델)를 DB와 diff → DB에 있으나 ECI 점수 누락된 18모델 보강(2025+): GPT-5.5 Pro 161.5·Qwen 3.8 Max 156.1·Qwen3.7-Max 153.8·GPT-5.2 153.5·Muse Spark 152.8·GLM-5.1 150.7·GPT-5.1-Codex-Max 150.1·Qwen 3.6 Plus 149.0·MiniMax-M3 148.7·Qwen3.5-Plus 146.8·MiniMax-M2.7 145.9·Gemini 3.1 Flash-Lite 144.2·Qwen3.5-35B-A3B 143.9·GLM-4.7 143.7·Qwen3.6-35B-A3B 143.5·Mistral Medium 3.5 142.6·GLM-4.6 140.9·Qwen3-235B-A22B 139.5. ECI 139→157모델. 이름→canonical id 정규화 매칭+dated-variant alias. pre-2025 및 미매칭(dated snapshot)은 latest-focus로 제외. (2) Timeline 버그 수정: Solar Pro 4가 FRONTIER_MODELS에 누락돼 frontier version-up 그래프에 안 보이던 것 추가(S241 timeline-sync 누락 보완)."
+ },
+ {
+  "date": "2026-08-13",
+  "type": "Data",
+  "title": "S243b — resource 소스 감사(arena.ai Text Elo): 최신 프론티어 13모델 보강",
+  "detail": "arena.ai Text 리더보드(arena.ai/leaderboard/text, 368행) 전체를 DB arena_ai_text_elo와 diff → DB에 있으나 Text Elo 누락된 최신 프론티어 13모델 보강: Muse Spark 1.2 1499·Qwen 3.8 Max 1491·Gemini 3.6 Flash 1484·GPT-5.6 Sol 1481·GPT-5.6 Terra 1465·Grok 4.6 1464·GPT-5.6 Luna 1451·MiniMax-M3 1443·DeepSeek-V4-Flash 1435·Mistral Medium 3.5 1427·MiniMax-M2.7 1416·Solar Pro 4 1378·Nemotron 3.5 Lightning 1350. arena_ai_text_elo 42→55모델. effort-suffix 슬러그(gpt-5.6-sol-xhigh 등)→base canonical id 매핑. 이미 보유분(kimi-k3·glm-5.2·ernie-5.1 등)은 스킵."
  }
 ]
