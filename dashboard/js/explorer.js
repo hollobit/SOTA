@@ -16,8 +16,19 @@ var Explorer = {
         'arc_agi_1': 'arc_agi_2'
     },
 
+    // Lower-is-better detection: token price, latency, cost, and any id/metadata
+    // that explicitly marks lower as better. Used so the "winner" (and radar)
+    // treat a cheaper/faster value as the best, not the largest number.
+    _lowerIsBetter: function(bid, bench) {
+        if (bench && bench.higher_better === false) return true;
+        if (!bid) return false;
+        return /_lower_better(_|$)/.test(bid) ||
+               /price_per_mtok|per_mtok|_price_|ttft|latency|_cost_|cost_usd|cost_per/.test(bid);
+    },
+
     compare: function(modelIds, scores, benchmarks) {
         var mergeMap = this._MERGE_MAP;
+        var self = this;
 
         // Collect all benchmarks across selected models, merging similar ones
         var benchmarkSet = {};
@@ -39,8 +50,11 @@ var Explorer = {
             if (mergeMap[bid] === null) return;
             if (mergeMap[bid]) bid = mergeMap[bid];
             var key = s.model_id + '|' + bid;
-            // Keep highest score if merged
-            if (!scoreMap[key] || s.value > scoreMap[key].value) {
+            // Keep the best score if merged: lowest for lower-is-better (price/
+            // latency), highest otherwise.
+            if (!scoreMap[key]) {
+                scoreMap[key] = s;
+            } else if (self._lowerIsBetter(bid, null) ? s.value < scoreMap[key].value : s.value > scoreMap[key].value) {
                 scoreMap[key] = s;
             }
         });
@@ -49,14 +63,16 @@ var Explorer = {
         Object.keys(benchmarkSet).sort().forEach(function(bid) {
             var bench = benchmarks.find(function(b) { return b.id === bid; });
             var row = { benchmark: bid, benchName: bench ? bench.name : bid, category: bench ? bench.category : 'other', values: [] };
-            var maxVal = -Infinity, maxIdx = -1;
+            var lowerBetter = self._lowerIsBetter(bid, bench);
+            row.lowerBetter = lowerBetter;
+            var bestVal = lowerBetter ? Infinity : -Infinity, bestIdx = -1;
             modelIds.forEach(function(mid, i) {
                 var s = scoreMap[mid + '|' + bid];
                 var val = s ? s.value : null;
                 row.values.push(val);
-                if (val !== null && val > maxVal) { maxVal = val; maxIdx = i; }
+                if (val !== null && (lowerBetter ? val < bestVal : val > bestVal)) { bestVal = val; bestIdx = i; }
             });
-            row.winner = maxIdx;
+            row.winner = bestIdx;
             rows.push(row);
         });
 
