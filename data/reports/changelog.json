@@ -4722,5 +4722,11 @@
   "type": "Data",
   "title": "S242 — DeepSeek V4 Pro 0813 (신규 dated checkpoint)",
   "detail": "DeepSeek V4 Pro 0813(2026-08-13) 반영. 기존 deepseek/deepseek-v4-pro와 값이 달라(SWE-Verified 73.6 vs 74.0, SWE-Pro 52.1 vs 55.4, Terminal-2 59.1 vs 67.9) 별도 -0813 엔트리 생성(덮어쓰기 방지). benchlm.ai의 'DeepSeek-V4 technical report/provider-exact' 코딩표 반영: SWE-bench Verified 73.6·SWE-Pro 52.1·SWE-Multilingual 69.8·Terminal-Bench 2.0 59.1·LiveCodeBench Pass@1-COT 56.8(신규 id, 기존 livecodebench 93.5과 버전 상이해 분리)·EEBench 10.5(신규 id). kingy 팩트체크는 DeepSeek 컬럼(73.6/56.8) 교차확인용으로만 사용 — 다중컬럼 표가 내부 불일치(Terminal 87.9 vs 72.1)라 추가 미추출. benchlm 카테고리 복합점수(Agentic 50.3 등)는 benchlm 자체 aggregate라 제외. 가격 DeepSeek 공식 $0.435/$0.87/$0.003625(OpenRouter 일치), 1M ctx·384K max output·thinking 지원. FRONTIER_MODELS+cyber-coding 반영."
+ },
+ {
+  "date": "2026-08-13",
+  "type": "Data",
+  "title": "S242b — DeepSeek V4 재검토: 기술보고서 원문(HF 카드)에서 전체 벤치표 85점 보강",
+  "detail": "S242 재검토에서 benchlm이 부분만 렌더한 것을 발견 → benchlm이 인용한 DeepSeek-V4 기술보고서 원문(HF deepseek-ai/DeepSeek-V4-Pro 카드) 직접 추출. benchlm PDF 링크는 404라 HF README에서 2개 표 파싱: (1) Base Model 표 → V4-Pro-Base·V4-Flash-Base 각 24벤치. (2) 'Comparison across Modes' 표(6컬럼) → V4-Pro Non-Think(=0813 기본 서빙 config, 코딩값이 benchlm '0813'과 정확히 일치: SWE-Verified 73.6/Terminal 59.1/LiveCodeBench 56.8)·V4-Pro Max own column. 총 85 net-new(own-column only, 경쟁 모델 컬럼·Flash-NT/High·Pro-High 모드는 DB 타깃 없어 스킵). 0813: 9→22, v4-pro-max +20, pro-base/flash-base 각 24. 42/44 벤치 id 기존, apex·mcpatlas 신규. 42개 지식/추론/롱컨텍스트/에이전트 벤치(MMLU 90.1·GPQA 72.9·Codeforces 3206·GDPval Elo 1554 등) 반영. 원문 MD resource/ 저장."
  }
 ]
