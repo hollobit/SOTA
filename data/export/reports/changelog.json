@@ -4728,5 +4728,11 @@
   "type": "Data",
   "title": "S242b — DeepSeek V4 재검토: 기술보고서 원문(HF 카드)에서 전체 벤치표 85점 보강",
   "detail": "S242 재검토에서 benchlm이 부분만 렌더한 것을 발견 → benchlm이 인용한 DeepSeek-V4 기술보고서 원문(HF deepseek-ai/DeepSeek-V4-Pro 카드) 직접 추출. benchlm PDF 링크는 404라 HF README에서 2개 표 파싱: (1) Base Model 표 → V4-Pro-Base·V4-Flash-Base 각 24벤치. (2) 'Comparison across Modes' 표(6컬럼) → V4-Pro Non-Think(=0813 기본 서빙 config, 코딩값이 benchlm '0813'과 정확히 일치: SWE-Verified 73.6/Terminal 59.1/LiveCodeBench 56.8)·V4-Pro Max own column. 총 85 net-new(own-column only, 경쟁 모델 컬럼·Flash-NT/High·Pro-High 모드는 DB 타깃 없어 스킵). 0813: 9→22, v4-pro-max +20, pro-base/flash-base 각 24. 42/44 벤치 id 기존, apex·mcpatlas 신규. 42개 지식/추론/롱컨텍스트/에이전트 벤치(MMLU 90.1·GPQA 72.9·Codeforces 3206·GDPval Elo 1554 등) 반영. 원문 MD resource/ 저장."
+ },
+ {
+  "date": "2026-08-13",
+  "type": "Data",
+  "title": "S243 — resource 소스 감사(Epoch ECI) + Timeline Solar Pro 4 누락 수정",
+  "detail": "(1) resource 등록 리더보드 감사: Epoch ECI canonical CSV(epoch.ai/data/eci_scores.csv, 222모델)를 DB와 diff → DB에 있으나 ECI 점수 누락된 18모델 보강(2025+): GPT-5.5 Pro 161.5·Qwen 3.8 Max 156.1·Qwen3.7-Max 153.8·GPT-5.2 153.5·Muse Spark 152.8·GLM-5.1 150.7·GPT-5.1-Codex-Max 150.1·Qwen 3.6 Plus 149.0·MiniMax-M3 148.7·Qwen3.5-Plus 146.8·MiniMax-M2.7 145.9·Gemini 3.1 Flash-Lite 144.2·Qwen3.5-35B-A3B 143.9·GLM-4.7 143.7·Qwen3.6-35B-A3B 143.5·Mistral Medium 3.5 142.6·GLM-4.6 140.9·Qwen3-235B-A22B 139.5. ECI 139→157모델. 이름→canonical id 정규화 매칭+dated-variant alias. pre-2025 및 미매칭(dated snapshot)은 latest-focus로 제외. (2) Timeline 버그 수정: Solar Pro 4가 FRONTIER_MODELS에 누락돼 frontier version-up 그래프에 안 보이던 것 추가(S241 timeline-sync 누락 보완)."
  }
 ]
