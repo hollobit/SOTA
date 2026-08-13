@@ -1,0 +1,710 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-13",
+  "session": "S242b",
+  "note": "SUPPLEMENT to S242 (re-review) — full DeepSeek-V4 tech-report benchmark tables from the primary source (HF model card README, huggingface.co/deepseek-ai/DeepSeek-V4-Pro), which benchlm only partially rendered. Extracted OWN columns from 2 tables: (1) Base Model table -> DeepSeek-V4-Pro-Base + V4-Flash-Base (24 benches each). (2) 'Comparison across Modes' table -> V4-Pro Non-Think (= the 0813 default-served config; its coding numbers exactly match benchlm's '0813': SWE-Verified 73.6/Terminal 59.1/LiveCodeBench 56.8) and V4-Pro Max. Competitor columns (Opus/GPT/Gemini/K2.6/GLM in the frontier-compare table) and Flash Non-Think/High + Pro High modes skipped (no clean DB target / avoid over-scope). Authoritative primary-source values overwrite any stale mixed-source values via many-z late load. New benchmark ids: apex, mcpatlas.",
+  "sources": [
+   "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "apex",
+   "name": "Apex",
+   "category": "reasoning",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Apex (Pass@1), DeepSeek-V4 tech report."
+  },
+  {
+   "id": "mcpatlas",
+   "name": "MCPAtlas",
+   "category": "agent",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "MCP tool-use agentic benchmark (Pass@1)."
+  }
+ ],
+ "scores": [
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "agieval",
+   "score": 82.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "agieval",
+   "score": 83.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "mmlu",
+   "score": 88.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "mmlu",
+   "score": 90.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "mmlu_redux",
+   "score": 89.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "mmlu_redux",
+   "score": 90.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "mmlu_pro",
+   "score": 68.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "mmlu_pro",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "mmmlu",
+   "score": 88.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "mmmlu",
+   "score": 90.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "c_eval",
+   "score": 92.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "c_eval",
+   "score": 93.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "cmmlu",
+   "score": 90.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "cmmlu",
+   "score": 90.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "multiloko",
+   "score": 42.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "multiloko",
+   "score": 51.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "simpleqa_verified",
+   "score": 30.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "simpleqa_verified",
+   "score": 55.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "supergpqa",
+   "score": 46.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "supergpqa",
+   "score": 53.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "facts_parametric",
+   "score": 33.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "facts_parametric",
+   "score": 62.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "triviaqa",
+   "score": 82.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "triviaqa",
+   "score": 85.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "bbh",
+   "score": 86.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "bbh",
+   "score": 87.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "drop",
+   "score": 88.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "drop",
+   "score": 88.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "hellaswag",
+   "score": 85.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "hellaswag",
+   "score": 88.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "winogrande",
+   "score": 79.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "winogrande",
+   "score": 81.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "cluewsc",
+   "score": 82.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "cluewsc",
+   "score": 85.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "bigcodebench",
+   "score": 56.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "bigcodebench",
+   "score": 59.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "humaneval",
+   "score": 69.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "humaneval",
+   "score": 76.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "gsm8k",
+   "score": 90.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "gsm8k",
+   "score": 92.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "math",
+   "score": 57.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "math",
+   "score": 64.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "mgsm",
+   "score": 85.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "mgsm",
+   "score": 84.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "cmath",
+   "score": 93.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "cmath",
+   "score": 90.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-base",
+   "benchmark": "longbench_v2",
+   "score": 44.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Flash-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-base",
+   "benchmark": "longbench_v2",
+   "score": 51.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro-Base (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "mmlu_pro",
+   "score": 82.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "mmlu_pro",
+   "score": 87.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "chinese_simpleqa",
+   "score": 75.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "chinese_simpleqa",
+   "score": 84.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "gpqa_diamond",
+   "score": 72.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "gpqa_diamond",
+   "score": 90.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "hle",
+   "score": 7.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "hle",
+   "score": 37.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "livecodebench",
+   "score": 56.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "livecodebench",
+   "score": 93.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "codeforces_rating",
+   "score": 3206.0,
+   "unit": "elo",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "hmmt_2026_feb",
+   "score": 31.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "hmmt_2026_feb",
+   "score": 95.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "imo_answerbench",
+   "score": 35.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "imo_answerbench",
+   "score": 89.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "apex",
+   "score": 0.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "apex",
+   "score": 38.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "apex_shortlist",
+   "score": 9.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "apex_shortlist",
+   "score": 90.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "mrcr_1m",
+   "score": 44.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "mrcr_1m",
+   "score": 83.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "corpusqa_1m",
+   "score": 35.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "corpusqa_1m",
+   "score": 62.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "terminal_bench_2",
+   "score": 59.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "terminal_bench_2",
+   "score": 67.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "swe_bench_verified",
+   "score": 73.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "swe_bench_verified",
+   "score": 80.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "swe_bench_pro",
+   "score": 52.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "swe_bench_pro",
+   "score": 55.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "swe_bench_multilingual",
+   "score": 69.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "swe_bench_multilingual",
+   "score": 76.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "browsecomp",
+   "score": 83.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "hle_with_tools",
+   "score": 48.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "mcpatlas",
+   "score": 69.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "mcpatlas",
+   "score": 73.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "toolathlon",
+   "score": 46.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Non-Think mode (tech report) = 0813 default-served config"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-max",
+   "benchmark": "toolathlon",
+   "score": 51.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "_note": "V4-Pro Max mode (tech report)"
+  }
+ ]
+}
