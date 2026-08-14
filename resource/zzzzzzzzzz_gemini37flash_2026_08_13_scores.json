@@ -1,0 +1,42 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-13",
+    "session": "S244",
+    "note": "Gemini 3.7 Flash (Google DeepMind, 2026-08-13, based on Gemini 3.6 Flash). Benchmark table from the DeepMind model-card HTML page (deepmind.google/models/model-cards/gemini-3-7-flash). STRICT-ATTRIBUTION: only the Gemini 3.7 Flash OWN column ingested; competitor columns (3.6 Flash / Sonnet 5 / GPT-5.6 Terra / Muse Spark 1.2) skipped. Pricing $0.75/$3.75 per 1M (official, * = tiered note). PDF model card has no capability table (defers to 3.6 Flash); blog benchmarks are chart images — HTML card is the source. 3 new benchmark ids (terminal_bench_3, hle_verified, gdm_mrcr_v2). 1M ctx, multimodal (text/image/audio/video), thinking-configurable.",
+    "sources": [
+      "https://deepmind.google/models/model-cards/gemini-3-7-flash/",
+      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-7-Flash-Model-Card.pdf",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/"
+    ]
+  },
+  "models": [
+    { "id": "google/gemini-3.7-flash", "name": "Gemini 3.7 Flash", "developer": "Google", "vendor": "Google", "release_date": "2026-08-13", "license": "proprietary (API)", "context_window": 1048576, "base_model": "google/gemini-3.6-flash", "_note": "Next Gemini 3 Flash iteration; algorithmic reasoning improvements, customizable thinking. Multimodal in (text/image/audio/video). $0.75/$3.75 per 1M. AAII 56 (+4 vs 3.6 Flash)." }
+  ],
+  "benchmarks": [
+    { "id": "terminal_bench_3", "name": "Terminal-Bench 3.0", "category": "agent", "higher_better": true, "unit": "%", "_note": "General agent capabilities; harder successor to Terminal-Bench 2.x." },
+    { "id": "hle_verified", "name": "Humanity's Last Exam (Verified)", "category": "reasoning", "higher_better": true, "unit": "%", "_note": "HLE-Verified multidisciplinary expert reasoning." },
+    { "id": "gdm_mrcr_v2", "name": "GDM-MRCR v2 (8-needle, 128k)", "category": "long-context", "higher_better": true, "unit": "%", "_note": "Google DeepMind Multi-Round Coref Resolution v2, 8-needle, 128k average." }
+  ],
+  "scores": [
+    { "model": "google/gemini-3.7-flash", "benchmark": "aa_intelligence_index", "score": 56,   "unit": "index", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "+4 vs 3.6 Flash (52)." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "deepswe_1_1",           "score": 65.3, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/" },
+    { "model": "google/gemini-3.7-flash", "benchmark": "arena_webdev_elo",      "score": 1588, "unit": "elo", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "Code Arena (WebDev); vs 3.6 Flash 1538. Cross-confirmed in blog." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "terminal_bench_2_1",    "score": 85.8, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/" },
+    { "model": "google/gemini-3.7-flash", "benchmark": "terminal_bench_3",      "score": 14.9, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/" },
+    { "model": "google/gemini-3.7-flash", "benchmark": "automationbench",       "score": 30.4, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "Private set." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "gdpval_aa_elo",         "score": 1525, "unit": "elo", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "GDPVal-AA v2 (Elo)." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "harvey_lab_aa",         "score": 90.7, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/" },
+    { "model": "google/gemini-3.7-flash", "benchmark": "gdp_pdf",               "score": 34.0, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/" },
+    { "model": "google/gemini-3.7-flash", "benchmark": "charxiv_reasoning",     "score": 84.5, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "No tools." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "lvbench",              "score": 85.4, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "Long video understanding." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "gdm_mrcr_v2",           "score": 97.0, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "8-needle, 128k average." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "osworld_v2",            "score": 47.9, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "OSWorld-2.0 agentic computer use." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "agents_last_exam",      "score": 26.3, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "Pass rate." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "hle_verified",          "score": 53.6, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/" },
+    { "model": "google/gemini-3.7-flash", "benchmark": "biomysterybench",       "score": 87.1, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "Human solvable." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "labbench2",             "score": 82.1, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/" },
+    { "model": "google/gemini-3.7-flash", "benchmark": "frontiercode",          "score": 43.6, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "FrontierCode 1.1 Main, production code quality." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "input_price_per_mtok_lower_better",  "score": 0.75, "unit": "usd_per_1m", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/" },
+    { "model": "google/gemini-3.7-flash", "benchmark": "output_price_per_mtok_lower_better", "score": 3.75, "unit": "usd_per_1m", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/" }
+  ]
+}

@@ -214,6 +214,7 @@ var FrontierCompare = {
         // 2026-06-10 S67 — S66 batch new frontier entries
         'cohere/command-a-plus',                  // AAII 37
         'cohere/north-mini-code',                 // Apache 2.0 MoE 30B/3B coding-specialist AAII 28
+        'google/gemini-3.7-flash',                // 2026-08-13 S244 — AAII 56 (+4 vs 3.6); WebDev Arena 1588, Terminal-Bench 2.1 85.8, DeepSWE 65.3; $0.75/$3.75, 1M ctx
         'google/gemini-3.6-flash',                // 2026-07-21 S225 — latest Gemini Flash (arena Vision 1301 / WebDev 1533); Timeline frontier currency
         'google/gemini-3.5-flash-high',           // AAII 55 reasoning variant
         'google/gemini-3.5-flash-medium',         // AAII 55
