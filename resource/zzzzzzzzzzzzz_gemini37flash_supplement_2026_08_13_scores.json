@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-13",
+    "session": "S244b",
+    "note": "SUPPLEMENT to S244 (re-review) — Gemini 3.7 Flash. (1) 2 sub-metrics skipped in first pass, both existing ids: CharXiv Reasoning with-tools 88.7 and BioMysteryBench human-difficult 43.5. (2) PRICING CORRECTION: OpenRouter lists $0.375/$1.875 (cache $0.0375) — the base (≤200k context) tier — vs the DeepMind card's $0.75*/$3.75* (the asterisk = higher >200k-context tier). Switched to the base tier ($0.375/$1.875) per OpenRouter-primary convention; card's higher tier noted. Loads after the S244 file to override its $0.75/$3.75. Full capability table re-verified complete (23 rows, LABBench2 last — no hidden GPQA/AIME/MMLU rows).",
+    "sources": [
+      "https://openrouter.ai/api/v1/models",
+      "https://deepmind.google/models/model-cards/gemini-3-7-flash/"
+    ]
+  },
+  "scores": [
+    { "model": "google/gemini-3.7-flash", "benchmark": "charxiv_reasoning_with_tools",    "score": 88.7, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "CharXiv Reasoning, with tools." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "biomysterybench_human_difficult", "score": 43.5, "unit": "%", "_source": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "_note": "BioMysteryBench human-difficult subset." },
+
+    { "model": "google/gemini-3.7-flash", "benchmark": "input_price_per_mtok_lower_better",        "score": 0.375,  "unit": "usd_per_1m", "_source": "https://openrouter.ai/api/v1/models", "_note": "Base ≤200k-context tier. DeepMind card lists $0.75* (>200k tier)." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "output_price_per_mtok_lower_better",       "score": 1.875,  "unit": "usd_per_1m", "_source": "https://openrouter.ai/api/v1/models", "_note": "Base tier. Card lists $3.75* (>200k tier)." },
+    { "model": "google/gemini-3.7-flash", "benchmark": "cached_input_price_per_mtok_lower_better", "score": 0.0375, "unit": "usd_per_1m", "_source": "https://openrouter.ai/api/v1/models" }
+  ]
+}
