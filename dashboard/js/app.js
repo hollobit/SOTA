@@ -3638,6 +3638,8 @@ var App = {
             { name: 'Qwen3.8-27B (HF)', url: 'https://huggingface.co/Qwen/Qwen3.8-27B', desc: '[frontier] 27B multimodal. LiveCodeBench v6 90.3, GPQA 89.2, OSWorld-Verified 84.3, OmniDocBench 91.1.' },
             { name: 'Needle 2 (Cactus, 45M tool-calling edge model)', url: 'https://github.com/cactus-compute/needle', desc: '[edge] 45M params, 14MB binary, CQ2-bit tool-calling for tiny devices. arXiv 2607.18363.' },
             { name: 'MiniMax Music 3 (text-to-music)', url: 'https://huggingface.co/MiniMaxAI/MiniMax-Music3', desc: '[audio] Text-to-music, 8B+0.6B, Flow Matching, 5-min songs 32kHz stereo.' },
+            // ---- 2026-08-14 S246 — GLM-5.3 ----
+            { name: 'GLM-5.3: Frontier Coding + Emergent Cyber (Z.ai)', url: 'https://z.ai/blog/glm-5.3', desc: '[frontier][cyber] GDPval-AA Elo 1769, Terminal-Bench 2.1 88.2, CyberGym 84.5, ExploitBench 54.4, FrontierSWE 78.1. 1M ctx; pricing not yet published.' },
             // ---- 2026-08-13 S242 — DeepSeek V4 Pro 0813 ----
             { name: 'DeepSeek V4 Pro (BenchLM.ai)', url: 'https://benchlm.ai/models/deepseek-v4-pro', desc: '[coding] V4 Pro 0813 tech-report: SWE-Verified 73.6, SWE-Pro 52.1, SWE-Multilingual 69.8, Terminal-2 59.1, LiveCodeBench-COT 56.8. $0.435/$0.87, 1M ctx.' },
             { name: 'DeepSeek API pricing', url: 'https://api-docs.deepseek.com/quick_start/pricing/', desc: '[pricing] V4-Pro-0813 $0.435/$0.87 (cache hit $0.003625); V4-Flash-0731 $0.14/$0.28. Price increase announced.' }

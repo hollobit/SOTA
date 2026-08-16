@@ -276,6 +276,7 @@ var FrontierCompare = {
         'moonshot/kimi-k2.5',
         'zhipu/glm-5',
         'zhipu/glm-5.1',
+        'zhipu/glm-5.3',  // 2026-08-14 S246 — frontier coding + emergent cyber; GDPval-AA Elo 1769, Terminal-Bench 2.1 88.2, CyberGym 84.5, ExploitBench 54.4
         'zhipu/glm-5.2',  // 2026-06-17 S137 — AAII v4.1 51 open-weights leader (744B/40B MoE MIT)
         'alibaba/qwen3.8-max',  // 2026-07-19 S231 — Qwen3.8-Max flagship (Terminal-Bench 2.1 86.6, GPQA-D 92.6, multimodal); Timeline frontier currency
         'alibaba/qwen3.7-max',

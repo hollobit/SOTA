@@ -611,6 +611,7 @@ var CyberCoding = {
         'meta/muse-spark-1.2',    // 2026-08-05 S233 — Meta coding-focused release, 1M ctx; Terminal-Bench 2.1 80.15 (AA) / 82.9 (Meta self-report) / SciCode 56.4 / Agentic 46.77
         'zhipu/glm-5',
         'zhipu/glm-5.1',
+        'zhipu/glm-5.3',          // 2026-08-14 S246 — Terminal-Bench 2.1 88.2, FrontierSWE 78.1, DeepSWE 66.9, CyberGym 84.5, ExploitBench 54.4, Opus-4.8-level cyber
         'zhipu/glm-5.2',          // 2026-06-19 S137 — AAII v4.1 51 open-weights SOTA; FrontierSWE 74.4 / Terminal-Bench 2.1 82.7 / SWE-Pro 62.1 / DeepSWE 46.2
         'moonshot/kimi-k3',       // 2026-07-16 S182 — 2.8T MoE; Terminal-Bench 2.1 88.3 / FrontierSWE 81.2 / DeepSWE 67.5 / SWE-Marathon 42
         'tencent/hunyuan-hy3',    // 2026-07-06 S181 — GA 295B-A21B Apache; SWE-Verified 78 / SWE-Pro 57.9 / DeepSWE 28
