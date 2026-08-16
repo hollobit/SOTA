@@ -4794,5 +4794,11 @@
   "type": "Data",
   "title": "S246b — GLM-5.3 재검토: Semgrep 취약점탐지 벤치(신규, 9모델)",
   "detail": "S246 재검토에서 처음 편집성으로 넘겼던 semgrep.dev 블로그가 실제로는 독립 벤치 결과를 담고 있음을 발견. Semgrep 취약점탐지 벤치(F1/Precision/Recall/Cost-per-TP) 신규 등록 — 벤더 비교컬럼이 아닌 제3자 독립 리더보드라 전 모델 반영. semgrep_vuln_f1(9모델): Opus 5 65.6·GPT-5.6 Luna 48.0·Kimi K3 36.9·Opus 4.7 36.4·Grok 4.6 31.7·GLM 5.2 26.8·GLM 5.3 23.8·Opus 4.8 23.6·DeepSeek V4 Flash 12.5. GLM 5.3(F1 23.8)≈Opus 4.8(23.6)를 $0.15 vs $1.04로 달성(블로그 헤드라인). precision/recall/cost-per-TP 서브지표도 주요모델 반영. 신규 id 4종. Grok 4.6 Exacto/Nitro 서빙변종은 base로 대체. agentnativedev Medium은 표 없는 편집성이라 제외. GLM-5.3 총 20 scores."
+ },
+ {
+  "date": "2026-08-17",
+  "type": "Data",
+  "title": "S247 — 벤치 id 병합: cybergym_success_rate → cybergym (동일 지표)",
+  "detail": "cybergym과 cybergym_success_rate가 동일 지표(CyberGym 취약점 재현 성공률 pass@1)임을 확인—공유 11모델 중 10개 값 일치/근사. 파편화된 id를 canonical 'cybergym'으로 병합: 4개 resource 파일에서 리다이렉트, category general→cyber 정정+description 추가, Explorer _MERGE_MAP에도 표시병합 등록. cybergym 23→33모델 통합, cybergym_success_rate 0 잔존. 유일 충돌 Opus 4.6은 Anthropic 1차출처 66.6 채택(auto-mined 90.2 폐기). 주의: cybergym_success_rate_anthropic_agent/_codex/_sageagent 등 하네스별 변종은 별개 측정이라 유지. cybergym_v1(UC Berkeley refresh)은 일부 모델 값이 상이(Opus 4.7 73.1 vs 24.5, 다른 하네스/날짜 추정)라 별도 유지."
  }
 ]
