@@ -1,0 +1,14 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-17",
+    "session": "S247",
+    "note": "Benchmark id merge: cybergym_success_rate -> cybergym (same metric — CyberGym vuln-reproduction success rate; 10/11 shared-model values identical). Redirected in 4 source files. This file (a) redefines canonical 'cybergym' with the correct category (cyber) + description, and (b) pins the authoritative Opus 4.6 value (66.6, Anthropic-sourced) over the auto-mined 90.2, loading last via many-z filename. cybergym_v1 (UC Berkeley refresh) kept separate — it has genuinely conflicting values for some models (e.g. Opus 4.7 73.1 vs 24.5) suggesting a different harness/date.",
+    "sources": ["https://arxiv.org/abs/2506.02548"]
+  },
+  "benchmarks": [
+    { "id": "cybergym", "name": "CyberGym (vuln-reproduction success rate)", "category": "cyber", "higher_better": true, "unit": "%", "_note": "UC Berkeley CyberGym — targeted vulnerability reproduction (pass@1 success rate). Merged from the former cybergym_success_rate id." }
+  ],
+  "scores": [
+    { "model": "anthropic/claude-opus-4.6", "benchmark": "cybergym", "score": 66.6, "unit": "%", "_source": "https://www.anthropic.com/", "_note": "Anthropic-sourced value; supersedes an auto-mined 90.2." }
+  ]
+}

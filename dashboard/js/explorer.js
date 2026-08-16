@@ -13,7 +13,8 @@ var Explorer = {
         'livecodebench_v6': 'livecodebench',
         'livecodebench_elo': null,  // exclude Elo (different unit)
         'tau_bench': 'tau2_bench',
-        'arc_agi_1': 'arc_agi_2'
+        'arc_agi_1': 'arc_agi_2',
+        'cybergym_success_rate': 'cybergym'
     },
 
     // Lower-is-better detection: token price, latency, cost, and any id/metadata
