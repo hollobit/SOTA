@@ -4776,5 +4776,11 @@
   "type": "Data",
   "title": "S245 — Qwen3.8-27B/2.4T-A95B + Needle 2 + MiniMax Music 3",
   "detail": "사용자 제공 HF/GitHub 링크 분석. (1) Qwen3.8-2.4T-A95B(오픈웨이트 2.4T/95B, Qwen3.8-Max의 base—카드 own column이 'Qwen3.8-Max'로 기존 값과 일치): 표준벤치 18점(GPQA 92.6·Terminal-Bench 2.1 86.6·SWE-Pro 67.7·FrontierSWE 73.5·HealthBench 60.2·IFBench 82.8·HLE 43.6 등). (2) Qwen3.8-27B(27B 멀티모달): 16점(LiveCodeBench v6 90.3·GPQA 89.2·OSWorld-Verified 84.3·AndroidWorld 81.9·OmniDocBench 91.1·ERQA 65.5 등). own-column only, 경쟁모델 컬럼 제외, Qwen-internal 벤치(QwenSWEBench/QoderBench/ReactBench/SVGBench/PLawBench/PRBench) 제외. coworkbench 신규 id. (3) Needle 2(Cactus 45M tool-calling 엣지모델, arXiv 2607.18363)·(4) MiniMax Music 3(text-to-music 8B+0.6B)는 벤치표가 이미지/부재라 모델 엔트리만. DeepSeek-V4-Pro는 이미 S242b에서 기술보고서 전량 반영됨."
+ },
+ {
+  "date": "2026-08-17",
+  "type": "Data",
+  "title": "S245b — Qwen3.8-27B 재검토: 누락된 멀티모달 벤치 5종 보강",
+  "detail": "S245 재검토. Qwen3.8-27B 카드의 'General Multimodal Intelligence' 표 섹션을 초기 파서가 놓친 것 발견(값이 'Without CI/With CI' 형식=code-interpreter 유무라 순수 숫자 파싱 실패). 자기 컬럼 without-CI(무툴) 값 5종 보강: MathVision 90.0·CharXiv RQ 83.7·BabyVision 65.7·SWE-MM 38.6·Vision2Web 62.9. swe_mm·vision2web 신규 id. ClawEval-MM은 Pass@3/Average 복합형식이라 제외. A95B는 text-only라 멀티모달 섹션 없음(GPQA만, 이미 반영). Qwen3.8-27B 총 21 scores."
  }
 ]
