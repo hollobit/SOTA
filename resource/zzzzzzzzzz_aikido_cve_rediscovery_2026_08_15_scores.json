@@ -1,0 +1,27 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-16",
+    "session": "S248",
+    "note": "Aikido Security CVE-rediscovery benchmark (independent third-party eval by @pilvar222 / Aikido, GLM-5.3 early-access cyber evaluation). Values from the tweet-thread TEXT (charts are images, not OCR'd — only text-stated numbers ingested). GLM-5.3: pass@1 60.4% (highest OSS recorded), pass@3 75%, consistency 14/32 CVEs found reliably. GPT-5.6-Terra pass@3 68% (GLM-5.3 '7 points above'). Consistency (CVEs reliably found /32): DeepSeek V4 Flash 12, Kimi K3 11, Qwen 3.8 Max 10, DeepSeek V4 Pro 10. Independent leaderboard -> all stated models ingested. Full per-model pass@1/pass@3 tables are in the thread's chart images (not extractable).",
+    "sources": [
+      "https://x.com/pilvar222/status/2088293371861217319",
+      "https://x.com/pilvar222/status/2088293373949981089",
+      "https://x.com/Zai_org/status/2088280509474320693"
+    ]
+  },
+  "benchmarks": [
+    { "id": "aikido_cve_rediscovery_pass1", "name": "Aikido CVE-Rediscovery (pass@1)", "category": "cyber_defense", "higher_better": true, "unit": "%", "_note": "Aikido Security benchmark: % of CVEs rediscovered at pass@1." },
+    { "id": "aikido_cve_rediscovery_pass3", "name": "Aikido CVE-Rediscovery (pass@3)", "category": "cyber_defense", "higher_better": true, "unit": "%", "_note": "% of CVEs rediscovered at pass@3." },
+    { "id": "aikido_cve_consistency", "name": "Aikido CVE Consistency (CVEs reliably found / 32)", "category": "cyber_defense", "higher_better": true, "unit": "count", "_note": "Number of CVEs found consistently across attempts, out of 32." }
+  ],
+  "scores": [
+    { "model": "zhipu/glm-5.3",              "benchmark": "aikido_cve_rediscovery_pass1", "score": 60.4, "unit": "%", "_source": "https://x.com/pilvar222/status/2088293371861217319", "_note": "Highest OSS pass@1 recorded." },
+    { "model": "zhipu/glm-5.3",              "benchmark": "aikido_cve_rediscovery_pass3", "score": 75.0, "unit": "%", "_source": "https://x.com/pilvar222/status/2088293371861217319", "_note": "7 points above GPT-5.6-Terra; 40% cheaper." },
+    { "model": "openai/gpt-5.6-terra",       "benchmark": "aikido_cve_rediscovery_pass3", "score": 68.0, "unit": "%", "_source": "https://x.com/pilvar222/status/2088293371861217319", "_note": "GLM-5.3 stated as '7 points above'." },
+    { "model": "zhipu/glm-5.3",              "benchmark": "aikido_cve_consistency", "score": 14, "unit": "count", "_source": "https://x.com/pilvar222/status/2088293373949981089" },
+    { "model": "deepseek/deepseek-v4-flash", "benchmark": "aikido_cve_consistency", "score": 12, "unit": "count", "_source": "https://x.com/pilvar222/status/2088293373949981089" },
+    { "model": "moonshot/kimi-k3",           "benchmark": "aikido_cve_consistency", "score": 11, "unit": "count", "_source": "https://x.com/pilvar222/status/2088293373949981089" },
+    { "model": "alibaba/qwen3.8-max",        "benchmark": "aikido_cve_consistency", "score": 10, "unit": "count", "_source": "https://x.com/pilvar222/status/2088293373949981089" },
+    { "model": "deepseek/deepseek-v4-pro",   "benchmark": "aikido_cve_consistency", "score": 10, "unit": "count", "_source": "https://x.com/pilvar222/status/2088293373949981089" }
+  ]
+}
