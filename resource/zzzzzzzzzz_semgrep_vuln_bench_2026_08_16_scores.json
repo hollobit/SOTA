@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "collected_at": "2026-08-16",
+    "session": "S246b",
+    "note": "SUPPLEMENT to S246 (re-review) — Semgrep vulnerability-detection benchmark from the semgrep.dev blog (an INDEPENDENT third-party eval, leaderboard-style across 11 models — not a vendor competitor-column table — so all models ingested). F1 = harmonic mean of precision/recall (Semgrep's ranking metric). Cost per true-positive in USD (lower better). GLM-5.3 F1 23.8% ≈ Opus 4.8 23.6% at $0.15 vs $1.04 (the blog's headline). Grok 4.6 Exacto/Nitro serving variants skipped (base Grok 4.6 used). 4 new benchmark ids.",
+    "sources": [ "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" ]
+  },
+  "benchmarks": [
+    { "id": "semgrep_vuln_f1",        "name": "Semgrep Vuln-Detection F1", "category": "cyber_defense", "higher_better": true,  "unit": "%", "_note": "Semgrep independent vulnerability-detection benchmark; F1 (harmonic mean of precision/recall). Ranking metric." },
+    { "id": "semgrep_vuln_precision", "name": "Semgrep Vuln-Detection Precision", "category": "cyber_defense", "higher_better": true,  "unit": "%" },
+    { "id": "semgrep_vuln_recall",    "name": "Semgrep Vuln-Detection Recall", "category": "cyber_defense", "higher_better": true,  "unit": "%" },
+    { "id": "semgrep_cost_per_tp_usd_lower_better", "name": "Semgrep Cost per True-Positive (USD)", "category": "cyber_defense", "higher_better": false, "unit": "usd", "_note": "USD per true-positive finding. Lower better." }
+  ],
+  "scores": [
+    { "model": "anthropic/claude-opus-5",       "benchmark": "semgrep_vuln_f1", "score": 65.6, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "openai/gpt-5.6-luna",           "benchmark": "semgrep_vuln_f1", "score": 48.0, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "moonshot/kimi-k3",              "benchmark": "semgrep_vuln_f1", "score": 36.9, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "anthropic/claude-opus-4.7",     "benchmark": "semgrep_vuln_f1", "score": 36.4, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "xai/grok-4.6",                  "benchmark": "semgrep_vuln_f1", "score": 31.7, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/", "_note": "Base Grok 4.6 (Exacto 35.5 / Nitro 27.8 serving variants not tracked)." },
+    { "model": "zhipu/glm-5.2",                 "benchmark": "semgrep_vuln_f1", "score": 26.8, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "zhipu/glm-5.3",                 "benchmark": "semgrep_vuln_f1", "score": 23.8, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/", "_note": "≈ Opus 4.8 (23.6) at 1/7 the cost." },
+    { "model": "anthropic/claude-opus-4.8",     "benchmark": "semgrep_vuln_f1", "score": 23.6, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "deepseek/deepseek-v4-flash",    "benchmark": "semgrep_vuln_f1", "score": 12.5, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+
+    { "model": "anthropic/claude-opus-5",   "benchmark": "semgrep_vuln_precision", "score": 74.1, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "zhipu/glm-5.3",             "benchmark": "semgrep_vuln_precision", "score": 81.6, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "semgrep_vuln_precision", "score": 68.0, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "deepseek/deepseek-v4-flash","benchmark": "semgrep_vuln_precision", "score": 88.9, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+
+    { "model": "anthropic/claude-opus-5",   "benchmark": "semgrep_vuln_recall", "score": 58.8, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "zhipu/glm-5.3",             "benchmark": "semgrep_vuln_recall", "score": 13.9, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "semgrep_vuln_recall", "score": 14.3, "unit": "%", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+
+    { "model": "zhipu/glm-5.3",             "benchmark": "semgrep_cost_per_tp_usd_lower_better", "score": 0.15, "unit": "usd", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "anthropic/claude-opus-4.8", "benchmark": "semgrep_cost_per_tp_usd_lower_better", "score": 1.04, "unit": "usd", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "anthropic/claude-opus-5",   "benchmark": "semgrep_cost_per_tp_usd_lower_better", "score": 0.44, "unit": "usd", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" },
+    { "model": "deepseek/deepseek-v4-flash","benchmark": "semgrep_cost_per_tp_usd_lower_better", "score": 0.02, "unit": "usd", "_source": "https://semgrep.dev/blog/2026/glm-53-delivers-opus-48-level-cybersecurity-results-at-a-fraction-of-the-cost/" }
+  ]
+}
