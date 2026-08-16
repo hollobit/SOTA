@@ -4806,5 +4806,20 @@
   "type": "Data",
   "title": "S248 — Aikido CVE-rediscovery 벤치(GLM-5.3 사이버 독립평가)",
   "detail": "X 스레드 분석(@pilvar222/Aikido의 GLM-5.3 early-access 사이버 평가 + @Zai_org GLM-5.3 오픈릴리스 공지). Aikido CVE-rediscovery 벤치 신규 등록(제3자 독립평가라 전 모델 반영, 텍스트 명시값만—차트는 이미지라 추출불가): pass@1 GLM-5.3 60.4%(최고 OSS 기록); pass@3 GLM-5.3 75%·GPT-5.6-Terra 68%(GLM이 7점 위, 40% 저렴); consistency(신뢰탐지 CVE/32) GLM-5.3 14·DeepSeek V4 Flash 12·Kimi K3 11·Qwen 3.8 Max 10·DeepSeek V4 Pro 10. GLM-5.3는 오탐도 DeepSeek v4보다 적음. 신규 id 3종. Zai 공지의 cvd.z.ai/OpenVuln HF space는 reference 등록. GLM-5.3 모델·기본 사이버벤치는 S246/S246b에서 이미 반영됨."
+ },
+ {
+  "date": "2026-08-15",
+  "change": "S248: Aikido CVE-rediscovery benchmark (GLM-5.3, 13 models independent eval; pass@1/pass@3/consistency scores)",
+  "refs": [
+   "zai.org X",
+   "pilvar222 thread",
+   "aikido blog"
+  ]
+ },
+ {
+  "date": "2026-08-16",
+  "type": "Data",
+  "title": "S248b — Aikido CVE 원본 26-CVE 런 보강(재검토)",
+  "detail": "S248 재검토 중 pilvar222 X 스레드가 실제로는 Aikido 블로그('Benchmarking 13 AI Models on Known CVE Detection', 26 CVE·13 모델)를 홍보한 것임을 확인. S248은 후속 GLM-5.3 업데이트 런(확장·난이도↑ 세트, pass@3 % + consistency/32)만 반영했음. 원본 26-CVE 런을 별도 id 'aikido_cve_rediscovery_26cve'(pass@3 union recall %)로 신규 등록—세트 크기가 달라 같은 모델이 두 값을 가짐(예: gpt-5.6-terra 88.5%[26-CVE 원본] vs 68%[32-CVE 업데이트], 충돌 방지 위해 별도 id). 본문 명시값만: GPT-5.6(Sol) 23/26=88.5, gpt-5.6-terra 23/26=88.5, Kimi K3 23/26=88.5(최강 OSS), grok-4.5 20/26=76.9, gpt-5.4-mini 20/26=76.9, gpt-5.4-nano 18/26=69.2, GLM-5.2 16/26=61.5. 'Claude Opus 15~18'은 변형 미상 범위라 strict-attribution 규칙상 제외. 차트 이미지의 전체 per-model pass@1 표는 여전히 OCR 불가로 미추출."
  }
 ]
