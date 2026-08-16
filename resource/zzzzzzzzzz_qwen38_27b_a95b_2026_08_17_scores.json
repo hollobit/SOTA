@@ -1,0 +1,343 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-17",
+  "session": "S245",
+  "note": "Qwen3.8-27B + Qwen3.8-2.4T-A95B (open-weight, HF cards). A95B is the open-weight base of Qwen3.8-Max (card own column labeled 'Qwen3.8-Max', scores match existing qwen3.8-max). Own-column only (competitor cols Opus/Fable/GPT/Qwen3.7 skipped). STANDARD public benchmarks only; Qwen-internal (QwenSWEBench/QoderBench/ReactBench/SVGBench, PLawBench, PRBench, MLS-Bench, $OneMillion) skipped. coworkbench = new id. Also added model-only entries: Needle 2 (Cactus, 45M tool-calling edge model, benchmarks in image/arXiv 2607.18363) and MiniMax-Music3 (text-to-music, 8B+0.6B, no benchmark table).",
+  "sources": [
+   "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "https://github.com/cactus-compute/needle",
+   "https://huggingface.co/MiniMaxAI/MiniMax-Music3",
+   "https://arxiv.org/abs/2607.18363"
+  ]
+ },
+ "models": [
+  {
+   "id": "alibaba/qwen3.8-2.4t-a95b",
+   "name": "Qwen3.8-2.4T-A95B",
+   "developer": "Alibaba",
+   "vendor": "alibaba",
+   "release_date": "2026-08-15",
+   "license": "qwen3.8-max license",
+   "architecture": "MoE 2.4T total / 95B active",
+   "context_window": 1010000,
+   "base_model": "alibaba/qwen3.5-397b",
+   "_note": "Open-weight base of Qwen3.8-Max (API adds vision/tools/non-thinking). Text-only, thinking-required. 262K native / 1.01M extensible."
+  },
+  {
+   "id": "alibaba/qwen3.8-27b",
+   "name": "Qwen3.8-27B",
+   "developer": "Alibaba",
+   "vendor": "alibaba",
+   "release_date": "2026-08-15",
+   "license": "apache-2.0",
+   "architecture": "27B dense, multimodal (image-text-to-text)",
+   "context_window": 1000000,
+   "_note": "Post-trained Qwen3.8 27B. Multimodal, flexible thinking control. 262K native / 1M extensible."
+  },
+  {
+   "id": "cactus/needle-2",
+   "name": "Needle 2",
+   "developer": "Cactus Compute",
+   "vendor": "cactus",
+   "release_date": "2026-08-15",
+   "license": "open",
+   "architecture": "Simple Attention Network, 45M params, CQ2-bit (14MB binary)",
+   "_note": "Foundation tool-calling / device-use / structured-extraction model for tiny devices; ~28MB RAM. Trades wins with FunctionGemma 270M / LFM2.5 230M / Apple FM at 5-70x smaller. arXiv 2607.18363. Benchmarks in size-quality frontier chart (image)."
+  },
+  {
+   "id": "minimax/minimax-music3",
+   "name": "MiniMax Music 3",
+   "developer": "MiniMax",
+   "vendor": "minimax",
+   "release_date": "2026-08-15",
+   "license": "open",
+   "architecture": "Hierarchical AR: 8B Global LLM + 0.6B Local LLM + Flow Matching/Flow-VAE",
+   "_note": "Text-to-music: full songs up to 5 min from lyrics + music description. 32kHz 16-bit stereo. No benchmark table in card."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "coworkbench",
+   "name": "CoWorkBench",
+   "category": "agent",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Long-horizon office/cowork agent benchmark."
+  }
+ ],
+ "scores": [
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "terminal_bench_2_1",
+   "score": 86.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "Terminal Bench 2.1"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "swe_bench_pro",
+   "score": 67.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "SWE-bench Pro"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "deepswe_1_1",
+   "score": 56.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "DeepSWE 1.1"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "nl2repo_bench",
+   "score": 55.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "NL2Repo-Bench"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "frontierswe",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "FrontierSWE"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "paperbench",
+   "score": 93.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "PaperBench"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "coworkbench",
+   "score": 74.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "CoWorkBench"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "job_bench",
+   "score": 53.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "JobBench"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "automationbench",
+   "score": 27.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "Automation-Bench"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "toolathlon_verified",
+   "score": 72.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "Toolathlon Verified"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "widesearch",
+   "score": 81.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "WideSearch"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "hle_with_tools",
+   "score": 56.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "HLE w/ tools"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "gpqa_diamond",
+   "score": 92.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "GPQA Diamond"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "hle",
+   "score": 43.6,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "HLE"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "ifbench",
+   "score": 82.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "IFBench"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "healthbench",
+   "score": 60.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "HealthBench"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "mrcr_v2_256k",
+   "score": 92.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "MRCR v2 256K"
+  },
+  {
+   "model": "alibaba/qwen3.8-2.4t-a95b",
+   "benchmark": "longbench_v2",
+   "score": 66.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+   "_note": "LongBench v2"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "terminal_bench_2_1",
+   "score": 73.0,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "Terminal Bench 2.1"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "swe_bench_pro",
+   "score": 61.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "SWE-bench Pro"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "nl2repo_bench",
+   "score": 42.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "NL2Repo-Bench"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "deepswe_1_1",
+   "score": 42.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "DeepSWE 1.1"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "coworkbench",
+   "score": 70.7,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "CoWorkBench"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "job_bench",
+   "score": 33.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "JobBench"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "ifbench",
+   "score": 79.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "IFBench"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "gpqa_diamond",
+   "score": 89.2,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "GPQA Diamond"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "hle",
+   "score": 30.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "HLE"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "livecodebench_v6",
+   "score": 90.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "LiveCodeBench v6"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "osworld_verified",
+   "score": 84.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "OSWorld-Verified"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "webarena",
+   "score": 64.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "WebArena-Verified"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "android_world",
+   "score": 81.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "AndroidWorld"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "omnidocbench_1_5",
+   "score": 91.1,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "OmniDocBench 1.5"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "realworldqa",
+   "score": 85.9,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "RealWorldQA"
+  },
+  {
+   "model": "alibaba/qwen3.8-27b",
+   "benchmark": "erqa",
+   "score": 65.5,
+   "unit": "%",
+   "_source": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "_note": "ERQA"
+  }
+ ]
+}

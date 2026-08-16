@@ -3633,6 +3633,11 @@ var App = {
             { name: 'Upstage Solar Pro 4 — Artificial Analysis', url: 'https://artificialanalysis.ai/articles/upstage-solar-pro-4', desc: '[sovereign] Korea flagship. AAII 42 (+27 vs Solar Pro 3), GDPval-AA Elo 1277, Terminal-Bench 2.1 57, AA-LCR 71, τ³-Banking 23. $0.30/$1.20 first-party, 512K ctx.' },
             // ---- 2026-08-13 S244 — Gemini 3.7 Flash ----
             { name: 'Gemini 3.7 Flash model card (DeepMind)', url: 'https://deepmind.google/models/model-cards/gemini-3-7-flash/', desc: '[frontier] AAII 56 (+4 vs 3.6), WebDev Arena 1588, Terminal-Bench 2.1 85.8, DeepSWE 65.3, HLE-Verified 53.6, GDM-MRCR 128k 97.0. $0.75/$3.75, 1M ctx.' },
+            // ---- 2026-08-17 S245 — Qwen3.8-27B/A95B, Needle 2, MiniMax Music 3 ----
+            { name: 'Qwen3.8-2.4T-A95B (HF, open-weight base of Qwen3.8-Max)', url: 'https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B', desc: '[frontier] 2.4T/95B MoE open weights. GPQA 92.6, Terminal-Bench 2.1 86.6, SWE-Pro 67.7, FrontierSWE 73.5.' },
+            { name: 'Qwen3.8-27B (HF)', url: 'https://huggingface.co/Qwen/Qwen3.8-27B', desc: '[frontier] 27B multimodal. LiveCodeBench v6 90.3, GPQA 89.2, OSWorld-Verified 84.3, OmniDocBench 91.1.' },
+            { name: 'Needle 2 (Cactus, 45M tool-calling edge model)', url: 'https://github.com/cactus-compute/needle', desc: '[edge] 45M params, 14MB binary, CQ2-bit tool-calling for tiny devices. arXiv 2607.18363.' },
+            { name: 'MiniMax Music 3 (text-to-music)', url: 'https://huggingface.co/MiniMaxAI/MiniMax-Music3', desc: '[audio] Text-to-music, 8B+0.6B, Flow Matching, 5-min songs 32kHz stereo.' },
             // ---- 2026-08-13 S242 — DeepSeek V4 Pro 0813 ----
             { name: 'DeepSeek V4 Pro (BenchLM.ai)', url: 'https://benchlm.ai/models/deepseek-v4-pro', desc: '[coding] V4 Pro 0813 tech-report: SWE-Verified 73.6, SWE-Pro 52.1, SWE-Multilingual 69.8, Terminal-2 59.1, LiveCodeBench-COT 56.8. $0.435/$0.87, 1M ctx.' },
             { name: 'DeepSeek API pricing', url: 'https://api-docs.deepseek.com/quick_start/pricing/', desc: '[pricing] V4-Pro-0813 $0.435/$0.87 (cache hit $0.003625); V4-Flash-0731 $0.14/$0.28. Price increase announced.' }
