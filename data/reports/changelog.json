@@ -4827,5 +4827,11 @@
   "type": "Data",
   "title": "S249 — AI 안전 벤치마크 클러스터(HalluHard·NOHARM·OS-Harm·ChineseHarm·MPIB)",
   "detail": "사용자 제공 10개 링크(6 웹+4 arXiv PDF)를 5개 병렬 에이전트로 분석. 신규 벤치 11종·218 scores 반영. HalluHard(기존 빈 벤치 채움): halluhard.com 원본 leaderboard-data.js에서 다중턴 환각율(%, 낮을수록 우수) overall+4도메인(legal/research/medical/coding), 현행 30개 모델. NOHARM(Stanford/Harvard/ARISE 의료안전, arXiv 2512.01241): HealthRex/harmdash metrics.csv에서 Overall Safety(0-1↑)+Case Harm Rate(↓), 27개 모델. OS-Harm(컴퓨터-유즈 에이전트 안전, 2506.14866): Avg Unsafe(↓) 5모델. ChineseHarm-Bench(중국어 유해콘텐츠, 2506.10960): zero-shot Macro-F1 현행 3모델. MPIB(의료 프롬프트 인젝션, 2602.06268): D0 CHER/ASR(↓) 3모델. 최신-모델 포커스 적용(GPT-4o 등 2년+ 제외), 비-모델(AMBOSS LiSA·Glass Health·의사 baseline) 제외, 방향은 metric _lower_better 접미사로. Explorer _lowerIsBetter가 id뿐 아니라 metric 접미사도 인식하도록 수정(harmbench 등 기존 벤치도 함께 개선). 보류(신뢰성): arise-ai.org/mast MAST 합성 리더보드(preview+두 표 불일치, Playwright 필요), Giskard AgentHarm(결과표 없음), Nature s41591-026-04431-5(별개 RCQ 연구, 페이월)."
+ },
+ {
+  "date": "2026-08-22",
+  "type": "Data",
+  "title": "S249b — MAST 의료 리더보드 Playwright 정밀추출(NOHARM v2 Safety 43모델)",
+  "detail": "S249에서 신뢰성 문제로 보류했던 arise-ai.org/mast(MAST, Medical AI Superintelligence Test)를 Playwright로 정밀 추출해 반영(S249의 WebFetch 두 표 불일치 해소). First Do NOHARM v2 Safety(F1 가중, 높을수록 우수) 43행 랭킹에서 RAG 제품(LiSA/Doximity/OpenEvidence/Glass) 4종 제외한 39개 base 모델 반영: Muse Spark 1.1 79.7(최고 base), Claude Opus 5 74.6, Kimi K3 74.0, GPT-5.6 Sol 70.1, GPT-5.5 70.0, GPT-5 68.5 ... Grok 4.3 44.5, Llama 4 Maverick 30.8. 추가로 MAST 의료역량 4개 차원(Reasoning/CPC/Diagnostic/Management, top-10 라인업 6 base 모델)도 반영. 신규 벤치 5종·63 scores. NOHARM v2는 S249의 v1(harmdash CSV)과 별개 벤치라 충돌 없음. PREVIEW 리더보드(점수 변동 가능)임을 _note에 명시. 63 scores 0 FK 오류."
  }
 ]
