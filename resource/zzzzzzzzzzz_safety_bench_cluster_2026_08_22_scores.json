@@ -1,0 +1,1673 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-22",
+  "session": "S249",
+  "note": "AI-safety benchmark cluster from user-provided links. HalluHard (populate existing empty bench, authoritative leaderboard-data.js), NOHARM (harmdash metrics.csv), OS-Harm, ChineseHarm-Bench (zero-shot w/o-knowledge), MPIB (D0 no-defense). Latest-models-focus applied: excluded >2yr models (GPT-4o/4o-mini) and older rosters trimmed to current-gen; non-model entries (AMBOSS LiSA, Glass Health, Human baseline) skipped. Direction via _lower_better metric suffix. DEFERRED (reliability): arise-ai.org/mast MAST composite (preview + inconsistent, needs Playwright); Giskard AgentHarm page (no results table); Nature s41591-026-04431-5 (different RCQ study, paywalled).",
+  "sources": [
+   "https://halluhard.com/",
+   "https://arxiv.org/abs/2602.01031",
+   "https://arxiv.org/abs/2512.01241",
+   "https://github.com/HealthRex/harmdash",
+   "https://www.amboss.com/int/int-newsroom/noharm-study",
+   "https://arxiv.org/abs/2506.14866",
+   "https://arxiv.org/abs/2506.10960",
+   "https://arxiv.org/abs/2602.06268",
+   "https://www.arise-ai.org/mast"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "halluhard",
+   "name": "HalluHard (multi-turn hallucination rate)",
+   "category": "hallucination",
+   "metric": "hallucination_rate_lower_better",
+   "higher_better": false,
+   "unit": "%",
+   "_note": "Multi-turn hallucination rate (%, lower better) averaged across 4 domains (legal/research/medical/coding), 950 seed Qs. arXiv 2602.01031. Headline 'avg' metric = mean of per-domain overall rates."
+  },
+  {
+   "id": "halluhard_legal",
+   "name": "HalluHard — Legal (hallucination rate)",
+   "category": "hallucination",
+   "metric": "hallucination_rate_lower_better",
+   "higher_better": false,
+   "unit": "%"
+  },
+  {
+   "id": "halluhard_research",
+   "name": "HalluHard — Research (hallucination rate)",
+   "category": "hallucination",
+   "metric": "hallucination_rate_lower_better",
+   "higher_better": false,
+   "unit": "%"
+  },
+  {
+   "id": "halluhard_medical",
+   "name": "HalluHard — Medical (hallucination rate)",
+   "category": "hallucination",
+   "metric": "hallucination_rate_lower_better",
+   "higher_better": false,
+   "unit": "%"
+  },
+  {
+   "id": "halluhard_coding",
+   "name": "HalluHard — Coding (hallucination rate)",
+   "category": "hallucination",
+   "metric": "hallucination_rate_lower_better",
+   "higher_better": false,
+   "unit": "%"
+  },
+  {
+   "id": "noharm_overall",
+   "name": "NOHARM Overall Safety Score",
+   "category": "medical-safety",
+   "metric": "overall_score",
+   "higher_better": true,
+   "unit": "score",
+   "_note": "First-Do-NOHARM (Stanford/Harvard/ARISE) medical consultation safety. Overall = harmonic mean of Safety/Completeness/Restraint, 0-1 higher better. 1,100 cases / 10 specialties. arXiv 2512.01241."
+  },
+  {
+   "id": "noharm_case_harm_rate",
+   "name": "NOHARM Case Harm Rate (severe harm)",
+   "category": "medical-safety",
+   "metric": "case_harm_rate_lower_better",
+   "higher_better": false,
+   "unit": "rate",
+   "_note": "Fraction of cases with >=1 severely harmful error (0-1, lower better). arXiv 2512.01241 / HealthRex harmdash metrics.csv."
+  },
+  {
+   "id": "osharm_avg_unsafe",
+   "name": "OS-Harm Average Unsafe Rate (computer-use agents)",
+   "category": "agent-safety",
+   "metric": "unsafe_rate_lower_better",
+   "higher_better": false,
+   "unit": "%",
+   "_note": "OS-Harm (EPFL) — % of computer-use agent traces judged unsafe, averaged over misuse/injection/misbehavior. Lower better. 150 tasks. arXiv 2506.14866."
+  },
+  {
+   "id": "chineseharm_macro_f1",
+   "name": "ChineseHarm-Bench Macro-F1 (zero-shot)",
+   "category": "safety",
+   "metric": "macro_f1",
+   "higher_better": true,
+   "unit": "f1",
+   "_note": "Chinese harmful-content detection, macro-F1 over 6 categories, zero-shot prompting (no knowledge augmentation). 6,000 samples. arXiv 2506.10960."
+  },
+  {
+   "id": "mpib_v1_cher",
+   "name": "MPIB V1 Clinical Harm Event Rate (direct injection, no defense)",
+   "category": "medical-safety",
+   "metric": "cher_lower_better",
+   "higher_better": false,
+   "unit": "%",
+   "_note": "Medical Prompt Injection Benchmark — CHER>=sev3 under direct prompt injection, D0 (no defense). Lower better. arXiv 2602.06268."
+  },
+  {
+   "id": "mpib_v1_asr",
+   "name": "MPIB V1 Attack Success Rate (direct injection, no defense)",
+   "category": "medical-safety",
+   "metric": "asr_lower_better",
+   "higher_better": false,
+   "unit": "%",
+   "_note": "Medical Prompt Injection Benchmark — ASR (sev>=2) under direct prompt injection, D0 (no defense). Lower better. arXiv 2602.06268."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "halluhard_legal",
+   "score": 38.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "halluhard_research",
+   "score": 71.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "halluhard_medical",
+   "score": 78.5,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "halluhard_coding",
+   "score": 16.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "halluhard",
+   "score": 50.95,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "halluhard_legal",
+   "score": 50.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "halluhard_research",
+   "score": 80.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "halluhard_medical",
+   "score": 82.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "halluhard_coding",
+   "score": 25.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "halluhard",
+   "score": 59.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra",
+   "benchmark": "halluhard_legal",
+   "score": 69.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra",
+   "benchmark": "halluhard_research",
+   "score": 93.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra",
+   "benchmark": "halluhard_medical",
+   "score": 95.4,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra",
+   "benchmark": "halluhard_coding",
+   "score": 79.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra",
+   "benchmark": "halluhard",
+   "score": 84.525,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "halluhard_legal",
+   "score": 67.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "halluhard_research",
+   "score": 92.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "halluhard_medical",
+   "score": 95.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "halluhard_coding",
+   "score": 62.5,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "halluhard",
+   "score": 79.55,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "halluhard_legal",
+   "score": 44.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "halluhard_research",
+   "score": 84.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "halluhard_medical",
+   "score": 85.6,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "halluhard_coding",
+   "score": 25.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "halluhard",
+   "score": 60.025,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "halluhard_legal",
+   "score": 49.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "halluhard_research",
+   "score": 81.6,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "halluhard_medical",
+   "score": 89.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "halluhard_coding",
+   "score": 23.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "halluhard",
+   "score": 60.95,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "halluhard_legal",
+   "score": 45.4,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "halluhard_research",
+   "score": 83.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "halluhard_medical",
+   "score": 82.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "halluhard_coding",
+   "score": 26.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "halluhard",
+   "score": 59.575,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "halluhard_legal",
+   "score": 51.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "halluhard_research",
+   "score": 87.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "halluhard_medical",
+   "score": 86.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "halluhard_coding",
+   "score": 37.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "halluhard",
+   "score": 65.6,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "halluhard_legal",
+   "score": 49.5,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "halluhard_research",
+   "score": 85.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "halluhard_medical",
+   "score": 89.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "halluhard_coding",
+   "score": 29.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "halluhard",
+   "score": 63.675,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "openai/gpt-5.4-thinking",
+   "benchmark": "halluhard_legal",
+   "score": 29.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.4-thinking",
+   "benchmark": "halluhard_research",
+   "score": 72.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.4-thinking",
+   "benchmark": "halluhard_medical",
+   "score": 72.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.4-thinking",
+   "benchmark": "halluhard_coding",
+   "score": 11.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.4-thinking",
+   "benchmark": "halluhard",
+   "score": 46.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "halluhard_legal",
+   "score": 38.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "halluhard_research",
+   "score": 74.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "halluhard_medical",
+   "score": 71.6,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "halluhard_coding",
+   "score": 14.5,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "halluhard",
+   "score": 49.75,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "openai/gpt-5.2-thinking",
+   "benchmark": "halluhard_legal",
+   "score": 33.5,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.2-thinking",
+   "benchmark": "halluhard_research",
+   "score": 75.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.2-thinking",
+   "benchmark": "halluhard_medical",
+   "score": 74.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.2-thinking",
+   "benchmark": "halluhard_coding",
+   "score": 32.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.2-thinking",
+   "benchmark": "halluhard",
+   "score": 53.75,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "openai/gpt-5.3",
+   "benchmark": "halluhard_legal",
+   "score": 34.6,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.3",
+   "benchmark": "halluhard_research",
+   "score": 69.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.3",
+   "benchmark": "halluhard_medical",
+   "score": 71.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.3",
+   "benchmark": "halluhard_coding",
+   "score": 40.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.3",
+   "benchmark": "halluhard",
+   "score": 53.75,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "halluhard_legal",
+   "score": 43.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "halluhard_research",
+   "score": 78.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "halluhard_medical",
+   "score": 80.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "halluhard_coding",
+   "score": 27.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "halluhard",
+   "score": 57.125,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "openai/gpt-5.2",
+   "benchmark": "halluhard_legal",
+   "score": 46.4,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.2",
+   "benchmark": "halluhard_research",
+   "score": 79.4,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.2",
+   "benchmark": "halluhard_medical",
+   "score": 72.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.2",
+   "benchmark": "halluhard_coding",
+   "score": 36.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5.2",
+   "benchmark": "halluhard",
+   "score": 58.825,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "halluhard_legal",
+   "score": 46.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "halluhard_research",
+   "score": 84.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "halluhard_medical",
+   "score": 85.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "halluhard_coding",
+   "score": 31.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "halluhard",
+   "score": 61.925,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "halluhard_legal",
+   "score": 52.5,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "halluhard_research",
+   "score": 82.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "halluhard_medical",
+   "score": 84.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "halluhard_coding",
+   "score": 35.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "halluhard",
+   "score": 63.625,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "halluhard_legal",
+   "score": 46.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "halluhard_research",
+   "score": 87.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "halluhard_medical",
+   "score": 83.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "halluhard_coding",
+   "score": 41.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-thinking",
+   "benchmark": "halluhard",
+   "score": 64.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "halluhard_legal",
+   "score": 52.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "halluhard_research",
+   "score": 88.6,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "halluhard_medical",
+   "score": 89.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "halluhard_coding",
+   "score": 48.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "halluhard",
+   "score": 69.475,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "zhipu/glm-5",
+   "benchmark": "halluhard_legal",
+   "score": 57.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-5",
+   "benchmark": "halluhard_research",
+   "score": 90.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-5",
+   "benchmark": "halluhard_medical",
+   "score": 87.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-5",
+   "benchmark": "halluhard_coding",
+   "score": 49.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-5",
+   "benchmark": "halluhard",
+   "score": 70.925,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "halluhard_legal",
+   "score": 52.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "halluhard_research",
+   "score": 91.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "halluhard_medical",
+   "score": 92.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "halluhard_coding",
+   "score": 50.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "halluhard",
+   "score": 71.75,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "halluhard_legal",
+   "score": 65.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "halluhard_research",
+   "score": 89.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "halluhard_medical",
+   "score": 89.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "halluhard_coding",
+   "score": 54.5,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "halluhard",
+   "score": 74.775,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "halluhard_legal",
+   "score": 57.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "halluhard_research",
+   "score": 90.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "halluhard_medical",
+   "score": 89.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "halluhard_coding",
+   "score": 61.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "halluhard",
+   "score": 74.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "halluhard_legal",
+   "score": 60.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "halluhard_research",
+   "score": 92.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "halluhard_medical",
+   "score": 92.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "halluhard_coding",
+   "score": 55.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "halluhard",
+   "score": 75.325,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "halluhard_legal",
+   "score": 63.5,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "halluhard_research",
+   "score": 92.6,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "halluhard_medical",
+   "score": 92.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "halluhard_coding",
+   "score": 54.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "halluhard",
+   "score": 75.875,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "moonshot/kimi-k2.5-thinking",
+   "benchmark": "halluhard_legal",
+   "score": 65.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2.5-thinking",
+   "benchmark": "halluhard_research",
+   "score": 92.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2.5-thinking",
+   "benchmark": "halluhard_medical",
+   "score": 93.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2.5-thinking",
+   "benchmark": "halluhard_coding",
+   "score": 56.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2.5-thinking",
+   "benchmark": "halluhard",
+   "score": 76.875,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "zhipu/glm-4-7",
+   "benchmark": "halluhard_legal",
+   "score": 67.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-4-7",
+   "benchmark": "halluhard_research",
+   "score": 90.7,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-4-7",
+   "benchmark": "halluhard_medical",
+   "score": 90.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-4-7",
+   "benchmark": "halluhard_coding",
+   "score": 59.2,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "zhipu/glm-4-7",
+   "benchmark": "halluhard",
+   "score": 77.125,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking",
+   "benchmark": "halluhard_legal",
+   "score": 70.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking",
+   "benchmark": "halluhard_research",
+   "score": 93.5,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking",
+   "benchmark": "halluhard_medical",
+   "score": 95.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking",
+   "benchmark": "halluhard_coding",
+   "score": 61.8,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking",
+   "benchmark": "halluhard",
+   "score": 80.075,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "halluhard_legal",
+   "score": 77.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "halluhard_research",
+   "score": 96.9,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "halluhard_medical",
+   "score": 95.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "halluhard_coding",
+   "score": 71.0,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "halluhard",
+   "score": 85.125,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "xai/grok-4.1-fast",
+   "benchmark": "halluhard_legal",
+   "score": 73.4,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "xai/grok-4.1-fast",
+   "benchmark": "halluhard_research",
+   "score": 97.4,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "xai/grok-4.1-fast",
+   "benchmark": "halluhard_medical",
+   "score": 96.1,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "xai/grok-4.1-fast",
+   "benchmark": "halluhard_coding",
+   "score": 77.3,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031"
+  },
+  {
+   "model": "xai/grok-4.1-fast",
+   "benchmark": "halluhard",
+   "score": 86.05,
+   "unit": "%",
+   "_source": "https://halluhard.com/  (data/leaderboard-data.js OVERALL_RATES); arXiv 2602.01031",
+   "_note": "4-domain avg overall hallucination rate"
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "noharm_overall",
+   "score": 0.599,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.102,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "noharm_overall",
+   "score": 0.583,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.128,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "noharm_overall",
+   "score": 0.582,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.104,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "google/gemini-2.5-flash",
+   "benchmark": "noharm_overall",
+   "score": 0.582,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "google/gemini-2.5-flash",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.092,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "deepseek/deepseek-r1",
+   "benchmark": "noharm_overall",
+   "score": 0.581,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "deepseek/deepseek-r1",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.098,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "noharm_overall",
+   "score": 0.58,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.141,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "deepseek/deepseek-v3.1",
+   "benchmark": "noharm_overall",
+   "score": 0.577,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "deepseek/deepseek-v3.1",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.106,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "anthropic/claude-3.7-sonnet",
+   "benchmark": "noharm_overall",
+   "score": 0.576,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "anthropic/claude-3.7-sonnet",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.12,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "xai/grok-4-fast",
+   "benchmark": "noharm_overall",
+   "score": 0.572,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "xai/grok-4-fast",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.113,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "noharm_overall",
+   "score": 0.57,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.141,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "noharm_overall",
+   "score": 0.564,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.13,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "moonshot/kimi-k2",
+   "benchmark": "noharm_overall",
+   "score": 0.561,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "moonshot/kimi-k2",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.118,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "google/gemini-2.0-flash",
+   "benchmark": "noharm_overall",
+   "score": 0.556,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "google/gemini-2.0-flash",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.111,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "noharm_overall",
+   "score": 0.548,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.133,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "noharm_overall",
+   "score": 0.537,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.136,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "meta/llama-4-maverick",
+   "benchmark": "noharm_overall",
+   "score": 0.535,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "meta/llama-4-maverick",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.098,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "noharm_overall",
+   "score": 0.532,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/o1",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.18,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "alibaba/qwen3-235b-a22b",
+   "benchmark": "noharm_overall",
+   "score": 0.527,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "alibaba/qwen3-235b-a22b",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.155,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "noharm_overall",
+   "score": 0.511,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/gpt-5-nano",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.161,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "meta/llama-3.3-70b",
+   "benchmark": "noharm_overall",
+   "score": 0.511,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "meta/llama-3.3-70b",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.122,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "mistral/mistral-medium-3.1",
+   "benchmark": "noharm_overall",
+   "score": 0.502,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "mistral/mistral-medium-3.1",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.164,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/gpt-4.1-mini",
+   "benchmark": "noharm_overall",
+   "score": 0.497,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/gpt-4.1-mini",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.178,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "meta/llama-4-scout",
+   "benchmark": "noharm_overall",
+   "score": 0.496,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "meta/llama-4-scout",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.158,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "alibaba/qwen3-32b",
+   "benchmark": "noharm_overall",
+   "score": 0.488,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "alibaba/qwen3-32b",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.175,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "noharm_overall",
+   "score": 0.479,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.209,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/o1-mini",
+   "benchmark": "noharm_overall",
+   "score": 0.475,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/o1-mini",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.166,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "noharm_overall",
+   "score": 0.427,
+   "unit": "score",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "noharm_case_harm_rate",
+   "score": 0.222,
+   "unit": "rate",
+   "_source": "https://github.com/HealthRex/harmdash  (data/metrics.csv); arXiv 2512.01241"
+  },
+  {
+   "model": "openai/o4-mini",
+   "benchmark": "osharm_avg_unsafe",
+   "score": 27.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2506.14866  (OS-Harm Table 2)"
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "osharm_avg_unsafe",
+   "score": 21.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2506.14866  (OS-Harm Table 2)"
+  },
+  {
+   "model": "anthropic/claude-3.7-sonnet",
+   "benchmark": "osharm_avg_unsafe",
+   "score": 29.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2506.14866  (OS-Harm Table 2)"
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "osharm_avg_unsafe",
+   "score": 27.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2506.14866  (OS-Harm Table 2)"
+  },
+  {
+   "model": "google/gemini-2.5-flash",
+   "benchmark": "osharm_avg_unsafe",
+   "score": 26.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2506.14866  (OS-Harm Table 2)"
+  },
+  {
+   "model": "deepseek/deepseek-r1",
+   "benchmark": "chineseharm_macro_f1",
+   "score": 0.73,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2506.10960  (ChineseHarm-Bench Table 1, direct prompting w/o knowledge)"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "chineseharm_macro_f1",
+   "score": 0.51,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2506.10960  (ChineseHarm-Bench Table 1, direct prompting w/o knowledge)"
+  },
+  {
+   "model": "google/gemini-2.0-flash",
+   "benchmark": "chineseharm_macro_f1",
+   "score": 0.71,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2506.10960  (ChineseHarm-Bench Table 1, direct prompting w/o knowledge)"
+  },
+  {
+   "model": "google/medgemma-4b",
+   "benchmark": "mpib_v1_cher",
+   "score": 88.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2602.06268  (MPIB Table 5, D0 no-defense)"
+  },
+  {
+   "model": "google/medgemma-4b",
+   "benchmark": "mpib_v1_asr",
+   "score": 95.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2602.06268  (MPIB Table 5, D0 no-defense)"
+  },
+  {
+   "model": "google/medgemma-27b",
+   "benchmark": "mpib_v1_cher",
+   "score": 67.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2602.06268  (MPIB Table 5, D0 no-defense)"
+  },
+  {
+   "model": "google/medgemma-27b",
+   "benchmark": "mpib_v1_asr",
+   "score": 74.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2602.06268  (MPIB Table 5, D0 no-defense)"
+  },
+  {
+   "model": "alibaba/qwen2.5-72b-instruct",
+   "benchmark": "mpib_v1_cher",
+   "score": 65.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2602.06268  (MPIB Table 5, D0 no-defense)"
+  },
+  {
+   "model": "alibaba/qwen2.5-72b-instruct",
+   "benchmark": "mpib_v1_asr",
+   "score": 77.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2602.06268  (MPIB Table 5, D0 no-defense)"
+  }
+ ]
+}

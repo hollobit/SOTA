@@ -22,6 +22,9 @@ var Explorer = {
     // treat a cheaper/faster value as the best, not the largest number.
     _lowerIsBetter: function(bid, bench) {
         if (bench && bench.higher_better === false) return true;
+        // Direction is often marked only on the metric name (e.g. id "halluhard",
+        // metric "hallucination_rate_lower_better"), not the id — honor both.
+        if (bench && bench.metric && /_lower_better(_|$)/.test(bench.metric)) return true;
         if (!bid) return false;
         return /_lower_better(_|$)/.test(bid) ||
                /price_per_mtok|per_mtok|_price_|ttft|latency|_cost_|cost_usd|cost_per/.test(bid);
@@ -45,6 +48,9 @@ var Explorer = {
             });
         });
 
+        var benchById = {};
+        benchmarks.forEach(function(b) { benchById[b.id] = b; });
+
         var scoreMap = {};
         scores.forEach(function(s) {
             var bid = s.benchmark_id;
@@ -55,7 +61,7 @@ var Explorer = {
             // latency), highest otherwise.
             if (!scoreMap[key]) {
                 scoreMap[key] = s;
-            } else if (self._lowerIsBetter(bid, null) ? s.value < scoreMap[key].value : s.value > scoreMap[key].value) {
+            } else if (self._lowerIsBetter(bid, benchById[bid]) ? s.value < scoreMap[key].value : s.value > scoreMap[key].value) {
                 scoreMap[key] = s;
             }
         });
