@@ -1,0 +1,501 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-22",
+  "session": "S249b",
+  "note": "MAST (Medical AI Superintelligence Test) leaderboard, Playwright-extracted (resolves the S249 WebFetch two-table inconsistency). First Do NOHARM v2 Safety F1 (43-row ranking, base models only) + 4 medical capability dimensions (reasoning/CPC/diagnostic/management, top-10). PREVIEW leaderboard. v2 is distinct from the v1 harmdash data ingested in S249.",
+  "sources": [
+   "https://www.arise-ai.org/mast",
+   "https://www.arise-ai.org/mast/technical"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "mast_noharm_v2_safety",
+   "name": "MAST — First Do NOHARM v2 Safety (F1-weighted)",
+   "category": "medical-safety",
+   "metric": "f1_weighted",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "MAST (Medical AI Superintelligence Test, Stanford/Harvard/ARISE) — First Do NOHARM v2 clinical-safety F1 (weighted), higher better. Playwright-extracted from arise-ai.org/mast/technical 2026-08-22. PREVIEW leaderboard (scores may change). Distinct from noharm_overall/noharm_case_harm_rate which are the v1 harmdash release. RAG products (LiSA/Doximity/OpenEvidence/Glass) excluded (not base models)."
+  },
+  {
+   "id": "mast_reasoning",
+   "name": "MAST — Medical Reasoning",
+   "category": "medical-ai",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "MAST (arise-ai.org/mast) medical capability dimension, %±CI. PREVIEW. Playwright-extracted 2026-08-22 (top-10 lineup)."
+  },
+  {
+   "id": "mast_cpc",
+   "name": "MAST — CPC-Bench (clinico-pathological)",
+   "category": "medical-ai",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "MAST (arise-ai.org/mast) medical capability dimension, %±CI. PREVIEW. Playwright-extracted 2026-08-22 (top-10 lineup)."
+  },
+  {
+   "id": "mast_diagnostic",
+   "name": "MAST — Diagnostic Reasoning",
+   "category": "medical-ai",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "MAST (arise-ai.org/mast) medical capability dimension, %±CI. PREVIEW. Playwright-extracted 2026-08-22 (top-10 lineup)."
+  },
+  {
+   "id": "mast_management",
+   "name": "MAST — Management Reasoning",
+   "category": "medical-ai",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "MAST (arise-ai.org/mast) medical capability dimension, %±CI. PREVIEW. Playwright-extracted 2026-08-22 (top-10 lineup)."
+  }
+ ],
+ "scores": [
+  {
+   "model": "meta/muse-spark-1.1",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 79.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 74.6,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 74.0,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 70.1,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 70.0,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 68.5,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.2",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 67.3,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5-mini",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 66.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 66.2,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 65.0,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 65.0,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 64.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 64.3,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 62.6,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 61.9,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "google/gemini-2.5-flash",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 61.3,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "qwen/qwen3.5-397b-a17b",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 61.1,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "google/gemini-3-flash",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 60.9,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 60.9,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 60.5,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "moonshot/kimi-k2.6",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 59.1,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "zhipu/glm-5.1",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 57.9,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-opus-4.6",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 57.2,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-opus-4.5",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 56.9,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "moonshot/kimi-k2.5",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 56.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.6",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 56.6,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "deepseek/deepseek-r1",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 55.8,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-sonnet-4.5",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 55.5,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 54.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "google/medgemma-27b",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 53.6,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-4.1-mini",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 52.9,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-4.1",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 51.5,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 51.1,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 47.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "xai/grok-4.3",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 44.5,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "google/medgemma-1.5-4b",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 38.0,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "google/medgemma-4b",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 37.1,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "meta/llama-4-scout",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 33.0,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "meta/llama-4-maverick",
+   "benchmark": "mast_noharm_v2_safety",
+   "score": 30.8,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "meta/muse-spark-1.1",
+   "benchmark": "mast_reasoning",
+   "score": 76.1,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "mast_reasoning",
+   "score": 73.8,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "mast_reasoning",
+   "score": 75.0,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mast_reasoning",
+   "score": 73.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mast_reasoning",
+   "score": 74.1,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "mast_reasoning",
+   "score": 72.6,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "meta/muse-spark-1.1",
+   "benchmark": "mast_cpc",
+   "score": 83.0,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "mast_cpc",
+   "score": 84.3,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "mast_cpc",
+   "score": 85.2,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mast_cpc",
+   "score": 86.2,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mast_cpc",
+   "score": 86.2,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "mast_cpc",
+   "score": 80.3,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "meta/muse-spark-1.1",
+   "benchmark": "mast_diagnostic",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "mast_diagnostic",
+   "score": 73.5,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "mast_diagnostic",
+   "score": 77.6,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mast_diagnostic",
+   "score": 75.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mast_diagnostic",
+   "score": 75.1,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "mast_diagnostic",
+   "score": 73.1,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "meta/muse-spark-1.1",
+   "benchmark": "mast_management",
+   "score": 76.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "mast_management",
+   "score": 73.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "mast_management",
+   "score": 73.6,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mast_management",
+   "score": 73.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "mast_management",
+   "score": 74.9,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "mast_management",
+   "score": 73.7,
+   "unit": "%",
+   "_source": "https://www.arise-ai.org/mast/technical  (MAST leaderboard, Playwright-extracted 2026-08-22; preview — scores may change)"
+  }
+ ]
+}
