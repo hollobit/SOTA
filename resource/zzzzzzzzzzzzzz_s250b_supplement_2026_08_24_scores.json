@@ -1,0 +1,310 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-24",
+  "session": "S250b",
+  "note": "RE-REVIEW supplement to S250. Adds reliably-sourced table columns missed in the first pass: CliniCARE-Bench Defect-free Accuracy + Process Rubric (arXiv 2608.07796 Table 3, 16 systems) and TrialPanorama Eligibility Design + Sample-Size MAE (npj, exact stated values). NOTE: MLCR-AA full 69-model leaderboard was NOT expanded — AA renders values hover-only with rotated SVG labels (the agent's ±1 drift source); pixel-geometry cannot hit 1-decimal precision without violating strict attribution, so only the 14 verified frontier models from S250 remain. TrialPanorama endpoint-design skipped (2 TP values not unambiguously attributable per-model).",
+  "sources": [
+   "https://arxiv.org/abs/2608.07796",
+   "https://doi.org/10.1038/s41746-026-02933-7"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "clinicare_defect_free_acc",
+   "name": "CliniCARE-Bench Defect-free Accuracy",
+   "category": "medical-safety",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "CliniCARE-Bench defect-free accuracy (accuracy on cases with no process defect; reorders vs raw accuracy). arXiv 2608.07796 Table 3."
+  },
+  {
+   "id": "clinicare_process_rubric",
+   "name": "CliniCARE-Bench Process Rubric",
+   "category": "medical-safety",
+   "metric": "rubric_score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "CliniCARE-Bench process-adherence rubric score. arXiv 2608.07796 Table 3."
+  },
+  {
+   "id": "trialpanorama_eligibility",
+   "name": "TrialPanorama — Eligibility Criteria Design Accuracy",
+   "category": "medical",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "TrialPanorama eligibility-criteria design task accuracy. npj Dig Med s41746-026-02933-7."
+  },
+  {
+   "id": "trialpanorama_sample_size_mae",
+   "name": "TrialPanorama — Sample Size Estimation (MAE)",
+   "category": "medical",
+   "metric": "mae_lower_better",
+   "higher_better": false,
+   "unit": "mae",
+   "_note": "TrialPanorama sample-size estimation, mean absolute error (lower better). npj Dig Med s41746-026-02933-7."
+  }
+ ],
+ "scores": [
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 70.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "clinicare_process_rubric",
+   "score": 82.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 65.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "clinicare_process_rubric",
+   "score": 70.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 67.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "clinicare_process_rubric",
+   "score": 80.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 60.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "clinicare_process_rubric",
+   "score": 75.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 71.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "clinicare_process_rubric",
+   "score": 78.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 65.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "clinicare_process_rubric",
+   "score": 76.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 56.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "clinicare_process_rubric",
+   "score": 65.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 59.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "clinicare_process_rubric",
+   "score": 72.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 60.0,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "clinicare_process_rubric",
+   "score": 71.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 57.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "clinicare_process_rubric",
+   "score": 56.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 58.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "clinicare_process_rubric",
+   "score": 69.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 58.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "clinicare_process_rubric",
+   "score": 68.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 64.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "clinicare_process_rubric",
+   "score": 76.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 53.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "clinicare_process_rubric",
+   "score": 65.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 54.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "clinicare_process_rubric",
+   "score": 72.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "clinicare_defect_free_acc",
+   "score": 54.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "clinicare_process_rubric",
+   "score": 69.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "keiji/qwen3-8b-tp",
+   "benchmark": "trialpanorama_eligibility",
+   "score": 87.1,
+   "unit": "%",
+   "_source": "https://doi.org/10.1038/s41746-026-02933-7"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "trialpanorama_eligibility",
+   "score": 84.4,
+   "unit": "%",
+   "_source": "https://doi.org/10.1038/s41746-026-02933-7"
+  },
+  {
+   "model": "keiji/llama3-8b-tp",
+   "benchmark": "trialpanorama_sample_size_mae",
+   "score": 356.3,
+   "unit": "mae",
+   "_source": "https://doi.org/10.1038/s41746-026-02933-7"
+  },
+  {
+   "model": "keiji/qwen3-8b-tp",
+   "benchmark": "trialpanorama_sample_size_mae",
+   "score": 393.6,
+   "unit": "mae",
+   "_source": "https://doi.org/10.1038/s41746-026-02933-7"
+  },
+  {
+   "model": "openai/gpt-4o-mini",
+   "benchmark": "trialpanorama_sample_size_mae",
+   "score": 411.4,
+   "unit": "mae",
+   "_source": "https://doi.org/10.1038/s41746-026-02933-7"
+  }
+ ]
+}
