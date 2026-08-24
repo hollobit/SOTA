@@ -1,0 +1,1014 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-24",
+  "session": "S250",
+  "note": "Batch ingest from 20 user links. New models: DeepSeek-V4-Flash-Vision-Exp (+11 benches +pricing), PHIZERO (physical world model, 6 physics benches), Qwen3-8B-TP & Llama3-8B-TP (TrialPanorama). New benches: AA Analyst Agent, SWE-bench Science, MLCR-AA, CliniCARE-Bench (acc/F1/ECE), TrialPanorama, ApexBench, 6 PHIZERO physics benches. AA/MLCR effort-suffixed rows collapsed to best-per-base-model. CliniCARE/SWE-Science harness-conditioned (noted). Latest-focus: GPT-4o(>2yr) excluded. SKIPPED (no scores/not base models): Stirrup (harness), Agent-Skills-Harmful (single-config study), SimulacraBench (empty live board), FrontierMath-OP (essay), Wisedocs blog (dup of MLCR), AMIE Video (research system, not released), Qwen3.8-27B mindstudio (secondary+version-ambiguous), Inherent Faraday (no per-model table). MLCR-AA full 69-model set had label drift — only 14 verified base models ingested.",
+  "sources": [
+   "https://api-docs.deepseek.com/news/news260821/",
+   "https://openrouter.ai/deepseek/deepseek-v4-flash-vision-exp",
+   "https://artificialanalysis.ai/evaluations/aa-analyst-agent",
+   "https://arxiv.org/abs/2608.19799",
+   "https://artificialanalysis.ai/evaluations/mlcr-aa",
+   "https://arxiv.org/abs/2608.07796",
+   "https://doi.org/10.1038/s41746-026-02933-7",
+   "https://arxiv.org/abs/2607.28624"
+  ]
+ },
+ "models": [
+  {
+   "id": "deepseek/deepseek-v4-flash-vision-exp",
+   "name": "DeepSeek-V4-Flash-Vision-Exp",
+   "developer": "DeepSeek",
+   "vendor": "deepseek",
+   "release_date": "2026-08-21",
+   "license": "MIT",
+   "context_window": 1048576,
+   "base_model": "deepseek/deepseek-v4-flash",
+   "_note": "Experimental multimodal (text+image) variant of V4-Flash. MoE 13B active/284B total, 1M ctx, 384K max output, images <=384 tokens each. Text perf matches V4-Flash; multimodal is the leap. api-docs.deepseek.com/news/news260821."
+  },
+  {
+   "id": "casia/phizero",
+   "name": "PHIZERO",
+   "developer": "CASIA (Inst. of Automation)",
+   "vendor": "casia",
+   "release_date": "2026-07-30",
+   "license": "unspecified",
+   "context_window": 0,
+   "_note": "Physical world model, 'reason-then-render' — Physical Language Tokenizer (Wan2.2 VAE + Q-Former + diffusion) + VLM-initialized Physical Language Reasoner. arXiv 2607.28624."
+  },
+  {
+   "id": "keiji/qwen3-8b-tp",
+   "name": "Qwen3-8B-TP (TrialPanorama)",
+   "developer": "UIUC / Keiji",
+   "vendor": "keiji",
+   "release_date": "2026-01-01",
+   "license": "apache-2.0",
+   "context_window": 32768,
+   "base_model": "alibaba/qwen3-8b",
+   "_note": "Qwen3-8B post-trained on TrialPanorama (SFT+RLVR) for clinical-trial tasks. Beats 70B generic + GPT-4o on trial tasks. npj Digital Medicine 10.1038/s41746-026-02933-7."
+  },
+  {
+   "id": "keiji/llama3-8b-tp",
+   "name": "Llama3-8B-TP (TrialPanorama)",
+   "developer": "UIUC / Keiji",
+   "vendor": "keiji",
+   "release_date": "2026-01-01",
+   "license": "llama",
+   "context_window": 8192,
+   "base_model": "meta/llama-3-8b",
+   "_note": "Llama3-8B post-trained on TrialPanorama (SFT+RLVR). npj Digital Medicine 10.1038/s41746-026-02933-7."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "apexbench",
+   "name": "ApexBench (Pass@1)",
+   "category": "multimodal",
+   "metric": "pass_at_1",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Multimodal agent benchmark. DeepSeek V4 announcement 260821."
+  },
+  {
+   "id": "aa_analyst_agent",
+   "name": "AA Analyst Agent (pass^5)",
+   "category": "agent",
+   "metric": "pass_5",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Artificial Analysis standalone leaderboard (not in Intelligence Index). Real spreadsheet/document analyst tasks; pass^5 = correct on all 5 attempts. 80 Qs / 14 domains. Higher better."
+  },
+  {
+   "id": "swe_bench_science",
+   "name": "SWE-bench Science (Pass@1)",
+   "category": "coding",
+   "metric": "pass_at_1",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Repository-level scientific software engineering, 119 tasks / 98 repos / 20 domains. Pass@1 = all private tests pass. Harness-conditioned (best harness per model). arXiv 2608.19799."
+  },
+  {
+   "id": "mlcr_aa",
+   "name": "MLCR-AA (Medical Long Context Reasoning)",
+   "category": "medical",
+   "metric": "pass_rate",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Wisedocs benchmark hosted by Artificial Analysis. Long-context clinical/claims reasoning; pass@1 with conciseness gate + 3-judge accuracy+completeness majority. 10 cases 25k-64k tok. Higher better. Best-effort row per base model."
+  },
+  {
+   "id": "clinicare_accuracy",
+   "name": "CliniCARE-Bench Verdict Accuracy",
+   "category": "medical-safety",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Scale AI clinical-agent EHR audit (MIMIC-IV). 4-class verdict accuracy, 750 cases / 14 specialties. Harness-conditioned. arXiv 2608.07796."
+  },
+  {
+   "id": "clinicare_macro_f1",
+   "name": "CliniCARE-Bench Macro-F1",
+   "category": "medical-safety",
+   "metric": "macro_f1",
+   "higher_better": true,
+   "unit": "f1",
+   "_note": "CliniCARE-Bench macro-F1 (0-1). arXiv 2608.07796."
+  },
+  {
+   "id": "clinicare_ece",
+   "name": "CliniCARE-Bench Calibration Error (ECE)",
+   "category": "medical-safety",
+   "metric": "ece_lower_better",
+   "higher_better": false,
+   "unit": "ece",
+   "_note": "CliniCARE-Bench expected calibration error (0-1, lower better). arXiv 2608.07796."
+  },
+  {
+   "id": "trialpanorama_arm_design",
+   "name": "TrialPanorama — Arm Design Accuracy",
+   "category": "medical",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "TrialPanorama clinical-trial arm-design task accuracy. npj Digital Medicine 10.1038/s41746-026-02933-7."
+  },
+  {
+   "id": "trialpanorama_trial_completion",
+   "name": "TrialPanorama — Trial Completion (Balanced Acc)",
+   "category": "medical",
+   "metric": "balanced_accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "TrialPanorama trial-completion assessment, balanced accuracy. npj Digital Medicine 10.1038/s41746-026-02933-7."
+  },
+  {
+   "id": "phizero_physicsiq",
+   "name": "Physics-IQ Verified (IQ-Score)",
+   "category": "physical-ai",
+   "metric": "iq_score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Physical outcome fidelity, IQ-Score. arXiv 2607.28624."
+  },
+  {
+   "id": "phizero_phyground",
+   "name": "PhyGround (Overall)",
+   "category": "physical-ai",
+   "metric": "overall_1_5",
+   "higher_better": true,
+   "unit": "score",
+   "_note": "Physical-law adherence, overall (1-5). arXiv 2607.28624."
+  },
+  {
+   "id": "phizero_worldmodelbench",
+   "name": "WorldModelBench (Total)",
+   "category": "physical-ai",
+   "metric": "total",
+   "higher_better": true,
+   "unit": "score",
+   "_note": "General world modeling total score. arXiv 2607.28624."
+  },
+  {
+   "id": "phizero_intphys2",
+   "name": "IntPhys2 (Overall)",
+   "category": "physical-ai",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Intuitive physics understanding, overall accuracy. arXiv 2607.28624."
+  },
+  {
+   "id": "phizero_likephys",
+   "name": "LikePhys (Avg Error)",
+   "category": "physical-ai",
+   "metric": "avg_error_lower_better",
+   "higher_better": false,
+   "unit": "%",
+   "_note": "Physical-plausibility discrimination avg error (lower better). arXiv 2607.28624."
+  },
+  {
+   "id": "phizero_yocausal",
+   "name": "YoCausal (RSI)",
+   "category": "physical-ai",
+   "metric": "rsi",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Real-world causal understanding, Relative Sensitivity Index (higher better). arXiv 2607.28624."
+  }
+ ],
+ "scores": [
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "terminal_bench_2_1",
+   "score": 83.9,
+   "unit": "%",
+   "_source": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "nl2repo",
+   "score": 57.7,
+   "unit": "%",
+   "_source": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "cybergym",
+   "score": 75.3,
+   "unit": "%",
+   "_source": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "deepswe_pass_at_1",
+   "score": 59.3,
+   "unit": "%",
+   "_source": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "toolathlon_verified",
+   "score": 75.9,
+   "unit": "%",
+   "_source": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "dsbench_hard",
+   "score": 63.6,
+   "unit": "%",
+   "_source": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "automationbench",
+   "score": 25.7,
+   "unit": "%",
+   "_source": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "apexbench",
+   "score": 36.5,
+   "unit": "%",
+   "_source": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "agents_last_exam",
+   "score": 27.3,
+   "unit": "%",
+   "_source": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "chartography",
+   "score": 64.3,
+   "unit": "%",
+   "_source": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "zerobench_main",
+   "score": 35.0,
+   "unit": "%",
+   "_source": "https://api-docs.deepseek.com/news/news260821/  (official benchmark image v4_260821)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.22,
+   "unit": "usd_per_1m",
+   "_source": "https://openrouter.ai/deepseek/deepseek-v4-flash-vision-exp"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.66,
+   "unit": "usd_per_1m",
+   "_source": "https://openrouter.ai/deepseek/deepseek-v4-flash-vision-exp"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash-vision-exp",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.007,
+   "unit": "usd_per_1m",
+   "_source": "https://openrouter.ai/deepseek/deepseek-v4-flash-vision-exp",
+   "_note": "OpenRouter only"
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "aa_analyst_agent",
+   "score": 60.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "aa_analyst_agent",
+   "score": 53.8,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "aa_analyst_agent",
+   "score": 50.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "aa_analyst_agent",
+   "score": 48.8,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "aa_analyst_agent",
+   "score": 47.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "aa_analyst_agent",
+   "score": 41.3,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "aa_analyst_agent",
+   "score": 38.8,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "thinky/inkling",
+   "benchmark": "aa_analyst_agent",
+   "score": 23.8,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "anthropic/claude-haiku-4.5",
+   "benchmark": "aa_analyst_agent",
+   "score": 15.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "mistral/mistral-medium-3.5",
+   "benchmark": "aa_analyst_agent",
+   "score": 12.5,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "aa_analyst_agent",
+   "score": 10.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra",
+   "benchmark": "aa_analyst_agent",
+   "score": 6.3,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/aa-analyst-agent"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "swe_bench_science",
+   "score": 46.22,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2)",
+   "_note": "Codex harness"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "swe_bench_science",
+   "score": 47.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2)",
+   "_note": "Claude Code"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "swe_bench_science",
+   "score": 42.02,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2)",
+   "_note": "Claude Code (V4-Pro 0813)"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "swe_bench_science",
+   "score": 35.29,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2)",
+   "_note": "Kimi Code"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "swe_bench_science",
+   "score": 31.93,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2)",
+   "_note": "Codex"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "swe_bench_science",
+   "score": 23.53,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2)",
+   "_note": "Claude Code (V4-Flash 0731)"
+  },
+  {
+   "model": "qwen/qwen3.5-397b-a17b",
+   "benchmark": "swe_bench_science",
+   "score": 14.29,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2)",
+   "_note": "Codex"
+  },
+  {
+   "model": "anthropic/claude-fable-5",
+   "benchmark": "mlcr_aa",
+   "score": 64.4,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "mlcr_aa",
+   "score": 59.4,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "mlcr_aa",
+   "score": 38.3,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "openai/gpt-5.6-terra",
+   "benchmark": "mlcr_aa",
+   "score": 31.7,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "mlcr_aa",
+   "score": 26.1,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "mlcr_aa",
+   "score": 19.4,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "mlcr_aa",
+   "score": 17.8,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "mlcr_aa",
+   "score": 17.2,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "google/gemini-3.7-flash",
+   "benchmark": "mlcr_aa",
+   "score": 15.0,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "xai/grok-4.6",
+   "benchmark": "mlcr_aa",
+   "score": 12.2,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "thinky/inkling",
+   "benchmark": "mlcr_aa",
+   "score": 12.2,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "nvidia/nemotron-3-ultra",
+   "benchmark": "mlcr_aa",
+   "score": 11.1,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "mistral/mistral-medium-3.5",
+   "benchmark": "mlcr_aa",
+   "score": 1.7,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "mlcr_aa",
+   "score": 1.1,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/mlcr-aa"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "clinicare_accuracy",
+   "score": 75.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.701,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "clinicare_ece",
+   "score": 0.064,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "clinicare_accuracy",
+   "score": 73.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.654,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "anthropic/claude-sonnet-5",
+   "benchmark": "clinicare_ece",
+   "score": 0.046,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "clinicare_accuracy",
+   "score": 73.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.664,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "clinicare_ece",
+   "score": 0.194,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "clinicare_accuracy",
+   "score": 66.8,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.588,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.6-luna",
+   "benchmark": "clinicare_ece",
+   "score": 0.229,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "clinicare_accuracy",
+   "score": 76.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.699,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "clinicare_ece",
+   "score": 0.09,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "clinicare_accuracy",
+   "score": 71.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.632,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.4",
+   "benchmark": "clinicare_ece",
+   "score": 0.153,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "clinicare_accuracy",
+   "score": 66.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.559,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "openai/gpt-5.4-mini",
+   "benchmark": "clinicare_ece",
+   "score": 0.215,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "clinicare_accuracy",
+   "score": 72.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.652,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.6-flash",
+   "benchmark": "clinicare_ece",
+   "score": 0.251,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "clinicare_accuracy",
+   "score": 71.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.622,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.5-flash",
+   "benchmark": "clinicare_ece",
+   "score": 0.262,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "clinicare_accuracy",
+   "score": 72.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.664,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "google/gemini-3.1-pro",
+   "benchmark": "clinicare_ece",
+   "score": 0.256,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "clinicare_accuracy",
+   "score": 68.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.612,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "clinicare_ece",
+   "score": 0.192,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "clinicare_accuracy",
+   "score": 70.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.586,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "clinicare_ece",
+   "score": 0.219,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "clinicare_accuracy",
+   "score": 73.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.643,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "clinicare_ece",
+   "score": 0.13,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "clinicare_accuracy",
+   "score": 65.3,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.579,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "alibaba/qwen3.7-plus",
+   "benchmark": "clinicare_ece",
+   "score": 0.187,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "clinicare_accuracy",
+   "score": 65.9,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.555,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "minimax/m3",
+   "benchmark": "clinicare_ece",
+   "score": 0.191,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "clinicare_accuracy",
+   "score": 66.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "clinicare_macro_f1",
+   "score": 0.558,
+   "unit": "f1",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "moonshot/kimi-k2.7-code",
+   "benchmark": "clinicare_ece",
+   "score": 0.156,
+   "unit": "ece",
+   "_source": "https://arxiv.org/abs/2608.07796  (Table 3)"
+  },
+  {
+   "model": "keiji/qwen3-8b-tp",
+   "benchmark": "trialpanorama_arm_design",
+   "score": 89.0,
+   "unit": "%",
+   "_source": "https://doi.org/10.1038/s41746-026-02933-7"
+  },
+  {
+   "model": "keiji/llama3-8b-tp",
+   "benchmark": "trialpanorama_arm_design",
+   "score": 90.0,
+   "unit": "%",
+   "_source": "https://doi.org/10.1038/s41746-026-02933-7"
+  },
+  {
+   "model": "openai/o3-mini",
+   "benchmark": "trialpanorama_arm_design",
+   "score": 89.0,
+   "unit": "%",
+   "_source": "https://doi.org/10.1038/s41746-026-02933-7"
+  },
+  {
+   "model": "keiji/llama3-8b-tp",
+   "benchmark": "trialpanorama_trial_completion",
+   "score": 74.3,
+   "unit": "%",
+   "_source": "https://doi.org/10.1038/s41746-026-02933-7"
+  },
+  {
+   "model": "keiji/qwen3-8b-tp",
+   "benchmark": "trialpanorama_trial_completion",
+   "score": 72.8,
+   "unit": "%",
+   "_source": "https://doi.org/10.1038/s41746-026-02933-7"
+  },
+  {
+   "model": "openai/sora-2",
+   "benchmark": "phizero_physicsiq",
+   "score": 26.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "nvidia/cosmos3-nano",
+   "benchmark": "phizero_physicsiq",
+   "score": 29.1,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "tencent/hunyuan-video",
+   "benchmark": "phizero_physicsiq",
+   "score": 33.4,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "nvidia/cosmos3-super",
+   "benchmark": "phizero_physicsiq",
+   "score": 39.5,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "casia/phizero",
+   "benchmark": "phizero_physicsiq",
+   "score": 41.2,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "google/veo-3.1",
+   "benchmark": "phizero_phyground",
+   "score": 2.93,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "casia/phizero",
+   "benchmark": "phizero_phyground",
+   "score": 2.97,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "casia/phizero",
+   "benchmark": "phizero_worldmodelbench",
+   "score": 8.19,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "alibaba/qwen2.5-vl",
+   "benchmark": "phizero_intphys2",
+   "score": 52.27,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "google/gemini-2.5-flash",
+   "benchmark": "phizero_intphys2",
+   "score": 55.63,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "casia/phizero",
+   "benchmark": "phizero_intphys2",
+   "score": 56.34,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "tencent/hunyuan-video",
+   "benchmark": "phizero_likephys",
+   "score": 43.6,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "casia/phizero",
+   "benchmark": "phizero_likephys",
+   "score": 41.7,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "tencent/hunyuan-video",
+   "benchmark": "phizero_yocausal",
+   "score": 52.05,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  },
+  {
+   "model": "casia/phizero",
+   "benchmark": "phizero_yocausal",
+   "score": 55.54,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2607.28624"
+  }
+ ]
+}
