@@ -4833,5 +4833,11 @@
   "type": "Data",
   "title": "S249b — MAST 의료 리더보드 Playwright 정밀추출(NOHARM v2 Safety 43모델)",
   "detail": "S249에서 신뢰성 문제로 보류했던 arise-ai.org/mast(MAST, Medical AI Superintelligence Test)를 Playwright로 정밀 추출해 반영(S249의 WebFetch 두 표 불일치 해소). First Do NOHARM v2 Safety(F1 가중, 높을수록 우수) 43행 랭킹에서 RAG 제품(LiSA/Doximity/OpenEvidence/Glass) 4종 제외한 39개 base 모델 반영: Muse Spark 1.1 79.7(최고 base), Claude Opus 5 74.6, Kimi K3 74.0, GPT-5.6 Sol 70.1, GPT-5.5 70.0, GPT-5 68.5 ... Grok 4.3 44.5, Llama 4 Maverick 30.8. 추가로 MAST 의료역량 4개 차원(Reasoning/CPC/Diagnostic/Management, top-10 라인업 6 base 모델)도 반영. 신규 벤치 5종·63 scores. NOHARM v2는 S249의 v1(harmdash CSV)과 별개 벤치라 충돌 없음. PREVIEW 리더보드(점수 변동 가능)임을 _note에 명시. 63 scores 0 FK 오류."
+ },
+ {
+  "date": "2026-08-24",
+  "type": "Data",
+  "title": "S249c — MAST 전체 표(47모델×9차원) 재검토 보강",
+  "detail": "재검토 중 MAST /technical의 'View full table (47)' 버튼을 발견해 Playwright로 전체 표를 펼쳐 추출. S249b는 top-6 모델의 4개 차원만 반영했으나, 이번에 47모델 전체 9개 차원을 확보. 기존 4차원(Reasoning/CPC/Diagnostic/Management)을 6→38~42 모델로 backfill하고, 신규 4차원 추가: Agentic(MedAgentBench v2, 33모델)·Medical Images(38)·Multimodal(38)·Radiology(ReXrank Mini, 38). SAFETY열은 이미 mast_noharm_v2_safety(S249b)로 반영됨. Multimodal 선두 Gemini 3.1 Pro 53.8. RAG제품 4종+GPT-4o(2년+) 제외. 신규 벤치 4종, 총 307 scores(0 FK). PREVIEW 리더보드 명시. 벤치 선택 드롭다운의 컴포넌트 벤치(SCT/PhysicianBench 등) 개별 풀랭킹은 SVG차트에만 있어 미추출—표의 집계 차원값으로 대체 반영."
  }
 ]
