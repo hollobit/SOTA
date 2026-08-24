@@ -4839,5 +4839,11 @@
   "type": "Data",
   "title": "S249c — MAST 전체 표(47모델×9차원) 재검토 보강",
   "detail": "재검토 중 MAST /technical의 'View full table (47)' 버튼을 발견해 Playwright로 전체 표를 펼쳐 추출. S249b는 top-6 모델의 4개 차원만 반영했으나, 이번에 47모델 전체 9개 차원을 확보. 기존 4차원(Reasoning/CPC/Diagnostic/Management)을 6→38~42 모델로 backfill하고, 신규 4차원 추가: Agentic(MedAgentBench v2, 33모델)·Medical Images(38)·Multimodal(38)·Radiology(ReXrank Mini, 38). SAFETY열은 이미 mast_noharm_v2_safety(S249b)로 반영됨. Multimodal 선두 Gemini 3.1 Pro 53.8. RAG제품 4종+GPT-4o(2년+) 제외. 신규 벤치 4종, 총 307 scores(0 FK). PREVIEW 리더보드 명시. 벤치 선택 드롭다운의 컴포넌트 벤치(SCT/PhysicianBench 등) 개별 풀랭킹은 SVG차트에만 있어 미추출—표의 집계 차원값으로 대체 반영."
+ },
+ {
+  "date": "2026-08-24",
+  "type": "Data",
+  "title": "S250 — 20개 링크 배치(신규 모델 4·벤치 15·115 scores)",
+  "detail": "사용자 제공 20개 링크를 5개 병렬 에이전트로 분석. 신규 모델 4종: DeepSeek-V4-Flash-Vision-Exp(실험 멀티모달, 11벤치+가격), PHIZERO(물리 월드모델, 6 물리벤치), Qwen3-8B-TP·Llama3-8B-TP(TrialPanorama 임상시험 특화 8B). 신규 벤치 15종: AA Analyst Agent(pass^5, 12모델), SWE-bench Science(과학 코딩, 7모델), MLCR-AA(의료 롱컨텍스트, 14모델), CliniCARE-Bench(Scale AI 임상감사 Acc/F1/ECE, 16시스템), TrialPanorama(2태스크), ApexBench, PHIZERO 6종. AA/MLCR의 effort 변형행은 base 모델별 최고값으로 통합, CliniCARE/SWE-Science는 harness 조건부(_note 명기). GPT-4o(2년+) 제외. 미반영(점수없음/비-base): Stirrup(하네스), Agent-Skills-Harmful(단일구성 연구), SimulacraBench(라이브 대회 빈보드), FrontierMath-OP(에세이), Wisedocs블로그(MLCR중복), AMIE Video(연구시스템 미공개), Qwen3.8-27B mindstudio(2차출처+버전모호), Inherent Faraday(per-model표 없음). MLCR 전체 69모델은 라벨 드리프트로 검증된 14개만 반영. 115 scores 0 FK."
  }
 ]
