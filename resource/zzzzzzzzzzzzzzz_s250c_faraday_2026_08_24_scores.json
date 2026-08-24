@@ -1,0 +1,167 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-24",
+  "session": "S250c",
+  "note": "RE-REVIEW #2 of S250. Genuine miss recovered: the Inherent Labs blog essay (read in S250) had NO numbers, but the actual paper arXiv 2608.13331 does — NEW model Faraday (27B, post-trained from Qwen3.6-27B) + Replica benchmark (figure-replication rubric score) with a 4-model table across ML in-distribution + AI-for-science held-out splits. Also adds SWE-bench Science Private score (Table 2, continuous complement to Pass@1). All exact prose/legend values.",
+  "sources": [
+   "https://arxiv.org/abs/2608.13331",
+   "https://arxiv.org/abs/2608.19799"
+  ]
+ },
+ "models": [
+  {
+   "id": "inherent/faraday",
+   "name": "Faraday",
+   "developer": "Inherent Laboratories",
+   "vendor": "inherent",
+   "release_date": "2026-08-14",
+   "license": "unspecified",
+   "context_window": 0,
+   "base_model": "alibaba/qwen3.6-27b",
+   "_note": "27B 'AI Scientist' agent post-trained (turn-level GRPO) from Qwen3.6-27B on the Replica task space; uses Codex GPT-5.5 as a coding tool. Surpasses Claude Opus 4.8 & GPT-5.5 on held-out replication. arXiv 2608.13331 (Inherent Labs)."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "replica_ml",
+   "name": "Replica — ML replication (in-distribution)",
+   "category": "ai4s",
+   "metric": "mean_rubric_score",
+   "higher_better": true,
+   "unit": "score",
+   "_note": "Inherent Labs Replica: figure-replication rubric mean score (0-1, higher better). ML split, 242 in-distribution tasks. arXiv 2608.13331."
+  },
+  {
+   "id": "replica_ai4science",
+   "name": "Replica — AI-for-science replication (held-out)",
+   "category": "ai4s",
+   "metric": "mean_rubric_score",
+   "higher_better": true,
+   "unit": "score",
+   "_note": "Inherent Labs Replica: rubric mean score (0-1). AI-for-science held-out TEST split, 68 tasks — the generalization headline. arXiv 2608.13331."
+  },
+  {
+   "id": "swe_bench_science_private",
+   "name": "SWE-bench Science — Private Score",
+   "category": "coding",
+   "metric": "private_test_score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Mean over private test cases (continuous complement to the binary Pass@1). arXiv 2608.19799 Table 2."
+  }
+ ],
+ "scores": [
+  {
+   "model": "inherent/faraday",
+   "benchmark": "replica_ml",
+   "score": 0.856,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2608.13331  (Figure 2 / Table 1, mean over 8 rollouts)"
+  },
+  {
+   "model": "inherent/faraday",
+   "benchmark": "replica_ai4science",
+   "score": 0.791,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2608.13331  (Figure 2 / Table 1, mean over 8 rollouts)"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "replica_ml",
+   "score": 0.828,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2608.13331  (Figure 2 / Table 1, mean over 8 rollouts)"
+  },
+  {
+   "model": "anthropic/claude-opus-4.8",
+   "benchmark": "replica_ai4science",
+   "score": 0.748,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2608.13331  (Figure 2 / Table 1, mean over 8 rollouts)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "replica_ml",
+   "score": 0.796,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2608.13331  (Figure 2 / Table 1, mean over 8 rollouts)"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "replica_ai4science",
+   "score": 0.729,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2608.13331  (Figure 2 / Table 1, mean over 8 rollouts)"
+  },
+  {
+   "model": "alibaba/qwen3.6-27b",
+   "benchmark": "replica_ml",
+   "score": 0.678,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2608.13331  (Figure 2 / Table 1, mean over 8 rollouts)"
+  },
+  {
+   "model": "alibaba/qwen3.6-27b",
+   "benchmark": "replica_ai4science",
+   "score": 0.554,
+   "unit": "score",
+   "_source": "https://arxiv.org/abs/2608.13331  (Figure 2 / Table 1, mean over 8 rollouts)"
+  },
+  {
+   "model": "openai/gpt-5.6-sol",
+   "benchmark": "swe_bench_science_private",
+   "score": 78.82,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2, Private score)",
+   "_note": "Codex"
+  },
+  {
+   "model": "anthropic/claude-opus-5",
+   "benchmark": "swe_bench_science_private",
+   "score": 75.11,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2, Private score)",
+   "_note": "Claude Code"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro-0813",
+   "benchmark": "swe_bench_science_private",
+   "score": 73.16,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2, Private score)",
+   "_note": "Claude Code"
+  },
+  {
+   "model": "moonshot/kimi-k3",
+   "benchmark": "swe_bench_science_private",
+   "score": 66.34,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2, Private score)",
+   "_note": "Kimi Code"
+  },
+  {
+   "model": "zhipu/glm-5.2",
+   "benchmark": "swe_bench_science_private",
+   "score": 63.61,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2, Private score)",
+   "_note": "Codex"
+  },
+  {
+   "model": "deepseek/deepseek-v4-flash",
+   "benchmark": "swe_bench_science_private",
+   "score": 61.41,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2, Private score)",
+   "_note": "Claude Code"
+  },
+  {
+   "model": "qwen/qwen3.5-397b-a17b",
+   "benchmark": "swe_bench_science_private",
+   "score": 51.79,
+   "unit": "%",
+   "_source": "https://arxiv.org/abs/2608.19799  (Table 2, Private score)",
+   "_note": "Codex"
+  }
+ ]
+}
