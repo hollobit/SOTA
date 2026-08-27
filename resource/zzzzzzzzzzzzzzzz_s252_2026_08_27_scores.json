@@ -1,0 +1,269 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-27",
+  "session": "S252",
+  "note": "Batch from 4 links. NEW benchmark TPBench (Theoretical Physics Bench, ai4s) — Research (tier5) + Easy-Grad (tier3) accuracy for 10 current flagship models (GPT-5.5 leads Research 55%). Scores from chart-label images (agent-transcribed; obscured 4-Grad tier excluded). PHAIL enrichment: new model Action Chunking Transformer (44.2 UPH, #3) + two newly-exposed API metrics (Done % completion, MTBF/A) for all 4 policies. SKIPPED: alphasignal LFM2.5 article (secondary newsletter rewrite of the AA Mobile benchmark already ingested S251 — avg/E2E values match exactly, no new PRIMARY data); PHAIL Human/Teleop baseline rows (reference ceilings, not learned policies); TPBench older strong/weak-group models (>2yr per latest-focus).",
+  "sources": [
+   "https://tpbench.org/",
+   "https://arxiv.org/abs/2502.15815",
+   "https://phail.ai/",
+   "https://phail.ai/api/groups/leaderboard"
+  ]
+ },
+ "models": [
+  {
+   "id": "stanford/act",
+   "name": "Action Chunking Transformer (ACT)",
+   "developer": "Stanford (ALOHA)",
+   "vendor": "stanford",
+   "release_date": "2023-04-01",
+   "license": "mit",
+   "context_window": 0,
+   "_note": "Specialised imitation-learning policy (action chunking). PHAIL robotics leaderboard #3: 44.2 UPH. phail.ai."
+  }
+ ],
+ "benchmarks": [
+  {
+   "id": "tpbench_research",
+   "name": "TPBench — Research tier (Tier 5)",
+   "category": "ai4s",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "TP-Bench theoretical-physics reasoning, hardest 'Research' difficulty tier, accuracy (avg of 5 shots, auto-verified). 57 problems / 5 tiers. arXiv 2502.15815. Best frontier discriminator."
+  },
+  {
+   "id": "tpbench_easygrad",
+   "name": "TPBench — Easy Grad tier (Tier 3)",
+   "category": "ai4s",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "TP-Bench theoretical-physics reasoning, 'Easy Graduate' difficulty tier, accuracy. arXiv 2502.15815."
+  },
+  {
+   "id": "phail_done_pct",
+   "name": "PhAIL Completion Rate (Done %)",
+   "category": "physical-ai",
+   "metric": "completion_rate",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Positronic Robotics PHAIL — % of pick-and-place operations completed. phail.ai/api. Higher better."
+  },
+  {
+   "id": "phail_mtbf",
+   "name": "PhAIL Mean Time Between Failures/Assists",
+   "category": "physical-ai",
+   "metric": "mtbf_minutes",
+   "higher_better": true,
+   "unit": "min",
+   "_note": "Positronic Robotics PHAIL — mean minutes between failures/assists. Higher better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "tpbench_research",
+   "score": 55.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "openai/gpt-5.5",
+   "benchmark": "tpbench_easygrad",
+   "score": 91.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "tpbench_research",
+   "score": 44.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "openai/gpt-5",
+   "benchmark": "tpbench_easygrad",
+   "score": 84.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "tpbench_research",
+   "score": 44.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "google/gemini-3-pro",
+   "benchmark": "tpbench_easygrad",
+   "score": 100.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "tpbench_research",
+   "score": 42.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "anthropic/claude-opus-4.7",
+   "benchmark": "tpbench_easygrad",
+   "score": 91.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "tpbench_research",
+   "score": 41.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "benchmark": "tpbench_easygrad",
+   "score": 91.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "tpbench_research",
+   "score": 31.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "xai/grok-4",
+   "benchmark": "tpbench_easygrad",
+   "score": 93.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "tpbench_research",
+   "score": 25.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "openai/o3",
+   "benchmark": "tpbench_easygrad",
+   "score": 76.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "tpbench_research",
+   "score": 25.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "google/gemini-2.5-pro",
+   "benchmark": "tpbench_easygrad",
+   "score": 85.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking",
+   "benchmark": "tpbench_research",
+   "score": 17.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "moonshot/kimi-k2-thinking",
+   "benchmark": "tpbench_easygrad",
+   "score": 78.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "tpbench_research",
+   "score": 9.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "benchmark": "tpbench_easygrad",
+   "score": 67.0,
+   "unit": "%",
+   "_source": "https://tpbench.org/  (chart labels); arXiv 2502.15815"
+  },
+  {
+   "model": "stanford/act",
+   "benchmark": "phail_v1_uph",
+   "score": 44.2,
+   "unit": "uph",
+   "_source": "https://phail.ai/api/groups/leaderboard  (JSON, 2026-08-27)",
+   "_note": "Specialised policy; PHAIL #3"
+  },
+  {
+   "model": "physical-intelligence/pi-0.5",
+   "benchmark": "phail_done_pct",
+   "score": 44.9,
+   "unit": "%",
+   "_source": "https://phail.ai/api/groups/leaderboard  (JSON, 2026-08-27)"
+  },
+  {
+   "model": "physical-intelligence/pi-0.5",
+   "benchmark": "phail_mtbf",
+   "score": 4.0,
+   "unit": "min",
+   "_source": "https://phail.ai/api/groups/leaderboard  (JSON, 2026-08-27)"
+  },
+  {
+   "model": "nvidia/gr00t-n1.6",
+   "benchmark": "phail_done_pct",
+   "score": 45.0,
+   "unit": "%",
+   "_source": "https://phail.ai/api/groups/leaderboard  (JSON, 2026-08-27)"
+  },
+  {
+   "model": "nvidia/gr00t-n1.6",
+   "benchmark": "phail_mtbf",
+   "score": 4.0,
+   "unit": "min",
+   "_source": "https://phail.ai/api/groups/leaderboard  (JSON, 2026-08-27)"
+  },
+  {
+   "model": "huggingface/smolvla",
+   "benchmark": "phail_done_pct",
+   "score": 10.8,
+   "unit": "%",
+   "_source": "https://phail.ai/api/groups/leaderboard  (JSON, 2026-08-27)"
+  },
+  {
+   "model": "huggingface/smolvla",
+   "benchmark": "phail_mtbf",
+   "score": 2.7,
+   "unit": "min",
+   "_source": "https://phail.ai/api/groups/leaderboard  (JSON, 2026-08-27)"
+  },
+  {
+   "model": "stanford/act",
+   "benchmark": "phail_done_pct",
+   "score": 35.0,
+   "unit": "%",
+   "_source": "https://phail.ai/api/groups/leaderboard  (JSON, 2026-08-27)"
+  },
+  {
+   "model": "stanford/act",
+   "benchmark": "phail_mtbf",
+   "score": 3.6,
+   "unit": "min",
+   "_source": "https://phail.ai/api/groups/leaderboard  (JSON, 2026-08-27)"
+  }
+ ]
+}
