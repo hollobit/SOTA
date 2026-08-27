@@ -1,0 +1,108 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-27",
+  "session": "S253b",
+  "note": "RE-REVIEW of S253: rendered the z.ai blog SPA with Playwright and found the FULL benchmark table (richer than the bench_53.png chart, which showed only 6). Adds GLM-5.3-Flash values missed first pass: NL2Repo 56.3, Toolathlon Verified 78.4, + 6 VISION benchmarks (OfficeQA Pro 62.4, CharXiv Reasoning w/Tools 89.4, Chartography 78.0, BabyVision 53.4, MVbench 77.8, MMVU 80.5). GLM-5.3-Flash column only (vendor-reported competitor columns excluded). Base-model table (GLM-5.3-Flash-Base: MMLU 88.1, LiveCodeBench-Base 37.6...) skipped — separate base variant, different regime.",
+  "sources": [
+   "https://z.ai/blog/glm-5.3-flash"
+  ]
+ },
+ "benchmarks": [
+  {
+   "id": "officeqa_pro",
+   "name": "OfficeQA Pro",
+   "category": "multimodal",
+   "metric": "score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Document/office-intelligence VLM benchmark (Z.ai). Higher better."
+  },
+  {
+   "id": "charxiv_reasoning_tools",
+   "name": "CharXiv Reasoning (w/ Tools)",
+   "category": "multimodal",
+   "metric": "reasoning_score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "CharXiv reasoning-question accuracy with tool use. Higher better."
+  },
+  {
+   "id": "babyvision",
+   "name": "BabyVision",
+   "category": "multimodal",
+   "metric": "score",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Multimodal perception benchmark (Z.ai GLM-5.3-Flash blog). Higher better."
+  },
+  {
+   "id": "mvbench",
+   "name": "MVBench (video understanding)",
+   "category": "multimodal",
+   "metric": "accuracy",
+   "higher_better": true,
+   "unit": "%",
+   "_note": "Multimodal video understanding benchmark. Higher better."
+  }
+ ],
+ "scores": [
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "nl2repo_bench",
+   "score": 56.3,
+   "unit": "%",
+   "_source": "https://z.ai/blog/glm-5.3-flash  (Playwright-rendered full benchmark table, GLM-5.3-Flash column)"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "toolathlon_verified",
+   "score": 78.4,
+   "unit": "%",
+   "_source": "https://z.ai/blog/glm-5.3-flash  (Playwright-rendered full benchmark table, GLM-5.3-Flash column)",
+   "_note": "supersedes? distinct config; blog full table"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "chartography",
+   "score": 78.0,
+   "unit": "%",
+   "_source": "https://z.ai/blog/glm-5.3-flash  (Playwright-rendered full benchmark table, GLM-5.3-Flash column)",
+   "_note": "Chartography w/ Tools"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "mmvu",
+   "score": 80.5,
+   "unit": "%",
+   "_source": "https://z.ai/blog/glm-5.3-flash  (Playwright-rendered full benchmark table, GLM-5.3-Flash column)"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "officeqa_pro",
+   "score": 62.4,
+   "unit": "%",
+   "_source": "https://z.ai/blog/glm-5.3-flash  (Playwright-rendered full benchmark table, GLM-5.3-Flash column)"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "charxiv_reasoning_tools",
+   "score": 89.4,
+   "unit": "%",
+   "_source": "https://z.ai/blog/glm-5.3-flash  (Playwright-rendered full benchmark table, GLM-5.3-Flash column)"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "babyvision",
+   "score": 53.4,
+   "unit": "%",
+   "_source": "https://z.ai/blog/glm-5.3-flash  (Playwright-rendered full benchmark table, GLM-5.3-Flash column)"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "mvbench",
+   "score": 77.8,
+   "unit": "%",
+   "_source": "https://z.ai/blog/glm-5.3-flash  (Playwright-rendered full benchmark table, GLM-5.3-Flash column)"
+  }
+ ]
+}
