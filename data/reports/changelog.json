@@ -4857,5 +4857,17 @@
   "type": "Data",
   "title": "S250c — 재검토#2: Faraday/Replica 신규 발견 + SWE-Science Private",
   "detail": "S250 재검토#2: Inherent Labs 소스를 블로그 에세이(수치 없음)만 읽었던 걸 발견 — 실제 논문 arXiv 2608.13331에는 결과표가 있었음. 신규 모델 Faraday(27B, Qwen3.6-27B에서 GRPO 후학습, Codex GPT-5.5를 도구로 사용) + Replica 벤치(그림 복제 루브릭 점수, 310태스크/100논문) 반영. held-out AI-for-science(68태스크) 성능: Faraday 0.791 > Claude Opus 4.8 0.748 > GPT-5.5 0.729 > Qwen3.6-27B(base) 0.554; ML in-distribution(242태스크)도 별도 등록. 추가로 SWE-bench Science Private Score(연속 지표, Pass@1의 보완) 7모델 반영. 신규 모델1·벤치3·15 scores 0 FK."
+ },
+ {
+  "date": "2026-08-27",
+  "type": "Data",
+  "title": "S251 — Qwen3.8-Flash-Next + AA Mobile Intelligence(온디바이스) + GPQA 보강",
+  "detail": "10개 링크를 5개 병렬 에이전트로 분석. 신규 모델 Qwen3.8-Flash-Next(125B/6B 하이브리드 GDN+QSA MoE, 262K→1M ctx, instruct 20 scores: GPQA-D 91.7·LiveCodeBench-v6 91.9·SWE-bench Pro 62.5). 신규 벤치 AA Mobile Intelligence(온디바이스, iPhone 17 Pro 4-bit, avg score↑) + E2E 생성시간(↓), 신규 소형모델 6종(LFM2.5-2.6B/350M/230M, Nanbeige4.2-3B, Ornith-1.0-9B, G9v3-3B) 포함 18모델. AA GPQA Diamond 넷-뉴 7모델(Grok 4.6 94.9·Gemini 3.7 Flash 94.5·GLM-5.3 91.7 등; 기존 226모델). Timeline FRONTIER_MODELS에 Flash-Next 추가. 7모델·4벤치·63 scores 0 FK. 미반영: Qwen3.8-Max 블로그(이미 42벤치 커버+경쟁사컬럼 strict-attribution 제외), PAI-Bench arXiv 2512.01989(동일 SHI-Labs 벤치의 구 스냅샷, 라이브 HF 리더보드로 이미 반영, config 불일치 오귀속 위험), NVIDIA PBench(summarizer 추출 미검증+DB 커버리지 낮음), NVIDIA 시뮬 블로그(벤치 데이터 없음)."
+ },
+ {
+  "date": "2026-08-27",
+  "type": "Data",
+  "title": "S251b — 재검토: NVIDIA PBench Playwright 검증·반영",
+  "detail": "S251에서 summarizer 추출이라 보류했던 NVIDIA PBench(Cosmos Lab 물리AI 월드모델 벤치)를 Playwright로 3개 정형 HTML 표(Overall/Domain/Quality)를 정밀 추출해 반영(기존 summarizer 값과 일치 확인). 기존 'pbench'(Qwen RobotWorld)와 id 충돌 방지 위해 pbench_nvidia로 등록. 8개 월드모델: Cosmos-Predict2-14B Overall 77.4 선두. 신규 비디오 월드모델 6종 생성(Cosmos-Predict1/2-2B/7B/14B, Wan2.1-I2V-14B, LTX-Video), 2종 매핑(HunyuanVideo-I2V, CogVideoX-5B). Overall+Domain(물리 충실도) 반영, Quality(일반 화질)는 제외. 6모델·2벤치·16 scores 0 FK."
  }
 ]
