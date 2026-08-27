@@ -4869,5 +4869,11 @@
   "type": "Data",
   "title": "S251b — 재검토: NVIDIA PBench Playwright 검증·반영",
   "detail": "S251에서 summarizer 추출이라 보류했던 NVIDIA PBench(Cosmos Lab 물리AI 월드모델 벤치)를 Playwright로 3개 정형 HTML 표(Overall/Domain/Quality)를 정밀 추출해 반영(기존 summarizer 값과 일치 확인). 기존 'pbench'(Qwen RobotWorld)와 id 충돌 방지 위해 pbench_nvidia로 등록. 8개 월드모델: Cosmos-Predict2-14B Overall 77.4 선두. 신규 비디오 월드모델 6종 생성(Cosmos-Predict1/2-2B/7B/14B, Wan2.1-I2V-14B, LTX-Video), 2종 매핑(HunyuanVideo-I2V, CogVideoX-5B). Overall+Domain(물리 충실도) 반영, Quality(일반 화질)는 제외. 6모델·2벤치·16 scores 0 FK."
+ },
+ {
+  "date": "2026-08-27",
+  "type": "Data",
+  "title": "S252 — TPBench(이론물리 추론) 신규 + PHAIL 로보틱스 보강",
+  "detail": "4개 링크 분석. 신규 벤치 TPBench(Theoretical Physics Bench, ai4s, arXiv 2502.15815): Research(tier5)+Easy-Grad(tier3) 정확도, 현행 플래그십 10모델(GPT-5.5 Research 55% 선두 > GPT-5·Gemini-3-Pro 44). 차트 이미지 라벨 전사(가려진 4-Grad tier 제외). PHAIL(Positronic Robotics 로보틱스 리더보드) 보강: 신규 모델 Action Chunking Transformer(44.2 UPH, #3) + API에 새로 노출된 Done%(완료율)·MTBF/A(고장간격) 지표 4정책 반영. 1모델·4벤치·29 scores 0 FK. 미반영: alphasignal LFM2.5 기사(AA Mobile 벤치의 2차 뉴스레터 재작성, avg/E2E값이 S251과 정확히 일치—신규 1차 데이터 없음), PHAIL Human/Teleop baseline(학습 정책 아님), TPBench strong/weak 그룹 구형 모델(2년+)."
  }
 ]
