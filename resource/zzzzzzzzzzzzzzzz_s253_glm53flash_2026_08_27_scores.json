@@ -1,0 +1,101 @@
+{
+ "_meta": {
+  "collected_at": "2026-08-27",
+  "session": "S253",
+  "note": "NEW model GLM-5.3-Flash (Z.ai, 320B/18B multimodal MoE, 1M ctx, MIT, 2026-08-26). 6 official benchmark values read from the HuggingFace bench_53.png chart (GLM-5.3-Flash column only; vendor-reported competitor columns excluded per strict attribution). Added AA-independent GPQA Diamond 91.2 (attachable now; model did not exist at S251; consistent with GLM-5.3 base 91.7). Pricing from OpenRouter (standard, not the temporary 50pct promo). Z.ai official chart has NO GPQA.",
+  "sources": [
+   "https://huggingface.co/zai-org/GLM-5.3-Flash",
+   "https://z.ai/blog/glm-5.3-flash",
+   "https://openrouter.ai/z-ai/glm-5.3-flash",
+   "https://artificialanalysis.ai/evaluations/gpqa-diamond"
+  ]
+ },
+ "models": [
+  {
+   "id": "zhipu/glm-5.3-flash",
+   "name": "GLM-5.3-Flash",
+   "developer": "Z.ai / Zhipu AI",
+   "vendor": "zhipu",
+   "release_date": "2026-08-26",
+   "license": "MIT",
+   "context_window": 1048576,
+   "base_model": "zhipu/glm-5.3",
+   "_note": "First natively multimodal model in GLM-5 series. MoE 320B total / 18B active (8 of 288 experts, 45 layers), KDA linear + NoPE sparse MLA attention, native FP8, MTP. Text/image/video/file in, text out. 1M ctx, MIT. ~1/10 price of GLM-5.2. huggingface.co/zai-org/GLM-5.3-Flash."
+  }
+ ],
+ "scores": [
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "terminal_bench_2_1",
+   "score": 84.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/zai-org/GLM-5.3-Flash  (official bench_53.png, GLM-5.3-Flash column)"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "deepswe_1_1",
+   "score": 63.4,
+   "unit": "%",
+   "_source": "https://huggingface.co/zai-org/GLM-5.3-Flash  (official bench_53.png, GLM-5.3-Flash column)"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "agents_last_exam",
+   "score": 26.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/zai-org/GLM-5.3-Flash  (official bench_53.png, GLM-5.3-Flash column)"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "automationbench",
+   "score": 48.8,
+   "unit": "%",
+   "_source": "https://huggingface.co/zai-org/GLM-5.3-Flash  (official bench_53.png, GLM-5.3-Flash column)"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "hle_with_tools",
+   "score": 55.3,
+   "unit": "%",
+   "_source": "https://huggingface.co/zai-org/GLM-5.3-Flash  (official bench_53.png, GLM-5.3-Flash column)"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "gdpval_aa_elo",
+   "score": 1773.0,
+   "unit": "elo",
+   "_source": "https://huggingface.co/zai-org/GLM-5.3-Flash  (official bench_53.png, GLM-5.3-Flash column)"
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "gpqa_diamond",
+   "score": 91.2,
+   "unit": "%",
+   "_source": "https://artificialanalysis.ai/evaluations/gpqa-diamond  (AA independent eval)",
+   "_note": "Consistent with GLM-5.3 base 91.7."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "input_price_per_mtok_lower_better",
+   "score": 0.15,
+   "unit": "usd_per_1m",
+   "_source": "https://openrouter.ai/z-ai/glm-5.3-flash",
+   "_note": "Standard (promo 0.075 thru 2026-09-09)."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "output_price_per_mtok_lower_better",
+   "score": 0.5,
+   "unit": "usd_per_1m",
+   "_source": "https://openrouter.ai/z-ai/glm-5.3-flash",
+   "_note": "Standard (promo 0.25)."
+  },
+  {
+   "model": "zhipu/glm-5.3-flash",
+   "benchmark": "cached_input_price_per_mtok_lower_better",
+   "score": 0.03,
+   "unit": "usd_per_1m",
+   "_source": "https://openrouter.ai/z-ai/glm-5.3-flash"
+  }
+ ]
+}

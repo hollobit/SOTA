@@ -277,6 +277,7 @@ var FrontierCompare = {
         'zhipu/glm-5',
         'zhipu/glm-5.1',
         'zhipu/glm-5.3',  // 2026-08-14 S246 — frontier coding + emergent cyber; GDPval-AA Elo 1769, Terminal-Bench 2.1 88.2, CyberGym 84.5, ExploitBench 54.4
+        'zhipu/glm-5.3-flash',  // 2026-08-26 S253 — first multimodal GLM-5 (320B/18B MoE, 1M ctx, MIT); GDPval-AA Elo 1773, Terminal-Bench 2.1 84.3, GPQA-D 91.2
         'zhipu/glm-5.2',  // 2026-06-17 S137 — AAII v4.1 51 open-weights leader (744B/40B MoE MIT)
         'alibaba/qwen3.8-max',  // 2026-07-19 S231 — Qwen3.8-Max flagship (Terminal-Bench 2.1 86.6, GPQA-D 92.6, multimodal); Timeline frontier currency
         'alibaba/qwen3.8-flash-next',  // 2026-08-26 S251 — Qwen3.8-Flash-Next (125B/6B hybrid GDN+QSA MoE, GPQA-D 91.7, LiveCodeBench-v6 91.9); Timeline frontier
